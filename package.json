@@ -1,6 +1,15 @@
 {
-  "name": "ng-tec-design-system",
-  "version": "0.0.0",
+  "name": "@ti-tecnologico-de-monterrey-oficial/tec-design-system-ng",
+  "version": "0.0.2",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/@tec-design-system"
+  },
+  "repository": "https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng",
+  "files": [
+    "src/",
+    "dist/*",
+    "types/*"
+  ],
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -8,7 +17,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
-  "private": true,
+  "private": false,
   "dependencies": {
     "@angular/animations": "^17.0.0",
     "@angular/common": "^17.0.0",
@@ -33,6 +42,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "ng-packagr": "^17.0.0",
     "typescript": "~5.2.2"
   }
 }

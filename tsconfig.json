@@ -10,6 +10,11 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true,
+    "paths": {
+      "tec-ds-ng": [
+        "./dist/tec-ds-ng"
+      ]
+    },
     "esModuleInterop": true,
     "sourceMap": true,
     "declaration": false,
