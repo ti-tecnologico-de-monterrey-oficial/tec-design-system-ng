@@ -3,6 +3,11 @@
   "compileOnSave": false,
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
+    "paths": {
+      "ds-ng": [
+        "./dist/ds-ng"
+      ]
+    },
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitOverride": true,

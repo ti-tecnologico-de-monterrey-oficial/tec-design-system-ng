@@ -7,7 +7,14 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "scss",
+          "standalone": false
+        },
+        "@schematics/angular:directive": {
+          "standalone": false
+        },
+        "@schematics/angular:pipe": {
+          "standalone": false
         }
       },
       "root": "",
@@ -93,6 +100,39 @@
               "src/styles.scss"
             ],
             "scripts": []
+          }
+        }
+      }
+    },
+    "ds-ng": {
+      "projectType": "library",
+      "root": "projects/ds-ng",
+      "sourceRoot": "projects/ds-ng/src",
+      "prefix": "bmb",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/ds-ng/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ds-ng/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ds-ng/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/ds-ng/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
           }
         }
       }
