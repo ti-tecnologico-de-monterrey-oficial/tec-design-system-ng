@@ -7,7 +7,7 @@ import { DsNgComponent } from 'ds-ng';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
