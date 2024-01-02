@@ -2,7 +2,8 @@ import { Directive, Input, HostBinding, ChangeDetectorRef } from '@angular/core'
 
 const BUTTON_CLASSES = {
   primary: 'wc-btn-primary',
-  secondary: 'wc-btn-secondary'
+  secondary: 'wc-btn-secondary',
+  destructive: 'wc-btn-destructive'
 }
 
 @Directive({

@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DsNgComponent } from 'ds-ng';
+import { DsNgComponent } from '../../projects/ds-ng/src/public-api';
 
 @NgModule({
   declarations: [
@@ -12,7 +12,7 @@ import { DsNgComponent } from 'ds-ng';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    DsNgComponent,
+    DsNgComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
