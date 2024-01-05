@@ -1,0 +1,27 @@
+@import "../../assets/scss/main.scss";
+
+.user-image {
+  align-items: center;
+  background-color: $blueBluePrimary;
+  border-radius: 100%;
+  display: flex;
+  height: rem_calc(50);
+  justify-content: center;
+  overflow: hidden;
+  width: rem_calc(50);
+
+  img {
+    height: 100%;
+    width: 100%;
+  }
+
+  &.small {
+    height: rem_calc(50);
+    width: rem_calc(50);
+  }
+
+  &.large {
+    height: rem_calc(160);
+    width: rem_calc(160);
+  }
+}
