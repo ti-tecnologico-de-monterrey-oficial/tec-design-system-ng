@@ -1,0 +1,9 @@
+<ol class="dot-paginator">
+  <li
+    *ngFor="let i of getDotsArray()"
+    [attr.data-bs-target]="targets[i]?.target || ''"
+    [attr.data-bs-slide-to]="i"
+    [ngClass]="{ dot: true, active: activeDotIndex === i }"
+    (click)="onDotClicked(i)"
+  ></li>
+</ol>

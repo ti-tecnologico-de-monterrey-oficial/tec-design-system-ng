@@ -1,0 +1,106 @@
+@font-face {
+  font-family: "Poppins-Thin";
+  src: url("../../fonts/Poppins/Poppins-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins-Light";
+  src: url("../../fonts/Poppins/Poppins-ExtraLight.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins-Regular";
+  src: url("../../fonts/Poppins/Poppins-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins-Medium";
+  src: url("../../fonts/Poppins/Poppins-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins-Semibold";
+  src: url("../../fonts/Poppins/Poppins-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins-Bold";
+  src: url("../../fonts/Poppins/Poppins-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+$font-poppins-thin: "Poppins-Thin", sans-serif;
+$font-poppins-light: "Poppins-Light", sans-serif;
+$font-poppins-regular: "Poppins-Regular", sans-serif;
+$font-poppins-medium: "Poppins-Medium", sans-serif;
+$font-poppins-semibold: "Poppins-Semibold", sans-serif;
+$font-poppins-bold: "Poppins-Bold", sans-serif;
+
+$font-map: (
+  thin: $font-poppins-thin,
+  light: $font-poppins-light,
+  regular: $font-poppins-regular,
+  medium: $font-poppins-medium,
+  semibold: $font-poppins-semibold,
+  bold: $font-poppins-bold,
+);
+
+:root,
+:host {
+  --font-display: $font-poppins-regular;
+}
+
+$sizes: (
+  //1
+  rem_calc(10),
+  //2
+  rem_calc(12),
+  //3
+  rem_calc(14),
+  //4
+  rem_calc(16),
+  //5
+  rem_calc(18),
+  //6
+  rem_calc(20),
+  //7
+  rem_calc(22),
+  //8
+  rem_calc(24),
+  //9
+  rem_calc(26)
+);
+
+// Method 1: Mixin
+// font styles can be include in classes via @include font(2, medium)
+@mixin font($i, $type) {
+  $size: nth($sizes, $i);
+  $font-family: map-get($font-map, $type);
+
+  font-size: #{$size};
+  font-family: $font-family;
+}
+
+// Method 2: Classes
+// font styles can be used as individual classes .font-thin-2
+@each $size in $sizes {
+  $i: index($sizes, $size);
+
+  @each $type in thin, light, regular, medium, semibold, bold {
+    .font-#{$type}-#{$i} {
+      font-size: #{$size};
+      font-family: map-get($font-map, $type);
+    }
+  }
+}

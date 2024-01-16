@@ -1,0 +1,100 @@
+// Reset Element
+@mixin resetElement() {
+  line-height: 1.5;
+  box-sizing: border-box;
+
+  &:focus {
+    @include focusElement();
+  }
+}
+
+@mixin focusElement($inset: outset) {
+  outline: 0;
+}
+
+@mixin button($type: primary) {
+  @include font(3, regular);
+  border: none;
+  border-radius: $border-radius-sm;
+  padding: $spacing-size-md $spacing-size-base;
+
+  &:focus,
+  &:focus:hover {
+    @include focusElement();
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  @if $type == primary {
+    background-color: RGBA(var(--color-mariner-700));
+    color: RGBA(var(--color-white));
+
+    &:hover {
+      background-color: RGBA(var(--color-mariner-800));
+    }
+
+    &:focus-visible {
+      background-color: RGBA(var(--color-mariner-900));
+    }
+
+    &:active {
+      background-color: RGBA(var(--color-mariner-600));
+    }
+
+    &:disabled {
+      background-color: RGBA(var(--color-mariner-200));
+    }
+  } @else if $type == secondary {
+    background-color: RGBA(var(--color-mariner-50));
+    color: RGBA(var(--color-mariner-700));
+
+    &:hover {
+      background-color: RGBA(var(--color-mariner-100));
+    }
+
+    &:focus-visible {
+      background-color: RGBA(var(--color-mariner-300));
+    }
+
+    &:active {
+      background-color: RGBA(var(--color-mariner-200));
+    }
+
+    &:disabled {
+      background-color: RGBA(var(--color-mariner-50));
+    }
+  } @else if $type == simple {
+    background-color: RGBA(var(--color-charade-50));
+    color: RGBA(var(--color-charade-900));
+
+    &:hover {
+      background-color: RGBA(var(--color-charade-100));
+    }
+
+    &:focus-visible {
+      background-color: RGBA(var(--color-charade-300));
+    }
+
+    &:active {
+      background-color: RGBA(var(--color-charade-200));
+    }
+
+    &:disabled {
+      background-color: RGBA(var(--color-charade-50));
+    }
+  }
+}
+
+@mixin input() {
+  @include resetElement();
+  @include font(2, medium);
+  appearance: none;
+  border-radius: $spacing-size-base;
+
+  &:focus,
+  &:focus:hover {
+    @include focusElement();
+  }
+}
