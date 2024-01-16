@@ -1,5 +1,39 @@
-<bmb-user-image [imageSrc]="'../assets/img/user-image.png'" />
-<bmb-user-image [size]="'small'" [imageSrc]="'../assets/img/user-image.png'" />
-<bmb-user-image [size]="'large'" [imageSrc]="'../assets/img/user-image.png'" />
-<bmb-user-image [size]="'large'" />
-<button class="btn btn-danger"></button>
+<!-- Theme selector -->
+<h1 class="font-regular-9">Theme Selector</h1>
+<bmb-theme />
+<hr />
+
+<!-- Icons -->
+<h2 class="font-regular-5">Icons</h2>
+<bmb-icon />
+<bmb-icon icon="grade" style="color: aqua" />
+<bmb-icon icon="home" style="color: green" />
+<hr />
+
+<!-- User Imge -->
+<h2 class="font-regular-5">User Image</h2>
+<bmb-user-image [image]="'../assets/img/user-image.png'" />
+<bmb-user-image [size]="'small'" [image]="'../assets/img/user-image.png'" />
+<bmb-user-image [size]="'large'" [image]="'../assets/img/user-image.png'" />
+<hr />
+
+<!-- Buttons -->
+<h2 class="font-regular-5">Buttons</h2>
+<button bmbButton type="button" class="btn btn-primary">Primary</button>
+<button bmbButton type="button" class="btn btn-secondary">Secondary</button>
+<button bmbButton type="button" class="btn btn-simple">Simple</button>
+<hr />
+
+<!-- Dot Paginator -->
+<h2 class="font-regular-5">Dot paginator</h2>
+<bmb-dot-paginator
+  [activeDotIndex]="5"
+  [totalDots]="10"
+  [targets]="[
+    { target: '#kt_carousel_1_carousel', index: 0 },
+    { target: '#kt_carousel_1_carousel', index: 1 },
+    { target: '#kt_carousel_1_carousel', index: 2 },
+    { target: '#kt_carousel_1_carousel', index: 3 }
+  ]"
+  (onDotPress)="handleDot($event)"
+/>

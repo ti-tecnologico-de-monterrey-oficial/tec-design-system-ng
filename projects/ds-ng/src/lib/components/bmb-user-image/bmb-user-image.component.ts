@@ -1,14 +1,15 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Props } from './bmb-user-image.interface';
 
 @Component({
   selector: 'bmb-user-image',
   templateUrl: './bmb-user-image.component.html',
-  styleUrls: ['./bmb-user-image.component.scss'],
+  styleUrls: ['../../../assets/styles/components/_user-image.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbUserImageComponent {
   @Input() size: string = '';
-  @Input() imageSrc: string = '';
+  @Input() image: string = '';
 
   constructor() {}
 

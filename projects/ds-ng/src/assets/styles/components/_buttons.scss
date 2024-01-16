@@ -1,0 +1,15 @@
+.btn {
+  @include button(primary);
+
+  &-primary {
+    @include button(primary);
+  }
+
+  &-secondary {
+    @include button(secondary);
+  }
+
+  &-simple {
+    @include button(simple);
+  }
+}
