@@ -1,30 +1,28 @@
-import { Directive, Input, HostBinding, ChangeDetectorRef } from '@angular/core';
+import {
+  Directive,
+  Input,
+  HostBinding,
+  ChangeDetectorRef,
+} from '@angular/core';
 
 const BUTTON_CLASSES = {
-  primary: 'wc-btn-primary',
-  secondary: 'wc-btn-secondary',
-  destructive: 'wc-btn-destructive'
-}
+  primary: 'btn__primary',
+  secondary: 'btn__secondary',
+  simple: 'btn__simple',
+};
 
 @Directive({
   selector: '[bmbButton]',
-  standalone: true
+  standalone: true,
 })
 export class ButtonDirective {
-
   @Input() btnStyle: 'primary' | 'secondary' = 'primary';
 
   @HostBinding('class') classes = '';
-  constructor(
-    private changeDector: ChangeDetectorRef
-  ) { 
-
-  }
+  constructor(private changeDector: ChangeDetectorRef) {}
 
   ngAfterViewInit(): void {
-     console.log("this", this.btnStyle)
-     this.classes = BUTTON_CLASSES[this.btnStyle];
-     this.changeDector.detectChanges();
+    this.classes = BUTTON_CLASSES[this.btnStyle];
+    this.changeDector.detectChanges();
   }
-
 }

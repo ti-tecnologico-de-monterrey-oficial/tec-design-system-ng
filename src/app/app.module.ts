@@ -1,14 +1,39 @@
-import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+
 import { DsNgComponent } from '../../projects/ds-ng/src/public-api';
+import { BmbIconComponent } from '../../projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.component';
+import { BmbThemeComponent } from '../../projects/ds-ng/src/lib/components/bmb-theme/bmb-theme.component';
 import { BmbUserImageComponent } from '../../projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-image.component';
+import { BmbDotPaginatorComponent } from '../../projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.component';
+
+// Angular library
+
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+
 @NgModule({
-  declarations: [AppComponent, BmbUserImageComponent],
-  imports: [BrowserModule, AppRoutingModule, DsNgComponent],
+  declarations: [
+    AppComponent,
+    BmbUserImageComponent,
+    BmbThemeComponent,
+    BmbIconComponent,
+    BmbDotPaginatorComponent,
+  ],
+  imports: [
+    FormsModule,
+    DsNgComponent,
+    BrowserModule,
+    AppRoutingModule,
+    MatButtonToggleModule,
+    BrowserAnimationsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}
