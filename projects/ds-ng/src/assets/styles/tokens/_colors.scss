@@ -1,0 +1,98 @@
+:root {
+  // To use colors you should use it in this way
+  // background-color: RGBA(var(--color-mariner-900));
+
+  // Mariner
+  --color-mariner-50: 240, 248, 254;
+  --color-mariner-100: 221, 238, 252;
+  --color-mariner-200: 195, 226, 250;
+  --color-mariner-300: 153, 208, 247;
+  --color-mariner-400: 105, 183, 241;
+  --color-mariner-500: 69, 153, 236;
+  --color-mariner-600: 69, 153, 236;
+  --color-mariner-700: 39, 102, 203;
+  --color-mariner-800: 38, 84, 167;
+  --color-mariner-900: 36, 73, 132;
+  --color-mariner-950: 26, 46, 81;
+
+  // Charade
+  --color-charade-50: 246, 247, 249;
+  --color-charade-100: 235, 237, 243;
+  --color-charade-200: 211, 215, 228;
+  --color-charade-300: 173, 182, 204;
+  --color-charade-400: 105, 183, 241;
+  --color-charade-500: 97, 113, 150;
+  --color-charade-600: 77, 89, 124;
+  --color-charade-700: 63, 73, 101;
+  --color-charade-800: 55, 63, 85;
+  --color-charade-900: 49, 54, 73;
+  --color-charade-950: 31, 34, 46;
+
+  // This colors will be deprecate in the future
+  --color-neon-primary: 28, 192, 204;
+  --color-neon-light: 99, 195, 202;
+  --color-neon-tint: 153, 204, 208;
+
+  --color-blue-primary: 39, 102, 203;
+  --color-blue-light: 70, 119, 199;
+  --color-blue-tint: 147, 169, 204;
+  --color-blue-pigment: 39, 58, 161;
+
+  --color-teal-primary: 39, 125, 161;
+  --color-teal-light: 82, 137, 159;
+  --color-teal-tint: 106, 145, 161;
+
+  --color-red-primary: 211, 47, 47;
+  --color-red-light: 240, 82, 82;
+  --color-red-tint: 252, 158, 158;
+
+  --color-green-primary: 64, 162, 19;
+  --color-green-light: 67, 170, 139;
+  --color-green-tint: 172, 227, 146;
+
+  --color-purple-primary: 106, 39, 161;
+  --color-purple-light: 161, 39, 128;
+  --color-purple-tint: 200, 123, 189;
+
+  --color-yellow-primary: 252, 189, 7;
+  --color-yellow-light: 254, 214, 98;
+  --color-yellow-tint: 255, 231, 163;
+
+  --color-black: 0, 0, 0;
+  --color-black-light: RGBA(var(--color-black), 0.75);
+  --color-black-tint: RGBA(var(--color-black), 0.5);
+  --color-black-dark: 30, 38, 44;
+
+  --color-white: 255, 255, 255;
+  --color-white-light: RGBA(var(--color-white), 0.75);
+  --color-white-tint: RGBA(var(--color-white), 0.5);
+
+  --color-container-home: 82, 137, 159;
+  --color-container-secondary: 26, 34, 40;
+  --color-button-container: 42, 52, 59;
+
+  --color-japanese-indigo: 39, 64, 82;
+  --color-eerie-black: 20, 25, 28;
+
+  // To use this gradient you should use it in this way
+  // background-color: linear-gradient(180deg, var(--color-gradient-blue)); or
+  // background-color: radial-gradient(circle, var(--color-gradient-blue));
+  --color-gradient-blue: RGBA(var(--color-teal-primary)) 0%,
+    RGBA(var(--color-blue-pigment)) 100%;
+  --color-gradient-green: RGBA(var(--color-neon-primary)) 0%,
+    RGBA(var(--color-green-light)) 100%;
+  --color-gradient-purple: RGBA(var(--color-purple-primary)) 0%,
+    RGBA(var(--color-purple-light)) 100%;
+  --color-gradient-button: RGBA(var(--color-teal-primary)) 0%,
+    RGBA(var(--color-blue-primary)) 100%;
+  --color-gradient-dark: RGBA(var(--color-japanese-indigo)) 0%,
+    RGBA(var(--color-black-dark)) 100%;
+  --color-gradient-wheel-dark: RGBA(var(--color-eerie-black)) 0%,
+    RGBA(var(--color-black-dark)) 100%;
+
+  // To use shadow you should use it in this way
+  // box-shadow: var(--shadow-sm);
+  --shadow-sm: 1px 1px 2px 0 RGBA(var(--color-black), 0.2);
+  --shadow-lg: 4px 4px 4px 0 RGBA(var(--color-black), 0.2);
+  --shadow-xl: 8px 8px 8px 0 RGBA(var(--color-black), 0.2);
+}

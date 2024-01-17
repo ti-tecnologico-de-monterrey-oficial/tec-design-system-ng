@@ -1,0 +1,25 @@
+// Design System Global Stylesheet
+// Created by Tec de Monterrey
+
+// This file provides the global variables, resets, and styles for an app to properly use the design system
+// It is mandatory to load this scss file as style dependency before any other
+
+// Import and register the design tokens like colors and sizes
+@import "tokens/designtokens";
+
+// Import and register the rem convertion
+@import "base/rem";
+
+// Import fonts
+@import "base/typography";
+
+// Import the styles for base
+@import "base/reset";
+@import "base/measures";
+@import "base/mixins";
+
+// Import the styles for non components elements
+@import "components/buttons";
+
+// Import google icon fonts
+@import "material-design-icons/iconfont/material-icons.css";
