@@ -6,9 +6,9 @@ import {
 } from '@angular/core';
 
 const BUTTON_CLASSES = {
-  primary: 'btn__primary',
-  secondary: 'btn__secondary',
-  simple: 'btn__simple',
+  primary: 'btn-primary',
+  secondary: 'btn-secondary',
+  simple: 'btn-simple',
 };
 
 @Directive({
