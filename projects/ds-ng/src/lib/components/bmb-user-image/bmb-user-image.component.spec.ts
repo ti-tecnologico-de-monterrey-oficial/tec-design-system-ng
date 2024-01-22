@@ -24,7 +24,7 @@ describe('BmbUserImageComponent', () => {
 
   it('should have default values for size and imageSrc', () => {
     expect(component.size).toBe('');
-    expect(component.imageSrc).toBe('../../assets/img/user-image.png');
+    expect(component.image).toBe('../../assets/img/user-image.png');
   });
 
   it('should add size class when size is provided', () => {

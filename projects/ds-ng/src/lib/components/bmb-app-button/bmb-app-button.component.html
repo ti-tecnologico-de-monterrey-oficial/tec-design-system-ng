@@ -1,0 +1,7 @@
+<div class="app-button">
+  <div class="app-button-box">
+    <bmb-icon class="app-button-icon" icon="{{ icon }}" *ngIf="!image" />
+    <img *ngIf="image" [src]="image" alt="text" class="app-button-image" />
+  </div>
+  <span class="app-button-text">{{ text }}</span>
+</div>
