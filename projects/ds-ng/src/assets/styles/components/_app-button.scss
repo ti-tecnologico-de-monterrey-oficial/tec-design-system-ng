@@ -1,0 +1,38 @@
+@import "../tokens/colors";
+@import "../base/rem";
+@import "../base/measures";
+@import "../base/typography";
+
+.app-button {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  min-height: rem_calc(40);
+  max-width: rem_calc(210);
+  width: 100%;
+
+  &-box {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    width: rem_calc(40);
+  }
+
+  &-icon,
+  &-image {
+    height: rem_calc(30);
+    margin-right: $spacing-size-md;
+    width: rem_calc(30);
+  }
+
+  &-icon {
+    color: RGBA(var(--color-charade-950));
+    font-size: rem_calc(30);
+  }
+
+  &-text {
+    @include font(3, medium);
+    color: RGBA(var(--color-charade-950));
+  }
+}
