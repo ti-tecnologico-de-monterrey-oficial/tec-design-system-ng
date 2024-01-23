@@ -9,5 +9,8 @@ export * from './lib/directives/button.directive';
 // Components
 export * from './lib/components/bmb-icon/bmb-icon.component';
 export * from './lib/components/bmb-theme/bmb-theme.component';
+export * from './lib/components/bmb-badge/bmb-badge.component';
+export * from './lib/components/bmb-divider/bmb-divider.component';
 export * from './lib/components/bmb-user-image/bmb-user-image.component';
+export * from './lib/components/bmb-app-button/bmb-app-button.component';
 export * from './lib/components/bmb-dot-paginator/bmb-dot-paginator.component';

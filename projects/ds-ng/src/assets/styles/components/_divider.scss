@@ -1,0 +1,69 @@
+@import "../tokens/colors";
+@import "../base/rem";
+@import "../base/measures";
+
+.divider {
+  border: rem_calc(1) solid RGBA(var(--color-charade-50));
+  margin: $spacing-size-base 0;
+  width: 100%;
+
+  &-2 {
+    border-width: rem_calc(2);
+  }
+
+  &-3 {
+    border-width: rem_calc(3);
+  }
+
+  &-4 {
+    border-width: rem_calc(4);
+  }
+
+  &-5 {
+    border-width: rem_calc(5);
+  }
+
+  &-white {
+    border-color: RGBA(var(--color-white));
+  }
+
+  &-primary {
+    border-color: RGBA(var(--color-mariner-500));
+  }
+
+  &-light {
+    border-color: RGBA(var(--color-charade-200));
+  }
+
+  &-secondary {
+    border-color: RGBA(var(--color-charade-300));
+  }
+
+  &-success {
+    border-color: RGBA(var(--color-green-tint));
+  }
+
+  &-info {
+    border-color: RGBA(var(--color-purple-primary));
+  }
+
+  &-warning {
+    border-color: RGBA(var(--color-yellow-primary));
+  }
+
+  &-danger {
+    border-color: RGBA(var(--color-red-primary));
+  }
+
+  &-dark {
+    border-color: RGBA(var(--color-charade-950));
+  }
+
+  &-dotted {
+    border-style: dotted;
+  }
+
+  &-dashed {
+    border-style: dashed;
+  }
+}

@@ -1,3 +1,5 @@
+@import "./rem";
+
 @font-face {
   font-family: "Poppins-Thin";
   src: url("../../fonts/Poppins/Poppins-Thin.ttf") format("truetype");
@@ -65,20 +67,22 @@ $sizes: (
   //1
   rem_calc(10),
   //2
-  rem_calc(12),
+  rem_calc(11),
   //3
-  rem_calc(14),
+  rem_calc(12),
   //4
-  rem_calc(16),
+  rem_calc(14),
   //5
-  rem_calc(18),
+  rem_calc(16),
   //6
-  rem_calc(20),
+  rem_calc(18),
   //7
-  rem_calc(22),
+  rem_calc(20),
   //8
-  rem_calc(24),
+  rem_calc(22),
   //9
+  rem_calc(24),
+  //10
   rem_calc(26)
 );
 

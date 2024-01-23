@@ -1,0 +1,37 @@
+@import "../base/mixins";
+
+.badge {
+  @include badge();
+
+  &-light {
+    @include badge(light);
+  }
+
+  &-primary {
+    @include badge(primary);
+  }
+
+  &-secondary {
+    @include badge(secondary);
+  }
+
+  &-success {
+    @include badge(success);
+  }
+
+  &-info {
+    @include badge(info);
+  }
+
+  &-warning {
+    @include badge(warning);
+  }
+
+  &-danger {
+    @include badge(danger);
+  }
+
+  &-dark {
+    @include badge(dark);
+  }
+}

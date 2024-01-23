@@ -1,3 +1,7 @@
+@import "./typography";
+@import "./measures";
+@import "./rem";
+
 // Reset Element
 @mixin resetElement() {
   line-height: 1.5;
@@ -40,7 +44,7 @@
     }
 
     &:active {
-      background-color: RGBA(var(--color-mariner-600));
+      background-color: RGBA(var(--color-mariner-500));
     }
 
     &:disabled {
@@ -89,12 +93,44 @@
 
 @mixin input() {
   @include resetElement();
-  @include font(2, medium);
+  @include font(3, medium);
   appearance: none;
   border-radius: $spacing-size-base;
 
   &:focus,
   &:focus:hover {
     @include focusElement();
+  }
+}
+
+@mixin badge($type: light) {
+  @include font(2, semibold);
+  align-items: center;
+  border-radius: $border-radius-xs;
+  color: RGBA(var(--color-white));
+  display: flex;
+  justify-content: center;
+  min-height: rem_calc(20);
+  padding: 0 $spacing-size-md;
+  width: fit-content;
+
+  @if $type == light {
+    background-color: RGBA(var(--color-charade-50));
+    color: RGBA(var(--color-charade-500));
+  } @else if $type == primary {
+    background-color: RGBA(var(--color-mariner-500));
+  } @else if $type == secondary {
+    background-color: RGBA(var(--color-charade-100));
+    color: RGBA(var(--color-charade-950));
+  } @else if $type == success {
+    background-color: RGBA(var(--color-green-primary));
+  } @else if $type == info {
+    background-color: RGBA(var(--color-purple-primary));
+  } @else if $type == warning {
+    background-color: RGBA(var(--color-yellow-primary));
+  } @else if $type == danger {
+    background-color: RGBA(var(--color-red-primary));
+  } @else if $type == dark {
+    background-color: RGBA(var(--color-charade-950));
   }
 }
