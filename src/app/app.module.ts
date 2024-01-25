@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { DsNgComponent } from '../../projects/ds-ng/src/public-api';
+import { BmbButtonDirective } from '../../projects/ds-ng/src/lib/directives/button.directive';
 import { BmbIconComponent } from '../../projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.component';
 import { BmbThemeComponent } from '../../projects/ds-ng/src/lib/components/bmb-theme/bmb-theme.component';
 import { BmbBadgeComponent } from '../../projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.component';
@@ -25,6 +26,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     BmbIconComponent,
     BmbBadgeComponent,
     BmbThemeComponent,
+    BmbButtonDirective,
     BmbDividerComponent,
     BmbAppButtonComponent,
     BmbUserImageComponent,
@@ -39,6 +41,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     BrowserAnimationsModule,
   ],
   providers: [],
+  exports: [BmbButtonDirective],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
