@@ -4,6 +4,7 @@
 
 export * from './lib/ds-ng.service';
 export * from './lib/ds-ng.component';
+export * from './lib/ds-ng.module';
 export * from './lib/directives/button.directive';
 
 // Components
