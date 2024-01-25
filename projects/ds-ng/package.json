@@ -1,6 +1,10 @@
 {
-  "name": "ds-ng",
-  "version": "0.0.1",
+  "name": "@ti-tecnologico-de-monterrey-oficial/ds-ng",
+  "version": "0.0.2",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": "https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng",
   "peerDependencies": {
     "@angular/common": "^17.0.0",
     "@angular/core": "^17.0.0"
