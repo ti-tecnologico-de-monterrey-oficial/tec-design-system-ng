@@ -18,9 +18,17 @@
 
 @mixin button($type: primary) {
   @include font(3, regular);
+  align-items: center;
   border: none;
   border-radius: $border-radius-sm;
+  display: flex;
+  justify-content: center;
   padding: $spacing-size-md $spacing-size-base;
+
+  bmb-icon {
+    font-size: rem_calc(24);
+    height: rem_calc(24);
+  }
 
   &:focus,
   &:focus:hover {
@@ -34,6 +42,10 @@
   @if $type == primary {
     background-color: RGBA(var(--color-mariner-700));
     color: RGBA(var(--color-white));
+
+    bmb-icon {
+      color: RGBA(var(--color-white));
+    }
 
     &:hover {
       background-color: RGBA(var(--color-mariner-800));
@@ -54,6 +66,10 @@
     background-color: RGBA(var(--color-mariner-50));
     color: RGBA(var(--color-mariner-700));
 
+    bmb-icon {
+      color: RGBA(var(--color-mariner-700));
+    }
+
     &:hover {
       background-color: RGBA(var(--color-mariner-100));
     }
@@ -72,6 +88,10 @@
   } @else if $type == simple {
     background-color: RGBA(var(--color-charade-50));
     color: RGBA(var(--color-charade-900));
+
+    bmb-icon {
+      color: RGBA(var(--color-charade-900));
+    }
 
     &:hover {
       background-color: RGBA(var(--color-charade-100));
