@@ -9,6 +9,11 @@
       "glob": "**/*.scss",
       "input": "src/assets/styles",
       "output": "./styles"
+    },
+    {
+      "glob": "**/*.ttf", 
+      "input": "src/assets/fonts",
+      "output": "./fonts"
     }
   ]
 }
