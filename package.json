@@ -1,15 +1,16 @@
 {
   "name": "@ti-tecnologico-de-monterrey-oficial/tec-design-system-ng",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "build-scss": "sass projects/ds-ng/src/assets/styles/main.scss projects/ds-ng/dist/styles/main.css --style compressed",
+    "build": "npm run build-scss && ng build"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
+    "registry": "https://npm.pkg.github.com/@tec-design-system"
   },
   "repository": "https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng",
   "private": false,
@@ -43,5 +44,9 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "ng-packagr": "^17.0.0",
     "typescript": "~5.2.2"
-  }
+  },
+  "files": [
+    "projects/ds-ng/dist",
+    "projects/ds-ng/src/assets"
+  ]
 }
