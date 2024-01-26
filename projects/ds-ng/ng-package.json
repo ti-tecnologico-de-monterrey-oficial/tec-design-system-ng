@@ -3,5 +3,12 @@
   "dest": "../../dist/ds-ng",
   "lib": {
     "entryFile": "src/public-api.ts"
-  }
+  },
+  "assets": [
+    {
+      "glob": "**/*.scss",
+      "input": "src/assets/styles",
+      "output": "./styles"
+    }
+  ]
 }
