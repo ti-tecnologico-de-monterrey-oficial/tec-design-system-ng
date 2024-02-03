@@ -4,7 +4,9 @@ import {
   ElementRef,
   HostBinding,
   ViewContainerRef,
-  ComponentFactoryResolver,
+  ChangeDetectorRef,
+  OnChanges,
+  SimpleChanges,
 } from '@angular/core';
 import { BmbIconComponent } from '../components/bmb-icon/bmb-icon.component';
 
@@ -17,7 +19,7 @@ const BUTTON_CLASSES = {
 @Directive({
   selector: '[bmbButton]',
 })
-export class BmbButtonDirective {
+export class BmbButtonDirective implements OnChanges {
   @Input() icon: string = '';
   @Input() iconPosition: 'left' | 'right' = 'left';
   @Input() appearance: keyof typeof BUTTON_CLASSES = 'simple';
@@ -25,23 +27,26 @@ export class BmbButtonDirective {
   constructor(
     private el: ElementRef,
     private viewContainerRef: ViewContainerRef,
-    private componentFactoryResolver: ComponentFactoryResolver
+    private cdr: ChangeDetectorRef
   ) {}
 
   @HostBinding('class') get elementClass(): string {
     return `${BUTTON_CLASSES[this.appearance]}`;
   }
 
-  ngAfterViewInit() {
-    this.addIcon();
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('icon' in changes || 'iconPosition' in changes) {
+      this.addIcon();
+      this.cdr.markForCheck();
+    }
   }
 
   private addIcon() {
+    this.viewContainerRef.clear();
+
     if (this.icon) {
-      const iconFactory =
-        this.componentFactoryResolver.resolveComponentFactory(BmbIconComponent);
       const iconComponentRef =
-        this.viewContainerRef.createComponent(iconFactory);
+        this.viewContainerRef.createComponent(BmbIconComponent);
       const iconComponent = iconComponentRef.instance;
       iconComponent.icon = this.icon;
 

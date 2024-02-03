@@ -1,11 +1,13 @@
 {
   "name": "@ti-tecnologico-de-monterrey-oficial/tec-design-system-ng",
-  "version": "0.0.0",
+  "version": "0.0.4",
   "scripts": {
     "ng": "ng",
+    "storybook": "ng run ds-ng:storybook",
     "start": "ng serve",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "build-storybook": "ng run ds-ng:build-storybook",
     "build-scss": "sass projects/ds-ng/src/assets/styles/main.scss projects/ds-ng/dist/styles/main.css --style compressed",
     "build": "npm run build-scss && ng build"
   },
@@ -34,7 +36,16 @@
     "@angular-devkit/build-angular": "^17.0.7",
     "@angular/cli": "^17.0.7",
     "@angular/compiler-cli": "^17.0.0",
+    "@compodoc/compodoc": "^1.1.23",
+    "@storybook/addon-docs": "^7.6.12",
+    "@storybook/addon-essentials": "^7.6.12",
+    "@storybook/addon-interactions": "^7.6.12",
+    "@storybook/addon-links": "^7.6.12",
+    "@storybook/angular": "^7.6.12",
+    "@storybook/blocks": "^7.6.12",
+    "@storybook/test": "^7.6.12",
     "@types/jasmine": "~5.1.0",
+    "css-loader": "^6.10.0",
     "file-loader": "^6.2.0",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
@@ -43,6 +54,9 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "ng-packagr": "^17.1.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "storybook": "^7.6.12",
     "typescript": "~5.2.2"
   },
   "files": [
