@@ -11,7 +11,7 @@
 @import "base/rem";
 
 // Import fonts
-@import "base/typography";
+@import "base/fonts";
 
 // Import the styles for base
 @import "base/reset";
@@ -20,6 +20,3 @@
 
 // Import the styles for non components elements
 @import "components/buttons";
-
-// Import google icon fonts
-@import "material-design-icons/iconfont/material-icons.css";

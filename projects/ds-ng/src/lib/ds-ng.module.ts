@@ -1,6 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BmbButtonDirective } from './directives/button.directive';
 import { DsNgComponent } from './ds-ng.component';
@@ -16,7 +17,6 @@ import { BmbThemeComponent } from './components/bmb-theme/bmb-theme.component';
 
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
-
 @NgModule({
   declarations: [
     BmbButtonDirective,
@@ -29,10 +29,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     BmbIconComponent,
     BmbThemeComponent,
   ],
-  imports: [
-    CommonModule,
-    MatButtonToggleModule,
-  ],
+  imports: [CommonModule, FormsModule, MatButtonToggleModule],
   exports: [
     BmbButtonDirective,
     DsNgComponent,
@@ -43,6 +40,6 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     BmbDotPaginatorComponent,
     BmbIconComponent,
     BmbThemeComponent,
-  ]
+  ],
 })
-export class DsNgModule { }
+export class DsNgModule {}
