@@ -1,15 +1,17 @@
 .btn {
-  @include button();
-
   &-primary {
     @include button(primary);
+  }
+
+  &-alternative {
+    @include button(alternative);
   }
 
   &-secondary {
     @include button(secondary);
   }
 
-  &-simple {
-    @include button(simple);
+  &-destructive {
+    @include button(destructive);
   }
 }
