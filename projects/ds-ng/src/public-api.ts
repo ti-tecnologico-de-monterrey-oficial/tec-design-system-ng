@@ -15,3 +15,4 @@ export * from './lib/components/bmb-divider/bmb-divider.component';
 export * from './lib/components/bmb-user-image/bmb-user-image.component';
 export * from './lib/components/bmb-app-button/bmb-app-button.component';
 export * from './lib/components/bmb-dot-paginator/bmb-dot-paginator.component';
+export * from './lib/components/bmb-text-input/bmb-text-input.component';

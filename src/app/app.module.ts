@@ -1,7 +1,9 @@
-import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {FormControl, Validators, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -24,11 +26,12 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     AppComponent,
   ],
   imports: [
-    FormsModule,
     BrowserModule,
     DsNgModule,
+    FormsModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [FormsModule],
   exports: [],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
