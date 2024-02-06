@@ -4,44 +4,77 @@ import {
   ElementRef,
   HostBinding,
   ViewContainerRef,
-  ComponentFactoryResolver,
+  ChangeDetectorRef,
+  OnChanges,
+  SimpleChanges,
 } from '@angular/core';
 import { BmbIconComponent } from '../components/bmb-icon/bmb-icon.component';
 
-const BUTTON_CLASSES = {
-  primary: 'btn btn-primary',
-  secondary: 'btn btn-secondary',
-  simple: 'btn btn-simple',
+interface ButtonClasses {
+  size: 'small' | 'large';
+  device: 'mobile' | 'desktop';
+}
+
+const BUTTON_CLASSES: Record<string, ButtonClasses> = {
+  primary: { size: 'small', device: 'mobile' },
+  alternative: { size: 'small', device: 'mobile' },
+  secondary: { size: 'small', device: 'mobile' },
+  destructive: { size: 'small', device: 'mobile' },
 };
 
 @Directive({
   selector: '[bmbButton]',
 })
-export class BmbButtonDirective {
+export class BmbButtonDirective implements OnChanges {
   @Input() icon: string = '';
   @Input() iconPosition: 'left' | 'right' = 'left';
-  @Input() appearance: keyof typeof BUTTON_CLASSES = 'simple';
+  @Input() iconCase: string = '';
+  @Input() appearance: keyof typeof BUTTON_CLASSES = 'primary';
+  @Input() size: 'small' | 'large' = 'small';
+  @Input() device: 'mobile' | 'desktop' = 'mobile';
 
   constructor(
     private el: ElementRef,
     private viewContainerRef: ViewContainerRef,
-    private componentFactoryResolver: ComponentFactoryResolver
+    private cdr: ChangeDetectorRef
   ) {}
 
-  @HostBinding('class') get elementClass(): string {
-    return `${BUTTON_CLASSES[this.appearance]}`;
+  @HostBinding('attr.data-size') get sizeAttribute(): string {
+    return this.size;
   }
 
-  ngAfterViewInit() {
-    this.addIcon();
+  @HostBinding('attr.data-device') get deviceAttribute(): string {
+    return this.device;
+  }
+
+  @HostBinding('attr.data-case') get caseAttribute(): string {
+    return this.iconCase;
+  }
+
+  @HostBinding('class') get elementClass(): string {
+    const baseClass = `btn-${this.appearance}`;
+    return baseClass;
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (
+      'icon' in changes ||
+      'iconPosition' in changes ||
+      'size' in changes ||
+      'device' in changes ||
+      'iconCase' in changes
+    ) {
+      this.addIcon();
+      this.cdr.markForCheck();
+    }
   }
 
   private addIcon() {
+    this.viewContainerRef.clear();
+
     if (this.icon) {
-      const iconFactory =
-        this.componentFactoryResolver.resolveComponentFactory(BmbIconComponent);
       const iconComponentRef =
-        this.viewContainerRef.createComponent(iconFactory);
+        this.viewContainerRef.createComponent(BmbIconComponent);
       const iconComponent = iconComponentRef.instance;
       iconComponent.icon = this.icon;
 
