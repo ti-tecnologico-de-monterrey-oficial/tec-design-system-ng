@@ -4,7 +4,7 @@ import { Props } from './bmb-user-image.interface';
 @Component({
   selector: 'bmb-user-image',
   templateUrl: './bmb-user-image.component.html',
-  styleUrls: ['../../../assets/styles/components/_user-image.scss'],
+  styleUrls: ['../../../assets/styles/components/_userImage.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbUserImageComponent {

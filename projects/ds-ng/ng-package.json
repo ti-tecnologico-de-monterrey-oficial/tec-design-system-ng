@@ -6,7 +6,7 @@
   },
   "assets": [
     {
-      "glob": "**/*.scss",
+      "glob": "styles/main.css",
       "input": "src/assets/styles",
       "output": "./styles"
     },
