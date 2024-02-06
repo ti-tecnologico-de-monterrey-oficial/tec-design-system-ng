@@ -6,7 +6,8 @@
     "start": "ng serve",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "build": "ng build",
+    "build-scss": "sass projects/ds-ng/src/assets/styles/main.scss projects/ds-ng/dist/styles/main.css --style compressed",
+    "build": "npm run build-scss && ng build",
     "postbuild": "sass projects/ds-ng/src/assets/styles/main.scss dist/ds-ng/assets/styles/main.css --style compressed",
     "build:ds-ng": "ng build ds-ng && npm run postbuild"
   },
