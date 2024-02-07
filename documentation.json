@@ -216,12 +216,12 @@
     "directives": [
         {
             "name": "BmbButtonDirective",
-            "id": "directive-BmbButtonDirective-a34cf432bf877da3bc16618f1384e2327a41563459673ddd0e251820be6238f567a44efdc2b5174ae9bb855b43f5434a716a3d81b6bbab2621236a5863844c88",
+            "id": "directive-BmbButtonDirective-a32dacd48e778187073affb9a12b8b12fa5ae2909feab8c90c6df6c7660834dbbb087de2bb60df00623908ec22cbfd85a96b5bbcc64cfe24510a825fb187e65e",
             "file": "projects/ds-ng/src/lib/directives/button.directive.ts",
             "type": "directive",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import {\n  Directive,\n  Input,\n  ElementRef,\n  HostBinding,\n  ViewContainerRef,\n  ChangeDetectorRef,\n  OnChanges,\n  SimpleChanges,\n} from '@angular/core';\nimport { BmbIconComponent } from '../components/bmb-icon/bmb-icon.component';\n\nconst BUTTON_CLASSES = {\n  primary: 'btn btn-primary',\n  secondary: 'btn btn-secondary',\n  simple: 'btn btn-simple',\n};\n\n@Directive({\n  selector: '[bmbButton]',\n})\nexport class BmbButtonDirective implements OnChanges {\n  @Input() icon: string = '';\n  @Input() iconPosition: 'left' | 'right' = 'left';\n  @Input() appearance: keyof typeof BUTTON_CLASSES = 'simple';\n\n  constructor(\n    private el: ElementRef,\n    private viewContainerRef: ViewContainerRef,\n    private cdr: ChangeDetectorRef\n  ) {}\n\n  @HostBinding('class') get elementClass(): string {\n    return `${BUTTON_CLASSES[this.appearance]}`;\n  }\n\n  ngOnChanges(changes: SimpleChanges): void {\n    if ('icon' in changes || 'iconPosition' in changes) {\n      this.addIcon();\n      this.cdr.markForCheck();\n    }\n  }\n\n  private addIcon() {\n    this.viewContainerRef.clear();\n\n    if (this.icon) {\n      const iconComponentRef =\n        this.viewContainerRef.createComponent(BmbIconComponent);\n      const iconComponent = iconComponentRef.instance;\n      iconComponent.icon = this.icon;\n\n      if (this.iconPosition === 'right') {\n        this.el.nativeElement.appendChild(\n          iconComponentRef.location.nativeElement\n        );\n      } else {\n        this.el.nativeElement.insertBefore(\n          iconComponentRef.location.nativeElement,\n          this.el.nativeElement.firstChild\n        );\n      }\n    }\n  }\n}\n",
+            "sourceCode": "import {\n  Directive,\n  Input,\n  ElementRef,\n  HostBinding,\n  ViewContainerRef,\n  ChangeDetectorRef,\n  OnInit,\n  OnChanges,\n  Renderer2,\n  SimpleChanges,\n} from '@angular/core';\nimport { BmbIconComponent } from '../components/bmb-icon/bmb-icon.component';\n\n@Directive({\n  selector: '[bmbButton]',\n})\nexport class BmbButtonDirective implements OnInit, OnChanges {\n  @Input() icon: string = '';\n  @Input() iconPosition: 'left' | 'right' = 'left';\n  @Input() iconCase: boolean = false;\n  @Input() appearance: 'primary' | 'alternative' | 'secondary' | 'destructive' =\n    'primary';\n  @Input() size: 'small' | 'large' = 'small';\n  @Input() device: 'mobile' | 'desktop' = 'mobile';\n\n  private providedInputs: Set<string> = new Set();\n\n  constructor(\n    private el: ElementRef,\n    private viewContainerRef: ViewContainerRef,\n    private cdr: ChangeDetectorRef,\n    private renderer: Renderer2\n  ) {}\n\n  ngOnInit(): void {\n    this.addIcon();\n    this.applyAttributes();\n  }\n\n  ngOnChanges(changes: SimpleChanges): void {\n    Object.keys(changes).forEach((input) => {\n      this.providedInputs.add(input);\n    });\n\n    this.applyAttributes();\n    this.addIcon();\n    this.cdr.markForCheck();\n  }\n\n  private applyAttributes() {\n    if (this.providedInputs.has('device') && this.device) {\n      this.renderer.setAttribute(this.el.nativeElement, 'device', this.device);\n    }\n\n    if (this.providedInputs.has('iconCase')) {\n      if (this.iconCase) {\n        this.renderer.setAttribute(this.el.nativeElement, 'case', 'true');\n      } else {\n        this.renderer.removeAttribute(this.el.nativeElement, 'case');\n      }\n    }\n\n    if (this.providedInputs.has('size') && this.size) {\n      this.renderer.setAttribute(this.el.nativeElement, 'size', this.size);\n    }\n  }\n\n  @HostBinding('class') get elementClass(): string {\n    return `btn-${this.appearance}`;\n  }\n\n  private addIcon() {\n    this.viewContainerRef.clear();\n\n    if (this.icon) {\n      const iconComponentRef =\n        this.viewContainerRef.createComponent(BmbIconComponent);\n      const iconComponent = iconComponentRef.instance;\n      iconComponent.icon = this.icon;\n\n      if (this.iconPosition === 'right') {\n        this.el.nativeElement.appendChild(\n          iconComponentRef.location.nativeElement\n        );\n      } else {\n        this.el.nativeElement.insertBefore(\n          iconComponentRef.location.nativeElement,\n          this.el.nativeElement.firstChild\n        );\n      }\n    }\n  }\n}\n",
             "selector": "[bmbButton]",
             "providers": [],
             "hostDirectives": [],
@@ -229,11 +229,20 @@
             "inputsClass": [
                 {
                     "name": "appearance",
-                    "defaultValue": "'simple'",
+                    "defaultValue": "'primary'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 22,
+                    "type": "\"primary\" | \"alternative\" | \"secondary\" | \"destructive\"",
+                    "decorators": []
+                },
+                {
+                    "name": "device",
+                    "defaultValue": "'mobile'",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "line": 25,
-                    "type": "",
+                    "type": "\"mobile\" | \"desktop\"",
                     "decorators": []
                 },
                 {
@@ -241,8 +250,17 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 23,
+                    "line": 19,
                     "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "iconCase",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 21,
+                    "type": "boolean",
                     "decorators": []
                 },
                 {
@@ -250,8 +268,17 @@
                     "defaultValue": "'left'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 24,
+                    "line": 20,
                     "type": "\"left\" | \"right\"",
+                    "decorators": []
+                },
+                {
+                    "name": "size",
+                    "defaultValue": "'small'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 24,
+                    "type": "\"small\" | \"large\"",
                     "decorators": []
                 }
             ],
@@ -263,13 +290,27 @@
                     "name": "class",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 33,
+                    "line": 69,
                     "type": "string",
                     "decorators": []
                 }
             ],
             "hostListeners": [],
-            "propertiesClass": [],
+            "propertiesClass": [
+                {
+                    "name": "providedInputs",
+                    "defaultValue": "new Set()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Set<string>",
+                    "optional": false,
+                    "description": "",
+                    "line": 27,
+                    "modifierKind": [
+                        123
+                    ]
+                }
+            ],
             "methodsClass": [
                 {
                     "name": "addIcon",
@@ -277,7 +318,20 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 44,
+                    "line": 73,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "applyAttributes",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 51,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -297,7 +351,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 37,
+                    "line": 41,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -311,10 +365,21 @@
                             }
                         }
                     ]
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 36,
+                    "deprecated": false,
+                    "deprecationMessage": ""
                 }
             ],
             "extends": [],
             "implements": [
+                "OnInit",
                 "OnChanges"
             ],
             "constructorObj": {
@@ -340,9 +405,15 @@
                         "type": "ChangeDetectorRef",
                         "deprecated": false,
                         "deprecationMessage": ""
+                    },
+                    {
+                        "name": "renderer",
+                        "type": "Renderer2",
+                        "deprecated": false,
+                        "deprecationMessage": ""
                     }
                 ],
-                "line": 25,
+                "line": 27,
                 "jsdoctags": [
                     {
                         "name": "el",
@@ -370,6 +441,15 @@
                         "tagName": {
                             "text": "param"
                         }
+                    },
+                    {
+                        "name": "renderer",
+                        "type": "Renderer2",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
                     }
                 ]
             },
@@ -380,7 +460,7 @@
                         "name": "elementClass",
                         "type": "string",
                         "returnType": "string",
-                        "line": 33
+                        "line": 69
                     }
                 }
             }
@@ -812,6 +892,150 @@
             "templateData": "<i class=\"material-icons\">{{ icon }}</i>\n"
         },
         {
+            "name": "BmbThemeComponent",
+            "id": "component-BmbThemeComponent-84cd7109b55ecc2a87cd58b89c48ace1bc36d8db2959e27d2f11501a0de1542e0b7238361cd134ec23e2acb9eed503afc5165d8a87cf8121bc181b1f19c03278",
+            "file": "projects/ds-ng/src/lib/components/bmb-theme/bmb-theme.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-theme",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-theme.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "selectedTheme",
+                    "defaultValue": "'light'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 12
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "applyTheme",
+                    "args": [
+                        {
+                            "name": "theme",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 22,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "theme",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 16,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onThemeChange",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "MatButtonToggleChange",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 26,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "MatButtonToggleChange",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { MatButtonToggleChange } from '@angular/material/button-toggle';\nimport { ThemeService } from '../../services/theme.service';\n\n@Component({\n  selector: 'bmb-theme',\n  templateUrl: './bmb-theme.component.html',\n})\nexport class BmbThemeComponent implements OnInit {\n  selectedTheme: string = 'light';\n\n  constructor(private themeService: ThemeService) {}\n\n  ngOnInit(): void {\n    this.themeService.theme$.subscribe((theme) => {\n      this.applyTheme(theme);\n    });\n  }\n\n  applyTheme(theme: string): void {\n    document.documentElement.setAttribute('data-theme', theme);\n  }\n\n  onThemeChange(event: MatButtonToggleChange): void {\n    this.selectedTheme = event.value;\n    this.themeService.setTheme(this.selectedTheme);\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "themeService",
+                        "type": "ThemeService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 12,
+                "jsdoctags": [
+                    {
+                        "name": "themeService",
+                        "type": "ThemeService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "extends": [],
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<mat-button-toggle-group\n  [(ngModel)]=\"selectedTheme\"\n  (change)=\"onThemeChange($event)\"\n>\n  <mat-button-toggle value=\"dark\">Dark</mat-button-toggle>\n  <mat-button-toggle value=\"light\">Light</mat-button-toggle>\n  <mat-button-toggle value=\"blue\">Blue</mat-button-toggle>\n</mat-button-toggle-group>\n"
+        },
+        {
             "name": "BmbUserImageComponent",
             "id": "component-BmbUserImageComponent-0a5eee47e1d3a778ceeb84b4c435b3615f49db5a5e2ace714a934678435ca84957ded89dd05d6e247b739c4bcccb6f9b0567c593e242ac4aa82c6df2f63c76b7",
             "file": "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-image.component.ts",
@@ -935,13 +1159,13 @@
     "modules": [
         {
             "name": "DsNgModule",
-            "id": "module-DsNgModule-921854fb2dfbf02d1b4895dca90cadb125eddbecad2318f86d06739196aeaa32ee9bea28b038f319590d73289d7125a06419363a6124544764d8a747942b549f",
+            "id": "module-DsNgModule-6e44d7634118bf3eaaacd7092d5cf603dd05844a323596ae74d4ac7f0263f00a48769e0fad5455f886e0a9130d50d4db6e979789fec55bd6ba1fdb42d3c22993",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "projects/ds-ng/src/lib/ds-ng.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';\nimport { BrowserModule } from '@angular/platform-browser';\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\nimport { CommonModule } from '@angular/common';\nimport { BmbButtonDirective } from './directives/button.directive';\nimport { DsNgComponent } from './ds-ng.component';\nimport { BmbUserImageComponent } from './components/bmb-user-image/bmb-user-image.component';\nimport { BmbAppButtonComponent } from './components/bmb-app-button/bmb-app-button.component';\nimport { BmbBadgeComponent } from './components/bmb-badge/bmb-badge.component';\nimport { BmbDividerComponent } from './components/bmb-divider/bmb-divider.component';\nimport { BmbDotPaginatorComponent } from './components/bmb-dot-paginator/bmb-dot-paginator.component';\nimport { BmbIconComponent } from './components/bmb-icon/bmb-icon.component';\n\n// Angular library\nimport { MatButtonToggleModule } from '@angular/material/button-toggle';\n\n@NgModule({\n  declarations: [\n    BmbButtonDirective,\n    DsNgComponent,\n    BmbUserImageComponent,\n    BmbAppButtonComponent,\n    BmbBadgeComponent,\n    BmbDividerComponent,\n    BmbDotPaginatorComponent,\n    BmbIconComponent,\n  ],\n  imports: [CommonModule, MatButtonToggleModule],\n  exports: [\n    BmbButtonDirective,\n    DsNgComponent,\n    BmbUserImageComponent,\n    BmbAppButtonComponent,\n    BmbBadgeComponent,\n    BmbDividerComponent,\n    BmbDotPaginatorComponent,\n    BmbIconComponent,\n  ],\n})\nexport class DsNgModule {}\n",
+            "sourceCode": "import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';\nimport { BrowserModule } from '@angular/platform-browser';\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\nimport { FormsModule } from '@angular/forms';\nimport { CommonModule } from '@angular/common';\nimport { BmbButtonDirective } from './directives/button.directive';\nimport { DsNgComponent } from './ds-ng.component';\nimport { BmbUserImageComponent } from './components/bmb-user-image/bmb-user-image.component';\nimport { BmbAppButtonComponent } from './components/bmb-app-button/bmb-app-button.component';\nimport { BmbBadgeComponent } from './components/bmb-badge/bmb-badge.component';\nimport { BmbDividerComponent } from './components/bmb-divider/bmb-divider.component';\nimport { BmbDotPaginatorComponent } from './components/bmb-dot-paginator/bmb-dot-paginator.component';\nimport { BmbIconComponent } from './components/bmb-icon/bmb-icon.component';\n\n// Angular library\nimport { MatButtonToggleModule } from '@angular/material/button-toggle';\n\n@NgModule({\n  declarations: [\n    BmbButtonDirective,\n    DsNgComponent,\n    BmbUserImageComponent,\n    BmbAppButtonComponent,\n    BmbBadgeComponent,\n    BmbDividerComponent,\n    BmbDotPaginatorComponent,\n    BmbIconComponent,\n  ],\n  imports: [CommonModule, FormsModule, MatButtonToggleModule],\n  exports: [\n    BmbButtonDirective,\n    DsNgComponent,\n    BmbUserImageComponent,\n    BmbAppButtonComponent,\n    BmbBadgeComponent,\n    BmbDividerComponent,\n    BmbDotPaginatorComponent,\n    BmbIconComponent,\n  ],\n})\nexport class DsNgModule {}\n",
             "children": [
                 {
                     "type": "providers",
@@ -1023,14 +1247,24 @@
     "miscellaneous": {
         "variables": [
             {
-                "name": "BUTTON_CLASSES",
+                "name": "Alternative",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ds-ng/src/lib/directives/button.directive.ts",
+                "file": "projects/ds-ng/src/stories/button/button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "object",
-                "defaultValue": "{\n  primary: 'btn btn-primary',\n  secondary: 'btn btn-secondary',\n  simple: 'btn btn-simple',\n}"
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Destructive",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/stories/button/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
             },
             {
                 "name": "preview",
@@ -1063,16 +1297,6 @@
                 "defaultValue": "Template.bind({})"
             },
             {
-                "name": "Simple",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/ds-ng/src/stories/button/button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -1080,38 +1304,34 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<any>",
-                "defaultValue": "(args: any) => ({\n  template: `\n    <button bmbButton [appearance]=\"appearance\" [icon]=\"icon\" [iconPosition]=\"iconPosition\">{{ text }}</button>\n  `,\n  props: args,\n})"
+                "defaultValue": "(args: any) => ({\n  template: `\n    <button bmbButton [appearance]=\"appearance\" [device]=\"device\" [iconCase]=\"iconCase\" [size]=\"size\" [icon]=\"icon\" [iconPosition]=\"iconPosition\">{{ text }}</button>\n  `,\n  props: args,\n})"
             }
         ],
         "functions": [],
         "typealiases": [],
         "enumerations": [],
         "groupedVariables": {
-            "projects/ds-ng/src/lib/directives/button.directive.ts": [
-                {
-                    "name": "BUTTON_CLASSES",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ds-ng/src/lib/directives/button.directive.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "object",
-                    "defaultValue": "{\n  primary: 'btn btn-primary',\n  secondary: 'btn btn-secondary',\n  simple: 'btn btn-simple',\n}"
-                }
-            ],
-            "projects/ds-ng/.storybook/preview.ts": [
-                {
-                    "name": "preview",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ds-ng/.storybook/preview.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Preview",
-                    "defaultValue": "{\n  parameters: {\n    actions: { argTypesRegex: '^on[A-Z].*' },\n    controls: {\n      expanded: true,\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/i,\n      },\n    },\n    docs: {\n      canvas: {\n        sourceState: 'shown',\n      },\n      docs: {\n        controls: {\n          exclude: ['argTypes'],\n        },\n      },\n    },\n  },\n}"
-                }
-            ],
             "projects/ds-ng/src/stories/button/button.stories.ts": [
+                {
+                    "name": "Alternative",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/stories/button/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Destructive",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/stories/button/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
                 {
                     "name": "Primary",
                     "ctype": "miscellaneous",
@@ -1133,16 +1353,6 @@
                     "defaultValue": "Template.bind({})"
                 },
                 {
-                    "name": "Simple",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ds-ng/src/stories/button/button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
@@ -1150,7 +1360,19 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<any>",
-                    "defaultValue": "(args: any) => ({\n  template: `\n    <button bmbButton [appearance]=\"appearance\" [icon]=\"icon\" [iconPosition]=\"iconPosition\">{{ text }}</button>\n  `,\n  props: args,\n})"
+                    "defaultValue": "(args: any) => ({\n  template: `\n    <button bmbButton [appearance]=\"appearance\" [device]=\"device\" [iconCase]=\"iconCase\" [size]=\"size\" [icon]=\"icon\" [iconPosition]=\"iconPosition\">{{ text }}</button>\n  `,\n  props: args,\n})"
+                }
+            ],
+            "projects/ds-ng/.storybook/preview.ts": [
+                {
+                    "name": "preview",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/.storybook/preview.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Preview",
+                    "defaultValue": "{\n  parameters: {\n    actions: { argTypesRegex: '^on[A-Z].*' },\n    controls: {\n      expanded: true,\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/i,\n      },\n    },\n    docs: {\n      canvas: {\n        sourceState: 'shown',\n      },\n      docs: {\n        controls: {\n          exclude: ['argTypes'],\n        },\n      },\n    },\n  },\n}"
                 }
             ]
         },
@@ -1237,6 +1459,15 @@
                 "status": "low"
             },
             {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-theme/bmb-theme.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbThemeComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-image.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -1260,17 +1491,7 @@
                 "linktype": "directive",
                 "name": "BmbButtonDirective",
                 "coveragePercent": 0,
-                "coverageCount": "0/8",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/ds-ng/src/lib/directives/button.directive.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "BUTTON_CLASSES",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
+                "coverageCount": "0/14",
                 "status": "low"
             },
             {
@@ -1305,6 +1526,26 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
+                "name": "Alternative",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/stories/button/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Destructive",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/stories/button/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
                 "name": "Primary",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
@@ -1316,16 +1557,6 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Secondary",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/ds-ng/src/stories/button/button.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Simple",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
