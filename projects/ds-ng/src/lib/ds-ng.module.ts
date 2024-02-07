@@ -11,10 +11,8 @@ import { BmbBadgeComponent } from './components/bmb-badge/bmb-badge.component';
 import { BmbDividerComponent } from './components/bmb-divider/bmb-divider.component';
 import { BmbDotPaginatorComponent } from './components/bmb-dot-paginator/bmb-dot-paginator.component';
 import { BmbIconComponent } from './components/bmb-icon/bmb-icon.component';
-import { BmbThemeComponent } from './components/bmb-theme/bmb-theme.component';
 
 // Angular library
-
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @NgModule({
@@ -27,7 +25,6 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     BmbDividerComponent,
     BmbDotPaginatorComponent,
     BmbIconComponent,
-    BmbThemeComponent,
   ],
   imports: [CommonModule, FormsModule, MatButtonToggleModule],
   exports: [
@@ -39,7 +36,6 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     BmbDividerComponent,
     BmbDotPaginatorComponent,
     BmbIconComponent,
-    BmbThemeComponent,
   ],
 })
 export class DsNgModule {}
