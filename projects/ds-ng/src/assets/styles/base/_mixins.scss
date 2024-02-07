@@ -17,17 +17,37 @@
 }
 
 @mixin button($type: primary) {
-  @include font(3, regular);
+  @include font(5, regular);
   align-items: center;
   border: none;
   border-radius: $border-radius-sm;
   display: flex;
+  height: rem_calc(36);
   justify-content: center;
   padding: $spacing-size-md $spacing-size-base;
 
   bmb-icon {
-    font-size: rem_calc(24);
-    height: rem_calc(24);
+    font-size: rem_calc(16);
+    height: rem_calc(16);
+  }
+
+  &[data-device="desktop"] {
+    padding: $spacing-size-md $spacing-size-xxl;
+  }
+
+  &[data-size="large"] {
+    height: rem_calc(48);
+    width: 100%;
+  }
+
+  &[data-case="edge"] {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+
+    &[iconposition="right"] {
+      grid-template-columns: 1fr auto;
+    }
   }
 
   &:focus,
@@ -47,12 +67,9 @@
       color: RGBA(var(--color-white));
     }
 
-    &:hover {
-      background-color: RGBA(var(--color-mariner-800));
-    }
-
+    &:hover,
     &:focus-visible {
-      background-color: RGBA(var(--color-mariner-900));
+      background-color: RGBA(var(--color-mariner-800));
     }
 
     &:active {
@@ -60,32 +77,10 @@
     }
 
     &:disabled {
-      background-color: RGBA(var(--color-mariner-200));
+      background-color: RGBA(var(--color-charade-300));
+      color: RGBA(var(--color-white-tint));
     }
-  } @else if $type == secondary {
-    background-color: RGBA(var(--color-mariner-50));
-    color: RGBA(var(--color-mariner-700));
-
-    bmb-icon {
-      color: RGBA(var(--color-mariner-700));
-    }
-
-    &:hover {
-      background-color: RGBA(var(--color-mariner-100));
-    }
-
-    &:focus-visible {
-      background-color: RGBA(var(--color-mariner-300));
-    }
-
-    &:active {
-      background-color: RGBA(var(--color-mariner-200));
-    }
-
-    &:disabled {
-      background-color: RGBA(var(--color-mariner-50));
-    }
-  } @else if $type == simple {
+  } @else if $type == alternative {
     background-color: RGBA(var(--color-charade-50));
     color: RGBA(var(--color-charade-900));
 
@@ -93,20 +88,74 @@
       color: RGBA(var(--color-charade-900));
     }
 
-    &:hover {
+    &:hover,
+    &:focus-visible {
       background-color: RGBA(var(--color-charade-100));
     }
 
-    &:focus-visible {
-      background-color: RGBA(var(--color-charade-300));
-    }
-
     &:active {
-      background-color: RGBA(var(--color-charade-200));
+      background-color: RGBA(var(--color-charade-500));
+      color: RGBA(var(--color-charade-50));
+
+      bmb-icon {
+        color: RGBA(var(--color-charade-50));
+      }
     }
 
     &:disabled {
-      background-color: RGBA(var(--color-charade-50));
+      opacity: 0.5;
+    }
+  } @else if $type == secondary {
+    background-color: transparent;
+    border: rem_calc(1) solid RGBA(var(--color-black));
+    color: RGBA(var(--color-black));
+
+    bmb-icon {
+      color: RGBA(var(--color-black));
+    }
+
+    &:hover,
+    &:focus-visible {
+      border-width: rem_calc(2);
+    }
+
+    &:active {
+      background-color: RGBA(var(--color-black));
+      color: RGBA(var(--color-white));
+
+      bmb-icon {
+        color: RGBA(var(--color-white));
+      }
+    }
+
+    &:disabled {
+      opacity: 0.5;
+    }
+  } @else if $type == destructive {
+    background-color: transparent;
+    border: rem_calc(1) solid RGBA(var(--color-red-primary));
+    color: RGBA(var(--color-red-primary));
+
+    bmb-icon {
+      color: RGBA(var(--color-red-primary));
+    }
+
+    &:hover,
+    &:focus-visible {
+      border-width: rem_calc(2);
+    }
+
+    &:active {
+      background-color: RGBA(var(--color-red-primary));
+      color: RGBA(var(--color-white));
+
+      bmb-icon {
+        color: RGBA(var(--color-white));
+      }
+    }
+
+    &:disabled {
+      opacity: 0.5;
     }
   }
 }

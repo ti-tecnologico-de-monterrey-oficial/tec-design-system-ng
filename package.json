@@ -9,7 +9,7 @@
     "test": "ng test",
     "build-storybook": "ng run ds-ng:build-storybook",
     "build-scss": "sass projects/ds-ng/src/assets/styles/main.scss projects/ds-ng/dist/styles/main.css --style compressed",
-    "build": "npm run build-scss && ng build"
+    "build": "npm run build-scss && ng build ds-ng"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@tec-design-system"

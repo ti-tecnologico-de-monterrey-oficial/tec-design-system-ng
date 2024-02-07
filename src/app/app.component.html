@@ -1,11 +1,187 @@
-<!-- Icons -->
+<!-- Theme selector -->
+<!-- <h1 class="font-regular-9">Theme Selector</h1>
+<bmb-theme />
+<bmb-divider type="primary" /> -->
+
+<!-- Buttons -->
+<h2 class="font-regular-5">Buttons</h2>
+
+<h3 class="font-regular-3">Button differences for mobile</h3>
+<!-- Button differences for mobile -->
+<button bmbButton type="button" appearance="primary" size="large">
+  Primary
+</button>
+<button bmbButton type="button" appearance="alternative" size="large">
+  Alternative
+</button>
+<button bmbButton type="button" appearance="secondary" size="large">
+  Secondary
+</button>
+<button bmbButton type="button" appearance="destructive" size="large">
+  Destructive
+</button>
+<h3 class="font-regular-3">Button differences for desktop</h3>
+<!-- Button differences for desktop -->
+<div style="display: flex; gap: 8px">
+  <button bmbButton type="button" appearance="primary" device="desktop">
+    Primary
+  </button>
+  <button bmbButton type="button" appearance="alternative" device="desktop">
+    Alternative
+  </button>
+  <button bmbButton type="button" appearance="secondary" device="desktop">
+    Secondary
+  </button>
+  <button bmbButton type="button" appearance="destructive" device="desktop">
+    Destructive
+  </button>
+</div>
+<h3 class="font-regular-3">Standard sizes</h3>
+<!-- Standar sizes -->
+<div style="display: flex; gap: 8px">
+  <button bmbButton type="button" appearance="primary">Primary</button>
+  <button bmbButton type="button" appearance="alternative">Alternative</button>
+  <button bmbButton type="button" appearance="secondary">Secondary</button>
+  <button bmbButton type="button" appearance="destructive">Destructive</button>
+</div>
+<h3 class="font-regular-3">With icon and position left</h3>
+<!-- With icon and position left -->
+<div style="display: flex; gap: 8px">
+  <button bmbButton icon="chevron_left" appearance="primary">Primary</button>
+  <button bmbButton icon="chevron_left" appearance="alternative">
+    Alternative
+  </button>
+  <button bmbButton icon="chevron_left" appearance="secondary">
+    Secondary
+  </button>
+  <button bmbButton icon="chevron_left" appearance="destructive">
+    Destructive
+  </button>
+</div>
+<h3 class="font-regular-3">With icon, position left and edge</h3>
+<!-- With icon, position left and edge -->
+<button
+  bmbButton
+  icon="chevron_left"
+  appearance="primary"
+  iconCase="edge"
+  size="large"
+>
+  Primary
+</button>
+<button
+  bmbButton
+  icon="chevron_left"
+  appearance="alternative"
+  iconCase="edge"
+  size="large"
+>
+  Alternative
+</button>
+<button
+  bmbButton
+  icon="chevron_left"
+  appearance="secondary"
+  iconCase="edge"
+  size="large"
+>
+  Secondary
+</button>
+<button
+  bmbButton
+  icon="chevron_left"
+  appearance="destructive"
+  iconCase="edge"
+  size="large"
+>
+  Destructive
+</button>
+<h3 class="font-regular-3">With icon and position right</h3>
+<!-- With icon and position right -->
+<div style="display: flex; gap: 8px">
+  <button
+    bmbButton
+    icon="chevron_right"
+    appearance="primary"
+    iconPosition="right"
+  >
+    Primary
+  </button>
+  <button
+    bmbButton
+    icon="chevron_right"
+    appearance="alternative"
+    iconPosition="right"
+  >
+    Alternative
+  </button>
+  <button
+    bmbButton
+    icon="chevron_right"
+    appearance="secondary"
+    iconPosition="right"
+  >
+    Secondary
+  </button>
+  <button
+    bmbButton
+    icon="chevron_right"
+    appearance="destructive"
+    iconPosition="right"
+  >
+    Destructive
+  </button>
+</div>
+<h3 class="font-regular-3">With icon, position right and edge</h3>
+<!-- With icon, position right and edge-->
+<button
+  bmbButton
+  icon="chevron_right"
+  appearance="primary"
+  iconPosition="right"
+  iconCase="edge"
+  size="large"
+>
+  Primary
+</button>
+<button
+  bmbButton
+  icon="chevron_right"
+  appearance="alternative"
+  iconPosition="right"
+  iconCase="edge"
+  size="large"
+>
+  Alternative
+</button>
+<button
+  bmbButton
+  icon="chevron_right"
+  appearance="secondary"
+  iconPosition="right"
+  iconCase="edge"
+  size="large"
+>
+  Secondary
+</button>
+<button
+  bmbButton
+  icon="chevron_right"
+  appearance="destructive"
+  iconPosition="right"
+  iconCase="edge"
+  size="large"
+>
+  Destructive
+</button>
+
+<!-- <bmb-divider type="primary" />
 <h2 class="font-regular-5">Icons</h2>
 <bmb-icon />
 <bmb-icon icon="grade" style="color: aqua" />
 <bmb-icon icon="home" style="color: green" />
 <bmb-divider type="primary" />
 
-<!-- User Imge -->
 <h2 class="font-regular-5">User Image</h2>
 <div style="display: flex; gap: 8px">
   <bmb-user-image [size]="'large'" [image]="'../assets/img/user-image.png'" />
@@ -14,40 +190,7 @@
 </div>
 <bmb-divider type="primary" />
 
-<!-- Buttons -->
-<h2 class="font-regular-5">Buttons</h2>
-<div style="display: flex; gap: 8px">
-  <button bmbButton type="button" appearance="primary">Primary</button>
-  <button bmbButton type="button" appearance="secondary">Secondary</button>
-  <button bmbButton type="button" appearance="simple">Simple</button>
-  <button
-    bmbButton
-    icon="chevron_left"
-    iconPosition="left"
-    appearance="primary"
-  >
-    VER TODOS LOS SERVICIOS
-  </button>
-  <button
-    bmbButton
-    icon="chevron_right"
-    iconPosition="right"
-    appearance="secondary"
-  >
-    VER TODOS LOS SERVICIOS
-  </button>
-  <button
-    bmbButton
-    icon="chevron_right"
-    iconPosition="right"
-    appearance="simple"
-  >
-    VER TODOS LOS SERVICIOS
-  </button>
-</div>
-<bmb-divider type="primary" />
 
-<!-- Dot Paginator -->
 <h2 class="font-regular-5">Dot paginator</h2>
 <bmb-dot-paginator
   [activeDotIndex]="5"
@@ -62,7 +205,7 @@
 />
 <bmb-divider type="primary" />
 
-<!-- Badge -->
+
 <h2 class="font-regular-5">Badge</h2>
 <div style="display: flex; gap: 8px">
   <bmb-badge text="Light" />
@@ -77,7 +220,7 @@
 </div>
 <bmb-divider type="primary" />
 
-<!-- Divider -->
+
 <h2 class="font-regular-5">Divider</h2>
 <bmb-divider />
 <bmb-divider size="2" />
@@ -97,7 +240,7 @@
 <bmb-divider styles="dotted" />
 <bmb-divider styles="dashed" size="3" type="danger" />
 
-<!-- App Button -->
+
 <h2 class="font-regular-5">App Button</h2>
 <bmb-app-button icon="check_box" text="Biblioteca Digital" />
 <bmb-app-button icon="check_box" text="Directorio Telefónico SSFF" />
@@ -106,3 +249,4 @@
   image="../assets/img/image-tec.png"
   text="Tecnologico de Monterrey Tecnologico de Monterrey Tecnologico de Monterrey"
 />
+-->
