@@ -1,6 +1,6 @@
 {
   "name": "@ti-tecnologico-de-monterrey-oficial/ds-ng",
-  "version": "0.0.2",
+  "version": "0.0.5",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
