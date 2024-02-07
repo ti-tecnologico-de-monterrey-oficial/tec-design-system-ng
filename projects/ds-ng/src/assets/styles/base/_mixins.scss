@@ -47,7 +47,7 @@
     padding-top: 0;
     padding-bottom: 0;
 
-    &[iconposition="right"],
+    &[icon-position="right"],
     &[ng-reflect-icon-position="right"] {
       grid-template-columns: 1fr auto;
     }

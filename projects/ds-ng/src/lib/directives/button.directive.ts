@@ -64,6 +64,14 @@ export class BmbButtonDirective implements OnInit, OnChanges {
     if (this.providedInputs.has('size') && this.size) {
       this.renderer.setAttribute(this.el.nativeElement, 'size', this.size);
     }
+
+    if (this.providedInputs.has('iconPosition')) {
+      this.renderer.setAttribute(
+        this.el.nativeElement,
+        'icon-position',
+        this.iconPosition
+      );
+    }
   }
 
   @HostBinding('class') get elementClass(): string {

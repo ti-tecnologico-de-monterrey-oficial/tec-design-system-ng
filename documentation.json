@@ -216,12 +216,12 @@
     "directives": [
         {
             "name": "BmbButtonDirective",
-            "id": "directive-BmbButtonDirective-a32dacd48e778187073affb9a12b8b12fa5ae2909feab8c90c6df6c7660834dbbb087de2bb60df00623908ec22cbfd85a96b5bbcc64cfe24510a825fb187e65e",
+            "id": "directive-BmbButtonDirective-befbb50389a0725636e5b0badf64b4914dc8fe6ad6099ea008aa86ab92e4eb17e55c4e79557b9da69b17ede95cabe505eb3071e21f626bd62e57719ee4b64d10",
             "file": "projects/ds-ng/src/lib/directives/button.directive.ts",
             "type": "directive",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import {\n  Directive,\n  Input,\n  ElementRef,\n  HostBinding,\n  ViewContainerRef,\n  ChangeDetectorRef,\n  OnInit,\n  OnChanges,\n  Renderer2,\n  SimpleChanges,\n} from '@angular/core';\nimport { BmbIconComponent } from '../components/bmb-icon/bmb-icon.component';\n\n@Directive({\n  selector: '[bmbButton]',\n})\nexport class BmbButtonDirective implements OnInit, OnChanges {\n  @Input() icon: string = '';\n  @Input() iconPosition: 'left' | 'right' = 'left';\n  @Input() iconCase: boolean = false;\n  @Input() appearance: 'primary' | 'alternative' | 'secondary' | 'destructive' =\n    'primary';\n  @Input() size: 'small' | 'large' = 'small';\n  @Input() device: 'mobile' | 'desktop' = 'mobile';\n\n  private providedInputs: Set<string> = new Set();\n\n  constructor(\n    private el: ElementRef,\n    private viewContainerRef: ViewContainerRef,\n    private cdr: ChangeDetectorRef,\n    private renderer: Renderer2\n  ) {}\n\n  ngOnInit(): void {\n    this.addIcon();\n    this.applyAttributes();\n  }\n\n  ngOnChanges(changes: SimpleChanges): void {\n    Object.keys(changes).forEach((input) => {\n      this.providedInputs.add(input);\n    });\n\n    this.applyAttributes();\n    this.addIcon();\n    this.cdr.markForCheck();\n  }\n\n  private applyAttributes() {\n    if (this.providedInputs.has('device') && this.device) {\n      this.renderer.setAttribute(this.el.nativeElement, 'device', this.device);\n    }\n\n    if (this.providedInputs.has('iconCase')) {\n      if (this.iconCase) {\n        this.renderer.setAttribute(this.el.nativeElement, 'case', 'true');\n      } else {\n        this.renderer.removeAttribute(this.el.nativeElement, 'case');\n      }\n    }\n\n    if (this.providedInputs.has('size') && this.size) {\n      this.renderer.setAttribute(this.el.nativeElement, 'size', this.size);\n    }\n  }\n\n  @HostBinding('class') get elementClass(): string {\n    return `btn-${this.appearance}`;\n  }\n\n  private addIcon() {\n    this.viewContainerRef.clear();\n\n    if (this.icon) {\n      const iconComponentRef =\n        this.viewContainerRef.createComponent(BmbIconComponent);\n      const iconComponent = iconComponentRef.instance;\n      iconComponent.icon = this.icon;\n\n      if (this.iconPosition === 'right') {\n        this.el.nativeElement.appendChild(\n          iconComponentRef.location.nativeElement\n        );\n      } else {\n        this.el.nativeElement.insertBefore(\n          iconComponentRef.location.nativeElement,\n          this.el.nativeElement.firstChild\n        );\n      }\n    }\n  }\n}\n",
+            "sourceCode": "import {\n  Directive,\n  Input,\n  ElementRef,\n  HostBinding,\n  ViewContainerRef,\n  ChangeDetectorRef,\n  OnInit,\n  OnChanges,\n  Renderer2,\n  SimpleChanges,\n} from '@angular/core';\nimport { BmbIconComponent } from '../components/bmb-icon/bmb-icon.component';\n\n@Directive({\n  selector: '[bmbButton]',\n})\nexport class BmbButtonDirective implements OnInit, OnChanges {\n  @Input() icon: string = '';\n  @Input() iconPosition: 'left' | 'right' = 'left';\n  @Input() iconCase: boolean = false;\n  @Input() appearance: 'primary' | 'alternative' | 'secondary' | 'destructive' =\n    'primary';\n  @Input() size: 'small' | 'large' = 'small';\n  @Input() device: 'mobile' | 'desktop' = 'mobile';\n\n  private providedInputs: Set<string> = new Set();\n\n  constructor(\n    private el: ElementRef,\n    private viewContainerRef: ViewContainerRef,\n    private cdr: ChangeDetectorRef,\n    private renderer: Renderer2\n  ) {}\n\n  ngOnInit(): void {\n    this.addIcon();\n    this.applyAttributes();\n  }\n\n  ngOnChanges(changes: SimpleChanges): void {\n    Object.keys(changes).forEach((input) => {\n      this.providedInputs.add(input);\n    });\n\n    this.applyAttributes();\n    this.addIcon();\n    this.cdr.markForCheck();\n  }\n\n  private applyAttributes() {\n    if (this.providedInputs.has('device') && this.device) {\n      this.renderer.setAttribute(this.el.nativeElement, 'device', this.device);\n    }\n\n    if (this.providedInputs.has('iconCase')) {\n      if (this.iconCase) {\n        this.renderer.setAttribute(this.el.nativeElement, 'case', 'true');\n      } else {\n        this.renderer.removeAttribute(this.el.nativeElement, 'case');\n      }\n    }\n\n    if (this.providedInputs.has('size') && this.size) {\n      this.renderer.setAttribute(this.el.nativeElement, 'size', this.size);\n    }\n\n    if (this.providedInputs.has('iconPosition')) {\n      this.renderer.setAttribute(\n        this.el.nativeElement,\n        'icon-position',\n        this.iconPosition\n      );\n    }\n  }\n\n  @HostBinding('class') get elementClass(): string {\n    return `btn-${this.appearance}`;\n  }\n\n  private addIcon() {\n    this.viewContainerRef.clear();\n\n    if (this.icon) {\n      const iconComponentRef =\n        this.viewContainerRef.createComponent(BmbIconComponent);\n      const iconComponent = iconComponentRef.instance;\n      iconComponent.icon = this.icon;\n\n      if (this.iconPosition === 'right') {\n        this.el.nativeElement.appendChild(\n          iconComponentRef.location.nativeElement\n        );\n      } else {\n        this.el.nativeElement.insertBefore(\n          iconComponentRef.location.nativeElement,\n          this.el.nativeElement.firstChild\n        );\n      }\n    }\n  }\n}\n",
             "selector": "[bmbButton]",
             "providers": [],
             "hostDirectives": [],
@@ -290,7 +290,7 @@
                     "name": "class",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 69,
+                    "line": 77,
                     "type": "string",
                     "decorators": []
                 }
@@ -318,7 +318,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 73,
+                    "line": 81,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -460,7 +460,7 @@
                         "name": "elementClass",
                         "type": "string",
                         "returnType": "string",
-                        "line": 69
+                        "line": 77
                     }
                 }
             }

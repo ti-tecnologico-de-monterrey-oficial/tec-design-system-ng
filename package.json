@@ -1,6 +1,6 @@
 {
   "name": "@ti-tecnologico-de-monterrey-oficial/tec-design-system-ng",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "scripts": {
     "ng": "ng",
     "storybook": "ng run ds-ng:storybook",
@@ -9,12 +9,16 @@
     "test": "ng test",
     "build-storybook": "ng run ds-ng:build-storybook",
     "build-scss": "sass projects/ds-ng/src/assets/styles/main.scss projects/ds-ng/dist/styles/main.css --style compressed",
-    "build": "npm run build-scss && ng build ds-ng"
+    "build": "npm run build-scss && ng build ds-ng",
+    "chromatic": "npx chromatic --project-token=chpt_f98e9dab3ebf7df"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@tec-design-system"
   },
-  "repository": "https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng.git"
+  },
   "private": false,
   "dependencies": {
     "@angular/animations": "^17.0.0",
@@ -45,6 +49,7 @@
     "@storybook/blocks": "^7.6.12",
     "@storybook/test": "^7.6.12",
     "@types/jasmine": "~5.1.0",
+    "chromatic": "^10.9.0",
     "css-loader": "^6.10.0",
     "file-loader": "^6.2.0",
     "jasmine-core": "~5.1.0",
@@ -62,5 +67,9 @@
   "files": [
     "projects/ds-ng/dist",
     "projects/ds-ng/src/assets"
-  ]
+  ],
+  "bugs": {
+    "url": "https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/issues"
+  },
+  "homepage": "https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng#readme"
 }
