@@ -31,21 +31,24 @@
     height: rem_calc(16);
   }
 
-  &[data-device="desktop"] {
+  &[device="desktop"] {
     padding: $spacing-size-md $spacing-size-xxl;
   }
 
-  &[data-size="large"] {
+  &[size="large"] {
     height: rem_calc(48);
     width: 100%;
   }
 
-  &[data-case="edge"] {
+  &[case="true"] {
     display: grid;
     grid-template-columns: auto 1fr;
     align-items: center;
+    padding-top: 0;
+    padding-bottom: 0;
 
-    &[iconposition="right"] {
+    &[iconposition="right"],
+    &[ng-reflect-icon-position="right"] {
       grid-template-columns: 1fr auto;
     }
   }
