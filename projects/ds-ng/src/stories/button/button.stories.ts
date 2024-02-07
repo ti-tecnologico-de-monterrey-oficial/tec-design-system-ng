@@ -96,7 +96,7 @@ export const Secondary = Template.bind({});
 Secondary.args = {
   appearance: 'secondary',
   icon: 'chevron_left',
-  iconPosition: 'right',
+  iconPosition: 'left',
   text: 'Secondary',
   size: 'large',
   device: 'desktop',
