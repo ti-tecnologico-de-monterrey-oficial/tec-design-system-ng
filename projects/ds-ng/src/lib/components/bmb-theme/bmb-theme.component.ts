@@ -7,7 +7,6 @@ import { ThemeService } from '../../services/theme.service';
 @Component({
   selector: 'bmb-theme',
   templateUrl: './bmb-theme.component.html',
-  styleUrls: ['../../../assets/styles/components/_user-image.scss'],
 })
 export class BmbThemeComponent implements OnInit {
   selectedTheme: string = 'light';

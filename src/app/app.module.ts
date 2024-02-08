@@ -10,7 +10,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { BmbButtonDirective } from '../../projects/ds-ng/src/lib/directives/button.directive';
 import { DsNgModule } from '../../projects/ds-ng/src/public-api';
 import { BmbIconComponent } from '../../projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.component';
-import { BmbThemeComponent } from '../../projects/ds-ng/src/lib/components/bmb-theme/bmb-theme.component';
 import { BmbBadgeComponent } from '../../projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.component';
 import { BmbDividerComponent } from '../../projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.component';
 import { BmbAppButtonComponent } from '../../projects/ds-ng/src/lib/components/bmb-app-button/bmb-app-button.component';

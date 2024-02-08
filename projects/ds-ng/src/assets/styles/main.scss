@@ -11,7 +11,7 @@
 @import "base/rem";
 
 // Import fonts
-@import "base/typography";
+@import "base/fonts";
 
 // Import the styles for base
 @import "base/reset";
@@ -22,5 +22,5 @@
 @import "components/buttons";
 @import "./components/text-inputs";
 
-// Import google icon fonts
-@import "material-design-icons/iconfont/material-icons.css";
+// Removing storybook elements
+@import "base/storybook";
