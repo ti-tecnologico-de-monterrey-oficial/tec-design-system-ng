@@ -10,7 +10,7 @@ import { Props, Target } from './bmb-dot-paginator.interface';
 @Component({
   selector: 'bmb-dot-paginator',
   templateUrl: './bmb-dot-paginator.component.html',
-  styleUrls: ['../../../assets/styles/components/_dot-paginator.scss'],
+  styleUrls: ['../../../assets/styles/components/_dotPaginator.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbDotPaginatorComponent {

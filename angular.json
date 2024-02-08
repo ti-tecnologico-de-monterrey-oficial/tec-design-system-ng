@@ -42,8 +42,8 @@
               "src/assets"
             ],
             "styles": [
-              "projects/ds-ng/src/assets/styles/main.scss",
-              "src/styles.scss"
+              "node_modules/material-design-icons/iconfont/material-icons.css",
+              "projects/ds-ng/src/assets/styles/main.scss"
             ],
             "scripts": []
           },
@@ -108,8 +108,8 @@
               "src/assets"
             ],
             "styles": [
-              "projects/ds-ng/src/assets/styles/main.scss",
-              "src/styles.scss"
+              "node_modules/material-design-icons/iconfont/material-icons.css",
+              "projects/ds-ng/src/assets/styles/main.scss"
             ],
             "scripts": []
           }
@@ -145,6 +145,44 @@
               "zone.js",
               "zone.js/testing"
             ]
+          }
+        },
+        "storybook": {
+          "builder": "@storybook/angular:start-storybook",
+          "options": {
+            "configDir": "projects/ds-ng/.storybook",
+            "browserTarget": "ds-ng:build",
+            "compodoc": true,
+            "compodocArgs": [
+              "-e",
+              "json",
+              "-d",
+              "."
+            ],
+            "port": 6006,
+            "styles": [
+              "node_modules/material-design-icons/iconfont/material-icons.css",
+              "projects/ds-ng/src/assets/styles/main.scss"
+            ]
+          }
+        },
+        "build-storybook": {
+          "builder": "@storybook/angular:build-storybook",
+          "options": {
+            "configDir": "projects/ds-ng/.storybook",
+            "browserTarget": "ds-ng:build",
+            "compodoc": true,
+            "compodocArgs": [
+              "-e",
+              "json",
+              "-d",
+              "." 
+            ],
+            "styles": [
+              "node_modules/material-design-icons/iconfont/material-icons.css",
+              "projects/ds-ng/src/assets/styles/main.scss"
+            ],
+            "outputDir": "dist/storybook/ds-ng"
           }
         }
       }

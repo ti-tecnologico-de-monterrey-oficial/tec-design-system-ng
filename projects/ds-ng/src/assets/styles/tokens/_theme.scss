@@ -1,6 +1,26 @@
 [data-theme="dark"] {
   body {
     background-color: RGBA(var(--color-black));
+
+    .btn {
+      &-secondary {
+        border-color: RGBA(var(--color-white));
+        color: RGBA(var(--color-white));
+
+        bmb-icon {
+          color: RGBA(var(--color-white));
+        }
+
+        &:active {
+          background-color: RGBA(var(--color-white));
+          color: RGBA(var(--color-black));
+
+          bmb-icon {
+            color: RGBA(var(--color-black));
+          }
+        }
+      }
+    }
   }
 }
 
@@ -13,5 +33,38 @@
 [data-theme="blue"] {
   body {
     background-color: RGBA(var(--color-mariner-800));
+
+    .btn {
+      &-primary {
+        background-color: RGBA(var(--color-green-light));
+
+        &:hover,
+        &:focus-visible {
+          background-color: RGBA(var(--color-green-primary));
+        }
+
+        &:active {
+          background-color: RGBA(var(--color-green-light));
+        }
+      }
+
+      &-secondary {
+        border-color: RGBA(var(--color-white));
+        color: RGBA(var(--color-white));
+
+        bmb-icon {
+          color: RGBA(var(--color-white));
+        }
+
+        &:active {
+          background-color: RGBA(var(--color-white));
+          color: RGBA(var(--color-black));
+
+          bmb-icon {
+            color: RGBA(var(--color-black));
+          }
+        }
+      }
+    }
   }
 }

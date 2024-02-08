@@ -2,6 +2,7 @@ import { NgModule, Injector, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BmbButtonDirective } from './directives/button.directive';
 import { DsNgComponent } from './ds-ng.component';
@@ -16,9 +17,7 @@ import { BmbTextInputComponent } from './components/bmb-text-input/bmb-text-inpu
 import { BmbIconTextInputComponent } from './components/bmb-icon-text-input/bmb-icon-text-input.component';
 
 // Angular library
-
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-
 
 @NgModule({
   declarations: [
@@ -37,6 +36,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
   imports: [
     CommonModule,
     MatButtonToggleModule,
+    FormsModule,
   ],
   exports: [
     BmbButtonDirective,

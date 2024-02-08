@@ -1,7 +1,7 @@
 @import "../tokens/colors";
 @import "../base/rem";
 @import "../base/measures";
-@import "../base/typography";
+@import "../base/fonts";
 
 .app-button {
   align-items: center;
@@ -34,5 +34,7 @@
   &-text {
     @include font(3, medium);
     color: RGBA(var(--color-charade-950));
+    flex: 1;
+    text-align: left;
   }
 }
