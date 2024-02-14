@@ -26,71 +26,105 @@
   --color-charade-900: 49, 54, 73;
   --color-charade-950: 31, 34, 46;
 
-  // This colors will be deprecate in the future
-  --color-neon-primary: 28, 192, 204;
-  --color-neon-light: 99, 195, 202;
-  --color-neon-tint: 153, 204, 208;
+  // Institucional colors
+  --color-white-primary: 255, 255, 255;
+  --color-blue-tec: #0039a6;
 
-  --color-blue-primary: 39, 102, 203;
-  --color-blue-light: 70, 119, 199;
-  --color-blue-tint: 147, 169, 204;
-  --color-blue-pigment: 39, 58, 161;
+  // MiTec
+  --color-mitec-blue: #00a7f7;
+  --color-mitec-green: #cdde20;
+  --color-mitec-red: #ec2661;
+  --color-mitec-orange: #ff9901;
 
-  --color-teal-primary: 39, 125, 161;
-  --color-teal-light: 82, 137, 159;
-  --color-teal-tint: 106, 145, 161;
+  // Constrastes principales
+  --color-black-primary: 0, 0, 0;
+  --color-black-light: RGBA(var(--color-black-primary), 0.75);
+  --color-black-tint: RGBA(var(--color-black-primary), 0.5);
+  --color-black-min: RGBA(var(--color-black-primary), 0.25);
+  --color-white-light: RGBA(var(--color-white-primary), 0.75);
+  --color-white-tint: RGBA(var(--color-white-primary), 0.5);
+  --color-white-min: RGBA(var(--color-white-primary), 0.25);
 
-  --color-red-primary: 211, 47, 47;
-  --color-red-light: 240, 82, 82;
-  --color-red-tint: 252, 158, 158;
+  //Colores base
+  --color-neon-primary: #1bc0cb;
+  --color-neon-light: #72efe2;
+  --color-neon-tint: #d0fcf0;
 
-  --color-green-primary: 64, 162, 19;
-  --color-green-light: 67, 170, 139;
-  --color-green-tint: 172, 227, 146;
+  --color-blue-primary: #2766cb;
+  --color-blue-light: #4677c7;
+  --color-blue-tint: #93a9cc;
 
-  --color-purple-primary: 106, 39, 161;
-  --color-purple-light: 161, 39, 128;
-  --color-purple-tint: 200, 123, 189;
+  --color-green-primary: #40a213;
+  --color-green-light: #43aa8b;
+  --color-green-tint: #ace392;
 
-  --color-yellow-primary: 252, 189, 7;
-  --color-yellow-light: 254, 214, 98;
-  --color-yellow-tint: 255, 231, 163;
+  --color-purple-primary: #6a27a1;
+  --color-purple-light: #a12780;
+  --color-purple-tint: #c87bbd;
 
-  --color-black: 0, 0, 0;
-  --color-black-light: RGBA(var(--color-black), 0.75);
-  --color-black-tint: RGBA(var(--color-black), 0.5);
-  --color-black-dark: 30, 38, 44;
+  --color-red-primary: #d32f2f;
+  --color-red-light: #f05252;
+  --color-red-tint: #fc9e9e;
 
-  --color-white: 255, 255, 255;
-  --color-white-light: RGBA(var(--color-white), 0.75);
-  --color-white-tint: RGBA(var(--color-white), 0.5);
+  --color-yellow-primary: #fcbd07;
+  --color-yellow-light: #fed662;
+  --color-yellow-tint: #ffe7a3;
 
-  --color-container-home: 82, 137, 159;
-  --color-container-secondary: 26, 34, 40;
-  --color-button-container: 42, 52, 59;
+  --color-teal-primary: #277da1;
+  --color-teal-light: #52899f;
+  --color-teal-tint: #6a91a1;
 
-  --color-japanese-indigo: 39, 64, 82;
+  //Fondos complementarios Dark
+  --color-container-home: #252e35;
+  --color-container-secondary: #1a2228;
+  --color-container-button: #2a343b;
+  --color-background-main: #1e262c;
+
+  //Fondos complementarios Light
+  --color-container-home-light: RGBA(var(--color-white-primary));
+  --color-container-secondary-light: #e5e9ed;
+  --color-container-button-light: #e5e9ed;
+  --color-background-main-light: #e5e9ed;
+
+  //Fondos complementarios Tec
+  --color-container-home-tec: #002469;
+  --color-container-secondary-tec: #1b386e;
+  --color-container-button-tec: RGBA(var(--color-blue-tec));
+  --color-background-main-tec: RGBA(var(--color-blue-tec));
+
+  //Colores para gradients
+  --color-blue-pigment: #273aa1;
+  --color-japanese-indigo: #274052;
   --color-eerie-black: 20, 25, 28;
 
+  //GRADIENTS
   // To use this gradient you should use it in this way
   // background-color: linear-gradient(180deg, var(--color-gradient-blue)); or
   // background-color: radial-gradient(circle, var(--color-gradient-blue));
-  --color-gradient-blue: RGBA(var(--color-teal-primary)) 0%,
-    RGBA(var(--color-blue-pigment)) 100%;
-  --color-gradient-green: RGBA(var(--color-neon-primary)) 0%,
-    RGBA(var(--color-green-light)) 100%;
-  --color-gradient-purple: RGBA(var(--color-purple-primary)) 0%,
-    RGBA(var(--color-purple-light)) 100%;
-  --color-gradient-button: RGBA(var(--color-teal-primary)) 0%,
+  --color-button-gradient: RGBA(var(--color-teal-primary)) 0%,
     RGBA(var(--color-blue-primary)) 100%;
-  --color-gradient-dark: RGBA(var(--color-japanese-indigo)) 0%,
-    RGBA(var(--color-black-dark)) 100%;
-  --color-gradient-wheel-dark: RGBA(var(--color-eerie-black)) 0%,
-    RGBA(var(--color-black-dark)) 100%;
+  --color-blue-gradient: RGBA(var(--color-teal-primary)) 0%,
+    RGBA(var(--color-blue-pigment)) 100%;
+  --color-green-gradient: RGBA(var(--color-neon-primary)) 0%,
+    RGBA(var(--color-green-light)) 100%;
+  --color-purple-gradient: RGBA(var(--color-purple-primary)) 0%,
+    RGBA(var(--color-purple-light)) 100%;
+  --color-bg-gradient: RGBA(var(--color-japanese-indigo)) 0%,
+    RGBA(var(--color-background-main)) 100%;
+  --color-bg-wheel: RGBA(var(--color-eerie-black)) 0%,
+    RGBA(var(--color-background-main)) 100%;
+  --color-bg-gradient-light: RGBA(var(--color-white-primary)) 0%,
+    RGBA(var(--color-blue-tint)) 100%;
+  --color-bg-wheel-light: RGBA(var(--color-white-primary)) 0%,
+    RGBA(var(--color-blue-tint)) 100%;
+  --color-bg-gradient-tec: RGBA(var(--color-container-home-tec)) 0%,
+    RGBA(var(--color-blue-tec)) 100%;
+  --color-bg-wheel-tec: RGBA(var(--color-container-home-tec)) 0%,
+    RGBA(var(--color-blue-tec)) 100%;
 
   // To use shadow you should use it in this way
   // box-shadow: var(--shadow-sm);
-  --shadow-sm: 1px 1px 2px 0 RGBA(var(--color-black), 0.2);
-  --shadow-lg: 4px 4px 4px 0 RGBA(var(--color-black), 0.2);
-  --shadow-xl: 8px 8px 8px 0 RGBA(var(--color-black), 0.2);
+  --shadow-sm: 1px 1px 2px 0 RGBA(var(--color-black-primary), 0.2);
+  --shadow-lg: 4px 4px 4px 0 RGBA(var(--color-black-primary), 0.2);
+  --shadow-xl: 8px 8px 8px 0 RGBA(var(--color-black-primary), 0.2);
 }

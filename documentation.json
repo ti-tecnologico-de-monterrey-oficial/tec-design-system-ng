@@ -707,7 +707,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@import \"../tokens/colors\";\n@import \"../base/rem\";\n@import \"../base/measures\";\n\n.divider {\n  border: rem_calc(1) solid RGBA(var(--color-charade-50));\n  margin: $spacing-size-base 0;\n  width: 100%;\n\n  &-2 {\n    border-width: rem_calc(2);\n  }\n\n  &-3 {\n    border-width: rem_calc(3);\n  }\n\n  &-4 {\n    border-width: rem_calc(4);\n  }\n\n  &-5 {\n    border-width: rem_calc(5);\n  }\n\n  &-white {\n    border-color: RGBA(var(--color-white));\n  }\n\n  &-primary {\n    border-color: RGBA(var(--color-mariner-500));\n  }\n\n  &-light {\n    border-color: RGBA(var(--color-charade-200));\n  }\n\n  &-secondary {\n    border-color: RGBA(var(--color-charade-300));\n  }\n\n  &-success {\n    border-color: RGBA(var(--color-green-tint));\n  }\n\n  &-info {\n    border-color: RGBA(var(--color-purple-primary));\n  }\n\n  &-warning {\n    border-color: RGBA(var(--color-yellow-primary));\n  }\n\n  &-danger {\n    border-color: RGBA(var(--color-red-primary));\n  }\n\n  &-dark {\n    border-color: RGBA(var(--color-charade-950));\n  }\n\n  &-dotted {\n    border-style: dotted;\n  }\n\n  &-dashed {\n    border-style: dashed;\n  }\n}\n",
+                    "data": "@import \"../tokens/colors\";\n@import \"../base/rem\";\n@import \"../base/measures\";\n\n.divider {\n  border: rem_calc(1) solid RGBA(var(--color-charade-50));\n  margin: $spacing-size-base 0;\n  width: 100%;\n\n  &-2 {\n    border-width: rem_calc(2);\n  }\n\n  &-3 {\n    border-width: rem_calc(3);\n  }\n\n  &-4 {\n    border-width: rem_calc(4);\n  }\n\n  &-5 {\n    border-width: rem_calc(5);\n  }\n\n  &-white {\n    border-color: RGBA(var(--color-white-primary));\n  }\n\n  &-primary {\n    border-color: RGBA(var(--color-mariner-500));\n  }\n\n  &-light {\n    border-color: RGBA(var(--color-charade-200));\n  }\n\n  &-secondary {\n    border-color: RGBA(var(--color-charade-300));\n  }\n\n  &-success {\n    border-color: RGBA(var(--color-green-tint));\n  }\n\n  &-info {\n    border-color: RGBA(var(--color-purple-primary));\n  }\n\n  &-warning {\n    border-color: RGBA(var(--color-yellow-primary));\n  }\n\n  &-danger {\n    border-color: RGBA(var(--color-red-primary));\n  }\n\n  &-dark {\n    border-color: RGBA(var(--color-charade-950));\n  }\n\n  &-dotted {\n    border-style: dotted;\n  }\n\n  &-dashed {\n    border-style: dashed;\n  }\n}\n",
                     "styleUrl": "../../../assets/styles/components/_divider.scss"
                 }
             ],
@@ -836,7 +836,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@import \"../tokens/colors\";\n@import \"../base/rem\";\n\n.dot-paginator {\n  align-items: center;\n  background-color: RGBA(var(--color-charade-200));\n  border-radius: rem_calc(40);\n  display: flex;\n  justify-content: center;\n  list-style-type: none;\n  margin: 0;\n  overflow: hidden;\n  padding: rem_calc(12);\n  position: relative;\n  width: fit-content;\n\n  .dot {\n    background-color: RGBA(var(--color-white));\n    border-radius: 100%;\n    cursor: pointer;\n    height: rem_calc(6);\n    margin: 0 rem_calc(8);\n    position: relative;\n    width: rem_calc(6);\n\n    &.active {\n      background-color: RGBA(var(--color-mariner-500));\n      border-radius: rem_calc(30);\n      width: rem_calc(16);\n    }\n\n    ::marker {\n      display: none;\n    }\n  }\n}\n",
+                    "data": "@import \"../tokens/colors\";\n@import \"../base/rem\";\n\n.dot-paginator {\n  align-items: center;\n  background-color: RGBA(var(--color-charade-200));\n  border-radius: rem_calc(40);\n  display: flex;\n  justify-content: center;\n  list-style-type: none;\n  margin: 0;\n  overflow: hidden;\n  padding: rem_calc(12);\n  position: relative;\n  width: fit-content;\n\n  .dot {\n    background-color: RGBA(var(--color-white-primary));\n    border-radius: 100%;\n    cursor: pointer;\n    height: rem_calc(6);\n    margin: 0 rem_calc(8);\n    position: relative;\n    width: rem_calc(6);\n\n    &.active {\n      background-color: RGBA(var(--color-mariner-500));\n      border-radius: rem_calc(30);\n      width: rem_calc(16);\n    }\n\n    ::marker {\n      display: none;\n    }\n  }\n}\n",
                     "styleUrl": "../../../assets/styles/components/_dotPaginator.scss"
                 }
             ],
@@ -892,8 +892,196 @@
             "templateData": "<i class=\"material-icons\">{{ icon }}</i>\n"
         },
         {
+            "name": "BmbIconTextInputComponent",
+            "id": "component-BmbIconTextInputComponent-39b3c8b0b8ddda050b0ab032715a4c170ad2a7752dd1aed9661e7e631e2ba2182ab26aa47b35c6ab6b8337690af209279407a77b0eeba906efe26976b660c50c",
+            "file": "projects/ds-ng/src/lib/components/bmb-icon-text-input/bmb-icon-text-input.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.Emulated"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "[bmb-icon-text-input]",
+            "styleUrls": [
+                "../../../assets/styles/components/_icon-text-input.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-icon-text-input.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [
+                {
+                    "name": "class.ng-invalid",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 17,
+                    "type": "boolean",
+                    "decorators": []
+                }
+            ],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, ChangeDetectionStrategy, HostBinding, Optional, Input, ViewEncapsulation, OnInit } from '@angular/core';\nimport { NgControl } from '@angular/forms';\n\n@Component({\n  selector: '[bmb-icon-text-input]',\n  templateUrl: './bmb-icon-text-input.component.html',\n  styleUrls: ['../../../assets/styles/components/_icon-text-input.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.Emulated,\n})\nexport class BmbIconTextInputComponent {\n  // @Input() text: string = '';\n  // @Input() icon: string = '';\n  // @Input() image: string = '';\n\n  @HostBinding('class.ng-invalid')\n  get invalid(): boolean {\n    return this._ngControl?.invalid ?? false;\n  }\n\n  constructor(@Optional() private readonly _ngControl?: NgControl){\n  }\n\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@import \"../tokens/colors\";\n@import \"../base/rem\";\n@import \"../base/measures\";\n@import \"../base/fonts\";\n\n:host {\n  @include font(4, regular);\n  border: rem_calc(1) solid RGBA(var(--color-charade-100));\n  background-color: RGBA(var(--color-charade-100));\n  box-sizing: border-box;\n  border-radius: rem_calc(3);\n  padding: rem_calc(8);\n  // padding: rem_calc(8) rem_calc(8) rem_calc(8) rem_calc(8);\n  min-height: rem_calc(38);\n  width: 100%;\n  height: 100%;\n\n  &:focus {\n    outline: none;\n    border-color: RGBA(var(--color-blue-primary));\n    box-shadow: rem_calc(0) rem_calc(0) rem_calc(2) rem_calc(2)\n      RGBA(var(--color-marine-900));\n  }\n\n  &::placeholder {\n    color: RGBA(var(--color-charade-300));\n  }\n\n  &:disabled:focus {\n    outline: none;\n  }\n\n  &.ng-invalid {\n    border-color: RGBA(var(--color-red-primary));\n  }\n}\n",
+                    "styleUrl": "../../../assets/styles/components/_icon-text-input.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "_ngControl",
+                        "type": "NgControl",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "optional": true
+                    }
+                ],
+                "line": 19,
+                "jsdoctags": [
+                    {
+                        "name": "_ngControl",
+                        "type": "NgControl",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "optional": true,
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "extends": [],
+            "accessors": {
+                "invalid": {
+                    "name": "invalid",
+                    "getSignature": {
+                        "name": "invalid",
+                        "type": "boolean",
+                        "returnType": "boolean",
+                        "line": 17
+                    }
+                }
+            },
+            "templateData": "<!-- <div class=\"bmb-input-wrapper\">\n    <input bmb-text-input type=\"search\" placeholder=\"Search\" />\n    <bmb-icon class=\"app-button-icon\" icon=\"{{ icon }}\" *ngIf=\"!image\" />\n    <svg\n       xmlns=\"http://www.w3.org/2000/svg\"\n       class=\"bmb-input-icon\"\n       viewBox=\"0 0 20 20\"\n       fill=\"currentColor\"\n    >\n       <path\n          fill-rule=\"evenodd\"\n          d=\"M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z\"\n          clip-rule=\"evenodd\"\n       />\n    </svg>\n </div> -->"
+        },
+        {
+            "name": "BmbTextInputComponent",
+            "id": "component-BmbTextInputComponent-053c3e13175403bc2ed6ee198f6a1eaffbdae65c12ec544f075126773e2e9f93180ac1564a74c02634fd1ecbfe978aff48e672d29d7fc37e6b3bc8654b915926",
+            "file": "projects/ds-ng/src/lib/components/bmb-text-input/bmb-text-input.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "[bmb-text-input]",
+            "styleUrls": [
+                "../../../assets/styles/components/_text-inputs.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-text-input.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [
+                {
+                    "name": "class.ng-invalid",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 13,
+                    "type": "boolean",
+                    "decorators": []
+                }
+            ],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, ChangeDetectionStrategy, HostBinding, Optional, Input } from '@angular/core';\nimport { NgControl } from '@angular/forms';\n\n@Component({\n  selector: '[bmb-text-input]',\n  templateUrl: './bmb-text-input.component.html',\n  styleUrls: ['../../../assets/styles/components/_text-inputs.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbTextInputComponent {\n\n  @HostBinding('class.ng-invalid')\n  get invalid(): boolean {\n    return this._ngControl?.invalid ?? false;\n  }\n\n  constructor(@Optional() private readonly _ngControl?: NgControl){\n  }\n\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@import \"../tokens/colors\";\n@import \"../base/rem\";\n@import \"../base/measures\";\n@import \"../base/fonts\";\n\n// Text input as directive\n:host {\n  @include font(4, regular);\n  border: rem_calc(1) solid RGBA(var(--color-charade-100));\n  background-color: RGBA(var(--color-charade-100));\n  box-sizing: border-box;\n  border-radius: rem_calc(3);\n  padding: rem_calc(8);\n  // padding: rem_calc(8) rem_calc(8) rem_calc(8) rem_calc(8);\n  min-height: rem_calc(38);\n  width: 100%;\n  height: 100%;\n\n  &:focus {\n    outline: none;\n    border-color: RGBA(var(--color-blue-primary));\n    box-shadow: rem_calc(0) rem_calc(0) rem_calc(2) rem_calc(2)\n      RGBA(var(--color-marine-900));\n  }\n\n  &::placeholder {\n    color: RGBA(var(--color-charade-300));\n  }\n\n  &:disabled:focus {\n    outline: none;\n  }\n\n  &.ng-invalid {\n    border-color: RGBA(var(--color-red-primary));\n  }\n}\n\n// Styles for error message in input\n.bmb-text-error {\n  @include font(2, regular);\n  padding: rem_calc(8);\n\n  *:first-child {\n    color: RGBA(var(--color-red-primary));\n  }\n}\n\n.bmb-text-msg {\n  @include font(2, regular);\n  padding: rem_calc(8);\n\n  *:first-child {\n    color: RGBA(var(--color-black-primary));\n  }\n}\n\n.bmb-form-label {\n  @include font(3, medium);\n  display: block;\n  padding: rem_calc(4);\n}\n\nbmb-icon-text-input {\n  position: relative;\n  display: flex;\n  align-items: center;\n\n  > input {\n    border: rem_calc(1) solid RGBA(var(--color-charade-100));\n    background-color: RGBA(var(--color-charade-100));\n    box-sizing: border-box;\n    border-radius: rem_calc(3);\n    padding: rem_calc(8) rem_calc(8) rem_calc(8) rem_calc(35);\n    min-height: rem_calc(38);\n    width: 100%;\n    height: 100%;\n\n    &:focus {\n      outline: none;\n      border-color: RGBA(var(--color-blue-primary));\n      box-shadow: rem_calc(0) rem_calc(0) rem_calc(2) rem_calc(2)\n        RGBA(var(--color-marine-900));\n    }\n\n    &::placeholder {\n      color: RGBA(var(--color-charade-300));\n    }\n\n    &:disabled:focus {\n      outline: none;\n    }\n\n    &.ng-invalid {\n      border-color: RGBA(var(--color-red-primary));\n    }\n  }\n\n  > i {\n    color: RGBA(var(--color-marine-900));\n    position: absolute;\n    width: rem_calc(20);\n    height: rem_calc(20);\n    left: rem_calc(5);\n    top: 50%;\n    transform: translateY(-50%);\n  }\n}\n\n// .bmb-text-input{\n//     @include font(4, regular);\n//     border: rem_calc(1) solid RGBA(var(--color-charade-100));\n//     background-color: RGBA(var(--color-charade-100));\n//     box-sizing: border-box;\n//     border-radius: rem_calc(3);\n//     padding: rem_calc(8) rem_calc(8) rem_calc(8) rem_calc(35);\n//     min-height: rem_calc(38);\n//     width: 100%;\n//     height: 100%;\n\n//     &:focus{\n//         outline: none;\n//         border-color: RGBA(var(--color-blue-primary)) ;\n//         box-shadow: rem_calc(0) rem_calc(0) rem_calc(2) rem_calc(2) RGBA(var(--color-marine-900));\n//     }\n\n//     &::placeholder{\n//         color: RGBA(var(--color-charade-300));\n//     }\n\n//     &:disabled:focus {\n//         outline: none;\n//     }\n\n//     &.ng-invalid {\n//         border-color: RGBA(var(--color-red-primary));\n//     }\n// }\n\n.bmb-input-icon {\n  color: RGBA(var(--color-marine-900));\n  // position: absolute;\n  width: rem_calc(20);\n  height: rem_calc(20);\n  left: rem_calc(12);\n  top: 50%;\n  transform: translateY(-50%);\n}\n",
+                    "styleUrl": "../../../assets/styles/components/_text-inputs.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "_ngControl",
+                        "type": "NgControl",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "optional": true
+                    }
+                ],
+                "line": 15,
+                "jsdoctags": [
+                    {
+                        "name": "_ngControl",
+                        "type": "NgControl",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "optional": true,
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "extends": [],
+            "accessors": {
+                "invalid": {
+                    "name": "invalid",
+                    "getSignature": {
+                        "name": "invalid",
+                        "type": "boolean",
+                        "returnType": "boolean",
+                        "line": 13
+                    }
+                }
+            },
+            "templateData": ""
+        },
+        {
             "name": "BmbThemeComponent",
-            "id": "component-BmbThemeComponent-84cd7109b55ecc2a87cd58b89c48ace1bc36d8db2959e27d2f11501a0de1542e0b7238361cd134ec23e2acb9eed503afc5165d8a87cf8121bc181b1f19c03278",
+            "id": "component-BmbThemeComponent-ac0dfa809336fc4e9b41646cfa108d98105009f1512497e7216d17b20719cf10ddac3450ec3bd9b4a9bb44315bb7ae4dacc3b485b8868bb38ac03b3a9494bb37",
             "file": "projects/ds-ng/src/lib/components/bmb-theme/bmb-theme.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -919,7 +1107,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 12
+                    "line": 9
                 }
             ],
             "methodsClass": [
@@ -936,7 +1124,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 22,
+                    "line": 19,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -957,7 +1145,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 16,
+                    "line": 13,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -965,8 +1153,8 @@
                     "name": "onThemeChange",
                     "args": [
                         {
-                            "name": "event",
-                            "type": "MatButtonToggleChange",
+                            "name": "newTheme",
+                            "type": "string",
                             "deprecated": false,
                             "deprecationMessage": ""
                         }
@@ -974,13 +1162,13 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 26,
+                    "line": 23,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
                         {
-                            "name": "event",
-                            "type": "MatButtonToggleChange",
+                            "name": "newTheme",
+                            "type": "string",
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
@@ -999,7 +1187,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { MatButtonToggleChange } from '@angular/material/button-toggle';\nimport { ThemeService } from '../../services/theme.service';\n\n@Component({\n  selector: 'bmb-theme',\n  templateUrl: './bmb-theme.component.html',\n})\nexport class BmbThemeComponent implements OnInit {\n  selectedTheme: string = 'light';\n\n  constructor(private themeService: ThemeService) {}\n\n  ngOnInit(): void {\n    this.themeService.theme$.subscribe((theme) => {\n      this.applyTheme(theme);\n    });\n  }\n\n  applyTheme(theme: string): void {\n    document.documentElement.setAttribute('data-theme', theme);\n  }\n\n  onThemeChange(event: MatButtonToggleChange): void {\n    this.selectedTheme = event.value;\n    this.themeService.setTheme(this.selectedTheme);\n  }\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { ThemeService } from '../../services/theme.service';\n\n@Component({\n  selector: 'bmb-theme',\n  templateUrl: './bmb-theme.component.html',\n})\nexport class BmbThemeComponent implements OnInit {\n  selectedTheme: string = 'light';\n\n  constructor(private themeService: ThemeService) {}\n\n  ngOnInit(): void {\n    this.themeService.theme$.subscribe((theme) => {\n      this.applyTheme(theme);\n    });\n  }\n\n  applyTheme(theme: string): void {\n    document.documentElement.setAttribute('data-theme', theme);\n  }\n\n  onThemeChange(newTheme: string): void {\n    this.selectedTheme = newTheme;\n    this.themeService.setTheme(this.selectedTheme);\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -1016,7 +1204,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 12,
+                "line": 9,
                 "jsdoctags": [
                     {
                         "name": "themeService",
@@ -1033,11 +1221,11 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<mat-button-toggle-group\n  [(ngModel)]=\"selectedTheme\"\n  (change)=\"onThemeChange($event)\"\n>\n  <mat-button-toggle value=\"dark\">Dark</mat-button-toggle>\n  <mat-button-toggle value=\"light\">Light</mat-button-toggle>\n  <mat-button-toggle value=\"blue\">Blue</mat-button-toggle>\n</mat-button-toggle-group>\n"
+            "templateData": "<div class=\"bmb-theme\">\n  <button\n    (click)=\"onThemeChange('dark')\"\n    [class.selected]=\"selectedTheme === 'dark'\"\n  >\n    Dark\n  </button>\n  <button\n    (click)=\"onThemeChange('light')\"\n    [class.selected]=\"selectedTheme === 'light'\"\n  >\n    Light\n  </button>\n  <button\n    (click)=\"onThemeChange('blue')\"\n    [class.selected]=\"selectedTheme === 'blue'\"\n  >\n    Blue\n  </button>\n</div>\n"
         },
         {
             "name": "BmbUserImageComponent",
-            "id": "component-BmbUserImageComponent-0a5eee47e1d3a778ceeb84b4c435b3615f49db5a5e2ace714a934678435ca84957ded89dd05d6e247b739c4bcccb6f9b0567c593e242ac4aa82c6df2f63c76b7",
+            "id": "component-BmbUserImageComponent-b2906caf1ba27c97ba8033ec11d288113f88d73b967d7e8d14d7878069584b49c9287495c17057946098015e1a6e809ac402581412385943bc070e5cc5c3d212",
             "file": "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-image.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -1056,6 +1244,15 @@
             "viewProviders": [],
             "hostDirectives": [],
             "inputsClass": [
+                {
+                    "name": "altImage",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 13,
+                    "type": "string",
+                    "decorators": []
+                },
                 {
                     "name": "image",
                     "defaultValue": "''",
@@ -1084,7 +1281,7 @@
                     "optional": false,
                     "returnType": "Props",
                     "typeParameters": [],
-                    "line": 16,
+                    "line": 17,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -1098,11 +1295,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, ChangeDetectionStrategy } from '@angular/core';\nimport { Props } from './bmb-user-image.interface';\n\n@Component({\n  selector: 'bmb-user-image',\n  templateUrl: './bmb-user-image.component.html',\n  styleUrls: ['../../../assets/styles/components/_userImage.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbUserImageComponent {\n  @Input() size: string = '';\n  @Input() image: string = '';\n\n  constructor() {}\n\n  getClasses(): Props {\n    let classes: Props = {\n      'user-image': true,\n    };\n\n    if (this.size) {\n      classes[this.size] = true;\n    }\n\n    return classes;\n  }\n}\n",
+            "sourceCode": "import { Component, Input, ChangeDetectionStrategy } from '@angular/core';\nimport { Props } from './bmb-user-image.interface';\n\n@Component({\n  selector: 'bmb-user-image',\n  templateUrl: './bmb-user-image.component.html',\n  styleUrls: ['../../../assets/styles/components/_userImage.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbUserImageComponent {\n  @Input() size: string = '';\n  @Input() image: string = '';\n  @Input() altImage: string = '';\n\n  constructor() {}\n\n  getClasses(): Props {\n    let classes: Props = {\n      'user-image': true,\n    };\n\n    if (this.size) {\n      classes[this.size] = true;\n    }\n\n    return classes;\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@import \"../tokens/colors\";\n@import \"../base/rem\";\n\n.user-image {\n  align-items: center;\n  background-color: RGBA(var(--color-mariner-900));\n  border-radius: 100%;\n  display: flex;\n  height: rem_calc(50);\n  justify-content: center;\n  overflow: hidden;\n  width: rem_calc(50);\n\n  img {\n    height: 100%;\n    width: 100%;\n  }\n\n  &.small {\n    height: rem_calc(56);\n    width: rem_calc(56);\n  }\n\n  &.large {\n    height: rem_calc(160);\n    width: rem_calc(160);\n  }\n}\n",
+                    "data": "@import \"../tokens/colors\";\n@import \"../base/rem\";\n\n.user-image {\n  align-items: center;\n  background-color: RGBA(var(--color-mariner-900));\n  border-radius: 100%;\n  display: flex;\n  height: rem_calc(50);\n  justify-content: center;\n  overflow: hidden;\n  width: rem_calc(50);\n\n  img {\n    height: 100%;\n    width: 100%;\n  }\n\n  &.mobile-small {\n    height: rem_calc(32);\n    width: rem_calc(32);\n  }\n\n  &.mobile-medium {\n    height: rem_calc(64);\n    width: rem_calc(64);\n  }\n\n  &.mobile-large {\n    height: rem_calc(100);\n    width: rem_calc(100);\n  }\n\n  &.mobile-xlarge {\n    height: rem_calc(200);\n    width: rem_calc(200);\n  }\n\n  &.desktop-small {\n    height: rem_calc(56);\n    width: rem_calc(56);\n  }\n\n  &.desktop-large {\n    height: rem_calc(160);\n    width: rem_calc(160);\n  }\n}\n",
                     "styleUrl": "../../../assets/styles/components/_userImage.scss"
                 }
             ],
@@ -1113,10 +1310,10 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "args": [],
-                "line": 12
+                "line": 13
             },
             "extends": [],
-            "templateData": "<div [ngClass]=\"getClasses()\">\n  <img [src]=\"image\" alt=\"\" />\n</div>\n"
+            "templateData": "<div [ngClass]=\"getClasses()\">\n  <img [src]=\"image\" [alt]=\"altImage\" />\n</div>\n"
         },
         {
             "name": "DsNgComponent",
@@ -1159,13 +1356,24 @@
     "modules": [
         {
             "name": "DsNgModule",
-            "id": "module-DsNgModule-6e44d7634118bf3eaaacd7092d5cf603dd05844a323596ae74d4ac7f0263f00a48769e0fad5455f886e0a9130d50d4db6e979789fec55bd6ba1fdb42d3c22993",
+            "id": "module-DsNgModule-3dad15c7cbc44baf6f4987edd9547ca9445cf68ef1158055556037655424e0358760a707e0053caec7f6b127528fc79b0c84506ac9e00758e961d61dafae784c",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "projects/ds-ng/src/lib/ds-ng.module.ts",
-            "methods": [],
-            "sourceCode": "import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';\nimport { BrowserModule } from '@angular/platform-browser';\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\nimport { FormsModule } from '@angular/forms';\nimport { CommonModule } from '@angular/common';\nimport { BmbButtonDirective } from './directives/button.directive';\nimport { DsNgComponent } from './ds-ng.component';\nimport { BmbUserImageComponent } from './components/bmb-user-image/bmb-user-image.component';\nimport { BmbAppButtonComponent } from './components/bmb-app-button/bmb-app-button.component';\nimport { BmbBadgeComponent } from './components/bmb-badge/bmb-badge.component';\nimport { BmbDividerComponent } from './components/bmb-divider/bmb-divider.component';\nimport { BmbDotPaginatorComponent } from './components/bmb-dot-paginator/bmb-dot-paginator.component';\nimport { BmbIconComponent } from './components/bmb-icon/bmb-icon.component';\n\n// Angular library\nimport { MatButtonToggleModule } from '@angular/material/button-toggle';\n\n@NgModule({\n  declarations: [\n    BmbButtonDirective,\n    DsNgComponent,\n    BmbUserImageComponent,\n    BmbAppButtonComponent,\n    BmbBadgeComponent,\n    BmbDividerComponent,\n    BmbDotPaginatorComponent,\n    BmbIconComponent,\n  ],\n  imports: [CommonModule, FormsModule, MatButtonToggleModule],\n  exports: [\n    BmbButtonDirective,\n    DsNgComponent,\n    BmbUserImageComponent,\n    BmbAppButtonComponent,\n    BmbBadgeComponent,\n    BmbDividerComponent,\n    BmbDotPaginatorComponent,\n    BmbIconComponent,\n  ],\n})\nexport class DsNgModule {}\n",
+            "methods": [
+                {
+                    "name": "ngDoBootsrap",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 59,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "sourceCode": "import { NgModule, Injector, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';\nimport { createCustomElement } from '@angular/elements';\nimport { BrowserModule } from '@angular/platform-browser';\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\nimport { FormsModule } from '@angular/forms';\nimport { CommonModule } from '@angular/common';\nimport { BmbButtonDirective } from './directives/button.directive';\nimport { DsNgComponent } from './ds-ng.component';\nimport { BmbUserImageComponent } from './components/bmb-user-image/bmb-user-image.component';\nimport { BmbAppButtonComponent } from './components/bmb-app-button/bmb-app-button.component';\nimport { BmbBadgeComponent } from './components/bmb-badge/bmb-badge.component';\nimport { BmbDividerComponent } from './components/bmb-divider/bmb-divider.component';\nimport { BmbDotPaginatorComponent } from './components/bmb-dot-paginator/bmb-dot-paginator.component';\nimport { BmbIconComponent } from './components/bmb-icon/bmb-icon.component';\nimport { BmbThemeComponent } from './components/bmb-theme/bmb-theme.component';\nimport { BmbTextInputComponent } from './components/bmb-text-input/bmb-text-input.component';\nimport { BmbIconTextInputComponent } from './components/bmb-icon-text-input/bmb-icon-text-input.component';\n\n// Angular library\nimport { MatButtonToggleModule } from '@angular/material/button-toggle';\n\n@NgModule({\n  declarations: [\n    BmbButtonDirective,\n    DsNgComponent,\n    BmbUserImageComponent,\n    BmbAppButtonComponent,\n    BmbBadgeComponent,\n    BmbDividerComponent,\n    BmbDotPaginatorComponent,\n    BmbIconComponent,\n    BmbThemeComponent,\n    BmbTextInputComponent,\n    BmbIconTextInputComponent\n  ],\n  imports: [\n    CommonModule,\n    MatButtonToggleModule,\n    FormsModule,\n  ],\n  exports: [\n    BmbButtonDirective,\n    DsNgComponent,\n    BmbUserImageComponent,\n    BmbAppButtonComponent,\n    BmbBadgeComponent,\n    BmbDividerComponent,\n    BmbDotPaginatorComponent,\n    BmbIconComponent,\n    BmbThemeComponent,\n    BmbTextInputComponent,\n    BmbIconTextInputComponent\n\n  ]\n})\nexport class DsNgModule { \n  constructor(private injector: Injector){}\n\n  ngDoBootsrap(){\n    const custonElement = createCustomElement(BmbIconTextInputComponent, {injector: this.injector})\n    customElements.define('bmb-icon-text-input', custonElement);\n  }\n\n}\n",
             "children": [
                 {
                     "type": "providers",
@@ -1191,6 +1399,15 @@
                         },
                         {
                             "name": "BmbIconComponent"
+                        },
+                        {
+                            "name": "BmbIconTextInputComponent"
+                        },
+                        {
+                            "name": "BmbTextInputComponent"
+                        },
+                        {
+                            "name": "BmbThemeComponent"
                         },
                         {
                             "name": "BmbUserImageComponent"
@@ -1226,6 +1443,15 @@
                             "name": "BmbIconComponent"
                         },
                         {
+                            "name": "BmbIconTextInputComponent"
+                        },
+                        {
+                            "name": "BmbTextInputComponent"
+                        },
+                        {
+                            "name": "BmbThemeComponent"
+                        },
+                        {
                             "name": "BmbUserImageComponent"
                         },
                         {
@@ -1247,24 +1473,14 @@
     "miscellaneous": {
         "variables": [
             {
-                "name": "Alternative",
+                "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ds-ng/src/stories/button/button.stories.ts",
+                "file": "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Destructive",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/ds-ng/src/stories/button/button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
+                "type": "Story",
+                "defaultValue": "{\n  args: {},\n}"
             },
             {
                 "name": "preview",
@@ -1274,23 +1490,13 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Preview",
-                "defaultValue": "{\n  parameters: {\n    actions: { argTypesRegex: '^on[A-Z].*' },\n    controls: {\n      expanded: true,\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/i,\n      },\n    },\n    docs: {\n      canvas: {\n        sourceState: 'shown',\n      },\n      docs: {\n        controls: {\n          exclude: ['argTypes'],\n        },\n      },\n    },\n  },\n}"
+                "defaultValue": "{\n  parameters: {\n    actions: { argTypesRegex: '^on[A-Z].*' },\n    controls: {\n      expanded: true,\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/i,\n      },\n    },\n    docs: {\n      source: { language: 'html' },\n      canvas: {\n        sourceState: 'shown',\n      },\n    },\n  },\n}"
             },
             {
                 "name": "Primary",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ds-ng/src/stories/button/button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Secondary",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/ds-ng/src/stories/button/button.stories.ts",
+                "file": "projects/ds-ng/src/lib/directives/button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -1300,67 +1506,39 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ds-ng/src/stories/button/button.stories.ts",
+                "file": "projects/ds-ng/src/lib/directives/button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<any>",
-                "defaultValue": "(args: any) => ({\n  template: `\n    <button bmbButton [appearance]=\"appearance\" [device]=\"device\" [iconCase]=\"iconCase\" [size]=\"size\" [icon]=\"icon\" [iconPosition]=\"iconPosition\">{{ text }}</button>\n  `,\n  props: args,\n})"
+                "defaultValue": "(args: any) => ({\n  template: `<button bmbButton [appearance]=\"appearance\" [device]=\"device\" [iconCase]=\"iconCase\" [size]=\"size\" [icon]=\"icon\" [iconPosition]=\"iconPosition\">{{ text }}</button>`,\n  props: args,\n})"
             }
         ],
         "functions": [],
-        "typealiases": [],
+        "typealiases": [
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<>",
+                "file": "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            }
+        ],
         "enumerations": [],
         "groupedVariables": {
-            "projects/ds-ng/src/stories/button/button.stories.ts": [
+            "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts": [
                 {
-                    "name": "Alternative",
+                    "name": "Default",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/ds-ng/src/stories/button/button.stories.ts",
+                    "file": "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Destructive",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ds-ng/src/stories/button/button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Primary",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ds-ng/src/stories/button/button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Secondary",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ds-ng/src/stories/button/button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ds-ng/src/stories/button/button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<any>",
-                    "defaultValue": "(args: any) => ({\n  template: `\n    <button bmbButton [appearance]=\"appearance\" [device]=\"device\" [iconCase]=\"iconCase\" [size]=\"size\" [icon]=\"icon\" [iconPosition]=\"iconPosition\">{{ text }}</button>\n  `,\n  props: args,\n})"
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {},\n}"
                 }
             ],
             "projects/ds-ng/.storybook/preview.ts": [
@@ -1372,13 +1550,49 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Preview",
-                    "defaultValue": "{\n  parameters: {\n    actions: { argTypesRegex: '^on[A-Z].*' },\n    controls: {\n      expanded: true,\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/i,\n      },\n    },\n    docs: {\n      canvas: {\n        sourceState: 'shown',\n      },\n      docs: {\n        controls: {\n          exclude: ['argTypes'],\n        },\n      },\n    },\n  },\n}"
+                    "defaultValue": "{\n  parameters: {\n    actions: { argTypesRegex: '^on[A-Z].*' },\n    controls: {\n      expanded: true,\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/i,\n      },\n    },\n    docs: {\n      source: { language: 'html' },\n      canvas: {\n        sourceState: 'shown',\n      },\n    },\n  },\n}"
+                }
+            ],
+            "projects/ds-ng/src/lib/directives/button.stories.ts": [
+                {
+                    "name": "Primary",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/directives/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/directives/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<any>",
+                    "defaultValue": "(args: any) => ({\n  template: `<button bmbButton [appearance]=\"appearance\" [device]=\"device\" [iconCase]=\"iconCase\" [size]=\"size\" [icon]=\"icon\" [iconPosition]=\"iconPosition\">{{ text }}</button>`,\n  props: args,\n})"
                 }
             ]
         },
         "groupedFunctions": {},
         "groupedEnumerations": {},
-        "groupedTypeAliases": {}
+        "groupedTypeAliases": {
+            "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ]
+        }
     },
     "routes": [],
     "coverage": {
@@ -1450,12 +1664,30 @@
                 "status": "low"
             },
             {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-icon-text-input/bmb-icon-text-input.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbIconTextInputComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "BmbIconComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-text-input/bmb-text-input.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbTextInputComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
                 "status": "low"
             },
             {
@@ -1473,7 +1705,7 @@
                 "linktype": "component",
                 "name": "BmbUserImageComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/5",
+                "coverageCount": "0/6",
                 "status": "low"
             },
             {
@@ -1486,12 +1718,42 @@
                 "status": "low"
             },
             {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/ds-ng/src/lib/directives/button.directive.ts",
                 "type": "directive",
                 "linktype": "directive",
                 "name": "BmbButtonDirective",
                 "coveragePercent": 0,
                 "coverageCount": "0/14",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/directives/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Primary",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/directives/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
@@ -1519,56 +1781,6 @@
                 "name": "ThemeService",
                 "coveragePercent": 0,
                 "coverageCount": "0/4",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/ds-ng/src/stories/button/button.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Alternative",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/ds-ng/src/stories/button/button.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Destructive",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/ds-ng/src/stories/button/button.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Primary",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/ds-ng/src/stories/button/button.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Secondary",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/ds-ng/src/stories/button/button.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Template",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
                 "status": "low"
             }
         ]
