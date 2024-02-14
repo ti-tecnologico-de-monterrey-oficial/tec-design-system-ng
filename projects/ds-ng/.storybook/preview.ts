@@ -11,13 +11,9 @@ const preview: Preview = {
       },
     },
     docs: {
+      source: { language: 'html' },
       canvas: {
         sourceState: 'shown',
-      },
-      docs: {
-        controls: {
-          exclude: ['argTypes'],
-        },
       },
     },
   },

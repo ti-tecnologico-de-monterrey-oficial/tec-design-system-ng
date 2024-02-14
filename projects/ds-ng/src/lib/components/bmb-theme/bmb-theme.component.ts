@@ -1,7 +1,4 @@
-// bmb-theme.component.ts
-
 import { Component, OnInit } from '@angular/core';
-import { MatButtonToggleChange } from '@angular/material/button-toggle';
 import { ThemeService } from '../../services/theme.service';
 
 @Component({
@@ -23,8 +20,8 @@ export class BmbThemeComponent implements OnInit {
     document.documentElement.setAttribute('data-theme', theme);
   }
 
-  onThemeChange(event: MatButtonToggleChange): void {
-    this.selectedTheme = event.value;
+  onThemeChange(newTheme: string): void {
+    this.selectedTheme = newTheme;
     this.themeService.setTheme(this.selectedTheme);
   }
 }

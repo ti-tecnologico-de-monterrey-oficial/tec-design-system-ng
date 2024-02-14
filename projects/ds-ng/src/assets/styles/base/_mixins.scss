@@ -64,10 +64,10 @@
 
   @if $type == primary {
     background-color: RGBA(var(--color-mariner-700));
-    color: RGBA(var(--color-white));
+    color: RGBA(var(--color-white-primary));
 
     bmb-icon {
-      color: RGBA(var(--color-white));
+      color: RGBA(var(--color-white-primary));
     }
 
     &:hover,
@@ -110,11 +110,11 @@
     }
   } @else if $type == secondary {
     background-color: transparent;
-    border: rem_calc(1) solid RGBA(var(--color-black));
-    color: RGBA(var(--color-black));
+    border: rem_calc(1) solid RGBA(var(--color-black-primary));
+    color: RGBA(var(--color-black-primary));
 
     bmb-icon {
-      color: RGBA(var(--color-black));
+      color: RGBA(var(--color-black-primary));
     }
 
     &:hover,
@@ -123,11 +123,11 @@
     }
 
     &:active {
-      background-color: RGBA(var(--color-black));
-      color: RGBA(var(--color-white));
+      background-color: RGBA(var(--color-black-primary));
+      color: RGBA(var(--color-white-primary));
 
       bmb-icon {
-        color: RGBA(var(--color-white));
+        color: RGBA(var(--color-white-primary));
       }
     }
 
@@ -150,10 +150,10 @@
 
     &:active {
       background-color: RGBA(var(--color-red-primary));
-      color: RGBA(var(--color-white));
+      color: RGBA(var(--color-white-primary));
 
       bmb-icon {
-        color: RGBA(var(--color-white));
+        color: RGBA(var(--color-white-primary));
       }
     }
 
@@ -163,23 +163,11 @@
   }
 }
 
-@mixin input() {
-  @include resetElement();
-  @include font(3, medium);
-  appearance: none;
-  border-radius: $spacing-size-base;
-
-  &:focus,
-  &:focus:hover {
-    @include focusElement();
-  }
-}
-
 @mixin badge($type: light) {
   @include font(2, semibold);
   align-items: center;
   border-radius: $border-radius-xs;
-  color: RGBA(var(--color-white));
+  color: RGBA(var(--color-white-primary));
   display: flex;
   justify-content: center;
   min-height: rem_calc(20);

@@ -1,109 +1,110 @@
 @import "../tokens/colors";
 @import "../base/rem";
 @import "../base/measures";
-@import "../base/typography";
+@import "../base/fonts";
 
-// Text input as directive 
-:host{
-    @include font(4, regular);
+// Text input as directive
+:host {
+  @include font(4, regular);
+  border: rem_calc(1) solid RGBA(var(--color-charade-100));
+  background-color: RGBA(var(--color-charade-100));
+  box-sizing: border-box;
+  border-radius: rem_calc(3);
+  padding: rem_calc(8);
+  // padding: rem_calc(8) rem_calc(8) rem_calc(8) rem_calc(8);
+  min-height: rem_calc(38);
+  width: 100%;
+  height: 100%;
+
+  &:focus {
+    outline: none;
+    border-color: RGBA(var(--color-blue-primary));
+    box-shadow: rem_calc(0) rem_calc(0) rem_calc(2) rem_calc(2)
+      RGBA(var(--color-marine-900));
+  }
+
+  &::placeholder {
+    color: RGBA(var(--color-charade-300));
+  }
+
+  &:disabled:focus {
+    outline: none;
+  }
+
+  &.ng-invalid {
+    border-color: RGBA(var(--color-red-primary));
+  }
+}
+
+// Styles for error message in input
+.bmb-text-error {
+  @include font(2, regular);
+  padding: rem_calc(8);
+
+  *:first-child {
+    color: RGBA(var(--color-red-primary));
+  }
+}
+
+.bmb-text-msg {
+  @include font(2, regular);
+  padding: rem_calc(8);
+
+  *:first-child {
+    color: RGBA(var(--color-black-primary));
+  }
+}
+
+.bmb-form-label {
+  @include font(3, medium);
+  display: block;
+  padding: rem_calc(4);
+}
+
+bmb-icon-text-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  > input {
     border: rem_calc(1) solid RGBA(var(--color-charade-100));
     background-color: RGBA(var(--color-charade-100));
     box-sizing: border-box;
     border-radius: rem_calc(3);
-    padding: rem_calc(8);
-    // padding: rem_calc(8) rem_calc(8) rem_calc(8) rem_calc(8);
+    padding: rem_calc(8) rem_calc(8) rem_calc(8) rem_calc(35);
     min-height: rem_calc(38);
     width: 100%;
     height: 100%;
 
-    &:focus{
-        outline: none;
-        border-color: RGBA(var(--color-blue-primary)) ;
-        box-shadow: rem_calc(0) rem_calc(0) rem_calc(2) rem_calc(2) RGBA(var(--color-marine-900));
+    &:focus {
+      outline: none;
+      border-color: RGBA(var(--color-blue-primary));
+      box-shadow: rem_calc(0) rem_calc(0) rem_calc(2) rem_calc(2)
+        RGBA(var(--color-marine-900));
     }
 
-    &::placeholder{
-        color: RGBA(var(--color-charade-300));
+    &::placeholder {
+      color: RGBA(var(--color-charade-300));
     }
 
     &:disabled:focus {
-        outline: none;
+      outline: none;
     }
 
     &.ng-invalid {
-        border-color: RGBA(var(--color-red-primary));
+      border-color: RGBA(var(--color-red-primary));
     }
-}
+  }
 
-// Styles for error message in input
-.bmb-text-error{
-    @include font(2, regular);
-    padding: rem_calc(8);
-
-    *:first-child{
-        color: RGBA(var(--color-red-primary));
-    }
-}
-
-.bmb-text-msg{
-    @include font(2, regular);
-    padding: rem_calc(8);
-
-    *:first-child{
-        color: RGBA(var(--color-black));
-    }
-}
-
-.bmb-form-label {
-    @include font(3, medium);
-    display: block;
-    padding: rem_calc(4);
-}
-
-bmb-icon-text-input {
-
-    position: relative;
-    display: flex;
-    align-items: center;
-
-    >input {
-        border: rem_calc(1) solid RGBA(var(--color-charade-100));
-        background-color: RGBA(var(--color-charade-100));
-        box-sizing: border-box;
-        border-radius: rem_calc(3);
-        padding: rem_calc(8) rem_calc(8) rem_calc(8) rem_calc(35);
-        min-height: rem_calc(38);
-        width: 100%;
-        height: 100%;
-
-        &:focus{
-            outline: none;
-            border-color: RGBA(var(--color-blue-primary)) ;
-            box-shadow: rem_calc(0) rem_calc(0) rem_calc(2) rem_calc(2) RGBA(var(--color-marine-900));
-        }
-
-        &::placeholder{
-            color: RGBA(var(--color-charade-300));
-        }
-
-        &:disabled:focus {
-            outline: none;
-        }
-
-        &.ng-invalid {
-            border-color: RGBA(var(--color-red-primary));
-        }
-    }
-
-    >i {
-        color: RGBA(var(--color-marine-900));
-        position: absolute;
-        width: rem_calc(20);
-        height: rem_calc(20);
-        left: rem_calc(5);
-        top: 50%;
-        transform: translateY(-50%);
-    }
+  > i {
+    color: RGBA(var(--color-marine-900));
+    position: absolute;
+    width: rem_calc(20);
+    height: rem_calc(20);
+    left: rem_calc(5);
+    top: 50%;
+    transform: translateY(-50%);
+  }
 }
 
 // .bmb-text-input{
@@ -116,7 +117,7 @@ bmb-icon-text-input {
 //     min-height: rem_calc(38);
 //     width: 100%;
 //     height: 100%;
-    
+
 //     &:focus{
 //         outline: none;
 //         border-color: RGBA(var(--color-blue-primary)) ;
@@ -136,13 +137,12 @@ bmb-icon-text-input {
 //     }
 // }
 
-
-.bmb-input-icon{
-    color: RGBA(var(--color-marine-900));
-    // position: absolute;
-    width: rem_calc(20);
-    height: rem_calc(20);
-    left: rem_calc(12);
-    top: 50%;
-    transform: translateY(-50%);
+.bmb-input-icon {
+  color: RGBA(var(--color-marine-900));
+  // position: absolute;
+  width: rem_calc(20);
+  height: rem_calc(20);
+  left: rem_calc(12);
+  top: 50%;
+  transform: translateY(-50%);
 }
