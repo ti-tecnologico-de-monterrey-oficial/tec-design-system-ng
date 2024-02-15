@@ -550,7 +550,7 @@
         },
         {
             "name": "BmbBadgeComponent",
-            "id": "component-BmbBadgeComponent-ce060d773b34d5c4fe0c264c8f1cf9919be1acc093d511ada363681512b74fc2903f12c5e8a75638a9201727a3eef8117781979ead896a2c69ae35523d9580d1",
+            "id": "component-BmbBadgeComponent-a3c14326d13b79db9ac5d7643ec478ebaa1132b4496bb1aa0cbecd8eaaa81b1e9279cfab12a18f7fba79e9eafc2fe0ff9f359cdc4953099f0354fbeef782b256",
             "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -570,11 +570,20 @@
             "hostDirectives": [],
             "inputsClass": [
                 {
+                    "name": "grouped",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 19,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
                     "name": "text",
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 11,
+                    "line": 18,
                     "type": "string",
                     "decorators": []
                 },
@@ -583,7 +592,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 10,
+                    "line": 17,
                     "type": "string",
                     "decorators": []
                 }
@@ -597,7 +606,17 @@
                     "optional": false,
                     "returnType": "string[]",
                     "typeParameters": [],
-                    "line": 15,
+                    "line": 38,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "ngAfterViewInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 23,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -611,11 +630,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, ChangeDetectionStrategy } from '@angular/core';\n\n@Component({\n  selector: 'bmb-badge',\n  templateUrl: './bmb-badge.component.html',\n  styleUrls: ['../../../assets/styles/components/_badge.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbBadgeComponent {\n  @Input() type: string = '';\n  @Input() text: string = '';\n\n  constructor() {}\n\n  getClasses(): string[] {\n    const classes: string[] = ['badge'];\n\n    if (this.type) {\n      classes.push('badge-' + this.type);\n    }\n\n    return classes;\n  }\n}\n",
+            "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ElementRef,\n  Renderer2,\n  AfterViewInit,\n} from '@angular/core';\n\n@Component({\n  selector: 'bmb-badge',\n  templateUrl: './bmb-badge.component.html',\n  styleUrls: ['../../../assets/styles/components/_badge.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbBadgeComponent implements AfterViewInit {\n  @Input() type: string = '';\n  @Input() text: string = '';\n  @Input() grouped: boolean = false;\n\n  constructor(private el: ElementRef, private renderer: Renderer2) {}\n\n  ngAfterViewInit() {\n    if (this.grouped) {\n      const parentElement = this.el.nativeElement.parentElement;\n\n      let wrapperDiv = parentElement.querySelector('.badge-grouped');\n      if (!wrapperDiv) {\n        wrapperDiv = this.renderer.createElement('div');\n        this.renderer.addClass(wrapperDiv, 'badge-grouped');\n        this.renderer.insertBefore(parentElement, wrapperDiv, null);\n      }\n\n      this.renderer.appendChild(wrapperDiv, this.el.nativeElement);\n    }\n  }\n\n  getClasses(): string[] {\n    const classes: string[] = ['badge'];\n\n    if (this.type) {\n      classes.push('badge-' + this.type);\n    }\n\n    return classes;\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@import \"../base/mixins\";\n\n.badge {\n  @include badge();\n\n  &-light {\n    @include badge(light);\n  }\n\n  &-primary {\n    @include badge(primary);\n  }\n\n  &-secondary {\n    @include badge(secondary);\n  }\n\n  &-success {\n    @include badge(success);\n  }\n\n  &-info {\n    @include badge(info);\n  }\n\n  &-warning {\n    @include badge(warning);\n  }\n\n  &-danger {\n    @include badge(danger);\n  }\n\n  &-dark {\n    @include badge(dark);\n  }\n}\n",
+                    "data": "@import \"../base/mixins\";\n@import \"../base/measures\";\n\n.badge {\n  &-grouped {\n    display: flex;\n    flex-flow: row wrap;\n    gap: $spacing-size-base;\n\n    @include media-query(768) {\n      gap: $spacing-size-md;\n    }\n  }\n\n  @include badge();\n\n  &-normal {\n    @include badge(normal);\n  }\n\n  &-strong {\n    @include badge(strong);\n  }\n\n  &-success {\n    @include badge(success);\n  }\n\n  &-info {\n    @include badge(info);\n  }\n\n  &-warning {\n    @include badge(warning);\n  }\n\n  &-error {\n    @include badge(error);\n  }\n\n  &-brand {\n    @include badge(brand);\n  }\n}\n",
                     "styleUrl": "../../../assets/styles/components/_badge.scss"
                 }
             ],
@@ -625,10 +644,46 @@
                 "description": "",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "args": [],
-                "line": 11
+                "args": [
+                    {
+                        "name": "el",
+                        "type": "ElementRef",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "renderer",
+                        "type": "Renderer2",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 19,
+                "jsdoctags": [
+                    {
+                        "name": "el",
+                        "type": "ElementRef",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "renderer",
+                        "type": "Renderer2",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
             },
             "extends": [],
+            "implements": [
+                "AfterViewInit"
+            ],
             "templateData": "<div [ngClass]=\"getClasses()\">\n  <span>{{ text }}</span>\n</div>\n"
         },
         {
@@ -1476,6 +1531,16 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {},\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -1520,6 +1585,17 @@
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
                 "rawtype": "StoryObj<>",
+                "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<>",
                 "file": "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -1529,6 +1605,18 @@
         ],
         "enumerations": [],
         "groupedVariables": {
+            "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {},\n}"
+                }
+            ],
             "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts": [
                 {
                     "name": "Default",
@@ -1579,6 +1667,19 @@
         "groupedFunctions": {},
         "groupedEnumerations": {},
         "groupedTypeAliases": {
+            "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
             "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts": [
                 {
                     "name": "Story",
@@ -1624,7 +1725,17 @@
                 "linktype": "component",
                 "name": "BmbBadgeComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/5",
+                "coverageCount": "0/7",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
