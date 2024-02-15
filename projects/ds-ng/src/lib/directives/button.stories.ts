@@ -35,11 +35,6 @@ export default {
       name: 'Icon Case',
       control: { type: 'boolean' },
     },
-    device: {
-      name: 'Device',
-      control: 'radio',
-      options: ['mobile', 'desktop'],
-    },
     text: {
       name: 'Texto del boton',
       control: { type: 'text' },
@@ -55,7 +50,7 @@ export default {
 } as Meta;
 
 const Template: Story<any> = (args: any) => ({
-  template: `<button bmbButton [appearance]="appearance" [device]="device" [iconCase]="iconCase" [size]="size" [icon]="icon" [iconPosition]="iconPosition">{{ text }}</button>`,
+  template: `<button bmbButton [appearance]="appearance"  [iconCase]="iconCase" [size]="size" [icon]="icon" [iconPosition]="iconPosition">{{ text }}</button>`,
   props: args,
 });
 
@@ -66,7 +61,6 @@ Primary.args = {
   iconPosition: 'left',
   text: 'Primary',
   size: 'small',
-  device: 'mobile',
   iconCase: false,
 };
 
@@ -77,7 +71,7 @@ Primary.parameters = {
         'En el botón usamos una directiva ‘bmbButton’ en el tag button, debido a las capacidades de storybook, aun no hay forma de que se actualice el código cuando se modifica un control. Pero el código mostrado es un ejemplo de cómo puedes utilizarlo.',
     },
     source: {
-      code: `<button bmbButton appearance="primary" device="mobile" size="small" icon="home" iconPosition="left">{{ text }}</button>`,
+      code: `<button bmbButton appearance="primary"  size="small" icon="home" iconPosition="left">{{ text }}</button>`,
     },
   },
 };

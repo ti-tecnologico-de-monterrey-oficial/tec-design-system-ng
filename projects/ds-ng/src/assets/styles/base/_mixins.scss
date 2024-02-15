@@ -31,10 +31,6 @@
     height: rem_calc(16);
   }
 
-  &[device="desktop"] {
-    padding: $spacing-size-md $spacing-size-xxl;
-  }
-
   &[size="large"] {
     height: rem_calc(48);
     width: 100%;
@@ -51,6 +47,10 @@
     &[ng-reflect-icon-position="right"] {
       grid-template-columns: 1fr auto;
     }
+  }
+
+  @include media-query(768) {
+    padding: $spacing-size-md $spacing-size-xxl;
   }
 
   &:focus,
