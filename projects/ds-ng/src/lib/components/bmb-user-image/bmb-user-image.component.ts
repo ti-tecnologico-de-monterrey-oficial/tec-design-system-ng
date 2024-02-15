@@ -10,6 +10,7 @@ import { Props } from './bmb-user-image.interface';
 export class BmbUserImageComponent {
   @Input() size: string = '';
   @Input() image: string = '';
+  @Input() altImage: string = '';
 
   constructor() {}
 

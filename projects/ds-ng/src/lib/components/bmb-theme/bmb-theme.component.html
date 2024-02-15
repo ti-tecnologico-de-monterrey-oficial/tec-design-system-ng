@@ -1,8 +1,20 @@
-<mat-button-toggle-group
-  [(ngModel)]="selectedTheme"
-  (change)="onThemeChange($event)"
->
-  <mat-button-toggle value="dark">Dark</mat-button-toggle>
-  <mat-button-toggle value="light">Light</mat-button-toggle>
-  <mat-button-toggle value="blue">Blue</mat-button-toggle>
-</mat-button-toggle-group>
+<div class="bmb-theme">
+  <button
+    (click)="onThemeChange('dark')"
+    [class.selected]="selectedTheme === 'dark'"
+  >
+    Dark
+  </button>
+  <button
+    (click)="onThemeChange('light')"
+    [class.selected]="selectedTheme === 'light'"
+  >
+    Light
+  </button>
+  <button
+    (click)="onThemeChange('blue')"
+    [class.selected]="selectedTheme === 'blue'"
+  >
+    Blue
+  </button>
+</div>
