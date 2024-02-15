@@ -22,7 +22,6 @@ export class BmbButtonDirective implements OnInit, OnChanges {
   @Input() appearance: 'primary' | 'alternative' | 'secondary' | 'destructive' =
     'primary';
   @Input() size: 'small' | 'large' = 'small';
-  @Input() device: 'mobile' | 'desktop' = 'mobile';
 
   private providedInputs: Set<string> = new Set();
 
@@ -49,10 +48,6 @@ export class BmbButtonDirective implements OnInit, OnChanges {
   }
 
   private applyAttributes() {
-    if (this.providedInputs.has('device') && this.device) {
-      this.renderer.setAttribute(this.el.nativeElement, 'device', this.device);
-    }
-
     if (this.providedInputs.has('iconCase')) {
       if (this.iconCase) {
         this.renderer.setAttribute(this.el.nativeElement, 'case', 'true');

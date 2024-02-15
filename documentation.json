@@ -216,12 +216,12 @@
     "directives": [
         {
             "name": "BmbButtonDirective",
-            "id": "directive-BmbButtonDirective-befbb50389a0725636e5b0badf64b4914dc8fe6ad6099ea008aa86ab92e4eb17e55c4e79557b9da69b17ede95cabe505eb3071e21f626bd62e57719ee4b64d10",
+            "id": "directive-BmbButtonDirective-f336d9ec591c5410edb8d4a92bcd08ff147d36b7517d5f28531c4b9b3b738b5ff07c23f4b97f7fd4bad2d350e5b4f19db9bdf164f639bc8aecd42b8f1e23677c",
             "file": "projects/ds-ng/src/lib/directives/button.directive.ts",
             "type": "directive",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import {\n  Directive,\n  Input,\n  ElementRef,\n  HostBinding,\n  ViewContainerRef,\n  ChangeDetectorRef,\n  OnInit,\n  OnChanges,\n  Renderer2,\n  SimpleChanges,\n} from '@angular/core';\nimport { BmbIconComponent } from '../components/bmb-icon/bmb-icon.component';\n\n@Directive({\n  selector: '[bmbButton]',\n})\nexport class BmbButtonDirective implements OnInit, OnChanges {\n  @Input() icon: string = '';\n  @Input() iconPosition: 'left' | 'right' = 'left';\n  @Input() iconCase: boolean = false;\n  @Input() appearance: 'primary' | 'alternative' | 'secondary' | 'destructive' =\n    'primary';\n  @Input() size: 'small' | 'large' = 'small';\n  @Input() device: 'mobile' | 'desktop' = 'mobile';\n\n  private providedInputs: Set<string> = new Set();\n\n  constructor(\n    private el: ElementRef,\n    private viewContainerRef: ViewContainerRef,\n    private cdr: ChangeDetectorRef,\n    private renderer: Renderer2\n  ) {}\n\n  ngOnInit(): void {\n    this.addIcon();\n    this.applyAttributes();\n  }\n\n  ngOnChanges(changes: SimpleChanges): void {\n    Object.keys(changes).forEach((input) => {\n      this.providedInputs.add(input);\n    });\n\n    this.applyAttributes();\n    this.addIcon();\n    this.cdr.markForCheck();\n  }\n\n  private applyAttributes() {\n    if (this.providedInputs.has('device') && this.device) {\n      this.renderer.setAttribute(this.el.nativeElement, 'device', this.device);\n    }\n\n    if (this.providedInputs.has('iconCase')) {\n      if (this.iconCase) {\n        this.renderer.setAttribute(this.el.nativeElement, 'case', 'true');\n      } else {\n        this.renderer.removeAttribute(this.el.nativeElement, 'case');\n      }\n    }\n\n    if (this.providedInputs.has('size') && this.size) {\n      this.renderer.setAttribute(this.el.nativeElement, 'size', this.size);\n    }\n\n    if (this.providedInputs.has('iconPosition')) {\n      this.renderer.setAttribute(\n        this.el.nativeElement,\n        'icon-position',\n        this.iconPosition\n      );\n    }\n  }\n\n  @HostBinding('class') get elementClass(): string {\n    return `btn-${this.appearance}`;\n  }\n\n  private addIcon() {\n    this.viewContainerRef.clear();\n\n    if (this.icon) {\n      const iconComponentRef =\n        this.viewContainerRef.createComponent(BmbIconComponent);\n      const iconComponent = iconComponentRef.instance;\n      iconComponent.icon = this.icon;\n\n      if (this.iconPosition === 'right') {\n        this.el.nativeElement.appendChild(\n          iconComponentRef.location.nativeElement\n        );\n      } else {\n        this.el.nativeElement.insertBefore(\n          iconComponentRef.location.nativeElement,\n          this.el.nativeElement.firstChild\n        );\n      }\n    }\n  }\n}\n",
+            "sourceCode": "import {\n  Directive,\n  Input,\n  ElementRef,\n  HostBinding,\n  ViewContainerRef,\n  ChangeDetectorRef,\n  OnInit,\n  OnChanges,\n  Renderer2,\n  SimpleChanges,\n} from '@angular/core';\nimport { BmbIconComponent } from '../components/bmb-icon/bmb-icon.component';\n\n@Directive({\n  selector: '[bmbButton]',\n})\nexport class BmbButtonDirective implements OnInit, OnChanges {\n  @Input() icon: string = '';\n  @Input() iconPosition: 'left' | 'right' = 'left';\n  @Input() iconCase: boolean = false;\n  @Input() appearance: 'primary' | 'alternative' | 'secondary' | 'destructive' =\n    'primary';\n  @Input() size: 'small' | 'large' = 'small';\n\n  private providedInputs: Set<string> = new Set();\n\n  constructor(\n    private el: ElementRef,\n    private viewContainerRef: ViewContainerRef,\n    private cdr: ChangeDetectorRef,\n    private renderer: Renderer2\n  ) {}\n\n  ngOnInit(): void {\n    this.addIcon();\n    this.applyAttributes();\n  }\n\n  ngOnChanges(changes: SimpleChanges): void {\n    Object.keys(changes).forEach((input) => {\n      this.providedInputs.add(input);\n    });\n\n    this.applyAttributes();\n    this.addIcon();\n    this.cdr.markForCheck();\n  }\n\n  private applyAttributes() {\n    if (this.providedInputs.has('iconCase')) {\n      if (this.iconCase) {\n        this.renderer.setAttribute(this.el.nativeElement, 'case', 'true');\n      } else {\n        this.renderer.removeAttribute(this.el.nativeElement, 'case');\n      }\n    }\n\n    if (this.providedInputs.has('size') && this.size) {\n      this.renderer.setAttribute(this.el.nativeElement, 'size', this.size);\n    }\n\n    if (this.providedInputs.has('iconPosition')) {\n      this.renderer.setAttribute(\n        this.el.nativeElement,\n        'icon-position',\n        this.iconPosition\n      );\n    }\n  }\n\n  @HostBinding('class') get elementClass(): string {\n    return `btn-${this.appearance}`;\n  }\n\n  private addIcon() {\n    this.viewContainerRef.clear();\n\n    if (this.icon) {\n      const iconComponentRef =\n        this.viewContainerRef.createComponent(BmbIconComponent);\n      const iconComponent = iconComponentRef.instance;\n      iconComponent.icon = this.icon;\n\n      if (this.iconPosition === 'right') {\n        this.el.nativeElement.appendChild(\n          iconComponentRef.location.nativeElement\n        );\n      } else {\n        this.el.nativeElement.insertBefore(\n          iconComponentRef.location.nativeElement,\n          this.el.nativeElement.firstChild\n        );\n      }\n    }\n  }\n}\n",
             "selector": "[bmbButton]",
             "providers": [],
             "hostDirectives": [],
@@ -234,15 +234,6 @@
                     "deprecationMessage": "",
                     "line": 22,
                     "type": "\"primary\" | \"alternative\" | \"secondary\" | \"destructive\"",
-                    "decorators": []
-                },
-                {
-                    "name": "device",
-                    "defaultValue": "'mobile'",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 25,
-                    "type": "\"mobile\" | \"desktop\"",
                     "decorators": []
                 },
                 {
@@ -290,7 +281,7 @@
                     "name": "class",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 77,
+                    "line": 72,
                     "type": "string",
                     "decorators": []
                 }
@@ -305,7 +296,7 @@
                     "type": "Set<string>",
                     "optional": false,
                     "description": "",
-                    "line": 27,
+                    "line": 26,
                     "modifierKind": [
                         123
                     ]
@@ -318,7 +309,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 81,
+                    "line": 76,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -331,7 +322,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 51,
+                    "line": 50,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -351,7 +342,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 41,
+                    "line": 40,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -372,7 +363,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 36,
+                    "line": 35,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -413,7 +404,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 27,
+                "line": 26,
                 "jsdoctags": [
                     {
                         "name": "el",
@@ -460,7 +451,7 @@
                         "name": "elementClass",
                         "type": "string",
                         "returnType": "string",
-                        "line": 77
+                        "line": 72
                     }
                 }
             }
@@ -550,7 +541,7 @@
         },
         {
             "name": "BmbBadgeComponent",
-            "id": "component-BmbBadgeComponent-ce060d773b34d5c4fe0c264c8f1cf9919be1acc093d511ada363681512b74fc2903f12c5e8a75638a9201727a3eef8117781979ead896a2c69ae35523d9580d1",
+            "id": "component-BmbBadgeComponent-a3c14326d13b79db9ac5d7643ec478ebaa1132b4496bb1aa0cbecd8eaaa81b1e9279cfab12a18f7fba79e9eafc2fe0ff9f359cdc4953099f0354fbeef782b256",
             "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -570,11 +561,20 @@
             "hostDirectives": [],
             "inputsClass": [
                 {
+                    "name": "grouped",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 19,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
                     "name": "text",
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 11,
+                    "line": 18,
                     "type": "string",
                     "decorators": []
                 },
@@ -583,7 +583,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 10,
+                    "line": 17,
                     "type": "string",
                     "decorators": []
                 }
@@ -597,7 +597,17 @@
                     "optional": false,
                     "returnType": "string[]",
                     "typeParameters": [],
-                    "line": 15,
+                    "line": 38,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "ngAfterViewInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 23,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -611,11 +621,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, ChangeDetectionStrategy } from '@angular/core';\n\n@Component({\n  selector: 'bmb-badge',\n  templateUrl: './bmb-badge.component.html',\n  styleUrls: ['../../../assets/styles/components/_badge.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbBadgeComponent {\n  @Input() type: string = '';\n  @Input() text: string = '';\n\n  constructor() {}\n\n  getClasses(): string[] {\n    const classes: string[] = ['badge'];\n\n    if (this.type) {\n      classes.push('badge-' + this.type);\n    }\n\n    return classes;\n  }\n}\n",
+            "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ElementRef,\n  Renderer2,\n  AfterViewInit,\n} from '@angular/core';\n\n@Component({\n  selector: 'bmb-badge',\n  templateUrl: './bmb-badge.component.html',\n  styleUrls: ['../../../assets/styles/components/_badge.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbBadgeComponent implements AfterViewInit {\n  @Input() type: string = '';\n  @Input() text: string = '';\n  @Input() grouped: boolean = false;\n\n  constructor(private el: ElementRef, private renderer: Renderer2) {}\n\n  ngAfterViewInit() {\n    if (this.grouped) {\n      const parentElement = this.el.nativeElement.parentElement;\n\n      let wrapperDiv = parentElement.querySelector('.badge-grouped');\n      if (!wrapperDiv) {\n        wrapperDiv = this.renderer.createElement('div');\n        this.renderer.addClass(wrapperDiv, 'badge-grouped');\n        this.renderer.insertBefore(parentElement, wrapperDiv, null);\n      }\n\n      this.renderer.appendChild(wrapperDiv, this.el.nativeElement);\n    }\n  }\n\n  getClasses(): string[] {\n    const classes: string[] = ['badge'];\n\n    if (this.type) {\n      classes.push('badge-' + this.type);\n    }\n\n    return classes;\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@import \"../base/mixins\";\n\n.badge {\n  @include badge();\n\n  &-light {\n    @include badge(light);\n  }\n\n  &-primary {\n    @include badge(primary);\n  }\n\n  &-secondary {\n    @include badge(secondary);\n  }\n\n  &-success {\n    @include badge(success);\n  }\n\n  &-info {\n    @include badge(info);\n  }\n\n  &-warning {\n    @include badge(warning);\n  }\n\n  &-danger {\n    @include badge(danger);\n  }\n\n  &-dark {\n    @include badge(dark);\n  }\n}\n",
+                    "data": "@import \"../base/mixins\";\n@import \"../base/measures\";\n\n.badge {\n  &-grouped {\n    display: flex;\n    flex-flow: row wrap;\n    gap: $spacing-size-base;\n\n    @include media-query(768) {\n      gap: $spacing-size-md;\n    }\n  }\n\n  @include badge();\n\n  &-normal {\n    @include badge(normal);\n  }\n\n  &-strong {\n    @include badge(strong);\n  }\n\n  &-success {\n    @include badge(success);\n  }\n\n  &-info {\n    @include badge(info);\n  }\n\n  &-warning {\n    @include badge(warning);\n  }\n\n  &-error {\n    @include badge(error);\n  }\n\n  &-brand {\n    @include badge(brand);\n  }\n}\n",
                     "styleUrl": "../../../assets/styles/components/_badge.scss"
                 }
             ],
@@ -625,10 +635,46 @@
                 "description": "",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "args": [],
-                "line": 11
+                "args": [
+                    {
+                        "name": "el",
+                        "type": "ElementRef",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "renderer",
+                        "type": "Renderer2",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 19,
+                "jsdoctags": [
+                    {
+                        "name": "el",
+                        "type": "ElementRef",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "renderer",
+                        "type": "Renderer2",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
             },
             "extends": [],
+            "implements": [
+                "AfterViewInit"
+            ],
             "templateData": "<div [ngClass]=\"getClasses()\">\n  <span>{{ text }}</span>\n</div>\n"
         },
         {
@@ -1476,6 +1522,16 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {},\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -1510,11 +1566,22 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<any>",
-                "defaultValue": "(args: any) => ({\n  template: `<button bmbButton [appearance]=\"appearance\" [device]=\"device\" [iconCase]=\"iconCase\" [size]=\"size\" [icon]=\"icon\" [iconPosition]=\"iconPosition\">{{ text }}</button>`,\n  props: args,\n})"
+                "defaultValue": "(args: any) => ({\n  template: `<button bmbButton [appearance]=\"appearance\"  [iconCase]=\"iconCase\" [size]=\"size\" [icon]=\"icon\" [iconPosition]=\"iconPosition\">{{ text }}</button>`,\n  props: args,\n})"
             }
         ],
         "functions": [],
         "typealiases": [
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<>",
+                "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
             {
                 "name": "Story",
                 "ctype": "miscellaneous",
@@ -1529,6 +1596,18 @@
         ],
         "enumerations": [],
         "groupedVariables": {
+            "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {},\n}"
+                }
+            ],
             "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts": [
                 {
                     "name": "Default",
@@ -1572,13 +1651,26 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<any>",
-                    "defaultValue": "(args: any) => ({\n  template: `<button bmbButton [appearance]=\"appearance\" [device]=\"device\" [iconCase]=\"iconCase\" [size]=\"size\" [icon]=\"icon\" [iconPosition]=\"iconPosition\">{{ text }}</button>`,\n  props: args,\n})"
+                    "defaultValue": "(args: any) => ({\n  template: `<button bmbButton [appearance]=\"appearance\"  [iconCase]=\"iconCase\" [size]=\"size\" [icon]=\"icon\" [iconPosition]=\"iconPosition\">{{ text }}</button>`,\n  props: args,\n})"
                 }
             ]
         },
         "groupedFunctions": {},
         "groupedEnumerations": {},
         "groupedTypeAliases": {
+            "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
             "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts": [
                 {
                     "name": "Story",
@@ -1624,7 +1716,17 @@
                 "linktype": "component",
                 "name": "BmbBadgeComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/5",
+                "coverageCount": "0/7",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
@@ -1733,7 +1835,7 @@
                 "linktype": "directive",
                 "name": "BmbButtonDirective",
                 "coveragePercent": 0,
-                "coverageCount": "0/14",
+                "coverageCount": "0/13",
                 "status": "low"
             },
             {
