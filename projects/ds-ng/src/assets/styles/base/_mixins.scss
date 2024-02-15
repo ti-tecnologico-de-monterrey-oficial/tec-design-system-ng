@@ -163,34 +163,44 @@
   }
 }
 
-@mixin badge($type: light) {
-  @include font(2, semibold);
+@mixin badge($type: normal) {
+  @include font(3, regular);
   align-items: center;
   border-radius: $border-radius-xs;
   color: RGBA(var(--color-white-primary));
   display: flex;
   justify-content: center;
-  min-height: rem_calc(20);
-  padding: 0 $spacing-size-md;
+  min-height: rem_calc(24);
+  padding: $spacing-size-sm $spacing-size-base;
   width: fit-content;
 
-  @if $type == light {
-    background-color: RGBA(var(--color-charade-50));
-    color: RGBA(var(--color-charade-500));
-  } @else if $type == primary {
-    background-color: RGBA(var(--color-mariner-500));
-  } @else if $type == secondary {
-    background-color: RGBA(var(--color-charade-100));
-    color: RGBA(var(--color-charade-950));
+  @if $type == normal {
+    background-color: RGBA(var(--color-charade-500));
+  } @else if $type == strong {
+    background-color: RGBA(var(--color-mariner-700));
   } @else if $type == success {
-    background-color: RGBA(var(--color-green-primary));
+    background-color: RGBA(var(--color-green-light));
+    color: RGBA(var(--color-charade-950));
   } @else if $type == info {
     background-color: RGBA(var(--color-purple-primary));
   } @else if $type == warning {
-    background-color: RGBA(var(--color-yellow-primary));
-  } @else if $type == danger {
-    background-color: RGBA(var(--color-red-primary));
-  } @else if $type == dark {
+    background-color: RGBA(var(--color-yellow-tint));
+    color: RGBA(var(--color-charade-950));
+  } @else if $type == error {
+    background-color: RGBA(var(--color-red-light));
+    color: RGBA(var(--color-charade-950));
+  } @else if $type == brand {
     background-color: RGBA(var(--color-charade-950));
+  }
+}
+
+@mixin media-query($breakpoint) {
+  $breakpoint-value: if(
+    type-of($breakpoint) == number,
+    $breakpoint,
+    str-slice($breakpoint, 1, -2)
+  );
+  @media only screen and (min-width: #{$breakpoint-value}px) {
+    @content;
   }
 }

@@ -28,13 +28,13 @@
 
   // Institucional colors
   --color-white-primary: 255, 255, 255;
-  --color-blue-tec: #0039a6;
+  --color-blue-tec: 0, 57, 166;
 
   // MiTec
-  --color-mitec-blue: #00a7f7;
-  --color-mitec-green: #cdde20;
-  --color-mitec-red: #ec2661;
-  --color-mitec-orange: #ff9901;
+  --color-mitec-blue: 0, 167, 247;
+  --color-mitec-green: 205, 222, 32;
+  --color-mitec-red: 236, 38, 97;
+  --color-mitec-orange: 255, 153, 1;
 
   // Constrastes principales
   --color-black-primary: 0, 0, 0;
@@ -46,55 +46,55 @@
   --color-white-min: RGBA(var(--color-white-primary), 0.25);
 
   //Colores base
-  --color-neon-primary: #1bc0cb;
-  --color-neon-light: #72efe2;
-  --color-neon-tint: #d0fcf0;
+  --color-neon-primary: 27, 192, 203;
+  --color-neon-light: 114, 239, 226;
+  --color-neon-tint: 208, 252, 240;
 
-  --color-blue-primary: #2766cb;
-  --color-blue-light: #4677c7;
-  --color-blue-tint: #93a9cc;
+  --color-blue-primary: 39, 102, 203;
+  --color-blue-light: 70, 119, 199;
+  --color-blue-tint: 147, 169, 204;
 
-  --color-green-primary: #40a213;
-  --color-green-light: #43aa8b;
-  --color-green-tint: #ace392;
+  --color-green-primary: 64, 162, 19;
+  --color-green-light: 67, 170, 139;
+  --color-green-tint: 172, 227, 146;
 
-  --color-purple-primary: #6a27a1;
-  --color-purple-light: #a12780;
-  --color-purple-tint: #c87bbd;
+  --color-purple-primary: 106, 39, 161;
+  --color-purple-light: 161, 39, 128;
+  --color-purple-tint: 200, 123, 189;
 
-  --color-red-primary: #d32f2f;
-  --color-red-light: #f05252;
-  --color-red-tint: #fc9e9e;
+  --color-red-primary: 211, 47, 47;
+  --color-red-light: 240, 82, 82;
+  --color-red-tint: 252, 158, 158;
 
-  --color-yellow-primary: #fcbd07;
-  --color-yellow-light: #fed662;
-  --color-yellow-tint: #ffe7a3;
+  --color-yellow-primary: 252, 189, 7;
+  --color-yellow-light: 254, 214, 98;
+  --color-yellow-tint: 255, 231, 163;
 
-  --color-teal-primary: #277da1;
-  --color-teal-light: #52899f;
-  --color-teal-tint: #6a91a1;
+  --color-teal-primary: 39, 125, 161;
+  --color-teal-light: 82, 137, 159;
+  --color-teal-tint: 106, 145, 161;
 
   //Fondos complementarios Dark
-  --color-container-home: #252e35;
-  --color-container-secondary: #1a2228;
-  --color-container-button: #2a343b;
-  --color-background-main: #1e262c;
+  --color-container-home: 37, 46, 53;
+  --color-container-secondary: 26, 34, 40;
+  --color-container-button: 42, 52, 59;
+  --color-background-main: 30, 38, 44;
 
   //Fondos complementarios Light
   --color-container-home-light: RGBA(var(--color-white-primary));
-  --color-container-secondary-light: #e5e9ed;
-  --color-container-button-light: #e5e9ed;
-  --color-background-main-light: #e5e9ed;
+  --color-container-secondary-light: 229, 233, 237;
+  --color-container-button-light: 229, 233, 237;
+  --color-background-main-light: 229, 233, 237;
 
   //Fondos complementarios Tec
-  --color-container-home-tec: #002469;
-  --color-container-secondary-tec: #1b386e;
+  --color-container-home-tec: 0, 36, 105;
+  --color-container-secondary-tec: 27, 56, 110;
   --color-container-button-tec: RGBA(var(--color-blue-tec));
   --color-background-main-tec: RGBA(var(--color-blue-tec));
 
   //Colores para gradients
-  --color-blue-pigment: #273aa1;
-  --color-japanese-indigo: #274052;
+  --color-blue-pigment: 39, 58, 161;
+  --color-japanese-indigo: 39, 64, 82;
   --color-eerie-black: 20, 25, 28;
 
   //GRADIENTS
