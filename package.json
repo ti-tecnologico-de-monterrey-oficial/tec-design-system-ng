@@ -8,8 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "build-storybook": "ng run ds-ng:build-storybook",
-    "build-scss": "sass projects/ds-ng/src/assets/styles/main.scss projects/ds-ng/dist/styles/main.css --style compressed",
-    "build": "npm run build-scss && ng build ds-ng",
+    "build": "ng build ds-ng",
     "chromatic": "npx chromatic --project-token=chpt_f98e9dab3ebf7df"
   },
   "publishConfig": {
@@ -41,7 +40,6 @@
     "@angular-devkit/build-angular": "^17.0.7",
     "@angular/cli": "^17.0.7",
     "@angular/compiler-cli": "^17.0.0",
-    "@compodoc/compodoc": "^1.1.23",
     "@storybook/addon-docs": "^7.6.12",
     "@storybook/addon-essentials": "^7.6.12",
     "@storybook/addon-interactions": "^7.6.12",

@@ -1,22 +1,22 @@
 [data-theme="dark"] {
   body {
-    background-color: RGBA(var(--color-black));
+    background-color: RGBA(var(--color-black-primary));
 
     .btn {
       &-secondary {
-        border-color: RGBA(var(--color-white));
-        color: RGBA(var(--color-white));
+        border-color: RGBA(var(--color-white-primary));
+        color: RGBA(var(--color-white-primary));
 
         bmb-icon {
-          color: RGBA(var(--color-white));
+          color: RGBA(var(--color-white-primary));
         }
 
         &:active {
-          background-color: RGBA(var(--color-white));
-          color: RGBA(var(--color-black));
+          background-color: RGBA(var(--color-white-primary));
+          color: RGBA(var(--color-black-primary));
 
           bmb-icon {
-            color: RGBA(var(--color-black));
+            color: RGBA(var(--color-black-primary));
           }
         }
       }
@@ -26,7 +26,7 @@
 
 [data-theme="light"] {
   body {
-    background-color: RGBA(var(--color-white));
+    background-color: RGBA(var(--color-white-primary));
   }
 }
 
@@ -49,19 +49,19 @@
       }
 
       &-secondary {
-        border-color: RGBA(var(--color-white));
-        color: RGBA(var(--color-white));
+        border-color: RGBA(var(--color-white-primary));
+        color: RGBA(var(--color-white-primary));
 
         bmb-icon {
-          color: RGBA(var(--color-white));
+          color: RGBA(var(--color-white-primary));
         }
 
         &:active {
-          background-color: RGBA(var(--color-white));
-          color: RGBA(var(--color-black));
+          background-color: RGBA(var(--color-white-primary));
+          color: RGBA(var(--color-black-primary));
 
           bmb-icon {
-            color: RGBA(var(--color-black));
+            color: RGBA(var(--color-black-primary));
           }
         }
       }
