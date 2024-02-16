@@ -1,76 +1,166 @@
-<!-- <input bmb-text-input type="email" id="mail" [formControl]="emailFormControl" placeholder="Ex. pat@example.com"> -->
-
-<!-- <form class="example-form">
-  <mat-form-field class="example-full-width">
-    <mat-label>Email</mat-label>
-    <input bmb-text-input type="email" matInput [formControl]="emailFormControl" placeholder="Ex. pat@example.com">
-    @if (emailFormControl.hasError('email') && !emailFormControl.hasError('required')) {
-      <mat-error>Please enter a valid email address</mat-error>
-    }
-    @if (emailFormControl.hasError('required')) {
-      <mat-error>Email is <strong>required</strong></mat-error>
-    }
-  </mat-form-field>
-</form> -->
-<!-- <label class="bmb-form-label">Nombre: </label>
-  <input
-  bmb-text-input
-    type="email"
-    id="name"
-    name="name"
-    class="form-control"
-    required
-    minlength="4"
-    appForbiddenName="bob"
-    [(ngModel)]="value"
-    #name="ngModel"
-  />
-  
-  <div
-    *ngIf="name.invalid && (name.dirty || name.touched)"
-    class="bmb-text-error"
+<h2 class="font-regular-5">Buttons</h2>
+ 
+<h3 class="font-regular-3">Button differences for mobile</h3>
+<!-- Button differences for mobile -->
+<button bmbButton type="button" appearance="primary" size="large">
+  Primary
+</button>
+<button bmbButton type="button" appearance="alternative" size="large">
+  Alternative
+</button>
+<button bmbButton type="button" appearance="secondary" size="large">
+  Secondary
+</button>
+<button bmbButton type="button" appearance="destructive" size="large">
+  Destructive
+</button>
+<h3 class="font-regular-3">Button differences for desktop</h3>
+<!-- Button differences for desktop -->
+<div style="display: flex; gap: 8px">
+  <button bmbButton type="button" appearance="primary" device="desktop">
+    Primary
+  </button>
+  <button bmbButton type="button" appearance="alternative" device="desktop">
+    Alternative
+  </button>
+  <button bmbButton type="button" appearance="secondary" device="desktop">
+    Secondary
+  </button>
+  <button bmbButton type="button" appearance="destructive" device="desktop">
+    Destructive
+  </button>
+</div>
+<h3 class="font-regular-3">Standard sizes</h3>
+<!-- Standar sizes -->
+<div style="display: flex; gap: 8px">
+  <button bmbButton type="button" appearance="primary">Primary</button>
+  <button bmbButton type="button" appearance="alternative">Alternative</button>
+  <button bmbButton type="button" appearance="secondary">Secondary</button>
+  <button bmbButton type="button" appearance="destructive">Destructive</button>
+</div>
+<h3 class="font-regular-3">With icon and position left</h3>
+<!-- With icon and position left -->
+<div style="display: flex; gap: 8px">
+  <button bmbButton icon="chevron_left" appearance="primary">Primary</button>
+  <button bmbButton icon="chevron_left" appearance="alternative">
+    Alternative
+  </button>
+  <button bmbButton icon="chevron_left" appearance="secondary">
+    Secondary
+  </button>
+  <button bmbButton icon="chevron_left" appearance="destructive">
+    Destructive
+  </button>
+</div>
+<h3 class="font-regular-3">With icon, position left and edge</h3>
+<!-- With icon, position left and edge -->
+<button
+  bmbButton
+  icon="chevron_left"
+  appearance="primary"
+  size="large"
+>
+  Primary
+</button>
+<button
+  bmbButton
+  icon="chevron_left"
+  appearance="alternative"
+  size="large"
+>
+  Alternative
+</button>
+<button
+  bmbButton
+  icon="chevron_left"
+  appearance="secondary"
+  size="large"
+>
+  Secondary
+</button>
+<button
+  bmbButton
+  icon="chevron_left"
+  appearance="destructive"
+  size="large"
+>
+  Destructive
+</button>
+<h3 class="font-regular-3">With icon and position right</h3>
+<!-- With icon and position right -->
+<div style="display: flex; gap: 8px">
+  <button
+    bmbButton
+    icon="chevron_right"
+    appearance="primary"
+    iconPosition="right"
   >
-    <span *ngIf="name.errors?.['required']">Name is required.</span>
-    <span *ngIf="name.errors?.['minlength']">
-      Name must be at least 4 characters long.
-    </span>
-    <span *ngIf="name.errors?.['forbiddenName']">
-      Name cannot be Bob.
-    </span>
-  </div> -->
+    Primary
+  </button>
+  <button
+    bmbButton
+    icon="chevron_right"
+    appearance="alternative"
+    iconPosition="right"
+  >
+    Alternative
+  </button>
+  <button
+    bmbButton
+    icon="chevron_right"
+    appearance="secondary"
+    iconPosition="right"
+  >
+    Secondary
+  </button>
+  <button
+    bmbButton
+    icon="chevron_right"
+    appearance="destructive"
+    iconPosition="right"
+  >
+    Destructive
+  </button>
+</div>
+<h3 class="font-regular-3">With icon, position right and edge</h3>
+<!-- With icon, position right and edge-->
+<button
+  bmbButton
+  icon="chevron_right"
+  appearance="primary"
+  iconPosition="right"
+  size="large"
+>
+  Primary
+</button>
+<button
+  bmbButton
+  icon="chevron_right"
+  appearance="alternative"
+  iconPosition="right"
+  size="large"
+>
+  Alternative
+</button>
+<button
+  bmbButton
+  icon="chevron_right"
+  appearance="secondary"
+  iconPosition="right"
+  size="large"
+>
+  Secondary
+</button>
+<button
+  bmbButton
+  icon="chevron_right"
+  appearance="destructive"
+  iconPosition="right"
+  size="large"
+>
+  Destructive
+</button>
 
-<!-- INPUT ICON -->
-
-<!-- <div class="bmb-input-wrapper">
-    <input bmb-text-input type="search" placeholder="Search" />
-    
-    <svg
-       xmlns="http://www.w3.org/2000/svg"
-       class="bmb-input-icon"
-       viewBox="0 0 20 20"
-       fill="currentColor"
-    >
-       <path
-          fill-rule="evenodd"
-          d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-          clip-rule="evenodd"
-       />
-    </svg>
- </div> -->
-
-<!-- <form class="example-form">
-  <mat-form-field class="example-full-width">
-    <mat-label>Telephone</mat-label>
-    <span matTextPrefix>+1 &nbsp;</span>
-    <input type="tel" matInput placeholder="555-555-1234">
-    <mat-icon matSuffix>mode_edit</mat-icon>
-  </mat-form-field>
-</form> -->
-
-<!-- <bmb-icon-text-input>
-  <input type="text" placeholder="Search" />
-  <i class="material-icons">face</i>
-</bmb-icon-text-input> -->
 <bmb-theme />
 <h2 class="font-thin-6">Badge</h2>
 <bmb-badge text="Normal" type="normal" [grouped]="true" />
@@ -92,3 +182,44 @@
 <bmb-badge text="Warning" type="warning" />
 <bmb-badge text="Error" type="error" />
 <bmb-badge text="Brand" type="brand" />
+<hr/>
+<!-- Text Inputs -->
+<input bmb-text-input type="text" id="mail" [formControl]="emailFormControl" appearance="simple" placeholder="Ex. pat@example.com">
+<hr/>
+<input bmb-text-input type="text" id="mail" [formControl]="emailFormControl" appearance="normal" placeholder="Ex. pat@example.com">
+<hr/>
+<input bmb-text-input type="text" id="mail" [formControl]="emailFormControl" appearance="main" placeholder="Ex. pat@example.com">
+<hr/>
+
+<bmb-input-form>
+  <span class="bmb-label">Label</span>
+  <bmb-input-wrapper>
+    <input bmb-text-input type="email" appearance="simple" id="mail" [formControl]="emailFormControl" placeholder="Ex. pat@example.com">
+    <i class="material-icons bmb-icon">face</i>
+  </bmb-input-wrapper>
+  <span class="bmb-text-error" *ngIf="emailFormControl.invalid">Texto de ayuda</span>
+</bmb-input-form>
+
+<hr/>
+
+<bmb-input-form>
+  <span class="bmb-label">Label</span>
+  <bmb-input-wrapper>
+    <input bmb-text-input type="email" appearance="normal" id="mail" [formControl]="emailFormControl" placeholder="Ex. pat@example.com">
+    <i class="material-icons bmb-icon">face</i>
+  </bmb-input-wrapper>
+  <span class="bmb-helper">Texto de ayuda</span>
+</bmb-input-form>
+
+<hr/>
+
+<bmb-input-form>
+  <span class="bmb-label">Label</span>
+  <bmb-input-wrapper>
+    <input bmb-text-input type="email" appearance="main" id="mail" [formControl]="emailFormControl" placeholder="Ex. pat@example.com">
+    <i class="material-icons bmb-icon">face</i>
+  </bmb-input-wrapper>
+  <span class="bmb-text-error">Texto de ayuda</span>
+</bmb-input-form>
+
+<hr/>
