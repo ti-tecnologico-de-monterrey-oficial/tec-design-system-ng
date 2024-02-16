@@ -57,8 +57,10 @@ export class DsNgModule {
   constructor(private injector: Injector){}
 
   ngDoBootsrap(){
-    const custonElement = createCustomElement(BmbIconTextInputComponent, {injector: this.injector})
-    customElements.define('bmb-icon-text-input', custonElement);
+    const customInputWrapper = createCustomElement(BmbIconTextInputComponent, {injector: this.injector})
+    customElements.define('bmb-input-wrapper', customInputWrapper);
+
+    // const customInputContainer = createCustomElement()
   }
 
 }
