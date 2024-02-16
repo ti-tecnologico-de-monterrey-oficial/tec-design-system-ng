@@ -1,36 +1,58 @@
-@import "../tokens/colors";
-@import "../base/rem";
-@import "../base/measures";
-@import "../base/fonts";
+bmb-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
 
-:host {
-  @include font(4, regular);
-  border: rem_calc(1) solid RGBA(var(--color-charade-100));
-  background-color: RGBA(var(--color-charade-100));
-  box-sizing: border-box;
-  border-radius: rem_calc(3);
-  padding: rem_calc(8);
-  // padding: rem_calc(8) rem_calc(8) rem_calc(8) rem_calc(8);
-  min-height: rem_calc(38);
-  width: 100%;
-  height: 100%;
+    > .bmb-input-simple{
+        @include inputType(simple);
+        @include inputPad(l);
+    }
 
-  &:focus {
-    outline: none;
-    border-color: RGBA(var(--color-blue-primary));
-    box-shadow: rem_calc(0) rem_calc(0) rem_calc(2) rem_calc(2)
-      RGBA(var(--color-marine-900));
-  }
+    .bmb-input-simple ~ .bmb-icon {
+      color: RGBA(var(--color-marine-100));
+    }
+    
+    > .bmb-input-normal {
+        @include inputType(normal);
+        @include inputPad(l);
+    }
 
-  &::placeholder {
-    color: RGBA(var(--color-charade-300));
-  }
+    .bmb-input-normal ~ .bmb-icon {
+      color: RGBA(var(--color-white));
+    }
+    
+    > .bmb-input-main {
+        @include inputType(main);
+        @include inputPad(l);
+    }
 
-  &:disabled:focus {
-    outline: none;
-  }
+    .bmb-input-main ~ .bmb-icon {
+      color: RGBA(var(--color-marine-100));
+    }
 
-  &.ng-invalid {
-    border-color: RGBA(var(--color-red-primary));
-  }
+    .bmb-icon {
+        position: absolute;
+        left: rem_calc(8);
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: rem_calc(24) !important;
+    }
+}
+
+bmb-input-form {
+    display: flex;
+    flex-direction: column;
+    padding: rem_calc(2);
+
+    > .bmb-label {
+        @include font(3, regular);
+        color: RGBA(var(--color-charade-900));
+        padding: rem_calc(8) rem_calc(8) rem_calc(4) rem_calc(8)
+    }
+
+    > .bmb-helper {
+        @include font(3, regular);
+        color: RGBA(var(--color-charade-300));
+        padding: rem_calc(4) rem_calc(8) rem_calc(8) rem_calc(8)
+    }
 }
