@@ -1,6 +1,6 @@
 [data-theme="dark"] {
   body {
-    background-color: RGBA(var(--color-black-primary));
+    background-color: RGBA(var(--color-charade-950));
 
     .btn {
       &-secondary {
@@ -26,13 +26,45 @@
 
 [data-theme="light"] {
   body {
-    background-color: RGBA(var(--color-white-primary));
+    background-color: RGBA(var(--color-charade-200));
+
+    .alert {
+      &-neutral,
+      &-primary,
+      &-successful,
+      &-warning,
+      &-error,
+      &-event {
+        background-color: RGBA(var(--color-white-primary));
+        color: RGBA(var(--color-charade-900));
+      }
+    }
   }
 }
 
 [data-theme="blue"] {
   body {
-    background-color: RGBA(var(--color-mariner-800));
+    background-color: RGBA(var(--color-mariner-900));
+
+    .alert {
+      &-neutral,
+      &-primary,
+      &-successful,
+      &-warning,
+      &-error,
+      &-event {
+        background-color: RGBA(var(--color-mariner-950));
+        color: RGBA(var(--color-white-primary));
+      }
+
+      &-event {
+        border-color: RGBA(var(--color-purple-tint));
+
+        bmb-icon {
+          color: RGBA(var(--color-purple-tint));
+        }
+      }
+    }
 
     .btn {
       &-primary {

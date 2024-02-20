@@ -4,18 +4,32 @@
 
 // Reset Element
 @mixin resetElement() {
-  line-height: 1.5;
   box-sizing: border-box;
+  line-height: 1.5;
 
   &:focus {
     @include focusElement();
   }
 }
 
+// Media query
+@mixin media-query($breakpoint) {
+  $breakpoint-value: if(
+    type-of($breakpoint) == number,
+    $breakpoint,
+    str-slice($breakpoint, 1, -2)
+  );
+  @media only screen and (min-width: #{$breakpoint-value}px) {
+    @content;
+  }
+}
+
+// Focus for button and input
 @mixin focusElement($inset: outset) {
   outline: 0;
 }
 
+// Button styles
 @mixin button($type: primary) {
   @include font(5, regular);
   align-items: center;
@@ -37,11 +51,11 @@
   }
 
   &[case="true"] {
+    align-items: center;
     display: grid;
     grid-template-columns: auto 1fr;
-    align-items: center;
-    padding-top: 0;
     padding-bottom: 0;
+    padding-top: 0;
 
     &[icon-position="right"],
     &[ng-reflect-icon-position="right"] {
@@ -163,6 +177,7 @@
   }
 }
 
+// Badge styles
 @mixin badge($type: normal) {
   @include font(3, regular);
   align-items: center;
@@ -194,13 +209,62 @@
   }
 }
 
-@mixin media-query($breakpoint) {
-  $breakpoint-value: if(
-    type-of($breakpoint) == number,
-    $breakpoint,
-    str-slice($breakpoint, 1, -2)
-  );
-  @media only screen and (min-width: #{$breakpoint-value}px) {
-    @content;
+// Alert styles
+@mixin alert($type: neutral) {
+  @include font(4, regular);
+  align-items: center;
+  background-color: RGBA(var(--color-charade-950));
+  border-radius: $border-radius-xs;
+  border-style: solid;
+  border-width: rem_calc(1);
+  color: RGBA(var(--color-white-primary));
+  display: flex;
+  height: 100%;
+  justify-content: flex-start;
+  min-height: rem_calc(40);
+  padding: 0 $spacing-size-base;
+  width: 100%;
+
+  bmb-icon {
+    font-size: rem_calc(16);
+    margin-right: $spacing-size-md;
+  }
+
+  @if $type == neutral {
+    border-color: RGBA(var(--color-charade-300));
+
+    bmb-icon {
+      color: RGBA(var(--color-charade-300));
+    }
+  } @else if $type == primary {
+    border-color: RGBA(var(--color-neon-primary));
+
+    bmb-icon {
+      color: RGBA(var(--color-neon-primary));
+    }
+  } @else if $type == successful {
+    border-color: RGBA(var(--color-green-primary));
+
+    bmb-icon {
+      color: RGBA(var(--color-green-primary));
+    }
+  } @else if $type == warning {
+    border-color: RGBA(var(--color-yellow-primary));
+
+    bmb-icon {
+      color: RGBA(var(--color-yellow-primary));
+    }
+  } @else if $type == error {
+    border-color: RGBA(var(--color-red-primary));
+
+    bmb-icon {
+      color: RGBA(var(--color-red-primary));
+    }
+  } @else if $type == event {
+    border-color: RGBA(var(--color-purple-light));
+
+    bmb-icon {
+      color: RGBA(var(--color-purple-light));
+    }
   }
 }

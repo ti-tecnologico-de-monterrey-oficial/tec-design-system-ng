@@ -1,9 +1,10 @@
-import { Meta, moduleMetadata, Story } from '@storybook/angular';
+import { Meta, StoryObj, moduleMetadata, StoryFn } from '@storybook/angular';
 import { BmbButtonDirective } from './button.directive';
 import { BmbIconComponent } from '../components/bmb-icon/bmb-icon.component';
 
 export default {
-  title: 'Buttons',
+  title: 'Button',
+  component: BmbButtonDirective,
   decorators: [
     moduleMetadata({
       declarations: [BmbButtonDirective, BmbIconComponent],
@@ -12,66 +13,91 @@ export default {
   argTypes: {
     appearance: {
       name: 'Appearance',
-      options: ['primary', 'secondary', 'alternative', 'destructive'],
       control: { type: 'select' },
+      options: ['primary', 'secondary', 'alternative', 'destructive'],
+      description: 'The appearance of the button, visual changes.',
+      table: {
+        type: { summary: 'string' },
+      },
     },
     icon: {
       name: 'Icon',
       control: { type: 'text' },
       description:
-        'Nombre del ícono a utilizar. Por favor, utiliza los íconos de Material. https://fonts.google.com/icons',
+        'Name of the icon to use. Please use the Material icons: https://fonts.google.com/icons.',
+      table: {
+        type: { summary: 'string' },
+      },
     },
     size: {
       name: 'Size',
       control: 'radio',
       options: ['small', 'large'],
+      table: {
+        type: { summary: 'string' },
+      },
+      description: 'The size of the button, visual changes.',
     },
     iconPosition: {
       name: 'Icon Position',
       control: 'radio',
       options: ['left', 'right'],
+      table: {
+        type: { summary: 'string' },
+      },
+      description: 'The position of the icon.',
     },
     iconCase: {
       name: 'Icon Case',
       control: { type: 'boolean' },
+      description:
+        'This attribute is used to place the icon at the end of the button and NOT near the text, by default it is false and it is not necessary to add it. The change is only seen when the button size is large.',
+      table: {
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
     },
     text: {
-      name: 'Texto del boton',
-      control: { type: 'text' },
+      description: 'The text of the button.',
+      table: {
+        type: { summary: 'string' },
+      },
     },
   },
-  parameters: {
-    docs: {
-      navigate: false,
-      withToolbar: false,
-      excludeDecorators: true,
-    },
+  args: {
+    appearance: 'primary',
+    icon: 'home',
+    size: 'small',
+    iconPosition: 'left',
+    iconCase: false,
+    text: 'Button text',
   },
-} as Meta;
+} as Meta<typeof BmbButtonDirective>;
 
-const Template: Story<any> = (args: any) => ({
-  template: `<button bmbButton [appearance]="appearance"  [iconCase]="iconCase" [size]="size" [icon]="icon" [iconPosition]="iconPosition">{{ text }}</button>`,
+function attributes(object: { [key: string]: any }): string {
+  return Object.entries(object)
+    .filter(([key]) => key !== 'text')
+    .map(([key, value]) => {
+      if (key === 'iconCase') {
+        return `[${key}]="${value}"`;
+      }
+      return `${key}="${value}"`;
+    })
+    .join(' ');
+}
+
+function attributesText(object: { [key: string]: any }): string {
+  return Object.entries(object)
+    .filter(([key]) => key === 'text')
+    .map(([key, value]) => `${value}`)
+    .join(' ');
+}
+
+const customizable = (): StoryFn => (args) => ({
   props: args,
+  template: `<button bmbButton ${attributes(args)}>${attributesText(
+    args
+  )}</button>`,
 });
 
-export const Primary = Template.bind({});
-Primary.args = {
-  appearance: 'primary',
-  icon: 'home',
-  iconPosition: 'left',
-  text: 'Primary',
-  size: 'small',
-  iconCase: false,
-};
-
-Primary.parameters = {
-  docs: {
-    description: {
-      story:
-        'En el botón usamos una directiva ‘bmbButton’ en el tag button, debido a las capacidades de storybook, aun no hay forma de que se actualice el código cuando se modifica un control. Pero el código mostrado es un ejemplo de cómo puedes utilizarlo.',
-    },
-    source: {
-      code: `<button bmbButton appearance="primary"  size="small" icon="home" iconPosition="left">{{ text }}</button>`,
-    },
-  },
-};
+export const Default = customizable();
