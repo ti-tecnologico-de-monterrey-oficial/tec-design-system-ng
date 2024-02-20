@@ -6,61 +6,56 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BmbButtonDirective } from './directives/button.directive';
 import { DsNgComponent } from './ds-ng.component';
-import { BmbUserImageComponent } from './components/bmb-user-image/bmb-user-image.component';
-import { BmbAppButtonComponent } from './components/bmb-app-button/bmb-app-button.component';
+import { BmbIconComponent } from './components/bmb-icon/bmb-icon.component';
+import { BmbAlertComponent } from './components/bmb-alert/bmb-alert.component';
+import { BmbThemeComponent } from './components/bmb-theme/bmb-theme.component';
 import { BmbBadgeComponent } from './components/bmb-badge/bmb-badge.component';
 import { BmbDividerComponent } from './components/bmb-divider/bmb-divider.component';
-import { BmbDotPaginatorComponent } from './components/bmb-dot-paginator/bmb-dot-paginator.component';
-import { BmbIconComponent } from './components/bmb-icon/bmb-icon.component';
-import { BmbThemeComponent } from './components/bmb-theme/bmb-theme.component';
+import { BmbUserImageComponent } from './components/bmb-user-image/bmb-user-image.component';
+import { BmbAppButtonComponent } from './components/bmb-app-button/bmb-app-button.component';
 import { BmbTextInputComponent } from './components/bmb-text-input/bmb-text-input.component';
 import { BmbIconTextInputComponent } from './components/bmb-icon-text-input/bmb-icon-text-input.component';
-
-// Angular library
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { BmbDotPaginatorComponent } from './components/bmb-dot-paginator/bmb-dot-paginator.component';
 
 @NgModule({
   declarations: [
-    BmbButtonDirective,
     DsNgComponent,
-    BmbUserImageComponent,
-    BmbAppButtonComponent,
-    BmbBadgeComponent,
-    BmbDividerComponent,
-    BmbDotPaginatorComponent,
     BmbIconComponent,
     BmbThemeComponent,
+    BmbAlertComponent,
+    BmbBadgeComponent,
+    BmbButtonDirective,
+    BmbDividerComponent,
     BmbTextInputComponent,
-    BmbIconTextInputComponent
+    BmbUserImageComponent,
+    BmbAppButtonComponent,
+    BmbDotPaginatorComponent,
+    BmbIconTextInputComponent,
   ],
-  imports: [
-    CommonModule,
-    MatButtonToggleModule,
-    FormsModule,
-  ],
+  imports: [CommonModule, FormsModule],
   exports: [
-    BmbButtonDirective,
     DsNgComponent,
-    BmbUserImageComponent,
-    BmbAppButtonComponent,
-    BmbBadgeComponent,
-    BmbDividerComponent,
-    BmbDotPaginatorComponent,
     BmbIconComponent,
+    BmbBadgeComponent,
+    BmbAlertComponent,
     BmbThemeComponent,
+    BmbButtonDirective,
+    BmbDividerComponent,
+    BmbUserImageComponent,
     BmbTextInputComponent,
-    BmbIconTextInputComponent
-
-  ]
+    BmbAppButtonComponent,
+    BmbDotPaginatorComponent,
+    BmbIconTextInputComponent,
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class DsNgModule { 
-  constructor(private injector: Injector){}
+export class DsNgModule {
+  constructor(private injector: Injector) {}
 
-  ngDoBootsrap(){
-    const customInputWrapper = createCustomElement(BmbIconTextInputComponent, {injector: this.injector})
+  ngDoBootsrap() {
+    const customInputWrapper = createCustomElement(BmbIconTextInputComponent, {
+      injector: this.injector,
+    });
     customElements.define('bmb-input-wrapper', customInputWrapper);
-
-    // const customInputContainer = createCustomElement()
   }
-
 }
