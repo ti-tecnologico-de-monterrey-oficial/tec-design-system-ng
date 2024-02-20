@@ -7,8 +7,8 @@
   align-items: center;
   box-sizing: border-box;
   display: flex;
-  min-height: rem_calc(40);
   max-width: rem_calc(210);
+  min-height: rem_calc(40);
   width: 100%;
 
   &-box {
