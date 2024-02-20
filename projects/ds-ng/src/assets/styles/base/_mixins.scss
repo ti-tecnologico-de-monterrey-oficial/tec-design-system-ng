@@ -268,3 +268,94 @@
     }
   }
 }
+
+// Input styles
+@mixin inputType($type: main) {
+  @include resetElement();
+  @include font(4, regular);
+  appearance: none;
+  height: 100%;
+  width: 100%;
+
+  &:focus,
+  &:focus:hover {
+    @include focusElement();
+  }
+
+  @if $type == main {
+    background-color: RGBA(var(--color-charade-100));
+    border: rem_calc(1) solid RGBA(var(--color-charade-100));
+    border-radius: $spacing-size-sm;
+
+    &:focus {
+      border: rem_calc(2) solid RGBA(var(--color-blue-primary));
+      border-color: RGBA(var(--color-blue-primary));
+      outline: none;
+    }
+
+    &::placeholder {
+      color: RGBA(var(--color-charade-300));
+    }
+
+    &:disabled:focus {
+      outline: none;
+    }
+
+    &.ng-invalid {
+      border-color: RGBA(var(--color-red-primary));
+    }
+  } @else if $type == simple {
+    background-color: transparent;
+    border: 0;
+    border-bottom: rem_calc(1) solid RGBA(var(--color-charade-950));
+    color: RGBA(var(--color-black));
+
+    &:focus {
+      border-bottom: rem_calc(2) solid RGBA(var(--color-blue-primary));
+      border-color: RGBA(var(--color-blue-primary));
+      outline: none;
+    }
+
+    &::placeholder {
+      color: RGBA(var(--color-charade-300));
+    }
+
+    &:disabled:focus {
+      outline: none;
+    }
+
+    &.ng-invalid {
+      border-color: RGBA(var(--color-red-primary));
+    }
+  } @else if $type == normal {
+    background-color: RGBA(var(--color-charade-950));
+    border: rem_calc(1) solid RGBA(var(--color-charade-950));
+    border-radius: $spacing-size-sm;
+    color: RGBA(var(--color-white));
+
+    &:focus {
+      border-color: rem_calc(2) solid RGBA(var(--color-white));
+      outline: none;
+    }
+
+    &::placeholder {
+      color: RGBA(var(--color-charade-300));
+    }
+
+    &:disabled:focus {
+      outline: none;
+    }
+
+    &.ng-invalid {
+      border-color: RGBA(var(--color-red-primary));
+    }
+  }
+}
+
+@mixin inputPad($type: s) {
+  padding: rem_calc(8);
+
+  @if $type == l {
+    padding: rem_calc(8) rem_calc(8) rem_calc(8) rem_calc(35);
+  }
+}
