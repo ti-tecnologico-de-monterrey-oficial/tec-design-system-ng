@@ -12,8 +12,6 @@
     }
   }
 
-  @include badge();
-
   &-normal {
     @include badge(normal);
   }
