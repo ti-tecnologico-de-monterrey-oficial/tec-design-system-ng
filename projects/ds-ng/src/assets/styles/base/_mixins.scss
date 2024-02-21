@@ -360,3 +360,97 @@
     padding: rem_calc(8) rem_calc(8) rem_calc(8) rem_calc(35);
   }
 }
+
+@mixin fabInput($device: d, $size: s, $type: e){
+  font-family: $font-poppins-regular;
+  display: inline-flex;
+  font-size: rem_calc(14);
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  border: 0;
+  margin: rem_calc(3);
+  padding: rem_calc(8) rem_calc(16);
+  box-shadow: rem_calc(2) rem_calc(2) rem_calc(2) rem_calc(1) RGBA(var(--color-black-primary), 0.25);
+  -webkit-box-shadow: rem_calc(2) rem_calc(2) rem_calc(2) rem_calc(1) RGBA(var(--color-black-primary), 0.25);
+  -moz-box-shadow: rem_calc(2) rem_calc(2) rem_calc(2) rem_calc(1) RGBA(var(--color-black-primary), 0.25);
+
+  @if $device == m {
+    background-color: RGBA(var(--color-neon-primary));
+    color: RGBA(var(--color-white-primary));
+  
+    &:hover{
+      background-color: RGBA(var(--color-charade-500));
+    }
+  
+  
+    &:active {
+      background-color: RGBA(var(--color-charade-500));
+      border: rem_calc(1) solid RGBA(var(--color-neon-primary));
+      
+      > span {
+        color: RGBA(var(--color-neon-primary));
+      }
+  
+      > i {
+        color: RGBA(var(--color-neon-primary));
+      }
+    }
+  }@else if $device == d{
+    background-color: RGBA(var(--color-blue-primary));
+    color: RGBA(var(--color-white-primary));
+  
+    &:hover{
+      background-color: RGBA(var(--color-mariner-800));
+    }
+  
+  
+    &:active {
+      background-color: RGBA(var(--color-white-primary));
+      border: rem_calc(1) solid RGBA(var(--color-blue-primary));
+      
+      > span {
+        color: RGBA(var(--color-blue-primary));
+      }
+  
+      > i {
+        color: RGBA(var(--color-blue-primary));
+      }
+    }
+  }
+
+
+  > i {
+    font-size: rem_calc(24);
+  }
+
+  @if $size == s and $type == n{
+    width: rem_calc(40);
+    height: rem_calc(40);
+    border-radius: rem_calc(50);
+    
+  }@else if $size == s and $type == e {
+    width: fit-content;
+    height: rem_calc(40);
+    border-radius: rem_calc(50);
+    > span{
+      padding-right: rem_calc(8);
+      font-size: rem_calc(14);
+    }
+
+  }@else if $size == l and $type == n {
+    width: rem_calc(60);
+    height: rem_calc(60);
+    border-radius: rem_calc(50);
+
+  }@else if $size == l and $type == e{
+    height: rem_calc(60);
+    width: fit-content;
+    border-radius: rem_calc(50);
+    > span{
+      padding-right: rem_calc(8);
+      font-size: rem_calc(14);
+    }
+  }
+
+}
