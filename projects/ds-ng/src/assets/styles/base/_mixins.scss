@@ -360,3 +360,94 @@
     padding: rem_calc(8) rem_calc(8) rem_calc(8) rem_calc(35);
   }
 }
+
+
+@mixin fabInput($device: d, $size: l, $type: e){
+  font-family: $font-poppins-regular;
+  display: inline-flex;
+  font-size: 14px;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  border: 0;
+  padding: 8px 16px;
+
+  @if $device == d {
+    background-color: RGBA(var(--color-neon-primary));
+    color: RGBA(var(--color-white-primary));
+  
+    &:hover{
+      background-color: RGBA(var(--color-charade-500));
+    }
+  
+  
+    &:active {
+      background-color: RGBA(var(--color-charade-500));
+      border: 1px solid RGBA(var(--color-neon-primary));
+      
+      > span {
+        color: RGBA(var(--color-neon-primary));
+      }
+  
+      > i {
+        color: RGBA(var(--color-neon-primary));
+      }
+    }
+  }@else if $device == m{
+    background-color: RGBA(var(--color-blue-primary));
+    color: RGBA(var(--color-white-primary));
+  
+    &:hover{
+      background-color: RGBA(var(--color-mariner-800));
+    }
+  
+  
+    &:active {
+      background-color: RGBA(var(--color-white-primary));
+      border: 1px solid RGBA(var(--color-blue-primary));
+      
+      > span {
+        color: RGBA(var(--color-blue-primary));
+      }
+  
+      > i {
+        color: RGBA(var(--color-blue-primary));
+      }
+    }
+  }
+
+
+  > i {
+    font-size: 24px;
+  }
+
+  @if $size == s and $type == n{
+    width: 48px;
+    height: 48px;
+    border-radius: 50px;
+    
+  }@else if $size == s and $type == e {
+    width: fit-content;
+    height: 48px;
+    border-radius: 50px;
+    > span{
+      padding-right: 8px;
+      font-size: 14px;
+    }
+
+  }@else if $size == l and $type == n {
+    width: 64px;
+    height: 64px;
+    border-radius: 50px;
+
+  }@else if $size == l and $type == e{
+    height: 64px;
+    width: fit-content;
+    border-radius: 50px;
+    > span{
+      padding-right: 8px;
+      font-size: 14px;
+    }
+  }
+
+}
