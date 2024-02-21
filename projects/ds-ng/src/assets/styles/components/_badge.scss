@@ -2,7 +2,7 @@
 @import "../base/measures";
 
 .badge {
-  &-grouped {
+  &--grouped {
     display: flex;
     flex-flow: row wrap;
     gap: $spacing-size-base;
@@ -12,31 +12,31 @@
     }
   }
 
-  &-normal {
+  &--normal {
     @include badge(normal);
   }
 
-  &-strong {
+  &--strong {
     @include badge(strong);
   }
 
-  &-success {
+  &--success {
     @include badge(success);
   }
 
-  &-info {
+  &--info {
     @include badge(info);
   }
 
-  &-warning {
+  &--warning {
     @include badge(warning);
   }
 
-  &-error {
+  &--error {
     @include badge(error);
   }
 
-  &-brand {
+  &--brand {
     @include badge(brand);
   }
 }

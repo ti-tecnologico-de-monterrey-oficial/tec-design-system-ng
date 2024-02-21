@@ -1,0 +1,75 @@
+@import "../tokens/colors";
+@import "../base/rem";
+@import "../base/measures";
+@import "../base/fonts";
+
+.interactive__icon {
+  align-items: center;
+  display: flex;
+  flex-flow: column;
+  width: rem_calc(64);
+
+  &--grouped {
+    display: flex;
+    flex-flow: row wrap;
+    gap: $spacing-size-lg;
+  }
+
+  &--box {
+    align-items: center;
+    border-radius: $spacing-size-md;
+    display: flex;
+    height: rem_calc(64);
+    justify-content: center;
+    width: rem_calc(64);
+  }
+
+  &--icon,
+  &--image {
+    height: rem_calc(32);
+    width: rem_calc(32);
+  }
+
+  &--icon {
+    color: RGBA(var(--color-white-primary));
+    font-size: rem_calc(32);
+  }
+
+  &--text {
+    display: block;
+    margin-top: $spacing-size-md;
+    @include font(3, regular);
+    color: RGBA(var(--color-white-primary));
+    text-align: center;
+  }
+
+  &--red {
+    .interactive__icon--box {
+      background-color: RGBA(var(--color-red-primary));
+    }
+  }
+
+  &--blue {
+    .interactive__icon--box {
+      background-color: RGBA(var(--color-mariner-700));
+    }
+  }
+
+  &--green {
+    .interactive__icon--box {
+      background-color: RGBA(var(--color-green-primary));
+    }
+  }
+
+  &--yellow {
+    .interactive__icon--box {
+      background-color: RGBA(var(--color-yellow-primary));
+    }
+  }
+
+  &--purple {
+    .interactive__icon--box {
+      background-color: RGBA(var(--color-purple-primary));
+    }
+  }
+}

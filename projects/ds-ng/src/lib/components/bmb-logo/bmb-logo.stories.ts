@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { BmbUserImageComponent } from './bmb-user-image.component';
+import { BmbLogoComponent } from './bmb-logo.component';
 
 export default {
-  title: 'User Image',
-  component: BmbUserImageComponent,
+  title: 'Logotipos',
+  component: BmbLogoComponent,
   argTypes: {
     image: {
       name: 'Image source',
@@ -32,28 +32,21 @@ export default {
       control: {
         type: 'radio',
       },
-      options: [
-        'desktop-small',
-        'desktop-large',
-        'mobile-small',
-        'mobile-medium',
-        'mobile-large',
-        'mobile-xlarge',
-      ],
+      options: ['small', 'medium', 'large'],
       table: {
         type: { summary: 'string' },
       },
-      description: 'The size of the user image, visual changes.',
+      description: 'The size of the logo, visual changes.',
     },
   },
   args: {
     image:
       'https://i0.wp.com/gershenson.mx/wp-content/uploads/2020/08/logo-tec-de-monterrey-e1484853084274.png?ssl=1',
     altImage: 'Alt image description',
-    size: 'desktop-small',
+    size: 'small',
   },
-} as Meta<typeof BmbUserImageComponent>;
+} as Meta<typeof BmbLogoComponent>;
 
-type Story = StoryObj<BmbUserImageComponent>;
+type Story = StoryObj<BmbLogoComponent>;
 
 export const Default: Story = {};

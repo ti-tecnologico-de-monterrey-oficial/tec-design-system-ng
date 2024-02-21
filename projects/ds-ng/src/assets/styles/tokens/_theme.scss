@@ -39,6 +39,27 @@
         color: RGBA(var(--color-charade-900));
       }
     }
+
+    .container {
+      background-color: RGBA(var(--color-charade-50));
+
+      &-button,
+      &-secondary {
+        border-color: RGBA(var(--color-charade-200));
+      }
+    }
+
+    .header {
+      &__mobile {
+        color: RGBA(var(--color-charade-950));
+      }
+    }
+
+    .interactive__icon {
+      &--text {
+        color: RGBA(var(--color-charade-900));
+      }
+    }
   }
 }
 
@@ -96,6 +117,19 @@
             color: RGBA(var(--color-black-primary));
           }
         }
+      }
+    }
+
+    .container {
+      background-color: RGBA(var(--color-mariner-950));
+
+      &-button {
+        border-color: RGBA(var(--color-mariner-700));
+      }
+
+      &-secondary {
+        background-color: RGBA(var(--color-charade-950));
+        border: rem_calc(1) solid RGBA(var(--color-charade-700));
       }
     }
   }

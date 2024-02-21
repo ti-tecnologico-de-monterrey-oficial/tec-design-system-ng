@@ -1,0 +1,28 @@
+<div class="bmb__field">
+  <label for="" class="bmb__field--label" *ngIf="label">{{ label }}</label>
+  <div
+    class="bmb__field--wrapper"
+    [ngClass]="[!isValid ? 'bmb__field--error' : '']"
+    (click)="onParentClick()"
+    #inputWrapper
+  >
+    <bmb-icon *ngIf="icon || !isValid" [icon]="icon" class="bmb__field--icon" />
+    <input
+      type="text"
+      class="bmb__field--input"
+      (ngModelChange)="setValue(input.viewModel)"
+      (click)="onClick()"
+      (focus)="onFocus()"
+      (blur)="onBlur()"
+      (mouseover)="onMouseover()"
+      [(ngModel)]="value || inputModel"
+      [required]="isRequired"
+      [disabled]="isDisabled"
+      [placeholder]="placeholder ? placeholder : ''"
+      #input="ngModel"
+    />
+  </div>
+  <p *ngIf="errorMessage && !isValid" class="bmb__field--helper">
+    {{ errorMessage }}
+  </p>
+</div>
