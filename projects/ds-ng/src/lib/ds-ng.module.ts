@@ -20,6 +20,7 @@ import { BmbHeaderMobileComponent } from './components/bmb-header-mobile/bmb-hea
 import { BmbIconTextInputComponent } from './components/bmb-icon-text-input/bmb-icon-text-input.component';
 import { BmbDotPaginatorComponent } from './components/bmb-dot-paginator/bmb-dot-paginator.component';
 import { BmbInteractiveIconComponent } from './components/bmb-interactive-icon/bmb-interactive-icon.component';
+import { BmbFabComponent } from './components/bmb-fab/bmb-fab.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { BmbInteractiveIconComponent } from './components/bmb-interactive-icon/b
     BmbDotPaginatorComponent,
     BmbIconTextInputComponent,
     BmbInteractiveIconComponent,
+    BmbFabComponent,
   ],
   imports: [CommonModule, FormsModule],
   exports: [
@@ -58,6 +60,7 @@ import { BmbInteractiveIconComponent } from './components/bmb-interactive-icon/b
     BmbDotPaginatorComponent,
     BmbIconTextInputComponent,
     BmbInteractiveIconComponent,
+    BmbFabComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
