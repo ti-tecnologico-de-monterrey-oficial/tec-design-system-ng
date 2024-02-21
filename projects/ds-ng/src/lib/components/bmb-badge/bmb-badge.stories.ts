@@ -1,12 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbBadgeComponent } from './bmb-badge.component';
 
-interface BmbBadgeProps {
-  text: string;
-  grouped: boolean;
-  type: string;
-}
-
 export default {
   title: 'Badge',
   component: BmbBadgeComponent,
@@ -59,6 +53,6 @@ export default {
   },
 } as Meta<typeof BmbBadgeComponent>;
 
-type Story = StoryObj<BmbBadgeProps>;
+type Story = StoryObj<BmbBadgeComponent>;
 
 export const Default: Story = {};

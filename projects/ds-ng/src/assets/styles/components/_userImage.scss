@@ -1,7 +1,7 @@
 @import "../tokens/colors";
 @import "../base/rem";
 
-.user-image {
+.user__image {
   align-items: center;
   background-color: RGBA(var(--color-mariner-900));
   border-radius: 100%;
@@ -16,32 +16,32 @@
     width: 100%;
   }
 
-  &.mobile-small {
+  &--mobile-small {
     height: rem_calc(32);
     width: rem_calc(32);
   }
 
-  &.mobile-medium {
+  &--mobile-medium {
     height: rem_calc(64);
     width: rem_calc(64);
   }
 
-  &.mobile-large {
+  &--mobile-large {
     height: rem_calc(100);
     width: rem_calc(100);
   }
 
-  &.mobile-xlarge {
+  &--mobile-xlarge {
     height: rem_calc(200);
     width: rem_calc(200);
   }
 
-  &.desktop-small {
+  &--desktop-small {
     height: rem_calc(56);
     width: rem_calc(56);
   }
 
-  &.desktop-large {
+  &--desktop-large {
     height: rem_calc(160);
     width: rem_calc(160);
   }

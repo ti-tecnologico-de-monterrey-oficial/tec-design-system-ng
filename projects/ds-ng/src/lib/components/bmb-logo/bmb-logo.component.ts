@@ -1,21 +1,21 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  selector: 'bmb-user-image',
-  templateUrl: './bmb-user-image.component.html',
-  styleUrls: ['../../../assets/styles/components/_userImage.scss'],
+  selector: 'bmb-logo',
+  templateUrl: './bmb-logo.component.html',
+  styleUrls: ['../../../assets/styles/components/_logo.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbUserImageComponent {
+export class BmbLogoComponent {
   @Input() size: string = '';
   @Input() image: string = '';
   @Input() altImage: string = '';
 
   getClasses(): string[] {
-    const classes: string[] = ['user__image'];
+    const classes: string[] = ['logo'];
 
     if (this.size) {
-      classes.push('user__image--' + this.size);
+      classes.push('logo--' + this.size);
     }
 
     return classes;

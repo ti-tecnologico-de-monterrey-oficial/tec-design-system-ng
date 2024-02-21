@@ -8,14 +8,16 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'bmb-badge',
-  templateUrl: './bmb-badge.component.html',
-  styleUrls: ['../../../assets/styles/components/_badge.scss'],
+  selector: 'bmb-interactive-icon',
+  templateUrl: './bmb-interactive-icon.component.html',
+  styleUrls: ['../../../assets/styles/components/_interactiveIcon.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbBadgeComponent implements AfterViewInit {
-  @Input() type: string = '';
+export class BmbInteractiveIconComponent implements AfterViewInit {
+  @Input() appearance: string = '';
   @Input() text: string = '';
+  @Input() icon: string = '';
+  @Input() image: string = '';
   @Input() grouped: boolean = false;
 
   constructor(private el: ElementRef, private renderer: Renderer2) {}
@@ -24,10 +26,12 @@ export class BmbBadgeComponent implements AfterViewInit {
     if (this.grouped) {
       const parentElement = this.el.nativeElement.parentElement;
 
-      let wrapperDiv = parentElement.querySelector('.badge--grouped');
+      let wrapperDiv = parentElement.querySelector(
+        '.interactive__icon--grouped'
+      );
       if (!wrapperDiv) {
         wrapperDiv = this.renderer.createElement('div');
-        this.renderer.addClass(wrapperDiv, 'badge-grouped');
+        this.renderer.addClass(wrapperDiv, 'interactive__icon--grouped');
         this.renderer.insertBefore(parentElement, wrapperDiv, null);
       }
 
@@ -36,10 +40,10 @@ export class BmbBadgeComponent implements AfterViewInit {
   }
 
   getClasses(): string[] {
-    const classes: string[] = ['badge'];
+    const classes: string[] = ['interactive__icon'];
 
-    if (this.type) {
-      classes.push('badge--' + this.type);
+    if (this.appearance) {
+      classes.push('interactive__icon--' + this.appearance);
     }
 
     return classes;
