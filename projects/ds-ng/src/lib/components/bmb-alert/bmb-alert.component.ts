@@ -16,7 +16,7 @@ export class BmbAlertComponent {
     const classes: string[] = ['alert'];
 
     if (this.type) {
-      classes.push('alert-' + this.type);
+      classes.push('alert--' + this.type);
     }
 
     return classes;

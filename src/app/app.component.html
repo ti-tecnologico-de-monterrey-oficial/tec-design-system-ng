@@ -1,258 +1,59 @@
-<h2 class="font-regular-5">Buttons</h2>
-
-<h3 class="font-regular-3">Button differences for mobile</h3>
-<!-- Button differences for mobile -->
-<button bmbButton type="button" appearance="primary" size="large">
-  Primary
-</button>
-<button bmbButton type="button" appearance="alternative" size="large">
-  Alternative
-</button>
-<button bmbButton type="button" appearance="secondary" size="large">
-  Secondary
-</button>
-<button bmbButton type="button" appearance="destructive" size="large">
-  Destructive
-</button>
-<h3 class="font-regular-3">Button differences for desktop</h3>
-<!-- Button differences for desktop -->
-<div style="display: flex; gap: 8px">
-  <button bmbButton type="button" appearance="primary" device="desktop">
-    Primary
-  </button>
-  <button bmbButton type="button" appearance="alternative" device="desktop">
-    Alternative
-  </button>
-  <button bmbButton type="button" appearance="secondary" device="desktop">
-    Secondary
-  </button>
-  <button bmbButton type="button" appearance="destructive" device="desktop">
-    Destructive
-  </button>
-</div>
-<h3 class="font-regular-3">Standard sizes</h3>
-<!-- Standar sizes -->
-<div style="display: flex; gap: 8px">
-  <button bmbButton type="button" appearance="primary">Primary</button>
-  <button bmbButton type="button" appearance="alternative">Alternative</button>
-  <button bmbButton type="button" appearance="secondary">Secondary</button>
-  <button bmbButton type="button" appearance="destructive">Destructive</button>
-</div>
-<h3 class="font-regular-3">With icon and position left</h3>
-<!-- With icon and position left -->
-<div style="display: flex; gap: 8px">
-  <button bmbButton icon="chevron_left" appearance="primary">Primary</button>
-  <button bmbButton icon="chevron_left" appearance="alternative">
-    Alternative
-  </button>
-  <button bmbButton icon="chevron_left" appearance="secondary">
-    Secondary
-  </button>
-  <button bmbButton icon="chevron_left" appearance="destructive">
-    Destructive
-  </button>
-</div>
-<h3 class="font-regular-3">With icon, position left and edge</h3>
-<!-- With icon, position left and edge -->
-<button bmbButton icon="chevron_left" appearance="primary" size="large">
-  Primary
-</button>
-<button bmbButton icon="chevron_left" appearance="alternative" size="large">
-  Alternative
-</button>
-<button bmbButton icon="chevron_left" appearance="secondary" size="large">
-  Secondary
-</button>
-<button bmbButton icon="chevron_left" appearance="destructive" size="large">
-  Destructive
-</button>
-<h3 class="font-regular-3">With icon and position right</h3>
-<!-- With icon and position right -->
-<div style="display: flex; gap: 8px">
-  <button
-    bmbButton
-    icon="chevron_right"
-    appearance="primary"
-    iconPosition="right"
-  >
-    Primary
-  </button>
-  <button
-    bmbButton
-    icon="chevron_right"
-    appearance="alternative"
-    iconPosition="right"
-  >
-    Alternative
-  </button>
-  <button
-    bmbButton
-    icon="chevron_right"
-    appearance="secondary"
-    iconPosition="right"
-  >
-    Secondary
-  </button>
-  <button
-    bmbButton
-    icon="chevron_right"
-    appearance="destructive"
-    iconPosition="right"
-  >
-    Destructive
-  </button>
-</div>
-<h3 class="font-regular-3">With icon, position right and edge</h3>
-<!-- With icon, position right and edge-->
-<button
-  bmbButton
-  icon="chevron_right"
-  appearance="primary"
-  iconPosition="right"
-  size="large"
->
-  Primary
-</button>
-<button
-  bmbButton
-  icon="chevron_right"
-  appearance="alternative"
-  iconPosition="right"
-  size="large"
->
-  Alternative
-</button>
-<button
-  bmbButton
-  icon="chevron_right"
-  appearance="secondary"
-  iconPosition="right"
-  size="large"
->
-  Secondary
-</button>
-<button
-  bmbButton
-  icon="chevron_right"
-  appearance="destructive"
-  iconPosition="right"
-  size="large"
->
-  Destructive
-</button>
-
 <bmb-theme />
-<h2 class="font-thin-6">Badge</h2>
+
+<h2 class="font-thin-6">Header mobile</h2>
+<bmb-header-mobile
+  text="Texto"
+  iconLeft="chevron_left"
+  iconRight="chevron_right"
+  iconRight2="close"
+  logo="../assets/img/logo.png"
+  altLogo="Texto descriptivo"
+  image="../assets/img/user-image.png"
+  altImage="Texto descriptivo"
+/>
+
+<h2 class="font-thin-6">Interactive icon</h2>
 <div>
-  <bmb-badge text="Normal" type="normal" [grouped]="true" />
-  <bmb-badge text="Strong" type="strong" [grouped]="true" />
-  <bmb-badge text="Success" type="success" [grouped]="true" />
-  <bmb-badge text="Normal" type="normal" [grouped]="true" />
-  <bmb-badge text="Strong" type="strong" [grouped]="true" />
-  <bmb-badge text="Success" type="success" [grouped]="true" />
-  <bmb-badge text="Normal" type="normal" [grouped]="true" />
-  <bmb-badge text="Strong" type="strong" [grouped]="true" />
-  <bmb-badge text="Success" type="success" [grouped]="true" />
-  <bmb-badge text="Normal" type="normal" [grouped]="true" />
-  <bmb-badge text="Strong" type="strong" [grouped]="true" />
-  <bmb-badge text="Success" type="success" [grouped]="true" />
-  <bmb-badge text="Normal" type="normal" [grouped]="true" />
-  <bmb-badge text="Strong" type="strong" [grouped]="true" />
-  <bmb-badge text="Success" type="success" [grouped]="true" />
-  <bmb-badge text="Info" type="info" />
-  <bmb-badge text="Warning" type="warning" />
-  <bmb-badge text="Error" type="error" />
-  <bmb-badge text="Brand" type="brand" />
+  <bmb-interactive-icon
+    text="Canvas"
+    image="../assets/img/image-tec.png"
+    appearance="red"
+    [grouped]="true"
+  />
+  <bmb-interactive-icon
+    text="ID Digital"
+    icon="face"
+    appearance="blue"
+    [grouped]="true"
+  />
+  <bmb-interactive-icon
+    text="Calendario escolar"
+    icon="select_all"
+    appearance="green"
+    [grouped]="true"
+  />
+  <bmb-interactive-icon
+    text="Estado de cuenta"
+    icon="face"
+    appearance="yellow"
+    [grouped]="true"
+  />
+  <bmb-interactive-icon
+    text="Calificaciones"
+    icon="face"
+    appearance="purple"
+    [grouped]="true"
+  />
 </div>
-<h2 class="font-thin-6">Alert</h2>
-<bmb-alert text="Neutral Alert" type="neutral" />
-<bmb-alert text="Primary Alert" type="primary" />
-<bmb-alert text="Successful Alert" type="successful" />
-<bmb-alert text="Warning Alert" type="warning" />
-<bmb-alert text="Error Alert" type="error" />
-<bmb-alert text="Event Alert" type="event" />
 
-<!-- Text Inputs -->
-<input
-  bmb-text-input
-  type="text"
-  id="mail"
-  [formControl]="emailFormControl"
-  appearance="simple"
-  placeholder="Ex. pat@example.com"
+<h2 class="font-thin-6">Input</h2>
+<!-- Ejemplo -->
+<bmb-input
+  icon="home"
+  errorMessage="this is a helper"
+  [isRequired]="true"
+  placeholder="this is an input"
+  [isDisabled]="true"
+  [isValid]="false"
+  label="this is a label"
 />
-<hr />
-<input
-  bmb-text-input
-  type="text"
-  id="mail"
-  [formControl]="emailFormControl"
-  appearance="normal"
-  placeholder="Ex. pat@example.com"
-/>
-<hr />
-<input
-  bmb-text-input
-  type="text"
-  id="mail"
-  [formControl]="emailFormControl"
-  appearance="main"
-  placeholder="Ex. pat@example.com"
-/>
-<hr />
-
-<bmb-input-form>
-  <span class="bmb-label">Label</span>
-  <bmb-input-wrapper>
-    <input
-      bmb-text-input
-      type="email"
-      appearance="simple"
-      id="mail"
-      [formControl]="emailFormControl"
-      placeholder="Ex. pat@example.com"
-    />
-    <i class="material-icons bmb-icon">face</i>
-  </bmb-input-wrapper>
-  <span class="bmb-text-error" *ngIf="emailFormControl.invalid"
-    >Texto de ayuda</span
-  >
-</bmb-input-form>
-
-<hr />
-
-<bmb-input-form>
-  <span class="bmb-label">Label</span>
-  <bmb-input-wrapper>
-    <input
-      bmb-text-input
-      type="email"
-      appearance="normal"
-      id="mail"
-      [formControl]="emailFormControl"
-      placeholder="Ex. pat@example.com"
-    />
-    <i class="material-icons bmb-icon">face</i>
-  </bmb-input-wrapper>
-  <span class="bmb-helper">Texto de ayuda</span>
-</bmb-input-form>
-
-<hr />
-
-<bmb-input-form>
-  <span class="bmb-label">Label</span>
-  <bmb-input-wrapper>
-    <input
-      bmb-text-input
-      type="email"
-      appearance="main"
-      id="mail"
-      [formControl]="emailFormControl"
-      placeholder="Ex. pat@example.com"
-    />
-    <i class="material-icons bmb-icon">face</i>
-  </bmb-input-wrapper>
-  <span class="bmb-text-error">Texto de ayuda</span>
-</bmb-input-form>
-
-<hr />

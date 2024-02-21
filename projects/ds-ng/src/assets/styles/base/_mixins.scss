@@ -352,6 +352,7 @@
   }
 }
 
+// This could be removed
 @mixin inputPad($type: s) {
   padding: rem_calc(8);
 

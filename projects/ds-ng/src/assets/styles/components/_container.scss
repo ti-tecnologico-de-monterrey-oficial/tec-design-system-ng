@@ -1,0 +1,56 @@
+@import "../tokens/colors";
+@import "../base/rem";
+@import "../base/measures";
+
+.container {
+  align-items: flex-start;
+  background-color: RGBA(var(--color-charade-900));
+  display: flex;
+
+  //Header and calendar
+  &--primary {
+    align-items: center;
+    border-radius: 0 0 $border-radius-md $border-radius-md;
+    justify-content: space-between;
+    margin: 0 0 $spacing-size-base;
+    padding: $spacing-size-base;
+  }
+
+  //Modal
+  &--secondary {
+    background-color: RGBA(var(--color-charade-950));
+    border: rem_calc(1) solid RGBA(var(--color-charade-700));
+    border-radius: $border-radius-sm;
+    flex-direction: column;
+    justify-content: center;
+    margin: $spacing-size-base;
+    padding: $spacing-size-base;
+  }
+
+  &--button {
+    border: rem_calc(2) solid RGBA(var(--color-charade-700));
+    border-radius: $border-radius-sm;
+    justify-content: space-between;
+    margin: $spacing-size-base;
+    padding: $spacing-size-lg;
+  }
+
+  //Home
+  &--section {
+    flex-direction: column;
+    justify-content: space-between;
+    margin: $spacing-size-base 0;
+    padding: $spacing-size-lg $spacing-size-base;
+  }
+
+  &--contrast {
+    align-items: center;
+    background-color: var(--color-black-tint);
+    border: rem_calc(1) solid var(--color-black-min);
+    border-radius: $border-radius-lg;
+    flex-direction: column;
+    justify-content: center;
+    margin: $spacing-size-base;
+    padding: rem-calc(48);
+  }
+}
