@@ -1,0 +1,16 @@
+<div [ngClass]="getClasses()">
+  <div class="interactive__icon--box">
+    <bmb-icon
+      class="interactive__icon--icon"
+      icon="{{ icon }}"
+      *ngIf="!image"
+    />
+    <img
+      *ngIf="image"
+      [src]="image"
+      alt="text"
+      class="interactive__icon--image"
+    />
+  </div>
+  <span class="interactive__icon--text" *ngIf="text">{{ text }}</span>
+</div>

@@ -70,7 +70,7 @@ export class BmbButtonDirective implements OnInit, OnChanges {
   }
 
   @HostBinding('class') get elementClass(): string {
-    return `btn-${this.appearance}`;
+    return `btn--${this.appearance}`;
   }
 
   private addIcon() {

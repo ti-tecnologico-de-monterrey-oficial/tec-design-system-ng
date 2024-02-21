@@ -2,90 +2,6 @@
     "pipes": [],
     "interfaces": [
         {
-            "name": "BmbBadgeProps",
-            "id": "interface-BmbBadgeProps-abef728116c53cd9ee6bf7dc106fab813e28167e52089a385d2b74293c6da4933996ce10d47bdb0fc46d3b1985d5d125141869cf3391c20e79de530cb6c0fda5",
-            "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "type": "interface",
-            "sourceCode": "import type { Meta, StoryObj } from '@storybook/angular';\nimport { BmbBadgeComponent } from './bmb-badge.component';\n\ninterface BmbBadgeProps {\n  text: string;\n  grouped: boolean;\n  type: string;\n}\n\nexport default {\n  title: 'Badge',\n  component: BmbBadgeComponent,\n  argTypes: {\n    text: {\n      name: 'Text',\n      control: {\n        type: 'text',\n      },\n      description:\n        'The text of the badge. Width will increase depending of the text.',\n      table: {\n        type: { summary: 'string' },\n      },\n    },\n    grouped: {\n      name: 'Grouped',\n      control: { type: 'boolean' },\n      description:\n        \"This attribute is used to group all badges into a parent element. By default it is false and you don't need to add it. But if you need it you always have to add it inside a div element.\",\n      table: {\n        defaultValue: { summary: 'false' },\n        type: { summary: 'boolean' },\n      },\n    },\n    type: {\n      name: 'Type',\n      control: {\n        type: 'radio',\n      },\n      options: [\n        'normal',\n        'strong',\n        'success',\n        'info',\n        'warning',\n        'error',\n        'brand',\n      ],\n      table: {\n        type: { summary: 'string' },\n      },\n      description: 'The type of the badge, visual changes.',\n    },\n  },\n  args: {\n    text: 'Badge text',\n    type: 'normal',\n    grouped: false,\n  },\n} as Meta<typeof BmbBadgeComponent>;\n\ntype Story = StoryObj<BmbBadgeProps>;\n\nexport const Default: Story = {};\n",
-            "properties": [
-                {
-                    "name": "grouped",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "optional": false,
-                    "description": "",
-                    "line": 6
-                },
-                {
-                    "name": "text",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "optional": false,
-                    "description": "",
-                    "line": 5
-                },
-                {
-                    "name": "type",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "optional": false,
-                    "description": "",
-                    "line": 7
-                }
-            ],
-            "indexSignatures": [],
-            "kind": 171,
-            "methods": [],
-            "extends": []
-        },
-        {
-            "name": "BmbUserImageProps",
-            "id": "interface-BmbUserImageProps-705029774ba74bdc24ef6054d26827068d35145ca043d808708015dbedb2c5f2a8a3f9db0bb47c7c9c51376f9cd9fb0aefd2c3f2882d54f0e993aafb662a74b6",
-            "file": "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "type": "interface",
-            "sourceCode": "import type { Meta, StoryObj } from '@storybook/angular';\nimport { BmbUserImageComponent } from './bmb-user-image.component';\n\ninterface BmbUserImageProps {\n  image: string;\n  altImage: string;\n  size: string;\n}\n\nexport default {\n  title: 'User Image',\n  component: BmbUserImageComponent,\n  argTypes: {\n    image: {\n      name: 'Image source',\n      control: {\n        type: 'text',\n      },\n      description:\n        'The source of the image you want to display can be in your application or in a URL.',\n      table: {\n        type: { summary: 'string' },\n      },\n    },\n    altImage: {\n      name: 'Image alt text',\n      control: {\n        type: 'text',\n      },\n      description:\n        'The alternative text of image. For more information yoy can take a look at this page: https://www.w3.org/WAI/alt/.',\n      table: {\n        type: { summary: 'string' },\n      },\n    },\n    size: {\n      name: 'Size',\n      control: {\n        type: 'radio',\n      },\n      options: [\n        'desktop-small',\n        'desktop-large',\n        'mobile-small',\n        'mobile-medium',\n        'mobile-large',\n        'mobile-xlarge',\n      ],\n      table: {\n        type: { summary: 'string' },\n      },\n      description: 'The size of the user image, visual changes.',\n    },\n  },\n  args: {\n    image:\n      'https://i0.wp.com/gershenson.mx/wp-content/uploads/2020/08/logo-tec-de-monterrey-e1484853084274.png?ssl=1',\n    altImage: 'Alt image description',\n    size: 'desktop-small',\n  },\n} as Meta<typeof BmbUserImageComponent>;\n\ntype Story = StoryObj<BmbUserImageProps>;\n\nexport const Default: Story = {};\n",
-            "properties": [
-                {
-                    "name": "altImage",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "optional": false,
-                    "description": "",
-                    "line": 6
-                },
-                {
-                    "name": "image",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "optional": false,
-                    "description": "",
-                    "line": 5
-                },
-                {
-                    "name": "size",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "optional": false,
-                    "description": "",
-                    "line": 7
-                }
-            ],
-            "indexSignatures": [],
-            "kind": 171,
-            "methods": [],
-            "extends": []
-        },
-        {
             "name": "Props",
             "id": "interface-Props-6f84f63bd2a266dbb2b1de406bf8da808e6d45f9839f2b8776492be1780a7c12c1f8a11b5c276bca905aa77398248616d6f4054eb7ccccfb514fb4695f9fdab5",
             "file": "projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.interface.ts",
@@ -135,39 +51,6 @@
             "kind": 171,
             "methods": [],
             "extends": []
-        },
-        {
-            "name": "Props",
-            "id": "interface-Props-5cb6e5b8787c159f4151951fbba666671ac0428c9ed513d7632617769f2fea6a2e958b6ea3fe3abe6bc972e725ed320f2038c8d132574e3965a74d295a18dce6-1",
-            "file": "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-image.interface.ts",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "type": "interface",
-            "sourceCode": "export interface Props {\n  [key: string]: boolean;\n}\n",
-            "properties": [],
-            "indexSignatures": [
-                {
-                    "id": "index-declaration-5cb6e5b8787c159f4151951fbba666671ac0428c9ed513d7632617769f2fea6a2e958b6ea3fe3abe6bc972e725ed320f2038c8d132574e3965a74d295a18dce6",
-                    "args": [
-                        {
-                            "name": "key",
-                            "type": "string",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        }
-                    ],
-                    "returnType": "boolean",
-                    "line": 1,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                }
-            ],
-            "kind": 181,
-            "methods": [],
-            "extends": [],
-            "isDuplicate": true,
-            "duplicateId": 1,
-            "duplicateName": "Props-1"
         },
         {
             "name": "Target",
@@ -300,12 +183,12 @@
     "directives": [
         {
             "name": "BmbButtonDirective",
-            "id": "directive-BmbButtonDirective-f336d9ec591c5410edb8d4a92bcd08ff147d36b7517d5f28531c4b9b3b738b5ff07c23f4b97f7fd4bad2d350e5b4f19db9bdf164f639bc8aecd42b8f1e23677c",
+            "id": "directive-BmbButtonDirective-071203a5e8eac897aebaaa00a535a3efa7814f7c47ef72587b2135189576066a6d14e74d2fdad59b24ac5cd801a9d779bb7fb2290774dcc716e0805917d74fc0",
             "file": "projects/ds-ng/src/lib/directives/button.directive.ts",
             "type": "directive",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import {\n  Directive,\n  Input,\n  ElementRef,\n  HostBinding,\n  ViewContainerRef,\n  ChangeDetectorRef,\n  OnInit,\n  OnChanges,\n  Renderer2,\n  SimpleChanges,\n} from '@angular/core';\nimport { BmbIconComponent } from '../components/bmb-icon/bmb-icon.component';\n\n@Directive({\n  selector: '[bmbButton]',\n})\nexport class BmbButtonDirective implements OnInit, OnChanges {\n  @Input() icon: string = '';\n  @Input() iconPosition: 'left' | 'right' = 'left';\n  @Input() iconCase: boolean = false;\n  @Input() appearance: 'primary' | 'alternative' | 'secondary' | 'destructive' =\n    'primary';\n  @Input() size: 'small' | 'large' = 'small';\n\n  private providedInputs: Set<string> = new Set();\n\n  constructor(\n    private el: ElementRef,\n    private viewContainerRef: ViewContainerRef,\n    private cdr: ChangeDetectorRef,\n    private renderer: Renderer2\n  ) {}\n\n  ngOnInit(): void {\n    this.addIcon();\n    this.applyAttributes();\n  }\n\n  ngOnChanges(changes: SimpleChanges): void {\n    Object.keys(changes).forEach((input) => {\n      this.providedInputs.add(input);\n    });\n\n    this.applyAttributes();\n    this.addIcon();\n    this.cdr.markForCheck();\n  }\n\n  private applyAttributes() {\n    if (this.providedInputs.has('iconCase')) {\n      if (this.iconCase) {\n        this.renderer.setAttribute(this.el.nativeElement, 'case', 'true');\n      } else {\n        this.renderer.removeAttribute(this.el.nativeElement, 'case');\n      }\n    }\n\n    if (this.providedInputs.has('size') && this.size) {\n      this.renderer.setAttribute(this.el.nativeElement, 'size', this.size);\n    }\n\n    if (this.providedInputs.has('iconPosition')) {\n      this.renderer.setAttribute(\n        this.el.nativeElement,\n        'icon-position',\n        this.iconPosition\n      );\n    }\n  }\n\n  @HostBinding('class') get elementClass(): string {\n    return `btn-${this.appearance}`;\n  }\n\n  private addIcon() {\n    this.viewContainerRef.clear();\n\n    if (this.icon) {\n      const iconComponentRef =\n        this.viewContainerRef.createComponent(BmbIconComponent);\n      const iconComponent = iconComponentRef.instance;\n      iconComponent.icon = this.icon;\n\n      if (this.iconPosition === 'right') {\n        this.el.nativeElement.appendChild(\n          iconComponentRef.location.nativeElement\n        );\n      } else {\n        this.el.nativeElement.insertBefore(\n          iconComponentRef.location.nativeElement,\n          this.el.nativeElement.firstChild\n        );\n      }\n    }\n  }\n}\n",
+            "sourceCode": "import {\n  Directive,\n  Input,\n  ElementRef,\n  HostBinding,\n  ViewContainerRef,\n  ChangeDetectorRef,\n  OnInit,\n  OnChanges,\n  Renderer2,\n  SimpleChanges,\n} from '@angular/core';\nimport { BmbIconComponent } from '../components/bmb-icon/bmb-icon.component';\n\n@Directive({\n  selector: '[bmbButton]',\n})\nexport class BmbButtonDirective implements OnInit, OnChanges {\n  @Input() icon: string = '';\n  @Input() iconPosition: 'left' | 'right' = 'left';\n  @Input() iconCase: boolean = false;\n  @Input() appearance: 'primary' | 'alternative' | 'secondary' | 'destructive' =\n    'primary';\n  @Input() size: 'small' | 'large' = 'small';\n\n  private providedInputs: Set<string> = new Set();\n\n  constructor(\n    private el: ElementRef,\n    private viewContainerRef: ViewContainerRef,\n    private cdr: ChangeDetectorRef,\n    private renderer: Renderer2\n  ) {}\n\n  ngOnInit(): void {\n    this.addIcon();\n    this.applyAttributes();\n  }\n\n  ngOnChanges(changes: SimpleChanges): void {\n    Object.keys(changes).forEach((input) => {\n      this.providedInputs.add(input);\n    });\n\n    this.applyAttributes();\n    this.addIcon();\n    this.cdr.markForCheck();\n  }\n\n  private applyAttributes() {\n    if (this.providedInputs.has('iconCase')) {\n      if (this.iconCase) {\n        this.renderer.setAttribute(this.el.nativeElement, 'case', 'true');\n      } else {\n        this.renderer.removeAttribute(this.el.nativeElement, 'case');\n      }\n    }\n\n    if (this.providedInputs.has('size') && this.size) {\n      this.renderer.setAttribute(this.el.nativeElement, 'size', this.size);\n    }\n\n    if (this.providedInputs.has('iconPosition')) {\n      this.renderer.setAttribute(\n        this.el.nativeElement,\n        'icon-position',\n        this.iconPosition\n      );\n    }\n  }\n\n  @HostBinding('class') get elementClass(): string {\n    return `btn--${this.appearance}`;\n  }\n\n  private addIcon() {\n    this.viewContainerRef.clear();\n\n    if (this.icon) {\n      const iconComponentRef =\n        this.viewContainerRef.createComponent(BmbIconComponent);\n      const iconComponent = iconComponentRef.instance;\n      iconComponent.icon = this.icon;\n\n      if (this.iconPosition === 'right') {\n        this.el.nativeElement.appendChild(\n          iconComponentRef.location.nativeElement\n        );\n      } else {\n        this.el.nativeElement.insertBefore(\n          iconComponentRef.location.nativeElement,\n          this.el.nativeElement.firstChild\n        );\n      }\n    }\n  }\n}\n",
             "selector": "[bmbButton]",
             "providers": [],
             "hostDirectives": [],
@@ -544,7 +427,7 @@
     "components": [
         {
             "name": "BmbAlertComponent",
-            "id": "component-BmbAlertComponent-3494ac487579607510bca19bd745543087b7753ca8a08f134e820ed6edc0cb5d386559f28949a140594792bc2326962eb9bbece9dee28ef6ffebb062a2242379",
+            "id": "component-BmbAlertComponent-ece7876e111851522c307108910b4d26b7a08eda420507976f268a89c9a4ada8ad45d110edab06789558656b22aa03ea6185edfadd068f2150ec25391671f3ae",
             "file": "projects/ds-ng/src/lib/components/bmb-alert/bmb-alert.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -605,11 +488,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, ChangeDetectionStrategy } from '@angular/core';\n\n@Component({\n  selector: 'bmb-alert',\n  templateUrl: './bmb-alert.component.html',\n  styleUrls: ['../../../assets/styles/components/_alert.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbAlertComponent {\n  @Input() type: string = '';\n  @Input() text: string = '';\n\n  constructor() {}\n\n  getClasses(): string[] {\n    const classes: string[] = ['alert'];\n\n    if (this.type) {\n      classes.push('alert-' + this.type);\n    }\n\n    return classes;\n  }\n}\n",
+            "sourceCode": "import { Component, Input, ChangeDetectionStrategy } from '@angular/core';\n\n@Component({\n  selector: 'bmb-alert',\n  templateUrl: './bmb-alert.component.html',\n  styleUrls: ['../../../assets/styles/components/_alert.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbAlertComponent {\n  @Input() type: string = '';\n  @Input() text: string = '';\n\n  constructor() {}\n\n  getClasses(): string[] {\n    const classes: string[] = ['alert'];\n\n    if (this.type) {\n      classes.push('alert--' + this.type);\n    }\n\n    return classes;\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@import \"../base/mixins\";\n\n.alert {\n  &-neutral {\n    @include alert(neutral);\n  }\n\n  &-primary {\n    @include alert(primary);\n  }\n\n  &-successful {\n    @include alert(successful);\n  }\n\n  &-warning {\n    @include alert(warning);\n  }\n\n  &-error {\n    @include alert(error);\n  }\n\n  &-event {\n    @include alert(event);\n  }\n}\n",
+                    "data": "@import \"../base/mixins\";\n\n.alert {\n  &--neutral {\n    @include alert(neutral);\n  }\n\n  &--primary {\n    @include alert(primary);\n  }\n\n  &--successful {\n    @include alert(successful);\n  }\n\n  &--warning {\n    @include alert(warning);\n  }\n\n  &--error {\n    @include alert(error);\n  }\n\n  &--event {\n    @include alert(event);\n  }\n}\n",
                     "styleUrl": "../../../assets/styles/components/_alert.scss"
                 }
             ],
@@ -626,89 +509,8 @@
             "templateData": "<div [ngClass]=\"getClasses()\">\n  <bmb-icon icon=\"info\" />\n  <span>{{ text }}</span>\n</div>\n"
         },
         {
-            "name": "BmbAppButtonComponent",
-            "id": "component-BmbAppButtonComponent-07732cc781a5412149ef770586e97ec7d7469e1c7fd972126e2172c623b41164188ae9570c3f3bcda4d49fefd447cf3b4e28c156c5e39a81005adec05758671f",
-            "file": "projects/ds-ng/src/lib/components/bmb-app-button/bmb-app-button.component.ts",
-            "changeDetection": "ChangeDetectionStrategy.OnPush",
-            "encapsulation": [],
-            "entryComponents": [],
-            "inputs": [],
-            "outputs": [],
-            "providers": [],
-            "selector": "bmb-app-button",
-            "styleUrls": [
-                "../../../assets/styles/components/_appButton.scss"
-            ],
-            "styles": [],
-            "templateUrl": [
-                "./bmb-app-button.component.html"
-            ],
-            "viewProviders": [],
-            "hostDirectives": [],
-            "inputsClass": [
-                {
-                    "name": "icon",
-                    "defaultValue": "''",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 11,
-                    "type": "string",
-                    "decorators": []
-                },
-                {
-                    "name": "image",
-                    "defaultValue": "''",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 12,
-                    "type": "string",
-                    "decorators": []
-                },
-                {
-                    "name": "text",
-                    "defaultValue": "''",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 10,
-                    "type": "string",
-                    "decorators": []
-                }
-            ],
-            "outputsClass": [],
-            "propertiesClass": [],
-            "methodsClass": [],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "hostBindings": [],
-            "hostListeners": [],
-            "standalone": false,
-            "imports": [],
-            "description": "",
-            "rawdescription": "\n",
-            "type": "component",
-            "sourceCode": "import { Component, Input, ChangeDetectionStrategy } from '@angular/core';\n\n@Component({\n  selector: 'bmb-app-button',\n  templateUrl: './bmb-app-button.component.html',\n  styleUrls: ['../../../assets/styles/components/_appButton.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbAppButtonComponent {\n  @Input() text: string = '';\n  @Input() icon: string = '';\n  @Input() image: string = '';\n\n  constructor() {}\n}\n",
-            "assetsDirs": [],
-            "styleUrlsData": [
-                {
-                    "data": "@import \"../tokens/colors\";\n@import \"../base/rem\";\n@import \"../base/measures\";\n@import \"../base/fonts\";\n\n.app-button {\n  align-items: center;\n  box-sizing: border-box;\n  display: flex;\n  min-height: rem_calc(40);\n  max-width: rem_calc(210);\n  width: 100%;\n\n  &-box {\n    align-items: center;\n    display: flex;\n    height: 100%;\n    justify-content: center;\n    width: rem_calc(40);\n  }\n\n  &-icon,\n  &-image {\n    height: rem_calc(30);\n    margin-right: $spacing-size-md;\n    width: rem_calc(30);\n  }\n\n  &-icon {\n    color: RGBA(var(--color-charade-950));\n    font-size: rem_calc(30);\n  }\n\n  &-text {\n    @include font(3, medium);\n    color: RGBA(var(--color-charade-950));\n    flex: 1;\n    text-align: left;\n  }\n}\n",
-                    "styleUrl": "../../../assets/styles/components/_appButton.scss"
-                }
-            ],
-            "stylesData": "",
-            "constructorObj": {
-                "name": "constructor",
-                "description": "",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "args": [],
-                "line": 12
-            },
-            "extends": [],
-            "templateData": "<div class=\"app-button\">\n  <div class=\"app-button-box\">\n    <bmb-icon class=\"app-button-icon\" icon=\"{{ icon }}\" *ngIf=\"!image\" />\n    <img *ngIf=\"image\" [src]=\"image\" alt=\"text\" class=\"app-button-image\" />\n  </div>\n  <span class=\"app-button-text\">{{ text }}</span>\n</div>\n"
-        },
-        {
             "name": "BmbBadgeComponent",
-            "id": "component-BmbBadgeComponent-a3c14326d13b79db9ac5d7643ec478ebaa1132b4496bb1aa0cbecd8eaaa81b1e9279cfab12a18f7fba79e9eafc2fe0ff9f359cdc4953099f0354fbeef782b256",
+            "id": "component-BmbBadgeComponent-3a913d419954f39c1ff790705b2041de4425619e0c21f15785f907558945d5c08c087f45640aff1c30ab9075d6e673782ce6d519871eacca07abd7e9b64b19f7",
             "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -788,11 +590,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ElementRef,\n  Renderer2,\n  AfterViewInit,\n} from '@angular/core';\n\n@Component({\n  selector: 'bmb-badge',\n  templateUrl: './bmb-badge.component.html',\n  styleUrls: ['../../../assets/styles/components/_badge.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbBadgeComponent implements AfterViewInit {\n  @Input() type: string = '';\n  @Input() text: string = '';\n  @Input() grouped: boolean = false;\n\n  constructor(private el: ElementRef, private renderer: Renderer2) {}\n\n  ngAfterViewInit() {\n    if (this.grouped) {\n      const parentElement = this.el.nativeElement.parentElement;\n\n      let wrapperDiv = parentElement.querySelector('.badge-grouped');\n      if (!wrapperDiv) {\n        wrapperDiv = this.renderer.createElement('div');\n        this.renderer.addClass(wrapperDiv, 'badge-grouped');\n        this.renderer.insertBefore(parentElement, wrapperDiv, null);\n      }\n\n      this.renderer.appendChild(wrapperDiv, this.el.nativeElement);\n    }\n  }\n\n  getClasses(): string[] {\n    const classes: string[] = ['badge'];\n\n    if (this.type) {\n      classes.push('badge-' + this.type);\n    }\n\n    return classes;\n  }\n}\n",
+            "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ElementRef,\n  Renderer2,\n  AfterViewInit,\n} from '@angular/core';\n\n@Component({\n  selector: 'bmb-badge',\n  templateUrl: './bmb-badge.component.html',\n  styleUrls: ['../../../assets/styles/components/_badge.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbBadgeComponent implements AfterViewInit {\n  @Input() type: string = '';\n  @Input() text: string = '';\n  @Input() grouped: boolean = false;\n\n  constructor(private el: ElementRef, private renderer: Renderer2) {}\n\n  ngAfterViewInit() {\n    if (this.grouped) {\n      const parentElement = this.el.nativeElement.parentElement;\n\n      let wrapperDiv = parentElement.querySelector('.badge--grouped');\n      if (!wrapperDiv) {\n        wrapperDiv = this.renderer.createElement('div');\n        this.renderer.addClass(wrapperDiv, 'badge-grouped');\n        this.renderer.insertBefore(parentElement, wrapperDiv, null);\n      }\n\n      this.renderer.appendChild(wrapperDiv, this.el.nativeElement);\n    }\n  }\n\n  getClasses(): string[] {\n    const classes: string[] = ['badge'];\n\n    if (this.type) {\n      classes.push('badge--' + this.type);\n    }\n\n    return classes;\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@import \"../base/mixins\";\n@import \"../base/measures\";\n\n.badge {\n  &-grouped {\n    display: flex;\n    flex-flow: row wrap;\n    gap: $spacing-size-base;\n\n    @include media-query(768) {\n      gap: $spacing-size-md;\n    }\n  }\n\n  &-normal {\n    @include badge(normal);\n  }\n\n  &-strong {\n    @include badge(strong);\n  }\n\n  &-success {\n    @include badge(success);\n  }\n\n  &-info {\n    @include badge(info);\n  }\n\n  &-warning {\n    @include badge(warning);\n  }\n\n  &-error {\n    @include badge(error);\n  }\n\n  &-brand {\n    @include badge(brand);\n  }\n}\n",
+                    "data": "@import \"../base/mixins\";\n@import \"../base/measures\";\n\n.badge {\n  &--grouped {\n    display: flex;\n    flex-flow: row wrap;\n    gap: $spacing-size-base;\n\n    @include media-query(768) {\n      gap: $spacing-size-md;\n    }\n  }\n\n  &--normal {\n    @include badge(normal);\n  }\n\n  &--strong {\n    @include badge(strong);\n  }\n\n  &--success {\n    @include badge(success);\n  }\n\n  &--info {\n    @include badge(info);\n  }\n\n  &--warning {\n    @include badge(warning);\n  }\n\n  &--error {\n    @include badge(error);\n  }\n\n  &--brand {\n    @include badge(brand);\n  }\n}\n",
                     "styleUrl": "../../../assets/styles/components/_badge.scss"
                 }
             ],
@@ -843,6 +645,80 @@
                 "AfterViewInit"
             ],
             "templateData": "<div [ngClass]=\"getClasses()\">\n  <span>{{ text }}</span>\n</div>\n"
+        },
+        {
+            "name": "BmbContainerComponent",
+            "id": "component-BmbContainerComponent-f099e45d328fc0e9318ae95b543d72c0a96a0d2a9322fede943a7428c913313434243173492a7580113feb02286e694acf813cb75f9acfc1cfc7395442d7d32e",
+            "file": "projects/ds-ng/src/lib/components/bmb-container/bmb-container.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-container",
+            "styleUrls": [
+                "../../../assets/styles/components/_container.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-container.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "type",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 10,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "getClasses",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "string[]",
+                    "typeParameters": [],
+                    "line": 14,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, ChangeDetectionStrategy } from '@angular/core';\n\n@Component({\n  selector: 'bmb-container',\n  templateUrl: './bmb-container.component.html',\n  styleUrls: ['../../../assets/styles/components/_container.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbContainerComponent {\n  @Input() type: string = '';\n\n  constructor() {}\n\n  getClasses(): string[] {\n    const classes: string[] = ['container'];\n\n    if (this.type) {\n      classes.push('container--' + this.type);\n    }\n\n    return classes;\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@import \"../tokens/colors\";\n@import \"../base/rem\";\n@import \"../base/measures\";\n\n.container {\n  align-items: flex-start;\n  background-color: RGBA(var(--color-charade-900));\n  display: flex;\n\n  //Header and calendar\n  &--primary {\n    align-items: center;\n    border-radius: 0 0 $border-radius-md $border-radius-md;\n    justify-content: space-between;\n    margin: 0 0 $spacing-size-base;\n    padding: $spacing-size-base;\n  }\n\n  //Modal\n  &--secondary {\n    background-color: RGBA(var(--color-charade-950));\n    border: rem_calc(1) solid RGBA(var(--color-charade-700));\n    border-radius: $border-radius-sm;\n    flex-direction: column;\n    justify-content: center;\n    margin: $spacing-size-base;\n    padding: $spacing-size-base;\n  }\n\n  &--button {\n    border: rem_calc(2) solid RGBA(var(--color-charade-700));\n    border-radius: $border-radius-sm;\n    justify-content: space-between;\n    margin: $spacing-size-base;\n    padding: $spacing-size-lg;\n  }\n\n  //Home\n  &--section {\n    flex-direction: column;\n    justify-content: space-between;\n    margin: $spacing-size-base 0;\n    padding: $spacing-size-lg $spacing-size-base;\n  }\n\n  &--contrast {\n    align-items: center;\n    background-color: var(--color-black-tint);\n    border: rem_calc(1) solid var(--color-black-min);\n    border-radius: $border-radius-lg;\n    flex-direction: column;\n    justify-content: center;\n    margin: $spacing-size-base;\n    padding: rem-calc(48);\n  }\n}\n",
+                    "styleUrl": "../../../assets/styles/components/_container.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 10
+            },
+            "extends": [],
+            "templateData": "<div [ngClass]=\"getClasses()\">\n  <ng-content></ng-content>\n</div>\n"
         },
         {
             "name": "BmbDividerComponent",
@@ -1058,6 +934,151 @@
             "templateData": "<ol class=\"dot-paginator\">\n  <li\n    *ngFor=\"let i of getDotsArray()\"\n    [attr.data-bs-target]=\"targets[i]?.target || ''\"\n    [attr.data-bs-slide-to]=\"i\"\n    [ngClass]=\"{ dot: true, active: activeDotIndex === i }\"\n    (click)=\"onDotClicked(i)\"\n  ></li>\n</ol>\n"
         },
         {
+            "name": "BmbHeaderMobileComponent",
+            "id": "component-BmbHeaderMobileComponent-1a1d40a19df0894479641265f3d6ed675ee09c9eb8b5b89d0a564eff9f4ca372e05a7442d66d8a42d5c4cd585816b3a721cf2b25b869bebfd23b32b8ac6fa139",
+            "file": "projects/ds-ng/src/lib/components/bmb-header-mobile/bmb-header-mobile.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-header-mobile",
+            "styleUrls": [
+                "../../../assets/styles/components/_header.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-header-mobile.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "altImage",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 13,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "altLogo",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 15,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "iconLeft",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 16,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "iconRight",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 17,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "iconRight2",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 18,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "iconRight3",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 19,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "image",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 12,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "isTwoIcons",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 20,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "logo",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 14,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "text",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 10,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "type",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 11,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, ChangeDetectionStrategy } from '@angular/core';\n\n@Component({\n  selector: 'bmb-header-mobile',\n  templateUrl: './bmb-header-mobile.component.html',\n  styleUrls: ['../../../assets/styles/components/_header.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbHeaderMobileComponent {\n  @Input() text: string = '';\n  @Input() type: string = '';\n  @Input() image: string = '';\n  @Input() altImage: string = '';\n  @Input() logo: string = '';\n  @Input() altLogo: string = '';\n  @Input() iconLeft: string = '';\n  @Input() iconRight: string = '';\n  @Input() iconRight2: string = '';\n  @Input() iconRight3: string = '';\n  @Input() isTwoIcons: boolean = false;\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@import \"../tokens/colors\";\n@import \"../base/rem\";\n@import \"../base/measures\";\n@import \"../base/fonts\";\n\n.header {\n  &__mobile {\n    color: RGBA(var(--color-white-primary));\n\n    &--text {\n      @include font(6, regular);\n    }\n\n    &--left,\n    &--right {\n      align-items: center;\n      display: flex;\n      font-size: rem_calc(24);\n      gap: $spacing-size-sm;\n    }\n  }\n}\n",
+                    "styleUrl": "../../../assets/styles/components/_header.scss"
+                }
+            ],
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<div class=\"header__mobile\">\n  <bmb-container type=\"primary\">\n    <div class=\"header__mobile--left\">\n      <bmb-logo size=\"small\" [image]=\"logo\" [altImage]=\"altLogo\" *ngIf=\"logo\" />\n      <bmb-icon [icon]=\"iconLeft\" *ngIf=\"iconLeft\" />\n    </div>\n    <span class=\"header__mobile--text\">{{ text }}</span>\n    <div class=\"header__mobile--right\">\n      <bmb-icon [icon]=\"iconRight\" *ngIf=\"iconRight\" />\n      <bmb-icon [icon]=\"iconRight2\" *ngIf=\"iconRight2\" />\n      <bmb-user-image\n        size=\"mobile-small\"\n        [image]=\"image\"\n        [altImage]=\"altImage\"\n        *ngIf=\"image\"\n      />\n    </div>\n  </bmb-container>\n</div>\n"
+        },
+        {
             "name": "BmbIconComponent",
             "id": "component-BmbIconComponent-d91ee1bfa6cdd4c102ac98287bdf0c42070f1e6f69b9c2de061db6b0cd39191f9f9210959ecf1f5abe985f8d6ce62eecb5af13c28415ffab5591c6fb19f4b8c9",
             "file": "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.component.ts",
@@ -1152,7 +1173,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@import \"../tokens/colors\";\n@import \"../base/rem\";\n@import \"../base/measures\";\n@import \"../base/fonts\";\n\n:host {\n  @include font(4, regular);\n  border: rem_calc(1) solid RGBA(var(--color-charade-100));\n  background-color: RGBA(var(--color-charade-100));\n  box-sizing: border-box;\n  border-radius: rem_calc(3);\n  padding: rem_calc(8);\n  // padding: rem_calc(8) rem_calc(8) rem_calc(8) rem_calc(8);\n  min-height: rem_calc(38);\n  width: 100%;\n  height: 100%;\n\n  &:focus {\n    outline: none;\n    border-color: RGBA(var(--color-blue-primary));\n    box-shadow: rem_calc(0) rem_calc(0) rem_calc(2) rem_calc(2)\n      RGBA(var(--color-marine-900));\n  }\n\n  &::placeholder {\n    color: RGBA(var(--color-charade-300));\n  }\n\n  &:disabled:focus {\n    outline: none;\n  }\n\n  &.ng-invalid {\n    border-color: RGBA(var(--color-red-primary));\n  }\n}\n",
+                    "data": "@import \"../base/mixins\";\n\nbmb-input-wrapper {\n  align-items: center;\n  display: flex;\n  position: relative;\n\n  > .bmb-input-simple {\n    @include inputType(simple);\n    @include inputPad(l);\n  }\n\n  .bmb-input-simple ~ .bmb-icon {\n    color: RGBA(var(--color-marine-100));\n  }\n\n  > .bmb-input-normal {\n    @include inputType(normal);\n    @include inputPad(l);\n  }\n\n  .bmb-input-normal ~ .bmb-icon {\n    color: RGBA(var(--color-white));\n  }\n\n  > .bmb-input-main {\n    @include inputType(main);\n    @include inputPad(l);\n  }\n\n  .bmb-input-main ~ .bmb-icon {\n    color: RGBA(var(--color-marine-100));\n  }\n\n  .bmb-icon {\n    font-size: rem_calc(24) !important;\n    left: rem_calc(8);\n    position: absolute;\n    top: 50%;\n    transform: translateY(-50%);\n  }\n}\n\nbmb-input-form {\n  display: flex;\n  flex-direction: column;\n  padding: rem_calc(2);\n\n  > .bmb-label {\n    @include font(3, regular);\n    color: RGBA(var(--color-charade-900));\n    padding: rem_calc(8) rem_calc(8) rem_calc(4) rem_calc(8);\n  }\n\n  > .bmb-helper {\n    @include font(3, regular);\n    color: RGBA(var(--color-charade-300));\n    padding: rem_calc(4) rem_calc(8) rem_calc(8) rem_calc(8);\n  }\n}\n",
                     "styleUrl": "../../../assets/styles/components/_icon-text-input.scss"
                 }
             ],
@@ -1197,11 +1218,867 @@
                     }
                 }
             },
-            "templateData": "<!-- <div class=\"bmb-input-wrapper\">\n    <input bmb-text-input type=\"search\" placeholder=\"Search\" />\n    <bmb-icon class=\"app-button-icon\" icon=\"{{ icon }}\" *ngIf=\"!image\" />\n    <svg\n       xmlns=\"http://www.w3.org/2000/svg\"\n       class=\"bmb-input-icon\"\n       viewBox=\"0 0 20 20\"\n       fill=\"currentColor\"\n    >\n       <path\n          fill-rule=\"evenodd\"\n          d=\"M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z\"\n          clip-rule=\"evenodd\"\n       />\n    </svg>\n </div> -->"
+            "templateData": ""
+        },
+        {
+            "name": "BmbInputComponent",
+            "id": "component-BmbInputComponent-7ce2d77eb4e52a4c28d36a653f96547e3776d6e97235ab2825cd8778081a1a525e0a41ac3fb8902eb48aed6ab071e17a31e68d1f95807e00db3fc3be305fecc9",
+            "file": "projects/ds-ng/src/lib/components/bmb-input/bmb-input.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [
+                {
+                    "name": "{\n    provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => BmbInputComponent), multi: true,\n}",
+                    "type": "component"
+                },
+                {
+                    "name": "{\n    provide: NG_VALIDATORS, useExisting: forwardRef(() => BmbInputComponent), multi: true,\n}",
+                    "type": "component"
+                }
+            ],
+            "selector": "bmb-input",
+            "styleUrls": [
+                "../../../assets/styles/components/_input.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-input.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "errorMessage",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 51,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "icon",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 50,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "isClearable",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 56,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "isDisabled",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 53,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "isRequired",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 54,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "isValid",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 52,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "label",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 48,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "placeholder",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 49,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "value",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 55,
+                    "type": "string | undefined",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "handleBlur",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 60,
+                    "type": "EventEmitter<any>"
+                },
+                {
+                    "name": "handleChange",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 62,
+                    "type": "EventEmitter<any>"
+                },
+                {
+                    "name": "handleClick",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 58,
+                    "type": "EventEmitter<any>"
+                },
+                {
+                    "name": "handleFocus",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 59,
+                    "type": "EventEmitter<any>"
+                },
+                {
+                    "name": "handleMouseover",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 61,
+                    "type": "EventEmitter<any>"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "formControl",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "FormControl | undefined",
+                    "optional": false,
+                    "description": "",
+                    "line": 65
+                },
+                {
+                    "name": "input",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "NgModel | undefined",
+                    "optional": false,
+                    "description": "",
+                    "line": 46,
+                    "decorators": [
+                        {
+                            "name": "ViewChild",
+                            "stringifiedArguments": "'input', {static: false}"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ]
+                },
+                {
+                    "name": "inputModel",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string | undefined",
+                    "optional": false,
+                    "description": "",
+                    "line": 64,
+                    "modifierKind": [
+                        125
+                    ]
+                },
+                {
+                    "name": "inputWrapper",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ElementRef | undefined",
+                    "optional": false,
+                    "description": "",
+                    "line": 44,
+                    "decorators": [
+                        {
+                            "name": "ViewChild",
+                            "stringifiedArguments": "'inputWrapper', {read: ElementRef, static: false}"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ]
+                },
+                {
+                    "name": "onTouch",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Function | undefined",
+                    "optional": false,
+                    "description": "",
+                    "line": 66
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "getComponent",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 107,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "getValue",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 111,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "ngAfterViewInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 70,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "ngOnChanges",
+                    "args": [
+                        {
+                            "name": "changes",
+                            "type": "SimpleChanges",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 81,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "changes",
+                            "type": "SimpleChanges",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "onBlur",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 137,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onChange",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 145,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "value",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "onClear",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 91,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onClick",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 125,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onFocus",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 130,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onMouseover",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 141,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onParentClick",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 119,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "registerOnChange",
+                    "args": [
+                        {
+                            "name": "fn",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 151,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "fn",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "registerOnTouched",
+                    "args": [
+                        {
+                            "name": "fn",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 155,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "fn",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "setDisabledState",
+                    "args": [
+                        {
+                            "name": "state",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 159,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "state",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "setValidation",
+                    "args": [
+                        {
+                            "name": "validation",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 115,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "validation",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "setValue",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 174,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "value",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "validate",
+                    "args": [
+                        {
+                            "name": "form",
+                            "type": "FormControl",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "{ invalid: boolean; }",
+                    "typeParameters": [],
+                    "line": 165,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "form",
+                            "type": "FormControl",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "writeValue",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 147,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "value",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {\n  Component,\n  Input,\n  ViewChild,\n  ElementRef,\n  Output,\n  EventEmitter,\n  forwardRef,\n  AfterViewInit,\n  SimpleChanges,\n  OnChanges,\n  ChangeDetectorRef,\n} from '@angular/core';\n\nimport {\n  ControlValueAccessor,\n  NG_VALUE_ACCESSOR,\n  NG_VALIDATORS,\n  FormControl,\n  NgModel,\n} from '@angular/forms';\n\n@Component({\n  selector: 'bmb-input',\n  templateUrl: './bmb-input.component.html',\n  styleUrls: ['../../../assets/styles/components/_input.scss'],\n  providers: [\n    {\n      provide: NG_VALUE_ACCESSOR,\n      useExisting: forwardRef(() => BmbInputComponent),\n      multi: true,\n    },\n    {\n      provide: NG_VALIDATORS,\n      useExisting: forwardRef(() => BmbInputComponent),\n      multi: true,\n    },\n  ],\n})\nexport class BmbInputComponent\n  implements ControlValueAccessor, AfterViewInit, OnChanges\n{\n  @ViewChild('inputWrapper', { read: ElementRef, static: false })\n  inputWrapper: ElementRef | undefined;\n  @ViewChild('input', { static: false })\n  input: NgModel | undefined;\n\n  @Input() label: string = '';\n  @Input() placeholder: string = '';\n  @Input() icon: string = '';\n  @Input() errorMessage: string = '';\n  @Input() isValid: boolean = true;\n  @Input() isDisabled: boolean = false;\n  @Input() isRequired: boolean = false;\n  @Input() value: string | undefined;\n  @Input() isClearable: boolean = false;\n\n  @Output() handleClick: EventEmitter<any> = new EventEmitter();\n  @Output() handleFocus: EventEmitter<any> = new EventEmitter();\n  @Output() handleBlur: EventEmitter<any> = new EventEmitter();\n  @Output() handleMouseover: EventEmitter<any> = new EventEmitter();\n  @Output() handleChange: EventEmitter<any> = new EventEmitter();\n\n  public inputModel: string | undefined;\n  formControl: FormControl | undefined;\n  onTouch: Function | undefined;\n\n  constructor(private cdr: ChangeDetectorRef) {}\n\n  ngAfterViewInit(): void {\n    if (this.isDisabled && this.formControl) {\n      this.formControl.disable();\n    }\n    setTimeout(() => {\n      if (this.value && this.inputModel !== undefined) {\n        this.value = undefined;\n      }\n    }, 0);\n  }\n\n  ngOnChanges(changes: SimpleChanges): void {\n    if (this.formControl && changes?.['isDisabled'] !== undefined) {\n      if (this.formControl.disabled !== changes?.['isDisabled']?.currentValue) {\n        changes?.['isDisabled']?.currentValue\n          ? this.formControl.disable()\n          : this.formControl.enable();\n      }\n    }\n  }\n\n  onClear() {\n    this.inputModel = undefined;\n    this.value = undefined;\n    this.inputWrapper?.nativeElement\n      .querySelector('.bmb__field--input')\n      .focus();\n\n    if (this.isClearable && this.formControl) {\n      this.formControl.reset();\n    }\n\n    this.cdr.detectChanges();\n\n    this.handleChange.emit(this.getValue());\n  }\n\n  getComponent() {\n    return this.input;\n  }\n\n  getValue() {\n    return this.input?.['viewModel'];\n  }\n\n  setValidation(validation: any) {\n    this.isValid = validation;\n  }\n\n  onParentClick() {\n    this.inputWrapper?.nativeElement\n      .querySelector('.bmb__field--input')\n      .focus();\n  }\n\n  onClick() {\n    this.handleChange.emit(this.getValue());\n    this.handleClick.emit(this.getValue());\n  }\n\n  onFocus() {\n    this.handleFocus.emit(this.getValue());\n    if (this.onTouch) {\n      this.onTouch();\n    }\n  }\n\n  onBlur() {\n    this.handleBlur.emit(this.getValue());\n  }\n\n  onMouseover() {\n    this.handleMouseover.emit(this.getValue());\n  }\n\n  onChange(value: any): void {}\n\n  writeValue(value: string): void {\n    this.inputModel = value;\n  }\n\n  registerOnChange(fn: any): void {\n    this.onChange = fn;\n  }\n\n  registerOnTouched(fn: any): void {\n    this.onTouch = fn;\n  }\n\n  setDisabledState(state: boolean): void {\n    if (this.formControl) {\n      this.isDisabled = state;\n    }\n  }\n\n  validate(form: FormControl) {\n    this.formControl = form;\n    if (!form?.value && this.isRequired === true) {\n      return { invalid: true };\n    } else {\n      return null;\n    }\n  }\n\n  setValue(value: string) {\n    this.onChange(value);\n    if (this.input?.['viewModel'] === '') {\n      this.inputModel = undefined;\n      this.value = undefined;\n      this.cdr.detectChanges();\n    }\n    this.handleChange.emit(this.getValue());\n    if (this.onTouch) {\n      this.onTouch();\n    }\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".bmb__field {\n  &--label {\n  }\n\n  &--wrapper {\n    align-items: center;\n    display: flex;\n    justify-content: center;\n    padding: 0;\n    position: relative;\n    width: 100%;\n  }\n\n  &--error {\n  }\n\n  &--icon {\n  }\n\n  &--helper {\n  }\n\n  &--input {\n  }\n}\n",
+                    "styleUrl": "../../../assets/styles/components/_input.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "cdr",
+                        "type": "ChangeDetectorRef",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 66,
+                "jsdoctags": [
+                    {
+                        "name": "cdr",
+                        "type": "ChangeDetectorRef",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "extends": [],
+            "implements": [
+                "ControlValueAccessor",
+                "AfterViewInit",
+                "OnChanges"
+            ],
+            "templateData": "<div class=\"bmb__field\">\n  <label for=\"\" class=\"bmb__field--label\" *ngIf=\"label\">{{ label }}</label>\n  <div\n    class=\"bmb__field--wrapper\"\n    [ngClass]=\"[!isValid ? 'bmb__field--error' : '']\"\n    (click)=\"onParentClick()\"\n    #inputWrapper\n  >\n    <bmb-icon *ngIf=\"icon || !isValid\" [icon]=\"icon\" class=\"bmb__field--icon\" />\n    <input\n      type=\"text\"\n      class=\"bmb__field--input\"\n      (ngModelChange)=\"setValue(input.viewModel)\"\n      (click)=\"onClick()\"\n      (focus)=\"onFocus()\"\n      (blur)=\"onBlur()\"\n      (mouseover)=\"onMouseover()\"\n      [(ngModel)]=\"value || inputModel\"\n      [required]=\"isRequired\"\n      [disabled]=\"isDisabled\"\n      [placeholder]=\"placeholder ? placeholder : ''\"\n      #input=\"ngModel\"\n    />\n  </div>\n  <p *ngIf=\"errorMessage && !isValid\" class=\"bmb__field--helper\">\n    {{ errorMessage }}\n  </p>\n</div>\n"
+        },
+        {
+            "name": "BmbInteractiveIconComponent",
+            "id": "component-BmbInteractiveIconComponent-36373433db7b0f8b306fb4b0ccd3704fe2098ab04ed7dfb05daa8d82d2b573852e6c785102bc5d7550246630b3a22e915d5638d806beb78ace5196f6dc33359f",
+            "file": "projects/ds-ng/src/lib/components/bmb-interactive-icon/bmb-interactive-icon.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-interactive-icon",
+            "styleUrls": [
+                "../../../assets/styles/components/_interactiveIcon.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-interactive-icon.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "appearance",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 17,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "grouped",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 21,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "icon",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 19,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "image",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 20,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "text",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 18,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "getClasses",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "string[]",
+                    "typeParameters": [],
+                    "line": 42,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "ngAfterViewInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 25,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ElementRef,\n  Renderer2,\n  AfterViewInit,\n} from '@angular/core';\n\n@Component({\n  selector: 'bmb-interactive-icon',\n  templateUrl: './bmb-interactive-icon.component.html',\n  styleUrls: ['../../../assets/styles/components/_interactiveIcon.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbInteractiveIconComponent implements AfterViewInit {\n  @Input() appearance: string = '';\n  @Input() text: string = '';\n  @Input() icon: string = '';\n  @Input() image: string = '';\n  @Input() grouped: boolean = false;\n\n  constructor(private el: ElementRef, private renderer: Renderer2) {}\n\n  ngAfterViewInit() {\n    if (this.grouped) {\n      const parentElement = this.el.nativeElement.parentElement;\n\n      let wrapperDiv = parentElement.querySelector(\n        '.interactive__icon--grouped'\n      );\n      if (!wrapperDiv) {\n        wrapperDiv = this.renderer.createElement('div');\n        this.renderer.addClass(wrapperDiv, 'interactive__icon--grouped');\n        this.renderer.insertBefore(parentElement, wrapperDiv, null);\n      }\n\n      this.renderer.appendChild(wrapperDiv, this.el.nativeElement);\n    }\n  }\n\n  getClasses(): string[] {\n    const classes: string[] = ['interactive__icon'];\n\n    if (this.appearance) {\n      classes.push('interactive__icon--' + this.appearance);\n    }\n\n    return classes;\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@import \"../tokens/colors\";\n@import \"../base/rem\";\n@import \"../base/measures\";\n@import \"../base/fonts\";\n\n.interactive__icon {\n  align-items: center;\n  display: flex;\n  flex-flow: column;\n  width: rem_calc(64);\n\n  &--grouped {\n    display: flex;\n    flex-flow: row wrap;\n    gap: $spacing-size-lg;\n  }\n\n  &--box {\n    align-items: center;\n    border-radius: $spacing-size-md;\n    display: flex;\n    height: rem_calc(64);\n    justify-content: center;\n    width: rem_calc(64);\n  }\n\n  &--icon,\n  &--image {\n    height: rem_calc(32);\n    width: rem_calc(32);\n  }\n\n  &--icon {\n    color: RGBA(var(--color-white-primary));\n    font-size: rem_calc(32);\n  }\n\n  &--text {\n    display: block;\n    margin-top: $spacing-size-md;\n    @include font(3, regular);\n    color: RGBA(var(--color-white-primary));\n    text-align: center;\n  }\n\n  &--red {\n    .interactive__icon--box {\n      background-color: RGBA(var(--color-red-primary));\n    }\n  }\n\n  &--blue {\n    .interactive__icon--box {\n      background-color: RGBA(var(--color-mariner-700));\n    }\n  }\n\n  &--green {\n    .interactive__icon--box {\n      background-color: RGBA(var(--color-green-primary));\n    }\n  }\n\n  &--yellow {\n    .interactive__icon--box {\n      background-color: RGBA(var(--color-yellow-primary));\n    }\n  }\n\n  &--purple {\n    .interactive__icon--box {\n      background-color: RGBA(var(--color-purple-primary));\n    }\n  }\n}\n",
+                    "styleUrl": "../../../assets/styles/components/_interactiveIcon.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "el",
+                        "type": "ElementRef",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "renderer",
+                        "type": "Renderer2",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 21,
+                "jsdoctags": [
+                    {
+                        "name": "el",
+                        "type": "ElementRef",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "renderer",
+                        "type": "Renderer2",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "extends": [],
+            "implements": [
+                "AfterViewInit"
+            ],
+            "templateData": "<div [ngClass]=\"getClasses()\">\n  <div class=\"interactive__icon--box\">\n    <bmb-icon\n      class=\"interactive__icon--icon\"\n      icon=\"{{ icon }}\"\n      *ngIf=\"!image\"\n    />\n    <img\n      *ngIf=\"image\"\n      [src]=\"image\"\n      alt=\"text\"\n      class=\"interactive__icon--image\"\n    />\n  </div>\n  <span class=\"interactive__icon--text\" *ngIf=\"text\">{{ text }}</span>\n</div>\n"
+        },
+        {
+            "name": "BmbLogoComponent",
+            "id": "component-BmbLogoComponent-475037835bf5886fa82be5008b587bbd10dc29ea72fc6a6a45835c2646a2058e68cedc636a0fdb8c679b81bdceabd58a6effefd06a93de43d1d5243b310debb0",
+            "file": "projects/ds-ng/src/lib/components/bmb-logo/bmb-logo.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-logo",
+            "styleUrls": [
+                "../../../assets/styles/components/_logo.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-logo.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "altImage",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 12,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "image",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 11,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "size",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 10,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "getClasses",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "string[]",
+                    "typeParameters": [],
+                    "line": 14,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, ChangeDetectionStrategy } from '@angular/core';\n\n@Component({\n  selector: 'bmb-logo',\n  templateUrl: './bmb-logo.component.html',\n  styleUrls: ['../../../assets/styles/components/_logo.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbLogoComponent {\n  @Input() size: string = '';\n  @Input() image: string = '';\n  @Input() altImage: string = '';\n\n  getClasses(): string[] {\n    const classes: string[] = ['logo'];\n\n    if (this.size) {\n      classes.push('logo--' + this.size);\n    }\n\n    return classes;\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@import \"../tokens/colors\";\n@import \"../base/rem\";\n\n.logo {\n  align-items: center;\n  display: flex;\n  justify-content: center;\n  overflow: hidden;\n\n  img {\n    height: 100%;\n    width: 100%;\n  }\n\n  &--small {\n    width: rem_calc(32);\n  }\n\n  &--medium {\n    width: rem_calc(120);\n  }\n\n  &--large {\n    width: rem_calc(240);\n  }\n}\n",
+                    "styleUrl": "../../../assets/styles/components/_logo.scss"
+                }
+            ],
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<div [ngClass]=\"getClasses()\">\n  <img [src]=\"image\" [alt]=\"altImage\" />\n</div>\n"
         },
         {
             "name": "BmbTextInputComponent",
-            "id": "component-BmbTextInputComponent-053c3e13175403bc2ed6ee198f6a1eaffbdae65c12ec544f075126773e2e9f93180ac1564a74c02634fd1ecbfe978aff48e672d29d7fc37e6b3bc8654b915926",
+            "id": "component-BmbTextInputComponent-882df5006ef193bac6d0a058ec29223347827e5952ea9cf6248d9f123b0cffe9c599858b892fdcd9f3943e5d2d465e13fdfc23fcf7a4d3a69bf3d697797381bf",
             "file": "projects/ds-ng/src/lib/components/bmb-text-input/bmb-text-input.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -1219,7 +2096,35 @@
             ],
             "viewProviders": [],
             "hostDirectives": [],
-            "inputsClass": [],
+            "inputsClass": [
+                {
+                    "name": "appearance",
+                    "defaultValue": "'normal'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 18,
+                    "type": "\"normal\" | \"simple\" | \"main\"",
+                    "decorators": []
+                },
+                {
+                    "name": "device",
+                    "defaultValue": "'desktop'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 19,
+                    "type": "\"mobile\" | \"desktop\"",
+                    "decorators": []
+                },
+                {
+                    "name": "type",
+                    "defaultValue": "'text'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 20,
+                    "type": "\"text\" | \"date\" | \"datetime\" | \"email\" | \"number\" | \"password\"",
+                    "decorators": []
+                }
+            ],
             "outputsClass": [],
             "propertiesClass": [],
             "methodsClass": [],
@@ -1227,10 +2132,18 @@
             "deprecationMessage": "",
             "hostBindings": [
                 {
+                    "name": "class",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 28,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
                     "name": "class.ng-invalid",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 13,
+                    "line": 24,
                     "type": "boolean",
                     "decorators": []
                 }
@@ -1241,11 +2154,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, ChangeDetectionStrategy, HostBinding, Optional, Input } from '@angular/core';\nimport { NgControl } from '@angular/forms';\n\n@Component({\n  selector: '[bmb-text-input]',\n  templateUrl: './bmb-text-input.component.html',\n  styleUrls: ['../../../assets/styles/components/_text-inputs.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbTextInputComponent {\n\n  @HostBinding('class.ng-invalid')\n  get invalid(): boolean {\n    return this._ngControl?.invalid ?? false;\n  }\n\n  constructor(@Optional() private readonly _ngControl?: NgControl){\n  }\n\n\n}\n",
+            "sourceCode": "import { \n  Component, \n  ChangeDetectionStrategy, \n  HostBinding, \n  Optional, \n  Input,\n} from '@angular/core';\nimport { NgControl } from '@angular/forms';\n\n@Component({\n  selector: '[bmb-text-input]',\n  templateUrl: './bmb-text-input.component.html',\n  styleUrls: ['../../../assets/styles/components/_text-inputs.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbTextInputComponent {\n\n  @Input() appearance: 'normal' | 'simple' | 'main' = 'normal';\n  @Input() device: 'mobile' | 'desktop' = 'desktop';\n  @Input() type: 'text' | 'date' | 'datetime' | 'email' | 'number' | 'password' = 'text'\n\n\n  @HostBinding('class.ng-invalid')\n  get invalid(): boolean {\n    return this._ngControl?.invalid ?? false;\n  }  \n\n  @HostBinding('class') get elementClass(): string {\n    return `bmb-input-${this.appearance} bmb-input-${this.device}`;\n  }\n\n\n  constructor(\n    @Optional() \n    private readonly _ngControl?: NgControl,\n    ){\n  }\n\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@import \"../tokens/colors\";\n@import \"../base/rem\";\n@import \"../base/measures\";\n@import \"../base/fonts\";\n\n// Text input as directive\n:host {\n  @include font(4, regular);\n  border: rem_calc(1) solid RGBA(var(--color-charade-100));\n  background-color: RGBA(var(--color-charade-100));\n  box-sizing: border-box;\n  border-radius: rem_calc(3);\n  padding: rem_calc(8);\n  // padding: rem_calc(8) rem_calc(8) rem_calc(8) rem_calc(8);\n  min-height: rem_calc(38);\n  width: 100%;\n  height: 100%;\n\n  &:focus {\n    outline: none;\n    border-color: RGBA(var(--color-blue-primary));\n    box-shadow: rem_calc(0) rem_calc(0) rem_calc(2) rem_calc(2)\n      RGBA(var(--color-marine-900));\n  }\n\n  &::placeholder {\n    color: RGBA(var(--color-charade-300));\n  }\n\n  &:disabled:focus {\n    outline: none;\n  }\n\n  &.ng-invalid {\n    border-color: RGBA(var(--color-red-primary));\n  }\n}\n\n// Styles for error message in input\n.bmb-text-error {\n  @include font(2, regular);\n  padding: rem_calc(8);\n\n  *:first-child {\n    color: RGBA(var(--color-red-primary));\n  }\n}\n\n.bmb-text-msg {\n  @include font(2, regular);\n  padding: rem_calc(8);\n\n  *:first-child {\n    color: RGBA(var(--color-black-primary));\n  }\n}\n\n.bmb-form-label {\n  @include font(3, medium);\n  display: block;\n  padding: rem_calc(4);\n}\n\nbmb-icon-text-input {\n  position: relative;\n  display: flex;\n  align-items: center;\n\n  > input {\n    border: rem_calc(1) solid RGBA(var(--color-charade-100));\n    background-color: RGBA(var(--color-charade-100));\n    box-sizing: border-box;\n    border-radius: rem_calc(3);\n    padding: rem_calc(8) rem_calc(8) rem_calc(8) rem_calc(35);\n    min-height: rem_calc(38);\n    width: 100%;\n    height: 100%;\n\n    &:focus {\n      outline: none;\n      border-color: RGBA(var(--color-blue-primary));\n      box-shadow: rem_calc(0) rem_calc(0) rem_calc(2) rem_calc(2)\n        RGBA(var(--color-marine-900));\n    }\n\n    &::placeholder {\n      color: RGBA(var(--color-charade-300));\n    }\n\n    &:disabled:focus {\n      outline: none;\n    }\n\n    &.ng-invalid {\n      border-color: RGBA(var(--color-red-primary));\n    }\n  }\n\n  > i {\n    color: RGBA(var(--color-marine-900));\n    position: absolute;\n    width: rem_calc(20);\n    height: rem_calc(20);\n    left: rem_calc(5);\n    top: 50%;\n    transform: translateY(-50%);\n  }\n}\n\n// .bmb-text-input{\n//     @include font(4, regular);\n//     border: rem_calc(1) solid RGBA(var(--color-charade-100));\n//     background-color: RGBA(var(--color-charade-100));\n//     box-sizing: border-box;\n//     border-radius: rem_calc(3);\n//     padding: rem_calc(8) rem_calc(8) rem_calc(8) rem_calc(35);\n//     min-height: rem_calc(38);\n//     width: 100%;\n//     height: 100%;\n\n//     &:focus{\n//         outline: none;\n//         border-color: RGBA(var(--color-blue-primary)) ;\n//         box-shadow: rem_calc(0) rem_calc(0) rem_calc(2) rem_calc(2) RGBA(var(--color-marine-900));\n//     }\n\n//     &::placeholder{\n//         color: RGBA(var(--color-charade-300));\n//     }\n\n//     &:disabled:focus {\n//         outline: none;\n//     }\n\n//     &.ng-invalid {\n//         border-color: RGBA(var(--color-red-primary));\n//     }\n// }\n\n.bmb-input-icon {\n  color: RGBA(var(--color-marine-900));\n  // position: absolute;\n  width: rem_calc(20);\n  height: rem_calc(20);\n  left: rem_calc(12);\n  top: 50%;\n  transform: translateY(-50%);\n}\n",
+                    "data": "@import \"../tokens/colors\";\n@import \"../base/rem\";\n@import \"../base/measures\";\n@import \"../base/fonts\";\n@import \"../base/mixins\";\n\n.bmb-input {\n  &.ng-invalid {\n    border-color: RGBA(var(--color-red-primary));\n  }\n\n  &-main {\n    @include inputType(main);\n    @include inputPad(s);\n  }\n\n  &-simple {\n    @include inputType(simple);\n    @include inputPad(s);\n  }\n\n  &-normal {\n    @include inputType(normal);\n    @include inputPad(s);\n  }\n\n  &.ng-invalid {\n    border-color: RGBA(var(--color-red-primary));\n  }\n}\n\n// Styles for error message in input\n.bmb-text-error {\n  @include font(2, medium);\n  color: RGBA(var(--color-red-primary));\n  padding: rem_calc(4) rem_calc(8) rem_calc(8) rem_calc(8);\n}\n\n.bmb-text-msg {\n  @include font(2, medium);\n  color: RGBA(var(--color-black));\n  padding: rem_calc(8) rem_calc(8) rem_calc(4) rem_calc(8);\n}\n",
                     "styleUrl": "../../../assets/styles/components/_text-inputs.scss"
                 }
             ],
@@ -1264,7 +2177,7 @@
                         "optional": true
                     }
                 ],
-                "line": 15,
+                "line": 30,
                 "jsdoctags": [
                     {
                         "name": "_ngControl",
@@ -1286,7 +2199,16 @@
                         "name": "invalid",
                         "type": "boolean",
                         "returnType": "boolean",
-                        "line": 13
+                        "line": 24
+                    }
+                },
+                "elementClass": {
+                    "name": "elementClass",
+                    "getSignature": {
+                        "name": "elementClass",
+                        "type": "string",
+                        "returnType": "string",
+                        "line": 28
                     }
                 }
             },
@@ -1438,7 +2360,7 @@
         },
         {
             "name": "BmbUserImageComponent",
-            "id": "component-BmbUserImageComponent-b2906caf1ba27c97ba8033ec11d288113f88d73b967d7e8d14d7878069584b49c9287495c17057946098015e1a6e809ac402581412385943bc070e5cc5c3d212",
+            "id": "component-BmbUserImageComponent-c73730de80dad606240fb250727b12722f8bc6b080aef88c35710196928b3a386138690dde5c92a06b38593b7d017f6054d33d30612aedc7251e11c0426e0f99",
             "file": "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-image.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -1462,7 +2384,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 13,
+                    "line": 12,
                     "type": "string",
                     "decorators": []
                 },
@@ -1471,7 +2393,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 12,
+                    "line": 11,
                     "type": "string",
                     "decorators": []
                 },
@@ -1480,7 +2402,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 11,
+                    "line": 10,
                     "type": "string",
                     "decorators": []
                 }
@@ -1492,9 +2414,9 @@
                     "name": "getClasses",
                     "args": [],
                     "optional": false,
-                    "returnType": "Props",
+                    "returnType": "string[]",
                     "typeParameters": [],
-                    "line": 17,
+                    "line": 14,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -1508,23 +2430,15 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, ChangeDetectionStrategy } from '@angular/core';\nimport { Props } from './bmb-user-image.interface';\n\n@Component({\n  selector: 'bmb-user-image',\n  templateUrl: './bmb-user-image.component.html',\n  styleUrls: ['../../../assets/styles/components/_userImage.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbUserImageComponent {\n  @Input() size: string = '';\n  @Input() image: string = '';\n  @Input() altImage: string = '';\n\n  constructor() {}\n\n  getClasses(): Props {\n    let classes: Props = {\n      'user-image': true,\n    };\n\n    if (this.size) {\n      classes[this.size] = true;\n    }\n\n    return classes;\n  }\n}\n",
+            "sourceCode": "import { Component, Input, ChangeDetectionStrategy } from '@angular/core';\n\n@Component({\n  selector: 'bmb-user-image',\n  templateUrl: './bmb-user-image.component.html',\n  styleUrls: ['../../../assets/styles/components/_userImage.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbUserImageComponent {\n  @Input() size: string = '';\n  @Input() image: string = '';\n  @Input() altImage: string = '';\n\n  getClasses(): string[] {\n    const classes: string[] = ['user__image'];\n\n    if (this.size) {\n      classes.push('user__image--' + this.size);\n    }\n\n    return classes;\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@import \"../tokens/colors\";\n@import \"../base/rem\";\n\n.user-image {\n  align-items: center;\n  background-color: RGBA(var(--color-mariner-900));\n  border-radius: 100%;\n  display: flex;\n  height: rem_calc(50);\n  justify-content: center;\n  overflow: hidden;\n  width: rem_calc(50);\n\n  img {\n    height: 100%;\n    width: 100%;\n  }\n\n  &.mobile-small {\n    height: rem_calc(32);\n    width: rem_calc(32);\n  }\n\n  &.mobile-medium {\n    height: rem_calc(64);\n    width: rem_calc(64);\n  }\n\n  &.mobile-large {\n    height: rem_calc(100);\n    width: rem_calc(100);\n  }\n\n  &.mobile-xlarge {\n    height: rem_calc(200);\n    width: rem_calc(200);\n  }\n\n  &.desktop-small {\n    height: rem_calc(56);\n    width: rem_calc(56);\n  }\n\n  &.desktop-large {\n    height: rem_calc(160);\n    width: rem_calc(160);\n  }\n}\n",
+                    "data": "@import \"../tokens/colors\";\n@import \"../base/rem\";\n\n.user__image {\n  align-items: center;\n  background-color: RGBA(var(--color-mariner-900));\n  border-radius: 100%;\n  display: flex;\n  height: rem_calc(50);\n  justify-content: center;\n  overflow: hidden;\n  width: rem_calc(50);\n\n  img {\n    height: 100%;\n    width: 100%;\n  }\n\n  &--mobile-small {\n    height: rem_calc(32);\n    width: rem_calc(32);\n  }\n\n  &--mobile-medium {\n    height: rem_calc(64);\n    width: rem_calc(64);\n  }\n\n  &--mobile-large {\n    height: rem_calc(100);\n    width: rem_calc(100);\n  }\n\n  &--mobile-xlarge {\n    height: rem_calc(200);\n    width: rem_calc(200);\n  }\n\n  &--desktop-small {\n    height: rem_calc(56);\n    width: rem_calc(56);\n  }\n\n  &--desktop-large {\n    height: rem_calc(160);\n    width: rem_calc(160);\n  }\n}\n",
                     "styleUrl": "../../../assets/styles/components/_userImage.scss"
                 }
             ],
             "stylesData": "",
-            "constructorObj": {
-                "name": "constructor",
-                "description": "",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "args": [],
-                "line": 13
-            },
             "extends": [],
             "templateData": "<div [ngClass]=\"getClasses()\">\n  <img [src]=\"image\" [alt]=\"altImage\" />\n</div>\n"
         },
@@ -1569,7 +2483,7 @@
     "modules": [
         {
             "name": "DsNgModule",
-            "id": "module-DsNgModule-121201a597d2aa7c25f52566fec6cde913c2155076f5a371051a773821e5467d13c5629b0f5d297baa65d3ad2ad0b65072366306174ff6b229c07be316b38c71",
+            "id": "module-DsNgModule-b67c99456d8ec0def976dac17b29752419ef7580d45283ae03b956be131573d80c277d19c69c20870ef1b3ead57c940b5bab8b56dbc3fa9a0a7b27dbf47014e1",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
@@ -1581,12 +2495,12 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 55,
+                    "line": 67,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
             ],
-            "sourceCode": "import { NgModule, Injector, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';\nimport { createCustomElement } from '@angular/elements';\nimport { BrowserModule } from '@angular/platform-browser';\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\nimport { FormsModule } from '@angular/forms';\nimport { CommonModule } from '@angular/common';\nimport { BmbButtonDirective } from './directives/button.directive';\nimport { DsNgComponent } from './ds-ng.component';\nimport { BmbIconComponent } from './components/bmb-icon/bmb-icon.component';\nimport { BmbAlertComponent } from './components/bmb-alert/bmb-alert.component';\nimport { BmbThemeComponent } from './components/bmb-theme/bmb-theme.component';\nimport { BmbBadgeComponent } from './components/bmb-badge/bmb-badge.component';\nimport { BmbDividerComponent } from './components/bmb-divider/bmb-divider.component';\nimport { BmbUserImageComponent } from './components/bmb-user-image/bmb-user-image.component';\nimport { BmbAppButtonComponent } from './components/bmb-app-button/bmb-app-button.component';\nimport { BmbTextInputComponent } from './components/bmb-text-input/bmb-text-input.component';\nimport { BmbIconTextInputComponent } from './components/bmb-icon-text-input/bmb-icon-text-input.component';\nimport { BmbDotPaginatorComponent } from './components/bmb-dot-paginator/bmb-dot-paginator.component';\n\n@NgModule({\n  declarations: [\n    DsNgComponent,\n    BmbIconComponent,\n    BmbThemeComponent,\n    BmbAlertComponent,\n    BmbBadgeComponent,\n    BmbButtonDirective,\n    BmbDividerComponent,\n    BmbTextInputComponent,\n    BmbUserImageComponent,\n    BmbAppButtonComponent,\n    BmbDotPaginatorComponent,\n    BmbIconTextInputComponent,\n  ],\n  imports: [CommonModule, FormsModule],\n  exports: [\n    DsNgComponent,\n    BmbIconComponent,\n    BmbBadgeComponent,\n    BmbAlertComponent,\n    BmbThemeComponent,\n    BmbButtonDirective,\n    BmbDividerComponent,\n    BmbUserImageComponent,\n    BmbTextInputComponent,\n    BmbAppButtonComponent,\n    BmbDotPaginatorComponent,\n    BmbIconTextInputComponent,\n  ],\n  schemas: [CUSTOM_ELEMENTS_SCHEMA],\n})\nexport class DsNgModule {\n  constructor(private injector: Injector) {}\n\n  ngDoBootsrap() {\n    const custonElement = createCustomElement(BmbIconTextInputComponent, {\n      injector: this.injector,\n    });\n    customElements.define('bmb-icon-text-input', custonElement);\n  }\n}\n",
+            "sourceCode": "import { NgModule, Injector, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';\nimport { createCustomElement } from '@angular/elements';\nimport { BrowserModule } from '@angular/platform-browser';\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\nimport { FormsModule } from '@angular/forms';\nimport { CommonModule } from '@angular/common';\nimport { BmbButtonDirective } from './directives/button.directive';\nimport { DsNgComponent } from './ds-ng.component';\nimport { BmbLogoComponent } from './components/bmb-logo/bmb-logo.component';\nimport { BmbIconComponent } from './components/bmb-icon/bmb-icon.component';\nimport { BmbAlertComponent } from './components/bmb-alert/bmb-alert.component';\nimport { BmbThemeComponent } from './components/bmb-theme/bmb-theme.component';\nimport { BmbBadgeComponent } from './components/bmb-badge/bmb-badge.component';\nimport { BmbInputComponent } from './components/bmb-input/bmb-input.component';\nimport { BmbDividerComponent } from './components/bmb-divider/bmb-divider.component';\nimport { BmbContainerComponent } from './components/bmb-container/bmb-container.component';\nimport { BmbUserImageComponent } from './components/bmb-user-image/bmb-user-image.component';\nimport { BmbTextInputComponent } from './components/bmb-text-input/bmb-text-input.component';\nimport { BmbHeaderMobileComponent } from './components/bmb-header-mobile/bmb-header-mobile.component';\nimport { BmbIconTextInputComponent } from './components/bmb-icon-text-input/bmb-icon-text-input.component';\nimport { BmbDotPaginatorComponent } from './components/bmb-dot-paginator/bmb-dot-paginator.component';\nimport { BmbInteractiveIconComponent } from './components/bmb-interactive-icon/bmb-interactive-icon.component';\n\n@NgModule({\n  declarations: [\n    DsNgComponent,\n    BmbLogoComponent,\n    BmbIconComponent,\n    BmbThemeComponent,\n    BmbAlertComponent,\n    BmbBadgeComponent,\n    BmbInputComponent,\n    BmbButtonDirective,\n    BmbDividerComponent,\n    BmbContainerComponent,\n    BmbTextInputComponent,\n    BmbUserImageComponent,\n    BmbHeaderMobileComponent,\n    BmbDotPaginatorComponent,\n    BmbIconTextInputComponent,\n    BmbInteractiveIconComponent,\n  ],\n  imports: [CommonModule, FormsModule],\n  exports: [\n    DsNgComponent,\n    BmbLogoComponent,\n    BmbIconComponent,\n    BmbBadgeComponent,\n    BmbAlertComponent,\n    BmbThemeComponent,\n    BmbInputComponent,\n    BmbButtonDirective,\n    BmbDividerComponent,\n    BmbUserImageComponent,\n    BmbContainerComponent,\n    BmbTextInputComponent,\n    BmbHeaderMobileComponent,\n    BmbDotPaginatorComponent,\n    BmbIconTextInputComponent,\n    BmbInteractiveIconComponent,\n  ],\n  schemas: [CUSTOM_ELEMENTS_SCHEMA],\n})\nexport class DsNgModule {\n  constructor(private injector: Injector) {}\n\n  ngDoBootsrap() {\n    const customInputWrapper = createCustomElement(BmbIconTextInputComponent, {\n      injector: this.injector,\n    });\n    customElements.define('bmb-input-wrapper', customInputWrapper);\n  }\n}\n",
             "children": [
                 {
                     "type": "providers",
@@ -1599,13 +2513,13 @@
                             "name": "BmbAlertComponent"
                         },
                         {
-                            "name": "BmbAppButtonComponent"
-                        },
-                        {
                             "name": "BmbBadgeComponent"
                         },
                         {
                             "name": "BmbButtonDirective"
+                        },
+                        {
+                            "name": "BmbContainerComponent"
                         },
                         {
                             "name": "BmbDividerComponent"
@@ -1614,10 +2528,22 @@
                             "name": "BmbDotPaginatorComponent"
                         },
                         {
+                            "name": "BmbHeaderMobileComponent"
+                        },
+                        {
                             "name": "BmbIconComponent"
                         },
                         {
                             "name": "BmbIconTextInputComponent"
+                        },
+                        {
+                            "name": "BmbInputComponent"
+                        },
+                        {
+                            "name": "BmbInteractiveIconComponent"
+                        },
+                        {
+                            "name": "BmbLogoComponent"
                         },
                         {
                             "name": "BmbTextInputComponent"
@@ -1644,13 +2570,13 @@
                             "name": "BmbAlertComponent"
                         },
                         {
-                            "name": "BmbAppButtonComponent"
-                        },
-                        {
                             "name": "BmbBadgeComponent"
                         },
                         {
                             "name": "BmbButtonDirective"
+                        },
+                        {
+                            "name": "BmbContainerComponent"
                         },
                         {
                             "name": "BmbDividerComponent"
@@ -1659,10 +2585,22 @@
                             "name": "BmbDotPaginatorComponent"
                         },
                         {
+                            "name": "BmbHeaderMobileComponent"
+                        },
+                        {
                             "name": "BmbIconComponent"
                         },
                         {
                             "name": "BmbIconTextInputComponent"
+                        },
+                        {
+                            "name": "BmbInputComponent"
+                        },
+                        {
+                            "name": "BmbInteractiveIconComponent"
+                        },
+                        {
+                            "name": "BmbLogoComponent"
                         },
                         {
                             "name": "BmbTextInputComponent"
@@ -1726,6 +2664,56 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-header-mobile/bmb-header-mobile.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-interactive-icon/bmb-interactive-icon.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-logo/bmb-logo.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
@@ -1824,7 +2812,7 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<BmbBadgeProps>",
+                "rawtype": "StoryObj<BmbBadgeComponent>",
                 "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -1835,7 +2823,62 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<BmbUserImageProps>",
+                "rawtype": "StoryObj<BmbContainerComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<BmbHeaderMobileComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-header-mobile/bmb-header-mobile.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<BmbIconComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<BmbInteractiveIconComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-interactive-icon/bmb-interactive-icon.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<BmbLogoComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-logo/bmb-logo.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<BmbUserImageComponent>",
                 "file": "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -1885,6 +2928,66 @@
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-header-mobile/bmb-header-mobile.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-header-mobile/bmb-header-mobile.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-interactive-icon/bmb-interactive-icon.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-interactive-icon/bmb-interactive-icon.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-logo/bmb-logo.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-logo/bmb-logo.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
@@ -1994,8 +3097,73 @@
                     "name": "Story",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
-                    "rawtype": "StoryObj<BmbBadgeProps>",
+                    "rawtype": "StoryObj<BmbBadgeComponent>",
                     "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbContainerComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-header-mobile/bmb-header-mobile.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbHeaderMobileComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-header-mobile/bmb-header-mobile.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbIconComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-interactive-icon/bmb-interactive-icon.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbInteractiveIconComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-interactive-icon/bmb-interactive-icon.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-logo/bmb-logo.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbLogoComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-logo/bmb-logo.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -2007,7 +3175,7 @@
                     "name": "Story",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
-                    "rawtype": "StoryObj<BmbUserImageProps>",
+                    "rawtype": "StoryObj<BmbUserImageComponent>",
                     "file": "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
@@ -2052,15 +3220,6 @@
                 "status": "low"
             },
             {
-                "filePath": "projects/ds-ng/src/lib/components/bmb-app-button/bmb-app-button.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "BmbAppButtonComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/5",
-                "status": "low"
-            },
-            {
                 "filePath": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -2071,15 +3230,25 @@
             },
             {
                 "filePath": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
-                "type": "interface",
-                "linktype": "interface",
-                "name": "BmbBadgeProps",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-container/bmb-container.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbContainerComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/4",
                 "status": "low"
             },
             {
-                "filePath": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
+                "filePath": "projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -2125,6 +3294,25 @@
                 "status": "low"
             },
             {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-header-mobile/bmb-header-mobile.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbHeaderMobileComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/12",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-header-mobile/bmb-header-mobile.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/ds-ng/src/lib/components/bmb-icon-text-input/bmb-icon-text-input.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -2143,12 +3331,69 @@
                 "status": "low"
             },
             {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-input/bmb-input.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbInputComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/39",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-interactive-icon/bmb-interactive-icon.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbInteractiveIconComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/9",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-interactive-icon/bmb-interactive-icon.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-logo/bmb-logo.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbLogoComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-logo/bmb-logo.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/ds-ng/src/lib/components/bmb-text-input/bmb-text-input.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "BmbTextInputComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/3",
+                "coverageCount": "0/7",
                 "status": "low"
             },
             {
@@ -2166,25 +3411,7 @@
                 "linktype": "component",
                 "name": "BmbUserImageComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/6",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-image.interface.ts",
-                "type": "interface",
-                "linktype": "interface",
-                "name": "Props",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts",
-                "type": "interface",
-                "linktype": "interface",
-                "name": "BmbUserImageProps",
-                "coveragePercent": 0,
-                "coverageCount": "0/4",
+                "coverageCount": "0/5",
                 "status": "low"
             },
             {

@@ -1,27 +1,27 @@
 @import "../base/mixins";
 
 .alert {
-  &-neutral {
+  &--neutral {
     @include alert(neutral);
   }
 
-  &-primary {
+  &--primary {
     @include alert(primary);
   }
 
-  &-successful {
+  &--successful {
     @include alert(successful);
   }
 
-  &-warning {
+  &--warning {
     @include alert(warning);
   }
 
-  &-error {
+  &--error {
     @include alert(error);
   }
 
-  &-event {
+  &--event {
     @include alert(event);
   }
 }
