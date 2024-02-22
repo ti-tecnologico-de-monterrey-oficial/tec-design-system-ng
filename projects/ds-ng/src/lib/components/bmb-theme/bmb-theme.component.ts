@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ThemeService } from '../../services/theme.service';
+import { ThemeService } from '../../services';
 
 @Component({
   selector: 'bmb-theme',
   templateUrl: './bmb-theme.component.html',
 })
 export class BmbThemeComponent implements OnInit {
-  selectedTheme: string = 'light';
+  selectedTheme: string = 'dark';
 
   constructor(private themeService: ThemeService) {}
 

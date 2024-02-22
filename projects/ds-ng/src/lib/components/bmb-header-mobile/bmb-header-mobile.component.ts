@@ -8,7 +8,6 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 })
 export class BmbHeaderMobileComponent {
   @Input() text: string = '';
-  @Input() type: string = '';
   @Input() image: string = '';
   @Input() altImage: string = '';
   @Input() logo: string = '';

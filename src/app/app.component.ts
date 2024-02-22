@@ -1,33 +1,30 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import {
-  FormControl,
-  FormGroupDirective,
-  NgForm,
-  Validators,
-  FormsModule,
-  ReactiveFormsModule,
-} from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material/core';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import { ToastService } from '../../projects/ds-ng/src/lib/services';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-
-/** Error when invalid control is dirty, touched, or submitted. */
-
 export class AppComponent {
-
-  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
+  emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
 
   title = 'tec-design-system-ng';
 
-  value='tec-design'
+  value = 'tec-design';
 
   handleDot(index: number): void {
     console.log('Index clicked:', index);
+  }
+
+  constructor(private toastService: ToastService) {}
+
+  openToast() {
+    this.toastService.openToast();
   }
 }

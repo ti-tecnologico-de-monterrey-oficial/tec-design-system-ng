@@ -5,8 +5,8 @@ export default {
   title: 'Container',
   component: BmbContainerComponent,
   argTypes: {
-    type: {
-      name: 'Type',
+    appearance: {
+      name: 'Appearance',
       control: {
         type: 'radio',
       },
@@ -14,11 +14,12 @@ export default {
       table: {
         type: { summary: 'string' },
       },
-      description: 'The type of the container, visual changes.',
+      description:
+        'The appearance of the container, affecting its visual style.',
     },
   },
   args: {
-    type: 'button',
+    appearance: 'button',
   },
 } as Meta<typeof BmbContainerComponent>;
 

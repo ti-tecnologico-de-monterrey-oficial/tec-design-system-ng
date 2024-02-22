@@ -7,15 +7,15 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbContainerComponent {
-  @Input() type: string = '';
+  @Input() appearance: string = '';
 
   constructor() {}
 
   getClasses(): string[] {
     const classes: string[] = ['container'];
 
-    if (this.type) {
-      classes.push('container--' + this.type);
+    if (this.appearance) {
+      classes.push('container--' + this.appearance);
     }
 
     return classes;

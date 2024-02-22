@@ -14,7 +14,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbBadgeComponent implements AfterViewInit {
-  @Input() type: string = '';
+  @Input() appearance: string = '';
   @Input() text: string = '';
   @Input() grouped: boolean = false;
 
@@ -27,7 +27,7 @@ export class BmbBadgeComponent implements AfterViewInit {
       let wrapperDiv = parentElement.querySelector('.badge--grouped');
       if (!wrapperDiv) {
         wrapperDiv = this.renderer.createElement('div');
-        this.renderer.addClass(wrapperDiv, 'badge-grouped');
+        this.renderer.addClass(wrapperDiv, 'badge--grouped');
         this.renderer.insertBefore(parentElement, wrapperDiv, null);
       }
 
@@ -38,8 +38,8 @@ export class BmbBadgeComponent implements AfterViewInit {
   getClasses(): string[] {
     const classes: string[] = ['badge'];
 
-    if (this.type) {
-      classes.push('badge--' + this.type);
+    if (this.appearance) {
+      classes.push('badge--' + this.appearance);
     }
 
     return classes;

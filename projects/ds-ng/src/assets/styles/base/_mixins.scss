@@ -30,7 +30,7 @@
 }
 
 // Button styles
-@mixin button($type: primary) {
+@mixin button($appearance: primary) {
   @include font(5, regular);
   align-items: center;
   border: none;
@@ -42,6 +42,10 @@
 
   bmb-icon {
     font-size: rem_calc(16);
+    height: rem_calc(16);
+  }
+
+  img {
     height: rem_calc(16);
   }
 
@@ -57,8 +61,8 @@
     padding-bottom: 0;
     padding-top: 0;
 
-    &[icon-position="right"],
-    &[ng-reflect-icon-position="right"] {
+    &[position="right"],
+    &[ng-reflect-position="right"] {
       grid-template-columns: 1fr auto;
     }
   }
@@ -76,7 +80,7 @@
     cursor: not-allowed;
   }
 
-  @if $type == primary {
+  @if $appearance == primary {
     background-color: RGBA(var(--color-mariner-700));
     color: RGBA(var(--color-white-primary));
 
@@ -97,7 +101,7 @@
       background-color: RGBA(var(--color-charade-300));
       color: RGBA(var(--color-white-tint));
     }
-  } @else if $type == alternative {
+  } @else if $appearance == alternative {
     background-color: RGBA(var(--color-charade-50));
     color: RGBA(var(--color-charade-900));
 
@@ -122,7 +126,7 @@
     &:disabled {
       opacity: 0.5;
     }
-  } @else if $type == secondary {
+  } @else if $appearance == secondary {
     background-color: transparent;
     border: rem_calc(1) solid RGBA(var(--color-black-primary));
     color: RGBA(var(--color-black-primary));
@@ -148,7 +152,7 @@
     &:disabled {
       opacity: 0.5;
     }
-  } @else if $type == destructive {
+  } @else if $appearance == destructive {
     background-color: transparent;
     border: rem_calc(1) solid RGBA(var(--color-red-primary));
     color: RGBA(var(--color-red-primary));
@@ -178,7 +182,7 @@
 }
 
 // Badge styles
-@mixin badge($type: normal) {
+@mixin badge($appearance: normal) {
   @include font(3, regular);
   align-items: center;
   border-radius: $border-radius-xs;
@@ -189,28 +193,28 @@
   padding: $spacing-size-sm $spacing-size-base;
   width: fit-content;
 
-  @if $type == normal {
+  @if $appearance == normal {
     background-color: RGBA(var(--color-charade-500));
-  } @else if $type == strong {
+  } @else if $appearance == strong {
     background-color: RGBA(var(--color-mariner-700));
-  } @else if $type == success {
+  } @else if $appearance == success {
     background-color: RGBA(var(--color-green-light));
     color: RGBA(var(--color-charade-950));
-  } @else if $type == info {
+  } @else if $appearance == info {
     background-color: RGBA(var(--color-purple-primary));
-  } @else if $type == warning {
+  } @else if $appearance == warning {
     background-color: RGBA(var(--color-yellow-tint));
     color: RGBA(var(--color-charade-950));
-  } @else if $type == error {
+  } @else if $appearance == error {
     background-color: RGBA(var(--color-red-light));
     color: RGBA(var(--color-charade-950));
-  } @else if $type == brand {
+  } @else if $appearance == brand {
     background-color: RGBA(var(--color-charade-950));
   }
 }
 
 // Alert styles
-@mixin alert($type: neutral) {
+@mixin toast($appearance: neutral) {
   @include font(4, regular);
   align-items: center;
   background-color: RGBA(var(--color-charade-950));
@@ -219,48 +223,48 @@
   border-width: rem_calc(1);
   color: RGBA(var(--color-white-primary));
   display: flex;
-  height: 100%;
   justify-content: flex-start;
   min-height: rem_calc(40);
   padding: 0 $spacing-size-base;
-  width: 100%;
+  position: fixed;
+  width: 90%;
 
   bmb-icon {
     font-size: rem_calc(16);
     margin-right: $spacing-size-md;
   }
 
-  @if $type == neutral {
+  @if $appearance == neutral {
     border-color: RGBA(var(--color-charade-300));
 
     bmb-icon {
       color: RGBA(var(--color-charade-300));
     }
-  } @else if $type == primary {
+  } @else if $appearance == primary {
     border-color: RGBA(var(--color-neon-primary));
 
     bmb-icon {
       color: RGBA(var(--color-neon-primary));
     }
-  } @else if $type == successful {
+  } @else if $appearance == successful {
     border-color: RGBA(var(--color-green-primary));
 
     bmb-icon {
       color: RGBA(var(--color-green-primary));
     }
-  } @else if $type == warning {
+  } @else if $appearance == warning {
     border-color: RGBA(var(--color-yellow-primary));
 
     bmb-icon {
       color: RGBA(var(--color-yellow-primary));
     }
-  } @else if $type == error {
+  } @else if $appearance == error {
     border-color: RGBA(var(--color-red-primary));
 
     bmb-icon {
       color: RGBA(var(--color-red-primary));
     }
-  } @else if $type == event {
+  } @else if $appearance == event {
     border-color: RGBA(var(--color-purple-light));
 
     bmb-icon {

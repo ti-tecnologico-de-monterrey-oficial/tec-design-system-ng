@@ -33,7 +33,7 @@ export default {
       name: 'Icon Left',
       control: { type: 'text' },
       description:
-        'Name of the icon to use. Please use the Material icons: https://fonts.google.com/icons. You should not use LOGO attribute if you want to use iconLeft.',
+        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons. Do not use the logo attribute if you want to use an iconLeft.',
       table: {
         type: { summary: 'string' },
       },
@@ -42,7 +42,7 @@ export default {
       name: 'Icon Right',
       control: { type: 'text' },
       description:
-        'Name of the icon to use. Please use the Material icons: https://fonts.google.com/icons. You should not use IMAGE attribute if you want to use iconRight.',
+        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons. Do not use the image attribute if you want to use an iconRight.',
       table: {
         type: { summary: 'string' },
       },
@@ -51,51 +51,51 @@ export default {
       name: 'Icon Right 2',
       control: { type: 'text' },
       description:
-        'Name of the icon to use. Please use the Material icons: https://fonts.google.com/icons. You should not use IMAGE attribute if you want to use iconRight.',
+        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons. Do not use the image attribute if you want to use an iconRight2',
       table: {
         type: { summary: 'string' },
       },
     },
     image: {
-      name: 'Image source',
+      name: 'Image Source',
       control: {
         type: 'text',
       },
       description:
-        'The source of the image you want to display can be in your application or in a URL. You should not use iconRight neither iconRight2 attribute if you want to use image.',
+        'The source of the image to display, either from your application or a URL.',
       table: {
         type: { summary: 'string' },
       },
     },
     altImage: {
-      name: 'Image alt text',
+      name: 'Image Alt Text',
       control: {
         type: 'text',
       },
       description:
-        'The alternative text of image. For more information yoy can take a look at this page: https://www.w3.org/WAI/alt/.',
+        'The alternative text for the image. Refer to https://www.w3.org/WAI/alt/ for more information.',
       table: {
         type: { summary: 'string' },
       },
     },
     logo: {
-      name: 'Image source',
+      name: 'Logo Source',
       control: {
         type: 'text',
       },
       description:
-        'The source of the image you want to display can be in your application or in a URL. You should not use iconLeft  attribute if you want to use logo.',
+        'The source of the logo image to display, either from your application or a URL.',
       table: {
         type: { summary: 'string' },
       },
     },
     altLogo: {
-      name: 'Image alt text',
+      name: 'Logo Alt Text',
       control: {
         type: 'text',
       },
       description:
-        'The alternative text of image. For more information yoy can take a look at this page: https://www.w3.org/WAI/alt/.',
+        'The alternative text for the logo image. Refer to https://www.w3.org/WAI/alt/ for more information.',
       table: {
         type: { summary: 'string' },
       },
@@ -110,7 +110,7 @@ export default {
       'https://i0.wp.com/gershenson.mx/wp-content/uploads/2020/08/logo-tec-de-monterrey-e1484853084274.png?ssl=1',
     altImage: 'Alt image description',
     logo: 'https://i0.wp.com/gershenson.mx/wp-content/uploads/2020/08/logo-tec-de-monterrey-e1484853084274.png?ssl=1',
-    altLogo: 'Alt image description',
+    altLogo: 'Alt logo description',
   },
 } as Meta<typeof BmbHeaderMobileComponent>;
 

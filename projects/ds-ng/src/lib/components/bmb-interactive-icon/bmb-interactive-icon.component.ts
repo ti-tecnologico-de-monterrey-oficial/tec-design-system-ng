@@ -18,6 +18,7 @@ export class BmbInteractiveIconComponent implements AfterViewInit {
   @Input() text: string = '';
   @Input() icon: string = '';
   @Input() image: string = '';
+  @Input() altImage: string = '';
   @Input() grouped: boolean = false;
 
   constructor(private el: ElementRef, private renderer: Renderer2) {}

@@ -6,23 +6,23 @@ export default {
   component: BmbLogoComponent,
   argTypes: {
     image: {
-      name: 'Image source',
+      name: 'Image Source',
       control: {
         type: 'text',
       },
       description:
-        'The source of the image you want to display can be in your application or in a URL.',
+        'The source of the image to display, either from your application or a URL.',
       table: {
         type: { summary: 'string' },
       },
     },
     altImage: {
-      name: 'Image alt text',
+      name: 'Image Alt Text',
       control: {
         type: 'text',
       },
       description:
-        'The alternative text of image. For more information yoy can take a look at this page: https://www.w3.org/WAI/alt/.',
+        'The alternative text for the image. Refer to https://www.w3.org/WAI/alt/ for more information.',
       table: {
         type: { summary: 'string' },
       },
@@ -33,10 +33,10 @@ export default {
         type: 'radio',
       },
       options: ['small', 'medium', 'large'],
+      description: 'The size of the logo, affecting its visual size.',
       table: {
         type: { summary: 'string' },
       },
-      description: 'The size of the logo, visual changes.',
     },
   },
   args: {

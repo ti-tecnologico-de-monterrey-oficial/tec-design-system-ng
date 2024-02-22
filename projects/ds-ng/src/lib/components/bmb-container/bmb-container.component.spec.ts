@@ -18,15 +18,15 @@ describe('BmbContainerComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should apply type class when type is provided', () => {
-    component.type = 'custom';
+  it('should apply appearance class when appearance is provided', () => {
+    component.appearance = 'custom';
     fixture.detectChanges();
 
     const containerElement = fixture.nativeElement.querySelector('.container');
     expect(containerElement.classList.contains('container--custom')).toBe(true);
   });
 
-  it('should not apply type class when type is not provided', () => {
+  it('should not apply appearance class when appearance is not provided', () => {
     fixture.detectChanges();
 
     const containerElement = fixture.nativeElement.querySelector('.container');
