@@ -6,7 +6,7 @@ import { ThemeService } from '../../services';
   templateUrl: './bmb-theme.component.html',
 })
 export class BmbThemeComponent implements OnInit {
-  selectedTheme: string = 'dark';
+  selectedTheme: string = 'light';
 
   constructor(private themeService: ThemeService) {}
 

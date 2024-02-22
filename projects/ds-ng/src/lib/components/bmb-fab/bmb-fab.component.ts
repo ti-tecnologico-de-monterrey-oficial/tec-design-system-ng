@@ -1,11 +1,7 @@
 import { 
   Component,
-  ChangeDetectionStrategy, 
-  HostBinding,
-  HostListener, 
-  Optional, 
+  HostListener,  
   Input,
-  ViewEncapsulation,
  } from '@angular/core';
 
 @Component({
@@ -21,7 +17,6 @@ export class BmbFabComponent {
   @Input() size?: 's' | 'l' = 's';
   @Input() type?: 'ext' | 'fab'  = 'fab';
   @Input() device?: 'mobile' | 'desktop' = 'mobile';
-  // @Input() closeIcon?: string;
 
   active: boolean = false;
 
@@ -35,14 +30,10 @@ export class BmbFabComponent {
     }
   }
 
-  constructor() {
-    console.log("this device construcotr",  this.device)
-  }
+  constructor() {}
 
   ngOnInit(){
-    console.log("device", this.device)
     this.fabStyle = this.setStyles()
-    console.log("this", this.fabStyle)
   }
 
 
@@ -56,15 +47,15 @@ export class BmbFabComponent {
     }
 
     if(this.size == 's'){
-      style = `${style}-s`
+      style = `${style}-small`
     }else {
-      style = `${style}-l`
+      style = `${style}-large`
     }
 
     if(this.type === 'ext'){
-      style = `${style}-fab-ext`
+      style = `${style}-extended`
     }else{
-      style = `${style}-fab-normal`
+      style = `${style}-normal`
     }
    return style
   }
