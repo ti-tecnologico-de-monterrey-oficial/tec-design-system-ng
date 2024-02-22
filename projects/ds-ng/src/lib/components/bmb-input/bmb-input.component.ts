@@ -10,6 +10,7 @@ import {
   SimpleChanges,
   OnChanges,
   ChangeDetectorRef,
+  HostBinding
 } from '@angular/core';
 
 import {
@@ -54,7 +55,9 @@ export class BmbInputComponent
   @Input() isRequired: boolean = false;
   @Input() value: string | undefined;
   @Input() isClearable: boolean = false;
-
+  @Input() appearance: 'normal' | 'simple' | 'main' = 'normal';
+  @Input() device: 'mobile' | 'desktop' = 'mobile';
+  
   @Output() handleClick: EventEmitter<any> = new EventEmitter();
   @Output() handleFocus: EventEmitter<any> = new EventEmitter();
   @Output() handleBlur: EventEmitter<any> = new EventEmitter();
@@ -64,6 +67,8 @@ export class BmbInputComponent
   public inputModel: string | undefined;
   formControl: FormControl | undefined;
   onTouch: Function | undefined;
+  style = '';
+  iconColor = '';
 
   constructor(private cdr: ChangeDetectorRef) {}
 
@@ -76,6 +81,8 @@ export class BmbInputComponent
         this.value = undefined;
       }
     }, 0);
+    this.style = `bmb-input-${this.appearance}`
+    this.iconColor = `icon-${this.appearance}`
   }
 
   ngOnChanges(changes: SimpleChanges): void {

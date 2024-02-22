@@ -1,15 +1,16 @@
 <div class="bmb__field">
-  <label for="" class="bmb__field--label" *ngIf="label">{{ label }}</label>
+  <label for="" class="bmb__field-label" *ngIf="label">{{ label }}</label>
   <div
     class="bmb__field--wrapper"
-    [ngClass]="[!isValid ? 'bmb__field--error' : '']"
+    [ngClass]="[!isValid ? 'bmb__field--error' : '', ]"
     (click)="onParentClick()"
     #inputWrapper
   >
-    <bmb-icon *ngIf="icon || !isValid" [icon]="icon" class="bmb__field--icon" />
+    <bmb-icon *ngIf="icon || !isValid" [icon]="icon" class="bmb__field--icon" [ngClass]="iconColor" />
     <input
       type="text"
       class="bmb__field--input"
+      [ngClass]="this.style"
       (ngModelChange)="setValue(input.viewModel)"
       (click)="onClick()"
       (focus)="onFocus()"
