@@ -108,132 +108,6 @@
             },
             "extends": [],
             "type": "injectable"
-        },
-        {
-            "name": "ThemeService",
-            "id": "injectable-ThemeService-065809e5b4ac0a12c49ab1b7600a3fb963b3e3d54ca255334f76214c970b041263ba8d5a5f68035dd80f09c3b83e8fc9065e3ce25745eb5ff4fcf8ce1f01249e",
-            "file": "projects/ds-ng/src/lib/services/theme.service.ts",
-            "properties": [
-                {
-                    "name": "theme$",
-                    "defaultValue": "this.themeSubject.asObservable()",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 10
-                },
-                {
-                    "name": "themeSubject",
-                    "defaultValue": "new BehaviorSubject<string>('dark')",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 9,
-                    "modifierKind": [
-                        123
-                    ]
-                }
-            ],
-            "methods": [
-                {
-                    "name": "setTheme",
-                    "args": [
-                        {
-                            "name": "theme",
-                            "type": "string",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        }
-                    ],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 12,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "jsdoctags": [
-                        {
-                            "name": "theme",
-                            "type": "string",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        }
-                    ]
-                }
-            ],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "description": "",
-            "rawdescription": "\n",
-            "sourceCode": "import { Injectable } from '@angular/core';\nimport { BehaviorSubject } from 'rxjs';\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class ThemeService {\n  private themeSubject = new BehaviorSubject<string>('dark');\n  theme$ = this.themeSubject.asObservable();\n\n  setTheme(theme: string): void {\n    this.themeSubject.next(theme);\n  }\n}\n",
-            "extends": [],
-            "type": "injectable"
-        },
-        {
-            "name": "ToastService",
-            "id": "injectable-ToastService-d15917c926925fffde10fc52717e682a9543cc1913fbe4a085ce0513851e78b90b31268ef81ee30f9089a24f17f0bf8b2e018bf27fb5b9edd8d9c5636ead3938",
-            "file": "projects/ds-ng/src/lib/services/toast.service.ts",
-            "properties": [
-                {
-                    "name": "isOpen$",
-                    "defaultValue": "this.isOpenSubject.asObservable()",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 9
-                },
-                {
-                    "name": "isOpenSubject",
-                    "defaultValue": "new BehaviorSubject<boolean>(false)",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 8,
-                    "modifierKind": [
-                        123
-                    ]
-                }
-            ],
-            "methods": [
-                {
-                    "name": "closeToast",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 15,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                },
-                {
-                    "name": "openToast",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 11,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                }
-            ],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "description": "",
-            "rawdescription": "\n",
-            "sourceCode": "import { Injectable } from '@angular/core';\nimport { BehaviorSubject } from 'rxjs';\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class ToastService {\n  private isOpenSubject = new BehaviorSubject<boolean>(false);\n  isOpen$ = this.isOpenSubject.asObservable();\n\n  openToast() {\n    this.isOpenSubject.next(true);\n  }\n\n  closeToast() {\n    this.isOpenSubject.next(false);\n  }\n}\n",
-            "extends": [],
-            "type": "injectable"
         }
     ],
     "guards": [],
@@ -2712,150 +2586,6 @@
             "templateData": ""
         },
         {
-            "name": "BmbThemeComponent",
-            "id": "component-BmbThemeComponent-5a1bf9426f03feeb3bd14a4df3575b6453ef14badaf0723355f0432c264144b02b5bc936dae60f519fd155983ceb3a417e85608d637009b2cfdfe5c945a59f71",
-            "file": "projects/ds-ng/src/lib/components/bmb-theme/bmb-theme.component.ts",
-            "encapsulation": [],
-            "entryComponents": [],
-            "inputs": [],
-            "outputs": [],
-            "providers": [],
-            "selector": "bmb-theme",
-            "styleUrls": [],
-            "styles": [],
-            "templateUrl": [
-                "./bmb-theme.component.html"
-            ],
-            "viewProviders": [],
-            "hostDirectives": [],
-            "inputsClass": [],
-            "outputsClass": [],
-            "propertiesClass": [
-                {
-                    "name": "selectedTheme",
-                    "defaultValue": "'light'",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "optional": false,
-                    "description": "",
-                    "line": 9
-                }
-            ],
-            "methodsClass": [
-                {
-                    "name": "applyTheme",
-                    "args": [
-                        {
-                            "name": "theme",
-                            "type": "string",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        }
-                    ],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 19,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "jsdoctags": [
-                        {
-                            "name": "theme",
-                            "type": "string",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "ngOnInit",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 13,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                },
-                {
-                    "name": "onThemeChange",
-                    "args": [
-                        {
-                            "name": "newTheme",
-                            "type": "string",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        }
-                    ],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 23,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "jsdoctags": [
-                        {
-                            "name": "newTheme",
-                            "type": "string",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        }
-                    ]
-                }
-            ],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "hostBindings": [],
-            "hostListeners": [],
-            "standalone": false,
-            "imports": [],
-            "description": "",
-            "rawdescription": "\n",
-            "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { ThemeService } from '../../services';\n\n@Component({\n  selector: 'bmb-theme',\n  templateUrl: './bmb-theme.component.html',\n})\nexport class BmbThemeComponent implements OnInit {\n  selectedTheme: string = 'light';\n\n  constructor(private themeService: ThemeService) {}\n\n  ngOnInit(): void {\n    this.themeService.theme$.subscribe((theme) => {\n      this.applyTheme(theme);\n    });\n  }\n\n  applyTheme(theme: string): void {\n    document.documentElement.setAttribute('data-theme', theme);\n  }\n\n  onThemeChange(newTheme: string): void {\n    this.selectedTheme = newTheme;\n    this.themeService.setTheme(this.selectedTheme);\n  }\n}\n",
-            "assetsDirs": [],
-            "styleUrlsData": "",
-            "stylesData": "",
-            "constructorObj": {
-                "name": "constructor",
-                "description": "",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "args": [
-                    {
-                        "name": "themeService",
-                        "type": "ThemeService",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    }
-                ],
-                "line": 9,
-                "jsdoctags": [
-                    {
-                        "name": "themeService",
-                        "type": "ThemeService",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    }
-                ]
-            },
-            "extends": [],
-            "implements": [
-                "OnInit"
-            ],
-            "templateData": "<div class=\"bmb-theme\">\n  <button\n    (click)=\"onThemeChange('dark')\"\n    [class.selected]=\"selectedTheme === 'dark'\"\n  >\n    Dark\n  </button>\n  <button\n    (click)=\"onThemeChange('light')\"\n    [class.selected]=\"selectedTheme === 'light'\"\n  >\n    Light\n  </button>\n  <button\n    (click)=\"onThemeChange('blue')\"\n    [class.selected]=\"selectedTheme === 'blue'\"\n  >\n    Blue\n  </button>\n</div>\n"
-        },
-        {
             "name": "BmbTitleSectionComponent",
             "id": "component-BmbTitleSectionComponent-12328914bd37eee22e425cd72b047aead2982da526f4846321c6eb5950d06419ab487c836c4b516524362a8c4ba06b42c9aeb9f72a82c46bdd28084dfd00e10a",
             "file": "projects/ds-ng/src/lib/components/bmb-title-section/bmb-title-section.component.ts",
@@ -2936,193 +2666,6 @@
             "stylesData": "",
             "extends": [],
             "templateData": "<div class=\"title__section\">\n  <span class=\"title__section--title\">{{ title }}</span>\n  <bmb-icon [icon]=\"icon\" class=\"title__section--icon\" *ngIf=\"!image\" />\n  <img\n    [src]=\"image\"\n    [alt]=\"altImage\"\n    class=\"title__section--image\"\n    *ngIf=\"image\"\n  />\n</div>\n"
-        },
-        {
-            "name": "BmbToastComponent",
-            "id": "component-BmbToastComponent-a18e950392630562ab47d4ff7e4fd33f13bf8afb628d317cd760c35f300f6b70d6e9e97ec552468c739c5c8382ac6bcccf018703245cdd3cc8575679b561cb36",
-            "file": "projects/ds-ng/src/lib/components/bmb-toast/bmb-toast.component.ts",
-            "changeDetection": "ChangeDetectionStrategy.OnPush",
-            "encapsulation": [],
-            "entryComponents": [],
-            "inputs": [],
-            "outputs": [],
-            "providers": [],
-            "selector": "bmb-toast",
-            "styleUrls": [
-                "../../../assets/styles/components/_toast.scss"
-            ],
-            "styles": [],
-            "templateUrl": [
-                "./bmb-toast.component.html"
-            ],
-            "viewProviders": [],
-            "hostDirectives": [],
-            "inputsClass": [
-                {
-                    "name": "appearance",
-                    "defaultValue": "''",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 18,
-                    "type": "string",
-                    "decorators": []
-                },
-                {
-                    "name": "duration",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 20,
-                    "type": "number",
-                    "decorators": []
-                },
-                {
-                    "name": "message",
-                    "defaultValue": "''",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 19,
-                    "type": "string",
-                    "decorators": []
-                },
-                {
-                    "name": "position",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 21,
-                    "type": "\"top\" | \"bottom\" | \"middle\"",
-                    "decorators": []
-                }
-            ],
-            "outputsClass": [],
-            "propertiesClass": [
-                {
-                    "name": "isOpen$",
-                    "defaultValue": "this.toastService.isOpen$",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 22
-                },
-                {
-                    "name": "isOpenSubscription",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Subscription | undefined",
-                    "optional": false,
-                    "description": "",
-                    "line": 24,
-                    "modifierKind": [
-                        123
-                    ]
-                }
-            ],
-            "methodsClass": [
-                {
-                    "name": "getClasses",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "string[]",
-                    "typeParameters": [],
-                    "line": 42,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                },
-                {
-                    "name": "ngOnDestroy",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 36,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                },
-                {
-                    "name": "ngOnInit",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 28,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                },
-                {
-                    "name": "openToast",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 62,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                },
-                {
-                    "name": "setAutoClose",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 56,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "modifierKind": [
-                        123
-                    ]
-                }
-            ],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "hostBindings": [],
-            "hostListeners": [],
-            "standalone": false,
-            "imports": [],
-            "description": "",
-            "rawdescription": "\n",
-            "type": "component",
-            "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  OnInit,\n  OnDestroy,\n} from '@angular/core';\nimport { ToastService } from '../../services';\nimport { Subscription } from 'rxjs';\n\n@Component({\n  selector: 'bmb-toast',\n  templateUrl: './bmb-toast.component.html',\n  styleUrls: ['../../../assets/styles/components/_toast.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbToastComponent implements OnInit, OnDestroy {\n  @Input() appearance: string = '';\n  @Input() message: string = '';\n  @Input() duration?: number;\n  @Input() position?: 'top' | 'bottom' | 'middle';\n  isOpen$ = this.toastService.isOpen$;\n\n  private isOpenSubscription: Subscription | undefined;\n\n  constructor(private toastService: ToastService) {}\n\n  ngOnInit(): void {\n    this.isOpenSubscription = this.isOpen$.subscribe((isOpen) => {\n      if (isOpen && this.duration) {\n        this.setAutoClose();\n      }\n    });\n  }\n\n  ngOnDestroy(): void {\n    if (this.isOpenSubscription) {\n      this.isOpenSubscription.unsubscribe();\n    }\n  }\n\n  getClasses(): string[] {\n    const classes: string[] = ['toast'];\n\n    if (this.appearance) {\n      classes.push('toast--' + this.appearance);\n    }\n\n    if (this.position) {\n      classes.push('toast--' + this.position);\n    }\n\n    return classes;\n  }\n\n  private setAutoClose(): void {\n    setTimeout(() => {\n      this.toastService.closeToast();\n    }, this.duration);\n  }\n\n  openToast() {\n    this.toastService.openToast();\n  }\n}\n",
-            "assetsDirs": [],
-            "styleUrlsData": [
-                {
-                    "data": "@import \"../base/mixins\";\n\n.toast {\n  &--neutral {\n    @include toast(neutral);\n  }\n\n  &--primary {\n    @include toast(primary);\n  }\n\n  &--successful {\n    @include toast(successful);\n  }\n\n  &--warning {\n    @include toast(warning);\n  }\n\n  &--error {\n    @include toast(error);\n  }\n\n  &--event {\n    @include toast(event);\n  }\n\n  &--top {\n    left: 50%;\n    top: 5%;\n    transform: translateX(-50%);\n  }\n\n  &--middle {\n    left: 50%;\n    top: 50%;\n    transform: translate(-50%, -50%);\n  }\n\n  &--bottom {\n    bottom: 5%;\n    left: 50%;\n    transform: translateX(-50%);\n  }\n}\n",
-                    "styleUrl": "../../../assets/styles/components/_toast.scss"
-                }
-            ],
-            "stylesData": "",
-            "constructorObj": {
-                "name": "constructor",
-                "description": "",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "args": [
-                    {
-                        "name": "toastService",
-                        "type": "ToastService",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    }
-                ],
-                "line": 24,
-                "jsdoctags": [
-                    {
-                        "name": "toastService",
-                        "type": "ToastService",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    }
-                ]
-            },
-            "extends": [],
-            "implements": [
-                "OnInit",
-                "OnDestroy"
-            ],
-            "templateData": "<div *ngIf=\"isOpen$ | async\" [ngClass]=\"getClasses()\">\n  <bmb-icon icon=\"info\" />\n  <span>{{ message }}</span>\n</div>\n"
         },
         {
             "name": "BmbUserImageComponent",
@@ -3249,7 +2792,7 @@
     "modules": [
         {
             "name": "DsNgModule",
-            "id": "module-DsNgModule-331feed92e8c05a43c49d77f9bd02ef57f1f6d681d9a52fcec55a0f3654c21964c467adbb4190f6ec532865ee4921f319120d50acda8766025b25d92dcc782f2",
+            "id": "module-DsNgModule-daf24d52feb164ceb549266fa6bbf566a1b09863aad40c7053aba9e5673ad1e0d3ffc5b9ed22da3961509dd7089c6d8481c5aa6a334f89f52afb1b8271f1426a",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
@@ -3261,12 +2804,12 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 74,
+                    "line": 71,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
             ],
-            "sourceCode": "import { NgModule, Injector, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';\nimport { createCustomElement } from '@angular/elements';\nimport { BrowserModule } from '@angular/platform-browser';\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\nimport { FormsModule } from '@angular/forms';\nimport { CommonModule } from '@angular/common';\nimport { BmbButtonDirective } from './directives/button.directive';\nimport { DsNgComponent } from './ds-ng.component';\nimport { BmbFabComponent } from './components/bmb-fab/bmb-fab.component';\nimport { BmbLogoComponent } from './components/bmb-logo/bmb-logo.component';\nimport { BmbIconComponent } from './components/bmb-icon/bmb-icon.component';\nimport { BmbThemeComponent } from './components/bmb-theme/bmb-theme.component';\nimport { BmbBadgeComponent } from './components/bmb-badge/bmb-badge.component';\nimport { BmbInputComponent } from './components/bmb-input/bmb-input.component';\nimport { BmbDividerComponent } from './components/bmb-divider/bmb-divider.component';\nimport { BmbContainerComponent } from './components/bmb-container/bmb-container.component';\nimport { BmbUserImageComponent } from './components/bmb-user-image/bmb-user-image.component';\nimport { BmbTitleSectionComponent } from './components/bmb-title-section/bmb-title-section.component';\nimport { BmbHeaderMobileComponent } from './components/bmb-header-mobile/bmb-header-mobile.component';\nimport { BmbDotPaginatorComponent } from './components/bmb-dot-paginator/bmb-dot-paginator.component';\nimport { BmbInteractiveIconComponent } from './components/bmb-interactive-icon/bmb-interactive-icon.component';\nimport { BmbContainerButtonComponent } from './components/bmb-container-button/bmb-container-button.component';\n\nimport { BmbTextInputComponent } from './components/bmb-text-input/bmb-text-input.component';\nimport { BmbIconTextInputComponent } from './components/bmb-icon-text-input/bmb-icon-text-input.component';\n\n@NgModule({\n  declarations: [\n    DsNgComponent,\n    BmbLogoComponent,\n    BmbIconComponent,\n    BmbThemeComponent,\n    BmbBadgeComponent,\n    BmbInputComponent,\n    BmbButtonDirective,\n    BmbDividerComponent,\n    BmbContainerComponent,\n    BmbTextInputComponent,\n    BmbUserImageComponent,\n    BmbTitleSectionComponent,\n    BmbHeaderMobileComponent,\n    BmbDotPaginatorComponent,\n    BmbIconTextInputComponent,\n    BmbContainerButtonComponent,\n    BmbInteractiveIconComponent,\n    BmbFabComponent,\n  ],\n  imports: [CommonModule, FormsModule],\n  exports: [\n    DsNgComponent,\n    BmbLogoComponent,\n    BmbIconComponent,\n    BmbBadgeComponent,\n    BmbThemeComponent,\n    BmbInputComponent,\n    BmbButtonDirective,\n    BmbDividerComponent,\n    BmbUserImageComponent,\n    BmbContainerComponent,\n    BmbTextInputComponent,\n    BmbTitleSectionComponent,\n    BmbHeaderMobileComponent,\n    BmbDotPaginatorComponent,\n    BmbIconTextInputComponent,\n    BmbContainerButtonComponent,\n    BmbInteractiveIconComponent,\n    BmbFabComponent,\n  ],\n  schemas: [CUSTOM_ELEMENTS_SCHEMA],\n})\nexport class DsNgModule {\n  constructor(private injector: Injector) {}\n\n  ngDoBootsrap() {\n    const customInputWrapper = createCustomElement(BmbIconTextInputComponent, {\n      injector: this.injector,\n    });\n    customElements.define('bmb-input-wrapper', customInputWrapper);\n  }\n}\n",
+            "sourceCode": "import { NgModule, Injector, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';\nimport { createCustomElement } from '@angular/elements';\nimport { BrowserModule } from '@angular/platform-browser';\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\nimport { FormsModule } from '@angular/forms';\nimport { CommonModule } from '@angular/common';\nimport { BmbButtonDirective } from './directives/button.directive';\nimport { DsNgComponent } from './ds-ng.component';\nimport { BmbFabComponent } from './components/bmb-fab/bmb-fab.component';\nimport { BmbLogoComponent } from './components/bmb-logo/bmb-logo.component';\nimport { BmbIconComponent } from './components/bmb-icon/bmb-icon.component';\nimport { BmbBadgeComponent } from './components/bmb-badge/bmb-badge.component';\nimport { BmbInputComponent } from './components/bmb-input/bmb-input.component';\nimport { BmbDividerComponent } from './components/bmb-divider/bmb-divider.component';\nimport { BmbContainerComponent } from './components/bmb-container/bmb-container.component';\nimport { BmbUserImageComponent } from './components/bmb-user-image/bmb-user-image.component';\nimport { BmbTitleSectionComponent } from './components/bmb-title-section/bmb-title-section.component';\nimport { BmbHeaderMobileComponent } from './components/bmb-header-mobile/bmb-header-mobile.component';\nimport { BmbDotPaginatorComponent } from './components/bmb-dot-paginator/bmb-dot-paginator.component';\nimport { BmbInteractiveIconComponent } from './components/bmb-interactive-icon/bmb-interactive-icon.component';\nimport { BmbContainerButtonComponent } from './components/bmb-container-button/bmb-container-button.component';\n\nimport { BmbTextInputComponent } from './components/bmb-text-input/bmb-text-input.component';\nimport { BmbIconTextInputComponent } from './components/bmb-icon-text-input/bmb-icon-text-input.component';\n\n@NgModule({\n  declarations: [\n    DsNgComponent,\n    BmbLogoComponent,\n    BmbIconComponent,\n    BmbBadgeComponent,\n    BmbInputComponent,\n    BmbButtonDirective,\n    BmbDividerComponent,\n    BmbContainerComponent,\n    BmbTextInputComponent,\n    BmbUserImageComponent,\n    BmbTitleSectionComponent,\n    BmbHeaderMobileComponent,\n    BmbDotPaginatorComponent,\n    BmbIconTextInputComponent,\n    BmbContainerButtonComponent,\n    BmbInteractiveIconComponent,\n    BmbFabComponent,\n  ],\n  imports: [CommonModule, FormsModule],\n  exports: [\n    DsNgComponent,\n    BmbLogoComponent,\n    BmbIconComponent,\n    BmbBadgeComponent,\n    BmbInputComponent,\n    BmbButtonDirective,\n    BmbDividerComponent,\n    BmbUserImageComponent,\n    BmbContainerComponent,\n    BmbTextInputComponent,\n    BmbTitleSectionComponent,\n    BmbHeaderMobileComponent,\n    BmbDotPaginatorComponent,\n    BmbIconTextInputComponent,\n    BmbContainerButtonComponent,\n    BmbInteractiveIconComponent,\n    BmbFabComponent,\n  ],\n  schemas: [CUSTOM_ELEMENTS_SCHEMA],\n})\nexport class DsNgModule {\n  constructor(private injector: Injector) {}\n\n  ngDoBootsrap() {\n    const customInputWrapper = createCustomElement(BmbIconTextInputComponent, {\n      injector: this.injector,\n    });\n    customElements.define('bmb-input-wrapper', customInputWrapper);\n  }\n}\n",
             "children": [
                 {
                     "type": "providers",
@@ -3316,9 +2859,6 @@
                         },
                         {
                             "name": "BmbTextInputComponent"
-                        },
-                        {
-                            "name": "BmbThemeComponent"
                         },
                         {
                             "name": "BmbTitleSectionComponent"
@@ -3381,9 +2921,6 @@
                             "name": "BmbTextInputComponent"
                         },
                         {
-                            "name": "BmbThemeComponent"
-                        },
-                        {
                             "name": "BmbTitleSectionComponent"
                         },
                         {
@@ -3431,7 +2968,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts",
+                "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
@@ -3441,7 +2978,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
+                "file": "projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
@@ -3502,16 +3039,6 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "projects/ds-ng/src/lib/components/bmb-title-section/bmb-title-section.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{}"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/ds-ng/src/lib/components/bmb-toast/bmb-toast.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
@@ -3599,8 +3126,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<BmbContainerComponent>",
-                "file": "projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts",
+                "rawtype": "StoryObj<BmbBadgeComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -3610,8 +3137,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<BmbBadgeComponent>",
-                "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
+                "rawtype": "StoryObj<BmbContainerComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -3687,17 +3214,6 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<BmbToastComponent>",
-                "file": "projects/ds-ng/src/lib/components/bmb-toast/bmb-toast.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "",
-                "kind": 183
-            },
-            {
-                "name": "Story",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
                 "rawtype": "StoryObj<BmbUserImageComponent>",
                 "file": "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts",
                 "deprecated": false,
@@ -3730,24 +3246,24 @@
                     "defaultValue": "customizable()"
                 }
             ],
-            "projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{}"
-                }
-            ],
             "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts": [
                 {
                     "name": "Default",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
@@ -3820,18 +3336,6 @@
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/ds-ng/src/lib/components/bmb-title-section/bmb-title-section.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{}"
-                }
-            ],
-            "projects/ds-ng/src/lib/components/bmb-toast/bmb-toast.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ds-ng/src/lib/components/bmb-toast/bmb-toast.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
@@ -3923,19 +3427,6 @@
         },
         "groupedEnumerations": {},
         "groupedTypeAliases": {
-            "projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<BmbContainerComponent>",
-                    "file": "projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
             "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts": [
                 {
                     "name": "Story",
@@ -3943,6 +3434,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<BmbBadgeComponent>",
                     "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbContainerComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -4021,19 +3525,6 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<BmbTitleSectionComponent>",
                     "file": "projects/ds-ng/src/lib/components/bmb-title-section/bmb-title-section.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
-            "projects/ds-ng/src/lib/components/bmb-toast/bmb-toast.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<BmbToastComponent>",
-                    "file": "projects/ds-ng/src/lib/components/bmb-toast/bmb-toast.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -4285,15 +3776,6 @@
                 "status": "low"
             },
             {
-                "filePath": "projects/ds-ng/src/lib/components/bmb-theme/bmb-theme.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "BmbThemeComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/6",
-                "status": "low"
-            },
-            {
                 "filePath": "projects/ds-ng/src/lib/components/bmb-title-section/bmb-title-section.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -4304,25 +3786,6 @@
             },
             {
                 "filePath": "projects/ds-ng/src/lib/components/bmb-title-section/bmb-title-section.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Default",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/ds-ng/src/lib/components/bmb-toast/bmb-toast.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "BmbToastComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/13",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/ds-ng/src/lib/components/bmb-toast/bmb-toast.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -4415,24 +3878,6 @@
                 "name": "DsNgService",
                 "coveragePercent": 0,
                 "coverageCount": "0/2",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/ds-ng/src/lib/services/theme.service.ts",
-                "type": "injectable",
-                "linktype": "injectable",
-                "name": "ThemeService",
-                "coveragePercent": 0,
-                "coverageCount": "0/4",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/ds-ng/src/lib/services/toast.service.ts",
-                "type": "injectable",
-                "linktype": "injectable",
-                "name": "ToastService",
-                "coveragePercent": 0,
-                "coverageCount": "0/5",
                 "status": "low"
             }
         ]

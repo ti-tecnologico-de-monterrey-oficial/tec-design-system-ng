@@ -9,7 +9,6 @@ import { DsNgComponent } from './ds-ng.component';
 import { BmbFabComponent } from './components/bmb-fab/bmb-fab.component';
 import { BmbLogoComponent } from './components/bmb-logo/bmb-logo.component';
 import { BmbIconComponent } from './components/bmb-icon/bmb-icon.component';
-import { BmbThemeComponent } from './components/bmb-theme/bmb-theme.component';
 import { BmbBadgeComponent } from './components/bmb-badge/bmb-badge.component';
 import { BmbInputComponent } from './components/bmb-input/bmb-input.component';
 import { BmbDividerComponent } from './components/bmb-divider/bmb-divider.component';
@@ -29,7 +28,6 @@ import { BmbIconTextInputComponent } from './components/bmb-icon-text-input/bmb-
     DsNgComponent,
     BmbLogoComponent,
     BmbIconComponent,
-    BmbThemeComponent,
     BmbBadgeComponent,
     BmbInputComponent,
     BmbButtonDirective,
@@ -51,7 +49,6 @@ import { BmbIconTextInputComponent } from './components/bmb-icon-text-input/bmb-
     BmbLogoComponent,
     BmbIconComponent,
     BmbBadgeComponent,
-    BmbThemeComponent,
     BmbInputComponent,
     BmbButtonDirective,
     BmbDividerComponent,

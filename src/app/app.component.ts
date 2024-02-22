@@ -1,7 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { ToastService } from '../../projects/ds-ng/src/lib/services';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -20,11 +18,5 @@ export class AppComponent {
 
   handleDot(index: number): void {
     console.log('Index clicked:', index);
-  }
-
-  constructor(private toastService: ToastService) {}
-
-  openToast() {
-    this.toastService.openToast();
   }
 }

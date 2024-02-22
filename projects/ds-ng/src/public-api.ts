@@ -10,7 +10,6 @@ export * from './lib/directives/button.directive';
 // Components
 export * from './lib/components/bmb-logo/bmb-logo.component';
 export * from './lib/components/bmb-icon/bmb-icon.component';
-export * from './lib/components/bmb-theme/bmb-theme.component';
 export * from './lib/components/bmb-badge/bmb-badge.component';
 export * from './lib/components/bmb-input/bmb-input.component';
 export * from './lib/components/bmb-divider/bmb-divider.component';
