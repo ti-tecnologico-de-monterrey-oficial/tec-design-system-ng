@@ -375,6 +375,9 @@
   border: 0;
   margin: rem_calc(3);
   padding: rem_calc(8) rem_calc(16);
+  position: fixed;
+  bottom: rem_calc(40);
+	right: rem_calc(40);
   box-shadow: rem_calc(2) rem_calc(2) rem_calc(2) rem_calc(1) RGBA(var(--color-black-primary), 0.25);
   -webkit-box-shadow: rem_calc(2) rem_calc(2) rem_calc(2) rem_calc(1) RGBA(var(--color-black-primary), 0.25);
   -moz-box-shadow: rem_calc(2) rem_calc(2) rem_calc(2) rem_calc(1) RGBA(var(--color-black-primary), 0.25);

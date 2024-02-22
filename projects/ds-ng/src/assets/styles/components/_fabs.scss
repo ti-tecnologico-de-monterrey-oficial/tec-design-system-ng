@@ -1,3 +1,5 @@
+@import "../base/mixins";
+
 .fab{
     &-mob-small-normal{
         @include fabInput(m, s, n);

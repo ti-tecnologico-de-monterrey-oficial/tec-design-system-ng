@@ -19,6 +19,10 @@
       font-size: rem_calc(22);
     }
 
+    .bmb-input-normal{
+      color: RGBA(var(--color-white-primary));
+    }
+
     .bmb__field--icon ~ .bmb-input-normal{
       padding: rem_calc(8) rem_calc(8) rem_calc(8) rem_calc(35);
       color: RGBA(var(--color-white-primary));
@@ -49,7 +53,7 @@
   }
 
   &--error {
-    color: RGBA(var(--color-red-primary));
+    // color: RGBA(var(--color-red-primary));
   }
 
   &--icon {
