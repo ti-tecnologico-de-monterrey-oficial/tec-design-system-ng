@@ -27,9 +27,6 @@ export * from './lib/components/bmb-icon-text-input/bmb-icon-text-input.componen
 export * from './lib/components/bmb-text-input/bmb-text-input.component';
 
 export * from './lib/components/bmb-fab/bmb-fab.component';
-<<<<<<< Updated upstream
-=======
 
 // Services
 export * from './lib/services/index';
->>>>>>> Stashed changes
