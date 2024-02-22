@@ -72,6 +72,7 @@ import { ToastService } from './services';
     BmbFabComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [ToastService],
 })
 export class DsNgModule {
   constructor(private injector: Injector) {}
