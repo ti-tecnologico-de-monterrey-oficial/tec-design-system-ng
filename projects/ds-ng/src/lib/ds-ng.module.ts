@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BmbButtonDirective } from './directives/button.directive';
 import { DsNgComponent } from './ds-ng.component';
+import { BmbFabComponent } from './components/bmb-fab/bmb-fab.component';
 import { BmbLogoComponent } from './components/bmb-logo/bmb-logo.component';
 import { BmbIconComponent } from './components/bmb-icon/bmb-icon.component';
 import { BmbToastComponent } from './components/bmb-toast/bmb-toast.component';
@@ -44,6 +45,7 @@ import { BmbIconTextInputComponent } from './components/bmb-icon-text-input/bmb-
     BmbIconTextInputComponent,
     BmbContainerButtonComponent,
     BmbInteractiveIconComponent,
+    BmbFabComponent,
   ],
   imports: [CommonModule, FormsModule],
   exports: [
@@ -65,6 +67,7 @@ import { BmbIconTextInputComponent } from './components/bmb-icon-text-input/bmb-
     BmbIconTextInputComponent,
     BmbContainerButtonComponent,
     BmbInteractiveIconComponent,
+    BmbFabComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
