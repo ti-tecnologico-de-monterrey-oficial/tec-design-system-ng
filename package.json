@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "build-storybook": "ng run ds-ng:build-storybook",
-    "build": "ng build ds-ng",
+    "build": "ng build",
     "chromatic": "npx chromatic --project-token=chpt_f98e9dab3ebf7df"
   },
   "publishConfig": {
