@@ -6,7 +6,9 @@
     (click)="onParentClick()"
     #inputWrapper
   >
-    <bmb-icon *ngIf="icon || !isValid" [icon]="icon" class="bmb__field--icon" [ngClass]="iconColor" />
+    <ng-container *ngIf="icon">
+      <bmb-icon [icon]="icon" class="bmb__field--icon" [ngClass]="iconColor" />
+    </ng-container>
     <input
       type="text"
       class="bmb__field--input"
