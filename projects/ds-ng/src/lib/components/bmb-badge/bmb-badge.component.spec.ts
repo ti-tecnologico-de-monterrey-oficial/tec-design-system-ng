@@ -18,8 +18,8 @@ describe('BmbBadgeComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should apply badge class based on type', () => {
-    component.type = 'primary';
+  it('should apply badge class based on appearance', () => {
+    component.appearance = 'primary';
     fixture.detectChanges();
 
     const element: HTMLElement = fixture.nativeElement;
@@ -28,7 +28,7 @@ describe('BmbBadgeComponent', () => {
     expect(badgeElement?.classList).toContain('badge--primary');
   });
 
-  it('should not apply badge class when type is not provided', () => {
+  it('should not apply badge class when appearance is not provided', () => {
     fixture.detectChanges();
 
     const element: HTMLElement = fixture.nativeElement;

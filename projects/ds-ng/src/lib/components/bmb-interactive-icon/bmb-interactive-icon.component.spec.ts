@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BmbInteractiveIconComponent } from './bmb-interactive-icon.component';
-import { Component, Input, DebugElement } from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
 
 @Component({
   selector: 'test-host-component',
