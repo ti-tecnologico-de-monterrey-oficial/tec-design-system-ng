@@ -24,6 +24,7 @@ import { BmbContainerButtonComponent } from './components/bmb-container-button/b
 
 import { BmbTextInputComponent } from './components/bmb-text-input/bmb-text-input.component';
 import { BmbIconTextInputComponent } from './components/bmb-icon-text-input/bmb-icon-text-input.component';
+import { BmbTagComponent } from './components/bmb-tags/bmb-tags.component';
 
 import { ToastService } from './services';
 
@@ -48,6 +49,7 @@ import { ToastService } from './services';
     BmbContainerButtonComponent,
     BmbInteractiveIconComponent,
     BmbFabComponent,
+    BmbTagComponent,
   ],
   imports: [CommonModule, FormsModule],
   exports: [
@@ -70,6 +72,7 @@ import { ToastService } from './services';
     BmbContainerButtonComponent,
     BmbInteractiveIconComponent,
     BmbFabComponent,
+    BmbTagComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [ToastService],
