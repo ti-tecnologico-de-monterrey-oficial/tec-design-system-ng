@@ -278,8 +278,8 @@
   @include resetElement();
   @include font(4, regular);
   appearance: none;
-  height: 100%;
   width: 100%;
+  // height: 40px;
 
   &:focus,
   &:focus:hover {
@@ -424,7 +424,7 @@
   }
 
 
-  > i {
+  > bmb-icon {
     font-size: rem_calc(24);
   }
 
