@@ -1077,6 +1077,184 @@
             "templateData": "<ol class=\"dot-paginator\">\n  <li\n    *ngFor=\"let i of getDotsArray()\"\n    [attr.data-bs-target]=\"targets[i]?.target || ''\"\n    [attr.data-bs-slide-to]=\"i\"\n    [ngClass]=\"{ dot: true, active: activeDotIndex === i }\"\n    (click)=\"onDotClicked(i)\"\n  ></li>\n</ol>\n"
         },
         {
+            "name": "BmbFabComponent",
+            "id": "component-BmbFabComponent-bc6236cd5f13896fcf6ba8924338c95affc13f16f18f02952d911e2f7ebbbbae661cc30ca6d833d88d80ffa59451bdf37c79674280d145c978c2a65d4dfe2e57",
+            "file": "projects/ds-ng/src/lib/components/bmb-fab/bmb-fab.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-fab",
+            "styleUrls": [
+                "../../../assets/styles/components/_fabs.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-fab.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "device",
+                    "defaultValue": "'mobile'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 19,
+                    "type": "\"mobile\" | \"desktop\"",
+                    "decorators": []
+                },
+                {
+                    "name": "icon",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 15,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "size",
+                    "defaultValue": "'s'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 17,
+                    "type": "\"s\" | \"l\"",
+                    "decorators": []
+                },
+                {
+                    "name": "text",
+                    "defaultValue": "'TEXTO'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 16,
+                    "type": "string | null",
+                    "decorators": []
+                },
+                {
+                    "name": "type",
+                    "defaultValue": "'fab'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 18,
+                    "type": "\"ext\" | \"fab\"",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "active",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": false,
+                    "description": "",
+                    "line": 21
+                },
+                {
+                    "name": "closeIcon",
+                    "defaultValue": "'close'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 23
+                },
+                {
+                    "name": "fabStyle",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 25
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "myClick",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 27,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "decorators": [
+                        {
+                            "name": "HostListener",
+                            "stringifiedArguments": "'click'"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ]
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 35,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "setStyles",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 40,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [
+                {
+                    "name": "click",
+                    "args": [],
+                    "argsDecorator": [],
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 27
+                }
+            ],
+            "standalone": false,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { \n  Component,\n  HostListener,  \n  Input,\n } from '@angular/core';\n\n@Component({\n  selector: 'bmb-fab',\n  templateUrl: './bmb-fab.component.html',\n  styleUrls: ['../../../assets/styles/components/_fabs.scss'],\n})\nexport class BmbFabComponent {\n\n\n  @Input() icon = '';\n  @Input() text?: string | null = 'TEXTO';\n  @Input() size?: 's' | 'l' = 's';\n  @Input() type?: 'ext' | 'fab'  = 'fab';\n  @Input() device?: 'mobile' | 'desktop' = 'mobile';\n\n  active: boolean = false;\n\n  closeIcon = 'close';\n  \n  fabStyle = '';\n\n  @HostListener('click') myClick(){ \n    if(this.type == 'fab'){\n      this.active = !this.active\n    }\n  }\n\n  constructor() {}\n\n  ngOnInit(){\n    this.fabStyle = this.setStyles()\n  }\n\n\n  setStyles(){\n    let style = 'fab';\n\n    if(this.device == 'mobile'){\n      style = `${style}-mob`\n    }else{\n      style = `${style}-des`\n    }\n\n    if(this.size == 's'){\n      style = `${style}-small`\n    }else {\n      style = `${style}-large`\n    }\n\n    if(this.type === 'ext'){\n      style = `${style}-extended`\n    }else{\n      style = `${style}-normal`\n    }\n   return style\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@import \"../base/mixins\";\n\n.fab{\n    &-mob-small-normal{\n        @include fabInput(m, s, n);\n    }\n\n    &-mob-small-extended{\n        @include fabInput(m, s, e);\n    }\n\n    &-mob-large-normal{\n        @include fabInput(m, l, n)\n    }\n\n    &-mob-large-extended{\n        @include fabInput(m, l, e)\n    }\n\n    &-des-small-normal{\n        @include fabInput(d, s, n);\n    }\n\n    &-des-small-extended{\n        @include fabInput(d, s, e);\n    }\n\n    &-des-large-normal{\n        @include fabInput(d, l, n)\n    }\n\n    &-des-large-extended{\n        @include fabInput(d, l, e)\n    }\n}",
+                    "styleUrl": "../../../assets/styles/components/_fabs.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 31
+            },
+            "extends": [],
+            "templateData": "<button [ngClass]=\"this.fabStyle\" type=\"button\">\n    <span *ngIf=\"type == 'ext'\">{{text}}</span>\n    <bmb-icon *ngIf=\"!active\" icon={{icon}} />\n    <bmb-icon  *ngIf=\"type == 'fab' && active \" icon='close'/>\n</button>\n"
+        },
+        {
             "name": "BmbHeaderMobileComponent",
             "id": "component-BmbHeaderMobileComponent-30ba6f1476c789270229c5384ef0e3a60697fea5455f67ce5bb8cd87e009223622e307e7428497b191abd880e73a13dbe1424bbcb74d5498955884089e8e0080",
             "file": "projects/ds-ng/src/lib/components/bmb-header-mobile/bmb-header-mobile.component.ts",
@@ -1356,7 +1534,7 @@
         },
         {
             "name": "BmbInputComponent",
-            "id": "component-BmbInputComponent-7ce2d77eb4e52a4c28d36a653f96547e3776d6e97235ab2825cd8778081a1a525e0a41ac3fb8902eb48aed6ab071e17a31e68d1f95807e00db3fc3be305fecc9",
+            "id": "component-BmbInputComponent-db8bec4ea26f051c8ee7aaf2f9a8e5ac532383ba67030dceef51fa5f35be972a4227559e5b6962ceab108bff81017c5bd624c27414a4c190edb985b8e390fa2e",
             "file": "projects/ds-ng/src/lib/components/bmb-input/bmb-input.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1384,11 +1562,29 @@
             "hostDirectives": [],
             "inputsClass": [
                 {
+                    "name": "appearance",
+                    "defaultValue": "'normal'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 58,
+                    "type": "\"normal\" | \"simple\" | \"main\"",
+                    "decorators": []
+                },
+                {
+                    "name": "device",
+                    "defaultValue": "'mobile'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 59,
+                    "type": "\"mobile\" | \"desktop\"",
+                    "decorators": []
+                },
+                {
                     "name": "errorMessage",
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 51,
+                    "line": 52,
                     "type": "string",
                     "decorators": []
                 },
@@ -1397,7 +1593,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 50,
+                    "line": 51,
                     "type": "string",
                     "decorators": []
                 },
@@ -1406,7 +1602,7 @@
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 56,
+                    "line": 57,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -1415,7 +1611,7 @@
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 53,
+                    "line": 54,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -1424,7 +1620,7 @@
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 54,
+                    "line": 55,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -1433,7 +1629,7 @@
                     "defaultValue": "true",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 52,
+                    "line": 53,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -1442,7 +1638,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 48,
+                    "line": 49,
                     "type": "string",
                     "decorators": []
                 },
@@ -1451,7 +1647,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 49,
+                    "line": 50,
                     "type": "string",
                     "decorators": []
                 },
@@ -1459,7 +1655,7 @@
                     "name": "value",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 55,
+                    "line": 56,
                     "type": "string | undefined",
                     "decorators": []
                 }
@@ -1470,7 +1666,7 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 60,
+                    "line": 63,
                     "type": "EventEmitter<any>"
                 },
                 {
@@ -1478,7 +1674,7 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 62,
+                    "line": 65,
                     "type": "EventEmitter<any>"
                 },
                 {
@@ -1486,7 +1682,7 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 58,
+                    "line": 61,
                     "type": "EventEmitter<any>"
                 },
                 {
@@ -1494,7 +1690,7 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 59,
+                    "line": 62,
                     "type": "EventEmitter<any>"
                 },
                 {
@@ -1502,7 +1698,7 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 61,
+                    "line": 64,
                     "type": "EventEmitter<any>"
                 }
             ],
@@ -1514,7 +1710,17 @@
                     "type": "FormControl | undefined",
                     "optional": false,
                     "description": "",
-                    "line": 65
+                    "line": 68
+                },
+                {
+                    "name": "iconColor",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 71
                 },
                 {
                     "name": "input",
@@ -1523,7 +1729,7 @@
                     "type": "NgModel | undefined",
                     "optional": false,
                     "description": "",
-                    "line": 46,
+                    "line": 47,
                     "decorators": [
                         {
                             "name": "ViewChild",
@@ -1541,7 +1747,7 @@
                     "type": "string | undefined",
                     "optional": false,
                     "description": "",
-                    "line": 64,
+                    "line": 67,
                     "modifierKind": [
                         125
                     ]
@@ -1553,7 +1759,7 @@
                     "type": "ElementRef | undefined",
                     "optional": false,
                     "description": "",
-                    "line": 44,
+                    "line": 45,
                     "decorators": [
                         {
                             "name": "ViewChild",
@@ -1571,7 +1777,17 @@
                     "type": "Function | undefined",
                     "optional": false,
                     "description": "",
-                    "line": 66
+                    "line": 69
+                },
+                {
+                    "name": "style",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 70
                 }
             ],
             "methodsClass": [
@@ -1581,7 +1797,7 @@
                     "optional": false,
                     "returnType": "any",
                     "typeParameters": [],
-                    "line": 107,
+                    "line": 114,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1591,7 +1807,7 @@
                     "optional": false,
                     "returnType": "any",
                     "typeParameters": [],
-                    "line": 111,
+                    "line": 118,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1601,7 +1817,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 70,
+                    "line": 75,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1618,7 +1834,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 81,
+                    "line": 88,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1639,7 +1855,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 137,
+                    "line": 144,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1656,7 +1872,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 145,
+                    "line": 152,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1677,7 +1893,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 91,
+                    "line": 98,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1687,7 +1903,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 125,
+                    "line": 132,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1697,7 +1913,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 130,
+                    "line": 137,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1707,7 +1923,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 141,
+                    "line": 148,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1717,7 +1933,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 119,
+                    "line": 126,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1734,7 +1950,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 151,
+                    "line": 158,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1762,7 +1978,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 155,
+                    "line": 162,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1790,7 +2006,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 159,
+                    "line": 166,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1818,7 +2034,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 115,
+                    "line": 122,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1846,7 +2062,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 174,
+                    "line": 181,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1874,7 +2090,7 @@
                     "optional": false,
                     "returnType": "{ invalid: boolean; }",
                     "typeParameters": [],
-                    "line": 165,
+                    "line": 172,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1902,7 +2118,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 147,
+                    "line": 154,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1927,11 +2143,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\n  Component,\n  Input,\n  ViewChild,\n  ElementRef,\n  Output,\n  EventEmitter,\n  forwardRef,\n  AfterViewInit,\n  SimpleChanges,\n  OnChanges,\n  ChangeDetectorRef,\n} from '@angular/core';\n\nimport {\n  ControlValueAccessor,\n  NG_VALUE_ACCESSOR,\n  NG_VALIDATORS,\n  FormControl,\n  NgModel,\n} from '@angular/forms';\n\n@Component({\n  selector: 'bmb-input',\n  templateUrl: './bmb-input.component.html',\n  styleUrls: ['../../../assets/styles/components/_input.scss'],\n  providers: [\n    {\n      provide: NG_VALUE_ACCESSOR,\n      useExisting: forwardRef(() => BmbInputComponent),\n      multi: true,\n    },\n    {\n      provide: NG_VALIDATORS,\n      useExisting: forwardRef(() => BmbInputComponent),\n      multi: true,\n    },\n  ],\n})\nexport class BmbInputComponent\n  implements ControlValueAccessor, AfterViewInit, OnChanges\n{\n  @ViewChild('inputWrapper', { read: ElementRef, static: false })\n  inputWrapper: ElementRef | undefined;\n  @ViewChild('input', { static: false })\n  input: NgModel | undefined;\n\n  @Input() label: string = '';\n  @Input() placeholder: string = '';\n  @Input() icon: string = '';\n  @Input() errorMessage: string = '';\n  @Input() isValid: boolean = true;\n  @Input() isDisabled: boolean = false;\n  @Input() isRequired: boolean = false;\n  @Input() value: string | undefined;\n  @Input() isClearable: boolean = false;\n\n  @Output() handleClick: EventEmitter<any> = new EventEmitter();\n  @Output() handleFocus: EventEmitter<any> = new EventEmitter();\n  @Output() handleBlur: EventEmitter<any> = new EventEmitter();\n  @Output() handleMouseover: EventEmitter<any> = new EventEmitter();\n  @Output() handleChange: EventEmitter<any> = new EventEmitter();\n\n  public inputModel: string | undefined;\n  formControl: FormControl | undefined;\n  onTouch: Function | undefined;\n\n  constructor(private cdr: ChangeDetectorRef) {}\n\n  ngAfterViewInit(): void {\n    if (this.isDisabled && this.formControl) {\n      this.formControl.disable();\n    }\n    setTimeout(() => {\n      if (this.value && this.inputModel !== undefined) {\n        this.value = undefined;\n      }\n    }, 0);\n  }\n\n  ngOnChanges(changes: SimpleChanges): void {\n    if (this.formControl && changes?.['isDisabled'] !== undefined) {\n      if (this.formControl.disabled !== changes?.['isDisabled']?.currentValue) {\n        changes?.['isDisabled']?.currentValue\n          ? this.formControl.disable()\n          : this.formControl.enable();\n      }\n    }\n  }\n\n  onClear() {\n    this.inputModel = undefined;\n    this.value = undefined;\n    this.inputWrapper?.nativeElement\n      .querySelector('.bmb__field--input')\n      .focus();\n\n    if (this.isClearable && this.formControl) {\n      this.formControl.reset();\n    }\n\n    this.cdr.detectChanges();\n\n    this.handleChange.emit(this.getValue());\n  }\n\n  getComponent() {\n    return this.input;\n  }\n\n  getValue() {\n    return this.input?.['viewModel'];\n  }\n\n  setValidation(validation: any) {\n    this.isValid = validation;\n  }\n\n  onParentClick() {\n    this.inputWrapper?.nativeElement\n      .querySelector('.bmb__field--input')\n      .focus();\n  }\n\n  onClick() {\n    this.handleChange.emit(this.getValue());\n    this.handleClick.emit(this.getValue());\n  }\n\n  onFocus() {\n    this.handleFocus.emit(this.getValue());\n    if (this.onTouch) {\n      this.onTouch();\n    }\n  }\n\n  onBlur() {\n    this.handleBlur.emit(this.getValue());\n  }\n\n  onMouseover() {\n    this.handleMouseover.emit(this.getValue());\n  }\n\n  onChange(value: any): void {}\n\n  writeValue(value: string): void {\n    this.inputModel = value;\n  }\n\n  registerOnChange(fn: any): void {\n    this.onChange = fn;\n  }\n\n  registerOnTouched(fn: any): void {\n    this.onTouch = fn;\n  }\n\n  setDisabledState(state: boolean): void {\n    if (this.formControl) {\n      this.isDisabled = state;\n    }\n  }\n\n  validate(form: FormControl) {\n    this.formControl = form;\n    if (!form?.value && this.isRequired === true) {\n      return { invalid: true };\n    } else {\n      return null;\n    }\n  }\n\n  setValue(value: string) {\n    this.onChange(value);\n    if (this.input?.['viewModel'] === '') {\n      this.inputModel = undefined;\n      this.value = undefined;\n      this.cdr.detectChanges();\n    }\n    this.handleChange.emit(this.getValue());\n    if (this.onTouch) {\n      this.onTouch();\n    }\n  }\n}\n",
+            "sourceCode": "import {\n  Component,\n  Input,\n  ViewChild,\n  ElementRef,\n  Output,\n  EventEmitter,\n  forwardRef,\n  AfterViewInit,\n  SimpleChanges,\n  OnChanges,\n  ChangeDetectorRef,\n  HostBinding\n} from '@angular/core';\n\nimport {\n  ControlValueAccessor,\n  NG_VALUE_ACCESSOR,\n  NG_VALIDATORS,\n  FormControl,\n  NgModel,\n} from '@angular/forms';\n\n@Component({\n  selector: 'bmb-input',\n  templateUrl: './bmb-input.component.html',\n  styleUrls: ['../../../assets/styles/components/_input.scss'],\n  providers: [\n    {\n      provide: NG_VALUE_ACCESSOR,\n      useExisting: forwardRef(() => BmbInputComponent),\n      multi: true,\n    },\n    {\n      provide: NG_VALIDATORS,\n      useExisting: forwardRef(() => BmbInputComponent),\n      multi: true,\n    },\n  ],\n})\nexport class BmbInputComponent\n  implements ControlValueAccessor, AfterViewInit, OnChanges\n{\n  @ViewChild('inputWrapper', { read: ElementRef, static: false })\n  inputWrapper: ElementRef | undefined;\n  @ViewChild('input', { static: false })\n  input: NgModel | undefined;\n\n  @Input() label: string = '';\n  @Input() placeholder: string = '';\n  @Input() icon: string = '';\n  @Input() errorMessage: string = '';\n  @Input() isValid: boolean = true;\n  @Input() isDisabled: boolean = false;\n  @Input() isRequired: boolean = false;\n  @Input() value: string | undefined;\n  @Input() isClearable: boolean = false;\n  @Input() appearance: 'normal' | 'simple' | 'main' = 'normal';\n  @Input() device: 'mobile' | 'desktop' = 'mobile';\n  \n  @Output() handleClick: EventEmitter<any> = new EventEmitter();\n  @Output() handleFocus: EventEmitter<any> = new EventEmitter();\n  @Output() handleBlur: EventEmitter<any> = new EventEmitter();\n  @Output() handleMouseover: EventEmitter<any> = new EventEmitter();\n  @Output() handleChange: EventEmitter<any> = new EventEmitter();\n\n  public inputModel: string | undefined;\n  formControl: FormControl | undefined;\n  onTouch: Function | undefined;\n  style = '';\n  iconColor = '';\n\n  constructor(private cdr: ChangeDetectorRef) {}\n\n  ngAfterViewInit(): void {\n    if (this.isDisabled && this.formControl) {\n      this.formControl.disable();\n    }\n    setTimeout(() => {\n      if (this.value && this.inputModel !== undefined) {\n        this.value = undefined;\n      }\n    }, 0);\n    this.style = `bmb-input-${this.appearance}`\n    this.iconColor = `icon-${this.appearance}`\n  }\n\n  ngOnChanges(changes: SimpleChanges): void {\n    if (this.formControl && changes?.['isDisabled'] !== undefined) {\n      if (this.formControl.disabled !== changes?.['isDisabled']?.currentValue) {\n        changes?.['isDisabled']?.currentValue\n          ? this.formControl.disable()\n          : this.formControl.enable();\n      }\n    }\n  }\n\n  onClear() {\n    this.inputModel = undefined;\n    this.value = undefined;\n    this.inputWrapper?.nativeElement\n      .querySelector('.bmb__field--input')\n      .focus();\n\n    if (this.isClearable && this.formControl) {\n      this.formControl.reset();\n    }\n\n    this.cdr.detectChanges();\n\n    this.handleChange.emit(this.getValue());\n  }\n\n  getComponent() {\n    return this.input;\n  }\n\n  getValue() {\n    return this.input?.['viewModel'];\n  }\n\n  setValidation(validation: any) {\n    this.isValid = validation;\n  }\n\n  onParentClick() {\n    this.inputWrapper?.nativeElement\n      .querySelector('.bmb__field--input')\n      .focus();\n  }\n\n  onClick() {\n    this.handleChange.emit(this.getValue());\n    this.handleClick.emit(this.getValue());\n  }\n\n  onFocus() {\n    this.handleFocus.emit(this.getValue());\n    if (this.onTouch) {\n      this.onTouch();\n    }\n  }\n\n  onBlur() {\n    this.handleBlur.emit(this.getValue());\n  }\n\n  onMouseover() {\n    this.handleMouseover.emit(this.getValue());\n  }\n\n  onChange(value: any): void {}\n\n  writeValue(value: string): void {\n    this.inputModel = value;\n  }\n\n  registerOnChange(fn: any): void {\n    this.onChange = fn;\n  }\n\n  registerOnTouched(fn: any): void {\n    this.onTouch = fn;\n  }\n\n  setDisabledState(state: boolean): void {\n    if (this.formControl) {\n      this.isDisabled = state;\n    }\n  }\n\n  validate(form: FormControl) {\n    this.formControl = form;\n    if (!form?.value && this.isRequired === true) {\n      return { invalid: true };\n    } else {\n      return null;\n    }\n  }\n\n  setValue(value: string) {\n    this.onChange(value);\n    if (this.input?.['viewModel'] === '') {\n      this.inputModel = undefined;\n      this.value = undefined;\n      this.cdr.detectChanges();\n    }\n    this.handleChange.emit(this.getValue());\n    if (this.onTouch) {\n      this.onTouch();\n    }\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".bmb__field {\n  &--label {\n  }\n\n  &--wrapper {\n    align-items: center;\n    display: flex;\n    justify-content: center;\n    padding: 0;\n    position: relative;\n    width: 100%;\n  }\n\n  &--error {\n  }\n\n  &--icon {\n  }\n\n  &--helper {\n  }\n\n  &--input {\n  }\n}\n",
+                    "data": "@import \"../base/mixins\";\n\n.bmb__field {\n  &-label {\n    @include font(3, regular);\n    color: RGBA(var(--color-black-primary));\n    padding: rem_calc(4) rem_calc(8) rem_calc(8) rem_calc(8);\n  }\n\n  &--wrapper {\n    align-items: center;\n    display: flex;\n    padding: 0;\n    margin: 0;\n    position: relative;\n    width: 100%;\n\n    bmb-icon{\n      font-size: rem_calc(22);\n    }\n\n    .bmb-input-normal{\n      color: RGBA(var(--color-white-primary));\n    }\n\n    .bmb__field--icon ~ .bmb-input-normal{\n      padding: rem_calc(8) rem_calc(8) rem_calc(8) rem_calc(35);\n      color: RGBA(var(--color-white-primary));\n    }\n\n    .bmb__field--icon ~ .bmb-input-simple{\n      padding: rem_calc(8) rem_calc(8) rem_calc(8) rem_calc(35); \n      color: RGBA(var(--color-black-primary));\n    }\n\n    .bmb__field--icon ~ .bmb-input-main{\n      padding: rem_calc(8) rem_calc(8) rem_calc(8) rem_calc(35); \n      color: RGBA(var(--color-black-primary));\n    }\n\n    > .icon-normal{\n      color: RGBA(var(--color-white-primary));\n    }\n\n    > .icon-simple{\n      color: RGBA(var(--color-black-primary));\n    }\n\n    > .icon-main{\n      color: RGBA(var(--color-black-primary));\n    }\n\n  }\n\n  &--error {\n    // color: RGBA(var(--color-red-primary));\n  }\n\n  &--icon {\n    font-size: rem_calc(24);\n    left: rem_calc(8);\n    position: absolute;\n    top: 50%;\n    transform: translateY(-50%);\n  }\n\n  &--helper {\n    @include font(3, regular);\n    color: RGBA(var(--color-charade-400));\n    padding: rem_calc(4) rem_calc(8) rem_calc(8) rem_calc(8);\n  }\n\n  &--input {\n\n    & .bmb-input-normal{\n      @include inputType(normal);\n    }\n\n    & .bmb-input-simple{\n      @include inputType(simple);\n    }\n\n    & .bmb-input-main{\n      @include inputType(main);\n    }\n  }\n\n}\n",
                     "styleUrl": "../../../assets/styles/components/_input.scss"
                 }
             ],
@@ -1949,7 +2165,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 66,
+                "line": 71,
                 "jsdoctags": [
                     {
                         "name": "cdr",
@@ -1968,7 +2184,7 @@
                 "AfterViewInit",
                 "OnChanges"
             ],
-            "templateData": "<div class=\"bmb__field\">\n  <label for=\"\" class=\"bmb__field--label\" *ngIf=\"label\">{{ label }}</label>\n  <div\n    class=\"bmb__field--wrapper\"\n    [ngClass]=\"[!isValid ? 'bmb__field--error' : '']\"\n    (click)=\"onParentClick()\"\n    #inputWrapper\n  >\n    <bmb-icon *ngIf=\"icon || !isValid\" [icon]=\"icon\" class=\"bmb__field--icon\" />\n    <input\n      type=\"text\"\n      class=\"bmb__field--input\"\n      (ngModelChange)=\"setValue(input.viewModel)\"\n      (click)=\"onClick()\"\n      (focus)=\"onFocus()\"\n      (blur)=\"onBlur()\"\n      (mouseover)=\"onMouseover()\"\n      [(ngModel)]=\"value || inputModel\"\n      [required]=\"isRequired\"\n      [disabled]=\"isDisabled\"\n      [placeholder]=\"placeholder ? placeholder : ''\"\n      #input=\"ngModel\"\n    />\n  </div>\n  <p *ngIf=\"errorMessage && !isValid\" class=\"bmb__field--helper\">\n    {{ errorMessage }}\n  </p>\n</div>\n"
+            "templateData": "<div class=\"bmb__field\">\n  <label for=\"\" class=\"bmb__field-label\" *ngIf=\"label\">{{ label }}</label>\n  <div\n    class=\"bmb__field--wrapper\"\n    [ngClass]=\"[!isValid ? 'bmb__field--error' : '', ]\"\n    (click)=\"onParentClick()\"\n    #inputWrapper\n  >\n    <ng-container *ngIf=\"icon\">\n      <bmb-icon [icon]=\"icon\" class=\"bmb__field--icon\" [ngClass]=\"iconColor\" />\n    </ng-container>\n    <input\n      type=\"text\"\n      class=\"bmb__field--input\"\n      [ngClass]=\"this.style\"\n      (ngModelChange)=\"setValue(input.viewModel)\"\n      (click)=\"onClick()\"\n      (focus)=\"onFocus()\"\n      (blur)=\"onBlur()\"\n      (mouseover)=\"onMouseover()\"\n      [(ngModel)]=\"value || inputModel\"\n      [required]=\"isRequired\"\n      [disabled]=\"isDisabled\"\n      [placeholder]=\"placeholder ? placeholder : ''\"\n      #input=\"ngModel\"\n    />\n  </div>\n  <p *ngIf=\"errorMessage && !isValid\" class=\"bmb__field--helper\">\n    {{ errorMessage }}\n  </p>\n</div>\n"
         },
         {
             "name": "BmbInteractiveIconComponent",
@@ -2220,6 +2436,144 @@
             "templateData": "<div [ngClass]=\"getClasses()\">\n  <img [src]=\"image\" [alt]=\"altImage\" />\n</div>\n"
         },
         {
+            "name": "BmbTagComponent",
+            "id": "component-BmbTagComponent-e1ac73abb3973fbfeec255e8ff75336cbea5cd2d3cc2713d260e0b66d287977f513f6a764556c115bbfb791dc1df0abc8e2bc340466d1b436342c3fa1960c4f8",
+            "file": "projects/ds-ng/src/lib/components/bmb-tags/bmb-tags.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-tag",
+            "styleUrls": [
+                "../../../assets/styles/components/_tags.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-tags.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "appearance",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 17,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "grouped",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 19,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "text",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 18,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "getClasses",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "string[]",
+                    "typeParameters": [],
+                    "line": 39,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "ngAfterViewInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 23,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ElementRef,\n  Renderer2,\n  AfterViewInit,\n} from '@angular/core';\n\n@Component({\n  selector: 'bmb-tag',\n  templateUrl: './bmb-tags.component.html',\n  styleUrls: ['../../../assets/styles/components/_tags.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbTagComponent implements AfterViewInit {\n  @Input() appearance: string = '';\n  @Input() text: string = '';\n  @Input() grouped: boolean = false;\n\n  constructor(private el: ElementRef, private renderer: Renderer2) {}\n\n  ngAfterViewInit() {\n    if (this.grouped) {\n      \n    }\n    const parentElement = this.el.nativeElement.parentElement;\n\n      let wrapperDiv = parentElement.querySelector('.tag--grouped');\n      if (!wrapperDiv) {\n        wrapperDiv = this.renderer.createElement('div');\n        this.renderer.addClass(wrapperDiv, 'tag--grouped');\n        this.renderer.insertBefore(parentElement, wrapperDiv, null);\n      }\n\n      this.renderer.appendChild(wrapperDiv, this.el.nativeElement);\n  }\n\n  getClasses(): string[] {\n    const classes: string[] = ['badge'];\n\n    if (this.appearance) {\n      classes.push('badge--' + this.appearance);\n    }\n\n    return classes;\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@import '../base/mixins';\n\n.tag{\n    @include font(3, regular);\n    align-items: center;\n    border-radius: $border-radius-xs;\n    color: RGBA(var(--color-white-primary));\n    display: flex;\n    justify-content: center;\n    min-height: rem_calc(24);\n    padding: $spacing-size-sm $spacing-size-base;\n    width: fit-content;\n    background-color: darkgrey;\n\n    &--grouped{\n        display: flex;\n    }\n\n    &--text{\n        padding-right: 4px;\n    }\n\n    &--btn{\n        padding: 0;\n        appearance: none;\n        border: 0;\n        background: none;\n        display: flex;\n        align-items: center;\n        \n        bmb-icon{\n            color: RGBA(var(--color-white-primary));\n            font-size: 16px;\n        }\n    }\n}",
+                    "styleUrl": "../../../assets/styles/components/_tags.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "el",
+                        "type": "ElementRef",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "renderer",
+                        "type": "Renderer2",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 19,
+                "jsdoctags": [
+                    {
+                        "name": "el",
+                        "type": "ElementRef",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "renderer",
+                        "type": "Renderer2",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "extends": [],
+            "implements": [
+                "AfterViewInit"
+            ],
+            "templateData": "<div class=\"tag\">\n  <span class=\"tag--text\">{{ text }}</span>\n  <button class=\"tag--btn\">\n    <bmb-icon [icon]=\"'close'\"/>\n  </button>\n</div>\n"
+        },
+        {
             "name": "BmbTextInputComponent",
             "id": "component-BmbTextInputComponent-882df5006ef193bac6d0a058ec29223347827e5952ea9cf6248d9f123b0cffe9c599858b892fdcd9f3943e5d2d465e13fdfc23fcf7a4d3a69bf3d697797381bf",
             "file": "projects/ds-ng/src/lib/components/bmb-text-input/bmb-text-input.component.ts",
@@ -2359,7 +2713,7 @@
         },
         {
             "name": "BmbThemeComponent",
-            "id": "component-BmbThemeComponent-dd37a13bf255a19c913431f47f70d52a4290ff75e432e3cdd1c629cf3521921c4e469137e03877410cbfdd89c3540b44b6d6a12528305dc145bce91202ed63a9",
+            "id": "component-BmbThemeComponent-5a1bf9426f03feeb3bd14a4df3575b6453ef14badaf0723355f0432c264144b02b5bc936dae60f519fd155983ceb3a417e85608d637009b2cfdfe5c945a59f71",
             "file": "projects/ds-ng/src/lib/components/bmb-theme/bmb-theme.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -2379,7 +2733,7 @@
             "propertiesClass": [
                 {
                     "name": "selectedTheme",
-                    "defaultValue": "'dark'",
+                    "defaultValue": "'light'",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "string",
@@ -2465,7 +2819,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { ThemeService } from '../../services';\n\n@Component({\n  selector: 'bmb-theme',\n  templateUrl: './bmb-theme.component.html',\n})\nexport class BmbThemeComponent implements OnInit {\n  selectedTheme: string = 'dark';\n\n  constructor(private themeService: ThemeService) {}\n\n  ngOnInit(): void {\n    this.themeService.theme$.subscribe((theme) => {\n      this.applyTheme(theme);\n    });\n  }\n\n  applyTheme(theme: string): void {\n    document.documentElement.setAttribute('data-theme', theme);\n  }\n\n  onThemeChange(newTheme: string): void {\n    this.selectedTheme = newTheme;\n    this.themeService.setTheme(this.selectedTheme);\n  }\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { ThemeService } from '../../services';\n\n@Component({\n  selector: 'bmb-theme',\n  templateUrl: './bmb-theme.component.html',\n})\nexport class BmbThemeComponent implements OnInit {\n  selectedTheme: string = 'light';\n\n  constructor(private themeService: ThemeService) {}\n\n  ngOnInit(): void {\n    this.themeService.theme$.subscribe((theme) => {\n      this.applyTheme(theme);\n    });\n  }\n\n  applyTheme(theme: string): void {\n    document.documentElement.setAttribute('data-theme', theme);\n  }\n\n  onThemeChange(newTheme: string): void {\n    this.selectedTheme = newTheme;\n    this.themeService.setTheme(this.selectedTheme);\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -2585,7 +2939,7 @@
         },
         {
             "name": "BmbToastComponent",
-            "id": "component-BmbToastComponent-57f5feab4a3a56499cbf7cb063c5ae593ad4a85550f252fe8a245ec7ddf6d3ccc887949228a646ad544e92c04ec1ec970a0239dfc02a2b48c59f899d356c7247",
+            "id": "component-BmbToastComponent-a18e950392630562ab47d4ff7e4fd33f13bf8afb628d317cd760c35f300f6b70d6e9e97ec552468c739c5c8382ac6bcccf018703245cdd3cc8575679b561cb36",
             "file": "projects/ds-ng/src/lib/components/bmb-toast/bmb-toast.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -2696,6 +3050,16 @@
                     "deprecationMessage": ""
                 },
                 {
+                    "name": "openToast",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 62,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
                     "name": "setAutoClose",
                     "args": [],
                     "optional": false,
@@ -2718,7 +3082,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  OnInit,\n  OnDestroy,\n} from '@angular/core';\nimport { ToastService } from '../../services';\nimport { Subscription } from 'rxjs';\n\n@Component({\n  selector: 'bmb-toast',\n  templateUrl: './bmb-toast.component.html',\n  styleUrls: ['../../../assets/styles/components/_toast.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbToastComponent implements OnInit, OnDestroy {\n  @Input() appearance: string = '';\n  @Input() message: string = '';\n  @Input() duration?: number;\n  @Input() position?: 'top' | 'bottom' | 'middle';\n  isOpen$ = this.toastService.isOpen$;\n\n  private isOpenSubscription: Subscription | undefined;\n\n  constructor(private toastService: ToastService) {}\n\n  ngOnInit(): void {\n    this.isOpenSubscription = this.isOpen$.subscribe((isOpen) => {\n      if (isOpen && this.duration) {\n        this.setAutoClose();\n      }\n    });\n  }\n\n  ngOnDestroy(): void {\n    if (this.isOpenSubscription) {\n      this.isOpenSubscription.unsubscribe();\n    }\n  }\n\n  getClasses(): string[] {\n    const classes: string[] = ['toast'];\n\n    if (this.appearance) {\n      classes.push('toast--' + this.appearance);\n    }\n\n    if (this.position) {\n      classes.push('toast--' + this.position);\n    }\n\n    return classes;\n  }\n\n  private setAutoClose(): void {\n    setTimeout(() => {\n      this.toastService.closeToast();\n    }, this.duration);\n  }\n}\n",
+            "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  OnInit,\n  OnDestroy,\n} from '@angular/core';\nimport { ToastService } from '../../services';\nimport { Subscription } from 'rxjs';\n\n@Component({\n  selector: 'bmb-toast',\n  templateUrl: './bmb-toast.component.html',\n  styleUrls: ['../../../assets/styles/components/_toast.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbToastComponent implements OnInit, OnDestroy {\n  @Input() appearance: string = '';\n  @Input() message: string = '';\n  @Input() duration?: number;\n  @Input() position?: 'top' | 'bottom' | 'middle';\n  isOpen$ = this.toastService.isOpen$;\n\n  private isOpenSubscription: Subscription | undefined;\n\n  constructor(private toastService: ToastService) {}\n\n  ngOnInit(): void {\n    this.isOpenSubscription = this.isOpen$.subscribe((isOpen) => {\n      if (isOpen && this.duration) {\n        this.setAutoClose();\n      }\n    });\n  }\n\n  ngOnDestroy(): void {\n    if (this.isOpenSubscription) {\n      this.isOpenSubscription.unsubscribe();\n    }\n  }\n\n  getClasses(): string[] {\n    const classes: string[] = ['toast'];\n\n    if (this.appearance) {\n      classes.push('toast--' + this.appearance);\n    }\n\n    if (this.position) {\n      classes.push('toast--' + this.position);\n    }\n\n    return classes;\n  }\n\n  private setAutoClose(): void {\n    setTimeout(() => {\n      this.toastService.closeToast();\n    }, this.duration);\n  }\n\n  openToast() {\n    this.toastService.openToast();\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -2885,7 +3249,7 @@
     "modules": [
         {
             "name": "DsNgModule",
-            "id": "module-DsNgModule-349400621809c9625c4484bd759507421a43ca87d9f791b3c309d40f3c9a923fa6372aa4fd668a360eb38f1f32ba76f9d69fc7f934dc3cbe549ef2c9c368c0a0",
+            "id": "module-DsNgModule-331feed92e8c05a43c49d77f9bd02ef57f1f6d681d9a52fcec55a0f3654c21964c467adbb4190f6ec532865ee4921f319120d50acda8766025b25d92dcc782f2",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
@@ -2902,7 +3266,7 @@
                     "deprecationMessage": ""
                 }
             ],
-            "sourceCode": "import { NgModule, Injector, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';\nimport { createCustomElement } from '@angular/elements';\nimport { BrowserModule } from '@angular/platform-browser';\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\nimport { FormsModule } from '@angular/forms';\nimport { CommonModule } from '@angular/common';\nimport { BmbButtonDirective } from './directives/button.directive';\nimport { DsNgComponent } from './ds-ng.component';\nimport { BmbLogoComponent } from './components/bmb-logo/bmb-logo.component';\nimport { BmbIconComponent } from './components/bmb-icon/bmb-icon.component';\nimport { BmbToastComponent } from './components/bmb-toast/bmb-toast.component';\nimport { BmbThemeComponent } from './components/bmb-theme/bmb-theme.component';\nimport { BmbBadgeComponent } from './components/bmb-badge/bmb-badge.component';\nimport { BmbInputComponent } from './components/bmb-input/bmb-input.component';\nimport { BmbDividerComponent } from './components/bmb-divider/bmb-divider.component';\nimport { BmbContainerComponent } from './components/bmb-container/bmb-container.component';\nimport { BmbUserImageComponent } from './components/bmb-user-image/bmb-user-image.component';\nimport { BmbTitleSectionComponent } from './components/bmb-title-section/bmb-title-section.component';\nimport { BmbHeaderMobileComponent } from './components/bmb-header-mobile/bmb-header-mobile.component';\nimport { BmbDotPaginatorComponent } from './components/bmb-dot-paginator/bmb-dot-paginator.component';\nimport { BmbInteractiveIconComponent } from './components/bmb-interactive-icon/bmb-interactive-icon.component';\nimport { BmbContainerButtonComponent } from './components/bmb-container-button/bmb-container-button.component';\n\nimport { BmbTextInputComponent } from './components/bmb-text-input/bmb-text-input.component';\nimport { BmbIconTextInputComponent } from './components/bmb-icon-text-input/bmb-icon-text-input.component';\n\n@NgModule({\n  declarations: [\n    DsNgComponent,\n    BmbLogoComponent,\n    BmbIconComponent,\n    BmbThemeComponent,\n    BmbToastComponent,\n    BmbBadgeComponent,\n    BmbInputComponent,\n    BmbButtonDirective,\n    BmbDividerComponent,\n    BmbContainerComponent,\n    BmbTextInputComponent,\n    BmbUserImageComponent,\n    BmbTitleSectionComponent,\n    BmbHeaderMobileComponent,\n    BmbDotPaginatorComponent,\n    BmbIconTextInputComponent,\n    BmbContainerButtonComponent,\n    BmbInteractiveIconComponent,\n  ],\n  imports: [CommonModule, FormsModule],\n  exports: [\n    DsNgComponent,\n    BmbLogoComponent,\n    BmbIconComponent,\n    BmbBadgeComponent,\n    BmbToastComponent,\n    BmbThemeComponent,\n    BmbInputComponent,\n    BmbButtonDirective,\n    BmbDividerComponent,\n    BmbUserImageComponent,\n    BmbContainerComponent,\n    BmbTextInputComponent,\n    BmbTitleSectionComponent,\n    BmbHeaderMobileComponent,\n    BmbDotPaginatorComponent,\n    BmbIconTextInputComponent,\n    BmbContainerButtonComponent,\n    BmbInteractiveIconComponent,\n  ],\n  schemas: [CUSTOM_ELEMENTS_SCHEMA],\n})\nexport class DsNgModule {\n  constructor(private injector: Injector) {}\n\n  ngDoBootsrap() {\n    const customInputWrapper = createCustomElement(BmbIconTextInputComponent, {\n      injector: this.injector,\n    });\n    customElements.define('bmb-input-wrapper', customInputWrapper);\n  }\n}\n",
+            "sourceCode": "import { NgModule, Injector, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';\nimport { createCustomElement } from '@angular/elements';\nimport { BrowserModule } from '@angular/platform-browser';\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\nimport { FormsModule } from '@angular/forms';\nimport { CommonModule } from '@angular/common';\nimport { BmbButtonDirective } from './directives/button.directive';\nimport { DsNgComponent } from './ds-ng.component';\nimport { BmbFabComponent } from './components/bmb-fab/bmb-fab.component';\nimport { BmbLogoComponent } from './components/bmb-logo/bmb-logo.component';\nimport { BmbIconComponent } from './components/bmb-icon/bmb-icon.component';\nimport { BmbThemeComponent } from './components/bmb-theme/bmb-theme.component';\nimport { BmbBadgeComponent } from './components/bmb-badge/bmb-badge.component';\nimport { BmbInputComponent } from './components/bmb-input/bmb-input.component';\nimport { BmbDividerComponent } from './components/bmb-divider/bmb-divider.component';\nimport { BmbContainerComponent } from './components/bmb-container/bmb-container.component';\nimport { BmbUserImageComponent } from './components/bmb-user-image/bmb-user-image.component';\nimport { BmbTitleSectionComponent } from './components/bmb-title-section/bmb-title-section.component';\nimport { BmbHeaderMobileComponent } from './components/bmb-header-mobile/bmb-header-mobile.component';\nimport { BmbDotPaginatorComponent } from './components/bmb-dot-paginator/bmb-dot-paginator.component';\nimport { BmbInteractiveIconComponent } from './components/bmb-interactive-icon/bmb-interactive-icon.component';\nimport { BmbContainerButtonComponent } from './components/bmb-container-button/bmb-container-button.component';\n\nimport { BmbTextInputComponent } from './components/bmb-text-input/bmb-text-input.component';\nimport { BmbIconTextInputComponent } from './components/bmb-icon-text-input/bmb-icon-text-input.component';\n\n@NgModule({\n  declarations: [\n    DsNgComponent,\n    BmbLogoComponent,\n    BmbIconComponent,\n    BmbThemeComponent,\n    BmbBadgeComponent,\n    BmbInputComponent,\n    BmbButtonDirective,\n    BmbDividerComponent,\n    BmbContainerComponent,\n    BmbTextInputComponent,\n    BmbUserImageComponent,\n    BmbTitleSectionComponent,\n    BmbHeaderMobileComponent,\n    BmbDotPaginatorComponent,\n    BmbIconTextInputComponent,\n    BmbContainerButtonComponent,\n    BmbInteractiveIconComponent,\n    BmbFabComponent,\n  ],\n  imports: [CommonModule, FormsModule],\n  exports: [\n    DsNgComponent,\n    BmbLogoComponent,\n    BmbIconComponent,\n    BmbBadgeComponent,\n    BmbThemeComponent,\n    BmbInputComponent,\n    BmbButtonDirective,\n    BmbDividerComponent,\n    BmbUserImageComponent,\n    BmbContainerComponent,\n    BmbTextInputComponent,\n    BmbTitleSectionComponent,\n    BmbHeaderMobileComponent,\n    BmbDotPaginatorComponent,\n    BmbIconTextInputComponent,\n    BmbContainerButtonComponent,\n    BmbInteractiveIconComponent,\n    BmbFabComponent,\n  ],\n  schemas: [CUSTOM_ELEMENTS_SCHEMA],\n})\nexport class DsNgModule {\n  constructor(private injector: Injector) {}\n\n  ngDoBootsrap() {\n    const customInputWrapper = createCustomElement(BmbIconTextInputComponent, {\n      injector: this.injector,\n    });\n    customElements.define('bmb-input-wrapper', customInputWrapper);\n  }\n}\n",
             "children": [
                 {
                     "type": "providers",
@@ -2930,6 +3294,9 @@
                             "name": "BmbDotPaginatorComponent"
                         },
                         {
+                            "name": "BmbFabComponent"
+                        },
+                        {
                             "name": "BmbHeaderMobileComponent"
                         },
                         {
@@ -2955,9 +3322,6 @@
                         },
                         {
                             "name": "BmbTitleSectionComponent"
-                        },
-                        {
-                            "name": "BmbToastComponent"
                         },
                         {
                             "name": "BmbUserImageComponent"
@@ -2993,6 +3357,9 @@
                             "name": "BmbDotPaginatorComponent"
                         },
                         {
+                            "name": "BmbFabComponent"
+                        },
+                        {
                             "name": "BmbHeaderMobileComponent"
                         },
                         {
@@ -3018,9 +3385,6 @@
                         },
                         {
                             "name": "BmbTitleSectionComponent"
-                        },
-                        {
-                            "name": "BmbToastComponent"
                         },
                         {
                             "name": "BmbUserImageComponent"
@@ -3067,7 +3431,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
+                "file": "projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
@@ -3077,7 +3441,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts",
+                "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
@@ -3235,8 +3599,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<BmbBadgeComponent>",
-                "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
+                "rawtype": "StoryObj<BmbContainerComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -3246,8 +3610,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<BmbContainerComponent>",
-                "file": "projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts",
+                "rawtype": "StoryObj<BmbBadgeComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -3366,24 +3730,24 @@
                     "defaultValue": "customizable()"
                 }
             ],
-            "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{}"
-                }
-            ],
             "projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts": [
                 {
                     "name": "Default",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
@@ -3559,19 +3923,6 @@
         },
         "groupedEnumerations": {},
         "groupedTypeAliases": {
-            "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<BmbBadgeComponent>",
-                    "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
             "projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts": [
                 {
                     "name": "Story",
@@ -3579,6 +3930,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<BmbContainerComponent>",
                     "file": "projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbBadgeComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -3800,6 +4164,15 @@
                 "status": "low"
             },
             {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-fab/bmb-fab.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbFabComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/14",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/ds-ng/src/lib/components/bmb-header-mobile/bmb-header-mobile.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -3852,7 +4225,7 @@
                 "linktype": "component",
                 "name": "BmbInputComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/39",
+                "coverageCount": "0/43",
                 "status": "low"
             },
             {
@@ -3891,6 +4264,15 @@
                 "name": "Default",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-tags/bmb-tags.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbTagComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/7",
                 "status": "low"
             },
             {
@@ -3936,7 +4318,7 @@
                 "linktype": "component",
                 "name": "BmbToastComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/12",
+                "coverageCount": "0/13",
                 "status": "low"
             },
             {
