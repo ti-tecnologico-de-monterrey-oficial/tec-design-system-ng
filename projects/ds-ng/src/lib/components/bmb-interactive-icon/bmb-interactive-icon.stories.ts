@@ -25,7 +25,7 @@ export default {
       name: 'Grouped',
       control: { type: 'boolean' },
       description:
-        "This attribute is used to group all badges into a parent element. By default it is false and you don't need to add it. But if you need it you always have to add it inside a div element.",
+        'When set to true, it groups multiple interactive icons into a parent element. By default, it is false, and you do not need to explicitly set it. The badge should always have a parent element.',
       table: {
         defaultValue: { summary: 'false' },
         type: { summary: 'boolean' },
@@ -35,18 +35,18 @@ export default {
       name: 'Icon',
       control: { type: 'text' },
       description:
-        'Name of the icon to use. Please use the Material icons: https://fonts.google.com/icons. You should not use image prop if you are using icon.',
+        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons. Do not use the image attribute if you want to use an icon.',
       table: {
         type: { summary: 'string' },
       },
     },
     image: {
-      name: 'Image source',
+      name: 'Image Source',
       control: {
         type: 'text',
       },
       description:
-        'The source of the image you want to display can be in your application or in a URL. You should not use icon if you are using image.',
+        'The source of the image to display. Do not use the icon attribute if you want to use an image.',
       table: {
         type: { summary: 'string' },
       },
@@ -57,7 +57,19 @@ export default {
         type: 'radio',
       },
       options: ['red', 'blue', 'green', 'yellow', 'purple'],
-      description: 'The appearance of the button, visual changes.',
+      description:
+        'The appearance of the interactive icon, affecting its visual style.',
+      table: {
+        type: { summary: 'string' },
+      },
+    },
+    altImage: {
+      name: 'Image Alt Text',
+      control: {
+        type: 'text',
+      },
+      description:
+        'The alternative text for the image. Refer to https://www.w3.org/WAI/alt/ for more information.',
       table: {
         type: { summary: 'string' },
       },
@@ -69,6 +81,7 @@ export default {
     icon: 'face',
     image: '',
     grouped: false,
+    altImage: 'Alt image description',
   },
 } as Meta<typeof BmbInteractiveIconComponent>;
 

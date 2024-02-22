@@ -20,7 +20,6 @@ describe('BmbHeaderMobileComponent', () => {
 
   it('should set default values for inputs', () => {
     expect(component.text).toEqual('');
-    expect(component.type).toEqual('');
     expect(component.image).toEqual('');
     expect(component.altImage).toEqual('');
     expect(component.logo).toEqual('');

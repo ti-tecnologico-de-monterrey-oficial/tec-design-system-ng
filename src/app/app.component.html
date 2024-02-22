@@ -1,77 +1,78 @@
 <bmb-theme />
 
-<h2 class="font-thin-6">Header mobile</h2>
+<!-- Demo -->
+
 <bmb-header-mobile
-  text="Texto"
-  iconLeft="chevron_left"
-  iconRight="chevron_right"
-  iconRight2="close"
   logo="../assets/img/logo.png"
-  altLogo="Texto descriptivo"
   image="../assets/img/user-image.png"
-  altImage="Texto descriptivo"
 />
 
-<h2 class="font-thin-6">Interactive icon</h2>
-<div>
-  <bmb-interactive-icon
-    text="Canvas"
-    image="../assets/img/image-tec.png"
-    appearance="red"
-    [grouped]="true"
+<bmb-container appearance="section">
+  <bmb-title-section
+    title="Creación de evento"
+    image="../assets/img/Icon_CalendarMonth.png"
+    altImage="Calendar"
   />
-  <bmb-interactive-icon
-    text="ID Digital"
-    icon="face"
-    appearance="blue"
-    [grouped]="true"
-  />
-  <bmb-interactive-icon
-    text="Calendario escolar"
-    icon="select_all"
-    appearance="green"
-    [grouped]="true"
-  />
-  <bmb-interactive-icon
-    text="Estado de cuenta"
-    icon="face"
-    appearance="yellow"
-    [grouped]="true"
-  />
-  <bmb-interactive-icon
-    text="Calificaciones"
-    icon="face"
-    appearance="purple"
-    [grouped]="true"
-  />
-</div>
 
-<h2 class="font-thin-6">Input</h2>
-<!-- Ejemplo -->
-<bmb-input
-  icon="home"
-  errorMessage="this is a helper"
-  [isRequired]="true"
-  placeholder="this is an input"
-  [isDisabled]="true"
-  [isValid]="false"
-  label="this is a label"
-/>
+  <button
+    bmbButton
+    appearance="primary"
+    size="large"
+    position="right"
+    [case]="false"
+    (click)="openToast()"
+  >
+    Crear Evento
+  </button>
+  <bmb-toast
+    message="Hola"
+    [duration]="3000"
+    appearance="primary"
+    position="top"
+  />
+</bmb-container>
 
+<bmb-container appearance="section">
+  <bmb-title-section title="Servicios Frecuentes" />
+  <bmb-interactive-icon
+    [appearance]="'red'"
+    [text]="'Canvas'"
+    image="../assets/img/Logosmitec0001.png"
+    [grouped]="true"
+  />
+  <bmb-interactive-icon
+    [appearance]="'blue'"
+    [text]="'ID Digital'"
+    image="../assets/img/Icon_ID.png"
+    [grouped]="true"
+  />
+  <bmb-interactive-icon
+    [appearance]="'green'"
+    [text]="'Calendario escolar'"
+    image="../assets/img/Icon_CalendarMonth.png"
+    [grouped]="true"
+  />
+</bmb-container>
+
+<bmb-container appearance="section">
+  <bmb-title-section title="Elementos frecuentes de búsqueda" />
+  <bmb-badge [appearance]="'normal'" [text]="'Name Tag'" [grouped]="true" />
+  <bmb-badge [appearance]="'normal'" [text]="'Name Tag'" [grouped]="true" />
+  <bmb-badge [appearance]="'normal'" [text]="'Name Tag'" [grouped]="true" />
+</bmb-container>
 
 <h2 class="font-thin-6">FAB</h2>
 
-<div style="display: flex; flex-direction: column;">
-  <bmb-fab size="s" icon="add" type="fab" device="desktop"/>
-  <bmb-fab size="s" icon="apps" type="ext" text="FAB" device="desktop"/>
-  <bmb-fab size="l" icon="add" type="fab" text="FAB" device="desktop"/>
-  <bmb-fab size="l" icon="add" type="ext" text="FAB" device="desktop"/>
+<div style="display: flex; flex-direction: column">
+  <bmb-fab size="s" icon="add" type="fab" device="desktop" />
+  <bmb-fab size="s" icon="apps" type="ext" text="FAB" device="desktop" />
+  <bmb-fab size="l" icon="add" type="fab" text="FAB" device="desktop" />
+  <bmb-fab size="l" icon="add" type="ext" text="FAB" device="desktop" />
 </div>
 
-
-<div style="display: flex; flex-direction: column;">
-  <bmb-fab size="s" icon="add" type="fab" device="mobile"/>
-  <bmb-fab size="s" icon="add" type="ext"  device="mobile"/>
-  <bmb-fab size="l" icon="add" type="fab"  device="mobile"/>
-  <bmb-fab size="l" icon="add" type="ext"  device="mobile"/>
+<div style="display: flex; flex-direction: column">
+  <bmb-fab size="s" icon="add" type="fab" device="mobile" />
+  <bmb-fab size="s" icon="add" type="ext" device="mobile" />
+  <bmb-fab size="l" icon="add" type="fab" device="mobile" />
+  <bmb-fab size="l" icon="add" type="ext" device="mobile" />
 </div>

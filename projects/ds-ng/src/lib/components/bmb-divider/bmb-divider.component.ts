@@ -9,15 +9,15 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 export class BmbDividerComponent {
   @Input() size: string = '';
   @Input() styles: string = '';
-  @Input() type: string = '';
+  @Input() appearance: string = '';
 
   constructor() {}
 
   getClasses(): string[] {
     const classes: string[] = ['divider'];
 
-    if (this.type) {
-      classes.push('divider-' + this.type);
+    if (this.appearance) {
+      classes.push('divider-' + this.appearance);
     }
 
     if (this.size) {

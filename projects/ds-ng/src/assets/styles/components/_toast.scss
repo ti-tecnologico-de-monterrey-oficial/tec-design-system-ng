@@ -1,0 +1,45 @@
+@import "../base/mixins";
+
+.toast {
+  &--neutral {
+    @include toast(neutral);
+  }
+
+  &--primary {
+    @include toast(primary);
+  }
+
+  &--successful {
+    @include toast(successful);
+  }
+
+  &--warning {
+    @include toast(warning);
+  }
+
+  &--error {
+    @include toast(error);
+  }
+
+  &--event {
+    @include toast(event);
+  }
+
+  &--top {
+    left: 50%;
+    top: 5%;
+    transform: translateX(-50%);
+  }
+
+  &--middle {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &--bottom {
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

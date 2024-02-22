@@ -18,8 +18,8 @@ describe('BmbDividerComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should apply divider class based on type', () => {
-    component.type = 'primary';
+  it('should apply divider class based on appearance', () => {
+    component.appearance = 'primary';
     fixture.detectChanges();
 
     const element: HTMLElement = fixture.nativeElement;
@@ -48,7 +48,7 @@ describe('BmbDividerComponent', () => {
     expect(dividerElement?.classList).toContain('divider-dashed');
   });
 
-  it('should not apply divider class when type is not provided', () => {
+  it('should not apply divider class when appearance is not provided', () => {
     fixture.detectChanges();
 
     const element: HTMLElement = fixture.nativeElement;
