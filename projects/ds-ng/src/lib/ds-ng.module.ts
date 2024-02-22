@@ -25,6 +25,8 @@ import { BmbContainerButtonComponent } from './components/bmb-container-button/b
 import { BmbTextInputComponent } from './components/bmb-text-input/bmb-text-input.component';
 import { BmbIconTextInputComponent } from './components/bmb-icon-text-input/bmb-icon-text-input.component';
 
+import { ToastService } from './services';
+
 @NgModule({
   declarations: [
     DsNgComponent,
