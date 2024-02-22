@@ -17,8 +17,10 @@ import { BmbIconComponent } from '../components/bmb-icon/bmb-icon.component';
 })
 export class BmbButtonDirective implements OnInit, OnChanges {
   @Input() icon: string = '';
-  @Input() iconPosition: 'left' | 'right' = 'left';
-  @Input() iconCase: boolean = false;
+  @Input() image: string = '';
+  @Input() altImage: string = '';
+  @Input() position: 'left' | 'right' = 'left';
+  @Input() case: boolean = false;
   @Input() appearance: 'primary' | 'alternative' | 'secondary' | 'destructive' =
     'primary';
   @Input() size: 'small' | 'large' = 'small';
@@ -33,7 +35,7 @@ export class BmbButtonDirective implements OnInit, OnChanges {
   ) {}
 
   ngOnInit(): void {
-    this.addIcon();
+    this.addContent();
     this.applyAttributes();
   }
 
@@ -43,13 +45,13 @@ export class BmbButtonDirective implements OnInit, OnChanges {
     });
 
     this.applyAttributes();
-    this.addIcon();
+    this.addContent();
     this.cdr.markForCheck();
   }
 
   private applyAttributes() {
-    if (this.providedInputs.has('iconCase')) {
-      if (this.iconCase) {
+    if (this.providedInputs.has('case')) {
+      if (this.case) {
         this.renderer.setAttribute(this.el.nativeElement, 'case', 'true');
       } else {
         this.renderer.removeAttribute(this.el.nativeElement, 'case');
@@ -60,11 +62,11 @@ export class BmbButtonDirective implements OnInit, OnChanges {
       this.renderer.setAttribute(this.el.nativeElement, 'size', this.size);
     }
 
-    if (this.providedInputs.has('iconPosition')) {
+    if (this.providedInputs.has('position')) {
       this.renderer.setAttribute(
         this.el.nativeElement,
-        'icon-position',
-        this.iconPosition
+        'position',
+        this.position
       );
     }
   }
@@ -73,7 +75,7 @@ export class BmbButtonDirective implements OnInit, OnChanges {
     return `btn--${this.appearance}`;
   }
 
-  private addIcon() {
+  private addContent() {
     this.viewContainerRef.clear();
 
     if (this.icon) {
@@ -82,9 +84,10 @@ export class BmbButtonDirective implements OnInit, OnChanges {
       const iconComponent = iconComponentRef.instance;
       iconComponent.icon = this.icon;
 
-      if (this.iconPosition === 'right') {
-        this.el.nativeElement.appendChild(
-          iconComponentRef.location.nativeElement
+      if (this.position === 'right') {
+        this.el.nativeElement.insertBefore(
+          iconComponentRef.location.nativeElement,
+          this.el.nativeElement.lastChild.nextSibling
         );
       } else {
         this.el.nativeElement.insertBefore(
@@ -92,6 +95,28 @@ export class BmbButtonDirective implements OnInit, OnChanges {
           this.el.nativeElement.firstChild
         );
       }
+    } else if (this.image) {
+      const existingImg = this.el.nativeElement.querySelector('img');
+      if (!existingImg) {
+        const imgElement = this.renderer.createElement('img');
+        this.renderer.setAttribute(imgElement, 'src', this.image);
+        this.renderer.setAttribute(imgElement, 'alt', this.altImage || '');
+        this.insertContent(imgElement);
+      }
+    }
+  }
+
+  private insertContent(element: any) {
+    if (this.position === 'right') {
+      this.el.nativeElement.insertBefore(
+        element,
+        this.el.nativeElement.lastChild.nextSibling
+      );
+    } else {
+      this.el.nativeElement.insertBefore(
+        element,
+        this.el.nativeElement.firstChild
+      );
     }
   }
 }

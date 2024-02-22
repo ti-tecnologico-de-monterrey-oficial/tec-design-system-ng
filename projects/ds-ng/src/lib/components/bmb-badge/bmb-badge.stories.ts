@@ -11,7 +11,7 @@ export default {
         type: 'text',
       },
       description:
-        'The text of the badge. Width will increase depending of the text.',
+        'The text of the badge. The width will increase depending on the length of the text.',
       table: {
         type: { summary: 'string' },
       },
@@ -20,14 +20,14 @@ export default {
       name: 'Grouped',
       control: { type: 'boolean' },
       description:
-        "This attribute is used to group all badges into a parent element. By default it is false and you don't need to add it. But if you need it you always have to add it inside a div element.",
+        'When set to true, it groups multiple badges into a parent element. By default, it is false, and you do not need to explicitly set it. The badge should always have a parent element.',
       table: {
         defaultValue: { summary: 'false' },
         type: { summary: 'boolean' },
       },
     },
-    type: {
-      name: 'Type',
+    appearance: {
+      name: 'Appearance',
       control: {
         type: 'radio',
       },
@@ -43,12 +43,12 @@ export default {
       table: {
         type: { summary: 'string' },
       },
-      description: 'The type of the badge, visual changes.',
+      description: 'The appearance of the badge, affecting its visual style.',
     },
   },
   args: {
     text: 'Badge text',
-    type: 'normal',
+    appearance: 'normal',
     grouped: false,
   },
 } as Meta<typeof BmbBadgeComponent>;

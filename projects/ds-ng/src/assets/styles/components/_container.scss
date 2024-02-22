@@ -28,16 +28,18 @@
   }
 
   &--button {
+    align-items: center;
     border: rem_calc(2) solid RGBA(var(--color-charade-700));
     border-radius: $border-radius-sm;
-    justify-content: space-between;
     margin: $spacing-size-base;
     padding: $spacing-size-lg;
   }
 
   //Home
   &--section {
+    align-items: normal;
     flex-direction: column;
+    gap: $spacing-size-lg;
     justify-content: space-between;
     margin: $spacing-size-base 0;
     padding: $spacing-size-lg $spacing-size-base;

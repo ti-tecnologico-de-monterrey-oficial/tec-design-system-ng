@@ -1,0 +1,10 @@
+<div class="title__section">
+  <span class="title__section--title">{{ title }}</span>
+  <bmb-icon [icon]="icon" class="title__section--icon" *ngIf="!image" />
+  <img
+    [src]="image"
+    [alt]="altImage"
+    class="title__section--image"
+    *ngIf="image"
+  />
+</div>

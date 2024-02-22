@@ -9,7 +9,7 @@ export default {
       name: 'Icon',
       control: { type: 'text' },
       description:
-        'Name of the icon to use. Please use the Material icons: https://fonts.google.com/icons.',
+        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons.',
       table: {
         type: { summary: 'string' },
       },

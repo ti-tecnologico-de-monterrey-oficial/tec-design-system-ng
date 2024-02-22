@@ -8,18 +8,21 @@ import { BmbButtonDirective } from './directives/button.directive';
 import { DsNgComponent } from './ds-ng.component';
 import { BmbLogoComponent } from './components/bmb-logo/bmb-logo.component';
 import { BmbIconComponent } from './components/bmb-icon/bmb-icon.component';
-import { BmbAlertComponent } from './components/bmb-alert/bmb-alert.component';
+import { BmbToastComponent } from './components/bmb-toast/bmb-toast.component';
 import { BmbThemeComponent } from './components/bmb-theme/bmb-theme.component';
 import { BmbBadgeComponent } from './components/bmb-badge/bmb-badge.component';
 import { BmbInputComponent } from './components/bmb-input/bmb-input.component';
 import { BmbDividerComponent } from './components/bmb-divider/bmb-divider.component';
 import { BmbContainerComponent } from './components/bmb-container/bmb-container.component';
 import { BmbUserImageComponent } from './components/bmb-user-image/bmb-user-image.component';
-import { BmbTextInputComponent } from './components/bmb-text-input/bmb-text-input.component';
+import { BmbTitleSectionComponent } from './components/bmb-title-section/bmb-title-section.component';
 import { BmbHeaderMobileComponent } from './components/bmb-header-mobile/bmb-header-mobile.component';
-import { BmbIconTextInputComponent } from './components/bmb-icon-text-input/bmb-icon-text-input.component';
 import { BmbDotPaginatorComponent } from './components/bmb-dot-paginator/bmb-dot-paginator.component';
 import { BmbInteractiveIconComponent } from './components/bmb-interactive-icon/bmb-interactive-icon.component';
+import { BmbContainerButtonComponent } from './components/bmb-container-button/bmb-container-button.component';
+
+import { BmbTextInputComponent } from './components/bmb-text-input/bmb-text-input.component';
+import { BmbIconTextInputComponent } from './components/bmb-icon-text-input/bmb-icon-text-input.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,7 @@ import { BmbInteractiveIconComponent } from './components/bmb-interactive-icon/b
     BmbLogoComponent,
     BmbIconComponent,
     BmbThemeComponent,
-    BmbAlertComponent,
+    BmbToastComponent,
     BmbBadgeComponent,
     BmbInputComponent,
     BmbButtonDirective,
@@ -35,9 +38,11 @@ import { BmbInteractiveIconComponent } from './components/bmb-interactive-icon/b
     BmbContainerComponent,
     BmbTextInputComponent,
     BmbUserImageComponent,
+    BmbTitleSectionComponent,
     BmbHeaderMobileComponent,
     BmbDotPaginatorComponent,
     BmbIconTextInputComponent,
+    BmbContainerButtonComponent,
     BmbInteractiveIconComponent,
   ],
   imports: [CommonModule, FormsModule],
@@ -46,7 +51,7 @@ import { BmbInteractiveIconComponent } from './components/bmb-interactive-icon/b
     BmbLogoComponent,
     BmbIconComponent,
     BmbBadgeComponent,
-    BmbAlertComponent,
+    BmbToastComponent,
     BmbThemeComponent,
     BmbInputComponent,
     BmbButtonDirective,
@@ -54,9 +59,11 @@ import { BmbInteractiveIconComponent } from './components/bmb-interactive-icon/b
     BmbUserImageComponent,
     BmbContainerComponent,
     BmbTextInputComponent,
+    BmbTitleSectionComponent,
     BmbHeaderMobileComponent,
     BmbDotPaginatorComponent,
     BmbIconTextInputComponent,
+    BmbContainerButtonComponent,
     BmbInteractiveIconComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
