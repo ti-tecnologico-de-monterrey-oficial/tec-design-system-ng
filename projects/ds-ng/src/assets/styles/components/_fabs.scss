@@ -1,0 +1,33 @@
+.fab{
+    &-mob-s-fab-normal{
+        @include fabInput(m, s, n);
+    }
+
+    &-mob-s-fab-ext{
+        @include fabInput(m, s, e);
+    }
+
+    &-mob-l-fab-normal{
+        @include fabInput(m, l, n)
+    }
+
+    &-mob-l-fab-ext{
+        @include fabInput(m, l, e)
+    }
+
+    &-des-s-fab-normal{
+        @include fabInput(d, s, n);
+    }
+
+    &-des-s-fab-ext{
+        @include fabInput(d, s, e);
+    }
+
+    &-des-l-fab-normal{
+        @include fabInput(d, l, n)
+    }
+
+    &-des-l-fab-ext{
+        @include fabInput(d, l, e)
+    }
+}

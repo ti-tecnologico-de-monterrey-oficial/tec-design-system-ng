@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BmbTextInput } from './bmb-text-input.component';
+import { BmbTextInputComponent } from './bmb-text-input.component';
 
 describe('BmbIconComponent', () => {
-  let component: BmbTextInput;
-  let fixture: ComponentFixture<BmbTextInput>;
+  let component: BmbTextInputComponent;
+  let fixture: ComponentFixture<BmbTextInputComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [BmbTextInput],
+      declarations: [BmbTextInputComponent],
     });
 
-    fixture = TestBed.createComponent(BmbTextInput);
+    fixture = TestBed.createComponent(BmbTextInputComponent);
     component = fixture.componentInstance;
   });
 
