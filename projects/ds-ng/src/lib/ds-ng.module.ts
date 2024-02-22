@@ -9,7 +9,7 @@ import { DsNgComponent } from './ds-ng.component';
 import { BmbFabComponent } from './components/bmb-fab/bmb-fab.component';
 import { BmbLogoComponent } from './components/bmb-logo/bmb-logo.component';
 import { BmbIconComponent } from './components/bmb-icon/bmb-icon.component';
-import { BmbToastComponent } from './components/bmb-toast/bmb-toast.component';
+// import { BmbToastComponent } from './components/bmb-toast/bmb-toast.component';
 import { BmbThemeComponent } from './components/bmb-theme/bmb-theme.component';
 import { BmbBadgeComponent } from './components/bmb-badge/bmb-badge.component';
 import { BmbInputComponent } from './components/bmb-input/bmb-input.component';
@@ -25,15 +25,12 @@ import { BmbContainerButtonComponent } from './components/bmb-container-button/b
 import { BmbTextInputComponent } from './components/bmb-text-input/bmb-text-input.component';
 import { BmbIconTextInputComponent } from './components/bmb-icon-text-input/bmb-icon-text-input.component';
 
-import { ToastService } from './services';
-
 @NgModule({
   declarations: [
     DsNgComponent,
     BmbLogoComponent,
     BmbIconComponent,
     BmbThemeComponent,
-    BmbToastComponent,
     BmbBadgeComponent,
     BmbInputComponent,
     BmbButtonDirective,
@@ -55,7 +52,6 @@ import { ToastService } from './services';
     BmbLogoComponent,
     BmbIconComponent,
     BmbBadgeComponent,
-    BmbToastComponent,
     BmbThemeComponent,
     BmbInputComponent,
     BmbButtonDirective,
@@ -72,7 +68,6 @@ import { ToastService } from './services';
     BmbFabComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [ToastService],
 })
 export class DsNgModule {
   constructor(private injector: Injector) {}
