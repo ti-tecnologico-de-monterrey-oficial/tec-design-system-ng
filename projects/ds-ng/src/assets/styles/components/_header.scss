@@ -1,0 +1,22 @@
+@import "../tokens/colors";
+@import "../base/rem";
+@import "../base/measures";
+@import "../base/fonts";
+
+.header {
+  &__mobile {
+    color: RGBA(var(--color-white-primary));
+
+    &--text {
+      @include font(6, regular);
+    }
+
+    &--left,
+    &--right {
+      align-items: center;
+      display: flex;
+      font-size: rem_calc(24);
+      gap: $spacing-size-sm;
+    }
+  }
+}

@@ -1,0 +1,88 @@
+@import "../base/mixins";
+
+.bmb__field {
+  &-label {
+    @include font(3, regular);
+    color: RGBA(var(--color-black-primary));
+    padding: rem_calc(4) rem_calc(8) rem_calc(8) rem_calc(8);
+  }
+
+  &--wrapper {
+    align-items: center;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    width: 100%;
+
+    bmb-icon{
+      font-size: rem_calc(22);
+    }
+
+    .bmb-input-normal{
+      color: RGBA(var(--color-white-primary));
+    }
+
+    .bmb__field--icon ~ .bmb-input-normal{
+      padding: rem_calc(8) rem_calc(8) rem_calc(8) rem_calc(35);
+      color: RGBA(var(--color-white-primary));
+    }
+
+    .bmb__field--icon ~ .bmb-input-simple{
+      padding: rem_calc(8) rem_calc(8) rem_calc(8) rem_calc(35); 
+      color: RGBA(var(--color-black-primary));
+    }
+
+    .bmb__field--icon ~ .bmb-input-main{
+      padding: rem_calc(8) rem_calc(8) rem_calc(8) rem_calc(35); 
+      color: RGBA(var(--color-black-primary));
+    }
+
+    > .icon-normal{
+      color: RGBA(var(--color-white-primary));
+    }
+
+    > .icon-simple{
+      color: RGBA(var(--color-black-primary));
+    }
+
+    > .icon-main{
+      color: RGBA(var(--color-black-primary));
+    }
+
+  }
+
+  &--error {
+    // color: RGBA(var(--color-red-primary));
+  }
+
+  &--icon {
+    font-size: rem_calc(24);
+    left: rem_calc(8);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &--helper {
+    @include font(3, regular);
+    color: RGBA(var(--color-charade-400));
+    padding: rem_calc(4) rem_calc(8) rem_calc(8) rem_calc(8);
+  }
+
+  &--input {
+
+    & .bmb-input-normal{
+      @include inputType(normal);
+    }
+
+    & .bmb-input-simple{
+      @include inputType(simple);
+    }
+
+    & .bmb-input-main{
+      @include inputType(main);
+    }
+  }
+
+}

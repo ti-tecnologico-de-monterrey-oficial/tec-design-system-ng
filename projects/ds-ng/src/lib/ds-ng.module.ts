@@ -5,41 +5,50 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BmbButtonDirective } from './directives/button.directive';
 import { DsNgComponent } from './ds-ng.component';
-import { BmbUserImageComponent } from './components/bmb-user-image/bmb-user-image.component';
-import { BmbAppButtonComponent } from './components/bmb-app-button/bmb-app-button.component';
-import { BmbBadgeComponent } from './components/bmb-badge/bmb-badge.component';
-import { BmbDividerComponent } from './components/bmb-divider/bmb-divider.component';
-import { BmbDotPaginatorComponent } from './components/bmb-dot-paginator/bmb-dot-paginator.component';
+
 import { BmbIconComponent } from './components/bmb-icon/bmb-icon.component';
-import { BmbThemeComponent } from './components/bmb-theme/bmb-theme.component';
-
-// Angular library
-
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { BmbLogoComponent } from './components/bmb-logo/bmb-logo.component';
+import { BmbContainerComponent } from './components/bmb-container/bmb-container.component';
+import { BmbBadgeComponent } from './components/bmb-badge/bmb-badge.component';
+import { BmbContainerButtonComponent } from './components/bmb-container-button/bmb-container-button.component';
+import { BmbFabComponent } from './components/bmb-fab/bmb-fab.component';
+import { BmbHeaderMobileComponent } from './components/bmb-header-mobile/bmb-header-mobile.component';
+import { BmbTagComponent } from './components/bmb-tags/bmb-tags.component';
+import { BmbTitleSectionComponent } from './components/bmb-title-section/bmb-title-section.component';
+import { BmbUserImageComponent } from './components/bmb-user-image/bmb-user-image.component';
+import { BmbInteractiveIconComponent } from './components/bmb-interactive-icon/bmb-interactive-icon.component';
 
 @NgModule({
   declarations: [
     BmbButtonDirective,
     DsNgComponent,
-    BmbUserImageComponent,
-    BmbAppButtonComponent,
-    BmbBadgeComponent,
-    BmbDividerComponent,
-    BmbDotPaginatorComponent,
     BmbIconComponent,
-    BmbThemeComponent,
+    BmbLogoComponent,
+    BmbContainerComponent,
+    BmbBadgeComponent,
+    BmbContainerButtonComponent,
+    BmbFabComponent,
+    BmbHeaderMobileComponent,
+    BmbTagComponent,
+    BmbTitleSectionComponent,
+    BmbUserImageComponent,
+    BmbInteractiveIconComponent,
   ],
-  imports: [CommonModule, FormsModule, MatButtonToggleModule],
+  imports: [CommonModule, FormsModule],
   exports: [
     BmbButtonDirective,
     DsNgComponent,
-    BmbUserImageComponent,
-    BmbAppButtonComponent,
-    BmbBadgeComponent,
-    BmbDividerComponent,
-    BmbDotPaginatorComponent,
     BmbIconComponent,
-    BmbThemeComponent,
+    BmbLogoComponent,
+    BmbContainerComponent,
+    BmbBadgeComponent,
+    BmbContainerButtonComponent,
+    BmbFabComponent,
+    BmbHeaderMobileComponent,
+    BmbTagComponent,
+    BmbTitleSectionComponent,
+    BmbUserImageComponent,
+    BmbInteractiveIconComponent,
   ],
 })
 export class DsNgModule {}

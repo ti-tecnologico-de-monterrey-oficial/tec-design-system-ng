@@ -2,44 +2,44 @@
 
 @font-face {
   font-family: "Poppins-Thin";
-  src: url("../../fonts/Poppins/Poppins-Thin.ttf") format("truetype");
-  font-weight: 100;
   font-style: normal;
+  font-weight: 100;
+  src: url("../../fonts/Poppins/Poppins-Thin.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Poppins-Light";
-  src: url("../../fonts/Poppins/Poppins-ExtraLight.ttf") format("truetype");
-  font-weight: 300;
   font-style: normal;
+  font-weight: 300;
+  src: url("../../fonts/Poppins/Poppins-ExtraLight.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Poppins-Regular";
-  src: url("../../fonts/Poppins/Poppins-Regular.ttf") format("truetype");
-  font-weight: 400;
   font-style: normal;
+  font-weight: 400;
+  src: url("../../fonts/Poppins/Poppins-Regular.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Poppins-Medium";
-  src: url("../../fonts/Poppins/Poppins-Medium.ttf") format("truetype");
-  font-weight: 500;
   font-style: normal;
+  font-weight: 500;
+  src: url("../../fonts/Poppins/Poppins-Medium.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Poppins-Semibold";
-  src: url("../../fonts/Poppins/Poppins-SemiBold.ttf") format("truetype");
-  font-weight: 600;
   font-style: normal;
+  font-weight: 600;
+  src: url("../../fonts/Poppins/Poppins-SemiBold.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Poppins-Bold";
-  src: url("../../fonts/Poppins/Poppins-Bold.ttf") format("truetype");
-  font-weight: 700;
   font-style: normal;
+  font-weight: 700;
+  src: url("../../fonts/Poppins/Poppins-Bold.ttf") format("truetype");
 }
 
 $font-poppins-thin: "Poppins-Thin", sans-serif;
@@ -83,7 +83,11 @@ $sizes: (
   //9
   rem_calc(24),
   //10
-  rem_calc(26)
+  rem_calc(26),
+  //11
+  rem_calc(36),
+  //12
+  rem_calc(48)
 );
 
 // Method 1: Mixin
@@ -91,9 +95,9 @@ $sizes: (
 @mixin font($i, $type) {
   $size: nth($sizes, $i);
   $font-family: map-get($font-map, $type);
+  font-family: $font-family;
 
   font-size: #{$size};
-  font-family: $font-family;
 }
 
 // Method 2: Classes
@@ -103,8 +107,8 @@ $sizes: (
 
   @each $type in thin, light, regular, medium, semibold, bold {
     .font-#{$type}-#{$i} {
-      font-size: #{$size};
       font-family: map-get($font-map, $type);
+      font-size: #{$size};
     }
   }
 }

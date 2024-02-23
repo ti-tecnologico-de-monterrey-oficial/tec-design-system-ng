@@ -1,5 +1,4 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
-import { Props } from './bmb-user-image.interface';
 
 @Component({
   selector: 'bmb-user-image',
@@ -10,16 +9,13 @@ import { Props } from './bmb-user-image.interface';
 export class BmbUserImageComponent {
   @Input() size: string = '';
   @Input() image: string = '';
+  @Input() altImage: string = '';
 
-  constructor() {}
-
-  getClasses(): Props {
-    let classes: Props = {
-      'user-image': true,
-    };
+  getClasses(): string[] {
+    const classes: string[] = ['user__image'];
 
     if (this.size) {
-      classes[this.size] = true;
+      classes.push('user__image--' + this.size);
     }
 
     return classes;

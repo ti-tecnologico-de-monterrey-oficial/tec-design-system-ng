@@ -5,71 +5,77 @@ import {
   HostBinding,
   ViewContainerRef,
   ChangeDetectorRef,
+  OnInit,
   OnChanges,
+  Renderer2,
   SimpleChanges,
 } from '@angular/core';
 import { BmbIconComponent } from '../components/bmb-icon/bmb-icon.component';
 
-interface ButtonClasses {
-  size: 'small' | 'large';
-  device: 'mobile' | 'desktop';
-}
-
-const BUTTON_CLASSES: Record<string, ButtonClasses> = {
-  primary: { size: 'small', device: 'mobile' },
-  alternative: { size: 'small', device: 'mobile' },
-  secondary: { size: 'small', device: 'mobile' },
-  destructive: { size: 'small', device: 'mobile' },
-};
-
 @Directive({
   selector: '[bmbButton]',
 })
-export class BmbButtonDirective implements OnChanges {
+export class BmbButtonDirective implements OnInit, OnChanges {
   @Input() icon: string = '';
-  @Input() iconPosition: 'left' | 'right' = 'left';
-  @Input() iconCase: string = '';
-  @Input() appearance: keyof typeof BUTTON_CLASSES = 'primary';
+  @Input() image: string = '';
+  @Input() altImage: string = '';
+  @Input() position: 'left' | 'right' = 'left';
+  @Input() case: boolean = false;
+  @Input() appearance: 'primary' | 'alternative' | 'secondary' | 'destructive' =
+    'primary';
   @Input() size: 'small' | 'large' = 'small';
-  @Input() device: 'mobile' | 'desktop' = 'mobile';
+
+  private providedInputs: Set<string> = new Set();
 
   constructor(
     private el: ElementRef,
     private viewContainerRef: ViewContainerRef,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private renderer: Renderer2
   ) {}
 
-  @HostBinding('attr.data-size') get sizeAttribute(): string {
-    return this.size;
-  }
-
-  @HostBinding('attr.data-device') get deviceAttribute(): string {
-    return this.device;
-  }
-
-  @HostBinding('attr.data-case') get caseAttribute(): string {
-    return this.iconCase;
-  }
-
-  @HostBinding('class') get elementClass(): string {
-    const baseClass = `btn-${this.appearance}`;
-    return baseClass;
+  ngOnInit(): void {
+    this.addContent();
+    this.applyAttributes();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (
-      'icon' in changes ||
-      'iconPosition' in changes ||
-      'size' in changes ||
-      'device' in changes ||
-      'iconCase' in changes
-    ) {
-      this.addIcon();
-      this.cdr.markForCheck();
+    Object.keys(changes).forEach((input) => {
+      this.providedInputs.add(input);
+    });
+
+    this.applyAttributes();
+    this.addContent();
+    this.cdr.markForCheck();
+  }
+
+  private applyAttributes() {
+    if (this.providedInputs.has('case')) {
+      if (this.case) {
+        this.renderer.setAttribute(this.el.nativeElement, 'case', 'true');
+      } else {
+        this.renderer.removeAttribute(this.el.nativeElement, 'case');
+      }
+    }
+
+    if (this.providedInputs.has('size') && this.size) {
+      this.renderer.setAttribute(this.el.nativeElement, 'size', this.size);
+    }
+
+    if (this.providedInputs.has('position')) {
+      this.renderer.setAttribute(
+        this.el.nativeElement,
+        'position',
+        this.position
+      );
     }
   }
 
-  private addIcon() {
+  @HostBinding('class') get elementClass(): string {
+    return `btn--${this.appearance}`;
+  }
+
+  private addContent() {
     this.viewContainerRef.clear();
 
     if (this.icon) {
@@ -78,9 +84,10 @@ export class BmbButtonDirective implements OnChanges {
       const iconComponent = iconComponentRef.instance;
       iconComponent.icon = this.icon;
 
-      if (this.iconPosition === 'right') {
-        this.el.nativeElement.appendChild(
-          iconComponentRef.location.nativeElement
+      if (this.position === 'right') {
+        this.el.nativeElement.insertBefore(
+          iconComponentRef.location.nativeElement,
+          this.el.nativeElement.lastChild.nextSibling
         );
       } else {
         this.el.nativeElement.insertBefore(
@@ -88,6 +95,28 @@ export class BmbButtonDirective implements OnChanges {
           this.el.nativeElement.firstChild
         );
       }
+    } else if (this.image) {
+      const existingImg = this.el.nativeElement.querySelector('img');
+      if (!existingImg) {
+        const imgElement = this.renderer.createElement('img');
+        this.renderer.setAttribute(imgElement, 'src', this.image);
+        this.renderer.setAttribute(imgElement, 'alt', this.altImage || '');
+        this.insertContent(imgElement);
+      }
+    }
+  }
+
+  private insertContent(element: any) {
+    if (this.position === 'right') {
+      this.el.nativeElement.insertBefore(
+        element,
+        this.el.nativeElement.lastChild.nextSibling
+      );
+    } else {
+      this.el.nativeElement.insertBefore(
+        element,
+        this.el.nativeElement.firstChild
+      );
     }
   }
 }

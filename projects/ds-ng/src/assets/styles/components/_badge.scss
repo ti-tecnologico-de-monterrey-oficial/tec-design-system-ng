@@ -1,37 +1,42 @@
 @import "../base/mixins";
+@import "../base/measures";
 
 .badge {
-  @include badge();
+  &--grouped {
+    display: flex;
+    flex-flow: row wrap;
+    gap: $spacing-size-base;
 
-  &-light {
-    @include badge(light);
+    @include media-query(768) {
+      gap: $spacing-size-md;
+    }
   }
 
-  &-primary {
-    @include badge(primary);
+  &--normal {
+    @include badge(normal);
   }
 
-  &-secondary {
-    @include badge(secondary);
+  &--strong {
+    @include badge(strong);
   }
 
-  &-success {
+  &--success {
     @include badge(success);
   }
 
-  &-info {
+  &--info {
     @include badge(info);
   }
 
-  &-warning {
+  &--warning {
     @include badge(warning);
   }
 
-  &-danger {
-    @include badge(danger);
+  &--error {
+    @include badge(error);
   }
 
-  &-dark {
-    @include badge(dark);
+  &--brand {
+    @include badge(brand);
   }
 }

@@ -1,0 +1,24 @@
+<div class="header__mobile">
+  <bmb-container appearance="primary">
+    <div class="header__mobile--left">
+      <bmb-logo
+        size="small"
+        [image]="logo"
+        [altImage]="altLogo"
+        *ngIf="logo && !iconLeft"
+      />
+      <bmb-icon [icon]="iconLeft" *ngIf="iconLeft" />
+    </div>
+    <span class="header__mobile--text">{{ text }}</span>
+    <div class="header__mobile--right">
+      <bmb-icon [icon]="iconRight" *ngIf="iconRight && !image" />
+      <bmb-icon [icon]="iconRight2" *ngIf="iconRight2 && !image" />
+      <bmb-user-image
+        size="mobile-small"
+        [image]="image"
+        [altImage]="altImage"
+        *ngIf="image"
+      />
+    </div>
+  </bmb-container>
+</div>
