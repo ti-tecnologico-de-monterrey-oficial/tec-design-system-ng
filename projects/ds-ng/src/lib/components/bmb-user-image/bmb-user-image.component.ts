@@ -3,7 +3,6 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 @Component({
   selector: 'bmb-user-image',
   templateUrl: './bmb-user-image.component.html',
-  styleUrls: ['../../../assets/styles/components/_userImage.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbUserImageComponent {

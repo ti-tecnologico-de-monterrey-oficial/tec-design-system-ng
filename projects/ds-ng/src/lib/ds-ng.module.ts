@@ -19,9 +19,7 @@ import { BmbHeaderMobileComponent } from './components/bmb-header-mobile/bmb-hea
 import { BmbDotPaginatorComponent } from './components/bmb-dot-paginator/bmb-dot-paginator.component';
 import { BmbInteractiveIconComponent } from './components/bmb-interactive-icon/bmb-interactive-icon.component';
 import { BmbContainerButtonComponent } from './components/bmb-container-button/bmb-container-button.component';
-
-import { BmbTextInputComponent } from './components/bmb-text-input/bmb-text-input.component';
-import { BmbIconTextInputComponent } from './components/bmb-icon-text-input/bmb-icon-text-input.component';
+import { BmbTagComponent } from './components/bmb-tags/bmb-tags.component';
 
 @NgModule({
   declarations: [
@@ -33,15 +31,14 @@ import { BmbIconTextInputComponent } from './components/bmb-icon-text-input/bmb-
     BmbButtonDirective,
     BmbDividerComponent,
     BmbContainerComponent,
-    BmbTextInputComponent,
     BmbUserImageComponent,
     BmbTitleSectionComponent,
     BmbHeaderMobileComponent,
     BmbDotPaginatorComponent,
-    BmbIconTextInputComponent,
     BmbContainerButtonComponent,
     BmbInteractiveIconComponent,
     BmbFabComponent,
+    BmbTagComponent,
   ],
   imports: [CommonModule, FormsModule],
   exports: [
@@ -54,24 +51,14 @@ import { BmbIconTextInputComponent } from './components/bmb-icon-text-input/bmb-
     BmbDividerComponent,
     BmbUserImageComponent,
     BmbContainerComponent,
-    BmbTextInputComponent,
     BmbTitleSectionComponent,
     BmbHeaderMobileComponent,
     BmbDotPaginatorComponent,
-    BmbIconTextInputComponent,
     BmbContainerButtonComponent,
     BmbInteractiveIconComponent,
     BmbFabComponent,
+    BmbTagComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class DsNgModule {
-  constructor(private injector: Injector) {}
-
-  ngDoBootsrap() {
-    const customInputWrapper = createCustomElement(BmbIconTextInputComponent, {
-      injector: this.injector,
-    });
-    customElements.define('bmb-input-wrapper', customInputWrapper);
-  }
-}
+export class DsNgModule {}

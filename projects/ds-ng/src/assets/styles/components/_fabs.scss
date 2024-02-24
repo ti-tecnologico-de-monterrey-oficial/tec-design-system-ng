@@ -1,35 +1,33 @@
-@import "../base/mixins";
+.fab {
+  &-mob-small-normal {
+    @include fabInput(m, s, n);
+  }
 
-.fab{
-    &-mob-small-normal{
-        @include fabInput(m, s, n);
-    }
+  &-mob-small-extended {
+    @include fabInput(m, s, e);
+  }
 
-    &-mob-small-extended{
-        @include fabInput(m, s, e);
-    }
+  &-mob-large-normal {
+    @include fabInput(m, l, n);
+  }
 
-    &-mob-large-normal{
-        @include fabInput(m, l, n)
-    }
+  &-mob-large-extended {
+    @include fabInput(m, l, e);
+  }
 
-    &-mob-large-extended{
-        @include fabInput(m, l, e)
-    }
+  &-des-small-normal {
+    @include fabInput(d, s, n);
+  }
 
-    &-des-small-normal{
-        @include fabInput(d, s, n);
-    }
+  &-des-small-extended {
+    @include fabInput(d, s, e);
+  }
 
-    &-des-small-extended{
-        @include fabInput(d, s, e);
-    }
+  &-des-large-normal {
+    @include fabInput(d, l, n);
+  }
 
-    &-des-large-normal{
-        @include fabInput(d, l, n)
-    }
-
-    &-des-large-extended{
-        @include fabInput(d, l, e)
-    }
+  &-des-large-extended {
+    @include fabInput(d, l, e);
+  }
 }

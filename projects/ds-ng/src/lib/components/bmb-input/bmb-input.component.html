@@ -1,8 +1,8 @@
 <div class="bmb__field">
-  <label for="" class="bmb__field-label" *ngIf="label">{{ label }}</label>
+  <label for="" class="bmb__field--label" *ngIf="label">{{ label }}</label>
   <div
     class="bmb__field--wrapper"
-    [ngClass]="[!isValid ? 'bmb__field--error' : '', ]"
+    [ngClass]="[!isValid ? 'bmb__field--error' : '']"
     (click)="onParentClick()"
     #inputWrapper
   >
