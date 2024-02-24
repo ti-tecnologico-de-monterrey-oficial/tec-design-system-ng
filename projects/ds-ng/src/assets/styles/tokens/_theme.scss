@@ -21,24 +21,6 @@
         }
       }
     }
-
-    .bmb__field-label{
-      color: RGBA(var(--color-white-primary));
-    }
-
-    .bmb__field--helper {
-      color: RGBA(var(--color-white-primary));
-    }
-
-    .bmb__field--wrapper{
-      > .icon-simple{
-        color: RGBA(var(--color-white-primary)) !important;
-      }
-    }
-
-    .bmb-input-simple{
-      color: RGBA(var(--color-white-primary)) !important;
-    }
   }
 }
 
@@ -46,7 +28,7 @@
   body {
     background-color: RGBA(var(--color-charade-200));
 
-    .alert {
+    .toast {
       &-neutral,
       &-primary,
       &-successful,
@@ -93,7 +75,7 @@
   body {
     background-color: RGBA(var(--color-mariner-900));
 
-    .alert {
+    .toast {
       &-neutral,
       &-primary,
       &-successful,
@@ -156,14 +138,6 @@
 
     .title__section {
       color: RGBA(var(--color-mariner-50));
-    }
-
-    .bmb__field-label{
-      color: RGBA(var(--color-white-primary));
-    }
-
-    .bmb__field--helper {
-      color: RGBA(var(--color-white-primary));
     }
   }
 }

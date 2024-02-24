@@ -274,35 +274,36 @@
 }
 
 // Input styles
-@mixin inputType($type: main) {
+@mixin input($type: main) {
   @include resetElement();
   @include font(4, regular);
   appearance: none;
   width: 100%;
-  // height: 40px;
+  height: rem_calc(48);
 
   &:focus,
-  &:focus:hover {
+  &:focus:hover,
+  &:disabled:focus {
     @include focusElement();
   }
 
   @if $type == main {
-    background-color: RGBA(var(--color-charade-100));
-    border: rem_calc(1) solid RGBA(var(--color-charade-100));
+    background-color: var(--color-black-tint);
+    border: rem_calc(1) solid transparent;
     border-radius: $spacing-size-sm;
+    color: RGBA(var(--color-charade-50));
+    padding: $spacing-size-md;
+
+    &:hover {
+      border-color: RGBA(var(--color-charade-500));
+    }
 
     &:focus {
-      border: rem_calc(2) solid RGBA(var(--color-blue-primary));
-      border-color: RGBA(var(--color-blue-primary));
-      outline: none;
+      border-color: RGBA(var(--color-charade-50));
     }
 
     &::placeholder {
-      color: RGBA(var(--color-charade-300));
-    }
-
-    &:disabled:focus {
-      outline: none;
+      color: RGBA(var(--color-charade-50));
     }
 
     &.ng-invalid {
@@ -324,10 +325,6 @@
       color: RGBA(var(--color-charade-300));
     }
 
-    &:disabled:focus {
-      outline: none;
-    }
-
     &.ng-invalid {
       border-color: RGBA(var(--color-red-primary));
     }
@@ -335,7 +332,7 @@
     background-color: RGBA(var(--color-charade-950));
     border: rem_calc(1) solid RGBA(var(--color-charade-950));
     border-radius: $spacing-size-sm;
-    color: RGBA(var(--color-white));
+    color: RGBA(var(--color-charade-200));
 
     &:focus {
       border-color: rem_calc(2) solid RGBA(var(--color-white));
@@ -346,26 +343,13 @@
       color: RGBA(var(--color-charade-300));
     }
 
-    &:disabled:focus {
-      outline: none;
-    }
-
     &.ng-invalid {
       border-color: RGBA(var(--color-red-primary));
     }
   }
 }
 
-// This could be removed
-@mixin inputPad($type: s) {
-  padding: rem_calc(8);
-
-  @if $type == l {
-    padding: rem_calc(8) rem_calc(8) rem_calc(8) rem_calc(35);
-  }
-}
-
-@mixin fabInput($device: d, $size: s, $type: e){
+@mixin fabInput($device: d, $size: s, $type: e) {
   font-family: $font-poppins-regular;
   display: inline-flex;
   font-size: rem_calc(14);
@@ -377,87 +361,83 @@
   padding: rem_calc(8) rem_calc(16);
   position: fixed;
   bottom: rem_calc(40);
-	right: rem_calc(40);
-  box-shadow: rem_calc(2) rem_calc(2) rem_calc(2) rem_calc(1) RGBA(var(--color-black-primary), 0.25);
-  -webkit-box-shadow: rem_calc(2) rem_calc(2) rem_calc(2) rem_calc(1) RGBA(var(--color-black-primary), 0.25);
-  -moz-box-shadow: rem_calc(2) rem_calc(2) rem_calc(2) rem_calc(1) RGBA(var(--color-black-primary), 0.25);
+  right: rem_calc(40);
+  box-shadow: rem_calc(2) rem_calc(2) rem_calc(2) rem_calc(1)
+    RGBA(var(--color-black-primary), 0.25);
+  -webkit-box-shadow: rem_calc(2) rem_calc(2) rem_calc(2) rem_calc(1)
+    RGBA(var(--color-black-primary), 0.25);
+  -moz-box-shadow: rem_calc(2) rem_calc(2) rem_calc(2) rem_calc(1)
+    RGBA(var(--color-black-primary), 0.25);
 
   @if $device == m {
     background-color: RGBA(var(--color-neon-primary));
     color: RGBA(var(--color-white-primary));
-  
-    &:hover{
+
+    &:hover {
       background-color: RGBA(var(--color-charade-500));
     }
-  
-  
+
     &:active {
       background-color: RGBA(var(--color-charade-500));
       border: rem_calc(1) solid RGBA(var(--color-neon-primary));
-      
+
       > span {
         color: RGBA(var(--color-neon-primary));
       }
-  
+
       > i {
         color: RGBA(var(--color-neon-primary));
       }
     }
-  }@else if $device == d{
+  } @else if $device == d {
     background-color: RGBA(var(--color-blue-primary));
     color: RGBA(var(--color-white-primary));
-  
-    &:hover{
+
+    &:hover {
       background-color: RGBA(var(--color-mariner-800));
     }
-  
-  
+
     &:active {
       background-color: RGBA(var(--color-white-primary));
       border: rem_calc(1) solid RGBA(var(--color-blue-primary));
-      
+
       > span {
         color: RGBA(var(--color-blue-primary));
       }
-  
+
       > i {
         color: RGBA(var(--color-blue-primary));
       }
     }
   }
-
 
   > bmb-icon {
     font-size: rem_calc(24);
   }
 
-  @if $size == s and $type == n{
+  @if $size == s and $type == n {
     width: rem_calc(40);
     height: rem_calc(40);
     border-radius: rem_calc(50);
-    
-  }@else if $size == s and $type == e {
+  } @else if $size == s and $type == e {
     width: fit-content;
     height: rem_calc(40);
     border-radius: rem_calc(50);
-    > span{
+    > span {
       padding-right: rem_calc(8);
       font-size: rem_calc(14);
     }
-
-  }@else if $size == l and $type == n {
+  } @else if $size == l and $type == n {
     width: rem_calc(60);
     height: rem_calc(60);
     border-radius: rem_calc(50);
-
-  }@else if $size == l and $type == e{
+  } @else if $size == l and $type == e {
     height: rem_calc(60);
     width: fit-content;
     border-radius: rem_calc(50);
-    > span{
+    > span {
       padding-right: rem_calc(8);
       font-size: rem_calc(14);
     }
   }
-
 }

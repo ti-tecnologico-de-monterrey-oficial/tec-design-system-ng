@@ -11,6 +11,36 @@
     image="../assets/img/Icon_CalendarMonth.png"
     altImage="Calendar"
   />
+  <bmb-input
+    icon=""
+    errorMessage=""
+    [isRequired]="false"
+    placeholder="this is an input"
+    [isDisabled]="false"
+    [isValid]="false"
+    label=""
+    appearance="main"
+  />
+  <bmb-input
+    icon=""
+    errorMessage=""
+    [isRequired]="false"
+    placeholder="this is an input"
+    [isDisabled]="false"
+    [isValid]="false"
+    label=""
+    appearance="main"
+  />
+  <bmb-input
+    icon="home"
+    errorMessage=""
+    [isRequired]="false"
+    placeholder="this is an input"
+    [isDisabled]="false"
+    [isValid]="false"
+    label=""
+    appearance="main"
+  />
 
   <button
     bmbButton
@@ -53,50 +83,9 @@
 
 <bmb-container appearance="section">
   <bmb-title-section title="Elementos frecuentes de búsqueda" />
-  <bmb-badge [appearance]="'strong'" [text]="'Name Tag'" [grouped]="true" />
-  <bmb-badge [appearance]="'info'" [text]="'Name Tag'" [grouped]="true" />
-  <bmb-badge [appearance]="'brand'" [text]="'Name Tag'" [grouped]="true" />
+  <bmb-tag [appearance]="'strong'" [text]="'Name Tag'" [grouped]="true" />
+  <bmb-tag [appearance]="'info'" [text]="'Name Tag'" [grouped]="true" />
+  <bmb-tag [appearance]="'brand'" [text]="'Name Tag'" [grouped]="true" />
 </bmb-container>
 
-<!-- <bmb-container appearance="section">
-  <bmb-tag text="Tag"/>
-  <bmb-tag text="Tag 1"/>
-  <bmb-tag text="Tag 2"/>
-</bmb-container> -->
-
-<!-- <bmb-input
-  [isRequired]="true"
-  placeholder="this is an input"
-  [isDisabled]="false"
-  [isValid]="false"
-  appearance="normal"
-/>
-
-<hr/>
-<bmb-input
-  icon="home"
-  errorMessage="this is a helper"
-  [isRequired]="true"
-  placeholder="this is an input"
-  [isDisabled]="false"
-  [isValid]="false"
-  label="this is a label"
-  appearance="simple"
-/>
-<hr/>
-<bmb-input
-  icon="home"
-  errorMessage="this is a helper"
-  [isRequired]="true"
-  placeholder="this is an input"
-  [isDisabled]="false"
-  [isValid]="false"
-  label="this is a label"
-  appearance="main"
-/>
-<hr/>
-
-<h2 class="font-thin-6">FAB</h2> -->
-
-<!-- 
-<bmb-fab size="l" icon="add" type="fab" text="FAB" device="desktop" /> -->
+<bmb-fab size="l" icon="add" type="fab" text="FAB" device="desktop" />

@@ -10,7 +10,6 @@ import {
 @Component({
   selector: 'bmb-interactive-icon',
   templateUrl: './bmb-interactive-icon.component.html',
-  styleUrls: ['../../../assets/styles/components/_interactiveIcon.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbInteractiveIconComponent implements AfterViewInit {

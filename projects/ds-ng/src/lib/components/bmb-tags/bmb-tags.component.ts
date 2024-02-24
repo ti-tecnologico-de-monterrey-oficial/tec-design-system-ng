@@ -10,7 +10,6 @@ import {
 @Component({
   selector: 'bmb-tag',
   templateUrl: './bmb-tags.component.html',
-  styleUrls: ['../../../assets/styles/components/_tags.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbTagComponent implements AfterViewInit {
@@ -22,18 +21,17 @@ export class BmbTagComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     if (this.grouped) {
-      
     }
     const parentElement = this.el.nativeElement.parentElement;
 
-      let wrapperDiv = parentElement.querySelector('.tag--grouped');
-      if (!wrapperDiv) {
-        wrapperDiv = this.renderer.createElement('div');
-        this.renderer.addClass(wrapperDiv, 'tag--grouped');
-        this.renderer.insertBefore(parentElement, wrapperDiv, null);
-      }
+    let wrapperDiv = parentElement.querySelector('.tag--grouped');
+    if (!wrapperDiv) {
+      wrapperDiv = this.renderer.createElement('div');
+      this.renderer.addClass(wrapperDiv, 'tag--grouped');
+      this.renderer.insertBefore(parentElement, wrapperDiv, null);
+    }
 
-      this.renderer.appendChild(wrapperDiv, this.el.nativeElement);
+    this.renderer.appendChild(wrapperDiv, this.el.nativeElement);
   }
 
   getClasses(): string[] {

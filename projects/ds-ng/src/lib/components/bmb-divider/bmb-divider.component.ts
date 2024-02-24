@@ -3,7 +3,6 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 @Component({
   selector: 'bmb-divider',
   templateUrl: './bmb-divider.component.html',
-  styleUrls: ['../../../assets/styles/components/_divider.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbDividerComponent {
