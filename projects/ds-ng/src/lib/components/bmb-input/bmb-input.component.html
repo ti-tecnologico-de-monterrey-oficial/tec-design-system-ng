@@ -1,5 +1,7 @@
 <div class="bmb__field">
-  <label for="" class="bmb__field--label" *ngIf="label">{{ label }}</label>
+  <div class="bmb__field--container-label"  *ngIf="label">
+    <label for="" class="bmb__field--label">{{ label }}</label>
+  </div>
   <div
     class="bmb__field--wrapper"
     [ngClass]="[!isValid ? 'bmb__field--error' : '']"

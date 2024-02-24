@@ -288,10 +288,10 @@
   }
 
   @if $type == main {
-    background-color: var(--color-black-tint);
-    border: rem_calc(1) solid transparent;
-    border-radius: $spacing-size-sm;
-    color: RGBA(var(--color-charade-50));
+    background-color: RGBA(var(--color-white-primary));
+    border: rem_calc(1) solid RGBA(var(--color-charade-500));
+    border-radius: $spacing-size-md;
+    color: RGBA(var(--color-black-primary));
     padding: $spacing-size-md;
 
     &:hover {
@@ -299,11 +299,11 @@
     }
 
     &:focus {
-      border-color: RGBA(var(--color-charade-50));
+      border: rem_calc(2) solid RGBA(var(--color-blue-primary));
     }
 
     &::placeholder {
-      color: RGBA(var(--color-charade-50));
+      color: RGBA(var(--color-charade-300));
     }
 
     &.ng-invalid {
@@ -331,11 +331,12 @@
   } @else if $type == normal {
     background-color: RGBA(var(--color-charade-950));
     border: rem_calc(1) solid RGBA(var(--color-charade-950));
-    border-radius: $spacing-size-sm;
-    color: RGBA(var(--color-charade-200));
+    border-radius: $spacing-size-md;
+    color: RGBA(var(--color-white-primary));
+    padding: $spacing-size-md;
 
     &:focus {
-      border-color: rem_calc(2) solid RGBA(var(--color-white));
+      border: rem_calc(2) solid RGBA(var(--color-white-primary));
       outline: none;
     }
 
