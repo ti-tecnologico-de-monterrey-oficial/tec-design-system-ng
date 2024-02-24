@@ -1,8 +1,12 @@
 .bmb__field {
+
+  &--container-label{
+    padding: rem_calc(2) rem_calc(2) rem_calc(4) rem_calc(8);
+  }
+
   &--label {
-    @include font(4, medium);
+    @include font(3, regular);
     color: RGBA(var(--color-white-primary));
-    margin: rem_calc(8);
   }
 
   &--wrapper {
@@ -12,6 +16,7 @@
     padding: 0;
     position: relative;
     width: 100%;
+
   }
 
   &--error {
@@ -31,7 +36,7 @@
   }
 
   &--helper {
-    @include font(4, regular);
+    @include font(3, regular);
     color: RGBA(var(--color-charade-50));
     margin: rem_calc(8);
   }
@@ -39,6 +44,8 @@
   &--input {
     &-normal {
       @include input(normal);
+
+
     }
 
     &-simple {

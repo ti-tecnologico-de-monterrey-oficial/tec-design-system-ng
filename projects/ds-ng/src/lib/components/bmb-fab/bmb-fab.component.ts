@@ -6,7 +6,7 @@ import { Component, HostListener, Input } from '@angular/core';
 })
 export class BmbFabComponent {
   @Input() icon = '';
-  @Input() text?: string | null = 'TEXTO';
+  @Input() text?: string | null = '';
   @Input() size?: 's' | 'l' = 's';
   @Input() type?: 'ext' | 'fab' = 'fab';
   @Input() device?: 'mobile' | 'desktop' = 'mobile';
