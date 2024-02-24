@@ -10,7 +10,7 @@ import {
   SimpleChanges,
   OnChanges,
   ChangeDetectorRef,
-  HostBinding
+  HostBinding,
 } from '@angular/core';
 
 import {
@@ -24,7 +24,6 @@ import {
 @Component({
   selector: 'bmb-input',
   templateUrl: './bmb-input.component.html',
-  styleUrls: ['../../../assets/styles/components/_input.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -57,7 +56,7 @@ export class BmbInputComponent
   @Input() isClearable: boolean = false;
   @Input() appearance: 'normal' | 'simple' | 'main' = 'normal';
   @Input() device: 'mobile' | 'desktop' = 'mobile';
-  
+
   @Output() handleClick: EventEmitter<any> = new EventEmitter();
   @Output() handleFocus: EventEmitter<any> = new EventEmitter();
   @Output() handleBlur: EventEmitter<any> = new EventEmitter();
@@ -81,8 +80,8 @@ export class BmbInputComponent
         this.value = undefined;
       }
     }, 0);
-    this.style = `bmb-input-${this.appearance}`
-    this.iconColor = `icon-${this.appearance}`
+    this.style = `bmb__field--input-${this.appearance}`;
+    this.iconColor = `bmb__field--icon-${this.appearance}`;
   }
 
   ngOnChanges(changes: SimpleChanges): void {

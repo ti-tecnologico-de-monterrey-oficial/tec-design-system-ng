@@ -10,7 +10,6 @@ import {
 @Component({
   selector: 'bmb-badge',
   templateUrl: './bmb-badge.component.html',
-  styleUrls: ['../../../assets/styles/components/_badge.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbBadgeComponent implements AfterViewInit {
