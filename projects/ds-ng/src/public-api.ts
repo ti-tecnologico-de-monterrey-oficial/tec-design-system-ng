@@ -20,8 +20,5 @@ export * from './lib/components/bmb-header-mobile/bmb-header-mobile.component';
 export * from './lib/components/bmb-dot-paginator/bmb-dot-paginator.component';
 export * from './lib/components/bmb-container-button/bmb-container-button.component';
 export * from './lib/components/bmb-interactive-icon/bmb-interactive-icon.component';
-
-export * from './lib/components/bmb-icon-text-input/bmb-icon-text-input.component';
-export * from './lib/components/bmb-text-input/bmb-text-input.component';
-
 export * from './lib/components/bmb-fab/bmb-fab.component';
+export * from './lib/components/bmb-tags/bmb-tags.component';

@@ -18,8 +18,18 @@
 @import "base/measures";
 @import "base/mixins";
 
-// Import the styles for non components elements
+// Import the styles for components elements
+@import "components/badge";
 @import "components/buttons";
-@import "components/text-inputs";
-@import "components/icon-text-input";
-@import "components/fabs"
+@import "components/container";
+@import "components/containerButton";
+@import "components/divider";
+@import "components/dotPaginator";
+@import "components/fabs";
+@import "components/header";
+@import "components/input";
+@import "components/interactiveIcon";
+@import "components/logo";
+@import "components/tags";
+@import "components/titleSection";
+@import "components/userImage";

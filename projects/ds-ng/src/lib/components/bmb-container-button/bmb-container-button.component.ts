@@ -3,7 +3,6 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 @Component({
   selector: 'bmb-container-button',
   templateUrl: './bmb-container-button.component.html',
-  styleUrls: ['../../../assets/styles/components/_containerButton.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbContainerButtonComponent {
