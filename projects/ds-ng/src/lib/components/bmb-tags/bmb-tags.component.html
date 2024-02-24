@@ -1,6 +1,6 @@
 <div class="tag">
   <span class="tag--text">{{ text }}</span>
-  <button class="tag--btn">
+  <button *ngIf="this.dissmisable" class="tag--btn" (click)="closeTag()">
     <bmb-icon [icon]="'close'"/>
   </button>
 </div>
