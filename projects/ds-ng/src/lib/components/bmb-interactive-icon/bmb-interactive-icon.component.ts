@@ -5,20 +5,29 @@ import {
   ElementRef,
   Renderer2,
   AfterViewInit,
+  ViewEncapsulation,
 } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 
 @Component({
   selector: 'bmb-interactive-icon',
+  styleUrl: './bmb-interactive-icon.component.scss',
   templateUrl: './bmb-interactive-icon.component.html',
+  standalone: true,
+  imports: [CommonModule, BmbIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class BmbInteractiveIconComponent implements AfterViewInit {
   @Input() appearance: string = '';
-  @Input() text: string = '';
+  @Input() title: string = '';
+  @Input() description: string = '';
   @Input() icon: string = '';
-  @Input() image: string = '';
-  @Input() altImage: string = '';
   @Input() grouped: boolean = false;
+  @Input() horizontal: boolean = false;
+  @Input() target: string = '';
+  @Input() link: string = '';
 
   constructor(private el: ElementRef, private renderer: Renderer2) {}
 
@@ -27,11 +36,11 @@ export class BmbInteractiveIconComponent implements AfterViewInit {
       const parentElement = this.el.nativeElement.parentElement;
 
       let wrapperDiv = parentElement.querySelector(
-        '.interactive__icon--grouped'
+        '.bmb_interactive_icon-grouped'
       );
       if (!wrapperDiv) {
         wrapperDiv = this.renderer.createElement('div');
-        this.renderer.addClass(wrapperDiv, 'interactive__icon--grouped');
+        this.renderer.addClass(wrapperDiv, 'bmb_interactive_icon-grouped');
         this.renderer.insertBefore(parentElement, wrapperDiv, null);
       }
 
@@ -40,10 +49,10 @@ export class BmbInteractiveIconComponent implements AfterViewInit {
   }
 
   getClasses(): string[] {
-    const classes: string[] = ['interactive__icon'];
+    const classes: string[] = ['bmb_interactive_icon'];
 
     if (this.appearance) {
-      classes.push('interactive__icon--' + this.appearance);
+      classes.push('bmb_interactive_icon-' + this.appearance);
     }
 
     return classes;

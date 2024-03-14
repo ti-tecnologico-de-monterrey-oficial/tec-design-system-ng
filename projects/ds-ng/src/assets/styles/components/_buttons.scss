@@ -1,17 +1,19 @@
-.btn {
-  &--primary {
-    @include button(primary);
+@use "../base/mixins" as mixins;
+
+.bmb_btn {
+  &-primary {
+    @include mixins.button(primary);
   }
 
-  &--alternative {
-    @include button(alternative);
+  &-secondary-filled {
+    @include mixins.button(secondary-filled);
   }
 
-  &--secondary {
-    @include button(secondary);
+  &-secondary-outlined {
+    @include mixins.button(secondary-outlined);
   }
 
-  &--destructive {
-    @include button(destructive);
+  &-destructive {
+    @include mixins.button(destructive);
   }
 }

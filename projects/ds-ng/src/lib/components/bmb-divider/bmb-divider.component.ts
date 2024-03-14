@@ -1,9 +1,18 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
-
+import {
+  Component,
+  Input,
+  ChangeDetectionStrategy,
+  ViewEncapsulation,
+} from '@angular/core';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'bmb-divider',
+  styleUrl: './bmb-divider.component.scss',
   templateUrl: './bmb-divider.component.html',
+  standalone: true,
+  imports: [CommonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class BmbDividerComponent {
   @Input() size: string = '';
@@ -13,18 +22,18 @@ export class BmbDividerComponent {
   constructor() {}
 
   getClasses(): string[] {
-    const classes: string[] = ['divider'];
+    const classes: string[] = ['bmb_divider'];
 
     if (this.appearance) {
-      classes.push('divider-' + this.appearance);
+      classes.push('bmb_divider-' + this.appearance);
     }
 
     if (this.size) {
-      classes.push('divider-' + this.size);
+      classes.push('bmb_divider-' + this.size);
     }
 
     if (this.styles) {
-      classes.push('divider-' + this.styles);
+      classes.push('bmb_divider-' + this.styles);
     }
 
     return classes;

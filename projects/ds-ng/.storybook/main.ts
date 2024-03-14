@@ -7,6 +7,7 @@ const config: StorybookConfig = {
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
     '@storybook/addon-docs',
+    '@storybook/addon-themes',
   ],
   framework: {
     name: '@storybook/angular',
@@ -18,4 +19,5 @@ const config: StorybookConfig = {
     defaultName: 'Documentation',
   },
 };
+
 export default config;
