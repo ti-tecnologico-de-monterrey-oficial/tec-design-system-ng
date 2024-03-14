@@ -14,15 +14,17 @@ import { BmbIconComponent } from '../components/bmb-icon/bmb-icon.component';
 
 @Directive({
   selector: '[bmbButton]',
+  standalone: true,
 })
 export class BmbButtonDirective implements OnInit, OnChanges {
   @Input() icon: string = '';
-  @Input() image: string = '';
-  @Input() altImage: string = '';
   @Input() position: 'left' | 'right' = 'left';
   @Input() case: boolean = false;
-  @Input() appearance: 'primary' | 'alternative' | 'secondary' | 'destructive' =
-    'primary';
+  @Input() appearance:
+    | 'primary'
+    | 'secondary-filled'
+    | 'secondary-outlined'
+    | 'destructive' = 'primary';
   @Input() size: 'small' | 'large' = 'small';
 
   private providedInputs: Set<string> = new Set();
@@ -72,7 +74,7 @@ export class BmbButtonDirective implements OnInit, OnChanges {
   }
 
   @HostBinding('class') get elementClass(): string {
-    return `btn--${this.appearance}`;
+    return `bmb_btn-${this.appearance}`;
   }
 
   private addContent() {
@@ -80,7 +82,7 @@ export class BmbButtonDirective implements OnInit, OnChanges {
 
     if (this.icon) {
       const iconComponentRef =
-        this.viewContainerRef.createComponent(BmbIconComponent);
+        this.viewContainerRef.createComponent(BmbIconComponent); // Crear una instancia del componente
       const iconComponent = iconComponentRef.instance;
       iconComponent.icon = this.icon;
 
@@ -95,28 +97,6 @@ export class BmbButtonDirective implements OnInit, OnChanges {
           this.el.nativeElement.firstChild
         );
       }
-    } else if (this.image) {
-      const existingImg = this.el.nativeElement.querySelector('img');
-      if (!existingImg) {
-        const imgElement = this.renderer.createElement('img');
-        this.renderer.setAttribute(imgElement, 'src', this.image);
-        this.renderer.setAttribute(imgElement, 'alt', this.altImage || '');
-        this.insertContent(imgElement);
-      }
-    }
-  }
-
-  private insertContent(element: any) {
-    if (this.position === 'right') {
-      this.el.nativeElement.insertBefore(
-        element,
-        this.el.nativeElement.lastChild.nextSibling
-      );
-    } else {
-      this.el.nativeElement.insertBefore(
-        element,
-        this.el.nativeElement.firstChild
-      );
     }
   }
 }

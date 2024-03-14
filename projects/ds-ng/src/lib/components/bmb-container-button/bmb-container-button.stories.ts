@@ -8,7 +8,7 @@ export default {
   component: BmbContainerButtonComponent,
   decorators: [
     moduleMetadata({
-      declarations: [BmbIconComponent, BmbContainerComponent],
+      imports: [BmbIconComponent, BmbContainerComponent],
     }),
   ],
   argTypes: {
@@ -55,30 +55,19 @@ export default {
         type: { summary: 'string' },
       },
     },
-    image: {
-      name: 'Image Source',
+    iconLeft: {
+      name: 'Icon Left',
       control: {
         type: 'text',
       },
       description:
-        'The source of the image to display, either from your application or a URL. Do not use the grade attribute if you want to use an image.',
+        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons. Do not use the score attribute if you want to use an icon Left.',
       table: {
         type: { summary: 'string' },
       },
     },
-    altImage: {
-      name: 'Image Alt Text',
-      control: {
-        type: 'text',
-      },
-      description:
-        'The alternative text for the image. Refer to https://www.w3.org/WAI/alt/ for more information.',
-      table: {
-        type: { summary: 'string' },
-      },
-    },
-    icon: {
-      name: 'Icon',
+    iconRight: {
+      name: 'Icon Right',
       control: { type: 'text' },
       description:
         'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons.',
@@ -86,28 +75,37 @@ export default {
         type: { summary: 'string' },
       },
     },
-    grade: {
-      name: 'Grade',
+    score: {
+      name: 'Score',
       control: {
         type: 'text',
       },
       description:
-        'The grade number of the button container. Do not use the image attribute if you want to use grade.',
+        'The score number of the button container. Do not use the iconLeft attribute if you want to use score.',
       table: {
         type: { summary: 'string' },
+      },
+    },
+    square: {
+      name: 'Square',
+      control: { type: 'boolean' },
+      description:
+        'When set to true, the container button will change the appearance. Please not use grade if you are using square and iconLeft',
+      table: {
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
       },
     },
   },
   args: {
     title: 'Tema de App',
     subtitle: 'Subtitle',
-    image:
-      'https://i0.wp.com/gershenson.mx/wp-content/uploads/2020/08/logo-tec-de-monterrey-e1484853084274.png?ssl=1',
-    icon: 'home',
+    iconLeft: 'home',
+    iconRight: 'chevron_right',
     target: '_blank',
     link: 'https://www.youtube.com/',
-    grade: '100',
-    altImage: 'Alt image description',
+    score: '',
+    square: false,
   },
 } as Meta<typeof BmbContainerButtonComponent>;
 

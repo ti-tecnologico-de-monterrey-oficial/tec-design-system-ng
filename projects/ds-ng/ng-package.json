@@ -6,14 +6,9 @@
   },
   "assets": [
     {
-      "glob": "**/*.scss",
-      "input": "src/assets/styles",
-      "output": "./styles"
-    },
-    {
-      "glob": "**/*.ttf", 
+      "glob": "**/*",
       "input": "src/assets/fonts",
-      "output": "./fonts"
+      "output": "./assets/fonts"
     }
   ]
 }

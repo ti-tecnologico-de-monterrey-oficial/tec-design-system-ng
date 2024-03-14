@@ -4,32 +4,22 @@
 // This file provides the global variables, resets, and styles for an app to properly use the design system
 // It is mandatory to load this scss file as style dependency before any other
 
-// Import and register the design tokens like colors and sizes
-@import "tokens/designtokens";
-
+// Import the global style to avoid bloat of code and could be use in components will a unique charge.
 // Import and register the rem convertion
-@import "base/rem";
+@use "base/rem" as rem;
 
 // Import fonts
-@import "base/fonts";
+@use "base/fonts" as fonts;
+
+// Import the styles for base
+@use "base/mixins" as mixins;
+
+// Import and register the design tokens like colors and theme
+@import "tokens/colors";
+@import "tokens/theme";
 
 // Import the styles for base
 @import "base/reset";
-@import "base/measures";
-@import "base/mixins";
 
-// Import the styles for components elements
-@import "components/badge";
+// Import the styles for non components
 @import "components/buttons";
-@import "components/container";
-@import "components/containerButton";
-@import "components/divider";
-@import "components/dotPaginator";
-@import "components/fabs";
-@import "components/header";
-@import "components/input";
-@import "components/interactiveIcon";
-@import "components/logo";
-@import "components/tags";
-@import "components/titleSection";
-@import "components/userImage";

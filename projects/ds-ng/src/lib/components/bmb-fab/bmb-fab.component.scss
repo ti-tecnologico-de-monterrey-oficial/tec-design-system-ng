@@ -1,0 +1,35 @@
+@use "../../../assets/styles/base/mixins" as mixins;
+
+.fab {
+  &-mob-small-normal {
+    @include mixins.fabInput(m, s, n);
+  }
+
+  &-mob-small-extended {
+    @include mixins.fabInput(m, s, e);
+  }
+
+  &-mob-large-normal {
+    @include mixins.fabInput(m, l, n);
+  }
+
+  &-mob-large-extended {
+    @include mixins.fabInput(m, l, e);
+  }
+
+  &-des-small-normal {
+    @include mixins.fabInput(d, s, n);
+  }
+
+  &-des-small-extended {
+    @include mixins.fabInput(d, s, e);
+  }
+
+  &-des-large-normal {
+    @include mixins.fabInput(d, l, n);
+  }
+
+  &-des-large-extended {
+    @include mixins.fabInput(d, l, e);
+  }
+}

@@ -1,295 +1,22 @@
-@use "sass:math";
+$global-font-size: 16px;
 
-////
-/// @group functions
-////
-
-/// Finds the greatest common divisor of two integers.
-///
-/// @param {Number} $a - First number to compare.
-/// @param {Number} $b - Second number to compare.
-///
-/// @returns {Number} The greatest common divisor.
-@function gcd($a, $b) {
-  // From: http://rosettacode.org/wiki/Greatest_common_divisor#JavaScript
-  @if ($b != 0) {
-    @return gcd($b, $a % $b);
-  } @else {
-    @return math.abs($a);
-  }
-}
-
-/// Handles decimal exponents by trying to convert them into a fraction and then use a nth-root-algorithm for parts of the calculation
-///
-/// @param {Number} $base - The base number.
-/// @param {Number} $exponent - The exponent.
-///
-/// @returns {Number} The product of the exponentiation.
-@function pow($base, $exponent, $prec: 16) {
-  @if (floor($exponent) != $exponent) {
-    $prec2: pow(10, $prec);
-    $exponent: round($exponent * $prec2);
-    $denominator: gcd($exponent, $prec2);
-    @return nth-root(
-      pow($base, divide($exponent, $denominator)),
-      divide($prec2, $denominator),
-      $prec
-    );
-  }
-
-  $value: $base;
-  @if $exponent > 1 {
-    @for $i from 2 through $exponent {
-      $value: $value * $base;
-    }
-  } @else if $exponent < 1 {
-    @for $i from 0 through -$exponent {
-      $value: divide($value, $base);
-    }
-  }
-
-  @return $value;
-}
-
-@function nth-root($num, $n: 2, $prec: 12) {
-  // From: http://rosettacode.org/wiki/Nth_root#JavaScript
-  $x: 1;
-
-  @for $i from 0 through $prec {
-    $x: divide(1, $n) * (($n - 1) * $x + divide($num, pow($x, $n - 1)));
-  }
-
-  @return $x;
-}
-
-/// Calculates the height as a percentage of the width for a given ratio.
-/// @param {List} $ratio - Ratio to use to calculate the height, formatted as `x by y`.
-/// @return {Number} A percentage value for the height relative to the width of a responsive container.
-@function ratio-to-percentage($ratio) {
-  $w: nth($ratio, 1);
-  $h: nth($ratio, 3);
-  @return divide($h, $w) * 100%;
-}
-
-/// Parse the given `$fraction` to numerators and denumerators.
-///
-/// @param {*} $fraction - Value representing a fraction to parse. It can be formatted as `50%`, `1 of 2`, `1/2` or `50` (no denominator would be returned).
-///
-/// @return {List} List of parsed values with numerator at first position and denumerator as second. These values may be null.
-@function zf-parse-fraction($fraction) {
-  @if type-of($fraction) == "number" {
-    // "50%"
-    @if unit($fraction) == "%" {
-      @return (strip-unit($fraction), 100);
-    } @else if (unit($fraction) == "") {
-      // "0.5"
-      @if $fraction < 1 {
-        @return ($fraction * 100, 100);
-      }
-      // "50"
-      @else {
-        @return ($fraction, null);
-      }
-    }
-  } @else if type-of($fraction) == "list" {
-    // "50 of 100", "50/100"...
-    @if length($fraction) ==
-      3 and
-      type-of(nth($fraction, 1) == "number") and
-      type-of(nth($fraction, 3) == "number")
-    {
-      @return (nth($fraction, 1), nth($fraction, 3));
-    }
-  }
-
-  @return (null, null);
-}
-
-/// Returns whether the given `$value` represents a fraction. Supports formats like `50%`, `1 of 2`, `1 per 2` or `1/2`.
-///
-/// @param {*} $value - Value to test.
-/// @param {Boolean} $allow-no-denominator [false] - If `true`, simple numbers without denominators like `50` are supported.
-///
-/// @return {Boolean} `true` if `$value` represents a fraction, `false` otherwise.
-@function zf-is-fraction($value, $allow-no-denominator: false) {
-  $parsed: zf-parse-fraction($value);
-  @return not(
-    nth($parsed, 1) == null or
-      (nth($parsed, 2) == null and $allow-no-denominator == false)
-  );
-}
-
-/// Calculate a percentage from a given fraction.
-///
-/// @param {Number|List} $fraction - Value representing a fraction to use to calculate the percentage, formatted as `50` (relative to `$denominator`), `50%`, `1 of 2` or `1/2`.
-/// @param {Number|List} $denominator - Default value to use as denominator when `$fraction` represents an absolute value.
-@function fraction-to-percentage($fraction, $denominator: null) {
-  $parsed: zf-parse-fraction($fraction);
-  $parsed-nominator: nth($parsed, 1);
-  $parsed-denominator: nth($parsed, 2);
-
-  @if $parsed-nominator == null {
-    @error 'Wrong syntax for "fraction-to-percentage()". Use a number, decimal, percentage, or "n of n" / "n/n".';
-  }
-  @if $parsed-denominator == null {
-    @if type-of($denominator) == "number" {
-      $parsed-denominator: $denominator;
-    } @else {
-      @error 'Error with "fraction-to-percentage()". A default "$denominator" is required to support absolute values';
-    }
-  }
-
-  @return percentage(divide($parsed-nominator, $parsed-denominator));
-}
-
-/// Divide the given `$divident` by the given `$divisor`.
-///
-/// @param {Number} $divident - The divident.
-/// @param {Number} $divisor - The divisor.
-/// @param {Number} $precision - The precision decimals for the division.
-///
-/// @return {Number} The product of the division.
-@function divide($dividend, $divisor, $precision: 12) {
-  $sign: if(
-    $dividend > 0 and $divisor > 0 or $dividend < 0 and $divisor < 0,
-    1,
-    -1
-  );
-  $dividend: math.abs($dividend);
-  $divisor: math.abs($divisor);
-  @if $dividend == 0 {
-    @return 0;
-  }
-  @if $divisor == 0 {
-    @error 'Cannot divide by 0';
-  }
-  $remainder: $dividend;
-  $result: 0;
-  $factor: 10;
-  @while ($remainder > 0 and $precision >= 0) {
-    $quotient: 0;
-    @while ($remainder >= $divisor) {
-      $remainder: $remainder - $divisor;
-      $quotient: $quotient + 1;
-    }
-    $result: $result * 10 + $quotient;
-    $factor: $factor * 0.1;
-    $remainder: $remainder * 10;
-    $precision: $precision - 1;
-    @if ($precision < 0 and $remainder >= $divisor * 5) {
-      $result: $result + 1;
-    }
-  }
-  $result: $result * $factor * $sign;
-  $dividend-unit: unit($dividend);
-  $divisor-unit: unit($divisor);
-  $unit-map: (
-    "px": 1px,
-    "rem": 1rem,
-    "em": 1em,
-    "%": 1%,
-  );
-  @if (
-    $dividend-unit != $divisor-unit and map-has-key($unit-map, $dividend-unit)
-  ) {
-    $result: $result * map-get($unit-map, $dividend-unit);
-  }
-
-  @return $result;
-}
-
-$unit-warnings: true !default;
-
-////
-/// @group functions
-////
-
-$global-font-size: 100% !default;
-
-/// Removes the unit (e.g. px, em, rem) from a value, returning the number only.
-///
-/// @param {Number} $num - Number to strip unit from.
-///
-/// @returns {Number} The same number, sans unit.
 @function strip-unit($num) {
-  @return divide($num, $num * 0 + 1);
+  $divisor: ($num * 0 + 1);
+
+  @return calc($num / $divisor);
 }
 
-/// Converts one or more pixel values into matching rem values.
-///
-/// @param {Number|List} $values - One or more values to convert. Be sure to separate them with spaces and not commas. If you need to convert a comma-separated list, wrap the list in parentheses.
-/// @param {Number} $base [null] - The base value to use when calculating the `rem`. If you're using out of the box, this is 16px. If this parameter is `null`, the function will reference the `$global-font-size` variable as the base.
-///
-/// @returns {List} A list of converted values.
-@function rem-calc($values, $base: null) {
-  $rem-values: ();
-  $count: length($values);
-
-  // If no base is defined, defer to the global font size
-  @if $base == null {
-    $base: $global-font-size;
-  }
-
-  // If the base font size is a %, then multiply it by 16px
-  // This is because 100% font size = 16px in most all browsers
-  @if unit($base) == "%" {
-    $base: divide($base, 100%) * 16px;
-  }
-
-  // Using rem as base allows correct scaling
-  @if unit($base) == "rem" {
-    $base: strip-unit($base) * 16px;
-  }
-
-  @if $count == 1 {
-    @return -zf-to-rem($values, $base);
-  }
-
-  @for $i from 1 through $count {
-    $rem-values: append($rem-values, -zf-to-rem(nth($values, $i), $base));
-  }
-
-  @return $rem-values;
-}
-
-// Converts a unitless, pixel, or rem value to em, for use in breakpoints.
-@function -zf-bp-to-em($value) {
-  // Pixel and unitless values are converted to rems
-  @if unit($value) == "px" or unitless($value) {
-    $value: rem-calc($value, $base: 16px);
-  }
-
-  // Then the value is converted to ems
-  @return strip-unit($value) * 1em;
-}
-
-/// Converts a pixel value to matching rem value. *Any* value passed, regardless of unit, is assumed to be a pixel value. By default, the base pixel value used to calculate the rem value is taken from the `$global-font-size` variable.
-/// @access private
-///
-/// @param {Number} $value - Pixel value to convert.
-/// @param {Number} $base [null] - Base for pixel conversion.
-///
-/// @returns {Number} A number in rems, calculated based on the given value and the base pixel value. rem values are passed through as is.
-@function -zf-to-rem($value, $base: null) {
-  // Check if the value is a number
+@function -btsp-to-rem($value, $base: null) {
   @if type-of($value) != "number" {
-    @if $unit-warnings {
-      @warn inspect($value) + ' was passed to rem-calc(), which is not a number.';
-    }
+    @warn inspect($value) + ' was passed to rem_calc(), which is not a number.';
+
     @return $value;
   }
 
-  // Transform em into rem if someone hands over 'em's
-  @if unit($value) == "em" {
-    $value: strip-unit($value) * 1rem;
-  }
-
-  // Calculate rem if units for $value is not rem or em
   @if unit($value) != "rem" {
-    $value: divide(strip-unit($value), strip-unit($base)) * 1rem;
+    $value: calc(strip-unit($value) / strip-unit($base)) * 1rem;
   }
 
-  // Turn 0rem into 0
   @if $value == 0rem {
     $value: 0;
   }
@@ -297,55 +24,25 @@ $global-font-size: 100% !default;
   @return $value;
 }
 
-/// Converts a pixel, percentage, rem or em value to a unitless value based on a given font size. Ideal for working out unitless line heights.
-///
-/// @param {Number} $value - Value to convert to a unitless line height
-/// @param {Number} $base - The font size to use to work out the line height - defaults to $global-font-size
-///
-/// @return {Number} - Unitless number
-@function unitless-calc($value, $base: null) {
-  // If no base is defined, defer to the global font size
+@function rem_calc($values, $base: null) {
+  $rem-values: ();
+  $count: length($values);
+
   @if $base == null {
     $base: $global-font-size;
   }
 
-  // First, lets convert our $base to pixels
-
-  // If the base font size is a %, then multiply it by 16px
   @if unit($base) == "%" {
-    $base: divide($base, 100%) * 16px;
+    $base: ($base / 100%) * 10px;
   }
 
-  @if unit($base) == "rem" {
-    $base: strip-unit($base) * 16px;
+  @if $count == 1 {
+    @return -btsp-to-rem($values, $base);
   }
 
-  @if unit($base) == "em" {
-    $base: strip-unit($base) * 16px;
+  @for $i from 1 through $count {
+    $rem-values: append($rem-values, -btsp-to-rem(nth($values, $i), $base));
   }
 
-  // Now let's convert our value to pixels too
-  @if unit($value) == "%" {
-    $value: divide($value, 100%) * $base;
-  }
-
-  @if unit($value) == "rem" {
-    $value: strip-unit($value) * $base;
-  }
-
-  @if unit($value) == "em" {
-    $value: strip-unit($value) * $base;
-  }
-
-  // 'px'
-  @if unit($value) == "px" {
-    @return divide(strip-unit($value), strip-unit($base));
-  }
-
-  // assume that line-heights greater than 10 are meant to be absolute in 'px'
-  @if unitless($value) and ($value > 10) {
-    @return divide($value, strip-unit($base));
-  }
-
-  @return $value;
+  @return $rem-values;
 }

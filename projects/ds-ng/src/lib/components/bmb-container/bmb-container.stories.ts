@@ -10,7 +10,14 @@ export default {
       control: {
         type: 'radio',
       },
-      options: ['section', 'button', 'contrast', 'primary', 'secondary'],
+      options: [
+        'primary-container',
+        'primary-home',
+        'primary-header',
+        'secondary-container',
+        'contrast-box-container',
+        'button-container',
+      ],
       table: {
         type: { summary: 'string' },
       },
@@ -19,7 +26,7 @@ export default {
     },
   },
   args: {
-    appearance: 'button',
+    appearance: 'primary-container',
   },
 } as Meta<typeof BmbContainerComponent>;
 

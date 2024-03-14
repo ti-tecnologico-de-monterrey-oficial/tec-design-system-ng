@@ -1,0 +1,4 @@
+<div *ngIf="isOpen$ | async" [ngClass]="getClasses()">
+  <bmb-icon icon="info" />
+  <span>{{ message }}</span>
+</div>
