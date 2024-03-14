@@ -71,6 +71,9 @@
     "projects/ds-ng/dist",
     "projects/ds-ng/src/assets"
   ],
+  "exports": {
+    "./assets/styles/main.min.css": "./dist/ds-ng/assets/styles/main.min.css"
+  },
   "bugs": {
     "url": "https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/issues"
   },
