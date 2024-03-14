@@ -1,6 +1,6 @@
 {
   "name": "@ti-tecnologico-de-monterrey-oficial/tec-design-system-ng",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "scripts": {
     "ng": "ng",
     "storybook": "ng run ds-ng:storybook",
@@ -71,9 +71,6 @@
     "projects/ds-ng/dist",
     "projects/ds-ng/src/assets"
   ],
-  "exports": {
-    "./assets/styles/main.min.css": "./dist/ds-ng/assets/styles/main.min.css"
-  },
   "bugs": {
     "url": "https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/issues"
   },
