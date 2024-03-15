@@ -1,13 +1,15 @@
-.dot-paginator {
+@use "../../../assets/styles/base/rem" as rem;
+
+.bmb_dot_paginator {
   align-items: center;
   background-color: RGBA(var(--color-charade-200));
-  border-radius: rem_calc(40);
+  border-radius: rem.rem_calc(40);
   display: flex;
   justify-content: center;
   list-style-type: none;
   margin: 0;
   overflow: hidden;
-  padding: rem_calc(12);
+  padding: rem.rem_calc(12);
   position: relative;
   width: fit-content;
 
@@ -15,15 +17,15 @@
     background-color: RGBA(var(--color-white-primary));
     border-radius: 100%;
     cursor: pointer;
-    height: rem_calc(6);
-    margin: 0 rem_calc(8);
+    height: rem.rem_calc(6);
+    margin: 0 rem.rem_calc(8);
     position: relative;
-    width: rem_calc(6);
+    width: rem.rem_calc(6);
 
     &.active {
       background-color: RGBA(var(--color-mariner-500));
-      border-radius: rem_calc(30);
-      width: rem_calc(16);
+      border-radius: rem.rem_calc(30);
+      width: rem.rem_calc(16);
     }
 
     ::marker {

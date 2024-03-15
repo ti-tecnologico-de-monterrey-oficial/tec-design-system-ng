@@ -1,6 +1,6 @@
 {
   "name": "@ti-tecnologico-de-monterrey-oficial/ds-ng",
-  "version": "0.0.8",
+  "version": "0.0.9-beta-1",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
@@ -11,6 +11,9 @@
   },
   "dependencies": {
     "tslib": "^2.3.0"
+  },
+  "exports": {
+    "./assets/styles/main.min.css": "./dist/ds-ng/assets/styles/main.min.css"
   },
   "sideEffects": false
 }

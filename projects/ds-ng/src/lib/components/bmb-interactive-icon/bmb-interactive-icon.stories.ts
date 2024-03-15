@@ -7,16 +7,48 @@ export default {
   component: BmbInteractiveIconComponent,
   decorators: [
     moduleMetadata({
-      declarations: [BmbIconComponent],
+      imports: [BmbIconComponent],
     }),
   ],
+  parameters: {
+    docs: {
+      description: {
+        component: `
+Below is an example of how you can use this component in TypeScript:
+
+\`\`\`typescript
+import { BmbInteractiveIconComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
+@Component({
+  selector: 'component',
+  standalone: true,
+  imports: [ BmbInteractiveIconComponent ],
+  templateUrl: './component.html',
+  styleUrl: './component.scss',
+})
+\`\`\`
+
+Below is an example of how you can use this component in HTML:
+        `,
+      },
+    },
+  },
   argTypes: {
-    text: {
-      name: 'Text',
+    title: {
+      name: 'Title',
       control: {
         type: 'text',
       },
-      description: 'The text of the interactive icon.',
+      description: 'The title of the interactive icon.',
+      table: {
+        type: { summary: 'string' },
+      },
+    },
+    description: {
+      name: 'Description',
+      control: {
+        type: 'text',
+      },
+      description: 'The description of the interactive icon.',
       table: {
         type: { summary: 'string' },
       },
@@ -40,17 +72,6 @@ export default {
         type: { summary: 'string' },
       },
     },
-    image: {
-      name: 'Image Source',
-      control: {
-        type: 'text',
-      },
-      description:
-        'The source of the image to display. Do not use the icon attribute if you want to use an image.',
-      table: {
-        type: { summary: 'string' },
-      },
-    },
     appearance: {
       name: 'Appearance',
       control: {
@@ -63,25 +84,48 @@ export default {
         type: { summary: 'string' },
       },
     },
-    altImage: {
-      name: 'Image Alt Text',
+    link: {
+      name: 'Link',
       control: {
         type: 'text',
       },
-      description:
-        'The alternative text for the image. Refer to https://www.w3.org/WAI/alt/ for more information.',
+      description: 'The link for redirection to another page.',
       table: {
         type: { summary: 'string' },
       },
     },
+    target: {
+      name: 'Target',
+      control: {
+        type: 'radio',
+      },
+      options: ['_blank', '_self', '_parent', '_top'],
+      description:
+        'The target attribute for the link. Refer to https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a for more information.',
+      table: {
+        type: { summary: 'string' },
+      },
+    },
+    horizontal: {
+      name: 'Horizontal',
+      control: { type: 'boolean' },
+      description:
+        'This property is effective when you want to include a description with a horizontal orientation.',
+      table: {
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
   },
   args: {
-    text: 'Canvas',
+    title: 'Canvas',
+    description: 'Short Description',
     appearance: 'red',
     icon: 'face',
-    image: '',
     grouped: false,
-    altImage: 'Alt image description',
+    target: '_blank',
+    link: 'https://www.youtube.com/',
+    horizontal: false,
   },
 } as Meta<typeof BmbInteractiveIconComponent>;
 

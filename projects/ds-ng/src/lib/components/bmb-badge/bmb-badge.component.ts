@@ -5,12 +5,18 @@ import {
   ElementRef,
   Renderer2,
   AfterViewInit,
+  ViewEncapsulation,
 } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'bmb-badge',
+  styleUrl: './bmb-badge.component.scss',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './bmb-badge.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class BmbBadgeComponent implements AfterViewInit {
   @Input() appearance: string = '';
@@ -23,10 +29,10 @@ export class BmbBadgeComponent implements AfterViewInit {
     if (this.grouped) {
       const parentElement = this.el.nativeElement.parentElement;
 
-      let wrapperDiv = parentElement.querySelector('.badge--grouped');
+      let wrapperDiv = parentElement.querySelector('.bmb_badge-grouped');
       if (!wrapperDiv) {
         wrapperDiv = this.renderer.createElement('div');
-        this.renderer.addClass(wrapperDiv, 'badge--grouped');
+        this.renderer.addClass(wrapperDiv, 'bmb_badge-grouped');
         this.renderer.insertBefore(parentElement, wrapperDiv, null);
       }
 
@@ -35,10 +41,10 @@ export class BmbBadgeComponent implements AfterViewInit {
   }
 
   getClasses(): string[] {
-    const classes: string[] = ['badge'];
+    const classes: string[] = ['bmb_badge'];
 
     if (this.appearance) {
-      classes.push('badge--' + this.appearance);
+      classes.push('bmb_badge-' + this.appearance);
     }
 
     return classes;

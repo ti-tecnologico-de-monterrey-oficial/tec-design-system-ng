@@ -4,13 +4,19 @@ import {
   Output,
   EventEmitter,
   ChangeDetectionStrategy,
+  ViewEncapsulation,
 } from '@angular/core';
-import { Props, Target } from './bmb-dot-paginator.interface';
+import { CommonModule } from '@angular/common';
+import { Target } from './bmb-dot-paginator.interface';
 
 @Component({
   selector: 'bmb-dot-paginator',
+  standalone: true,
+  styleUrl: './bmb-dot-paginator.component.scss',
+  imports: [CommonModule],
   templateUrl: './bmb-dot-paginator.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class BmbDotPaginatorComponent {
   @Input() activeDotIndex?: number = 0;

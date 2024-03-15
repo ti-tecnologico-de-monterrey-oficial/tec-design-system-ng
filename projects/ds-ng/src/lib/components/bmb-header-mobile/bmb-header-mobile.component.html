@@ -1,23 +1,36 @@
-<div class="header__mobile">
-  <bmb-container appearance="primary">
-    <div class="header__mobile--left">
+<div class="bmb_header_mobile">
+  <bmb-container appearance="primary-header">
+    <div class="bmb_header_mobile-left">
       <bmb-logo
         size="small"
         [image]="logo"
         [altImage]="altLogo"
+        [link]="logoLink"
+        [target]="logoTarget"
         *ngIf="logo && !iconLeft"
       />
-      <bmb-icon [icon]="iconLeft" *ngIf="iconLeft" />
+      <button *ngIf="iconLeft" (click)="handleIconLeftClick()">
+        <bmb-icon [icon]="iconLeft" />
+      </button>
     </div>
-    <span class="header__mobile--text">{{ text }}</span>
-    <div class="header__mobile--right">
-      <bmb-icon [icon]="iconRight" *ngIf="iconRight && !image" />
-      <bmb-icon [icon]="iconRight2" *ngIf="iconRight2 && !image" />
+    <span class="bmb_header_mobile-text">{{ text }}</span>
+    <div class="bmb_header_mobile-right">
+      <button *ngIf="iconRight && !userImage" (click)="handleIconRightClick()">
+        <bmb-icon [icon]="iconRight" />
+      </button>
+      <button
+        *ngIf="iconRight2 && !userImage"
+        (click)="handleIconRight2Click()"
+      >
+        <bmb-icon [icon]="iconRight2" />
+      </button>
       <bmb-user-image
         size="mobile-small"
-        [image]="image"
-        [altImage]="altImage"
-        *ngIf="image"
+        [image]="userImage"
+        [altImage]="userAltImage"
+        [link]="userLink"
+        [target]="userTarget"
+        *ngIf="userImage"
       />
     </div>
   </bmb-container>

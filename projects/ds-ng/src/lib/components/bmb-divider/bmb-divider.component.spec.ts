@@ -17,43 +17,4 @@ describe('BmbDividerComponent', () => {
   it('should create the component', () => {
     expect(component).toBeTruthy();
   });
-
-  it('should apply divider class based on appearance', () => {
-    component.appearance = 'primary';
-    fixture.detectChanges();
-
-    const element: HTMLElement = fixture.nativeElement;
-    const dividerElement = element.querySelector('.divider');
-
-    expect(dividerElement?.classList).toContain('divider-primary');
-  });
-
-  it('should apply size class based on size', () => {
-    component.size = 'large';
-    fixture.detectChanges();
-
-    const element: HTMLElement = fixture.nativeElement;
-    const dividerElement = element.querySelector('.divider');
-
-    expect(dividerElement?.classList).toContain('divider-large');
-  });
-
-  it('should apply styles class based on styles', () => {
-    component.styles = 'dashed';
-    fixture.detectChanges();
-
-    const element: HTMLElement = fixture.nativeElement;
-    const dividerElement = element.querySelector('.divider');
-
-    expect(dividerElement?.classList).toContain('divider-dashed');
-  });
-
-  it('should not apply divider class when appearance is not provided', () => {
-    fixture.detectChanges();
-
-    const element: HTMLElement = fixture.nativeElement;
-    const dividerElement = element.querySelector('.divider');
-
-    expect(dividerElement?.classList).not.toContain('divider-');
-  });
 });

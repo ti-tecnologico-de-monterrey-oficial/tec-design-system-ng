@@ -1,91 +1,101 @@
 <!-- Demo -->
+<bmb-theme />
+<bmb-badge
+  [appearance]="'normal'"
+  [text]="'Badge text'"
+  [grouped]="false"
+></bmb-badge>
+
+<button
+  bmbButton
+  appearance="primary"
+  icon="home"
+  size="small"
+  position="left"
+  [case]="false"
+  (click)="onButtonClick()"
+>
+  Button text
+</button>
+<bmb-toast
+  appearance="neutral"
+  message="Your toast text here"
+  [duration]="20000"
+  position="top"
+></bmb-toast>
+
+<bmb-container [appearance]="'primary-container'"></bmb-container>
+<bmb-container [appearance]="'primary-home'"></bmb-container>
+
+<bmb-container-button
+  [title]="'Tema de App'"
+  [score]="''"
+  [square]="false"
+  [target]="'_blank'"
+  [link]="'https://www.youtube.com/'"
+  [subtitle]="'Subtitle'"
+  [iconLeft]="'home'"
+  [iconRight]="'chevron_right'"
+></bmb-container-button>
 
 <bmb-header-mobile
-  logo="../assets/img/logo.png"
-  image="../assets/img/user-image.png"
-/>
+  [text]="'Text Header'"
+  [userImage]="
+    'https://i0.wp.com/gershenson.mx/wp-content/uploads/2020/08/logo-tec-de-monterrey-e1484853084274.png?ssl=1'
+  "
+  [userAltImage]="'Alt image description'"
+  [userLink]="'https://www.youtube.com/'"
+  [userTarget]="'_blank'"
+  [logo]="
+    'https://i0.wp.com/gershenson.mx/wp-content/uploads/2020/08/logo-tec-de-monterrey-e1484853084274.png?ssl=1'
+  "
+  [altLogo]="'Alt logo description'"
+  [logoLink]="'_blank'"
+  [logoTarget]="'https://www.youtube.com/'"
+  [iconLeft]="'chevron_left'"
+  [iconRight]="'search'"
+  [iconRight2]="'close'"
+  (onIconLeftClick)="handleIconLeftClick()"
+  (onIconRightClick)="handleIconRightClick()"
+  (onIconRight2Click)="handleIconRight2Click()"
+></bmb-header-mobile>
 
-<bmb-container appearance="section">
-  <bmb-title-section
-    title="Creación de evento"
-    image="../assets/img/Icon_CalendarMonth.png"
-    altImage="Calendar"
-  />
-  <bmb-input
-    icon=""
-    errorMessage=""
-    [isRequired]="false"
-    placeholder="placeholder"
-    [isDisabled]="false"
-    [isValid]="false"
-    label=""
-    appearance="normal"
-  />
-  <bmb-input
-    icon=""
-    errorMessage=""
-    [isRequired]="false"
-    placeholder="placeholder"
-    [isDisabled]="false"
-    [isValid]="false"
-    label=""
-    appearance="normal"
-  />
-  <bmb-input
-    icon="home"
-    errorMessage=""
-    [isRequired]="false"
-    placeholder="placeholder"
-    [isDisabled]="false"
-    [isValid]="false"
-    label=""
-    appearance="normal"
-  />
+<bmb-home-section
+  [title]="'Section name'"
+  [icon]="'chevron_right'"
+  [target]="'_blank'"
+  [link]="'https://www.youtube.com/'"
+>
+  <h1 class="font-regular-4">Hola</h1>
+</bmb-home-section>
 
-  <button
-    bmbButton
-    appearance="primary"
-    size="large"
-    position="right"
-    [case]="false"
-  >
-    Crear Evento
-  </button>
-  <bmb-toast
-    message="Hola"
-    [duration]="3000"
-    appearance="primary"
-    position="top"
-  />
-</bmb-container>
+<bmb-interactive-icon
+  [appearance]="'green'"
+  [title]="'Canvas'"
+  [description]="'Short Description'"
+  [icon]="'face'"
+  [grouped]="false"
+  [horizontal]="false"
+  [target]="'_blank'"
+  [link]="'https://www.youtube.com/'"
+></bmb-interactive-icon>
+<bmb-interactive-icon
+  [appearance]="'yellow'"
+  [title]="'Canvas'"
+  [description]="'Short Description'"
+  [icon]="'face'"
+  [grouped]="false"
+  [horizontal]="true"
+  [target]="'_blank'"
+  [link]="'https://www.youtube.com/'"
+></bmb-interactive-icon>
 
-<bmb-container appearance="section">
-  <bmb-title-section title="Servicios Frecuentes" />
-  <bmb-interactive-icon
-    [appearance]="'red'"
-    [text]="'Canvas'"
-    image="../assets/img/Logosmitec0001.png"
-    [grouped]="true"
-  />
-  <bmb-interactive-icon
-    [appearance]="'blue'"
-    [text]="'ID Digital'"
-    image="../assets/img/Icon_ID.png"
-    [grouped]="true"
-  />
-  <bmb-interactive-icon
-    [appearance]="'green'"
-    [text]="'Calendario escolar'"
-    image="../assets/img/Icon_CalendarMonth.png"
-    [grouped]="true"
-  />
-</bmb-container>
-
-<bmb-container appearance="section">
-  <bmb-title-section title="Elementos frecuentes de búsqueda" />
-    <bmb-tag [text]="'Name Tag'"  [dissmisable]="true" [grouped]="true"/>
-    <bmb-tag [text]="'Name Tag'"  [grouped]="true"/>
-    <bmb-tag [text]="'Name Tag'" [grouped]="true"/>
-</bmb-container>
-
-<bmb-fab size="l" icon="add" type="fab" text="FAB" device="desktop" />
+<bmb-user-image
+  [size]="'desktop-small'"
+  [image]="
+    'https://i0.wp.com/gershenson.mx/wp-content/uploads/2020/08/logo-tec-de-monterrey-e1484853084274.png?ssl=1'
+  "
+  [altImage]="'Alt image description'"
+  [link]="'https://www.youtube.com/'"
+  [target]="'_blank'"
+></bmb-user-image>

@@ -10,7 +10,7 @@ import {
   SimpleChanges,
   OnChanges,
   ChangeDetectorRef,
-  HostBinding,
+  ViewEncapsulation,
 } from '@angular/core';
 
 import {
@@ -20,10 +20,15 @@ import {
   FormControl,
   NgModel,
 } from '@angular/forms';
-
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 @Component({
   selector: 'bmb-input',
+  styleUrl: './bmb-input.component.scss',
   templateUrl: './bmb-input.component.html',
+  standalone: true,
+  imports: [CommonModule, BmbIconComponent, FormsModule],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -36,6 +41,7 @@ import {
       multi: true,
     },
   ],
+  encapsulation: ViewEncapsulation.None,
 })
 export class BmbInputComponent
   implements ControlValueAccessor, AfterViewInit, OnChanges

@@ -1,0 +1,75 @@
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/mixins" as mixins;
+@use "../../../assets/styles/base/rem" as rem;
+
+@mixin badge($appearance: normal) {
+  @include fonts.font(3, regular);
+  align-items: center;
+  border-radius: rem.rem_calc(4);
+  color: RGBA(var(--color-white-primary));
+  display: flex;
+  justify-content: center;
+  min-height: rem.rem_calc(24);
+  padding: rem.rem_calc(4 16);
+  width: fit-content;
+
+  @if $appearance == normal {
+    background-color: RGBA(var(--color-charade-500));
+  } @else if $appearance == strong {
+    background-color: RGBA(var(--color-mariner-700));
+  } @else if $appearance == success {
+    background-color: RGBA(var(--color-green-light));
+    color: RGBA(var(--color-charade-950));
+  } @else if $appearance == info {
+    background-color: RGBA(var(--color-purple-primary));
+  } @else if $appearance == warning {
+    background-color: RGBA(var(--color-yellow-tint));
+    color: RGBA(var(--color-charade-950));
+  } @else if $appearance == error {
+    background-color: RGBA(var(--color-red-light));
+    color: RGBA(var(--color-charade-950));
+  } @else if $appearance == brand {
+    background-color: RGBA(var(--color-neon-primary));
+    color: RGBA(var(--color-charade-950));
+  }
+}
+
+.bmb_badge {
+  &-grouped {
+    display: flex;
+    flex-flow: row wrap;
+    gap: rem.rem_calc(8);
+
+    @include mixins.media-query(768) {
+      gap: rem.rem_calc(16);
+    }
+  }
+
+  &-normal {
+    @include badge(normal);
+  }
+
+  &-strong {
+    @include badge(strong);
+  }
+
+  &-success {
+    @include badge(success);
+  }
+
+  &-info {
+    @include badge(info);
+  }
+
+  &-warning {
+    @include badge(warning);
+  }
+
+  &-error {
+    @include badge(error);
+  }
+
+  &-brand {
+    @include badge(brand);
+  }
+}

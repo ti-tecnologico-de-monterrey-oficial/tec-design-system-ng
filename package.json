@@ -1,6 +1,6 @@
 {
   "name": "@ti-tecnologico-de-monterrey-oficial/tec-design-system-ng",
-  "version": "0.0.5",
+  "version": "0.0.9",
   "scripts": {
     "ng": "ng",
     "storybook": "ng run ds-ng:storybook",
@@ -9,7 +9,9 @@
     "test": "ng test",
     "build-storybook": "ng run ds-ng:build-storybook",
     "build": "ng build",
-    "chromatic": "npx chromatic --project-token=chpt_f98e9dab3ebf7df"
+    "chromatic": "npx chromatic --project-token=chpt_f98e9dab3ebf7df",
+    "build:styles": "sass projects/ds-ng/src/assets/styles/main.scss dist/ds-ng/assets/styles/main.min.css --style=compressed",
+    "build:lib": "ng build ds-ng && npm run build:styles"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@tec-design-system"
@@ -31,7 +33,6 @@
     "@angular/platform-browser": "^17.0.0",
     "@angular/platform-browser-dynamic": "^17.0.0",
     "@angular/router": "^17.0.0",
-    "material-design-icons": "^3.0.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"
@@ -44,11 +45,13 @@
     "@storybook/addon-essentials": "^7.6.12",
     "@storybook/addon-interactions": "^7.6.12",
     "@storybook/addon-links": "^7.6.12",
+    "@storybook/addon-themes": "^7.6.17",
     "@storybook/angular": "^7.6.12",
     "@storybook/blocks": "^7.6.12",
     "@storybook/test": "^7.6.12",
     "@types/jasmine": "~5.1.0",
     "chromatic": "^10.9.0",
+    "copy-webpack-plugin": "^12.0.2",
     "css-loader": "^6.10.0",
     "file-loader": "^6.2.0",
     "jasmine-core": "~5.1.0",
@@ -60,6 +63,7 @@
     "ng-packagr": "^17.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "sass": "^1.72.0",
     "storybook": "^7.6.12",
     "typescript": "~5.2.2"
   },

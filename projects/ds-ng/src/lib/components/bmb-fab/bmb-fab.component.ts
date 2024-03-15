@@ -1,8 +1,18 @@
-import { Component, HostListener, Input } from '@angular/core';
-
+import {
+  Component,
+  HostListener,
+  Input,
+  ViewEncapsulation,
+} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 @Component({
   selector: 'bmb-fab',
+  styleUrl: './bmb-fab.component.scss',
   templateUrl: './bmb-fab.component.html',
+  standalone: true,
+  imports: [CommonModule, BmbIconComponent],
+  encapsulation: ViewEncapsulation.None,
 })
 export class BmbFabComponent {
   @Input() icon = '';
