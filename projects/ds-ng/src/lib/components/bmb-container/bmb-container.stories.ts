@@ -4,13 +4,42 @@ import { BmbContainerComponent } from './bmb-container.component';
 export default {
   title: 'Container',
   component: BmbContainerComponent,
+  parameters: {
+    docs: {
+      description: {
+        component: `
+Below is an example of how you can use this component in TypeScript:
+
+\`\`\`typescript
+import { BmbContainerComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
+@Component({
+  selector: 'component',
+  standalone: true,
+  imports: [ BmbContainerComponent ],
+  templateUrl: './component.html',
+  styleUrl: './component.scss',
+})
+\`\`\`
+
+Below is an example of how you can use this component in HTML:
+        `,
+      },
+    },
+  },
   argTypes: {
     appearance: {
       name: 'Appearance',
       control: {
         type: 'radio',
       },
-      options: ['section', 'button', 'contrast', 'primary', 'secondary'],
+      options: [
+        'primary-container',
+        'primary-home',
+        'primary-header',
+        'secondary-container',
+        'contrast-box-container',
+        'button-container',
+      ],
       table: {
         type: { summary: 'string' },
       },
@@ -19,7 +48,7 @@ export default {
     },
   },
   args: {
-    appearance: 'button',
+    appearance: 'primary-container',
   },
 } as Meta<typeof BmbContainerComponent>;
 

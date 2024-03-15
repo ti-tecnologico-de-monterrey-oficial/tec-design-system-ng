@@ -1,4 +1,5 @@
 import type { StorybookConfig } from '@storybook/angular';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 
 const config: StorybookConfig = {
   stories: ['../src/lib/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
@@ -7,6 +8,7 @@ const config: StorybookConfig = {
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
     '@storybook/addon-docs',
+    '@storybook/addon-themes',
   ],
   framework: {
     name: '@storybook/angular',
@@ -17,5 +19,18 @@ const config: StorybookConfig = {
     docsMode: true,
     defaultName: 'Documentation',
   },
+  webpackFinal: async (config) => {
+    config.plugins = config.plugins || [];
+    config.plugins.push(
+      new CopyWebpackPlugin({
+        patterns: [
+          { from: 'projects/ds-ng/src/assets/fonts', to: 'assets/fonts' },
+        ],
+      })
+    );
+
+    return config;
+  },
 };
+
 export default config;

@@ -9,7 +9,7 @@ html {
 body {
   background-color: RGBA(var(--color-charade-950));
   font-family: var(--font-display);
-  font-size: rem_calc(12);
+  font-size: 12px;
   font-weight: 400;
   height: 100%;
   margin: 0;
@@ -26,6 +26,8 @@ p {
 
 button {
   cursor: pointer;
+  background-color: transparent;
+  border: none;
 }
 
 h1,
@@ -43,7 +45,45 @@ bmb-icon {
 
 .material-icons {
   color: inherit;
+  direction: ltr;
+  display: inline-block;
+  font-family: "Material Icons";
+  font-feature-settings: "liga";
   font-size: inherit;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-weight: normal;
+  letter-spacing: normal;
   line-height: normal;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  white-space: nowrap;
   width: fit-content;
+  word-wrap: normal;
+}
+
+.material-symbols-outlined {
+  color: inherit;
+  direction: ltr;
+  display: inline-block;
+  font-feature-settings: "liga";
+  font-family: "Material Symbols Outlined";
+  -webkit-font-feature-settings: "liga";
+  font-size: inherit;
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-weight: normal;
+  letter-spacing: normal;
+  line-height: normal;
+  text-transform: none;
+  white-space: nowrap;
+  width: fit-content;
+  word-wrap: normal;
+}
+
+storybook-toast-wrapper {
+  ~ .actions {
+    display: none;
+  }
 }

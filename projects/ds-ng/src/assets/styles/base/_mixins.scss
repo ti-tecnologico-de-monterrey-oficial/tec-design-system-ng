@@ -1,16 +1,5 @@
-@import "./fonts";
-@import "./measures";
-@import "./rem";
-
-// Reset Element
-@mixin resetElement() {
-  box-sizing: border-box;
-  line-height: 1.5;
-
-  &:focus {
-    @include focusElement();
-  }
-}
+@use "fonts" as fonts;
+@use "rem" as rem;
 
 // Media query
 @mixin media-query($breakpoint) {
@@ -23,6 +12,15 @@
     @content;
   }
 }
+// Reset Element
+@mixin resetElement() {
+  box-sizing: border-box;
+  line-height: 1.5;
+
+  &:focus {
+    @include focusElement();
+  }
+}
 
 // Focus for button and input
 @mixin focusElement($inset: outset) {
@@ -31,26 +29,23 @@
 
 // Button styles
 @mixin button($appearance: primary) {
-  @include font(5, regular);
+  @include fonts.font(5, regular);
   align-items: center;
   border: none;
-  border-radius: $border-radius-sm;
+  border-radius: rem.rem_calc(8);
   display: flex;
-  height: rem_calc(36);
+  height: rem.rem_calc(36);
   justify-content: center;
-  padding: $spacing-size-md $spacing-size-base;
+  padding: rem.rem_calc(0 16);
+  gap: rem.rem_calc(4);
 
   bmb-icon {
-    font-size: rem_calc(16);
-    height: rem_calc(16);
-  }
-
-  img {
-    height: rem_calc(16);
+    font-size: rem.rem_calc(16);
+    height: rem.rem_calc(20);
   }
 
   &[size="large"] {
-    height: rem_calc(48);
+    height: rem.rem_calc(48);
     width: 100%;
   }
 
@@ -68,7 +63,7 @@
   }
 
   @include media-query(768) {
-    padding: $spacing-size-md $spacing-size-xxl;
+    padding: rem.rem_calc(8 40);
   }
 
   &:focus,
@@ -88,20 +83,20 @@
       color: RGBA(var(--color-white-primary));
     }
 
-    &:hover,
-    &:focus-visible {
+    &:hover:not(:disabled),
+    &:focus-visible:not(:disabled) {
       background-color: RGBA(var(--color-mariner-800));
     }
 
-    &:active {
+    &:active:not(:disabled) {
       background-color: RGBA(var(--color-mariner-500));
     }
 
     &:disabled {
       background-color: RGBA(var(--color-charade-300));
-      color: RGBA(var(--color-white-tint));
+      color: RGBA(var(--color-white-min));
     }
-  } @else if $appearance == alternative {
+  } @else if $appearance == secondary-filled {
     background-color: RGBA(var(--color-charade-50));
     color: RGBA(var(--color-charade-900));
 
@@ -109,12 +104,12 @@
       color: RGBA(var(--color-charade-900));
     }
 
-    &:hover,
-    &:focus-visible {
+    &:hover:not(:disabled),
+    &:focus-visible:not(:disabled) {
       background-color: RGBA(var(--color-charade-100));
     }
 
-    &:active {
+    &:active:not(:disabled) {
       background-color: RGBA(var(--color-charade-500));
       color: RGBA(var(--color-charade-50));
 
@@ -126,26 +121,26 @@
     &:disabled {
       opacity: 0.5;
     }
-  } @else if $appearance == secondary {
+  } @else if $appearance == secondary-outlined {
     background-color: transparent;
-    border: rem_calc(1) solid RGBA(var(--color-black-primary));
-    color: RGBA(var(--color-black-primary));
+    border: rem.rem_calc(1) solid RGBA(var(--color-white-primary));
+    color: RGBA(var(--color-white-primary));
 
     bmb-icon {
-      color: RGBA(var(--color-black-primary));
-    }
-
-    &:hover,
-    &:focus-visible {
-      border-width: rem_calc(2);
-    }
-
-    &:active {
-      background-color: RGBA(var(--color-black-primary));
       color: RGBA(var(--color-white-primary));
+    }
+
+    &:hover:not(:disabled),
+    &:focus-visible:not(:disabled) {
+      border-width: rem.rem_calc(2);
+    }
+
+    &:active:not(:disabled) {
+      background-color: RGBA(var(--color-white-primary));
+      color: RGBA(var(--color-black-primary));
 
       bmb-icon {
-        color: RGBA(var(--color-white-primary));
+        color: RGBA(var(--color-black-primary));
       }
     }
 
@@ -154,19 +149,19 @@
     }
   } @else if $appearance == destructive {
     background-color: transparent;
-    border: rem_calc(1) solid RGBA(var(--color-red-primary));
+    border: rem.rem_calc(1) solid RGBA(var(--color-red-primary));
     color: RGBA(var(--color-red-primary));
 
     bmb-icon {
       color: RGBA(var(--color-red-primary));
     }
 
-    &:hover,
-    &:focus-visible {
-      border-width: rem_calc(2);
+    &:hover:not(:disabled),
+    &:focus-visible:not(:disabled) {
+      border-width: rem.rem_calc(2);
     }
 
-    &:active {
+    &:active:not(:disabled) {
       background-color: RGBA(var(--color-red-primary));
       color: RGBA(var(--color-white-primary));
 
@@ -181,105 +176,13 @@
   }
 }
 
-// Badge styles
-@mixin badge($appearance: normal) {
-  @include font(3, regular);
-  align-items: center;
-  border-radius: $border-radius-xs;
-  color: RGBA(var(--color-white-primary));
-  display: flex;
-  justify-content: center;
-  min-height: rem_calc(24);
-  padding: $spacing-size-sm $spacing-size-base;
-  width: fit-content;
-
-  @if $appearance == normal {
-    background-color: RGBA(var(--color-charade-500));
-  } @else if $appearance == strong {
-    background-color: RGBA(var(--color-mariner-700));
-  } @else if $appearance == success {
-    background-color: RGBA(var(--color-green-light));
-    color: RGBA(var(--color-charade-950));
-  } @else if $appearance == info {
-    background-color: RGBA(var(--color-purple-primary));
-  } @else if $appearance == warning {
-    background-color: RGBA(var(--color-yellow-tint));
-    color: RGBA(var(--color-charade-950));
-  } @else if $appearance == error {
-    background-color: RGBA(var(--color-red-light));
-    color: RGBA(var(--color-charade-950));
-  } @else if $appearance == brand {
-    background-color: RGBA(var(--color-charade-950));
-  }
-}
-
-// Alert styles
-@mixin toast($appearance: neutral) {
-  @include font(4, regular);
-  align-items: center;
-  background-color: RGBA(var(--color-charade-950));
-  border-radius: $border-radius-xs;
-  border-style: solid;
-  border-width: rem_calc(1);
-  color: RGBA(var(--color-white-primary));
-  display: flex;
-  justify-content: flex-start;
-  min-height: rem_calc(40);
-  padding: 0 $spacing-size-base;
-  position: fixed;
-  width: 90%;
-
-  bmb-icon {
-    font-size: rem_calc(16);
-    margin-right: $spacing-size-md;
-  }
-
-  @if $appearance == neutral {
-    border-color: RGBA(var(--color-charade-300));
-
-    bmb-icon {
-      color: RGBA(var(--color-charade-300));
-    }
-  } @else if $appearance == primary {
-    border-color: RGBA(var(--color-neon-primary));
-
-    bmb-icon {
-      color: RGBA(var(--color-neon-primary));
-    }
-  } @else if $appearance == successful {
-    border-color: RGBA(var(--color-green-primary));
-
-    bmb-icon {
-      color: RGBA(var(--color-green-primary));
-    }
-  } @else if $appearance == warning {
-    border-color: RGBA(var(--color-yellow-primary));
-
-    bmb-icon {
-      color: RGBA(var(--color-yellow-primary));
-    }
-  } @else if $appearance == error {
-    border-color: RGBA(var(--color-red-primary));
-
-    bmb-icon {
-      color: RGBA(var(--color-red-primary));
-    }
-  } @else if $appearance == event {
-    border-color: RGBA(var(--color-purple-light));
-
-    bmb-icon {
-      color: RGBA(var(--color-purple-light));
-    }
-  }
-}
-
 // Input styles
 @mixin input($type: main) {
   @include resetElement();
-  @include font(4, regular);
+  @include fonts.font(4, regular);
   appearance: none;
   width: 100%;
-  height: rem_calc(48);
+  height: rem.rem_calc(48);
 
   &:focus,
   &:focus:hover,
@@ -289,17 +192,17 @@
 
   @if $type == main {
     background-color: RGBA(var(--color-white-primary));
-    border: rem_calc(1) solid RGBA(var(--color-charade-500));
-    border-radius: $spacing-size-md;
+    border: rem.rem_calc(1) solid RGBA(var(--color-charade-500));
+    border-radius: rem.rem_calc(8);
     color: RGBA(var(--color-black-primary));
-    padding: $spacing-size-md;
+    padding: rem.rem_calc(8);
 
     &:hover {
       border-color: RGBA(var(--color-charade-500));
     }
 
     &:focus {
-      border: rem_calc(2) solid RGBA(var(--color-blue-primary));
+      border: rem.rem_calc(2) solid RGBA(var(--color-blue-primary));
     }
 
     &::placeholder {
@@ -312,11 +215,11 @@
   } @else if $type == simple {
     background-color: transparent;
     border: 0;
-    border-bottom: rem_calc(1) solid RGBA(var(--color-charade-950));
+    border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-950));
     color: RGBA(var(--color-black));
 
     &:focus {
-      border-bottom: rem_calc(2) solid RGBA(var(--color-blue-primary));
+      border-bottom: rem.rem_calc(2) solid RGBA(var(--color-blue-primary));
       border-color: RGBA(var(--color-blue-primary));
       outline: none;
     }
@@ -330,13 +233,13 @@
     }
   } @else if $type == normal {
     background-color: RGBA(var(--color-charade-950));
-    border: rem_calc(1) solid RGBA(var(--color-charade-950));
-    border-radius: $spacing-size-md;
+    border: rem.rem_calc(1) solid RGBA(var(--color-charade-950));
+    border-radius: rem.rem_calc(8);
     color: RGBA(var(--color-white-primary));
-    padding: $spacing-size-md;
+    padding: rem.rem_calc(8);
 
     &:focus {
-      border: rem_calc(2) solid RGBA(var(--color-white-primary));
+      border: rem.rem_calc(2) solid RGBA(var(--color-white-primary));
       outline: none;
     }
 
@@ -351,24 +254,22 @@
 }
 
 @mixin fabInput($device: d, $size: s, $type: e) {
-  font-family: $font-poppins-regular;
+  font-family: fonts.$font-poppins-regular;
   display: inline-flex;
-  font-size: rem_calc(14);
+  font-size: rem.rem_calc(14);
   align-items: center;
   justify-content: center;
   outline: none;
   border: 0;
-  margin: rem_calc(3);
-  padding: rem_calc(8) rem_calc(16);
+  margin: rem.rem_calc(3);
+  padding: rem.rem_calc(8 16);
   position: fixed;
-  bottom: rem_calc(40);
-  right: rem_calc(40);
-  box-shadow: rem_calc(2) rem_calc(2) rem_calc(2) rem_calc(1)
+  bottom: rem.rem_calc(40);
+  right: rem.rem_calc(40);
+  box-shadow: rem.rem_calc(2 2 2 1) RGBA(var(--color-black-primary), 0.25);
+  -webkit-box-shadow: rem.rem_calc(2 2 2 1)
     RGBA(var(--color-black-primary), 0.25);
-  -webkit-box-shadow: rem_calc(2) rem_calc(2) rem_calc(2) rem_calc(1)
-    RGBA(var(--color-black-primary), 0.25);
-  -moz-box-shadow: rem_calc(2) rem_calc(2) rem_calc(2) rem_calc(1)
-    RGBA(var(--color-black-primary), 0.25);
+  -moz-box-shadow: rem.rem_calc(2 2 2 1) RGBA(var(--color-black-primary), 0.25);
 
   @if $device == m {
     background-color: RGBA(var(--color-neon-primary));
@@ -380,7 +281,7 @@
 
     &:active {
       background-color: RGBA(var(--color-charade-500));
-      border: rem_calc(1) solid RGBA(var(--color-neon-primary));
+      border: rem.rem_calc(1) solid RGBA(var(--color-neon-primary));
 
       > span {
         color: RGBA(var(--color-neon-primary));
@@ -400,7 +301,7 @@
 
     &:active {
       background-color: RGBA(var(--color-white-primary));
-      border: rem_calc(1) solid RGBA(var(--color-blue-primary));
+      border: rem.rem_calc(1) solid RGBA(var(--color-blue-primary));
 
       > span {
         color: RGBA(var(--color-blue-primary));
@@ -413,32 +314,32 @@
   }
 
   > bmb-icon {
-    font-size: rem_calc(24);
+    font-size: rem.rem_calc(24);
   }
 
   @if $size == s and $type == n {
-    width: rem_calc(40);
-    height: rem_calc(40);
-    border-radius: rem_calc(50);
+    width: rem.rem_calc(40);
+    height: rem.rem_calc(40);
+    border-radius: rem.rem_calc(50);
   } @else if $size == s and $type == e {
     width: fit-content;
-    height: rem_calc(40);
-    border-radius: rem_calc(50);
+    height: rem.rem_calc(40);
+    border-radius: rem.rem_calc(50);
     > span {
-      padding-right: rem_calc(8);
-      font-size: rem_calc(14);
+      padding-right: rem.rem_calc(8);
+      font-size: rem.rem_calc(14);
     }
   } @else if $size == l and $type == n {
-    width: rem_calc(60);
-    height: rem_calc(60);
-    border-radius: rem_calc(50);
+    width: rem.rem_calc(60);
+    height: rem.rem_calc(60);
+    border-radius: rem.rem_calc(50);
   } @else if $size == l and $type == e {
-    height: rem_calc(60);
+    height: rem.rem_calc(60);
     width: fit-content;
-    border-radius: rem_calc(50);
+    border-radius: rem.rem_calc(50);
     > span {
-      padding-right: rem_calc(8);
-      font-size: rem_calc(14);
+      padding-right: rem.rem_calc(8);
+      font-size: rem.rem_calc(14);
     }
   }
 }

@@ -4,7 +4,6 @@
 
 export * from './lib/ds-ng.service';
 export * from './lib/ds-ng.component';
-export * from './lib/ds-ng.module';
 export * from './lib/directives/button.directive';
 
 // Components
@@ -22,3 +21,6 @@ export * from './lib/components/bmb-container-button/bmb-container-button.compon
 export * from './lib/components/bmb-interactive-icon/bmb-interactive-icon.component';
 export * from './lib/components/bmb-fab/bmb-fab.component';
 export * from './lib/components/bmb-tags/bmb-tags.component';
+export * from './lib/components/bmb-toast/bmb-toast.component';
+export * from './lib/components/bmb-theme/bmb-theme.component';
+export * from './lib/components/bmb-home-section/bmb-home-section.component';

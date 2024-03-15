@@ -1,0 +1,27 @@
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/rem" as rem;
+
+.bmb_title_section {
+  align-items: center;
+
+  display: flex;
+  justify-content: space-between;
+
+  &-link {
+    color: RGBA(var(--color-charade-50));
+    text-decoration: none;
+  }
+
+  &-title {
+    color: RGBA(var(--color-charade-50));
+    @include fonts.font(5, regular);
+  }
+
+  &-icon {
+    align-items: center;
+    color: currentColor;
+    display: flex;
+    font-size: rem.rem_calc(24);
+    height: rem.rem_calc(24);
+  }
+}

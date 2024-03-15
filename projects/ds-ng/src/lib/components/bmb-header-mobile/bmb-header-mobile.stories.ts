@@ -1,4 +1,5 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbLogoComponent } from '../bmb-logo/bmb-logo.component';
 import { BmbHeaderMobileComponent } from './bmb-header-mobile.component';
@@ -10,7 +11,7 @@ export default {
   component: BmbHeaderMobileComponent,
   decorators: [
     moduleMetadata({
-      declarations: [
+      imports: [
         BmbIconComponent,
         BmbContainerComponent,
         BmbUserImageComponent,
@@ -18,6 +19,28 @@ export default {
       ],
     }),
   ],
+  parameters: {
+    docs: {
+      description: {
+        component: `
+Below is an example of how you can use this component in TypeScript:
+
+\`\`\`typescript
+import { BmbHeaderMobileComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
+@Component({
+  selector: 'component',
+  standalone: true,
+  imports: [ BmbHeaderMobileComponent ],
+  templateUrl: './component.html',
+  styleUrl: './component.scss',
+})
+\`\`\`
+
+Below is an example of how you can use this component in HTML:
+        `,
+      },
+    },
+  },
   argTypes: {
     text: {
       name: 'Text',
@@ -56,8 +79,8 @@ export default {
         type: { summary: 'string' },
       },
     },
-    image: {
-      name: 'Image Source',
+    userImage: {
+      name: 'User Image Source',
       control: {
         type: 'text',
       },
@@ -67,13 +90,35 @@ export default {
         type: { summary: 'string' },
       },
     },
-    altImage: {
-      name: 'Image Alt Text',
+    userAltImage: {
+      name: 'User Image Alt Text',
       control: {
         type: 'text',
       },
       description:
         'The alternative text for the image. Refer to https://www.w3.org/WAI/alt/ for more information.',
+      table: {
+        type: { summary: 'string' },
+      },
+    },
+    userLink: {
+      name: 'User Link',
+      control: {
+        type: 'text',
+      },
+      description: 'The link for redirection to another page for user image.',
+      table: {
+        type: { summary: 'string' },
+      },
+    },
+    userTarget: {
+      name: 'User Target',
+      control: {
+        type: 'radio',
+      },
+      options: ['_blank', '_self', '_parent', '_top'],
+      description:
+        'The target attribute for the link. Refer to https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a for more information.',
       table: {
         type: { summary: 'string' },
       },
@@ -84,7 +129,7 @@ export default {
         type: 'text',
       },
       description:
-        'The source of the logo image to display, either from your application or a URL.',
+        'The source of the logo image to display, either from your application or a URL. Do not use the iconLeft attribute if you want to use a logo.',
       table: {
         type: { summary: 'string' },
       },
@@ -100,17 +145,85 @@ export default {
         type: { summary: 'string' },
       },
     },
+    logoLink: {
+      name: 'Logo Link',
+      control: {
+        type: 'text',
+      },
+      description: 'The link for redirection to another page for logo.',
+      table: {
+        type: { summary: 'string' },
+      },
+    },
+    logoTarget: {
+      name: 'Logo Target',
+      control: {
+        type: 'radio',
+      },
+      options: ['_blank', '_self', '_parent', '_top'],
+      description:
+        'The target attribute for the link. Refer to https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a for more information.',
+      table: {
+        type: { summary: 'string' },
+      },
+    },
+    onIconLeftClick: {
+      name: 'On Icon Left Click',
+      control: {
+        type: '',
+      },
+      description:
+        'This handler can be used when you have the left icon available and want to perform a specific interaction.',
+      table: {
+        type: { summary: '(onIconLeftClick)="yourFunction()"' },
+      },
+    },
+    onIconRightClick: {
+      name: 'On Icon Right Click',
+      control: {
+        type: '',
+      },
+      description:
+        'This handler can be used when you have the right icon available and want to perform a specific interaction.',
+      table: {
+        type: { summary: '(onIconRightClick)="yourFunction()"' },
+      },
+    },
+    onIconRight2Click: {
+      name: 'On Icon Right 2 Click',
+      control: {
+        type: '',
+      },
+      description:
+        'This handler can be used when you have the right icon 2 available and want to perform a specific interaction.',
+      table: {
+        type: { summary: '(onIconRight2Click)="yourFunction()"' },
+      },
+    },
   },
   args: {
     text: 'Text Header',
     iconLeft: 'chevron_left',
     iconRight: 'search',
     iconRight2: 'close',
-    image:
+    userImage:
       'https://i0.wp.com/gershenson.mx/wp-content/uploads/2020/08/logo-tec-de-monterrey-e1484853084274.png?ssl=1',
-    altImage: 'Alt image description',
+    userAltImage: 'Alt image description',
+    userTarget: '_blank',
+    userLink: 'https://www.youtube.com/',
     logo: 'https://i0.wp.com/gershenson.mx/wp-content/uploads/2020/08/logo-tec-de-monterrey-e1484853084274.png?ssl=1',
     altLogo: 'Alt logo description',
+    logoLink: '_blank',
+    logoTarget: 'https://www.youtube.com/',
+    onIconLeftClick: () => {
+      window.alert('Icon left clicked in Storybook');
+    },
+    onIconRightClick: () => {
+      window.alert('Icon right clicked in Storybook');
+    },
+    onIconRight2Click: () => {
+      window.alert('Icon right 2 clicked in Storybook');
+    },
   },
 } as Meta<typeof BmbHeaderMobileComponent>;
 

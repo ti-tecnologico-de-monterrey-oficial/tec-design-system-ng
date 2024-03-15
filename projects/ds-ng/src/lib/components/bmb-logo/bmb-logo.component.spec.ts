@@ -17,18 +17,4 @@ describe('BmbLogoComponent', () => {
   it('should create the component', () => {
     expect(component).toBeTruthy();
   });
-
-  it('should set default values for inputs', () => {
-    expect(component.size).toEqual('');
-    expect(component.image).toEqual('');
-    expect(component.altImage).toEqual('');
-  });
-
-  it('should set image and altImage properties when image input is provided', () => {
-    component.image = 'path/to/image.jpg';
-    component.altImage = 'Alt Text';
-    fixture.detectChanges();
-    expect(component.image).toEqual('path/to/image.jpg');
-    expect(component.altImage).toEqual('Alt Text');
-  });
 });

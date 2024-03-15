@@ -1,0 +1,25 @@
+@use "../../../assets/styles/base/rem" as rem;
+
+.bmb_logo {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+
+  img {
+    height: 100%;
+    width: 100%;
+  }
+
+  &-small {
+    width: rem.rem_calc(32);
+  }
+
+  &-medium {
+    width: rem.rem_calc(120);
+  }
+
+  &-large {
+    width: rem.rem_calc(240);
+  }
+}

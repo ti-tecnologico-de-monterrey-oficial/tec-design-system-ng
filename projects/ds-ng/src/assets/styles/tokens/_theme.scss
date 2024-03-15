@@ -1,143 +1,138 @@
-[data-theme="dark"] {
+[data-theme="dark"],
+.storybook-dark-theme {
   body {
     background-color: RGBA(var(--color-charade-950));
 
-    .btn {
-      &-secondary {
-        border-color: RGBA(var(--color-white-primary));
+    .sbdocs {
+      &-wrapper {
+        background-color: transparent;
+      }
+
+      &-title {
         color: RGBA(var(--color-white-primary));
+      }
 
-        bmb-icon {
-          color: RGBA(var(--color-white-primary));
-        }
+      .docs-story {
+        background-color: RGBA(var(--color-charade-950));
+      }
 
-        &:active {
-          background-color: RGBA(var(--color-white-primary));
-          color: RGBA(var(--color-black-primary));
-
-          bmb-icon {
-            color: RGBA(var(--color-black-primary));
-          }
-        }
+      .docblock-argstable-head {
+        background-color: RGBA(var(--color-white-primary));
       }
     }
   }
 }
 
-[data-theme="light"] {
+[data-theme="light"],
+.storybook-light-theme {
   body {
     background-color: RGBA(var(--color-charade-200));
 
-    .toast {
-      &-neutral,
-      &-primary,
-      &-successful,
-      &-warning,
-      &-error,
-      &-event {
-        background-color: RGBA(var(--color-white-primary));
-        color: RGBA(var(--color-charade-900));
-      }
+    //Storybook
+    .docs-story {
+      background-color: RGBA(var(--color-charade-200));
     }
 
-    .container {
-      background-color: RGBA(var(--color-charade-50));
-
-      &--secondary {
-        border-color: RGBA(var(--color-charade-200));
-      }
-
-      &--button {
-        background-color: RGBA(var(--color-charade-900));
-        border-color: RGBA(var(--color-charade-700));
-      }
-    }
-
-    .header {
-      &__mobile {
-        color: RGBA(var(--color-charade-950));
-      }
-    }
-
-    .interactive__icon {
-      &--text {
-        color: RGBA(var(--color-charade-900));
-      }
-    }
-
-    .title__section {
-      color: RGBA(var(--color-charade-950));
-    }
-  }
-}
-
-[data-theme="blue"] {
-  body {
-    background-color: RGBA(var(--color-mariner-900));
-
-    .toast {
-      &-neutral,
-      &-primary,
-      &-successful,
-      &-warning,
-      &-error,
-      &-event {
-        background-color: RGBA(var(--color-mariner-950));
-        color: RGBA(var(--color-white-primary));
-      }
-
-      &-event {
-        border-color: RGBA(var(--color-purple-tint));
-
-        bmb-icon {
-          color: RGBA(var(--color-purple-tint));
-        }
-      }
-    }
-
-    .btn {
-      &-primary {
-        background-color: RGBA(var(--color-green-light));
-
-        &:hover,
-        &:focus-visible {
-          background-color: RGBA(var(--color-green-primary));
+    .bmb {
+      &_toast {
+        &-neutral,
+        &-primary,
+        &-successful,
+        &-warning,
+        &-error,
+        &-event {
+          background-color: RGBA(var(--color-charade-50));
+          color: RGBA(var(--color-charade-950));
         }
 
-        &:active {
-          background-color: RGBA(var(--color-green-light));
+        &-neutral {
+          border-color: RGBA(var(--color-charade-700));
+
+          bmb-icon {
+            color: RGBA(var(--color-charade-700));
+          }
         }
       }
 
-      &-secondary {
-        border-color: RGBA(var(--color-white-primary));
-        color: RGBA(var(--color-white-primary));
-
-        bmb-icon {
-          color: RGBA(var(--color-white-primary));
-        }
-
-        &:active {
-          background-color: RGBA(var(--color-white-primary));
+      &_btn {
+        &-secondary-outlined {
+          border-color: RGBA(var(--color-black-primary));
           color: RGBA(var(--color-black-primary));
 
           bmb-icon {
             color: RGBA(var(--color-black-primary));
           }
+
+          &:active {
+            background-color: RGBA(var(--color-black-primary));
+            color: RGBA(var(--color-white-primary));
+
+            bmb-icon {
+              color: RGBA(var(--color-white-primary));
+            }
+          }
         }
       }
-    }
 
-    .container {
-      background-color: RGBA(var(--color-mariner-950));
+      &_container_button {
+        background-color: RGBA(var(--color-charade-50));
+        color: RGBA(var(--color-charade-950));
 
-      &--button {
-        border-color: RGBA(var(--color-charade-700));
+        &-score {
+          span {
+            color: RGBA(var(--color-charade-950));
+          }
+        }
+
+        &-subtitle {
+          color: RGBA(var(--color-charade-700));
+        }
       }
-    }
 
-    .title__section {
-      color: RGBA(var(--color-mariner-50));
+      &_container {
+        &-primary-container,
+        &-primary-home,
+        &-primary-header,
+        &-secondary-container,
+        &-contrast-box-container {
+          background-color: RGBA(var(--color-charade-100));
+        }
+
+        &-primary-home {
+          border: rem_calc(1) solid RGBA(var(--color-charade-300));
+        }
+
+        &-secondary-container,
+        &-button-container {
+          border-color: RGBA(var(--color-charade-200));
+        }
+      }
+
+      &_header {
+        &_mobile {
+          color: RGBA(var(--color-charade-950));
+        }
+      }
+
+      &_interactive_icon {
+        &-horizontal {
+          border-bottom-color: RGBA(var(--color-charade-700));
+        }
+        &-title {
+          color: RGBA(var(--color-charade-950));
+        }
+
+        &-description {
+          color: RGBA(var(--color-charade-700));
+        }
+      }
+
+      &_title_section {
+        &-link,
+        &-title {
+          color: RGBA(var(--color-charade-950));
+        }
+      }
     }
   }
 }

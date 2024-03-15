@@ -1,45 +1,60 @@
-@import "./rem";
+@use "rem" as rem;
 
+// Poppins
 @font-face {
   font-family: "Poppins-Thin";
   font-style: normal;
   font-weight: 100;
-  src: url("../../fonts/Poppins/Poppins-Thin.ttf") format("truetype");
+  src: url("/assets/fonts/Poppins/Poppins-Thin.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Poppins-Light";
   font-style: normal;
   font-weight: 300;
-  src: url("../../fonts/Poppins/Poppins-ExtraLight.ttf") format("truetype");
+  src: url("/assets/fonts/Poppins/Poppins-ExtraLight.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Poppins-Regular";
   font-style: normal;
   font-weight: 400;
-  src: url("../../fonts/Poppins/Poppins-Regular.ttf") format("truetype");
+  src: url("/assets/fonts/Poppins/Poppins-Regular.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Poppins-Medium";
   font-style: normal;
   font-weight: 500;
-  src: url("../../fonts/Poppins/Poppins-Medium.ttf") format("truetype");
+  src: url("/assets/fonts/Poppins/Poppins-Medium.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Poppins-Semibold";
   font-style: normal;
   font-weight: 600;
-  src: url("../../fonts/Poppins/Poppins-SemiBold.ttf") format("truetype");
+  src: url("/assets/fonts/Poppins/Poppins-SemiBold.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Poppins-Bold";
   font-style: normal;
   font-weight: 700;
-  src: url("../../fonts/Poppins/Poppins-Bold.ttf") format("truetype");
+  src: url("/assets/fonts/Poppins/Poppins-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Material Symbols Outlined";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/assets/fonts/Material/material-symbols.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Material Icons";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/assets/fonts/Material/material-icons.woff2") format("woff2");
 }
 
 $font-poppins-thin: "Poppins-Thin", sans-serif;
@@ -65,29 +80,29 @@ $font-map: (
 
 $sizes: (
   //1
-  rem_calc(10),
+  rem.rem_calc(10),
   //2
-  rem_calc(11),
+  rem.rem_calc(11),
   //3
-  rem_calc(12),
+  rem.rem_calc(12),
   //4
-  rem_calc(14),
+  rem.rem_calc(14),
   //5
-  rem_calc(16),
+  rem.rem_calc(16),
   //6
-  rem_calc(18),
+  rem.rem_calc(18),
   //7
-  rem_calc(20),
+  rem.rem_calc(20),
   //8
-  rem_calc(22),
+  rem.rem_calc(22),
   //9
-  rem_calc(24),
+  rem.rem_calc(24),
   //10
-  rem_calc(26),
+  rem.rem_calc(26),
   //11
-  rem_calc(36),
+  rem.rem_calc(36),
   //12
-  rem_calc(48)
+  rem.rem_calc(48)
 );
 
 // Method 1: Mixin

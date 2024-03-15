@@ -5,16 +5,39 @@ import { BmbIconComponent } from '../components/bmb-icon/bmb-icon.component';
 export default {
   title: 'Button',
   component: BmbButtonDirective,
-  decorators: [
-    moduleMetadata({
-      declarations: [BmbButtonDirective, BmbIconComponent],
-    }),
-  ],
+  imports: [BmbButtonDirective, BmbIconComponent],
+  parameters: {
+    docs: {
+      description: {
+        component: `
+Below is an example of how you can use this component in TypeScript:
+
+\`\`\`typescript
+import { BmbButtonDirective } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
+@Component({
+  selector: 'component',
+  standalone: true,
+  imports: [ BmbButtonDirective ],
+  templateUrl: './component.html',
+  styleUrl: './component.scss',
+})
+\`\`\`
+
+Below is an example of how you can use this component in HTML:
+        `,
+      },
+    },
+  },
   argTypes: {
     appearance: {
       name: 'Appearance',
       control: { type: 'select' },
-      options: ['primary', 'secondary', 'alternative', 'destructive'],
+      options: [
+        'primary',
+        'secondary-filled',
+        'secondary-outlined',
+        'destructive',
+      ],
       description: 'The appearance of the button, affecting its visual style.',
       table: {
         type: { summary: 'string' },
@@ -25,28 +48,6 @@ export default {
       control: { type: 'text' },
       description:
         'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons. Do not use the image attribute if you want to use an icon.',
-      table: {
-        type: { summary: 'string' },
-      },
-    },
-    image: {
-      name: 'Image Source',
-      control: {
-        type: 'text',
-      },
-      description:
-        'The source of the image to display, either from your application or a URL. Do not use the icon attribute if you want to use an image.',
-      table: {
-        type: { summary: 'string' },
-      },
-    },
-    altImage: {
-      name: 'Image Alt Text',
-      control: {
-        type: 'text',
-      },
-      description:
-        'The alternative text for the image. Refer to https://www.w3.org/WAI/alt/ for more information.',
       table: {
         type: { summary: 'string' },
       },
@@ -80,6 +81,7 @@ export default {
       },
     },
     text: {
+      name: 'Text',
       description: 'The text content of the button.',
       table: {
         type: { summary: 'string' },
@@ -93,8 +95,6 @@ export default {
     position: 'left',
     case: false,
     text: 'Button text',
-    image:
-      'https://i0.wp.com/gershenson.mx/wp-content/uploads/2020/08/logo-tec-de-monterrey-e1484853084274.png?ssl=1',
   },
 } as Meta<typeof BmbButtonDirective>;
 

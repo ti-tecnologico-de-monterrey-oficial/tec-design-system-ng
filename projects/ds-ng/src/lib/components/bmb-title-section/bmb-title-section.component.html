@@ -1,10 +1,6 @@
-<div class="title__section">
-  <span class="title__section--title">{{ title }}</span>
-  <bmb-icon [icon]="icon" class="title__section--icon" *ngIf="!image" />
-  <img
-    [src]="image"
-    [alt]="altImage"
-    class="title__section--image"
-    *ngIf="image"
-  />
+<div class="bmb_title_section">
+  <span class="bmb_title_section-title">{{ title }}</span>
+  <a class="bmb_title_section-link" [href]="link" [target]="target">
+    <bmb-icon [icon]="icon" class="bmb_title_section-icon" />
+  </a>
 </div>

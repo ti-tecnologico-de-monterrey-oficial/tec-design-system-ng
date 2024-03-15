@@ -1,7 +1,34 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewChild } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { FormControl, Validators } from '@angular/forms';
+import {
+  BmbThemeComponent,
+  BmbBadgeComponent,
+  BmbButtonDirective,
+  BmbToastComponent,
+  BmbContainerComponent,
+  BmbContainerButtonComponent,
+  BmbHeaderMobileComponent,
+  BmbHomeSectionComponent,
+  BmbInteractiveIconComponent,
+  BmbUserImageComponent,
+} from '../../projects/ds-ng/src/public-api';
 @Component({
   selector: 'app-root',
+  standalone: true,
+  imports: [
+    RouterOutlet,
+    BmbThemeComponent,
+    BmbBadgeComponent,
+    BmbButtonDirective,
+    BmbToastComponent,
+    BmbContainerComponent,
+    BmbContainerButtonComponent,
+    BmbHeaderMobileComponent,
+    BmbHomeSectionComponent,
+    BmbInteractiveIconComponent,
+    BmbUserImageComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -16,7 +43,28 @@ export class AppComponent {
 
   value = 'tec-design';
 
+  @ViewChild(BmbToastComponent)
+  private toastComponent!: BmbToastComponent;
+  onButtonClick() {
+    this.toastComponent.openToast();
+  }
+
   handleDot(index: number): void {
     console.log('Index clicked:', index);
+  }
+
+  handleIconLeftClick() {
+    console.log('Icono izquierdo clickeado');
+    // Agrega la lógica que desees ejecutar cuando se hace clic en el icono izquierdo
+  }
+
+  handleIconRightClick() {
+    console.log('Icono derecho clickeado');
+    // Agrega la lógica que desees ejecutar cuando se hace clic en el icono derecho
+  }
+
+  handleIconRight2Click() {
+    console.log('Icono derecho 2 clickeado');
+    // Agrega la lógica que desees ejecutar cuando se hace clic en el header
   }
 }

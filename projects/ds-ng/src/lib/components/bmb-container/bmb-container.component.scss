@@ -1,0 +1,68 @@
+@use "../../../assets/styles/base/rem" as rem;
+
+.bmb_container {
+  align-items: flex-start;
+  display: flex;
+
+  &-primary-container {
+    align-items: flex-end;
+    background-color: RGBA(var(--color-charade-900));
+    border-radius: rem.rem_calc(8);
+    justify-content: space-between;
+    margin: rem.rem_calc(0 0 16);
+    padding: rem.rem_calc(16);
+  }
+
+  // Home
+  &-primary-home {
+    background-color: RGBA(var(--color-charade-900));
+    align-items: normal;
+    flex-direction: column;
+    gap: rem.rem_calc(24);
+    justify-content: space-between;
+    margin: rem.rem_calc(16 0);
+    padding: rem.rem_calc(24 16);
+  }
+
+  // Header
+  &-primary-header {
+    align-items: flex-end;
+    background-color: RGBA(var(--color-charade-900));
+    border-radius: rem.rem_calc(0 0 16 16);
+    justify-content: space-between;
+    margin: rem.rem_calc(0 0 16);
+    min-height: rem.rem_calc(70);
+    padding: rem.rem_calc(8 16);
+  }
+
+  // Modal
+  &-secondary-container {
+    background-color: RGBA(var(--color-charade-950));
+    border: rem.rem_calc(1) solid RGBA(var(--color-charade-700));
+    border-radius: rem.rem_calc(8);
+    flex-direction: column;
+    justify-content: center;
+    margin: rem.rem_calc(16);
+    padding: rem.rem_calc(16);
+  }
+
+  &-contrast-box-container {
+    background-color: var(--color-black-tint);
+    border: rem.rem_calc(1) solid var(--color-black-min);
+    align-items: center;
+    border-radius: rem.rem_calc(24);
+    flex-direction: column;
+    justify-content: center;
+    margin: rem.rem_calc(16);
+    padding: rem.rem-calc(48);
+  }
+
+  &-button-container {
+    background-color: RGBA(var(--color-charade-900));
+    border: rem.rem_calc(1) solid RGBA(var(--color-charade-700));
+    align-items: center;
+    border-radius: rem.rem_calc(8);
+    margin: rem.rem_calc(16);
+    padding: rem.rem_calc(24);
+  }
+}

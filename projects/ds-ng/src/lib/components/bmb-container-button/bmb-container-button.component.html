@@ -1,40 +1,49 @@
-<a class="button__container" [href]="link" [target]="target">
-  <bmb-container appearance="button">
-    <img
-      [src]="image"
-      [alt]="altImage"
-      class="button__container--left"
-      *ngIf="image && !grade"
-    />
-    <div class="button__container--grade" *ngIf="grade">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="40"
-        height="48"
-        viewBox="0 0 40 48"
-        fill="none"
-      >
-        <mask id="path-1-inside-1_3664_9005" fill="white">
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M0 11.9719L20 0L40 11.9719V20.2667V27.7333V36.0281L20 48L0 36.0281V27.7333V20.2667V11.9719Z"
-          />
-        </mask>
+<a
+  class="bmb_container_button"
+  [ngClass]="{
+    'bmb_container_button-small': subtitle || score, 
+    'bmb_container_button-square': square, 
+  }"
+  [href]="link"
+  [target]="target"
+>
+  <bmb-icon
+    [icon]="iconLeft"
+    class="bmb_container_button-left"
+    *ngIf="iconLeft && !score"
+  />
+  <div class="bmb_container_button-score" *ngIf="score && !square">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="48"
+      height="40"
+      viewBox="0 0 40 48"
+      fill="currentColor"
+    >
+      <mask id="path-1-inside-1_3664_9005" fill="currentColor">
         <path
-          d="M20 0L20.5136 -0.858025L20 -1.16547L19.4864 -0.858025L20 0ZM0 11.9719L-0.513607 11.1138L-1 11.405V11.9719H0ZM40 11.9719H41V11.405L40.5136 11.1138L40 11.9719ZM40 36.0281L40.5136 36.8862L41 36.595V36.0281H40ZM20 48L19.4864 48.858L20 49.1655L20.5136 48.858L20 48ZM0 36.0281H-1V36.595L-0.513607 36.8862L0 36.0281ZM19.4864 -0.858025L-0.513607 11.1138L0.513607 12.8299L20.5136 0.858025L19.4864 -0.858025ZM40.5136 11.1138L20.5136 -0.858025L19.4864 0.858025L39.4864 12.8299L40.5136 11.1138ZM41 20.2667V11.9719H39V20.2667H41ZM39 20.2667V27.7333H41V20.2667H39ZM39 27.7333V36.0281H41V27.7333H39ZM39.4864 35.1701L19.4864 47.142L20.5136 48.858L40.5136 36.8862L39.4864 35.1701ZM20.5136 47.142L0.513607 35.1701L-0.513607 36.8862L19.4864 48.858L20.5136 47.142ZM1 36.0281V27.7333H-1V36.0281H1ZM1 27.7333V20.2667H-1V27.7333H1ZM-1 11.9719V20.2667H1V11.9719H-1Z"
-          fill="#F6F7F9"
-          mask="url(#path-1-inside-1_3664_9005)"
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M0 11.9719L20 0L40 11.9719V20.2667V27.7333V36.0281L20 48L0 36.0281V27.7333V20.2667V11.9719Z"
         />
-      </svg>
-      <span>{{ grade }}</span>
-    </div>
-    <div class="button__container--text">
-      <span class="button__container--title">{{ title }}</span>
-      <span class="button__container--subtitle" *ngIf="subtitle">{{
-        subtitle
-      }}</span>
-    </div>
-    <bmb-icon [icon]="icon" class="button__container--right" *ngIf="icon" />
-  </bmb-container>
+      </mask>
+      <path
+        d="M20 0L20.5136 -0.858025L20 -1.16547L19.4864 -0.858025L20 0ZM0 11.9719L-0.513607 11.1138L-1 11.405V11.9719H0ZM40 11.9719H41V11.405L40.5136 11.1138L40 11.9719ZM40 36.0281L40.5136 36.8862L41 36.595V36.0281H40ZM20 48L19.4864 48.858L20 49.1655L20.5136 48.858L20 48ZM0 36.0281H-1V36.595L-0.513607 36.8862L0 36.0281ZM19.4864 -0.858025L-0.513607 11.1138L0.513607 12.8299L20.5136 0.858025L19.4864 -0.858025ZM40.5136 11.1138L20.5136 -0.858025L19.4864 0.858025L39.4864 12.8299L40.5136 11.1138ZM41 20.2667V11.9719H39V20.2667H41ZM39 20.2667V27.7333H41V20.2667H39ZM39 27.7333V36.0281H41V27.7333H39ZM39.4864 35.1701L19.4864 47.142L20.5136 48.858L40.5136 36.8862L39.4864 35.1701ZM20.5136 47.142L0.513607 35.1701L-0.513607 36.8862L19.4864 48.858L20.5136 47.142ZM1 36.0281V27.7333H-1V36.0281H1ZM1 27.7333V20.2667H-1V27.7333H1ZM-1 11.9719V20.2667H1V11.9719H-1Z"
+        fill="currentColor"
+        mask="url(#path-1-inside-1_3664_9005)"
+      />
+    </svg>
+    <span>{{ score }}</span>
+  </div>
+  <div class="bmb_container_button-text">
+    <span class="bmb_container_button-title">{{ title }}</span>
+    <span class="bmb_container_button-subtitle" *ngIf="subtitle && !square">{{
+      subtitle
+    }}</span>
+  </div>
+  <bmb-icon
+    [icon]="iconRight"
+    class="bmb_container_button-right"
+    *ngIf="iconRight && !square"
+  />
 </a>

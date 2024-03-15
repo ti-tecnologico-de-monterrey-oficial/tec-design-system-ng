@@ -32,9 +32,9 @@ describe('BmbTagComponent', () => {
     fixture.detectChanges();
 
     const element: HTMLElement = fixture.nativeElement;
-    const badgeElement = element.querySelector('.badge');
+    const badgeElement = element.querySelector('.bmb_tag');
 
-    expect(badgeElement?.classList).not.toContain('badge--');
+    expect(badgeElement?.classList).not.toContain('bmb_tag-');
   });
 
   it('should display text inside the badge', () => {
@@ -42,7 +42,7 @@ describe('BmbTagComponent', () => {
     fixture.detectChanges();
 
     const element: HTMLElement = fixture.nativeElement;
-    const textElement = element.querySelector('.badge span');
+    const textElement = element.querySelector('.bmb_tag span');
 
     expect(textElement?.textContent).toContain('Sample Text');
   });

@@ -1,0 +1,47 @@
+@use "../../../assets/styles/base/rem" as rem;
+
+.bmb_user_image {
+  align-items: center;
+  background-color: RGBA(var(--color-white-primary));
+  border-radius: 100%;
+  display: flex;
+  height: rem.rem_calc(50);
+  justify-content: center;
+  overflow: hidden;
+  width: rem.rem_calc(50);
+
+  img {
+    height: 100%;
+    width: 100%;
+  }
+
+  &-mobile-small {
+    height: rem.rem_calc(32);
+    width: rem.rem_calc(32);
+  }
+
+  &-mobile-medium {
+    height: rem.rem_calc(64);
+    width: rem.rem_calc(64);
+  }
+
+  &-mobile-large {
+    height: rem.rem_calc(100);
+    width: rem.rem_calc(100);
+  }
+
+  &-mobile-xlarge {
+    height: rem.rem_calc(200);
+    width: rem.rem_calc(200);
+  }
+
+  &-desktop-small {
+    height: rem.rem_calc(56);
+    width: rem.rem_calc(56);
+  }
+
+  &-desktop-large {
+    height: rem.rem_calc(160);
+    width: rem.rem_calc(160);
+  }
+}

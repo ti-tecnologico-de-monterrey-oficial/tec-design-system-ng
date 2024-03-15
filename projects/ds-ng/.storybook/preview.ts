@@ -1,3 +1,6 @@
+// .storybook/preview.ts
+
+import { withThemeByClassName } from '@storybook/addon-themes';
 import type { Preview } from '@storybook/angular';
 
 const preview: Preview = {
@@ -17,6 +20,15 @@ const preview: Preview = {
       },
     },
   },
+  decorators: [
+    withThemeByClassName({
+      themes: {
+        light: 'storybook-light-theme',
+        dark: 'storybook-dark-theme',
+      },
+      defaultTheme: 'light',
+    }),
+  ],
 };
 
 export default preview;

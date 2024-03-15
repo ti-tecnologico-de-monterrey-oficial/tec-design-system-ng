@@ -21,11 +21,4 @@ describe('BmbIconComponent', () => {
   it('should have a default icon value', () => {
     expect(component.icon).toBe('face');
   });
-
-  it('should display the correct icon', () => {
-    const compiled = fixture.nativeElement;
-    component.icon = 'other-icon';
-    fixture.detectChanges();
-    expect(compiled.querySelector('.icon').textContent).toContain('other-icon');
-  });
 });

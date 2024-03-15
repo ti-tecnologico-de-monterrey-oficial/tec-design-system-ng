@@ -1,0 +1,105 @@
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/rem" as rem;
+
+@mixin toast($appearance: neutral) {
+  @include fonts.font(4, regular);
+  align-items: center;
+  background-color: RGBA(var(--color-charade-950));
+  border-radius: rem.rem_calc(4);
+  border-style: solid;
+  border-width: rem.rem_calc(1);
+  color: RGBA(var(--color-charade-50));
+  display: flex;
+  justify-content: flex-start;
+  min-height: rem.rem_calc(40);
+  padding: rem.rem_calc(0 16);
+  position: fixed;
+  width: 90%;
+
+  bmb-icon {
+    font-size: rem.rem_calc(16);
+    margin-right: rem.rem_calc(8);
+  }
+
+  @if $appearance == neutral {
+    border-color: RGBA(var(--color-charade-200));
+
+    bmb-icon {
+      color: RGBA(var(--color-charade-200));
+    }
+  } @else if $appearance == primary {
+    border-color: RGBA(var(--color-neon-primary));
+
+    bmb-icon {
+      color: RGBA(var(--color-neon-primary));
+    }
+  } @else if $appearance == successful {
+    border-color: RGBA(var(--color-green-primary));
+
+    bmb-icon {
+      color: RGBA(var(--color-green-primary));
+    }
+  } @else if $appearance == warning {
+    border-color: RGBA(var(--color-yellow-primary));
+
+    bmb-icon {
+      color: RGBA(var(--color-yellow-primary));
+    }
+  } @else if $appearance == error {
+    border-color: RGBA(var(--color-red-primary));
+
+    bmb-icon {
+      color: RGBA(var(--color-red-primary));
+    }
+  } @else if $appearance == event {
+    border-color: RGBA(var(--color-purple-light));
+
+    bmb-icon {
+      color: RGBA(var(--color-purple-light));
+    }
+  }
+}
+
+.bmb_toast {
+  &-neutral {
+    @include toast(neutral);
+  }
+
+  &-primary {
+    @include toast(primary);
+  }
+
+  &-successful {
+    @include toast(successful);
+  }
+
+  &-warning {
+    @include toast(warning);
+  }
+
+  &-error {
+    @include toast(error);
+  }
+
+  &-event {
+    @include toast(event);
+  }
+
+  &-top {
+    left: 50%;
+    top: 5%;
+    transform: translateX(-50%);
+  }
+
+  &-middle {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &-bottom {
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
