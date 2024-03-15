@@ -56,6 +56,37 @@ export default {
       providers: [ToastService],
     }),
   ],
+  parameters: {
+    docs: {
+      description: {
+        component: `
+Below is an example of how you can use this component in TypeScript:
+
+\`\`\`typescript
+import { BmbButtonDirective, BmbToastComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
+@Component({
+  selector: 'component',
+  standalone: true,
+  imports: [ BmbButtonDirective, BmbToastComponent ],
+  templateUrl: './component.html',
+  styleUrl: './component.scss',
+})
+export class Component {
+  title = 'my-app';
+
+  @ViewChild(BmbToastComponent)
+  private toastComponent!: BmbToastComponent;
+  onButtonClick() {
+    this.toastComponent.openToast();
+  }
+}
+\`\`\`
+
+Below is an example of how you can use this component in HTML:
+        `,
+      },
+    },
+  },
   argTypes: {
     message: { control: 'text' },
     appearance: {
@@ -96,19 +127,9 @@ export const Default: StoryFn<typeof BmbToastComponent> = (args) => {
   return {
     props: args,
     template: `
-      <!-- Instrucción para los usuarios: Este componente se utiliza para la lógica interna de Storybook y no debe copiarse -->
+      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->
       <storybook-toast-wrapper ${attributes(args)}></storybook-toast-wrapper>
-
-<!----------------------------------
-Para abrir el toast, incluye esto en tu component.ts
-@ViewChild(BmbToastComponent)
-private toastComponent!: BmbToastComponent;
-onButtonClick() {
-  this.toastComponent.openToast();
-}
------------------------------------->
-      
-      <!-- Comience a copiar desde aquí -->
+      <!-- Start copying from here -->
       <div class="actions">
       <button bmbButton appearance="primary" icon="home" size="small" position="left" [case]="false" (click)="onButtonClick()">Click Here</button>
       <bmb-toast ${attributes(args)}></bmb-toast></div>`,

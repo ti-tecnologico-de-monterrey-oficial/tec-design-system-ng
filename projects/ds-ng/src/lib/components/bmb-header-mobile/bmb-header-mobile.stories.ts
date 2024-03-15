@@ -19,6 +19,28 @@ export default {
       ],
     }),
   ],
+  parameters: {
+    docs: {
+      description: {
+        component: `
+Below is an example of how you can use this component in TypeScript:
+
+\`\`\`typescript
+import { BmbHeaderMobileComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
+@Component({
+  selector: 'component',
+  standalone: true,
+  imports: [ BmbHeaderMobileComponent ],
+  templateUrl: './component.html',
+  styleUrl: './component.scss',
+})
+\`\`\`
+
+Below is an example of how you can use this component in HTML:
+        `,
+      },
+    },
+  },
   argTypes: {
     text: {
       name: 'Text',
