@@ -6,6 +6,28 @@ export default {
   title: 'Button',
   component: BmbButtonDirective,
   imports: [BmbButtonDirective, BmbIconComponent],
+  parameters: {
+    docs: {
+      description: {
+        component: `
+Below is an example of how you can use this component in TypeScript:
+
+\`\`\`typescript
+import { BmbButtonDirective } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
+@Component({
+  selector: 'component',
+  standalone: true,
+  imports: [ BmbButtonDirective ],
+  templateUrl: './component.html',
+  styleUrl: './component.scss',
+})
+\`\`\`
+
+Below is an example of how you can use this component in HTML:
+        `,
+      },
+    },
+  },
   argTypes: {
     appearance: {
       name: 'Appearance',

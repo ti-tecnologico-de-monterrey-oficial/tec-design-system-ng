@@ -4,6 +4,28 @@ import { BmbBadgeComponent } from './bmb-badge.component';
 export default {
   title: 'Badge',
   component: BmbBadgeComponent,
+  parameters: {
+    docs: {
+      description: {
+        component: `
+Below is an example of how you can use this component in TypeScript:
+
+\`\`\`typescript
+import { BmbBadgeComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
+@Component({
+  selector: 'component',
+  standalone: true,
+  imports: [ BmbBadgeComponent ],
+  templateUrl: './component.html',
+  styleUrl: './component.scss',
+})
+\`\`\`
+
+Below is an example of how you can use this component in HTML:
+        `,
+      },
+    },
+  },
   argTypes: {
     text: {
       name: 'Text',

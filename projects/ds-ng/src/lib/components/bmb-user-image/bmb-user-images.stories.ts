@@ -4,6 +4,28 @@ import { BmbUserImageComponent } from './bmb-user-image.component';
 export default {
   title: 'User Image',
   component: BmbUserImageComponent,
+  parameters: {
+    docs: {
+      description: {
+        component: `
+Below is an example of how you can use this component in TypeScript:
+
+\`\`\`typescript
+import { BmbUserImageComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
+@Component({
+  selector: 'component',
+  standalone: true,
+  imports: [ BmbUserImageComponent ],
+  templateUrl: './component.html',
+  styleUrl: './component.scss',
+})
+\`\`\`
+
+Below is an example of how you can use this component in HTML:
+        `,
+      },
+    },
+  },
   argTypes: {
     image: {
       name: 'Image Source',
