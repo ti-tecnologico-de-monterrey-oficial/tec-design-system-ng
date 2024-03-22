@@ -24,3 +24,4 @@ export * from './lib/components/bmb-tags/bmb-tags.component';
 export * from './lib/components/bmb-toast/bmb-toast.component';
 export * from './lib/components/bmb-theme/bmb-theme.component';
 export * from './lib/components/bmb-home-section/bmb-home-section.component';
+export * from './lib/components/bmb-loader/bmb-loader.component';

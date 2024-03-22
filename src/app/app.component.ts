@@ -12,7 +12,17 @@ import {
   BmbHomeSectionComponent,
   BmbInteractiveIconComponent,
   BmbUserImageComponent,
+  BmbDividerComponent,
+  BmbDotPaginatorComponent,
+  BmbLoaderComponent,
 } from '../../projects/ds-ng/src/public-api';
+import bmbLoaderComponentStories from '../../projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.component.stories';
+
+export interface Target {
+  target: string;
+  index: number;
+}
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -28,6 +38,9 @@ import {
     BmbHomeSectionComponent,
     BmbInteractiveIconComponent,
     BmbUserImageComponent,
+    BmbDividerComponent,
+    BmbDotPaginatorComponent,
+    BmbLoaderComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -55,16 +68,25 @@ export class AppComponent {
 
   handleIconLeftClick() {
     console.log('Icono izquierdo clickeado');
-    // Agrega la lógica que desees ejecutar cuando se hace clic en el icono izquierdo
   }
 
   handleIconRightClick() {
     console.log('Icono derecho clickeado');
-    // Agrega la lógica que desees ejecutar cuando se hace clic en el icono derecho
   }
 
   handleIconRight2Click() {
     console.log('Icono derecho 2 clickeado');
-    // Agrega la lógica que desees ejecutar cuando se hace clic en el header
+  }
+
+  myActiveDotIndex: number = 0;
+  myTotalDots: number = 5;
+  myTargets: Target[] = [
+    { target: '#item1', index: 0 },
+    { target: '#item2', index: 1 },
+  ];
+
+  handleDotPress(index: number): void {
+    console.log('Dot pressed:', index);
+    this.myActiveDotIndex = index;
   }
 }

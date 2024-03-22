@@ -2,49 +2,31 @@
     "pipes": [],
     "interfaces": [
         {
-            "name": "Props",
-            "id": "interface-Props-6f84f63bd2a266dbb2b1de406bf8da808e6d45f9839f2b8776492be1780a7c12c1f8a11b5c276bca905aa77398248616d6f4054eb7ccccfb514fb4695f9fdab5",
-            "file": "projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.interface.ts",
+            "name": "Target",
+            "id": "interface-Target-f2c3d13fcf4fd6183ec16ed094945329f06423ca7483317bd35b40b174de58d51ac8b2c617a6cf24a3f7aca7974b78604de4aff3d3f914fbfd2720c5feb49d40",
+            "file": "projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { EventEmitter } from '@angular/core';\n\nexport interface Target {\n  target: string;\n  index: number;\n}\n\nexport interface Props {\n  activeDotIndex?: number;\n  totalDots?: number;\n  targets?: Target[];\n  onDotPress: EventEmitter<number>;\n}\n",
+            "sourceCode": "import {\n  Component,\n  Input,\n  Output,\n  EventEmitter,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\nexport interface Target {\n  target: string;\n  index: number;\n}\n\n@Component({\n  selector: 'bmb-dot-paginator',\n  standalone: true,\n  styleUrl: './bmb-dot-paginator.component.scss',\n  imports: [CommonModule],\n  templateUrl: './bmb-dot-paginator.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbDotPaginatorComponent {\n  @Input() activeDotIndex?: number = 0;\n  @Input() totalDots?: number = 0;\n  @Input() targets: Target[] = [];\n  @Input() appearance: string = '';\n  @Output() onDotPress: EventEmitter<number> = new EventEmitter<number>();\n\n  getDotsArray(): number[] {\n    return new Array(this.totalDots ?? 0).fill(0).map((_, i) => i);\n  }\n\n  getClasses(): string[] {\n    const classes: string[] = ['bmb_dot_paginator'];\n\n    if (this.appearance) {\n      classes.push('bmb_dot_paginator-' + this.appearance);\n    }\n\n    return classes;\n  }\n\n  onDotClicked(index: number): void {\n    this.activeDotIndex = index;\n    this.onDotPress.emit(index);\n  }\n}\n",
             "properties": [
                 {
-                    "name": "activeDotIndex",
+                    "name": "index",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "number",
-                    "optional": true,
+                    "optional": false,
                     "description": "",
-                    "line": 9
+                    "line": 13
                 },
                 {
-                    "name": "onDotPress",
+                    "name": "target",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "EventEmitter<number>",
+                    "type": "string",
                     "optional": false,
                     "description": "",
                     "line": 12
-                },
-                {
-                    "name": "targets",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Target[]",
-                    "optional": true,
-                    "description": "",
-                    "line": 11
-                },
-                {
-                    "name": "totalDots",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "number",
-                    "optional": true,
-                    "description": "",
-                    "line": 10
                 }
             ],
             "indexSignatures": [],
@@ -54,12 +36,12 @@
         },
         {
             "name": "Target",
-            "id": "interface-Target-6f84f63bd2a266dbb2b1de406bf8da808e6d45f9839f2b8776492be1780a7c12c1f8a11b5c276bca905aa77398248616d6f4054eb7ccccfb514fb4695f9fdab5",
-            "file": "projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.interface.ts",
+            "id": "interface-Target-277510f46037d89ddcd17213b8f29440242916bc17960e4b69805c93ab06ea6e9e40c6c55b330add76ccd6a3c3e4d8271e1e2a2dd091fe5d4a780ad63bd523a0-1",
+            "file": "projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.stories.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { EventEmitter } from '@angular/core';\n\nexport interface Target {\n  target: string;\n  index: number;\n}\n\nexport interface Props {\n  activeDotIndex?: number;\n  totalDots?: number;\n  targets?: Target[];\n  onDotPress: EventEmitter<number>;\n}\n",
+            "sourceCode": "import { Meta, StoryObj } from '@storybook/angular';\nimport { BmbDotPaginatorComponent } from './bmb-dot-paginator.component';\n\nexport interface Target {\n  target: string;\n  index: number;\n}\n\nexport default {\n  title: 'Dot Paginator',\n  component: BmbDotPaginatorComponent,\n  parameters: {\n    docs: {\n      description: {\n        component: `\nBelow is an example of how you can use this component in TypeScript:\n\n\\`\\`\\`typescript\nimport { BmbDotPaginatorComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';\n\nexport interface Target {\n  target: string;\n  index: number;\n}\n\n@Component({\n  selector: 'component',\n  standalone: true,\n  imports: [ BmbDotPaginatorComponent ],\n  templateUrl: './component.html',\n  styleUrl: './component.scss',\n})\n\nexport class Component {\n  myActiveDotIndex: number = 0;\n  myTotalDots: number = 5;\n  myTargets: Target[] = [\n    { target: '#item1', index: 0 },\n    { target: '#item2', index: 1 },\n  ];\n\n  handleDotPress(index: number): void {\n    console.log('Dot pressed:', index);\n    this.myActiveDotIndex = index;\n  }\n}\n\\`\\`\\`\n\nBelow is an example of how you can use this component in HTML:\n        `,\n      },\n    },\n  },\n  argTypes: {\n    appearance: {\n      name: 'Appearance',\n      control: {\n        type: 'radio',\n      },\n      options: ['primary', 'secondary'],\n      description:\n        'The style of the dot paginator. Is not neccesary to add the \"primary\" style.',\n      table: {\n        defaultValue: { summary: 'primary' },\n        type: { summary: 'string' },\n      },\n    },\n    activeDotIndex: {\n      name: 'Active dot index',\n      control: 'number',\n      description: 'Index of the active dot.',\n      table: {\n        defaultValue: { summary: 0 },\n        type: { summary: 'number' },\n      },\n    },\n    totalDots: {\n      name: 'Total Dots',\n      control: 'number',\n      description: 'Total number of dots.',\n      table: {\n        defaultValue: { summary: 5 },\n        type: { summary: 'number' },\n      },\n    },\n    targets: {\n      name: 'Targets',\n      control: 'object',\n      description: 'Target objects for each dot.',\n      table: {\n        defaultValue: { summary: 'optional' },\n        type: { summary: 'Target[]' },\n      },\n    },\n    onDotPress: {\n      name: 'On Dot Press',\n      control: {\n        type: '',\n      },\n      description:\n        'This handler can be used to perform a specific interaction with each dot.',\n      table: {\n        type: { summary: '(onDotPress)=\"yourFunction($event)\"' },\n      },\n    },\n  },\n\n  args: {\n    activeDotIndex: 0,\n    totalDots: 5,\n    targets: [\n      { target: '#item1', index: 0 },\n      { target: '#item2', index: 1 },\n    ],\n    onDotPress: (index: number) => {\n      window.alert(index);\n    },\n  },\n} as Meta<typeof BmbDotPaginatorComponent>;\n\ntype Story = StoryObj<BmbDotPaginatorComponent>;\n\nexport const Default: Story = {};\n",
             "properties": [
                 {
                     "name": "index",
@@ -68,7 +50,7 @@
                     "type": "number",
                     "optional": false,
                     "description": "",
-                    "line": 5
+                    "line": 6
                 },
                 {
                     "name": "target",
@@ -77,13 +59,16 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 4
+                    "line": 5
                 }
             ],
             "indexSignatures": [],
             "kind": 171,
             "methods": [],
-            "extends": []
+            "extends": [],
+            "isDuplicate": true,
+            "duplicateId": 1,
+            "duplicateName": "Target-1"
         }
     ],
     "injectables": [
@@ -823,7 +808,7 @@
         },
         {
             "name": "BmbDividerComponent",
-            "id": "component-BmbDividerComponent-37fdce912f7153c1e68133cbd52855ca60a336e4131cdba3a9bf78100322493bd7339206f0defa3e75a0834a6a16c222672a217dd1f5d17bf5878f0e142730aa",
+            "id": "component-BmbDividerComponent-c01b5cdc7f09a37bd606ee023ef3bbf2215642f932d456b2a9473097b66705b6c7057115fec3144a2da5330861f7beebf0ff811103b0f64b401fd20eff1adb56",
             "file": "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -843,29 +828,11 @@
             "hostDirectives": [],
             "inputsClass": [
                 {
-                    "name": "appearance",
-                    "defaultValue": "''",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 20,
-                    "type": "string",
-                    "decorators": []
-                },
-                {
-                    "name": "size",
+                    "name": "type",
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "line": 18,
-                    "type": "string",
-                    "decorators": []
-                },
-                {
-                    "name": "styles",
-                    "defaultValue": "''",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 19,
                     "type": "string",
                     "decorators": []
                 }
@@ -879,7 +846,7 @@
                     "optional": false,
                     "returnType": "string[]",
                     "typeParameters": [],
-                    "line": 24,
+                    "line": 22,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -898,7 +865,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\n@Component({\n  selector: 'bmb-divider',\n  styleUrl: './bmb-divider.component.scss',\n  templateUrl: './bmb-divider.component.html',\n  standalone: true,\n  imports: [CommonModule],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbDividerComponent {\n  @Input() size: string = '';\n  @Input() styles: string = '';\n  @Input() appearance: string = '';\n\n  constructor() {}\n\n  getClasses(): string[] {\n    const classes: string[] = ['bmb_divider'];\n\n    if (this.appearance) {\n      classes.push('bmb_divider-' + this.appearance);\n    }\n\n    if (this.size) {\n      classes.push('bmb_divider-' + this.size);\n    }\n\n    if (this.styles) {\n      classes.push('bmb_divider-' + this.styles);\n    }\n\n    return classes;\n  }\n}\n",
+            "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\n@Component({\n  selector: 'bmb-divider',\n  styleUrl: './bmb-divider.component.scss',\n  templateUrl: './bmb-divider.component.html',\n  standalone: true,\n  imports: [CommonModule],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbDividerComponent {\n  @Input() type: string = '';\n\n  constructor() {}\n\n  getClasses(): string[] {\n    const classes: string[] = ['bmb_divider'];\n\n    if (this.type) {\n      classes.push('bmb_divider-' + this.type);\n    }\n\n    return classes;\n  }\n}\n",
             "styleUrl": "./bmb-divider.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -909,14 +876,14 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "args": [],
-                "line": 20
+                "line": 18
             },
             "extends": [],
             "templateData": "<div class=\"bmb_divider\" [ngClass]=\"getClasses()\"></div>\n"
         },
         {
             "name": "BmbDotPaginatorComponent",
-            "id": "component-BmbDotPaginatorComponent-427b0d0764cb05e6717f8952d4e8757bfa1cc4f514955ef36884fd6f434f04fa7aa0593fbb84f72a23ac212ed8c9365bed6684548cc515a43cef571a7c7a0161",
+            "id": "component-BmbDotPaginatorComponent-f2c3d13fcf4fd6183ec16ed094945329f06423ca7483317bd35b40b174de58d51ac8b2c617a6cf24a3f7aca7974b78604de4aff3d3f914fbfd2720c5feb49d40",
             "file": "projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -940,8 +907,17 @@
                     "defaultValue": "0",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 22,
+                    "line": 26,
                     "type": "number",
+                    "decorators": []
+                },
+                {
+                    "name": "appearance",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 29,
+                    "type": "string",
                     "decorators": []
                 },
                 {
@@ -949,7 +925,7 @@
                     "defaultValue": "[]",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 24,
+                    "line": 28,
                     "type": "Target[]",
                     "decorators": []
                 },
@@ -958,7 +934,7 @@
                     "defaultValue": "0",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 23,
+                    "line": 27,
                     "type": "number",
                     "decorators": []
                 }
@@ -969,19 +945,29 @@
                     "defaultValue": "new EventEmitter<number>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 25,
+                    "line": 30,
                     "type": "EventEmitter<number>"
                 }
             ],
             "propertiesClass": [],
             "methodsClass": [
                 {
+                    "name": "getClasses",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "string[]",
+                    "typeParameters": [],
+                    "line": 36,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
                     "name": "getDotsArray",
                     "args": [],
                     "optional": false,
                     "returnType": "number[]",
                     "typeParameters": [],
-                    "line": 27,
+                    "line": 32,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -998,7 +984,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 31,
+                    "line": 46,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1028,13 +1014,13 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\n  Component,\n  Input,\n  Output,\n  EventEmitter,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { Target } from './bmb-dot-paginator.interface';\n\n@Component({\n  selector: 'bmb-dot-paginator',\n  standalone: true,\n  styleUrl: './bmb-dot-paginator.component.scss',\n  imports: [CommonModule],\n  templateUrl: './bmb-dot-paginator.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbDotPaginatorComponent {\n  @Input() activeDotIndex?: number = 0;\n  @Input() totalDots?: number = 0;\n  @Input() targets: Target[] = [];\n  @Output() onDotPress: EventEmitter<number> = new EventEmitter<number>();\n\n  getDotsArray(): number[] {\n    return new Array(this.totalDots || 0).fill(0).map((_, i) => i);\n  }\n\n  onDotClicked(index: number): void {\n    this.activeDotIndex = index;\n    this.onDotPress.emit(index);\n  }\n}\n",
+            "sourceCode": "import {\n  Component,\n  Input,\n  Output,\n  EventEmitter,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\nexport interface Target {\n  target: string;\n  index: number;\n}\n\n@Component({\n  selector: 'bmb-dot-paginator',\n  standalone: true,\n  styleUrl: './bmb-dot-paginator.component.scss',\n  imports: [CommonModule],\n  templateUrl: './bmb-dot-paginator.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbDotPaginatorComponent {\n  @Input() activeDotIndex?: number = 0;\n  @Input() totalDots?: number = 0;\n  @Input() targets: Target[] = [];\n  @Input() appearance: string = '';\n  @Output() onDotPress: EventEmitter<number> = new EventEmitter<number>();\n\n  getDotsArray(): number[] {\n    return new Array(this.totalDots ?? 0).fill(0).map((_, i) => i);\n  }\n\n  getClasses(): string[] {\n    const classes: string[] = ['bmb_dot_paginator'];\n\n    if (this.appearance) {\n      classes.push('bmb_dot_paginator-' + this.appearance);\n    }\n\n    return classes;\n  }\n\n  onDotClicked(index: number): void {\n    this.activeDotIndex = index;\n    this.onDotPress.emit(index);\n  }\n}\n",
             "styleUrl": "./bmb-dot-paginator.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<ol class=\"bmb_dot_paginator\">\n  <li\n    *ngFor=\"let i of getDotsArray()\"\n    [attr.data-bs-target]=\"targets ? targets[i].target : '' || ''\"\n    [attr.data-bs-slide-to]=\"i\"\n    [ngClass]=\"{ dot: true, active: activeDotIndex === i }\"\n    (click)=\"onDotClicked(i)\"\n  ></li>\n</ol>\n"
+            "templateData": "<ol [ngClass]=\"getClasses()\">\n  <li\n    *ngFor=\"let i of getDotsArray()\"\n    [attr.data-bs-target]=\"targets && targets[i] ? targets[i].target : ''\"\n    [attr.data-bs-slide-to]=\"i\"\n    [ngClass]=\"{ dot: true, active: activeDotIndex === i }\"\n    (click)=\"onDotClicked(i)\"\n  ></li>\n</ol>\n"
         },
         {
             "name": "BmbFabComponent",
@@ -2446,6 +2432,72 @@
             "templateData": "<a\n  [ngClass]=\"getClasses()\"\n  [class.bmb_interactive_icon-horizontal]=\"horizontal\"\n  [href]=\"link\"\n  [target]=\"target\"\n>\n  <div class=\"bmb_interactive_icon-box\">\n    <bmb-icon\n      class=\"bmb_interactive_icon-icon\"\n      icon=\"{{ icon }}\"\n      *ngIf=\"icon\"\n    />\n  </div>\n  <div class=\"bmb_interactive_icon-text\">\n    <span class=\"bmb_interactive_icon-title\" *ngIf=\"title\">{{ title }}</span>\n    <span\n      class=\"bmb_interactive_icon-description\"\n      *ngIf=\"description && horizontal\"\n      >{{ description }}</span\n    >\n  </div>\n</a>\n"
         },
         {
+            "name": "BmbLoaderComponent",
+            "id": "component-BmbLoaderComponent-a993bbbdc4f2df2fff6161e4fe2d12431528f8a1e1ecc74760f8c662b0fc35c617445e1dbaef398d2d68c5a1add1f566948133e8e667724d45d6ce29056e5a12",
+            "file": "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-loader",
+            "styleUrls": [
+                "./bmb-loader.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-loader.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "status",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 20,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "BmbIconComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\n\n@Component({\n  selector: 'bmb-loader',\n  styleUrls: ['./bmb-loader.component.scss'],\n  templateUrl: './bmb-loader.component.html',\n  standalone: true,\n  imports: [CommonModule, BmbIconComponent],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbLoaderComponent {\n  @Input() status: string = '';\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@use \"../../../assets/styles/base/fonts\" as fonts;\n@use \"../../../assets/styles/base/rem\" as rem;\n\n.bmb_loader {\n  align-items: center;\n  display: flex;\n  justify-content: center;\n\n  bmb-icon {\n    color: RGBA(var(--color-charade-50));\n  }\n\n  &-loading {\n    align-items: center;\n    display: flex;\n    height: rem.rem_calc(128);\n    width: rem.rem_calc(128);\n\n    bmb-icon {\n      animation: rotateAnimation 1s linear infinite;\n      font-size: rem.rem_calc(128);\n    }\n  }\n\n  &-connection {\n    align-items: center;\n    display: flex;\n    height: rem.rem_calc(280);\n    width: rem.rem_calc(280);\n\n    bmb-icon {\n      font-size: rem.rem_calc(280);\n    }\n  }\n}\n\n@keyframes rotateAnimation {\n  from {\n    transform: rotate(0deg);\n  }\n  to {\n    transform: rotate(360deg);\n  }\n}\n",
+                    "styleUrl": "./bmb-loader.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<div class=\"bmb_loader\">\n  <div *ngIf=\"status != 'noConnection'\" class=\"bmb_loader-loading\">\n    <bmb-icon icon=\"progress_activity\"></bmb-icon>\n  </div>\n  <div *ngIf=\"status === 'noConnection'\" class=\"bmb_loader-connection\">\n    <bmb-icon icon=\"wifi_off\"></bmb-icon>\n  </div>\n</div>\n"
+        },
+        {
             "name": "BmbLogoComponent",
             "id": "component-BmbLogoComponent-204e434183aff1f6d4a8e860762d868cd2cfd515bec3c8f8a741cf9f3781ae18f6b7a994fc79dc97b759ae3d2e8067a03287b1929ee674dd40e88c881d95b601",
             "file": "projects/ds-ng/src/lib/components/bmb-logo/bmb-logo.component.ts",
@@ -3448,6 +3500,26 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/ds-ng/src/lib/components/bmb-fab/bmb-fab.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -3489,6 +3561,16 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "projects/ds-ng/src/lib/components/bmb-interactive-icon/bmb-interactive-icon.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.component.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
@@ -3656,6 +3738,28 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
+                "rawtype": "StoryObj<BmbDividerComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<BmbDotPaginatorComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
                 "rawtype": "StoryObj<BmbFabComponent>",
                 "file": "projects/ds-ng/src/lib/components/bmb-fab/bmb-fab.stories.ts",
                 "deprecated": false,
@@ -3702,6 +3806,17 @@
                 "subtype": "typealias",
                 "rawtype": "StoryObj<BmbInteractiveIconComponent>",
                 "file": "projects/ds-ng/src/lib/components/bmb-interactive-icon/bmb-interactive-icon.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<BmbLoaderComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.component.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -3790,6 +3905,30 @@
                     "defaultValue": "{}"
                 }
             ],
+            "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                }
+            ],
             "projects/ds-ng/src/lib/components/bmb-fab/bmb-fab.stories.ts": [
                 {
                     "name": "Default",
@@ -3844,6 +3983,18 @@
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/ds-ng/src/lib/components/bmb-interactive-icon/bmb-interactive-icon.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.component.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.component.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
@@ -4027,6 +4178,32 @@
                     "kind": 183
                 }
             ],
+            "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbDividerComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbDotPaginatorComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
             "projects/ds-ng/src/lib/components/bmb-fab/bmb-fab.stories.ts": [
                 {
                     "name": "Story",
@@ -4086,6 +4263,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<BmbInteractiveIconComponent>",
                     "file": "projects/ds-ng/src/lib/components/bmb-interactive-icon/bmb-interactive-icon.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.component.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbLoaderComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.component.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -4198,7 +4388,17 @@
                 "linktype": "component",
                 "name": "BmbDividerComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/6",
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
@@ -4207,25 +4407,35 @@
                 "linktype": "component",
                 "name": "BmbDotPaginatorComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/7",
+                "coverageCount": "0/9",
                 "status": "low"
             },
             {
-                "filePath": "projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.interface.ts",
-                "type": "interface",
-                "linktype": "interface",
-                "name": "Props",
-                "coveragePercent": 0,
-                "coverageCount": "0/5",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.interface.ts",
+                "filePath": "projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.component.ts",
                 "type": "interface",
                 "linktype": "interface",
                 "name": "Target",
                 "coveragePercent": 0,
                 "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.stories.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "Target",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
@@ -4330,6 +4540,25 @@
                 "name": "Default",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbLoaderComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
                 "status": "low"
             },
             {
