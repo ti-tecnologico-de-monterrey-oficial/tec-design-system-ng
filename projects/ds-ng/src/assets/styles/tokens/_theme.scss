@@ -10,6 +10,11 @@
 
       &-title {
         color: RGBA(var(--color-white-primary));
+        ~ div {
+          p {
+            color: RGBA(var(--color-white-primary));
+          }
+        }
       }
 
       .docs-story {
@@ -102,9 +107,13 @@
           border: rem_calc(1) solid RGBA(var(--color-charade-300));
         }
 
-        &-secondary-container,
-        &-button-container {
+        &-secondary-container {
           border-color: RGBA(var(--color-charade-200));
+        }
+
+        &-button-container {
+          background-color: RGBA(var(--color-charade-50));
+          border-color: RGBA(var(--color-charade-500));
         }
       }
 
@@ -131,6 +140,12 @@
         &-link,
         &-title {
           color: RGBA(var(--color-charade-950));
+        }
+      }
+
+      &_loader {
+        bmb-icon {
+          color: RGBA(var(--color-mariner-950));
         }
       }
     }
