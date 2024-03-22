@@ -1,61 +1,9 @@
 @use "../../../assets/styles/base/rem" as rem;
 
 .bmb_divider {
-  border: rem.rem_calc(1) solid RGBA(var(--color-charade-50));
+  border: rem.rem_calc(1) solid RGBA(var(--color-charade-500));
   margin: rem.rem_calc(16 0);
   width: 100%;
-
-  &-2 {
-    border-width: rem.rem_calc(2);
-  }
-
-  &-3 {
-    border-width: rem.rem_calc(3);
-  }
-
-  &-4 {
-    border-width: rem.rem_calc(4);
-  }
-
-  &-5 {
-    border-width: rem.rem_calc(5);
-  }
-
-  &-white {
-    border-color: RGBA(var(--color-white-primary));
-  }
-
-  &-primary {
-    border-color: RGBA(var(--color-mariner-500));
-  }
-
-  &-light {
-    border-color: RGBA(var(--color-charade-200));
-  }
-
-  &-secondary {
-    border-color: RGBA(var(--color-charade-300));
-  }
-
-  &-success {
-    border-color: RGBA(var(--color-green-tint));
-  }
-
-  &-info {
-    border-color: RGBA(var(--color-purple-primary));
-  }
-
-  &-warning {
-    border-color: RGBA(var(--color-yellow-primary));
-  }
-
-  &-danger {
-    border-color: RGBA(var(--color-red-primary));
-  }
-
-  &-dark {
-    border-color: RGBA(var(--color-charade-950));
-  }
 
   &-dotted {
     border-style: dotted;

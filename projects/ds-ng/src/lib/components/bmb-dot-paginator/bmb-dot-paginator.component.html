@@ -1,7 +1,7 @@
-<ol class="bmb_dot_paginator">
+<ol [ngClass]="getClasses()">
   <li
     *ngFor="let i of getDotsArray()"
-    [attr.data-bs-target]="targets ? targets[i].target : '' || ''"
+    [attr.data-bs-target]="targets && targets[i] ? targets[i].target : ''"
     [attr.data-bs-slide-to]="i"
     [ngClass]="{ dot: true, active: activeDotIndex === i }"
     (click)="onDotClicked(i)"

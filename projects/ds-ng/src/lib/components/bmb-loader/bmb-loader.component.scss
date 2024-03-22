@@ -1,0 +1,44 @@
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/rem" as rem;
+
+.bmb_loader {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+
+  bmb-icon {
+    color: RGBA(var(--color-charade-50));
+  }
+
+  &-loading {
+    align-items: center;
+    display: flex;
+    height: rem.rem_calc(128);
+    width: rem.rem_calc(128);
+
+    bmb-icon {
+      animation: rotateAnimation 1s linear infinite;
+      font-size: rem.rem_calc(128);
+    }
+  }
+
+  &-connection {
+    align-items: center;
+    display: flex;
+    height: rem.rem_calc(280);
+    width: rem.rem_calc(280);
+
+    bmb-icon {
+      font-size: rem.rem_calc(280);
+    }
+  }
+}
+
+@keyframes rotateAnimation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

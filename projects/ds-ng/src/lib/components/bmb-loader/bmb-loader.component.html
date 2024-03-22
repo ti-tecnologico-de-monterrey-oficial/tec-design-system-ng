@@ -1,0 +1,8 @@
+<div class="bmb_loader">
+  <div *ngIf="status != 'noConnection'" class="bmb_loader-loading">
+    <bmb-icon icon="progress_activity"></bmb-icon>
+  </div>
+  <div *ngIf="status === 'noConnection'" class="bmb_loader-connection">
+    <bmb-icon icon="wifi_off"></bmb-icon>
+  </div>
+</div>
