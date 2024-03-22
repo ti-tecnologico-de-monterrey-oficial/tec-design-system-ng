@@ -2,34 +2,51 @@
 
 .bmb_dot_paginator {
   align-items: center;
-  background-color: RGBA(var(--color-charade-200));
-  border-radius: rem.rem_calc(40);
   display: flex;
   justify-content: center;
   list-style-type: none;
-  margin: 0;
+  margin: rem.rem_calc(8) auto;
   overflow: hidden;
-  padding: rem.rem_calc(12);
+  padding: 0;
   position: relative;
   width: fit-content;
 
+  ::marker {
+    display: none;
+  }
+
   .dot {
-    background-color: RGBA(var(--color-white-primary));
+    background-color: RGBA(var(--color-charade-500));
     border-radius: 100%;
     cursor: pointer;
-    height: rem.rem_calc(6);
-    margin: 0 rem.rem_calc(8);
-    position: relative;
-    width: rem.rem_calc(6);
+    height: rem.rem_calc(8);
+    margin: 0 rem.rem_calc(4);
+    width: rem.rem_calc(8);
 
     &.active {
-      background-color: RGBA(var(--color-mariner-500));
-      border-radius: rem.rem_calc(30);
-      width: rem.rem_calc(16);
+      background-color: RGBA(var(--color-neon-primary));
+      border-radius: 100%;
+      box-shadow: rem.rem_calc(0 0 4 0) RGBA(var(--color-neon-primary));
+      height: rem.rem_calc(12);
+      width: rem.rem_calc(12);
     }
+  }
 
-    ::marker {
-      display: none;
+  &-secondary {
+    background-color: RGBA(var(--color-charade-500));
+    border-radius: rem.rem_calc(40);
+    padding: rem.rem_calc(12);
+
+    .dot {
+      background-color: RGBA(var(--color-white-primary));
+      height: rem.rem_calc(6);
+      width: rem.rem_calc(6);
+
+      &.active {
+        border-radius: rem.rem_calc(30);
+        height: rem.rem_calc(6);
+        width: rem.rem_calc(16);
+      }
     }
   }
 }

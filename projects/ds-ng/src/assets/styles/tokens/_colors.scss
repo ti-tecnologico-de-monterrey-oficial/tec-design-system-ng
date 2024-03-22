@@ -1,6 +1,5 @@
 :root {
-  // To use colors you should use it in this way
-  // background-color: RGBA(var(--color-mariner-900));
+  // To use colors you should use it in this way background-color: RGBA(var(--color-mariner-900));
 
   // Mariner
   --color-mariner-50: 240, 248, 254;
@@ -99,8 +98,7 @@
 
   //GRADIENTS
   // To use this gradient you should use it in this way
-  // background-color: linear-gradient(180deg, var(--color-gradient-blue)); or
-  // background-color: radial-gradient(circle, var(--color-gradient-blue));
+  // background-color: linear-gradient(180deg, var(--color-gradient-blue)); or background-color: radial-gradient(circle, var(--color-gradient-blue));
   --color-button-gradient: RGBA(var(--color-teal-primary)) 0%,
     RGBA(var(--color-blue-primary)) 100%;
   --color-blue-gradient: RGBA(var(--color-teal-primary)) 0%,
@@ -122,8 +120,7 @@
   --color-bg-wheel-tec: RGBA(var(--color-container-home-tec)) 0%,
     RGBA(var(--color-blue-tec)) 100%;
 
-  // To use shadow you should use it in this way
-  // box-shadow: var(--shadow-sm);
+  // To use shadow you should use it in this way  box-shadow: var(--shadow-sm);
   --shadow-sm: 1px 1px 2px 0 RGBA(var(--color-black-primary), 0.2);
   --shadow-lg: 4px 4px 4px 0 RGBA(var(--color-black-primary), 0.2);
   --shadow-xl: 8px 8px 8px 0 RGBA(var(--color-black-primary), 0.2);
