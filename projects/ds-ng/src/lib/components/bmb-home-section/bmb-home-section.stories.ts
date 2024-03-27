@@ -46,6 +46,7 @@ Below is an example of how you can use this component in HTML:
       },
       description: 'The title of the home section.',
       table: {
+        category: 'Properties',
         type: { summary: 'string' },
       },
     },
@@ -55,6 +56,7 @@ Below is an example of how you can use this component in HTML:
       description:
         'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons.',
       table: {
+        category: 'Properties',
         type: { summary: 'string' },
       },
     },
@@ -65,6 +67,7 @@ Below is an example of how you can use this component in HTML:
       },
       description: 'The link for redirection to another page.',
       table: {
+        category: 'Events',
         type: { summary: 'string' },
       },
     },
@@ -77,6 +80,7 @@ Below is an example of how you can use this component in HTML:
       description:
         'The target attribute for the link. Refer to https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a for more information.',
       table: {
+        category: 'Events',
         type: { summary: 'string' },
       },
     },

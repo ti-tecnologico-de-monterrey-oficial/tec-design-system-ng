@@ -35,6 +35,7 @@ Below is an example of how you can use this component in HTML:
       description:
         'The text of the badge. The width will increase depending on the length of the text.',
       table: {
+        category: 'Properties',
         type: { summary: 'string' },
       },
     },
@@ -44,6 +45,7 @@ Below is an example of how you can use this component in HTML:
       description:
         'When set to true, it groups multiple badges into a parent element. By default, it is false, and you do not need to explicitly set it. The badge should always have a parent element.',
       table: {
+        category: 'Properties',
         defaultValue: { summary: 'false' },
         type: { summary: 'boolean' },
       },
@@ -63,6 +65,8 @@ Below is an example of how you can use this component in HTML:
         'brand',
       ],
       table: {
+        category: 'Properties',
+        defaultValue: { summary: 'normal' },
         type: { summary: 'string' },
       },
       description: 'The appearance of the badge, affecting its visual style.',

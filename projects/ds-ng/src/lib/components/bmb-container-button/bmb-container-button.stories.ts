@@ -41,6 +41,7 @@ Below is an example of how you can use this component in HTML:
       },
       description: 'The title of the button container.',
       table: {
+        category: 'Properties',
         type: { summary: 'string' },
       },
     },
@@ -51,6 +52,7 @@ Below is an example of how you can use this component in HTML:
       },
       description: 'The subtitle of the button container.',
       table: {
+        category: 'Properties',
         defaultValue: { summary: 'optional' },
         type: { summary: 'string' },
       },
@@ -62,6 +64,7 @@ Below is an example of how you can use this component in HTML:
       },
       description: 'The link for redirection to another page.',
       table: {
+        category: 'Events',
         type: { summary: 'string' },
       },
     },
@@ -74,17 +77,20 @@ Below is an example of how you can use this component in HTML:
       description:
         'The target attribute for the link. Refer to https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a for more information.',
       table: {
+        category: 'Events',
         type: { summary: 'string' },
       },
     },
     iconLeft: {
       name: 'Icon Left',
       control: {
+        category: 'Properties',
         type: 'text',
       },
       description:
-        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons. Do not use the score attribute if you want to use an icon Left.',
+        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons. Do not use the score property if you want to the iconLeft.',
       table: {
+        category: 'Properties',
         type: { summary: 'string' },
       },
     },
@@ -94,6 +100,7 @@ Below is an example of how you can use this component in HTML:
       description:
         'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons.',
       table: {
+        category: 'Properties',
         type: { summary: 'string' },
       },
     },
@@ -103,8 +110,9 @@ Below is an example of how you can use this component in HTML:
         type: 'text',
       },
       description:
-        'The score number of the button container. Do not use the iconLeft attribute if you want to use score.',
+        'The score number of the button container. Do not use the iconLeft property if you want to use score.',
       table: {
+        category: 'Properties',
         type: { summary: 'string' },
       },
     },
@@ -112,8 +120,9 @@ Below is an example of how you can use this component in HTML:
       name: 'Square',
       control: { type: 'boolean' },
       description:
-        'When set to true, the container button will change the appearance. Please not use grade if you are using square and iconLeft',
+        'When set to true, the container button will change the appearance. Please not use grade property if you are using square and iconLeft properties.',
       table: {
+        category: 'Properties',
         defaultValue: { summary: 'false' },
         type: { summary: 'boolean' },
       },
