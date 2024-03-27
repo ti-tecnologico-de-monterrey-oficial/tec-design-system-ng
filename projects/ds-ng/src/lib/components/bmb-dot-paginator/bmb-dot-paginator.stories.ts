@@ -61,6 +61,7 @@ Below is an example of how you can use this component in HTML:
       description:
         'The style of the dot paginator. Is not neccesary to add the "primary" style.',
       table: {
+        category: 'Properties',
         defaultValue: { summary: 'primary' },
         type: { summary: 'string' },
       },
@@ -70,6 +71,7 @@ Below is an example of how you can use this component in HTML:
       control: 'number',
       description: 'Index of the active dot.',
       table: {
+        category: 'Properties',
         defaultValue: { summary: 0 },
         type: { summary: 'number' },
       },
@@ -79,6 +81,7 @@ Below is an example of how you can use this component in HTML:
       control: 'number',
       description: 'Total number of dots.',
       table: {
+        category: 'Properties',
         defaultValue: { summary: 5 },
         type: { summary: 'number' },
       },
@@ -88,6 +91,7 @@ Below is an example of how you can use this component in HTML:
       control: 'object',
       description: 'Target objects for each dot.',
       table: {
+        category: 'Properties',
         defaultValue: { summary: 'optional' },
         type: { summary: 'Target[]' },
       },
@@ -100,6 +104,7 @@ Below is an example of how you can use this component in HTML:
       description:
         'This handler can be used to perform a specific interaction with each dot.',
       table: {
+        category: 'Events',
         type: { summary: '(onDotPress)="yourFunction($event)"' },
       },
     },

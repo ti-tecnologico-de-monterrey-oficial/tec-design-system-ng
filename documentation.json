@@ -96,7 +96,7 @@
         },
         {
             "name": "ThemeService",
-            "id": "injectable-ThemeService-065809e5b4ac0a12c49ab1b7600a3fb963b3e3d54ca255334f76214c970b041263ba8d5a5f68035dd80f09c3b83e8fc9065e3ce25745eb5ff4fcf8ce1f01249e",
+            "id": "injectable-ThemeService-205f0af65a1152b4fa883c5e9b04ef9668652d50d15d6a8263b40ee49b87ba2b8985fbe3a2ad3879798e5eea82c90c5cb2bc98d1f10bbafbf960f4e6f77d0da6",
             "file": "projects/ds-ng/src/lib/services/theme.service.ts",
             "properties": [
                 {
@@ -111,7 +111,7 @@
                 },
                 {
                     "name": "themeSubject",
-                    "defaultValue": "new BehaviorSubject<string>('dark')",
+                    "defaultValue": "new BehaviorSubject<string>('light')",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -157,7 +157,7 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { Injectable } from '@angular/core';\nimport { BehaviorSubject } from 'rxjs';\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class ThemeService {\n  private themeSubject = new BehaviorSubject<string>('dark');\n  theme$ = this.themeSubject.asObservable();\n\n  setTheme(theme: string): void {\n    this.themeSubject.next(theme);\n  }\n}\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\nimport { BehaviorSubject } from 'rxjs';\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class ThemeService {\n  private themeSubject = new BehaviorSubject<string>('light');\n  theme$ = this.themeSubject.asObservable();\n\n  setTheme(theme: string): void {\n    this.themeSubject.next(theme);\n  }\n}\n",
             "extends": [],
             "type": "injectable"
         },
@@ -2433,7 +2433,7 @@
         },
         {
             "name": "BmbLoaderComponent",
-            "id": "component-BmbLoaderComponent-a993bbbdc4f2df2fff6161e4fe2d12431528f8a1e1ecc74760f8c662b0fc35c617445e1dbaef398d2d68c5a1add1f566948133e8e667724d45d6ce29056e5a12",
+            "id": "component-BmbLoaderComponent-25141454164239336207d10f7082cdf6795bf3e299a1889300c2dff5a2ce1cbe8f187d50baaf053fffb8b0cc07e050d7c5d87f53c1233f616d9495a83582316f",
             "file": "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -2462,6 +2462,24 @@
                     "line": 20,
                     "type": "string",
                     "decorators": []
+                },
+                {
+                    "name": "subtitle",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 22,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "title",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 21,
+                    "type": "string",
+                    "decorators": []
                 }
             ],
             "outputsClass": [],
@@ -2485,17 +2503,17 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\n\n@Component({\n  selector: 'bmb-loader',\n  styleUrls: ['./bmb-loader.component.scss'],\n  templateUrl: './bmb-loader.component.html',\n  standalone: true,\n  imports: [CommonModule, BmbIconComponent],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbLoaderComponent {\n  @Input() status: string = '';\n}\n",
+            "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\n\n@Component({\n  selector: 'bmb-loader',\n  styleUrls: ['./bmb-loader.component.scss'],\n  templateUrl: './bmb-loader.component.html',\n  standalone: true,\n  imports: [CommonModule, BmbIconComponent],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbLoaderComponent {\n  @Input() status: string = '';\n  @Input() title: string = '';\n  @Input() subtitle: string = '';\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@use \"../../../assets/styles/base/fonts\" as fonts;\n@use \"../../../assets/styles/base/rem\" as rem;\n\n.bmb_loader {\n  align-items: center;\n  display: flex;\n  justify-content: center;\n\n  bmb-icon {\n    color: RGBA(var(--color-charade-50));\n  }\n\n  &-loading {\n    align-items: center;\n    display: flex;\n    height: rem.rem_calc(128);\n    width: rem.rem_calc(128);\n\n    bmb-icon {\n      animation: rotateAnimation 1s linear infinite;\n      font-size: rem.rem_calc(128);\n    }\n  }\n\n  &-connection {\n    align-items: center;\n    display: flex;\n    height: rem.rem_calc(280);\n    width: rem.rem_calc(280);\n\n    bmb-icon {\n      font-size: rem.rem_calc(280);\n    }\n  }\n}\n\n@keyframes rotateAnimation {\n  from {\n    transform: rotate(0deg);\n  }\n  to {\n    transform: rotate(360deg);\n  }\n}\n",
+                    "data": "@use \"../../../assets/styles/base/fonts\" as fonts;\n@use \"../../../assets/styles/base/rem\" as rem;\n\n.bmb_loader {\n  align-items: center;\n  display: flex;\n  flex-flow: column nowrap;\n  justify-content: center;\n\n  bmb-icon {\n    color: RGBA(var(--color-charade-50));\n  }\n\n  &-loading {\n    align-items: center;\n    display: flex;\n    height: rem.rem_calc(128);\n    width: rem.rem_calc(128);\n\n    bmb-icon {\n      animation: rotateAnimation 1s linear infinite;\n      font-size: rem.rem_calc(128);\n    }\n  }\n\n  &-connection {\n    align-items: center;\n    display: flex;\n    height: rem.rem_calc(280);\n    width: rem.rem_calc(280);\n\n    bmb-icon {\n      font-size: rem.rem_calc(280);\n    }\n  }\n\n  &-title {\n    @include fonts.font(9, semibold);\n    color: RGBA(var(--color-charade-50));\n    margin: rem.rem_calc(16 0 12);\n  }\n\n  &-subtitle {\n    @include fonts.font(5, medium);\n    color: RGBA(var(--color-charade-50));\n    margin: 0;\n  }\n}\n\n@keyframes rotateAnimation {\n  from {\n    transform: rotate(0deg);\n  }\n  to {\n    transform: rotate(360deg);\n  }\n}\n",
                     "styleUrl": "./bmb-loader.component.scss"
                 }
             ],
             "stylesData": "",
             "extends": [],
-            "templateData": "<div class=\"bmb_loader\">\n  <div *ngIf=\"status != 'noConnection'\" class=\"bmb_loader-loading\">\n    <bmb-icon icon=\"progress_activity\"></bmb-icon>\n  </div>\n  <div *ngIf=\"status === 'noConnection'\" class=\"bmb_loader-connection\">\n    <bmb-icon icon=\"wifi_off\"></bmb-icon>\n  </div>\n</div>\n"
+            "templateData": "<div class=\"bmb_loader\">\n  <div *ngIf=\"status != 'noConnection'\" class=\"bmb_loader-loading\">\n    <bmb-icon icon=\"progress_activity\"></bmb-icon>\n  </div>\n  <div *ngIf=\"status === 'noConnection'\" class=\"bmb_loader-connection\">\n    <bmb-icon icon=\"wifi_off\"></bmb-icon>\n  </div>\n  <div *ngIf=\"title\" class=\"bmb_loader-title\">{{ title }}</div>\n  <div *ngIf=\"subtitle\" class=\"bmb_loader-subtitle\">{{ subtitle }}</div>\n</div>\n"
         },
         {
             "name": "BmbLogoComponent",
@@ -3550,6 +3568,16 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/ds-ng/src/lib/components/bmb-input/bmb-input.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -3793,6 +3821,17 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
+                "rawtype": "StoryObj<BmbIconComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
                 "rawtype": "StoryObj<BmbInputComponent>",
                 "file": "projects/ds-ng/src/lib/components/bmb-input/bmb-input.stories.ts",
                 "deprecated": false,
@@ -3959,6 +3998,18 @@
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/ds-ng/src/lib/components/bmb-home-section/bmb-home-section.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.component.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.component.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
@@ -4243,6 +4294,19 @@
                     "kind": 183
                 }
             ],
+            "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.component.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbIconComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
             "projects/ds-ng/src/lib/components/bmb-input/bmb-input.stories.ts": [
                 {
                     "name": "Story",
@@ -4496,6 +4560,16 @@
                 "status": "low"
             },
             {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -4558,7 +4632,7 @@
                 "linktype": "component",
                 "name": "BmbLoaderComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/2",
+                "coverageCount": "0/4",
                 "status": "low"
             },
             {

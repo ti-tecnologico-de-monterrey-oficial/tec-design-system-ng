@@ -40,6 +40,7 @@ Below is an example of how you can use this component in HTML:
       },
       description: 'The title of the interactive icon.',
       table: {
+        category: 'Properties',
         type: { summary: 'string' },
       },
     },
@@ -50,6 +51,7 @@ Below is an example of how you can use this component in HTML:
       },
       description: 'The description of the interactive icon.',
       table: {
+        category: 'Properties',
         type: { summary: 'string' },
       },
     },
@@ -59,6 +61,7 @@ Below is an example of how you can use this component in HTML:
       description:
         'When set to true, it groups multiple interactive icons into a parent element. By default, it is false, and you do not need to explicitly set it. The badge should always have a parent element.',
       table: {
+        category: 'Properties',
         defaultValue: { summary: 'false' },
         type: { summary: 'boolean' },
       },
@@ -67,8 +70,9 @@ Below is an example of how you can use this component in HTML:
       name: 'Icon',
       control: { type: 'text' },
       description:
-        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons. Do not use the image attribute if you want to use an icon.',
+        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons. Do not use the image property if you want to use an icon.',
       table: {
+        category: 'Properties',
         type: { summary: 'string' },
       },
     },
@@ -81,6 +85,8 @@ Below is an example of how you can use this component in HTML:
       description:
         'The appearance of the interactive icon, affecting its visual style.',
       table: {
+        category: 'Properties',
+        defaultValue: { summary: 'red' },
         type: { summary: 'string' },
       },
     },
@@ -91,6 +97,7 @@ Below is an example of how you can use this component in HTML:
       },
       description: 'The link for redirection to another page.',
       table: {
+        category: 'Events',
         type: { summary: 'string' },
       },
     },
@@ -101,8 +108,9 @@ Below is an example of how you can use this component in HTML:
       },
       options: ['_blank', '_self', '_parent', '_top'],
       description:
-        'The target attribute for the link. Refer to https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a for more information.',
+        'The target property for the link. Refer to https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a for more information.',
       table: {
+        category: 'Events',
         type: { summary: 'string' },
       },
     },
@@ -112,6 +120,7 @@ Below is an example of how you can use this component in HTML:
       description:
         'This property is effective when you want to include a description with a horizontal orientation.',
       table: {
+        category: 'Properties',
         defaultValue: { summary: 'false' },
         type: { summary: 'boolean' },
       },

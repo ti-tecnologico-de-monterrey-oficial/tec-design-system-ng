@@ -5,4 +5,6 @@
   <div *ngIf="status === 'noConnection'" class="bmb_loader-connection">
     <bmb-icon icon="wifi_off"></bmb-icon>
   </div>
+  <div *ngIf="title" class="bmb_loader-title">{{ title }}</div>
+  <div *ngIf="subtitle" class="bmb_loader-subtitle">{{ subtitle }}</div>
 </div>
