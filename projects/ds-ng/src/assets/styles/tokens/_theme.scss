@@ -1,4 +1,5 @@
-[data-theme="dark"] {
+[data-theme="dark"],
+.storybook-dark-theme {
   body {
     .sbdocs {
       &-wrapper {
@@ -25,7 +26,8 @@
   }
 }
 
-[data-theme="light"] {
+[data-theme="light"],
+.storybook-light-theme {
   body {
     background-color: RGBA(var(--color-charade-200));
 
