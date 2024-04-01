@@ -9,7 +9,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 
 @Component({
   selector: 'bmb-loader',
-  styleUrls: ['./bmb-loader.component.scss'],
+  styleUrl: './bmb-loader.component.scss',
   templateUrl: './bmb-loader.component.html',
   standalone: true,
   imports: [CommonModule, BmbIconComponent],
@@ -18,4 +18,6 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 })
 export class BmbLoaderComponent {
   @Input() status: string = '';
+  @Input() title: string = '';
+  @Input() subtitle: string = '';
 }
