@@ -36,6 +36,7 @@ Below is an example of how you can use this component in HTML:
       description:
         'The type of the divider, affecting its visual view. Is not neccesary to add the "simple" style.',
       table: {
+        category: 'Properties',
         defaultValue: { summary: 'simple' },
         type: { summary: 'string' },
       },

@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { BmbUserImageComponent } from './bmb-user-image.component';
+import { BmbLogoComponent } from './bmb-logo.component';
 
 export default {
-  title: 'User Image',
-  component: BmbUserImageComponent,
+  title: 'Logo',
+  component: BmbLogoComponent,
   parameters: {
     docs: {
       description: {
@@ -11,11 +11,11 @@ export default {
 Below is an example of how you can use this component in TypeScript:
 
 \`\`\`typescript
-import { BmbUserImageComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
+import { BmbLogoComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
 @Component({
   selector: 'component',
   standalone: true,
-  imports: [ BmbUserImageComponent ],
+  imports: [ BmbLogoComponent ],
   templateUrl: './component.html',
   styleUrl: './component.scss',
 })
@@ -56,14 +56,7 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'radio',
       },
-      options: [
-        'desktop-small',
-        'desktop-large',
-        'mobile-small',
-        'mobile-medium',
-        'mobile-large',
-        'mobile-xlarge',
-      ],
+      options: ['small', 'medium', 'large'],
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -99,12 +92,12 @@ Below is an example of how you can use this component in HTML:
     image:
       'https://i0.wp.com/gershenson.mx/wp-content/uploads/2020/08/logo-tec-de-monterrey-e1484853084274.png?ssl=1',
     altImage: 'Alt image description',
-    size: 'desktop-small',
+    size: 'small',
     target: '_blank',
     link: 'https://www.youtube.com/',
   },
-} as Meta<typeof BmbUserImageComponent>;
+} as Meta<typeof BmbLogoComponent>;
 
-type Story = StoryObj<BmbUserImageComponent>;
+type Story = StoryObj<BmbLogoComponent>;
 
 export const Default: Story = {};

@@ -49,6 +49,7 @@ Below is an example of how you can use this component in HTML:
       },
       description: 'The text of the header.',
       table: {
+        category: 'Properties',
         type: { summary: 'string' },
       },
     },
@@ -56,8 +57,9 @@ Below is an example of how you can use this component in HTML:
       name: 'Icon Left',
       control: { type: 'text' },
       description:
-        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons. Do not use the logo attribute if you want to use an iconLeft.',
+        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons. Do not use the logo property if you want to use an iconLeft.',
       table: {
+        category: 'Properties',
         type: { summary: 'string' },
       },
     },
@@ -65,8 +67,9 @@ Below is an example of how you can use this component in HTML:
       name: 'Icon Right',
       control: { type: 'text' },
       description:
-        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons. Do not use the image attribute if you want to use an iconRight.',
+        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons. Do not use the image property if you want to use an iconRight.',
       table: {
+        category: 'Properties',
         type: { summary: 'string' },
       },
     },
@@ -74,8 +77,9 @@ Below is an example of how you can use this component in HTML:
       name: 'Icon Right 2',
       control: { type: 'text' },
       description:
-        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons. Do not use the image attribute if you want to use an iconRight2',
+        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons. Do not use the image property if you want to use an iconRight2',
       table: {
+        category: 'Properties',
         type: { summary: 'string' },
       },
     },
@@ -87,6 +91,7 @@ Below is an example of how you can use this component in HTML:
       description:
         'The source of the image to display, either from your application or a URL.',
       table: {
+        category: 'Properties',
         type: { summary: 'string' },
       },
     },
@@ -98,6 +103,7 @@ Below is an example of how you can use this component in HTML:
       description:
         'The alternative text for the image. Refer to https://www.w3.org/WAI/alt/ for more information.',
       table: {
+        category: 'Properties',
         type: { summary: 'string' },
       },
     },
@@ -108,6 +114,7 @@ Below is an example of how you can use this component in HTML:
       },
       description: 'The link for redirection to another page for user image.',
       table: {
+        category: 'Events',
         type: { summary: 'string' },
       },
     },
@@ -120,6 +127,7 @@ Below is an example of how you can use this component in HTML:
       description:
         'The target attribute for the link. Refer to https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a for more information.',
       table: {
+        category: 'Events',
         type: { summary: 'string' },
       },
     },
@@ -129,8 +137,9 @@ Below is an example of how you can use this component in HTML:
         type: 'text',
       },
       description:
-        'The source of the logo image to display, either from your application or a URL. Do not use the iconLeft attribute if you want to use a logo.',
+        'The source of the logo image to display, either from your application or a URL. Do not use the iconLeft property if you want to use a logo.',
       table: {
+        category: 'Properties',
         type: { summary: 'string' },
       },
     },
@@ -142,6 +151,7 @@ Below is an example of how you can use this component in HTML:
       description:
         'The alternative text for the logo image. Refer to https://www.w3.org/WAI/alt/ for more information.',
       table: {
+        category: 'Properties',
         type: { summary: 'string' },
       },
     },
@@ -152,6 +162,7 @@ Below is an example of how you can use this component in HTML:
       },
       description: 'The link for redirection to another page for logo.',
       table: {
+        category: 'Events',
         type: { summary: 'string' },
       },
     },
@@ -164,6 +175,7 @@ Below is an example of how you can use this component in HTML:
       description:
         'The target attribute for the link. Refer to https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a for more information.',
       table: {
+        category: 'Events',
         type: { summary: 'string' },
       },
     },
@@ -175,6 +187,7 @@ Below is an example of how you can use this component in HTML:
       description:
         'This handler can be used when you have the left icon available and want to perform a specific interaction.',
       table: {
+        category: 'Events',
         type: { summary: '(onIconLeftClick)="yourFunction()"' },
       },
     },
@@ -186,6 +199,7 @@ Below is an example of how you can use this component in HTML:
       description:
         'This handler can be used when you have the right icon available and want to perform a specific interaction.',
       table: {
+        category: 'Events',
         type: { summary: '(onIconRightClick)="yourFunction()"' },
       },
     },
@@ -197,6 +211,7 @@ Below is an example of how you can use this component in HTML:
       description:
         'This handler can be used when you have the right icon 2 available and want to perform a specific interaction.',
       table: {
+        category: 'Events',
         type: { summary: '(onIconRight2Click)="yourFunction()"' },
       },
     },
