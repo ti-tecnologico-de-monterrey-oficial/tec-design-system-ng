@@ -1,10 +1,10 @@
 <div class="bmb__field">
   <div class="bmb__field--container-label"  *ngIf="label">
     <label for="" class="bmb__field--label">{{ label }}</label>
+    <span *ngIf="isRequired" class="bmb__field--label-required"> *</span>
   </div>
   <div
     class="bmb__field--wrapper"
-    [ngClass]="[!isValid ? 'bmb__field--error' : '']"
     (click)="onParentClick()"
     #inputWrapper
   >
@@ -15,6 +15,7 @@
       type="text"
       class="bmb__field--input"
       [ngClass]="this.style"
+      [ngClass]="[!isValid ? 'bmb__field--error' : '']"
       (ngModelChange)="setValue(input.viewModel)"
       (click)="onClick()"
       (focus)="onFocus()"
@@ -27,7 +28,10 @@
       #input="ngModel"
     />
   </div>
-  <p *ngIf="errorMessage && !isValid" class="bmb__field--helper">
-    {{ errorMessage }}
+  <p 
+    class="bmb__field--helper"
+    [ngClass]="[!inputModel ? 'bmb__field--error' : '']"
+    >
+      {{ errorMessage }}
   </p>
 </div>
