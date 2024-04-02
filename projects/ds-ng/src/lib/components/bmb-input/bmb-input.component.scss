@@ -10,6 +10,10 @@
   &--label {
     @include fonts.font(3, regular);
     color: RGBA(var(--color-white-primary));
+
+    &-required{
+      color: RGBA(var(--color-red-light));
+    }
   }
 
   &--wrapper {
@@ -22,6 +26,7 @@
   }
 
   &--error {
+    color: red !important;
   }
 
   &--icon {
