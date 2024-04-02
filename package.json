@@ -15,7 +15,7 @@
     "version": "auto-changelog -p && git add CHANGELOG.md"
   },
   "auto-changelog": {
-    "output": "HISTORY.md",
+    "output": "CHANGELOG.md",
     "template": "keepachangelog",
     "unreleased": true,
     "commitLimit": false
