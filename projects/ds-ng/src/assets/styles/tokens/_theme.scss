@@ -1,8 +1,6 @@
 [data-theme="dark"],
 .storybook-dark-theme {
   body {
-    background-color: RGBA(var(--color-charade-950));
-
     .sbdocs {
       &-wrapper {
         background-color: transparent;
@@ -144,8 +142,21 @@
       }
 
       &_loader {
-        bmb-icon {
+        bmb-icon,
+        &-title,
+        &-subtitle {
           color: RGBA(var(--color-mariner-950));
+        }
+      }
+
+      &_switch {
+        &-text {
+          color: RGBA(var(--color-charade-950));
+        }
+        &-checked {
+          .bmb_switch-label {
+            background-color: RGBA(var(--color-green-light));
+          }
         }
       }
     }

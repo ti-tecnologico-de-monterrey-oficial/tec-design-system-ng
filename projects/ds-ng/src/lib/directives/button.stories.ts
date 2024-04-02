@@ -40,6 +40,8 @@ Below is an example of how you can use this component in HTML:
       ],
       description: 'The appearance of the button, affecting its visual style.',
       table: {
+        category: 'Properties',
+        defaultValue: { summary: 'primary' },
         type: { summary: 'string' },
       },
     },
@@ -47,8 +49,9 @@ Below is an example of how you can use this component in HTML:
       name: 'Icon',
       control: { type: 'text' },
       description:
-        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons. Do not use the image attribute if you want to use an icon.',
+        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons. Do not use the image property if you want to use an icon.',
       table: {
+        category: 'Properties',
         type: { summary: 'string' },
       },
     },
@@ -57,6 +60,8 @@ Below is an example of how you can use this component in HTML:
       control: 'radio',
       options: ['small', 'large'],
       table: {
+        category: 'Properties',
+        defaultValue: { summary: 'small' },
         type: { summary: 'string' },
       },
       description: 'The size of the button, affecting its visual size.',
@@ -66,6 +71,8 @@ Below is an example of how you can use this component in HTML:
       control: 'radio',
       options: ['left', 'right'],
       table: {
+        category: 'Properties',
+        defaultValue: { summary: 'left' },
         type: { summary: 'string' },
       },
       description: 'The position of the icon.',
@@ -74,8 +81,9 @@ Below is an example of how you can use this component in HTML:
       name: 'Case',
       control: { type: 'boolean' },
       description:
-        'This attribute places the icon at the end of the button, away from the text. Only visible when the button size is large.',
+        'This property places the icon at the end of the button, away from the text. Only visible when the button size is large.',
       table: {
+        category: 'Properties',
         defaultValue: { summary: 'false' },
         type: { summary: 'boolean' },
       },
@@ -84,6 +92,7 @@ Below is an example of how you can use this component in HTML:
       name: 'Text',
       description: 'The text content of the button.',
       table: {
+        category: 'Properties',
         type: { summary: 'string' },
       },
     },
