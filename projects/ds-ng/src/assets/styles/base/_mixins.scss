@@ -190,36 +190,14 @@
     @include focusElement();
   }
 
-  @if $type == main {
-    background-color: RGBA(var(--color-white-primary));
-    border: rem.rem_calc(1) solid RGBA(var(--color-charade-500));
-    border-radius: rem.rem_calc(8);
-    color: RGBA(var(--color-black-primary));
-    padding: rem.rem_calc(8);
-
-    &:hover {
-      border-color: RGBA(var(--color-charade-500));
-    }
-
-    &:focus {
-      border: rem.rem_calc(2) solid RGBA(var(--color-blue-primary));
-    }
-
-    &::placeholder {
-      color: RGBA(var(--color-charade-300));
-    }
-
-    &.ng-invalid {
-      border-color: RGBA(var(--color-red-primary));
-    }
-  } @else if $type == simple {
+ @if $type == simple {
     background-color: transparent;
     border: 0;
     border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-950));
-    color: RGBA(var(--color-black));
+    color: RGBA(var(--color-white-primary));
 
     &:focus {
-      border-bottom: rem.rem_calc(2) solid RGBA(var(--color-blue-primary));
+      border-bottom: rem.rem_calc(1) solid RGBA(var(--color-blue-primary));
       border-color: RGBA(var(--color-blue-primary));
       outline: none;
     }
@@ -229,7 +207,8 @@
     }
 
     &.ng-invalid {
-      border-color: RGBA(var(--color-red-primary));
+      // border-color: RGBA(var(--color-red-primary));
+      border-bottom-color: RGBA(var(--color-red-primary));
     }
   } @else if $type == normal {
     background-color: RGBA(var(--color-charade-950));
@@ -239,7 +218,7 @@
     padding: rem.rem_calc(8);
 
     &:focus {
-      border: rem.rem_calc(2) solid RGBA(var(--color-white-primary));
+      border: rem.rem_calc(1) solid RGBA(var(--color-white-primary));
       outline: none;
     }
 
@@ -248,7 +227,7 @@
     }
 
     &.ng-invalid {
-      border-color: RGBA(var(--color-red-primary));
+      border-color: RGBA(var(--color-red-primary)) !important;
     }
   }
 }

@@ -1,0 +1,19 @@
+<div class="bmb__stepper-wrapper">
+    <div 
+        class="bmb__stepper-item" 
+        *ngFor="let i of getStepsArray()"
+        [attr.data-bs-target]="targets[i]?.target || ''"
+        [attr.data-bs-slide-to]="i"
+        [ngClass]="{ 'active': activeStep === i, 'completed': activeStep > i }"
+        (click)="onStepClicked(i)"
+    >
+        <div 
+            class="bmb__step-counter"
+            [ngClass]="{ active: activeStep === i,  'completed': activeStep > i }"
+        >
+            <span *ngIf="activeStep == i || activeStep < i">{{i+1}}</span>
+            <i *ngIf="activeStep > i" class="material-icons">done</i>
+        </div>
+        <!-- <div class="step-name">First</div> -->
+    </div>
+</div>
