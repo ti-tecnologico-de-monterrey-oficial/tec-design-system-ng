@@ -1,0 +1,112 @@
+@use "../../../assets/styles/base/rem" as rem;
+@use "../../../assets/styles/base/fonts" as fonts;
+
+.bmb_switch {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  height: rem.rem_calc(32);
+  justify-content: flex-end;
+  margin: rem.rem_calc(2 0);
+  padding: 0;
+  position: relative;
+  width: fit-content;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+
+    .bmb_switch-label {
+      cursor: not-allowed;
+    }
+  }
+
+  &-checked {
+    .bmb_switch-label {
+      background-color: RGBA(var(--color-mariner-700));
+
+      &:after {
+        left: calc(100% + rem.rem_calc(-18));
+      }
+    }
+
+    .bmb_switch-right {
+      bmb-icon {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+
+    .bmb_switch-left {
+      bmb-icon {
+        visibility: hidden;
+        opacity: 0;
+      }
+    }
+  }
+
+  &-label {
+    background-color: RGBA(var(--color-charade-700));
+    border: 0;
+    border-radius: rem.rem_calc(15);
+    cursor: pointer;
+    display: block;
+    height: rem.rem_calc(20);
+    margin: rem.rem_calc(0 12);
+    position: relative;
+    transition: background-color 0.3s, left 0.3s;
+    width: rem.rem_calc(40);
+
+    &:after {
+      background-color: RGBA(var(--color-white-primary));
+      border-radius: 50%;
+      bottom: 0;
+      content: "";
+      height: rem.rem_calc(32);
+      left: rem.rem_calc(-12);
+      margin: auto;
+      position: absolute;
+      top: 0;
+      transition: 0.3s;
+      transition: left 0.3s;
+      width: rem.rem_calc(32);
+    }
+  }
+
+  &-text {
+    color: RGBA(var(--color-white-primary));
+    @include fonts.font(3, regular);
+    padding: rem.rem_calc(0 5);
+  }
+
+  &-left,
+  &-right {
+    bmb-icon {
+      align-items: center;
+      bottom: 0;
+      display: flex;
+      font-size: rem.rem_calc(20);
+      height: rem.rem_calc(20);
+      margin: 0;
+      position: absolute;
+      top: 0;
+      top: rem.rem_calc(6);
+      z-index: 1;
+      transition: all 0.3s ease;
+    }
+  }
+
+  &-left {
+    bmb-icon {
+      left: rem.rem_calc(5.5);
+    }
+  }
+
+  &-right {
+    bmb-icon {
+      visibility: hidden;
+      opacity: 0;
+      right: rem.rem_calc(4.5);
+    }
+  }
+}

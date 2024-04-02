@@ -15,9 +15,9 @@ import {
   BmbDividerComponent,
   BmbDotPaginatorComponent,
   BmbLoaderComponent,
-  BmbLegendComponent
+  BmbSwitchComponent,
+  BmbLegendComponent,
 } from '../../projects/ds-ng/src/public-api';
-import bmbLoaderComponentStories from '../../projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.component.stories';
 
 export interface Target {
   target: string;
@@ -42,7 +42,8 @@ export interface Target {
     BmbDividerComponent,
     BmbDotPaginatorComponent,
     BmbLoaderComponent,
-    BmbLegendComponent
+    BmbSwitchComponent,
+    BmbLegendComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

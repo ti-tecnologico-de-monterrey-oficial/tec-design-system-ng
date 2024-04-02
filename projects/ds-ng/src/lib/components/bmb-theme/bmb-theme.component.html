@@ -1,14 +1,6 @@
-<div class="bmb_theme">
-  <button
-    (click)="onThemeChange('dark')"
-    [class.selected]="selectedTheme === 'dark'"
-  >
-    Dark
-  </button>
-  <button
-    (click)="onThemeChange('light')"
-    [class.selected]="selectedTheme === 'light'"
-  >
-    Light
-  </button>
-</div>
+<bmb-switch
+  [isChecked]="selectedTheme === 'dark'"
+  leftIcon="light_mode"
+  rightIcon="dark_mode"
+  (change)="onThemeChange($event)"
+></bmb-switch>

@@ -25,4 +25,5 @@ export * from './lib/components/bmb-toast/bmb-toast.component';
 export * from './lib/components/bmb-theme/bmb-theme.component';
 export * from './lib/components/bmb-home-section/bmb-home-section.component';
 export * from './lib/components/bmb-loader/bmb-loader.component';
+export * from './lib/components/bmb-switch/bmb-switch.component';
 export * from './lib/components/bmb-legend/bmb-legend.component';

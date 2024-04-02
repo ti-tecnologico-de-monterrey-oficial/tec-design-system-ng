@@ -1,0 +1,28 @@
+<button
+  [ngClass]="{ bmb_switch: true, 'bmb_switch-checked': isChecked }"
+  (click)="toggleSwitch()"
+  role="switch"
+  [attr.aria-checked]="isChecked ? 'true' : 'false'"
+  [attr.id]="id"
+  [attr.aria-disabled]="disabled ? 'true' : 'false'"
+  [disabled]="disabled"
+>
+  <div class="bmb_switch-left" *ngIf="leftText || leftIcon">
+    <span *ngIf="leftText && !leftIcon" class="bmb_switch-text">{{
+      leftText
+    }}</span>
+    <bmb-icon *ngIf="leftIcon && !leftText" [icon]="leftIcon"></bmb-icon>
+  </div>
+
+  <label class="bmb_switch-label" for="bmbSwitch">
+    <span class="bmb_switch-inner"></span>
+    <span class="bmb_switch-switch"></span>
+  </label>
+
+  <div class="bmb_switch-right" *ngIf="rightText || rightIcon">
+    <span *ngIf="rightText && !rightIcon" class="bmb_switch-text">{{
+      rightText
+    }}</span>
+    <bmb-icon *ngIf="rightIcon && !rightText" [icon]="rightIcon"></bmb-icon>
+  </div>
+</button>

@@ -41,6 +41,8 @@ Below is an example of how you can use this component in HTML:
         'button-container',
       ],
       table: {
+        category: 'Properties',
+        defaultValue: { summary: 'primary-container' },
         type: { summary: 'string' },
       },
       description:
