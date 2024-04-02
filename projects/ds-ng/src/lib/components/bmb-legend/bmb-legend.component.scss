@@ -1,0 +1,59 @@
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/mixins" as mixins;
+@use "../../../assets/styles/base/rem" as rem;
+
+@mixin fontStyle {
+  @include fonts.font(3, regular);
+  color: RGBA(var(--color-charade-950));
+}
+
+$variants: ('normal': RGBA(var(--color-charade-500)), 'strong': RGBA(var(--color-mariner-700)), 'success': RGBA(var(--color-green-light)), 'info': RGBA(var(--color-purple-primary)), 'warning': RGBA(var(--color-yellow-tint)), 'error': RGBA(var(--color-red-light)), 'brand': RGBA(var(--color-neon-primary)));
+
+.bmb_legend {
+  display: grid;
+  gap: rem.rem_calc(8);
+  grid-template-areas:
+    "indicator label"
+    "indicator value";
+  grid-template-columns: rem.rem_calc(8) 1fr;
+  grid-template-rows: 1fr 1fr;
+
+  &-bullet {
+    border-radius: 50%;
+    display: inline-block;
+    height: rem.rem_calc(8);
+
+    vertical-align: middle;
+    width: rem.rem_calc(8);
+
+    @each $variant, $color in $variants {
+      &-#{$variant} {
+        background-color: $color;
+      }
+    }
+  }
+
+  &-indicator {
+    grid-area: indicator;
+  }
+
+  &-label {
+    grid-area: label;
+    @include fontStyle();
+  }
+
+  &-value {
+    grid-area: value;
+    @include fontStyle();
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_legend {
+    &-label,
+    &-value {
+      color: RGBA(var(--color-charade-50));
+    }
+  }
+}
