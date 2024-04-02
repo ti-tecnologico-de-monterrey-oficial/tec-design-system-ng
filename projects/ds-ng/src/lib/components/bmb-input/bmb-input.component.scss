@@ -2,7 +2,7 @@
 @use "../../../assets/styles/base/mixins" as mixins;
 @use "../../../assets/styles/base/rem" as rem;
 
-.bmb__field {
+.bmb_field {
   &--container-label {
     padding: rem.rem_calc(2 2 4 8);
   }
@@ -37,7 +37,7 @@
     top: 50%;
     transform: translateY(-50%);
 
-    ~ .bmb__field--input {
+    ~ .bmb_field--input {
       padding-left: rem.rem_calc(35);
     }
   }

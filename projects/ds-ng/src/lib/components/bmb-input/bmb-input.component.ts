@@ -89,8 +89,8 @@ export class BmbInputComponent
         this.value = undefined;
       }
     }, 0);
-    this.style = `bmb__field--input-${this.appearance}`;
-    this.iconColor = `bmb__field--icon-${this.appearance}`;
+    this.style = `bmb_field--input-${this.appearance}`;
+    this.iconColor = `bmb_field--icon-${this.appearance}`;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -107,7 +107,7 @@ export class BmbInputComponent
     this.inputModel = undefined;
     this.value = undefined;
     this.inputWrapper?.nativeElement
-      .querySelector('.bmb__field--input')
+      .querySelector('.bmb_field--input')
       .focus();
 
     if (this.isClearable && this.formControl) {
@@ -133,7 +133,7 @@ export class BmbInputComponent
 
   onParentClick() {
     this.inputWrapper?.nativeElement
-      .querySelector('.bmb__field--input')
+      .querySelector('.bmb_field--input')
       .focus();
   }
 

@@ -160,9 +160,9 @@
         }
       }
 
-      &__field{
+      &_field{
         &--container-label {
-          .bmb__field--label{
+          .bmb_field--label{
             color:RGBA(var(--color-charade-950));
           }
         }
