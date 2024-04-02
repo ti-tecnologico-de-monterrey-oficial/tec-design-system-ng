@@ -11,7 +11,14 @@
     "build": "ng build",
     "chromatic": "npx chromatic --project-token=chpt_f98e9dab3ebf7df",
     "build:styles": "sass projects/ds-ng/src/assets/styles/main.scss dist/ds-ng/assets/styles/main.min.css --style=compressed",
-    "build:lib": "ng build ds-ng && npm run build:styles"
+    "build:lib": "ng build ds-ng && npm run build:styles",
+    "version": "auto-changelog -p && git add CHANGELOG.md"
+  },
+  "auto-changelog": {
+    "output": "CHANGELOG.md",
+    "template": "keepachangelog",
+    "unreleased": true,
+    "commitLimit": false
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@tec-design-system"
@@ -50,6 +57,7 @@
     "@storybook/blocks": "^7.6.12",
     "@storybook/test": "^7.6.12",
     "@types/jasmine": "~5.1.0",
+    "auto-changelog": "^2.4.0",
     "chromatic": "^10.9.0",
     "copy-webpack-plugin": "^12.0.2",
     "css-loader": "^6.10.0",
