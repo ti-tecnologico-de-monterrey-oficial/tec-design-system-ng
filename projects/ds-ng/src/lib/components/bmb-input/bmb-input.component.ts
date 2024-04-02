@@ -11,6 +11,7 @@ import {
   OnChanges,
   ChangeDetectorRef,
   ViewEncapsulation,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 import {
@@ -19,8 +20,8 @@ import {
   NG_VALIDATORS,
   FormControl,
   NgModel,
+  FormsModule
 } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 @Component({
@@ -41,6 +42,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
       multi: true,
     },
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbInputComponent
@@ -70,7 +72,7 @@ export class BmbInputComponent
   @Output() handleChange: EventEmitter<any> = new EventEmitter();
 
   public inputModel: string | undefined;
-  formControl: FormControl | undefined;
+  @Input() formControl: FormControl | undefined;
   onTouch: Function | undefined;
   style = '';
   iconColor = '';
@@ -78,6 +80,7 @@ export class BmbInputComponent
   constructor(private cdr: ChangeDetectorRef) {}
 
   ngAfterViewInit(): void {
+    console.log("IS VALID", this.isValid)
     if (this.isDisabled && this.formControl) {
       this.formControl.disable();
     }
