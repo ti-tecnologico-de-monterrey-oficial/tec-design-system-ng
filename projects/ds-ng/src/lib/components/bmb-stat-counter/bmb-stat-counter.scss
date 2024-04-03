@@ -1,7 +1,7 @@
 @use "../../../assets/styles/base/fonts" as fonts;
 @use "../../../assets/styles/base/rem" as rem;
 
-.bmb__stepper{
+.bmb_stepper{
 
   &-wrapper{
     width: 100%;
@@ -23,81 +23,83 @@
     @media (max-width: 768px) {
       @include fonts.font(8, regular);
     }
-  }
 
-  &-item::before{
-    position: absolute;
-    content: "";
-    border-bottom: 2px solid  RGBA(var(--color-charade-700));
-    width: 100%;
-    top: 30px;
-    left: -50%;
-    z-index: 2;
-  }
-
-  &-item::after{
-    position: absolute;
-    content: "";
-    border-bottom: 2px solid #ccc;
-    width: 100%;
-    top: 30px;
-    left: 50%;
-    z-index: 2;
-  }
-
-  &-item .bmb__step-counter{
-    cursor: pointer;
-    position: relative;
-    z-index: 5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: RGBA(var(--color-charade-700));
-    margin-bottom: 6px;
-    color: RGBA(var(--color-black-primary));
-    @include fonts.font(7,regular)
-  }
-
-  &-item.active{
-    @include fonts.font(9, regular);
-    font-weight: bold;
-  }
-
-  &-item.completed .bmb__step-counter {
-    background-color: RGBA(var(--color-neon-primary));
-
-    .material-icons{
-      font-size: 24px;
-      font-weight: 500;
+    &::before{
+      position: absolute;
+      content: "";
+      border-bottom: 2px solid  RGBA(var(--color-charade-700));
+      width: 100%;
+      top: 30px;
+      left: -50%;
+      z-index: 2;
     }
-  }
-
-  &-item > .bmb__step-counter.active {
-    width: 64px;
-    height: 64px;
-    background-color: RGBA(var(--color-black-primary));
-    border: 1px solid RGBA(var(--color-neon-primary));
-    color: RGBA(var(--color-white-primary))
-  }
   
-  &-item.completed::after {
-    position: absolute;
-    content: "";
-    border-bottom: 2px solid RGBA(var(--color-neon-primary));
-    min-width: 24px;
-    width: 100%;
-    top: 30px;
-    left: 50%;
-    z-index: 3;
-  }
+    &-item::after{
+      position: absolute;
+      content: "";
+      border-bottom: 2px solid #ccc;
+      width: 100%;
+      top: 30px;
+      left: 50%;
+      z-index: 2;
+    }
   
-  &-item:first-child::before {
-    content: none;
-  }
-  &-item:last-child::after {
-    content: none;
+    & .bmb_stat-counter{
+      cursor: pointer;
+      position: relative;
+      z-index: 5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: RGBA(var(--color-charade-700));
+      margin-bottom: 6px;
+      color: RGBA(var(--color-black-primary));
+      @include fonts.font(6,regular)
+    }
+  
+    &.active{
+      @include fonts.font(9, regular);
+      font-weight: bold;
+    }
+  
+    &.completed .bmb_stat-counter {
+      background-color: RGBA(var(--color-neon-primary));
+  
+      .material-icons{
+        color: RGBA(var(--color-white-primary));
+        font-size: 24px;
+        font-weight: 500;
+      }
+    }
+  
+    & > .bmb_stat-counter.active {
+      width: 64px;
+      height: 64px;
+      background-color: RGBA(var(--color-black-primary));
+      border: 1px solid RGBA(var(--color-neon-primary));
+      color: RGBA(var(--color-white-primary))
+    }
+    
+    &.completed::after {
+      position: absolute;
+      content: "";
+      border-bottom: 2px solid RGBA(var(--color-neon-primary));
+      min-width: 24px;
+      width: 100%;
+      top: 30px;
+      left: 50%;
+      z-index: 3;
+    }
+    
+    &:first-child::before {
+      content: none;
+    }
+    &:last-child::after {
+      content: none;
+    }
+    
   }
 }

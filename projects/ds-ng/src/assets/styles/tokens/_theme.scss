@@ -161,13 +161,13 @@
       }
 
       &_field{
-        &--container-label {
-          .bmb_field--label{
+        &-container-label {
+          .bmb_field-label{
             color:RGBA(var(--color-charade-950));
           }
         }
 
-        &--input-normal {
+        &-input-normal {
           background-color: RGBA(var(--color-charade-50));
           color: RGBA(var(--color-charade-700));
           // border-color: RGBA(var(--color-charade-500));
@@ -182,15 +182,15 @@
           }
         }
 
-        &--icon {
+        &-icon {
           color: RGBA(var(--color-charade-500))
         }
 
-        &--helper {
+        &-helper {
           color: RGBA(var(--color-charade-350));
         }
 
-        &--input-simple {
+        &-input-simple {
           color: RGBA(var(--color-charade-700));
 
           &:hover {
@@ -204,39 +204,42 @@
         }
       }
 
-      &__stepper{
+      &_stepper{
 
-        &-item::before{
-          border-bottom: 2px solid  RGBA(var(--color-charade-300));
-        }
-
-        &-item::after{
-          border-bottom: 2px solid #ccc;
-        }
-
-        &-item.completed .bmb__step-counter {
-          background-color: RGBA(var(--color-mariner-700));
-          font-weight: 700;
-
-          .material-icons{
-            color: RGBA(var(--color-charade-50));
+        &-item {
+          &::before{
+            border-bottom: 2px solid  RGBA(var(--color-charade-300));
+          }
+  
+          &::after{
+            border-bottom: 2px solid #ccc;
+          }
+  
+          &.completed .bmb_stat-counter {
+            background-color: RGBA(var(--color-mariner-700));
+            font-weight: 700;
+  
+            .material-icons{
+              color: RGBA(var(--color-charade-50));
+            }
+          }
+  
+          & .bmb_stat-counter{
+            background: RGBA(var(--color-charade-300));
+            color: RGBA(var(--color-charade-950));
+          }
+  
+          & > .bmb_stat-counter.active {
+            background-color: RGBA(var(--color-charade-50));
+            border: 1px solid RGBA(var(--color-mariner-700));
+            color: RGBA(var(--color-mariner-700))
+          }
+  
+          &.completed::after {
+            border-bottom: 2px solid RGBA(var(--color-mariner-700));
           }
         }
 
-        &-item .bmb__step-counter{
-          background: RGBA(var(--color-charade-300));
-          color: RGBA(var(--color-charade-950));
-        }
-
-        &-item > .bmb__step-counter.active {
-          background-color: RGBA(var(--color-charade-50));
-          border: 1px solid RGBA(var(--color-mariner-700));
-          color: RGBA(var(--color-mariner-700))
-        }
-
-        &-item.completed::after {
-          border-bottom: 2px solid RGBA(var(--color-mariner-700));
-        }
       }
     }
   }
