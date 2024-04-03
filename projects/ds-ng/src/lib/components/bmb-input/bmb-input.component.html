@@ -1,21 +1,21 @@
 <div class="bmb_field">
-  <div class="bmb_field--container-label"  *ngIf="label">
-    <label for="" class="bmb_field--label">{{ label }}</label>
-    <span *ngIf="isRequired" class="bmb_field--label-required"> *</span>
+  <div class="bmb_field-container-label"  *ngIf="label">
+    <label for="" class="bmb_field-label">{{ label }}</label>
+    <span *ngIf="isRequired" class="bmb_field-label-required"> *</span>
   </div>
   <div
-    class="bmb_field--wrapper"
+    class="bmb_field-wrapper"
     (click)="onParentClick()"
     #inputWrapper
   >
     <ng-container *ngIf="icon">
-      <bmb-icon [icon]="icon" class="bmb_field--icon" [ngClass]="iconColor" />
+      <bmb-icon [icon]="icon" class="bmb_field-icon" [ngClass]="iconColor" />
     </ng-container>
     <input
       type="text"
-      class="bmb_field--input"
+      class="bmb_field-input"
       [ngClass]="this.style"
-      [ngClass]="[!isValid ? 'bmb_field--error' : '']"
+      [ngClass]="[!isValid ? 'bmb_field-error' : '']"
       (ngModelChange)="setValue(input.viewModel)"
       (click)="onClick()"
       (focus)="onFocus()"
@@ -29,8 +29,8 @@
     />
   </div>
   <p 
-    class="bmb_field--helper"
-    [ngClass]="[!inputModel ? 'bmb_field--error' : '']"
+    class="bmb_field-helper"
+    [ngClass]="[!inputModel ? 'bmb_field-error' : '']"
     >
       {{ errorMessage }}
   </p>
