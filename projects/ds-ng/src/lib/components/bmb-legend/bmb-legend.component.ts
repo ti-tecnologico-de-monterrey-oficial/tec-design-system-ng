@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 type Variations =
@@ -18,12 +18,8 @@ type Variations =
   styleUrl: './bmb-legend.component.scss',
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbLegendComponent implements OnInit {
+export class BmbLegendComponent {
   @Input() label: string = '';
   @Input() value: string = '';
   @Input() indicatorAppearance: Variations = 'normal';
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }
