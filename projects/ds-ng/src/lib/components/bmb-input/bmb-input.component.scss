@@ -2,17 +2,21 @@
 @use "../../../assets/styles/base/mixins" as mixins;
 @use "../../../assets/styles/base/rem" as rem;
 
-.bmb__field {
-  &--container-label {
+.bmb_field {
+  &-container-label {
     padding: rem.rem_calc(2 2 4 8);
   }
 
-  &--label {
+  &-label {
     @include fonts.font(3, regular);
     color: RGBA(var(--color-white-primary));
+
+    &-required{
+      color: RGBA(var(--color-red-light));
+    }
   }
 
-  &--wrapper {
+  &-wrapper {
     align-items: center;
     display: flex;
     margin: 0;
@@ -21,10 +25,11 @@
     width: 100%;
   }
 
-  &--error {
+  &-error {
+    color: red !important;
   }
 
-  &--icon {
+  &-icon {
     font-size: rem.rem_calc(24);
     color: RGBA(var(--color-charade-50));
     left: rem.rem_calc(8);
@@ -32,18 +37,18 @@
     top: 50%;
     transform: translateY(-50%);
 
-    ~ .bmb__field--input {
+    ~ .bmb_field-input {
       padding-left: rem.rem_calc(35);
     }
   }
 
-  &--helper {
+  &-helper {
     @include fonts.font(3, regular);
     color: RGBA(var(--color-charade-50));
     margin: rem.rem_calc(8);
   }
 
-  &--input {
+  &-input {
     &-normal {
       @include mixins.input(normal);
     }
