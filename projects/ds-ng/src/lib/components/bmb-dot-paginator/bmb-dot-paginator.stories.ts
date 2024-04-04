@@ -40,7 +40,6 @@ export class Component {
   ];
 
   handleDotPress(index: number): void {
-    console.log('Dot pressed:', index);
     this.myActiveDotIndex = index;
   }
 }

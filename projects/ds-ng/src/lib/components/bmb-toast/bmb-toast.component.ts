@@ -68,7 +68,6 @@ export class BmbToastComponent implements OnInit, OnDestroy {
   }
 
   public openToast() {
-    console.log('hola');
     this.toastService.openToast();
   }
 }
