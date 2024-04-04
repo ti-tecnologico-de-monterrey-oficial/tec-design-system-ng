@@ -18,7 +18,6 @@ export class BmbThemeComponent implements OnInit {
 
   ngOnInit(): void {
     const savedTheme = localStorage.getItem('theme') || 'light';
-    console.log(savedTheme);
     this.selectedTheme = savedTheme;
     this.applyTheme(savedTheme);
 

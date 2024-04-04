@@ -4,11 +4,11 @@
 @mixin toast($appearance: neutral) {
   @include fonts.font(4, regular);
   align-items: center;
-  background-color: RGBA(var(--color-charade-950));
+  background-color: RGBA(var(--color-charade-50));
+  color: RGBA(var(--color-charade-950));
   border-radius: rem.rem_calc(4);
   border-style: solid;
   border-width: rem.rem_calc(1);
-  color: RGBA(var(--color-charade-50));
   display: flex;
   justify-content: flex-start;
   min-height: rem.rem_calc(40);
@@ -22,10 +22,10 @@
   }
 
   @if $appearance == neutral {
-    border-color: RGBA(var(--color-charade-200));
+    border-color: RGBA(var(--color-charade-700));
 
     bmb-icon {
-      color: RGBA(var(--color-charade-200));
+      color: RGBA(var(--color-charade-700));
     }
   } @else if $appearance == primary {
     border-color: RGBA(var(--color-neon-primary));
@@ -101,5 +101,28 @@
     bottom: 5%;
     left: 50%;
     transform: translateX(-50%);
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_toast {
+    &-neutral,
+    &-primary,
+    &-successful,
+    &-warning,
+    &-error,
+    &-event {
+      background-color: RGBA(var(--color-charade-950));
+      color: RGBA(var(--color-charade-50));
+    }
+
+    &-neutral {
+      border-color: RGBA(var(--color-charade-200));
+
+      bmb-icon {
+        color: RGBA(var(--color-charade-200));
+      }
+    }
   }
 }
