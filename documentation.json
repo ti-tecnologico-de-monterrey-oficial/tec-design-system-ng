@@ -696,6 +696,122 @@
             "templateData": "<div [ngClass]=\"getClasses()\">\n  <span>{{ text }}</span>\n</div>\n"
         },
         {
+            "name": "BmbChevronTitleSelectorComponent",
+            "id": "component-BmbChevronTitleSelectorComponent-012b52964cbd5aba9fc538aa89e2295abff2315a3c271decfe4074080642fc8dc352450b81275cb1651ceddcfb51ad6a814e439b5311594ee483a9798a5a5217",
+            "file": "projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-chevron-title-selector",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-chevron-title-selector.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "leadingIcon",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 23,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "title",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 22,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "trailingIcon",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 24,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onLeadingClick",
+                    "defaultValue": "new EventEmitter<void>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 26,
+                    "type": "EventEmitter<void>"
+                },
+                {
+                    "name": "onTrailingClick",
+                    "defaultValue": "new EventEmitter<void>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 27,
+                    "type": "EventEmitter<void>"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "handleLeadingClick",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 29,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "handleTrailingClick",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 33,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "BmbIconComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n  EventEmitter,\n  Output,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\n\n@Component({\n  selector: 'bmb-chevron-title-selector',\n  standalone: true,\n  imports: [CommonModule, BmbIconComponent],\n  styleUrl: './bmb-chevron-title-selector.component.scss',\n  templateUrl: './bmb-chevron-title-selector.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbChevronTitleSelectorComponent {\n  @Input() title: string = '';\n  @Input() leadingIcon: string = '';\n  @Input() trailingIcon: string = '';\n\n  @Output() onLeadingClick: EventEmitter<void> = new EventEmitter<void>();\n  @Output() onTrailingClick: EventEmitter<void> = new EventEmitter<void>();\n\n  handleLeadingClick() {\n    this.onLeadingClick.emit();\n  }\n\n  handleTrailingClick() {\n    this.onTrailingClick.emit();\n  }\n}\n",
+            "styleUrl": "./bmb-chevron-title-selector.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<div class=\"bmb_chevron\">\n  <button\n    class=\"bmb_chevron-button\"\n    *ngIf=\"leadingIcon\"\n    (click)=\"handleLeadingClick()\"\n  >\n    <bmb-icon [icon]=\"leadingIcon\" class=\"bmb_chevron-icon\" />\n  </button>\n\n  <span class=\"bmb_chevron-title\">{{ title }}</span>\n  <button\n    class=\"bmb_chevron-button\"\n    *ngIf=\"trailingIcon\"\n    (click)=\"handleTrailingClick()\"\n  >\n    <bmb-icon [icon]=\"trailingIcon\" class=\"bmb_chevron-icon\" />\n  </button>\n</div>\n"
+        },
+        {
             "name": "BmbContainerButtonComponent",
             "id": "component-BmbContainerButtonComponent-4e02d5c42340f7375fc5a2fef059faaa13cdc70fbf9b44478fbf2ee30e8d7aa98c301ef2c69b93832f3c8e72cc34d788dca37957a40eef471c7b9f3ec8fdb835",
             "file": "projects/ds-ng/src/lib/components/bmb-container-button/bmb-container-button.component.ts",
@@ -2520,7 +2636,7 @@
         },
         {
             "name": "BmbLegendComponent",
-            "id": "component-BmbLegendComponent-68b3537637dc02070ce390448e148d9ff908e289eb87b46a77696b19ff6e0254989693b41124e43345b82c96233a4704f10a0e43a3fccaf783c0d9984a47f29c",
+            "id": "component-BmbLegendComponent-387bbc56e3c2877e08994404856700056b0c877c3bc9996e539ad0e838770fd61f0ba6e69ce82d4232a2b96e2c918bd60ebd77c72d12d03b416e8315861079f3",
             "file": "projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.component.ts",
             "encapsulation": [
                 "ViewEncapsulation.None"
@@ -2568,18 +2684,7 @@
             ],
             "outputsClass": [],
             "propertiesClass": [],
-            "methodsClass": [
-                {
-                    "name": "ngOnInit",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 28,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                }
-            ],
+            "methodsClass": [],
             "deprecated": false,
             "deprecationMessage": "",
             "hostBindings": [],
@@ -2594,23 +2699,12 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\ntype Variations =\n  'normal'|\n  'strong'|\n  'success'|\n  'info'|\n  'warning'|\n  'error'|\n  'brand';\n\n@Component({\n  selector: 'bmb-legend',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './bmb-legend.component.html',\n  styleUrl: './bmb-legend.component.scss',\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbLegendComponent implements OnInit {\n  @Input() label: string = '';\n  @Input() value: string = '';\n  @Input() indicatorAppearance: Variations = 'normal';\n\n  constructor() {}\n\n  ngOnInit(): void {}\n}\n",
+            "sourceCode": "import { Component, Input, ViewEncapsulation } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\ntype Variations =\n  'normal'|\n  'strong'|\n  'success'|\n  'info'|\n  'warning'|\n  'error'|\n  'brand';\n\n@Component({\n  selector: 'bmb-legend',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './bmb-legend.component.html',\n  styleUrl: './bmb-legend.component.scss',\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbLegendComponent {\n  @Input() label: string = '';\n  @Input() value: string = '';\n  @Input() indicatorAppearance: Variations = 'normal';\n}\n",
             "styleUrl": "./bmb-legend.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
-            "constructorObj": {
-                "name": "constructor",
-                "description": "",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "args": [],
-                "line": 24
-            },
             "extends": [],
-            "implements": [
-                "OnInit"
-            ],
             "templateData": "<div class=\"bmb_legend\">\n  <span class=\"bmb_legend-indicator\">\n    <span [class]=\"'bmb_legend-bullet bmb_legend-bullet-' + indicatorAppearance\"></span>\n  </span>\n  <h3 class=\"bmb_legend-label\">{{ label }}</h3>\n  <span class=\"bmb_legend-value\">{{ value }}</span>\n</div>\n"
         },
         {
@@ -3379,122 +3473,6 @@
             "templateData": "<bmb-switch\n  [isChecked]=\"selectedTheme === 'dark'\"\n  leftIcon=\"light_mode\"\n  rightIcon=\"dark_mode\"\n  (change)=\"onThemeChange($event)\"\n></bmb-switch>\n"
         },
         {
-            "name": "BmbTitleSectionComponent",
-            "id": "component-BmbTitleSectionComponent-7443d0ba73852c9924147e610428a438e791f18b621921b4921fae5a6ba149811fdb036f9c3f9cc96c18b76b4250ae50b7189edeb5ff924d11acf1b2df645e45",
-            "file": "projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component.ts",
-            "changeDetection": "ChangeDetectionStrategy.OnPush",
-            "encapsulation": [
-                "ViewEncapsulation.None"
-            ],
-            "entryComponents": [],
-            "inputs": [],
-            "outputs": [],
-            "providers": [],
-            "selector": "bmb-chevron-title-selector",
-            "styleUrls": [],
-            "styles": [],
-            "templateUrl": [
-                "./bmb-chevron-title-selector.component.html"
-            ],
-            "viewProviders": [],
-            "hostDirectives": [],
-            "inputsClass": [
-                {
-                    "name": "leadingIcon",
-                    "defaultValue": "''",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 23,
-                    "type": "string",
-                    "decorators": []
-                },
-                {
-                    "name": "title",
-                    "defaultValue": "''",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 22,
-                    "type": "string",
-                    "decorators": []
-                },
-                {
-                    "name": "trailingIcon",
-                    "defaultValue": "''",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 24,
-                    "type": "string",
-                    "decorators": []
-                }
-            ],
-            "outputsClass": [
-                {
-                    "name": "onLeadingClick",
-                    "defaultValue": "new EventEmitter<void>()",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 26,
-                    "type": "EventEmitter<void>"
-                },
-                {
-                    "name": "onTrailingClick",
-                    "defaultValue": "new EventEmitter<void>()",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 27,
-                    "type": "EventEmitter<void>"
-                }
-            ],
-            "propertiesClass": [],
-            "methodsClass": [
-                {
-                    "name": "handleLeadingClick",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 29,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                },
-                {
-                    "name": "handleTrailingClick",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 33,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                }
-            ],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "hostBindings": [],
-            "hostListeners": [],
-            "standalone": true,
-            "imports": [
-                {
-                    "name": "CommonModule",
-                    "type": "module"
-                },
-                {
-                    "name": "BmbIconComponent",
-                    "type": "component"
-                }
-            ],
-            "description": "",
-            "rawdescription": "\n",
-            "type": "component",
-            "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n  EventEmitter,\n  Output,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\n\n@Component({\n  selector: 'bmb-chevron-title-selector',\n  standalone: true,\n  imports: [CommonModule, BmbIconComponent],\n  styleUrl: './bmb-chevron-title-selector.component.scss',\n  templateUrl: './bmb-chevron-title-selector.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbTitleSectionComponent {\n  @Input() title: string = '';\n  @Input() leadingIcon: string = '';\n  @Input() trailingIcon: string = '';\n\n  @Output() onLeadingClick: EventEmitter<void> = new EventEmitter<void>();\n  @Output() onTrailingClick: EventEmitter<void> = new EventEmitter<void>();\n\n  handleLeadingClick() {\n    this.onLeadingClick.emit();\n  }\n\n  handleTrailingClick() {\n    this.onTrailingClick.emit();\n  }\n}\n",
-            "styleUrl": "./bmb-chevron-title-selector.component.scss",
-            "assetsDirs": [],
-            "styleUrlsData": "",
-            "stylesData": "",
-            "extends": [],
-            "templateData": "<div class=\"bmb_chevron\">\n  <button\n    class=\"bmb_chevron-leading\"\n    *ngIf=\"leadingIcon\"\n    (click)=\"handleLeadingClick()\"\n  >\n    <bmb-icon [icon]=\"leadingIcon\" class=\"bmb_chevron-leading-icon\" />\n  </button>\n\n  <span class=\"bmb_chevron-title\">{{ title }}</span>\n  <button\n    class=\"bmb_chevron-trailing\"\n    *ngIf=\"trailingIcon\"\n    (click)=\"handleTrailingClick()\"\n  >\n    <bmb-icon [icon]=\"trailingIcon\" class=\"bmb_chevron-trailing-icon\" />\n  </button>\n</div>\n"
-        },
-        {
             "name": "BmbToastComponent",
             "id": "component-BmbToastComponent-b8ea2ef35d6c99a5e75d694f7bc5ad5348fdbb48ba8428adfd4a4017696424df9bbd0874919f8aa5b1537e7ecbc8cb3c32b26e8ab8b520ec4961330938ce9767",
             "file": "projects/ds-ng/src/lib/components/bmb-toast/bmb-toast.component.ts",
@@ -3798,6 +3776,79 @@
             "templateData": "<a [ngClass]=\"getClasses()\" [href]=\"link\" [target]=\"target\">\n  <img [src]=\"image\" [alt]=\"altImage\" />\n</a>\n"
         },
         {
+            "name": "BmbValueCounterComponent",
+            "id": "component-BmbValueCounterComponent-a815caf2302db3742be9372c483fa4a532a4b788bf5397e25b9d1419321900e50baf2d7c949f4ee47ac8f3af5d4b7601dfc923b1bc55dfc190ceb488373b8f4d",
+            "file": "projects/ds-ng/src/lib/components/bmb-value-counter/bmb-value-counter.component.ts",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-value-counter",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-value-counter.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "label",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 13,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "progress",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 15,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "value",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 14,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, ViewEncapsulation } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n@Component({\n  selector: 'bmb-value-counter',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './bmb-value-counter.component.html',\n  styleUrl: './bmb-value-counter.component.scss',\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbValueCounterComponent {\n  @Input() label: string = '';\n  @Input() value: string = '';\n  @Input() progress: string = '';\n}\n",
+            "styleUrl": "./bmb-value-counter.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<div class=\"bmb_value-counter\">\n  <h3 class=\"bmb_value-counter-label\">{{ label }}</h3>\n  <span class=\"bmb_value-counter-progress\">{{ progress }}</span>\n  <span class=\"bmb_value-counter-slash\">/</span>\n  <span class=\"bmb_value-counter-value\">{{ value }}</span>\n</div>\n"
+        },
+        {
             "name": "DsNgComponent",
             "id": "component-DsNgComponent-e5efb1b6556ee93e3913add9b5651e7b82e4636efa0258c5ec4004d9377daadf8ed4ee72e8c9a31f2e6c5a39cb5057a783dea7b30a455c96c346b954f6d418cd",
             "file": "projects/ds-ng/src/lib/ds-ng.component.ts",
@@ -3982,6 +4033,16 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -4012,7 +4073,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts",
+                "file": "projects/ds-ng/src/lib/components/bmb-fab/bmb-fab.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
@@ -4022,7 +4083,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ds-ng/src/lib/components/bmb-fab/bmb-fab.stories.ts",
+                "file": "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
@@ -4268,6 +4329,17 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
+                "rawtype": "StoryObj<BmbChevronTitleSelectorComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
                 "rawtype": "StoryObj<BmbContainerComponent>",
                 "file": "projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts",
                 "deprecated": false,
@@ -4301,8 +4373,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<BmbDividerComponent>",
-                "file": "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts",
+                "rawtype": "StoryObj<BmbFabComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-fab/bmb-fab.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -4312,8 +4384,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<BmbFabComponent>",
-                "file": "projects/ds-ng/src/lib/components/bmb-fab/bmb-fab.stories.ts",
+                "rawtype": "StoryObj<BmbDividerComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -4499,6 +4571,18 @@
                     "defaultValue": "{}"
                 }
             ],
+            "projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                }
+            ],
             "projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts": [
                 {
                     "name": "Default",
@@ -4535,24 +4619,24 @@
                     "defaultValue": "{}"
                 }
             ],
-            "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{}"
-                }
-            ],
             "projects/ds-ng/src/lib/components/bmb-fab/bmb-fab.stories.ts": [
                 {
                     "name": "Default",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/ds-ng/src/lib/components/bmb-fab/bmb-fab.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
@@ -4830,6 +4914,19 @@
                     "kind": 183
                 }
             ],
+            "projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbChevronTitleSelectorComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
             "projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts": [
                 {
                     "name": "Story",
@@ -4869,19 +4966,6 @@
                     "kind": 183
                 }
             ],
-            "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<BmbDividerComponent>",
-                    "file": "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
             "projects/ds-ng/src/lib/components/bmb-fab/bmb-fab.stories.ts": [
                 {
                     "name": "Story",
@@ -4889,6 +4973,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<BmbFabComponent>",
                     "file": "projects/ds-ng/src/lib/components/bmb-fab/bmb-fab.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbDividerComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -5101,10 +5198,20 @@
                 "status": "low"
             },
             {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component.ts",
                 "type": "component",
                 "linktype": "component",
-                "name": "BmbTitleSectionComponent",
+                "name": "BmbChevronTitleSelectorComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/8",
                 "status": "low"
@@ -5333,7 +5440,7 @@
                 "linktype": "component",
                 "name": "BmbLegendComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/6",
+                "coverageCount": "0/4",
                 "status": "low"
             },
             {
@@ -5513,6 +5620,15 @@
                 "name": "Default",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-value-counter/bmb-value-counter.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbValueCounterComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
                 "status": "low"
             },
             {
