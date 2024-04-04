@@ -1,0 +1,18 @@
+<div class="bmb_chevron">
+  <button
+    class="bmb_chevron-button"
+    *ngIf="leadingIcon"
+    (click)="handleLeadingClick()"
+  >
+    <bmb-icon [icon]="leadingIcon" class="bmb_chevron-icon" />
+  </button>
+
+  <span class="bmb_chevron-title">{{ title }}</span>
+  <button
+    class="bmb_chevron-button"
+    *ngIf="trailingIcon"
+    (click)="handleTrailingClick()"
+  >
+    <bmb-icon [icon]="trailingIcon" class="bmb_chevron-icon" />
+  </button>
+</div>

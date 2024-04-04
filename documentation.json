@@ -2,6 +2,57 @@
     "pipes": [],
     "interfaces": [
         {
+            "name": "Props",
+            "id": "interface-Props-0be329acc963ff455ffdf9172d95c844a313ba429c49a8f0645bca85aef6b06ecb11a573d85443a1730e1fcc45ddd93688a6b7591932b2eff126b81c31779683",
+            "file": "projects/ds-ng/src/lib/components/bmb-stat-counter/bmb-stat-counter.interface.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { EventEmitter } from '@angular/core';\n\nexport interface Target {\n  target: string;\n  index: number;\n}\n\nexport interface Props {\n  activeStepIndex?: number;\n  totalSteps?: number;\n  targets?: Target[];\n  onStepsPress: EventEmitter<number>;\n}\n",
+            "properties": [
+                {
+                    "name": "activeStepIndex",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": true,
+                    "description": "",
+                    "line": 9
+                },
+                {
+                    "name": "onStepsPress",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "EventEmitter<number>",
+                    "optional": false,
+                    "description": "",
+                    "line": 12
+                },
+                {
+                    "name": "targets",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Target[]",
+                    "optional": true,
+                    "description": "",
+                    "line": 11
+                },
+                {
+                    "name": "totalSteps",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": true,
+                    "description": "",
+                    "line": 10
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 171,
+            "methods": [],
+            "extends": []
+        },
+        {
             "name": "Target",
             "id": "interface-Target-f2c3d13fcf4fd6183ec16ed094945329f06423ca7483317bd35b40b174de58d51ac8b2c617a6cf24a3f7aca7974b78604de4aff3d3f914fbfd2720c5feb49d40",
             "file": "projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.component.ts",
@@ -69,6 +120,42 @@
             "isDuplicate": true,
             "duplicateId": 1,
             "duplicateName": "Target-1"
+        },
+        {
+            "name": "Target",
+            "id": "interface-Target-0be329acc963ff455ffdf9172d95c844a313ba429c49a8f0645bca85aef6b06ecb11a573d85443a1730e1fcc45ddd93688a6b7591932b2eff126b81c31779683-2",
+            "file": "projects/ds-ng/src/lib/components/bmb-stat-counter/bmb-stat-counter.interface.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { EventEmitter } from '@angular/core';\n\nexport interface Target {\n  target: string;\n  index: number;\n}\n\nexport interface Props {\n  activeStepIndex?: number;\n  totalSteps?: number;\n  targets?: Target[];\n  onStepsPress: EventEmitter<number>;\n}\n",
+            "properties": [
+                {
+                    "name": "index",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 5
+                },
+                {
+                    "name": "target",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 4
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 171,
+            "methods": [],
+            "extends": [],
+            "isDuplicate": true,
+            "duplicateId": 2,
+            "duplicateName": "Target-2"
         }
     ],
     "injectables": [
@@ -607,6 +694,122 @@
                 "AfterViewInit"
             ],
             "templateData": "<div [ngClass]=\"getClasses()\">\n  <span>{{ text }}</span>\n</div>\n"
+        },
+        {
+            "name": "BmbChevronTitleSelectorComponent",
+            "id": "component-BmbChevronTitleSelectorComponent-012b52964cbd5aba9fc538aa89e2295abff2315a3c271decfe4074080642fc8dc352450b81275cb1651ceddcfb51ad6a814e439b5311594ee483a9798a5a5217",
+            "file": "projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-chevron-title-selector",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-chevron-title-selector.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "leadingIcon",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 23,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "title",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 22,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "trailingIcon",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 24,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onLeadingClick",
+                    "defaultValue": "new EventEmitter<void>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 26,
+                    "type": "EventEmitter<void>"
+                },
+                {
+                    "name": "onTrailingClick",
+                    "defaultValue": "new EventEmitter<void>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 27,
+                    "type": "EventEmitter<void>"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "handleLeadingClick",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 29,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "handleTrailingClick",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 33,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "BmbIconComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n  EventEmitter,\n  Output,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\n\n@Component({\n  selector: 'bmb-chevron-title-selector',\n  standalone: true,\n  imports: [CommonModule, BmbIconComponent],\n  styleUrl: './bmb-chevron-title-selector.component.scss',\n  templateUrl: './bmb-chevron-title-selector.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbChevronTitleSelectorComponent {\n  @Input() title: string = '';\n  @Input() leadingIcon: string = '';\n  @Input() trailingIcon: string = '';\n\n  @Output() onLeadingClick: EventEmitter<void> = new EventEmitter<void>();\n  @Output() onTrailingClick: EventEmitter<void> = new EventEmitter<void>();\n\n  handleLeadingClick() {\n    this.onLeadingClick.emit();\n  }\n\n  handleTrailingClick() {\n    this.onTrailingClick.emit();\n  }\n}\n",
+            "styleUrl": "./bmb-chevron-title-selector.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<div class=\"bmb_chevron\">\n  <button\n    class=\"bmb_chevron-button\"\n    *ngIf=\"leadingIcon\"\n    (click)=\"handleLeadingClick()\"\n  >\n    <bmb-icon [icon]=\"leadingIcon\" class=\"bmb_chevron-icon\" />\n  </button>\n\n  <span class=\"bmb_chevron-title\">{{ title }}</span>\n  <button\n    class=\"bmb_chevron-button\"\n    *ngIf=\"trailingIcon\"\n    (click)=\"handleTrailingClick()\"\n  >\n    <bmb-icon [icon]=\"trailingIcon\" class=\"bmb_chevron-icon\" />\n  </button>\n</div>\n"
         },
         {
             "name": "BmbContainerButtonComponent",
@@ -1582,8 +1785,9 @@
         },
         {
             "name": "BmbInputComponent",
-            "id": "component-BmbInputComponent-dc53aa0490a52f85a9a2b13f4fa9a32d83f4a8fc819c0a1d92d29bbbca5cc540bd9626be907ac53bf5d43639ba7d65cc8741474f68b46c74cc6176cf137c134e",
+            "id": "component-BmbInputComponent-e0f6d11cb4638fc6e16caa04f143e9c621b3770eb3a6e7a96a2a14acf73ab5b099d69b97d9d1dc8198c743326893804afd697ab9cea85d259319a307dc47f7aa",
             "file": "projects/ds-ng/src/lib/components/bmb-input/bmb-input.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
                 "ViewEncapsulation.None"
             ],
@@ -1614,7 +1818,7 @@
                     "defaultValue": "'normal'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 63,
+                    "line": 65,
                     "type": "\"normal\" | \"simple\" | \"main\"",
                     "decorators": []
                 },
@@ -1623,7 +1827,7 @@
                     "defaultValue": "'mobile'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 64,
+                    "line": 66,
                     "type": "\"mobile\" | \"desktop\"",
                     "decorators": []
                 },
@@ -1632,8 +1836,16 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 57,
+                    "line": 59,
                     "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "formControl",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 75,
+                    "type": "FormControl | undefined",
                     "decorators": []
                 },
                 {
@@ -1641,7 +1853,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 56,
+                    "line": 58,
                     "type": "string",
                     "decorators": []
                 },
@@ -1650,7 +1862,7 @@
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 62,
+                    "line": 64,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -1659,7 +1871,7 @@
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 59,
+                    "line": 61,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -1668,7 +1880,7 @@
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 60,
+                    "line": 62,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -1677,7 +1889,7 @@
                     "defaultValue": "true",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 58,
+                    "line": 60,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -1686,7 +1898,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 54,
+                    "line": 56,
                     "type": "string",
                     "decorators": []
                 },
@@ -1695,7 +1907,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 55,
+                    "line": 57,
                     "type": "string",
                     "decorators": []
                 },
@@ -1703,7 +1915,7 @@
                     "name": "value",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 61,
+                    "line": 63,
                     "type": "string | undefined",
                     "decorators": []
                 }
@@ -1714,7 +1926,7 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 68,
+                    "line": 70,
                     "type": "EventEmitter<any>"
                 },
                 {
@@ -1722,7 +1934,7 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 70,
+                    "line": 72,
                     "type": "EventEmitter<any>"
                 },
                 {
@@ -1730,7 +1942,7 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 66,
+                    "line": 68,
                     "type": "EventEmitter<any>"
                 },
                 {
@@ -1738,7 +1950,7 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 67,
+                    "line": 69,
                     "type": "EventEmitter<any>"
                 },
                 {
@@ -1746,20 +1958,11 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 69,
+                    "line": 71,
                     "type": "EventEmitter<any>"
                 }
             ],
             "propertiesClass": [
-                {
-                    "name": "formControl",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "FormControl | undefined",
-                    "optional": false,
-                    "description": "",
-                    "line": 73
-                },
                 {
                     "name": "iconColor",
                     "defaultValue": "''",
@@ -1768,7 +1971,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 76
+                    "line": 78
                 },
                 {
                     "name": "input",
@@ -1777,7 +1980,7 @@
                     "type": "NgModel | undefined",
                     "optional": false,
                     "description": "",
-                    "line": 52,
+                    "line": 54,
                     "decorators": [
                         {
                             "name": "ViewChild",
@@ -1795,7 +1998,7 @@
                     "type": "string | undefined",
                     "optional": false,
                     "description": "",
-                    "line": 72,
+                    "line": 74,
                     "modifierKind": [
                         125
                     ]
@@ -1807,7 +2010,7 @@
                     "type": "ElementRef | undefined",
                     "optional": false,
                     "description": "",
-                    "line": 50,
+                    "line": 52,
                     "decorators": [
                         {
                             "name": "ViewChild",
@@ -1825,7 +2028,7 @@
                     "type": "Function | undefined",
                     "optional": false,
                     "description": "",
-                    "line": 74
+                    "line": 76
                 },
                 {
                     "name": "style",
@@ -1835,7 +2038,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 75
+                    "line": 77
                 }
             ],
             "methodsClass": [
@@ -1845,7 +2048,7 @@
                     "optional": false,
                     "returnType": "any",
                     "typeParameters": [],
-                    "line": 119,
+                    "line": 121,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1855,7 +2058,7 @@
                     "optional": false,
                     "returnType": "any",
                     "typeParameters": [],
-                    "line": 123,
+                    "line": 125,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1865,7 +2068,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 80,
+                    "line": 82,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1882,7 +2085,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 93,
+                    "line": 95,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1903,7 +2106,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 149,
+                    "line": 151,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1920,7 +2123,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 157,
+                    "line": 159,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1941,7 +2144,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 103,
+                    "line": 105,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1951,7 +2154,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 137,
+                    "line": 139,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1961,7 +2164,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 142,
+                    "line": 144,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1971,7 +2174,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 153,
+                    "line": 155,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1981,7 +2184,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 131,
+                    "line": 133,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1998,7 +2201,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 163,
+                    "line": 165,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -2026,7 +2229,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 167,
+                    "line": 169,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -2054,7 +2257,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 171,
+                    "line": 173,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -2082,7 +2285,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 127,
+                    "line": 129,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -2110,7 +2313,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 186,
+                    "line": 188,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -2138,7 +2341,7 @@
                     "optional": false,
                     "returnType": "{ invalid: boolean; }",
                     "typeParameters": [],
-                    "line": 177,
+                    "line": 179,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -2166,7 +2369,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 159,
+                    "line": 161,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -2204,7 +2407,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\n  Component,\n  Input,\n  ViewChild,\n  ElementRef,\n  Output,\n  EventEmitter,\n  forwardRef,\n  AfterViewInit,\n  SimpleChanges,\n  OnChanges,\n  ChangeDetectorRef,\n  ViewEncapsulation,\n} from '@angular/core';\n\nimport {\n  ControlValueAccessor,\n  NG_VALUE_ACCESSOR,\n  NG_VALIDATORS,\n  FormControl,\n  NgModel,\n} from '@angular/forms';\nimport { FormsModule } from '@angular/forms';\nimport { CommonModule } from '@angular/common';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\n@Component({\n  selector: 'bmb-input',\n  styleUrl: './bmb-input.component.scss',\n  templateUrl: './bmb-input.component.html',\n  standalone: true,\n  imports: [CommonModule, BmbIconComponent, FormsModule],\n  providers: [\n    {\n      provide: NG_VALUE_ACCESSOR,\n      useExisting: forwardRef(() => BmbInputComponent),\n      multi: true,\n    },\n    {\n      provide: NG_VALIDATORS,\n      useExisting: forwardRef(() => BmbInputComponent),\n      multi: true,\n    },\n  ],\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbInputComponent\n  implements ControlValueAccessor, AfterViewInit, OnChanges\n{\n  @ViewChild('inputWrapper', { read: ElementRef, static: false })\n  inputWrapper: ElementRef | undefined;\n  @ViewChild('input', { static: false })\n  input: NgModel | undefined;\n\n  @Input() label: string = '';\n  @Input() placeholder: string = '';\n  @Input() icon: string = '';\n  @Input() errorMessage: string = '';\n  @Input() isValid: boolean = true;\n  @Input() isDisabled: boolean = false;\n  @Input() isRequired: boolean = false;\n  @Input() value: string | undefined;\n  @Input() isClearable: boolean = false;\n  @Input() appearance: 'normal' | 'simple' | 'main' = 'normal';\n  @Input() device: 'mobile' | 'desktop' = 'mobile';\n\n  @Output() handleClick: EventEmitter<any> = new EventEmitter();\n  @Output() handleFocus: EventEmitter<any> = new EventEmitter();\n  @Output() handleBlur: EventEmitter<any> = new EventEmitter();\n  @Output() handleMouseover: EventEmitter<any> = new EventEmitter();\n  @Output() handleChange: EventEmitter<any> = new EventEmitter();\n\n  public inputModel: string | undefined;\n  formControl: FormControl | undefined;\n  onTouch: Function | undefined;\n  style = '';\n  iconColor = '';\n\n  constructor(private cdr: ChangeDetectorRef) {}\n\n  ngAfterViewInit(): void {\n    if (this.isDisabled && this.formControl) {\n      this.formControl.disable();\n    }\n    setTimeout(() => {\n      if (this.value && this.inputModel !== undefined) {\n        this.value = undefined;\n      }\n    }, 0);\n    this.style = `bmb__field--input-${this.appearance}`;\n    this.iconColor = `bmb__field--icon-${this.appearance}`;\n  }\n\n  ngOnChanges(changes: SimpleChanges): void {\n    if (this.formControl && changes?.['isDisabled'] !== undefined) {\n      if (this.formControl.disabled !== changes?.['isDisabled']?.currentValue) {\n        changes?.['isDisabled']?.currentValue\n          ? this.formControl.disable()\n          : this.formControl.enable();\n      }\n    }\n  }\n\n  onClear() {\n    this.inputModel = undefined;\n    this.value = undefined;\n    this.inputWrapper?.nativeElement\n      .querySelector('.bmb__field--input')\n      .focus();\n\n    if (this.isClearable && this.formControl) {\n      this.formControl.reset();\n    }\n\n    this.cdr.detectChanges();\n\n    this.handleChange.emit(this.getValue());\n  }\n\n  getComponent() {\n    return this.input;\n  }\n\n  getValue() {\n    return this.input?.['viewModel'];\n  }\n\n  setValidation(validation: any) {\n    this.isValid = validation;\n  }\n\n  onParentClick() {\n    this.inputWrapper?.nativeElement\n      .querySelector('.bmb__field--input')\n      .focus();\n  }\n\n  onClick() {\n    this.handleChange.emit(this.getValue());\n    this.handleClick.emit(this.getValue());\n  }\n\n  onFocus() {\n    this.handleFocus.emit(this.getValue());\n    if (this.onTouch) {\n      this.onTouch();\n    }\n  }\n\n  onBlur() {\n    this.handleBlur.emit(this.getValue());\n  }\n\n  onMouseover() {\n    this.handleMouseover.emit(this.getValue());\n  }\n\n  onChange(value: any): void {}\n\n  writeValue(value: string): void {\n    this.inputModel = value;\n  }\n\n  registerOnChange(fn: any): void {\n    this.onChange = fn;\n  }\n\n  registerOnTouched(fn: any): void {\n    this.onTouch = fn;\n  }\n\n  setDisabledState(state: boolean): void {\n    if (this.formControl) {\n      this.isDisabled = state;\n    }\n  }\n\n  validate(form: FormControl) {\n    this.formControl = form;\n    if (!form?.value && this.isRequired === true) {\n      return { invalid: true };\n    } else {\n      return null;\n    }\n  }\n\n  setValue(value: string) {\n    this.onChange(value);\n    if (this.input?.['viewModel'] === '') {\n      this.inputModel = undefined;\n      this.value = undefined;\n      this.cdr.detectChanges();\n    }\n    this.handleChange.emit(this.getValue());\n    if (this.onTouch) {\n      this.onTouch();\n    }\n  }\n}\n",
+            "sourceCode": "import {\n  Component,\n  Input,\n  ViewChild,\n  ElementRef,\n  Output,\n  EventEmitter,\n  forwardRef,\n  AfterViewInit,\n  SimpleChanges,\n  OnChanges,\n  ChangeDetectorRef,\n  ViewEncapsulation,\n  ChangeDetectionStrategy,\n} from '@angular/core';\n\nimport {\n  ControlValueAccessor,\n  NG_VALUE_ACCESSOR,\n  NG_VALIDATORS,\n  FormControl,\n  NgModel,\n  FormsModule\n} from '@angular/forms';\nimport { CommonModule } from '@angular/common';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\n@Component({\n  selector: 'bmb-input',\n  styleUrl: './bmb-input.component.scss',\n  templateUrl: './bmb-input.component.html',\n  standalone: true,\n  imports: [CommonModule, BmbIconComponent, FormsModule],\n  providers: [\n    {\n      provide: NG_VALUE_ACCESSOR,\n      useExisting: forwardRef(() => BmbInputComponent),\n      multi: true,\n    },\n    {\n      provide: NG_VALIDATORS,\n      useExisting: forwardRef(() => BmbInputComponent),\n      multi: true,\n    },\n  ],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbInputComponent\n  implements ControlValueAccessor, AfterViewInit, OnChanges\n{\n  @ViewChild('inputWrapper', { read: ElementRef, static: false })\n  inputWrapper: ElementRef | undefined;\n  @ViewChild('input', { static: false })\n  input: NgModel | undefined;\n\n  @Input() label: string = '';\n  @Input() placeholder: string = '';\n  @Input() icon: string = '';\n  @Input() errorMessage: string = '';\n  @Input() isValid: boolean = true;\n  @Input() isDisabled: boolean = false;\n  @Input() isRequired: boolean = false;\n  @Input() value: string | undefined;\n  @Input() isClearable: boolean = false;\n  @Input() appearance: 'normal' | 'simple' | 'main' = 'normal';\n  @Input() device: 'mobile' | 'desktop' = 'mobile';\n\n  @Output() handleClick: EventEmitter<any> = new EventEmitter();\n  @Output() handleFocus: EventEmitter<any> = new EventEmitter();\n  @Output() handleBlur: EventEmitter<any> = new EventEmitter();\n  @Output() handleMouseover: EventEmitter<any> = new EventEmitter();\n  @Output() handleChange: EventEmitter<any> = new EventEmitter();\n\n  public inputModel: string | undefined;\n  @Input() formControl: FormControl | undefined;\n  onTouch: Function | undefined;\n  style = '';\n  iconColor = '';\n\n  constructor(private cdr: ChangeDetectorRef) {}\n\n  ngAfterViewInit(): void {\n    if (this.isDisabled && this.formControl) {\n      this.formControl.disable();\n    }\n    setTimeout(() => {\n      if (this.value && this.inputModel !== undefined) {\n        this.value = undefined;\n      }\n    }, 0);\n    this.style = `bmb_field-input-${this.appearance}`;\n    this.iconColor = `bmb_field-icon-${this.appearance}`;\n  }\n\n  ngOnChanges(changes: SimpleChanges): void {\n    if (this.formControl && changes?.['isDisabled'] !== undefined) {\n      if (this.formControl.disabled !== changes?.['isDisabled']?.currentValue) {\n        changes?.['isDisabled']?.currentValue\n          ? this.formControl.disable()\n          : this.formControl.enable();\n      }\n    }\n  }\n\n  onClear() {\n    this.inputModel = undefined;\n    this.value = undefined;\n    this.inputWrapper?.nativeElement\n      .querySelector('.bmb_field-input')\n      .focus();\n\n    if (this.isClearable && this.formControl) {\n      this.formControl.reset();\n    }\n\n    this.cdr.detectChanges();\n\n    this.handleChange.emit(this.getValue());\n  }\n\n  getComponent() {\n    return this.input;\n  }\n\n  getValue() {\n    return this.input?.['viewModel'];\n  }\n\n  setValidation(validation: any) {\n    this.isValid = validation;\n  }\n\n  onParentClick() {\n    this.inputWrapper?.nativeElement\n      .querySelector('.bmb_field-input')\n      .focus();\n  }\n\n  onClick() {\n    this.handleChange.emit(this.getValue());\n    this.handleClick.emit(this.getValue());\n  }\n\n  onFocus() {\n    this.handleFocus.emit(this.getValue());\n    if (this.onTouch) {\n      this.onTouch();\n    }\n  }\n\n  onBlur() {\n    this.handleBlur.emit(this.getValue());\n  }\n\n  onMouseover() {\n    this.handleMouseover.emit(this.getValue());\n  }\n\n  onChange(value: any): void {}\n\n  writeValue(value: string): void {\n    this.inputModel = value;\n  }\n\n  registerOnChange(fn: any): void {\n    this.onChange = fn;\n  }\n\n  registerOnTouched(fn: any): void {\n    this.onTouch = fn;\n  }\n\n  setDisabledState(state: boolean): void {\n    if (this.formControl) {\n      this.isDisabled = state;\n    }\n  }\n\n  validate(form: FormControl) {\n    this.formControl = form;\n    if (!form?.value && this.isRequired === true) {\n      return { invalid: true };\n    } else {\n      return null;\n    }\n  }\n\n  setValue(value: string) {\n    this.onChange(value);\n    if (this.input?.['viewModel'] === '') {\n      this.inputModel = undefined;\n      this.value = undefined;\n      this.cdr.detectChanges();\n    }\n    this.handleChange.emit(this.getValue());\n    if (this.onTouch) {\n      this.onTouch();\n    }\n  }\n}\n",
             "styleUrl": "./bmb-input.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -2222,7 +2425,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 76,
+                "line": 78,
                 "jsdoctags": [
                     {
                         "name": "cdr",
@@ -2241,7 +2444,7 @@
                 "AfterViewInit",
                 "OnChanges"
             ],
-            "templateData": "<div class=\"bmb__field\">\n  <div class=\"bmb__field--container-label\"  *ngIf=\"label\">\n    <label for=\"\" class=\"bmb__field--label\">{{ label }}</label>\n  </div>\n  <div\n    class=\"bmb__field--wrapper\"\n    [ngClass]=\"[!isValid ? 'bmb__field--error' : '']\"\n    (click)=\"onParentClick()\"\n    #inputWrapper\n  >\n    <ng-container *ngIf=\"icon\">\n      <bmb-icon [icon]=\"icon\" class=\"bmb__field--icon\" [ngClass]=\"iconColor\" />\n    </ng-container>\n    <input\n      type=\"text\"\n      class=\"bmb__field--input\"\n      [ngClass]=\"this.style\"\n      (ngModelChange)=\"setValue(input.viewModel)\"\n      (click)=\"onClick()\"\n      (focus)=\"onFocus()\"\n      (blur)=\"onBlur()\"\n      (mouseover)=\"onMouseover()\"\n      [(ngModel)]=\"value || inputModel\"\n      [required]=\"isRequired\"\n      [disabled]=\"isDisabled\"\n      [placeholder]=\"placeholder ? placeholder : ''\"\n      #input=\"ngModel\"\n    />\n  </div>\n  <p *ngIf=\"errorMessage && !isValid\" class=\"bmb__field--helper\">\n    {{ errorMessage }}\n  </p>\n</div>\n"
+            "templateData": "<div class=\"bmb_field\">\n  <div class=\"bmb_field-container-label\"  *ngIf=\"label\">\n    <label for=\"\" class=\"bmb_field-label\">{{ label }}</label>\n    <span *ngIf=\"isRequired\" class=\"bmb_field-label-required\"> *</span>\n  </div>\n  <div\n    class=\"bmb_field-wrapper\"\n    (click)=\"onParentClick()\"\n    #inputWrapper\n  >\n    <ng-container *ngIf=\"icon\">\n      <bmb-icon [icon]=\"icon\" class=\"bmb_field-icon\" [ngClass]=\"iconColor\" />\n    </ng-container>\n    <input\n      type=\"text\"\n      class=\"bmb_field-input\"\n      [ngClass]=\"this.style\"\n      [ngClass]=\"[!isValid ? 'bmb_field-error' : '']\"\n      (ngModelChange)=\"setValue(input.viewModel)\"\n      (click)=\"onClick()\"\n      (focus)=\"onFocus()\"\n      (blur)=\"onBlur()\"\n      (mouseover)=\"onMouseover()\"\n      [(ngModel)]=\"value || inputModel\"\n      [required]=\"isRequired\"\n      [disabled]=\"isDisabled\"\n      [placeholder]=\"placeholder ? placeholder : ''\"\n      #input=\"ngModel\"\n    />\n  </div>\n  <p \n    class=\"bmb_field-helper\"\n    [ngClass]=\"[!inputModel ? 'bmb_field-error' : '']\"\n    >\n      {{ errorMessage }}\n  </p>\n</div>\n"
         },
         {
             "name": "BmbInteractiveIconComponent",
@@ -2432,6 +2635,79 @@
             "templateData": "<a\n  [ngClass]=\"getClasses()\"\n  [class.bmb_interactive_icon-horizontal]=\"horizontal\"\n  [href]=\"link\"\n  [target]=\"target\"\n>\n  <div class=\"bmb_interactive_icon-box\">\n    <bmb-icon\n      class=\"bmb_interactive_icon-icon\"\n      icon=\"{{ icon }}\"\n      *ngIf=\"icon\"\n    />\n  </div>\n  <div class=\"bmb_interactive_icon-text\">\n    <span class=\"bmb_interactive_icon-title\" *ngIf=\"title\">{{ title }}</span>\n    <span\n      class=\"bmb_interactive_icon-description\"\n      *ngIf=\"description && horizontal\"\n      >{{ description }}</span\n    >\n  </div>\n</a>\n"
         },
         {
+            "name": "BmbLegendComponent",
+            "id": "component-BmbLegendComponent-387bbc56e3c2877e08994404856700056b0c877c3bc9996e539ad0e838770fd61f0ba6e69ce82d4232a2b96e2c918bd60ebd77c72d12d03b416e8315861079f3",
+            "file": "projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.component.ts",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-legend",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-legend.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "indicatorAppearance",
+                    "defaultValue": "'normal'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 24,
+                    "type": "Variations",
+                    "decorators": []
+                },
+                {
+                    "name": "label",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 22,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "value",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 23,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, ViewEncapsulation } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\ntype Variations =\n  'normal'|\n  'strong'|\n  'success'|\n  'info'|\n  'warning'|\n  'error'|\n  'brand';\n\n@Component({\n  selector: 'bmb-legend',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './bmb-legend.component.html',\n  styleUrl: './bmb-legend.component.scss',\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbLegendComponent {\n  @Input() label: string = '';\n  @Input() value: string = '';\n  @Input() indicatorAppearance: Variations = 'normal';\n}\n",
+            "styleUrl": "./bmb-legend.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<div class=\"bmb_legend\">\n  <span class=\"bmb_legend-indicator\">\n    <span [class]=\"'bmb_legend-bullet bmb_legend-bullet-' + indicatorAppearance\"></span>\n  </span>\n  <h3 class=\"bmb_legend-label\">{{ label }}</h3>\n  <span class=\"bmb_legend-value\">{{ value }}</span>\n</div>\n"
+        },
+        {
             "name": "BmbLoaderComponent",
             "id": "component-BmbLoaderComponent-acff4cf581ffb3bcadb33254f10ad67cc431f1abbd77c2c30b42328a9e32638968ad59d3debb67c1211600e9119dbbee154e94d7660797b9b87e6333e7d6e824",
             "file": "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.component.ts",
@@ -2611,6 +2887,128 @@
             "stylesData": "",
             "extends": [],
             "templateData": "<a [ngClass]=\"getClasses()\" [href]=\"link\" [target]=\"target\">\n  <img [src]=\"image\" [alt]=\"altImage\" />\n</a>\n"
+        },
+        {
+            "name": "BmbStatCounterComponent",
+            "id": "component-BmbStatCounterComponent-2b995fd543f3cb4e9e458beb35496f9443fd3b7412a9cce3f5d5d702b45e9af02cd538f0bfc9df7dd5f689c50ccd92a1b7895aadf08f14f672ffce4dedf0ecb8",
+            "file": "projects/ds-ng/src/lib/components/bmb-stat-counter/bmb-stat-counter.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-stat-counter",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-stat-counter.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "activeStep",
+                    "defaultValue": "0",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 22,
+                    "type": "number",
+                    "decorators": []
+                },
+                {
+                    "name": "targets",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 24,
+                    "type": "Target[]",
+                    "decorators": []
+                },
+                {
+                    "name": "totalSteps",
+                    "defaultValue": "0",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 23,
+                    "type": "number",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onStepPress",
+                    "defaultValue": "new EventEmitter<number>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 25,
+                    "type": "EventEmitter<number>"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "getStepsArray",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "number[]",
+                    "typeParameters": [],
+                    "line": 27,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onStepClicked",
+                    "args": [
+                        {
+                            "name": "index",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 31,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "index",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {\n  Component,\n  Input,\n  Output,\n  EventEmitter,\n  ViewEncapsulation,\n  ChangeDetectionStrategy,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { Target } from './bmb-stat-counter.interface';\n\n@Component({\n  standalone: true,\n  imports: [CommonModule],\n  styleUrl: './bmb-stat-counter.component.scss',\n  selector: 'bmb-stat-counter',\n  templateUrl: './bmb-stat-counter.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbStatCounterComponent {\n  @Input() activeStep: number = 0;\n  @Input() totalSteps?: number = 0;\n  @Input() targets: Target[] = [];\n  @Output() onStepPress: EventEmitter<number> = new EventEmitter<number>();\n\n  getStepsArray(): number[] {\n    return new Array(this.totalSteps || 0).fill(0).map((_, i) => i);\n  }\n\n  onStepClicked(index: number): void {\n    this.activeStep = index;\n    this.onStepPress.emit(index);\n  }\n}\n",
+            "styleUrl": "./bmb-stat-counter.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<div class=\"bmb_stat_counter\">\n  <div\n    class=\"bmb_stat_counter-item\"\n    *ngFor=\"let i of getStepsArray()\"\n    [attr.data-bs-target]=\"targets[i]?.target || ''\"\n    [attr.data-bs-slide-to]=\"i\"\n    [ngClass]=\"{ active: activeStep === i, completed: activeStep > i }\"\n    (click)=\"onStepClicked(i)\"\n  >\n    <div\n      class=\"bmb_stat_counter-step\"\n      [ngClass]=\"{ active: activeStep === i, completed: activeStep > i }\"\n    >\n      <span *ngIf=\"activeStep == i || activeStep < i\">{{ i + 1 }}</span>\n      <i *ngIf=\"activeStep > i\" class=\"material-icons\">done</i>\n    </div>\n  </div>\n</div>\n"
         },
         {
             "name": "BmbSwitchComponent",
@@ -3378,6 +3776,79 @@
             "templateData": "<a [ngClass]=\"getClasses()\" [href]=\"link\" [target]=\"target\">\n  <img [src]=\"image\" [alt]=\"altImage\" />\n</a>\n"
         },
         {
+            "name": "BmbValueCounterComponent",
+            "id": "component-BmbValueCounterComponent-a815caf2302db3742be9372c483fa4a532a4b788bf5397e25b9d1419321900e50baf2d7c949f4ee47ac8f3af5d4b7601dfc923b1bc55dfc190ceb488373b8f4d",
+            "file": "projects/ds-ng/src/lib/components/bmb-value-counter/bmb-value-counter.component.ts",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-value-counter",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-value-counter.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "label",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 13,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "progress",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 15,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "value",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 14,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, ViewEncapsulation } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n@Component({\n  selector: 'bmb-value-counter',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './bmb-value-counter.component.html',\n  styleUrl: './bmb-value-counter.component.scss',\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbValueCounterComponent {\n  @Input() label: string = '';\n  @Input() value: string = '';\n  @Input() progress: string = '';\n}\n",
+            "styleUrl": "./bmb-value-counter.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<div class=\"bmb_value-counter\">\n  <h3 class=\"bmb_value-counter-label\">{{ label }}</h3>\n  <span class=\"bmb_value-counter-progress\">{{ progress }}</span>\n  <span class=\"bmb_value-counter-slash\">/</span>\n  <span class=\"bmb_value-counter-value\">{{ value }}</span>\n</div>\n"
+        },
+        {
             "name": "DsNgComponent",
             "id": "component-DsNgComponent-e5efb1b6556ee93e3913add9b5651e7b82e4636efa0258c5ec4004d9377daadf8ed4ee72e8c9a31f2e6c5a39cb5057a783dea7b30a455c96c346b954f6d418cd",
             "file": "projects/ds-ng/src/lib/ds-ng.component.ts",
@@ -3562,6 +4033,16 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -3582,16 +4063,6 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{}"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -3603,6 +4074,16 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "projects/ds-ng/src/lib/components/bmb-fab/bmb-fab.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
@@ -3653,6 +4134,16 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "projects/ds-ng/src/lib/components/bmb-interactive-icon/bmb-interactive-icon.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.component.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
@@ -3838,6 +4329,17 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
+                "rawtype": "StoryObj<BmbChevronTitleSelectorComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
                 "rawtype": "StoryObj<BmbContainerComponent>",
                 "file": "projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts",
                 "deprecated": false,
@@ -3860,17 +4362,6 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<BmbDividerComponent>",
-                "file": "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "",
-                "kind": 183
-            },
-            {
-                "name": "Story",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
                 "rawtype": "StoryObj<BmbDotPaginatorComponent>",
                 "file": "projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.stories.ts",
                 "deprecated": false,
@@ -3884,6 +4375,17 @@
                 "subtype": "typealias",
                 "rawtype": "StoryObj<BmbFabComponent>",
                 "file": "projects/ds-ng/src/lib/components/bmb-fab/bmb-fab.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<BmbDividerComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -3939,6 +4441,17 @@
                 "subtype": "typealias",
                 "rawtype": "StoryObj<BmbInteractiveIconComponent>",
                 "file": "projects/ds-ng/src/lib/components/bmb-interactive-icon/bmb-interactive-icon.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<BmbLegendComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.component.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -4009,6 +4522,17 @@
                 "deprecationMessage": "",
                 "description": "",
                 "kind": 183
+            },
+            {
+                "name": "Variations",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"normal\" | \"strong\" | \"success\" | \"info\" | \"warning\" | \"error\" | \"brand\"",
+                "file": "projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 192
             }
         ],
         "enumerations": [],
@@ -4047,6 +4571,18 @@
                     "defaultValue": "{}"
                 }
             ],
+            "projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                }
+            ],
             "projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts": [
                 {
                     "name": "Default",
@@ -4071,18 +4607,6 @@
                     "defaultValue": "{}"
                 }
             ],
-            "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{}"
-                }
-            ],
             "projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.stories.ts": [
                 {
                     "name": "Default",
@@ -4101,6 +4625,18 @@
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/ds-ng/src/lib/components/bmb-fab/bmb-fab.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
@@ -4161,6 +4697,18 @@
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/ds-ng/src/lib/components/bmb-interactive-icon/bmb-interactive-icon.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.component.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.component.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
@@ -4366,6 +4914,19 @@
                     "kind": 183
                 }
             ],
+            "projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbChevronTitleSelectorComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
             "projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts": [
                 {
                     "name": "Story",
@@ -4392,19 +4953,6 @@
                     "kind": 183
                 }
             ],
-            "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<BmbDividerComponent>",
-                    "file": "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
             "projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.stories.ts": [
                 {
                     "name": "Story",
@@ -4425,6 +4973,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<BmbFabComponent>",
                     "file": "projects/ds-ng/src/lib/components/bmb-fab/bmb-fab.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbDividerComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -4490,6 +5051,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<BmbInteractiveIconComponent>",
                     "file": "projects/ds-ng/src/lib/components/bmb-interactive-icon/bmb-interactive-icon.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.component.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbLegendComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.component.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -4573,6 +5147,19 @@
                     "description": "",
                     "kind": 183
                 }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.component.ts": [
+                {
+                    "name": "Variations",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"normal\" | \"strong\" | \"success\" | \"info\" | \"warning\" | \"error\" | \"brand\"",
+                    "file": "projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 192
+                }
             ]
         }
     },
@@ -4608,6 +5195,25 @@
                 "name": "Default",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbChevronTitleSelectorComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/8",
                 "status": "low"
             },
             {
@@ -4819,6 +5425,25 @@
                 "status": "low"
             },
             {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbLegendComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.component.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
@@ -4854,6 +5479,33 @@
                 "name": "Default",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-stat-counter/bmb-stat-counter.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbStatCounterComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/7",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-stat-counter/bmb-stat-counter.interface.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "Props",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-stat-counter/bmb-stat-counter.interface.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "Target",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
                 "status": "low"
             },
             {
@@ -4968,6 +5620,15 @@
                 "name": "Default",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-value-counter/bmb-value-counter.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbValueCounterComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
                 "status": "low"
             },
             {

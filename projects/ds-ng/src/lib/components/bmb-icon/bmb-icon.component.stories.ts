@@ -2,7 +2,7 @@ import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { BmbIconComponent } from './bmb-icon.component';
 
 export default {
-  title: 'Icon',
+  title: 'Micro Componentes/Icon',
   component: BmbIconComponent,
   parameters: {
     docs: {
