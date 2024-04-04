@@ -3,7 +3,7 @@ import { BmbButtonDirective } from './button.directive';
 import { BmbIconComponent } from '../components/bmb-icon/bmb-icon.component';
 
 export default {
-  title: 'Button',
+  title: 'Micro Componentes/Button',
   component: BmbButtonDirective,
   imports: [BmbButtonDirective, BmbIconComponent],
   parameters: {

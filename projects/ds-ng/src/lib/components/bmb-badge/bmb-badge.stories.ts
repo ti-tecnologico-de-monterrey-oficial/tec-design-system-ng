@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbBadgeComponent } from './bmb-badge.component';
 
 export default {
-  title: 'Badge',
+  title: 'Micro Componentes/Badge',
   component: BmbBadgeComponent,
   parameters: {
     docs: {
