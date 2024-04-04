@@ -17,3 +17,25 @@
     @include mixins.button(destructive);
   }
 }
+
+[data-theme="dark"] {
+  .bmb_btn {
+    &-secondary-outlined {
+      border-color: RGBA(var(--color-white-primary));
+      color: RGBA(var(--color-white-primary));
+
+      bmb-icon {
+        color: RGBA(var(--color-white-primary));
+      }
+
+      &:active {
+        background-color: RGBA(var(--color-white-primary));
+        color: RGBA(var(--color-black-primary));
+
+        bmb-icon {
+          color: RGBA(var(--color-black-primary));
+        }
+      }
+    }
+  }
+}
