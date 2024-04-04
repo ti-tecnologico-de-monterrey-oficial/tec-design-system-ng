@@ -11,6 +11,7 @@ import {
   OnChanges,
   ChangeDetectorRef,
   ViewEncapsulation,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 import {
@@ -19,8 +20,8 @@ import {
   NG_VALIDATORS,
   FormControl,
   NgModel,
+  FormsModule
 } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 @Component({
@@ -41,6 +42,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
       multi: true,
     },
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbInputComponent
@@ -70,7 +72,7 @@ export class BmbInputComponent
   @Output() handleChange: EventEmitter<any> = new EventEmitter();
 
   public inputModel: string | undefined;
-  formControl: FormControl | undefined;
+  @Input() formControl: FormControl | undefined;
   onTouch: Function | undefined;
   style = '';
   iconColor = '';
@@ -86,8 +88,8 @@ export class BmbInputComponent
         this.value = undefined;
       }
     }, 0);
-    this.style = `bmb__field--input-${this.appearance}`;
-    this.iconColor = `bmb__field--icon-${this.appearance}`;
+    this.style = `bmb_field-input-${this.appearance}`;
+    this.iconColor = `bmb_field-icon-${this.appearance}`;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -104,7 +106,7 @@ export class BmbInputComponent
     this.inputModel = undefined;
     this.value = undefined;
     this.inputWrapper?.nativeElement
-      .querySelector('.bmb__field--input')
+      .querySelector('.bmb_field-input')
       .focus();
 
     if (this.isClearable && this.formControl) {
@@ -130,7 +132,7 @@ export class BmbInputComponent
 
   onParentClick() {
     this.inputWrapper?.nativeElement
-      .querySelector('.bmb__field--input')
+      .querySelector('.bmb_field-input')
       .focus();
   }
 

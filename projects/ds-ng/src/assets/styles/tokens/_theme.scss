@@ -49,5 +49,210 @@
     .docs-story {
       background-color: RGBA(var(--color-charade-200));
     }
+
+    .bmb {
+      &_toast {
+        &-neutral,
+        &-primary,
+        &-successful,
+        &-warning,
+        &-error,
+        &-event {
+          background-color: RGBA(var(--color-charade-50));
+          color: RGBA(var(--color-charade-950));
+        }
+
+        &-neutral {
+          border-color: RGBA(var(--color-charade-700));
+
+          bmb-icon {
+            color: RGBA(var(--color-charade-700));
+          }
+        }
+      }
+
+      &_btn {
+        &-secondary-outlined {
+          border-color: RGBA(var(--color-black-primary));
+          color: RGBA(var(--color-black-primary));
+
+          bmb-icon {
+            color: RGBA(var(--color-black-primary));
+          }
+
+          &:active {
+            background-color: RGBA(var(--color-black-primary));
+            color: RGBA(var(--color-white-primary));
+
+            bmb-icon {
+              color: RGBA(var(--color-white-primary));
+            }
+          }
+        }
+      }
+
+      &_container_button {
+        background-color: RGBA(var(--color-charade-50));
+        color: RGBA(var(--color-charade-950));
+
+        &-score {
+          span {
+            color: RGBA(var(--color-charade-950));
+          }
+        }
+
+        &-subtitle {
+          color: RGBA(var(--color-charade-700));
+        }
+      }
+
+      &_container {
+        &-primary-container,
+        &-primary-home,
+        &-primary-header,
+        &-secondary-container,
+        &-contrast-box-container {
+          background-color: RGBA(var(--color-charade-100));
+        }
+
+        &-primary-home {
+          border: rem_calc(1) solid RGBA(var(--color-charade-300));
+        }
+
+        &-secondary-container {
+          border-color: RGBA(var(--color-charade-200));
+        }
+
+        &-button-container {
+          background-color: RGBA(var(--color-charade-50));
+          border-color: RGBA(var(--color-charade-500));
+        }
+      }
+
+      &_header {
+        &_mobile {
+          color: RGBA(var(--color-charade-950));
+        }
+      }
+
+      &_interactive_icon {
+        &-horizontal {
+          border-bottom-color: RGBA(var(--color-charade-700));
+        }
+        &-title {
+          color: RGBA(var(--color-charade-950));
+        }
+
+        &-description {
+          color: RGBA(var(--color-charade-700));
+        }
+      }
+
+      &_title_section {
+        &-link,
+        &-title {
+          color: RGBA(var(--color-charade-950));
+        }
+      }
+
+      &_loader {
+        bmb-icon,
+        &-title,
+        &-subtitle {
+          color: RGBA(var(--color-mariner-950));
+        }
+      }
+
+      &_switch {
+        &-text {
+          color: RGBA(var(--color-charade-950));
+        }
+        &-checked {
+          .bmb_switch-label {
+            background-color: RGBA(var(--color-green-light));
+          }
+        }
+      }
+
+      &_field {
+        &-container-label {
+          .bmb_field-label {
+            color: RGBA(var(--color-charade-950));
+          }
+        }
+
+        &-input-normal {
+          background-color: RGBA(var(--color-charade-50));
+          color: RGBA(var(--color-charade-700));
+          // border-color: RGBA(var(--color-charade-500));
+
+          &:hover {
+            border-color: RGBA(var(--color-charade-500));
+          }
+
+          &:focus {
+            border-color: RGBA(var(--color-blue-primary));
+            color: RGBA(var(--color-charade-950));
+          }
+        }
+
+        &-icon {
+          color: RGBA(var(--color-charade-500));
+        }
+
+        &-helper {
+          color: RGBA(var(--color-charade-350));
+        }
+
+        &-input-simple {
+          color: RGBA(var(--color-charade-700));
+
+          &:hover {
+            border-color: RGBA(var(--color-charade-700));
+          }
+
+          &:focus {
+            color: RGBA(var(--color-mariner-700));
+            border-bottom: rem.rem_calc(2) solid RGBA(var(--color-mariner-700));
+          }
+        }
+      }
+
+      &_stepper {
+        &-item {
+          &::before {
+            border-bottom: 2px solid RGBA(var(--color-charade-300));
+          }
+
+          &::after {
+            border-bottom: 2px solid #ccc;
+          }
+
+          &.completed .bmb_stat-counter {
+            background-color: RGBA(var(--color-mariner-700));
+            font-weight: 700;
+
+            .material-icons {
+              color: RGBA(var(--color-charade-50));
+            }
+          }
+
+          & .bmb_stat-counter {
+            background: RGBA(var(--color-charade-300));
+            color: RGBA(var(--color-charade-950));
+          }
+
+          & > .bmb_stat-counter.active {
+            background-color: RGBA(var(--color-charade-50));
+            border: 1px solid RGBA(var(--color-mariner-700));
+            color: RGBA(var(--color-mariner-700));
+          }
+
+          &.completed::after {
+            border-bottom: 2px solid RGBA(var(--color-mariner-700));
+          }
+        }
+      }
+    }
   }
 }
