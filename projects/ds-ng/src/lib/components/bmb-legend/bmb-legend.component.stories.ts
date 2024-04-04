@@ -2,7 +2,7 @@ import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { BmbLegendComponent } from './bmb-legend.component';
 
 export default {
-  title: 'Loader',
+  title: 'Legend',
   component: BmbLegendComponent,
   decorators: [],
   parameters: {
@@ -71,7 +71,7 @@ Below is an example of how you can use this component in HTML:
   args: {
     label: 'Title',
     value: '$0.00',
-    indicatorAppearance: 'primary'
+    indicatorAppearance: 'primary',
   },
 } as Meta<typeof BmbLegendComponent>;
 

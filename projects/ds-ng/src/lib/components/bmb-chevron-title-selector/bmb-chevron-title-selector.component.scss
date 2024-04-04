@@ -1,0 +1,37 @@
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/rem" as rem;
+
+.bmb_chevron {
+  align-items: center;
+  color: RGBA(var(--color-charade-950));
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  &-title {
+    @include fonts.font(4, medium);
+  }
+
+  &-button {
+    color: currentColor;
+    height: rem.rem_calc(24);
+    padding: 0;
+    width: rem.rem_calc(24);
+  }
+
+  &-icon {
+    align-items: center;
+    color: currentColor;
+    display: flex;
+    font-size: rem.rem_calc(24);
+    height: 100%;
+    width: 100%;
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_chevron {
+    color: RGBA(var(--color-charade-50));
+  }
+}
