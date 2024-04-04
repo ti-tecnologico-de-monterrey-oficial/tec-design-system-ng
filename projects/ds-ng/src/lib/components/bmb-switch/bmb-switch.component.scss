@@ -23,7 +23,7 @@
 
   &-checked {
     .bmb_switch-label {
-      background-color: RGBA(var(--color-mariner-700));
+      background-color: RGBA(var(--color-green-light));
 
       &:after {
         left: calc(100% + rem.rem_calc(-18));
@@ -74,7 +74,8 @@
   }
 
   &-text {
-    color: RGBA(var(--color-white-primary));
+    color: RGBA(var(--color-charade-950));
+
     @include fonts.font(3, regular);
     padding: rem.rem_calc(0 5);
   }
@@ -107,6 +108,20 @@
       visibility: hidden;
       opacity: 0;
       right: rem.rem_calc(4.5);
+    }
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_switch {
+    &-text {
+      color: RGBA(var(--color-white-primary));
+    }
+    &-checked {
+      .bmb_switch-label {
+        background-color: RGBA(var(--color-mariner-700));
+      }
     }
   }
 }
