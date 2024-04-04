@@ -43,7 +43,7 @@ class StorybookToastWrapperComponent {
 }
 
 export default {
-  title: 'Toast',
+  title: 'Micro Componentes/Toast',
   component: BmbToastComponent,
   decorators: [
     moduleMetadata({

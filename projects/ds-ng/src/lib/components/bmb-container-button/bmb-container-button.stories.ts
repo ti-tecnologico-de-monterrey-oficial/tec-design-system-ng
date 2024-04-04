@@ -4,7 +4,7 @@ import { BmbContainerButtonComponent } from './bmb-container-button.component';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 
 export default {
-  title: 'Container Button',
+  title: 'Macro Componentes/Container Button',
   component: BmbContainerButtonComponent,
   decorators: [
     moduleMetadata({

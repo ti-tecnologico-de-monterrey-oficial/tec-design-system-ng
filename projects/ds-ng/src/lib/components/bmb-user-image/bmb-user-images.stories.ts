@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbUserImageComponent } from './bmb-user-image.component';
 
 export default {
-  title: 'User Image',
+  title: 'Micro Componentes/User Image',
   component: BmbUserImageComponent,
   parameters: {
     docs: {

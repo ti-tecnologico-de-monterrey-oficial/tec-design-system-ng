@@ -3,7 +3,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbInteractiveIconComponent } from './bmb-interactive-icon.component';
 
 export default {
-  title: 'Interactive Icon',
+  title: 'Micro Componentes/Interactive Icon',
   component: BmbInteractiveIconComponent,
   decorators: [
     moduleMetadata({

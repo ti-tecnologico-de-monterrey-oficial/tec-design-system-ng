@@ -3,7 +3,7 @@ import { BmbThemeComponent } from './bmb-theme.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 
 export default {
-  title: 'Theme',
+  title: 'Micro Componentes/Theme',
   component: BmbThemeComponent,
   decorators: [
     moduleMetadata({

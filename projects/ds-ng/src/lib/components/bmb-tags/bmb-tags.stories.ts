@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbTagComponent } from './bmb-tags.component';
 
 export default {
-  title: 'Tag',
+  title: 'Micro Componentes/Tag',
   component: BmbTagComponent,
   argTypes: {
     text: {
@@ -27,15 +27,15 @@ export default {
       },
     },
     dissmisable: {
-        name: 'Dissmisable',
-        control: { type: 'boolean' },
-        description:
-          'When set to true, a close icon appears, when is clicked the tag is remove from the DOM. By default, it is false, and you do not need to explicitly set it. The badge should always have a parent element.',
-        table: {
-          defaultValue: { summary: 'false' },
-          type: { summary: 'boolean' },
-        },
+      name: 'Dissmisable',
+      control: { type: 'boolean' },
+      description:
+        'When set to true, a close icon appears, when is clicked the tag is remove from the DOM. By default, it is false, and you do not need to explicitly set it. The badge should always have a parent element.',
+      table: {
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
       },
+    },
   },
   args: {
     text: 'Badge text',

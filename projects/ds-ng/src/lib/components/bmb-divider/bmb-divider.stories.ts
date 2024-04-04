@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { BmbDividerComponent } from './bmb-divider.component';
 
 export default {
-  title: 'Divider',
+  title: 'Micro Componentes/Divider',
   component: BmbDividerComponent,
   parameters: {
     docs: {
