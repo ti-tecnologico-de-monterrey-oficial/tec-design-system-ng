@@ -1,7 +1,6 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
-import { BmbTitleSectionComponent } from '../bmb-title-section/bmb-title-section.component';
 import { BmbHomeSectionComponent } from './bmb-home-section.component';
 
 export default {
@@ -9,11 +8,7 @@ export default {
   component: BmbHomeSectionComponent,
   decorators: [
     moduleMetadata({
-      imports: [
-        BmbIconComponent,
-        BmbContainerComponent,
-        BmbTitleSectionComponent,
-      ],
+      imports: [BmbIconComponent, BmbContainerComponent],
     }),
   ],
   parameters: {
@@ -33,7 +28,7 @@ import { BmbHomeSectionComponent } from '@ti-tecnologico-de-monterrey-oficial/ds
 })
 \`\`\`
 
-Below is an example of how you can use this component in HTML:
+Below is an example of how you can use this component in HTML and also you can include whatever you want inside \`\`\`<bmb-home-section><div>Content</div></bmb-home-section>\`\`\`:
         `,
       },
     },

@@ -6,7 +6,8 @@
 
   &-primary-container {
     align-items: flex-end;
-    background-color: RGBA(var(--color-charade-900));
+
+    background-color: RGBA(var(--color-charade-100));
     border-radius: rem.rem_calc(8);
     justify-content: space-between;
     margin: rem.rem_calc(0 0 16);
@@ -15,19 +16,20 @@
 
   // Home
   &-primary-home {
-    background-color: RGBA(var(--color-charade-900));
+    background-color: RGBA(var(--color-charade-100));
+    border: rem_calc(1) solid RGBA(var(--color-charade-300));
     align-items: normal;
     flex-direction: column;
     gap: rem.rem_calc(24);
     justify-content: space-between;
     margin: rem.rem_calc(16 0);
-    padding: rem.rem_calc(24 16);
+    padding: rem.rem_calc(16);
   }
 
   // Header
   &-primary-header {
     align-items: flex-end;
-    background-color: RGBA(var(--color-charade-900));
+    background-color: RGBA(var(--color-charade-100));
     border-radius: rem.rem_calc(0 0 16 16);
     justify-content: space-between;
     margin: rem.rem_calc(0 0 16);
@@ -38,7 +40,7 @@
   // Modal
   &-secondary-container {
     background-color: RGBA(var(--color-charade-950));
-    border: rem.rem_calc(1) solid RGBA(var(--color-charade-700));
+    border: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
     border-radius: rem.rem_calc(8);
     flex-direction: column;
     justify-content: center;
@@ -58,11 +60,37 @@
   }
 
   &-button-container {
-    background-color: RGBA(var(--color-charade-900));
-    border: rem.rem_calc(1) solid RGBA(var(--color-charade-700));
+    background-color: RGBA(var(--color-charade-50));
+    border: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
     align-items: center;
     border-radius: rem.rem_calc(8);
     margin: rem.rem_calc(16);
     padding: rem.rem_calc(24);
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_container {
+    &-primary-container,
+    &-primary-home,
+    &-primary-header,
+    &-secondary-container,
+    &-contrast-box-container {
+      background-color: RGBA(var(--color-charade-900));
+    }
+
+    &-primary-home {
+      border: none;
+    }
+
+    &-secondary-container {
+      border-color: RGBA(var(--color-charade-700));
+    }
+
+    &-button-container {
+      background-color: RGBA(var(--color-charade-900));
+      border-color: RGBA(var(--color-charade-700));
+    }
   }
 }

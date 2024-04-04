@@ -8,7 +8,7 @@
   justify-content: center;
 
   bmb-icon {
-    color: RGBA(var(--color-charade-50));
+    color: RGBA(var(--color-mariner-950));
   }
 
   &-loading {
@@ -36,13 +36,13 @@
 
   &-title {
     @include fonts.font(9, semibold);
-    color: RGBA(var(--color-charade-50));
+    color: RGBA(var(--color-mariner-950));
     margin: rem.rem_calc(16 0 12);
   }
 
   &-subtitle {
     @include fonts.font(5, medium);
-    color: RGBA(var(--color-charade-50));
+    color: RGBA(var(--color-mariner-950));
     margin: 0;
   }
 }
@@ -53,5 +53,16 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_loader {
+    bmb-icon,
+    &-title,
+    &-subtitle {
+      color: RGBA(var(--color-charade-50));
+    }
   }
 }

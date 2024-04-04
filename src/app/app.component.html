@@ -2,11 +2,24 @@
 <bmb-theme />
 
 <bmb-switch leftIcon="light_mode" rightIcon="dark_mode" />
+
+<bmb-home-section
+  [title]="'Section name'"
+  [icon]="'chevron_right'"
+  [target]="'_blank'"
+  [link]="'https://www.youtube.com/'"
+></bmb-home-section>
+
 <bmb-switch leftText="light" rightText="dark" />
 <bmb-switch />
 <bmb-switch [disabled]="true"></bmb-switch>
 <bmb-value-counter label="Title" value="100" progress="50" />
 <bmb-legend label="Label string" value="Value test" indicatorAppearance="warning" />
+<bmb-legend
+  label="Label string"
+  value="Value test"
+  indicatorAppearance="warning"
+/>
 <bmb-loader />
 <bmb-loader [status]="'noConnection'" />
 
