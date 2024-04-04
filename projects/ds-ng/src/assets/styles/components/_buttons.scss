@@ -18,7 +18,8 @@
   }
 }
 
-[data-theme="dark"] {
+[data-theme="dark"],
+.storybook-dark-theme {
   .bmb_btn {
     &-secondary-outlined {
       border-color: RGBA(var(--color-white-primary));
