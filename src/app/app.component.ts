@@ -17,6 +17,7 @@ import {
   BmbLoaderComponent,
   BmbSwitchComponent,
   BmbLegendComponent,
+  BmbValueCounterComponent,
   BmbInputComponent,
   BmbStatCounterComponent,
 } from '../../projects/ds-ng/src/public-api';
@@ -46,6 +47,7 @@ export interface Target {
     BmbLoaderComponent,
     BmbSwitchComponent,
     BmbLegendComponent,
+    BmbValueCounterComponent,
     BmbInputComponent,
     BmbStatCounterComponent,
   ],
