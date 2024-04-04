@@ -11,7 +11,7 @@
     @include fonts.font(3, regular);
     color: RGBA(var(--color-white-primary));
 
-    &-required{
+    &-required {
       color: RGBA(var(--color-red-light));
     }
   }
@@ -30,8 +30,8 @@
   }
 
   &-icon {
-    font-size: rem.rem_calc(24);
     color: RGBA(var(--color-charade-50));
+    font-size: rem.rem_calc(24);
     left: rem.rem_calc(8);
     position: absolute;
     top: 50%;
@@ -59,6 +59,52 @@
 
     &-main {
       @include mixins.input(main);
+    }
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_field {
+    &-container-label {
+      .bmb_field-label {
+        color: RGBA(var(--color-charade-950));
+      }
+    }
+
+    &-input-normal {
+      background-color: RGBA(var(--color-charade-50));
+      color: RGBA(var(--color-charade-700));
+
+      &:hover {
+        border-color: RGBA(var(--color-charade-500));
+      }
+
+      &:focus {
+        border-color: RGBA(var(--color-blue-primary));
+        color: RGBA(var(--color-charade-950));
+      }
+    }
+
+    &-icon {
+      color: RGBA(var(--color-charade-500));
+    }
+
+    &-helper {
+      color: RGBA(var(--color-charade-350));
+    }
+
+    &-input-simple {
+      color: RGBA(var(--color-charade-700));
+
+      &:hover {
+        border-color: RGBA(var(--color-charade-700));
+      }
+
+      &:focus {
+        border-bottom: rem.rem_calc(2) solid RGBA(var(--color-mariner-700));
+        color: RGBA(var(--color-mariner-700));
+      }
     }
   }
 }
