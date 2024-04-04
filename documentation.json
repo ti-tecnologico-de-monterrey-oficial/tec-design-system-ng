@@ -36,12 +36,12 @@
         },
         {
             "name": "Target",
-            "id": "interface-Target-3aced5978e905652771781da6c2495f6098b54270b8d55edc7f3f398dff0f10f3838595e6538f0a71f3c338a32709b43659f09635d21819ee75533e48152950f-1",
+            "id": "interface-Target-8d7cc34ebf1193e1a64e5f6838ec2180f8a931836b0abae4088fc5d336570351d85c2f238fdf387265d2af671a4dc20baf44f8465c3a3ed653d0a8b1b5a78862-1",
             "file": "projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.stories.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { Meta, StoryObj } from '@storybook/angular';\nimport { BmbDotPaginatorComponent } from './bmb-dot-paginator.component';\n\nexport interface Target {\n  target: string;\n  index: number;\n}\n\nexport default {\n  title: 'Dot Paginator',\n  component: BmbDotPaginatorComponent,\n  parameters: {\n    docs: {\n      description: {\n        component: `\nBelow is an example of how you can use this component in TypeScript:\n\n\\`\\`\\`typescript\nimport { BmbDotPaginatorComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';\n\nexport interface Target {\n  target: string;\n  index: number;\n}\n\n@Component({\n  selector: 'component',\n  standalone: true,\n  imports: [ BmbDotPaginatorComponent ],\n  templateUrl: './component.html',\n  styleUrl: './component.scss',\n})\n\nexport class Component {\n  myActiveDotIndex: number = 0;\n  myTotalDots: number = 5;\n  myTargets: Target[] = [\n    { target: '#item1', index: 0 },\n    { target: '#item2', index: 1 },\n  ];\n\n  handleDotPress(index: number): void {\n    console.log('Dot pressed:', index);\n    this.myActiveDotIndex = index;\n  }\n}\n\\`\\`\\`\n\nBelow is an example of how you can use this component in HTML:\n        `,\n      },\n    },\n  },\n  argTypes: {\n    appearance: {\n      name: 'Appearance',\n      control: {\n        type: 'radio',\n      },\n      options: ['primary', 'secondary'],\n      description:\n        'The style of the dot paginator. Is not neccesary to add the \"primary\" style.',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 'primary' },\n        type: { summary: 'string' },\n      },\n    },\n    activeDotIndex: {\n      name: 'Active dot index',\n      control: 'number',\n      description: 'Index of the active dot.',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 0 },\n        type: { summary: 'number' },\n      },\n    },\n    totalDots: {\n      name: 'Total Dots',\n      control: 'number',\n      description: 'Total number of dots.',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 5 },\n        type: { summary: 'number' },\n      },\n    },\n    targets: {\n      name: 'Targets',\n      control: 'object',\n      description: 'Target objects for each dot.',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 'optional' },\n        type: { summary: 'Target[]' },\n      },\n    },\n    onDotPress: {\n      name: 'On Dot Press',\n      control: {\n        type: '',\n      },\n      description:\n        'This handler can be used to perform a specific interaction with each dot.',\n      table: {\n        category: 'Events',\n        type: { summary: '(onDotPress)=\"yourFunction($event)\"' },\n      },\n    },\n  },\n\n  args: {\n    activeDotIndex: 0,\n    totalDots: 5,\n    targets: [\n      { target: '#item1', index: 0 },\n      { target: '#item2', index: 1 },\n    ],\n    onDotPress: (index: number) => {\n      window.alert(index);\n    },\n  },\n} as Meta<typeof BmbDotPaginatorComponent>;\n\ntype Story = StoryObj<BmbDotPaginatorComponent>;\n\nexport const Default: Story = {};\n",
+            "sourceCode": "import { Meta, StoryObj } from '@storybook/angular';\nimport { BmbDotPaginatorComponent } from './bmb-dot-paginator.component';\n\nexport interface Target {\n  target: string;\n  index: number;\n}\n\nexport default {\n  title: 'Dot Paginator',\n  component: BmbDotPaginatorComponent,\n  parameters: {\n    docs: {\n      description: {\n        component: `\nBelow is an example of how you can use this component in TypeScript:\n\n\\`\\`\\`typescript\nimport { BmbDotPaginatorComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';\n\nexport interface Target {\n  target: string;\n  index: number;\n}\n\n@Component({\n  selector: 'component',\n  standalone: true,\n  imports: [ BmbDotPaginatorComponent ],\n  templateUrl: './component.html',\n  styleUrl: './component.scss',\n})\n\nexport class Component {\n  myActiveDotIndex: number = 0;\n  myTotalDots: number = 5;\n  myTargets: Target[] = [\n    { target: '#item1', index: 0 },\n    { target: '#item2', index: 1 },\n  ];\n\n  handleDotPress(index: number): void {\n    this.myActiveDotIndex = index;\n  }\n}\n\\`\\`\\`\n\nBelow is an example of how you can use this component in HTML:\n        `,\n      },\n    },\n  },\n  argTypes: {\n    appearance: {\n      name: 'Appearance',\n      control: {\n        type: 'radio',\n      },\n      options: ['primary', 'secondary'],\n      description:\n        'The style of the dot paginator. Is not neccesary to add the \"primary\" style.',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 'primary' },\n        type: { summary: 'string' },\n      },\n    },\n    activeDotIndex: {\n      name: 'Active dot index',\n      control: 'number',\n      description: 'Index of the active dot.',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 0 },\n        type: { summary: 'number' },\n      },\n    },\n    totalDots: {\n      name: 'Total Dots',\n      control: 'number',\n      description: 'Total number of dots.',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 5 },\n        type: { summary: 'number' },\n      },\n    },\n    targets: {\n      name: 'Targets',\n      control: 'object',\n      description: 'Target objects for each dot.',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 'optional' },\n        type: { summary: 'Target[]' },\n      },\n    },\n    onDotPress: {\n      name: 'On Dot Press',\n      control: {\n        type: '',\n      },\n      description:\n        'This handler can be used to perform a specific interaction with each dot.',\n      table: {\n        category: 'Events',\n        type: { summary: '(onDotPress)=\"yourFunction($event)\"' },\n      },\n    },\n  },\n\n  args: {\n    activeDotIndex: 0,\n    totalDots: 5,\n    targets: [\n      { target: '#item1', index: 0 },\n      { target: '#item2', index: 1 },\n    ],\n    onDotPress: (index: number) => {\n      window.alert(index);\n    },\n  },\n} as Meta<typeof BmbDotPaginatorComponent>;\n\ntype Story = StoryObj<BmbDotPaginatorComponent>;\n\nexport const Default: Story = {};\n",
             "properties": [
                 {
                     "name": "index",
@@ -1434,7 +1434,7 @@
         },
         {
             "name": "BmbHomeSectionComponent",
-            "id": "component-BmbHomeSectionComponent-610d31f9c7844b3e8051d22753e716acd575ddeaee459d633f049f2ddc29ad31f071100d26a5ac6a1566272bc7cfaf80dc64ed7329dccd9d0e4e5a012d2a99f0",
+            "id": "component-BmbHomeSectionComponent-f7e6b27d1fd4d675ac417ed36601e533485d366a7b5270682da06c97d3a783dbc64ce51026aa00356bdd4cb05675f7ca8edf6524b265be9620f7e8f86d649229",
             "file": "projects/ds-ng/src/lib/components/bmb-home-section/bmb-home-section.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -1508,14 +1508,14 @@
                     "type": "component"
                 },
                 {
-                    "name": "BmbTitleSectionComponent",
+                    "name": "BmbIconComponent",
                     "type": "component"
                 }
             ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { BmbContainerComponent } from '../bmb-container/bmb-container.component';\nimport { BmbTitleSectionComponent } from '../bmb-title-section/bmb-title-section.component';\n\n@Component({\n  selector: 'bmb-home-section',\n  standalone: true,\n  imports: [CommonModule, BmbContainerComponent, BmbTitleSectionComponent],\n  styleUrl: './bmb-home-section.component.scss',\n  templateUrl: './bmb-home-section.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbHomeSectionComponent {\n  @Input() title: string = '';\n  @Input() icon: string = '';\n  @Input() target: string = '';\n  @Input() link: string = '';\n\n  constructor() {}\n}\n",
+            "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\nimport { BmbContainerComponent } from '../bmb-container/bmb-container.component';\n\n@Component({\n  selector: 'bmb-home-section',\n  standalone: true,\n  imports: [CommonModule, BmbContainerComponent, BmbIconComponent],\n  styleUrl: './bmb-home-section.component.scss',\n  templateUrl: './bmb-home-section.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbHomeSectionComponent {\n  @Input() title: string = '';\n  @Input() icon: string = '';\n  @Input() target: string = '';\n  @Input() link: string = '';\n\n  constructor() {}\n}\n",
             "styleUrl": "./bmb-home-section.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -1529,7 +1529,7 @@
                 "line": 24
             },
             "extends": [],
-            "templateData": "<div class=\"bmb_home_section\">\n  <bmb-container appearance=\"primary-home\">\n    <bmb-title-section\n      [title]=\"title\"\n      [icon]=\"icon\"\n      [link]=\"link\"\n      [target]=\"target\"\n    />\n    <ng-content></ng-content>\n  </bmb-container>\n</div>\n"
+            "templateData": "<div class=\"bmb_home_section\">\n  <bmb-container appearance=\"primary-home\">\n    <div class=\"bmb_home_section-header\">\n      <span class=\"bmb_home_section-title\">{{ title }}</span>\n      <a class=\"bmb_home_section-link\" [href]=\"link\" [target]=\"target\">\n        <bmb-icon [icon]=\"icon\" class=\"bmb_home_section-icon\" />\n      </a>\n    </div>\n    <ng-content></ng-content>\n  </bmb-container>\n</div>\n"
         },
         {
             "name": "BmbIconComponent",
@@ -2929,7 +2929,7 @@
         },
         {
             "name": "BmbThemeComponent",
-            "id": "component-BmbThemeComponent-284eb001c4a5d1b35358f4da6100735c70c60a87a30c425107c84a407af2d214c534b50f45eb53629462bf9e4a841de1d40f1148f9cb71ca1422e1126bd06925",
+            "id": "component-BmbThemeComponent-bc7f10ac36f0f4e00f358ceffd480a665e780b446beda308e0d0b68c5c55548ca747d914a1910be9e875b5d65a25dfd221683205d37ef85f028ee9bb74b5d7ef",
             "file": "projects/ds-ng/src/lib/components/bmb-theme/bmb-theme.component.ts",
             "encapsulation": [
                 "ViewEncapsulation.None"
@@ -2992,7 +2992,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 30,
+                    "line": 29,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -3030,7 +3030,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 35,
+                    "line": 34,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -3064,7 +3064,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit, inject, ViewEncapsulation } from '@angular/core';\nimport { ThemeService } from '../../services';\nimport { CommonModule } from '@angular/common';\nimport { BmbSwitchComponent } from '../bmb-switch/bmb-switch.component';\n\n@Component({\n  selector: 'bmb-theme',\n  standalone: true,\n  imports: [CommonModule, BmbSwitchComponent],\n  providers: [ThemeService],\n  templateUrl: './bmb-theme.component.html',\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbThemeComponent implements OnInit {\n  selectedTheme: string = 'light';\n\n  private service = inject(ThemeService);\n\n  ngOnInit(): void {\n    const savedTheme = localStorage.getItem('theme') || 'light';\n    console.log(savedTheme);\n    this.selectedTheme = savedTheme;\n    this.applyTheme(savedTheme);\n\n    this.service.theme$.subscribe((theme: any) => {\n      this.applyTheme(theme);\n    });\n  }\n\n  applyTheme(theme: string): void {\n    document.documentElement.setAttribute('data-theme', theme);\n    localStorage.setItem('theme', theme);\n  }\n\n  onThemeChange(isChecked: boolean): void {\n    this.selectedTheme = isChecked ? 'dark' : 'light';\n    localStorage.setItem('theme', this.selectedTheme);\n    this.service.setTheme(this.selectedTheme);\n  }\n}\n",
+            "sourceCode": "import { Component, OnInit, inject, ViewEncapsulation } from '@angular/core';\nimport { ThemeService } from '../../services';\nimport { CommonModule } from '@angular/common';\nimport { BmbSwitchComponent } from '../bmb-switch/bmb-switch.component';\n\n@Component({\n  selector: 'bmb-theme',\n  standalone: true,\n  imports: [CommonModule, BmbSwitchComponent],\n  providers: [ThemeService],\n  templateUrl: './bmb-theme.component.html',\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbThemeComponent implements OnInit {\n  selectedTheme: string = 'light';\n\n  private service = inject(ThemeService);\n\n  ngOnInit(): void {\n    const savedTheme = localStorage.getItem('theme') || 'light';\n    this.selectedTheme = savedTheme;\n    this.applyTheme(savedTheme);\n\n    this.service.theme$.subscribe((theme: any) => {\n      this.applyTheme(theme);\n    });\n  }\n\n  applyTheme(theme: string): void {\n    document.documentElement.setAttribute('data-theme', theme);\n    localStorage.setItem('theme', theme);\n  }\n\n  onThemeChange(isChecked: boolean): void {\n    this.selectedTheme = isChecked ? 'dark' : 'light';\n    localStorage.setItem('theme', this.selectedTheme);\n    this.service.setTheme(this.selectedTheme);\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -3075,95 +3075,8 @@
             "templateData": "<bmb-switch\n  [isChecked]=\"selectedTheme === 'dark'\"\n  leftIcon=\"light_mode\"\n  rightIcon=\"dark_mode\"\n  (change)=\"onThemeChange($event)\"\n></bmb-switch>\n"
         },
         {
-            "name": "BmbTitleSectionComponent",
-            "id": "component-BmbTitleSectionComponent-1eb3dc1dfd2dd938c721a3a88b0c118e4ab035c2cbddc800a46b7c2e3555b1edd6a53b7bf43f6d389c811a101647f1e024059335c761490cf29137d541970d04",
-            "file": "projects/ds-ng/src/lib/components/bmb-title-section/bmb-title-section.component.ts",
-            "changeDetection": "ChangeDetectionStrategy.OnPush",
-            "encapsulation": [
-                "ViewEncapsulation.None"
-            ],
-            "entryComponents": [],
-            "inputs": [],
-            "outputs": [],
-            "providers": [],
-            "selector": "bmb-title-section",
-            "styleUrls": [],
-            "styles": [],
-            "templateUrl": [
-                "./bmb-title-section.component.html"
-            ],
-            "viewProviders": [],
-            "hostDirectives": [],
-            "inputsClass": [
-                {
-                    "name": "icon",
-                    "defaultValue": "''",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 21,
-                    "type": "string",
-                    "decorators": []
-                },
-                {
-                    "name": "link",
-                    "defaultValue": "''",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 23,
-                    "type": "string",
-                    "decorators": []
-                },
-                {
-                    "name": "target",
-                    "defaultValue": "''",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 22,
-                    "type": "string",
-                    "decorators": []
-                },
-                {
-                    "name": "title",
-                    "defaultValue": "''",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 20,
-                    "type": "string",
-                    "decorators": []
-                }
-            ],
-            "outputsClass": [],
-            "propertiesClass": [],
-            "methodsClass": [],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "hostBindings": [],
-            "hostListeners": [],
-            "standalone": true,
-            "imports": [
-                {
-                    "name": "CommonModule",
-                    "type": "module"
-                },
-                {
-                    "name": "BmbIconComponent",
-                    "type": "component"
-                }
-            ],
-            "description": "",
-            "rawdescription": "\n",
-            "type": "component",
-            "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\n\n@Component({\n  selector: 'bmb-title-section',\n  standalone: true,\n  imports: [CommonModule, BmbIconComponent],\n  styleUrl: './bmb-title-section.component.scss',\n  templateUrl: './bmb-title-section.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbTitleSectionComponent {\n  @Input() title: string = '';\n  @Input() icon: string = '';\n  @Input() target: string = '';\n  @Input() link: string = '';\n}\n",
-            "styleUrl": "./bmb-title-section.component.scss",
-            "assetsDirs": [],
-            "styleUrlsData": "",
-            "stylesData": "",
-            "extends": [],
-            "templateData": "<div class=\"bmb_title_section\">\n  <span class=\"bmb_title_section-title\">{{ title }}</span>\n  <a class=\"bmb_title_section-link\" [href]=\"link\" [target]=\"target\">\n    <bmb-icon [icon]=\"icon\" class=\"bmb_title_section-icon\" />\n  </a>\n</div>\n"
-        },
-        {
             "name": "BmbToastComponent",
-            "id": "component-BmbToastComponent-c5a76682d09ec3e7069731bfe5766e582ff6c7148812b211a472c62c7a91b37239f51aaaa48e5f1f30960d34b91dd35882f89213f9305922a68e3bdcc4b78114",
+            "id": "component-BmbToastComponent-b8ea2ef35d6c99a5e75d694f7bc5ad5348fdbb48ba8428adfd4a4017696424df9bbd0874919f8aa5b1537e7ecbc8cb3c32b26e8ab8b520ec4961330938ce9767",
             "file": "projects/ds-ng/src/lib/components/bmb-toast/bmb-toast.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -3323,7 +3236,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  OnInit,\n  ViewEncapsulation,\n  OnDestroy,\n} from '@angular/core';\nimport { ToastService } from '../../services';\nimport { Subscription } from 'rxjs';\nimport { CommonModule } from '@angular/common';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\n\n@Component({\n  standalone: true,\n  selector: 'bmb-toast',\n  styleUrl: './bmb-toast.component.scss',\n  imports: [CommonModule, BmbIconComponent],\n  templateUrl: './bmb-toast.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  providers: [ToastService],\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbToastComponent implements OnInit, OnDestroy {\n  @Input() appearance: string = '';\n  @Input() message: string = '';\n  @Input() duration?: number;\n  @Input() position?: 'top' | 'bottom' | 'middle';\n\n  isOpen$ = this.toastService.isOpen$;\n\n  private isOpenSubscription: Subscription | undefined;\n\n  constructor(private toastService: ToastService) {}\n\n  ngOnInit(): void {\n    this.isOpenSubscription = this.isOpen$.subscribe((isOpen) => {\n      if (isOpen && this.duration) {\n        this.setAutoClose();\n      }\n    });\n  }\n\n  ngOnDestroy(): void {\n    if (this.isOpenSubscription) {\n      this.isOpenSubscription.unsubscribe();\n    }\n  }\n\n  getClasses(): string[] {\n    const classes: string[] = ['bmb_toast'];\n\n    if (this.appearance) {\n      classes.push('bmb_toast-' + this.appearance);\n    }\n\n    if (this.position) {\n      classes.push('bmb_toast-' + this.position);\n    }\n\n    return classes;\n  }\n\n  private setAutoClose(): void {\n    setTimeout(() => {\n      this.toastService.closeToast();\n    }, this.duration);\n  }\n\n  public openToast() {\n    console.log('hola');\n    this.toastService.openToast();\n  }\n}\n",
+            "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  OnInit,\n  ViewEncapsulation,\n  OnDestroy,\n} from '@angular/core';\nimport { ToastService } from '../../services';\nimport { Subscription } from 'rxjs';\nimport { CommonModule } from '@angular/common';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\n\n@Component({\n  standalone: true,\n  selector: 'bmb-toast',\n  styleUrl: './bmb-toast.component.scss',\n  imports: [CommonModule, BmbIconComponent],\n  templateUrl: './bmb-toast.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  providers: [ToastService],\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbToastComponent implements OnInit, OnDestroy {\n  @Input() appearance: string = '';\n  @Input() message: string = '';\n  @Input() duration?: number;\n  @Input() position?: 'top' | 'bottom' | 'middle';\n\n  isOpen$ = this.toastService.isOpen$;\n\n  private isOpenSubscription: Subscription | undefined;\n\n  constructor(private toastService: ToastService) {}\n\n  ngOnInit(): void {\n    this.isOpenSubscription = this.isOpen$.subscribe((isOpen) => {\n      if (isOpen && this.duration) {\n        this.setAutoClose();\n      }\n    });\n  }\n\n  ngOnDestroy(): void {\n    if (this.isOpenSubscription) {\n      this.isOpenSubscription.unsubscribe();\n    }\n  }\n\n  getClasses(): string[] {\n    const classes: string[] = ['bmb_toast'];\n\n    if (this.appearance) {\n      classes.push('bmb_toast-' + this.appearance);\n    }\n\n    if (this.position) {\n      classes.push('bmb_toast-' + this.position);\n    }\n\n    return classes;\n  }\n\n  private setAutoClose(): void {\n    setTimeout(() => {\n      this.toastService.closeToast();\n    }, this.duration);\n  }\n\n  public openToast() {\n    this.toastService.openToast();\n  }\n}\n",
             "styleUrl": "./bmb-toast.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -4998,15 +4911,6 @@
                 "name": "Default",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/ds-ng/src/lib/components/bmb-title-section/bmb-title-section.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "BmbTitleSectionComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/5",
                 "status": "low"
             },
             {

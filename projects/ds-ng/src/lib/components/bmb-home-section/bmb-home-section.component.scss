@@ -1,25 +1,38 @@
 @use "../../../assets/styles/base/fonts" as fonts;
 @use "../../../assets/styles/base/rem" as rem;
 
-.bmb_header {
-  &_mobile {
-    color: RGBA(var(--color-charade-50));
+.bmb_home_section {
+  &-header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+  }
 
-    &-text {
-      @include fonts.font(6, semibold);
-    }
+  &-link {
+    color: RGBA(var(--color-charade-950));
+    text-decoration: none;
+  }
 
-    bmb-icon {
+  &-title {
+    color: RGBA(var(--color-charade-950));
+    @include fonts.font(5, regular);
+  }
+
+  &-icon {
+    align-items: center;
+    color: currentColor;
+    display: flex;
+    font-size: rem.rem_calc(24);
+    height: rem.rem_calc(24);
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_home_section {
+    &-link,
+    &-title {
       color: RGBA(var(--color-charade-50));
-      align-items: flex-end;
-      display: flex;
-      font-size: rem.rem_calc(24);
-      height: rem.rem_calc(24);
-    }
-
-    &-left,
-    &-right {
-      gap: rem.rem_calc(4);
     }
   }
 }
