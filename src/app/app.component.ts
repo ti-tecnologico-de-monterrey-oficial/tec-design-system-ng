@@ -17,7 +17,9 @@ import {
   BmbLoaderComponent,
   BmbSwitchComponent,
   BmbLegendComponent,
-  BmbValueCounterComponent
+  BmbValueCounterComponent,
+  BmbInputComponent,
+  BmbStatCounterComponent,
 } from '../../projects/ds-ng/src/public-api';
 
 export interface Target {
@@ -45,7 +47,9 @@ export interface Target {
     BmbLoaderComponent,
     BmbSwitchComponent,
     BmbLegendComponent,
-    BmbValueCounterComponent
+    BmbValueCounterComponent,
+    BmbInputComponent,
+    BmbStatCounterComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -60,6 +64,8 @@ export class AppComponent {
   title = 'tec-design-system-ng';
 
   value = 'tec-design';
+
+  i = 0;
 
   @ViewChild(BmbToastComponent)
   private toastComponent!: BmbToastComponent;
@@ -93,5 +99,20 @@ export class AppComponent {
   handleDotPress(index: number): void {
     console.log('Dot pressed:', index);
     this.myActiveDotIndex = index;
+  }
+
+  plus(){   
+    this.i++;
+  }
+
+  decrement(){
+    if(this.i === 0){
+      return
+    }
+    this.i--;
+  }
+
+  save(event: number){
+    this.i = event
   }
 }

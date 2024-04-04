@@ -159,6 +159,88 @@
           }
         }
       }
+
+      &_field{
+        &-container-label {
+          .bmb_field-label{
+            color:RGBA(var(--color-charade-950));
+          }
+        }
+
+        &-input-normal {
+          background-color: RGBA(var(--color-charade-50));
+          color: RGBA(var(--color-charade-700));
+          // border-color: RGBA(var(--color-charade-500));
+
+          &:hover {
+            border-color: RGBA(var(--color-charade-500));
+          }
+
+          &:focus {
+            border-color: RGBA(var(--color-blue-primary));
+            color: RGBA(var(--color-charade-950));
+          }
+        }
+
+        &-icon {
+          color: RGBA(var(--color-charade-500))
+        }
+
+        &-helper {
+          color: RGBA(var(--color-charade-350));
+        }
+
+        &-input-simple {
+          color: RGBA(var(--color-charade-700));
+
+          &:hover {
+            border-color: RGBA(var(--color-charade-700));
+          }
+
+          &:focus {
+            color: RGBA(var(--color-mariner-700));
+            border-bottom: rem.rem_calc(2) solid RGBA(var(--color-mariner-700));
+          }
+        }
+      }
+
+      &_stepper{
+
+        &-item {
+          &::before{
+            border-bottom: 2px solid  RGBA(var(--color-charade-300));
+          }
+  
+          &::after{
+            border-bottom: 2px solid #ccc;
+          }
+  
+          &.completed .bmb_stat-counter {
+            background-color: RGBA(var(--color-mariner-700));
+            font-weight: 700;
+  
+            .material-icons{
+              color: RGBA(var(--color-charade-50));
+            }
+          }
+  
+          & .bmb_stat-counter{
+            background: RGBA(var(--color-charade-300));
+            color: RGBA(var(--color-charade-950));
+          }
+  
+          & > .bmb_stat-counter.active {
+            background-color: RGBA(var(--color-charade-50));
+            border: 1px solid RGBA(var(--color-mariner-700));
+            color: RGBA(var(--color-mariner-700))
+          }
+  
+          &.completed::after {
+            border-bottom: 2px solid RGBA(var(--color-mariner-700));
+          }
+        }
+
+      }
     }
   }
 }
