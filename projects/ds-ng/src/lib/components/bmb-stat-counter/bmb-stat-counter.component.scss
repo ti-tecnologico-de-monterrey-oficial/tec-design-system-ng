@@ -2,13 +2,11 @@
 @use "../../../assets/styles/base/rem" as rem;
 
 .bmb_stepper {
-  &-wrapper {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    min-height: 70px;
-    width: 100%;
-  }
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  min-height: 70px;
+  width: 100%;
 
   &-item {
     align-items: center;
