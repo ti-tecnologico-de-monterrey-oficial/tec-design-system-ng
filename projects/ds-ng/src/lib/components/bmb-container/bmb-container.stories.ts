@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbContainerComponent } from './bmb-container.component';
 
 export default {
-  title: 'Container',
+  title: 'Micro Componentes/Container',
   component: BmbContainerComponent,
   parameters: {
     docs: {

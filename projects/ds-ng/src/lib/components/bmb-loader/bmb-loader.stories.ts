@@ -3,7 +3,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbLoaderComponent } from './bmb-loader.component';
 
 export default {
-  title: 'Loader',
+  title: 'Micro Componentes/Loader',
   component: BmbLoaderComponent,
   decorators: [
     moduleMetadata({
