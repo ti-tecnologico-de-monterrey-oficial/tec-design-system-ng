@@ -3,6 +3,14 @@
 
 <bmb-switch leftIcon="light_mode" rightIcon="dark_mode" />
 
+<bmb-user-summary
+  name="Juan Pedro Sánchez Miranda"
+  id="A00123456"
+  [isProfile]="boolUserSummary"
+  profilePic="https://writestylesonline.com/wp-content/uploads/2016/08/Follow-These-Steps-for-a-Flawless-Professional-Profile-Picture.jpg"
+  (onClick)="onProfileClick()"
+/>
+
 <bmb-home-section
   [title]="'Section name'"
   [icon]="'chevron_right'"

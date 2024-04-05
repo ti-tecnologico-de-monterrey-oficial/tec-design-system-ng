@@ -1,0 +1,24 @@
+<section class="bmb_user-summary" [ngClass]="{'bmb_user-summary-is-profile' : isProfile}">
+  <figure class="bmb_user-summary-pic">
+    <img [src]="profilePic" [alt]="name" />
+  </figure>
+  <div class="bmb_user-summary-content">
+    @if (isProfile) {
+      <h3 class="bmb_user-summary-content-title">{{ name }}</h3>
+    }
+    @else {
+      <h3 class="bmb_user-summary-content-title">¡Buenas tardes <br>{{ name }}!</h3>
+    }
+    <span class="bmb_user-summary-content-id">{{ id }}</span>
+  </div>
+  @if (isProfile) {
+    <button
+      class="bmb_user-summary-button"
+      bmbButton
+      appearance="secondary-outlined"
+      (click)="handleClick()"
+    >
+      ID Digital
+    </button>
+  }
+</section>

@@ -20,6 +20,7 @@ import {
   BmbValueCounterComponent,
   BmbInputComponent,
   BmbStatCounterComponent,
+  BmbUserSummaryComponent,
 } from '../../projects/ds-ng/src/public-api';
 
 export interface Target {
@@ -50,6 +51,7 @@ export interface Target {
     BmbValueCounterComponent,
     BmbInputComponent,
     BmbStatCounterComponent,
+    BmbUserSummaryComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -62,7 +64,7 @@ export class AppComponent {
   ]);
 
   title = 'tec-design-system-ng';
-
+  boolUserSummary = true;
   value = 'tec-design';
 
   i = 0;
@@ -101,7 +103,7 @@ export class AppComponent {
     this.myActiveDotIndex = index;
   }
 
-  plus(){   
+  plus(){
     this.i++;
   }
 
@@ -114,5 +116,9 @@ export class AppComponent {
 
   save(event: number){
     this.i = event
+  }
+
+  onProfileClick() {
+    this.boolUserSummary = !this.boolUserSummary;
   }
 }
