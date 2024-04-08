@@ -77,7 +77,7 @@ function attributes(object: any): any {
 
 const customizable = (): StoryFn => (args) => ({
   props: args,
-  template: `<div ${attributes(args)}>Font Playground</div>`,
+  template: `<div ${attributes(args)}>Typography</div>`,
 });
 
 export const Default = customizable();
