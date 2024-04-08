@@ -25,9 +25,9 @@ p {
 }
 
 button {
-  cursor: pointer;
   background-color: transparent;
   border: none;
+  cursor: pointer;
 }
 
 h1,
@@ -67,8 +67,8 @@ bmb-icon {
   color: inherit;
   direction: ltr;
   display: inline-block;
-  font-feature-settings: "liga";
   font-family: "Material Symbols Outlined";
+  font-feature-settings: "liga";
   -webkit-font-feature-settings: "liga";
   font-size: inherit;
   -webkit-font-smoothing: antialiased;
@@ -85,5 +85,15 @@ bmb-icon {
 storybook-toast-wrapper {
   ~ .actions {
     display: none;
+  }
+}
+
+.storybook-colors-playground {
+  display: flex;
+  gap: 10px;
+
+  > div {
+    height: 50px;
+    width: 200px;
   }
 }

@@ -111,7 +111,6 @@ $sizes: (
   $size: nth($sizes, $i);
   $font-family: map-get($font-map, $type);
   font-family: $font-family;
-
   font-size: #{$size};
 }
 

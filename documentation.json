@@ -87,12 +87,12 @@
         },
         {
             "name": "Target",
-            "id": "interface-Target-8d7cc34ebf1193e1a64e5f6838ec2180f8a931836b0abae4088fc5d336570351d85c2f238fdf387265d2af671a4dc20baf44f8465c3a3ed653d0a8b1b5a78862-1",
+            "id": "interface-Target-ffb933431ea34d481e15828994488a1d5d39586edbb796a4b01be09ea01819c25f1cb7b81646b06e5328e519194ae622d8ae95ddc06888bdb97851a760eb7f9a-1",
             "file": "projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.stories.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { Meta, StoryObj } from '@storybook/angular';\nimport { BmbDotPaginatorComponent } from './bmb-dot-paginator.component';\n\nexport interface Target {\n  target: string;\n  index: number;\n}\n\nexport default {\n  title: 'Dot Paginator',\n  component: BmbDotPaginatorComponent,\n  parameters: {\n    docs: {\n      description: {\n        component: `\nBelow is an example of how you can use this component in TypeScript:\n\n\\`\\`\\`typescript\nimport { BmbDotPaginatorComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';\n\nexport interface Target {\n  target: string;\n  index: number;\n}\n\n@Component({\n  selector: 'component',\n  standalone: true,\n  imports: [ BmbDotPaginatorComponent ],\n  templateUrl: './component.html',\n  styleUrl: './component.scss',\n})\n\nexport class Component {\n  myActiveDotIndex: number = 0;\n  myTotalDots: number = 5;\n  myTargets: Target[] = [\n    { target: '#item1', index: 0 },\n    { target: '#item2', index: 1 },\n  ];\n\n  handleDotPress(index: number): void {\n    this.myActiveDotIndex = index;\n  }\n}\n\\`\\`\\`\n\nBelow is an example of how you can use this component in HTML:\n        `,\n      },\n    },\n  },\n  argTypes: {\n    appearance: {\n      name: 'Appearance',\n      control: {\n        type: 'radio',\n      },\n      options: ['primary', 'secondary'],\n      description:\n        'The style of the dot paginator. Is not neccesary to add the \"primary\" style.',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 'primary' },\n        type: { summary: 'string' },\n      },\n    },\n    activeDotIndex: {\n      name: 'Active dot index',\n      control: 'number',\n      description: 'Index of the active dot.',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 0 },\n        type: { summary: 'number' },\n      },\n    },\n    totalDots: {\n      name: 'Total Dots',\n      control: 'number',\n      description: 'Total number of dots.',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 5 },\n        type: { summary: 'number' },\n      },\n    },\n    targets: {\n      name: 'Targets',\n      control: 'object',\n      description: 'Target objects for each dot.',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 'optional' },\n        type: { summary: 'Target[]' },\n      },\n    },\n    onDotPress: {\n      name: 'On Dot Press',\n      control: {\n        type: '',\n      },\n      description:\n        'This handler can be used to perform a specific interaction with each dot.',\n      table: {\n        category: 'Events',\n        type: { summary: '(onDotPress)=\"yourFunction($event)\"' },\n      },\n    },\n  },\n\n  args: {\n    activeDotIndex: 0,\n    totalDots: 5,\n    targets: [\n      { target: '#item1', index: 0 },\n      { target: '#item2', index: 1 },\n    ],\n    onDotPress: (index: number) => {\n      window.alert(index);\n    },\n  },\n} as Meta<typeof BmbDotPaginatorComponent>;\n\ntype Story = StoryObj<BmbDotPaginatorComponent>;\n\nexport const Default: Story = {};\n",
+            "sourceCode": "import { Meta, StoryObj } from '@storybook/angular';\nimport { BmbDotPaginatorComponent } from './bmb-dot-paginator.component';\n\nexport interface Target {\n  target: string;\n  index: number;\n}\n\nexport default {\n  title: 'Micro Componentes/Dot Paginator',\n  component: BmbDotPaginatorComponent,\n  parameters: {\n    docs: {\n      description: {\n        component: `\nBelow is an example of how you can use this component in TypeScript:\n\n\\`\\`\\`typescript\nimport { BmbDotPaginatorComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';\n\nexport interface Target {\n  target: string;\n  index: number;\n}\n\n@Component({\n  selector: 'component',\n  standalone: true,\n  imports: [ BmbDotPaginatorComponent ],\n  templateUrl: './component.html',\n  styleUrl: './component.scss',\n})\n\nexport class Component {\n  myActiveDotIndex: number = 0;\n  myTotalDots: number = 5;\n  myTargets: Target[] = [\n    { target: '#item1', index: 0 },\n    { target: '#item2', index: 1 },\n  ];\n\n  handleDotPress(index: number): void {\n    this.myActiveDotIndex = index;\n  }\n}\n\\`\\`\\`\n\nBelow is an example of how you can use this component in HTML:\n        `,\n      },\n    },\n  },\n  argTypes: {\n    appearance: {\n      name: 'Appearance',\n      control: {\n        type: 'radio',\n      },\n      options: ['primary', 'secondary'],\n      description:\n        'The style of the dot paginator. Is not neccesary to add the \"primary\" style.',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 'primary' },\n        type: { summary: 'string' },\n      },\n    },\n    activeDotIndex: {\n      name: 'Active dot index',\n      control: 'number',\n      description: 'Index of the active dot.',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 0 },\n        type: { summary: 'number' },\n      },\n    },\n    totalDots: {\n      name: 'Total Dots',\n      control: 'number',\n      description: 'Total number of dots.',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 5 },\n        type: { summary: 'number' },\n      },\n    },\n    targets: {\n      name: 'Targets',\n      control: 'object',\n      description: 'Target objects for each dot.',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 'optional' },\n        type: { summary: 'Target[]' },\n      },\n    },\n    onDotPress: {\n      name: 'On Dot Press',\n      control: {\n        type: '',\n      },\n      description:\n        'This handler can be used to perform a specific interaction with each dot.',\n      table: {\n        category: 'Events',\n        type: { summary: '(onDotPress)=\"yourFunction($event)\"' },\n      },\n    },\n  },\n\n  args: {\n    activeDotIndex: 0,\n    totalDots: 5,\n    targets: [\n      { target: '#item1', index: 0 },\n      { target: '#item2', index: 1 },\n    ],\n    onDotPress: (index: number) => {\n      window.alert(index);\n    },\n  },\n} as Meta<typeof BmbDotPaginatorComponent>;\n\ntype Story = StoryObj<BmbDotPaginatorComponent>;\n\nexport const Default: Story = {};\n",
             "properties": [
                 {
                     "name": "index",
@@ -3887,7 +3887,7 @@
         },
         {
             "name": "StorybookToastWrapperComponent",
-            "id": "component-StorybookToastWrapperComponent-6f23684b7776d8cdf83346b0bc7a2d85eac1b9e8472b991155d7f43737c75e781d96062f0e3537eeee9982ab269bb9e4bae4835b5f07ddf8fd1e7338e5e326dd",
+            "id": "component-StorybookToastWrapperComponent-e599e8f2c9632f98dcf383bc5c03b3a5aeece87cf26ef0c929d385e56a09f1b8dac1ab96d3f355934a559f9f94faeef947134cc64aebd12a17645dc6fe7aa5d7",
             "file": "projects/ds-ng/src/lib/components/bmb-toast/bmb-toast.stories.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -3989,7 +3989,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, ViewChild } from '@angular/core';\nimport { Meta, StoryFn, moduleMetadata } from '@storybook/angular';\nimport { BmbToastComponent } from './bmb-toast.component';\nimport { ToastService } from '../../services/toast.service';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\nimport { BmbButtonDirective } from '../../directives/button.directive';\n\n@Component({\n  standalone: true,\n  imports: [BmbToastComponent, BmbButtonDirective],\n  selector: 'storybook-toast-wrapper',\n  template: `\n    <button\n      bmbButton\n      appearance=\"primary\"\n      icon=\"home\"\n      size=\"small\"\n      position=\"left\"\n      [case]=\"false\"\n      (click)=\"onButtonClick()\"\n    >\n      Click Here\n    </button>\n    <bmb-toast\n      [message]=\"message\"\n      [appearance]=\"appearance\"\n      [duration]=\"duration\"\n      [position]=\"position\"\n    ></bmb-toast>\n  `,\n})\nclass StorybookToastWrapperComponent {\n  @Input() appearance: string = '';\n  @Input() message: string = '';\n  @Input() duration?: number;\n  @Input() position?: 'top' | 'bottom' | 'middle';\n\n  @ViewChild(BmbToastComponent)\n  private toastComponent!: BmbToastComponent;\n  onButtonClick() {\n    this.toastComponent.openToast();\n  }\n}\n\nexport default {\n  title: 'Toast',\n  component: BmbToastComponent,\n  decorators: [\n    moduleMetadata({\n      imports: [\n        StorybookToastWrapperComponent,\n        BmbToastComponent,\n        BmbIconComponent,\n        BmbButtonDirective,\n      ],\n      providers: [ToastService],\n    }),\n  ],\n  parameters: {\n    docs: {\n      description: {\n        component: `\nBelow is an example of how you can use this component in TypeScript:\n\n\\`\\`\\`typescript\nimport { BmbButtonDirective, BmbToastComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';\n@Component({\n  selector: 'component',\n  standalone: true,\n  imports: [ BmbButtonDirective, BmbToastComponent ],\n  templateUrl: './component.html',\n  styleUrl: './component.scss',\n})\nexport class Component {\n  title = 'my-app';\n\n  @ViewChild(BmbToastComponent)\n  private toastComponent!: BmbToastComponent;\n  onButtonClick() {\n    this.toastComponent.openToast();\n  }\n}\n\\`\\`\\`\n\nBelow is an example of how you can use this component in HTML:\n        `,\n      },\n    },\n  },\n  argTypes: {\n    message: {\n      name: 'Message',\n      control: {\n        type: 'text',\n      },\n      description:\n        'Specifies the text displayed within the toast notification. This message should be concise and direct, providing the user with immediate feedback or information related to their actions.',\n      table: {\n        category: 'Properties',\n        type: { summary: 'string' },\n      },\n    },\n    appearance: {\n      name: 'Appearance',\n      control: 'radio',\n      options: [\n        'neutral',\n        'primary',\n        'successful',\n        'warning',\n        'error',\n        'event',\n      ],\n      description:\n        'Defines the visual style of the toast, allowing it to match the context of the notification. Each option represents a different level of notification severity or type, such as informational (neutral), success (successful), warning (warning), error (error), or event (event).',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 'neutral' },\n        type: { summary: 'string' },\n      },\n    },\n    duration: {\n      name: 'Duration',\n      control: {\n        type: 'number',\n      },\n      description:\n        'Determines how long the toast remains visible to the user, in milliseconds. A longer duration can be useful for more complex messages that require additional reading time, whereas shorter durations are suitable for succinct, immediate feedback',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: '5000' },\n        type: { summary: 'string' },\n      },\n    },\n    position: {\n      name: 'Position',\n      control: 'radio',\n      options: ['top', 'bottom', 'middle'],\n      description:\n        \"Controls the position of the toast on the screen, helping to ensure the notification does not obstruct important interface elements. Options include top, bottom, and middle, allowing you to choose the most appropriate placement based on your application's layout and user experience requirements.\",\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 'top' },\n        type: { summary: 'string' },\n      },\n    },\n  },\n  args: {\n    message: 'Your toast text here',\n    appearance: 'neutral',\n    duration: 5000,\n    position: 'top',\n  },\n} as Meta<typeof BmbToastComponent>;\n\nfunction attributes(object: { [key: string]: any }): string {\n  return Object.entries(object)\n    .filter(([key]) => key !== 'text')\n    .map(([key, value]) => {\n      if (key === 'duration') {\n        return `[${key}]=\"${value}\"`;\n      }\n      return `${key}=\"${value}\"`;\n    })\n    .join(' ');\n}\n\nexport const Default: StoryFn<typeof BmbToastComponent> = (args) => {\n  return {\n    props: args,\n    template: `\n      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->\n      <storybook-toast-wrapper ${attributes(args)}></storybook-toast-wrapper>\n      <!-- Start copying from here -->\n      <div class=\"actions\">\n      <button bmbButton appearance=\"primary\" icon=\"home\" size=\"small\" position=\"left\" [case]=\"false\" (click)=\"onButtonClick()\">Click Here</button>\n      <bmb-toast ${attributes(args)}></bmb-toast></div>`,\n  };\n};\n",
+            "sourceCode": "import { Component, Input, ViewChild } from '@angular/core';\nimport { Meta, StoryFn, moduleMetadata } from '@storybook/angular';\nimport { BmbToastComponent } from './bmb-toast.component';\nimport { ToastService } from '../../services/toast.service';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\nimport { BmbButtonDirective } from '../../directives/button.directive';\n\n@Component({\n  standalone: true,\n  imports: [BmbToastComponent, BmbButtonDirective],\n  selector: 'storybook-toast-wrapper',\n  template: `\n    <button\n      bmbButton\n      appearance=\"primary\"\n      icon=\"home\"\n      size=\"small\"\n      position=\"left\"\n      [case]=\"false\"\n      (click)=\"onButtonClick()\"\n    >\n      Click Here\n    </button>\n    <bmb-toast\n      [message]=\"message\"\n      [appearance]=\"appearance\"\n      [duration]=\"duration\"\n      [position]=\"position\"\n    ></bmb-toast>\n  `,\n})\nclass StorybookToastWrapperComponent {\n  @Input() appearance: string = '';\n  @Input() message: string = '';\n  @Input() duration?: number;\n  @Input() position?: 'top' | 'bottom' | 'middle';\n\n  @ViewChild(BmbToastComponent)\n  private toastComponent!: BmbToastComponent;\n  onButtonClick() {\n    this.toastComponent.openToast();\n  }\n}\n\nexport default {\n  title: 'Micro Componentes/Toast',\n  component: BmbToastComponent,\n  decorators: [\n    moduleMetadata({\n      imports: [\n        StorybookToastWrapperComponent,\n        BmbToastComponent,\n        BmbIconComponent,\n        BmbButtonDirective,\n      ],\n      providers: [ToastService],\n    }),\n  ],\n  parameters: {\n    docs: {\n      description: {\n        component: `\nBelow is an example of how you can use this component in TypeScript:\n\n\\`\\`\\`typescript\nimport { BmbButtonDirective, BmbToastComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';\n@Component({\n  selector: 'component',\n  standalone: true,\n  imports: [ BmbButtonDirective, BmbToastComponent ],\n  templateUrl: './component.html',\n  styleUrl: './component.scss',\n})\nexport class Component {\n  title = 'my-app';\n\n  @ViewChild(BmbToastComponent)\n  private toastComponent!: BmbToastComponent;\n  onButtonClick() {\n    this.toastComponent.openToast();\n  }\n}\n\\`\\`\\`\n\nBelow is an example of how you can use this component in HTML:\n        `,\n      },\n    },\n  },\n  argTypes: {\n    message: {\n      name: 'Message',\n      control: {\n        type: 'text',\n      },\n      description:\n        'Specifies the text displayed within the toast notification. This message should be concise and direct, providing the user with immediate feedback or information related to their actions.',\n      table: {\n        category: 'Properties',\n        type: { summary: 'string' },\n      },\n    },\n    appearance: {\n      name: 'Appearance',\n      control: 'radio',\n      options: [\n        'neutral',\n        'primary',\n        'successful',\n        'warning',\n        'error',\n        'event',\n      ],\n      description:\n        'Defines the visual style of the toast, allowing it to match the context of the notification. Each option represents a different level of notification severity or type, such as informational (neutral), success (successful), warning (warning), error (error), or event (event).',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 'neutral' },\n        type: { summary: 'string' },\n      },\n    },\n    duration: {\n      name: 'Duration',\n      control: {\n        type: 'number',\n      },\n      description:\n        'Determines how long the toast remains visible to the user, in milliseconds. A longer duration can be useful for more complex messages that require additional reading time, whereas shorter durations are suitable for succinct, immediate feedback',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: '5000' },\n        type: { summary: 'string' },\n      },\n    },\n    position: {\n      name: 'Position',\n      control: 'radio',\n      options: ['top', 'bottom', 'middle'],\n      description:\n        \"Controls the position of the toast on the screen, helping to ensure the notification does not obstruct important interface elements. Options include top, bottom, and middle, allowing you to choose the most appropriate placement based on your application's layout and user experience requirements.\",\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 'top' },\n        type: { summary: 'string' },\n      },\n    },\n  },\n  args: {\n    message: 'Your toast text here',\n    appearance: 'neutral',\n    duration: 5000,\n    position: 'top',\n  },\n} as Meta<typeof BmbToastComponent>;\n\nfunction attributes(object: { [key: string]: any }): string {\n  return Object.entries(object)\n    .filter(([key]) => key !== 'text')\n    .map(([key, value]) => {\n      if (key === 'duration') {\n        return `[${key}]=\"${value}\"`;\n      }\n      return `${key}=\"${value}\"`;\n    })\n    .join(' ');\n}\n\nexport const Default: StoryFn<typeof BmbToastComponent> = (args) => {\n  return {\n    props: args,\n    template: `\n      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->\n      <storybook-toast-wrapper ${attributes(args)}></storybook-toast-wrapper>\n      <!-- Start copying from here -->\n      <div class=\"actions\">\n      <button bmbButton appearance=\"primary\" icon=\"home\" size=\"small\" position=\"left\" [case]=\"false\" (click)=\"onButtonClick()\">Click Here</button>\n      <bmb-toast ${attributes(args)}></bmb-toast></div>`,\n  };\n};\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -3999,6 +3999,16 @@
     "modules": [],
     "miscellaneous": {
         "variables": [
+            {
+                "name": "ColorPalette",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/foundations/bmb-colors/bmb-colors.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "() => ({\n  template: `\n    <div style=\"display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;\">\n      <!-- Repite este bloque para cada color que quieras mostrar -->\n      <div *ngFor=\"let color of colors\" style=\"padding: 20px; border-radius: 4px; color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-size: 14px;\" [style.background-color]=\"'rgba(' + color.value + ')'\">\n        {{color.name}}\n      </div>\n    </div>\n  `,\n  props: {\n    colors: [\n      { name: '--color-mariner-500', value: '69, 153, 236' },\n      { name: '--color-charade-500', value: '97, 113, 150' },\n      { name: '--color-blue-tec', value: '0, 57, 166' },\n      { name: '--color-mitec-blue', value: '0, 167, 247' },\n      // Añade todos los colores que necesites aquí\n    ],\n  },\n})"
+            },
             {
                 "name": "customizable",
                 "ctype": "miscellaneous",
@@ -4023,17 +4033,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{}"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component.stories.ts",
+                "file": "projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
@@ -4053,7 +4053,27 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/ds-ng/src/lib/components/bmb-container-button/bmb-container-button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
@@ -4074,16 +4094,6 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "projects/ds-ng/src/lib/components/bmb-fab/bmb-fab.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{}"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
@@ -4143,7 +4153,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.component.stories.ts",
+                "file": "projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
@@ -4153,7 +4163,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.component.stories.ts",
+                "file": "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
@@ -4318,19 +4328,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<BmbBadgeComponent>",
-                "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "",
-                "kind": 183
-            },
-            {
-                "name": "Story",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
                 "rawtype": "StoryObj<BmbChevronTitleSelectorComponent>",
-                "file": "projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component.stories.ts",
+                "file": "projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -4351,8 +4350,30 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
+                "rawtype": "StoryObj<BmbBadgeComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
                 "rawtype": "StoryObj<BmbContainerButtonComponent>",
                 "file": "projects/ds-ng/src/lib/components/bmb-container-button/bmb-container-button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<BmbDividerComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -4375,17 +4396,6 @@
                 "subtype": "typealias",
                 "rawtype": "StoryObj<BmbFabComponent>",
                 "file": "projects/ds-ng/src/lib/components/bmb-fab/bmb-fab.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "",
-                "kind": 183
-            },
-            {
-                "name": "Story",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
-                "rawtype": "StoryObj<BmbDividerComponent>",
-                "file": "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -4451,7 +4461,7 @@
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
                 "rawtype": "StoryObj<BmbLegendComponent>",
-                "file": "projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.component.stories.ts",
+                "file": "projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -4462,7 +4472,7 @@
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
                 "rawtype": "StoryObj<BmbLoaderComponent>",
-                "file": "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.component.stories.ts",
+                "file": "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -4537,6 +4547,18 @@
         ],
         "enumerations": [],
         "groupedVariables": {
+            "projects/ds-ng/src/lib/foundations/bmb-colors/bmb-colors.stories.ts": [
+                {
+                    "name": "ColorPalette",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/foundations/bmb-colors/bmb-colors.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "() => ({\n  template: `\n    <div style=\"display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;\">\n      <!-- Repite este bloque para cada color que quieras mostrar -->\n      <div *ngFor=\"let color of colors\" style=\"padding: 20px; border-radius: 4px; color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-size: 14px;\" [style.background-color]=\"'rgba(' + color.value + ')'\">\n        {{color.name}}\n      </div>\n    </div>\n  `,\n  props: {\n    colors: [\n      { name: '--color-mariner-500', value: '69, 153, 236' },\n      { name: '--color-charade-500', value: '97, 113, 150' },\n      { name: '--color-blue-tec', value: '0, 57, 166' },\n      { name: '--color-mitec-blue', value: '0, 167, 247' },\n      // Añade todos los colores que necesites aquí\n    ],\n  },\n})"
+                }
+            ],
             "projects/ds-ng/src/lib/directives/button.stories.ts": [
                 {
                     "name": "customizable",
@@ -4559,24 +4581,12 @@
                     "defaultValue": "customizable()"
                 }
             ],
-            "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts": [
+            "projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.stories.ts": [
                 {
                     "name": "Default",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{}"
-                }
-            ],
-            "projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component.stories.ts",
+                    "file": "projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
@@ -4595,12 +4605,36 @@
                     "defaultValue": "{}"
                 }
             ],
+            "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                }
+            ],
             "projects/ds-ng/src/lib/components/bmb-container-button/bmb-container-button.stories.ts": [
                 {
                     "name": "Default",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/ds-ng/src/lib/components/bmb-container-button/bmb-container-button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
@@ -4625,18 +4659,6 @@
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/ds-ng/src/lib/components/bmb-fab/bmb-fab.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{}"
-                }
-            ],
-            "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
@@ -4703,24 +4725,24 @@
                     "defaultValue": "{}"
                 }
             ],
-            "projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.component.stories.ts": [
+            "projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.stories.ts": [
                 {
                     "name": "Default",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.component.stories.ts",
+                    "file": "projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
                     "defaultValue": "{}"
                 }
             ],
-            "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.component.stories.ts": [
+            "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.stories.ts": [
                 {
                     "name": "Default",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.component.stories.ts",
+                    "file": "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
@@ -4901,26 +4923,13 @@
         },
         "groupedEnumerations": {},
         "groupedTypeAliases": {
-            "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<BmbBadgeComponent>",
-                    "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
-            "projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component.stories.ts": [
+            "projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.stories.ts": [
                 {
                     "name": "Story",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
                     "rawtype": "StoryObj<BmbChevronTitleSelectorComponent>",
-                    "file": "projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component.stories.ts",
+                    "file": "projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -4940,6 +4949,19 @@
                     "kind": 183
                 }
             ],
+            "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbBadgeComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
             "projects/ds-ng/src/lib/components/bmb-container-button/bmb-container-button.stories.ts": [
                 {
                     "name": "Story",
@@ -4947,6 +4969,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<BmbContainerButtonComponent>",
                     "file": "projects/ds-ng/src/lib/components/bmb-container-button/bmb-container-button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbDividerComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -4973,19 +5008,6 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<BmbFabComponent>",
                     "file": "projects/ds-ng/src/lib/components/bmb-fab/bmb-fab.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
-            "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<BmbDividerComponent>",
-                    "file": "projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -5057,26 +5079,26 @@
                     "kind": 183
                 }
             ],
-            "projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.component.stories.ts": [
+            "projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.stories.ts": [
                 {
                     "name": "Story",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
                     "rawtype": "StoryObj<BmbLegendComponent>",
-                    "file": "projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.component.stories.ts",
+                    "file": "projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
                     "kind": 183
                 }
             ],
-            "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.component.stories.ts": [
+            "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.stories.ts": [
                 {
                     "name": "Story",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
                     "rawtype": "StoryObj<BmbLoaderComponent>",
-                    "file": "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.component.stories.ts",
+                    "file": "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -5198,22 +5220,22 @@
                 "status": "low"
             },
             {
-                "filePath": "projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Default",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
                 "filePath": "projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "BmbChevronTitleSelectorComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/8",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
@@ -5425,16 +5447,6 @@
                 "status": "low"
             },
             {
-                "filePath": "projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.component.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Default",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
                 "filePath": "projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -5444,7 +5456,7 @@
                 "status": "low"
             },
             {
-                "filePath": "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.component.stories.ts",
+                "filePath": "projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -5460,6 +5472,16 @@
                 "name": "BmbLoaderComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
@@ -5696,6 +5718,16 @@
                 "name": "DsNgService",
                 "coveragePercent": 0,
                 "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/foundations/bmb-colors/bmb-colors.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ColorPalette",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {

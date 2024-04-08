@@ -119,9 +119,4 @@
     RGBA(var(--color-blue-tec)) 100%;
   --color-bg-wheel-tec: RGBA(var(--color-container-home-tec)) 0%,
     RGBA(var(--color-blue-tec)) 100%;
-
-  // To use shadow you should use it in this way  box-shadow: var(--shadow-sm);
-  --shadow-sm: 1px 1px 2px 0 RGBA(var(--color-black-primary), 0.2);
-  --shadow-lg: 4px 4px 4px 0 RGBA(var(--color-black-primary), 0.2);
-  --shadow-xl: 8px 8px 8px 0 RGBA(var(--color-black-primary), 0.2);
 }
