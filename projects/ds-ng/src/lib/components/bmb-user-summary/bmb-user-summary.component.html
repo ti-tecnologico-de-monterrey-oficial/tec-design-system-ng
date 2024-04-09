@@ -1,7 +1,9 @@
 <section class="bmb_user-summary" [ngClass]="{'bmb_user-summary-is-profile' : isProfile}">
-  <figure class="bmb_user-summary-pic">
-    <img [src]="profilePic" [alt]="name" />
-  </figure>
+  <bmb-user-image
+    [size]="'mobile-large'"
+    [image]="image"
+    [altImage]="name"
+  />
   <div class="bmb_user-summary-content">
     @if (isProfile) {
       <h3 class="bmb_user-summary-content-title">{{ name }}</h3>

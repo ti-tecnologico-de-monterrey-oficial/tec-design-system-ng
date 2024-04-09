@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { BmbUserSummaryComponent } from './bmb-user-summary.component';
 
 export default {
-  title: 'Loader',
+  title: 'Macro Componentes/User Summary',
   component: BmbUserSummaryComponent,
   decorators: [],
   parameters: {
@@ -60,7 +60,7 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string' },
       },
     },
-    profilePic: {
+    image: {
       name: 'Profile picture',
       control: {
         type: 'text',
