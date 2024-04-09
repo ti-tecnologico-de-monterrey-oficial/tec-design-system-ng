@@ -28,3 +28,4 @@ export * from './lib/components/bmb-switch/bmb-switch.component';
 export * from './lib/components/bmb-legend/bmb-legend.component';
 export * from './lib/components/bmb-value-counter/bmb-value-counter.component';
 export * from './lib/components/bmb-stat-counter/bmb-stat-counter.component';
+export * from './lib/components/bmb-user-summary/bmb-user-summary.component';

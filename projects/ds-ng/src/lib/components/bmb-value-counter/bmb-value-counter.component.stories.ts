@@ -1,9 +1,9 @@
 import { Meta, StoryObj } from '@storybook/angular';
-import { BmbLegendComponent } from './bmb-legend.component';
+import { BmbValueCounterComponent } from './bmb-value-counter.component';
 
 export default {
-  title: 'Micro Componentes/Legend',
-  component: BmbLegendComponent,
+  title: 'Loader',
+  component: BmbValueCounterComponent,
   decorators: [],
   parameters: {
     docs: {
@@ -12,11 +12,11 @@ export default {
 Below is an example of how you can use this component in TypeScript:
 
 \`\`\`typescript
-import { BmbLegendComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
+import { BmbValueCounterComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
 @Component({
   selector: 'component',
   standalone: true,
-  imports: [ BmbLegendComponent ],
+  imports: [ BmbValueCounterComponent ],
   templateUrl: './component.html',
   styleUrl: './component.scss',
 })
@@ -48,33 +48,24 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string' },
       },
     },
-    indicatorAppearance: {
-      name: 'Indicator appearance',
+    progress: {
+      name: 'Progress',
       control: {
-        type: 'radio',
+        type: 'text',
       },
-      options: [
-        'normal',
-        'strong',
-        'success',
-        'info',
-        'warning',
-        'error',
-        'brand',
-      ],
+      description: 'Progress value section content.',
       table: {
         type: { summary: 'string' },
       },
-      description: 'Determines the indicator color',
     },
   },
   args: {
     label: 'Title',
     value: '$0.00',
-    indicatorAppearance: 'primary',
+    progress: 'primary',
   },
-} as Meta<typeof BmbLegendComponent>;
+} as Meta<typeof BmbValueCounterComponent>;
 
-type Story = StoryObj<BmbLegendComponent>;
+type Story = StoryObj<BmbValueCounterComponent>;
 
 export const Default: Story = {};
