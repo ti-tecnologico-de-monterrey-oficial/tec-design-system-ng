@@ -1,0 +1,22 @@
+<a
+  [ngClass]="getClasses()"
+  [class.bmb_interactive_icon-horizontal]="horizontal"
+  [href]="link"
+  [target]="target"
+>
+  <div class="bmb_interactive_icon-box">
+    <bmb-icon
+      class="bmb_interactive_icon-icon"
+      icon="{{ icon }}"
+      *ngIf="icon"
+    />
+  </div>
+  <div class="bmb_interactive_icon-text">
+    <span class="bmb_interactive_icon-title" *ngIf="title">{{ title }}</span>
+    <span
+      class="bmb_interactive_icon-description"
+      *ngIf="description && horizontal"
+      >{{ description }}</span
+    >
+  </div>
+</a>

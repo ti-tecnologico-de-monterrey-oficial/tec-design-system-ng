@@ -1,0 +1,124 @@
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/mixins" as mixins;
+@use "../../../assets/styles/base/rem" as rem;
+
+.bmb_interactive_icon {
+  align-items: center;
+  display: flex;
+  flex-flow: column;
+  text-decoration: none;
+  width: rem.rem_calc(64);
+
+  &-horizontal {
+    border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-700));
+    flex-flow: row;
+    margin-bottom: rem.rem_calc(16);
+    padding-bottom: rem.rem_calc(16);
+    width: 100%;
+
+    .bmb_interactive_icon-text {
+      margin-left: rem.rem_calc(8);
+    }
+    .bmb_interactive_icon-title {
+      margin: rem.rem_calc(0 0 8);
+      text-align: left;
+    }
+
+    @include mixins.media-query(350) {
+      width: rem.rem_calc(343);
+    }
+  }
+
+  &-grouped {
+    display: flex;
+    flex-flow: row wrap;
+    gap: rem.rem_calc(24);
+
+    bmb-interactive-icon {
+      width: 100%;
+
+      @include mixins.media-query(350) {
+        width: auto;
+      }
+    }
+  }
+
+  &-box {
+    align-items: center;
+    border-radius: rem.rem_calc(8);
+    display: flex;
+    height: rem.rem_calc(64);
+    justify-content: center;
+    width: rem.rem_calc(64);
+  }
+
+  &-icon {
+    align-items: center;
+    color: RGBA(var(--color-white-primary));
+    display: flex;
+    font-size: rem.rem_calc(32);
+    height: rem.rem_calc(32);
+    width: rem.rem_calc(32);
+  }
+
+  &-title {
+    color: RGBA(var(--color-charade-950));
+    display: block;
+    margin-top: rem.rem_calc(8);
+    text-align: center;
+    @include fonts.font(3, regular);
+  }
+
+  &-description {
+    color: RGBA(var(--color-charade-700));
+    display: block;
+    @include fonts.font(3, regular);
+  }
+
+  &-red {
+    .bmb_interactive_icon-box {
+      background-color: RGBA(var(--color-red-primary));
+    }
+  }
+
+  &-blue {
+    .bmb_interactive_icon-box {
+      background-color: RGBA(var(--color-mariner-700));
+    }
+  }
+
+  &-green {
+    .bmb_interactive_icon-box {
+      background-color: RGBA(var(--color-green-primary));
+    }
+  }
+
+  &-yellow {
+    .bmb_interactive_icon-box {
+      background-color: RGBA(var(--color-yellow-primary));
+    }
+  }
+
+  &-purple {
+    .bmb_interactive_icon-box {
+      background-color: RGBA(var(--color-purple-primary));
+    }
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_interactive_icon {
+    &-horizontal {
+      border-bottom-color: RGBA(var(--color-charade-500));
+    }
+
+    &-title {
+      color: RGBA(var(--color-charade-50));
+    }
+
+    &-description {
+      color: RGBA(var(--color-charade-500));
+    }
+  }
+}
