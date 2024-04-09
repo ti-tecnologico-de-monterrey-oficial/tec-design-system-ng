@@ -4,7 +4,7 @@ import { BmbButtonDirective } from '../../directives/button.directive';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
 
 @Component({
-  selector: 'Macro Componentes/User Summary',
+  selector: 'bmb-user-summary',
   standalone: true,
   imports: [CommonModule, BmbButtonDirective, BmbUserImageComponent],
   templateUrl: './bmb-user-summary.component.html',
