@@ -1,0 +1,68 @@
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/rem" as rem;
+
+.bmb_progress_circle {
+  position: relative;
+  width: rem.rem_calc(170);
+  height: rem.rem_calc(170);
+  margin: 0 auto;
+
+  &-svg {
+    transform: rotate(-90deg);
+
+    &-meter,
+    &-value {
+      fill: none;
+    }
+
+    &-meter {
+      stroke:  RGBA(var(--color-blue-primary));
+      stroke:  RGBA(var(--color-blue-primary));
+    }
+
+    &-value {
+      stroke: RGBA(var(--color-neon-primary));
+      stroke: RGBA(var(--color-neon-primary));
+      stroke-linecap: round;
+      transition: all;
+    }
+  }
+
+  &-info {
+    &-value {
+      @include fonts.font(8, regular);
+      position: absolute;
+      top: rem.rem_calc(70);
+      text-align: center;
+      width: 100%;
+      color: RGBA(var(--color-charade-950));
+    }
+
+    &-value-alone{
+      top: rem.rem_calc(85);
+    }
+
+    &-title {
+      @include fonts.font(5, regular);
+      position: absolute;
+      text-align: center;
+      width: 100%;
+      top: rem.rem_calc(55);
+      color: RGBA(var(--color-charade-950));
+    }
+  }
+}
+
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_progress_circle {
+    &-info-value {
+      color: RGBA(var(--color-white-primary));
+    }
+  
+    &-info-title {
+      color: RGBA(var(--color-white-primary));
+    }
+  }
+}
