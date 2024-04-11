@@ -28,5 +28,6 @@ export * from './lib/components/bmb-switch/bmb-switch.component';
 export * from './lib/components/bmb-legend/bmb-legend.component';
 export * from './lib/components/bmb-value-counter/bmb-value-counter.component';
 export * from './lib/components/bmb-stat-counter/bmb-stat-counter.component';
+export * from './lib/components/bmb-focus-element/bmb-focus-element.component';
 export * from './lib/components/bmb-user-summary/bmb-user-summary.component';
 export * from './lib/components/bmb-progress-cirlce/bmb-progress-circle.component';
