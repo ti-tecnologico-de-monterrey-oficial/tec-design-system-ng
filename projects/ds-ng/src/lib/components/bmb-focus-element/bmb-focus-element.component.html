@@ -1,0 +1,12 @@
+<div class="bmb_focus_element">
+  <div class="bmb_focus_element-circle">
+    @if (icon && !number) {
+    <bmb-icon class="bmb_focus_element-icon" icon="{{ icon }}" />
+    } @if (number && !icon) {
+    <span class="bmb_focus_element-number">{{ number }}</span>
+    }
+  </div>
+  @if (title) {
+  <p class="bmb_focus_element-title">{{ title }}</p>
+  }
+</div>

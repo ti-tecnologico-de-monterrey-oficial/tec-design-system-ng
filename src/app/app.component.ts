@@ -103,19 +103,19 @@ export class AppComponent {
     this.myActiveDotIndex = index;
   }
 
-  plus(){
+  plus() {
     this.i++;
   }
 
-  decrement(){
-    if(this.i === 0){
-      return
+  decrement() {
+    if (this.i === 0) {
+      return;
     }
     this.i--;
   }
 
-  save(event: number){
-    this.i = event
+  save(event: number) {
+    this.i = event;
   }
 
   onProfileClick() {
