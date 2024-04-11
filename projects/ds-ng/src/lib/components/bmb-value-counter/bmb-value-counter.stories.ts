@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { BmbValueCounterComponent } from './bmb-value-counter.component';
 
 export default {
-  title: 'Loader',
+  title: 'Micro Componentes/Value Counter',
   component: BmbValueCounterComponent,
   decorators: [],
   parameters: {
