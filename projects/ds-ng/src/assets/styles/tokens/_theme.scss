@@ -10,11 +10,10 @@
 
     &-title {
       color: RGBA(var(--color-white-primary));
-      ~ div {
-        p {
-          color: RGBA(var(--color-white-primary));
-        }
-      }
+    }
+
+    &-content :where(p:not(.sb-anchor, .sb-unstyled, .sb-unstyled p)) {
+      color: RGBA(var(--color-white-primary));
     }
 
     .docs-story {
@@ -39,11 +38,10 @@
 
     &-title {
       color: RGBA(var(--color-black-primary));
-      ~ div {
-        p {
-          color: RGBA(var(--color-black-primary));
-        }
-      }
+    }
+
+    &-content :where(p:not(.sb-anchor, .sb-unstyled, .sb-unstyled p)) {
+      color: RGBA(var(--color-black-primary));
     }
 
     .docs-story {

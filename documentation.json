@@ -1409,6 +1409,84 @@
             "templateData": "<button [ngClass]=\"this.fabStyle\" type=\"button\">\n    <span *ngIf=\"type == 'ext'\">{{text}}</span>\n    <bmb-icon *ngIf=\"!active\" icon={{icon}} />\n    <bmb-icon  *ngIf=\"type == 'fab' && active \" icon='close'/>\n</button>\n"
         },
         {
+            "name": "BmbFocusElementComponent",
+            "id": "component-BmbFocusElementComponent-54cbc6668ffb0724b9733afb69dbfea43e25f5bc7a3858a936b09d1f2f1f28fc50a5b193c40b8bd47dff40f66d550826a1a4ae7759b60ac89f30850432176731",
+            "file": "projects/ds-ng/src/lib/components/bmb-focus-element/bmb-focus-element.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-focus-element",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-focus-element.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "icon",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 20,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "number",
+                    "defaultValue": "0",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 21,
+                    "type": "number",
+                    "decorators": []
+                },
+                {
+                    "name": "title",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 22,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "BmbIconComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\n\n@Component({\n  selector: 'bmb-focus-element',\n  styleUrl: './bmb-focus-element.component.scss',\n  templateUrl: './bmb-focus-element.component.html',\n  standalone: true,\n  imports: [CommonModule, BmbIconComponent],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbFocusElementComponent {\n  @Input() icon: string = '';\n  @Input() number: number = 0;\n  @Input() title: string = '';\n}\n",
+            "styleUrl": "./bmb-focus-element.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<div class=\"bmb_focus_element\">\n  <div class=\"bmb_focus_element-circle\">\n    @if (icon && !number) {\n    <bmb-icon class=\"bmb_focus_element-icon\" icon=\"{{ icon }}\" />\n    } @if (number && !icon) {\n    <span class=\"bmb_focus_element-number\">{{ number }}</span>\n    }\n  </div>\n  @if (title) {\n  <p class=\"bmb_focus_element-title\">{{ title }}</p>\n  }\n</div>\n"
+        },
+        {
             "name": "BmbHeaderMobileComponent",
             "id": "component-BmbHeaderMobileComponent-d3f4bb98ed5796e99af7b6b94f25ad3cf4fcf7c665f7f83048d8c5fc6eed4dd73f3b52e4c3e2783337ff932375c7fca9730e4b95e7ce070f064c6d1850bae3a9",
             "file": "projects/ds-ng/src/lib/components/bmb-header-mobile/bmb-header-mobile.component.ts",
@@ -3008,7 +3086,7 @@
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div class=\"bmb_stat_counter\">\n  <div\n    class=\"bmb_stat_counter-item\"\n    *ngFor=\"let i of getStepsArray()\"\n    [attr.data-bs-target]=\"targets[i]?.target || ''\"\n    [attr.data-bs-slide-to]=\"i\"\n    [ngClass]=\"{ active: activeStep === i, completed: activeStep > i }\"\n    (click)=\"onStepClicked(i)\"\n  >\n    <div\n      class=\"bmb_stat_counter-step\"\n      [ngClass]=\"{ active: activeStep === i, completed: activeStep > i }\"\n    >\n      <span *ngIf=\"activeStep == i || activeStep < i\">{{ i + 1 }}</span>\n      <i *ngIf=\"activeStep > i\" class=\"material-icons\">done</i>\n    </div>\n  </div>\n</div>\n"
+            "templateData": "<div class=\"bmb_stat_counter\">\n  <div\n    class=\"bmb_stat_counter-item\"\n    *ngFor=\"let i of getStepsArray()\"\n    [attr.data-bs-target]=\"targets && targets[i] ? targets[i].target : ''\"\n    [attr.data-bs-slide-to]=\"i\"\n    [ngClass]=\"{ active: activeStep === i, completed: activeStep > i }\"\n    (click)=\"onStepClicked(i)\"\n  >\n    <div\n      class=\"bmb_stat_counter-step\"\n      [ngClass]=\"{ active: activeStep === i, completed: activeStep > i }\"\n    >\n      <span *ngIf=\"activeStep == i || activeStep < i\">{{ i + 1 }}</span>\n      <i *ngIf=\"activeStep > i\" class=\"material-icons\">done</i>\n    </div>\n  </div>\n</div>\n"
         },
         {
             "name": "BmbSwitchComponent",
@@ -3776,6 +3854,116 @@
             "templateData": "<a [ngClass]=\"getClasses()\" [href]=\"link\" [target]=\"target\">\n  <img [src]=\"image\" [alt]=\"altImage\" />\n</a>\n"
         },
         {
+            "name": "BmbUserSummaryComponent",
+            "id": "component-BmbUserSummaryComponent-2b1e51ed549015c58835294d5c4e4937dfa85bec3a609d472f9c1bebb72069a65b323cd543e53a48b4cf248c49ece709f216c1a7c33d92d632222e98a095b7bb",
+            "file": "projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary.component.ts",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-user-summary",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-user-summary.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "id",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 17,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "image",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 18,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "isProfile",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 15,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "name",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 16,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onClick",
+                    "defaultValue": "new EventEmitter<void>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 19,
+                    "type": "EventEmitter<void>"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "handleClick",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 21,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "BmbButtonDirective",
+                    "type": "directive"
+                },
+                {
+                    "name": "BmbUserImageComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component,Input, ViewEncapsulation, Output, EventEmitter } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { BmbButtonDirective } from '../../directives/button.directive';\nimport { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';\n\n@Component({\n  selector: 'bmb-user-summary',\n  standalone: true,\n  imports: [CommonModule, BmbButtonDirective, BmbUserImageComponent],\n  templateUrl: './bmb-user-summary.component.html',\n  styleUrl: './bmb-user-summary.component.scss',\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbUserSummaryComponent {\n  @Input() isProfile: boolean = false;\n  @Input() name: string = '';\n  @Input() id: string = '';\n  @Input() image: string = '';\n  @Output() onClick: EventEmitter<void> = new EventEmitter<void>();\n\n  handleClick(): void {\n    this.onClick.emit();\n  }\n}\n",
+            "styleUrl": "./bmb-user-summary.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<section class=\"bmb_user-summary\" [ngClass]=\"{'bmb_user-summary-is-profile' : isProfile}\">\n  <bmb-user-image\n    [size]=\"'mobile-large'\"\n    [image]=\"image\"\n    [altImage]=\"name\"\n  />\n  <div class=\"bmb_user-summary-content\">\n    @if (isProfile) {\n      <h3 class=\"bmb_user-summary-content-title\">{{ name }}</h3>\n    }\n    @else {\n      <h3 class=\"bmb_user-summary-content-title\">¡Buenas tardes <br>{{ name }}!</h3>\n    }\n    <span class=\"bmb_user-summary-content-id\">{{ id }}</span>\n  </div>\n  @if (isProfile) {\n    <button\n      class=\"bmb_user-summary-button\"\n      bmbButton\n      appearance=\"secondary-outlined\"\n      (click)=\"handleClick()\"\n    >\n      ID Digital\n    </button>\n  }\n</section>\n"
+        },
+        {
             "name": "BmbValueCounterComponent",
             "id": "component-BmbValueCounterComponent-a815caf2302db3742be9372c483fa4a532a4b788bf5397e25b9d1419321900e50baf2d7c949f4ee47ac8f3af5d4b7601dfc923b1bc55dfc190ceb488373b8f4d",
             "file": "projects/ds-ng/src/lib/components/bmb-value-counter/bmb-value-counter.component.ts",
@@ -4000,16 +4188,6 @@
     "miscellaneous": {
         "variables": [
             {
-                "name": "ColorPalette",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/ds-ng/src/lib/foundations/bmb-colors/bmb-colors.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "() => ({\n  template: `\n    <div style=\"display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;\">\n      <!-- Repite este bloque para cada color que quieras mostrar -->\n      <div *ngFor=\"let color of colors\" style=\"padding: 20px; border-radius: 4px; color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-size: 14px;\" [style.background-color]=\"'rgba(' + color.value + ')'\">\n        {{color.name}}\n      </div>\n    </div>\n  `,\n  props: {\n    colors: [\n      { name: '--color-mariner-500', value: '69, 153, 236' },\n      { name: '--color-charade-500', value: '97, 113, 150' },\n      { name: '--color-blue-tec', value: '0, 57, 166' },\n      { name: '--color-mitec-blue', value: '0, 167, 247' },\n      // Añade todos los colores que necesites aquí\n    ],\n  },\n})"
-            },
-            {
                 "name": "customizable",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -4020,6 +4198,26 @@
                 "defaultValue": "(): StoryFn => (args) => ({\n  props: args,\n  template: `<button bmbButton ${attributes(args)}>${attributesText(\n    args\n  )}</button>`,\n})"
             },
             {
+                "name": "customizable",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/foundations/bmb-colors.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "(): StoryFn => (args) => ({\n  props: args,\n  template: `<div class=\"storybook-colors-playground\"><div style=\"background-color: ${colors(\n    args\n  )};\"></div> <div style=\"background: ${gradients(args)};\"></div></div>`,\n})"
+            },
+            {
+                "name": "customizable",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/foundations/bmb-typography.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "(): StoryFn => (args) => ({\n  props: args,\n  template: `<div ${attributes(args)}>Typography</div>`,\n})"
+            },
+            {
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -4028,6 +4226,36 @@
                 "deprecationMessage": "",
                 "type": "",
                 "defaultValue": "customizable()"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/foundations/bmb-colors.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "customizable()"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/foundations/bmb-typography.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "customizable()"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
             },
             {
                 "name": "Default",
@@ -4044,16 +4272,6 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{}"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
@@ -4103,6 +4321,16 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-focus-element/bmb-focus-element.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/ds-ng/src/lib/components/bmb-header-mobile/bmb-header-mobile.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -4123,7 +4351,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.component.stories.ts",
+                "file": "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
@@ -4230,6 +4458,26 @@
                 "defaultValue": "{}"
             },
             {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-value-counter/bmb-value-counter.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
                 "name": "preview",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -4260,6 +4508,35 @@
                 "jsdoctags": [
                     {
                         "name": "object",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "attributes",
+                "file": "projects/ds-ng/src/lib/foundations/bmb-typography.stories.ts",
+                "ctype": "miscellaneous",
+                "subtype": "function",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "args": [
+                    {
+                        "name": "object",
+                        "type": "any",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "returnType": "any",
+                "jsdoctags": [
+                    {
+                        "name": "object",
+                        "type": "any",
                         "deprecated": false,
                         "deprecationMessage": "",
                         "tagName": {
@@ -4321,9 +4598,78 @@
                         }
                     }
                 ]
+            },
+            {
+                "name": "colors",
+                "file": "projects/ds-ng/src/lib/foundations/bmb-colors.stories.ts",
+                "ctype": "miscellaneous",
+                "subtype": "function",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "args": [
+                    {
+                        "name": "object",
+                        "type": "any",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "returnType": "any",
+                "jsdoctags": [
+                    {
+                        "name": "object",
+                        "type": "any",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "gradients",
+                "file": "projects/ds-ng/src/lib/foundations/bmb-colors.stories.ts",
+                "ctype": "miscellaneous",
+                "subtype": "function",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "args": [
+                    {
+                        "name": "object",
+                        "type": "any",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "returnType": "any",
+                "jsdoctags": [
+                    {
+                        "name": "object",
+                        "type": "any",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
             }
         ],
         "typealiases": [
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<BmbBadgeComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
             {
                 "name": "Story",
                 "ctype": "miscellaneous",
@@ -4341,17 +4687,6 @@
                 "subtype": "typealias",
                 "rawtype": "StoryObj<BmbContainerComponent>",
                 "file": "projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "",
-                "kind": 183
-            },
-            {
-                "name": "Story",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
-                "rawtype": "StoryObj<BmbBadgeComponent>",
-                "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -4405,6 +4740,17 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
+                "rawtype": "StoryObj<BmbFocusElementComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-focus-element/bmb-focus-element.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
                 "rawtype": "StoryObj<BmbHeaderMobileComponent>",
                 "file": "projects/ds-ng/src/lib/components/bmb-header-mobile/bmb-header-mobile.stories.ts",
                 "deprecated": false,
@@ -4428,7 +4774,7 @@
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
                 "rawtype": "StoryObj<BmbIconComponent>",
-                "file": "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.component.stories.ts",
+                "file": "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -4534,6 +4880,28 @@
                 "kind": 183
             },
             {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<BmbUserSummaryComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<BmbValueCounterComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-value-counter/bmb-value-counter.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
                 "name": "Variations",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
@@ -4547,18 +4915,6 @@
         ],
         "enumerations": [],
         "groupedVariables": {
-            "projects/ds-ng/src/lib/foundations/bmb-colors/bmb-colors.stories.ts": [
-                {
-                    "name": "ColorPalette",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ds-ng/src/lib/foundations/bmb-colors/bmb-colors.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "() => ({\n  template: `\n    <div style=\"display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;\">\n      <!-- Repite este bloque para cada color que quieras mostrar -->\n      <div *ngFor=\"let color of colors\" style=\"padding: 20px; border-radius: 4px; color: #fff; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; font-size: 14px;\" [style.background-color]=\"'rgba(' + color.value + ')'\">\n        {{color.name}}\n      </div>\n    </div>\n  `,\n  props: {\n    colors: [\n      { name: '--color-mariner-500', value: '69, 153, 236' },\n      { name: '--color-charade-500', value: '97, 113, 150' },\n      { name: '--color-blue-tec', value: '0, 57, 166' },\n      { name: '--color-mitec-blue', value: '0, 167, 247' },\n      // Añade todos los colores que necesites aquí\n    ],\n  },\n})"
-                }
-            ],
             "projects/ds-ng/src/lib/directives/button.stories.ts": [
                 {
                     "name": "customizable",
@@ -4581,6 +4937,62 @@
                     "defaultValue": "customizable()"
                 }
             ],
+            "projects/ds-ng/src/lib/foundations/bmb-colors.stories.ts": [
+                {
+                    "name": "customizable",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/foundations/bmb-colors.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "(): StoryFn => (args) => ({\n  props: args,\n  template: `<div class=\"storybook-colors-playground\"><div style=\"background-color: ${colors(\n    args\n  )};\"></div> <div style=\"background: ${gradients(args)};\"></div></div>`,\n})"
+                },
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/foundations/bmb-colors.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "customizable()"
+                }
+            ],
+            "projects/ds-ng/src/lib/foundations/bmb-typography.stories.ts": [
+                {
+                    "name": "customizable",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/foundations/bmb-typography.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "(): StoryFn => (args) => ({\n  props: args,\n  template: `<div ${attributes(args)}>Typography</div>`,\n})"
+                },
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/foundations/bmb-typography.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "customizable()"
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                }
+            ],
             "projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.stories.ts": [
                 {
                     "name": "Default",
@@ -4599,18 +5011,6 @@
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{}"
-                }
-            ],
-            "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
@@ -4665,6 +5065,18 @@
                     "defaultValue": "{}"
                 }
             ],
+            "projects/ds-ng/src/lib/components/bmb-focus-element/bmb-focus-element.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-focus-element/bmb-focus-element.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                }
+            ],
             "projects/ds-ng/src/lib/components/bmb-header-mobile/bmb-header-mobile.stories.ts": [
                 {
                     "name": "Default",
@@ -4689,12 +5101,12 @@
                     "defaultValue": "{}"
                 }
             ],
-            "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.component.stories.ts": [
+            "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.stories.ts": [
                 {
                     "name": "Default",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.component.stories.ts",
+                    "file": "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
@@ -4821,6 +5233,30 @@
                     "defaultValue": "{}"
                 }
             ],
+            "projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-value-counter/bmb-value-counter.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-value-counter/bmb-value-counter.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                }
+            ],
             "projects/ds-ng/.storybook/preview.ts": [
                 {
                     "name": "preview",
@@ -4891,6 +5327,37 @@
                     ]
                 }
             ],
+            "projects/ds-ng/src/lib/foundations/bmb-typography.stories.ts": [
+                {
+                    "name": "attributes",
+                    "file": "projects/ds-ng/src/lib/foundations/bmb-typography.stories.ts",
+                    "ctype": "miscellaneous",
+                    "subtype": "function",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "args": [
+                        {
+                            "name": "object",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "returnType": "any",
+                    "jsdoctags": [
+                        {
+                            "name": "object",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
             "projects/ds-ng/src/lib/components/bmb-toast/bmb-toast.stories.ts": [
                 {
                     "name": "attributes",
@@ -4919,10 +5386,83 @@
                         }
                     ]
                 }
+            ],
+            "projects/ds-ng/src/lib/foundations/bmb-colors.stories.ts": [
+                {
+                    "name": "colors",
+                    "file": "projects/ds-ng/src/lib/foundations/bmb-colors.stories.ts",
+                    "ctype": "miscellaneous",
+                    "subtype": "function",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "args": [
+                        {
+                            "name": "object",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "returnType": "any",
+                    "jsdoctags": [
+                        {
+                            "name": "object",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "gradients",
+                    "file": "projects/ds-ng/src/lib/foundations/bmb-colors.stories.ts",
+                    "ctype": "miscellaneous",
+                    "subtype": "function",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "args": [
+                        {
+                            "name": "object",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "returnType": "any",
+                    "jsdoctags": [
+                        {
+                            "name": "object",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
             ]
         },
         "groupedEnumerations": {},
         "groupedTypeAliases": {
+            "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbBadgeComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
             "projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.stories.ts": [
                 {
                     "name": "Story",
@@ -4943,19 +5483,6 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<BmbContainerComponent>",
                     "file": "projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
-            "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<BmbBadgeComponent>",
-                    "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -5014,6 +5541,19 @@
                     "kind": 183
                 }
             ],
+            "projects/ds-ng/src/lib/components/bmb-focus-element/bmb-focus-element.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbFocusElementComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-focus-element/bmb-focus-element.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
             "projects/ds-ng/src/lib/components/bmb-header-mobile/bmb-header-mobile.stories.ts": [
                 {
                     "name": "Story",
@@ -5040,13 +5580,13 @@
                     "kind": 183
                 }
             ],
-            "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.component.stories.ts": [
+            "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.stories.ts": [
                 {
                     "name": "Story",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
                     "rawtype": "StoryObj<BmbIconComponent>",
-                    "file": "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.component.stories.ts",
+                    "file": "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -5164,6 +5704,32 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<BmbUserImageComponent>",
                     "file": "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbUserSummaryComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-value-counter/bmb-value-counter.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbValueCounterComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-value-counter/bmb-value-counter.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -5352,6 +5918,25 @@
                 "status": "low"
             },
             {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-focus-element/bmb-focus-element.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbFocusElementComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-focus-element/bmb-focus-element.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/ds-ng/src/lib/components/bmb-header-mobile/bmb-header-mobile.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -5390,22 +5975,22 @@
                 "status": "low"
             },
             {
-                "filePath": "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.component.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Default",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
                 "filePath": "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "BmbIconComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
@@ -5645,12 +6230,41 @@
                 "status": "low"
             },
             {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbUserSummaryComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/7",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/ds-ng/src/lib/components/bmb-value-counter/bmb-value-counter.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "BmbValueCounterComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-value-counter/bmb-value-counter.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
@@ -5721,11 +6335,71 @@
                 "status": "low"
             },
             {
-                "filePath": "projects/ds-ng/src/lib/foundations/bmb-colors/bmb-colors.stories.ts",
+                "filePath": "projects/ds-ng/src/lib/foundations/bmb-colors.stories.ts",
+                "type": "function",
+                "linktype": "miscellaneous",
+                "linksubtype": "function",
+                "name": "colors",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/foundations/bmb-colors.stories.ts",
+                "type": "function",
+                "linktype": "miscellaneous",
+                "linksubtype": "function",
+                "name": "gradients",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/foundations/bmb-colors.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "ColorPalette",
+                "name": "customizable",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/foundations/bmb-colors.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/foundations/bmb-typography.stories.ts",
+                "type": "function",
+                "linktype": "miscellaneous",
+                "linksubtype": "function",
+                "name": "attributes",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/foundations/bmb-typography.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "customizable",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/foundations/bmb-typography.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
