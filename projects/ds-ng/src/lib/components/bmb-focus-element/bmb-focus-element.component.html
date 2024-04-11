@@ -1,22 +1,12 @@
-<a
-  [ngClass]="getClasses()"
-  [class.bmb_interactive_icon-horizontal]="horizontal"
-  [href]="link"
-  [target]="target"
->
-  <div class="bmb_interactive_icon-box">
-    <bmb-icon
-      class="bmb_interactive_icon-icon"
-      icon="{{ icon }}"
-      *ngIf="icon"
-    />
+<div class="bmb_focus_element">
+  <div class="bmb_focus_element-circle">
+    @if (icon && !number) {
+    <bmb-icon class="bmb_focus_element-icon" icon="{{ icon }}" />
+    } @if (number && !icon) {
+    <span class="bmb_focus_element-number">{{ number }}</span>
+    }
   </div>
-  <div class="bmb_interactive_icon-text">
-    <span class="bmb_interactive_icon-title" *ngIf="title">{{ title }}</span>
-    <span
-      class="bmb_interactive_icon-description"
-      *ngIf="description && horizontal"
-      >{{ description }}</span
-    >
-  </div>
-</a>
+  @if (title) {
+  <p class="bmb_focus_element-title">{{ title }}</p>
+  }
+</div>

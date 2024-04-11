@@ -2,9 +2,6 @@ import {
   Component,
   Input,
   ChangeDetectionStrategy,
-  ElementRef,
-  Renderer2,
-  AfterViewInit,
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -19,42 +16,8 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbFocusElementComponent implements AfterViewInit {
-  @Input() appearance: string = '';
-  @Input() title: string = '';
-  @Input() description: string = '';
+export class BmbFocusElementComponent {
   @Input() icon: string = '';
-  @Input() grouped: boolean = false;
-  @Input() horizontal: boolean = false;
-  @Input() target: string = '';
-  @Input() link: string = '';
-
-  constructor(private el: ElementRef, private renderer: Renderer2) {}
-
-  ngAfterViewInit() {
-    if (this.grouped) {
-      const parentElement = this.el.nativeElement.parentElement;
-
-      let wrapperDiv = parentElement.querySelector(
-        '.bmb_interactive_icon-grouped'
-      );
-      if (!wrapperDiv) {
-        wrapperDiv = this.renderer.createElement('div');
-        this.renderer.addClass(wrapperDiv, 'bmb_interactive_icon-grouped');
-        this.renderer.insertBefore(parentElement, wrapperDiv, null);
-      }
-
-      this.renderer.appendChild(wrapperDiv, this.el.nativeElement);
-    }
-  }
-
-  getClasses(): string[] {
-    const classes: string[] = ['bmb_interactive_icon'];
-
-    if (this.appearance) {
-      classes.push('bmb_interactive_icon-' + this.appearance);
-    }
-
-    return classes;
-  }
+  @Input() number: number = 0;
+  @Input() title: string = '';
 }
