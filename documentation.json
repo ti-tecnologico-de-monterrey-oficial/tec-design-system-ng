@@ -1410,7 +1410,7 @@
         },
         {
             "name": "BmbFocusElementComponent",
-            "id": "component-BmbFocusElementComponent-f7b8bc56598b3d28c8908c473227fa35f0dc03205d19e49008c67b24375d082bad12b76e21324203c44de6bc92a5c7423256788f323ec2681d8333951dac1cee",
+            "id": "component-BmbFocusElementComponent-54cbc6668ffb0724b9733afb69dbfea43e25f5bc7a3858a936b09d1f2f1f28fc50a5b193c40b8bd47dff40f66d550826a1a4ae7759b60ac89f30850432176731",
             "file": "projects/ds-ng/src/lib/components/bmb-focus-element/bmb-focus-element.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -1430,66 +1430,21 @@
             "hostDirectives": [],
             "inputsClass": [
                 {
-                    "name": "appearance",
-                    "defaultValue": "''",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 23,
-                    "type": "string",
-                    "decorators": []
-                },
-                {
-                    "name": "description",
-                    "defaultValue": "''",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 25,
-                    "type": "string",
-                    "decorators": []
-                },
-                {
-                    "name": "grouped",
-                    "defaultValue": "false",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 27,
-                    "type": "boolean",
-                    "decorators": []
-                },
-                {
-                    "name": "horizontal",
-                    "defaultValue": "false",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 28,
-                    "type": "boolean",
-                    "decorators": []
-                },
-                {
                     "name": "icon",
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 26,
+                    "line": 20,
                     "type": "string",
                     "decorators": []
                 },
                 {
-                    "name": "link",
-                    "defaultValue": "''",
+                    "name": "number",
+                    "defaultValue": "0",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 30,
-                    "type": "string",
-                    "decorators": []
-                },
-                {
-                    "name": "target",
-                    "defaultValue": "''",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 29,
-                    "type": "string",
+                    "line": 21,
+                    "type": "number",
                     "decorators": []
                 },
                 {
@@ -1497,35 +1452,14 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 24,
+                    "line": 22,
                     "type": "string",
                     "decorators": []
                 }
             ],
             "outputsClass": [],
             "propertiesClass": [],
-            "methodsClass": [
-                {
-                    "name": "getClasses",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "string[]",
-                    "typeParameters": [],
-                    "line": 51,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                },
-                {
-                    "name": "ngAfterViewInit",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 34,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                }
-            ],
+            "methodsClass": [],
             "deprecated": false,
             "deprecationMessage": "",
             "hostBindings": [],
@@ -1544,57 +1478,13 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ElementRef,\n  Renderer2,\n  AfterViewInit,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\n\n@Component({\n  selector: 'bmb-focus-element',\n  styleUrl: './bmb-focus-element.component.scss',\n  templateUrl: './bmb-focus-element.component.html',\n  standalone: true,\n  imports: [CommonModule, BmbIconComponent],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbFocusElementComponent implements AfterViewInit {\n  @Input() appearance: string = '';\n  @Input() title: string = '';\n  @Input() description: string = '';\n  @Input() icon: string = '';\n  @Input() grouped: boolean = false;\n  @Input() horizontal: boolean = false;\n  @Input() target: string = '';\n  @Input() link: string = '';\n\n  constructor(private el: ElementRef, private renderer: Renderer2) {}\n\n  ngAfterViewInit() {\n    if (this.grouped) {\n      const parentElement = this.el.nativeElement.parentElement;\n\n      let wrapperDiv = parentElement.querySelector(\n        '.bmb_interactive_icon-grouped'\n      );\n      if (!wrapperDiv) {\n        wrapperDiv = this.renderer.createElement('div');\n        this.renderer.addClass(wrapperDiv, 'bmb_interactive_icon-grouped');\n        this.renderer.insertBefore(parentElement, wrapperDiv, null);\n      }\n\n      this.renderer.appendChild(wrapperDiv, this.el.nativeElement);\n    }\n  }\n\n  getClasses(): string[] {\n    const classes: string[] = ['bmb_interactive_icon'];\n\n    if (this.appearance) {\n      classes.push('bmb_interactive_icon-' + this.appearance);\n    }\n\n    return classes;\n  }\n}\n",
+            "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\n\n@Component({\n  selector: 'bmb-focus-element',\n  styleUrl: './bmb-focus-element.component.scss',\n  templateUrl: './bmb-focus-element.component.html',\n  standalone: true,\n  imports: [CommonModule, BmbIconComponent],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbFocusElementComponent {\n  @Input() icon: string = '';\n  @Input() number: number = 0;\n  @Input() title: string = '';\n}\n",
             "styleUrl": "./bmb-focus-element.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
-            "constructorObj": {
-                "name": "constructor",
-                "description": "",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "args": [
-                    {
-                        "name": "el",
-                        "type": "ElementRef",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    },
-                    {
-                        "name": "renderer",
-                        "type": "Renderer2",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    }
-                ],
-                "line": 30,
-                "jsdoctags": [
-                    {
-                        "name": "el",
-                        "type": "ElementRef",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    },
-                    {
-                        "name": "renderer",
-                        "type": "Renderer2",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    }
-                ]
-            },
             "extends": [],
-            "implements": [
-                "AfterViewInit"
-            ],
-            "templateData": "<a\n  [ngClass]=\"getClasses()\"\n  [class.bmb_interactive_icon-horizontal]=\"horizontal\"\n  [href]=\"link\"\n  [target]=\"target\"\n>\n  <div class=\"bmb_interactive_icon-box\">\n    <bmb-icon\n      class=\"bmb_interactive_icon-icon\"\n      icon=\"{{ icon }}\"\n      *ngIf=\"icon\"\n    />\n  </div>\n  <div class=\"bmb_interactive_icon-text\">\n    <span class=\"bmb_interactive_icon-title\" *ngIf=\"title\">{{ title }}</span>\n    <span\n      class=\"bmb_interactive_icon-description\"\n      *ngIf=\"description && horizontal\"\n      >{{ description }}</span\n    >\n  </div>\n</a>\n"
+            "templateData": "<div class=\"bmb_focus_element\">\n  <div class=\"bmb_focus_element-circle\">\n    @if (icon && !number) {\n    <bmb-icon class=\"bmb_focus_element-icon\" icon=\"{{ icon }}\" />\n    } @if (number && !icon) {\n    <span class=\"bmb_focus_element-number\">{{ number }}</span>\n    }\n  </div>\n  @if (title) {\n  <p class=\"bmb_focus_element-title\">{{ title }}</p>\n  }\n</div>\n"
         },
         {
             "name": "BmbHeaderMobileComponent",
@@ -3196,7 +3086,7 @@
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div class=\"bmb_stat_counter\">\n  <div\n    class=\"bmb_stat_counter-item\"\n    *ngFor=\"let i of getStepsArray()\"\n    [attr.data-bs-target]=\"targets[i]?.target || ''\"\n    [attr.data-bs-slide-to]=\"i\"\n    [ngClass]=\"{ active: activeStep === i, completed: activeStep > i }\"\n    (click)=\"onStepClicked(i)\"\n  >\n    <div\n      class=\"bmb_stat_counter-step\"\n      [ngClass]=\"{ active: activeStep === i, completed: activeStep > i }\"\n    >\n      <span *ngIf=\"activeStep == i || activeStep < i\">{{ i + 1 }}</span>\n      <i *ngIf=\"activeStep > i\" class=\"material-icons\">done</i>\n    </div>\n  </div>\n</div>\n"
+            "templateData": "<div class=\"bmb_stat_counter\">\n  <div\n    class=\"bmb_stat_counter-item\"\n    *ngFor=\"let i of getStepsArray()\"\n    [attr.data-bs-target]=\"targets && targets[i] ? targets[i].target : ''\"\n    [attr.data-bs-slide-to]=\"i\"\n    [ngClass]=\"{ active: activeStep === i, completed: activeStep > i }\"\n    (click)=\"onStepClicked(i)\"\n  >\n    <div\n      class=\"bmb_stat_counter-step\"\n      [ngClass]=\"{ active: activeStep === i, completed: activeStep > i }\"\n    >\n      <span *ngIf=\"activeStep == i || activeStep < i\">{{ i + 1 }}</span>\n      <i *ngIf=\"activeStep > i\" class=\"material-icons\">done</i>\n    </div>\n  </div>\n</div>\n"
         },
         {
             "name": "BmbSwitchComponent",
@@ -3964,6 +3854,116 @@
             "templateData": "<a [ngClass]=\"getClasses()\" [href]=\"link\" [target]=\"target\">\n  <img [src]=\"image\" [alt]=\"altImage\" />\n</a>\n"
         },
         {
+            "name": "BmbUserSummaryComponent",
+            "id": "component-BmbUserSummaryComponent-2b1e51ed549015c58835294d5c4e4937dfa85bec3a609d472f9c1bebb72069a65b323cd543e53a48b4cf248c49ece709f216c1a7c33d92d632222e98a095b7bb",
+            "file": "projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary.component.ts",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-user-summary",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-user-summary.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "id",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 17,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "image",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 18,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "isProfile",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 15,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "name",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 16,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onClick",
+                    "defaultValue": "new EventEmitter<void>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 19,
+                    "type": "EventEmitter<void>"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "handleClick",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 21,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "BmbButtonDirective",
+                    "type": "directive"
+                },
+                {
+                    "name": "BmbUserImageComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component,Input, ViewEncapsulation, Output, EventEmitter } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { BmbButtonDirective } from '../../directives/button.directive';\nimport { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';\n\n@Component({\n  selector: 'bmb-user-summary',\n  standalone: true,\n  imports: [CommonModule, BmbButtonDirective, BmbUserImageComponent],\n  templateUrl: './bmb-user-summary.component.html',\n  styleUrl: './bmb-user-summary.component.scss',\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbUserSummaryComponent {\n  @Input() isProfile: boolean = false;\n  @Input() name: string = '';\n  @Input() id: string = '';\n  @Input() image: string = '';\n  @Output() onClick: EventEmitter<void> = new EventEmitter<void>();\n\n  handleClick(): void {\n    this.onClick.emit();\n  }\n}\n",
+            "styleUrl": "./bmb-user-summary.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<section class=\"bmb_user-summary\" [ngClass]=\"{'bmb_user-summary-is-profile' : isProfile}\">\n  <bmb-user-image\n    [size]=\"'mobile-large'\"\n    [image]=\"image\"\n    [altImage]=\"name\"\n  />\n  <div class=\"bmb_user-summary-content\">\n    @if (isProfile) {\n      <h3 class=\"bmb_user-summary-content-title\">{{ name }}</h3>\n    }\n    @else {\n      <h3 class=\"bmb_user-summary-content-title\">¡Buenas tardes <br>{{ name }}!</h3>\n    }\n    <span class=\"bmb_user-summary-content-id\">{{ id }}</span>\n  </div>\n  @if (isProfile) {\n    <button\n      class=\"bmb_user-summary-button\"\n      bmbButton\n      appearance=\"secondary-outlined\"\n      (click)=\"handleClick()\"\n    >\n      ID Digital\n    </button>\n  }\n</section>\n"
+        },
+        {
             "name": "BmbValueCounterComponent",
             "id": "component-BmbValueCounterComponent-a815caf2302db3742be9372c483fa4a532a4b788bf5397e25b9d1419321900e50baf2d7c949f4ee47ac8f3af5d4b7601dfc923b1bc55dfc190ceb488373b8f4d",
             "file": "projects/ds-ng/src/lib/components/bmb-value-counter/bmb-value-counter.component.ts",
@@ -4351,7 +4351,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.component.stories.ts",
+                "file": "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
@@ -4452,6 +4452,26 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-value-counter/bmb-value-counter.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
@@ -4754,7 +4774,7 @@
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
                 "rawtype": "StoryObj<BmbIconComponent>",
-                "file": "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.component.stories.ts",
+                "file": "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -4854,6 +4874,28 @@
                 "subtype": "typealias",
                 "rawtype": "StoryObj<BmbUserImageComponent>",
                 "file": "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<BmbUserSummaryComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<BmbValueCounterComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-value-counter/bmb-value-counter.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -5059,12 +5101,12 @@
                     "defaultValue": "{}"
                 }
             ],
-            "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.component.stories.ts": [
+            "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.stories.ts": [
                 {
                     "name": "Default",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.component.stories.ts",
+                    "file": "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
@@ -5185,6 +5227,30 @@
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-value-counter/bmb-value-counter.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-value-counter/bmb-value-counter.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
@@ -5514,13 +5580,13 @@
                     "kind": 183
                 }
             ],
-            "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.component.stories.ts": [
+            "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.stories.ts": [
                 {
                     "name": "Story",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
                     "rawtype": "StoryObj<BmbIconComponent>",
-                    "file": "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.component.stories.ts",
+                    "file": "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -5638,6 +5704,32 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<BmbUserImageComponent>",
                     "file": "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbUserSummaryComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-value-counter/bmb-value-counter.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbValueCounterComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-value-counter/bmb-value-counter.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -5831,7 +5923,7 @@
                 "linktype": "component",
                 "name": "BmbFocusElementComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/12",
+                "coverageCount": "0/4",
                 "status": "low"
             },
             {
@@ -5883,22 +5975,22 @@
                 "status": "low"
             },
             {
-                "filePath": "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.component.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Default",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
                 "filePath": "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "BmbIconComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
@@ -6138,12 +6230,41 @@
                 "status": "low"
             },
             {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbUserSummaryComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/7",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/ds-ng/src/lib/components/bmb-value-counter/bmb-value-counter.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "BmbValueCounterComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-value-counter/bmb-value-counter.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {

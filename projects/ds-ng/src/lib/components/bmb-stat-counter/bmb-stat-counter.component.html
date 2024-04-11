@@ -2,7 +2,7 @@
   <div
     class="bmb_stat_counter-item"
     *ngFor="let i of getStepsArray()"
-    [attr.data-bs-target]="targets[i]?.target || ''"
+    [attr.data-bs-target]="targets && targets[i] ? targets[i].target : ''"
     [attr.data-bs-slide-to]="i"
     [ngClass]="{ active: activeStep === i, completed: activeStep > i }"
     (click)="onStepClicked(i)"
