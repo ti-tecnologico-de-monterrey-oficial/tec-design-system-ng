@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy, ViewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FormControl, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import {
   BmbThemeComponent,
   BmbBadgeComponent,
@@ -23,6 +24,8 @@ import {
   BmbUserSummaryComponent,
   BmbSidebarComponent,
   BmbFabComponent,
+  BmbTabsComponent,
+  BmbProgressCircleComponent,
 } from '../../projects/ds-ng/src/public-api';
 
 export interface Target {
@@ -34,6 +37,7 @@ export interface Target {
   selector: 'app-root',
   standalone: true,
   imports: [
+    CommonModule,
     RouterOutlet,
     BmbThemeComponent,
     BmbBadgeComponent,
@@ -56,12 +60,30 @@ export interface Target {
     BmbUserSummaryComponent,
     BmbSidebarComponent,
     BmbFabComponent,
+    BmbTabsComponent,
+    BmbProgressCircleComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
+  myTabs: any = [
+    { id: 1, title: 'Tec de Monterrey', badge: 1, isActive: true },
+    { id: 2, title: 'Prestamo educativo' },
+    { id: 3, title: 'Mas usado' },
+    { id: 4, title: 'Textuales' },
+    { id: 5, title: 'Text' },
+    { id: 6, title: 'Mas usado' },
+  ];
+
+  activeTabId: number | null =
+    this.myTabs.find((tab: any) => tab.isActive)?.id ?? null;
+
+  handleTabSelected(tab: any): void {
+    this.activeTabId = tab.id;
+  }
+
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
