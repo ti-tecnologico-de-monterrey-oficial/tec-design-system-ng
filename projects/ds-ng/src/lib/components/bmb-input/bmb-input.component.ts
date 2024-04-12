@@ -62,8 +62,8 @@ export class BmbInputComponent
   @Input() isRequired: boolean = false;
   @Input() value: string | undefined;
   @Input() isClearable: boolean = false;
-  @Input() appearance: 'normal' | 'simple' | 'main' = 'normal';
-  @Input() device: 'mobile' | 'desktop' = 'mobile';
+  @Input() appearance: 'normal' | 'simple' = 'normal';
+  // @Input() device: 'mobile' | 'desktop' = 'mobile';
 
   @Output() handleClick: EventEmitter<any> = new EventEmitter();
   @Output() handleFocus: EventEmitter<any> = new EventEmitter();
