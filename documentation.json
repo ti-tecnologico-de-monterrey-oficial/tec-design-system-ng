@@ -3018,8 +3018,189 @@
             "templateData": "<a [ngClass]=\"getClasses()\" [href]=\"link\" [target]=\"target\">\n  <img [src]=\"image\" [alt]=\"altImage\" />\n</a>\n"
         },
         {
+            "name": "BmbProgressCircleComponent",
+            "id": "component-BmbProgressCircleComponent-a8c4b9df052f798f5e0944294a9bd925427f6259c7abf1d7f4204e9363bd7ccfd828a65bb118f3488cf17f1ff1d2b3bd922dad31d326698743725dd864cdd434",
+            "file": "projects/ds-ng/src/lib/components/bmb-progress-cirlce/bmb-progress-circle.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-progress-circle",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-progress-circle.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "percentValue",
+                    "defaultValue": "50",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 21,
+                    "type": "number | null",
+                    "decorators": []
+                },
+                {
+                    "name": "title",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 22,
+                    "type": "string | null",
+                    "decorators": []
+                },
+                {
+                    "name": "valueLabel",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 23,
+                    "type": "number | null",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "circunference",
+                    "defaultValue": "2 * Math.PI * this.radius",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 26
+                },
+                {
+                    "name": "dashoffset",
+                    "defaultValue": "0",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 27
+                },
+                {
+                    "name": "radius",
+                    "defaultValue": "74",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 25
+                },
+                {
+                    "name": "symbol",
+                    "defaultValue": "'%'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 28
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnChanges",
+                    "args": [
+                        {
+                            "name": "changes",
+                            "type": "SimpleChanges",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 34,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "changes",
+                            "type": "SimpleChanges",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "progress",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 44,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "value",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport {\n  Component,\n  Input,\n  OnChanges,\n  SimpleChanges,\n  ViewEncapsulation,\n  ChangeDetectionStrategy,\n} from '@angular/core';\n\n@Component({\n  selector: 'bmb-progress-circle',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './bmb-progress-circle.component.html',\n  styleUrl: './bmb-progress-circle.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbProgressCircleComponent implements OnChanges {\n  @Input() percentValue: number | null = 50;\n  @Input() title?: string | null;\n  @Input() valueLabel?: number | null;\n\n  radius = 74;\n  circunference = 2 * Math.PI * this.radius;\n  dashoffset = 0;\n  symbol = '%';\n\n  constructor() {\n    this.progress(0);\n  }\n\n  ngOnChanges(changes: SimpleChanges) {\n    if (changes['percentValue']) {\n      if (changes['percentValue'].currentValue > 100) {\n        this.progress(100);\n      } else {\n        this.progress(changes['percentValue'].currentValue);\n      }\n    }\n  }\n\n  progress(value: number) {\n    const progress = value / 100;\n    this.dashoffset = -this.circunference * (1 - progress);\n  }\n}\n",
+            "styleUrl": "./bmb-progress-circle.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 28
+            },
+            "extends": [],
+            "implements": [
+                "OnChanges"
+            ],
+            "templateData": "<div class=\"bmb_progress_circle\">\n    <svg class=\"bmb_progress_circle-svg\" width=\"170\" height=\"170\" viewBox=\"0 0 170 170\">\n      <circle class=\"bmb_progress_circle-svg-meter\" cx=\"84\" cy=\"84\" [attr.r]=\"radius\" stroke-width=\"5\" />\n      <circle class=\"bmb_progress_circle-svg-value\" [style.strokeDasharray]=\"circunference\" [style.strokeDashoffset]=\"dashoffset\"\n        cx=\"84\" cy=\"84\" [attr.r]=\"radius\" stroke-width=\"5\" />\n    </svg>\n\n    <div class=\"bmb_progress_circle-info\">\n      @if (title) {\n        <div class=\"bmb_progress_circle-info-title\">\n          <ng-container >{{title}}</ng-container>\n        </div>  \n\n      }\n      <div class=\"bmb_progress_circle-info-value\" [ngClass]=\"{'bmb_progress_circle-info-value-alone': this.title !== undefined}\">\n        {{valueLabel}}\n      </div>\n    </div>\n  </div>\n"
+        },
+        {
             "name": "BmbStatCounterComponent",
-            "id": "component-BmbStatCounterComponent-2b995fd543f3cb4e9e458beb35496f9443fd3b7412a9cce3f5d5d702b45e9af02cd538f0bfc9df7dd5f689c50ccd92a1b7895aadf08f14f672ffce4dedf0ecb8",
+            "id": "component-BmbStatCounterComponent-1bdde546f9a2286e251035e1643025af76bfae47f1a03dd00ae808179f5c81bbf2083be04ca3eb2c545e49b7c59153c2892f33f8051c8092e0cee6b00669ebb6",
             "file": "projects/ds-ng/src/lib/components/bmb-stat-counter/bmb-stat-counter.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -3048,15 +3229,6 @@
                     "decorators": []
                 },
                 {
-                    "name": "targets",
-                    "defaultValue": "[]",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 24,
-                    "type": "Target[]",
-                    "decorators": []
-                },
-                {
                     "name": "totalSteps",
                     "defaultValue": "0",
                     "deprecated": false,
@@ -3072,7 +3244,7 @@
                     "defaultValue": "new EventEmitter<number>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 25,
+                    "line": 24,
                     "type": "EventEmitter<number>"
                 }
             ],
@@ -3084,7 +3256,7 @@
                     "optional": false,
                     "returnType": "number[]",
                     "typeParameters": [],
-                    "line": 27,
+                    "line": 26,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -3101,7 +3273,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 31,
+                    "line": 30,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -3126,18 +3298,22 @@
                 {
                     "name": "CommonModule",
                     "type": "module"
+                },
+                {
+                    "name": "BmbIconComponent",
+                    "type": "component"
                 }
             ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\n  Component,\n  Input,\n  Output,\n  EventEmitter,\n  ViewEncapsulation,\n  ChangeDetectionStrategy,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { Target } from './bmb-stat-counter.interface';\n\n@Component({\n  standalone: true,\n  imports: [CommonModule],\n  styleUrl: './bmb-stat-counter.component.scss',\n  selector: 'bmb-stat-counter',\n  templateUrl: './bmb-stat-counter.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbStatCounterComponent {\n  @Input() activeStep: number = 0;\n  @Input() totalSteps?: number = 0;\n  @Input() targets: Target[] = [];\n  @Output() onStepPress: EventEmitter<number> = new EventEmitter<number>();\n\n  getStepsArray(): number[] {\n    return new Array(this.totalSteps || 0).fill(0).map((_, i) => i);\n  }\n\n  onStepClicked(index: number): void {\n    this.activeStep = index;\n    this.onStepPress.emit(index);\n  }\n}\n",
+            "sourceCode": "import {\n  Component,\n  Input,\n  Output,\n  EventEmitter,\n  ViewEncapsulation,\n  ChangeDetectionStrategy,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\n\n@Component({\n  standalone: true,\n  imports: [CommonModule, BmbIconComponent],\n  styleUrl: './bmb-stat-counter.component.scss',\n  selector: 'bmb-stat-counter',\n  templateUrl: './bmb-stat-counter.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbStatCounterComponent {\n  @Input() activeStep: number = 0;\n  @Input() totalSteps?: number = 0;\n  @Output() onStepPress: EventEmitter<number> = new EventEmitter<number>();\n\n  getStepsArray(): number[] {\n    return new Array(this.totalSteps || 0).fill(0).map((_, i) => i);\n  }\n\n  onStepClicked(index: number): void {\n    this.activeStep = index;\n    this.onStepPress.emit(index);\n  }\n}\n",
             "styleUrl": "./bmb-stat-counter.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div class=\"bmb_stat_counter\">\n  <div\n    class=\"bmb_stat_counter-item\"\n    *ngFor=\"let i of getStepsArray()\"\n    [attr.data-bs-target]=\"targets && targets[i] ? targets[i].target : ''\"\n    [attr.data-bs-slide-to]=\"i\"\n    [ngClass]=\"{ active: activeStep === i, completed: activeStep > i }\"\n    (click)=\"onStepClicked(i)\"\n  >\n    <div\n      class=\"bmb_stat_counter-step\"\n      [ngClass]=\"{ active: activeStep === i, completed: activeStep > i }\"\n    >\n      <span *ngIf=\"activeStep == i || activeStep < i\">{{ i + 1 }}</span>\n      <i *ngIf=\"activeStep > i\" class=\"material-icons\">done</i>\n    </div>\n  </div>\n</div>\n"
+            "templateData": "<div class=\"bmb_stat_counter\">\n  <div\n    class=\"bmb_stat_counter-item\"\n    *ngFor=\"let i of getStepsArray()\"\n    [attr.data-bs-slide-to]=\"i\"\n    [ngClass]=\"{ active: activeStep === i, completed: activeStep > i }\"\n    (click)=\"onStepClicked(i)\"\n  >\n    <div\n      class=\"bmb_stat_counter-step\"\n      [ngClass]=\"{ active: activeStep === i, completed: activeStep > i }\"\n    >\n      <span *ngIf=\"activeStep == i || activeStep < i\">{{ i + 1 }}</span>\n      @if (activeStep > i )  {\n        <bmb-icon [icon]=\"'done'\" class=\"material-icons\" />\n      }\n    </div>\n  </div>\n</div>\n"
         },
         {
             "name": "BmbSwitchComponent",
@@ -4614,6 +4790,16 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/ds-ng/src/lib/components/bmb-logo/bmb-logo.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -4624,7 +4810,17 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.stories.ts",
+                "file": "projects/ds-ng/src/lib/components/bmb-progress-cirlce/bmb-progress-circle.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-stat-counter/bmb-stat-counter.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
@@ -5050,6 +5246,17 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
+                "rawtype": "StoryObj<BmbLoaderComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
                 "rawtype": "StoryObj<BmbLogoComponent>",
                 "file": "projects/ds-ng/src/lib/components/bmb-logo/bmb-logo.stories.ts",
                 "deprecated": false,
@@ -5061,8 +5268,19 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<BmbLoaderComponent>",
-                "file": "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.stories.ts",
+                "rawtype": "StoryObj<BmbProgressCircleComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-progress-cirlce/bmb-progress-circle.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<BmbStatCounterComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-stat-counter/bmb-stat-counter.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -5393,6 +5611,18 @@
                     "defaultValue": "{}"
                 }
             ],
+            "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                }
+            ],
             "projects/ds-ng/src/lib/components/bmb-logo/bmb-logo.stories.ts": [
                 {
                     "name": "Default",
@@ -5405,12 +5635,24 @@
                     "defaultValue": "{}"
                 }
             ],
-            "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.stories.ts": [
+            "projects/ds-ng/src/lib/components/bmb-progress-cirlce/bmb-progress-circle.stories.ts": [
                 {
                     "name": "Default",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.stories.ts",
+                    "file": "projects/ds-ng/src/lib/components/bmb-progress-cirlce/bmb-progress-circle.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-stat-counter/bmb-stat-counter.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-stat-counter/bmb-stat-counter.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
@@ -5888,6 +6130,19 @@
                     "kind": 183
                 }
             ],
+            "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbLoaderComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
             "projects/ds-ng/src/lib/components/bmb-logo/bmb-logo.stories.ts": [
                 {
                     "name": "Story",
@@ -5901,13 +6156,26 @@
                     "kind": 183
                 }
             ],
-            "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.stories.ts": [
+            "projects/ds-ng/src/lib/components/bmb-progress-cirlce/bmb-progress-circle.stories.ts": [
                 {
                     "name": "Story",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
-                    "rawtype": "StoryObj<BmbLoaderComponent>",
-                    "file": "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.stories.ts",
+                    "rawtype": "StoryObj<BmbProgressCircleComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-progress-cirlce/bmb-progress-circle.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-stat-counter/bmb-stat-counter.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbStatCounterComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-stat-counter/bmb-stat-counter.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -6358,12 +6626,31 @@
                 "status": "low"
             },
             {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-progress-cirlce/bmb-progress-circle.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbProgressCircleComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/11",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-progress-cirlce/bmb-progress-circle.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/ds-ng/src/lib/components/bmb-stat-counter/bmb-stat-counter.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "BmbStatCounterComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/7",
+                "coverageCount": "0/6",
                 "status": "low"
             },
             {
@@ -6382,6 +6669,16 @@
                 "name": "Target",
                 "coveragePercent": 0,
                 "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-stat-counter/bmb-stat-counter.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
