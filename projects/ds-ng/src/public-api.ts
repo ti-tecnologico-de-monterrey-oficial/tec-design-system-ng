@@ -30,3 +30,4 @@ export * from './lib/components/bmb-value-counter/bmb-value-counter.component';
 export * from './lib/components/bmb-stat-counter/bmb-stat-counter.component';
 export * from './lib/components/bmb-focus-element/bmb-focus-element.component';
 export * from './lib/components/bmb-user-summary/bmb-user-summary.component';
+export * from './lib/components/bmb-tabs/bmb-tabs.component';

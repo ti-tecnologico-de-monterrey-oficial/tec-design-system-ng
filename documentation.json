@@ -53,6 +53,57 @@
             "extends": []
         },
         {
+            "name": "Tab",
+            "id": "interface-Tab-213b5ea786d38adf625ac647e84e341f4e3f151c1b9502ff0984bcffafc71b9a244f41a43b3afa8153801e89e7fb1479820a1224d39de7962be59542c60f3d47",
+            "file": "projects/ds-ng/src/lib/components/bmb-tabs/bmb-tabs.component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import {\n  Component,\n  Input,\n  Output,\n  ViewChild,\n  ElementRef,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n  EventEmitter,\n  OnInit,\n  AfterViewInit,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\nexport interface Tab {\n  id: number;\n  title: string;\n  isActive?: boolean;\n  badge?: number;\n}\n\n@Component({\n  selector: 'bmb-tabs',\n  templateUrl: './bmb-tabs.component.html',\n  styleUrls: ['./bmb-tabs.component.scss'],\n  standalone: true,\n  imports: [CommonModule],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbTabsComponent implements OnInit, AfterViewInit {\n  @Input() format: string = '';\n  @Input() tabs: Tab[] = [];\n  @Output() selected = new EventEmitter<Tab>();\n\n  activeTabIndex: number = 0;\n  @ViewChild('tabsItems') tabsItems!: ElementRef;\n\n  ngOnInit(): void {\n    const initialActiveTab = this.tabs.findIndex((tab) => tab.isActive);\n    this.activeTabIndex = initialActiveTab !== -1 ? initialActiveTab : 0;\n    this.tabs.forEach(\n      (tab, index) => (tab.isActive = index === this.activeTabIndex)\n    );\n  }\n\n  ngAfterViewInit(): void {\n    setTimeout(() => this.showActiveTab(), 100);\n  }\n\n  selectTab(selectedId: number): void {\n    const tabIndex = this.tabs.findIndex((tab) => tab.id === selectedId);\n    if (tabIndex !== -1) {\n      this.tabs.forEach((tab) => (tab.isActive = false));\n      this.tabs[tabIndex].isActive = true;\n      this.activeTabIndex = tabIndex;\n      const activeTab = this.tabs[tabIndex];\n      this.selected.emit(activeTab);\n      setTimeout(() => this.showActiveTab(), 0);\n    }\n  }\n\n  showActiveTab(): void {\n    requestAnimationFrame(() => {\n      const tabsElement = this.tabsItems.nativeElement;\n      const activeTabElement = tabsElement.children[this.activeTabIndex];\n\n      if (activeTabElement) {\n        const containerWidth = tabsElement.offsetWidth;\n        const activeTabWidth = activeTabElement.offsetWidth;\n        const activeTabOffsetLeft = activeTabElement.offsetLeft;\n\n        const scrollOffset =\n          activeTabOffsetLeft - (containerWidth - activeTabWidth) / 2;\n\n        tabsElement.scrollTo({\n          left: scrollOffset,\n          behavior: 'smooth',\n        });\n      }\n    });\n  }\n}\n",
+            "properties": [
+                {
+                    "name": "badge",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": true,
+                    "description": "",
+                    "line": 19
+                },
+                {
+                    "name": "id",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 16
+                },
+                {
+                    "name": "isActive",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": true,
+                    "description": "",
+                    "line": 18
+                },
+                {
+                    "name": "title",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 17
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 171,
+            "methods": [],
+            "extends": []
+        },
+        {
             "name": "Target",
             "id": "interface-Target-f2c3d13fcf4fd6183ec16ed094945329f06423ca7483317bd35b40b174de58d51ac8b2c617a6cf24a3f7aca7974b78604de4aff3d3f914fbfd2720c5feb49d40",
             "file": "projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.component.ts",
@@ -3242,6 +3293,178 @@
             "templateData": "<button\n  [ngClass]=\"{ bmb_switch: true, 'bmb_switch-checked': isChecked }\"\n  (click)=\"toggleSwitch()\"\n  role=\"switch\"\n  [attr.aria-checked]=\"isChecked ? 'true' : 'false'\"\n  [attr.id]=\"id\"\n  [attr.aria-disabled]=\"disabled ? 'true' : 'false'\"\n  [disabled]=\"disabled\"\n>\n  <div class=\"bmb_switch-left\" *ngIf=\"leftText || leftIcon\">\n    <span *ngIf=\"leftText && !leftIcon\" class=\"bmb_switch-text\">{{\n      leftText\n    }}</span>\n    <bmb-icon *ngIf=\"leftIcon && !leftText\" [icon]=\"leftIcon\"></bmb-icon>\n  </div>\n\n  <label class=\"bmb_switch-label\" for=\"bmbSwitch\">\n    <span class=\"bmb_switch-inner\"></span>\n    <span class=\"bmb_switch-switch\"></span>\n  </label>\n\n  <div class=\"bmb_switch-right\" *ngIf=\"rightText || rightIcon\">\n    <span *ngIf=\"rightText && !rightIcon\" class=\"bmb_switch-text\">{{\n      rightText\n    }}</span>\n    <bmb-icon *ngIf=\"rightIcon && !rightText\" [icon]=\"rightIcon\"></bmb-icon>\n  </div>\n</button>\n"
         },
         {
+            "name": "BmbTabsComponent",
+            "id": "component-BmbTabsComponent-213b5ea786d38adf625ac647e84e341f4e3f151c1b9502ff0984bcffafc71b9a244f41a43b3afa8153801e89e7fb1479820a1224d39de7962be59542c60f3d47",
+            "file": "projects/ds-ng/src/lib/components/bmb-tabs/bmb-tabs.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-tabs",
+            "styleUrls": [
+                "./bmb-tabs.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-tabs.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "format",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 32,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "tabs",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 33,
+                    "type": "Tab[]",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "selected",
+                    "defaultValue": "new EventEmitter<Tab>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 34,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "activeTabIndex",
+                    "defaultValue": "0",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 36
+                },
+                {
+                    "name": "tabsItems",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ElementRef",
+                    "optional": false,
+                    "description": "",
+                    "line": 37,
+                    "decorators": [
+                        {
+                            "name": "ViewChild",
+                            "stringifiedArguments": "'tabsItems'"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngAfterViewInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 47,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 39,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "selectTab",
+                    "args": [
+                        {
+                            "name": "selectedId",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 51,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "selectedId",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "showActiveTab",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 63,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {\n  Component,\n  Input,\n  Output,\n  ViewChild,\n  ElementRef,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n  EventEmitter,\n  OnInit,\n  AfterViewInit,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\nexport interface Tab {\n  id: number;\n  title: string;\n  isActive?: boolean;\n  badge?: number;\n}\n\n@Component({\n  selector: 'bmb-tabs',\n  templateUrl: './bmb-tabs.component.html',\n  styleUrls: ['./bmb-tabs.component.scss'],\n  standalone: true,\n  imports: [CommonModule],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbTabsComponent implements OnInit, AfterViewInit {\n  @Input() format: string = '';\n  @Input() tabs: Tab[] = [];\n  @Output() selected = new EventEmitter<Tab>();\n\n  activeTabIndex: number = 0;\n  @ViewChild('tabsItems') tabsItems!: ElementRef;\n\n  ngOnInit(): void {\n    const initialActiveTab = this.tabs.findIndex((tab) => tab.isActive);\n    this.activeTabIndex = initialActiveTab !== -1 ? initialActiveTab : 0;\n    this.tabs.forEach(\n      (tab, index) => (tab.isActive = index === this.activeTabIndex)\n    );\n  }\n\n  ngAfterViewInit(): void {\n    setTimeout(() => this.showActiveTab(), 100);\n  }\n\n  selectTab(selectedId: number): void {\n    const tabIndex = this.tabs.findIndex((tab) => tab.id === selectedId);\n    if (tabIndex !== -1) {\n      this.tabs.forEach((tab) => (tab.isActive = false));\n      this.tabs[tabIndex].isActive = true;\n      this.activeTabIndex = tabIndex;\n      const activeTab = this.tabs[tabIndex];\n      this.selected.emit(activeTab);\n      setTimeout(() => this.showActiveTab(), 0);\n    }\n  }\n\n  showActiveTab(): void {\n    requestAnimationFrame(() => {\n      const tabsElement = this.tabsItems.nativeElement;\n      const activeTabElement = tabsElement.children[this.activeTabIndex];\n\n      if (activeTabElement) {\n        const containerWidth = tabsElement.offsetWidth;\n        const activeTabWidth = activeTabElement.offsetWidth;\n        const activeTabOffsetLeft = activeTabElement.offsetLeft;\n\n        const scrollOffset =\n          activeTabOffsetLeft - (containerWidth - activeTabWidth) / 2;\n\n        tabsElement.scrollTo({\n          left: scrollOffset,\n          behavior: 'smooth',\n        });\n      }\n    });\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@use \"../../../assets/styles/base/fonts\" as fonts;\n@use \"../../../assets/styles/base/mixins\" as mixins;\n@use \"../../../assets/styles/base/rem\" as rem;\n\n.bmb_tabs {\n  &-tab {\n    display: flex;\n    flex-flow: row nowrap;\n    gap: rem.rem_calc(32);\n    -webkit-overflow-scrolling: touch;\n    overflow-x: auto;\n    scroll-behavior: smooth;\n    scroll-snap-type: x mandatory;\n\n    &::-webkit-scrollbar {\n      display: none;\n    }\n  }\n\n  &-item {\n    align-items: center;\n    border-bottom-color: transparent;\n    border-bottom-style: solid;\n    border-bottom-width: rem.rem_calc(2);\n    color: RGBA(var(--color-charade-500));\n    display: flex;\n    flex: 0 0 auto;\n    gap: rem.rem_calc(8);\n    height: rem.rem_calc(40);\n    justify-content: center;\n    min-width: rem.rem_calc(120);\n    padding: rem.rem_calc(8);\n    scroll-behavior: smooth;\n    scroll-snap-align: start;\n    text-align: center;\n    @include fonts.font(5, medium);\n\n    &-active {\n      border-bottom-color: RGBA(var(--color-mariner-700));\n      color: RGBA(var(--color-charade-950));\n    }\n\n    &-uppercase {\n      text-transform: uppercase;\n      @include fonts.font(3, regular);\n    }\n  }\n\n  &-badge {\n    align-items: center;\n    background-color: RGBA(var(--color-mariner-700));\n    border-radius: 100%;\n    color: RGBA(var(--color-white-primary));\n    display: flex;\n    height: rem.rem_calc(22);\n    justify-content: center;\n    width: rem.rem_calc(20);\n    @include fonts.font(3, regular);\n  }\n}\n\n[data-theme=\"dark\"],\n.storybook-dark-theme {\n  .bmb_tabs {\n    &-item {\n      &-active {\n        border-bottom-color: RGBA(var(--color-charade-50));\n        color: RGBA(var(--color-charade-50));\n      }\n    }\n  }\n}\n",
+                    "styleUrl": "./bmb-tabs.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "extends": [],
+            "implements": [
+                "OnInit",
+                "AfterViewInit"
+            ],
+            "templateData": "<div class=\"bmb_tabs\">\n  <div class=\"bmb_tabs-tab\" #tabsItems>\n    <button\n      role=\"tab\"\n      [attr.aria-selected]=\"tab.isActive ? 'true' : 'false'\"\n      [attr.tabindex]=\"tab.isActive ? 0 : -1\"\n      class=\"bmb_tabs-item\"\n      *ngFor=\"let tab of tabs; let i = index\"\n      (click)=\"selectTab(tab.id)\"\n      [ngClass]=\"{\n        'bmb_tabs-item-active': tab.isActive,\n        'bmb_tabs-item-uppercase': format === 'uppercase'\n      }\"\n    >\n      <span>\n        {{ tab.title }}\n      </span>\n      <span class=\"bmb_tabs-badge\" *ngIf=\"tab.badge\">{{ tab.badge }}</span>\n    </button>\n  </div>\n  <ng-content></ng-content>\n</div>\n"
+        },
+        {
             "name": "BmbTagComponent",
             "id": "component-BmbTagComponent-5739e43327279ef5cc6d248c3330d8606a370d1d882c91d30c16f80afd90c52edff0baa6d87e99a0f328f266c7d9802e3cbd0e972146c6bcc6f7e955624b7af3",
             "file": "projects/ds-ng/src/lib/components/bmb-tags/bmb-tags.component.ts",
@@ -4391,16 +4614,6 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{}"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/ds-ng/src/lib/components/bmb-logo/bmb-logo.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -4411,7 +4624,27 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/ds-ng/src/lib/components/bmb-switch/bmb-switch.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-tabs/bmb-tabs.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
@@ -4817,17 +5050,6 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<BmbLoaderComponent>",
-                "file": "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "",
-                "kind": 183
-            },
-            {
-                "name": "Story",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
                 "rawtype": "StoryObj<BmbLogoComponent>",
                 "file": "projects/ds-ng/src/lib/components/bmb-logo/bmb-logo.stories.ts",
                 "deprecated": false,
@@ -4839,8 +5061,30 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
+                "rawtype": "StoryObj<BmbLoaderComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
                 "rawtype": "StoryObj<BmbSwitchComponent>",
                 "file": "projects/ds-ng/src/lib/components/bmb-switch/bmb-switch.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<BmbTabsComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-tabs/bmb-tabs.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -5149,18 +5393,6 @@
                     "defaultValue": "{}"
                 }
             ],
-            "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{}"
-                }
-            ],
             "projects/ds-ng/src/lib/components/bmb-logo/bmb-logo.stories.ts": [
                 {
                     "name": "Default",
@@ -5173,12 +5405,36 @@
                     "defaultValue": "{}"
                 }
             ],
+            "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                }
+            ],
             "projects/ds-ng/src/lib/components/bmb-switch/bmb-switch.stories.ts": [
                 {
                     "name": "Default",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/ds-ng/src/lib/components/bmb-switch/bmb-switch.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-tabs/bmb-tabs.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-tabs/bmb-tabs.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
@@ -5632,19 +5888,6 @@
                     "kind": 183
                 }
             ],
-            "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<BmbLoaderComponent>",
-                    "file": "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
             "projects/ds-ng/src/lib/components/bmb-logo/bmb-logo.stories.ts": [
                 {
                     "name": "Story",
@@ -5658,6 +5901,19 @@
                     "kind": 183
                 }
             ],
+            "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbLoaderComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
             "projects/ds-ng/src/lib/components/bmb-switch/bmb-switch.stories.ts": [
                 {
                     "name": "Story",
@@ -5665,6 +5921,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<BmbSwitchComponent>",
                     "file": "projects/ds-ng/src/lib/components/bmb-switch/bmb-switch.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-tabs/bmb-tabs.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbTabsComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-tabs/bmb-tabs.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -6126,6 +6395,34 @@
             },
             {
                 "filePath": "projects/ds-ng/src/lib/components/bmb-switch/bmb-switch.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-tabs/bmb-tabs.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbTabsComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/10",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-tabs/bmb-tabs.component.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "Tab",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-tabs/bmb-tabs.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",

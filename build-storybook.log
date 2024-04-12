@@ -1,6 +1,6 @@
 
 > @ti-tecnologico-de-monterrey-oficial/tec-design-system-ng@0.0.9 build-storybook
-> ng run ds-ng:build-storybook --output-dir /var/folders/3k/vwgnwxtj4zb7pyzr4kv9fllr0000gn/T/chromatic--39901-NntIHjfCDWNa
+> ng run ds-ng:build-storybook --output-dir /var/folders/3k/vwgnwxtj4zb7pyzr4kv9fllr0000gn/T/chromatic--77478-lPNyzYi0jVxI
 
 Node.js version v21.6.1 detected.
 Odd numbered Node.js versions will not enter LTS status and should not be used for production. For more information, please see https://nodejs.org/en/about/previous-releases/.
@@ -27,439 +27,453 @@ Node.js version : v21.6.1
 
 Operating system : macOS Monterey
 
-[08:49:30] No configuration file found, switching to CLI flags.
-[08:49:30] Using tsconfig file : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/.storybook/tsconfig.json
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/.storybook/preview.ts
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/public-api.ts
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/ds-ng.component.ts
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/ds-ng.service.ts
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/styles/main.scss
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/directives/button.directive.ts
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/directives/button.stories.ts
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/foundations/bmb-colors.stories.ts
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/foundations/bmb-typography.stories.ts
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/services/index.ts
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/services/theme.service.ts
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/services/toast.service.ts
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/fonts/Material/material-icons.woff2
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/fonts/Material/material-symbols.woff2
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/fonts/Poppins/Poppins-Black.ttf
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/fonts/Poppins/Poppins-BlackItalic.ttf
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/fonts/Poppins/Poppins-Bold.ttf
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/fonts/Poppins/Poppins-BoldItalic.ttf
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/fonts/Poppins/Poppins-ExtraBold.ttf
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/fonts/Poppins/Poppins-ExtraBoldItalic.ttf
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/fonts/Poppins/Poppins-ExtraLight.ttf
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/fonts/Poppins/Poppins-ExtraLightItalic.ttf
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/fonts/Poppins/Poppins-Italic.ttf
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/fonts/Poppins/Poppins-Light.ttf
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/fonts/Poppins/Poppins-LightItalic.ttf
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/fonts/Poppins/Poppins-Medium.ttf
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/fonts/Poppins/Poppins-MediumItalic.ttf
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/fonts/Poppins/Poppins-Regular.ttf
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/fonts/Poppins/Poppins-SemiBold.ttf
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/fonts/Poppins/Poppins-SemiBoldItalic.ttf
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/fonts/Poppins/Poppins-Thin.ttf
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/fonts/Poppins/Poppins-ThinItalic.ttf
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/styles/base/_fonts.scss
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/styles/base/_mixins.scss
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/styles/base/_rem.scss
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/styles/base/_reset.scss
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/styles/components/_buttons.scss
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/styles/tokens/_colors.scss
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/styles/tokens/_theme.scss
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.component.html
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.component.scss
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.component.ts
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component.html
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component.scss
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component.ts
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.stories.ts
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-container/bmb-container.component.html
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-container/bmb-container.component.scss
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-container/bmb-container.component.ts
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-container-button/bmb-container-button.component.html
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-container-button/bmb-container-button.component.scss
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-container-button/bmb-container-button.component.ts
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-container-button/bmb-container-button.stories.ts
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.component.html
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.component.scss
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.component.ts
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.component.html
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.component.scss
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.component.ts
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.stories.ts
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-fab/bmb-fab.component.html
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-fab/bmb-fab.component.scss
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-fab/bmb-fab.component.ts
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-fab/bmb-fab.stories.ts
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-focus-element/bmb-focus-element.component.html
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-focus-element/bmb-focus-element.component.scss
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-focus-element/bmb-focus-element.component.ts
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-focus-element/bmb-focus-element.stories.ts
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-header-mobile/bmb-header-mobile.component.html
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-header-mobile/bmb-header-mobile.component.scss
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-header-mobile/bmb-header-mobile.component.ts
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-header-mobile/bmb-header-mobile.stories.ts
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-home-section/bmb-home-section.component.html
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-home-section/bmb-home-section.component.scss
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-home-section/bmb-home-section.component.ts
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-home-section/bmb-home-section.stories.ts
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.component.html
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.component.ts
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.stories.ts
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-input/bmb-input.component.html
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-input/bmb-input.component.scss
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-input/bmb-input.component.ts
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-input/bmb-input.stories.ts
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-interactive-icon/bmb-interactive-icon.component.html
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-interactive-icon/bmb-interactive-icon.component.scss
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-interactive-icon/bmb-interactive-icon.component.ts
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-interactive-icon/bmb-interactive-icon.stories.ts
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.component.html
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.component.scss
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.component.ts
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.stories.ts
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.component.html
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.component.scss
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.component.ts
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.stories.ts
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-logo/bmb-logo.component.html
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-logo/bmb-logo.component.scss
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-logo/bmb-logo.component.ts
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-logo/bmb-logo.stories.ts
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-stat-counter/bmb-stat-counter.component.html
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-stat-counter/bmb-stat-counter.component.scss
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-stat-counter/bmb-stat-counter.component.ts
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-stat-counter/bmb-stat-counter.interface.ts
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-switch/bmb-switch.component.html
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-switch/bmb-switch.component.scss
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-switch/bmb-switch.component.ts
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-switch/bmb-switch.stories.ts
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-tags/bmb-tags.component.html
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-tags/bmb-tags.component.scss
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-tags/bmb-tags.component.ts
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-tags/bmb-tags.stories.ts
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-theme/bmb-theme.component.html
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-theme/bmb-theme.component.ts
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-theme/bmb-theme.stories.ts
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-toast/bmb-toast.component.html
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-toast/bmb-toast.component.scss
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-toast/bmb-toast.component.ts
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-toast/bmb-toast.stories.ts
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-image.component.html
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-image.component.scss
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-image.component.ts
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary.component.html
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary.component.scss
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary.component.ts
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary.stories.ts
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-value-counter/bmb-value-counter.component.html
-[08:49:30] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-value-counter/bmb-value-counter.component.scss
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-value-counter/bmb-value-counter.component.ts
-[08:49:30] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-value-counter/bmb-value-counter.stories.ts
-[08:49:30] Searching package.json file
-[08:49:30] package.json file found
-[08:49:30] Processing package.json dependencies
-[08:49:30] Searching README.md, CHANGELOG.md, CONTRIBUTING.md, LICENSE.md, TODO.md files
-[08:49:30] README.md file found
-[08:49:30] CHANGELOG.md file found
-[08:49:30] Error during /Users/lizvillegas/sites/tec-desing-system-ng/CONTRIBUTING read
-[08:49:30] Continuing without CONTRIBUTING.md file
-[08:49:30] Error during /Users/lizvillegas/sites/tec-desing-system-ng/LICENSE read
-[08:49:30] Continuing without LICENSE.md file
-[08:49:30] Error during /Users/lizvillegas/sites/tec-desing-system-ng/TODO read
-[08:49:30] Continuing without TODO.md file
-[08:49:30] Get dependencies data
-[08:49:30] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/.storybook/preview.ts
-[08:49:30] found          : preview
-[08:49:30] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/public-api.ts
-[08:49:30] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/ds-ng.component.ts
-[08:49:30] found          : DsNgComponent
-[08:49:30] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/ds-ng.service.ts
-[08:49:30] found          : DsNgService
-[08:49:30] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/directives/button.directive.ts
-[08:49:30] found          : BmbButtonDirective
-[08:49:30] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/directives/button.stories.ts
-[08:49:30] found          : attributes
-[08:49:30] found          : attributesText
-[08:49:30] found          : customizable
-[08:49:30] found          : Default
-[08:49:30] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/foundations/bmb-colors.stories.ts
-[08:49:30] found          : colors
-[08:49:30] found          : gradients
-[08:49:30] found          : customizable
-[08:49:30] found          : Default
-[08:49:30] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/foundations/bmb-typography.stories.ts
-[08:49:30] found          : attributes
-[08:49:30] found          : customizable
-[08:49:30] found          : Default
-[08:49:30] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/services/index.ts
-[08:49:30] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/services/theme.service.ts
-[08:49:30] found          : ThemeService
-[08:49:30] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/services/toast.service.ts
-[08:49:30] found          : ToastService
-[08:49:30] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.component.ts
-[08:49:31] found          : BmbBadgeComponent
-[08:49:31]                : - imports:
-[08:49:31]                : 	- CommonModule
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts
-[08:49:31] found          : Story
-[08:49:31] found          : Default
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component.ts
-[08:49:31] found          : BmbChevronTitleSelectorComponent
-[08:49:31]                : - imports:
-[08:49:31]                : 	- CommonModule
-[08:49:31]                : 	- BmbIconComponent
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.stories.ts
-[08:49:31] found          : Story
-[08:49:31] found          : Default
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-container/bmb-container.component.ts
-[08:49:31] found          : BmbContainerComponent
-[08:49:31]                : - imports:
-[08:49:31]                : 	- CommonModule
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts
-[08:49:31] found          : Story
-[08:49:31] found          : Default
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-container-button/bmb-container-button.component.ts
-[08:49:31] found          : BmbContainerButtonComponent
-[08:49:31]                : - imports:
-[08:49:31]                : 	- CommonModule
-[08:49:31]                : 	- BmbIconComponent
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-container-button/bmb-container-button.stories.ts
-[08:49:31] found          : Story
-[08:49:31] found          : Default
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.component.ts
-[08:49:31] found          : BmbDividerComponent
-[08:49:31]                : - imports:
-[08:49:31]                : 	- CommonModule
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts
-[08:49:31] found          : Story
-[08:49:31] found          : Default
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.component.ts
-[08:49:31] found          : Target
-[08:49:31] found          : BmbDotPaginatorComponent
-[08:49:31]                : - imports:
-[08:49:31]                : 	- CommonModule
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.stories.ts
-[08:49:31] found          : Target
-[08:49:31] found          : Story
-[08:49:31] found          : Default
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-fab/bmb-fab.component.ts
-[08:49:31] found          : BmbFabComponent
-[08:49:31]                : - imports:
-[08:49:31]                : 	- CommonModule
-[08:49:31]                : 	- BmbIconComponent
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-fab/bmb-fab.stories.ts
-[08:49:31] found          : Story
-[08:49:31] found          : Default
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-focus-element/bmb-focus-element.component.ts
-[08:49:31] found          : BmbFocusElementComponent
-[08:49:31]                : - imports:
-[08:49:31]                : 	- CommonModule
-[08:49:31]                : 	- BmbIconComponent
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-focus-element/bmb-focus-element.stories.ts
-[08:49:31] found          : Story
-[08:49:31] found          : Default
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-header-mobile/bmb-header-mobile.component.ts
-[08:49:31] found          : BmbHeaderMobileComponent
-[08:49:31]                : - imports:
-[08:49:31]                : 	- CommonModule
-[08:49:31]                : 	- BmbIconComponent
-[08:49:31]                : 	- BmbLogoComponent
-[08:49:31]                : 	- BmbContainerComponent
-[08:49:31]                : 	- BmbUserImageComponent
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-header-mobile/bmb-header-mobile.stories.ts
-[08:49:31] found          : Story
-[08:49:31] found          : Default
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-home-section/bmb-home-section.component.ts
-[08:49:31] found          : BmbHomeSectionComponent
-[08:49:31]                : - imports:
-[08:49:31]                : 	- CommonModule
-[08:49:31]                : 	- BmbContainerComponent
-[08:49:31]                : 	- BmbIconComponent
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-home-section/bmb-home-section.stories.ts
-[08:49:31] found          : Story
-[08:49:31] found          : Default
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.component.ts
-[08:49:31] found          : BmbIconComponent
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.stories.ts
-[08:49:31] found          : Story
-[08:49:31] found          : Default
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-input/bmb-input.component.ts
-[08:49:31] found          : BmbInputComponent
-[08:49:31]                : - imports:
-[08:49:31]                : 	- CommonModule
-[08:49:31]                : 	- BmbIconComponent
-[08:49:31]                : 	- FormsModule
-[08:49:31]                : - providers:
-[08:49:31]                : 	- {
+[12:20:45] No configuration file found, switching to CLI flags.
+[12:20:45] Using tsconfig file : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/.storybook/tsconfig.json
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/.storybook/preview.ts
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/public-api.ts
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/ds-ng.component.ts
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/ds-ng.service.ts
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/styles/main.scss
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/directives/button.directive.ts
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/directives/button.stories.ts
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/foundations/bmb-colors.stories.ts
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/foundations/bmb-typography.stories.ts
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/services/index.ts
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/services/theme.service.ts
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/services/toast.service.ts
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/fonts/Material/material-icons.woff2
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/fonts/Material/material-symbols.woff2
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/fonts/Poppins/Poppins-Black.ttf
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/fonts/Poppins/Poppins-BlackItalic.ttf
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/fonts/Poppins/Poppins-Bold.ttf
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/fonts/Poppins/Poppins-BoldItalic.ttf
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/fonts/Poppins/Poppins-ExtraBold.ttf
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/fonts/Poppins/Poppins-ExtraBoldItalic.ttf
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/fonts/Poppins/Poppins-ExtraLight.ttf
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/fonts/Poppins/Poppins-ExtraLightItalic.ttf
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/fonts/Poppins/Poppins-Italic.ttf
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/fonts/Poppins/Poppins-Light.ttf
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/fonts/Poppins/Poppins-LightItalic.ttf
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/fonts/Poppins/Poppins-Medium.ttf
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/fonts/Poppins/Poppins-MediumItalic.ttf
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/fonts/Poppins/Poppins-Regular.ttf
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/fonts/Poppins/Poppins-SemiBold.ttf
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/fonts/Poppins/Poppins-SemiBoldItalic.ttf
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/fonts/Poppins/Poppins-Thin.ttf
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/fonts/Poppins/Poppins-ThinItalic.ttf
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/styles/base/_fonts.scss
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/styles/base/_mixins.scss
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/styles/base/_rem.scss
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/styles/base/_reset.scss
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/styles/components/_buttons.scss
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/styles/tokens/_colors.scss
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/assets/styles/tokens/_theme.scss
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.component.html
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.component.scss
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.component.ts
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component.html
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component.scss
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component.ts
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.stories.ts
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-container/bmb-container.component.html
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-container/bmb-container.component.scss
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-container/bmb-container.component.ts
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-container-button/bmb-container-button.component.html
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-container-button/bmb-container-button.component.scss
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-container-button/bmb-container-button.component.ts
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-container-button/bmb-container-button.stories.ts
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.component.html
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.component.scss
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.component.ts
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.component.html
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.component.scss
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.component.ts
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.stories.ts
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-fab/bmb-fab.component.html
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-fab/bmb-fab.component.scss
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-fab/bmb-fab.component.ts
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-fab/bmb-fab.stories.ts
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-focus-element/bmb-focus-element.component.html
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-focus-element/bmb-focus-element.component.scss
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-focus-element/bmb-focus-element.component.ts
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-focus-element/bmb-focus-element.stories.ts
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-header-mobile/bmb-header-mobile.component.html
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-header-mobile/bmb-header-mobile.component.scss
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-header-mobile/bmb-header-mobile.component.ts
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-header-mobile/bmb-header-mobile.stories.ts
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-home-section/bmb-home-section.component.html
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-home-section/bmb-home-section.component.scss
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-home-section/bmb-home-section.component.ts
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-home-section/bmb-home-section.stories.ts
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.component.html
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.component.ts
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.stories.ts
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-input/bmb-input.component.html
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-input/bmb-input.component.scss
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-input/bmb-input.component.ts
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-input/bmb-input.stories.ts
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-interactive-icon/bmb-interactive-icon.component.html
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-interactive-icon/bmb-interactive-icon.component.scss
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-interactive-icon/bmb-interactive-icon.component.ts
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-interactive-icon/bmb-interactive-icon.stories.ts
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.component.html
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.component.scss
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.component.ts
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.stories.ts
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.component.html
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.component.scss
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.component.ts
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.stories.ts
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-logo/bmb-logo.component.html
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-logo/bmb-logo.component.scss
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-logo/bmb-logo.component.ts
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-logo/bmb-logo.stories.ts
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-stat-counter/bmb-stat-counter.component.html
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-stat-counter/bmb-stat-counter.component.scss
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-stat-counter/bmb-stat-counter.component.ts
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-stat-counter/bmb-stat-counter.interface.ts
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-switch/bmb-switch.component.html
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-switch/bmb-switch.component.scss
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-switch/bmb-switch.component.ts
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-switch/bmb-switch.stories.ts
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-tabs/bmb-tabs.component.html
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-tabs/bmb-tabs.component.scss
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-tabs/bmb-tabs.component.ts
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-tabs/bmb-tabs.stories.ts
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-tags/bmb-tags.component.html
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-tags/bmb-tags.component.scss
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-tags/bmb-tags.component.ts
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-tags/bmb-tags.stories.ts
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-theme/bmb-theme.component.html
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-theme/bmb-theme.component.ts
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-theme/bmb-theme.stories.ts
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-toast/bmb-toast.component.html
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-toast/bmb-toast.component.scss
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-toast/bmb-toast.component.ts
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-toast/bmb-toast.stories.ts
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-image.component.html
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-image.component.scss
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-image.component.ts
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary.component.html
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary.component.scss
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary.component.ts
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary.stories.ts
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-value-counter/bmb-value-counter.component.html
+[12:20:45] Excluding      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-value-counter/bmb-value-counter.component.scss
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-value-counter/bmb-value-counter.component.ts
+[12:20:45] Including      : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-value-counter/bmb-value-counter.stories.ts
+[12:20:45] Searching package.json file
+[12:20:45] package.json file found
+[12:20:45] Processing package.json dependencies
+[12:20:45] Searching README.md, CHANGELOG.md, CONTRIBUTING.md, LICENSE.md, TODO.md files
+[12:20:45] README.md file found
+[12:20:45] CHANGELOG.md file found
+[12:20:45] Error during /Users/lizvillegas/sites/tec-desing-system-ng/CONTRIBUTING read
+[12:20:45] Continuing without CONTRIBUTING.md file
+[12:20:45] Error during /Users/lizvillegas/sites/tec-desing-system-ng/LICENSE read
+[12:20:45] Continuing without LICENSE.md file
+[12:20:45] Error during /Users/lizvillegas/sites/tec-desing-system-ng/TODO read
+[12:20:45] Continuing without TODO.md file
+[12:20:45] Get dependencies data
+[12:20:45] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/.storybook/preview.ts
+[12:20:45] found          : preview
+[12:20:45] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/public-api.ts
+[12:20:45] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/ds-ng.component.ts
+[12:20:45] found          : DsNgComponent
+[12:20:45] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/ds-ng.service.ts
+[12:20:45] found          : DsNgService
+[12:20:45] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/directives/button.directive.ts
+[12:20:45] found          : BmbButtonDirective
+[12:20:45] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/directives/button.stories.ts
+[12:20:45] found          : attributes
+[12:20:45] found          : attributesText
+[12:20:45] found          : customizable
+[12:20:45] found          : Default
+[12:20:45] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/foundations/bmb-colors.stories.ts
+[12:20:45] found          : colors
+[12:20:45] found          : gradients
+[12:20:45] found          : customizable
+[12:20:45] found          : Default
+[12:20:45] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/foundations/bmb-typography.stories.ts
+[12:20:45] found          : attributes
+[12:20:45] found          : customizable
+[12:20:45] found          : Default
+[12:20:45] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/services/index.ts
+[12:20:45] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/services/theme.service.ts
+[12:20:45] found          : ThemeService
+[12:20:45] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/services/toast.service.ts
+[12:20:45] found          : ToastService
+[12:20:45] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.component.ts
+[12:20:45] found          : BmbBadgeComponent
+[12:20:45]                : - imports:
+[12:20:45]                : 	- CommonModule
+[12:20:45] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts
+[12:20:45] found          : Story
+[12:20:45] found          : Default
+[12:20:45] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component.ts
+[12:20:45] found          : BmbChevronTitleSelectorComponent
+[12:20:45]                : - imports:
+[12:20:45]                : 	- CommonModule
+[12:20:45]                : 	- BmbIconComponent
+[12:20:45] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.stories.ts
+[12:20:45] found          : Story
+[12:20:45] found          : Default
+[12:20:45] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-container/bmb-container.component.ts
+[12:20:45] found          : BmbContainerComponent
+[12:20:45]                : - imports:
+[12:20:45]                : 	- CommonModule
+[12:20:45] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts
+[12:20:45] found          : Story
+[12:20:45] found          : Default
+[12:20:45] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-container-button/bmb-container-button.component.ts
+[12:20:45] found          : BmbContainerButtonComponent
+[12:20:45]                : - imports:
+[12:20:45]                : 	- CommonModule
+[12:20:45]                : 	- BmbIconComponent
+[12:20:45] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-container-button/bmb-container-button.stories.ts
+[12:20:45] found          : Story
+[12:20:45] found          : Default
+[12:20:45] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.component.ts
+[12:20:45] found          : BmbDividerComponent
+[12:20:45]                : - imports:
+[12:20:45]                : 	- CommonModule
+[12:20:45] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-divider/bmb-divider.stories.ts
+[12:20:45] found          : Story
+[12:20:45] found          : Default
+[12:20:45] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.component.ts
+[12:20:45] found          : Target
+[12:20:45] found          : BmbDotPaginatorComponent
+[12:20:45]                : - imports:
+[12:20:45]                : 	- CommonModule
+[12:20:45] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.stories.ts
+[12:20:45] found          : Target
+[12:20:45] found          : Story
+[12:20:45] found          : Default
+[12:20:45] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-fab/bmb-fab.component.ts
+[12:20:45] found          : BmbFabComponent
+[12:20:45]                : - imports:
+[12:20:45]                : 	- CommonModule
+[12:20:45]                : 	- BmbIconComponent
+[12:20:45] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-fab/bmb-fab.stories.ts
+[12:20:45] found          : Story
+[12:20:45] found          : Default
+[12:20:45] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-focus-element/bmb-focus-element.component.ts
+[12:20:45] found          : BmbFocusElementComponent
+[12:20:45]                : - imports:
+[12:20:45]                : 	- CommonModule
+[12:20:45]                : 	- BmbIconComponent
+[12:20:45] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-focus-element/bmb-focus-element.stories.ts
+[12:20:45] found          : Story
+[12:20:45] found          : Default
+[12:20:45] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-header-mobile/bmb-header-mobile.component.ts
+[12:20:45] found          : BmbHeaderMobileComponent
+[12:20:45]                : - imports:
+[12:20:45]                : 	- CommonModule
+[12:20:45]                : 	- BmbIconComponent
+[12:20:45]                : 	- BmbLogoComponent
+[12:20:45]                : 	- BmbContainerComponent
+[12:20:45]                : 	- BmbUserImageComponent
+[12:20:45] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-header-mobile/bmb-header-mobile.stories.ts
+[12:20:46] found          : Story
+[12:20:46] found          : Default
+[12:20:46] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-home-section/bmb-home-section.component.ts
+[12:20:46] found          : BmbHomeSectionComponent
+[12:20:46]                : - imports:
+[12:20:46]                : 	- CommonModule
+[12:20:46]                : 	- BmbContainerComponent
+[12:20:46]                : 	- BmbIconComponent
+[12:20:46] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-home-section/bmb-home-section.stories.ts
+[12:20:46] found          : Story
+[12:20:46] found          : Default
+[12:20:46] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.component.ts
+[12:20:46] found          : BmbIconComponent
+[12:20:46] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.stories.ts
+[12:20:46] found          : Story
+[12:20:46] found          : Default
+[12:20:46] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-input/bmb-input.component.ts
+[12:20:46] found          : BmbInputComponent
+[12:20:46]                : - imports:
+[12:20:46]                : 	- CommonModule
+[12:20:46]                : 	- BmbIconComponent
+[12:20:46]                : 	- FormsModule
+[12:20:46]                : - providers:
+[12:20:46]                : 	- {
     provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => BmbInputComponent), multi: true,
 }
-[08:49:31]                : 	- {
+[12:20:46]                : 	- {
     provide: NG_VALIDATORS, useExisting: forwardRef(() => BmbInputComponent), multi: true,
 }
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-input/bmb-input.stories.ts
-[08:49:31] found          : Story
-[08:49:31] found          : Default
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-interactive-icon/bmb-interactive-icon.component.ts
-[08:49:31] found          : BmbInteractiveIconComponent
-[08:49:31]                : - imports:
-[08:49:31]                : 	- CommonModule
-[08:49:31]                : 	- BmbIconComponent
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-interactive-icon/bmb-interactive-icon.stories.ts
-[08:49:31] found          : Story
-[08:49:31] found          : Default
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.component.ts
-[08:49:31] found          : Variations
-[08:49:31] found          : BmbLegendComponent
-[08:49:31]                : - imports:
-[08:49:31]                : 	- CommonModule
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.stories.ts
-[08:49:31] found          : Story
-[08:49:31] found          : Default
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.component.ts
-[08:49:31] found          : BmbLoaderComponent
-[08:49:31]                : - imports:
-[08:49:31]                : 	- CommonModule
-[08:49:31]                : 	- BmbIconComponent
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.stories.ts
-[08:49:31] found          : Story
-[08:49:31] found          : Default
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-logo/bmb-logo.component.ts
-[08:49:31] found          : BmbLogoComponent
-[08:49:31]                : - imports:
-[08:49:31]                : 	- CommonModule
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-logo/bmb-logo.stories.ts
-[08:49:31] found          : Story
-[08:49:31] found          : Default
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-stat-counter/bmb-stat-counter.component.ts
-[08:49:31] found          : BmbStatCounterComponent
-[08:49:31]                : - imports:
-[08:49:31]                : 	- CommonModule
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-stat-counter/bmb-stat-counter.interface.ts
-[08:49:31] found          : Target
-[08:49:31] found          : Props
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-switch/bmb-switch.component.ts
-[08:49:31] found          : BmbSwitchComponent
-[08:49:31]                : - imports:
-[08:49:31]                : 	- CommonModule
-[08:49:31]                : 	- FormsModule
-[08:49:31]                : 	- BmbIconComponent
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-switch/bmb-switch.stories.ts
-[08:49:31] found          : Story
-[08:49:31] found          : Default
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-tags/bmb-tags.component.ts
-[08:49:31] found          : BmbTagComponent
-[08:49:31]                : - imports:
-[08:49:31]                : 	- CommonModule
-[08:49:31]                : 	- BmbIconComponent
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-tags/bmb-tags.stories.ts
-[08:49:31] found          : Story
-[08:49:31] found          : Default
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-theme/bmb-theme.component.ts
-[08:49:31] found          : BmbThemeComponent
-[08:49:31]                : - imports:
-[08:49:31]                : 	- CommonModule
-[08:49:31]                : 	- BmbSwitchComponent
-[08:49:31]                : - providers:
-[08:49:31]                : 	- ThemeService
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-theme/bmb-theme.stories.ts
-[08:49:31] found          : Story
-[08:49:31] found          : Default
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-toast/bmb-toast.component.ts
-[08:49:31] found          : BmbToastComponent
-[08:49:31]                : - imports:
-[08:49:31]                : 	- CommonModule
-[08:49:31]                : 	- BmbIconComponent
-[08:49:31]                : - providers:
-[08:49:31]                : 	- ToastService
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-toast/bmb-toast.stories.ts
-[08:49:31] found          : StorybookToastWrapperComponent
-[08:49:31]                : - imports:
-[08:49:31]                : 	- BmbToastComponent
-[08:49:31]                : 	- BmbButtonDirective
-[08:49:31] found          : attributes
-[08:49:31] found          : Default
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-image.component.ts
-[08:49:31] found          : BmbUserImageComponent
-[08:49:31]                : - imports:
-[08:49:31]                : 	- CommonModule
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts
-[08:49:31] found          : Story
-[08:49:31] found          : Default
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary.component.ts
-[08:49:31] found          : BmbUserSummaryComponent
-[08:49:31]                : - imports:
-[08:49:31]                : 	- CommonModule
-[08:49:31]                : 	- BmbButtonDirective
-[08:49:31]                : 	- BmbUserImageComponent
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary.stories.ts
-[08:49:31] found          : Story
-[08:49:31] found          : Default
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-value-counter/bmb-value-counter.component.ts
-[08:49:31] found          : BmbValueCounterComponent
-[08:49:31]                : - imports:
-[08:49:31]                : 	- CommonModule
-[08:49:31] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-value-counter/bmb-value-counter.stories.ts
-[08:49:31] found          : Story
-[08:49:31] found          : Default
-[08:49:31] -------------------
-[08:49:31] Project statistics 
-[08:49:31] - component  : 26
-[08:49:31] - directive  : 1
-[08:49:31] - injectable : 3
-[08:49:31] - interface  : 4
-[08:49:31] -------------------
-[08:49:31] Prepare components
-[08:49:31]  BmbBadgeComponent has a templateUrl, include it
-[08:49:31]  BmbChevronTitleSelectorComponent has a templateUrl, include it
-[08:49:31]  BmbContainerButtonComponent has a templateUrl, include it
-[08:49:31]  BmbContainerComponent has a templateUrl, include it
-[08:49:31]  BmbDividerComponent has a templateUrl, include it
-[08:49:31]  BmbDotPaginatorComponent has a templateUrl, include it
-[08:49:31]  BmbFabComponent has a templateUrl, include it
-[08:49:31]  BmbFocusElementComponent has a templateUrl, include it
-[08:49:31]  BmbHeaderMobileComponent has a templateUrl, include it
-[08:49:31]  BmbHomeSectionComponent has a templateUrl, include it
-[08:49:31]  BmbIconComponent has a templateUrl, include it
-[08:49:31]  BmbInputComponent has a templateUrl, include it
-[08:49:31]  BmbInteractiveIconComponent has a templateUrl, include it
-[08:49:31]  BmbLegendComponent has a templateUrl, include it
-[08:49:31]  BmbLoaderComponent has a templateUrl, include it
-[08:49:31]  BmbLogoComponent has a templateUrl, include it
-[08:49:31]  BmbStatCounterComponent has a templateUrl, include it
-[08:49:31]  BmbSwitchComponent has a templateUrl, include it
-[08:49:31]  BmbTagComponent has a templateUrl, include it
-[08:49:31]  BmbThemeComponent has a templateUrl, include it
-[08:49:31]  BmbToastComponent has a templateUrl, include it
-[08:49:31]  BmbUserImageComponent has a templateUrl, include it
-[08:49:31]  BmbUserSummaryComponent has a templateUrl, include it
-[08:49:31]  BmbValueCounterComponent has a templateUrl, include it
-[08:49:31]  DsNgComponent has styles, include them
-[08:49:31] Prepare modules
-[08:49:31] Prepare directives
-[08:49:31] Prepare injectables
-[08:49:31] Prepare interfaces
-[08:49:31] Prepare miscellaneous
-[08:49:31] Process documentation coverage report
-[08:49:31] Generating documentation in export format json
-[08:49:31] Documentation generated in ./ in 0.714 seconds
-info => Cleaning outputDir: /var/folders/3k/vwgnwxtj4zb7pyzr4kv9fllr0000gn/T/chromatic--39901-NntIHjfCDWNa
+[12:20:46] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-input/bmb-input.stories.ts
+[12:20:46] found          : Story
+[12:20:46] found          : Default
+[12:20:46] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-interactive-icon/bmb-interactive-icon.component.ts
+[12:20:46] found          : BmbInteractiveIconComponent
+[12:20:46]                : - imports:
+[12:20:46]                : 	- CommonModule
+[12:20:46]                : 	- BmbIconComponent
+[12:20:46] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-interactive-icon/bmb-interactive-icon.stories.ts
+[12:20:46] found          : Story
+[12:20:46] found          : Default
+[12:20:46] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.component.ts
+[12:20:46] found          : Variations
+[12:20:46] found          : BmbLegendComponent
+[12:20:46]                : - imports:
+[12:20:46]                : 	- CommonModule
+[12:20:46] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.stories.ts
+[12:20:46] found          : Story
+[12:20:46] found          : Default
+[12:20:46] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.component.ts
+[12:20:46] found          : BmbLoaderComponent
+[12:20:46]                : - imports:
+[12:20:46]                : 	- CommonModule
+[12:20:46]                : 	- BmbIconComponent
+[12:20:46] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.stories.ts
+[12:20:46] found          : Story
+[12:20:46] found          : Default
+[12:20:46] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-logo/bmb-logo.component.ts
+[12:20:46] found          : BmbLogoComponent
+[12:20:46]                : - imports:
+[12:20:46]                : 	- CommonModule
+[12:20:46] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-logo/bmb-logo.stories.ts
+[12:20:46] found          : Story
+[12:20:46] found          : Default
+[12:20:46] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-stat-counter/bmb-stat-counter.component.ts
+[12:20:46] found          : BmbStatCounterComponent
+[12:20:46]                : - imports:
+[12:20:46]                : 	- CommonModule
+[12:20:46] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-stat-counter/bmb-stat-counter.interface.ts
+[12:20:46] found          : Target
+[12:20:46] found          : Props
+[12:20:46] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-switch/bmb-switch.component.ts
+[12:20:46] found          : BmbSwitchComponent
+[12:20:46]                : - imports:
+[12:20:46]                : 	- CommonModule
+[12:20:46]                : 	- FormsModule
+[12:20:46]                : 	- BmbIconComponent
+[12:20:46] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-switch/bmb-switch.stories.ts
+[12:20:46] found          : Story
+[12:20:46] found          : Default
+[12:20:46] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-tabs/bmb-tabs.component.ts
+[12:20:46] found          : Tab
+[12:20:46] found          : BmbTabsComponent
+[12:20:46]                : - imports:
+[12:20:46]                : 	- CommonModule
+[12:20:46] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-tabs/bmb-tabs.stories.ts
+[12:20:46] found          : Story
+[12:20:46] found          : Default
+[12:20:46] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-tags/bmb-tags.component.ts
+[12:20:46] found          : BmbTagComponent
+[12:20:46]                : - imports:
+[12:20:46]                : 	- CommonModule
+[12:20:46]                : 	- BmbIconComponent
+[12:20:46] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-tags/bmb-tags.stories.ts
+[12:20:46] found          : Story
+[12:20:46] found          : Default
+[12:20:46] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-theme/bmb-theme.component.ts
+[12:20:46] found          : BmbThemeComponent
+[12:20:46]                : - imports:
+[12:20:46]                : 	- CommonModule
+[12:20:46]                : 	- BmbSwitchComponent
+[12:20:46]                : - providers:
+[12:20:46]                : 	- ThemeService
+[12:20:46] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-theme/bmb-theme.stories.ts
+[12:20:46] found          : Story
+[12:20:46] found          : Default
+[12:20:46] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-toast/bmb-toast.component.ts
+[12:20:46] found          : BmbToastComponent
+[12:20:46]                : - imports:
+[12:20:46]                : 	- CommonModule
+[12:20:46]                : 	- BmbIconComponent
+[12:20:46]                : - providers:
+[12:20:46]                : 	- ToastService
+[12:20:46] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-toast/bmb-toast.stories.ts
+[12:20:46] found          : StorybookToastWrapperComponent
+[12:20:46]                : - imports:
+[12:20:46]                : 	- BmbToastComponent
+[12:20:46]                : 	- BmbButtonDirective
+[12:20:46] found          : attributes
+[12:20:46] found          : Default
+[12:20:46] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-image.component.ts
+[12:20:46] found          : BmbUserImageComponent
+[12:20:46]                : - imports:
+[12:20:46]                : 	- CommonModule
+[12:20:46] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts
+[12:20:46] found          : Story
+[12:20:46] found          : Default
+[12:20:46] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary.component.ts
+[12:20:46] found          : BmbUserSummaryComponent
+[12:20:46]                : - imports:
+[12:20:46]                : 	- CommonModule
+[12:20:46]                : 	- BmbButtonDirective
+[12:20:46]                : 	- BmbUserImageComponent
+[12:20:46] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary.stories.ts
+[12:20:46] found          : Story
+[12:20:46] found          : Default
+[12:20:46] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-value-counter/bmb-value-counter.component.ts
+[12:20:46] found          : BmbValueCounterComponent
+[12:20:46]                : - imports:
+[12:20:46]                : 	- CommonModule
+[12:20:46] parsing        : /Users/lizvillegas/sites/tec-desing-system-ng/projects/ds-ng/src/lib/components/bmb-value-counter/bmb-value-counter.stories.ts
+[12:20:46] found          : Story
+[12:20:46] found          : Default
+[12:20:46] -------------------
+[12:20:46] Project statistics 
+[12:20:46] - component  : 27
+[12:20:46] - directive  : 1
+[12:20:46] - injectable : 3
+[12:20:46] - interface  : 5
+[12:20:46] -------------------
+[12:20:46] Prepare components
+[12:20:46]  BmbBadgeComponent has a templateUrl, include it
+[12:20:46]  BmbChevronTitleSelectorComponent has a templateUrl, include it
+[12:20:46]  BmbContainerButtonComponent has a templateUrl, include it
+[12:20:46]  BmbContainerComponent has a templateUrl, include it
+[12:20:46]  BmbDividerComponent has a templateUrl, include it
+[12:20:46]  BmbDotPaginatorComponent has a templateUrl, include it
+[12:20:46]  BmbFabComponent has a templateUrl, include it
+[12:20:46]  BmbFocusElementComponent has a templateUrl, include it
+[12:20:46]  BmbHeaderMobileComponent has a templateUrl, include it
+[12:20:46]  BmbHomeSectionComponent has a templateUrl, include it
+[12:20:46]  BmbIconComponent has a templateUrl, include it
+[12:20:46]  BmbInputComponent has a templateUrl, include it
+[12:20:46]  BmbInteractiveIconComponent has a templateUrl, include it
+[12:20:46]  BmbLegendComponent has a templateUrl, include it
+[12:20:46]  BmbLoaderComponent has a templateUrl, include it
+[12:20:46]  BmbLogoComponent has a templateUrl, include it
+[12:20:46]  BmbStatCounterComponent has a templateUrl, include it
+[12:20:46]  BmbSwitchComponent has a templateUrl, include it
+[12:20:46]  BmbTabsComponent has a templateUrl, include it
+[12:20:46]  BmbTabsComponent has styleUrls, include them
+[12:20:46]  BmbTagComponent has a templateUrl, include it
+[12:20:46]  BmbThemeComponent has a templateUrl, include it
+[12:20:46]  BmbToastComponent has a templateUrl, include it
+[12:20:46]  BmbUserImageComponent has a templateUrl, include it
+[12:20:46]  BmbUserSummaryComponent has a templateUrl, include it
+[12:20:46]  BmbValueCounterComponent has a templateUrl, include it
+[12:20:46]  DsNgComponent has styles, include them
+[12:20:46] Prepare modules
+[12:20:46] Prepare directives
+[12:20:46] Prepare injectables
+[12:20:46] Prepare interfaces
+[12:20:46] Prepare miscellaneous
+[12:20:46] Process documentation coverage report
+[12:20:46] Generating documentation in export format json
+[12:20:46] Documentation generated in ./ in 0.696 seconds
+info => Cleaning outputDir: /var/folders/3k/vwgnwxtj4zb7pyzr4kv9fllr0000gn/T/chromatic--77478-lPNyzYi0jVxI
 
-(node:40074) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(node:77647) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
 (Use `node --trace-deprecation ...` to show where the warning was created)
 info => Loading presets
 info Found existing addon "@storybook/addon-docs", skipping.
 info Found existing addon "@storybook/addon-docs", skipping.
 info => Building manager..
-info => Manager built (225 ms)
+info => Manager built (193 ms)
 info => Building preview..
-info => Copying static files: /Users/lizvillegas/sites/tec-desing-system-ng/node_modules/@storybook/manager/static at /var/folders/3k/vwgnwxtj4zb7pyzr4kv9fllr0000gn/T/chromatic--39901-NntIHjfCDWNa/sb-common-assets
+info => Copying static files: /Users/lizvillegas/sites/tec-desing-system-ng/node_modules/@storybook/manager/static at /var/folders/3k/vwgnwxtj4zb7pyzr4kv9fllr0000gn/T/chromatic--77478-lPNyzYi0jVxI/sb-common-assets
 info Using Babel compiler
 info Addon-docs: using MDX2
 info => Using implicit CSS loaders
@@ -584,20 +598,20 @@ info => Using default Webpack5 setup
 <s> [webpack.Progress] 10% building 0/3 entries 2/3 dependencies 0/2 modules
 <s> [webpack.Progress] 10% building 0/3 entries 8/22 dependencies 3/8 modules
 <s> [webpack.Progress] 28% building 1/3 entries 9/23 dependencies 4/9 modules
-<s> [webpack.Progress] 28% building 2/3 entries 27/80 dependencies 9/25 modules
 <s> [webpack.Progress] 28% building import loader ./node_modules/@ngtools/webpack/src/ivy/index.js
-<s> [webpack.Progress] 28% building 2/3 entries 27/80 dependencies 10/25 modules
+<s> [webpack.Progress] 28% building 1/3 entries 27/82 dependencies 7/25 modules
+<s> [webpack.Progress] 28% building 2/3 entries 27/82 dependencies 9/25 modules
 <s> [webpack.Progress] 46% building import loader ./node_modules/@storybook/builder-webpack5/dist/loaders/export-order-loader.js
 <s> [webpack.Progress] 46% building import loader ./node_modules/unplugin/dist/webpack/loaders/transform.js
-<s> [webpack.Progress] 46% building 2/3 entries 86/101 dependencies 10/53 modules
-<s> [webpack.Progress] 46% building 2/3 entries 95/107 dependencies 14/61 modules
-<s> [webpack.Progress] 46% building 2/3 entries 305/338 dependencies 42/156 modules
-<s> [webpack.Progress] 46% building 2/3 entries 400/445 dependencies 64/167 modules
-<s> [webpack.Progress] 46% building 2/3 entries 843/900 dependencies 92/525 modules
-<s> [webpack.Progress] 46% building 2/3 entries 1870/1900 dependencies 159/637 modules
-<s> [webpack.Progress] 46% building 2/3 entries 2347/2375 dependencies 400/675 modules
-<s> [webpack.Progress] 46% building 2/3 entries 2600/2606 dependencies 599/777 modules
-<s> [webpack.Progress] 64% building 3/3 entries 3156/3156 dependencies 941/941 modules
+<s> [webpack.Progress] 46% building 2/3 entries 89/103 dependencies 13/55 modules
+<s> [webpack.Progress] 46% building 2/3 entries 97/111 dependencies 14/62 modules
+<s> [webpack.Progress] 46% building 2/3 entries 309/343 dependencies 38/160 modules
+<s> [webpack.Progress] 46% building 2/3 entries 482/500 dependencies 83/181 modules
+<s> [webpack.Progress] 46% building 2/3 entries 1300/1364 dependencies 115/565 modules
+<s> [webpack.Progress] 46% building 2/3 entries 2000/2067 dependencies 166/666 modules
+<s> [webpack.Progress] 46% building 2/3 entries 2480/2500 dependencies 447/757 modules
+<s> [webpack.Progress] 46% building 2/3 entries 2691/2722 dependencies 600/807 modules
+<s> [webpack.Progress] 64% building 3/3 entries 3167/3167 dependencies 945/945 modules
 <s> [webpack.Progress] 65% building
 <s> [webpack.Progress] 69% building finish
 <s> [webpack.Progress] 69% building finish
@@ -702,10 +716,10 @@ info => Using default Webpack5 setup
 <s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin
 <s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin main.css generate SourceMap
 <s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin main.css generated SourceMap
-<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin main.791f0d3a.iframe.bundle.js generate SourceMap
-<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin main.791f0d3a.iframe.bundle.js generated SourceMap
-<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin runtime~main.d36d26c1.iframe.bundle.js generate SourceMap
-<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin runtime~main.d36d26c1.iframe.bundle.js generated SourceMap
+<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin main.06e00ac0.iframe.bundle.js generate SourceMap
+<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin main.06e00ac0.iframe.bundle.js generated SourceMap
+<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin runtime~main.d57911a7.iframe.bundle.js generate SourceMap
+<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin runtime~main.d57911a7.iframe.bundle.js generated SourceMap
 <s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin components-bmb-badge-bmb-badge-stories.cea9e317.iframe.bundle.js generate SourceMap
 <s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin components-bmb-badge-bmb-badge-stories.cea9e317.iframe.bundle.js generated SourceMap
 <s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin components-bmb-chevron-title-selector-bmb-chevron-title-selector-stories.99c8be4b.iframe.bundle.js generate SourceMap
@@ -720,8 +734,8 @@ info => Using default Webpack5 setup
 <s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin components-bmb-dot-paginator-bmb-dot-paginator-stories.a323cd7a.iframe.bundle.js generated SourceMap
 <s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin components-bmb-fab-bmb-fab-stories.3f1de6d0.iframe.bundle.js generate SourceMap
 <s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin components-bmb-fab-bmb-fab-stories.3f1de6d0.iframe.bundle.js generated SourceMap
-<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin components-bmb-focus-element-bmb-focus-element-stories.4b00d58e.iframe.bundle.js generate SourceMap
-<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin components-bmb-focus-element-bmb-focus-element-stories.4b00d58e.iframe.bundle.js generated SourceMap
+<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin components-bmb-focus-element-bmb-focus-element-stories.2b48beff.iframe.bundle.js generate SourceMap
+<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin components-bmb-focus-element-bmb-focus-element-stories.2b48beff.iframe.bundle.js generated SourceMap
 <s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin components-bmb-header-mobile-bmb-header-mobile-stories.ec088eac.iframe.bundle.js generate SourceMap
 <s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin components-bmb-header-mobile-bmb-header-mobile-stories.ec088eac.iframe.bundle.js generated SourceMap
 <s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin components-bmb-home-section-bmb-home-section-stories.c47f47fa.iframe.bundle.js generate SourceMap
@@ -740,6 +754,8 @@ info => Using default Webpack5 setup
 <s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin components-bmb-logo-bmb-logo-stories.e8d75da5.iframe.bundle.js generated SourceMap
 <s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin components-bmb-switch-bmb-switch-stories.a5198957.iframe.bundle.js generate SourceMap
 <s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin components-bmb-switch-bmb-switch-stories.a5198957.iframe.bundle.js generated SourceMap
+<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin components-bmb-tabs-bmb-tabs-stories.52c84041.iframe.bundle.js generate SourceMap
+<s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin components-bmb-tabs-bmb-tabs-stories.52c84041.iframe.bundle.js generated SourceMap
 <s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin components-bmb-tags-bmb-tags-stories.1901b5b2.iframe.bundle.js generate SourceMap
 <s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin components-bmb-tags-bmb-tags-stories.1901b5b2.iframe.bundle.js generated SourceMap
 <s> [webpack.Progress] 92% sealing asset processing SourceMapDevToolPlugin components-bmb-theme-bmb-theme-stories.8155323f.iframe.bundle.js generate SourceMap
@@ -793,10 +809,10 @@ info => Using default Webpack5 setup
 <s> [webpack.Progress] 92% sealing asset processing HtmlWebpackPlugin
 <s> [webpack.Progress] 92% sealing asset processing RealContentHashPlugin
 <s> [webpack.Progress] 92% sealing asset processing RealContentHashPlugin
-<s> [webpack.Progress] 92% sealing asset processing RealContentHashPlugin main.3b1fa6fc.iframe.bundle.js generate SourceMap
-<s> [webpack.Progress] 92% sealing asset processing RealContentHashPlugin main.3b1fa6fc.iframe.bundle.js generated SourceMap
-<s> [webpack.Progress] 92% sealing asset processing RealContentHashPlugin runtime~main.e99f87f8.iframe.bundle.js generate SourceMap
-<s> [webpack.Progress] 92% sealing asset processing RealContentHashPlugin runtime~main.e99f87f8.iframe.bundle.js generated SourceMap
+<s> [webpack.Progress] 92% sealing asset processing RealContentHashPlugin main.cb66afc2.iframe.bundle.js generate SourceMap
+<s> [webpack.Progress] 92% sealing asset processing RealContentHashPlugin main.cb66afc2.iframe.bundle.js generated SourceMap
+<s> [webpack.Progress] 92% sealing asset processing RealContentHashPlugin runtime~main.84bb8f89.iframe.bundle.js generate SourceMap
+<s> [webpack.Progress] 92% sealing asset processing RealContentHashPlugin runtime~main.84bb8f89.iframe.bundle.js generated SourceMap
 <s> [webpack.Progress] 92% sealing asset processing RealContentHashPlugin components-bmb-badge-bmb-badge-stories.f57a278d.iframe.bundle.js generate SourceMap
 <s> [webpack.Progress] 92% sealing asset processing RealContentHashPlugin components-bmb-badge-bmb-badge-stories.f57a278d.iframe.bundle.js generated SourceMap
 <s> [webpack.Progress] 92% sealing asset processing RealContentHashPlugin components-bmb-chevron-title-selector-bmb-chevron-title-selector-stories.f8a90a1d.iframe.bundle.js generate SourceMap
@@ -831,6 +847,8 @@ info => Using default Webpack5 setup
 <s> [webpack.Progress] 92% sealing asset processing RealContentHashPlugin components-bmb-logo-bmb-logo-stories.c4da089c.iframe.bundle.js generated SourceMap
 <s> [webpack.Progress] 92% sealing asset processing RealContentHashPlugin components-bmb-switch-bmb-switch-stories.6f5a941d.iframe.bundle.js generate SourceMap
 <s> [webpack.Progress] 92% sealing asset processing RealContentHashPlugin components-bmb-switch-bmb-switch-stories.6f5a941d.iframe.bundle.js generated SourceMap
+<s> [webpack.Progress] 92% sealing asset processing RealContentHashPlugin components-bmb-tabs-bmb-tabs-stories.c60797b9.iframe.bundle.js generate SourceMap
+<s> [webpack.Progress] 92% sealing asset processing RealContentHashPlugin components-bmb-tabs-bmb-tabs-stories.c60797b9.iframe.bundle.js generated SourceMap
 <s> [webpack.Progress] 92% sealing asset processing RealContentHashPlugin components-bmb-tags-bmb-tags-stories.dac96887.iframe.bundle.js generate SourceMap
 <s> [webpack.Progress] 92% sealing asset processing RealContentHashPlugin components-bmb-tags-bmb-tags-stories.dac96887.iframe.bundle.js generated SourceMap
 <s> [webpack.Progress] 92% sealing asset processing RealContentHashPlugin components-bmb-theme-bmb-theme-stories.1ee574cb.iframe.bundle.js generate SourceMap
@@ -908,14 +926,14 @@ WARN   86.d62deab8.iframe.bundle.js (2.52 MiB)
 WARN entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.
 WARN Entrypoints:
 WARN   main (2.57 MiB)
-WARN       runtime~main.e99f87f8.iframe.bundle.js
+WARN       runtime~main.84bb8f89.iframe.bundle.js
 WARN       86.d62deab8.iframe.bundle.js
 WARN       main.css
-WARN       main.3b1fa6fc.iframe.bundle.js
+WARN       main.cb66afc2.iframe.bundle.js
 WARN 
 <s> [webpack.Progress] 99% cache shutdown
 <s> [webpack.Progress] 99% cache shutdown
 <s> [webpack.Progress] 100% 
 
-info => Preview built (29 s)
-info => Output directory: /var/folders/3k/vwgnwxtj4zb7pyzr4kv9fllr0000gn/T/chromatic--39901-NntIHjfCDWNa
+info => Preview built (31 s)
+info => Output directory: /var/folders/3k/vwgnwxtj4zb7pyzr4kv9fllr0000gn/T/chromatic--77478-lPNyzYi0jVxI
