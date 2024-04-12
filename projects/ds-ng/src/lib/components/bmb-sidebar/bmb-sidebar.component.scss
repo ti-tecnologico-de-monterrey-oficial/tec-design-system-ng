@@ -1,0 +1,101 @@
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/rem" as rem;
+  
+.bmb_sidebar {
+  position: fixed;
+  width: rem.rem_calc(60);
+  top:50;
+  height: rem.rem_calc(539);
+  z-index: 100;
+  background-color: RGBA(var(--color-black-primary));
+  overflow:hidden;
+  transition:width .3s ease;
+  cursor:pointer;
+  box-shadow: rem.rem_calc(4) rem.rem_calc(7) rem.rem_calc(10) rgba(0,0,0,.4);
+  border-top-right-radius: rem.rem_calc(20);
+  border-bottom-right-radius: rem.rem_calc(20);
+  &:hover {
+    width: rem.rem_calc(200);
+  }
+
+  &:not(:hover) {
+    .active{
+      background-color: RGBA(var(--color-black-primary));
+      color: RGBA(var(--color-charade-50))
+    }
+  }
+
+  &-container{
+    list-style-type: none;
+    color: RGBA(var(--color-white-primary));
+    margin: 0;
+    padding: 0;
+    &:first-child {
+      padding-top: rem.rem_calc(24);
+    }
+  }
+
+  &-item{
+    padding-bottom: rem.rem_calc(16);
+
+    &-container{
+      display: inline-flex;
+      width: rem.rem_calc(180);
+      max-height: rem.rem_calc(45);
+      margin-left: rem.rem_calc(10);
+
+      &-link {
+        position: relative;
+        display: inline-flex;
+        text-decoration: none;
+        align-items: center;    
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        transition:all .3s ease;
+        margin-left: rem.rem_calc(15);
+        color: RGBA(var(--color-charade-50));
+        @include fonts.font(3, medium);
+    
+        &:hover{
+          color: RGBA(var(--color-charade-950));
+        }
+      }
+
+      .bmb-active-link{
+        color: RGBA(var(--color-charade-950))
+      }
+      
+      &:hover{
+        background-color: RGBA(var(--color-charade-50));
+        border-radius: rem.rem_calc(24);
+
+        a {
+          color: RGBA(var(--color-charade-950));
+        }
+
+        bmb-icon{
+          color: RGBA(var(--color-black-primary));
+        }
+      }
+
+      bmb-icon{
+        padding: rem.rem_calc(3) rem.rem_calc(6) rem.rem_calc(3) rem.rem_calc(6);
+        font-size: rem.rem_calc(24);
+      }
+
+      bmb-icon.active-icon{
+        background-color: RGBA(var(--color-charade-50));
+        color: RGBA(var(--color-black-primary));
+        border-radius: 50%;
+      }
+    }
+
+    .active{
+      background-color: RGBA(var(--color-charade-50));
+      border-radius: rem.rem_calc(24)
+    }
+  }
+}
+
+
