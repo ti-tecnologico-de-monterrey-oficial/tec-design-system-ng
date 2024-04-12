@@ -1,6 +1,12 @@
 <!-- Demo -->
 <bmb-theme />
 
+<bmb-progress-circle
+  [percentValue]="85"
+  [title]="'Titulo'"
+  [valueLabel]="310"
+></bmb-progress-circle>
+
 <bmb-tabs [tabs]="myTabs" (selected)="handleTabSelected($event)">
   <bmb-container *ngIf="activeTabId === 1" [appearance]="'primary-home'">
     <bmb-user-summary

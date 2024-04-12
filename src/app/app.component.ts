@@ -23,6 +23,7 @@ import {
   BmbStatCounterComponent,
   BmbUserSummaryComponent,
   BmbTabsComponent,
+  BmbProgressCircleComponent,
 } from '../../projects/ds-ng/src/public-api';
 
 export interface Target {
@@ -56,6 +57,7 @@ export interface Target {
     BmbStatCounterComponent,
     BmbUserSummaryComponent,
     BmbTabsComponent,
+    BmbProgressCircleComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
