@@ -1,6 +1,53 @@
 <!-- Demo -->
 <bmb-theme />
 
+<bmb-progress-circle
+  [percentValue]="85"
+  [title]="'Titulo'"
+  [valueLabel]="310"
+></bmb-progress-circle>
+
+<bmb-tabs [tabs]="myTabs" (selected)="handleTabSelected($event)">
+  <bmb-container *ngIf="activeTabId === 1" [appearance]="'primary-home'">
+    <bmb-user-summary
+      name="Test name"
+      id="A00123456"
+      [isProfile]="boolUserSummary"
+      image="https://writestylesonline.com/wp-content/uploads/2016/08/Follow-These-Steps-for-a-Flawless-Professional-Profile-Picture.jpg"
+      (onClick)="onProfileClick()"
+    />
+  </bmb-container>
+  <bmb-container *ngIf="activeTabId === 2" [appearance]="'primary-home'">
+    <bmb-legend
+      label="Label string"
+      value="Value test"
+      indicatorAppearance="warning"
+    />
+  </bmb-container>
+  <bmb-container *ngIf="activeTabId === 3" [appearance]="'primary-home'">
+    <bmb-loader [status]="'noConnection'" />
+  </bmb-container>
+  <bmb-container *ngIf="activeTabId === 4" [appearance]="'primary-home'">
+    <bmb-user-summary
+      name="Test name"
+      id="A00123456"
+      [isProfile]="boolUserSummary"
+      image="https://writestylesonline.com/wp-content/uploads/2016/08/Follow-These-Steps-for-a-Flawless-Professional-Profile-Picture.jpg"
+      (onClick)="onProfileClick()"
+    />
+  </bmb-container>
+  <bmb-container *ngIf="activeTabId === 5" [appearance]="'primary-home'">
+    <bmb-legend
+      label="Label string"
+      value="Value test"
+      indicatorAppearance="warning"
+    />
+  </bmb-container>
+  <bmb-container *ngIf="activeTabId === 6" [appearance]="'primary-home'">
+    <bmb-loader [status]="'noConnection'" />
+  </bmb-container>
+</bmb-tabs>
+
 <bmb-switch leftIcon="light_mode" rightIcon="dark_mode" />
 
 <bmb-user-summary
