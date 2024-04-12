@@ -11,7 +11,7 @@
   }
 
   &-large-normal {
-    @include mixins.fabInput(small, normal);
+    @include mixins.fabInput(large, normal);
   }
 
   &-large-extended{

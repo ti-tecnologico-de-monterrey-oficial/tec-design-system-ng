@@ -3,9 +3,11 @@ import {
   HostListener,
   Input,
   ViewEncapsulation,
+  EventEmitter
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { FabSize, FabType } from './bmb-fab-.interface';
 @Component({
   selector: 'bmb-fab',
   styleUrl: './bmb-fab.component.scss',
@@ -17,8 +19,8 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 export class BmbFabComponent {
   @Input() icon = '';
   @Input() text?: string | null = '';
-  @Input() size?: 'small' | 'large' = 'small';
-  @Input() type?: 'extended' | 'normal' = 'normal';
+  @Input() size?: FabSize;
+  @Input() type?: FabType;
 
   active: boolean = false;
 

@@ -74,17 +74,17 @@
           color: RGBA(var(--color-charade-950));
         }
 
-        bmb-icon{
+        .bmb_sidebar-item-container-icon{
           color: RGBA(var(--color-black-primary));
         }
       }
 
-      bmb-icon{
+      .bmb_sidebar-item-container-icon{
         padding: rem.rem_calc(3) rem.rem_calc(6) rem.rem_calc(3) rem.rem_calc(6);
         font-size: rem.rem_calc(24);
       }
 
-      bmb-icon.active-icon{
+      .bmb_sidebar-item-container-icon.active-icon{
         background-color: RGBA(var(--color-charade-50));
         color: RGBA(var(--color-black-primary));
         border-radius: 50%;
