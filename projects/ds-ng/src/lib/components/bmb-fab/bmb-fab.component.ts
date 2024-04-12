@@ -17,9 +17,8 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 export class BmbFabComponent {
   @Input() icon = '';
   @Input() text?: string | null = '';
-  @Input() size?: 's' | 'l' = 's';
-  @Input() type?: 'ext' | 'fab' = 'fab';
-  @Input() device?: 'mobile' | 'desktop' = 'mobile';
+  @Input() size?: 'small' | 'large' = 'small';
+  @Input() type?: 'extended' | 'normal' = 'normal';
 
   active: boolean = false;
 
@@ -28,7 +27,7 @@ export class BmbFabComponent {
   fabStyle = '';
 
   @HostListener('click') myClick() {
-    if (this.type == 'fab') {
+    if (this.type == 'normal') {
       this.active = !this.active;
     }
   }
@@ -40,21 +39,15 @@ export class BmbFabComponent {
   }
 
   setStyles() {
-    let style = 'fab';
+    let style = 'bmb_fab';
 
-    if (this.device == 'mobile') {
-      style = `${style}-mob`;
-    } else {
-      style = `${style}-des`;
-    }
-
-    if (this.size == 's') {
+    if (this.size == 'small') {
       style = `${style}-small`;
     } else {
       style = `${style}-large`;
     }
 
-    if (this.type === 'ext') {
+    if (this.type === 'extended') {
       style = `${style}-extended`;
     } else {
       style = `${style}-normal`;

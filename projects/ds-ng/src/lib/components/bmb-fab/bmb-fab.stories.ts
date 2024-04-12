@@ -31,7 +31,7 @@ export default {
       control: {
         type: 'radio',
       },
-      options: ['s', 'l'],
+      options: ['small', 'large'],
       description: 'The size of the fab component',
       table: {
         type: { summary: 'string' },
@@ -42,19 +42,8 @@ export default {
       control: {
         type: 'radio',
       },
-      options: ['ext', 'fab'],
+      options: ['extended', 'normal'],
       description: 'The type of the fab component',
-      table: {
-        type: { summary: 'string' },
-      },
-    },
-    device: {
-      name: 'Size',
-      control: {
-        type: 'radio',
-      },
-      options: ['mobile', 'desktop'],
-      description: 'The style of the fab',
       table: {
         type: { summary: 'string' },
       },
@@ -63,9 +52,8 @@ export default {
   args: {
     icon: 'add',
     text: 'FAB',
-    size: 's',
-    type: 'ext',
-    device: 'mobile',
+    size: 'small',
+    type: 'extended',
   },
 } as Meta<typeof BmbFabComponent>;
 
