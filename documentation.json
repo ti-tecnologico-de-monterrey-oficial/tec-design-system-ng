@@ -53,6 +53,57 @@
             "extends": []
         },
         {
+            "name": "Tab",
+            "id": "interface-Tab-213b5ea786d38adf625ac647e84e341f4e3f151c1b9502ff0984bcffafc71b9a244f41a43b3afa8153801e89e7fb1479820a1224d39de7962be59542c60f3d47",
+            "file": "projects/ds-ng/src/lib/components/bmb-tabs/bmb-tabs.component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import {\n  Component,\n  Input,\n  Output,\n  ViewChild,\n  ElementRef,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n  EventEmitter,\n  OnInit,\n  AfterViewInit,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\nexport interface Tab {\n  id: number;\n  title: string;\n  isActive?: boolean;\n  badge?: number;\n}\n\n@Component({\n  selector: 'bmb-tabs',\n  templateUrl: './bmb-tabs.component.html',\n  styleUrls: ['./bmb-tabs.component.scss'],\n  standalone: true,\n  imports: [CommonModule],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbTabsComponent implements OnInit, AfterViewInit {\n  @Input() format: string = '';\n  @Input() tabs: Tab[] = [];\n  @Output() selected = new EventEmitter<Tab>();\n\n  activeTabIndex: number = 0;\n  @ViewChild('tabsItems') tabsItems!: ElementRef;\n\n  ngOnInit(): void {\n    const initialActiveTab = this.tabs.findIndex((tab) => tab.isActive);\n    this.activeTabIndex = initialActiveTab !== -1 ? initialActiveTab : 0;\n    this.tabs.forEach(\n      (tab, index) => (tab.isActive = index === this.activeTabIndex)\n    );\n  }\n\n  ngAfterViewInit(): void {\n    setTimeout(() => this.showActiveTab(), 100);\n  }\n\n  selectTab(selectedId: number): void {\n    const tabIndex = this.tabs.findIndex((tab) => tab.id === selectedId);\n    if (tabIndex !== -1) {\n      this.tabs.forEach((tab) => (tab.isActive = false));\n      this.tabs[tabIndex].isActive = true;\n      this.activeTabIndex = tabIndex;\n      const activeTab = this.tabs[tabIndex];\n      this.selected.emit(activeTab);\n      setTimeout(() => this.showActiveTab(), 0);\n    }\n  }\n\n  showActiveTab(): void {\n    requestAnimationFrame(() => {\n      const tabsElement = this.tabsItems.nativeElement;\n      const activeTabElement = tabsElement.children[this.activeTabIndex];\n\n      if (activeTabElement) {\n        const containerWidth = tabsElement.offsetWidth;\n        const activeTabWidth = activeTabElement.offsetWidth;\n        const activeTabOffsetLeft = activeTabElement.offsetLeft;\n\n        const scrollOffset =\n          activeTabOffsetLeft - (containerWidth - activeTabWidth) / 2;\n\n        tabsElement.scrollTo({\n          left: scrollOffset,\n          behavior: 'smooth',\n        });\n      }\n    });\n  }\n}\n",
+            "properties": [
+                {
+                    "name": "badge",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": true,
+                    "description": "",
+                    "line": 19
+                },
+                {
+                    "name": "id",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 16
+                },
+                {
+                    "name": "isActive",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": true,
+                    "description": "",
+                    "line": 18
+                },
+                {
+                    "name": "title",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 17
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 171,
+            "methods": [],
+            "extends": []
+        },
+        {
             "name": "Target",
             "id": "interface-Target-f2c3d13fcf4fd6183ec16ed094945329f06423ca7483317bd35b40b174de58d51ac8b2c617a6cf24a3f7aca7974b78604de4aff3d3f914fbfd2720c5feb49d40",
             "file": "projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.component.ts",
@@ -2967,8 +3018,189 @@
             "templateData": "<a [ngClass]=\"getClasses()\" [href]=\"link\" [target]=\"target\">\n  <img [src]=\"image\" [alt]=\"altImage\" />\n</a>\n"
         },
         {
+            "name": "BmbProgressCircleComponent",
+            "id": "component-BmbProgressCircleComponent-a8c4b9df052f798f5e0944294a9bd925427f6259c7abf1d7f4204e9363bd7ccfd828a65bb118f3488cf17f1ff1d2b3bd922dad31d326698743725dd864cdd434",
+            "file": "projects/ds-ng/src/lib/components/bmb-progress-cirlce/bmb-progress-circle.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-progress-circle",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-progress-circle.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "percentValue",
+                    "defaultValue": "50",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 21,
+                    "type": "number | null",
+                    "decorators": []
+                },
+                {
+                    "name": "title",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 22,
+                    "type": "string | null",
+                    "decorators": []
+                },
+                {
+                    "name": "valueLabel",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 23,
+                    "type": "number | null",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "circunference",
+                    "defaultValue": "2 * Math.PI * this.radius",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 26
+                },
+                {
+                    "name": "dashoffset",
+                    "defaultValue": "0",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 27
+                },
+                {
+                    "name": "radius",
+                    "defaultValue": "74",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 25
+                },
+                {
+                    "name": "symbol",
+                    "defaultValue": "'%'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 28
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnChanges",
+                    "args": [
+                        {
+                            "name": "changes",
+                            "type": "SimpleChanges",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 34,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "changes",
+                            "type": "SimpleChanges",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "progress",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 44,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "value",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport {\n  Component,\n  Input,\n  OnChanges,\n  SimpleChanges,\n  ViewEncapsulation,\n  ChangeDetectionStrategy,\n} from '@angular/core';\n\n@Component({\n  selector: 'bmb-progress-circle',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './bmb-progress-circle.component.html',\n  styleUrl: './bmb-progress-circle.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbProgressCircleComponent implements OnChanges {\n  @Input() percentValue: number | null = 50;\n  @Input() title?: string | null;\n  @Input() valueLabel?: number | null;\n\n  radius = 74;\n  circunference = 2 * Math.PI * this.radius;\n  dashoffset = 0;\n  symbol = '%';\n\n  constructor() {\n    this.progress(0);\n  }\n\n  ngOnChanges(changes: SimpleChanges) {\n    if (changes['percentValue']) {\n      if (changes['percentValue'].currentValue > 100) {\n        this.progress(100);\n      } else {\n        this.progress(changes['percentValue'].currentValue);\n      }\n    }\n  }\n\n  progress(value: number) {\n    const progress = value / 100;\n    this.dashoffset = -this.circunference * (1 - progress);\n  }\n}\n",
+            "styleUrl": "./bmb-progress-circle.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 28
+            },
+            "extends": [],
+            "implements": [
+                "OnChanges"
+            ],
+            "templateData": "<div class=\"bmb_progress_circle\">\n    <svg class=\"bmb_progress_circle-svg\" width=\"170\" height=\"170\" viewBox=\"0 0 170 170\">\n      <circle class=\"bmb_progress_circle-svg-meter\" cx=\"84\" cy=\"84\" [attr.r]=\"radius\" stroke-width=\"5\" />\n      <circle class=\"bmb_progress_circle-svg-value\" [style.strokeDasharray]=\"circunference\" [style.strokeDashoffset]=\"dashoffset\"\n        cx=\"84\" cy=\"84\" [attr.r]=\"radius\" stroke-width=\"5\" />\n    </svg>\n\n    <div class=\"bmb_progress_circle-info\">\n      @if (title) {\n        <div class=\"bmb_progress_circle-info-title\">\n          <ng-container >{{title}}</ng-container>\n        </div>  \n\n      }\n      <div class=\"bmb_progress_circle-info-value\" [ngClass]=\"{'bmb_progress_circle-info-value-alone': this.title !== undefined}\">\n        {{valueLabel}}\n      </div>\n    </div>\n  </div>\n"
+        },
+        {
             "name": "BmbStatCounterComponent",
-            "id": "component-BmbStatCounterComponent-2b995fd543f3cb4e9e458beb35496f9443fd3b7412a9cce3f5d5d702b45e9af02cd538f0bfc9df7dd5f689c50ccd92a1b7895aadf08f14f672ffce4dedf0ecb8",
+            "id": "component-BmbStatCounterComponent-1bdde546f9a2286e251035e1643025af76bfae47f1a03dd00ae808179f5c81bbf2083be04ca3eb2c545e49b7c59153c2892f33f8051c8092e0cee6b00669ebb6",
             "file": "projects/ds-ng/src/lib/components/bmb-stat-counter/bmb-stat-counter.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -2997,15 +3229,6 @@
                     "decorators": []
                 },
                 {
-                    "name": "targets",
-                    "defaultValue": "[]",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 24,
-                    "type": "Target[]",
-                    "decorators": []
-                },
-                {
                     "name": "totalSteps",
                     "defaultValue": "0",
                     "deprecated": false,
@@ -3021,7 +3244,7 @@
                     "defaultValue": "new EventEmitter<number>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 25,
+                    "line": 24,
                     "type": "EventEmitter<number>"
                 }
             ],
@@ -3033,7 +3256,7 @@
                     "optional": false,
                     "returnType": "number[]",
                     "typeParameters": [],
-                    "line": 27,
+                    "line": 26,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -3050,7 +3273,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 31,
+                    "line": 30,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -3075,18 +3298,22 @@
                 {
                     "name": "CommonModule",
                     "type": "module"
+                },
+                {
+                    "name": "BmbIconComponent",
+                    "type": "component"
                 }
             ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\n  Component,\n  Input,\n  Output,\n  EventEmitter,\n  ViewEncapsulation,\n  ChangeDetectionStrategy,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { Target } from './bmb-stat-counter.interface';\n\n@Component({\n  standalone: true,\n  imports: [CommonModule],\n  styleUrl: './bmb-stat-counter.component.scss',\n  selector: 'bmb-stat-counter',\n  templateUrl: './bmb-stat-counter.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbStatCounterComponent {\n  @Input() activeStep: number = 0;\n  @Input() totalSteps?: number = 0;\n  @Input() targets: Target[] = [];\n  @Output() onStepPress: EventEmitter<number> = new EventEmitter<number>();\n\n  getStepsArray(): number[] {\n    return new Array(this.totalSteps || 0).fill(0).map((_, i) => i);\n  }\n\n  onStepClicked(index: number): void {\n    this.activeStep = index;\n    this.onStepPress.emit(index);\n  }\n}\n",
+            "sourceCode": "import {\n  Component,\n  Input,\n  Output,\n  EventEmitter,\n  ViewEncapsulation,\n  ChangeDetectionStrategy,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\n\n@Component({\n  standalone: true,\n  imports: [CommonModule, BmbIconComponent],\n  styleUrl: './bmb-stat-counter.component.scss',\n  selector: 'bmb-stat-counter',\n  templateUrl: './bmb-stat-counter.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbStatCounterComponent {\n  @Input() activeStep: number = 0;\n  @Input() totalSteps?: number = 0;\n  @Output() onStepPress: EventEmitter<number> = new EventEmitter<number>();\n\n  getStepsArray(): number[] {\n    return new Array(this.totalSteps || 0).fill(0).map((_, i) => i);\n  }\n\n  onStepClicked(index: number): void {\n    this.activeStep = index;\n    this.onStepPress.emit(index);\n  }\n}\n",
             "styleUrl": "./bmb-stat-counter.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div class=\"bmb_stat_counter\">\n  <div\n    class=\"bmb_stat_counter-item\"\n    *ngFor=\"let i of getStepsArray()\"\n    [attr.data-bs-target]=\"targets && targets[i] ? targets[i].target : ''\"\n    [attr.data-bs-slide-to]=\"i\"\n    [ngClass]=\"{ active: activeStep === i, completed: activeStep > i }\"\n    (click)=\"onStepClicked(i)\"\n  >\n    <div\n      class=\"bmb_stat_counter-step\"\n      [ngClass]=\"{ active: activeStep === i, completed: activeStep > i }\"\n    >\n      <span *ngIf=\"activeStep == i || activeStep < i\">{{ i + 1 }}</span>\n      <i *ngIf=\"activeStep > i\" class=\"material-icons\">done</i>\n    </div>\n  </div>\n</div>\n"
+            "templateData": "<div class=\"bmb_stat_counter\">\n  <div\n    class=\"bmb_stat_counter-item\"\n    *ngFor=\"let i of getStepsArray()\"\n    [attr.data-bs-slide-to]=\"i\"\n    [ngClass]=\"{ active: activeStep === i, completed: activeStep > i }\"\n    (click)=\"onStepClicked(i)\"\n  >\n    <div\n      class=\"bmb_stat_counter-step\"\n      [ngClass]=\"{ active: activeStep === i, completed: activeStep > i }\"\n    >\n      <span *ngIf=\"activeStep == i || activeStep < i\">{{ i + 1 }}</span>\n      @if (activeStep > i )  {\n        <bmb-icon [icon]=\"'done'\" class=\"material-icons\" />\n      }\n    </div>\n  </div>\n</div>\n"
         },
         {
             "name": "BmbSwitchComponent",
@@ -3240,6 +3467,178 @@
             "stylesData": "",
             "extends": [],
             "templateData": "<button\n  [ngClass]=\"{ bmb_switch: true, 'bmb_switch-checked': isChecked }\"\n  (click)=\"toggleSwitch()\"\n  role=\"switch\"\n  [attr.aria-checked]=\"isChecked ? 'true' : 'false'\"\n  [attr.id]=\"id\"\n  [attr.aria-disabled]=\"disabled ? 'true' : 'false'\"\n  [disabled]=\"disabled\"\n>\n  <div class=\"bmb_switch-left\" *ngIf=\"leftText || leftIcon\">\n    <span *ngIf=\"leftText && !leftIcon\" class=\"bmb_switch-text\">{{\n      leftText\n    }}</span>\n    <bmb-icon *ngIf=\"leftIcon && !leftText\" [icon]=\"leftIcon\"></bmb-icon>\n  </div>\n\n  <label class=\"bmb_switch-label\" for=\"bmbSwitch\">\n    <span class=\"bmb_switch-inner\"></span>\n    <span class=\"bmb_switch-switch\"></span>\n  </label>\n\n  <div class=\"bmb_switch-right\" *ngIf=\"rightText || rightIcon\">\n    <span *ngIf=\"rightText && !rightIcon\" class=\"bmb_switch-text\">{{\n      rightText\n    }}</span>\n    <bmb-icon *ngIf=\"rightIcon && !rightText\" [icon]=\"rightIcon\"></bmb-icon>\n  </div>\n</button>\n"
+        },
+        {
+            "name": "BmbTabsComponent",
+            "id": "component-BmbTabsComponent-213b5ea786d38adf625ac647e84e341f4e3f151c1b9502ff0984bcffafc71b9a244f41a43b3afa8153801e89e7fb1479820a1224d39de7962be59542c60f3d47",
+            "file": "projects/ds-ng/src/lib/components/bmb-tabs/bmb-tabs.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-tabs",
+            "styleUrls": [
+                "./bmb-tabs.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-tabs.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "format",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 32,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "tabs",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 33,
+                    "type": "Tab[]",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "selected",
+                    "defaultValue": "new EventEmitter<Tab>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 34,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "activeTabIndex",
+                    "defaultValue": "0",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 36
+                },
+                {
+                    "name": "tabsItems",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ElementRef",
+                    "optional": false,
+                    "description": "",
+                    "line": 37,
+                    "decorators": [
+                        {
+                            "name": "ViewChild",
+                            "stringifiedArguments": "'tabsItems'"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngAfterViewInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 47,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 39,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "selectTab",
+                    "args": [
+                        {
+                            "name": "selectedId",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 51,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "selectedId",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "showActiveTab",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 63,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {\n  Component,\n  Input,\n  Output,\n  ViewChild,\n  ElementRef,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n  EventEmitter,\n  OnInit,\n  AfterViewInit,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\nexport interface Tab {\n  id: number;\n  title: string;\n  isActive?: boolean;\n  badge?: number;\n}\n\n@Component({\n  selector: 'bmb-tabs',\n  templateUrl: './bmb-tabs.component.html',\n  styleUrls: ['./bmb-tabs.component.scss'],\n  standalone: true,\n  imports: [CommonModule],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbTabsComponent implements OnInit, AfterViewInit {\n  @Input() format: string = '';\n  @Input() tabs: Tab[] = [];\n  @Output() selected = new EventEmitter<Tab>();\n\n  activeTabIndex: number = 0;\n  @ViewChild('tabsItems') tabsItems!: ElementRef;\n\n  ngOnInit(): void {\n    const initialActiveTab = this.tabs.findIndex((tab) => tab.isActive);\n    this.activeTabIndex = initialActiveTab !== -1 ? initialActiveTab : 0;\n    this.tabs.forEach(\n      (tab, index) => (tab.isActive = index === this.activeTabIndex)\n    );\n  }\n\n  ngAfterViewInit(): void {\n    setTimeout(() => this.showActiveTab(), 100);\n  }\n\n  selectTab(selectedId: number): void {\n    const tabIndex = this.tabs.findIndex((tab) => tab.id === selectedId);\n    if (tabIndex !== -1) {\n      this.tabs.forEach((tab) => (tab.isActive = false));\n      this.tabs[tabIndex].isActive = true;\n      this.activeTabIndex = tabIndex;\n      const activeTab = this.tabs[tabIndex];\n      this.selected.emit(activeTab);\n      setTimeout(() => this.showActiveTab(), 0);\n    }\n  }\n\n  showActiveTab(): void {\n    requestAnimationFrame(() => {\n      const tabsElement = this.tabsItems.nativeElement;\n      const activeTabElement = tabsElement.children[this.activeTabIndex];\n\n      if (activeTabElement) {\n        const containerWidth = tabsElement.offsetWidth;\n        const activeTabWidth = activeTabElement.offsetWidth;\n        const activeTabOffsetLeft = activeTabElement.offsetLeft;\n\n        const scrollOffset =\n          activeTabOffsetLeft - (containerWidth - activeTabWidth) / 2;\n\n        tabsElement.scrollTo({\n          left: scrollOffset,\n          behavior: 'smooth',\n        });\n      }\n    });\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@use \"../../../assets/styles/base/fonts\" as fonts;\n@use \"../../../assets/styles/base/mixins\" as mixins;\n@use \"../../../assets/styles/base/rem\" as rem;\n\n.bmb_tabs {\n  &-tab {\n    display: flex;\n    flex-flow: row nowrap;\n    gap: rem.rem_calc(32);\n    -webkit-overflow-scrolling: touch;\n    overflow-x: auto;\n    scroll-behavior: smooth;\n    scroll-snap-type: x mandatory;\n\n    &::-webkit-scrollbar {\n      display: none;\n    }\n  }\n\n  &-item {\n    align-items: center;\n    border-bottom-color: transparent;\n    border-bottom-style: solid;\n    border-bottom-width: rem.rem_calc(2);\n    color: RGBA(var(--color-charade-500));\n    display: flex;\n    flex: 0 0 auto;\n    gap: rem.rem_calc(8);\n    height: rem.rem_calc(40);\n    justify-content: center;\n    min-width: rem.rem_calc(120);\n    padding: rem.rem_calc(8);\n    scroll-behavior: smooth;\n    scroll-snap-align: start;\n    text-align: center;\n    @include fonts.font(5, medium);\n\n    &-active {\n      border-bottom-color: RGBA(var(--color-mariner-700));\n      color: RGBA(var(--color-charade-950));\n    }\n\n    &-uppercase {\n      text-transform: uppercase;\n      @include fonts.font(3, regular);\n    }\n  }\n\n  &-badge {\n    align-items: center;\n    background-color: RGBA(var(--color-mariner-700));\n    border-radius: 100%;\n    color: RGBA(var(--color-white-primary));\n    display: flex;\n    height: rem.rem_calc(22);\n    justify-content: center;\n    width: rem.rem_calc(20);\n    @include fonts.font(3, regular);\n  }\n}\n\n[data-theme=\"dark\"],\n.storybook-dark-theme {\n  .bmb_tabs {\n    &-item {\n      &-active {\n        border-bottom-color: RGBA(var(--color-charade-50));\n        color: RGBA(var(--color-charade-50));\n      }\n    }\n  }\n}\n",
+                    "styleUrl": "./bmb-tabs.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "extends": [],
+            "implements": [
+                "OnInit",
+                "AfterViewInit"
+            ],
+            "templateData": "<div class=\"bmb_tabs\">\n  <div class=\"bmb_tabs-tab\" #tabsItems>\n    <button\n      role=\"tab\"\n      [attr.aria-selected]=\"tab.isActive ? 'true' : 'false'\"\n      [attr.tabindex]=\"tab.isActive ? 0 : -1\"\n      class=\"bmb_tabs-item\"\n      *ngFor=\"let tab of tabs; let i = index\"\n      (click)=\"selectTab(tab.id)\"\n      [ngClass]=\"{\n        'bmb_tabs-item-active': tab.isActive,\n        'bmb_tabs-item-uppercase': format === 'uppercase'\n      }\"\n    >\n      <span>\n        {{ tab.title }}\n      </span>\n      <span class=\"bmb_tabs-badge\" *ngIf=\"tab.badge\">{{ tab.badge }}</span>\n    </button>\n  </div>\n  <ng-content></ng-content>\n</div>\n"
         },
         {
             "name": "BmbTagComponent",
@@ -4411,7 +4810,37 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-progress-cirlce/bmb-progress-circle.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-stat-counter/bmb-stat-counter.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/ds-ng/src/lib/components/bmb-switch/bmb-switch.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-tabs/bmb-tabs.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
@@ -4839,8 +5268,41 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
+                "rawtype": "StoryObj<BmbProgressCircleComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-progress-cirlce/bmb-progress-circle.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<BmbStatCounterComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-stat-counter/bmb-stat-counter.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
                 "rawtype": "StoryObj<BmbSwitchComponent>",
                 "file": "projects/ds-ng/src/lib/components/bmb-switch/bmb-switch.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<BmbTabsComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-tabs/bmb-tabs.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -5173,12 +5635,48 @@
                     "defaultValue": "{}"
                 }
             ],
+            "projects/ds-ng/src/lib/components/bmb-progress-cirlce/bmb-progress-circle.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-progress-cirlce/bmb-progress-circle.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-stat-counter/bmb-stat-counter.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-stat-counter/bmb-stat-counter.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                }
+            ],
             "projects/ds-ng/src/lib/components/bmb-switch/bmb-switch.stories.ts": [
                 {
                     "name": "Default",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/ds-ng/src/lib/components/bmb-switch/bmb-switch.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-tabs/bmb-tabs.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-tabs/bmb-tabs.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
@@ -5658,6 +6156,32 @@
                     "kind": 183
                 }
             ],
+            "projects/ds-ng/src/lib/components/bmb-progress-cirlce/bmb-progress-circle.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbProgressCircleComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-progress-cirlce/bmb-progress-circle.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-stat-counter/bmb-stat-counter.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbStatCounterComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-stat-counter/bmb-stat-counter.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
             "projects/ds-ng/src/lib/components/bmb-switch/bmb-switch.stories.ts": [
                 {
                     "name": "Story",
@@ -5665,6 +6189,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<BmbSwitchComponent>",
                     "file": "projects/ds-ng/src/lib/components/bmb-switch/bmb-switch.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-tabs/bmb-tabs.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbTabsComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-tabs/bmb-tabs.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -6089,12 +6626,31 @@
                 "status": "low"
             },
             {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-progress-cirlce/bmb-progress-circle.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbProgressCircleComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/11",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-progress-cirlce/bmb-progress-circle.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/ds-ng/src/lib/components/bmb-stat-counter/bmb-stat-counter.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "BmbStatCounterComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/7",
+                "coverageCount": "0/6",
                 "status": "low"
             },
             {
@@ -6116,6 +6672,16 @@
                 "status": "low"
             },
             {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-stat-counter/bmb-stat-counter.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/ds-ng/src/lib/components/bmb-switch/bmb-switch.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -6126,6 +6692,34 @@
             },
             {
                 "filePath": "projects/ds-ng/src/lib/components/bmb-switch/bmb-switch.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-tabs/bmb-tabs.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbTabsComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/10",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-tabs/bmb-tabs.component.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "Tab",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-tabs/bmb-tabs.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
