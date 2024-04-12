@@ -2,7 +2,6 @@
   <div
     class="bmb_stat_counter-item"
     *ngFor="let i of getStepsArray()"
-    [attr.data-bs-target]="targets && targets[i] ? targets[i].target : ''"
     [attr.data-bs-slide-to]="i"
     [ngClass]="{ active: activeStep === i, completed: activeStep > i }"
     (click)="onStepClicked(i)"
@@ -12,7 +11,9 @@
       [ngClass]="{ active: activeStep === i, completed: activeStep > i }"
     >
       <span *ngIf="activeStep == i || activeStep < i">{{ i + 1 }}</span>
-      <i *ngIf="activeStep > i" class="material-icons">done</i>
+      @if (activeStep > i )  {
+        <bmb-icon [icon]="'done'" class="material-icons" />
+      }
     </div>
   </div>
 </div>

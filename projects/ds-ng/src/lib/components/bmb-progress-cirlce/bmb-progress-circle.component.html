@@ -1,0 +1,19 @@
+<div class="bmb_progress_circle">
+    <svg class="bmb_progress_circle-svg" width="170" height="170" viewBox="0 0 170 170">
+      <circle class="bmb_progress_circle-svg-meter" cx="84" cy="84" [attr.r]="radius" stroke-width="5" />
+      <circle class="bmb_progress_circle-svg-value" [style.strokeDasharray]="circunference" [style.strokeDashoffset]="dashoffset"
+        cx="84" cy="84" [attr.r]="radius" stroke-width="5" />
+    </svg>
+
+    <div class="bmb_progress_circle-info">
+      @if (title) {
+        <div class="bmb_progress_circle-info-title">
+          <ng-container >{{title}}</ng-container>
+        </div>  
+
+      }
+      <div class="bmb_progress_circle-info-value" [ngClass]="{'bmb_progress_circle-info-value-alone': this.title !== undefined}">
+        {{valueLabel}}
+      </div>
+    </div>
+  </div>
