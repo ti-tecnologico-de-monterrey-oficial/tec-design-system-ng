@@ -3,7 +3,7 @@
         @for (element of elements; track element) {
             <li class="bmb_sidebar-item" (click)="setActive(element.title)">
                 <div class="bmb_sidebar-item-container" [ngClass]="getActive(element.title)">
-                    <bmb-icon [ngClass]="getActive(element.title)+'-icon'" [icon]="element.icon"/>
+                    <bmb-icon class="bmb_sidebar-item-container-icon" [ngClass]="getActive(element.title)+'-icon'" [icon]="element.icon"/>
                     <a class="bmb_sidebar-item-container-link" [ngClass]="'bmb-'+getActive(element.title)+'-link'" href={{element.link}}>
                         {{element.title}}
                     </a>
