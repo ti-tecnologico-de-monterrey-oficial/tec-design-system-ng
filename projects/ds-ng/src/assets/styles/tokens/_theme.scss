@@ -1,15 +1,6 @@
 [data-theme="dark"] {
   body {
     background-color: RGBA(var(--color-charade-950));
-    .bmb_progress_circle {
-      &-info-value {
-        color: RGBA(var(--color-charade-50));
-      }
-    
-      &-info-title {
-        color: RGBA(var(--color-charade-50));
-      }
-    }
   }
 }
 

@@ -1,0 +1,72 @@
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/mixins" as mixins;
+@use "../../../assets/styles/base/rem" as rem;
+
+.bmb_tabs {
+  &-tab {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: rem.rem_calc(32);
+    -webkit-overflow-scrolling: touch;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &-item {
+    align-items: center;
+    border-bottom-color: transparent;
+    border-bottom-style: solid;
+    border-bottom-width: rem.rem_calc(2);
+    color: RGBA(var(--color-charade-500));
+    display: flex;
+    flex: 0 0 auto;
+    gap: rem.rem_calc(8);
+    height: rem.rem_calc(40);
+    justify-content: center;
+    min-width: rem.rem_calc(120);
+    padding: rem.rem_calc(8);
+    scroll-behavior: smooth;
+    scroll-snap-align: start;
+    text-align: center;
+    @include fonts.font(5, medium);
+
+    &-active {
+      border-bottom-color: RGBA(var(--color-mariner-700));
+      color: RGBA(var(--color-charade-950));
+    }
+
+    &-uppercase {
+      text-transform: uppercase;
+      @include fonts.font(3, regular);
+    }
+  }
+
+  &-badge {
+    align-items: center;
+    background-color: RGBA(var(--color-mariner-700));
+    border-radius: 100%;
+    color: RGBA(var(--color-white-primary));
+    display: flex;
+    height: rem.rem_calc(22);
+    justify-content: center;
+    width: rem.rem_calc(20);
+    @include fonts.font(3, regular);
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_tabs {
+    &-item {
+      &-active {
+        border-bottom-color: RGBA(var(--color-charade-50));
+        color: RGBA(var(--color-charade-50));
+      }
+    }
+  }
+}
