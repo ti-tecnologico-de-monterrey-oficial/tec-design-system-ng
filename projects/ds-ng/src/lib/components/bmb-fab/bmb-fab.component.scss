@@ -1,35 +1,49 @@
 @use "../../../assets/styles/base/mixins" as mixins;
+@use "../../../assets/styles/base/rem" as rem;
 
-.fab {
-  &-mob-small-normal {
-    @include mixins.fabInput(m, s, n);
+.bmb_fab {
+  &-small-normal{
+    @include mixins.fabInput(small, normal);
   }
 
-  &-mob-small-extended {
-    @include mixins.fabInput(m, s, e);
+  &-small-extended{
+    @include mixins.fabInput(small, extended);
   }
 
-  &-mob-large-normal {
-    @include mixins.fabInput(m, l, n);
+  &-large-normal {
+    @include mixins.fabInput(large, normal);
   }
 
-  &-mob-large-extended {
-    @include mixins.fabInput(m, l, e);
+  &-large-extended{
+    @include mixins.fabInput(large, extended);
   }
+}
 
-  &-des-small-normal {
-    @include mixins.fabInput(d, s, n);
-  }
+[data-theme="dark"],
+.storybook-dark-theme {
 
-  &-des-small-extended {
-    @include mixins.fabInput(d, s, e);
-  }
+  .bmb_fab-small-normal,
+  .bmb_fab-small-extended,
+  .bmb_fab-large-normal,
+  .bmb_fab-large-extended{
+    background-color: RGBA(var(--color-neon-primary));
+    color: RGBA(var(--color-white-primary));
 
-  &-des-large-normal {
-    @include mixins.fabInput(d, l, n);
-  }
+    &:hover {
+      background-color: RGBA(var(--color-charade-500));
+    }
 
-  &-des-large-extended {
-    @include mixins.fabInput(d, l, e);
+    &:active {
+      background-color: RGBA(var(--color-charade-500));
+      border: rem.rem_calc(1) solid RGBA(var(--color-neon-primary));
+
+      > span {
+        color: RGBA(var(--color-neon-primary));
+      }
+
+      > bmb-icon {
+        color: RGBA(var(--color-neon-primary));
+      }
+    }
   }
 }
