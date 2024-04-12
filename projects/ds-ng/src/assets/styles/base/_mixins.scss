@@ -194,12 +194,13 @@
     background-color: transparent;
     border: 0;
     border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-950));
-    color: RGBA(var(--color-white-primary));
+    color: RGBA(var(--color-charade-700));
 
     &:focus {
-      border-bottom: rem.rem_calc(1) solid RGBA(var(--color-blue-primary));
+      border-bottom: rem.rem_calc(2) solid RGBA(var(--color-blue-primary));
       border-color: RGBA(var(--color-blue-primary));
       outline: none;
+      color: RGBA(var(--color-mariner-700));
     }
 
     &::placeholder {
@@ -207,18 +208,17 @@
     }
 
     &.ng-invalid {
-      // border-color: RGBA(var(--color-red-primary));
       border-bottom-color: RGBA(var(--color-red-primary));
     }
   } @else if $type == normal {
-    background-color: RGBA(var(--color-charade-950));
-    border: rem.rem_calc(1) solid RGBA(var(--color-charade-950));
+    background-color: RGBA(var(--color-charade-50));
+    border: rem.rem_calc(1) solid RGBA(var(--color-charade-500));
     border-radius: rem.rem_calc(8);
-    color: RGBA(var(--color-white-primary));
+    color: RGBA(var(--color-charade-950));
     padding: rem.rem_calc(8);
 
     &:focus {
-      border: rem.rem_calc(1) solid RGBA(var(--color-white-primary));
+      border: rem.rem_calc(2) solid RGBA(var(--color-mariner-700));
       outline: none;
     }
 
@@ -232,7 +232,7 @@
   }
 }
 
-@mixin fabInput($device: d, $size: s, $type: e) {
+@mixin fabInput($size: small, $type: normal) {
   font-family: fonts.$font-poppins-regular;
   display: inline-flex;
   font-size: rem.rem_calc(14);
@@ -246,49 +246,25 @@
   bottom: rem.rem_calc(40);
   right: rem.rem_calc(40);
   box-shadow: rem.rem_calc(2 2 2 1) RGBA(var(--color-black-primary), 0.25);
-  -webkit-box-shadow: rem.rem_calc(2 2 2 1)
-    RGBA(var(--color-black-primary), 0.25);
+  -webkit-box-shadow: rem.rem_calc(2 2 2 1) RGBA(var(--color-black-primary), 0.25);
   -moz-box-shadow: rem.rem_calc(2 2 2 1) RGBA(var(--color-black-primary), 0.25);
+  background-color: RGBA(var(--color-blue-primary));
+  color: RGBA(var(--color-white-primary));
+  
+  &:hover {
+    background-color: RGBA(var(--color-mariner-800));
+  }
 
-  @if $device == m {
-    background-color: RGBA(var(--color-neon-primary));
-    color: RGBA(var(--color-white-primary));
+  &:active {
+    background-color: RGBA(var(--color-white-primary));
+    border: rem.rem_calc(1) solid RGBA(var(--color-blue-primary));
 
-    &:hover {
-      background-color: RGBA(var(--color-charade-500));
+    > span {
+      color: RGBA(var(--color-blue-primary));
     }
 
-    &:active {
-      background-color: RGBA(var(--color-charade-500));
-      border: rem.rem_calc(1) solid RGBA(var(--color-neon-primary));
-
-      > span {
-        color: RGBA(var(--color-neon-primary));
-      }
-
-      > i {
-        color: RGBA(var(--color-neon-primary));
-      }
-    }
-  } @else if $device == d {
-    background-color: RGBA(var(--color-blue-primary));
-    color: RGBA(var(--color-white-primary));
-
-    &:hover {
-      background-color: RGBA(var(--color-mariner-800));
-    }
-
-    &:active {
-      background-color: RGBA(var(--color-white-primary));
-      border: rem.rem_calc(1) solid RGBA(var(--color-blue-primary));
-
-      > span {
-        color: RGBA(var(--color-blue-primary));
-      }
-
-      > i {
-        color: RGBA(var(--color-blue-primary));
-      }
+    > bmb-icon {
+      color: RGBA(var(--color-blue-primary));
     }
   }
 
@@ -296,11 +272,11 @@
     font-size: rem.rem_calc(24);
   }
 
-  @if $size == s and $type == n {
+  @if $size == small and $type == normal {
     width: rem.rem_calc(40);
     height: rem.rem_calc(40);
     border-radius: rem.rem_calc(50);
-  } @else if $size == s and $type == e {
+  } @else if $size == small and $type == extended {
     width: fit-content;
     height: rem.rem_calc(40);
     border-radius: rem.rem_calc(50);
@@ -308,11 +284,11 @@
       padding-right: rem.rem_calc(8);
       font-size: rem.rem_calc(14);
     }
-  } @else if $size == l and $type == n {
+  } @else if $size == large and $type == normal {
     width: rem.rem_calc(60);
     height: rem.rem_calc(60);
     border-radius: rem.rem_calc(50);
-  } @else if $size == l and $type == e {
+  } @else if $size == large and $type == extended {
     height: rem.rem_calc(60);
     width: fit-content;
     border-radius: rem.rem_calc(50);
