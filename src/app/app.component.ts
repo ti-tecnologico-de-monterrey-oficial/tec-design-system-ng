@@ -21,6 +21,8 @@ import {
   BmbInputComponent,
   BmbStatCounterComponent,
   BmbUserSummaryComponent,
+  BmbSidebarComponent,
+  BmbFabComponent,
 } from '../../projects/ds-ng/src/public-api';
 
 export interface Target {
@@ -52,6 +54,8 @@ export interface Target {
     BmbInputComponent,
     BmbStatCounterComponent,
     BmbUserSummaryComponent,
+    BmbSidebarComponent,
+    BmbFabComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -66,6 +70,34 @@ export class AppComponent {
   title = 'tec-design-system-ng';
   boolUserSummary = true;
   value = 'tec-design';
+
+  sidebarElements = [
+    {
+      icon: 'apps',
+      title: 'Titulo 1',
+      link: '#'
+    },
+    {
+      icon: 'apps',
+      title: 'Titulo 2',
+      link: '#'
+    },
+    {
+      icon: 'apps',
+      title: 'Titulo 3',
+      link: '#'
+    },
+    {
+      icon: 'apps',
+      title: 'Titulo 4',
+      link: '#'
+    },
+    {
+      icon: 'apps',
+      title: 'Titulo 5',
+      link: '#'
+    },
+  ]
 
   i = 0;
 
