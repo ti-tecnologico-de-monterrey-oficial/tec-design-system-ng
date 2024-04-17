@@ -1,0 +1,25 @@
+@use "../../../../../assets/styles/base/rem" as rem;
+@use "../../../../../assets/styles/base/fonts" as fonts;
+
+.bmb_calendar-month-view {
+  display: flex;
+  flex-flow: wrap;
+  height: calc(100% - rem.rem_calc(52));
+  border-left: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
+  border-top: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
+  box-sizing: border-box;
+
+  &-day {
+    border-right: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
+    border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
+    box-sizing: border-box;
+    width: calc(100% / 7);
+
+    span {
+      @include fonts.font(3, medium);
+      display: inline-block;
+      text-align: center;
+      width: 100%;
+    }
+  }
+}

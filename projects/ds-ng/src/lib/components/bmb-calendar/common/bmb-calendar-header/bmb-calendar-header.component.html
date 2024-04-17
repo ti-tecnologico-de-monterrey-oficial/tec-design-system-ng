@@ -1,0 +1,43 @@
+<section class="bmb_calendar-header">
+  <div class="bmb_calendar-header-button-container">
+    <button
+      bmbButton
+      appearance="secondary-filled"
+      size="small"
+      (click)="handleChangeDate('-')"
+    >
+      <bmb-icon [icon]="'arrow_back_ios'" />
+    </button>
+    <button
+      bmbButton
+      appearance="secondary-filled"
+      size="small"
+      (click)="handleChangeDate('+')"
+    >
+      <bmb-icon [icon]="'arrow_forward_ios'" />
+    </button>
+  </div>
+  <h1 class="bmb_calendar-header-title">
+    {{ getTitle() }}
+  </h1>
+  <div class="bmb_calendar-header-button-container">
+    <button
+      bmbButton
+      appearance="secondary-filled"
+      size="small"
+      (click)="handleRangeChange('day')"
+    >Day</button>
+    <button
+      bmbButton
+      appearance="secondary-filled"
+      size="small"
+      (click)="handleRangeChange('week')"
+    >Week</button>
+    <button
+      bmbButton
+      appearance="secondary-filled"
+      size="small"
+      (click)="handleRangeChange('month')"
+    >Month</button>
+  </div>
+</section>
