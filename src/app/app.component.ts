@@ -20,6 +20,7 @@ import {
   BmbValueCounterComponent,
   BmbInputComponent,
   BmbStatCounterComponent,
+  BmbCalendarComponent,
 } from '../../projects/ds-ng/src/public-api';
 
 export interface Target {
@@ -50,6 +51,7 @@ export interface Target {
     BmbValueCounterComponent,
     BmbInputComponent,
     BmbStatCounterComponent,
+    BmbCalendarComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -64,6 +66,9 @@ export class AppComponent {
   title = 'tec-design-system-ng';
 
   value = 'tec-design';
+
+  isCalendarLoading = false;
+  calendarEvents: any[] = [];
 
   i = 0;
 
@@ -101,7 +106,7 @@ export class AppComponent {
     this.myActiveDotIndex = index;
   }
 
-  plus(){   
+  plus(){
     this.i++;
   }
 
@@ -114,5 +119,24 @@ export class AppComponent {
 
   save(event: number){
     this.i = event
+  }
+
+  async onDateChange() {
+    this.isCalendarLoading = true;
+    const myPromise = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        this.isCalendarLoading = true;
+        this.calendarEvents = [
+          ...this.calendarEvents,
+          {
+            title: 'Test',
+            detail: 'Detail test',
+            start: new Date('2024-04-12T22:56:44.715Z'),
+            end: Date,
+            // id: string,
+          }
+        ];
+      }, 3000);
+    });
   }
 }

@@ -1,0 +1,7 @@
+<div class="bmb_calendar-month-view">
+  @for (day of getWeeksAndDays(); track $index) {
+    <div class="bmb_calendar-month-view-day" [ngClass]="{'bmb_calendar-col-today': isNow(day)}">
+      <span> {{ getDayName(day) }} {{ day.month }}/{{ day.day }}</span>
+    </div>
+  }
+</div>

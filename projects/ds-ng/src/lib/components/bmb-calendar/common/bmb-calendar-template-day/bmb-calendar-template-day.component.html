@@ -1,0 +1,16 @@
+<div class="bmb_calendar-day-view">
+  <bmb-calendar-hour-view
+    [hourFormat]="hourFormat"
+  />
+  <section class="bmb_calendar-col">
+    <header class="bmb_calendar-detail-header">
+      <h2>{{ getNameDay() }}</h2>
+      <span>{{ now.month }}/{{ now.day }}</span>
+    </header>
+    <div class="bmb_calendar-body">
+      @for (row of rows; track $index) {
+        <div class="bmb_calendar-row-body">-</div>
+      }
+    </div>
+  </section>
+</div>
