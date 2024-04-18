@@ -11,6 +11,7 @@
     @case ('day') {
       <bmb-bmb-calendar-template-day
         [now]="now"
+        [events]="events"
       />
     }
     @case ('week') {
@@ -19,10 +20,11 @@
         [lang]="lang"
         [hourFormat]="hourFormat"
         [now]="now"
+        [events]="events"
       />
     }
     @case ('month') {
-      <bmb-bmb-calendar-template-month
+      <bmb-calendar-template-month
         [now]="now"
       />
     }
@@ -32,6 +34,7 @@
         [lang]="lang"
         [hourFormat]="hourFormat"
         [now]="now"
+        [events]="events"
       />
     }
   }
@@ -39,7 +42,6 @@
     <bmb-loader />
   }
 </div>
-{{ view }}
 
 
 <!-- [handleChangeRange]="handleDateChange()"; -->

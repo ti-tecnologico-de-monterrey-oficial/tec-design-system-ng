@@ -1,0 +1,56 @@
+@use "../../../../../assets/styles/base/rem" as rem;
+@use "../../../../../assets/styles/base/fonts" as fonts;
+
+.bmb_calendar-event {
+  position: absolute;
+  left: rem.rem_calc(4);
+  width: calc(100% - 8px);
+  box-sizing: border-box;
+  background-color: RGBA(var(--color-charade-100));
+  border-radius: rem.rem_calc(8);
+  overflow: hidden;
+  cursor: pointer;
+  border: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
+  @include fonts.font(3, medium);
+  display: grid;
+  grid-template-columns: 16px 1fr;
+  grid-template-rows: 1fr 1fr 1.1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "indicator title"
+    "indicator content"
+    "indicator time";
+
+  &-content {
+    margin-bottom: rem.rem-calc(4);
+    grid-area: content;
+  }
+
+  &-indicator {
+    grid-area: indicator;
+    background-color: RGBA(var(--color-charade-300));
+    margin-right: rem.rem-calc(8);
+  }
+
+  &-title {
+    grid-area: title;
+    @include fonts.font(4, medium);
+    font-weight: 400;
+  }
+
+  &-time {
+    grid-area: time;
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_calendar-event {
+    background-color: RGBA(var(--color-charade-900));
+    border-color: RGBA(var(--color-charade-700), .75);
+
+    &-indicator {
+      background-color: RGBA(var(--color-charade-950));
+    }
+  }
+}

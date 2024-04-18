@@ -1,10 +1,14 @@
 @use "../../../../../assets/styles/base/fonts" as fonts;
 @use "../../../../../assets/styles/base/rem" as rem;
+@use "../../../../../assets/styles/base/mixins" as mixins;
 
 .bmb_calendar-header {
   display: flex;
   justify-content: space-between;
   margin-bottom: rem.rem_calc(16);
+  @include mixins.media-query(999, 'max') {
+    display: none;
+  }
 
   &-button-container {
     display: flex;
