@@ -39,7 +39,7 @@ export class BmbCalendarComponent implements OnChanges {
   @Input() view: View = 'week';
   @Input() isLoading: boolean = false;
   @Input() hourFormat: HourFormat = '12';
-  @Input() height: number = 700;
+  @Input() height: number = 1000;
   @Input() calendarTimezone: string = Intl.DateTimeFormat().resolvedOptions().timeZone;
   @Input() clientTimezone: string = Intl.DateTimeFormat().resolvedOptions().timeZone;
   @Input() lang: string = 'es-MX';

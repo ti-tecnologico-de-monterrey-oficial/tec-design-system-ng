@@ -1,25 +1,53 @@
 @use "../../../../../assets/styles/base/rem" as rem;
 @use "../../../../../assets/styles/base/fonts" as fonts;
+@use "../../../../../assets/styles/base/mixins" as mixins;
 
 .bmb_calendar-month-view {
   display: flex;
   flex-flow: wrap;
   height: calc(100% - rem.rem_calc(52));
-  border-left: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
-  border-top: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
   box-sizing: border-box;
 
   &-day {
-    border-right: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
-    border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
     box-sizing: border-box;
     width: calc(100% / 7);
+    border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
 
-    span {
+    &:not(:nth-child(7n)) {
+      border-right: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
+
+      [data-theme="dark"] &,
+      .storybook-dark-theme & {
+        border-right-color: RGBA(var(--color-charade-700), .75);
+      }
+    }
+
+    &:not(:nth-child(-n+28)) {
+      border-bottom: 0 none;
+    }
+
+    &-legend {
       @include fonts.font(3, medium);
       display: inline-block;
       text-align: center;
       width: 100%;
+    }
+
+    &-name {
+      @include mixins.media-query(999, 'max') {
+        display: none;
+      }
+    }
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_calendar-month-view-day {
+    border-bottom-color: RGBA(var(--color-charade-700), .75);
+
+    &:not(:nth-child(7n)) {
+      border-right-color: RGBA(var(--color-charade-700), .75);
     }
   }
 }

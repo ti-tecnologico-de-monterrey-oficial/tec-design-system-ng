@@ -37,7 +37,7 @@
   }
 
   &-row-body {
-    min-height: rem.rem_calc(50);
+    min-height: rem.rem_calc(60);
     border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
   }
 
@@ -45,5 +45,18 @@
   &-day-view {
     display: flex;
     justify-content: space-between;
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_calendar {
+    background-color: RGBA(var(--color-charade-900));
+    color: RGBA(var(--color-charade-50));
+
+    &-detail-header,
+    &-row-body {
+      border-bottom-color: RGBA(var(--color-charade-700), .75);
+    }
   }
 }

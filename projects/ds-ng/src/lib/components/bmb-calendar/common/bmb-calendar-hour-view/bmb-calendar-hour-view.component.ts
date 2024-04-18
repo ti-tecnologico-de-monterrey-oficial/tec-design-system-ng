@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, ViewEncapsulation, } from '@angular/core';
 import { Event, HourFormat } from '../../types';
 
 @Component({
@@ -6,7 +6,9 @@ import { Event, HourFormat } from '../../types';
   standalone: true,
   imports: [],
   templateUrl: './bmb-calendar-hour-view.component.html',
-  styleUrl: './bmb-calendar-hour-view.component.scss'
+  styleUrl: './bmb-calendar-hour-view.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class BmbCalendarHourViewComponent {
   @Input() events: Event[] = [];

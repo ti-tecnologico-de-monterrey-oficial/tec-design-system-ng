@@ -68,7 +68,12 @@ export class AppComponent {
   value = 'tec-design';
 
   isCalendarLoading = false;
-  calendarEvents: any[] = [];
+  calendarEvents: any[] = [{
+    title: 'Test',
+    detail: 'Detail test',
+    start: new Date('2024-04-17T16:00:00.715Z'),
+    end: new Date('2024-04-17T17:00:00.715Z'),
+  }];
 
   i = 0;
 

@@ -12,8 +12,10 @@
         @for (row of rows; track $index) {
           <div class="bmb_calendar-row-body"></div>
         }
+        @for (event of renderEvents({ date: weekDays[$index], events }); track $index) {
+          <bmb-calendar-schedule-cards [event]="event">Event</bmb-calendar-schedule-cards>
+        }
       </div>
     </section>
   }
 </div>
-<!-- https://codepen.io/rlo206/pen/vOyPPN -->

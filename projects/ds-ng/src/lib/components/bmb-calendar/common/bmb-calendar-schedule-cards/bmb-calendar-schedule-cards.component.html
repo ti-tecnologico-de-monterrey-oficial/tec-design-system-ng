@@ -1,0 +1,8 @@
+<div class="bmb_calendar-event" [style]="getPosition(event)" >
+  <div class="bmb_calendar-event-indicator"></div>
+  <h3 class="bmb_calendar-event-title">
+    {{ event.title }}
+  </h3>
+  <p class="bmb_calendar-event-content">{{ event.detail }}</p>
+  <span class="bmb_calendar-event-time">{{ getTimeRange(event) }}</span>
+</div>

@@ -1,21 +1,24 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { BmbCalendarHourViewComponent } from '../bmb-calendar-hour-view/bmb-calendar-hour-view.component';
-import { HourFormat } from '../../types';
+import { HourFormat, Event } from '../../types';
 import { DateTime, Info } from 'luxon';
 import { getWeekDays, orderDayNames } from '../../utils';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'bmb-bmb-calendar-template-month',
+  selector: 'bmb-calendar-template-month',
   standalone: true,
   imports: [CommonModule, BmbCalendarHourViewComponent],
   templateUrl: './bmb-calendar-template-month.component.html',
-  styleUrl: './bmb-calendar-template-month.component.scss'
+  styleUrl: './bmb-calendar-template-month.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class BmbCalendarTemplateMonthComponent {
   @Input() hourFormat: HourFormat = '12';
   @Input() now: DateTime = DateTime.now();
   @Input() lang: string = '';
+  @Input() events: Event[] = [];
 
   getWeeksAndDays(): DateTime[] {
     const calculateFirstDay = getWeekDays(this.now);

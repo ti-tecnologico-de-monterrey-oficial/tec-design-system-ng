@@ -1,7 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, ViewEncapsulation, } from '@angular/core';
 import { BmbCalendarHourViewComponent } from '../bmb-calendar-hour-view/bmb-calendar-hour-view.component';
 import { CommonModule } from '@angular/common';
-import { HourFormat } from '../../types';
+import { HourFormat, Event } from '../../types';
 import { DateTime } from 'luxon';
 
 @Component({
@@ -9,12 +9,15 @@ import { DateTime } from 'luxon';
   standalone: true,
   imports: [CommonModule, BmbCalendarHourViewComponent],
   templateUrl: './bmb-calendar-template-day.component.html',
-  styleUrl: './bmb-calendar-template-day.component.scss'
+  styleUrl: './bmb-calendar-template-day.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class BmbCalendarTemplateDayComponent {
   @Input() lang: string = 'es-MX';
   @Input() hourFormat: HourFormat = '12';
   @Input() now: DateTime = DateTime.now();
+  @Input() events: Event[] = [];
 
   rows = new Array(25).fill(0);
 
