@@ -26,6 +26,7 @@ import {
   BmbFabComponent,
   BmbTabsComponent,
   BmbProgressCircleComponent,
+  BmbCheckboxComponent,
 } from '../../projects/ds-ng/src/public-api';
 
 export interface Target {
@@ -62,6 +63,7 @@ export interface Target {
     BmbFabComponent,
     BmbTabsComponent,
     BmbProgressCircleComponent,
+    BmbCheckboxComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -97,29 +99,29 @@ export class AppComponent {
     {
       icon: 'apps',
       title: 'Titulo 1',
-      link: '#'
+      link: '#',
     },
     {
       icon: 'apps',
       title: 'Titulo 2',
-      link: '#'
+      link: '#',
     },
     {
       icon: 'apps',
       title: 'Titulo 3',
-      link: '#'
+      link: '#',
     },
     {
       icon: 'apps',
       title: 'Titulo 4',
-      link: '#'
+      link: '#',
     },
     {
       icon: 'apps',
       title: 'Titulo 5',
-      link: '#'
+      link: '#',
     },
-  ]
+  ];
 
   i = 0;
 

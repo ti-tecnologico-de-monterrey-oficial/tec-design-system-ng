@@ -33,3 +33,4 @@ export * from './lib/components/bmb-user-summary/bmb-user-summary.component';
 export * from './lib/components/bmb-tabs/bmb-tabs.component';
 export * from './lib/components/bmb-progress-cirlce/bmb-progress-circle.component';
 export * from './lib/components/bmb-sidebar/bmb-sidebar.component';
+export * from './lib/components/bmb-checkbox/bmb-checkbox.component';
