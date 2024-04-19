@@ -26,6 +26,7 @@ export class BmbSwitchComponent {
   @Input() rightText: string = '';
   @Input() rightIcon: string = '';
   @Input() isChecked: boolean = false;
+  @Input() ariaLabel: string = 'Describe the button function here';
   @Input() id: string = `bmb-switch-${BmbSwitchComponent.nextId++}`;
   @Input() disabled: boolean = false;
 

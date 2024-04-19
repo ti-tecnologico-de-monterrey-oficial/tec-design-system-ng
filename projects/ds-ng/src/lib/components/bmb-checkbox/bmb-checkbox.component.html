@@ -1,0 +1,22 @@
+<label
+  [attr.for]="id"
+  class="bmb_checkbox"
+  [class.bmb_checkbox-before]="labelPosition === 'before'"
+  [class.bmb_checkbox-after]="labelPosition === 'after'"
+>
+  <input
+    type="checkbox"
+    [id]="id"
+    [attr.aria-describedby]="ariaDescribedby"
+    [attr.aria-label]="ariaLabel"
+    [attr.aria-labelledby]="ariaLabelledby"
+    [attr.name]="name"
+    [attr.value]="value"
+    [checked]="checked"
+    (change)="handleChange($event)"
+  />
+  <span class="bmb_checkbox-mark"></span>
+  @if (label) {
+  <span class="bmb_checkbox-label">{{ label }}</span>
+  }
+</label>
