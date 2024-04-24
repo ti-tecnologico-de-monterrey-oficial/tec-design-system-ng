@@ -1,8 +1,39 @@
 <!-- Demo -->
 <bmb-theme />
+<bmb-checkbox
+  label="Contrato profesor cátedra Biología marina CCM.pdf"
+  name="checkbox2"
+  id="checkbox2"
+/>
 
-<bmb-checkbox />
-<bmb-progress-circle
+<bmb-checkbox
+  label="Contrato CCM.pdf"
+  id="checkbox3"
+  [checked]="true"
+  labelPosition="before"
+/>
+<bmb-checkbox label="Contrato CCM.pdf" id="checkbox3" [checked]="true" />
+
+<bmb-checkbox
+  label="Contrato profesor cátedra Biología marina CCM.pdf"
+  id="checkbox4"
+  [indeterminate]="true"
+/>
+
+<bmb-checkbox
+  label="Contrato profesor cátedra Biología marina CCM.pdf"
+  id="checkbox1"
+  [disabled]="true"
+  [checked]="true"
+/>
+<bmb-checkbox
+  label="Contrato profesor cátedra Biología marina CCM.pdf"
+  id="checkbox5"
+  [disabled]="true"
+  [checked]="true"
+  [indeterminate]="true"
+/>
+<!-- <bmb-progress-circle
   [percentValue]="85"
   [title]="'Titulo'"
   [valueLabel]="310"
@@ -195,4 +226,4 @@
   [altImage]="'Alt image description'"
   [link]="'https://www.youtube.com/'"
   [target]="'_blank'"
-></bmb-user-image>
+></bmb-user-image> -->

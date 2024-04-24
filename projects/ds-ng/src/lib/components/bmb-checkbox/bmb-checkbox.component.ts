@@ -20,6 +20,8 @@ import { CommonModule } from '@angular/common';
 export class BmbCheckboxComponent {
   @Input() id: string = '';
   @Input() checked: boolean = false;
+  @Input() disabled: boolean = false;
+  @Input() indeterminate: boolean = false;
   @Input() value: string = '';
   @Input() name: string = '';
   @Input() label: string = '';
@@ -33,7 +35,20 @@ export class BmbCheckboxComponent {
   handleChange(event: Event) {
     const isChecked = (event.target as HTMLInputElement).checked;
     this.checked = isChecked;
-    console.log('entra?');
     this.change.emit(isChecked);
+  }
+
+  handleKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      if (this.indeterminate) {
+        this.indeterminate = false;
+        this.checked = true;
+      } else {
+        this.checked = !this.checked;
+      }
+
+      event.preventDefault();
+      this.change.emit(this.checked);
+    }
   }
 }
