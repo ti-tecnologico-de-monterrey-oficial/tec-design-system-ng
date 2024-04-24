@@ -80,9 +80,9 @@ export default {
     },
   },
   args: {
-    icon: 'user',
+    icon: 'apps',
     errorMessage: 'Helper',
-    isRequired: false,
+    isRequired: true,
     placeholder: 'Placeholder',
     isDisabled: false,
     label: 'Input Label',

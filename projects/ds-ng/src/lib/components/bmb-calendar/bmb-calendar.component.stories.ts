@@ -28,71 +28,103 @@ Below is an example of how you can use this component in HTML:
     },
   },
   argTypes: {
-    title: {
-      name: 'Title',
+    view: {
+      name: 'View',
       control: {
-        type: 'text',
+        type: 'radio',
       },
-      description: 'The title of the home section.',
+      options: [
+        'day',
+        'view',
+        'month',
+      ],
+      description: 'Select the view type.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
+        defaultValue: { summary: 'week'}
       },
     },
-    leadingIcon: {
-      name: 'Leading con',
-      control: { type: 'text' },
+    isLoading: {
+      name: 'Is loading',
+      control: { type: 'boolean' },
       description:
-        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons.',
+        'Set the loader spinner when the property is true',
       table: {
         category: 'Properties',
-        type: { summary: 'string' },
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
       },
     },
-    trailingIcon: {
-      name: 'Leading con',
+    calendarTimezone: {
+      name: 'Calendar timezone',
       control: { type: 'text' },
-      description:
-        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons.',
+      description: 'Set the remote timezone for the events (example: "America/Mexico_City")',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
       },
     },
-    onLeadingClick: {
-      name: 'On Leading Click',
+    clientTimezone: {
+      name: 'Client timezone',
+      control: { type: 'text' },
+      description: 'Set the client timezone for the events (example: "America/Mexico_City")',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
+    currentDate: {
+      name: 'Current date',
+      control: { type: 'text' },
+      description: 'Set the target date to show in the calendar (example: "2024-04-23T15:00:00.715Z")',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
+    height: {
+      name: 'Height',
+      control: { type: 'text' },
+      description: 'Change the default height, you can also set a valid CSS value (example: 100vh).',
+      defaultValue: { summary: '700' },
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
+    onDateChange: {
+      name: 'On date rangle change',
       control: {
         type: '',
       },
-      description:
-        'This handler can be used when you have the left icon available and want to perform a specific interaction.',
+      description: 'This handler can be used for pull new calendar events.',
       table: {
         category: 'Events',
-        type: { summary: '(onLeadingClick)="yourFunction()"' },
+        type: { summary: '(onDateChange)="yourFunction()"' },
       },
     },
-    onTrailingClick: {
-      name: 'On Trailing Click',
+    events: {
+      name: 'Events',
       control: {
-        type: '',
+        type: ''
       },
-      description:
-        'This handler can be used when you have the right icon available and want to perform a specific interaction.',
+      description: 'It is the collection of user events that will be seen on the calendar.',
       table: {
-        category: 'Events',
-        type: { summary: '(onTrailingClick)="yourFunction()"' },
-      },
+        category: 'Properties',
+        type: { summary: 'object' },
+      }
     },
   },
   args: {
-    title: 'Title',
-    leadingIcon: 'chevron_left',
-    trailingIcon: 'chevron_right',
-    onLeadingClick: () => {
-      window.alert('Icon left clicked in Storybook');
-    },
-    onTrailingClick: () => {
-      window.alert('Icon right clicked in Storybook');
+    events: [{
+      title: 'Test',
+      detail: 'Detail test',
+      start: '2024-04-23T15:00:00.715Z',
+      end: '2024-04-23T15:30:00.715Z',
+    }],
+    onDateChange: (params: any) => {
+      window.alert(params.toString());
     },
   },
 } as Meta<typeof BmbCalendarComponent>;

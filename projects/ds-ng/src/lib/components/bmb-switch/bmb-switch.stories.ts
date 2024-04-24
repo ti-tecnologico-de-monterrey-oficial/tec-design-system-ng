@@ -120,6 +120,18 @@ Below is an example of how you can use this component in HTML:
       description:
         "Emits a boolean value whenever the switch changes its state. This can be used to react to changes in the switch's position.",
     },
+    ariaLabel: {
+      name: 'Aria label',
+      control: {
+        type: 'text',
+      },
+      description:
+        'Provides an accessible name for the switch button, describing its function for screen readers and other assistive technologies. Use concise and descriptive language that helps users understand what the switch controls and the current state it’s in. For example, "Enable dark mode" for a switch that activates dark mode, or "Expand section" for a toggle that displays more content.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
   },
   args: {
     leftText: 'Light',
@@ -127,6 +139,7 @@ Below is an example of how you can use this component in HTML:
     id: '1',
     isChecked: false,
     disabled: false,
+    ariaLabel: 'Describe the button function here',
   },
 } as Meta<typeof BmbSwitchComponent>;
 

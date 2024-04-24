@@ -1,13 +1,107 @@
 <!-- Demo -->
 <bmb-theme />
+<bmb-calendar
+  [isLoading]="isCalendarLoading"
+  [events]="calendarEvents"
+  (onDateChange)="fetchData($event)"
+/>
+
+<bmb-checkbox
+  label="Contrato profesor cátedra Biología marina CCM.pdf"
+  name="checkbox2"
+  id="checkbox2"
+/>
+
+<bmb-checkbox
+  label="Contrato CCM.pdf"
+  id="checkbox3"
+  [checked]="true"
+  labelPosition="before"
+/>
+<bmb-checkbox label="Contrato CCM.pdf" id="checkbox3" [checked]="true" />
+
+<bmb-checkbox
+  label="Contrato profesor cátedra Biología marina CCM.pdf"
+  id="checkbox4"
+  [indeterminate]="true"
+/>
+
+<bmb-checkbox
+  label="Contrato profesor cátedra Biología marina CCM.pdf"
+  id="checkbox1"
+  [disabled]="true"
+  [checked]="true"
+/>
+<bmb-checkbox
+  label="Contrato profesor cátedra Biología marina CCM.pdf"
+  id="checkbox5"
+  [disabled]="true"
+  [checked]="true"
+  [indeterminate]="true"
+/>
+<!-- <bmb-progress-circle
+  [percentValue]="85"
+  [title]="'Titulo'"
+  [valueLabel]="310"
+></bmb-progress-circle>
+
+<bmb-tabs [tabs]="myTabs" (selected)="handleTabSelected($event)">
+  <bmb-container *ngIf="activeTabId === 1" [appearance]="'primary-home'">
+    <bmb-user-summary
+      name="Test name"
+      id="A00123456"
+      [isProfile]="boolUserSummary"
+      image="https://writestylesonline.com/wp-content/uploads/2016/08/Follow-These-Steps-for-a-Flawless-Professional-Profile-Picture.jpg"
+      (onClick)="onProfileClick()"
+    />
+  </bmb-container>
+  <bmb-container *ngIf="activeTabId === 2" [appearance]="'primary-home'">
+    <bmb-legend
+      label="Label string"
+      value="Value test"
+      indicatorAppearance="warning"
+    />
+  </bmb-container>
+  <bmb-container *ngIf="activeTabId === 3" [appearance]="'primary-home'">
+    <bmb-loader [status]="'noConnection'" />
+  </bmb-container>
+  <bmb-container *ngIf="activeTabId === 4" [appearance]="'primary-home'">
+    <bmb-user-summary
+      name="Test name"
+      id="A00123456"
+      [isProfile]="boolUserSummary"
+      image="https://writestylesonline.com/wp-content/uploads/2016/08/Follow-These-Steps-for-a-Flawless-Professional-Profile-Picture.jpg"
+      (onClick)="onProfileClick()"
+    />
+  </bmb-container>
+  <bmb-container *ngIf="activeTabId === 5" [appearance]="'primary-home'">
+    <bmb-legend
+      label="Label string"
+      value="Value test"
+      indicatorAppearance="warning"
+    />
+  </bmb-container>
+  <bmb-container *ngIf="activeTabId === 6" [appearance]="'primary-home'">
+    <bmb-loader [status]="'noConnection'" />
+  </bmb-container>
+</bmb-tabs>
 
 <bmb-switch leftIcon="light_mode" rightIcon="dark_mode" />
 
+<<<<<<< HEAD
 <bmb-calendar
   [isLoading]="isCalendarLoading"
   [events]="calendarEvents"
   [height]="'100vh'"
   (onDateChange)="fetchData($event)"
+=======
+<bmb-user-summary
+  name="Test name"
+  id="A00123456"
+  [isProfile]="boolUserSummary"
+  image="https://writestylesonline.com/wp-content/uploads/2016/08/Follow-These-Steps-for-a-Flawless-Professional-Profile-Picture.jpg"
+  (onClick)="onProfileClick()"
+>>>>>>> 7523cd4034684b0d2996bdf533f60c63cfc4b46a
 />
 
 <bmb-home-section
@@ -21,7 +115,11 @@
 <bmb-switch />
 <bmb-switch [disabled]="true"></bmb-switch>
 <bmb-value-counter label="Title" value="100" progress="50" />
-<bmb-legend label="Label string" value="Value test" indicatorAppearance="warning" />
+<bmb-legend
+  label="Label string"
+  value="Value test"
+  indicatorAppearance="warning"
+/>
 <bmb-legend
   label="Label string"
   value="Value test"
@@ -142,4 +240,4 @@
   [altImage]="'Alt image description'"
   [link]="'https://www.youtube.com/'"
   [target]="'_blank'"
-></bmb-user-image>
+></bmb-user-image> -->

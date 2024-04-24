@@ -24,6 +24,7 @@ import {
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { InputType } from './bmb-input.interface';
 @Component({
   selector: 'bmb-input',
   styleUrl: './bmb-input.component.scss',
@@ -62,8 +63,7 @@ export class BmbInputComponent
   @Input() isRequired: boolean = false;
   @Input() value: string | undefined;
   @Input() isClearable: boolean = false;
-  @Input() appearance: 'normal' | 'simple' | 'main' = 'normal';
-  @Input() device: 'mobile' | 'desktop' = 'mobile';
+  @Input() appearance: InputType = 'normal';
 
   @Output() handleClick: EventEmitter<any> = new EventEmitter();
   @Output() handleFocus: EventEmitter<any> = new EventEmitter();
