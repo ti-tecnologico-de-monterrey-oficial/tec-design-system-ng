@@ -4,44 +4,106 @@
 
 .bmb_checkbox {
   align-items: center;
-  cursor: pointer;
   display: flex;
+  gap: rem.rem_calc(8);
+  position: relative;
+  width: fit-content;
 
   input[type="checkbox"] {
     cursor: pointer;
-    height: rem.rem_calc(24);
+    height: rem.rem_calc(42);
     margin: 0;
     opacity: 0;
     padding: 0;
     position: absolute;
-    width: rem.rem_calc(24);
+    width: 100%;
     z-index: 1;
 
-    &:checked + .bmb_checkbox-mark {
-      background-color: RGBA(var(--color-green-light));
-      border-color: RGBA(var(--color-green-light));
+    &:hover {
+      + .bmb_checkbox-box {
+        background-color: RGBA(var(--color-blue-primary), 0.1);
+      }
+    }
 
-      &::after {
-        border: solid RGBA(var(--color-charade-50));
-        border-width: rem.rem_calc(0 2 2 0);
-        display: block;
-        height: rem.rem_calc(12);
-        left: rem.rem_calc(7);
-        top: rem.rem_calc(3);
-        transform: rotate(45deg);
-        width: rem.rem_calc(6);
+    &:focus {
+      + .bmb_checkbox-box {
+        background-color: RGBA(var(--color-blue-primary), 0.2);
+      }
+    }
+
+    &:checked {
+      + .bmb_checkbox-box {
+        .bmb_checkbox-mark {
+          background-color: RGBA(var(--color-blue-primary));
+          border-color: RGBA(var(--color-blue-primary));
+
+          &::after {
+            border: solid RGBA(var(--color-white-primary));
+            border-width: rem.rem_calc(0 2 2 0);
+            display: block;
+            height: rem.rem_calc(10);
+            left: rem.rem_calc(5);
+            transform: rotate(45deg);
+            width: rem.rem_calc(4);
+          }
+        }
+      }
+    }
+
+    &:indeterminate {
+      + .bmb_checkbox-box {
+        .bmb_checkbox-mark {
+          background-color: RGBA(var(--color-blue-primary));
+          border-color: RGBA(var(--color-blue-primary));
+
+          &::after {
+            background-color: RGBA(var(--color-white-primary));
+            bottom: 0;
+            display: block;
+            height: rem.rem_calc(2);
+            left: 0;
+            margin: auto;
+            right: 0;
+            top: 0;
+            width: rem.rem_calc(10);
+          }
+        }
+      }
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+
+      + .bmb_checkbox-box {
+        .bmb_checkbox-mark {
+          opacity: 0.5;
+        }
+      }
+      &:hover {
+        + .bmb_checkbox-box {
+          background-color: transparent;
+        }
       }
     }
   }
 
+  &-box {
+    align-items: center;
+    border-radius: 100%;
+    display: flex;
+    height: rem.rem_calc(42);
+    justify-content: center;
+    width: rem.rem_calc(42);
+  }
+
   &-mark {
     background-color: transparent;
-    border: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
+    border: rem.rem_calc(1) solid RGBA(var(--color-charade-700));
     border-radius: rem.rem_calc(4);
     display: inline-block;
-    height: rem.rem_calc(24);
+    height: rem.rem_calc(18);
     position: relative;
-    width: rem.rem_calc(24);
+    width: rem.rem_calc(18);
 
     &::after {
       content: "";
@@ -51,10 +113,66 @@
   }
 
   &-label {
-    @include fonts.font(3, regular);
+    color: RGBA(var(--color-charade-950));
+    flex: 1;
+    overflow: hidden;
+    padding-right: rem.rem_calc(10);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    @include fonts.font(4, medium);
+  }
+
+  &-before {
+    .bmb_checkbox-label {
+      order: 1;
+    }
+    .bmb_checkbox-box {
+      order: 2;
+    }
   }
 }
 
 [data-theme="dark"],
 .storybook-dark-theme {
+  .bmb_checkbox {
+    input[type="checkbox"] {
+      &:hover {
+        + .bmb_checkbox-box {
+          background-color: RGBA(var(--color-green-light), 0.1);
+        }
+      }
+
+      &:focus {
+        + .bmb_checkbox-box {
+          background-color: RGBA(var(--color-green-light), 0.2);
+        }
+      }
+
+      &:checked {
+        + .bmb_checkbox-box {
+          .bmb_checkbox-mark {
+            background-color: RGBA(var(--color-green-light));
+            border-color: RGBA(var(--color-green-light));
+          }
+        }
+      }
+
+      &:indeterminate {
+        + .bmb_checkbox-box {
+          .bmb_checkbox-mark {
+            background-color: RGBA(var(--color-green-light));
+            border-color: RGBA(var(--color-green-light));
+          }
+        }
+      }
+    }
+
+    &-mark {
+      border: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
+    }
+
+    &-label {
+      color: RGBA(var(--color-charade-50));
+    }
+  }
 }

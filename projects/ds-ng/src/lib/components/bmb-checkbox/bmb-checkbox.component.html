@@ -13,9 +13,14 @@
     [attr.name]="name"
     [attr.value]="value"
     [checked]="checked"
+    [disabled]="disabled"
+    [indeterminate]="indeterminate"
     (change)="handleChange($event)"
+    (keydown)="handleKeyDown($event)"
   />
-  <span class="bmb_checkbox-mark"></span>
+  <div class="bmb_checkbox-box">
+    <span class="bmb_checkbox-mark"></span>
+  </div>
   @if (label) {
   <span class="bmb_checkbox-label">{{ label }}</span>
   }
