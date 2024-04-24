@@ -9,7 +9,7 @@
 
   &-label {
     @include fonts.font(3, regular);
-    color: RGBA(var(--color-white-primary));
+    color: RGBA(var(--color-charade-950));
 
     &-required {
       color: RGBA(var(--color-red-light));
@@ -26,11 +26,11 @@
   }
 
   &-error {
-    color: red !important;
+    color: RGBA(var(--color-red-light)) !important;
   }
 
   &-icon {
-    color: RGBA(var(--color-charade-50));
+    color: RGBA(var(--color-charade-500));
     font-size: rem.rem_calc(24);
     left: rem.rem_calc(8);
     position: absolute;
@@ -44,7 +44,7 @@
 
   &-helper {
     @include fonts.font(3, regular);
-    color: RGBA(var(--color-charade-50));
+    color: RGBA(var(--color-charade-950));
     margin: rem.rem_calc(8);
   }
 
@@ -68,42 +68,43 @@
   .bmb_field {
     &-container-label {
       .bmb_field-label {
-        color: RGBA(var(--color-charade-950));
+        color: RGBA(var(--color-charade-50));
       }
     }
 
     &-input-normal {
-      background-color: RGBA(var(--color-charade-50));
-      color: RGBA(var(--color-charade-700));
+      background-color: RGBA(var(--color-charade-950));
+      color: RGBA(var(--color-charade-200));
 
       &:hover {
         border-color: RGBA(var(--color-charade-500));
       }
 
       &:focus {
-        border-color: RGBA(var(--color-blue-primary));
-        color: RGBA(var(--color-charade-950));
+        border-color: RGBA(var(--color-charade-50));
+        color: RGBA(var(--color-charade-50));
       }
     }
 
     &-icon {
-      color: RGBA(var(--color-charade-500));
+      color: RGBA(var(--color-charade-50));
     }
 
     &-helper {
-      color: RGBA(var(--color-charade-350));
+      color: RGBA(var(--color-charade-300));
     }
 
     &-input-simple {
-      color: RGBA(var(--color-charade-700));
+      border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-700));
+      color: RGBA(var(--color-charade-200));
 
       &:hover {
         border-color: RGBA(var(--color-charade-700));
       }
 
       &:focus {
-        border-bottom: rem.rem_calc(2) solid RGBA(var(--color-mariner-700));
-        color: RGBA(var(--color-mariner-700));
+        border-bottom: rem.rem_calc(2) solid RGBA(var(--color-charade-50));
+        color: RGBA(var(--color-charade-50));
       }
     }
   }

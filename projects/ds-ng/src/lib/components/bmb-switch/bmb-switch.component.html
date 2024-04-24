@@ -6,6 +6,7 @@
   [attr.id]="id"
   [attr.aria-disabled]="disabled ? 'true' : 'false'"
   [disabled]="disabled"
+  [attr.aria-label]="ariaLabel"
 >
   <div class="bmb_switch-left" *ngIf="leftText || leftIcon">
     <span *ngIf="leftText && !leftIcon" class="bmb_switch-text">{{

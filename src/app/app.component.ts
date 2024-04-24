@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy, ViewChild, ChangeDetectorRef  } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FormControl, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import {
   BmbThemeComponent,
   BmbBadgeComponent,
@@ -20,6 +21,12 @@ import {
   BmbValueCounterComponent,
   BmbInputComponent,
   BmbStatCounterComponent,
+  BmbUserSummaryComponent,
+  BmbSidebarComponent,
+  BmbFabComponent,
+  BmbTabsComponent,
+  BmbProgressCircleComponent,
+  BmbCheckboxComponent,
   BmbCalendarComponent,
 } from '../../projects/ds-ng/src/public-api';
 
@@ -32,6 +39,7 @@ export interface Target {
   selector: 'app-root',
   standalone: true,
   imports: [
+    CommonModule,
     RouterOutlet,
     BmbThemeComponent,
     BmbBadgeComponent,
@@ -51,7 +59,13 @@ export interface Target {
     BmbValueCounterComponent,
     BmbInputComponent,
     BmbStatCounterComponent,
-    BmbCalendarComponent
+    BmbUserSummaryComponent,
+    BmbSidebarComponent,
+    BmbFabComponent,
+    BmbTabsComponent,
+    BmbProgressCircleComponent,
+    BmbCheckboxComponent,
+    BmbCalendarComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -61,13 +75,29 @@ export class AppComponent {
 
   constructor(private cdr: ChangeDetectorRef) {}
 
+  myTabs: any = [
+    { id: 1, title: 'Tec de Monterrey', badge: 1, isActive: true },
+    { id: 2, title: 'Prestamo educativo' },
+    { id: 3, title: 'Mas usado' },
+    { id: 4, title: 'Textuales' },
+    { id: 5, title: 'Text' },
+    { id: 6, title: 'Mas usado' },
+  ];
+
+  activeTabId: number | null =
+    this.myTabs.find((tab: any) => tab.isActive)?.id ?? null;
+
+  handleTabSelected(tab: any): void {
+    this.activeTabId = tab.id;
+  }
+
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
   ]);
 
   title = 'tec-design-system-ng';
-
+  boolUserSummary = true;
   value = 'tec-design';
 
   isCalendarLoading = false;
@@ -84,6 +114,34 @@ export class AppComponent {
       start: '2024-04-24T15:00:00.715Z',
       end: '2024-04-24T16:00:00.715Z',
     }
+  ];
+
+  sidebarElements = [
+    {
+      icon: 'apps',
+      title: 'Titulo 1',
+      link: '#',
+    },
+    {
+      icon: 'apps',
+      title: 'Titulo 2',
+      link: '#',
+    },
+    {
+      icon: 'apps',
+      title: 'Titulo 3',
+      link: '#',
+    },
+    {
+      icon: 'apps',
+      title: 'Titulo 4',
+      link: '#',
+    },
+    {
+      icon: 'apps',
+      title: 'Titulo 5',
+      link: '#',
+    },
   ];
 
   i = 0;
@@ -122,19 +180,23 @@ export class AppComponent {
     this.myActiveDotIndex = index;
   }
 
-  plus(){
+  plus() {
     this.i++;
   }
 
-  decrement(){
-    if(this.i === 0){
-      return
+  decrement() {
+    if (this.i === 0) {
+      return;
     }
     this.i--;
   }
 
-  save(event: number){
-    this.i = event
+  save(event: number) {
+    this.i = event;
+  }
+
+  onProfileClick() {
+    this.boolUserSummary = !this.boolUserSummary;
   }
 
   async fetchData(event: any): Promise<void> {

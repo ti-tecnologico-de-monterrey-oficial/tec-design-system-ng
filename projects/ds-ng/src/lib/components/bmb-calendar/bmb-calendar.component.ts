@@ -5,8 +5,6 @@ import {
   ViewEncapsulation,
   Output,
   EventEmitter,
-  OnChanges,
-  SimpleChanges,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DateTime } from 'luxon';
@@ -36,7 +34,7 @@ import { BmbCalendarTemplateEventComponent } from './common/bmb-calendar-templat
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbCalendarComponent implements OnChanges {
+export class BmbCalendarComponent {
   @Input() events: Event[] = [];
   @Input() view: View = 'week';
   @Input() isLoading: boolean = false;
@@ -53,11 +51,6 @@ export class BmbCalendarComponent implements OnChanges {
   weekNumber = this.now.weekNumber;
   renderWeekDays: DateTime[] = getWeekDays(this.now);
   selectedEvent: ({ event: Event, position: any } | null) = null;
-
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log('ngOnChanges', changes);
-
-  }
 
   handleDateChange(range: View, now: DateTime): void {
     this.view = range;

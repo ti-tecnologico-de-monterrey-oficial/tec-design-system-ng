@@ -7,11 +7,11 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Target } from './bmb-stat-counter.interface';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 
 @Component({
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, BmbIconComponent],
   styleUrl: './bmb-stat-counter.component.scss',
   selector: 'bmb-stat-counter',
   templateUrl: './bmb-stat-counter.component.html',
@@ -21,7 +21,6 @@ import { Target } from './bmb-stat-counter.interface';
 export class BmbStatCounterComponent {
   @Input() activeStep: number = 0;
   @Input() totalSteps?: number = 0;
-  @Input() targets: Target[] = [];
   @Output() onStepPress: EventEmitter<number> = new EventEmitter<number>();
 
   getStepsArray(): number[] {
