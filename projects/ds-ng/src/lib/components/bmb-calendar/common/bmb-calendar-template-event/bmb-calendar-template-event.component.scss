@@ -1,0 +1,78 @@
+@use "../../../../../assets/styles/base/rem" as rem;
+@use "../../../../../assets/styles/base/fonts" as fonts;
+
+.bmb_calendar-event-modal {
+  background-color: RGBA(var(--color-charade-950), .25);
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  backdrop-filter: blur(1px);
+
+  &-body {
+    border-radius: 8px;
+    box-shadow: 0 8px 8px RGBA(var(--color-charade-950), .25);
+    background-color: RGBA(var(--color-charade-50));
+    box-sizing: border-box;
+    width: 90%;
+    overflow: hidden;
+    width: max-content;
+    min-width: rem.rem_calc(350);
+  }
+
+  &-content {
+    padding: rem.rem_calc(16) rem.rem_calc(16) rem.rem_calc(8);
+    margin: 0;
+    @include fonts.font(4, medium);
+    text-align: center;
+  }
+
+  &-footer {
+    padding: rem.rem_calc(0) rem.rem_calc(16) rem.rem_calc(16);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &-time {
+      @include fonts.font(3, medium);
+    }
+  }
+
+  &-header {
+    background-color: RGBA(var(--color-blue-primary));
+    display: flex;
+    justify-content: space-between;
+    @include fonts.font(3, medium);
+    align-items: center;
+    color: RGBA(var(--color-white-primary));
+    gap: rem.rem_calc(16);
+
+    &-time {
+      padding-left: rem.rem_calc(16);
+    }
+
+    &-title {
+      @include fonts.font(4, medium);
+      text-align: center;
+    }
+
+    button {
+      padding: rem.rem_calc(8);
+      margin-right: rem.rem_calc(16);
+    }
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_calendar-event-modal-body {
+    background-color: RGBA(var(--color-charade-950));
+    color: RGBA(var(--color-charade-50));
+  }
+}
