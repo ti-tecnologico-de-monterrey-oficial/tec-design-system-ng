@@ -1,0 +1,6 @@
+.bmb_calendar-week-view {
+  display: flex;
+  justify-content: space-between;
+  overflow: auto;
+  height: calc(100% - 52px);
+}
