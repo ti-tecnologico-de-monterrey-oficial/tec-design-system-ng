@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, ViewChild } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewChild, ChangeDetectorRef  } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FormControl, Validators } from '@angular/forms';
 import {
@@ -58,6 +58,9 @@ export interface Target {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
+
+  constructor(private cdr: ChangeDetectorRef) {}
+
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
@@ -68,12 +71,20 @@ export class AppComponent {
   value = 'tec-design';
 
   isCalendarLoading = false;
-  calendarEvents: any[] = [{
-    title: 'Test',
-    detail: 'Detail test',
-    start: new Date('2024-04-17T16:00:00.715Z'),
-    end: new Date('2024-04-17T17:00:00.715Z'),
-  }];
+  calendarEvents: any[] = [
+    {
+      title: 'Test',
+      detail: 'Detail test',
+      start: '2024-04-23T15:00:00.715Z',
+      end: '2024-04-23T15:30:00.715Z',
+    },
+    {
+      title: 'Test jnsf dkjn jasn kljnsd kljfna klsdj nfklajsndfk lajndksf',
+      detail: 'Dkjaskdjjhasbdfjhasbdjkhfbjkahsdbf',
+      start: '2024-04-24T15:00:00.715Z',
+      end: '2024-04-24T16:00:00.715Z',
+    }
+  ];
 
   i = 0;
 
@@ -126,22 +137,36 @@ export class AppComponent {
     this.i = event
   }
 
-  async onDateChange() {
-    this.isCalendarLoading = true;
-    const myPromise = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        this.isCalendarLoading = true;
-        this.calendarEvents = [
-          ...this.calendarEvents,
-          {
-            title: 'Test',
-            detail: 'Detail test',
-            start: new Date('2024-04-12T22:56:44.715Z'),
-            end: Date,
-            // id: string,
-          }
-        ];
-      }, 3000);
-    });
+  async fetchData(event: any): Promise<void> {
+    console.log(event);
+    try {
+      this.isCalendarLoading = true;
+      await new Promise(resolve => setTimeout(resolve, 3000));
+    }
+
+    finally {
+      this.calendarEvents = [
+        {
+          title: 'Test',
+          detail: 'Detail test',
+          start: '2024-04-23T15:00:00.715Z',
+          end: '2024-04-23T15:30:00.715Z',
+        },
+        {
+          title: 'Test jnsf dkjn jasn kljnsd kljfna klsdj nfklajsndfk lajndksf',
+          detail: 'Dkjaskdjjhasbdfjhasbdjkhfbjkahsdbf',
+          start: '2024-04-24T15:00:00.715Z',
+          end: '2024-04-24T16:00:00.715Z',
+        },
+        {
+          title: 'Test',
+          detail: 'Detail test',
+          start: '2024-04-25T22:56:44.715Z',
+          end: '2024-04-25T23:56:44.715Z',
+        }
+      ];
+      this.isCalendarLoading = false;
+      this.cdr.detectChanges();
+    }
   }
 }

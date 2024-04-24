@@ -1,15 +1,19 @@
-import { Component, Input, ChangeDetectionStrategy, ViewEncapsulation, } from '@angular/core';
+import {
+  Component,
+  Input,
+  ChangeDetectionStrategy,
+  ViewEncapsulation,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Info, DateTime } from 'luxon';
-import { HourFormat, Event } from '../../types';
+import { HourFormat, Event, EventClick, IRenderEvents } from '../../types';
 import { BmbCalendarHourViewComponent } from '../bmb-calendar-hour-view/bmb-calendar-hour-view.component';
-import { orderDayNames } from '../../utils';
+import { orderDayNames, eventsInDate } from '../../utils';
 import { BmbCalendarScheduleCardsComponent } from '../bmb-calendar-schedule-cards/bmb-calendar-schedule-cards.component';
 
-interface IRenderEvents {
-  date: DateTime,
-  events: Event[],
-}
+
 
 @Component({
   selector: 'bmb-calendar-template-week',
@@ -27,6 +31,8 @@ export class BmbCalendarTemplateWeekComponent {
   @Input() now: DateTime = DateTime.now();
   @Input() events: Event[] = [];
 
+  @Output() onSelectEvent: EventEmitter<EventClick> = new EventEmitter<EventClick>();
+
   defaultDayOrder = Info.weekdays('short', {locale: this.lang});
 
   dayNames = orderDayNames(this.defaultDayOrder);
@@ -38,13 +44,11 @@ export class BmbCalendarTemplateWeekComponent {
     return diff < 0 && diff > -1;
   }
 
-  renderEvents({ date, events }: IRenderEvents): any[] {
-    const todayEvents = events.filter((event: Event) => {
-      const diff = date.diff(DateTime.fromISO(event.start.toISOString()), ["days"]).days;
+  renderEvents(events: IRenderEvents): any[] {
+    return eventsInDate(events);
+  }
 
-      return diff < 0 && diff > -1;
-    });
-
-    return todayEvents;
+  handleEventSelection(newEvent: EventClick) {
+    this.onSelectEvent.emit(newEvent);
   }
 }

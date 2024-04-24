@@ -4,20 +4,11 @@
 <bmb-switch leftIcon="light_mode" rightIcon="dark_mode" />
 
 <bmb-calendar
-  [isLoading]="false"
-  [hourFormat]="'24'"
+  [isLoading]="isCalendarLoading"
   [events]="calendarEvents"
+  [height]="'100vh'"
+  (onDateChange)="fetchData($event)"
 />
-
-<!-- (onDateChange)=""
-  @Input() events: Event[] = [];
-  @Input() view: View = 'week';
-  @Input() loading: boolean = false;
-  @Input() hourFormat: HourFormat = '12';
-  @Input() height: number = 600;
-  @Input() calendarTimezone: string = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  @Input() clientTimezone: string = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  @Output() onDateChange: EventEmitter<void> = new EventEmitter<void>(); -->
 
 <bmb-home-section
   [title]="'Section name'"

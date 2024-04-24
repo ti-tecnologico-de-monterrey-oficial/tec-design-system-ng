@@ -26,18 +26,21 @@
       appearance="secondary-filled"
       size="small"
       (click)="handleRangeChange('day')"
+      [disabled]="view === 'day'"
     >Day</button>
     <button
       bmbButton
       appearance="secondary-filled"
       size="small"
       (click)="handleRangeChange('week')"
+      [disabled]="view === 'week'"
     >Week</button>
     <button
       bmbButton
       appearance="secondary-filled"
       size="small"
       (click)="handleRangeChange('month')"
+      [disabled]="view === 'month'"
     >Month</button>
   </div>
 </section>

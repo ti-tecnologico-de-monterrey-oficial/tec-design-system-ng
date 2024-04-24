@@ -6,7 +6,6 @@ import {
   Input,
   Output,
   EventEmitter,
-  OnChanges
 } from '@angular/core';
 import { BmbButtonDirective } from '../../../../directives/button.directive';
 import { BmbIconComponent } from '../../../bmb-icon/bmb-icon.component';
