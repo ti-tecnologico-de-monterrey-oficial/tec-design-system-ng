@@ -1,0 +1,94 @@
+@use "../../../assets/styles/base/rem" as rem;
+@use "../../../assets/styles/base/fonts" as fonts;
+
+.bmb_calendar {
+  background-color: RGBA(var(--color-charade-100));
+  padding: rem.rem_calc(32);
+  position: relative;
+  overflow: hidden;
+
+  &-detail-header {
+    display: flex;
+    align-items: center;
+    gap: rem.rem_calc(8);
+    justify-content: center;
+    padding: rem.rem_calc(16) 0;
+    border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: RGBA(var(--color-charade-100));
+
+    h2 {
+      @include fonts.font(3, medium);
+      font-weight: 400;
+
+      &::first-letter {
+        text-transform: capitalize;
+      }
+    }
+
+    span {
+      @include fonts.font(3, medium);
+    }
+  }
+
+  &-body {
+    position: relative;
+  }
+
+  &-col {
+    flex: 1;
+    height: fit-content;
+
+    &-today {
+      background-color: RGBA(var(--color-yellow-tint), .5);
+    }
+  }
+
+  &-row-body {
+    min-height: rem.rem_calc(60);
+    border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
+  }
+
+  &-week-view,
+  &-day-view {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &-loader {
+    display: flex;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    left: 0;
+    background-color: RGBA(var(--color-charade-100), .75);
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    backdrop-filter: blur(1px);
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_calendar {
+    background-color: RGBA(var(--color-charade-900));
+    color: RGBA(var(--color-charade-50));
+
+    &-detail-header,
+    &-row-body {
+      border-bottom-color: RGBA(var(--color-charade-700), .75);
+    }
+
+    &-detail-header {
+      background-color: RGBA(var(--color-charade-900));
+    }
+
+    &-loader {
+      background-color: RGBA(var(--color-charade-900), .75);
+    }
+  }
+}

@@ -1,0 +1,24 @@
+<div class="bmb_calendar-week-view">
+  <bmb-calendar-hour-view
+    [hourFormat]="hourFormat"
+  />
+  @for (day of dayNames; track $index) {
+    <section class="bmb_calendar-col" [ngClass]="{'bmb_calendar-col-today': isNow(weekDays[$index])}">
+      <header class="bmb_calendar-detail-header">
+        <h2>{{ day }}</h2>
+        <span>{{ weekDays[$index].month }}/{{ weekDays[$index].day }}</span>
+      </header>
+      <div class="bmb_calendar-body">
+        @for (row of rows; track $index) {
+          <div class="bmb_calendar-row-body"></div>
+        }
+        @for (event of renderEvents({ date: weekDays[$index], events }); track $index) {
+          <bmb-calendar-schedule-cards
+            [event]="event"
+            (onSelectEvent)="handleEventSelection($event)"
+          >Event</bmb-calendar-schedule-cards>
+        }
+      </div>
+    </section>
+  }
+</div>

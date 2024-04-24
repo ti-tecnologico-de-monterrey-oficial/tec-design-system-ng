@@ -1,0 +1,58 @@
+<div class="bmb_calendar" [ngStyle]="{'height': getHeight(height)}">
+  <bmb-calendar-header
+    [weekDays]="renderWeekDays"
+    [lang]="lang"
+    [view]="view"
+    [currentDate]="now"
+    (onRangeChange)="handleDateChange($event, now)"
+    (onCurrentDateChange)="handleCurrentDateChange($event)"
+  />
+  @switch (view) {
+    @case ('day') {
+      <bmb-bmb-calendar-template-day
+        [now]="now"
+        [events]="events"
+        (onSelectEvent)="handleSelectEvent($event)"
+      />
+    }
+    @case ('week') {
+      <bmb-calendar-template-week
+        [weekDays]="renderWeekDays"
+        [lang]="lang"
+        [hourFormat]="hourFormat"
+        [now]="now"
+        [events]="events"
+        (onSelectEvent)="handleSelectEvent($event)"
+      />
+    }
+    @case ('month') {
+      <bmb-calendar-template-month
+        [now]="now"
+        [events]="events"
+        (onSelectEvent)="handleSelectEvent($event)"
+      />
+    }
+    @default {
+      <bmb-calendar-template-week
+        [weekDays]="renderWeekDays"
+        [lang]="lang"
+        [hourFormat]="hourFormat"
+        [now]="now"
+        [events]="events"
+      />
+    }
+  }
+
+  @if (selectedEvent) {
+    <bmb-calendar-template-event [event]="selectedEvent" (closeModal)="handleSelectEvent($event)" />
+  }
+
+  @if (isLoading) {
+    <section class="bmb_calendar-loader">
+      <bmb-loader />
+    </section>
+  }
+</div>
+
+
+<!-- [handleChangeRange]="handleDateChange()"; -->

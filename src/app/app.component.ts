@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, ViewChild } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewChild, ChangeDetectorRef  } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FormControl, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -27,6 +27,7 @@ import {
   BmbTabsComponent,
   BmbProgressCircleComponent,
   BmbCheckboxComponent,
+  BmbCalendarComponent,
 } from '../../projects/ds-ng/src/public-api';
 
 export interface Target {
@@ -64,12 +65,16 @@ export interface Target {
     BmbTabsComponent,
     BmbProgressCircleComponent,
     BmbCheckboxComponent,
+    BmbCalendarComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
+
+  constructor(private cdr: ChangeDetectorRef) {}
+
   myTabs: any = [
     { id: 1, title: 'Tec de Monterrey', badge: 1, isActive: true },
     { id: 2, title: 'Prestamo educativo' },
@@ -94,6 +99,22 @@ export class AppComponent {
   title = 'tec-design-system-ng';
   boolUserSummary = true;
   value = 'tec-design';
+
+  isCalendarLoading = false;
+  calendarEvents: any[] = [
+    {
+      title: 'Test',
+      detail: 'Detail test',
+      start: '2024-04-23T15:00:00.715Z',
+      end: '2024-04-23T15:30:00.715Z',
+    },
+    {
+      title: 'Test jnsf dkjn jasn kljnsd kljfna klsdj nfklajsndfk lajndksf',
+      detail: 'Dkjaskdjjhasbdfjhasbdjkhfbjkahsdbf',
+      start: '2024-04-24T15:00:00.715Z',
+      end: '2024-04-24T16:00:00.715Z',
+    }
+  ];
 
   sidebarElements = [
     {
@@ -176,5 +197,38 @@ export class AppComponent {
 
   onProfileClick() {
     this.boolUserSummary = !this.boolUserSummary;
+  }
+
+  async fetchData(event: any): Promise<void> {
+    console.log(event);
+    try {
+      this.isCalendarLoading = true;
+      await new Promise(resolve => setTimeout(resolve, 3000));
+    }
+
+    finally {
+      this.calendarEvents = [
+        {
+          title: 'Test',
+          detail: 'Detail test',
+          start: '2024-04-23T15:00:00.715Z',
+          end: '2024-04-23T15:30:00.715Z',
+        },
+        {
+          title: 'Test jnsf dkjn jasn kljnsd kljfna klsdj nfklajsndfk lajndksf',
+          detail: 'Dkjaskdjjhasbdfjhasbdjkhfbjkahsdbf',
+          start: '2024-04-24T15:00:00.715Z',
+          end: '2024-04-24T16:00:00.715Z',
+        },
+        {
+          title: 'Test',
+          detail: 'Detail test',
+          start: '2024-04-25T22:56:44.715Z',
+          end: '2024-04-25T23:56:44.715Z',
+        }
+      ];
+      this.isCalendarLoading = false;
+      this.cdr.detectChanges();
+    }
   }
 }
