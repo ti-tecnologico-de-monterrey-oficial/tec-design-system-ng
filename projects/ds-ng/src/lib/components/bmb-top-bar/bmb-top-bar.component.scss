@@ -1,0 +1,17 @@
+@use "../../../assets/styles/base/rem" as rem;
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/mixins" as mixins;
+
+.bmb_top-bar {
+  background-color: RGBA(var(--color-black-primary));
+  color: RGBA(var(--color-white-primary));
+  display: flex;
+  justify-content: space-between;
+  padding: rem.rem_calc(12) rem.rem_calc(16);
+
+  &-button-menu {
+    @include mixins.media-query(1000, "min") {
+      display: none;
+    }
+  }
+}

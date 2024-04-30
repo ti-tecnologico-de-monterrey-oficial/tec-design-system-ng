@@ -8,9 +8,8 @@ describe('BmbLegendComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BmbLegendComponent]
-    })
-    .compileComponents();
+      imports: [BmbLegendComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(BmbLegendComponent);
     component = fixture.componentInstance;

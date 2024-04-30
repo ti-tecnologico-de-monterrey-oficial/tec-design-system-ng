@@ -49,20 +49,20 @@ Below is an example of how you can use this component in HTML:
       },
     },
     title: {
-        name: 'Title',
-        control: {
-          type: 'string',
-        },
-        description: 'Is the text of the component',
-        table: {
-          type: { summary: 'string' },
-        },
-    }
+      name: 'Title',
+      control: {
+        type: 'string',
+      },
+      description: 'Is the text of the component',
+      table: {
+        type: { summary: 'string' },
+      },
+    },
   },
   args: {
     percentValue: 85,
     valueLabel: 310,
-    title: 'Titulo'
+    title: 'Titulo',
   },
 } as Meta<typeof BmbProgressCircleComponent>;
 

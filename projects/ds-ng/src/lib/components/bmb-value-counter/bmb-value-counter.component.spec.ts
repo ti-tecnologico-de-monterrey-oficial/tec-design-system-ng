@@ -8,9 +8,8 @@ describe('BmbValueCounterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BmbValueCounterComponent]
-    })
-    .compileComponents();
+      imports: [BmbValueCounterComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(BmbValueCounterComponent);
     component = fixture.componentInstance;

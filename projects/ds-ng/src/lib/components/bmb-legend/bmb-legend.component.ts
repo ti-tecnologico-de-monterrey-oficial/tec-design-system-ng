@@ -1,14 +1,14 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-type Variations =
-  'normal'|
-  'strong'|
-  'success'|
-  'info'|
-  'warning'|
-  'error'|
-  'brand';
+export type IBmbLegendVariations =
+  | 'normal'
+  | 'strong'
+  | 'success'
+  | 'info'
+  | 'warning'
+  | 'error'
+  | 'brand';
 
 @Component({
   selector: 'bmb-legend',
@@ -21,5 +21,5 @@ type Variations =
 export class BmbLegendComponent {
   @Input() label: string = '';
   @Input() value: string = '';
-  @Input() indicatorAppearance: Variations = 'normal';
+  @Input() indicatorAppearance: IBmbLegendVariations = 'normal';
 }

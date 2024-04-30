@@ -2,11 +2,11 @@
 @use "../../../assets/styles/base/rem" as rem;
 
 .bmb_fab {
-  &-small-normal{
+  &-small-normal {
     @include mixins.fabInput(small, normal);
   }
 
-  &-small-extended{
+  &-small-extended {
     @include mixins.fabInput(small, extended);
   }
 
@@ -14,18 +14,17 @@
     @include mixins.fabInput(large, normal);
   }
 
-  &-large-extended{
+  &-large-extended {
     @include mixins.fabInput(large, extended);
   }
 }
 
 [data-theme="dark"],
 .storybook-dark-theme {
-
   .bmb_fab-small-normal,
   .bmb_fab-small-extended,
   .bmb_fab-large-normal,
-  .bmb_fab-large-extended{
+  .bmb_fab-large-extended {
     background-color: RGBA(var(--color-neon-primary));
     color: RGBA(var(--color-white-primary));
 

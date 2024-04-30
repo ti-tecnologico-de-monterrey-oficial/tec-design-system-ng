@@ -1,5 +1,10 @@
-import { Component, Input, ChangeDetectionStrategy, ViewEncapsulation, } from '@angular/core';
-import { Event, HourFormat } from '../../types';
+import {
+  Component,
+  Input,
+  ChangeDetectionStrategy,
+  ViewEncapsulation,
+} from '@angular/core';
+import { IBmbCalendarEvent, IBmbCalendarHourFormat } from '../../types';
 
 @Component({
   selector: 'bmb-calendar-hour-view',
@@ -11,8 +16,8 @@ import { Event, HourFormat } from '../../types';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbCalendarHourViewComponent {
-  @Input() events: Event[] = [];
-  @Input() hourFormat: HourFormat = '12';
+  @Input() events: IBmbCalendarEvent[] = [];
+  @Input() hourFormat: IBmbCalendarHourFormat = '12';
 
   createHoursRows() {
     const placeholderArray = new Array(24).fill(0);
@@ -24,18 +29,17 @@ export class BmbCalendarHourViewComponent {
       if (this.hourFormat === '12' && !index) return '12 am';
       if (!index) return 0;
 
-      hour++
+      hour++;
 
-      return (
-        this.hourFormat === '24' ?
-           hour :
-           `${hour} ${index < 12 ? 'am' : 'pm' }`);
+      return this.hourFormat === '24'
+        ? hour
+        : `${hour} ${index < 12 ? 'am' : 'pm'}`;
     });
   }
 
   hours = this.createHoursRows();
 
-  ngOnchanges() :void {
+  ngOnchanges(): void {
     this.hours = this.createHoursRows();
   }
 }

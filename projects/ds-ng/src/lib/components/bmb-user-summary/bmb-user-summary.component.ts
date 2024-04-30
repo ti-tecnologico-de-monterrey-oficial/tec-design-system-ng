@@ -1,4 +1,10 @@
-import { Component,Input, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Input,
+  ViewEncapsulation,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbButtonDirective } from '../../directives/button.directive';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';

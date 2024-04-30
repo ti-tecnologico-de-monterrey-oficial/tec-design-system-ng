@@ -1,5 +1,5 @@
 <button [ngClass]="this.fabStyle" type="button">
-    <span *ngIf="type == 'extended'">{{text}}</span>
-    <bmb-icon *ngIf="!active" icon={{icon}} />
-    <bmb-icon  *ngIf="type == 'normal' && active " icon='close'/>
+  <span *ngIf="type == 'extended'">{{ text }}</span>
+  <bmb-icon *ngIf="!active" icon="{{ icon }}" />
+  <bmb-icon *ngIf="type == 'normal' && active" icon="close" />
 </button>

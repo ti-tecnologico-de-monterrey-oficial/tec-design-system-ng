@@ -129,7 +129,7 @@ function attributesText(object: { [key: string]: any }): string {
 const customizable = (): StoryFn => (args) => ({
   props: args,
   template: `<button bmbButton ${attributes(args)}>${attributesText(
-    args
+    args,
   )}</button>`,
 });
 

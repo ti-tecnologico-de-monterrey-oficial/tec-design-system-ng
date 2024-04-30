@@ -24,7 +24,10 @@ export class BmbTagComponent implements AfterViewInit {
   @Input() grouped: boolean = false;
   @Input() dissmisable: boolean = false;
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {}
+  constructor(
+    private el: ElementRef,
+    private renderer: Renderer2,
+  ) {}
 
   ngAfterViewInit() {
     if (this.grouped) {

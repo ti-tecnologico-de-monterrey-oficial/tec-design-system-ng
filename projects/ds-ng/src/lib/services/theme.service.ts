@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ThemeService {
   private themeSubject = new BehaviorSubject<string>(
-    localStorage.getItem('theme') || 'light'
+    localStorage.getItem('theme') || 'light',
   );
   theme$ = this.themeSubject.asObservable();
 

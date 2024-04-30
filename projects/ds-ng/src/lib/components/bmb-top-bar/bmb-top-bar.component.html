@@ -1,0 +1,34 @@
+<header class="bmb_top-bar">
+  @if (positionButtonMenu === "left") {
+    <button class="bmb_top-bar-button-menu" bmbButton icon="menu"></button>
+  }
+
+  Text
+  <div>responsive content</div>
+  <!-- <nav class="header" style="height: 4rem; background-color: black; color: white; display: flex; justify-content: space-between; align-items: center; padding-inline: 2rem;">
+    <div style="display: flex; align-items: center; justify-content: center;">
+      <img width="100" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJFa_xhgYPh5W1HW6aKtzOHc0XzvVjTiXELhbQiB0W_Hj77ozsBIPjq4ogHj8&s" alt="">
+      <span style="font-size: 10pt; margin-left: 2rem;"> <b>Tec.Sign</b> | Elegir documentos</span>
+    </div>
+    <div style="display: flex;  align-items: center;">
+      <div style="background-color: darkgray; height: 2rem; width: 2rem; border-radius: 50%; display: flex; justify-content: center; align-items: center;">RB</div>
+      <div style="display: flex; flex-direction: column; margin-left: .5rem; font-size: 10pt;">
+        <b>Nombre de usuario</b>
+        <small>Tipo de usuario</small>
+      </div>
+      <button style="cursor: pointer; border: none; background:#FFF; color: black; border-radius: 6pt; height: 2rem; margin-left: 1rem; padding-inline: 2rem;">Salir</button>
+    </div>
+  </nav> -->
+  @if (userInformation) {
+    <bmb-top-bar-user-section />
+  }
+  <div>
+    always visible
+    @if (userInformation && hasLogoutButton) {
+      <button bmbButton>Salir</button>
+    }
+  </div>
+  @if (positionButtonMenu === "right") {
+    <button class="bmb_top-bar-button-menu" bmbButton icon="menu"></button>
+  }
+</header>
