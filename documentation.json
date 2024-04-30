@@ -2,6 +2,72 @@
     "pipes": [],
     "interfaces": [
         {
+            "name": "EventClick",
+            "id": "interface-EventClick-4cab7bb9a192b0c7ee92f31b29cfe8d54154eb6aa49efe2010c83e0ec1c10f5489455f1a61eac7d6a70552d1967c69e4cc9f72441fa0d0419bc9c15545c6e159",
+            "file": "projects/ds-ng/src/lib/components/bmb-calendar/types.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { DateTime } from \"luxon\";\n\nexport type Event = {\n  title: string,\n  detail: string,\n  start: string,\n  end: string,\n  id: string,\n}\n\nexport type View = 'week' | 'month' | 'day';\n\nexport type HourFormat = '12' | '24';\n\nexport interface EventClick {\n  event: Event,\n  position: any,\n}\n\nexport interface IRenderEvents {\n  date: DateTime,\n  events: Event[],\n}\n",
+            "properties": [
+                {
+                    "name": "event",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Event",
+                    "optional": false,
+                    "description": "",
+                    "line": 16
+                },
+                {
+                    "name": "position",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any",
+                    "optional": false,
+                    "description": "",
+                    "line": 17
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 171,
+            "methods": [],
+            "extends": []
+        },
+        {
+            "name": "IRenderEvents",
+            "id": "interface-IRenderEvents-4cab7bb9a192b0c7ee92f31b29cfe8d54154eb6aa49efe2010c83e0ec1c10f5489455f1a61eac7d6a70552d1967c69e4cc9f72441fa0d0419bc9c15545c6e159",
+            "file": "projects/ds-ng/src/lib/components/bmb-calendar/types.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { DateTime } from \"luxon\";\n\nexport type Event = {\n  title: string,\n  detail: string,\n  start: string,\n  end: string,\n  id: string,\n}\n\nexport type View = 'week' | 'month' | 'day';\n\nexport type HourFormat = '12' | '24';\n\nexport interface EventClick {\n  event: Event,\n  position: any,\n}\n\nexport interface IRenderEvents {\n  date: DateTime,\n  events: Event[],\n}\n",
+            "properties": [
+                {
+                    "name": "date",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "DateTime",
+                    "optional": false,
+                    "description": "",
+                    "line": 21
+                },
+                {
+                    "name": "events",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Event[]",
+                    "optional": false,
+                    "description": "",
+                    "line": 22
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 171,
+            "methods": [],
+            "extends": []
+        },
+        {
             "name": "Props",
             "id": "interface-Props-0be329acc963ff455ffdf9172d95c844a313ba429c49a8f0645bca85aef6b06ecb11a573d85443a1730e1fcc45ddd93688a6b7591932b2eff126b81c31779683",
             "file": "projects/ds-ng/src/lib/components/bmb-stat-counter/bmb-stat-counter.interface.ts",
@@ -789,8 +855,1691 @@
             "templateData": "<div [ngClass]=\"getClasses()\">\n  <span>{{ text }}</span>\n</div>\n"
         },
         {
+            "name": "BmbCalendarComponent",
+            "id": "component-BmbCalendarComponent-af9edce8bcce27611806d0b506eeea62e2937b922fa6666cdaa7590ee5535d13cbcbf05d307a469c94b70fbea01038ae2e78ff046d478c5a23f485c2b1df1b39",
+            "file": "projects/ds-ng/src/lib/components/bmb-calendar/bmb-calendar.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-calendar",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-calendar.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "calendarTimezone",
+                    "defaultValue": "Intl.DateTimeFormat().resolvedOptions().timeZone",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 42,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "clientTimezone",
+                    "defaultValue": "Intl.DateTimeFormat().resolvedOptions().timeZone",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 43,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "currentDate",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 45,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "events",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 38,
+                    "type": "Event[]",
+                    "decorators": []
+                },
+                {
+                    "name": "height",
+                    "defaultValue": "700",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 46,
+                    "type": "number | string",
+                    "decorators": []
+                },
+                {
+                    "name": "hourFormat",
+                    "defaultValue": "'12'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 41,
+                    "type": "HourFormat",
+                    "decorators": []
+                },
+                {
+                    "name": "isLoading",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 40,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "lang",
+                    "defaultValue": "'es-MX'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 44,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "view",
+                    "defaultValue": "'week'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 39,
+                    "type": "View",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onDateChange",
+                    "defaultValue": "new EventEmitter<any>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 48,
+                    "type": "EventEmitter<any>"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "now",
+                    "defaultValue": "this.currentDate === '' ? DateTime.now() : DateTime.fromISO(this.currentDate)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 50
+                },
+                {
+                    "name": "renderWeekDays",
+                    "defaultValue": "getWeekDays(this.now)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "DateTime[]",
+                    "optional": false,
+                    "description": "",
+                    "line": 52
+                },
+                {
+                    "name": "selectedEvent",
+                    "defaultValue": "null",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 53
+                },
+                {
+                    "name": "weekNumber",
+                    "defaultValue": "this.now.weekNumber",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 51
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "getHeight",
+                    "args": [
+                        {
+                            "name": "height",
+                            "type": "string | number",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 98,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "height",
+                            "type": "string | number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "handleCurrentDateChange",
+                    "args": [
+                        {
+                            "name": "newDate",
+                            "type": "DateTime",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 84,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "newDate",
+                            "type": "DateTime",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "handleDateChange",
+                    "args": [
+                        {
+                            "name": "range",
+                            "type": "View",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "now",
+                            "type": "DateTime",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 55,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "range",
+                            "type": "View",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "now",
+                            "type": "DateTime",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "handleSelectEvent",
+                    "args": [
+                        {
+                            "name": "newEvent",
+                            "type": "EventClick | null",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 90,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "newEvent",
+                            "type": "EventClick | null",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "isAnEventSelected",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "EventClick | null",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "boolean",
+                    "typeParameters": [],
+                    "line": 94,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "EventClick | null",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "BmbCalendarTemplateDayComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "BmbCalendarTemplateWeekComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "BmbCalendarTemplateMonthComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "BmbLoaderComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "BmbCalendarHeaderComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "BmbCalendarTemplateEventComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n  Output,\n  EventEmitter,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { DateTime } from 'luxon';\nimport { BmbCalendarTemplateWeekComponent } from './common/bmb-calendar-template-week/bmb-calendar-template-week.component';\nimport { BmbCalendarTemplateDayComponent } from './common/bmb-calendar-template-day/bmb-calendar-template-day.component';\nimport { BmbCalendarTemplateMonthComponent } from './common/bmb-calendar-template-month/bmb-calendar-template-month.component';\nimport { BmbLoaderComponent } from '../bmb-loader/bmb-loader.component';\nimport { BmbCalendarHeaderComponent } from './common/bmb-calendar-header/bmb-calendar-header.component';\nimport { Event, EventClick, HourFormat, View } from './types';\nimport { getWeekDays, getMonthDays } from './utils';\nimport { BmbCalendarTemplateEventComponent } from './common/bmb-calendar-template-event/bmb-calendar-template-event.component';\n\n@Component({\n  selector: 'bmb-calendar',\n  standalone: true,\n  imports: [\n    CommonModule,\n    BmbCalendarTemplateDayComponent,\n    BmbCalendarTemplateWeekComponent,\n    BmbCalendarTemplateMonthComponent,\n    BmbLoaderComponent,\n    BmbCalendarHeaderComponent,\n    BmbCalendarTemplateEventComponent\n  ],\n  styleUrl: './bmb-calendar.component.scss',\n  templateUrl: './bmb-calendar.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbCalendarComponent {\n  @Input() events: Event[] = [];\n  @Input() view: View = 'week';\n  @Input() isLoading: boolean = false;\n  @Input() hourFormat: HourFormat = '12';\n  @Input() calendarTimezone: string = Intl.DateTimeFormat().resolvedOptions().timeZone;\n  @Input() clientTimezone: string = Intl.DateTimeFormat().resolvedOptions().timeZone;\n  @Input() lang: string = 'es-MX';\n  @Input() currentDate: string = '';\n  @Input() height: number | string = 700;\n\n  @Output() onDateChange: EventEmitter<any> = new EventEmitter<any>();\n\n  now = this.currentDate === '' ? DateTime.now() : DateTime.fromISO(this.currentDate);\n  weekNumber = this.now.weekNumber;\n  renderWeekDays: DateTime[] = getWeekDays(this.now);\n  selectedEvent: ({ event: Event, position: any } | null) = null;\n\n  handleDateChange(range: View, now: DateTime): void {\n    this.view = range;\n    let visibleDates: (string | null)[] = [];\n\n    switch (range) {\n      case 'day':\n        visibleDates = [now.toISO()];\n        break;\n\n      case 'week':\n        visibleDates = getWeekDays(now).map(date => date.toISO());\n        break;\n\n      case 'month':\n\n        visibleDates = getMonthDays(now).map(date => date.toISO());\n        break;\n\n      default:\n        break;\n    }\n\n    this.onDateChange.emit({\n      range,\n      now: now.toISO(),\n      visibleDates,\n    });\n  }\n\n  handleCurrentDateChange(newDate: DateTime): void {\n    this.now = newDate;\n    this.weekNumber = newDate.weekNumber;\n    this.renderWeekDays = getWeekDays(newDate);\n  }\n\n  handleSelectEvent(newEvent: EventClick | null): void {\n    this.selectedEvent = newEvent;\n  }\n\n  isAnEventSelected(event: EventClick | null): boolean {\n    return !!event;\n  }\n\n  getHeight(height: string | number): string {\n    if(typeof height === 'number') return `${height}px`;\n\n    return height;\n  }\n}\n",
+            "styleUrl": "./bmb-calendar.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<div class=\"bmb_calendar\" [ngStyle]=\"{'height': getHeight(height)}\">\n  <bmb-calendar-header\n    [weekDays]=\"renderWeekDays\"\n    [lang]=\"lang\"\n    [view]=\"view\"\n    [currentDate]=\"now\"\n    (onRangeChange)=\"handleDateChange($event, now)\"\n    (onCurrentDateChange)=\"handleCurrentDateChange($event)\"\n  />\n  @switch (view) {\n    @case ('day') {\n      <bmb-bmb-calendar-template-day\n        [now]=\"now\"\n        [events]=\"events\"\n        (onSelectEvent)=\"handleSelectEvent($event)\"\n      />\n    }\n    @case ('week') {\n      <bmb-calendar-template-week\n        [weekDays]=\"renderWeekDays\"\n        [lang]=\"lang\"\n        [hourFormat]=\"hourFormat\"\n        [now]=\"now\"\n        [events]=\"events\"\n        (onSelectEvent)=\"handleSelectEvent($event)\"\n      />\n    }\n    @case ('month') {\n      <bmb-calendar-template-month\n        [now]=\"now\"\n        [events]=\"events\"\n        (onSelectEvent)=\"handleSelectEvent($event)\"\n      />\n    }\n    @default {\n      <bmb-calendar-template-week\n        [weekDays]=\"renderWeekDays\"\n        [lang]=\"lang\"\n        [hourFormat]=\"hourFormat\"\n        [now]=\"now\"\n        [events]=\"events\"\n      />\n    }\n  }\n\n  @if (selectedEvent) {\n    <bmb-calendar-template-event [event]=\"selectedEvent\" (closeModal)=\"handleSelectEvent($event)\" />\n  }\n\n  @if (isLoading) {\n    <section class=\"bmb_calendar-loader\">\n      <bmb-loader />\n    </section>\n  }\n</div>\n\n\n<!-- [handleChangeRange]=\"handleDateChange()\"; -->\n"
+        },
+        {
+            "name": "BmbCalendarHeaderComponent",
+            "id": "component-BmbCalendarHeaderComponent-df04c5bf888e8895ac71fdc3ef5c2c8e04d0cb89b369ed6fa43f58bb4cd360c948f98fc1ba6ebf74cd5743aa53f511be0e377fc95d6d5d23ee2eb4642077f43f",
+            "file": "projects/ds-ng/src/lib/components/bmb-calendar/common/bmb-calendar-header/bmb-calendar-header.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-calendar-header",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-calendar-header.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "currentDate",
+                    "defaultValue": "DateTime.now()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 28,
+                    "type": "DateTime",
+                    "decorators": []
+                },
+                {
+                    "name": "lang",
+                    "defaultValue": "'es-MX'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 26,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "view",
+                    "defaultValue": "'week'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 27,
+                    "type": "View",
+                    "decorators": []
+                },
+                {
+                    "name": "weekDays",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 25,
+                    "type": "DateTime[]",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onCurrentDateChange",
+                    "defaultValue": "new EventEmitter<DateTime>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 31,
+                    "type": "EventEmitter<DateTime>"
+                },
+                {
+                    "name": "onRangeChange",
+                    "defaultValue": "new EventEmitter<any>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 30,
+                    "type": "EventEmitter<any>"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "getTitle",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 33,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "handleChangeDate",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 62,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "handleRangeChange",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "View",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 49,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "View",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "BmbButtonDirective",
+                    "type": "directive"
+                },
+                {
+                    "name": "BmbIconComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport {\n  Component,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n  Input,\n  Output,\n  EventEmitter,\n} from '@angular/core';\nimport { BmbButtonDirective } from '../../../../directives/button.directive';\nimport { BmbIconComponent } from '../../../bmb-icon/bmb-icon.component';\nimport { DateTime } from 'luxon';\nimport { View } from '../../types';\n\n@Component({\n  selector: 'bmb-calendar-header',\n  standalone: true,\n  imports: [CommonModule, BmbButtonDirective, BmbIconComponent],\n  templateUrl: './bmb-calendar-header.component.html',\n  styleUrl: './bmb-calendar-header.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbCalendarHeaderComponent {\n  @Input() weekDays: DateTime[] = [];\n  @Input() lang: string = 'es-MX';\n  @Input() view : View = 'week';\n  @Input() currentDate: DateTime = DateTime.now();\n\n  @Output() onRangeChange: EventEmitter<any> = new EventEmitter<any>();\n  @Output() onCurrentDateChange: EventEmitter<DateTime> = new EventEmitter<DateTime>();\n\n  getTitle(): string {\n    if (this.view === 'week') {\n      return `${\n        this.weekDays[0].toLocaleString({ month: 'short', day: 'numeric' })\n      } - ${\n        this.weekDays[6].toLocaleString({ month: 'short', day: 'numeric' })\n      }, ${this.currentDate.toLocaleString({ year: 'numeric' })}`\n    }\n\n    if (this.view === 'day') {\n      return this.currentDate.toLocaleString({ month: 'long', day: 'numeric', year: 'numeric' });\n    }\n\n    return this.currentDate.toLocaleString({ month: 'long', year: 'numeric' });\n  }\n\n  handleRangeChange(event: View): void {\n    if (event === 'month') {\n      const newDate = DateTime.fromObject({\n        month: this.currentDate.month,\n        year: this.currentDate.year,\n        day: 1\n      });\n\n      this.onCurrentDateChange.emit(newDate);\n    }\n    this.onRangeChange.emit(event);\n  }\n\n  handleChangeDate(event: string): void {\n    const modifyDate = ({ config, date }: any) => {\n      if (event === '+') {\n        this.onCurrentDateChange.emit(date.plus(config));\n      } else {\n        this.onCurrentDateChange.emit(date.minus(config));\n      }\n    }\n\n    switch (this.view) {\n      case 'day':\n        modifyDate({ config: { days: 1 }, date: this.currentDate });\n        break;\n\n      case 'week':\n        modifyDate({ config: { days: 7 }, date: this.currentDate });\n        break;\n      case 'month':\n        const newDate = DateTime.fromObject({\n          month: this.currentDate.month,\n          year: this.currentDate.year,\n          day: 1\n        });\n\n        modifyDate({ config: { month: 1 }, date: newDate });\n        break;\n\n      default:\n        break;\n    }\n  }\n}\n",
+            "styleUrl": "./bmb-calendar-header.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<section class=\"bmb_calendar-header\">\n  <div class=\"bmb_calendar-header-button-container\">\n    <button\n      bmbButton\n      appearance=\"secondary-filled\"\n      size=\"small\"\n      (click)=\"handleChangeDate('-')\"\n    >\n      <bmb-icon [icon]=\"'arrow_back_ios'\" />\n    </button>\n    <button\n      bmbButton\n      appearance=\"secondary-filled\"\n      size=\"small\"\n      (click)=\"handleChangeDate('+')\"\n    >\n      <bmb-icon [icon]=\"'arrow_forward_ios'\" />\n    </button>\n  </div>\n  <h1 class=\"bmb_calendar-header-title\">\n    {{ getTitle() }}\n  </h1>\n  <div class=\"bmb_calendar-header-button-container\">\n    <button\n      bmbButton\n      appearance=\"secondary-filled\"\n      size=\"small\"\n      (click)=\"handleRangeChange('day')\"\n      [disabled]=\"view === 'day'\"\n    >Day</button>\n    <button\n      bmbButton\n      appearance=\"secondary-filled\"\n      size=\"small\"\n      (click)=\"handleRangeChange('week')\"\n      [disabled]=\"view === 'week'\"\n    >Week</button>\n    <button\n      bmbButton\n      appearance=\"secondary-filled\"\n      size=\"small\"\n      (click)=\"handleRangeChange('month')\"\n      [disabled]=\"view === 'month'\"\n    >Month</button>\n  </div>\n</section>\n"
+        },
+        {
+            "name": "BmbCalendarHourViewComponent",
+            "id": "component-BmbCalendarHourViewComponent-8969b791607fd109800b9c7b70323ab2516fbf98b5d3da55edb8ac739c2805d1cb05fe07f16c9143928cfe83804a8370a8023fb09c44f0e86841ac99769d16c4",
+            "file": "projects/ds-ng/src/lib/components/bmb-calendar/common/bmb-calendar-hour-view/bmb-calendar-hour-view.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-calendar-hour-view",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-calendar-hour-view.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "events",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 14,
+                    "type": "Event[]",
+                    "decorators": []
+                },
+                {
+                    "name": "hourFormat",
+                    "defaultValue": "'12'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 15,
+                    "type": "HourFormat",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "hours",
+                    "defaultValue": "this.createHoursRows()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 36
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "createHoursRows",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 17,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "ngOnchanges",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 38,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, ChangeDetectionStrategy, ViewEncapsulation, } from '@angular/core';\nimport { Event, HourFormat } from '../../types';\n\n@Component({\n  selector: 'bmb-calendar-hour-view',\n  standalone: true,\n  imports: [],\n  templateUrl: './bmb-calendar-hour-view.component.html',\n  styleUrl: './bmb-calendar-hour-view.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbCalendarHourViewComponent {\n  @Input() events: Event[] = [];\n  @Input() hourFormat: HourFormat = '12';\n\n  createHoursRows() {\n    const placeholderArray = new Array(24).fill(0);\n    let hour = 0;\n    return placeholderArray.map((_, index) => {\n      if (this.hourFormat === '12' && hour === 12) {\n        hour = 0;\n      }\n      if (this.hourFormat === '12' && !index) return '12 am';\n      if (!index) return 0;\n\n      hour++\n\n      return (\n        this.hourFormat === '24' ?\n           hour :\n           `${hour} ${index < 12 ? 'am' : 'pm' }`);\n    });\n  }\n\n  hours = this.createHoursRows();\n\n  ngOnchanges() :void {\n    this.hours = this.createHoursRows();\n  }\n}\n",
+            "styleUrl": "./bmb-calendar-hour-view.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<div class=\"bmb_calendar-hours\">\n  <header class=\"bmb_calendar-detail-header\">\n    <h2> - </h2>\n  </header>\n  <div class=\"bmb_calendar-hours-row\">\n    All-day\n  </div>\n  @for (item of hours; track $index) {\n    <div class=\"bmb_calendar-hours-row\">\n      {{ item }}\n    </div>\n  }\n</div>\n"
+        },
+        {
+            "name": "BmbCalendarScheduleCardsComponent",
+            "id": "component-BmbCalendarScheduleCardsComponent-88a48e90bd4f7098fc49faeb27d799bae2486a5d479408181a9696e91a8e84d1f9ab7ffbae4d6785f240c3b3b4a7355b54e479a364606fa98f207fc23a083b65",
+            "file": "projects/ds-ng/src/lib/components/bmb-calendar/common/bmb-calendar-schedule-cards/bmb-calendar-schedule-cards.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-calendar-schedule-cards",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-calendar-schedule-cards.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "event",
+                    "defaultValue": "{\n    title: '',\n    detail: '',\n    start: new Date().toISOString(),\n    end: new Date().toISOString(),\n    id: '',\n  }",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 24,
+                    "type": "Event",
+                    "decorators": []
+                },
+                {
+                    "name": "isPositionAbsolute",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 31,
+                    "type": "boolean",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onSelectEvent",
+                    "defaultValue": "new EventEmitter<EventClick>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 33,
+                    "type": "EventEmitter<EventClick>"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "getClassNames",
+                    "args": [
+                        {
+                            "name": "date",
+                            "type": "Event",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "isPositionAbsolute",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "string[]",
+                    "typeParameters": [],
+                    "line": 46,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "date",
+                            "type": "Event",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "isPositionAbsolute",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "getPosition",
+                    "args": [
+                        {
+                            "name": "date",
+                            "type": "Event",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "isPositionAbsolute",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 35,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "date",
+                            "type": "Event",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "isPositionAbsolute",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "handleSelectEvent",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "Event",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "domEvent",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 62,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "Event",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "domEvent",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "handleTimeRange",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "Event",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 69,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "Event",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {\n  Component,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n  Input,\n  Output,\n  EventEmitter,\n} from '@angular/core';\nimport { Event, EventClick } from '../../types';\nimport { DateTime } from 'luxon';\nimport { getTimeRange } from '../../utils';\nimport { CommonModule } from '@angular/common';\n\n@Component({\n  selector: 'bmb-calendar-schedule-cards',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './bmb-calendar-schedule-cards.component.html',\n  styleUrl: './bmb-calendar-schedule-cards.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbCalendarScheduleCardsComponent {\n  @Input() event: Event = {\n    title: '',\n    detail: '',\n    start: new Date().toISOString(),\n    end: new Date().toISOString(),\n    id: '',\n  };\n  @Input() isPositionAbsolute: boolean = true;\n\n  @Output() onSelectEvent: EventEmitter<EventClick> = new EventEmitter<EventClick>();\n\n  getPosition(date: Event, isPositionAbsolute: boolean): string {\n    if (!isPositionAbsolute) return '';\n\n    const start = DateTime.fromISO(date.start);\n    const end = DateTime.fromISO(date.end);\n    const startMin = (start.hour * 60) + start.minute;\n    const endMin = ((end.hour * 60) + end.minute) - startMin;\n\n    return `top: ${startMin + 60}px; height: ${endMin}px`;\n  }\n\n  getClassNames(date: Event, isPositionAbsolute: boolean): string[] {\n    let newClasses = [];\n    if (isPositionAbsolute) newClasses.push('bmb_calendar-event-absolute');\n    const start = DateTime.fromISO(date.start);\n    const end = DateTime.fromISO(date.end);\n    const diff = ((end.hour * 60) + end.minute) - ((start.hour * 60) + start.minute);\n\n    if (diff < 60) {\n      newClasses.push('bmb_calendar-event-grid-reduced');\n    } else {\n      newClasses.push('bmb_calendar-event-grid-full')\n    }\n\n    return newClasses;\n  }\n\n  handleSelectEvent(event: Event, domEvent: any) {\n    this.onSelectEvent.emit({\n      event: event,\n      position: domEvent.target.getBoundingClientRect().y,\n    });\n  }\n\n  handleTimeRange(event: Event): string {\n    return getTimeRange(event);\n  }\n}\n",
+            "styleUrl": "./bmb-calendar-schedule-cards.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<div\n  class=\"bmb_calendar-event\"\n  [ngClass]=\"getClassNames(event, isPositionAbsolute)\"\n  [style]=\"getPosition(event, isPositionAbsolute)\"\n  (click)=\"handleSelectEvent(event, $event)\"\n  title=\"{{event.title}} - {{event.detail}}\"\n>\n  <div class=\"bmb_calendar-event-indicator\"></div>\n  <h3 class=\"bmb_calendar-event-title\">\n    {{ event.title }}\n  </h3>\n  @if (isPositionAbsolute) {\n    <p class=\"bmb_calendar-event-content\">{{ event.detail }}</p>\n    <span class=\"bmb_calendar-event-time\">{{ handleTimeRange(event) }}</span>\n  }\n</div>\n"
+        },
+        {
+            "name": "BmbCalendarTemplateDayComponent",
+            "id": "component-BmbCalendarTemplateDayComponent-c780d1243ff0df1a2104f9fd0b9e6fa2ff4ec676342746a8c4caabfc61c5d879e3e8cec633d5ebbb6987f7abc98f7d50009434ed8d15c4795c3835ed42cdae1b",
+            "file": "projects/ds-ng/src/lib/components/bmb-calendar/common/bmb-calendar-template-day/bmb-calendar-template-day.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-bmb-calendar-template-day",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-calendar-template-day.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "events",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 33,
+                    "type": "Event[]",
+                    "decorators": []
+                },
+                {
+                    "name": "hourFormat",
+                    "defaultValue": "'12'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 31,
+                    "type": "HourFormat",
+                    "decorators": []
+                },
+                {
+                    "name": "lang",
+                    "defaultValue": "'es-MX'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 30,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "now",
+                    "defaultValue": "DateTime.now()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 32,
+                    "type": "DateTime",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onSelectEvent",
+                    "defaultValue": "new EventEmitter<EventClick>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 35,
+                    "type": "EventEmitter<EventClick>"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "rows",
+                    "defaultValue": "new Array(25).fill(0)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 37
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "getNameDay",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 39,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "handleEventSelection",
+                    "args": [
+                        {
+                            "name": "newEvent",
+                            "type": "EventClick",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 47,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "newEvent",
+                            "type": "EventClick",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "isNow",
+                    "args": [
+                        {
+                            "name": "date",
+                            "type": "DateTime",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "boolean",
+                    "typeParameters": [],
+                    "line": 51,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "date",
+                            "type": "DateTime",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "renderEvents",
+                    "args": [
+                        {
+                            "name": "events",
+                            "type": "IRenderEvents",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "any[]",
+                    "typeParameters": [],
+                    "line": 43,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "events",
+                            "type": "IRenderEvents",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "BmbCalendarHourViewComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "BmbCalendarScheduleCardsComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n  Output,\n  EventEmitter,\n} from '@angular/core';\nimport { BmbCalendarHourViewComponent } from '../bmb-calendar-hour-view/bmb-calendar-hour-view.component';\nimport { CommonModule } from '@angular/common';\nimport { HourFormat, Event, IRenderEvents, EventClick } from '../../types';\nimport { DateTime } from 'luxon';\nimport { BmbCalendarScheduleCardsComponent } from '../bmb-calendar-schedule-cards/bmb-calendar-schedule-cards.component';\nimport { eventsInDate } from '../../utils';\n\n@Component({\n  selector: 'bmb-bmb-calendar-template-day',\n  standalone: true,\n  imports: [\n    CommonModule,\n    BmbCalendarHourViewComponent,\n    BmbCalendarScheduleCardsComponent,\n  ],\n  templateUrl: './bmb-calendar-template-day.component.html',\n  styleUrl: './bmb-calendar-template-day.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbCalendarTemplateDayComponent {\n  @Input() lang: string = 'es-MX';\n  @Input() hourFormat: HourFormat = '12';\n  @Input() now: DateTime = DateTime.now();\n  @Input() events: Event[] = [];\n\n  @Output() onSelectEvent: EventEmitter<EventClick> = new EventEmitter<EventClick>();\n\n  rows = new Array(25).fill(0);\n\n  getNameDay(): string {\n    return this.now.toFormat('cccc', { locale: this.lang });\n  }\n\n  renderEvents(events: IRenderEvents): any[] {\n    return eventsInDate(events);\n  }\n\n  handleEventSelection(newEvent: EventClick) {\n    this.onSelectEvent.emit(newEvent);\n  }\n\n  isNow(date: DateTime): boolean {\n    const diff = date.diffNow('day').days;\n    return diff < 0 && diff > -1;\n  }\n}\n",
+            "styleUrl": "./bmb-calendar-template-day.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<div class=\"bmb_calendar-day-view\">\n  <bmb-calendar-hour-view\n    [hourFormat]=\"hourFormat\"\n  />\n  <section class=\"bmb_calendar-col\" [ngClass]=\"{'bmb_calendar-col-today': isNow(now)}\">\n    <header class=\"bmb_calendar-detail-header\">\n      <h2>{{ getNameDay() }}</h2>\n      <span>{{ now.month }}/{{ now.day }}</span>\n    </header>\n    <div class=\"bmb_calendar-body\">\n      @for (row of rows; track $index) {\n        <div class=\"bmb_calendar-row-body\"></div>\n      }\n      @for (event of renderEvents({ date: now, events }); track $index) {\n        <bmb-calendar-schedule-cards\n          [event]=\"event\"\n          (onSelectEvent)=\"handleEventSelection($event)\"\n        >Event</bmb-calendar-schedule-cards>\n      }\n    </div>\n  </section>\n</div>\n"
+        },
+        {
+            "name": "BmbCalendarTemplateEventComponent",
+            "id": "component-BmbCalendarTemplateEventComponent-c3afce80b9fc6b3c2bb33c842036c53ac2023c9efff6a242bd275ac321c6360e112dcb9a89d5cc04ed12bba35c27063d63caca7add713b7fd5d245b350780cb4",
+            "file": "projects/ds-ng/src/lib/components/bmb-calendar/common/bmb-calendar-template-event/bmb-calendar-template-event.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-calendar-template-event",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-calendar-template-event.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "event",
+                    "defaultValue": "null",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 20,
+                    "type": "EventClick | null",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "closeModal",
+                    "defaultValue": "new EventEmitter<null>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 22,
+                    "type": "EventEmitter<>"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "getDateString",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "Event | null | undefined",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 28,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "Event | null | undefined",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "getPosition",
+                    "args": [
+                        {
+                            "name": "position",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 24,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "position",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "handleCloseModal",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 40,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "handleTimeRange",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "Event | null | undefined",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 35,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "Event | null | undefined",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "BmbButtonDirective",
+                    "type": "directive"
+                },
+                {
+                    "name": "BmbIconComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "BmbBadgeComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';\nimport { EventClick, Event } from '../../types';\nimport { CommonModule } from '@angular/common';\nimport { BmbButtonDirective } from '../../../../directives/button.directive';\nimport { BmbIconComponent } from '../../../bmb-icon/bmb-icon.component';\nimport { DateTime } from 'luxon';\nimport { BmbBadgeComponent } from '../../../bmb-badge/bmb-badge.component';\nimport { getTimeRange } from '../../utils';\n\n@Component({\n  selector: 'bmb-calendar-template-event',\n  standalone: true,\n  imports: [CommonModule, BmbButtonDirective, BmbIconComponent, BmbBadgeComponent],\n  templateUrl: './bmb-calendar-template-event.component.html',\n  styleUrl: './bmb-calendar-template-event.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbCalendarTemplateEventComponent {\n  @Input() event: EventClick | null = null;\n\n  @Output() closeModal: EventEmitter<null> = new EventEmitter<null>();\n\n  getPosition(position: any): string {\n    return `top: ${position}px`\n  }\n\n  getDateString(event: Event | null | undefined ): string {\n    if (!event) return '00:00';\n    const start = DateTime.fromISO(event.start);\n\n    return start.toFormat('hh:mm');\n  }\n\n  handleTimeRange(event: Event | null | undefined): string {\n    if (!event) return '';\n    return getTimeRange(event);\n  }\n\n  handleCloseModal() {\n    this.closeModal.emit(null)\n  }\n}\n",
+            "styleUrl": "./bmb-calendar-template-event.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<dialog open class=\"bmb_calendar-event-modal\">\n  <div class=\"bmb_calendar-event-modal-body\">\n    <header class=\"bmb_calendar-event-modal-header\">\n      <span class=\"bmb_calendar-event-modal-header-time\">\n        {{ getDateString(event?.event) }}\n      </span>\n      <h1 class=\"bmb_calendar-event-modal-header-title\">{{ event?.event?.title }}</h1>\n      <button bmbButton (click)=\"handleCloseModal()\">\n        <bmb-icon [icon]=\"'close'\" />\n      </button>\n    </header>\n    <p class=\"bmb_calendar-event-modal-content\">{{ event?.event?.detail }}</p>\n    <footer class=\"bmb_calendar-event-modal-footer\">\n      <bmb-badge appearance=\"strong\" text=\"In progress\" />\n      <span class=\"bmb_calendar-event-modal-footer-time\">\n        {{ handleTimeRange(event?.event) }}\n      </span>\n    </footer>\n  </div>\n</dialog>\n"
+        },
+        {
+            "name": "BmbCalendarTemplateMonthComponent",
+            "id": "component-BmbCalendarTemplateMonthComponent-bb459e9a3fcf6d90fed68b91aee4be335cfa0d43931b5f9efe03c35b9ee5fcdb6f321645abdca2041e0bbc4030df52a7026c5db0502431188ea9ed5769d50ef4",
+            "file": "projects/ds-ng/src/lib/components/bmb-calendar/common/bmb-calendar-template-month/bmb-calendar-template-month.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-calendar-template-month",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-calendar-template-month.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "events",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 29,
+                    "type": "Event[]",
+                    "decorators": []
+                },
+                {
+                    "name": "hourFormat",
+                    "defaultValue": "'12'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 26,
+                    "type": "HourFormat",
+                    "decorators": []
+                },
+                {
+                    "name": "lang",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 28,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "now",
+                    "defaultValue": "DateTime.now()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 27,
+                    "type": "DateTime",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onSelectEvent",
+                    "defaultValue": "new EventEmitter<EventClick>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 31,
+                    "type": "EventEmitter<EventClick>"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "getDayName",
+                    "args": [
+                        {
+                            "name": "date",
+                            "type": "DateTime",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 45,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "date",
+                            "type": "DateTime",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "getWeeksAndDays",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "DateTime[]",
+                    "typeParameters": [],
+                    "line": 33,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "handleEventSelection",
+                    "args": [
+                        {
+                            "name": "newEvent",
+                            "type": "EventClick",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 55,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "newEvent",
+                            "type": "EventClick",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "isNow",
+                    "args": [
+                        {
+                            "name": "date",
+                            "type": "DateTime",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "boolean",
+                    "typeParameters": [],
+                    "line": 50,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "date",
+                            "type": "DateTime",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "renderEvents",
+                    "args": [
+                        {
+                            "name": "events",
+                            "type": "IRenderEvents",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "any[]",
+                    "typeParameters": [],
+                    "line": 59,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "events",
+                            "type": "IRenderEvents",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "BmbCalendarHourViewComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "BmbCalendarScheduleCardsComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n  Output,\n  EventEmitter\n} from '@angular/core';\nimport { BmbCalendarHourViewComponent } from '../bmb-calendar-hour-view/bmb-calendar-hour-view.component';\nimport { HourFormat, Event, EventClick, IRenderEvents } from '../../types';\nimport { DateTime, Info } from 'luxon';\nimport { getWeekDays, eventsInDate } from '../../utils';\nimport { CommonModule } from '@angular/common';\nimport { BmbCalendarScheduleCardsComponent } from '../bmb-calendar-schedule-cards/bmb-calendar-schedule-cards.component';\n\n@Component({\n  selector: 'bmb-calendar-template-month',\n  standalone: true,\n  imports: [CommonModule, BmbCalendarHourViewComponent, BmbCalendarScheduleCardsComponent],\n  templateUrl: './bmb-calendar-template-month.component.html',\n  styleUrl: './bmb-calendar-template-month.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbCalendarTemplateMonthComponent {\n  @Input() hourFormat: HourFormat = '12';\n  @Input() now: DateTime = DateTime.now();\n  @Input() lang: string = '';\n  @Input() events: Event[] = [];\n\n  @Output() onSelectEvent: EventEmitter<EventClick> = new EventEmitter<EventClick>();\n\n  getWeeksAndDays(): DateTime[] {\n    const calculateFirstDay = getWeekDays(this.now);\n\n    let weekDays = [];\n\n    for (let day = 0; day <= 34; day++) {\n      weekDays.push(calculateFirstDay[0].plus({ days: day }));\n    }\n\n    return weekDays;\n  }\n\n  getDayName(date: DateTime): string {\n    const defaultDayOrder = Info.weekdays('short', {locale: this.lang});\n    return defaultDayOrder[date.weekday - 1];\n  }\n\n  isNow(date: DateTime): boolean {\n    const diff = date.diffNow('day').days;\n    return diff < 0 && diff > -1;\n  }\n\n  handleEventSelection(newEvent: EventClick) {\n    this.onSelectEvent.emit(newEvent);\n  }\n\n  renderEvents(events: IRenderEvents): any[] {\n    return eventsInDate(events);\n  }\n}\n",
+            "styleUrl": "./bmb-calendar-template-month.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<div class=\"bmb_calendar-month-view\">\n  @for (day of getWeeksAndDays(); track $index) {\n    <div class=\"bmb_calendar-month-view-day\" [ngClass]=\"{'bmb_calendar-col-today': isNow(day)}\">\n      <span class=\"bmb_calendar-month-view-day-legend\">\n        <span class=\"bmb_calendar-month-view-day-name\">{{ getDayName(day) }}</span>\n        {{ day.month }}/{{ day.day }}\n      </span>\n      @for (event of renderEvents({ date: day, events }); track $index) {\n        <bmb-calendar-schedule-cards\n          [event]=\"event\"\n          (onSelectEvent)=\"handleEventSelection($event)\"\n          [isPositionAbsolute]=\"false\"\n        >Event</bmb-calendar-schedule-cards>\n      }\n    </div>\n  }\n</div>\n"
+        },
+        {
+            "name": "BmbCalendarTemplateWeekComponent",
+            "id": "component-BmbCalendarTemplateWeekComponent-3269c90a2f06b497b1739a3b21f919a7b68c46edc835a43e85c134dd80894e7998d3c51cddbaef18ffcb1ceb4fbad0bf19a6cff45a641615038fabef75b81825",
+            "file": "projects/ds-ng/src/lib/components/bmb-calendar/common/bmb-calendar-template-week/bmb-calendar-template-week.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-calendar-template-week",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-calendar-template-week.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "events",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 32,
+                    "type": "Event[]",
+                    "decorators": []
+                },
+                {
+                    "name": "hourFormat",
+                    "defaultValue": "'12'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 30,
+                    "type": "HourFormat",
+                    "decorators": []
+                },
+                {
+                    "name": "lang",
+                    "defaultValue": "'es-MX'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 29,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "now",
+                    "defaultValue": "DateTime.now()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 31,
+                    "type": "DateTime",
+                    "decorators": []
+                },
+                {
+                    "name": "weekDays",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 28,
+                    "type": "any[]",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onSelectEvent",
+                    "defaultValue": "new EventEmitter<EventClick>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 34,
+                    "type": "EventEmitter<EventClick>"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "dayNames",
+                    "defaultValue": "orderDayNames(this.defaultDayOrder)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 38
+                },
+                {
+                    "name": "defaultDayOrder",
+                    "defaultValue": "Info.weekdays('short', {locale: this.lang})",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 36
+                },
+                {
+                    "name": "rows",
+                    "defaultValue": "new Array(25).fill(0)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 40
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "handleEventSelection",
+                    "args": [
+                        {
+                            "name": "newEvent",
+                            "type": "EventClick",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 51,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "newEvent",
+                            "type": "EventClick",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "isNow",
+                    "args": [
+                        {
+                            "name": "date",
+                            "type": "DateTime",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "boolean",
+                    "typeParameters": [],
+                    "line": 42,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "date",
+                            "type": "DateTime",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "renderEvents",
+                    "args": [
+                        {
+                            "name": "events",
+                            "type": "IRenderEvents",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "any[]",
+                    "typeParameters": [],
+                    "line": 47,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "events",
+                            "type": "IRenderEvents",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "BmbCalendarHourViewComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "BmbCalendarScheduleCardsComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n  Output,\n  EventEmitter,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { Info, DateTime } from 'luxon';\nimport { HourFormat, Event, EventClick, IRenderEvents } from '../../types';\nimport { BmbCalendarHourViewComponent } from '../bmb-calendar-hour-view/bmb-calendar-hour-view.component';\nimport { orderDayNames, eventsInDate } from '../../utils';\nimport { BmbCalendarScheduleCardsComponent } from '../bmb-calendar-schedule-cards/bmb-calendar-schedule-cards.component';\n\n\n\n@Component({\n  selector: 'bmb-calendar-template-week',\n  standalone: true,\n  imports: [CommonModule, BmbCalendarHourViewComponent, BmbCalendarScheduleCardsComponent],\n  templateUrl: './bmb-calendar-template-week.component.html',\n  styleUrl: './bmb-calendar-template-week.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbCalendarTemplateWeekComponent {\n  @Input() weekDays: any[] = [];\n  @Input() lang: string = 'es-MX';\n  @Input() hourFormat: HourFormat = '12';\n  @Input() now: DateTime = DateTime.now();\n  @Input() events: Event[] = [];\n\n  @Output() onSelectEvent: EventEmitter<EventClick> = new EventEmitter<EventClick>();\n\n  defaultDayOrder = Info.weekdays('short', {locale: this.lang});\n\n  dayNames = orderDayNames(this.defaultDayOrder);\n\n  rows = new Array(25).fill(0);\n\n  isNow(date: DateTime): boolean {\n    const diff = date.diffNow('day').days;\n    return diff < 0 && diff > -1;\n  }\n\n  renderEvents(events: IRenderEvents): any[] {\n    return eventsInDate(events);\n  }\n\n  handleEventSelection(newEvent: EventClick) {\n    this.onSelectEvent.emit(newEvent);\n  }\n}\n",
+            "styleUrl": "./bmb-calendar-template-week.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<div class=\"bmb_calendar-week-view\">\n  <bmb-calendar-hour-view\n    [hourFormat]=\"hourFormat\"\n  />\n  @for (day of dayNames; track $index) {\n    <section class=\"bmb_calendar-col\" [ngClass]=\"{'bmb_calendar-col-today': isNow(weekDays[$index])}\">\n      <header class=\"bmb_calendar-detail-header\">\n        <h2>{{ day }}</h2>\n        <span>{{ weekDays[$index].month }}/{{ weekDays[$index].day }}</span>\n      </header>\n      <div class=\"bmb_calendar-body\">\n        @for (row of rows; track $index) {\n          <div class=\"bmb_calendar-row-body\"></div>\n        }\n        @for (event of renderEvents({ date: weekDays[$index], events }); track $index) {\n          <bmb-calendar-schedule-cards\n            [event]=\"event\"\n            (onSelectEvent)=\"handleEventSelection($event)\"\n          >Event</bmb-calendar-schedule-cards>\n        }\n      </div>\n    </section>\n  }\n</div>\n"
+        },
+        {
             "name": "BmbCheckboxComponent",
-            "id": "component-BmbCheckboxComponent-1b672cf18cc3a5a5761447b21480283f82d62141c8a99bceb090bdd1bd72252f6262db6e36e68f2e487d373c2f6e39c72070db1d4fbbfd25d94d16123d2cf46b",
+            "id": "component-BmbCheckboxComponent-9560ee90693508ae9d051a6040000185ff25a4c5b175345e6861b3a4ae011b4f6d6704768aded56e3cf23a11da8ab1638feac45bec5ae18338053d67df44609d",
             "file": "projects/ds-ng/src/lib/components/bmb-checkbox/bmb-checkbox.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -816,7 +2565,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 29,
+                    "line": 30,
                     "type": "string",
                     "decorators": []
                 },
@@ -825,7 +2574,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 30,
+                    "line": 31,
                     "type": "string",
                     "decorators": []
                 },
@@ -834,7 +2583,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 31,
+                    "line": 32,
                     "type": "string",
                     "decorators": []
                 },
@@ -879,7 +2628,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 27,
+                    "line": 28,
                     "type": "string",
                     "decorators": []
                 },
@@ -888,7 +2637,7 @@
                     "defaultValue": "'after'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 28,
+                    "line": 29,
                     "type": "\"before\" | \"after\"",
                     "decorators": []
                 },
@@ -897,8 +2646,17 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 26,
+                    "line": 27,
                     "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "required",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 25,
+                    "type": "boolean",
                     "decorators": []
                 },
                 {
@@ -906,7 +2664,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 25,
+                    "line": 26,
                     "type": "string",
                     "decorators": []
                 }
@@ -914,11 +2672,11 @@
             "outputsClass": [
                 {
                     "name": "change",
-                    "defaultValue": "new EventEmitter<boolean>()",
+                    "defaultValue": "new EventEmitter<Event>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 33,
-                    "type": "EventEmitter<boolean>"
+                    "line": 34,
+                    "type": "EventEmitter<Event>"
                 }
             ],
             "propertiesClass": [],
@@ -936,7 +2694,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 35,
+                    "line": 36,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -964,7 +2722,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 41,
+                    "line": 43,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -994,17 +2752,17 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\n  Component,\n  EventEmitter,\n  Input,\n  Output,\n  ViewEncapsulation,\n  ChangeDetectionStrategy,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n@Component({\n  selector: 'bmb-checkbox',\n  templateUrl: './bmb-checkbox.component.html',\n  styleUrls: ['./bmb-checkbox.component.scss'],\n  standalone: true,\n  imports: [CommonModule],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbCheckboxComponent {\n  @Input() id: string = '';\n  @Input() checked: boolean = false;\n  @Input() disabled: boolean = false;\n  @Input() indeterminate: boolean = false;\n  @Input() value: string = '';\n  @Input() name: string = '';\n  @Input() label: string = '';\n  @Input() labelPosition: 'before' | 'after' = 'after';\n  @Input() ariaDescribedby: string = '';\n  @Input() ariaLabel: string = '';\n  @Input() ariaLabelledby: string = '';\n\n  @Output() change: EventEmitter<boolean> = new EventEmitter<boolean>();\n\n  handleChange(event: Event) {\n    const isChecked = (event.target as HTMLInputElement).checked;\n    this.checked = isChecked;\n    this.change.emit(isChecked);\n  }\n\n  handleKeyDown(event: KeyboardEvent) {\n    if (event.key === 'Enter') {\n      if (this.indeterminate) {\n        this.indeterminate = false;\n        this.checked = true;\n      } else {\n        this.checked = !this.checked;\n      }\n\n      event.preventDefault();\n      this.change.emit(this.checked);\n    }\n  }\n}\n",
+            "sourceCode": "import {\n  Component,\n  EventEmitter,\n  Input,\n  Output,\n  ViewEncapsulation,\n  ChangeDetectionStrategy,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n@Component({\n  selector: 'bmb-checkbox',\n  templateUrl: './bmb-checkbox.component.html',\n  styleUrls: ['./bmb-checkbox.component.scss'],\n  standalone: true,\n  imports: [CommonModule],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbCheckboxComponent {\n  @Input() id: string = '';\n  @Input() checked: boolean = false;\n  @Input() disabled: boolean = false;\n  @Input() indeterminate: boolean = false;\n  @Input() required: boolean = false;\n  @Input() value: string = '';\n  @Input() name: string = '';\n  @Input() label: string = '';\n  @Input() labelPosition: 'before' | 'after' = 'after';\n  @Input() ariaDescribedby: string = '';\n  @Input() ariaLabel: string = '';\n  @Input() ariaLabelledby: string = '';\n\n  @Output() change: EventEmitter<Event> = new EventEmitter<Event>();\n\n  handleChange(event: Event): void {\n    const target = event.target as HTMLInputElement;\n    this.checked = target.checked;\n    this.change.emit(event);\n    event.stopPropagation();\n  }\n\n  handleKeyDown(event: KeyboardEvent) {\n    if (event.key === 'Enter') {\n      if (this.indeterminate) {\n        this.indeterminate = false;\n        this.checked = true;\n      } else {\n        this.checked = !this.checked;\n      }\n\n      event.preventDefault();\n      this.change.emit(event);\n    }\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@use \"../../../assets/styles/base/fonts\" as fonts;\n@use \"../../../assets/styles/base/mixins\" as mixins;\n@use \"../../../assets/styles/base/rem\" as rem;\n\n.bmb_checkbox {\n  align-items: center;\n  display: flex;\n  gap: rem.rem_calc(8);\n  position: relative;\n\n  input[type=\"checkbox\"] {\n    cursor: pointer;\n    height: rem.rem_calc(42);\n    margin: 0;\n    opacity: 0;\n    padding: 0;\n    position: absolute;\n    width: 100%;\n    z-index: 1;\n\n    &:hover {\n      + .bmb_checkbox-box {\n        background-color: RGBA(var(--color-blue-primary), 0.1);\n      }\n    }\n\n    &:focus {\n      + .bmb_checkbox-box {\n        background-color: RGBA(var(--color-blue-primary), 0.2);\n      }\n    }\n\n    &:checked {\n      + .bmb_checkbox-box {\n        .bmb_checkbox-mark {\n          background-color: RGBA(var(--color-blue-primary));\n          border-color: RGBA(var(--color-blue-primary));\n\n          &::after {\n            border: solid RGBA(var(--color-white-primary));\n            border-width: rem.rem_calc(0 2 2 0);\n            display: block;\n            height: rem.rem_calc(10);\n            left: rem.rem_calc(5);\n            transform: rotate(45deg);\n            width: rem.rem_calc(4);\n          }\n        }\n      }\n    }\n\n    &:indeterminate {\n      + .bmb_checkbox-box {\n        .bmb_checkbox-mark {\n          background-color: RGBA(var(--color-blue-primary));\n          border-color: RGBA(var(--color-blue-primary));\n\n          &::after {\n            background-color: RGBA(var(--color-white-primary));\n            bottom: 0;\n            display: block;\n            height: rem.rem_calc(2);\n            left: 0;\n            margin: auto;\n            right: 0;\n            top: 0;\n            width: rem.rem_calc(10);\n          }\n        }\n      }\n    }\n\n    &:disabled {\n      cursor: not-allowed;\n\n      + .bmb_checkbox-box {\n        .bmb_checkbox-mark {\n          opacity: 0.5;\n        }\n      }\n      &:hover {\n        + .bmb_checkbox-box {\n          background-color: transparent;\n        }\n      }\n    }\n  }\n\n  &-box {\n    align-items: center;\n    border-radius: 100%;\n    display: flex;\n    height: rem.rem_calc(42);\n    justify-content: center;\n    width: rem.rem_calc(42);\n  }\n\n  &-mark {\n    background-color: transparent;\n    border: rem.rem_calc(1) solid RGBA(var(--color-charade-700));\n    border-radius: rem.rem_calc(4);\n    display: inline-block;\n    height: rem.rem_calc(18);\n    position: relative;\n    width: rem.rem_calc(18);\n\n    &::after {\n      content: \"\";\n      display: none;\n      position: absolute;\n    }\n  }\n\n  &-label {\n    color: RGBA(var(--color-charade-950));\n    flex: 1;\n    overflow: hidden;\n    padding-right: rem.rem_calc(10);\n    text-overflow: ellipsis;\n    white-space: nowrap;\n    @include fonts.font(4, medium);\n  }\n}\n\n[data-theme=\"dark\"],\n.storybook-dark-theme {\n  .bmb_checkbox {\n    input[type=\"checkbox\"] {\n      &:hover {\n        + .bmb_checkbox-box {\n          background-color: RGBA(var(--color-green-light), 0.1);\n        }\n      }\n\n      &:focus {\n        + .bmb_checkbox-box {\n          background-color: RGBA(var(--color-green-light), 0.2);\n        }\n      }\n\n      &:checked {\n        + .bmb_checkbox-box {\n          .bmb_checkbox-mark {\n            background-color: RGBA(var(--color-green-light));\n            border-color: RGBA(var(--color-green-light));\n          }\n        }\n      }\n\n      &:indeterminate {\n        + .bmb_checkbox-box {\n          .bmb_checkbox-mark {\n            background-color: RGBA(var(--color-green-light));\n            border-color: RGBA(var(--color-green-light));\n          }\n        }\n      }\n    }\n\n    &-mark {\n      border: rem.rem_calc(1) solid RGBA(var(--color-charade-200));\n    }\n\n    &-label {\n      color: RGBA(var(--color-charade-50));\n    }\n  }\n}\n",
+                    "data": "@use \"../../../assets/styles/base/fonts\" as fonts;\n@use \"../../../assets/styles/base/mixins\" as mixins;\n@use \"../../../assets/styles/base/rem\" as rem;\n\n.bmb_checkbox {\n  align-items: center;\n  display: flex;\n  gap: rem.rem_calc(8);\n  position: relative;\n  width: fit-content;\n\n  input[type=\"checkbox\"] {\n    cursor: pointer;\n    height: rem.rem_calc(42);\n    margin: 0;\n    opacity: 0;\n    padding: 0;\n    position: absolute;\n    width: 100%;\n    z-index: 1;\n\n    &:hover {\n      + .bmb_checkbox-box {\n        background-color: RGBA(var(--color-blue-primary), 0.1);\n      }\n    }\n\n    &:focus {\n      + .bmb_checkbox-box {\n        background-color: RGBA(var(--color-blue-primary), 0.2);\n      }\n    }\n\n    &:checked {\n      + .bmb_checkbox-box {\n        .bmb_checkbox-mark {\n          background-color: RGBA(var(--color-blue-primary));\n          border-color: RGBA(var(--color-blue-primary));\n\n          &::after {\n            border: solid RGBA(var(--color-white-primary));\n            border-width: rem.rem_calc(0 2 2 0);\n            display: block;\n            height: rem.rem_calc(10);\n            left: rem.rem_calc(4);\n            transform: rotate(45deg);\n            width: rem.rem_calc(4);\n          }\n        }\n      }\n    }\n\n    &:indeterminate {\n      + .bmb_checkbox-box {\n        .bmb_checkbox-mark {\n          background-color: RGBA(var(--color-blue-primary));\n          border-color: RGBA(var(--color-blue-primary));\n\n          &::after {\n            background-color: RGBA(var(--color-white-primary));\n            bottom: 0;\n            display: block;\n            height: rem.rem_calc(2);\n            left: 0;\n            margin: auto;\n            right: 0;\n            top: 0;\n            width: rem.rem_calc(10);\n          }\n        }\n      }\n    }\n\n    &:disabled {\n      cursor: not-allowed;\n\n      + .bmb_checkbox-box {\n        .bmb_checkbox-mark {\n          opacity: 0.5;\n        }\n      }\n      &:hover {\n        + .bmb_checkbox-box {\n          background-color: transparent;\n        }\n      }\n    }\n  }\n\n  &-box {\n    align-items: center;\n    border-radius: 100%;\n    display: flex;\n    height: rem.rem_calc(42);\n    justify-content: center;\n    width: rem.rem_calc(42);\n  }\n\n  &-mark {\n    background-color: transparent;\n    border: rem.rem_calc(2) solid RGBA(var(--color-charade-700));\n    border-radius: rem.rem_calc(4);\n    display: inline-block;\n    height: rem.rem_calc(18);\n    position: relative;\n    width: rem.rem_calc(18);\n\n    &::after {\n      content: \"\";\n      display: none;\n      position: absolute;\n    }\n  }\n\n  &-label {\n    color: RGBA(var(--color-charade-950));\n    flex: 1;\n    overflow: hidden;\n    padding-right: rem.rem_calc(10);\n    text-overflow: ellipsis;\n    white-space: nowrap;\n    @include fonts.font(4, medium);\n  }\n\n  &-before {\n    .bmb_checkbox-label {\n      order: 1;\n    }\n    .bmb_checkbox-box {\n      order: 2;\n    }\n  }\n}\n\n[data-theme=\"dark\"],\n.storybook-dark-theme {\n  .bmb_checkbox {\n    input[type=\"checkbox\"] {\n      &:hover {\n        + .bmb_checkbox-box {\n          background-color: RGBA(var(--color-green-light), 0.1);\n        }\n      }\n\n      &:focus {\n        + .bmb_checkbox-box {\n          background-color: RGBA(var(--color-green-light), 0.2);\n        }\n      }\n\n      &:checked {\n        + .bmb_checkbox-box {\n          .bmb_checkbox-mark {\n            background-color: RGBA(var(--color-green-light));\n            border-color: RGBA(var(--color-green-light));\n          }\n        }\n      }\n\n      &:indeterminate {\n        + .bmb_checkbox-box {\n          .bmb_checkbox-mark {\n            background-color: RGBA(var(--color-green-light));\n            border-color: RGBA(var(--color-green-light));\n          }\n        }\n      }\n    }\n\n    &-mark {\n      border-color: RGBA(var(--color-charade-200));\n    }\n\n    &-label {\n      color: RGBA(var(--color-charade-50));\n    }\n  }\n}\n",
                     "styleUrl": "./bmb-checkbox.component.scss"
                 }
             ],
             "stylesData": "",
             "extends": [],
-            "templateData": "<label\n  [attr.for]=\"id\"\n  class=\"bmb_checkbox\"\n  [class.bmb_checkbox-before]=\"labelPosition === 'before'\"\n  [class.bmb_checkbox-after]=\"labelPosition === 'after'\"\n>\n  <input\n    type=\"checkbox\"\n    [id]=\"id\"\n    [attr.aria-describedby]=\"ariaDescribedby\"\n    [attr.aria-label]=\"ariaLabel\"\n    [attr.aria-labelledby]=\"ariaLabelledby\"\n    [attr.name]=\"name\"\n    [attr.value]=\"value\"\n    [checked]=\"checked\"\n    [disabled]=\"disabled\"\n    [indeterminate]=\"indeterminate\"\n    (change)=\"handleChange($event)\"\n    (keydown)=\"handleKeyDown($event)\"\n  />\n  <div class=\"bmb_checkbox-box\">\n    <span class=\"bmb_checkbox-mark\"></span>\n  </div>\n  @if (label) {\n  <span class=\"bmb_checkbox-label\">{{ label }}</span>\n  }\n</label>\n"
+            "templateData": "<label\n  [attr.for]=\"id\"\n  class=\"bmb_checkbox\"\n  [class.bmb_checkbox-before]=\"labelPosition === 'before'\"\n  [class.bmb_checkbox-after]=\"labelPosition === 'after'\"\n  [class.bmb_checkbox-required]=\"required\"\n>\n  <input\n    type=\"checkbox\"\n    [id]=\"id\"\n    [attr.aria-describedby]=\"ariaDescribedby\"\n    [attr.aria-label]=\"ariaLabel\"\n    [attr.aria-labelledby]=\"ariaLabelledby\"\n    [attr.name]=\"name\"\n    [attr.value]=\"value\"\n    [checked]=\"checked\"\n    [disabled]=\"disabled\"\n    [required]=\"required\"\n    [indeterminate]=\"indeterminate\"\n    (change)=\"handleChange($event)\"\n    (keydown)=\"handleKeyDown($event)\"\n  />\n  <div class=\"bmb_checkbox-box\">\n    <span class=\"bmb_checkbox-mark\"></span>\n  </div>\n  @if (label) {\n  <span class=\"bmb_checkbox-label\">{{ label }}</span>\n  }\n</label>\n"
         },
         {
             "name": "BmbChevronTitleSelectorComponent",
@@ -3439,6 +5197,224 @@
             "templateData": "<div class=\"bmb_progress_circle\">\n    <svg class=\"bmb_progress_circle-svg\" width=\"170\" height=\"170\" viewBox=\"0 0 170 170\">\n      <circle class=\"bmb_progress_circle-svg-meter\" cx=\"84\" cy=\"84\" [attr.r]=\"radius\" stroke-width=\"5\" />\n      <circle class=\"bmb_progress_circle-svg-value\" [style.strokeDasharray]=\"circunference\" [style.strokeDashoffset]=\"dashoffset\"\n        cx=\"84\" cy=\"84\" [attr.r]=\"radius\" stroke-width=\"5\" />\n    </svg>\n\n    <div class=\"bmb_progress_circle-info\">\n      @if (title) {\n        <div class=\"bmb_progress_circle-info-title\">\n          <ng-container >{{title}}</ng-container>\n        </div>  \n\n      }\n      <div class=\"bmb_progress_circle-info-value\" [ngClass]=\"{'bmb_progress_circle-info-value-alone': this.title !== undefined}\">\n        {{valueLabel}}\n      </div>\n    </div>\n  </div>\n"
         },
         {
+            "name": "BmbRadialComponent",
+            "id": "component-BmbRadialComponent-371aff7326f329b0ce55715b63f0938a641a086f80cae3769fbc81ab36a71bc64295142d7b4f087141d7edc4216b8d41cb27b2183e79da4127a7b7bf4e07f8c7",
+            "file": "projects/ds-ng/src/lib/components/bmb-radial/bmb-radial.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-radial",
+            "styleUrls": [
+                "./bmb-radial.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-radial.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "ariaDescribedby",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 28,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "ariaLabel",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 29,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "ariaLabelledby",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 30,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "checked",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 22,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "disabled",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 23,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "id",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 21,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "label",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 26,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "labelPosition",
+                    "defaultValue": "'after'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 27,
+                    "type": "\"before\" | \"after\"",
+                    "decorators": []
+                },
+                {
+                    "name": "name",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 25,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "required",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 31,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "value",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 24,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "change",
+                    "defaultValue": "new EventEmitter<HTMLInputElement>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 33,
+                    "type": "EventEmitter<HTMLInputElement>"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "handleChange",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "Event",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 36,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "Event",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "handleKeyDown",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "KeyboardEvent",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 44,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "KeyboardEvent",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {\n  Component,\n  EventEmitter,\n  Input,\n  Output,\n  ViewEncapsulation,\n  ChangeDetectionStrategy,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n@Component({\n  selector: 'bmb-radial',\n  templateUrl: './bmb-radial.component.html',\n  styleUrls: ['./bmb-radial.component.scss'],\n  standalone: true,\n  imports: [CommonModule],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbRadialComponent {\n  @Input() id: string = '';\n  @Input() checked: boolean = false;\n  @Input() disabled: boolean = false;\n  @Input() value: string = '';\n  @Input() name: string = '';\n  @Input() label: string = '';\n  @Input() labelPosition: 'before' | 'after' = 'after';\n  @Input() ariaDescribedby: string = '';\n  @Input() ariaLabel: string = '';\n  @Input() ariaLabelledby: string = '';\n  @Input() required: boolean = false;\n\n  @Output() change: EventEmitter<HTMLInputElement> =\n    new EventEmitter<HTMLInputElement>();\n\n  handleChange(event: Event) {\n    const target = event.target as HTMLInputElement | null;\n    if (target && target.checked) {\n      this.change.emit(target);\n    }\n    event.stopPropagation();\n  }\n\n  handleKeyDown(event: KeyboardEvent) {\n    const target = event.target as HTMLInputElement | null;\n\n    if (event.key === 'Enter' && target && !target.checked) {\n      target.checked = true;\n      this.change.emit(target);\n      event.preventDefault();\n      event.stopPropagation();\n    }\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@use \"../../../assets/styles/base/fonts\" as fonts;\n@use \"../../../assets/styles/base/mixins\" as mixins;\n@use \"../../../assets/styles/base/rem\" as rem;\n\n.bmb_radial {\n  align-items: center;\n  display: flex;\n  gap: rem.rem_calc(8);\n  position: relative;\n  width: fit-content;\n\n  input[type=\"radio\"] {\n    cursor: pointer;\n    height: rem.rem_calc(42);\n    margin: 0;\n    opacity: 0;\n    padding: 0;\n    position: absolute;\n    width: 100%;\n    z-index: 1;\n\n    &:hover {\n      + .bmb_radial-box {\n        background-color: RGBA(var(--color-blue-primary), 0.1);\n      }\n    }\n\n    &:focus {\n      + .bmb_radial-box {\n        background-color: RGBA(var(--color-blue-primary), 0.2);\n      }\n    }\n\n    &:checked {\n      + .bmb_radial-box {\n        .bmb_radial-mark {\n          border-color: RGBA(var(--color-blue-primary));\n\n          &::after {\n            background-color: RGBA(var(--color-blue-primary));\n            border-radius: 100%;\n            bottom: 0;\n            display: block;\n            height: rem.rem_calc(8);\n            left: 0;\n            right: 0;\n            top: 0;\n            margin: auto;\n            width: rem.rem_calc(8);\n          }\n        }\n      }\n    }\n\n    &:disabled {\n      cursor: not-allowed;\n\n      + .bmb_radial-box {\n        .bmb_radial-mark {\n          opacity: 0.5;\n        }\n      }\n      &:hover {\n        + .bmb_radial-box {\n          background-color: transparent;\n        }\n      }\n    }\n  }\n\n  &-box {\n    align-items: center;\n    border-radius: 100%;\n    display: flex;\n    height: rem.rem_calc(42);\n    justify-content: center;\n    width: rem.rem_calc(42);\n  }\n\n  &-mark {\n    background-color: transparent;\n    border: rem.rem_calc(2) solid RGBA(var(--color-charade-700));\n    border-radius: 100%;\n    display: inline-block;\n    height: rem.rem_calc(18);\n    position: relative;\n    width: rem.rem_calc(18);\n\n    &::after {\n      content: \"\";\n      display: none;\n      position: absolute;\n    }\n  }\n\n  &-label {\n    color: RGBA(var(--color-charade-950));\n    flex: 1;\n    overflow: hidden;\n    padding-right: rem.rem_calc(10);\n    text-overflow: ellipsis;\n    white-space: nowrap;\n    @include fonts.font(4, medium);\n  }\n\n  &-before {\n    .bmb_radial-label {\n      order: 1;\n    }\n    .bmb_radial-box {\n      order: 2;\n    }\n  }\n}\n\n[data-theme=\"dark\"],\n.storybook-dark-theme {\n  .bmb_radial {\n    input[type=\"radio\"] {\n      &:hover {\n        + .bmb_radial-box {\n          background-color: RGBA(var(--color-green-light), 0.1);\n        }\n      }\n\n      &:focus {\n        + .bmb_radial-box {\n          background-color: RGBA(var(--color-green-light), 0.2);\n        }\n      }\n\n      &:checked {\n        + .bmb_radial-box {\n          .bmb_radial-mark {\n            border-color: RGBA(var(--color-green-light));\n\n            &::after {\n              background-color: RGBA(var(--color-green-light));\n              border-radius: 100%;\n              bottom: 0;\n              display: block;\n              height: rem.rem_calc(8);\n              left: 0;\n              right: 0;\n              top: 0;\n              margin: auto;\n              width: rem.rem_calc(8);\n            }\n          }\n        }\n      }\n    }\n\n    &-mark {\n      border-color: RGBA(var(--color-charade-200));\n    }\n\n    &-label {\n      color: RGBA(var(--color-charade-50));\n    }\n  }\n}\n",
+                    "styleUrl": "./bmb-radial.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<label\n  [attr.for]=\"id\"\n  class=\"bmb_radial\"\n  [class.bmb_radial-before]=\"labelPosition === 'before'\"\n  [class.bmb_radial-after]=\"labelPosition === 'after'\"\n  [class.bmb_radial-required]=\"required\"\n>\n  <input\n    type=\"radio\"\n    [id]=\"id\"\n    [attr.aria-describedby]=\"ariaDescribedby\"\n    [attr.aria-label]=\"ariaLabel\"\n    [attr.aria-labelledby]=\"ariaLabelledby\"\n    [attr.name]=\"name\"\n    [attr.value]=\"value\"\n    [checked]=\"checked\"\n    [disabled]=\"disabled\"\n    [required]=\"required\"\n    (change)=\"handleChange($event)\"\n    (keydown)=\"handleKeyDown($event)\"\n  />\n  <div class=\"bmb_radial-box\">\n    <span class=\"bmb_radial-mark\"></span>\n  </div>\n  @if (label) {\n  <span class=\"bmb_radial-label\">{{ label }}</span>\n  }\n</label>\n"
+        },
+        {
             "name": "BmbSidebarComponent",
             "id": "component-BmbSidebarComponent-5485f870c686192841c3b5d258c2672dacc49a1bd201daf62ef2ee1b798bf082a52fcfc573ed6d4d44adb851b9fbfc805e69b57b8cd31c01f2861660a026ca8e",
             "file": "projects/ds-ng/src/lib/components/bmb-sidebar/bmb-sidebar.component.ts",
@@ -5044,6 +7020,16 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-calendar/bmb-calendar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/ds-ng/src/lib/components/bmb-checkbox/bmb-checkbox.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -5214,6 +7200,16 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-radial/bmb-radial.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/ds-ng/src/lib/components/bmb-sidebar/bmb-sidebar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -5311,6 +7307,16 @@
                 "defaultValue": "{}"
             },
             {
+                "name": "eventsInDate",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-calendar/utils.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "({ date, events }: IRenderEvents): any[] => {\n  const todayEvents = events.filter(\n    (event: Event) => date.hasSame(DateTime.fromISO(event.start), 'day')\n  );\n\n  return todayEvents;\n}"
+            },
+            {
                 "name": "FAB_SIZE",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -5331,6 +7337,36 @@
                 "defaultValue": "{\n    normal: 'normal',\n    extended: 'extended',\n} as const"
             },
             {
+                "name": "getMonthDays",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-calendar/utils.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "(date: DateTime): DateTime[] => {\n  const currentWeek = DateTime.fromObject({\n    weekYear: date.year,\n    weekNumber: date.weekNumber,\n  });\n  const firstWeekDay = currentWeek.startOf('week');\n\n  let weekDays = [];\n\n  for (let day = -1; day <= 38; day++) {\n    weekDays.push(firstWeekDay.plus({ days: day }))\n  }\n\n  return weekDays;\n}"
+            },
+            {
+                "name": "getTimeRange",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-calendar/utils.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "(event: Event): string  => {\n  const start = DateTime.fromISO(event.start);\n  const end = DateTime.fromISO(event.end);\n\n  return `${start.toFormat('hh:mm')} - ${end.toFormat('hh:mm')}`\n}"
+            },
+            {
+                "name": "getWeekDays",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-calendar/utils.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "(date: DateTime): DateTime[] => {\n  const currentWeek = DateTime.fromObject({\n    weekYear: date.year,\n    weekNumber: date.weekNumber,\n  });\n  const firstWeekDay = currentWeek.startOf('week');\n\n  let weekDays = [];\n\n  for (let day = -1; day <= 5; day++) {\n    weekDays.push(firstWeekDay.plus({ days: day }))\n  }\n\n  return weekDays;\n}"
+            },
+            {
                 "name": "INPUT_TYPE",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -5339,6 +7375,16 @@
                 "deprecationMessage": "",
                 "type": "",
                 "defaultValue": "{\n    normal: 'normal',\n    simple: 'simple',\n  } as const"
+            },
+            {
+                "name": "orderDayNames",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-calendar/utils.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "(days: (string | undefined)[]): (string | undefined)[] => {\n  const lastElement: (string | undefined) = days.pop();\n  days.unshift(lastElement);\n  return days;\n}"
             },
             {
                 "name": "preview",
@@ -5523,6 +7569,17 @@
         ],
         "typealiases": [
             {
+                "name": "Event",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "literal type",
+                "file": "projects/ds-ng/src/lib/components/bmb-calendar/types.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 187
+            },
+            {
                 "name": "FabSize",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
@@ -5545,6 +7602,17 @@
                 "kind": 199
             },
             {
+                "name": "HourFormat",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"12\" | \"24\"",
+                "file": "projects/ds-ng/src/lib/components/bmb-calendar/types.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 192
+            },
+            {
                 "name": "InputType",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
@@ -5561,6 +7629,17 @@
                 "subtype": "typealias",
                 "rawtype": "StoryObj<BmbBadgeComponent>",
                 "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<BmbCalendarComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-calendar/bmb-calendar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -5757,6 +7836,17 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
+                "rawtype": "StoryObj<BmbRadialComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-radial/bmb-radial.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
                 "rawtype": "StoryObj<BmbSidebarComponent>",
                 "file": "projects/ds-ng/src/lib/components/bmb-sidebar/bmb-sidebar.stories.ts",
                 "deprecated": false,
@@ -5862,6 +7952,17 @@
                 "deprecationMessage": "",
                 "description": "",
                 "kind": 192
+            },
+            {
+                "name": "View",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"week\" | \"month\" | \"day\"",
+                "file": "projects/ds-ng/src/lib/components/bmb-calendar/types.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 192
             }
         ],
         "enumerations": [],
@@ -5938,6 +8039,18 @@
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-calendar/bmb-calendar.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-calendar/bmb-calendar.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
@@ -6148,6 +8261,18 @@
                     "defaultValue": "{}"
                 }
             ],
+            "projects/ds-ng/src/lib/components/bmb-radial/bmb-radial.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-radial/bmb-radial.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                }
+            ],
             "projects/ds-ng/src/lib/components/bmb-sidebar/bmb-sidebar.stories.ts": [
                 {
                     "name": "Default",
@@ -6266,6 +8391,58 @@
                     "deprecationMessage": "",
                     "type": "Story",
                     "defaultValue": "{}"
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-calendar/utils.ts": [
+                {
+                    "name": "eventsInDate",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-calendar/utils.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "({ date, events }: IRenderEvents): any[] => {\n  const todayEvents = events.filter(\n    (event: Event) => date.hasSame(DateTime.fromISO(event.start), 'day')\n  );\n\n  return todayEvents;\n}"
+                },
+                {
+                    "name": "getMonthDays",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-calendar/utils.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "(date: DateTime): DateTime[] => {\n  const currentWeek = DateTime.fromObject({\n    weekYear: date.year,\n    weekNumber: date.weekNumber,\n  });\n  const firstWeekDay = currentWeek.startOf('week');\n\n  let weekDays = [];\n\n  for (let day = -1; day <= 38; day++) {\n    weekDays.push(firstWeekDay.plus({ days: day }))\n  }\n\n  return weekDays;\n}"
+                },
+                {
+                    "name": "getTimeRange",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-calendar/utils.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "(event: Event): string  => {\n  const start = DateTime.fromISO(event.start);\n  const end = DateTime.fromISO(event.end);\n\n  return `${start.toFormat('hh:mm')} - ${end.toFormat('hh:mm')}`\n}"
+                },
+                {
+                    "name": "getWeekDays",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-calendar/utils.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "(date: DateTime): DateTime[] => {\n  const currentWeek = DateTime.fromObject({\n    weekYear: date.year,\n    weekNumber: date.weekNumber,\n  });\n  const firstWeekDay = currentWeek.startOf('week');\n\n  let weekDays = [];\n\n  for (let day = -1; day <= 5; day++) {\n    weekDays.push(firstWeekDay.plus({ days: day }))\n  }\n\n  return weekDays;\n}"
+                },
+                {
+                    "name": "orderDayNames",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-calendar/utils.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "(days: (string | undefined)[]): (string | undefined)[] => {\n  const lastElement: (string | undefined) = days.pop();\n  days.unshift(lastElement);\n  return days;\n}"
                 }
             ],
             "projects/ds-ng/src/lib/components/bmb-fab/bmb-fab-.interface.ts": [
@@ -6495,6 +8672,41 @@
         },
         "groupedEnumerations": {},
         "groupedTypeAliases": {
+            "projects/ds-ng/src/lib/components/bmb-calendar/types.ts": [
+                {
+                    "name": "Event",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "literal type",
+                    "file": "projects/ds-ng/src/lib/components/bmb-calendar/types.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 187
+                },
+                {
+                    "name": "HourFormat",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"12\" | \"24\"",
+                    "file": "projects/ds-ng/src/lib/components/bmb-calendar/types.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 192
+                },
+                {
+                    "name": "View",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"week\" | \"month\" | \"day\"",
+                    "file": "projects/ds-ng/src/lib/components/bmb-calendar/types.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 192
+                }
+            ],
             "projects/ds-ng/src/lib/components/bmb-fab/bmb-fab-.interface.ts": [
                 {
                     "name": "FabSize",
@@ -6539,6 +8751,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<BmbBadgeComponent>",
                     "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-calendar/bmb-calendar.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbCalendarComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-calendar/bmb-calendar.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -6766,6 +8991,19 @@
                     "kind": 183
                 }
             ],
+            "projects/ds-ng/src/lib/components/bmb-radial/bmb-radial.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbRadialComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-radial/bmb-radial.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
             "projects/ds-ng/src/lib/components/bmb-sidebar/bmb-sidebar.stories.ts": [
                 {
                     "name": "Story",
@@ -6933,12 +9171,162 @@
                 "status": "low"
             },
             {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-calendar/bmb-calendar.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbCalendarComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/20",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-calendar/bmb-calendar.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-calendar/common/bmb-calendar-header/bmb-calendar-header.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbCalendarHeaderComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/10",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-calendar/common/bmb-calendar-hour-view/bmb-calendar-hour-view.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbCalendarHourViewComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-calendar/common/bmb-calendar-schedule-cards/bmb-calendar-schedule-cards.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbCalendarScheduleCardsComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/8",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-calendar/common/bmb-calendar-template-day/bmb-calendar-template-day.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbCalendarTemplateDayComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/11",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-calendar/common/bmb-calendar-template-event/bmb-calendar-template-event.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbCalendarTemplateEventComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/7",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-calendar/common/bmb-calendar-template-month/bmb-calendar-template-month.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbCalendarTemplateMonthComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/11",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-calendar/common/bmb-calendar-template-week/bmb-calendar-template-week.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbCalendarTemplateWeekComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/13",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-calendar/types.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "EventClick",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-calendar/types.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "IRenderEvents",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-calendar/utils.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "eventsInDate",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-calendar/utils.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "getMonthDays",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-calendar/utils.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "getTimeRange",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-calendar/utils.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "getWeekDays",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-calendar/utils.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "orderDayNames",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/ds-ng/src/lib/components/bmb-checkbox/bmb-checkbox.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "BmbCheckboxComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/15",
+                "coverageCount": "0/16",
                 "status": "low"
             },
             {
@@ -7295,6 +9683,25 @@
             },
             {
                 "filePath": "projects/ds-ng/src/lib/components/bmb-progress-cirlce/bmb-progress-circle.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-radial/bmb-radial.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbRadialComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/15",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-radial/bmb-radial.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",

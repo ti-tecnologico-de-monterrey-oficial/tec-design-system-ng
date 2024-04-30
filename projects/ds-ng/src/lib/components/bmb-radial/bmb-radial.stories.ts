@@ -1,10 +1,10 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbCheckboxComponent } from './bmb-checkbox.component';
+import { BmbRadialComponent } from './bmb-radial.component';
 
 export default {
-  title: 'Micro Componentes/Checkbox',
-  component: BmbCheckboxComponent,
+  title: 'Micro Componentes/Radial',
+  component: BmbRadialComponent,
   decorators: [
     moduleMetadata({
       imports: [BmbIconComponent],
@@ -17,20 +17,19 @@ export default {
 Below is an example of how you can use this component in TypeScript:
 
 \`\`\`typescript
-import { BmbCheckboxComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
+import { BmbRadialComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
 @Component({
   selector: 'component',
   standalone: true,
-  imports: [ BmbCheckboxComponent ],
+  imports: [ BmbRadialComponent ],
   templateUrl: './component.html',
   styleUrl: './component.scss',
 })
-
 export class Component {
-  handleCheckboxChange(event: Event): void {
-    const element = event.target as HTMLInputElement;
-    console.log('Checkbox checked state:', element.checked);
-    console.log('Checkbox value:', element.value);
+  handleRadial(element: HTMLInputElement): void {
+    console.log('Radio value:', element.value);
+    console.log('Radio name:', element.name);
+    console.log('Is it checked?', element.checked);
   }
 }
 \`\`\`
@@ -78,17 +77,6 @@ Below is an example of how you can use this component in HTML:
       control: { type: 'boolean' },
       description:
         'Specifies whether the radio button must be filled out before submitting the form. If set to true, a radio button within the group must be selected to validate the form. This is commonly used to ensure that users do not skip mandatory choices in forms, enhancing data integrity and user interaction compliance.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean' },
-      },
-    },
-    indeterminate: {
-      name: 'Indeterminate',
-      control: { type: 'boolean' },
-      description:
-        'Sets the checkbox to an indeterminate state, which is typically used to represent a mixed state in complex forms like tree views or nested lists. Note: This does not affect the checked property and is purely visual.',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
@@ -174,7 +162,7 @@ Below is an example of how you can use this component in HTML:
         'An event that is emitted when the state of the checkbox changes, such as when it is checked or unchecked. This can be used to trigger functions or actions based on the checkbox’s state change.',
       table: {
         category: 'Events',
-        type: { summary: '(change)="handleCheckboxChange($event)"' },
+        type: { summary: '(change)="handleRadial($event)"' },
       },
     },
   },
@@ -183,7 +171,6 @@ Below is an example of how you can use this component in HTML:
     checked: false,
     disabled: false,
     required: false,
-    indeterminate: false,
     value: '',
     name: '',
     label: 'Contrato profesor cátedra Biología marina CCM.pdf',
@@ -192,11 +179,11 @@ Below is an example of how you can use this component in HTML:
     ariaLabelledby: '',
     labelPosition: 'before',
     change: () => {
-      window.alert('Checkbox clicked');
+      window.alert('Radial clicked');
     },
   },
-} as Meta<typeof BmbCheckboxComponent>;
+} as Meta<typeof BmbRadialComponent>;
 
-type Story = StoryObj<BmbCheckboxComponent>;
+type Story = StoryObj<BmbRadialComponent>;
 
 export const Default: Story = {};
