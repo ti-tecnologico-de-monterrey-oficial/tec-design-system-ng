@@ -2,7 +2,7 @@
 @use "../../../../../assets/styles/base/fonts" as fonts;
 
 .bmb_calendar-event-modal {
-  background-color: RGBA(var(--color-charade-950), .25);
+  background-color: RGBA(var(--color-charade-950), 0.25);
   position: absolute;
   left: 0;
   top: 0;
@@ -18,7 +18,7 @@
 
   &-body {
     border-radius: 8px;
-    box-shadow: 0 8px 8px RGBA(var(--color-charade-950), .25);
+    box-shadow: 0 8px 8px RGBA(var(--color-charade-950), 0.25);
     background-color: RGBA(var(--color-charade-50));
     box-sizing: border-box;
     width: 90%;

@@ -6,7 +6,7 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import { Event, EventClick } from '../../types';
+import { IBmbCalendarEvent, IBmbCalendarEventClick } from '../../types';
 import { DateTime } from 'luxon';
 import { getTimeRange } from '../../utils';
 import { CommonModule } from '@angular/common';
@@ -21,52 +21,55 @@ import { CommonModule } from '@angular/common';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbCalendarScheduleCardsComponent {
-  @Input() event: Event = {
+  @Input() event: IBmbCalendarEvent = {
     title: '',
     detail: '',
     start: new Date().toISOString(),
     end: new Date().toISOString(),
-    id: '',
   };
   @Input() isPositionAbsolute: boolean = true;
 
-  @Output() onSelectEvent: EventEmitter<EventClick> = new EventEmitter<EventClick>();
+  @Output() onSelectEvent: EventEmitter<IBmbCalendarEventClick> =
+    new EventEmitter<IBmbCalendarEventClick>();
 
-  getPosition(date: Event, isPositionAbsolute: boolean): string {
+  getPosition(date: IBmbCalendarEvent, isPositionAbsolute: boolean): string {
     if (!isPositionAbsolute) return '';
 
     const start = DateTime.fromISO(date.start);
     const end = DateTime.fromISO(date.end);
-    const startMin = (start.hour * 60) + start.minute;
-    const endMin = ((end.hour * 60) + end.minute) - startMin;
+    const startMin = start.hour * 60 + start.minute;
+    const endMin = end.hour * 60 + end.minute - startMin;
 
     return `top: ${startMin + 60}px; height: ${endMin}px`;
   }
 
-  getClassNames(date: Event, isPositionAbsolute: boolean): string[] {
+  getClassNames(
+    date: IBmbCalendarEvent,
+    isPositionAbsolute: boolean,
+  ): string[] {
     let newClasses = [];
     if (isPositionAbsolute) newClasses.push('bmb_calendar-event-absolute');
     const start = DateTime.fromISO(date.start);
     const end = DateTime.fromISO(date.end);
-    const diff = ((end.hour * 60) + end.minute) - ((start.hour * 60) + start.minute);
+    const diff = end.hour * 60 + end.minute - (start.hour * 60 + start.minute);
 
     if (diff < 60) {
       newClasses.push('bmb_calendar-event-grid-reduced');
     } else {
-      newClasses.push('bmb_calendar-event-grid-full')
+      newClasses.push('bmb_calendar-event-grid-full');
     }
 
     return newClasses;
   }
 
-  handleSelectEvent(event: Event, domEvent: any) {
+  handleSelectEvent(event: IBmbCalendarEvent, domEvent: any) {
     this.onSelectEvent.emit({
       event: event,
       position: domEvent.target.getBoundingClientRect().y,
     });
   }
 
-  handleTimeRange(event: Event): string {
+  handleTimeRange(event: IBmbCalendarEvent): string {
     return getTimeRange(event);
   }
 }

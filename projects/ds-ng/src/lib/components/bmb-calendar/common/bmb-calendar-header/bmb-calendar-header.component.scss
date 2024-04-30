@@ -6,7 +6,7 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: rem.rem_calc(16);
-  @include mixins.media-query(999, 'max') {
+  @include mixins.media-query(999, "max") {
     display: none;
   }
 
@@ -53,7 +53,7 @@
     &:hover,
     &:focus-visible,
     &:disabled {
-      background-color: RGBA(var(--color-black-primary), .5) !important;
+      background-color: RGBA(var(--color-black-primary), 0.5) !important;
     }
 
     i {

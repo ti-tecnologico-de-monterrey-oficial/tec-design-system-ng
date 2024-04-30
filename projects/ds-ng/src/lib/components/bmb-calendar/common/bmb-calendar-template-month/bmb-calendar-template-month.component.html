@@ -1,8 +1,13 @@
 <div class="bmb_calendar-month-view">
   @for (day of getWeeksAndDays(); track $index) {
-    <div class="bmb_calendar-month-view-day" [ngClass]="{'bmb_calendar-col-today': isNow(day)}">
+    <div
+      class="bmb_calendar-month-view-day"
+      [ngClass]="{ 'bmb_calendar-col-today': isNow(day) }"
+    >
       <span class="bmb_calendar-month-view-day-legend">
-        <span class="bmb_calendar-month-view-day-name">{{ getDayName(day) }}</span>
+        <span class="bmb_calendar-month-view-day-name">{{
+          getDayName(day)
+        }}</span>
         {{ day.month }}/{{ day.day }}
       </span>
       @for (event of renderEvents({ date: day, events }); track $index) {
@@ -10,7 +15,8 @@
           [event]="event"
           (onSelectEvent)="handleEventSelection($event)"
           [isPositionAbsolute]="false"
-        >Event</bmb-calendar-schedule-cards>
+          >Event</bmb-calendar-schedule-cards
+        >
       }
     </div>
   }

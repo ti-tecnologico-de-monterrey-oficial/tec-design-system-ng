@@ -10,7 +10,8 @@ export default {
       control: {
         type: '',
       },
-      description: 'Array of elements to show in the sidebar, every element must contain the icon, the title and the link',
+      description:
+        'Array of elements to show in the sidebar, every element must contain the icon, the title and the link',
       table: {
         type: { summary: 'string' },
       },
@@ -18,16 +19,16 @@ export default {
   },
   args: {
     elements: [
-        {
-            icon: 'apps',
-            title: 'Titulo 1',
-            link: '#'
-        },
-        {
-            icon: 'apps',
-            title: 'Titulo 2',
-            link: '#'
-        },
+      {
+        icon: 'apps',
+        title: 'Titulo 1',
+        link: '#',
+      },
+      {
+        icon: 'apps',
+        title: 'Titulo 2',
+        link: '#',
+      },
     ],
   },
 } as Meta<typeof BmbSidebarComponent>;

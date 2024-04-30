@@ -40,7 +40,7 @@
     flex-flow: row wrap;
     gap: rem.rem_calc(8);
 
-    @include mixins.media-query(768, 'min') {
+    @include mixins.media-query(768, "min") {
       gap: rem.rem_calc(16);
     }
   }

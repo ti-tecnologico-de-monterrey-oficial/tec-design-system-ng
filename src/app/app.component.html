@@ -1,5 +1,8 @@
+<bmb-top-bar [positionButtonMenu]="'right'" />
+
 <!-- Demo -->
 <bmb-theme />
+
 <bmb-calendar
   [isLoading]="isCalendarLoading"
   [events]="calendarEvents"
@@ -39,6 +42,7 @@
   [checked]="true"
   [indeterminate]="true"
 />
+<bmb-sidebar [elements]="sidebarElements"></bmb-sidebar>
 <!-- <bmb-progress-circle
   [percentValue]="85"
   [title]="'Titulo'"
@@ -88,20 +92,19 @@
 
 <bmb-switch leftIcon="light_mode" rightIcon="dark_mode" />
 
-<<<<<<< HEAD
 <bmb-calendar
   [isLoading]="isCalendarLoading"
   [events]="calendarEvents"
   [height]="'100vh'"
   (onDateChange)="fetchData($event)"
-=======
+/>
+
 <bmb-user-summary
   name="Test name"
   id="A00123456"
   [isProfile]="boolUserSummary"
   image="https://writestylesonline.com/wp-content/uploads/2016/08/Follow-These-Steps-for-a-Flawless-Professional-Profile-Picture.jpg"
   (onClick)="onProfileClick()"
->>>>>>> 7523cd4034684b0d2996bdf533f60c63cfc4b46a
 />
 
 <bmb-home-section

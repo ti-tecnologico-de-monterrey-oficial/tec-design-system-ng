@@ -1,4 +1,9 @@
-import { Component, ChangeDetectionStrategy, ViewChild, ChangeDetectorRef  } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  ViewChild,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FormControl, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -28,14 +33,21 @@ import {
   BmbProgressCircleComponent,
   BmbCheckboxComponent,
   BmbCalendarComponent,
+  BmbTopBarComponent,
 } from '../../projects/ds-ng/src/public-api';
 
+import {
+  IBmbTab,
+  IBmbCalendarEvent,
+  IBmbCalendarEventClick,
+} from '../../projects/ds-ng/src/public-api';
 export interface Target {
   target: string;
   index: number;
 }
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'app-root',
   standalone: true,
   imports: [
@@ -66,16 +78,16 @@ export interface Target {
     BmbProgressCircleComponent,
     BmbCheckboxComponent,
     BmbCalendarComponent,
+    BmbTopBarComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-
   constructor(private cdr: ChangeDetectorRef) {}
 
-  myTabs: any = [
+  myTabs: IBmbTab[] = [
     { id: 1, title: 'Tec de Monterrey', badge: 1, isActive: true },
     { id: 2, title: 'Prestamo educativo' },
     { id: 3, title: 'Mas usado' },
@@ -85,9 +97,9 @@ export class AppComponent {
   ];
 
   activeTabId: number | null =
-    this.myTabs.find((tab: any) => tab.isActive)?.id ?? null;
+    this.myTabs.find((tab: IBmbTab) => tab.isActive)?.id ?? null;
 
-  handleTabSelected(tab: any): void {
+  handleTabSelected(tab: IBmbTab): void {
     this.activeTabId = tab.id;
   }
 
@@ -101,7 +113,7 @@ export class AppComponent {
   value = 'tec-design';
 
   isCalendarLoading = false;
-  calendarEvents: any[] = [
+  calendarEvents: IBmbCalendarEvent[] = [
     {
       title: 'Test',
       detail: 'Detail test',
@@ -113,7 +125,7 @@ export class AppComponent {
       detail: 'Dkjaskdjjhasbdfjhasbdjkhfbjkahsdbf',
       start: '2024-04-24T15:00:00.715Z',
       end: '2024-04-24T16:00:00.715Z',
-    }
+    },
   ];
 
   sidebarElements = [
@@ -199,14 +211,12 @@ export class AppComponent {
     this.boolUserSummary = !this.boolUserSummary;
   }
 
-  async fetchData(event: any): Promise<void> {
+  async fetchData(event: IBmbCalendarEventClick): Promise<void> {
     console.log(event);
     try {
       this.isCalendarLoading = true;
-      await new Promise(resolve => setTimeout(resolve, 3000));
-    }
-
-    finally {
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+    } finally {
       this.calendarEvents = [
         {
           title: 'Test',
@@ -225,7 +235,7 @@ export class AppComponent {
           detail: 'Detail test',
           start: '2024-04-25T22:56:44.715Z',
           end: '2024-04-25T23:56:44.715Z',
-        }
+        },
       ];
       this.isCalendarLoading = false;
       this.cdr.detectChanges();

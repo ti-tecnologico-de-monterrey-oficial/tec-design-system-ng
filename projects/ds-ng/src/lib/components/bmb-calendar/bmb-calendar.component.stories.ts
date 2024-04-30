@@ -33,23 +33,18 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'radio',
       },
-      options: [
-        'day',
-        'view',
-        'month',
-      ],
+      options: ['day', 'view', 'month'],
       description: 'Select the view type.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        defaultValue: { summary: 'week'}
+        defaultValue: { summary: 'week' },
       },
     },
     isLoading: {
       name: 'Is loading',
       control: { type: 'boolean' },
-      description:
-        'Set the loader spinner when the property is true',
+      description: 'Set the loader spinner when the property is true',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
@@ -59,7 +54,8 @@ Below is an example of how you can use this component in HTML:
     calendarTimezone: {
       name: 'Calendar timezone',
       control: { type: 'text' },
-      description: 'Set the remote timezone for the events (example: "America/Mexico_City")',
+      description:
+        'Set the remote timezone for the events (example: "America/Mexico_City")',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -68,7 +64,8 @@ Below is an example of how you can use this component in HTML:
     clientTimezone: {
       name: 'Client timezone',
       control: { type: 'text' },
-      description: 'Set the client timezone for the events (example: "America/Mexico_City")',
+      description:
+        'Set the client timezone for the events (example: "America/Mexico_City")',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -77,7 +74,8 @@ Below is an example of how you can use this component in HTML:
     currentDate: {
       name: 'Current date',
       control: { type: 'text' },
-      description: 'Set the target date to show in the calendar (example: "2024-04-23T15:00:00.715Z")',
+      description:
+        'Set the target date to show in the calendar (example: "2024-04-23T15:00:00.715Z")',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -86,7 +84,8 @@ Below is an example of how you can use this component in HTML:
     height: {
       name: 'Height',
       control: { type: 'text' },
-      description: 'Change the default height, you can also set a valid CSS value (example: 100vh).',
+      description:
+        'Change the default height, you can also set a valid CSS value (example: 100vh).',
       defaultValue: { summary: '700' },
       table: {
         category: 'Properties',
@@ -107,22 +106,25 @@ Below is an example of how you can use this component in HTML:
     events: {
       name: 'Events',
       control: {
-        type: ''
+        type: '',
       },
-      description: 'It is the collection of user events that will be seen on the calendar.',
+      description:
+        'It is the collection of user events that will be seen on the calendar.',
       table: {
         category: 'Properties',
         type: { summary: 'object' },
-      }
+      },
     },
   },
   args: {
-    events: [{
-      title: 'Test',
-      detail: 'Detail test',
-      start: '2024-04-23T15:00:00.715Z',
-      end: '2024-04-23T15:30:00.715Z',
-    }],
+    events: [
+      {
+        title: 'Test',
+        detail: 'Detail test',
+        start: '2024-04-23T15:00:00.715Z',
+        end: '2024-04-23T15:30:00.715Z',
+      },
+    ],
     onDateChange: (params: any) => {
       window.alert(params.toString());
     },

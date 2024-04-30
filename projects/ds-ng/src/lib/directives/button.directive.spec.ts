@@ -17,7 +17,7 @@ describe('ButtonDirective', () => {
       elMock,
       viewContainerRefMock,
       cdrMock,
-      rendererMock
+      rendererMock,
     );
 
     expect(directive).toBeTruthy();

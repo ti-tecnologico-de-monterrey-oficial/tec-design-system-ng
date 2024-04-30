@@ -6,14 +6,8 @@
     "types": []
   },
   "angularCompilerOptions": {
-    "external": [
-      "projects/ds-ng/src/assets/styles/main.css"
-    ]
+    "external": ["projects/ds-ng/src/assets/styles/main.css"]
   },
-  "files": [
-    "src/main.ts"
-  ],
-  "include": [
-    "src/**/*.d.ts"
-  ]
+  "files": ["src/main.ts"],
+  "include": ["src/**/*.d.ts"]
 }
