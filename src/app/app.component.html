@@ -1,15 +1,21 @@
 <!-- Demo -->
 <bmb-theme />
-<bmb-calendar
-  [isLoading]="isCalendarLoading"
-  [events]="calendarEvents"
-  (onDateChange)="fetchData($event)"
+
+<bmb-radial
+  label="Contrato profesor cátedra Biología marina CCM.pdf"
+  name="radio1"
+  id="radio1"
+  [required]="true"
+  labelPosition="before"
+  (change)="handleRadial($event)"
 />
 
 <bmb-checkbox
   label="Contrato profesor cátedra Biología marina CCM.pdf"
   name="checkbox2"
   id="checkbox2"
+  [required]="true"
+  (change)="handleCheckboxChange($event)"
 />
 
 <bmb-checkbox
@@ -39,7 +45,12 @@
   [checked]="true"
   [indeterminate]="true"
 />
-<!-- <bmb-progress-circle
+<bmb-calendar
+  [isLoading]="isCalendarLoading"
+  [events]="calendarEvents"
+  (onDateChange)="fetchData($event)"
+/>
+<bmb-progress-circle
   [percentValue]="85"
   [title]="'Titulo'"
   [valueLabel]="310"
@@ -88,20 +99,12 @@
 
 <bmb-switch leftIcon="light_mode" rightIcon="dark_mode" />
 
-<<<<<<< HEAD
-<bmb-calendar
-  [isLoading]="isCalendarLoading"
-  [events]="calendarEvents"
-  [height]="'100vh'"
-  (onDateChange)="fetchData($event)"
-=======
 <bmb-user-summary
   name="Test name"
   id="A00123456"
   [isProfile]="boolUserSummary"
   image="https://writestylesonline.com/wp-content/uploads/2016/08/Follow-These-Steps-for-a-Flawless-Professional-Profile-Picture.jpg"
   (onClick)="onProfileClick()"
->>>>>>> 7523cd4034684b0d2996bdf533f60c63cfc4b46a
 />
 
 <bmb-home-section
@@ -240,4 +243,4 @@
   [altImage]="'Alt image description'"
   [link]="'https://www.youtube.com/'"
   [target]="'_blank'"
-></bmb-user-image> -->
+></bmb-user-image>
