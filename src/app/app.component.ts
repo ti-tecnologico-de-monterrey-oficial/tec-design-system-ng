@@ -1,4 +1,9 @@
-import { Component, ChangeDetectionStrategy, ViewChild, ChangeDetectorRef  } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  ViewChild,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FormControl, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -28,6 +33,7 @@ import {
   BmbProgressCircleComponent,
   BmbCheckboxComponent,
   BmbCalendarComponent,
+  BmbRadialComponent,
 } from '../../projects/ds-ng/src/public-api';
 
 export interface Target {
@@ -66,13 +72,13 @@ export interface Target {
     BmbProgressCircleComponent,
     BmbCheckboxComponent,
     BmbCalendarComponent,
+    BmbRadialComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-
   constructor(private cdr: ChangeDetectorRef) {}
 
   myTabs: any = [
@@ -113,7 +119,7 @@ export class AppComponent {
       detail: 'Dkjaskdjjhasbdfjhasbdjkhfbjkahsdbf',
       start: '2024-04-24T15:00:00.715Z',
       end: '2024-04-24T16:00:00.715Z',
-    }
+    },
   ];
 
   sidebarElements = [
@@ -180,6 +186,18 @@ export class AppComponent {
     this.myActiveDotIndex = index;
   }
 
+  handleCheckboxChange(event: Event): void {
+    const element = event.target as HTMLInputElement;
+    console.log('Checkbox checked state:', element.checked);
+    console.log('Checkbox value:', element.value);
+  }
+
+  handleRadial(element: HTMLInputElement): void {
+    console.log('Radio value:', element.value);
+    console.log('Radio name:', element.name);
+    console.log('Is it checked?', element.checked);
+  }
+
   plus() {
     this.i++;
   }
@@ -203,10 +221,8 @@ export class AppComponent {
     console.log(event);
     try {
       this.isCalendarLoading = true;
-      await new Promise(resolve => setTimeout(resolve, 3000));
-    }
-
-    finally {
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+    } finally {
       this.calendarEvents = [
         {
           title: 'Test',
@@ -225,7 +241,7 @@ export class AppComponent {
           detail: 'Detail test',
           start: '2024-04-25T22:56:44.715Z',
           end: '2024-04-25T23:56:44.715Z',
-        }
+        },
       ];
       this.isCalendarLoading = false;
       this.cdr.detectChanges();

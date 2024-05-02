@@ -25,6 +25,14 @@ import { BmbCheckboxComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng
   templateUrl: './component.html',
   styleUrl: './component.scss',
 })
+
+export class Component {
+  handleCheckboxChange(event: Event): void {
+    const element = event.target as HTMLInputElement;
+    console.log('Checkbox checked state:', element.checked);
+    console.log('Checkbox value:', element.value);
+  }
+}
 \`\`\`
 
 Below is an example of how you can use this component in HTML:
@@ -59,6 +67,17 @@ Below is an example of how you can use this component in HTML:
       control: { type: 'boolean' },
       description:
         'If set to true, disables the checkbox input, making it non-interactive and unclickable. This is useful for conditions where user interaction should be restricted.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
+    required: {
+      name: 'Required',
+      control: { type: 'boolean' },
+      description:
+        'Specifies whether the radio button must be filled out before submitting the form. If set to true, a radio button within the group must be selected to validate the form. This is commonly used to ensure that users do not skip mandatory choices in forms, enhancing data integrity and user interaction compliance.',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
@@ -148,20 +167,23 @@ Below is an example of how you can use this component in HTML:
     },
     change: {
       name: 'Change',
+      control: {
+        type: '',
+      },
       description:
         'An event that is emitted when the state of the checkbox changes, such as when it is checked or unchecked. This can be used to trigger functions or actions based on the checkbox’s state change.',
       table: {
         category: 'Events',
-        type: { summary: '(change)="handleChange($event)"' },
+        type: { summary: '(change)="handleCheckboxChange($event)"' },
       },
     },
   },
-
   args: {
     id: 'checkbox1',
-    checked: '',
-    disabled: '',
-    indeterminate: '',
+    checked: false,
+    disabled: false,
+    required: false,
+    indeterminate: false,
     value: '',
     name: '',
     label: 'Contrato profesor cátedra Biología marina CCM.pdf',
