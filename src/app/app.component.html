@@ -1,4 +1,28 @@
-<bmb-top-bar [positionButtonMenu]="'right'" />
+<bmb-top-bar
+  appName="TecSign"
+  appSubTitle="Elegir documentos"
+  [showLang]="true"
+  [lang]="topBarLang"
+  (onLangChange)="handleLangChange($event)"
+>
+  <bmb-top-bar-item>
+    <a href="#">Text</a>
+  </bmb-top-bar-item>
+  <bmb-top-bar-item>
+    <button bmbButton>Button</button>
+  </bmb-top-bar-item>
+  <bmb-top-bar-item>kjaskfd slkfasd</bmb-top-bar-item>
+  <bmb-top-bar-item>jknasd kfnaskdljf akjsdnf</bmb-top-bar-item>
+  <bmb-top-bar-item>asdasd as asd asd </bmb-top-bar-item>
+  <bmb-top-bar-item>text</bmb-top-bar-item>
+  <bmb-top-bar-item>text</bmb-top-bar-item>
+  <bmb-top-bar-item>text</bmb-top-bar-item>
+  <bmb-top-bar-item>text</bmb-top-bar-item>
+  <bmb-top-bar-item [isActive]="true">text</bmb-top-bar-item>
+  <bmb-top-bar-item>text</bmb-top-bar-item>
+  <bmb-top-bar-item>text</bmb-top-bar-item>
+  <bmb-top-bar-item>text</bmb-top-bar-item>
+</bmb-top-bar>
 
 <!-- Demo -->
 <bmb-theme />

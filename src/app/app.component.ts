@@ -34,6 +34,7 @@ import {
   BmbCheckboxComponent,
   BmbCalendarComponent,
   BmbTopBarComponent,
+  BmbTopBarItemComponent,
 } from '../../projects/ds-ng/src/public-api';
 
 import {
@@ -79,6 +80,7 @@ export interface Target {
     BmbCheckboxComponent,
     BmbCalendarComponent,
     BmbTopBarComponent,
+    BmbTopBarItemComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -157,6 +159,13 @@ export class AppComponent {
   ];
 
   i = 0;
+
+  userInformation = {
+    image:
+      'https://wonderfulengineering.com/wp-content/uploads/2014/10/image-wallpaper-15-1024x768.jpg',
+    name: 'Juan Pedro Sánchez Miranda',
+    role: 'Role de usuario',
+  };
 
   @ViewChild(BmbToastComponent)
   private toastComponent!: BmbToastComponent;
@@ -240,5 +249,15 @@ export class AppComponent {
       this.isCalendarLoading = false;
       this.cdr.detectChanges();
     }
+  }
+
+  handleLogOff(event: Event) {
+    console.log(event);
+  }
+
+  topBarLang: string = 'es';
+
+  handleLangChange(lang: string): void {
+    this.topBarLang = lang;
   }
 }

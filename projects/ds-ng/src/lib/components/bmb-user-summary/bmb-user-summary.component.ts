@@ -22,6 +22,7 @@ export class BmbUserSummaryComponent {
   @Input() name: string = '';
   @Input() id: string = '';
   @Input() image: string = '';
+
   @Output() onClick: EventEmitter<void> = new EventEmitter<void>();
 
   handleClick(): void {

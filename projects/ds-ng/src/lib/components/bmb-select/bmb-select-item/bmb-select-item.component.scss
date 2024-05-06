@@ -1,0 +1,13 @@
+@use "../../../../assets/styles/base/rem" as rem;
+@use "../../../../assets/styles/base/fonts" as fonts;
+
+.bmb_select-item {
+  padding: rem.rem_calc(8) rem.rem_calc(16);
+  @include fonts.font(4, regular);
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    background-color: RGBA(var(--color-charade-500));
+  }
+}
