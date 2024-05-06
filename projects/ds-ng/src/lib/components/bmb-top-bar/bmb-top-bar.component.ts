@@ -16,6 +16,8 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbSelectComponent } from '../bmb-select/bmb-select.component';
 import { BmbSelectItemComponent } from '../bmb-select/bmb-select-item/bmb-select-item.component';
 
+export { IPositionButtonMenu, IUserInformation } from './types';
+
 @Component({
   selector: 'bmb-top-bar',
   standalone: true,
