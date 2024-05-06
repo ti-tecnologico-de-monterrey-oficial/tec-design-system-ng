@@ -1,12 +1,12 @@
 <label
   [attr.for]="id"
-  class="bmb_checkbox"
-  [class.bmb_checkbox-before]="labelPosition === 'before'"
-  [class.bmb_checkbox-after]="labelPosition === 'after'"
-  [class.bmb_checkbox-required]="required"
+  class="bmb_radial"
+  [class.bmb_radial-before]="labelPosition === 'before'"
+  [class.bmb_radial-after]="labelPosition === 'after'"
+  [class.bmb_radial-required]="required"
 >
   <input
-    type="checkbox"
+    type="radio"
     [id]="id"
     [attr.aria-describedby]="ariaDescribedby"
     [attr.aria-label]="ariaLabel"
@@ -16,14 +16,13 @@
     [checked]="checked"
     [disabled]="disabled"
     [required]="required"
-    [indeterminate]="indeterminate"
     (change)="handleChange($event)"
     (keydown)="handleKeyDown($event)"
   />
-  <div class="bmb_checkbox-box">
-    <span class="bmb_checkbox-mark"></span>
+  <div class="bmb_radial-box">
+    <span class="bmb_radial-mark"></span>
   </div>
   @if (label) {
-    <span class="bmb_checkbox-label">{{ label }}</span>
+    <span class="bmb_radial-label">{{ label }}</span>
   }
 </label>

@@ -9,20 +9,18 @@ import {
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'bmb-checkbox',
-  templateUrl: './bmb-checkbox.component.html',
-  styleUrls: ['./bmb-checkbox.component.scss'],
+  selector: 'bmb-radial',
+  templateUrl: './bmb-radial.component.html',
+  styleUrls: ['./bmb-radial.component.scss'],
   standalone: true,
   imports: [CommonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbCheckboxComponent {
+export class BmbRadialComponent {
   @Input() id: string = '';
   @Input() checked: boolean = false;
   @Input() disabled: boolean = false;
-  @Input() indeterminate: boolean = false;
-  @Input() required: boolean = false;
   @Input() value: string = '';
   @Input() name: string = '';
   @Input() label: string = '';
@@ -30,27 +28,27 @@ export class BmbCheckboxComponent {
   @Input() ariaDescribedby: string = '';
   @Input() ariaLabel: string = '';
   @Input() ariaLabelledby: string = '';
+  @Input() required: boolean = false;
 
-  @Output() change: EventEmitter<Event> = new EventEmitter<Event>();
+  @Output() change: EventEmitter<HTMLInputElement> =
+    new EventEmitter<HTMLInputElement>();
 
-  handleChange(event: Event): void {
-    const target = event.target as HTMLInputElement;
-    this.checked = target.checked;
-    this.change.emit(event);
+  handleChange(event: Event) {
+    const target = event.target as HTMLInputElement | null;
+    if (target && target.checked) {
+      this.change.emit(target);
+    }
     event.stopPropagation();
   }
 
   handleKeyDown(event: KeyboardEvent) {
-    if (event.key === 'Enter') {
-      if (this.indeterminate) {
-        this.indeterminate = false;
-        this.checked = true;
-      } else {
-        this.checked = !this.checked;
-      }
+    const target = event.target as HTMLInputElement | null;
 
+    if (event.key === 'Enter' && target && !target.checked) {
+      target.checked = true;
+      this.change.emit(target);
       event.preventDefault();
-      this.change.emit(event);
+      event.stopPropagation();
     }
   }
 }
