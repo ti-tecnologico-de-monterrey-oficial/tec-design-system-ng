@@ -22,6 +22,7 @@ export class BmbCheckboxComponent {
   @Input() checked: boolean = false;
   @Input() disabled: boolean = false;
   @Input() indeterminate: boolean = false;
+  @Input() required: boolean = false;
   @Input() value: string = '';
   @Input() name: string = '';
   @Input() label: string = '';
@@ -30,12 +31,13 @@ export class BmbCheckboxComponent {
   @Input() ariaLabel: string = '';
   @Input() ariaLabelledby: string = '';
 
-  @Output() change: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() change: EventEmitter<Event> = new EventEmitter<Event>();
 
-  handleChange(event: Event) {
-    const isChecked = (event.target as HTMLInputElement).checked;
-    this.checked = isChecked;
-    this.change.emit(isChecked);
+  handleChange(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    this.checked = target.checked;
+    this.change.emit(event);
+    event.stopPropagation();
   }
 
   handleKeyDown(event: KeyboardEvent) {
@@ -48,7 +50,7 @@ export class BmbCheckboxComponent {
       }
 
       event.preventDefault();
-      this.change.emit(this.checked);
+      this.change.emit(event);
     }
   }
 }

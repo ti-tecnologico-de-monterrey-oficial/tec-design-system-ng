@@ -35,6 +35,7 @@ import {
   BmbCalendarComponent,
   BmbTopBarComponent,
   BmbTopBarItemComponent,
+  BmbRadialComponent,
 } from '../../projects/ds-ng/src/public-api';
 
 import {
@@ -81,6 +82,7 @@ export interface Target {
     BmbCalendarComponent,
     BmbTopBarComponent,
     BmbTopBarItemComponent,
+    BmbRadialComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -199,6 +201,18 @@ export class AppComponent {
   handleDotPress(index: number): void {
     console.log('Dot pressed:', index);
     this.myActiveDotIndex = index;
+  }
+
+  handleCheckboxChange(event: Event): void {
+    const element = event.target as HTMLInputElement;
+    console.log('Checkbox checked state:', element.checked);
+    console.log('Checkbox value:', element.value);
+  }
+
+  handleRadial(element: HTMLInputElement): void {
+    console.log('Radio value:', element.value);
+    console.log('Radio name:', element.name);
+    console.log('Is it checked?', element.checked);
   }
 
   plus() {

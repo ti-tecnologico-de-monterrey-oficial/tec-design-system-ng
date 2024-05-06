@@ -3,6 +3,7 @@
   class="bmb_checkbox"
   [class.bmb_checkbox-before]="labelPosition === 'before'"
   [class.bmb_checkbox-after]="labelPosition === 'after'"
+  [class.bmb_checkbox-required]="required"
 >
   <input
     type="checkbox"
@@ -14,6 +15,7 @@
     [attr.value]="value"
     [checked]="checked"
     [disabled]="disabled"
+    [required]="required"
     [indeterminate]="indeterminate"
     (change)="handleChange($event)"
     (keydown)="handleKeyDown($event)"

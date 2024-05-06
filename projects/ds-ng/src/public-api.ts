@@ -37,3 +37,4 @@ export * from './lib/components/bmb-checkbox/bmb-checkbox.component';
 export * from './lib/components/bmb-calendar/bmb-calendar.component';
 export * from './lib/components/bmb-top-bar/bmb-top-bar.component';
 export * from './lib/components/bmb-top-bar/bmb-top-bar-item/bmb-top-bar-item.component';
+export * from './lib/components/bmb-radial/bmb-radial.component';

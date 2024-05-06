@@ -25,10 +25,21 @@
   (onDateChange)="fetchData($event)"
 />
 
+<bmb-radial
+  label="Contrato profesor cátedra Biología marina CCM.pdf"
+  name="radio1"
+  id="radio1"
+  [required]="true"
+  labelPosition="before"
+  (change)="handleRadial($event)"
+/>
+
 <bmb-checkbox
   label="Contrato profesor cátedra Biología marina CCM.pdf"
   name="checkbox2"
   id="checkbox2"
+  [required]="true"
+  (change)="handleCheckboxChange($event)"
 />
 
 <bmb-checkbox
@@ -107,13 +118,6 @@
 </bmb-tabs>
 
 <bmb-switch leftIcon="light_mode" rightIcon="dark_mode" />
-
-<bmb-calendar
-  [isLoading]="isCalendarLoading"
-  [events]="calendarEvents"
-  [height]="'100vh'"
-  (onDateChange)="fetchData($event)"
-/>
 
 <bmb-user-summary
   name="Test name"
@@ -259,4 +263,5 @@
   [altImage]="'Alt image description'"
   [link]="'https://www.youtube.com/'"
   [target]="'_blank'"
-></bmb-user-image> -->
+></bmb-user-image>
+-->
