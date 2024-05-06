@@ -1,0 +1,18 @@
+<section
+  class="bmb_select"
+  role="combobox"
+  aria-autocomplete="none"
+  aria-haspopup="listbox"
+  tabindex="0"
+  aria-expanded="true"
+>
+  <span class="bmb_select-input">
+    <button class="bmb_select-input-button">
+      <ng-content select="[selectTemplate]"></ng-content>
+    </button>
+    <bmb-icon icon="expand_more" />
+  </span>
+  <ul class="bmb_select-list" [ngClass]="getClassName()">
+    <ng-content></ng-content>
+  </ul>
+</section>

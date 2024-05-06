@@ -48,7 +48,10 @@ export const getTimeRange = (event: IBmbCalendarEvent): string => {
   return `${start.toFormat('hh:mm')} - ${end.toFormat('hh:mm')}`;
 };
 
-export const eventsInDate = ({ date, events }: IBmbCalendarRenderEvents): any[] => {
+export const eventsInDate = ({
+  date,
+  events,
+}: IBmbCalendarRenderEvents): any[] => {
   const todayEvents = events.filter((event: IBmbCalendarEvent) =>
     date.hasSame(DateTime.fromISO(event.start), 'day'),
   );
