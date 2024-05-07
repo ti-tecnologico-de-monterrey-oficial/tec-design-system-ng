@@ -36,6 +36,7 @@ import {
   BmbTopBarComponent,
   BmbTopBarItemComponent,
   BmbRadialComponent,
+  BmbSearchInputComponent,
 } from '../../projects/ds-ng/src/public-api';
 
 import {
@@ -47,6 +48,8 @@ export interface Target {
   target: string;
   index: number;
 }
+
+import names from './names.json';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -83,6 +86,7 @@ export interface Target {
     BmbTopBarComponent,
     BmbTopBarItemComponent,
     BmbRadialComponent,
+    BmbSearchInputComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -265,6 +269,34 @@ export class AppComponent {
     }
   }
 
+  isSearchIputLoading = false;
+  serverSideFilteredData: string[] = [];
+  searchInputResult = '';
+
+  async fetchNames(name: string): Promise<void> {
+    console.log(name);
+    try {
+      this.isSearchIputLoading = true;
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+    } finally {
+      this.serverSideFilteredData = [
+        'Carlee Bengochea',
+        'Reynard Howgate',
+        'Pearce Jore',
+        'Giacopo Mellings',
+        'Clyve Nerval',
+        'Pauletta Pavelka',
+        'Midge Girardot',
+      ];
+      this.isSearchIputLoading = false;
+      this.cdr.detectChanges();
+    }
+  }
+
+  handleSearchValue(name: string) {
+    this.searchInputResult = name;
+  }
+
   handleLogOff(event: Event) {
     console.log(event);
   }
@@ -274,4 +306,6 @@ export class AppComponent {
   handleLangChange(lang: string): void {
     this.topBarLang = lang;
   }
+
+  namesList = names;
 }
