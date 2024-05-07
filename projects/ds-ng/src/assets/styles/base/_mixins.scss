@@ -62,7 +62,7 @@
     }
   }
 
-  @include media-query(768, 'min') {
+  @include media-query(768, "min") {
     padding: rem.rem_calc(8 40);
   }
 
@@ -190,7 +190,7 @@
     @include focusElement();
   }
 
- @if $type == simple {
+  @if $type == simple {
     background-color: transparent;
     border: 0;
     border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-950));
@@ -246,11 +246,12 @@
   bottom: rem.rem_calc(40);
   right: rem.rem_calc(40);
   box-shadow: rem.rem_calc(2 2 2 1) RGBA(var(--color-black-primary), 0.25);
-  -webkit-box-shadow: rem.rem_calc(2 2 2 1) RGBA(var(--color-black-primary), 0.25);
+  -webkit-box-shadow: rem.rem_calc(2 2 2 1)
+    RGBA(var(--color-black-primary), 0.25);
   -moz-box-shadow: rem.rem_calc(2 2 2 1) RGBA(var(--color-black-primary), 0.25);
   background-color: RGBA(var(--color-blue-primary));
   color: RGBA(var(--color-white-primary));
-  
+
   &:hover {
     background-color: RGBA(var(--color-mariner-800));
   }

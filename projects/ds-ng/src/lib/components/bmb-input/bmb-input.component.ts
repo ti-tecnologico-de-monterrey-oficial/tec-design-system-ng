@@ -20,7 +20,7 @@ import {
   NG_VALIDATORS,
   FormControl,
   NgModel,
-  FormsModule
+  FormsModule,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
@@ -105,9 +105,7 @@ export class BmbInputComponent
   onClear() {
     this.inputModel = undefined;
     this.value = undefined;
-    this.inputWrapper?.nativeElement
-      .querySelector('.bmb_field-input')
-      .focus();
+    this.inputWrapper?.nativeElement.querySelector('.bmb_field-input').focus();
 
     if (this.isClearable && this.formControl) {
       this.formControl.reset();
@@ -131,9 +129,7 @@ export class BmbInputComponent
   }
 
   onParentClick() {
-    this.inputWrapper?.nativeElement
-      .querySelector('.bmb_field-input')
-      .focus();
+    this.inputWrapper?.nativeElement.querySelector('.bmb_field-input').focus();
   }
 
   onClick() {

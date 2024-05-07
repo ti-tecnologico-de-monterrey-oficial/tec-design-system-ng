@@ -10,6 +10,6 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 
 ### Colaborador Tec
 
-  Si eres colaborador Tec, en la raiz de tu proyecto debes crear el archivo .npmrc con el siguiente contenido
+Si eres colaborador Tec, en la raiz de tu proyecto debes crear el archivo .npmrc con el siguiente contenido
 
-  @ti-tecnologico-de-monterrey-oficial:registry=https://npm.pkg.github.com
+@ti-tecnologico-de-monterrey-oficial:registry=https://npm.pkg.github.com

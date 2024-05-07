@@ -26,7 +26,7 @@ const config: StorybookConfig = {
         patterns: [
           { from: 'projects/ds-ng/src/assets/fonts', to: 'assets/fonts' },
         ],
-      })
+      }),
     );
 
     return config;

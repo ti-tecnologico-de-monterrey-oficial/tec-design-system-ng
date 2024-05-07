@@ -4,7 +4,9 @@
       <span class="bmb_calendar-event-modal-header-time">
         {{ getDateString(event?.event) }}
       </span>
-      <h1 class="bmb_calendar-event-modal-header-title">{{ event?.event?.title }}</h1>
+      <h1 class="bmb_calendar-event-modal-header-title">
+        {{ event?.event?.title }}
+      </h1>
       <button bmbButton (click)="handleCloseModal()">
         <bmb-icon [icon]="'close'" />
       </button>

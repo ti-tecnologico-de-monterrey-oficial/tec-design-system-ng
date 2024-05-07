@@ -8,10 +8,9 @@ describe('DsNgComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DsNgComponent]
-    })
-    .compileComponents();
-    
+      imports: [DsNgComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(DsNgComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

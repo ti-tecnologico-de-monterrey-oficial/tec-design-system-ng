@@ -1,0 +1,12 @@
+<section class="bmb_top-bar-user-section">
+  <span class="bmb_top-bar-user-section-help">
+    <bmb-icon icon="help" />
+  </span>
+  <bmb-user-image
+    [image]="userInformation.image"
+    size="mobile-small"
+    class="bmb_top-bar-user-section-user-image"
+  />
+  <h3 class="bmb_top-bar-user-section-title">{{ userInformation.name }}</h3>
+  <span class="bmb_top-bar-user-section-role">{{ userInformation.role }}</span>
+</section>

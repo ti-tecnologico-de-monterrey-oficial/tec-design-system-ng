@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-export interface Tab {
+export interface IBmbTab {
   id: number;
   title: string;
   isActive?: boolean;
@@ -30,8 +30,8 @@ export interface Tab {
 })
 export class BmbTabsComponent implements OnInit, AfterViewInit {
   @Input() format: string = '';
-  @Input() tabs: Tab[] = [];
-  @Output() selected = new EventEmitter<Tab>();
+  @Input() tabs: IBmbTab[] = [];
+  @Output() selected = new EventEmitter<IBmbTab>();
 
   activeTabIndex: number = 0;
   @ViewChild('tabsItems') tabsItems!: ElementRef;
@@ -40,7 +40,7 @@ export class BmbTabsComponent implements OnInit, AfterViewInit {
     const initialActiveTab = this.tabs.findIndex((tab) => tab.isActive);
     this.activeTabIndex = initialActiveTab !== -1 ? initialActiveTab : 0;
     this.tabs.forEach(
-      (tab, index) => (tab.isActive = index === this.activeTabIndex)
+      (tab, index) => (tab.isActive = index === this.activeTabIndex),
     );
   }
 

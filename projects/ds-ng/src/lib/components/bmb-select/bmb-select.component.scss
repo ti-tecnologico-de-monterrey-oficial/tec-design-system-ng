@@ -1,0 +1,45 @@
+@use "../../../assets/styles/base/rem" as rem;
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/mixins" as mixins;
+
+.bmb_select {
+  position: relative;
+
+  &-input {
+    border: rem.rem_calc(1) solid RGBA(var(--color-charade-500));
+    padding: rem.rem_calc(8);
+    border-radius: rem.rem_calc(8);
+    display: flex;
+    gap: rem.rem_calc(16);
+    cursor: pointer;
+
+    &-button {
+      background-color: transparent;
+      color: white;
+      padding: 0;
+      @include fonts.font(4, regular);
+    }
+
+    i {
+      font-size: rem.rem_calc(24);
+    }
+  }
+
+  &-list {
+    display: none;
+    background-color: RGBA(var(--color-black-primary));
+    z-index: 999;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-radius: rem.rem_calc(8);
+    overflow: hidden;
+
+    &-open {
+      display: block;
+      position: absolute;
+      left: 0;
+      width: 100%;
+    }
+  }
+}

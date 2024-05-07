@@ -33,15 +33,23 @@ import {
   BmbProgressCircleComponent,
   BmbCheckboxComponent,
   BmbCalendarComponent,
+  BmbTopBarComponent,
+  BmbTopBarItemComponent,
   BmbRadialComponent,
 } from '../../projects/ds-ng/src/public-api';
 
+import {
+  IBmbTab,
+  IBmbCalendarEvent,
+  IBmbCalendarEventClick,
+} from '../../projects/ds-ng/src/public-api';
 export interface Target {
   target: string;
   index: number;
 }
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'app-root',
   standalone: true,
   imports: [
@@ -72,6 +80,8 @@ export interface Target {
     BmbProgressCircleComponent,
     BmbCheckboxComponent,
     BmbCalendarComponent,
+    BmbTopBarComponent,
+    BmbTopBarItemComponent,
     BmbRadialComponent,
   ],
   templateUrl: './app.component.html',
@@ -81,7 +91,7 @@ export interface Target {
 export class AppComponent {
   constructor(private cdr: ChangeDetectorRef) {}
 
-  myTabs: any = [
+  myTabs: IBmbTab[] = [
     { id: 1, title: 'Tec de Monterrey', badge: 1, isActive: true },
     { id: 2, title: 'Prestamo educativo' },
     { id: 3, title: 'Mas usado' },
@@ -91,9 +101,9 @@ export class AppComponent {
   ];
 
   activeTabId: number | null =
-    this.myTabs.find((tab: any) => tab.isActive)?.id ?? null;
+    this.myTabs.find((tab: IBmbTab) => tab.isActive)?.id ?? null;
 
-  handleTabSelected(tab: any): void {
+  handleTabSelected(tab: IBmbTab): void {
     this.activeTabId = tab.id;
   }
 
@@ -107,7 +117,7 @@ export class AppComponent {
   value = 'tec-design';
 
   isCalendarLoading = false;
-  calendarEvents: any[] = [
+  calendarEvents: IBmbCalendarEvent[] = [
     {
       title: 'Test',
       detail: 'Detail test',
@@ -151,6 +161,13 @@ export class AppComponent {
   ];
 
   i = 0;
+
+  userInformation = {
+    image:
+      'https://wonderfulengineering.com/wp-content/uploads/2014/10/image-wallpaper-15-1024x768.jpg',
+    name: 'Juan Pedro Sánchez Miranda',
+    role: 'Role de usuario',
+  };
 
   @ViewChild(BmbToastComponent)
   private toastComponent!: BmbToastComponent;
@@ -217,7 +234,7 @@ export class AppComponent {
     this.boolUserSummary = !this.boolUserSummary;
   }
 
-  async fetchData(event: any): Promise<void> {
+  async fetchData(event: IBmbCalendarEventClick): Promise<void> {
     console.log(event);
     try {
       this.isCalendarLoading = true;
@@ -246,5 +263,15 @@ export class AppComponent {
       this.isCalendarLoading = false;
       this.cdr.detectChanges();
     }
+  }
+
+  handleLogOff(event: Event) {
+    console.log(event);
+  }
+
+  topBarLang: string = 'es';
+
+  handleLangChange(lang: string): void {
+    this.topBarLang = lang;
   }
 }

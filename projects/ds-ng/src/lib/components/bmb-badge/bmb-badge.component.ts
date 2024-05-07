@@ -23,7 +23,10 @@ export class BmbBadgeComponent implements AfterViewInit {
   @Input() text: string = '';
   @Input() grouped: boolean = false;
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {}
+  constructor(
+    private el: ElementRef,
+    private renderer: Renderer2,
+  ) {}
 
   ngAfterViewInit() {
     if (this.grouped) {

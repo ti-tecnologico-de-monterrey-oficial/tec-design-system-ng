@@ -8,10 +8,9 @@ describe('BmbCalendarTemplateDayComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BmbCalendarTemplateDayComponent]
-    })
-    .compileComponents();
-    
+      imports: [BmbCalendarTemplateDayComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(BmbCalendarTemplateDayComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

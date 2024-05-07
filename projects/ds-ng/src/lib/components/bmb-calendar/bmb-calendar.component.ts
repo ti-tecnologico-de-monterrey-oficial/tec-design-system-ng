@@ -13,9 +13,16 @@ import { BmbCalendarTemplateDayComponent } from './common/bmb-calendar-template-
 import { BmbCalendarTemplateMonthComponent } from './common/bmb-calendar-template-month/bmb-calendar-template-month.component';
 import { BmbLoaderComponent } from '../bmb-loader/bmb-loader.component';
 import { BmbCalendarHeaderComponent } from './common/bmb-calendar-header/bmb-calendar-header.component';
-import { Event, EventClick, HourFormat, View } from './types';
+import {
+  IBmbCalendarEvent,
+  IBmbCalendarEventClick,
+  IBmbCalendarHourFormat,
+  IBmbCalendarView,
+} from './types';
 import { getWeekDays, getMonthDays } from './utils';
 import { BmbCalendarTemplateEventComponent } from './common/bmb-calendar-template-event/bmb-calendar-template-event.component';
+
+export { IBmbCalendarEvent, IBmbCalendarEventClick } from './types';
 
 @Component({
   selector: 'bmb-calendar',
@@ -27,7 +34,7 @@ import { BmbCalendarTemplateEventComponent } from './common/bmb-calendar-templat
     BmbCalendarTemplateMonthComponent,
     BmbLoaderComponent,
     BmbCalendarHeaderComponent,
-    BmbCalendarTemplateEventComponent
+    BmbCalendarTemplateEventComponent,
   ],
   styleUrl: './bmb-calendar.component.scss',
   templateUrl: './bmb-calendar.component.html',
@@ -35,24 +42,29 @@ import { BmbCalendarTemplateEventComponent } from './common/bmb-calendar-templat
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbCalendarComponent {
-  @Input() events: Event[] = [];
-  @Input() view: View = 'week';
+  @Input() events: IBmbCalendarEvent[] = [];
+  @Input() view: IBmbCalendarView = 'week';
   @Input() isLoading: boolean = false;
-  @Input() hourFormat: HourFormat = '12';
-  @Input() calendarTimezone: string = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  @Input() clientTimezone: string = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  @Input() hourFormat: IBmbCalendarHourFormat = '12';
+  @Input() calendarTimezone: string =
+    Intl.DateTimeFormat().resolvedOptions().timeZone;
+  @Input() clientTimezone: string =
+    Intl.DateTimeFormat().resolvedOptions().timeZone;
   @Input() lang: string = 'es-MX';
   @Input() currentDate: string = '';
   @Input() height: number | string = 700;
 
   @Output() onDateChange: EventEmitter<any> = new EventEmitter<any>();
 
-  now = this.currentDate === '' ? DateTime.now() : DateTime.fromISO(this.currentDate);
+  now =
+    this.currentDate === ''
+      ? DateTime.now()
+      : DateTime.fromISO(this.currentDate);
   weekNumber = this.now.weekNumber;
   renderWeekDays: DateTime[] = getWeekDays(this.now);
-  selectedEvent: ({ event: Event, position: any } | null) = null;
+  selectedEvent: { event: IBmbCalendarEvent; position: any } | null = null;
 
-  handleDateChange(range: View, now: DateTime): void {
+  handleDateChange(range: IBmbCalendarView, now: DateTime): void {
     this.view = range;
     let visibleDates: (string | null)[] = [];
 
@@ -62,12 +74,11 @@ export class BmbCalendarComponent {
         break;
 
       case 'week':
-        visibleDates = getWeekDays(now).map(date => date.toISO());
+        visibleDates = getWeekDays(now).map((date) => date.toISO());
         break;
 
       case 'month':
-
-        visibleDates = getMonthDays(now).map(date => date.toISO());
+        visibleDates = getMonthDays(now).map((date) => date.toISO());
         break;
 
       default:
@@ -87,16 +98,16 @@ export class BmbCalendarComponent {
     this.renderWeekDays = getWeekDays(newDate);
   }
 
-  handleSelectEvent(newEvent: EventClick | null): void {
+  handleSelectEvent(newEvent: IBmbCalendarEventClick | null): void {
     this.selectedEvent = newEvent;
   }
 
-  isAnEventSelected(event: EventClick | null): boolean {
+  isAnEventSelected(event: IBmbCalendarEventClick | null): boolean {
     return !!event;
   }
 
   getHeight(height: string | number): string {
-    if(typeof height === 'number') return `${height}px`;
+    if (typeof height === 'number') return `${height}px`;
 
     return height;
   }
