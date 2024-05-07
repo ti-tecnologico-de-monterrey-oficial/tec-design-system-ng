@@ -4,26 +4,27 @@
   [showLang]="true"
   [lang]="topBarLang"
   (onLangChange)="handleLangChange($event)"
->
-  <bmb-top-bar-item>
-    <a href="#">Link 1</a>
-  </bmb-top-bar-item>
-  <bmb-top-bar-item>
-    <a href="#">Link 2</a>
-  </bmb-top-bar-item>
-  <bmb-top-bar-item>
-    <a href="#">Link 3</a>
-  </bmb-top-bar-item>
-</bmb-top-bar>
+></bmb-top-bar>
+<div style="padding: 1rem">
+  <bmb-search-input
+    [data]="namesList"
+    [isLoading]="isSearchIputLoading"
+    [serverSideFilteredData]="serverSideFilteredData"
+    (onServerSideFilterEvent)="fetchNames($event)"
+    [isServerSideFilter]="true"
+    (onValueChange)="handleSearchValue($event)"
+  />
+  <div>{{ searchInputResult }}</div>
+</div>
 
 <!-- Demo -->
 <bmb-theme />
 
-<bmb-calendar
+<!-- <bmb-calendar
   [isLoading]="isCalendarLoading"
   [events]="calendarEvents"
   (onDateChange)="fetchData($event)"
-/>
+/> -->
 
 <bmb-radial
   label="Contrato profesor cátedra Biología marina CCM.pdf"
