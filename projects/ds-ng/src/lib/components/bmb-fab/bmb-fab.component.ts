@@ -3,7 +3,7 @@ import {
   HostListener,
   Input,
   ViewEncapsulation,
-  EventEmitter
+  EventEmitter,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';

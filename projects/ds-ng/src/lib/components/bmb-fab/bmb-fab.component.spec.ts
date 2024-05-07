@@ -8,10 +8,9 @@ describe('BmbFabComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BmbFabComponent]
-    })
-    .compileComponents();
-    
+      imports: [BmbFabComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(BmbFabComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

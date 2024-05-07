@@ -8,17 +8,24 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Info, DateTime } from 'luxon';
-import { HourFormat, Event, EventClick, IRenderEvents } from '../../types';
+import {
+  IBmbCalendarHourFormat,
+  IBmbCalendarEvent,
+  IBmbCalendarEventClick,
+  IBmbCalendarRenderEvents,
+} from '../../types';
 import { BmbCalendarHourViewComponent } from '../bmb-calendar-hour-view/bmb-calendar-hour-view.component';
 import { orderDayNames, eventsInDate } from '../../utils';
 import { BmbCalendarScheduleCardsComponent } from '../bmb-calendar-schedule-cards/bmb-calendar-schedule-cards.component';
 
-
-
 @Component({
   selector: 'bmb-calendar-template-week',
   standalone: true,
-  imports: [CommonModule, BmbCalendarHourViewComponent, BmbCalendarScheduleCardsComponent],
+  imports: [
+    CommonModule,
+    BmbCalendarHourViewComponent,
+    BmbCalendarScheduleCardsComponent,
+  ],
   templateUrl: './bmb-calendar-template-week.component.html',
   styleUrl: './bmb-calendar-template-week.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -27,13 +34,14 @@ import { BmbCalendarScheduleCardsComponent } from '../bmb-calendar-schedule-card
 export class BmbCalendarTemplateWeekComponent {
   @Input() weekDays: any[] = [];
   @Input() lang: string = 'es-MX';
-  @Input() hourFormat: HourFormat = '12';
+  @Input() hourFormat: IBmbCalendarHourFormat = '12';
   @Input() now: DateTime = DateTime.now();
-  @Input() events: Event[] = [];
+  @Input() events: IBmbCalendarEvent[] = [];
 
-  @Output() onSelectEvent: EventEmitter<EventClick> = new EventEmitter<EventClick>();
+  @Output() onSelectEvent: EventEmitter<IBmbCalendarEventClick> =
+    new EventEmitter<IBmbCalendarEventClick>();
 
-  defaultDayOrder = Info.weekdays('short', {locale: this.lang});
+  defaultDayOrder = Info.weekdays('short', { locale: this.lang });
 
   dayNames = orderDayNames(this.defaultDayOrder);
 
@@ -44,11 +52,11 @@ export class BmbCalendarTemplateWeekComponent {
     return diff < 0 && diff > -1;
   }
 
-  renderEvents(events: IRenderEvents): any[] {
+  renderEvents(events: IBmbCalendarRenderEvents): any[] {
     return eventsInDate(events);
   }
 
-  handleEventSelection(newEvent: EventClick) {
+  handleEventSelection(newEvent: IBmbCalendarEventClick) {
     this.onSelectEvent.emit(newEvent);
   }
 }

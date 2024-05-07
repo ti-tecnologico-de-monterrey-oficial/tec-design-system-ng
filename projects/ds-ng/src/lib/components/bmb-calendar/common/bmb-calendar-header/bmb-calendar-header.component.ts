@@ -10,7 +10,7 @@ import {
 import { BmbButtonDirective } from '../../../../directives/button.directive';
 import { BmbIconComponent } from '../../../bmb-icon/bmb-icon.component';
 import { DateTime } from 'luxon';
-import { View } from '../../types';
+import { IBmbCalendarView } from '../../types';
 
 @Component({
   selector: 'bmb-calendar-header',
@@ -24,34 +24,41 @@ import { View } from '../../types';
 export class BmbCalendarHeaderComponent {
   @Input() weekDays: DateTime[] = [];
   @Input() lang: string = 'es-MX';
-  @Input() view : View = 'week';
+  @Input() view: IBmbCalendarView = 'week';
   @Input() currentDate: DateTime = DateTime.now();
 
   @Output() onRangeChange: EventEmitter<any> = new EventEmitter<any>();
-  @Output() onCurrentDateChange: EventEmitter<DateTime> = new EventEmitter<DateTime>();
+  @Output() onCurrentDateChange: EventEmitter<DateTime> =
+    new EventEmitter<DateTime>();
 
   getTitle(): string {
     if (this.view === 'week') {
-      return `${
-        this.weekDays[0].toLocaleString({ month: 'short', day: 'numeric' })
-      } - ${
-        this.weekDays[6].toLocaleString({ month: 'short', day: 'numeric' })
-      }, ${this.currentDate.toLocaleString({ year: 'numeric' })}`
+      return `${this.weekDays[0].toLocaleString({
+        month: 'short',
+        day: 'numeric',
+      })} - ${this.weekDays[6].toLocaleString({
+        month: 'short',
+        day: 'numeric',
+      })}, ${this.currentDate.toLocaleString({ year: 'numeric' })}`;
     }
 
     if (this.view === 'day') {
-      return this.currentDate.toLocaleString({ month: 'long', day: 'numeric', year: 'numeric' });
+      return this.currentDate.toLocaleString({
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric',
+      });
     }
 
     return this.currentDate.toLocaleString({ month: 'long', year: 'numeric' });
   }
 
-  handleRangeChange(event: View): void {
+  handleRangeChange(event: IBmbCalendarView): void {
     if (event === 'month') {
       const newDate = DateTime.fromObject({
         month: this.currentDate.month,
         year: this.currentDate.year,
-        day: 1
+        day: 1,
       });
 
       this.onCurrentDateChange.emit(newDate);
@@ -66,7 +73,7 @@ export class BmbCalendarHeaderComponent {
       } else {
         this.onCurrentDateChange.emit(date.minus(config));
       }
-    }
+    };
 
     switch (this.view) {
       case 'day':
@@ -80,7 +87,7 @@ export class BmbCalendarHeaderComponent {
         const newDate = DateTime.fromObject({
           month: this.currentDate.month,
           year: this.currentDate.year,
-          day: 1
+          day: 1,
         });
 
         modifyDate({ config: { month: 1 }, date: newDate });

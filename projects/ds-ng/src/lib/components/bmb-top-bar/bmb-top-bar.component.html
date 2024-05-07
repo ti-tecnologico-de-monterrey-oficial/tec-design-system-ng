@@ -1,0 +1,90 @@
+<header class="bmb_top-bar">
+  @if (positionButtonMenu === "left") {
+    <div class="bmb_top-bar-button-section" [ngClass]="getMenuButtonClasses()">
+      <button
+        class="bmb_top-bar-button-menu"
+        bmbButton
+        (click)="handleMobileMenuClick()"
+      >
+        <bmb-icon icon="menu" class="bmb_top-bar-button-menu-menu" />
+        <bmb-icon icon="close" class="bmb_top-bar-button-menu-close" />
+      </button>
+    </div>
+  }
+  <figure class="bmb_top-bar-logo-section">
+    <picture>
+      <source media="(min-width: 1000px)" [srcset]="image" />
+      <source [srcset]="mobileImage" />
+      <img
+        src="/assets/images/tec-logo-mob.svg"
+        alt="TEC de Monterrey"
+        loading="lazy"
+      />
+    </picture>
+  </figure>
+  <nav class="bmb_top-bar-nav" [ngClass]="getMenuClasses()">
+    @if (appName !== "") {
+      <li class="bmb_top-bar-app-name">
+        <h1>{{ appName }}</h1>
+        <span>{{ appSubTitle }}</span>
+      </li>
+    }
+    <ul class="bmb_top-bar-nav-content">
+      <ng-content></ng-content>
+    </ul>
+    @if (userInformation) {
+      <li>
+        <bmb-top-bar-user-section [userInformation]="userInformation" />
+      </li>
+    }
+  </nav>
+  <div class="bmb_top-bar-always-visible-content">
+    @if (userInformation && hasLogoutButton) {
+      <button
+        class="bmb_top-bar-logoff"
+        bmbButton
+        appearance="secondary-filled"
+        (click)="handleLogOutClick($event)"
+      >
+        Salir
+      </button>
+    }
+
+    @if (showLang) {
+      <bmb-select (onLangChange)="handleLangChange($event)" [value]="lang">
+        <div class="bmb_top-bar-lang" selectTemplate>
+          <figure class="bmb_top-bar-lang-flag">
+            <img [src]="getFlag(lang)" [alt]="getCountryName(lang)" />
+          </figure>
+          <span>{{ getCountryName(lang) }}</span>
+        </div>
+        <bmb-select-item value="es">
+          <div class="bmb_top-bar-lang">
+            <figure class="bmb_top-bar-lang-flag">
+              <img [src]="getFlag('es')" [alt]="getCountryName('es')" />
+            </figure>
+            <span>{{ getCountryName("es") }}</span>
+          </div>
+        </bmb-select-item>
+        <bmb-select-item value="en">
+          <div class="bmb_top-bar-lang">
+            <figure class="bmb_top-bar-lang-flag">
+              <img [src]="getFlag('en')" [alt]="getCountryName('en')" />
+            </figure>
+            <span>{{ getCountryName("en") }}</span>
+          </div>
+        </bmb-select-item>
+      </bmb-select>
+    }
+  </div>
+  @if (positionButtonMenu === "right") {
+    <div class="bmb_top-bar-button-section">
+      <button
+        class="bmb_top-bar-button-menu"
+        bmbButton
+        icon="menu"
+        (click)="handleMobileMenuClick()"
+      ></button>
+    </div>
+  }
+</header>

@@ -3,7 +3,7 @@
   [ngClass]="getClassNames(event, isPositionAbsolute)"
   [style]="getPosition(event, isPositionAbsolute)"
   (click)="handleSelectEvent(event, $event)"
-  title="{{event.title}} - {{event.detail}}"
+  title="{{ event.title }} - {{ event.detail }}"
 >
   <div class="bmb_calendar-event-indicator"></div>
   <h3 class="bmb_calendar-event-title">

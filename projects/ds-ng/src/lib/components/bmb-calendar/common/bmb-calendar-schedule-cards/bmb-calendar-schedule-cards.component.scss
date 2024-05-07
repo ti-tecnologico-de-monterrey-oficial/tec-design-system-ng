@@ -24,9 +24,9 @@
     &-full {
       grid-template-columns: rem.rem_calc(16) 1fr;
       grid-template-areas:
-      "indicator title"
-      "indicator content"
-      "indicator time";
+        "indicator title"
+        "indicator content"
+        "indicator time";
     }
 
     &-reduced {
@@ -85,7 +85,7 @@
 .storybook-dark-theme {
   .bmb_calendar-event {
     background-color: RGBA(var(--color-charade-900));
-    border-color: RGBA(var(--color-charade-700), .75);
+    border-color: RGBA(var(--color-charade-700), 0.75);
 
     &-indicator {
       background-color: RGBA(var(--color-charade-950));

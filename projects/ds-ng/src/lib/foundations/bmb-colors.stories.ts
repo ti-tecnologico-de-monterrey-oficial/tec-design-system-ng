@@ -175,7 +175,7 @@ function gradients(object: any): any {
 const customizable = (): StoryFn => (args) => ({
   props: args,
   template: `<div class="storybook-colors-playground"><div style="background-color: ${colors(
-    args
+    args,
   )};"></div> <div style="background: ${gradients(args)};"></div></div>`,
 });
 

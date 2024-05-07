@@ -27,9 +27,7 @@
             "outputPath": "dist/tec-design-system-ng",
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -41,9 +39,7 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [
-              "projects/ds-ng/src/assets/styles/main.scss"
-            ],
+            "styles": ["projects/ds-ng/src/assets/styles/main.scss"],
             "scripts": []
           },
           "configurations": {
@@ -91,10 +87,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -106,10 +99,14 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [
-              "projects/ds-ng/src/assets/styles/main.scss"
-            ],
+            "styles": ["projects/ds-ng/src/assets/styles/main.scss"],
             "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
           }
         }
       }
@@ -139,10 +136,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "tsConfig": "projects/ds-ng/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
+            "polyfills": ["zone.js", "zone.js/testing"]
           }
         },
         "storybook": {
@@ -151,16 +145,9 @@
             "configDir": "projects/ds-ng/.storybook",
             "browserTarget": "ds-ng:build",
             "compodoc": true,
-            "compodocArgs": [
-              "-e",
-              "json",
-              "-d",
-              "."
-            ],
+            "compodocArgs": ["-e", "json", "-d", "."],
             "port": 6006,
-            "styles": [
-              "projects/ds-ng/src/assets/styles/main.scss"
-            ]
+            "styles": ["projects/ds-ng/src/assets/styles/main.scss"]
           }
         },
         "build-storybook": {
@@ -169,16 +156,15 @@
             "configDir": "projects/ds-ng/.storybook",
             "browserTarget": "ds-ng:build",
             "compodoc": true,
-            "compodocArgs": [
-              "-e",
-              "json",
-              "-d",
-              "." 
-            ],
-            "styles": [
-              "projects/ds-ng/src/assets/styles/main.scss"
-            ],
+            "compodocArgs": ["-e", "json", "-d", "."],
+            "styles": ["projects/ds-ng/src/assets/styles/main.scss"],
             "outputDir": "dist/storybook/ds-ng"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
           }
         }
       }

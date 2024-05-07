@@ -33,7 +33,7 @@ export class BmbButtonDirective implements OnInit, OnChanges {
     private el: ElementRef,
     private viewContainerRef: ViewContainerRef,
     private cdr: ChangeDetectorRef,
-    private renderer: Renderer2
+    private renderer: Renderer2,
   ) {}
 
   ngOnInit(): void {
@@ -68,7 +68,7 @@ export class BmbButtonDirective implements OnInit, OnChanges {
       this.renderer.setAttribute(
         this.el.nativeElement,
         'position',
-        this.position
+        this.position,
       );
     }
   }
@@ -89,12 +89,12 @@ export class BmbButtonDirective implements OnInit, OnChanges {
       if (this.position === 'right') {
         this.el.nativeElement.insertBefore(
           iconComponentRef.location.nativeElement,
-          this.el.nativeElement.lastChild.nextSibling
+          this.el.nativeElement.lastChild.nextSibling,
         );
       } else {
         this.el.nativeElement.insertBefore(
           iconComponentRef.location.nativeElement,
-          this.el.nativeElement.firstChild
+          this.el.nativeElement.firstChild,
         );
       }
     }

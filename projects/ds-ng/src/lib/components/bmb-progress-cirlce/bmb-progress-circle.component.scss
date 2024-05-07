@@ -16,8 +16,8 @@
     }
 
     &-meter {
-      stroke:  RGBA(var(--color-blue-primary));
-      stroke:  RGBA(var(--color-blue-primary));
+      stroke: RGBA(var(--color-blue-primary));
+      stroke: RGBA(var(--color-blue-primary));
     }
 
     &-value {
@@ -38,7 +38,7 @@
       color: RGBA(var(--color-charade-950));
     }
 
-    &-value-alone{
+    &-value-alone {
       top: rem.rem_calc(85);
     }
 
@@ -53,14 +53,13 @@
   }
 }
 
-
 [data-theme="dark"],
 .storybook-dark-theme {
   .bmb_progress_circle {
     &-info-value {
       color: RGBA(var(--color-white-primary));
     }
-  
+
     &-info-title {
       color: RGBA(var(--color-white-primary));
     }

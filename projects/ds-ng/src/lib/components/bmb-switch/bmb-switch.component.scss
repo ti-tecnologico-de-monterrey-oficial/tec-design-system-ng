@@ -54,7 +54,9 @@
     height: rem.rem_calc(20);
     margin: rem.rem_calc(0 12);
     position: relative;
-    transition: background-color 0.3s, left 0.3s;
+    transition:
+      background-color 0.3s,
+      left 0.3s;
     width: rem.rem_calc(40);
 
     &:after {

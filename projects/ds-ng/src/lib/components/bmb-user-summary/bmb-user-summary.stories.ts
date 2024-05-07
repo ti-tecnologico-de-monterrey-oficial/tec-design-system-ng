@@ -45,7 +45,7 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'text',
       },
-      description: 'user\' full name.',
+      description: "user' full name.",
       table: {
         type: { summary: 'string' },
       },
@@ -78,14 +78,15 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'function' },
       },
     },
-
   },
   args: {
     isProfile: false,
     name: 'Test Name',
     id: 'AC123123',
     profilePic: '',
-    onClick: () => { console.log('test')},
+    onClick: () => {
+      console.log('test');
+    },
   },
 } as Meta<typeof BmbUserSummaryComponent>;
 
