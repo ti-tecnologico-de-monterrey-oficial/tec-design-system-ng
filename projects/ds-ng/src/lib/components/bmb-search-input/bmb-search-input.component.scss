@@ -1,0 +1,113 @@
+@use "../../../assets/styles/base/rem" as rem;
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/mixins" as mixins;
+
+.bmb_search-input {
+  max-width: rem.rem_calc(600);
+  display: inline-block;
+  position: relative;
+  width: 100%;
+
+  &-field {
+    background-color: RGBA(var(--color-charade-100));
+    border-radius: rem.rem_calc(8);
+    display: flex;
+    gap: rem.rem_calc(8);
+    align-items: center;
+
+    &-label {
+      font-size: rem.rem_calc(24);
+      padding: 0 rem.rem_calc(8);
+      line-height: rem.rem_calc(24);
+      color: RGBA(var(--color-charade-500));
+      cursor: pointer;
+    }
+
+    input {
+      flex: 1;
+      @include fonts.font(4, regular);
+      background-color: transparent;
+      border: 0 none;
+
+      &:focus,
+      &:focus-visible {
+        outline: 0 none transparent;
+      }
+    }
+
+    button {
+      padding: 0 rem.rem_calc(8);
+      background-color: transparent;
+
+      &:disabled {
+        background-color: transparent !important;
+      }
+
+      &:hover,
+      &:focus-visible {
+        background-color: transparent !important;
+      }
+
+      bmb-icon {
+        height: rem.rem_calc(24);
+      }
+
+      i {
+        color: RGBA(var(--color-charade-500));
+        font-size: rem.rem_calc(24);
+        line-height: rem.rem_calc(24);
+        height: rem.rem_calc(24);
+      }
+    }
+  }
+
+  &-dialog {
+    display: none;
+    width: 100%;
+    left: 0;
+    z-index: 999;
+    background-color: RGBA(var(--color-charade-50));
+    border-radius: rem.rem_calc(8);
+    overflow: auto;
+    height: max-content;
+    max-height: rem.rem_calc(160);
+    top: 100%;
+    justify-content: center;
+    margin-top: rem.rem_calc(8);
+
+    &-open {
+      display: flex;
+      position: absolute;
+    }
+
+    .bmb_loader-loading {
+      height: rem.rem_calc(100);
+      width: rem.rem_calc(100);
+
+      bmb-icon {
+        font-size: rem.rem_calc(40);
+      }
+    }
+
+    &-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      width: 100%;
+
+      &-item button {
+        padding: rem.rem_calc(8) rem.rem_calc(16);
+        background-color: transparent;
+        width: 100%;
+        text-align: left;
+        @include fonts.font(4, regular);
+
+        &:hover,
+        &:focus-visible {
+          background-color: RGBA(var(--color-blue-primary));
+          color: RGBA(var(--color-white-primary));
+        }
+      }
+    }
+  }
+}

@@ -3,16 +3,10 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   Input,
-  ContentChild,
-  TemplateRef,
   HostListener,
-  Directive,
-  InjectionToken,
-  Provider,
   ElementRef,
   Output,
   EventEmitter,
-  ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
