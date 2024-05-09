@@ -6,10 +6,6 @@ describe('BmbCheckboxComponent', () => {
   let fixture: ComponentFixture<BmbCheckboxComponent>;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [BmbCheckboxComponent],
-    });
-
     fixture = TestBed.createComponent(BmbCheckboxComponent);
     component = fixture.componentInstance;
   });

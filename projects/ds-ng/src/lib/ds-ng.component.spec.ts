@@ -7,9 +7,7 @@ describe('DsNgComponent', () => {
   let fixture: ComponentFixture<DsNgComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [DsNgComponent],
-    }).compileComponents();
+    await TestBed.configureTestingModule({}).compileComponents();
 
     fixture = TestBed.createComponent(DsNgComponent);
     component = fixture.componentInstance;

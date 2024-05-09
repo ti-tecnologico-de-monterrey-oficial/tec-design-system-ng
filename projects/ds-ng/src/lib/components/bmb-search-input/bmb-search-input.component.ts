@@ -9,6 +9,7 @@ import {
   ElementRef,
   SimpleChanges,
   HostListener,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
@@ -45,7 +46,10 @@ export class BmbSearchInputComponent {
 
   @ViewChild('filterInput') filterField: ElementRef | null = null;
 
-  constructor(private elementRef: ElementRef) {
+  constructor(
+    private elementRef: ElementRef,
+    private cdr: ChangeDetectorRef,
+  ) {
     this.filterControl.valueChanges
       .pipe(debounceTime(300))
       .subscribe((value) => {
@@ -92,10 +96,12 @@ export class BmbSearchInputComponent {
         this.filteredData = this.data.filter((item) =>
           item.toLowerCase().includes(value.toLowerCase()),
         );
+        this.isDialogOpen = true;
       }
     } else {
       this.filteredData = [];
     }
+    this.cdr.detectChanges();
   }
 
   clearFilter(): void {
