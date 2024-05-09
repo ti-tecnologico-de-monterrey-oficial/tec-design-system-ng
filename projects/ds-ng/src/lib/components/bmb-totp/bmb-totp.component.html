@@ -23,15 +23,17 @@
       </div>
     </div>
     @if (codeError) {
-    <p class="bmb_totp-error">{{ errorMessage }}</p>
-    } @if (showButton) {
-    <button bmbButton appearance="primary" size="large" type="submit">
-      {{ buttonText }}
-    </button>
-    } @if (showButton && helperText) {
-    <p class="bmb_totp-helper">
-      {{ helperText }}
-    </p>
+      <p class="bmb_totp-error">{{ errorMessage }}</p>
+    }
+    @if (showButton) {
+      <button bmbButton appearance="primary" size="large" type="submit">
+        {{ buttonText }}
+      </button>
+    }
+    @if (showButton && helperText) {
+      <p class="bmb_totp-helper">
+        {{ helperText }}
+      </p>
     }
   </form>
 </div>

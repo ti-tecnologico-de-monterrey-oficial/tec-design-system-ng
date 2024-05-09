@@ -56,7 +56,7 @@ export class BmbTotpComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
   ) {}
 
   ngOnInit(): void {
@@ -98,7 +98,7 @@ export class BmbTotpComponent implements OnInit {
     if (value && value.length === input.maxLength) {
       if (idx < this.maxCode - 1) {
         const nextInput = document.getElementById(
-          `code-${this.instanceId}-${idx + 1}`
+          `code-${this.instanceId}-${idx + 1}`,
         ) as HTMLInputElement;
         if (nextInput) {
           nextInput.focus();
@@ -116,7 +116,7 @@ export class BmbTotpComponent implements OnInit {
 
     if (event.key === 'Backspace' && input.value.length === 0 && idx > 0) {
       const previousInput = document.getElementById(
-        `code-${this.instanceId}-${idx - 1}`
+        `code-${this.instanceId}-${idx - 1}`,
       ) as HTMLInputElement;
       if (previousInput) {
         previousInput.focus();
@@ -137,7 +137,7 @@ export class BmbTotpComponent implements OnInit {
       }
 
       const lastInput = document.getElementById(
-        `code-${this.instanceId}-${this.maxCode - 1}`
+        `code-${this.instanceId}-${this.maxCode - 1}`,
       ) as HTMLInputElement;
       if (lastInput) {
         lastInput.focus();
