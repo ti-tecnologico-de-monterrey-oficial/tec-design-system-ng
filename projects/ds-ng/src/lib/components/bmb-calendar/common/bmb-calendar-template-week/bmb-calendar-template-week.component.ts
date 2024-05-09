@@ -48,7 +48,7 @@ export class BmbCalendarTemplateWeekComponent {
   rows = new Array(25).fill(0);
 
   isNow(date: DateTime): boolean {
-    const diff = date.diffNow('day').days;
+    const diff = date?.diffNow('day')?.days;
     return diff < 0 && diff > -1;
   }
 

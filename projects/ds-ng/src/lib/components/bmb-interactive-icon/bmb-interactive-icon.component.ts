@@ -23,7 +23,7 @@ export class BmbInteractiveIconComponent implements AfterViewInit {
   @Input() appearance: string = '';
   @Input() title: string = '';
   @Input() description: string = '';
-  @Input() icon: string = '';
+  @Input() icon: string = 'face';
   @Input() grouped: boolean = false;
   @Input() horizontal: boolean = false;
   @Input() target: string = '';

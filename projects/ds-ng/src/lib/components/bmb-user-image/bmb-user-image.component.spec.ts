@@ -6,9 +6,7 @@ describe('BmbUserImageComponent', () => {
   let fixture: ComponentFixture<BmbUserImageComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [BmbUserImageComponent],
-    }).compileComponents();
+    await TestBed.configureTestingModule({}).compileComponents();
   });
 
   beforeEach(() => {

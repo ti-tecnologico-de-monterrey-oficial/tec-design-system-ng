@@ -7,10 +7,6 @@ describe('BmbProgressCirlceComponent', () => {
   let fixture: ComponentFixture<BmbProgressCircleComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [BmbProgressCircleComponent],
-    }).compileComponents();
-
     fixture = TestBed.createComponent(BmbProgressCircleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

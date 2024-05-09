@@ -6,10 +6,6 @@ describe('BmbHeaderMobileComponent', () => {
   let fixture: ComponentFixture<BmbHeaderMobileComponent>;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [BmbHeaderMobileComponent],
-    }).compileComponents();
-
     fixture = TestBed.createComponent(BmbHeaderMobileComponent);
     component = fixture.componentInstance;
   });
