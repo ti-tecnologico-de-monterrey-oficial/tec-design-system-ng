@@ -1,8 +1,9 @@
 <div class="bmb_calendar-day-view">
-  <bmb-calendar-hour-view
-    [hourFormat]="hourFormat"
-  />
-  <section class="bmb_calendar-col" [ngClass]="{'bmb_calendar-col-today': isNow(now)}">
+  <bmb-calendar-hour-view [hourFormat]="hourFormat" />
+  <section
+    class="bmb_calendar-col"
+    [ngClass]="{ 'bmb_calendar-col-today': isNow(now) }"
+  >
     <header class="bmb_calendar-detail-header">
       <h2>{{ getNameDay() }}</h2>
       <span>{{ now.month }}/{{ now.day }}</span>
@@ -15,7 +16,8 @@
         <bmb-calendar-schedule-cards
           [event]="event"
           (onSelectEvent)="handleEventSelection($event)"
-        >Event</bmb-calendar-schedule-cards>
+          >Event</bmb-calendar-schedule-cards
+        >
       }
     </div>
   </section>

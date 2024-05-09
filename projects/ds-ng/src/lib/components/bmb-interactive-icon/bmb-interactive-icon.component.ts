@@ -29,14 +29,17 @@ export class BmbInteractiveIconComponent implements AfterViewInit {
   @Input() target: string = '';
   @Input() link: string = '';
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {}
+  constructor(
+    private el: ElementRef,
+    private renderer: Renderer2,
+  ) {}
 
   ngAfterViewInit() {
     if (this.grouped) {
       const parentElement = this.el.nativeElement.parentElement;
 
       let wrapperDiv = parentElement.querySelector(
-        '.bmb_interactive_icon-grouped'
+        '.bmb_interactive_icon-grouped',
       );
       if (!wrapperDiv) {
         wrapperDiv = this.renderer.createElement('div');

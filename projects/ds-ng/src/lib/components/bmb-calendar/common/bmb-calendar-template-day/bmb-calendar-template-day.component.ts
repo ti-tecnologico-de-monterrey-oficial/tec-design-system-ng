@@ -8,7 +8,12 @@ import {
 } from '@angular/core';
 import { BmbCalendarHourViewComponent } from '../bmb-calendar-hour-view/bmb-calendar-hour-view.component';
 import { CommonModule } from '@angular/common';
-import { HourFormat, Event, IRenderEvents, EventClick } from '../../types';
+import {
+  IBmbCalendarHourFormat,
+  IBmbCalendarEvent,
+  IBmbCalendarRenderEvents,
+  IBmbCalendarEventClick,
+} from '../../types';
 import { DateTime } from 'luxon';
 import { BmbCalendarScheduleCardsComponent } from '../bmb-calendar-schedule-cards/bmb-calendar-schedule-cards.component';
 import { eventsInDate } from '../../utils';
@@ -28,11 +33,12 @@ import { eventsInDate } from '../../utils';
 })
 export class BmbCalendarTemplateDayComponent {
   @Input() lang: string = 'es-MX';
-  @Input() hourFormat: HourFormat = '12';
+  @Input() hourFormat: IBmbCalendarHourFormat = '12';
   @Input() now: DateTime = DateTime.now();
-  @Input() events: Event[] = [];
+  @Input() events: IBmbCalendarEvent[] = [];
 
-  @Output() onSelectEvent: EventEmitter<EventClick> = new EventEmitter<EventClick>();
+  @Output() onSelectEvent: EventEmitter<IBmbCalendarEventClick> =
+    new EventEmitter<IBmbCalendarEventClick>();
 
   rows = new Array(25).fill(0);
 
@@ -40,11 +46,11 @@ export class BmbCalendarTemplateDayComponent {
     return this.now.toFormat('cccc', { locale: this.lang });
   }
 
-  renderEvents(events: IRenderEvents): any[] {
+  renderEvents(events: IBmbCalendarRenderEvents): any[] {
     return eventsInDate(events);
   }
 
-  handleEventSelection(newEvent: EventClick) {
+  handleEventSelection(newEvent: IBmbCalendarEventClick) {
     this.onSelectEvent.emit(newEvent);
   }
 

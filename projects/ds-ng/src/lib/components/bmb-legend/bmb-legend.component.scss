@@ -7,7 +7,15 @@
   color: RGBA(var(--color-charade-950));
 }
 
-$variants: ('normal': RGBA(var(--color-charade-500)), 'strong': RGBA(var(--color-mariner-700)), 'success': RGBA(var(--color-green-light)), 'info': RGBA(var(--color-purple-primary)), 'warning': RGBA(var(--color-yellow-tint)), 'error': RGBA(var(--color-red-light)), 'brand': RGBA(var(--color-neon-primary)));
+$variants: (
+  "normal": RGBA(var(--color-charade-500)),
+  "strong": RGBA(var(--color-mariner-700)),
+  "success": RGBA(var(--color-green-light)),
+  "info": RGBA(var(--color-purple-primary)),
+  "warning": RGBA(var(--color-yellow-tint)),
+  "error": RGBA(var(--color-red-light)),
+  "brand": RGBA(var(--color-neon-primary)),
+);
 
 .bmb_legend {
   display: grid;

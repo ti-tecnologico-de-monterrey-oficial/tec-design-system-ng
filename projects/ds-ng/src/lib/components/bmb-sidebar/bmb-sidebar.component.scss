@@ -1,17 +1,18 @@
 @use "../../../assets/styles/base/fonts" as fonts;
 @use "../../../assets/styles/base/rem" as rem;
-  
+
 .bmb_sidebar {
   position: fixed;
   width: rem.rem_calc(60);
-  top:50;
+  top: 50;
   height: rem.rem_calc(539);
   z-index: 100;
   background-color: RGBA(var(--color-black-primary));
-  overflow:hidden;
-  transition:width .3s ease;
-  cursor:pointer;
-  box-shadow: rem.rem_calc(4) rem.rem_calc(7) rem.rem_calc(10) rgba(0,0,0,.4);
+  overflow: hidden;
+  transition: width 0.3s ease;
+  cursor: pointer;
+  box-shadow: rem.rem_calc(4) rem.rem_calc(7) rem.rem_calc(10)
+    rgba(0, 0, 0, 0.4);
   border-top-right-radius: rem.rem_calc(20);
   border-bottom-right-radius: rem.rem_calc(20);
   &:hover {
@@ -19,13 +20,13 @@
   }
 
   &:not(:hover) {
-    .active{
+    .active {
       background-color: RGBA(var(--color-black-primary));
-      color: RGBA(var(--color-charade-50))
+      color: RGBA(var(--color-charade-50));
     }
   }
 
-  &-container{
+  &-container {
     list-style-type: none;
     color: RGBA(var(--color-white-primary));
     margin: 0;
@@ -35,10 +36,10 @@
     }
   }
 
-  &-item{
+  &-item {
     padding-bottom: rem.rem_calc(16);
 
-    &-container{
+    &-container {
       display: inline-flex;
       width: rem.rem_calc(180);
       max-height: rem.rem_calc(45);
@@ -48,25 +49,25 @@
         position: relative;
         display: inline-flex;
         text-decoration: none;
-        align-items: center;    
+        align-items: center;
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
-        transition:all .3s ease;
+        transition: all 0.3s ease;
         margin-left: rem.rem_calc(15);
         color: RGBA(var(--color-charade-50));
         @include fonts.font(3, medium);
-    
-        &:hover{
+
+        &:hover {
           color: RGBA(var(--color-charade-950));
         }
       }
 
-      .bmb-active-link{
-        color: RGBA(var(--color-charade-950))
+      .bmb-active-link {
+        color: RGBA(var(--color-charade-950));
       }
-      
-      &:hover{
+
+      &:hover {
         background-color: RGBA(var(--color-charade-50));
         border-radius: rem.rem_calc(24);
 
@@ -74,28 +75,26 @@
           color: RGBA(var(--color-charade-950));
         }
 
-        .bmb_sidebar-item-container-icon{
+        .bmb_sidebar-item-container-icon {
           color: RGBA(var(--color-black-primary));
         }
       }
 
-      .bmb_sidebar-item-container-icon{
+      .bmb_sidebar-item-container-icon {
         padding: rem.rem_calc(3) rem.rem_calc(6) rem.rem_calc(3) rem.rem_calc(6);
         font-size: rem.rem_calc(24);
       }
 
-      .bmb_sidebar-item-container-icon.active-icon{
+      .bmb_sidebar-item-container-icon.active-icon {
         background-color: RGBA(var(--color-charade-50));
         color: RGBA(var(--color-black-primary));
         border-radius: 50%;
       }
     }
 
-    .active{
+    .active {
       background-color: RGBA(var(--color-charade-50));
-      border-radius: rem.rem_calc(24)
+      border-radius: rem.rem_calc(24);
     }
   }
 }
-
-
