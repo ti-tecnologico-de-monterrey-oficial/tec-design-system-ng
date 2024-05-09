@@ -18,11 +18,11 @@
 
       [data-theme="dark"] &,
       .storybook-dark-theme & {
-        border-right-color: RGBA(var(--color-charade-700), .75);
+        border-right-color: RGBA(var(--color-charade-700), 0.75);
       }
     }
 
-    &:not(:nth-child(-n+28)) {
+    &:not(:nth-child(-n + 28)) {
       border-bottom: 0 none;
     }
 
@@ -34,7 +34,7 @@
     }
 
     &-name {
-      @include mixins.media-query(999, 'max') {
+      @include mixins.media-query(999, "max") {
         display: none;
       }
     }
@@ -44,10 +44,10 @@
 [data-theme="dark"],
 .storybook-dark-theme {
   .bmb_calendar-month-view-day {
-    border-bottom-color: RGBA(var(--color-charade-700), .75);
+    border-bottom-color: RGBA(var(--color-charade-700), 0.75);
 
     &:not(:nth-child(7n)) {
-      border-right-color: RGBA(var(--color-charade-700), .75);
+      border-right-color: RGBA(var(--color-charade-700), 0.75);
     }
   }
 }

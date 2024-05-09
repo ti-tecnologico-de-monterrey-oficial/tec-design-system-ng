@@ -1,0 +1,63 @@
+@use "../../../../assets/styles/base/rem" as rem;
+@use "../../../../assets/styles/base/fonts" as fonts;
+@use "../../../../assets/styles/base/mixins" as mixins;
+
+.bmb_top-bar-user-section {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 0;
+  width: 100vw;
+  @include fonts.font(3, regular);
+  grid-template-columns: rem.rem_calc(46) 1fr rem.rem_calc(46);
+  grid-template-areas:
+    "image name help"
+    "image role help";
+
+  align-items: center;
+
+  @include mixins.media-query(1000, "min") {
+    grid-template-areas:
+      "help image name"
+      "help image role";
+    grid-template-columns: rem.rem_calc(30) rem.rem_calc(64) 1fr;
+    max-width: max-content;
+  }
+
+  @include mixins.media-query(999, "max") {
+    justify-self: flex-start;
+    padding: 0 rem.rem_calc(16);
+  }
+
+  &-help {
+    font-size: rem.rem_calc(26);
+    grid-area: help;
+    line-height: 0;
+    text-align: center;
+    margin-left: rem.rem_calc(16);
+
+    @include mixins.media-query(1000, "min") {
+      margin: 0;
+    }
+  }
+
+  &-user-image {
+    grid-area: image;
+    margin: 0 rem.rem_calc(16) 0 0;
+
+    @include mixins.media-query(1000, "min") {
+      margin: 0 rem.rem_calc(16);
+    }
+  }
+
+  &-title {
+    @include fonts.font(4, regular);
+    grid-area: name;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  &-role {
+    grid-area: role;
+  }
+}
