@@ -16,7 +16,7 @@ export class BmbSidebarComponent {
   currentChoice: string = '';
 
   ngOnInit() {
-    this.currentChoice = this.elements[0].title;
+    this.currentChoice = this.elements[0]?.title;
   }
 
   setActive(choice: string) {

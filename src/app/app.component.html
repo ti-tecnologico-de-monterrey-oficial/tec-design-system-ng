@@ -5,13 +5,14 @@
   [lang]="topBarLang"
   (onLangChange)="handleLangChange($event)"
 ></bmb-top-bar>
+
 <div style="padding: 1rem">
   <bmb-search-input
     [data]="namesList"
     [isLoading]="isSearchIputLoading"
     [serverSideFilteredData]="serverSideFilteredData"
     (onServerSideFilterEvent)="fetchNames($event)"
-    [isServerSideFilter]="true"
+    [isServerSideFilter]="false"
     (onValueChange)="handleSearchValue($event)"
   />
   <div>{{ searchInputResult }}</div>
