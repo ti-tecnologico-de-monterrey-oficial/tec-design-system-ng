@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BmbSearchInputComponent } from './bmb-search-input.component';
 
 describe('BmbSearchInputComponent', () => {

@@ -6,10 +6,6 @@ describe('BmbInteractiveIconComponent', () => {
   let fixture: ComponentFixture<BmbInteractiveIconComponent>;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [BmbInteractiveIconComponent],
-    });
-
     fixture = TestBed.createComponent(BmbInteractiveIconComponent);
     component = fixture.componentInstance;
   });

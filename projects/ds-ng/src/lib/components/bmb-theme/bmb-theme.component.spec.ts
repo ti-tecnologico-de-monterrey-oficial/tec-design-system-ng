@@ -6,9 +6,7 @@ describe('BmbThemeComponent', () => {
   let fixture: ComponentFixture<BmbThemeComponent>;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [BmbThemeComponent],
-    }).compileComponents();
+    TestBed.configureTestingModule({}).compileComponents();
 
     fixture = TestBed.createComponent(BmbThemeComponent);
     component = fixture.componentInstance;

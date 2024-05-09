@@ -14,7 +14,6 @@ describe('BmbToastComponent', () => {
     ]);
 
     TestBed.configureTestingModule({
-      declarations: [BmbToastComponent],
       providers: [{ provide: ToastService, useValue: mockToastService }],
     });
 

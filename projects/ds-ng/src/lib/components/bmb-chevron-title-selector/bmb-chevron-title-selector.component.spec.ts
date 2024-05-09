@@ -1,16 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BmbTitleSectionComponent } from './bmb-title-section.component';
+import { BmbChevronTitleSelectorComponent } from './bmb-chevron-title-selector.component';
 
 describe('BmbTitleSectionComponent', () => {
-  let component: BmbTitleSectionComponent;
-  let fixture: ComponentFixture<BmbTitleSectionComponent>;
+  let component: BmbChevronTitleSelectorComponent;
+  let fixture: ComponentFixture<BmbChevronTitleSelectorComponent>;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [BmbTitleSectionComponent],
-    });
-
-    fixture = TestBed.createComponent(BmbTitleSectionComponent);
+    fixture = TestBed.createComponent(BmbChevronTitleSelectorComponent);
     component = fixture.componentInstance;
   });
 

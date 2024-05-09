@@ -5,12 +5,6 @@ describe('BmbDotPaginatorComponent', () => {
   let component: BmbDotPaginatorComponent;
   let fixture: ComponentFixture<BmbDotPaginatorComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [BmbDotPaginatorComponent],
-    }).compileComponents();
-  });
-
   beforeEach(() => {
     fixture = TestBed.createComponent(BmbDotPaginatorComponent);
     component = fixture.componentInstance;

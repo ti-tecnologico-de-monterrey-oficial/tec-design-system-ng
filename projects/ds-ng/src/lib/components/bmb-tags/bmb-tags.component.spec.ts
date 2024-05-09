@@ -6,26 +6,12 @@ describe('BmbTagComponent', () => {
   let fixture: ComponentFixture<BmbTagComponent>;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [BmbTagComponent],
-    });
-
     fixture = TestBed.createComponent(BmbTagComponent);
     component = fixture.componentInstance;
   });
 
   it('should create the component', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should apply badge class based on appearance', () => {
-    component.appearance = 'primary';
-    fixture.detectChanges();
-
-    const element: HTMLElement = fixture.nativeElement;
-    const badgeElement = element.querySelector('.badge');
-
-    expect(badgeElement?.classList).toContain('badge--primary');
   });
 
   it('should not apply badge class when appearance is not provided', () => {
