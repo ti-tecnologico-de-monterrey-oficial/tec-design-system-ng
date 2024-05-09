@@ -2756,7 +2756,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@use \"../../../assets/styles/base/fonts\" as fonts;\n@use \"../../../assets/styles/base/mixins\" as mixins;\n@use \"../../../assets/styles/base/rem\" as rem;\n\n.bmb_checkbox {\n  align-items: center;\n  display: flex;\n  gap: rem.rem_calc(8);\n  position: relative;\n  width: fit-content;\n\n  input[type=\"checkbox\"] {\n    cursor: pointer;\n    height: rem.rem_calc(42);\n    margin: 0;\n    opacity: 0;\n    padding: 0;\n    position: absolute;\n    width: 100%;\n    z-index: 1;\n\n    &:hover {\n      + .bmb_checkbox-box {\n        background-color: RGBA(var(--color-blue-primary), 0.1);\n      }\n    }\n\n    &:focus {\n      + .bmb_checkbox-box {\n        background-color: RGBA(var(--color-blue-primary), 0.2);\n      }\n    }\n\n    &:checked {\n      + .bmb_checkbox-box {\n        .bmb_checkbox-mark {\n          background-color: RGBA(var(--color-blue-primary));\n          border-color: RGBA(var(--color-blue-primary));\n\n          &::after {\n            border: solid RGBA(var(--color-white-primary));\n            border-width: rem.rem_calc(0 2 2 0);\n            display: block;\n            height: rem.rem_calc(10);\n            left: rem.rem_calc(4);\n            transform: rotate(45deg);\n            width: rem.rem_calc(4);\n          }\n        }\n      }\n    }\n\n    &:indeterminate {\n      + .bmb_checkbox-box {\n        .bmb_checkbox-mark {\n          background-color: RGBA(var(--color-blue-primary));\n          border-color: RGBA(var(--color-blue-primary));\n\n          &::after {\n            background-color: RGBA(var(--color-white-primary));\n            bottom: 0;\n            display: block;\n            height: rem.rem_calc(2);\n            left: 0;\n            margin: auto;\n            right: 0;\n            top: 0;\n            width: rem.rem_calc(10);\n          }\n        }\n      }\n    }\n\n    &:disabled {\n      cursor: not-allowed;\n\n      + .bmb_checkbox-box {\n        .bmb_checkbox-mark {\n          opacity: 0.5;\n        }\n      }\n      &:hover {\n        + .bmb_checkbox-box {\n          background-color: transparent;\n        }\n      }\n    }\n  }\n\n  &-box {\n    align-items: center;\n    border-radius: 100%;\n    display: flex;\n    height: rem.rem_calc(42);\n    justify-content: center;\n    width: rem.rem_calc(42);\n  }\n\n  &-mark {\n    background-color: transparent;\n    border: rem.rem_calc(2) solid RGBA(var(--color-charade-700));\n    border-radius: rem.rem_calc(4);\n    display: inline-block;\n    height: rem.rem_calc(18);\n    position: relative;\n    width: rem.rem_calc(18);\n\n    &::after {\n      content: \"\";\n      display: none;\n      position: absolute;\n    }\n  }\n\n  &-label {\n    color: RGBA(var(--color-charade-950));\n    flex: 1;\n    overflow: hidden;\n    padding-right: rem.rem_calc(10);\n    text-overflow: ellipsis;\n    white-space: nowrap;\n    @include fonts.font(4, medium);\n  }\n\n  &-before {\n    .bmb_checkbox-label {\n      order: 1;\n    }\n    .bmb_checkbox-box {\n      order: 2;\n    }\n  }\n}\n\n[data-theme=\"dark\"],\n.storybook-dark-theme {\n  .bmb_checkbox {\n    input[type=\"checkbox\"] {\n      &:hover {\n        + .bmb_checkbox-box {\n          background-color: RGBA(var(--color-green-light), 0.1);\n        }\n      }\n\n      &:focus {\n        + .bmb_checkbox-box {\n          background-color: RGBA(var(--color-green-light), 0.2);\n        }\n      }\n\n      &:checked {\n        + .bmb_checkbox-box {\n          .bmb_checkbox-mark {\n            background-color: RGBA(var(--color-green-light));\n            border-color: RGBA(var(--color-green-light));\n          }\n        }\n      }\n\n      &:indeterminate {\n        + .bmb_checkbox-box {\n          .bmb_checkbox-mark {\n            background-color: RGBA(var(--color-green-light));\n            border-color: RGBA(var(--color-green-light));\n          }\n        }\n      }\n    }\n\n    &-mark {\n      border-color: RGBA(var(--color-charade-200));\n    }\n\n    &-label {\n      color: RGBA(var(--color-charade-50));\n    }\n  }\n}\n",
+                    "data": "@use \"../../../assets/styles/base/fonts\" as fonts;\n@use \"../../../assets/styles/base/mixins\" as mixins;\n@use \"../../../assets/styles/base/rem\" as rem;\n\n.bmb_checkbox {\n  align-items: center;\n  display: flex;\n  gap: rem.rem_calc(8);\n  position: relative;\n  width: fit-content;\n\n  input[type=\"checkbox\"] {\n    cursor: pointer;\n    height: rem.rem_calc(42);\n    margin: 0;\n    opacity: 0;\n    padding: 0;\n    position: absolute;\n    width: 100%;\n    z-index: 1;\n\n    &:hover {\n      + .bmb_checkbox-box {\n        background-color: RGBA(var(--color-blue-primary), 0.1);\n      }\n    }\n\n    &:focus {\n      + .bmb_checkbox-box {\n        background-color: RGBA(var(--color-blue-primary), 0.2);\n      }\n    }\n\n    &:checked {\n      + .bmb_checkbox-box {\n        .bmb_checkbox-mark {\n          background-color: RGBA(var(--color-blue-primary));\n          border-color: RGBA(var(--color-blue-primary));\n\n          &::after {\n            border: solid RGBA(var(--color-white-primary));\n            border-width: rem.rem_calc(0 2 2 0);\n            display: block;\n            height: rem.rem_calc(10);\n            left: rem.rem_calc(4);\n            transform: rotate(45deg);\n            width: rem.rem_calc(4);\n          }\n        }\n      }\n    }\n\n    &:indeterminate {\n      + .bmb_checkbox-box {\n        .bmb_checkbox-mark {\n          background-color: RGBA(var(--color-blue-primary));\n          border-color: RGBA(var(--color-blue-primary));\n\n          &::after {\n            background-color: RGBA(var(--color-white-primary));\n            bottom: 0;\n            display: block;\n            height: rem.rem_calc(2);\n            left: 0;\n            margin: auto;\n            right: 0;\n            top: 0;\n            width: rem.rem_calc(10);\n          }\n        }\n      }\n    }\n\n    &:disabled {\n      cursor: not-allowed;\n\n      + .bmb_checkbox-box {\n        .bmb_checkbox-mark {\n          opacity: 0.5;\n        }\n      }\n      &:hover {\n        + .bmb_checkbox-box {\n          background-color: transparent;\n        }\n      }\n    }\n  }\n\n  &-required {\n    .bmb_checkbox-mark {\n      border-color: RGBA(var(--color-mitec-red));\n    }\n  }\n\n  &-box {\n    align-items: center;\n    border-radius: 100%;\n    display: flex;\n    height: rem.rem_calc(42);\n    justify-content: center;\n    width: rem.rem_calc(42);\n  }\n\n  &-mark {\n    background-color: transparent;\n    border: rem.rem_calc(2) solid RGBA(var(--color-charade-700));\n    border-radius: rem.rem_calc(4);\n    display: inline-block;\n    height: rem.rem_calc(18);\n    position: relative;\n    width: rem.rem_calc(18);\n\n    &::after {\n      content: \"\";\n      display: none;\n      position: absolute;\n    }\n  }\n\n  &-label {\n    color: RGBA(var(--color-charade-950));\n    flex: 1;\n    overflow: hidden;\n    padding-right: rem.rem_calc(10);\n    text-overflow: ellipsis;\n    white-space: nowrap;\n    @include fonts.font(4, medium);\n  }\n\n  &-before {\n    .bmb_checkbox-label {\n      order: 1;\n    }\n    .bmb_checkbox-box {\n      order: 2;\n    }\n  }\n}\n\n[data-theme=\"dark\"],\n.storybook-dark-theme {\n  .bmb_checkbox {\n    input[type=\"checkbox\"] {\n      &:hover {\n        + .bmb_checkbox-box {\n          background-color: RGBA(var(--color-green-light), 0.1);\n        }\n      }\n\n      &:focus {\n        + .bmb_checkbox-box {\n          background-color: RGBA(var(--color-green-light), 0.2);\n        }\n      }\n\n      &:checked {\n        + .bmb_checkbox-box {\n          .bmb_checkbox-mark {\n            background-color: RGBA(var(--color-green-light));\n            border-color: RGBA(var(--color-green-light));\n          }\n        }\n      }\n\n      &:indeterminate {\n        + .bmb_checkbox-box {\n          .bmb_checkbox-mark {\n            background-color: RGBA(var(--color-green-light));\n            border-color: RGBA(var(--color-green-light));\n          }\n        }\n      }\n    }\n\n    &-mark {\n      border-color: RGBA(var(--color-charade-200));\n    }\n\n    &-label {\n      color: RGBA(var(--color-charade-50));\n    }\n  }\n}\n",
                     "styleUrl": "./bmb-checkbox.component.scss"
                 }
             ],
@@ -3872,7 +3872,7 @@
         },
         {
             "name": "BmbIconComponent",
-            "id": "component-BmbIconComponent-8b9496ea50a2bc89e312dcbda395d86a047fc4ef32f50fa79a423460124b42151f5ab70c0bae6d8ed347d8a2db198a1863c1324a34bf9b85bfab79c18f5099c6",
+            "id": "component-BmbIconComponent-b51f7a7ec9582e29454788cdbcb11d7dd2d073f67b0990c38e6e62436d0060121683e5a44b251a29fc4b969c27a63d126f6b29746bfdb6bc017f1a96f7437099",
             "file": "projects/ds-ng/src/lib/components/bmb-icon/bmb-icon.component.ts",
             "encapsulation": [
                 "ViewEncapsulation.None"
@@ -3898,6 +3898,15 @@
                     "line": 10,
                     "type": "string",
                     "decorators": []
+                },
+                {
+                    "name": "materialIcon",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 11,
+                    "type": "boolean",
+                    "decorators": []
                 }
             ],
             "outputsClass": [],
@@ -3912,12 +3921,12 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, ViewEncapsulation } from '@angular/core';\n\n@Component({\n  selector: 'bmb-icon',\n  standalone: true,\n  templateUrl: './bmb-icon.component.html',\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbIconComponent {\n  @Input() icon: string = 'face';\n}\n",
+            "sourceCode": "import { Component, Input, ViewEncapsulation } from '@angular/core';\n\n@Component({\n  selector: 'bmb-icon',\n  standalone: true,\n  templateUrl: './bmb-icon.component.html',\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbIconComponent {\n  @Input() icon: string = 'face';\n  @Input() materialIcon: boolean = false;\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<i class=\"material-symbols-outlined\">{{ icon }}</i>\n"
+            "templateData": "@if (materialIcon) {\n<i class=\"material-icons\">{{ icon }}</i>\n}@else {\n<i class=\"material-symbols-outlined\">{{ icon }}</i>\n}\n"
         },
         {
             "name": "BmbInputComponent",
@@ -5406,7 +5415,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@use \"../../../assets/styles/base/fonts\" as fonts;\n@use \"../../../assets/styles/base/mixins\" as mixins;\n@use \"../../../assets/styles/base/rem\" as rem;\n\n.bmb_radial {\n  align-items: center;\n  display: flex;\n  gap: rem.rem_calc(8);\n  position: relative;\n  width: fit-content;\n\n  input[type=\"radio\"] {\n    cursor: pointer;\n    height: rem.rem_calc(42);\n    margin: 0;\n    opacity: 0;\n    padding: 0;\n    position: absolute;\n    width: 100%;\n    z-index: 1;\n\n    &:hover {\n      + .bmb_radial-box {\n        background-color: RGBA(var(--color-blue-primary), 0.1);\n      }\n    }\n\n    &:focus {\n      + .bmb_radial-box {\n        background-color: RGBA(var(--color-blue-primary), 0.2);\n      }\n    }\n\n    &:checked {\n      + .bmb_radial-box {\n        .bmb_radial-mark {\n          border-color: RGBA(var(--color-blue-primary));\n\n          &::after {\n            background-color: RGBA(var(--color-blue-primary));\n            border-radius: 100%;\n            bottom: 0;\n            display: block;\n            height: rem.rem_calc(8);\n            left: 0;\n            right: 0;\n            top: 0;\n            margin: auto;\n            width: rem.rem_calc(8);\n          }\n        }\n      }\n    }\n\n    &:disabled {\n      cursor: not-allowed;\n\n      + .bmb_radial-box {\n        .bmb_radial-mark {\n          opacity: 0.5;\n        }\n      }\n      &:hover {\n        + .bmb_radial-box {\n          background-color: transparent;\n        }\n      }\n    }\n  }\n\n  &-box {\n    align-items: center;\n    border-radius: 100%;\n    display: flex;\n    height: rem.rem_calc(42);\n    justify-content: center;\n    width: rem.rem_calc(42);\n  }\n\n  &-mark {\n    background-color: transparent;\n    border: rem.rem_calc(2) solid RGBA(var(--color-charade-700));\n    border-radius: 100%;\n    display: inline-block;\n    height: rem.rem_calc(18);\n    position: relative;\n    width: rem.rem_calc(18);\n\n    &::after {\n      content: \"\";\n      display: none;\n      position: absolute;\n    }\n  }\n\n  &-label {\n    color: RGBA(var(--color-charade-950));\n    flex: 1;\n    overflow: hidden;\n    padding-right: rem.rem_calc(10);\n    text-overflow: ellipsis;\n    white-space: nowrap;\n    @include fonts.font(4, medium);\n  }\n\n  &-before {\n    .bmb_radial-label {\n      order: 1;\n    }\n    .bmb_radial-box {\n      order: 2;\n    }\n  }\n}\n\n[data-theme=\"dark\"],\n.storybook-dark-theme {\n  .bmb_radial {\n    input[type=\"radio\"] {\n      &:hover {\n        + .bmb_radial-box {\n          background-color: RGBA(var(--color-green-light), 0.1);\n        }\n      }\n\n      &:focus {\n        + .bmb_radial-box {\n          background-color: RGBA(var(--color-green-light), 0.2);\n        }\n      }\n\n      &:checked {\n        + .bmb_radial-box {\n          .bmb_radial-mark {\n            border-color: RGBA(var(--color-green-light));\n\n            &::after {\n              background-color: RGBA(var(--color-green-light));\n              border-radius: 100%;\n              bottom: 0;\n              display: block;\n              height: rem.rem_calc(8);\n              left: 0;\n              right: 0;\n              top: 0;\n              margin: auto;\n              width: rem.rem_calc(8);\n            }\n          }\n        }\n      }\n    }\n\n    &-mark {\n      border-color: RGBA(var(--color-charade-200));\n    }\n\n    &-label {\n      color: RGBA(var(--color-charade-50));\n    }\n  }\n}\n",
+                    "data": "@use \"../../../assets/styles/base/fonts\" as fonts;\n@use \"../../../assets/styles/base/mixins\" as mixins;\n@use \"../../../assets/styles/base/rem\" as rem;\n\n.bmb_radial {\n  align-items: center;\n  display: flex;\n  gap: rem.rem_calc(8);\n  position: relative;\n  width: fit-content;\n\n  input[type=\"radio\"] {\n    cursor: pointer;\n    height: rem.rem_calc(42);\n    margin: 0;\n    opacity: 0;\n    padding: 0;\n    position: absolute;\n    width: 100%;\n    z-index: 1;\n\n    &:hover {\n      + .bmb_radial-box {\n        background-color: RGBA(var(--color-blue-primary), 0.1);\n      }\n    }\n\n    &:focus {\n      + .bmb_radial-box {\n        background-color: RGBA(var(--color-blue-primary), 0.2);\n      }\n    }\n\n    &:checked {\n      + .bmb_radial-box {\n        .bmb_radial-mark {\n          border-color: RGBA(var(--color-blue-primary));\n\n          &::after {\n            background-color: RGBA(var(--color-blue-primary));\n            border-radius: 100%;\n            bottom: 0;\n            display: block;\n            height: rem.rem_calc(8);\n            left: 0;\n            right: 0;\n            top: 0;\n            margin: auto;\n            width: rem.rem_calc(8);\n          }\n        }\n      }\n    }\n\n    &:disabled {\n      cursor: not-allowed;\n\n      + .bmb_radial-box {\n        .bmb_radial-mark {\n          opacity: 0.5;\n        }\n      }\n      &:hover {\n        + .bmb_radial-box {\n          background-color: transparent;\n        }\n      }\n    }\n  }\n\n  &-required {\n    .bmb_radial-mark {\n      border-color: RGBA(var(--color-mitec-red));\n    }\n  }\n\n  &-box {\n    align-items: center;\n    border-radius: 100%;\n    display: flex;\n    height: rem.rem_calc(42);\n    justify-content: center;\n    width: rem.rem_calc(42);\n  }\n\n  &-mark {\n    background-color: transparent;\n    border: rem.rem_calc(2) solid RGBA(var(--color-charade-700));\n    border-radius: 100%;\n    display: inline-block;\n    height: rem.rem_calc(18);\n    position: relative;\n    width: rem.rem_calc(18);\n\n    &::after {\n      content: \"\";\n      display: none;\n      position: absolute;\n    }\n  }\n\n  &-label {\n    color: RGBA(var(--color-charade-950));\n    flex: 1;\n    overflow: hidden;\n    padding-right: rem.rem_calc(10);\n    text-overflow: ellipsis;\n    white-space: nowrap;\n    @include fonts.font(4, medium);\n  }\n\n  &-before {\n    .bmb_radial-label {\n      order: 1;\n    }\n    .bmb_radial-box {\n      order: 2;\n    }\n  }\n}\n\n[data-theme=\"dark\"],\n.storybook-dark-theme {\n  .bmb_radial {\n    input[type=\"radio\"] {\n      &:hover {\n        + .bmb_radial-box {\n          background-color: RGBA(var(--color-green-light), 0.1);\n        }\n      }\n\n      &:focus {\n        + .bmb_radial-box {\n          background-color: RGBA(var(--color-green-light), 0.2);\n        }\n      }\n\n      &:checked {\n        + .bmb_radial-box {\n          .bmb_radial-mark {\n            border-color: RGBA(var(--color-green-light));\n\n            &::after {\n              background-color: RGBA(var(--color-green-light));\n              border-radius: 100%;\n              bottom: 0;\n              display: block;\n              height: rem.rem_calc(8);\n              left: 0;\n              right: 0;\n              top: 0;\n              margin: auto;\n              width: rem.rem_calc(8);\n            }\n          }\n        }\n      }\n    }\n\n    &-mark {\n      border-color: RGBA(var(--color-charade-200));\n    }\n\n    &-label {\n      color: RGBA(var(--color-charade-50));\n    }\n  }\n}\n",
                     "styleUrl": "./bmb-radial.component.scss"
                 }
             ],
@@ -6510,6 +6519,455 @@
             "templateData": "<div *ngIf=\"isOpen$ | async\" [ngClass]=\"getClasses()\">\n  <bmb-icon icon=\"info\" />\n  <span>{{ message }}</span>\n</div>\n"
         },
         {
+            "name": "BmbTotpComponent",
+            "id": "component-BmbTotpComponent-ca595c48e551610506317b26a18450faca0bb0e05e1f4f9fedfe264cb7ed655545fe49ce82e0c4903e368a6f592cfdfd55d8df30fe56a940b7d015c559aa2858",
+            "file": "projects/ds-ng/src/lib/components/bmb-totp/bmb-totp.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-totp",
+            "styleUrls": [
+                "./bmb-totp.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-totp.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "buttonText",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 50,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "codeError",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 46,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "errorMessage",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 47,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "helperText",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 48,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "instanceId",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 45,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "maxCode",
+                    "defaultValue": "6",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 51,
+                    "type": "number",
+                    "decorators": []
+                },
+                {
+                    "name": "showButton",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 49,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "subtitle",
+                    "defaultValue": "'(Time-based One-time Password)'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 44,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "title",
+                    "defaultValue": "'TOTP'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 43,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "handleSubmit",
+                    "defaultValue": "new EventEmitter<string>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 53,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "codeForm",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "FormGroup",
+                    "optional": false,
+                    "description": "",
+                    "line": 55
+                },
+                {
+                    "name": "destroy$",
+                    "defaultValue": "new Subject<void>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 41,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "lastSubmitTime",
+                    "defaultValue": "Date.now()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 40,
+                    "modifierKind": [
+                        123
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "buildForm",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 66,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "handleKeyDown",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "KeyboardEvent",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "idx",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 114,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "decorators": [
+                        {
+                            "name": "HostListener",
+                            "stringifiedArguments": "'keydown', ['$event']"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "KeyboardEvent",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "idx",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "handlePaste",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "ClipboardEvent",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 129,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "decorators": [
+                        {
+                            "name": "HostListener",
+                            "stringifiedArguments": "'paste', ['$event']"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "ClipboardEvent",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ngOnDestroy",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 169,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 62,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onKeyUp",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "KeyboardEvent",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "idx",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 77,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "KeyboardEvent",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "idx",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "onSubmit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 155,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [
+                {
+                    "name": "keydown",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "KeyboardEvent",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "idx",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "argsDecorator": [
+                        "$event"
+                    ],
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 114
+                },
+                {
+                    "name": "paste",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "ClipboardEvent",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "argsDecorator": [
+                        "$event"
+                    ],
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 129
+                }
+            ],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "BmbIconComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "BmbButtonDirective",
+                    "type": "directive"
+                },
+                {
+                    "name": "ReactiveFormsModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {\n  Component,\n  Input,\n  EventEmitter,\n  Output,\n  OnInit,\n  ChangeDetectorRef,\n  ViewEncapsulation,\n  ChangeDetectionStrategy,\n  HostListener,\n} from '@angular/core';\nimport { Subject, timer } from 'rxjs';\nimport { takeUntil } from 'rxjs/operators';\nimport { CommonModule } from '@angular/common';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\nimport { BmbButtonDirective } from '../../directives/button.directive';\nimport {\n  FormGroup,\n  FormBuilder,\n  Validators,\n  FormControl,\n  ReactiveFormsModule,\n} from '@angular/forms';\n\n@Component({\n  selector: 'bmb-totp',\n  templateUrl: './bmb-totp.component.html',\n  styleUrls: ['./bmb-totp.component.scss'],\n  standalone: true,\n  imports: [\n    CommonModule,\n    BmbIconComponent,\n    BmbButtonDirective,\n    ReactiveFormsModule,\n  ],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbTotpComponent implements OnInit {\n  private lastSubmitTime = Date.now();\n  private destroy$ = new Subject<void>();\n\n  @Input() title: string = 'TOTP';\n  @Input() subtitle: string = '(Time-based One-time Password)';\n  @Input() instanceId: string = '';\n  @Input() codeError: boolean = false;\n  @Input() errorMessage: string = '';\n  @Input() helperText: string = '';\n  @Input() showButton: boolean = false;\n  @Input() buttonText: string = '';\n  @Input() maxCode: number = 6;\n\n  @Output() handleSubmit = new EventEmitter<string>();\n\n  codeForm!: FormGroup;\n\n  constructor(\n    private formBuilder: FormBuilder,\n    private cdr: ChangeDetectorRef\n  ) {}\n\n  ngOnInit(): void {\n    this.buildForm();\n  }\n\n  buildForm() {\n    let group: { [key: string]: FormControl } = {};\n    for (let i = 0; i < this.maxCode; i++) {\n      group[`code${i}`] = new FormControl('', [\n        Validators.required,\n        Validators.pattern('[0-9a-zA-Z]'),\n      ]);\n    }\n    this.codeForm = this.formBuilder.group(group);\n  }\n\n  onKeyUp(event: KeyboardEvent, idx: number): void {\n    const input = event.target as HTMLInputElement;\n    const value = input.value;\n\n    if (event.key === 'Enter') {\n      event.preventDefault();\n      event.stopPropagation();\n      this.onSubmit();\n      return;\n    }\n\n    if (\n      event.key === 'Tab' ||\n      event.key === 'Shift' ||\n      event.key === 'ArrowLeft' ||\n      event.key === 'ArrowRight' ||\n      event.key === 'Backspace'\n    ) {\n      return;\n    }\n\n    if (value && value.length === input.maxLength) {\n      if (idx < this.maxCode - 1) {\n        const nextInput = document.getElementById(\n          `code-${this.instanceId}-${idx + 1}`\n        ) as HTMLInputElement;\n        if (nextInput) {\n          nextInput.focus();\n          nextInput.select();\n        }\n      } else if (idx === this.maxCode - 1 && !this.showButton) {\n        this.onSubmit();\n      }\n    }\n  }\n\n  @HostListener('keydown', ['$event'])\n  handleKeyDown(event: KeyboardEvent, idx: number): void {\n    const input = event.target as HTMLInputElement;\n\n    if (event.key === 'Backspace' && input.value.length === 0 && idx > 0) {\n      const previousInput = document.getElementById(\n        `code-${this.instanceId}-${idx - 1}`\n      ) as HTMLInputElement;\n      if (previousInput) {\n        previousInput.focus();\n        previousInput.select();\n      }\n    }\n  }\n\n  @HostListener('paste', ['$event'])\n  handlePaste(event: ClipboardEvent) {\n    let pasteData = event.clipboardData?.getData('text/plain');\n    if (pasteData && pasteData.length === this.maxCode) {\n      for (let i = 0; i < this.maxCode; i++) {\n        const control = this.codeForm.get(`code${i}`);\n        if (control) {\n          control.setValue(pasteData[i]);\n        }\n      }\n\n      const lastInput = document.getElementById(\n        `code-${this.instanceId}-${this.maxCode - 1}`\n      ) as HTMLInputElement;\n      if (lastInput) {\n        lastInput.focus();\n        lastInput.select();\n      }\n\n      if (!this.showButton) {\n        this.onSubmit();\n      }\n\n      event.preventDefault();\n    }\n  }\n\n  onSubmit() {\n    const now = Date.now();\n    if (now - this.lastSubmitTime > 300) {\n      this.lastSubmitTime = now;\n\n      if (this.codeForm.valid) {\n        const code = Object.values(this.codeForm.value).join('');\n        this.handleSubmit.emit(code);\n      } else {\n        this.handleSubmit.emit('');\n      }\n    }\n  }\n\n  ngOnDestroy() {\n    this.destroy$.next();\n    this.destroy$.complete();\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@use \"../../../assets/styles/base/fonts\" as fonts;\n@use \"../../../assets/styles/base/mixins\" as mixins;\n@use \"../../../assets/styles/base/rem\" as rem;\n\n.bmb_totp {\n  background-color: RGBA(var(--color-charade-50));\n  border-radius: rem.rem_calc(24);\n  margin: auto;\n  padding: rem.rem_calc(36 24);\n  width: rem.rem_calc(344);\n\n  &-form {\n    align-items: center;\n    display: flex;\n    flex-flow: column;\n    justify-content: center;\n  }\n\n  &-icon {\n    color: RGBA(var(--color-charade-950));\n    font-size: rem.rem_calc(48);\n    margin-bottom: rem.rem_calc(16);\n    width: rem.rem_calc(48);\n  }\n\n  &-title {\n    color: RGBA(var(--color-charade-950));\n    @include fonts.font(9, semibold);\n  }\n\n  &-subtitle {\n    color: RGBA(var(--color-charade-700));\n    margin-bottom: rem.rem_calc(16);\n    @include fonts.font(3, regular);\n  }\n\n  &-code {\n    align-items: center;\n    display: flex;\n  }\n\n  &-separator {\n    padding-right: rem.rem_calc(20);\n    position: relative;\n\n    &::after {\n      background-color: RGBA(var(--color-mariner-700));\n      border-radius: 100%;\n      content: \"\";\n      display: block;\n      height: rem.rem_calc(4);\n      position: absolute;\n      right: rem.rem_calc(8);\n      top: 45%;\n      width: rem.rem_calc(4);\n    }\n\n    &:last-child {\n      padding-right: 0;\n\n      &::after {\n        display: none;\n      }\n    }\n\n    &:focus-within {\n      &::before {\n        content: \"\";\n        border-radius: rem.rem_calc(4);\n        position: absolute;\n        left: 0;\n        bottom: rem.rem_calc(4);\n        width: rem.rem_calc(24);\n        height: rem.rem_calc(2);\n        background-color: RGBA(var(--color-mariner-500));\n        transition: background-color 0.3s;\n        left: rem.rem_calc(3.5);\n      }\n    }\n  }\n\n  &-input {\n    border: rem.rem_calc(1) solid var(--color-black-min);\n    border-radius: rem.rem_calc(4);\n    color: var(--color-black-light);\n    height: rem.rem_calc(32);\n    width: rem.rem_calc(32);\n    @include fonts.font(7, regular);\n    text-align: center;\n    outline: none;\n\n    &-error {\n      border-color: RGBA(var(--color-red-primary));\n    }\n\n    &:focus {\n      outline: none;\n    }\n  }\n\n  button {\n    margin-top: rem.rem_calc(16);\n  }\n\n  &-helper {\n    color: RGBA(var(--color-mariner-700));\n    margin: rem.rem_calc(8 0);\n    @include fonts.font(4, regular);\n  }\n\n  &-error {\n    color: RGBA(var(--color-red-primary));\n    margin: rem.rem_calc(16 0 8);\n    @include fonts.font(3, regular);\n  }\n}\n\n[data-theme=\"dark\"],\n.storybook-dark-theme {\n  .bmb_totp {\n    background-color: var(--color-black-tint);\n\n    &-icon,\n    &-title {\n      color: RGBA(var(--color-charade-50));\n    }\n\n    &-subtitle {\n      color: RGBA(var(--color-charade-200));\n    }\n\n    &-separator {\n      &::after {\n        background-color: RGBA(var(--color-charade-50));\n      }\n    }\n  }\n}\n",
+                    "styleUrl": "./bmb-totp.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "formBuilder",
+                        "type": "FormBuilder",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "cdr",
+                        "type": "ChangeDetectorRef",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 55,
+                "jsdoctags": [
+                    {
+                        "name": "formBuilder",
+                        "type": "FormBuilder",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "cdr",
+                        "type": "ChangeDetectorRef",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "extends": [],
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div class=\"bmb_totp\">\n  <form [formGroup]=\"codeForm\" (ngSubmit)=\"onSubmit()\" class=\"bmb_totp-form\">\n    <bmb-icon icon=\"lock\" class=\"bmb_totp-icon\" [materialIcon]=\"true\" />\n    <div class=\"bmb_totp-title\">{{ title }}</div>\n    <p class=\"bmb_totp-subtitle\">{{ subtitle }}</p>\n    <div class=\"bmb_totp-code\">\n      <div\n        *ngFor=\"let i of [].constructor(maxCode); let idx = index\"\n        class=\"bmb_totp-separator\"\n      >\n        <input\n          type=\"text\"\n          formControlName=\"code{{ idx }}\"\n          [id]=\"'code-' + instanceId + '-' + idx\"\n          autocomplete=\"off\"\n          maxlength=\"1\"\n          [ngClass]=\"{\n            'bmb_totp-input-error': codeError,\n            'bmb_totp-input': true\n          }\"\n          (keyup)=\"onKeyUp($event, idx)\"\n        />\n      </div>\n    </div>\n    @if (codeError) {\n    <p class=\"bmb_totp-error\">{{ errorMessage }}</p>\n    } @if (showButton) {\n    <button bmbButton appearance=\"primary\" size=\"large\" type=\"submit\">\n      {{ buttonText }}\n    </button>\n    } @if (showButton && helperText) {\n    <p class=\"bmb_totp-helper\">\n      {{ helperText }}\n    </p>\n    }\n  </form>\n</div>\n"
+        },
+        {
             "name": "BmbUserImageComponent",
             "id": "component-BmbUserImageComponent-2594fb33154112bd055a449c1d6d25ae01d2adb4b3decaac6e03a93b055fd4abf447062a3b045348cf57e3fb6c11e6621e34c7b9d6d17f3807f6b7b9acd292a0",
             "file": "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-image.component.ts",
@@ -7280,6 +7738,16 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-totp/bmb-totp.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -7913,6 +8381,17 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
+                "rawtype": "StoryObj<BmbTotpComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-totp/bmb-totp.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
                 "rawtype": "StoryObj<BmbUserImageComponent>",
                 "file": "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts",
                 "deprecated": false,
@@ -8355,6 +8834,18 @@
                     "deprecationMessage": "",
                     "type": "StoryFn<>",
                     "defaultValue": "(args) => {\n  return {\n    props: args,\n    template: `\n      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->\n      <storybook-toast-wrapper ${attributes(args)}></storybook-toast-wrapper>\n      <!-- Start copying from here -->\n      <div class=\"actions\">\n      <button bmbButton appearance=\"primary\" icon=\"home\" size=\"small\" position=\"left\" [case]=\"false\" (click)=\"onButtonClick()\">Click Here</button>\n      <bmb-toast ${attributes(args)}></bmb-toast></div>`,\n  };\n}"
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-totp/bmb-totp.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-totp/bmb-totp.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
                 }
             ],
             "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts": [
@@ -9082,6 +9573,19 @@
                     "kind": 183
                 }
             ],
+            "projects/ds-ng/src/lib/components/bmb-totp/bmb-totp.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbTotpComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-totp/bmb-totp.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
             "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts": [
                 {
                     "name": "Story",
@@ -9554,7 +10058,7 @@
                 "linktype": "component",
                 "name": "BmbIconComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/2",
+                "coverageCount": "0/3",
                 "status": "low"
             },
             {
@@ -9890,6 +10394,25 @@
             },
             {
                 "filePath": "projects/ds-ng/src/lib/components/bmb-toast/bmb-toast.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-totp/bmb-totp.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbTotpComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/24",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-totp/bmb-totp.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",

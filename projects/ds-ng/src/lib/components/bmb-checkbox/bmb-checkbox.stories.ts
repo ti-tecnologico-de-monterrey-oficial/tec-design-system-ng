@@ -1,15 +1,9 @@
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { Meta, StoryObj } from '@storybook/angular';
 import { BmbCheckboxComponent } from './bmb-checkbox.component';
 
 export default {
   title: 'Micro Componentes/Checkbox',
   component: BmbCheckboxComponent,
-  decorators: [
-    moduleMetadata({
-      imports: [BmbIconComponent],
-    }),
-  ],
   parameters: {
     docs: {
       description: {
