@@ -36,6 +36,7 @@ import {
   BmbTopBarComponent,
   BmbTopBarItemComponent,
   BmbRadialComponent,
+  BmbTotpComponent,
   BmbSearchInputComponent,
 } from '../../projects/ds-ng/src/public-api';
 
@@ -86,6 +87,7 @@ import names from './names.json';
     BmbTopBarComponent,
     BmbTopBarItemComponent,
     BmbRadialComponent,
+    BmbTotpComponent,
     BmbSearchInputComponent,
   ],
   templateUrl: './app.component.html',
@@ -266,6 +268,46 @@ export class AppComponent {
       ];
       this.isCalendarLoading = false;
       this.cdr.detectChanges();
+    }
+  }
+
+  correctCodes: { [key: string]: string } = {
+    first: 'Hj93h9',
+    second: 'A1B2',
+  };
+
+  errors: { [key: string]: { codeError: boolean; errorMessage: string } } = {};
+
+  verifyCode(receivedCode: string, instanceId: string) {
+    if (receivedCode === '') {
+      this.errors[instanceId] = {
+        codeError: true,
+        errorMessage: 'Please fill all fields correctly',
+      };
+      console.log('Entered for empty code');
+      return;
+    }
+
+    const correctCode = this.correctCodes[instanceId];
+    if (!correctCode) {
+      this.errors[instanceId] = { codeError: false, errorMessage: '' };
+      return;
+    }
+
+    this.errors[instanceId] = this.errors[instanceId] || {
+      codeError: false,
+      errorMessage: '',
+    };
+
+    if (receivedCode !== correctCode) {
+      this.errors[instanceId].codeError = true;
+      this.errors[instanceId].errorMessage = 'Invalid Code. Please try again.';
+      console.log('Entered for invalid code');
+    } else {
+      this.errors[instanceId].codeError = false;
+      this.errors[instanceId].errorMessage = '';
+      console.log('Entered for correct code');
+      alert('The code is correct, proceed with the action');
     }
   }
 

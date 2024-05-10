@@ -1,0 +1,39 @@
+<div class="bmb_totp">
+  <form [formGroup]="codeForm" (ngSubmit)="onSubmit()" class="bmb_totp-form">
+    <bmb-icon icon="lock" class="bmb_totp-icon" [materialIcon]="true" />
+    <div class="bmb_totp-title">{{ title }}</div>
+    <p class="bmb_totp-subtitle">{{ subtitle }}</p>
+    <div class="bmb_totp-code">
+      <div
+        *ngFor="let i of [].constructor(maxCode); let idx = index"
+        class="bmb_totp-separator"
+      >
+        <input
+          type="text"
+          formControlName="code{{ idx }}"
+          [id]="'code-' + instanceId + '-' + idx"
+          autocomplete="off"
+          maxlength="1"
+          [ngClass]="{
+            'bmb_totp-input-error': codeError,
+            'bmb_totp-input': true
+          }"
+          (keyup)="onKeyUp($event, idx)"
+        />
+      </div>
+    </div>
+    @if (codeError) {
+      <p class="bmb_totp-error">{{ errorMessage }}</p>
+    }
+    @if (showButton) {
+      <button bmbButton appearance="primary" size="large" type="submit">
+        {{ buttonText }}
+      </button>
+    }
+    @if (showButton && helperText) {
+      <p class="bmb_totp-helper">
+        {{ helperText }}
+      </p>
+    }
+  </form>
+</div>

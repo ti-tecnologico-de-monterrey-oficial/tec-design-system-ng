@@ -21,6 +21,24 @@
 <!-- Demo -->
 <bmb-theme />
 
+<bmb-totp
+  instanceId="first"
+  [maxCode]="6"
+  (handleSubmit)="verifyCode($event, 'first')"
+  [codeError]="errors['first'] ? errors['first'].codeError : false"
+  [errorMessage]="errors['first'] ? errors['first'].errorMessage : ''"
+  [showButton]="true"
+  buttonText="Verify"
+  helperText="Helper text"
+/>
+
+<bmb-totp
+  instanceId="second"
+  [maxCode]="4"
+  (handleSubmit)="verifyCode($event, 'second')"
+  [codeError]="errors['second'] ? errors['second'].codeError : false"
+  [errorMessage]="errors['second'] ? errors['second'].errorMessage : ''"
+/>
 <!-- <bmb-calendar
   [isLoading]="isCalendarLoading"
   [events]="calendarEvents"

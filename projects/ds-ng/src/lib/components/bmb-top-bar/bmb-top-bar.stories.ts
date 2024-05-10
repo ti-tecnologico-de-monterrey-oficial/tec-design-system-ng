@@ -32,13 +32,8 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'radio',
       },
-      options: [
-        'left',
-        'right',
-      ],
-      defa
-      description:
-        'Set responsive menu button position.',
+      options: ['left', 'right'],
+      description: 'Set responsive menu button position.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -78,7 +73,7 @@ Below is an example of how you can use this component in HTML:
           category: 'Properties',
           type: { summary: 'string' },
         },
-      }
+      },
     },
     hasLogoutButton: {
       name: 'Has logout button',
@@ -138,8 +133,7 @@ Below is an example of how you can use this component in HTML:
     showLang: {
       name: 'Lang selector',
       control: { type: 'boolean' },
-      description:
-        'Shows the lang selector.',
+      description: 'Shows the lang selector.',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
@@ -160,7 +154,8 @@ Below is an example of how you can use this component in HTML:
     logOut: {
       name: 'Logout event',
       control: false,
-      description: 'Function that is executed when the logout button is clicked.',
+      description:
+        'Function that is executed when the logout button is clicked.',
       table: {
         type: { summary: 'function' },
       },
@@ -175,16 +170,16 @@ Below is an example of how you can use this component in HTML:
     },
   },
   args: {
-    appName: "TecTest"
-    appSubTitle: "Sub title"
+    appName: 'TecTest',
+    appSubTitle: 'Sub title',
     showLang: true,
-    lang: "es",
+    lang: 'es',
     onLangChange: () => {
       console.log('test');
     },
     logOut: () => {
       console.log('test');
-    }
+    },
   },
 } as Meta<typeof BmbTopBarComponent>;
 

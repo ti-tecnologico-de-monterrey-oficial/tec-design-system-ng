@@ -1,15 +1,9 @@
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { Meta, StoryObj } from '@storybook/angular';
 import { BmbRadialComponent } from './bmb-radial.component';
 
 export default {
   title: 'Micro Componentes/Radial',
   component: BmbRadialComponent,
-  decorators: [
-    moduleMetadata({
-      imports: [BmbIconComponent],
-    }),
-  ],
   parameters: {
     docs: {
       description: {
