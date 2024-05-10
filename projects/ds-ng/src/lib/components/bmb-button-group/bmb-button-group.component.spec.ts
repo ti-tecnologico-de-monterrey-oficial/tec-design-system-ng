@@ -7,10 +7,6 @@ describe('BmbButtonGroupComponent', () => {
   let fixture: ComponentFixture<BmbButtonGroupComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [BmbButtonGroupComponent],
-    }).compileComponents();
-
     fixture = TestBed.createComponent(BmbButtonGroupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

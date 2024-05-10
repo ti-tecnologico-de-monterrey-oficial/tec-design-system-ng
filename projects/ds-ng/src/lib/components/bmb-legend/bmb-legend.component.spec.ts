@@ -7,10 +7,6 @@ describe('BmbLegendComponent', () => {
   let fixture: ComponentFixture<BmbLegendComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [BmbLegendComponent],
-    }).compileComponents();
-
     fixture = TestBed.createComponent(BmbLegendComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

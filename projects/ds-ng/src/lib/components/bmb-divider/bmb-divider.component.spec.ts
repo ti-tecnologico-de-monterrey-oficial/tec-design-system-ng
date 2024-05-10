@@ -6,10 +6,6 @@ describe('BmbDividerComponent', () => {
   let fixture: ComponentFixture<BmbDividerComponent>;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [BmbDividerComponent],
-    });
-
     fixture = TestBed.createComponent(BmbDividerComponent);
     component = fixture.componentInstance;
   });
