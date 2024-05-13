@@ -1,8 +1,4 @@
-import {
-  Directive,
-  HostBinding,
-  Input,
-} from '@angular/core';
+import { Directive, HostBinding, Input } from '@angular/core';
 
 type SizeNames = 'xs' | 's' | 'm' | 'l' | 'xl';
 
