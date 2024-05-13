@@ -1,0 +1,74 @@
+@use "../base/rem" as rem;
+@use "../base/mixins" as mixins;
+@use "sass:math";
+
+$sizes: (
+  "xs": rem.rem_calc(4),
+  "s": rem.rem_calc(8),
+  "m": rem.rem_calc(16),
+  "l": rem.rem_calc(24),
+  "xl": rem.rem_calc(32),
+);
+
+$marginSizes: (
+  "sm": 4,
+  "lg": 12,
+);
+
+$namesOfSides: "left", "right";
+
+.bmb_layout {
+  display: flex;
+  flex-wrap: wrap;
+
+  &-smart {
+    flex-wrap: nowrap;
+  }
+}
+
+@each $name, $size in $sizes {
+  .bmb_gap-#{$name} {
+    gap: $size;
+    --bmg-gap: #{$size};
+  }
+}
+
+@for $i from 1 through 4 {
+  .bmb_col-sm-#{$i} {
+    flex: 0
+      0
+      calc(#{percentage(math.div($i, 4))} - (var(--bmg-gap) / 4 * #{4 - $i}));
+  }
+}
+
+@for $i from 1 through 12 {
+  .bmb_col-lg-#{$i} {
+    flex: 0 0 100%;
+    @include mixins.media-query(1000, "min") {
+      flex: 0 0
+        calc(
+          #{percentage(math.div($i, 12))} - (var(--bmg-gap) / 12 * #{12 - $i})
+        );
+    }
+  }
+}
+
+@each $side in $namesOfSides {
+  @each $margin, $size in $marginSizes {
+    @for $i from 1 through $size {
+      .bmb_space-#{$margin}-#{$side}-#{$i} {
+        @include mixins.media-query(
+          if($margin == "sm", 999, 1000),
+          if($margin == "sm", "max", "min")
+        ) {
+          @debug "media query: #{if($margin == 'sm', 999, 1000)} #{if($margin == 'sm', 'max', 'min')}";
+          margin-#{$side}: calc(
+            #{percentage(math.div($i, $size))} + var(--bmg-gap) - (var(
+                    --bmg-gap
+                  ) / $size * #{$size - $i})
+          );
+        }
+      }
+    }
+  }
+}

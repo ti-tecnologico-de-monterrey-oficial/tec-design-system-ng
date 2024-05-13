@@ -38,6 +38,8 @@ import {
   BmbRadialComponent,
   BmbTotpComponent,
   BmbSearchInputComponent,
+  BmbLayoutItemDirective,
+  BmbLayoutDirective,
 } from '../../projects/ds-ng/src/public-api';
 
 import {
@@ -89,6 +91,8 @@ import names from './names.json';
     BmbRadialComponent,
     BmbTotpComponent,
     BmbSearchInputComponent,
+    BmbLayoutDirective,
+    BmbLayoutItemDirective,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
