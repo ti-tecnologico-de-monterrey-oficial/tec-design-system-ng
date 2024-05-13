@@ -6,9 +6,7 @@ describe('BmbTotpComponent', () => {
   let fixture: ComponentFixture<BmbTotpComponent>;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [BmbTotpComponent],
-    });
+    TestBed.configureTestingModule({});
 
     fixture = TestBed.createComponent(BmbTotpComponent);
     component = fixture.componentInstance;
