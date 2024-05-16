@@ -42,4 +42,5 @@ export * from './lib/components/bmb-top-bar/bmb-top-bar-item/bmb-top-bar-item.co
 export * from './lib/components/bmb-radial/bmb-radial.component';
 export * from './lib/components/bmb-totp/bmb-totp.component';
 export * from './lib/components/bmb-search-input/bmb-search-input.component';
-export * from './lib/components/bmb-tables/bmb-tables.component'
+export * from './lib/components/bmb-tables/bmb-tables.component';
+export * from './lib/components/bmb-progress-bar/bmb-progress-bar.component';
