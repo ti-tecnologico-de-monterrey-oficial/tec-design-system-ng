@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation, AfterViewInit, OnChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'bmb-progress-bar',
@@ -10,13 +10,9 @@ import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation, AfterView
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbProgressBarComponent implements AfterViewInit, OnChanges {
+export class BmbProgressBarComponent implements OnChanges {
 
   @Input() progress: number = 0;
-  constructor() { }
-
-  ngAfterViewInit(): void {
-  }
 
   ngOnChanges(){
     this.verifyPercentage()
