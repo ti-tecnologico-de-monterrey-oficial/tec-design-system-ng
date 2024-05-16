@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BmbProgressBarComponent } from './bmb-progress-bar.component';
 
-describe('BmbLogoComponent', () => {
+describe('BmbProgressBarComponent', () => {
   let component: BmbProgressBarComponent;
   let fixture: ComponentFixture<BmbProgressBarComponent>;
 
