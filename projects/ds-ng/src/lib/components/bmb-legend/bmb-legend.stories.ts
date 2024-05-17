@@ -30,12 +30,12 @@ Below is an example of how you can use this component in HTML:
   argTypes: {
     label: {
       name: 'Label',
-      control: {
-        type: 'text',
-      },
+      control: 'text',
       description: 'Label section content.',
       table: {
         type: { summary: 'string' },
+        category: 'Properties',
+        defaultValue: { summary: '' },
       },
     },
     value: {
@@ -46,6 +46,8 @@ Below is an example of how you can use this component in HTML:
       description: 'Value section content.',
       table: {
         type: { summary: 'string' },
+        category: 'Properties',
+        defaultValue: { summary: '' },
       },
     },
     indicatorAppearance: {
@@ -64,6 +66,8 @@ Below is an example of how you can use this component in HTML:
       ],
       table: {
         type: { summary: 'string' },
+        category: 'Properties',
+        defaultValue: { summary: 'normal' },
       },
       description: 'Determines the indicator color',
     },
