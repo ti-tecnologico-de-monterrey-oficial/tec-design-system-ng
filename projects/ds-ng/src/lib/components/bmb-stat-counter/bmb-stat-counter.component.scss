@@ -22,7 +22,7 @@
     }
 
     &::before {
-      border-bottom: 2px solid RGBA(var(--color-charade-300));
+      border-bottom: rem.rem_calc(2) solid RGBA(var(--color-charade-300));
       content: "";
       left: -50%;
       position: absolute;
@@ -33,7 +33,7 @@
     }
 
     &::after {
-      border-bottom: 2px solid #ccc;
+      border-bottom: rem.rem_calc(2) solid #ccc;
       content: "";
       left: 50%;
       position: absolute;
@@ -50,7 +50,7 @@
 
     &.completed {
       &::after {
-        border-bottom: 2px solid RGBA(var(--color-mariner-700));
+        border-bottom: rem.rem_calc(2) solid RGBA(var(--color-mariner-700));
         content: "";
         left: 50%;
         min-width: rem.rem_calc(24);
@@ -101,7 +101,7 @@
 
     &.active {
       background-color: RGBA(var(--color-charade-50));
-      border: 1px solid RGBA(var(--color-mariner-700));
+      border: rem.rem_calc(1) solid RGBA(var(--color-mariner-700));
       color: RGBA(var(--color-mariner-700));
       height: rem.rem_calc(64);
       width: rem.rem_calc(64);
@@ -114,16 +114,16 @@
   .bmb_stat_counter {
     &-item {
       &::before {
-        border-bottom: 2px solid RGBA(var(--color-neon-700));
+        border-bottom: rem.rem_calc(2) solid RGBA(var(--color-neon-700));
       }
 
       &::after {
-        border-bottom: 2px solid RGBA(var(--color-charade-700));
+        border-bottom: rem.rem_calc(2) solid RGBA(var(--color-charade-700));
       }
 
       &.completed {
         &::after {
-          border-bottom: 2px solid RGBA(var(--color-neon-primary));
+          border-bottom: rem.rem_calc(2) solid RGBA(var(--color-neon-primary));
         }
 
         .bmb_stat_counter-step {
@@ -143,7 +143,7 @@
 
       &.active {
         background-color: RGBA(var(--color-charade-950));
-        border: 1px solid RGBA(var(--color-neon-primary));
+        border: rem.rem_calc(1) solid RGBA(var(--color-neon-primary));
         color: RGBA(var(--color-charade-50));
       }
     }

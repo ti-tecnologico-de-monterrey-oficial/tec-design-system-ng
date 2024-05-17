@@ -1,0 +1,34 @@
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/rem" as rem;
+
+.bmb_card {
+  background-color: RGBA(var(--color-charade-100));
+  border: rem.rem_calc(1) solid RGBA(var(--color-charade-300));
+  @include fonts.font(3, regular);
+  color: RGBA(var(--color-charade-950));
+
+  &-header {
+    border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-300));
+  }
+
+  &-footer {
+    border-top: rem.rem_calc(1) solid RGBA(var(--color-charade-300));
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_card {
+    background-color: RGBA(var(--color-charade-900));
+    border-color: RGBA(var(--color-charade-800));
+    color: RGBA(var(--color-charade-50));
+
+    &-header {
+      border-bottom-color: RGBA(var(--color-charade-800));
+    }
+
+    &-footer {
+      border-top-color: RGBA(var(--color-charade-800));
+    }
+  }
+}

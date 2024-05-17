@@ -5,7 +5,6 @@
   [lang]="topBarLang"
   (onLangChange)="handleLangChange($event)"
 ></bmb-top-bar>
-
 <!-- <bmb-loader [overlay]="true" title="Cargando...." /> -->
 
 <bmb-loader
@@ -18,6 +17,33 @@
   (onButtonPrimary)="handleButtonPrimary()"
   (onButtonSecondary)="handleButtonSecondary()"
 />
+
+<div bmbLayout gapSise="l">
+  <div bmbLayoutItem [colSm]="1">
+    <bmb-card [borderRadius]="['l', 'none', 'm', 'xs']" margin="xl" padding="l">
+      <div>content!</div>
+    </bmb-card>
+  </div>
+  <div bmbLayoutItem [colSm]="1">
+    <bmb-card [borderRadius]="['l', 'none', 'm', 'xs']" margin="xl" padding="l">
+      <ng-template #header>header</ng-template>
+      <div>content!</div>
+    </bmb-card>
+  </div>
+  <div bmbLayoutItem [colSm]="1">
+    <bmb-card [borderRadius]="'none'" margin="xl" padding="l">
+      <div>content!</div>
+      <ng-template #footer>footer</ng-template>
+    </bmb-card>
+  </div>
+  <div bmbLayoutItem [colSm]="1">
+    <bmb-card [borderRadius]="['l', 'none', 'm', 'xs']" margin="xl" padding="l">
+      <ng-template #header>header</ng-template>
+      <div>content!</div>
+      <ng-template #footer>footer</ng-template>
+    </bmb-card>
+  </div>
+</div>
 
 <div style="padding: 1rem">
   <bmb-search-input

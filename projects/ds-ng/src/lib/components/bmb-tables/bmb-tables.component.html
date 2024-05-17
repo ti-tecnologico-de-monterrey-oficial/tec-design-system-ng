@@ -1,0 +1,152 @@
+<div class="bmb_container-table">
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    class="bmb_table"
+    multiTemplateDataRows
+  >
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        class="bmb_table-headers-checkbox bmb_table-th"
+      >
+        <bmb-checkbox
+          (change)="$event ? toggleAllRows() : null"
+          [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()"
+          [ariaLabel]="checkboxLabel()"
+        />
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <bmb-checkbox
+          (change)="$event ? selection.toggle(row) : null; onSelect()"
+          [checked]="selection.isSelected(row)"
+          [ariaLabel]="checkboxLabel(row)"
+          onkeypress="$event.stopPropagation()"
+        />
+        {{ row.documentos }}
+      </td>
+    </ng-container>
+
+    <!--Expand -->
+    <ng-container matColumnDef="expand">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        class="bmb_table-th"
+        aria-label="row actions"
+        style="width: 30px"
+      >
+        &nbsp;
+      </th>
+      <td mat-cell *matCellDef="let row" class="bmb-table-expand-cell">
+        <button
+          mat-icon-button
+          aria-label="expand row"
+          (click)="
+            expandedElement = expandedElement === row ? null : row;
+            $event.stopPropagation()
+          "
+        >
+          @if (expandedElement === row) {
+            <bmb-icon class="bmb_table-expand-btn" [icon]="'expand_less'" />
+          } @else {
+            <bmb-icon class="bmb_table-expand-btn" [icon]="'expand_more'" />
+          }
+        </button>
+      </td>
+    </ng-container>
+
+    <!-- Display Columns -->
+    @for (column of tableColumns; track $index) {
+      <ng-container [matColumnDef]="column.def">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          class="bmb_table-headers bmb_table-th"
+        >
+          {{ column.label }}
+          <span
+            class="bmb_table-resize-handle"
+            (mousedown)="onResizeColumn($event, $index)"
+          ></span>
+        </th>
+        <td mat-cell *matCellDef="let row; let i = index" class="bmb_table-td">
+          {{ row[column.dataKey] }}
+        </td>
+      </ng-container>
+    }
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        class="bmb_table-headers bmb_table-th"
+      >
+        Actions
+      </th>
+      <td mat-cell *matCellDef="let row" class="">
+        <ng-template [ngTemplateOutlet]="actionTemplate!"> </ng-template>
+      </td>
+    </ng-container>
+
+    <!-- Row to expand -->
+    <ng-container matColumnDef="expandedDetail">
+      <td
+        mat-cell
+        *matCellDef="let row"
+        class="bmb_table-td"
+        [attr.colspan]="tableDisplayColumns.length"
+      >
+        <div
+          class="bmb_table-element-detail bmb_table-td"
+          [@detailExpand]="row == expandedElement ? 'expanded' : 'collapsed'"
+        >
+          <ng-container
+            *ngTemplateOutlet="detailTemplate; context: { row }"
+          ></ng-container>
+        </div>
+      </td>
+    </ng-container>
+
+    <!-- Rows -->
+    <tr mat-header-row *matHeaderRowDef="tableDisplayColumns"></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: tableDisplayColumns; let i = dataIndex"
+      class="bmb_table-element-row"
+      [class.bmb_table-expanded-row]="expandedElement === row"
+      [ngClass]="{
+        'bmb_table-no-border': this.tableConfig?.isExpandible,
+        'bmb_table-stripe': i % 2 === 0
+      }"
+    ></tr>
+
+    @if (tableConfig?.isExpandible) {
+      <ng-container>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: ['expandedDetail']; let i = dataIndex"
+          class="bmb_table-detail-row"
+          [ngClass]="{ 'bmb_table-stripe': i % 2 === 0 }"
+        ></tr>
+      </ng-container>
+    }
+  </table>
+
+  <!-- Paginator -->
+  @if (tableConfig?.isPaginable) {
+    <ng-container>
+      <mat-paginator
+        class="bmb_table-paginator"
+        [pageSize]="this.paginatorSize"
+        [hidePageSize]="true"
+        aria-label="Select page"
+      >
+      </mat-paginator>
+    </ng-container>
+  }
+</div>

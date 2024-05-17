@@ -1,0 +1,32 @@
+@use "../../../assets/styles/base/rem" as rem;
+
+.bmb_progress-bar {
+  padding: rem.rem_calc(1);
+
+  &-track {
+    height: rem.rem_calc(8);
+    border-radius: rem.rem_calc(5);
+    background-color: var(--color-white-min);
+  }
+
+  &-active {
+    height: rem.rem_calc(8);
+    border-radius: rem.rem_calc(5);
+    background-color: RGBA(var(--color-blue-primary));
+    transition: 0.4s linear;
+    transition-property: width, background-color;
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_progress-bar {
+    &-track {
+      background-color: var(--color-black-min);
+    }
+
+    &-active {
+      background-color: RGBA(var(--color-neon-primary));
+    }
+  }
+}

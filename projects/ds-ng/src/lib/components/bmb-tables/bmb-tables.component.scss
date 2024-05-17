@@ -1,0 +1,151 @@
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/rem" as rem;
+
+.bmb_container-table {
+  width: 100%;
+  background: RGBA(var(--color-charade-100));
+  border-collapse: collapse;
+  padding: rem.rem_calc(24) rem.rem_calc(16);
+
+  .mat-mdc-cell {
+    border: none;
+  }
+
+  .mat-mdc-row {
+    border: none;
+  }
+
+  .mat-mdc-header-cell {
+    border: none;
+  }
+
+  .bmb_table {
+    &-headers {
+      @include fonts.font(4, medium);
+      color: RGBA(var(--color-black-tint));
+    }
+
+    &-th {
+      position: relative;
+
+      &:hover .resize-handle {
+        opacity: 1;
+        transition: 0.3s ease-in-out;
+      }
+    }
+
+    &-row {
+      min-height: rem.rem_calc(40);
+      color: RGBA(var(--color-charade-500));
+    }
+
+    &-stripe {
+      background-color: RGBA(var(--color-charade-200));
+      color: RGBA(var(--color-charade-950));
+    }
+
+    &-cell {
+      &-checkbox {
+        display: flex;
+        justify-content: center;
+      }
+    }
+
+    &-paginator {
+      @include fonts.font(4, medium);
+      background-color: RGBA(var(--color-charade-100));
+    }
+
+    &-detail-row {
+      height: 0;
+    }
+
+    &-td {
+      @include fonts.font(4, medium);
+    }
+
+    &-element-row {
+      > td {
+        border: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
+        border-style: dashed;
+        border-left-width: 0;
+        border-right-width: 0;
+      }
+    }
+
+    &-no-border {
+      border-bottom: none;
+      > td {
+        border-bottom-width: 0;
+      }
+    }
+
+    &-element-detail {
+      overflow: hidden;
+      display: flex;
+    }
+
+    &-resize-handle {
+      display: inline-block;
+      border-right: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      cursor: col-resize;
+      opacity: 0;
+    }
+
+    &-resize-handle:hover {
+      width: rem.rem_calc(20);
+      opacity: 1;
+    }
+  }
+  .mat-mdc-paginator-range-actions {
+    @include fonts.font(4, medium);
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_container-table {
+    background-color: RGBA(var(--color-charade-950));
+    .bmb_table {
+      background-color: RGBA(var(--color-charade-950));
+
+      &-headers {
+        color: RGBA(var(--color-charade-300));
+      }
+
+      &-row {
+        color: RGBA(var(--color-charade-100));
+      }
+
+      &-stripe {
+        background-color: RGBA(var(--color-charade-800));
+        color: RGBA(var(--color-charade-50));
+      }
+
+      &-td {
+        color: RGBA(var(--color-charade-50));
+      }
+
+      &-paginator {
+        background-color: RGBA(var(--color-charade-950));
+        color: RGBA(var(--color-charade-50));
+      }
+
+      &-expand-cell {
+        color: RGBA(var(--color-charade-50));
+      }
+
+      &-expand-btn {
+        color: RGBA(var(--color-charade-50));
+      }
+
+      &-resize-handle {
+        border-right: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
+      }
+    }
+  }
+}

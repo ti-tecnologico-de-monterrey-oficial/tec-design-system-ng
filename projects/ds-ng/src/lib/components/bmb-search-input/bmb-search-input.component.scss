@@ -23,31 +23,39 @@
       cursor: pointer;
     }
 
-    input {
+    &-input {
       flex: 1;
       @include fonts.font(4, regular);
       background-color: transparent;
       border: 0 none;
 
       &:focus,
-      &:focus-visible {
+      &:focus-visible,
+      &.bmb-focus,
+      &.bmb-focus-visible {
         outline: 0 none transparent;
       }
     }
 
-    button {
+    &-clear {
       padding: 0 rem.rem_calc(8);
       background-color: transparent;
 
-      &:disabled {
+      &:disabled,
+      &.bmb-disabled {
         background-color: transparent !important;
       }
 
       &:hover,
-      &:focus-visible {
+      &:focus-visible,
+      &.bmb-hover,
+      &.bmb-focus,
+      &.bmb-focus-visible {
         background-color: transparent !important;
       }
 
+      // TODO:
+      // fix this style onece the Button styles are updated
       bmb-icon {
         height: rem.rem_calc(24);
       }
@@ -95,18 +103,44 @@
       list-style: none;
       width: 100%;
 
-      &-item button {
-        padding: rem.rem_calc(8) rem.rem_calc(16);
-        background-color: transparent;
-        width: 100%;
-        text-align: left;
-        @include fonts.font(4, regular);
+      &-item {
+        &-button {
+          padding: rem.rem_calc(8) rem.rem_calc(16);
+          background-color: transparent;
+          width: 100%;
+          text-align: left;
+          @include fonts.font(4, regular);
 
-        &:hover,
-        &:focus-visible {
-          background-color: RGBA(var(--color-blue-primary));
-          color: RGBA(var(--color-white-primary));
+          &:hover,
+          &:focus-visible,
+          &.bmb-hover,
+          &.bmb-focus,
+          &.bmb-focus-visible {
+            background-color: RGBA(var(--color-blue-primary));
+            color: RGBA(var(--color-white-primary));
+          }
         }
+      }
+    }
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_search-input {
+    &-field {
+      background-color: RGBA(var(--color-charade-900));
+
+      &-input {
+        color: RGBA(var(--color-white-primary));
+      }
+    }
+
+    &-dialog {
+      background-color: RGBA(var(--color-charade-800));
+
+      &-list-item-button {
+        color: RGBA(var(--color-white-primary));
       }
     }
   }
