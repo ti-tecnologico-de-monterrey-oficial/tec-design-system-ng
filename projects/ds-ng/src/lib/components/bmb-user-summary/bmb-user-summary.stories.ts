@@ -30,44 +30,52 @@ Below is an example of how you can use this component in HTML:
   argTypes: {
     isProfile: {
       name: 'isProfile',
-      control: {
-        category: 'Properties',
-        defaultValue: { summary: 'false' },
-        type: 'boolean',
-      },
+      control: 'boolean',
       description: 'Change the content template.',
       table: {
+        category: 'Properties',
         type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
       },
     },
     name: {
       name: 'Name',
-      control: {
-        type: 'text',
-      },
-      description: "user' full name.",
+      control: 'text',
+      description: "user's full name.",
       table: {
+        category: 'Properties',
         type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    profilePic: {
+      name: 'Profile picture',
+      control: 'text',
+      description: "user's profile picture.",
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
       },
     },
     id: {
       name: 'ID',
-      control: {
-        type: 'text',
-      },
+      control: 'text',
       description: 'Users information.',
       table: {
         type: { summary: 'string' },
+        category: 'Properties',
+        defaultValue: { summary: '' },
       },
     },
     image: {
       name: 'Profile picture',
-      control: {
-        type: 'text',
-      },
+      control: 'text',
       description: 'User image path.',
       table: {
         type: { summary: 'string' },
+        category: 'Properties',
+        defaultValue: { summary: '' },
       },
     },
     onClick: {
@@ -76,6 +84,7 @@ Below is an example of how you can use this component in HTML:
       description: 'Click event.',
       table: {
         type: { summary: 'function' },
+        category: 'Events',
       },
     },
   },

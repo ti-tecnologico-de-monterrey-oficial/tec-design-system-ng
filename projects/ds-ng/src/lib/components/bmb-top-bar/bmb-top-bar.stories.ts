@@ -41,38 +41,12 @@ Below is an example of how you can use this component in HTML:
       },
     },
     userInformation: {
-      name: {
-        name: 'User name',
-        control: {
-          type: 'text',
-        },
-        description: 'Display the user name.',
-        table: {
-          category: 'Properties',
-          type: { summary: 'string' },
-        },
-      },
-      image: {
-        name: 'User picture',
-        control: {
-          type: 'text',
-        },
-        description: 'Display the user picture.',
-        table: {
-          category: 'Properties',
-          type: { summary: 'string' },
-        },
-      },
-      role: {
-        name: 'User role',
-        control: {
-          type: 'text',
-        },
-        description: 'Display the user role.',
-        table: {
-          category: 'Properties',
-          type: { summary: 'string' },
-        },
+      value: null,
+      control: false,
+      table: {
+        category: 'Properties',
+        type: { summary: 'object' },
+        defaultValue: { summary: 'null' },
       },
     },
     hasLogoutButton: {
@@ -117,6 +91,7 @@ Below is an example of how you can use this component in HTML:
       table: {
         category: 'Properties',
         type: { summary: 'string' },
+        defaultValue: { summary: '' },
       },
     },
     appSubTitle: {
@@ -128,6 +103,7 @@ Below is an example of how you can use this component in HTML:
       table: {
         category: 'Properties',
         type: { summary: 'string' },
+        defaultValue: { summary: '' },
       },
     },
     showLang: {
@@ -149,6 +125,7 @@ Below is an example of how you can use this component in HTML:
       table: {
         category: 'Properties',
         type: { summary: 'string' },
+        defaultValue: { summary: 'es' },
       },
     },
     logOut: {
@@ -158,6 +135,7 @@ Below is an example of how you can use this component in HTML:
         'Function that is executed when the logout button is clicked.',
       table: {
         type: { summary: 'function' },
+        category: 'Events',
       },
     },
     onLangChange: {
@@ -166,13 +144,14 @@ Below is an example of how you can use this component in HTML:
       description: 'Function that is executed when the lang change.',
       table: {
         type: { summary: 'function' },
+        category: 'Events',
       },
     },
   },
   args: {
     appName: 'TecTest',
     appSubTitle: 'Sub title',
-    showLang: true,
+    showLang: false,
     lang: 'es',
     onLangChange: () => {
       console.log('test');
@@ -180,6 +159,8 @@ Below is an example of how you can use this component in HTML:
     logOut: () => {
       console.log('test');
     },
+    positionButtonMenu: 'left',
+    hasLogoutButton: false,
   },
 } as Meta<typeof BmbTopBarComponent>;
 
