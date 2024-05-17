@@ -40,6 +40,7 @@ import {
   BmbSearchInputComponent,
   BmbLayoutItemDirective,
   BmbLayoutDirective,
+  BmbCardComponent,
 } from '../../projects/ds-ng/src/public-api';
 
 import {
@@ -93,6 +94,7 @@ import names from './names.json';
     BmbSearchInputComponent,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
+    BmbCardComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
