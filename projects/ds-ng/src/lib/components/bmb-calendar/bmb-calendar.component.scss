@@ -68,7 +68,7 @@
     align-items: center;
     justify-content: center;
     z-index: 1;
-    backdrop-filter: blur(1px);
+    backdrop-filter: blur(rem.rem_calc(1));
   }
 }
 

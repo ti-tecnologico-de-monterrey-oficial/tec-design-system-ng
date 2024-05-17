@@ -32,8 +32,7 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'number',
       },
-      description:
-        'Set the percentage to show in the progress bar',
+      description: 'Set the percentage to show in the progress bar',
       table: {
         category: 'Properties',
         type: { summary: 'number' },

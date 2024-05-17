@@ -4,6 +4,7 @@
       <bmb-icon icon="search" />
     </label>
     <input
+      class="bmb_search-input-field-input"
       [disabled]="isLoading"
       type="text"
       #filterInput
@@ -12,7 +13,12 @@
       [formControl]="filterControl"
       [placeholder]="placeholder"
     />
-    <button [disabled]="isLoading" bmbButton (click)="clearFilter()">
+    <button
+      class="bmb_search-input-field-clear"
+      [disabled]="isLoading"
+      bmbButton
+      (click)="clearFilter()"
+    >
       <bmb-icon icon="close" />
     </button>
   </div>
@@ -27,7 +33,12 @@
       <ul class="bmb_search-input-dialog-list">
         @for (item of filteredData; track $index) {
           <li class="bmb_search-input-dialog-list-item">
-            <button (click)="handleItemClick(item)">{{ item }}</button>
+            <button
+              class="bmb_search-input-dialog-list-item-button"
+              (click)="handleItemClick(item)"
+            >
+              {{ item }}
+            </button>
           </li>
         }
       </ul>
