@@ -1,4 +1,9 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  ViewEncapsulation,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 export type IBmbLegendVariations =
@@ -17,6 +22,7 @@ export type IBmbLegendVariations =
   templateUrl: './bmb-legend.component.html',
   styleUrl: './bmb-legend.component.scss',
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbLegendComponent {
   @Input() label: string = '';

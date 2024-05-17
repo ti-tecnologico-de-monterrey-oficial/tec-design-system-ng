@@ -30,22 +30,22 @@ Below is an example of how you can use this component in HTML:
   argTypes: {
     label: {
       name: 'Label',
-      control: {
-        type: 'text',
-      },
+      control: 'text',
       description: 'Label section content.',
       table: {
         type: { summary: 'string' },
+        defaultValue: { summary: '' },
+        category: 'Properties',
       },
     },
     value: {
       name: 'Value',
-      control: {
-        type: 'text',
-      },
+      control: 'text',
       description: 'Value section content.',
       table: {
         type: { summary: 'string' },
+        defaultValue: { summary: '' },
+        category: 'Properties',
       },
     },
     progress: {
@@ -56,6 +56,8 @@ Below is an example of how you can use this component in HTML:
       description: 'Progress value section content.',
       table: {
         type: { summary: 'string' },
+        defaultValue: { summary: '' },
+        category: 'Properties',
       },
     },
   },
