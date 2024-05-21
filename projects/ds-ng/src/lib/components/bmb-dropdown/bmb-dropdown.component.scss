@@ -1,0 +1,153 @@
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/mixins" as mixins;
+@use "../../../assets/styles/base/rem" as rem;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.bmb_dropdown{
+
+    .mdc-line-ripple{
+        display: none
+    }
+
+    .mat-mdc-form-field{
+        // display: flex
+    }
+
+    .mat-mdc-select-value-text {
+        @include fonts.font(5, regular);
+    }
+
+    .mat-mdc-form-field-subscript-wrapper{
+        height: 0
+    }
+
+    .mat-mdc-text-field-wrapper{
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .mat-mdc-select-value{
+        display: flex;
+        flex-direction: row;
+    }
+
+    .mat-mdc-form-field-infix{
+        display: flex;
+        flex-direction: row;
+    }
+
+    .mat-mdc-select-panel{
+        background-color: RGBA(var(--color-charade-50));
+    }
+
+    // mat-pseudo-checkbox{
+    //     display: none;
+    // }
+
+    &-option-wrapper{
+        display: flex;
+        width: 100%;
+        align-items: center;
+        flex-direction: row;
+    }
+
+    &-field{
+        @include fonts.font(5, regular);
+        appearance: none;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        height: rem.rem_calc(48);
+        background-color: RGBA(var(--color-charade-50));
+        border: rem.rem_calc(1) solid RGBA(var(--color-charade-500));
+        border-radius: rem.rem_calc(8);
+        color: RGBA(var(--color-charade-950));
+        // padding-top: 5px
+        // cursor: pointer;
+        // line-height: inherit;
+        // position: relative;
+    }
+
+    &-select{
+        @include fonts.font(5, regular);
+    }
+
+    &-panel.mat-mdc-select-panel{
+        background-color: RGBA(var(--color-charade-50));
+    }
+
+    &-container-label{
+        padding-bottom: 10px;
+    }
+
+    &-label{
+        @include fonts.font(4, regular);
+    }
+
+    &-wrapper{
+        position: relative;
+        width: 100%;
+
+        select{
+            @include fonts.font(5, regular);
+            appearance: none;
+            width: 100%;
+            height: rem.rem_calc(48);
+            background-color: RGBA(var(--color-charade-50));
+            border: rem.rem_calc(1) solid RGBA(var(--color-charade-500));
+            border-radius: rem.rem_calc(8);
+            color: RGBA(var(--color-charade-950));
+            padding: rem.rem_calc(8);
+            cursor: pointer;
+            line-height: inherit;
+            position: relative;
+        }
+
+        &::before{
+            position: absolute;
+            content: "";
+            right: 1rem;
+            pointer-events: none;
+            border-left: 1px solid transparent;
+            border-right: 1px solid transparent;
+            border-bottom: 1px solid black;
+            top: 40%;
+        }
+
+        &::after{
+            position: absolute;
+            content: "";
+            right: 1rem;
+            pointer-events: none;
+        }
+
+    }
+
+    &-options{
+        @include fonts.font(4, regular);
+        background-color: RGBA(var(--color-charade-50));
+        border: rem.rem_calc(1) solid RGBA(var(--color-charade-500));
+        border-radius: rem.rem_calc(8);
+        color: RGBA(var(--color-charade-950));
+        padding: rem.rem_calc(30);
+        height: 50px;
+    }
+
+    &-select{
+
+        &::-ms-expand{
+        }
+
+        &::after{
+        }
+
+        &:focus{
+            // background-color: aqua;
+        }
+    }
+}

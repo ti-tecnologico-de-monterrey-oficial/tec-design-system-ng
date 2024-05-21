@@ -45,6 +45,7 @@ export * from './lib/components/bmb-search-input/bmb-search-input.component';
 export * from './lib/components/bmb-tables/bmb-tables.component';
 export * from './lib/components/bmb-progress-bar/bmb-progress-bar.component';
 export * from './lib/components/bmb-card/bmb-card.component';
+export * from './lib/components/bmb-dropdown/bmb-dropdown.component';
 
 // types
 export * from './lib/types';

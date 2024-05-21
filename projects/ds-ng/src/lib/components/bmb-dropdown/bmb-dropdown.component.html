@@ -1,0 +1,111 @@
+<!-- <mat-form-field appearance="outline">
+    <mat-label>Multi Select Dropdown with Search</mat-label>
+    <mat-select multiple [formControl]="myControl">
+      <mat-option *ngFor="let option of options | async" (click)="addOption(option)" onkeydown="">
+  
+      </mat-option>
+    </mat-select>
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of options | async" (click)="addOption(option)" onkeypress="">
+  
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  
+  <mat-chip-list>
+    <mat-chip *ngFor="let option of selectedOptions" (remove)="removeOption(option)">
+  
+       <mat-icon matChipRemove>cancel</mat-icon> 
+    </mat-chip>
+  </mat-chip-list> -->
+
+  <!-- <div class="dropdown-wrapper {{className}} {{isFocused ? 'focus':''}}" [ngClass]="{'is-open':isOpen, 'disabled':isReadOnly}" *ngIf="options" (contextmenu)="$event.stopPropagation();">
+    <div class="box" (click)="toggle($event)">
+      <ng-container>
+        <div class="dropdown-selected" *ngIf="isSelectedValue" l10nTranslate><span>{{options[selected]}}</span></div>
+        <div class="dropdown-selected" *ngIf="!isSelectedValue" l10nTranslate><span>{{placeholder}}</span></div>
+      </ng-container>
+    </div>
+  
+    <ul class="dropdown-options" *ngIf="options">
+      <li *ngIf="placeholder" (click)="$event.stopPropagation()">{{placeholder}}</li>
+      <ng-container>
+        <li id="li{{i}}"
+          *ngFor="let option of options; let i = index"
+          [class.active]="selected === i"
+          (click)="optionSelect(option, i, $event)"
+          l10nTranslate
+        >
+          {{option}}
+        </li>
+      </ng-container>
+  
+    </ul>
+  </div> -->
+
+
+  <!-- <mat-label class="dropdown-label">Please select the </mat-label>
+  <mat-form-field appearance="outline" class="form-field" [ngStyle]="{'width': calculateDropdownWidth() + 'vw'}">
+    <mat-select [(ngModel)]="selectedValue" (selectionChange)="onSelectionChange()" disableOptionCentering
+                md-container-class="mySelect" panelClass="dropDown-overlay dropDown-list"
+                [ngStyle]="{'width': calculateDropdownWidth() + 'vw'}">
+      <mat-option class="drop-down-option" [disabled]="true" [value]="-1"> Please select the
+      </mat-option>
+      <mat-option class="drop-down-option" *ngFor="let item of dropDownList" [value]="item[valueField!]"> 
+          {{ item[labelField!] }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field> -->
+
+<!-- <div class="bmb_dropdown">
+    <div class="bmb_dropdown-container-label">
+        <label class="bmb_dropdown-label" for="months">{{ label }}</label>
+        <span class="bmb_field-label-required"> *</span>
+    </div>
+    <div class="bmb_dropdown-wrapper">
+        <select [ngModel]="selectedIndex" (ngModelChange)="valueChanged($event)">       
+            @for (option of options | async; track $index) {
+                <option 
+                    [value]="option"
+                >
+                    {{ option }}
+                </option>
+            }
+        </select>
+    </div>
+</div> -->
+
+<!-- <div>
+    <mat-form-field>
+        <mat-label>Autocomplete multiselect</mat-label>
+        <mat-select>
+            @for (option of options |async; track $index) {
+                <mat-option  (click)="addOption(option)">
+      
+                </mat-option>
+            }
+    
+        </mat-select>
+      </mat-form-field>
+      
+      <mat-chip-listbox>
+        <mat-chip *ngFor="let option of selectedOptions" (remove)="removeOption(option)">
+            <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+      </mat-chip-listbox>
+</div> -->
+
+<div class="bmb_dropdown">
+    <mat-label class="bmb_dropdown-label ">Favorite food</mat-label>
+    <mat-form-field class="bmb_dropdown-field" >
+        <bmb-icon [icon]="'apps'" style="font-size: 20px;"/>
+        <mat-select class="bmb_dropdown-select" panelClass="bmb_dropdown-panel">
+          @for (option of options |async; track option) {
+            <!-- <div class="bmb_dropdown-option-wrapper"> -->
+                
+                <mat-option [value]="option"><bmb-icon [icon]="'apps'" style="font-size: 20px;"/>{{option}}</mat-option>
+            <!-- </div> -->
+          }
+        </mat-select>
+      </mat-form-field>
+</div>
