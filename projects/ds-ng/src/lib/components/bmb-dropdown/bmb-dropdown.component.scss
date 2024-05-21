@@ -101,6 +101,7 @@
 
     &-panel {
         .mat-mdc-option{
+            width: 100%;
             @include fonts.font(5, regular);
         }
 
@@ -119,7 +120,7 @@
 
         
         &-required{
-            color: RGBA(var(--color-charade-50));
+            color: RGBA(var(--color-charade-950));
         }
     }
 
@@ -175,7 +176,7 @@
     }
 
     &-option-select{
-        background-color: bisque;
+        background-color: RGBA(var(--color-blue-primary));
     }
 
     &-option-wrapper{

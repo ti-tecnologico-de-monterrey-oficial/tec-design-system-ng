@@ -97,8 +97,11 @@
 
 <div class="bmb_dropdown">
     <div class="bmb_dropdown-container-label">
-        <mat-label class="bmb_dropdown-label ">Favorite food</mat-label>
-        <span class="bmb_dropdown-label-required"> *</span>
+        @if(this.label){
+            <mat-label class="bmb_dropdown-label ">{{this.label}}</mat-label>
+            <span class="bmb_dropdown-label-required"> *</span>
+        }
+
     </div>
     <mat-form-field class="bmb_dropdown-field" >
         @if(this.iconName !== ''){
@@ -107,9 +110,10 @@
         <mat-select 
             class="bmb_dropdown-select" 
             panelClass="bmb_dropdown-panel" 
-            placeholder="Placeholder"
+            [placeholder]="this.placeholder!"
             [(value)]="selectedValue"
             (valueChange)="selected(selectedValue)"
+            [disabled]="this.isDisabled"
         >
           @for (option of options |async; track option) {
             <div 

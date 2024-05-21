@@ -66,6 +66,10 @@ export class BmbDropdownComponent implements OnInit, ControlValueAccessor {
   myControl = new FormControl();
   options?: Observable<string[]>;
   @Input() iconName: string = ''
+  @Input() allOptions: any[] = [];
+  @Input() placeholder?: string = ""; 
+  @Input() isDisabled?: boolean = false
+  @Input() label?: string;
   @Output() selectedItem:  EventEmitter<any> = new EventEmitter();
 
   ngOnInit() {
@@ -80,8 +84,6 @@ export class BmbDropdownComponent implements OnInit, ControlValueAccessor {
   }
 
   selectedValue = ''
-
-  allOptions = ['Apple', 'Banana', 'Orange', 'Pear', 'Grape'];
 
   selectedOptions: string[] = [];
 
@@ -101,7 +103,7 @@ export class BmbDropdownComponent implements OnInit, ControlValueAccessor {
   }
 
 
-  @Input() public label?: string;
+  // @Input() public label?: string;
   // @Input() public options?: {value: number, description: string}[];
   @Input() public text?: string;
 
