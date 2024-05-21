@@ -356,4 +356,12 @@ export class AppComponent {
   }
 
   namesList = names;
+
+  handleButtonPrimary() {
+    console.log('Button primary on error loader');
+  }
+
+  handleButtonSecondary() {
+    console.log('Button secondary on error loader');
+  }
 }
