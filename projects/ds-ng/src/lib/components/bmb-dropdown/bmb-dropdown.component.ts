@@ -65,6 +65,8 @@ export class BmbDropdownComponent implements OnInit, ControlValueAccessor {
  
   myControl = new FormControl();
   options?: Observable<string[]>;
+  @Input() iconName: string = ''
+  @Output() selectedItem:  EventEmitter<any> = new EventEmitter();
 
   ngOnInit() {
     this.options = this.myControl.valueChanges.pipe(
@@ -77,9 +79,15 @@ export class BmbDropdownComponent implements OnInit, ControlValueAccessor {
     );
   }
 
+  selectedValue = ''
+
   allOptions = ['Apple', 'Banana', 'Orange', 'Pear', 'Grape'];
 
   selectedOptions: string[] = [];
+
+  selected(value:string){
+    this.selectedItem.emit(value)
+  }
 
   addOption(option: string) {
     this.selectedOptions.push(option);
@@ -100,6 +108,7 @@ export class BmbDropdownComponent implements OnInit, ControlValueAccessor {
   selectedIndex?: number;
 
   valueChanged(value: any) {
+    this.selectedItem.emit(value)
     this.onChange(value);
     this.onTouched();
   }

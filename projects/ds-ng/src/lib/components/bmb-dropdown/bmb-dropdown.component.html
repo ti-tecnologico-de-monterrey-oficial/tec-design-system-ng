@@ -96,16 +96,33 @@
 </div> -->
 
 <div class="bmb_dropdown">
-    <mat-label class="bmb_dropdown-label ">Favorite food</mat-label>
+    <div class="bmb_dropdown-container-label">
+        <mat-label class="bmb_dropdown-label ">Favorite food</mat-label>
+        <span class="bmb_dropdown-label-required"> *</span>
+    </div>
     <mat-form-field class="bmb_dropdown-field" >
-        <bmb-icon [icon]="'apps'" style="font-size: 20px;"/>
-        <mat-select class="bmb_dropdown-select" panelClass="bmb_dropdown-panel">
+        @if(this.iconName !== ''){
+            <bmb-icon [icon]="this.iconName" class="bmb_dropdown-icon"/>
+        }
+        <mat-select 
+            class="bmb_dropdown-select" 
+            panelClass="bmb_dropdown-panel" 
+            placeholder="Placeholder"
+            [(value)]="selectedValue"
+            (valueChange)="selected(selectedValue)"
+        >
           @for (option of options |async; track option) {
-            <!-- <div class="bmb_dropdown-option-wrapper"> -->
-                
-                <mat-option [value]="option"><bmb-icon [icon]="'apps'" style="font-size: 20px;"/>{{option}}</mat-option>
-            <!-- </div> -->
+            <div 
+                class="bmb_dropdown-option-wrapper"
+                [ngClass]="{'bmb_dropdown-option-select': option == selectedValue }"
+            >
+                @if(this.iconName !== ''){
+                    <bmb-icon [icon]="this.iconName" class="bmb_dropdown-icon" style=" padding-left: 17px;"/>
+                }
+                <mat-option [value]="option">{{option}}</mat-option>
+            </div>
           }
         </mat-select>
       </mat-form-field>
 </div>
+
