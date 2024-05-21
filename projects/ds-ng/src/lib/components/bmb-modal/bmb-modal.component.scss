@@ -1,11 +1,12 @@
 @use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/rem" as rem;
 
 .mat-mdc-dialog-component-host {
     display: flex;
 }
 
 .mdc-dialog__surface{
-    border-radius: 20px;
+    border-radius: rem.rem_calc(20);
     background-color: RGBA(var(--color-charade-50));
 }
 
@@ -13,38 +14,32 @@
 
     &-content{
         background-color: RGBA(var(--color-charade-50));
-        border-radius: 20px;
+        border-radius: rem.rem_calc(20);
         // box-shadow:2px 2px 2px 1px var(--color-black-min);
 
         &-wrapper{
-            padding: 32px;
+            padding: rem.rem_calc(32);
         }
     }
 
     &-size{
         &-small{
-            // min-width: 400px;
-            max-width: 760px;
-            width: 760px;
-            // @media (min-width: 412px) {
-            //     width:100%;
-            // }
+            min-width: rem.rem_calc(300);
+            max-width: rem.rem_calc(760);
+            width: rem.rem_calc(760);
         }
 
         &-medium{
-            max-width: 920px;
-            width: 920px;
-            min-width: 300px;
-            // @media (min-width: 411px) {
-            //     width:100%;
-            // }
+            max-width: rem.rem_calc(920);
+            width: rem.rem_calc(920);
+            min-width: rem.rem_calc(300);
         }
 
-        // &-large{
-        //     // min-width: 400px;
-        //     max-width: 1080px;
-        //     width: 1080px;
-        // }
+        &-large{
+            min-width: rem.rem_calc(300);
+            max-width: rem.rem_calc(1080);
+            width: rem.rem_calc(1080);
+        }
     }
 
     &-header{
@@ -52,11 +47,11 @@
         display: inline-flex;
         justify-content: space-between;
         align-self: center;
-        padding-bottom: 15px;
+        padding-bottom: rem.rem_calc(15);
 
         &-text {
             width: 90%;
-            padding-bottom: 5px;
+            padding-bottom: rem.rem_calc(5);
 
             &-title { 
                 @include fonts.font(7, semibold);
@@ -69,19 +64,20 @@
 
         &-close{
             float: right;
-            font-size: 24px;
+            font-size: rem.rem_calc(24);
             cursor: pointer;
         }
     }
 
     &-body{
-        padding-bottom: 20px;
+        padding-bottom: rem.rem_calc(20);
         
         &-description {
             @include fonts.font(5, regular);
             line-height: 30;
             letter-spacing: 0px;
-            max-height: 300px;
+            max-height: rem.rem_calc(300);
+            overflow: hidden;
         }
 
         &-scrollable{
@@ -90,17 +86,17 @@
 
             &::-webkit-scrollbar{
                 -webkit-appearance: none;
-                width: 10px;
+                width: rem.rem_calc(10);
             }
 
             &::-webkit-scrollbar-thumb {
                 background-color: RGBA(var(--color-charade-300));
-                border-radius: 20px;
-                border: 1px solid #f1f2f3;
+                border-radius: rem.rem_calc(20);
+                border: rem.rem_calc(1) solid RGBA(var(--color-charade-300));
             }
 
             &::-webkit-scrollbar-track {
-                border-radius: 10px;  
+                border-radius: rem.rem_calc(10);  
             }
         }
     }
@@ -110,12 +106,12 @@
         justify-content: flex-end;
 
         &-btn{
-            margin-right: 10px;
+            margin-right: rem.rem_calc(10);
         }
 
         .bmb_modal-btn {
-            width: 250px;
-            height: 35px;
+            width: rem.rem_calc(250);
+            height: rem.rem_calc(35);
 
             &-main {
                 background-color: RGBA(var(--color-blue-primary));
@@ -123,7 +119,7 @@
 
             &-secondary-action {
                 background-color: transparent;
-                border: 1px solid RGBA(var(--color-black-primary));
+                border: rem.rem_calc(1) solid RGBA(var(--color-black-primary));
             }
 
             &-primary {
@@ -214,7 +210,8 @@
             &-scrollable{
     
                 &::-webkit-scrollbar-thumb {
-                    background-color: RGBA(var(--color-charade-300));
+                    background-color: RGBA(var(--color-charade-950));
+                    border: rem.rem_calc(1) solid RGBA(var(--color-charade-950));
                 }
 
             }

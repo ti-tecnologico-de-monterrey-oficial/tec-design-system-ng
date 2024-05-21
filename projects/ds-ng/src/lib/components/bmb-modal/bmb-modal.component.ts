@@ -1,16 +1,17 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Inject, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Inject, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog} from '@angular/material/dialog';
 import { ModalDataConfig } from './bmb-modal.interface';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbButtonDirective } from '../../directives/button.directive';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'bmb-modal',
   standalone: true,
   imports: [CommonModule, BmbIconComponent, BmbButtonDirective],
   templateUrl: './bmb-modal.component.html',
-  providers: [ MatDialog ],
+  providers: [ MatDialog, ModalService ],
   styleUrl: './bmb-modal.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -77,4 +78,5 @@ export class BmbModalComponent implements OnInit{
         break;
     }
   }
+
 }
