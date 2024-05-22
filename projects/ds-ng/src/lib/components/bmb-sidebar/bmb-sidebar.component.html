@@ -1,25 +1,27 @@
-<nav class="bmb_sidebar">
-  <ul class="bmb_sidebar-container">
-    @for (element of elements; track element) {
-      <li class="bmb_sidebar-item" (click)="setActive(element.title)">
-        <div
-          class="bmb_sidebar-item-container"
-          [ngClass]="getActive(element.title)"
+<nav class="bmb_sidebar" aria-label="Sidebar Navigation">
+  <bmb-icon class="bmb_sidebar-open" icon="arrow_back_ios" />
+  <ng-container *ngFor="let group of elements">
+    <ul class="bmb_sidebar-list">
+      <li *ngFor="let element of group.child" class="bmb_sidebar-item">
+        <a
+          class="bmb_sidebar-link"
+          [id]="element.id"
+          [ngClass]="'bmb_sidebar-link-' + getActive(element.title)"
+          [routerLink]="isInternalLink(element.link) ? element.link : null"
+          (click)="setActive(element.title)"
+          [attr.target]="isInternalLink(element.link) ? null : '_blank'"
+          [attr.rel]="
+            isInternalLink(element.link) ? null : 'noopener noreferrer'
+          "
         >
           <bmb-icon
-            class="bmb_sidebar-item-container-icon"
-            [ngClass]="getActive(element.title) + '-icon'"
+            class="bmb_sidebar-icon"
             [icon]="element.icon"
+            [materialIcon]="true"
           />
-          <a
-            class="bmb_sidebar-item-container-link"
-            [ngClass]="'bmb-' + getActive(element.title) + '-link'"
-            href="{{ element.link }}"
-          >
-            {{ element.title }}
-          </a>
-        </div>
+          <span class="bmb_sidebar-text">{{ element.title }}</span>
+        </a>
       </li>
-    }
-  </ul>
+    </ul>
+  </ng-container>
 </nav>
