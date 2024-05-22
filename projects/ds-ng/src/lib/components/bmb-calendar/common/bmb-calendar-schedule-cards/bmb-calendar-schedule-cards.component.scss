@@ -10,7 +10,7 @@
   border: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
   @include fonts.font(3, medium);
   display: grid;
-  gap: 0px 0px;
+  gap: 0 0;
   grid-template-areas: "indicator title";
   grid-template-rows: 1fr;
 
