@@ -5,6 +5,9 @@
   [lang]="topBarLang"
   (onLangChange)="handleLangChange($event)"
 ></bmb-top-bar>
+<bmb-theme [initialTheme]="'light'" />
+<bmb-sidebar [elements]="sidebarElements" />
+
 <!-- <bmb-loader [overlay]="true" title="Cargando...." /> -->
 
 <bmb-loader
@@ -58,7 +61,6 @@
 </div>
 
 <!-- Demo -->
-<bmb-theme />
 
 <bmb-totp
   instanceId="first"
@@ -128,12 +130,6 @@
   [checked]="true"
   [indeterminate]="true"
 />
-<bmb-sidebar [elements]="sidebarElements"></bmb-sidebar>
-<bmb-progress-circle
-  [percentValue]="85"
-  [title]="'Titulo'"
-  [valueLabel]="310"
-></bmb-progress-circle>
 
 <bmb-tabs [tabs]="myTabs" (selected)="handleTabSelected($event)">
   <bmb-container *ngIf="activeTabId === 1" [appearance]="'primary-home'">
