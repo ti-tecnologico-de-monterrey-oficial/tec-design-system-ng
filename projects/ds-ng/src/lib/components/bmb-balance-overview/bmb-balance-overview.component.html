@@ -1,0 +1,30 @@
+<section class="bmb_balance-overview-container">
+    <div class="bmb_balance-overview-circle-container">
+        <bmb-progress-circle
+            [percent]="progressCirclePercent!"
+            [valueLabel]="progressCircleValue!"
+            [showValueLabel]="showProgressCircleValue"
+            [title]="progressCircleTitle"
+            [showTitle]="showProgressCircleTitle"
+            [showBackground]="showProgressCircleBackground"
+        />
+    </div>
+    <div class="bmb_balance-overview-legend-main-container">
+        <div class="bmb_balance-overview-legend-success">
+            <bmb-legend
+                class="bmb_balance-overview-legend-text"
+                [indicatorAppearance]="'success'" 
+                [label]="labelPrimary!" 
+                [value]="valuePrimary!"
+            />
+        </div>
+        <div class="bmb_balance-overview-legend-strong">
+            <bmb-legend
+                class="bmb_balance-overview-legend-text" 
+                [indicatorAppearance]="'strong'" 
+                [label]="labelSecondary!" 
+                [value]="valueSecondary!"
+            />
+        </div>
+    </div>
+</section>
