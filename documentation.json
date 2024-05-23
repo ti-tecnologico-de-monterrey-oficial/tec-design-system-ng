@@ -279,18 +279,27 @@
         },
         {
             "name": "SidebarElement",
-            "id": "interface-SidebarElement-c22b0d28e873b6b2f9b5a05064c735339ca9424d69482bc2226ad20c0ba8e1871536648e4d3c43669847bd7fdf4ebcf9b25eddc495b8e2dcdb98b7824693d2ca",
+            "id": "interface-SidebarElement-a6a06436d37d9e952dc441f52212ed4ba907e557bb6ece8ddb05897d0ad732430be61a7c14496525a6f8d5a4ccdeabfe8883b23136a6147548c548815e450b55",
             "file": "projects/ds-ng/src/lib/components/bmb-sidebar/bmb-sidebar.interface.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "export interface SidebarElement {\n  icon: string;\n  title: string;\n  link: string;\n}\n\nexport interface SidebarElements {\n  child: SidebarElement[];\n}\n",
+            "sourceCode": "export interface SidebarElement {\n  id: number;\n  icon: string;\n  title: string;\n  link: string;\n}\n\nexport interface SidebarElements {\n  child: SidebarElement[];\n}\n",
             "properties": [
                 {
                     "name": "icon",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 3
+                },
+                {
+                    "name": "id",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
                     "optional": false,
                     "description": "",
                     "line": 2
@@ -302,7 +311,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 4
+                    "line": 5
                 },
                 {
                     "name": "title",
@@ -311,7 +320,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 3
+                    "line": 4
                 }
             ],
             "indexSignatures": [],
@@ -321,12 +330,12 @@
         },
         {
             "name": "SidebarElements",
-            "id": "interface-SidebarElements-c22b0d28e873b6b2f9b5a05064c735339ca9424d69482bc2226ad20c0ba8e1871536648e4d3c43669847bd7fdf4ebcf9b25eddc495b8e2dcdb98b7824693d2ca",
+            "id": "interface-SidebarElements-a6a06436d37d9e952dc441f52212ed4ba907e557bb6ece8ddb05897d0ad732430be61a7c14496525a6f8d5a4ccdeabfe8883b23136a6147548c548815e450b55",
             "file": "projects/ds-ng/src/lib/components/bmb-sidebar/bmb-sidebar.interface.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "export interface SidebarElement {\n  icon: string;\n  title: string;\n  link: string;\n}\n\nexport interface SidebarElements {\n  child: SidebarElement[];\n}\n",
+            "sourceCode": "export interface SidebarElement {\n  id: number;\n  icon: string;\n  title: string;\n  link: string;\n}\n\nexport interface SidebarElements {\n  child: SidebarElement[];\n}\n",
             "properties": [
                 {
                     "name": "child",
@@ -335,7 +344,7 @@
                     "type": "SidebarElement[]",
                     "optional": false,
                     "description": "",
-                    "line": 8
+                    "line": 9
                 }
             ],
             "indexSignatures": [],
@@ -489,12 +498,12 @@
         },
         {
             "name": "Target",
-            "id": "interface-Target-ffb933431ea34d481e15828994488a1d5d39586edbb796a4b01be09ea01819c25f1cb7b81646b06e5328e519194ae622d8ae95ddc06888bdb97851a760eb7f9a-1",
+            "id": "interface-Target-862a1516996e5d18d2a8520cd6caf451201afec1c5719fd13bcb0022f7340430dcd09f326dd17cc204851738187a10b4dc123f374d2d01a9cdabb5c354d5c535-1",
             "file": "projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.stories.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { Meta, StoryObj } from '@storybook/angular';\nimport { BmbDotPaginatorComponent } from './bmb-dot-paginator.component';\n\nexport interface Target {\n  target: string;\n  index: number;\n}\n\nexport default {\n  title: 'Micro Componentes/Dot Paginator',\n  component: BmbDotPaginatorComponent,\n  parameters: {\n    docs: {\n      description: {\n        component: `\nBelow is an example of how you can use this component in TypeScript:\n\n\\`\\`\\`typescript\nimport { BmbDotPaginatorComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';\n\nexport interface Target {\n  target: string;\n  index: number;\n}\n\n@Component({\n  selector: 'component',\n  standalone: true,\n  imports: [ BmbDotPaginatorComponent ],\n  templateUrl: './component.html',\n  styleUrl: './component.scss',\n})\n\nexport class Component {\n  myActiveDotIndex: number = 0;\n  myTotalDots: number = 5;\n  myTargets: Target[] = [\n    { target: '#item1', index: 0 },\n    { target: '#item2', index: 1 },\n  ];\n\n  handleDotPress(index: number): void {\n    this.myActiveDotIndex = index;\n  }\n}\n\\`\\`\\`\n\nBelow is an example of how you can use this component in HTML:\n        `,\n      },\n    },\n  },\n  argTypes: {\n    appearance: {\n      name: 'Appearance',\n      control: {\n        type: 'radio',\n      },\n      options: ['primary', 'secondary'],\n      description:\n        'The style of the dot paginator. Is not neccesary to add the \"primary\" style.',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 'primary' },\n        type: { summary: 'string' },\n      },\n    },\n    activeDotIndex: {\n      name: 'Active dot index',\n      control: 'number',\n      description: 'Index of the active dot.',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 0 },\n        type: { summary: 'number' },\n      },\n    },\n    totalDots: {\n      name: 'Total Dots',\n      control: 'number',\n      description: 'Total number of dots.',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 5 },\n        type: { summary: 'number' },\n      },\n    },\n    targets: {\n      name: 'Targets',\n      control: 'object',\n      description: 'Target objects for each dot.',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 'optional' },\n        type: { summary: 'Target[]' },\n      },\n    },\n    onDotPress: {\n      name: 'On Dot Press',\n      control: {\n        type: '',\n      },\n      description:\n        'This handler can be used to perform a specific interaction with each dot.',\n      table: {\n        category: 'Events',\n        type: { summary: '(onDotPress)=\"yourFunction($event)\"' },\n      },\n    },\n  },\n\n  args: {\n    activeDotIndex: 0,\n    totalDots: 5,\n    targets: [\n      { target: '#item1', index: 0 },\n      { target: '#item2', index: 1 },\n    ],\n    onDotPress: (index: number) => {\n      window.alert(index);\n    },\n  },\n} as Meta<typeof BmbDotPaginatorComponent>;\n\ntype Story = StoryObj<BmbDotPaginatorComponent>;\n\nexport const Default: Story = {};\n",
+            "sourceCode": "import { Meta, StoryObj } from '@storybook/angular';\nimport { BmbDotPaginatorComponent } from './bmb-dot-paginator.component';\n\nexport interface Target {\n  target: string;\n  index: number;\n}\n\nexport default {\n  title: 'Micro Componentes/Dot Paginator',\n  component: BmbDotPaginatorComponent,\n  parameters: {\n    docs: {\n      description: {\n        component: `\nBelow is an example of how you can use this component in TypeScript:\n\n\\`\\`\\`typescript\nimport { BmbDotPaginatorComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';\n\nexport interface Target {\n  target: string;\n  index: number;\n}\n\n@Component({\n  selector: 'component',\n  standalone: true,\n  imports: [ BmbDotPaginatorComponent ],\n  templateUrl: './component.html',\n  styleUrl: './component.scss',\n})\n\nexport class Component {\n  myActiveDotIndex: number = 0;\n  myTotalDots: number = 5;\n  myTargets: Target[] = [\n    { target: '#item1', index: 0 },\n    { target: '#item2', index: 1 },\n  ];\n\n  handleDotPress(index: number): void {\n    this.myActiveDotIndex = index;\n  }\n}\n\\`\\`\\`\n\nBelow is an example of how you can use this component in HTML:\n        `,\n      },\n    },\n  },\n  argTypes: {\n    appearance: {\n      name: 'Appearance',\n      control: {\n        type: 'radio',\n      },\n      options: ['primary', 'secondary'],\n      description:\n        'The style of the dot paginator. Is not neccesary to add the \"primary\" style.',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 'primary' },\n        type: { summary: 'string' },\n      },\n    },\n    activeDotIndex: {\n      name: 'Active dot index',\n      control: 'number',\n      description: 'Index of the active dot.',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 0 },\n        type: { summary: 'number' },\n      },\n    },\n    totalDots: {\n      name: 'Total Dots',\n      control: 'number',\n      description: 'Total number of dots.',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 5 },\n        type: { summary: 'number' },\n      },\n    },\n    targets: {\n      name: 'Targets',\n      control: 'object',\n      description: 'Target objects for each dot.',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 'optional' },\n        type: { summary: 'Target[]' },\n      },\n    },\n    onDotPress: {\n      name: 'On Dot Press',\n      control: {\n        type: '',\n      },\n      description:\n        'This handler can be used to perform a specific interaction with each dot.',\n      table: {\n        category: 'Events',\n        type: { summary: '(onDotPress)=\"yourFunction($event)\"' },\n      },\n    },\n  },\n  args: {\n    activeDotIndex: 0,\n    totalDots: 5,\n    targets: [\n      { target: '#item1', index: 0 },\n      { target: '#item2', index: 1 },\n    ],\n    onDotPress: (index: number) => {\n      window.alert(index);\n    },\n  },\n} as Meta<typeof BmbDotPaginatorComponent>;\n\ntype Story = StoryObj<BmbDotPaginatorComponent>;\n\nexport const Default: Story = {};\n",
             "properties": [
                 {
                     "name": "index",
@@ -585,7 +594,7 @@
         },
         {
             "name": "ThemeService",
-            "id": "injectable-ThemeService-bff929e947fb3c49f173a9f36fb05e1d9621b68c21c10945c53740b74547f7fc2fe0a3448b3091564176b3ec291f156623b699d1fea0097acd8fdae5c30db116",
+            "id": "injectable-ThemeService-86c42e29891da680255e828f90ca9c13ab90bda752e9b775026658162ae6becb733f9b7ddf3c1f5cfc652708b43c4d13c735a9af03f08b9dff17fcd786d2d275",
             "file": "projects/ds-ng/src/lib/services/theme.service.ts",
             "properties": [
                 {
@@ -614,6 +623,16 @@
             ],
             "methods": [
                 {
+                    "name": "getDefaultTheme",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 13,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
                     "name": "setTheme",
                     "args": [
                         {
@@ -626,7 +645,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 13,
+                    "line": 17,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -646,7 +665,7 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { Injectable } from '@angular/core';\nimport { BehaviorSubject } from 'rxjs';\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class ThemeService {\n  private themeSubject = new BehaviorSubject<string>(\n    localStorage.getItem('theme') || 'light',\n  );\n  theme$ = this.themeSubject.asObservable();\n\n  setTheme(theme: string): void {\n    this.themeSubject.next(theme);\n  }\n}\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\nimport { BehaviorSubject } from 'rxjs';\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class ThemeService {\n  private themeSubject = new BehaviorSubject<string>(\n    localStorage.getItem('theme') || 'light',\n  );\n  theme$ = this.themeSubject.asObservable();\n\n  getDefaultTheme(): string {\n    return 'light';\n  }\n\n  setTheme(theme: string): void {\n    this.themeSubject.next(theme);\n  }\n}\n",
             "extends": [],
             "type": "injectable"
         },
@@ -7198,7 +7217,7 @@
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<nav class=\"bmb_sidebar\" aria-label=\"Sidebar Navigation\">\n  <bmb-icon class=\"bmb_sidebar-open\" icon=\"arrow_back_ios\" />\n  <ng-container *ngFor=\"let group of elements\">\n    <ul class=\"bmb_sidebar-list\">\n      <li *ngFor=\"let element of group.child\" class=\"bmb_sidebar-item\">\n        <a\n          class=\"bmb_sidebar-link\"\n          [ngClass]=\"'bmb_sidebar-link-' + getActive(element.title)\"\n          [routerLink]=\"isInternalLink(element.link) ? element.link : null\"\n          (click)=\"setActive(element.title)\"\n          [attr.target]=\"isInternalLink(element.link) ? null : '_blank'\"\n          [attr.rel]=\"\n            isInternalLink(element.link) ? null : 'noopener noreferrer'\n          \"\n        >\n          <bmb-icon\n            class=\"bmb_sidebar-icon\"\n            [icon]=\"element.icon\"\n            [materialIcon]=\"true\"\n          />\n          <span class=\"bmb_sidebar-text\">{{ element.title }}</span>\n        </a>\n      </li>\n    </ul>\n  </ng-container>\n</nav>\n"
+            "templateData": "<nav class=\"bmb_sidebar\" aria-label=\"Sidebar Navigation\">\n  <bmb-icon class=\"bmb_sidebar-open\" icon=\"arrow_back_ios\" />\n  <ng-container *ngFor=\"let group of elements\">\n    <ul class=\"bmb_sidebar-list\">\n      <li *ngFor=\"let element of group.child\" class=\"bmb_sidebar-item\">\n        <a\n          class=\"bmb_sidebar-link\"\n          [id]=\"element.id\"\n          [ngClass]=\"'bmb_sidebar-link-' + getActive(element.title)\"\n          [routerLink]=\"isInternalLink(element.link) ? element.link : null\"\n          (click)=\"setActive(element.title)\"\n          [attr.target]=\"isInternalLink(element.link) ? null : '_blank'\"\n          [attr.rel]=\"\n            isInternalLink(element.link) ? null : 'noopener noreferrer'\n          \"\n        >\n          <bmb-icon\n            class=\"bmb_sidebar-icon\"\n            [icon]=\"element.icon\"\n            [materialIcon]=\"true\"\n          />\n          <span class=\"bmb_sidebar-text\">{{ element.title }}</span>\n        </a>\n      </li>\n    </ul>\n  </ng-container>\n</nav>\n"
         },
         {
             "name": "BmbStatCounterComponent",
@@ -8694,7 +8713,7 @@
         },
         {
             "name": "BmbThemeComponent",
-            "id": "component-BmbThemeComponent-bc7f10ac36f0f4e00f358ceffd480a665e780b446beda308e0d0b68c5c55548ca747d914a1910be9e875b5d65a25dfd221683205d37ef85f028ee9bb74b5d7ef",
+            "id": "component-BmbThemeComponent-af94089e7e85575fd5ea0de52f3cc163cc382276a0f4a8557af30e24c581f8a123185bfa0ca7946779876f4d3c6ffdcc9d0e43aababa43d3acf226cb23555739",
             "file": "projects/ds-ng/src/lib/components/bmb-theme/bmb-theme.component.ts",
             "encapsulation": [
                 "ViewEncapsulation.None"
@@ -8716,9 +8735,31 @@
             ],
             "viewProviders": [],
             "hostDirectives": [],
-            "inputsClass": [],
+            "inputsClass": [
+                {
+                    "name": "initialTheme",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 21,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
             "outputsClass": [],
             "propertiesClass": [
+                {
+                    "name": "initialized",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 24,
+                    "modifierKind": [
+                        123
+                    ]
+                },
                 {
                     "name": "selectedTheme",
                     "defaultValue": "'light'",
@@ -8727,7 +8768,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 15
+                    "line": 22
                 },
                 {
                     "name": "service",
@@ -8737,7 +8778,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 17,
+                    "line": 23,
                     "modifierKind": [
                         123
                     ]
@@ -8757,7 +8798,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 29,
+                    "line": 47,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -8778,7 +8819,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 19,
+                    "line": 26,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -8795,7 +8836,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 34,
+                    "line": 55,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -8829,7 +8870,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit, inject, ViewEncapsulation } from '@angular/core';\nimport { ThemeService } from '../../services';\nimport { CommonModule } from '@angular/common';\nimport { BmbSwitchComponent } from '../bmb-switch/bmb-switch.component';\n\n@Component({\n  selector: 'bmb-theme',\n  standalone: true,\n  imports: [CommonModule, BmbSwitchComponent],\n  providers: [ThemeService],\n  templateUrl: './bmb-theme.component.html',\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbThemeComponent implements OnInit {\n  selectedTheme: string = 'light';\n\n  private service = inject(ThemeService);\n\n  ngOnInit(): void {\n    const savedTheme = localStorage.getItem('theme') || 'light';\n    this.selectedTheme = savedTheme;\n    this.applyTheme(savedTheme);\n\n    this.service.theme$.subscribe((theme: any) => {\n      this.applyTheme(theme);\n    });\n  }\n\n  applyTheme(theme: string): void {\n    document.documentElement.setAttribute('data-theme', theme);\n    localStorage.setItem('theme', theme);\n  }\n\n  onThemeChange(isChecked: boolean): void {\n    this.selectedTheme = isChecked ? 'dark' : 'light';\n    localStorage.setItem('theme', this.selectedTheme);\n    this.service.setTheme(this.selectedTheme);\n  }\n}\n",
+            "sourceCode": "import {\n  Component,\n  OnInit,\n  inject,\n  ViewEncapsulation,\n  Input,\n} from '@angular/core';\nimport { ThemeService } from '../../services';\nimport { CommonModule } from '@angular/common';\nimport { BmbSwitchComponent } from '../bmb-switch/bmb-switch.component';\n\n@Component({\n  selector: 'bmb-theme',\n  standalone: true,\n  imports: [CommonModule, BmbSwitchComponent],\n  providers: [ThemeService],\n  templateUrl: './bmb-theme.component.html',\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbThemeComponent implements OnInit {\n  @Input() initialTheme?: string;\n  selectedTheme: string = 'light';\n  private service = inject(ThemeService);\n  private initialized = false;\n\n  ngOnInit(): void {\n    const savedTheme = localStorage.getItem('theme');\n    if (savedTheme) {\n      this.selectedTheme = savedTheme;\n    } else if (this.initialTheme) {\n      this.selectedTheme = this.initialTheme;\n    } else {\n      this.selectedTheme = this.service.getDefaultTheme();\n    }\n\n    this.applyTheme(this.selectedTheme);\n\n    this.service.theme$.subscribe((theme: any) => {\n      if (this.initialized && theme !== this.selectedTheme) {\n        this.applyTheme(theme);\n      }\n    });\n\n    this.initialized = true;\n  }\n\n  applyTheme(theme: string): void {\n    if (theme !== this.selectedTheme || !this.initialized) {\n      document.documentElement.setAttribute('data-theme', theme);\n      localStorage.setItem('theme', theme);\n      this.selectedTheme = theme;\n    }\n  }\n\n  onThemeChange(isChecked: boolean): void {\n    const newTheme = isChecked ? 'dark' : 'light';\n    if (newTheme !== this.selectedTheme) {\n      this.applyTheme(newTheme);\n      this.service.setTheme(newTheme);\n    }\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -11068,7 +11109,7 @@
                         "type": "IFixDecimals",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "af684c88-e1ea-4851-93b8-1a7fad1c747e",
+                        "destrucuredGroupId": "d0a71285-f58b-41da-b625-5183dda3c2e0",
                         "destructuredParameter": true
                     },
                     {
@@ -11077,7 +11118,7 @@
                         "deprecated": false,
                         "deprecationMessage": "",
                         "defaultValue": "2",
-                        "destrucuredGroupId": "af684c88-e1ea-4851-93b8-1a7fad1c747e",
+                        "destrucuredGroupId": "d0a71285-f58b-41da-b625-5183dda3c2e0",
                         "destructuredParameter": true
                     }
                 ],
@@ -11087,7 +11128,7 @@
                         "type": "IFixDecimals",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "af684c88-e1ea-4851-93b8-1a7fad1c747e",
+                        "destrucuredGroupId": "d0a71285-f58b-41da-b625-5183dda3c2e0",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -11099,7 +11140,7 @@
                         "deprecated": false,
                         "deprecationMessage": "",
                         "defaultValue": "2",
-                        "destrucuredGroupId": "af684c88-e1ea-4851-93b8-1a7fad1c747e",
+                        "destrucuredGroupId": "d0a71285-f58b-41da-b625-5183dda3c2e0",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -12426,7 +12467,7 @@
                             "type": "IFixDecimals",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "af684c88-e1ea-4851-93b8-1a7fad1c747e",
+                            "destrucuredGroupId": "d0a71285-f58b-41da-b625-5183dda3c2e0",
                             "destructuredParameter": true
                         },
                         {
@@ -12435,7 +12476,7 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "defaultValue": "2",
-                            "destrucuredGroupId": "af684c88-e1ea-4851-93b8-1a7fad1c747e",
+                            "destrucuredGroupId": "d0a71285-f58b-41da-b625-5183dda3c2e0",
                             "destructuredParameter": true
                         }
                     ],
@@ -12445,7 +12486,7 @@
                             "type": "IFixDecimals",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "af684c88-e1ea-4851-93b8-1a7fad1c747e",
+                            "destrucuredGroupId": "d0a71285-f58b-41da-b625-5183dda3c2e0",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
@@ -12457,7 +12498,7 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "defaultValue": "2",
-                            "destrucuredGroupId": "af684c88-e1ea-4851-93b8-1a7fad1c747e",
+                            "destrucuredGroupId": "d0a71285-f58b-41da-b625-5183dda3c2e0",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
@@ -13710,7 +13751,7 @@
                 "linktype": "interface",
                 "name": "SidebarElement",
                 "coveragePercent": 0,
-                "coverageCount": "0/4",
+                "coverageCount": "0/5",
                 "status": "low"
             },
             {
@@ -13878,7 +13919,7 @@
                 "linktype": "component",
                 "name": "BmbThemeComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/6",
+                "coverageCount": "0/8",
                 "status": "low"
             },
             {
@@ -14221,7 +14262,7 @@
                 "linktype": "injectable",
                 "name": "ThemeService",
                 "coveragePercent": 0,
-                "coverageCount": "0/4",
+                "coverageCount": "0/5",
                 "status": "low"
             },
             {

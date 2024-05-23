@@ -5,7 +5,7 @@
   [lang]="topBarLang"
   (onLangChange)="handleLangChange($event)"
 ></bmb-top-bar>
-<bmb-theme />
+<bmb-theme [initialTheme]="'light'" />
 <bmb-sidebar [elements]="sidebarElements" />
 
 <!-- <bmb-loader [overlay]="true" title="Cargando...." /> -->

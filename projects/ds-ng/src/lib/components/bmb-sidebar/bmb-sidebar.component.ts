@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { SidebarElements } from './bmb-sidebar.interface';
+import { SidebarElement } from './bmb-sidebar.interface';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 
 @Component({
@@ -19,13 +19,13 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbSidebarComponent {
-  @Input() elements: SidebarElements[] = [];
+  @Input() elements: SidebarElement[][] = [];
 
   currentChoice: string = '';
 
   ngOnInit() {
-    if (this.elements.length > 0 && this.elements[0].child.length > 0) {
-      this.currentChoice = this.elements[0].child[0].title;
+    if (this.elements.length > 0 && this.elements[0].length > 0) {
+      this.currentChoice = this.elements[0][0].title;
     }
   }
 

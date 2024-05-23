@@ -29,9 +29,19 @@ import { BmbSidebarComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'
   styleUrls: ['./app-component.scss'],
 })
 export class AppComponent {
-  sidebarElements = [
-    {child: [{ id: 1, icon: 'task', title: 'Add Signers', link: '#' }]},
-    {child: [{ id: 2, icon: 'account_box', title: 'Manage Users', link: '/home' }]}
+  elements: {
+    id: number;
+    icon: string;
+    title: string;
+    link: string;
+  }[][] = [
+    [
+      { id: 1, icon: 'assignment_add', title: 'Elegir documentos', link: '#' },
+      { id: 2, icon: 'task', title: 'Agregar firmantes', link: '#' },
+      { id: 3, icon: 'note_alt', title: 'Crear envelope', link: '#' },
+      { id: 4, icon: 'checklist_rtl', title: 'Estado de archivos', link: '#' },
+    ],
+    [{ id: 5, icon: 'account_box', title: 'Admin. usuarios', link: '/' }],
   ];
 }
 \`\`\`
@@ -39,7 +49,7 @@ export class AppComponent {
 Below is an example of how to use this component in HTML:
 
 \`\`\`html
-<bmb-sidebar [elements]="sidebarElements"></bmb-sidebar>
+<bmb-sidebar [elements]="elements"></bmb-sidebar>
 \`\`\`
         `,
       },
@@ -56,41 +66,30 @@ Below is an example of how to use this component in HTML:
       table: {
         type: {
           summary:
-            'Array<{ child: { id: number; icon: string; title: string; link: string; }[] }>',
+            'Array<{ id: number; icon: string; title: string; link: string }[]>',
         },
       },
     },
   },
   args: {
     elements: [
-      {
-        child: [
-          {
-            id: 1,
-            icon: 'assignment_add',
-            title: 'Select Documents',
-            link: '#',
-          },
-          { id: 2, icon: 'task', title: 'Add Signers', link: '#' },
-          { id: 3, icon: 'note_alt', title: 'Create Envelope', link: '#' },
-          {
-            id: 4,
-            icon: 'checklist_rtl',
-            title: 'File Status',
-            link: '#',
-          },
-        ],
-      },
-      {
-        child: [
-          {
-            id: 5,
-            icon: 'account_box',
-            title: 'Manage Users',
-            link: '/home',
-          },
-        ],
-      },
+      [
+        {
+          id: 1,
+          icon: 'assignment_add',
+          title: 'Elegir documentos',
+          link: '#',
+        },
+        { id: 2, icon: 'task', title: 'Agregar firmantes', link: '#' },
+        { id: 3, icon: 'note_alt', title: 'Crear envelope', link: '#' },
+        {
+          id: 4,
+          icon: 'checklist_rtl',
+          title: 'Estado de archivos',
+          link: '#',
+        },
+      ],
+      [{ id: 5, icon: 'account_box', title: 'Admin. usuarios', link: '/' }],
     ],
   },
 } as Meta<typeof BmbSidebarComponent>;
