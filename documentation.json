@@ -119,6 +119,72 @@
       "extends": []
     },
     {
+      "name": "IFixDecimals",
+      "id": "interface-IFixDecimals-2d4c61f6834d4de11e1efdeb7b6e471f905aa09182cd9252968c6349713d05e71e36f3912da79c88aa07514358d2430d140bbb8ae1d1a97205e1bc05eda8012f",
+      "file": "projects/ds-ng/src/lib/utils/pixelToRem.ts",
+      "deprecated": false,
+      "deprecationMessage": "",
+      "type": "interface",
+      "sourceCode": "interface IFixDecimals {\n  value: number;\n  dp?: number;\n}\n\nfunction fixDecimals({ value, dp = 2 }: IFixDecimals) {\n  return parseFloat(value.toString()).toFixed(dp);\n}\n\nexport const pixelToRem = (size: number) =>\n  `${fixDecimals({ value: size / 16 })}rem`;\n",
+      "properties": [
+        {
+          "name": "dp",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "number",
+          "optional": true,
+          "description": "",
+          "line": 3
+        },
+        {
+          "name": "value",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "number",
+          "optional": false,
+          "description": "",
+          "line": 2
+        }
+      ],
+      "indexSignatures": [],
+      "kind": 171,
+      "methods": [],
+      "extends": []
+    },
+    {
+      "name": "IMargin",
+      "id": "interface-IMargin-d91398d383373488ff19e4f9a16fa32c7a5a2ba82c8ab3736394041f52e310896972620035bc5ec213a2332e73e6b567e30e39eb5c5c39e0ebae41762f8b1632",
+      "file": "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout-item.directive.ts",
+      "deprecated": false,
+      "deprecationMessage": "",
+      "type": "interface",
+      "sourceCode": "import { Directive, HostBinding, Input } from '@angular/core';\n\ninterface IMargin {\n  sm: number;\n  lg?: number;\n}\n\n@Directive({\n  selector: '[bmbLayoutItem]',\n  standalone: true,\n})\nexport class BmbLayoutItemDirective {\n  @Input() colSm: number = 0;\n  @Input() colLg: number = 0;\n  @Input() marginLeft: IMargin | null = null;\n  @Input() marginRight: IMargin | null = null;\n  @Input() colGrow: number = 0;\n\n  constructor() {}\n\n  @HostBinding('class') get elementClass(): string[] {\n    const classes = [];\n\n    if (this.colSm) classes.push(`bmb_col-sm-${this.colSm}`);\n    if (this.colLg) classes.push(`bmb_col-lg-${this.colLg}`);\n    if (this.marginLeft) {\n      classes.push(`bmb_space-sm-left-${this.marginLeft?.sm}`);\n\n      if (this.marginLeft.lg)\n        classes.push(`bmb_space-lg-left-${this.marginLeft?.lg}`);\n    }\n    if (this.marginRight) {\n      classes.push(`bmb_space-sm-right-${this.marginRight?.sm}`);\n\n      if (this.marginRight.lg)\n        classes.push(`bmb_space-lg-right-${this.marginRight?.lg}`);\n    }\n    return classes;\n  }\n\n  @HostBinding('style.flex-grow') get flexGrow(): string {\n    return this.colGrow.toString();\n  }\n}\n",
+      "properties": [
+        {
+          "name": "lg",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "number",
+          "optional": true,
+          "description": "",
+          "line": 5
+        },
+        {
+          "name": "sm",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "number",
+          "optional": false,
+          "description": "",
+          "line": 4
+        }
+      ],
+      "indexSignatures": [],
+      "kind": 171,
+      "methods": [],
+      "extends": []
+    },
+    {
       "name": "IUserInformation",
       "id": "interface-IUserInformation-604ce6ba42502fcfd5d4eb38dbd100a718ce1257e42cc22a8f846ee6428c4bf3f36ee00ba0d623b4a0a6a9ca18f11fa63124da273e2c25ea9c723c4a029eb0a1",
       "file": "projects/ds-ng/src/lib/components/bmb-top-bar/types.ts",
@@ -246,6 +312,117 @@
           "optional": false,
           "description": "",
           "line": 3
+        }
+      ],
+      "indexSignatures": [],
+      "kind": 171,
+      "methods": [],
+      "extends": []
+    },
+    {
+      "name": "TableColum",
+      "id": "interface-TableColum-01cc5aa0718b6133b6fe73133e6cda30ee812619ff0d759936b5f4d5038352facea4d8acabf46bf53fbc1defc21e534c0924b611365456cd508b9d1dc0133b99",
+      "file": "projects/ds-ng/src/lib/components/bmb-tables/bmb-tables.interface.ts",
+      "deprecated": false,
+      "deprecationMessage": "",
+      "type": "interface",
+      "sourceCode": "import { TemplateRef } from '@angular/core';\n\nexport interface TableColum {\n  label: string;\n  def: string;\n  dataKey: string;\n  templateActions?: TemplateRef<any>;\n  width?: number;\n}\n\nexport interface TableConfig {\n  isSelectable?: boolean;\n  isPaginable?: boolean;\n  isExpandible?: boolean;\n  showActions?: boolean;\n}\n",
+      "properties": [
+        {
+          "name": "dataKey",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "optional": false,
+          "description": "",
+          "line": 6
+        },
+        {
+          "name": "def",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "optional": false,
+          "description": "",
+          "line": 5
+        },
+        {
+          "name": "label",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "optional": false,
+          "description": "",
+          "line": 4
+        },
+        {
+          "name": "templateActions",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "TemplateRef<any>",
+          "optional": true,
+          "description": "",
+          "line": 7
+        },
+        {
+          "name": "width",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "number",
+          "optional": true,
+          "description": "",
+          "line": 8
+        }
+      ],
+      "indexSignatures": [],
+      "kind": 171,
+      "methods": [],
+      "extends": []
+    },
+    {
+      "name": "TableConfig",
+      "id": "interface-TableConfig-01cc5aa0718b6133b6fe73133e6cda30ee812619ff0d759936b5f4d5038352facea4d8acabf46bf53fbc1defc21e534c0924b611365456cd508b9d1dc0133b99",
+      "file": "projects/ds-ng/src/lib/components/bmb-tables/bmb-tables.interface.ts",
+      "deprecated": false,
+      "deprecationMessage": "",
+      "type": "interface",
+      "sourceCode": "import { TemplateRef } from '@angular/core';\n\nexport interface TableColum {\n  label: string;\n  def: string;\n  dataKey: string;\n  templateActions?: TemplateRef<any>;\n  width?: number;\n}\n\nexport interface TableConfig {\n  isSelectable?: boolean;\n  isPaginable?: boolean;\n  isExpandible?: boolean;\n  showActions?: boolean;\n}\n",
+      "properties": [
+        {
+          "name": "isExpandible",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "boolean",
+          "optional": true,
+          "description": "",
+          "line": 14
+        },
+        {
+          "name": "isPaginable",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "boolean",
+          "optional": true,
+          "description": "",
+          "line": 13
+        },
+        {
+          "name": "isSelectable",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "boolean",
+          "optional": true,
+          "description": "",
+          "line": 12
+        },
+        {
+          "name": "showActions",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "boolean",
+          "optional": true,
+          "description": "",
+          "line": 15
         }
       ],
       "indexSignatures": [],
@@ -738,6 +915,197 @@
             "type": "string",
             "returnType": "string",
             "line": 76
+          }
+        }
+      }
+    },
+    {
+      "name": "BmbLayoutDirective",
+      "id": "directive-BmbLayoutDirective-25c94c210dd767746bef659dccb23cd592afc14f602ae514176704a55ebc7f3575b6e3afae52655e86c7632fc155d07f4765c8b49aac7b3a6eb5046419ee6f67",
+      "file": "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout.directive.ts",
+      "type": "directive",
+      "description": "",
+      "rawdescription": "\n",
+      "sourceCode": "import { Directive, HostBinding, Input } from '@angular/core';\nimport { SizeNames } from '../../types';\n\n@Directive({\n  selector: '[bmbLayout]',\n  standalone: true,\n})\nexport class BmbLayoutDirective {\n  @Input() gapSise: SizeNames = 'm';\n  @Input() margin: SizeNames = 'm';\n  @Input() dinamycCols: boolean = false;\n\n  constructor() {}\n\n  @HostBinding('class') get elementClass(): string[] {\n    const classes = ['bmb_layout'];\n    classes.push(`bmb_gap-${this.gapSise}`);\n    if (this.dinamycCols) classes.push('bmb_layout-smart');\n    return classes;\n  }\n}\n",
+      "selector": "[bmbLayout]",
+      "providers": [],
+      "hostDirectives": [],
+      "standalone": true,
+      "inputsClass": [
+        {
+          "name": "dinamycCols",
+          "defaultValue": "false",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 11,
+          "type": "boolean",
+          "decorators": []
+        },
+        {
+          "name": "gapSise",
+          "defaultValue": "'m'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 9,
+          "type": "SizeNames",
+          "decorators": []
+        },
+        {
+          "name": "margin",
+          "defaultValue": "'m'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 10,
+          "type": "SizeNames",
+          "decorators": []
+        }
+      ],
+      "outputsClass": [],
+      "deprecated": false,
+      "deprecationMessage": "",
+      "hostBindings": [
+        {
+          "name": "class",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 15,
+          "type": "string[]",
+          "decorators": []
+        }
+      ],
+      "hostListeners": [],
+      "propertiesClass": [],
+      "methodsClass": [],
+      "extends": [],
+      "constructorObj": {
+        "name": "constructor",
+        "description": "",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "args": [],
+        "line": 11
+      },
+      "accessors": {
+        "elementClass": {
+          "name": "elementClass",
+          "getSignature": {
+            "name": "elementClass",
+            "type": "[]",
+            "returnType": "string[]",
+            "line": 15
+          }
+        }
+      }
+    },
+    {
+      "name": "BmbLayoutItemDirective",
+      "id": "directive-BmbLayoutItemDirective-d91398d383373488ff19e4f9a16fa32c7a5a2ba82c8ab3736394041f52e310896972620035bc5ec213a2332e73e6b567e30e39eb5c5c39e0ebae41762f8b1632",
+      "file": "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout-item.directive.ts",
+      "type": "directive",
+      "description": "",
+      "rawdescription": "\n",
+      "sourceCode": "import { Directive, HostBinding, Input } from '@angular/core';\n\ninterface IMargin {\n  sm: number;\n  lg?: number;\n}\n\n@Directive({\n  selector: '[bmbLayoutItem]',\n  standalone: true,\n})\nexport class BmbLayoutItemDirective {\n  @Input() colSm: number = 0;\n  @Input() colLg: number = 0;\n  @Input() marginLeft: IMargin | null = null;\n  @Input() marginRight: IMargin | null = null;\n  @Input() colGrow: number = 0;\n\n  constructor() {}\n\n  @HostBinding('class') get elementClass(): string[] {\n    const classes = [];\n\n    if (this.colSm) classes.push(`bmb_col-sm-${this.colSm}`);\n    if (this.colLg) classes.push(`bmb_col-lg-${this.colLg}`);\n    if (this.marginLeft) {\n      classes.push(`bmb_space-sm-left-${this.marginLeft?.sm}`);\n\n      if (this.marginLeft.lg)\n        classes.push(`bmb_space-lg-left-${this.marginLeft?.lg}`);\n    }\n    if (this.marginRight) {\n      classes.push(`bmb_space-sm-right-${this.marginRight?.sm}`);\n\n      if (this.marginRight.lg)\n        classes.push(`bmb_space-lg-right-${this.marginRight?.lg}`);\n    }\n    return classes;\n  }\n\n  @HostBinding('style.flex-grow') get flexGrow(): string {\n    return this.colGrow.toString();\n  }\n}\n",
+      "selector": "[bmbLayoutItem]",
+      "providers": [],
+      "hostDirectives": [],
+      "standalone": true,
+      "inputsClass": [
+        {
+          "name": "colGrow",
+          "defaultValue": "0",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 17,
+          "type": "number",
+          "decorators": []
+        },
+        {
+          "name": "colLg",
+          "defaultValue": "0",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 14,
+          "type": "number",
+          "decorators": []
+        },
+        {
+          "name": "colSm",
+          "defaultValue": "0",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 13,
+          "type": "number",
+          "decorators": []
+        },
+        {
+          "name": "marginLeft",
+          "defaultValue": "null",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 15,
+          "type": "IMargin | null",
+          "decorators": []
+        },
+        {
+          "name": "marginRight",
+          "defaultValue": "null",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 16,
+          "type": "IMargin | null",
+          "decorators": []
+        }
+      ],
+      "outputsClass": [],
+      "deprecated": false,
+      "deprecationMessage": "",
+      "hostBindings": [
+        {
+          "name": "class",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 21,
+          "type": "string[]",
+          "decorators": []
+        },
+        {
+          "name": "style.flex-grow",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 41,
+          "type": "string",
+          "decorators": []
+        }
+      ],
+      "hostListeners": [],
+      "propertiesClass": [],
+      "methodsClass": [],
+      "extends": [],
+      "constructorObj": {
+        "name": "constructor",
+        "description": "",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "args": [],
+        "line": 17
+      },
+      "accessors": {
+        "elementClass": {
+          "name": "elementClass",
+          "getSignature": {
+            "name": "elementClass",
+            "type": "[]",
+            "returnType": "string[]",
+            "line": 21
+          }
+        },
+        "flexGrow": {
+          "name": "flexGrow",
+          "getSignature": {
+            "name": "flexGrow",
+            "type": "string",
+            "returnType": "string",
+            "line": 41
           }
         }
       }
@@ -2345,7 +2713,7 @@
     },
     {
       "name": "BmbCalendarTemplateWeekComponent",
-      "id": "component-BmbCalendarTemplateWeekComponent-434124a3d420721d1c431466b1cf70f6c469596eeb60a5030c54407fa2ef638160523dd7b5745b08562a7a064a9aa05878daeeaab72d616926d755470757476f",
+      "id": "component-BmbCalendarTemplateWeekComponent-d23a7eb3802735e45aecebab5a83a19bc8f7bfc582cc28ad3bfe85bc85f16d6ec36cf7fc46f68c62f3ca3e706ed1cf14b0aed45d7cee779cce478d40ba4b8b24",
       "file": "projects/ds-ng/src/lib/components/bmb-calendar/common/bmb-calendar-template-week/bmb-calendar-template-week.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": ["ViewEncapsulation.None"],
@@ -2556,13 +2924,185 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n  Output,\n  EventEmitter,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { Info, DateTime } from 'luxon';\nimport {\n  IBmbCalendarHourFormat,\n  IBmbCalendarEvent,\n  IBmbCalendarEventClick,\n  IBmbCalendarRenderEvents,\n} from '../../types';\nimport { BmbCalendarHourViewComponent } from '../bmb-calendar-hour-view/bmb-calendar-hour-view.component';\nimport { orderDayNames, eventsInDate } from '../../utils';\nimport { BmbCalendarScheduleCardsComponent } from '../bmb-calendar-schedule-cards/bmb-calendar-schedule-cards.component';\n\n@Component({\n  selector: 'bmb-calendar-template-week',\n  standalone: true,\n  imports: [\n    CommonModule,\n    BmbCalendarHourViewComponent,\n    BmbCalendarScheduleCardsComponent,\n  ],\n  templateUrl: './bmb-calendar-template-week.component.html',\n  styleUrl: './bmb-calendar-template-week.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbCalendarTemplateWeekComponent {\n  @Input() weekDays: any[] = [];\n  @Input() lang: string = 'es-MX';\n  @Input() hourFormat: IBmbCalendarHourFormat = '12';\n  @Input() now: DateTime = DateTime.now();\n  @Input() events: IBmbCalendarEvent[] = [];\n\n  @Output() onSelectEvent: EventEmitter<IBmbCalendarEventClick> =\n    new EventEmitter<IBmbCalendarEventClick>();\n\n  defaultDayOrder = Info.weekdays('short', { locale: this.lang });\n\n  dayNames = orderDayNames(this.defaultDayOrder);\n\n  rows = new Array(25).fill(0);\n\n  isNow(date: DateTime): boolean {\n    const diff = date.diffNow('day').days;\n    return diff < 0 && diff > -1;\n  }\n\n  renderEvents(events: IBmbCalendarRenderEvents): any[] {\n    return eventsInDate(events);\n  }\n\n  handleEventSelection(newEvent: IBmbCalendarEventClick) {\n    this.onSelectEvent.emit(newEvent);\n  }\n}\n",
+      "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n  Output,\n  EventEmitter,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { Info, DateTime } from 'luxon';\nimport {\n  IBmbCalendarHourFormat,\n  IBmbCalendarEvent,\n  IBmbCalendarEventClick,\n  IBmbCalendarRenderEvents,\n} from '../../types';\nimport { BmbCalendarHourViewComponent } from '../bmb-calendar-hour-view/bmb-calendar-hour-view.component';\nimport { orderDayNames, eventsInDate } from '../../utils';\nimport { BmbCalendarScheduleCardsComponent } from '../bmb-calendar-schedule-cards/bmb-calendar-schedule-cards.component';\n\n@Component({\n  selector: 'bmb-calendar-template-week',\n  standalone: true,\n  imports: [\n    CommonModule,\n    BmbCalendarHourViewComponent,\n    BmbCalendarScheduleCardsComponent,\n  ],\n  templateUrl: './bmb-calendar-template-week.component.html',\n  styleUrl: './bmb-calendar-template-week.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbCalendarTemplateWeekComponent {\n  @Input() weekDays: any[] = [];\n  @Input() lang: string = 'es-MX';\n  @Input() hourFormat: IBmbCalendarHourFormat = '12';\n  @Input() now: DateTime = DateTime.now();\n  @Input() events: IBmbCalendarEvent[] = [];\n\n  @Output() onSelectEvent: EventEmitter<IBmbCalendarEventClick> =\n    new EventEmitter<IBmbCalendarEventClick>();\n\n  defaultDayOrder = Info.weekdays('short', { locale: this.lang });\n\n  dayNames = orderDayNames(this.defaultDayOrder);\n\n  rows = new Array(25).fill(0);\n\n  isNow(date: DateTime): boolean {\n    const diff = date?.diffNow('day')?.days;\n    return diff < 0 && diff > -1;\n  }\n\n  renderEvents(events: IBmbCalendarRenderEvents): any[] {\n    return eventsInDate(events);\n  }\n\n  handleEventSelection(newEvent: IBmbCalendarEventClick) {\n    this.onSelectEvent.emit(newEvent);\n  }\n}\n",
       "styleUrl": "./bmb-calendar-template-week.component.scss",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
       "extends": [],
       "templateData": "<div class=\"bmb_calendar-week-view\">\n  <bmb-calendar-hour-view [hourFormat]=\"hourFormat\" />\n  @for (day of dayNames; track $index) {\n    <section\n      class=\"bmb_calendar-col\"\n      [ngClass]=\"{ 'bmb_calendar-col-today': isNow(weekDays[$index]) }\"\n    >\n      <header class=\"bmb_calendar-detail-header\">\n        <h2>{{ day }}</h2>\n        <span>{{ weekDays[$index].month }}/{{ weekDays[$index].day }}</span>\n      </header>\n      <div class=\"bmb_calendar-body\">\n        @for (row of rows; track $index) {\n          <div class=\"bmb_calendar-row-body\"></div>\n        }\n        @for (\n          event of renderEvents({ date: weekDays[$index], events });\n          track $index\n        ) {\n          <bmb-calendar-schedule-cards\n            [event]=\"event\"\n            (onSelectEvent)=\"handleEventSelection($event)\"\n            >Event</bmb-calendar-schedule-cards\n          >\n        }\n      </div>\n    </section>\n  }\n</div>\n"
+    },
+    {
+      "name": "BmbCardComponent",
+      "id": "component-BmbCardComponent-9bf010e2d508f7b60159885f86dda63932a4ffdee0ee5e3095c0e7522aba364b98576e0f7d4fb621e18fde6c9ba0a09c5d4b0100f085271ad678e1b65efb77f2",
+      "file": "projects/ds-ng/src/lib/components/bmb-card/bmb-card.component.ts",
+      "changeDetection": "ChangeDetectionStrategy.OnPush",
+      "encapsulation": ["ViewEncapsulation.None"],
+      "entryComponents": [],
+      "inputs": [],
+      "outputs": [],
+      "providers": [],
+      "selector": "bmb-card",
+      "styleUrls": [],
+      "styles": [],
+      "templateUrl": ["./bmb-card.component.html"],
+      "viewProviders": [],
+      "hostDirectives": [],
+      "inputsClass": [
+        {
+          "name": "borderRadius",
+          "defaultValue": "'m'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 26,
+          "type": "SizeNames | SizeNames[]",
+          "decorators": []
+        },
+        {
+          "name": "margin",
+          "defaultValue": "'m'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 28,
+          "type": "SizeNames | SizeNames[]",
+          "decorators": []
+        },
+        {
+          "name": "padding",
+          "defaultValue": "'m'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 27,
+          "type": "SizeNames | SizeNames[]",
+          "decorators": []
+        }
+      ],
+      "outputsClass": [],
+      "propertiesClass": [
+        {
+          "name": "footerContent",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "TemplateRef<any>",
+          "optional": true,
+          "description": "",
+          "line": 31,
+          "decorators": [
+            {
+              "name": "ContentChild",
+              "stringifiedArguments": "'footer'"
+            }
+          ],
+          "modifierKind": [170]
+        },
+        {
+          "name": "headerContent",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "TemplateRef<any>",
+          "optional": true,
+          "description": "",
+          "line": 30,
+          "decorators": [
+            {
+              "name": "ContentChild",
+              "stringifiedArguments": "'header'"
+            }
+          ],
+          "modifierKind": [170]
+        }
+      ],
+      "methodsClass": [
+        {
+          "name": "calculateSize",
+          "args": [
+            {
+              "name": "pixels",
+              "type": "string[]",
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
+          "optional": false,
+          "returnType": "string",
+          "typeParameters": [],
+          "line": 69,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "jsdoctags": [
+            {
+              "name": "pixels",
+              "type": "string[]",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            }
+          ]
+        },
+        {
+          "name": "getClasses",
+          "args": [],
+          "optional": false,
+          "returnType": "{}",
+          "typeParameters": [],
+          "line": 33,
+          "deprecated": false,
+          "deprecationMessage": ""
+        },
+        {
+          "name": "getContentClasses",
+          "args": [],
+          "optional": false,
+          "returnType": "{}",
+          "typeParameters": [],
+          "line": 53,
+          "deprecated": false,
+          "deprecationMessage": ""
+        },
+        {
+          "name": "getContentStyles",
+          "args": [],
+          "optional": false,
+          "returnType": "any",
+          "typeParameters": [],
+          "line": 61,
+          "deprecated": false,
+          "deprecationMessage": ""
+        },
+        {
+          "name": "getStyles",
+          "args": [],
+          "optional": false,
+          "returnType": "any",
+          "typeParameters": [],
+          "line": 43,
+          "deprecated": false,
+          "deprecationMessage": ""
+        }
+      ],
+      "deprecated": false,
+      "deprecationMessage": "",
+      "hostBindings": [],
+      "hostListeners": [],
+      "standalone": true,
+      "imports": [
+        {
+          "name": "CommonModule",
+          "type": "module"
+        }
+      ],
+      "description": "",
+      "rawdescription": "\n",
+      "type": "component",
+      "sourceCode": "import {\n  ChangeDetectionStrategy,\n  Component,\n  ContentChild,\n  ElementRef,\n  Input,\n  QueryList,\n  TemplateRef,\n  ViewChild,\n  ViewChildren,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { SizeNames } from '../../types';\n\n@Component({\n  selector: 'bmb-card',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './bmb-card.component.html',\n  styleUrl: './bmb-card.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbCardComponent {\n  @Input() borderRadius: SizeNames | SizeNames[] = 'm';\n  @Input() padding: SizeNames | SizeNames[] = 'm';\n  @Input() margin: SizeNames | SizeNames[] = 'm';\n\n  @ContentChild('header') headerContent?: TemplateRef<any>;\n  @ContentChild('footer') footerContent?: TemplateRef<any>;\n\n  getClasses() {\n    const classNames = [];\n    if (typeof this.borderRadius === 'string')\n      classNames.push(`bmb_border-radius-${this.borderRadius}`);\n    if (typeof this.margin === 'string')\n      classNames.push(`bmb_margin-${this.margin}`);\n\n    return classNames;\n  }\n\n  getStyles() {\n    const styles: any = {};\n    if (typeof this.borderRadius !== 'string')\n      styles['border-radius'] = this.calculateSize(this.borderRadius);\n    if (typeof this.margin !== 'string')\n      styles.margin = this.calculateSize(this.margin);\n\n    return styles;\n  }\n\n  getContentClasses() {\n    const classNames = [];\n    if (typeof this.padding === 'string')\n      classNames.push(`bmb_padding-${this.padding}`);\n\n    return classNames;\n  }\n\n  getContentStyles() {\n    const styles: any = {};\n    if (typeof this.padding !== 'string')\n      styles.padding = this.calculateSize(this.padding);\n\n    return styles;\n  }\n\n  calculateSize(pixels: string[]): string {\n    return pixels\n      .map((size) => {\n        switch (size) {\n          case 'xs':\n            return '0.25rem';\n          case 's':\n            return '0.5rem';\n          case 'm':\n            return '1rem';\n          case 'l':\n            return '1.5rem';\n          case 'xl':\n            return '2rem';\n          case 'none':\n            return '0';\n          case 'auto':\n            return 'auto';\n          default:\n            return '1rem';\n        }\n      })\n      .join(' ');\n  }\n}\n",
+      "styleUrl": "./bmb-card.component.scss",
+      "assetsDirs": [],
+      "styleUrlsData": "",
+      "stylesData": "",
+      "extends": [],
+      "templateData": "<section class=\"bmb_card\" [ngClass]=\"getClasses()\" [ngStyle]=\"getStyles()\">\n  @if (!!headerContent) {\n    <header\n      class=\"bmb_card-header\"\n      [ngClass]=\"getContentClasses()\"\n      [ngStyle]=\"getContentStyles()\"\n    >\n      <ng-container [ngTemplateOutlet]=\"headerContent\"></ng-container>\n    </header>\n  }\n  <div\n    class=\"bmb_card-content\"\n    [ngClass]=\"getContentClasses()\"\n    [ngStyle]=\"getContentStyles()\"\n  >\n    <ng-content></ng-content>\n  </div>\n  @if (!!footerContent) {\n    <footer\n      class=\"bmb_card-footer\"\n      [ngClass]=\"getContentClasses()\"\n      [ngStyle]=\"getContentStyles()\"\n    >\n      <ng-container [ngTemplateOutlet]=\"footerContent\"></ng-container>\n    </footer>\n  }\n</section>\n"
     },
     {
       "name": "BmbCheckboxComponent",
@@ -4549,7 +5089,7 @@
     },
     {
       "name": "BmbInteractiveIconComponent",
-      "id": "component-BmbInteractiveIconComponent-59b9bcb2e7716be54b06eea795a3fbe2815e5d6fc34134da42f2d86f7bd1bef1316d98bb6d4325ba096ec359aac53210e77e0b9682b364f76ca3ff6845885431",
+      "id": "component-BmbInteractiveIconComponent-a8bbcc0c5d036285932132f1885cfcecfdc74c3e92e1ab49c89a4a7191e11c007353a7a4afb2de0c17b08fe66f87f5015588b30a1988662122ba6aa497147b15",
       "file": "projects/ds-ng/src/lib/components/bmb-interactive-icon/bmb-interactive-icon.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": ["ViewEncapsulation.None"],
@@ -4602,7 +5142,7 @@
         },
         {
           "name": "icon",
-          "defaultValue": "''",
+          "defaultValue": "'face'",
           "deprecated": false,
           "deprecationMessage": "",
           "line": 26,
@@ -4679,7 +5219,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ElementRef,\n  Renderer2,\n  AfterViewInit,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\n\n@Component({\n  selector: 'bmb-interactive-icon',\n  styleUrl: './bmb-interactive-icon.component.scss',\n  templateUrl: './bmb-interactive-icon.component.html',\n  standalone: true,\n  imports: [CommonModule, BmbIconComponent],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbInteractiveIconComponent implements AfterViewInit {\n  @Input() appearance: string = '';\n  @Input() title: string = '';\n  @Input() description: string = '';\n  @Input() icon: string = '';\n  @Input() grouped: boolean = false;\n  @Input() horizontal: boolean = false;\n  @Input() target: string = '';\n  @Input() link: string = '';\n\n  constructor(\n    private el: ElementRef,\n    private renderer: Renderer2,\n  ) {}\n\n  ngAfterViewInit() {\n    if (this.grouped) {\n      const parentElement = this.el.nativeElement.parentElement;\n\n      let wrapperDiv = parentElement.querySelector(\n        '.bmb_interactive_icon-grouped',\n      );\n      if (!wrapperDiv) {\n        wrapperDiv = this.renderer.createElement('div');\n        this.renderer.addClass(wrapperDiv, 'bmb_interactive_icon-grouped');\n        this.renderer.insertBefore(parentElement, wrapperDiv, null);\n      }\n\n      this.renderer.appendChild(wrapperDiv, this.el.nativeElement);\n    }\n  }\n\n  getClasses(): string[] {\n    const classes: string[] = ['bmb_interactive_icon'];\n\n    if (this.appearance) {\n      classes.push('bmb_interactive_icon-' + this.appearance);\n    }\n\n    return classes;\n  }\n}\n",
+      "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ElementRef,\n  Renderer2,\n  AfterViewInit,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\n\n@Component({\n  selector: 'bmb-interactive-icon',\n  styleUrl: './bmb-interactive-icon.component.scss',\n  templateUrl: './bmb-interactive-icon.component.html',\n  standalone: true,\n  imports: [CommonModule, BmbIconComponent],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbInteractiveIconComponent implements AfterViewInit {\n  @Input() appearance: string = '';\n  @Input() title: string = '';\n  @Input() description: string = '';\n  @Input() icon: string = 'face';\n  @Input() grouped: boolean = false;\n  @Input() horizontal: boolean = false;\n  @Input() target: string = '';\n  @Input() link: string = '';\n\n  constructor(\n    private el: ElementRef,\n    private renderer: Renderer2,\n  ) {}\n\n  ngAfterViewInit() {\n    if (this.grouped) {\n      const parentElement = this.el.nativeElement.parentElement;\n\n      let wrapperDiv = parentElement.querySelector(\n        '.bmb_interactive_icon-grouped',\n      );\n      if (!wrapperDiv) {\n        wrapperDiv = this.renderer.createElement('div');\n        this.renderer.addClass(wrapperDiv, 'bmb_interactive_icon-grouped');\n        this.renderer.insertBefore(parentElement, wrapperDiv, null);\n      }\n\n      this.renderer.appendChild(wrapperDiv, this.el.nativeElement);\n    }\n  }\n\n  getClasses(): string[] {\n    const classes: string[] = ['bmb_interactive_icon'];\n\n    if (this.appearance) {\n      classes.push('bmb_interactive_icon-' + this.appearance);\n    }\n\n    return classes;\n  }\n}\n",
       "styleUrl": "./bmb-interactive-icon.component.scss",
       "assetsDirs": [],
       "styleUrlsData": "",
@@ -4731,8 +5271,9 @@
     },
     {
       "name": "BmbLegendComponent",
-      "id": "component-BmbLegendComponent-b83c99c63d5ce9987d1c5b8eeae7b0c077361daafde748d8871591d2a43ef4684fc5155bee361430dbc9f23821390033029ffd1646befa35d6c7a314b45e269a",
+      "id": "component-BmbLegendComponent-5631d295b0433146b2615196afe1ca7aad0c45bbbe417456c39edff959caf952ddcf562cd6aad7561807c9720cf4b3a02cd7ace05f8c4a6dd48896e4e3745203",
       "file": "projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.component.ts",
+      "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": ["ViewEncapsulation.None"],
       "entryComponents": [],
       "inputs": [],
@@ -4750,7 +5291,7 @@
           "defaultValue": "'normal'",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 24,
+          "line": 30,
           "type": "IBmbLegendVariations",
           "decorators": []
         },
@@ -4759,7 +5300,7 @@
           "defaultValue": "''",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 22,
+          "line": 28,
           "type": "string",
           "decorators": []
         },
@@ -4768,7 +5309,7 @@
           "defaultValue": "''",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 23,
+          "line": 29,
           "type": "string",
           "decorators": []
         }
@@ -4790,7 +5331,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { Component, Input, ViewEncapsulation } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\nexport type IBmbLegendVariations =\n  | 'normal'\n  | 'strong'\n  | 'success'\n  | 'info'\n  | 'warning'\n  | 'error'\n  | 'brand';\n\n@Component({\n  selector: 'bmb-legend',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './bmb-legend.component.html',\n  styleUrl: './bmb-legend.component.scss',\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbLegendComponent {\n  @Input() label: string = '';\n  @Input() value: string = '';\n  @Input() indicatorAppearance: IBmbLegendVariations = 'normal';\n}\n",
+      "sourceCode": "import {\n  ChangeDetectionStrategy,\n  Component,\n  Input,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\nexport type IBmbLegendVariations =\n  | 'normal'\n  | 'strong'\n  | 'success'\n  | 'info'\n  | 'warning'\n  | 'error'\n  | 'brand';\n\n@Component({\n  selector: 'bmb-legend',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './bmb-legend.component.html',\n  styleUrl: './bmb-legend.component.scss',\n  encapsulation: ViewEncapsulation.None,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbLegendComponent {\n  @Input() label: string = '';\n  @Input() value: string = '';\n  @Input() indicatorAppearance: IBmbLegendVariations = 'normal';\n}\n",
       "styleUrl": "./bmb-legend.component.scss",
       "assetsDirs": [],
       "styleUrlsData": "",
@@ -4970,6 +5511,80 @@
       "stylesData": "",
       "extends": [],
       "templateData": "<a [ngClass]=\"getClasses()\" [href]=\"link\" [target]=\"target\">\n  <img [src]=\"image\" [alt]=\"altImage\" />\n</a>\n"
+    },
+    {
+      "name": "BmbProgressBarComponent",
+      "id": "component-BmbProgressBarComponent-ea5cb449c40602108ff18d56013d4f31ff0aa9b1bce72e674402972e20df0ea77d8564c017cea10b1cd94a01ed28ee688445beea9d80fe6dbffcdf7dc0484dab",
+      "file": "projects/ds-ng/src/lib/components/bmb-progress-bar/bmb-progress-bar.component.ts",
+      "changeDetection": "ChangeDetectionStrategy.OnPush",
+      "encapsulation": ["ViewEncapsulation.None"],
+      "entryComponents": [],
+      "inputs": [],
+      "outputs": [],
+      "providers": [],
+      "selector": "bmb-progress-bar",
+      "styleUrls": [],
+      "styles": [],
+      "templateUrl": ["./bmb-progress-bar.component.html"],
+      "viewProviders": [],
+      "hostDirectives": [],
+      "inputsClass": [
+        {
+          "name": "progress",
+          "defaultValue": "0",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 20,
+          "type": "number",
+          "decorators": []
+        }
+      ],
+      "outputsClass": [],
+      "propertiesClass": [],
+      "methodsClass": [
+        {
+          "name": "ngOnChanges",
+          "args": [],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 22,
+          "deprecated": false,
+          "deprecationMessage": ""
+        },
+        {
+          "name": "verifyPercentage",
+          "args": [],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 26,
+          "deprecated": false,
+          "deprecationMessage": ""
+        }
+      ],
+      "deprecated": false,
+      "deprecationMessage": "",
+      "hostBindings": [],
+      "hostListeners": [],
+      "standalone": true,
+      "imports": [
+        {
+          "name": "CommonModule",
+          "type": "module"
+        }
+      ],
+      "description": "",
+      "rawdescription": "\n",
+      "type": "component",
+      "sourceCode": "import { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  Input,\n  ViewEncapsulation,\n  OnChanges,\n} from '@angular/core';\n\n@Component({\n  selector: 'bmb-progress-bar',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './bmb-progress-bar.component.html',\n  styleUrl: './bmb-progress-bar.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbProgressBarComponent implements OnChanges {\n  @Input() progress: number = 0;\n\n  ngOnChanges() {\n    this.verifyPercentage();\n  }\n\n  verifyPercentage(): void {\n    if (this.progress < 0) {\n      this.progress = 0;\n    }\n\n    if (this.progress > 100) {\n      this.progress = 100;\n    }\n  }\n}\n",
+      "styleUrl": "./bmb-progress-bar.component.scss",
+      "assetsDirs": [],
+      "styleUrlsData": "",
+      "stylesData": "",
+      "extends": [],
+      "implements": ["OnChanges"],
+      "templateData": "<div class=\"bmb_progress-bar\">\n  <div class=\"bmb_progress-bar-track\">\n    <div class=\"bmb_progress-bar-active\" [style.width.%]=\"progress\"></div>\n  </div>\n</div>\n"
     },
     {
       "name": "BmbProgressCircleComponent",
@@ -5360,7 +5975,7 @@
     },
     {
       "name": "BmbSearchInputComponent",
-      "id": "component-BmbSearchInputComponent-36e1c6afcf7d9d5c4940df4642ccda1ce2249151a3a8b5f4d1488ac40125549cb02450c494ce09f520d9963b5f5c911edf78d96272dafef159a907f0c3ae6ec3",
+      "id": "component-BmbSearchInputComponent-071f7c8fa2b8943a6e2640b7c68f2c012c04f0723d661392860da658b990390bfa4591bb0f2259a1a6a11bc19830381c239a7a3141502fe88b772bd23a6e354a",
       "file": "projects/ds-ng/src/lib/components/bmb-search-input/bmb-search-input.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": ["ViewEncapsulation.None"],
@@ -5380,7 +5995,7 @@
           "defaultValue": "[]",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 36,
+          "line": 37,
           "type": "string[]",
           "decorators": []
         },
@@ -5389,7 +6004,7 @@
           "defaultValue": "false",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 37,
+          "line": 38,
           "type": "boolean",
           "decorators": []
         },
@@ -5398,7 +6013,7 @@
           "defaultValue": "false",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 38,
+          "line": 39,
           "type": "boolean",
           "decorators": []
         },
@@ -5407,7 +6022,7 @@
           "defaultValue": "''",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 39,
+          "line": 40,
           "type": "string",
           "decorators": []
         },
@@ -5416,7 +6031,7 @@
           "defaultValue": "[]",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 40,
+          "line": 41,
           "type": "string[]",
           "decorators": []
         }
@@ -5427,7 +6042,7 @@
           "defaultValue": "new EventEmitter<string>()",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 43,
+          "line": 44,
           "type": "EventEmitter<string>"
         },
         {
@@ -5435,7 +6050,7 @@
           "defaultValue": "new EventEmitter<string>()",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 42,
+          "line": 43,
           "type": "EventEmitter<string>"
         }
       ],
@@ -5448,7 +6063,7 @@
           "type": "any",
           "optional": false,
           "description": "",
-          "line": 69,
+          "line": 73,
           "modifierKind": [123]
         },
         {
@@ -5459,7 +6074,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 67
+          "line": 71
         },
         {
           "name": "filteredData",
@@ -5469,7 +6084,7 @@
           "type": "string[]",
           "optional": false,
           "description": "",
-          "line": 64
+          "line": 68
         },
         {
           "name": "filterField",
@@ -5479,7 +6094,7 @@
           "type": "ElementRef | null",
           "optional": false,
           "description": "",
-          "line": 46,
+          "line": 47,
           "decorators": [
             {
               "name": "ViewChild",
@@ -5496,7 +6111,7 @@
           "type": "boolean",
           "optional": false,
           "description": "",
-          "line": 66
+          "line": 70
         },
         {
           "name": "uid",
@@ -5506,7 +6121,7 @@
           "type": "string",
           "optional": false,
           "description": "",
-          "line": 65
+          "line": 69
         },
         {
           "name": "value",
@@ -5516,7 +6131,7 @@
           "type": "string",
           "optional": false,
           "description": "",
-          "line": 63
+          "line": 67
         }
       ],
       "methodsClass": [
@@ -5526,7 +6141,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 101,
+          "line": 107,
           "deprecated": false,
           "deprecationMessage": ""
         },
@@ -5543,7 +6158,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 87,
+          "line": 91,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -5564,7 +6179,7 @@
           "optional": false,
           "returnType": "string",
           "typeParameters": [],
-          "line": 108,
+          "line": 114,
           "deprecated": false,
           "deprecationMessage": ""
         },
@@ -5581,7 +6196,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 116,
+          "line": 122,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -5602,7 +6217,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 71,
+          "line": 75,
           "deprecated": false,
           "deprecationMessage": ""
         },
@@ -5619,7 +6234,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 75,
+          "line": 79,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -5647,7 +6262,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 57,
+          "line": 61,
           "deprecated": false,
           "deprecationMessage": "",
           "decorators": [
@@ -5687,7 +6302,7 @@
           "argsDecorator": ["$event"],
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 57
+          "line": 61
         }
       ],
       "standalone": true,
@@ -5716,7 +6331,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import {\n  Component,\n  ViewEncapsulation,\n  ChangeDetectionStrategy,\n  Input,\n  Output,\n  EventEmitter,\n  ViewChild,\n  ElementRef,\n  SimpleChanges,\n  HostListener,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { FormControl, ReactiveFormsModule } from '@angular/forms';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\nimport { BmbButtonDirective } from '../../directives/button.directive';\nimport { BmbLoaderComponent } from '../bmb-loader/bmb-loader.component';\nimport { debounceTime } from 'rxjs/operators';\n\n@Component({\n  selector: 'bmb-search-input',\n  standalone: true,\n  imports: [\n    CommonModule,\n    BmbIconComponent,\n    BmbButtonDirective,\n    BmbLoaderComponent,\n    ReactiveFormsModule,\n  ],\n  templateUrl: './bmb-search-input.component.html',\n  styleUrl: './bmb-search-input.component.scss',\n  encapsulation: ViewEncapsulation.None,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbSearchInputComponent {\n  @Input() data: string[] = [];\n  @Input() isLoading: boolean = false;\n  @Input() isServerSideFilter: boolean = false;\n  @Input() placeholder: string = '';\n  @Input() serverSideFilteredData: string[] = [];\n\n  @Output() onValueChange: EventEmitter<string> = new EventEmitter<string>();\n  @Output() onServerSideFilterEvent: EventEmitter<string> =\n    new EventEmitter<string>();\n\n  @ViewChild('filterInput') filterField: ElementRef | null = null;\n\n  constructor(private elementRef: ElementRef) {\n    this.filterControl.valueChanges\n      .pipe(debounceTime(300))\n      .subscribe((value) => {\n        this.filteredValue(value);\n      });\n  }\n\n  @HostListener('document:click', ['$event'])\n  onClick(event: MouseEvent) {\n    if (!this.childNodes?.contains(event.target)) {\n      this.isDialogOpen = false;\n    }\n  }\n\n  value: string = '';\n  filteredData: string[] = [];\n  uid: string = Date.now().toString(36) + (Math.floor(Math.random() * 90) + 10);\n  isDialogOpen: boolean = false;\n  filterControl = new FormControl();\n\n  private childNodes: any = null;\n\n  ngAfterViewInit() {\n    this.childNodes = this.elementRef.nativeElement;\n  }\n\n  ngOnChanges(changes: SimpleChanges): void {\n    if (changes['serverSideFilteredData']) {\n      this.filteredData = changes['serverSideFilteredData'].currentValue;\n    }\n\n    if (changes['serverSideFilteredData'] || changes['isLoading']) {\n      this.isDialogOpen =\n        changes['serverSideFilteredData']?.currentValue?.length ||\n        changes['isLoading']?.currentValue;\n    }\n  }\n\n  filteredValue(value: string): void {\n    if (value.length >= 3) {\n      if (this.isServerSideFilter) {\n        this.onServerSideFilterEvent.emit(value);\n      } else {\n        this.filteredData = this.data.filter((item) =>\n          item.toLowerCase().includes(value.toLowerCase()),\n        );\n      }\n    } else {\n      this.filteredData = [];\n    }\n  }\n\n  clearFilter(): void {\n    if (this.filterField?.nativeElement) {\n      this.filterField.nativeElement.value = '';\n      this.filteredData = [];\n    }\n  }\n\n  getDialogOpen(): string {\n    if (this.isDialogOpen) {\n      return 'bmb_search-input-dialog-open';\n    }\n\n    return '';\n  }\n\n  handleItemClick(event: string): void {\n    this.onValueChange.emit(event);\n    this.isDialogOpen = false;\n    if (this.filterField?.nativeElement) {\n      this.filterField.nativeElement.value = event;\n    }\n  }\n}\n",
+      "sourceCode": "import {\n  Component,\n  ViewEncapsulation,\n  ChangeDetectionStrategy,\n  Input,\n  Output,\n  EventEmitter,\n  ViewChild,\n  ElementRef,\n  SimpleChanges,\n  HostListener,\n  ChangeDetectorRef,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { FormControl, ReactiveFormsModule } from '@angular/forms';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\nimport { BmbButtonDirective } from '../../directives/button.directive';\nimport { BmbLoaderComponent } from '../bmb-loader/bmb-loader.component';\nimport { debounceTime } from 'rxjs/operators';\n\n@Component({\n  selector: 'bmb-search-input',\n  standalone: true,\n  imports: [\n    CommonModule,\n    BmbIconComponent,\n    BmbButtonDirective,\n    BmbLoaderComponent,\n    ReactiveFormsModule,\n  ],\n  templateUrl: './bmb-search-input.component.html',\n  styleUrl: './bmb-search-input.component.scss',\n  encapsulation: ViewEncapsulation.None,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbSearchInputComponent {\n  @Input() data: string[] = [];\n  @Input() isLoading: boolean = false;\n  @Input() isServerSideFilter: boolean = false;\n  @Input() placeholder: string = '';\n  @Input() serverSideFilteredData: string[] = [];\n\n  @Output() onValueChange: EventEmitter<string> = new EventEmitter<string>();\n  @Output() onServerSideFilterEvent: EventEmitter<string> =\n    new EventEmitter<string>();\n\n  @ViewChild('filterInput') filterField: ElementRef | null = null;\n\n  constructor(\n    private elementRef: ElementRef,\n    private cdr: ChangeDetectorRef,\n  ) {\n    this.filterControl.valueChanges\n      .pipe(debounceTime(300))\n      .subscribe((value) => {\n        this.filteredValue(value);\n      });\n  }\n\n  @HostListener('document:click', ['$event'])\n  onClick(event: MouseEvent) {\n    if (!this.childNodes?.contains(event.target)) {\n      this.isDialogOpen = false;\n    }\n  }\n\n  value: string = '';\n  filteredData: string[] = [];\n  uid: string = Date.now().toString(36) + (Math.floor(Math.random() * 90) + 10);\n  isDialogOpen: boolean = false;\n  filterControl = new FormControl();\n\n  private childNodes: any = null;\n\n  ngAfterViewInit() {\n    this.childNodes = this.elementRef.nativeElement;\n  }\n\n  ngOnChanges(changes: SimpleChanges): void {\n    if (changes['serverSideFilteredData']) {\n      this.filteredData = changes['serverSideFilteredData'].currentValue;\n    }\n\n    if (changes['serverSideFilteredData'] || changes['isLoading']) {\n      this.isDialogOpen =\n        changes['serverSideFilteredData']?.currentValue?.length ||\n        changes['isLoading']?.currentValue;\n    }\n  }\n\n  filteredValue(value: string): void {\n    if (value.length >= 3) {\n      if (this.isServerSideFilter) {\n        this.onServerSideFilterEvent.emit(value);\n      } else {\n        this.filteredData = this.data.filter((item) =>\n          item.toLowerCase().includes(value.toLowerCase()),\n        );\n        this.isDialogOpen = true;\n      }\n    } else {\n      this.filteredData = [];\n    }\n    this.cdr.detectChanges();\n  }\n\n  clearFilter(): void {\n    if (this.filterField?.nativeElement) {\n      this.filterField.nativeElement.value = '';\n      this.filteredData = [];\n    }\n  }\n\n  getDialogOpen(): string {\n    if (this.isDialogOpen) {\n      return 'bmb_search-input-dialog-open';\n    }\n\n    return '';\n  }\n\n  handleItemClick(event: string): void {\n    this.onValueChange.emit(event);\n    this.isDialogOpen = false;\n    if (this.filterField?.nativeElement) {\n      this.filterField.nativeElement.value = event;\n    }\n  }\n}\n",
       "styleUrl": "./bmb-search-input.component.scss",
       "assetsDirs": [],
       "styleUrlsData": "",
@@ -5732,9 +6347,15 @@
             "type": "ElementRef",
             "deprecated": false,
             "deprecationMessage": ""
+          },
+          {
+            "name": "cdr",
+            "type": "ChangeDetectorRef",
+            "deprecated": false,
+            "deprecationMessage": ""
           }
         ],
-        "line": 46,
+        "line": 47,
         "jsdoctags": [
           {
             "name": "elementRef",
@@ -5744,11 +6365,20 @@
             "tagName": {
               "text": "param"
             }
+          },
+          {
+            "name": "cdr",
+            "type": "ChangeDetectorRef",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "tagName": {
+              "text": "param"
+            }
           }
         ]
       },
       "extends": [],
-      "templateData": "<section class=\"bmb_search-input\">\n  <div class=\"bmb_search-input-field\">\n    <label class=\"bmb_search-input-field-label\" [for]=\"'filter-' + uid\">\n      <bmb-icon icon=\"search\" />\n    </label>\n    <input\n      [disabled]=\"isLoading\"\n      type=\"text\"\n      #filterInput\n      [id]=\"'filter-' + uid\"\n      [name]=\"'filter-' + uid\"\n      [formControl]=\"filterControl\"\n      [placeholder]=\"placeholder\"\n    />\n    <button [disabled]=\"isLoading\" bmbButton (click)=\"clearFilter()\">\n      <bmb-icon icon=\"close\" />\n    </button>\n  </div>\n  <section\n    role=\"dialog\"\n    class=\"bmb_search-input-dialog\"\n    [ngClass]=\"getDialogOpen()\"\n  >\n    @if (isLoading) {\n      <bmb-loader />\n    } @else {\n      <ul class=\"bmb_search-input-dialog-list\">\n        @for (item of filteredData; track $index) {\n          <li class=\"bmb_search-input-dialog-list-item\">\n            <button (click)=\"handleItemClick(item)\">{{ item }}</button>\n          </li>\n        }\n      </ul>\n    }\n  </section>\n</section>\n"
+      "templateData": "<section class=\"bmb_search-input\">\n  <div class=\"bmb_search-input-field\">\n    <label class=\"bmb_search-input-field-label\" [for]=\"'filter-' + uid\">\n      <bmb-icon icon=\"search\" />\n    </label>\n    <input\n      class=\"bmb_search-input-field-input\"\n      [disabled]=\"isLoading\"\n      type=\"text\"\n      #filterInput\n      [id]=\"'filter-' + uid\"\n      [name]=\"'filter-' + uid\"\n      [formControl]=\"filterControl\"\n      [placeholder]=\"placeholder\"\n    />\n    <button\n      class=\"bmb_search-input-field-clear\"\n      [disabled]=\"isLoading\"\n      bmbButton\n      (click)=\"clearFilter()\"\n    >\n      <bmb-icon icon=\"close\" />\n    </button>\n  </div>\n  <section\n    role=\"dialog\"\n    class=\"bmb_search-input-dialog\"\n    [ngClass]=\"getDialogOpen()\"\n  >\n    @if (isLoading) {\n      <bmb-loader />\n    } @else {\n      <ul class=\"bmb_search-input-dialog-list\">\n        @for (item of filteredData; track $index) {\n          <li class=\"bmb_search-input-dialog-list-item\">\n            <button\n              class=\"bmb_search-input-dialog-list-item-button\"\n              (click)=\"handleItemClick(item)\"\n            >\n              {{ item }}\n            </button>\n          </li>\n        }\n      </ul>\n    }\n  </section>\n</section>\n"
     },
     {
       "name": "BmbSelectComponent",
@@ -6004,7 +6634,7 @@
     },
     {
       "name": "BmbSidebarComponent",
-      "id": "component-BmbSidebarComponent-f04f4215e4dac0e84888ae6e39eb747357d4ed8e4f991e83ed3fc9489e74823c75a1f953c965a47d722acf9fe276f8a5133e6569c8b35301517ed309b2b1d9fa",
+      "id": "component-BmbSidebarComponent-9a9cb468b1cf06ffb323a998c1509b9024c1e3b1a1dc6ac1a92d476443b4a24403598c6b6d0aefb18e37e650428dbf7dc3948feecd424fb76f9334e3f284d46c",
       "file": "projects/ds-ng/src/lib/components/bmb-sidebar/bmb-sidebar.component.ts",
       "encapsulation": [],
       "entryComponents": [],
@@ -6127,7 +6757,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { Component, Input } from '@angular/core';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\nimport { CommonModule } from '@angular/common';\nimport { SidebarElements } from './bmb-sidebar.interface';\n\n@Component({\n  selector: 'bmb-sidebar',\n  standalone: true,\n  imports: [BmbIconComponent, CommonModule],\n  templateUrl: './bmb-sidebar.component.html',\n  styleUrl: './bmb-sidebar.component.scss',\n})\nexport class BmbSidebarComponent {\n  @Input() elements: SidebarElements[] = [];\n\n  currentChoice: string = '';\n\n  ngOnInit() {\n    this.currentChoice = this.elements[0].title;\n  }\n\n  setActive(choice: string) {\n    this.currentChoice = choice;\n  }\n\n  getActive(choice: string): string {\n    if (this.currentChoice == choice) {\n      return 'active';\n    } else {\n      return 'not';\n    }\n  }\n}\n",
+      "sourceCode": "import { Component, Input } from '@angular/core';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\nimport { CommonModule } from '@angular/common';\nimport { SidebarElements } from './bmb-sidebar.interface';\n\n@Component({\n  selector: 'bmb-sidebar',\n  standalone: true,\n  imports: [BmbIconComponent, CommonModule],\n  templateUrl: './bmb-sidebar.component.html',\n  styleUrl: './bmb-sidebar.component.scss',\n})\nexport class BmbSidebarComponent {\n  @Input() elements: SidebarElements[] = [];\n\n  currentChoice: string = '';\n\n  ngOnInit() {\n    this.currentChoice = this.elements[0]?.title;\n  }\n\n  setActive(choice: string) {\n    this.currentChoice = choice;\n  }\n\n  getActive(choice: string): string {\n    if (this.currentChoice == choice) {\n      return 'active';\n    } else {\n      return 'not';\n    }\n  }\n}\n",
       "styleUrl": "./bmb-sidebar.component.scss",
       "assetsDirs": [],
       "styleUrlsData": "",
@@ -6402,6 +7032,865 @@
       "stylesData": "",
       "extends": [],
       "templateData": "<button\n  [ngClass]=\"{ bmb_switch: true, 'bmb_switch-checked': isChecked }\"\n  (click)=\"toggleSwitch()\"\n  role=\"switch\"\n  [attr.aria-checked]=\"isChecked ? 'true' : 'false'\"\n  [attr.id]=\"id\"\n  [attr.aria-disabled]=\"disabled ? 'true' : 'false'\"\n  [disabled]=\"disabled\"\n  [attr.aria-label]=\"ariaLabel\"\n>\n  <div class=\"bmb_switch-left\" *ngIf=\"leftText || leftIcon\">\n    <span *ngIf=\"leftText && !leftIcon\" class=\"bmb_switch-text\">{{\n      leftText\n    }}</span>\n    <bmb-icon *ngIf=\"leftIcon && !leftText\" [icon]=\"leftIcon\"></bmb-icon>\n  </div>\n\n  <label class=\"bmb_switch-label\" for=\"bmbSwitch\">\n    <span class=\"bmb_switch-inner\"></span>\n    <span class=\"bmb_switch-switch\"></span>\n  </label>\n\n  <div class=\"bmb_switch-right\" *ngIf=\"rightText || rightIcon\">\n    <span *ngIf=\"rightText && !rightIcon\" class=\"bmb_switch-text\">{{\n      rightText\n    }}</span>\n    <bmb-icon *ngIf=\"rightIcon && !rightText\" [icon]=\"rightIcon\"></bmb-icon>\n  </div>\n</button>\n"
+    },
+    {
+      "name": "BmbTablesComponent",
+      "id": "component-BmbTablesComponent-12c6b740f0c6ec4cafce9429cce6531f1d73c01348508954dbe675b449bf33060d65fa624cbf614289ddf4fbf4562b804888e14efdccfb5b62aa59f77f04703a",
+      "file": "projects/ds-ng/src/lib/components/bmb-tables/bmb-tables.component.ts",
+      "changeDetection": "ChangeDetectionStrategy.OnPush",
+      "encapsulation": ["ViewEncapsulation.None"],
+      "entryComponents": [],
+      "inputs": [],
+      "outputs": [],
+      "providers": [],
+      "selector": "bmb-table",
+      "styleUrls": [],
+      "styles": [],
+      "templateUrl": ["./bmb-tables.component.html"],
+      "viewProviders": [],
+      "hostDirectives": [],
+      "inputsClass": [
+        {
+          "name": "actionTemplate",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 105,
+          "type": "TemplateRef<any> | null",
+          "decorators": []
+        },
+        {
+          "name": "columns",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 96,
+          "type": "TableColum[]",
+          "decorators": []
+        },
+        {
+          "name": "config",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 101,
+          "type": "TableConfig",
+          "decorators": []
+        },
+        {
+          "name": "data",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 92,
+          "type": "Array<any>",
+          "decorators": []
+        },
+        {
+          "name": "detailTemplate",
+          "defaultValue": "null",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 107,
+          "type": "TemplateRef<any> | null",
+          "decorators": []
+        },
+        {
+          "name": "pageSize",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 88,
+          "type": "number",
+          "decorators": []
+        }
+      ],
+      "outputsClass": [
+        {
+          "name": "select",
+          "defaultValue": "new EventEmitter()",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 109,
+          "type": "EventEmitter<any>"
+        }
+      ],
+      "propertiesClass": [
+        {
+          "name": "currentResizeIndex",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "number",
+          "optional": true,
+          "description": "",
+          "line": 81
+        },
+        {
+          "name": "dataSource",
+          "defaultValue": "new MatTableDataSource()",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "MatTableDataSource<Array<any>>",
+          "optional": false,
+          "description": "",
+          "line": 71
+        },
+        {
+          "name": "expandedElement",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "any",
+          "optional": false,
+          "description": "",
+          "line": 74
+        },
+        {
+          "name": "isResizingRight",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "boolean",
+          "optional": true,
+          "description": "",
+          "line": 84
+        },
+        {
+          "name": "matTableRef",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "ElementRef",
+          "optional": true,
+          "description": "",
+          "line": 113,
+          "decorators": [
+            {
+              "name": "ViewChild",
+              "stringifiedArguments": "MatTable, {read: ElementRef}"
+            }
+          ],
+          "modifierKind": [170, 123]
+        },
+        {
+          "name": "paginator",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "MatPaginator",
+          "optional": false,
+          "description": "",
+          "line": 111,
+          "decorators": [
+            {
+              "name": "ViewChild",
+              "stringifiedArguments": "MatPaginator"
+            }
+          ],
+          "modifierKind": [170]
+        },
+        {
+          "name": "paginatorSize",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "number | undefined",
+          "optional": false,
+          "description": "",
+          "line": 77
+        },
+        {
+          "name": "pressed",
+          "defaultValue": "false",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "optional": false,
+          "description": "",
+          "line": 80
+        },
+        {
+          "name": "resizableMousemove",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "function",
+          "optional": true,
+          "description": "",
+          "line": 85
+        },
+        {
+          "name": "resizableMouseup",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "function",
+          "optional": true,
+          "description": "",
+          "line": 86
+        },
+        {
+          "name": "selection",
+          "defaultValue": "new SelectionModel<any>(true, [])",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "optional": false,
+          "description": "",
+          "line": 75
+        },
+        {
+          "name": "startWidth",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "number",
+          "optional": true,
+          "description": "",
+          "line": 83
+        },
+        {
+          "name": "startX",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "number",
+          "optional": true,
+          "description": "",
+          "line": 82
+        },
+        {
+          "name": "tableColumns",
+          "defaultValue": "[]",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "TableColum[]",
+          "optional": false,
+          "description": "",
+          "line": 73
+        },
+        {
+          "name": "tableConfig",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "TableConfig | undefined",
+          "optional": false,
+          "description": "",
+          "line": 76
+        },
+        {
+          "name": "tableDisplayColumns",
+          "defaultValue": "[]",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string[]",
+          "optional": false,
+          "description": "",
+          "line": 72
+        }
+      ],
+      "methodsClass": [
+        {
+          "name": "checkboxLabel",
+          "args": [
+            {
+              "name": "row",
+              "type": "any",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "optional": true
+            }
+          ],
+          "optional": false,
+          "returnType": "string",
+          "typeParameters": [],
+          "line": 268,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "rawdescription": "\nThe label for the checkbox on the passed row",
+          "description": "<p>The label for the checkbox on the passed row</p>\n",
+          "jsdoctags": [
+            {
+              "name": "row",
+              "type": "any",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "optional": true,
+              "tagName": {
+                "text": "param"
+              }
+            }
+          ]
+        },
+        {
+          "name": "checkResizing",
+          "args": [
+            {
+              "name": "event",
+              "type": "any",
+              "deprecated": false,
+              "deprecationMessage": ""
+            },
+            {
+              "name": "index",
+              "type": "any",
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 198,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "modifierKind": [123],
+          "jsdoctags": [
+            {
+              "name": "event",
+              "type": "any",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            },
+            {
+              "name": "index",
+              "type": "any",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            }
+          ]
+        },
+        {
+          "name": "getCellData",
+          "args": [
+            {
+              "name": "index",
+              "type": "number",
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
+          "optional": false,
+          "returnType": "any",
+          "typeParameters": [],
+          "line": 211,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "modifierKind": [123],
+          "jsdoctags": [
+            {
+              "name": "index",
+              "type": "number",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            }
+          ]
+        },
+        {
+          "name": "isAllSelected",
+          "args": [],
+          "optional": false,
+          "returnType": "boolean",
+          "typeParameters": [],
+          "line": 249,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "rawdescription": "\nWhether the number of selected elements matches the total number of rows.",
+          "description": "<p>Whether the number of selected elements matches the total number of rows.</p>\n"
+        },
+        {
+          "name": "mouseMove",
+          "args": [
+            {
+              "name": "index",
+              "type": "number",
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 168,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "jsdoctags": [
+            {
+              "name": "index",
+              "type": "number",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            }
+          ]
+        },
+        {
+          "name": "ngAfterViewInit",
+          "args": [],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 124,
+          "deprecated": false,
+          "deprecationMessage": ""
+        },
+        {
+          "name": "ngOnInit",
+          "args": [],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 122,
+          "deprecated": false,
+          "deprecationMessage": ""
+        },
+        {
+          "name": "onResize",
+          "args": [
+            {
+              "name": "event",
+              "type": "any",
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 116,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "decorators": [
+            {
+              "name": "HostListener",
+              "stringifiedArguments": "'window:resize', ['$event']"
+            }
+          ],
+          "modifierKind": [170],
+          "jsdoctags": [
+            {
+              "name": "event",
+              "type": "any",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            }
+          ]
+        },
+        {
+          "name": "onResizeColumn",
+          "args": [
+            {
+              "name": "event",
+              "type": "any",
+              "deprecated": false,
+              "deprecationMessage": ""
+            },
+            {
+              "name": "index",
+              "type": "number",
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 218,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "jsdoctags": [
+            {
+              "name": "event",
+              "type": "any",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            },
+            {
+              "name": "index",
+              "type": "number",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            }
+          ]
+        },
+        {
+          "name": "onSelect",
+          "args": [],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 228,
+          "deprecated": false,
+          "deprecationMessage": ""
+        },
+        {
+          "name": "setColumnWidth",
+          "args": [
+            {
+              "name": "column",
+              "type": "any",
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 144,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "jsdoctags": [
+            {
+              "name": "column",
+              "type": "any",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            }
+          ]
+        },
+        {
+          "name": "setColumnWidthChanges",
+          "args": [
+            {
+              "name": "index",
+              "type": "number",
+              "deprecated": false,
+              "deprecationMessage": ""
+            },
+            {
+              "name": "width",
+              "type": "number",
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 153,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "jsdoctags": [
+            {
+              "name": "index",
+              "type": "number",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            },
+            {
+              "name": "width",
+              "type": "number",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            }
+          ]
+        },
+        {
+          "name": "setConfig",
+          "args": [
+            {
+              "name": "config",
+              "type": "TableConfig",
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 232,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "jsdoctags": [
+            {
+              "name": "config",
+              "type": "TableConfig",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            }
+          ]
+        },
+        {
+          "name": "setTableResize",
+          "args": [
+            {
+              "name": "tableWidth",
+              "type": "number",
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 129,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "jsdoctags": [
+            {
+              "name": "tableWidth",
+              "type": "number",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            }
+          ]
+        },
+        {
+          "name": "toggleAllRows",
+          "args": [],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 256,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "rawdescription": "\nSelects all rows if they are not all selected; otherwise clear selection.",
+          "description": "<p>Selects all rows if they are not all selected; otherwise clear selection.</p>\n"
+        }
+      ],
+      "deprecated": false,
+      "deprecationMessage": "",
+      "hostBindings": [],
+      "hostListeners": [
+        {
+          "name": "window:resize",
+          "args": [
+            {
+              "name": "event",
+              "type": "any",
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
+          "argsDecorator": ["$event"],
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 116
+        }
+      ],
+      "standalone": true,
+      "imports": [
+        {
+          "name": "CommonModule",
+          "type": "module"
+        },
+        {
+          "name": "BmbIconComponent",
+          "type": "component"
+        },
+        {
+          "name": "BmbCheckboxComponent",
+          "type": "component"
+        },
+        {
+          "name": "MatPaginatorModule",
+          "type": "module"
+        },
+        {
+          "name": "MatTableModule",
+          "type": "module"
+        },
+        {
+          "name": "MatCheckboxModule",
+          "type": "module"
+        },
+        {
+          "name": "MatIconModule",
+          "type": "module"
+        },
+        {
+          "name": "MatButtonModule",
+          "type": "module"
+        },
+        {
+          "name": "MatFormFieldModule",
+          "type": "module"
+        },
+        {
+          "name": "MatInputModule",
+          "type": "module"
+        }
+      ],
+      "description": "",
+      "rawdescription": "\n",
+      "type": "component",
+      "sourceCode": "import { CommonModule } from '@angular/common';\nimport {\n  Component,\n  Input,\n  AfterViewInit,\n  ViewChild,\n  OnInit,\n  Output,\n  EventEmitter,\n  ElementRef,\n  TemplateRef,\n  HostListener,\n  Renderer2,\n  ViewEncapsulation,\n  ChangeDetectionStrategy,\n} from '@angular/core';\nimport { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';\nimport {\n  MatTableDataSource,\n  MatTableModule,\n  MatTable,\n} from '@angular/material/table';\nimport {\n  animate,\n  state,\n  style,\n  transition,\n  trigger,\n} from '@angular/animations';\nimport { MatInputModule } from '@angular/material/input';\nimport { MatFormFieldModule } from '@angular/material/form-field';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatCheckboxModule } from '@angular/material/checkbox';\nimport { SelectionModel } from '@angular/cdk/collections';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\nimport { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';\nimport { TableColum, TableConfig } from './bmb-tables.interface';\n\n@Component({\n  selector: 'bmb-table',\n  standalone: true,\n  imports: [\n    CommonModule,\n    BmbIconComponent,\n    BmbCheckboxComponent,\n    MatPaginatorModule,\n    MatTableModule,\n    MatCheckboxModule,\n    MatIconModule,\n    MatButtonModule,\n    MatFormFieldModule,\n    MatInputModule,\n  ],\n  templateUrl: './bmb-tables.component.html',\n  styleUrl: './bmb-tables.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n  animations: [\n    trigger('detailExpand', [\n      state('collapsed,void', style({ height: '0px', minHeight: '0' })),\n      state('expanded', style({ height: '*' })),\n      transition(\n        'expanded <=> collapsed',\n        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)'),\n      ),\n    ]),\n  ],\n})\nexport class BmbTablesComponent implements AfterViewInit, OnInit {\n  dataSource: MatTableDataSource<Array<any>> = new MatTableDataSource();\n  tableDisplayColumns: string[] = [];\n  tableColumns: TableColum[] = [];\n  expandedElement: any;\n  selection = new SelectionModel<any>(true, []);\n  tableConfig: TableConfig | undefined;\n  paginatorSize: number | undefined;\n\n  // Resize Columns\n  pressed = false;\n  currentResizeIndex?: number;\n  startX?: number;\n  startWidth?: number;\n  isResizingRight?: boolean;\n  resizableMousemove?: () => void;\n  resizableMouseup?: () => void;\n\n  @Input() set pageSize(size: number) {\n    this.paginatorSize = size;\n  }\n\n  @Input() set data(data: Array<any>) {\n    this.dataSource = new MatTableDataSource(data);\n  }\n\n  @Input() set columns(columns: TableColum[]) {\n    this.tableColumns = columns;\n    this.tableDisplayColumns = this.tableColumns.map((col) => col.def);\n  }\n\n  @Input() set config(config: TableConfig) {\n    this.setConfig(config);\n  }\n\n  @Input() actionTemplate?: TemplateRef<any> | null;\n\n  @Input() detailTemplate: TemplateRef<any> | null = null;\n\n  @Output() select: EventEmitter<any> = new EventEmitter();\n\n  @ViewChild(MatPaginator) paginator!: MatPaginator;\n\n  @ViewChild(MatTable, { read: ElementRef }) private matTableRef?: ElementRef;\n\n  @HostListener('window:resize', ['$event'])\n  onResize(event: any) {\n    this.setTableResize(this.matTableRef!.nativeElement.clientWidth);\n  }\n\n  constructor(private renderer: Renderer2) {}\n\n  ngOnInit(): void {}\n\n  ngAfterViewInit() {\n    this.dataSource.paginator = this.paginator;\n    this.setTableResize(this.matTableRef!.nativeElement.clientWidth);\n  }\n\n  setTableResize(tableWidth: number) {\n    let totWidth = 0;\n    this.tableColumns.forEach((column) => {\n      if (column.width == undefined) {\n        column.width = 50;\n      }\n      totWidth += column.width!;\n    });\n    const scale = (tableWidth - 5) / totWidth;\n    this.tableColumns.forEach((column) => {\n      column!.width! *= scale;\n      this.setColumnWidth(column);\n    });\n  }\n\n  setColumnWidth(column: any) {\n    const columnEls = Array.from(\n      document.getElementsByClassName('mat-column-' + column.def),\n    );\n    columnEls.forEach((el: any) => {\n      el.style.width = column.width + 'px';\n    });\n  }\n\n  setColumnWidthChanges(index: number, width: number) {\n    const orgWidth = this.tableColumns[index].width;\n    const dx = width - orgWidth!;\n    if (dx !== 0) {\n      const j = this.isResizingRight ? index + 1 : index - 1;\n      const newWidth = this.tableColumns[j].width! - dx;\n      if (newWidth > 50) {\n        this.tableColumns[index].width = width;\n        this.setColumnWidth(this.tableColumns[index]);\n        this.tableColumns[j].width = newWidth;\n        this.setColumnWidth(this.tableColumns[j]);\n      }\n    }\n  }\n\n  mouseMove(index: number) {\n    this.resizableMousemove = this.renderer.listen(\n      'document',\n      'mousemove',\n      (event) => {\n        if (this.pressed && event.buttons) {\n          const dx = this.isResizingRight\n            ? event.pageX - this.startX!\n            : -event.pageX + this.startX!;\n          const width = this.startWidth! + dx;\n          if (this.currentResizeIndex === index && width > 50) {\n            this.setColumnWidthChanges(index, width);\n          }\n        }\n      },\n    );\n    this.resizableMouseup = this.renderer.listen(\n      'document',\n      'mouseup',\n      (event) => {\n        if (this.pressed) {\n          this.pressed = false;\n          this.currentResizeIndex = -1;\n          this.resizableMousemove!();\n          this.resizableMouseup!();\n        }\n      },\n    );\n  }\n\n  private checkResizing(event: any, index: any) {\n    const cellData = this.getCellData(index);\n    if (\n      index === 0 ||\n      (Math.abs(event.pageX - cellData.right) < cellData.width / 2 &&\n        index !== this.tableColumns.length - 1)\n    ) {\n      this.isResizingRight = true;\n    } else {\n      this.isResizingRight = false;\n    }\n  }\n\n  private getCellData(index: number) {\n    const headerRow =\n      this.matTableRef!.nativeElement.children[0].querySelector('tr');\n    const cell = headerRow.children[index];\n    return cell.getBoundingClientRect();\n  }\n\n  onResizeColumn(event: any, index: number) {\n    this.checkResizing(event, index);\n    this.currentResizeIndex = index;\n    this.pressed = true;\n    this.startX = event.pageX;\n    this.startWidth = event.target.parentElement.clientWidth;\n    event.preventDefault();\n    this.mouseMove(index);\n  }\n\n  onSelect() {\n    this.select.emit(this.selection.selected);\n  }\n\n  setConfig(config: TableConfig) {\n    this.tableConfig = config;\n\n    if (this.tableConfig.isExpandible) {\n      this.tableDisplayColumns?.unshift('expand');\n    }\n\n    if (this.tableConfig.isSelectable) {\n      this.tableDisplayColumns?.unshift('select');\n    }\n\n    if (this.tableConfig.showActions) {\n      this.tableDisplayColumns?.push('actions');\n    }\n  }\n\n  /** Whether the number of selected elements matches the total number of rows. */\n  isAllSelected() {\n    const numSelected = this.selection.selected.length;\n    const numRows = this.dataSource.data.length;\n    return numSelected === numRows;\n  }\n\n  /** Selects all rows if they are not all selected; otherwise clear selection. */\n  toggleAllRows() {\n    if (this.isAllSelected()) {\n      this.selection.clear();\n      this.onSelect();\n      return;\n    }\n\n    this.selection.select(...this.dataSource.data);\n    this.onSelect();\n  }\n\n  /** The label for the checkbox on the passed row */\n  checkboxLabel(row?: any): string {\n    if (!row) {\n      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;\n    }\n    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;\n  }\n}\n",
+      "styleUrl": "./bmb-tables.component.scss",
+      "assetsDirs": [],
+      "styleUrlsData": "",
+      "stylesData": "",
+      "constructorObj": {
+        "name": "constructor",
+        "description": "",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "args": [
+          {
+            "name": "renderer",
+            "type": "Renderer2",
+            "deprecated": false,
+            "deprecationMessage": ""
+          }
+        ],
+        "line": 118,
+        "jsdoctags": [
+          {
+            "name": "renderer",
+            "type": "Renderer2",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "tagName": {
+              "text": "param"
+            }
+          }
+        ]
+      },
+      "extends": [],
+      "implements": ["AfterViewInit", "OnInit"],
+      "accessors": {
+        "pageSize": {
+          "name": "pageSize",
+          "setSignature": {
+            "name": "pageSize",
+            "type": "void",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "args": [
+              {
+                "name": "size",
+                "type": "number",
+                "deprecated": false,
+                "deprecationMessage": ""
+              }
+            ],
+            "returnType": "void",
+            "line": 88,
+            "jsdoctags": [
+              {
+                "name": "size",
+                "type": "number",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "tagName": {
+                  "text": "param"
+                }
+              }
+            ]
+          }
+        },
+        "data": {
+          "name": "data",
+          "setSignature": {
+            "name": "data",
+            "type": "void",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "args": [
+              {
+                "name": "data",
+                "type": "Array<any>",
+                "deprecated": false,
+                "deprecationMessage": ""
+              }
+            ],
+            "returnType": "void",
+            "line": 92,
+            "jsdoctags": [
+              {
+                "name": "data",
+                "type": "Array<any>",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "tagName": {
+                  "text": "param"
+                }
+              }
+            ]
+          }
+        },
+        "columns": {
+          "name": "columns",
+          "setSignature": {
+            "name": "columns",
+            "type": "void",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "args": [
+              {
+                "name": "columns",
+                "type": "TableColum[]",
+                "deprecated": false,
+                "deprecationMessage": ""
+              }
+            ],
+            "returnType": "void",
+            "line": 96,
+            "jsdoctags": [
+              {
+                "name": "columns",
+                "type": "TableColum[]",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "tagName": {
+                  "text": "param"
+                }
+              }
+            ]
+          }
+        },
+        "config": {
+          "name": "config",
+          "setSignature": {
+            "name": "config",
+            "type": "void",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "args": [
+              {
+                "name": "config",
+                "type": "TableConfig",
+                "deprecated": false,
+                "deprecationMessage": ""
+              }
+            ],
+            "returnType": "void",
+            "line": 101,
+            "jsdoctags": [
+              {
+                "name": "config",
+                "type": "TableConfig",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "tagName": {
+                  "text": "param"
+                }
+              }
+            ]
+          }
+        }
+      },
+      "templateData": "<div class=\"bmb_container-table\">\n  <table\n    mat-table\n    [dataSource]=\"dataSource\"\n    class=\"bmb_table\"\n    multiTemplateDataRows\n  >\n    <!-- Checkbox Column -->\n    <ng-container matColumnDef=\"select\">\n      <th\n        mat-header-cell\n        *matHeaderCellDef\n        class=\"bmb_table-headers-checkbox bmb_table-th\"\n      >\n        <bmb-checkbox\n          (change)=\"$event ? toggleAllRows() : null\"\n          [checked]=\"selection.hasValue() && isAllSelected()\"\n          [indeterminate]=\"selection.hasValue() && !isAllSelected()\"\n          [ariaLabel]=\"checkboxLabel()\"\n        />\n      </th>\n      <td mat-cell *matCellDef=\"let row\">\n        <bmb-checkbox\n          (change)=\"$event ? selection.toggle(row) : null; onSelect()\"\n          [checked]=\"selection.isSelected(row)\"\n          [ariaLabel]=\"checkboxLabel(row)\"\n          onkeypress=\"$event.stopPropagation()\"\n        />\n        {{ row.documentos }}\n      </td>\n    </ng-container>\n\n    <!--Expand -->\n    <ng-container matColumnDef=\"expand\">\n      <th\n        mat-header-cell\n        *matHeaderCellDef\n        class=\"bmb_table-th\"\n        aria-label=\"row actions\"\n        style=\"width: 30px\"\n      >\n        &nbsp;\n      </th>\n      <td mat-cell *matCellDef=\"let row\" class=\"bmb-table-expand-cell\">\n        <button\n          mat-icon-button\n          aria-label=\"expand row\"\n          (click)=\"\n            expandedElement = expandedElement === row ? null : row;\n            $event.stopPropagation()\n          \"\n        >\n          @if (expandedElement === row) {\n            <bmb-icon class=\"bmb_table-expand-btn\" [icon]=\"'expand_less'\" />\n          } @else {\n            <bmb-icon class=\"bmb_table-expand-btn\" [icon]=\"'expand_more'\" />\n          }\n        </button>\n      </td>\n    </ng-container>\n\n    <!-- Display Columns -->\n    @for (column of tableColumns; track $index) {\n      <ng-container [matColumnDef]=\"column.def\">\n        <th\n          mat-header-cell\n          *matHeaderCellDef\n          class=\"bmb_table-headers bmb_table-th\"\n        >\n          {{ column.label }}\n          <span\n            class=\"bmb_table-resize-handle\"\n            (mousedown)=\"onResizeColumn($event, $index)\"\n          ></span>\n        </th>\n        <td mat-cell *matCellDef=\"let row; let i = index\" class=\"bmb_table-td\">\n          {{ row[column.dataKey] }}\n        </td>\n      </ng-container>\n    }\n\n    <!-- Actions Column -->\n    <ng-container matColumnDef=\"actions\">\n      <th\n        mat-header-cell\n        *matHeaderCellDef\n        class=\"bmb_table-headers bmb_table-th\"\n      >\n        Actions\n      </th>\n      <td mat-cell *matCellDef=\"let row\" class=\"\">\n        <ng-template [ngTemplateOutlet]=\"actionTemplate!\"> </ng-template>\n      </td>\n    </ng-container>\n\n    <!-- Row to expand -->\n    <ng-container matColumnDef=\"expandedDetail\">\n      <td\n        mat-cell\n        *matCellDef=\"let row\"\n        class=\"bmb_table-td\"\n        [attr.colspan]=\"tableDisplayColumns.length\"\n      >\n        <div\n          class=\"bmb_table-element-detail bmb_table-td\"\n          [@detailExpand]=\"row == expandedElement ? 'expanded' : 'collapsed'\"\n        >\n          <ng-container\n            *ngTemplateOutlet=\"detailTemplate; context: { row }\"\n          ></ng-container>\n        </div>\n      </td>\n    </ng-container>\n\n    <!-- Rows -->\n    <tr mat-header-row *matHeaderRowDef=\"tableDisplayColumns\"></tr>\n    <tr\n      mat-row\n      *matRowDef=\"let row; columns: tableDisplayColumns; let i = dataIndex\"\n      class=\"bmb_table-element-row\"\n      [class.bmb_table-expanded-row]=\"expandedElement === row\"\n      [ngClass]=\"{\n        'bmb_table-no-border': this.tableConfig?.isExpandible,\n        'bmb_table-stripe': i % 2 === 0\n      }\"\n    ></tr>\n\n    @if (tableConfig?.isExpandible) {\n      <ng-container>\n        <tr\n          mat-row\n          *matRowDef=\"let row; columns: ['expandedDetail']; let i = dataIndex\"\n          class=\"bmb_table-detail-row\"\n          [ngClass]=\"{ 'bmb_table-stripe': i % 2 === 0 }\"\n        ></tr>\n      </ng-container>\n    }\n  </table>\n\n  <!-- Paginator -->\n  @if (tableConfig?.isPaginable) {\n    <ng-container>\n      <mat-paginator\n        class=\"bmb_table-paginator\"\n        [pageSize]=\"this.paginatorSize\"\n        [hidePageSize]=\"true\"\n        aria-label=\"Select page\"\n      >\n      </mat-paginator>\n    </ng-container>\n  }\n</div>\n"
     },
     {
       "name": "BmbTabsComponent",
@@ -8031,8 +9520,9 @@
     },
     {
       "name": "BmbUserSummaryComponent",
-      "id": "component-BmbUserSummaryComponent-b30f631afb99a5538e6bbbd28418e67ce1472e82a243b9b59e4861ce810e0846e012b284e6b57ac58a072f4137776e73ecdc0d68d2740b6cd21b65e9d4a86485",
+      "id": "component-BmbUserSummaryComponent-d888189967d2cbf6fa4d5abf6253270bc39f982374b7198f722222b1fcfacbebf690b2fd9375240d6886b40ea2740871c916cdd2f749de0df06813ccc1cd8309",
       "file": "projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary.component.ts",
+      "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": ["ViewEncapsulation.None"],
       "entryComponents": [],
       "inputs": [],
@@ -8050,7 +9540,7 @@
           "defaultValue": "''",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 23,
+          "line": 25,
           "type": "string",
           "decorators": []
         },
@@ -8059,7 +9549,7 @@
           "defaultValue": "''",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 24,
+          "line": 26,
           "type": "string",
           "decorators": []
         },
@@ -8068,7 +9558,7 @@
           "defaultValue": "false",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 21,
+          "line": 23,
           "type": "boolean",
           "decorators": []
         },
@@ -8077,7 +9567,7 @@
           "defaultValue": "''",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 22,
+          "line": 24,
           "type": "string",
           "decorators": []
         }
@@ -8088,7 +9578,7 @@
           "defaultValue": "new EventEmitter<void>()",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 26,
+          "line": 28,
           "type": "EventEmitter<void>"
         }
       ],
@@ -8100,7 +9590,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 28,
+          "line": 30,
           "deprecated": false,
           "deprecationMessage": ""
         }
@@ -8127,7 +9617,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import {\n  Component,\n  Input,\n  ViewEncapsulation,\n  Output,\n  EventEmitter,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { BmbButtonDirective } from '../../directives/button.directive';\nimport { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';\n\n@Component({\n  selector: 'bmb-user-summary',\n  standalone: true,\n  imports: [CommonModule, BmbButtonDirective, BmbUserImageComponent],\n  templateUrl: './bmb-user-summary.component.html',\n  styleUrl: './bmb-user-summary.component.scss',\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbUserSummaryComponent {\n  @Input() isProfile: boolean = false;\n  @Input() name: string = '';\n  @Input() id: string = '';\n  @Input() image: string = '';\n\n  @Output() onClick: EventEmitter<void> = new EventEmitter<void>();\n\n  handleClick(): void {\n    this.onClick.emit();\n  }\n}\n",
+      "sourceCode": "import {\n  Component,\n  Input,\n  ViewEncapsulation,\n  Output,\n  EventEmitter,\n  ChangeDetectionStrategy,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { BmbButtonDirective } from '../../directives/button.directive';\nimport { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';\n\n@Component({\n  selector: 'bmb-user-summary',\n  standalone: true,\n  imports: [CommonModule, BmbButtonDirective, BmbUserImageComponent],\n  templateUrl: './bmb-user-summary.component.html',\n  styleUrl: './bmb-user-summary.component.scss',\n  encapsulation: ViewEncapsulation.None,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbUserSummaryComponent {\n  @Input() isProfile: boolean = false;\n  @Input() name: string = '';\n  @Input() id: string = '';\n  @Input() image: string = '';\n\n  @Output() onClick: EventEmitter<void> = new EventEmitter<void>();\n\n  handleClick(): void {\n    this.onClick.emit();\n  }\n}\n",
       "styleUrl": "./bmb-user-summary.component.scss",
       "assetsDirs": [],
       "styleUrlsData": "",
@@ -8434,6 +9924,16 @@
         "name": "Default",
         "ctype": "miscellaneous",
         "subtype": "variable",
+        "file": "projects/ds-ng/src/lib/components/bmb-card/bmb-legend.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\n  render: (args) => ({\n    props: args,\n    template: `\n      <bmb-card [borderRadius]=\"borderRadius\" [padding]=\"padding\" [margin]=\"margin\">\n        <ng-template #header>Optional header</ng-template>\n        <div>Content</div>\n        <ng-template #footer>Optional footer</ng-template>\n      </bmb-card>\n    `,\n  }),\n}"
+      },
+      {
+        "name": "Default",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
         "file": "projects/ds-ng/src/lib/components/bmb-checkbox/bmb-checkbox.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -8594,6 +10094,16 @@
         "name": "Default",
         "ctype": "miscellaneous",
         "subtype": "variable",
+        "file": "projects/ds-ng/src/lib/components/bmb-progress-bar/bmb-progress-bar.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{}"
+      },
+      {
+        "name": "Default",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
         "file": "projects/ds-ng/src/lib/components/bmb-progress-cirlce/bmb-progress-circle.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -8645,6 +10155,16 @@
         "ctype": "miscellaneous",
         "subtype": "variable",
         "file": "projects/ds-ng/src/lib/components/bmb-switch/bmb-switch.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{}"
+      },
+      {
+        "name": "Default",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/ds-ng/src/lib/components/bmb-tables/bmb-tables.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
@@ -8821,6 +10341,16 @@
         "defaultValue": "(\n  days: (string | undefined)[],\n): (string | undefined)[] => {\n  const lastElement: string | undefined = days.pop();\n  days.unshift(lastElement);\n  return days;\n}"
       },
       {
+        "name": "pixelToRem",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "projects/ds-ng/src/lib/utils/pixelToRem.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "(size: number) =>\n  `${fixDecimals({ value: size / 16 })}rem`"
+      },
+      {
         "name": "preview",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -8972,6 +10502,59 @@
         ]
       },
       {
+        "name": "fixDecimals",
+        "file": "projects/ds-ng/src/lib/utils/pixelToRem.ts",
+        "ctype": "miscellaneous",
+        "subtype": "function",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "args": [
+          {
+            "name": "value",
+            "type": "IFixDecimals",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "destrucuredGroupId": "3a40c9e9-612d-4944-9d6a-37ba6248969b",
+            "destructuredParameter": true
+          },
+          {
+            "name": "dp",
+            "type": "",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "defaultValue": "2",
+            "destrucuredGroupId": "3a40c9e9-612d-4944-9d6a-37ba6248969b",
+            "destructuredParameter": true
+          }
+        ],
+        "jsdoctags": [
+          {
+            "name": "value",
+            "type": "IFixDecimals",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "destrucuredGroupId": "3a40c9e9-612d-4944-9d6a-37ba6248969b",
+            "destructuredParameter": true,
+            "tagName": {
+              "text": "param"
+            }
+          },
+          {
+            "name": "dp",
+            "type": "",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "defaultValue": "2",
+            "destrucuredGroupId": "3a40c9e9-612d-4944-9d6a-37ba6248969b",
+            "destructuredParameter": true,
+            "tagName": {
+              "text": "param"
+            }
+          }
+        ]
+      },
+      {
         "name": "gradients",
         "file": "projects/ds-ng/src/lib/foundations/bmb-colors.stories.ts",
         "ctype": "miscellaneous",
@@ -9091,6 +10674,17 @@
         "kind": 192
       },
       {
+        "name": "SizeNames",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "\"xs\" | \"s\" | \"m\" | \"l\" | \"xl\" | \"none\" | \"auto\"",
+        "file": "projects/ds-ng/src/lib/types/index.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 192
+      },
+      {
         "name": "Story",
         "ctype": "miscellaneous",
         "subtype": "typealias",
@@ -9107,6 +10701,17 @@
         "subtype": "typealias",
         "rawtype": "StoryObj<BmbCalendarComponent>",
         "file": "projects/ds-ng/src/lib/components/bmb-calendar/bmb-calendar.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 183
+      },
+      {
+        "name": "Story",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "StoryObj<BmbCardComponent>",
+        "file": "projects/ds-ng/src/lib/components/bmb-card/bmb-legend.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "description": "",
@@ -9292,6 +10897,17 @@
         "name": "Story",
         "ctype": "miscellaneous",
         "subtype": "typealias",
+        "rawtype": "StoryObj<BmbProgressBarComponent>",
+        "file": "projects/ds-ng/src/lib/components/bmb-progress-bar/bmb-progress-bar.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 183
+      },
+      {
+        "name": "Story",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
         "rawtype": "StoryObj<BmbProgressCircleComponent>",
         "file": "projects/ds-ng/src/lib/components/bmb-progress-cirlce/bmb-progress-circle.stories.ts",
         "deprecated": false,
@@ -9349,6 +10965,17 @@
         "subtype": "typealias",
         "rawtype": "StoryObj<BmbSwitchComponent>",
         "file": "projects/ds-ng/src/lib/components/bmb-switch/bmb-switch.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 183
+      },
+      {
+        "name": "Story",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "StoryObj<BmbTablesComponent>",
+        "file": "projects/ds-ng/src/lib/components/bmb-tables/bmb-tables.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "description": "",
@@ -9533,6 +11160,18 @@
           "deprecationMessage": "",
           "type": "Story",
           "defaultValue": "{}"
+        }
+      ],
+      "projects/ds-ng/src/lib/components/bmb-card/bmb-legend.stories.ts": [
+        {
+          "name": "Default",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/ds-ng/src/lib/components/bmb-card/bmb-legend.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\n  render: (args) => ({\n    props: args,\n    template: `\n      <bmb-card [borderRadius]=\"borderRadius\" [padding]=\"padding\" [margin]=\"margin\">\n        <ng-template #header>Optional header</ng-template>\n        <div>Content</div>\n        <ng-template #footer>Optional footer</ng-template>\n      </bmb-card>\n    `,\n  }),\n}"
         }
       ],
       "projects/ds-ng/src/lib/components/bmb-checkbox/bmb-checkbox.stories.ts": [
@@ -9727,6 +11366,18 @@
           "defaultValue": "{}"
         }
       ],
+      "projects/ds-ng/src/lib/components/bmb-progress-bar/bmb-progress-bar.stories.ts": [
+        {
+          "name": "Default",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/ds-ng/src/lib/components/bmb-progress-bar/bmb-progress-bar.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{}"
+        }
+      ],
       "projects/ds-ng/src/lib/components/bmb-progress-cirlce/bmb-progress-circle.stories.ts": [
         {
           "name": "Default",
@@ -9793,6 +11444,18 @@
           "ctype": "miscellaneous",
           "subtype": "variable",
           "file": "projects/ds-ng/src/lib/components/bmb-switch/bmb-switch.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{}"
+        }
+      ],
+      "projects/ds-ng/src/lib/components/bmb-tables/bmb-tables.stories.ts": [
+        {
+          "name": "Default",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/ds-ng/src/lib/components/bmb-tables/bmb-tables.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
@@ -9993,6 +11656,18 @@
           "defaultValue": "{\n  normal: 'normal',\n  simple: 'simple',\n} as const"
         }
       ],
+      "projects/ds-ng/src/lib/utils/pixelToRem.ts": [
+        {
+          "name": "pixelToRem",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/ds-ng/src/lib/utils/pixelToRem.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "(size: number) =>\n  `${fixDecimals({ value: size / 16 })}rem`"
+        }
+      ],
       "projects/ds-ng/.storybook/preview.ts": [
         {
           "name": "preview",
@@ -10182,6 +11857,61 @@
             }
           ]
         }
+      ],
+      "projects/ds-ng/src/lib/utils/pixelToRem.ts": [
+        {
+          "name": "fixDecimals",
+          "file": "projects/ds-ng/src/lib/utils/pixelToRem.ts",
+          "ctype": "miscellaneous",
+          "subtype": "function",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "args": [
+            {
+              "name": "value",
+              "type": "IFixDecimals",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "destrucuredGroupId": "3a40c9e9-612d-4944-9d6a-37ba6248969b",
+              "destructuredParameter": true
+            },
+            {
+              "name": "dp",
+              "type": "",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "defaultValue": "2",
+              "destrucuredGroupId": "3a40c9e9-612d-4944-9d6a-37ba6248969b",
+              "destructuredParameter": true
+            }
+          ],
+          "jsdoctags": [
+            {
+              "name": "value",
+              "type": "IFixDecimals",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "destrucuredGroupId": "3a40c9e9-612d-4944-9d6a-37ba6248969b",
+              "destructuredParameter": true,
+              "tagName": {
+                "text": "param"
+              }
+            },
+            {
+              "name": "dp",
+              "type": "",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "defaultValue": "2",
+              "destrucuredGroupId": "3a40c9e9-612d-4944-9d6a-37ba6248969b",
+              "destructuredParameter": true,
+              "tagName": {
+                "text": "param"
+              }
+            }
+          ]
+        }
       ]
     },
     "groupedEnumerations": {},
@@ -10284,6 +12014,19 @@
           "kind": 192
         }
       ],
+      "projects/ds-ng/src/lib/types/index.ts": [
+        {
+          "name": "SizeNames",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "\"xs\" | \"s\" | \"m\" | \"l\" | \"xl\" | \"none\" | \"auto\"",
+          "file": "projects/ds-ng/src/lib/types/index.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 192
+        }
+      ],
       "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts": [
         {
           "name": "Story",
@@ -10304,6 +12047,19 @@
           "subtype": "typealias",
           "rawtype": "StoryObj<BmbCalendarComponent>",
           "file": "projects/ds-ng/src/lib/components/bmb-calendar/bmb-calendar.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 183
+        }
+      ],
+      "projects/ds-ng/src/lib/components/bmb-card/bmb-legend.stories.ts": [
+        {
+          "name": "Story",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "StoryObj<BmbCardComponent>",
+          "file": "projects/ds-ng/src/lib/components/bmb-card/bmb-legend.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "description": "",
@@ -10518,6 +12274,19 @@
           "kind": 183
         }
       ],
+      "projects/ds-ng/src/lib/components/bmb-progress-bar/bmb-progress-bar.stories.ts": [
+        {
+          "name": "Story",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "StoryObj<BmbProgressBarComponent>",
+          "file": "projects/ds-ng/src/lib/components/bmb-progress-bar/bmb-progress-bar.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 183
+        }
+      ],
       "projects/ds-ng/src/lib/components/bmb-progress-cirlce/bmb-progress-circle.stories.ts": [
         {
           "name": "Story",
@@ -10590,6 +12359,19 @@
           "subtype": "typealias",
           "rawtype": "StoryObj<BmbSwitchComponent>",
           "file": "projects/ds-ng/src/lib/components/bmb-switch/bmb-switch.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 183
+        }
+      ],
+      "projects/ds-ng/src/lib/components/bmb-tables/bmb-tables.stories.ts": [
+        {
+          "name": "Story",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "StoryObj<BmbTablesComponent>",
+          "file": "projects/ds-ng/src/lib/components/bmb-tables/bmb-tables.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "description": "",
@@ -10891,6 +12673,25 @@
         "linktype": "miscellaneous",
         "linksubtype": "variable",
         "name": "orderDayNames",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/ds-ng/src/lib/components/bmb-card/bmb-card.component.ts",
+        "type": "component",
+        "linktype": "component",
+        "name": "BmbCardComponent",
+        "coveragePercent": 0,
+        "coverageCount": "0/11",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/ds-ng/src/lib/components/bmb-card/bmb-legend.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Default",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
@@ -11248,6 +13049,25 @@
         "status": "low"
       },
       {
+        "filePath": "projects/ds-ng/src/lib/components/bmb-progress-bar/bmb-progress-bar.component.ts",
+        "type": "component",
+        "linktype": "component",
+        "name": "BmbProgressBarComponent",
+        "coveragePercent": 0,
+        "coverageCount": "0/4",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/ds-ng/src/lib/components/bmb-progress-bar/bmb-progress-bar.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Default",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
         "filePath": "projects/ds-ng/src/lib/components/bmb-progress-cirlce/bmb-progress-circle.component.ts",
         "type": "component",
         "linktype": "component",
@@ -11398,6 +13218,43 @@
       },
       {
         "filePath": "projects/ds-ng/src/lib/components/bmb-switch/bmb-switch.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Default",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/ds-ng/src/lib/components/bmb-tables/bmb-tables.component.ts",
+        "type": "component",
+        "linktype": "component",
+        "name": "BmbTablesComponent",
+        "coveragePercent": 7,
+        "coverageCount": "3/41",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/ds-ng/src/lib/components/bmb-tables/bmb-tables.interface.ts",
+        "type": "interface",
+        "linktype": "interface",
+        "name": "TableColum",
+        "coveragePercent": 0,
+        "coverageCount": "0/6",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/ds-ng/src/lib/components/bmb-tables/bmb-tables.interface.ts",
+        "type": "interface",
+        "linktype": "interface",
+        "name": "TableConfig",
+        "coveragePercent": 0,
+        "coverageCount": "0/5",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/ds-ng/src/lib/components/bmb-tables/bmb-tables.stories.ts",
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
@@ -11633,6 +13490,33 @@
         "status": "low"
       },
       {
+        "filePath": "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout-item.directive.ts",
+        "type": "directive",
+        "linktype": "directive",
+        "name": "BmbLayoutItemDirective",
+        "coveragePercent": 0,
+        "coverageCount": "0/9",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout-item.directive.ts",
+        "type": "interface",
+        "linktype": "interface",
+        "name": "IMargin",
+        "coveragePercent": 0,
+        "coverageCount": "0/3",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout.directive.ts",
+        "type": "directive",
+        "linktype": "directive",
+        "name": "BmbLayoutDirective",
+        "coveragePercent": 0,
+        "coverageCount": "0/6",
+        "status": "low"
+      },
+      {
         "filePath": "projects/ds-ng/src/lib/directives/button.directive.ts",
         "type": "directive",
         "linktype": "directive",
@@ -11785,6 +13669,35 @@
         "name": "ToastService",
         "coveragePercent": 0,
         "coverageCount": "0/5",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/ds-ng/src/lib/utils/pixelToRem.ts",
+        "type": "interface",
+        "linktype": "interface",
+        "name": "IFixDecimals",
+        "coveragePercent": 0,
+        "coverageCount": "0/3",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/ds-ng/src/lib/utils/pixelToRem.ts",
+        "type": "function",
+        "linktype": "miscellaneous",
+        "linksubtype": "function",
+        "name": "fixDecimals",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/ds-ng/src/lib/utils/pixelToRem.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "pixelToRem",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
         "status": "low"
       }
     ]

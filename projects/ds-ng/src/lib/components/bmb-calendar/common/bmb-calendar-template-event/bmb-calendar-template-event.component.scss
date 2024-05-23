@@ -13,12 +13,13 @@
   align-items: center;
   padding: 0;
   border: 0;
-  backdrop-filter: blur(1px);
+  backdrop-filter: blur(rem.rem_calc(1));
   z-index: 1;
 
   &-body {
-    border-radius: 8px;
-    box-shadow: 0 8px 8px RGBA(var(--color-charade-950), 0.25);
+    border-radius: rem.rem_calc(8);
+    box-shadow: 0 rem.rem_calc(8) rem.rem_calc(8)
+      RGBA(var(--color-charade-950), 0.25);
     background-color: RGBA(var(--color-charade-50));
     box-sizing: border-box;
     width: 90%;

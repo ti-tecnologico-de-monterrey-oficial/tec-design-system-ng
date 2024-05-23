@@ -7,7 +7,7 @@
   flex-flow: column nowrap;
   justify-content: center;
 
-  bmb-icon {
+  &-icon {
     color: RGBA(var(--color-mariner-950));
   }
 
@@ -17,20 +17,36 @@
     height: rem.rem_calc(128);
     width: rem.rem_calc(128);
 
-    bmb-icon {
+    .bmb_loader-icon {
       animation: rotateAnimation 1s linear infinite;
       font-size: rem.rem_calc(128);
     }
   }
 
-  &-connection {
-    align-items: center;
-    display: flex;
-    height: rem.rem_calc(280);
-    width: rem.rem_calc(280);
+  &-error {
+    height: 100vh;
+    margin: auto;
+    padding: rem.rem_calc(40 0);
+    text-align: center;
+    width: rem.rem_calc(240);
 
-    bmb-icon {
-      font-size: rem.rem_calc(280);
+    &-actions {
+      margin-top: rem.rem_calc(80);
+      width: 100%;
+
+      [appearance="primary"] {
+        margin-bottom: rem.rem_calc(16);
+      }
+    }
+
+    &-icon {
+      align-items: center;
+      display: flex;
+      height: rem.rem_calc(240);
+
+      .bmb_loader-icon {
+        font-size: rem.rem_calc(240);
+      }
     }
   }
 
@@ -44,6 +60,48 @@
     @include fonts.font(5, medium);
     color: RGBA(var(--color-mariner-950));
     margin: 0;
+  }
+
+  &-overlay {
+    background-color: var(--color-black-tint);
+    height: 100vh;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: 999;
+  }
+
+  &-modal {
+    background-color: RGBA(var(--color-charade-50));
+    border: rem.rem_calc(1) solid RGBA(var(--color-charade-100));
+    border-radius: rem.rem_calc(8);
+    height: rem.rem_calc(163);
+    left: 50%;
+    position: fixed;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: rem.rem_calc(192);
+    z-index: 1000;
+
+    .bmb_loader-loading {
+      height: rem.rem_calc(64);
+      width: rem.rem_calc(64);
+
+      .bmb_loader-icon {
+        font-size: rem.rem_calc(64);
+      }
+    }
+
+    .bmb_loader-title {
+      font-size: rem.rem_calc(18);
+      margin: rem.rem_calc(8 0 0);
+    }
+  }
+
+  &-body-overlay {
+    height: 100%;
+    overflow: hidden;
   }
 }
 
@@ -59,7 +117,12 @@
 [data-theme="dark"],
 .storybook-dark-theme {
   .bmb_loader {
-    bmb-icon,
+    &-modal {
+      background-color: RGBA(var(--color-charade-950));
+      border-color: RGBA(var(--color-charade-700));
+    }
+
+    &-icon,
     &-title,
     &-subtitle {
       color: RGBA(var(--color-charade-50));
