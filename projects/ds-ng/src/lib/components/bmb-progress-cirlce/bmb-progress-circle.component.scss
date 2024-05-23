@@ -1,33 +1,32 @@
 @use "../../../assets/styles/base/fonts" as fonts;
 
 .bmb_progress-circle {
-
-    &-background{
-      fill: RGBA(var(--color-charade-50));
-      fill-opacity: 1;
-    }
-
-    &-fill {
-      stroke: RGBA(var(--color-blue-primary));
-      fill: transparent;
-    }
-
-    &-track {
-      stroke: RGBA(var(--color-neon-primary));
-      stroke-linecap: round;
-      transition: all;
-    }
-
-    &-title{
-      @include fonts.font(4, regular);
-      fill: RGBA(var(--color-charade-950));
-    }
-
-    &-value-label{
-      @include fonts.font(7, medium);
-      fill: RGBA(var(--color-charade-950));
-    }
+  &-background {
+    fill: RGBA(var(--color-charade-50));
+    fill-opacity: 1;
   }
+
+  &-fill {
+    stroke: RGBA(var(--color-blue-primary));
+    fill: transparent;
+  }
+
+  &-track {
+    stroke: RGBA(var(--color-neon-primary));
+    stroke-linecap: round;
+    transition: all;
+  }
+
+  &-title {
+    @include fonts.font(4, regular);
+    fill: RGBA(var(--color-charade-950));
+  }
+
+  &-value-label {
+    @include fonts.font(7, medium);
+    fill: RGBA(var(--color-charade-950));
+  }
+}
 
 [data-theme="dark"],
 .storybook-dark-theme {
@@ -37,11 +36,11 @@
     }
 
     &-title {
-      fill: RGBA(var(--color-charade-50))
+      fill: RGBA(var(--color-charade-50));
     }
 
-    &-value-label{
-      fill: RGBA(var(--color-charade-50))
+    &-value-label {
+      fill: RGBA(var(--color-charade-50));
     }
   }
 }

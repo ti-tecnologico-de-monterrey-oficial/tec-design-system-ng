@@ -144,34 +144,20 @@ export class AppComponent {
     },
   ];
 
-  sidebarElements = [
-    {
-      icon: 'apps',
-      title: 'Titulo 1',
-      link: '#',
-    },
-    {
-      icon: 'apps',
-      title: 'Titulo 2',
-      link: '#',
-    },
-    {
-      icon: 'apps',
-      title: 'Titulo 3',
-      link: '#',
-    },
-    {
-      icon: 'apps',
-      title: 'Titulo 4',
-      link: '#',
-    },
-    {
-      icon: 'apps',
-      title: 'Titulo 5',
-      link: '#',
-    },
+  sidebarElements: {
+    id: number;
+    icon: string;
+    title: string;
+    link: string;
+  }[][] = [
+    [
+      { id: 1, icon: 'assignment_add', title: 'Elegir documentos', link: '#' },
+      { id: 2, icon: 'task', title: 'Agregar firmantes', link: '#' },
+      { id: 3, icon: 'note_alt', title: 'Crear envelope', link: '#' },
+      { id: 4, icon: 'checklist_rtl', title: 'Estado de archivos', link: '#' },
+    ],
+    [{ id: 5, icon: 'account_box', title: 'Admin. usuarios', link: '/' }],
   ];
-
   i = 0;
 
   userInformation = {
