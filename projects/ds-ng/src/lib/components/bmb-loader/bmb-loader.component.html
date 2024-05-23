@@ -1,10 +1,48 @@
-<div class="bmb_loader">
-  <div *ngIf="status != 'noConnection'" class="bmb_loader-loading">
-    <bmb-icon icon="progress_activity"></bmb-icon>
-  </div>
-  <div *ngIf="status === 'noConnection'" class="bmb_loader-connection">
-    <bmb-icon icon="wifi_off"></bmb-icon>
-  </div>
-  <div *ngIf="title" class="bmb_loader-title">{{ title }}</div>
-  <div *ngIf="subtitle" class="bmb_loader-subtitle">{{ subtitle }}</div>
+@if (overlay && !errorState) {
+  <div class="bmb_loader-overlay"></div>
+}
+<div
+  class="bmb_loader"
+  [ngClass]="{
+    'bmb_loader-modal': overlay && !errorState,
+    'bmb_loader-error': errorState
+  }"
+>
+  @if (!errorState) {
+    <div class="bmb_loader-loading">
+      <bmb-icon icon="progress_activity" class="bmb_loader-icon" />
+    </div>
+  }
+  @if (errorState) {
+    <div class="bmb_loader-error-icon">
+      <bmb-icon icon="wifi_off" class="bmb_loader-icon" />
+    </div>
+  }
+  @if (title) {
+    <div class="bmb_loader-title">{{ title }}</div>
+  }
+  @if (subtitle) {
+    <div class="bmb_loader-subtitle">{{ subtitle }}</div>
+  }
+
+  @if (errorState && actions) {
+    <div class="bmb_loader-error-actions">
+      <button
+        bmbButton
+        appearance="primary"
+        size="large"
+        (click)="handleButtonPrimary()"
+      >
+        {{ buttonPrimary }}
+      </button>
+      <button
+        bmbButton
+        appearance="secondary-outlined"
+        size="large"
+        (click)="handleButtonSecondary()"
+      >
+        {{ buttonSecondary }}
+      </button>
+    </div>
+  }
 </div>

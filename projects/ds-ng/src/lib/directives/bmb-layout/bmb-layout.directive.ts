@@ -1,6 +1,5 @@
 import { Directive, HostBinding, Input } from '@angular/core';
-
-type SizeNames = 'xs' | 's' | 'm' | 'l' | 'xl';
+import { SizeNames } from '../../types';
 
 @Directive({
   selector: '[bmbLayout]',

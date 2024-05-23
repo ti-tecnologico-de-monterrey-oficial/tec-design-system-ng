@@ -33,29 +33,30 @@ Below is an example of how you can use this component in HTML:
       control: false,
       description:
         'Data should be a collection of strings like: ["duck", "dog", ...]',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string[]' },
+        defaultValue: { summary: '[]' },
+      },
     },
     isLoading: {
       name: 'Loading state',
-      control: {
-        category: 'Properties',
-        defaultValue: { summary: 'false' },
-        type: 'boolean',
-      },
+      control: 'boolean',
       description: 'Set the loading state.',
       table: {
         type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+        category: 'Properties',
       },
     },
     isServerSideFilter: {
       name: 'Server side filter',
-      control: {
-        category: 'Properties',
-        defaultValue: { summary: 'false' },
-        type: 'boolean',
-      },
+      control: 'boolean',
       description: 'Set the server side filter.',
       table: {
         type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+        category: 'Properties',
       },
     },
     placeholder: {
@@ -75,6 +76,11 @@ Below is an example of how you can use this component in HTML:
       control: false,
       description:
         'Once the server has filtered the result it must place it in this input attribute.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string[]' },
+        defaultValue: { summary: '[]' },
+      },
     },
     onValueChange: {
       name: 'On value change',
@@ -82,6 +88,7 @@ Below is an example of how you can use this component in HTML:
       description: 'These events are triggered once the input value changes.',
       table: {
         type: { summary: 'function' },
+        category: 'Events',
       },
     },
     onServerSideFilterEvent: {
@@ -91,6 +98,7 @@ Below is an example of how you can use this component in HTML:
         'This function is executed once the value of the field has changed, the result must be stored in serverSideFilteredData.',
       table: {
         type: { summary: 'function' },
+        category: 'Events',
       },
     },
   },

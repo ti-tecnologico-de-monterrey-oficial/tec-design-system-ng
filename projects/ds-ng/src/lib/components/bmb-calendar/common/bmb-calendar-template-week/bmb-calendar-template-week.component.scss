@@ -1,6 +1,8 @@
+@use "../../../../../assets/styles/base/rem";
+
 .bmb_calendar-week-view {
   display: flex;
   justify-content: space-between;
   overflow: auto;
-  height: calc(100% - 52px);
+  height: calc(100% - rem.rem_calc(52));
 }

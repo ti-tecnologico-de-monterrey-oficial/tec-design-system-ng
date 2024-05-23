@@ -30,10 +30,8 @@ Below is an example of how you can use this component in HTML:
   argTypes: {
     view: {
       name: 'View',
-      control: {
-        type: 'radio',
-      },
-      options: ['day', 'view', 'month'],
+      control: 'radio',
+      options: ['day', 'week', 'month'],
       description: 'Select the view type.',
       table: {
         category: 'Properties',
@@ -100,7 +98,7 @@ Below is an example of how you can use this component in HTML:
       description: 'This handler can be used for pull new calendar events.',
       table: {
         category: 'Events',
-        type: { summary: '(onDateChange)="yourFunction()"' },
+        type: { summary: 'function' },
       },
     },
     events: {
@@ -125,9 +123,11 @@ Below is an example of how you can use this component in HTML:
         end: '2024-04-23T15:30:00.715Z',
       },
     ],
+    view: 'week',
     onDateChange: (params: any) => {
       window.alert(params.toString());
     },
+    isLoading: false,
   },
 } as Meta<typeof BmbCalendarComponent>;
 
