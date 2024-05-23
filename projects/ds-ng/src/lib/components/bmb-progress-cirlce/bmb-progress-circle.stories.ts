@@ -69,7 +69,8 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'string, Array<string>',
       },
-      description: 'Is the text of the component, to show the text in one line use a simple array, if you want to show the title in more than one line, use an array string',
+      description:
+        'Is the text of the component, to show the text in one line use a simple array, if you want to show the title in more than one line, use an array string',
       table: {
         category: 'Properties',
         type: { summary: 'string, Array<string>' },
@@ -92,13 +93,14 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'boolean',
       },
-      description: 'Set if the background of the progress circle will be displayed.',
+      description:
+        'Set if the background of the progress circle will be displayed.',
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
         defaultValue: { summary: true },
       },
-    }
+    },
   },
   args: {
     percent: 85,
