@@ -2,7 +2,7 @@
   <bmb-icon class="bmb_sidebar-open" icon="arrow_back_ios" />
   <ng-container *ngFor="let group of elements">
     <ul class="bmb_sidebar-list">
-      <li *ngFor="let element of group.child" class="bmb_sidebar-item">
+      <li *ngFor="let element of group" class="bmb_sidebar-item">
         <a
           class="bmb_sidebar-link"
           [id]="element.id"

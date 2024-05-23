@@ -4,7 +4,3 @@ export interface SidebarElement {
   title: string;
   link: string;
 }
-
-export interface SidebarElements {
-  child: SidebarElement[];
-}
