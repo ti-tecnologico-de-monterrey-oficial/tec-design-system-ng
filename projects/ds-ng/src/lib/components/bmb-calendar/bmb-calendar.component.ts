@@ -5,6 +5,8 @@ import {
   ViewEncapsulation,
   Output,
   EventEmitter,
+  HostListener,
+  SimpleChanges,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DateTime } from 'luxon';
@@ -13,6 +15,7 @@ import { BmbCalendarTemplateDayComponent } from './common/bmb-calendar-template-
 import { BmbCalendarTemplateMonthComponent } from './common/bmb-calendar-template-month/bmb-calendar-template-month.component';
 import { BmbLoaderComponent } from '../bmb-loader/bmb-loader.component';
 import { BmbCalendarHeaderComponent } from './common/bmb-calendar-header/bmb-calendar-header.component';
+import { BmbCalendarTemplateMobileComponent } from './common/bmb-calendar-template-mobile/bmb-calendar-template-mobile.component';
 import {
   IBmbCalendarEvent,
   IBmbCalendarEventClick,
@@ -35,6 +38,7 @@ export { IBmbCalendarEvent, IBmbCalendarEventClick } from './types';
     BmbLoaderComponent,
     BmbCalendarHeaderComponent,
     BmbCalendarTemplateEventComponent,
+    BmbCalendarTemplateMobileComponent,
   ],
   styleUrl: './bmb-calendar.component.scss',
   templateUrl: './bmb-calendar.component.html',
@@ -55,6 +59,15 @@ export class BmbCalendarComponent {
   @Input() height: number | string = 700;
 
   @Output() onDateChange: EventEmitter<any> = new EventEmitter<any>();
+
+  @HostListener('window:resize', ['$event'])
+    private resize(event: any) {
+      this.view = window.innerWidth < 1000 ? 'day' : this.view;;
+  }
+
+  ngOnInit() {
+    this.view = window.innerWidth < 1000 ? 'day' : this.view;
+  }
 
   now =
     this.currentDate === ''

@@ -138,7 +138,7 @@ Below is an example of how you can use this component in HTML:
         category: 'Events',
       },
     },
-    onLangChange: {
+    onValueChange: {
       name: 'Language change event',
       control: false,
       description: 'Function that is executed when the lang change.',
@@ -153,7 +153,7 @@ Below is an example of how you can use this component in HTML:
     appSubTitle: 'Sub title',
     showLang: false,
     lang: 'es',
-    onLangChange: () => {
+    onValueChange: () => {
       console.log('test');
     },
     logOut: () => {

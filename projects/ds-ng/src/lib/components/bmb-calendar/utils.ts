@@ -1,4 +1,4 @@
-import { DateTime } from 'luxon';
+import { DateTime, Info, StringUnitLength } from 'luxon';
 import { IBmbCalendarEvent, IBmbCalendarRenderEvents } from './types';
 
 export const getWeekDays = (date: DateTime): DateTime[] => {
@@ -18,6 +18,8 @@ export const getWeekDays = (date: DateTime): DateTime[] => {
 };
 
 export const getMonthDays = (date: DateTime): DateTime[] => {
+  console.log(date);
+
   const currentWeek = DateTime.fromObject({
     weekYear: date.year,
     weekNumber: date.weekNumber,
@@ -26,9 +28,12 @@ export const getMonthDays = (date: DateTime): DateTime[] => {
 
   let weekDays = [];
 
-  for (let day = -1; day <= 38; day++) {
+  for (let day = -1; day <= 33; day++) {
     weekDays.push(firstWeekDay.plus({ days: day }));
   }
+
+  console.log('weekDays', weekDays);
+
 
   return weekDays;
 };
@@ -58,3 +63,20 @@ export const eventsInDate = ({
 
   return todayEvents;
 };
+
+export const dayName = (date: DateTime, lang: string, format: StringUnitLength = 'short'): string => {
+  const defaultDayOrder = Info.weekdays(format, { locale: lang });
+  return defaultDayOrder[date.weekday - 1];
+}
+
+export const weeksAndDays = (date: DateTime): DateTime[] => {
+  const calculateFirstDay = getWeekDays(date);
+
+  let weekDays = [];
+
+  for (let day = 0; day <= 34; day++) {
+    weekDays.push(calculateFirstDay[0].plus({ days: day }));
+  }
+
+  return weekDays;
+}

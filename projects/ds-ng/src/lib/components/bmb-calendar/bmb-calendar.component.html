@@ -1,4 +1,11 @@
 <div class="bmb_calendar" [ngStyle]="{ height: getHeight(height) }">
+  <bmb-calendar-template-mobile
+    [now]="now"
+    [lang]="lang"
+    [events]="events"
+    (onCurrentDateChange)="handleCurrentDateChange($event)"
+    [weekDays]="renderWeekDays"
+  />
   <bmb-calendar-header
     [weekDays]="renderWeekDays"
     [lang]="lang"
@@ -9,7 +16,7 @@
   />
   @switch (view) {
     @case ("day") {
-      <bmb-bmb-calendar-template-day
+      <bmb-calendar-template-day
         [now]="now"
         [events]="events"
         (onSelectEvent)="handleSelectEvent($event)"
