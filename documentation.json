@@ -120,12 +120,12 @@
     },
     {
       "name": "IFixDecimals",
-      "id": "interface-IFixDecimals-2d4c61f6834d4de11e1efdeb7b6e471f905aa09182cd9252968c6349713d05e71e36f3912da79c88aa07514358d2430d140bbb8ae1d1a97205e1bc05eda8012f",
+      "id": "interface-IFixDecimals-602e431ec335a91671009ab3413874c4702d69e14018e0f936d2b24ce3f2b2ee07d7f868f6dc0f199a2c7be74a9a2319ababcc0c0363d9a7eb92507413fce893",
       "file": "projects/ds-ng/src/lib/utils/pixelToRem.ts",
       "deprecated": false,
       "deprecationMessage": "",
       "type": "interface",
-      "sourceCode": "interface IFixDecimals {\n  value: number;\n  dp?: number;\n}\n\nfunction fixDecimals({ value, dp = 2 }: IFixDecimals) {\n  return parseFloat(value.toString()).toFixed(dp);\n}\n\nexport const pixelToRem = (size: number) =>\n  `${fixDecimals({ value: size / 16 })}rem`;\n",
+      "sourceCode": "interface IFixDecimals {\r\n  value: number;\r\n  dp?: number;\r\n}\r\n\r\nfunction fixDecimals({ value, dp = 2 }: IFixDecimals) {\r\n  return parseFloat(value.toString()).toFixed(dp);\r\n}\r\n\r\nexport const pixelToRem = (size: number) =>\r\n  `${fixDecimals({ value: size / 16 })}rem`;\r\n",
       "properties": [
         {
           "name": "dp",
@@ -321,12 +321,12 @@
     },
     {
       "name": "TableColum",
-      "id": "interface-TableColum-01cc5aa0718b6133b6fe73133e6cda30ee812619ff0d759936b5f4d5038352facea4d8acabf46bf53fbc1defc21e534c0924b611365456cd508b9d1dc0133b99",
+      "id": "interface-TableColum-458fb844ac0f110bfcf009499f84f081e18f6611b7167a3dda487148b3a7ef17687e6bb5ed777f485c9f15640ca6ce7a1c9f03bff2db36289992ae75c47e066a",
       "file": "projects/ds-ng/src/lib/components/bmb-tables/bmb-tables.interface.ts",
       "deprecated": false,
       "deprecationMessage": "",
       "type": "interface",
-      "sourceCode": "import { TemplateRef } from '@angular/core';\n\nexport interface TableColum {\n  label: string;\n  def: string;\n  dataKey: string;\n  templateActions?: TemplateRef<any>;\n  width?: number;\n}\n\nexport interface TableConfig {\n  isSelectable?: boolean;\n  isPaginable?: boolean;\n  isExpandible?: boolean;\n  showActions?: boolean;\n}\n",
+      "sourceCode": "import { TemplateRef } from '@angular/core';\r\n\r\nexport interface TableColum {\r\n  label: string;\r\n  def: string;\r\n  dataKey: string;\r\n  templateActions?: TemplateRef<any>;\r\n  width?: number;\r\n}\r\n\r\nexport interface TableConfig {\r\n  isSelectable?: boolean;\r\n  isPaginable?: boolean;\r\n  isExpandible?: boolean;\r\n  showActions?: boolean;\r\n}\r\n",
       "properties": [
         {
           "name": "dataKey",
@@ -381,12 +381,12 @@
     },
     {
       "name": "TableConfig",
-      "id": "interface-TableConfig-01cc5aa0718b6133b6fe73133e6cda30ee812619ff0d759936b5f4d5038352facea4d8acabf46bf53fbc1defc21e534c0924b611365456cd508b9d1dc0133b99",
+      "id": "interface-TableConfig-458fb844ac0f110bfcf009499f84f081e18f6611b7167a3dda487148b3a7ef17687e6bb5ed777f485c9f15640ca6ce7a1c9f03bff2db36289992ae75c47e066a",
       "file": "projects/ds-ng/src/lib/components/bmb-tables/bmb-tables.interface.ts",
       "deprecated": false,
       "deprecationMessage": "",
       "type": "interface",
-      "sourceCode": "import { TemplateRef } from '@angular/core';\n\nexport interface TableColum {\n  label: string;\n  def: string;\n  dataKey: string;\n  templateActions?: TemplateRef<any>;\n  width?: number;\n}\n\nexport interface TableConfig {\n  isSelectable?: boolean;\n  isPaginable?: boolean;\n  isExpandible?: boolean;\n  showActions?: boolean;\n}\n",
+      "sourceCode": "import { TemplateRef } from '@angular/core';\r\n\r\nexport interface TableColum {\r\n  label: string;\r\n  def: string;\r\n  dataKey: string;\r\n  templateActions?: TemplateRef<any>;\r\n  width?: number;\r\n}\r\n\r\nexport interface TableConfig {\r\n  isSelectable?: boolean;\r\n  isPaginable?: boolean;\r\n  isExpandible?: boolean;\r\n  showActions?: boolean;\r\n}\r\n",
       "properties": [
         {
           "name": "isExpandible",
@@ -921,12 +921,12 @@
     },
     {
       "name": "BmbLayoutDirective",
-      "id": "directive-BmbLayoutDirective-25c94c210dd767746bef659dccb23cd592afc14f602ae514176704a55ebc7f3575b6e3afae52655e86c7632fc155d07f4765c8b49aac7b3a6eb5046419ee6f67",
+      "id": "directive-BmbLayoutDirective-1cee952f34305e7c352dcd441785dc06eb1609d3f2e7e27b7551122de87aeae9d722013c490f987ad7cfc208a70ee8115e9cce6dc377c87d00477cd919856b09",
       "file": "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout.directive.ts",
       "type": "directive",
       "description": "",
       "rawdescription": "\n",
-      "sourceCode": "import { Directive, HostBinding, Input } from '@angular/core';\nimport { SizeNames } from '../../types';\n\n@Directive({\n  selector: '[bmbLayout]',\n  standalone: true,\n})\nexport class BmbLayoutDirective {\n  @Input() gapSise: SizeNames = 'm';\n  @Input() margin: SizeNames = 'm';\n  @Input() dinamycCols: boolean = false;\n\n  constructor() {}\n\n  @HostBinding('class') get elementClass(): string[] {\n    const classes = ['bmb_layout'];\n    classes.push(`bmb_gap-${this.gapSise}`);\n    if (this.dinamycCols) classes.push('bmb_layout-smart');\n    return classes;\n  }\n}\n",
+      "sourceCode": "import { Directive, HostBinding, Input } from '@angular/core';\r\nimport { SizeNames } from '../../types';\r\n\r\n@Directive({\r\n  selector: '[bmbLayout]',\r\n  standalone: true,\r\n})\r\nexport class BmbLayoutDirective {\r\n  @Input() gapSise: SizeNames = 'm';\r\n  @Input() margin: SizeNames = 'm';\r\n  @Input() dinamycCols: boolean = false;\r\n\r\n  constructor() {}\r\n\r\n  @HostBinding('class') get elementClass(): string[] {\r\n    const classes = ['bmb_layout'];\r\n    classes.push(`bmb_gap-${this.gapSise}`);\r\n    if (this.dinamycCols) classes.push('bmb_layout-smart');\r\n    return classes;\r\n  }\r\n}\r\n",
       "selector": "[bmbLayout]",
       "providers": [],
       "hostDirectives": [],
@@ -1283,7 +1283,7 @@
     },
     {
       "name": "BmbCalendarComponent",
-      "id": "component-BmbCalendarComponent-0a6268267a124e80d6bd2da818b17959a0e627534c7276079a78869a8fef8353075ea3e93e76a34910ecad4f6181c8ccd49a692adf739c2e0fdd4747e0de1761",
+      "id": "component-BmbCalendarComponent-5f96da79727338b13de1e5ce73f28d5a46fe7d48664fb031cb1259ae218612bad2ef294d260aec70e3e94f5eff24dce48b6890e058f897b799b4097e8eab7d6f",
       "file": "projects/ds-ng/src/lib/components/bmb-calendar/bmb-calendar.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": ["ViewEncapsulation.None"],
@@ -1392,6 +1392,16 @@
       ],
       "propertiesClass": [
         {
+          "name": "isMobile",
+          "defaultValue": "false",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "optional": false,
+          "description": "",
+          "line": 72
+        },
+        {
           "name": "now",
           "defaultValue": "this.currentDate === ''\n      ? DateTime.now()\n      : DateTime.fromISO(this.currentDate)",
           "deprecated": false,
@@ -1399,7 +1409,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 59
+          "line": 65
         },
         {
           "name": "renderWeekDays",
@@ -1409,7 +1419,7 @@
           "type": "DateTime[]",
           "optional": false,
           "description": "",
-          "line": 64
+          "line": 70
         },
         {
           "name": "selectedEvent",
@@ -1419,7 +1429,7 @@
           "type": "literal type | null",
           "optional": false,
           "description": "",
-          "line": 65
+          "line": 71
         },
         {
           "name": "weekNumber",
@@ -1429,7 +1439,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 63
+          "line": 69
         }
       ],
       "methodsClass": [
@@ -1446,7 +1456,7 @@
           "optional": false,
           "returnType": "string",
           "typeParameters": [],
-          "line": 109,
+          "line": 116,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -1474,7 +1484,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 95,
+          "line": 102,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -1508,7 +1518,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 67,
+          "line": 74,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -1545,7 +1555,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 101,
+          "line": 108,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -1573,7 +1583,7 @@
           "optional": false,
           "returnType": "boolean",
           "typeParameters": [],
-          "line": 105,
+          "line": 112,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -1627,13 +1637,21 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n  Output,\n  EventEmitter,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { DateTime } from 'luxon';\nimport { BmbCalendarTemplateWeekComponent } from './common/bmb-calendar-template-week/bmb-calendar-template-week.component';\nimport { BmbCalendarTemplateDayComponent } from './common/bmb-calendar-template-day/bmb-calendar-template-day.component';\nimport { BmbCalendarTemplateMonthComponent } from './common/bmb-calendar-template-month/bmb-calendar-template-month.component';\nimport { BmbLoaderComponent } from '../bmb-loader/bmb-loader.component';\nimport { BmbCalendarHeaderComponent } from './common/bmb-calendar-header/bmb-calendar-header.component';\nimport {\n  IBmbCalendarEvent,\n  IBmbCalendarEventClick,\n  IBmbCalendarHourFormat,\n  IBmbCalendarView,\n} from './types';\nimport { getWeekDays, getMonthDays } from './utils';\nimport { BmbCalendarTemplateEventComponent } from './common/bmb-calendar-template-event/bmb-calendar-template-event.component';\n\nexport { IBmbCalendarEvent, IBmbCalendarEventClick } from './types';\n\n@Component({\n  selector: 'bmb-calendar',\n  standalone: true,\n  imports: [\n    CommonModule,\n    BmbCalendarTemplateDayComponent,\n    BmbCalendarTemplateWeekComponent,\n    BmbCalendarTemplateMonthComponent,\n    BmbLoaderComponent,\n    BmbCalendarHeaderComponent,\n    BmbCalendarTemplateEventComponent,\n  ],\n  styleUrl: './bmb-calendar.component.scss',\n  templateUrl: './bmb-calendar.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbCalendarComponent {\n  @Input() events: IBmbCalendarEvent[] = [];\n  @Input() view: IBmbCalendarView = 'week';\n  @Input() isLoading: boolean = false;\n  @Input() hourFormat: IBmbCalendarHourFormat = '12';\n  @Input() calendarTimezone: string =\n    Intl.DateTimeFormat().resolvedOptions().timeZone;\n  @Input() clientTimezone: string =\n    Intl.DateTimeFormat().resolvedOptions().timeZone;\n  @Input() lang: string = 'es-MX';\n  @Input() currentDate: string = '';\n  @Input() height: number | string = 700;\n\n  @Output() onDateChange: EventEmitter<any> = new EventEmitter<any>();\n\n  now =\n    this.currentDate === ''\n      ? DateTime.now()\n      : DateTime.fromISO(this.currentDate);\n  weekNumber = this.now.weekNumber;\n  renderWeekDays: DateTime[] = getWeekDays(this.now);\n  selectedEvent: { event: IBmbCalendarEvent; position: any } | null = null;\n\n  handleDateChange(range: IBmbCalendarView, now: DateTime): void {\n    this.view = range;\n    let visibleDates: (string | null)[] = [];\n\n    switch (range) {\n      case 'day':\n        visibleDates = [now.toISO()];\n        break;\n\n      case 'week':\n        visibleDates = getWeekDays(now).map((date) => date.toISO());\n        break;\n\n      case 'month':\n        visibleDates = getMonthDays(now).map((date) => date.toISO());\n        break;\n\n      default:\n        break;\n    }\n\n    this.onDateChange.emit({\n      range,\n      now: now.toISO(),\n      visibleDates,\n    });\n  }\n\n  handleCurrentDateChange(newDate: DateTime): void {\n    this.now = newDate;\n    this.weekNumber = newDate.weekNumber;\n    this.renderWeekDays = getWeekDays(newDate);\n  }\n\n  handleSelectEvent(newEvent: IBmbCalendarEventClick | null): void {\n    this.selectedEvent = newEvent;\n  }\n\n  isAnEventSelected(event: IBmbCalendarEventClick | null): boolean {\n    return !!event;\n  }\n\n  getHeight(height: string | number): string {\n    if (typeof height === 'number') return `${height}px`;\n\n    return height;\n  }\n}\n",
+      "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n  Output,\n  EventEmitter,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { DateTime } from 'luxon';\nimport { BmbCalendarTemplateWeekComponent } from './common/bmb-calendar-template-week/bmb-calendar-template-week.component';\nimport { BmbCalendarTemplateDayComponent } from './common/bmb-calendar-template-day/bmb-calendar-template-day.component';\nimport { BmbCalendarTemplateMonthComponent } from './common/bmb-calendar-template-month/bmb-calendar-template-month.component';\nimport { BmbLoaderComponent } from '../bmb-loader/bmb-loader.component';\nimport { BmbCalendarHeaderComponent } from './common/bmb-calendar-header/bmb-calendar-header.component';\nimport {\n  IBmbCalendarEvent,\n  IBmbCalendarEventClick,\n  IBmbCalendarHourFormat,\n  IBmbCalendarView,\n} from './types';\nimport { getWeekDays, getMonthDays } from './utils';\nimport { BmbCalendarTemplateEventComponent } from './common/bmb-calendar-template-event/bmb-calendar-template-event.component';\n\nexport { IBmbCalendarEvent, IBmbCalendarEventClick } from './types';\n\n@Component({\n  selector: 'bmb-calendar',\n  standalone: true,\n  imports: [\n    CommonModule,\n    BmbCalendarTemplateDayComponent,\n    BmbCalendarTemplateWeekComponent,\n    BmbCalendarTemplateMonthComponent,\n    BmbLoaderComponent,\n    BmbCalendarHeaderComponent,\n    BmbCalendarTemplateEventComponent,\n  ],\n  styleUrl: './bmb-calendar.component.scss',\n  templateUrl: './bmb-calendar.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbCalendarComponent {\n  @Input() events: IBmbCalendarEvent[] = [];\n  @Input() view: IBmbCalendarView = 'week';\n  @Input() isLoading: boolean = false;\n  @Input() hourFormat: IBmbCalendarHourFormat = '12';\n  @Input() calendarTimezone: string =\n    Intl.DateTimeFormat().resolvedOptions().timeZone;\n  @Input() clientTimezone: string =\n    Intl.DateTimeFormat().resolvedOptions().timeZone;\n  @Input() lang: string = 'es-MX';\n  @Input() currentDate: string = '';\n  @Input() height: number | string = 700;\n\n  @Output() onDateChange: EventEmitter<any> = new EventEmitter<any>();\n\n  constructor() {\n    window.addEventListener('resize', () => {\n      this.isMobile = window.innerWidth < 1000;\n    });\n  }\n\n  now =\n    this.currentDate === ''\n      ? DateTime.now()\n      : DateTime.fromISO(this.currentDate);\n  weekNumber = this.now.weekNumber;\n  renderWeekDays: DateTime[] = getWeekDays(this.now);\n  selectedEvent: { event: IBmbCalendarEvent; position: any } | null = null;\n  isMobile = false;\n\n  handleDateChange(range: IBmbCalendarView, now: DateTime): void {\n    this.view = range;\n    let visibleDates: (string | null)[] = [];\n\n    switch (range) {\n      case 'day':\n        visibleDates = [now.toISO()];\n        break;\n\n      case 'week':\n        visibleDates = getWeekDays(now).map((date) => date.toISO());\n        break;\n\n      case 'month':\n        visibleDates = getMonthDays(now).map((date) => date.toISO());\n        break;\n\n      default:\n        break;\n    }\n\n    this.onDateChange.emit({\n      range,\n      now: now.toISO(),\n      visibleDates,\n    });\n  }\n\n  handleCurrentDateChange(newDate: DateTime): void {\n    this.now = newDate;\n    this.weekNumber = newDate.weekNumber;\n    this.renderWeekDays = getWeekDays(newDate);\n  }\n\n  handleSelectEvent(newEvent: IBmbCalendarEventClick | null): void {\n    this.selectedEvent = newEvent;\n  }\n\n  isAnEventSelected(event: IBmbCalendarEventClick | null): boolean {\n    return !!event;\n  }\n\n  getHeight(height: string | number): string {\n    if (typeof height === 'number') return `${height}px`;\n\n    return height;\n  }\n}\n",
       "styleUrl": "./bmb-calendar.component.scss",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
+      "constructorObj": {
+        "name": "constructor",
+        "description": "",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "args": [],
+        "line": 57
+      },
       "extends": [],
-      "templateData": "<div class=\"bmb_calendar\" [ngStyle]=\"{ height: getHeight(height) }\">\n  <bmb-calendar-header\n    [weekDays]=\"renderWeekDays\"\n    [lang]=\"lang\"\n    [view]=\"view\"\n    [currentDate]=\"now\"\n    (onRangeChange)=\"handleDateChange($event, now)\"\n    (onCurrentDateChange)=\"handleCurrentDateChange($event)\"\n  />\n  @switch (view) {\n    @case (\"day\") {\n      <bmb-bmb-calendar-template-day\n        [now]=\"now\"\n        [events]=\"events\"\n        (onSelectEvent)=\"handleSelectEvent($event)\"\n      />\n    }\n    @case (\"week\") {\n      <bmb-calendar-template-week\n        [weekDays]=\"renderWeekDays\"\n        [lang]=\"lang\"\n        [hourFormat]=\"hourFormat\"\n        [now]=\"now\"\n        [events]=\"events\"\n        (onSelectEvent)=\"handleSelectEvent($event)\"\n      />\n    }\n    @case (\"month\") {\n      <bmb-calendar-template-month\n        [now]=\"now\"\n        [events]=\"events\"\n        (onSelectEvent)=\"handleSelectEvent($event)\"\n      />\n    }\n    @default {\n      <bmb-calendar-template-week\n        [weekDays]=\"renderWeekDays\"\n        [lang]=\"lang\"\n        [hourFormat]=\"hourFormat\"\n        [now]=\"now\"\n        [events]=\"events\"\n      />\n    }\n  }\n\n  @if (selectedEvent) {\n    <bmb-calendar-template-event\n      [event]=\"selectedEvent\"\n      (closeModal)=\"handleSelectEvent($event)\"\n    />\n  }\n\n  @if (isLoading) {\n    <section class=\"bmb_calendar-loader\">\n      <bmb-loader />\n    </section>\n  }\n</div>\n\n<!-- [handleChangeRange]=\"handleDateChange()\"; -->\n"
+      "templateData": "<div class=\"bmb_calendar\" [ngStyle]=\"{ height: getHeight(height) }\">\n  <bmb-calendar-header\n    [weekDays]=\"renderWeekDays\"\n    [lang]=\"lang\"\n    [view]=\"view\"\n    [currentDate]=\"now\"\n    (onRangeChange)=\"handleDateChange($event, now)\"\n    (onCurrentDateChange)=\"handleCurrentDateChange($event)\"\n  />\n  @switch (view) {\n    @case (\"day\") {\n      <bmb-bmb-calendar-template-day\n        [now]=\"now\"\n        [events]=\"events\"\n        (onSelectEvent)=\"handleSelectEvent($event)\"\n      />\n    }\n    @case (\"week\") {\n      <bmb-calendar-template-week\n        [weekDays]=\"renderWeekDays\"\n        [lang]=\"lang\"\n        [hourFormat]=\"hourFormat\"\n        [now]=\"now\"\n        [events]=\"events\"\n        (onSelectEvent)=\"handleSelectEvent($event)\"\n      />\n    }\n    @case (\"month\") {\n      <bmb-calendar-template-month\n        [now]=\"now\"\n        [events]=\"events\"\n        (onSelectEvent)=\"handleSelectEvent($event)\"\n      />\n    }\n    @default {\n      <bmb-calendar-template-week\n        [weekDays]=\"renderWeekDays\"\n        [lang]=\"lang\"\n        [hourFormat]=\"hourFormat\"\n        [now]=\"now\"\n        [events]=\"events\"\n      />\n    }\n  }\n\n  @if (isMobile) {\n    <div>Hola</div>\n  }\n\n  @if (selectedEvent) {\n    <bmb-calendar-template-event\n      [event]=\"selectedEvent\"\n      (closeModal)=\"handleSelectEvent($event)\"\n    />\n  }\n\n  @if (isLoading) {\n    <section class=\"bmb_calendar-loader\">\n      <bmb-loader />\n    </section>\n  }\n</div>\n\n<!-- [handleChangeRange]=\"handleDateChange()\"; -->\n"
     },
     {
       "name": "BmbCalendarHeaderComponent",
@@ -2934,7 +2952,7 @@
     },
     {
       "name": "BmbCardComponent",
-      "id": "component-BmbCardComponent-a025b2bbeadcd95a8cefe6d2304dae7dcd6221596ab5bddef1dfaaab7649c327a3842409d5c851852ce0f02150f33bbb486156a73461746bcb308be0e5e23d24",
+      "id": "component-BmbCardComponent-592c9ddd7cbd84b29c80cd66fbdd28625bf715400659fbfc42701f0b3f5e721eeeb16170d469ade551f4791b64066dc986a478077cde4e6d10a2421e96bba02f",
       "file": "projects/ds-ng/src/lib/components/bmb-card/bmb-card.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": ["ViewEncapsulation.None"],
@@ -3096,13 +3114,13 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import {\n  ChangeDetectionStrategy,\n  Component,\n  ContentChild,\n  ElementRef,\n  Input,\n  QueryList,\n  TemplateRef,\n  ViewChild,\n  ViewChildren,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { SizeNames } from '../../types';\n\n@Component({\n  selector: 'bmb-card',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './bmb-card.component.html',\n  styleUrl: './bmb-card.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbCardComponent {\n  @Input() borderRadius: SizeNames | SizeNames[] = 'm';\n  @Input() padding: SizeNames | SizeNames[] = 'm';\n  @Input() margin: SizeNames | SizeNames[] = 'm';\n\n  @ContentChild('header') headerContent?: TemplateRef<any>;\n  @ContentChild('footer') footerContent?: TemplateRef<any>;\n\n  getClasses() {\n    const classNames = [];\n    if (typeof this.borderRadius === 'string')\n      classNames.push(`bmb_border-radius-${this.borderRadius}`);\n    if (typeof this.margin === 'string')\n      classNames.push(`bmb_margin-${this.margin}`);\n\n    return classNames;\n  }\n\n  getStyles() {\n    const styles: any = {};\n    if (typeof this.borderRadius !== 'string')\n      styles['border-radius'] = this.calculateSize(this.borderRadius);\n    if (typeof this.margin !== 'string')\n      styles.margin = this.calculateSize(this.margin);\n\n    return styles;\n  }\n\n  getContentClasses() {\n    const classNames = [];\n    if (typeof this.padding === 'string')\n      classNames.push(`bmb_padding-${this.padding}`);\n\n    return classNames;\n  }\n\n  getContentStyles() {\n    const styles: any = {};\n    if (typeof this.padding !== 'string')\n      styles.padding = this.calculateSize(this.padding);\n\n    return styles;\n  }\n\n  calculateSize(pixels: string[]):string {\n    return pixels.map((size) => {\n      switch (size) {\n        case 'xs':\n          return '0.25rem';\n        case 's':\n          return '0.5rem';\n        case 'm':\n          return '1rem';\n        case 'l':\n          return '1.5rem';\n        case 'xl':\n          return '2rem';\n        case 'none':\n          return '0';\n        case 'auto':\n          return 'auto';\n        default:\n          return '1rem';\n      }\n    }).join(' ');\n  }\n}\n",
+      "sourceCode": "import {\r\n  ChangeDetectionStrategy,\r\n  Component,\r\n  ContentChild,\r\n  ElementRef,\r\n  Input,\r\n  QueryList,\r\n  TemplateRef,\r\n  ViewChild,\r\n  ViewChildren,\r\n  ViewEncapsulation,\r\n} from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { SizeNames } from '../../types';\r\n\r\n@Component({\r\n  selector: 'bmb-card',\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n  templateUrl: './bmb-card.component.html',\r\n  styleUrl: './bmb-card.component.scss',\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n  encapsulation: ViewEncapsulation.None,\r\n})\r\nexport class BmbCardComponent {\r\n  @Input() borderRadius: SizeNames | SizeNames[] = 'm';\r\n  @Input() padding: SizeNames | SizeNames[] = 'm';\r\n  @Input() margin: SizeNames | SizeNames[] = 'm';\r\n\r\n  @ContentChild('header') headerContent?: TemplateRef<any>;\r\n  @ContentChild('footer') footerContent?: TemplateRef<any>;\r\n\r\n  getClasses() {\r\n    const classNames = [];\r\n    if (typeof this.borderRadius === 'string')\r\n      classNames.push(`bmb_border-radius-${this.borderRadius}`);\r\n    if (typeof this.margin === 'string')\r\n      classNames.push(`bmb_margin-${this.margin}`);\r\n\r\n    return classNames;\r\n  }\r\n\r\n  getStyles() {\r\n    const styles: any = {};\r\n    if (typeof this.borderRadius !== 'string')\r\n      styles['border-radius'] = this.calculateSize(this.borderRadius);\r\n    if (typeof this.margin !== 'string')\r\n      styles.margin = this.calculateSize(this.margin);\r\n\r\n    return styles;\r\n  }\r\n\r\n  getContentClasses() {\r\n    const classNames = [];\r\n    if (typeof this.padding === 'string')\r\n      classNames.push(`bmb_padding-${this.padding}`);\r\n\r\n    return classNames;\r\n  }\r\n\r\n  getContentStyles() {\r\n    const styles: any = {};\r\n    if (typeof this.padding !== 'string')\r\n      styles.padding = this.calculateSize(this.padding);\r\n\r\n    return styles;\r\n  }\r\n\r\n  calculateSize(pixels: string[]): string {\r\n    return pixels\r\n      .map((size) => {\r\n        switch (size) {\r\n          case 'xs':\r\n            return '0.25rem';\r\n          case 's':\r\n            return '0.5rem';\r\n          case 'm':\r\n            return '1rem';\r\n          case 'l':\r\n            return '1.5rem';\r\n          case 'xl':\r\n            return '2rem';\r\n          case 'none':\r\n            return '0';\r\n          case 'auto':\r\n            return 'auto';\r\n          default:\r\n            return '1rem';\r\n        }\r\n      })\r\n      .join(' ');\r\n  }\r\n}\r\n",
       "styleUrl": "./bmb-card.component.scss",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
       "extends": [],
-      "templateData": "<section class=\"bmb_card\" [ngClass]=\"getClasses()\" [ngStyle]=\"getStyles()\">\n  @if (!!headerContent) {\n    <header class=\"bmb_card-header\" [ngClass]=\"getContentClasses()\" [ngStyle]=\"getContentStyles()\">\n      <ng-container [ngTemplateOutlet]=\"headerContent\"></ng-container>\n    </header>\n  }\n  <div class=\"bmb_card-content\" [ngClass]=\"getContentClasses()\" [ngStyle]=\"getContentStyles()\">\n    <ng-content></ng-content>\n  </div>\n  @if (!!footerContent) {\n    <footer class=\"bmb_card-footer\" [ngClass]=\"getContentClasses()\" [ngStyle]=\"getContentStyles()\">\n      <ng-container [ngTemplateOutlet]=\"footerContent\"></ng-container>\n    </footer>\n  }\n</section>\n"
+      "templateData": "<section class=\"bmb_card\" [ngClass]=\"getClasses()\" [ngStyle]=\"getStyles()\">\r\n  @if (!!headerContent) {\r\n    <header\r\n      class=\"bmb_card-header\"\r\n      [ngClass]=\"getContentClasses()\"\r\n      [ngStyle]=\"getContentStyles()\"\r\n    >\r\n      <ng-container [ngTemplateOutlet]=\"headerContent\"></ng-container>\r\n    </header>\r\n  }\r\n  <div\r\n    class=\"bmb_card-content\"\r\n    [ngClass]=\"getContentClasses()\"\r\n    [ngStyle]=\"getContentStyles()\"\r\n  >\r\n    <ng-content></ng-content>\r\n  </div>\r\n  @if (!!footerContent) {\r\n    <footer\r\n      class=\"bmb_card-footer\"\r\n      [ngClass]=\"getContentClasses()\"\r\n      [ngStyle]=\"getContentStyles()\"\r\n    >\r\n      <ng-container [ngTemplateOutlet]=\"footerContent\"></ng-container>\r\n    </footer>\r\n  }\r\n</section>\r\n"
     },
     {
       "name": "BmbCheckboxComponent",
@@ -5271,7 +5289,7 @@
     },
     {
       "name": "BmbLegendComponent",
-      "id": "component-BmbLegendComponent-5631d295b0433146b2615196afe1ca7aad0c45bbbe417456c39edff959caf952ddcf562cd6aad7561807c9720cf4b3a02cd7ace05f8c4a6dd48896e4e3745203",
+      "id": "component-BmbLegendComponent-f90f332392c6b31d0ed85f9adfc42305f44ec60dbfc76b23e4f909b96553548df5f34afd964e1000ac1a01d0d2364ce96859832567e233173a50095c816d9b33",
       "file": "projects/ds-ng/src/lib/components/bmb-legend/bmb-legend.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": ["ViewEncapsulation.None"],
@@ -5331,7 +5349,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import {\n  ChangeDetectionStrategy,\n  Component,\n  Input,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\nexport type IBmbLegendVariations =\n  | 'normal'\n  | 'strong'\n  | 'success'\n  | 'info'\n  | 'warning'\n  | 'error'\n  | 'brand';\n\n@Component({\n  selector: 'bmb-legend',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './bmb-legend.component.html',\n  styleUrl: './bmb-legend.component.scss',\n  encapsulation: ViewEncapsulation.None,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbLegendComponent {\n  @Input() label: string = '';\n  @Input() value: string = '';\n  @Input() indicatorAppearance: IBmbLegendVariations = 'normal';\n}\n",
+      "sourceCode": "import {\r\n  ChangeDetectionStrategy,\r\n  Component,\r\n  Input,\r\n  ViewEncapsulation,\r\n} from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\n\r\nexport type IBmbLegendVariations =\r\n  | 'normal'\r\n  | 'strong'\r\n  | 'success'\r\n  | 'info'\r\n  | 'warning'\r\n  | 'error'\r\n  | 'brand';\r\n\r\n@Component({\r\n  selector: 'bmb-legend',\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n  templateUrl: './bmb-legend.component.html',\r\n  styleUrl: './bmb-legend.component.scss',\r\n  encapsulation: ViewEncapsulation.None,\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class BmbLegendComponent {\r\n  @Input() label: string = '';\r\n  @Input() value: string = '';\r\n  @Input() indicatorAppearance: IBmbLegendVariations = 'normal';\r\n}\r\n",
       "styleUrl": "./bmb-legend.component.scss",
       "assetsDirs": [],
       "styleUrlsData": "",
@@ -5341,7 +5359,7 @@
     },
     {
       "name": "BmbLoaderComponent",
-      "id": "component-BmbLoaderComponent-acff4cf581ffb3bcadb33254f10ad67cc431f1abbd77c2c30b42328a9e32638968ad59d3debb67c1211600e9119dbbee154e94d7660797b9b87e6333e7d6e824",
+      "id": "component-BmbLoaderComponent-e80603db5ea6d3bf09f94bdb5e214eeb9e4074ed1be20b434ee6949802aa9aa30a37480bdac19034b0057d6f280c5fc26d8cfc76768407ddb548ff2465c3964a",
       "file": "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": ["ViewEncapsulation.None"],
@@ -5405,13 +5423,13 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\n\n@Component({\n  selector: 'bmb-loader',\n  styleUrl: './bmb-loader.component.scss',\n  templateUrl: './bmb-loader.component.html',\n  standalone: true,\n  imports: [CommonModule, BmbIconComponent],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbLoaderComponent {\n  @Input() status: string = '';\n  @Input() title: string = '';\n  @Input() subtitle: string = '';\n}\n",
+      "sourceCode": "import {\r\n  Component,\r\n  Input,\r\n  ChangeDetectionStrategy,\r\n  ViewEncapsulation,\r\n} from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\r\n\r\n@Component({\r\n  selector: 'bmb-loader',\r\n  styleUrl: './bmb-loader.component.scss',\r\n  templateUrl: './bmb-loader.component.html',\r\n  standalone: true,\r\n  imports: [CommonModule, BmbIconComponent],\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n  encapsulation: ViewEncapsulation.None,\r\n})\r\nexport class BmbLoaderComponent {\r\n  @Input() status: string = '';\r\n  @Input() title: string = '';\r\n  @Input() subtitle: string = '';\r\n}\r\n",
       "styleUrl": "./bmb-loader.component.scss",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
       "extends": [],
-      "templateData": "<div class=\"bmb_loader\">\n  <div *ngIf=\"status != 'noConnection'\" class=\"bmb_loader-loading\">\n    <bmb-icon icon=\"progress_activity\"></bmb-icon>\n  </div>\n  <div *ngIf=\"status === 'noConnection'\" class=\"bmb_loader-connection\">\n    <bmb-icon icon=\"wifi_off\"></bmb-icon>\n  </div>\n  <div *ngIf=\"title\" class=\"bmb_loader-title\">{{ title }}</div>\n  <div *ngIf=\"subtitle\" class=\"bmb_loader-subtitle\">{{ subtitle }}</div>\n</div>\n"
+      "templateData": "<div class=\"bmb_loader\">\r\n  <div *ngIf=\"status != 'noConnection'\" class=\"bmb_loader-loading\">\r\n    <bmb-icon icon=\"progress_activity\"></bmb-icon>\r\n  </div>\r\n  <div *ngIf=\"status === 'noConnection'\" class=\"bmb_loader-connection\">\r\n    <bmb-icon icon=\"wifi_off\"></bmb-icon>\r\n  </div>\r\n  <div *ngIf=\"title\" class=\"bmb_loader-title\">{{ title }}</div>\r\n  <div *ngIf=\"subtitle\" class=\"bmb_loader-subtitle\">{{ subtitle }}</div>\r\n</div>\r\n"
     },
     {
       "name": "BmbLogoComponent",
@@ -5514,7 +5532,7 @@
     },
     {
       "name": "BmbProgressBarComponent",
-      "id": "component-BmbProgressBarComponent-ea5cb449c40602108ff18d56013d4f31ff0aa9b1bce72e674402972e20df0ea77d8564c017cea10b1cd94a01ed28ee688445beea9d80fe6dbffcdf7dc0484dab",
+      "id": "component-BmbProgressBarComponent-1399a1db27f04c118ea236b971a2c5a719c62871ba077548b746e023640fad0c1f1f55de64addbb6edeef957e45b2ad374336ed1e22f519bdba042bd963a9899",
       "file": "projects/ds-ng/src/lib/components/bmb-progress-bar/bmb-progress-bar.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": ["ViewEncapsulation.None"],
@@ -5577,14 +5595,14 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  Input,\n  ViewEncapsulation,\n  OnChanges,\n} from '@angular/core';\n\n@Component({\n  selector: 'bmb-progress-bar',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './bmb-progress-bar.component.html',\n  styleUrl: './bmb-progress-bar.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbProgressBarComponent implements OnChanges {\n  @Input() progress: number = 0;\n\n  ngOnChanges() {\n    this.verifyPercentage();\n  }\n\n  verifyPercentage(): void {\n    if (this.progress < 0) {\n      this.progress = 0;\n    }\n\n    if (this.progress > 100) {\n      this.progress = 100;\n    }\n  }\n}\n",
+      "sourceCode": "import { CommonModule } from '@angular/common';\r\nimport {\r\n  ChangeDetectionStrategy,\r\n  Component,\r\n  Input,\r\n  ViewEncapsulation,\r\n  OnChanges,\r\n} from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'bmb-progress-bar',\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n  templateUrl: './bmb-progress-bar.component.html',\r\n  styleUrl: './bmb-progress-bar.component.scss',\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n  encapsulation: ViewEncapsulation.None,\r\n})\r\nexport class BmbProgressBarComponent implements OnChanges {\r\n  @Input() progress: number = 0;\r\n\r\n  ngOnChanges() {\r\n    this.verifyPercentage();\r\n  }\r\n\r\n  verifyPercentage(): void {\r\n    if (this.progress < 0) {\r\n      this.progress = 0;\r\n    }\r\n\r\n    if (this.progress > 100) {\r\n      this.progress = 100;\r\n    }\r\n  }\r\n}\r\n",
       "styleUrl": "./bmb-progress-bar.component.scss",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
       "extends": [],
       "implements": ["OnChanges"],
-      "templateData": "<div class=\"bmb_progress-bar\">\n  <div class=\"bmb_progress-bar-track\">\n    <div class=\"bmb_progress-bar-active\" [style.width.%]=\"progress\"></div>\n  </div>\n</div>\n"
+      "templateData": "<div class=\"bmb_progress-bar\">\r\n  <div class=\"bmb_progress-bar-track\">\r\n    <div class=\"bmb_progress-bar-active\" [style.width.%]=\"progress\"></div>\r\n  </div>\r\n</div>\r\n"
     },
     {
       "name": "BmbProgressCircleComponent",
@@ -6378,7 +6396,7 @@
         ]
       },
       "extends": [],
-      "templateData": "<section class=\"bmb_search-input\">\n  <div class=\"bmb_search-input-field\">\n    <label class=\"bmb_search-input-field-label\" [for]=\"'filter-' + uid\">\n      <bmb-icon icon=\"search\" />\n    </label>\n    <input\n      class=\"bmb_search-input-field-input\"\n      [disabled]=\"isLoading\"\n      type=\"text\"\n      #filterInput\n      [id]=\"'filter-' + uid\"\n      [name]=\"'filter-' + uid\"\n      [formControl]=\"filterControl\"\n      [placeholder]=\"placeholder\"\n    />\n    <button\n      class=\"bmb_search-input-field-clear\"\n      [disabled]=\"isLoading\"\n      bmbButton\n      (click)=\"clearFilter()\"\n    >\n      <bmb-icon icon=\"close\" />\n    </button>\n  </div>\n  <section\n    role=\"dialog\"\n    class=\"bmb_search-input-dialog\"\n    [ngClass]=\"getDialogOpen()\"\n  >\n    @if (isLoading) {\n      <bmb-loader />\n    } @else {\n      <ul class=\"bmb_search-input-dialog-list\">\n        @for (item of filteredData; track $index) {\n          <li class=\"bmb_search-input-dialog-list-item\">\n            <button\n              class=\"bmb_search-input-dialog-list-item-button\"\n              (click)=\"handleItemClick(item)\"\n            >\n              {{ item }}\n            </button>\n          </li>\n        }\n      </ul>\n    }\n  </section>\n</section>\n"
+      "templateData": "<section class=\"bmb_search-input\">\r\n  <div class=\"bmb_search-input-field\">\r\n    <label class=\"bmb_search-input-field-label\" [for]=\"'filter-' + uid\">\r\n      <bmb-icon icon=\"search\" />\r\n    </label>\r\n    <input\r\n      class=\"bmb_search-input-field-input\"\r\n      [disabled]=\"isLoading\"\r\n      type=\"text\"\r\n      #filterInput\r\n      [id]=\"'filter-' + uid\"\r\n      [name]=\"'filter-' + uid\"\r\n      [formControl]=\"filterControl\"\r\n      [placeholder]=\"placeholder\"\r\n    />\r\n    <button\r\n      class=\"bmb_search-input-field-clear\"\r\n      [disabled]=\"isLoading\"\r\n      bmbButton\r\n      (click)=\"clearFilter()\"\r\n    >\r\n      <bmb-icon icon=\"close\" />\r\n    </button>\r\n  </div>\r\n  <section\r\n    role=\"dialog\"\r\n    class=\"bmb_search-input-dialog\"\r\n    [ngClass]=\"getDialogOpen()\"\r\n  >\r\n    @if (isLoading) {\r\n      <bmb-loader />\r\n    } @else {\r\n      <ul class=\"bmb_search-input-dialog-list\">\r\n        @for (item of filteredData; track $index) {\r\n          <li class=\"bmb_search-input-dialog-list-item\">\r\n            <button\r\n              class=\"bmb_search-input-dialog-list-item-button\"\r\n              (click)=\"handleItemClick(item)\"\r\n            >\r\n              {{ item }}\r\n            </button>\r\n          </li>\r\n        }\r\n      </ul>\r\n    }\r\n  </section>\r\n</section>\r\n"
     },
     {
       "name": "BmbSelectComponent",
@@ -7035,7 +7053,7 @@
     },
     {
       "name": "BmbTablesComponent",
-      "id": "component-BmbTablesComponent-12c6b740f0c6ec4cafce9429cce6531f1d73c01348508954dbe675b449bf33060d65fa624cbf614289ddf4fbf4562b804888e14efdccfb5b62aa59f77f04703a",
+      "id": "component-BmbTablesComponent-d0687a47e6e5529724bf56fea55dfd1fdfbcc75731c6e3ba2bc4ed3e4ee6f945f6f32640cc5283240a50adca2e1861e51e3be3c86d5ec6cce056691d0c315d1d",
       "file": "projects/ds-ng/src/lib/components/bmb-tables/bmb-tables.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": ["ViewEncapsulation.None"],
@@ -7735,7 +7753,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { CommonModule } from '@angular/common';\nimport {\n  Component,\n  Input,\n  AfterViewInit,\n  ViewChild,\n  OnInit,\n  Output,\n  EventEmitter,\n  ElementRef,\n  TemplateRef,\n  HostListener,\n  Renderer2,\n  ViewEncapsulation,\n  ChangeDetectionStrategy,\n} from '@angular/core';\nimport { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';\nimport {\n  MatTableDataSource,\n  MatTableModule,\n  MatTable,\n} from '@angular/material/table';\nimport {\n  animate,\n  state,\n  style,\n  transition,\n  trigger,\n} from '@angular/animations';\nimport { MatInputModule } from '@angular/material/input';\nimport { MatFormFieldModule } from '@angular/material/form-field';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatCheckboxModule } from '@angular/material/checkbox';\nimport { SelectionModel } from '@angular/cdk/collections';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\nimport { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';\nimport { TableColum, TableConfig } from './bmb-tables.interface';\n\n@Component({\n  selector: 'bmb-table',\n  standalone: true,\n  imports: [\n    CommonModule,\n    BmbIconComponent,\n    BmbCheckboxComponent,\n    MatPaginatorModule,\n    MatTableModule,\n    MatCheckboxModule,\n    MatIconModule,\n    MatButtonModule,\n    MatFormFieldModule,\n    MatInputModule,\n  ],\n  templateUrl: './bmb-tables.component.html',\n  styleUrl: './bmb-tables.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n  animations: [\n    trigger('detailExpand', [\n      state('collapsed,void', style({ height: '0px', minHeight: '0' })),\n      state('expanded', style({ height: '*' })),\n      transition(\n        'expanded <=> collapsed',\n        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)'),\n      ),\n    ]),\n  ],\n})\nexport class BmbTablesComponent implements AfterViewInit, OnInit {\n  dataSource: MatTableDataSource<Array<any>> = new MatTableDataSource();\n  tableDisplayColumns: string[] = [];\n  tableColumns: TableColum[] = [];\n  expandedElement: any;\n  selection = new SelectionModel<any>(true, []);\n  tableConfig: TableConfig | undefined;\n  paginatorSize: number | undefined;\n\n  // Resize Columns\n  pressed = false;\n  currentResizeIndex?: number;\n  startX?: number;\n  startWidth?: number;\n  isResizingRight?: boolean;\n  resizableMousemove?: () => void;\n  resizableMouseup?: () => void;\n\n  @Input() set pageSize(size: number) {\n    this.paginatorSize = size;\n  }\n\n  @Input() set data(data: Array<any>) {\n    this.dataSource = new MatTableDataSource(data);\n  }\n\n  @Input() set columns(columns: TableColum[]) {\n    this.tableColumns = columns;\n    this.tableDisplayColumns = this.tableColumns.map((col) => col.def);\n  }\n\n  @Input() set config(config: TableConfig) {\n    this.setConfig(config);\n  }\n\n  @Input() actionTemplate?: TemplateRef<any> | null;\n\n  @Input() detailTemplate: TemplateRef<any> | null = null;\n\n  @Output() select: EventEmitter<any> = new EventEmitter();\n\n  @ViewChild(MatPaginator) paginator!: MatPaginator;\n\n  @ViewChild(MatTable, { read: ElementRef }) private matTableRef?: ElementRef;\n\n  @HostListener('window:resize', ['$event'])\n  onResize(event: any) {\n    this.setTableResize(this.matTableRef!.nativeElement.clientWidth);\n  }\n\n  constructor(private renderer: Renderer2) {}\n\n  ngOnInit(): void {}\n\n  ngAfterViewInit() {\n    this.dataSource.paginator = this.paginator;\n    this.setTableResize(this.matTableRef!.nativeElement.clientWidth);\n  }\n\n  setTableResize(tableWidth: number) {\n    let totWidth = 0;\n    this.tableColumns.forEach((column) => {\n      if (column.width == undefined) {\n        column.width = 50;\n      }\n      totWidth += column.width!;\n    });\n    const scale = (tableWidth - 5) / totWidth;\n    this.tableColumns.forEach((column) => {\n      column!.width! *= scale;\n      this.setColumnWidth(column);\n    });\n  }\n\n  setColumnWidth(column: any) {\n    const columnEls = Array.from(\n      document.getElementsByClassName('mat-column-' + column.def),\n    );\n    columnEls.forEach((el: any) => {\n      el.style.width = column.width + 'px';\n    });\n  }\n\n  setColumnWidthChanges(index: number, width: number) {\n    const orgWidth = this.tableColumns[index].width;\n    const dx = width - orgWidth!;\n    if (dx !== 0) {\n      const j = this.isResizingRight ? index + 1 : index - 1;\n      const newWidth = this.tableColumns[j].width! - dx;\n      if (newWidth > 50) {\n        this.tableColumns[index].width = width;\n        this.setColumnWidth(this.tableColumns[index]);\n        this.tableColumns[j].width = newWidth;\n        this.setColumnWidth(this.tableColumns[j]);\n      }\n    }\n  }\n\n  mouseMove(index: number) {\n    this.resizableMousemove = this.renderer.listen(\n      'document',\n      'mousemove',\n      (event) => {\n        if (this.pressed && event.buttons) {\n          const dx = this.isResizingRight\n            ? event.pageX - this.startX!\n            : -event.pageX + this.startX!;\n          const width = this.startWidth! + dx;\n          if (this.currentResizeIndex === index && width > 50) {\n            this.setColumnWidthChanges(index, width);\n          }\n        }\n      },\n    );\n    this.resizableMouseup = this.renderer.listen(\n      'document',\n      'mouseup',\n      (event) => {\n        if (this.pressed) {\n          this.pressed = false;\n          this.currentResizeIndex = -1;\n          this.resizableMousemove!();\n          this.resizableMouseup!();\n        }\n      },\n    );\n  }\n\n  private checkResizing(event: any, index: any) {\n    const cellData = this.getCellData(index);\n    if (\n      index === 0 ||\n      (Math.abs(event.pageX - cellData.right) < cellData.width / 2 &&\n        index !== this.tableColumns.length - 1)\n    ) {\n      this.isResizingRight = true;\n    } else {\n      this.isResizingRight = false;\n    }\n  }\n\n  private getCellData(index: number) {\n    const headerRow =\n      this.matTableRef!.nativeElement.children[0].querySelector('tr');\n    const cell = headerRow.children[index];\n    return cell.getBoundingClientRect();\n  }\n\n  onResizeColumn(event: any, index: number) {\n    this.checkResizing(event, index);\n    this.currentResizeIndex = index;\n    this.pressed = true;\n    this.startX = event.pageX;\n    this.startWidth = event.target.parentElement.clientWidth;\n    event.preventDefault();\n    this.mouseMove(index);\n  }\n\n  onSelect() {\n    this.select.emit(this.selection.selected);\n  }\n\n  setConfig(config: TableConfig) {\n    this.tableConfig = config;\n\n    if (this.tableConfig.isExpandible) {\n      this.tableDisplayColumns?.unshift('expand');\n    }\n\n    if (this.tableConfig.isSelectable) {\n      this.tableDisplayColumns?.unshift('select');\n    }\n\n    if (this.tableConfig.showActions) {\n      this.tableDisplayColumns?.push('actions');\n    }\n  }\n\n  /** Whether the number of selected elements matches the total number of rows. */\n  isAllSelected() {\n    const numSelected = this.selection.selected.length;\n    const numRows = this.dataSource.data.length;\n    return numSelected === numRows;\n  }\n\n  /** Selects all rows if they are not all selected; otherwise clear selection. */\n  toggleAllRows() {\n    if (this.isAllSelected()) {\n      this.selection.clear();\n      this.onSelect();\n      return;\n    }\n\n    this.selection.select(...this.dataSource.data);\n    this.onSelect();\n  }\n\n  /** The label for the checkbox on the passed row */\n  checkboxLabel(row?: any): string {\n    if (!row) {\n      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;\n    }\n    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;\n  }\n}\n",
+      "sourceCode": "import { CommonModule } from '@angular/common';\r\nimport {\r\n  Component,\r\n  Input,\r\n  AfterViewInit,\r\n  ViewChild,\r\n  OnInit,\r\n  Output,\r\n  EventEmitter,\r\n  ElementRef,\r\n  TemplateRef,\r\n  HostListener,\r\n  Renderer2,\r\n  ViewEncapsulation,\r\n  ChangeDetectionStrategy,\r\n} from '@angular/core';\r\nimport { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';\r\nimport {\r\n  MatTableDataSource,\r\n  MatTableModule,\r\n  MatTable,\r\n} from '@angular/material/table';\r\nimport {\r\n  animate,\r\n  state,\r\n  style,\r\n  transition,\r\n  trigger,\r\n} from '@angular/animations';\r\nimport { MatInputModule } from '@angular/material/input';\r\nimport { MatFormFieldModule } from '@angular/material/form-field';\r\nimport { MatIconModule } from '@angular/material/icon';\r\nimport { MatButtonModule } from '@angular/material/button';\r\nimport { MatCheckboxModule } from '@angular/material/checkbox';\r\nimport { SelectionModel } from '@angular/cdk/collections';\r\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\r\nimport { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';\r\nimport { TableColum, TableConfig } from './bmb-tables.interface';\r\n\r\n@Component({\r\n  selector: 'bmb-table',\r\n  standalone: true,\r\n  imports: [\r\n    CommonModule,\r\n    BmbIconComponent,\r\n    BmbCheckboxComponent,\r\n    MatPaginatorModule,\r\n    MatTableModule,\r\n    MatCheckboxModule,\r\n    MatIconModule,\r\n    MatButtonModule,\r\n    MatFormFieldModule,\r\n    MatInputModule,\r\n  ],\r\n  templateUrl: './bmb-tables.component.html',\r\n  styleUrl: './bmb-tables.component.scss',\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n  encapsulation: ViewEncapsulation.None,\r\n  animations: [\r\n    trigger('detailExpand', [\r\n      state('collapsed,void', style({ height: '0px', minHeight: '0' })),\r\n      state('expanded', style({ height: '*' })),\r\n      transition(\r\n        'expanded <=> collapsed',\r\n        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)'),\r\n      ),\r\n    ]),\r\n  ],\r\n})\r\nexport class BmbTablesComponent implements AfterViewInit, OnInit {\r\n  dataSource: MatTableDataSource<Array<any>> = new MatTableDataSource();\r\n  tableDisplayColumns: string[] = [];\r\n  tableColumns: TableColum[] = [];\r\n  expandedElement: any;\r\n  selection = new SelectionModel<any>(true, []);\r\n  tableConfig: TableConfig | undefined;\r\n  paginatorSize: number | undefined;\r\n\r\n  // Resize Columns\r\n  pressed = false;\r\n  currentResizeIndex?: number;\r\n  startX?: number;\r\n  startWidth?: number;\r\n  isResizingRight?: boolean;\r\n  resizableMousemove?: () => void;\r\n  resizableMouseup?: () => void;\r\n\r\n  @Input() set pageSize(size: number) {\r\n    this.paginatorSize = size;\r\n  }\r\n\r\n  @Input() set data(data: Array<any>) {\r\n    this.dataSource = new MatTableDataSource(data);\r\n  }\r\n\r\n  @Input() set columns(columns: TableColum[]) {\r\n    this.tableColumns = columns;\r\n    this.tableDisplayColumns = this.tableColumns.map((col) => col.def);\r\n  }\r\n\r\n  @Input() set config(config: TableConfig) {\r\n    this.setConfig(config);\r\n  }\r\n\r\n  @Input() actionTemplate?: TemplateRef<any> | null;\r\n\r\n  @Input() detailTemplate: TemplateRef<any> | null = null;\r\n\r\n  @Output() select: EventEmitter<any> = new EventEmitter();\r\n\r\n  @ViewChild(MatPaginator) paginator!: MatPaginator;\r\n\r\n  @ViewChild(MatTable, { read: ElementRef }) private matTableRef?: ElementRef;\r\n\r\n  @HostListener('window:resize', ['$event'])\r\n  onResize(event: any) {\r\n    this.setTableResize(this.matTableRef!.nativeElement.clientWidth);\r\n  }\r\n\r\n  constructor(private renderer: Renderer2) {}\r\n\r\n  ngOnInit(): void {}\r\n\r\n  ngAfterViewInit() {\r\n    this.dataSource.paginator = this.paginator;\r\n    this.setTableResize(this.matTableRef!.nativeElement.clientWidth);\r\n  }\r\n\r\n  setTableResize(tableWidth: number) {\r\n    let totWidth = 0;\r\n    this.tableColumns.forEach((column) => {\r\n      if (column.width == undefined) {\r\n        column.width = 50;\r\n      }\r\n      totWidth += column.width!;\r\n    });\r\n    const scale = (tableWidth - 5) / totWidth;\r\n    this.tableColumns.forEach((column) => {\r\n      column!.width! *= scale;\r\n      this.setColumnWidth(column);\r\n    });\r\n  }\r\n\r\n  setColumnWidth(column: any) {\r\n    const columnEls = Array.from(\r\n      document.getElementsByClassName('mat-column-' + column.def),\r\n    );\r\n    columnEls.forEach((el: any) => {\r\n      el.style.width = column.width + 'px';\r\n    });\r\n  }\r\n\r\n  setColumnWidthChanges(index: number, width: number) {\r\n    const orgWidth = this.tableColumns[index].width;\r\n    const dx = width - orgWidth!;\r\n    if (dx !== 0) {\r\n      const j = this.isResizingRight ? index + 1 : index - 1;\r\n      const newWidth = this.tableColumns[j].width! - dx;\r\n      if (newWidth > 50) {\r\n        this.tableColumns[index].width = width;\r\n        this.setColumnWidth(this.tableColumns[index]);\r\n        this.tableColumns[j].width = newWidth;\r\n        this.setColumnWidth(this.tableColumns[j]);\r\n      }\r\n    }\r\n  }\r\n\r\n  mouseMove(index: number) {\r\n    this.resizableMousemove = this.renderer.listen(\r\n      'document',\r\n      'mousemove',\r\n      (event) => {\r\n        if (this.pressed && event.buttons) {\r\n          const dx = this.isResizingRight\r\n            ? event.pageX - this.startX!\r\n            : -event.pageX + this.startX!;\r\n          const width = this.startWidth! + dx;\r\n          if (this.currentResizeIndex === index && width > 50) {\r\n            this.setColumnWidthChanges(index, width);\r\n          }\r\n        }\r\n      },\r\n    );\r\n    this.resizableMouseup = this.renderer.listen(\r\n      'document',\r\n      'mouseup',\r\n      (event) => {\r\n        if (this.pressed) {\r\n          this.pressed = false;\r\n          this.currentResizeIndex = -1;\r\n          this.resizableMousemove!();\r\n          this.resizableMouseup!();\r\n        }\r\n      },\r\n    );\r\n  }\r\n\r\n  private checkResizing(event: any, index: any) {\r\n    const cellData = this.getCellData(index);\r\n    if (\r\n      index === 0 ||\r\n      (Math.abs(event.pageX - cellData.right) < cellData.width / 2 &&\r\n        index !== this.tableColumns.length - 1)\r\n    ) {\r\n      this.isResizingRight = true;\r\n    } else {\r\n      this.isResizingRight = false;\r\n    }\r\n  }\r\n\r\n  private getCellData(index: number) {\r\n    const headerRow =\r\n      this.matTableRef!.nativeElement.children[0].querySelector('tr');\r\n    const cell = headerRow.children[index];\r\n    return cell.getBoundingClientRect();\r\n  }\r\n\r\n  onResizeColumn(event: any, index: number) {\r\n    this.checkResizing(event, index);\r\n    this.currentResizeIndex = index;\r\n    this.pressed = true;\r\n    this.startX = event.pageX;\r\n    this.startWidth = event.target.parentElement.clientWidth;\r\n    event.preventDefault();\r\n    this.mouseMove(index);\r\n  }\r\n\r\n  onSelect() {\r\n    this.select.emit(this.selection.selected);\r\n  }\r\n\r\n  setConfig(config: TableConfig) {\r\n    this.tableConfig = config;\r\n\r\n    if (this.tableConfig.isExpandible) {\r\n      this.tableDisplayColumns?.unshift('expand');\r\n    }\r\n\r\n    if (this.tableConfig.isSelectable) {\r\n      this.tableDisplayColumns?.unshift('select');\r\n    }\r\n\r\n    if (this.tableConfig.showActions) {\r\n      this.tableDisplayColumns?.push('actions');\r\n    }\r\n  }\r\n\r\n  /** Whether the number of selected elements matches the total number of rows. */\r\n  isAllSelected() {\r\n    const numSelected = this.selection.selected.length;\r\n    const numRows = this.dataSource.data.length;\r\n    return numSelected === numRows;\r\n  }\r\n\r\n  /** Selects all rows if they are not all selected; otherwise clear selection. */\r\n  toggleAllRows() {\r\n    if (this.isAllSelected()) {\r\n      this.selection.clear();\r\n      this.onSelect();\r\n      return;\r\n    }\r\n\r\n    this.selection.select(...this.dataSource.data);\r\n    this.onSelect();\r\n  }\r\n\r\n  /** The label for the checkbox on the passed row */\r\n  checkboxLabel(row?: any): string {\r\n    if (!row) {\r\n      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;\r\n    }\r\n    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;\r\n  }\r\n}\r\n",
       "styleUrl": "./bmb-tables.component.scss",
       "assetsDirs": [],
       "styleUrlsData": "",
@@ -7890,7 +7908,7 @@
           }
         }
       },
-      "templateData": "<div class=\"bmb_container-table\">\n  <table\n    mat-table\n    [dataSource]=\"dataSource\"\n    class=\"bmb_table\"\n    multiTemplateDataRows\n  >\n    <!-- Checkbox Column -->\n    <ng-container matColumnDef=\"select\">\n      <th\n        mat-header-cell\n        *matHeaderCellDef\n        class=\"bmb_table-headers-checkbox bmb_table-th\"\n      >\n        <bmb-checkbox\n          (change)=\"$event ? toggleAllRows() : null\"\n          [checked]=\"selection.hasValue() && isAllSelected()\"\n          [indeterminate]=\"selection.hasValue() && !isAllSelected()\"\n          [ariaLabel]=\"checkboxLabel()\"\n        />\n      </th>\n      <td mat-cell *matCellDef=\"let row\">\n        <bmb-checkbox\n          (change)=\"$event ? selection.toggle(row) : null; onSelect()\"\n          [checked]=\"selection.isSelected(row)\"\n          [ariaLabel]=\"checkboxLabel(row)\"\n          onkeypress=\"$event.stopPropagation()\"\n        />\n        {{ row.documentos }}\n      </td>\n    </ng-container>\n\n    <!--Expand -->\n    <ng-container matColumnDef=\"expand\">\n      <th\n        mat-header-cell\n        *matHeaderCellDef\n        class=\"bmb_table-th\"\n        aria-label=\"row actions\"\n        style=\"width: 30px\"\n      >\n        &nbsp;\n      </th>\n      <td mat-cell *matCellDef=\"let row\" class=\"bmb-table-expand-cell\">\n        <button\n          mat-icon-button\n          aria-label=\"expand row\"\n          (click)=\"\n            expandedElement = expandedElement === row ? null : row;\n            $event.stopPropagation()\n          \"\n        >\n          @if (expandedElement === row) {\n            <bmb-icon class=\"bmb_table-expand-btn\" [icon]=\"'expand_less'\" />\n          } @else {\n            <bmb-icon class=\"bmb_table-expand-btn\" [icon]=\"'expand_more'\" />\n          }\n        </button>\n      </td>\n    </ng-container>\n\n    <!-- Display Columns -->\n    @for (column of tableColumns; track $index) {\n      <ng-container [matColumnDef]=\"column.def\">\n        <th\n          mat-header-cell\n          *matHeaderCellDef\n          class=\"bmb_table-headers bmb_table-th\"\n        >\n          {{ column.label }}\n          <span\n            class=\"bmb_table-resize-handle\"\n            (mousedown)=\"onResizeColumn($event, $index)\"\n          ></span>\n        </th>\n        <td mat-cell *matCellDef=\"let row; let i = index\" class=\"bmb_table-td\">\n          {{ row[column.dataKey] }}\n        </td>\n      </ng-container>\n    }\n\n    <!-- Actions Column -->\n    <ng-container matColumnDef=\"actions\">\n      <th\n        mat-header-cell\n        *matHeaderCellDef\n        class=\"bmb_table-headers bmb_table-th\"\n      >\n        Actions\n      </th>\n      <td mat-cell *matCellDef=\"let row\" class=\"\">\n        <ng-template [ngTemplateOutlet]=\"actionTemplate!\"> </ng-template>\n      </td>\n    </ng-container>\n\n    <!-- Row to expand -->\n    <ng-container matColumnDef=\"expandedDetail\">\n      <td\n        mat-cell\n        *matCellDef=\"let row\"\n        class=\"bmb_table-td\"\n        [attr.colspan]=\"tableDisplayColumns.length\"\n      >\n        <div\n          class=\"bmb_table-element-detail bmb_table-td\"\n          [@detailExpand]=\"row == expandedElement ? 'expanded' : 'collapsed'\"\n        >\n          <ng-container\n            *ngTemplateOutlet=\"detailTemplate; context: { row }\"\n          ></ng-container>\n        </div>\n      </td>\n    </ng-container>\n\n    <!-- Rows -->\n    <tr mat-header-row *matHeaderRowDef=\"tableDisplayColumns\"></tr>\n    <tr\n      mat-row\n      *matRowDef=\"let row; columns: tableDisplayColumns; let i = dataIndex\"\n      class=\"bmb_table-element-row\"\n      [class.bmb_table-expanded-row]=\"expandedElement === row\"\n      [ngClass]=\"{\n        'bmb_table-no-border': this.tableConfig?.isExpandible,\n        'bmb_table-stripe': i % 2 === 0\n      }\"\n    ></tr>\n\n    @if (tableConfig?.isExpandible) {\n      <ng-container>\n        <tr\n          mat-row\n          *matRowDef=\"let row; columns: ['expandedDetail']; let i = dataIndex\"\n          class=\"bmb_table-detail-row\"\n          [ngClass]=\"{ 'bmb_table-stripe': i % 2 === 0 }\"\n        ></tr>\n      </ng-container>\n    }\n  </table>\n\n  <!-- Paginator -->\n  @if (tableConfig?.isPaginable) {\n    <ng-container>\n      <mat-paginator\n        class=\"bmb_table-paginator\"\n        [pageSize]=\"this.paginatorSize\"\n        [hidePageSize]=\"true\"\n        aria-label=\"Select page\"\n      >\n      </mat-paginator>\n    </ng-container>\n  }\n</div>\n"
+      "templateData": "<div class=\"bmb_container-table\">\r\n  <table\r\n    mat-table\r\n    [dataSource]=\"dataSource\"\r\n    class=\"bmb_table\"\r\n    multiTemplateDataRows\r\n  >\r\n    <!-- Checkbox Column -->\r\n    <ng-container matColumnDef=\"select\">\r\n      <th\r\n        mat-header-cell\r\n        *matHeaderCellDef\r\n        class=\"bmb_table-headers-checkbox bmb_table-th\"\r\n      >\r\n        <bmb-checkbox\r\n          (change)=\"$event ? toggleAllRows() : null\"\r\n          [checked]=\"selection.hasValue() && isAllSelected()\"\r\n          [indeterminate]=\"selection.hasValue() && !isAllSelected()\"\r\n          [ariaLabel]=\"checkboxLabel()\"\r\n        />\r\n      </th>\r\n      <td mat-cell *matCellDef=\"let row\">\r\n        <bmb-checkbox\r\n          (change)=\"$event ? selection.toggle(row) : null; onSelect()\"\r\n          [checked]=\"selection.isSelected(row)\"\r\n          [ariaLabel]=\"checkboxLabel(row)\"\r\n          onkeypress=\"$event.stopPropagation()\"\r\n        />\r\n        {{ row.documentos }}\r\n      </td>\r\n    </ng-container>\r\n\r\n    <!--Expand -->\r\n    <ng-container matColumnDef=\"expand\">\r\n      <th\r\n        mat-header-cell\r\n        *matHeaderCellDef\r\n        class=\"bmb_table-th\"\r\n        aria-label=\"row actions\"\r\n        style=\"width: 30px\"\r\n      >\r\n        &nbsp;\r\n      </th>\r\n      <td mat-cell *matCellDef=\"let row\" class=\"bmb-table-expand-cell\">\r\n        <button\r\n          mat-icon-button\r\n          aria-label=\"expand row\"\r\n          (click)=\"\r\n            expandedElement = expandedElement === row ? null : row;\r\n            $event.stopPropagation()\r\n          \"\r\n        >\r\n          @if (expandedElement === row) {\r\n            <bmb-icon class=\"bmb_table-expand-btn\" [icon]=\"'expand_less'\" />\r\n          } @else {\r\n            <bmb-icon class=\"bmb_table-expand-btn\" [icon]=\"'expand_more'\" />\r\n          }\r\n        </button>\r\n      </td>\r\n    </ng-container>\r\n\r\n    <!-- Display Columns -->\r\n    @for (column of tableColumns; track $index) {\r\n      <ng-container [matColumnDef]=\"column.def\">\r\n        <th\r\n          mat-header-cell\r\n          *matHeaderCellDef\r\n          class=\"bmb_table-headers bmb_table-th\"\r\n        >\r\n          {{ column.label }}\r\n          <span\r\n            class=\"bmb_table-resize-handle\"\r\n            (mousedown)=\"onResizeColumn($event, $index)\"\r\n          ></span>\r\n        </th>\r\n        <td mat-cell *matCellDef=\"let row; let i = index\" class=\"bmb_table-td\">\r\n          {{ row[column.dataKey] }}\r\n        </td>\r\n      </ng-container>\r\n    }\r\n\r\n    <!-- Actions Column -->\r\n    <ng-container matColumnDef=\"actions\">\r\n      <th\r\n        mat-header-cell\r\n        *matHeaderCellDef\r\n        class=\"bmb_table-headers bmb_table-th\"\r\n      >\r\n        Actions\r\n      </th>\r\n      <td mat-cell *matCellDef=\"let row\" class=\"\">\r\n        <ng-template [ngTemplateOutlet]=\"actionTemplate!\"> </ng-template>\r\n      </td>\r\n    </ng-container>\r\n\r\n    <!-- Row to expand -->\r\n    <ng-container matColumnDef=\"expandedDetail\">\r\n      <td\r\n        mat-cell\r\n        *matCellDef=\"let row\"\r\n        class=\"bmb_table-td\"\r\n        [attr.colspan]=\"tableDisplayColumns.length\"\r\n      >\r\n        <div\r\n          class=\"bmb_table-element-detail bmb_table-td\"\r\n          [@detailExpand]=\"row == expandedElement ? 'expanded' : 'collapsed'\"\r\n        >\r\n          <ng-container\r\n            *ngTemplateOutlet=\"detailTemplate; context: { row }\"\r\n          ></ng-container>\r\n        </div>\r\n      </td>\r\n    </ng-container>\r\n\r\n    <!-- Rows -->\r\n    <tr mat-header-row *matHeaderRowDef=\"tableDisplayColumns\"></tr>\r\n    <tr\r\n      mat-row\r\n      *matRowDef=\"let row; columns: tableDisplayColumns; let i = dataIndex\"\r\n      class=\"bmb_table-element-row\"\r\n      [class.bmb_table-expanded-row]=\"expandedElement === row\"\r\n      [ngClass]=\"{\r\n        'bmb_table-no-border': this.tableConfig?.isExpandible,\r\n        'bmb_table-stripe': i % 2 === 0\r\n      }\"\r\n    ></tr>\r\n\r\n    @if (tableConfig?.isExpandible) {\r\n      <ng-container>\r\n        <tr\r\n          mat-row\r\n          *matRowDef=\"let row; columns: ['expandedDetail']; let i = dataIndex\"\r\n          class=\"bmb_table-detail-row\"\r\n          [ngClass]=\"{ 'bmb_table-stripe': i % 2 === 0 }\"\r\n        ></tr>\r\n      </ng-container>\r\n    }\r\n  </table>\r\n\r\n  <!-- Paginator -->\r\n  @if (tableConfig?.isPaginable) {\r\n    <ng-container>\r\n      <mat-paginator\r\n        class=\"bmb_table-paginator\"\r\n        [pageSize]=\"this.paginatorSize\"\r\n        [hidePageSize]=\"true\"\r\n        aria-label=\"Select page\"\r\n      >\r\n      </mat-paginator>\r\n    </ng-container>\r\n  }\r\n</div>\r\n"
     },
     {
       "name": "BmbTabsComponent",
@@ -9520,7 +9538,7 @@
     },
     {
       "name": "BmbUserSummaryComponent",
-      "id": "component-BmbUserSummaryComponent-d888189967d2cbf6fa4d5abf6253270bc39f982374b7198f722222b1fcfacbebf690b2fd9375240d6886b40ea2740871c916cdd2f749de0df06813ccc1cd8309",
+      "id": "component-BmbUserSummaryComponent-cb6fc33e2eaba118855bdc6d7cfd5c5a409c9fae617cbdbc3c0d8583afeb2871f7604ec17361706a36007e39bd6ede6905cadca7a3f1642be545f3cdb06d5cd7",
       "file": "projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": ["ViewEncapsulation.None"],
@@ -9617,7 +9635,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import {\n  Component,\n  Input,\n  ViewEncapsulation,\n  Output,\n  EventEmitter,\n  ChangeDetectionStrategy,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { BmbButtonDirective } from '../../directives/button.directive';\nimport { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';\n\n@Component({\n  selector: 'bmb-user-summary',\n  standalone: true,\n  imports: [CommonModule, BmbButtonDirective, BmbUserImageComponent],\n  templateUrl: './bmb-user-summary.component.html',\n  styleUrl: './bmb-user-summary.component.scss',\n  encapsulation: ViewEncapsulation.None,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbUserSummaryComponent {\n  @Input() isProfile: boolean = false;\n  @Input() name: string = '';\n  @Input() id: string = '';\n  @Input() image: string = '';\n\n  @Output() onClick: EventEmitter<void> = new EventEmitter<void>();\n\n  handleClick(): void {\n    this.onClick.emit();\n  }\n}\n",
+      "sourceCode": "import {\r\n  Component,\r\n  Input,\r\n  ViewEncapsulation,\r\n  Output,\r\n  EventEmitter,\r\n  ChangeDetectionStrategy,\r\n} from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { BmbButtonDirective } from '../../directives/button.directive';\r\nimport { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';\r\n\r\n@Component({\r\n  selector: 'bmb-user-summary',\r\n  standalone: true,\r\n  imports: [CommonModule, BmbButtonDirective, BmbUserImageComponent],\r\n  templateUrl: './bmb-user-summary.component.html',\r\n  styleUrl: './bmb-user-summary.component.scss',\r\n  encapsulation: ViewEncapsulation.None,\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class BmbUserSummaryComponent {\r\n  @Input() isProfile: boolean = false;\r\n  @Input() name: string = '';\r\n  @Input() id: string = '';\r\n  @Input() image: string = '';\r\n\r\n  @Output() onClick: EventEmitter<void> = new EventEmitter<void>();\r\n\r\n  handleClick(): void {\r\n    this.onClick.emit();\r\n  }\r\n}\r\n",
       "styleUrl": "./bmb-user-summary.component.scss",
       "assetsDirs": [],
       "styleUrlsData": "",
@@ -9928,7 +9946,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{}"
+        "defaultValue": "{\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <bmb-card [borderRadius]=\"borderRadius\" [padding]=\"padding\" [margin]=\"margin\">\r\n        <ng-template #header>Optional header</ng-template>\r\n        <div>Content</div>\r\n        <ng-template #footer>Optional footer</ng-template>\r\n      </bmb-card>\r\n    `,\r\n  }),\r\n}"
       },
       {
         "name": "Default",
@@ -10348,7 +10366,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
-        "defaultValue": "(size: number) =>\n  `${fixDecimals({ value: size / 16 })}rem`"
+        "defaultValue": "(size: number) =>\r\n  `${fixDecimals({ value: size / 16 })}rem`"
       },
       {
         "name": "preview",
@@ -10515,7 +10533,7 @@
             "type": "IFixDecimals",
             "deprecated": false,
             "deprecationMessage": "",
-            "destrucuredGroupId": "42edca7b-887d-44ac-b5fb-6dbdc5869d97",
+            "destrucuredGroupId": "ff386c56-c38f-4c4b-9015-2abd50cff78a",
             "destructuredParameter": true
           },
           {
@@ -10524,7 +10542,7 @@
             "deprecated": false,
             "deprecationMessage": "",
             "defaultValue": "2",
-            "destrucuredGroupId": "42edca7b-887d-44ac-b5fb-6dbdc5869d97",
+            "destrucuredGroupId": "ff386c56-c38f-4c4b-9015-2abd50cff78a",
             "destructuredParameter": true
           }
         ],
@@ -10534,7 +10552,7 @@
             "type": "IFixDecimals",
             "deprecated": false,
             "deprecationMessage": "",
-            "destrucuredGroupId": "42edca7b-887d-44ac-b5fb-6dbdc5869d97",
+            "destrucuredGroupId": "ff386c56-c38f-4c4b-9015-2abd50cff78a",
             "destructuredParameter": true,
             "tagName": {
               "text": "param"
@@ -10546,7 +10564,7 @@
             "deprecated": false,
             "deprecationMessage": "",
             "defaultValue": "2",
-            "destrucuredGroupId": "42edca7b-887d-44ac-b5fb-6dbdc5869d97",
+            "destrucuredGroupId": "ff386c56-c38f-4c4b-9015-2abd50cff78a",
             "destructuredParameter": true,
             "tagName": {
               "text": "param"
@@ -11171,7 +11189,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{}"
+          "defaultValue": "{\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <bmb-card [borderRadius]=\"borderRadius\" [padding]=\"padding\" [margin]=\"margin\">\r\n        <ng-template #header>Optional header</ng-template>\r\n        <div>Content</div>\r\n        <ng-template #footer>Optional footer</ng-template>\r\n      </bmb-card>\r\n    `,\r\n  }),\r\n}"
         }
       ],
       "projects/ds-ng/src/lib/components/bmb-checkbox/bmb-checkbox.stories.ts": [
@@ -11665,7 +11683,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "",
-          "defaultValue": "(size: number) =>\n  `${fixDecimals({ value: size / 16 })}rem`"
+          "defaultValue": "(size: number) =>\r\n  `${fixDecimals({ value: size / 16 })}rem`"
         }
       ],
       "projects/ds-ng/.storybook/preview.ts": [
@@ -11873,7 +11891,7 @@
               "type": "IFixDecimals",
               "deprecated": false,
               "deprecationMessage": "",
-              "destrucuredGroupId": "42edca7b-887d-44ac-b5fb-6dbdc5869d97",
+              "destrucuredGroupId": "ff386c56-c38f-4c4b-9015-2abd50cff78a",
               "destructuredParameter": true
             },
             {
@@ -11882,7 +11900,7 @@
               "deprecated": false,
               "deprecationMessage": "",
               "defaultValue": "2",
-              "destrucuredGroupId": "42edca7b-887d-44ac-b5fb-6dbdc5869d97",
+              "destrucuredGroupId": "ff386c56-c38f-4c4b-9015-2abd50cff78a",
               "destructuredParameter": true
             }
           ],
@@ -11892,7 +11910,7 @@
               "type": "IFixDecimals",
               "deprecated": false,
               "deprecationMessage": "",
-              "destrucuredGroupId": "42edca7b-887d-44ac-b5fb-6dbdc5869d97",
+              "destrucuredGroupId": "ff386c56-c38f-4c4b-9015-2abd50cff78a",
               "destructuredParameter": true,
               "tagName": {
                 "text": "param"
@@ -11904,7 +11922,7 @@
               "deprecated": false,
               "deprecationMessage": "",
               "defaultValue": "2",
-              "destrucuredGroupId": "42edca7b-887d-44ac-b5fb-6dbdc5869d97",
+              "destrucuredGroupId": "ff386c56-c38f-4c4b-9015-2abd50cff78a",
               "destructuredParameter": true,
               "tagName": {
                 "text": "param"
@@ -12533,7 +12551,7 @@
         "linktype": "component",
         "name": "BmbCalendarComponent",
         "coveragePercent": 0,
-        "coverageCount": "0/20",
+        "coverageCount": "0/22",
         "status": "low"
       },
       {
