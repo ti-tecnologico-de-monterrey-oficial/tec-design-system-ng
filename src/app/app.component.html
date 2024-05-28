@@ -5,11 +5,27 @@
   [lang]="topBarLang"
   (onLangChange)="handleLangChange($event)"
 ></bmb-top-bar>
+<bmb-theme [initialTheme]="'light'" />
+<!-- <bmb-sidebar [elements]="sidebarElements" /> -->
+
+<!-- <bmb-loader [overlay]="true" title="Cargando...." /> -->
+
+<!-- <bmb-loader
+  [errorState]="true"
+  title="¡Error de conexión!"
+  subtitle="¡Revisa tu conexión a internet e intenta de nuevo!"
+  buttonPrimary="Reintentar"
+  buttonSecondary="Salir"
+  [actions]="true"
+  (onButtonPrimary)="handleButtonPrimary()"
+  (onButtonSecondary)="handleButtonSecondary()"
+/> -->
 
 <bmb-calendar
   [isLoading]="isCalendarLoading"
   [events]="calendarEvents"
   (onDateChange)="fetchData($event)"
+  [lang]="topBarLang"
 />
 
 <div style="padding: 1rem">
@@ -25,7 +41,6 @@
 </div>
 
 <!-- Demo -->
-<bmb-theme />
 
 <bmb-totp
   instanceId="first"
@@ -90,12 +105,6 @@
   [checked]="true"
   [indeterminate]="true"
 />
-<bmb-sidebar [elements]="sidebarElements"></bmb-sidebar>
-<!-- <bmb-progress-circle
-  [percentValue]="85"
-  [title]="'Titulo'"
-  [valueLabel]="310"
-></bmb-progress-circle>
 
 <bmb-tabs [tabs]="myTabs" (selected)="handleTabSelected($event)">
   <bmb-container *ngIf="activeTabId === 1" [appearance]="'primary-home'">
@@ -115,7 +124,7 @@
     />
   </bmb-container>
   <bmb-container *ngIf="activeTabId === 3" [appearance]="'primary-home'">
-    <bmb-loader [status]="'noConnection'" />
+    <bmb-loader [errorState]="true" />
   </bmb-container>
   <bmb-container *ngIf="activeTabId === 4" [appearance]="'primary-home'">
     <bmb-user-summary
@@ -134,7 +143,7 @@
     />
   </bmb-container>
   <bmb-container *ngIf="activeTabId === 6" [appearance]="'primary-home'">
-    <bmb-loader [status]="'noConnection'" />
+    <bmb-loader [errorState]="true" />
   </bmb-container>
 </bmb-tabs>
 
@@ -169,8 +178,6 @@
   value="Value test"
   indicatorAppearance="warning"
 />
-<bmb-loader />
-<bmb-loader [status]="'noConnection'" />
 
 <bmb-dot-paginator
   [activeDotIndex]="myActiveDotIndex"
@@ -285,4 +292,3 @@
   [link]="'https://www.youtube.com/'"
   [target]="'_blank'"
 ></bmb-user-image>
--->

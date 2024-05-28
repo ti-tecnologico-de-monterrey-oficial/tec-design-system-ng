@@ -1,4 +1,10 @@
-import { Component, OnInit, inject, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  inject,
+  ViewEncapsulation,
+  Input,
+} from '@angular/core';
 import { ThemeService } from '../../services';
 import { CommonModule } from '@angular/common';
 import { BmbSwitchComponent } from '../bmb-switch/bmb-switch.component';
@@ -12,28 +18,45 @@ import { BmbSwitchComponent } from '../bmb-switch/bmb-switch.component';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbThemeComponent implements OnInit {
+  @Input() initialTheme?: string;
   selectedTheme: string = 'light';
-
   private service = inject(ThemeService);
+  private initialized = false;
 
   ngOnInit(): void {
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    this.selectedTheme = savedTheme;
-    this.applyTheme(savedTheme);
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      this.selectedTheme = savedTheme;
+    } else if (this.initialTheme) {
+      this.selectedTheme = this.initialTheme;
+    } else {
+      this.selectedTheme = this.service.getDefaultTheme();
+    }
+
+    this.applyTheme(this.selectedTheme);
 
     this.service.theme$.subscribe((theme: any) => {
-      this.applyTheme(theme);
+      if (this.initialized && theme !== this.selectedTheme) {
+        this.applyTheme(theme);
+      }
     });
+
+    this.initialized = true;
   }
 
   applyTheme(theme: string): void {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
+    if (theme !== this.selectedTheme || !this.initialized) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      this.selectedTheme = theme;
+    }
   }
 
   onThemeChange(isChecked: boolean): void {
-    this.selectedTheme = isChecked ? 'dark' : 'light';
-    localStorage.setItem('theme', this.selectedTheme);
-    this.service.setTheme(this.selectedTheme);
+    const newTheme = isChecked ? 'dark' : 'light';
+    if (newTheme !== this.selectedTheme) {
+      this.applyTheme(newTheme);
+      this.service.setTheme(newTheme);
+    }
   }
 }

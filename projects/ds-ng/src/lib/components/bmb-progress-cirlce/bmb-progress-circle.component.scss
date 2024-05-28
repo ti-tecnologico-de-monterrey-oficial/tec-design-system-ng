@@ -1,67 +1,46 @@
 @use "../../../assets/styles/base/fonts" as fonts;
-@use "../../../assets/styles/base/rem" as rem;
 
-.bmb_progress_circle {
-  position: relative;
-  width: rem.rem_calc(170);
-  height: rem.rem_calc(170);
-  margin: 0 auto;
-
-  &-svg {
-    transform: rotate(-90deg);
-
-    &-meter,
-    &-value {
-      fill: none;
-    }
-
-    &-meter {
-      stroke: RGBA(var(--color-blue-primary));
-      stroke: RGBA(var(--color-blue-primary));
-    }
-
-    &-value {
-      stroke: RGBA(var(--color-neon-primary));
-      stroke: RGBA(var(--color-neon-primary));
-      stroke-linecap: round;
-      transition: all;
-    }
+.bmb_progress-circle {
+  &-background {
+    fill: RGBA(var(--color-charade-50));
+    fill-opacity: 1;
   }
 
-  &-info {
-    &-value {
-      @include fonts.font(8, regular);
-      position: absolute;
-      top: rem.rem_calc(70);
-      text-align: center;
-      width: 100%;
-      color: RGBA(var(--color-charade-950));
-    }
+  &-fill {
+    stroke: RGBA(var(--color-blue-primary));
+    fill: transparent;
+  }
 
-    &-value-alone {
-      top: rem.rem_calc(85);
-    }
+  &-track {
+    stroke: RGBA(var(--color-neon-primary));
+    stroke-linecap: round;
+    transition: all;
+  }
 
-    &-title {
-      @include fonts.font(5, regular);
-      position: absolute;
-      text-align: center;
-      width: 100%;
-      top: rem.rem_calc(55);
-      color: RGBA(var(--color-charade-950));
-    }
+  &-title {
+    @include fonts.font(4, regular);
+    fill: RGBA(var(--color-charade-950));
+  }
+
+  &-value-label {
+    @include fonts.font(7, medium);
+    fill: RGBA(var(--color-charade-950));
   }
 }
 
 [data-theme="dark"],
 .storybook-dark-theme {
-  .bmb_progress_circle {
-    &-info-value {
-      color: RGBA(var(--color-white-primary));
+  .bmb_progress-circle {
+    &-background {
+      fill: RGBA(var(--color-charade-900));
     }
 
-    &-info-title {
-      color: RGBA(var(--color-white-primary));
+    &-title {
+      fill: RGBA(var(--color-charade-50));
+    }
+
+    &-value-label {
+      fill: RGBA(var(--color-charade-50));
     }
   }
 }

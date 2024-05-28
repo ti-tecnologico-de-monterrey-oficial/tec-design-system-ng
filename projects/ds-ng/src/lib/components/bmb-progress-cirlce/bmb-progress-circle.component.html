@@ -1,41 +1,70 @@
-<div class="bmb_progress_circle">
-  <svg
-    class="bmb_progress_circle-svg"
-    width="170"
-    height="170"
-    viewBox="0 0 170 170"
-  >
-    <circle
-      class="bmb_progress_circle-svg-meter"
-      cx="84"
-      cy="84"
-      [attr.r]="radius"
-      stroke-width="5"
-    />
-    <circle
-      class="bmb_progress_circle-svg-value"
-      [style.strokeDasharray]="circunference"
-      [style.strokeDashoffset]="dashoffset"
-      cx="84"
-      cy="84"
-      [attr.r]="radius"
-      stroke-width="5"
-    />
-  </svg>
-
-  <div class="bmb_progress_circle-info">
-    @if (title) {
-      <div class="bmb_progress_circle-info-title">
-        <ng-container>{{ title }}</ng-container>
-      </div>
-    }
-    <div
-      class="bmb_progress_circle-info-value"
-      [ngClass]="{
-        'bmb_progress_circle-info-value-alone': this.title !== undefined
-      }"
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  onkeypress=""
+  class="bmb_progress-circle"
+  [attr.viewBox]="svg.viewBox"
+  preserveAspectRatio="xMidYMid meet"
+  [attr.height]="svg.height"
+  [attr.width]="svg.width"
+>
+  @if (this.showBackground) {
+    <ng-container>
+      <circle
+        class="bmb_progress-circle-background"
+        [attr.cx]="svg.backgroundCircle.cx"
+        [attr.cy]="svg.backgroundCircle.cy"
+        [attr.r]="svg.backgroundCircle.r"
+      />
+    </ng-container>
+  }
+  <circle
+    class="bmb_progress-circle-fill"
+    [attr.cx]="svg.circle.cx"
+    [attr.cy]="svg.circle.cy"
+    [attr.r]="svg.circle.r"
+    [attr.stroke-width]="svg.circle.strokeWidth"
+  />
+  <path
+    class="bmb_progress-circle-track"
+    [attr.d]="svg.path.d"
+    [attr.stroke-width]="svg.path.strokeWidth"
+    [attr.fill]="svg.path.fill"
+  />
+  @if (options.showTitle || options.showValueLabel) {
+    <text
+      alignment-baseline="baseline"
+      [attr.x]="svg.circle.cx"
+      [attr.y]="svg.circle.cy"
+      [attr.text-anchor]="svg.title.textAnchor"
     >
-      {{ valueLabel }}
-    </div>
-  </div>
-</div>
+      @if (options.showTitle) {
+        <ng-container>
+          @for (tspan of svg.title.tspans; track tspan) {
+            <tspan
+              class="bmb_progress-circle-title"
+              [attr.x]="svg.title.x"
+              [attr.y]="svg.title.y"
+              [attr.dy]="tspan.dy"
+            >
+              {{ tspan.span }}
+            </tspan>
+          }
+        </ng-container>
+      }
+      @if (options.showValueLabel) {
+        <ng-container>
+          @for (tspan of svg.valueLabel.tspans; track tspan) {
+            <tspan
+              class="bmb_progress-circle-value-label"
+              [attr.x]="svg.valueLabel.x"
+              [attr.y]="svg.valueLabel.y"
+              [attr.dy]="tspan.dy"
+            >
+              {{ tspan.span }}
+            </tspan>
+          }
+        </ng-container>
+      }
+    </text>
+  }
+</svg>

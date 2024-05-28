@@ -28,6 +28,7 @@ export class BmbCalendarScheduleCardsComponent {
     end: new Date().toISOString(),
   };
   @Input() isPositionAbsolute: boolean = true;
+  @Input() extendedContent: boolean = true;
 
   @Output() onSelectEvent: EventEmitter<IBmbCalendarEventClick> =
     new EventEmitter<IBmbCalendarEventClick>();

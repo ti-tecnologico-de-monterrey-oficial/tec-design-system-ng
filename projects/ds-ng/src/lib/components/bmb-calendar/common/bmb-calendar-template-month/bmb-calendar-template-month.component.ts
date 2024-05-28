@@ -45,7 +45,7 @@ export class BmbCalendarTemplateMonthComponent {
   }
 
   getDayName(date: DateTime, lang: string) {
-    return dayName(date, lang)
+    return dayName(date, lang);
   }
 
   isNow(date: DateTime): boolean {

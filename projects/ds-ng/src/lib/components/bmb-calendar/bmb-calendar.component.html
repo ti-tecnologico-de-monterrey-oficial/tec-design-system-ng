@@ -5,6 +5,8 @@
     [events]="events"
     (onCurrentDateChange)="handleCurrentDateChange($event)"
     [weekDays]="renderWeekDays"
+    [isListShowing]="isListShowing"
+    (onViewTypeChange)="onViewTypeChange()"
   />
   <bmb-calendar-header
     [weekDays]="renderWeekDays"
@@ -14,39 +16,46 @@
     (onRangeChange)="handleDateChange($event, now)"
     (onCurrentDateChange)="handleCurrentDateChange($event)"
   />
-  @switch (view) {
-    @case ("day") {
-      <bmb-calendar-template-day
-        [now]="now"
-        [events]="events"
-        (onSelectEvent)="handleSelectEvent($event)"
-      />
-    }
-    @case ("week") {
-      <bmb-calendar-template-week
-        [weekDays]="renderWeekDays"
-        [lang]="lang"
-        [hourFormat]="hourFormat"
-        [now]="now"
-        [events]="events"
-        (onSelectEvent)="handleSelectEvent($event)"
-      />
-    }
-    @case ("month") {
-      <bmb-calendar-template-month
-        [now]="now"
-        [events]="events"
-        (onSelectEvent)="handleSelectEvent($event)"
-      />
-    }
-    @default {
-      <bmb-calendar-template-week
-        [weekDays]="renderWeekDays"
-        [lang]="lang"
-        [hourFormat]="hourFormat"
-        [now]="now"
-        [events]="events"
-      />
+  @if (isListShowing) {
+    <bmb-calendar-template-event-list
+      [events]="events"
+      (onSelectEvent)="handleSelectEvent($event)"
+    />
+  } @else {
+    @switch (view) {
+      @case ("day") {
+        <bmb-calendar-template-day
+          [now]="now"
+          [events]="events"
+          (onSelectEvent)="handleSelectEvent($event)"
+        />
+      }
+      @case ("week") {
+        <bmb-calendar-template-week
+          [weekDays]="renderWeekDays"
+          [lang]="lang"
+          [hourFormat]="hourFormat"
+          [now]="now"
+          [events]="events"
+          (onSelectEvent)="handleSelectEvent($event)"
+        />
+      }
+      @case ("month") {
+        <bmb-calendar-template-month
+          [now]="now"
+          [events]="events"
+          (onSelectEvent)="handleSelectEvent($event)"
+        />
+      }
+      @default {
+        <bmb-calendar-template-week
+          [weekDays]="renderWeekDays"
+          [lang]="lang"
+          [hourFormat]="hourFormat"
+          [now]="now"
+          [events]="events"
+        />
+      }
     }
   }
 
