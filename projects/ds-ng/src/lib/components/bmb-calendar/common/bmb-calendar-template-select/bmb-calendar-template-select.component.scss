@@ -1,0 +1,57 @@
+@use "../../../../../assets/styles/base/rem" as rem;
+
+@mixin buttonReset() {
+  background-color: transparent;
+
+  &:hover:not(:disabled):not(.bmb-disabled),
+  &.bmb-hover:not(:disabled):not(.bmb-disabled),
+  &:focus-visible:not(:disabled):not(.bmb-disabled),
+  &.bmb-focus-visible:not(:disabled):not(.bmb-disabled) {
+    background-color: RGBA(var(--color-charade-50));
+  }
+}
+
+.bmb-calendar-template-select {
+  position: relative;
+
+  button {
+    width: 100%;
+    text-transform: capitalize;
+    @include buttonReset();
+  }
+
+  &-menu {
+    list-style: none;
+    margin: rem.rem_calc(8) 0 0;
+    padding: 0;
+    display: none;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    top: 100%;
+    background-color: RGBA(var(--color-charade-50));
+    border-radius: rem.rem_calc(8);
+    overflow: hidden;
+
+    &-active {
+      display: block;
+      z-index: 9999;
+    }
+
+    button {
+      padding: rem.rem_calc(8);
+
+      &.bmb-calendar-template-select-menu-selected {
+        background-color: RGBA(var(--color-charade-100));
+      }
+
+      &:hover:not(:disabled):not(.bmb-disabled),
+      &.bmb-hover:not(:disabled):not(.bmb-disabled),
+      &:focus-visible:not(:disabled):not(.bmb-disabled),
+      &.bmb-focus-visible:not(:disabled):not(.bmb-disabled) {
+        background-color: RGBA(var(--color-blue-primary));
+        color: RGBA(var(--color-white-primary));
+      }
+    }
+  }
+}

@@ -10,6 +10,10 @@ export class ThemeService {
   );
   theme$ = this.themeSubject.asObservable();
 
+  getDefaultTheme(): string {
+    return 'light';
+  }
+
   setTheme(theme: string): void {
     this.themeSubject.next(theme);
   }

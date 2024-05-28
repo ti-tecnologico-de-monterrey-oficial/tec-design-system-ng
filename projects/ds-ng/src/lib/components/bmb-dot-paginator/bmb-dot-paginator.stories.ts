@@ -108,7 +108,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
   },
-
   args: {
     activeDotIndex: 0,
     totalDots: 5,

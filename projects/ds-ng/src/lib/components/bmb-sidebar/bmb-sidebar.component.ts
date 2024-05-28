@@ -1,22 +1,32 @@
-import { Component, Input } from '@angular/core';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import {
+  Component,
+  Input,
+  ChangeDetectionStrategy,
+  ViewEncapsulation,
+} from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { SidebarElements } from './bmb-sidebar.interface';
+import { SidebarElement } from './bmb-sidebar.interface';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 
 @Component({
   selector: 'bmb-sidebar',
   standalone: true,
-  imports: [BmbIconComponent, CommonModule],
+  imports: [BmbIconComponent, CommonModule, RouterModule],
   templateUrl: './bmb-sidebar.component.html',
   styleUrl: './bmb-sidebar.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class BmbSidebarComponent {
-  @Input() elements: SidebarElements[] = [];
+  @Input() elements: SidebarElement[][] = [];
 
   currentChoice: string = '';
 
   ngOnInit() {
-    this.currentChoice = this.elements[0]?.title;
+    if (this.elements.length > 0 && this.elements[0].length > 0) {
+      this.currentChoice = this.elements[0][0].title;
+    }
   }
 
   setActive(choice: string) {
@@ -24,10 +34,10 @@ export class BmbSidebarComponent {
   }
 
   getActive(choice: string): string {
-    if (this.currentChoice == choice) {
-      return 'active';
-    } else {
-      return 'not';
-    }
+    return this.currentChoice === choice ? 'active' : 'inactive';
+  }
+
+  isInternalLink(link: string): boolean {
+    return link.startsWith('/');
   }
 }

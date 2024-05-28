@@ -1,0 +1,112 @@
+@use "../../../../../assets/styles/base/rem" as rem;
+@use "../../../../../assets/styles/base/fonts" as fonts;
+@use "../../../../../assets/styles/base/mixins" as mixins;
+
+@mixin buttonReset() {
+  background-color: transparent;
+
+  &:hover:not(:disabled):not(.bmb-disabled),
+  &.bmb-hover:not(:disabled):not(.bmb-disabled),
+  &:focus-visible:not(:disabled):not(.bmb-disabled),
+  &.bmb-focus-visible:not(:disabled):not(.bmb-disabled) {
+    background-color: RGBA(var(--color-charade-50));
+  }
+}
+
+.bmb_calendar-month-mobile {
+  background-color: RGBA(var(--color-charade-100));
+  border-radius: 0 0 rem.rem_calc(16) rem.rem_calc(16);
+
+  @include mixins.media-query(1000, "min") {
+    display: none;
+  }
+
+  &-nav {
+    list-style: none;
+
+    &-button {
+      @include buttonReset();
+    }
+  }
+
+  &-calendar {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: rem.rem_calc(16);
+    flex-wrap: wrap;
+    @include fonts.font(3, medium);
+
+    &-item,
+    &-header {
+      flex: 0 0 calc(14.285% - (rem.rem_calc(16) / 7 * 6));
+      text-align: center;
+      box-sizing: border-box;
+      position: relative;
+
+      button {
+        width: rem.rem_calc(36);
+        box-sizing: border-box;
+        padding: rem.rem_calc(8);
+        border-radius: 50%;
+        margin: 0 auto;
+        @include buttonReset();
+
+        &:disabled,
+        &.bmb-disabled {
+          opacity: 1;
+          background-color: RGBA(var(--color-blue-primary));
+          color: RGBA(var(--color-white-primary));
+        }
+      }
+
+      &-indicator {
+        display: inline-block;
+        width: rem.rem_calc(4);
+        height: rem.rem_calc(4);
+        background-color: RGBA(var(--color-blue-primary));
+        opacity: 0.5;
+        border-radius: 50%;
+        position: absolute;
+        transform: translateX(-50%);
+      }
+    }
+
+    &-header {
+      padding: rem.rem_calc(8);
+    }
+  }
+
+  &-expander {
+    height: rem.rem_calc(18);
+    position: relative;
+
+    &-active {
+      i {
+        rotate: 180deg;
+      }
+    }
+
+    button {
+      border-radius: 50%;
+      position: absolute;
+      padding: 0;
+      width: 2.25rem;
+      transform: translateX(-50%);
+      left: 50%;
+      top: 100%;
+      z-index: 1;
+
+      i {
+        transition: all 0.3s ease;
+      }
+    }
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_calendar-month-mobile {
+  }
+}

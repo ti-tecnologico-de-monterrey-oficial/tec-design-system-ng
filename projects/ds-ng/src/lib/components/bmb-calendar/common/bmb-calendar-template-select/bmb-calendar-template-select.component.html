@@ -1,0 +1,17 @@
+<section class="bmb-calendar-template-select">
+  <button bmbButton appearance="secondary-filled" icon="keyboard_arrow_down">
+    {{ value }}
+  </button>
+  <ul
+    class="bmb-calendar-template-select-menu"
+    [ngClass]="isMenuExpanded ? 'bmb-calendar-template-select-menu-active' : ''"
+  >
+    @for (item of options; track $index) {
+      <li>
+        <button [ngClass]="isOptionSelected(item)" (click)="handleClick(item)">
+          {{ item }}
+        </button>
+      </li>
+    }
+  </ul>
+</section>

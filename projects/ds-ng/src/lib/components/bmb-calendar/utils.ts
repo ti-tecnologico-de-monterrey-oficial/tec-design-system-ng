@@ -34,7 +34,6 @@ export const getMonthDays = (date: DateTime): DateTime[] => {
 
   console.log('weekDays', weekDays);
 
-
   return weekDays;
 };
 
@@ -64,19 +63,23 @@ export const eventsInDate = ({
   return todayEvents;
 };
 
-export const dayName = (date: DateTime, lang: string, format: StringUnitLength = 'short'): string => {
+export const dayName = (
+  date: DateTime,
+  lang: string,
+  format: StringUnitLength = 'short',
+): string => {
   const defaultDayOrder = Info.weekdays(format, { locale: lang });
   return defaultDayOrder[date.weekday - 1];
-}
+};
 
 export const weeksAndDays = (date: DateTime): DateTime[] => {
   const calculateFirstDay = getWeekDays(date);
 
   let weekDays = [];
 
-  for (let day = 0; day <= 34; day++) {
+  for (let day = 0; day <= 41; day++) {
     weekDays.push(calculateFirstDay[0].plus({ days: day }));
   }
 
   return weekDays;
-}
+};

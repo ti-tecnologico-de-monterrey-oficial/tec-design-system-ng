@@ -1,0 +1,32 @@
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/rem" as rem;
+
+.bmb_balance-overview {
+  &-container {
+    padding-bottom: rem.rem_calc(10);
+  }
+
+  &-circle-container {
+    padding-bottom: rem.rem_calc(20);
+  }
+
+  &-legend-main-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  &-legend-success {
+    padding-left: rem.rem_calc(20);
+    width: 100%;
+  }
+
+  &-legend-strong {
+    padding-left: rem.rem_calc(20);
+    width: 100%;
+  }
+
+  &-legend-text {
+    @include fonts.font(3, regular);
+  }
+}
