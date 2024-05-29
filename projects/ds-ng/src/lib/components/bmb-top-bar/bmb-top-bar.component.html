@@ -51,7 +51,7 @@
     }
 
     @if (showLang) {
-      <bmb-select (onLangChange)="handleLangChange($event)" [value]="lang">
+      <bmb-select (onValueChange)="handleLangChange($event)" [value]="lang">
         <div class="bmb_top-bar-lang" selectTemplate>
           <figure class="bmb_top-bar-lang-flag">
             <img [src]="getFlag(lang)" [alt]="getCountryName(lang)" />

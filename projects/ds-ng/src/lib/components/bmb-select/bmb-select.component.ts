@@ -23,7 +23,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 export class BmbSelectComponent {
   @Input() value: unknown = null;
 
-  @Output() onLangChange: EventEmitter<string> = new EventEmitter<string>();
+  @Output() onValueChange: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(private elementRef: ElementRef) {}
 
@@ -35,7 +35,7 @@ export class BmbSelectComponent {
         .closest('bmb-select-item')
         ?.getAttribute('value');
       if (value) {
-        this.onLangChange.emit(value);
+        this.onValueChange.emit(value);
       }
       this.isExpanded = !this.isExpanded;
     } else {

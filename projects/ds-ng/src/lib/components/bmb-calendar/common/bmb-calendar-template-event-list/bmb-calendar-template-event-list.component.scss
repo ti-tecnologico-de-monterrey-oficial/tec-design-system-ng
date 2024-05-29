@@ -1,0 +1,18 @@
+@use "../../../../../assets/styles/base/rem" as rem;
+@use "../../../../../assets/styles/base/fonts" as fonts;
+@use "../../../../../assets/styles/base/mixins" as mixins;
+
+.bmb-calendar-template-event-list {
+  list-style: none;
+  padding: rem.rem_calc(16);
+  margin: 0;
+  box-sizing: border-box;
+
+  &-item {
+    margin-bottom: rem.rem_calc(32);
+
+    // .bmb_calendar-event {
+    //   width: 100%;
+    // }
+  }
+}
