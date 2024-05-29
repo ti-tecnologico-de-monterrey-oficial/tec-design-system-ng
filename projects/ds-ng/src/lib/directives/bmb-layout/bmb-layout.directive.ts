@@ -15,6 +15,7 @@ export class BmbLayoutDirective {
   @HostBinding('class') get elementClass(): string[] {
     const classes = ['bmb_layout'];
     classes.push(`bmb_gap-${this.gapSise}`);
+    classes.push(`bmb_margin-${this.margin}`);
     if (this.dinamycCols) classes.push('bmb_layout-smart');
     return classes;
   }
