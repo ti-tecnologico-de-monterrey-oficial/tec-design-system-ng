@@ -25,30 +25,31 @@ import { MatDialog } from '@angular/material/dialog';
   `,
 })
 class StorybookToastWrapperComponent {
-    @Input() title: string = 'Titulo Modal';
-    @Input() subtitle: string = 'Subtitulo Opcional';
-    @Input() content?: string = 'Lorem ipsum dolor sit amet consectetur adipisicing elit.';
-    @Input() size?: 'small' | 'meidum' | 'large';
-    @Input() type?: 'alert' | 'action' | 'informative';
-    @Input() alertStyle?: 'error' | 'event' | 'neutral' | 'warning' | 'success';
-    @Input() primaryBtnLabel?: string = 'OK';
-    @Input() secondaryBtnLabel?: string = 'Cancel'
-    constructor(private matDialog: MatDialog) {}
+  @Input() title: string = 'Titulo Modal';
+  @Input() subtitle: string = 'Subtitulo Opcional';
+  @Input() content?: string =
+    'Lorem ipsum dolor sit amet consectetur adipisicing elit.';
+  @Input() size?: 'small' | 'meidum' | 'large';
+  @Input() type?: 'alert' | 'action' | 'informative';
+  @Input() alertStyle?: 'error' | 'event' | 'neutral' | 'warning' | 'success';
+  @Input() primaryBtnLabel?: string = 'OK';
+  @Input() secondaryBtnLabel?: string = 'Cancel';
+  constructor(private matDialog: MatDialog) {}
 
-    data: ModalDataConfig = {
-        title: 'Modal Title',
-        subtitle: 'Modal Subtitle',
-        content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-        size: 'large',
-        type: 'action',
-        alertStyle: 'error',
-        primaryBtnLabel: 'Ok',
-        scrollable: false,
-      }
+  data: ModalDataConfig = {
+    title: 'Modal Title',
+    subtitle: 'Modal Subtitle',
+    content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+    size: 'large',
+    type: 'action',
+    alertStyle: 'error',
+    primaryBtnLabel: 'Ok',
+    scrollable: false,
+  };
 
-    openModalComponent() {
+  openModalComponent() {
     this.matDialog.open(BmbModalComponent, {
-        data: this.data
+      data: this.data,
     });
   }
 }
@@ -122,110 +123,99 @@ Below is an example of how you can use this component in HTML:
       },
     },
     subtitle: {
-    name: 'Subtitle',
-    control: {
+      name: 'Subtitle',
+      control: {
         type: 'text',
-    },
-    description:
+      },
+      description:
         'Specifies the subtitle text display. This message should be concise and direct.',
-    table: {
+      table: {
         category: 'Properties',
         type: { summary: 'string' },
-    },
+      },
     },
     content: {
-        name: 'Content',
-        control: {
-            type: 'text',
-        },
-        description:
-            'Specifies the body text display.',
-        table: {
-            category: 'Properties',
-            type: { summary: 'string' },
-        },
+      name: 'Content',
+      control: {
+        type: 'text',
+      },
+      description: 'Specifies the body text display.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
     },
     size: {
-        name: 'Size',
-        control: {
-            type: 'radio',
-          },
-          options: [
-            'small',
-            'medium',
-            'large',
-          ],
-          table: {
-            category: 'Properties',
-            defaultValue: { summary: 'small' },
-            type: { summary: 'string' },
-          },
-        description:
-            'Specifies the size of the modal. This string should be: small, medium or large.',
+      name: 'Size',
+      control: {
+        type: 'radio',
+      },
+      options: ['small', 'medium', 'large'],
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'small' },
+        type: { summary: 'string' },
+      },
+      description:
+        'Specifies the size of the modal. This string should be: small, medium or large.',
     },
     type: {
-        name: 'Type',
-        control: {
-            type: 'radio',
-          },
-          options: [
-            'alert',
-            'informative',
-            'action',
-          ],
-          table: {
-            category: 'Properties',
-            defaultValue: { summary: 'action' },
-            type: { summary: 'string' },
-          },
-        description:
-            'Specifies the type of the modal. This string should be: alert, informative or action.',
+      name: 'Type',
+      control: {
+        type: 'radio',
+      },
+      options: ['alert', 'informative', 'action'],
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'action' },
+        type: { summary: 'string' },
+      },
+      description:
+        'Specifies the type of the modal. This string should be: alert, informative or action.',
     },
     alertStyle: {
-        name: 'Alert Style',
-        control: {
-            type: 'radio',
-          },
-          options: [
-            'normal',
-            'primary',
-            'success',
-            'event',
-            'warning',
-            'error',
-            'neutral',
-          ],
-          table: {
-            category: 'Properties',
-            defaultValue: { summary: 'primary' },
-            type: { summary: 'string' },
-          },
-        description:
-            'Specifies the size of the modal. This string should be: error, warning, event, neutral, success, primary',
+      name: 'Alert Style',
+      control: {
+        type: 'radio',
+      },
+      options: [
+        'normal',
+        'primary',
+        'success',
+        'event',
+        'warning',
+        'error',
+        'neutral',
+      ],
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'primary' },
+        type: { summary: 'string' },
+      },
+      description:
+        'Specifies the size of the modal. This string should be: error, warning, event, neutral, success, primary',
     },
     primaryBtnLabel: {
-        name: 'Primary Button Label',
-        control: {
-            type: 'string',
-        },
-        description:
-            'Specifies the text of the main button.',
-        table: {
-            category: 'Properties',
-            type: { summary: 'string' },
-        },
+      name: 'Primary Button Label',
+      control: {
+        type: 'string',
+      },
+      description: 'Specifies the text of the main button.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
     },
     secondaryBtnLabel: {
-        name: 'Secondary Button Label',
-        control: {
-            type: 'string',
-        },
-        description:
-            'Specifies the text of the secondary button.',
-        table: {
-            category: 'Properties',
-            type: { summary: 'string' },
-        },
+      name: 'Secondary Button Label',
+      control: {
+        type: 'string',
+      },
+      description: 'Specifies the text of the secondary button.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
     },
   },
   args: {
@@ -252,7 +242,9 @@ function attributes(object: { [key: string]: any }): string {
     .join(' ');
 }
 
-export const Default: StoryFn<typeof StorybookToastWrapperComponent> = (args) => {
+export const Default: StoryFn<typeof StorybookToastWrapperComponent> = (
+  args,
+) => {
   return {
     props: args,
     template: `

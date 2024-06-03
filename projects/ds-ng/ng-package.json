@@ -11,8 +11,5 @@
       "output": "./assets/fonts"
     }
   ],
-  "allowedNonPeerDependencies": [
-    "luxon",
-    "@angular/material"
-  ]
+  "allowedNonPeerDependencies": ["luxon", "@angular/material"]
 }
