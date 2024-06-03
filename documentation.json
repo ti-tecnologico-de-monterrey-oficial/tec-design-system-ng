@@ -12310,7 +12310,7 @@
         },
         {
             "name": "StorybookToastWrapperComponent",
-            "id": "component-StorybookToastWrapperComponent-d825db6c7d0ec699ca44c02a8e525e61a725b95cabbb927541895bf5a8503532f866d96c7f2d61c7c9cc39166a855daba78786b537a42ad20180fbb72916b9ed",
+            "id": "component-StorybookToastWrapperComponent-0eebbcfa9490487d0b8672373883436e3a2658787b7f21fd7b64eaa92c6e9afb34bbd6de11d46fd21703b4a9d0d1bcfe55f162c709195236981b4b7111526534",
             "file": "projects/ds-ng/src/lib/components/bmb-modal/bmb-modal.stories.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -12399,7 +12399,7 @@
             "propertiesClass": [
                 {
                     "name": "data",
-                    "defaultValue": "{\n    title: 'Modal Title',\n    subtitle: 'Modal Subtitle',\n    content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',\n    size: 'large',\n    type: 'action',\n    alertStyle: 'error',\n    primaryBtnLabel: 'Ok',\n    scrollable: false,\n  }",
+                    "defaultValue": "{\r\n    title: 'Modal Title',\r\n    subtitle: 'Modal Subtitle',\r\n    content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',\r\n    size: 'large',\r\n    type: 'action',\r\n    alertStyle: 'error',\r\n    primaryBtnLabel: 'Ok',\r\n    scrollable: false,\r\n  }",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "ModalDataConfig",
@@ -12434,7 +12434,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { ModalDataConfig } from './bmb-modal.interface';\nimport { Component, Input } from '@angular/core';\nimport { Meta, StoryFn, moduleMetadata } from '@storybook/angular';\nimport { BmbModalComponent } from './bmb-modal.component';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\nimport { BmbButtonDirective } from '../../directives/button.directive';\nimport { MatDialog } from '@angular/material/dialog';\n\n@Component({\n  standalone: true,\n  imports: [BmbButtonDirective],\n  selector: 'storybook-toast-wrapper',\n  template: `\n    <button\n      bmbButton\n      appearance=\"primary\"\n      icon=\"home\"\n      size=\"small\"\n      position=\"left\"\n      [case]=\"false\"\n      (click)=\"openModalComponent()\"\n    >\n      Open Modal\n    </button>\n  `,\n})\nclass StorybookToastWrapperComponent {\n  @Input() title: string = 'Titulo Modal';\n  @Input() subtitle: string = 'Subtitulo Opcional';\n  @Input() content?: string =\n    'Lorem ipsum dolor sit amet consectetur adipisicing elit.';\n  @Input() size?: 'small' | 'meidum' | 'large';\n  @Input() type?: 'alert' | 'action' | 'informative';\n  @Input() alertStyle?: 'error' | 'event' | 'neutral' | 'warning' | 'success';\n  @Input() primaryBtnLabel?: string = 'OK';\n  @Input() secondaryBtnLabel?: string = 'Cancel';\n  constructor(private matDialog: MatDialog) {}\n\n  data: ModalDataConfig = {\n    title: 'Modal Title',\n    subtitle: 'Modal Subtitle',\n    content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',\n    size: 'large',\n    type: 'action',\n    alertStyle: 'error',\n    primaryBtnLabel: 'Ok',\n    scrollable: false,\n  };\n\n  openModalComponent() {\n    this.matDialog.open(BmbModalComponent, {\n      data: this.data,\n    });\n  }\n}\n\nexport default {\n  title: 'Macro Componentes/Modal',\n  component: BmbModalComponent,\n  decorators: [\n    moduleMetadata({\n      imports: [\n        StorybookToastWrapperComponent,\n        BmbModalComponent,\n        BmbIconComponent,\n        BmbButtonDirective,\n      ],\n      providers: [],\n    }),\n  ],\n  parameters: {\n    docs: {\n      description: {\n        component: `\nBelow is an example of how you can use this component in TypeScript:\n\n\\`\\`\\`typescript\nimport { ModalService } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';\nimport { MatDialog } from '@angular/material/dialog';\n@Component({\n  selector: 'component',\n  standalone: true,\n  imports: [],\n  templateUrl: './component.html',\n  styleUrl: './component.scss',\n})\nexport class Component {\n    constructor(private matDialog: MatDialog) {}\n\n    data: ModalDataConfig = {\n        title: 'Modal Title',\n        subtitle: 'Modal Subtitle',\n        content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',\n        size: 'large',\n        type: 'alert',\n        alertStyle: 'error',\n        primaryBtnLabel: 'Ok',\n      }\n\n    openModalComponent() {\n        this.modalService.open(BmbModalContentComponent, {\n            data: this.data\n        });\n    }\n\\`\\`\\`\n\nBelow is an example of how you can use this component in HTML:\n        `,\n      },\n    },\n  },\n  argTypes: {\n    title: {\n      name: 'Title',\n      control: {\n        type: 'text',\n      },\n      description:\n        'Specifies the text display. This message should be concise and direct.',\n      table: {\n        category: 'Properties',\n        type: { summary: 'string' },\n      },\n    },\n    subtitle: {\n      name: 'Subtitle',\n      control: {\n        type: 'text',\n      },\n      description:\n        'Specifies the subtitle text display. This message should be concise and direct.',\n      table: {\n        category: 'Properties',\n        type: { summary: 'string' },\n      },\n    },\n    content: {\n      name: 'Content',\n      control: {\n        type: 'text',\n      },\n      description: 'Specifies the body text display.',\n      table: {\n        category: 'Properties',\n        type: { summary: 'string' },\n      },\n    },\n    size: {\n      name: 'Size',\n      control: {\n        type: 'select',\n      },\n      options: ['small', 'medium', 'large'],\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 'small' },\n        type: { summary: 'string' },\n      },\n      description:\n        'Specifies the size of the modal. This string should be: small, medium or large.',\n    },\n    type: {\n      name: 'Type',\n      control: {\n        type: 'select',\n      },\n      options: ['alert', 'informative', 'action'],\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 'action' },\n        type: { summary: 'string' },\n      },\n      description:\n        'Specifies the type of the modal. This string should be: alert, informative or action.',\n    },\n    alertStyle: {\n      name: 'Alert Style',\n      control: {\n        type: 'select',\n      },\n      options: [\n        'normal',\n        'primary',\n        'success',\n        'event',\n        'warning',\n        'error',\n        'neutral',\n      ],\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 'primary' },\n        type: { summary: 'string' },\n      },\n      description:\n        'Specifies the size of the modal. This string should be: error, warning, event, neutral, success, primary',\n    },\n    primaryBtnLabel: {\n      name: 'Primary Button Label',\n      control: {\n        type: 'string',\n      },\n      description: 'Specifies the text of the main button.',\n      table: {\n        category: 'Properties',\n        type: { summary: 'string' },\n      },\n    },\n    secondaryBtnLabel: {\n      name: 'Secondary Button Label',\n      control: {\n        type: 'string',\n      },\n      description: 'Specifies the text of the secondary button.',\n      table: {\n        category: 'Properties',\n        type: { summary: 'string' },\n      },\n    },\n  },\n  args: {\n    title: 'Modal Title',\n    subtitle: 'Modal Subtitle',\n    content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',\n    size: 'small',\n    type: 'action',\n    alertStyle: 'error',\n    primaryBtnLabel: 'Action',\n    secondaryBtnLabel: 'Cancel',\n  },\n} as Meta<typeof BmbModalComponent>;\n\nfunction attributes(object: { [key: string]: any }): string {\n  return Object.entries(object)\n    .filter(([key]) => key !== 'text')\n    .map(([key, value]) => {\n      if (key === 'duration') {\n        return `[${key}]=\"${value}\"`;\n      }\n      return `${key}=\"${value}\"`;\n    })\n    .join(' ');\n}\n\nexport const Default: StoryFn<typeof StorybookToastWrapperComponent> = (\n  args,\n) => {\n  return {\n    props: args,\n    template: `\n      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->\n      <storybook-toast-wrapper ${attributes(args)}></storybook-toast-wrapper>\n      <!-- Start copying from here -->\n      <div class=\"actions\">\n      <button bmbButton appearance=\"primary\" icon=\"home\" size=\"small\" position=\"left\" [case]=\"false\" (click)=\"onButtonClick()\">Open Modal</button>\n      `,\n  };\n};\n",
+            "sourceCode": "import { ModalDataConfig } from './bmb-modal.interface';\r\nimport { Component, Input } from '@angular/core';\r\nimport { Meta, StoryFn, moduleMetadata } from '@storybook/angular';\r\nimport { BmbModalComponent } from './bmb-modal.component';\r\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\r\nimport { BmbButtonDirective } from '../../directives/button.directive';\r\nimport { MatDialog } from '@angular/material/dialog';\r\n\r\n@Component({\r\n  standalone: true,\r\n  imports: [BmbButtonDirective],\r\n  selector: 'storybook-toast-wrapper',\r\n  template: `\r\n    <button\r\n      bmbButton\r\n      appearance=\"primary\"\r\n      icon=\"home\"\r\n      size=\"small\"\r\n      position=\"left\"\r\n      [case]=\"false\"\r\n      (click)=\"openModalComponent()\"\r\n    >\r\n      Open Modal\r\n    </button>\r\n  `,\r\n})\r\nclass StorybookToastWrapperComponent {\r\n  @Input() title: string = 'Titulo Modal';\r\n  @Input() subtitle: string = 'Subtitulo Opcional';\r\n  @Input() content?: string =\r\n    'Lorem ipsum dolor sit amet consectetur adipisicing elit.';\r\n  @Input() size?: 'small' | 'meidum' | 'large';\r\n  @Input() type?: 'alert' | 'action' | 'informative';\r\n  @Input() alertStyle?: 'error' | 'event' | 'neutral' | 'warning' | 'success';\r\n  @Input() primaryBtnLabel?: string = 'OK';\r\n  @Input() secondaryBtnLabel?: string = 'Cancel';\r\n  constructor(private matDialog: MatDialog) {}\r\n\r\n  data: ModalDataConfig = {\r\n    title: 'Modal Title',\r\n    subtitle: 'Modal Subtitle',\r\n    content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',\r\n    size: 'large',\r\n    type: 'action',\r\n    alertStyle: 'error',\r\n    primaryBtnLabel: 'Ok',\r\n    scrollable: false,\r\n  };\r\n\r\n  openModalComponent() {\r\n    this.matDialog.open(BmbModalComponent, {\r\n      data: this.data,\r\n    });\r\n  }\r\n}\r\n\r\nexport default {\r\n  title: 'Macro Componentes/Modal',\r\n  component: BmbModalComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [\r\n        StorybookToastWrapperComponent,\r\n        BmbModalComponent,\r\n        BmbIconComponent,\r\n        BmbButtonDirective,\r\n      ],\r\n      providers: [],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        component: `\r\nBelow is an example of how you can use this component in TypeScript:\r\n\r\n\\`\\`\\`typescript\r\nimport { MatDialog } from '@angular/material/dialog';\r\nimport { BmbModalComponent, ModalDataConfig } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';\r\n@Component({\r\n  selector: 'component',\r\n  standalone: true,\r\n  imports: [],\r\n  templateUrl: './component.html',\r\n  styleUrl: './component.scss',\r\n})\r\nexport class Component {\r\n    constructor(private matDialog: MatDialog) {}\r\n\r\n    data: ModalDataConfig = {\r\n        title: 'Modal Title',\r\n        subtitle: 'Modal Subtitle',\r\n        content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',\r\n        size: 'large',\r\n        type: 'alert',\r\n        alertStyle: 'error',\r\n        primaryBtnLabel: 'Ok',\r\n      }\r\n\r\n    openModalComponent() {\r\n      this.matDialog.open(BmbModalComponent, { data: this.data });\r\n    }\r\n\\`\\`\\`\r\n\r\nBelow is an example of how you can use this component in HTML:\r\n        `,\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    title: {\r\n      name: 'Title',\r\n      control: {\r\n        type: 'text',\r\n      },\r\n      description:\r\n        'Specifies the text display. This message should be concise and direct.',\r\n      table: {\r\n        category: 'Properties',\r\n        type: { summary: 'string' },\r\n      },\r\n    },\r\n    subtitle: {\r\n      name: 'Subtitle',\r\n      control: {\r\n        type: 'text',\r\n      },\r\n      description:\r\n        'Specifies the subtitle text display. This message should be concise and direct.',\r\n      table: {\r\n        category: 'Properties',\r\n        type: { summary: 'string' },\r\n      },\r\n    },\r\n    content: {\r\n      name: 'Content',\r\n      control: {\r\n        type: 'text',\r\n      },\r\n      description: 'Specifies the body text display.',\r\n      table: {\r\n        category: 'Properties',\r\n        type: { summary: 'string' },\r\n      },\r\n    },\r\n    size: {\r\n      name: 'Size',\r\n      control: {\r\n        type: 'select',\r\n      },\r\n      options: ['small', 'medium', 'large'],\r\n      table: {\r\n        category: 'Properties',\r\n        defaultValue: { summary: 'small' },\r\n        type: { summary: 'string' },\r\n      },\r\n      description:\r\n        'Specifies the size of the modal. This string should be: small, medium or large.',\r\n    },\r\n    type: {\r\n      name: 'Type',\r\n      control: {\r\n        type: 'select',\r\n      },\r\n      options: ['alert', 'informative', 'action'],\r\n      table: {\r\n        category: 'Properties',\r\n        defaultValue: { summary: 'action' },\r\n        type: { summary: 'string' },\r\n      },\r\n      description:\r\n        'Specifies the type of the modal. This string should be: alert, informative or action.',\r\n    },\r\n    alertStyle: {\r\n      name: 'Alert Style',\r\n      control: {\r\n        type: 'select',\r\n      },\r\n      options: [\r\n        'normal',\r\n        'primary',\r\n        'success',\r\n        'event',\r\n        'warning',\r\n        'error',\r\n        'neutral',\r\n      ],\r\n      table: {\r\n        category: 'Properties',\r\n        defaultValue: { summary: 'primary' },\r\n        type: { summary: 'string' },\r\n      },\r\n      description:\r\n        'Specifies the size of the modal. This string should be: error, warning, event, neutral, success, primary',\r\n    },\r\n    primaryBtnLabel: {\r\n      name: 'Primary Button Label',\r\n      control: {\r\n        type: 'string',\r\n      },\r\n      description: 'Specifies the text of the main button.',\r\n      table: {\r\n        category: 'Properties',\r\n        type: { summary: 'string' },\r\n      },\r\n    },\r\n    secondaryBtnLabel: {\r\n      name: 'Secondary Button Label',\r\n      control: {\r\n        type: 'string',\r\n      },\r\n      description: 'Specifies the text of the secondary button.',\r\n      table: {\r\n        category: 'Properties',\r\n        type: { summary: 'string' },\r\n      },\r\n    },\r\n  },\r\n  args: {\r\n    title: 'Modal Title',\r\n    subtitle: 'Modal Subtitle',\r\n    content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',\r\n    size: 'small',\r\n    type: 'action',\r\n    alertStyle: 'error',\r\n    primaryBtnLabel: 'Action',\r\n    secondaryBtnLabel: 'Cancel',\r\n  },\r\n} as Meta<typeof BmbModalComponent>;\r\n\r\nfunction attributes(object: { [key: string]: any }): string {\r\n  return Object.entries(object)\r\n    .filter(([key]) => key !== 'text')\r\n    .map(([key, value]) => {\r\n      if (key === 'duration') {\r\n        return `[${key}]=\"${value}\"`;\r\n      }\r\n      return `${key}=\"${value}\"`;\r\n    })\r\n    .join(' ');\r\n}\r\n\r\nexport const Default: StoryFn<typeof StorybookToastWrapperComponent> = (\r\n  args,\r\n) => {\r\n  return {\r\n    props: args,\r\n    template: `\r\n      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->\r\n      <storybook-toast-wrapper ${attributes(args)}></storybook-toast-wrapper>\r\n      <!-- Start copying from here -->\r\n      <div class=\"actions\">\r\n      <button bmbButton appearance=\"primary\" icon=\"home\" size=\"small\" position=\"left\" [case]=\"false\" (click)=\"onButtonClick()\">Open Modal</button>\r\n      `,\r\n  };\r\n};\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -12468,8 +12468,8 @@
         },
         {
             "name": "StorybookToastWrapperComponent",
-            "id": "component-StorybookToastWrapperComponent-83860ca5ddb750d4bb1cf2d5f7042d1ed2c47e3656e44f41327a69d9fe01d9bc25c04560e87829b9c7e1917d7dbf81d60f8faf0fd6d133dc3cf1340aa55a8df5-1",
-            "file": "projects/ds-ng/src/lib/components/bmb-overlay/bmb-overlay.stories-back.ts",
+            "id": "component-StorybookToastWrapperComponent-57e08f272c71e721ffb2107528ba2b7b8b9bcf90eb99f9edcf3c9adaebe33ccb988826a7040db47e8ba28764b4acbee464863a86c88b015e77632848e1d0f0f8-1",
+            "file": "projects/ds-ng/src/lib/components/bmb-overlay/bmb-overlay.stories.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -12478,7 +12478,7 @@
             "selector": "storybook-toast-wrapper",
             "styleUrls": [],
             "styles": [],
-            "template": "<button\n  style=\"z-index:3; position: relative;\"\n  bmbButton\n  appearance=\"primary\"\n  icon=\"home\"\n  size=\"small\"\n  position=\"left\"\n  [case]=\"false\"\n  (click)=\"openOverlay()\"\n>\n  Click Here\n</button>\n\n<bmb-overlay [active]=\"activeOverlay\" />\n",
+            "template": "  <div style=\"width: 100%; height: 500px\">\n    <button\n      style=\"position: absolute; z-index: 3;\"\n      bmbButton\n      appearance=\"primary\"\n      icon=\"home\"\n      size=\"small\"\n      position=\"left\"\n      [case]=\"false\"\n      (click)=\"showOverlay()\"\n    >\n      Open Overlay\n    </button>\n\n    <bmb-overlay [active]=\"this.showOverlayComponent\"/>\n</div>\n",
             "templateUrl": [],
             "viewProviders": [],
             "hostDirectives": [],
@@ -12486,24 +12486,24 @@
             "outputsClass": [],
             "propertiesClass": [
                 {
-                    "name": "activeOverlay",
+                    "name": "showOverlayComponent",
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "",
+                    "type": "boolean",
                     "optional": false,
                     "description": "",
-                    "line": 29
+                    "line": 31
                 }
             ],
             "methodsClass": [
                 {
-                    "name": "openOverlay",
+                    "name": "showOverlay",
                     "args": [],
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 31,
+                    "line": 34,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -12521,15 +12521,27 @@
                 {
                     "name": "BmbButtonDirective",
                     "type": "directive"
+                },
+                {
+                    "name": "BmbIconComponent",
+                    "type": "component"
                 }
             ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\nimport { Meta, StoryFn, moduleMetadata } from '@storybook/angular';\nimport { BmbOverlayComponent } from './bmb-overlay.component';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\nimport { BmbButtonDirective } from '../../directives/button.directive';\n\n@Component({\n  standalone: true,\n  imports: [BmbOverlayComponent, BmbButtonDirective],\n  selector: 'storybook-toast-wrapper',\n  template: `\n    <button\n      style=\"z-index:3; position: relative;\"\n      bmbButton\n      appearance=\"primary\"\n      icon=\"home\"\n      size=\"small\"\n      position=\"left\"\n      [case]=\"false\"\n      (click)=\"openOverlay()\"\n    >\n      Click Here\n    </button>\n\n    <bmb-overlay [active]=\"activeOverlay\" />\n  `,\n})\nclass StorybookToastWrapperComponent {\n  activeOverlay = false;\n\n  openOverlay() {\n    this.activeOverlay = !this.activeOverlay;\n  }\n}\n\nexport default {\n  title: 'Micro Componentes/Overlay',\n  component: BmbOverlayComponent,\n  decorators: [\n    moduleMetadata({\n      imports: [StorybookToastWrapperComponent, BmbOverlayComponent],\n    }),\n  ],\n  parameters: {\n    docs: {\n      description: {\n        component: `\nBelow is an example of how you can use this component in TypeScript:\n\n\\`\\`\\`typescript\nimport { BmbOverlayComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';\n@Component({\n  selector: 'component',\n  standalone: true,\n  imports: [ BmbOverlayComponent ],\n  templateUrl: './component.html',\n  styleUrl: './component.scss',\n})\nexport class Component {\n    activeOverlay = false\n  \n    openOverlay() {\n      this.activeOverlay = !this.activeOverlay\n    }\n}\n\\`\\`\\`\n\nBelow is an example of how you can use this component in HTML:\n        `,\n      },\n    },\n  },\n  argTypes: {\n    active: {\n      name: 'Active',\n      control: {\n        type: 'boolean',\n      },\n      description: 'Specifies if the overlay is active',\n      table: {\n        category: 'Properties',\n        type: { summary: 'boolean' },\n      },\n    },\n  },\n  args: {\n    active: false,\n  },\n} as Meta<typeof BmbOverlayComponent>;\n",
+            "sourceCode": "import { Component, Input, ViewChild } from '@angular/core';\r\nimport { Meta, StoryFn, moduleMetadata } from '@storybook/angular';\r\nimport {BmbOverlayComponent } from './bmb-overlay.component';\r\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\r\nimport { BmbButtonDirective } from '../../directives/button.directive';\r\n\r\n@Component({\r\n  standalone: true,\r\n  imports: [BmbOverlayComponent, BmbButtonDirective, BmbIconComponent],\r\n  selector: 'storybook-toast-wrapper',\r\n  template: `\r\n  <div style=\"width: 100%; height: 500px\">\r\n    <button\r\n      style=\"position: absolute; z-index: 3;\"\r\n      bmbButton\r\n      appearance=\"primary\"\r\n      icon=\"home\"\r\n      size=\"small\"\r\n      position=\"left\"\r\n      [case]=\"false\"\r\n      (click)=\"showOverlay()\"\r\n    >\r\n      Open Overlay\r\n    </button>\r\n\r\n    <bmb-overlay [active]=\"this.showOverlayComponent\"/>\r\n</div>\r\n  `,\r\n})\r\nclass StorybookToastWrapperComponent {\r\n    showOverlayComponent: boolean = false\r\n    constructor() {}\r\n\r\n    showOverlay() {\r\n        this.showOverlayComponent = !this.showOverlayComponent\r\n    }\r\n}\r\n\r\nexport default {\r\n  title: 'Micro Componentes/Overlay',\r\n  component: BmbOverlayComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [\r\n        StorybookToastWrapperComponent,\r\n        BmbOverlayComponent,\r\n        BmbIconComponent,\r\n        BmbButtonDirective,\r\n      ],\r\n      providers: [],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        component: `\r\nBelow is an example of how you can use this component in TypeScript:\r\n\r\n\\`\\`\\`typescript\r\nimport { BmbOverlayComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';\r\n@Component({\r\n  selector: 'component',\r\n  standalone: true,\r\n  imports: [BmbOverlayComponent],\r\n  templateUrl: './component.html',\r\n  styleUrl: './component.scss',\r\n})\r\n\\`\\`\\`\r\n\r\nBelow is an example of how you can use this component in HTML:\r\n        `,\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    active: {\r\n        name: 'Active',\r\n        control: { type: 'boolean' },\r\n        description: 'Show or hide overlay',\r\n        table: {\r\n          category: 'Properties',\r\n          defaultValue: { summary: 'false' },\r\n          type: { summary: 'boolean' },\r\n        },\r\n      },\r\n  },\r\n  args: {\r\n    active: false,\r\n  },\r\n} as Meta<typeof BmbOverlayComponent>;\r\n\r\nexport const Default: StoryFn<typeof StorybookToastWrapperComponent> = (args) => {\r\n  return {\r\n    props: args,\r\n    template: `\r\n      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->\r\n      <storybook-toast-wrapper></storybook-toast-wrapper>\r\n      <!-- Start copying from here -->\r\n      <div class=\"actions\">\r\n      <button bmbButton appearance=\"primary\" icon=\"home\" size=\"small\" position=\"left\" [case]=\"false\" (click)=\"onButtonClick()\">Open Modal</button>\r\n      `,\r\n  };\r\n};\r\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 31
+            },
             "extends": [],
             "isDuplicate": true,
             "duplicateId": 1,
@@ -12930,7 +12942,17 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "StoryFn<>",
-                "defaultValue": "(\n  args,\n) => {\n  return {\n    props: args,\n    template: `\n      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->\n      <storybook-toast-wrapper ${attributes(args)}></storybook-toast-wrapper>\n      <!-- Start copying from here -->\n      <div class=\"actions\">\n      <button bmbButton appearance=\"primary\" icon=\"home\" size=\"small\" position=\"left\" [case]=\"false\" (click)=\"onButtonClick()\">Open Modal</button>\n      `,\n  };\n}"
+                "defaultValue": "(\r\n  args,\r\n) => {\r\n  return {\r\n    props: args,\r\n    template: `\r\n      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->\r\n      <storybook-toast-wrapper ${attributes(args)}></storybook-toast-wrapper>\r\n      <!-- Start copying from here -->\r\n      <div class=\"actions\">\r\n      <button bmbButton appearance=\"primary\" icon=\"home\" size=\"small\" position=\"left\" [case]=\"false\" (click)=\"onButtonClick()\">Open Modal</button>\r\n      `,\r\n  };\r\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-overlay/bmb-overlay.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "StoryFn<>",
+                "defaultValue": "(args) => {\r\n  return {\r\n    props: args,\r\n    template: `\r\n      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->\r\n      <storybook-toast-wrapper></storybook-toast-wrapper>\r\n      <!-- Start copying from here -->\r\n      <div class=\"actions\">\r\n      <button bmbButton appearance=\"primary\" icon=\"home\" size=\"small\" position=\"left\" [case]=\"false\" (click)=\"onButtonClick()\">Open Modal</button>\r\n      `,\r\n  };\r\n}"
             },
             {
                 "name": "Default",
@@ -13394,7 +13416,7 @@
                         "type": "IFixDecimals",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "2182c7e1-3aa1-445f-9579-2a50de6a3f2d",
+                        "destrucuredGroupId": "4d59e6ec-58a8-4a0e-afe7-6b668bcd4389",
                         "destructuredParameter": true
                     },
                     {
@@ -13403,7 +13425,7 @@
                         "deprecated": false,
                         "deprecationMessage": "",
                         "defaultValue": "2",
-                        "destrucuredGroupId": "2182c7e1-3aa1-445f-9579-2a50de6a3f2d",
+                        "destrucuredGroupId": "4d59e6ec-58a8-4a0e-afe7-6b668bcd4389",
                         "destructuredParameter": true
                     }
                 ],
@@ -13413,7 +13435,7 @@
                         "type": "IFixDecimals",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "2182c7e1-3aa1-445f-9579-2a50de6a3f2d",
+                        "destrucuredGroupId": "4d59e6ec-58a8-4a0e-afe7-6b668bcd4389",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -13425,7 +13447,7 @@
                         "deprecated": false,
                         "deprecationMessage": "",
                         "defaultValue": "2",
-                        "destrucuredGroupId": "2182c7e1-3aa1-445f-9579-2a50de6a3f2d",
+                        "destrucuredGroupId": "4d59e6ec-58a8-4a0e-afe7-6b668bcd4389",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -14360,7 +14382,19 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "StoryFn<>",
-                    "defaultValue": "(\n  args,\n) => {\n  return {\n    props: args,\n    template: `\n      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->\n      <storybook-toast-wrapper ${attributes(args)}></storybook-toast-wrapper>\n      <!-- Start copying from here -->\n      <div class=\"actions\">\n      <button bmbButton appearance=\"primary\" icon=\"home\" size=\"small\" position=\"left\" [case]=\"false\" (click)=\"onButtonClick()\">Open Modal</button>\n      `,\n  };\n}"
+                    "defaultValue": "(\r\n  args,\r\n) => {\r\n  return {\r\n    props: args,\r\n    template: `\r\n      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->\r\n      <storybook-toast-wrapper ${attributes(args)}></storybook-toast-wrapper>\r\n      <!-- Start copying from here -->\r\n      <div class=\"actions\">\r\n      <button bmbButton appearance=\"primary\" icon=\"home\" size=\"small\" position=\"left\" [case]=\"false\" (click)=\"onButtonClick()\">Open Modal</button>\r\n      `,\r\n  };\r\n}"
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-overlay/bmb-overlay.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-overlay/bmb-overlay.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "StoryFn<>",
+                    "defaultValue": "(args) => {\r\n  return {\r\n    props: args,\r\n    template: `\r\n      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->\r\n      <storybook-toast-wrapper></storybook-toast-wrapper>\r\n      <!-- Start copying from here -->\r\n      <div class=\"actions\">\r\n      <button bmbButton appearance=\"primary\" icon=\"home\" size=\"small\" position=\"left\" [case]=\"false\" (click)=\"onButtonClick()\">Open Modal</button>\r\n      `,\r\n  };\r\n}"
                 }
             ],
             "projects/ds-ng/src/lib/components/bmb-progress-bar/bmb-progress-bar.stories.ts": [
@@ -14847,7 +14881,7 @@
                             "type": "IFixDecimals",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "2182c7e1-3aa1-445f-9579-2a50de6a3f2d",
+                            "destrucuredGroupId": "4d59e6ec-58a8-4a0e-afe7-6b668bcd4389",
                             "destructuredParameter": true
                         },
                         {
@@ -14856,7 +14890,7 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "defaultValue": "2",
-                            "destrucuredGroupId": "2182c7e1-3aa1-445f-9579-2a50de6a3f2d",
+                            "destrucuredGroupId": "4d59e6ec-58a8-4a0e-afe7-6b668bcd4389",
                             "destructuredParameter": true
                         }
                     ],
@@ -14866,7 +14900,7 @@
                             "type": "IFixDecimals",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "2182c7e1-3aa1-445f-9579-2a50de6a3f2d",
+                            "destrucuredGroupId": "4d59e6ec-58a8-4a0e-afe7-6b668bcd4389",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
@@ -14878,7 +14912,7 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "defaultValue": "2",
-                            "destrucuredGroupId": "2182c7e1-3aa1-445f-9579-2a50de6a3f2d",
+                            "destrucuredGroupId": "4d59e6ec-58a8-4a0e-afe7-6b668bcd4389",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
@@ -16171,12 +16205,22 @@
                 "status": "low"
             },
             {
-                "filePath": "projects/ds-ng/src/lib/components/bmb-overlay/bmb-overlay.stories-back.ts",
+                "filePath": "projects/ds-ng/src/lib/components/bmb-overlay/bmb-overlay.stories.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "StorybookToastWrapperComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/3",
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-overlay/bmb-overlay.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {

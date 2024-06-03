@@ -14,7 +14,6 @@
   &-content {
     background-color: RGBA(var(--color-charade-50));
     border-radius: rem.rem_calc(20);
-    // box-shadow:2px 2px 2px 1px var(--color-black-min);
 
     &-wrapper {
       padding: rem.rem_calc(32);
@@ -51,7 +50,6 @@
     &-text {
       width: 90%;
       padding-bottom: rem.rem_calc(5);
-      margin-left: 10px;
 
       &-title {
         @include fonts.font(7, semibold);
@@ -66,6 +64,10 @@
       float: right;
       font-size: rem.rem_calc(24);
       cursor: pointer;
+    }
+
+    &-icon {
+      margin-right: 10px;
     }
   }
 
