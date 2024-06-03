@@ -1,36 +1,39 @@
-import { Component } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
-import { BmbOverlayComponent } from './bmb-overlay.component';
+import {BmbOverlayComponent } from './bmb-overlay.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbButtonDirective } from '../../directives/button.directive';
 
 @Component({
   standalone: true,
-  imports: [BmbOverlayComponent, BmbButtonDirective],
+  imports: [BmbOverlayComponent, BmbButtonDirective, BmbIconComponent],
   selector: 'storybook-toast-wrapper',
   template: `
+  <div style="width: 100%; height: 500px">
     <button
-      style="z-index:3; position: relative;"
+      style="position: absolute; z-index: 3;"
       bmbButton
       appearance="primary"
       icon="home"
       size="small"
       position="left"
       [case]="false"
-      (click)="openOverlay()"
+      (click)="showOverlay()"
     >
-      Click Here
+      Open Overlay
     </button>
 
-    <bmb-overlay [active]="activeOverlay" />
+    <bmb-overlay [active]="this.showOverlayComponent"/>
+</div>
   `,
 })
 class StorybookToastWrapperComponent {
-  activeOverlay = false;
+    showOverlayComponent: boolean = false
+    constructor() {}
 
-  openOverlay() {
-    this.activeOverlay = !this.activeOverlay;
-  }
+    showOverlay() {
+        this.showOverlayComponent = !this.showOverlayComponent
+    }
 }
 
 export default {
@@ -38,7 +41,13 @@ export default {
   component: BmbOverlayComponent,
   decorators: [
     moduleMetadata({
-      imports: [StorybookToastWrapperComponent, BmbOverlayComponent],
+      imports: [
+        StorybookToastWrapperComponent,
+        BmbOverlayComponent,
+        BmbIconComponent,
+        BmbButtonDirective,
+      ],
+      providers: [],
     }),
   ],
   parameters: {
@@ -52,17 +61,10 @@ import { BmbOverlayComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'
 @Component({
   selector: 'component',
   standalone: true,
-  imports: [ BmbOverlayComponent ],
+  imports: [BmbOverlayComponent],
   templateUrl: './component.html',
   styleUrl: './component.scss',
 })
-export class Component {
-    activeOverlay = false
-  
-    openOverlay() {
-      this.activeOverlay = !this.activeOverlay
-    }
-}
 \`\`\`
 
 Below is an example of how you can use this component in HTML:
@@ -72,18 +74,30 @@ Below is an example of how you can use this component in HTML:
   },
   argTypes: {
     active: {
-      name: 'Active',
-      control: {
-        type: 'boolean',
+        name: 'Active',
+        control: { type: 'boolean' },
+        description: 'Show or hide overlay',
+        table: {
+          category: 'Properties',
+          defaultValue: { summary: 'false' },
+          type: { summary: 'boolean' },
+        },
       },
-      description: 'Specifies if the overlay is active',
-      table: {
-        category: 'Properties',
-        type: { summary: 'boolean' },
-      },
-    },
   },
   args: {
     active: false,
   },
 } as Meta<typeof BmbOverlayComponent>;
+
+export const Default: StoryFn<typeof StorybookToastWrapperComponent> = (args) => {
+  return {
+    props: args,
+    template: `
+      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->
+      <storybook-toast-wrapper></storybook-toast-wrapper>
+      <!-- Start copying from here -->
+      <div class="actions">
+      <button bmbButton appearance="primary" icon="home" size="small" position="left" [case]="false" (click)="onButtonClick()">Open Modal</button>
+      `,
+  };
+};
