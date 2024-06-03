@@ -1,3 +1,4 @@
+<!-- eslint-disable prettier/prettier -->
 <bmb-top-bar
   appName="TecSign"
   appSubTitle="Elegir documentos"
@@ -294,3 +295,15 @@
   [link]="'https://www.youtube.com/'"
   [target]="'_blank'"
 ></bmb-user-image>
+
+<button
+  bmbButton
+  appearance="primary"
+  icon="home"
+  size="small"
+  position="left"
+  [case]="false"
+  (click)="openModal()"
+>
+  Open Modal
+</button>

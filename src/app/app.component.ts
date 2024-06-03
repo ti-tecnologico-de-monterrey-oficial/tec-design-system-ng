@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   Component,
   ChangeDetectionStrategy,
@@ -41,6 +42,7 @@ import {
   BmbLayoutItemDirective,
   BmbLayoutDirective,
   BmbCardComponent,
+  BmbModalComponent,
 } from '../../projects/ds-ng/src/public-api';
 
 import {
@@ -54,6 +56,8 @@ export interface Target {
 }
 
 import names from './names.json';
+import { ModalDataConfig } from '../../projects/ds-ng/src/lib/components/bmb-modal/bmb-modal.interface'
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -95,13 +99,14 @@ import names from './names.json';
     BmbLayoutDirective,
     BmbLayoutItemDirective,
     BmbCardComponent,
+    BmbModalComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private cdr: ChangeDetectorRef,private matDialog: MatDialog,) {}
 
   myTabs: IBmbTab[] = [
     { id: 1, title: 'Tec de Monterrey', badge: 1, isActive: true },
@@ -128,6 +133,17 @@ export class AppComponent {
   boolUserSummary = true;
   value = 'tec-design';
 
+  data: ModalDataConfig = {
+    title: 'Modal Title',
+    subtitle: 'Modal Subtitle',
+    content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.',
+    size: 'small',
+    type: 'alert',
+    alertStyle: 'error',
+    primaryBtnLabel: 'Action',
+    secondaryBtnLabel: 'Cancel',
+  }
+  
   isCalendarLoading = false;
   calendarEvents: IBmbCalendarEvent[] = [
     {
@@ -166,6 +182,10 @@ export class AppComponent {
     name: 'Juan Pedro Sánchez Miranda',
     role: 'Role de usuario',
   };
+
+  openModal(){
+    this.matDialog.open(BmbModalComponent, {data: this.data})
+  }
 
   @ViewChild(BmbToastComponent)
   private toastComponent!: BmbToastComponent;
