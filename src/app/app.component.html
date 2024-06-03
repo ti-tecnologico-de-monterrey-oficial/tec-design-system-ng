@@ -5,7 +5,7 @@
   [lang]="topBarLang"
   (onLangChange)="handleLangChange($event)"
 ></bmb-top-bar>
-<bmb-theme [initialTheme]="'light'" />
+<bmb-theme [showControls]="true" [initialTheme]="'light'" />
 <!-- <bmb-sidebar [elements]="sidebarElements" /> -->
 
 <!-- <bmb-loader [overlay]="true" title="Cargando...." /> -->
@@ -21,7 +21,13 @@
   (onButtonSecondary)="handleButtonSecondary()"
 /> -->
 
-<bmb-card class="test"> test </bmb-card>
+<bmb-card> test </bmb-card>
+<bmb-card type="secondary"> test </bmb-card>
+<bmb-card type="error"> test </bmb-card>
+<bmb-card type="info"> test </bmb-card>
+<bmb-card type="primary"> test </bmb-card>
+<bmb-card type="succes"> test </bmb-card>
+<bmb-card type="warning"> test </bmb-card>
 
 <bmb-calendar
   [isLoading]="isCalendarLoading"

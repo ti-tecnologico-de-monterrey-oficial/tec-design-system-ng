@@ -48,6 +48,17 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string' },
       },
     },
+    showControls: {
+      name: 'Show controls',
+      control: { type: 'boolean' },
+      description:
+        'Display the theme control',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'true' },
+        type: { summary: 'boolean' },
+      },
+    },
   },
   args: {
     initialTheme: 'dark',

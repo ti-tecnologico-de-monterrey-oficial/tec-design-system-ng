@@ -13,6 +13,8 @@ import {
 import { CommonModule } from '@angular/common';
 import { SizeNames } from '../../types';
 
+export type IBmbCardType = 'primary' | 'secondary' | 'succes' | 'info' | 'warning' | 'error' | 'normal';
+
 @Component({
   selector: 'bmb-card',
   standalone: true,
@@ -26,6 +28,7 @@ export class BmbCardComponent {
   @Input() borderRadius: SizeNames | SizeNames[] = 'm';
   @Input() padding: SizeNames | SizeNames[] = 'm';
   @Input() margin: SizeNames | SizeNames[] = 'm';
+  @Input() type: IBmbCardType = 'normal';
 
   @ContentChild('header') headerContent?: TemplateRef<any>;
   @ContentChild('footer') footerContent?: TemplateRef<any>;
@@ -36,6 +39,7 @@ export class BmbCardComponent {
       classNames.push(`bmb_border-radius-${this.borderRadius}`);
     if (typeof this.margin === 'string')
       classNames.push(`bmb_margin-${this.margin}`);
+    classNames.push(`bmb_card-type-${this.type}`);
 
     return classNames;
   }

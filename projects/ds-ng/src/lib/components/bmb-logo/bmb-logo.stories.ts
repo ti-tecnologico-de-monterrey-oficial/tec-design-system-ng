@@ -54,7 +54,7 @@ Below is an example of how you can use this component in HTML:
     size: {
       name: 'Size',
       control: {
-        type: 'radio',
+        type: 'select',
       },
       options: ['small', 'medium', 'large'],
       table: {

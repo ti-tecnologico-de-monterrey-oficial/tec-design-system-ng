@@ -148,7 +148,7 @@ Below is an example of how you can use this component in HTML:
     size: {
       name: 'Size',
       control: {
-        type: 'radio',
+        type: 'select',
       },
       options: ['small', 'medium', 'large'],
       table: {
@@ -162,7 +162,7 @@ Below is an example of how you can use this component in HTML:
     type: {
       name: 'Type',
       control: {
-        type: 'radio',
+        type: 'select',
       },
       options: ['alert', 'informative', 'action'],
       table: {
@@ -176,7 +176,7 @@ Below is an example of how you can use this component in HTML:
     alertStyle: {
       name: 'Alert Style',
       control: {
-        type: 'radio',
+        type: 'select',
       },
       options: [
         'normal',
