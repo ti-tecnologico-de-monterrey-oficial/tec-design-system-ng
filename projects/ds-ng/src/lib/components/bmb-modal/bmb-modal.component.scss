@@ -1,0 +1,273 @@
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/rem" as rem;
+
+.mat-mdc-dialog-component-host {
+  display: flex;
+}
+
+.mdc-dialog__surface {
+  border-radius: rem.rem_calc(20);
+  background-color: RGBA(var(--color-charade-50));
+}
+
+.bmb_modal {
+  &-content {
+    background-color: RGBA(var(--color-charade-50));
+    border-radius: rem.rem_calc(20);
+    // box-shadow:2px 2px 2px 1px var(--color-black-min);
+
+    &-wrapper {
+      padding: rem.rem_calc(32);
+    }
+  }
+
+  &-size {
+    &-small {
+      min-width: rem.rem_calc(300);
+      max-width: rem.rem_calc(760);
+      width: rem.rem_calc(760);
+    }
+
+    &-medium {
+      max-width: rem.rem_calc(920);
+      width: rem.rem_calc(920);
+      min-width: rem.rem_calc(300);
+    }
+
+    &-large {
+      min-width: rem.rem_calc(300);
+      max-width: rem.rem_calc(1080);
+      width: rem.rem_calc(1080);
+    }
+  }
+
+  &-header {
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-between;
+    align-self: center;
+    padding-bottom: rem.rem_calc(15);
+
+    &-text {
+      width: 90%;
+      padding-bottom: rem.rem_calc(5);
+      margin-left: 10px;
+
+      &-title {
+        @include fonts.font(7, semibold);
+      }
+
+      &-subtitle {
+        @include fonts.font(3, light);
+      }
+    }
+
+    &-close {
+      float: right;
+      font-size: rem.rem_calc(24);
+      cursor: pointer;
+    }
+  }
+
+  &-body {
+    padding-bottom: rem.rem_calc(20);
+
+    &-description {
+      @include fonts.font(5, regular);
+      line-height: 30;
+      letter-spacing: 0px;
+      max-height: rem.rem_calc(300);
+      overflow: hidden;
+    }
+
+    &-scrollable {
+      overflow-x: hidden;
+      overflow-y: scroll;
+
+      &::-webkit-scrollbar {
+        -webkit-appearance: none;
+        width: rem.rem_calc(10);
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: RGBA(var(--color-charade-300));
+        border-radius: rem.rem_calc(20);
+        border: rem.rem_calc(1) solid RGBA(var(--color-charade-300));
+      }
+
+      &::-webkit-scrollbar-track {
+        border-radius: rem.rem_calc(10);
+      }
+    }
+  }
+
+  &-footer {
+    display: flex;
+    justify-content: flex-end;
+
+    &-btn {
+      margin-right: rem.rem_calc(10);
+    }
+
+    .bmb_modal-btn {
+      width: rem.rem_calc(250);
+      height: rem.rem_calc(35);
+
+      &-main {
+        background-color: RGBA(var(--color-blue-primary));
+      }
+
+      &-secondary-action {
+        background-color: transparent;
+        border: rem.rem_calc(1) solid RGBA(var(--color-black-primary));
+      }
+
+      &-primary {
+        background-color: RGBA(var(--color-neon-primary), 0.75);
+        &:hover {
+          background-color: RGBA(var(--color-neon-primary));
+        }
+      }
+
+      &-neutral {
+        background-color: RGBA(var(--color-charade-300));
+        &:hover {
+          background-color: RGBA(var(--color-charade-500), 0.75);
+          color: RGBA(var(--color-charade-950));
+        }
+      }
+
+      &-error {
+        background-color: RGBA(var(--color-red-light));
+        &:hover {
+          background-color: RGBA(var(--color-red-primary));
+        }
+      }
+
+      &-event {
+        background-color: RGBA(var(--color-purple-light));
+        &:hover {
+          background-color: RGBA(var(--color-purple-primary), 0.75);
+        }
+      }
+
+      &-success {
+        background-color: RGBA(var(--color-green-primary), 0.75);
+        &:hover {
+          background-color: RGBA(var(--color-green-primary));
+        }
+      }
+
+      &-warning {
+        background-color: RGBA(var(--color-yellow-primary));
+        color: RGBA(var(--color-black-primary));
+        &:hover {
+          background-color: RGBA(var(--color-yellow-primary), 0.75);
+        }
+      }
+    }
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .mdc-dialog__surface {
+    background-color: RGBA(var(--color-charade-900));
+  }
+
+  .bmb_modal {
+    &-content {
+      background-color: RGBA(var(--color-charade-900));
+    }
+
+    &-header {
+      &-text {
+        &-title {
+          color: RGBA(var(--color-charade-50));
+        }
+
+        &-subtitle {
+          color: RGBA(var(--color-charade-50));
+        }
+      }
+
+      &-close {
+        &-icon {
+          color: RGBA(var(--color-charade-50));
+        }
+      }
+    }
+
+    &-body {
+      &-description {
+        color: RGBA(var(--color-charade-50));
+      }
+
+      &-scrollable {
+        &::-webkit-scrollbar-thumb {
+          background-color: RGBA(var(--color-charade-950));
+          border: rem.rem_calc(1) solid RGBA(var(--color-charade-950));
+        }
+      }
+    }
+
+    &-footer {
+      .bmb_modal-btn {
+        &-main {
+          background-color: RGBA(var(--color-blue-primary));
+        }
+
+        &-secondary-action {
+          border: 1px solid RGBA(var(--color-charade-50));
+          color: RGBA(var(--color-charade-50));
+          &:hover {
+            color: RGBA(var(--color-charade-950));
+          }
+        }
+
+        &-primary {
+          background-color: RGBA(var(--color-neon-primary), 0.75);
+          &:hover {
+            background-color: RGBA(var(--color-neon-primary));
+          }
+        }
+
+        &-neutral {
+          background-color: RGBA(var(--color-charade-300));
+          &:hover {
+            background-color: RGBA(var(--color-charade-500), 0.75);
+            color: RGBA(var(--color-charade-950));
+          }
+        }
+
+        &-error {
+          background-color: RGBA(var(--color-red-light));
+          &:hover {
+            background-color: RGBA(var(--color-red-primary));
+          }
+        }
+
+        &-event {
+          background-color: RGBA(var(--color-purple-light));
+          &:hover {
+            background-color: RGBA(var(--color-purple-primary), 0.75);
+          }
+        }
+
+        &-success {
+          background-color: RGBA(var(--color-green-primary), 0.75);
+          &:hover {
+            background-color: RGBA(var(--color-green-primary));
+          }
+        }
+
+        &-warning {
+          background-color: RGBA(var(--color-yellow-primary));
+          &:hover {
+            background-color: RGBA(var(--color-yellow-primary), 0.75);
+          }
+        }
+      }
+    }
+  }
+}
