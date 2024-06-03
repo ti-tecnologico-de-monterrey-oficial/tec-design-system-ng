@@ -75,8 +75,8 @@ export default {
 Below is an example of how you can use this component in TypeScript:
 
 \`\`\`typescript
-import { ModalService } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
 import { MatDialog } from '@angular/material/dialog';
+import { BmbModalComponent, ModalDataConfig } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
 @Component({
   selector: 'component',
   standalone: true,
@@ -98,9 +98,7 @@ export class Component {
       }
 
     openModalComponent() {
-        this.modalService.open(BmbModalContentComponent, {
-            data: this.data
-        });
+      this.matDialog.open(BmbModalComponent, { data: this.data });
     }
 \`\`\`
 
