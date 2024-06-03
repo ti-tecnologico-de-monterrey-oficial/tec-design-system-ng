@@ -52,6 +52,7 @@
         &-text {
             width: 90%;
             padding-bottom: rem.rem_calc(5);
+            margin-left: 10px;
 
             &-title { 
                 @include fonts.font(7, semibold);

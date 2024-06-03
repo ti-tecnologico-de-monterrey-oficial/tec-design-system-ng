@@ -14,13 +14,10 @@ export class ModalService {
   ) {}
 
   public openModal(data: ModalDataConfig) {
-    const dialogRef = this.matDialog.open(BmbModalComponent, {
+    this.matDialog.open(BmbModalComponent, {
       data,
     })
 
-    dialogRef.afterClosed().subscribe((res) => {
-      console.log('The dialog was close', res)
-    })
   }
 
 

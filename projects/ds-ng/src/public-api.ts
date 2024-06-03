@@ -49,3 +49,5 @@ export * from './lib/components/bmb-card/bmb-card.component';
 export * from './lib/components/bmb-balance-overview/bmb-balance-overview.component';
 // types
 export * from './lib/types';
+// interface 
+export * from './lib/components/bmb-modal/bmb-modal.interface'
