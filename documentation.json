@@ -2,6 +2,111 @@
   "pipes": [],
   "interfaces": [
     {
+      "name": "BmbProgressCircleOptionsInterface",
+      "id": "interface-BmbProgressCircleOptionsInterface-423be6793de23403d1fce58597732b4ac4f5b03cfb4b1086c3611fbeae8ece9a7239e9c87576160ec6b3f722f215c873a164192de0670dec692c1a6d410be077",
+      "file": "projects/ds-ng/src/lib/components/bmb-progress-cirlce/bmb-progress-circle.interface.ts",
+      "deprecated": false,
+      "deprecationMessage": "",
+      "type": "interface",
+      "sourceCode": "export interface BmbProgressCircleOptionsInterface {\n  valueLabel?: string;\n  showValueLabel?: boolean;\n  backgroundColor?: string;\n  percent?: number;\n  radius?: number;\n  space?: number;\n  title?: string | Array<String>;\n  showTitle?: boolean;\n  showBackground?: boolean;\n  responsive?: boolean;\n}\n",
+      "properties": [
+        {
+          "name": "backgroundColor",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "optional": true,
+          "description": "",
+          "line": 4
+        },
+        {
+          "name": "percent",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "number",
+          "optional": true,
+          "description": "",
+          "line": 5
+        },
+        {
+          "name": "radius",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "number",
+          "optional": true,
+          "description": "",
+          "line": 6
+        },
+        {
+          "name": "responsive",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "boolean",
+          "optional": true,
+          "description": "",
+          "line": 11
+        },
+        {
+          "name": "showBackground",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "boolean",
+          "optional": true,
+          "description": "",
+          "line": 10
+        },
+        {
+          "name": "showTitle",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "boolean",
+          "optional": true,
+          "description": "",
+          "line": 9
+        },
+        {
+          "name": "showValueLabel",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "boolean",
+          "optional": true,
+          "description": "",
+          "line": 3
+        },
+        {
+          "name": "space",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "number",
+          "optional": true,
+          "description": "",
+          "line": 7
+        },
+        {
+          "name": "title",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string | Array<String>",
+          "optional": true,
+          "description": "",
+          "line": 8
+        },
+        {
+          "name": "valueLabel",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "optional": true,
+          "description": "",
+          "line": 2
+        }
+      ],
+      "indexSignatures": [],
+      "kind": 171,
+      "methods": [],
+      "extends": []
+    },
+    {
       "name": "IBmbCalendarEventClick",
       "id": "interface-IBmbCalendarEventClick-a2bc9abda7667185f8df9152ed8235772226e3e1a8a3ae0914245efbf13baadd9b506250273ef81bf58d5960a3d9eb87a3401fda768e5eafbf32305697fd9fd2",
       "file": "projects/ds-ng/src/lib/components/bmb-calendar/types.ts",
@@ -278,19 +383,28 @@
       "extends": []
     },
     {
-      "name": "SidebarElements",
-      "id": "interface-SidebarElements-7c7c4d730e4744f1ec995d67b5f7282621ec76e7c56f718858d28523dbf7aadcad663a0ff68de47711ddaaa92dd43d6e37a967d0df9c501280d21693e20567ce",
+      "name": "SidebarElement",
+      "id": "interface-SidebarElement-a93dfdf4f220fb677060f5f0ad96ab13ff46d1c8baf3944fcad33ab5322869b894820777515e0c162722ba5eb9e450fa263d5a40667ed26bc2543800bfe6ef5b",
       "file": "projects/ds-ng/src/lib/components/bmb-sidebar/bmb-sidebar.interface.ts",
       "deprecated": false,
       "deprecationMessage": "",
       "type": "interface",
-      "sourceCode": "export interface SidebarElements {\n  icon: string;\n  title: string;\n  link: string;\n}\n",
+      "sourceCode": "export interface SidebarElement {\n  id: number;\n  icon: string;\n  title: string;\n  link: string;\n}\n",
       "properties": [
         {
           "name": "icon",
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
+          "optional": false,
+          "description": "",
+          "line": 3
+        },
+        {
+          "name": "id",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "number",
           "optional": false,
           "description": "",
           "line": 2
@@ -302,7 +416,7 @@
           "type": "string",
           "optional": false,
           "description": "",
-          "line": 4
+          "line": 5
         },
         {
           "name": "title",
@@ -311,7 +425,7 @@
           "type": "string",
           "optional": false,
           "description": "",
-          "line": 3
+          "line": 4
         }
       ],
       "indexSignatures": [],
@@ -465,12 +579,12 @@
     },
     {
       "name": "Target",
-      "id": "interface-Target-ffb933431ea34d481e15828994488a1d5d39586edbb796a4b01be09ea01819c25f1cb7b81646b06e5328e519194ae622d8ae95ddc06888bdb97851a760eb7f9a-1",
+      "id": "interface-Target-862a1516996e5d18d2a8520cd6caf451201afec1c5719fd13bcb0022f7340430dcd09f326dd17cc204851738187a10b4dc123f374d2d01a9cdabb5c354d5c535-1",
       "file": "projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.stories.ts",
       "deprecated": false,
       "deprecationMessage": "",
       "type": "interface",
-      "sourceCode": "import { Meta, StoryObj } from '@storybook/angular';\nimport { BmbDotPaginatorComponent } from './bmb-dot-paginator.component';\n\nexport interface Target {\n  target: string;\n  index: number;\n}\n\nexport default {\n  title: 'Micro Componentes/Dot Paginator',\n  component: BmbDotPaginatorComponent,\n  parameters: {\n    docs: {\n      description: {\n        component: `\nBelow is an example of how you can use this component in TypeScript:\n\n\\`\\`\\`typescript\nimport { BmbDotPaginatorComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';\n\nexport interface Target {\n  target: string;\n  index: number;\n}\n\n@Component({\n  selector: 'component',\n  standalone: true,\n  imports: [ BmbDotPaginatorComponent ],\n  templateUrl: './component.html',\n  styleUrl: './component.scss',\n})\n\nexport class Component {\n  myActiveDotIndex: number = 0;\n  myTotalDots: number = 5;\n  myTargets: Target[] = [\n    { target: '#item1', index: 0 },\n    { target: '#item2', index: 1 },\n  ];\n\n  handleDotPress(index: number): void {\n    this.myActiveDotIndex = index;\n  }\n}\n\\`\\`\\`\n\nBelow is an example of how you can use this component in HTML:\n        `,\n      },\n    },\n  },\n  argTypes: {\n    appearance: {\n      name: 'Appearance',\n      control: {\n        type: 'radio',\n      },\n      options: ['primary', 'secondary'],\n      description:\n        'The style of the dot paginator. Is not neccesary to add the \"primary\" style.',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 'primary' },\n        type: { summary: 'string' },\n      },\n    },\n    activeDotIndex: {\n      name: 'Active dot index',\n      control: 'number',\n      description: 'Index of the active dot.',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 0 },\n        type: { summary: 'number' },\n      },\n    },\n    totalDots: {\n      name: 'Total Dots',\n      control: 'number',\n      description: 'Total number of dots.',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 5 },\n        type: { summary: 'number' },\n      },\n    },\n    targets: {\n      name: 'Targets',\n      control: 'object',\n      description: 'Target objects for each dot.',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 'optional' },\n        type: { summary: 'Target[]' },\n      },\n    },\n    onDotPress: {\n      name: 'On Dot Press',\n      control: {\n        type: '',\n      },\n      description:\n        'This handler can be used to perform a specific interaction with each dot.',\n      table: {\n        category: 'Events',\n        type: { summary: '(onDotPress)=\"yourFunction($event)\"' },\n      },\n    },\n  },\n\n  args: {\n    activeDotIndex: 0,\n    totalDots: 5,\n    targets: [\n      { target: '#item1', index: 0 },\n      { target: '#item2', index: 1 },\n    ],\n    onDotPress: (index: number) => {\n      window.alert(index);\n    },\n  },\n} as Meta<typeof BmbDotPaginatorComponent>;\n\ntype Story = StoryObj<BmbDotPaginatorComponent>;\n\nexport const Default: Story = {};\n",
+      "sourceCode": "import { Meta, StoryObj } from '@storybook/angular';\nimport { BmbDotPaginatorComponent } from './bmb-dot-paginator.component';\n\nexport interface Target {\n  target: string;\n  index: number;\n}\n\nexport default {\n  title: 'Micro Componentes/Dot Paginator',\n  component: BmbDotPaginatorComponent,\n  parameters: {\n    docs: {\n      description: {\n        component: `\nBelow is an example of how you can use this component in TypeScript:\n\n\\`\\`\\`typescript\nimport { BmbDotPaginatorComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';\n\nexport interface Target {\n  target: string;\n  index: number;\n}\n\n@Component({\n  selector: 'component',\n  standalone: true,\n  imports: [ BmbDotPaginatorComponent ],\n  templateUrl: './component.html',\n  styleUrl: './component.scss',\n})\n\nexport class Component {\n  myActiveDotIndex: number = 0;\n  myTotalDots: number = 5;\n  myTargets: Target[] = [\n    { target: '#item1', index: 0 },\n    { target: '#item2', index: 1 },\n  ];\n\n  handleDotPress(index: number): void {\n    this.myActiveDotIndex = index;\n  }\n}\n\\`\\`\\`\n\nBelow is an example of how you can use this component in HTML:\n        `,\n      },\n    },\n  },\n  argTypes: {\n    appearance: {\n      name: 'Appearance',\n      control: {\n        type: 'radio',\n      },\n      options: ['primary', 'secondary'],\n      description:\n        'The style of the dot paginator. Is not neccesary to add the \"primary\" style.',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 'primary' },\n        type: { summary: 'string' },\n      },\n    },\n    activeDotIndex: {\n      name: 'Active dot index',\n      control: 'number',\n      description: 'Index of the active dot.',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 0 },\n        type: { summary: 'number' },\n      },\n    },\n    totalDots: {\n      name: 'Total Dots',\n      control: 'number',\n      description: 'Total number of dots.',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 5 },\n        type: { summary: 'number' },\n      },\n    },\n    targets: {\n      name: 'Targets',\n      control: 'object',\n      description: 'Target objects for each dot.',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 'optional' },\n        type: { summary: 'Target[]' },\n      },\n    },\n    onDotPress: {\n      name: 'On Dot Press',\n      control: {\n        type: '',\n      },\n      description:\n        'This handler can be used to perform a specific interaction with each dot.',\n      table: {\n        category: 'Events',\n        type: { summary: '(onDotPress)=\"yourFunction($event)\"' },\n      },\n    },\n  },\n  args: {\n    activeDotIndex: 0,\n    totalDots: 5,\n    targets: [\n      { target: '#item1', index: 0 },\n      { target: '#item2', index: 1 },\n    ],\n    onDotPress: (index: number) => {\n      window.alert(index);\n    },\n  },\n} as Meta<typeof BmbDotPaginatorComponent>;\n\ntype Story = StoryObj<BmbDotPaginatorComponent>;\n\nexport const Default: Story = {};\n",
       "properties": [
         {
           "name": "index",
@@ -561,7 +675,7 @@
     },
     {
       "name": "ThemeService",
-      "id": "injectable-ThemeService-bff929e947fb3c49f173a9f36fb05e1d9621b68c21c10945c53740b74547f7fc2fe0a3448b3091564176b3ec291f156623b699d1fea0097acd8fdae5c30db116",
+      "id": "injectable-ThemeService-86c42e29891da680255e828f90ca9c13ab90bda752e9b775026658162ae6becb733f9b7ddf3c1f5cfc652708b43c4d13c735a9af03f08b9dff17fcd786d2d275",
       "file": "projects/ds-ng/src/lib/services/theme.service.ts",
       "properties": [
         {
@@ -588,6 +702,16 @@
       ],
       "methods": [
         {
+          "name": "getDefaultTheme",
+          "args": [],
+          "optional": false,
+          "returnType": "string",
+          "typeParameters": [],
+          "line": 13,
+          "deprecated": false,
+          "deprecationMessage": ""
+        },
+        {
           "name": "setTheme",
           "args": [
             {
@@ -600,7 +724,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 13,
+          "line": 17,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -620,7 +744,7 @@
       "deprecationMessage": "",
       "description": "",
       "rawdescription": "\n",
-      "sourceCode": "import { Injectable } from '@angular/core';\nimport { BehaviorSubject } from 'rxjs';\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class ThemeService {\n  private themeSubject = new BehaviorSubject<string>(\n    localStorage.getItem('theme') || 'light',\n  );\n  theme$ = this.themeSubject.asObservable();\n\n  setTheme(theme: string): void {\n    this.themeSubject.next(theme);\n  }\n}\n",
+      "sourceCode": "import { Injectable } from '@angular/core';\nimport { BehaviorSubject } from 'rxjs';\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class ThemeService {\n  private themeSubject = new BehaviorSubject<string>(\n    localStorage.getItem('theme') || 'light',\n  );\n  theme$ = this.themeSubject.asObservable();\n\n  getDefaultTheme(): string {\n    return 'light';\n  }\n\n  setTheme(theme: string): void {\n    this.themeSubject.next(theme);\n  }\n}\n",
       "extends": [],
       "type": "injectable"
     },
@@ -684,7 +808,157 @@
   ],
   "guards": [],
   "interceptors": [],
-  "classes": [],
+  "classes": [
+    {
+      "name": "CircleProgressOptions",
+      "id": "class-CircleProgressOptions-a5162687b78f5e786a7591a6972ca88723c372697f4a6d69166cf67ac9d759e19c1a141c962e6d3aee63d632bbc1fca481d178d17af2bd8d58972c46a9b81c2c",
+      "file": "projects/ds-ng/src/lib/components/bmb-progress-cirlce/bmb-progress-circle.component.ts",
+      "deprecated": false,
+      "deprecationMessage": "",
+      "type": "class",
+      "sourceCode": "import { BmbProgressCircleOptionsInterface } from './bmb-progress-circle.interface';\nimport { CommonModule } from '@angular/common';\nimport {\n  Component,\n  Input,\n  OnChanges,\n  SimpleChanges,\n  ViewEncapsulation,\n  ChangeDetectionStrategy,\n} from '@angular/core';\n\nexport class CircleProgressOptions\n  implements BmbProgressCircleOptionsInterface\n{\n  valueLabel = '$10000';\n  showValueLabel = true;\n  backgroundPadding = -9;\n  percent = 50;\n  radius = 100;\n  space = -5;\n  outerStrokeWidth = 5;\n  outerStrokeLinecap = 'round';\n  innerStrokeWidth = 5;\n  title: string | Array<String> = 'Total a pagar';\n  showTitle = true;\n  showBackground = true;\n  responsive = true;\n}\n\n@Component({\n  selector: 'bmb-progress-circle',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './bmb-progress-circle.component.html',\n  styleUrl: './bmb-progress-circle.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n  providers: [\n    { provide: CircleProgressOptions, useValue: CircleProgressOptions },\n  ],\n})\nexport class BmbProgressCircleComponent implements OnChanges {\n  @Input() valueLabel?: string;\n  @Input() showValueLabel?: boolean;\n\n  @Input() percent!: number;\n\n  @Input() title?: string | Array<String>;\n\n  @Input() showTitle?: boolean;\n  @Input() showBackground?: boolean;\n\n  responsive = true;\n  svg: any;\n  options: CircleProgressOptions = new CircleProgressOptions();\n  _lastPercent: number = 0;\n\n  constructor(defaultOptions: CircleProgressOptions) {\n    Object.assign(this.options, defaultOptions);\n  }\n\n  ngOnInit() {\n    this.render();\n  }\n\n  ngOnChanges(changes: SimpleChanges) {\n    this.render();\n  }\n\n  render() {\n    this.applyOptions();\n    this.draw(this.options.percent);\n    this._lastPercent = this.options.percent;\n  }\n\n  polarToCartesian(\n    centerX: number,\n    centerY: number,\n    radius: number,\n    angleInDegrees: number,\n  ) {\n    let angleInRadius = (angleInDegrees * Math.PI) / 180;\n    let x = centerX + Math.sin(angleInRadius) * radius;\n    let y = centerY - Math.cos(angleInRadius) * radius;\n    return { x: x, y: y };\n  }\n\n  draw(percent: number) {\n    percent = Math.abs(percent);\n    let circlePercent = percent > 100 ? 100 : percent;\n    let boxSize = this.options.radius! * 2 + this.options.outerStrokeWidth * 2;\n    let centre = { x: boxSize / 2, y: boxSize / 2 };\n    let startPoint = { x: centre.x, y: centre.y - this.options.radius };\n    let endPoint = this.polarToCartesian(\n      centre.x,\n      centre.y,\n      this.options.radius,\n      (360 * (100 - circlePercent)) / 100,\n    );\n    let largeArcFlag: any, sweepFlag: any;\n    if (circlePercent > 50) {\n      [largeArcFlag, sweepFlag] = [1, 0];\n    } else {\n      [largeArcFlag, sweepFlag] = [0, 0];\n    }\n    let titlePercent = this.options.percent;\n    let titleTextPercent = titlePercent;\n    let title = {\n      x: centre.x,\n      y: centre.y,\n      textAnchor: 'middle',\n      texts: new Array<any>(),\n      tspans: new Array<any>(),\n    };\n    if (this.title === '' || this.title === undefined) {\n      title.texts.push(titleTextPercent);\n    } else {\n      if (this.title instanceof Array) {\n        title.texts = [...this.title];\n      } else {\n        title.texts.push(this.title.toString());\n      }\n    }\n    let valueLabel = {\n      x: centre.x,\n      y: centre.y,\n      textAnchor: 'middle',\n      texts: new Array<any>(),\n      tspans: new Array<any>(),\n    };\n    if (this.valueLabel === undefined) {\n      valueLabel.texts.push(`0`);\n    } else {\n      valueLabel.texts.push(this.valueLabel);\n    }\n    let rowCount = 0,\n      rowNum = 1;\n    this.options.showTitle && (rowCount += title.texts.length);\n    this.options.showValueLabel && (rowCount += valueLabel.texts.length);\n    if (this.options.showTitle) {\n      for (let span of title.texts) {\n        title.tspans.push({\n          span: span,\n          dy: this.getRelativeY(rowNum, rowCount),\n        });\n        rowNum++;\n      }\n    }\n    if (this.options.showValueLabel) {\n      for (let span of valueLabel.texts) {\n        valueLabel.tspans.push({\n          span: span,\n          dy: this.getRelativeY(rowNum, rowCount),\n        });\n        rowNum++;\n      }\n    }\n    this.svg = {\n      viewBox: `0 0 ${boxSize} ${boxSize}`,\n      width: this.options.responsive ? '100%' : boxSize,\n      height: this.options.responsive ? '100%' : boxSize,\n      backgroundCircle: {\n        cx: centre.x,\n        cy: centre.y,\n        r:\n          this.options.radius +\n          this.options.outerStrokeWidth / 2 +\n          this.options.backgroundPadding,\n      },\n      path: {\n        d: `M ${startPoint.x} ${startPoint.y}\n       A ${this.options.radius} ${this.options.radius} 0 ${largeArcFlag} ${sweepFlag} ${endPoint.x} ${endPoint.y}`,\n        strokeWidth: this.options.outerStrokeWidth,\n        strokeLinecap: this.options.outerStrokeLinecap,\n        fill: 'none',\n      },\n      circle: {\n        cx: centre.x,\n        cy: centre.y,\n        r:\n          this.options.radius -\n          this.options.space -\n          this.options.outerStrokeWidth / 2 -\n          this.options.innerStrokeWidth / 2,\n        strokeWidth: this.options.innerStrokeWidth,\n      },\n      title: title,\n      valueLabel: valueLabel,\n    };\n  }\n\n  private applyOptions() {\n    this.options.radius = Math.abs(100);\n    this.options.space = -5;\n    this.options.percent = this.percent!;\n    this.options.outerStrokeWidth = 5;\n    this.options.innerStrokeWidth = 5;\n    this.options.backgroundPadding = -9;\n    this.options.showTitle = this.showTitle ? this.showTitle : false;\n    this.options.showValueLabel = this.showValueLabel\n      ? this.showValueLabel\n      : false;\n    this.options.responsive = this.responsive!;\n  }\n\n  private getRelativeY(rowNum: number, rowCount: number): string {\n    let initialOffset = -0.18,\n      offset = 1.2;\n    return (initialOffset + offset * (rowNum - rowCount / 2)).toFixed(2) + 'em';\n  }\n}\n",
+      "properties": [
+        {
+          "name": "backgroundPadding",
+          "defaultValue": "-9",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "optional": false,
+          "description": "",
+          "line": 17
+        },
+        {
+          "name": "innerStrokeWidth",
+          "defaultValue": "5",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "number",
+          "optional": false,
+          "description": "",
+          "line": 23
+        },
+        {
+          "name": "outerStrokeLinecap",
+          "defaultValue": "'round'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "optional": false,
+          "description": "",
+          "line": 22
+        },
+        {
+          "name": "outerStrokeWidth",
+          "defaultValue": "5",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "number",
+          "optional": false,
+          "description": "",
+          "line": 21
+        },
+        {
+          "name": "percent",
+          "defaultValue": "50",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "number",
+          "optional": false,
+          "description": "",
+          "line": 18
+        },
+        {
+          "name": "radius",
+          "defaultValue": "100",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "number",
+          "optional": false,
+          "description": "",
+          "line": 19
+        },
+        {
+          "name": "responsive",
+          "defaultValue": "true",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "optional": false,
+          "description": "",
+          "line": 27
+        },
+        {
+          "name": "showBackground",
+          "defaultValue": "true",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "optional": false,
+          "description": "",
+          "line": 26
+        },
+        {
+          "name": "showTitle",
+          "defaultValue": "true",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "optional": false,
+          "description": "",
+          "line": 25
+        },
+        {
+          "name": "showValueLabel",
+          "defaultValue": "true",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "optional": false,
+          "description": "",
+          "line": 16
+        },
+        {
+          "name": "space",
+          "defaultValue": "-5",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "optional": false,
+          "description": "",
+          "line": 20
+        },
+        {
+          "name": "title",
+          "defaultValue": "'Total a pagar'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string | Array<String>",
+          "optional": false,
+          "description": "",
+          "line": 24
+        },
+        {
+          "name": "valueLabel",
+          "defaultValue": "'$10000'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "optional": false,
+          "description": "",
+          "line": 15
+        }
+      ],
+      "methods": [],
+      "indexSignatures": [],
+      "extends": [],
+      "inputsClass": [],
+      "outputsClass": [],
+      "hostBindings": [],
+      "hostListeners": [],
+      "implements": ["BmbProgressCircleOptionsInterface"]
+    }
+  ],
   "directives": [
     {
       "name": "BmbButtonDirective",
@@ -1244,6 +1518,146 @@
       "extends": [],
       "implements": ["AfterViewInit"],
       "templateData": "<div [ngClass]=\"getClasses()\">\n  <span>{{ text }}</span>\n</div>\n"
+    },
+    {
+      "name": "BmbBalanceOverviewComponent",
+      "id": "component-BmbBalanceOverviewComponent-2b2aaabdaf6113e6914a4f198b31a1cb208117e0a35417b2f78e90b53ded586d054cb0c61727eca4b24da2f64d90340e3f995d59531b4161062db1db653aa9a2",
+      "file": "projects/ds-ng/src/lib/components/bmb-balance-overview/bmb-balance-overview.component.ts",
+      "encapsulation": [],
+      "entryComponents": [],
+      "inputs": [],
+      "outputs": [],
+      "providers": [],
+      "selector": "bmb-balance-overview",
+      "styleUrls": [],
+      "styles": [],
+      "templateUrl": ["./bmb-balance-overview.component.html"],
+      "viewProviders": [],
+      "hostDirectives": [],
+      "inputsClass": [
+        {
+          "name": "labelPrimary",
+          "defaultValue": "'Text'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 23,
+          "type": "string",
+          "decorators": []
+        },
+        {
+          "name": "labelSecondary",
+          "defaultValue": "'Text'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 26,
+          "type": "string",
+          "decorators": []
+        },
+        {
+          "name": "progressCirclePercent",
+          "defaultValue": "0",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 15,
+          "type": "number",
+          "decorators": []
+        },
+        {
+          "name": "progressCircleTitle",
+          "defaultValue": "'Title'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 18,
+          "type": "string | Array<string>",
+          "decorators": []
+        },
+        {
+          "name": "progressCircleValue",
+          "defaultValue": "'Progress Value'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 16,
+          "type": "string",
+          "decorators": []
+        },
+        {
+          "name": "showProgressCircleBackground",
+          "defaultValue": "true",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 20,
+          "type": "boolean",
+          "decorators": []
+        },
+        {
+          "name": "showProgressCircleTitle",
+          "defaultValue": "true",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 19,
+          "type": "boolean",
+          "decorators": []
+        },
+        {
+          "name": "showProgressCircleValue",
+          "defaultValue": "true",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 17,
+          "type": "boolean",
+          "decorators": []
+        },
+        {
+          "name": "valuePrimary",
+          "defaultValue": "'$0'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 24,
+          "type": "string",
+          "decorators": []
+        },
+        {
+          "name": "valueSecondary",
+          "defaultValue": "'$0'",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 27,
+          "type": "string",
+          "decorators": []
+        }
+      ],
+      "outputsClass": [],
+      "propertiesClass": [],
+      "methodsClass": [],
+      "deprecated": false,
+      "deprecationMessage": "",
+      "hostBindings": [],
+      "hostListeners": [],
+      "standalone": true,
+      "imports": [
+        {
+          "name": "CommonModule",
+          "type": "module"
+        },
+        {
+          "name": "BmbProgressCircleComponent",
+          "type": "component"
+        },
+        {
+          "name": "BmbLegendComponent",
+          "type": "component"
+        }
+      ],
+      "description": "",
+      "rawdescription": "\n",
+      "type": "component",
+      "sourceCode": "import { CommonModule } from '@angular/common';\nimport { Component, Input } from '@angular/core';\nimport { BmbProgressCircleComponent } from '../bmb-progress-cirlce/bmb-progress-circle.component';\nimport { BmbLegendComponent } from '../bmb-legend/bmb-legend.component';\n\n@Component({\n  selector: 'bmb-balance-overview',\n  standalone: true,\n  imports: [CommonModule, BmbProgressCircleComponent, BmbLegendComponent],\n  templateUrl: './bmb-balance-overview.component.html',\n  styleUrl: './bmb-balance-overview.component.scss',\n})\nexport class BmbBalanceOverviewComponent {\n  //Inputs for Progress Circle\n  @Input() progressCirclePercent?: number = 0;\n  @Input() progressCircleValue?: string = 'Progress Value';\n  @Input() showProgressCircleValue?: boolean = true;\n  @Input() progressCircleTitle?: string | Array<string> = 'Title';\n  @Input() showProgressCircleTitle?: boolean = true;\n  @Input() showProgressCircleBackground?: boolean = true;\n\n  //Inputs for legeds\n  @Input() labelPrimary?: string = 'Text';\n  @Input() valuePrimary?: string = '$0';\n\n  @Input() labelSecondary?: string = 'Text';\n  @Input() valueSecondary?: string = '$0';\n}\n",
+      "styleUrl": "./bmb-balance-overview.component.scss",
+      "assetsDirs": [],
+      "styleUrlsData": "",
+      "stylesData": "",
+      "extends": [],
+      "templateData": "<section class=\"bmb_balance-overview-container\">\n  <div class=\"bmb_balance-overview-circle-container\">\n    <bmb-progress-circle\n      [percent]=\"progressCirclePercent!\"\n      [valueLabel]=\"progressCircleValue!\"\n      [showValueLabel]=\"showProgressCircleValue\"\n      [title]=\"progressCircleTitle\"\n      [showTitle]=\"showProgressCircleTitle\"\n      [showBackground]=\"showProgressCircleBackground\"\n    />\n  </div>\n  <div class=\"bmb_balance-overview-legend-main-container\">\n    <div class=\"bmb_balance-overview-legend-success\">\n      <bmb-legend\n        class=\"bmb_balance-overview-legend-text\"\n        [indicatorAppearance]=\"'success'\"\n        [label]=\"labelPrimary!\"\n        [value]=\"valuePrimary!\"\n      />\n    </div>\n    <div class=\"bmb_balance-overview-legend-strong\">\n      <bmb-legend\n        class=\"bmb_balance-overview-legend-text\"\n        [indicatorAppearance]=\"'strong'\"\n        [label]=\"labelSecondary!\"\n        [value]=\"valueSecondary!\"\n      />\n    </div>\n  </div>\n</section>\n"
     },
     {
       "name": "BmbButtonGroupComponent",
@@ -5341,7 +5755,7 @@
     },
     {
       "name": "BmbLoaderComponent",
-      "id": "component-BmbLoaderComponent-acff4cf581ffb3bcadb33254f10ad67cc431f1abbd77c2c30b42328a9e32638968ad59d3debb67c1211600e9119dbbee154e94d7660797b9b87e6333e7d6e824",
+      "id": "component-BmbLoaderComponent-09a86da204346834d09305b61473e1f59a948d9b34f6f8cf47f63388a847c4ac5d476882d47bbae3a43d1f531b565dbb3d82cb70fcbe780e6582e91e95d9e5d8",
       "file": "projects/ds-ng/src/lib/components/bmb-loader/bmb-loader.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": ["ViewEncapsulation.None"],
@@ -5357,12 +5771,57 @@
       "hostDirectives": [],
       "inputsClass": [
         {
-          "name": "status",
+          "name": "actions",
+          "defaultValue": "false",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 33,
+          "type": "boolean",
+          "decorators": []
+        },
+        {
+          "name": "buttonPrimary",
           "defaultValue": "''",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 20,
+          "line": 34,
           "type": "string",
+          "decorators": []
+        },
+        {
+          "name": "buttonSecondary",
+          "defaultValue": "''",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 35,
+          "type": "string",
+          "decorators": []
+        },
+        {
+          "name": "errorState",
+          "defaultValue": "false",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 32,
+          "type": "boolean",
+          "decorators": []
+        },
+        {
+          "name": "isVisible",
+          "defaultValue": "true",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 31,
+          "type": "boolean",
+          "decorators": []
+        },
+        {
+          "name": "overlay",
+          "defaultValue": "false",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 30,
+          "type": "boolean",
           "decorators": []
         },
         {
@@ -5370,7 +5829,7 @@
           "defaultValue": "''",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 22,
+          "line": 29,
           "type": "string",
           "decorators": []
         },
@@ -5379,14 +5838,104 @@
           "defaultValue": "''",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 21,
+          "line": 28,
           "type": "string",
           "decorators": []
         }
       ],
-      "outputsClass": [],
+      "outputsClass": [
+        {
+          "name": "onButtonPrimary",
+          "defaultValue": "new EventEmitter<void>()",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 37,
+          "type": "EventEmitter<void>"
+        },
+        {
+          "name": "onButtonSecondary",
+          "defaultValue": "new EventEmitter<void>()",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 38,
+          "type": "EventEmitter<void>"
+        }
+      ],
       "propertiesClass": [],
-      "methodsClass": [],
+      "methodsClass": [
+        {
+          "name": "cleanupBody",
+          "args": [],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 69,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "modifierKind": [123]
+        },
+        {
+          "name": "handleButtonPrimary",
+          "args": [],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 76,
+          "deprecated": false,
+          "deprecationMessage": ""
+        },
+        {
+          "name": "handleButtonSecondary",
+          "args": [],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 80,
+          "deprecated": false,
+          "deprecationMessage": ""
+        },
+        {
+          "name": "ngOnChanges",
+          "args": [],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 49,
+          "deprecated": false,
+          "deprecationMessage": ""
+        },
+        {
+          "name": "ngOnDestroy",
+          "args": [],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 53,
+          "deprecated": false,
+          "deprecationMessage": ""
+        },
+        {
+          "name": "ngOnInit",
+          "args": [],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 45,
+          "deprecated": false,
+          "deprecationMessage": ""
+        },
+        {
+          "name": "updateBodyClass",
+          "args": [],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 57,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "modifierKind": [123]
+        }
+      ],
       "deprecated": false,
       "deprecationMessage": "",
       "hostBindings": [],
@@ -5400,18 +5949,64 @@
         {
           "name": "BmbIconComponent",
           "type": "component"
+        },
+        {
+          "name": "BmbButtonDirective",
+          "type": "directive"
         }
       ],
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\n\n@Component({\n  selector: 'bmb-loader',\n  styleUrl: './bmb-loader.component.scss',\n  templateUrl: './bmb-loader.component.html',\n  standalone: true,\n  imports: [CommonModule, BmbIconComponent],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbLoaderComponent {\n  @Input() status: string = '';\n  @Input() title: string = '';\n  @Input() subtitle: string = '';\n}\n",
+      "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n  OnInit,\n  OnDestroy,\n  Renderer2,\n  ElementRef,\n  Output,\n  EventEmitter,\n  OnChanges,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\nimport { BmbButtonDirective } from '../../directives/button.directive';\n\n@Component({\n  selector: 'bmb-loader',\n  styleUrl: './bmb-loader.component.scss',\n  templateUrl: './bmb-loader.component.html',\n  standalone: true,\n  imports: [CommonModule, BmbIconComponent, BmbButtonDirective],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbLoaderComponent implements OnInit, OnDestroy, OnChanges {\n  @Input() title: string = '';\n  @Input() subtitle: string = '';\n  @Input() overlay: boolean = false;\n  @Input() isVisible: boolean = true;\n  @Input() errorState: boolean = false;\n  @Input() actions: boolean = false;\n  @Input() buttonPrimary: string = '';\n  @Input() buttonSecondary: string = '';\n\n  @Output() onButtonPrimary: EventEmitter<void> = new EventEmitter<void>();\n  @Output() onButtonSecondary: EventEmitter<void> = new EventEmitter<void>();\n\n  constructor(\n    private renderer: Renderer2,\n    private elRef: ElementRef,\n  ) {}\n\n  ngOnInit() {\n    this.updateBodyClass();\n  }\n\n  ngOnChanges() {\n    this.updateBodyClass();\n  }\n\n  ngOnDestroy() {\n    this.cleanupBody();\n  }\n\n  private updateBodyClass() {\n    if (this.isVisible) {\n      document.body.appendChild(this.elRef.nativeElement);\n\n      if (this.overlay && !this.errorState) {\n        this.renderer.addClass(document.body, 'bmb_loader-body-overlay');\n      }\n    } else {\n      this.cleanupBody();\n    }\n  }\n\n  private cleanupBody() {\n    if (document.body.contains(this.elRef.nativeElement)) {\n      this.renderer.removeChild(document.body, this.elRef.nativeElement);\n    }\n    this.renderer.removeClass(document.body, 'bmb_loader-body-overlay');\n  }\n\n  handleButtonPrimary() {\n    this.onButtonPrimary.emit();\n  }\n\n  handleButtonSecondary() {\n    this.onButtonSecondary.emit();\n  }\n}\n",
       "styleUrl": "./bmb-loader.component.scss",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
+      "constructorObj": {
+        "name": "constructor",
+        "description": "",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "args": [
+          {
+            "name": "renderer",
+            "type": "Renderer2",
+            "deprecated": false,
+            "deprecationMessage": ""
+          },
+          {
+            "name": "elRef",
+            "type": "ElementRef",
+            "deprecated": false,
+            "deprecationMessage": ""
+          }
+        ],
+        "line": 38,
+        "jsdoctags": [
+          {
+            "name": "renderer",
+            "type": "Renderer2",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "tagName": {
+              "text": "param"
+            }
+          },
+          {
+            "name": "elRef",
+            "type": "ElementRef",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "tagName": {
+              "text": "param"
+            }
+          }
+        ]
+      },
       "extends": [],
-      "templateData": "<div class=\"bmb_loader\">\n  <div *ngIf=\"status != 'noConnection'\" class=\"bmb_loader-loading\">\n    <bmb-icon icon=\"progress_activity\"></bmb-icon>\n  </div>\n  <div *ngIf=\"status === 'noConnection'\" class=\"bmb_loader-connection\">\n    <bmb-icon icon=\"wifi_off\"></bmb-icon>\n  </div>\n  <div *ngIf=\"title\" class=\"bmb_loader-title\">{{ title }}</div>\n  <div *ngIf=\"subtitle\" class=\"bmb_loader-subtitle\">{{ subtitle }}</div>\n</div>\n"
+      "implements": ["OnInit", "OnDestroy", "OnChanges"],
+      "templateData": "@if (overlay && !errorState) {\n  <div class=\"bmb_loader-overlay\"></div>\n}\n<div\n  class=\"bmb_loader\"\n  [ngClass]=\"{\n    'bmb_loader-modal': overlay && !errorState,\n    'bmb_loader-error': errorState\n  }\"\n>\n  @if (!errorState) {\n    <div class=\"bmb_loader-loading\">\n      <bmb-icon icon=\"progress_activity\" class=\"bmb_loader-icon\" />\n    </div>\n  }\n  @if (errorState) {\n    <div class=\"bmb_loader-error-icon\">\n      <bmb-icon icon=\"wifi_off\" class=\"bmb_loader-icon\" />\n    </div>\n  }\n  @if (title) {\n    <div class=\"bmb_loader-title\">{{ title }}</div>\n  }\n  @if (subtitle) {\n    <div class=\"bmb_loader-subtitle\">{{ subtitle }}</div>\n  }\n\n  @if (errorState && actions) {\n    <div class=\"bmb_loader-error-actions\">\n      <button\n        bmbButton\n        appearance=\"primary\"\n        size=\"large\"\n        (click)=\"handleButtonPrimary()\"\n      >\n        {{ buttonPrimary }}\n      </button>\n      <button\n        bmbButton\n        appearance=\"secondary-outlined\"\n        size=\"large\"\n        (click)=\"handleButtonSecondary()\"\n      >\n        {{ buttonSecondary }}\n      </button>\n    </div>\n  }\n</div>\n"
     },
     {
       "name": "BmbLogoComponent",
@@ -5588,14 +6183,18 @@
     },
     {
       "name": "BmbProgressCircleComponent",
-      "id": "component-BmbProgressCircleComponent-a8c4b9df052f798f5e0944294a9bd925427f6259c7abf1d7f4204e9363bd7ccfd828a65bb118f3488cf17f1ff1d2b3bd922dad31d326698743725dd864cdd434",
+      "id": "component-BmbProgressCircleComponent-a5162687b78f5e786a7591a6972ca88723c372697f4a6d69166cf67ac9d759e19c1a141c962e6d3aee63d632bbc1fca481d178d17af2bd8d58972c46a9b81c2c",
       "file": "projects/ds-ng/src/lib/components/bmb-progress-cirlce/bmb-progress-circle.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": ["ViewEncapsulation.None"],
       "entryComponents": [],
       "inputs": [],
       "outputs": [],
-      "providers": [],
+      "providers": [
+        {
+          "name": "{ provide: CircleProgressOptions, useValue: CircleProgressOptions }"
+        }
+      ],
       "selector": "bmb-progress-circle",
       "styleUrls": [],
       "styles": [],
@@ -5604,75 +6203,180 @@
       "hostDirectives": [],
       "inputsClass": [
         {
-          "name": "percentValue",
-          "defaultValue": "50",
+          "name": "percent",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 21,
-          "type": "number | null",
+          "line": 46,
+          "type": "number",
+          "decorators": []
+        },
+        {
+          "name": "showBackground",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 51,
+          "type": "boolean",
+          "decorators": []
+        },
+        {
+          "name": "showTitle",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 50,
+          "type": "boolean",
+          "decorators": []
+        },
+        {
+          "name": "showValueLabel",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 44,
+          "type": "boolean",
           "decorators": []
         },
         {
           "name": "title",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 22,
-          "type": "string | null",
+          "line": 48,
+          "type": "string | Array<String>",
           "decorators": []
         },
         {
           "name": "valueLabel",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 23,
-          "type": "number | null",
+          "line": 43,
+          "type": "string",
           "decorators": []
         }
       ],
       "outputsClass": [],
       "propertiesClass": [
         {
-          "name": "circunference",
-          "defaultValue": "2 * Math.PI * this.radius",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "",
-          "optional": false,
-          "description": "",
-          "line": 26
-        },
-        {
-          "name": "dashoffset",
+          "name": "_lastPercent",
           "defaultValue": "0",
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
           "optional": false,
           "description": "",
-          "line": 27
+          "line": 56
         },
         {
-          "name": "radius",
-          "defaultValue": "74",
+          "name": "options",
+          "defaultValue": "new CircleProgressOptions()",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "number",
+          "type": "CircleProgressOptions",
           "optional": false,
           "description": "",
-          "line": 25
+          "line": 55
         },
         {
-          "name": "symbol",
-          "defaultValue": "'%'",
+          "name": "responsive",
+          "defaultValue": "true",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "string",
+          "type": "",
           "optional": false,
           "description": "",
-          "line": 28
+          "line": 53
+        },
+        {
+          "name": "svg",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "any",
+          "optional": false,
+          "description": "",
+          "line": 54
         }
       ],
       "methodsClass": [
+        {
+          "name": "applyOptions",
+          "args": [],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 192,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "modifierKind": [123]
+        },
+        {
+          "name": "draw",
+          "args": [
+            {
+              "name": "percent",
+              "type": "number",
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 88,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "jsdoctags": [
+            {
+              "name": "percent",
+              "type": "number",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            }
+          ]
+        },
+        {
+          "name": "getRelativeY",
+          "args": [
+            {
+              "name": "rowNum",
+              "type": "number",
+              "deprecated": false,
+              "deprecationMessage": ""
+            },
+            {
+              "name": "rowCount",
+              "type": "number",
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
+          "optional": false,
+          "returnType": "string",
+          "typeParameters": [],
+          "line": 206,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "modifierKind": [123],
+          "jsdoctags": [
+            {
+              "name": "rowNum",
+              "type": "number",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            },
+            {
+              "name": "rowCount",
+              "type": "number",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            }
+          ]
+        },
         {
           "name": "ngOnChanges",
           "args": [
@@ -5686,7 +6390,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 34,
+          "line": 66,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -5702,24 +6406,79 @@
           ]
         },
         {
-          "name": "progress",
+          "name": "ngOnInit",
+          "args": [],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 62,
+          "deprecated": false,
+          "deprecationMessage": ""
+        },
+        {
+          "name": "polarToCartesian",
           "args": [
             {
-              "name": "value",
+              "name": "centerX",
+              "type": "number",
+              "deprecated": false,
+              "deprecationMessage": ""
+            },
+            {
+              "name": "centerY",
+              "type": "number",
+              "deprecated": false,
+              "deprecationMessage": ""
+            },
+            {
+              "name": "radius",
+              "type": "number",
+              "deprecated": false,
+              "deprecationMessage": ""
+            },
+            {
+              "name": "angleInDegrees",
               "type": "number",
               "deprecated": false,
               "deprecationMessage": ""
             }
           ],
           "optional": false,
-          "returnType": "void",
+          "returnType": "{ x: number; y: number; }",
           "typeParameters": [],
-          "line": 44,
+          "line": 76,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
             {
-              "name": "value",
+              "name": "centerX",
+              "type": "number",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            },
+            {
+              "name": "centerY",
+              "type": "number",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            },
+            {
+              "name": "radius",
+              "type": "number",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            },
+            {
+              "name": "angleInDegrees",
               "type": "number",
               "deprecated": false,
               "deprecationMessage": "",
@@ -5728,6 +6487,16 @@
               }
             }
           ]
+        },
+        {
+          "name": "render",
+          "args": [],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 70,
+          "deprecated": false,
+          "deprecationMessage": ""
         }
       ],
       "deprecated": false,
@@ -5744,7 +6513,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { CommonModule } from '@angular/common';\nimport {\n  Component,\n  Input,\n  OnChanges,\n  SimpleChanges,\n  ViewEncapsulation,\n  ChangeDetectionStrategy,\n} from '@angular/core';\n\n@Component({\n  selector: 'bmb-progress-circle',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './bmb-progress-circle.component.html',\n  styleUrl: './bmb-progress-circle.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbProgressCircleComponent implements OnChanges {\n  @Input() percentValue: number | null = 50;\n  @Input() title?: string | null;\n  @Input() valueLabel?: number | null;\n\n  radius = 74;\n  circunference = 2 * Math.PI * this.radius;\n  dashoffset = 0;\n  symbol = '%';\n\n  constructor() {\n    this.progress(0);\n  }\n\n  ngOnChanges(changes: SimpleChanges) {\n    if (changes['percentValue']) {\n      if (changes['percentValue'].currentValue > 100) {\n        this.progress(100);\n      } else {\n        this.progress(changes['percentValue'].currentValue);\n      }\n    }\n  }\n\n  progress(value: number) {\n    const progress = value / 100;\n    this.dashoffset = -this.circunference * (1 - progress);\n  }\n}\n",
+      "sourceCode": "import { BmbProgressCircleOptionsInterface } from './bmb-progress-circle.interface';\nimport { CommonModule } from '@angular/common';\nimport {\n  Component,\n  Input,\n  OnChanges,\n  SimpleChanges,\n  ViewEncapsulation,\n  ChangeDetectionStrategy,\n} from '@angular/core';\n\nexport class CircleProgressOptions\n  implements BmbProgressCircleOptionsInterface\n{\n  valueLabel = '$10000';\n  showValueLabel = true;\n  backgroundPadding = -9;\n  percent = 50;\n  radius = 100;\n  space = -5;\n  outerStrokeWidth = 5;\n  outerStrokeLinecap = 'round';\n  innerStrokeWidth = 5;\n  title: string | Array<String> = 'Total a pagar';\n  showTitle = true;\n  showBackground = true;\n  responsive = true;\n}\n\n@Component({\n  selector: 'bmb-progress-circle',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './bmb-progress-circle.component.html',\n  styleUrl: './bmb-progress-circle.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n  providers: [\n    { provide: CircleProgressOptions, useValue: CircleProgressOptions },\n  ],\n})\nexport class BmbProgressCircleComponent implements OnChanges {\n  @Input() valueLabel?: string;\n  @Input() showValueLabel?: boolean;\n\n  @Input() percent!: number;\n\n  @Input() title?: string | Array<String>;\n\n  @Input() showTitle?: boolean;\n  @Input() showBackground?: boolean;\n\n  responsive = true;\n  svg: any;\n  options: CircleProgressOptions = new CircleProgressOptions();\n  _lastPercent: number = 0;\n\n  constructor(defaultOptions: CircleProgressOptions) {\n    Object.assign(this.options, defaultOptions);\n  }\n\n  ngOnInit() {\n    this.render();\n  }\n\n  ngOnChanges(changes: SimpleChanges) {\n    this.render();\n  }\n\n  render() {\n    this.applyOptions();\n    this.draw(this.options.percent);\n    this._lastPercent = this.options.percent;\n  }\n\n  polarToCartesian(\n    centerX: number,\n    centerY: number,\n    radius: number,\n    angleInDegrees: number,\n  ) {\n    let angleInRadius = (angleInDegrees * Math.PI) / 180;\n    let x = centerX + Math.sin(angleInRadius) * radius;\n    let y = centerY - Math.cos(angleInRadius) * radius;\n    return { x: x, y: y };\n  }\n\n  draw(percent: number) {\n    percent = Math.abs(percent);\n    let circlePercent = percent > 100 ? 100 : percent;\n    let boxSize = this.options.radius! * 2 + this.options.outerStrokeWidth * 2;\n    let centre = { x: boxSize / 2, y: boxSize / 2 };\n    let startPoint = { x: centre.x, y: centre.y - this.options.radius };\n    let endPoint = this.polarToCartesian(\n      centre.x,\n      centre.y,\n      this.options.radius,\n      (360 * (100 - circlePercent)) / 100,\n    );\n    let largeArcFlag: any, sweepFlag: any;\n    if (circlePercent > 50) {\n      [largeArcFlag, sweepFlag] = [1, 0];\n    } else {\n      [largeArcFlag, sweepFlag] = [0, 0];\n    }\n    let titlePercent = this.options.percent;\n    let titleTextPercent = titlePercent;\n    let title = {\n      x: centre.x,\n      y: centre.y,\n      textAnchor: 'middle',\n      texts: new Array<any>(),\n      tspans: new Array<any>(),\n    };\n    if (this.title === '' || this.title === undefined) {\n      title.texts.push(titleTextPercent);\n    } else {\n      if (this.title instanceof Array) {\n        title.texts = [...this.title];\n      } else {\n        title.texts.push(this.title.toString());\n      }\n    }\n    let valueLabel = {\n      x: centre.x,\n      y: centre.y,\n      textAnchor: 'middle',\n      texts: new Array<any>(),\n      tspans: new Array<any>(),\n    };\n    if (this.valueLabel === undefined) {\n      valueLabel.texts.push(`0`);\n    } else {\n      valueLabel.texts.push(this.valueLabel);\n    }\n    let rowCount = 0,\n      rowNum = 1;\n    this.options.showTitle && (rowCount += title.texts.length);\n    this.options.showValueLabel && (rowCount += valueLabel.texts.length);\n    if (this.options.showTitle) {\n      for (let span of title.texts) {\n        title.tspans.push({\n          span: span,\n          dy: this.getRelativeY(rowNum, rowCount),\n        });\n        rowNum++;\n      }\n    }\n    if (this.options.showValueLabel) {\n      for (let span of valueLabel.texts) {\n        valueLabel.tspans.push({\n          span: span,\n          dy: this.getRelativeY(rowNum, rowCount),\n        });\n        rowNum++;\n      }\n    }\n    this.svg = {\n      viewBox: `0 0 ${boxSize} ${boxSize}`,\n      width: this.options.responsive ? '100%' : boxSize,\n      height: this.options.responsive ? '100%' : boxSize,\n      backgroundCircle: {\n        cx: centre.x,\n        cy: centre.y,\n        r:\n          this.options.radius +\n          this.options.outerStrokeWidth / 2 +\n          this.options.backgroundPadding,\n      },\n      path: {\n        d: `M ${startPoint.x} ${startPoint.y}\n       A ${this.options.radius} ${this.options.radius} 0 ${largeArcFlag} ${sweepFlag} ${endPoint.x} ${endPoint.y}`,\n        strokeWidth: this.options.outerStrokeWidth,\n        strokeLinecap: this.options.outerStrokeLinecap,\n        fill: 'none',\n      },\n      circle: {\n        cx: centre.x,\n        cy: centre.y,\n        r:\n          this.options.radius -\n          this.options.space -\n          this.options.outerStrokeWidth / 2 -\n          this.options.innerStrokeWidth / 2,\n        strokeWidth: this.options.innerStrokeWidth,\n      },\n      title: title,\n      valueLabel: valueLabel,\n    };\n  }\n\n  private applyOptions() {\n    this.options.radius = Math.abs(100);\n    this.options.space = -5;\n    this.options.percent = this.percent!;\n    this.options.outerStrokeWidth = 5;\n    this.options.innerStrokeWidth = 5;\n    this.options.backgroundPadding = -9;\n    this.options.showTitle = this.showTitle ? this.showTitle : false;\n    this.options.showValueLabel = this.showValueLabel\n      ? this.showValueLabel\n      : false;\n    this.options.responsive = this.responsive!;\n  }\n\n  private getRelativeY(rowNum: number, rowCount: number): string {\n    let initialOffset = -0.18,\n      offset = 1.2;\n    return (initialOffset + offset * (rowNum - rowCount / 2)).toFixed(2) + 'em';\n  }\n}\n",
       "styleUrl": "./bmb-progress-circle.component.scss",
       "assetsDirs": [],
       "styleUrlsData": "",
@@ -5754,12 +6523,30 @@
         "description": "",
         "deprecated": false,
         "deprecationMessage": "",
-        "args": [],
-        "line": 28
+        "args": [
+          {
+            "name": "defaultOptions",
+            "type": "CircleProgressOptions",
+            "deprecated": false,
+            "deprecationMessage": ""
+          }
+        ],
+        "line": 56,
+        "jsdoctags": [
+          {
+            "name": "defaultOptions",
+            "type": "CircleProgressOptions",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "tagName": {
+              "text": "param"
+            }
+          }
+        ]
       },
       "extends": [],
       "implements": ["OnChanges"],
-      "templateData": "<div class=\"bmb_progress_circle\">\n  <svg\n    class=\"bmb_progress_circle-svg\"\n    width=\"170\"\n    height=\"170\"\n    viewBox=\"0 0 170 170\"\n  >\n    <circle\n      class=\"bmb_progress_circle-svg-meter\"\n      cx=\"84\"\n      cy=\"84\"\n      [attr.r]=\"radius\"\n      stroke-width=\"5\"\n    />\n    <circle\n      class=\"bmb_progress_circle-svg-value\"\n      [style.strokeDasharray]=\"circunference\"\n      [style.strokeDashoffset]=\"dashoffset\"\n      cx=\"84\"\n      cy=\"84\"\n      [attr.r]=\"radius\"\n      stroke-width=\"5\"\n    />\n  </svg>\n\n  <div class=\"bmb_progress_circle-info\">\n    @if (title) {\n      <div class=\"bmb_progress_circle-info-title\">\n        <ng-container>{{ title }}</ng-container>\n      </div>\n    }\n    <div\n      class=\"bmb_progress_circle-info-value\"\n      [ngClass]=\"{\n        'bmb_progress_circle-info-value-alone': this.title !== undefined\n      }\"\n    >\n      {{ valueLabel }}\n    </div>\n  </div>\n</div>\n"
+      "templateData": "<svg\n  xmlns=\"http://www.w3.org/2000/svg\"\n  onkeypress=\"\"\n  class=\"bmb_progress-circle\"\n  [attr.viewBox]=\"svg.viewBox\"\n  preserveAspectRatio=\"xMidYMid meet\"\n  [attr.height]=\"svg.height\"\n  [attr.width]=\"svg.width\"\n>\n  @if (this.showBackground) {\n    <ng-container>\n      <circle\n        class=\"bmb_progress-circle-background\"\n        [attr.cx]=\"svg.backgroundCircle.cx\"\n        [attr.cy]=\"svg.backgroundCircle.cy\"\n        [attr.r]=\"svg.backgroundCircle.r\"\n      />\n    </ng-container>\n  }\n  <circle\n    class=\"bmb_progress-circle-fill\"\n    [attr.cx]=\"svg.circle.cx\"\n    [attr.cy]=\"svg.circle.cy\"\n    [attr.r]=\"svg.circle.r\"\n    [attr.stroke-width]=\"svg.circle.strokeWidth\"\n  />\n  <path\n    class=\"bmb_progress-circle-track\"\n    [attr.d]=\"svg.path.d\"\n    [attr.stroke-width]=\"svg.path.strokeWidth\"\n    [attr.fill]=\"svg.path.fill\"\n  />\n  @if (options.showTitle || options.showValueLabel) {\n    <text\n      alignment-baseline=\"baseline\"\n      [attr.x]=\"svg.circle.cx\"\n      [attr.y]=\"svg.circle.cy\"\n      [attr.text-anchor]=\"svg.title.textAnchor\"\n    >\n      @if (options.showTitle) {\n        <ng-container>\n          @for (tspan of svg.title.tspans; track tspan) {\n            <tspan\n              class=\"bmb_progress-circle-title\"\n              [attr.x]=\"svg.title.x\"\n              [attr.y]=\"svg.title.y\"\n              [attr.dy]=\"tspan.dy\"\n            >\n              {{ tspan.span }}\n            </tspan>\n          }\n        </ng-container>\n      }\n      @if (options.showValueLabel) {\n        <ng-container>\n          @for (tspan of svg.valueLabel.tspans; track tspan) {\n            <tspan\n              class=\"bmb_progress-circle-value-label\"\n              [attr.x]=\"svg.valueLabel.x\"\n              [attr.y]=\"svg.valueLabel.y\"\n              [attr.dy]=\"tspan.dy\"\n            >\n              {{ tspan.span }}\n            </tspan>\n          }\n        </ng-container>\n      }\n    </text>\n  }\n</svg>\n"
     },
     {
       "name": "BmbRadialComponent",
@@ -6634,9 +7421,10 @@
     },
     {
       "name": "BmbSidebarComponent",
-      "id": "component-BmbSidebarComponent-9a9cb468b1cf06ffb323a998c1509b9024c1e3b1a1dc6ac1a92d476443b4a24403598c6b6d0aefb18e37e650428dbf7dc3948feecd424fb76f9334e3f284d46c",
+      "id": "component-BmbSidebarComponent-0e92a2e8ec57a564d29762641b96e1514e7dead729ca1ac397b11b01727f3021dc96135b336fafe81af90332af42d290515c6e32f4344c9f6965e28aa4836b7e",
       "file": "projects/ds-ng/src/lib/components/bmb-sidebar/bmb-sidebar.component.ts",
-      "encapsulation": [],
+      "changeDetection": "ChangeDetectionStrategy.OnPush",
+      "encapsulation": ["ViewEncapsulation.None"],
       "entryComponents": [],
       "inputs": [],
       "outputs": [],
@@ -6653,8 +7441,8 @@
           "defaultValue": "[]",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 14,
-          "type": "SidebarElements[]",
+          "line": 22,
+          "type": "SidebarElement[][]",
           "decorators": []
         }
       ],
@@ -6668,7 +7456,7 @@
           "type": "string",
           "optional": false,
           "description": "",
-          "line": 16
+          "line": 24
         }
       ],
       "methodsClass": [
@@ -6685,7 +7473,7 @@
           "optional": false,
           "returnType": "string",
           "typeParameters": [],
-          "line": 26,
+          "line": 36,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -6701,12 +7489,40 @@
           ]
         },
         {
+          "name": "isInternalLink",
+          "args": [
+            {
+              "name": "link",
+              "type": "string",
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
+          "optional": false,
+          "returnType": "boolean",
+          "typeParameters": [],
+          "line": 40,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "jsdoctags": [
+            {
+              "name": "link",
+              "type": "string",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            }
+          ]
+        },
+        {
           "name": "ngOnInit",
           "args": [],
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 18,
+          "line": 26,
           "deprecated": false,
           "deprecationMessage": ""
         },
@@ -6723,7 +7539,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 22,
+          "line": 32,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -6752,18 +7568,22 @@
         {
           "name": "CommonModule",
           "type": "module"
+        },
+        {
+          "name": "RouterModule",
+          "type": "module"
         }
       ],
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { Component, Input } from '@angular/core';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\nimport { CommonModule } from '@angular/common';\nimport { SidebarElements } from './bmb-sidebar.interface';\n\n@Component({\n  selector: 'bmb-sidebar',\n  standalone: true,\n  imports: [BmbIconComponent, CommonModule],\n  templateUrl: './bmb-sidebar.component.html',\n  styleUrl: './bmb-sidebar.component.scss',\n})\nexport class BmbSidebarComponent {\n  @Input() elements: SidebarElements[] = [];\n\n  currentChoice: string = '';\n\n  ngOnInit() {\n    this.currentChoice = this.elements[0]?.title;\n  }\n\n  setActive(choice: string) {\n    this.currentChoice = choice;\n  }\n\n  getActive(choice: string): string {\n    if (this.currentChoice == choice) {\n      return 'active';\n    } else {\n      return 'not';\n    }\n  }\n}\n",
+      "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { RouterModule } from '@angular/router';\nimport { CommonModule } from '@angular/common';\nimport { SidebarElement } from './bmb-sidebar.interface';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\n\n@Component({\n  selector: 'bmb-sidebar',\n  standalone: true,\n  imports: [BmbIconComponent, CommonModule, RouterModule],\n  templateUrl: './bmb-sidebar.component.html',\n  styleUrl: './bmb-sidebar.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbSidebarComponent {\n  @Input() elements: SidebarElement[][] = [];\n\n  currentChoice: string = '';\n\n  ngOnInit() {\n    if (this.elements.length > 0 && this.elements[0].length > 0) {\n      this.currentChoice = this.elements[0][0].title;\n    }\n  }\n\n  setActive(choice: string) {\n    this.currentChoice = choice;\n  }\n\n  getActive(choice: string): string {\n    return this.currentChoice === choice ? 'active' : 'inactive';\n  }\n\n  isInternalLink(link: string): boolean {\n    return link.startsWith('/');\n  }\n}\n",
       "styleUrl": "./bmb-sidebar.component.scss",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
       "extends": [],
-      "templateData": "<nav class=\"bmb_sidebar\">\n  <ul class=\"bmb_sidebar-container\">\n    @for (element of elements; track element) {\n      <li class=\"bmb_sidebar-item\" (click)=\"setActive(element.title)\">\n        <div\n          class=\"bmb_sidebar-item-container\"\n          [ngClass]=\"getActive(element.title)\"\n        >\n          <bmb-icon\n            class=\"bmb_sidebar-item-container-icon\"\n            [ngClass]=\"getActive(element.title) + '-icon'\"\n            [icon]=\"element.icon\"\n          />\n          <a\n            class=\"bmb_sidebar-item-container-link\"\n            [ngClass]=\"'bmb-' + getActive(element.title) + '-link'\"\n            href=\"{{ element.link }}\"\n          >\n            {{ element.title }}\n          </a>\n        </div>\n      </li>\n    }\n  </ul>\n</nav>\n"
+      "templateData": "<nav class=\"bmb_sidebar\" aria-label=\"Sidebar Navigation\">\n  <bmb-icon class=\"bmb_sidebar-open\" icon=\"arrow_back_ios\" />\n  <ng-container *ngFor=\"let group of elements\">\n    <ul class=\"bmb_sidebar-list\">\n      <li *ngFor=\"let element of group\" class=\"bmb_sidebar-item\">\n        <a\n          class=\"bmb_sidebar-link\"\n          [id]=\"element.id\"\n          [ngClass]=\"'bmb_sidebar-link-' + getActive(element.title)\"\n          [routerLink]=\"isInternalLink(element.link) ? element.link : null\"\n          (click)=\"setActive(element.title)\"\n          [attr.target]=\"isInternalLink(element.link) ? null : '_blank'\"\n          [attr.rel]=\"\n            isInternalLink(element.link) ? null : 'noopener noreferrer'\n          \"\n        >\n          <bmb-icon\n            class=\"bmb_sidebar-icon\"\n            [icon]=\"element.icon\"\n            [materialIcon]=\"true\"\n          />\n          <span class=\"bmb_sidebar-text\">{{ element.title }}</span>\n        </a>\n      </li>\n    </ul>\n  </ng-container>\n</nav>\n"
     },
     {
       "name": "BmbStatCounterComponent",
@@ -8211,7 +9031,7 @@
     },
     {
       "name": "BmbThemeComponent",
-      "id": "component-BmbThemeComponent-bc7f10ac36f0f4e00f358ceffd480a665e780b446beda308e0d0b68c5c55548ca747d914a1910be9e875b5d65a25dfd221683205d37ef85f028ee9bb74b5d7ef",
+      "id": "component-BmbThemeComponent-af94089e7e85575fd5ea0de52f3cc163cc382276a0f4a8557af30e24c581f8a123185bfa0ca7946779876f4d3c6ffdcc9d0e43aababa43d3acf226cb23555739",
       "file": "projects/ds-ng/src/lib/components/bmb-theme/bmb-theme.component.ts",
       "encapsulation": ["ViewEncapsulation.None"],
       "entryComponents": [],
@@ -8229,9 +9049,29 @@
       "templateUrl": ["./bmb-theme.component.html"],
       "viewProviders": [],
       "hostDirectives": [],
-      "inputsClass": [],
+      "inputsClass": [
+        {
+          "name": "initialTheme",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 21,
+          "type": "string",
+          "decorators": []
+        }
+      ],
       "outputsClass": [],
       "propertiesClass": [
+        {
+          "name": "initialized",
+          "defaultValue": "false",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "optional": false,
+          "description": "",
+          "line": 24,
+          "modifierKind": [123]
+        },
         {
           "name": "selectedTheme",
           "defaultValue": "'light'",
@@ -8240,7 +9080,7 @@
           "type": "string",
           "optional": false,
           "description": "",
-          "line": 15
+          "line": 22
         },
         {
           "name": "service",
@@ -8250,7 +9090,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 17,
+          "line": 23,
           "modifierKind": [123]
         }
       ],
@@ -8268,7 +9108,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 29,
+          "line": 47,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -8289,7 +9129,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 19,
+          "line": 26,
           "deprecated": false,
           "deprecationMessage": ""
         },
@@ -8306,7 +9146,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 34,
+          "line": 55,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -8340,7 +9180,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { Component, OnInit, inject, ViewEncapsulation } from '@angular/core';\nimport { ThemeService } from '../../services';\nimport { CommonModule } from '@angular/common';\nimport { BmbSwitchComponent } from '../bmb-switch/bmb-switch.component';\n\n@Component({\n  selector: 'bmb-theme',\n  standalone: true,\n  imports: [CommonModule, BmbSwitchComponent],\n  providers: [ThemeService],\n  templateUrl: './bmb-theme.component.html',\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbThemeComponent implements OnInit {\n  selectedTheme: string = 'light';\n\n  private service = inject(ThemeService);\n\n  ngOnInit(): void {\n    const savedTheme = localStorage.getItem('theme') || 'light';\n    this.selectedTheme = savedTheme;\n    this.applyTheme(savedTheme);\n\n    this.service.theme$.subscribe((theme: any) => {\n      this.applyTheme(theme);\n    });\n  }\n\n  applyTheme(theme: string): void {\n    document.documentElement.setAttribute('data-theme', theme);\n    localStorage.setItem('theme', theme);\n  }\n\n  onThemeChange(isChecked: boolean): void {\n    this.selectedTheme = isChecked ? 'dark' : 'light';\n    localStorage.setItem('theme', this.selectedTheme);\n    this.service.setTheme(this.selectedTheme);\n  }\n}\n",
+      "sourceCode": "import {\n  Component,\n  OnInit,\n  inject,\n  ViewEncapsulation,\n  Input,\n} from '@angular/core';\nimport { ThemeService } from '../../services';\nimport { CommonModule } from '@angular/common';\nimport { BmbSwitchComponent } from '../bmb-switch/bmb-switch.component';\n\n@Component({\n  selector: 'bmb-theme',\n  standalone: true,\n  imports: [CommonModule, BmbSwitchComponent],\n  providers: [ThemeService],\n  templateUrl: './bmb-theme.component.html',\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbThemeComponent implements OnInit {\n  @Input() initialTheme?: string;\n  selectedTheme: string = 'light';\n  private service = inject(ThemeService);\n  private initialized = false;\n\n  ngOnInit(): void {\n    const savedTheme = localStorage.getItem('theme');\n    if (savedTheme) {\n      this.selectedTheme = savedTheme;\n    } else if (this.initialTheme) {\n      this.selectedTheme = this.initialTheme;\n    } else {\n      this.selectedTheme = this.service.getDefaultTheme();\n    }\n\n    this.applyTheme(this.selectedTheme);\n\n    this.service.theme$.subscribe((theme: any) => {\n      if (this.initialized && theme !== this.selectedTheme) {\n        this.applyTheme(theme);\n      }\n    });\n\n    this.initialized = true;\n  }\n\n  applyTheme(theme: string): void {\n    if (theme !== this.selectedTheme || !this.initialized) {\n      document.documentElement.setAttribute('data-theme', theme);\n      localStorage.setItem('theme', theme);\n      this.selectedTheme = theme;\n    }\n  }\n\n  onThemeChange(isChecked: boolean): void {\n    const newTheme = isChecked ? 'dark' : 'light';\n    if (newTheme !== this.selectedTheme) {\n      this.applyTheme(newTheme);\n      this.service.setTheme(newTheme);\n    }\n  }\n}\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
@@ -9914,6 +10754,16 @@
         "name": "Default",
         "ctype": "miscellaneous",
         "subtype": "variable",
+        "file": "projects/ds-ng/src/lib/components/bmb-balance-overview/bmb-balance-overview.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{}"
+      },
+      {
+        "name": "Default",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
         "file": "projects/ds-ng/src/lib/components/bmb-calendar/bmb-calendar.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -10515,7 +11365,7 @@
             "type": "IFixDecimals",
             "deprecated": false,
             "deprecationMessage": "",
-            "destrucuredGroupId": "3a40c9e9-612d-4944-9d6a-37ba6248969b",
+            "destrucuredGroupId": "fa012e82-7d8d-4adc-939c-6404b52af938",
             "destructuredParameter": true
           },
           {
@@ -10524,7 +11374,7 @@
             "deprecated": false,
             "deprecationMessage": "",
             "defaultValue": "2",
-            "destrucuredGroupId": "3a40c9e9-612d-4944-9d6a-37ba6248969b",
+            "destrucuredGroupId": "fa012e82-7d8d-4adc-939c-6404b52af938",
             "destructuredParameter": true
           }
         ],
@@ -10534,7 +11384,7 @@
             "type": "IFixDecimals",
             "deprecated": false,
             "deprecationMessage": "",
-            "destrucuredGroupId": "3a40c9e9-612d-4944-9d6a-37ba6248969b",
+            "destrucuredGroupId": "fa012e82-7d8d-4adc-939c-6404b52af938",
             "destructuredParameter": true,
             "tagName": {
               "text": "param"
@@ -10546,7 +11396,7 @@
             "deprecated": false,
             "deprecationMessage": "",
             "defaultValue": "2",
-            "destrucuredGroupId": "3a40c9e9-612d-4944-9d6a-37ba6248969b",
+            "destrucuredGroupId": "fa012e82-7d8d-4adc-939c-6404b52af938",
             "destructuredParameter": true,
             "tagName": {
               "text": "param"
@@ -10690,6 +11540,17 @@
         "subtype": "typealias",
         "rawtype": "StoryObj<BmbBadgeComponent>",
         "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 183
+      },
+      {
+        "name": "Story",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "StoryObj<BmbBalanceOverviewComponent>",
+        "file": "projects/ds-ng/src/lib/components/bmb-balance-overview/bmb-balance-overview.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "description": "",
@@ -11144,6 +12005,18 @@
           "ctype": "miscellaneous",
           "subtype": "variable",
           "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{}"
+        }
+      ],
+      "projects/ds-ng/src/lib/components/bmb-balance-overview/bmb-balance-overview.stories.ts": [
+        {
+          "name": "Default",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/ds-ng/src/lib/components/bmb-balance-overview/bmb-balance-overview.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
@@ -11873,7 +12746,7 @@
               "type": "IFixDecimals",
               "deprecated": false,
               "deprecationMessage": "",
-              "destrucuredGroupId": "3a40c9e9-612d-4944-9d6a-37ba6248969b",
+              "destrucuredGroupId": "fa012e82-7d8d-4adc-939c-6404b52af938",
               "destructuredParameter": true
             },
             {
@@ -11882,7 +12755,7 @@
               "deprecated": false,
               "deprecationMessage": "",
               "defaultValue": "2",
-              "destrucuredGroupId": "3a40c9e9-612d-4944-9d6a-37ba6248969b",
+              "destrucuredGroupId": "fa012e82-7d8d-4adc-939c-6404b52af938",
               "destructuredParameter": true
             }
           ],
@@ -11892,7 +12765,7 @@
               "type": "IFixDecimals",
               "deprecated": false,
               "deprecationMessage": "",
-              "destrucuredGroupId": "3a40c9e9-612d-4944-9d6a-37ba6248969b",
+              "destrucuredGroupId": "fa012e82-7d8d-4adc-939c-6404b52af938",
               "destructuredParameter": true,
               "tagName": {
                 "text": "param"
@@ -11904,7 +12777,7 @@
               "deprecated": false,
               "deprecationMessage": "",
               "defaultValue": "2",
-              "destrucuredGroupId": "3a40c9e9-612d-4944-9d6a-37ba6248969b",
+              "destrucuredGroupId": "fa012e82-7d8d-4adc-939c-6404b52af938",
               "destructuredParameter": true,
               "tagName": {
                 "text": "param"
@@ -12034,6 +12907,19 @@
           "subtype": "typealias",
           "rawtype": "StoryObj<BmbBadgeComponent>",
           "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 183
+        }
+      ],
+      "projects/ds-ng/src/lib/components/bmb-balance-overview/bmb-balance-overview.stories.ts": [
+        {
+          "name": "Story",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "StoryObj<BmbBalanceOverviewComponent>",
+          "file": "projects/ds-ng/src/lib/components/bmb-balance-overview/bmb-balance-overview.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "description": "",
@@ -12510,6 +13396,25 @@
       },
       {
         "filePath": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Default",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/ds-ng/src/lib/components/bmb-balance-overview/bmb-balance-overview.component.ts",
+        "type": "component",
+        "linktype": "component",
+        "name": "BmbBalanceOverviewComponent",
+        "coveragePercent": 0,
+        "coverageCount": "0/11",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/ds-ng/src/lib/components/bmb-balance-overview/bmb-balance-overview.stories.ts",
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
@@ -13016,7 +13921,7 @@
         "linktype": "component",
         "name": "BmbLoaderComponent",
         "coveragePercent": 0,
-        "coverageCount": "0/4",
+        "coverageCount": "0/19",
         "status": "low"
       },
       {
@@ -13072,6 +13977,24 @@
         "type": "component",
         "linktype": "component",
         "name": "BmbProgressCircleComponent",
+        "coveragePercent": 0,
+        "coverageCount": "0/19",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/ds-ng/src/lib/components/bmb-progress-cirlce/bmb-progress-circle.component.ts",
+        "type": "class",
+        "linktype": "classe",
+        "name": "CircleProgressOptions",
+        "coveragePercent": 0,
+        "coverageCount": "0/14",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/ds-ng/src/lib/components/bmb-progress-cirlce/bmb-progress-circle.interface.ts",
+        "type": "interface",
+        "linktype": "interface",
+        "name": "BmbProgressCircleOptionsInterface",
         "coveragePercent": 0,
         "coverageCount": "0/11",
         "status": "low"
@@ -13148,16 +14071,16 @@
         "linktype": "component",
         "name": "BmbSidebarComponent",
         "coveragePercent": 0,
-        "coverageCount": "0/6",
+        "coverageCount": "0/7",
         "status": "low"
       },
       {
         "filePath": "projects/ds-ng/src/lib/components/bmb-sidebar/bmb-sidebar.interface.ts",
         "type": "interface",
         "linktype": "interface",
-        "name": "SidebarElements",
+        "name": "SidebarElement",
         "coveragePercent": 0,
-        "coverageCount": "0/4",
+        "coverageCount": "0/5",
         "status": "low"
       },
       {
@@ -13316,7 +14239,7 @@
         "linktype": "component",
         "name": "BmbThemeComponent",
         "coveragePercent": 0,
-        "coverageCount": "0/6",
+        "coverageCount": "0/8",
         "status": "low"
       },
       {
@@ -13659,7 +14582,7 @@
         "linktype": "injectable",
         "name": "ThemeService",
         "coveragePercent": 0,
-        "coverageCount": "0/4",
+        "coverageCount": "0/5",
         "status": "low"
       },
       {

@@ -133,45 +133,31 @@ export class AppComponent {
     {
       title: 'Test',
       detail: 'Detail test',
-      start: '2024-04-23T15:00:00.715Z',
-      end: '2024-04-23T15:30:00.715Z',
+      start: '2024-05-23T15:00:00.715Z',
+      end: '2024-05-23T15:30:00.715Z',
     },
     {
       title: 'Test jnsf dkjn jasn kljnsd kljfna klsdj nfklajsndfk lajndksf',
       detail: 'Dkjaskdjjhasbdfjhasbdjkhfbjkahsdbf',
-      start: '2024-04-24T15:00:00.715Z',
-      end: '2024-04-24T16:00:00.715Z',
+      start: '2024-05-24T15:00:00.715Z',
+      end: '2024-05-24T16:00:00.715Z',
     },
   ];
 
-  sidebarElements = [
-    {
-      icon: 'apps',
-      title: 'Titulo 1',
-      link: '#',
-    },
-    {
-      icon: 'apps',
-      title: 'Titulo 2',
-      link: '#',
-    },
-    {
-      icon: 'apps',
-      title: 'Titulo 3',
-      link: '#',
-    },
-    {
-      icon: 'apps',
-      title: 'Titulo 4',
-      link: '#',
-    },
-    {
-      icon: 'apps',
-      title: 'Titulo 5',
-      link: '#',
-    },
+  sidebarElements: {
+    id: number;
+    icon: string;
+    title: string;
+    link: string;
+  }[][] = [
+    [
+      { id: 1, icon: 'assignment_add', title: 'Elegir documentos', link: '#' },
+      { id: 2, icon: 'task', title: 'Agregar firmantes', link: '#' },
+      { id: 3, icon: 'note_alt', title: 'Crear envelope', link: '#' },
+      { id: 4, icon: 'checklist_rtl', title: 'Estado de archivos', link: '#' },
+    ],
+    [{ id: 5, icon: 'account_box', title: 'Admin. usuarios', link: '/' }],
   ];
-
   i = 0;
 
   userInformation = {
@@ -256,20 +242,20 @@ export class AppComponent {
         {
           title: 'Test',
           detail: 'Detail test',
-          start: '2024-04-23T15:00:00.715Z',
-          end: '2024-04-23T15:30:00.715Z',
+          start: '2024-05-23T15:00:00.715Z',
+          end: '2024-05-23T15:30:00.715Z',
         },
         {
           title: 'Test jnsf dkjn jasn kljnsd kljfna klsdj nfklajsndfk lajndksf',
           detail: 'Dkjaskdjjhasbdfjhasbdjkhfbjkahsdbf',
-          start: '2024-04-24T15:00:00.715Z',
-          end: '2024-04-24T16:00:00.715Z',
+          start: '2024-05-24T15:00:00.715Z',
+          end: '2024-05-24T16:00:00.715Z',
         },
         {
           title: 'Test',
           detail: 'Detail test',
-          start: '2024-04-25T22:56:44.715Z',
-          end: '2024-04-25T23:56:44.715Z',
+          start: '2024-05-25T22:56:44.715Z',
+          end: '2024-05-25T23:56:44.715Z',
         },
       ];
       this.isCalendarLoading = false;
