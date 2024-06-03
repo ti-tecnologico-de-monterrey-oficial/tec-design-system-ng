@@ -19,16 +19,18 @@ import { BmbSwitchComponent } from '../bmb-switch/bmb-switch.component';
 })
 export class BmbThemeComponent implements OnInit {
   @Input() initialTheme?: string;
+  @Input() showControls: boolean = true;
+
   selectedTheme: string = 'light';
   private service = inject(ThemeService);
   private initialized = false;
 
   ngOnInit(): void {
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      this.selectedTheme = savedTheme;
-    } else if (this.initialTheme) {
+    if (this.initialTheme) {
       this.selectedTheme = this.initialTheme;
+    } else if (savedTheme) {
+      this.selectedTheme = savedTheme;
     } else {
       this.selectedTheme = this.service.getDefaultTheme();
     }

@@ -53,7 +53,7 @@ Below is an example of how you can use this component in HTML:
     appearance: {
       name: 'Appearance',
       control: {
-        type: 'radio',
+        type: 'select',
       },
       options: [
         'normal',

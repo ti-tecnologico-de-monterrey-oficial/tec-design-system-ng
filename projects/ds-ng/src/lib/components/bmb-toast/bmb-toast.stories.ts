@@ -102,7 +102,7 @@ Below is an example of how you can use this component in HTML:
     },
     appearance: {
       name: 'Appearance',
-      control: 'radio',
+      control: 'select',
       options: [
         'neutral',
         'primary',
@@ -134,7 +134,7 @@ Below is an example of how you can use this component in HTML:
     },
     position: {
       name: 'Position',
-      control: 'radio',
+      control: 'select',
       options: ['top', 'bottom', 'middle'],
       description:
         "Controls the position of the toast on the screen, helping to ensure the notification does not obstruct important interface elements. Options include top, bottom, and middle, allowing you to choose the most appropriate placement based on your application's layout and user experience requirements.",
