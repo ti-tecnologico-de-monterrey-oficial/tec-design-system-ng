@@ -1,0 +1,97 @@
+<div class="bmb_calendar-month-mobile bmb_padding-m">
+  <nav
+    class="bmb_calendar-month-mobile-nav"
+    bmbLayout
+    margin="none"
+    [dinamycCols]="true"
+  >
+    <li bmbLayoutItem [colGrow]="1">
+      <div bmbLayout margin="none">
+        <li bmbLayoutItem [colSm]="2">
+          <bmb-calendar-template-select
+            [value]="month"
+            (onValueChange)="handleMonthChange($event)"
+            [options]="monthsNames"
+          />
+        </li>
+        <li bmbLayoutItem [colSm]="2">
+          <bmb-calendar-template-select
+            [value]="year.toString()"
+            (onValueChange)="handleYearChange($event)"
+            [options]="getYears()"
+          />
+        </li>
+      </div>
+    </li>
+    <li>
+      <button
+        class="bmb_calendar-month-mobile-nav-button"
+        (click)="handleViewTypeChange()"
+        appearance="secondary-filled"
+        bmbButton
+        icon="calendar_month"
+      ></button>
+    </li>
+  </nav>
+  @if (!isListShowing) {
+    <ul class="bmb_calendar-month-mobile-calendar">
+      @for (day of dayNames; track $index) {
+        <li class="bmb_calendar-month-mobile-calendar-header">
+          {{ day }}
+        </li>
+      }
+      @if (!isCalendarOpen) {
+        @for (date of weekDays; track $index) {
+          <li class="bmb_calendar-month-mobile-calendar-item">
+            <button
+              class="bmb_calendar-month-mobile-calendar-button"
+              (click)="handleDayChange(date)"
+              bmbButton
+              appearance="secondary-filled"
+              [disabled]="isSelectedDay(date)"
+            >
+              {{ date.day }}
+            </button>
+            @if (findEventsForToday(date)) {
+              <span
+                class="bmb_calendar-month-mobile-calendar-item-indicator"
+              ></span>
+            }
+          </li>
+        }
+      } @else {
+        @for (date of getWeeksAndDays(); track $index) {
+          <li class="bmb_calendar-month-mobile-calendar-item">
+            <button
+              class="bmb_calendar-month-mobile-calendar-button"
+              (click)="handleDayChange(date)"
+              bmbButton
+              appearance="secondary-filled"
+              [disabled]="isSelectedDay(date)"
+            >
+              {{ date.day }}
+            </button>
+            @if (findEventsForToday(date)) {
+              <span
+                class="bmb_calendar-month-mobile-calendar-item-indicator"
+              ></span>
+            }
+          </li>
+        }
+      }
+    </ul>
+    <div
+      class="bmb_calendar-month-mobile-expander"
+      [ngClass]="
+        isCalendarOpen ? 'bmb_calendar-month-mobile-expander-active' : ''
+      "
+    >
+      <button
+        (click)="handleExpand()"
+        bmbButton
+        appearance="secondary-filled"
+        icon="keyboard_arrow_down"
+      ></button>
+    </div>
+  }
+</div>

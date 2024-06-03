@@ -1,6 +1,6 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
-import { BmbThemeComponent } from './bmb-theme.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { BmbThemeComponent } from './bmb-theme.component';
 
 export default {
   title: 'Micro Componentes/Theme',
@@ -26,11 +26,31 @@ import { BmbThemeComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
   styleUrl: './component.scss',
 })
 \`\`\`
+The selected theme is saved in local storage. If you select a theme other than the initial one and refresh the page, the theme from local storage will be used.
 
-Below is an example of how you can use this component in HTML (you don't need parameters for this component and is using localStorage to save theme you are selecting):
+Below is an example of how you can use this component in HTML:
         `,
       },
     },
+  },
+  argTypes: {
+    initialTheme: {
+      name: 'Initial Theme',
+      control: {
+        type: 'radio',
+      },
+      options: ['light', 'dark'],
+      description:
+        'Sets the initial theme for the component. Can be either "light" or "dark".',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'light' },
+        type: { summary: 'string' },
+      },
+    },
+  },
+  args: {
+    initialTheme: 'dark',
   },
 } as Meta<typeof BmbThemeComponent>;
 

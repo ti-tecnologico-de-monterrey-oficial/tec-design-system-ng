@@ -1,0 +1,20 @@
+<ul class="bmb-calendar-template-event-list">
+  @for (day of populateDateWithEvents(); track $index) {
+    <li class="bmb-calendar-template-event-list-item">
+      <bmb-card>
+        <ng-template #header>
+          <h3>{{ day.name }}</h3>
+        </ng-template>
+        <div>
+          @for (event of day.events; track $index) {
+            <bmb-calendar-schedule-cards
+              [event]="event"
+              (onSelectEvent)="handleEventSelection($event)"
+              [isPositionAbsolute]="false"
+            ></bmb-calendar-schedule-cards>
+          }
+        </div>
+      </bmb-card>
+    </li>
+  }
+</ul>

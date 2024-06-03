@@ -5,9 +5,12 @@
   [lang]="topBarLang"
   (onLangChange)="handleLangChange($event)"
 ></bmb-top-bar>
+<bmb-theme [initialTheme]="'light'" />
+<!-- <bmb-sidebar [elements]="sidebarElements" /> -->
+
 <!-- <bmb-loader [overlay]="true" title="Cargando...." /> -->
 
-<bmb-loader
+<!-- <bmb-loader
   [errorState]="true"
   title="¡Error de conexión!"
   subtitle="¡Revisa tu conexión a internet e intenta de nuevo!"
@@ -16,34 +19,16 @@
   [actions]="true"
   (onButtonPrimary)="handleButtonPrimary()"
   (onButtonSecondary)="handleButtonSecondary()"
-/>
+/> -->
 
-<div bmbLayout gapSise="l">
-  <div bmbLayoutItem [colSm]="1">
-    <bmb-card [borderRadius]="['l', 'none', 'm', 'xs']" margin="xl" padding="l">
-      <div>content!</div>
-    </bmb-card>
-  </div>
-  <div bmbLayoutItem [colSm]="1">
-    <bmb-card [borderRadius]="['l', 'none', 'm', 'xs']" margin="xl" padding="l">
-      <ng-template #header>header</ng-template>
-      <div>content!</div>
-    </bmb-card>
-  </div>
-  <div bmbLayoutItem [colSm]="1">
-    <bmb-card [borderRadius]="'none'" margin="xl" padding="l">
-      <div>content!</div>
-      <ng-template #footer>footer</ng-template>
-    </bmb-card>
-  </div>
-  <div bmbLayoutItem [colSm]="1">
-    <bmb-card [borderRadius]="['l', 'none', 'm', 'xs']" margin="xl" padding="l">
-      <ng-template #header>header</ng-template>
-      <div>content!</div>
-      <ng-template #footer>footer</ng-template>
-    </bmb-card>
-  </div>
-</div>
+<bmb-card class="test"> test </bmb-card>
+
+<bmb-calendar
+  [isLoading]="isCalendarLoading"
+  [events]="calendarEvents"
+  (onDateChange)="fetchData($event)"
+  [lang]="topBarLang"
+/>
 
 <div style="padding: 1rem">
   <bmb-search-input
@@ -58,7 +43,6 @@
 </div>
 
 <!-- Demo -->
-<bmb-theme />
 
 <bmb-totp
   instanceId="first"
@@ -78,11 +62,6 @@
   [codeError]="errors['second'] ? errors['second'].codeError : false"
   [errorMessage]="errors['second'] ? errors['second'].errorMessage : ''"
 />
-<!-- <bmb-calendar
-  [isLoading]="isCalendarLoading"
-  [events]="calendarEvents"
-  (onDateChange)="fetchData($event)"
-/> -->
 
 <bmb-radial
   label="Contrato profesor cátedra Biología marina CCM.pdf"
@@ -128,12 +107,6 @@
   [checked]="true"
   [indeterminate]="true"
 />
-<bmb-sidebar [elements]="sidebarElements"></bmb-sidebar>
-<bmb-progress-circle
-  [percentValue]="85"
-  [title]="'Titulo'"
-  [valueLabel]="310"
-></bmb-progress-circle>
 
 <bmb-tabs [tabs]="myTabs" (selected)="handleTabSelected($event)">
   <bmb-container *ngIf="activeTabId === 1" [appearance]="'primary-home'">
