@@ -1,4 +1,4 @@
-import { Component, } from '@angular/core';
+import { Component } from '@angular/core';
 import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
 import { BmbOverlayComponent } from './bmb-overlay.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
@@ -10,26 +10,26 @@ import { BmbButtonDirective } from '../../directives/button.directive';
   selector: 'storybook-toast-wrapper',
   template: `
     <button
-    style="z-index:3; position: relative;"
-    bmbButton
-    appearance="primary"
-    icon="home"
-    size="small"
-    position="left"
-    [case]="false"
-    (click)="openOverlay()"
+      style="z-index:3; position: relative;"
+      bmbButton
+      appearance="primary"
+      icon="home"
+      size="small"
+      position="left"
+      [case]="false"
+      (click)="openOverlay()"
     >
-    Click Here
+      Click Here
     </button>
 
-    <bmb-overlay [active]="activeOverlay"/>
+    <bmb-overlay [active]="activeOverlay" />
   `,
 })
 class StorybookToastWrapperComponent {
-  activeOverlay = false
+  activeOverlay = false;
 
   openOverlay() {
-    this.activeOverlay = !this.activeOverlay
+    this.activeOverlay = !this.activeOverlay;
   }
 }
 
@@ -38,10 +38,7 @@ export default {
   component: BmbOverlayComponent,
   decorators: [
     moduleMetadata({
-      imports: [
-        StorybookToastWrapperComponent,
-        BmbOverlayComponent,
-      ],
+      imports: [StorybookToastWrapperComponent, BmbOverlayComponent],
     }),
   ],
   parameters: {
@@ -79,8 +76,7 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'boolean',
       },
-      description:
-        'Specifies if the overlay is active',
+      description: 'Specifies if the overlay is active',
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
@@ -88,7 +84,6 @@ Below is an example of how you can use this component in HTML:
     },
   },
   args: {
-    active: false
+    active: false,
   },
 } as Meta<typeof BmbOverlayComponent>;
-
