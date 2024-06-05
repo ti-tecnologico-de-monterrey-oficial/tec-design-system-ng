@@ -1,0 +1,417 @@
+<bmb-table
+  [data]="[
+    {
+      lastName: 1,
+      name: 'Hydrogen',
+      birthday: 1.0079,
+      country: 'H',
+      extra: 'Lorem ipsum dolor.',
+      detail:
+        'Hydrogen is a chemical element with symbol H and atomic number 1. With a standard\n                atomic weight of 1.008,  hydrogen is the lightest element on the periodic table.'
+    },
+    {
+      lastName: 2,
+      name: 'Helium',
+      birthday: 4.0026,
+      country: 'He',
+      extra: 'Lorem ipsum dolor.',
+      detail:
+        'Hydrogen is a chemical element with symbol H and atomic number 1. With a standard\n                atomic weight of 1.008,  hydrogen is the lightest element on the periodic table.'
+    },
+    {
+      lastName: 3,
+      name: 'Lithium',
+      birthday: 6.941,
+      country: 'Li',
+      extra: 'Lorem ipsum dolor.',
+      detail:
+        'Hydrogen is a chemical element with symbol H and atomic number 1. With a standard\n                atomic weight of 1.008,  hydrogen is the lightest element on the periodic table.'
+    },
+    {
+      lastName: 4,
+      name: 'Beryllium',
+      birthday: 9.0122,
+      country: 'Be',
+      extra: 'Lorem ipsum dolor.',
+      detail:
+        'Hydrogen is a chemical element with symbol H and atomic number 1. With a standard\n                atomic weight of 1.008,  hydrogen is the lightest element on the periodic table.'
+    },
+    {
+      lastName: 5,
+      name: 'Boron',
+      birthday: 10.811,
+      country: 'B',
+      extra: 'Lorem ipsum dolor.',
+      detail:
+        'Hydrogen is a chemical element with symbol H and atomic number 1. With a standard\n                atomic weight of 1.008,  hydrogen is the lightest element on the periodic table.'
+    },
+    {
+      lastName: 6,
+      name: 'Carbon',
+      birthday: 12.0107,
+      country: 'C',
+      extra: 'Lorem ipsum dolor.',
+      detail:
+        'Hydrogen is a chemical element with symbol H and atomic number 1. With a standard\n                atomic weight of 1.008,  hydrogen is the lightest element on the periodic table.'
+    },
+    {
+      lastName: 7,
+      name: 'Nitrogen',
+      birthday: 14.0067,
+      country: 'N',
+      extra: 'Lorem ipsum dolor.',
+      detail:
+        'Hydrogen is a chemical element with symbol H and atomic number 1. With a standard\n                atomic weight of 1.008,  hydrogen is the lightest element on the periodic table.'
+    },
+    {
+      lastName: 8,
+      name: 'Oxygen',
+      birthday: 15.9994,
+      country: 'O',
+      extra: 'Lorem ipsum dolor.',
+      detail:
+        'Hydrogen is a chemical element with symbol H and atomic number 1. With a standard\n                atomic weight of 1.008,  hydrogen is the lightest element on the periodic table.'
+    },
+    {
+      lastName: 9,
+      name: 'Fluorine',
+      birthday: 18.9984,
+      country: 'F',
+      extra: 'Lorem ipsum dolor.',
+      detail:
+        'Hydrogen is a chemical element with symbol H and atomic number 1. With a standard\n                atomic weight of 1.008,  hydrogen is the lightest element on the periodic table.'
+    },
+    {
+      lastName: 10,
+      name: 'Neon',
+      birthday: 20.1797,
+      country: 'Ne',
+      extra: 'Lorem ipsum dolor.',
+      detail:
+        'Hydrogen is a chemical element with symbol H and atomic number 1. With a standard\n                atomic weight of 1.008,  hydrogen is the lightest element on the periodic table.'
+    }
+  ]"
+  [columns]="[
+    { def: 'name', label: 'Name', dataKey: 'name' },
+    { def: 'lastName', label: 'Last Name', dataKey: 'lastName' },
+    { def: 'birthday', label: 'Birthday', dataKey: 'birthday' },
+    { def: 'country', label: 'Country', dataKey: 'country' },
+    { def: 'extra', label: 'Extra', dataKey: 'extra' }
+  ]"
+  [config]="{
+    isSelectable: false,
+    isExpandible: false,
+    isPaginable: true,
+    showActions: true
+  }"
+  (select)="onSelect($event)"
+></bmb-table>
+<!-- <bmb-loader [overlay]="true" title="Cargando...." /> -->
+
+<bmb-loader
+  [errorState]="true"
+  title="¡Error de conexión!"
+  subtitle="¡Revisa tu conexión a internet e intenta de nuevo!"
+  buttonPrimary="Reintentar"
+  buttonSecondary="Salir"
+  [actions]="true"
+  (onButtonPrimary)="handleButtonPrimary()"
+  (onButtonSecondary)="handleButtonSecondary()"
+/>
+
+<div bmbLayout gapSise="l">
+  <div bmbLayoutItem [colSm]="1">
+    <bmb-card [borderRadius]="['l', 'none', 'm', 'xs']" margin="xl" padding="l">
+      <div>content!</div>
+    </bmb-card>
+  </div>
+  <div bmbLayoutItem [colSm]="1">
+    <bmb-card [borderRadius]="['l', 'none', 'm', 'xs']" margin="xl" padding="l">
+      <ng-template #header>header</ng-template>
+      <div>content!</div>
+    </bmb-card>
+  </div>
+  <div bmbLayoutItem [colSm]="1">
+    <bmb-card [borderRadius]="'none'" margin="xl" padding="l">
+      <div>content!</div>
+      <ng-template #footer>footer</ng-template>
+    </bmb-card>
+  </div>
+  <div bmbLayoutItem [colSm]="1">
+    <bmb-card [borderRadius]="['l', 'none', 'm', 'xs']" margin="xl" padding="l">
+      <ng-template #header>header</ng-template>
+      <div>content!</div>
+      <ng-template #footer>footer</ng-template>
+    </bmb-card>
+  </div>
+</div>
+
+<div style="padding: 1rem">
+  <bmb-search-input
+    [data]="namesList"
+    [isLoading]="isSearchIputLoading"
+    [serverSideFilteredData]="serverSideFilteredData"
+    (onServerSideFilterEvent)="fetchNames($event)"
+    [isServerSideFilter]="false"
+    (onValueChange)="handleSearchValue($event)"
+  />
+  <div>{{ searchInputResult }}</div>
+</div>
+
+<!-- Demo -->
+
+<bmb-totp
+  instanceId="first"
+  [maxCode]="6"
+  (handleSubmit)="verifyCode($event, 'first')"
+  [codeError]="errors['first'] ? errors['first'].codeError : false"
+  [errorMessage]="errors['first'] ? errors['first'].errorMessage : ''"
+  [showButton]="true"
+  buttonText="Verify"
+  helperText="Helper text"
+/>
+
+<bmb-totp
+  instanceId="second"
+  [maxCode]="4"
+  (handleSubmit)="verifyCode($event, 'second')"
+  [codeError]="errors['second'] ? errors['second'].codeError : false"
+  [errorMessage]="errors['second'] ? errors['second'].errorMessage : ''"
+/>
+<!-- <bmb-calendar
+  [isLoading]="isCalendarLoading"
+  [events]="calendarEvents"
+  (onDateChange)="fetchData($event)"
+/> -->
+
+<bmb-radial
+  label="Contrato profesor cátedra Biología marina CCM.pdf"
+  name="radio1"
+  id="radio1"
+  [required]="true"
+  labelPosition="before"
+  (change)="handleRadial($event)"
+/>
+
+<bmb-checkbox
+  label="Contrato profesor cátedra Biología marina CCM.pdf"
+  name="checkbox2"
+  id="checkbox2"
+  [required]="true"
+  (change)="handleCheckboxChange($event)"
+/>
+
+<bmb-checkbox
+  label="Contrato CCM.pdf"
+  id="checkbox3"
+  [checked]="true"
+  labelPosition="before"
+/>
+<bmb-checkbox label="Contrato CCM.pdf" id="checkbox3" [checked]="true" />
+
+<bmb-checkbox
+  label="Contrato profesor cátedra Biología marina CCM.pdf"
+  id="checkbox4"
+  [indeterminate]="true"
+/>
+
+<bmb-checkbox
+  label="Contrato profesor cátedra Biología marina CCM.pdf"
+  id="checkbox1"
+  [disabled]="true"
+  [checked]="true"
+/>
+<bmb-checkbox
+  label="Contrato profesor cátedra Biología marina CCM.pdf"
+  id="checkbox5"
+  [disabled]="true"
+  [checked]="true"
+  [indeterminate]="true"
+/>
+
+<bmb-tabs [tabs]="myTabs" (selected)="handleTabSelected($event)">
+  <bmb-container *ngIf="activeTabId === 1" [appearance]="'primary-home'">
+    <bmb-user-summary
+      name="Test name"
+      id="A00123456"
+      [isProfile]="boolUserSummary"
+      image="https://writestylesonline.com/wp-content/uploads/2016/08/Follow-These-Steps-for-a-Flawless-Professional-Profile-Picture.jpg"
+      (onClick)="onProfileClick()"
+    />
+  </bmb-container>
+  <bmb-container *ngIf="activeTabId === 2" [appearance]="'primary-home'">
+    <bmb-legend
+      label="Label string"
+      value="Value test"
+      indicatorAppearance="warning"
+    />
+  </bmb-container>
+  <bmb-container *ngIf="activeTabId === 3" [appearance]="'primary-home'">
+    <bmb-loader [errorState]="true" />
+  </bmb-container>
+  <bmb-container *ngIf="activeTabId === 4" [appearance]="'primary-home'">
+    <bmb-user-summary
+      name="Test name"
+      id="A00123456"
+      [isProfile]="boolUserSummary"
+      image="https://writestylesonline.com/wp-content/uploads/2016/08/Follow-These-Steps-for-a-Flawless-Professional-Profile-Picture.jpg"
+      (onClick)="onProfileClick()"
+    />
+  </bmb-container>
+  <bmb-container *ngIf="activeTabId === 5" [appearance]="'primary-home'">
+    <bmb-legend
+      label="Label string"
+      value="Value test"
+      indicatorAppearance="warning"
+    />
+  </bmb-container>
+  <bmb-container *ngIf="activeTabId === 6" [appearance]="'primary-home'">
+    <bmb-loader [errorState]="true" />
+  </bmb-container>
+</bmb-tabs>
+
+<bmb-switch leftIcon="light_mode" rightIcon="dark_mode" />
+
+<bmb-user-summary
+  name="Test name"
+  id="A00123456"
+  [isProfile]="boolUserSummary"
+  image="https://writestylesonline.com/wp-content/uploads/2016/08/Follow-These-Steps-for-a-Flawless-Professional-Profile-Picture.jpg"
+  (onClick)="onProfileClick()"
+/>
+
+<bmb-home-section
+  [title]="'Section name'"
+  [icon]="'chevron_right'"
+  [target]="'_blank'"
+  [link]="'https://www.youtube.com/'"
+></bmb-home-section>
+
+<bmb-switch leftText="light" rightText="dark" />
+<bmb-switch />
+<bmb-switch [disabled]="true"></bmb-switch>
+<bmb-value-counter label="Title" value="100" progress="50" />
+<bmb-legend
+  label="Label string"
+  value="Value test"
+  indicatorAppearance="warning"
+/>
+<bmb-legend
+  label="Label string"
+  value="Value test"
+  indicatorAppearance="warning"
+/>
+
+<bmb-dot-paginator
+  [activeDotIndex]="myActiveDotIndex"
+  [totalDots]="myTotalDots"
+  [targets]="myTargets"
+  (onDotPress)="handleDotPress($event)"
+  appearance="secondary"
+/>
+<bmb-dot-paginator
+  [activeDotIndex]="myActiveDotIndex"
+  [totalDots]="myTotalDots"
+  [targets]="myTargets"
+  (onDotPress)="handleDotPress($event)"
+/>
+<bmb-divider type="dashed" />
+<bmb-badge
+  [appearance]="'normal'"
+  [text]="'Badge text'"
+  [grouped]="false"
+></bmb-badge>
+
+<button
+  bmbButton
+  appearance="primary"
+  icon="home"
+  size="small"
+  position="left"
+  [case]="false"
+  (click)="onButtonClick()"
+>
+  Button text
+</button>
+<bmb-toast
+  appearance="neutral"
+  message="Your toast text here"
+  [duration]="20000"
+  position="top"
+></bmb-toast>
+
+<bmb-container [appearance]="'primary-container'"></bmb-container>
+<bmb-container [appearance]="'primary-home'"></bmb-container>
+
+<bmb-container-button
+  [title]="'Tema de App'"
+  [score]="''"
+  [square]="false"
+  [target]="'_blank'"
+  [link]="'https://www.youtube.com/'"
+  [subtitle]="'Subtitle'"
+  [iconLeft]="'home'"
+  [iconRight]="'chevron_right'"
+></bmb-container-button>
+
+<bmb-header-mobile
+  [text]="'Text Header'"
+  [userImage]="
+    'https://i0.wp.com/gershenson.mx/wp-content/uploads/2020/08/logo-tec-de-monterrey-e1484853084274.png?ssl=1'
+  "
+  [userAltImage]="'Alt image description'"
+  [userLink]="'https://www.youtube.com/'"
+  [userTarget]="'_blank'"
+  [logo]="
+    'https://i0.wp.com/gershenson.mx/wp-content/uploads/2020/08/logo-tec-de-monterrey-e1484853084274.png?ssl=1'
+  "
+  [altLogo]="'Alt logo description'"
+  [logoLink]="'_blank'"
+  [logoTarget]="'https://www.youtube.com/'"
+  [iconLeft]="'chevron_left'"
+  [iconRight]="'search'"
+  [iconRight2]="'close'"
+  (onIconLeftClick)="handleIconLeftClick()"
+  (onIconRightClick)="handleIconRightClick()"
+  (onIconRight2Click)="handleIconRight2Click()"
+></bmb-header-mobile>
+
+<bmb-home-section
+  [title]="'Section name'"
+  [icon]="'chevron_right'"
+  [target]="'_blank'"
+  [link]="'https://www.youtube.com/'"
+>
+  <h1 class="font-regular-4">Hola</h1>
+</bmb-home-section>
+
+<bmb-interactive-icon
+  [appearance]="'green'"
+  [title]="'Canvas'"
+  [description]="'Short Description'"
+  [icon]="'face'"
+  [grouped]="false"
+  [horizontal]="false"
+  [target]="'_blank'"
+  [link]="'https://www.youtube.com/'"
+></bmb-interactive-icon>
+<bmb-interactive-icon
+  [appearance]="'yellow'"
+  [title]="'Canvas'"
+  [description]="'Short Description'"
+  [icon]="'face'"
+  [grouped]="false"
+  [horizontal]="true"
+  [target]="'_blank'"
+  [link]="'https://www.youtube.com/'"
+></bmb-interactive-icon>
+
+<bmb-user-image
+  [size]="'desktop-small'"
+  [image]="
+    'https://i0.wp.com/gershenson.mx/wp-content/uploads/2020/08/logo-tec-de-monterrey-e1484853084274.png?ssl=1'
+  "
+  [altImage]="'Alt image description'"
+  [link]="'https://www.youtube.com/'"
+  [target]="'_blank'"
+></bmb-user-image>
