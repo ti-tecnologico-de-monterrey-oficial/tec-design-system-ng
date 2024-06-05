@@ -480,12 +480,12 @@
         },
         {
             "name": "SidebarElement",
-            "id": "interface-SidebarElement-a93dfdf4f220fb677060f5f0ad96ab13ff46d1c8baf3944fcad33ab5322869b894820777515e0c162722ba5eb9e450fa263d5a40667ed26bc2543800bfe6ef5b",
+            "id": "interface-SidebarElement-e6bf666d06d59531d350a021eb2d249d5742f45d838f190881b50e605b600ea87ca95506a5c827df817d801c6f81e40af7b5d7096562698031aea55d638d3904",
             "file": "projects/ds-ng/src/lib/components/bmb-sidebar/bmb-sidebar.interface.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "export interface SidebarElement {\n  id: number;\n  icon: string;\n  title: string;\n  link: string;\n}\n",
+            "sourceCode": "export interface SidebarElement {\n  id: number;\n  icon: string;\n  title: string;\n  link: string;\n  target?: string;\n}\n",
             "properties": [
                 {
                     "name": "icon",
@@ -513,6 +513,15 @@
                     "optional": false,
                     "description": "",
                     "line": 5
+                },
+                {
+                    "name": "target",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "",
+                    "line": 6
                 },
                 {
                     "name": "title",
@@ -4467,7 +4476,7 @@
         },
         {
             "name": "BmbCardComponent",
-            "id": "component-BmbCardComponent-24f21d5fba5f907fa41dd1f02fc907db8106d79ba2ce3a8bbc308aba7df8b7fbd9b70261b5104b82a21a6b53df9c6a0d36e346b8eb29c80300fac02f8e291cd6",
+            "id": "component-BmbCardComponent-459c65e9c3e8f073b97903d01f8b75befdb2b1fc3d0f6bf1df642ce909babb33202eda7babab2e20e301823655551b97a4639d94c0968684cf18852f6ac66a0c",
             "file": "projects/ds-ng/src/lib/components/bmb-card/bmb-card.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -4491,7 +4500,7 @@
                     "defaultValue": "'m'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 28,
+                    "line": 35,
                     "type": "SizeNames | SizeNames[]",
                     "decorators": []
                 },
@@ -4500,7 +4509,7 @@
                     "defaultValue": "'m'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 30,
+                    "line": 37,
                     "type": "SizeNames | SizeNames[]",
                     "decorators": []
                 },
@@ -4509,7 +4518,7 @@
                     "defaultValue": "'m'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 29,
+                    "line": 36,
                     "type": "SizeNames | SizeNames[]",
                     "decorators": []
                 },
@@ -4518,7 +4527,7 @@
                     "defaultValue": "'normal'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 31,
+                    "line": 38,
                     "type": "IBmbCardType",
                     "decorators": []
                 }
@@ -4532,7 +4541,7 @@
                     "type": "TemplateRef<any>",
                     "optional": true,
                     "description": "",
-                    "line": 34,
+                    "line": 41,
                     "decorators": [
                         {
                             "name": "ContentChild",
@@ -4550,7 +4559,7 @@
                     "type": "TemplateRef<any>",
                     "optional": true,
                     "description": "",
-                    "line": 33,
+                    "line": 40,
                     "decorators": [
                         {
                             "name": "ContentChild",
@@ -4576,7 +4585,7 @@
                     "optional": false,
                     "returnType": "string",
                     "typeParameters": [],
-                    "line": 73,
+                    "line": 80,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -4597,7 +4606,7 @@
                     "optional": false,
                     "returnType": "{}",
                     "typeParameters": [],
-                    "line": 36,
+                    "line": 43,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -4607,7 +4616,7 @@
                     "optional": false,
                     "returnType": "{}",
                     "typeParameters": [],
-                    "line": 57,
+                    "line": 64,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -4617,7 +4626,7 @@
                     "optional": false,
                     "returnType": "any",
                     "typeParameters": [],
-                    "line": 65,
+                    "line": 72,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -4627,7 +4636,7 @@
                     "optional": false,
                     "returnType": "any",
                     "typeParameters": [],
-                    "line": 47,
+                    "line": 54,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -4646,7 +4655,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\n  ChangeDetectionStrategy,\n  Component,\n  ContentChild,\n  ElementRef,\n  Input,\n  QueryList,\n  TemplateRef,\n  ViewChild,\n  ViewChildren,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { SizeNames } from '../../types';\n\nexport type IBmbCardType = 'primary' | 'secondary' | 'succes' | 'info' | 'warning' | 'error' | 'normal';\n\n@Component({\n  selector: 'bmb-card',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './bmb-card.component.html',\n  styleUrl: './bmb-card.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbCardComponent {\n  @Input() borderRadius: SizeNames | SizeNames[] = 'm';\n  @Input() padding: SizeNames | SizeNames[] = 'm';\n  @Input() margin: SizeNames | SizeNames[] = 'm';\n  @Input() type: IBmbCardType = 'normal';\n\n  @ContentChild('header') headerContent?: TemplateRef<any>;\n  @ContentChild('footer') footerContent?: TemplateRef<any>;\n\n  getClasses() {\n    const classNames = [];\n    if (typeof this.borderRadius === 'string')\n      classNames.push(`bmb_border-radius-${this.borderRadius}`);\n    if (typeof this.margin === 'string')\n      classNames.push(`bmb_margin-${this.margin}`);\n    classNames.push(`bmb_card-type-${this.type}`);\n\n    return classNames;\n  }\n\n  getStyles() {\n    const styles: any = {};\n    if (typeof this.borderRadius !== 'string')\n      styles['border-radius'] = this.calculateSize(this.borderRadius);\n    if (typeof this.margin !== 'string')\n      styles.margin = this.calculateSize(this.margin);\n\n    return styles;\n  }\n\n  getContentClasses() {\n    const classNames = [];\n    if (typeof this.padding === 'string')\n      classNames.push(`bmb_padding-${this.padding}`);\n\n    return classNames;\n  }\n\n  getContentStyles() {\n    const styles: any = {};\n    if (typeof this.padding !== 'string')\n      styles.padding = this.calculateSize(this.padding);\n\n    return styles;\n  }\n\n  calculateSize(pixels: string[]): string {\n    return pixels\n      .map((size) => {\n        switch (size) {\n          case 'xs':\n            return '0.25rem';\n          case 's':\n            return '0.5rem';\n          case 'm':\n            return '1rem';\n          case 'l':\n            return '1.5rem';\n          case 'xl':\n            return '2rem';\n          case 'none':\n            return '0';\n          case 'auto':\n            return 'auto';\n          default:\n            return '1rem';\n        }\n      })\n      .join(' ');\n  }\n}\n",
+            "sourceCode": "import {\n  ChangeDetectionStrategy,\n  Component,\n  ContentChild,\n  ElementRef,\n  Input,\n  QueryList,\n  TemplateRef,\n  ViewChild,\n  ViewChildren,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { SizeNames } from '../../types';\n\nexport type IBmbCardType =\n  | 'primary'\n  | 'secondary'\n  | 'succes'\n  | 'info'\n  | 'warning'\n  | 'error'\n  | 'normal';\n\n@Component({\n  selector: 'bmb-card',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './bmb-card.component.html',\n  styleUrl: './bmb-card.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbCardComponent {\n  @Input() borderRadius: SizeNames | SizeNames[] = 'm';\n  @Input() padding: SizeNames | SizeNames[] = 'm';\n  @Input() margin: SizeNames | SizeNames[] = 'm';\n  @Input() type: IBmbCardType = 'normal';\n\n  @ContentChild('header') headerContent?: TemplateRef<any>;\n  @ContentChild('footer') footerContent?: TemplateRef<any>;\n\n  getClasses() {\n    const classNames = [];\n    if (typeof this.borderRadius === 'string')\n      classNames.push(`bmb_border-radius-${this.borderRadius}`);\n    if (typeof this.margin === 'string')\n      classNames.push(`bmb_margin-${this.margin}`);\n    classNames.push(`bmb_card-type-${this.type}`);\n\n    return classNames;\n  }\n\n  getStyles() {\n    const styles: any = {};\n    if (typeof this.borderRadius !== 'string')\n      styles['border-radius'] = this.calculateSize(this.borderRadius);\n    if (typeof this.margin !== 'string')\n      styles.margin = this.calculateSize(this.margin);\n\n    return styles;\n  }\n\n  getContentClasses() {\n    const classNames = [];\n    if (typeof this.padding === 'string')\n      classNames.push(`bmb_padding-${this.padding}`);\n\n    return classNames;\n  }\n\n  getContentStyles() {\n    const styles: any = {};\n    if (typeof this.padding !== 'string')\n      styles.padding = this.calculateSize(this.padding);\n\n    return styles;\n  }\n\n  calculateSize(pixels: string[]): string {\n    return pixels\n      .map((size) => {\n        switch (size) {\n          case 'xs':\n            return '0.25rem';\n          case 's':\n            return '0.5rem';\n          case 'm':\n            return '1rem';\n          case 'l':\n            return '1.5rem';\n          case 'xl':\n            return '2rem';\n          case 'none':\n            return '0';\n          case 'auto':\n            return 'auto';\n          default:\n            return '1rem';\n        }\n      })\n      .join(' ');\n  }\n}\n",
             "styleUrl": "./bmb-card.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -9030,7 +9039,7 @@
         },
         {
             "name": "BmbSidebarComponent",
-            "id": "component-BmbSidebarComponent-0e92a2e8ec57a564d29762641b96e1514e7dead729ca1ac397b11b01727f3021dc96135b336fafe81af90332af42d290515c6e32f4344c9f6965e28aa4836b7e",
+            "id": "component-BmbSidebarComponent-9cad255de825c2a0061c174795b442704e742518a57f20358d824aa119491a8d3ceb91997cd81e704a4cba286b7bdab145f394eb12d99626c5dbc0a7f8a4be5a",
             "file": "projects/ds-ng/src/lib/components/bmb-sidebar/bmb-sidebar.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -9041,7 +9050,9 @@
             "outputs": [],
             "providers": [],
             "selector": "bmb-sidebar",
-            "styleUrls": [],
+            "styleUrls": [
+                "./bmb-sidebar.component.scss"
+            ],
             "styles": [],
             "templateUrl": [
                 "./bmb-sidebar.component.html"
@@ -9054,7 +9065,7 @@
                     "defaultValue": "[]",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 22,
+                    "line": 24,
                     "type": "SidebarElement[][]",
                     "decorators": []
                 }
@@ -9062,47 +9073,29 @@
             "outputsClass": [],
             "propertiesClass": [
                 {
-                    "name": "currentChoice",
+                    "name": "currentUrl",
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 24
+                    "line": 26
+                },
+                {
+                    "name": "isOpen",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": false,
+                    "description": "",
+                    "line": 27
                 }
             ],
             "methodsClass": [
                 {
-                    "name": "getActive",
-                    "args": [
-                        {
-                            "name": "choice",
-                            "type": "string",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        }
-                    ],
-                    "optional": false,
-                    "returnType": "string",
-                    "typeParameters": [],
-                    "line": 36,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "jsdoctags": [
-                        {
-                            "name": "choice",
-                            "type": "string",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "isInternalLink",
+                    "name": "isExternalLink",
                     "args": [
                         {
                             "name": "link",
@@ -9114,7 +9107,35 @@
                     "optional": false,
                     "returnType": "boolean",
                     "typeParameters": [],
-                    "line": 40,
+                    "line": 43,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "link",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "isLinkActive",
+                    "args": [
+                        {
+                            "name": "link",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "boolean",
+                    "typeParameters": [],
+                    "line": 57,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -9135,15 +9156,15 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 26,
+                    "line": 41,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
                 {
-                    "name": "setActive",
+                    "name": "setExternalLinkActive",
                     "args": [
                         {
-                            "name": "choice",
+                            "name": "link",
                             "type": "string",
                             "deprecated": false,
                             "deprecationMessage": ""
@@ -9152,12 +9173,12 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 32,
+                    "line": 51,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
                         {
-                            "name": "choice",
+                            "name": "link",
                             "type": "string",
                             "deprecated": false,
                             "deprecationMessage": "",
@@ -9166,6 +9187,16 @@
                             }
                         }
                     ]
+                },
+                {
+                    "name": "toggleSidebar",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 61,
+                    "deprecated": false,
+                    "deprecationMessage": ""
                 }
             ],
             "deprecated": false,
@@ -9190,13 +9221,46 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { RouterModule } from '@angular/router';\nimport { CommonModule } from '@angular/common';\nimport { SidebarElement } from './bmb-sidebar.interface';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\n\n@Component({\n  selector: 'bmb-sidebar',\n  standalone: true,\n  imports: [BmbIconComponent, CommonModule, RouterModule],\n  templateUrl: './bmb-sidebar.component.html',\n  styleUrl: './bmb-sidebar.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbSidebarComponent {\n  @Input() elements: SidebarElement[][] = [];\n\n  currentChoice: string = '';\n\n  ngOnInit() {\n    if (this.elements.length > 0 && this.elements[0].length > 0) {\n      this.currentChoice = this.elements[0][0].title;\n    }\n  }\n\n  setActive(choice: string) {\n    this.currentChoice = choice;\n  }\n\n  getActive(choice: string): string {\n    return this.currentChoice === choice ? 'active' : 'inactive';\n  }\n\n  isInternalLink(link: string): boolean {\n    return link.startsWith('/');\n  }\n}\n",
-            "styleUrl": "./bmb-sidebar.component.scss",
+            "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n  OnInit,\n} from '@angular/core';\nimport { Router, RouterModule, NavigationEnd } from '@angular/router';\nimport { CommonModule } from '@angular/common';\nimport { SidebarElement } from './bmb-sidebar.interface';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\nimport { filter } from 'rxjs/operators';\n\n@Component({\n  selector: 'bmb-sidebar',\n  standalone: true,\n  imports: [BmbIconComponent, CommonModule, RouterModule],\n  templateUrl: './bmb-sidebar.component.html',\n  styleUrls: ['./bmb-sidebar.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbSidebarComponent implements OnInit {\n  @Input() elements: SidebarElement[][] = [];\n\n  currentUrl: string = '';\n  isOpen: boolean = false;\n\n  constructor(private router: Router) {\n    this.router.events\n      .pipe(\n        filter(\n          (event): event is NavigationEnd => event instanceof NavigationEnd,\n        ),\n      )\n      .subscribe((event: NavigationEnd) => {\n        this.currentUrl = event.urlAfterRedirects;\n      });\n  }\n\n  ngOnInit() {}\n\n  isExternalLink(link: string): boolean {\n    return (\n      link.startsWith('http://') ||\n      link.startsWith('https://') ||\n      link.startsWith('#')\n    );\n  }\n\n  setExternalLinkActive(link: string) {\n    if (!this.isExternalLink(link)) {\n      this.currentUrl = link;\n    }\n  }\n\n  isLinkActive(link: string): boolean {\n    return this.currentUrl === link;\n  }\n\n  toggleSidebar() {\n    this.isOpen = !this.isOpen;\n  }\n}\n",
             "assetsDirs": [],
-            "styleUrlsData": "",
+            "styleUrlsData": [
+                {
+                    "data": "@use \"../../../assets/styles/base/fonts\" as fonts;\n@use \"../../../assets/styles/base/mixins\" as mixins;\n@use \"../../../assets/styles/base/rem\" as rem;\n\n.bmb_sidebar {\n  background-color: RGBA(var(--color-black-primary));\n  border-radius: rem.rem_calc(8 0 0 8);\n  cursor: pointer;\n  overflow: hidden;\n  position: fixed;\n  right: 0;\n  top: 10%;\n  transition: width 0.3s ease;\n  width: rem.rem_calc(30);\n  z-index: 100;\n\n  @include mixins.media-query(768, \"min\") {\n    border-radius: rem.rem_calc(0 24 24 0);\n    cursor: auto;\n    left: 0;\n    min-height: rem.rem_calc(539);\n    padding: rem.rem_calc(24);\n    right: inherit;\n    top: 50%;\n    transform: translateY(-50%);\n    width: rem.rem_calc(88);\n  }\n\n  &-isOpen {\n    @include mixins.media-query(768, \"max\") {\n      min-height: rem.rem_calc(539);\n      padding: rem.rem_calc(24);\n      width: 100%;\n\n      .bmb_sidebar-button {\n        height: auto;\n        transform: rotate(180deg);\n        width: auto;\n      }\n\n      .bmb_sidebar-list {\n        display: flex;\n      }\n\n      .bmb_sidebar-text {\n        opacity: 1;\n        visibility: visible;\n      }\n\n      .bmb_sidebar-item {\n        width: 100%;\n      }\n    }\n  }\n\n  &:hover {\n    @include mixins.media-query(768, \"min\") {\n      min-height: rem.rem_calc(539);\n      padding: rem.rem_calc(24);\n      width: rem.rem_calc(250);\n\n      .bmb_sidebar-list {\n        display: flex;\n      }\n\n      .bmb_sidebar-text {\n        opacity: 1;\n        visibility: visible;\n      }\n\n      .bmb_sidebar-item {\n        width: rem.rem_calc(202);\n      }\n    }\n  }\n\n  &-list {\n    display: none;\n    flex-flow: column;\n    list-style-type: none;\n    margin: rem.rem_calc(16 0 0 0);\n    padding: 0;\n\n    &:nth-of-type(n + 2) {\n      border-top: rem.rem_calc(1) solid RGBA(var(--color-charade-800));\n      margin-top: rem.rem_calc(16);\n      padding-top: rem.rem_calc(16);\n    }\n\n    @include mixins.media-query(768, \"min\") {\n      display: flex;\n      margin: 0;\n\n      &:nth-of-type(n + 2) {\n        margin-top: rem.rem_calc(16);\n        padding-top: rem.rem_calc(16);\n      }\n    }\n  }\n\n  &-item {\n    align-items: center;\n    display: flex;\n    height: rem.rem_calc(40);\n    justify-content: flex-start;\n    width: auto;\n  }\n\n  &-link {\n    align-items: center;\n    color: RGBA(var(--color-white-primary));\n    cursor: pointer;\n    display: flex;\n    height: 100%;\n    justify-content: flex-start;\n    text-decoration: none;\n    transition: all 0.3s ease;\n    width: 100%;\n\n    &:hover,\n    &-active {\n      background-color: RGBA(var(--color-white-primary));\n      border-radius: rem.rem_calc(24);\n      color: RGBA(var(--color-black-primary));\n    }\n  }\n\n  &-icon {\n    font-size: rem.rem_calc(24);\n    padding: rem.rem_calc(0 8);\n  }\n\n  &-text {\n    display: block;\n    flex: 1;\n    opacity: 0;\n    visibility: hidden;\n    width: rem.rem_calc(132);\n    @include fonts.font(4, medium);\n  }\n\n  &-button {\n    align-items: center;\n    display: flex;\n    height: rem.rem_calc(72);\n    justify-content: center;\n    margin: 0;\n    padding: 0;\n    width: 100%;\n\n    &-icon {\n      color: RGBA(var(--color-white-primary));\n      font-size: rem.rem_calc(24);\n      width: rem.rem_calc(15);\n    }\n\n    @include mixins.media-query(768, \"min\") {\n      display: none;\n    }\n  }\n}\n",
+                    "styleUrl": "./bmb-sidebar.component.scss"
+                }
+            ],
             "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 27,
+                "jsdoctags": [
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
             "extends": [],
-            "templateData": "<nav class=\"bmb_sidebar\" aria-label=\"Sidebar Navigation\">\n  <bmb-icon class=\"bmb_sidebar-open\" icon=\"arrow_back_ios\" />\n  <ng-container *ngFor=\"let group of elements\">\n    <ul class=\"bmb_sidebar-list\">\n      <li *ngFor=\"let element of group\" class=\"bmb_sidebar-item\">\n        <a\n          class=\"bmb_sidebar-link\"\n          [id]=\"element.id\"\n          [ngClass]=\"'bmb_sidebar-link-' + getActive(element.title)\"\n          [routerLink]=\"isInternalLink(element.link) ? element.link : null\"\n          (click)=\"setActive(element.title)\"\n          [attr.target]=\"isInternalLink(element.link) ? null : '_blank'\"\n          [attr.rel]=\"\n            isInternalLink(element.link) ? null : 'noopener noreferrer'\n          \"\n        >\n          <bmb-icon\n            class=\"bmb_sidebar-icon\"\n            [icon]=\"element.icon\"\n            [materialIcon]=\"true\"\n          />\n          <span class=\"bmb_sidebar-text\">{{ element.title }}</span>\n        </a>\n      </li>\n    </ul>\n  </ng-container>\n</nav>\n"
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<nav\n  class=\"bmb_sidebar\"\n  [class.bmb_sidebar-isOpen]=\"isOpen\"\n  aria-label=\"Sidebar Navigation\"\n>\n  <button class=\"bmb_sidebar-button\" type=\"button\" (click)=\"toggleSidebar()\">\n    <bmb-icon class=\"bmb_sidebar-button-icon\" icon=\"arrow_back_ios\"></bmb-icon>\n  </button>\n  <ng-container *ngFor=\"let group of elements\">\n    <ul class=\"bmb_sidebar-list\">\n      <li *ngFor=\"let element of group\" class=\"bmb_sidebar-item\">\n        <ng-container *ngIf=\"!isExternalLink(element.link); else externalLink\">\n          <a\n            class=\"bmb_sidebar-link\"\n            [id]=\"element.id\"\n            [routerLink]=\"element.link\"\n            routerLinkActive=\"bmb_sidebar-link-active\"\n            [routerLinkActiveOptions]=\"{ exact: true }\"\n          >\n            <bmb-icon\n              class=\"bmb_sidebar-icon\"\n              [icon]=\"element.icon\"\n              [materialIcon]=\"true\"\n            ></bmb-icon>\n            <span class=\"bmb_sidebar-text\">{{ element.title }}</span>\n          </a>\n        </ng-container>\n        <ng-template #externalLink>\n          <a\n            class=\"bmb_sidebar-link\"\n            [id]=\"element.id\"\n            [ngClass]=\"{\n              'bmb_sidebar-link-active':\n                isLinkActive(element.link) && !isExternalLink(element.link)\n            }\"\n            [href]=\"element.link\"\n            [target]=\"element.target ? element.target : '_blank'\"\n            rel=\"noopener noreferrer\"\n            (click)=\"setExternalLinkActive(element.link)\"\n          >\n            <bmb-icon\n              class=\"bmb_sidebar-icon\"\n              [icon]=\"element.icon\"\n              [materialIcon]=\"true\"\n            ></bmb-icon>\n            <span class=\"bmb_sidebar-text\">{{ element.title }}</span>\n          </a>\n        </ng-template>\n      </li>\n    </ul>\n  </ng-container>\n</nav>\n"
         },
         {
             "name": "BmbStatCounterComponent",
@@ -9479,7 +9543,7 @@
         },
         {
             "name": "BmbTablesComponent",
-            "id": "component-BmbTablesComponent-12c6b740f0c6ec4cafce9429cce6531f1d73c01348508954dbe675b449bf33060d65fa624cbf614289ddf4fbf4562b804888e14efdccfb5b62aa59f77f04703a",
+            "id": "component-BmbTablesComponent-6c6a5f080d8e56e17044e0457076b6a7cfd9699a8c8e85e03d6427615f3638828d10196945cf5e83522a715a0c2e90b1a5b07c691bdbbbe657fedcce4016e4f8",
             "file": "projects/ds-ng/src/lib/components/bmb-tables/bmb-tables.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -9490,7 +9554,9 @@
             "outputs": [],
             "providers": [],
             "selector": "bmb-table",
-            "styleUrls": [],
+            "styleUrls": [
+                "./bmb-tables.component.scss"
+            ],
             "styles": [],
             "templateUrl": [
                 "./bmb-tables.component.html"
@@ -9502,7 +9568,7 @@
                     "name": "actionTemplate",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 105,
+                    "line": 106,
                     "type": "TemplateRef<any> | null",
                     "decorators": []
                 },
@@ -9510,7 +9576,7 @@
                     "name": "columns",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 96,
+                    "line": 97,
                     "type": "TableColum[]",
                     "decorators": []
                 },
@@ -9518,7 +9584,7 @@
                     "name": "config",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 101,
+                    "line": 102,
                     "type": "TableConfig",
                     "decorators": []
                 },
@@ -9526,8 +9592,8 @@
                     "name": "data",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 92,
-                    "type": "Array<any>",
+                    "line": 93,
+                    "type": "any[]",
                     "decorators": []
                 },
                 {
@@ -9543,7 +9609,7 @@
                     "name": "pageSize",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 88,
+                    "line": 89,
                     "type": "number",
                     "decorators": []
                 }
@@ -9560,23 +9626,41 @@
             ],
             "propertiesClass": [
                 {
+                    "name": "cellRef",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ElementRef",
+                    "optional": false,
+                    "description": "",
+                    "line": 114,
+                    "decorators": [
+                        {
+                            "name": "ViewChild",
+                            "stringifiedArguments": "'cellRef'"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ]
+                },
+                {
                     "name": "currentResizeIndex",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "number",
                     "optional": true,
                     "description": "",
-                    "line": 81
+                    "line": 82
                 },
                 {
                     "name": "dataSource",
                     "defaultValue": "new MatTableDataSource()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "MatTableDataSource<Array<any>>",
+                    "type": "MatTableDataSource<any>",
                     "optional": false,
                     "description": "",
-                    "line": 71
+                    "line": 73
                 },
                 {
                     "name": "expandedElement",
@@ -9585,7 +9669,25 @@
                     "type": "any",
                     "optional": false,
                     "description": "",
-                    "line": 74
+                    "line": 76
+                },
+                {
+                    "name": "headerCellRef",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ElementRef",
+                    "optional": false,
+                    "description": "",
+                    "line": 113,
+                    "decorators": [
+                        {
+                            "name": "ViewChild",
+                            "stringifiedArguments": "'headerCellRef'"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ]
                 },
                 {
                     "name": "isResizingRight",
@@ -9594,7 +9696,7 @@
                     "type": "boolean",
                     "optional": true,
                     "description": "",
-                    "line": 84
+                    "line": 85
                 },
                 {
                     "name": "matTableRef",
@@ -9603,7 +9705,7 @@
                     "type": "ElementRef",
                     "optional": true,
                     "description": "",
-                    "line": 113,
+                    "line": 112,
                     "decorators": [
                         {
                             "name": "ViewChild",
@@ -9640,7 +9742,7 @@
                     "type": "number | undefined",
                     "optional": false,
                     "description": "",
-                    "line": 77
+                    "line": 79
                 },
                 {
                     "name": "pressed",
@@ -9650,7 +9752,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 80
+                    "line": 81
                 },
                 {
                     "name": "resizableMousemove",
@@ -9659,7 +9761,7 @@
                     "type": "function",
                     "optional": true,
                     "description": "",
-                    "line": 85
+                    "line": 86
                 },
                 {
                     "name": "resizableMouseup",
@@ -9668,7 +9770,7 @@
                     "type": "function",
                     "optional": true,
                     "description": "",
-                    "line": 86
+                    "line": 87
                 },
                 {
                     "name": "selection",
@@ -9678,7 +9780,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 75
+                    "line": 77
                 },
                 {
                     "name": "startWidth",
@@ -9687,7 +9789,7 @@
                     "type": "number",
                     "optional": true,
                     "description": "",
-                    "line": 83
+                    "line": 84
                 },
                 {
                     "name": "startX",
@@ -9696,7 +9798,7 @@
                     "type": "number",
                     "optional": true,
                     "description": "",
-                    "line": 82
+                    "line": 83
                 },
                 {
                     "name": "tableColumns",
@@ -9706,7 +9808,7 @@
                     "type": "TableColum[]",
                     "optional": false,
                     "description": "",
-                    "line": 73
+                    "line": 75
                 },
                 {
                     "name": "tableConfig",
@@ -9715,7 +9817,7 @@
                     "type": "TableConfig | undefined",
                     "optional": false,
                     "description": "",
-                    "line": 76
+                    "line": 78
                 },
                 {
                     "name": "tableDisplayColumns",
@@ -9725,7 +9827,7 @@
                     "type": "string[]",
                     "optional": false,
                     "description": "",
-                    "line": 72
+                    "line": 74
                 }
             ],
             "methodsClass": [
@@ -9743,11 +9845,9 @@
                     "optional": false,
                     "returnType": "string",
                     "typeParameters": [],
-                    "line": 268,
+                    "line": 232,
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "rawdescription": "\nThe label for the checkbox on the passed row",
-                    "description": "<p>The label for the checkbox on the passed row</p>\n",
                     "jsdoctags": [
                         {
                             "name": "row",
@@ -9780,12 +9880,9 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 198,
+                    "line": 170,
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "modifierKind": [
-                        123
-                    ],
                     "jsdoctags": [
                         {
                             "name": "event",
@@ -9820,16 +9917,51 @@
                     "optional": false,
                     "returnType": "any",
                     "typeParameters": [],
-                    "line": 211,
+                    "line": 178,
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "modifierKind": [
-                        123
-                    ],
                     "jsdoctags": [
                         {
                             "name": "index",
                             "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "getPaginationText",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 262,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "hasEllipsis",
+                    "args": [
+                        {
+                            "name": "element",
+                            "type": "HTMLTableCellElement | undefined",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "boolean",
+                    "typeParameters": [],
+                    "line": 250,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "element",
+                            "type": "HTMLTableCellElement | undefined",
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
@@ -9844,11 +9976,65 @@
                     "optional": false,
                     "returnType": "boolean",
                     "typeParameters": [],
-                    "line": 249,
+                    "line": 215,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "isEven",
+                    "args": [
+                        {
+                            "name": "rowIndex",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "boolean",
+                    "typeParameters": [],
+                    "line": 239,
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "rawdescription": "\nWhether the number of selected elements matches the total number of rows.",
-                    "description": "<p>Whether the number of selected elements matches the total number of rows.</p>\n"
+                    "jsdoctags": [
+                        {
+                            "name": "rowIndex",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "isOdd",
+                    "args": [
+                        {
+                            "name": "rowIndex",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "boolean",
+                    "typeParameters": [],
+                    "line": 246,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "rowIndex",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
                 },
                 {
                     "name": "mouseMove",
@@ -9863,7 +10049,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 168,
+                    "line": 147,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -9884,7 +10070,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 124,
+                    "line": 125,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -9894,7 +10080,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 122,
+                    "line": 123,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -9911,7 +10097,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 116,
+                    "line": 117,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "decorators": [
@@ -9954,7 +10140,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 218,
+                    "line": 185,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -9984,80 +10170,9 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 228,
+                    "line": 195,
                     "deprecated": false,
                     "deprecationMessage": ""
-                },
-                {
-                    "name": "setColumnWidth",
-                    "args": [
-                        {
-                            "name": "column",
-                            "type": "any",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        }
-                    ],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 144,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "jsdoctags": [
-                        {
-                            "name": "column",
-                            "type": "any",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "setColumnWidthChanges",
-                    "args": [
-                        {
-                            "name": "index",
-                            "type": "number",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        },
-                        {
-                            "name": "width",
-                            "type": "number",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        }
-                    ],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 153,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "jsdoctags": [
-                        {
-                            "name": "index",
-                            "type": "number",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        },
-                        {
-                            "name": "width",
-                            "type": "number",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        }
-                    ]
                 },
                 {
                     "name": "setConfig",
@@ -10072,7 +10187,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 232,
+                    "line": 199,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -10100,7 +10215,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 129,
+                    "line": 138,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -10121,11 +10236,9 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 256,
+                    "line": 221,
                     "deprecated": false,
-                    "deprecationMessage": "",
-                    "rawdescription": "\nSelects all rows if they are not all selected; otherwise clear selection.",
-                    "description": "<p>Selects all rows if they are not all selected; otherwise clear selection.</p>\n"
+                    "deprecationMessage": ""
                 }
             ],
             "deprecated": false,
@@ -10147,7 +10260,7 @@
                     ],
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 116
+                    "line": 117
                 }
             ],
             "standalone": true,
@@ -10191,15 +10304,23 @@
                 {
                     "name": "MatInputModule",
                     "type": "module"
+                },
+                {
+                    "name": "MatTooltipModule",
+                    "type": "module"
                 }
             ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport {\n  Component,\n  Input,\n  AfterViewInit,\n  ViewChild,\n  OnInit,\n  Output,\n  EventEmitter,\n  ElementRef,\n  TemplateRef,\n  HostListener,\n  Renderer2,\n  ViewEncapsulation,\n  ChangeDetectionStrategy,\n} from '@angular/core';\nimport { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';\nimport {\n  MatTableDataSource,\n  MatTableModule,\n  MatTable,\n} from '@angular/material/table';\nimport {\n  animate,\n  state,\n  style,\n  transition,\n  trigger,\n} from '@angular/animations';\nimport { MatInputModule } from '@angular/material/input';\nimport { MatFormFieldModule } from '@angular/material/form-field';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatCheckboxModule } from '@angular/material/checkbox';\nimport { SelectionModel } from '@angular/cdk/collections';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\nimport { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';\nimport { TableColum, TableConfig } from './bmb-tables.interface';\n\n@Component({\n  selector: 'bmb-table',\n  standalone: true,\n  imports: [\n    CommonModule,\n    BmbIconComponent,\n    BmbCheckboxComponent,\n    MatPaginatorModule,\n    MatTableModule,\n    MatCheckboxModule,\n    MatIconModule,\n    MatButtonModule,\n    MatFormFieldModule,\n    MatInputModule,\n  ],\n  templateUrl: './bmb-tables.component.html',\n  styleUrl: './bmb-tables.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n  animations: [\n    trigger('detailExpand', [\n      state('collapsed,void', style({ height: '0px', minHeight: '0' })),\n      state('expanded', style({ height: '*' })),\n      transition(\n        'expanded <=> collapsed',\n        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)'),\n      ),\n    ]),\n  ],\n})\nexport class BmbTablesComponent implements AfterViewInit, OnInit {\n  dataSource: MatTableDataSource<Array<any>> = new MatTableDataSource();\n  tableDisplayColumns: string[] = [];\n  tableColumns: TableColum[] = [];\n  expandedElement: any;\n  selection = new SelectionModel<any>(true, []);\n  tableConfig: TableConfig | undefined;\n  paginatorSize: number | undefined;\n\n  // Resize Columns\n  pressed = false;\n  currentResizeIndex?: number;\n  startX?: number;\n  startWidth?: number;\n  isResizingRight?: boolean;\n  resizableMousemove?: () => void;\n  resizableMouseup?: () => void;\n\n  @Input() set pageSize(size: number) {\n    this.paginatorSize = size;\n  }\n\n  @Input() set data(data: Array<any>) {\n    this.dataSource = new MatTableDataSource(data);\n  }\n\n  @Input() set columns(columns: TableColum[]) {\n    this.tableColumns = columns;\n    this.tableDisplayColumns = this.tableColumns.map((col) => col.def);\n  }\n\n  @Input() set config(config: TableConfig) {\n    this.setConfig(config);\n  }\n\n  @Input() actionTemplate?: TemplateRef<any> | null;\n\n  @Input() detailTemplate: TemplateRef<any> | null = null;\n\n  @Output() select: EventEmitter<any> = new EventEmitter();\n\n  @ViewChild(MatPaginator) paginator!: MatPaginator;\n\n  @ViewChild(MatTable, { read: ElementRef }) private matTableRef?: ElementRef;\n\n  @HostListener('window:resize', ['$event'])\n  onResize(event: any) {\n    this.setTableResize(this.matTableRef!.nativeElement.clientWidth);\n  }\n\n  constructor(private renderer: Renderer2) {}\n\n  ngOnInit(): void {}\n\n  ngAfterViewInit() {\n    this.dataSource.paginator = this.paginator;\n    this.setTableResize(this.matTableRef!.nativeElement.clientWidth);\n  }\n\n  setTableResize(tableWidth: number) {\n    let totWidth = 0;\n    this.tableColumns.forEach((column) => {\n      if (column.width == undefined) {\n        column.width = 50;\n      }\n      totWidth += column.width!;\n    });\n    const scale = (tableWidth - 5) / totWidth;\n    this.tableColumns.forEach((column) => {\n      column!.width! *= scale;\n      this.setColumnWidth(column);\n    });\n  }\n\n  setColumnWidth(column: any) {\n    const columnEls = Array.from(\n      document.getElementsByClassName('mat-column-' + column.def),\n    );\n    columnEls.forEach((el: any) => {\n      el.style.width = column.width + 'px';\n    });\n  }\n\n  setColumnWidthChanges(index: number, width: number) {\n    const orgWidth = this.tableColumns[index].width;\n    const dx = width - orgWidth!;\n    if (dx !== 0) {\n      const j = this.isResizingRight ? index + 1 : index - 1;\n      const newWidth = this.tableColumns[j].width! - dx;\n      if (newWidth > 50) {\n        this.tableColumns[index].width = width;\n        this.setColumnWidth(this.tableColumns[index]);\n        this.tableColumns[j].width = newWidth;\n        this.setColumnWidth(this.tableColumns[j]);\n      }\n    }\n  }\n\n  mouseMove(index: number) {\n    this.resizableMousemove = this.renderer.listen(\n      'document',\n      'mousemove',\n      (event) => {\n        if (this.pressed && event.buttons) {\n          const dx = this.isResizingRight\n            ? event.pageX - this.startX!\n            : -event.pageX + this.startX!;\n          const width = this.startWidth! + dx;\n          if (this.currentResizeIndex === index && width > 50) {\n            this.setColumnWidthChanges(index, width);\n          }\n        }\n      },\n    );\n    this.resizableMouseup = this.renderer.listen(\n      'document',\n      'mouseup',\n      (event) => {\n        if (this.pressed) {\n          this.pressed = false;\n          this.currentResizeIndex = -1;\n          this.resizableMousemove!();\n          this.resizableMouseup!();\n        }\n      },\n    );\n  }\n\n  private checkResizing(event: any, index: any) {\n    const cellData = this.getCellData(index);\n    if (\n      index === 0 ||\n      (Math.abs(event.pageX - cellData.right) < cellData.width / 2 &&\n        index !== this.tableColumns.length - 1)\n    ) {\n      this.isResizingRight = true;\n    } else {\n      this.isResizingRight = false;\n    }\n  }\n\n  private getCellData(index: number) {\n    const headerRow =\n      this.matTableRef!.nativeElement.children[0].querySelector('tr');\n    const cell = headerRow.children[index];\n    return cell.getBoundingClientRect();\n  }\n\n  onResizeColumn(event: any, index: number) {\n    this.checkResizing(event, index);\n    this.currentResizeIndex = index;\n    this.pressed = true;\n    this.startX = event.pageX;\n    this.startWidth = event.target.parentElement.clientWidth;\n    event.preventDefault();\n    this.mouseMove(index);\n  }\n\n  onSelect() {\n    this.select.emit(this.selection.selected);\n  }\n\n  setConfig(config: TableConfig) {\n    this.tableConfig = config;\n\n    if (this.tableConfig.isExpandible) {\n      this.tableDisplayColumns?.unshift('expand');\n    }\n\n    if (this.tableConfig.isSelectable) {\n      this.tableDisplayColumns?.unshift('select');\n    }\n\n    if (this.tableConfig.showActions) {\n      this.tableDisplayColumns?.push('actions');\n    }\n  }\n\n  /** Whether the number of selected elements matches the total number of rows. */\n  isAllSelected() {\n    const numSelected = this.selection.selected.length;\n    const numRows = this.dataSource.data.length;\n    return numSelected === numRows;\n  }\n\n  /** Selects all rows if they are not all selected; otherwise clear selection. */\n  toggleAllRows() {\n    if (this.isAllSelected()) {\n      this.selection.clear();\n      this.onSelect();\n      return;\n    }\n\n    this.selection.select(...this.dataSource.data);\n    this.onSelect();\n  }\n\n  /** The label for the checkbox on the passed row */\n  checkboxLabel(row?: any): string {\n    if (!row) {\n      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;\n    }\n    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;\n  }\n}\n",
-            "styleUrl": "./bmb-tables.component.scss",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport {\n  Component,\n  Input,\n  AfterViewInit,\n  ViewChild,\n  OnInit,\n  Output,\n  EventEmitter,\n  ElementRef,\n  TemplateRef,\n  HostListener,\n  Renderer2,\n  ViewEncapsulation,\n  ChangeDetectionStrategy,\n} from '@angular/core';\nimport { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';\nimport {\n  MatTableDataSource,\n  MatTableModule,\n  MatTable,\n} from '@angular/material/table';\nimport {\n  animate,\n  state,\n  style,\n  transition,\n  trigger,\n} from '@angular/animations';\nimport { MatInputModule } from '@angular/material/input';\nimport { MatFormFieldModule } from '@angular/material/form-field';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatCheckboxModule } from '@angular/material/checkbox';\nimport { SelectionModel } from '@angular/cdk/collections';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\nimport { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';\nimport { TableColum, TableConfig } from './bmb-tables.interface';\nimport { MatTooltipModule } from '@angular/material/tooltip';\n\n@Component({\n  selector: 'bmb-table',\n  standalone: true,\n  imports: [\n    CommonModule,\n    BmbIconComponent,\n    BmbCheckboxComponent,\n    MatPaginatorModule,\n    MatTableModule,\n    MatCheckboxModule,\n    MatIconModule,\n    MatButtonModule,\n    MatFormFieldModule,\n    MatInputModule,\n    MatTooltipModule,\n  ],\n  templateUrl: './bmb-tables.component.html',\n  styleUrls: ['./bmb-tables.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n  animations: [\n    trigger('detailExpand', [\n      state('collapsed,void', style({ height: '0px', minHeight: '0' })),\n      state('expanded', style({ height: '*' })),\n      transition(\n        'expanded <=> collapsed',\n        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)'),\n      ),\n    ]),\n  ],\n})\nexport class BmbTablesComponent implements AfterViewInit, OnInit {\n  dataSource: MatTableDataSource<any> = new MatTableDataSource();\n  tableDisplayColumns: string[] = [];\n  tableColumns: TableColum[] = [];\n  expandedElement: any;\n  selection = new SelectionModel<any>(true, []);\n  tableConfig: TableConfig | undefined;\n  paginatorSize: number | undefined;\n\n  pressed = false;\n  currentResizeIndex?: number;\n  startX?: number;\n  startWidth?: number;\n  isResizingRight?: boolean;\n  resizableMousemove?: () => void;\n  resizableMouseup?: () => void;\n\n  @Input() set pageSize(size: number) {\n    this.paginatorSize = size;\n  }\n\n  @Input() set data(data: any[]) {\n    this.dataSource = new MatTableDataSource(data);\n  }\n\n  @Input() set columns(columns: TableColum[]) {\n    this.tableColumns = columns;\n    this.tableDisplayColumns = this.tableColumns.map((col) => col.def);\n  }\n\n  @Input() set config(config: TableConfig) {\n    this.setConfig(config);\n  }\n\n  @Input() actionTemplate?: TemplateRef<any> | null;\n  @Input() detailTemplate: TemplateRef<any> | null = null;\n\n  @Output() select: EventEmitter<any> = new EventEmitter();\n\n  @ViewChild(MatPaginator) paginator!: MatPaginator;\n  @ViewChild(MatTable, { read: ElementRef }) private matTableRef?: ElementRef;\n  @ViewChild('headerCellRef') headerCellRef!: ElementRef;\n  @ViewChild('cellRef') cellRef!: ElementRef;\n\n  @HostListener('window:resize', ['$event'])\n  onResize(event: any) {\n    this.setTableResize(this.matTableRef!.nativeElement.clientWidth);\n  }\n\n  constructor(private renderer: Renderer2) {}\n\n  ngOnInit(): void {}\n\n  ngAfterViewInit() {\n    this.dataSource.paginator = this.paginator;\n    this.setTableResize(this.matTableRef!.nativeElement.clientWidth);\n\n    const headerHasEllipsis = this.hasEllipsis(\n      this.headerCellRef?.nativeElement,\n    );\n\n    this.dataSource.data.forEach((row: any) => {\n      const cellHasEllipsis = this.hasEllipsis(this.cellRef?.nativeElement);\n    });\n  }\n\n  setTableResize(tableWidth: number) {\n    let totWidth = 0;\n    this.tableColumns.forEach((column) => {\n      column.width = column.width || 50;\n      totWidth += column.width!;\n    });\n    const scale = (tableWidth - 5) / totWidth;\n  }\n\n  mouseMove(index: number) {\n    this.resizableMousemove = this.renderer.listen(\n      'document',\n      'mousemove',\n      (event) => {\n        if (this.pressed && event.buttons) {\n          const dx = this.isResizingRight\n            ? event.pageX - this.startX!\n            : -event.pageX + this.startX!;\n          const width = this.startWidth! + dx;\n        }\n      },\n    );\n    this.resizableMouseup = this.renderer.listen('document', 'mouseup', () => {\n      if (this.pressed) {\n        this.pressed = false;\n        this.currentResizeIndex = -1;\n        this.resizableMousemove!();\n        this.resizableMouseup!();\n      }\n    });\n  }\n\n  checkResizing(event: any, index: any) {\n    const cellData = this.getCellData(index);\n    this.isResizingRight =\n      index === 0 ||\n      (Math.abs(event.pageX - cellData.right) < cellData.width / 2 &&\n        index !== this.tableColumns.length - 1);\n  }\n\n  getCellData(index: number) {\n    const headerRow =\n      this.matTableRef!.nativeElement.children[0].querySelector('tr');\n    const cell = headerRow.children[index];\n    return cell.getBoundingClientRect();\n  }\n\n  onResizeColumn(event: any, index: number) {\n    this.checkResizing(event, index);\n    this.currentResizeIndex = index;\n    this.pressed = true;\n    this.startX = event.pageX;\n    this.startWidth = event.target.parentElement.clientWidth;\n    event.preventDefault();\n    this.mouseMove(index);\n  }\n\n  onSelect() {\n    this.select.emit(this.selection.selected);\n  }\n\n  setConfig(config: TableConfig) {\n    this.tableConfig = config;\n\n    if (this.tableConfig.isExpandible) {\n      this.tableDisplayColumns?.unshift('expand');\n    }\n\n    if (this.tableConfig.isSelectable) {\n      this.tableDisplayColumns?.unshift('select');\n    }\n\n    if (this.tableConfig.showActions) {\n      this.tableDisplayColumns?.push('actions');\n    }\n  }\n\n  isAllSelected() {\n    const numSelected = this.selection.selected.length;\n    const numRows = this.dataSource.data.length;\n    return numSelected === numRows;\n  }\n\n  toggleAllRows() {\n    if (this.isAllSelected()) {\n      this.selection.clear();\n      this.onSelect();\n      return;\n    }\n\n    this.selection.select(...this.dataSource.data);\n    this.onSelect();\n  }\n\n  checkboxLabel(row?: any): string {\n    if (!row) {\n      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;\n    }\n    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;\n  }\n\n  isEven(rowIndex: number): boolean {\n    const filteredIndex = this.dataSource.data\n      .filter((row) => !row.isDetail)\n      .findIndex((row, index) => index === rowIndex);\n    return filteredIndex % 2 === 0;\n  }\n\n  isOdd(rowIndex: number): boolean {\n    return !this.isEven(rowIndex);\n  }\n\n  hasEllipsis(element: HTMLTableCellElement | undefined): boolean {\n    if (!element) {\n      return false;\n    }\n\n    const elementRef = new ElementRef(element);\n    return (\n      elementRef.nativeElement.scrollWidth >\n      elementRef.nativeElement.clientWidth\n    );\n  }\n\n  getPaginationText(): string {\n    if (\n      !this.paginator ||\n      this.paginator.length === 0 ||\n      this.paginator.pageSize === 0\n    ) {\n      return `0 de ${this.paginator?.length || 0}`;\n    }\n    const startIndex = this.paginator.pageIndex * this.paginator.pageSize + 1;\n    const endIndex = Math.min(\n      (this.paginator.pageIndex + 1) * this.paginator.pageSize,\n      this.paginator.length,\n    );\n    return `${startIndex} - ${endIndex} de ${this.paginator.length}`;\n  }\n}\n",
             "assetsDirs": [],
-            "styleUrlsData": "",
+            "styleUrlsData": [
+                {
+                    "data": "@use \"../../../assets/styles/base/fonts\" as fonts;\n@use \"../../../assets/styles/base/rem\" as rem;\n@use \"../../../assets/styles/base/mixins\" as mixins;\n\n.bmb_table {\n  background: RGBA(var(--color-charade-50));\n  border-collapse: collapse;\n  box-shadow: rem.rem_calc(8 8 8 0) RGBA(var(--color-charade-950), 0.5);\n  display: flex;\n  flex-direction: column;\n  padding: rem.rem_calc(24 16);\n  width: 100%;\n\n  &-container {\n    flex: 1 0 auto;\n    max-width: 100%;\n    overflow: auto;\n    width: 100%;\n  }\n\n  &-content {\n    width: 100%;\n  }\n\n  &-row {\n    &.mat-mdc-row {\n      height: rem.rem_calc(34);\n    }\n\n    > td,\n    > th {\n      height: auto;\n      max-width: rem.rem_calc(100);\n      overflow: hidden;\n      padding: rem.rem_calc(0 8);\n      text-overflow: ellipsis;\n      white-space: nowrap;\n\n      @include mixins.media-query(768, \"min\") {\n        max-width: fit-content;\n      }\n\n      &.bmb_table-checkbox {\n        min-width: rem.rem_calc(58);\n        padding-right: 0;\n        width: rem.rem_calc(58);\n\n        + .bmb_table-sticky {\n          left: rem.rem_calc(58) !important;\n        }\n      }\n\n      &.bmb_table-expand {\n        min-width: rem.rem_calc(40);\n        width: rem.rem_calc(40);\n\n        + .bmb_table-sticky {\n          left: rem.rem_calc(98) !important;\n        }\n      }\n\n      &.bmb_table-sticky {\n        border-right: rem.rem_calc(1) solid RGBA(var(--color-charade-300));\n        max-width: rem.rem_calc(144);\n\n        @include mixins.media-query(1200, \"min\") {\n          max-width: fit-content;\n        }\n      }\n\n      &.bmb_table-actions {\n        border-left: rem.rem_calc(1) solid RGBA(var(--color-charade-300));\n        color: RGBA(var(--color-charade-900));\n\n        button {\n          color: RGBA(var(--color-charade-900));\n        }\n      }\n    }\n\n    > th {\n      border-bottom: 0;\n      color: RGBA(var(--color-charade-500));\n      position: relative;\n      text-transform: uppercase;\n      @include fonts.font(4, medium);\n\n      &.mat-mdc-header-cell {\n        background-color: RGBA(var(--color-charade-50));\n      }\n    }\n\n    > td {\n      @include fonts.font(4, medium);\n      border-bottom-color: RGBA(var(--color-charade-200));\n      border-bottom-style: dashed;\n\n      &.bmb_table-actions {\n        .action-container {\n          display: flex;\n\n          bmb-icon {\n            font-size: rem.rem_calc(18);\n          }\n        }\n      }\n\n      .mat-mdc-icon-button {\n        align-items: center;\n        display: flex;\n        height: auto;\n        padding: 0;\n        width: auto;\n\n        bmb-icon {\n          font-size: rem.rem_calc(24);\n        }\n      }\n    }\n  }\n\n  &-even {\n    &.mat-mdc-row {\n      background-color: RGBA(var(--color-charade-50));\n      color: RGBA(var(--color-charade-950));\n\n      &.bmb_table-expandible {\n        background-color: RGBA(var(--color-mariner-100));\n      }\n    }\n  }\n\n  &-odd {\n    &.mat-mdc-row {\n      background-color: RGBA(var(--color-charade-100));\n      color: RGBA(var(--color-charade-700));\n    }\n\n    &.bmb_table-expandible {\n      background-color: RGBA(var(--color-mariner-100));\n    }\n  }\n\n  &-details {\n    &.mat-mdc-row {\n      background-color: RGBA(var(--color-mariner-100));\n      height: 0;\n\n      > td {\n        border: 0;\n        padding: rem.rem_calc(0 16);\n      }\n\n      &.bmb_table-expanded {\n        > td {\n          border-bottom: rem.rem_calc(1) dashed RGBA(var(--color-charade-200));\n          padding: rem.rem_calc(16);\n        }\n      }\n    }\n  }\n\n  &-detail {\n    color: RGBA(var(--color-charade-700));\n    display: flex;\n    overflow: hidden;\n  }\n\n  &-resize {\n    border-right: rem.rem_calc(1) solid RGBA(var(--color-charade-200));\n    cursor: col-resize;\n    display: inline-block;\n    height: 100%;\n    opacity: 0;\n    position: absolute;\n    right: 0;\n    top: 0;\n\n    &:hover {\n      opacity: 1;\n      width: rem.rem_calc(20);\n    }\n  }\n\n  .mat-mdc-paginator {\n    display: none;\n  }\n\n  &-paginator {\n    align-items: center;\n    bottom: 0;\n    display: flex;\n    height: rem.rem_calc(48);\n    justify-content: flex-end;\n    margin: rem.rem_calc(8 0);\n    position: sticky;\n    right: 0;\n    z-index: 10;\n\n    &-text {\n      color: RGBA(var(--color-charade-700));\n      margin-right: rem.rem_calc(32);\n      @include fonts.font(3, regular);\n    }\n\n    &-btn {\n      color: RGBA(var(--color-charade-900));\n      height: rem.rem_calc(48);\n      padding: 0;\n      width: rem.rem_calc(48);\n\n      &-disabled {\n        color: RGBA(var(--color-charade-300));\n        cursor: not-allowed;\n      }\n    }\n\n    &-icon {\n      font-size: rem.rem_calc(24);\n    }\n  }\n}\n\n[data-theme=\"dark\"],\n.storybook-dark-theme {\n  .bmb_table {\n    background-color: RGBA(var(--color-charade-950));\n    box-shadow: rem.rem_calc(8 8 8 0) RGBA(var(--color-black-primary), 0.2);\n\n    &-row {\n      > td,\n      > th {\n        &.bmb_table-sticky {\n          border-right-color: RGBA(var(--color-charade-700));\n        }\n\n        &.bmb_table-actions {\n          border-left-color: RGBA(var(--color-charade-700));\n          color: RGBA(var(--color-charade-100));\n\n          button {\n            color: RGBA(var(--color-charade-100));\n          }\n        }\n      }\n\n      > th {\n        &.mat-mdc-header-cell {\n          background-color: RGBA(var(--color-charade-950));\n        }\n      }\n\n      > td {\n        border-bottom-color: RGBA(var(--color-charade-700));\n      }\n    }\n\n    &-even {\n      &.mat-mdc-row {\n        background-color: RGBA(var(--color-charade-950));\n        color: RGBA(var(--color-charade-50));\n\n        &.bmb_table-expandible {\n          background-color: RGBA(var(--color-mariner-950));\n        }\n      }\n    }\n\n    &-odd {\n      &.mat-mdc-row {\n        background-color: RGBA(var(--color-charade-800));\n        color: RGBA(var(--color-charade-50));\n      }\n\n      &.bmb_table-expandible {\n        background-color: RGBA(var(--color-mariner-950));\n      }\n    }\n\n    &-details {\n      &.mat-mdc-row {\n        background-color: RGBA(var(--color-mariner-950));\n\n        &.bmb_table-expanded {\n          > td {\n            border-bottom-color: RGBA(var(--color-charade-700));\n          }\n        }\n      }\n    }\n\n    &-detail {\n      color: RGBA(var(--color-charade-200));\n    }\n\n    &-resize {\n      border-right-color: RGBA(var(--color-charade-700));\n    }\n\n    &-paginator {\n      &-text {\n        color: RGBA(var(--color-charade-200));\n      }\n\n      &-btn {\n        color: RGBA(var(--color-charade-50));\n\n        &-disabled {\n          color: RGBA(var(--color-charade-700));\n        }\n      }\n    }\n  }\n}\n",
+                    "styleUrl": "./bmb-tables.component.scss"
+                }
+            ],
             "stylesData": "",
             "constructorObj": {
                 "name": "constructor",
@@ -10214,7 +10335,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 118,
+                "line": 119,
                 "jsdoctags": [
                     {
                         "name": "renderer",
@@ -10249,7 +10370,7 @@
                             }
                         ],
                         "returnType": "void",
-                        "line": 88,
+                        "line": 89,
                         "jsdoctags": [
                             {
                                 "name": "size",
@@ -10273,17 +10394,17 @@
                         "args": [
                             {
                                 "name": "data",
-                                "type": "Array<any>",
+                                "type": "any[]",
                                 "deprecated": false,
                                 "deprecationMessage": ""
                             }
                         ],
                         "returnType": "void",
-                        "line": 92,
+                        "line": 93,
                         "jsdoctags": [
                             {
                                 "name": "data",
-                                "type": "Array<any>",
+                                "type": "any[]",
                                 "deprecated": false,
                                 "deprecationMessage": "",
                                 "tagName": {
@@ -10309,7 +10430,7 @@
                             }
                         ],
                         "returnType": "void",
-                        "line": 96,
+                        "line": 97,
                         "jsdoctags": [
                             {
                                 "name": "columns",
@@ -10339,7 +10460,7 @@
                             }
                         ],
                         "returnType": "void",
-                        "line": 101,
+                        "line": 102,
                         "jsdoctags": [
                             {
                                 "name": "config",
@@ -10354,7 +10475,7 @@
                     }
                 }
             },
-            "templateData": "<div class=\"bmb_container-table\">\n  <table\n    mat-table\n    [dataSource]=\"dataSource\"\n    class=\"bmb_table\"\n    multiTemplateDataRows\n  >\n    <!-- Checkbox Column -->\n    <ng-container matColumnDef=\"select\">\n      <th\n        mat-header-cell\n        *matHeaderCellDef\n        class=\"bmb_table-headers-checkbox bmb_table-th\"\n      >\n        <bmb-checkbox\n          (change)=\"$event ? toggleAllRows() : null\"\n          [checked]=\"selection.hasValue() && isAllSelected()\"\n          [indeterminate]=\"selection.hasValue() && !isAllSelected()\"\n          [ariaLabel]=\"checkboxLabel()\"\n        />\n      </th>\n      <td mat-cell *matCellDef=\"let row\">\n        <bmb-checkbox\n          (change)=\"$event ? selection.toggle(row) : null; onSelect()\"\n          [checked]=\"selection.isSelected(row)\"\n          [ariaLabel]=\"checkboxLabel(row)\"\n          onkeypress=\"$event.stopPropagation()\"\n        />\n        {{ row.documentos }}\n      </td>\n    </ng-container>\n\n    <!--Expand -->\n    <ng-container matColumnDef=\"expand\">\n      <th\n        mat-header-cell\n        *matHeaderCellDef\n        class=\"bmb_table-th\"\n        aria-label=\"row actions\"\n        style=\"width: 30px\"\n      >\n        &nbsp;\n      </th>\n      <td mat-cell *matCellDef=\"let row\" class=\"bmb-table-expand-cell\">\n        <button\n          mat-icon-button\n          aria-label=\"expand row\"\n          (click)=\"\n            expandedElement = expandedElement === row ? null : row;\n            $event.stopPropagation()\n          \"\n        >\n          @if (expandedElement === row) {\n            <bmb-icon class=\"bmb_table-expand-btn\" [icon]=\"'expand_less'\" />\n          } @else {\n            <bmb-icon class=\"bmb_table-expand-btn\" [icon]=\"'expand_more'\" />\n          }\n        </button>\n      </td>\n    </ng-container>\n\n    <!-- Display Columns -->\n    @for (column of tableColumns; track $index) {\n      <ng-container [matColumnDef]=\"column.def\">\n        <th\n          mat-header-cell\n          *matHeaderCellDef\n          class=\"bmb_table-headers bmb_table-th\"\n        >\n          {{ column.label }}\n          <span\n            class=\"bmb_table-resize-handle\"\n            (mousedown)=\"onResizeColumn($event, $index)\"\n          ></span>\n        </th>\n        <td mat-cell *matCellDef=\"let row; let i = index\" class=\"bmb_table-td\">\n          {{ row[column.dataKey] }}\n        </td>\n      </ng-container>\n    }\n\n    <!-- Actions Column -->\n    <ng-container matColumnDef=\"actions\">\n      <th\n        mat-header-cell\n        *matHeaderCellDef\n        class=\"bmb_table-headers bmb_table-th\"\n      >\n        Actions\n      </th>\n      <td mat-cell *matCellDef=\"let row\" class=\"\">\n        <ng-template [ngTemplateOutlet]=\"actionTemplate!\"> </ng-template>\n      </td>\n    </ng-container>\n\n    <!-- Row to expand -->\n    <ng-container matColumnDef=\"expandedDetail\">\n      <td\n        mat-cell\n        *matCellDef=\"let row\"\n        class=\"bmb_table-td\"\n        [attr.colspan]=\"tableDisplayColumns.length\"\n      >\n        <div\n          class=\"bmb_table-element-detail bmb_table-td\"\n          [@detailExpand]=\"row == expandedElement ? 'expanded' : 'collapsed'\"\n        >\n          <ng-container\n            *ngTemplateOutlet=\"detailTemplate; context: { row }\"\n          ></ng-container>\n        </div>\n      </td>\n    </ng-container>\n\n    <!-- Rows -->\n    <tr mat-header-row *matHeaderRowDef=\"tableDisplayColumns\"></tr>\n    <tr\n      mat-row\n      *matRowDef=\"let row; columns: tableDisplayColumns; let i = dataIndex\"\n      class=\"bmb_table-element-row\"\n      [class.bmb_table-expanded-row]=\"expandedElement === row\"\n      [ngClass]=\"{\n        'bmb_table-no-border': this.tableConfig?.isExpandible,\n        'bmb_table-stripe': i % 2 === 0\n      }\"\n    ></tr>\n\n    @if (tableConfig?.isExpandible) {\n      <ng-container>\n        <tr\n          mat-row\n          *matRowDef=\"let row; columns: ['expandedDetail']; let i = dataIndex\"\n          class=\"bmb_table-detail-row\"\n          [ngClass]=\"{ 'bmb_table-stripe': i % 2 === 0 }\"\n        ></tr>\n      </ng-container>\n    }\n  </table>\n\n  <!-- Paginator -->\n  @if (tableConfig?.isPaginable) {\n    <ng-container>\n      <mat-paginator\n        class=\"bmb_table-paginator\"\n        [pageSize]=\"this.paginatorSize\"\n        [hidePageSize]=\"true\"\n        aria-label=\"Select page\"\n      >\n      </mat-paginator>\n    </ng-container>\n  }\n</div>\n"
+            "templateData": "<div class=\"bmb_table\">\n  <div class=\"bmb_table-container\">\n    <table\n      mat-table\n      [dataSource]=\"dataSource\"\n      class=\"bmb_table-content\"\n      multiTemplateDataRows\n    >\n      <!-- Checkbox Column -->\n      <ng-container matColumnDef=\"select\" sticky>\n        <th mat-header-cell *matHeaderCellDef class=\"bmb_table-checkbox\">\n          <bmb-checkbox\n            (change)=\"$event ? toggleAllRows() : null\"\n            [checked]=\"selection.hasValue() && isAllSelected()\"\n            [indeterminate]=\"selection.hasValue() && !isAllSelected()\"\n            [ariaLabel]=\"checkboxLabel()\"\n          />\n        </th>\n        <td mat-cell *matCellDef=\"let row\" class=\"bmb_table-checkbox\">\n          <bmb-checkbox\n            (change)=\"$event ? selection.toggle(row) : null; onSelect()\"\n            [checked]=\"selection.isSelected(row)\"\n            [ariaLabel]=\"checkboxLabel(row)\"\n            onkeypress=\"$event.stopPropagation()\"\n          />\n          {{ row.documentos }}\n        </td>\n      </ng-container>\n\n      <!-- Expand Column -->\n      <ng-container matColumnDef=\"expand\" sticky>\n        <th\n          mat-header-cell\n          *matHeaderCellDef\n          class=\"bmb_table-expand\"\n          aria-label=\"row actions\"\n        >\n          &nbsp;\n        </th>\n        <td mat-cell *matCellDef=\"let row\" class=\"bmb_table-expand\">\n          <button\n            mat-icon-button\n            aria-label=\"expand row\"\n            (click)=\"\n              expandedElement = expandedElement === row ? null : row;\n              $event.stopPropagation()\n            \"\n          >\n            <bmb-icon\n              [icon]=\"expandedElement === row ? 'expand_less' : 'expand_more'\"\n            />\n          </button>\n        </td>\n      </ng-container>\n\n      <!-- Display Columns -->\n      <ng-container *ngFor=\"let column of tableColumns; let i = index\">\n        <ng-container matColumnDef=\"{{ column.def }}\" [sticky]=\"i === 0\">\n          <th\n            mat-header-cell\n            *matHeaderCellDef\n            #headerCell\n            [matTooltip]=\"hasEllipsis(headerCell) ? column.label : ''\"\n            matTooltipPosition=\"below\"\n            matTooltipClass=\"bmb_tooltip\"\n            [ngClass]=\"{\n              'bmb_table-sticky': i === 0\n            }\"\n          >\n            {{ column.label }}\n            <span\n              class=\"bmb_table-resize\"\n              (mousedown)=\"onResizeColumn($event, i)\"\n            ></span>\n          </th>\n          <td\n            mat-cell\n            *matCellDef=\"let row; let a = index\"\n            #cell\n            matTooltipPosition=\"below\"\n            [matTooltip]=\"hasEllipsis(cell) ? row[column.dataKey] : ''\"\n            matTooltipClass=\"bmb_tooltip\"\n            [ngClass]=\"{\n              'bmb_table-sticky': i === 0\n            }\"\n          >\n            {{ row[column.dataKey] }}\n          </td>\n        </ng-container>\n      </ng-container>\n\n      <!-- Actions Column -->\n      <ng-container matColumnDef=\"actions\" stickyEnd>\n        <th mat-header-cell *matHeaderCellDef class=\"bmb_table-actions\"></th>\n        <td mat-cell *matCellDef=\"let row\" class=\"bmb_table-actions\">\n          <ng-template [ngTemplateOutlet]=\"actionTemplate!\"> </ng-template>\n        </td>\n      </ng-container>\n\n      <!-- Row to expand -->\n      <ng-container matColumnDef=\"expandedDetail\">\n        <td\n          mat-cell\n          *matCellDef=\"let row\"\n          [attr.colspan]=\"tableDisplayColumns.length\"\n        >\n          <div\n            class=\"bmb_table-detail\"\n            [@detailExpand]=\"row == expandedElement ? 'expanded' : 'collapsed'\"\n          >\n            <ng-container\n              *ngTemplateOutlet=\"detailTemplate; context: { row }\"\n            ></ng-container>\n          </div>\n        </td>\n      </ng-container>\n\n      <!-- Rows -->\n      <tr\n        mat-header-row\n        *matHeaderRowDef=\"tableDisplayColumns\"\n        class=\"bmb_table-row\"\n      ></tr>\n\n      <tr\n        mat-row\n        *matRowDef=\"let row; columns: tableDisplayColumns; let i = dataIndex\"\n        class=\"bmb_table-row\"\n        [class.bmb_table-expandible]=\"expandedElement === row\"\n        [ngClass]=\"{\n          'bmb_table-even': isEven(i),\n          'bmb_table-odd': isOdd(i)\n        }\"\n      ></tr>\n\n      <ng-container *ngIf=\"tableConfig?.isExpandible\">\n        <tr\n          mat-row\n          *matRowDef=\"let row; columns: ['expandedDetail']; let i = dataIndex\"\n          class=\"bmb_table-details\"\n          [class.bmb_table-expanded]=\"expandedElement === row\"\n        ></tr>\n      </ng-container>\n    </table>\n  </div>\n\n  <!-- Paginator -->\n  <ng-container *ngIf=\"tableConfig?.isPaginable\" sticky>\n    <mat-paginator\n      #paginator\n      [pageSize]=\"this.paginatorSize\"\n      [hidePageSize]=\"true\"\n    >\n    </mat-paginator>\n\n    <div class=\"bmb_table-paginator\">\n      <span class=\"bmb_table-paginator-text\">{{ getPaginationText() }}</span>\n      <button\n        [disabled]=\"!paginator || !paginator.hasPreviousPage()\"\n        [ngClass]=\"{\n          'bmb_table-paginator-btn-disabled':\n            !paginator || !paginator.hasPreviousPage()\n        }\"\n        (click)=\"paginator.firstPage()\"\n        class=\"bmb_table-paginator-btn\"\n      >\n        <bmb-icon\n          icon=\"keyboard_double_arrow_left\"\n          class=\"bmb_table-paginator-icon\"\n        />\n      </button>\n      <button\n        [disabled]=\"!paginator || !paginator.hasPreviousPage()\"\n        [ngClass]=\"{\n          'bmb_table-paginator-btn-disabled':\n            !paginator || !paginator.hasPreviousPage()\n        }\"\n        (click)=\"paginator.previousPage()\"\n        class=\"bmb_table-paginator-btn\"\n      >\n        <bmb-icon icon=\"keyboard_arrow_left\" class=\"bmb_table-paginator-icon\" />\n      </button>\n      <button\n        [disabled]=\"!paginator || !paginator.hasNextPage()\"\n        [ngClass]=\"{\n          'bmb_table-paginator-btn-disabled':\n            !paginator || !paginator.hasNextPage()\n        }\"\n        (click)=\"paginator.nextPage()\"\n        class=\"bmb_table-paginator-btn\"\n      >\n        <bmb-icon\n          icon=\"keyboard_arrow_right\"\n          class=\"bmb_table-paginator-icon\"\n        />\n      </button>\n      <button\n        [disabled]=\"!paginator || !paginator.hasNextPage()\"\n        [ngClass]=\"{\n          'bmb_table-paginator-btn-disabled':\n            !paginator || !paginator.hasNextPage()\n        }\"\n        (click)=\"paginator.lastPage()\"\n        class=\"bmb_table-paginator-btn\"\n      >\n        <bmb-icon\n          icon=\"keyboard_double_arrow_right\"\n          class=\"bmb_table-paginator-icon\"\n        />\n      </button>\n    </div>\n  </ng-container>\n</div>\n"
         },
         {
             "name": "BmbTabsComponent",
@@ -12310,7 +12431,7 @@
         },
         {
             "name": "StorybookToastWrapperComponent",
-            "id": "component-StorybookToastWrapperComponent-0eebbcfa9490487d0b8672373883436e3a2658787b7f21fd7b64eaa92c6e9afb34bbd6de11d46fd21703b4a9d0d1bcfe55f162c709195236981b4b7111526534",
+            "id": "component-StorybookToastWrapperComponent-74c361d9793683916c64d405115cc5ce53a8b3d8a2acdee58825300ac8b2c9efb796353bac054d15082d543a9e06a9bef00aa901d7123f778352750d60d5505c",
             "file": "projects/ds-ng/src/lib/components/bmb-modal/bmb-modal.stories.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -12399,7 +12520,7 @@
             "propertiesClass": [
                 {
                     "name": "data",
-                    "defaultValue": "{\r\n    title: 'Modal Title',\r\n    subtitle: 'Modal Subtitle',\r\n    content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',\r\n    size: 'large',\r\n    type: 'action',\r\n    alertStyle: 'error',\r\n    primaryBtnLabel: 'Ok',\r\n    scrollable: false,\r\n  }",
+                    "defaultValue": "{\n    title: 'Modal Title',\n    subtitle: 'Modal Subtitle',\n    content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',\n    size: 'large',\n    type: 'action',\n    alertStyle: 'error',\n    primaryBtnLabel: 'Ok',\n    scrollable: false,\n  }",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "ModalDataConfig",
@@ -12434,7 +12555,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { ModalDataConfig } from './bmb-modal.interface';\r\nimport { Component, Input } from '@angular/core';\r\nimport { Meta, StoryFn, moduleMetadata } from '@storybook/angular';\r\nimport { BmbModalComponent } from './bmb-modal.component';\r\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\r\nimport { BmbButtonDirective } from '../../directives/button.directive';\r\nimport { MatDialog } from '@angular/material/dialog';\r\n\r\n@Component({\r\n  standalone: true,\r\n  imports: [BmbButtonDirective],\r\n  selector: 'storybook-toast-wrapper',\r\n  template: `\r\n    <button\r\n      bmbButton\r\n      appearance=\"primary\"\r\n      icon=\"home\"\r\n      size=\"small\"\r\n      position=\"left\"\r\n      [case]=\"false\"\r\n      (click)=\"openModalComponent()\"\r\n    >\r\n      Open Modal\r\n    </button>\r\n  `,\r\n})\r\nclass StorybookToastWrapperComponent {\r\n  @Input() title: string = 'Titulo Modal';\r\n  @Input() subtitle: string = 'Subtitulo Opcional';\r\n  @Input() content?: string =\r\n    'Lorem ipsum dolor sit amet consectetur adipisicing elit.';\r\n  @Input() size?: 'small' | 'meidum' | 'large';\r\n  @Input() type?: 'alert' | 'action' | 'informative';\r\n  @Input() alertStyle?: 'error' | 'event' | 'neutral' | 'warning' | 'success';\r\n  @Input() primaryBtnLabel?: string = 'OK';\r\n  @Input() secondaryBtnLabel?: string = 'Cancel';\r\n  constructor(private matDialog: MatDialog) {}\r\n\r\n  data: ModalDataConfig = {\r\n    title: 'Modal Title',\r\n    subtitle: 'Modal Subtitle',\r\n    content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',\r\n    size: 'large',\r\n    type: 'action',\r\n    alertStyle: 'error',\r\n    primaryBtnLabel: 'Ok',\r\n    scrollable: false,\r\n  };\r\n\r\n  openModalComponent() {\r\n    this.matDialog.open(BmbModalComponent, {\r\n      data: this.data,\r\n    });\r\n  }\r\n}\r\n\r\nexport default {\r\n  title: 'Macro Componentes/Modal',\r\n  component: BmbModalComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [\r\n        StorybookToastWrapperComponent,\r\n        BmbModalComponent,\r\n        BmbIconComponent,\r\n        BmbButtonDirective,\r\n      ],\r\n      providers: [],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        component: `\r\nBelow is an example of how you can use this component in TypeScript:\r\n\r\n\\`\\`\\`typescript\r\nimport { MatDialog } from '@angular/material/dialog';\r\nimport { BmbModalComponent, ModalDataConfig } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';\r\n@Component({\r\n  selector: 'component',\r\n  standalone: true,\r\n  imports: [],\r\n  templateUrl: './component.html',\r\n  styleUrl: './component.scss',\r\n})\r\nexport class Component {\r\n    constructor(private matDialog: MatDialog) {}\r\n\r\n    data: ModalDataConfig = {\r\n        title: 'Modal Title',\r\n        subtitle: 'Modal Subtitle',\r\n        content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',\r\n        size: 'large',\r\n        type: 'alert',\r\n        alertStyle: 'error',\r\n        primaryBtnLabel: 'Ok',\r\n      }\r\n\r\n    openModalComponent() {\r\n      this.matDialog.open(BmbModalComponent, { data: this.data });\r\n    }\r\n\\`\\`\\`\r\n\r\nBelow is an example of how you can use this component in HTML:\r\n        `,\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    title: {\r\n      name: 'Title',\r\n      control: {\r\n        type: 'text',\r\n      },\r\n      description:\r\n        'Specifies the text display. This message should be concise and direct.',\r\n      table: {\r\n        category: 'Properties',\r\n        type: { summary: 'string' },\r\n      },\r\n    },\r\n    subtitle: {\r\n      name: 'Subtitle',\r\n      control: {\r\n        type: 'text',\r\n      },\r\n      description:\r\n        'Specifies the subtitle text display. This message should be concise and direct.',\r\n      table: {\r\n        category: 'Properties',\r\n        type: { summary: 'string' },\r\n      },\r\n    },\r\n    content: {\r\n      name: 'Content',\r\n      control: {\r\n        type: 'text',\r\n      },\r\n      description: 'Specifies the body text display.',\r\n      table: {\r\n        category: 'Properties',\r\n        type: { summary: 'string' },\r\n      },\r\n    },\r\n    size: {\r\n      name: 'Size',\r\n      control: {\r\n        type: 'select',\r\n      },\r\n      options: ['small', 'medium', 'large'],\r\n      table: {\r\n        category: 'Properties',\r\n        defaultValue: { summary: 'small' },\r\n        type: { summary: 'string' },\r\n      },\r\n      description:\r\n        'Specifies the size of the modal. This string should be: small, medium or large.',\r\n    },\r\n    type: {\r\n      name: 'Type',\r\n      control: {\r\n        type: 'select',\r\n      },\r\n      options: ['alert', 'informative', 'action'],\r\n      table: {\r\n        category: 'Properties',\r\n        defaultValue: { summary: 'action' },\r\n        type: { summary: 'string' },\r\n      },\r\n      description:\r\n        'Specifies the type of the modal. This string should be: alert, informative or action.',\r\n    },\r\n    alertStyle: {\r\n      name: 'Alert Style',\r\n      control: {\r\n        type: 'select',\r\n      },\r\n      options: [\r\n        'normal',\r\n        'primary',\r\n        'success',\r\n        'event',\r\n        'warning',\r\n        'error',\r\n        'neutral',\r\n      ],\r\n      table: {\r\n        category: 'Properties',\r\n        defaultValue: { summary: 'primary' },\r\n        type: { summary: 'string' },\r\n      },\r\n      description:\r\n        'Specifies the size of the modal. This string should be: error, warning, event, neutral, success, primary',\r\n    },\r\n    primaryBtnLabel: {\r\n      name: 'Primary Button Label',\r\n      control: {\r\n        type: 'string',\r\n      },\r\n      description: 'Specifies the text of the main button.',\r\n      table: {\r\n        category: 'Properties',\r\n        type: { summary: 'string' },\r\n      },\r\n    },\r\n    secondaryBtnLabel: {\r\n      name: 'Secondary Button Label',\r\n      control: {\r\n        type: 'string',\r\n      },\r\n      description: 'Specifies the text of the secondary button.',\r\n      table: {\r\n        category: 'Properties',\r\n        type: { summary: 'string' },\r\n      },\r\n    },\r\n  },\r\n  args: {\r\n    title: 'Modal Title',\r\n    subtitle: 'Modal Subtitle',\r\n    content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',\r\n    size: 'small',\r\n    type: 'action',\r\n    alertStyle: 'error',\r\n    primaryBtnLabel: 'Action',\r\n    secondaryBtnLabel: 'Cancel',\r\n  },\r\n} as Meta<typeof BmbModalComponent>;\r\n\r\nfunction attributes(object: { [key: string]: any }): string {\r\n  return Object.entries(object)\r\n    .filter(([key]) => key !== 'text')\r\n    .map(([key, value]) => {\r\n      if (key === 'duration') {\r\n        return `[${key}]=\"${value}\"`;\r\n      }\r\n      return `${key}=\"${value}\"`;\r\n    })\r\n    .join(' ');\r\n}\r\n\r\nexport const Default: StoryFn<typeof StorybookToastWrapperComponent> = (\r\n  args,\r\n) => {\r\n  return {\r\n    props: args,\r\n    template: `\r\n      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->\r\n      <storybook-toast-wrapper ${attributes(args)}></storybook-toast-wrapper>\r\n      <!-- Start copying from here -->\r\n      <div class=\"actions\">\r\n      <button bmbButton appearance=\"primary\" icon=\"home\" size=\"small\" position=\"left\" [case]=\"false\" (click)=\"onButtonClick()\">Open Modal</button>\r\n      `,\r\n  };\r\n};\r\n",
+            "sourceCode": "import { ModalDataConfig } from './bmb-modal.interface';\nimport { Component, Input } from '@angular/core';\nimport { Meta, StoryFn, moduleMetadata } from '@storybook/angular';\nimport { BmbModalComponent } from './bmb-modal.component';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\nimport { BmbButtonDirective } from '../../directives/button.directive';\nimport { MatDialog } from '@angular/material/dialog';\n\n@Component({\n  standalone: true,\n  imports: [BmbButtonDirective],\n  selector: 'storybook-toast-wrapper',\n  template: `\n    <button\n      bmbButton\n      appearance=\"primary\"\n      icon=\"home\"\n      size=\"small\"\n      position=\"left\"\n      [case]=\"false\"\n      (click)=\"openModalComponent()\"\n    >\n      Open Modal\n    </button>\n  `,\n})\nclass StorybookToastWrapperComponent {\n  @Input() title: string = 'Titulo Modal';\n  @Input() subtitle: string = 'Subtitulo Opcional';\n  @Input() content?: string =\n    'Lorem ipsum dolor sit amet consectetur adipisicing elit.';\n  @Input() size?: 'small' | 'meidum' | 'large';\n  @Input() type?: 'alert' | 'action' | 'informative';\n  @Input() alertStyle?: 'error' | 'event' | 'neutral' | 'warning' | 'success';\n  @Input() primaryBtnLabel?: string = 'OK';\n  @Input() secondaryBtnLabel?: string = 'Cancel';\n  constructor(private matDialog: MatDialog) {}\n\n  data: ModalDataConfig = {\n    title: 'Modal Title',\n    subtitle: 'Modal Subtitle',\n    content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',\n    size: 'large',\n    type: 'action',\n    alertStyle: 'error',\n    primaryBtnLabel: 'Ok',\n    scrollable: false,\n  };\n\n  openModalComponent() {\n    this.matDialog.open(BmbModalComponent, {\n      data: this.data,\n    });\n  }\n}\n\nexport default {\n  title: 'Macro Componentes/Modal',\n  component: BmbModalComponent,\n  decorators: [\n    moduleMetadata({\n      imports: [\n        StorybookToastWrapperComponent,\n        BmbModalComponent,\n        BmbIconComponent,\n        BmbButtonDirective,\n      ],\n      providers: [],\n    }),\n  ],\n  parameters: {\n    docs: {\n      description: {\n        component: `\nBelow is an example of how you can use this component in TypeScript:\n\n\\`\\`\\`typescript\nimport { MatDialog } from '@angular/material/dialog';\nimport { BmbModalComponent, ModalDataConfig } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';\n@Component({\n  selector: 'component',\n  standalone: true,\n  imports: [],\n  templateUrl: './component.html',\n  styleUrl: './component.scss',\n})\nexport class Component {\n    constructor(private matDialog: MatDialog) {}\n\n    data: ModalDataConfig = {\n        title: 'Modal Title',\n        subtitle: 'Modal Subtitle',\n        content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',\n        size: 'large',\n        type: 'alert',\n        alertStyle: 'error',\n        primaryBtnLabel: 'Ok',\n      }\n\n    openModalComponent() {\n      this.matDialog.open(BmbModalComponent, { data: this.data });\n    }\n\\`\\`\\`\n\nBelow is an example of how you can use this component in HTML:\n        `,\n      },\n    },\n  },\n  argTypes: {\n    title: {\n      name: 'Title',\n      control: {\n        type: 'text',\n      },\n      description:\n        'Specifies the text display. This message should be concise and direct.',\n      table: {\n        category: 'Properties',\n        type: { summary: 'string' },\n      },\n    },\n    subtitle: {\n      name: 'Subtitle',\n      control: {\n        type: 'text',\n      },\n      description:\n        'Specifies the subtitle text display. This message should be concise and direct.',\n      table: {\n        category: 'Properties',\n        type: { summary: 'string' },\n      },\n    },\n    content: {\n      name: 'Content',\n      control: {\n        type: 'text',\n      },\n      description: 'Specifies the body text display.',\n      table: {\n        category: 'Properties',\n        type: { summary: 'string' },\n      },\n    },\n    size: {\n      name: 'Size',\n      control: {\n        type: 'select',\n      },\n      options: ['small', 'medium', 'large'],\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 'small' },\n        type: { summary: 'string' },\n      },\n      description:\n        'Specifies the size of the modal. This string should be: small, medium or large.',\n    },\n    type: {\n      name: 'Type',\n      control: {\n        type: 'select',\n      },\n      options: ['alert', 'informative', 'action'],\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 'action' },\n        type: { summary: 'string' },\n      },\n      description:\n        'Specifies the type of the modal. This string should be: alert, informative or action.',\n    },\n    alertStyle: {\n      name: 'Alert Style',\n      control: {\n        type: 'select',\n      },\n      options: [\n        'normal',\n        'primary',\n        'success',\n        'event',\n        'warning',\n        'error',\n        'neutral',\n      ],\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 'primary' },\n        type: { summary: 'string' },\n      },\n      description:\n        'Specifies the size of the modal. This string should be: error, warning, event, neutral, success, primary',\n    },\n    primaryBtnLabel: {\n      name: 'Primary Button Label',\n      control: {\n        type: 'string',\n      },\n      description: 'Specifies the text of the main button.',\n      table: {\n        category: 'Properties',\n        type: { summary: 'string' },\n      },\n    },\n    secondaryBtnLabel: {\n      name: 'Secondary Button Label',\n      control: {\n        type: 'string',\n      },\n      description: 'Specifies the text of the secondary button.',\n      table: {\n        category: 'Properties',\n        type: { summary: 'string' },\n      },\n    },\n  },\n  args: {\n    title: 'Modal Title',\n    subtitle: 'Modal Subtitle',\n    content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',\n    size: 'small',\n    type: 'action',\n    alertStyle: 'error',\n    primaryBtnLabel: 'Action',\n    secondaryBtnLabel: 'Cancel',\n  },\n} as Meta<typeof BmbModalComponent>;\n\nfunction attributes(object: { [key: string]: any }): string {\n  return Object.entries(object)\n    .filter(([key]) => key !== 'text')\n    .map(([key, value]) => {\n      if (key === 'duration') {\n        return `[${key}]=\"${value}\"`;\n      }\n      return `${key}=\"${value}\"`;\n    })\n    .join(' ');\n}\n\nexport const Default: StoryFn<typeof StorybookToastWrapperComponent> = (\n  args,\n) => {\n  return {\n    props: args,\n    template: `\n      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->\n      <storybook-toast-wrapper ${attributes(args)}></storybook-toast-wrapper>\n      <!-- Start copying from here -->\n      <div class=\"actions\">\n      <button bmbButton appearance=\"primary\" icon=\"home\" size=\"small\" position=\"left\" [case]=\"false\" (click)=\"onButtonClick()\">Open Modal</button>\n      `,\n  };\n};\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -12468,7 +12589,7 @@
         },
         {
             "name": "StorybookToastWrapperComponent",
-            "id": "component-StorybookToastWrapperComponent-57e08f272c71e721ffb2107528ba2b7b8b9bcf90eb99f9edcf3c9adaebe33ccb988826a7040db47e8ba28764b4acbee464863a86c88b015e77632848e1d0f0f8-1",
+            "id": "component-StorybookToastWrapperComponent-1e0147c85560bfca8a8316efb7308458b4aca7b36098d3f73c17b47555c3cd865995f395f8f8f888eedf10118de0308aac3f79fd1adc5dd531c5e041ac8ef7a4-1",
             "file": "projects/ds-ng/src/lib/components/bmb-overlay/bmb-overlay.stories.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -12478,7 +12599,7 @@
             "selector": "storybook-toast-wrapper",
             "styleUrls": [],
             "styles": [],
-            "template": "  <div style=\"width: 100%; height: 500px\">\n    <button\n      style=\"position: absolute; z-index: 3;\"\n      bmbButton\n      appearance=\"primary\"\n      icon=\"home\"\n      size=\"small\"\n      position=\"left\"\n      [case]=\"false\"\n      (click)=\"showOverlay()\"\n    >\n      Open Overlay\n    </button>\n\n    <bmb-overlay [active]=\"this.showOverlayComponent\"/>\n</div>\n",
+            "template": "<div style=\"width: 100%; height: 500px\">\n  <button\n    style=\"position: absolute; z-index: 3;\"\n    bmbButton\n    appearance=\"primary\"\n    icon=\"home\"\n    size=\"small\"\n    position=\"left\"\n    [case]=\"false\"\n    (click)=\"showOverlay()\"\n  >\n    Open Overlay\n  </button>\n\n  <bmb-overlay [active]=\"this.showOverlayComponent\" />\n</div>\n",
             "templateUrl": [],
             "viewProviders": [],
             "hostDirectives": [],
@@ -12530,7 +12651,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, ViewChild } from '@angular/core';\r\nimport { Meta, StoryFn, moduleMetadata } from '@storybook/angular';\r\nimport {BmbOverlayComponent } from './bmb-overlay.component';\r\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\r\nimport { BmbButtonDirective } from '../../directives/button.directive';\r\n\r\n@Component({\r\n  standalone: true,\r\n  imports: [BmbOverlayComponent, BmbButtonDirective, BmbIconComponent],\r\n  selector: 'storybook-toast-wrapper',\r\n  template: `\r\n  <div style=\"width: 100%; height: 500px\">\r\n    <button\r\n      style=\"position: absolute; z-index: 3;\"\r\n      bmbButton\r\n      appearance=\"primary\"\r\n      icon=\"home\"\r\n      size=\"small\"\r\n      position=\"left\"\r\n      [case]=\"false\"\r\n      (click)=\"showOverlay()\"\r\n    >\r\n      Open Overlay\r\n    </button>\r\n\r\n    <bmb-overlay [active]=\"this.showOverlayComponent\"/>\r\n</div>\r\n  `,\r\n})\r\nclass StorybookToastWrapperComponent {\r\n    showOverlayComponent: boolean = false\r\n    constructor() {}\r\n\r\n    showOverlay() {\r\n        this.showOverlayComponent = !this.showOverlayComponent\r\n    }\r\n}\r\n\r\nexport default {\r\n  title: 'Micro Componentes/Overlay',\r\n  component: BmbOverlayComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [\r\n        StorybookToastWrapperComponent,\r\n        BmbOverlayComponent,\r\n        BmbIconComponent,\r\n        BmbButtonDirective,\r\n      ],\r\n      providers: [],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        component: `\r\nBelow is an example of how you can use this component in TypeScript:\r\n\r\n\\`\\`\\`typescript\r\nimport { BmbOverlayComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';\r\n@Component({\r\n  selector: 'component',\r\n  standalone: true,\r\n  imports: [BmbOverlayComponent],\r\n  templateUrl: './component.html',\r\n  styleUrl: './component.scss',\r\n})\r\n\\`\\`\\`\r\n\r\nBelow is an example of how you can use this component in HTML:\r\n        `,\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    active: {\r\n        name: 'Active',\r\n        control: { type: 'boolean' },\r\n        description: 'Show or hide overlay',\r\n        table: {\r\n          category: 'Properties',\r\n          defaultValue: { summary: 'false' },\r\n          type: { summary: 'boolean' },\r\n        },\r\n      },\r\n  },\r\n  args: {\r\n    active: false,\r\n  },\r\n} as Meta<typeof BmbOverlayComponent>;\r\n\r\nexport const Default: StoryFn<typeof StorybookToastWrapperComponent> = (args) => {\r\n  return {\r\n    props: args,\r\n    template: `\r\n      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->\r\n      <storybook-toast-wrapper></storybook-toast-wrapper>\r\n      <!-- Start copying from here -->\r\n      <div class=\"actions\">\r\n      <button bmbButton appearance=\"primary\" icon=\"home\" size=\"small\" position=\"left\" [case]=\"false\" (click)=\"onButtonClick()\">Open Modal</button>\r\n      `,\r\n  };\r\n};\r\n",
+            "sourceCode": "import { Component, Input, ViewChild } from '@angular/core';\nimport { Meta, StoryFn, moduleMetadata } from '@storybook/angular';\nimport { BmbOverlayComponent } from './bmb-overlay.component';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\nimport { BmbButtonDirective } from '../../directives/button.directive';\n\n@Component({\n  standalone: true,\n  imports: [BmbOverlayComponent, BmbButtonDirective, BmbIconComponent],\n  selector: 'storybook-toast-wrapper',\n  template: `\n    <div style=\"width: 100%; height: 500px\">\n      <button\n        style=\"position: absolute; z-index: 3;\"\n        bmbButton\n        appearance=\"primary\"\n        icon=\"home\"\n        size=\"small\"\n        position=\"left\"\n        [case]=\"false\"\n        (click)=\"showOverlay()\"\n      >\n        Open Overlay\n      </button>\n\n      <bmb-overlay [active]=\"this.showOverlayComponent\" />\n    </div>\n  `,\n})\nclass StorybookToastWrapperComponent {\n  showOverlayComponent: boolean = false;\n  constructor() {}\n\n  showOverlay() {\n    this.showOverlayComponent = !this.showOverlayComponent;\n  }\n}\n\nexport default {\n  title: 'Micro Componentes/Overlay',\n  component: BmbOverlayComponent,\n  decorators: [\n    moduleMetadata({\n      imports: [\n        StorybookToastWrapperComponent,\n        BmbOverlayComponent,\n        BmbIconComponent,\n        BmbButtonDirective,\n      ],\n      providers: [],\n    }),\n  ],\n  parameters: {\n    docs: {\n      description: {\n        component: `\nBelow is an example of how you can use this component in TypeScript:\n\n\\`\\`\\`typescript\nimport { BmbOverlayComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';\n@Component({\n  selector: 'component',\n  standalone: true,\n  imports: [BmbOverlayComponent],\n  templateUrl: './component.html',\n  styleUrl: './component.scss',\n})\n\\`\\`\\`\n\nBelow is an example of how you can use this component in HTML:\n        `,\n      },\n    },\n  },\n  argTypes: {\n    active: {\n      name: 'Active',\n      control: { type: 'boolean' },\n      description: 'Show or hide overlay',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 'false' },\n        type: { summary: 'boolean' },\n      },\n    },\n  },\n  args: {\n    active: false,\n  },\n} as Meta<typeof BmbOverlayComponent>;\n\nexport const Default: StoryFn<typeof StorybookToastWrapperComponent> = (\n  args,\n) => {\n  return {\n    props: args,\n    template: `\n      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->\n      <storybook-toast-wrapper></storybook-toast-wrapper>\n      <!-- Start copying from here -->\n      <div class=\"actions\">\n      <button bmbButton appearance=\"primary\" icon=\"home\" size=\"small\" position=\"left\" [case]=\"false\" (click)=\"onButtonClick()\">Open Modal</button>\n      `,\n  };\n};\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -12942,7 +13063,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "StoryFn<>",
-                "defaultValue": "(\r\n  args,\r\n) => {\r\n  return {\r\n    props: args,\r\n    template: `\r\n      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->\r\n      <storybook-toast-wrapper ${attributes(args)}></storybook-toast-wrapper>\r\n      <!-- Start copying from here -->\r\n      <div class=\"actions\">\r\n      <button bmbButton appearance=\"primary\" icon=\"home\" size=\"small\" position=\"left\" [case]=\"false\" (click)=\"onButtonClick()\">Open Modal</button>\r\n      `,\r\n  };\r\n}"
+                "defaultValue": "(\n  args,\n) => {\n  return {\n    props: args,\n    template: `\n      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->\n      <storybook-toast-wrapper ${attributes(args)}></storybook-toast-wrapper>\n      <!-- Start copying from here -->\n      <div class=\"actions\">\n      <button bmbButton appearance=\"primary\" icon=\"home\" size=\"small\" position=\"left\" [case]=\"false\" (click)=\"onButtonClick()\">Open Modal</button>\n      `,\n  };\n}"
             },
             {
                 "name": "Default",
@@ -12952,7 +13073,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "StoryFn<>",
-                "defaultValue": "(args) => {\r\n  return {\r\n    props: args,\r\n    template: `\r\n      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->\r\n      <storybook-toast-wrapper></storybook-toast-wrapper>\r\n      <!-- Start copying from here -->\r\n      <div class=\"actions\">\r\n      <button bmbButton appearance=\"primary\" icon=\"home\" size=\"small\" position=\"left\" [case]=\"false\" (click)=\"onButtonClick()\">Open Modal</button>\r\n      `,\r\n  };\r\n}"
+                "defaultValue": "(\n  args,\n) => {\n  return {\n    props: args,\n    template: `\n      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->\n      <storybook-toast-wrapper></storybook-toast-wrapper>\n      <!-- Start copying from here -->\n      <div class=\"actions\">\n      <button bmbButton appearance=\"primary\" icon=\"home\" size=\"small\" position=\"left\" [case]=\"false\" (click)=\"onButtonClick()\">Open Modal</button>\n      `,\n  };\n}"
             },
             {
                 "name": "Default",
@@ -13416,7 +13537,7 @@
                         "type": "IFixDecimals",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "4d59e6ec-58a8-4a0e-afe7-6b668bcd4389",
+                        "destrucuredGroupId": "459a7d27-9353-4e19-ae1f-d329977930d6",
                         "destructuredParameter": true
                     },
                     {
@@ -13425,7 +13546,7 @@
                         "deprecated": false,
                         "deprecationMessage": "",
                         "defaultValue": "2",
-                        "destrucuredGroupId": "4d59e6ec-58a8-4a0e-afe7-6b668bcd4389",
+                        "destrucuredGroupId": "459a7d27-9353-4e19-ae1f-d329977930d6",
                         "destructuredParameter": true
                     }
                 ],
@@ -13435,7 +13556,7 @@
                         "type": "IFixDecimals",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "4d59e6ec-58a8-4a0e-afe7-6b668bcd4389",
+                        "destrucuredGroupId": "459a7d27-9353-4e19-ae1f-d329977930d6",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -13447,7 +13568,7 @@
                         "deprecated": false,
                         "deprecationMessage": "",
                         "defaultValue": "2",
-                        "destrucuredGroupId": "4d59e6ec-58a8-4a0e-afe7-6b668bcd4389",
+                        "destrucuredGroupId": "459a7d27-9353-4e19-ae1f-d329977930d6",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -14382,7 +14503,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "StoryFn<>",
-                    "defaultValue": "(\r\n  args,\r\n) => {\r\n  return {\r\n    props: args,\r\n    template: `\r\n      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->\r\n      <storybook-toast-wrapper ${attributes(args)}></storybook-toast-wrapper>\r\n      <!-- Start copying from here -->\r\n      <div class=\"actions\">\r\n      <button bmbButton appearance=\"primary\" icon=\"home\" size=\"small\" position=\"left\" [case]=\"false\" (click)=\"onButtonClick()\">Open Modal</button>\r\n      `,\r\n  };\r\n}"
+                    "defaultValue": "(\n  args,\n) => {\n  return {\n    props: args,\n    template: `\n      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->\n      <storybook-toast-wrapper ${attributes(args)}></storybook-toast-wrapper>\n      <!-- Start copying from here -->\n      <div class=\"actions\">\n      <button bmbButton appearance=\"primary\" icon=\"home\" size=\"small\" position=\"left\" [case]=\"false\" (click)=\"onButtonClick()\">Open Modal</button>\n      `,\n  };\n}"
                 }
             ],
             "projects/ds-ng/src/lib/components/bmb-overlay/bmb-overlay.stories.ts": [
@@ -14394,7 +14515,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "StoryFn<>",
-                    "defaultValue": "(args) => {\r\n  return {\r\n    props: args,\r\n    template: `\r\n      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->\r\n      <storybook-toast-wrapper></storybook-toast-wrapper>\r\n      <!-- Start copying from here -->\r\n      <div class=\"actions\">\r\n      <button bmbButton appearance=\"primary\" icon=\"home\" size=\"small\" position=\"left\" [case]=\"false\" (click)=\"onButtonClick()\">Open Modal</button>\r\n      `,\r\n  };\r\n}"
+                    "defaultValue": "(\n  args,\n) => {\n  return {\n    props: args,\n    template: `\n      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->\n      <storybook-toast-wrapper></storybook-toast-wrapper>\n      <!-- Start copying from here -->\n      <div class=\"actions\">\n      <button bmbButton appearance=\"primary\" icon=\"home\" size=\"small\" position=\"left\" [case]=\"false\" (click)=\"onButtonClick()\">Open Modal</button>\n      `,\n  };\n}"
                 }
             ],
             "projects/ds-ng/src/lib/components/bmb-progress-bar/bmb-progress-bar.stories.ts": [
@@ -14881,7 +15002,7 @@
                             "type": "IFixDecimals",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "4d59e6ec-58a8-4a0e-afe7-6b668bcd4389",
+                            "destrucuredGroupId": "459a7d27-9353-4e19-ae1f-d329977930d6",
                             "destructuredParameter": true
                         },
                         {
@@ -14890,7 +15011,7 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "defaultValue": "2",
-                            "destrucuredGroupId": "4d59e6ec-58a8-4a0e-afe7-6b668bcd4389",
+                            "destrucuredGroupId": "459a7d27-9353-4e19-ae1f-d329977930d6",
                             "destructuredParameter": true
                         }
                     ],
@@ -14900,7 +15021,7 @@
                             "type": "IFixDecimals",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "4d59e6ec-58a8-4a0e-afe7-6b668bcd4389",
+                            "destrucuredGroupId": "459a7d27-9353-4e19-ae1f-d329977930d6",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
@@ -14912,7 +15033,7 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "defaultValue": "2",
-                            "destrucuredGroupId": "4d59e6ec-58a8-4a0e-afe7-6b668bcd4389",
+                            "destrucuredGroupId": "459a7d27-9353-4e19-ae1f-d329977930d6",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
@@ -16341,7 +16462,7 @@
                 "linktype": "component",
                 "name": "BmbSidebarComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/7",
+                "coverageCount": "0/10",
                 "status": "low"
             },
             {
@@ -16350,7 +16471,7 @@
                 "linktype": "interface",
                 "name": "SidebarElement",
                 "coveragePercent": 0,
-                "coverageCount": "0/5",
+                "coverageCount": "0/6",
                 "status": "low"
             },
             {
@@ -16424,8 +16545,8 @@
                 "type": "component",
                 "linktype": "component",
                 "name": "BmbTablesComponent",
-                "coveragePercent": 7,
-                "coverageCount": "3/41",
+                "coveragePercent": 0,
+                "coverageCount": "0/45",
                 "status": "low"
             },
             {
