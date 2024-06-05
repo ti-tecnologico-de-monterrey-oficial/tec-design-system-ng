@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-story',
+  selector: 'bmb-story',
   standalone: true,
   imports: [],
   templateUrl: './story.component.html',

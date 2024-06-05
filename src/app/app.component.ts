@@ -517,7 +517,7 @@ export class AppComponent {
   select(event: string) {
     window.alert(event);
   }
-  clickButton(event: any) {
+  clickButton(event: Event) {
     window.alert(event);
   }
 }
