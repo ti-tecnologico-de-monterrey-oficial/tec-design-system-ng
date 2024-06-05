@@ -36,6 +36,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
 import { TableColum, TableConfig } from './bmb-tables.interface';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'bmb-table',
@@ -51,9 +52,10 @@ import { TableColum, TableConfig } from './bmb-tables.interface';
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
+    MatTooltipModule,
   ],
   templateUrl: './bmb-tables.component.html',
-  styleUrl: './bmb-tables.component.scss',
+  styleUrls: ['./bmb-tables.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   animations: [
@@ -68,7 +70,7 @@ import { TableColum, TableConfig } from './bmb-tables.interface';
   ],
 })
 export class BmbTablesComponent implements AfterViewInit, OnInit {
-  dataSource: MatTableDataSource<Array<any>> = new MatTableDataSource();
+  dataSource: MatTableDataSource<any> = new MatTableDataSource();
   tableDisplayColumns: string[] = [];
   tableColumns: TableColum[] = [];
   expandedElement: any;
@@ -76,7 +78,6 @@ export class BmbTablesComponent implements AfterViewInit, OnInit {
   tableConfig: TableConfig | undefined;
   paginatorSize: number | undefined;
 
-  // Resize Columns
   pressed = false;
   currentResizeIndex?: number;
   startX?: number;
@@ -89,7 +90,7 @@ export class BmbTablesComponent implements AfterViewInit, OnInit {
     this.paginatorSize = size;
   }
 
-  @Input() set data(data: Array<any>) {
+  @Input() set data(data: any[]) {
     this.dataSource = new MatTableDataSource(data);
   }
 
@@ -103,14 +104,14 @@ export class BmbTablesComponent implements AfterViewInit, OnInit {
   }
 
   @Input() actionTemplate?: TemplateRef<any> | null;
-
   @Input() detailTemplate: TemplateRef<any> | null = null;
 
   @Output() select: EventEmitter<any> = new EventEmitter();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-
   @ViewChild(MatTable, { read: ElementRef }) private matTableRef?: ElementRef;
+  @ViewChild('headerCellRef') headerCellRef!: ElementRef;
+  @ViewChild('cellRef') cellRef!: ElementRef;
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -124,45 +125,23 @@ export class BmbTablesComponent implements AfterViewInit, OnInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.setTableResize(this.matTableRef!.nativeElement.clientWidth);
+
+    const headerHasEllipsis = this.hasEllipsis(
+      this.headerCellRef?.nativeElement,
+    );
+
+    this.dataSource.data.forEach((row: any) => {
+      const cellHasEllipsis = this.hasEllipsis(this.cellRef?.nativeElement);
+    });
   }
 
   setTableResize(tableWidth: number) {
     let totWidth = 0;
     this.tableColumns.forEach((column) => {
-      if (column.width == undefined) {
-        column.width = 50;
-      }
+      column.width = column.width || 50;
       totWidth += column.width!;
     });
     const scale = (tableWidth - 5) / totWidth;
-    this.tableColumns.forEach((column) => {
-      column!.width! *= scale;
-      this.setColumnWidth(column);
-    });
-  }
-
-  setColumnWidth(column: any) {
-    const columnEls = Array.from(
-      document.getElementsByClassName('mat-column-' + column.def),
-    );
-    columnEls.forEach((el: any) => {
-      el.style.width = column.width + 'px';
-    });
-  }
-
-  setColumnWidthChanges(index: number, width: number) {
-    const orgWidth = this.tableColumns[index].width;
-    const dx = width - orgWidth!;
-    if (dx !== 0) {
-      const j = this.isResizingRight ? index + 1 : index - 1;
-      const newWidth = this.tableColumns[j].width! - dx;
-      if (newWidth > 50) {
-        this.tableColumns[index].width = width;
-        this.setColumnWidth(this.tableColumns[index]);
-        this.tableColumns[j].width = newWidth;
-        this.setColumnWidth(this.tableColumns[j]);
-      }
-    }
   }
 
   mouseMove(index: number) {
@@ -175,40 +154,28 @@ export class BmbTablesComponent implements AfterViewInit, OnInit {
             ? event.pageX - this.startX!
             : -event.pageX + this.startX!;
           const width = this.startWidth! + dx;
-          if (this.currentResizeIndex === index && width > 50) {
-            this.setColumnWidthChanges(index, width);
-          }
         }
       },
     );
-    this.resizableMouseup = this.renderer.listen(
-      'document',
-      'mouseup',
-      (event) => {
-        if (this.pressed) {
-          this.pressed = false;
-          this.currentResizeIndex = -1;
-          this.resizableMousemove!();
-          this.resizableMouseup!();
-        }
-      },
-    );
+    this.resizableMouseup = this.renderer.listen('document', 'mouseup', () => {
+      if (this.pressed) {
+        this.pressed = false;
+        this.currentResizeIndex = -1;
+        this.resizableMousemove!();
+        this.resizableMouseup!();
+      }
+    });
   }
 
-  private checkResizing(event: any, index: any) {
+  checkResizing(event: any, index: any) {
     const cellData = this.getCellData(index);
-    if (
+    this.isResizingRight =
       index === 0 ||
       (Math.abs(event.pageX - cellData.right) < cellData.width / 2 &&
-        index !== this.tableColumns.length - 1)
-    ) {
-      this.isResizingRight = true;
-    } else {
-      this.isResizingRight = false;
-    }
+        index !== this.tableColumns.length - 1);
   }
 
-  private getCellData(index: number) {
+  getCellData(index: number) {
     const headerRow =
       this.matTableRef!.nativeElement.children[0].querySelector('tr');
     const cell = headerRow.children[index];
@@ -245,14 +212,12 @@ export class BmbTablesComponent implements AfterViewInit, OnInit {
     }
   }
 
-  /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
 
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
   toggleAllRows() {
     if (this.isAllSelected()) {
       this.selection.clear();
@@ -264,11 +229,49 @@ export class BmbTablesComponent implements AfterViewInit, OnInit {
     this.onSelect();
   }
 
-  /** The label for the checkbox on the passed row */
   checkboxLabel(row?: any): string {
     if (!row) {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
+  }
+
+  isEven(rowIndex: number): boolean {
+    const filteredIndex = this.dataSource.data
+      .filter((row) => !row.isDetail)
+      .findIndex((row, index) => index === rowIndex);
+    return filteredIndex % 2 === 0;
+  }
+
+  isOdd(rowIndex: number): boolean {
+    return !this.isEven(rowIndex);
+  }
+
+  hasEllipsis(element: HTMLTableCellElement | undefined): boolean {
+    if (!element) {
+      return false;
+    }
+
+    const elementRef = new ElementRef(element);
+    return (
+      elementRef.nativeElement.scrollWidth >
+      elementRef.nativeElement.clientWidth
+    );
+  }
+
+  getPaginationText(): string {
+    if (
+      !this.paginator ||
+      this.paginator.length === 0 ||
+      this.paginator.pageSize === 0
+    ) {
+      return `0 de ${this.paginator?.length || 0}`;
+    }
+    const startIndex = this.paginator.pageIndex * this.paginator.pageSize + 1;
+    const endIndex = Math.min(
+      (this.paginator.pageIndex + 1) * this.paginator.pageSize,
+      this.paginator.length,
+    );
+    return `${startIndex} - ${endIndex} de ${this.paginator.length}`;
   }
 }

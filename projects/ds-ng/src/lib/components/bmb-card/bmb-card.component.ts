@@ -13,7 +13,14 @@ import {
 import { CommonModule } from '@angular/common';
 import { SizeNames } from '../../types';
 
-export type IBmbCardType = 'primary' | 'secondary' | 'succes' | 'info' | 'warning' | 'error' | 'normal';
+export type IBmbCardType =
+  | 'primary'
+  | 'secondary'
+  | 'succes'
+  | 'info'
+  | 'warning'
+  | 'error'
+  | 'normal';
 
 @Component({
   selector: 'bmb-card',

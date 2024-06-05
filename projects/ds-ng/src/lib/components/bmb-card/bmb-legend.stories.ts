@@ -75,7 +75,15 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'select',
       },
-      options: ['primary', 'secondary', 'succes', 'info', 'warning', 'error', 'normal'],
+      options: [
+        'primary',
+        'secondary',
+        'succes',
+        'info',
+        'warning',
+        'error',
+        'normal',
+      ],
       table: {
         type: { summary: 'string' },
         category: 'Properties',
@@ -88,7 +96,7 @@ Below is an example of how you can use this component in HTML:
     borderRadius: 'm',
     padding: 'm',
     margin: 'm',
-    type: 'normal'
+    type: 'normal',
   },
 } as Meta<typeof BmbCardComponent>;
 

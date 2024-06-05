@@ -3,4 +3,5 @@ export interface SidebarElement {
   icon: string;
   title: string;
   link: string;
+  target?: string;
 }
