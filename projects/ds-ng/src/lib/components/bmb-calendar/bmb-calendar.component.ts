@@ -5,6 +5,7 @@ import {
   ViewEncapsulation,
   Output,
   EventEmitter,
+  HostListener,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DateTime } from 'luxon';
@@ -13,6 +14,8 @@ import { BmbCalendarTemplateDayComponent } from './common/bmb-calendar-template-
 import { BmbCalendarTemplateMonthComponent } from './common/bmb-calendar-template-month/bmb-calendar-template-month.component';
 import { BmbLoaderComponent } from '../bmb-loader/bmb-loader.component';
 import { BmbCalendarHeaderComponent } from './common/bmb-calendar-header/bmb-calendar-header.component';
+import { BmbCalendarTemplateMobileComponent } from './common/bmb-calendar-template-mobile/bmb-calendar-template-mobile.component';
+import { BmbCalendarTemplateEventListComponent } from './common/bmb-calendar-template-event-list/bmb-calendar-template-event-list.component';
 import {
   IBmbCalendarEvent,
   IBmbCalendarEventClick,
@@ -35,6 +38,8 @@ export { IBmbCalendarEvent, IBmbCalendarEventClick } from './types';
     BmbLoaderComponent,
     BmbCalendarHeaderComponent,
     BmbCalendarTemplateEventComponent,
+    BmbCalendarTemplateMobileComponent,
+    BmbCalendarTemplateEventListComponent,
   ],
   styleUrl: './bmb-calendar.component.scss',
   templateUrl: './bmb-calendar.component.html',
@@ -56,6 +61,19 @@ export class BmbCalendarComponent {
 
   @Output() onDateChange: EventEmitter<any> = new EventEmitter<any>();
 
+  @HostListener('window:resize', ['$event'])
+  private resize() {
+    if (window.innerWidth < 1000) {
+      this.view = 'day';
+    } else {
+      this.isListShowing = false;
+    }
+  }
+
+  ngOnInit() {
+    this.view = window.innerWidth < 1000 ? 'day' : this.view;
+  }
+
   now =
     this.currentDate === ''
       ? DateTime.now()
@@ -63,6 +81,7 @@ export class BmbCalendarComponent {
   weekNumber = this.now.weekNumber;
   renderWeekDays: DateTime[] = getWeekDays(this.now);
   selectedEvent: { event: IBmbCalendarEvent; position: any } | null = null;
+  isListShowing: boolean = false;
 
   handleDateChange(range: IBmbCalendarView, now: DateTime): void {
     this.view = range;
@@ -70,7 +89,7 @@ export class BmbCalendarComponent {
 
     switch (range) {
       case 'day':
-        visibleDates = [now.toISO()];
+        visibleDates = getMonthDays(now).map((date) => date.toISO());
         break;
 
       case 'week':
@@ -110,5 +129,9 @@ export class BmbCalendarComponent {
     if (typeof height === 'number') return `${height}px`;
 
     return height;
+  }
+
+  onViewTypeChange() {
+    this.isListShowing = !this.isListShowing;
   }
 }

@@ -70,7 +70,7 @@ export default {
     appearance: {
       name: 'Appearance',
       control: {
-        type: 'radio',
+        type: 'select',
       },
       options: ['main', 'normal', 'simple'],
       description: 'The style of the input',

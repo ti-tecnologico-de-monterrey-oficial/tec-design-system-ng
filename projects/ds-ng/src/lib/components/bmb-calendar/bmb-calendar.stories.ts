@@ -30,7 +30,7 @@ Below is an example of how you can use this component in HTML:
   argTypes: {
     view: {
       name: 'View',
-      control: 'radio',
+      control: 'select',
       options: ['day', 'week', 'month'],
       description: 'Select the view type.',
       table: {

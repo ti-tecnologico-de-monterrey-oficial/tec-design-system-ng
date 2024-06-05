@@ -9,7 +9,7 @@
   <h3 class="bmb_calendar-event-title">
     {{ event.title }}
   </h3>
-  @if (isPositionAbsolute) {
+  @if (extendedContent) {
     <p class="bmb_calendar-event-content">{{ event.detail }}</p>
     <span class="bmb_calendar-event-time">{{ handleTimeRange(event) }}</span>
   }

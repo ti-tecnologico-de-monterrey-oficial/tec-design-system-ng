@@ -1,11 +1,16 @@
 @use "../../../assets/styles/base/rem" as rem;
 @use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/mixins" as mixins;
 
 .bmb_calendar {
-  background-color: RGBA(var(--color-charade-100));
-  padding: rem.rem_calc(32);
+  background-color: RGBA(var(--color-charade-200));
   position: relative;
   overflow: hidden;
+
+  @include mixins.media-query(1000, "min") {
+    padding: rem.rem_calc(32);
+    background-color: RGBA(var(--color-charade-100));
+  }
 
   &-detail-header {
     display: flex;
@@ -18,12 +23,15 @@
     top: 0;
     z-index: 1;
     background: RGBA(var(--color-charade-100));
+    @include mixins.media-query(999, "max") {
+      display: none;
+    }
 
     h2 {
       @include fonts.font(3, medium);
       font-weight: 400;
 
-      &::first-letter {
+      &::first-letter .bmb-first-letter {
         text-transform: capitalize;
       }
     }

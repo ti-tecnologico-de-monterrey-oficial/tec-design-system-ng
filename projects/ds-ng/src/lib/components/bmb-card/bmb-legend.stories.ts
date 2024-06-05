@@ -28,13 +28,13 @@ Below is an example of how you can use this component in HTML:
     },
   },
   argTypes: {
-    //   @Input() borderRadius: SizeNames | SizeNames[] = 'm';
-    // @Input() padding: SizeNames | SizeNames[] = 'm';
-    // @Input() margin: SizeNames | SizeNames[] = 'm';
+    //   @Input() borderRadius: SizeNames, SizeNames[] = 'm';
+    // @Input() padding: SizeNames, SizeNames[] = 'm';
+    // @Input() margin: SizeNames, SizeNames[] = 'm';
     borderRadius: {
       name: 'Border radius',
       control: {
-        type: 'radio',
+        type: 'select',
       },
       options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],
       table: {
@@ -47,7 +47,7 @@ Below is an example of how you can use this component in HTML:
     padding: {
       name: 'Padding',
       control: {
-        type: 'radio',
+        type: 'select',
       },
       options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],
       table: {
@@ -60,7 +60,7 @@ Below is an example of how you can use this component in HTML:
     margin: {
       name: 'Margin',
       control: {
-        type: 'radio',
+        type: 'select',
       },
       options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],
       table: {
@@ -70,11 +70,25 @@ Below is an example of how you can use this component in HTML:
       },
       description: 'Set the margin size',
     },
+    type: {
+      name: 'Type',
+      control: {
+        type: 'select',
+      },
+      options: ['primary', 'secondary', 'succes', 'info', 'warning', 'error', 'normal'],
+      table: {
+        type: { summary: 'string' },
+        category: 'Properties',
+        defaultValue: { summary: 'normal' },
+      },
+      description: 'Set the color schema',
+    },
   },
   args: {
     borderRadius: 'm',
     padding: 'm',
     margin: 'm',
+    type: 'normal'
   },
 } as Meta<typeof BmbCardComponent>;
 

@@ -13,8 +13,8 @@ import {
   IBmbCalendarEventClick,
   IBmbCalendarRenderEvents,
 } from '../../types';
-import { DateTime, Info } from 'luxon';
-import { getWeekDays, eventsInDate } from '../../utils';
+import { DateTime } from 'luxon';
+import { eventsInDate, dayName, weeksAndDays } from '../../utils';
 import { CommonModule } from '@angular/common';
 import { BmbCalendarScheduleCardsComponent } from '../bmb-calendar-schedule-cards/bmb-calendar-schedule-cards.component';
 
@@ -40,21 +40,12 @@ export class BmbCalendarTemplateMonthComponent {
   @Output() onSelectEvent: EventEmitter<IBmbCalendarEventClick> =
     new EventEmitter<IBmbCalendarEventClick>();
 
-  getWeeksAndDays(): DateTime[] {
-    const calculateFirstDay = getWeekDays(this.now);
-
-    let weekDays = [];
-
-    for (let day = 0; day <= 34; day++) {
-      weekDays.push(calculateFirstDay[0].plus({ days: day }));
-    }
-
-    return weekDays;
+  getWeeksAndDays(date: DateTime): DateTime[] {
+    return weeksAndDays(date);
   }
 
-  getDayName(date: DateTime): string {
-    const defaultDayOrder = Info.weekdays('short', { locale: this.lang });
-    return defaultDayOrder[date.weekday - 1];
+  getDayName(date: DateTime, lang: string) {
+    return dayName(date, lang);
   }
 
   isNow(date: DateTime): boolean {
