@@ -57,7 +57,7 @@ export interface Target {
 import names from '../names.json';
 
 @Component({
-  selector: 'app-my-page',
+  selector: 'bmb-my-page',
   standalone: true,
   imports: [
     CommonModule,

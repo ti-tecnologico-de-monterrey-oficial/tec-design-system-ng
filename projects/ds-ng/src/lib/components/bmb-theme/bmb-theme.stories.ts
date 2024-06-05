@@ -51,8 +51,7 @@ Below is an example of how you can use this component in HTML:
     showControls: {
       name: 'Show controls',
       control: { type: 'boolean' },
-      description:
-        'Display the theme control',
+      description: 'Display the theme control',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'true' },

@@ -1,6 +1,6 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
-import {BmbOverlayComponent } from './bmb-overlay.component';
+import { BmbOverlayComponent } from './bmb-overlay.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbButtonDirective } from '../../directives/button.directive';
 
@@ -9,31 +9,31 @@ import { BmbButtonDirective } from '../../directives/button.directive';
   imports: [BmbOverlayComponent, BmbButtonDirective, BmbIconComponent],
   selector: 'storybook-toast-wrapper',
   template: `
-  <div style="width: 100%; height: 500px">
-    <button
-      style="position: absolute; z-index: 3;"
-      bmbButton
-      appearance="primary"
-      icon="home"
-      size="small"
-      position="left"
-      [case]="false"
-      (click)="showOverlay()"
-    >
-      Open Overlay
-    </button>
+    <div style="width: 100%; height: 500px">
+      <button
+        style="position: absolute; z-index: 3;"
+        bmbButton
+        appearance="primary"
+        icon="home"
+        size="small"
+        position="left"
+        [case]="false"
+        (click)="showOverlay()"
+      >
+        Open Overlay
+      </button>
 
-    <bmb-overlay [active]="this.showOverlayComponent"/>
-</div>
+      <bmb-overlay [active]="this.showOverlayComponent" />
+    </div>
   `,
 })
 class StorybookToastWrapperComponent {
-    showOverlayComponent: boolean = false
-    constructor() {}
+  showOverlayComponent: boolean = false;
+  constructor() {}
 
-    showOverlay() {
-        this.showOverlayComponent = !this.showOverlayComponent
-    }
+  showOverlay() {
+    this.showOverlayComponent = !this.showOverlayComponent;
+  }
 }
 
 export default {
@@ -74,22 +74,24 @@ Below is an example of how you can use this component in HTML:
   },
   argTypes: {
     active: {
-        name: 'Active',
-        control: { type: 'boolean' },
-        description: 'Show or hide overlay',
-        table: {
-          category: 'Properties',
-          defaultValue: { summary: 'false' },
-          type: { summary: 'boolean' },
-        },
+      name: 'Active',
+      control: { type: 'boolean' },
+      description: 'Show or hide overlay',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
       },
+    },
   },
   args: {
     active: false,
   },
 } as Meta<typeof BmbOverlayComponent>;
 
-export const Default: StoryFn<typeof StorybookToastWrapperComponent> = (args) => {
+export const Default: StoryFn<typeof StorybookToastWrapperComponent> = (
+  args,
+) => {
   return {
     props: args,
     template: `

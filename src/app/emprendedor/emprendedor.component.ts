@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { BmbSidebarComponent } from '../../../projects/ds-ng/src/public-api';
 
 @Component({
-  selector: 'app-emprendedor',
+  selector: 'bmb-emprendedor',
   standalone: true,
   imports: [RouterModule, BmbSidebarComponent],
   templateUrl: './emprendedor.component.html',
