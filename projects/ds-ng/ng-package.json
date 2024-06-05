@@ -10,5 +10,6 @@
       "input": "src/assets/fonts",
       "output": "./assets/fonts"
     }
-  ]
+  ],
+  "allowedNonPeerDependencies": ["luxon", "@angular/material"]
 }

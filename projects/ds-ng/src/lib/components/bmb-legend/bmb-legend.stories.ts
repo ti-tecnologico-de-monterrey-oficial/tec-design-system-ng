@@ -53,7 +53,7 @@ Below is an example of how you can use this component in HTML:
     indicatorAppearance: {
       name: 'Indicator appearance',
       control: {
-        type: 'radio',
+        type: 'select',
       },
       options: [
         'normal',

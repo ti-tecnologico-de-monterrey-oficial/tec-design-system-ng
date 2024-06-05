@@ -1,0 +1,62 @@
+<div
+  class="bmb_modal-content"
+  [ngClass]="{
+    'bmb_modal-size-small': this.modalData.size == 'small',
+    'bmb_modal-size-medium': this.modalData.size == 'medium',
+    'bmb_modal-size-large': this.modalData.size == 'large'
+  }"
+>
+  <div class="bmb_modal-content-wrapper">
+    <header class="bmb_modal-header">
+      @if (modalData.type == "alert") {
+        <div class="bmb_modal-header-icon">
+          <img [src]="this.svgUrl" alt="" />
+        </div>
+      }
+      <div class="bmb_modal-header-text">
+        <h1 class="bmb_modal-header-text-title">{{ modalData.title }}</h1>
+        @if (modalData.subtitle) {
+          <h3 class="bmb_modal-header-text-subtitle">subtitulo</h3>
+        }
+      </div>
+      <div class="bmb_modal-header-close">
+        <bmb-icon
+          class="bmb_modal-header-close-icon"
+          [icon]="'close'"
+          (click)="closeModal()"
+          onkeypress=""
+        />
+      </div>
+    </header>
+    <section class="bmb_modal-body">
+      <div
+        class="bmb_modal-body-description"
+        [ngClass]="{ 'bmb_modal-body-scrollable': modalData.scrollable }"
+      >
+        <p class="bmb_modal-body-description-text">{{ modalData.content }}</p>
+      </div>
+    </section>
+    @if (this.modalData.type !== "informative") {
+      <footer id="modal-footer" class="bmb_modal-footer">
+        @if (this.modalData.secondaryBtnLabel) {
+          <button
+            bmbButton
+            appearance="secondary-filled"
+            class="bmb_modal-btn bmb_modal-footer-btn bmb_modal-btn-secondary-action"
+            (click)="this.dialogRef.close(false)"
+          >
+            {{ modalData.secondaryBtnLabel }}
+          </button>
+        }
+        <button
+          bmbButton
+          class="bmb_modal-btn"
+          [ngClass]="btnColor"
+          (click)="this.dialogRef.close(true)"
+        >
+          {{ modalData.primaryBtnLabel || "OK" }}
+        </button>
+      </footer>
+    }
+  </div>
+</div>

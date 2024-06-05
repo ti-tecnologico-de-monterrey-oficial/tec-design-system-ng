@@ -1,18 +1,17 @@
 {
   "name": "@ti-tecnologico-de-monterrey-oficial/ds-ng",
-  "version": "0.0.9-beta-1",
+  "version": "0.2.1",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
   "repository": "https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng",
   "peerDependencies": {
-    "@angular/common": "^17.0.0",
-    "@angular/core": "^17.0.0",
-    "luxon": "^3.4.4",
     "rxjs": "~7.8.0"
   },
   "dependencies": {
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "luxon": "^3.4.4",
+    "@angular/material": "^17.0.5"
   },
   "exports": {
     "./assets/styles/main.min.css": "./dist/ds-ng/assets/styles/main.min.css"

@@ -19,7 +19,7 @@ import { BmbCalendarScheduleCardsComponent } from '../bmb-calendar-schedule-card
 import { eventsInDate } from '../../utils';
 
 @Component({
-  selector: 'bmb-bmb-calendar-template-day',
+  selector: 'bmb-calendar-template-day',
   standalone: true,
   imports: [
     CommonModule,

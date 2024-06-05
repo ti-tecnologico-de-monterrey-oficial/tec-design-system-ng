@@ -42,6 +42,7 @@ import {
   BmbLayoutDirective,
   BmbCardComponent,
   BmbTablesComponent,
+  BmbModalComponent,
 } from '../../projects/ds-ng/src/public-api';
 
 import {
@@ -56,6 +57,8 @@ export interface Target {
 }
 
 import names from './names.json';
+import { ModalDataConfig } from '../../projects/ds-ng/src/lib/components/bmb-modal/bmb-modal.interface';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -99,13 +102,17 @@ import names from './names.json';
     BmbCardComponent,
     BmbIconComponent,
     BmbTablesComponent,
+    BmbModalComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private matDialog: MatDialog,
+  ) {}
 
   myTabs: IBmbTab[] = [
     { id: 1, title: 'Tec de Monterrey', badge: 1, isActive: true },
@@ -132,19 +139,31 @@ export class AppComponent {
   boolUserSummary = true;
   value = 'tec-design';
 
+  dataModal: ModalDataConfig = {
+    title: 'Modal Title',
+    subtitle: 'Modal Subtitle',
+    content:
+      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.',
+    size: 'small',
+    type: 'alert',
+    alertStyle: 'error',
+    primaryBtnLabel: 'Action',
+    secondaryBtnLabel: 'Cancel',
+  };
+
   isCalendarLoading = false;
   calendarEvents: IBmbCalendarEvent[] = [
     {
       title: 'Test',
       detail: 'Detail test',
-      start: '2024-04-23T15:00:00.715Z',
-      end: '2024-04-23T15:30:00.715Z',
+      start: '2024-05-23T15:00:00.715Z',
+      end: '2024-05-23T15:30:00.715Z',
     },
     {
       title: 'Test jnsf dkjn jasn kljnsd kljfna klsdj nfklajsndfk lajndksf',
       detail: 'Dkjaskdjjhasbdfjhasbdjkhfbjkahsdbf',
-      start: '2024-04-24T15:00:00.715Z',
-      end: '2024-04-24T16:00:00.715Z',
+      start: '2024-05-24T15:00:00.715Z',
+      end: '2024-05-24T16:00:00.715Z',
     },
   ];
 
@@ -182,6 +201,10 @@ export class AppComponent {
     name: 'Juan Pedro Sánchez Miranda',
     role: 'Role de usuario',
   };
+
+  openModal() {
+    this.matDialog.open(BmbModalComponent, { data: this.data });
+  }
 
   @ViewChild(BmbToastComponent)
   private toastComponent!: BmbToastComponent;
@@ -258,20 +281,20 @@ export class AppComponent {
         {
           title: 'Test',
           detail: 'Detail test',
-          start: '2024-04-23T15:00:00.715Z',
-          end: '2024-04-23T15:30:00.715Z',
+          start: '2024-05-23T15:00:00.715Z',
+          end: '2024-05-23T15:30:00.715Z',
         },
         {
           title: 'Test jnsf dkjn jasn kljnsd kljfna klsdj nfklajsndfk lajndksf',
           detail: 'Dkjaskdjjhasbdfjhasbdjkhfbjkahsdbf',
-          start: '2024-04-24T15:00:00.715Z',
-          end: '2024-04-24T16:00:00.715Z',
+          start: '2024-05-24T15:00:00.715Z',
+          end: '2024-05-24T16:00:00.715Z',
         },
         {
           title: 'Test',
           detail: 'Detail test',
-          start: '2024-04-25T22:56:44.715Z',
-          end: '2024-04-25T23:56:44.715Z',
+          start: '2024-05-25T22:56:44.715Z',
+          end: '2024-05-25T23:56:44.715Z',
         },
       ];
       this.isCalendarLoading = false;

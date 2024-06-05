@@ -96,8 +96,14 @@
                 "input": "projects/ds-ng/src/assets",
                 "output": "/assets/"
               },
+              {
+                "glob": "**/*",
+                "input": "projects/ds-ng/src/svg",
+                "output": "/svg/"
+              },
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/svg"
             ],
             "styles": ["projects/ds-ng/src/assets/styles/main.scss"],
             "scripts": []
@@ -169,5 +175,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": true
   }
 }
