@@ -4,37 +4,37 @@
 
 $types: (
   "primary": (
-    "border":  RGBA(var(--color-mariner-900)),
+    "border": RGBA(var(--color-mariner-900)),
     "background": RGBA(var(--color-mariner-700)),
     "color": RGBA(var(--color-charade-50)),
   ),
   "secondary": (
-    "border":  RGBA(var(--color-charade-300)),
+    "border": RGBA(var(--color-charade-300)),
     "background": RGBA(var(--color-white-primary)),
     "color": RGBA(var(--color-charade-950)),
   ),
   "succes": (
-    "border":  RGBA(var(--color-green-primary)),
+    "border": RGBA(var(--color-green-primary)),
     "background": RGBA(var(--color-green-light)),
-    "color":  RGBA(var(--color-charade-50)),
+    "color": RGBA(var(--color-charade-50)),
   ),
   "info": (
-    "border":  RGBA(var(--color-purple-light)),
+    "border": RGBA(var(--color-purple-light)),
     "background": RGBA(var(--color-purple-primary)),
-    "color":  RGBA(var(--color-charade-50)),
+    "color": RGBA(var(--color-charade-50)),
   ),
   "warning": (
-    "border":  RGBA(var(--color-yellow-primary)),
+    "border": RGBA(var(--color-yellow-primary)),
     "background": RGBA(var(--color-yellow-tint)),
-    "color":  RGBA(var(--color-charade-950)),
+    "color": RGBA(var(--color-charade-950)),
   ),
   "error": (
-    "border":  RGBA(var(--color-red-primary)),
+    "border": RGBA(var(--color-red-primary)),
     "background": RGBA(var(--color-red-light)),
-    "color":  RGBA(var(--color-charade-950)),
+    "color": RGBA(var(--color-charade-950)),
   ),
   "normal": (
-    "border":  RGBA(var(--color-charade-300)),
+    "border": RGBA(var(--color-charade-300)),
     "background": RGBA(var(--color-charade-100)),
     "color": RGBA(var(--color-charade-950)),
   ),
@@ -42,12 +42,12 @@ $types: (
 
 $dark: (
   "secondary": (
-    "border":  RGBA(var(--color-charade-800)),
+    "border": RGBA(var(--color-charade-800)),
     "background": RGBA(var(--color-charade-950)),
     "color": RGBA(var(--color-charade-50)),
   ),
   "normal": (
-    "border":  RGBA(var(--color-charade-800)),
+    "border": RGBA(var(--color-charade-800)),
     "background": RGBA(var(--color-charade-900)),
     "color": RGBA(var(--color-charade-50)),
   ),
@@ -55,7 +55,7 @@ $dark: (
 
 .bmb_card {
   border-width: rem.rem_calc(1);
-  border-style:  solid;
+  border-style: solid;
   @include fonts.font(3, regular);
 
   @each $name, $type in $types {
@@ -78,7 +78,6 @@ $dark: (
 [data-theme="dark"],
 .storybook-dark-theme {
   .bmb_card {
-
     @each $name, $type in $dark {
       &.bmb_card-type-#{$name} {
         background-color: map.get($type, "background");

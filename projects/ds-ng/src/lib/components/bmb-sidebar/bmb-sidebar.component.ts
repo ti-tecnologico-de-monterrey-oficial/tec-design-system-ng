@@ -3,41 +3,62 @@ import {
   Input,
   ChangeDetectionStrategy,
   ViewEncapsulation,
+  OnInit,
 } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule, NavigationEnd } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { SidebarElement } from './bmb-sidebar.interface';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'bmb-sidebar',
   standalone: true,
   imports: [BmbIconComponent, CommonModule, RouterModule],
   templateUrl: './bmb-sidebar.component.html',
-  styleUrl: './bmb-sidebar.component.scss',
+  styleUrls: ['./bmb-sidebar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbSidebarComponent {
+export class BmbSidebarComponent implements OnInit {
   @Input() elements: SidebarElement[][] = [];
 
-  currentChoice: string = '';
+  currentUrl: string = '';
+  isOpen: boolean = false;
 
-  ngOnInit() {
-    if (this.elements.length > 0 && this.elements[0].length > 0) {
-      this.currentChoice = this.elements[0][0].title;
+  constructor(private router: Router) {
+    this.router.events
+      .pipe(
+        filter(
+          (event): event is NavigationEnd => event instanceof NavigationEnd,
+        ),
+      )
+      .subscribe((event: NavigationEnd) => {
+        this.currentUrl = event.urlAfterRedirects;
+      });
+  }
+
+  ngOnInit() {}
+
+  isExternalLink(link: string): boolean {
+    return (
+      link.startsWith('http://') ||
+      link.startsWith('https://') ||
+      link.startsWith('#')
+    );
+  }
+
+  setExternalLinkActive(link: string) {
+    if (!this.isExternalLink(link)) {
+      this.currentUrl = link;
     }
   }
 
-  setActive(choice: string) {
-    this.currentChoice = choice;
+  isLinkActive(link: string): boolean {
+    return this.currentUrl === link;
   }
 
-  getActive(choice: string): string {
-    return this.currentChoice === choice ? 'active' : 'inactive';
-  }
-
-  isInternalLink(link: string): boolean {
-    return link.startsWith('/');
+  toggleSidebar() {
+    this.isOpen = !this.isOpen;
   }
 }

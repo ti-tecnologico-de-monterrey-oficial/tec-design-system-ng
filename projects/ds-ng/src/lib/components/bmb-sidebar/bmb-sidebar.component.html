@@ -1,26 +1,51 @@
-<nav class="bmb_sidebar" aria-label="Sidebar Navigation">
-  <bmb-icon class="bmb_sidebar-open" icon="arrow_back_ios" />
+<nav
+  class="bmb_sidebar"
+  [class.bmb_sidebar-isOpen]="isOpen"
+  aria-label="Sidebar Navigation"
+>
+  <button class="bmb_sidebar-button" type="button" (click)="toggleSidebar()">
+    <bmb-icon class="bmb_sidebar-button-icon" icon="arrow_back_ios"></bmb-icon>
+  </button>
   <ng-container *ngFor="let group of elements">
     <ul class="bmb_sidebar-list">
       <li *ngFor="let element of group" class="bmb_sidebar-item">
-        <a
-          class="bmb_sidebar-link"
-          [id]="element.id"
-          [ngClass]="'bmb_sidebar-link-' + getActive(element.title)"
-          [routerLink]="isInternalLink(element.link) ? element.link : null"
-          (click)="setActive(element.title)"
-          [attr.target]="isInternalLink(element.link) ? null : '_blank'"
-          [attr.rel]="
-            isInternalLink(element.link) ? null : 'noopener noreferrer'
-          "
-        >
-          <bmb-icon
-            class="bmb_sidebar-icon"
-            [icon]="element.icon"
-            [materialIcon]="true"
-          />
-          <span class="bmb_sidebar-text">{{ element.title }}</span>
-        </a>
+        <ng-container *ngIf="!isExternalLink(element.link); else externalLink">
+          <a
+            class="bmb_sidebar-link"
+            [id]="element.id"
+            [routerLink]="element.link"
+            routerLinkActive="bmb_sidebar-link-active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <bmb-icon
+              class="bmb_sidebar-icon"
+              [icon]="element.icon"
+              [materialIcon]="true"
+            ></bmb-icon>
+            <span class="bmb_sidebar-text">{{ element.title }}</span>
+          </a>
+        </ng-container>
+        <ng-template #externalLink>
+          <a
+            class="bmb_sidebar-link"
+            [id]="element.id"
+            [ngClass]="{
+              'bmb_sidebar-link-active':
+                isLinkActive(element.link) && !isExternalLink(element.link)
+            }"
+            [href]="element.link"
+            [target]="element.target ? element.target : '_blank'"
+            rel="noopener noreferrer"
+            (click)="setExternalLinkActive(element.link)"
+          >
+            <bmb-icon
+              class="bmb_sidebar-icon"
+              [icon]="element.icon"
+              [materialIcon]="true"
+            ></bmb-icon>
+            <span class="bmb_sidebar-text">{{ element.title }}</span>
+          </a>
+        </ng-template>
       </li>
     </ul>
   </ng-container>
