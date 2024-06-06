@@ -20,7 +20,7 @@ const config: StorybookConfig = {
     defaultName: 'Documentation',
   },
   webpackFinal: async (config) => {
-    config.plugins = config.plugins || [];
+    config.plugins ||= [];
     config.plugins.push(
       new CopyWebpackPlugin({
         patterns: [

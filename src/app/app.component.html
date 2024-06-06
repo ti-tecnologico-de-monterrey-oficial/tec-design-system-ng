@@ -5,7 +5,8 @@
   [lang]="topBarLang"
   (onLangChange)="handleLangChange($event)"
 ></bmb-top-bar>
-<bmb-theme [initialTheme]="'light'" />
+<bmb-theme [showControls]="false" [initialTheme]="'dark'" />
+<!-- <bmb-sidebar [elements]="sidebarElements" /> -->
 
 <div style="display: flex; gap: 3em">
   <a routerLink="/home" class="font-bold-6">Home</a>
