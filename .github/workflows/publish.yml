@@ -17,7 +17,8 @@ jobs:
           registry-url: https://registry.npmjs.org
 
       - run: npm ci
-      - run: ng build
+      - run: npm build:lib
+      - run: cd projects/ds-ng/
       - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
