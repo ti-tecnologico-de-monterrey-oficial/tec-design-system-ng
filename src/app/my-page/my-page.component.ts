@@ -4,7 +4,7 @@ import {
   ViewChild,
   ChangeDetectorRef,
 } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 import { FormControl, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import {
@@ -42,31 +42,26 @@ import {
   BmbLayoutDirective,
   BmbCardComponent,
   BmbTablesComponent,
-  BmbModalComponent,
-} from '../../projects/ds-ng/src/public-api';
+} from '../../../projects/ds-ng/src/public-api';
 
 import {
   IBmbTab,
   IBmbCalendarEvent,
   IBmbCalendarEventClick,
-  BmbIconComponent,
-} from '../../projects/ds-ng/src/public-api';
+} from '../../../projects/ds-ng/src/public-api';
 export interface Target {
   target: string;
   index: number;
 }
 
-import names from './names.json';
-import { ModalDataConfig } from '../../projects/ds-ng/src/lib/components/bmb-modal/bmb-modal.interface';
-import { MatDialog } from '@angular/material/dialog';
+import names from '../names.json';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'app-root',
+  selector: 'bmb-my-page',
   standalone: true,
   imports: [
     CommonModule,
-    RouterModule,
+    RouterOutlet,
     BmbThemeComponent,
     BmbBadgeComponent,
     BmbButtonDirective,
@@ -100,19 +95,14 @@ import { MatDialog } from '@angular/material/dialog';
     BmbLayoutDirective,
     BmbLayoutItemDirective,
     BmbCardComponent,
-    BmbIconComponent,
     BmbTablesComponent,
-    BmbModalComponent,
   ],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  templateUrl: './my-page.component.html',
+  styleUrl: './my-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {
-  constructor(
-    private cdr: ChangeDetectorRef,
-    private matDialog: MatDialog,
-  ) {}
+export class MyPageComponent {
+  constructor(private cdr: ChangeDetectorRef) {}
 
   myTabs: IBmbTab[] = [
     { id: 1, title: 'Tec de Monterrey', badge: 1, isActive: true },
@@ -139,31 +129,19 @@ export class AppComponent {
   boolUserSummary = true;
   value = 'tec-design';
 
-  dataModal: ModalDataConfig = {
-    title: 'Modal Title',
-    subtitle: 'Modal Subtitle',
-    content:
-      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.',
-    size: 'small',
-    type: 'alert',
-    alertStyle: 'error',
-    primaryBtnLabel: 'Action',
-    secondaryBtnLabel: 'Cancel',
-  };
-
   isCalendarLoading = false;
   calendarEvents: IBmbCalendarEvent[] = [
     {
       title: 'Test',
       detail: 'Detail test',
-      start: '2024-05-23T15:00:00.715Z',
-      end: '2024-05-23T15:30:00.715Z',
+      start: '2024-04-23T15:00:00.715Z',
+      end: '2024-04-23T15:30:00.715Z',
     },
     {
       title: 'Test jnsf dkjn jasn kljnsd kljfna klsdj nfklajsndfk lajndksf',
       detail: 'Dkjaskdjjhasbdfjhasbdjkhfbjkahsdbf',
-      start: '2024-05-24T15:00:00.715Z',
-      end: '2024-05-24T16:00:00.715Z',
+      start: '2024-04-24T15:00:00.715Z',
+      end: '2024-04-24T16:00:00.715Z',
     },
   ];
 
@@ -177,21 +155,9 @@ export class AppComponent {
       { id: 1, icon: 'assignment_add', title: 'Elegir documentos', link: '#' },
       { id: 2, icon: 'task', title: 'Agregar firmantes', link: '#' },
       { id: 3, icon: 'note_alt', title: 'Crear envelope', link: '#' },
-      {
-        id: 4,
-        icon: 'checklist_rtl',
-        title: 'Estado de archivos',
-        link: '/home',
-      },
+      { id: 4, icon: 'checklist_rtl', title: 'Estado de archivos', link: '#' },
     ],
-    [
-      {
-        id: 5,
-        icon: 'account_box',
-        title: 'Admin. usuarios',
-        link: '/my-page',
-      },
-    ],
+    [{ id: 5, icon: 'account_box', title: 'Admin. usuarios', link: '/' }],
   ];
   i = 0;
 
@@ -201,10 +167,6 @@ export class AppComponent {
     name: 'Juan Pedro Sánchez Miranda',
     role: 'Role de usuario',
   };
-
-  openModal() {
-    this.matDialog.open(BmbModalComponent, { data: this.data });
-  }
 
   @ViewChild(BmbToastComponent)
   private toastComponent!: BmbToastComponent;
@@ -281,20 +243,20 @@ export class AppComponent {
         {
           title: 'Test',
           detail: 'Detail test',
-          start: '2024-05-23T15:00:00.715Z',
-          end: '2024-05-23T15:30:00.715Z',
+          start: '2024-04-23T15:00:00.715Z',
+          end: '2024-04-23T15:30:00.715Z',
         },
         {
           title: 'Test jnsf dkjn jasn kljnsd kljfna klsdj nfklajsndfk lajndksf',
           detail: 'Dkjaskdjjhasbdfjhasbdjkhfbjkahsdbf',
-          start: '2024-05-24T15:00:00.715Z',
-          end: '2024-05-24T16:00:00.715Z',
+          start: '2024-04-24T15:00:00.715Z',
+          end: '2024-04-24T16:00:00.715Z',
         },
         {
           title: 'Test',
           detail: 'Detail test',
-          start: '2024-05-25T22:56:44.715Z',
-          end: '2024-05-25T23:56:44.715Z',
+          start: '2024-04-25T22:56:44.715Z',
+          end: '2024-04-25T23:56:44.715Z',
         },
       ];
       this.isCalendarLoading = false;
@@ -392,132 +354,5 @@ export class AppComponent {
 
   onSelect(name: string) {
     window.alert(name.toString());
-  }
-
-  // Table
-  data = [
-    {
-      document: 'Contrato profresor cátedra Biología marina CCM.pdf',
-      id: '0890',
-      folio: '0010',
-      sign: 'Iniciado',
-      clave: 'Iniciado',
-      un: 'Iniciado',
-      calificacion: 'Iniciado',
-      curso: 'Iniciado',
-      column1: 'Text',
-      column2: 'Text',
-      column3: 'Text',
-      detail:
-        'Descripción ejemplo Expandable Row. Borem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-    },
-    {
-      document: 'Matemáticas I',
-      id: '3468',
-      folio: '0011',
-      sign: 'Firmado',
-      clave: 'Firmado',
-      un: 'Firmado',
-      calificacion: 'Firmado',
-      curso: 'Firmado',
-      column1: 'Text',
-      column2: 'Text',
-      column3: 'Text',
-      detail:
-        'Descripción ejemplo Expandable Row. Borem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-    },
-    {
-      document: 'Expresión verbal en el ámbito profesional',
-      id: '4579',
-      folio: '0012',
-      sign: 'En proceso',
-      clave: 'En proceso',
-      un: 'En proceso',
-      calificacion: 'En proceso',
-      curso: 'En proceso',
-      column1: 'Text',
-      column2: 'Text',
-      column3: 'Text',
-      detail:
-        'Descripción ejemplo Expandable Row. Borem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-    },
-    {
-      document: 'Diseño de estructuras de concreto',
-      id: '2356',
-      folio: '0013',
-      sign: 'En proceso',
-      clave: 'En proceso',
-      un: 'En proceso',
-      calificacion: 'En proceso',
-      curso: 'En proceso',
-      column1: 'Text',
-      column2: 'Text',
-      column3: 'Text',
-      detail:
-        'Descripción ejemplo Expandable Row. Borem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-    },
-    {
-      document: 'Planeación de microempresas para el desarrollo social',
-      id: '5789',
-      folio: '0014',
-      sign: 'Firmado',
-      clave: 'Firmado',
-      un: 'Firmado',
-      calificacion: 'Firmado',
-      curso: 'Firmado',
-      column1: 'Text',
-      column2: 'Text',
-      column3: 'Text',
-      detail:
-        'Descripción ejemplo Expandable Row. Borem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-    },
-    {
-      document: 'Administración de obras',
-      id: '2345',
-      folio: '0015',
-      sign: 'Firmado',
-      clave: 'Firmado',
-      un: 'Firmado',
-      calificacion: 'Firmado',
-      curso: 'Firmado',
-      column1: 'Text',
-      column2: 'Text',
-      column3: 'Text',
-      detail:
-        'Descripción ejemplo Expandable Row. Borem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-    },
-  ];
-  columns = [
-    {
-      def: 'document',
-      label: 'Nombre del Documento',
-      dataKey: 'document',
-    },
-    { def: 'id', label: 'Id', dataKey: 'id' },
-    { def: 'folio', label: 'Folio de Docs', dataKey: 'folio' },
-    { def: 'sign', label: 'Estado de firma', dataKey: 'sign' },
-    { def: 'clave', label: 'Clave', dataKey: 'clave' },
-    { def: 'un', label: 'Un', dataKey: 'un' },
-    {
-      def: 'calificacion',
-      label: 'Calificación',
-      dataKey: 'calificacion',
-    },
-    { def: 'curso', label: 'Curso ó Req', dataKey: 'curso' },
-    { def: 'column1', label: 'Column Header', dataKey: 'column1' },
-    { def: 'column2', label: 'Column Header', dataKey: 'column2' },
-    { def: 'column3', label: 'Column Header', dataKey: 'column3' },
-  ];
-  config = {
-    isSelectable: true,
-    isExpandible: true,
-    isPaginable: true,
-    showActions: true,
-  };
-  select(event: string) {
-    window.alert(event);
-  }
-  clickButton(event: Event) {
-    window.alert(event);
   }
 }
