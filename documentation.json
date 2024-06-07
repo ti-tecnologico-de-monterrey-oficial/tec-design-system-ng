@@ -6706,7 +6706,7 @@
                 "AfterViewInit",
                 "OnChanges"
             ],
-            "templateData": "<div class=\"bmb_field\">\n  <div class=\"bmb_field-container-label\" *ngIf=\"label\">\n    <label for=\"\" class=\"bmb_field-label\">{{ label }}</label>\n    <span *ngIf=\"isRequired\" class=\"bmb_field-label-required\"> *</span>\n  </div>\n  <div class=\"bmb_field-wrapper\" (click)=\"onParentClick()\" #inputWrapper>\n    <ng-container *ngIf=\"icon\">\n      <bmb-icon [icon]=\"icon\" class=\"bmb_field-icon\" [ngClass]=\"iconColor\" />\n    </ng-container>\n    <input\n      type=\"text\"\n      class=\"bmb_field-input\"\n      [ngClass]=\"this.style\"\n      [ngClass]=\"[!isValid ? 'bmb_field-error' : '']\"\n      (ngModelChange)=\"setValue(input.viewModel)\"\n      (click)=\"onClick()\"\n      (focus)=\"onFocus()\"\n      (blur)=\"onBlur()\"\n      (mouseover)=\"onMouseover()\"\n      [(ngModel)]=\"value || inputModel\"\n      [required]=\"isRequired\"\n      [disabled]=\"isDisabled\"\n      [placeholder]=\"placeholder ? placeholder : ''\"\n      #input=\"ngModel\"\n    />\n  </div>\n  <p\n    class=\"bmb_field-helper\"\n    [ngClass]=\"[!inputModel ? 'bmb_field-error' : '']\"\n  >\n    {{ errorMessage }}\n  </p>\n</div>\n"
+            "templateData": "<div class=\"bmb_field\">\n  <div class=\"bmb_field-container-label\" *ngIf=\"label\">\n    <label for=\"\" class=\"bmb_field-label\">{{ label }}</label>\n    <span *ngIf=\"isRequired\" class=\"bmb_field-label-required\"> *</span>\n  </div>\n  <div class=\"bmb_field-wrapper\" (click)=\"onParentClick()\" #inputWrapper>\n    <ng-container *ngIf=\"icon\">\n      <bmb-icon [icon]=\"icon\" class=\"bmb_field-icon\" [ngClass]=\"iconColor\" />\n    </ng-container>\n    <input\n      type=\"text\"\n      class=\"bmb_field-input\"\n      [ngClass]=\"this.style\"\n      [ngClass]=\"[!isValid ? 'bmb_field-error' : '']\"\n      (ngModelChange)=\"setValue(input.viewModel)\"\n      (click)=\"onClick()\"\n      (focus)=\"onFocus()\"\n      (blur)=\"onBlur()\"\n      (mouseover)=\"onMouseover()\"\n      (ngModel)=\"(value || inputModel)\"\n      [required]=\"isRequired\"\n      [disabled]=\"isDisabled\"\n      [placeholder]=\"placeholder ? placeholder : ''\"\n      #input=\"ngModel\"\n    />\n  </div>\n  <p\n    class=\"bmb_field-helper\"\n    [ngClass]=\"[!inputModel ? 'bmb_field-error' : '']\"\n  >\n    {{ errorMessage }}\n  </p>\n</div>\n"
         },
         {
             "name": "BmbInteractiveIconComponent",
@@ -13246,6 +13246,16 @@
                 "defaultValue": "{}"
             },
             {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <section bmbLayout gapSise=\"m\" [dinamycCols]=\"false\" margin=\"m\">\r\n        <section bmbLayoutItem [colSm]=\"12\">test</section>\r\n      </section>\r\n    `,\r\n  }),\r\n}"
+            },
+            {
                 "name": "eventsInDate",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -13537,7 +13547,7 @@
                         "type": "IFixDecimals",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "459a7d27-9353-4e19-ae1f-d329977930d6",
+                        "destrucuredGroupId": "c295d6af-05b9-4cd4-beb4-a901adac0df2",
                         "destructuredParameter": true
                     },
                     {
@@ -13546,7 +13556,7 @@
                         "deprecated": false,
                         "deprecationMessage": "",
                         "defaultValue": "2",
-                        "destrucuredGroupId": "459a7d27-9353-4e19-ae1f-d329977930d6",
+                        "destrucuredGroupId": "c295d6af-05b9-4cd4-beb4-a901adac0df2",
                         "destructuredParameter": true
                     }
                 ],
@@ -13556,7 +13566,7 @@
                         "type": "IFixDecimals",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "459a7d27-9353-4e19-ae1f-d329977930d6",
+                        "destrucuredGroupId": "c295d6af-05b9-4cd4-beb4-a901adac0df2",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -13568,7 +13578,7 @@
                         "deprecated": false,
                         "deprecationMessage": "",
                         "defaultValue": "2",
-                        "destrucuredGroupId": "459a7d27-9353-4e19-ae1f-d329977930d6",
+                        "destrucuredGroupId": "c295d6af-05b9-4cd4-beb4-a901adac0df2",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -14108,6 +14118,17 @@
                 "subtype": "typealias",
                 "rawtype": "StoryObj<BmbValueCounterComponent>",
                 "file": "projects/ds-ng/src/lib/components/bmb-value-counter/bmb-value-counter.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<BmbLayoutDirective>",
+                "file": "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -14722,6 +14743,18 @@
                     "defaultValue": "{}"
                 }
             ],
+            "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <section bmbLayout gapSise=\"m\" [dinamycCols]=\"false\" margin=\"m\">\r\n        <section bmbLayoutItem [colSm]=\"12\">test</section>\r\n      </section>\r\n    `,\r\n  }),\r\n}"
+                }
+            ],
             "projects/ds-ng/src/lib/components/bmb-fab/bmb-fab-.interface.ts": [
                 {
                     "name": "FAB_SIZE",
@@ -15002,7 +15035,7 @@
                             "type": "IFixDecimals",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "459a7d27-9353-4e19-ae1f-d329977930d6",
+                            "destrucuredGroupId": "c295d6af-05b9-4cd4-beb4-a901adac0df2",
                             "destructuredParameter": true
                         },
                         {
@@ -15011,7 +15044,7 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "defaultValue": "2",
-                            "destrucuredGroupId": "459a7d27-9353-4e19-ae1f-d329977930d6",
+                            "destrucuredGroupId": "c295d6af-05b9-4cd4-beb4-a901adac0df2",
                             "destructuredParameter": true
                         }
                     ],
@@ -15021,7 +15054,7 @@
                             "type": "IFixDecimals",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "459a7d27-9353-4e19-ae1f-d329977930d6",
+                            "destrucuredGroupId": "c295d6af-05b9-4cd4-beb4-a901adac0df2",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
@@ -15033,7 +15066,7 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "defaultValue": "2",
-                            "destrucuredGroupId": "459a7d27-9353-4e19-ae1f-d329977930d6",
+                            "destrucuredGroupId": "c295d6af-05b9-4cd4-beb4-a901adac0df2",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
@@ -15631,6 +15664,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<BmbValueCounterComponent>",
                     "file": "projects/ds-ng/src/lib/components/bmb-value-counter/bmb-value-counter.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbLayoutDirective>",
+                    "file": "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -16828,6 +16874,16 @@
                 "name": "BmbLayoutDirective",
                 "coveragePercent": 0,
                 "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {

@@ -17,7 +17,7 @@
       (focus)="onFocus()"
       (blur)="onBlur()"
       (mouseover)="onMouseover()"
-      [(ngModel)]="value || inputModel"
+      (ngModel)="(value || inputModel)"
       [required]="isRequired"
       [disabled]="isDisabled"
       [placeholder]="placeholder ? placeholder : ''"
