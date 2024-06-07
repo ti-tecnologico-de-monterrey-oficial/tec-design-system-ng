@@ -1,9 +1,6 @@
 {
   "name": "@ti-tecnologico-de-monterrey-oficial/ds-ng",
   "version": "0.2.4",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "repository": "https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng",
   "peerDependencies": {
     "rxjs": "~7.8.0"
