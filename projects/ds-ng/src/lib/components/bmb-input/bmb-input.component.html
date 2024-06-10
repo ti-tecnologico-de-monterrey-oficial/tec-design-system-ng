@@ -5,25 +5,22 @@
   </div>
   <div class="bmb_field-wrapper" (click)="onParentClick()" #inputWrapper>
     <ng-container *ngIf="icon">
-      <bmb-icon
-        [icon]="icon"
-        class="bmb_field-icon"
-        [ngClass]="iconColor"
-      ></bmb-icon>
+      <bmb-icon [icon]="icon" class="bmb_field-icon" [ngClass]="iconColor" />
     </ng-container>
     <input
       type="text"
       class="bmb_field-input"
-      [ngClass]="[style, !isValid ? 'bmb_field-error' : '']"
-      (ngModelChange)="setValue($event)"
+      [ngClass]="this.style"
+      [ngClass]="[!isValid ? 'bmb_field-error' : '']"
+      (ngModelChange)="setValue(input.viewModel)"
       (click)="onClick()"
       (focus)="onFocus()"
       (blur)="onBlur()"
       (mouseover)="onMouseover()"
-      [(ngModel)]="inputModel"
+      [(ngModel)]="value || inputModel"
       [required]="isRequired"
       [disabled]="isDisabled"
-      [placeholder]="placeholder || ''"
+      [placeholder]="placeholder ? placeholder : ''"
       #input="ngModel"
     />
   </div>
