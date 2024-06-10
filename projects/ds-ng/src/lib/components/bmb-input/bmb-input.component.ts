@@ -25,10 +25,9 @@ import {
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { InputType } from './bmb-input.interface';
-
 @Component({
   selector: 'bmb-input',
-  styleUrls: ['./bmb-input.component.scss'],
+  styleUrl: './bmb-input.component.scss',
   templateUrl: './bmb-input.component.html',
   standalone: true,
   imports: [CommonModule, BmbIconComponent, FormsModule],
@@ -122,7 +121,7 @@ export class BmbInputComponent
   }
 
   getValue() {
-    return this.input?.viewModel;
+    return this.input?.['viewModel'];
   }
 
   setValidation(validation: any) {
@@ -184,7 +183,7 @@ export class BmbInputComponent
 
   setValue(value: string) {
     this.onChange(value);
-    if (this.input?.viewModel === '') {
+    if (this.input?.['viewModel'] === '') {
       this.inputModel = undefined;
       this.value = undefined;
       this.cdr.detectChanges();
