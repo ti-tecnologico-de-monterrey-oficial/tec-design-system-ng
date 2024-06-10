@@ -61,7 +61,6 @@ $namesOfSides: "left", "right";
           if($margin == "sm", 999, 1000),
           if($margin == "sm", "max", "min")
         ) {
-          @debug "media query: #{if($margin == 'sm', 999, 1000)} #{if($margin == 'sm', 'max', 'min')}";
           margin-#{$side}: calc(
             #{percentage(math.div($i, $size))} + var(--bmg-gap) - (var(
                     --bmg-gap
