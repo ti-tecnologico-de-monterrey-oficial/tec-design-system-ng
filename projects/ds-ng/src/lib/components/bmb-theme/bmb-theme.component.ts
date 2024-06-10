@@ -26,15 +26,7 @@ export class BmbThemeComponent implements OnInit {
   private initialized = false;
 
   ngOnInit(): void {
-    const savedTheme = localStorage.getItem('theme');
-    if (this.initialTheme) {
-      this.selectedTheme = this.initialTheme;
-    } else if (savedTheme) {
-      this.selectedTheme = savedTheme;
-    } else {
-      this.selectedTheme = this.service.getDefaultTheme();
-    }
-
+    this.selectedTheme = this.calculateTheme();
     this.applyTheme(this.selectedTheme);
 
     this.service.theme$.subscribe((theme: any) => {
@@ -44,6 +36,16 @@ export class BmbThemeComponent implements OnInit {
     });
 
     this.initialized = true;
+  }
+
+  calculateTheme():string {
+    const savedTheme = localStorage.getItem('theme');
+
+    if (!this.showControls && this.initialTheme) return this.initialTheme;
+    if (savedTheme) return savedTheme;
+    if (this.initialTheme) return this.initialTheme;
+
+    return this.service.getDefaultTheme();
   }
 
   applyTheme(theme: string): void {
