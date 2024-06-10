@@ -43,6 +43,7 @@ import {
   BmbCardComponent,
   BmbTablesComponent,
   BmbModalComponent,
+  BmbFrequentAppsSelectorComponent,
 } from '../../projects/ds-ng/src/public-api';
 
 import {
@@ -103,6 +104,7 @@ import { MatDialog } from '@angular/material/dialog';
     BmbIconComponent,
     BmbTablesComponent,
     BmbModalComponent,
+    BmbFrequentAppsSelectorComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

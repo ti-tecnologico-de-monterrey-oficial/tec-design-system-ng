@@ -1,0 +1,25 @@
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/mixins" as mixins;
+@use "../../../assets/styles/base/rem" as rem;
+
+.bmb_frequent_apps {
+  &-title {
+    color: RGBA(var(--color-charade-950));
+    @include fonts.font(5, regular);
+  }
+
+  &-container {
+    display: flex;
+    gap: rem.rem_calc(28);
+    overflow: auto;
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_frequent_apps {
+    &-title {
+      color: RGBA(var(--color-charade-50));
+    }
+  }
+}
