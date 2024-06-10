@@ -47,6 +47,7 @@ export * from './lib/components/bmb-progress-bar/bmb-progress-bar.component';
 export * from './lib/components/bmb-modal/bmb-modal.component';
 export * from './lib/components/bmb-card/bmb-card.component';
 export * from './lib/components/bmb-balance-overview/bmb-balance-overview.component';
+export * from './lib/components/bmb-frequent-apps-selector/bmb-frequent-apps-selector.component';
 // types
 export * from './lib/types';
 // interface

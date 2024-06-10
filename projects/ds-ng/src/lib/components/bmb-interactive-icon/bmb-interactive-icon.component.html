@@ -1,22 +1,52 @@
 <a
+  *ngIf="isExternalLink(link); else internalLink"
   [ngClass]="getClasses()"
   [class.bmb_interactive_icon-horizontal]="horizontal"
   [href]="link"
-  [target]="target"
+  [target]="target ? target : '_blank'"
+  rel="noopener noreferrer"
 >
   <div class="bmb_interactive_icon-box">
     <bmb-icon
       class="bmb_interactive_icon-icon"
       icon="{{ icon }}"
       *ngIf="icon"
-    />
+    ></bmb-icon>
   </div>
   <div class="bmb_interactive_icon-text">
     <span class="bmb_interactive_icon-title" *ngIf="title">{{ title }}</span>
     <span
       class="bmb_interactive_icon-description"
       *ngIf="description && horizontal"
-      >{{ description }}</span
     >
+      {{ description }}
+    </span>
   </div>
 </a>
+
+<ng-template #internalLink>
+  <a
+    [ngClass]="getClasses()"
+    [class.bmb_interactive_icon-horizontal]="horizontal"
+    [routerLink]="link"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    <div class="bmb_interactive_icon-box">
+      <bmb-icon
+        class="bmb_interactive_icon-icon"
+        icon="{{ icon }}"
+        *ngIf="icon"
+      ></bmb-icon>
+    </div>
+    <div class="bmb_interactive_icon-text">
+      <span class="bmb_interactive_icon-title" *ngIf="title">{{ title }}</span>
+      <span
+        class="bmb_interactive_icon-description"
+        *ngIf="description && horizontal"
+      >
+        {{ description }}
+      </span>
+    </div>
+  </a>
+</ng-template>
