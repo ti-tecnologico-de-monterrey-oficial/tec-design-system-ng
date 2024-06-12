@@ -2,6 +2,66 @@
     "pipes": [],
     "interfaces": [
         {
+            "name": "App",
+            "id": "interface-App-75f6637181943bea9e6c8105a9531a3fbff505e196311d8feb3372e081836a1f3ddd51f9772e1f71190bcf041980832984c323ddf60421408d455cd6fc78ea7f",
+            "file": "projects/ds-ng/src/lib/components/bmb-frequent-apps-selector/bmb-frequent-apps-selector.component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import {\n  Component,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n  Input,\n  ViewChild,\n  AfterViewInit,\n  ElementRef,\n} from '@angular/core';\nimport Hammer from 'hammerjs';\nimport { CommonModule } from '@angular/common';\nimport { BmbContainerComponent } from '../bmb-container/bmb-container.component';\nimport { BmbInteractiveIconComponent } from '../bmb-interactive-icon/bmb-interactive-icon.component';\n\ninterface App {\n  icon: string;\n  title: string;\n  link?: string;\n  target?: string;\n  appearance: string;\n}\n\n@Component({\n  selector: 'bmb-frequent-apps-selector',\n  styleUrl: './bmb-frequent-apps-selector.component.scss',\n  templateUrl: './bmb-frequent-apps-selector.component.html',\n  standalone: true,\n  imports: [CommonModule, BmbContainerComponent, BmbInteractiveIconComponent],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbFrequentAppsSelectorComponent implements AfterViewInit {\n  @Input() title: string = '';\n  @Input() apps: App[] = [];\n\n  @ViewChild('container', { static: true }) container!: ElementRef;\n\n  private currentIndex: number = 0;\n  private itemWidth: number = 0;\n\n  ngAfterViewInit() {\n    this.calculateItemWidth();\n    const hammer = new Hammer(this.container.nativeElement);\n    hammer.get('pan').set({ direction: Hammer.DIRECTION_HORIZONTAL });\n\n    hammer.on('panend', (event) => {\n      if (event.deltaX > 0) {\n        this.currentIndex = Math.max(this.currentIndex - 1, 0);\n      } else {\n        this.currentIndex = Math.min(\n          this.currentIndex + 1,\n          this.apps.length - 1,\n        );\n      }\n      this.scrollToCurrentIndex();\n    });\n  }\n\n  private calculateItemWidth() {\n    const container = this.container.nativeElement;\n    const firstItem = container.querySelector('bmb-interactive-icon');\n    this.itemWidth = firstItem ? firstItem.clientWidth : container.clientWidth;\n  }\n\n  private scrollToCurrentIndex() {\n    const container = this.container.nativeElement;\n    container.scrollTo({\n      left: this.currentIndex * this.itemWidth,\n      behavior: 'smooth',\n    });\n  }\n}\n",
+            "properties": [
+                {
+                    "name": "appearance",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 20
+                },
+                {
+                    "name": "icon",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 16
+                },
+                {
+                    "name": "link",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "",
+                    "line": 18
+                },
+                {
+                    "name": "target",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "",
+                    "line": 19
+                },
+                {
+                    "name": "title",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 17
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 171,
+            "methods": [],
+            "extends": []
+        },
+        {
             "name": "BmbProgressCircleOptionsInterface",
             "id": "interface-BmbProgressCircleOptionsInterface-423be6793de23403d1fce58597732b4ac4f5b03cfb4b1086c3611fbeae8ece9a7239e9c87576160ec6b3f722f215c873a164192de0670dec692c1a6d410be077",
             "file": "projects/ds-ng/src/lib/components/bmb-progress-cirlce/bmb-progress-circle.interface.ts",
@@ -5671,6 +5731,164 @@
             "templateData": "<div class=\"bmb_focus_element\">\n  <div class=\"bmb_focus_element-circle\">\n    @if (icon && !number) {\n      <bmb-icon class=\"bmb_focus_element-icon\" icon=\"{{ icon }}\" />\n    }\n    @if (number && !icon) {\n      <span class=\"bmb_focus_element-number\">{{ number }}</span>\n    }\n  </div>\n  @if (title) {\n    <p class=\"bmb_focus_element-title\">{{ title }}</p>\n  }\n</div>\n"
         },
         {
+            "name": "BmbFrequentAppsSelectorComponent",
+            "id": "component-BmbFrequentAppsSelectorComponent-75f6637181943bea9e6c8105a9531a3fbff505e196311d8feb3372e081836a1f3ddd51f9772e1f71190bcf041980832984c323ddf60421408d455cd6fc78ea7f",
+            "file": "projects/ds-ng/src/lib/components/bmb-frequent-apps-selector/bmb-frequent-apps-selector.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-frequent-apps-selector",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-frequent-apps-selector.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "apps",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 34,
+                    "type": "App[]",
+                    "decorators": []
+                },
+                {
+                    "name": "title",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 33,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "container",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ElementRef",
+                    "optional": false,
+                    "description": "",
+                    "line": 36,
+                    "decorators": [
+                        {
+                            "name": "ViewChild",
+                            "stringifiedArguments": "'container', {static: true}"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ]
+                },
+                {
+                    "name": "currentIndex",
+                    "defaultValue": "0",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 38,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "itemWidth",
+                    "defaultValue": "0",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 39,
+                    "modifierKind": [
+                        123
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "calculateItemWidth",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 59,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "ngAfterViewInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 41,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "scrollToCurrentIndex",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 65,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "BmbContainerComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "BmbInteractiveIconComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {\n  Component,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n  Input,\n  ViewChild,\n  AfterViewInit,\n  ElementRef,\n} from '@angular/core';\nimport Hammer from 'hammerjs';\nimport { CommonModule } from '@angular/common';\nimport { BmbContainerComponent } from '../bmb-container/bmb-container.component';\nimport { BmbInteractiveIconComponent } from '../bmb-interactive-icon/bmb-interactive-icon.component';\n\ninterface App {\n  icon: string;\n  title: string;\n  link?: string;\n  target?: string;\n  appearance: string;\n}\n\n@Component({\n  selector: 'bmb-frequent-apps-selector',\n  styleUrl: './bmb-frequent-apps-selector.component.scss',\n  templateUrl: './bmb-frequent-apps-selector.component.html',\n  standalone: true,\n  imports: [CommonModule, BmbContainerComponent, BmbInteractiveIconComponent],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbFrequentAppsSelectorComponent implements AfterViewInit {\n  @Input() title: string = '';\n  @Input() apps: App[] = [];\n\n  @ViewChild('container', { static: true }) container!: ElementRef;\n\n  private currentIndex: number = 0;\n  private itemWidth: number = 0;\n\n  ngAfterViewInit() {\n    this.calculateItemWidth();\n    const hammer = new Hammer(this.container.nativeElement);\n    hammer.get('pan').set({ direction: Hammer.DIRECTION_HORIZONTAL });\n\n    hammer.on('panend', (event) => {\n      if (event.deltaX > 0) {\n        this.currentIndex = Math.max(this.currentIndex - 1, 0);\n      } else {\n        this.currentIndex = Math.min(\n          this.currentIndex + 1,\n          this.apps.length - 1,\n        );\n      }\n      this.scrollToCurrentIndex();\n    });\n  }\n\n  private calculateItemWidth() {\n    const container = this.container.nativeElement;\n    const firstItem = container.querySelector('bmb-interactive-icon');\n    this.itemWidth = firstItem ? firstItem.clientWidth : container.clientWidth;\n  }\n\n  private scrollToCurrentIndex() {\n    const container = this.container.nativeElement;\n    container.scrollTo({\n      left: this.currentIndex * this.itemWidth,\n      behavior: 'smooth',\n    });\n  }\n}\n",
+            "styleUrl": "./bmb-frequent-apps-selector.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "implements": [
+                "AfterViewInit"
+            ],
+            "templateData": "<bmb-container [appearance]=\"'primary-home'\" class=\"bmb_frequent_apps\">\n  <p class=\"bmb_frequent_apps-title\">{{ title }}</p>\n  <div #container class=\"bmb_frequent_apps-container\">\n    <bmb-interactive-icon\n      *ngFor=\"let app of apps\"\n      [icon]=\"app.icon\"\n      [title]=\"app.title\"\n      [link]=\"app.link ?? '#'\"\n      [target]=\"app.target ?? '_self'\"\n      [appearance]=\"app.appearance\"\n    >\n    </bmb-interactive-icon>\n  </div>\n</bmb-container>\n"
+        },
+        {
             "name": "BmbHeaderMobileComponent",
             "id": "component-BmbHeaderMobileComponent-d3f4bb98ed5796e99af7b6b94f25ad3cf4fcf7c665f7f83048d8c5fc6eed4dd73f3b52e4c3e2783337ff932375c7fca9730e4b95e7ce070f064c6d1850bae3a9",
             "file": "projects/ds-ng/src/lib/components/bmb-header-mobile/bmb-header-mobile.component.ts",
@@ -6710,7 +6928,7 @@
         },
         {
             "name": "BmbInteractiveIconComponent",
-            "id": "component-BmbInteractiveIconComponent-a8bbcc0c5d036285932132f1885cfcecfdc74c3e92e1ab49c89a4a7191e11c007353a7a4afb2de0c17b08fe66f87f5015588b30a1988662122ba6aa497147b15",
+            "id": "component-BmbInteractiveIconComponent-283cc807fe37308d28e7befacc3254ba3b881ad6eb3a7c92f73e18151df51f0367f70b40a5612c4287ce3510f3ade63ad2b148e85007c43e3348c2ed544dc35c",
             "file": "projects/ds-ng/src/lib/components/bmb-interactive-icon/bmb-interactive-icon.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -6734,7 +6952,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 23,
+                    "line": 21,
                     "type": "string",
                     "decorators": []
                 },
@@ -6743,17 +6961,8 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 25,
+                    "line": 23,
                     "type": "string",
-                    "decorators": []
-                },
-                {
-                    "name": "grouped",
-                    "defaultValue": "false",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 27,
-                    "type": "boolean",
                     "decorators": []
                 },
                 {
@@ -6761,7 +6970,7 @@
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 28,
+                    "line": 25,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -6770,7 +6979,7 @@
                     "defaultValue": "'face'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 26,
+                    "line": 24,
                     "type": "string",
                     "decorators": []
                 },
@@ -6779,7 +6988,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 30,
+                    "line": 27,
                     "type": "string",
                     "decorators": []
                 },
@@ -6788,7 +6997,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 29,
+                    "line": 26,
                     "type": "string",
                     "decorators": []
                 },
@@ -6797,7 +7006,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 24,
+                    "line": 22,
                     "type": "string",
                     "decorators": []
                 }
@@ -6811,19 +7020,37 @@
                     "optional": false,
                     "returnType": "string[]",
                     "typeParameters": [],
-                    "line": 54,
+                    "line": 29,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
                 {
-                    "name": "ngAfterViewInit",
-                    "args": [],
+                    "name": "isExternalLink",
+                    "args": [
+                        {
+                            "name": "link",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
                     "optional": false,
-                    "returnType": "void",
+                    "returnType": "boolean",
                     "typeParameters": [],
-                    "line": 37,
+                    "line": 39,
                     "deprecated": false,
-                    "deprecationMessage": ""
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "link",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
                 }
             ],
             "deprecated": false,
@@ -6839,62 +7066,22 @@
                 {
                     "name": "BmbIconComponent",
                     "type": "component"
+                },
+                {
+                    "name": "RouterModule",
+                    "type": "module"
                 }
             ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ElementRef,\n  Renderer2,\n  AfterViewInit,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\n\n@Component({\n  selector: 'bmb-interactive-icon',\n  styleUrl: './bmb-interactive-icon.component.scss',\n  templateUrl: './bmb-interactive-icon.component.html',\n  standalone: true,\n  imports: [CommonModule, BmbIconComponent],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbInteractiveIconComponent implements AfterViewInit {\n  @Input() appearance: string = '';\n  @Input() title: string = '';\n  @Input() description: string = '';\n  @Input() icon: string = 'face';\n  @Input() grouped: boolean = false;\n  @Input() horizontal: boolean = false;\n  @Input() target: string = '';\n  @Input() link: string = '';\n\n  constructor(\n    private el: ElementRef,\n    private renderer: Renderer2,\n  ) {}\n\n  ngAfterViewInit() {\n    if (this.grouped) {\n      const parentElement = this.el.nativeElement.parentElement;\n\n      let wrapperDiv = parentElement.querySelector(\n        '.bmb_interactive_icon-grouped',\n      );\n      if (!wrapperDiv) {\n        wrapperDiv = this.renderer.createElement('div');\n        this.renderer.addClass(wrapperDiv, 'bmb_interactive_icon-grouped');\n        this.renderer.insertBefore(parentElement, wrapperDiv, null);\n      }\n\n      this.renderer.appendChild(wrapperDiv, this.el.nativeElement);\n    }\n  }\n\n  getClasses(): string[] {\n    const classes: string[] = ['bmb_interactive_icon'];\n\n    if (this.appearance) {\n      classes.push('bmb_interactive_icon-' + this.appearance);\n    }\n\n    return classes;\n  }\n}\n",
+            "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { RouterModule } from '@angular/router';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\n\n@Component({\n  selector: 'bmb-interactive-icon',\n  styleUrl: './bmb-interactive-icon.component.scss',\n  templateUrl: './bmb-interactive-icon.component.html',\n  standalone: true,\n  imports: [CommonModule, BmbIconComponent, RouterModule],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbInteractiveIconComponent {\n  @Input() appearance: string = '';\n  @Input() title: string = '';\n  @Input() description: string = '';\n  @Input() icon: string = 'face';\n  @Input() horizontal: boolean = false;\n  @Input() target: string = '';\n  @Input() link: string = '';\n\n  getClasses(): string[] {\n    const classes: string[] = ['bmb_interactive_icon'];\n\n    if (this.appearance) {\n      classes.push('bmb_interactive_icon-' + this.appearance);\n    }\n\n    return classes;\n  }\n\n  isExternalLink(link: string): boolean {\n    return (\n      link.startsWith('http://') ||\n      link.startsWith('https://') ||\n      link.startsWith('#')\n    );\n  }\n}\n",
             "styleUrl": "./bmb-interactive-icon.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
-            "constructorObj": {
-                "name": "constructor",
-                "description": "",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "args": [
-                    {
-                        "name": "el",
-                        "type": "ElementRef",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    },
-                    {
-                        "name": "renderer",
-                        "type": "Renderer2",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    }
-                ],
-                "line": 30,
-                "jsdoctags": [
-                    {
-                        "name": "el",
-                        "type": "ElementRef",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    },
-                    {
-                        "name": "renderer",
-                        "type": "Renderer2",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    }
-                ]
-            },
             "extends": [],
-            "implements": [
-                "AfterViewInit"
-            ],
-            "templateData": "<a\n  [ngClass]=\"getClasses()\"\n  [class.bmb_interactive_icon-horizontal]=\"horizontal\"\n  [href]=\"link\"\n  [target]=\"target\"\n>\n  <div class=\"bmb_interactive_icon-box\">\n    <bmb-icon\n      class=\"bmb_interactive_icon-icon\"\n      icon=\"{{ icon }}\"\n      *ngIf=\"icon\"\n    />\n  </div>\n  <div class=\"bmb_interactive_icon-text\">\n    <span class=\"bmb_interactive_icon-title\" *ngIf=\"title\">{{ title }}</span>\n    <span\n      class=\"bmb_interactive_icon-description\"\n      *ngIf=\"description && horizontal\"\n      >{{ description }}</span\n    >\n  </div>\n</a>\n"
+            "templateData": "<a\n  *ngIf=\"isExternalLink(link); else internalLink\"\n  [ngClass]=\"getClasses()\"\n  [class.bmb_interactive_icon-horizontal]=\"horizontal\"\n  [href]=\"link\"\n  [target]=\"target ? target : '_blank'\"\n  rel=\"noopener noreferrer\"\n>\n  <div class=\"bmb_interactive_icon-box\">\n    <bmb-icon\n      class=\"bmb_interactive_icon-icon\"\n      icon=\"{{ icon }}\"\n      *ngIf=\"icon\"\n    ></bmb-icon>\n  </div>\n  <div class=\"bmb_interactive_icon-text\">\n    <span class=\"bmb_interactive_icon-title\" *ngIf=\"title\">{{ title }}</span>\n    <span\n      class=\"bmb_interactive_icon-description\"\n      *ngIf=\"description && horizontal\"\n    >\n      {{ description }}\n    </span>\n  </div>\n</a>\n\n<ng-template #internalLink>\n  <a\n    [ngClass]=\"getClasses()\"\n    [class.bmb_interactive_icon-horizontal]=\"horizontal\"\n    [routerLink]=\"link\"\n    routerLinkActive=\"active-link\"\n    [routerLinkActiveOptions]=\"{ exact: true }\"\n  >\n    <div class=\"bmb_interactive_icon-box\">\n      <bmb-icon\n        class=\"bmb_interactive_icon-icon\"\n        icon=\"{{ icon }}\"\n        *ngIf=\"icon\"\n      ></bmb-icon>\n    </div>\n    <div class=\"bmb_interactive_icon-text\">\n      <span class=\"bmb_interactive_icon-title\" *ngIf=\"title\">{{ title }}</span>\n      <span\n        class=\"bmb_interactive_icon-description\"\n        *ngIf=\"description && horizontal\"\n      >\n        {{ description }}\n      </span>\n    </div>\n  </a>\n</ng-template>\n"
         },
         {
             "name": "BmbLegendComponent",
@@ -10813,7 +11000,7 @@
         },
         {
             "name": "BmbThemeComponent",
-            "id": "component-BmbThemeComponent-ec256dbb9064aff26cc29129ebb4848ea0de34aaddb01a5c168a3a5a5e8340a1db68b6acbb99cbe0acbc43d80741835545c362f5a7b8ede2e23227f50abc5f32",
+            "id": "component-BmbThemeComponent-0060faa59c2a12b1b0deb70de5d6f6b740b336001f0995e73fe6fb5870eddd614a8c6011659fd1170cd1403ae94eea162973ba79f93d9e02c843997733aba612",
             "file": "projects/ds-ng/src/lib/components/bmb-theme/bmb-theme.component.ts",
             "encapsulation": [
                 "ViewEncapsulation.None"
@@ -10907,7 +11094,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 49,
+                    "line": 51,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -10921,6 +11108,16 @@
                             }
                         }
                     ]
+                },
+                {
+                    "name": "calculateTheme",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 41,
+                    "deprecated": false,
+                    "deprecationMessage": ""
                 },
                 {
                     "name": "ngOnInit",
@@ -10945,7 +11142,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 57,
+                    "line": 59,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -10979,7 +11176,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\n  Component,\n  OnInit,\n  inject,\n  ViewEncapsulation,\n  Input,\n} from '@angular/core';\nimport { ThemeService } from '../../services';\nimport { CommonModule } from '@angular/common';\nimport { BmbSwitchComponent } from '../bmb-switch/bmb-switch.component';\n\n@Component({\n  selector: 'bmb-theme',\n  standalone: true,\n  imports: [CommonModule, BmbSwitchComponent],\n  providers: [ThemeService],\n  templateUrl: './bmb-theme.component.html',\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbThemeComponent implements OnInit {\n  @Input() initialTheme?: string;\n  @Input() showControls: boolean = true;\n\n  selectedTheme: string = 'light';\n  private service = inject(ThemeService);\n  private initialized = false;\n\n  ngOnInit(): void {\n    const savedTheme = localStorage.getItem('theme');\n    if (this.initialTheme) {\n      this.selectedTheme = this.initialTheme;\n    } else if (savedTheme) {\n      this.selectedTheme = savedTheme;\n    } else {\n      this.selectedTheme = this.service.getDefaultTheme();\n    }\n\n    this.applyTheme(this.selectedTheme);\n\n    this.service.theme$.subscribe((theme: any) => {\n      if (this.initialized && theme !== this.selectedTheme) {\n        this.applyTheme(theme);\n      }\n    });\n\n    this.initialized = true;\n  }\n\n  applyTheme(theme: string): void {\n    if (theme !== this.selectedTheme || !this.initialized) {\n      document.documentElement.setAttribute('data-theme', theme);\n      localStorage.setItem('theme', theme);\n      this.selectedTheme = theme;\n    }\n  }\n\n  onThemeChange(isChecked: boolean): void {\n    const newTheme = isChecked ? 'dark' : 'light';\n    if (newTheme !== this.selectedTheme) {\n      this.applyTheme(newTheme);\n      this.service.setTheme(newTheme);\n    }\n  }\n}\n",
+            "sourceCode": "import {\n  Component,\n  OnInit,\n  inject,\n  ViewEncapsulation,\n  Input,\n} from '@angular/core';\nimport { ThemeService } from '../../services';\nimport { CommonModule } from '@angular/common';\nimport { BmbSwitchComponent } from '../bmb-switch/bmb-switch.component';\n\n@Component({\n  selector: 'bmb-theme',\n  standalone: true,\n  imports: [CommonModule, BmbSwitchComponent],\n  providers: [ThemeService],\n  templateUrl: './bmb-theme.component.html',\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbThemeComponent implements OnInit {\n  @Input() initialTheme?: string;\n  @Input() showControls: boolean = true;\n\n  selectedTheme: string = 'light';\n  private service = inject(ThemeService);\n  private initialized = false;\n\n  ngOnInit(): void {\n    this.selectedTheme = this.calculateTheme();\n    this.applyTheme(this.selectedTheme);\n\n    this.service.theme$.subscribe((theme: any) => {\n      if (this.initialized && theme !== this.selectedTheme) {\n        this.applyTheme(theme);\n      }\n    });\n\n    this.initialized = true;\n  }\n\n  calculateTheme(): string {\n    const savedTheme = localStorage.getItem('theme');\n\n    if (!this.showControls && this.initialTheme) return this.initialTheme;\n    if (savedTheme) return savedTheme;\n    if (this.initialTheme) return this.initialTheme;\n\n    return this.service.getDefaultTheme();\n  }\n\n  applyTheme(theme: string): void {\n    if (theme !== this.selectedTheme || !this.initialized) {\n      document.documentElement.setAttribute('data-theme', theme);\n      localStorage.setItem('theme', theme);\n      this.selectedTheme = theme;\n    }\n  }\n\n  onThemeChange(isChecked: boolean): void {\n    const newTheme = isChecked ? 'dark' : 'light';\n    if (newTheme !== this.selectedTheme) {\n      this.applyTheme(newTheme);\n      this.service.setTheme(newTheme);\n    }\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -12979,6 +13176,16 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-frequent-apps-selector/bmb-frequent-apps-selector.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/ds-ng/src/lib/components/bmb-header-mobile/bmb-header-mobile.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -13537,7 +13744,7 @@
                         "type": "IFixDecimals",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "459a7d27-9353-4e19-ae1f-d329977930d6",
+                        "destrucuredGroupId": "f9d0cd8d-0648-4698-8a81-339098617ac0",
                         "destructuredParameter": true
                     },
                     {
@@ -13546,7 +13753,7 @@
                         "deprecated": false,
                         "deprecationMessage": "",
                         "defaultValue": "2",
-                        "destrucuredGroupId": "459a7d27-9353-4e19-ae1f-d329977930d6",
+                        "destrucuredGroupId": "f9d0cd8d-0648-4698-8a81-339098617ac0",
                         "destructuredParameter": true
                     }
                 ],
@@ -13556,7 +13763,7 @@
                         "type": "IFixDecimals",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "459a7d27-9353-4e19-ae1f-d329977930d6",
+                        "destrucuredGroupId": "f9d0cd8d-0648-4698-8a81-339098617ac0",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -13568,7 +13775,7 @@
                         "deprecated": false,
                         "deprecationMessage": "",
                         "defaultValue": "2",
-                        "destrucuredGroupId": "459a7d27-9353-4e19-ae1f-d329977930d6",
+                        "destrucuredGroupId": "f9d0cd8d-0648-4698-8a81-339098617ac0",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -13844,6 +14051,17 @@
                 "subtype": "typealias",
                 "rawtype": "StoryObj<BmbFocusElementComponent>",
                 "file": "projects/ds-ng/src/lib/components/bmb-focus-element/bmb-focus-element.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<BmbFrequentAppsSelectorComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-frequent-apps-selector/bmb-frequent-apps-selector.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -14392,6 +14610,18 @@
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/ds-ng/src/lib/components/bmb-focus-element/bmb-focus-element.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-frequent-apps-selector/bmb-frequent-apps-selector.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-frequent-apps-selector/bmb-frequent-apps-selector.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
@@ -15002,7 +15232,7 @@
                             "type": "IFixDecimals",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "459a7d27-9353-4e19-ae1f-d329977930d6",
+                            "destrucuredGroupId": "f9d0cd8d-0648-4698-8a81-339098617ac0",
                             "destructuredParameter": true
                         },
                         {
@@ -15011,7 +15241,7 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "defaultValue": "2",
-                            "destrucuredGroupId": "459a7d27-9353-4e19-ae1f-d329977930d6",
+                            "destrucuredGroupId": "f9d0cd8d-0648-4698-8a81-339098617ac0",
                             "destructuredParameter": true
                         }
                     ],
@@ -15021,7 +15251,7 @@
                             "type": "IFixDecimals",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "459a7d27-9353-4e19-ae1f-d329977930d6",
+                            "destrucuredGroupId": "f9d0cd8d-0648-4698-8a81-339098617ac0",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
@@ -15033,7 +15263,7 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "defaultValue": "2",
-                            "destrucuredGroupId": "459a7d27-9353-4e19-ae1f-d329977930d6",
+                            "destrucuredGroupId": "f9d0cd8d-0648-4698-8a81-339098617ac0",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
@@ -15319,6 +15549,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<BmbFocusElementComponent>",
                     "file": "projects/ds-ng/src/lib/components/bmb-focus-element/bmb-focus-element.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-frequent-apps-selector/bmb-frequent-apps-selector.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbFrequentAppsSelectorComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-frequent-apps-selector/bmb-frequent-apps-selector.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -16108,6 +16351,34 @@
                 "status": "low"
             },
             {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-frequent-apps-selector/bmb-frequent-apps-selector.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbFrequentAppsSelectorComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/9",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-frequent-apps-selector/bmb-frequent-apps-selector.component.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "App",
+                "coveragePercent": 0,
+                "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-frequent-apps-selector/bmb-frequent-apps-selector.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/ds-ng/src/lib/components/bmb-header-mobile/bmb-header-mobile.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -16199,7 +16470,7 @@
                 "linktype": "component",
                 "name": "BmbInteractiveIconComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/12",
+                "coverageCount": "0/10",
                 "status": "low"
             },
             {
@@ -16630,7 +16901,7 @@
                 "linktype": "component",
                 "name": "BmbThemeComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/9",
+                "coverageCount": "0/10",
                 "status": "low"
             },
             {

@@ -40,7 +40,8 @@
               "src/assets"
             ],
             "styles": ["projects/ds-ng/src/assets/styles/main.scss"],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": ["hammerjs"]
           },
           "configurations": {
             "production": {
