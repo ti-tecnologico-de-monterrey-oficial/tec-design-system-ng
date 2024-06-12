@@ -6,6 +6,7 @@
 
 // Import the global style to avoid bloat of code and could be use in components will a unique charge.
 // Import and register the rem convertion
+@use "base/css-vars";
 @use "base/rem" as rem;
 
 // Import fonts
@@ -26,5 +27,6 @@
 @import "base/tooltip";
 @import "components/buttons";
 @import "components/col-sys";
+@import "base/utils";
 
 @import "@angular/cdk/overlay-prebuilt.css";
