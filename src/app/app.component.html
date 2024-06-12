@@ -1,11 +1,11 @@
 <bmb-theme [initialTheme]="'light'" />
-<bmb-top-bar
+<!-- <bmb-top-bar
   appName="TecSign"
   appSubTitle="Elegir documentos"
   [showLang]="true"
   [lang]="topBarLang"
   (onLangChange)="handleLangChange($event)"
-></bmb-top-bar>
+></bmb-top-bar> -->
 <bmb-theme [showControls]="false" [initialTheme]="'dark'" />
 <!-- <bmb-sidebar [elements]="sidebarElements" /> -->
 
@@ -17,35 +17,7 @@
 
 <bmb-frequent-apps-selector
   [title]="'Mis Aplicaciones Frecuentes'"
-  [apps]="[
-    {
-      icon: 'home',
-      title: 'Inicio',
-      link: '/home',
-      target: '_blank',
-      appearance: 'red'
-    },
-    {
-      icon: 'settings',
-      title: 'My Page',
-      link: '/my-page',
-      appearance: 'yellow'
-    },
-    {
-      icon: 'settings',
-      title: 'Calendario escolar',
-      link: 'https://configuración.com',
-      target: '_blank',
-      appearance: 'yellow'
-    },
-    {
-      icon: 'settings',
-      title: 'Configuración',
-      link: 'https://configuración.com',
-      target: '_blank',
-      appearance: 'yellow'
-    }
-  ]"
+  [apps]="apps"
 />
 
 <router-outlet></router-outlet>

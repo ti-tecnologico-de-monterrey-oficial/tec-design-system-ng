@@ -5,13 +5,23 @@
 .bmb_frequent_apps {
   &-title {
     color: RGBA(var(--color-charade-950));
+    text-align: center;
     @include fonts.font(5, regular);
   }
 
   &-container {
     display: flex;
-    gap: rem.rem_calc(28);
     overflow: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+
+    bmb-interactive-icon {
+      flex: 0 0 auto;
+      scroll-snap-align: center;
+      width: rem.rem_calc(108);
+      display: flex;
+      justify-content: center;
+    }
   }
 }
 

@@ -35,12 +35,38 @@ export class BmbFrequentAppsSelectorComponent implements AfterViewInit {
 
   @ViewChild('container', { static: true }) container!: ElementRef;
 
+  private currentIndex: number = 0;
+  private itemWidth: number = 0;
+
   ngAfterViewInit() {
+    this.calculateItemWidth();
     const hammer = new Hammer(this.container.nativeElement);
     hammer.get('pan').set({ direction: Hammer.DIRECTION_HORIZONTAL });
 
-    hammer.on('pan', (event) => {
-      this.container.nativeElement.scrollLeft -= event.deltaX;
+    hammer.on('panend', (event) => {
+      if (event.deltaX > 0) {
+        this.currentIndex = Math.max(this.currentIndex - 1, 0);
+      } else {
+        this.currentIndex = Math.min(
+          this.currentIndex + 1,
+          this.apps.length - 1,
+        );
+      }
+      this.scrollToCurrentIndex();
+    });
+  }
+
+  private calculateItemWidth() {
+    const container = this.container.nativeElement;
+    const firstItem = container.querySelector('bmb-interactive-icon');
+    this.itemWidth = firstItem ? firstItem.clientWidth : container.clientWidth;
+  }
+
+  private scrollToCurrentIndex() {
+    const container = this.container.nativeElement;
+    container.scrollTo({
+      left: this.currentIndex * this.itemWidth,
+      behavior: 'smooth',
     });
   }
 }
