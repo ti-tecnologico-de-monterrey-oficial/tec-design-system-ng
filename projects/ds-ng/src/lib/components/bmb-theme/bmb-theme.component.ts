@@ -38,7 +38,7 @@ export class BmbThemeComponent implements OnInit {
     this.initialized = true;
   }
 
-  calculateTheme():string {
+  calculateTheme(): string {
     const savedTheme = localStorage.getItem('theme');
 
     if (!this.showControls && this.initialTheme) return this.initialTheme;
