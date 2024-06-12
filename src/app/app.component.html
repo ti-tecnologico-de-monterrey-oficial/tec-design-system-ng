@@ -1,4 +1,5 @@
-<bmb-top-bar
+<bmb-theme [initialTheme]="'light'" />
+<!-- <bmb-top-bar
   appName="TecSign"
   appSubTitle="Elegir documentos"
   [showLang]="true"
@@ -6,7 +7,7 @@
   (onLangChange)="handleLangChange($event)"
 ></bmb-top-bar>
 <bmb-theme [showControls]="true" [initialTheme]="'dark'" />
-<!-- <bmb-sidebar [elements]="sidebarElements" /> -->
+<bmb-sidebar [elements]="sidebarElements" /> -->
 
 <section bmbLayout>
   <bmb-media-card
@@ -68,28 +69,9 @@
   <a routerLink="/emprendedor" class="font-bold-6">Emprendedor</a>
 </div>
 
-<bmb-table
-  [pageSize]="4"
-  [data]="data"
-  [columns]="columns"
-  [config]="config"
-  (select)="select($event)"
-  [actionTemplate]="templateAction"
-  [detailTemplate]="detailTemplate"
->
-  <ng-template #templateAction>
-    <div class="action-container">
-      <button (click)="clickButton($event)" size="small">
-        <bmb-icon [icon]="'apps'" />
-      </button>
-      <button (click)="clickButton($event)" size="small">
-        <bmb-icon [icon]="'add'" />
-      </button>
-    </div>
-  </ng-template>
+<bmb-frequent-apps-selector
+  [title]="'Mis Aplicaciones Frecuentes'"
+  [apps]="apps"
+/>
 
-  <ng-template #detailTemplate let-element="row">
-    {{ element.detail }}
-  </ng-template>
-</bmb-table>
 <router-outlet></router-outlet>

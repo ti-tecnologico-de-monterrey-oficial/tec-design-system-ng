@@ -43,6 +43,7 @@ import {
   BmbCardComponent,
   BmbTablesComponent,
   BmbModalComponent,
+  BmbFrequentAppsSelectorComponent,
   BmbMediaCardComponent,
 } from '../../projects/ds-ng/src/public-api';
 
@@ -104,6 +105,7 @@ import { MatDialog } from '@angular/material/dialog';
     BmbIconComponent,
     BmbTablesComponent,
     BmbModalComponent,
+    BmbFrequentAppsSelectorComponent,
     BmbMediaCardComponent,
   ],
   templateUrl: './app.component.html',
@@ -522,4 +524,62 @@ export class AppComponent {
   clickButton(event: Event) {
     window.alert(event);
   }
+
+  //Frequent apps
+  apps = [
+    {
+      icon: 'home',
+      title: 'Inicio',
+      link: '/home',
+      target: '_blank',
+      appearance: 'red',
+    },
+    {
+      icon: 'settings',
+      title: 'My Page',
+      link: '/my-page',
+      appearance: 'yellow',
+    },
+    {
+      icon: 'settings',
+      title: 'Calendario escolar',
+      link: 'https://configuración.com',
+      target: '_blank',
+      appearance: 'yellow',
+    },
+    {
+      icon: 'settings',
+      title: 'Configuración',
+      link: 'https://configuración.com',
+      target: '_blank',
+      appearance: 'yellow',
+    },
+    {
+      icon: 'home',
+      title: 'Inicio',
+      link: '/home',
+      target: '_blank',
+      appearance: 'red',
+    },
+    {
+      icon: 'settings',
+      title: 'My Page',
+      link: '/my-page',
+      appearance: 'yellow',
+    },
+    {
+      icon: 'settings',
+      title: 'Calendario escolar',
+      link: 'https://configuración.com',
+      target: '_blank',
+      appearance: 'yellow',
+    },
+    {
+      icon: 'settings',
+      title: 'Configuración',
+      link: 'https://configuración.com',
+      target: '_blank',
+      appearance: 'yellow',
+    },
+  ];
 }
