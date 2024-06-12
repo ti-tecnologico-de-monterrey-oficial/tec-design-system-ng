@@ -1,0 +1,57 @@
+<section
+  class="bmb_media-card"
+  [ngClass]="'bmb_media-card-' + type"
+  [ngStyle]="{ width: width, 'aspect-ratio': ratio }"
+>
+  <div class="bmb_media-card-image-container">
+    @if (isBlurredBackdrop) {
+      <figure
+        class="bmb_media-card-figure bmb_media-card-figure-backdrop"
+        [ngClass]="getClasses()"
+        [ngStyle]="{ 'aspect-ratio': ratio }"
+      >
+        <picture>
+          <source media="(min-width: 1000px)" [srcset]="src" />
+          @if (mobileSrc) {
+            <source [srcset]="mobileSrc" />
+          }
+          <img
+            [srcset]="src"
+            [alt]="alt"
+            [loading]="loading"
+            class="bmb_media-card-figure-image"
+          />
+        </picture>
+      </figure>
+    }
+    <figure
+      class="bmb_media-card-figure"
+      [ngClass]="getClasses()"
+      [ngStyle]="{ 'aspect-ratio': ratio }"
+    >
+      <picture>
+        <source media="(min-width: 1000px)" [srcset]="src" />
+        @if (mobileSrc) {
+          <source [srcset]="mobileSrc" />
+        }
+        <img
+          [srcset]="src"
+          [alt]="alt"
+          [loading]="loading"
+          class="bmb_media-card-figure-image"
+        />
+      </picture>
+    </figure>
+  </div>
+  <div
+    class="bmb_media-card-content"
+    [ngClass]="'bmb_media-card-content-' + type"
+  >
+    <section
+      class="bmb_media-card-content-container"
+      [ngClass]="getContentClasses()"
+    >
+      <ng-content></ng-content>
+    </section>
+  </div>
+</section>
