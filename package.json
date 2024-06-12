@@ -32,9 +32,6 @@
     "unreleased": true,
     "commitLimit": false
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/@tec-design-system"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng.git"

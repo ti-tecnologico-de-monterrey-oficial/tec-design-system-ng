@@ -17,7 +17,7 @@ jobs:
           registry-url: https://registry.npmjs.org
 
       - run: npm ci
-      - run: npm build:lib
+      - run: npm run build:lib
       - run: cd projects/ds-ng/
       - run: npm publish --access public
         env:

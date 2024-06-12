@@ -28,9 +28,6 @@ Below is an example of how you can use this component in HTML:
     },
   },
   argTypes: {
-    //   @Input() borderRadius: SizeNames, SizeNames[] = 'm';
-    // @Input() padding: SizeNames, SizeNames[] = 'm';
-    // @Input() margin: SizeNames, SizeNames[] = 'm';
     borderRadius: {
       name: 'Border radius',
       control: {

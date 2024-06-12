@@ -5,11 +5,65 @@
   [showLang]="true"
   [lang]="topBarLang"
   (onLangChange)="handleLangChange($event)"
-></bmb-top-bar> -->
-<bmb-theme [showControls]="false" [initialTheme]="'dark'" />
-<!-- <bmb-sidebar [elements]="sidebarElements" /> -->
+></bmb-top-bar>
+<bmb-theme [showControls]="true" [initialTheme]="'dark'" />
+<bmb-sidebar [elements]="sidebarElements" /> -->
 
-<div style="display: flex; gap: 3em; flex-flow: row wrap">
+<section bmbLayout>
+  <bmb-media-card
+    src="https://wallpapercave.com/wp/wp6557311.jpg"
+    alt="fruits"
+    [enableZoom]="true"
+    mobileSrc="https://www.homeperch.com/wp-content/uploads/2019/04/Types-of-Citrus-Fruits-1-27-4.jpg"
+    ratio="1/1"
+    width="clamp(250px, 50%, 400px)"
+    bmbLayoutItem
+    [colSm]="2"
+    [isBlurredBackdrop]="true"
+  >
+    <h2>Gatos: Misteriosos y Fascinantes</h2>
+    <h4>Explorando el mundo secreto de los felinos</h4>
+    <p>
+      <a href="#">Leer más</a>
+    </p>
+  </bmb-media-card>
+  <bmb-media-card
+    src="https://wallpapercave.com/wp/wp6557311.jpg"
+    alt="fruits"
+    [enableZoom]="true"
+    mobileSrc="https://www.homeperch.com/wp-content/uploads/2019/04/Types-of-Citrus-Fruits-1-27-4.jpg"
+    ratio="1/1"
+    width="clamp(250px, 50%, 400px)"
+    bmbLayoutItem
+    [colSm]="2"
+    [isBlurredBackdrop]="true"
+    type="floating"
+  >
+    <h2>Gatos: Misteriosos y Fascinantes</h2>
+    <h4>Explorando el mundo secreto de los felinos</h4>
+    <p>
+      Los gatos son criaturas llenas de misterio. Su elegancia al moverse, sus
+      ojos penetrantes y su habilidad para desaparecer en las sombras han
+      inspirado leyendas y supersticiones. Pero más allá de su aura enigmática,
+      los gatos también son compañeros leales y cariñosos.
+    </p>
+    <p>
+      <a href="#">Leer más</a>
+    </p>
+  </bmb-media-card>
+  <bmb-media-card
+    src="https://wallpapercave.com/wp/wp6557311.jpg"
+    alt="fruits"
+    mobileSrc="https://www.homeperch.com/wp-content/uploads/2019/04/Types-of-Citrus-Fruits-1-27-4.jpg"
+    ratio="16/9"
+    bmbLayoutItem
+    [colSm]="4"
+  >
+    <p>Content</p>
+  </bmb-media-card>
+</section>
+
+<div style="display: flex; gap: 3em">
   <a routerLink="/home" class="font-bold-6">Home</a>
   <a routerLink="/my-page" class="font-bold-6">My Page</a>
   <a routerLink="/emprendedor" class="font-bold-6">Emprendedor</a>
