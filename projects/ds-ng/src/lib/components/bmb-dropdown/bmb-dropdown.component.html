@@ -1,0 +1,87 @@
+<section class="bmb_dropdown">
+    <div class="bmb_dropdown-wrapper">
+        <div class="bmb_dropdown-label">
+            @if(label){
+                <label class="bmb_dropdown-label-text">{{this.label}}
+                    @if(required){
+                        <span class="bmb_dropdown-label-asterisk"> *</span>
+                    }
+                </label>
+            }
+        </div>
+        <div 
+            class="bmb_dropdown-input-wrapper"
+            onkeypress=""
+            #inputWrapper
+            [ngClass]="{'bmb_dropdown-focus': isFocus}"
+        >
+            @if (showIcon) {
+                <label 
+                    class="bmb_dropdown-label-icon"
+                    [for]="'dropdown-'"
+                >
+                    <bmb-icon               
+                        [icon]="icon!" 
+                    />
+                </label>
+            }
+              <input
+                class="bmb_dropdown-field-input"
+                type="text"
+                readonly
+                [id]="'bmb-dropdown' + uid"
+                [name]="'bmb-dropdown' + uid"
+                [formControl]="formControl!"
+                [placeholder]="placeholder"
+                (keydown)="onKeyDown($event)"
+                (click)="openDialog()"
+              />
+              <button
+                class="bmb_dropdown-field-open"
+                [disabled]="disabled"
+                bmbButton
+                (click)="openDialog()"
+              >
+                <bmb-icon icon="keyboard_arrow_down" />
+              </button>
+        </div>
+        @if(helperText !== undefined){
+            <div class="bmb_dropdown-helper">
+                <span class="bmb_dropdown-helper-text">
+                    {{helperText}}
+                </span>
+            </div>
+        }
+
+    </div>
+    <dialog
+        class="bmb_dropdown-dialog"
+        [ngClass]="{'bmb_dropdown-dialog-open': this.openSelect}"
+    >
+        @if (false) {
+        <bmb-loader />
+        } @else {
+        <ul 
+            class="bmb_dropdown-dialog-list"
+        >
+            @for (item of options; track $index) {
+            <li 
+                class="bmb_dropdown-dialog-list-item"
+            >
+                <button
+                    class="bmb_dropdown-dialog-list-item-button"
+                    [ngClass]="{'bmb-hover': $index == this.selectedIndexOption}"
+                    (click)="handleItemClick(item, $index)"
+                >
+                    <bmb-icon
+                        class="bmb_dropdown-dialog-list-item-button-icon"
+                        [icon]="icon!" 
+                    />
+                    {{ item }}
+                </button>
+            </li>
+            }
+        </ul>
+        }
+    </dialog>
+</section>
