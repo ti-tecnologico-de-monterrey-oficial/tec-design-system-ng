@@ -1,0 +1,51 @@
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/rem" as rem;
+
+.bmb_grade-value {
+  width: 100%;
+
+  &-main {
+    fill: RGBA(var(--color-black-primary));
+
+    &-score {
+      @include fonts.font(4, medium);
+      font-size: rem.rem_calc(160);
+      fill: RGBA(var(--color-black-primary));
+    }
+  }
+
+  &-partial {
+    border: rem.rem_calc(2) solid RGBA(var(--color-black-primary));
+    border-radius: rem.rem_calc(5);
+    width: rem.rem_calc(40);
+    height: rem.rem_calc(24);
+    display: flex;
+    padding: rem.rem_calc(0) rem.rem_calc(8);
+    justify-content: center;
+    align-items: center;
+
+    &-score {
+      @include fonts.font(4, medium);
+    }
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_grade-value {
+    &-main {
+      fill: RGBA(var(--color-white-primary));
+
+      &-score {
+        fill: RGBA(var(--color-white-primary));
+      }
+    }
+
+    &-partial {
+      border: rem.rem_calc(2) solid RGBA(var(--color-white-primary));
+      &-score {
+        color: RGBA(var(--color-white-primary));
+      }
+    }
+  }
+}
