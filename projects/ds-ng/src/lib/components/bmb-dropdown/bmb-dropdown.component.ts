@@ -3,11 +3,18 @@ import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, E
 import { ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, NgModel, ReactiveFormsModule } from '@angular/forms';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbLoaderComponent } from '../bmb-loader/bmb-loader.component';
+import { BmbTagComponent } from '../bmb-tags/bmb-tags.component';
 
 @Component({
   selector: 'bmb-dropdown',
   standalone: true,
-  imports: [CommonModule, BmbIconComponent, BmbLoaderComponent, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    BmbIconComponent, 
+    BmbLoaderComponent, 
+    ReactiveFormsModule,
+    BmbTagComponent,
+  ],
   templateUrl: './bmb-dropdown.component.html',
   styleUrl: './bmb-dropdown.component.scss',
   providers: [
@@ -36,8 +43,9 @@ export class BmbDropdownComponent implements AfterViewInit, ControlValueAccessor
   @Input() formControl?: FormControl | undefined;
   @Input() disabled?: boolean = false;
   @Input() label?: string;
+  @Input() type?: 'default' | 'autocomplete'
 
-  @Output() onValueChange: EventEmitter<string> = new EventEmitter<string>();
+  @Output() onValueChange: EventEmitter<any> = new EventEmitter<any>();
 
   @ViewChild('inputWrapper', { read: ElementRef, static: false })
   inputWrapper: ElementRef | undefined;
@@ -62,6 +70,8 @@ export class BmbDropdownComponent implements AfterViewInit, ControlValueAccessor
   selectedIndexOption?: number;
   selectedOption?: any;
 
+  multipleOptions?: string[] = [];
+
   uid: string = Date.now().toString(36) + (Math.floor(Math.random() * 90) + 10);
   filterControl= new FormControl();
   filteredData: string[] = [];
@@ -80,7 +90,6 @@ export class BmbDropdownComponent implements AfterViewInit, ControlValueAccessor
   
   ngAfterViewInit(): void {
     this.childNodes = this.elementRef.nativeElement;
-    // console.log("this. disabled", this.disabled, "this.formContorl", this.formControl)
     if (this.disabled && this.formControl) {
       this.formControl.disable();
     } else if(this.disabled && !this.formControl){
@@ -102,19 +111,24 @@ export class BmbDropdownComponent implements AfterViewInit, ControlValueAccessor
   }
 
   handleItemClick(event: string, index: any): void {
-    this.onValueChange.emit(event);
-    this.selectedIndexOption = index
-    this.selectedOption = event
+    if(this.type == 'autocomplete'){
+      this.multipleOptions?.push(event)
+      this.onValueChange.emit(this.multipleOptions)
+      if(this.formControl){
+        this.formControl.setValue(this.multipleOptions)
+      }
+    }else{
+      this.onValueChange.emit(event);
+      this.selectedIndexOption = index
+      this.selectedOption = event
+      if(this.formControl){
+        this.formControl.setValue(event)
+      }
+    }
+
     this.isFocus = !this.isFocus
     this.openSelect = false;
-    if(this.formControl){
-      this.formControl.setValue(event)
-      console.log("this.FORMA VALUE", this.formControl)
-      // this.formControl.
-    }
-    if (this.filterField?.nativeElement) {
-      this.filterField.nativeElement.value = event;
-    }
+
   }
 
   openDialog(){

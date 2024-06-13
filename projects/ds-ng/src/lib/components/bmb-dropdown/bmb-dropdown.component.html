@@ -25,7 +25,8 @@
                     />
                 </label>
             }
-              <input
+            @if(type == 'default'){
+                <input
                 class="bmb_dropdown-field-input"
                 type="text"
                 readonly
@@ -36,6 +37,22 @@
                 (keydown)="onKeyDown($event)"
                 (click)="openDialog()"
               />
+            }@else if (type == 'autocomplete') {
+                <div 
+                    class="bmb_dropdown-autocomplete"
+                    (click)="openDialog()"
+                    onkeypress=""
+                ><span>s</span>
+                    @for (options of multipleOptions; track $index) {
+                        <bmb-tag 
+                            [text]="options" 
+                            [dissmisable]="true" 
+                            [grouped]="true"
+                        />
+                    }
+                </div>
+            }
+
               <button
                 class="bmb_dropdown-field-open"
                 [disabled]="disabled"
