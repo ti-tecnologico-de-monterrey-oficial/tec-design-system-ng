@@ -1,0 +1,293 @@
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/rem" as rem;
+
+.bmb_dropdown{
+  max-width: rem.rem_calc(600);
+  display: inline-block;
+  position: relative;
+  width: 100%;
+
+  &-wrapper{
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-label{
+    padding-left: rem.rem_calc(10);
+    padding-bottom: rem.rem_calc(5);
+
+    &-text{
+      @include fonts.font(3, regular);
+    }
+
+    &-asterisk{
+      @include fonts.font(3, bold);
+      color: RGBA(var(--color-red-primary));
+    }
+
+    &-icon{
+      padding-left: rem.rem_calc(10);
+      font-size: rem.rem_calc(24);
+    }
+
+  }
+
+  &-input-wrapper{
+    background-color: RGBA(var(--color-charade-100));
+    border-radius: rem.rem_calc(4);
+    display: flex;
+    gap: rem.rem_calc(4);
+    align-items: center;   appearance: none;
+    width: 100%;
+    height: rem.rem_calc(40);
+  }
+
+  &-autocomplete{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: rem.rem_calc(4);
+    overflow: hidden;
+
+    &-tag{
+
+      display: flex;
+      align-items: center;
+      background-color: RGBA(var(--color-charade-200));
+      border: rem.rem_calc(1) solid RGBA(var(--color-charade-300));
+      border-radius: rem.rem_calc(4);
+      color: RGBA(var(--color-charade-950));
+      gap: rem.rem_calc(4);
+      justify-content: center;
+      min-height: rem.rem_calc(20);
+      height: rem.rem_calc(24);
+      padding: rem.rem_calc(4 8);
+      width: fit-content;
+
+      &-text{
+        @include fonts.font(3, regular);
+      }
+
+      &-btn{
+        align-items: center;
+        appearance: none;
+        background: none;
+        border: 0;
+        display: flex;
+        padding: 0;
+        bmb-icon {
+          color: RGBA(var(--color-charade-950));
+          font-size: rem.rem_calc(18);
+        }
+      }
+    }
+  }
+
+  &-field{
+
+    &-input{
+      padding-left: rem.rem_calc(5);
+      flex: 1;
+      @include fonts.font(4, regular);
+      background-color: transparent;
+      border: 0 none;
+      cursor: pointer;
+      &:focus,
+      &:focus-visible,
+      &.bmb-focus,
+      &.bmb-focus-visible {
+        outline: 0 none transparent;
+      }
+
+      &:disabled{
+        color: RGBA(var(--color-charade-300));
+      }
+    }
+
+    &-open{
+      bmb-icon{
+        font-size: rem.rem_calc(20px);
+      }
+    }
+  }
+
+  &-focus{
+    border: 1px solid RGBA(var(--color-blue-primary))
+    // border-color: aquamarine;
+  }
+
+  &-helper{
+    padding-top: rem.rem_calc(3);
+    padding-left: rem.rem_calc(10); 
+
+    &-text{
+      @include fonts.font(3, regular);
+      color: RGBA(var(--color-blue-primary));
+    }
+  }
+
+  &-dialog{
+    display: none;
+    width: 100%;
+    padding: 0;
+    left: 0;
+    z-index: 999;
+    background-color: RGBA(var(--color-charade-50));
+    border: 0;
+    border-radius: rem.rem_calc(4);
+    overflow: auto;
+    height: max-content;
+    max-height: rem.rem_calc(160);
+    top: rem.rem_calc(60);
+    justify-content: center;
+    margin-top: rem.rem_calc(8);
+    -webkit-box-shadow: 10px 10px 26px -12px RGBA(var(--color-black-primary), 0.75);
+    -moz-box-shadow: 10px 10px 26px -12px RGBA(var(--color-black-primary), 0.75);
+    box-shadow: 10px 10px 26px -12px RGBA(var(--color-black-primary), 0.75);
+    &::-webkit-scrollbar {
+      -webkit-appearance: none;
+      width: rem.rem_calc(10);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: RGBA(var(--color-charade-200));
+      border-radius: rem.rem_calc(20);
+      border: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
+    }
+
+    &::-webkit-scrollbar-track {
+      border-radius: rem.rem_calc(10);
+    }
+
+    &-list{
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      width: 100%;
+
+      &-item {
+        &-button {
+          display: flex;
+          align-items: center;
+          padding: rem.rem_calc(8) rem.rem_calc(6);
+          background-color: transparent;
+          width: 100%;
+          text-align: left;
+          @include fonts.font(4, regular);
+
+          &:hover,
+          &:focus-visible,
+          &.bmb-hover,
+          &.bmb-focus,
+          &.bmb-focus-visible {
+            background-color: RGBA(var(--color-blue-primary));
+            color: RGBA(var(--color-white-primary));
+          }
+
+          &-icon {
+            font-size: rem.rem_calc(20);
+            padding-left: rem.rem_calc(5);
+            padding-right: rem.rem_calc(5);
+          }
+        }
+      }
+    }
+
+    &-open {
+      display: flex;
+      position: absolute;
+    }
+  }
+
+}
+// box-shadow: 0 1px 4px 0 rgba(0,0,0,.24);
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_dropdown{
+  
+    &-label{
+      &-text{
+        color: RGBA(var(--color-charade-50));
+      }
+  
+      &-icon{
+        bmb-icon{
+          color: RGBA(var(--color-charade-50));
+        }
+      }
+  
+    }
+  
+    &-input-wrapper{
+      background-color: RGBA(var(--color-black-primary));
+    }
+
+    &-autocomplete{
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      gap: rem.rem_calc(4);
+      overflow: hidden;
+  
+      &-tag{
+        background-color: RGBA(var(--color-charade-950));
+        border: rem.rem_calc(1) solid RGBA(var(--color-charade-500));
+        color: RGBA(var(--color-white-primary));
+
+        &-btn{
+          bmb-icon {
+            color: RGBA(var(--color-white-primary));
+          }
+        }
+      }
+    }
+  
+    &-field{
+  
+      &-input{
+        color: RGBA(var(--color-charade-50));
+
+        &:disabled{
+          color: RGBA(var(--color-charade-300));
+        }
+      }
+  
+      &-open{
+        bmb-icon{
+          color: RGBA(var(--color-charade-50));
+        }
+
+        &:disabled{
+          bmb-icon{
+            color:RGBA(var(--color-charade-300))
+          }
+        }
+      }
+    }
+  
+    &-helper{
+      &-text{
+        color: RGBA(var(--color-charade-50));
+      }
+    }
+  
+    &-dialog{
+      background-color: RGBA(var(--color-charade-950));
+      &::-webkit-scrollbar-thumb {
+        background-color: RGBA(var(--color-black-primary));
+        border: rem.rem_calc(1) solid RGBA(var(--color-black-primary));
+      }
+  
+      &-list{
+        &-item {
+          &-button {
+            color: RGBA(var(--color-charade-50));
+
+          }
+        }
+      }
+    }
+  
+  }
+}
