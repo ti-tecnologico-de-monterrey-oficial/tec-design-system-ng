@@ -9,6 +9,7 @@ describe('BmbModalComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(BmbModalComponent);
     component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
   it('should create', () => {
