@@ -7,6 +7,7 @@ export * from './lib/ds-ng.component';
 export * from './lib/directives/button.directive';
 export * from './lib/directives/bmb-layout/bmb-layout-item.directive';
 export * from './lib/directives/bmb-layout/bmb-layout.directive';
+export * from './lib/directives/bmb-button-group/bmb-button-group.directive';
 
 // Components
 export * from './lib/components/bmb-logo/bmb-logo.component';

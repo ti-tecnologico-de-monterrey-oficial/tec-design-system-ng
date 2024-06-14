@@ -1,0 +1,119 @@
+@use "../base/mixins" as mixins;
+@use "../base/rem" as rem;
+
+.bmb_button-group {
+  display: inline-flex;
+
+  &-primary {
+
+    > * {
+      @include mixins.button(primary);
+    }
+  }
+
+  &-secondary-filled {
+    > * {
+      @include mixins.button(secondary-filled);
+    }
+  }
+
+  &-secondary-outlined {
+    > * {
+      @include mixins.button(secondary-outlined);
+      border-left-width: 0;
+
+      &:first-child {
+        border-left-width: rem.rem_calc(1);
+
+        &:hover:not(:disabled),
+        &:focus-visible:not(:disabled) {
+          border-left-width: rem.rem_calc(2);
+        }
+      }
+
+      &:hover:not(:disabled),
+      &:focus-visible:not(:disabled) {
+        border-left-width: rem.rem_calc(1);
+        border-right-width: rem.rem_calc(2);
+      }
+    }
+  }
+
+  &-destructive {
+    > * {
+      @include mixins.button(destructive);
+      border-left-width: 0;
+
+      &:first-child {
+        border-left-width: rem.rem_calc(1);
+
+        &:hover:not(:disabled),
+        &:focus-visible:not(:disabled) {
+          border-left-width: rem.rem_calc(2);
+        }
+      }
+
+      &:hover:not(:disabled),
+      &:focus-visible:not(:disabled) {
+        border-left-width: rem.rem_calc(1);
+        border-right-width: rem.rem_calc(2);
+      }
+    }
+  }
+
+  > * {
+    border-radius: 0;
+
+    &:first-child {
+      border-top-left-radius: var(--bmg-radius-m);
+      border-bottom-left-radius: var(--bmg-radius-m);
+    }
+
+    &:last-child {
+      border-top-right-radius: var(--bmg-radius-m);
+      border-bottom-right-radius: var(--bmg-radius-m);
+    }
+  }
+}
+
+
+// @use "../base/mixins" as mixins;
+
+// *:not(.bmb_button-group) {
+//   > .bmb_btn {
+
+//     &-secondary-outlined {
+//
+//     }
+
+//     &-destructive {
+//
+//     }
+//   }
+// }
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_button-group {
+
+    &-secondary-outlined {
+      > * {
+        border-color: RGBA(var(--color-white-primary));
+        color: RGBA(var(--color-white-primary));
+
+        bmb-icon {
+          color: RGBA(var(--color-white-primary));
+        }
+
+        &:active {
+          background-color: RGBA(var(--color-white-primary));
+          color: RGBA(var(--color-black-primary));
+
+          bmb-icon {
+            color: RGBA(var(--color-black-primary));
+          }
+        }
+      }
+    }
+  }
+}

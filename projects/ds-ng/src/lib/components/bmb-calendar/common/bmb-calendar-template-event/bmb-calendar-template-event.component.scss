@@ -29,14 +29,14 @@
   }
 
   &-content {
-    padding: rem.rem_calc(16) rem.rem_calc(16) rem.rem_calc(8);
+    padding: var(--bmg-spacing-m) var(--bmg-spacing-m) var(--bmg-spacing-s);
     margin: 0;
     @include fonts.font(4, medium);
     text-align: center;
   }
 
   &-footer {
-    padding: rem.rem_calc(0) rem.rem_calc(16) rem.rem_calc(16);
+    padding: var(--bmg-spacing-none) var(--bmg-spacing-m) var(--bmg-spacing-m);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -65,8 +65,8 @@
     }
 
     button {
-      padding: rem.rem_calc(8);
-      margin-right: rem.rem_calc(16);
+      padding: var(--bmg-spacing-s);
+      margin-right: var(--bmg-spacing-m);
     }
   }
 }

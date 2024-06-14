@@ -22,7 +22,14 @@ $namesOfSides: "left", "right";
   flex-wrap: wrap;
 
   &-smart {
-    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: flex-start;
+
+    & > * {
+      flex: 0
+        0
+        calc(25% - (var(--bmg-gap) / 4 * 3));
+    }
   }
 }
 
