@@ -67,7 +67,7 @@ Below is an example of how you can use this component in HTML:
   args: {
     totalSteps: 5,
     activeStep: 3,
-    size: 'small'
+    size: 'small',
   },
 } as Meta<typeof BmbStepProgressBarComponent>;
 
