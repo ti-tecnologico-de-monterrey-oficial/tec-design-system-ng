@@ -8,88 +8,69 @@
 <bmb-theme [showControls]="true" [initialTheme]="'dark'" />
 <!-- <bmb-sidebar [elements]="sidebarElements" /> -->
 
-<section bmbLayout>
-  <bmb-media-card
-    src="https://wallpapercave.com/wp/wp6557311.jpg"
-    alt="fruits"
-    [enableZoom]="true"
-    mobileSrc="https://www.homeperch.com/wp-content/uploads/2019/04/Types-of-Citrus-Fruits-1-27-4.jpg"
-    ratio="1/1"
-    width="clamp(250px, 50%, 400px)"
-    bmbLayoutItem
-    [colSm]="2"
-    [isBlurredBackdrop]="true"
-  >
-    <h2>Gatos: Misteriosos y Fascinantes</h2>
-    <h4>Explorando el mundo secreto de los felinos</h4>
-    <p>
-      <a href="#">Leer más</a>
-    </p>
-  </bmb-media-card>
-  <bmb-media-card
-    src="https://wallpapercave.com/wp/wp6557311.jpg"
-    alt="fruits"
-    [enableZoom]="true"
-    mobileSrc="https://www.homeperch.com/wp-content/uploads/2019/04/Types-of-Citrus-Fruits-1-27-4.jpg"
-    ratio="1/1"
-    width="clamp(250px, 50%, 400px)"
-    bmbLayoutItem
-    [colSm]="2"
-    [isBlurredBackdrop]="true"
-    type="floating"
-  >
-    <h2>Gatos: Misteriosos y Fascinantes</h2>
-    <h4>Explorando el mundo secreto de los felinos</h4>
-    <p>
-      Los gatos son criaturas llenas de misterio. Su elegancia al moverse, sus
-      ojos penetrantes y su habilidad para desaparecer en las sombras han
-      inspirado leyendas y supersticiones. Pero más allá de su aura enigmática,
-      los gatos también son compañeros leales y cariñosos.
-    </p>
-    <p>
-      <a href="#">Leer más</a>
-    </p>
-  </bmb-media-card>
-  <bmb-media-card
-    src="https://wallpapercave.com/wp/wp6557311.jpg"
-    alt="fruits"
-    mobileSrc="https://www.homeperch.com/wp-content/uploads/2019/04/Types-of-Citrus-Fruits-1-27-4.jpg"
-    ratio="16/9"
-    bmbLayoutItem
-    [colSm]="4"
-  >
-    <p>Content</p>
-  </bmb-media-card>
-</section>
+<div>
+  <div bmbButtonGroup>
+    <button bmbButton>Button 1</button>
+    <button bmbButton>Button 2</button>
+    <button bmbButton>Button 3</button>
+  </div>
+  <div bmbButtonGroup>
+    <button bmbButton>Button 1</button>
+    <button bmbButton>Button 2</button>
+  </div>
+  <div bmbButtonGroup>
+    <button bmbButton>Button 1</button>
+  </div>
+</div>
+
+<div>
+  <div bmbButtonGroup appearance="secondary-filled">
+    <button bmbButton>Button 1</button>
+    <button bmbButton>Button 2</button>
+    <button bmbButton>Button 3</button>
+  </div>
+  <div bmbButtonGroup appearance="secondary-filled">
+    <button bmbButton>Button 1</button>
+    <button bmbButton>Button 2</button>
+  </div>
+  <div bmbButtonGroup appearance="secondary-filled">
+    <button bmbButton>Button 1</button>
+  </div>
+</div>
+
+<div>
+  <div bmbButtonGroup appearance="secondary-outlined">
+    <button bmbButton>Button 1</button>
+    <button bmbButton>Button 2</button>
+    <button bmbButton>Button 3</button>
+  </div>
+  <div bmbButtonGroup appearance="secondary-outlined">
+    <button bmbButton>Button 1</button>
+    <button bmbButton>Button 2</button>
+  </div>
+  <div bmbButtonGroup appearance="secondary-outlined">
+    <button bmbButton>Button 1</button>
+  </div>
+</div>
+
+<div>
+  <div bmbButtonGroup appearance="destructive">
+    <button bmbButton>Button 1</button>
+    <button bmbButton>Button 2</button>
+    <button bmbButton>Button 3</button>
+  </div>
+  <div bmbButtonGroup appearance="destructive">
+    <button bmbButton>Button 1</button>
+    <button bmbButton>Button 2</button>
+  </div>
+  <div bmbButtonGroup appearance="destructive">
+    <button bmbButton>Button 1</button>
+  </div>
+</div>
 
 <div style="display: flex; gap: 3em">
   <a routerLink="/home" class="font-bold-6">Home</a>
   <a routerLink="/my-page" class="font-bold-6">My Page</a>
   <a routerLink="/emprendedor" class="font-bold-6">Emprendedor</a>
 </div>
-
-<bmb-table
-  [pageSize]="4"
-  [data]="data"
-  [columns]="columns"
-  [config]="config"
-  (select)="select($event)"
-  [actionTemplate]="templateAction"
-  [detailTemplate]="detailTemplate"
->
-  <ng-template #templateAction>
-    <div class="action-container">
-      <button (click)="clickButton($event)" size="small">
-        <bmb-icon [icon]="'apps'" />
-      </button>
-      <button (click)="clickButton($event)" size="small">
-        <bmb-icon [icon]="'add'" />
-      </button>
-    </div>
-  </ng-template>
-
-  <ng-template #detailTemplate let-element="row">
-    {{ element.detail }}
-  </ng-template>
-</bmb-table>
 <router-outlet></router-outlet>
