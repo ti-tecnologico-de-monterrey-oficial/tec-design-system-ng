@@ -43,7 +43,7 @@ export class BmbDropdownComponent implements AfterViewInit, ControlValueAccessor
   @Input() formControl?: FormControl | undefined;
   @Input() disabled?: boolean = false;
   @Input() label?: string;
-  @Input() type?: 'default' | 'autocomplete'
+  @Input() type?: 'default' | 'autocomplete' = 'default'
 
   @Output() onValueChange: EventEmitter<any> = new EventEmitter<any>();
 
@@ -78,9 +78,8 @@ export class BmbDropdownComponent implements AfterViewInit, ControlValueAccessor
   
   value: string = '';
   openSelect: boolean = false
-  // isDialogOpen: boolean = false;
 
-  constructor(private cdr: ChangeDetectorRef, private elementRef: ElementRef,){}
+  constructor(private elementRef: ElementRef,){}
 
   ngOnInit(): void {
     if(this.formControl === undefined){
@@ -105,17 +104,17 @@ export class BmbDropdownComponent implements AfterViewInit, ControlValueAccessor
           : this.formControl.enable();
       }
     }
-    // this.formControl!.value = this.selectedOption
-
-
   }
 
   handleItemClick(event: string, index: any): void {
     if(this.type == 'autocomplete'){
-      this.multipleOptions?.push(event)
-      this.onValueChange.emit(this.multipleOptions)
-      if(this.formControl){
-        this.formControl.setValue(this.multipleOptions)
+      let found = this.multipleOptions?.find((element) => element == event )
+      if (found === undefined){
+        this.multipleOptions?.push(event)
+        this.onValueChange.emit(this.multipleOptions)
+        if(this.formControl){
+          this.formControl.setValue(this.multipleOptions)
+        }
       }
     }else{
       this.onValueChange.emit(event);
@@ -137,7 +136,9 @@ export class BmbDropdownComponent implements AfterViewInit, ControlValueAccessor
   }
 
   onParentClick(){
-    this.isFocus = !this.isFocus
+    if(this.openSelect){
+      this.isFocus = !this.isFocus
+    }
   }
 
   onKeyDown(event: KeyboardEvent){
@@ -152,6 +153,14 @@ export class BmbDropdownComponent implements AfterViewInit, ControlValueAccessor
       }
     }
 
+  }
+
+  deleteTag(index: number) {
+    this.multipleOptions?.splice(index, 1)
+    this.onValueChange.emit(this.multipleOptions)
+    if(this.formControl){
+      this.formControl.setValue(this.multipleOptions)
+    }
   }
 
   public onChangeFn = (_: any) => {};
@@ -177,10 +186,4 @@ export class BmbDropdownComponent implements AfterViewInit, ControlValueAccessor
   public onChange() {
     this.onChangeFn(this.value);
   }
-
-  // setValidation(validation: any) {
-  //   this.isValid = validation;
-  // }
-
-
 }

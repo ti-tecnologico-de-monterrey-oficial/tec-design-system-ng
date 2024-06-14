@@ -42,13 +42,14 @@
                     class="bmb_dropdown-autocomplete"
                     (click)="openDialog()"
                     onkeypress=""
-                ><span>s</span>
+                >
                     @for (options of multipleOptions; track $index) {
-                        <bmb-tag 
-                            [text]="options" 
-                            [dissmisable]="true" 
-                            [grouped]="true"
-                        />
+                        <div class="bmb_dropdown-autocomplete-tag">
+                            <span class="bmb_dropdown-autocomplete-tag-text">{{ options }}</span>
+                            <button class="bmb_dropdown-autocomplete-tag-btn" (click)="deleteTag($index)">
+                              <bmb-icon [icon]="'close'" />
+                            </button>
+                        </div>
                     }
                 </div>
             }
@@ -88,6 +89,7 @@
                 <button
                     class="bmb_dropdown-dialog-list-item-button"
                     [ngClass]="{'bmb-hover': $index == this.selectedIndexOption}"
+                    [ngClass]="{'bmb-hover':  this.multipleOptions?.includes(item)}"
                     (click)="handleItemClick(item, $index)"
                 >
                     <bmb-icon
