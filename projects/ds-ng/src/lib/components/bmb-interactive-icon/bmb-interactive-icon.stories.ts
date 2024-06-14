@@ -55,17 +55,6 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string' },
       },
     },
-    grouped: {
-      name: 'Grouped',
-      control: { type: 'boolean' },
-      description:
-        'When set to true, it groups multiple interactive icons into a parent element. By default, it is false, and you do not need to explicitly set it. The badge should always have a parent element.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean' },
-      },
-    },
     icon: {
       name: 'Icon',
       control: { type: 'text' },
@@ -131,7 +120,6 @@ Below is an example of how you can use this component in HTML:
     description: 'Short Description',
     appearance: 'red',
     icon: 'face',
-    grouped: false,
     target: '_blank',
     link: 'https://www.youtube.com/',
     horizontal: false,

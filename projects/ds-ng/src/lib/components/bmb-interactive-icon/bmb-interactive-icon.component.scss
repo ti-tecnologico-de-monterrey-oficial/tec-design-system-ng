@@ -29,20 +29,6 @@
     }
   }
 
-  &-grouped {
-    display: flex;
-    flex-flow: row wrap;
-    gap: rem.rem_calc(24);
-
-    bmb-interactive-icon {
-      width: 100%;
-
-      @include mixins.media-query(350, min) {
-        width: auto;
-      }
-    }
-  }
-
   &-box {
     align-items: center;
     border-radius: rem.rem_calc(8);
