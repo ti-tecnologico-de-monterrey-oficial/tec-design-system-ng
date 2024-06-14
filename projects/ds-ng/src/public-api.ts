@@ -52,6 +52,7 @@ export * from './lib/components/bmb-balance-overview/bmb-balance-overview.compon
 export * from './lib/components/bmb-frequent-apps-selector/bmb-frequent-apps-selector.component';
 export * from './lib/components/bmb-media-card/bmb-media-card.component';
 export * from './lib/components/bmb-grade-value/bmb-grade-value.component';
+export * from './lib/components/bmb-stat-counter/bmb-stat-counter.component';
 // types
 export * from './lib/types';
 // interface

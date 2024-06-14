@@ -1,26 +1,25 @@
 <div class="bmb_step-progress-bar">
+  <div
+    class="bmb_step-progress-bar-item"
+    *ngFor="let i of getStepsArray()"
+    [attr.data-bs-slide-to]="i"
+    [ngClass]="{ completed: activeStep > i }"
+    (click)="onStepClicked(i)"
+    onkeypress=""
+  >
     <div
-      class="bmb_step-progress-bar-item"
-      *ngFor="let i of getStepsArray()"
-      [attr.data-bs-slide-to]="i"
-      [ngClass]="{'completed': activeStep > i }"
-      (click)="onStepClicked(i)"
-      onkeypress=""
+      class="bmb_step-progress-bar-step"
+      [ngClass]="{
+        active: activeStep === i,
+        completed: activeStep > i,
+        'bmb_step-progress-bar-step-normal': size == 'normal',
+        'bmb_step-progress-bar-step-small': size == 'small'
+      }"
     >
-      <div
-        class="bmb_step-progress-bar-step"
-        [ngClass]="{
-            'active': activeStep === i,
-            'completed': activeStep > i,
-            'bmb_step-progress-bar-step-normal': size == 'normal',
-            'bmb_step-progress-bar-step-small': size == 'small',
-        }"
-      >
-        <span *ngIf="activeStep == i || activeStep < i">{{ i + 1 }}</span>
-        @if (activeStep > i) {
-          <bmb-icon [icon]="'done'" class="material-icons" />
-        }
-      </div>
+      <span *ngIf="activeStep == i || activeStep < i">{{ i + 1 }}</span>
+      @if (activeStep > i) {
+        <bmb-icon [icon]="'done'" class="material-icons" />
+      }
     </div>
   </div>
-  
+</div>

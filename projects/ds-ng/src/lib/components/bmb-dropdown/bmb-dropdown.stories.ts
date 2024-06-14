@@ -53,8 +53,7 @@ Below is an example of how you can use this component in HTML:
     showIcon: {
       name: 'Show Icon',
       control: { type: 'boolean' },
-      description:
-        'When set to true, the dropdown icon is show',
+      description: 'When set to true, the dropdown icon is show',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
@@ -73,27 +72,26 @@ Below is an example of how you can use this component in HTML:
       },
     },
     options: {
-        name: 'Options',
-        control: {
-          type: 'array',
-        },
-        description:
-          'The inputs to show on the dropdown',
-        table: {
-          category: 'Properties',
-          type: { summary: 'array' },
-        },
+      name: 'Options',
+      control: {
+        type: 'array',
+      },
+      description: 'The inputs to show on the dropdown',
+      table: {
+        category: 'Properties',
+        type: { summary: 'array' },
+      },
     },
     helperText: {
-        name: 'Helper Text',
-        control: {
-          type: 'text',
-        },
-        description: 'The text of the bottom for the dropdown.',
-        table: {
-          category: 'Properties',
-          type: { summary: 'string' },
-        },
+      name: 'Helper Text',
+      control: {
+        type: 'text',
+      },
+      description: 'The text of the bottom for the dropdown.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
     },
     disabled: {
       name: 'Disabled',
@@ -111,37 +109,35 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'text',
       },
-      description:
-        'The text show an text as a label',
+      description: 'The text show an text as a label',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
       },
     },
     type: {
-        name: 'Type',
-        control: {
-          type: 'text',
-        },
-        description:
-          'Set the variation of the component',
-        table: {
-          category: 'Properties',
-          type: { summary: 'string' },
-          defaultValue: { summary: 'default' },
-        },
+      name: 'Type',
+      control: {
+        type: 'text',
+      },
+      description: 'Set the variation of the component',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'default' },
+      },
     },
-    onValueChange:{
-        name: 'Selected value',
-        control: {
-          type: '',
-        },
-        description: 'This handler can be used for pull the value selected.',
-        table: {
-          category: 'Events',
-          type: { summary: 'function' },
-        },
-    }
+    onValueChange: {
+      name: 'Selected value',
+      control: {
+        type: '',
+      },
+      description: 'This handler can be used for pull the value selected.',
+      table: {
+        category: 'Events',
+        type: { summary: 'function' },
+      },
+    },
   },
   args: {
     icon: 'bolt',
@@ -152,8 +148,8 @@ Below is an example of how you can use this component in HTML:
     type: 'default',
     allOptions: ['Apple', 'Banana', 'Orange', 'Pear', 'Grape'],
     onValueChange: (params: any) => {
-        window.alert(params.toString());
-      },
+      window.alert(params.toString());
+    },
   },
 } as Meta<typeof BmbDropdownComponent>;
 
