@@ -26,9 +26,7 @@ $namesOfSides: "left", "right";
     align-items: flex-start;
 
     & > * {
-      flex: 0
-        0
-        calc(25% - (var(--bmg-gap) / 4 * 3));
+      flex: 0 0 calc(25% - (var(--bmg-gap) / 4 * 3));
     }
   }
 }
@@ -68,7 +66,6 @@ $namesOfSides: "left", "right";
           if($margin == "sm", 999, 1000),
           if($margin == "sm", "max", "min")
         ) {
-          @debug "media query: #{if($margin == 'sm', 999, 1000)} #{if($margin == 'sm', 'max', 'min')}";
           margin-#{$side}: calc(
             #{percentage(math.div($i, $size))} + var(--bmg-gap) - (var(
                     --bmg-gap

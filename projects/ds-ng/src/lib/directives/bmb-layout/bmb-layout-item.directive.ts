@@ -45,6 +45,6 @@ export class BmbLayoutItemDirective {
       return `0 0 clamp(${this.itemMinWidth}, ${this.itemWidth}, ${this.itemMaxWidth})`;
     }
 
-    return ''
+    return '';
   }
 }
