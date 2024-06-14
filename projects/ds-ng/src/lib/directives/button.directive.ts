@@ -11,6 +11,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { BmbIconComponent } from '../components/bmb-icon/bmb-icon.component';
+import { IButtonAppearance } from '../types';
 
 @Directive({
   selector: '[bmbButton]',
@@ -20,11 +21,7 @@ export class BmbButtonDirective implements OnInit, OnChanges {
   @Input() icon: string = '';
   @Input() position: 'left' | 'right' = 'left';
   @Input() case: boolean = false;
-  @Input() appearance:
-    | 'primary'
-    | 'secondary-filled'
-    | 'secondary-outlined'
-    | 'destructive' = 'primary';
+  @Input() appearance: IButtonAppearance = 'primary';
   @Input() size: 'small' | 'large' = 'small';
 
   private providedInputs: Set<string> = new Set();

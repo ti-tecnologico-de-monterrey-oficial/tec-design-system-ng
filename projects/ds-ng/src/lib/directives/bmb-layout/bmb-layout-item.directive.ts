@@ -15,8 +15,10 @@ export class BmbLayoutItemDirective {
   @Input() marginLeft: IMargin | null = null;
   @Input() marginRight: IMargin | null = null;
   @Input() colGrow: number = 0;
-
-  constructor() {}
+  @Input() itemMinWidth: string = '200px';
+  @Input() itemMaxWidth: string = '400px';
+  @Input() itemWidth: string = '100%';
+  @Input() isDinamycItem: boolean = false;
 
   @HostBinding('class') get elementClass(): string[] {
     const classes = [];
@@ -38,7 +40,11 @@ export class BmbLayoutItemDirective {
     return classes;
   }
 
-  @HostBinding('style.flex-grow') get flexGrow(): string {
-    return this.colGrow.toString();
+  @HostBinding('style.flex') get flexGrow(): string {
+    if (this.isDinamycItem) {
+      return `0 0 clamp(${this.itemMinWidth}, ${this.itemWidth}, ${this.itemMaxWidth})`;
+    }
+
+    return '';
   }
 }
