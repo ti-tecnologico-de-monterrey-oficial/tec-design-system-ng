@@ -1,0 +1,52 @@
+<div class="bmb-grade-value">
+  @if (type === "main-grade") {
+    <svg
+      class="bmb_grade-value-main"
+      fill="#ffffff"
+      version="1.1"
+      id="Capa_1"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      height="58px"
+      width="50px"
+      transform="rotate(90)"
+      viewBox="0 0 485.688 485.688"
+      xml:space="preserve"
+    >
+      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+      <g
+        id="SVGRepo_tracerCarrier"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      ></g>
+      <g id="SVGRepo_iconCarrier">
+        <g>
+          <g>
+            <path
+              d="M364.269,453.155H121.416L0,242.844L121.416,32.533h242.853l121.419,210.312L364.269,453.155z M131.905,434.997h221.878 l110.939-192.152L353.783,50.691H131.905L20.966,242.844L131.905,434.997z"
+            ></path>
+            <text
+              alignment-baseline="baseline"
+              [attr.text-anchor]="'middle'"
+              transform="rotate(270,240,240)"
+            >
+              <tspan
+                class="bmb_grade-value-main-score"
+                [attr.x]="250"
+                [attr.y]="300"
+              >
+                {{ score }}
+              </tspan>
+            </text>
+          </g>
+        </g>
+      </g>
+    </svg>
+  } @else {
+    <div class="bmb_grade-value-partial">
+      <span class="bmb_grade-value-partial-score">
+        {{ score }}
+      </span>
+    </div>
+  }
+</div>

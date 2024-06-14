@@ -30,7 +30,7 @@ export * from './lib/components/bmb-loader/bmb-loader.component';
 export * from './lib/components/bmb-switch/bmb-switch.component';
 export * from './lib/components/bmb-legend/bmb-legend.component';
 export * from './lib/components/bmb-value-counter/bmb-value-counter.component';
-export * from './lib/components/bmb-stat-counter/bmb-stat-counter.component';
+export * from './lib/components/bmb-step-progress-bar/bmb-step-progress-bar.component';
 export * from './lib/components/bmb-focus-element/bmb-focus-element.component';
 export * from './lib/components/bmb-user-summary/bmb-user-summary.component';
 export * from './lib/components/bmb-tabs/bmb-tabs.component';
@@ -47,8 +47,11 @@ export * from './lib/components/bmb-tables/bmb-tables.component';
 export * from './lib/components/bmb-progress-bar/bmb-progress-bar.component';
 export * from './lib/components/bmb-modal/bmb-modal.component';
 export * from './lib/components/bmb-card/bmb-card.component';
+export * from './lib/components/bmb-dropdown/bmb-dropdown.component';
 export * from './lib/components/bmb-balance-overview/bmb-balance-overview.component';
+export * from './lib/components/bmb-frequent-apps-selector/bmb-frequent-apps-selector.component';
 export * from './lib/components/bmb-media-card/bmb-media-card.component';
+export * from './lib/components/bmb-grade-value/bmb-grade-value.component';
 // types
 export * from './lib/types';
 // interface

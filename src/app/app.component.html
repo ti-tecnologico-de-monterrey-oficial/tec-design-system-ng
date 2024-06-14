@@ -1,4 +1,5 @@
-<bmb-top-bar
+<bmb-theme [initialTheme]="'light'" />
+<!-- <bmb-top-bar
   appName="TecSign"
   appSubTitle="Elegir documentos"
   [showLang]="true"
@@ -6,7 +7,7 @@
   (onLangChange)="handleLangChange($event)"
 ></bmb-top-bar>
 <bmb-theme [showControls]="true" [initialTheme]="'dark'" />
-<!-- <bmb-sidebar [elements]="sidebarElements" /> -->
+<bmb-sidebar [elements]="sidebarElements" /> -->
 
 <div>
   <div bmbButtonGroup>
@@ -75,4 +76,9 @@
   <a routerLink="/my-page" class="font-bold-6">My Page</a>
   <a routerLink="/emprendedor" class="font-bold-6">Emprendedor</a>
 </div>
+
+<bmb-frequent-apps-selector
+  [title]="'Mis Aplicaciones Frecuentes'"
+  [apps]="apps"
+/>
 <router-outlet></router-outlet>

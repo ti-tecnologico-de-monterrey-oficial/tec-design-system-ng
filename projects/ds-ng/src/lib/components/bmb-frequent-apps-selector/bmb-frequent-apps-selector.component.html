@@ -1,0 +1,14 @@
+<bmb-container [appearance]="'primary-home'" class="bmb_frequent_apps">
+  <p class="bmb_frequent_apps-title">{{ title }}</p>
+  <div #container class="bmb_frequent_apps-container">
+    <bmb-interactive-icon
+      *ngFor="let app of apps"
+      [icon]="app.icon"
+      [title]="app.title"
+      [link]="app.link ?? '#'"
+      [target]="app.target ?? '_self'"
+      [appearance]="app.appearance"
+    >
+    </bmb-interactive-icon>
+  </div>
+</bmb-container>
