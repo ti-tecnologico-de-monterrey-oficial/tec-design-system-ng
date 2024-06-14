@@ -93,30 +93,30 @@
     position: relative;
     z-index: 5;
     @include fonts.font(6, regular);
-    
-    &-small{
-        width: rem.rem_calc(42);
-        height: rem.rem_calc(42);
 
-        &.active {
-            @include fonts.font(6, medium);
-            background-color: RGBA(var(--color-charade-50));
-            border: rem.rem_calc(1) solid RGBA(var(--color-mariner-700));
-            color: RGBA(var(--color-mariner-700));
-          }
+    &-small {
+      width: rem.rem_calc(42);
+      height: rem.rem_calc(42);
+
+      &.active {
+        @include fonts.font(6, medium);
+        background-color: RGBA(var(--color-charade-50));
+        border: rem.rem_calc(1) solid RGBA(var(--color-mariner-700));
+        color: RGBA(var(--color-mariner-700));
+      }
     }
-    
-    &-normal{
-        width: rem.rem_calc(48);
-        height: rem.rem_calc(48);
-        &.active {
-            @include fonts.font(6, medium);
-            background-color: RGBA(var(--color-charade-50));
-            border: rem.rem_calc(1) solid RGBA(var(--color-mariner-700));
-            color: RGBA(var(--color-mariner-700));
-            height: rem.rem_calc(64);
-            width: rem.rem_calc(64);
-        }
+
+    &-normal {
+      width: rem.rem_calc(48);
+      height: rem.rem_calc(48);
+      &.active {
+        @include fonts.font(6, medium);
+        background-color: RGBA(var(--color-charade-50));
+        border: rem.rem_calc(1) solid RGBA(var(--color-mariner-700));
+        color: RGBA(var(--color-mariner-700));
+        height: rem.rem_calc(64);
+        width: rem.rem_calc(64);
+      }
     }
   }
 }
@@ -153,20 +153,20 @@
       background: RGBA(var(--color-charade-700));
       color: RGBA(var(--color-charade-950));
 
-      &-small{
+      &-small {
         &.active {
-            background-color: RGBA(var(--color-charade-950));
-            border: rem.rem_calc(1) solid RGBA(var(--color-neon-primary));
-            color: RGBA(var(--color-charade-50));
-          }
+          background-color: RGBA(var(--color-charade-950));
+          border: rem.rem_calc(1) solid RGBA(var(--color-neon-primary));
+          color: RGBA(var(--color-charade-50));
+        }
       }
 
-      &-normal{
+      &-normal {
         &.active {
-            background-color: RGBA(var(--color-charade-950));
-            border: rem.rem_calc(1) solid RGBA(var(--color-neon-primary));
-            color: RGBA(var(--color-charade-50));
-          }
+          background-color: RGBA(var(--color-charade-950));
+          border: rem.rem_calc(1) solid RGBA(var(--color-neon-primary));
+          color: RGBA(var(--color-charade-50));
+        }
       }
     }
   }

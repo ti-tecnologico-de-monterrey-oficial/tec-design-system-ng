@@ -6,7 +6,7 @@ describe('BmbDropdownComponent', () => {
   let component: BmbDropdownComponent;
   let fixture: ComponentFixture<BmbDropdownComponent>;
 
-  beforeEach(() => {    
+  beforeEach(() => {
     fixture = TestBed.createComponent(BmbDropdownComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
