@@ -29,7 +29,7 @@ export * from './lib/components/bmb-loader/bmb-loader.component';
 export * from './lib/components/bmb-switch/bmb-switch.component';
 export * from './lib/components/bmb-legend/bmb-legend.component';
 export * from './lib/components/bmb-value-counter/bmb-value-counter.component';
-export * from './lib/components/bmb-stat-counter/bmb-stat-counter.component';
+export * from './lib/components/bmb-step-progress-bar/bmb-step-progress-bar.component';
 export * from './lib/components/bmb-focus-element/bmb-focus-element.component';
 export * from './lib/components/bmb-user-summary/bmb-user-summary.component';
 export * from './lib/components/bmb-tabs/bmb-tabs.component';
