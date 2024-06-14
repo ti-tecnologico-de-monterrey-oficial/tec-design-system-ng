@@ -14,7 +14,7 @@
     display: flex;
 
     button {
-      padding: rem.rem_calc(8) rem.rem_calc(16);
+      padding: var(--bmg-spacing-s) var(--bmg-spacing-m);
       border-radius: 0;
       background-color: transparent;
       border-color: RGBA(var(--color-charade-950));

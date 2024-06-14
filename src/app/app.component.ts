@@ -45,6 +45,7 @@ import {
   BmbModalComponent,
   BmbFrequentAppsSelectorComponent,
   BmbMediaCardComponent,
+  BmbButtonGroupDirective,
 } from '../../projects/ds-ng/src/public-api';
 
 import {
@@ -107,6 +108,7 @@ import { MatDialog } from '@angular/material/dialog';
     BmbModalComponent,
     BmbFrequentAppsSelectorComponent,
     BmbMediaCardComponent,
+    BmbButtonGroupDirective,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
