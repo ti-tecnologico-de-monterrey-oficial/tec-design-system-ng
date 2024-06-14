@@ -5,7 +5,6 @@
   display: inline-flex;
 
   &-primary {
-
     > * {
       @include mixins.button(primary);
     }
@@ -61,6 +60,18 @@
     }
   }
 
+  &-small {
+    > * {
+      padding: rem.rem_calc(8);
+    }
+  }
+
+  &-large {
+    > * {
+      padding: rem.rem_calc(8 16);
+    }
+  }
+
   > * {
     border-radius: 0;
 
@@ -76,26 +87,9 @@
   }
 }
 
-
-// @use "../base/mixins" as mixins;
-
-// *:not(.bmb_button-group) {
-//   > .bmb_btn {
-
-//     &-secondary-outlined {
-//
-//     }
-
-//     &-destructive {
-//
-//     }
-//   }
-// }
-
 [data-theme="dark"],
 .storybook-dark-theme {
   .bmb_button-group {
-
     &-secondary-outlined {
       > * {
         border-color: RGBA(var(--color-white-primary));

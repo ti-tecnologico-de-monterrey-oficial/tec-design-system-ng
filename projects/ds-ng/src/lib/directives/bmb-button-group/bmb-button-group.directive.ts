@@ -3,7 +3,7 @@ import { IButtonAppearance } from '../../types';
 
 @Directive({
   selector: '[bmbButtonGroup]',
-  standalone: true
+  standalone: true,
 })
 export class BmbButtonGroupDirective {
   @Input() appearance: IButtonAppearance = 'primary';
