@@ -96,6 +96,28 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string' },
       },
     },
+    isToggleActive: {
+      name: 'Case',
+      control: { type: 'boolean' },
+      description:
+        'This is the active button state',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
+    enableButtonToggle: {
+      name: 'Case',
+      control: { type: 'boolean' },
+      description:
+        'This property enable the active button state',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
   },
   args: {
     appearance: 'primary',
@@ -104,6 +126,8 @@ Below is an example of how you can use this component in HTML:
     position: 'left',
     case: false,
     text: 'Button text',
+    isToggleActive: false,
+    enableButtonToggle: false,
   },
 } as Meta<typeof BmbButtonDirective>;
 
