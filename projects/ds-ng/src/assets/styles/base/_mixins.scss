@@ -177,62 +177,6 @@
   }
 }
 
-// Input styles
-@mixin input($type: main) {
-  @include resetElement();
-  @include fonts.font(4, regular);
-  appearance: none;
-  width: 100%;
-  height: rem.rem_calc(48);
-
-  &:focus,
-  &:focus:hover,
-  &:disabled:focus {
-    @include focusElement();
-  }
-
-  @if $type == simple {
-    background-color: transparent;
-    border: 0;
-    border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-950));
-    color: RGBA(var(--color-charade-700));
-
-    &:focus {
-      border-bottom: rem.rem_calc(2) solid RGBA(var(--color-blue-primary));
-      border-color: RGBA(var(--color-blue-primary));
-      outline: none;
-      color: RGBA(var(--color-mariner-700));
-    }
-
-    &::placeholder {
-      color: RGBA(var(--color-charade-300));
-    }
-
-    &.ng-invalid {
-      border-bottom-color: RGBA(var(--color-red-primary));
-    }
-  } @else if $type == normal {
-    background-color: RGBA(var(--color-charade-50));
-    border: rem.rem_calc(1) solid RGBA(var(--color-charade-500));
-    border-radius: rem.rem_calc(8);
-    color: RGBA(var(--color-charade-950));
-    padding: var(--bmg-spacing-s);
-
-    &:focus {
-      border: rem.rem_calc(2) solid RGBA(var(--color-mariner-700));
-      outline: none;
-    }
-
-    &::placeholder {
-      color: RGBA(var(--color-charade-300));
-    }
-
-    &.ng-invalid {
-      border-color: RGBA(var(--color-red-primary)) !important;
-    }
-  }
-}
-
 @mixin fabInput($size: small, $type: normal) {
   font-family: fonts.$font-poppins-regular;
   display: inline-flex;
@@ -247,9 +191,6 @@
   bottom: rem.rem_calc(40);
   right: rem.rem_calc(40);
   box-shadow: rem.rem_calc(2 2 2 1) RGBA(var(--color-black-primary), 0.25);
-  -webkit-box-shadow: rem.rem_calc(2 2 2 1)
-    RGBA(var(--color-black-primary), 0.25);
-  -moz-box-shadow: rem.rem_calc(2 2 2 1) RGBA(var(--color-black-primary), 0.25);
   background-color: RGBA(var(--color-blue-primary));
   color: RGBA(var(--color-white-primary));
 
@@ -299,4 +240,43 @@
       font-size: rem.rem_calc(14);
     }
   }
+}
+
+@mixin materialIcons() {
+  color: inherit;
+  direction: ltr;
+  display: inline-block;
+  font-family: "Material Icons";
+  font-feature-settings: "liga";
+  font-size: inherit;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-weight: normal;
+  letter-spacing: normal;
+  line-height: normal;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  white-space: nowrap;
+  width: fit-content;
+  word-wrap: normal;
+}
+
+@mixin materialSymbols() {
+  color: inherit;
+  direction: ltr;
+  display: inline-block;
+  font-family: "Material Symbols Outlined";
+  font-feature-settings: "liga";
+  -webkit-font-feature-settings: "liga";
+  font-size: inherit;
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-weight: normal;
+  letter-spacing: normal;
+  line-height: normal;
+  text-transform: none;
+  white-space: nowrap;
+  width: fit-content;
+  word-wrap: normal;
 }
