@@ -6,9 +6,11 @@
     "rxjs": "~7.8.0"
   },
   "dependencies": {
-    "tslib": "^2.3.0",
+    "@angular/material": "^17.0.5",
+    "libphonenumber-js": "^1.11.4",
     "luxon": "^3.4.4",
-    "@angular/material": "^17.0.5"
+    "ngx-mat-intl-tel-input": "^5.0.0",
+    "tslib": "^2.3.0"
   },
   "exports": {
     "./assets/styles/main.min.css": "./dist/ds-ng/assets/styles/main.min.css"
