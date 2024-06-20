@@ -585,4 +585,10 @@ export class AppComponent {
       appearance: 'yellow',
     },
   ];
+
+  toggleButtonState = false;
+  handleButtonState() {
+    console.log('handleButtonState', this.toggleButtonState);
+    this.toggleButtonState = !this.toggleButtonState;
+  }
 }
