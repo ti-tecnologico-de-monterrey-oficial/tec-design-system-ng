@@ -6,30 +6,37 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
 } from '@angular/core';
+import {
+  FormControl,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 
 @Component({
-  selector: 'bmb-input',
-  styleUrls: ['./bmb-input.component.scss'],
-  templateUrl: './bmb-input.component.html',
+  selector: 'bmb-input-phone-number',
+  templateUrl: './bmb-input-phone-number.component.html',
+  styleUrls: ['./bmb-input-phone-number.component.scss'],
   standalone: true,
-  imports: [CommonModule, BmbIconComponent, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxMatIntlTelInputComponent,
+    BmbIconComponent,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbInputComponent implements OnInit {
-  @Input() label: string = '';
-  @Input() placeholder: string = '';
-  @Input() icon: string = '';
-  @Input() errorMessage: string = '';
-  @Input() helperMessage: string = '';
-  @Input() appearance: string = 'normal';
+export class BmbInputPhoneNumberComponent implements OnInit {
+  @Input() control!: FormControl;
   @Input() disabled: boolean = false;
-  @Input() isRequired: boolean = false;
   @Input() showError: boolean = false;
-  @Input() control: FormControl = new FormControl();
+  @Input() errorMessage: string = '';
+  @Input() isRequired: boolean = false;
 
   constructor(private cdr: ChangeDetectorRef) {}
 
@@ -56,14 +63,6 @@ export class BmbInputComponent implements OnInit {
       this.isRequired &&
       this.control.invalid &&
       (this.control.touched || this.control.dirty);
-  }
-
-  get inputClasses(): { [key: string]: boolean } {
-    return {
-      ['bmb_field-input-' + this.appearance]: true,
-      'bmb_field-input-error': this.shouldShowError,
-      disabled: this.disabled,
-    };
   }
 
   get shouldShowError(): boolean {
