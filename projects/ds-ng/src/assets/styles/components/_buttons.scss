@@ -1,44 +1,40 @@
 @use "../base/mixins" as mixins;
 
-*:not(.bmb_button-group) {
-  > .bmb_btn {
-    &-primary {
-      @include mixins.button(primary);
-    }
+.bmb_btn {
+  &-primary {
+    @include mixins.button(primary);
+  }
 
-    &-secondary-filled {
-      @include mixins.button(secondary-filled);
-    }
+  &-secondary-filled {
+    @include mixins.button(secondary-filled);
+  }
 
-    &-secondary-outlined {
-      @include mixins.button(secondary-outlined);
-    }
+  &-secondary-outlined {
+    @include mixins.button(secondary-outlined);
+  }
 
-    &-destructive {
-      @include mixins.button(destructive);
-    }
+  &-destructive {
+    @include mixins.button(destructive);
   }
 }
 
 [data-theme="dark"],
 .storybook-dark-theme {
-  *:not(.bmb_button-group) {
-    > .bmb_btn {
-      &-secondary-outlined {
-        border-color: RGBA(var(--color-white-primary));
+  .bmb_btn {
+    &-secondary-outlined {
+      border-color: RGBA(var(--color-white-primary));
+      color: RGBA(var(--color-white-primary));
+
+      bmb-icon {
         color: RGBA(var(--color-white-primary));
+      }
+
+      &:active {
+        background-color: RGBA(var(--color-white-primary));
+        color: RGBA(var(--color-black-primary));
 
         bmb-icon {
-          color: RGBA(var(--color-white-primary));
-        }
-
-        &:active {
-          background-color: RGBA(var(--color-white-primary));
           color: RGBA(var(--color-black-primary));
-
-          bmb-icon {
-            color: RGBA(var(--color-black-primary));
-          }
         }
       }
     }

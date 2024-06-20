@@ -9,11 +9,32 @@
 <bmb-theme [showControls]="true" [initialTheme]="'dark'" />
 <bmb-sidebar [elements]="sidebarElements" /> -->
 
+<bmb-datepicker />
+
+<bmb-card [borderRadius]="['m', 'l']">
+  <section bmbLayout [dinamycCols]="true">
+    <bmb-card bmbLayoutItem>
+      <bmb-card-header>
+        <h3>Title</h3>
+      </bmb-card-header>
+      <img
+        width="100%"
+        alt="gatito"
+        src="https://img.freepik.com/fotos-premium/dia-internacional-gato-8-agosto-gatos-lindos-gatito-pequeno-hermosos-pequenos-animales-compania-verdadero-amigo-bonitos-divertidos-tiernos-esponjosos-juguetones-shorties-ia-generativa_887181-4265.jpg?w=2000"
+      />
+      <bmb-card-footer>
+        <p>footer</p>
+      </bmb-card-footer>
+    </bmb-card>
+  </section>
+</bmb-card>
+
 <button
   bmbButton
   [enableButtonToggle]="true"
   [isToggleActive]="toggleButtonState"
   (click)="handleButtonState()"
+  [textContent]="'text'"
 >
   Button 1
 </button>

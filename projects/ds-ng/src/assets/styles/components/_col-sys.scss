@@ -24,10 +24,6 @@ $namesOfSides: "left", "right";
   &-smart {
     justify-content: center;
     align-items: flex-start;
-
-    & > * {
-      flex: 0 0 calc(25% - (var(--bmg-gap) / 4 * 3));
-    }
   }
 }
 
@@ -35,14 +31,6 @@ $namesOfSides: "left", "right";
   .bmb_gap-#{$name} {
     gap: $size;
     --bmg-gap: #{$size};
-  }
-}
-
-@for $i from 1 through 4 {
-  .bmb_col-sm-#{$i} {
-    flex: 0
-      0
-      calc(#{percentage(math.div($i, 4))} - (var(--bmg-gap) / 4 * #{4 - $i}));
   }
 }
 
@@ -55,6 +43,14 @@ $namesOfSides: "left", "right";
           #{percentage(math.div($i, 12))} - (var(--bmg-gap) / 12 * #{12 - $i})
         );
     }
+  }
+}
+
+@for $i from 1 through 4 {
+  .bmb_col-sm-#{$i} {
+    flex: 0
+      0
+      calc(#{percentage(math.div($i, 4))} - (var(--bmg-gap) / 4 * #{4 - $i}));
   }
 }
 
