@@ -25,16 +25,6 @@ export default {
     docs: {
       description: {
         component: `
-### Installation
-
-To use this component, you need to install the following dependencies:
-
-\`\`\`sh
-npm install ngx-mat-intl-tel-input libphonenumber-js
-\`\`\`
-
-### Example in TypeScript
-
 Below is an example of how you can use this component in TypeScript:
 
 \`\`\`typescript
