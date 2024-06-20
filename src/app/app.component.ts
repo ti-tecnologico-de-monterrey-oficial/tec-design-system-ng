@@ -46,6 +46,9 @@ import {
   BmbFrequentAppsSelectorComponent,
   BmbMediaCardComponent,
   BmbButtonGroupDirective,
+  BmbDatepickerComponent,
+  BmbCardHeaderComponent,
+  BmbCardFooterComponent,
 } from '../../projects/ds-ng/src/public-api';
 
 import {
@@ -109,6 +112,9 @@ import { MatDialog } from '@angular/material/dialog';
     BmbFrequentAppsSelectorComponent,
     BmbMediaCardComponent,
     BmbButtonGroupDirective,
+    BmbDatepickerComponent,
+    BmbCardHeaderComponent,
+    BmbCardFooterComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
