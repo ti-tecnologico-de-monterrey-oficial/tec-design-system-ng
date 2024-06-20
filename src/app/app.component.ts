@@ -5,7 +5,7 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import {
   BmbThemeComponent,
@@ -46,14 +46,13 @@ import {
   BmbFrequentAppsSelectorComponent,
   BmbMediaCardComponent,
   BmbButtonGroupDirective,
-} from '../../projects/ds-ng/src/public-api';
-
-import {
+  BmbInputPhoneNumberComponent,
   IBmbTab,
   IBmbCalendarEvent,
   IBmbCalendarEventClick,
   BmbIconComponent,
 } from '../../projects/ds-ng/src/public-api';
+
 export interface Target {
   target: string;
   index: number;
@@ -68,6 +67,7 @@ import { MatDialog } from '@angular/material/dialog';
   selector: 'app-root',
   standalone: true,
   imports: [
+    ReactiveFormsModule,
     CommonModule,
     RouterModule,
     BmbThemeComponent,
@@ -109,6 +109,7 @@ import { MatDialog } from '@angular/material/dialog';
     BmbFrequentAppsSelectorComponent,
     BmbMediaCardComponent,
     BmbButtonGroupDirective,
+    BmbInputPhoneNumberComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

@@ -1,3 +1,5 @@
+@use "../base/mixins" as mixins;
+
 * {
   box-sizing: border-box;
 }
@@ -44,42 +46,11 @@ bmb-icon {
 }
 
 .material-icons {
-  color: inherit;
-  direction: ltr;
-  display: inline-block;
-  font-family: "Material Icons";
-  font-feature-settings: "liga";
-  font-size: inherit;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-style: normal;
-  font-weight: normal;
-  letter-spacing: normal;
-  line-height: normal;
-  text-rendering: optimizeLegibility;
-  text-transform: none;
-  white-space: nowrap;
-  width: fit-content;
-  word-wrap: normal;
+  @include mixins.materialIcons();
 }
 
 .material-symbols-outlined {
-  color: inherit;
-  direction: ltr;
-  display: inline-block;
-  font-family: "Material Symbols Outlined";
-  font-feature-settings: "liga";
-  -webkit-font-feature-settings: "liga";
-  font-size: inherit;
-  -webkit-font-smoothing: antialiased;
-  font-style: normal;
-  font-weight: normal;
-  letter-spacing: normal;
-  line-height: normal;
-  text-transform: none;
-  white-space: nowrap;
-  width: fit-content;
-  word-wrap: normal;
+  @include mixins.materialSymbols();
 }
 
 storybook-toast-wrapper {

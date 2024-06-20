@@ -139,9 +139,8 @@
     top: rem.rem_calc(40);
     justify-content: center;
     margin-top: rem.rem_calc(8);
-    -webkit-box-shadow: 10px 10px 26px -12px RGBA(var(--color-black-primary), 0.75);
-    -moz-box-shadow: 10px 10px 26px -12px RGBA(var(--color-black-primary), 0.75);
-    box-shadow: 10px 10px 26px -12px RGBA(var(--color-black-primary), 0.75);
+    box-shadow: rem.rem_calc(10 10 26 -12)
+      RGBA(var(--color-black-primary), 0.75);
     &::-webkit-scrollbar {
       -webkit-appearance: none;
       width: rem.rem_calc(10);
@@ -197,7 +196,6 @@
     }
   }
 }
-// box-shadow: 0 1px 4px 0 rgba(0,0,0,.24);
 
 [data-theme="dark"],
 .storybook-dark-theme {

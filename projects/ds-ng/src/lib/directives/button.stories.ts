@@ -99,8 +99,7 @@ Below is an example of how you can use this component in HTML:
     isToggleActive: {
       name: 'Case',
       control: { type: 'boolean' },
-      description:
-        'This is the active button state',
+      description: 'This is the active button state',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
@@ -110,8 +109,7 @@ Below is an example of how you can use this component in HTML:
     enableButtonToggle: {
       name: 'Case',
       control: { type: 'boolean' },
-      description:
-        'This property enable the active button state',
+      description: 'This property enable the active button state',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },

@@ -18,14 +18,13 @@
   Button 1
 </button>
 
+<bmb-frequent-apps-selector
+  [title]="'Mis Aplicaciones Frecuentes'"
+  [apps]="apps"
+/>
 <div style="display: flex; gap: 3em">
   <a routerLink="/home" class="font-bold-6">Home</a>
   <a routerLink="/my-page" class="font-bold-6">My Page</a>
   <a routerLink="/emprendedor" class="font-bold-6">Emprendedor</a>
 </div>
-
-<bmb-frequent-apps-selector
-  [title]="'Mis Aplicaciones Frecuentes'"
-  [apps]="apps"
-/>
 <router-outlet></router-outlet>
