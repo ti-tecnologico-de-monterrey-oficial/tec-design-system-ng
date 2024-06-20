@@ -1205,12 +1205,12 @@
     "directives": [
         {
             "name": "BmbButtonDirective",
-            "id": "directive-BmbButtonDirective-fa65f1f65b56092c45e47a9855faf9c24edbf64f61a6e4190e32b66126d4247fb1181af7a0580287364d84b1cef4626025c9ba6ff5f4581e3830482e3bc02a25",
+            "id": "directive-BmbButtonDirective-584ebb1f03edc91b428878fee46f86237627a724a2d6f9a9039a8c6c9c9d7ac1388725c5f98428479192f20d8ac05874082ee3a249922d704e1a41cace4a8257",
             "file": "projects/ds-ng/src/lib/directives/button.directive.ts",
             "type": "directive",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import {\n  Directive,\n  Input,\n  ElementRef,\n  HostBinding,\n  ViewContainerRef,\n  ChangeDetectorRef,\n  OnInit,\n  OnChanges,\n  Renderer2,\n  SimpleChanges,\n} from '@angular/core';\nimport { BmbIconComponent } from '../components/bmb-icon/bmb-icon.component';\nimport { IButtonAppearance } from '../types';\n\n@Directive({\n  selector: '[bmbButton]',\n  standalone: true,\n})\nexport class BmbButtonDirective implements OnInit, OnChanges {\n  @Input() icon: string = '';\n  @Input() position: 'left' | 'right' = 'left';\n  @Input() case: boolean = false;\n  @Input() appearance: IButtonAppearance = 'primary';\n  @Input() size: 'small' | 'large' = 'small';\n\n  private providedInputs: Set<string> = new Set();\n\n  constructor(\n    private el: ElementRef,\n    private viewContainerRef: ViewContainerRef,\n    private cdr: ChangeDetectorRef,\n    private renderer: Renderer2,\n  ) {}\n\n  ngOnInit(): void {\n    this.addContent();\n    this.applyAttributes();\n  }\n\n  ngOnChanges(changes: SimpleChanges): void {\n    Object.keys(changes).forEach((input) => {\n      this.providedInputs.add(input);\n    });\n\n    this.applyAttributes();\n    this.addContent();\n    this.cdr.markForCheck();\n  }\n\n  private applyAttributes() {\n    if (this.providedInputs.has('case')) {\n      if (this.case) {\n        this.renderer.setAttribute(this.el.nativeElement, 'case', 'true');\n      } else {\n        this.renderer.removeAttribute(this.el.nativeElement, 'case');\n      }\n    }\n\n    if (this.providedInputs.has('size') && this.size) {\n      this.renderer.setAttribute(this.el.nativeElement, 'size', this.size);\n    }\n\n    if (this.providedInputs.has('position')) {\n      this.renderer.setAttribute(\n        this.el.nativeElement,\n        'position',\n        this.position,\n      );\n    }\n  }\n\n  @HostBinding('class') get elementClass(): string {\n    return `bmb_btn-${this.appearance}`;\n  }\n\n  private addContent() {\n    this.viewContainerRef.clear();\n\n    if (this.icon) {\n      const iconComponentRef =\n        this.viewContainerRef.createComponent(BmbIconComponent); // Crear una instancia del componente\n      const iconComponent = iconComponentRef.instance;\n      iconComponent.icon = this.icon;\n\n      if (this.position === 'right') {\n        this.el.nativeElement.insertBefore(\n          iconComponentRef.location.nativeElement,\n          this.el.nativeElement.lastChild.nextSibling,\n        );\n      } else {\n        this.el.nativeElement.insertBefore(\n          iconComponentRef.location.nativeElement,\n          this.el.nativeElement.firstChild,\n        );\n      }\n    }\n  }\n}\n",
+            "sourceCode": "import {\n  Directive,\n  Input,\n  ElementRef,\n  HostBinding,\n  ViewContainerRef,\n  ChangeDetectorRef,\n  OnInit,\n  OnChanges,\n  Renderer2,\n  SimpleChanges,\n} from '@angular/core';\nimport { BmbIconComponent } from '../components/bmb-icon/bmb-icon.component';\nimport { IButtonAppearance } from '../types';\n\n@Directive({\n  selector: '[bmbButton]',\n  standalone: true,\n})\nexport class BmbButtonDirective implements OnInit, OnChanges {\n  @Input() icon: string = '';\n  @Input() position: 'left' | 'right' = 'left';\n  @Input() case: boolean = false;\n  @Input() appearance: IButtonAppearance = 'primary';\n  @Input() size: 'small' | 'large' = 'small';\n  @Input() loading: boolean = false;\n  @Input() isToggleActive: boolean = false;\n  @Input() enableButtonToggle: boolean = false;\n\n  private providedInputs: Set<string> = new Set();\n\n  constructor(\n    private el: ElementRef,\n    private viewContainerRef: ViewContainerRef,\n    private cdr: ChangeDetectorRef,\n    private renderer: Renderer2,\n  ) {}\n\n  ngOnInit(): void {\n    this.addContent();\n    this.applyAttributes();\n  }\n\n  ngOnChanges(changes: SimpleChanges): void {\n    Object.keys(changes).forEach((input) => {\n      this.providedInputs.add(input);\n    });\n\n    this.applyAttributes();\n    this.addContent();\n    this.cdr.markForCheck();\n  }\n\n  private applyAttributes() {\n    if (this.providedInputs.has('case')) {\n      if (this.case) {\n        this.renderer.setAttribute(this.el.nativeElement, 'case', 'true');\n      } else {\n        this.renderer.removeAttribute(this.el.nativeElement, 'case');\n      }\n    }\n\n    if (this.providedInputs.has('size') && this.size) {\n      this.renderer.setAttribute(this.el.nativeElement, 'size', this.size);\n    }\n\n    if (this.providedInputs.has('position')) {\n      this.renderer.setAttribute(\n        this.el.nativeElement,\n        'position',\n        this.position,\n      );\n    }\n  }\n\n  @HostBinding('class') get elementClass(): string[] {\n    const classList = [`bmb_btn-${this.appearance}`];\n    if (this.enableButtonToggle && this.isToggleActive) {\n      classList.push('bmb_btn-toggle-active');\n    }\n    return classList;\n  }\n\n  private addContent() {\n    this.viewContainerRef.clear();\n\n    if (this.icon) {\n      const iconComponentRef =\n        this.viewContainerRef.createComponent(BmbIconComponent); // Crear una instancia del componente\n      const iconComponent = iconComponentRef.instance;\n      iconComponent.icon = this.icon;\n\n      if (this.position === 'right') {\n        this.el.nativeElement.insertBefore(\n          iconComponentRef.location.nativeElement,\n          this.el.nativeElement.lastChild.nextSibling,\n        );\n      } else {\n        this.el.nativeElement.insertBefore(\n          iconComponentRef.location.nativeElement,\n          this.el.nativeElement.firstChild,\n        );\n      }\n    }\n  }\n}\n",
             "selector": "[bmbButton]",
             "providers": [],
             "hostDirectives": [],
@@ -1235,12 +1235,39 @@
                     "decorators": []
                 },
                 {
+                    "name": "enableButtonToggle",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 28,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
                     "name": "icon",
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "line": 21,
                     "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "isToggleActive",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 27,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "loading",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 26,
+                    "type": "boolean",
                     "decorators": []
                 },
                 {
@@ -1270,8 +1297,8 @@
                     "name": "class",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 73,
-                    "type": "string",
+                    "line": 76,
+                    "type": "string[]",
                     "decorators": []
                 }
             ],
@@ -1285,7 +1312,7 @@
                     "type": "Set<string>",
                     "optional": false,
                     "description": "",
-                    "line": 27,
+                    "line": 30,
                     "modifierKind": [
                         123
                     ]
@@ -1298,7 +1325,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 77,
+                    "line": 84,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -1311,7 +1338,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 51,
+                    "line": 54,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -1331,7 +1358,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 41,
+                    "line": 44,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1352,7 +1379,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 36,
+                    "line": 39,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -1393,7 +1420,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 27,
+                "line": 30,
                 "jsdoctags": [
                     {
                         "name": "el",
@@ -1438,9 +1465,9 @@
                     "name": "elementClass",
                     "getSignature": {
                         "name": "elementClass",
-                        "type": "string",
-                        "returnType": "string",
-                        "line": 73
+                        "type": "[]",
+                        "returnType": "string[]",
+                        "line": 76
                     }
                 }
             }
@@ -5238,7 +5265,7 @@
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<a\n  class=\"bmb_container_button\"\n  [ngClass]=\"{\n    'bmb_container_button-small': subtitle || score,\n    'bmb_container_button-square': square\n  }\"\n  [href]=\"link\"\n  [target]=\"target\"\n>\n  <bmb-icon\n    [icon]=\"iconLeft\"\n    class=\"bmb_container_button-left\"\n    *ngIf=\"iconLeft && !score\"\n  />\n  <div class=\"bmb_container_button-score\" *ngIf=\"score && !square\">\n    <svg\n      xmlns=\"http://www.w3.org/2000/svg\"\n      width=\"48\"\n      height=\"40\"\n      viewBox=\"0 0 40 48\"\n      fill=\"currentColor\"\n    >\n      <mask id=\"path-1-inside-1_3664_9005\" fill=\"currentColor\">\n        <path\n          fill-rule=\"evenodd\"\n          clip-rule=\"evenodd\"\n          d=\"M0 11.9719L20 0L40 11.9719V20.2667V27.7333V36.0281L20 48L0 36.0281V27.7333V20.2667V11.9719Z\"\n        />\n      </mask>\n      <path\n        d=\"M20 0L20.5136 -0.858025L20 -1.16547L19.4864 -0.858025L20 0ZM0 11.9719L-0.513607 11.1138L-1 11.405V11.9719H0ZM40 11.9719H41V11.405L40.5136 11.1138L40 11.9719ZM40 36.0281L40.5136 36.8862L41 36.595V36.0281H40ZM20 48L19.4864 48.858L20 49.1655L20.5136 48.858L20 48ZM0 36.0281H-1V36.595L-0.513607 36.8862L0 36.0281ZM19.4864 -0.858025L-0.513607 11.1138L0.513607 12.8299L20.5136 0.858025L19.4864 -0.858025ZM40.5136 11.1138L20.5136 -0.858025L19.4864 0.858025L39.4864 12.8299L40.5136 11.1138ZM41 20.2667V11.9719H39V20.2667H41ZM39 20.2667V27.7333H41V20.2667H39ZM39 27.7333V36.0281H41V27.7333H39ZM39.4864 35.1701L19.4864 47.142L20.5136 48.858L40.5136 36.8862L39.4864 35.1701ZM20.5136 47.142L0.513607 35.1701L-0.513607 36.8862L19.4864 48.858L20.5136 47.142ZM1 36.0281V27.7333H-1V36.0281H1ZM1 27.7333V20.2667H-1V27.7333H1ZM-1 11.9719V20.2667H1V11.9719H-1Z\"\n        fill=\"currentColor\"\n        mask=\"url(#path-1-inside-1_3664_9005)\"\n      />\n    </svg>\n    <span>{{ score }}</span>\n  </div>\n  <div class=\"bmb_container_button-text\">\n    <span class=\"bmb_container_button-title\">{{ title }}</span>\n    <span class=\"bmb_container_button-subtitle\" *ngIf=\"subtitle && !square\">{{\n      subtitle\n    }}</span>\n  </div>\n  <bmb-icon\n    [icon]=\"iconRight\"\n    class=\"bmb_container_button-right\"\n    *ngIf=\"iconRight && !square\"\n  />\n</a>\n"
+            "templateData": "<a\n  class=\"bmb_container_button\"\n  [ngClass]=\"{\n    'bmb_container_button-small': subtitle || score,\n    'bmb_container_button-square': square,\n  }\"\n  [href]=\"link\"\n  [target]=\"target\"\n>\n  <bmb-icon\n    [icon]=\"iconLeft\"\n    class=\"bmb_container_button-left\"\n    *ngIf=\"iconLeft && !score\"\n  />\n  <div class=\"bmb_container_button-score\" *ngIf=\"score && !square\">\n    <svg\n      xmlns=\"http://www.w3.org/2000/svg\"\n      width=\"48\"\n      height=\"40\"\n      viewBox=\"0 0 40 48\"\n      fill=\"currentColor\"\n    >\n      <mask id=\"path-1-inside-1_3664_9005\" fill=\"currentColor\">\n        <path\n          fill-rule=\"evenodd\"\n          clip-rule=\"evenodd\"\n          d=\"M0 11.9719L20 0L40 11.9719V20.2667V27.7333V36.0281L20 48L0 36.0281V27.7333V20.2667V11.9719Z\"\n        />\n      </mask>\n      <path\n        d=\"M20 0L20.5136 -0.858025L20 -1.16547L19.4864 -0.858025L20 0ZM0 11.9719L-0.513607 11.1138L-1 11.405V11.9719H0ZM40 11.9719H41V11.405L40.5136 11.1138L40 11.9719ZM40 36.0281L40.5136 36.8862L41 36.595V36.0281H40ZM20 48L19.4864 48.858L20 49.1655L20.5136 48.858L20 48ZM0 36.0281H-1V36.595L-0.513607 36.8862L0 36.0281ZM19.4864 -0.858025L-0.513607 11.1138L0.513607 12.8299L20.5136 0.858025L19.4864 -0.858025ZM40.5136 11.1138L20.5136 -0.858025L19.4864 0.858025L39.4864 12.8299L40.5136 11.1138ZM41 20.2667V11.9719H39V20.2667H41ZM39 20.2667V27.7333H41V20.2667H39ZM39 27.7333V36.0281H41V27.7333H39ZM39.4864 35.1701L19.4864 47.142L20.5136 48.858L40.5136 36.8862L39.4864 35.1701ZM20.5136 47.142L0.513607 35.1701L-0.513607 36.8862L19.4864 48.858L20.5136 47.142ZM1 36.0281V27.7333H-1V36.0281H1ZM1 27.7333V20.2667H-1V27.7333H1ZM-1 11.9719V20.2667H1V11.9719H-1Z\"\n        fill=\"currentColor\"\n        mask=\"url(#path-1-inside-1_3664_9005)\"\n      />\n    </svg>\n    <span>{{ score }}</span>\n  </div>\n  <div class=\"bmb_container_button-text\">\n    <span class=\"bmb_container_button-title\">{{ title }}</span>\n    <span class=\"bmb_container_button-subtitle\" *ngIf=\"subtitle && !square\">{{\n      subtitle\n    }}</span>\n  </div>\n  <bmb-icon\n    [icon]=\"iconRight\"\n    class=\"bmb_container_button-right\"\n    *ngIf=\"iconRight && !square\"\n  />\n</a>\n"
         },
         {
             "name": "BmbContainerComponent",
@@ -7115,7 +7142,7 @@
         },
         {
             "name": "BmbInputComponent",
-            "id": "component-BmbInputComponent-4ca2ece4aef76a5dc262f30e5d814ad11a5eaba69cffe78e784410935f112bd869534a5150f6952df48bb54a1ff471fec99a351462b238105215d2c56bdad1a4",
+            "id": "component-BmbInputComponent-fde1d9f1477e79fc968cf9c37788f2625760d71845c124b4c28b66ddca959cf9bbbc53aead2dfe8562792a10b2642dcb19ddc7c3203c362e413b8e41177e9130",
             "file": "projects/ds-ng/src/lib/components/bmb-input/bmb-input.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -7155,6 +7182,15 @@
                     "decorators": []
                 },
                 {
+                    "name": "disabled",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 29,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
                     "name": "errorMessage",
                     "defaultValue": "''",
                     "deprecated": false,
@@ -7179,15 +7215,6 @@
                     "deprecationMessage": "",
                     "line": 25,
                     "type": "string",
-                    "decorators": []
-                },
-                {
-                    "name": "isDisabled",
-                    "defaultValue": "false",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 29,
-                    "type": "boolean",
                     "decorators": []
                 },
                 {
@@ -7276,7 +7303,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\n  Component,\n  Input,\n  OnInit,\n  ChangeDetectorRef,\n  ViewEncapsulation,\n  ChangeDetectionStrategy,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\n\n@Component({\n  selector: 'bmb-input',\n  styleUrls: ['./bmb-input.component.scss'],\n  templateUrl: './bmb-input.component.html',\n  standalone: true,\n  imports: [CommonModule, BmbIconComponent, ReactiveFormsModule],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbInputComponent implements OnInit {\n  @Input() label: string = '';\n  @Input() placeholder: string = '';\n  @Input() icon: string = '';\n  @Input() errorMessage: string = '';\n  @Input() helperMessage: string = '';\n  @Input() appearance: string = 'normal';\n  @Input() isDisabled: boolean = false;\n  @Input() isRequired: boolean = false;\n  @Input() showError: boolean = false;\n  @Input() control: FormControl = new FormControl();\n\n  constructor(private cdr: ChangeDetectorRef) {}\n\n  ngOnInit(): void {\n    if (!this.control) {\n      this.control = new FormControl();\n    }\n\n    if (this.isRequired) {\n      this.control.setValidators(Validators.required);\n    } else {\n      this.control.clearValidators();\n    }\n    this.control.updateValueAndValidity();\n\n    this.control.valueChanges.subscribe(() => {\n      this.updateErrorState();\n      this.cdr.markForCheck();\n    });\n  }\n\n  private updateErrorState(): void {\n    this.showError =\n      this.isRequired &&\n      this.control.invalid &&\n      (this.control.touched || this.control.dirty);\n  }\n\n  get inputClasses(): { [key: string]: boolean } {\n    return {\n      ['bmb_field-input-' + this.appearance]: true,\n      'bmb_field-input-error': this.shouldShowError,\n      disabled: this.isDisabled,\n    };\n  }\n\n  get shouldShowError(): boolean {\n    return this.showError;\n  }\n}\n",
+            "sourceCode": "import {\n  Component,\n  Input,\n  OnInit,\n  ChangeDetectorRef,\n  ViewEncapsulation,\n  ChangeDetectionStrategy,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\n\n@Component({\n  selector: 'bmb-input',\n  styleUrls: ['./bmb-input.component.scss'],\n  templateUrl: './bmb-input.component.html',\n  standalone: true,\n  imports: [CommonModule, BmbIconComponent, ReactiveFormsModule],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbInputComponent implements OnInit {\n  @Input() label: string = '';\n  @Input() placeholder: string = '';\n  @Input() icon: string = '';\n  @Input() errorMessage: string = '';\n  @Input() helperMessage: string = '';\n  @Input() appearance: string = 'normal';\n  @Input() disabled: boolean = false;\n  @Input() isRequired: boolean = false;\n  @Input() showError: boolean = false;\n  @Input() control: FormControl = new FormControl();\n\n  constructor(private cdr: ChangeDetectorRef) {}\n\n  ngOnInit(): void {\n    if (!this.control) {\n      this.control = new FormControl();\n    }\n\n    if (this.isRequired) {\n      this.control.setValidators(Validators.required);\n    } else {\n      this.control.clearValidators();\n    }\n    this.control.updateValueAndValidity();\n\n    this.control.valueChanges.subscribe(() => {\n      this.updateErrorState();\n      this.cdr.markForCheck();\n    });\n  }\n\n  private updateErrorState(): void {\n    this.showError =\n      this.isRequired &&\n      this.control.invalid &&\n      (this.control.touched || this.control.dirty);\n  }\n\n  get inputClasses(): { [key: string]: boolean } {\n    return {\n      ['bmb_field-input-' + this.appearance]: true,\n      'bmb_field-input-error': this.shouldShowError,\n      disabled: this.disabled,\n    };\n  }\n\n  get shouldShowError(): boolean {\n    return this.showError;\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -7335,7 +7362,7 @@
                     }
                 }
             },
-            "templateData": "<div class=\"bmb_field\" [ngClass]=\"{ disabled: isDisabled }\">\n  <label for=\"\" class=\"bmb_field-label\" *ngIf=\"label\">\n    {{ label }}\n    <small *ngIf=\"isRequired\" class=\"bmb_field-label-required\">*</small>\n  </label>\n  <div class=\"bmb_field-wrapper\">\n    <bmb-icon\n      *ngIf=\"icon\"\n      [icon]=\"icon\"\n      class=\"bmb_field-icon\"\n      [ngClass]=\"'bmb_field-icon-' + appearance\"\n    ></bmb-icon>\n    <input\n      type=\"text\"\n      class=\"bmb_field-input\"\n      [ngClass]=\"inputClasses\"\n      [required]=\"isRequired\"\n      [disabled]=\"isDisabled\"\n      [placeholder]=\"placeholder ? placeholder : ''\"\n      [formControl]=\"control\"\n    />\n  </div>\n  <p class=\"bmb_field-helper\" *ngIf=\"helperMessage && !shouldShowError\">\n    {{ helperMessage }}\n  </p>\n  <p class=\"bmb_field-error\" *ngIf=\"shouldShowError\">\n    {{ errorMessage }}\n  </p>\n</div>\n"
+            "templateData": "<div class=\"bmb_field\" [ngClass]=\"{ disabled: disabled }\">\n  <label for=\"\" class=\"bmb_field-label\" *ngIf=\"label\">\n    {{ label }}\n    <small *ngIf=\"isRequired\" class=\"bmb_field-label-required\">*</small>\n  </label>\n  <div class=\"bmb_field-wrapper\">\n    <bmb-icon\n      *ngIf=\"icon\"\n      [icon]=\"icon\"\n      class=\"bmb_field-icon\"\n      [ngClass]=\"'bmb_field-icon-' + appearance\"\n    ></bmb-icon>\n    <input\n      type=\"text\"\n      class=\"bmb_field-input\"\n      [ngClass]=\"inputClasses\"\n      [required]=\"isRequired\"\n      [disabled]=\"disabled\"\n      [placeholder]=\"placeholder ? placeholder : ''\"\n      [formControl]=\"control\"\n    />\n  </div>\n  <p class=\"bmb_field-helper\" *ngIf=\"helperMessage && !shouldShowError\">\n    {{ helperMessage }}\n  </p>\n  <p class=\"bmb_field-error\" *ngIf=\"shouldShowError\">\n    {{ errorMessage }}\n  </p>\n</div>\n"
         },
         {
             "name": "BmbInputPhoneNumberComponent",
@@ -8010,7 +8037,7 @@
                 "OnDestroy",
                 "OnChanges"
             ],
-            "templateData": "@if (overlay && !errorState) {\n  <div class=\"bmb_loader-overlay\"></div>\n}\n<div\n  class=\"bmb_loader\"\n  [ngClass]=\"{\n    'bmb_loader-modal': overlay && !errorState,\n    'bmb_loader-error': errorState\n  }\"\n>\n  @if (!errorState) {\n    <div class=\"bmb_loader-loading\">\n      <bmb-icon icon=\"progress_activity\" class=\"bmb_loader-icon\" />\n    </div>\n  }\n  @if (errorState) {\n    <div class=\"bmb_loader-error-icon\">\n      <bmb-icon icon=\"wifi_off\" class=\"bmb_loader-icon\" />\n    </div>\n  }\n  @if (title) {\n    <div class=\"bmb_loader-title\">{{ title }}</div>\n  }\n  @if (subtitle) {\n    <div class=\"bmb_loader-subtitle\">{{ subtitle }}</div>\n  }\n\n  @if (errorState && actions) {\n    <div class=\"bmb_loader-error-actions\">\n      <button\n        bmbButton\n        appearance=\"primary\"\n        size=\"large\"\n        (click)=\"handleButtonPrimary()\"\n      >\n        {{ buttonPrimary }}\n      </button>\n      <button\n        bmbButton\n        appearance=\"secondary-outlined\"\n        size=\"large\"\n        (click)=\"handleButtonSecondary()\"\n      >\n        {{ buttonSecondary }}\n      </button>\n    </div>\n  }\n</div>\n"
+            "templateData": "@if (overlay && !errorState) {\n  <div class=\"bmb_loader-overlay\"></div>\n}\n<div\n  class=\"bmb_loader\"\n  [ngClass]=\"{\n    'bmb_loader-modal': overlay && !errorState,\n    'bmb_loader-error': errorState,\n  }\"\n>\n  @if (!errorState) {\n    <div class=\"bmb_loader-loading\">\n      <bmb-icon icon=\"progress_activity\" class=\"bmb_loader-icon\" />\n    </div>\n  }\n  @if (errorState) {\n    <div class=\"bmb_loader-error-icon\">\n      <bmb-icon icon=\"wifi_off\" class=\"bmb_loader-icon\" />\n    </div>\n  }\n  @if (title) {\n    <div class=\"bmb_loader-title\">{{ title }}</div>\n  }\n  @if (subtitle) {\n    <div class=\"bmb_loader-subtitle\">{{ subtitle }}</div>\n  }\n\n  @if (errorState && actions) {\n    <div class=\"bmb_loader-error-actions\">\n      <button\n        bmbButton\n        appearance=\"primary\"\n        size=\"large\"\n        (click)=\"handleButtonPrimary()\"\n      >\n        {{ buttonPrimary }}\n      </button>\n      <button\n        bmbButton\n        appearance=\"secondary-outlined\"\n        size=\"large\"\n        (click)=\"handleButtonSecondary()\"\n      >\n        {{ buttonSecondary }}\n      </button>\n    </div>\n  }\n</div>\n"
         },
         {
             "name": "BmbLogoComponent",
@@ -8514,7 +8541,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div\n  class=\"bmb_modal-content\"\n  [ngClass]=\"{\n    'bmb_modal-size-small': this.modalData.size == 'small',\n    'bmb_modal-size-medium': this.modalData.size == 'medium',\n    'bmb_modal-size-large': this.modalData.size == 'large'\n  }\"\n>\n  <div class=\"bmb_modal-content-wrapper\">\n    <header class=\"bmb_modal-header\">\n      @if (modalData.type == \"alert\") {\n        <div class=\"bmb_modal-header-icon\">\n          <img [src]=\"this.svgUrl\" alt=\"\" />\n        </div>\n      }\n      <div class=\"bmb_modal-header-text\">\n        <h1 class=\"bmb_modal-header-text-title\">{{ modalData.title }}</h1>\n        @if (modalData.subtitle) {\n          <h3 class=\"bmb_modal-header-text-subtitle\">subtitulo</h3>\n        }\n      </div>\n      <div class=\"bmb_modal-header-close\">\n        <bmb-icon\n          class=\"bmb_modal-header-close-icon\"\n          [icon]=\"'close'\"\n          (click)=\"closeModal()\"\n          onkeypress=\"\"\n        />\n      </div>\n    </header>\n    <section class=\"bmb_modal-body\">\n      <div\n        class=\"bmb_modal-body-description\"\n        [ngClass]=\"{ 'bmb_modal-body-scrollable': modalData.scrollable }\"\n      >\n        <p class=\"bmb_modal-body-description-text\">{{ modalData.content }}</p>\n      </div>\n    </section>\n    @if (this.modalData.type !== \"informative\") {\n      <footer id=\"modal-footer\" class=\"bmb_modal-footer\">\n        @if (this.modalData.secondaryBtnLabel) {\n          <button\n            bmbButton\n            appearance=\"secondary-filled\"\n            class=\"bmb_modal-btn bmb_modal-footer-btn bmb_modal-btn-secondary-action\"\n            (click)=\"this.dialogRef.close(false)\"\n          >\n            {{ modalData.secondaryBtnLabel }}\n          </button>\n        }\n        <button\n          bmbButton\n          class=\"bmb_modal-btn\"\n          [ngClass]=\"btnColor\"\n          (click)=\"this.dialogRef.close(true)\"\n        >\n          {{ modalData.primaryBtnLabel || \"OK\" }}\n        </button>\n      </footer>\n    }\n  </div>\n</div>\n"
+            "templateData": "<div\n  class=\"bmb_modal-content\"\n  [ngClass]=\"{\n    'bmb_modal-size-small': this.modalData.size == 'small',\n    'bmb_modal-size-medium': this.modalData.size == 'medium',\n    'bmb_modal-size-large': this.modalData.size == 'large',\n  }\"\n>\n  <div class=\"bmb_modal-content-wrapper\">\n    <header class=\"bmb_modal-header\">\n      @if (modalData.type == \"alert\") {\n        <div class=\"bmb_modal-header-icon\">\n          <img [src]=\"this.svgUrl\" alt=\"\" />\n        </div>\n      }\n      <div class=\"bmb_modal-header-text\">\n        <h1 class=\"bmb_modal-header-text-title\">{{ modalData.title }}</h1>\n        @if (modalData.subtitle) {\n          <h3 class=\"bmb_modal-header-text-subtitle\">subtitulo</h3>\n        }\n      </div>\n      <div class=\"bmb_modal-header-close\">\n        <bmb-icon\n          class=\"bmb_modal-header-close-icon\"\n          [icon]=\"'close'\"\n          (click)=\"closeModal()\"\n          onkeypress=\"\"\n        />\n      </div>\n    </header>\n    <section class=\"bmb_modal-body\">\n      <div\n        class=\"bmb_modal-body-description\"\n        [ngClass]=\"{ 'bmb_modal-body-scrollable': modalData.scrollable }\"\n      >\n        <p class=\"bmb_modal-body-description-text\">{{ modalData.content }}</p>\n      </div>\n    </section>\n    @if (this.modalData.type !== \"informative\") {\n      <footer id=\"modal-footer\" class=\"bmb_modal-footer\">\n        @if (this.modalData.secondaryBtnLabel) {\n          <button\n            bmbButton\n            appearance=\"secondary-filled\"\n            class=\"bmb_modal-btn bmb_modal-footer-btn bmb_modal-btn-secondary-action\"\n            (click)=\"this.dialogRef.close(false)\"\n          >\n            {{ modalData.secondaryBtnLabel }}\n          </button>\n        }\n        <button\n          bmbButton\n          class=\"bmb_modal-btn\"\n          [ngClass]=\"btnColor\"\n          (click)=\"this.dialogRef.close(true)\"\n        >\n          {{ modalData.primaryBtnLabel || \"OK\" }}\n        </button>\n      </footer>\n    }\n  </div>\n</div>\n"
         },
         {
             "name": "BmbOverlayComponent",
@@ -10156,7 +10183,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@use \"../../../assets/styles/base/fonts\" as fonts;\n@use \"../../../assets/styles/base/mixins\" as mixins;\n@use \"../../../assets/styles/base/rem\" as rem;\n\n.bmb_sidebar {\n  background-color: RGBA(var(--color-black-primary));\n  border-radius: rem.rem_calc(8 0 0 8);\n  cursor: pointer;\n  overflow: hidden;\n  position: fixed;\n  right: 0;\n  top: 10%;\n  transition: width 0.3s ease;\n  width: rem.rem_calc(30);\n  z-index: 100;\n\n  @include mixins.media-query(768, \"min\") {\n    border-radius: rem.rem_calc(0 24 24 0);\n    cursor: auto;\n    left: 0;\n    min-height: rem.rem_calc(539);\n    padding: rem.rem_calc(24);\n    right: inherit;\n    top: 50%;\n    transform: translateY(-50%);\n    width: rem.rem_calc(88);\n  }\n\n  &-isOpen {\n    @include mixins.media-query(768, \"max\") {\n      min-height: rem.rem_calc(539);\n      padding: rem.rem_calc(24);\n      width: 100%;\n\n      .bmb_sidebar-button {\n        height: auto;\n        transform: rotate(180deg);\n        width: auto;\n      }\n\n      .bmb_sidebar-list {\n        display: flex;\n      }\n\n      .bmb_sidebar-text {\n        opacity: 1;\n        visibility: visible;\n      }\n\n      .bmb_sidebar-item {\n        width: 100%;\n      }\n    }\n  }\n\n  &:hover {\n    @include mixins.media-query(768, \"min\") {\n      min-height: rem.rem_calc(539);\n      padding: rem.rem_calc(24);\n      width: rem.rem_calc(250);\n\n      .bmb_sidebar-list {\n        display: flex;\n      }\n\n      .bmb_sidebar-text {\n        opacity: 1;\n        visibility: visible;\n      }\n\n      .bmb_sidebar-item {\n        width: rem.rem_calc(202);\n      }\n    }\n  }\n\n  &-list {\n    display: none;\n    flex-flow: column;\n    list-style-type: none;\n    margin: rem.rem_calc(16 0 0 0);\n    padding: 0;\n\n    &:nth-of-type(n + 2) {\n      border-top: rem.rem_calc(1) solid RGBA(var(--color-charade-800));\n      margin-top: rem.rem_calc(16);\n      padding-top: rem.rem_calc(16);\n    }\n\n    @include mixins.media-query(768, \"min\") {\n      display: flex;\n      margin: 0;\n\n      &:nth-of-type(n + 2) {\n        margin-top: rem.rem_calc(16);\n        padding-top: rem.rem_calc(16);\n      }\n    }\n  }\n\n  &-item {\n    align-items: center;\n    display: flex;\n    height: rem.rem_calc(40);\n    justify-content: flex-start;\n    width: auto;\n  }\n\n  &-link {\n    align-items: center;\n    color: RGBA(var(--color-white-primary));\n    cursor: pointer;\n    display: flex;\n    height: 100%;\n    justify-content: flex-start;\n    text-decoration: none;\n    transition: all 0.3s ease;\n    width: 100%;\n\n    &:hover,\n    &-active {\n      background-color: RGBA(var(--color-white-primary));\n      border-radius: rem.rem_calc(24);\n      color: RGBA(var(--color-black-primary));\n    }\n  }\n\n  &-icon {\n    font-size: rem.rem_calc(24);\n    padding: rem.rem_calc(0 8);\n  }\n\n  &-text {\n    display: block;\n    flex: 1;\n    opacity: 0;\n    visibility: hidden;\n    width: rem.rem_calc(132);\n    @include fonts.font(4, medium);\n  }\n\n  &-button {\n    align-items: center;\n    display: flex;\n    height: rem.rem_calc(72);\n    justify-content: center;\n    margin: 0;\n    padding: 0;\n    width: 100%;\n\n    &-icon {\n      color: RGBA(var(--color-white-primary));\n      font-size: rem.rem_calc(24);\n      width: rem.rem_calc(15);\n    }\n\n    @include mixins.media-query(768, \"min\") {\n      display: none;\n    }\n  }\n}\n",
+                    "data": "@use \"../../../assets/styles/base/fonts\" as fonts;\n@use \"../../../assets/styles/base/mixins\" as mixins;\n@use \"../../../assets/styles/base/rem\" as rem;\n\n@mixin content() {\n  cursor: pointer;\n  min-height: inherit;\n  padding: 0;\n  top: 10%;\n  transform: inherit;\n  width: rem.rem_calc(30);\n}\n\n@mixin isOpen() {\n  min-height: rem.rem_calc(539);\n  padding: rem.rem_calc(24);\n  width: 100%;\n\n  .bmb_sidebar-button {\n    height: auto;\n    width: auto;\n\n    &-icon {\n      transform: rotate(180deg);\n    }\n\n    &-text {\n      display: block;\n    }\n  }\n\n  .bmb_sidebar-list {\n    display: flex;\n  }\n\n  .bmb_sidebar-text {\n    opacity: 1;\n    visibility: visible;\n  }\n\n  .bmb_sidebar-item {\n    width: 100%;\n  }\n}\n\n@mixin hover() {\n  min-height: unset;\n  padding: 0;\n  width: rem.rem_calc(30);\n\n  .bmb_sidebar-list {\n    display: none;\n  }\n\n  .bmb_sidebar-text {\n    opacity: 0;\n    visibility: hidden;\n  }\n\n  .bmb_sidebar-item {\n    width: inherit;\n  }\n}\n\n@mixin list() {\n  display: none;\n  margin: rem.rem_calc(16 0 0 0);\n\n  &:nth-of-type(n + 2) {\n    margin-top: rem.rem_calc(16);\n    padding-top: rem.rem_calc(16);\n  }\n}\n\n.bmb_sidebar {\n  background-color: RGBA(var(--color-black-primary));\n  border-radius: rem.rem_calc(0 8 8 0);\n  cursor: auto;\n  left: 0;\n  overflow: hidden;\n  position: fixed;\n  top: 50%;\n  transition: width 0.3s ease;\n  width: rem.rem_calc(30);\n  z-index: 100;\n  min-height: rem.rem_calc(539);\n  transform: translateY(-50%);\n  padding: rem.rem_calc(24);\n  width: rem.rem_calc(88);\n\n  @include mixins.media-query(768, \"max\") {\n    @include content();\n  }\n\n  @media (max-height: 992px) {\n    @include content();\n  }\n\n  &:hover {\n    min-height: rem.rem_calc(539);\n    padding: rem.rem_calc(24);\n    width: rem.rem_calc(250);\n\n    .bmb_sidebar-list {\n      display: flex;\n    }\n\n    .bmb_sidebar-text {\n      opacity: 1;\n      visibility: visible;\n    }\n\n    .bmb_sidebar-item {\n      width: rem.rem_calc(202);\n    }\n\n    @include mixins.media-query(768, \"max\") {\n      @include hover();\n    }\n\n    @media (max-height: 992px) {\n      @include hover();\n    }\n  }\n\n  &-isOpen {\n    @include mixins.media-query(768, \"max\") {\n      @include isOpen();\n      &:hover {\n        @include isOpen();\n      }\n    }\n\n    @media (max-height: 992px) {\n      @include isOpen();\n      &:hover {\n        @include isOpen();\n      }\n    }\n  }\n\n  &-list {\n    display: flex;\n    flex-flow: column;\n    list-style-type: none;\n    margin: 0;\n\n    padding: 0;\n\n    &:nth-of-type(n + 2) {\n      border-top: rem.rem_calc(1) solid RGBA(var(--color-charade-800));\n      margin-top: rem.rem_calc(16);\n      padding-top: rem.rem_calc(16);\n    }\n\n    @include mixins.media-query(768, \"max\") {\n      @include list();\n    }\n\n    @media (max-height: 992px) {\n      @include list();\n    }\n  }\n\n  &-item {\n    align-items: center;\n    display: flex;\n    height: rem.rem_calc(40);\n    justify-content: flex-start;\n    width: auto;\n  }\n\n  &-link {\n    align-items: center;\n    color: RGBA(var(--color-white-primary));\n    cursor: pointer;\n    display: flex;\n    height: 100%;\n    justify-content: flex-start;\n    text-decoration: none;\n    transition: all 0.3s ease;\n    width: 100%;\n\n    &:hover,\n    &-active {\n      background-color: RGBA(var(--color-white-primary));\n      border-radius: rem.rem_calc(24);\n      color: RGBA(var(--color-black-primary));\n    }\n  }\n\n  &-icon {\n    font-size: rem.rem_calc(24);\n    padding: rem.rem_calc(0 8);\n  }\n\n  &-text {\n    display: block;\n    flex: 1;\n    opacity: 0;\n    visibility: hidden;\n    width: rem.rem_calc(132);\n    @include fonts.font(4, medium);\n  }\n\n  &-button {\n    align-items: center;\n    display: none;\n    height: rem.rem_calc(72);\n    justify-content: center;\n    margin: 0;\n    padding: 0;\n    width: 100%;\n\n    &-icon {\n      color: RGBA(var(--color-white-primary));\n      display: block;\n      font-size: rem.rem_calc(24);\n      width: rem.rem_calc(24);\n    }\n\n    &-text {\n      color: RGBA(var(--color-white-primary));\n      display: none;\n      margin: rem.rem_calc(4 0 0 10);\n      @include fonts.font(3, regular);\n    }\n\n    @include mixins.media-query(768, \"max\") {\n      display: flex;\n    }\n\n    @media (max-height: 992px) {\n      display: flex;\n    }\n  }\n}\n",
                     "styleUrl": "./bmb-sidebar.component.scss"
                 }
             ],
@@ -10191,7 +10218,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<nav\n  class=\"bmb_sidebar\"\n  [class.bmb_sidebar-isOpen]=\"isOpen\"\n  aria-label=\"Sidebar Navigation\"\n>\n  <button class=\"bmb_sidebar-button\" type=\"button\" (click)=\"toggleSidebar()\">\n    <bmb-icon class=\"bmb_sidebar-button-icon\" icon=\"arrow_back_ios\"></bmb-icon>\n  </button>\n  <ng-container *ngFor=\"let group of elements\">\n    <ul class=\"bmb_sidebar-list\">\n      <li *ngFor=\"let element of group\" class=\"bmb_sidebar-item\">\n        <ng-container *ngIf=\"!isExternalLink(element.link); else externalLink\">\n          <a\n            class=\"bmb_sidebar-link\"\n            [id]=\"element.id\"\n            [routerLink]=\"element.link\"\n            routerLinkActive=\"bmb_sidebar-link-active\"\n            [routerLinkActiveOptions]=\"{ exact: true }\"\n          >\n            <bmb-icon\n              class=\"bmb_sidebar-icon\"\n              [icon]=\"element.icon\"\n              [materialIcon]=\"true\"\n            ></bmb-icon>\n            <span class=\"bmb_sidebar-text\">{{ element.title }}</span>\n          </a>\n        </ng-container>\n        <ng-template #externalLink>\n          <a\n            class=\"bmb_sidebar-link\"\n            [id]=\"element.id\"\n            [ngClass]=\"{\n              'bmb_sidebar-link-active':\n                isLinkActive(element.link) && !isExternalLink(element.link)\n            }\"\n            [href]=\"element.link\"\n            [target]=\"element.target ? element.target : '_blank'\"\n            rel=\"noopener noreferrer\"\n            (click)=\"setExternalLinkActive(element.link)\"\n          >\n            <bmb-icon\n              class=\"bmb_sidebar-icon\"\n              [icon]=\"element.icon\"\n              [materialIcon]=\"true\"\n            ></bmb-icon>\n            <span class=\"bmb_sidebar-text\">{{ element.title }}</span>\n          </a>\n        </ng-template>\n      </li>\n    </ul>\n  </ng-container>\n</nav>\n"
+            "templateData": "<nav\n  class=\"bmb_sidebar\"\n  [class.bmb_sidebar-isOpen]=\"isOpen\"\n  aria-label=\"Sidebar Navigation\"\n>\n  <button class=\"bmb_sidebar-button\" type=\"button\" (click)=\"toggleSidebar()\">\n    <bmb-icon class=\"bmb_sidebar-button-icon\" icon=\"arrow_forward_ios\" />\n    <span class=\"bmb_sidebar-button-text\">Cerrar</span>\n  </button>\n  <ng-container *ngFor=\"let group of elements\">\n    <ul class=\"bmb_sidebar-list\">\n      <li *ngFor=\"let element of group\" class=\"bmb_sidebar-item\">\n        <ng-container *ngIf=\"!isExternalLink(element.link); else externalLink\">\n          <a\n            class=\"bmb_sidebar-link\"\n            [id]=\"element.id\"\n            [routerLink]=\"element.link\"\n            routerLinkActive=\"bmb_sidebar-link-active\"\n            [routerLinkActiveOptions]=\"{ exact: true }\"\n          >\n            <bmb-icon\n              class=\"bmb_sidebar-icon\"\n              [icon]=\"element.icon\"\n              [materialIcon]=\"true\"\n            ></bmb-icon>\n            <span class=\"bmb_sidebar-text\">{{ element.title }}</span>\n          </a>\n        </ng-container>\n        <ng-template #externalLink>\n          <a\n            class=\"bmb_sidebar-link\"\n            [id]=\"element.id\"\n            [ngClass]=\"{\n              'bmb_sidebar-link-active':\n                isLinkActive(element.link) && !isExternalLink(element.link),\n            }\"\n            [href]=\"element.link\"\n            [target]=\"element.target ? element.target : '_blank'\"\n            rel=\"noopener noreferrer\"\n            (click)=\"setExternalLinkActive(element.link)\"\n          >\n            <bmb-icon\n              class=\"bmb_sidebar-icon\"\n              [icon]=\"element.icon\"\n              [materialIcon]=\"true\"\n            ></bmb-icon>\n            <span class=\"bmb_sidebar-text\">{{ element.title }}</span>\n          </a>\n        </ng-template>\n      </li>\n    </ul>\n  </ng-container>\n</nav>\n"
         },
         {
             "name": "BmbStatCounterComponent",
@@ -10434,7 +10461,7 @@
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div class=\"bmb_step-progress-bar\">\n  <div\n    class=\"bmb_step-progress-bar-item\"\n    *ngFor=\"let i of getStepsArray()\"\n    [attr.data-bs-slide-to]=\"i\"\n    [ngClass]=\"{ completed: activeStep > i }\"\n    (click)=\"onStepClicked(i)\"\n    onkeypress=\"\"\n  >\n    <div\n      class=\"bmb_step-progress-bar-step\"\n      [ngClass]=\"{\n        active: activeStep === i,\n        completed: activeStep > i,\n        'bmb_step-progress-bar-step-normal': size == 'normal',\n        'bmb_step-progress-bar-step-small': size == 'small'\n      }\"\n    >\n      <span *ngIf=\"activeStep == i || activeStep < i\">{{ i + 1 }}</span>\n      @if (activeStep > i) {\n        <bmb-icon [icon]=\"'done'\" class=\"material-icons\" />\n      }\n    </div>\n  </div>\n</div>\n"
+            "templateData": "<div class=\"bmb_step-progress-bar\">\n  <div\n    class=\"bmb_step-progress-bar-item\"\n    *ngFor=\"let i of getStepsArray()\"\n    [attr.data-bs-slide-to]=\"i\"\n    [ngClass]=\"{ completed: activeStep > i }\"\n    (click)=\"onStepClicked(i)\"\n    onkeypress=\"\"\n  >\n    <div\n      class=\"bmb_step-progress-bar-step\"\n      [ngClass]=\"{\n        active: activeStep === i,\n        completed: activeStep > i,\n        'bmb_step-progress-bar-step-normal': size == 'normal',\n        'bmb_step-progress-bar-step-small': size == 'small',\n      }\"\n    >\n      <span *ngIf=\"activeStep == i || activeStep < i\">{{ i + 1 }}</span>\n      @if (activeStep > i) {\n        <bmb-icon [icon]=\"'done'\" class=\"material-icons\" />\n      }\n    </div>\n  </div>\n</div>\n"
         },
         {
             "name": "BmbSwitchComponent",
@@ -11532,7 +11559,7 @@
                     }
                 }
             },
-            "templateData": "<div class=\"bmb_table\">\n  <div class=\"bmb_table-container\">\n    <table\n      mat-table\n      [dataSource]=\"dataSource\"\n      class=\"bmb_table-content\"\n      multiTemplateDataRows\n    >\n      <!-- Checkbox Column -->\n      <ng-container matColumnDef=\"select\" sticky>\n        <th mat-header-cell *matHeaderCellDef class=\"bmb_table-checkbox\">\n          <bmb-checkbox\n            (change)=\"$event ? toggleAllRows() : null\"\n            [checked]=\"selection.hasValue() && isAllSelected()\"\n            [indeterminate]=\"selection.hasValue() && !isAllSelected()\"\n            [ariaLabel]=\"checkboxLabel()\"\n          />\n        </th>\n        <td mat-cell *matCellDef=\"let row\" class=\"bmb_table-checkbox\">\n          <bmb-checkbox\n            (change)=\"$event ? selection.toggle(row) : null; onSelect()\"\n            [checked]=\"selection.isSelected(row)\"\n            [ariaLabel]=\"checkboxLabel(row)\"\n            onkeypress=\"$event.stopPropagation()\"\n          />\n          {{ row.documentos }}\n        </td>\n      </ng-container>\n\n      <!-- Expand Column -->\n      <ng-container matColumnDef=\"expand\" sticky>\n        <th\n          mat-header-cell\n          *matHeaderCellDef\n          class=\"bmb_table-expand\"\n          aria-label=\"row actions\"\n        >\n          &nbsp;\n        </th>\n        <td mat-cell *matCellDef=\"let row\" class=\"bmb_table-expand\">\n          <button\n            mat-icon-button\n            aria-label=\"expand row\"\n            (click)=\"\n              expandedElement = expandedElement === row ? null : row;\n              $event.stopPropagation()\n            \"\n          >\n            <bmb-icon\n              [icon]=\"expandedElement === row ? 'expand_less' : 'expand_more'\"\n            />\n          </button>\n        </td>\n      </ng-container>\n\n      <!-- Display Columns -->\n      <ng-container *ngFor=\"let column of tableColumns; let i = index\">\n        <ng-container matColumnDef=\"{{ column.def }}\" [sticky]=\"i === 0\">\n          <th\n            mat-header-cell\n            *matHeaderCellDef\n            #headerCell\n            [matTooltip]=\"hasEllipsis(headerCell) ? column.label : ''\"\n            matTooltipPosition=\"below\"\n            matTooltipClass=\"bmb_tooltip\"\n            [ngClass]=\"{\n              'bmb_table-sticky': i === 0\n            }\"\n          >\n            {{ column.label }}\n            <span\n              class=\"bmb_table-resize\"\n              (mousedown)=\"onResizeColumn($event, i)\"\n            ></span>\n          </th>\n          <td\n            mat-cell\n            *matCellDef=\"let row; let a = index\"\n            #cell\n            matTooltipPosition=\"below\"\n            [matTooltip]=\"hasEllipsis(cell) ? row[column.dataKey] : ''\"\n            matTooltipClass=\"bmb_tooltip\"\n            [ngClass]=\"{\n              'bmb_table-sticky': i === 0\n            }\"\n          >\n            {{ row[column.dataKey] }}\n          </td>\n        </ng-container>\n      </ng-container>\n\n      <!-- Actions Column -->\n      <ng-container matColumnDef=\"actions\" stickyEnd>\n        <th mat-header-cell *matHeaderCellDef class=\"bmb_table-actions\"></th>\n        <td mat-cell *matCellDef=\"let row\" class=\"bmb_table-actions\">\n          <ng-template [ngTemplateOutlet]=\"actionTemplate!\"> </ng-template>\n        </td>\n      </ng-container>\n\n      <!-- Row to expand -->\n      <ng-container matColumnDef=\"expandedDetail\">\n        <td\n          mat-cell\n          *matCellDef=\"let row\"\n          [attr.colspan]=\"tableDisplayColumns.length\"\n        >\n          <div\n            class=\"bmb_table-detail\"\n            [@detailExpand]=\"row == expandedElement ? 'expanded' : 'collapsed'\"\n          >\n            <ng-container\n              *ngTemplateOutlet=\"detailTemplate; context: { row }\"\n            ></ng-container>\n          </div>\n        </td>\n      </ng-container>\n\n      <!-- Rows -->\n      <tr\n        mat-header-row\n        *matHeaderRowDef=\"tableDisplayColumns\"\n        class=\"bmb_table-row\"\n      ></tr>\n\n      <tr\n        mat-row\n        *matRowDef=\"let row; columns: tableDisplayColumns; let i = dataIndex\"\n        class=\"bmb_table-row\"\n        [class.bmb_table-expandible]=\"expandedElement === row\"\n        [ngClass]=\"{\n          'bmb_table-even': isEven(i),\n          'bmb_table-odd': isOdd(i)\n        }\"\n      ></tr>\n\n      <ng-container *ngIf=\"tableConfig?.isExpandible\">\n        <tr\n          mat-row\n          *matRowDef=\"let row; columns: ['expandedDetail']; let i = dataIndex\"\n          class=\"bmb_table-details\"\n          [class.bmb_table-expanded]=\"expandedElement === row\"\n        ></tr>\n      </ng-container>\n    </table>\n  </div>\n\n  <!-- Paginator -->\n  <ng-container *ngIf=\"tableConfig?.isPaginable\" sticky>\n    <mat-paginator\n      #paginator\n      [pageSize]=\"this.paginatorSize\"\n      [hidePageSize]=\"true\"\n    >\n    </mat-paginator>\n\n    <div class=\"bmb_table-paginator\">\n      <span class=\"bmb_table-paginator-text\">{{ getPaginationText() }}</span>\n      <button\n        [disabled]=\"!paginator || !paginator.hasPreviousPage()\"\n        [ngClass]=\"{\n          'bmb_table-paginator-btn-disabled':\n            !paginator || !paginator.hasPreviousPage()\n        }\"\n        (click)=\"paginator.firstPage()\"\n        class=\"bmb_table-paginator-btn\"\n      >\n        <bmb-icon\n          icon=\"keyboard_double_arrow_left\"\n          class=\"bmb_table-paginator-icon\"\n        />\n      </button>\n      <button\n        [disabled]=\"!paginator || !paginator.hasPreviousPage()\"\n        [ngClass]=\"{\n          'bmb_table-paginator-btn-disabled':\n            !paginator || !paginator.hasPreviousPage()\n        }\"\n        (click)=\"paginator.previousPage()\"\n        class=\"bmb_table-paginator-btn\"\n      >\n        <bmb-icon icon=\"keyboard_arrow_left\" class=\"bmb_table-paginator-icon\" />\n      </button>\n      <button\n        [disabled]=\"!paginator || !paginator.hasNextPage()\"\n        [ngClass]=\"{\n          'bmb_table-paginator-btn-disabled':\n            !paginator || !paginator.hasNextPage()\n        }\"\n        (click)=\"paginator.nextPage()\"\n        class=\"bmb_table-paginator-btn\"\n      >\n        <bmb-icon\n          icon=\"keyboard_arrow_right\"\n          class=\"bmb_table-paginator-icon\"\n        />\n      </button>\n      <button\n        [disabled]=\"!paginator || !paginator.hasNextPage()\"\n        [ngClass]=\"{\n          'bmb_table-paginator-btn-disabled':\n            !paginator || !paginator.hasNextPage()\n        }\"\n        (click)=\"paginator.lastPage()\"\n        class=\"bmb_table-paginator-btn\"\n      >\n        <bmb-icon\n          icon=\"keyboard_double_arrow_right\"\n          class=\"bmb_table-paginator-icon\"\n        />\n      </button>\n    </div>\n  </ng-container>\n</div>\n"
+            "templateData": "<div class=\"bmb_table\">\n  <div class=\"bmb_table-container\">\n    <table\n      mat-table\n      [dataSource]=\"dataSource\"\n      class=\"bmb_table-content\"\n      multiTemplateDataRows\n    >\n      <!-- Checkbox Column -->\n      <ng-container matColumnDef=\"select\" sticky>\n        <th mat-header-cell *matHeaderCellDef class=\"bmb_table-checkbox\">\n          <bmb-checkbox\n            (change)=\"$event ? toggleAllRows() : null\"\n            [checked]=\"selection.hasValue() && isAllSelected()\"\n            [indeterminate]=\"selection.hasValue() && !isAllSelected()\"\n            [ariaLabel]=\"checkboxLabel()\"\n          />\n        </th>\n        <td mat-cell *matCellDef=\"let row\" class=\"bmb_table-checkbox\">\n          <bmb-checkbox\n            (change)=\"$event ? selection.toggle(row) : null; onSelect()\"\n            [checked]=\"selection.isSelected(row)\"\n            [ariaLabel]=\"checkboxLabel(row)\"\n            onkeypress=\"$event.stopPropagation()\"\n          />\n          {{ row.documentos }}\n        </td>\n      </ng-container>\n\n      <!-- Expand Column -->\n      <ng-container matColumnDef=\"expand\" sticky>\n        <th\n          mat-header-cell\n          *matHeaderCellDef\n          class=\"bmb_table-expand\"\n          aria-label=\"row actions\"\n        >\n          &nbsp;\n        </th>\n        <td mat-cell *matCellDef=\"let row\" class=\"bmb_table-expand\">\n          <button\n            mat-icon-button\n            aria-label=\"expand row\"\n            (click)=\"\n              expandedElement = expandedElement === row ? null : row;\n              $event.stopPropagation()\n            \"\n          >\n            <bmb-icon\n              [icon]=\"expandedElement === row ? 'expand_less' : 'expand_more'\"\n            />\n          </button>\n        </td>\n      </ng-container>\n\n      <!-- Display Columns -->\n      <ng-container *ngFor=\"let column of tableColumns; let i = index\">\n        <ng-container matColumnDef=\"{{ column.def }}\" [sticky]=\"i === 0\">\n          <th\n            mat-header-cell\n            *matHeaderCellDef\n            #headerCell\n            [matTooltip]=\"hasEllipsis(headerCell) ? column.label : ''\"\n            matTooltipPosition=\"below\"\n            matTooltipClass=\"bmb_tooltip\"\n            [ngClass]=\"{\n              'bmb_table-sticky': i === 0,\n            }\"\n          >\n            {{ column.label }}\n            <span\n              class=\"bmb_table-resize\"\n              (mousedown)=\"onResizeColumn($event, i)\"\n            ></span>\n          </th>\n          <td\n            mat-cell\n            *matCellDef=\"let row; let a = index\"\n            #cell\n            matTooltipPosition=\"below\"\n            [matTooltip]=\"hasEllipsis(cell) ? row[column.dataKey] : ''\"\n            matTooltipClass=\"bmb_tooltip\"\n            [ngClass]=\"{\n              'bmb_table-sticky': i === 0,\n            }\"\n          >\n            {{ row[column.dataKey] }}\n          </td>\n        </ng-container>\n      </ng-container>\n\n      <!-- Actions Column -->\n      <ng-container matColumnDef=\"actions\" stickyEnd>\n        <th mat-header-cell *matHeaderCellDef class=\"bmb_table-actions\"></th>\n        <td mat-cell *matCellDef=\"let row\" class=\"bmb_table-actions\">\n          <ng-template [ngTemplateOutlet]=\"actionTemplate!\"> </ng-template>\n        </td>\n      </ng-container>\n\n      <!-- Row to expand -->\n      <ng-container matColumnDef=\"expandedDetail\">\n        <td\n          mat-cell\n          *matCellDef=\"let row\"\n          [attr.colspan]=\"tableDisplayColumns.length\"\n        >\n          <div\n            class=\"bmb_table-detail\"\n            [@detailExpand]=\"row == expandedElement ? 'expanded' : 'collapsed'\"\n          >\n            <ng-container\n              *ngTemplateOutlet=\"detailTemplate; context: { row }\"\n            ></ng-container>\n          </div>\n        </td>\n      </ng-container>\n\n      <!-- Rows -->\n      <tr\n        mat-header-row\n        *matHeaderRowDef=\"tableDisplayColumns\"\n        class=\"bmb_table-row\"\n      ></tr>\n\n      <tr\n        mat-row\n        *matRowDef=\"let row; columns: tableDisplayColumns; let i = dataIndex\"\n        class=\"bmb_table-row\"\n        [class.bmb_table-expandible]=\"expandedElement === row\"\n        [ngClass]=\"{\n          'bmb_table-even': isEven(i),\n          'bmb_table-odd': isOdd(i),\n        }\"\n      ></tr>\n\n      <ng-container *ngIf=\"tableConfig?.isExpandible\">\n        <tr\n          mat-row\n          *matRowDef=\"let row; columns: ['expandedDetail']; let i = dataIndex\"\n          class=\"bmb_table-details\"\n          [class.bmb_table-expanded]=\"expandedElement === row\"\n        ></tr>\n      </ng-container>\n    </table>\n  </div>\n\n  <!-- Paginator -->\n  <ng-container *ngIf=\"tableConfig?.isPaginable\" sticky>\n    <mat-paginator\n      #paginator\n      [pageSize]=\"this.paginatorSize\"\n      [hidePageSize]=\"true\"\n    >\n    </mat-paginator>\n\n    <div class=\"bmb_table-paginator\">\n      <span class=\"bmb_table-paginator-text\">{{ getPaginationText() }}</span>\n      <button\n        [disabled]=\"!paginator || !paginator.hasPreviousPage()\"\n        [ngClass]=\"{\n          'bmb_table-paginator-btn-disabled':\n            !paginator || !paginator.hasPreviousPage(),\n        }\"\n        (click)=\"paginator.firstPage()\"\n        class=\"bmb_table-paginator-btn\"\n      >\n        <bmb-icon\n          icon=\"keyboard_double_arrow_left\"\n          class=\"bmb_table-paginator-icon\"\n        />\n      </button>\n      <button\n        [disabled]=\"!paginator || !paginator.hasPreviousPage()\"\n        [ngClass]=\"{\n          'bmb_table-paginator-btn-disabled':\n            !paginator || !paginator.hasPreviousPage(),\n        }\"\n        (click)=\"paginator.previousPage()\"\n        class=\"bmb_table-paginator-btn\"\n      >\n        <bmb-icon icon=\"keyboard_arrow_left\" class=\"bmb_table-paginator-icon\" />\n      </button>\n      <button\n        [disabled]=\"!paginator || !paginator.hasNextPage()\"\n        [ngClass]=\"{\n          'bmb_table-paginator-btn-disabled':\n            !paginator || !paginator.hasNextPage(),\n        }\"\n        (click)=\"paginator.nextPage()\"\n        class=\"bmb_table-paginator-btn\"\n      >\n        <bmb-icon\n          icon=\"keyboard_arrow_right\"\n          class=\"bmb_table-paginator-icon\"\n        />\n      </button>\n      <button\n        [disabled]=\"!paginator || !paginator.hasNextPage()\"\n        [ngClass]=\"{\n          'bmb_table-paginator-btn-disabled':\n            !paginator || !paginator.hasNextPage(),\n        }\"\n        (click)=\"paginator.lastPage()\"\n        class=\"bmb_table-paginator-btn\"\n      >\n        <bmb-icon\n          icon=\"keyboard_double_arrow_right\"\n          class=\"bmb_table-paginator-icon\"\n        />\n      </button>\n    </div>\n  </ng-container>\n</div>\n"
         },
         {
             "name": "BmbTabsComponent",
@@ -11704,7 +11731,7 @@
                 "OnInit",
                 "AfterViewInit"
             ],
-            "templateData": "<div class=\"bmb_tabs\">\n  <div class=\"bmb_tabs-tab\" #tabsItems>\n    <button\n      role=\"tab\"\n      [attr.aria-selected]=\"tab.isActive ? 'true' : 'false'\"\n      [attr.tabindex]=\"tab.isActive ? 0 : -1\"\n      class=\"bmb_tabs-item\"\n      *ngFor=\"let tab of tabs; let i = index\"\n      (click)=\"selectTab(tab.id)\"\n      [ngClass]=\"{\n        'bmb_tabs-item-active': tab.isActive,\n        'bmb_tabs-item-uppercase': format === 'uppercase'\n      }\"\n    >\n      <span>\n        {{ tab.title }}\n      </span>\n      <span class=\"bmb_tabs-badge\" *ngIf=\"tab.badge\">{{ tab.badge }}</span>\n    </button>\n  </div>\n  <ng-content></ng-content>\n</div>\n"
+            "templateData": "<div class=\"bmb_tabs\">\n  <div class=\"bmb_tabs-tab\" #tabsItems>\n    <button\n      role=\"tab\"\n      [attr.aria-selected]=\"tab.isActive ? 'true' : 'false'\"\n      [attr.tabindex]=\"tab.isActive ? 0 : -1\"\n      class=\"bmb_tabs-item\"\n      *ngFor=\"let tab of tabs; let i = index\"\n      (click)=\"selectTab(tab.id)\"\n      [ngClass]=\"{\n        'bmb_tabs-item-active': tab.isActive,\n        'bmb_tabs-item-uppercase': format === 'uppercase',\n      }\"\n    >\n      <span>\n        {{ tab.title }}\n      </span>\n      <span class=\"bmb_tabs-badge\" *ngIf=\"tab.badge\">{{ tab.badge }}</span>\n    </button>\n  </div>\n  <ng-content></ng-content>\n</div>\n"
         },
         {
             "name": "BmbTagComponent",
@@ -13170,7 +13197,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div class=\"bmb_totp\">\n  <form [formGroup]=\"codeForm\" (ngSubmit)=\"onSubmit()\" class=\"bmb_totp-form\">\n    <bmb-icon icon=\"lock\" class=\"bmb_totp-icon\" [materialIcon]=\"true\" />\n    <div class=\"bmb_totp-title\">{{ title }}</div>\n    <p class=\"bmb_totp-subtitle\">{{ subtitle }}</p>\n    <div class=\"bmb_totp-code\">\n      <div\n        *ngFor=\"let i of [].constructor(maxCode); let idx = index\"\n        class=\"bmb_totp-separator\"\n      >\n        <input\n          type=\"text\"\n          formControlName=\"code{{ idx }}\"\n          [id]=\"'code-' + instanceId + '-' + idx\"\n          autocomplete=\"off\"\n          maxlength=\"1\"\n          [ngClass]=\"{\n            'bmb_totp-input-error': codeError,\n            'bmb_totp-input': true\n          }\"\n          (keyup)=\"onKeyUp($event, idx)\"\n        />\n      </div>\n    </div>\n    @if (codeError) {\n      <p class=\"bmb_totp-error\">{{ errorMessage }}</p>\n    }\n    @if (showButton) {\n      <button bmbButton appearance=\"primary\" size=\"large\" type=\"submit\">\n        {{ buttonText }}\n      </button>\n    }\n    @if (showButton && helperText) {\n      <p class=\"bmb_totp-helper\">\n        {{ helperText }}\n      </p>\n    }\n  </form>\n</div>\n"
+            "templateData": "<div class=\"bmb_totp\">\n  <form [formGroup]=\"codeForm\" (ngSubmit)=\"onSubmit()\" class=\"bmb_totp-form\">\n    <bmb-icon icon=\"lock\" class=\"bmb_totp-icon\" [materialIcon]=\"true\" />\n    <div class=\"bmb_totp-title\">{{ title }}</div>\n    <p class=\"bmb_totp-subtitle\">{{ subtitle }}</p>\n    <div class=\"bmb_totp-code\">\n      <div\n        *ngFor=\"let i of [].constructor(maxCode); let idx = index\"\n        class=\"bmb_totp-separator\"\n      >\n        <input\n          type=\"text\"\n          formControlName=\"code{{ idx }}\"\n          [id]=\"'code-' + instanceId + '-' + idx\"\n          autocomplete=\"off\"\n          maxlength=\"1\"\n          [ngClass]=\"{\n            'bmb_totp-input-error': codeError,\n            'bmb_totp-input': true,\n          }\"\n          (keyup)=\"onKeyUp($event, idx)\"\n        />\n      </div>\n    </div>\n    @if (codeError) {\n      <p class=\"bmb_totp-error\">{{ errorMessage }}</p>\n    }\n    @if (showButton) {\n      <button bmbButton appearance=\"primary\" size=\"large\" type=\"submit\">\n        {{ buttonText }}\n      </button>\n    }\n    @if (showButton && helperText) {\n      <p class=\"bmb_totp-helper\">\n        {{ helperText }}\n      </p>\n    }\n  </form>\n</div>\n"
         },
         {
             "name": "BmbUserImageComponent",
@@ -13936,6 +13963,16 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/directives/bmb-button-group/bmb-button-group.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "customizable()"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -14383,16 +14420,6 @@
                 "defaultValue": "{}"
             },
             {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/ds-ng/src/lib/directives/bmb-button-group/bmb-button-group.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "customizable()"
-            },
-            {
                 "name": "eventsInDate",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -14421,26 +14448,6 @@
                 "deprecationMessage": "",
                 "type": "",
                 "defaultValue": "{\n  normal: 'normal',\n  extended: 'extended',\n} as const"
-            },
-            {
-                "name": "formBuilder",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/ds-ng/src/lib/components/bmb-input/bmb-input.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "new FormBuilder()"
-            },
-            {
-                "name": "formBuilder",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/ds-ng/src/lib/components/bmb-input-phone-number/bmb-input-phone-number.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "new FormBuilder()"
             },
             {
                 "name": "getMonthDays",
@@ -14694,7 +14701,7 @@
                         "type": "IFixDecimals",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "6b8057f5-4ab1-4bb2-8b46-6818548e2c63",
+                        "destrucuredGroupId": "66ee4ab2-0be6-42c3-83bc-76b0405a0a87",
                         "destructuredParameter": true
                     },
                     {
@@ -14703,7 +14710,7 @@
                         "deprecated": false,
                         "deprecationMessage": "",
                         "defaultValue": "2",
-                        "destrucuredGroupId": "6b8057f5-4ab1-4bb2-8b46-6818548e2c63",
+                        "destrucuredGroupId": "66ee4ab2-0be6-42c3-83bc-76b0405a0a87",
                         "destructuredParameter": true
                     }
                 ],
@@ -14713,7 +14720,7 @@
                         "type": "IFixDecimals",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "6b8057f5-4ab1-4bb2-8b46-6818548e2c63",
+                        "destrucuredGroupId": "66ee4ab2-0be6-42c3-83bc-76b0405a0a87",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -14725,7 +14732,7 @@
                         "deprecated": false,
                         "deprecationMessage": "",
                         "defaultValue": "2",
-                        "destrucuredGroupId": "6b8057f5-4ab1-4bb2-8b46-6818548e2c63",
+                        "destrucuredGroupId": "66ee4ab2-0be6-42c3-83bc-76b0405a0a87",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -15725,16 +15732,6 @@
                     "deprecationMessage": "",
                     "type": "Story",
                     "defaultValue": "{}"
-                },
-                {
-                    "name": "formBuilder",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ds-ng/src/lib/components/bmb-input/bmb-input.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "new FormBuilder()"
                 }
             ],
             "projects/ds-ng/src/lib/components/bmb-input-phone-number/bmb-input-phone-number.stories.ts": [
@@ -15747,16 +15744,6 @@
                     "deprecationMessage": "",
                     "type": "Story",
                     "defaultValue": "{}"
-                },
-                {
-                    "name": "formBuilder",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ds-ng/src/lib/components/bmb-input-phone-number/bmb-input-phone-number.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "new FormBuilder()"
                 }
             ],
             "projects/ds-ng/src/lib/components/bmb-interactive-icon/bmb-interactive-icon.stories.ts": [
@@ -16327,7 +16314,7 @@
                             "type": "IFixDecimals",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "6b8057f5-4ab1-4bb2-8b46-6818548e2c63",
+                            "destrucuredGroupId": "66ee4ab2-0be6-42c3-83bc-76b0405a0a87",
                             "destructuredParameter": true
                         },
                         {
@@ -16336,7 +16323,7 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "defaultValue": "2",
-                            "destrucuredGroupId": "6b8057f5-4ab1-4bb2-8b46-6818548e2c63",
+                            "destrucuredGroupId": "66ee4ab2-0be6-42c3-83bc-76b0405a0a87",
                             "destructuredParameter": true
                         }
                     ],
@@ -16346,7 +16333,7 @@
                             "type": "IFixDecimals",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "6b8057f5-4ab1-4bb2-8b46-6818548e2c63",
+                            "destrucuredGroupId": "66ee4ab2-0be6-42c3-83bc-76b0405a0a87",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
@@ -16358,7 +16345,7 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "defaultValue": "2",
-                            "destrucuredGroupId": "6b8057f5-4ab1-4bb2-8b46-6818548e2c63",
+                            "destrucuredGroupId": "66ee4ab2-0be6-42c3-83bc-76b0405a0a87",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
@@ -17642,16 +17629,6 @@
                 "status": "low"
             },
             {
-                "filePath": "projects/ds-ng/src/lib/components/bmb-input-phone-number/bmb-input-phone-number.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "formBuilder",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
                 "filePath": "projects/ds-ng/src/lib/components/bmb-input/bmb-input.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -17666,16 +17643,6 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Default",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/ds-ng/src/lib/components/bmb-input/bmb-input.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "formBuilder",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -18390,7 +18357,7 @@
                 "linktype": "directive",
                 "name": "BmbButtonDirective",
                 "coveragePercent": 0,
-                "coverageCount": "0/13",
+                "coverageCount": "0/16",
                 "status": "low"
             },
             {
