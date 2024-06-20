@@ -23,6 +23,9 @@ export class BmbButtonDirective implements OnInit, OnChanges {
   @Input() case: boolean = false;
   @Input() appearance: IButtonAppearance = 'primary';
   @Input() size: 'small' | 'large' = 'small';
+  @Input() loading: boolean = false;
+  @Input() isToggleActive: boolean = false;
+  @Input() enableButtonToggle: boolean = false;
 
   private providedInputs: Set<string> = new Set();
 
@@ -70,8 +73,12 @@ export class BmbButtonDirective implements OnInit, OnChanges {
     }
   }
 
-  @HostBinding('class') get elementClass(): string {
-    return `bmb_btn-${this.appearance}`;
+  @HostBinding('class') get elementClass(): string[] {
+    const classList = [`bmb_btn-${this.appearance}`];
+    if (this.enableButtonToggle && this.isToggleActive) {
+      classList.push('bmb_btn-toggle-active');
+    }
+    return classList;
   }
 
   private addContent() {

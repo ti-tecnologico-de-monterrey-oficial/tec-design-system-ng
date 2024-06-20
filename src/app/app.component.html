@@ -9,73 +9,19 @@
 <bmb-theme [showControls]="true" [initialTheme]="'dark'" />
 <bmb-sidebar [elements]="sidebarElements" /> -->
 
-<!-- <div>
-  <div bmbButtonGroup>
-    <button bmbButton>Button 1</button>
-    <button bmbButton>Button 2</button>
-    <button bmbButton>Button 3</button>
-  </div>
-  <div bmbButtonGroup>
-    <button bmbButton>Button 1</button>
-    <button bmbButton>Button 2</button>
-  </div>
-  <div bmbButtonGroup>
-    <button bmbButton>Button 1</button>
-  </div>
-</div> -->
-<!-- 
-<div>
-  <div bmbButtonGroup appearance="secondary-filled">
-    <button bmbButton>Button 1</button>
-    <button bmbButton>Button 2</button>
-    <button bmbButton>Button 3</button>
-  </div>
-  <div bmbButtonGroup appearance="secondary-filled">
-    <button bmbButton>Button 1</button>
-    <button bmbButton>Button 2</button>
-  </div>
-  <div bmbButtonGroup appearance="secondary-filled">
-    <button bmbButton>Button 1</button>
-  </div>
-</div>
-
-<div>
-  <div bmbButtonGroup appearance="secondary-outlined">
-    <button bmbButton>Button 1</button>
-    <button bmbButton>Button 2</button>
-    <button bmbButton>Button 3</button>
-  </div>
-  <div bmbButtonGroup appearance="secondary-outlined">
-    <button bmbButton>Button 1</button>
-    <button bmbButton>Button 2</button>
-  </div>
-  <div bmbButtonGroup appearance="secondary-outlined">
-    <button bmbButton>Button 1</button>
-  </div>
-</div>
-
-<div>
-  <div bmbButtonGroup appearance="destructive">
-    <button bmbButton>Button 1</button>
-    <button bmbButton>Button 2</button>
-    <button bmbButton>Button 3</button>
-  </div>
-  <div bmbButtonGroup appearance="destructive">
-    <button bmbButton>Button 1</button>
-    <button bmbButton>Button 2</button>
-  </div>
-  <div bmbButtonGroup appearance="destructive">
-    <button bmbButton>Button 1</button>
-  </div>
-</div>
-
-<button bmbButton>Button 1</button>
+<button
+  bmbButton
+  [enableButtonToggle]="true"
+  [isToggleActive]="toggleButtonState"
+  (click)="handleButtonState()"
+>
+  Button 1
+</button>
 
 <bmb-frequent-apps-selector
   [title]="'Mis Aplicaciones Frecuentes'"
   [apps]="apps"
-/> -->
-
+/>
 <div style="display: flex; gap: 3em">
   <a routerLink="/home" class="font-bold-6">Home</a>
   <a routerLink="/my-page" class="font-bold-6">My Page</a>
