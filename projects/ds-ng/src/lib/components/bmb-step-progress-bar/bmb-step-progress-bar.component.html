@@ -13,7 +13,7 @@
         active: activeStep === i,
         completed: activeStep > i,
         'bmb_step-progress-bar-step-normal': size == 'normal',
-        'bmb_step-progress-bar-step-small': size == 'small'
+        'bmb_step-progress-bar-step-small': size == 'small',
       }"
     >
       <span *ngIf="activeStep == i || activeStep < i">{{ i + 1 }}</span>

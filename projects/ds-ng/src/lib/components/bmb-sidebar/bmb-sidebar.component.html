@@ -4,7 +4,8 @@
   aria-label="Sidebar Navigation"
 >
   <button class="bmb_sidebar-button" type="button" (click)="toggleSidebar()">
-    <bmb-icon class="bmb_sidebar-button-icon" icon="arrow_back_ios"></bmb-icon>
+    <bmb-icon class="bmb_sidebar-button-icon" icon="arrow_forward_ios" />
+    <span class="bmb_sidebar-button-text">Cerrar</span>
   </button>
   <ng-container *ngFor="let group of elements">
     <ul class="bmb_sidebar-list">
@@ -31,7 +32,7 @@
             [id]="element.id"
             [ngClass]="{
               'bmb_sidebar-link-active':
-                isLinkActive(element.link) && !isExternalLink(element.link)
+                isLinkActive(element.link) && !isExternalLink(element.link),
             }"
             [href]="element.link"
             [target]="element.target ? element.target : '_blank'"
