@@ -80,15 +80,17 @@ export class BmbSearchInputComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['serverSideFilteredData'] && this.isServerSideFilter) {
       this.filteredData = changes['serverSideFilteredData'].currentValue;
-    } else{
-      this.filteredData = this.data
+    } else {
+      this.filteredData = this.data;
     }
-    if (changes['serverSideFilteredData'] && changes['isLoading'].currentValue) {
+    if (
+      changes['serverSideFilteredData'] &&
+      changes['isLoading'].currentValue
+    ) {
       this.isDialogOpen =
         changes['serverSideFilteredData']?.currentValue?.length ||
         changes['isLoading']?.currentValue;
     }
-
   }
 
   filteredValue(value: string): void {
@@ -130,7 +132,7 @@ export class BmbSearchInputComponent implements OnChanges {
     }
   }
 
-  openDialog(){
-    this.isDialogOpen = !this.isDialogOpen
+  openDialog() {
+    this.isDialogOpen = !this.isDialogOpen;
   }
 }

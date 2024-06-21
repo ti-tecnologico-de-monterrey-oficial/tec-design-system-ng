@@ -59,8 +59,8 @@ export class BmbModalComponent implements OnInit {
       this.setBtnStyle(data.alertStyle!);
     }
 
-    if(typeof(data.content) !== 'string' ){
-      this.modalTemplate = data.content!
+    if (typeof data.content !== 'string') {
+      this.modalTemplate = data.content!;
       this.isTemplate = true;
     }
   }

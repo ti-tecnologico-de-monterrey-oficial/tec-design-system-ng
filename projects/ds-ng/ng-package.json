@@ -11,5 +11,10 @@
       "output": "./assets/fonts"
     }
   ],
-  "allowedNonPeerDependencies": ["luxon", "@angular/material", "libphonenumber-js", "ngx-mat-intl-tel-input"]
+  "allowedNonPeerDependencies": [
+    "luxon",
+    "@angular/material",
+    "libphonenumber-js",
+    "ngx-mat-intl-tel-input"
+  ]
 }
