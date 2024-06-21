@@ -2,14 +2,67 @@
 @use "../../../assets/styles/base/mixins" as mixins;
 @use "../../../assets/styles/base/rem" as rem;
 
-.bmb_field {
-  &-container-label {
-    padding: rem.rem_calc(2 2 4 8);
+@mixin input($type: main) {
+  @include mixins.resetElement();
+  @include fonts.font(4, regular);
+  appearance: none;
+  height: rem.rem_calc(48);
+  width: 100%;
+
+  &:focus,
+  &:focus:hover,
+  &:disabled:focus {
+    @include mixins.focusElement();
   }
 
-  &-label {
-    @include fonts.font(3, regular);
+  @if $type == simple {
+    background-color: transparent;
+    border: 0;
+    border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-950));
+    color: RGBA(var(--color-charade-700));
+
+    &:focus {
+      border-bottom: rem.rem_calc(2) solid RGBA(var(--color-blue-primary));
+      border-color: RGBA(var(--color-blue-primary));
+      color: RGBA(var(--color-mariner-700));
+      outline: none;
+    }
+
+    &::placeholder {
+      color: RGBA(var(--color-charade-300));
+    }
+
+    &.bmb_field-input-error {
+      border-bottom-color: RGBA(var(--color-red-primary));
+    }
+  } @else if $type == normal {
+    background-color: RGBA(var(--color-charade-50));
+    border: rem.rem_calc(1) solid RGBA(var(--color-charade-500));
+    border-radius: rem.rem_calc(8);
     color: RGBA(var(--color-charade-950));
+    padding: var(--bmg-spacing-s);
+
+    &:focus {
+      border: rem.rem_calc(2) solid RGBA(var(--color-mariner-700));
+      outline: none;
+    }
+
+    &::placeholder {
+      color: RGBA(var(--color-charade-300));
+    }
+
+    &.bmb_field-input-error {
+      border-color: RGBA(var(--color-red-primary)) !important;
+    }
+  }
+}
+
+.bmb_field {
+  &-label {
+    color: RGBA(var(--color-charade-950));
+    display: flex;
+    margin: rem.rem_calc(2 2 4 8);
+    @include fonts.font(3, regular);
 
     &-required {
       color: RGBA(var(--color-red-light));
@@ -19,14 +72,14 @@
   &-wrapper {
     align-items: center;
     display: flex;
-    margin: 0;
-    padding: 0;
     position: relative;
     width: 100%;
   }
 
   &-error {
-    color: RGBA(var(--color-red-light)) !important;
+    @include fonts.font(3, regular);
+    color: RGBA(var(--color-red-light));
+    margin: rem.rem_calc(8);
   }
 
   &-icon {
@@ -49,16 +102,23 @@
   }
 
   &-input {
+    margin: 0;
+
     &-normal {
-      @include mixins.input(normal);
+      @include input(normal);
     }
 
     &-simple {
-      @include mixins.input(simple);
+      @include input(simple);
     }
 
     &-main {
-      @include mixins.input(main);
+      @include input(main);
+    }
+
+    &.disabled {
+      pointer-events: none;
+      opacity: 0.8;
     }
   }
 }
@@ -66,10 +126,8 @@
 [data-theme="dark"],
 .storybook-dark-theme {
   .bmb_field {
-    &-container-label {
-      .bmb_field-label {
-        color: RGBA(var(--color-charade-50));
-      }
+    &-label {
+      color: RGBA(var(--color-charade-50));
     }
 
     &-input-normal {

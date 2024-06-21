@@ -1,11 +1,10 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BmbFrequentAppsSelectorComponent } from './bmb-frequent-apps-selector.component';
 
 export default {
-  title: 'Macro Componentes/Frequent Apps Selector',
+  title: 'Macro Components/Frequent Apps Selector',
   component: BmbFrequentAppsSelectorComponent,
   decorators: [
     moduleMetadata({
@@ -25,18 +24,18 @@ import { BmbFrequentAppsSelectorComponent } from '@ti-tecnologico-de-monterrey-o
   standalone: true,
   imports: [ BmbFrequentAppsSelectorComponent ],
   templateUrl: './component.html',
-  styleUrl: './component.scss',
+  styleUrls: ['./component.scss'],
 })
 export class AppComponent {
   apps = [
-    { icon: 'home', title: 'Inicio',  link: '/home', target: '_blank', appearance: 'red'},
+    { icon: 'home', title: 'Home', link: '/home', target: '_blank', appearance: 'red' },
     { icon: 'settings', title: 'My Page', link: '/my-page', appearance: 'yellow' },
-    { icon: 'settings', title: 'Calendario escolar', link: 'https://configuración.com', target: '_blank', appearance: 'yellow' },
-    { icon: 'settings', title: 'Configuración', link: 'https://configuración.com', target: '_blank', appearance: 'yellow' },
-    { icon: 'home', title: 'Inicio',  link: '/home', target: '_blank', appearance: 'red'},
+    { icon: 'settings', title: 'School Calendar', link: 'https://configuration.com', target: '_blank', appearance: 'yellow' },
+    { icon: 'settings', title: 'Configuration', link: 'https://configuration.com', target: '_blank', appearance: 'yellow' },
+    { icon: 'home', title: 'Home', link: '/home', target: '_blank', appearance: 'red' },
     { icon: 'settings', title: 'My Page', link: '/my-page', appearance: 'yellow' },
-    { icon: 'settings', title: 'Calendario escolar', link: 'https://configuración.com', target: '_blank', appearance: 'yellow' },
-    { icon: 'settings', title: 'Configuración', link: 'https://configuración.com', target: '_blank', appearance: 'yellow' },
+    { icon: 'settings', title: 'School Calendar', link: 'https://configuration.com', target: '_blank', appearance: 'yellow' },
+    { icon: 'settings', title: 'Configuration', link: 'https://configuration.com', target: '_blank', appearance: 'yellow' },
   ];
 }
 \`\`\`
@@ -45,7 +44,7 @@ Below is an example of how to use this component in HTML:
 
 \`\`\`html
 <bmb-frequent-apps-selector
-  [title]="'Mis Aplicaciones Frecuentes'"
+  [title]="'My Frequent Apps'"
   [apps]="apps"
 />
 \`\`\`
@@ -59,7 +58,8 @@ Below is an example of how to use this component in HTML:
       control: {
         type: 'object',
       },
-      description: '',
+      description:
+        'List of applications to display, each with properties such as icon, title, link, target, and appearance.',
       table: {
         category: 'Properties',
         type: { summary: 'object' },
@@ -70,7 +70,7 @@ Below is an example of how to use this component in HTML:
       control: {
         type: 'string',
       },
-      description: '',
+      description: 'Title to display above the list of applications.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -81,7 +81,7 @@ Below is an example of how to use this component in HTML:
     apps: [
       {
         icon: 'home',
-        title: 'Inicio',
+        title: 'Home',
         link: '/home',
         target: '_blank',
         appearance: 'red',
@@ -94,21 +94,21 @@ Below is an example of how to use this component in HTML:
       },
       {
         icon: 'settings',
-        title: 'Calendario escolar',
-        link: 'https://configuración.com',
+        title: 'School Calendar',
+        link: 'https://configuration.com',
         target: '_blank',
         appearance: 'yellow',
       },
       {
         icon: 'settings',
-        title: 'Configuración',
-        link: 'https://configuración.com',
+        title: 'Configuration',
+        link: 'https://configuration.com',
         target: '_blank',
         appearance: 'yellow',
       },
       {
         icon: 'home',
-        title: 'Inicio',
+        title: 'Home',
         link: '/home',
         target: '_blank',
         appearance: 'red',
@@ -121,20 +121,20 @@ Below is an example of how to use this component in HTML:
       },
       {
         icon: 'settings',
-        title: 'Calendario escolar',
-        link: 'https://configuración.com',
+        title: 'School Calendar',
+        link: 'https://configuration.com',
         target: '_blank',
         appearance: 'yellow',
       },
       {
         icon: 'settings',
-        title: 'Configuración',
-        link: 'https://configuración.com',
+        title: 'Configuration',
+        link: 'https://configuration.com',
         target: '_blank',
         appearance: 'yellow',
       },
     ],
-    title: 'Servicios',
+    title: 'Services',
   },
 } as Meta<typeof BmbFrequentAppsSelectorComponent>;
 

@@ -1,0 +1,153 @@
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/mixins" as mixins;
+@use "../../../assets/styles/base/rem" as rem;
+
+.bmb_input_number {
+  position: relative;
+
+  &-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  &-error {
+    @include fonts.font(3, regular);
+    color: RGBA(var(--color-red-light));
+    margin: rem.rem_calc(8);
+  }
+
+  .ngx-mat-tel-input-container {
+    display: flex;
+    height: rem.rem_calc(48);
+    position: relative;
+    width: rem.rem_calc(342);
+
+    .country-selector {
+      align-items: center;
+      background-color: RGBA(var(--color-charade-50));
+      background-image: none;
+      border: rem.rem_calc(1) solid RGBA(var(--color-charade-300));
+      border-radius: rem.rem_calc(8 0 0 8);
+      color: RGBA(var(--color-charade-950));
+      display: flex;
+      height: 100%;
+      justify-content: flex-start;
+      line-height: rem.rem_calc(14);
+      opacity: 1;
+      padding: rem.rem_calc(0 0 0 10);
+      position: relative;
+      width: rem.rem_calc(80);
+      @include fonts.font(4, medium);
+
+      &::after {
+        @include mixins.materialIcons();
+        color: RGBA(var(--color-charade-950));
+        content: "expand_more";
+        font-size: rem.rem_calc(28);
+        position: absolute;
+        right: rem.rem_calc(6);
+      }
+
+      .mdc-button__label {
+        .country-selector-flag {
+          display: none;
+        }
+      }
+
+      &[aria-expanded="true"] {
+        border-color: RGBA(var(--color-mariner-700));
+
+        &::after {
+          transform: rotate(180deg);
+        }
+
+        ~ .mat-mdc-input-element {
+          border-color: RGBA(var(--color-mariner-700));
+        }
+      }
+
+      &:disabled {
+        color: RGBA(var(--color-charade-700));
+
+        &::after {
+          color: RGBA(var(--color-charade-700));
+        }
+      }
+    }
+
+    .mat-mdc-input-element {
+      background-color: RGBA(var(--color-charade-50));
+      border: rem.rem_calc(1) solid RGBA(var(--color-charade-300));
+      border-left: 0;
+      border-radius: rem.rem_calc(0 8 8 0);
+      color: RGBA(var(--color-charade-950));
+      padding: rem.rem_calc(0 8);
+      position: relative;
+      @include fonts.font(4, medium);
+    }
+  }
+}
+
+.ngx-mat-tel-input-mat-menu-panel {
+  box-shadow: rem.rem_calc(0 0 8 0) RGBA(var(--color-black-primary), 0.25);
+  height: rem.rem_calc(200);
+
+  .mat-mdc-menu-content {
+    background-color: RGBA(var(--color-charade-50));
+    padding: 0;
+  }
+
+  .country-list-button {
+    &:not([disabled]):hover,
+    &:not([disabled]):focus {
+      background-color: RGBA(var(--color-charade-100));
+    }
+
+    .icon-wrapper {
+      display: none;
+    }
+  }
+
+  .mat-divider {
+    border-color: RGBA(var(--color-charade-950));
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_input_number {
+    .ngx-mat-tel-input-container {
+      .country-selector {
+        background-color: var(--color-black-tint);
+        border-color: RGBA(var(--color-charade-300));
+        color: RGBA(var(--color-charade-50));
+
+        &::after {
+          color: RGBA(var(--color-charade-50));
+        }
+
+        &[aria-expanded="true"] {
+          border-color: RGBA(var(--color-charade-50));
+
+          ~ .mat-mdc-input-element {
+            border-color: RGBA(var(--color-charade-50));
+          }
+        }
+
+        &:disabled {
+          color: RGBA(var(--color-charade-200));
+
+          &::after {
+            color: RGBA(var(--color-charade-200));
+          }
+        }
+      }
+
+      .mat-mdc-input-element {
+        background-color: var(--color-black-tint);
+        border-color: RGBA(var(--color-charade-300));
+        color: RGBA(var(--color-charade-50));
+      }
+    }
+  }
+}

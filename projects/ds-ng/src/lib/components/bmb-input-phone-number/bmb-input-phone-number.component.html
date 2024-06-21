@@ -1,0 +1,15 @@
+<div
+  class="bmb_input_number"
+  [ngClass]="{ 'bmb_input_number-disabled': disabled }"
+>
+  <ngx-mat-intl-tel-input
+    [formControl]="control"
+    [preferredCountries]="['mx']"
+    [enablePlaceholder]="false"
+    [enableSearch]="false"
+    [disabled]="disabled"
+  ></ngx-mat-intl-tel-input>
+  <p class="bmb_input_number-error" *ngIf="shouldShowError">
+    {{ errorMessage }}
+  </p>
+</div>

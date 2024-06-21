@@ -1,33 +1,29 @@
-<div class="bmb_field">
-  <div class="bmb_field-container-label" *ngIf="label">
-    <label for="" class="bmb_field-label">{{ label }}</label>
-    <span *ngIf="isRequired" class="bmb_field-label-required"> *</span>
-  </div>
-  <div class="bmb_field-wrapper" (click)="onParentClick()" #inputWrapper>
-    <ng-container *ngIf="icon">
-      <bmb-icon [icon]="icon" class="bmb_field-icon" [ngClass]="iconColor" />
-    </ng-container>
+<div class="bmb_field" [ngClass]="{ disabled: disabled }">
+  <label for="" class="bmb_field-label" *ngIf="label">
+    {{ label }}
+    <small *ngIf="isRequired" class="bmb_field-label-required">*</small>
+  </label>
+  <div class="bmb_field-wrapper">
+    <bmb-icon
+      *ngIf="icon"
+      [icon]="icon"
+      class="bmb_field-icon"
+      [ngClass]="'bmb_field-icon-' + appearance"
+    ></bmb-icon>
     <input
       type="text"
       class="bmb_field-input"
-      [ngClass]="this.style"
-      [ngClass]="[!isValid ? 'bmb_field-error' : '']"
-      (ngModelChange)="setValue(input.viewModel)"
-      (click)="onClick()"
-      (focus)="onFocus()"
-      (blur)="onBlur()"
-      (mouseover)="onMouseover()"
-      [(ngModel)]="value || inputModel"
+      [ngClass]="inputClasses"
       [required]="isRequired"
-      [disabled]="isDisabled"
+      [disabled]="disabled"
       [placeholder]="placeholder ? placeholder : ''"
-      #input="ngModel"
+      [formControl]="control"
     />
   </div>
-  <p
-    class="bmb_field-helper"
-    [ngClass]="[!inputModel ? 'bmb_field-error' : '']"
-  >
+  <p class="bmb_field-helper" *ngIf="helperMessage && !shouldShowError">
+    {{ helperMessage }}
+  </p>
+  <p class="bmb_field-error" *ngIf="shouldShowError">
     {{ errorMessage }}
   </p>
 </div>

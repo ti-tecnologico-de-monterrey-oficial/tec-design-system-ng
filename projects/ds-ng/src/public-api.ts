@@ -54,6 +54,7 @@ export * from './lib/components/bmb-media-card/bmb-media-card.component';
 export * from './lib/components/bmb-grade-value/bmb-grade-value.component';
 export * from './lib/components/bmb-stat-counter/bmb-stat-counter.component';
 export * from './lib/components/bmb-datepicker/bmb-datepicker.component';
+export * from './lib/components/bmb-input-phone-number/bmb-input-phone-number.component';
 // types
 export * from './lib/types';
 // interface
