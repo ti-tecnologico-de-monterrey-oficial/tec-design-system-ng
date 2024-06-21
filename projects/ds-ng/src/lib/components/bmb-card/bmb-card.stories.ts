@@ -1,17 +1,26 @@
 import { Meta, StoryObj } from '@storybook/angular';
-import { BmbCardComponent, BmbCardFooterComponent, BmbCardHeaderComponent } from './bmb-card.component';
+import {
+  BmbCardComponent,
+  BmbCardFooterComponent,
+  BmbCardHeaderComponent,
+} from './bmb-card.component';
 import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 
 const meta: Meta<BmbCardComponent> = {
   title: 'Micro Componentes/Card',
   component: BmbCardComponent,
-  subcomponents: {BmbCardFooterComponent, BmbCardHeaderComponent},
+  subcomponents: { BmbCardFooterComponent, BmbCardHeaderComponent },
   decorators: [
     moduleMetadata({
       declarations: [],
-      imports: [CommonModule, BmbCardComponent, BmbCardFooterComponent, BmbCardHeaderComponent]
-    })
+      imports: [
+        CommonModule,
+        BmbCardComponent,
+        BmbCardFooterComponent,
+        BmbCardHeaderComponent,
+      ],
+    }),
   ],
   parameters: {
     docs: {
@@ -89,7 +98,7 @@ Below is an example of how you can use this component in HTML:
     margin: 'm',
     type: 'normal',
   },
-}
+};
 
 export default meta;
 

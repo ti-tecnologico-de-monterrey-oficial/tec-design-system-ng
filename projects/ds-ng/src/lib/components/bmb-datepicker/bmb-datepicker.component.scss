@@ -1,0 +1,22 @@
+@use "sass:map";
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/rem" as rem;
+
+.bmb-datepicker {
+  display: inline-flex;
+  width: 100%;
+  @include fonts.font(3, regular);
+  flex-flow: column;
+
+  &-container {
+    flex: 1;
+
+    &-input {
+      display: none;
+    }
+
+    &-button {
+      flex: 1;
+    }
+  }
+}
