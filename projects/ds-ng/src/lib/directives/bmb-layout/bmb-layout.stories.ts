@@ -3,7 +3,10 @@ import { BmbLayoutDirective } from './bmb-layout.directive';
 import { BmbLayoutItemDirective } from './bmb-layout-item.directive';
 import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
-import { BmbCardComponent, BmbCardContentComponent } from '../../components/bmb-card/bmb-card.component';
+import {
+  BmbCardComponent,
+  BmbCardContentComponent,
+} from '../../components/bmb-card/bmb-card.component';
 
 const meta: Meta<BmbLayoutDirective> = {
   title: 'Micro Componentes/Layout',
@@ -12,8 +15,14 @@ const meta: Meta<BmbLayoutDirective> = {
   decorators: [
     moduleMetadata({
       declarations: [],
-      imports: [CommonModule, BmbLayoutDirective, BmbLayoutItemDirective, BmbCardComponent, BmbCardContentComponent]
-    })
+      imports: [
+        CommonModule,
+        BmbLayoutDirective,
+        BmbLayoutItemDirective,
+        BmbCardComponent,
+        BmbCardContentComponent,
+      ],
+    }),
   ],
   parameters: {
     docs: {
@@ -84,7 +93,7 @@ Below is an example of how you can use this component in HTML:
     margin: 'm',
     dinamycCols: false,
   },
-}
+};
 
 export default meta;
 

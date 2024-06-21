@@ -8,10 +8,8 @@ import { CommonModule } from '@angular/common';
 import { SizeNames } from '../../types';
 
 const calculateSize = (pixels: string[]): string => {
-  return pixels
-    .map((size) => `var(--bmg-radius-${size})`)
-    .join(' ');
-}
+  return pixels.map((size) => `var(--bmg-radius-${size})`).join(' ');
+};
 
 export type IBmbCardType =
   | 'primary'

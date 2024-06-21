@@ -1,1 +1,38 @@
-<p>bmb-datepicker works!</p>
+<span class="bmb-datepicker">
+  <bmb-input
+    [placeholder]="placeholder"
+    [label]="label"
+    [icon]="icon"
+    [errorMessage]="errorMessage"
+    [isRequired]="isRequired"
+    [isDisabled]="isDisabled"
+    [value]="value"
+    [isClearable]="isClearable"
+    [appearance]="appearance"
+    [formControl]="formControl"
+  />
+  <!-- @if (label) {
+    <label [for]="name">{{ label }}</label>
+  }
+  <span class="bmb-datepicker-container">
+    <input
+      class="bmb-datepicker-container-button bmb_field-input-normal"
+      [name]="name"
+      [placeholder]="placeholder"
+      [(ngModel)]="value"
+      [formControl]="formControl"
+      type="text"
+      [id]="name"
+    />
+    <bmb-icon [icon]="icon" />
+    @if (showClearInput) {
+      <button>
+        <bmb-icon icon="close" />
+      </button>
+    }
+  </span>
+  <span>{{ dateFormat }}</span>
+  @if (showErrorMessage) {
+    <span>{{errorMessage}}</span>
+  } -->
+</span>

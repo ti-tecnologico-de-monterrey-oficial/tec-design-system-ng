@@ -592,8 +592,11 @@ export class AppComponent {
   ];
 
   toggleButtonState = false;
+  pickerDate: string | undefined = undefined;
+  currentDate: Date = new Date();
+
   handleButtonState() {
-    console.log('handleButtonState', this.toggleButtonState);
-    this.toggleButtonState = !this.toggleButtonState;
+    const newDate = new Date();
+    this.pickerDate = `${newDate.getMonth() + 1}/${newDate.getDate()}/${newDate.getFullYear()}`;
   }
 }

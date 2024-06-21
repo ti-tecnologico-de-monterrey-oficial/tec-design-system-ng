@@ -8,10 +8,9 @@ describe('BmbDatepickerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BmbDatepickerComponent]
-    })
-    .compileComponents();
-    
+      imports: [BmbDatepickerComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(BmbDatepickerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -11,8 +11,9 @@
 **El proyecto de Bamboo fue realizado con la versión v21.6.1 de Node y 10.3.0 de NPM.**
 
 ### Migración de Github packages a NPM
-Para los equipos con la versión de Bamboo 0.2.1 o inferior, se debe migrar el paquete a NPM ya que el repositorio anterior no se seguirá actualizando, por lo que es necesario este proceso para seguir recibiendo todas las actualizaciones. 
- 
+
+Para los equipos con la versión de Bamboo 0.2.1 o inferior, se debe migrar el paquete a NPM ya que el repositorio anterior no se seguirá actualizando, por lo que es necesario este proceso para seguir recibiendo todas las actualizaciones.
+
 Es necesario cerrar la sesión en el scope del TEC, para ello es necesario ejecutar los siguientes comandos:
 
 `npm logout --scope=@ti-tecnologico-de-monterrey-oficial`
@@ -51,7 +52,7 @@ Sigue los pasos de la guía para configurar los estilos y las fuentes.
 
 Para poder utilizar Bamboo, sigue estos pasos para agregar estilos y configuraciones específicas del paquete:
 
-En el archivo `angular.json` de tu proyecto, agrega el siguiente contenido donde esta *“styles”* y *“assets”*:
+En el archivo `angular.json` de tu proyecto, agrega el siguiente contenido donde esta _“styles”_ y _“assets”_:
 
 ```
 "assets": [

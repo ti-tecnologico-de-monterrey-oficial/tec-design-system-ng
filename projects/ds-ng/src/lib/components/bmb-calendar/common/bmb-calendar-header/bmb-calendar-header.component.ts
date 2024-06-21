@@ -18,7 +18,14 @@ import { BmbLayoutItemDirective } from '../../../../directives/bmb-layout/bmb-la
 @Component({
   selector: 'bmb-calendar-header',
   standalone: true,
-  imports: [CommonModule, BmbButtonDirective, BmbIconComponent, BmbButtonGroupDirective, BmbLayoutDirective, BmbLayoutItemDirective],
+  imports: [
+    CommonModule,
+    BmbButtonDirective,
+    BmbIconComponent,
+    BmbButtonGroupDirective,
+    BmbLayoutDirective,
+    BmbLayoutItemDirective,
+  ],
   templateUrl: './bmb-calendar-header.component.html',
   styleUrl: './bmb-calendar-header.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
