@@ -137,7 +137,8 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'text',
       },
-      description: 'Specifies the body text display. This attribute can receive a Template Reference instead of the string.',
+      description:
+        'Specifies the body text display. This attribute can receive a Template Reference instead of the string.',
       table: {
         category: 'Properties',
         type: { summary: ['string', 'Template Reference'] },
