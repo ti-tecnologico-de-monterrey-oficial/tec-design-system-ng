@@ -1,14 +1,14 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BmbInputPhoneNumberComponent } from './bmb-input-phone-number.component';
+import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 
-import { BmbInputComponent } from './bmb-input.component';
-
 export default {
-  title: 'Micro Componentes/Input',
-  component: BmbInputComponent,
+  title: 'Micro Componentes/Input Phone Number',
+  component: BmbInputPhoneNumberComponent,
   decorators: [
     moduleMetadata({
       imports: [
@@ -16,6 +16,7 @@ export default {
         FormsModule,
         ReactiveFormsModule,
         BrowserAnimationsModule,
+        NgxMatIntlTelInputComponent,
         BmbIconComponent,
       ],
     }),
@@ -35,7 +36,7 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { BmbInputComponent, BmbButtonDirective } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
+import { BmbInputPhoneNumberComponent, BmbButtonDirective } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -44,19 +45,23 @@ import { CommonModule } from '@angular/common';
   imports: [
     ReactiveFormsModule,
     CommonModule,
+    BmbInputPhoneNumberComponent,
     BmbButtonDirective,
-    BmbInputComponent,
   ],
   templateUrl: './component.html',
   styleUrls: ['./component.scss'],
 })
 export class AppComponent {
   userForm: FormGroup;
+  isPhoneDisabled = false;
   showErrors: { [key: string]: boolean } = {};
 
   constructor(private fb: FormBuilder, private cdr: ChangeDetectorRef) {
     this.userForm = this.fb.group({
-      name: new FormControl('', Validators.required),
+      phone: new FormControl(
+        { value: null, disabled: this.isPhoneDisabled },
+        Validators.required,
+      ),
     });
   }
 
@@ -81,8 +86,8 @@ export class AppComponent {
     });
   }
 
-  get nameControl(): FormControl {
-    return this.userForm.get('name') as FormControl;
+  get phoneControl(): FormControl {
+    return this.userForm.get('phone') as FormControl;
   }
 }
 \`\`\`
@@ -93,21 +98,15 @@ Below is an example of how to use this component in HTML:
 
 \`\`\`html
 <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-  <bmb-input
-    [label]="'Input Label'"
-    [placeholder]="'Placeholder'"
-    [icon]="'apps'"
-    [errorMessage]="'Error'"
-    [helperMessage]="'Helper Message'"
-    [disabled]="false"
-    [isRequired]="false"
-    [appearance]="'normal'"
-    [control]="nameControl"
-    [showError]="showErrors['name']"
+  <bmb-input-phone-number
+  [control]="phoneControl"
+  [disabled]="isPhoneDisabled"
+  [isRequired]="false"
+  [showError]="showErrors['phone']"
+  [errorMessage]="'Error Phone'"
   />
   <button bmbButton appearance="primary" type="submit">Submit</button>
 </form>
-
 
 \`\`\`
         `,
@@ -124,61 +123,6 @@ Below is an example of how to use this component in HTML:
         defaultValue: { summary: "FormControl('', Validators.required)" },
       },
     },
-    icon: {
-      name: 'Icon',
-      control: {
-        type: 'text',
-      },
-      description:
-        'Name of the icon to be displayed in the input field. Refer to Material Icons for options.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
-    errorMessage: {
-      name: 'Error Message',
-      control: {
-        type: 'text',
-      },
-      description: 'Text to be displayed when there is an error.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
-    helperMessage: {
-      name: 'Helper Message',
-      control: {
-        type: 'text',
-      },
-      description: 'Text to be displayed as a helper message below the input.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
-    isRequired: {
-      name: 'Required',
-      control: { type: 'boolean' },
-      description: 'Indicates whether the input field is required.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean' },
-      },
-    },
-    placeholder: {
-      name: 'Placeholder',
-      control: {
-        type: 'text',
-      },
-      description: 'Placeholder text to be displayed inside the input field.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
     disabled: {
       name: 'Disabled',
       control: { type: 'boolean' },
@@ -189,24 +133,12 @@ Below is an example of how to use this component in HTML:
         type: { summary: 'boolean' },
       },
     },
-    label: {
-      name: 'Label',
+    errorMessage: {
+      name: 'Error Message',
       control: {
         type: 'text',
       },
-      description: 'Label text to be displayed above the input field.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
-    appearance: {
-      name: 'Appearance',
-      control: {
-        type: 'select',
-      },
-      options: ['main', 'normal', 'simple'],
-      description: 'Defines the appearance style of the input field.',
+      description: 'Text to be displayed when there is an error.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -224,21 +156,25 @@ Below is an example of how to use this component in HTML:
         defaultValue: { summary: 'false' },
       },
     },
+    isRequired: {
+      name: 'Required',
+      control: { type: 'boolean' },
+      description: 'Indicates whether the input field is required.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
   },
-
   args: {
-    icon: 'apps',
-    errorMessage: 'Error Message',
-    helperMessage: 'Helper Message',
-    isRequired: false,
-    placeholder: 'Placeholder',
     disabled: false,
-    label: 'Input Label',
-    appearance: 'normal',
     showError: false,
+    errorMessage: 'Error Message',
+    isRequired: false,
   },
-} as Meta<typeof BmbInputComponent>;
+} as Meta<typeof BmbInputPhoneNumberComponent>;
 
-type Story = StoryObj<BmbInputComponent>;
+type Story = StoryObj<BmbInputPhoneNumberComponent>;
 
 export const Default: Story = {};

@@ -64,7 +64,7 @@
             matTooltipPosition="below"
             matTooltipClass="bmb_tooltip"
             [ngClass]="{
-              'bmb_table-sticky': i === 0
+              'bmb_table-sticky': i === 0,
             }"
           >
             {{ column.label }}
@@ -81,7 +81,7 @@
             [matTooltip]="hasEllipsis(cell) ? row[column.dataKey] : ''"
             matTooltipClass="bmb_tooltip"
             [ngClass]="{
-              'bmb_table-sticky': i === 0
+              'bmb_table-sticky': i === 0,
             }"
           >
             {{ row[column.dataKey] }}
@@ -129,7 +129,7 @@
         [class.bmb_table-expandible]="expandedElement === row"
         [ngClass]="{
           'bmb_table-even': isEven(i),
-          'bmb_table-odd': isOdd(i)
+          'bmb_table-odd': isOdd(i),
         }"
       ></tr>
 
@@ -159,7 +159,7 @@
         [disabled]="!paginator || !paginator.hasPreviousPage()"
         [ngClass]="{
           'bmb_table-paginator-btn-disabled':
-            !paginator || !paginator.hasPreviousPage()
+            !paginator || !paginator.hasPreviousPage(),
         }"
         (click)="paginator.firstPage()"
         class="bmb_table-paginator-btn"
@@ -173,7 +173,7 @@
         [disabled]="!paginator || !paginator.hasPreviousPage()"
         [ngClass]="{
           'bmb_table-paginator-btn-disabled':
-            !paginator || !paginator.hasPreviousPage()
+            !paginator || !paginator.hasPreviousPage(),
         }"
         (click)="paginator.previousPage()"
         class="bmb_table-paginator-btn"
@@ -184,7 +184,7 @@
         [disabled]="!paginator || !paginator.hasNextPage()"
         [ngClass]="{
           'bmb_table-paginator-btn-disabled':
-            !paginator || !paginator.hasNextPage()
+            !paginator || !paginator.hasNextPage(),
         }"
         (click)="paginator.nextPage()"
         class="bmb_table-paginator-btn"
@@ -198,7 +198,7 @@
         [disabled]="!paginator || !paginator.hasNextPage()"
         [ngClass]="{
           'bmb_table-paginator-btn-disabled':
-            !paginator || !paginator.hasNextPage()
+            !paginator || !paginator.hasNextPage(),
         }"
         (click)="paginator.lastPage()"
         class="bmb_table-paginator-btn"
