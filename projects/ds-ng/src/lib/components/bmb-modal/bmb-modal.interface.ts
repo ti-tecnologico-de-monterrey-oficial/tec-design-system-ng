@@ -1,7 +1,9 @@
+import { TemplateRef } from '@angular/core';
+
 export interface ModalDataConfig {
   title?: string;
   subtitle?: string;
-  content?: string;
+  content?: string | TemplateRef<any> | null;
   type?: 'informative' | 'action' | 'alert';
   alertStyle?:
     | 'warning'

@@ -1,11 +1,10 @@
 <section class="bmb_search-input">
-  <div class="bmb_search-input-field">
+  <div class="bmb_search-input-field" (click)="openDialog()" onkeypress="">
     <label class="bmb_search-input-field-label" [for]="'filter-' + uid">
       <bmb-icon icon="search" />
     </label>
     <input
       class="bmb_search-input-field-input"
-      [disabled]="isLoading"
       type="text"
       #filterInput
       [id]="'filter-' + uid"
@@ -16,19 +15,17 @@
     <button
       class="bmb_search-input-field-clear"
       [disabled]="isLoading"
-      bmbButton
       (click)="clearFilter()"
     >
       <bmb-icon icon="close" />
     </button>
   </div>
-  <section
-    role="dialog"
+  <dialog
     class="bmb_search-input-dialog"
-    [ngClass]="getDialogOpen()"
+    [ngClass]="{ 'bmb_search-input-dialog-open': isDialogOpen }"
   >
     @if (isLoading) {
-      <bmb-loader />
+      <bmb-icon icon="progress_activity" class="bmb_loader-loading" />
     } @else {
       <ul class="bmb_search-input-dialog-list">
         @for (item of filteredData; track $index) {
@@ -43,5 +40,5 @@
         }
       </ul>
     }
-  </section>
+  </dialog>
 </section>
