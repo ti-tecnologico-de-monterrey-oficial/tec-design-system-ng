@@ -10,6 +10,7 @@ import {
   SimpleChanges,
   HostListener,
   ChangeDetectorRef,
+  OnChanges,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
@@ -33,7 +34,7 @@ import { debounceTime } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbSearchInputComponent {
+export class BmbSearchInputComponent implements OnChanges {
   @Input() data: string[] = [];
   @Input() isLoading: boolean = false;
   @Input() isServerSideFilter: boolean = false;
@@ -77,11 +78,15 @@ export class BmbSearchInputComponent {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['serverSideFilteredData']) {
+    if (changes['serverSideFilteredData'] && this.isServerSideFilter) {
       this.filteredData = changes['serverSideFilteredData'].currentValue;
+    } else {
+      this.filteredData = this.data;
     }
-
-    if (changes['serverSideFilteredData'] || changes['isLoading']) {
+    if (
+      changes['serverSideFilteredData'] &&
+      changes['isLoading'].currentValue
+    ) {
       this.isDialogOpen =
         changes['serverSideFilteredData']?.currentValue?.length ||
         changes['isLoading']?.currentValue;
@@ -89,7 +94,7 @@ export class BmbSearchInputComponent {
   }
 
   filteredValue(value: string): void {
-    if (value.length >= 3) {
+    if (value.length >= 1) {
       if (this.isServerSideFilter) {
         this.onServerSideFilterEvent.emit(value);
       } else {
@@ -107,8 +112,8 @@ export class BmbSearchInputComponent {
   clearFilter(): void {
     if (this.filterField?.nativeElement) {
       this.filterField.nativeElement.value = '';
-      this.filteredData = [];
     }
+    this.isDialogOpen = false;
   }
 
   getDialogOpen(): string {
@@ -125,5 +130,9 @@ export class BmbSearchInputComponent {
     if (this.filterField?.nativeElement) {
       this.filterField.nativeElement.value = event;
     }
+  }
+
+  openDialog() {
+    this.isDialogOpen = !this.isDialogOpen;
   }
 }

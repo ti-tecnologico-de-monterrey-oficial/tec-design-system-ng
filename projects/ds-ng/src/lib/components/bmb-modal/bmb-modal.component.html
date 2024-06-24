@@ -29,12 +29,16 @@
       </div>
     </header>
     <section class="bmb_modal-body">
-      <div
-        class="bmb_modal-body-description"
-        [ngClass]="{ 'bmb_modal-body-scrollable': modalData.scrollable }"
-      >
-        <p class="bmb_modal-body-description-text">{{ modalData.content }}</p>
-      </div>
+      @if (!isTemplate) {
+        <div
+          class="bmb_modal-body-description"
+          [ngClass]="{ 'bmb_modal-body-scrollable': modalData.scrollable }"
+        >
+          <p class="bmb_modal-body-description-text">{{ modalData.content }}</p>
+        </div>
+      } @else {
+        <ng-container *ngTemplateOutlet="modalTemplate"></ng-container>
+      }
     </section>
     @if (this.modalData.type !== "informative") {
       <footer id="modal-footer" class="bmb_modal-footer">

@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
@@ -7,6 +8,7 @@ import {
   Input,
   OnInit,
   Output,
+  TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
 import {
@@ -32,6 +34,8 @@ import { ModalService } from '../../services/modal.service';
 export class BmbModalComponent implements OnInit {
   svgUrl: string = '../../../assets/svg/';
   btnColor: any = 'bmb_modal-btn-main';
+  isTemplate: boolean = false;
+  modalTemplate: TemplateRef<any> | null = null;
 
   constructor(
     public dialogRef: MatDialogRef<BmbModalComponent>,
@@ -53,6 +57,11 @@ export class BmbModalComponent implements OnInit {
   setConfig(data: ModalDataConfig) {
     if (data.type == 'alert') {
       this.setBtnStyle(data.alertStyle!);
+    }
+
+    if (typeof data.content !== 'string') {
+      this.modalTemplate = data.content!;
+      this.isTemplate = true;
     }
   }
 
