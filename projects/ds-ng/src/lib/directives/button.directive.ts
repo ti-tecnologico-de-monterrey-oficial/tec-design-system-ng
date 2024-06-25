@@ -23,7 +23,6 @@ export class BmbButtonDirective implements OnInit, OnChanges {
   @Input() case: boolean = false;
   @Input() appearance: IButtonAppearance = 'primary';
   @Input() size: 'small' | 'large' = 'small';
-  @Input() loading: boolean = false;
   @Input() isToggleActive: boolean = false;
   @Input() enableButtonToggle: boolean = false;
 

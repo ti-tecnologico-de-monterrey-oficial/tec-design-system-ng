@@ -29,14 +29,14 @@
   }
 
   &-content {
-    padding: var(--bmg-spacing-m) var(--bmg-spacing-m) var(--bmg-spacing-s);
+    padding: var(--bmb-spacing-m) var(--bmb-spacing-m) var(--bmb-spacing-s);
     margin: 0;
     @include fonts.font(4, medium);
     text-align: center;
   }
 
   &-footer {
-    padding: var(--bmg-spacing-none) var(--bmg-spacing-m) var(--bmg-spacing-m);
+    padding: var(--bmb-spacing-none) var(--bmb-spacing-m) var(--bmb-spacing-m);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -65,8 +65,8 @@
     }
 
     button {
-      padding: var(--bmg-spacing-s);
-      margin-right: var(--bmg-spacing-m);
+      padding: var(--bmb-spacing-s);
+      margin-right: var(--bmb-spacing-m);
     }
   }
 }

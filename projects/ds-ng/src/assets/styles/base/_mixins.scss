@@ -32,12 +32,12 @@
   @include fonts.font(5, regular);
   align-items: center;
   border: none;
-  border-radius: var(--bmg-radius-s);
+  border-radius: var(--bmb-radius-s);
   display: inline-flex;
   height: rem.rem_calc(36);
   justify-content: center;
-  padding: var(--bmg-spacing-none) var(--bmg-spacing-m);
-  gap: var(--bmg-spacing-xs);
+  padding: var(--bmb-spacing-none) var(--bmb-spacing-m);
+  gap: var(--bmb-spacing-xs);
   box-sizing: border-box;
 
   bmb-icon {
@@ -190,7 +190,7 @@
   outline: none;
   border: 0;
   margin: rem.rem_calc(3);
-  padding: var(--bmg-spacing-s) var(--bmg-spacing-m);
+  padding: var(--bmb-spacing-s) var(--bmb-spacing-m);
   position: fixed;
   bottom: rem.rem_calc(40);
   right: rem.rem_calc(40);

@@ -1,0 +1,32 @@
+@use "sass:map";
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/rem" as rem;
+
+.bmb_datepicker {
+  display: inline-flex;
+  width: 100%;
+  @include fonts.font(3, regular);
+  flex-flow: column;
+  position: relative;
+
+  &-container {
+    flex: 1;
+
+    &-input {
+      display: none;
+    }
+
+    &-button {
+      flex: 1;
+    }
+  }
+
+  &-clear {
+    color: RGBA(var(--color-charade-500));
+    font-size: rem.rem_calc(24);
+    right: var(--bmb-spacing-s);
+    position: absolute;
+    bottom: rem.rem_calc(21);
+    transform: translateY(-50%);
+  }
+}

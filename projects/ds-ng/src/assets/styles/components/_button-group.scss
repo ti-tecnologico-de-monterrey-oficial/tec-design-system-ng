@@ -76,13 +76,13 @@
     border-radius: 0;
 
     &:first-child {
-      border-top-left-radius: var(--bmg-radius-m);
-      border-bottom-left-radius: var(--bmg-radius-m);
+      border-top-left-radius: var(--bmb-radius-m);
+      border-bottom-left-radius: var(--bmb-radius-m);
     }
 
     &:last-child {
-      border-top-right-radius: var(--bmg-radius-m);
-      border-bottom-right-radius: var(--bmg-radius-m);
+      border-top-right-radius: var(--bmb-radius-m);
+      border-bottom-right-radius: var(--bmb-radius-m);
     }
   }
 }

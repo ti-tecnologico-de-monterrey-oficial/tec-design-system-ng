@@ -5,7 +5,7 @@
     margin="none"
     [dinamycCols]="true"
   >
-    <li bmbLayoutItem [colGrow]="1">
+    <li bmbLayoutItem [colGrow]="1" [isDinamycItem]="true">
       <div bmbLayout margin="none">
         <li bmbLayoutItem [colSm]="2">
           <bmb-calendar-template-select
@@ -23,7 +23,7 @@
         </li>
       </div>
     </li>
-    <li>
+    <li [style]="{ 'text-align': 'right' }">
       <button
         class="bmb_calendar-month-mobile-nav-button"
         (click)="handleViewTypeChange()"
