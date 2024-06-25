@@ -25,9 +25,9 @@ $radius: (
 
 :root {
   @each $name, $size in $sizes {
-    --bmg-spacing-#{$name}: #{$size};
+    --bmb-spacing-#{$name}: #{$size};
   }
   @each $name, $size in $radius {
-    --bmg-radius-#{$name}: #{$size};
+    --bmb-radius-#{$name}: #{$size};
   }
 }

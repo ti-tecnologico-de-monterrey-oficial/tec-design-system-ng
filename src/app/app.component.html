@@ -13,21 +13,21 @@
   <bmb-datepicker
     placeholder="Selecciona la fecha de cumpleaños"
     name="datePicker"
-    [value]="pickerDate"
-    dateFormat="dd/mm/yyyy"
+    dateFormat="MM/dd/yyyy"
     label="Fecha de tu cumpleaños"
     iconLabel="cake"
-    [isDisabled]="false"
+    [disabled]="false"
     [inline]="false"
     icon="cake"
     [stepYearPicker]="12"
     [isRequired]="true"
     [isClearable]="true"
-    errorMessage="El formato no es correcto"
+    invalidFormaterrorMessage="El formato debe ser el siguiente: dd/mm/yyyy"
+    requiredFieldErrorMessage="Este campo es requerido"
   />
 </div>
 
-<bmb-input icon="apps" [isClearable]="true"></bmb-input>
+<bmb-input icon="apps"></bmb-input>
 <br />
 <button bmbButton (click)="handleButtonState()" [textContent]="'text'">
   Button 1

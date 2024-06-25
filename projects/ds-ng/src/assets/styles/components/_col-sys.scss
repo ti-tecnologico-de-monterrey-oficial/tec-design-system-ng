@@ -30,7 +30,7 @@ $namesOfSides: "left", "right";
 @each $name, $size in $sizes {
   .bmb_gap-#{$name} {
     gap: $size;
-    --bmg-gap: #{$size};
+    --bmb-gap: #{$size};
   }
 }
 
@@ -40,7 +40,7 @@ $namesOfSides: "left", "right";
     @include mixins.media-query(1000, "min") {
       flex: 0 0
         calc(
-          #{percentage(math.div($i, 12))} - (var(--bmg-gap) / 12 * #{12 - $i})
+          #{percentage(math.div($i, 12))} - (var(--bmb-gap) / 12 * #{12 - $i})
         );
     }
   }
@@ -50,7 +50,7 @@ $namesOfSides: "left", "right";
   .bmb_col-sm-#{$i} {
     flex: 0
       0
-      calc(#{percentage(math.div($i, 4))} - (var(--bmg-gap) / 4 * #{4 - $i}));
+      calc(#{percentage(math.div($i, 4))} - (var(--bmb-gap) / 4 * #{4 - $i}));
   }
 }
 
@@ -63,8 +63,8 @@ $namesOfSides: "left", "right";
           if($margin == "sm", "max", "min")
         ) {
           margin-#{$side}: calc(
-            #{percentage(math.div($i, $size))} + var(--bmg-gap) - (var(
-                    --bmg-gap
+            #{percentage(math.div($i, $size))} + var(--bmb-gap) - (var(
+                    --bmb-gap
                   ) / $size * #{$size - $i})
           );
         }

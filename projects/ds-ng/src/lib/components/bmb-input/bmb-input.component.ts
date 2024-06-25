@@ -5,6 +5,8 @@ import {
   ChangeDetectorRef,
   ViewEncapsulation,
   ChangeDetectionStrategy,
+  Output,
+  EventEmitter,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -30,6 +32,9 @@ export class BmbInputComponent implements OnInit {
   @Input() isRequired: boolean = false;
   @Input() showError: boolean = false;
   @Input() control: FormControl = new FormControl();
+  @Input() name: string = '';
+
+  @Output() isFocus: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private cdr: ChangeDetectorRef) {}
 
@@ -39,10 +44,13 @@ export class BmbInputComponent implements OnInit {
     }
 
     if (this.isRequired) {
-      this.control.setValidators(Validators.required);
-    } else {
-      this.control.clearValidators();
+      this.control.addValidators(Validators.required);
     }
+
+    // else {
+    //   this.control.clearValidators();
+    // }
+
     this.control.updateValueAndValidity();
 
     this.control.valueChanges.subscribe(() => {
@@ -56,6 +64,14 @@ export class BmbInputComponent implements OnInit {
       this.isRequired &&
       this.control.invalid &&
       (this.control.touched || this.control.dirty);
+  }
+
+  onFocus() {
+    this.isFocus.emit(true);
+  }
+
+  onBlur() {
+    this.isFocus.emit(false);
   }
 
   get inputClasses(): { [key: string]: boolean } {
