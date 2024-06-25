@@ -1,0 +1,88 @@
+<div class="bmb_datepicker-modal">
+  <nav
+    class="bmb_datepicker-modal-nav"
+    bmbLayout
+    margin="none"
+    [dinamycCols]="true"
+  >
+    <li bmbLayoutItem>
+      <button
+        class="bmb_datepicker-modal-calendar-button"
+        (click)="handleChangeView('month')"
+        bmbButton
+        appearance="secondary-outlined"
+        icon="keyboard_arrow_down"
+      >
+        {{ month }}
+      </button>
+    </li>
+    <li bmbLayoutItem>
+      <button
+        class="bmb_datepicker-modal-calendar-button"
+        (click)="handleChangeView('year')"
+        bmbButton
+        appearance="secondary-outlined"
+        icon="keyboard_arrow_down"
+      >
+        {{ selectedYear }}
+      </button>
+    </li>
+  </nav>
+  @switch (view) {
+    @case ('calendar') {
+      <ul class="bmb_datepicker-modal-calendar">
+        @for (day of dayNames; track $index) {
+          <li class="bmb_datepicker-modal-calendar-header">
+            {{ day }}
+          </li>
+        }
+        @for (date of getWeeksAndDays(); track $index) {
+          <li class="bmb_datepicker-modal-calendar-item">
+            <button
+              class="bmb_datepicker-modal-calendar-item-button"
+              [ngClass]="isSelectedDay(date)"
+              (click)="handleDayChange(date)"
+              bmbButton
+              appearance="secondary-filled"
+            >
+              {{ date.day }}
+            </button>
+          </li>
+        }
+      </ul>
+    }
+    @case ('month') {
+      <ul class="bmb_datepicker-modal-list">
+        @for (month of monthsNames; track $index) {
+          <li class="bmb_datepicker-modal-list-item">
+            <button
+              class="bmb_datepicker-modal-calendar-item-button bmb_datepicker-modal-calendar-item-button-full modal-persist"
+              bmbButton
+              appearance="secondary-filled"
+              (click)="handleMonthChange($index)"
+            >
+              {{ month }}
+            </button>
+          </li>
+        }
+      </ul>
+    }
+    @case ('year') {
+      <ul class="bmb_datepicker-modal-list">
+        @for (year of getYears(); track $index) {
+          <li class="bmb_datepicker-modal-list-item">
+            <button
+              class="bmb_datepicker-modal-calendar-item-button bmb_datepicker-modal-calendar-item-button-full modal-persist"
+              bmbButton
+              appearance="secondary-filled"
+              (click)="handleYearChange(year)"
+            >
+              {{ year }}
+            </button>
+          </li>
+        }
+      </ul>
+    }
+  }
+</div>
+

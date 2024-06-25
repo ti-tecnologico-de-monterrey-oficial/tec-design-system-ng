@@ -97,7 +97,7 @@ Below is an example of how you can use this component in HTML:
       },
     },
     isToggleActive: {
-      name: 'Case',
+      name: 'Is toggle active',
       control: { type: 'boolean' },
       description: 'This is the active button state',
       table: {
@@ -107,7 +107,7 @@ Below is an example of how you can use this component in HTML:
       },
     },
     enableButtonToggle: {
-      name: 'Case',
+      name: 'Enable button toggle',
       control: { type: 'boolean' },
       description: 'This property enable the active button state',
       table: {
@@ -144,7 +144,7 @@ function attributes(object: { [key: string]: any }): string {
 function attributesText(object: { [key: string]: any }): string {
   return Object.entries(object)
     .filter(([key]) => key === 'text')
-    .map(([key, value]) => `${value}`)
+    .map(([_, value]) => `${value}`)
     .join(' ');
 }
 

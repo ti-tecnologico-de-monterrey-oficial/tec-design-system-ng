@@ -57,21 +57,25 @@ $dark: (
   border-width: rem.rem_calc(1);
   border-style: solid;
   @include fonts.font(3, regular);
+  overflow: hidden;
 
   @each $name, $type in $types {
     &.bmb_card-type-#{$name} {
+      --border-color: #{map.get($type, "border")};
       background-color: map.get($type, "background");
-      border-color: map.get($type, "border");
+      border-color: var(--border-color);
       color: map.get($type, "color");
     }
   }
 
   &-header {
-    border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-300));
+    @include fonts.font(3, regular);
+    border-bottom: rem.rem_calc(1) solid var(--border-color);
   }
 
   &-footer {
-    border-top: rem.rem_calc(1) solid RGBA(var(--color-charade-300));
+    @include fonts.font(3, regular);
+    border-top: rem.rem_calc(1) solid var(--border-color);
   }
 }
 

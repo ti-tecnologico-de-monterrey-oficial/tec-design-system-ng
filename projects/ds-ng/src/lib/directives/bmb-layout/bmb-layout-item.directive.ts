@@ -1,4 +1,4 @@
-import { Directive, HostBinding, Input } from '@angular/core';
+import { Directive, HostBinding, Input, OnInit } from '@angular/core';
 
 interface IMargin {
   sm: number;
@@ -9,7 +9,7 @@ interface IMargin {
   selector: '[bmbLayoutItem]',
   standalone: true,
 })
-export class BmbLayoutItemDirective {
+export class BmbLayoutItemDirective implements OnInit {
   @Input() colSm: number = 0;
   @Input() colLg: number = 0;
   @Input() marginLeft: IMargin | null = null;
@@ -40,11 +40,13 @@ export class BmbLayoutItemDirective {
     return classes;
   }
 
-  @HostBinding('style.flex') get flexGrow(): string {
-    if (this.isDinamycItem) {
-      return `0 0 clamp(${this.itemMinWidth}, ${this.itemWidth}, ${this.itemMaxWidth})`;
-    }
+  @HostBinding('style.flex') flex?: string;
 
-    return '';
+  ngOnInit() {
+    console.log('ngOnInit', this.isDinamycItem);
+
+    if (this.isDinamycItem) {
+      this.flex = `${this.colGrow} 0 0%`;
+    }
   }
 }

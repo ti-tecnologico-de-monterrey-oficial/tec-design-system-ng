@@ -1,27 +1,3 @@
 <section class="bmb_card" [ngClass]="getClasses()" [ngStyle]="getStyles()">
-  @if (!!headerContent) {
-    <header
-      class="bmb_card-header"
-      [ngClass]="getContentClasses()"
-      [ngStyle]="getContentStyles()"
-    >
-      <ng-container [ngTemplateOutlet]="headerContent"></ng-container>
-    </header>
-  }
-  <div
-    class="bmb_card-content"
-    [ngClass]="getContentClasses()"
-    [ngStyle]="getContentStyles()"
-  >
-    <ng-content></ng-content>
-  </div>
-  @if (!!footerContent) {
-    <footer
-      class="bmb_card-footer"
-      [ngClass]="getContentClasses()"
-      [ngStyle]="getContentStyles()"
-    >
-      <ng-container [ngTemplateOutlet]="footerContent"></ng-container>
-    </footer>
-  }
+  <ng-content></ng-content>
 </section>

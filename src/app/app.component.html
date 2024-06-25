@@ -9,14 +9,30 @@
 <bmb-theme [showControls]="true" [initialTheme]="'dark'" />
 <bmb-sidebar [elements]="sidebarElements" /> -->
 
-<button
-  bmbButton
-  [enableButtonToggle]="true"
-  [isToggleActive]="toggleButtonState"
-  (click)="handleButtonState()"
->
+<div [style]="{ margin: '2rem' }">
+  <bmb-datepicker
+    placeholder="Selecciona la fecha de cumpleaños"
+    name="datePicker"
+    dateFormat="MM/dd/yyyy"
+    label="Fecha de tu cumpleaños"
+    iconLabel="cake"
+    [disabled]="false"
+    [inline]="false"
+    icon="cake"
+    [stepYearPicker]="12"
+    [isRequired]="true"
+    [isClearable]="true"
+    invalidFormaterrorMessage="El formato debe ser el siguiente: dd/mm/yyyy"
+    requiredFieldErrorMessage="Este campo es requerido"
+  />
+</div>
+
+<bmb-input icon="apps"></bmb-input>
+<br />
+<button bmbButton (click)="handleButtonState()" [textContent]="'text'">
   Button 1
 </button>
+{{ pickerDate }}
 
 <bmb-frequent-apps-selector
   [title]="'Mis Aplicaciones Frecuentes'"

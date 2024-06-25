@@ -1,0 +1,34 @@
+<div class="bmb_datepicker">
+  <section class="bmb-datepicker-container">
+    <bmb-input
+      [placeholder]="placeholder"
+      [label]="label"
+      [icon]="icon"
+      [isRequired]="isRequired"
+      [disabled]="disabled"
+      [appearance]="appearance"
+      [control]="control"
+      [isRequired]="isRequired"
+      (isFocus)="handleFouseEvent($event)"
+      [helperMessage]="dateFormat"
+      [errorMessage]="getErrorMessage(control.errors)"
+      [name]="name"
+    />
+    @if (isClearable) {
+      <button class="bmb_datepicker-clear" (click)="clearValue()">
+        <bmb-icon icon="close" />
+      </button>
+    }
+    @if (isWindowOpen) {
+      <bmb-datepicker-modal
+        [now]="now"
+        [isWindowOpen]="isWindowOpen"
+        (closeWindow)="handleWindowOpen($event)"
+        (onValueChange)="handleValueChange($event)"
+        [value]="control.value"
+        [dateFormat]="dateFormat"
+        [stepYearPicker]="stepYearPicker"
+      />
+    }
+  </section>
+</div>

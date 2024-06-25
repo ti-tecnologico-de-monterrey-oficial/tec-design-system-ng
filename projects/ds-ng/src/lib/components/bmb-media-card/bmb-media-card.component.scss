@@ -43,7 +43,7 @@
       filter: blur(10px);
       z-index: -1;
       opacity: 0.75;
-      padding: var(--bmg-spacing-m);
+      padding: var(--bmb-spacing-m);
 
       &:has(+ .bmb_media-card-figure-zoom) {
         .bmb_media-card-figure-image {
@@ -52,7 +52,7 @@
       }
 
       & + .bmb_media-card-figure {
-        margin: var(--bmg-spacing-m);
+        margin: var(--bmb-spacing-m);
       }
     }
 
@@ -89,12 +89,12 @@
           RGBA(var(--color-charade-950), 0),
           RGBA(var(--color-charade-950), 1)
         );
-        padding: var(--bmg-spacing-m);
+        padding: var(--bmb-spacing-m);
         width: 100%;
         box-sizing: border-box;
 
         &-backdrop {
-          margin: var(--bmg-spacing-m);
+          margin: var(--bmb-spacing-m);
         }
       }
     }
@@ -106,7 +106,7 @@
     }
 
     &-container-backdrop {
-      padding: var(--bmg-spacing-m);
+      padding: var(--bmb-spacing-m);
       box-sizing: border-box;
     }
   }

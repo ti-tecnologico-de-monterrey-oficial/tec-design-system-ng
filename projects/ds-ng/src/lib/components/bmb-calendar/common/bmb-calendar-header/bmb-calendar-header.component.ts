@@ -11,11 +11,21 @@ import { BmbButtonDirective } from '../../../../directives/button.directive';
 import { BmbIconComponent } from '../../../bmb-icon/bmb-icon.component';
 import { DateTime } from 'luxon';
 import { IBmbCalendarView } from '../../types';
+import { BmbButtonGroupDirective } from '../../../../directives/bmb-button-group/bmb-button-group.directive';
+import { BmbLayoutDirective } from '../../../../directives/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../../../directives/bmb-layout/bmb-layout-item.directive';
 
 @Component({
   selector: 'bmb-calendar-header',
   standalone: true,
-  imports: [CommonModule, BmbButtonDirective, BmbIconComponent],
+  imports: [
+    CommonModule,
+    BmbButtonDirective,
+    BmbIconComponent,
+    BmbButtonGroupDirective,
+    BmbLayoutDirective,
+    BmbLayoutItemDirective,
+  ],
   templateUrl: './bmb-calendar-header.component.html',
   styleUrl: './bmb-calendar-header.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

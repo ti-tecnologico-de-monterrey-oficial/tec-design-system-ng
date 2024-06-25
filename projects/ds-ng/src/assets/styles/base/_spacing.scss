@@ -15,20 +15,20 @@ $sizes: (
 @each $name, $size in $sizes {
   .bmb_padding-#{$name} {
     padding: $size;
-    --bmg-padding: #{$size};
+    --bmb-padding: #{$size};
   }
 }
 
 @each $name, $size in $sizes {
   .bmb_margin-#{$name} {
     margin: $size;
-    --bmg-margin: #{$size};
+    --bmb-margin: #{$size};
   }
 }
 
 @each $name, $size in $sizes {
   .bmb_border-radius-#{$name} {
     border-radius: $size;
-    --bmg-border-radius: #{$size};
+    --bmb-border-radius: #{$size};
   }
 }

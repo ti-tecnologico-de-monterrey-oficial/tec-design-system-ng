@@ -1,51 +1,39 @@
-<section class="bmb_calendar-header">
-  <div class="bmb_calendar-header-button-container">
-    <button
-      bmbButton
-      appearance="secondary-filled"
-      size="small"
-      (click)="handleChangeDate('-')"
-    >
+<section
+  class="bmb_calendar-header"
+  bmbLayout
+  [dinamycCols]="true"
+  margin="none"
+>
+  <div
+    bmbLayoutItem
+    [isDinamycItem]="true"
+    bmbButtonGroup
+    appearance="secondary-filled"
+    size="large"
+  >
+    <button (click)="handleChangeDate('-')">
       <bmb-icon [icon]="'arrow_back_ios'" />
     </button>
-    <button
-      bmbButton
-      appearance="secondary-filled"
-      size="small"
-      (click)="handleChangeDate('+')"
-    >
+    <button (click)="handleChangeDate('+')">
       <bmb-icon [icon]="'arrow_forward_ios'" />
     </button>
   </div>
-  <h1 class="bmb_calendar-header-title">
+  <h1
+    bmbLayoutItem
+    [isDinamycItem]="true"
+    [colGrow]="1"
+    class="bmb_calendar-header-title"
+  >
     {{ getTitle() }}
   </h1>
-  <div class="bmb_calendar-header-button-container">
-    <button
-      bmbButton
-      appearance="secondary-filled"
-      size="small"
-      (click)="handleRangeChange('day')"
-      [disabled]="view === 'day'"
-    >
+  <div bmbButtonGroup appearance="secondary-filled" size="large">
+    <button (click)="handleRangeChange('day')" [disabled]="view === 'day'">
       Day
     </button>
-    <button
-      bmbButton
-      appearance="secondary-filled"
-      size="small"
-      (click)="handleRangeChange('week')"
-      [disabled]="view === 'week'"
-    >
+    <button (click)="handleRangeChange('week')" [disabled]="view === 'week'">
       Week
     </button>
-    <button
-      bmbButton
-      appearance="secondary-filled"
-      size="small"
-      (click)="handleRangeChange('month')"
-      [disabled]="view === 'month'"
-    >
+    <button (click)="handleRangeChange('month')" [disabled]="view === 'month'">
       Month
     </button>
   </div>

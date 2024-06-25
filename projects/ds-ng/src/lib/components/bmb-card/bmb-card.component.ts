@@ -1,17 +1,15 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  ContentChild,
-  ElementRef,
   Input,
-  QueryList,
-  TemplateRef,
-  ViewChild,
-  ViewChildren,
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SizeNames } from '../../types';
+
+const calculateSize = (pixels: string[]): string => {
+  return pixels.map((size) => `var(--bmb-radius-${size})`).join(' ');
+};
 
 export type IBmbCardType =
   | 'primary'
@@ -33,12 +31,8 @@ export type IBmbCardType =
 })
 export class BmbCardComponent {
   @Input() borderRadius: SizeNames | SizeNames[] = 'm';
-  @Input() padding: SizeNames | SizeNames[] = 'm';
   @Input() margin: SizeNames | SizeNames[] = 'm';
   @Input() type: IBmbCardType = 'normal';
-
-  @ContentChild('header') headerContent?: TemplateRef<any>;
-  @ContentChild('footer') footerContent?: TemplateRef<any>;
 
   getClasses() {
     const classNames = [];
@@ -54,14 +48,26 @@ export class BmbCardComponent {
   getStyles() {
     const styles: any = {};
     if (typeof this.borderRadius !== 'string')
-      styles['border-radius'] = this.calculateSize(this.borderRadius);
+      styles['border-radius'] = calculateSize(this.borderRadius);
     if (typeof this.margin !== 'string')
-      styles.margin = this.calculateSize(this.margin);
+      styles.margin = calculateSize(this.margin);
 
     return styles;
   }
+}
 
-  getContentClasses() {
+@Component({
+  selector: 'bmb-card-header',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './bmb-card-header.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
+})
+export class BmbCardHeaderComponent {
+  @Input() padding: SizeNames | SizeNames[] = 'm';
+
+  getClasses() {
     const classNames = [];
     if (typeof this.padding === 'string')
       classNames.push(`bmb_padding-${this.padding}`);
@@ -69,36 +75,67 @@ export class BmbCardComponent {
     return classNames;
   }
 
-  getContentStyles() {
+  getStyles() {
     const styles: any = {};
     if (typeof this.padding !== 'string')
-      styles.padding = this.calculateSize(this.padding);
+      styles['padding'] = calculateSize(this.padding);
 
     return styles;
   }
+}
 
-  calculateSize(pixels: string[]): string {
-    return pixels
-      .map((size) => {
-        switch (size) {
-          case 'xs':
-            return '0.25rem';
-          case 's':
-            return '0.5rem';
-          case 'm':
-            return '1rem';
-          case 'l':
-            return '1.5rem';
-          case 'xl':
-            return '2rem';
-          case 'none':
-            return '0';
-          case 'auto':
-            return 'auto';
-          default:
-            return '1rem';
-        }
-      })
-      .join(' ');
+@Component({
+  selector: 'bmb-card-footer',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './bmb-card-footer.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
+})
+export class BmbCardFooterComponent {
+  @Input() padding: SizeNames | SizeNames[] = 'm';
+
+  getClasses() {
+    const classNames = [];
+    if (typeof this.padding === 'string')
+      classNames.push(`bmb_padding-${this.padding}`);
+
+    return classNames;
+  }
+
+  getStyles() {
+    const styles: any = {};
+    if (typeof this.padding !== 'string')
+      styles['padding'] = calculateSize(this.padding);
+
+    return styles;
+  }
+}
+
+@Component({
+  selector: 'bmb-card-content',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './bmb-card-content.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
+})
+export class BmbCardContentComponent {
+  @Input() padding: SizeNames | SizeNames[] = 'm';
+
+  getClasses() {
+    const classNames = [];
+    if (typeof this.padding === 'string')
+      classNames.push(`bmb_padding-${this.padding}`);
+
+    return classNames;
+  }
+
+  getStyles() {
+    const styles: any = {};
+    if (typeof this.padding !== 'string')
+      styles['padding'] = calculateSize(this.padding);
+
+    return styles;
   }
 }

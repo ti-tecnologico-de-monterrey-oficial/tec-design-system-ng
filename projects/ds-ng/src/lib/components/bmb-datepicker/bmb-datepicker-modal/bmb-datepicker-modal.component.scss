@@ -1,6 +1,7 @@
-@use "../../../../../assets/styles/base/rem" as rem;
-@use "../../../../../assets/styles/base/fonts" as fonts;
-@use "../../../../../assets/styles/base/mixins" as mixins;
+@use "sass:map";
+@use "../../../../assets/styles/base/fonts" as fonts;
+@use "../../../../assets/styles/base/rem" as rem;
+@use "../../../../assets/styles/base/mixins" as mixins;
 
 @mixin buttonReset() {
   background-color: transparent;
@@ -13,20 +14,19 @@
   }
 }
 
-.bmb_calendar-month-mobile {
+.bmb_datepicker-modal {
+  position: absolute;
+  top: calc(100% - #{rem.rem_calc(30)});
+  width: 100%;
+  z-index: 2;
+  color: RGBA(var(--color-charade-700));
   background-color: RGBA(var(--color-charade-100));
-  border-radius: 0 0 rem.rem_calc(16) rem.rem_calc(16);
-
-  @include mixins.media-query(1000, "min") {
-    display: none;
-  }
+  border-radius: var(--bmb-radius-m);
+  max-width: rem.rem_calc(400);
 
   &-nav {
     list-style: none;
-
-    &-button {
-      @include buttonReset();
-    }
+    padding: var(--bmb-spacing-m) var(--bmb-spacing-none);
   }
 
   &-calendar {
@@ -53,16 +53,20 @@
         flex: 0 0 calc(14.285% - (rem.rem_calc(16) / 7 * 6));
       }
 
-      button {
+      &-button {
         width: rem.rem_calc(36);
         box-sizing: border-box;
         padding: rem.rem_calc(8) !important;
         border-radius: 50% !important;
         margin: 0 auto;
+        text-transform: capitalize;
         @include buttonReset();
 
-        &:disabled,
-        &.bmb-disabled {
+        &-full-size {
+          width: 100%;
+        }
+
+        &-selected {
           opacity: 1;
           background-color: RGBA(var(--color-blue-primary));
           color: RGBA(var(--color-white-primary));
@@ -80,34 +84,33 @@
         transform: translateX(-50%);
       }
     }
-
-    &-header {
-      padding: rem.rem_calc(8);
-    }
   }
 
-  &-expander {
-    height: rem.rem_calc(18);
-    position: relative;
+  &-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: rem.rem_calc(8);
+    flex-wrap: wrap;
+    overflow: hidden;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+    @include fonts.font(3, medium);
 
-    &-active {
-      i {
-        rotate: 180deg;
-      }
+    @include mixins.media-query(1000, "min") {
+      gap: rem.rem_calc(16);
     }
 
-    button {
-      border-radius: 50% !important;
-      position: absolute;
-      padding: 0 !important;
-      width: 2.25rem;
-      transform: translateX(-50%);
-      left: 50%;
-      top: 100%;
-      z-index: 1;
+    &-item {
+      flex: 0 0 calc(33.333% - (rem.rem_calc(8) / 3 * 2));
+      text-align: center;
+      box-sizing: border-box;
+      position: relative;
 
-      i {
-        transition: all 0.3s ease;
+
+      @include mixins.media-query(1000, "min") {
+        flex: 0 0 calc(14.285% - (rem.rem_calc(16) / 7 * 6));
       }
     }
   }
@@ -115,6 +118,16 @@
 
 [data-theme="dark"],
 .storybook-dark-theme {
-  .bmb_calendar-month-mobile {
+  .bmb_datepicker-modal {
+    color: RGBA(var(--color-charade-200));
+    background-color: RGBA(var(--color-charade-900));
+    &-calendar-item-button {
+      color: RGBA(var(--color-charade-200), .5);
+
+      &-selected {
+        background-color: RGBA(var(--color-charade-50));
+        color: RGBA(var(--color-charade-900));
+      }
+    }
   }
 }
