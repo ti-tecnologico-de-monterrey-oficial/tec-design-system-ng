@@ -75,6 +75,7 @@
     left: 0;
     z-index: 999;
     background-color: RGBA(var(--color-charade-50));
+    border: rem.rem_calc(1) solid transparent;
     border-radius: rem.rem_calc(8);
     overflow: auto;
     height: max-content;
@@ -82,6 +83,23 @@
     top: 100%;
     justify-content: center;
     margin-top: rem.rem_calc(8);
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      -webkit-appearance: none;
+      width: rem.rem_calc(10);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: RGBA(var(--color-charade-300));
+      border-radius: rem.rem_calc(20);
+      border: rem.rem_calc(1) solid RGBA(var(--color-charade-300));
+    }
+
+    &::-webkit-scrollbar-track {
+      border-radius: rem.rem_calc(10);
+    }
 
     &-open {
       display: flex;
@@ -89,12 +107,14 @@
     }
 
     .bmb_loader-loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       height: rem.rem_calc(100);
       width: rem.rem_calc(100);
-
-      bmb-icon {
-        font-size: rem.rem_calc(40);
-      }
+      font-size: 50px;
+      animation: rotateAnimation 1s linear infinite;
+      color: RGBA(var(--color-charade-300));
     }
 
     &-list {
@@ -125,6 +145,15 @@
   }
 }
 
+@keyframes rotateAnimation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 [data-theme="dark"],
 .storybook-dark-theme {
   .bmb_search-input {
@@ -138,6 +167,11 @@
 
     &-dialog {
       background-color: RGBA(var(--color-charade-800));
+
+      &::-webkit-scrollbar-thumb {
+        background-color: RGBA(var(--color-charade-950));
+        border: rem.rem_calc(1) solid RGBA(var(--color-charade-950));
+      }
 
       &-list-item-button {
         color: RGBA(var(--color-white-primary));
