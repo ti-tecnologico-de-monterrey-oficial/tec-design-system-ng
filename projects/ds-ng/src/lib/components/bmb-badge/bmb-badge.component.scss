@@ -10,7 +10,7 @@
   display: flex;
   justify-content: center;
   min-height: rem.rem_calc(24);
-  padding: var(--bmg-spacing-xs) var(--bmg-spacing-m);
+  padding: var(--bmb-spacing-xs) var(--bmb-spacing-m);
   width: fit-content;
 
   @if $appearance == normal {

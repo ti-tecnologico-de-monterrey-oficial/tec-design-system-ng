@@ -40,7 +40,7 @@
     border: rem.rem_calc(1) solid RGBA(var(--color-charade-500));
     border-radius: rem.rem_calc(8);
     color: RGBA(var(--color-charade-950));
-    padding: var(--bmg-spacing-s);
+    padding: var(--bmb-spacing-s);
 
     &:focus {
       border: rem.rem_calc(2) solid RGBA(var(--color-mariner-700));

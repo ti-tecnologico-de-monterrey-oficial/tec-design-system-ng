@@ -1,5 +1,5 @@
 <div class="bmb_field" [ngClass]="{ disabled: disabled }">
-  <label for="" class="bmb_field-label" *ngIf="label">
+  <label [for]="name" class="bmb_field-label" *ngIf="label">
     {{ label }}
     <small *ngIf="isRequired" class="bmb_field-label-required">*</small>
   </label>
@@ -18,12 +18,16 @@
       [disabled]="disabled"
       [placeholder]="placeholder ? placeholder : ''"
       [formControl]="control"
+      (focus)="onFocus()"
+      (blur)="onBlur()"
+      [name]="name"
+      [id]="name"
     />
   </div>
   <p class="bmb_field-helper" *ngIf="helperMessage && !shouldShowError">
     {{ helperMessage }}
   </p>
-  <p class="bmb_field-error" *ngIf="shouldShowError">
+  <p class="bmb_field-error" *ngIf="errorMessage && shouldShowError">
     {{ errorMessage }}
   </p>
 </div>

@@ -1,38 +1,34 @@
-<span class="bmb-datepicker">
-  <bmb-input
-    [placeholder]="placeholder"
-    [label]="label"
-    [icon]="icon"
-    [errorMessage]="errorMessage"
-    [isRequired]="isRequired"
-    [isDisabled]="isDisabled"
-    [value]="value"
-    [isClearable]="isClearable"
-    [appearance]="appearance"
-    [formControl]="formControl"
-  />
-  <!-- @if (label) {
-    <label [for]="name">{{ label }}</label>
-  }
-  <span class="bmb-datepicker-container">
-    <input
-      class="bmb-datepicker-container-button bmb_field-input-normal"
-      [name]="name"
+<div class="bmb_datepicker">
+  <section class="bmb-datepicker-container">
+    <bmb-input
       [placeholder]="placeholder"
-      [(ngModel)]="value"
-      [formControl]="formControl"
-      type="text"
-      [id]="name"
+      [label]="label"
+      [icon]="icon"
+      [isRequired]="isRequired"
+      [disabled]="disabled"
+      [appearance]="appearance"
+      [control]="control"
+      [isRequired]="isRequired"
+      (isFocus)="handleFouseEvent($event)"
+      [helperMessage]="dateFormat"
+      [errorMessage]="getErrorMessage(control.errors)"
+      [name]="name"
     />
-    <bmb-icon [icon]="icon" />
-    @if (showClearInput) {
-      <button>
+    @if (isClearable) {
+      <button class="bmb_datepicker-clear" (click)="clearValue()">
         <bmb-icon icon="close" />
       </button>
     }
-  </span>
-  <span>{{ dateFormat }}</span>
-  @if (showErrorMessage) {
-    <span>{{errorMessage}}</span>
-  } -->
-</span>
+    @if (isWindowOpen) {
+      <bmb-datepicker-modal
+        [now]="now"
+        [isWindowOpen]="isWindowOpen"
+        (closeWindow)="handleWindowOpen($event)"
+        (onValueChange)="handleValueChange($event)"
+        [value]="control.value"
+        [dateFormat]="dateFormat"
+        [stepYearPicker]="stepYearPicker"
+      />
+    }
+  </section>
+</div>

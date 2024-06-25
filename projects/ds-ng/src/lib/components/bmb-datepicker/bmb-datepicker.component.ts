@@ -1,24 +1,35 @@
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
+  HostListener,
   Input,
   OnInit,
-  SimpleChanges,
   ViewEncapsulation,
-  Output,
-  EventEmitter,
 } from '@angular/core';
-import { FormsModule, FormControl } from '@angular/forms';
+import {
+  FormsModule,
+  FormControl,
+  ValidatorFn,
+  AbstractControl,
+  ReactiveFormsModule,
+  ValidationErrors,
+} from '@angular/forms';
 import { DateTime } from 'luxon';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbInputComponent } from '../bmb-input/bmb-input.component';
-import { InputType } from '../bmb-input/bmb-input.interface';
+import { BmbDatepickerModalComponent } from './bmb-datepicker-modal/bmb-datepicker-modal.component';
 
 @Component({
   selector: 'bmb-datepicker',
   standalone: true,
-  imports: [BmbIconComponent, FormsModule, BmbInputComponent],
+  imports: [
+    BmbIconComponent,
+    FormsModule,
+    BmbInputComponent,
+    ReactiveFormsModule,
+    BmbDatepickerModalComponent,
+  ],
   templateUrl: './bmb-datepicker.component.html',
   styleUrl: './bmb-datepicker.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -28,57 +39,84 @@ export class BmbDatepickerComponent implements OnInit {
   @Input() label: string = '';
   @Input() placeholder: string = '';
   @Input() icon: string = 'calendar_month';
-  @Input() errorMessage: string = 'Invalid format';
-  @Input() isDisabled: boolean = false;
+  @Input() invalidFormaterrorMessage: string = 'Formato invalido';
+  @Input() requiredFieldErrorMessage: string = 'Campo requerido';
+  @Input() appearance: string = 'normal';
+  @Input() disabled: boolean = false;
   @Input() isRequired: boolean = false;
-  @Input() value?: string | undefined;
   @Input() isClearable: boolean = false;
-  @Input() appearance: InputType = 'normal';
-  @Input() dateFormat: string = 'dd/mm/yyyy';
+  @Input() control: FormControl = new FormControl();
+  @Input() dateFormat: string = 'dd/MM/yyyy';
   @Input() inline: boolean = false;
   @Input() stepYearPicker: number = 12;
-  @Input() formControl!: FormControl | undefined;
+  @Input() name: string = '';
 
-  @Output() handleClick: EventEmitter<any> = new EventEmitter();
-  @Output() handleFocus: EventEmitter<any> = new EventEmitter();
-  @Output() handleBlur: EventEmitter<any> = new EventEmitter();
-  @Output() handleMouseover: EventEmitter<any> = new EventEmitter();
-  @Output() handleChange: EventEmitter<any> = new EventEmitter();
+  childNodes: any = null;
+  now = DateTime.now();
+
+  constructor(private elementRef: ElementRef) {}
+
+  @HostListener('document:click', ['$event'])
+  onClick(event: MouseEvent) {
+    const eventTarget = event.target as HTMLSpanElement;
+
+    if (this.childNodes?.contains(eventTarget) || eventTarget?.classList?.contains('modal-persist')) {
+      this.isWindowOpen = true;
+    } else {
+      this.isWindowOpen = false;
+    }
+
+
+  }
+
+  ngAfterViewInit() {
+    this.childNodes = this.elementRef.nativeElement;
+  }
 
   defaultDate = new Date();
+  isWindowOpen = false;
 
-  ngOnInit(): void {
-    if (!this.formControl) {
-      this.formControl = new FormControl();
+  clearValue() {
+    this.control.reset();
+  }
+
+  ngOnInit() {
+    this.control.addValidators(this.customValidatorDate());
+    this.control.updateValueAndValidity();
+  }
+
+  customValidatorDate(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const { value } = control;
+      if (!value) return null;
+
+      const isValidDate = DateTime.fromFormat(
+        control.value,
+        this.dateFormat,
+      ).isValid;
+
+      return !isValidDate ? { validationDate: true } : null;
+    };
+  }
+
+  getErrorMessage(errors: ValidationErrors | null): string {
+    if (errors?.['validationDate']) return this.invalidFormaterrorMessage;
+    if (errors?.['required']) return this.requiredFieldErrorMessage;
+    return '';
+  }
+
+  handleFouseEvent(event: boolean) {
+    if (event) {
+      this.isWindowOpen = event;
     }
   }
 
-  // showErrorMessage = false;
-  // inputModel: string | undefined;
+  handleWindowOpen(event: boolean) {
+    this.isWindowOpen = event;
+  }
 
-  // ngOnChanges(changes: SimpleChanges) {
-  //   if (changes['value']?.currentValue && !this.checkValue(changes['value'].currentValue)) {
-  //     this.showErrorMessage = true;
-  //   };
-
-  // }
-
-  // ngAfterViewInit() {
-  //   if (this.isDisabled && this.formControl) {
-  //     this.formControl.disable();
-  //   }
-  //   setTimeout(() => {
-  //     if (this.value && this.inputModel !== undefined) {
-  //       this.value = undefined;
-  //     }
-  //   }, 0);
-  // }
-
-  // ngOnInit() {
-  //   console.log('this.formControl', this.formControl);
-  // }
-
-  // checkValue(date: string): boolean {
-  //   return DateTime.fromFormat(date, this.dateFormat).isValid;
-  // }
+  handleValueChange(event: string) {
+    this.control.setValue(event);
+    this.isWindowOpen = false;
+  }
 }

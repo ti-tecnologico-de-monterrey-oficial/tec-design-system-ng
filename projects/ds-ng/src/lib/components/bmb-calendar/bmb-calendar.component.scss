@@ -8,7 +8,7 @@
   overflow: hidden;
 
   @include mixins.media-query(1000, "min") {
-    padding: var(--bmg-spacing-xl);
+    padding: var(--bmb-spacing-xl);
     background-color: RGBA(var(--color-charade-100));
   }
 
@@ -17,7 +17,7 @@
     align-items: center;
     gap: rem.rem_calc(8);
     justify-content: center;
-    padding: var(--bmg-spacing-n) var(--bmg-spacing-none);
+    padding: var(--bmb-spacing-n) var(--bmb-spacing-none);
     border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
     position: sticky;
     top: 0;

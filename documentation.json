@@ -318,12 +318,12 @@
         },
         {
             "name": "IMargin",
-            "id": "interface-IMargin-de433f266b07be01522c47ed5030d003ba05c2f06169b105f9f19b07d045035a159815c25a1c48d0b75cf1483c7a3f0fd5bc14eb91ed01554d5b6fa1bc991812",
+            "id": "interface-IMargin-219a2ef80519c5661ccf2dfb65054f0365053d62d37058347459fffe50b6323c6eeee4394ab4dcc37fd28e7103275f0b08cffe08ae384d1a0be7aede8c0f3637",
             "file": "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout-item.directive.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { Directive, HostBinding, Input } from '@angular/core';\n\ninterface IMargin {\n  sm: number;\n  lg?: number;\n}\n\n@Directive({\n  selector: '[bmbLayoutItem]',\n  standalone: true,\n})\nexport class BmbLayoutItemDirective {\n  @Input() colSm: number = 0;\n  @Input() colLg: number = 0;\n  @Input() marginLeft: IMargin | null = null;\n  @Input() marginRight: IMargin | null = null;\n  @Input() colGrow: number = 0;\n  @Input() itemMinWidth: string = '200px';\n  @Input() itemMaxWidth: string = '400px';\n  @Input() itemWidth: string = '100%';\n  @Input() isDinamycItem: boolean = false;\n\n  @HostBinding('class') get elementClass(): string[] {\n    const classes = [];\n\n    if (this.colSm) classes.push(`bmb_col-sm-${this.colSm}`);\n    if (this.colLg) classes.push(`bmb_col-lg-${this.colLg}`);\n    if (this.marginLeft) {\n      classes.push(`bmb_space-sm-left-${this.marginLeft?.sm}`);\n\n      if (this.marginLeft.lg)\n        classes.push(`bmb_space-lg-left-${this.marginLeft?.lg}`);\n    }\n    if (this.marginRight) {\n      classes.push(`bmb_space-sm-right-${this.marginRight?.sm}`);\n\n      if (this.marginRight.lg)\n        classes.push(`bmb_space-lg-right-${this.marginRight?.lg}`);\n    }\n    return classes;\n  }\n\n  @HostBinding('style.flex') get flexGrow(): string {\n    if (this.isDinamycItem) {\n      return `0 0 clamp(${this.itemMinWidth}, ${this.itemWidth}, ${this.itemMaxWidth})`;\n    }\n\n    return '';\n  }\n}\n",
+            "sourceCode": "import { Directive, HostBinding, Input, OnInit } from '@angular/core';\n\ninterface IMargin {\n  sm: number;\n  lg?: number;\n}\n\n@Directive({\n  selector: '[bmbLayoutItem]',\n  standalone: true,\n})\nexport class BmbLayoutItemDirective implements OnInit {\n  @Input() colSm: number = 0;\n  @Input() colLg: number = 0;\n  @Input() marginLeft: IMargin | null = null;\n  @Input() marginRight: IMargin | null = null;\n  @Input() colGrow: number = 0;\n  @Input() itemMinWidth: string = '200px';\n  @Input() itemMaxWidth: string = '400px';\n  @Input() itemWidth: string = '100%';\n  @Input() isDinamycItem: boolean = false;\n\n  @HostBinding('class') get elementClass(): string[] {\n    const classes = [];\n\n    if (this.colSm) classes.push(`bmb_col-sm-${this.colSm}`);\n    if (this.colLg) classes.push(`bmb_col-lg-${this.colLg}`);\n    if (this.marginLeft) {\n      classes.push(`bmb_space-sm-left-${this.marginLeft?.sm}`);\n\n      if (this.marginLeft.lg)\n        classes.push(`bmb_space-lg-left-${this.marginLeft?.lg}`);\n    }\n    if (this.marginRight) {\n      classes.push(`bmb_space-sm-right-${this.marginRight?.sm}`);\n\n      if (this.marginRight.lg)\n        classes.push(`bmb_space-lg-right-${this.marginRight?.lg}`);\n    }\n    return classes;\n  }\n\n  @HostBinding('style.flex') flex?: string;\n\n  ngOnInit() {\n    console.log('ngOnInit', this.isDinamycItem);\n\n    if (this.isDinamycItem) {\n      this.flex = `${this.colGrow} 0 0%`;\n    }\n  }\n}\n",
             "properties": [
                 {
                     "name": "lg",
@@ -1205,12 +1205,12 @@
     "directives": [
         {
             "name": "BmbButtonDirective",
-            "id": "directive-BmbButtonDirective-584ebb1f03edc91b428878fee46f86237627a724a2d6f9a9039a8c6c9c9d7ac1388725c5f98428479192f20d8ac05874082ee3a249922d704e1a41cace4a8257",
+            "id": "directive-BmbButtonDirective-4a909102cbe00d7aa856fac255c2f5c318d11e6bab279938c54cc788cae9d8cca1147356b11ceedc2201cf450b97120c69c28b70b5660f549f758b952691fe3b",
             "file": "projects/ds-ng/src/lib/directives/button.directive.ts",
             "type": "directive",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import {\n  Directive,\n  Input,\n  ElementRef,\n  HostBinding,\n  ViewContainerRef,\n  ChangeDetectorRef,\n  OnInit,\n  OnChanges,\n  Renderer2,\n  SimpleChanges,\n} from '@angular/core';\nimport { BmbIconComponent } from '../components/bmb-icon/bmb-icon.component';\nimport { IButtonAppearance } from '../types';\n\n@Directive({\n  selector: '[bmbButton]',\n  standalone: true,\n})\nexport class BmbButtonDirective implements OnInit, OnChanges {\n  @Input() icon: string = '';\n  @Input() position: 'left' | 'right' = 'left';\n  @Input() case: boolean = false;\n  @Input() appearance: IButtonAppearance = 'primary';\n  @Input() size: 'small' | 'large' = 'small';\n  @Input() loading: boolean = false;\n  @Input() isToggleActive: boolean = false;\n  @Input() enableButtonToggle: boolean = false;\n\n  private providedInputs: Set<string> = new Set();\n\n  constructor(\n    private el: ElementRef,\n    private viewContainerRef: ViewContainerRef,\n    private cdr: ChangeDetectorRef,\n    private renderer: Renderer2,\n  ) {}\n\n  ngOnInit(): void {\n    this.addContent();\n    this.applyAttributes();\n  }\n\n  ngOnChanges(changes: SimpleChanges): void {\n    Object.keys(changes).forEach((input) => {\n      this.providedInputs.add(input);\n    });\n\n    this.applyAttributes();\n    this.addContent();\n    this.cdr.markForCheck();\n  }\n\n  private applyAttributes() {\n    if (this.providedInputs.has('case')) {\n      if (this.case) {\n        this.renderer.setAttribute(this.el.nativeElement, 'case', 'true');\n      } else {\n        this.renderer.removeAttribute(this.el.nativeElement, 'case');\n      }\n    }\n\n    if (this.providedInputs.has('size') && this.size) {\n      this.renderer.setAttribute(this.el.nativeElement, 'size', this.size);\n    }\n\n    if (this.providedInputs.has('position')) {\n      this.renderer.setAttribute(\n        this.el.nativeElement,\n        'position',\n        this.position,\n      );\n    }\n  }\n\n  @HostBinding('class') get elementClass(): string[] {\n    const classList = [`bmb_btn-${this.appearance}`];\n    if (this.enableButtonToggle && this.isToggleActive) {\n      classList.push('bmb_btn-toggle-active');\n    }\n    return classList;\n  }\n\n  private addContent() {\n    this.viewContainerRef.clear();\n\n    if (this.icon) {\n      const iconComponentRef =\n        this.viewContainerRef.createComponent(BmbIconComponent); // Crear una instancia del componente\n      const iconComponent = iconComponentRef.instance;\n      iconComponent.icon = this.icon;\n\n      if (this.position === 'right') {\n        this.el.nativeElement.insertBefore(\n          iconComponentRef.location.nativeElement,\n          this.el.nativeElement.lastChild.nextSibling,\n        );\n      } else {\n        this.el.nativeElement.insertBefore(\n          iconComponentRef.location.nativeElement,\n          this.el.nativeElement.firstChild,\n        );\n      }\n    }\n  }\n}\n",
+            "sourceCode": "import {\n  Directive,\n  Input,\n  ElementRef,\n  HostBinding,\n  ViewContainerRef,\n  ChangeDetectorRef,\n  OnInit,\n  OnChanges,\n  Renderer2,\n  SimpleChanges,\n} from '@angular/core';\nimport { BmbIconComponent } from '../components/bmb-icon/bmb-icon.component';\nimport { IButtonAppearance } from '../types';\n\n@Directive({\n  selector: '[bmbButton]',\n  standalone: true,\n})\nexport class BmbButtonDirective implements OnInit, OnChanges {\n  @Input() icon: string = '';\n  @Input() position: 'left' | 'right' = 'left';\n  @Input() case: boolean = false;\n  @Input() appearance: IButtonAppearance = 'primary';\n  @Input() size: 'small' | 'large' = 'small';\n  @Input() isToggleActive: boolean = false;\n  @Input() enableButtonToggle: boolean = false;\n\n  private providedInputs: Set<string> = new Set();\n\n  constructor(\n    private el: ElementRef,\n    private viewContainerRef: ViewContainerRef,\n    private cdr: ChangeDetectorRef,\n    private renderer: Renderer2,\n  ) {}\n\n  ngOnInit(): void {\n    this.addContent();\n    this.applyAttributes();\n  }\n\n  ngOnChanges(changes: SimpleChanges): void {\n    Object.keys(changes).forEach((input) => {\n      this.providedInputs.add(input);\n    });\n\n    this.applyAttributes();\n    this.addContent();\n    this.cdr.markForCheck();\n  }\n\n  private applyAttributes() {\n    if (this.providedInputs.has('case')) {\n      if (this.case) {\n        this.renderer.setAttribute(this.el.nativeElement, 'case', 'true');\n      } else {\n        this.renderer.removeAttribute(this.el.nativeElement, 'case');\n      }\n    }\n\n    if (this.providedInputs.has('size') && this.size) {\n      this.renderer.setAttribute(this.el.nativeElement, 'size', this.size);\n    }\n\n    if (this.providedInputs.has('position')) {\n      this.renderer.setAttribute(\n        this.el.nativeElement,\n        'position',\n        this.position,\n      );\n    }\n  }\n\n  @HostBinding('class') get elementClass(): string[] {\n    const classList = [`bmb_btn-${this.appearance}`];\n    if (this.enableButtonToggle && this.isToggleActive) {\n      classList.push('bmb_btn-toggle-active');\n    }\n    return classList;\n  }\n\n  private addContent() {\n    this.viewContainerRef.clear();\n\n    if (this.icon) {\n      const iconComponentRef =\n        this.viewContainerRef.createComponent(BmbIconComponent); // Crear una instancia del componente\n      const iconComponent = iconComponentRef.instance;\n      iconComponent.icon = this.icon;\n\n      if (this.position === 'right') {\n        this.el.nativeElement.insertBefore(\n          iconComponentRef.location.nativeElement,\n          this.el.nativeElement.lastChild.nextSibling,\n        );\n      } else {\n        this.el.nativeElement.insertBefore(\n          iconComponentRef.location.nativeElement,\n          this.el.nativeElement.firstChild,\n        );\n      }\n    }\n  }\n}\n",
             "selector": "[bmbButton]",
             "providers": [],
             "hostDirectives": [],
@@ -1239,7 +1239,7 @@
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 28,
+                    "line": 27,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -1254,15 +1254,6 @@
                 },
                 {
                     "name": "isToggleActive",
-                    "defaultValue": "false",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 27,
-                    "type": "boolean",
-                    "decorators": []
-                },
-                {
-                    "name": "loading",
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
@@ -1297,7 +1288,7 @@
                     "name": "class",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 76,
+                    "line": 75,
                     "type": "string[]",
                     "decorators": []
                 }
@@ -1312,7 +1303,7 @@
                     "type": "Set<string>",
                     "optional": false,
                     "description": "",
-                    "line": 30,
+                    "line": 29,
                     "modifierKind": [
                         123
                     ]
@@ -1325,7 +1316,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 84,
+                    "line": 83,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -1338,7 +1329,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 54,
+                    "line": 53,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -1358,7 +1349,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 44,
+                    "line": 43,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1379,7 +1370,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 39,
+                    "line": 38,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -1420,7 +1411,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 30,
+                "line": 29,
                 "jsdoctags": [
                     {
                         "name": "el",
@@ -1467,7 +1458,7 @@
                         "name": "elementClass",
                         "type": "[]",
                         "returnType": "string[]",
-                        "line": 76
+                        "line": 75
                     }
                 }
             }
@@ -1531,6 +1522,129 @@
                         "line": 12
                     }
                 }
+            }
+        },
+        {
+            "name": "BmbInputStatesDirective",
+            "id": "directive-BmbInputStatesDirective-58782ed409203032b9a6bedf297a73a8d8847b9128fb1557fa33bef3f62d6938afc764a86e8ad55addafba430764f9b1940d2f1deb8e45742279003d553e2de9",
+            "file": "projects/ds-ng/src/lib/directives/bmb-input-states/bmb-input-states.directive.ts",
+            "type": "directive",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Directive, ElementRef, HostListener, Input } from '@angular/core';\n\n@Directive({\n  selector: '[bmb-input-states]',\n})\nexport class BmbInputStatesDirective {\n  @Input() focus: unknown = () => {};\n  @Input() blur: unknown = () => {};\n  constructor(private el: ElementRef) {}\n\n  @HostListener('focus')\n  onFocus() {\n    focus();\n  }\n\n  @HostListener('blur')\n  onBlur() {\n    blur();\n  }\n}\n",
+            "selector": "[bmb-input-states]",
+            "providers": [],
+            "hostDirectives": [],
+            "standalone": false,
+            "inputsClass": [
+                {
+                    "name": "blur",
+                    "defaultValue": "() => {}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 8,
+                    "type": "",
+                    "decorators": []
+                },
+                {
+                    "name": "focus",
+                    "defaultValue": "() => {}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 7,
+                    "type": "",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [
+                {
+                    "name": "blur",
+                    "args": [],
+                    "argsDecorator": [],
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 17
+                },
+                {
+                    "name": "focus",
+                    "args": [],
+                    "argsDecorator": [],
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 12
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "onBlur",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 17,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "decorators": [
+                        {
+                            "name": "HostListener",
+                            "stringifiedArguments": "'blur'"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ]
+                },
+                {
+                    "name": "onFocus",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 12,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "decorators": [
+                        {
+                            "name": "HostListener",
+                            "stringifiedArguments": "'focus'"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ]
+                }
+            ],
+            "extends": [],
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "el",
+                        "type": "ElementRef",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 8,
+                "jsdoctags": [
+                    {
+                        "name": "el",
+                        "type": "ElementRef",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
             }
         },
         {
@@ -1613,12 +1727,12 @@
         },
         {
             "name": "BmbLayoutItemDirective",
-            "id": "directive-BmbLayoutItemDirective-de433f266b07be01522c47ed5030d003ba05c2f06169b105f9f19b07d045035a159815c25a1c48d0b75cf1483c7a3f0fd5bc14eb91ed01554d5b6fa1bc991812",
+            "id": "directive-BmbLayoutItemDirective-219a2ef80519c5661ccf2dfb65054f0365053d62d37058347459fffe50b6323c6eeee4394ab4dcc37fd28e7103275f0b08cffe08ae384d1a0be7aede8c0f3637",
             "file": "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout-item.directive.ts",
             "type": "directive",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { Directive, HostBinding, Input } from '@angular/core';\n\ninterface IMargin {\n  sm: number;\n  lg?: number;\n}\n\n@Directive({\n  selector: '[bmbLayoutItem]',\n  standalone: true,\n})\nexport class BmbLayoutItemDirective {\n  @Input() colSm: number = 0;\n  @Input() colLg: number = 0;\n  @Input() marginLeft: IMargin | null = null;\n  @Input() marginRight: IMargin | null = null;\n  @Input() colGrow: number = 0;\n  @Input() itemMinWidth: string = '200px';\n  @Input() itemMaxWidth: string = '400px';\n  @Input() itemWidth: string = '100%';\n  @Input() isDinamycItem: boolean = false;\n\n  @HostBinding('class') get elementClass(): string[] {\n    const classes = [];\n\n    if (this.colSm) classes.push(`bmb_col-sm-${this.colSm}`);\n    if (this.colLg) classes.push(`bmb_col-lg-${this.colLg}`);\n    if (this.marginLeft) {\n      classes.push(`bmb_space-sm-left-${this.marginLeft?.sm}`);\n\n      if (this.marginLeft.lg)\n        classes.push(`bmb_space-lg-left-${this.marginLeft?.lg}`);\n    }\n    if (this.marginRight) {\n      classes.push(`bmb_space-sm-right-${this.marginRight?.sm}`);\n\n      if (this.marginRight.lg)\n        classes.push(`bmb_space-lg-right-${this.marginRight?.lg}`);\n    }\n    return classes;\n  }\n\n  @HostBinding('style.flex') get flexGrow(): string {\n    if (this.isDinamycItem) {\n      return `0 0 clamp(${this.itemMinWidth}, ${this.itemWidth}, ${this.itemMaxWidth})`;\n    }\n\n    return '';\n  }\n}\n",
+            "sourceCode": "import { Directive, HostBinding, Input, OnInit } from '@angular/core';\n\ninterface IMargin {\n  sm: number;\n  lg?: number;\n}\n\n@Directive({\n  selector: '[bmbLayoutItem]',\n  standalone: true,\n})\nexport class BmbLayoutItemDirective implements OnInit {\n  @Input() colSm: number = 0;\n  @Input() colLg: number = 0;\n  @Input() marginLeft: IMargin | null = null;\n  @Input() marginRight: IMargin | null = null;\n  @Input() colGrow: number = 0;\n  @Input() itemMinWidth: string = '200px';\n  @Input() itemMaxWidth: string = '400px';\n  @Input() itemWidth: string = '100%';\n  @Input() isDinamycItem: boolean = false;\n\n  @HostBinding('class') get elementClass(): string[] {\n    const classes = [];\n\n    if (this.colSm) classes.push(`bmb_col-sm-${this.colSm}`);\n    if (this.colLg) classes.push(`bmb_col-lg-${this.colLg}`);\n    if (this.marginLeft) {\n      classes.push(`bmb_space-sm-left-${this.marginLeft?.sm}`);\n\n      if (this.marginLeft.lg)\n        classes.push(`bmb_space-lg-left-${this.marginLeft?.lg}`);\n    }\n    if (this.marginRight) {\n      classes.push(`bmb_space-sm-right-${this.marginRight?.sm}`);\n\n      if (this.marginRight.lg)\n        classes.push(`bmb_space-lg-right-${this.marginRight?.lg}`);\n    }\n    return classes;\n  }\n\n  @HostBinding('style.flex') flex?: string;\n\n  ngOnInit() {\n    console.log('ngOnInit', this.isDinamycItem);\n\n    if (this.isDinamycItem) {\n      this.flex = `${this.colGrow} 0 0%`;\n    }\n  }\n}\n",
             "selector": "[bmbLayoutItem]",
             "providers": [],
             "hostDirectives": [],
@@ -1728,9 +1842,42 @@
                 }
             ],
             "hostListeners": [],
-            "propertiesClass": [],
-            "methodsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "flex",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "",
+                    "line": 43,
+                    "decorators": [
+                        {
+                            "name": "HostBinding",
+                            "stringifiedArguments": "'style.flex'"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 45,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
             "extends": [],
+            "implements": [
+                "OnInit"
+            ],
             "accessors": {
                 "elementClass": {
                     "name": "elementClass",
@@ -1739,15 +1886,6 @@
                         "type": "[]",
                         "returnType": "string[]",
                         "line": 23
-                    }
-                },
-                "flexGrow": {
-                    "name": "flexGrow",
-                    "getSignature": {
-                        "name": "flexGrow",
-                        "type": "string",
-                        "returnType": "string",
-                        "line": 43
                     }
                 }
             }
@@ -2464,7 +2602,7 @@
         },
         {
             "name": "BmbCalendarHeaderComponent",
-            "id": "component-BmbCalendarHeaderComponent-e7191b75700c8ba817e837a6bd2b31cd10eeebda8f4653abf626e0084eac50967fc7801a3285e581fbf92559868cce22bf604c6f58ccc48a339212a2fc85ebf3",
+            "id": "component-BmbCalendarHeaderComponent-c1cb8f1e92cc8f69a27487af6210c352d398cd45b0ecad71854285487a053eefed6caaa8fe508bbc53c14863c215a93000c10eb74d9ff53da4b243bd141983ef",
             "file": "projects/ds-ng/src/lib/components/bmb-calendar/common/bmb-calendar-header/bmb-calendar-header.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -2488,7 +2626,7 @@
                     "defaultValue": "DateTime.now()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 28,
+                    "line": 38,
                     "type": "DateTime",
                     "decorators": []
                 },
@@ -2497,7 +2635,7 @@
                     "defaultValue": "'es-MX'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 26,
+                    "line": 36,
                     "type": "string",
                     "decorators": []
                 },
@@ -2506,7 +2644,7 @@
                     "defaultValue": "'week'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 27,
+                    "line": 37,
                     "type": "IBmbCalendarView",
                     "decorators": []
                 },
@@ -2515,7 +2653,7 @@
                     "defaultValue": "[]",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 25,
+                    "line": 35,
                     "type": "DateTime[]",
                     "decorators": []
                 }
@@ -2526,7 +2664,7 @@
                     "defaultValue": "new EventEmitter<DateTime>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 31,
+                    "line": 41,
                     "type": "EventEmitter<DateTime>"
                 },
                 {
@@ -2534,7 +2672,7 @@
                     "defaultValue": "new EventEmitter<any>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 30,
+                    "line": 40,
                     "type": "EventEmitter<any>"
                 }
             ],
@@ -2546,7 +2684,7 @@
                     "optional": false,
                     "returnType": "string",
                     "typeParameters": [],
-                    "line": 34,
+                    "line": 44,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -2563,7 +2701,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 69,
+                    "line": 79,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -2591,7 +2729,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 56,
+                    "line": 66,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -2624,18 +2762,30 @@
                 {
                     "name": "BmbIconComponent",
                     "type": "component"
+                },
+                {
+                    "name": "BmbButtonGroupDirective",
+                    "type": "directive"
+                },
+                {
+                    "name": "BmbLayoutDirective",
+                    "type": "directive"
+                },
+                {
+                    "name": "BmbLayoutItemDirective",
+                    "type": "directive"
                 }
             ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport {\n  Component,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n  Input,\n  Output,\n  EventEmitter,\n} from '@angular/core';\nimport { BmbButtonDirective } from '../../../../directives/button.directive';\nimport { BmbIconComponent } from '../../../bmb-icon/bmb-icon.component';\nimport { DateTime } from 'luxon';\nimport { IBmbCalendarView } from '../../types';\n\n@Component({\n  selector: 'bmb-calendar-header',\n  standalone: true,\n  imports: [CommonModule, BmbButtonDirective, BmbIconComponent],\n  templateUrl: './bmb-calendar-header.component.html',\n  styleUrl: './bmb-calendar-header.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbCalendarHeaderComponent {\n  @Input() weekDays: DateTime[] = [];\n  @Input() lang: string = 'es-MX';\n  @Input() view: IBmbCalendarView = 'week';\n  @Input() currentDate: DateTime = DateTime.now();\n\n  @Output() onRangeChange: EventEmitter<any> = new EventEmitter<any>();\n  @Output() onCurrentDateChange: EventEmitter<DateTime> =\n    new EventEmitter<DateTime>();\n\n  getTitle(): string {\n    if (this.view === 'week') {\n      return `${this.weekDays[0].toLocaleString({\n        month: 'short',\n        day: 'numeric',\n      })} - ${this.weekDays[6].toLocaleString({\n        month: 'short',\n        day: 'numeric',\n      })}, ${this.currentDate.toLocaleString({ year: 'numeric' })}`;\n    }\n\n    if (this.view === 'day') {\n      return this.currentDate.toLocaleString({\n        month: 'long',\n        day: 'numeric',\n        year: 'numeric',\n      });\n    }\n\n    return this.currentDate.toLocaleString({ month: 'long', year: 'numeric' });\n  }\n\n  handleRangeChange(event: IBmbCalendarView): void {\n    if (event === 'month') {\n      const newDate = DateTime.fromObject({\n        month: this.currentDate.month,\n        year: this.currentDate.year,\n        day: 1,\n      });\n\n      this.onCurrentDateChange.emit(newDate);\n    }\n    this.onRangeChange.emit(event);\n  }\n\n  handleChangeDate(event: string): void {\n    const modifyDate = ({ config, date }: any) => {\n      if (event === '+') {\n        this.onCurrentDateChange.emit(date.plus(config));\n      } else {\n        this.onCurrentDateChange.emit(date.minus(config));\n      }\n    };\n\n    switch (this.view) {\n      case 'day':\n        modifyDate({ config: { days: 1 }, date: this.currentDate });\n        break;\n\n      case 'week':\n        modifyDate({ config: { days: 7 }, date: this.currentDate });\n        break;\n      case 'month':\n        const newDate = DateTime.fromObject({\n          month: this.currentDate.month,\n          year: this.currentDate.year,\n          day: 1,\n        });\n\n        modifyDate({ config: { month: 1 }, date: newDate });\n        break;\n\n      default:\n        break;\n    }\n  }\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport {\n  Component,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n  Input,\n  Output,\n  EventEmitter,\n} from '@angular/core';\nimport { BmbButtonDirective } from '../../../../directives/button.directive';\nimport { BmbIconComponent } from '../../../bmb-icon/bmb-icon.component';\nimport { DateTime } from 'luxon';\nimport { IBmbCalendarView } from '../../types';\nimport { BmbButtonGroupDirective } from '../../../../directives/bmb-button-group/bmb-button-group.directive';\nimport { BmbLayoutDirective } from '../../../../directives/bmb-layout/bmb-layout.directive';\nimport { BmbLayoutItemDirective } from '../../../../directives/bmb-layout/bmb-layout-item.directive';\n\n@Component({\n  selector: 'bmb-calendar-header',\n  standalone: true,\n  imports: [\n    CommonModule,\n    BmbButtonDirective,\n    BmbIconComponent,\n    BmbButtonGroupDirective,\n    BmbLayoutDirective,\n    BmbLayoutItemDirective,\n  ],\n  templateUrl: './bmb-calendar-header.component.html',\n  styleUrl: './bmb-calendar-header.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbCalendarHeaderComponent {\n  @Input() weekDays: DateTime[] = [];\n  @Input() lang: string = 'es-MX';\n  @Input() view: IBmbCalendarView = 'week';\n  @Input() currentDate: DateTime = DateTime.now();\n\n  @Output() onRangeChange: EventEmitter<any> = new EventEmitter<any>();\n  @Output() onCurrentDateChange: EventEmitter<DateTime> =\n    new EventEmitter<DateTime>();\n\n  getTitle(): string {\n    if (this.view === 'week') {\n      return `${this.weekDays[0].toLocaleString({\n        month: 'short',\n        day: 'numeric',\n      })} - ${this.weekDays[6].toLocaleString({\n        month: 'short',\n        day: 'numeric',\n      })}, ${this.currentDate.toLocaleString({ year: 'numeric' })}`;\n    }\n\n    if (this.view === 'day') {\n      return this.currentDate.toLocaleString({\n        month: 'long',\n        day: 'numeric',\n        year: 'numeric',\n      });\n    }\n\n    return this.currentDate.toLocaleString({ month: 'long', year: 'numeric' });\n  }\n\n  handleRangeChange(event: IBmbCalendarView): void {\n    if (event === 'month') {\n      const newDate = DateTime.fromObject({\n        month: this.currentDate.month,\n        year: this.currentDate.year,\n        day: 1,\n      });\n\n      this.onCurrentDateChange.emit(newDate);\n    }\n    this.onRangeChange.emit(event);\n  }\n\n  handleChangeDate(event: string): void {\n    const modifyDate = ({ config, date }: any) => {\n      if (event === '+') {\n        this.onCurrentDateChange.emit(date.plus(config));\n      } else {\n        this.onCurrentDateChange.emit(date.minus(config));\n      }\n    };\n\n    switch (this.view) {\n      case 'day':\n        modifyDate({ config: { days: 1 }, date: this.currentDate });\n        break;\n\n      case 'week':\n        modifyDate({ config: { days: 7 }, date: this.currentDate });\n        break;\n      case 'month':\n        const newDate = DateTime.fromObject({\n          month: this.currentDate.month,\n          year: this.currentDate.year,\n          day: 1,\n        });\n\n        modifyDate({ config: { month: 1 }, date: newDate });\n        break;\n\n      default:\n        break;\n    }\n  }\n}\n",
             "styleUrl": "./bmb-calendar-header.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<section class=\"bmb_calendar-header\">\n  <div class=\"bmb_calendar-header-button-container\">\n    <button\n      bmbButton\n      appearance=\"secondary-filled\"\n      size=\"small\"\n      (click)=\"handleChangeDate('-')\"\n    >\n      <bmb-icon [icon]=\"'arrow_back_ios'\" />\n    </button>\n    <button\n      bmbButton\n      appearance=\"secondary-filled\"\n      size=\"small\"\n      (click)=\"handleChangeDate('+')\"\n    >\n      <bmb-icon [icon]=\"'arrow_forward_ios'\" />\n    </button>\n  </div>\n  <h1 class=\"bmb_calendar-header-title\">\n    {{ getTitle() }}\n  </h1>\n  <div class=\"bmb_calendar-header-button-container\">\n    <button\n      bmbButton\n      appearance=\"secondary-filled\"\n      size=\"small\"\n      (click)=\"handleRangeChange('day')\"\n      [disabled]=\"view === 'day'\"\n    >\n      Day\n    </button>\n    <button\n      bmbButton\n      appearance=\"secondary-filled\"\n      size=\"small\"\n      (click)=\"handleRangeChange('week')\"\n      [disabled]=\"view === 'week'\"\n    >\n      Week\n    </button>\n    <button\n      bmbButton\n      appearance=\"secondary-filled\"\n      size=\"small\"\n      (click)=\"handleRangeChange('month')\"\n      [disabled]=\"view === 'month'\"\n    >\n      Month\n    </button>\n  </div>\n</section>\n"
+            "templateData": "<section\n  class=\"bmb_calendar-header\"\n  bmbLayout\n  [dinamycCols]=\"true\"\n  margin=\"none\"\n>\n  <div\n    bmbLayoutItem\n    [isDinamycItem]=\"true\"\n    bmbButtonGroup\n    appearance=\"secondary-filled\"\n    size=\"large\"\n  >\n    <button (click)=\"handleChangeDate('-')\">\n      <bmb-icon [icon]=\"'arrow_back_ios'\" />\n    </button>\n    <button (click)=\"handleChangeDate('+')\">\n      <bmb-icon [icon]=\"'arrow_forward_ios'\" />\n    </button>\n  </div>\n  <h1\n    bmbLayoutItem\n    [isDinamycItem]=\"true\"\n    [colGrow]=\"1\"\n    class=\"bmb_calendar-header-title\"\n  >\n    {{ getTitle() }}\n  </h1>\n  <div bmbButtonGroup appearance=\"secondary-filled\" size=\"large\">\n    <button (click)=\"handleRangeChange('day')\" [disabled]=\"view === 'day'\">\n      Day\n    </button>\n    <button (click)=\"handleRangeChange('week')\" [disabled]=\"view === 'week'\">\n      Week\n    </button>\n    <button (click)=\"handleRangeChange('month')\" [disabled]=\"view === 'month'\">\n      Month\n    </button>\n  </div>\n</section>\n"
         },
         {
             "name": "BmbCalendarHourViewComponent",
@@ -3872,7 +4022,7 @@
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div class=\"bmb_calendar-month-mobile bmb_padding-m\">\n  <nav\n    class=\"bmb_calendar-month-mobile-nav\"\n    bmbLayout\n    margin=\"none\"\n    [dinamycCols]=\"true\"\n  >\n    <li bmbLayoutItem [colGrow]=\"1\">\n      <div bmbLayout margin=\"none\">\n        <li bmbLayoutItem [colSm]=\"2\">\n          <bmb-calendar-template-select\n            [value]=\"month\"\n            (onValueChange)=\"handleMonthChange($event)\"\n            [options]=\"monthsNames\"\n          />\n        </li>\n        <li bmbLayoutItem [colSm]=\"2\">\n          <bmb-calendar-template-select\n            [value]=\"year.toString()\"\n            (onValueChange)=\"handleYearChange($event)\"\n            [options]=\"getYears()\"\n          />\n        </li>\n      </div>\n    </li>\n    <li>\n      <button\n        class=\"bmb_calendar-month-mobile-nav-button\"\n        (click)=\"handleViewTypeChange()\"\n        appearance=\"secondary-filled\"\n        bmbButton\n        icon=\"calendar_month\"\n      ></button>\n    </li>\n  </nav>\n  @if (!isListShowing) {\n    <ul class=\"bmb_calendar-month-mobile-calendar\">\n      @for (day of dayNames; track $index) {\n        <li class=\"bmb_calendar-month-mobile-calendar-header\">\n          {{ day }}\n        </li>\n      }\n      @if (!isCalendarOpen) {\n        @for (date of weekDays; track $index) {\n          <li class=\"bmb_calendar-month-mobile-calendar-item\">\n            <button\n              class=\"bmb_calendar-month-mobile-calendar-button\"\n              (click)=\"handleDayChange(date)\"\n              bmbButton\n              appearance=\"secondary-filled\"\n              [disabled]=\"isSelectedDay(date)\"\n            >\n              {{ date.day }}\n            </button>\n            @if (findEventsForToday(date)) {\n              <span\n                class=\"bmb_calendar-month-mobile-calendar-item-indicator\"\n              ></span>\n            }\n          </li>\n        }\n      } @else {\n        @for (date of getWeeksAndDays(); track $index) {\n          <li class=\"bmb_calendar-month-mobile-calendar-item\">\n            <button\n              class=\"bmb_calendar-month-mobile-calendar-button\"\n              (click)=\"handleDayChange(date)\"\n              bmbButton\n              appearance=\"secondary-filled\"\n              [disabled]=\"isSelectedDay(date)\"\n            >\n              {{ date.day }}\n            </button>\n            @if (findEventsForToday(date)) {\n              <span\n                class=\"bmb_calendar-month-mobile-calendar-item-indicator\"\n              ></span>\n            }\n          </li>\n        }\n      }\n    </ul>\n    <div\n      class=\"bmb_calendar-month-mobile-expander\"\n      [ngClass]=\"\n        isCalendarOpen ? 'bmb_calendar-month-mobile-expander-active' : ''\n      \"\n    >\n      <button\n        (click)=\"handleExpand()\"\n        bmbButton\n        appearance=\"secondary-filled\"\n        icon=\"keyboard_arrow_down\"\n      ></button>\n    </div>\n  }\n</div>\n"
+            "templateData": "<div class=\"bmb_calendar-month-mobile bmb_padding-m\">\n  <nav\n    class=\"bmb_calendar-month-mobile-nav\"\n    bmbLayout\n    margin=\"none\"\n    [dinamycCols]=\"true\"\n  >\n    <li bmbLayoutItem [colGrow]=\"1\" [isDinamycItem]=\"true\">\n      <div bmbLayout margin=\"none\">\n        <li bmbLayoutItem [colSm]=\"2\">\n          <bmb-calendar-template-select\n            [value]=\"month\"\n            (onValueChange)=\"handleMonthChange($event)\"\n            [options]=\"monthsNames\"\n          />\n        </li>\n        <li bmbLayoutItem [colSm]=\"2\">\n          <bmb-calendar-template-select\n            [value]=\"year.toString()\"\n            (onValueChange)=\"handleYearChange($event)\"\n            [options]=\"getYears()\"\n          />\n        </li>\n      </div>\n    </li>\n    <li [style]=\"{ 'text-align': 'right' }\">\n      <button\n        class=\"bmb_calendar-month-mobile-nav-button\"\n        (click)=\"handleViewTypeChange()\"\n        appearance=\"secondary-filled\"\n        bmbButton\n        icon=\"calendar_month\"\n      ></button>\n    </li>\n  </nav>\n  @if (!isListShowing) {\n    <ul class=\"bmb_calendar-month-mobile-calendar\">\n      @for (day of dayNames; track $index) {\n        <li class=\"bmb_calendar-month-mobile-calendar-header\">\n          {{ day }}\n        </li>\n      }\n      @if (!isCalendarOpen) {\n        @for (date of weekDays; track $index) {\n          <li class=\"bmb_calendar-month-mobile-calendar-item\">\n            <button\n              class=\"bmb_calendar-month-mobile-calendar-button\"\n              (click)=\"handleDayChange(date)\"\n              bmbButton\n              appearance=\"secondary-filled\"\n              [disabled]=\"isSelectedDay(date)\"\n            >\n              {{ date.day }}\n            </button>\n            @if (findEventsForToday(date)) {\n              <span\n                class=\"bmb_calendar-month-mobile-calendar-item-indicator\"\n              ></span>\n            }\n          </li>\n        }\n      } @else {\n        @for (date of getWeeksAndDays(); track $index) {\n          <li class=\"bmb_calendar-month-mobile-calendar-item\">\n            <button\n              class=\"bmb_calendar-month-mobile-calendar-button\"\n              (click)=\"handleDayChange(date)\"\n              bmbButton\n              appearance=\"secondary-filled\"\n              [disabled]=\"isSelectedDay(date)\"\n            >\n              {{ date.day }}\n            </button>\n            @if (findEventsForToday(date)) {\n              <span\n                class=\"bmb_calendar-month-mobile-calendar-item-indicator\"\n              ></span>\n            }\n          </li>\n        }\n      }\n    </ul>\n    <div\n      class=\"bmb_calendar-month-mobile-expander\"\n      [ngClass]=\"\n        isCalendarOpen ? 'bmb_calendar-month-mobile-expander-active' : ''\n      \"\n    >\n      <button\n        (click)=\"handleExpand()\"\n        bmbButton\n        appearance=\"secondary-filled\"\n        icon=\"keyboard_arrow_down\"\n      ></button>\n    </div>\n  }\n</div>\n"
         },
         {
             "name": "BmbCalendarTemplateMonthComponent",
@@ -4614,7 +4764,7 @@
         },
         {
             "name": "BmbCardComponent",
-            "id": "component-BmbCardComponent-459c65e9c3e8f073b97903d01f8b75befdb2b1fc3d0f6bf1df642ce909babb33202eda7babab2e20e301823655551b97a4639d94c0968684cf18852f6ac66a0c",
+            "id": "component-BmbCardComponent-764d4a320f68e8e502948a5ac232e952b688be25b5af1dc39aea7ab4725d1412313418d1c14ef9d6f11a3910c1220e0d338cb7836b8158b2df4552144bea3dbb",
             "file": "projects/ds-ng/src/lib/components/bmb-card/bmb-card.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -4638,7 +4788,7 @@
                     "defaultValue": "'m'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 35,
+                    "line": 33,
                     "type": "SizeNames | SizeNames[]",
                     "decorators": []
                 },
@@ -4647,16 +4797,7 @@
                     "defaultValue": "'m'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 37,
-                    "type": "SizeNames | SizeNames[]",
-                    "decorators": []
-                },
-                {
-                    "name": "padding",
-                    "defaultValue": "'m'",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 36,
+                    "line": 34,
                     "type": "SizeNames | SizeNames[]",
                     "decorators": []
                 },
@@ -4665,106 +4806,21 @@
                     "defaultValue": "'normal'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 38,
+                    "line": 35,
                     "type": "IBmbCardType",
                     "decorators": []
                 }
             ],
             "outputsClass": [],
-            "propertiesClass": [
-                {
-                    "name": "footerContent",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "TemplateRef<any>",
-                    "optional": true,
-                    "description": "",
-                    "line": 41,
-                    "decorators": [
-                        {
-                            "name": "ContentChild",
-                            "stringifiedArguments": "'footer'"
-                        }
-                    ],
-                    "modifierKind": [
-                        170
-                    ]
-                },
-                {
-                    "name": "headerContent",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "TemplateRef<any>",
-                    "optional": true,
-                    "description": "",
-                    "line": 40,
-                    "decorators": [
-                        {
-                            "name": "ContentChild",
-                            "stringifiedArguments": "'header'"
-                        }
-                    ],
-                    "modifierKind": [
-                        170
-                    ]
-                }
-            ],
+            "propertiesClass": [],
             "methodsClass": [
-                {
-                    "name": "calculateSize",
-                    "args": [
-                        {
-                            "name": "pixels",
-                            "type": "string[]",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        }
-                    ],
-                    "optional": false,
-                    "returnType": "string",
-                    "typeParameters": [],
-                    "line": 80,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "jsdoctags": [
-                        {
-                            "name": "pixels",
-                            "type": "string[]",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        }
-                    ]
-                },
                 {
                     "name": "getClasses",
                     "args": [],
                     "optional": false,
                     "returnType": "{}",
                     "typeParameters": [],
-                    "line": 43,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                },
-                {
-                    "name": "getContentClasses",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "{}",
-                    "typeParameters": [],
-                    "line": 64,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                },
-                {
-                    "name": "getContentStyles",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "any",
-                    "typeParameters": [],
-                    "line": 72,
+                    "line": 37,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -4774,7 +4830,7 @@
                     "optional": false,
                     "returnType": "any",
                     "typeParameters": [],
-                    "line": 54,
+                    "line": 48,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -4793,13 +4849,241 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\n  ChangeDetectionStrategy,\n  Component,\n  ContentChild,\n  ElementRef,\n  Input,\n  QueryList,\n  TemplateRef,\n  ViewChild,\n  ViewChildren,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { SizeNames } from '../../types';\n\nexport type IBmbCardType =\n  | 'primary'\n  | 'secondary'\n  | 'succes'\n  | 'info'\n  | 'warning'\n  | 'error'\n  | 'normal';\n\n@Component({\n  selector: 'bmb-card',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './bmb-card.component.html',\n  styleUrl: './bmb-card.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbCardComponent {\n  @Input() borderRadius: SizeNames | SizeNames[] = 'm';\n  @Input() padding: SizeNames | SizeNames[] = 'm';\n  @Input() margin: SizeNames | SizeNames[] = 'm';\n  @Input() type: IBmbCardType = 'normal';\n\n  @ContentChild('header') headerContent?: TemplateRef<any>;\n  @ContentChild('footer') footerContent?: TemplateRef<any>;\n\n  getClasses() {\n    const classNames = [];\n    if (typeof this.borderRadius === 'string')\n      classNames.push(`bmb_border-radius-${this.borderRadius}`);\n    if (typeof this.margin === 'string')\n      classNames.push(`bmb_margin-${this.margin}`);\n    classNames.push(`bmb_card-type-${this.type}`);\n\n    return classNames;\n  }\n\n  getStyles() {\n    const styles: any = {};\n    if (typeof this.borderRadius !== 'string')\n      styles['border-radius'] = this.calculateSize(this.borderRadius);\n    if (typeof this.margin !== 'string')\n      styles.margin = this.calculateSize(this.margin);\n\n    return styles;\n  }\n\n  getContentClasses() {\n    const classNames = [];\n    if (typeof this.padding === 'string')\n      classNames.push(`bmb_padding-${this.padding}`);\n\n    return classNames;\n  }\n\n  getContentStyles() {\n    const styles: any = {};\n    if (typeof this.padding !== 'string')\n      styles.padding = this.calculateSize(this.padding);\n\n    return styles;\n  }\n\n  calculateSize(pixels: string[]): string {\n    return pixels\n      .map((size) => {\n        switch (size) {\n          case 'xs':\n            return '0.25rem';\n          case 's':\n            return '0.5rem';\n          case 'm':\n            return '1rem';\n          case 'l':\n            return '1.5rem';\n          case 'xl':\n            return '2rem';\n          case 'none':\n            return '0';\n          case 'auto':\n            return 'auto';\n          default:\n            return '1rem';\n        }\n      })\n      .join(' ');\n  }\n}\n",
+            "sourceCode": "import {\n  ChangeDetectionStrategy,\n  Component,\n  Input,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { SizeNames } from '../../types';\n\nconst calculateSize = (pixels: string[]): string => {\n  return pixels.map((size) => `var(--bmb-radius-${size})`).join(' ');\n};\n\nexport type IBmbCardType =\n  | 'primary'\n  | 'secondary'\n  | 'succes'\n  | 'info'\n  | 'warning'\n  | 'error'\n  | 'normal';\n\n@Component({\n  selector: 'bmb-card',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './bmb-card.component.html',\n  styleUrl: './bmb-card.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbCardComponent {\n  @Input() borderRadius: SizeNames | SizeNames[] = 'm';\n  @Input() margin: SizeNames | SizeNames[] = 'm';\n  @Input() type: IBmbCardType = 'normal';\n\n  getClasses() {\n    const classNames = [];\n    if (typeof this.borderRadius === 'string')\n      classNames.push(`bmb_border-radius-${this.borderRadius}`);\n    if (typeof this.margin === 'string')\n      classNames.push(`bmb_margin-${this.margin}`);\n    classNames.push(`bmb_card-type-${this.type}`);\n\n    return classNames;\n  }\n\n  getStyles() {\n    const styles: any = {};\n    if (typeof this.borderRadius !== 'string')\n      styles['border-radius'] = calculateSize(this.borderRadius);\n    if (typeof this.margin !== 'string')\n      styles.margin = calculateSize(this.margin);\n\n    return styles;\n  }\n}\n\n@Component({\n  selector: 'bmb-card-header',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './bmb-card-header.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbCardHeaderComponent {\n  @Input() padding: SizeNames | SizeNames[] = 'm';\n\n  getClasses() {\n    const classNames = [];\n    if (typeof this.padding === 'string')\n      classNames.push(`bmb_padding-${this.padding}`);\n\n    return classNames;\n  }\n\n  getStyles() {\n    const styles: any = {};\n    if (typeof this.padding !== 'string')\n      styles['padding'] = calculateSize(this.padding);\n\n    return styles;\n  }\n}\n\n@Component({\n  selector: 'bmb-card-footer',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './bmb-card-footer.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbCardFooterComponent {\n  @Input() padding: SizeNames | SizeNames[] = 'm';\n\n  getClasses() {\n    const classNames = [];\n    if (typeof this.padding === 'string')\n      classNames.push(`bmb_padding-${this.padding}`);\n\n    return classNames;\n  }\n\n  getStyles() {\n    const styles: any = {};\n    if (typeof this.padding !== 'string')\n      styles['padding'] = calculateSize(this.padding);\n\n    return styles;\n  }\n}\n\n@Component({\n  selector: 'bmb-card-content',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './bmb-card-content.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbCardContentComponent {\n  @Input() padding: SizeNames | SizeNames[] = 'm';\n\n  getClasses() {\n    const classNames = [];\n    if (typeof this.padding === 'string')\n      classNames.push(`bmb_padding-${this.padding}`);\n\n    return classNames;\n  }\n\n  getStyles() {\n    const styles: any = {};\n    if (typeof this.padding !== 'string')\n      styles['padding'] = calculateSize(this.padding);\n\n    return styles;\n  }\n}\n",
             "styleUrl": "./bmb-card.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<section class=\"bmb_card\" [ngClass]=\"getClasses()\" [ngStyle]=\"getStyles()\">\n  @if (!!headerContent) {\n    <header\n      class=\"bmb_card-header\"\n      [ngClass]=\"getContentClasses()\"\n      [ngStyle]=\"getContentStyles()\"\n    >\n      <ng-container [ngTemplateOutlet]=\"headerContent\"></ng-container>\n    </header>\n  }\n  <div\n    class=\"bmb_card-content\"\n    [ngClass]=\"getContentClasses()\"\n    [ngStyle]=\"getContentStyles()\"\n  >\n    <ng-content></ng-content>\n  </div>\n  @if (!!footerContent) {\n    <footer\n      class=\"bmb_card-footer\"\n      [ngClass]=\"getContentClasses()\"\n      [ngStyle]=\"getContentStyles()\"\n    >\n      <ng-container [ngTemplateOutlet]=\"footerContent\"></ng-container>\n    </footer>\n  }\n</section>\n"
+            "templateData": "<section class=\"bmb_card\" [ngClass]=\"getClasses()\" [ngStyle]=\"getStyles()\">\n  <ng-content></ng-content>\n</section>\n"
+        },
+        {
+            "name": "BmbCardContentComponent",
+            "id": "component-BmbCardContentComponent-764d4a320f68e8e502948a5ac232e952b688be25b5af1dc39aea7ab4725d1412313418d1c14ef9d6f11a3910c1220e0d338cb7836b8158b2df4552144bea3dbb",
+            "file": "projects/ds-ng/src/lib/components/bmb-card/bmb-card.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-card-content",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-card-content.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "padding",
+                    "defaultValue": "'m'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 124,
+                    "type": "SizeNames | SizeNames[]",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "getClasses",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "{}",
+                    "typeParameters": [],
+                    "line": 126,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "getStyles",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 134,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {\n  ChangeDetectionStrategy,\n  Component,\n  Input,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { SizeNames } from '../../types';\n\nconst calculateSize = (pixels: string[]): string => {\n  return pixels.map((size) => `var(--bmb-radius-${size})`).join(' ');\n};\n\nexport type IBmbCardType =\n  | 'primary'\n  | 'secondary'\n  | 'succes'\n  | 'info'\n  | 'warning'\n  | 'error'\n  | 'normal';\n\n@Component({\n  selector: 'bmb-card',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './bmb-card.component.html',\n  styleUrl: './bmb-card.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbCardComponent {\n  @Input() borderRadius: SizeNames | SizeNames[] = 'm';\n  @Input() margin: SizeNames | SizeNames[] = 'm';\n  @Input() type: IBmbCardType = 'normal';\n\n  getClasses() {\n    const classNames = [];\n    if (typeof this.borderRadius === 'string')\n      classNames.push(`bmb_border-radius-${this.borderRadius}`);\n    if (typeof this.margin === 'string')\n      classNames.push(`bmb_margin-${this.margin}`);\n    classNames.push(`bmb_card-type-${this.type}`);\n\n    return classNames;\n  }\n\n  getStyles() {\n    const styles: any = {};\n    if (typeof this.borderRadius !== 'string')\n      styles['border-radius'] = calculateSize(this.borderRadius);\n    if (typeof this.margin !== 'string')\n      styles.margin = calculateSize(this.margin);\n\n    return styles;\n  }\n}\n\n@Component({\n  selector: 'bmb-card-header',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './bmb-card-header.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbCardHeaderComponent {\n  @Input() padding: SizeNames | SizeNames[] = 'm';\n\n  getClasses() {\n    const classNames = [];\n    if (typeof this.padding === 'string')\n      classNames.push(`bmb_padding-${this.padding}`);\n\n    return classNames;\n  }\n\n  getStyles() {\n    const styles: any = {};\n    if (typeof this.padding !== 'string')\n      styles['padding'] = calculateSize(this.padding);\n\n    return styles;\n  }\n}\n\n@Component({\n  selector: 'bmb-card-footer',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './bmb-card-footer.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbCardFooterComponent {\n  @Input() padding: SizeNames | SizeNames[] = 'm';\n\n  getClasses() {\n    const classNames = [];\n    if (typeof this.padding === 'string')\n      classNames.push(`bmb_padding-${this.padding}`);\n\n    return classNames;\n  }\n\n  getStyles() {\n    const styles: any = {};\n    if (typeof this.padding !== 'string')\n      styles['padding'] = calculateSize(this.padding);\n\n    return styles;\n  }\n}\n\n@Component({\n  selector: 'bmb-card-content',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './bmb-card-content.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbCardContentComponent {\n  @Input() padding: SizeNames | SizeNames[] = 'm';\n\n  getClasses() {\n    const classNames = [];\n    if (typeof this.padding === 'string')\n      classNames.push(`bmb_padding-${this.padding}`);\n\n    return classNames;\n  }\n\n  getStyles() {\n    const styles: any = {};\n    if (typeof this.padding !== 'string')\n      styles['padding'] = calculateSize(this.padding);\n\n    return styles;\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<section class=\"bmb_card-content\" [ngClass]=\"getClasses()\">\n  <ng-content></ng-content>\n</section>\n"
+        },
+        {
+            "name": "BmbCardFooterComponent",
+            "id": "component-BmbCardFooterComponent-764d4a320f68e8e502948a5ac232e952b688be25b5af1dc39aea7ab4725d1412313418d1c14ef9d6f11a3910c1220e0d338cb7836b8158b2df4552144bea3dbb",
+            "file": "projects/ds-ng/src/lib/components/bmb-card/bmb-card.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-card-footer",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-card-footer.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "padding",
+                    "defaultValue": "'m'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 96,
+                    "type": "SizeNames | SizeNames[]",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "getClasses",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "{}",
+                    "typeParameters": [],
+                    "line": 98,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "getStyles",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 106,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {\n  ChangeDetectionStrategy,\n  Component,\n  Input,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { SizeNames } from '../../types';\n\nconst calculateSize = (pixels: string[]): string => {\n  return pixels.map((size) => `var(--bmb-radius-${size})`).join(' ');\n};\n\nexport type IBmbCardType =\n  | 'primary'\n  | 'secondary'\n  | 'succes'\n  | 'info'\n  | 'warning'\n  | 'error'\n  | 'normal';\n\n@Component({\n  selector: 'bmb-card',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './bmb-card.component.html',\n  styleUrl: './bmb-card.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbCardComponent {\n  @Input() borderRadius: SizeNames | SizeNames[] = 'm';\n  @Input() margin: SizeNames | SizeNames[] = 'm';\n  @Input() type: IBmbCardType = 'normal';\n\n  getClasses() {\n    const classNames = [];\n    if (typeof this.borderRadius === 'string')\n      classNames.push(`bmb_border-radius-${this.borderRadius}`);\n    if (typeof this.margin === 'string')\n      classNames.push(`bmb_margin-${this.margin}`);\n    classNames.push(`bmb_card-type-${this.type}`);\n\n    return classNames;\n  }\n\n  getStyles() {\n    const styles: any = {};\n    if (typeof this.borderRadius !== 'string')\n      styles['border-radius'] = calculateSize(this.borderRadius);\n    if (typeof this.margin !== 'string')\n      styles.margin = calculateSize(this.margin);\n\n    return styles;\n  }\n}\n\n@Component({\n  selector: 'bmb-card-header',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './bmb-card-header.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbCardHeaderComponent {\n  @Input() padding: SizeNames | SizeNames[] = 'm';\n\n  getClasses() {\n    const classNames = [];\n    if (typeof this.padding === 'string')\n      classNames.push(`bmb_padding-${this.padding}`);\n\n    return classNames;\n  }\n\n  getStyles() {\n    const styles: any = {};\n    if (typeof this.padding !== 'string')\n      styles['padding'] = calculateSize(this.padding);\n\n    return styles;\n  }\n}\n\n@Component({\n  selector: 'bmb-card-footer',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './bmb-card-footer.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbCardFooterComponent {\n  @Input() padding: SizeNames | SizeNames[] = 'm';\n\n  getClasses() {\n    const classNames = [];\n    if (typeof this.padding === 'string')\n      classNames.push(`bmb_padding-${this.padding}`);\n\n    return classNames;\n  }\n\n  getStyles() {\n    const styles: any = {};\n    if (typeof this.padding !== 'string')\n      styles['padding'] = calculateSize(this.padding);\n\n    return styles;\n  }\n}\n\n@Component({\n  selector: 'bmb-card-content',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './bmb-card-content.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbCardContentComponent {\n  @Input() padding: SizeNames | SizeNames[] = 'm';\n\n  getClasses() {\n    const classNames = [];\n    if (typeof this.padding === 'string')\n      classNames.push(`bmb_padding-${this.padding}`);\n\n    return classNames;\n  }\n\n  getStyles() {\n    const styles: any = {};\n    if (typeof this.padding !== 'string')\n      styles['padding'] = calculateSize(this.padding);\n\n    return styles;\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<footer class=\"bmb_card-footer\" [ngClass]=\"getClasses()\">\n  <ng-content></ng-content>\n</footer>\n"
+        },
+        {
+            "name": "BmbCardHeaderComponent",
+            "id": "component-BmbCardHeaderComponent-764d4a320f68e8e502948a5ac232e952b688be25b5af1dc39aea7ab4725d1412313418d1c14ef9d6f11a3910c1220e0d338cb7836b8158b2df4552144bea3dbb",
+            "file": "projects/ds-ng/src/lib/components/bmb-card/bmb-card.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-card-header",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-card-header.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "padding",
+                    "defaultValue": "'m'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 68,
+                    "type": "SizeNames | SizeNames[]",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "getClasses",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "{}",
+                    "typeParameters": [],
+                    "line": 70,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "getStyles",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 78,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {\n  ChangeDetectionStrategy,\n  Component,\n  Input,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { SizeNames } from '../../types';\n\nconst calculateSize = (pixels: string[]): string => {\n  return pixels.map((size) => `var(--bmb-radius-${size})`).join(' ');\n};\n\nexport type IBmbCardType =\n  | 'primary'\n  | 'secondary'\n  | 'succes'\n  | 'info'\n  | 'warning'\n  | 'error'\n  | 'normal';\n\n@Component({\n  selector: 'bmb-card',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './bmb-card.component.html',\n  styleUrl: './bmb-card.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbCardComponent {\n  @Input() borderRadius: SizeNames | SizeNames[] = 'm';\n  @Input() margin: SizeNames | SizeNames[] = 'm';\n  @Input() type: IBmbCardType = 'normal';\n\n  getClasses() {\n    const classNames = [];\n    if (typeof this.borderRadius === 'string')\n      classNames.push(`bmb_border-radius-${this.borderRadius}`);\n    if (typeof this.margin === 'string')\n      classNames.push(`bmb_margin-${this.margin}`);\n    classNames.push(`bmb_card-type-${this.type}`);\n\n    return classNames;\n  }\n\n  getStyles() {\n    const styles: any = {};\n    if (typeof this.borderRadius !== 'string')\n      styles['border-radius'] = calculateSize(this.borderRadius);\n    if (typeof this.margin !== 'string')\n      styles.margin = calculateSize(this.margin);\n\n    return styles;\n  }\n}\n\n@Component({\n  selector: 'bmb-card-header',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './bmb-card-header.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbCardHeaderComponent {\n  @Input() padding: SizeNames | SizeNames[] = 'm';\n\n  getClasses() {\n    const classNames = [];\n    if (typeof this.padding === 'string')\n      classNames.push(`bmb_padding-${this.padding}`);\n\n    return classNames;\n  }\n\n  getStyles() {\n    const styles: any = {};\n    if (typeof this.padding !== 'string')\n      styles['padding'] = calculateSize(this.padding);\n\n    return styles;\n  }\n}\n\n@Component({\n  selector: 'bmb-card-footer',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './bmb-card-footer.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbCardFooterComponent {\n  @Input() padding: SizeNames | SizeNames[] = 'm';\n\n  getClasses() {\n    const classNames = [];\n    if (typeof this.padding === 'string')\n      classNames.push(`bmb_padding-${this.padding}`);\n\n    return classNames;\n  }\n\n  getStyles() {\n    const styles: any = {};\n    if (typeof this.padding !== 'string')\n      styles['padding'] = calculateSize(this.padding);\n\n    return styles;\n  }\n}\n\n@Component({\n  selector: 'bmb-card-content',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './bmb-card-content.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbCardContentComponent {\n  @Input() padding: SizeNames | SizeNames[] = 'm';\n\n  getClasses() {\n    const classNames = [];\n    if (typeof this.padding === 'string')\n      classNames.push(`bmb_padding-${this.padding}`);\n\n    return classNames;\n  }\n\n  getStyles() {\n    const styles: any = {};\n    if (typeof this.padding !== 'string')\n      styles['padding'] = calculateSize(this.padding);\n\n    return styles;\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<header class=\"bmb_card-header\" [ngClass]=\"getClasses()\">\n  <ng-content></ng-content>\n</header>\n"
         },
         {
             "name": "BmbCheckboxComponent",
@@ -5341,6 +5625,867 @@
             },
             "extends": [],
             "templateData": "<div [ngClass]=\"getClasses()\">\n  <ng-content></ng-content>\n</div>\n"
+        },
+        {
+            "name": "BmbDatepickerComponent",
+            "id": "component-BmbDatepickerComponent-610dbd6b2e777778fed516e25114f14eae6a3b9288d63ed43f8e30207fc35e46ce62ddbcd62d40ce646c53bb69369344aa9f2d0552c377a73bbcc4a93677fc6f",
+            "file": "projects/ds-ng/src/lib/components/bmb-datepicker/bmb-datepicker.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-datepicker",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-datepicker.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "appearance",
+                    "defaultValue": "'normal'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 44,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "control",
+                    "defaultValue": "new FormControl()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 48,
+                    "type": "FormControl",
+                    "decorators": []
+                },
+                {
+                    "name": "dateFormat",
+                    "defaultValue": "'dd/MM/yyyy'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 49,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "disabled",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 45,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "icon",
+                    "defaultValue": "'calendar_month'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 41,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "inline",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 50,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "invalidFormaterrorMessage",
+                    "defaultValue": "'Formato invalido'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 42,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "isClearable",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 47,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "isRequired",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 46,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "label",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 39,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "name",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 52,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "placeholder",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 40,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "requiredFieldErrorMessage",
+                    "defaultValue": "'Campo requerido'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 43,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "stepYearPicker",
+                    "defaultValue": "12",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 51,
+                    "type": "number",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "childNodes",
+                    "defaultValue": "null",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any",
+                    "optional": false,
+                    "description": "",
+                    "line": 54
+                },
+                {
+                    "name": "defaultDate",
+                    "defaultValue": "new Date()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 76
+                },
+                {
+                    "name": "isWindowOpen",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 77
+                },
+                {
+                    "name": "now",
+                    "defaultValue": "DateTime.now()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 55
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "clearValue",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 79,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "customValidatorDate",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "ValidatorFn",
+                    "typeParameters": [],
+                    "line": 88,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "getErrorMessage",
+                    "args": [
+                        {
+                            "name": "errors",
+                            "type": "ValidationErrors | null",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 102,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "errors",
+                            "type": "ValidationErrors | null",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "handleFouseEvent",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 108,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "handleValueChange",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 118,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "handleWindowOpen",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 114,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ngAfterViewInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 72,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 83,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onClick",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "MouseEvent",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 60,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "decorators": [
+                        {
+                            "name": "HostListener",
+                            "stringifiedArguments": "'document:click', ['$event']"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "MouseEvent",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [
+                {
+                    "name": "document:click",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "MouseEvent",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "argsDecorator": [
+                        "$event"
+                    ],
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 60
+                }
+            ],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "BmbIconComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "FormsModule",
+                    "type": "module"
+                },
+                {
+                    "name": "BmbInputComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "ReactiveFormsModule",
+                    "type": "module"
+                },
+                {
+                    "name": "BmbDatepickerModalComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {\n  ChangeDetectionStrategy,\n  Component,\n  ElementRef,\n  HostListener,\n  Input,\n  OnInit,\n  ViewEncapsulation,\n} from '@angular/core';\nimport {\n  FormsModule,\n  FormControl,\n  ValidatorFn,\n  AbstractControl,\n  ReactiveFormsModule,\n  ValidationErrors,\n} from '@angular/forms';\nimport { DateTime } from 'luxon';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\nimport { BmbInputComponent } from '../bmb-input/bmb-input.component';\nimport { BmbDatepickerModalComponent } from './bmb-datepicker-modal/bmb-datepicker-modal.component';\n\n@Component({\n  selector: 'bmb-datepicker',\n  standalone: true,\n  imports: [\n    BmbIconComponent,\n    FormsModule,\n    BmbInputComponent,\n    ReactiveFormsModule,\n    BmbDatepickerModalComponent,\n  ],\n  templateUrl: './bmb-datepicker.component.html',\n  styleUrl: './bmb-datepicker.component.scss',\n  encapsulation: ViewEncapsulation.None,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbDatepickerComponent implements OnInit {\n  @Input() label: string = '';\n  @Input() placeholder: string = '';\n  @Input() icon: string = 'calendar_month';\n  @Input() invalidFormaterrorMessage: string = 'Formato invalido';\n  @Input() requiredFieldErrorMessage: string = 'Campo requerido';\n  @Input() appearance: string = 'normal';\n  @Input() disabled: boolean = false;\n  @Input() isRequired: boolean = false;\n  @Input() isClearable: boolean = false;\n  @Input() control: FormControl = new FormControl();\n  @Input() dateFormat: string = 'dd/MM/yyyy';\n  @Input() inline: boolean = false;\n  @Input() stepYearPicker: number = 12;\n  @Input() name: string = '';\n\n  childNodes: any = null;\n  now = DateTime.now();\n\n  constructor(private elementRef: ElementRef) {}\n\n  @HostListener('document:click', ['$event'])\n  onClick(event: MouseEvent) {\n    const eventTarget = event.target as HTMLSpanElement;\n\n    if (this.childNodes?.contains(eventTarget) || eventTarget?.classList?.contains('modal-persist')) {\n      this.isWindowOpen = true;\n    } else {\n      this.isWindowOpen = false;\n    }\n\n\n  }\n\n  ngAfterViewInit() {\n    this.childNodes = this.elementRef.nativeElement;\n  }\n\n  defaultDate = new Date();\n  isWindowOpen = false;\n\n  clearValue() {\n    this.control.reset();\n  }\n\n  ngOnInit() {\n    this.control.addValidators(this.customValidatorDate());\n    this.control.updateValueAndValidity();\n  }\n\n  customValidatorDate(): ValidatorFn {\n    return (control: AbstractControl): ValidationErrors | null => {\n      const { value } = control;\n      if (!value) return null;\n\n      const isValidDate = DateTime.fromFormat(\n        control.value,\n        this.dateFormat,\n      ).isValid;\n\n      return !isValidDate ? { validationDate: true } : null;\n    };\n  }\n\n  getErrorMessage(errors: ValidationErrors | null): string {\n    if (errors?.['validationDate']) return this.invalidFormaterrorMessage;\n    if (errors?.['required']) return this.requiredFieldErrorMessage;\n    return '';\n  }\n\n  handleFouseEvent(event: boolean) {\n    if (event) {\n      this.isWindowOpen = event;\n    }\n  }\n\n  handleWindowOpen(event: boolean) {\n    this.isWindowOpen = event;\n  }\n\n  handleValueChange(event: string) {\n    this.control.setValue(event);\n    this.isWindowOpen = false;\n  }\n}\n",
+            "styleUrl": "./bmb-datepicker.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "elementRef",
+                        "type": "ElementRef",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 55,
+                "jsdoctags": [
+                    {
+                        "name": "elementRef",
+                        "type": "ElementRef",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "extends": [],
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div class=\"bmb_datepicker\">\n  <section class=\"bmb-datepicker-container\">\n    <bmb-input\n      [placeholder]=\"placeholder\"\n      [label]=\"label\"\n      [icon]=\"icon\"\n      [isRequired]=\"isRequired\"\n      [disabled]=\"disabled\"\n      [appearance]=\"appearance\"\n      [control]=\"control\"\n      [isRequired]=\"isRequired\"\n      (isFocus)=\"handleFouseEvent($event)\"\n      [helperMessage]=\"dateFormat\"\n      [errorMessage]=\"getErrorMessage(control.errors)\"\n      [name]=\"name\"\n    />\n    @if (isClearable) {\n      <button class=\"bmb_datepicker-clear\" (click)=\"clearValue()\">\n        <bmb-icon icon=\"close\" />\n      </button>\n    }\n    @if (isWindowOpen) {\n      <bmb-datepicker-modal\n        [now]=\"now\"\n        [isWindowOpen]=\"isWindowOpen\"\n        (closeWindow)=\"handleWindowOpen($event)\"\n        (onValueChange)=\"handleValueChange($event)\"\n        [value]=\"control.value\"\n        [dateFormat]=\"dateFormat\"\n        [stepYearPicker]=\"stepYearPicker\"\n      />\n    }\n  </section>\n</div>\n"
+        },
+        {
+            "name": "BmbDatepickerModalComponent",
+            "id": "component-BmbDatepickerModalComponent-bde55c7402b1ebc529b0b9f6f1ef38fb5858eb9e714b4e2a9d3964b6df5f19a44ff27113ed643b2d593749a0c852484b5453780e01b729a6dd9546d5bf6318d8",
+            "file": "projects/ds-ng/src/lib/components/bmb-datepicker/bmb-datepicker-modal/bmb-datepicker-modal.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-datepicker-modal",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-datepicker-modal.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "dateFormat",
+                    "defaultValue": "'dd/MM/yyyy'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 33,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "isWindowOpen",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 29,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "lang",
+                    "defaultValue": "'es'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 31,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "now",
+                    "defaultValue": "DateTime.now()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 30,
+                    "type": "DateTime",
+                    "decorators": []
+                },
+                {
+                    "name": "stepYearPicker",
+                    "defaultValue": "12",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 34,
+                    "type": "number",
+                    "decorators": []
+                },
+                {
+                    "name": "value",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 32,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "closeWindow",
+                    "defaultValue": "new EventEmitter<boolean>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 36,
+                    "type": "EventEmitter<boolean>"
+                },
+                {
+                    "name": "onValueChange",
+                    "defaultValue": "new EventEmitter<string>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 37,
+                    "type": "EventEmitter<string>"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "dayNames",
+                    "defaultValue": "orderDayNames(this.defaultDayOrder)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 44
+                },
+                {
+                    "name": "defaultDayOrder",
+                    "defaultValue": "Info.weekdays('narrow', { locale: this.lang })",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 43
+                },
+                {
+                    "name": "month",
+                    "defaultValue": "this.monthsNames[(this.selectedMonth || this.now.month) - 1]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 41
+                },
+                {
+                    "name": "monthsNames",
+                    "defaultValue": "Info.months('long', { locale: this.lang })",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 40
+                },
+                {
+                    "name": "selectedDate",
+                    "defaultValue": "null",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "DateTime | null",
+                    "optional": false,
+                    "description": "",
+                    "line": 47
+                },
+                {
+                    "name": "selectedMonth",
+                    "defaultValue": "this.now.month",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 39
+                },
+                {
+                    "name": "selectedYear",
+                    "defaultValue": "this.now.year",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 45
+                },
+                {
+                    "name": "view",
+                    "defaultValue": "'calendar'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 46
+                },
+                {
+                    "name": "year",
+                    "defaultValue": "this.now.year",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 42
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "getWeeksAndDays",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "DateTime[]",
+                    "typeParameters": [],
+                    "line": 78,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "getYears",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 62,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "handleChangeView",
+                    "args": [
+                        {
+                            "name": "view",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 92,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "view",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "handleDayChange",
+                    "args": [
+                        {
+                            "name": "date",
+                            "type": "DateTime",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 73,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "date",
+                            "type": "DateTime",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "handleMonthChange",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 49,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "handleYearChange",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 55,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "isSelectedDay",
+                    "args": [
+                        {
+                            "name": "date",
+                            "type": "DateTime",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 87,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "date",
+                            "type": "DateTime",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 96,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "BmbLayoutDirective",
+                    "type": "directive"
+                },
+                {
+                    "name": "BmbLayoutItemDirective",
+                    "type": "directive"
+                },
+                {
+                    "name": "BmbButtonDirective",
+                    "type": "directive"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {\n  ChangeDetectionStrategy,\n  Component,\n  ElementRef,\n  EventEmitter,\n  HostListener,\n  Input,\n  OnInit,\n  Output,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';\nimport { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';\nimport { DateTime, Info } from 'luxon';\nimport { orderDayNames, weeksAndDays } from '../../bmb-calendar/utils';\nimport { BmbButtonDirective } from '../../../directives/button.directive';\nimport { CommonModule } from '@angular/common';\n\n@Component({\n  selector: 'bmb-datepicker-modal',\n  standalone: true,\n  imports: [CommonModule, BmbLayoutDirective, BmbLayoutItemDirective, BmbButtonDirective],\n  templateUrl: './bmb-datepicker-modal.component.html',\n  styleUrl: './bmb-datepicker-modal.component.scss',\n  encapsulation: ViewEncapsulation.None,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbDatepickerModalComponent implements OnInit {\n  @Input() isWindowOpen: boolean = false;\n  @Input() now: DateTime = DateTime.now();\n  @Input() lang: string = 'es';\n  @Input() value?: string;\n  @Input() dateFormat: string = 'dd/MM/yyyy';\n  @Input() stepYearPicker: number = 12;\n\n  @Output() closeWindow: EventEmitter<boolean> = new EventEmitter<boolean>();\n  @Output() onValueChange: EventEmitter<string> = new EventEmitter<string>();\n\n  selectedMonth = this.now.month;\n  monthsNames = Info.months('long', { locale: this.lang });\n  month = this.monthsNames[(this.selectedMonth || this.now.month) - 1];\n  year = this.now.year;\n  defaultDayOrder = Info.weekdays('narrow', { locale: this.lang });\n  dayNames = orderDayNames(this.defaultDayOrder);\n  selectedYear = this.now.year;\n  view = 'calendar';\n  selectedDate: DateTime | null = null;\n\n  handleMonthChange(event: number) {\n    this.selectedMonth = event + 1;\n    this.month = this.monthsNames[event];\n    this.view = 'calendar';\n  }\n\n  handleYearChange(event: any) {\n    console.log('handleYearChange', event);\n\n    this.selectedYear = event;\n    this.view = 'calendar';\n  }\n\n  getYears() {\n    const yearsList = new Array(this.stepYearPicker).fill(0);\n    const currentYear = this.selectedYear;\n    const yearsFinal = yearsList.map((_, index) => {\n      console.log('currentYear', currentYear);\n\n      return (currentYear - (this.stepYearPicker / 2 - 1) + index ).toString();\n    });\n    return yearsFinal;\n  }\n\n  handleDayChange(date: DateTime): void {\n    const newValue = date.toFormat(this.dateFormat)\n    this.onValueChange.emit(newValue)\n  }\n\n  getWeeksAndDays(): DateTime[] {\n    const firstDayOfMonth = DateTime.fromObject({\n      day: 1,\n      month: this.selectedMonth ?? this.now.month,\n      year: this.selectedYear ?? this.now.year,\n    });\n    return weeksAndDays(firstDayOfMonth);\n  }\n\n  isSelectedDay(date: DateTime): string {\n    if (this.selectedDate && date.hasSame(this.selectedDate, 'day')) return 'bmb_datepicker-modal-calendar-item-button-selected'\n    return '';\n  }\n\n  handleChangeView(view: string) {\n    this.view = view;\n  }\n\n  ngOnInit() {\n    this.selectedYear = this.now.year;\n    this.selectedMonth = this.now.month;\n    if (this.value) {\n      this.selectedDate = DateTime.fromFormat(this?.value, this.dateFormat)\n    }\n  }\n}\n",
+            "styleUrl": "./bmb-datepicker-modal.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div class=\"bmb_datepicker-modal\">\n  <nav\n    class=\"bmb_datepicker-modal-nav\"\n    bmbLayout\n    margin=\"none\"\n    [dinamycCols]=\"true\"\n  >\n    <li bmbLayoutItem>\n      <button\n        class=\"bmb_datepicker-modal-calendar-button\"\n        (click)=\"handleChangeView('month')\"\n        bmbButton\n        appearance=\"secondary-outlined\"\n        icon=\"keyboard_arrow_down\"\n      >\n        {{ month }}\n      </button>\n    </li>\n    <li bmbLayoutItem>\n      <button\n        class=\"bmb_datepicker-modal-calendar-button\"\n        (click)=\"handleChangeView('year')\"\n        bmbButton\n        appearance=\"secondary-outlined\"\n        icon=\"keyboard_arrow_down\"\n      >\n        {{ selectedYear }}\n      </button>\n    </li>\n  </nav>\n  @switch (view) {\n    @case ('calendar') {\n      <ul class=\"bmb_datepicker-modal-calendar\">\n        @for (day of dayNames; track $index) {\n          <li class=\"bmb_datepicker-modal-calendar-header\">\n            {{ day }}\n          </li>\n        }\n        @for (date of getWeeksAndDays(); track $index) {\n          <li class=\"bmb_datepicker-modal-calendar-item\">\n            <button\n              class=\"bmb_datepicker-modal-calendar-item-button\"\n              [ngClass]=\"isSelectedDay(date)\"\n              (click)=\"handleDayChange(date)\"\n              bmbButton\n              appearance=\"secondary-filled\"\n            >\n              {{ date.day }}\n            </button>\n          </li>\n        }\n      </ul>\n    }\n    @case ('month') {\n      <ul class=\"bmb_datepicker-modal-list\">\n        @for (month of monthsNames; track $index) {\n          <li class=\"bmb_datepicker-modal-list-item\">\n            <button\n              class=\"bmb_datepicker-modal-calendar-item-button bmb_datepicker-modal-calendar-item-button-full modal-persist\"\n              bmbButton\n              appearance=\"secondary-filled\"\n              (click)=\"handleMonthChange($index)\"\n            >\n              {{ month }}\n            </button>\n          </li>\n        }\n      </ul>\n    }\n    @case ('year') {\n      <ul class=\"bmb_datepicker-modal-list\">\n        @for (year of getYears(); track $index) {\n          <li class=\"bmb_datepicker-modal-list-item\">\n            <button\n              class=\"bmb_datepicker-modal-calendar-item-button bmb_datepicker-modal-calendar-item-button-full modal-persist\"\n              bmbButton\n              appearance=\"secondary-filled\"\n              (click)=\"handleYearChange(year)\"\n            >\n              {{ year }}\n            </button>\n          </li>\n        }\n      </ul>\n    }\n  }\n</div>\n\n"
         },
         {
             "name": "BmbDividerComponent",
@@ -7142,7 +8287,7 @@
         },
         {
             "name": "BmbInputComponent",
-            "id": "component-BmbInputComponent-fde1d9f1477e79fc968cf9c37788f2625760d71845c124b4c28b66ddca959cf9bbbc53aead2dfe8562792a10b2642dcb19ddc7c3203c362e413b8e41177e9130",
+            "id": "component-BmbInputComponent-5ee46d721237fad03cbd8f577e97dd1d4f4ec6ff8b82a7c338567be172b029f263d04cab9624632ab000a2831fc45c9deef70cb11a8d62179956cad0af06f10c",
             "file": "projects/ds-ng/src/lib/components/bmb-input/bmb-input.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -7168,7 +8313,7 @@
                     "defaultValue": "'normal'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 28,
+                    "line": 30,
                     "type": "string",
                     "decorators": []
                 },
@@ -7177,7 +8322,7 @@
                     "defaultValue": "new FormControl()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 32,
+                    "line": 34,
                     "type": "FormControl",
                     "decorators": []
                 },
@@ -7186,7 +8331,7 @@
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 29,
+                    "line": 31,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -7195,7 +8340,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 26,
+                    "line": 28,
                     "type": "string",
                     "decorators": []
                 },
@@ -7204,7 +8349,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 27,
+                    "line": 29,
                     "type": "string",
                     "decorators": []
                 },
@@ -7213,7 +8358,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 25,
+                    "line": 27,
                     "type": "string",
                     "decorators": []
                 },
@@ -7222,7 +8367,7 @@
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 30,
+                    "line": 32,
                     "type": "boolean",
                     "decorators": []
                 },
@@ -7231,7 +8376,16 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 23,
+                    "line": 25,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "name",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 35,
                     "type": "string",
                     "decorators": []
                 },
@@ -7240,7 +8394,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 24,
+                    "line": 26,
                     "type": "string",
                     "decorators": []
                 },
@@ -7249,12 +8403,21 @@
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 31,
+                    "line": 33,
                     "type": "boolean",
                     "decorators": []
                 }
             ],
-            "outputsClass": [],
+            "outputsClass": [
+                {
+                    "name": "isFocus",
+                    "defaultValue": "new EventEmitter<boolean>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 37,
+                    "type": "EventEmitter<boolean>"
+                }
+            ],
             "propertiesClass": [],
             "methodsClass": [
                 {
@@ -7263,7 +8426,27 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 36,
+                    "line": 41,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onBlur",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 73,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onFocus",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 69,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -7273,7 +8456,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 54,
+                    "line": 62,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -7303,11 +8486,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\n  Component,\n  Input,\n  OnInit,\n  ChangeDetectorRef,\n  ViewEncapsulation,\n  ChangeDetectionStrategy,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\n\n@Component({\n  selector: 'bmb-input',\n  styleUrls: ['./bmb-input.component.scss'],\n  templateUrl: './bmb-input.component.html',\n  standalone: true,\n  imports: [CommonModule, BmbIconComponent, ReactiveFormsModule],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbInputComponent implements OnInit {\n  @Input() label: string = '';\n  @Input() placeholder: string = '';\n  @Input() icon: string = '';\n  @Input() errorMessage: string = '';\n  @Input() helperMessage: string = '';\n  @Input() appearance: string = 'normal';\n  @Input() disabled: boolean = false;\n  @Input() isRequired: boolean = false;\n  @Input() showError: boolean = false;\n  @Input() control: FormControl = new FormControl();\n\n  constructor(private cdr: ChangeDetectorRef) {}\n\n  ngOnInit(): void {\n    if (!this.control) {\n      this.control = new FormControl();\n    }\n\n    if (this.isRequired) {\n      this.control.setValidators(Validators.required);\n    } else {\n      this.control.clearValidators();\n    }\n    this.control.updateValueAndValidity();\n\n    this.control.valueChanges.subscribe(() => {\n      this.updateErrorState();\n      this.cdr.markForCheck();\n    });\n  }\n\n  private updateErrorState(): void {\n    this.showError =\n      this.isRequired &&\n      this.control.invalid &&\n      (this.control.touched || this.control.dirty);\n  }\n\n  get inputClasses(): { [key: string]: boolean } {\n    return {\n      ['bmb_field-input-' + this.appearance]: true,\n      'bmb_field-input-error': this.shouldShowError,\n      disabled: this.disabled,\n    };\n  }\n\n  get shouldShowError(): boolean {\n    return this.showError;\n  }\n}\n",
+            "sourceCode": "import {\n  Component,\n  Input,\n  OnInit,\n  ChangeDetectorRef,\n  ViewEncapsulation,\n  ChangeDetectionStrategy,\n  Output,\n  EventEmitter,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\n\n@Component({\n  selector: 'bmb-input',\n  styleUrls: ['./bmb-input.component.scss'],\n  templateUrl: './bmb-input.component.html',\n  standalone: true,\n  imports: [CommonModule, BmbIconComponent, ReactiveFormsModule],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbInputComponent implements OnInit {\n  @Input() label: string = '';\n  @Input() placeholder: string = '';\n  @Input() icon: string = '';\n  @Input() errorMessage: string = '';\n  @Input() helperMessage: string = '';\n  @Input() appearance: string = 'normal';\n  @Input() disabled: boolean = false;\n  @Input() isRequired: boolean = false;\n  @Input() showError: boolean = false;\n  @Input() control: FormControl = new FormControl();\n  @Input() name: string = '';\n\n  @Output() isFocus: EventEmitter<boolean> = new EventEmitter<boolean>();\n\n  constructor(private cdr: ChangeDetectorRef) {}\n\n  ngOnInit(): void {\n    if (!this.control) {\n      this.control = new FormControl();\n    }\n\n    if (this.isRequired) {\n      this.control.addValidators(Validators.required);\n    }\n\n    // else {\n    //   this.control.clearValidators();\n    // }\n\n    this.control.updateValueAndValidity();\n\n    this.control.valueChanges.subscribe(() => {\n      this.updateErrorState();\n      this.cdr.markForCheck();\n    });\n  }\n\n  private updateErrorState(): void {\n    this.showError =\n      this.isRequired &&\n      this.control.invalid &&\n      (this.control.touched || this.control.dirty);\n  }\n\n  onFocus() {\n    this.isFocus.emit(true);\n  }\n\n  onBlur() {\n    this.isFocus.emit(false);\n  }\n\n  get inputClasses(): { [key: string]: boolean } {\n    return {\n      ['bmb_field-input-' + this.appearance]: true,\n      'bmb_field-input-error': this.shouldShowError,\n      disabled: this.disabled,\n    };\n  }\n\n  get shouldShowError(): boolean {\n    return this.showError;\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@use \"../../../assets/styles/base/fonts\" as fonts;\n@use \"../../../assets/styles/base/mixins\" as mixins;\n@use \"../../../assets/styles/base/rem\" as rem;\n\n@mixin input($type: main) {\n  @include mixins.resetElement();\n  @include fonts.font(4, regular);\n  appearance: none;\n  height: rem.rem_calc(48);\n  width: 100%;\n\n  &:focus,\n  &:focus:hover,\n  &:disabled:focus {\n    @include mixins.focusElement();\n  }\n\n  @if $type == simple {\n    background-color: transparent;\n    border: 0;\n    border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-950));\n    color: RGBA(var(--color-charade-700));\n\n    &:focus {\n      border-bottom: rem.rem_calc(2) solid RGBA(var(--color-blue-primary));\n      border-color: RGBA(var(--color-blue-primary));\n      color: RGBA(var(--color-mariner-700));\n      outline: none;\n    }\n\n    &::placeholder {\n      color: RGBA(var(--color-charade-300));\n    }\n\n    &.bmb_field-input-error {\n      border-bottom-color: RGBA(var(--color-red-primary));\n    }\n  } @else if $type == normal {\n    background-color: RGBA(var(--color-charade-50));\n    border: rem.rem_calc(1) solid RGBA(var(--color-charade-500));\n    border-radius: rem.rem_calc(8);\n    color: RGBA(var(--color-charade-950));\n    padding: var(--bmg-spacing-s);\n\n    &:focus {\n      border: rem.rem_calc(2) solid RGBA(var(--color-mariner-700));\n      outline: none;\n    }\n\n    &::placeholder {\n      color: RGBA(var(--color-charade-300));\n    }\n\n    &.bmb_field-input-error {\n      border-color: RGBA(var(--color-red-primary)) !important;\n    }\n  }\n}\n\n.bmb_field {\n  &-label {\n    color: RGBA(var(--color-charade-950));\n    display: flex;\n    margin: rem.rem_calc(2 2 4 8);\n    @include fonts.font(3, regular);\n\n    &-required {\n      color: RGBA(var(--color-red-light));\n    }\n  }\n\n  &-wrapper {\n    align-items: center;\n    display: flex;\n    position: relative;\n    width: 100%;\n  }\n\n  &-error {\n    @include fonts.font(3, regular);\n    color: RGBA(var(--color-red-light));\n    margin: rem.rem_calc(8);\n  }\n\n  &-icon {\n    color: RGBA(var(--color-charade-500));\n    font-size: rem.rem_calc(24);\n    left: rem.rem_calc(8);\n    position: absolute;\n    top: 50%;\n    transform: translateY(-50%);\n\n    ~ .bmb_field-input {\n      padding-left: rem.rem_calc(35);\n    }\n  }\n\n  &-helper {\n    @include fonts.font(3, regular);\n    color: RGBA(var(--color-charade-950));\n    margin: rem.rem_calc(8);\n  }\n\n  &-input {\n    margin: 0;\n\n    &-normal {\n      @include input(normal);\n    }\n\n    &-simple {\n      @include input(simple);\n    }\n\n    &-main {\n      @include input(main);\n    }\n\n    &.disabled {\n      pointer-events: none;\n      opacity: 0.8;\n    }\n  }\n}\n\n[data-theme=\"dark\"],\n.storybook-dark-theme {\n  .bmb_field {\n    &-label {\n      color: RGBA(var(--color-charade-50));\n    }\n\n    &-input-normal {\n      background-color: RGBA(var(--color-charade-950));\n      color: RGBA(var(--color-charade-200));\n\n      &:hover {\n        border-color: RGBA(var(--color-charade-500));\n      }\n\n      &:focus {\n        border-color: RGBA(var(--color-charade-50));\n        color: RGBA(var(--color-charade-50));\n      }\n    }\n\n    &-icon {\n      color: RGBA(var(--color-charade-50));\n    }\n\n    &-helper {\n      color: RGBA(var(--color-charade-300));\n    }\n\n    &-input-simple {\n      border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-700));\n      color: RGBA(var(--color-charade-200));\n\n      &:hover {\n        border-color: RGBA(var(--color-charade-700));\n      }\n\n      &:focus {\n        border-bottom: rem.rem_calc(2) solid RGBA(var(--color-charade-50));\n        color: RGBA(var(--color-charade-50));\n      }\n    }\n  }\n}\n",
+                    "data": "@use \"../../../assets/styles/base/fonts\" as fonts;\n@use \"../../../assets/styles/base/mixins\" as mixins;\n@use \"../../../assets/styles/base/rem\" as rem;\n\n@mixin input($type: main) {\n  @include mixins.resetElement();\n  @include fonts.font(4, regular);\n  appearance: none;\n  height: rem.rem_calc(48);\n  width: 100%;\n\n  &:focus,\n  &:focus:hover,\n  &:disabled:focus {\n    @include mixins.focusElement();\n  }\n\n  @if $type == simple {\n    background-color: transparent;\n    border: 0;\n    border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-950));\n    color: RGBA(var(--color-charade-700));\n\n    &:focus {\n      border-bottom: rem.rem_calc(2) solid RGBA(var(--color-blue-primary));\n      border-color: RGBA(var(--color-blue-primary));\n      color: RGBA(var(--color-mariner-700));\n      outline: none;\n    }\n\n    &::placeholder {\n      color: RGBA(var(--color-charade-300));\n    }\n\n    &.bmb_field-input-error {\n      border-bottom-color: RGBA(var(--color-red-primary));\n    }\n  } @else if $type == normal {\n    background-color: RGBA(var(--color-charade-50));\n    border: rem.rem_calc(1) solid RGBA(var(--color-charade-500));\n    border-radius: rem.rem_calc(8);\n    color: RGBA(var(--color-charade-950));\n    padding: var(--bmb-spacing-s);\n\n    &:focus {\n      border: rem.rem_calc(2) solid RGBA(var(--color-mariner-700));\n      outline: none;\n    }\n\n    &::placeholder {\n      color: RGBA(var(--color-charade-300));\n    }\n\n    &.bmb_field-input-error {\n      border-color: RGBA(var(--color-red-primary)) !important;\n    }\n  }\n}\n\n.bmb_field {\n  &-label {\n    color: RGBA(var(--color-charade-950));\n    display: flex;\n    margin: rem.rem_calc(2 2 4 8);\n    @include fonts.font(3, regular);\n\n    &-required {\n      color: RGBA(var(--color-red-light));\n    }\n  }\n\n  &-wrapper {\n    align-items: center;\n    display: flex;\n    position: relative;\n    width: 100%;\n  }\n\n  &-error {\n    @include fonts.font(3, regular);\n    color: RGBA(var(--color-red-light));\n    margin: rem.rem_calc(8);\n  }\n\n  &-icon {\n    color: RGBA(var(--color-charade-500));\n    font-size: rem.rem_calc(24);\n    left: rem.rem_calc(8);\n    position: absolute;\n    top: 50%;\n    transform: translateY(-50%);\n\n    ~ .bmb_field-input {\n      padding-left: rem.rem_calc(35);\n    }\n  }\n\n  &-helper {\n    @include fonts.font(3, regular);\n    color: RGBA(var(--color-charade-950));\n    margin: rem.rem_calc(8);\n  }\n\n  &-input {\n    margin: 0;\n\n    &-normal {\n      @include input(normal);\n    }\n\n    &-simple {\n      @include input(simple);\n    }\n\n    &-main {\n      @include input(main);\n    }\n\n    &.disabled {\n      pointer-events: none;\n      opacity: 0.8;\n    }\n  }\n}\n\n[data-theme=\"dark\"],\n.storybook-dark-theme {\n  .bmb_field {\n    &-label {\n      color: RGBA(var(--color-charade-50));\n    }\n\n    &-input-normal {\n      background-color: RGBA(var(--color-charade-950));\n      color: RGBA(var(--color-charade-200));\n\n      &:hover {\n        border-color: RGBA(var(--color-charade-500));\n      }\n\n      &:focus {\n        border-color: RGBA(var(--color-charade-50));\n        color: RGBA(var(--color-charade-50));\n      }\n    }\n\n    &-icon {\n      color: RGBA(var(--color-charade-50));\n    }\n\n    &-helper {\n      color: RGBA(var(--color-charade-300));\n    }\n\n    &-input-simple {\n      border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-700));\n      color: RGBA(var(--color-charade-200));\n\n      &:hover {\n        border-color: RGBA(var(--color-charade-700));\n      }\n\n      &:focus {\n        border-bottom: rem.rem_calc(2) solid RGBA(var(--color-charade-50));\n        color: RGBA(var(--color-charade-50));\n      }\n    }\n  }\n}\n",
                     "styleUrl": "./bmb-input.component.scss"
                 }
             ],
@@ -7325,7 +8508,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 32,
+                "line": 37,
                 "jsdoctags": [
                     {
                         "name": "cdr",
@@ -7349,7 +8532,7 @@
                         "name": "inputClasses",
                         "type": "literal type",
                         "returnType": "literal type",
-                        "line": 61
+                        "line": 77
                     }
                 },
                 "shouldShowError": {
@@ -7358,11 +8541,11 @@
                         "name": "shouldShowError",
                         "type": "boolean",
                         "returnType": "boolean",
-                        "line": 69
+                        "line": 85
                     }
                 }
             },
-            "templateData": "<div class=\"bmb_field\" [ngClass]=\"{ disabled: disabled }\">\n  <label for=\"\" class=\"bmb_field-label\" *ngIf=\"label\">\n    {{ label }}\n    <small *ngIf=\"isRequired\" class=\"bmb_field-label-required\">*</small>\n  </label>\n  <div class=\"bmb_field-wrapper\">\n    <bmb-icon\n      *ngIf=\"icon\"\n      [icon]=\"icon\"\n      class=\"bmb_field-icon\"\n      [ngClass]=\"'bmb_field-icon-' + appearance\"\n    ></bmb-icon>\n    <input\n      type=\"text\"\n      class=\"bmb_field-input\"\n      [ngClass]=\"inputClasses\"\n      [required]=\"isRequired\"\n      [disabled]=\"disabled\"\n      [placeholder]=\"placeholder ? placeholder : ''\"\n      [formControl]=\"control\"\n    />\n  </div>\n  <p class=\"bmb_field-helper\" *ngIf=\"helperMessage && !shouldShowError\">\n    {{ helperMessage }}\n  </p>\n  <p class=\"bmb_field-error\" *ngIf=\"shouldShowError\">\n    {{ errorMessage }}\n  </p>\n</div>\n"
+            "templateData": "<div class=\"bmb_field\" [ngClass]=\"{ disabled: disabled }\">\n  <label [for]=\"name\" class=\"bmb_field-label\" *ngIf=\"label\">\n    {{ label }}\n    <small *ngIf=\"isRequired\" class=\"bmb_field-label-required\">*</small>\n  </label>\n  <div class=\"bmb_field-wrapper\">\n    <bmb-icon\n      *ngIf=\"icon\"\n      [icon]=\"icon\"\n      class=\"bmb_field-icon\"\n      [ngClass]=\"'bmb_field-icon-' + appearance\"\n    ></bmb-icon>\n    <input\n      type=\"text\"\n      class=\"bmb_field-input\"\n      [ngClass]=\"inputClasses\"\n      [required]=\"isRequired\"\n      [disabled]=\"disabled\"\n      [placeholder]=\"placeholder ? placeholder : ''\"\n      [formControl]=\"control\"\n      (focus)=\"onFocus()\"\n      (blur)=\"onBlur()\"\n      [name]=\"name\"\n      [id]=\"name\"\n    />\n  </div>\n  <p class=\"bmb_field-helper\" *ngIf=\"helperMessage && !shouldShowError\">\n    {{ helperMessage }}\n  </p>\n  <p class=\"bmb_field-error\" *ngIf=\"errorMessage && shouldShowError\">\n    {{ errorMessage }}\n  </p>\n</div>\n"
         },
         {
             "name": "BmbInputPhoneNumberComponent",
@@ -13880,6 +15063,16 @@
     "miscellaneous": {
         "variables": [
             {
+                "name": "calculateSize",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-card/bmb-card.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "(pixels: string[]): string => {\n  return pixels.map((size) => `var(--bmb-radius-${size})`).join(' ');\n}"
+            },
+            {
                 "name": "customizable",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -13963,16 +15156,6 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ds-ng/src/lib/directives/bmb-button-group/bmb-button-group.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "customizable()"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -13998,16 +15181,6 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{}"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/ds-ng/src/lib/components/bmb-card/bmb-legend.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  render: (args) => ({\n    props: args,\n    template: `\n      <bmb-card [borderRadius]=\"borderRadius\" [padding]=\"padding\" [margin]=\"margin\">\n        <ng-template #header>Optional header</ng-template>\n        <div>Content</div>\n        <ng-template #footer>Optional footer</ng-template>\n      </bmb-card>\n    `,\n  }),\n}"
             },
             {
                 "name": "Default",
@@ -14044,6 +15217,16 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "projects/ds-ng/src/lib/components/bmb-container-button/bmb-container-button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-datepicker/bmb-datepicker.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
@@ -14420,6 +15603,16 @@
                 "defaultValue": "{}"
             },
             {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/directives/bmb-button-group/bmb-button-group.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "customizable()"
+            },
+            {
                 "name": "eventsInDate",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -14478,6 +15671,46 @@
                 "deprecationMessage": "",
                 "type": "",
                 "defaultValue": "(date: DateTime): DateTime[] => {\n  const currentWeek = DateTime.fromObject({\n    weekYear: date.year,\n    weekNumber: date.weekNumber,\n  });\n  const firstWeekDay = currentWeek.startOf('week');\n\n  let weekDays = [];\n\n  for (let day = -1; day <= 5; day++) {\n    weekDays.push(firstWeekDay.plus({ days: day }));\n  }\n\n  return weekDays;\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-card/bmb-card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<BmbCardComponent>",
+                "defaultValue": "{\n  title: 'Micro Componentes/Card',\n  component: BmbCardComponent,\n  subcomponents: { BmbCardFooterComponent, BmbCardHeaderComponent },\n  decorators: [\n    moduleMetadata({\n      declarations: [],\n      imports: [\n        CommonModule,\n        BmbCardComponent,\n        BmbCardFooterComponent,\n        BmbCardHeaderComponent,\n      ],\n    }),\n  ],\n  parameters: {\n    docs: {\n      description: {\n        component: `\nBelow is an example of how you can use this component in TypeScript:\n\n\\`\\`\\`typescript\nimport { BmbCardComponent, BmbCardFooterComponent, BmbCardHeaderComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';\n@Component({\n  selector: 'component',\n  standalone: true,\n  imports: [ BmbCardComponent, BmbCardFooterComponent, BmbCardHeaderComponent ],\n  templateUrl: './component.html',\n  styleUrl: './component.scss',\n})\n\\`\\`\\`\n\nBelow is an example of how you can use this component in HTML:\n        `,\n      },\n    },\n  },\n  argTypes: {\n    borderRadius: {\n      name: 'Border radius',\n      control: {\n        type: 'select',\n      },\n      options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'm' },\n      },\n      description: 'Determines the corner radius size',\n    },\n    margin: {\n      name: 'Margin',\n      control: {\n        type: 'select',\n      },\n      options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'm' },\n      },\n      description: 'Set the margin size',\n    },\n    type: {\n      name: 'Type',\n      control: {\n        type: 'select',\n      },\n      options: [\n        'primary',\n        'secondary',\n        'succes',\n        'info',\n        'warning',\n        'error',\n        'normal',\n      ],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'normal' },\n      },\n      description: 'Set the color schema',\n    },\n  },\n  args: {\n    borderRadius: 'm',\n    margin: 'm',\n    type: 'normal',\n  },\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<BmbLayoutDirective>",
+                "defaultValue": "{\n  title: 'Micro Componentes/Layout',\n  component: BmbLayoutDirective,\n  subcomponents: { BmbLayoutItemDirective },\n  decorators: [\n    moduleMetadata({\n      declarations: [],\n      imports: [\n        CommonModule,\n        BmbLayoutDirective,\n        BmbLayoutItemDirective,\n        BmbCardComponent,\n        BmbCardContentComponent,\n      ],\n    }),\n  ],\n  parameters: {\n    docs: {\n      description: {\n        component: `\nBelow is an example of how you can use this component in TypeScript:\n\n\\`\\`\\`typescript\nimport { BmbLayoutDirective, BmbLayoutItemDirective } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';\n@Component({\n  selector: 'component',\n  standalone: true,\n  imports: [ BmbLayoutDirective, BmbLayoutItemDirective ],\n  templateUrl: './component.html',\n  styleUrl: './component.scss',\n})\n\\`\\`\\`\n\nBelow is an example of how you can use this component in HTML:\n        `,\n      },\n    },\n  },\n  argTypes: {\n    // @Input() gapSise: SizeNames = 'm';\n    // @Input() margin: SizeNames = 'm';\n    // @Input() dinamycCols: boolean = false;\n\n    gapSise: {\n      name: 'Gap size',\n      control: {\n        type: 'select',\n      },\n      options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'm' },\n      },\n      description: 'Determines the size of the space between elements.',\n    },\n    margin: {\n      name: 'Margin',\n      control: {\n        type: 'select',\n      },\n      options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'm' },\n      },\n      description: 'Set the margin size',\n    },\n    dinamycCols: {\n      name: 'Enable dinamyc cols',\n      control: { type: 'boolean' },\n      description: 'This property enable the dinamic size for bmbLayoutItem',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 'false' },\n        type: { summary: 'boolean' },\n      },\n    },\n  },\n  args: {\n    gapSise: 'm',\n    margin: 'm',\n    dinamycCols: false,\n  },\n}"
+            },
+            {
+                "name": "OneItem",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-card/bmb-card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {},\n  render: (args) => ({\n    props: args,\n    template: `\n      <bmb-card [borderRadius]=\"borderRadius\" [margin]=\"margin\" [type]=\"type\">\n        <bmb-card-header padding=\"s\">\n          <h3>Header</h3>\n        </bmb-card-header>\n        <bmb-card-content padding=\"none\">\n          <figure [ngStyle]=\"{margin: 0}\">\n            <img\n              width=\"100%\"\n              alt=\"gatito\"\n              src=\"https://img.freepik.com/fotos-premium/dia-internacional-gato-8-agosto-gatos-lindos-gatito-pequeno-hermosos-pequenos-animales-compania-verdadero-amigo-bonitos-divertidos-tiernos-esponjosos-juguetones-shorties-ia-generativa_887181-4265.jpg?w=2000\"\n            />\n          </figure>\n          <p [ngStyle]=\"{padding: '1rem'}\">Los gatos son criaturas llenas de misterio. Su elegancia al moverse, sus ojos penetrantes y su habilidad para desaparecer en las sombras han inspirado leyendas y supersticiones. Pero más allá de su aura enigmática, los gatos también son compañeros leales y cariñosos.</p>\n        </bmb-card-content>\n        <bmb-card-footer padding=\"xl\">\n          <h3>Footer</h3>\n        </bmb-card-footer>\n      </bmb-card>\n    `,\n  }),\n}"
+            },
+            {
+                "name": "OneItem",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {},\n  render: (args) => ({\n    props: args,\n    template: `\n      <section bmbLayout [gapSise]=\"gapSise\" [margin]=\"margin\">\n        <bmb-card bmbLayoutItem margin=\"none\" [colSm]=\"2\" [colLg]=\"4\">\n          <bmb-card-content padding=\"none\">\n            <p [ngStyle]=\"{padding: '1rem'}\">Element</p>\n          </bmb-card-content>\n        </bmb-card>\n        <bmb-card bmbLayoutItem margin=\"none\" [colSm]=\"2\" [colLg]=\"4\">\n          <bmb-card-content padding=\"none\">\n            <p [ngStyle]=\"{padding: '1rem'}\">Element</p>\n          </bmb-card-content>\n        </bmb-card>\n        <bmb-card bmbLayoutItem margin=\"none\" [isDinamycItem]=\"true\" [colGrow]=\"1\">\n          <bmb-card-content padding=\"none\">\n            <p [ngStyle]=\"{padding: '1rem'}\">Element</p>\n          </bmb-card-content>\n        </bmb-card>\n        <bmb-card bmbLayoutItem margin=\"none\" [isDinamycItem]=\"true\">\n          <bmb-card-content padding=\"none\">\n            <p [ngStyle]=\"{padding: '1rem'}\">Element</p>\n          </bmb-card-content>\n        </bmb-card>\n      </section>\n    `,\n  }),\n}"
             },
             {
                 "name": "orderDayNames",
@@ -14701,7 +15934,7 @@
                         "type": "IFixDecimals",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "a37878b8-f8bb-4589-9d72-dff89bf1f09a",
+                        "destrucuredGroupId": "9a7cb75b-3085-4f6c-8cd3-f0f9de643f3f",
                         "destructuredParameter": true
                     },
                     {
@@ -14710,7 +15943,7 @@
                         "deprecated": false,
                         "deprecationMessage": "",
                         "defaultValue": "2",
-                        "destrucuredGroupId": "a37878b8-f8bb-4589-9d72-dff89bf1f09a",
+                        "destrucuredGroupId": "9a7cb75b-3085-4f6c-8cd3-f0f9de643f3f",
                         "destructuredParameter": true
                     }
                 ],
@@ -14720,7 +15953,7 @@
                         "type": "IFixDecimals",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "a37878b8-f8bb-4589-9d72-dff89bf1f09a",
+                        "destrucuredGroupId": "9a7cb75b-3085-4f6c-8cd3-f0f9de643f3f",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -14732,7 +15965,7 @@
                         "deprecated": false,
                         "deprecationMessage": "",
                         "defaultValue": "2",
-                        "destrucuredGroupId": "a37878b8-f8bb-4589-9d72-dff89bf1f09a",
+                        "destrucuredGroupId": "9a7cb75b-3085-4f6c-8cd3-f0f9de643f3f",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -14919,7 +16152,7 @@
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
                 "rawtype": "StoryObj<BmbCardComponent>",
-                "file": "projects/ds-ng/src/lib/components/bmb-card/bmb-legend.stories.ts",
+                "file": "projects/ds-ng/src/lib/components/bmb-card/bmb-card.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -14964,6 +16197,17 @@
                 "subtype": "typealias",
                 "rawtype": "StoryObj<BmbContainerButtonComponent>",
                 "file": "projects/ds-ng/src/lib/components/bmb-container-button/bmb-container-button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<BmbDatepickerComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-datepicker/bmb-datepicker.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -15342,10 +16586,33 @@
                 "deprecationMessage": "",
                 "description": "",
                 "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<BmbLayoutDirective>",
+                "file": "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
             }
         ],
         "enumerations": [],
         "groupedVariables": {
+            "projects/ds-ng/src/lib/components/bmb-card/bmb-card.component.ts": [
+                {
+                    "name": "calculateSize",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-card/bmb-card.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "(pixels: string[]): string => {\n  return pixels.map((size) => `var(--bmb-radius-${size})`).join(' ');\n}"
+                }
+            ],
             "projects/ds-ng/src/lib/directives/button.stories.ts": [
                 {
                     "name": "customizable",
@@ -15542,18 +16809,6 @@
                     "defaultValue": "{}"
                 }
             ],
-            "projects/ds-ng/src/lib/components/bmb-card/bmb-legend.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ds-ng/src/lib/components/bmb-card/bmb-legend.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  render: (args) => ({\n    props: args,\n    template: `\n      <bmb-card [borderRadius]=\"borderRadius\" [padding]=\"padding\" [margin]=\"margin\">\n        <ng-template #header>Optional header</ng-template>\n        <div>Content</div>\n        <ng-template #footer>Optional footer</ng-template>\n      </bmb-card>\n    `,\n  }),\n}"
-                }
-            ],
             "projects/ds-ng/src/lib/components/bmb-checkbox/bmb-checkbox.stories.ts": [
                 {
                     "name": "Default",
@@ -15596,6 +16851,18 @@
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/ds-ng/src/lib/components/bmb-container-button/bmb-container-button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-datepicker/bmb-datepicker.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-datepicker/bmb-datepicker.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
@@ -16068,6 +17335,50 @@
                     "defaultValue": "{\n  normal: 'normal',\n  extended: 'extended',\n} as const"
                 }
             ],
+            "projects/ds-ng/src/lib/components/bmb-card/bmb-card.stories.ts": [
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-card/bmb-card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<BmbCardComponent>",
+                    "defaultValue": "{\n  title: 'Micro Componentes/Card',\n  component: BmbCardComponent,\n  subcomponents: { BmbCardFooterComponent, BmbCardHeaderComponent },\n  decorators: [\n    moduleMetadata({\n      declarations: [],\n      imports: [\n        CommonModule,\n        BmbCardComponent,\n        BmbCardFooterComponent,\n        BmbCardHeaderComponent,\n      ],\n    }),\n  ],\n  parameters: {\n    docs: {\n      description: {\n        component: `\nBelow is an example of how you can use this component in TypeScript:\n\n\\`\\`\\`typescript\nimport { BmbCardComponent, BmbCardFooterComponent, BmbCardHeaderComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';\n@Component({\n  selector: 'component',\n  standalone: true,\n  imports: [ BmbCardComponent, BmbCardFooterComponent, BmbCardHeaderComponent ],\n  templateUrl: './component.html',\n  styleUrl: './component.scss',\n})\n\\`\\`\\`\n\nBelow is an example of how you can use this component in HTML:\n        `,\n      },\n    },\n  },\n  argTypes: {\n    borderRadius: {\n      name: 'Border radius',\n      control: {\n        type: 'select',\n      },\n      options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'm' },\n      },\n      description: 'Determines the corner radius size',\n    },\n    margin: {\n      name: 'Margin',\n      control: {\n        type: 'select',\n      },\n      options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'm' },\n      },\n      description: 'Set the margin size',\n    },\n    type: {\n      name: 'Type',\n      control: {\n        type: 'select',\n      },\n      options: [\n        'primary',\n        'secondary',\n        'succes',\n        'info',\n        'warning',\n        'error',\n        'normal',\n      ],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'normal' },\n      },\n      description: 'Set the color schema',\n    },\n  },\n  args: {\n    borderRadius: 'm',\n    margin: 'm',\n    type: 'normal',\n  },\n}"
+                },
+                {
+                    "name": "OneItem",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-card/bmb-card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {},\n  render: (args) => ({\n    props: args,\n    template: `\n      <bmb-card [borderRadius]=\"borderRadius\" [margin]=\"margin\" [type]=\"type\">\n        <bmb-card-header padding=\"s\">\n          <h3>Header</h3>\n        </bmb-card-header>\n        <bmb-card-content padding=\"none\">\n          <figure [ngStyle]=\"{margin: 0}\">\n            <img\n              width=\"100%\"\n              alt=\"gatito\"\n              src=\"https://img.freepik.com/fotos-premium/dia-internacional-gato-8-agosto-gatos-lindos-gatito-pequeno-hermosos-pequenos-animales-compania-verdadero-amigo-bonitos-divertidos-tiernos-esponjosos-juguetones-shorties-ia-generativa_887181-4265.jpg?w=2000\"\n            />\n          </figure>\n          <p [ngStyle]=\"{padding: '1rem'}\">Los gatos son criaturas llenas de misterio. Su elegancia al moverse, sus ojos penetrantes y su habilidad para desaparecer en las sombras han inspirado leyendas y supersticiones. Pero más allá de su aura enigmática, los gatos también son compañeros leales y cariñosos.</p>\n        </bmb-card-content>\n        <bmb-card-footer padding=\"xl\">\n          <h3>Footer</h3>\n        </bmb-card-footer>\n      </bmb-card>\n    `,\n  }),\n}"
+                }
+            ],
+            "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout.stories.ts": [
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<BmbLayoutDirective>",
+                    "defaultValue": "{\n  title: 'Micro Componentes/Layout',\n  component: BmbLayoutDirective,\n  subcomponents: { BmbLayoutItemDirective },\n  decorators: [\n    moduleMetadata({\n      declarations: [],\n      imports: [\n        CommonModule,\n        BmbLayoutDirective,\n        BmbLayoutItemDirective,\n        BmbCardComponent,\n        BmbCardContentComponent,\n      ],\n    }),\n  ],\n  parameters: {\n    docs: {\n      description: {\n        component: `\nBelow is an example of how you can use this component in TypeScript:\n\n\\`\\`\\`typescript\nimport { BmbLayoutDirective, BmbLayoutItemDirective } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';\n@Component({\n  selector: 'component',\n  standalone: true,\n  imports: [ BmbLayoutDirective, BmbLayoutItemDirective ],\n  templateUrl: './component.html',\n  styleUrl: './component.scss',\n})\n\\`\\`\\`\n\nBelow is an example of how you can use this component in HTML:\n        `,\n      },\n    },\n  },\n  argTypes: {\n    // @Input() gapSise: SizeNames = 'm';\n    // @Input() margin: SizeNames = 'm';\n    // @Input() dinamycCols: boolean = false;\n\n    gapSise: {\n      name: 'Gap size',\n      control: {\n        type: 'select',\n      },\n      options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'm' },\n      },\n      description: 'Determines the size of the space between elements.',\n    },\n    margin: {\n      name: 'Margin',\n      control: {\n        type: 'select',\n      },\n      options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'm' },\n      },\n      description: 'Set the margin size',\n    },\n    dinamycCols: {\n      name: 'Enable dinamyc cols',\n      control: { type: 'boolean' },\n      description: 'This property enable the dinamic size for bmbLayoutItem',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 'false' },\n        type: { summary: 'boolean' },\n      },\n    },\n  },\n  args: {\n    gapSise: 'm',\n    margin: 'm',\n    dinamycCols: false,\n  },\n}"
+                },
+                {
+                    "name": "OneItem",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {},\n  render: (args) => ({\n    props: args,\n    template: `\n      <section bmbLayout [gapSise]=\"gapSise\" [margin]=\"margin\">\n        <bmb-card bmbLayoutItem margin=\"none\" [colSm]=\"2\" [colLg]=\"4\">\n          <bmb-card-content padding=\"none\">\n            <p [ngStyle]=\"{padding: '1rem'}\">Element</p>\n          </bmb-card-content>\n        </bmb-card>\n        <bmb-card bmbLayoutItem margin=\"none\" [colSm]=\"2\" [colLg]=\"4\">\n          <bmb-card-content padding=\"none\">\n            <p [ngStyle]=\"{padding: '1rem'}\">Element</p>\n          </bmb-card-content>\n        </bmb-card>\n        <bmb-card bmbLayoutItem margin=\"none\" [isDinamycItem]=\"true\" [colGrow]=\"1\">\n          <bmb-card-content padding=\"none\">\n            <p [ngStyle]=\"{padding: '1rem'}\">Element</p>\n          </bmb-card-content>\n        </bmb-card>\n        <bmb-card bmbLayoutItem margin=\"none\" [isDinamycItem]=\"true\">\n          <bmb-card-content padding=\"none\">\n            <p [ngStyle]=\"{padding: '1rem'}\">Element</p>\n          </bmb-card-content>\n        </bmb-card>\n      </section>\n    `,\n  }),\n}"
+                }
+            ],
             "projects/ds-ng/src/lib/utils/pixelToRem.ts": [
                 {
                     "name": "pixelToRem",
@@ -16314,7 +17625,7 @@
                             "type": "IFixDecimals",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "a37878b8-f8bb-4589-9d72-dff89bf1f09a",
+                            "destrucuredGroupId": "9a7cb75b-3085-4f6c-8cd3-f0f9de643f3f",
                             "destructuredParameter": true
                         },
                         {
@@ -16323,7 +17634,7 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "defaultValue": "2",
-                            "destrucuredGroupId": "a37878b8-f8bb-4589-9d72-dff89bf1f09a",
+                            "destrucuredGroupId": "9a7cb75b-3085-4f6c-8cd3-f0f9de643f3f",
                             "destructuredParameter": true
                         }
                     ],
@@ -16333,7 +17644,7 @@
                             "type": "IFixDecimals",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "a37878b8-f8bb-4589-9d72-dff89bf1f09a",
+                            "destrucuredGroupId": "9a7cb75b-3085-4f6c-8cd3-f0f9de643f3f",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
@@ -16345,7 +17656,7 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "defaultValue": "2",
-                            "destrucuredGroupId": "a37878b8-f8bb-4589-9d72-dff89bf1f09a",
+                            "destrucuredGroupId": "9a7cb75b-3085-4f6c-8cd3-f0f9de643f3f",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
@@ -16518,13 +17829,13 @@
                     "kind": 183
                 }
             ],
-            "projects/ds-ng/src/lib/components/bmb-card/bmb-legend.stories.ts": [
+            "projects/ds-ng/src/lib/components/bmb-card/bmb-card.stories.ts": [
                 {
                     "name": "Story",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
                     "rawtype": "StoryObj<BmbCardComponent>",
-                    "file": "projects/ds-ng/src/lib/components/bmb-card/bmb-legend.stories.ts",
+                    "file": "projects/ds-ng/src/lib/components/bmb-card/bmb-card.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -16577,6 +17888,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<BmbContainerButtonComponent>",
                     "file": "projects/ds-ng/src/lib/components/bmb-container-button/bmb-container-button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-datepicker/bmb-datepicker.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbDatepickerComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-datepicker/bmb-datepicker.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -17024,6 +18348,19 @@
                     "description": "",
                     "kind": 183
                 }
+            ],
+            "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbLayoutDirective>",
+                    "file": "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
             ]
         }
     },
@@ -17283,15 +18620,62 @@
                 "linktype": "component",
                 "name": "BmbCardComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/12",
+                "coverageCount": "0/6",
                 "status": "low"
             },
             {
-                "filePath": "projects/ds-ng/src/lib/components/bmb-card/bmb-legend.stories.ts",
+                "filePath": "projects/ds-ng/src/lib/components/bmb-card/bmb-card.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbCardContentComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-card/bmb-card.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbCardFooterComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-card/bmb-card.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbCardHeaderComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-card/bmb-card.component.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "Default",
+                "name": "calculateSize",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-card/bmb-card.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-card/bmb-card.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "OneItem",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -17364,6 +18748,34 @@
             },
             {
                 "filePath": "projects/ds-ng/src/lib/components/bmb-container/bmb-container.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-datepicker/bmb-datepicker-modal/bmb-datepicker-modal.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbDatepickerModalComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/26",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-datepicker/bmb-datepicker.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbDatepickerComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/30",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-datepicker/bmb-datepicker.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -17634,7 +19046,7 @@
                 "linktype": "component",
                 "name": "BmbInputComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/14",
+                "coverageCount": "0/18",
                 "status": "low"
             },
             {
@@ -18325,12 +19737,21 @@
                 "status": "low"
             },
             {
+                "filePath": "projects/ds-ng/src/lib/directives/bmb-input-states/bmb-input-states.directive.ts",
+                "type": "directive",
+                "linktype": "directive",
+                "name": "BmbInputStatesDirective",
+                "coveragePercent": 0,
+                "coverageCount": "0/8",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout-item.directive.ts",
                 "type": "directive",
                 "linktype": "directive",
                 "name": "BmbLayoutItemDirective",
                 "coveragePercent": 0,
-                "coverageCount": "0/12",
+                "coverageCount": "0/14",
                 "status": "low"
             },
             {
@@ -18352,12 +19773,32 @@
                 "status": "low"
             },
             {
+                "filePath": "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "OneItem",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/ds-ng/src/lib/directives/button.directive.ts",
                 "type": "directive",
                 "linktype": "directive",
                 "name": "BmbButtonDirective",
                 "coveragePercent": 0,
-                "coverageCount": "0/16",
+                "coverageCount": "0/15",
                 "status": "low"
             },
             {
