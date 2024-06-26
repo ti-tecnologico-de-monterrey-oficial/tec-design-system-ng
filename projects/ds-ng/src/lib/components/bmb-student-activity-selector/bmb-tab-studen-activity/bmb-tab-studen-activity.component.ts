@@ -1,5 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { 
+  Component, 
+  Input,
+  ViewEncapsulation,
+  EventEmitter,
+  ChangeDetectionStrategy
+ } from '@angular/core';
 
 @Component({
   selector: 'bmb-tab-studen-activity',
@@ -7,8 +13,10 @@ import { Component, Input } from '@angular/core';
   imports: [
     CommonModule
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
   templateUrl: './bmb-tab-studen-activity.component.html',
-  styleUrl: './bmb-tab-studen-activity.component.css'
+  styleUrl: './bmb-tab-studen-activity.component.scss'
 })
 export class BmbTabStudenActivityComponent {
   @Input() tabTitle: string = '';
