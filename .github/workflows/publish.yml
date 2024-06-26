@@ -19,7 +19,7 @@ jobs:
       - run: npm ci
       - run: npm run build:lib
       - run: cd dist/ds-ng/
-      - run: npm adduser --registry=https://registry.npmjs.org/ --scope= @ti-tecnologico-de-monterrey-oficial --always-auth
+      - run: npm adduser --registry=https://registry.npmjs.org/ --scope=@ti-tecnologico-de-monterrey-oficial --always-auth
       - run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
