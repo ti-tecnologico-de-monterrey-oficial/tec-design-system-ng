@@ -55,6 +55,8 @@ export interface Target {
 }
 
 import names from '../names.json';
+import { BmbStudentActivitySelectorComponent } from '../../../projects/ds-ng/src/lib/components/bmb-student-activity-selector/bmb-student-activity-selector.component';
+import { BmbTabStudenActivityComponent } from '../../../projects/ds-ng/src/lib/components/bmb-student-activity-selector/bmb-tab-studen-activity/bmb-tab-studen-activity.component';
 
 @Component({
   selector: 'bmb-my-page',
@@ -96,6 +98,8 @@ import names from '../names.json';
     BmbLayoutItemDirective,
     BmbCardComponent,
     BmbTablesComponent,
+    BmbStudentActivitySelectorComponent,
+    BmbTabStudenActivityComponent
   ],
   templateUrl: './my-page.component.html',
   styleUrl: './my-page.component.scss',
