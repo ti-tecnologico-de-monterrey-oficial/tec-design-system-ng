@@ -1,4 +1,12 @@
-import { AfterContentInit, Component, ContentChildren, QueryList } from '@angular/core';
+import { 
+   AfterContentInit,
+   ChangeDetectionStrategy, 
+   Component, 
+   ContentChildren, 
+   QueryList, 
+   ViewEncapsulation,
+   EventEmitter 
+  } from '@angular/core';
 import { BmbTabStudenActivityComponent } from './bmb-tab-studen-activity/bmb-tab-studen-activity.component';
 import { CommonModule } from '@angular/common';
 
@@ -9,8 +17,10 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     BmbTabStudenActivityComponent
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
   templateUrl: './bmb-student-activity-selector.component.html',
-  styleUrl: './bmb-student-activity-selector.component.css'
+  styleUrl: './bmb-student-activity-selector.component.scss'
 })
 export class BmbStudentActivitySelectorComponent implements AfterContentInit {
 
