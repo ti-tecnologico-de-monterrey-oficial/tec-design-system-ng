@@ -7,7 +7,7 @@ import {
    ViewEncapsulation,
    EventEmitter 
   } from '@angular/core';
-import { BmbTabStudenActivityComponent } from './bmb-tab-studen-activity/bmb-tab-studen-activity.component';
+import { BmbTabStudenActivityComponent } from './bmb-student-activity-tab/bmb-student-activity-tab.component';
 import { CommonModule } from '@angular/common';
 
 @Component({

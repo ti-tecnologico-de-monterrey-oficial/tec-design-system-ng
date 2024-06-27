@@ -8,19 +8,18 @@ import {
  } from '@angular/core';
 
 @Component({
-  selector: 'bmb-tab-studen-activity',
+  selector: 'bmb-student-activity-tab',
   standalone: true,
   imports: [
     CommonModule
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  templateUrl: './bmb-tab-studen-activity.component.html',
-  styleUrl: './bmb-tab-studen-activity.component.scss'
+  templateUrl: './bmb-student-activity-tab.component.html',
 })
 export class BmbTabStudenActivityComponent {
-  @Input() tabTitle: string = '';
-  @Input() tabSubtitle: string = '';
+  @Input() title: string = '';
+  @Input() subtitle: string = '';
   @Input() active = false;
 
 
