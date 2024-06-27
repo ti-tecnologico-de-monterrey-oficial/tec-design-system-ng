@@ -55,7 +55,7 @@ export * from './lib/components/bmb-grade-value/bmb-grade-value.component';
 export * from './lib/components/bmb-stat-counter/bmb-stat-counter.component';
 export * from './lib/components/bmb-input-phone-number/bmb-input-phone-number.component';
 export * from './lib/components/bmb-student-activity-selector/bmb-student-activity-selector.component';
-export * from './lib/components/bmb-student-activity-selector/bmb-tab-studen-activity/bmb-tab-studen-activity.component';
+export * from './lib/components/bmb-student-activity-selector/bmb-student-activity-tab/bmb-student-activity-tab.component';
 // types
 export * from './lib/types';
 // interface

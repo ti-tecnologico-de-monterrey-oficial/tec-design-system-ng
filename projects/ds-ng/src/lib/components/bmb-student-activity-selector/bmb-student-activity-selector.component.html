@@ -1,10 +1,11 @@
-<div class="bmb_student-activity-selector">
-    <ul class="bmb_student-activity-selector-tab-titles">
+<div class="bmb_student_activity">
+    <ul class="bmb_student_activity-tabs">
         <li *ngFor="let tab of tabs"
-            (click) ="selectTab(tab)" 
+            (click) ="selectTab(tab)"
+            class="bmb_student_activity-item" 
             [class.active]="tab.active">
-            <span> {{ tab.tabTitle }} </span> <br>
-            <span> {{ tab.tabSubtitle}} </span>
+            <p class="bmb_student_activity-title"> {{ tab.title }} </p>
+            <span class="bmb_student_activity-subtitle"> {{ tab.subtitle}} </span>
         </li>
     </ul>
 </div>

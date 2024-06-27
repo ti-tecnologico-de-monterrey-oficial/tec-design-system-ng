@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BmbTabStudenActivityComponent } from './bmb-tab-studen-activity.component';
+import { BmbTabStudenActivityComponent } from './bmb-student-activity-tab.component';
 
 describe('BmbTabStudenActivityComponent', () => {
   let component: BmbTabStudenActivityComponent;
