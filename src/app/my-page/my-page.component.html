@@ -228,7 +228,7 @@
   [checked]="true"
   [indeterminate]="true"
 />
-
+sdasdasdasdasdasdasdasdasd
 <bmb-tabs [tabs]="myTabs" (selected)="handleTabSelected($event)">
   <bmb-container *ngIf="activeTabId === 1" [appearance]="'primary-home'">
     <bmb-user-summary
@@ -409,3 +409,15 @@
   [link]="'https://www.youtube.com/'"
   [target]="'_blank'"
 ></bmb-user-image>
+
+<bmb-student-activity-selector>
+  <bmb-student-activity-tab title="1"
+                           subtitle="item 1">
+  </bmb-student-activity-tab>
+  <bmb-student-activity-tab title="2"
+                           subtitle="item 2">
+  </bmb-student-activity-tab>
+  <bmb-student-activity-tab title="3"
+                           subtitle="item 3">
+  </bmb-student-activity-tab>
+</bmb-student-activity-selector>
