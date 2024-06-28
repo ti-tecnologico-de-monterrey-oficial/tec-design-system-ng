@@ -62,8 +62,9 @@
         text-transform: capitalize;
         @include buttonReset();
 
-        &-full-size {
+        &-full {
           width: 100%;
+          border-radius: var(--bmb-radius-s) !important;
         }
 
         &-selected {
@@ -103,14 +104,14 @@
     }
 
     &-item {
-      flex: 0 0 calc(33.333% - (rem.rem_calc(8) / 3 * 2));
+      flex: 0 0 calc(33.333% - (rem.rem_calc(16) / 3 * 2));
       text-align: center;
       box-sizing: border-box;
       position: relative;
+      padding: 0 var(--bmb-spacing-m);
 
-
-      @include mixins.media-query(1000, "min") {
-        flex: 0 0 calc(14.285% - (rem.rem_calc(16) / 7 * 6));
+      &-month {
+        flex: 0 0 calc(50% - rem.rem_calc(8));
       }
     }
   }
@@ -122,7 +123,12 @@
     color: RGBA(var(--color-charade-200));
     background-color: RGBA(var(--color-charade-900));
     &-calendar-item-button {
-      color: RGBA(var(--color-charade-200), .5);
+      color: RGBA(var(--color-charade-200), 0.5);
+
+      &:hover,
+      &.bmb-hover {
+        color: RGBA(var(--color-charade-900));
+      }
 
       &-selected {
         background-color: RGBA(var(--color-charade-50));
