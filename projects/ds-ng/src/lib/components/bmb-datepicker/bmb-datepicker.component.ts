@@ -100,7 +100,7 @@ export class BmbDatepickerComponent implements OnInit {
     this.isWindowOpen = false;
   }
 
-  clickOutside():void {
+  clickOutside(): void {
     this.isWindowOpen = false;
   }
 }

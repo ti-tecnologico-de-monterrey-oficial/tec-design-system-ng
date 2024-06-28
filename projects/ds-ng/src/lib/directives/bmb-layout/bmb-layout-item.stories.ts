@@ -66,7 +66,21 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'select',
       },
-      options: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+      options: [
+        '0',
+        '1',
+        '2',
+        '3',
+        '4',
+        '5',
+        '6',
+        '7',
+        '8',
+        '9',
+        '10',
+        '11',
+        '12',
+      ],
       table: {
         type: { summary: 'number' },
         category: 'Properties',
@@ -82,7 +96,8 @@ Below is an example of how you can use this component in HTML:
         category: 'Properties',
         defaultValue: { summary: 'optional' },
       },
-      description: 'Sets the margin area on the left side of an column. The SM value support 3 as top and LG supports 11 as top',
+      description:
+        'Sets the margin area on the left side of an column. The SM value support 3 as top and LG supports 11 as top',
     },
     marginRight: {
       name: 'Margin right',
@@ -92,12 +107,14 @@ Below is an example of how you can use this component in HTML:
         category: 'Properties',
         defaultValue: { summary: 'optional' },
       },
-      description: 'Sets the margin area on the right side of an column. The SM value support 3 as top and LG supports 11 as top',
+      description:
+        'Sets the margin area on the right side of an column. The SM value support 3 as top and LG supports 11 as top',
     },
     isDinamycItem: {
       name: 'Is dinamyc item',
       control: { type: 'boolean' },
-      description: 'Enable dinamyc size for the column, if you enable this property the colLg and colSm will be disabled',
+      description:
+        'Enable dinamyc size for the column, if you enable this property the colLg and colSm will be disabled',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
@@ -107,13 +124,14 @@ Below is an example of how you can use this component in HTML:
     colGrow: {
       name: 'Col grow',
       control: 'number',
-      description: 'Sets how much of the flex container positive free space, if any, should be assigned to the flex item main size. (this property will only be enabled when the isDinamycItem property is enabled)',
+      description:
+        'Sets how much of the flex container positive free space, if any, should be assigned to the flex item main size. (this property will only be enabled when the isDinamycItem property is enabled)',
       table: {
         category: 'Properties',
         defaultValue: { summary: 0 },
         type: { summary: 'number' },
       },
-    }
+    },
   },
   args: {
     colSm: 0,
