@@ -4,7 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { BmbFrequentAppsSelectorComponent } from './bmb-frequent-apps-selector.component';
 
 export default {
-  title: 'Macro Components/Frequent Apps Selector',
+  title: 'Macro Componentes/Frequent Apps Selector',
   component: BmbFrequentAppsSelectorComponent,
   decorators: [
     moduleMetadata({

@@ -10,11 +10,12 @@ import {
 } from '@angular/core';
 import { BmbButtonDirective } from '../../../../directives/button.directive';
 import { CommonModule } from '@angular/common';
+import { ClickOutsideDirective } from '../../../../directives/utils/clickoutside.directive';
 
 @Component({
   selector: 'bmb-calendar-template-select',
   standalone: true,
-  imports: [CommonModule, BmbButtonDirective],
+  imports: [CommonModule, BmbButtonDirective, ClickOutsideDirective],
   templateUrl: './bmb-calendar-template-select.component.html',
   styleUrl: './bmb-calendar-template-select.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -26,30 +27,16 @@ export class BmbCalendarTemplateSelectComponent {
 
   @Output() onValueChange: EventEmitter<string> = new EventEmitter<string>();
 
-  @HostListener('document:click', ['$event'])
-  onClick(event: MouseEvent) {
-    if (this.childNodes?.contains(event.target)) {
-      this.isMenuExpanded = !this.isMenuExpanded;
-    } else {
-      this.isMenuExpanded = false;
-    }
-  }
-
-  constructor(private elementRef: ElementRef) {}
-
   isMenuExpanded = false;
   childNodes: any = null;
 
   handleClick(value: string) {
     this.onValueChange.emit(value);
-  }
-
-  ngAfterViewInit() {
-    this.childNodes = this.elementRef.nativeElement;
+    this.isMenuExpanded = false;
   }
 
   enableDropDown() {
-    this.isMenuExpanded = !this.isMenuExpanded;
+    this.isMenuExpanded = true;
   }
 
   isOptionSelected(item: string) {
@@ -57,5 +44,9 @@ export class BmbCalendarTemplateSelectComponent {
       return 'bmb-calendar-template-select-menu-selected';
 
     return '';
+  }
+
+  clickOutside():void {
+    this.isMenuExpanded = false;
   }
 }
