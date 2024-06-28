@@ -1,101 +1,37 @@
-# Design System Bamboo
+![Bamboo](https://studio-assets.supernova.io/design-systems/74407/a2f82e86-1d59-4c28-8212-6e724b560249.png)
 
-> El framework de diseño Bamboo ofrece a los desarrolladores las herramientas indispensables para potenciar la eficiencia en el desarrollo de productos, permitiéndoles crear más en menos tiempo y liberándolos de la monótona tarea de construir componentes básicos repetitivos.
+# Design System oficial del Tecnológico de Monterrey
 
-**Este sistema se desarrolló con Angular CLI version 17.0.7.**
+Descubre cómo nuestro Design System no solo da forma a la estética, sino que también impulsa la consistencia en cada rincón de nuestro diseño, proporcionando una base sólida para construir experiencias memorables y coherentes. Únete a nosotros en este viaje donde la creatividad, coherencia y elegancia se encuentran para dar vida a un mundo visualmente armonioso y funcionalmente fluido.
 
-## Requisitos básicos para instalar el paquete de Bamboo en tu ambiente local:
+---
 
-### Nodejs y npm
+## Recursos
 
-**El proyecto de Bamboo fue realizado con la versión v21.6.1 de Node y 10.3.0 de NPM.**
+Maximiza la influencia de tus proyectos al ajustarlos ágil y eficientemente a las necesidades de todas las personas.
 
-### Migración de Github packages a NPM
+Exploraremos minuciosamente cada componente, utilizando ejemplos concretos del diseño de productos para aplicación y web. El propósito es brindarte una guía visual detallada que te permita iniciar con éxito la creación de tus propios desarrollos.
 
-Para los equipos con la versión de Bamboo 0.2.1 o inferior, se debe migrar el paquete a NPM ya que el repositorio anterior no se seguirá actualizando, por lo que es necesario este proceso para seguir recibiendo todas las actualizaciones.
+| Diseñadores | Desarrolladores |
+|---|---|
+| ![Diseñadores](https://studio-assets.supernova.io/design-systems/74407/3883cf69-c8c2-4c8d-9991-f413c5589a91.png) | ![Desarrolladores](https://studio-assets.supernova.io/design-systems/74407/292a0cb0-3f8c-4e07-82c0-95acbb6919fb.png) |
+| Encuentra todas los componentes de diseño en Figma: | Encuentra ejemplos de componentes y accede a la librería en Github: |
+| [Figma](https://www.figma.com/file/LYk8AJb5RjQhRfPmRIdEQ9/Bamboo-Design-System?type=design&node-id=191-2353&mode=design)  | [Github](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/) |
+| [Guía de uso de recursos.](https://bamboo.tec.mx/latest/recursos/recursos-ui-ux-56ET5g5G) | **Angular** [Guía de instalación de Bamboo.](https://bamboo.tec.mx/latest/recursos/angular-guia-de-instalacion-de-bamboo-W3qVyi3x) |
+|  | **Ionic** [Guía de instalación de Bamboo.](https://bamboo.tec.mx/latest/recursos/ionic-guia-de-instalacion-de-bamboo-ReyuzhoX) |
 
-Es necesario cerrar la sesión en el scope del TEC, para ello es necesario ejecutar los siguientes comandos:
+## Herramientas que utilizamos
+En Bamboo Design System, utilizamos una variedad de herramientas en nuestro ecosistema para optimizar nuestro trabajo.
 
-`npm logout --scope=@ti-tecnologico-de-monterrey-oficial`
+Para el diseño, Figma es nuestra elección preferida.
 
-`npm uninstall @ti-tecnologico-de-monterrey-oficial/ds-ng`
+Para la documentación y la publicación, confiamos en Supernova.
 
-Una vez hecho lo anterior es necesario borrar el archivo .npmrc con la línea:
+Github es nuestro repositorio de elección para gestionar nuestros proyectos.
 
-`@ti-tecnologico-de-monterrey-oficial:registry=https://npm.pkg.github.com`
+![Herramientas](https://studio-assets.supernova.io/design-systems/74407/35a31c92-3d2f-4a75-bab5-bd88793132e1.png)
 
-Ahora podemos hacer la instalación de Bamboo nuevamente
+## ¿Necesitas ayuda?
+Te ofrecemos asistencia para cualquier necesidad de diseño que tengas, ya sea para crear un componente, definir un patrón o documentar un proceso. Nuestro equipo de Design System está listo para ayudarte. ¡Contáctanos!
 
-`npm i @ti-tecnologico-de-monterrey-oficial/ds-ng@latest`
-
-Ahora el paquete deberá tener la versión 0.2.2 o superior.
-
-`"@ti-tecnologico-de-monterrey7-oficial/ds-ng": "^0.2.2",`
-
-### Visual Studio Code
-
-Puedes utilizar cualquier Entorno de Desarrollo Integrado (IDE), pero te recomendamos utilizar Visual Studio Code.
-
-Si aún no tienes Visual Studio Code instalado, puedes descargarlo desde el sitio oficial:
-
-[Visual Studio Code](https://code.visualstudio.com)
-
-## Instala Design System Bamboo y librerías adicionales
-
-Ejecuta el siguiente comando en la raíz del proyecto:
-
-`npm install @ti-tecnologico-de-monterrey-oficial/ds-ng@latest`
-
-Sigue los pasos de la guía para configurar los estilos y las fuentes.
-
-## Utiliza Design System Bamboo
-
-Para poder utilizar Bamboo, sigue estos pasos para agregar estilos y configuraciones específicas del paquete:
-
-En el archivo `angular.json` de tu proyecto, agrega el siguiente contenido donde esta _“styles”_ y _“assets”_:
-
-```
-"assets": [
-    "src/favicon.ico",
-    "src/assets",
-    {
-        "glob": "**/*",
-        "input": "./node_modules/@ti-tecnologico-de-monterrey-oficial/ds-ng/assets/fonts/",
-        "output": "/assets/fonts/"
-    }
-],
-"styles": [
-    "src/styles.scss",
-    "node_modules/@ti-tecnologico-de-monterrey-oficial/ds-ng/assets/styles/main.min.css"
-],
-```
-
-Cuando necesites utilizar componentes del sistema de diseño, asegúrate de añadirlos a la página o archivo correspondiente. A continuación, te presento un ejemplo para ilustrar este proceso:
-
-```
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {
-  BmbUserImageComponent,
-} from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [
-    CommonModule,
-    BmbUserImageComponent,
-  ],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
-})
-export class AppComponent {
-}
-```
-
-Para iniciar la aplicación ejecuta el siguiente comando en la terminal:
-
-`npm run start`
-
-¡Listo! Ahora puedes comenzar a aprovechar los componentes que requieras de DS. Te invitamos a consultar la documentación disponible en la **sección de Implementación de cada componente**, encontrarás información detallada sobre cómo utilizar cada uno de ellos.
-
-[Documentación de Design System Bamboo](https://bamboo.tec.mx/latest/te-damos-la-bienvenida/bamboo-GkY8UT7J)
+> Actualizamos las herramientas periódicamente. Encuentra las últimas novedades aquí.
