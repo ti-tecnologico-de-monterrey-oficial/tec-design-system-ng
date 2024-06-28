@@ -13,21 +13,3 @@
     text-align: center;
   }
 }
-
-[data-theme="dark"],
-.storybook-dark-theme {
-  .bmb_calendar-header button {
-    color: RGBA(var(--color-charade-50));
-    border-color: RGBA(var(--color-charade-50));
-
-    &:hover,
-    &:focus-visible,
-    &:disabled {
-      background-color: RGBA(var(--color-black-primary), 0.5) !important;
-    }
-
-    i {
-      color: RGBA(var(--color-charade-50));
-    }
-  }
-}
