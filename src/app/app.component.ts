@@ -50,6 +50,8 @@ import {
   BmbCardHeaderComponent,
   BmbCardFooterComponent,
   BmbInputPhoneNumberComponent,
+  BmbStudentActivitySelectorComponent,
+  BmbTabStudenActivityComponent,
 } from '../../projects/ds-ng/src/public-api';
 
 import {
@@ -119,6 +121,8 @@ import { MatDialog } from '@angular/material/dialog';
     BmbCardHeaderComponent,
     BmbCardFooterComponent,
     BmbInputPhoneNumberComponent,
+    BmbStudentActivitySelectorComponent,
+    BmbTabStudenActivityComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

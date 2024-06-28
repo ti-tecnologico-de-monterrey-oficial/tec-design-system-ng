@@ -88,7 +88,15 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'select',
       },
-      options: ['center', 'end', 'start', 'stretch', 'spaceAround', 'spaceBetween', 'spaceEvenly'],
+      options: [
+        'center',
+        'end',
+        'start',
+        'stretch',
+        'spaceAround',
+        'spaceBetween',
+        'spaceEvenly',
+      ],
       table: {
         type: { summary: 'string' },
         category: 'Properties',
