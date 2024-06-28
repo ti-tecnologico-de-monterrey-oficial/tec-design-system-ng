@@ -47,10 +47,6 @@ Below is an example of how you can use this component in HTML:
     },
   },
   argTypes: {
-    // @Input() gapSise: SizeNames = 'm';
-    // @Input() margin: SizeNames = 'm';
-    // @Input() dinamycCols: boolean = false;
-
     gapSise: {
       name: 'Gap size',
       control: {
@@ -87,11 +83,39 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'boolean' },
       },
     },
+    justify: {
+      name: 'Justify content',
+      control: {
+        type: 'select',
+      },
+      options: ['center', 'end', 'start', 'stretch', 'spaceAround', 'spaceBetween', 'spaceEvenly'],
+      table: {
+        type: { summary: 'string' },
+        category: 'Properties',
+        defaultValue: { summary: 'start' },
+      },
+      description: 'Set the justify content.',
+    },
+    alignItems: {
+      name: 'Align items',
+      control: {
+        type: 'select',
+      },
+      options: ['center', 'end', 'start', 'stretch'],
+      table: {
+        type: { summary: 'string' },
+        category: 'Properties',
+        defaultValue: { summary: 'start' },
+      },
+      description: 'Set the align items.',
+    },
   },
   args: {
     gapSise: 'm',
     margin: 'm',
     dinamycCols: false,
+    justify: 'start',
+    alignItems: 'start',
   },
 };
 
@@ -104,24 +128,21 @@ export const OneItem: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <section bmbLayout [gapSise]="gapSise" [margin]="margin">
-        <bmb-card bmbLayoutItem margin="none" [colSm]="2" [colLg]="4">
+      <section bmbLayout [gapSise]="gapSise" [margin]="margin" [justify]="justify" [alignItems]="alignItems">
+        <bmb-card bmbLayoutItem margin="none" [colLg]="4">
           <bmb-card-content padding="none">
             <p [ngStyle]="{padding: '1rem'}">Element</p>
           </bmb-card-content>
         </bmb-card>
-        <bmb-card bmbLayoutItem margin="none" [colSm]="2" [colLg]="4">
+        <bmb-card bmbLayoutItem margin="none" [colLg]="4">
           <bmb-card-content padding="none">
             <p [ngStyle]="{padding: '1rem'}">Element</p>
           </bmb-card-content>
         </bmb-card>
-        <bmb-card bmbLayoutItem margin="none" [isDinamycItem]="true" [colGrow]="1">
+        <bmb-card bmbLayoutItem margin="none" [colGrow]="12">
           <bmb-card-content padding="none">
             <p [ngStyle]="{padding: '1rem'}">Element</p>
-          </bmb-card-content>
-        </bmb-card>
-        <bmb-card bmbLayoutItem margin="none" [isDinamycItem]="true">
-          <bmb-card-content padding="none">
+            <p [ngStyle]="{padding: '1rem'}">Element</p>
             <p [ngStyle]="{padding: '1rem'}">Element</p>
           </bmb-card-content>
         </bmb-card>

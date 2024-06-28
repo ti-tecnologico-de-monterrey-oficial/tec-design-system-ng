@@ -1,5 +1,5 @@
-<section class="bmb-calendar-template-select">
-  <button bmbButton appearance="secondary-filled" icon="keyboard_arrow_down">
+<section class="bmb-calendar-template-select" clickOutside (clickOutside)="clickOutside()">
+  <button bmbButton appearance="secondary-filled" icon="keyboard_arrow_down" (click)="enableDropDown()" >
     {{ value }}
   </button>
   <ul

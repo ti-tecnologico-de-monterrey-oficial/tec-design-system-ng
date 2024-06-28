@@ -1,8 +1,6 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  ElementRef,
-  HostListener,
   Input,
   OnInit,
   ViewEncapsulation,
@@ -19,6 +17,7 @@ import { DateTime } from 'luxon';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbInputComponent } from '../bmb-input/bmb-input.component';
 import { BmbDatepickerModalComponent } from './bmb-datepicker-modal/bmb-datepicker-modal.component';
+import { ClickOutsideDirective } from '../../directives/utils/clickoutside.directive';
 
 @Component({
   selector: 'bmb-datepicker',
@@ -29,6 +28,7 @@ import { BmbDatepickerModalComponent } from './bmb-datepicker-modal/bmb-datepick
     BmbInputComponent,
     ReactiveFormsModule,
     BmbDatepickerModalComponent,
+    ClickOutsideDirective,
   ],
   templateUrl: './bmb-datepicker.component.html',
   styleUrl: './bmb-datepicker.component.scss',
@@ -51,27 +51,7 @@ export class BmbDatepickerComponent implements OnInit {
   @Input() stepYearPicker: number = 12;
   @Input() name: string = '';
 
-  childNodes: any = null;
   now = DateTime.now();
-
-  constructor(private elementRef: ElementRef) {}
-
-  @HostListener('document:click', ['$event'])
-  onClick(event: MouseEvent) {
-    const eventTarget = event.target as HTMLSpanElement;
-
-    if (this.childNodes?.contains(eventTarget) || eventTarget?.classList?.contains('modal-persist')) {
-      this.isWindowOpen = true;
-    } else {
-      this.isWindowOpen = false;
-    }
-
-
-  }
-
-  ngAfterViewInit() {
-    this.childNodes = this.elementRef.nativeElement;
-  }
 
   defaultDate = new Date();
   isWindowOpen = false;
@@ -117,6 +97,10 @@ export class BmbDatepickerComponent implements OnInit {
 
   handleValueChange(event: string) {
     this.control.setValue(event);
+    this.isWindowOpen = false;
+  }
+
+  clickOutside():void {
     this.isWindowOpen = false;
   }
 }

@@ -23,7 +23,7 @@ To use the medium family of Poppins with the 4th size, your HTML element should 
 \`<div class="font-medium-4">Your text here</div>\`
 
 **Sizes Reference:**
-- **Size 1**: 10px 
+- **Size 1**: 10px
 - **Size 2**: 11px
 - **Size 3**: 12px
 - **Size 4**: 14px

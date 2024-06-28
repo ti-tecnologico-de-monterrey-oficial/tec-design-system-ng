@@ -17,6 +17,23 @@ $marginSizes: (
 
 $namesOfSides: "left", "right";
 
+$justifyOptions: (
+  "center": center,
+  "end": end,
+  "start": start,
+  "stretch": stretch,
+  "spaceAround": space-around,
+  "spaceBetween": space-between,
+  "spaceEvenly": space-evenly,
+);
+
+$alignItemsOptions: (
+  "center": center,
+  "end": end,
+  "start": start,
+  "stretch": stretch,
+);
+
 .bmb_layout {
   display: flex;
   flex-wrap: wrap;
@@ -34,23 +51,29 @@ $namesOfSides: "left", "right";
   }
 }
 
+*[class^="bmb_col-lg"] {
+  flex: 0 0 100%;
+}
+
+@for $i from 1 through 4 {
+  .bmb_col-sm-#{$i} {
+    @include mixins.media-query(999, "max") {
+      flex: 0 0
+        calc(#{percentage(math.div($i, 4))} - (var(--bmb-gap) / 4 * #{4 - $i}));
+    }
+    flex: 0 0
+      calc(#{percentage(math.div($i, 4))} - (var(--bmb-gap) / 4 * #{4 - $i}));
+  }
+}
+
 @for $i from 1 through 12 {
   .bmb_col-lg-#{$i} {
-    flex: 0 0 100%;
     @include mixins.media-query(1000, "min") {
       flex: 0 0
         calc(
           #{percentage(math.div($i, 12))} - (var(--bmb-gap) / 12 * #{12 - $i})
         );
     }
-  }
-}
-
-@for $i from 1 through 4 {
-  .bmb_col-sm-#{$i} {
-    flex: 0
-      0
-      calc(#{percentage(math.div($i, 4))} - (var(--bmb-gap) / 4 * #{4 - $i}));
   }
 }
 
@@ -70,5 +93,17 @@ $namesOfSides: "left", "right";
         }
       }
     }
+  }
+}
+
+@each $name, $option in $justifyOptions {
+  .bmb_justify-#{$name} {
+    justify-content: $option;
+  }
+}
+
+@each $name, $option in $alignItemsOptions {
+  .bmb_alignItems-#{$name} {
+    align-items: $option;
   }
 }

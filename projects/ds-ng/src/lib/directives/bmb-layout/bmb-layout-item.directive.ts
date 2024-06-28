@@ -1,6 +1,6 @@
 import { Directive, HostBinding, Input, OnInit } from '@angular/core';
 
-interface IMargin {
+export interface IMargin {
   sm: number;
   lg?: number;
 }
@@ -12,12 +12,9 @@ interface IMargin {
 export class BmbLayoutItemDirective implements OnInit {
   @Input() colSm: number = 0;
   @Input() colLg: number = 0;
-  @Input() marginLeft: IMargin | null = null;
-  @Input() marginRight: IMargin | null = null;
+  @Input() marginLeft?: IMargin;
+  @Input() marginRight?: IMargin;
   @Input() colGrow: number = 0;
-  @Input() itemMinWidth: string = '200px';
-  @Input() itemMaxWidth: string = '400px';
-  @Input() itemWidth: string = '100%';
   @Input() isDinamycItem: boolean = false;
 
   @HostBinding('class') get elementClass(): string[] {
@@ -43,8 +40,6 @@ export class BmbLayoutItemDirective implements OnInit {
   @HostBinding('style.flex') flex?: string;
 
   ngOnInit() {
-    console.log('ngOnInit', this.isDinamycItem);
-
     if (this.isDinamycItem) {
       this.flex = `${this.colGrow} 0 0%`;
     }

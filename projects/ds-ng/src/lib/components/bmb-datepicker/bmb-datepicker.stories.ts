@@ -119,7 +119,7 @@ Below is an example of how to use this component in HTML:
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        defaultValue: { summary: 'calendar_month'}
+        defaultValue: { summary: 'calendar_month' },
       },
     },
     invalidFormaterrorMessage: {
@@ -215,11 +215,12 @@ Below is an example of how to use this component in HTML:
       control: {
         type: 'text',
       },
-      description: 'Set the format to validate the value and set the value format',
+      description:
+        'Set the format to validate the value and set the value format',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        defaultValue: { summary: 'dd/MM/yyyy'}
+        defaultValue: { summary: 'dd/MM/yyyy' },
       },
     },
     name: {
@@ -231,9 +232,9 @@ Below is an example of how to use this component in HTML:
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        defaultValue: { summary: ''}
+        defaultValue: { summary: '' },
       },
-    }
+    },
   },
 
   args: {
@@ -247,7 +248,7 @@ Below is an example of how to use this component in HTML:
     appearance: 'normal',
     isClearable: false,
     dateFormat: 'dd/MM/yyyy',
-    name: 'custom_date_picker'
+    name: 'custom_date_picker',
   },
 } as Meta<typeof BmbDatepickerComponent>;
 
