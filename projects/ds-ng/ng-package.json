@@ -15,6 +15,8 @@
     "luxon",
     "@angular/material",
     "libphonenumber-js",
-    "ngx-mat-intl-tel-input"
+    "ngx-mat-intl-tel-input",
+    "@types/hammerjs",
+    "hammerjs"
   ]
 }
