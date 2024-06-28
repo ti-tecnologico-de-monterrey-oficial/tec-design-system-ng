@@ -19,7 +19,12 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'bmb-datepicker-modal',
   standalone: true,
-  imports: [CommonModule, BmbLayoutDirective, BmbLayoutItemDirective, BmbButtonDirective],
+  imports: [
+    CommonModule,
+    BmbLayoutDirective,
+    BmbLayoutItemDirective,
+    BmbButtonDirective,
+  ],
   templateUrl: './bmb-datepicker-modal.component.html',
   styleUrl: './bmb-datepicker-modal.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -53,8 +58,6 @@ export class BmbDatepickerModalComponent implements OnInit {
   }
 
   handleYearChange(event: any) {
-    console.log('handleYearChange', event);
-
     this.selectedYear = event;
     this.view = 'calendar';
   }
@@ -63,16 +66,14 @@ export class BmbDatepickerModalComponent implements OnInit {
     const yearsList = new Array(this.stepYearPicker).fill(0);
     const currentYear = this.selectedYear;
     const yearsFinal = yearsList.map((_, index) => {
-      console.log('currentYear', currentYear);
-
-      return (currentYear - (this.stepYearPicker / 2 - 1) + index ).toString();
+      return (currentYear - (this.stepYearPicker / 2 - 1) + index).toString();
     });
     return yearsFinal;
   }
 
   handleDayChange(date: DateTime): void {
-    const newValue = date.toFormat(this.dateFormat)
-    this.onValueChange.emit(newValue)
+    const newValue = date.toFormat(this.dateFormat);
+    this.onValueChange.emit(newValue);
   }
 
   getWeeksAndDays(): DateTime[] {
@@ -85,7 +86,8 @@ export class BmbDatepickerModalComponent implements OnInit {
   }
 
   isSelectedDay(date: DateTime): string {
-    if (this.selectedDate && date.hasSame(this.selectedDate, 'day')) return 'bmb_datepicker-modal-calendar-item-button-selected'
+    if (this.selectedDate && date.hasSame(this.selectedDate, 'day'))
+      return 'bmb_datepicker-modal-calendar-item-button-selected';
     return '';
   }
 
@@ -97,7 +99,7 @@ export class BmbDatepickerModalComponent implements OnInit {
     this.selectedYear = this.now.year;
     this.selectedMonth = this.now.month;
     if (this.value) {
-      this.selectedDate = DateTime.fromFormat(this?.value, this.dateFormat)
+      this.selectedDate = DateTime.fromFormat(this?.value, this.dateFormat);
     }
   }
 }

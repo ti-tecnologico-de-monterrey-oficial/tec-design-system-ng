@@ -19,6 +19,13 @@ const preview: Preview = {
         sourceState: 'shown',
       },
     },
+    options: {
+      storySort: {
+        method: 'alphabetical',
+        order: ['Foundations', 'Micro Componentes', 'Macro Componentes'],
+        locales: 'en-US',
+      },
+    }
   },
   decorators: [
     withThemeByClassName({
