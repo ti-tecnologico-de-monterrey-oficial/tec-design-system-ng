@@ -1,7 +1,14 @@
 import { Directive, HostBinding, Input } from '@angular/core';
 import { SizeNames } from '../../types';
 
-export type IJustifyOptions = 'center' | 'end' | 'start' | 'stretch' | 'spaceAround' | 'spaceBetween' | 'spaceEvenly';
+export type IJustifyOptions =
+  | 'center'
+  | 'end'
+  | 'start'
+  | 'stretch'
+  | 'spaceAround'
+  | 'spaceBetween'
+  | 'spaceEvenly';
 export type IAlignItemsOptions = 'center' | 'end' | 'start' | 'stretch';
 
 @Directive({

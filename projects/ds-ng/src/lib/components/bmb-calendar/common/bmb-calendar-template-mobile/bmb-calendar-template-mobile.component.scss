@@ -3,7 +3,7 @@
 @use "../../../../../assets/styles/base/mixins" as mixins;
 
 @mixin buttonReset() {
-  color: RGBA(var(--color-charade-900), .5);
+  color: RGBA(var(--color-charade-900), 0.5);
   background-color: transparent;
 
   &:hover:not(:disabled):not(.bmb-disabled),
@@ -15,7 +15,7 @@
 }
 
 @mixin buttonResetDark() {
-  color: RGBA(var(--color-charade-200), .5);
+  color: RGBA(var(--color-charade-200), 0.5);
 
   &:hover:not(:disabled):not(.bmb-disabled),
   &.bmb-hover:not(:disabled):not(.bmb-disabled),
@@ -27,13 +27,12 @@
 }
 
 @mixin buttonNavDark() {
-  color: RGBA(var(--color-charade-200), .5);
+  color: RGBA(var(--color-charade-200), 0.5);
 
   &:hover:not(:disabled):not(.bmb-disabled),
   &.bmb-hover:not(:disabled):not(.bmb-disabled),
   &:focus-visible:not(:disabled):not(.bmb-disabled),
   &.bmb-focus-visible:not(:disabled):not(.bmb-disabled) {
-
     bmb-icon {
       color: RGBA(var(--color-charade-900));
     }
@@ -151,7 +150,6 @@
       &:disabled,
       &.bmb-disabled {
         color: RGBA(var(--color-white-primary));
-
       }
     }
 

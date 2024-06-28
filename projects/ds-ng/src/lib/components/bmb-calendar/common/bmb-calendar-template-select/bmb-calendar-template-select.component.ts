@@ -46,7 +46,7 @@ export class BmbCalendarTemplateSelectComponent {
     return '';
   }
 
-  clickOutside():void {
+  clickOutside(): void {
     this.isMenuExpanded = false;
   }
 }

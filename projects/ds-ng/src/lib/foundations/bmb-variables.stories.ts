@@ -85,12 +85,12 @@ export default {
         category: 'Properties',
         type: { summary: 'string' },
       },
-    }
+    },
   },
   args: {
     padding: 'm',
     radius: 'm',
-    margin: 'm'
+    margin: 'm',
   },
 } as Meta;
 
@@ -100,7 +100,7 @@ function attributes(args: any): any {
     padding: var(--bmb-spacing-${args.padding});
     border-radius: var(--bmb-radius-${args.radius});
     background-color: rgb(var(--color-blue-tint));
-  `
+  `;
   return `style="${classList}"`;
 }
 
