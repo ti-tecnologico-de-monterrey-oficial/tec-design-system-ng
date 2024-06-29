@@ -5,7 +5,7 @@ import { BmbTabStudenActivityComponent } from './bmb-student-activity-tab/bmb-st
 import { BmbCardComponent } from '../bmb-card/bmb-card.component';
 
 export default {
-  title: 'Micro Componentes/StudentActivitySelector',
+  title: 'Micro Componentes/Student activity selector',
   component: BmbStudentActivitySelectorComponent,
   subcomponents: { BmbTabStudenActivityComponent, BmbCardComponent },
   decorators: [
