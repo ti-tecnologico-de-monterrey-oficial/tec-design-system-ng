@@ -1,43 +1,53 @@
 @use "../../../assets/styles/base/rem" as rem;
+@use "../../../assets/styles/base/fonts" as fonts;
 
 .bmb_student_activity {
+  @include fonts.font(3, medium);
+
+  &-tabs {
+    list-style-type: none;
+    padding: 0;
     display: flex;
-    justify-content: center;
-    background: RGBA(var(--color-charade-950));
-    padding: rem.rem_calc(10);
-    border-radius: rem.rem_calc(10);
+    margin: 0 auto;
+    width: fit-content;
+    border-radius: var(--bmb-radius-m);
+    overflow: hidden;
+    border: rem.rem_calc(1) solid RGBA(var(--color-charade-300));
+    color: RGBA(var(--color-charade-950));
+  }
 
-    &-tabs {
-      list-style-type: none;
-      padding: rem.rem_calc(0);
-      display: flex;
-      margin: rem.rem_calc(0);
-    }
+  &-item {
+    padding: rem.rem_calc(10 20);
+    cursor: pointer;
+    text-align: center;
 
-    &-item {
-      padding: rem.rem_calc(10 20);
-      cursor: pointer;
+    &.active {
+      background: linear-gradient(180deg, var(--color-blue-gradient));
       color: RGBA(var(--color-white-primary));
-      text-align: center;
-      border-radius: rem.rem_calc(10);
-      margin:  rem.rem_calc(5);
-      
-      &.active {
-        background: linear-gradient(180deg, var(--color-blue-gradient));
-        font-weight: bold;
-      }
-
-      &:not(.active) {
-        background: linear-gradient(180deg, var(--color-gradient-blue));
-      }
-    }
-    &-title {
-    }
-    &-subtitle {
     }
 
-    &-content {
-      padding: rem.rem_calc(10);
-      color: RGBA(var(--color-white-primary));
+    &:not(.active) {
+      background: linear-gradient(180deg, var(--color-gradient-blue));
     }
   }
+  &-title {
+    @include fonts.font(6, medium);
+  }
+  // &-subtitle {
+  // }
+
+  &-content {
+    padding: rem.rem_calc(10);
+    color: RGBA(var(--color-white-primary));
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_student_activity {
+    &-tabs {
+      border-color: RGBA(var(--color-charade-700));
+      color: RGBA(var(--color-charade-50));
+    }
+  }
+}

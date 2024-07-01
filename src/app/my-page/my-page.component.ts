@@ -43,7 +43,7 @@ import {
   BmbCardComponent,
   BmbTablesComponent,
   BmbStudentActivitySelectorComponent,
-  BmbTabStudenActivityComponent
+  BmbTabStudenActivityComponent,
 } from '../../../projects/ds-ng/src/public-api';
 
 import {
@@ -99,7 +99,7 @@ import names from '../names.json';
     BmbCardComponent,
     BmbTablesComponent,
     BmbStudentActivitySelectorComponent,
-    BmbTabStudenActivityComponent
+    BmbTabStudenActivityComponent,
   ],
   templateUrl: './my-page.component.html',
   styleUrl: './my-page.component.scss',
