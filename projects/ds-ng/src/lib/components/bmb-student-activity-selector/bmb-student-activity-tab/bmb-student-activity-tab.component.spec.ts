@@ -8,10 +8,9 @@ describe('BmbTabStudenActivityComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BmbTabStudenActivityComponent]
-    })
-    .compileComponents();
-    
+      imports: [BmbTabStudenActivityComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(BmbTabStudenActivityComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

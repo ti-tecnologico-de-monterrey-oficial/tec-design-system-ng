@@ -25,7 +25,7 @@ const preview: Preview = {
         order: ['Foundations', 'Micro Componentes', 'Macro Componentes'],
         locales: 'en-US',
       },
-    }
+    },
   },
   decorators: [
     withThemeByClassName({
