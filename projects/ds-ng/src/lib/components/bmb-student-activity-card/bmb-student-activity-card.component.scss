@@ -1,0 +1,56 @@
+.bmb_student_activity_card {
+  background-color: #2c2c3a;
+  border-radius: 8px;
+  color: white;
+  padding: 16px;
+  max-width: 300px;
+  position: relative;
+  font-size: 14px;
+
+  &-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  &-close-button {
+    cursor: pointer;
+  }
+
+  &-content {
+    margin-top: 16px;
+  }
+
+  &-title {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  &-subtitle {
+    font-size: 14px;
+    margin-top: 4px;
+  }
+
+  &-location {
+    font-size: 14px;
+    margin-top: 8px;
+  }
+
+  &-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+  }
+ 
+  &-status-label {
+    background-color: #444455;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+
+  }
+  &-time-range {
+    font-size: 12px;
+  }
+}
