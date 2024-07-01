@@ -2,12 +2,14 @@ import {
   Component,
   HostListener,
   Input,
-  ViewEncapsulation,
+  Output,
   EventEmitter,
+  ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { FabSize, FabType } from './bmb-fab-.interface';
+
 @Component({
   selector: 'bmb-fab',
   styleUrl: './bmb-fab.component.scss',
@@ -22,19 +24,18 @@ export class BmbFabComponent {
   @Input() size?: FabSize;
   @Input() type?: FabType;
 
+  @Output() fabClick = new EventEmitter<void>();
+
   active: boolean = false;
-
   closeIcon = 'close';
-
   fabStyle = '';
 
-  @HostListener('click') myClick() {
+  @HostListener('click') onFabClick() {
     if (this.type == 'normal') {
       this.active = !this.active;
     }
+    this.fabClick.emit();
   }
-
-  constructor() {}
 
   ngOnInit() {
     this.fabStyle = this.setStyles();

@@ -10,6 +10,7 @@ import {
   BmbInputPhoneNumberComponent,
   BmbButtonDirective,
   BmbInputComponent,
+  BmbWheelMenuComponent,
 } from '../../../projects/ds-ng/src/public-api';
 import { CommonModule } from '@angular/common';
 
@@ -22,6 +23,7 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     BmbButtonDirective,
     BmbInputComponent,
+    BmbWheelMenuComponent,
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
