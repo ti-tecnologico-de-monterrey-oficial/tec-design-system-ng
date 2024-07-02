@@ -63,6 +63,7 @@ Below is an example of how to use this component in HTML:
       control: { type: 'text' },
       description: 'Content count.',
       table: {
+        category: 'Properties',
         type: { summary: 'string' },
         defaultValue: { summary: '' },
       },
@@ -140,6 +141,7 @@ Below is an example of how to use this component in HTML:
 
   args: {
     count: '01 / 10',
+    categoryTitle:'',
     subcategorytitle: 'Mathematics',
     classTitle:'Algebra 101',
     classSubtitle:'Introducción to Algebra',
