@@ -13,7 +13,7 @@ import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@a
   styleUrl: './bmb-student-activity-card.component.scss'
 })
 export class BmbStudentActivityCardComponent {
-  @Input() progressCount: string = '00 / 00';
+  @Input() count: string = '00 / 00';
   @Input() categoryTitle: string = 'Category Title';
   @Input() classTitle: string = 'Class Title';
   @Input() classSubtitle: string = 'Possible 2nd line';

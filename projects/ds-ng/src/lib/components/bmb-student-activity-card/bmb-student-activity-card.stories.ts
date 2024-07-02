@@ -44,7 +44,7 @@ Below is an example of how to use this component in HTML:
 
 \`\`\`html
 <bmb-student-activity-card
-  [progressCount]="'01 / 10'"
+  [count]="'01 / 10'"
   [categoryTitle]="'Mathematics'"
   [classTitle]="'Algebra 101'"
   [classSubtitle]="'Introduction to Algebra'"
@@ -59,7 +59,7 @@ Below is an example of how to use this component in HTML:
     },
   },
   argTypes: {
-    ProgressCount: {
+    Count: {
       control: { type: 'text' },
       description: 'Content count.',
       table: {
@@ -139,7 +139,7 @@ Below is an example of how to use this component in HTML:
   },
 
   args: {
-    progressCount: '01 / 10',
+    count: '01 / 10',
     subcategorytitle: 'Mathematics',
     classTitle:'Algebra 101',
     classSubtitle:'Introducción to Algebra',
