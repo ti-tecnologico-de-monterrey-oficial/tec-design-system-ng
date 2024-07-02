@@ -59,7 +59,7 @@ Below is an example of how to use this component in HTML:
     },
   },
   argTypes: {
-    Count: {
+    count: {
       control: { type: 'text' },
       description: 'Content count.',
       table: {
