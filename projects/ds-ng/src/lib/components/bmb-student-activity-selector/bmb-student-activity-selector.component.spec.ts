@@ -8,10 +8,9 @@ describe('BmbStudentActivitySelectorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BmbStudentActivitySelectorComponent]
-    })
-    .compileComponents();
-    
+      imports: [BmbStudentActivitySelectorComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(BmbStudentActivitySelectorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
