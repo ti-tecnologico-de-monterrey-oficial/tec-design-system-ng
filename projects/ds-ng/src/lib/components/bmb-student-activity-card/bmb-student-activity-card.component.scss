@@ -1,11 +1,12 @@
+@use "../../../assets/styles/base/rem" as rem;
 .bmb_student_activity_card {
-  background-color: #2c2c3a;
+  background: RGBA(var(--color-charade-950));
   border-radius: 8px;
-  color: white;
-  padding: 16px;
-  max-width: 300px;
+  color:RGBA(var(--color-white-primary));
+  padding: rem.rem_calc(16);
+  max-width: rem.rem_calc(300);
   position: relative;
-  font-size: 14px;
+  font-size: rem.rem_calc(14);
 
   &-header{
     display: flex;
@@ -18,33 +19,33 @@
   }
 
   &-content {
-    margin-top: 16px;
+    margin-top: rem.rem_calc(16);
   }
 
   &-title {
-    font-size: 18px;
+    font-size: rem.rem_calc(18);
     font-weight: bold;
   }
 
   &-subtitle {
-    font-size: 14px;
-    margin-top: 4px;
+    font-size: rem.rem_calc(14);
+    margin-top: rem.rem_calc(1);
   }
 
   &-location {
-    font-size: 14px;
-    margin-top: 8px;
+    font-size: rem.rem_calc(14);
+    margin-top: rem.rem_calc(8);
   }
 
   &-status {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 12px;
+    margin-top: rem.rem_calc(12);
   }
  
   &-status-label {
-    background-color: #444455;
+    background: RGBA(var(--color-charade-700));
     padding: 4px 8px;
     border-radius: 4px;
     font-size: 12px;
