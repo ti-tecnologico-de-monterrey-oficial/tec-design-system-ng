@@ -70,8 +70,8 @@ Below is an example of how to use this component in HTML:
     categoryTitle: {
       control: {
         type: 'text',
+        description: 'Category of the subject.',
       },
-      description: 'Category of the subject.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
