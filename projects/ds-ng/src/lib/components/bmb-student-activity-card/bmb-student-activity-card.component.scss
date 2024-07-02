@@ -3,7 +3,7 @@
 .bmb_student_activity_card {
   @include fonts.font(3, medium);
   background: RGBA(var(--color-charade-950));
-  border-radius: 8px;
+  border-radius: rem.rem_calc(8);
   color:RGBA(var(--color-white-primary));
   padding: rem.rem_calc(16);
   max-width: rem.rem_calc(300);
