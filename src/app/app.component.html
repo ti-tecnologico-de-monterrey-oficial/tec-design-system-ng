@@ -9,7 +9,17 @@
 <bmb-theme [showControls]="true" [initialTheme]="'dark'" />
 <bmb-sidebar [elements]="sidebarElements" /> -->
 
-<bmb-calendar [events]="calendarEvents" />
+<bmb-student-activity-selector>
+  <bmb-student-activity-tab title="1" subtitle="item 1">
+    <bmb-card>Content 1</bmb-card>
+  </bmb-student-activity-tab>
+  <bmb-student-activity-tab title="2" subtitle="item 2">
+    <bmb-card>Content 2</bmb-card>
+  </bmb-student-activity-tab>
+  <bmb-student-activity-tab title="3" subtitle="item 3">
+    <bmb-card>Content 3</bmb-card>
+  </bmb-student-activity-tab>
+</bmb-student-activity-selector>
 
 <bmb-datepicker></bmb-datepicker>
 
