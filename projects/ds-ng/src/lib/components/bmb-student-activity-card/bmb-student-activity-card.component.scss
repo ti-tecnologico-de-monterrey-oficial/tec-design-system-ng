@@ -1,6 +1,7 @@
 @use "../../../assets/styles/base/rem" as rem;
 @use "../../../assets/styles/base/fonts" as fonts;
 .bmb_student_activity_card {
+  @include fonts.font(3, medium);
   background: RGBA(var(--color-charade-950));
   border-radius: 8px;
   color:RGBA(var(--color-white-primary));
