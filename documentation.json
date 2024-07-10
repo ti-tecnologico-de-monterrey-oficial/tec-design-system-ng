@@ -351,16 +351,16 @@
         },
         {
             "name": "IPlaceholderObject",
-            "id": "interface-IPlaceholderObject-1211809909d7f739dca56544d3186459dec91c9bcb4c65acb4d0f3017c50c57c63a55327d2e89af00f17c65f85683b06e8d85871b25fe413d757f86bd896c99f",
+            "id": "interface-IPlaceholderObject-88c91c9c2836fc71f55c7e4a58631958eb99b7c0da9ca7569ca96e84756f09d74829343efa974d802ac2a921190b96bf97ee82e19e1e18cb8d890f2880d5072b",
             "file": "projects/ds-ng/src/lib/components/bmb-timestream/bmb-timestream.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import {\n  ChangeDetectionStrategy,\n  Component,\n  Input,\n  OnInit,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { DateTime, Info } from 'luxon';\nimport { BmbTimestreamErrorComponent } from './bmb-timestream-error/bmb-timestream-error.component';\nimport { BmbTimestreamTimelineComponent } from './bmb-timestream-timeline/bmb-timestream-timeline.component';\nimport { ITimelineEvent } from './types';\n\ninterface IPlaceholderObject {\n  [key: string]: any | any[];\n}\n\n@Component({\n  selector: 'bmb-timestream',\n  standalone: true,\n  imports: [BmbTimestreamErrorComponent, BmbTimestreamTimelineComponent],\n  templateUrl: './bmb-timestream.component.html',\n  styleUrl: './bmb-timestream.component.scss',\n  encapsulation: ViewEncapsulation.None,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbTimestreamComponent implements OnInit {\n  @Input() startDate: string = '';\n  @Input() endDate: string = '';\n  @Input() dateFormat: string = 'dd/MM/yyyy';\n  @Input() lang: string = 'es';\n  @Input() events: ITimelineEvent[] | null = null;\n\n  error = false;\n  now = DateTime.now();\n  start: DateTime | null = null;\n  end: DateTime | null = null;\n  difference = 0;\n  validMonths: any = [];\n  parsedEvents: any | null = null;\n  monthsNames = Info.months('long', { locale: this.lang });\n  isDialogOpen = false;\n  selectedDate: DateTime = this.now;\n  orderedMonths: string[] = [];\n\n  ngOnInit(): void {\n    this.dateValidation();\n\n    this.start = DateTime.fromFormat(this.startDate, this.dateFormat);\n    this.end = DateTime.fromFormat(this.endDate, this.dateFormat);\n    this.difference = Math.ceil(this.end.diff(this.start, 'months').months);\n    this.parsedEvents = this.prepareEvents(this.events);\n    this.orderedMonths = this.orderDates(this.parsedEvents, 'yyyy/MM');\n    this.selectedDate = this.selectAValidDate();\n  }\n\n  dateValidation() {\n    const isValidStart = DateTime.fromFormat(\n      this.startDate,\n      this.dateFormat,\n    ).isValid;\n    const isValidEnd = DateTime.fromFormat(\n      this.endDate,\n      this.dateFormat,\n    ).isValid;\n\n    this.error = !isValidEnd || !isValidStart;\n  }\n\n  prepareEvents(events: ITimelineEvent[] | null) {\n    if (events) {\n      const objectEvent: IPlaceholderObject = {};\n\n      events.forEach((event) => {\n        const startDate = DateTime.fromFormat(event.start, this.dateFormat);\n        const endDate = DateTime.fromFormat(event.end, this.dateFormat);\n        const diff = endDate.diff(startDate, 'days').days + 1;\n\n        for (let index = 0; index < diff; index++) {\n          const currentDate = startDate.plus({ days: index });\n          const stringDate = currentDate.toFormat('yyyy/MM/dd');\n          const month = currentDate.toFormat('yyyy/MM');\n\n          objectEvent[month] ??= {\n            events: {},\n            name: this.monthsNames[currentDate.month - 1],\n            stringDate: month,\n            year: currentDate.year,\n            date: currentDate,\n          };\n\n          objectEvent[month].events[stringDate] ??= {\n            events: [],\n            date: currentDate,\n            stringDate,\n          };\n\n          objectEvent[month].events[stringDate].events.push({\n            ...event,\n            start: stringDate,\n            startEvent: currentDate,\n            endEvent: endDate,\n          });\n        }\n      });\n\n      return objectEvent;\n    }\n\n    return {};\n  }\n\n  orderDates(events: any, format: string): string[] {\n    const monthsList = Object.keys(events);\n    const monthsOrdered = monthsList.sort((dateA: string, dateB: string) => {\n      const parsedDateA = DateTime.fromFormat(dateA, format);\n      const parsedDateB = DateTime.fromFormat(dateB, format);\n      return parsedDateA.toMillis() - parsedDateB.toMillis();\n    });\n\n    return monthsOrdered;\n  }\n\n  selectAValidDate(): DateTime {\n    const month =\n      this.orderedMonths.find((date) => {\n        const parsedDate = this.parsedEvents[date].date;\n        return (\n          this.now.year <= parsedDate.year && this.now.month <= parsedDate.month\n        );\n      }) ||\n      this.orderedMonths.at(-1) ||\n      0;\n    const orderedEvents = this.orderDates(\n      this.parsedEvents[month].events,\n      'yyyy/MM/dd',\n    );\n\n    const day =\n      orderedEvents.find((date) => {\n        const parsedDate = this.parsedEvents[month].events[date].date;\n        return (\n          this.now.year <= parsedDate.year &&\n          this.now.month <= parsedDate.month &&\n          this.now.day <= parsedDate.day\n        );\n      }) ||\n      orderedEvents.at(-1) ||\n      '';\n\n    return DateTime.fromFormat(day, 'yyyy/MM/dd');\n  }\n\n  handleSelectedDateChange(date: DateTime) {\n    this.selectedDate = date;\n  }\n}\n",
+            "sourceCode": "import {\r\n  ChangeDetectionStrategy,\r\n  Component,\r\n  Input,\r\n  OnInit,\r\n  ViewEncapsulation,\r\n} from '@angular/core';\r\nimport { DateTime, Info } from 'luxon';\r\nimport { BmbTimestreamErrorComponent } from './bmb-timestream-error/bmb-timestream-error.component';\r\nimport { BmbTimestreamTimelineComponent } from './bmb-timestream-timeline/bmb-timestream-timeline.component';\r\nimport { ITimelineEvent } from './types';\r\n\r\ninterface IPlaceholderObject {\r\n  [key: string]: any | any[];\r\n}\r\n\r\n@Component({\r\n  selector: 'bmb-timestream',\r\n  standalone: true,\r\n  imports: [BmbTimestreamErrorComponent, BmbTimestreamTimelineComponent],\r\n  templateUrl: './bmb-timestream.component.html',\r\n  styleUrl: './bmb-timestream.component.scss',\r\n  encapsulation: ViewEncapsulation.None,\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class BmbTimestreamComponent implements OnInit {\r\n  @Input() startDate: string = '';\r\n  @Input() endDate: string = '';\r\n  @Input() dateFormat: string = 'dd/MM/yyyy';\r\n  @Input() lang: string = 'es';\r\n  @Input() events: ITimelineEvent[] | null = null;\r\n\r\n  error = false;\r\n  now = DateTime.now();\r\n  start: DateTime | null = null;\r\n  end: DateTime | null = null;\r\n  difference = 0;\r\n  validMonths: any = [];\r\n  parsedEvents: any | null = null;\r\n  monthsNames = Info.months('long', { locale: this.lang });\r\n  isDialogOpen = false;\r\n  selectedDate: DateTime = this.now;\r\n  orderedMonths: string[] = [];\r\n\r\n  ngOnInit(): void {\r\n    this.dateValidation();\r\n\r\n    this.start = DateTime.fromFormat(this.startDate, this.dateFormat);\r\n    this.end = DateTime.fromFormat(this.endDate, this.dateFormat);\r\n    this.difference = Math.ceil(this.end.diff(this.start, 'months').months);\r\n    this.parsedEvents = this.prepareEvents(this.events);\r\n    this.orderedMonths = this.orderDates(this.parsedEvents, 'yyyy/MM');\r\n    this.selectedDate = this.selectAValidDate();\r\n  }\r\n\r\n  dateValidation() {\r\n    const isValidStart = DateTime.fromFormat(\r\n      this.startDate,\r\n      this.dateFormat,\r\n    ).isValid;\r\n    const isValidEnd = DateTime.fromFormat(\r\n      this.endDate,\r\n      this.dateFormat,\r\n    ).isValid;\r\n\r\n    this.error = !isValidEnd || !isValidStart;\r\n  }\r\n\r\n  prepareEvents(events: ITimelineEvent[] | null) {\r\n    if (events) {\r\n      const objectEvent: IPlaceholderObject = {};\r\n\r\n      events.forEach((event) => {\r\n        const startDate = DateTime.fromFormat(event.start, this.dateFormat);\r\n        const endDate = DateTime.fromFormat(event.end, this.dateFormat);\r\n        const diff = endDate.diff(startDate, 'days').days + 1;\r\n\r\n        for (let index = 0; index < diff; index++) {\r\n          const currentDate = startDate.plus({ days: index });\r\n          const stringDate = currentDate.toFormat('yyyy/MM/dd');\r\n          const month = currentDate.toFormat('yyyy/MM');\r\n\r\n          objectEvent[month] ??= {\r\n            events: {},\r\n            name: this.monthsNames[currentDate.month - 1],\r\n            stringDate: month,\r\n            year: currentDate.year,\r\n            date: currentDate,\r\n          };\r\n\r\n          objectEvent[month].events[stringDate] ??= {\r\n            events: [],\r\n            date: currentDate,\r\n            stringDate,\r\n          };\r\n\r\n          objectEvent[month].events[stringDate].events.push({\r\n            ...event,\r\n            start: stringDate,\r\n            startEvent: currentDate,\r\n            endEvent: endDate,\r\n          });\r\n        }\r\n      });\r\n\r\n      return objectEvent;\r\n    }\r\n\r\n    return {};\r\n  }\r\n\r\n  orderDates(events: any, format: string): string[] {\r\n    const monthsList = Object.keys(events);\r\n    const monthsOrdered = monthsList.sort((dateA: string, dateB: string) => {\r\n      const parsedDateA = DateTime.fromFormat(dateA, format);\r\n      const parsedDateB = DateTime.fromFormat(dateB, format);\r\n      return parsedDateA.toMillis() - parsedDateB.toMillis();\r\n    });\r\n\r\n    return monthsOrdered;\r\n  }\r\n\r\n  selectAValidDate(): DateTime {\r\n    const month =\r\n      this.orderedMonths.find((date) => {\r\n        const parsedDate = this.parsedEvents[date].date;\r\n        return (\r\n          this.now.year <= parsedDate.year && this.now.month <= parsedDate.month\r\n        );\r\n      }) ||\r\n      this.orderedMonths.at(-1) ||\r\n      0;\r\n    const orderedEvents = this.orderDates(\r\n      this.parsedEvents[month].events,\r\n      'yyyy/MM/dd',\r\n    );\r\n\r\n    const day =\r\n      orderedEvents.find((date) => {\r\n        const parsedDate = this.parsedEvents[month].events[date].date;\r\n        return (\r\n          this.now.year <= parsedDate.year &&\r\n          this.now.month <= parsedDate.month &&\r\n          this.now.day <= parsedDate.day\r\n        );\r\n      }) ||\r\n      orderedEvents.at(-1) ||\r\n      '';\r\n\r\n    return DateTime.fromFormat(day, 'yyyy/MM/dd');\r\n  }\r\n\r\n  handleSelectedDateChange(date: DateTime) {\r\n    this.selectedDate = date;\r\n  }\r\n}\r\n",
             "properties": [],
             "indexSignatures": [
                 {
-                    "id": "index-declaration-1211809909d7f739dca56544d3186459dec91c9bcb4c65acb4d0f3017c50c57c63a55327d2e89af00f17c65f85683b06e8d85871b25fe413d757f86bd896c99f",
+                    "id": "index-declaration-88c91c9c2836fc71f55c7e4a58631958eb99b7c0da9ca7569ca96e84756f09d74829343efa974d802ac2a921190b96bf97ee82e19e1e18cb8d890f2880d5072b",
                     "args": [
                         {
                             "name": "key",
@@ -381,12 +381,12 @@
         },
         {
             "name": "ITimelineEvent",
-            "id": "interface-ITimelineEvent-e4cadf7cf43d25e0ecf44edc723cb164f20fbbcb33f5b4395baaa45beeb79ce1300951af6ec245880f890acf7c642288c6c530ba8a9ef0d0f3cbbfcdce973653",
+            "id": "interface-ITimelineEvent-be30b07b573d9addedb9553ae584ed29fd74a0c4e1f58cbd5162327b23bc8cd3f713e2fe78094311198eeebec9baa5cdd10da28423d97f3cb0a610d92707c1a7",
             "file": "projects/ds-ng/src/lib/components/bmb-timestream/types.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { DateTime } from 'luxon';\n\nexport interface ITimelineEvent {\n  start: string;\n  end: string;\n  title: string;\n  image: string;\n  short_description: string;\n  description: string;\n  type: string;\n  instance: string;\n  action: string;\n  startEvent?: DateTime;\n  endEvent?: DateTime;\n}\n",
+            "sourceCode": "import { DateTime } from 'luxon';\r\n\r\nexport interface ITimelineEvent {\r\n  start: string;\r\n  end: string;\r\n  title: string;\r\n  image: string;\r\n  short_description: string;\r\n  description: string;\r\n  type: string;\r\n  instance: string;\r\n  action: string;\r\n  startEvent?: DateTime;\r\n  endEvent?: DateTime;\r\n}\r\n",
             "properties": [
                 {
                     "name": "action",
@@ -2866,7 +2866,7 @@
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<body>\n  <header>\n    <nav>\n      <li></li>\n    </nav>\n  </header>\n</body>\n"
+            "templateData": "<div class=\"bmb_calendar\" [ngStyle]=\"{ height: getHeight(height) }\">\r\n  <bmb-calendar-template-mobile\r\n    [now]=\"now\"\r\n    [lang]=\"lang\"\r\n    [events]=\"events\"\r\n    (onCurrentDateChange)=\"handleCurrentDateChange($event)\"\r\n    [weekDays]=\"renderWeekDays\"\r\n    [isListShowing]=\"isListShowing\"\r\n    (onViewTypeChange)=\"onViewTypeChange()\"\r\n  />\r\n  <bmb-calendar-header\r\n    [weekDays]=\"renderWeekDays\"\r\n    [lang]=\"lang\"\r\n    [view]=\"view\"\r\n    [currentDate]=\"now\"\r\n    (onRangeChange)=\"handleDateChange($event, now)\"\r\n    (onCurrentDateChange)=\"handleCurrentDateChange($event)\"\r\n  />\r\n  @if (isListShowing) {\r\n    <bmb-calendar-template-event-list\r\n      [events]=\"events\"\r\n      (onSelectEvent)=\"handleSelectEvent($event)\"\r\n    />\r\n  } @else {\r\n    @switch (view) {\r\n      @case (\"day\") {\r\n        <bmb-calendar-template-day\r\n          [now]=\"now\"\r\n          [events]=\"events\"\r\n          (onSelectEvent)=\"handleSelectEvent($event)\"\r\n        />\r\n      }\r\n      @case (\"week\") {\r\n        <bmb-calendar-template-week\r\n          [weekDays]=\"renderWeekDays\"\r\n          [lang]=\"lang\"\r\n          [hourFormat]=\"hourFormat\"\r\n          [now]=\"now\"\r\n          [events]=\"events\"\r\n          (onSelectEvent)=\"handleSelectEvent($event)\"\r\n        />\r\n      }\r\n      @case (\"month\") {\r\n        <bmb-calendar-template-month\r\n          [now]=\"now\"\r\n          [events]=\"events\"\r\n          (onSelectEvent)=\"handleSelectEvent($event)\"\r\n        />\r\n      }\r\n      @default {\r\n        <bmb-calendar-template-week\r\n          [weekDays]=\"renderWeekDays\"\r\n          [lang]=\"lang\"\r\n          [hourFormat]=\"hourFormat\"\r\n          [now]=\"now\"\r\n          [events]=\"events\"\r\n        />\r\n      }\r\n    }\r\n  }\r\n\r\n  @if (selectedEvent) {\r\n    <bmb-calendar-template-event\r\n      [event]=\"selectedEvent\"\r\n      (closeModal)=\"handleSelectEvent($event)\"\r\n    />\r\n  }\r\n\r\n  @if (isLoading) {\r\n    <section class=\"bmb_calendar-loader\">\r\n      <bmb-loader />\r\n    </section>\r\n  }\r\n</div>\r\n"
         },
         {
             "name": "BmbCalendarHeaderComponent",
@@ -4290,7 +4290,7 @@
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div class=\"bmb_calendar-month-mobile bmb_padding-m\">\n  <nav\n    class=\"bmb_calendar-month-mobile-nav\"\n    bmbLayout\n    margin=\"none\"\n    [dinamycCols]=\"true\"\n  >\n    <li bmbLayoutItem [colGrow]=\"1\" [isDinamycItem]=\"true\">\n      <div bmbLayout margin=\"none\" justify=\"center\">\n        <li bmbLayoutItem [colSm]=\"2\">\n          <bmb-calendar-template-select\n            [value]=\"month\"\n            (onValueChange)=\"handleMonthChange($event)\"\n            [options]=\"monthsNames\"\n          />\n        </li>\n        <li bmbLayoutItem [colSm]=\"2\">\n          <bmb-calendar-template-select\n            [value]=\"year.toString()\"\n            (onValueChange)=\"handleYearChange($event)\"\n            [options]=\"getYears()\"\n          />\n        </li>\n      </div>\n    </li>\n    <li [style]=\"{ 'text-align': 'right' }\">\n      <button\n        class=\"bmb_calendar-month-mobile-nav-button\"\n        (click)=\"handleViewTypeChange()\"\n        appearance=\"secondary-filled\"\n        bmbButton\n        icon=\"calendar_month\"\n      ></button>\n    </li>\n  </nav>\n  @if (!isListShowing) {\n    <ul class=\"bmb_calendar-month-mobile-calendar\">\n      @for (day of dayNames; track $index) {\n        <li class=\"bmb_calendar-month-mobile-calendar-header\">\n          {{ day }}\n        </li>\n      }\n      @if (!isCalendarOpen) {\n        @for (date of weekDays; track $index) {\n          <li class=\"bmb_calendar-month-mobile-calendar-item\">\n            <button\n              class=\"bmb_calendar-month-mobile-calendar-button\"\n              (click)=\"handleDayChange(date)\"\n              bmbButton\n              appearance=\"secondary-filled\"\n              [disabled]=\"isSelectedDay(date)\"\n            >\n              {{ date.day }}\n            </button>\n            @if (findEventsForToday(date)) {\n              <span\n                class=\"bmb_calendar-month-mobile-calendar-item-indicator\"\n              ></span>\n            }\n          </li>\n        }\n      } @else {\n        @for (date of getWeeksAndDays(); track $index) {\n          <li class=\"bmb_calendar-month-mobile-calendar-item\">\n            <button\n              class=\"bmb_calendar-month-mobile-calendar-button\"\n              (click)=\"handleDayChange(date)\"\n              bmbButton\n              appearance=\"secondary-filled\"\n              [disabled]=\"isSelectedDay(date)\"\n            >\n              {{ date.day }}\n            </button>\n            @if (findEventsForToday(date)) {\n              <span\n                class=\"bmb_calendar-month-mobile-calendar-item-indicator\"\n              ></span>\n            }\n          </li>\n        }\n      }\n    </ul>\n    <div\n      class=\"bmb_calendar-month-mobile-expander\"\n      [ngClass]=\"{\n        'bmb_calendar-month-mobile-expander-active': isCalendarOpen,\n      }\"\n    >\n      <button\n        (click)=\"handleExpand()\"\n        bmbButton\n        appearance=\"secondary-filled\"\n        icon=\"keyboard_arrow_down\"\n      ></button>\n    </div>\n  }\n</div>\n"
+            "templateData": "<div class=\"bmb_calendar-month-mobile bmb_padding-m\">\r\n  <nav\r\n    class=\"bmb_calendar-month-mobile-nav\"\r\n    bmbLayout\r\n    margin=\"none\"\r\n    [dinamycCols]=\"true\"\r\n  >\r\n    <li bmbLayoutItem [colGrow]=\"1\" [isDinamycItem]=\"true\">\r\n      <div bmbLayout margin=\"none\" justify=\"center\">\r\n        <li bmbLayoutItem [colSm]=\"2\">\r\n          <bmb-calendar-template-select\r\n            [value]=\"month\"\r\n            (onValueChange)=\"handleMonthChange($event)\"\r\n            [options]=\"monthsNames\"\r\n          />\r\n        </li>\r\n        <li bmbLayoutItem [colSm]=\"2\">\r\n          <bmb-calendar-template-select\r\n            [value]=\"year.toString()\"\r\n            (onValueChange)=\"handleYearChange($event)\"\r\n            [options]=\"getYears()\"\r\n          />\r\n        </li>\r\n      </div>\r\n    </li>\r\n    <li [style]=\"{ 'text-align': 'right' }\">\r\n      <button\r\n        class=\"bmb_calendar-month-mobile-nav-button\"\r\n        (click)=\"handleViewTypeChange()\"\r\n        appearance=\"secondary-filled\"\r\n        bmbButton\r\n        icon=\"calendar_month\"\r\n      ></button>\r\n    </li>\r\n  </nav>\r\n  @if (!isListShowing) {\r\n    <ul class=\"bmb_calendar-month-mobile-calendar\">\r\n      @for (day of dayNames; track $index) {\r\n        <li class=\"bmb_calendar-month-mobile-calendar-header\">\r\n          {{ day }}\r\n        </li>\r\n      }\r\n      @if (!isCalendarOpen) {\r\n        @for (date of weekDays; track $index) {\r\n          <li class=\"bmb_calendar-month-mobile-calendar-item\">\r\n            <button\r\n              class=\"bmb_calendar-month-mobile-calendar-button\"\r\n              (click)=\"handleDayChange(date)\"\r\n              bmbButton\r\n              appearance=\"secondary-filled\"\r\n              [disabled]=\"isSelectedDay(date)\"\r\n            >\r\n              {{ date.day }}\r\n            </button>\r\n            @if (findEventsForToday(date)) {\r\n              <span\r\n                class=\"bmb_calendar-month-mobile-calendar-item-indicator\"\r\n              ></span>\r\n            }\r\n          </li>\r\n        }\r\n      } @else {\r\n        @for (date of getWeeksAndDays(); track $index) {\r\n          <li class=\"bmb_calendar-month-mobile-calendar-item\">\r\n            <button\r\n              class=\"bmb_calendar-month-mobile-calendar-button\"\r\n              (click)=\"handleDayChange(date)\"\r\n              bmbButton\r\n              appearance=\"secondary-filled\"\r\n              [disabled]=\"isSelectedDay(date)\"\r\n            >\r\n              {{ date.day }}\r\n            </button>\r\n            @if (findEventsForToday(date)) {\r\n              <span\r\n                class=\"bmb_calendar-month-mobile-calendar-item-indicator\"\r\n              ></span>\r\n            }\r\n          </li>\r\n        }\r\n      }\r\n    </ul>\r\n    <div\r\n      class=\"bmb_calendar-month-mobile-expander\"\r\n      [ngClass]=\"{\r\n        'bmb_calendar-month-mobile-expander-active': isCalendarOpen,\r\n      }\"\r\n    >\r\n      <button\r\n        (click)=\"handleExpand()\"\r\n        bmbButton\r\n        appearance=\"secondary-filled\"\r\n        icon=\"keyboard_arrow_down\"\r\n      ></button>\r\n    </div>\r\n  }\r\n</div>\r\n"
         },
         {
             "name": "BmbCalendarTemplateMonthComponent",
@@ -4550,7 +4550,7 @@
         },
         {
             "name": "BmbCalendarTemplateSelectComponent",
-            "id": "component-BmbCalendarTemplateSelectComponent-bdce1bf01fd9e3ba0c0d58d807cebf66819ba5d37ff98c906f3b9131199a331fc79471573dc2f0822444e36180ac222409baaafc04c73eb0fca6a0a8b451eb6e",
+            "id": "component-BmbCalendarTemplateSelectComponent-2ed72f32389b1e93c89d95880ff7522c504dfea391f63d266aaaffb2b681a062c62b3dfcf872dad69ba03895ef2276f96c7d4619f4755990a69c8c48839afe0a",
             "file": "projects/ds-ng/src/lib/components/bmb-calendar/common/bmb-calendar-template-select/bmb-calendar-template-select.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -4720,13 +4720,13 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\n  ChangeDetectionStrategy,\n  Component,\n  EventEmitter,\n  Input,\n  Output,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { BmbButtonDirective } from '../../../../directives/button.directive';\nimport { CommonModule } from '@angular/common';\nimport { ClickOutsideDirective } from '../../../../directives/utils/clickoutside.directive';\n\n@Component({\n  selector: 'bmb-calendar-template-select',\n  standalone: true,\n  imports: [CommonModule, BmbButtonDirective, ClickOutsideDirective],\n  templateUrl: './bmb-calendar-template-select.component.html',\n  styleUrl: './bmb-calendar-template-select.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbCalendarTemplateSelectComponent {\n  @Input() options: string[] = [];\n  @Input() value: string = '';\n\n  @Output() onValueChange: EventEmitter<string> = new EventEmitter<string>();\n\n  isMenuExpanded = false;\n  childNodes: any = null;\n\n  handleClick(value: string) {\n    this.onValueChange.emit(value);\n    this.isMenuExpanded = false;\n  }\n\n  enableDropDown() {\n    this.isMenuExpanded = true;\n  }\n\n  isOptionSelected(item: string) {\n    if (this.value === item)\n      return 'bmb-calendar-template-select-menu-selected';\n\n    return '';\n  }\n\n  clickOutside(): void {\n    this.isMenuExpanded = false;\n  }\n}\n",
+            "sourceCode": "import {\r\n  ChangeDetectionStrategy,\r\n  Component,\r\n  EventEmitter,\r\n  Input,\r\n  Output,\r\n  ViewEncapsulation,\r\n} from '@angular/core';\r\nimport { BmbButtonDirective } from '../../../../directives/button.directive';\r\nimport { CommonModule } from '@angular/common';\r\nimport { ClickOutsideDirective } from '../../../../directives/utils/clickoutside.directive';\r\n\r\n@Component({\r\n  selector: 'bmb-calendar-template-select',\r\n  standalone: true,\r\n  imports: [CommonModule, BmbButtonDirective, ClickOutsideDirective],\r\n  templateUrl: './bmb-calendar-template-select.component.html',\r\n  styleUrl: './bmb-calendar-template-select.component.scss',\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n  encapsulation: ViewEncapsulation.None,\r\n})\r\nexport class BmbCalendarTemplateSelectComponent {\r\n  @Input() options: string[] = [];\r\n  @Input() value: string = '';\r\n\r\n  @Output() onValueChange: EventEmitter<string> = new EventEmitter<string>();\r\n\r\n  isMenuExpanded = false;\r\n  childNodes: any = null;\r\n\r\n  handleClick(value: string) {\r\n    this.onValueChange.emit(value);\r\n    this.isMenuExpanded = false;\r\n  }\r\n\r\n  enableDropDown() {\r\n    this.isMenuExpanded = true;\r\n  }\r\n\r\n  isOptionSelected(item: string) {\r\n    if (this.value === item)\r\n      return 'bmb-calendar-template-select-menu-selected';\r\n\r\n    return '';\r\n  }\r\n\r\n  clickOutside(): void {\r\n    this.isMenuExpanded = false;\r\n  }\r\n}\r\n",
             "styleUrl": "./bmb-calendar-template-select.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<section\n  class=\"bmb-calendar-template-select\"\n  clickOutside\n  (clickOutside)=\"clickOutside()\"\n>\n  <button\n    bmbButton\n    appearance=\"secondary-filled\"\n    icon=\"keyboard_arrow_down\"\n    (click)=\"enableDropDown()\"\n  >\n    {{ value }}\n  </button>\n  <ul\n    class=\"bmb-calendar-template-select-menu\"\n    [ngClass]=\"{ 'bmb-calendar-template-select-menu-active': isMenuExpanded }\"\n  >\n    @for (item of options; track $index) {\n      <li>\n        <button [ngClass]=\"isOptionSelected(item)\" (click)=\"handleClick(item)\">\n          {{ item }}\n        </button>\n      </li>\n    }\n  </ul>\n</section>\n"
+            "templateData": "<section\r\n  class=\"bmb-calendar-template-select\"\r\n  clickOutside\r\n  (clickOutside)=\"clickOutside()\"\r\n>\r\n  <button\r\n    bmbButton\r\n    appearance=\"secondary-filled\"\r\n    icon=\"keyboard_arrow_down\"\r\n    (click)=\"enableDropDown()\"\r\n  >\r\n    {{ value }}\r\n  </button>\r\n  <ul\r\n    class=\"bmb-calendar-template-select-menu\"\r\n    [ngClass]=\"{ 'bmb-calendar-template-select-menu-active': isMenuExpanded }\"\r\n  >\r\n    @for (item of options; track $index) {\r\n      <li>\r\n        <button [ngClass]=\"isOptionSelected(item)\" (click)=\"handleClick(item)\">\r\n          {{ item }}\r\n        </button>\r\n      </li>\r\n    }\r\n  </ul>\r\n</section>\r\n"
         },
         {
             "name": "BmbCalendarTemplateWeekComponent",
@@ -7534,7 +7534,7 @@
         },
         {
             "name": "BmbFabComponent",
-            "id": "component-BmbFabComponent-7381630d50d521a105de0b6447141c8449c46f5458631927b9b7ffd9ca675da2d141da14c657f10883f3c26dcad2a433049f0c9a002bacac6db18323254bc8bb",
+            "id": "component-BmbFabComponent-03c54c6780e409b6e41e10565726401fd745f57e403d5ae2387eeac641fd2f5cafc286e5a38c3ecee73e76227ce91ba46bdf9076685eafa0de573ff0ae9b648c",
             "file": "projects/ds-ng/src/lib/components/bmb-fab/bmb-fab.component.ts",
             "encapsulation": [
                 "ViewEncapsulation.None"
@@ -7559,6 +7559,15 @@
                     "deprecationMessage": "",
                     "line": 20,
                     "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "mitec",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 24,
+                    "type": "boolean",
                     "decorators": []
                 },
                 {
@@ -7597,7 +7606,7 @@
                     "type": "boolean",
                     "optional": false,
                     "description": "",
-                    "line": 25
+                    "line": 26
                 },
                 {
                     "name": "closeIcon",
@@ -7607,7 +7616,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 27
+                    "line": 28
                 },
                 {
                     "name": "fabStyle",
@@ -7617,7 +7626,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 29
+                    "line": 30
                 }
             ],
             "methodsClass": [
@@ -7627,7 +7636,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 31,
+                    "line": 32,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "decorators": [
@@ -7646,7 +7655,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 39,
+                    "line": 40,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -7656,7 +7665,7 @@
                     "optional": false,
                     "returnType": "string",
                     "typeParameters": [],
-                    "line": 43,
+                    "line": 44,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -7671,7 +7680,7 @@
                     "argsDecorator": [],
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 31
+                    "line": 32
                 }
             ],
             "standalone": true,
@@ -7688,7 +7697,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\n  Component,\n  HostListener,\n  Input,\n  ViewEncapsulation,\n  EventEmitter,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\nimport { FabSize, FabType } from './bmb-fab-.interface';\n@Component({\n  selector: 'bmb-fab',\n  styleUrl: './bmb-fab.component.scss',\n  templateUrl: './bmb-fab.component.html',\n  standalone: true,\n  imports: [CommonModule, BmbIconComponent],\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbFabComponent {\n  @Input() icon = '';\n  @Input() text?: string | null = '';\n  @Input() size?: FabSize;\n  @Input() type?: FabType;\n\n  active: boolean = false;\n\n  closeIcon = 'close';\n\n  fabStyle = '';\n\n  @HostListener('click') myClick() {\n    if (this.type == 'normal') {\n      this.active = !this.active;\n    }\n  }\n\n  constructor() {}\n\n  ngOnInit() {\n    this.fabStyle = this.setStyles();\n  }\n\n  setStyles() {\n    let style = 'bmb_fab';\n\n    if (this.size == 'small') {\n      style = `${style}-small`;\n    } else {\n      style = `${style}-large`;\n    }\n\n    if (this.type === 'extended') {\n      style = `${style}-extended`;\n    } else {\n      style = `${style}-normal`;\n    }\n    return style;\n  }\n}\n",
+            "sourceCode": "import {\r\n  Component,\r\n  HostListener,\r\n  Input,\r\n  ViewEncapsulation,\r\n  EventEmitter,\r\n} from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\r\nimport { FabSize, FabType } from './bmb-fab-.interface';\r\n@Component({\r\n  selector: 'bmb-fab',\r\n  styleUrl: './bmb-fab.component.scss',\r\n  templateUrl: './bmb-fab.component.html',\r\n  standalone: true,\r\n  imports: [CommonModule, BmbIconComponent],\r\n  encapsulation: ViewEncapsulation.None,\r\n})\r\nexport class BmbFabComponent {\r\n  @Input() icon = '';\r\n  @Input() text?: string | null = '';\r\n  @Input() size?: FabSize;\r\n  @Input() type?: FabType;\r\n  @Input() mitec?: boolean = false;\r\n\r\n  active: boolean = false;\r\n\r\n  closeIcon = 'close';\r\n\r\n  fabStyle = '';\r\n\r\n  @HostListener('click') myClick() {\r\n    if (this.type == 'normal') {\r\n      this.active = !this.active;\r\n    }\r\n  }\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit() {\r\n    this.fabStyle = this.setStyles();\r\n  }\r\n\r\n  setStyles() {\r\n    let style = !this.mitec ? 'bmb_fab' : 'bmb_fab-mitec';\r\n\r\n    if (this.size == 'small') {\r\n      style = `${style}-small`;\r\n    } else {\r\n      style = `${style}-large`;\r\n    }\r\n\r\n    if (this.type === 'extended' && !this.mitec) {\r\n      style = `${style}-extended`;\r\n    } else {\r\n      style = `${style}-normal`;\r\n    }\r\n    return style;\r\n  }\r\n}\r\n",
             "styleUrl": "./bmb-fab.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -7699,10 +7708,10 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "args": [],
-                "line": 35
+                "line": 36
             },
             "extends": [],
-            "templateData": "<button [ngClass]=\"this.fabStyle\" type=\"button\">\n  <span *ngIf=\"type == 'extended'\">{{ text }}</span>\n  <bmb-icon *ngIf=\"!active\" icon=\"{{ icon }}\" />\n  <bmb-icon *ngIf=\"type == 'normal' && active\" icon=\"close\" />\n</button>\n"
+            "templateData": "<section class=\"bmb_fab\">\r\n  @if (!mitec) {\r\n    <button [ngClass]=\"this.fabStyle\" type=\"button\">\r\n      @if (type == \"extended\") {\r\n        <span>{{ text }}</span>\r\n      }\r\n      <bmb-icon *ngIf=\"!active\" icon=\"{{ icon }}\" />\r\n      <bmb-icon *ngIf=\"type == 'normal' && active\" icon=\"close\" />\r\n    </button>\r\n  } @else {\r\n    <section class=\"bmb_fab-mitec\">\r\n      <button [ngClass]=\"this.fabStyle\" type=\"button\">\r\n        <bmb-icon icon=\"{{ icon }}\" />\r\n      </button>\r\n      @if (text) {\r\n        <span class=\"bmb_fab-mitec-text\">{{ text }}</span>\r\n      }\r\n    </section>\r\n  }\r\n</section>\r\n"
         },
         {
             "name": "BmbFocusElementComponent",
@@ -9848,7 +9857,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div\n  class=\"bmb_modal-content\"\n  [ngClass]=\"{\n    'bmb_modal-size-small': this.modalData.size == 'small',\n    'bmb_modal-size-medium': this.modalData.size == 'medium',\n    'bmb_modal-size-large': this.modalData.size == 'large',\n  }\"\n>\n  <div class=\"bmb_modal-content-wrapper\">\n    <header class=\"bmb_modal-header\">\n      @if (modalData.type == \"alert\") {\n        <div class=\"bmb_modal-header-icon\">\n          <img [src]=\"this.svgUrl\" alt=\"\" />\n        </div>\n      }\n      <div class=\"bmb_modal-header-text\">\n        <h1 class=\"bmb_modal-header-text-title\">{{ modalData.title }}</h1>\n        @if (modalData.subtitle) {\n          <h3 class=\"bmb_modal-header-text-subtitle\">subtitulo</h3>\n        }\n      </div>\n      <div class=\"bmb_modal-header-close\">\n        <bmb-icon\n          class=\"bmb_modal-header-close-icon\"\n          [icon]=\"'close'\"\n          (click)=\"closeModal()\"\n          onkeypress=\"\"\n        />\n      </div>\n    </header>\n    <section class=\"bmb_modal-body\">\n      @if (!isTemplate) {\n        <div\n          class=\"bmb_modal-body-description\"\n          [ngClass]=\"{ 'bmb_modal-body-scrollable': modalData.scrollable }\"\n        >\n          <p class=\"bmb_modal-body-description-text\">{{ modalData.content }}</p>\n        </div>\n      } @else {\n        <ng-container *ngTemplateOutlet=\"modalTemplate\"></ng-container>\n      }\n    </section>\n    @if (this.modalData.type !== \"informative\") {\n      <footer id=\"modal-footer\" class=\"bmb_modal-footer\">\n        @if (this.modalData.secondaryBtnLabel) {\n          <button\n            bmbButton\n            appearance=\"secondary-filled\"\n            class=\"bmb_modal-btn bmb_modal-footer-btn bmb_modal-btn-secondary-action\"\n            (click)=\"this.dialogRef.close(false)\"\n          >\n            {{ modalData.secondaryBtnLabel }}\n          </button>\n        }\n        <button\n          bmbButton\n          class=\"bmb_modal-btn\"\n          [ngClass]=\"btnColor\"\n          (click)=\"this.dialogRef.close(true)\"\n        >\n          {{ modalData.primaryBtnLabel || \"OK\" }}\n        </button>\n      </footer>\n    }\n  </div>\n</div>\n"
+            "templateData": "<div\r\n  class=\"bmb_modal-content\"\r\n  [ngClass]=\"{\r\n    'bmb_modal-size-small': this.modalData.size == 'small',\r\n    'bmb_modal-size-medium': this.modalData.size == 'medium',\r\n    'bmb_modal-size-large': this.modalData.size == 'large',\r\n  }\"\r\n>\r\n  <div class=\"bmb_modal-content-wrapper\">\r\n    <header class=\"bmb_modal-header\">\r\n      @if (modalData.type == \"alert\") {\r\n        <div class=\"bmb_modal-header-icon\">\r\n          <img [src]=\"this.svgUrl\" alt=\"\" />\r\n        </div>\r\n      }\r\n      <div class=\"bmb_modal-header-text\">\r\n        <h1 class=\"bmb_modal-header-text-title\">{{ modalData.title }}</h1>\r\n        @if (modalData.subtitle) {\r\n          <h3 class=\"bmb_modal-header-text-subtitle\">\r\n            {{ modalData.subtitle }}\r\n          </h3>\r\n        }\r\n      </div>\r\n      <div class=\"bmb_modal-header-close\">\r\n        <bmb-icon\r\n          class=\"bmb_modal-header-close-icon\"\r\n          [icon]=\"'close'\"\r\n          (click)=\"closeModal()\"\r\n          onkeypress=\"\"\r\n        />\r\n      </div>\r\n    </header>\r\n    <section class=\"bmb_modal-body\">\r\n      @if (!isTemplate) {\r\n        <div\r\n          class=\"bmb_modal-body-description\"\r\n          [ngClass]=\"{ 'bmb_modal-body-scrollable': modalData.scrollable }\"\r\n        >\r\n          <p class=\"bmb_modal-body-description-text\">{{ modalData.content }}</p>\r\n        </div>\r\n      } @else {\r\n        <ng-container *ngTemplateOutlet=\"modalTemplate\"></ng-container>\r\n      }\r\n    </section>\r\n    @if (this.modalData.type !== \"informative\") {\r\n      <footer id=\"modal-footer\" class=\"bmb_modal-footer\">\r\n        @if (this.modalData.secondaryBtnLabel) {\r\n          <button\r\n            bmbButton\r\n            appearance=\"secondary-filled\"\r\n            class=\"bmb_modal-btn bmb_modal-footer-btn bmb_modal-btn-secondary-action\"\r\n            (click)=\"this.dialogRef.close(false)\"\r\n          >\r\n            {{ modalData.secondaryBtnLabel }}\r\n          </button>\r\n        }\r\n        <button\r\n          bmbButton\r\n          class=\"bmb_modal-btn\"\r\n          [ngClass]=\"btnColor\"\r\n          (click)=\"this.dialogRef.close(true)\"\r\n        >\r\n          {{ modalData.primaryBtnLabel || \"OK\" }}\r\n        </button>\r\n      </footer>\r\n    }\r\n  </div>\r\n</div>\r\n"
         },
         {
             "name": "BmbOverlayComponent",
@@ -11784,6 +11793,116 @@
             "templateData": "<div class=\"bmb_step-progress-bar\">\n  <div\n    class=\"bmb_step-progress-bar-item\"\n    *ngFor=\"let i of getStepsArray()\"\n    [attr.data-bs-slide-to]=\"i\"\n    [ngClass]=\"{ completed: activeStep > i }\"\n    (click)=\"onStepClicked(i)\"\n    onkeypress=\"\"\n  >\n    <div\n      class=\"bmb_step-progress-bar-step\"\n      [ngClass]=\"{\n        active: activeStep === i,\n        completed: activeStep > i,\n        'bmb_step-progress-bar-step-normal': size == 'normal',\n        'bmb_step-progress-bar-step-small': size == 'small',\n      }\"\n    >\n      <span *ngIf=\"activeStep == i || activeStep < i\">{{ i + 1 }}</span>\n      @if (activeStep > i) {\n        <bmb-icon [icon]=\"'done'\" class=\"material-icons\" />\n      }\n    </div>\n  </div>\n</div>\n"
         },
         {
+            "name": "BmbStudentActivityCardComponent",
+            "id": "component-BmbStudentActivityCardComponent-692be3707b6509b44c5b4f99f28662b5029f4a19e583328fcdbe8f4b83b8412d1fa268607b4bacf77992965c522f5e91ba56e72f48fc771af7be3ea3c4c0fc82",
+            "file": "projects/ds-ng/src/lib/components/bmb-student-activity-card/bmb-student-activity-card.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-student-activity-card",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-student-activity-card.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "categoryTitle",
+                    "defaultValue": "'Category Title'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 20,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "classSubtitle",
+                    "defaultValue": "'Possible 2nd line'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 22,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "classTitle",
+                    "defaultValue": "'Class Title'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 21,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "count",
+                    "defaultValue": "'00 / 00'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 19,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "location",
+                    "defaultValue": "'Location'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 23,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "statusLabel",
+                    "defaultValue": "'EN PROGRESO'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 24,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "timeRange",
+                    "defaultValue": "'Time - Time'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 25,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { CommonModule } from '@angular/common';\r\nimport {\r\n  ChangeDetectionStrategy,\r\n  Component,\r\n  Input,\r\n  ViewEncapsulation,\r\n} from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'bmb-student-activity-card',\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n  encapsulation: ViewEncapsulation.None,\r\n  templateUrl: './bmb-student-activity-card.component.html',\r\n  styleUrl: './bmb-student-activity-card.component.scss',\r\n})\r\nexport class BmbStudentActivityCardComponent {\r\n  @Input() count: string = '00 / 00';\r\n  @Input() categoryTitle: string = 'Category Title';\r\n  @Input() classTitle: string = 'Class Title';\r\n  @Input() classSubtitle: string = 'Possible 2nd line';\r\n  @Input() location: string = 'Location';\r\n  @Input() statusLabel: string = 'EN PROGRESO';\r\n  @Input() timeRange: string = 'Time - Time';\r\n}\r\n",
+            "styleUrl": "./bmb-student-activity-card.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<div class=\"bmb_student_activity_card\">\r\n  <div class=\"bmb_student_activity_card-header\">\r\n    <span class=\"bmb_student_activity_card-count\">{{ count }}</span>\r\n    <span class=\"bmb_student_activity_card-category-title\">{{\r\n      categoryTitle\r\n    }}</span>\r\n    <span class=\"bmb_student_activity_card-close-button\">&times;</span>\r\n  </div>\r\n  <div class=\"bmb_student_activity_card-content\">\r\n    <div class=\"bmb_student_activity_card-title\">{{ classTitle }}</div>\r\n    <div class=\"bmb_student_activity_card-subtitle\">{{ classSubtitle }}</div>\r\n    <div class=\"bmb_student_activity_card-location\">{{ location }}</div>\r\n    <div class=\"bmb_student_activity_card-status\">\r\n      <span class=\"bmb_student_activity_card-status-label\">{{\r\n        statusLabel\r\n      }}</span>\r\n      <span class=\"bmb_student_activity_card-time-range\">{{ timeRange }}</span>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+        },
+        {
             "name": "BmbStudentActivitySelectorComponent",
             "id": "component-BmbStudentActivitySelectorComponent-364c7b5a0a00102f0b78025f72c58269eb08bee17e141d42fcbb97db68776d94153876980135586e7349c9a862cc26cfd2938854d87d6693d78573afbc01a1e4",
             "file": "projects/ds-ng/src/lib/components/bmb-student-activity-selector/bmb-student-activity-selector.component.ts",
@@ -13589,7 +13708,7 @@
         },
         {
             "name": "BmbTimestreamComponent",
-            "id": "component-BmbTimestreamComponent-1211809909d7f739dca56544d3186459dec91c9bcb4c65acb4d0f3017c50c57c63a55327d2e89af00f17c65f85683b06e8d85871b25fe413d757f86bd896c99f",
+            "id": "component-BmbTimestreamComponent-88c91c9c2836fc71f55c7e4a58631958eb99b7c0da9ca7569ca96e84756f09d74829343efa974d802ac2a921190b96bf97ee82e19e1e18cb8d890f2880d5072b",
             "file": "projects/ds-ng/src/lib/components/bmb-timestream/bmb-timestream.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -13916,7 +14035,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\n  ChangeDetectionStrategy,\n  Component,\n  Input,\n  OnInit,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { DateTime, Info } from 'luxon';\nimport { BmbTimestreamErrorComponent } from './bmb-timestream-error/bmb-timestream-error.component';\nimport { BmbTimestreamTimelineComponent } from './bmb-timestream-timeline/bmb-timestream-timeline.component';\nimport { ITimelineEvent } from './types';\n\ninterface IPlaceholderObject {\n  [key: string]: any | any[];\n}\n\n@Component({\n  selector: 'bmb-timestream',\n  standalone: true,\n  imports: [BmbTimestreamErrorComponent, BmbTimestreamTimelineComponent],\n  templateUrl: './bmb-timestream.component.html',\n  styleUrl: './bmb-timestream.component.scss',\n  encapsulation: ViewEncapsulation.None,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbTimestreamComponent implements OnInit {\n  @Input() startDate: string = '';\n  @Input() endDate: string = '';\n  @Input() dateFormat: string = 'dd/MM/yyyy';\n  @Input() lang: string = 'es';\n  @Input() events: ITimelineEvent[] | null = null;\n\n  error = false;\n  now = DateTime.now();\n  start: DateTime | null = null;\n  end: DateTime | null = null;\n  difference = 0;\n  validMonths: any = [];\n  parsedEvents: any | null = null;\n  monthsNames = Info.months('long', { locale: this.lang });\n  isDialogOpen = false;\n  selectedDate: DateTime = this.now;\n  orderedMonths: string[] = [];\n\n  ngOnInit(): void {\n    this.dateValidation();\n\n    this.start = DateTime.fromFormat(this.startDate, this.dateFormat);\n    this.end = DateTime.fromFormat(this.endDate, this.dateFormat);\n    this.difference = Math.ceil(this.end.diff(this.start, 'months').months);\n    this.parsedEvents = this.prepareEvents(this.events);\n    this.orderedMonths = this.orderDates(this.parsedEvents, 'yyyy/MM');\n    this.selectedDate = this.selectAValidDate();\n  }\n\n  dateValidation() {\n    const isValidStart = DateTime.fromFormat(\n      this.startDate,\n      this.dateFormat,\n    ).isValid;\n    const isValidEnd = DateTime.fromFormat(\n      this.endDate,\n      this.dateFormat,\n    ).isValid;\n\n    this.error = !isValidEnd || !isValidStart;\n  }\n\n  prepareEvents(events: ITimelineEvent[] | null) {\n    if (events) {\n      const objectEvent: IPlaceholderObject = {};\n\n      events.forEach((event) => {\n        const startDate = DateTime.fromFormat(event.start, this.dateFormat);\n        const endDate = DateTime.fromFormat(event.end, this.dateFormat);\n        const diff = endDate.diff(startDate, 'days').days + 1;\n\n        for (let index = 0; index < diff; index++) {\n          const currentDate = startDate.plus({ days: index });\n          const stringDate = currentDate.toFormat('yyyy/MM/dd');\n          const month = currentDate.toFormat('yyyy/MM');\n\n          objectEvent[month] ??= {\n            events: {},\n            name: this.monthsNames[currentDate.month - 1],\n            stringDate: month,\n            year: currentDate.year,\n            date: currentDate,\n          };\n\n          objectEvent[month].events[stringDate] ??= {\n            events: [],\n            date: currentDate,\n            stringDate,\n          };\n\n          objectEvent[month].events[stringDate].events.push({\n            ...event,\n            start: stringDate,\n            startEvent: currentDate,\n            endEvent: endDate,\n          });\n        }\n      });\n\n      return objectEvent;\n    }\n\n    return {};\n  }\n\n  orderDates(events: any, format: string): string[] {\n    const monthsList = Object.keys(events);\n    const monthsOrdered = monthsList.sort((dateA: string, dateB: string) => {\n      const parsedDateA = DateTime.fromFormat(dateA, format);\n      const parsedDateB = DateTime.fromFormat(dateB, format);\n      return parsedDateA.toMillis() - parsedDateB.toMillis();\n    });\n\n    return monthsOrdered;\n  }\n\n  selectAValidDate(): DateTime {\n    const month =\n      this.orderedMonths.find((date) => {\n        const parsedDate = this.parsedEvents[date].date;\n        return (\n          this.now.year <= parsedDate.year && this.now.month <= parsedDate.month\n        );\n      }) ||\n      this.orderedMonths.at(-1) ||\n      0;\n    const orderedEvents = this.orderDates(\n      this.parsedEvents[month].events,\n      'yyyy/MM/dd',\n    );\n\n    const day =\n      orderedEvents.find((date) => {\n        const parsedDate = this.parsedEvents[month].events[date].date;\n        return (\n          this.now.year <= parsedDate.year &&\n          this.now.month <= parsedDate.month &&\n          this.now.day <= parsedDate.day\n        );\n      }) ||\n      orderedEvents.at(-1) ||\n      '';\n\n    return DateTime.fromFormat(day, 'yyyy/MM/dd');\n  }\n\n  handleSelectedDateChange(date: DateTime) {\n    this.selectedDate = date;\n  }\n}\n",
+            "sourceCode": "import {\r\n  ChangeDetectionStrategy,\r\n  Component,\r\n  Input,\r\n  OnInit,\r\n  ViewEncapsulation,\r\n} from '@angular/core';\r\nimport { DateTime, Info } from 'luxon';\r\nimport { BmbTimestreamErrorComponent } from './bmb-timestream-error/bmb-timestream-error.component';\r\nimport { BmbTimestreamTimelineComponent } from './bmb-timestream-timeline/bmb-timestream-timeline.component';\r\nimport { ITimelineEvent } from './types';\r\n\r\ninterface IPlaceholderObject {\r\n  [key: string]: any | any[];\r\n}\r\n\r\n@Component({\r\n  selector: 'bmb-timestream',\r\n  standalone: true,\r\n  imports: [BmbTimestreamErrorComponent, BmbTimestreamTimelineComponent],\r\n  templateUrl: './bmb-timestream.component.html',\r\n  styleUrl: './bmb-timestream.component.scss',\r\n  encapsulation: ViewEncapsulation.None,\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class BmbTimestreamComponent implements OnInit {\r\n  @Input() startDate: string = '';\r\n  @Input() endDate: string = '';\r\n  @Input() dateFormat: string = 'dd/MM/yyyy';\r\n  @Input() lang: string = 'es';\r\n  @Input() events: ITimelineEvent[] | null = null;\r\n\r\n  error = false;\r\n  now = DateTime.now();\r\n  start: DateTime | null = null;\r\n  end: DateTime | null = null;\r\n  difference = 0;\r\n  validMonths: any = [];\r\n  parsedEvents: any | null = null;\r\n  monthsNames = Info.months('long', { locale: this.lang });\r\n  isDialogOpen = false;\r\n  selectedDate: DateTime = this.now;\r\n  orderedMonths: string[] = [];\r\n\r\n  ngOnInit(): void {\r\n    this.dateValidation();\r\n\r\n    this.start = DateTime.fromFormat(this.startDate, this.dateFormat);\r\n    this.end = DateTime.fromFormat(this.endDate, this.dateFormat);\r\n    this.difference = Math.ceil(this.end.diff(this.start, 'months').months);\r\n    this.parsedEvents = this.prepareEvents(this.events);\r\n    this.orderedMonths = this.orderDates(this.parsedEvents, 'yyyy/MM');\r\n    this.selectedDate = this.selectAValidDate();\r\n  }\r\n\r\n  dateValidation() {\r\n    const isValidStart = DateTime.fromFormat(\r\n      this.startDate,\r\n      this.dateFormat,\r\n    ).isValid;\r\n    const isValidEnd = DateTime.fromFormat(\r\n      this.endDate,\r\n      this.dateFormat,\r\n    ).isValid;\r\n\r\n    this.error = !isValidEnd || !isValidStart;\r\n  }\r\n\r\n  prepareEvents(events: ITimelineEvent[] | null) {\r\n    if (events) {\r\n      const objectEvent: IPlaceholderObject = {};\r\n\r\n      events.forEach((event) => {\r\n        const startDate = DateTime.fromFormat(event.start, this.dateFormat);\r\n        const endDate = DateTime.fromFormat(event.end, this.dateFormat);\r\n        const diff = endDate.diff(startDate, 'days').days + 1;\r\n\r\n        for (let index = 0; index < diff; index++) {\r\n          const currentDate = startDate.plus({ days: index });\r\n          const stringDate = currentDate.toFormat('yyyy/MM/dd');\r\n          const month = currentDate.toFormat('yyyy/MM');\r\n\r\n          objectEvent[month] ??= {\r\n            events: {},\r\n            name: this.monthsNames[currentDate.month - 1],\r\n            stringDate: month,\r\n            year: currentDate.year,\r\n            date: currentDate,\r\n          };\r\n\r\n          objectEvent[month].events[stringDate] ??= {\r\n            events: [],\r\n            date: currentDate,\r\n            stringDate,\r\n          };\r\n\r\n          objectEvent[month].events[stringDate].events.push({\r\n            ...event,\r\n            start: stringDate,\r\n            startEvent: currentDate,\r\n            endEvent: endDate,\r\n          });\r\n        }\r\n      });\r\n\r\n      return objectEvent;\r\n    }\r\n\r\n    return {};\r\n  }\r\n\r\n  orderDates(events: any, format: string): string[] {\r\n    const monthsList = Object.keys(events);\r\n    const monthsOrdered = monthsList.sort((dateA: string, dateB: string) => {\r\n      const parsedDateA = DateTime.fromFormat(dateA, format);\r\n      const parsedDateB = DateTime.fromFormat(dateB, format);\r\n      return parsedDateA.toMillis() - parsedDateB.toMillis();\r\n    });\r\n\r\n    return monthsOrdered;\r\n  }\r\n\r\n  selectAValidDate(): DateTime {\r\n    const month =\r\n      this.orderedMonths.find((date) => {\r\n        const parsedDate = this.parsedEvents[date].date;\r\n        return (\r\n          this.now.year <= parsedDate.year && this.now.month <= parsedDate.month\r\n        );\r\n      }) ||\r\n      this.orderedMonths.at(-1) ||\r\n      0;\r\n    const orderedEvents = this.orderDates(\r\n      this.parsedEvents[month].events,\r\n      'yyyy/MM/dd',\r\n    );\r\n\r\n    const day =\r\n      orderedEvents.find((date) => {\r\n        const parsedDate = this.parsedEvents[month].events[date].date;\r\n        return (\r\n          this.now.year <= parsedDate.year &&\r\n          this.now.month <= parsedDate.month &&\r\n          this.now.day <= parsedDate.day\r\n        );\r\n      }) ||\r\n      orderedEvents.at(-1) ||\r\n      '';\r\n\r\n    return DateTime.fromFormat(day, 'yyyy/MM/dd');\r\n  }\r\n\r\n  handleSelectedDateChange(date: DateTime) {\r\n    this.selectedDate = date;\r\n  }\r\n}\r\n",
             "styleUrl": "./bmb-timestream.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -13925,11 +14044,11 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<section class=\"bmb_timestream\">\n  @if (error) {\n    <div class=\"bmb_timestream-error\">\n      <bmb-timestream-error />\n    </div>\n  } @else {\n    <aside class=\"bmb_timestream-aside\">\n      <bmb-bmb-timestream-timeline\n        [start]=\"start\"\n        [end]=\"end\"\n        [dateFormat]=\"dateFormat\"\n        [lang]=\"lang\"\n        [now]=\"now\"\n        [events]=\"parsedEvents\"\n        [selectedDate]=\"selectedDate\"\n        [orderedMonths]=\"orderedMonths\"\n        (changeSelectedDate)=\"handleSelectedDateChange($event)\"\n      />\n    </aside>\n    <section class=\"bmb_timestream-main\">main</section>\n    @if (isDialogOpen) {\n      <dialog>test</dialog>\n    }\n  }\n</section>\n"
+            "templateData": "<section class=\"bmb_timestream\">\r\n  @if (error) {\r\n    <div class=\"bmb_timestream-error\">\r\n      <bmb-timestream-error />\r\n    </div>\r\n  } @else {\r\n    <aside class=\"bmb_timestream-aside\">\r\n      <bmb-bmb-timestream-timeline\r\n        [start]=\"start\"\r\n        [end]=\"end\"\r\n        [dateFormat]=\"dateFormat\"\r\n        [lang]=\"lang\"\r\n        [now]=\"now\"\r\n        [events]=\"parsedEvents\"\r\n        [selectedDate]=\"selectedDate\"\r\n        [orderedMonths]=\"orderedMonths\"\r\n        (changeSelectedDate)=\"handleSelectedDateChange($event)\"\r\n      />\r\n    </aside>\r\n    <section class=\"bmb_timestream-main\">main</section>\r\n    @if (isDialogOpen) {\r\n      <dialog>test</dialog>\r\n    }\r\n  }\r\n</section>\r\n"
         },
         {
             "name": "BmbTimestreamErrorComponent",
-            "id": "component-BmbTimestreamErrorComponent-d54eae59298c62b2739c1f1fd86b355a2587d576ec50b4377f3fe977e6d80032c2826e04862016a8cecd488e093a3b2044a6a8bf624b1608d86ff717ccf1be68",
+            "id": "component-BmbTimestreamErrorComponent-1368cfa749c167b66b08642a467bd6326db37fbb7a63a199854d50dc085493461cdbd51fde72136fd5bc51efc974e9da9dbd778151faf968cb45b27bac000644",
             "file": "projects/ds-ng/src/lib/components/bmb-timestream/bmb-timestream-error/bmb-timestream-error.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -13973,17 +14092,17 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\n  ChangeDetectionStrategy,\n  Component,\n  ViewEncapsulation,\n} from '@angular/core';\nimport {\n  BmbCardComponent,\n  BmbCardContentComponent,\n} from '../../bmb-card/bmb-card.component';\nimport { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';\n\n@Component({\n  selector: 'bmb-timestream-error',\n  standalone: true,\n  imports: [BmbCardComponent, BmbCardContentComponent, BmbIconComponent],\n  templateUrl: './bmb-timestream-error.component.html',\n  styleUrl: './bmb-timestream-error.component.scss',\n  encapsulation: ViewEncapsulation.None,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbTimestreamErrorComponent {}\n",
+            "sourceCode": "import {\r\n  ChangeDetectionStrategy,\r\n  Component,\r\n  ViewEncapsulation,\r\n} from '@angular/core';\r\nimport {\r\n  BmbCardComponent,\r\n  BmbCardContentComponent,\r\n} from '../../bmb-card/bmb-card.component';\r\nimport { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';\r\n\r\n@Component({\r\n  selector: 'bmb-timestream-error',\r\n  standalone: true,\r\n  imports: [BmbCardComponent, BmbCardContentComponent, BmbIconComponent],\r\n  templateUrl: './bmb-timestream-error.component.html',\r\n  styleUrl: './bmb-timestream-error.component.scss',\r\n  encapsulation: ViewEncapsulation.None,\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class BmbTimestreamErrorComponent {}\r\n",
             "styleUrl": "./bmb-timestream-error.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div class=\"bmb_timestream-error\">\n  <bmb-card type=\"error\">\n    <bmb-card-content>\n      <h2 class=\"bmb_timestream-error-title\">\n        <span class=\"bmb_timestream-error-title-icon\"\n          ><bmb-icon icon=\"error\"\n        /></span>\n        <span>Error</span>\n      </h2>\n      <p class=\"bmb_timestream-error-content\">\n        El <strong>dateFormat</strong> o las fechas de inicio y fin no son\n        válidas.<br />\n        <a\n          href=\"https://moment.github.io/luxon/api-docs/index.html#datetimefromformat\"\n          target=\"_blank\"\n          >Formatos de fechas válidas</a\n        >\n      </p>\n    </bmb-card-content>\n  </bmb-card>\n</div>\n"
+            "templateData": "<div class=\"bmb_timestream-error\">\r\n  <bmb-card type=\"error\">\r\n    <bmb-card-content>\r\n      <h2 class=\"bmb_timestream-error-title\">\r\n        <span class=\"bmb_timestream-error-title-icon\"\r\n          ><bmb-icon icon=\"error\"\r\n        /></span>\r\n        <span>Error</span>\r\n      </h2>\r\n      <p class=\"bmb_timestream-error-content\">\r\n        El <strong>dateFormat</strong> o las fechas de inicio y fin no son\r\n        válidas.<br />\r\n        <a\r\n          href=\"https://moment.github.io/luxon/api-docs/index.html#datetimefromformat\"\r\n          target=\"_blank\"\r\n          >Formatos de fechas válidas</a\r\n        >\r\n      </p>\r\n    </bmb-card-content>\r\n  </bmb-card>\r\n</div>\r\n"
         },
         {
             "name": "BmbTimestreamTimelineComponent",
-            "id": "component-BmbTimestreamTimelineComponent-73d0ff9d8f9e909d27ab14b5f5cf28f18cb0756fecbcd1daef330e7bc5129efd1a7961ff2bf3b4596b5df585c898d17aa41aa6e7620fabfa93455ac54aa8d275",
+            "id": "component-BmbTimestreamTimelineComponent-a4c6899083c465d67c8e5c40c913f2937dcb61eceafc36ca0caca8ad322a6bcfddc518ca2f7eb3cb2621b33b57079955fab7e0736ecdf264487533cb6454ebef",
             "file": "projects/ds-ng/src/lib/components/bmb-timestream/bmb-timestream-timeline/bmb-timestream-timeline.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -14392,7 +14511,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\n  ChangeDetectionStrategy,\n  Component,\n  Input,\n  OnInit,\n  ViewEncapsulation,\n  ElementRef,\n  AfterViewInit,\n  ViewChild,\n  ViewChildren,\n  QueryList,\n  Output,\n  EventEmitter,\n} from '@angular/core';\nimport { DateTime } from 'luxon';\nimport { CommonModule } from '@angular/common';\nimport { ITimelineEvent } from '../types';\n\n@Component({\n  selector: 'bmb-bmb-timestream-timeline',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './bmb-timestream-timeline.component.html',\n  styleUrl: './bmb-timestream-timeline.component.scss',\n  encapsulation: ViewEncapsulation.None,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbTimestreamTimelineComponent implements OnInit, AfterViewInit {\n  @ViewChild('monthList') monthList!: ElementRef;\n  @ViewChildren('.bmb_timestream-timeline-item-current', {})\n  elementos!: QueryList<ElementRef>;\n\n  @Input() start: DateTime | null = null;\n  @Input() end: DateTime | null = null;\n  @Input() dateFormat: string = 'dd/MM/yyyy';\n  @Input() lang: string = 'es';\n  @Input() now: DateTime = DateTime.now();\n  @Input() events?: any;\n  @Input() selectedDate: DateTime = DateTime.now();\n  @Input() orderedMonths: string[] = [];\n\n  @Output() changeSelectedDate: EventEmitter<DateTime> =\n    new EventEmitter<DateTime>();\n\n  ngOnInit(): void {}\n\n  ngAfterViewInit(): void {\n    this.scrollToItem();\n  }\n\n  getMonthTitle(month: string) {\n    return `${this.events[month].name} ${this.events[month].year}`;\n  }\n\n  getCurrentMonth(date: string): boolean {\n    const parsedDate = DateTime.fromFormat(date, 'yyyy/MM');\n    return (\n      parsedDate.month === this.selectedDate.month &&\n      parsedDate.year === this.selectedDate.year\n    );\n  }\n\n  scrollToItem() {\n    let currentMonthElement = this.monthList.nativeElement.querySelector(\n      '.bmb_timestream-timeline-content-item-current',\n    );\n    if (currentMonthElement) {\n      currentMonthElement.scrollIntoView();\n      this.monthList.nativeElement.scrollTop =\n        this.monthList.nativeElement.scrollTop - 45;\n    } else {\n      currentMonthElement = this.monthList.nativeElement.querySelector(\n        '.bmb_timestream-timeline-item-current',\n      );\n      currentMonthElement.scrollIntoView();\n    }\n  }\n\n  getOrderedEvents(monthEvents: any) {\n    const daysList = Object.keys(monthEvents);\n    const orderedDays = daysList.sort((dateA: string, dateB: string) => {\n      const parsedDateA = monthEvents[dateA].date;\n      const parsedDateB = monthEvents[dateB].date;\n      return parsedDateA.toMillis() - parsedDateB.toMillis();\n    });\n    return orderedDays;\n  }\n\n  parseEvent(month: string, date: string) {\n    return this.events[month].events[date].date\n      .setLocale(this.lang)\n      .toFormat('dd LLL yyyy');\n  }\n\n  getCircles(month: string, date: string) {\n    return this.events[month].events[date].events;\n  }\n\n  getCurrentDate(date: string): boolean {\n    const parsedDate = DateTime.fromFormat(date, 'yyyy/MM/dd');\n    return (\n      parsedDate.month === this.selectedDate.month &&\n      parsedDate.year === this.selectedDate.year &&\n      parsedDate.day === this.selectedDate.day\n    );\n  }\n\n  handleDateChange({ event, month }: { event: string; month: string }): void {\n    this.changeSelectedDate.emit(this.events[month].events[event].date);\n  }\n}\n",
+            "sourceCode": "import {\r\n  ChangeDetectionStrategy,\r\n  Component,\r\n  Input,\r\n  OnInit,\r\n  ViewEncapsulation,\r\n  ElementRef,\r\n  AfterViewInit,\r\n  ViewChild,\r\n  ViewChildren,\r\n  QueryList,\r\n  Output,\r\n  EventEmitter,\r\n} from '@angular/core';\r\nimport { DateTime } from 'luxon';\r\nimport { CommonModule } from '@angular/common';\r\nimport { ITimelineEvent } from '../types';\r\n\r\n@Component({\r\n  selector: 'bmb-bmb-timestream-timeline',\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n  templateUrl: './bmb-timestream-timeline.component.html',\r\n  styleUrl: './bmb-timestream-timeline.component.scss',\r\n  encapsulation: ViewEncapsulation.None,\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class BmbTimestreamTimelineComponent implements OnInit, AfterViewInit {\r\n  @ViewChild('monthList') monthList!: ElementRef;\r\n  @ViewChildren('.bmb_timestream-timeline-item-current', {})\r\n  elementos!: QueryList<ElementRef>;\r\n\r\n  @Input() start: DateTime | null = null;\r\n  @Input() end: DateTime | null = null;\r\n  @Input() dateFormat: string = 'dd/MM/yyyy';\r\n  @Input() lang: string = 'es';\r\n  @Input() now: DateTime = DateTime.now();\r\n  @Input() events?: any;\r\n  @Input() selectedDate: DateTime = DateTime.now();\r\n  @Input() orderedMonths: string[] = [];\r\n\r\n  @Output() changeSelectedDate: EventEmitter<DateTime> =\r\n    new EventEmitter<DateTime>();\r\n\r\n  ngOnInit(): void {}\r\n\r\n  ngAfterViewInit(): void {\r\n    this.scrollToItem();\r\n  }\r\n\r\n  getMonthTitle(month: string) {\r\n    return `${this.events[month].name} ${this.events[month].year}`;\r\n  }\r\n\r\n  getCurrentMonth(date: string): boolean {\r\n    const parsedDate = DateTime.fromFormat(date, 'yyyy/MM');\r\n    return (\r\n      parsedDate.month === this.selectedDate.month &&\r\n      parsedDate.year === this.selectedDate.year\r\n    );\r\n  }\r\n\r\n  scrollToItem() {\r\n    let currentMonthElement = this.monthList.nativeElement.querySelector(\r\n      '.bmb_timestream-timeline-content-item-current',\r\n    );\r\n    if (currentMonthElement) {\r\n      currentMonthElement.scrollIntoView();\r\n      this.monthList.nativeElement.scrollTop =\r\n        this.monthList.nativeElement.scrollTop - 45;\r\n    } else {\r\n      currentMonthElement = this.monthList.nativeElement.querySelector(\r\n        '.bmb_timestream-timeline-item-current',\r\n      );\r\n      currentMonthElement.scrollIntoView();\r\n    }\r\n  }\r\n\r\n  getOrderedEvents(monthEvents: any) {\r\n    const daysList = Object.keys(monthEvents);\r\n    const orderedDays = daysList.sort((dateA: string, dateB: string) => {\r\n      const parsedDateA = monthEvents[dateA].date;\r\n      const parsedDateB = monthEvents[dateB].date;\r\n      return parsedDateA.toMillis() - parsedDateB.toMillis();\r\n    });\r\n    return orderedDays;\r\n  }\r\n\r\n  parseEvent(month: string, date: string) {\r\n    return this.events[month].events[date].date\r\n      .setLocale(this.lang)\r\n      .toFormat('dd LLL yyyy');\r\n  }\r\n\r\n  getCircles(month: string, date: string) {\r\n    return this.events[month].events[date].events;\r\n  }\r\n\r\n  getCurrentDate(date: string): boolean {\r\n    const parsedDate = DateTime.fromFormat(date, 'yyyy/MM/dd');\r\n    return (\r\n      parsedDate.month === this.selectedDate.month &&\r\n      parsedDate.year === this.selectedDate.year &&\r\n      parsedDate.day === this.selectedDate.day\r\n    );\r\n  }\r\n\r\n  handleDateChange({ event, month }: { event: string; month: string }): void {\r\n    this.changeSelectedDate.emit(this.events[month].events[event].date);\r\n  }\r\n}\r\n",
             "styleUrl": "./bmb-timestream-timeline.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -14402,7 +14521,7 @@
                 "OnInit",
                 "AfterViewInit"
             ],
-            "templateData": "<ul #monthList class=\"bmb_timestream-timeline\">\n  @for (month of orderedMonths; track $index) {\n    <li\n      class=\"bmb_timestream-timeline-item\"\n      [ngClass]=\"{\n        'bmb_timestream-timeline-item-current': getCurrentMonth(month),\n      }\"\n    >\n      <header class=\"bmb_timestream-timeline-header\">\n        {{ getMonthTitle(month) }}\n      </header>\n      <section class=\"bmb_timestream-timeline-content\">\n        @for (event of getOrderedEvents(events[month].events); track $index) {\n          <div\n            class=\"bmb_timestream-timeline-content-item\"\n            [ngClass]=\"{\n              'bmb_timestream-timeline-content-item-current':\n                getCurrentDate(event),\n            }\"\n          >\n            <h3\n              class=\"bmb_timestream-timeline-content-item-title\"\n              (click)=\"handleDateChange({ event, month })\"\n            >\n              {{ parseEvent(month, event) }}\n            </h3>\n            <span class=\"bmb_timestream-timeline-content-item-bar\"></span>\n            <div class=\"bmb_timestream-timeline-content-item-events\">\n              @for (\n                circle of events[month].events[event].events;\n                track $index\n              ) {\n                <span\n                  class=\"bmb_timestream-timeline-content-item-circle\"\n                  [ngClass]=\"\n                    'bmb_timestream-timeline-content-item-circle-' + circle.type\n                  \"\n                ></span>\n              }\n            </div>\n          </div>\n        }\n      </section>\n    </li>\n  }\n</ul>\n\n<!--  -->\n"
+            "templateData": "<ul #monthList class=\"bmb_timestream-timeline\">\r\n  @for (month of orderedMonths; track $index) {\r\n    <li\r\n      class=\"bmb_timestream-timeline-item\"\r\n      [ngClass]=\"{\r\n        'bmb_timestream-timeline-item-current': getCurrentMonth(month),\r\n      }\"\r\n    >\r\n      <header class=\"bmb_timestream-timeline-header\">\r\n        {{ getMonthTitle(month) }}\r\n      </header>\r\n      <section class=\"bmb_timestream-timeline-content\">\r\n        @for (event of getOrderedEvents(events[month].events); track $index) {\r\n          <div\r\n            class=\"bmb_timestream-timeline-content-item\"\r\n            [ngClass]=\"{\r\n              'bmb_timestream-timeline-content-item-current':\r\n                getCurrentDate(event),\r\n            }\"\r\n          >\r\n            <h3\r\n              class=\"bmb_timestream-timeline-content-item-title\"\r\n              (click)=\"handleDateChange({ event, month })\"\r\n            >\r\n              {{ parseEvent(month, event) }}\r\n            </h3>\r\n            <span class=\"bmb_timestream-timeline-content-item-bar\"></span>\r\n            <div class=\"bmb_timestream-timeline-content-item-events\">\r\n              @for (\r\n                circle of events[month].events[event].events;\r\n                track $index\r\n              ) {\r\n                <span\r\n                  class=\"bmb_timestream-timeline-content-item-circle\"\r\n                  [ngClass]=\"\r\n                    'bmb_timestream-timeline-content-item-circle-' + circle.type\r\n                  \"\r\n                ></span>\r\n              }\r\n            </div>\r\n          </div>\r\n        }\r\n      </section>\r\n    </li>\r\n  }\r\n</ul>\r\n\r\n<!--  -->\r\n"
         },
         {
             "name": "BmbToastComponent",
@@ -16654,6 +16773,16 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-student-activity-card/bmb-student-activity-card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/ds-ng/src/lib/components/bmb-student-activity-selector/bmb-student-activity-selector.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -16718,7 +16847,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{}"
+                "defaultValue": "{\r\n  args: {},\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <div style=\"height: 1000px\">\r\n        <bmb-timestream\r\n          [startDate]=\"startDate\"\r\n          [endDate]=\"endDate\"\r\n          [dateFormat]=\"dateFormat\"\r\n          [lang]=\"lang\"\r\n          [events]=\"events\"\r\n        />\r\n      </div>\r\n    `,\r\n  }),\r\n}"
             },
             {
                 "name": "Default",
@@ -17161,7 +17290,7 @@
                         "type": "IFixDecimals",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "077e139d-cd7d-4f6f-830d-3bbb11c9d35d",
+                        "destrucuredGroupId": "fa55ae96-724c-4561-8c7e-05a2ed5e6e60",
                         "destructuredParameter": true
                     },
                     {
@@ -17170,7 +17299,7 @@
                         "deprecated": false,
                         "deprecationMessage": "",
                         "defaultValue": "2",
-                        "destrucuredGroupId": "077e139d-cd7d-4f6f-830d-3bbb11c9d35d",
+                        "destrucuredGroupId": "fa55ae96-724c-4561-8c7e-05a2ed5e6e60",
                         "destructuredParameter": true
                     }
                 ],
@@ -17180,7 +17309,7 @@
                         "type": "IFixDecimals",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "077e139d-cd7d-4f6f-830d-3bbb11c9d35d",
+                        "destrucuredGroupId": "fa55ae96-724c-4561-8c7e-05a2ed5e6e60",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -17192,7 +17321,7 @@
                         "deprecated": false,
                         "deprecationMessage": "",
                         "defaultValue": "2",
-                        "destrucuredGroupId": "077e139d-cd7d-4f6f-830d-3bbb11c9d35d",
+                        "destrucuredGroupId": "fa55ae96-724c-4561-8c7e-05a2ed5e6e60",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -17721,6 +17850,17 @@
                 "subtype": "typealias",
                 "rawtype": "StoryObj<BmbStepProgressBarComponent>",
                 "file": "projects/ds-ng/src/lib/components/bmb-step-progress-bar/bmb-step-progress-bar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<BmbStudentActivityCardComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-student-activity-card/bmb-student-activity-card.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -18485,6 +18625,18 @@
                     "defaultValue": "{}"
                 }
             ],
+            "projects/ds-ng/src/lib/components/bmb-student-activity-card/bmb-student-activity-card.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-student-activity-card/bmb-student-activity-card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                }
+            ],
             "projects/ds-ng/src/lib/components/bmb-student-activity-selector/bmb-student-activity-selector.stories.ts": [
                 {
                     "name": "Default",
@@ -18566,7 +18718,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{}"
+                    "defaultValue": "{\r\n  args: {},\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n      <div style=\"height: 1000px\">\r\n        <bmb-timestream\r\n          [startDate]=\"startDate\"\r\n          [endDate]=\"endDate\"\r\n          [dateFormat]=\"dateFormat\"\r\n          [lang]=\"lang\"\r\n          [events]=\"events\"\r\n        />\r\n      </div>\r\n    `,\r\n  }),\r\n}"
                 }
             ],
             "projects/ds-ng/src/lib/components/bmb-toast/bmb-toast.stories.ts": [
@@ -19006,7 +19158,7 @@
                             "type": "IFixDecimals",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "077e139d-cd7d-4f6f-830d-3bbb11c9d35d",
+                            "destrucuredGroupId": "fa55ae96-724c-4561-8c7e-05a2ed5e6e60",
                             "destructuredParameter": true
                         },
                         {
@@ -19015,7 +19167,7 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "defaultValue": "2",
-                            "destrucuredGroupId": "077e139d-cd7d-4f6f-830d-3bbb11c9d35d",
+                            "destrucuredGroupId": "fa55ae96-724c-4561-8c7e-05a2ed5e6e60",
                             "destructuredParameter": true
                         }
                     ],
@@ -19025,7 +19177,7 @@
                             "type": "IFixDecimals",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "077e139d-cd7d-4f6f-830d-3bbb11c9d35d",
+                            "destrucuredGroupId": "fa55ae96-724c-4561-8c7e-05a2ed5e6e60",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
@@ -19037,7 +19189,7 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "defaultValue": "2",
-                            "destrucuredGroupId": "077e139d-cd7d-4f6f-830d-3bbb11c9d35d",
+                            "destrucuredGroupId": "fa55ae96-724c-4561-8c7e-05a2ed5e6e60",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
@@ -19618,6 +19770,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<BmbStepProgressBarComponent>",
                     "file": "projects/ds-ng/src/lib/components/bmb-step-progress-bar/bmb-step-progress-bar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-student-activity-card/bmb-student-activity-card.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbStudentActivityCardComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-student-activity-card/bmb-student-activity-card.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -20329,7 +20494,7 @@
                 "linktype": "component",
                 "name": "BmbFabComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/13",
+                "coverageCount": "0/14",
                 "status": "low"
             },
             {
@@ -20861,6 +21026,25 @@
             },
             {
                 "filePath": "projects/ds-ng/src/lib/components/bmb-step-progress-bar/bmb-step-progress-bar.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-student-activity-card/bmb-student-activity-card.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbStudentActivityCardComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/8",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-student-activity-card/bmb-student-activity-card.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
