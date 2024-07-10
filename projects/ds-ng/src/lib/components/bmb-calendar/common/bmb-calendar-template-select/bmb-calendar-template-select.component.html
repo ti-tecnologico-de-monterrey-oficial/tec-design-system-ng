@@ -13,7 +13,7 @@
   </button>
   <ul
     class="bmb-calendar-template-select-menu"
-    [ngClass]="isMenuExpanded ? 'bmb-calendar-template-select-menu-active' : ''"
+    [ngClass]="{ 'bmb-calendar-template-select-menu-active': isMenuExpanded }"
   >
     @for (item of options; track $index) {
       <li>

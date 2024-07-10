@@ -1,25 +1,12 @@
-<bmb-theme [initialTheme]="'light'" />
-<!-- <bmb-top-bar
-  appName="TecSign"
-  appSubTitle="Elegir documentos"
-  [showLang]="true"
-  [lang]="topBarLang"
-  (onLangChange)="handleLangChange($event)"
-></bmb-top-bar>
-<bmb-theme [showControls]="true" [initialTheme]="'dark'" />
-<bmb-sidebar [elements]="sidebarElements" /> -->
+<div style="height: 900px">
+  <bmb-timestream
+    startDate="01/05/2020"
+    endDate="31/12/2024"
+    [events]="timelineEvents"
+  />
+</div>
 
-<bmb-student-activity-selector>
-  <bmb-student-activity-tab title="1" subtitle="item 1">
-    <bmb-card>Content 1</bmb-card>
-  </bmb-student-activity-tab>
-  <bmb-student-activity-tab title="2" subtitle="item 2">
-    <bmb-card>Content 2</bmb-card>
-  </bmb-student-activity-tab>
-  <bmb-student-activity-tab title="3" subtitle="item 3">
-    <bmb-card>Content 3</bmb-card>
-  </bmb-student-activity-tab>
-</bmb-student-activity-selector>
+<bmb-theme [initialTheme]="'dark'" />
 
 <bmb-datepicker></bmb-datepicker>
 
