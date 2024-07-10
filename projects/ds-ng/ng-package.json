@@ -9,6 +9,11 @@
       "glob": "**/*",
       "input": "src/assets/fonts",
       "output": "./assets/fonts"
+    },
+    {
+      "glob": "**/*",
+      "input": "src/assets/images",
+      "output": "./assets/images"
     }
   ],
   "allowedNonPeerDependencies": [
@@ -17,6 +22,7 @@
     "libphonenumber-js",
     "ngx-mat-intl-tel-input",
     "@types/hammerjs",
-    "hammerjs"
+    "hammerjs",
+    "@types/luxon"
   ]
 }
