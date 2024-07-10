@@ -146,7 +146,7 @@ Below is an example of how you can use this component in HTML:
     label: 'Fruit',
     showIcon: true,
     type: 'default',
-    allOptions: ['Apple', 'Banana', 'Orange', 'Pear', 'Grape'],
+    options: ['Apple', 'Banana', 'Orange', 'Pear', 'Grape'],
     onValueChange: (params: any) => {
       window.alert(params.toString());
     },
