@@ -82,9 +82,9 @@
     </ul>
     <div
       class="bmb_calendar-month-mobile-expander"
-      [ngClass]="
-        isCalendarOpen ? 'bmb_calendar-month-mobile-expander-active' : ''
-      "
+      [ngClass]="{
+        'bmb_calendar-month-mobile-expander-active': isCalendarOpen,
+      }"
     >
       <button
         (click)="handleExpand()"

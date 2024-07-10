@@ -52,6 +52,7 @@ import {
   BmbInputPhoneNumberComponent,
   BmbStudentActivitySelectorComponent,
   BmbTabStudenActivityComponent,
+  BmbTimestreamComponent,
 } from '../../projects/ds-ng/src/public-api';
 
 import {
@@ -69,6 +70,8 @@ export interface Target {
 import names from './names.json';
 import { ModalDataConfig } from '../../projects/ds-ng/src/lib/components/bmb-modal/bmb-modal.interface';
 import { MatDialog } from '@angular/material/dialog';
+import timelineEvents from './timelineEvents.json';
+// import timelineEvents from './timelineEvents_short.json';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -123,6 +126,7 @@ import { MatDialog } from '@angular/material/dialog';
     BmbInputPhoneNumberComponent,
     BmbStudentActivitySelectorComponent,
     BmbTabStudenActivityComponent,
+    BmbTimestreamComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -607,4 +611,6 @@ export class AppComponent {
     const newDate = new Date();
     this.pickerDate = `${newDate.getMonth() + 1}/${newDate.getDate()}/${newDate.getFullYear()}`;
   }
+
+  timelineEvents = timelineEvents;
 }
