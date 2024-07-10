@@ -1,21 +1,20 @@
 <section class="bmb_fab">
-  @if(!mitec){
+  @if (!mitec) {
     <button [ngClass]="this.fabStyle" type="button">
-      @if(type == 'extended'){
+      @if (type == "extended") {
         <span>{{ text }}</span>
       }
       <bmb-icon *ngIf="!active" icon="{{ icon }}" />
       <bmb-icon *ngIf="type == 'normal' && active" icon="close" />
     </button>
-  }@else {
+  } @else {
     <section class="bmb_fab-mitec">
       <button [ngClass]="this.fabStyle" type="button">
         <bmb-icon icon="{{ icon }}" />
       </button>
-      @if(text){
-        <span class="bmb_fab-mitec-text">{{text}}</span>
+      @if (text) {
+        <span class="bmb_fab-mitec-text">{{ text }}</span>
       }
     </section>
   }
 </section>
-

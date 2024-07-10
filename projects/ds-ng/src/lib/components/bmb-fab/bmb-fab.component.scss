@@ -7,7 +7,7 @@
   justify-content: center;
   width: min-content;
 
-  &-mitec{
+  &-mitec {
     display: flex;
     flex-direction: column;
 
@@ -25,58 +25,58 @@
       box-shadow: rem.rem_calc(2 2 2 1) RGBA(var(--color-black-primary), 0.25);
       background-color: RGBA(var(--color-white-primary));
       color: RGBA(var(--color-blue-primary));
-    
+
       &:active {
         background-color: RGBA(var(--color-blue-primary));
         border: rem.rem_calc(1) solid RGBA(var(--color-blue-primary));
-    
+
         > bmb-icon {
           color: RGBA(var(--color-white-primary));
         }
       }
-    
+
       > bmb-icon {
         font-size: rem.rem_calc(24);
       }
 
-      ~ .bmb_fab-mitec-text{
+      ~ .bmb_fab-mitec-text {
         @include fonts.font(2, medium);
         text-align: center;
       }
     }
-  
-    &-large-normal {
-           display: flex;
-           width: rem.rem_calc(60);
-           height: rem.rem_calc(60);
-           align-items: center;
-           justify-content: center;
-           outline: none;
-           border: 0;
-           margin: rem.rem_calc(3);
-           padding: var(--bmb-spacing-s) var(--bmb-spacing-m);
-           border-radius: rem.rem_calc(50);
-           box-shadow: rem.rem_calc(2 2 2 1) RGBA(var(--color-black-primary), 0.25);
-           background-color: RGBA(var(--color-white-primary));
-           color: RGBA(var(--color-blue-primary));
-         
-           &:active {
-             background-color: RGBA(var(--color-blue-primary));
-             border: rem.rem_calc(1) solid RGBA(var(--color-blue-primary));
-         
-             > bmb-icon {
-               color: RGBA(var(--color-white-primary));
-             }
-           }
-         
-           > bmb-icon {
-             font-size: rem.rem_calc(28);
-           }
 
-           ~ .bmb_fab-mitec-text{
-            @include fonts.font(4, medium);
-            text-align: center;
-          }
+    &-large-normal {
+      display: flex;
+      width: rem.rem_calc(60);
+      height: rem.rem_calc(60);
+      align-items: center;
+      justify-content: center;
+      outline: none;
+      border: 0;
+      margin: rem.rem_calc(3);
+      padding: var(--bmb-spacing-s) var(--bmb-spacing-m);
+      border-radius: rem.rem_calc(50);
+      box-shadow: rem.rem_calc(2 2 2 1) RGBA(var(--color-black-primary), 0.25);
+      background-color: RGBA(var(--color-white-primary));
+      color: RGBA(var(--color-blue-primary));
+
+      &:active {
+        background-color: RGBA(var(--color-blue-primary));
+        border: rem.rem_calc(1) solid RGBA(var(--color-blue-primary));
+
+        > bmb-icon {
+          color: RGBA(var(--color-white-primary));
+        }
+      }
+
+      > bmb-icon {
+        font-size: rem.rem_calc(28);
+      }
+
+      ~ .bmb_fab-mitec-text {
+        @include fonts.font(4, medium);
+        text-align: center;
+      }
     }
   }
 
@@ -124,22 +124,22 @@
     }
   }
 
-  .bmb_fab-mitec-small-normal{
-    &:active{
+  .bmb_fab-mitec-small-normal {
+    &:active {
       background-color: RGBA(var(--color-neon-primary));
     }
 
-    ~ .bmb_fab-mitec-text{
+    ~ .bmb_fab-mitec-text {
       color: RGBA(var(--color-white-primary));
     }
   }
 
-  .bmb_fab-mitec-large-normal{
-    &:active{
+  .bmb_fab-mitec-large-normal {
+    &:active {
       background-color: RGBA(var(--color-neon-primary));
     }
 
-    ~ .bmb_fab-mitec-text{
+    ~ .bmb_fab-mitec-text {
       color: RGBA(var(--color-white-primary));
     }
   }
