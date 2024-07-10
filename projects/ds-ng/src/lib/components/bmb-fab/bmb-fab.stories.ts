@@ -5,9 +5,9 @@ export default {
   title: 'Micro Componentes/Fab',
   component: BmbFabComponent,
   parameters: {
-  docs: {
-    description: {
-      component: `
+    docs: {
+      description: {
+        component: `
 Below is an example of how you can use this component in TypeScript:
 
 \`\`\`typescript
@@ -80,7 +80,7 @@ Below is an example of how you can use this component in HTML:
       table: {
         type: { summary: 'boolean' },
       },
-    }
+    },
   },
   args: {
     icon: 'add',
