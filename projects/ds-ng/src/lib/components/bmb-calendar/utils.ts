@@ -18,21 +18,17 @@ export const getWeekDays = (date: DateTime): DateTime[] => {
 };
 
 export const getMonthDays = (date: DateTime): DateTime[] => {
-  console.log(date);
-
   const currentWeek = DateTime.fromObject({
     weekYear: date.year,
     weekNumber: date.weekNumber,
   });
   const firstWeekDay = currentWeek.startOf('week');
 
-  let weekDays = [];
+  const weekDays = [];
 
   for (let day = -1; day <= 33; day++) {
     weekDays.push(firstWeekDay.plus({ days: day }));
   }
-
-  console.log('weekDays', weekDays);
 
   return weekDays;
 };

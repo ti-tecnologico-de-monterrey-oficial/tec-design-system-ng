@@ -9,23 +9,19 @@
 <bmb-theme [showControls]="true" [initialTheme]="'dark'" />
 <bmb-sidebar [elements]="sidebarElements" /> -->
 
-<div [style]="{ margin: '2rem' }">
-  <bmb-datepicker
-    placeholder="Selecciona la fecha de cumpleaños"
-    name="datePicker"
-    dateFormat="MM/dd/yyyy"
-    label="Fecha de tu cumpleaños"
-    iconLabel="cake"
-    [disabled]="false"
-    [inline]="false"
-    icon="cake"
-    [stepYearPicker]="12"
-    [isRequired]="true"
-    [isClearable]="true"
-    invalidFormaterrorMessage="El formato debe ser el siguiente: dd/mm/yyyy"
-    requiredFieldErrorMessage="Este campo es requerido"
-  />
-</div>
+<bmb-student-activity-selector>
+  <bmb-student-activity-tab title="1" subtitle="item 1">
+    <bmb-card>Content 1</bmb-card>
+  </bmb-student-activity-tab>
+  <bmb-student-activity-tab title="2" subtitle="item 2">
+    <bmb-card>Content 2</bmb-card>
+  </bmb-student-activity-tab>
+  <bmb-student-activity-tab title="3" subtitle="item 3">
+    <bmb-card>Content 3</bmb-card>
+  </bmb-student-activity-tab>
+</bmb-student-activity-selector>
+
+<bmb-datepicker></bmb-datepicker>
 
 <bmb-input icon="apps"></bmb-input>
 <br />
