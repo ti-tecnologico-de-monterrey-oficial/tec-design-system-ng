@@ -1,8 +1,66 @@
-<div class="bmb_wheel_menu">Hola</div>
-<bmb-fab
-  [icon]="'apps'"
-  [text]="'FAB'"
-  [size]="'large'"
-  [type]="'normal'"
-  (fabClick)="onFabClick()"
-></bmb-fab>
+<div class="bmb_wheel">
+  <bmb-fab
+    [icon]="'apps'"
+    [text]="'FAB'"
+    [size]="'large'"
+    [type]="'normal'"
+    (fabClick)="toggleWheel()"
+  />
+
+  @if (isOpen && !isFull) {
+    <div #wheel class="bmb_wheel-wrapper">
+      <button class="bmb_wheel-button" (click)="toggleFullWheel()">
+        <bmb-icon icon="keyboard_arrow_up"></bmb-icon>
+      </button>
+      <ul #wheelMenu class="bmb_wheel-menu">
+        <li
+          *ngFor="let nav of navItems.slice(0, 3); let i = index"
+          class="bmb_wheel-item"
+          [ngClass]="getClasses(i)"
+        >
+          <button (click)="selectNavItem(i)" class="bmb_wheel-nav">
+            {{ nav.title }}
+          </button>
+        </li>
+      </ul>
+      <div class="bmb_wheel-apps">
+        <ng-container *ngFor="let app of activeApps">
+          <bmb-interactive-icon
+            [appearance]="app.appearance"
+            [title]="app.title"
+            [icon]="app.icon"
+            [target]="app.target"
+            [link]="app.link"
+          ></bmb-interactive-icon>
+        </ng-container>
+      </div>
+    </div>
+  }
+
+  @if (isFull) {
+    <div class="bmb_wheel-full">
+      <bmb-inner-header
+        title="Inner Header"
+        (onHandleBack)="handleBackButton()"
+        (onValueChange)="handleValueChange($event)"
+        [data]="data"
+      ></bmb-inner-header>
+      <bmb-tabs
+        [tabs]="navItems.slice(0, 3)"
+        (selected)="selectFullMenuNavItem($event.id)"
+      ></bmb-tabs>
+      <div class="bmb_fullMenu-apps">
+        <ng-container *ngFor="let app of activeApps">
+          <bmb-interactive-icon
+            [appearance]="app.appearance"
+            [title]="app.title"
+            [icon]="app.icon"
+            [horizontal]="false"
+            [target]="app.target"
+            [link]="app.link"
+          ></bmb-interactive-icon>
+        </ng-container>
+      </div>
+    </div>
+  }
+</div>
