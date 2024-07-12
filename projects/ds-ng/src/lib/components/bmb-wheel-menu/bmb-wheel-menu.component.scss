@@ -1,8 +1,140 @@
 @use "../../../assets/styles/base/rem" as rem;
+@use "../../../assets/styles/base/fonts" as fonts;
 
-.bmb_wheel_menu {
+.bmb_wheel {
+  bmb-fab {
+    z-index: 30;
+    position: absolute;
+  }
+  .bmb_fullMenu-apps {
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: rem.rem_calc(10);
+    right: 0;
+    left: 0;
+    margin: auto;
+    top: 20%;
+    width: rem.rem_calc(300);
+  }
+
+  bmb-tabs {
+    .bmb_tabs {
+      margin: rem.rem_calc(24) auto;
+
+      &-tab {
+        justify-content: center;
+      }
+    }
+  }
+
+  &-wrapper {
+    background-color: RGBA(var(--color-charade-950));
+    border: rem.rem_calc(4) solid RGBA(var(--color-neon-primary));
+    border-radius: 50%;
+    bottom: -38%;
+    height: rem.rem_calc(700);
+    left: 50%;
+    margin-left: rem.rem_calc(-350);
+    overflow: hidden;
+    position: fixed;
+    transition: all 0.5s ease-in;
+    width: rem.rem_calc(700);
+    z-index: 10;
+  }
+
+  &-button {
+    cursor: pointer;
+    height: rem.rem_calc(24);
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    top: rem.rem_calc(10);
+
+    bmb-icon {
+      color: rgba(var(--color-charade-50), 1);
+      font-size: rem.rem_calc(25);
+    }
+  }
+
+  &-apps {
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: rem.rem_calc(10);
+    right: 26%;
+    top: 18%;
+    width: rem.rem_calc(320);
+  }
+
+  &-menu {
+    position: relative;
+  }
+
+  &-item {
+    align-items: center;
+    display: flex;
+    height: rem.rem_calc(50);
+    justify-content: center;
+    position: absolute;
+    width: rem.rem_calc(150);
+
+    &.previous {
+      left: rem.rem_calc(30);
+      top: rem.rem_calc(110);
+      transform: rotate(-50deg);
+    }
+
+    &.active {
+      left: 0;
+      margin: auto;
+      right: 0;
+      top: 1.25rem;
+
+      &:before {
+        background-color: rgba(var(--color-neon-primary), 1);
+        border-radius: rem.rem_calc(5);
+        bottom: rem.rem_calc(-10);
+        box-shadow: rem.rem_calc(0 0 10) rgba(var(--color-neon-primary), 0.8);
+        content: "";
+        height: rem.rem_calc(5);
+        left: 50%;
+        position: absolute;
+        transform: translateX(-50%);
+        width: rem.rem_calc(80);
+      }
+    }
+
+    &.next {
+      right: rem.rem_calc(30);
+      top: rem.rem_calc(110);
+      transform: rotate(50deg);
+    }
+  }
+
+  &-nav {
+    @include fonts.font(5, semibold);
+    color: rgba(var(--color-charade-50), 1);
+  }
+
+  &-full {
+    background-color: RGBA(var(--color-charade-950));
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    margin: auto;
+    position: fixed;
+    right: 0;
+    width: 100%;
+    z-index: 30;
+  }
 }
 
 [data-theme="dark"],
 .storybook-dark-theme {
+  .bmb_wheel {
+  }
 }

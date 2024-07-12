@@ -56,6 +56,7 @@ export * from './lib/components/bmb-stat-counter/bmb-stat-counter.component';
 export * from './lib/components/bmb-datepicker/bmb-datepicker.component';
 export * from './lib/components/bmb-input-phone-number/bmb-input-phone-number.component';
 export * from './lib/components/bmb-wheel-menu/bmb-wheel-menu.component';
+export * from './lib/components/bmb-inner-header/bmb-inner-header.component';
 // types
 export * from './lib/types';
 // interface
