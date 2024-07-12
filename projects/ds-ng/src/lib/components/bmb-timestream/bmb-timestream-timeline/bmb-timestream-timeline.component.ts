@@ -2,22 +2,19 @@ import {
   ChangeDetectionStrategy,
   Component,
   Input,
-  OnInit,
   ViewEncapsulation,
   ElementRef,
   AfterViewInit,
   ViewChild,
-  ViewChildren,
-  QueryList,
   Output,
   EventEmitter,
 } from '@angular/core';
 import { DateTime } from 'luxon';
 import { CommonModule } from '@angular/common';
-import { ITimelineEvent } from '../types';
+import { ISelectedDate } from '../types';
 
 @Component({
-  selector: 'bmb-bmb-timestream-timeline',
+  selector: 'bmb-timestream-timeline',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './bmb-timestream-timeline.component.html',
@@ -25,10 +22,8 @@ import { ITimelineEvent } from '../types';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbTimestreamTimelineComponent implements OnInit, AfterViewInit {
+export class BmbTimestreamTimelineComponent implements AfterViewInit {
   @ViewChild('monthList') monthList!: ElementRef;
-  @ViewChildren('.bmb_timestream-timeline-item-current', {})
-  elementos!: QueryList<ElementRef>;
 
   @Input() start: DateTime | null = null;
   @Input() end: DateTime | null = null;
@@ -36,28 +31,18 @@ export class BmbTimestreamTimelineComponent implements OnInit, AfterViewInit {
   @Input() lang: string = 'es';
   @Input() now: DateTime = DateTime.now();
   @Input() events?: any;
-  @Input() selectedDate: DateTime = DateTime.now();
+  @Input() selectedDate: ISelectedDate = {
+    day: '',
+    month: '',
+    date: this.now,
+  };
   @Input() orderedMonths: string[] = [];
 
-  @Output() changeSelectedDate: EventEmitter<DateTime> =
-    new EventEmitter<DateTime>();
-
-  ngOnInit(): void {}
+  @Output() changeSelectedDate: EventEmitter<ISelectedDate> =
+    new EventEmitter<ISelectedDate>();
 
   ngAfterViewInit(): void {
     this.scrollToItem();
-  }
-
-  getMonthTitle(month: string) {
-    return `${this.events[month].name} ${this.events[month].year}`;
-  }
-
-  getCurrentMonth(date: string): boolean {
-    const parsedDate = DateTime.fromFormat(date, 'yyyy/MM');
-    return (
-      parsedDate.month === this.selectedDate.month &&
-      parsedDate.year === this.selectedDate.year
-    );
   }
 
   scrollToItem() {
@@ -76,36 +61,21 @@ export class BmbTimestreamTimelineComponent implements OnInit, AfterViewInit {
     }
   }
 
-  getOrderedEvents(monthEvents: any) {
-    const daysList = Object.keys(monthEvents);
-    const orderedDays = daysList.sort((dateA: string, dateB: string) => {
-      const parsedDateA = monthEvents[dateA].date;
-      const parsedDateB = monthEvents[dateB].date;
-      return parsedDateA.toMillis() - parsedDateB.toMillis();
+  getMonthTitle(month: string) {
+    return `${this.events[month].name} ${this.events[month].year}`;
+  }
+
+  handleDateChange({ event, month }: { event: string; month: string }): void {
+    this.changeSelectedDate.emit({
+      month,
+      day: event,
+      date: this.events[month].events[event].date,
     });
-    return orderedDays;
   }
 
   parseEvent(month: string, date: string) {
     return this.events[month].events[date].date
       .setLocale(this.lang)
       .toFormat('dd LLL yyyy');
-  }
-
-  getCircles(month: string, date: string) {
-    return this.events[month].events[date].events;
-  }
-
-  getCurrentDate(date: string): boolean {
-    const parsedDate = DateTime.fromFormat(date, 'yyyy/MM/dd');
-    return (
-      parsedDate.month === this.selectedDate.month &&
-      parsedDate.year === this.selectedDate.year &&
-      parsedDate.day === this.selectedDate.day
-    );
-  }
-
-  handleDateChange({ event, month }: { event: string; month: string }): void {
-    this.changeSelectedDate.emit(this.events[month].events[event].date);
   }
 }

@@ -5,7 +5,7 @@
     </div>
   } @else {
     <aside class="bmb_timestream-aside">
-      <bmb-bmb-timestream-timeline
+      <bmb-timestream-timeline
         [start]="start"
         [end]="end"
         [dateFormat]="dateFormat"
@@ -17,7 +17,19 @@
         (changeSelectedDate)="handleSelectedDateChange($event)"
       />
     </aside>
-    <section class="bmb_timestream-main">main</section>
+    <section class="bmb_timestream-main">
+      <bmb-timestream-detail
+        [start]="start"
+        [end]="end"
+        [dateFormat]="dateFormat"
+        [lang]="lang"
+        [now]="now"
+        [events]="parsedEvents"
+        [selectedDate]="selectedDate"
+        [orderedMonths]="orderedMonths"
+        (changeSelectedDate)="handleSelectedDateChange($event)"
+      />
+    </section>
     @if (isDialogOpen) {
       <dialog>test</dialog>
     }

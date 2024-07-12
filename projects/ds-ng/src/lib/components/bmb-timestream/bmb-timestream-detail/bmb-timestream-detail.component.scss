@@ -1,0 +1,118 @@
+@use "../../../../assets/styles/base/rem" as rem;
+@use "../../../../assets/styles/base/fonts" as fonts;
+
+$circleTypes: (
+  "avance_academico": RGBA(var(--color-mitec-blue)),
+  "enriquecedor": RGBA(var(--color-mitec-red)),
+  "flexible": RGBA(var(--color-mitec-green)),
+  "seriado": RGBA(var(--color-mitec-orange)),
+  "inscripciones": RGBA(var(--color-green-light)),
+  "otra": RGBA(var(--color-purple-light)),
+);
+
+.bmb_timestream-detail {
+  padding: 0 var(--bmb-spacing-m);
+  margin: 0;
+  list-style: none;
+  width: calc(100% - var(--bmb-spacing-m));
+  height: 100%;
+  overflow: auto;
+
+  &-item {
+    border-left: rem.rem_calc(1) solid RGBA(var(--color-charade-700));
+    padding: 0 var(--bmb-spacing-m);
+
+    &-header {
+      padding: var(--bmb-spacing-m);
+      position: sticky;
+      top: 0;
+      display: flex;
+      gap: var(--bmb-spacing-s);
+      align-items: center;
+      background-color: RGBA(var(--color-charade-950), 0.75);
+      z-index: 1;
+      backdrop-filter: blur(rem.rem_calc(2));
+
+      &-title {
+        text-transform: capitalize;
+        @include fonts.font(5, regular);
+      }
+
+      &-subtitle {
+        color: RGBA(var(--color-charade-500));
+        @include fonts.font(3, regular);
+      }
+    }
+
+    &-current {
+      .bmb_timestream-detail-content-after::after {
+        background-color: RGBA(var(--color-neon-primary));
+      }
+    }
+  }
+
+  &-content {
+    &-pointer {
+      cursor: pointer;
+    }
+
+    &-after {
+      position: relative;
+      padding: var(--bmb-spacing-m);
+
+      &::after {
+        content: "";
+        width: rem.rem_calc(9);
+        height: rem.rem_calc(9);
+        background-color: RGBA(var(--color-charade-900));
+        position: absolute;
+        left: rem.rem_calc(-23);
+        top: 50%;
+        border-radius: 50%;
+        border: rem.rem_calc(2) solid RGBA(var(--color-charade-950));
+        margin-top: rem.rem_calc(-7);
+      }
+    }
+
+    &-icon {
+      width: rem.rem_calc(32);
+      height: rem.rem_calc(32);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @include fonts.font(5, regular);
+
+      @each $type, $value in $circleTypes {
+        &-#{$type} {
+          background-color: $value;
+        }
+      }
+    }
+
+    &-title {
+      @include fonts.font(3, regular);
+      font-weight: 400;
+      margin-bottom: var(--bmb-spacing-m);
+    }
+
+    &-description {
+      @include fonts.font(1, regular);
+      margin: 0;
+    }
+
+    .bmb_badge {
+      text-transform: capitalize;
+    }
+
+    &-type {
+      text-align: right;
+    }
+
+    &-duration {
+      margin: var(--bmb-spacing-m) 0 0;
+    }
+  }
+}
+
+// #1BC0CB

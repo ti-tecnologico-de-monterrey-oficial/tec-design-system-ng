@@ -8,10 +8,9 @@ describe('BmbStudentActivityCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BmbStudentActivityCardComponent]
-    })
-    .compileComponents();
-    
+      imports: [BmbStudentActivityCardComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(BmbStudentActivityCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
