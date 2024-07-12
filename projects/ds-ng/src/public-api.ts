@@ -57,6 +57,11 @@ export * from './lib/components/bmb-datepicker/bmb-datepicker.component';
 export * from './lib/components/bmb-input-phone-number/bmb-input-phone-number.component';
 export * from './lib/components/bmb-wheel-menu/bmb-wheel-menu.component';
 export * from './lib/components/bmb-inner-header/bmb-inner-header.component';
+export * from './lib/components/bmb-student-activity-selector/bmb-student-activity-selector.component';
+export * from './lib/components/bmb-student-activity-selector/bmb-student-activity-tab/bmb-student-activity-tab.component';
+export * from './lib/components/bmb-student-activity-selector/bmb-student-activity-tab/bmb-student-activity-tab.component';
+export * from './lib/components/bmb-student-activity-card/bmb-student-activity-card.component';
+
 // types
 export * from './lib/types';
 // interface

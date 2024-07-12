@@ -4,6 +4,7 @@
     bmbLayout
     margin="none"
     [dinamycCols]="true"
+    justify="center"
   >
     <li bmbLayoutItem>
       <button
@@ -29,7 +30,7 @@
     </li>
   </nav>
   @switch (view) {
-    @case ('calendar') {
+    @case ("calendar") {
       <ul class="bmb_datepicker-modal-calendar">
         @for (day of dayNames; track $index) {
           <li class="bmb_datepicker-modal-calendar-header">
@@ -51,10 +52,12 @@
         }
       </ul>
     }
-    @case ('month') {
+    @case ("month") {
       <ul class="bmb_datepicker-modal-list">
         @for (month of monthsNames; track $index) {
-          <li class="bmb_datepicker-modal-list-item">
+          <li
+            class="bmb_datepicker-modal-list-item bmb_datepicker-modal-list-item-month"
+          >
             <button
               class="bmb_datepicker-modal-calendar-item-button bmb_datepicker-modal-calendar-item-button-full modal-persist"
               bmbButton
@@ -67,7 +70,7 @@
         }
       </ul>
     }
-    @case ('year') {
+    @case ("year") {
       <ul class="bmb_datepicker-modal-list">
         @for (year of getYears(); track $index) {
           <li class="bmb_datepicker-modal-list-item">
@@ -85,4 +88,3 @@
     }
   }
 </div>
-

@@ -42,6 +42,9 @@ import {
   BmbLayoutDirective,
   BmbCardComponent,
   BmbTablesComponent,
+  BmbStudentActivitySelectorComponent,
+  BmbTabStudenActivityComponent,
+  BmbStudentActivityCardComponent
 } from '../../../projects/ds-ng/src/public-api';
 
 import {
@@ -96,6 +99,9 @@ import names from '../names.json';
     BmbLayoutItemDirective,
     BmbCardComponent,
     BmbTablesComponent,
+    BmbStudentActivitySelectorComponent,
+    BmbTabStudenActivityComponent,
+    BmbStudentActivityCardComponent
   ],
   templateUrl: './my-page.component.html',
   styleUrl: './my-page.component.scss',

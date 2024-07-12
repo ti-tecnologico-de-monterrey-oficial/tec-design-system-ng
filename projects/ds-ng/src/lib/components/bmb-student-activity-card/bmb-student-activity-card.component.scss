@@ -1,0 +1,59 @@
+@use "../../../assets/styles/base/rem" as rem;
+@use "../../../assets/styles/base/fonts" as fonts;
+.bmb_student_activity_card {
+  @include fonts.font(3, medium);
+  background: RGBA(var(--color-charade-950));
+  border-radius: rem.rem_calc(8);
+  color:RGBA(var(--color-white-primary));
+  padding: rem.rem_calc(16);
+  max-width: rem.rem_calc(300);
+  position: relative;
+  font-size: rem.rem_calc(14);
+
+  &-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  &-close-button {
+    cursor: pointer;
+  }
+
+  &-content {
+    margin-top: rem.rem_calc(16);
+  }
+
+  &-title {
+    font-size: rem.rem_calc(18);
+    font-weight: bold;
+  }
+
+  &-subtitle {
+    font-size: rem.rem_calc(14);
+    margin-top: rem.rem_calc(1);
+  }
+
+  &-location {
+    font-size: rem.rem_calc(14);
+    margin-top: rem.rem_calc(8);
+  }
+
+  &-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: rem.rem_calc(12);
+  }
+ 
+  &-status-label {
+    background: RGBA(var(--color-charade-700));
+    padding:  rem.rem_calc(4,8);
+    border-radius:  rem.rem_calc(4);
+    font-size:  rem.rem_calc(12);;
+
+  }
+  &-time-range {
+    font-size:  rem.rem_calc(12);
+  }
+}

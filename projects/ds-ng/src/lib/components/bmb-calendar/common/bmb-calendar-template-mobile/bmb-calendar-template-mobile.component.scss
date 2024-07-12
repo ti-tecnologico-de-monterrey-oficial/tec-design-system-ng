@@ -3,6 +3,7 @@
 @use "../../../../../assets/styles/base/mixins" as mixins;
 
 @mixin buttonReset() {
+  color: RGBA(var(--color-charade-900), 0.5);
   background-color: transparent;
 
   &:hover:not(:disabled):not(.bmb-disabled),
@@ -10,6 +11,31 @@
   &:focus-visible:not(:disabled):not(.bmb-disabled),
   &.bmb-focus-visible:not(:disabled):not(.bmb-disabled) {
     background-color: RGBA(var(--color-charade-50));
+  }
+}
+
+@mixin buttonResetDark() {
+  color: RGBA(var(--color-charade-200), 0.5);
+
+  &:hover:not(:disabled):not(.bmb-disabled),
+  &.bmb-hover:not(:disabled):not(.bmb-disabled),
+  &:focus-visible:not(:disabled):not(.bmb-disabled),
+  &.bmb-focus-visible:not(:disabled):not(.bmb-disabled) {
+    background-color: RGBA(var(--color-charade-50));
+    color: RGBA(var(--color-charade-900));
+  }
+}
+
+@mixin buttonNavDark() {
+  color: RGBA(var(--color-charade-200), 0.5);
+
+  &:hover:not(:disabled):not(.bmb-disabled),
+  &.bmb-hover:not(:disabled):not(.bmb-disabled),
+  &:focus-visible:not(:disabled):not(.bmb-disabled),
+  &.bmb-focus-visible:not(:disabled):not(.bmb-disabled) {
+    bmb-icon {
+      color: RGBA(var(--color-charade-900));
+    }
   }
 }
 
@@ -116,5 +142,38 @@
 [data-theme="dark"],
 .storybook-dark-theme {
   .bmb_calendar-month-mobile {
+    background-color: RGBA(var(--color-charade-800));
+
+    &-calendar-item button {
+      @include buttonResetDark();
+
+      &:disabled,
+      &.bmb-disabled {
+        color: RGBA(var(--color-white-primary));
+      }
+    }
+
+    &-nav-button {
+      @include buttonNavDark();
+
+      bmb-icon {
+        color: RGBA(var(--color-white-primary));
+      }
+    }
+
+    &-expander button {
+      background-color: RGBA(var(--color-charade-700));
+
+      &:hover:not(:disabled):not(.bmb-disabled),
+      &.bmb-hover:not(:disabled):not(.bmb-disabled),
+      &:focus-visible:not(:disabled):not(.bmb-disabled),
+      &.bmb-focus-visible:not(:disabled):not(.bmb-disabled) {
+        background-color: RGBA(var(--color-charade-600));
+      }
+
+      bmb-icon {
+        color: RGBA(var(--color-charade-50));
+      }
+    }
   }
 }

@@ -11,6 +11,22 @@
   }
 }
 
+@mixin buttonResetDark() {
+  color: RGBA(var(--color-charade-50));
+
+  &:hover:not(:disabled):not(.bmb-disabled),
+  &.bmb-hover:not(:disabled):not(.bmb-disabled),
+  &:focus-visible:not(:disabled):not(.bmb-disabled),
+  &.bmb-focus-visible:not(:disabled):not(.bmb-disabled) {
+    background-color: RGBA(var(--color-charade-50));
+    color: RGBA(var(--color-charade-900));
+
+    bmb-icon {
+      color: RGBA(var(--color-charade-900));
+    }
+  }
+}
+
 .bmb-calendar-template-select {
   position: relative;
 
@@ -51,6 +67,27 @@
       &.bmb-focus-visible:not(:disabled):not(.bmb-disabled) {
         background-color: RGBA(var(--color-blue-primary));
         color: RGBA(var(--color-white-primary));
+      }
+    }
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb-calendar-template-select {
+    button {
+      @include buttonResetDark();
+
+      bmb-icon {
+        color: RGBA(var(--color-charade-50));
+      }
+    }
+
+    &-menu {
+      background-color: RGBA(var(--color-charade-950));
+
+      .bmb-calendar-template-select-menu-selected {
+        background-color: RGBA(var(--color-charade-800));
       }
     }
   }
