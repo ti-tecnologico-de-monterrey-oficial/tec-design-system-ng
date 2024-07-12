@@ -12,4 +12,12 @@ export interface ITimelineEvent {
   action: string;
   startEvent?: DateTime;
   endEvent?: DateTime;
+  originalStart?: DateTime;
+  diff?: number;
+}
+
+export interface ISelectedDate {
+  day: string;
+  month: string;
+  date: DateTime;
 }

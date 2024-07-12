@@ -1,48 +1,56 @@
 <ul #monthList class="bmb_timestream-timeline">
   @for (month of orderedMonths; track $index) {
-    <li
-      class="bmb_timestream-timeline-item"
-      [ngClass]="{
-        'bmb_timestream-timeline-item-current': getCurrentMonth(month),
-      }"
-    >
-      <header class="bmb_timestream-timeline-header">
-        {{ getMonthTitle(month) }}
-      </header>
-      <section class="bmb_timestream-timeline-content">
-        @for (event of getOrderedEvents(events[month].events); track $index) {
-          <div
-            class="bmb_timestream-timeline-content-item"
-            [ngClass]="{
-              'bmb_timestream-timeline-content-item-current':
-                getCurrentDate(event),
-            }"
-          >
-            <h3
-              class="bmb_timestream-timeline-content-item-title"
-              (click)="handleDateChange({ event, month })"
+    @if (month !== "orderedEvents") {
+      <li
+        class="bmb_timestream-timeline-item"
+        [ngClass]="{
+          'bmb_timestream-timeline-item-current': events[month].selected,
+        }"
+      >
+        <header class="bmb_timestream-timeline-header">
+          {{ getMonthTitle(month) }}
+        </header>
+        <section class="bmb_timestream-timeline-content">
+          @for (event of events[month].orderedEvents; track $index) {
+            <div
+              class="bmb_timestream-timeline-content-item"
+              [ngClass]="{
+                'bmb_timestream-timeline-content-item-current':
+                  events[month].events[event].selected,
+              }"
             >
-              {{ parseEvent(month, event) }}
-            </h3>
-            <span class="bmb_timestream-timeline-content-item-bar"></span>
-            <div class="bmb_timestream-timeline-content-item-events">
-              @for (
-                circle of events[month].events[event].events;
-                track $index
-              ) {
-                <span
-                  class="bmb_timestream-timeline-content-item-circle"
-                  [ngClass]="
-                    'bmb_timestream-timeline-content-item-circle-' + circle.type
-                  "
-                ></span>
-              }
+              <h3
+                class="bmb_timestream-timeline-content-item-title"
+                (click)="handleDateChange({ event, month })"
+              >
+                {{ parseEvent(month, event) }}
+              </h3>
+              <span class="bmb_timestream-timeline-content-item-bar"></span>
+              <div class="bmb_timestream-timeline-content-item-events">
+                @if (events[month].events[event].events.length > 4) {
+                  <span>{{ events[month].events[event].events.length }}</span>
+                  <span
+                    class="bmb_timestream-timeline-content-item-circle"
+                  ></span>
+                } @else {
+                  @for (
+                    circle of events[month].events[event].events;
+                    track $index
+                  ) {
+                    <span
+                      class="bmb_timestream-timeline-content-item-circle"
+                      [ngClass]="
+                        'bmb_timestream-timeline-content-item-circle-' +
+                        circle.type
+                      "
+                    ></span>
+                  }
+                }
+              </div>
             </div>
-          </div>
-        }
-      </section>
-    </li>
+          }
+        </section>
+      </li>
+    }
   }
 </ul>
-
-<!--  -->

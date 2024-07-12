@@ -8,7 +8,8 @@ import {
 import { DateTime, Info } from 'luxon';
 import { BmbTimestreamErrorComponent } from './bmb-timestream-error/bmb-timestream-error.component';
 import { BmbTimestreamTimelineComponent } from './bmb-timestream-timeline/bmb-timestream-timeline.component';
-import { ITimelineEvent } from './types';
+import { BmbTimestreamDetailsComponent } from './bmb-timestream-detail/bmb-timestream-detail.component';
+import { ITimelineEvent, ISelectedDate } from './types';
 
 interface IPlaceholderObject {
   [key: string]: any | any[];
@@ -17,7 +18,11 @@ interface IPlaceholderObject {
 @Component({
   selector: 'bmb-timestream',
   standalone: true,
-  imports: [BmbTimestreamErrorComponent, BmbTimestreamTimelineComponent],
+  imports: [
+    BmbTimestreamErrorComponent,
+    BmbTimestreamTimelineComponent,
+    BmbTimestreamDetailsComponent,
+  ],
   templateUrl: './bmb-timestream.component.html',
   styleUrl: './bmb-timestream.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -39,7 +44,11 @@ export class BmbTimestreamComponent implements OnInit {
   parsedEvents: any | null = null;
   monthsNames = Info.months('long', { locale: this.lang });
   isDialogOpen = false;
-  selectedDate: DateTime = this.now;
+  selectedDate: ISelectedDate = {
+    day: '',
+    month: '',
+    date: this.now,
+  };
   orderedMonths: string[] = [];
 
   ngOnInit(): void {
@@ -67,6 +76,8 @@ export class BmbTimestreamComponent implements OnInit {
   }
 
   prepareEvents(events: ITimelineEvent[] | null) {
+    console.log('test');
+
     if (events) {
       const objectEvent: IPlaceholderObject = {};
 
@@ -92,6 +103,7 @@ export class BmbTimestreamComponent implements OnInit {
             events: [],
             date: currentDate,
             stringDate,
+            selected: false,
           };
 
           objectEvent[month].events[stringDate].events.push({
@@ -99,9 +111,24 @@ export class BmbTimestreamComponent implements OnInit {
             start: stringDate,
             startEvent: currentDate,
             endEvent: endDate,
+            selected: false,
+            diff: diff - 1,
+            originalStart: startDate,
           });
         }
       });
+
+      const orededEvents = this.orderDates(objectEvent, 'yyyy/MM');
+      objectEvent['orderedEvents'] = orededEvents;
+
+      objectEvent['orderedEvents'].forEach((date: string) => {
+        objectEvent[date]['orderedEvents'] = this.orderDates(
+          objectEvent[date].events,
+          'yyyy/MM/dd',
+        );
+      });
+
+      console.log('objectEvent', objectEvent);
 
       return objectEvent;
     }
@@ -120,7 +147,7 @@ export class BmbTimestreamComponent implements OnInit {
     return monthsOrdered;
   }
 
-  selectAValidDate(): DateTime {
+  selectAValidDate(): { month: string; day: string; date: DateTime } {
     const month =
       this.orderedMonths.find((date) => {
         const parsedDate = this.parsedEvents[date].date;
@@ -129,14 +156,11 @@ export class BmbTimestreamComponent implements OnInit {
         );
       }) ||
       this.orderedMonths.at(-1) ||
-      0;
-    const orderedEvents = this.orderDates(
-      this.parsedEvents[month].events,
-      'yyyy/MM/dd',
-    );
+      '';
+    const orderedEvents = this.parsedEvents[month].orderedEvents;
 
     const day =
-      orderedEvents.find((date) => {
+      orderedEvents.find((date: string) => {
         const parsedDate = this.parsedEvents[month].events[date].date;
         return (
           this.now.year <= parsedDate.year &&
@@ -147,10 +171,29 @@ export class BmbTimestreamComponent implements OnInit {
       orderedEvents.at(-1) ||
       '';
 
-    return DateTime.fromFormat(day, 'yyyy/MM/dd');
+    this.parsedEvents[month].selected = true;
+    this.parsedEvents[month].events[day].selected = true;
+
+    return {
+      month,
+      day,
+      date: this.parsedEvents[month].events[day].date,
+    };
   }
 
-  handleSelectedDateChange(date: DateTime) {
-    this.selectedDate = date;
+  handleSelectedDateChange({ month, day }: { month: string; day: string }) {
+    this.parsedEvents[this.selectedDate.month].selected = false;
+    this.parsedEvents[this.selectedDate.month].events[
+      this.selectedDate.day
+    ].selected = false;
+
+    this.parsedEvents[month].selected = true;
+    this.parsedEvents[month].events[day].selected = true;
+
+    this.selectedDate = {
+      month,
+      day,
+      date: this.parsedEvents[month].events[day].date,
+    };
   }
 }

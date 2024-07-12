@@ -3,11 +3,11 @@
 
 $circleTypes: (
   "avance_academico": RGBA(var(--color-mitec-blue)),
-  "enriquecedoras": RGBA(var(--color-mitec-red)),
-  "flexibles": RGBA(var(--color-mitec-green)),
-  "seriadas": RGBA(var(--color-mitec-orange)),
+  "enriquecedor": RGBA(var(--color-mitec-red)),
+  "flexible": RGBA(var(--color-mitec-green)),
+  "seriado": RGBA(var(--color-mitec-orange)),
   "inscripciones": RGBA(var(--color-green-light)),
-  "otras": RGBA(var(--color-purple-light)),
+  "otra": RGBA(var(--color-purple-light)),
 );
 
 .bmb_timestream-timeline {
@@ -64,6 +64,7 @@ $circleTypes: (
       &-events {
         display: flex;
         gap: var(--bmb-spacing-s);
+        align-items: center;
       }
 
       &-circle {
