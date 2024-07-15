@@ -22,6 +22,9 @@ export class BmbBadgeComponent implements AfterViewInit {
   @Input() appearance: string = '';
   @Input() text: string = '';
   @Input() grouped: boolean = false;
+  @Input() custom: boolean = false;
+  @Input() customBackground?: string;
+  @Input() customColor?: string;
 
   constructor(
     private el: ElementRef,
@@ -51,5 +54,14 @@ export class BmbBadgeComponent implements AfterViewInit {
     }
 
     return classes;
+  }
+
+  getStyles(): any {
+    const newStyles: any = {};
+    if (this.custom) {
+      newStyles['backgroundColor'] = `rgb(var(--color-${this.customBackground}))`;
+      newStyles['color'] = `rgb(var(--color-${this.customColor}))`;
+    }
+    return newStyles;
   }
 }

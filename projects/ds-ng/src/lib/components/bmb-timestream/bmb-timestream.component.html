@@ -1,0 +1,37 @@
+<section class="bmb_timestream">
+  @if (error) {
+    <div class="bmb_timestream-error">
+      <bmb-timestream-error />
+    </div>
+  } @else {
+    <aside class="bmb_timestream-aside">
+      <bmb-timestream-timeline
+        [start]="start"
+        [end]="end"
+        [dateFormat]="dateFormat"
+        [lang]="lang"
+        [now]="now"
+        [events]="parsedEvents"
+        [selectedDate]="selectedDate"
+        [orderedMonths]="orderedMonths"
+        (changeSelectedDate)="handleSelectedDateChange($event)"
+      />
+    </aside>
+    <section class="bmb_timestream-main">
+      <bmb-timestream-detail
+        [start]="start"
+        [end]="end"
+        [dateFormat]="dateFormat"
+        [lang]="lang"
+        [now]="now"
+        [events]="parsedEvents"
+        [selectedDate]="selectedDate"
+        [orderedMonths]="orderedMonths"
+        (changeSelectedDate)="handleSelectedDateChange($event)"
+      />
+    </section>
+    @if (isDialogOpen) {
+      <dialog>test</dialog>
+    }
+  }
+</section>
