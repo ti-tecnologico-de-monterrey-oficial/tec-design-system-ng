@@ -1,0 +1,77 @@
+<ul #monthDetailList class="bmb_timestream-detail">
+  @for (month of orderedMonths; track $index) {
+    @if (month !== "orderedEvents") {
+      @for (day of events[month].orderedEvents; track $index) {
+        <li
+          class="bmb_timestream-detail-item"
+          [ngClass]="{
+            'bmb_timestream-detail-item-current':
+              events[month].events[day].selected,
+          }"
+        >
+          <header class="bmb_timestream-detail-item-header">
+            <h3 class="bmb_timestream-detail-item-header-title">
+              {{ getMonthTitle(day, month) }}
+            </h3>
+            <span class="bmb_timestream-detail-item-header-subtitle"
+              >{{ events[month].events[day].events.length }} {{ events[month].events[day].events.length > 1 ? 'HITOS' : 'HITO'}}</span
+            >
+          </header>
+          <section class="bmb_timestream-detail-content">
+            @for (event of events[month].events[day].events; track $index) {
+              <div class="bmb_timestream-detail-content-after">
+                <bmb-card margin="none">
+                  <bmb-card-content>
+                    <div
+                      bmbLayout
+                      gapSise="m"
+                      margin="none"
+                      alignItems="center"
+                      (click)="handleEventClick(event)"
+                      class="bmb_timestream-detail-content-pointer"
+                    >
+                      <section
+                        bmbLayoutItem
+                        class="bmb_timestream-detail-content-icon"
+                        [ngClass]="
+                          'bmb_timestream-detail-content-icon-' + event.type
+                        "
+                      >
+                        <bmb-icon icon="app_badging" />
+                      </section>
+                      <section
+                        bmbLayoutItem
+                        [colGrow]="2"
+                        [isDinamycItem]="true"
+                      >
+                        <h3 class="bmb_timestream-detail-content-title">
+                          {{ event.title }}
+                        </h3>
+                        <p class="bmb_timestream-detail-content-description">
+                          {{ event.short_description }}
+                        </p>
+                      </section>
+                      <section bmbLayoutItem class="bmb_timestream-detail-content-type">
+                        <bmb-badge
+                          [custom]="true"
+                          [text]="formatBadgeText(event.type)"
+                          [customBackground]="appearanceBadgeText(event.type)"
+                          [customColor]="event.type === 'flexible' ? 'black-primary' : 'white-primary'"
+                        />
+                        @if (event.diff) {
+                          <p class="bmb_timestream-detail-content-duration">{{ getDurationString(event) }}</p>
+                        }
+                      </section>
+                    </div>
+                  </bmb-card-content>
+                </bmb-card>
+              </div>
+            }
+          </section>
+        </li>
+      }
+    }
+  }
+</ul>
+
+<!--   -->

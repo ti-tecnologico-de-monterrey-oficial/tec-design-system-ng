@@ -1,0 +1,96 @@
+@use "../../../../assets/styles/base/fonts" as fonts;
+@use "../../../../assets/styles/base/rem" as rem;
+
+$circleTypes: (
+  "avance_academico": RGBA(var(--color-mitec-blue)),
+  "enriquecedor": RGBA(var(--color-mitec-red)),
+  "flexible": RGBA(var(--color-mitec-green)),
+  "seriado": RGBA(var(--color-mitec-orange)),
+  "inscripciones": RGBA(var(--color-green-light)),
+  "otra": RGBA(var(--color-purple-light)),
+);
+
+.bmb_timestream-timeline {
+  overflow: auto;
+  height: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  &-item {
+    margin-bottom: var(--bmb-spacing-m);
+    opacity: 0.5;
+
+    &.bmb_timestream-timeline-item-current {
+      opacity: 1;
+    }
+  }
+
+  &-header {
+    background-color: RGBA(var(--color-charade-700));
+    padding: var(--bmb-spacing-s) var(--bmb-spacing-m);
+    text-transform: capitalize;
+    @include fonts.font(4, regular);
+    position: sticky;
+    top: 0;
+    box-shadow: 0 8px 8px RGBA(var(--color-charade-900));
+  }
+
+  &-content {
+    padding: var(--bmb-spacing-m);
+    display: flex;
+    flex-direction: column;
+    gap: var(--bmb-spacing-s);
+
+    &-item {
+      display: flex;
+      gap: var(--bmb-spacing-m);
+      align-items: center;
+
+      &-title {
+        text-transform: capitalize;
+        @include fonts.font(3, regular);
+        font-weight: 400;
+        width: 40%;
+        cursor: pointer;
+      }
+
+      &-bar {
+        width: rem.rem_calc(24);
+        height: 0;
+        border-top: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
+      }
+
+      &-events {
+        display: flex;
+        gap: var(--bmb-spacing-s);
+        align-items: center;
+      }
+
+      &-circle {
+        display: inline-block;
+        width: rem.rem_calc(8);
+        height: rem.rem_calc(8);
+        background-color: RGBA(var(--color-charade-200));
+        border-radius: 50%;
+        background-color: RGBA(var(--color-charade-200));
+      }
+
+      &-current {
+        color: RGBA(var(--color-neon-primary));
+
+        .bmb_timestream-timeline-content-item-title {
+          font-weight: 600;
+        }
+
+        .bmb_timestream-timeline-content-item-circle {
+          @each $type, $value in $circleTypes {
+            &-#{$type} {
+              background-color: $value;
+            }
+          }
+        }
+      }
+    }
+  }
+}
