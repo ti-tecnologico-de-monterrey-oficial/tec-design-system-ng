@@ -34,6 +34,7 @@ Below is an example of how you can use this component in HTML:
       },
       description: 'The name of the icon. See Material Icons.',
       table: {
+        category: 'Properties',
         type: { summary: 'string' },
       },
     },
@@ -45,6 +46,7 @@ Below is an example of how you can use this component in HTML:
       description:
         'The text of the Extended Fab. The width will increase depending on the length of the text.',
       table: {
+        category: 'Properties',
         type: { summary: 'string' },
       },
     },
@@ -56,6 +58,7 @@ Below is an example of how you can use this component in HTML:
       options: ['small', 'large'],
       description: 'The size of the fab component',
       table: {
+        category: 'Properties',
         type: { summary: 'string' },
       },
     },
@@ -67,8 +70,20 @@ Below is an example of how you can use this component in HTML:
       options: ['extended', 'normal'],
       description: 'The type of the fab component',
       table: {
+        category: 'Properties',
         type: { summary: 'string' },
       },
+    },
+    onFabClick: {
+      name: 'On Fab Click',
+      control: {
+        type: '',
+      },
+      table: {
+        category: 'Events',
+        type: { summary: 'function' },
+      },
+      description: 'Emits when the fab button is clicked.',
     },
     mitec: {
       name: 'Mitec Version',
@@ -87,6 +102,9 @@ Below is an example of how you can use this component in HTML:
     text: 'FAB',
     size: 'small',
     type: 'extended',
+    onFabClick: (params: any) => {
+      window.alert(params.toString());
+    },
   },
 } as Meta<typeof BmbFabComponent>;
 
