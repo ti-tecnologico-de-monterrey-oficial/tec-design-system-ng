@@ -49,7 +49,7 @@
         [tabs]="navItems.slice(0, 3)"
         (selected)="selectFullMenuNavItem($event.id)"
       ></bmb-tabs>
-      <div class="bmb_fullMenu-apps">
+      <div class="bmb_wheel-apps">
         <ng-container *ngFor="let app of activeApps">
           <bmb-interactive-icon
             [appearance]="app.appearance"

@@ -3,7 +3,7 @@
 
 .bmb_inner_header {
   align-items: center;
-  background-color: RGBA(var(--color-charade-800), 1);
+  background-color: RGBA(var(--color-charade-100), 1);
   border-radius: rem.rem_calc(0 0 12 12);
   display: flex;
   justify-content: center;
@@ -30,13 +30,13 @@
   }
 
   &-icon {
-    color: RGBA(var(--color-charade-50), 1);
+    color: RGBA(var(--color-marine-700), 1);
     font-size: rem.rem_calc(24);
   }
 
   &-title {
     @include fonts.font(6, semibold);
-    color: RGBA(var(--color-charade-50), 1);
+    color: RGBA(var(--color-marine-700), 1);
     flex-grow: 1;
     margin: 0 rem.rem_calc(10);
     text-align: center;
@@ -53,6 +53,12 @@
 [data-theme="dark"],
 .storybook-dark-theme {
   .bmb_inner_header {
+    background-color: RGBA(var(--color-charade-800), 1);
     color: RGBA(var(--color-charade-50), 1);
+
+    &-icon,
+    &-title {
+      color: RGBA(var(--color-charade-50), 1);
+    }
   }
 }

@@ -44,7 +44,6 @@ export class BmbInnerHeaderComponent {
   @Input() isLoading: boolean = false;
   @Input() data: string[] = [];
   @Output() onHandleBack: EventEmitter<void> = new EventEmitter<void>();
-  @Output() onHandleSearch: EventEmitter<void> = new EventEmitter<void>();
   @Output() onValueChange: EventEmitter<string> = new EventEmitter<string>();
 
   showSearch: boolean = false;
