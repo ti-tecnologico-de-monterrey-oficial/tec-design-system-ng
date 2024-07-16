@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BmbSearchInputComponent } from './bmb-inner-header.component';
+import { BmbInnerHeaderComponent } from './bmb-inner-header.component';
 
 describe('BmbTitleSectionComponent', () => {
-  let component: BmbSearchInputComponent;
-  let fixture: ComponentFixture<BmbSearchInputComponent>;
+  let component: BmbInnerHeaderComponent;
+  let fixture: ComponentFixture<BmbInnerHeaderComponent>;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BmbSearchInputComponent);
+    fixture = TestBed.createComponent(BmbInnerHeaderComponent);
     component = fixture.componentInstance;
   });
 
