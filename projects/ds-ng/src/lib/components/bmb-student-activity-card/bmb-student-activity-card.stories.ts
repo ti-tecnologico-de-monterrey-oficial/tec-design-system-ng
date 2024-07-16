@@ -8,10 +8,7 @@ export default {
   component: BmbStudentActivityCardComponent,
   decorators: [
     moduleMetadata({
-      imports: [
-        CommonModule,
-        BmbStudentActivityCardComponent,
-      ],
+      imports: [CommonModule, BmbStudentActivityCardComponent],
     }),
   ],
   parameters: {
@@ -80,74 +77,73 @@ Below is an example of how to use this component in HTML:
       },
     },
     classTitle: {
-        control: {
-          type: 'text',
-        },
-        description: 'Name of the subject.',
-        table: {
-          category: 'Properties',
-          type: { summary: 'string' },
-          defaultValue: { summary: '' },
-        },
+      control: {
+        type: 'text',
       },
+      description: 'Name of the subject.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
 
-      classSubtitle: {
-        control: {
-          type: 'text',
-        },
-        description: 'Subtitle of the subject.',
-        table: {
-          category: 'Properties',
-          type: { summary: 'string' },
-          defaultValue: { summary: '' },
-        },
+    classSubtitle: {
+      control: {
+        type: 'text',
       },
+      description: 'Subtitle of the subject.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
 
-      location: {
-        control: {
-          type: 'text',
-        },
-        description: 'Location of matter.',
-        table: {
-          category: 'Properties',
-          type: { summary: 'string' },
-          defaultValue: { summary: '' },
-        },
+    location: {
+      control: {
+        type: 'text',
       },
-      statusLabel: {
-        control: {
-          type: 'text',
-        },
-        description: 'State of matter.',
-        table: {
-          category: 'Properties',
-          type: { summary: 'string' },
-          defaultValue: { summary: '' },
-        },
+      description: 'Location of matter.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
       },
-      timeRange: {
-        control: {
-          type: 'text',
-        },
-        description: 'Subject schedule.',
-        table: {
-          category: 'Properties',
-          type: { summary: 'string' },
-          defaultValue: { summary: '' },
-        },
+    },
+    statusLabel: {
+      control: {
+        type: 'text',
       },
-      
+      description: 'State of matter.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    timeRange: {
+      control: {
+        type: 'text',
+      },
+      description: 'Subject schedule.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
   },
 
   args: {
     count: '01 / 10',
-    categoryTitle:'',
+    categoryTitle: '',
     subcategorytitle: 'Mathematics',
-    classTitle:'Algebra 101',
-    classSubtitle:'Introducción to Algebra',
-    location:'Room 201',
-    statusLabel:'En progreso',
-    timeRange:'10:00 AM - 11:00 AM'
+    classTitle: 'Algebra 101',
+    classSubtitle: 'Introducción to Algebra',
+    location: 'Room 201',
+    statusLabel: 'En progreso',
+    timeRange: '10:00 AM - 11:00 AM',
   },
 } as Meta<typeof BmbStudentActivityCardComponent>;
 

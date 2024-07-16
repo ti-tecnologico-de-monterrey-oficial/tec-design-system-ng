@@ -4,3 +4,4 @@ export type IButtonAppearance =
   | 'secondary-filled'
   | 'secondary-outlined'
   | 'destructive';
+export * from '../components/bmb-timestream/types';
