@@ -4,6 +4,28 @@ import { BmbFabComponent } from './bmb-fab.component';
 export default {
   title: 'Micro Componentes/Fab',
   component: BmbFabComponent,
+  parameters: {
+    docs: {
+      description: {
+        component: `
+Below is an example of how you can use this component in TypeScript:
+
+\`\`\`typescript
+import { BmbFabComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
+@Component({
+  selector: 'component',
+  standalone: true,
+  imports: [ BmbFabComponent ],
+  templateUrl: './component.html',
+  styleUrl: './component.scss',
+})
+\`\`\`
+
+Below is an example of how you can use this component in HTML:
+        `,
+      },
+    },
+  },
   argTypes: {
     icon: {
       name: 'Icon',
@@ -62,6 +84,17 @@ export default {
         type: { summary: 'function' },
       },
       description: 'Emits when the fab button is clicked.',
+    },
+    mitec: {
+      name: 'Mitec Version',
+      control: {
+        type: 'boolean',
+      },
+      description:
+        'The component changes to a version that is used for the platform "Mitec", this version changes the color and the position of the text.',
+      table: {
+        type: { summary: 'boolean' },
+      },
     },
   },
   args: {

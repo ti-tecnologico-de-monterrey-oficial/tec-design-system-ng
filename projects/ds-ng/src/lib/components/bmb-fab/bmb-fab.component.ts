@@ -23,6 +23,7 @@ export class BmbFabComponent {
   @Input() text?: string | null = '';
   @Input() size?: FabSize;
   @Input() type?: FabType;
+  @Input() mitec?: boolean = false;
 
   @Output() fabClick = new EventEmitter<void>();
 
@@ -42,7 +43,7 @@ export class BmbFabComponent {
   }
 
   setStyles() {
-    let style = 'bmb_fab';
+    let style = !this.mitec ? 'bmb_fab' : 'bmb_fab-mitec';
 
     if (this.size == 'small') {
       style = `${style}-small`;
@@ -50,7 +51,7 @@ export class BmbFabComponent {
       style = `${style}-large`;
     }
 
-    if (this.type === 'extended') {
+    if (this.type === 'extended' && !this.mitec) {
       style = `${style}-extended`;
     } else {
       style = `${style}-normal`;
