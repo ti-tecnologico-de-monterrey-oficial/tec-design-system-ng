@@ -44,6 +44,7 @@ export class BmbSearchInputComponent implements OnChanges {
   @Output() onValueChange: EventEmitter<string> = new EventEmitter<string>();
   @Output() onServerSideFilterEvent: EventEmitter<string> =
     new EventEmitter<string>();
+  @Output() onClearField: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   @ViewChild('filterInput') filterField: ElementRef | null = null;
 
@@ -114,6 +115,7 @@ export class BmbSearchInputComponent implements OnChanges {
       this.filterField.nativeElement.value = '';
     }
     this.isDialogOpen = false;
+    this.onClearField.emit(true);
   }
 
   getDialogOpen(): string {
