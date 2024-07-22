@@ -1,0 +1,22 @@
+<div class="bmb_inner_header">
+  <div class="bmb_inner_header-container">
+    <ng-container *ngIf="!showSearch">
+      <button class="bmb_inner_header-button" (click)="handleBack()">
+        <bmb-icon icon="arrow_back" class="bmb_inner_header-icon" />
+      </button>
+      <span class="bmb_inner_header-title">{{ title }}</span>
+      <button class="bmb_inner_header-button" (click)="handleSearch()">
+        <bmb-icon icon="search" class="bmb_inner_header-icon" />
+      </button>
+    </ng-container>
+    <ng-container *ngIf="showSearch">
+      <bmb-search-input
+        class="bmb_inner_header-search"
+        [isLoading]="isLoading"
+        [data]="data"
+        (onValueChange)="handleValueChange($event)"
+        (onClearField)="handleSearch()"
+      ></bmb-search-input>
+    </ng-container>
+  </div>
+</div>
