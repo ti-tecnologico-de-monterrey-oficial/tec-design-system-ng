@@ -41,7 +41,7 @@
             ],
             "styles": ["projects/ds-ng/src/assets/styles/main.scss"],
             "scripts": [],
-            "allowedCommonJsDependencies": ["hammerjs"]
+            "allowedCommonJsDependencies": []
           },
           "configurations": {
             "production": {
