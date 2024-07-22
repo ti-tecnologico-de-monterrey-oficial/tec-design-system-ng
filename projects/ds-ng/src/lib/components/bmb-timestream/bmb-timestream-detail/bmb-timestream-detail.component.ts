@@ -13,7 +13,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { DateTime } from 'luxon';
-import { ISelectedDate, ITimelineEvent } from '../types';
+import { ISelectedDate, ITimelineEvent, ITimelineEventParsed } from '../types';
 import {
   BmbCardComponent,
   BmbCardContentComponent,
@@ -54,13 +54,15 @@ export class BmbTimestreamDetailsComponent implements AfterViewInit, OnChanges {
     month: '',
     date: this.now,
   };
-  @Input() orderedMonths: string[] = [];
+  @Input() orderedEvents: ITimelineEventParsed[] = [];
 
-  @Output() changeSelectedDate: EventEmitter<ISelectedDate> =
-    new EventEmitter<ISelectedDate>();
+  @Output() changeSelectedEvent: EventEmitter<ITimelineEvent> =
+    new EventEmitter<ITimelineEvent>();
 
   ngAfterViewInit(): void {
-    this.scrollToItem();
+    setTimeout(() => {
+      this.scrollToItem();
+    }, 1);
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -86,8 +88,7 @@ export class BmbTimestreamDetailsComponent implements AfterViewInit, OnChanges {
     );
   }
 
-  getMonthTitle(event: string, month: string) {
-    const date = this.events[month].events[event].date;
+  getMonthTitle(date: DateTime) {
     return date.setLocale(this.lang).toFormat('cccc dd LLLL yyyy');
   }
 
@@ -98,14 +99,10 @@ export class BmbTimestreamDetailsComponent implements AfterViewInit, OnChanges {
     console.log('currentMonthElement', currentMonthElement);
 
     if (currentMonthElement) {
-      currentMonthElement.scrollIntoView()
+      currentMonthElement.scrollIntoView();
       this.monthList.nativeElement.scrollTop =
         this.monthList.nativeElement.scrollTop;
     }
-  }
-
-  handleEventClick(event: any) {
-    console.log(event);
   }
 
   formatBadgeText(legend: string): string {
@@ -114,17 +111,28 @@ export class BmbTimestreamDetailsComponent implements AfterViewInit, OnChanges {
 
   appearanceBadgeText(type: string): string {
     switch (type) {
-      case 'enriquecedor': return 'mitec-red';
-      case 'seriado': return 'mitec-orange';
-      case 'inscripciones': return 'green-light';
-      case 'avance_academico': return 'mitec-blue';
-      case 'otra': return 'purple-light';
-      case 'flexible': return 'mitec-green';
-      default: return 'mitec-blue';
+      case 'enriquecedor':
+        return 'mitec-red';
+      case 'seriado':
+        return 'mitec-orange';
+      case 'inscripciones':
+        return 'green-light';
+      case 'avance_academico':
+        return 'mitec-blue';
+      case 'otra':
+        return 'purple-light';
+      case 'flexible':
+        return 'mitec-green';
+      default:
+        return 'mitec-blue';
     }
   }
 
   getDurationString(event: ITimelineEvent): string {
-    return `Duración: ${ event.originalStart?.day } - ${ event.endEvent?.setLocale(this.lang).toFormat('dd LLLL yyyy') } (${ event.diff } Días)`;
+    return `Duración: ${event.originalStart?.day} - ${event.endEvent?.setLocale(this.lang).toFormat('dd LLLL yyyy')} (${(event.diff || 0) + 1} Días)`;
+  }
+
+  handleEventChange(event: ITimelineEvent) {
+    this.changeSelectedEvent.emit(event);
   }
 }
