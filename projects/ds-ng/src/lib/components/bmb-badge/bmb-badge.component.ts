@@ -59,7 +59,8 @@ export class BmbBadgeComponent implements AfterViewInit {
   getStyles(): any {
     const newStyles: any = {};
     if (this.custom) {
-      newStyles['backgroundColor'] = `rgb(var(--color-${this.customBackground}))`;
+      newStyles['backgroundColor'] =
+        `rgb(var(--color-${this.customBackground}))`;
       newStyles['color'] = `rgb(var(--color-${this.customColor}))`;
     }
     return newStyles;
