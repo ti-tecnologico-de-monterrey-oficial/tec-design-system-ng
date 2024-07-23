@@ -10,7 +10,7 @@
   @if (isOpen && !isFull) {
     <div #wheel class="bmb_wheel-wrapper">
       <button class="bmb_wheel-button" (click)="toggleFullWheel()">
-        <bmb-icon icon="keyboard_arrow_up"></bmb-icon>
+        <bmb-icon icon="keyboard_arrow_up" />
       </button>
       <ul #wheelMenu class="bmb_wheel-menu">
         <li
@@ -19,10 +19,27 @@
           [ngClass]="getClasses(i)"
         >
           <button (click)="selectNavItem(i)" class="bmb_wheel-nav">
-            {{ nav.title }}
+            <svg viewBox="0 0 500 500" class="bmb_wheel-svg">
+              <path
+                id="circlePath{{ i }}"
+                d="M250,250 m-240,0 a240,240 0 1,1 480,0 a240,240 0 1,1 -480,0"
+                fill="none"
+                stroke="none"
+              />
+              <text>
+                <textPath
+                  [attr.href]="'#circlePath' + i"
+                  startOffset="50%"
+                  class="bmb_wheel-path"
+                >
+                  {{ nav.title }}
+                </textPath>
+              </text>
+            </svg>
           </button>
         </li>
       </ul>
+
       <div class="bmb_wheel-apps">
         <ng-container *ngFor="let app of activeApps">
           <bmb-interactive-icon
@@ -31,7 +48,7 @@
             [icon]="app.icon"
             [target]="app.target"
             [link]="app.link"
-          ></bmb-interactive-icon>
+          />
         </ng-container>
       </div>
     </div>
@@ -44,11 +61,11 @@
         (onHandleBack)="handleBackButton()"
         (onValueChange)="handleValueChange($event)"
         [data]="data"
-      ></bmb-inner-header>
+      />
       <bmb-tabs
         [tabs]="navItems.slice(0, 3)"
         (selected)="selectFullMenuNavItem($event.id)"
-      ></bmb-tabs>
+      />
       <div class="bmb_wheel-apps">
         <ng-container *ngFor="let app of activeApps">
           <bmb-interactive-icon
@@ -58,7 +75,7 @@
             [horizontal]="false"
             [target]="app.target"
             [link]="app.link"
-          ></bmb-interactive-icon>
+          />
         </ng-container>
       </div>
     </div>

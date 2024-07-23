@@ -4,4 +4,6 @@ export interface SidebarElement {
   title: string;
   link: string;
   target?: string;
+  children?: SidebarElement[];
+  isOpen?: boolean;
 }
