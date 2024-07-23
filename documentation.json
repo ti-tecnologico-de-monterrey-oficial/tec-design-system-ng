@@ -966,13 +966,22 @@
         },
         {
             "name": "SidebarElement",
-            "id": "interface-SidebarElement-e6bf666d06d59531d350a021eb2d249d5742f45d838f190881b50e605b600ea87ca95506a5c827df817d801c6f81e40af7b5d7096562698031aea55d638d3904",
+            "id": "interface-SidebarElement-3a740eb6084df709421195fb164e164a8697bc217631c71bf993ee8ca299e7cca4d49a240ae270c23ffd3b2e77bda8bb53b5303f5c9754779ee0f540e92e7478",
             "file": "projects/ds-ng/src/lib/components/bmb-sidebar/bmb-sidebar.interface.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "export interface SidebarElement {\n  id: number;\n  icon: string;\n  title: string;\n  link: string;\n  target?: string;\n}\n",
+            "sourceCode": "export interface SidebarElement {\n  id: number;\n  icon: string;\n  title: string;\n  link: string;\n  target?: string;\n  children?: SidebarElement[];\n  isOpen?: boolean;\n}\n",
             "properties": [
+                {
+                    "name": "children",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "SidebarElement[]",
+                    "optional": true,
+                    "description": "",
+                    "line": 7
+                },
                 {
                     "name": "icon",
                     "deprecated": false,
@@ -990,6 +999,15 @@
                     "optional": false,
                     "description": "",
                     "line": 2
+                },
+                {
+                    "name": "isOpen",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": true,
+                    "description": "",
+                    "line": 8
                 },
                 {
                     "name": "link",
@@ -11815,7 +11833,7 @@
         },
         {
             "name": "BmbSidebarComponent",
-            "id": "component-BmbSidebarComponent-9cad255de825c2a0061c174795b442704e742518a57f20358d824aa119491a8d3ceb91997cd81e704a4cba286b7bdab145f394eb12d99626c5dbc0a7f8a4be5a",
+            "id": "component-BmbSidebarComponent-428b2686e2f69756c1aea1ebe55b204db34bd929104827629c8cc410a914636a4f9234337395f1ccda488ebad0a86ef30439b27f666ed983c8bed9349275f901",
             "file": "projects/ds-ng/src/lib/components/bmb-sidebar/bmb-sidebar.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -11841,8 +11859,17 @@
                     "defaultValue": "[]",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 24,
+                    "line": 25,
                     "type": "SidebarElement[][]",
+                    "decorators": []
+                },
+                {
+                    "name": "title",
+                    "defaultValue": "'Navigation'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 26,
+                    "type": "string",
                     "decorators": []
                 }
             ],
@@ -11856,7 +11883,17 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 26
+                    "line": 28
+                },
+                {
+                    "name": "hoveredElement",
+                    "defaultValue": "null",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "SidebarElement | null",
+                    "optional": false,
+                    "description": "",
+                    "line": 31
                 },
                 {
                     "name": "isOpen",
@@ -11866,10 +11903,48 @@
                     "type": "boolean",
                     "optional": false,
                     "description": "",
-                    "line": 27
+                    "line": 29
+                },
+                {
+                    "name": "selectedElement",
+                    "defaultValue": "null",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "SidebarElement | null",
+                    "optional": false,
+                    "description": "",
+                    "line": 30
                 }
             ],
             "methodsClass": [
+                {
+                    "name": "closeChildren",
+                    "args": [
+                        {
+                            "name": "element",
+                            "type": "SidebarElement",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 89,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "element",
+                            "type": "SidebarElement",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
                 {
                     "name": "isExternalLink",
                     "args": [
@@ -11883,7 +11958,7 @@
                     "optional": false,
                     "returnType": "boolean",
                     "typeParameters": [],
-                    "line": 43,
+                    "line": 50,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -11911,7 +11986,7 @@
                     "optional": false,
                     "returnType": "boolean",
                     "typeParameters": [],
-                    "line": 57,
+                    "line": 64,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -11932,9 +12007,37 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 41,
+                    "line": 48,
                     "deprecated": false,
                     "deprecationMessage": ""
+                },
+                {
+                    "name": "openChildren",
+                    "args": [
+                        {
+                            "name": "element",
+                            "type": "SidebarElement",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 85,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "element",
+                            "type": "SidebarElement",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
                 },
                 {
                     "name": "setExternalLinkActive",
@@ -11949,7 +12052,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 51,
+                    "line": 58,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -11965,12 +12068,40 @@
                     ]
                 },
                 {
+                    "name": "toggleChildren",
+                    "args": [
+                        {
+                            "name": "element",
+                            "type": "SidebarElement",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 77,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "element",
+                            "type": "SidebarElement",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
                     "name": "toggleSidebar",
                     "args": [],
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 61,
+                    "line": 68,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -11997,11 +12128,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n  OnInit,\n} from '@angular/core';\nimport { Router, RouterModule, NavigationEnd } from '@angular/router';\nimport { CommonModule } from '@angular/common';\nimport { SidebarElement } from './bmb-sidebar.interface';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\nimport { filter } from 'rxjs/operators';\n\n@Component({\n  selector: 'bmb-sidebar',\n  standalone: true,\n  imports: [BmbIconComponent, CommonModule, RouterModule],\n  templateUrl: './bmb-sidebar.component.html',\n  styleUrls: ['./bmb-sidebar.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbSidebarComponent implements OnInit {\n  @Input() elements: SidebarElement[][] = [];\n\n  currentUrl: string = '';\n  isOpen: boolean = false;\n\n  constructor(private router: Router) {\n    this.router.events\n      .pipe(\n        filter(\n          (event): event is NavigationEnd => event instanceof NavigationEnd,\n        ),\n      )\n      .subscribe((event: NavigationEnd) => {\n        this.currentUrl = event.urlAfterRedirects;\n      });\n  }\n\n  ngOnInit() {}\n\n  isExternalLink(link: string): boolean {\n    return (\n      link.startsWith('http://') ||\n      link.startsWith('https://') ||\n      link.startsWith('#')\n    );\n  }\n\n  setExternalLinkActive(link: string) {\n    if (!this.isExternalLink(link)) {\n      this.currentUrl = link;\n    }\n  }\n\n  isLinkActive(link: string): boolean {\n    return this.currentUrl === link;\n  }\n\n  toggleSidebar() {\n    this.isOpen = !this.isOpen;\n  }\n}\n",
+            "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n  OnInit,\n  Renderer2,\n} from '@angular/core';\nimport { Router, RouterModule, NavigationEnd } from '@angular/router';\nimport { CommonModule } from '@angular/common';\nimport { SidebarElement } from './bmb-sidebar.interface';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\nimport { filter } from 'rxjs/operators';\n\n@Component({\n  selector: 'bmb-sidebar',\n  standalone: true,\n  imports: [BmbIconComponent, CommonModule, RouterModule],\n  templateUrl: './bmb-sidebar.component.html',\n  styleUrls: ['./bmb-sidebar.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbSidebarComponent implements OnInit {\n  @Input() elements: SidebarElement[][] = [];\n  @Input() title: string = 'Navigation';\n\n  currentUrl: string = '';\n  isOpen: boolean = false;\n  selectedElement: SidebarElement | null = null;\n  hoveredElement: SidebarElement | null = null;\n\n  constructor(\n    private router: Router,\n    private renderer: Renderer2,\n  ) {\n    this.router.events\n      .pipe(\n        filter(\n          (event): event is NavigationEnd => event instanceof NavigationEnd,\n        ),\n      )\n      .subscribe((event: NavigationEnd) => {\n        this.currentUrl = event.urlAfterRedirects;\n      });\n  }\n\n  ngOnInit() {}\n\n  isExternalLink(link: string): boolean {\n    return (\n      link.startsWith('http://') ||\n      link.startsWith('https://') ||\n      link.startsWith('#')\n    );\n  }\n\n  setExternalLinkActive(link: string) {\n    if (!this.isExternalLink(link)) {\n      this.currentUrl = link;\n    }\n  }\n\n  isLinkActive(link: string): boolean {\n    return this.currentUrl === link;\n  }\n\n  toggleSidebar() {\n    this.isOpen = !this.isOpen;\n    if (this.isOpen) {\n      this.renderer.addClass(document.body, 'bmb_sidebar-body-hide');\n    } else {\n      this.renderer.removeClass(document.body, 'bmb_sidebar-body-hide');\n    }\n  }\n\n  toggleChildren(element: SidebarElement) {\n    if (this.selectedElement === element) {\n      this.selectedElement = null;\n    } else {\n      this.selectedElement = element;\n    }\n  }\n\n  openChildren(element: SidebarElement) {\n    this.hoveredElement = element;\n  }\n\n  closeChildren(element: SidebarElement) {\n    if (this.hoveredElement === element) {\n      this.hoveredElement = null;\n    }\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@use \"../../../assets/styles/base/fonts\" as fonts;\n@use \"../../../assets/styles/base/mixins\" as mixins;\n@use \"../../../assets/styles/base/rem\" as rem;\n\n@mixin content() {\n  cursor: pointer;\n  min-height: inherit;\n  padding: 0;\n  top: 10%;\n  transform: inherit;\n  width: rem.rem_calc(30);\n}\n\n@mixin isOpen() {\n  min-height: rem.rem_calc(539);\n  padding: rem.rem_calc(24);\n  width: 100%;\n\n  .bmb_sidebar-button {\n    height: auto;\n    width: auto;\n\n    &-icon {\n      transform: rotate(180deg);\n    }\n\n    &-text {\n      display: block;\n    }\n  }\n\n  .bmb_sidebar-list {\n    display: flex;\n  }\n\n  .bmb_sidebar-text {\n    opacity: 1;\n    visibility: visible;\n  }\n\n  .bmb_sidebar-item {\n    width: 100%;\n  }\n}\n\n@mixin hover() {\n  min-height: unset;\n  padding: 0;\n  width: rem.rem_calc(30);\n\n  .bmb_sidebar-list {\n    display: none;\n  }\n\n  .bmb_sidebar-text {\n    opacity: 0;\n    visibility: hidden;\n  }\n\n  .bmb_sidebar-item {\n    width: inherit;\n  }\n}\n\n@mixin list() {\n  display: none;\n  margin: rem.rem_calc(16 0 0 0);\n\n  &:nth-of-type(n + 2) {\n    margin-top: rem.rem_calc(16);\n    padding-top: rem.rem_calc(16);\n  }\n}\n\n.bmb_sidebar {\n  background-color: RGBA(var(--color-black-primary));\n  border-radius: rem.rem_calc(0 8 8 0);\n  cursor: auto;\n  left: 0;\n  overflow: hidden;\n  position: fixed;\n  top: 50%;\n  transition: width 0.3s ease;\n  width: rem.rem_calc(30);\n  z-index: 100;\n  min-height: rem.rem_calc(539);\n  transform: translateY(-50%);\n  padding: rem.rem_calc(24);\n  width: rem.rem_calc(88);\n\n  @include mixins.media-query(768, \"max\") {\n    @include content();\n  }\n\n  @media (max-height: 992px) {\n    @include content();\n  }\n\n  &:hover {\n    min-height: rem.rem_calc(539);\n    padding: rem.rem_calc(24);\n    width: rem.rem_calc(250);\n\n    .bmb_sidebar-list {\n      display: flex;\n    }\n\n    .bmb_sidebar-text {\n      opacity: 1;\n      visibility: visible;\n    }\n\n    .bmb_sidebar-item {\n      width: rem.rem_calc(202);\n    }\n\n    @include mixins.media-query(768, \"max\") {\n      @include hover();\n    }\n\n    @media (max-height: 992px) {\n      @include hover();\n    }\n  }\n\n  &-isOpen {\n    @include mixins.media-query(768, \"max\") {\n      @include isOpen();\n      &:hover {\n        @include isOpen();\n      }\n    }\n\n    @media (max-height: 992px) {\n      @include isOpen();\n      &:hover {\n        @include isOpen();\n      }\n    }\n  }\n\n  &-list {\n    display: flex;\n    flex-flow: column;\n    list-style-type: none;\n    margin: 0;\n\n    padding: 0;\n\n    &:nth-of-type(n + 2) {\n      border-top: rem.rem_calc(1) solid RGBA(var(--color-charade-800));\n      margin-top: rem.rem_calc(16);\n      padding-top: rem.rem_calc(16);\n    }\n\n    @include mixins.media-query(768, \"max\") {\n      @include list();\n    }\n\n    @media (max-height: 992px) {\n      @include list();\n    }\n  }\n\n  &-item {\n    align-items: center;\n    display: flex;\n    height: rem.rem_calc(40);\n    justify-content: flex-start;\n    width: auto;\n  }\n\n  &-link {\n    align-items: center;\n    color: RGBA(var(--color-white-primary));\n    cursor: pointer;\n    display: flex;\n    height: 100%;\n    justify-content: flex-start;\n    text-decoration: none;\n    transition: all 0.3s ease;\n    width: 100%;\n\n    &:hover,\n    &-active {\n      background-color: RGBA(var(--color-white-primary));\n      border-radius: rem.rem_calc(24);\n      color: RGBA(var(--color-black-primary));\n    }\n  }\n\n  &-icon {\n    font-size: rem.rem_calc(24);\n    padding: rem.rem_calc(0 8);\n  }\n\n  &-text {\n    display: block;\n    flex: 1;\n    opacity: 0;\n    visibility: hidden;\n    width: rem.rem_calc(132);\n    @include fonts.font(4, medium);\n  }\n\n  &-button {\n    align-items: center;\n    display: none;\n    height: rem.rem_calc(72);\n    justify-content: center;\n    margin: 0;\n    padding: 0;\n    width: 100%;\n\n    &-icon {\n      color: RGBA(var(--color-white-primary));\n      display: block;\n      font-size: rem.rem_calc(24);\n      width: rem.rem_calc(24);\n    }\n\n    &-text {\n      color: RGBA(var(--color-white-primary));\n      display: none;\n      margin: rem.rem_calc(4 0 0 10);\n      @include fonts.font(3, regular);\n    }\n\n    @include mixins.media-query(768, \"max\") {\n      display: flex;\n    }\n\n    @media (max-height: 992px) {\n      display: flex;\n    }\n  }\n}\n",
+                    "data": "@use \"../../../assets/styles/base/fonts\" as fonts;\n@use \"../../../assets/styles/base/mixins\" as mixins;\n@use \"../../../assets/styles/base/rem\" as rem;\n\n// Mixins for mobile\n@mixin content() {\n  cursor: pointer;\n  top: 10%;\n  width: rem.rem_calc(28);\n}\n\n@mixin isOpen() {\n  height: 100vh;\n  overflow: auto;\n  padding: rem.rem_calc(24);\n  top: 0;\n  width: 100%;\n\n  .bmb_sidebar-button {\n    border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-800));\n    height: rem.rem_calc(40);\n    justify-content: space-between;\n    margin-bottom: rem.rem_calc(16);\n    padding: rem.rem_calc(8 8 16 8);\n\n    &-icon {\n      font-size: rem.rem_calc(24);\n    }\n  }\n\n  .bmb_sidebar-text {\n    opacity: 1;\n    overflow: hidden;\n    visibility: visible;\n  }\n}\n\n@mixin list() {\n  margin: rem.rem_calc(16 0 0 0);\n}\n\n.bmb_sidebar {\n  background-color: RGBA(var(--color-black-primary));\n  border-radius: rem.rem_calc(0 8 8 0);\n  left: 0;\n  position: fixed;\n  transition: width 0.3s ease;\n  z-index: 1;\n\n  &-body-hide {\n    overflow: hidden;\n  }\n\n  &-mobile {\n    @include content();\n\n    @media (max-height: 630px) {\n      @include content();\n    }\n\n    &.bmb_sidebar-open {\n      @include isOpen();\n\n      @media (max-height: 630px) {\n        @include isOpen();\n      }\n    }\n\n    .bmb_sidebar-button {\n      align-items: center;\n      display: flex;\n      height: rem.rem_calc(72);\n      justify-content: center;\n      margin: 0;\n      padding: 0;\n      width: 100%;\n\n      &-icon {\n        color: RGBA(var(--color-white-primary));\n        font-size: rem.rem_calc(16);\n      }\n\n      &-text {\n        color: RGBA(var(--color-white-primary));\n        overflow: hidden;\n        text-overflow: ellipsis;\n        white-space: nowrap;\n        @include fonts.font(6, semibold);\n      }\n    }\n\n    .bmb_sidebar-list {\n      @include list();\n\n      @media (max-height: 630px) {\n        @include list();\n      }\n    }\n\n    .bmb_sidebar-children {\n      height: 100vh;\n      left: 0;\n      position: fixed;\n      top: 0;\n      width: 100vw;\n\n      &-open {\n        display: flex;\n      }\n    }\n  }\n\n  &-desktop {\n    cursor: auto;\n    display: none;\n    height: rem.rem_calc(480);\n    overflow: hidden;\n    padding: rem.rem_calc(24);\n    top: 50%;\n    transform: translateY(-50%);\n    width: rem.rem_calc(88);\n\n    &:hover {\n      height: rem.rem_calc(480);\n      overflow: visible;\n      width: rem.rem_calc(280);\n\n      .bmb_sidebar-text {\n        opacity: 1;\n        overflow: hidden;\n        visibility: visible;\n      }\n\n      .bmb_sidebar-item {\n        width: rem.rem_calc(232);\n      }\n    }\n\n    .bmb_sidebar-item {\n      position: relative;\n    }\n\n    .bmb_sidebar-link {\n      &:hover {\n        + .bmb_sidebar-children {\n          border-radius: rem.rem_calc(0 24 24 0);\n          display: flex;\n          left: 100%;\n          position: absolute;\n          top: 0;\n          width: rem.rem_calc(264);\n        }\n      }\n    }\n\n    .bmb_sidebar-children-open {\n      border-radius: rem.rem_calc(0 24 24 0);\n      display: flex;\n      left: 100%;\n      position: absolute;\n      top: 0;\n      width: rem.rem_calc(264);\n    }\n\n    .bmb_sidebar-title {\n      display: none;\n    }\n  }\n\n  &-list {\n    display: flex;\n    flex-flow: column;\n    list-style-type: none;\n    margin: 0;\n    padding: 0;\n\n    &:nth-of-type(n + 2) {\n      border-top: rem.rem_calc(1) solid RGBA(var(--color-charade-800));\n      margin-top: rem.rem_calc(16);\n      padding-top: rem.rem_calc(16);\n    }\n  }\n\n  &-item {\n    align-items: center;\n    display: flex;\n    height: rem.rem_calc(40);\n    justify-content: flex-start;\n    width: auto;\n  }\n\n  &-link {\n    align-items: center;\n    color: RGBA(var(--color-white-primary));\n    cursor: pointer;\n    display: flex;\n    height: 100%;\n    justify-content: flex-start;\n    text-align: left;\n    text-decoration: none;\n    transition: all 0.3s ease;\n    width: 100%;\n\n    &:hover,\n    &-active {\n      background-color: RGBA(var(--color-white-primary));\n      border-radius: rem.rem_calc(24);\n      color: RGBA(var(--color-black-primary));\n    }\n  }\n\n  &-icon,\n  &-arrow {\n    font-size: rem.rem_calc(24);\n    padding: rem.rem_calc(0 8);\n  }\n\n  &-text {\n    display: block;\n    flex: 1;\n    opacity: 0;\n    text-overflow: ellipsis;\n    visibility: hidden;\n    white-space: nowrap;\n    width: rem.rem_calc(132);\n    @include fonts.font(4, medium);\n  }\n\n  &-children {\n    background-color: RGBA(var(--color-black-primary));\n    display: none;\n    flex-flow: column;\n    padding: rem.rem_calc(24);\n  }\n\n  &-title {\n    align-items: center;\n    border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-800));\n    color: RGBA(var(--color-white-primary));\n    display: flex;\n    height: rem.rem_calc(40);\n    justify-content: space-between;\n    margin-bottom: rem.rem_calc(16);\n    padding: rem.rem_calc(8 8 16 8);\n\n    &-button {\n      color: RGBA(var(--color-white-primary));\n      padding: 0;\n\n      .bmb_sidebar-icon {\n        padding: 0;\n      }\n    }\n\n    .bmb_sidebar-text {\n      display: flex;\n      > span {\n        overflow: hidden;\n        text-overflow: ellipsis;\n        white-space: nowrap;\n      }\n    }\n  }\n\n  @include mixins.media-query(768, \"min\") {\n    &-mobile {\n      display: none;\n    }\n\n    &-desktop {\n      display: block;\n    }\n  }\n\n  @media (max-height: 630px) {\n    &-mobile {\n      display: block;\n    }\n\n    &-desktop {\n      display: none;\n    }\n  }\n}\n",
                     "styleUrl": "./bmb-sidebar.component.scss"
                 }
             ],
@@ -12017,13 +12148,28 @@
                         "type": "Router",
                         "deprecated": false,
                         "deprecationMessage": ""
+                    },
+                    {
+                        "name": "renderer",
+                        "type": "Renderer2",
+                        "deprecated": false,
+                        "deprecationMessage": ""
                     }
                 ],
-                "line": 27,
+                "line": 31,
                 "jsdoctags": [
                     {
                         "name": "router",
                         "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "renderer",
+                        "type": "Renderer2",
                         "deprecated": false,
                         "deprecationMessage": "",
                         "tagName": {
@@ -12036,7 +12182,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<nav\n  class=\"bmb_sidebar\"\n  [class.bmb_sidebar-isOpen]=\"isOpen\"\n  aria-label=\"Sidebar Navigation\"\n>\n  <button class=\"bmb_sidebar-button\" type=\"button\" (click)=\"toggleSidebar()\">\n    <bmb-icon class=\"bmb_sidebar-button-icon\" icon=\"arrow_forward_ios\" />\n    <span class=\"bmb_sidebar-button-text\">Cerrar</span>\n  </button>\n  <ng-container *ngFor=\"let group of elements\">\n    <ul class=\"bmb_sidebar-list\">\n      <li *ngFor=\"let element of group\" class=\"bmb_sidebar-item\">\n        <ng-container *ngIf=\"!isExternalLink(element.link); else externalLink\">\n          <a\n            class=\"bmb_sidebar-link\"\n            [id]=\"element.id\"\n            [routerLink]=\"element.link\"\n            routerLinkActive=\"bmb_sidebar-link-active\"\n            [routerLinkActiveOptions]=\"{ exact: true }\"\n          >\n            <bmb-icon\n              class=\"bmb_sidebar-icon\"\n              [icon]=\"element.icon\"\n              [materialIcon]=\"true\"\n            ></bmb-icon>\n            <span class=\"bmb_sidebar-text\">{{ element.title }}</span>\n          </a>\n        </ng-container>\n        <ng-template #externalLink>\n          <a\n            class=\"bmb_sidebar-link\"\n            [id]=\"element.id\"\n            [ngClass]=\"{\n              'bmb_sidebar-link-active':\n                isLinkActive(element.link) && !isExternalLink(element.link),\n            }\"\n            [href]=\"element.link\"\n            [target]=\"element.target ? element.target : '_blank'\"\n            rel=\"noopener noreferrer\"\n            (click)=\"setExternalLinkActive(element.link)\"\n          >\n            <bmb-icon\n              class=\"bmb_sidebar-icon\"\n              [icon]=\"element.icon\"\n              [materialIcon]=\"true\"\n            ></bmb-icon>\n            <span class=\"bmb_sidebar-text\">{{ element.title }}</span>\n          </a>\n        </ng-template>\n      </li>\n    </ul>\n  </ng-container>\n</nav>\n"
+            "templateData": "<!-- Template for navigation -->\n<ng-template #sidebarTemplate>\n  <ng-container *ngFor=\"let group of elements.slice(0, 2)\">\n    <ul class=\"bmb_sidebar-list\">\n      <li *ngFor=\"let element of group.slice(0, 5)\" class=\"bmb_sidebar-item\">\n        <ng-container *ngIf=\"!isExternalLink(element.link); else externalLink\">\n          <ng-container *ngIf=\"!element.children; else hasChildren\">\n            <a\n              class=\"bmb_sidebar-link\"\n              [id]=\"element.id\"\n              [routerLink]=\"element.link\"\n              routerLinkActive=\"bmb_sidebar-link-active\"\n              [routerLinkActiveOptions]=\"{ exact: true }\"\n            >\n              <bmb-icon\n                class=\"bmb_sidebar-icon\"\n                [icon]=\"element.icon\"\n                [materialIcon]=\"true\"\n              />\n              <span class=\"bmb_sidebar-text\">{{ element.title }}</span>\n            </a>\n          </ng-container>\n          <ng-template #hasChildren>\n            @if (isOpen) {\n              <button\n                class=\"bmb_sidebar-link\"\n                [id]=\"element.id\"\n                (click)=\"toggleChildren(element)\"\n              >\n                <bmb-icon\n                  class=\"bmb_sidebar-icon\"\n                  [icon]=\"element.icon\"\n                  [materialIcon]=\"true\"\n                />\n                <span class=\"bmb_sidebar-text\">{{ element.title }}</span>\n                <bmb-icon class=\"bmb_sidebar-arrow\" icon=\"chevron_right\" />\n              </button>\n            } @else {\n              <button\n                class=\"bmb_sidebar-link\"\n                [id]=\"element.id\"\n                (mouseenter)=\"openChildren(element)\"\n                (mouseleave)=\"closeChildren(element)\"\n              >\n                <bmb-icon\n                  class=\"bmb_sidebar-icon\"\n                  [icon]=\"element.icon\"\n                  [materialIcon]=\"true\"\n                />\n                <span class=\"bmb_sidebar-text\">{{ element.title }}</span>\n                <bmb-icon class=\"bmb_sidebar-arrow\" icon=\"chevron_right\" />\n              </button>\n            }\n            <div\n              class=\"bmb_sidebar-children\"\n              [class.bmb_sidebar-children-open]=\"\n                selectedElement === element ||\n                (!isOpen && hoveredElement === element)\n              \"\n              (mouseenter)=\"!isOpen && openChildren(element)\"\n              (mouseleave)=\"!isOpen && closeChildren(element)\"\n            >\n              @if (isOpen) {\n                <div class=\"bmb_sidebar-title\">\n                  <button\n                    class=\"bmb_sidebar-title-button\"\n                    [id]=\"element.id\"\n                    (click)=\"toggleChildren(element)\"\n                  >\n                    <bmb-icon class=\"bmb_sidebar-icon\" icon=\"chevron_left\" />\n                  </button>\n                  <div class=\"bmb_sidebar-text\">\n                    <bmb-icon\n                      class=\"bmb_sidebar-icon\"\n                      [icon]=\"selectedElement?.icon ?? ''\"\n                      [materialIcon]=\"true\"\n                    />\n                    <span>{{ selectedElement?.title }}</span>\n                  </div>\n                  <button\n                    class=\"bmb_sidebar-title-button\"\n                    [id]=\"element.id\"\n                    (click)=\"toggleSidebar()\"\n                  >\n                    <bmb-icon class=\"bmb_sidebar-icon\" icon=\"close\" />\n                  </button>\n                </div>\n              }\n              <ul class=\"bmb_sidebar-list\">\n                <li\n                  *ngFor=\"let child of element.children\"\n                  class=\"bmb_sidebar-item\"\n                >\n                  <ng-container\n                    *ngIf=\"!isExternalLink(child.link); else externalLinkChild\"\n                  >\n                    <a\n                      class=\"bmb_sidebar-link\"\n                      [id]=\"child.id\"\n                      [routerLink]=\"child.link\"\n                      routerLinkActive=\"bmb_sidebar-link-active\"\n                      [routerLinkActiveOptions]=\"{ exact: true }\"\n                    >\n                      <bmb-icon\n                        class=\"bmb_sidebar-icon\"\n                        [icon]=\"child.icon\"\n                        [materialIcon]=\"true\"\n                      />\n                      <span class=\"bmb_sidebar-text\">{{ child.title }}</span>\n                    </a>\n                  </ng-container>\n                  <ng-template #externalLinkChild>\n                    <a\n                      class=\"bmb_sidebar-link\"\n                      [id]=\"child.id\"\n                      [href]=\"child.link\"\n                      [target]=\"child.target ? child.target : '_blank'\"\n                      rel=\"noopener noreferrer\"\n                    >\n                      <bmb-icon\n                        class=\"bmb_sidebar-icon\"\n                        [icon]=\"child.icon\"\n                        [materialIcon]=\"true\"\n                      />\n                      <span class=\"bmb_sidebar-text\">{{ child.title }}</span>\n                    </a>\n                  </ng-template>\n                </li>\n              </ul>\n            </div>\n          </ng-template>\n        </ng-container>\n        <ng-template #externalLink>\n          <a\n            class=\"bmb_sidebar-link\"\n            [id]=\"element.id\"\n            [ngClass]=\"{\n              'bmb_sidebar-link-active': isLinkActive(element.link),\n            }\"\n            [href]=\"element.link\"\n            [target]=\"element.target ? element.target : '_blank'\"\n            rel=\"noopener noreferrer\"\n            (click)=\"setExternalLinkActive(element.link)\"\n          >\n            <bmb-icon\n              class=\"bmb_sidebar-icon\"\n              [icon]=\"element.icon\"\n              [materialIcon]=\"true\"\n            />\n            <span class=\"bmb_sidebar-text\">{{ element.title }}</span>\n          </a>\n        </ng-template>\n      </li>\n    </ul>\n  </ng-container>\n</ng-template>\n\n<!-- Desktop -->\n<nav class=\"bmb_sidebar bmb_sidebar-desktop\" aria-label=\"Sidebar Navigation\">\n  <div class=\"bmb_sidebar-content\">\n    <ng-container *ngTemplateOutlet=\"sidebarTemplate\"></ng-container>\n  </div>\n</nav>\n\n<!-- Mobile -->\n<nav\n  class=\"bmb_sidebar bmb_sidebar-mobile\"\n  [class.bmb_sidebar-open]=\"isOpen\"\n  aria-label=\"Sidebar Navigation\"\n>\n  <button class=\"bmb_sidebar-button\" type=\"button\" (click)=\"toggleSidebar()\">\n    @if (!isOpen) {\n      <bmb-icon class=\"bmb_sidebar-button-icon\" icon=\"arrow_forward_ios\" />\n    } @else {\n      <span class=\"bmb_sidebar-button-text\">{{ title }}</span>\n      <bmb-icon class=\"bmb_sidebar-button-icon\" icon=\"close\" />\n    }\n  </button>\n  <ng-container *ngIf=\"isOpen\">\n    <ng-container *ngTemplateOutlet=\"sidebarTemplate\"></ng-container>\n  </ng-container>\n</nav>\n"
         },
         {
             "name": "BmbStatCounterComponent",
@@ -18467,7 +18613,7 @@
                         "type": "IFixDecimals",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "9ebdec07-7c99-4e9d-9bfc-e5e28ed8e071",
+                        "destrucuredGroupId": "ad536126-aad4-4c1d-ad1d-309ef059bbbc",
                         "destructuredParameter": true
                     },
                     {
@@ -18476,7 +18622,7 @@
                         "deprecated": false,
                         "deprecationMessage": "",
                         "defaultValue": "2",
-                        "destrucuredGroupId": "9ebdec07-7c99-4e9d-9bfc-e5e28ed8e071",
+                        "destrucuredGroupId": "ad536126-aad4-4c1d-ad1d-309ef059bbbc",
                         "destructuredParameter": true
                     }
                 ],
@@ -18486,7 +18632,7 @@
                         "type": "IFixDecimals",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "9ebdec07-7c99-4e9d-9bfc-e5e28ed8e071",
+                        "destrucuredGroupId": "ad536126-aad4-4c1d-ad1d-309ef059bbbc",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -18498,7 +18644,7 @@
                         "deprecated": false,
                         "deprecationMessage": "",
                         "defaultValue": "2",
-                        "destrucuredGroupId": "9ebdec07-7c99-4e9d-9bfc-e5e28ed8e071",
+                        "destrucuredGroupId": "ad536126-aad4-4c1d-ad1d-309ef059bbbc",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -20381,7 +20527,7 @@
                             "type": "IFixDecimals",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "9ebdec07-7c99-4e9d-9bfc-e5e28ed8e071",
+                            "destrucuredGroupId": "ad536126-aad4-4c1d-ad1d-309ef059bbbc",
                             "destructuredParameter": true
                         },
                         {
@@ -20390,7 +20536,7 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "defaultValue": "2",
-                            "destrucuredGroupId": "9ebdec07-7c99-4e9d-9bfc-e5e28ed8e071",
+                            "destrucuredGroupId": "ad536126-aad4-4c1d-ad1d-309ef059bbbc",
                             "destructuredParameter": true
                         }
                     ],
@@ -20400,7 +20546,7 @@
                             "type": "IFixDecimals",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "9ebdec07-7c99-4e9d-9bfc-e5e28ed8e071",
+                            "destrucuredGroupId": "ad536126-aad4-4c1d-ad1d-309ef059bbbc",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
@@ -20412,7 +20558,7 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "defaultValue": "2",
-                            "destrucuredGroupId": "9ebdec07-7c99-4e9d-9bfc-e5e28ed8e071",
+                            "destrucuredGroupId": "ad536126-aad4-4c1d-ad1d-309ef059bbbc",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
@@ -22242,7 +22388,7 @@
                 "linktype": "component",
                 "name": "BmbSidebarComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/10",
+                "coverageCount": "0/16",
                 "status": "low"
             },
             {
@@ -22251,7 +22397,7 @@
                 "linktype": "interface",
                 "name": "SidebarElement",
                 "coveragePercent": 0,
-                "coverageCount": "0/6",
+                "coverageCount": "0/8",
                 "status": "low"
             },
             {

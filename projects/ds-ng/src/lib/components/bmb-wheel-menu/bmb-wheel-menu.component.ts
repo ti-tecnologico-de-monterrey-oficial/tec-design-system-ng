@@ -73,7 +73,6 @@ export class BmbWheelMenuComponent implements AfterViewInit {
     this.isOpen = !this.isOpen;
     this.updateClasses();
   }
-
   toggleFullWheel() {
     this.isFull = !this.isFull;
     if (!this.isFull) {
