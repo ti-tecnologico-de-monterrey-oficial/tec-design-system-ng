@@ -26,12 +26,21 @@
         [now]="now"
         [events]="parsedEvents"
         [selectedDate]="selectedDate"
-        [orderedMonths]="orderedMonths"
-        (changeSelectedDate)="handleSelectedDateChange($event)"
+        (changeSelectedEvent)="handleSelectedEventChange($event)"
+        [orderedEvents]="orderedEvents"
       />
     </section>
-    @if (isDialogOpen) {
-      <dialog>test</dialog>
-    }
+    <section
+      class="bmb_timestream-dialog"
+      [ngClass]="{
+        'bmb_timestream-dialog-active': !!isDialogOpen,
+      }"
+    >
+      <bmb-timestream-dialog
+        [event]="isDialogOpen"
+        (closeDialog)="closeDetail()"
+        [lang]="lang"
+      />
+    </section>
   }
 </section>
