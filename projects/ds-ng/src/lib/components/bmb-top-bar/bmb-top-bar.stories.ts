@@ -128,6 +128,17 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: 'es' },
       },
     },
+    mitec: {
+      name: 'Mitec',
+      control: {
+        type: 'boolean',
+      },
+      description: 'Top Bar changes to the mitec version',
+      table: {
+        type: { summary: 'boolean' },
+        category: 'Properties',
+      },
+    },
     logOut: {
       name: 'Logout event',
       control: false,
@@ -153,6 +164,7 @@ Below is an example of how you can use this component in HTML:
     appSubTitle: 'Sub title',
     showLang: false,
     lang: 'es',
+    userInformation: {name: 'Name', image: 'ima.pgn', role: 'alumno' },
     onValueChange: () => {
       console.log('test');
     },
