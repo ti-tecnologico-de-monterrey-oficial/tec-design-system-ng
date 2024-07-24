@@ -164,7 +164,7 @@ Below is an example of how you can use this component in HTML:
     appSubTitle: 'Sub title',
     showLang: false,
     lang: 'es',
-    userInformation: {name: 'Name', image: 'ima.pgn', role: 'alumno' },
+    userInformation: { name: 'Name', image: 'ima.pgn', role: 'alumno' },
     onValueChange: () => {
       console.log('test');
     },

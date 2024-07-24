@@ -55,7 +55,9 @@ export class BmbTopBarComponent implements OnInit {
   isMobileMenuOpen: boolean = false;
 
   ngOnInit(): void {
-    this.image = this.mitec ? 'assets/images/logos-mitec/logo_mitec.png' : 'assets/images/tec-logo.svg'
+    this.image = this.mitec
+      ? 'assets/images/logos-mitec/logo_mitec.png'
+      : 'assets/images/tec-logo.svg';
   }
 
   handleLogOutClick(event: Event) {
