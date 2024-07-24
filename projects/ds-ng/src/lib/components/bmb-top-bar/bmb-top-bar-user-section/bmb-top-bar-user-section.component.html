@@ -1,7 +1,23 @@
 <section class="bmb_top-bar-user-section">
-  <span class="bmb_top-bar-user-section-help">
-    <bmb-icon icon="help" />
-  </span>
+  <div class="bmb_top-bar-user-section-icons">
+      @if(mitec){
+        <span class="bmb_top-bar-user-section-icon">
+          <bmb-icon icon="assignment" />
+          @if(assigmentNotification != 0){
+            <span class="bmb_top-bar-user-section-icon-number bmb_top-bar-user-section-icon-number-one">{{assigmentNotification}}</span>
+          }
+        </span>
+        <span class="bmb_top-bar-user-section-icon">
+          <bmb-icon icon="notifications"/>
+          @if(notificationNotification != 0){´
+            <span class="bmb_top-bar-user-section-icon-number bmb_top-bar-user-section-icon-number-two">{{notificationNotification}}</span>
+          }
+        </span>
+      }
+      <span class="bmb_top-bar-user-section-icon" [ngClass]="{'bmb_top-bar-user-section-icon-mitec': !mitec}">
+        <bmb-icon icon="help" />
+      </span>
+  </div>
   <bmb-user-image
     [image]="userInformation.image"
     size="mobile-small"

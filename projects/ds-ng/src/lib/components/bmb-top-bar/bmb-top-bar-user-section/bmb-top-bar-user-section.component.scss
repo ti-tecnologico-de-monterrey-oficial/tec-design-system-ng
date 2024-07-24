@@ -8,18 +8,18 @@
   gap: 0;
   width: 100vw;
   @include fonts.font(3, regular);
-  grid-template-columns: rem.rem_calc(46) 1fr rem.rem_calc(46);
+  grid-template-columns: rem.rem_calc(50) 1fr rem.rem_calc(46);
   grid-template-areas:
-    "image name help"
-    "image role help";
+    "image name icons"
+    "image role icons";
 
   align-items: center;
 
   @include mixins.media-query(1000, "min") {
     grid-template-areas:
-      "help image name"
-      "help image role";
-    grid-template-columns: rem.rem_calc(30) rem.rem_calc(64) 1fr;
+      "icons image name"
+      "icons image role";
+    grid-template-columns: rem.rem_calc(80) rem.rem_calc(64) 1fr;
     max-width: max-content;
   }
 
@@ -28,15 +28,60 @@
     padding: 0 rem.rem_calc(16);
   }
 
-  &-help {
-    font-size: rem.rem_calc(26);
-    grid-area: help;
+  &-icons{
+    position: relative;
+    display: inline-flex;
+    grid-area: icons;
     line-height: 0;
-    text-align: center;
-    margin-left: rem.rem_calc(16);
+    margin-left: -40px;
 
     @include mixins.media-query(1000, "min") {
-      margin: 0;
+      margin-left: -5px;
+    }
+  }
+
+  &-icon {
+    cursor: pointer;
+    font-size: rem.rem_calc(26);
+    line-height: 0;
+    text-align: center;
+    padding: 0px 2px;
+
+    &-mitec{
+      margin-left: 56px;
+
+      @include mixins.media-query(1000, "min") {
+        margin-left: 56px;
+      }
+    }
+
+    &-number{
+      position: absolute;
+      background-color: RGBA(var(--color-red-primary));
+      color: white;
+      border-radius: 50%;
+      padding: 5px 5px;
+      font-size: 9px;
+      min-width: 14px;
+      min-height: 14px;
+      text-align: center;
+      align-content: center;
+      box-shadow: 0 0 1px #888;
+
+      &-one{
+        bottom: -3px;
+        right: 55px;
+      }
+
+      &-two{
+        bottom: -3px;
+        right: 25px;
+      }
+
+      &-three{
+        bottom: -3px;
+        right: -4px;
+      }
     }
   }
 

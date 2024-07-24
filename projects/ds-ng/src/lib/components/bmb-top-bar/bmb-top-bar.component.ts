@@ -7,6 +7,7 @@ import {
   EventEmitter,
   TemplateRef,
   ViewChild,
+  OnInit,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbButtonDirective } from '../../directives/button.directive';
@@ -34,7 +35,7 @@ export { IPositionButtonMenu, IUserInformation } from './types';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbTopBarComponent {
+export class BmbTopBarComponent implements OnInit {
   @Input() positionButtonMenu: IPositionButtonMenu = 'left';
   @Input() userInformation: IUserInformation | null = null;
   @Input() hasLogoutButton: boolean = true;
@@ -44,6 +45,7 @@ export class BmbTopBarComponent {
   @Input() appSubTitle: string = '';
   @Input() showLang: boolean = false;
   @Input() lang: string = 'es';
+  @Input() mitec: boolean = false;
 
   @Output() logOut: EventEmitter<any> = new EventEmitter<any>();
   @Output() onLangChange: EventEmitter<string> = new EventEmitter<string>();
@@ -51,6 +53,10 @@ export class BmbTopBarComponent {
   @ViewChild(TemplateRef) contentTemplate: TemplateRef<unknown> | null = null;
 
   isMobileMenuOpen: boolean = false;
+
+  ngOnInit(): void {
+    this.image = this.mitec ? 'assets/images/logos-mitec/logo_mitec.png' : 'assets/images/tec-logo.svg'
+  }
 
   handleLogOutClick(event: Event) {
     this.logOut.emit(event);
