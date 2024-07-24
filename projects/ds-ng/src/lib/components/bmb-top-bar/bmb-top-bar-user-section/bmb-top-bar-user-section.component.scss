@@ -28,12 +28,12 @@
     padding: 0 rem.rem_calc(16);
   }
 
-  &-icons{
+  &-icons {
     position: relative;
     display: inline-flex;
     grid-area: icons;
     line-height: 0;
-    margin-left:  rem.rem_calc(-40);
+    margin-left: rem.rem_calc(-40);
 
     @include mixins.media-query(1000, "min") {
       margin-left: rem.rem_calc(-5);
@@ -47,37 +47,37 @@
     text-align: center;
     padding: rem.rem_calc(0) rem.rem_calc(2);
 
-    &-mitec{
+    &-mitec {
       margin-left: rem.rem_calc(56);
 
       @include mixins.media-query(1000, "min") {
-        margin-left:  rem.rem_calc(56);
+        margin-left: rem.rem_calc(56);
       }
     }
 
-    &-number{
+    &-number {
       position: absolute;
       background-color: RGBA(var(--color-red-primary));
       color: RGBA(var(--color-white-primary));
       border-radius: 50%;
-      padding: rem.rem_calc(5)  rem.rem_calc(5);
+      padding: rem.rem_calc(5) rem.rem_calc(5);
       font-size: rem.rem_calc(9);
       min-width: rem.rem_calc(14);
       min-height: rem.rem_calc(14);
       text-align: center;
       align-content: center;
 
-      &-one{
+      &-one {
         bottom: rem.rem_calc(-3);
         right: rem.rem_calc(55);
       }
 
-      &-two{
+      &-two {
         bottom: rem.rem_calc(-3);
-        right:  rem.rem_calc(25);
+        right: rem.rem_calc(25);
       }
 
-      &-three{
+      &-three {
         bottom: rem.rem_calc(-3);
         right: rem.rem_calc(-4);
       }
