@@ -1,10 +1,11 @@
-<div style="height: 800px; margin: 1rem; width: calc(100% - 2rem)">
-  <!-- <bmb-timestream
-    startDate="01/05/2020"
-    endDate="31/12/2024"
-    [events]="timelineEvents"
-  /> -->
-</div>
+<br /><br /><br /><br /><br /><br />
+<bmb-card-content>
+  <bmb-chat-bar
+    (onSendMessage)="handleChatBarChange($event)"
+    [isLoading]="false"
+  />
+</bmb-card-content>
+<span>{{ chatBarValue }}</span>
 
 <bmb-theme [initialTheme]="'light'" />
 

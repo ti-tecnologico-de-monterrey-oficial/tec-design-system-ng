@@ -53,6 +53,7 @@ import {
   BmbStudentActivitySelectorComponent,
   BmbTabStudenActivityComponent,
   BmbTimestreamComponent,
+  BmbChatBarComponent,
 } from '../../projects/ds-ng/src/public-api';
 
 import {
@@ -71,6 +72,7 @@ import names from './names.json';
 import { ModalDataConfig } from '../../projects/ds-ng/src/lib/components/bmb-modal/bmb-modal.interface';
 import { MatDialog } from '@angular/material/dialog';
 import timelineEvents from './timelineEvents.json';
+import { BmbCardContentComponent } from 'ds-ng';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -122,10 +124,12 @@ import timelineEvents from './timelineEvents.json';
     BmbDatepickerComponent,
     BmbCardHeaderComponent,
     BmbCardFooterComponent,
+    BmbCardContentComponent,
     BmbInputPhoneNumberComponent,
     BmbStudentActivitySelectorComponent,
     BmbTabStudenActivityComponent,
     BmbTimestreamComponent,
+    BmbChatBarComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -612,4 +616,9 @@ export class AppComponent {
   }
 
   timelineEvents = timelineEvents;
+
+  chatBarValue = '';
+  handleChatBarChange(value: string) {
+    this.chatBarValue = value;
+  }
 }
