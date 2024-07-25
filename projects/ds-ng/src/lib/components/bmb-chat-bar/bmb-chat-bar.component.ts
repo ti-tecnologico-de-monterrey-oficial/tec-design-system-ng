@@ -13,6 +13,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 export { defaultBotList } from './bot_list';
+export { IBotType } from './types';
 
 @Component({
   selector: 'bmb-chat-bar',
