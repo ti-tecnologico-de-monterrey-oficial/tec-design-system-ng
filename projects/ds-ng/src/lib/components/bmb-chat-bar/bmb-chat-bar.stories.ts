@@ -33,8 +33,7 @@ Below is an example of how you can use this component in HTML:
     placeholder: {
       name: 'Placeholder',
       control: { type: 'text' },
-      description:
-        'Optionally you can customize the placeholder input.',
+      description: 'Optionally you can customize the placeholder input.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -44,8 +43,7 @@ Below is an example of how you can use this component in HTML:
     botList: {
       name: 'Bot list',
       control: { type: 'object' },
-      description:
-        'Optionally you can customize the bot list.',
+      description: 'Optionally you can customize the bot list.',
       table: {
         category: 'Properties',
         type: { summary: 'IBotType[]' },
@@ -55,18 +53,18 @@ Below is an example of how you can use this component in HTML:
     defaultBot: {
       name: 'Default bot',
       control: { type: 'object' },
-      description:
-        'Set the default bot to chat.',
+      description: 'Set the default bot to chat.',
       table: {
         category: 'Properties',
         type: { summary: 'IBotType' },
       },
-      defaultValue: { summary: 'IBotType'},
+      defaultValue: { summary: 'IBotType' },
     },
     isLoading: {
       name: 'Is loading',
       control: { type: 'boolean' },
-      description: 'Sets loading state, put a loader icon and disable the send button.',
+      description:
+        'Sets loading state, put a loader icon and disable the send button.',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
