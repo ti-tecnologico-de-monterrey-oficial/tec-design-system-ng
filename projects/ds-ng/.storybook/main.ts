@@ -26,11 +26,11 @@ const config: StorybookConfig = {
         patterns: [
           {
             from: 'projects/ds-ng/src/assets/fonts',
-            to: 'assets/fonts'
+            to: 'assets/fonts',
           },
           {
             from: 'projects/ds-ng/src/assets/images',
-            to: 'assets/images'
+            to: 'assets/images',
           },
         ],
       }),
