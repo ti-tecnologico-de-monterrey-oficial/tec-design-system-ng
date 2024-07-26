@@ -60,14 +60,102 @@ export class AppComponent {
     title: string;
     link: string;
     target?: string;
+    children?: SidebarElement[];
+    isOpen?: boolean;
   }[][] = [
     [
-      { id: 1, icon: 'assignment_add', title: 'Elegir documentos', link: '/home' },
-      { id: 2, icon: 'task', title: 'Agregar firmantes', link: 'https://www.youtube.com/watch?v=beh56CrNRsQ' },
-      { id: 3, icon: 'note_alt', title: 'Crear envelope', link: 'inicio' },
-      { id: 4, icon: 'checklist_rtl', title: 'Estado de archivos', link: 'vivencia' },
+      {
+        id: 1,
+        icon: 'assignment_add',
+        title: 'Elegir documentos',
+        link: '/home',
+      },
+      {
+        id: 2,
+        icon: 'task',
+        title: 'Agregar firmantes',
+        link: 'https://www.youtube.com/watch?v=beh56CrNRsQ',
+      },
+      {
+        id: 3,
+        icon: 'note_alt',
+        title: 'Crear envelope',
+        link: '#contact',
+        target: '_self',
+      },
+      {
+        id: 4,
+        icon: 'checklist_rtl',
+        title: 'Estado de archivos anonimos',
+        link: 'inicio',
+        children: [
+          {
+            id: 4.1,
+            icon: 'file_copy',
+            title: 'Sub-item 1',
+            link: '/emprendedor',
+          },
+          {
+            id: 4.2,
+            icon: 'file_copy',
+            title: 'Sub-item 2',
+            link: 'https://www.youtube.com/watch?v=beh56CrNRsQ',
+          },
+        ],
+      },
+      {
+        id: 5,
+        icon: 'account_box',
+        title: 'Admin.usuariosusuariosusuarios',
+        link: 'vivencia',
+        children: [
+          {
+            id: 5.1,
+            icon: 'file_copy',
+            title: 'Sub-item 3',
+            link: '/home',
+          },
+          {
+            id: 5.2,
+            icon: 'file_copy',
+            title: 'Sub-item 4',
+            link: 'https://www.youtube.com/watch?v=beh56CrNRsQ',
+          },
+        ],
+      },
     ],
-    [{ id: 5, icon: 'account_box', title: 'Admin. usuarios', link: '#contact' }],
+    [
+      {
+        id: 7,
+        icon: 'account_box',
+        title: 'Admin. usuarios',
+        link: 'vivencia1',
+      },
+      {
+        id: 8,
+        icon: 'account_box',
+        title: 'Admin. usuarios',
+        link: 'vivencia2',
+      },
+      {
+        id: 9,
+        icon: 'account_box',
+        title: 'Admin. usuarios',
+        link: 'vivencia3',
+      },
+      {
+        id: 10,
+        icon: 'account_box',
+        title: 'Hi',
+        link: 'vivencia4',
+      },
+      {
+        id: 11,
+        icon: 'account_box',
+        title: 'Hi',
+        link: 'vivencia5',
+      },
+    ],
   ];
 }
 \`\`\`
@@ -96,6 +184,17 @@ Below is an example of how to use this component in HTML:
         },
       },
     },
+    title: {
+      name: 'Title',
+      control: {
+        type: 'text',
+      },
+      description: 'The title of the navigation sidebar for mobile.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
   },
   args: {
     elements: [
@@ -122,19 +221,78 @@ Below is an example of how to use this component in HTML:
         {
           id: 4,
           icon: 'checklist_rtl',
-          title: 'Estado de archivos',
+          title: 'Estado de archivos anonimos',
           link: 'inicio',
+          children: [
+            {
+              id: 4.1,
+              icon: 'file_copy',
+              title: 'Sub-item 1',
+              link: '/emprendedor',
+            },
+            {
+              id: 4.2,
+              icon: 'file_copy',
+              title: 'Sub-item 2',
+              link: 'https://www.youtube.com/watch?v=beh56CrNRsQ',
+            },
+          ],
+        },
+        {
+          id: 5,
+          icon: 'account_box',
+          title: 'Admin.usuariosusuariosusuarios',
+          link: 'vivencia',
+          children: [
+            {
+              id: 5.1,
+              icon: 'file_copy',
+              title: 'Sub-item 3',
+              link: '/home',
+            },
+            {
+              id: 5.2,
+              icon: 'file_copy',
+              title: 'Sub-item 4',
+              link: 'https://www.youtube.com/watch?v=beh56CrNRsQ',
+            },
+          ],
         },
       ],
       [
         {
-          id: 5,
+          id: 7,
           icon: 'account_box',
           title: 'Admin. usuarios',
-          link: 'vivencia',
+          link: 'vivencia1',
+        },
+        {
+          id: 8,
+          icon: 'account_box',
+          title: 'Admin. usuarios',
+          link: 'vivencia2',
+        },
+        {
+          id: 9,
+          icon: 'account_box',
+          title: 'Admin. usuarios',
+          link: 'vivencia3',
+        },
+        {
+          id: 10,
+          icon: 'account_box',
+          title: 'Hi',
+          link: 'vivencia4',
+        },
+        {
+          id: 11,
+          icon: 'account_box',
+          title: 'Hi',
+          link: 'vivencia5',
         },
       ],
     ],
+    title: 'Navegacion para mobiles',
   },
 } as Meta<typeof BmbSidebarComponent>;
 
