@@ -74,7 +74,6 @@ import names from './names.json';
 import { ModalDataConfig } from '../../projects/ds-ng/src/lib/components/bmb-modal/bmb-modal.interface';
 import { MatDialog } from '@angular/material/dialog';
 import timelineEvents from './timelineEvents.json';
-import { BmbCardContentComponent } from 'ds-ng';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector

@@ -1,4 +1,5 @@
 @use "../../../assets/styles/base/rem" as rem;
+@use "../../../assets/styles/base/fonts" as fonts;
 
 .bmb_home-card {
   border-radius: var(--bmb-radius-l);
@@ -6,4 +7,16 @@
   background: RGBA(var(--color-charade-950));
   box-shadow: rem.rem_calc(12) rem.rem_calc(12) rem.rem_calc(4) 0px
     rgba(var(--color-black-primary), 0.33);
+
+  &-container {
+    color: RGBA(var(--color-charade-50));
+    @include fonts.font(3, regular);
+    display: flex;
+    padding: var(--bmb-spacing-l);
+    flex-direction: column;
+    gap: var(--bmb-spacing-l);
+    border-radius: var(--bmb-radius-l);
+    background: RGBA(var(--color-charade-950));
+    overflow: hidden;
+  }
 }
