@@ -1,0 +1,41 @@
+<div class="bmb_skeleton">
+  @switch (type) {
+    @case ("stray") {
+      <div class="bmb_skeleton-stray">
+        <div class="bmb_skeleton-circle"></div>
+        <div class="bmb_skeleton-stray-box">
+          <div class="bmb_skeleton-headline"></div>
+          <div class="bmb_skeleton-headline"></div>
+        </div>
+      </div>
+    }
+    @case ("generic1") {
+      <div class="bmb_skeleton-generic1">
+        <div class="bmb_skeleton-headline"></div>
+        <div class="bmb_skeleton-headline"></div>
+        <div class="bmb_skeleton-headline"></div>
+        <div class="bmb_skeleton-headline"></div>
+      </div>
+    }
+    @case ("generic2") {
+      <div class="bmb_skeleton-generic2">
+        <div class="bmb_skeleton-generic2-box"></div>
+        <div class="bmb_skeleton-headline"></div>
+        <div class="bmb_skeleton-headline"></div>
+      </div>
+    }
+    @case ("generic3") {
+      <div class="bmb_skeleton-generic3">
+        <div class="bmb_skeleton-generic3-header"></div>
+        <div class="bmb_skeleton-generic3-content"></div>
+      </div>
+    }
+    @default {
+      <div class="bmb_skeleton-header">
+        <div class="bmb_skeleton-circle"></div>
+        <div class="bmb_skeleton-headline"></div>
+        <div class="bmb_skeleton-circle"></div>
+      </div>
+    }
+  }
+</div>
