@@ -12,21 +12,36 @@
     </div>
   }
   <figure class="bmb_top-bar-logo-section">
-    <picture>
-      <source media="(min-width: 1000px)" [srcset]="image" />
-      <source [srcset]="mobileImage" />
-      <img
-        src="/assets/images/tec-logo-mob.svg"
-        alt="TEC de Monterrey"
-        loading="lazy"
-      />
-    </picture>
+    @if (mitec) {
+      <picture>
+        <source media="(min-width: 1000px)" [srcset]="image" />
+        <source [srcset]="mobileImage" />
+        <img
+          style="width: 30px"
+          [src]="image"
+          alt="TEC de Monterrey"
+          loading="lazy"
+        />
+      </picture>
+    } @else {
+      <picture>
+        <source media="(min-width: 1000px)" [srcset]="image" />
+        <source [srcset]="mobileImage" />
+        <img
+          src="/assets/images/tec-logo-mob.svg"
+          alt="TEC de Monterrey"
+          loading="lazy"
+        />
+      </picture>
+    }
   </figure>
   <nav class="bmb_top-bar-nav" [ngClass]="getMenuClasses()">
     @if (appName !== "") {
       <li class="bmb_top-bar-app-name">
         <h1>{{ appName }}</h1>
-        <span>{{ appSubTitle }}</span>
+        @if (appSubTitle !== "" && !mitec) {
+          <span>{{ appSubTitle }}</span>
+        }
       </li>
     }
     <ul class="bmb_top-bar-nav-content">
@@ -34,7 +49,10 @@
     </ul>
     @if (userInformation) {
       <li>
-        <bmb-top-bar-user-section [userInformation]="userInformation" />
+        <bmb-top-bar-user-section
+          [mitec]="mitec"
+          [userInformation]="userInformation"
+        />
       </li>
     }
   </nav>

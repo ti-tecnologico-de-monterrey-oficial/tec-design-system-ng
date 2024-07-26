@@ -14,7 +14,6 @@ $circleTypes: (
   padding: 0 var(--bmb-spacing-m);
   margin: 0;
   list-style: none;
-  width: calc(100% - var(--bmb-spacing-m));
   height: 100%;
   overflow: auto;
 
@@ -115,4 +114,6 @@ $circleTypes: (
   }
 }
 
-// #1BC0CB
+.cdk-virtual-scrollable {
+  height: 100%;
+}

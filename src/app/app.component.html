@@ -1,16 +1,27 @@
-<div style="height: 800px; margin: 1rem; width: calc(100% - 2rem)">
-  <bmb-timestream
-    startDate="01/05/2020"
-    endDate="31/12/2024"
-    [events]="timelineEvents"
-  />
+<div style="margin: 1rem">
+  <bmb-home-card
+    title="test title"
+    subtitle="test subtitle"
+    icon="shelf_auto_hide"
+    [isMobile]="true"
+  >
+    <p>Slot test</p>
+  </bmb-home-card>
 </div>
 
-<bmb-theme [initialTheme]="'dark'" />
+<bmb-theme [initialTheme]="'light'" />
 
 <bmb-datepicker></bmb-datepicker>
 
-<bmb-input icon="apps"></bmb-input>
+<form action="">
+  <bmb-input
+    [isRequired]="true"
+    icon="apps"
+    [minlength]="3"
+    [maxlength]="5"
+    [spellcheck]="true"
+  ></bmb-input>
+</form>
 <br />
 <button bmbButton (click)="handleButtonState()" [textContent]="'text'">
   Button 1

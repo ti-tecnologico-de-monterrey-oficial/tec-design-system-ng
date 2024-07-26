@@ -75,6 +75,14 @@ storybook-toast-wrapper {
   }
 }
 
+#anchor--macro-componentes-sidebar--default,
+#anchor--macro-componentes-wheel-menu--default {
+  #story--macro-componentes-sidebar--default--primary-inner,
+  #story--macro-componentes-wheel-menu--default--primary-inner {
+    height: 800px;
+  }
+}
+
 ion-content {
   background-color: transparent;
 }

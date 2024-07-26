@@ -1,0 +1,83 @@
+<div class="bmb_wheel">
+  <bmb-fab
+    [icon]="'apps'"
+    [text]="'FAB'"
+    [size]="'large'"
+    [type]="'normal'"
+    (fabClick)="toggleWheel()"
+  />
+
+  @if (isOpen && !isFull) {
+    <div #wheel class="bmb_wheel-wrapper">
+      <button class="bmb_wheel-button" (click)="toggleFullWheel()">
+        <bmb-icon icon="keyboard_arrow_up" />
+      </button>
+      <ul #wheelMenu class="bmb_wheel-menu">
+        <li
+          *ngFor="let nav of navItems.slice(0, 3); let i = index"
+          class="bmb_wheel-item"
+          [ngClass]="getClasses(i)"
+        >
+          <button (click)="selectNavItem(i)" class="bmb_wheel-nav">
+            <svg viewBox="0 0 500 500" class="bmb_wheel-svg">
+              <path
+                id="circlePath{{ i }}"
+                d="M250,250 m-240,0 a240,240 0 1,1 480,0 a240,240 0 1,1 -480,0"
+                fill="none"
+                stroke="none"
+              />
+              <text>
+                <textPath
+                  [attr.href]="'#circlePath' + i"
+                  startOffset="50%"
+                  class="bmb_wheel-path"
+                >
+                  {{ nav.title }}
+                </textPath>
+              </text>
+            </svg>
+          </button>
+        </li>
+      </ul>
+
+      <div class="bmb_wheel-apps">
+        <ng-container *ngFor="let app of activeApps">
+          <bmb-interactive-icon
+            [appearance]="app.appearance"
+            [title]="app.title"
+            [icon]="app.icon"
+            [target]="app.target"
+            [link]="app.link"
+          />
+        </ng-container>
+      </div>
+    </div>
+  }
+
+  @if (isFull) {
+    <div class="bmb_wheel-full">
+      <bmb-inner-header
+        title="Inner Header"
+        (onHandleBack)="handleBackButton()"
+        (onValueChange)="handleValueChange($event)"
+        [data]="data"
+      />
+      <bmb-tabs
+        [tabs]="navItems.slice(0, 3)"
+        (selected)="selectFullMenuNavItem($event.id)"
+      />
+      <div class="bmb_wheel-apps">
+        <ng-container *ngFor="let app of activeApps">
+          <bmb-interactive-icon
+            [appearance]="app.appearance"
+            [title]="app.title"
+            [icon]="app.icon"
+            [horizontal]="false"
+            [target]="app.target"
+            [link]="app.link"
+          />
+        </ng-container>
+      </div>
+    </div>
+  }
+</div>
