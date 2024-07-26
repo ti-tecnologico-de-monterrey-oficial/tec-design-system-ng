@@ -93,7 +93,7 @@ export class BmbTimestreamDialogComponent {
 
   getInstances(event: any): string[] {
     const instances = [];
-    for (let index = 0; index < ((event.diff || 0) + 1); index++) {
+    for (let index = 0; index < (event.diff || 0) + 1; index++) {
       const date = event.originalStart.plus({ days: index });
       instances.push(this.getMonthTitle(date));
     }

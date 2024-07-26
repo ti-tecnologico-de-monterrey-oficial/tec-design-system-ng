@@ -163,10 +163,10 @@ export class BmbTimestreamComponent implements OnInit {
       }) ||
       this.orderedMonths.at(-1) ||
       '';
-    const orderedEvents = this.parsedEvents[month].orderedEvents;
+    const orderedEvents = this.parsedEvents?.[month]?.orderedEvents;
 
     const day =
-      orderedEvents.find((date: string) => {
+      orderedEvents?.find((date: string) => {
         const parsedDate = this.parsedEvents[month].events[date].date;
         return (
           this.now.year <= parsedDate.year &&
@@ -174,16 +174,17 @@ export class BmbTimestreamComponent implements OnInit {
           this.now.day <= parsedDate.day
         );
       }) ||
-      orderedEvents.at(-1) ||
+      orderedEvents?.at(-1) ||
       '';
 
-    this.parsedEvents[month].selected = true;
-    this.parsedEvents[month].events[day].selected = true;
-
+    if (this.parsedEvents[month]) {
+      this.parsedEvents[month].selected = true;
+      this.parsedEvents[month].events[day].selected = true;
+    }
     return {
       month,
       day,
-      date: this.parsedEvents[month].events[day].date,
+      date: this.parsedEvents?.[month]?.events?.[day]?.date,
     };
   }
 
@@ -204,8 +205,6 @@ export class BmbTimestreamComponent implements OnInit {
   }
 
   handleSelectedEventChange(event: ITimelineEvent) {
-    console.log('event', event);
-
     this.isDialogOpen = event;
   }
 
