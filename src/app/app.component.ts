@@ -53,6 +53,8 @@ import {
   BmbStudentActivitySelectorComponent,
   BmbTabStudenActivityComponent,
   BmbTimestreamComponent,
+  BmbHomeCardComponent,
+  BmbCardContentComponent,
 } from '../../projects/ds-ng/src/public-api';
 
 import {
@@ -126,6 +128,8 @@ import timelineEvents from './timelineEvents.json';
     BmbStudentActivitySelectorComponent,
     BmbTabStudenActivityComponent,
     BmbTimestreamComponent,
+    BmbCardContentComponent,
+    BmbHomeCardComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
