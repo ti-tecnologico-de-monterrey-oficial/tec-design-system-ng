@@ -13,7 +13,15 @@
 
 <bmb-datepicker></bmb-datepicker>
 
-<bmb-input icon="apps"></bmb-input>
+<form action="">
+  <bmb-input
+    [isRequired]="true"
+    icon="apps"
+    [minlength]="3"
+    [maxlength]="5"
+    [spellcheck]="true"
+  ></bmb-input>
+</form>
 <br />
 <button bmbButton (click)="handleButtonState()" [textContent]="'text'">
   Button 1
