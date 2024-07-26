@@ -224,6 +224,62 @@ Below is an example of how to use this component in HTML:
         defaultValue: { summary: 'false' },
       },
     },
+    spellcheck: {
+      name: 'Spellcheck',
+      control: {
+        type: 'boolean',
+      },
+      description: 'Enable the browser spellcheck.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    maxlength: {
+      name: 'Max length',
+      control: {
+        type: 'text',
+      },
+      description: 'Sets the maximum size of the text string.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'number' },
+      },
+    },
+    minlength: {
+      name: 'Min length',
+      control: {
+        type: 'text',
+      },
+      description: 'Sets the minimum size of the text string.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'number' },
+      },
+    },
+    pattern: {
+      name: 'Pattern',
+      control: {
+        type: 'text',
+      },
+      description: 'Sets the a validation pattern.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
+    size: {
+      name: 'Size',
+      control: {
+        type: 'text',
+      },
+      description: 'Sets a fixed size of the text string.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'number' },
+      },
+    },
   },
 
   args: {
