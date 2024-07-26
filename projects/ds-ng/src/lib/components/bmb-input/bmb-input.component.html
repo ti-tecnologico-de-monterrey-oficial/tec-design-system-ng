@@ -22,6 +22,10 @@
       (blur)="onBlur()"
       [name]="name"
       [id]="name"
+      [spellcheck]="spellcheck"
+      [maxlength]="maxlength"
+      [minlength]="minlength"
+      [pattern]="pattern"
     />
   </div>
   <p class="bmb_field-helper" *ngIf="helperMessage && !shouldShowError">

@@ -1,0 +1,131 @@
+@use "../../../assets/styles/base/rem" as rem;
+
+.bmb_chat-bar {
+  position: relative;
+
+  &-dialog {
+    position: absolute;
+    bottom: 100%;
+    left: rem.rem_calc(42);
+    width: calc(100% - rem.rem_calc(84));
+    overflow: hidden;
+    height: 0;
+    transition: height 0.3s ease;
+    border-radius: var(--bmb-radius-s) var(--bmb-radius-s) 0 0;
+    background-color: RGBA(var(--color-white-primary));
+
+    &-active {
+      height: rem.rem_calc(94);
+      overflow: auto;
+      border-width: rem.rem_calc(1) rem.rem_calc(1) 0 rem.rem_calc(1);
+      border-style: solid;
+      border-color: RGBA(var(--color-charade-300));
+    }
+
+    &-list {
+      display: flex;
+      padding: var(--bmb-spacing-m);
+      margin: 0;
+      list-style: none;
+      gap: var(--bmb-spacing-m);
+    }
+
+    &-image {
+      width: rem.rem_calc(40);
+      height: rem.rem_calc(40);
+      object-fit: contain;
+    }
+
+    &-button {
+      padding: 10px;
+      line-height: 0;
+      border-radius: 50%;
+      background-color: RGBA(var(--color-charade-500));
+      box-shadow: rem.rem_calc(8) rem.rem_calc(8) rem.rem_calc(8) 0px
+        rgba(var(--color-charade-950), 0.2);
+    }
+  }
+
+  &-container {
+    padding: var(--bmb-spacing-m);
+    border-radius: rem.rem_calc(44);
+    border: rem.rem_calc(1) solid RGBA(var(--color-charade-300));
+    background: RGBA(var(--color-charade-100));
+    display: flex;
+    gap: var(--bmb-spacing-m);
+  }
+
+  &-bot {
+    border: 0 none;
+    padding: 0;
+
+    &-picture {
+      margin: 0;
+      line-height: 0;
+      width: rem.rem_calc(60);
+      height: rem.rem_calc(60);
+      display: flex;
+      align-items: center;
+
+      &-image {
+        width: 100%;
+      }
+    }
+  }
+
+  &-input {
+    border: 0 none;
+    background-color: transparent;
+    flex: 1;
+    font-size: 1rem;
+  }
+
+  &-send {
+    color: RGBA(var(--color-charade-500));
+    font-size: 2rem;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+
+    &-animated {
+      .material-symbols-outlined {
+        animation: loading 1.5s ease infinite;
+      }
+    }
+  }
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(359deg);
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_chat-bar {
+    border-color: RGBA(var(--color-charade-800));
+
+    &-container {
+      background-color: RGBA(var(--color-charade-900));
+      border-color: RGBA(var(--color-charade-800));
+    }
+
+    &-input {
+      color: RGBA(var(--color-charade-500));
+    }
+
+    &-dialog {
+      background-color: RGBA(var(--color-charade-950));
+
+      &-active {
+        border-color: RGBA(var(--color-charade-700));
+      }
+    }
+  }
+}
