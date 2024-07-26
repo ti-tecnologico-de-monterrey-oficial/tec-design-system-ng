@@ -4,7 +4,7 @@
 
 .bmb_home-card-header {
   color: RGBA(var(--color-charade-50));
-  border-radius: rem.rem_calc(24) 0px;
+  border-radius: rem.rem_calc(24) rem.rem_calc(24) 0px 0px;
   border: rem.rem_calc(1) solid RGBA(var(--color-charade-800));
   background: RGBA(var(--color-charade-900));
   display: flex;
@@ -13,7 +13,7 @@
   justify-content: space-between;
   gap: var(--bmb-spacing-m);
 
-  &-iconFull {
+  &-icon_full {
     @include fonts.font(9, regular);
     @include mixins.container-query(559, "max") {
       display: none;
@@ -27,7 +27,7 @@
     @include fonts.font(5, regular);
   }
 
-  &-alignTitle {
+  &-align_title {
     display: flex;
     flex-direction: column;
     justify-content: center;
