@@ -1,0 +1,35 @@
+<div class="bmb_skeleton">
+  @if (type === "header") {
+    <div class="bmb_skeleton-header">
+      <div class="bmb_skeleton-circle"></div>
+      <div class="bmb_skeleton-headline"></div>
+      <div class="bmb_skeleton-circle"></div>
+    </div>
+  } @else if (type === "stray") {
+    <div class="bmb_skeleton-stray">
+      <div class="bmb_skeleton-circle"></div>
+      <div class="bmb_skeleton-stray-box">
+        <div class="bmb_skeleton-headline"></div>
+        <div class="bmb_skeleton-headline"></div>
+      </div>
+    </div>
+  } @else if (type === "generic1") {
+    <div class="bmb_skeleton-generic1">
+      <div class="bmb_skeleton-headline"></div>
+      <div class="bmb_skeleton-headline"></div>
+      <div class="bmb_skeleton-headline"></div>
+      <div class="bmb_skeleton-headline"></div>
+    </div>
+  } @else if (type === "generic2") {
+    <div class="bmb_skeleton-generic2">
+      <div class="bmb_skeleton-generic2-box"></div>
+      <div class="bmb_skeleton-headline"></div>
+      <div class="bmb_skeleton-headline"></div>
+    </div>
+  } @else if (type === "generic3") {
+    <div class="bmb_skeleton-generic3">
+      <div class="bmb_skeleton-generic3-header"></div>
+      <div class="bmb_skeleton-generic3-content"></div>
+    </div>
+  }
+</div>
