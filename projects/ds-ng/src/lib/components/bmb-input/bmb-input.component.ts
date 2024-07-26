@@ -34,10 +34,10 @@ export class BmbInputComponent implements OnInit {
   @Input() control: FormControl = new FormControl();
   @Input() name: string = '';
   @Input() spellcheck: boolean = false;
-  @Input() maxlength !: number;
-  @Input() minlength !: number;
-  @Input() pattern !: string;
-  @Input() size !: number;
+  @Input() maxlength!: number;
+  @Input() minlength!: number;
+  @Input() pattern!: string;
+  @Input() size!: number;
 
   @Output() isFocus: EventEmitter<boolean> = new EventEmitter<boolean>();
 
