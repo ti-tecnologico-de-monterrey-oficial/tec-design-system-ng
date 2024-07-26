@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
 import {
   FormControl,
   FormBuilder,
@@ -15,6 +15,7 @@ import {
   BmbTabsComponent,
 } from '../../../projects/ds-ng/src/public-api';
 import { CommonModule } from '@angular/common';
+import { BmbSkeletonComponent } from '../../../projects/ds-ng/src/lib/components/bmb-skeleton/bmb-skeleton.component';
 
 interface App {
   appearance: string;
@@ -36,11 +37,12 @@ interface App {
     BmbWheelMenuComponent,
     BmbTabsComponent,
     BmbInnerHeaderComponent,
+    BmbSkeletonComponent,
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   userForm: FormGroup;
   isPhoneDisabled = false;
   showErrors: { [key: string]: boolean } = {};
@@ -58,7 +60,7 @@ export class HomeComponent {
     'Pauletta Pavelka',
     'Midge Girardot',
   ];
-  isLoading = false;
+  isLoading = true;
   apps: { [key: number]: App[] } = {
     0: [
       {
@@ -228,6 +230,10 @@ export class HomeComponent {
     });
   }
 
+  ngOnInit() {
+    console.log('In');
+  }
+
   onSubmit() {
     if (this.userForm.valid) {
       console.log(this.userForm.value);
@@ -259,5 +265,9 @@ export class HomeComponent {
 
   handleValueChange(event: string): void {
     console.log('Search value changed:', event);
+  }
+
+  handleBack(): void {
+    console.log('Back button clicked');
   }
 }
