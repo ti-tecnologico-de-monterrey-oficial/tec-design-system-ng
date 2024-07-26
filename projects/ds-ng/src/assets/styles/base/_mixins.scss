@@ -12,6 +12,15 @@
     @content;
   }
 }
+
+@mixin container-query($breakpoint, $condition) {
+  @debug "divider offset: #{$condition}-width: #{$breakpoint}px";
+
+  @container (#{$condition}-width: #{$breakpoint}px) {
+    @content;
+  }
+}
+
 // Reset Element
 @mixin resetElement() {
   box-sizing: border-box;

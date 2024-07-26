@@ -1,0 +1,60 @@
+@use "../../../../assets/styles/base/rem" as rem;
+@use "../../../../assets/styles/base/fonts" as fonts;
+@use "../../../../assets/styles/base/mixins" as mixins;
+
+.bmb_home-card-header {
+  color: RGBA(var(--color-charade-50));
+  border-radius: rem.rem_calc(24) 0px;
+  border: rem.rem_calc(1) solid RGBA(var(--color-charade-800));
+  background: RGBA(var(--color-charade-900));
+  display: flex;
+  padding: var(--bmb-spacing-m);
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--bmb-spacing-m);
+
+  &-iconFull{
+    @include fonts.font(9, regular);
+    @include mixins.container-query(559, "max") {
+      display: none;
+    }
+  }
+
+  &-icon {
+    border-radius: rem.rem_calc(8);
+    background: RGBA(var(--color-black-primary));
+    padding: var(--bmb-spacing-m);
+    @include fonts.font(5, regular);
+  }
+
+  &-alignTitle{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--bmb-spacing-m);
+    flex: 1;
+  }
+
+  &-title {
+    @include fonts.font(5, regular);
+    font-weight: normal;
+  }
+
+  &-subTitle{
+    color: RBGA(var(--color-charade-200));
+    @include fonts.font(3, regular);
+    font-weight: normal;
+  }
+
+  &-button {
+    color: RGBA(var(--color-mariner-500));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include fonts.font(9, regular);
+
+    &-mobile {
+      color: RGBA(var(--color-charade-50));
+    }
+  }
+}
