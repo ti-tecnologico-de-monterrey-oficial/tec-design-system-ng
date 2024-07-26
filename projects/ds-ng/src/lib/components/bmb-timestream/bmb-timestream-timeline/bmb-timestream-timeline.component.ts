@@ -57,7 +57,7 @@ export class BmbTimestreamTimelineComponent implements AfterViewInit {
       currentMonthElement = this.monthList.nativeElement.querySelector(
         '.bmb_timestream-timeline-item-current',
       );
-      currentMonthElement.scrollIntoView();
+      currentMonthElement?.scrollIntoView();
     }
   }
 

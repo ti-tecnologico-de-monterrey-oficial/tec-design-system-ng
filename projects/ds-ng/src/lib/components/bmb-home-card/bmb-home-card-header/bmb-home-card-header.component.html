@@ -7,11 +7,15 @@
   }
   <div class="bmb_home-card-header-alignTitle">
     <h1 class="bmb_home-card-header-title">{{ title }}</h1>
-    @if (isExpanded){
+    @if (isExpanded) {
       <h2 class="bmb_home-card-header-subTitle">{{ subtitle }}</h2>
     }
   </div>
-  <button class="bmb_home-card-header-button" [ngClass]="{'bmb_home-card-header-button-mobile': isMobile}" (click)="handleExpandChange()">
+  <button
+    class="bmb_home-card-header-button"
+    [ngClass]="{ 'bmb_home-card-header-button-mobile': isMobile }"
+    (click)="handleExpandChange()"
+  >
     <bmb-icon [icon]="getIconName()" />
   </button>
 </header>

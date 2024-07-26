@@ -67,8 +67,6 @@ export class BmbTimestreamDetailsComponent implements AfterViewInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     const selectedDateChange = changes['selectedDate'];
-    console.log('selectedDateChange', selectedDateChange);
-
     if (
       selectedDateChange.previousValue &&
       selectedDateChange.previousValue.day !==
@@ -96,7 +94,6 @@ export class BmbTimestreamDetailsComponent implements AfterViewInit, OnChanges {
     let currentMonthElement = this.monthList.nativeElement.querySelector(
       '.bmb_timestream-detail-item-current',
     );
-    console.log('currentMonthElement', currentMonthElement);
 
     if (currentMonthElement) {
       currentMonthElement.scrollIntoView();
