@@ -9280,7 +9280,7 @@
         },
         {
             "name": "BmbInputComponent",
-            "id": "component-BmbInputComponent-5ee46d721237fad03cbd8f577e97dd1d4f4ec6ff8b82a7c338567be172b029f263d04cab9624632ab000a2831fc45c9deef70cb11a8d62179956cad0af06f10c",
+            "id": "component-BmbInputComponent-21f3e54227f84277785db963a66dc66cebf53b3fbb799eca639c9afe16fbcdfe34a52fd4312eaf354e629fda96085d4b224718719caa7c14875648ab5bc2fe19",
             "file": "projects/ds-ng/src/lib/components/bmb-input/bmb-input.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -9374,11 +9374,35 @@
                     "decorators": []
                 },
                 {
+                    "name": "maxlength",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 37,
+                    "type": "number",
+                    "decorators": []
+                },
+                {
+                    "name": "minlength",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 38,
+                    "type": "number",
+                    "decorators": []
+                },
+                {
                     "name": "name",
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "line": 35,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "pattern",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 39,
                     "type": "string",
                     "decorators": []
                 },
@@ -9399,6 +9423,23 @@
                     "line": 33,
                     "type": "boolean",
                     "decorators": []
+                },
+                {
+                    "name": "size",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 40,
+                    "type": "number",
+                    "decorators": []
+                },
+                {
+                    "name": "spellcheck",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 36,
+                    "type": "boolean",
+                    "decorators": []
                 }
             ],
             "outputsClass": [
@@ -9407,7 +9448,7 @@
                     "defaultValue": "new EventEmitter<boolean>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 37,
+                    "line": 42,
                     "type": "EventEmitter<boolean>"
                 }
             ],
@@ -9419,7 +9460,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 41,
+                    "line": 46,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -9429,7 +9470,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 73,
+                    "line": 78,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -9439,7 +9480,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 69,
+                    "line": 74,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -9449,7 +9490,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 62,
+                    "line": 67,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -9479,7 +9520,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\n  Component,\n  Input,\n  OnInit,\n  ChangeDetectorRef,\n  ViewEncapsulation,\n  ChangeDetectionStrategy,\n  Output,\n  EventEmitter,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\n\n@Component({\n  selector: 'bmb-input',\n  styleUrls: ['./bmb-input.component.scss'],\n  templateUrl: './bmb-input.component.html',\n  standalone: true,\n  imports: [CommonModule, BmbIconComponent, ReactiveFormsModule],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbInputComponent implements OnInit {\n  @Input() label: string = '';\n  @Input() placeholder: string = '';\n  @Input() icon: string = '';\n  @Input() errorMessage: string = '';\n  @Input() helperMessage: string = '';\n  @Input() appearance: string = 'normal';\n  @Input() disabled: boolean = false;\n  @Input() isRequired: boolean = false;\n  @Input() showError: boolean = false;\n  @Input() control: FormControl = new FormControl();\n  @Input() name: string = '';\n\n  @Output() isFocus: EventEmitter<boolean> = new EventEmitter<boolean>();\n\n  constructor(private cdr: ChangeDetectorRef) {}\n\n  ngOnInit(): void {\n    if (!this.control) {\n      this.control = new FormControl();\n    }\n\n    if (this.isRequired) {\n      this.control.addValidators(Validators.required);\n    }\n\n    // else {\n    //   this.control.clearValidators();\n    // }\n\n    this.control.updateValueAndValidity();\n\n    this.control.valueChanges.subscribe(() => {\n      this.updateErrorState();\n      this.cdr.markForCheck();\n    });\n  }\n\n  private updateErrorState(): void {\n    this.showError =\n      this.isRequired &&\n      this.control.invalid &&\n      (this.control.touched || this.control.dirty);\n  }\n\n  onFocus() {\n    this.isFocus.emit(true);\n  }\n\n  onBlur() {\n    this.isFocus.emit(false);\n  }\n\n  get inputClasses(): { [key: string]: boolean } {\n    return {\n      ['bmb_field-input-' + this.appearance]: true,\n      'bmb_field-input-error': this.shouldShowError,\n      disabled: this.disabled,\n    };\n  }\n\n  get shouldShowError(): boolean {\n    return this.showError;\n  }\n}\n",
+            "sourceCode": "import {\n  Component,\n  Input,\n  OnInit,\n  ChangeDetectorRef,\n  ViewEncapsulation,\n  ChangeDetectionStrategy,\n  Output,\n  EventEmitter,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\n\n@Component({\n  selector: 'bmb-input',\n  styleUrls: ['./bmb-input.component.scss'],\n  templateUrl: './bmb-input.component.html',\n  standalone: true,\n  imports: [CommonModule, BmbIconComponent, ReactiveFormsModule],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbInputComponent implements OnInit {\n  @Input() label: string = '';\n  @Input() placeholder: string = '';\n  @Input() icon: string = '';\n  @Input() errorMessage: string = '';\n  @Input() helperMessage: string = '';\n  @Input() appearance: string = 'normal';\n  @Input() disabled: boolean = false;\n  @Input() isRequired: boolean = false;\n  @Input() showError: boolean = false;\n  @Input() control: FormControl = new FormControl();\n  @Input() name: string = '';\n  @Input() spellcheck: boolean = false;\n  @Input() maxlength !: number;\n  @Input() minlength !: number;\n  @Input() pattern !: string;\n  @Input() size !: number;\n\n  @Output() isFocus: EventEmitter<boolean> = new EventEmitter<boolean>();\n\n  constructor(private cdr: ChangeDetectorRef) {}\n\n  ngOnInit(): void {\n    if (!this.control) {\n      this.control = new FormControl();\n    }\n\n    if (this.isRequired) {\n      this.control.addValidators(Validators.required);\n    }\n\n    // else {\n    //   this.control.clearValidators();\n    // }\n\n    this.control.updateValueAndValidity();\n\n    this.control.valueChanges.subscribe(() => {\n      this.updateErrorState();\n      this.cdr.markForCheck();\n    });\n  }\n\n  private updateErrorState(): void {\n    this.showError =\n      this.isRequired &&\n      this.control.invalid &&\n      (this.control.touched || this.control.dirty);\n  }\n\n  onFocus() {\n    this.isFocus.emit(true);\n  }\n\n  onBlur() {\n    this.isFocus.emit(false);\n  }\n\n  get inputClasses(): { [key: string]: boolean } {\n    return {\n      ['bmb_field-input-' + this.appearance]: true,\n      'bmb_field-input-error': this.shouldShowError,\n      disabled: this.disabled,\n    };\n  }\n\n  get shouldShowError(): boolean {\n    return this.showError;\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -9501,7 +9542,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 37,
+                "line": 42,
                 "jsdoctags": [
                     {
                         "name": "cdr",
@@ -9525,7 +9566,7 @@
                         "name": "inputClasses",
                         "type": "literal type",
                         "returnType": "literal type",
-                        "line": 77
+                        "line": 82
                     }
                 },
                 "shouldShowError": {
@@ -9534,11 +9575,11 @@
                         "name": "shouldShowError",
                         "type": "boolean",
                         "returnType": "boolean",
-                        "line": 85
+                        "line": 90
                     }
                 }
             },
-            "templateData": "<div class=\"bmb_field\" [ngClass]=\"{ disabled: disabled }\">\n  <label [for]=\"name\" class=\"bmb_field-label\" *ngIf=\"label\">\n    {{ label }}\n    <small *ngIf=\"isRequired\" class=\"bmb_field-label-required\">*</small>\n  </label>\n  <div class=\"bmb_field-wrapper\">\n    <bmb-icon\n      *ngIf=\"icon\"\n      [icon]=\"icon\"\n      class=\"bmb_field-icon\"\n      [ngClass]=\"'bmb_field-icon-' + appearance\"\n    ></bmb-icon>\n    <input\n      type=\"text\"\n      class=\"bmb_field-input\"\n      [ngClass]=\"inputClasses\"\n      [required]=\"isRequired\"\n      [disabled]=\"disabled\"\n      [placeholder]=\"placeholder ? placeholder : ''\"\n      [formControl]=\"control\"\n      (focus)=\"onFocus()\"\n      (blur)=\"onBlur()\"\n      [name]=\"name\"\n      [id]=\"name\"\n    />\n  </div>\n  <p class=\"bmb_field-helper\" *ngIf=\"helperMessage && !shouldShowError\">\n    {{ helperMessage }}\n  </p>\n  <p class=\"bmb_field-error\" *ngIf=\"errorMessage && shouldShowError\">\n    {{ errorMessage }}\n  </p>\n</div>\n"
+            "templateData": "<div class=\"bmb_field\" [ngClass]=\"{ disabled: disabled }\">\n  <label [for]=\"name\" class=\"bmb_field-label\" *ngIf=\"label\">\n    {{ label }}\n    <small *ngIf=\"isRequired\" class=\"bmb_field-label-required\">*</small>\n  </label>\n  <div class=\"bmb_field-wrapper\">\n    <bmb-icon\n      *ngIf=\"icon\"\n      [icon]=\"icon\"\n      class=\"bmb_field-icon\"\n      [ngClass]=\"'bmb_field-icon-' + appearance\"\n    ></bmb-icon>\n    <input\n      type=\"text\"\n      class=\"bmb_field-input\"\n      [ngClass]=\"inputClasses\"\n      [required]=\"isRequired\"\n      [disabled]=\"disabled\"\n      [placeholder]=\"placeholder ? placeholder : ''\"\n      [formControl]=\"control\"\n      (focus)=\"onFocus()\"\n      (blur)=\"onBlur()\"\n      [name]=\"name\"\n      [id]=\"name\"\n      [spellcheck]=\"spellcheck\"\n      [maxlength]=\"maxlength\"\n      [minlength]=\"minlength\"\n      [pattern]=\"pattern\"\n    />\n  </div>\n  <p class=\"bmb_field-helper\" *ngIf=\"helperMessage && !shouldShowError\">\n    {{ helperMessage }}\n  </p>\n  <p class=\"bmb_field-error\" *ngIf=\"errorMessage && shouldShowError\">\n    {{ errorMessage }}\n  </p>\n</div>\n"
         },
         {
             "name": "BmbInputPhoneNumberComponent",
@@ -19582,7 +19623,7 @@
                         "type": "IFixDecimals",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "3fc36c0a-b272-47b3-a80d-493694eb7f4c",
+                        "destrucuredGroupId": "fd962d52-afab-4d67-9d09-e2445a542e81",
                         "destructuredParameter": true
                     },
                     {
@@ -19591,7 +19632,7 @@
                         "deprecated": false,
                         "deprecationMessage": "",
                         "defaultValue": "2",
-                        "destrucuredGroupId": "3fc36c0a-b272-47b3-a80d-493694eb7f4c",
+                        "destrucuredGroupId": "fd962d52-afab-4d67-9d09-e2445a542e81",
                         "destructuredParameter": true
                     }
                 ],
@@ -19601,7 +19642,7 @@
                         "type": "IFixDecimals",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "3fc36c0a-b272-47b3-a80d-493694eb7f4c",
+                        "destrucuredGroupId": "fd962d52-afab-4d67-9d09-e2445a542e81",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -19613,7 +19654,7 @@
                         "deprecated": false,
                         "deprecationMessage": "",
                         "defaultValue": "2",
-                        "destrucuredGroupId": "3fc36c0a-b272-47b3-a80d-493694eb7f4c",
+                        "destrucuredGroupId": "fd962d52-afab-4d67-9d09-e2445a542e81",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -21531,7 +21572,7 @@
                             "type": "IFixDecimals",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "3fc36c0a-b272-47b3-a80d-493694eb7f4c",
+                            "destrucuredGroupId": "fd962d52-afab-4d67-9d09-e2445a542e81",
                             "destructuredParameter": true
                         },
                         {
@@ -21540,7 +21581,7 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "defaultValue": "2",
-                            "destrucuredGroupId": "3fc36c0a-b272-47b3-a80d-493694eb7f4c",
+                            "destrucuredGroupId": "fd962d52-afab-4d67-9d09-e2445a542e81",
                             "destructuredParameter": true
                         }
                     ],
@@ -21550,7 +21591,7 @@
                             "type": "IFixDecimals",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "3fc36c0a-b272-47b3-a80d-493694eb7f4c",
+                            "destrucuredGroupId": "fd962d52-afab-4d67-9d09-e2445a542e81",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
@@ -21562,7 +21603,7 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "defaultValue": "2",
-                            "destrucuredGroupId": "3fc36c0a-b272-47b3-a80d-493694eb7f4c",
+                            "destrucuredGroupId": "fd962d52-afab-4d67-9d09-e2445a542e81",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
@@ -23142,7 +23183,7 @@
                 "linktype": "component",
                 "name": "BmbInputComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/18",
+                "coverageCount": "0/23",
                 "status": "low"
             },
             {
