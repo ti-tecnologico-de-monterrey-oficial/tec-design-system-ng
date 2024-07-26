@@ -13,7 +13,7 @@
   justify-content: space-between;
   gap: var(--bmb-spacing-m);
 
-  &-iconFull{
+  &-iconFull {
     @include fonts.font(9, regular);
     @include mixins.container-query(559, "max") {
       display: none;
@@ -27,7 +27,7 @@
     @include fonts.font(5, regular);
   }
 
-  &-alignTitle{
+  &-alignTitle {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -40,7 +40,7 @@
     font-weight: normal;
   }
 
-  &-subTitle{
+  &-subTitle {
     color: RBGA(var(--color-charade-200));
     @include fonts.font(3, regular);
     font-weight: normal;
