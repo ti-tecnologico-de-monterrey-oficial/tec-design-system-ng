@@ -9280,7 +9280,7 @@
         },
         {
             "name": "BmbInputComponent",
-            "id": "component-BmbInputComponent-5ee46d721237fad03cbd8f577e97dd1d4f4ec6ff8b82a7c338567be172b029f263d04cab9624632ab000a2831fc45c9deef70cb11a8d62179956cad0af06f10c",
+            "id": "component-BmbInputComponent-21f3e54227f84277785db963a66dc66cebf53b3fbb799eca639c9afe16fbcdfe34a52fd4312eaf354e629fda96085d4b224718719caa7c14875648ab5bc2fe19",
             "file": "projects/ds-ng/src/lib/components/bmb-input/bmb-input.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -9374,11 +9374,35 @@
                     "decorators": []
                 },
                 {
+                    "name": "maxlength",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 37,
+                    "type": "number",
+                    "decorators": []
+                },
+                {
+                    "name": "minlength",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 38,
+                    "type": "number",
+                    "decorators": []
+                },
+                {
                     "name": "name",
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "line": 35,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "pattern",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 39,
                     "type": "string",
                     "decorators": []
                 },
@@ -9399,6 +9423,23 @@
                     "line": 33,
                     "type": "boolean",
                     "decorators": []
+                },
+                {
+                    "name": "size",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 40,
+                    "type": "number",
+                    "decorators": []
+                },
+                {
+                    "name": "spellcheck",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 36,
+                    "type": "boolean",
+                    "decorators": []
                 }
             ],
             "outputsClass": [
@@ -9407,7 +9448,7 @@
                     "defaultValue": "new EventEmitter<boolean>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 37,
+                    "line": 42,
                     "type": "EventEmitter<boolean>"
                 }
             ],
@@ -9419,7 +9460,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 41,
+                    "line": 46,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -9429,7 +9470,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 73,
+                    "line": 78,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -9439,7 +9480,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 69,
+                    "line": 74,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -9449,7 +9490,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 62,
+                    "line": 67,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -9479,7 +9520,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\n  Component,\n  Input,\n  OnInit,\n  ChangeDetectorRef,\n  ViewEncapsulation,\n  ChangeDetectionStrategy,\n  Output,\n  EventEmitter,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\n\n@Component({\n  selector: 'bmb-input',\n  styleUrls: ['./bmb-input.component.scss'],\n  templateUrl: './bmb-input.component.html',\n  standalone: true,\n  imports: [CommonModule, BmbIconComponent, ReactiveFormsModule],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbInputComponent implements OnInit {\n  @Input() label: string = '';\n  @Input() placeholder: string = '';\n  @Input() icon: string = '';\n  @Input() errorMessage: string = '';\n  @Input() helperMessage: string = '';\n  @Input() appearance: string = 'normal';\n  @Input() disabled: boolean = false;\n  @Input() isRequired: boolean = false;\n  @Input() showError: boolean = false;\n  @Input() control: FormControl = new FormControl();\n  @Input() name: string = '';\n\n  @Output() isFocus: EventEmitter<boolean> = new EventEmitter<boolean>();\n\n  constructor(private cdr: ChangeDetectorRef) {}\n\n  ngOnInit(): void {\n    if (!this.control) {\n      this.control = new FormControl();\n    }\n\n    if (this.isRequired) {\n      this.control.addValidators(Validators.required);\n    }\n\n    // else {\n    //   this.control.clearValidators();\n    // }\n\n    this.control.updateValueAndValidity();\n\n    this.control.valueChanges.subscribe(() => {\n      this.updateErrorState();\n      this.cdr.markForCheck();\n    });\n  }\n\n  private updateErrorState(): void {\n    this.showError =\n      this.isRequired &&\n      this.control.invalid &&\n      (this.control.touched || this.control.dirty);\n  }\n\n  onFocus() {\n    this.isFocus.emit(true);\n  }\n\n  onBlur() {\n    this.isFocus.emit(false);\n  }\n\n  get inputClasses(): { [key: string]: boolean } {\n    return {\n      ['bmb_field-input-' + this.appearance]: true,\n      'bmb_field-input-error': this.shouldShowError,\n      disabled: this.disabled,\n    };\n  }\n\n  get shouldShowError(): boolean {\n    return this.showError;\n  }\n}\n",
+            "sourceCode": "import {\n  Component,\n  Input,\n  OnInit,\n  ChangeDetectorRef,\n  ViewEncapsulation,\n  ChangeDetectionStrategy,\n  Output,\n  EventEmitter,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\n\n@Component({\n  selector: 'bmb-input',\n  styleUrls: ['./bmb-input.component.scss'],\n  templateUrl: './bmb-input.component.html',\n  standalone: true,\n  imports: [CommonModule, BmbIconComponent, ReactiveFormsModule],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbInputComponent implements OnInit {\n  @Input() label: string = '';\n  @Input() placeholder: string = '';\n  @Input() icon: string = '';\n  @Input() errorMessage: string = '';\n  @Input() helperMessage: string = '';\n  @Input() appearance: string = 'normal';\n  @Input() disabled: boolean = false;\n  @Input() isRequired: boolean = false;\n  @Input() showError: boolean = false;\n  @Input() control: FormControl = new FormControl();\n  @Input() name: string = '';\n  @Input() spellcheck: boolean = false;\n  @Input() maxlength !: number;\n  @Input() minlength !: number;\n  @Input() pattern !: string;\n  @Input() size !: number;\n\n  @Output() isFocus: EventEmitter<boolean> = new EventEmitter<boolean>();\n\n  constructor(private cdr: ChangeDetectorRef) {}\n\n  ngOnInit(): void {\n    if (!this.control) {\n      this.control = new FormControl();\n    }\n\n    if (this.isRequired) {\n      this.control.addValidators(Validators.required);\n    }\n\n    // else {\n    //   this.control.clearValidators();\n    // }\n\n    this.control.updateValueAndValidity();\n\n    this.control.valueChanges.subscribe(() => {\n      this.updateErrorState();\n      this.cdr.markForCheck();\n    });\n  }\n\n  private updateErrorState(): void {\n    this.showError =\n      this.isRequired &&\n      this.control.invalid &&\n      (this.control.touched || this.control.dirty);\n  }\n\n  onFocus() {\n    this.isFocus.emit(true);\n  }\n\n  onBlur() {\n    this.isFocus.emit(false);\n  }\n\n  get inputClasses(): { [key: string]: boolean } {\n    return {\n      ['bmb_field-input-' + this.appearance]: true,\n      'bmb_field-input-error': this.shouldShowError,\n      disabled: this.disabled,\n    };\n  }\n\n  get shouldShowError(): boolean {\n    return this.showError;\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -9501,7 +9542,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 37,
+                "line": 42,
                 "jsdoctags": [
                     {
                         "name": "cdr",
@@ -9525,7 +9566,7 @@
                         "name": "inputClasses",
                         "type": "literal type",
                         "returnType": "literal type",
-                        "line": 77
+                        "line": 82
                     }
                 },
                 "shouldShowError": {
@@ -9534,11 +9575,11 @@
                         "name": "shouldShowError",
                         "type": "boolean",
                         "returnType": "boolean",
-                        "line": 85
+                        "line": 90
                     }
                 }
             },
-            "templateData": "<div class=\"bmb_field\" [ngClass]=\"{ disabled: disabled }\">\n  <label [for]=\"name\" class=\"bmb_field-label\" *ngIf=\"label\">\n    {{ label }}\n    <small *ngIf=\"isRequired\" class=\"bmb_field-label-required\">*</small>\n  </label>\n  <div class=\"bmb_field-wrapper\">\n    <bmb-icon\n      *ngIf=\"icon\"\n      [icon]=\"icon\"\n      class=\"bmb_field-icon\"\n      [ngClass]=\"'bmb_field-icon-' + appearance\"\n    ></bmb-icon>\n    <input\n      type=\"text\"\n      class=\"bmb_field-input\"\n      [ngClass]=\"inputClasses\"\n      [required]=\"isRequired\"\n      [disabled]=\"disabled\"\n      [placeholder]=\"placeholder ? placeholder : ''\"\n      [formControl]=\"control\"\n      (focus)=\"onFocus()\"\n      (blur)=\"onBlur()\"\n      [name]=\"name\"\n      [id]=\"name\"\n    />\n  </div>\n  <p class=\"bmb_field-helper\" *ngIf=\"helperMessage && !shouldShowError\">\n    {{ helperMessage }}\n  </p>\n  <p class=\"bmb_field-error\" *ngIf=\"errorMessage && shouldShowError\">\n    {{ errorMessage }}\n  </p>\n</div>\n"
+            "templateData": "<div class=\"bmb_field\" [ngClass]=\"{ disabled: disabled }\">\n  <label [for]=\"name\" class=\"bmb_field-label\" *ngIf=\"label\">\n    {{ label }}\n    <small *ngIf=\"isRequired\" class=\"bmb_field-label-required\">*</small>\n  </label>\n  <div class=\"bmb_field-wrapper\">\n    <bmb-icon\n      *ngIf=\"icon\"\n      [icon]=\"icon\"\n      class=\"bmb_field-icon\"\n      [ngClass]=\"'bmb_field-icon-' + appearance\"\n    ></bmb-icon>\n    <input\n      type=\"text\"\n      class=\"bmb_field-input\"\n      [ngClass]=\"inputClasses\"\n      [required]=\"isRequired\"\n      [disabled]=\"disabled\"\n      [placeholder]=\"placeholder ? placeholder : ''\"\n      [formControl]=\"control\"\n      (focus)=\"onFocus()\"\n      (blur)=\"onBlur()\"\n      [name]=\"name\"\n      [id]=\"name\"\n      [spellcheck]=\"spellcheck\"\n      [maxlength]=\"maxlength\"\n      [minlength]=\"minlength\"\n      [pattern]=\"pattern\"\n    />\n  </div>\n  <p class=\"bmb_field-helper\" *ngIf=\"helperMessage && !shouldShowError\">\n    {{ helperMessage }}\n  </p>\n  <p class=\"bmb_field-error\" *ngIf=\"errorMessage && shouldShowError\">\n    {{ errorMessage }}\n  </p>\n</div>\n"
         },
         {
             "name": "BmbInputPhoneNumberComponent",
@@ -12736,68 +12777,6 @@
                 "OnInit"
             ],
             "templateData": "<!-- Template for navigation -->\n<ng-template #sidebarTemplate>\n  <ng-container *ngFor=\"let group of elements.slice(0, 2)\">\n    <ul class=\"bmb_sidebar-list\">\n      <li *ngFor=\"let element of group.slice(0, 5)\" class=\"bmb_sidebar-item\">\n        <ng-container *ngIf=\"!isExternalLink(element.link); else externalLink\">\n          <ng-container *ngIf=\"!element.children; else hasChildren\">\n            <a\n              class=\"bmb_sidebar-link\"\n              [id]=\"element.id\"\n              [routerLink]=\"element.link\"\n              routerLinkActive=\"bmb_sidebar-link-active\"\n              [routerLinkActiveOptions]=\"{ exact: true }\"\n              (keydown)=\"handleKeydown($event, element)\"\n            >\n              <bmb-icon\n                class=\"bmb_sidebar-icon\"\n                [icon]=\"element.icon\"\n                [materialIcon]=\"true\"\n              />\n              <span class=\"bmb_sidebar-text\">{{ element.title }}</span>\n            </a>\n          </ng-container>\n          <ng-template #hasChildren>\n            <button\n              class=\"bmb_sidebar-link\"\n              [id]=\"element.id\"\n              (click)=\"toggleChildren(element)\"\n              (keydown)=\"handleKeydown($event, element)\"\n              (mouseenter)=\"openChildren(element)\"\n              (mouseleave)=\"closeChildren(element)\"\n            >\n              <bmb-icon\n                class=\"bmb_sidebar-icon\"\n                [icon]=\"element.icon\"\n                [materialIcon]=\"true\"\n              />\n              <span class=\"bmb_sidebar-text\">{{ element.title }}</span>\n              <bmb-icon class=\"bmb_sidebar-arrow\" icon=\"chevron_right\" />\n            </button>\n            <div\n              class=\"bmb_sidebar-children\"\n              [class.bmb_sidebar-children-open]=\"\n                selectedElement === element ||\n                (!isOpen && hoveredElement === element)\n              \"\n              (mouseenter)=\"!isOpen && openChildren(element)\"\n              (mouseleave)=\"!isOpen && closeChildren(element)\"\n            >\n              <div class=\"bmb_sidebar-title\">\n                <button\n                  class=\"bmb_sidebar-title-button\"\n                  [id]=\"element.id\"\n                  (click)=\"toggleChildren(element)\"\n                >\n                  <bmb-icon class=\"bmb_sidebar-icon\" icon=\"chevron_left\" />\n                </button>\n                <div class=\"bmb_sidebar-text\">\n                  <bmb-icon\n                    class=\"bmb_sidebar-icon\"\n                    [icon]=\"selectedElement?.icon ?? ''\"\n                    [materialIcon]=\"true\"\n                  />\n                  <span>{{ selectedElement?.title }}</span>\n                </div>\n                <button\n                  class=\"bmb_sidebar-title-button\"\n                  [id]=\"element.id\"\n                  (click)=\"toggleSidebar()\"\n                >\n                  <bmb-icon class=\"bmb_sidebar-icon\" icon=\"close\" />\n                </button>\n              </div>\n              <ul class=\"bmb_sidebar-list\">\n                <li\n                  *ngFor=\"let child of element.children?.slice(0, 6)\"\n                  class=\"bmb_sidebar-item\"\n                >\n                  <ng-container\n                    *ngIf=\"!isExternalLink(child.link); else externalLinkChild\"\n                  >\n                    <a\n                      class=\"bmb_sidebar-link\"\n                      [id]=\"child.id\"\n                      [routerLink]=\"child.link\"\n                      routerLinkActive=\"bmb_sidebar-link-active\"\n                      [routerLinkActiveOptions]=\"{ exact: true }\"\n                      (keydown)=\"handleKeydown($event, child)\"\n                    >\n                      <bmb-icon\n                        class=\"bmb_sidebar-icon\"\n                        [icon]=\"child.icon\"\n                        [materialIcon]=\"true\"\n                      />\n                      <span class=\"bmb_sidebar-text\">{{ child.title }}</span>\n                    </a>\n                  </ng-container>\n                  <ng-template #externalLinkChild>\n                    <a\n                      class=\"bmb_sidebar-link\"\n                      [id]=\"child.id\"\n                      [href]=\"child.link\"\n                      [target]=\"child.target ? child.target : '_blank'\"\n                      rel=\"noopener noreferrer\"\n                      (keydown)=\"handleKeydown($event, child)\"\n                    >\n                      <bmb-icon\n                        class=\"bmb_sidebar-icon\"\n                        [icon]=\"child.icon\"\n                        [materialIcon]=\"true\"\n                      />\n                      <span class=\"bmb_sidebar-text\">{{ child.title }}</span>\n                    </a>\n                  </ng-template>\n                </li>\n              </ul>\n            </div>\n          </ng-template>\n        </ng-container>\n        <ng-template #externalLink>\n          <a\n            class=\"bmb_sidebar-link\"\n            [id]=\"element.id\"\n            [ngClass]=\"{\n              'bmb_sidebar-link-active': isLinkActive(element.link),\n            }\"\n            [href]=\"element.link\"\n            [target]=\"element.target ? element.target : '_blank'\"\n            rel=\"noopener noreferrer\"\n            (click)=\"setExternalLinkActive(element.link)\"\n            (keydown)=\"handleKeydown($event, element)\"\n          >\n            <bmb-icon\n              class=\"bmb_sidebar-icon\"\n              [icon]=\"element.icon\"\n              [materialIcon]=\"true\"\n            />\n            <span class=\"bmb_sidebar-text\">{{ element.title }}</span>\n          </a>\n        </ng-template>\n      </li>\n    </ul>\n  </ng-container>\n</ng-template>\n\n<!-- Desktop -->\n<nav\n  class=\"bmb_sidebar bmb_sidebar-desktop\"\n  aria-label=\"Sidebar Navigation\"\n  [ngClass]=\"{ active: isActive }\"\n>\n  <div class=\"bmb_sidebar-content\">\n    <ng-container *ngTemplateOutlet=\"sidebarTemplate\"></ng-container>\n  </div>\n</nav>\n\n<!-- Mobile -->\n<nav\n  class=\"bmb_sidebar bmb_sidebar-mobile\"\n  [class.bmb_sidebar-open]=\"isOpen\"\n  aria-label=\"Sidebar Navigation\"\n>\n  <button class=\"bmb_sidebar-button\" type=\"button\" (click)=\"toggleSidebar()\">\n    <span *ngIf=\"isOpen\" class=\"bmb_sidebar-button-text\">{{ title }}</span>\n    <bmb-icon\n      class=\"bmb_sidebar-button-icon\"\n      [icon]=\"isOpen ? 'close' : 'arrow_forward_ios'\"\n    />\n  </button>\n  <ng-container *ngIf=\"isOpen\">\n    <ng-container *ngTemplateOutlet=\"sidebarTemplate\"></ng-container>\n  </ng-container>\n</nav>\n"
-        },
-        {
-            "name": "BmbSkeletonComponent",
-            "id": "component-BmbSkeletonComponent-9dd2c544077689cd30885ac145d8ce45abb68d9f049d34be4ba15f4dda2ef1973bfacfbfaaa265c96ea94cddec9a285cfc37bd6e91ec31a13b20d45c3d7c707d",
-            "file": "projects/ds-ng/src/lib/components/bmb-skeleton/bmb-skeleton.component.ts",
-            "changeDetection": "ChangeDetectionStrategy.OnPush",
-            "encapsulation": [
-                "ViewEncapsulation.None"
-            ],
-            "entryComponents": [],
-            "inputs": [],
-            "outputs": [],
-            "providers": [],
-            "selector": "bmb-skeleton",
-            "styleUrls": [
-                "./bmb-skeleton.component.scss"
-            ],
-            "styles": [],
-            "templateUrl": [
-                "./bmb-skeleton.component.html"
-            ],
-            "viewProviders": [],
-            "hostDirectives": [],
-            "inputsClass": [
-                {
-                    "name": "type",
-                    "defaultValue": "''",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 19,
-                    "type": "string",
-                    "decorators": []
-                }
-            ],
-            "outputsClass": [],
-            "propertiesClass": [],
-            "methodsClass": [],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "hostBindings": [],
-            "hostListeners": [],
-            "standalone": true,
-            "imports": [
-                {
-                    "name": "CommonModule",
-                    "type": "module"
-                }
-            ],
-            "description": "",
-            "rawdescription": "\n",
-            "type": "component",
-            "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n@Component({\n  selector: 'bmb-skeleton',\n  standalone: true,\n  imports: [CommonModule],\n  styleUrls: ['./bmb-skeleton.component.scss'],\n  templateUrl: './bmb-skeleton.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbSkeletonComponent {\n  @Input() type: string = '';\n}\n",
-            "assetsDirs": [],
-            "styleUrlsData": [
-                {
-                    "data": "@use \"../../../assets/styles/base/rem\" as rem;\n\n@keyframes skeleton-light {\n  0% {\n    background-color: RGBA(var(--color-charade-100), 1);\n  }\n  50% {\n    background-color: RGBA(var(--color-charade-200), 1);\n  }\n  100% {\n    background-color: RGBA(var(--color-charade-100), 1);\n  }\n}\n\n@keyframes skeleton-dark {\n  0% {\n    background-color: RGBA(var(--color-charade-700), 1);\n  }\n  50% {\n    background-color: RGBA(var(--color-charade-600), 1);\n  }\n  100% {\n    background-color: RGBA(var(--color-charade-700), 1);\n  }\n}\n\n.bmb_skeleton {\n  &-circle {\n    animation: skeleton-light 1.5s infinite linear;\n    background-color: RGBA(var(--color-charade-100), 1);\n    border-radius: 100%;\n  }\n\n  &-headline {\n    animation: skeleton-light 1.5s infinite linear;\n    background-color: RGBA(var(--color-charade-100), 1);\n    border-radius: rem.rem_calc(15);\n    height: rem.rem_calc(24);\n    width: 100%;\n  }\n\n  &-header {\n    align-items: center;\n    background-color: RGBA(var(--color-charade-50), 1);\n    border-radius: rem.rem_calc(0 0 12 12);\n    display: flex;\n    justify-content: space-between;\n    margin-bottom: rem.rem_calc(16);\n    padding: rem.rem_calc(16);\n\n    .bmb_skeleton-circle {\n      height: rem.rem_calc(24);\n      width: rem.rem_calc(24);\n    }\n\n    .bmb_skeleton-headline {\n      width: calc(100% - rem.rem_calc(128));\n    }\n  }\n\n  &-stray {\n    align-items: center;\n    background-color: RGBA(var(--color-charade-50), 1);\n    display: flex;\n    justify-content: space-between;\n    margin-bottom: rem.rem_calc(16);\n    padding: rem.rem_calc(16 38);\n\n    &-box {\n      width: calc(100% - rem.rem_calc(150));\n    }\n\n    .bmb_skeleton-circle {\n      height: rem.rem_calc(64);\n      width: rem.rem_calc(64);\n    }\n\n    .bmb_skeleton-headline {\n      &:last-child {\n        margin-top: rem.rem_calc(16);\n      }\n    }\n  }\n\n  &-generic1 {\n    background-color: RGBA(var(--color-charade-50), 1);\n    border-radius: rem.rem_calc(24);\n    margin-bottom: rem.rem_calc(16);\n    padding: rem.rem_calc(40 16);\n\n    .bmb_skeleton-headline {\n      margin-bottom: rem.rem_calc(40);\n\n      &:last-child {\n        margin: 0;\n      }\n    }\n  }\n\n  &-generic2 {\n    margin-bottom: rem.rem_calc(16);\n    padding: rem.rem_calc(0 16);\n\n    &-box {\n      background-color: RGBA(var(--color-charade-50), 1);\n      border-radius: rem.rem_calc(24);\n      height: rem.rem_calc(296);\n      margin-bottom: rem.rem_calc(33);\n    }\n\n    .bmb_skeleton-headline {\n      margin: 0 auto rem.rem_calc(40);\n      width: calc(100% - rem.rem_calc(32));\n\n      &:last-child {\n        margin-bottom: 0;\n      }\n    }\n  }\n\n  &-generic3 {\n    margin-bottom: rem.rem_calc(16);\n\n    &-header {\n      background-color: RGBA(var(--color-charade-50), 1);\n      border: rem.rem_calc(1) solid RGBA(var(--color-charade-300), 1);\n      border-radius: rem.rem_calc(24 24 0 0);\n      height: rem.rem_calc(80);\n    }\n\n    &-content {\n      background-color: RGBA(var(--color-charade-200), 1);\n      border: rem.rem_calc(1) solid RGBA(var(--color-charade-300), 1);\n      border-radius: rem.rem_calc(0 0 24 24);\n      height: rem.rem_calc(368);\n    }\n  }\n}\n\n[data-theme=\"dark\"],\n.storybook-dark-theme {\n  .bmb_skeleton {\n    &-circle,\n    &-headline {\n      animation: skeleton-dark 1.5s infinite linear;\n      background-color: RGBA(var(--color-charade-700), 1);\n    }\n\n    &-header,\n    &-stray,\n    &-generic1 {\n      background-color: RGBA(var(--color-charade-800), 1);\n    }\n\n    &-generic2 {\n      &-box {\n        background-color: RGBA(var(--color-charade-800), 1);\n      }\n    }\n\n    &-generic3 {\n      &-header {\n        background-color: RGBA(var(--color-charade-800), 1);\n        border-color: RGBA(var(--color-charade-800), 1);\n      }\n\n      &-content {\n        background-color: RGBA(var(--color-charade-950), 1);\n        border-color: RGBA(var(--color-charade-800), 1);\n      }\n    }\n  }\n}\n",
-                    "styleUrl": "./bmb-skeleton.component.scss"
-                }
-            ],
-            "stylesData": "",
-            "extends": [],
-            "templateData": "<div class=\"bmb_skeleton\">\n  @if (type === \"header\") {\n    <div class=\"bmb_skeleton-header\">\n      <div class=\"bmb_skeleton-circle\"></div>\n      <div class=\"bmb_skeleton-headline\"></div>\n      <div class=\"bmb_skeleton-circle\"></div>\n    </div>\n  } @else if (type === \"stray\") {\n    <div class=\"bmb_skeleton-stray\">\n      <div class=\"bmb_skeleton-circle\"></div>\n      <div class=\"bmb_skeleton-stray-box\">\n        <div class=\"bmb_skeleton-headline\"></div>\n        <div class=\"bmb_skeleton-headline\"></div>\n      </div>\n    </div>\n  } @else if (type === \"generic1\") {\n    <div class=\"bmb_skeleton-generic1\">\n      <div class=\"bmb_skeleton-headline\"></div>\n      <div class=\"bmb_skeleton-headline\"></div>\n      <div class=\"bmb_skeleton-headline\"></div>\n      <div class=\"bmb_skeleton-headline\"></div>\n    </div>\n  } @else if (type === \"generic2\") {\n    <div class=\"bmb_skeleton-generic2\">\n      <div class=\"bmb_skeleton-generic2-box\"></div>\n      <div class=\"bmb_skeleton-headline\"></div>\n      <div class=\"bmb_skeleton-headline\"></div>\n    </div>\n  } @else if (type === \"generic3\") {\n    <div class=\"bmb_skeleton-generic3\">\n      <div class=\"bmb_skeleton-generic3-header\"></div>\n      <div class=\"bmb_skeleton-generic3-content\"></div>\n    </div>\n  }\n</div>\n"
         },
         {
             "name": "BmbStatCounterComponent",
@@ -18747,16 +18726,6 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ds-ng/src/lib/directives/bmb-button-group/bmb-button-group.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "customizable()"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -19097,16 +19066,6 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ds-ng/src/lib/components/bmb-skeleton/bmb-skeleton.component.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{}"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/ds-ng/src/lib/components/bmb-stat-counter/bmb-stat-counter.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -19274,6 +19233,16 @@
                 "defaultValue": "{}"
             },
             {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/directives/bmb-button-group/bmb-button-group.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "customizable()"
+            },
+            {
                 "name": "defaultBotList",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -19347,6 +19316,16 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-card/bmb-card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<BmbCardComponent>",
+                "defaultValue": "{\n  title: 'Micro Componentes/Card',\n  component: BmbCardComponent,\n  subcomponents: { BmbCardFooterComponent, BmbCardHeaderComponent },\n  decorators: [\n    moduleMetadata({\n      declarations: [],\n      imports: [\n        CommonModule,\n        BmbCardComponent,\n        BmbCardFooterComponent,\n        BmbCardHeaderComponent,\n      ],\n    }),\n  ],\n  parameters: {\n    docs: {\n      description: {\n        component: `\nBelow is an example of how you can use this component in TypeScript:\n\n\\`\\`\\`typescript\nimport { BmbCardComponent, BmbCardFooterComponent, BmbCardHeaderComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';\n@Component({\n  selector: 'component',\n  standalone: true,\n  imports: [ BmbCardComponent, BmbCardFooterComponent, BmbCardHeaderComponent ],\n  templateUrl: './component.html',\n  styleUrl: './component.scss',\n})\n\\`\\`\\`\n\nBelow is an example of how you can use this component in HTML:\n        `,\n      },\n    },\n  },\n  argTypes: {\n    borderRadius: {\n      name: 'Border radius',\n      control: {\n        type: 'select',\n      },\n      options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'm' },\n      },\n      description: 'Determines the corner radius size',\n    },\n    margin: {\n      name: 'Margin',\n      control: {\n        type: 'select',\n      },\n      options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'm' },\n      },\n      description: 'Set the margin size',\n    },\n    type: {\n      name: 'Type',\n      control: {\n        type: 'select',\n      },\n      options: [\n        'primary',\n        'secondary',\n        'succes',\n        'info',\n        'warning',\n        'error',\n        'normal',\n      ],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'normal' },\n      },\n      description: 'Set the color schema',\n    },\n  },\n  args: {\n    borderRadius: 'm',\n    margin: 'm',\n    type: 'normal',\n  },\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout-item.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -19364,14 +19343,14 @@
                 "defaultValue": "{\n  title: 'Micro Componentes/Layout',\n  component: BmbLayoutDirective,\n  subcomponents: { BmbLayoutItemDirective },\n  decorators: [\n    moduleMetadata({\n      declarations: [],\n      imports: [\n        CommonModule,\n        BmbLayoutDirective,\n        BmbLayoutItemDirective,\n        BmbCardComponent,\n        BmbCardContentComponent,\n      ],\n    }),\n  ],\n  parameters: {\n    docs: {\n      description: {\n        component: `\nBelow is an example of how you can use this component in TypeScript:\n\n\\`\\`\\`typescript\nimport { BmbLayoutDirective, BmbLayoutItemDirective } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';\n@Component({\n  selector: 'component',\n  standalone: true,\n  imports: [ BmbLayoutDirective, BmbLayoutItemDirective ],\n  templateUrl: './component.html',\n  styleUrl: './component.scss',\n})\n\\`\\`\\`\n\nBelow is an example of how you can use this component in HTML:\n        `,\n      },\n    },\n  },\n  argTypes: {\n    gapSise: {\n      name: 'Gap size',\n      control: {\n        type: 'select',\n      },\n      options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'm' },\n      },\n      description: 'Determines the size of the space between elements.',\n    },\n    margin: {\n      name: 'Margin',\n      control: {\n        type: 'select',\n      },\n      options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'm' },\n      },\n      description: 'Set the margin size',\n    },\n    dinamycCols: {\n      name: 'Enable dinamyc cols',\n      control: { type: 'boolean' },\n      description: 'This property enable the dinamic size for bmbLayoutItem',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 'false' },\n        type: { summary: 'boolean' },\n      },\n    },\n    justify: {\n      name: 'Justify content',\n      control: {\n        type: 'select',\n      },\n      options: [\n        'center',\n        'end',\n        'start',\n        'stretch',\n        'spaceAround',\n        'spaceBetween',\n        'spaceEvenly',\n      ],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'start' },\n      },\n      description: 'Set the justify content.',\n    },\n    alignItems: {\n      name: 'Align items',\n      control: {\n        type: 'select',\n      },\n      options: ['center', 'end', 'start', 'stretch'],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'start' },\n      },\n      description: 'Set the align items.',\n    },\n  },\n  args: {\n    gapSise: 'm',\n    margin: 'm',\n    dinamycCols: false,\n    justify: 'start',\n    alignItems: 'start',\n  },\n}"
             },
             {
-                "name": "meta",
+                "name": "OneItem",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "projects/ds-ng/src/lib/components/bmb-card/bmb-card.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Meta<BmbCardComponent>",
-                "defaultValue": "{\n  title: 'Micro Componentes/Card',\n  component: BmbCardComponent,\n  subcomponents: { BmbCardFooterComponent, BmbCardHeaderComponent },\n  decorators: [\n    moduleMetadata({\n      declarations: [],\n      imports: [\n        CommonModule,\n        BmbCardComponent,\n        BmbCardFooterComponent,\n        BmbCardHeaderComponent,\n      ],\n    }),\n  ],\n  parameters: {\n    docs: {\n      description: {\n        component: `\nBelow is an example of how you can use this component in TypeScript:\n\n\\`\\`\\`typescript\nimport { BmbCardComponent, BmbCardFooterComponent, BmbCardHeaderComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';\n@Component({\n  selector: 'component',\n  standalone: true,\n  imports: [ BmbCardComponent, BmbCardFooterComponent, BmbCardHeaderComponent ],\n  templateUrl: './component.html',\n  styleUrl: './component.scss',\n})\n\\`\\`\\`\n\nBelow is an example of how you can use this component in HTML:\n        `,\n      },\n    },\n  },\n  argTypes: {\n    borderRadius: {\n      name: 'Border radius',\n      control: {\n        type: 'select',\n      },\n      options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'm' },\n      },\n      description: 'Determines the corner radius size',\n    },\n    margin: {\n      name: 'Margin',\n      control: {\n        type: 'select',\n      },\n      options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'm' },\n      },\n      description: 'Set the margin size',\n    },\n    type: {\n      name: 'Type',\n      control: {\n        type: 'select',\n      },\n      options: [\n        'primary',\n        'secondary',\n        'succes',\n        'info',\n        'warning',\n        'error',\n        'normal',\n      ],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'normal' },\n      },\n      description: 'Set the color schema',\n    },\n  },\n  args: {\n    borderRadius: 'm',\n    margin: 'm',\n    type: 'normal',\n  },\n}"
+                "type": "Story",
+                "defaultValue": "{\n  args: {},\n  render: (args) => ({\n    props: args,\n    template: `\n      <bmb-card [borderRadius]=\"borderRadius\" [margin]=\"margin\" [type]=\"type\">\n        <bmb-card-header padding=\"s\">\n          <h3>Header</h3>\n        </bmb-card-header>\n        <bmb-card-content padding=\"none\">\n          <figure [ngStyle]=\"{margin: 0}\">\n            <img\n              width=\"100%\"\n              alt=\"gatito\"\n              src=\"https://img.freepik.com/fotos-premium/dia-internacional-gato-8-agosto-gatos-lindos-gatito-pequeno-hermosos-pequenos-animales-compania-verdadero-amigo-bonitos-divertidos-tiernos-esponjosos-juguetones-shorties-ia-generativa_887181-4265.jpg?w=2000\"\n            />\n          </figure>\n          <p [ngStyle]=\"{padding: '1rem'}\">Los gatos son criaturas llenas de misterio. Su elegancia al moverse, sus ojos penetrantes y su habilidad para desaparecer en las sombras han inspirado leyendas y supersticiones. Pero más allá de su aura enigmática, los gatos también son compañeros leales y cariñosos.</p>\n        </bmb-card-content>\n        <bmb-card-footer padding=\"xl\">\n          <h3>Footer</h3>\n        </bmb-card-footer>\n      </bmb-card>\n    `,\n  }),\n}"
             },
             {
                 "name": "OneItem",
@@ -19392,16 +19371,6 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\n  args: {},\n  render: (args) => ({\n    props: args,\n    template: `\n      <section bmbLayout [gapSise]=\"gapSise\" [margin]=\"margin\" [justify]=\"justify\" [alignItems]=\"alignItems\">\n        <bmb-card bmbLayoutItem margin=\"none\" [colLg]=\"4\">\n          <bmb-card-content padding=\"none\">\n            <p [ngStyle]=\"{padding: '1rem'}\">Element</p>\n          </bmb-card-content>\n        </bmb-card>\n        <bmb-card bmbLayoutItem margin=\"none\" [colLg]=\"4\">\n          <bmb-card-content padding=\"none\">\n            <p [ngStyle]=\"{padding: '1rem'}\">Element</p>\n          </bmb-card-content>\n        </bmb-card>\n        <bmb-card bmbLayoutItem margin=\"none\" [colGrow]=\"12\">\n          <bmb-card-content padding=\"none\">\n            <p [ngStyle]=\"{padding: '1rem'}\">Element</p>\n            <p [ngStyle]=\"{padding: '1rem'}\">Element</p>\n            <p [ngStyle]=\"{padding: '1rem'}\">Element</p>\n          </bmb-card-content>\n        </bmb-card>\n      </section>\n    `,\n  }),\n}"
-            },
-            {
-                "name": "OneItem",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/ds-ng/src/lib/components/bmb-card/bmb-card.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  args: {},\n  render: (args) => ({\n    props: args,\n    template: `\n      <bmb-card [borderRadius]=\"borderRadius\" [margin]=\"margin\" [type]=\"type\">\n        <bmb-card-header padding=\"s\">\n          <h3>Header</h3>\n        </bmb-card-header>\n        <bmb-card-content padding=\"none\">\n          <figure [ngStyle]=\"{margin: 0}\">\n            <img\n              width=\"100%\"\n              alt=\"gatito\"\n              src=\"https://img.freepik.com/fotos-premium/dia-internacional-gato-8-agosto-gatos-lindos-gatito-pequeno-hermosos-pequenos-animales-compania-verdadero-amigo-bonitos-divertidos-tiernos-esponjosos-juguetones-shorties-ia-generativa_887181-4265.jpg?w=2000\"\n            />\n          </figure>\n          <p [ngStyle]=\"{padding: '1rem'}\">Los gatos son criaturas llenas de misterio. Su elegancia al moverse, sus ojos penetrantes y su habilidad para desaparecer en las sombras han inspirado leyendas y supersticiones. Pero más allá de su aura enigmática, los gatos también son compañeros leales y cariñosos.</p>\n        </bmb-card-content>\n        <bmb-card-footer padding=\"xl\">\n          <h3>Footer</h3>\n        </bmb-card-footer>\n      </bmb-card>\n    `,\n  }),\n}"
             },
             {
                 "name": "orderDayNames",
@@ -19654,7 +19623,7 @@
                         "type": "IFixDecimals",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "51218836-9ccb-4ee4-ade4-2805d8c1e6fd",
+                        "destrucuredGroupId": "fd962d52-afab-4d67-9d09-e2445a542e81",
                         "destructuredParameter": true
                     },
                     {
@@ -19663,7 +19632,7 @@
                         "deprecated": false,
                         "deprecationMessage": "",
                         "defaultValue": "2",
-                        "destrucuredGroupId": "51218836-9ccb-4ee4-ade4-2805d8c1e6fd",
+                        "destrucuredGroupId": "fd962d52-afab-4d67-9d09-e2445a542e81",
                         "destructuredParameter": true
                     }
                 ],
@@ -19673,7 +19642,7 @@
                         "type": "IFixDecimals",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "51218836-9ccb-4ee4-ade4-2805d8c1e6fd",
+                        "destrucuredGroupId": "fd962d52-afab-4d67-9d09-e2445a542e81",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -19685,7 +19654,7 @@
                         "deprecated": false,
                         "deprecationMessage": "",
                         "defaultValue": "2",
-                        "destrucuredGroupId": "51218836-9ccb-4ee4-ade4-2805d8c1e6fd",
+                        "destrucuredGroupId": "fd962d52-afab-4d67-9d09-e2445a542e81",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -19855,28 +19824,6 @@
                 "deprecationMessage": "",
                 "description": "",
                 "kind": 192
-            },
-            {
-                "name": "Story",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
-                "rawtype": "StoryObj<BmbLayoutItemDirective>",
-                "file": "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout-item.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "",
-                "kind": 183
-            },
-            {
-                "name": "Story",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
-                "rawtype": "StoryObj<BmbLayoutDirective>",
-                "file": "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "",
-                "kind": 183
             },
             {
                 "name": "Story",
@@ -20245,17 +20192,6 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<BmbSkeletonComponent>",
-                "file": "projects/ds-ng/src/lib/components/bmb-skeleton/bmb-skeleton.component.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "",
-                "kind": 183
-            },
-            {
-                "name": "Story",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
                 "rawtype": "StoryObj<BmbStatCounterComponent>",
                 "file": "projects/ds-ng/src/lib/components/bmb-stat-counter/bmb-stat-counter.stories.ts",
                 "deprecated": false,
@@ -20423,6 +20359,28 @@
                 "subtype": "typealias",
                 "rawtype": "StoryObj<BmbWheelMenuComponent>",
                 "file": "projects/ds-ng/src/lib/components/bmb-wheel-menu/bmb-wheel-menu.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<BmbLayoutItemDirective>",
+                "file": "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout-item.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<BmbLayoutDirective>",
+                "file": "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -21033,18 +20991,6 @@
                     "defaultValue": "{}"
                 }
             ],
-            "projects/ds-ng/src/lib/components/bmb-skeleton/bmb-skeleton.component.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ds-ng/src/lib/components/bmb-skeleton/bmb-skeleton.component.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{}"
-                }
-            ],
             "projects/ds-ng/src/lib/components/bmb-stat-counter/bmb-stat-counter.stories.ts": [
                 {
                     "name": "Default",
@@ -21283,6 +21229,28 @@
                     "defaultValue": "{\n  normal: 'normal',\n  extended: 'extended',\n} as const"
                 }
             ],
+            "projects/ds-ng/src/lib/components/bmb-card/bmb-card.stories.ts": [
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-card/bmb-card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<BmbCardComponent>",
+                    "defaultValue": "{\n  title: 'Micro Componentes/Card',\n  component: BmbCardComponent,\n  subcomponents: { BmbCardFooterComponent, BmbCardHeaderComponent },\n  decorators: [\n    moduleMetadata({\n      declarations: [],\n      imports: [\n        CommonModule,\n        BmbCardComponent,\n        BmbCardFooterComponent,\n        BmbCardHeaderComponent,\n      ],\n    }),\n  ],\n  parameters: {\n    docs: {\n      description: {\n        component: `\nBelow is an example of how you can use this component in TypeScript:\n\n\\`\\`\\`typescript\nimport { BmbCardComponent, BmbCardFooterComponent, BmbCardHeaderComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';\n@Component({\n  selector: 'component',\n  standalone: true,\n  imports: [ BmbCardComponent, BmbCardFooterComponent, BmbCardHeaderComponent ],\n  templateUrl: './component.html',\n  styleUrl: './component.scss',\n})\n\\`\\`\\`\n\nBelow is an example of how you can use this component in HTML:\n        `,\n      },\n    },\n  },\n  argTypes: {\n    borderRadius: {\n      name: 'Border radius',\n      control: {\n        type: 'select',\n      },\n      options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'm' },\n      },\n      description: 'Determines the corner radius size',\n    },\n    margin: {\n      name: 'Margin',\n      control: {\n        type: 'select',\n      },\n      options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'm' },\n      },\n      description: 'Set the margin size',\n    },\n    type: {\n      name: 'Type',\n      control: {\n        type: 'select',\n      },\n      options: [\n        'primary',\n        'secondary',\n        'succes',\n        'info',\n        'warning',\n        'error',\n        'normal',\n      ],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'normal' },\n      },\n      description: 'Set the color schema',\n    },\n  },\n  args: {\n    borderRadius: 'm',\n    margin: 'm',\n    type: 'normal',\n  },\n}"
+                },
+                {
+                    "name": "OneItem",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-card/bmb-card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {},\n  render: (args) => ({\n    props: args,\n    template: `\n      <bmb-card [borderRadius]=\"borderRadius\" [margin]=\"margin\" [type]=\"type\">\n        <bmb-card-header padding=\"s\">\n          <h3>Header</h3>\n        </bmb-card-header>\n        <bmb-card-content padding=\"none\">\n          <figure [ngStyle]=\"{margin: 0}\">\n            <img\n              width=\"100%\"\n              alt=\"gatito\"\n              src=\"https://img.freepik.com/fotos-premium/dia-internacional-gato-8-agosto-gatos-lindos-gatito-pequeno-hermosos-pequenos-animales-compania-verdadero-amigo-bonitos-divertidos-tiernos-esponjosos-juguetones-shorties-ia-generativa_887181-4265.jpg?w=2000\"\n            />\n          </figure>\n          <p [ngStyle]=\"{padding: '1rem'}\">Los gatos son criaturas llenas de misterio. Su elegancia al moverse, sus ojos penetrantes y su habilidad para desaparecer en las sombras han inspirado leyendas y supersticiones. Pero más allá de su aura enigmática, los gatos también son compañeros leales y cariñosos.</p>\n        </bmb-card-content>\n        <bmb-card-footer padding=\"xl\">\n          <h3>Footer</h3>\n        </bmb-card-footer>\n      </bmb-card>\n    `,\n  }),\n}"
+                }
+            ],
             "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout-item.stories.ts": [
                 {
                     "name": "meta",
@@ -21325,28 +21293,6 @@
                     "deprecationMessage": "",
                     "type": "Story",
                     "defaultValue": "{\n  args: {},\n  render: (args) => ({\n    props: args,\n    template: `\n      <section bmbLayout [gapSise]=\"gapSise\" [margin]=\"margin\" [justify]=\"justify\" [alignItems]=\"alignItems\">\n        <bmb-card bmbLayoutItem margin=\"none\" [colLg]=\"4\">\n          <bmb-card-content padding=\"none\">\n            <p [ngStyle]=\"{padding: '1rem'}\">Element</p>\n          </bmb-card-content>\n        </bmb-card>\n        <bmb-card bmbLayoutItem margin=\"none\" [colLg]=\"4\">\n          <bmb-card-content padding=\"none\">\n            <p [ngStyle]=\"{padding: '1rem'}\">Element</p>\n          </bmb-card-content>\n        </bmb-card>\n        <bmb-card bmbLayoutItem margin=\"none\" [colGrow]=\"12\">\n          <bmb-card-content padding=\"none\">\n            <p [ngStyle]=\"{padding: '1rem'}\">Element</p>\n            <p [ngStyle]=\"{padding: '1rem'}\">Element</p>\n            <p [ngStyle]=\"{padding: '1rem'}\">Element</p>\n          </bmb-card-content>\n        </bmb-card>\n      </section>\n    `,\n  }),\n}"
-                }
-            ],
-            "projects/ds-ng/src/lib/components/bmb-card/bmb-card.stories.ts": [
-                {
-                    "name": "meta",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ds-ng/src/lib/components/bmb-card/bmb-card.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Meta<BmbCardComponent>",
-                    "defaultValue": "{\n  title: 'Micro Componentes/Card',\n  component: BmbCardComponent,\n  subcomponents: { BmbCardFooterComponent, BmbCardHeaderComponent },\n  decorators: [\n    moduleMetadata({\n      declarations: [],\n      imports: [\n        CommonModule,\n        BmbCardComponent,\n        BmbCardFooterComponent,\n        BmbCardHeaderComponent,\n      ],\n    }),\n  ],\n  parameters: {\n    docs: {\n      description: {\n        component: `\nBelow is an example of how you can use this component in TypeScript:\n\n\\`\\`\\`typescript\nimport { BmbCardComponent, BmbCardFooterComponent, BmbCardHeaderComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';\n@Component({\n  selector: 'component',\n  standalone: true,\n  imports: [ BmbCardComponent, BmbCardFooterComponent, BmbCardHeaderComponent ],\n  templateUrl: './component.html',\n  styleUrl: './component.scss',\n})\n\\`\\`\\`\n\nBelow is an example of how you can use this component in HTML:\n        `,\n      },\n    },\n  },\n  argTypes: {\n    borderRadius: {\n      name: 'Border radius',\n      control: {\n        type: 'select',\n      },\n      options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'm' },\n      },\n      description: 'Determines the corner radius size',\n    },\n    margin: {\n      name: 'Margin',\n      control: {\n        type: 'select',\n      },\n      options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'm' },\n      },\n      description: 'Set the margin size',\n    },\n    type: {\n      name: 'Type',\n      control: {\n        type: 'select',\n      },\n      options: [\n        'primary',\n        'secondary',\n        'succes',\n        'info',\n        'warning',\n        'error',\n        'normal',\n      ],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'normal' },\n      },\n      description: 'Set the color schema',\n    },\n  },\n  args: {\n    borderRadius: 'm',\n    margin: 'm',\n    type: 'normal',\n  },\n}"
-                },
-                {
-                    "name": "OneItem",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ds-ng/src/lib/components/bmb-card/bmb-card.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {},\n  render: (args) => ({\n    props: args,\n    template: `\n      <bmb-card [borderRadius]=\"borderRadius\" [margin]=\"margin\" [type]=\"type\">\n        <bmb-card-header padding=\"s\">\n          <h3>Header</h3>\n        </bmb-card-header>\n        <bmb-card-content padding=\"none\">\n          <figure [ngStyle]=\"{margin: 0}\">\n            <img\n              width=\"100%\"\n              alt=\"gatito\"\n              src=\"https://img.freepik.com/fotos-premium/dia-internacional-gato-8-agosto-gatos-lindos-gatito-pequeno-hermosos-pequenos-animales-compania-verdadero-amigo-bonitos-divertidos-tiernos-esponjosos-juguetones-shorties-ia-generativa_887181-4265.jpg?w=2000\"\n            />\n          </figure>\n          <p [ngStyle]=\"{padding: '1rem'}\">Los gatos son criaturas llenas de misterio. Su elegancia al moverse, sus ojos penetrantes y su habilidad para desaparecer en las sombras han inspirado leyendas y supersticiones. Pero más allá de su aura enigmática, los gatos también son compañeros leales y cariñosos.</p>\n        </bmb-card-content>\n        <bmb-card-footer padding=\"xl\">\n          <h3>Footer</h3>\n        </bmb-card-footer>\n      </bmb-card>\n    `,\n  }),\n}"
                 }
             ],
             "projects/ds-ng/src/lib/utils/pixelToRem.ts": [
@@ -21626,7 +21572,7 @@
                             "type": "IFixDecimals",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "51218836-9ccb-4ee4-ade4-2805d8c1e6fd",
+                            "destrucuredGroupId": "fd962d52-afab-4d67-9d09-e2445a542e81",
                             "destructuredParameter": true
                         },
                         {
@@ -21635,7 +21581,7 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "defaultValue": "2",
-                            "destrucuredGroupId": "51218836-9ccb-4ee4-ade4-2805d8c1e6fd",
+                            "destrucuredGroupId": "fd962d52-afab-4d67-9d09-e2445a542e81",
                             "destructuredParameter": true
                         }
                     ],
@@ -21645,7 +21591,7 @@
                             "type": "IFixDecimals",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "51218836-9ccb-4ee4-ade4-2805d8c1e6fd",
+                            "destrucuredGroupId": "fd962d52-afab-4d67-9d09-e2445a542e81",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
@@ -21657,7 +21603,7 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "defaultValue": "2",
-                            "destrucuredGroupId": "51218836-9ccb-4ee4-ade4-2805d8c1e6fd",
+                            "destrucuredGroupId": "fd962d52-afab-4d67-9d09-e2445a542e81",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
@@ -21813,32 +21759,6 @@
                     "deprecationMessage": "",
                     "description": "",
                     "kind": 192
-                }
-            ],
-            "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout-item.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<BmbLayoutItemDirective>",
-                    "file": "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout-item.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
-            "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<BmbLayoutDirective>",
-                    "file": "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
                 }
             ],
             "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts": [
@@ -22270,19 +22190,6 @@
                     "kind": 183
                 }
             ],
-            "projects/ds-ng/src/lib/components/bmb-skeleton/bmb-skeleton.component.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<BmbSkeletonComponent>",
-                    "file": "projects/ds-ng/src/lib/components/bmb-skeleton/bmb-skeleton.component.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
             "projects/ds-ng/src/lib/components/bmb-stat-counter/bmb-stat-counter.stories.ts": [
                 {
                     "name": "Story",
@@ -22485,6 +22392,32 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<BmbWheelMenuComponent>",
                     "file": "projects/ds-ng/src/lib/components/bmb-wheel-menu/bmb-wheel-menu.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout-item.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbLayoutItemDirective>",
+                    "file": "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout-item.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbLayoutDirective>",
+                    "file": "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -23250,7 +23183,7 @@
                 "linktype": "component",
                 "name": "BmbInputComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/18",
+                "coverageCount": "0/23",
                 "status": "low"
             },
             {
@@ -23571,25 +23504,6 @@
                 "name": "Default",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/ds-ng/src/lib/components/bmb-skeleton/bmb-skeleton.component.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Default",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/ds-ng/src/lib/components/bmb-skeleton/bmb-skeleton.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "BmbSkeletonComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/2",
                 "status": "low"
             },
             {
