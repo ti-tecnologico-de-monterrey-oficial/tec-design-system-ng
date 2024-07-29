@@ -1,6 +1,8 @@
 <header class="bmb_home-card-header">
   @if (isExpanded) {
-    <bmb-icon class="bmb_home-card-header-icon_full" icon="chevron_left" />
+    <button class="bmb_home-card-header-button_back" (click)="handleBack()">
+      <bmb-icon icon="chevron_left" />
+    </button>
   }
   @if (icon && !isMobile) {
     <bmb-icon class="bmb_home-card-header-icon" [icon]="icon" />
