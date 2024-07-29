@@ -27,6 +27,7 @@ export class BmbHomeCardHeaderComponent {
 
   @Output() onExpandChange: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() onClose: EventEmitter<void> = new EventEmitter<void>();
+  @Output() onBack: EventEmitter<void> = new EventEmitter<void>();
 
   getIconName(): string {
     if (this.isMobile) return 'close';
@@ -38,5 +39,9 @@ export class BmbHomeCardHeaderComponent {
   handleExpandChange(): void {
     if (this.isMobile) this.onClose.emit();
     else this.onExpandChange.emit(!this.isExpanded);
+  }
+
+  handleBack(): void {
+    this.onBack.emit();
   }
 }
