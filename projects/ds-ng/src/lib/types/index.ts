@@ -5,3 +5,4 @@ export type IButtonAppearance =
   | 'secondary-outlined'
   | 'destructive';
 export * from '../components/bmb-timestream/types';
+export * from '../components/bmb-advertisement-card/types';
