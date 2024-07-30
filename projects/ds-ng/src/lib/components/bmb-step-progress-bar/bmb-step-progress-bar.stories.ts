@@ -63,11 +63,24 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: 'normal' },
       },
     },
+    freeze: {
+      name: 'Freeze',
+      control: {
+        type: 'boolean',
+      },
+      description: 'Freezes the state of progress steps.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
   },
   args: {
     totalSteps: 5,
     activeStep: 3,
     size: 'small',
+    freeze: false,
   },
 } as Meta<typeof BmbStepProgressBarComponent>;
 

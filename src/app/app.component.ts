@@ -53,6 +53,9 @@ import {
   BmbStudentActivitySelectorComponent,
   BmbTabStudenActivityComponent,
   BmbTimestreamComponent,
+  BmbHomeCardComponent,
+  BmbCardContentComponent,
+  BmbChatBarComponent,
 } from '../../projects/ds-ng/src/public-api';
 
 import {
@@ -122,10 +125,14 @@ import timelineEvents from './timelineEvents.json';
     BmbDatepickerComponent,
     BmbCardHeaderComponent,
     BmbCardFooterComponent,
+    BmbCardContentComponent,
     BmbInputPhoneNumberComponent,
     BmbStudentActivitySelectorComponent,
     BmbTabStudenActivityComponent,
     BmbTimestreamComponent,
+    BmbCardContentComponent,
+    BmbHomeCardComponent,
+    BmbChatBarComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -612,4 +619,9 @@ export class AppComponent {
   }
 
   timelineEvents = timelineEvents;
+
+  chatBarValue = '';
+  handleChatBarChange(value: string) {
+    this.chatBarValue = value;
+  }
 }
