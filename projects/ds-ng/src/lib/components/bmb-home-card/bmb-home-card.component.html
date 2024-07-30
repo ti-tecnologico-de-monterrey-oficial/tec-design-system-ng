@@ -1,0 +1,15 @@
+<section class="bmb_home-card">
+  <bmb-home-card-header
+    [title]="title"
+    [subtitle]="subtitle"
+    [icon]="icon"
+    [isMobile]="isMobile"
+    [isExpanded]="isExpanded"
+    (onExpandChange)="handleExpandChange($event)"
+    (onClose)="handleClose()"
+    (onBack)="handleBack()"
+  />
+  <div class="bmb_home-card-container">
+    <ng-content />
+  </div>
+</section>

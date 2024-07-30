@@ -12,6 +12,17 @@
     @content;
   }
 }
+
+@mixin container-query($breakpoint, $condition) {
+  /*
+  Add this property to parent style:
+    container-type: inline-size;
+  */
+  @container (#{$condition}-width: #{$breakpoint}px) {
+    @content;
+  }
+}
+
 // Reset Element
 @mixin resetElement() {
   box-sizing: border-box;
