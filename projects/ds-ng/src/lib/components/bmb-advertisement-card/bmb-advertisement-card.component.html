@@ -1,0 +1,129 @@
+<section
+  class="bmb_advertisement-card"
+  [ngClass]="{ 'bmb_advertisement-card-expanded': expanded }"
+>
+  <div class="bmb_advertisement-card-header">
+    <div class="bmb_advertisement-card-header-title">
+      <div class="bmb_advertisement-card-header-iconbox">
+        <bmb-icon
+          class="bmb_advertisement-card-header-iconbox-icon"
+          [icon]="'assignment'"
+        />
+      </div>
+      <div class="bmb_advertisement-card-header-title-text">
+        <h2>Mis Anuncios</h2>
+        @if (expanded) {
+          <span>{{ subtitle }}</span>
+        }
+      </div>
+    </div>
+    <div class="bmb_advertisement-card-header-trailing">
+      @if (expanded) {
+        <bmb-icon
+          (click)="setSize('collapse')"
+          class="bmb_advertisement-card-header-trailing-close"
+          [icon]="'close_fullscreen'"
+          onkeypress=""
+        />
+      } @else {
+        <bmb-icon
+          (click)="setSize('expand')"
+          class="bmb_advertisement-card-header-trailing-expand"
+          [icon]="'fit_screen'"
+          onkeypress=""
+        />
+      }
+    </div>
+  </div>
+  <div class="bmb_advertisement-card-tabs">
+    <div
+      class="bmb_advertisement-card-tabs-container"
+      [ngClass]="{ 'bmb_advertisement-card-tabs-active': activeTab == 1 }"
+      (click)="setActiveTab(1)"
+      onkeypress=""
+    >
+      <span class="bmb_advertisement-card-tabs-container-text">
+        Promociones
+      </span>
+    </div>
+    <div
+      class="bmb_advertisement-card-tabs-container"
+      [ngClass]="{ 'bmb_advertisement-card-tabs-active': activeTab == 2 }"
+      (click)="setActiveTab(2)"
+      onkeypress=""
+    >
+      <span class="bmb_advertisement-card-tabs-container-text"> Avisos </span>
+    </div>
+    <div
+      class="bmb_advertisement-card-tabs-container"
+      [ngClass]="{ 'bmb_advertisement-card-tabs-active': activeTab == 3 }"
+      (click)="setActiveTab(3)"
+      onkeypress=""
+    >
+      <span class="bmb_advertisement-card-tabs-container-text">
+        Información
+      </span>
+    </div>
+  </div>
+  <div class="bmb_advertisement-card-content">
+    @for (data of activeData; track $index) {
+      @if ($index == activeDot) {
+        <div class="bmb_advertisement-card-container">
+          <div
+            [ngClass]="{
+              'bmb_advertisement-card-content-image-full': expanded,
+            }"
+            class="bmb_advertisement-card-content-image"
+          >
+            <figure class="bmb_advertisement-card-image-container-figure">
+              <picture>
+                <source
+                  media="(min-width: 100px)"
+                  [srcset]="activeData[activeDot].imgData.url"
+                />
+                <img
+                  [loading]="'lazy'"
+                  class="bmb_advertisement-card-image-container-figure-image"
+                  [srcset]="activeData[activeDot].imgData.url"
+                  [alt]="activeData[activeDot].imgData.alt"
+                />
+              </picture>
+            </figure>
+          </div>
+          <div
+            [ngClass]="{
+              'bmb_advertisement-card-content-description-hide': !expanded,
+            }"
+            class="bmb_advertisement-card-content-description"
+          >
+            <div class="bmb_advertisement-card-content-description-title">
+              <h1>{{ activeData[activeDot].content.title }}</h1>
+            </div>
+            <div class="bmb_advertisement-card-content-description-text">
+              <p>{{ activeData[activeDot].content.description }}</p>
+            </div>
+            <div class="bmb_advertisement-card-content-description-btn">
+              <a [href]="activeData[activeDot].content.linkBtn" target="_blank">
+                <button
+                  class="bmb_advertisement-card-content-description-btn-action"
+                  bmbButton
+                  appearance="primary"
+                  size="small"
+                >
+                  {{ activeData[activeDot].content.labelBtn }}
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="bmb_advertisement-card-content-paginator">
+          <bmb-dot-paginator
+            [activeDotIndex]="activeDot"
+            [totalDots]="activeData.length"
+            (onDotPress)="onDotPress($event)"
+          />
+        </div>
+      }
+    }
+  </div>
+</section>
