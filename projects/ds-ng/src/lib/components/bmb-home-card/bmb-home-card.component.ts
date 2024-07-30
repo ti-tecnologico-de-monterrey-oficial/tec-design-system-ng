@@ -24,6 +24,7 @@ export class BmbHomeCardComponent {
   @Input() isMobile?: boolean = false;
 
   @Output() onClose: EventEmitter<void> = new EventEmitter<void>();
+  @Output() onBack: EventEmitter<void> = new EventEmitter<void>();
 
   isExpanded: boolean = false;
 
@@ -33,5 +34,9 @@ export class BmbHomeCardComponent {
 
   handleClose(): void {
     this.onClose.emit();
+  }
+
+  handleBack(): void {
+    this.onBack.emit();
   }
 }
