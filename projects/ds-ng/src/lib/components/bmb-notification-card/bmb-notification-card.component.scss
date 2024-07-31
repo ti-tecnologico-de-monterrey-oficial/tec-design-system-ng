@@ -1,0 +1,207 @@
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/mixins" as mixins;
+@use "../../../assets/styles/base/rem" as rem;
+
+.bmb_home-notification-card {
+  display: block;
+  background-color: RGBA(var(--color-charade-50));
+  min-width: rem.rem_calc(440);
+  width: rem.rem_calc(440);
+  max-width: rem.rem_calc(1139);
+  border-radius: rem.rem_calc(24);
+  border: rem.rem_calc(1) solid RGBA(var(--color-charade-300));
+  transition:
+    width 0.5s,
+    height 0.5s,
+    margin 0.5s;
+
+  &-expanded {
+    width: 100%;
+    @include mixins.media-query(500, "max") {
+      min-height: rem.rem_calc(1200);
+    }
+  }
+
+  &-header {
+    padding: rem.rem_calc(16) rem.rem_calc(24);
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    border-top-left-radius: rem.rem_calc(24);
+    border-top-right-radius: rem.rem_calc(24);
+    height: rem.rem_calc(80);
+    background-color: RGBA(var(--color-charade-100));
+
+    &-iconbox {
+      align-items: center;
+      border-radius: rem.rem_calc(8);
+      display: flex;
+      height: rem.rem_calc(48);
+      justify-content: center;
+      width: rem.rem_calc(48);
+      background-color: RGBA(var(--color-red-primary));
+
+      &-icon {
+        color: RGBA(var(--color-white-primary));
+        font-size: rem.rem_calc(24);
+      }
+    }
+
+    &-title {
+      display: inline-flex;
+      align-items: center;
+      width: 100%;
+      color: RGBA(var(--color-charade-950));
+      gap: 1rem;
+
+      &-text {
+        @include fonts.font(3, regular);
+        span {
+          color: RGBA(var(--color-charade-700));
+        }
+      }
+    }
+
+    &-trailing {
+      cursor: pointer;
+      &-expand {
+        font-size: rem.rem_calc(24);
+        color: RGBA(var(--color-mariner-500));
+      }
+      &-close {
+        font-size: rem.rem_calc(24);
+        color: RGBA(var(--color-mariner-500));
+      }
+    }
+  }
+
+  &-tabs {
+    width: 100%;
+    padding: rem.rem_calc(16) rem.rem_calc(24);
+    display: inline-flex;
+    justify-content: space-between;
+
+    &-container {
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: rem.rem_calc(40);
+      width: 33%;
+      border-bottom: rem.rem_calc(2) solid transparent;
+
+      &-text {
+        @include fonts.font(5, regular);
+        text-align: center;
+      }
+    }
+
+    &-active {
+      border-bottom: rem.rem_calc(2) solid RGBA(var(--color-charade-950));
+    }
+  }
+
+  &-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  &-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    padding-bottom: rem.rem_calc(20);
+
+    &-card {
+        display: inline-flex;
+        width: 90%;
+        align-items: center;
+        padding: rem.rem_calc(15) rem.rem_calc(0);
+        border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-500));
+
+        &-bullet {
+            background-color: RGBA(var(--color-blue-primary));
+            border-radius: 50%;
+            display: inline-block;
+            height: rem.rem_calc(13);
+            width: rem.rem_calc(13);
+        }
+
+        &-description {
+            overflow: hidden;
+            white-space: nowrap;
+            @include fonts.font(4, regular);
+            padding-left: rem.rem_calc(10);
+            width: 70%;
+            text-overflow: ellipsis;
+        }
+
+        &-legend{
+            @include fonts.font(4, regular);
+            min-width: rem.rem_calc(100);
+            width: rem.rem_calc(150);
+            text-align: center;
+            background-color: RGBA(var(--color-charade-500));
+            color: RGBA(var(--color-white-primary));
+            padding: rem.rem_calc(5) rem.rem_calc(20);
+            border-radius: rem.rem_calc(5);
+        }
+
+    }
+  }
+
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_home-notification-card {
+    background-color: RGBA(var(--color-charade-950));
+    border: rem.rem_calc(1) solid RGBA(var(--color-charade-800));
+
+    &-header {
+      background-color: RGBA(var(--color-charade-900));
+      &-title {
+        color: RGBA(var(--color-charade-50));
+        &-text {
+          span {
+            color: RGBA(var(--color-charade-200));
+          }
+        }
+      }
+    }
+
+    &-tabs {
+      &-container {
+        &-text {
+          color: RGBA(var(--color-charade-50));
+        }
+      }
+      &-active {
+        border-bottom: rem.rem_calc(2) solid RGBA(var(--color-charade-50));
+      }
+    }
+
+    &-container {
+        &-card {
+            border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-500));
+    
+            &-bullet {
+                background-color: RGBA(var(--color-neon-primary));
+            }
+    
+            &-description {
+                color: RGBA(var(--color-charade-50))
+            }
+    
+            &-legend{
+                background-color: RGBA(var(--color-charade-500));
+                color: RGBA(var(--color-charade-50));
+            }
+    
+        }
+      }
+  }
+}
