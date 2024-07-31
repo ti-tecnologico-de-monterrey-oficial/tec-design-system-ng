@@ -13493,7 +13493,7 @@
         },
         {
             "name": "BmbStepProgressBarComponent",
-            "id": "component-BmbStepProgressBarComponent-a1c5c3a88613b3fb6fa6360f3ab4e48ca0c40c6d68d8418605cc689109de9e7524b3b4844ce8e195f4cd896b2a7fdfd2be3b9fcb54d0891320a37ca61e72b274",
+            "id": "component-BmbStepProgressBarComponent-ab8389adef32a5c1a74d64547e2cf2a40d2c59b38885e1ae1f533f3bbf597822610f5dda259a75a63890f164cf1d5edc39d502e1eba6ff726a6202ae56dc2587",
             "file": "projects/ds-ng/src/lib/components/bmb-step-progress-bar/bmb-step-progress-bar.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -13531,6 +13531,33 @@
                     "decorators": []
                 },
                 {
+                    "name": "labelComplete",
+                    "defaultValue": "'Completo'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 28,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "labelIncomplete",
+                    "defaultValue": "'Pendiente'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 29,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "labelSteps",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 27,
+                    "type": "string[]",
+                    "decorators": []
+                },
+                {
                     "name": "size",
                     "defaultValue": "'normal'",
                     "deprecated": false,
@@ -13547,6 +13574,15 @@
                     "line": 23,
                     "type": "number",
                     "decorators": []
+                },
+                {
+                    "name": "type",
+                    "defaultValue": "'vertical'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 26,
+                    "type": "\"horizontal\" | \"vertical\"",
+                    "decorators": []
                 }
             ],
             "outputsClass": [
@@ -13555,7 +13591,7 @@
                     "defaultValue": "new EventEmitter<number>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 27,
+                    "line": 31,
                     "type": "EventEmitter<number>"
                 }
             ],
@@ -13567,7 +13603,7 @@
                     "optional": false,
                     "returnType": "number[]",
                     "typeParameters": [],
-                    "line": 29,
+                    "line": 33,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -13584,7 +13620,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 33,
+                    "line": 37,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -13618,13 +13654,13 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\r\n  Component,\r\n  Input,\r\n  Output,\r\n  EventEmitter,\r\n  ViewEncapsulation,\r\n  ChangeDetectionStrategy,\r\n} from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\r\n\r\n@Component({\r\n  selector: 'bmb-step-progress-bar',\r\n  standalone: true,\r\n  imports: [CommonModule, BmbIconComponent],\r\n  templateUrl: './bmb-step-progress-bar.component.html',\r\n  styleUrl: './bmb-step-progress-bar.component.scss',\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n  encapsulation: ViewEncapsulation.None,\r\n})\r\nexport class BmbStepProgressBarComponent {\r\n  @Input() activeStep: number = 0;\r\n  @Input() totalSteps?: number = 0;\r\n  @Input() size?: 'normal' | 'small' = 'normal';\r\n  @Input() freeze: boolean = false;\r\n\r\n  @Output() onStepPress: EventEmitter<number> = new EventEmitter<number>();\r\n\r\n  getStepsArray(): number[] {\r\n    return new Array(this.totalSteps || 0).fill(0).map((_, i) => i);\r\n  }\r\n\r\n  onStepClicked(index: number): void {\r\n    if (!this.freeze) {\r\n      this.activeStep = index;\r\n      this.onStepPress.emit(index);\r\n    }\r\n  }\r\n}\r\n",
+            "sourceCode": "import {\r\n  Component,\r\n  Input,\r\n  Output,\r\n  EventEmitter,\r\n  ViewEncapsulation,\r\n  ChangeDetectionStrategy,\r\n} from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\r\n\r\n@Component({\r\n  selector: 'bmb-step-progress-bar',\r\n  standalone: true,\r\n  imports: [CommonModule, BmbIconComponent],\r\n  templateUrl: './bmb-step-progress-bar.component.html',\r\n  styleUrl: './bmb-step-progress-bar.component.scss',\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n  encapsulation: ViewEncapsulation.None,\r\n})\r\nexport class BmbStepProgressBarComponent {\r\n  @Input() activeStep: number = 0;\r\n  @Input() totalSteps?: number = 0;\r\n  @Input() size?: 'normal' | 'small' = 'normal';\r\n  @Input() freeze: boolean = false;\r\n  @Input() type: 'horizontal' | 'vertical' = 'vertical'\r\n  @Input() labelSteps: string[] = [];\r\n  @Input() labelComplete: string = 'Completo'\r\n  @Input() labelIncomplete: string = 'Pendiente'\r\n\r\n  @Output() onStepPress: EventEmitter<number> = new EventEmitter<number>();\r\n\r\n  getStepsArray(): number[] {\r\n    return new Array(this.totalSteps || 0).fill(0).map((_, i) => i);\r\n  }\r\n\r\n  onStepClicked(index: number): void {\r\n    if (!this.freeze) {\r\n      this.activeStep = index;\r\n      this.onStepPress.emit(index);\r\n    }\r\n  }\r\n}\r\n",
             "styleUrl": "./bmb-step-progress-bar.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div class=\"bmb_step-progress-bar\">\n  <div\n    class=\"bmb_step-progress-bar-item\"\n    *ngFor=\"let i of getStepsArray()\"\n    [attr.data-bs-slide-to]=\"i\"\n    [ngClass]=\"{ completed: activeStep > i }\"\n    (click)=\"onStepClicked(i)\"\n    onkeypress=\"\"\n  >\n    <div\n      class=\"bmb_step-progress-bar-step\"\n      [ngClass]=\"{\n        active: activeStep === i,\n        completed: activeStep > i,\n        'bmb_step-progress-bar-step-normal': size == 'normal',\n        'bmb_step-progress-bar-step-small': size == 'small',\n      }\"\n    >\n      <span *ngIf=\"activeStep == i || activeStep < i\">{{ i + 1 }}</span>\n      @if (activeStep > i) {\n        <bmb-icon [icon]=\"'done'\" class=\"material-icons\" />\n      }\n    </div>\n  </div>\n</div>\n"
+            "templateData": "<div class=\"bmb_step-progress-bar\" [ngClass]=\"{'bmb_step-progress-bar-vertical': type == 'vertical'}\">\r\n  @if(type == 'horizontal'){\r\n    <div\r\n    class=\"bmb_step-progress-bar-item\"\r\n    *ngFor=\"let i of getStepsArray()\"\r\n    [attr.data-bs-slide-to]=\"i\"\r\n    [ngClass]=\"{ completed: activeStep > i }\"\r\n    (click)=\"onStepClicked(i)\"\r\n    onkeypress=\"\"\r\n  >\r\n    <div\r\n      class=\"bmb_step-progress-bar-step\"\r\n      [ngClass]=\"{\r\n        active: activeStep === i,\r\n        completed: activeStep > i,\r\n        'bmb_step-progress-bar-step-normal': size == 'normal',\r\n        'bmb_step-progress-bar-step-small': size == 'small',\r\n      }\"\r\n    >\r\n      <span *ngIf=\"activeStep == i || activeStep < i\">{{ i + 1 }}</span>\r\n      @if (activeStep > i) {\r\n        <bmb-icon [icon]=\"'done'\" class=\"material-icons\" />\r\n      }\r\n    </div>\r\n  </div>\r\n  }@else {\r\n    <div\r\n      class=\"bmb_step-progress-bar-vertical-item\"\r\n      *ngFor=\"let i of getStepsArray()\"\r\n      [attr.data-bs-slide-to]=\"i\"\r\n      [ngClass]=\"{ completed: activeStep > i, 'bmb_step-progress-bar-vertical-content': labelSteps.length > 0}\"\r\n      (click)=\"onStepClicked(i)\"\r\n      onkeypress=\"\"\r\n    >\r\n      <div\r\n        class=\"bmb_step-progress-bar-vertical-step bmb_step-progress-bar-vertical-step-small\"\r\n        [ngClass]=\"{\r\n          active: activeStep === i,\r\n          completed: activeStep > i,\r\n        }\"\r\n      >\r\n        <span *ngIf=\"activeStep == i || activeStep < i\">{{ i + 1 }}</span>\r\n        @if (activeStep > i) {\r\n          <bmb-icon [icon]=\"'done'\" class=\"material-icons\" />\r\n        }\r\n      </div>\r\n    @if(labelSteps.length > 0){\r\n      <div class=\"bmb_step-progress-bar-vertical-text\">\r\n        <h2 class=\"bmb_step-progress-bar-vertical-text-title\">{{labelSteps[i]}}</h2>\r\n        @if(activeStep > i){\r\n          <span class=\"bmb_step-progress-bar-vertical-text-subtitle\">{{labelComplete}}</span>\r\n        }@else {\r\n          <span class=\"bmb_step-progress-bar-vertical-text-subtitle\">{{labelIncomplete}}</span>\r\n        }\r\n      </div>\r\n    }\r\n  </div>\r\n  }\r\n</div>\r\n"
         },
         {
             "name": "BmbStudentActivityCardComponent",
@@ -19715,7 +19751,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{}"
+                "defaultValue": "{\r\n  args: {},\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <bmb-step-progress-bar\r\n      [activeStep]=\"1\"\r\n      [totalSteps]=\"4\"\r\n      [size]=\"'normal'\"\r\n      [freeze]=\"false\"\r\n      [type]=\"type\"\r\n      [labelSteps]=\"['¡Orden de compra aprobada!','¡Orden de compra aprobada!','¡Orden de compra aprobada!','¡Orden de compra aprobada!','¡Orden de compra aprobada!', ]\"\r\n      [labelComplete]=\"'Hecho'\"\r\n      [labelIncomplete]=\"'Pendiente'\"\r\n      ></bmb-step-progress-bar>\r\n    `,\r\n  }),\r\n}"
             },
             {
                 "name": "Default",
@@ -20258,7 +20294,7 @@
                         "type": "IFixDecimals",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "a2812b4b-986e-4c82-82ee-d1bb93ee7a30",
+                        "destrucuredGroupId": "f539d009-a2fb-4c73-8088-1bc1a00596c6",
                         "destructuredParameter": true
                     },
                     {
@@ -20267,7 +20303,7 @@
                         "deprecated": false,
                         "deprecationMessage": "",
                         "defaultValue": "2",
-                        "destrucuredGroupId": "a2812b4b-986e-4c82-82ee-d1bb93ee7a30",
+                        "destrucuredGroupId": "f539d009-a2fb-4c73-8088-1bc1a00596c6",
                         "destructuredParameter": true
                     }
                 ],
@@ -20277,7 +20313,7 @@
                         "type": "IFixDecimals",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "a2812b4b-986e-4c82-82ee-d1bb93ee7a30",
+                        "destrucuredGroupId": "f539d009-a2fb-4c73-8088-1bc1a00596c6",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -20289,7 +20325,7 @@
                         "deprecated": false,
                         "deprecationMessage": "",
                         "defaultValue": "2",
-                        "destrucuredGroupId": "a2812b4b-986e-4c82-82ee-d1bb93ee7a30",
+                        "destrucuredGroupId": "f539d009-a2fb-4c73-8088-1bc1a00596c6",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -21760,7 +21796,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{}"
+                    "defaultValue": "{\r\n  args: {},\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n    <bmb-step-progress-bar\r\n      [activeStep]=\"1\"\r\n      [totalSteps]=\"4\"\r\n      [size]=\"'normal'\"\r\n      [freeze]=\"false\"\r\n      [type]=\"type\"\r\n      [labelSteps]=\"['¡Orden de compra aprobada!','¡Orden de compra aprobada!','¡Orden de compra aprobada!','¡Orden de compra aprobada!','¡Orden de compra aprobada!', ]\"\r\n      [labelComplete]=\"'Hecho'\"\r\n      [labelIncomplete]=\"'Pendiente'\"\r\n      ></bmb-step-progress-bar>\r\n    `,\r\n  }),\r\n}"
                 }
             ],
             "projects/ds-ng/src/lib/components/bmb-student-activity-card/bmb-student-activity-card.stories.ts": [
@@ -22320,7 +22356,7 @@
                             "type": "IFixDecimals",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "a2812b4b-986e-4c82-82ee-d1bb93ee7a30",
+                            "destrucuredGroupId": "f539d009-a2fb-4c73-8088-1bc1a00596c6",
                             "destructuredParameter": true
                         },
                         {
@@ -22329,7 +22365,7 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "defaultValue": "2",
-                            "destrucuredGroupId": "a2812b4b-986e-4c82-82ee-d1bb93ee7a30",
+                            "destrucuredGroupId": "f539d009-a2fb-4c73-8088-1bc1a00596c6",
                             "destructuredParameter": true
                         }
                     ],
@@ -22339,7 +22375,7 @@
                             "type": "IFixDecimals",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "a2812b4b-986e-4c82-82ee-d1bb93ee7a30",
+                            "destrucuredGroupId": "f539d009-a2fb-4c73-8088-1bc1a00596c6",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
@@ -22351,7 +22387,7 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "defaultValue": "2",
-                            "destrucuredGroupId": "a2812b4b-986e-4c82-82ee-d1bb93ee7a30",
+                            "destrucuredGroupId": "f539d009-a2fb-4c73-8088-1bc1a00596c6",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
@@ -24448,7 +24484,7 @@
                 "linktype": "component",
                 "name": "BmbStepProgressBarComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/8",
+                "coverageCount": "0/12",
                 "status": "low"
             },
             {

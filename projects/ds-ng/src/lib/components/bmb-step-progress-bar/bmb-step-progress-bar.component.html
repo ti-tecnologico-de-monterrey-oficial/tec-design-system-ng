@@ -1,5 +1,6 @@
-<div class="bmb_step-progress-bar">
-  <div
+<div class="bmb_step-progress-bar" [ngClass]="{'bmb_step-progress-bar-vertical': type == 'vertical'}">
+  @if(type == 'horizontal'){
+    <div
     class="bmb_step-progress-bar-item"
     *ngFor="let i of getStepsArray()"
     [attr.data-bs-slide-to]="i"
@@ -22,4 +23,37 @@
       }
     </div>
   </div>
+  }@else {
+    <div
+      class="bmb_step-progress-bar-vertical-item"
+      *ngFor="let i of getStepsArray()"
+      [attr.data-bs-slide-to]="i"
+      [ngClass]="{ completed: activeStep > i, 'bmb_step-progress-bar-vertical-content': labelSteps.length > 0}"
+      (click)="onStepClicked(i)"
+      onkeypress=""
+    >
+      <div
+        class="bmb_step-progress-bar-vertical-step bmb_step-progress-bar-vertical-step-small"
+        [ngClass]="{
+          active: activeStep === i,
+          completed: activeStep > i,
+        }"
+      >
+        <span *ngIf="activeStep == i || activeStep < i">{{ i + 1 }}</span>
+        @if (activeStep > i) {
+          <bmb-icon [icon]="'done'" class="material-icons" />
+        }
+      </div>
+    @if(labelSteps.length > 0){
+      <div class="bmb_step-progress-bar-vertical-text">
+        <h2 class="bmb_step-progress-bar-vertical-text-title">{{labelSteps[i]}}</h2>
+        @if(activeStep > i){
+          <span class="bmb_step-progress-bar-vertical-text-subtitle">{{labelComplete}}</span>
+        }@else {
+          <span class="bmb_step-progress-bar-vertical-text-subtitle">{{labelIncomplete}}</span>
+        }
+      </div>
+    }
+  </div>
+  }
 </div>
