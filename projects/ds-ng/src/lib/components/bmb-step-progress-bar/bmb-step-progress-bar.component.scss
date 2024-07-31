@@ -109,17 +109,17 @@
     }
   }
 
-  &-vertical{
+  &-vertical {
     flex-direction: column;
 
-    &-item{
+    &-item {
       display: inline-flex;
       align-items: center;
       position: relative;
       padding-bottom: rem.rem_calc(20);
 
-      &::after{
-        content: '';
+      &::after {
+        content: "";
         position: absolute;
         width: rem.rem_calc(2);
         height: rem.rem_calc(30);
@@ -133,7 +133,7 @@
         @include fonts.font(9, regular);
         font-weight: bold;
       }
-  
+
       &.completed {
         &::after {
           content: "";
@@ -145,10 +145,10 @@
           transform: translateX(-50%);
           top: rem.rem_calc(40);
         }
-  
+
         .bmb_step-progress-bar-vertical-step {
           background-color: RGBA(var(--color-mariner-700));
-  
+
           .material-icons {
             color: RGBA(var(--color-charade-50));
             font-size: rem.rem_calc(24);
@@ -157,8 +157,8 @@
         }
       }
 
-      &.bmb_step-progress-bar-vertical-content{
-        &::after{
+      &.bmb_step-progress-bar-vertical-content {
+        &::after {
           top: 80%;
         }
       }
@@ -170,7 +170,7 @@
       }
     }
 
-    &-step{
+    &-step {
       @include fonts.font(6, regular);
       cursor: pointer;
       display: flex;
@@ -184,11 +184,10 @@
       z-index: 1;
       transition: background-color 0.3s;
 
-     
       &-small {
         width: rem.rem_calc(42);
         height: rem.rem_calc(42);
-  
+
         &.active {
           @include fonts.font(6, medium);
           background-color: RGBA(var(--color-charade-50));
@@ -196,7 +195,7 @@
           color: RGBA(var(--color-mariner-700));
         }
       }
-  
+
       &-normal {
         width: rem.rem_calc(48);
         height: rem.rem_calc(48);
@@ -211,19 +210,19 @@
       }
     }
 
-    &-text{
+    &-text {
       margin-left: rem.rem_calc(20);
-      &-title{
+      &-title {
         @include fonts.font(5, regular);
       }
 
-      &-subtitle{
+      &-subtitle {
         color: RGBA(var(--color-charade-700));
         @include fonts.font(4, regular);
       }
     }
 
-    &-content{
+    &-content {
       padding-top: rem.rem_calc(20);
     }
   }
@@ -278,27 +277,27 @@
       }
     }
 
-    &-vertical{
-      &-item{
-        &::after{
+    &-vertical {
+      &-item {
+        &::after {
           background-color: RGBA(var(--color-charade-700));
         }
-    
+
         &.completed {
           &::after {
             background-color: RGBA(var(--color-neon-primary));
           }
-    
+
           .bmb_step-progress-bar-vertical-step {
             background-color: RGBA(var(--color-neon-primary));
           }
         }
       }
-  
-      &-step{
+
+      &-step {
         background: RGBA(var(--color-charade-700));
         color: RGBA(var(--color-charade-950));
-       
+
         &-small {
           &.active {
             background-color: RGBA(var(--color-charade-700));
@@ -306,7 +305,7 @@
             color: RGBA(var(--color-charade-50));
           }
         }
-    
+
         &-normal {
           &.active {
             background-color: RGBA(var(--color-charade-700));
@@ -315,13 +314,13 @@
           }
         }
       }
-  
-      &-text{
-        &-title{
-          color: RGBA(var(--color-charade-50))
+
+      &-text {
+        &-title {
+          color: RGBA(var(--color-charade-50));
         }
-  
-        &-subtitle{
+
+        &-subtitle {
           color: RGBA(var(--color-charade-500));
         }
       }

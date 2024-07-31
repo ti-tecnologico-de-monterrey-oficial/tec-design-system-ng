@@ -23,10 +23,10 @@ export class BmbStepProgressBarComponent {
   @Input() totalSteps?: number = 0;
   @Input() size?: 'normal' | 'small' = 'normal';
   @Input() freeze: boolean = false;
-  @Input() type: 'horizontal' | 'vertical' = 'vertical'
+  @Input() type: 'horizontal' | 'vertical' = 'vertical';
   @Input() labelSteps: string[] = [];
-  @Input() labelComplete: string = 'Completo'
-  @Input() labelIncomplete: string = 'Pendiente'
+  @Input() labelComplete: string = 'Completo';
+  @Input() labelIncomplete: string = 'Pendiente';
 
   @Output() onStepPress: EventEmitter<number> = new EventEmitter<number>();
 

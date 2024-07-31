@@ -58,8 +58,7 @@ Below is an example of how you can use this component in HTML:
     isMobile: {
       name: 'Is mobile',
       control: { type: 'boolean' },
-      description:
-        'Sets mobile state.',
+      description: 'Sets mobile state.',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },

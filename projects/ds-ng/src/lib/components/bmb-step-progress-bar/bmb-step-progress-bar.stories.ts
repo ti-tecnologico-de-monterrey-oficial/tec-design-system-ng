@@ -80,11 +80,9 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'radio',
       },
-      options: [
-        'horizontal',
-        'vertical'
-      ],
-      description: 'Changes the direction of the step progress bar, could be horizontal or vertical',
+      options: ['horizontal', 'vertical'],
+      description:
+        'Changes the direction of the step progress bar, could be horizontal or vertical',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -101,7 +99,7 @@ Below is an example of how you can use this component in HTML:
         category: 'Properties',
         type: { summary: 'string[]' },
       },
-    }
+    },
   },
   args: {
     totalSteps: 5,
@@ -109,7 +107,13 @@ Below is an example of how you can use this component in HTML:
     size: 'small',
     freeze: false,
     type: 'vertical',
-    labelSteps: ['¡Orden de compra aprobada!','¡Orden de compra aprobada!','¡Orden de compra aprobada!','¡Orden de compra aprobada!','¡Orden de compra aprobada!', ]
+    labelSteps: [
+      '¡Orden de compra aprobada!',
+      '¡Orden de compra aprobada!',
+      '¡Orden de compra aprobada!',
+      '¡Orden de compra aprobada!',
+      '¡Orden de compra aprobada!',
+    ],
   },
 } as Meta<typeof BmbStepProgressBarComponent>;
 
