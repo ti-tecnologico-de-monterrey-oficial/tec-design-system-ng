@@ -1,34 +1,40 @@
-<div class="bmb_step-progress-bar" [ngClass]="{'bmb_step-progress-bar-vertical': type == 'vertical'}">
-  @if(type == 'horizontal'){
+<div
+  class="bmb_step-progress-bar"
+  [ngClass]="{ 'bmb_step-progress-bar-vertical': type == 'vertical' }"
+>
+  @if (type == "horizontal") {
     <div
-    class="bmb_step-progress-bar-item"
-    *ngFor="let i of getStepsArray()"
-    [attr.data-bs-slide-to]="i"
-    [ngClass]="{ completed: activeStep > i }"
-    (click)="onStepClicked(i)"
-    onkeypress=""
-  >
-    <div
-      class="bmb_step-progress-bar-step"
-      [ngClass]="{
-        active: activeStep === i,
-        completed: activeStep > i,
-        'bmb_step-progress-bar-step-normal': size == 'normal',
-        'bmb_step-progress-bar-step-small': size == 'small',
-      }"
+      class="bmb_step-progress-bar-item"
+      *ngFor="let i of getStepsArray()"
+      [attr.data-bs-slide-to]="i"
+      [ngClass]="{ completed: activeStep > i }"
+      (click)="onStepClicked(i)"
+      onkeypress=""
     >
-      <span *ngIf="activeStep == i || activeStep < i">{{ i + 1 }}</span>
-      @if (activeStep > i) {
-        <bmb-icon [icon]="'done'" class="material-icons" />
-      }
+      <div
+        class="bmb_step-progress-bar-step"
+        [ngClass]="{
+          active: activeStep === i,
+          completed: activeStep > i,
+          'bmb_step-progress-bar-step-normal': size == 'normal',
+          'bmb_step-progress-bar-step-small': size == 'small',
+        }"
+      >
+        <span *ngIf="activeStep == i || activeStep < i">{{ i + 1 }}</span>
+        @if (activeStep > i) {
+          <bmb-icon [icon]="'done'" class="material-icons" />
+        }
+      </div>
     </div>
-  </div>
-  }@else {
+  } @else {
     <div
       class="bmb_step-progress-bar-vertical-item"
       *ngFor="let i of getStepsArray()"
       [attr.data-bs-slide-to]="i"
-      [ngClass]="{ completed: activeStep > i, 'bmb_step-progress-bar-vertical-content': labelSteps.length > 0}"
+      [ngClass]="{
+        completed: activeStep > i,
+        'bmb_step-progress-bar-vertical-content': labelSteps.length > 0,
+      }"
       (click)="onStepClicked(i)"
       onkeypress=""
     >
@@ -44,16 +50,22 @@
           <bmb-icon [icon]="'done'" class="material-icons" />
         }
       </div>
-    @if(labelSteps.length > 0){
-      <div class="bmb_step-progress-bar-vertical-text">
-        <h2 class="bmb_step-progress-bar-vertical-text-title">{{labelSteps[i]}}</h2>
-        @if(activeStep > i){
-          <span class="bmb_step-progress-bar-vertical-text-subtitle">{{labelComplete}}</span>
-        }@else {
-          <span class="bmb_step-progress-bar-vertical-text-subtitle">{{labelIncomplete}}</span>
-        }
-      </div>
-    }
-  </div>
+      @if (labelSteps.length > 0) {
+        <div class="bmb_step-progress-bar-vertical-text">
+          <h2 class="bmb_step-progress-bar-vertical-text-title">
+            {{ labelSteps[i] }}
+          </h2>
+          @if (activeStep > i) {
+            <span class="bmb_step-progress-bar-vertical-text-subtitle">{{
+              labelComplete
+            }}</span>
+          } @else {
+            <span class="bmb_step-progress-bar-vertical-text-subtitle">{{
+              labelIncomplete
+            }}</span>
+          }
+        </div>
+      }
+    </div>
   }
 </div>
