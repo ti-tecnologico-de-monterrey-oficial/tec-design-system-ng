@@ -1,0 +1,71 @@
+<section class="bmb_home-notification-card">
+    <div class="bmb_home-notification-card-header">
+        <div class="bmb_home-notification-card-header-title">
+          <div class="bmb_home-notification-card-header-iconbox">
+            <bmb-icon
+              class="bmb_home-notification-card-header-iconbox-icon"
+              [icon]="'notifications'"
+            />
+          </div>
+          <div class="bmb_home-notification-card-header-title-text">
+            <h2>Mis Notificaciones</h2>
+          </div>
+        </div>
+        <div class="bmb_home-notification-card-header-trailing">
+          @if (expanded) {
+            <bmb-icon
+              (click)="setSize('collapse')"
+              class="bmb_home-notification-card-header-trailing-close"
+              [icon]="'close_fullscreen'"
+              onkeypress=""
+            />
+          } @else {
+            <bmb-icon
+              (click)="setSize('expand')"
+              class="bmb_home-notification-card-header-trailing-expand"
+              [icon]="'fit_screen'"
+              onkeypress=""
+            />
+          }
+        </div>
+      </div>
+      <div class="bmb_home-notification-card-tabs">
+        <div
+          class="bmb_home-notification-card-tabs-container"
+          [ngClass]="{ 'bmb_home-notification-card-tabs-active': activeTab == 1 }"
+          (click)="setActiveTab(1)"
+          onkeypress=""
+        >
+          <span class="bmb_home-notification-card-tabs-container-text">Nuevos</span>
+        </div>
+        <div
+          class="bmb_home-notification-card-tabs-container"
+          [ngClass]="{ 'bmb_home-notification-card-tabs-active': activeTab == 2 }"
+          (click)="setActiveTab(2)"
+          onkeypress=""
+        >
+          <span class="bmb_home-notification-card-tabs-container-text">Todos</span>
+        </div>
+        <div
+          class="bmb_home-notification-card-tabs-container"
+          [ngClass]="{ 'bmb_home-notification-card-tabs-active': activeTab == 3 }"
+          (click)="setActiveTab(3)"
+          onkeypress=""
+        >
+          <span class="bmb_home-notification-card-tabs-container-text">
+            Leídos
+          </span>
+        </div>
+      </div>
+      <div class="bmb_home-notification-card-content">
+        @for (data of activeData; track $index) {
+            <div class="bmb_home-notification-card-container">
+                <div class="bmb_home-notification-card-container-card">
+                    <span class="bmb_home-notification-card-container-card-bullet"> </span>
+                    <span class="bmb_home-notification-card-container-card-description">{{activeData[activeDot].description}}</span>
+                    <span class="bmb_home-notification-card-container-card-legend">Hace: {{activeData[activeDot].time}}</span>
+                </div>
+            </div>
+        }
+      </div>
+</section>
