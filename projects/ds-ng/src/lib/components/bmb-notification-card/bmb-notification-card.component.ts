@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+  ViewEncapsulation,
+} from '@angular/core';
 import { BmbBadgeComponent, BmbIconComponent } from 'ds-ng';
 import { IBmbNotificationCardData } from './types';
 import { CommonModule } from '@angular/common';
@@ -13,18 +19,16 @@ import { CommonModule } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbNotificationCardComponent implements OnInit {
-
-  @Input() data: IBmbNotificationCardData | null = null
+  @Input() data: IBmbNotificationCardData | null = null;
 
   expanded: boolean = false;
   activeData: any = [];
   activeTab: number = 1;
   activeDot: number = 0;
 
-
   ngOnInit(): void {
     this.activeTab = 1;
-    if(this.data !== null){
+    if (this.data !== null) {
       this.activeData = this.data!.new;
     }
   }
@@ -32,7 +36,7 @@ export class BmbNotificationCardComponent implements OnInit {
   setActiveTab(tab: number) {
     this.activeTab = tab;
 
-    if(this.data !== null){
+    if (this.data !== null) {
       switch (tab) {
         case 1:
           this.activeData = this.data!.new;
@@ -43,7 +47,7 @@ export class BmbNotificationCardComponent implements OnInit {
         case 3:
           this.activeData = this.data!.seen;
           break;
-  
+
         default:
           this.activeData = this.data!.new;
           break;

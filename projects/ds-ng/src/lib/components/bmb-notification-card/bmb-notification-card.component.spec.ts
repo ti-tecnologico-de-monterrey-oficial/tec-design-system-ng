@@ -7,11 +7,6 @@ describe('BmbNotificationCardComponent', () => {
   let fixture: ComponentFixture<BmbNotificationCardComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [BmbNotificationCardComponent]
-    })
-    .compileComponents();
-    
     fixture = TestBed.createComponent(BmbNotificationCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
