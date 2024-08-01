@@ -65,6 +65,7 @@ export * from './lib/components/bmb-student-activity-card/bmb-student-activity-c
 export * from './lib/components/bmb-advertisement-card/bmb-advertisement-card.component';
 export * from './lib/components/bmb-home-card/bmb-home-card.component';
 export * from './lib/components/bmb-chat-bar/bmb-chat-bar.component';
+export * from './lib/components/bmb-notification-card/bmb-notification-card.component';
 
 // types
 export * from './lib/types';

@@ -402,12 +402,12 @@
     },
     {
       "name": "IBotType",
-      "id": "interface-IBotType-de38597cc3b211b57429ecd789bfcdc7c718b9b407499b6440ec99c2180b97a403da92bdd813a17ce533a2225bd062e3003c92fc8e8d998d933868e71dd4b41b",
+      "id": "interface-IBotType-180ed44f6a4a3f64a8a91fd8f5914e16a3cf6d1e14666d6522640f0b129f89404306714121e85282f331a28ddf468883def0f12826d884379d2d1ebdbe7ad162",
       "file": "projects/ds-ng/src/lib/components/bmb-chat-bar/types.ts",
       "deprecated": false,
       "deprecationMessage": "",
       "type": "interface",
-      "sourceCode": "export interface IBotType {\r\n  name: string;\r\n  icon: string;\r\n}\r\n",
+      "sourceCode": "export interface IBotType {\n  name: string;\n  icon: string;\n}\n",
       "properties": [
         {
           "name": "icon",
@@ -501,16 +501,16 @@
     },
     {
       "name": "IPlaceholderObject",
-      "id": "interface-IPlaceholderObject-670c60900d325e4e8758da3c4c0b3d8c80d0e1fcb1a1e0ef93d7e954718736ce68a215d8fb0a0dcb1e89bc5745a85265a26ceae2ef2890a33815665653a47561",
+      "id": "interface-IPlaceholderObject-2dc92aa8008e5ca6e98e66116c271e52877e4c45581ee7d1fda24d3a7bbf1e4238bb378aa9414cc5e28251a73fd6a64f924e2873168d7f966dab0c83db89f6a9",
       "file": "projects/ds-ng/src/lib/components/bmb-timestream/bmb-timestream.component.ts",
       "deprecated": false,
       "deprecationMessage": "",
       "type": "interface",
-      "sourceCode": "import {\r\n  ChangeDetectionStrategy,\r\n  Component,\r\n  Input,\r\n  OnInit,\r\n  ViewEncapsulation,\r\n} from '@angular/core';\r\nimport { DateTime, Info } from 'luxon';\r\nimport { BmbTimestreamErrorComponent } from './bmb-timestream-error/bmb-timestream-error.component';\r\nimport { BmbTimestreamTimelineComponent } from './bmb-timestream-timeline/bmb-timestream-timeline.component';\r\nimport { BmbTimestreamDetailsComponent } from './bmb-timestream-detail/bmb-timestream-detail.component';\r\nimport { ITimelineEvent, ISelectedDate, ITimelineEventParsed } from './types';\r\nimport { BmbTimestreamDialogComponent } from './bmb-timestream-dialog/bmb-timestream-dialog.component';\r\nimport { CommonModule } from '@angular/common';\r\n\r\ninterface IPlaceholderObject {\r\n  [key: string]: any | any[];\r\n}\r\n\r\n@Component({\r\n  selector: 'bmb-timestream',\r\n  standalone: true,\r\n  imports: [\r\n    BmbTimestreamErrorComponent,\r\n    BmbTimestreamTimelineComponent,\r\n    BmbTimestreamDetailsComponent,\r\n    BmbTimestreamDialogComponent,\r\n    CommonModule,\r\n  ],\r\n  templateUrl: './bmb-timestream.component.html',\r\n  styleUrl: './bmb-timestream.component.scss',\r\n  encapsulation: ViewEncapsulation.None,\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class BmbTimestreamComponent implements OnInit {\r\n  @Input() startDate: string = '';\r\n  @Input() endDate: string = '';\r\n  @Input() dateFormat: string = 'dd/MM/yyyy';\r\n  @Input() lang: string = 'es';\r\n  @Input() events: ITimelineEvent[] | null = null;\r\n\r\n  error = false;\r\n  now = DateTime.now();\r\n  start: DateTime | null = null;\r\n  end: DateTime | null = null;\r\n  difference = 0;\r\n  validMonths: any = [];\r\n  parsedEvents: any | null = null;\r\n  monthsNames = Info.months('long', { locale: this.lang });\r\n  isDialogOpen: null | ITimelineEvent = null;\r\n  selectedDate: ISelectedDate = {\r\n    day: '',\r\n    month: '',\r\n    date: this.now,\r\n  };\r\n  orderedMonths: string[] = [];\r\n  orderedEvents: ITimelineEventParsed[] = [];\r\n\r\n  ngOnInit(): void {\r\n    this.dateValidation();\r\n\r\n    this.start = DateTime.fromFormat(this.startDate, this.dateFormat);\r\n    this.end = DateTime.fromFormat(this.endDate, this.dateFormat);\r\n    this.difference = Math.ceil(this.end.diff(this.start, 'months').months);\r\n    this.parsedEvents = this.prepareEvents(this.events);\r\n    this.orderedMonths = this.orderDates(this.parsedEvents, 'yyyy/MM');\r\n    this.selectedDate = this.selectAValidDate();\r\n  }\r\n\r\n  dateValidation() {\r\n    const isValidStart = DateTime.fromFormat(\r\n      this.startDate,\r\n      this.dateFormat,\r\n    ).isValid;\r\n    const isValidEnd = DateTime.fromFormat(\r\n      this.endDate,\r\n      this.dateFormat,\r\n    ).isValid;\r\n\r\n    this.error = !isValidEnd || !isValidStart;\r\n  }\r\n\r\n  prepareEvents(events: ITimelineEvent[] | null) {\r\n    if (!events) return {};\r\n\r\n    const objectEvent: IPlaceholderObject = {};\r\n    events.forEach((event) => {\r\n      const startDate = DateTime.fromFormat(event.start, this.dateFormat);\r\n      const endDate = DateTime.fromFormat(event.end, this.dateFormat);\r\n      const diff = endDate.diff(startDate, 'days').days + 1;\r\n\r\n      for (let index = 0; index < diff; index++) {\r\n        const currentDate = startDate.plus({ days: index });\r\n        const stringDate = currentDate.toFormat('yyyy/MM/dd');\r\n        const month = currentDate.toFormat('yyyy/MM');\r\n\r\n        objectEvent[month] ??= {\r\n          events: {},\r\n          name: this.monthsNames[currentDate.month - 1],\r\n          stringDate: month,\r\n          year: currentDate.year,\r\n          date: currentDate,\r\n        };\r\n\r\n        objectEvent[month].events[stringDate] ??= {\r\n          events: [],\r\n          date: currentDate,\r\n          stringDate,\r\n          selected: false,\r\n        };\r\n\r\n        objectEvent[month].events[stringDate].events.push({\r\n          ...event,\r\n          start: stringDate,\r\n          startEvent: currentDate,\r\n          endEvent: endDate,\r\n          selected: false,\r\n          diff: diff - 1,\r\n          originalStart: startDate,\r\n        });\r\n      }\r\n    });\r\n\r\n    const orededEvents = this.orderDates(objectEvent, 'yyyy/MM');\r\n    objectEvent['orderedEvents'] = orededEvents;\r\n\r\n    objectEvent['orderedEvents'].forEach((date: string) => {\r\n      objectEvent[date]['orderedEvents'] = this.orderDates(\r\n        objectEvent[date].events,\r\n        'yyyy/MM/dd',\r\n      );\r\n    });\r\n\r\n    this.orderedEvents = objectEvent['orderedEvents']\r\n      .map((month: string) => {\r\n        return objectEvent[month]['orderedEvents'].map(\r\n          (day: string) => objectEvent[month].events[day],\r\n        );\r\n      })\r\n      .flat();\r\n\r\n    return objectEvent;\r\n  }\r\n\r\n  orderDates(events: any, format: string): string[] {\r\n    const monthsList = Object.keys(events);\r\n    const monthsOrdered = monthsList.sort((dateA: string, dateB: string) => {\r\n      const parsedDateA = DateTime.fromFormat(dateA, format);\r\n      const parsedDateB = DateTime.fromFormat(dateB, format);\r\n      return parsedDateA.toMillis() - parsedDateB.toMillis();\r\n    });\r\n\r\n    return monthsOrdered;\r\n  }\r\n\r\n  selectAValidDate(): { month: string; day: string; date: DateTime } {\r\n    const month =\r\n      this.orderedMonths.find((date) => {\r\n        const parsedDate = this.parsedEvents[date].date;\r\n        return (\r\n          this.now.year <= parsedDate.year && this.now.month <= parsedDate.month\r\n        );\r\n      }) ||\r\n      this.orderedMonths.at(-1) ||\r\n      '';\r\n    const orderedEvents = this.parsedEvents?.[month]?.orderedEvents;\r\n\r\n    const day =\r\n      orderedEvents?.find((date: string) => {\r\n        const parsedDate = this.parsedEvents[month].events[date].date;\r\n        return (\r\n          this.now.year <= parsedDate.year &&\r\n          this.now.month <= parsedDate.month &&\r\n          this.now.day <= parsedDate.day\r\n        );\r\n      }) ||\r\n      orderedEvents?.at(-1) ||\r\n      '';\r\n\r\n    if (this.parsedEvents[month]) {\r\n      this.parsedEvents[month].selected = true;\r\n      this.parsedEvents[month].events[day].selected = true;\r\n    }\r\n    return {\r\n      month,\r\n      day,\r\n      date: this.parsedEvents?.[month]?.events?.[day]?.date,\r\n    };\r\n  }\r\n\r\n  handleSelectedDateChange({ month, day }: { month: string; day: string }) {\r\n    this.parsedEvents[this.selectedDate.month].selected = false;\r\n    this.parsedEvents[this.selectedDate.month].events[\r\n      this.selectedDate.day\r\n    ].selected = false;\r\n\r\n    this.parsedEvents[month].selected = true;\r\n    this.parsedEvents[month].events[day].selected = true;\r\n\r\n    this.selectedDate = {\r\n      month,\r\n      day,\r\n      date: this.parsedEvents[month].events[day].date,\r\n    };\r\n  }\r\n\r\n  handleSelectedEventChange(event: ITimelineEvent) {\r\n    this.isDialogOpen = event;\r\n  }\r\n\r\n  closeDetail() {\r\n    this.isDialogOpen = null;\r\n  }\r\n}\r\n",
+      "sourceCode": "import {\n  ChangeDetectionStrategy,\n  Component,\n  Input,\n  OnInit,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { DateTime, Info } from 'luxon';\nimport { BmbTimestreamErrorComponent } from './bmb-timestream-error/bmb-timestream-error.component';\nimport { BmbTimestreamTimelineComponent } from './bmb-timestream-timeline/bmb-timestream-timeline.component';\nimport { BmbTimestreamDetailsComponent } from './bmb-timestream-detail/bmb-timestream-detail.component';\nimport { ITimelineEvent, ISelectedDate, ITimelineEventParsed } from './types';\nimport { BmbTimestreamDialogComponent } from './bmb-timestream-dialog/bmb-timestream-dialog.component';\nimport { CommonModule } from '@angular/common';\n\ninterface IPlaceholderObject {\n  [key: string]: any | any[];\n}\n\n@Component({\n  selector: 'bmb-timestream',\n  standalone: true,\n  imports: [\n    BmbTimestreamErrorComponent,\n    BmbTimestreamTimelineComponent,\n    BmbTimestreamDetailsComponent,\n    BmbTimestreamDialogComponent,\n    CommonModule,\n  ],\n  templateUrl: './bmb-timestream.component.html',\n  styleUrl: './bmb-timestream.component.scss',\n  encapsulation: ViewEncapsulation.None,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbTimestreamComponent implements OnInit {\n  @Input() startDate: string = '';\n  @Input() endDate: string = '';\n  @Input() dateFormat: string = 'dd/MM/yyyy';\n  @Input() lang: string = 'es';\n  @Input() events: ITimelineEvent[] | null = null;\n\n  error = false;\n  now = DateTime.now();\n  start: DateTime | null = null;\n  end: DateTime | null = null;\n  difference = 0;\n  validMonths: any = [];\n  parsedEvents: any | null = null;\n  monthsNames = Info.months('long', { locale: this.lang });\n  isDialogOpen: null | ITimelineEvent = null;\n  selectedDate: ISelectedDate = {\n    day: '',\n    month: '',\n    date: this.now,\n  };\n  orderedMonths: string[] = [];\n  orderedEvents: ITimelineEventParsed[] = [];\n\n  ngOnInit(): void {\n    this.dateValidation();\n\n    this.start = DateTime.fromFormat(this.startDate, this.dateFormat);\n    this.end = DateTime.fromFormat(this.endDate, this.dateFormat);\n    this.difference = Math.ceil(this.end.diff(this.start, 'months').months);\n    this.parsedEvents = this.prepareEvents(this.events);\n    this.orderedMonths = this.orderDates(this.parsedEvents, 'yyyy/MM');\n    this.selectedDate = this.selectAValidDate();\n  }\n\n  dateValidation() {\n    const isValidStart = DateTime.fromFormat(\n      this.startDate,\n      this.dateFormat,\n    ).isValid;\n    const isValidEnd = DateTime.fromFormat(\n      this.endDate,\n      this.dateFormat,\n    ).isValid;\n\n    this.error = !isValidEnd || !isValidStart;\n  }\n\n  prepareEvents(events: ITimelineEvent[] | null) {\n    if (!events) return {};\n\n    const objectEvent: IPlaceholderObject = {};\n    events.forEach((event) => {\n      const startDate = DateTime.fromFormat(event.start, this.dateFormat);\n      const endDate = DateTime.fromFormat(event.end, this.dateFormat);\n      const diff = endDate.diff(startDate, 'days').days + 1;\n\n      for (let index = 0; index < diff; index++) {\n        const currentDate = startDate.plus({ days: index });\n        const stringDate = currentDate.toFormat('yyyy/MM/dd');\n        const month = currentDate.toFormat('yyyy/MM');\n\n        objectEvent[month] ??= {\n          events: {},\n          name: this.monthsNames[currentDate.month - 1],\n          stringDate: month,\n          year: currentDate.year,\n          date: currentDate,\n        };\n\n        objectEvent[month].events[stringDate] ??= {\n          events: [],\n          date: currentDate,\n          stringDate,\n          selected: false,\n        };\n\n        objectEvent[month].events[stringDate].events.push({\n          ...event,\n          start: stringDate,\n          startEvent: currentDate,\n          endEvent: endDate,\n          selected: false,\n          diff: diff - 1,\n          originalStart: startDate,\n        });\n      }\n    });\n\n    const orededEvents = this.orderDates(objectEvent, 'yyyy/MM');\n    objectEvent['orderedEvents'] = orededEvents;\n\n    objectEvent['orderedEvents'].forEach((date: string) => {\n      objectEvent[date]['orderedEvents'] = this.orderDates(\n        objectEvent[date].events,\n        'yyyy/MM/dd',\n      );\n    });\n\n    this.orderedEvents = objectEvent['orderedEvents']\n      .map((month: string) => {\n        return objectEvent[month]['orderedEvents'].map(\n          (day: string) => objectEvent[month].events[day],\n        );\n      })\n      .flat();\n\n    return objectEvent;\n  }\n\n  orderDates(events: any, format: string): string[] {\n    const monthsList = Object.keys(events);\n    const monthsOrdered = monthsList.sort((dateA: string, dateB: string) => {\n      const parsedDateA = DateTime.fromFormat(dateA, format);\n      const parsedDateB = DateTime.fromFormat(dateB, format);\n      return parsedDateA.toMillis() - parsedDateB.toMillis();\n    });\n\n    return monthsOrdered;\n  }\n\n  selectAValidDate(): { month: string; day: string; date: DateTime } {\n    const month =\n      this.orderedMonths.find((date) => {\n        const parsedDate = this.parsedEvents[date].date;\n        return (\n          this.now.year <= parsedDate.year && this.now.month <= parsedDate.month\n        );\n      }) ||\n      this.orderedMonths.at(-1) ||\n      '';\n    const orderedEvents = this.parsedEvents?.[month]?.orderedEvents;\n\n    const day =\n      orderedEvents?.find((date: string) => {\n        const parsedDate = this.parsedEvents[month].events[date].date;\n        return (\n          this.now.year <= parsedDate.year &&\n          this.now.month <= parsedDate.month &&\n          this.now.day <= parsedDate.day\n        );\n      }) ||\n      orderedEvents?.at(-1) ||\n      '';\n\n    if (this.parsedEvents[month]) {\n      this.parsedEvents[month].selected = true;\n      this.parsedEvents[month].events[day].selected = true;\n    }\n    return {\n      month,\n      day,\n      date: this.parsedEvents?.[month]?.events?.[day]?.date,\n    };\n  }\n\n  handleSelectedDateChange({ month, day }: { month: string; day: string }) {\n    this.parsedEvents[this.selectedDate.month].selected = false;\n    this.parsedEvents[this.selectedDate.month].events[\n      this.selectedDate.day\n    ].selected = false;\n\n    this.parsedEvents[month].selected = true;\n    this.parsedEvents[month].events[day].selected = true;\n\n    this.selectedDate = {\n      month,\n      day,\n      date: this.parsedEvents[month].events[day].date,\n    };\n  }\n\n  handleSelectedEventChange(event: ITimelineEvent) {\n    this.isDialogOpen = event;\n  }\n\n  closeDetail() {\n    this.isDialogOpen = null;\n  }\n}\n",
       "properties": [],
       "indexSignatures": [
         {
-          "id": "index-declaration-670c60900d325e4e8758da3c4c0b3d8c80d0e1fcb1a1e0ef93d7e954718736ce68a215d8fb0a0dcb1e89bc5745a85265a26ceae2ef2890a33815665653a47561",
+          "id": "index-declaration-2dc92aa8008e5ca6e98e66116c271e52877e4c45581ee7d1fda24d3a7bbf1e4238bb378aa9414cc5e28251a73fd6a64f924e2873168d7f966dab0c83db89f6a9",
           "args": [
             {
               "name": "key",
@@ -2710,7 +2710,7 @@
   "components": [
     {
       "name": "BmbAdvertisementCardComponent",
-      "id": "component-BmbAdvertisementCardComponent-184e4556af312dba40b499ca1538d1b4a5b2a88e496904cb5638bc007dffddfb18a226d442375ebf59ac073b849df801672a64b33434ce528d52a02135ea5199",
+      "id": "component-BmbAdvertisementCardComponent-72fb4b3030fc4b4458b6a0b0e6cce405f810cf5d7f4711e8577765f6f184b0ea29bcbcc75e9646702e7259e991568c171ae448b722fcd09315a18d5e005b7739",
       "file": "projects/ds-ng/src/lib/components/bmb-advertisement-card/bmb-advertisement-card.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": ["ViewEncapsulation.None"],
@@ -2727,7 +2727,7 @@
       "inputsClass": [
         {
           "name": "data",
-          "defaultValue": "{\r\n    promociones: [\r\n      {\r\n        imgData: {\r\n          url: '',\r\n          alt: 'Imagen',\r\n        },\r\n        content: {\r\n          title: 'Lorem ipsum dolor sit amet',\r\n          description:\r\n            'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',\r\n          linkBtn: '',\r\n          labelBtn: 'ACTION',\r\n        },\r\n      },\r\n    ],\r\n    avisos: [\r\n      {\r\n        imgData: {\r\n          url: '',\r\n          alt: 'Imagen',\r\n        },\r\n        content: {\r\n          title: 'Lorem ipsum dolor sit amet',\r\n          description:\r\n            'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',\r\n          linkBtn: '',\r\n        },\r\n      },\r\n    ],\r\n    informacion: [\r\n      {\r\n        imgData: {\r\n          url: '',\r\n          alt: 'Imagen',\r\n        },\r\n        content: {\r\n          title: 'Lorem ipsum dolor sit amet',\r\n          description:\r\n            'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',\r\n          linkBtn: '',\r\n        },\r\n      },\r\n    ],\r\n  }",
+          "defaultValue": "{\n    promociones: [\n      {\n        imgData: {\n          url: '',\n          alt: 'Imagen',\n        },\n        content: {\n          title: 'Lorem ipsum dolor sit amet',\n          description:\n            'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',\n          linkBtn: '',\n          labelBtn: 'ACTION',\n        },\n      },\n    ],\n    avisos: [\n      {\n        imgData: {\n          url: '',\n          alt: 'Imagen',\n        },\n        content: {\n          title: 'Lorem ipsum dolor sit amet',\n          description:\n            'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',\n          linkBtn: '',\n        },\n      },\n    ],\n    informacion: [\n      {\n        imgData: {\n          url: '',\n          alt: 'Imagen',\n        },\n        content: {\n          title: 'Lorem ipsum dolor sit amet',\n          description:\n            'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',\n          linkBtn: '',\n        },\n      },\n    ],\n  }",
           "deprecated": false,
           "deprecationMessage": "",
           "line": 34,
@@ -2917,14 +2917,14 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { CommonModule } from '@angular/common';\r\nimport {\r\n  ChangeDetectionStrategy,\r\n  Component,\r\n  Input,\r\n  OnInit,\r\n  ViewEncapsulation,\r\n} from '@angular/core';\r\nimport { BmbFrequentAppsSelectorComponent } from '../bmb-frequent-apps-selector/bmb-frequent-apps-selector.component';\r\nimport { BmbInteractiveIconComponent } from '../bmb-interactive-icon/bmb-interactive-icon.component';\r\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\r\nimport { BmbDotPaginatorComponent } from '../bmb-dot-paginator/bmb-dot-paginator.component';\r\nimport { BmbMediaCardComponent } from '../bmb-media-card/bmb-media-card.component';\r\nimport { BmbButtonDirective } from '../../directives/button.directive';\r\nimport { IBmbAdvertisementCard, IBmbAdvertisementData } from './types';\r\n\r\n@Component({\r\n  selector: 'bmb-advertisement-card',\r\n  standalone: true,\r\n  imports: [\r\n    CommonModule,\r\n    BmbInteractiveIconComponent,\r\n    BmbIconComponent,\r\n    BmbDotPaginatorComponent,\r\n    BmbMediaCardComponent,\r\n    BmbButtonDirective,\r\n  ],\r\n  templateUrl: './bmb-advertisement-card.component.html',\r\n  styleUrl: './bmb-advertisement-card.component.scss',\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n  encapsulation: ViewEncapsulation.None,\r\n})\r\nexport class BmbAdvertisementCardComponent implements OnInit {\r\n  @Input() data: IBmbAdvertisementData = {\r\n    promociones: [\r\n      {\r\n        imgData: {\r\n          url: '',\r\n          alt: 'Imagen',\r\n        },\r\n        content: {\r\n          title: 'Lorem ipsum dolor sit amet',\r\n          description:\r\n            'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',\r\n          linkBtn: '',\r\n          labelBtn: 'ACTION',\r\n        },\r\n      },\r\n    ],\r\n    avisos: [\r\n      {\r\n        imgData: {\r\n          url: '',\r\n          alt: 'Imagen',\r\n        },\r\n        content: {\r\n          title: 'Lorem ipsum dolor sit amet',\r\n          description:\r\n            'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',\r\n          linkBtn: '',\r\n        },\r\n      },\r\n    ],\r\n    informacion: [\r\n      {\r\n        imgData: {\r\n          url: '',\r\n          alt: 'Imagen',\r\n        },\r\n        content: {\r\n          title: 'Lorem ipsum dolor sit amet',\r\n          description:\r\n            'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',\r\n          linkBtn: '',\r\n        },\r\n      },\r\n    ],\r\n  };\r\n\r\n  @Input() subtitle: string = '';\r\n\r\n  expanded: boolean = false;\r\n  activeData: any = null;\r\n  activeTab: number = 1;\r\n  activeDot: number = 0;\r\n\r\n  ngOnInit(): void {\r\n    this.activeTab = 1;\r\n    this.activeData = this.data.promociones;\r\n  }\r\n\r\n  setActiveTab(tab: number) {\r\n    this.activeTab = tab;\r\n\r\n    switch (tab) {\r\n      case 1:\r\n        this.activeData = this.data.promociones;\r\n        break;\r\n      case 2:\r\n        this.activeData = this.data.avisos;\r\n        break;\r\n      case 3:\r\n        this.activeData = this.data.informacion;\r\n        break;\r\n\r\n      default:\r\n        this.activeData = this.data.promociones;\r\n        break;\r\n    }\r\n  }\r\n\r\n  onDotPress(event: any) {\r\n    this.activeDot = event;\r\n  }\r\n\r\n  setSize(size: string) {\r\n    this.expanded = size === 'expand' ? true : false;\r\n  }\r\n}\r\n",
+      "sourceCode": "import { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  Input,\n  OnInit,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { BmbFrequentAppsSelectorComponent } from '../bmb-frequent-apps-selector/bmb-frequent-apps-selector.component';\nimport { BmbInteractiveIconComponent } from '../bmb-interactive-icon/bmb-interactive-icon.component';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\nimport { BmbDotPaginatorComponent } from '../bmb-dot-paginator/bmb-dot-paginator.component';\nimport { BmbMediaCardComponent } from '../bmb-media-card/bmb-media-card.component';\nimport { BmbButtonDirective } from '../../directives/button.directive';\nimport { IBmbAdvertisementCard, IBmbAdvertisementData } from './types';\n\n@Component({\n  selector: 'bmb-advertisement-card',\n  standalone: true,\n  imports: [\n    CommonModule,\n    BmbInteractiveIconComponent,\n    BmbIconComponent,\n    BmbDotPaginatorComponent,\n    BmbMediaCardComponent,\n    BmbButtonDirective,\n  ],\n  templateUrl: './bmb-advertisement-card.component.html',\n  styleUrl: './bmb-advertisement-card.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbAdvertisementCardComponent implements OnInit {\n  @Input() data: IBmbAdvertisementData = {\n    promociones: [\n      {\n        imgData: {\n          url: '',\n          alt: 'Imagen',\n        },\n        content: {\n          title: 'Lorem ipsum dolor sit amet',\n          description:\n            'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',\n          linkBtn: '',\n          labelBtn: 'ACTION',\n        },\n      },\n    ],\n    avisos: [\n      {\n        imgData: {\n          url: '',\n          alt: 'Imagen',\n        },\n        content: {\n          title: 'Lorem ipsum dolor sit amet',\n          description:\n            'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',\n          linkBtn: '',\n        },\n      },\n    ],\n    informacion: [\n      {\n        imgData: {\n          url: '',\n          alt: 'Imagen',\n        },\n        content: {\n          title: 'Lorem ipsum dolor sit amet',\n          description:\n            'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',\n          linkBtn: '',\n        },\n      },\n    ],\n  };\n\n  @Input() subtitle: string = '';\n\n  expanded: boolean = false;\n  activeData: any = null;\n  activeTab: number = 1;\n  activeDot: number = 0;\n\n  ngOnInit(): void {\n    this.activeTab = 1;\n    this.activeData = this.data.promociones;\n  }\n\n  setActiveTab(tab: number) {\n    this.activeTab = tab;\n\n    switch (tab) {\n      case 1:\n        this.activeData = this.data.promociones;\n        break;\n      case 2:\n        this.activeData = this.data.avisos;\n        break;\n      case 3:\n        this.activeData = this.data.informacion;\n        break;\n\n      default:\n        this.activeData = this.data.promociones;\n        break;\n    }\n  }\n\n  onDotPress(event: any) {\n    this.activeDot = event;\n  }\n\n  setSize(size: string) {\n    this.expanded = size === 'expand' ? true : false;\n  }\n}\n",
       "styleUrl": "./bmb-advertisement-card.component.scss",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
       "extends": [],
       "implements": ["OnInit"],
-      "templateData": "<section\r\n  class=\"bmb_advertisement-card\"\r\n  [ngClass]=\"{ 'bmb_advertisement-card-expanded': expanded }\"\r\n>\r\n  <div class=\"bmb_advertisement-card-header\">\r\n    <div class=\"bmb_advertisement-card-header-title\">\r\n      <div class=\"bmb_advertisement-card-header-iconbox\">\r\n        <bmb-icon\r\n          class=\"bmb_advertisement-card-header-iconbox-icon\"\r\n          [icon]=\"'assignment'\"\r\n        />\r\n      </div>\r\n      <div class=\"bmb_advertisement-card-header-title-text\">\r\n        <h2>Mis Anuncios</h2>\r\n        @if (expanded) {\r\n          <span>{{ subtitle }}</span>\r\n        }\r\n      </div>\r\n    </div>\r\n    <div class=\"bmb_advertisement-card-header-trailing\">\r\n      @if (expanded) {\r\n        <bmb-icon\r\n          (click)=\"setSize('collapse')\"\r\n          class=\"bmb_advertisement-card-header-trailing-close\"\r\n          [icon]=\"'close_fullscreen'\"\r\n          onkeypress=\"\"\r\n        />\r\n      } @else {\r\n        <bmb-icon\r\n          (click)=\"setSize('expand')\"\r\n          class=\"bmb_advertisement-card-header-trailing-expand\"\r\n          [icon]=\"'fit_screen'\"\r\n          onkeypress=\"\"\r\n        />\r\n      }\r\n    </div>\r\n  </div>\r\n  <div class=\"bmb_advertisement-card-tabs\">\r\n    <div\r\n      class=\"bmb_advertisement-card-tabs-container\"\r\n      [ngClass]=\"{ 'bmb_advertisement-card-tabs-active': activeTab == 1 }\"\r\n      (click)=\"setActiveTab(1)\"\r\n      onkeypress=\"\"\r\n    >\r\n      <span class=\"bmb_advertisement-card-tabs-container-text\">\r\n        Promociones\r\n      </span>\r\n    </div>\r\n    <div\r\n      class=\"bmb_advertisement-card-tabs-container\"\r\n      [ngClass]=\"{ 'bmb_advertisement-card-tabs-active': activeTab == 2 }\"\r\n      (click)=\"setActiveTab(2)\"\r\n      onkeypress=\"\"\r\n    >\r\n      <span class=\"bmb_advertisement-card-tabs-container-text\"> Avisos </span>\r\n    </div>\r\n    <div\r\n      class=\"bmb_advertisement-card-tabs-container\"\r\n      [ngClass]=\"{ 'bmb_advertisement-card-tabs-active': activeTab == 3 }\"\r\n      (click)=\"setActiveTab(3)\"\r\n      onkeypress=\"\"\r\n    >\r\n      <span class=\"bmb_advertisement-card-tabs-container-text\">\r\n        Información\r\n      </span>\r\n    </div>\r\n  </div>\r\n  <div class=\"bmb_advertisement-card-content\">\r\n    @for (data of activeData; track $index) {\r\n      @if ($index == activeDot) {\r\n        <div class=\"bmb_advertisement-card-container\">\r\n          <div\r\n            [ngClass]=\"{\r\n              'bmb_advertisement-card-content-image-full': expanded,\r\n            }\"\r\n            class=\"bmb_advertisement-card-content-image\"\r\n          >\r\n            <figure class=\"bmb_advertisement-card-image-container-figure\">\r\n              <picture>\r\n                <source\r\n                  media=\"(min-width: 100px)\"\r\n                  [srcset]=\"activeData[activeDot].imgData.url\"\r\n                />\r\n                <img\r\n                  [loading]=\"'lazy'\"\r\n                  class=\"bmb_advertisement-card-image-container-figure-image\"\r\n                  [srcset]=\"activeData[activeDot].imgData.url\"\r\n                  [alt]=\"activeData[activeDot].imgData.alt\"\r\n                />\r\n              </picture>\r\n            </figure>\r\n          </div>\r\n          <div\r\n            [ngClass]=\"{\r\n              'bmb_advertisement-card-content-description-hide': !expanded,\r\n            }\"\r\n            class=\"bmb_advertisement-card-content-description\"\r\n          >\r\n            <div class=\"bmb_advertisement-card-content-description-title\">\r\n              <h1>{{ activeData[activeDot].content.title }}</h1>\r\n            </div>\r\n            <div class=\"bmb_advertisement-card-content-description-text\">\r\n              <p>{{ activeData[activeDot].content.description }}</p>\r\n            </div>\r\n            <div class=\"bmb_advertisement-card-content-description-btn\">\r\n              <a [href]=\"activeData[activeDot].content.linkBtn\" target=\"_blank\">\r\n                <button\r\n                  class=\"bmb_advertisement-card-content-description-btn-action\"\r\n                  bmbButton\r\n                  appearance=\"primary\"\r\n                  size=\"small\"\r\n                >\r\n                  {{ activeData[activeDot].content.labelBtn }}\r\n                </button>\r\n              </a>\r\n            </div>\r\n          </div>\r\n        </div>\r\n        <div class=\"bmb_advertisement-card-content-paginator\">\r\n          <bmb-dot-paginator\r\n            [activeDotIndex]=\"activeDot\"\r\n            [totalDots]=\"activeData.length\"\r\n            (onDotPress)=\"onDotPress($event)\"\r\n          />\r\n        </div>\r\n      }\r\n    }\r\n  </div>\r\n</section>\r\n"
+      "templateData": "<section\n  class=\"bmb_advertisement-card\"\n  [ngClass]=\"{ 'bmb_advertisement-card-expanded': expanded }\"\n>\n  <div class=\"bmb_advertisement-card-header\">\n    <div class=\"bmb_advertisement-card-header-title\">\n      <div class=\"bmb_advertisement-card-header-iconbox\">\n        <bmb-icon\n          class=\"bmb_advertisement-card-header-iconbox-icon\"\n          [icon]=\"'assignment'\"\n        />\n      </div>\n      <div class=\"bmb_advertisement-card-header-title-text\">\n        <h2>Mis Anuncios</h2>\n        @if (expanded) {\n          <span>{{ subtitle }}</span>\n        }\n      </div>\n    </div>\n    <div class=\"bmb_advertisement-card-header-trailing\">\n      @if (expanded) {\n        <bmb-icon\n          (click)=\"setSize('collapse')\"\n          class=\"bmb_advertisement-card-header-trailing-close\"\n          [icon]=\"'close_fullscreen'\"\n          onkeypress=\"\"\n        />\n      } @else {\n        <bmb-icon\n          (click)=\"setSize('expand')\"\n          class=\"bmb_advertisement-card-header-trailing-expand\"\n          [icon]=\"'fit_screen'\"\n          onkeypress=\"\"\n        />\n      }\n    </div>\n  </div>\n  <div class=\"bmb_advertisement-card-tabs\">\n    <div\n      class=\"bmb_advertisement-card-tabs-container\"\n      [ngClass]=\"{ 'bmb_advertisement-card-tabs-active': activeTab == 1 }\"\n      (click)=\"setActiveTab(1)\"\n      onkeypress=\"\"\n    >\n      <span class=\"bmb_advertisement-card-tabs-container-text\">\n        Promociones\n      </span>\n    </div>\n    <div\n      class=\"bmb_advertisement-card-tabs-container\"\n      [ngClass]=\"{ 'bmb_advertisement-card-tabs-active': activeTab == 2 }\"\n      (click)=\"setActiveTab(2)\"\n      onkeypress=\"\"\n    >\n      <span class=\"bmb_advertisement-card-tabs-container-text\"> Avisos </span>\n    </div>\n    <div\n      class=\"bmb_advertisement-card-tabs-container\"\n      [ngClass]=\"{ 'bmb_advertisement-card-tabs-active': activeTab == 3 }\"\n      (click)=\"setActiveTab(3)\"\n      onkeypress=\"\"\n    >\n      <span class=\"bmb_advertisement-card-tabs-container-text\">\n        Información\n      </span>\n    </div>\n  </div>\n  <div class=\"bmb_advertisement-card-content\">\n    @for (data of activeData; track $index) {\n      @if ($index == activeDot) {\n        <div class=\"bmb_advertisement-card-container\">\n          <div\n            [ngClass]=\"{\n              'bmb_advertisement-card-content-image-full': expanded,\n            }\"\n            class=\"bmb_advertisement-card-content-image\"\n          >\n            <figure class=\"bmb_advertisement-card-image-container-figure\">\n              <picture>\n                <source\n                  media=\"(min-width: 100px)\"\n                  [srcset]=\"activeData[activeDot].imgData.url\"\n                />\n                <img\n                  [loading]=\"'lazy'\"\n                  class=\"bmb_advertisement-card-image-container-figure-image\"\n                  [srcset]=\"activeData[activeDot].imgData.url\"\n                  [alt]=\"activeData[activeDot].imgData.alt\"\n                />\n              </picture>\n            </figure>\n          </div>\n          <div\n            [ngClass]=\"{\n              'bmb_advertisement-card-content-description-hide': !expanded,\n            }\"\n            class=\"bmb_advertisement-card-content-description\"\n          >\n            <div class=\"bmb_advertisement-card-content-description-title\">\n              <h1>{{ activeData[activeDot].content.title }}</h1>\n            </div>\n            <div class=\"bmb_advertisement-card-content-description-text\">\n              <p>{{ activeData[activeDot].content.description }}</p>\n            </div>\n            <div class=\"bmb_advertisement-card-content-description-btn\">\n              <a [href]=\"activeData[activeDot].content.linkBtn\" target=\"_blank\">\n                <button\n                  class=\"bmb_advertisement-card-content-description-btn-action\"\n                  bmbButton\n                  appearance=\"primary\"\n                  size=\"small\"\n                >\n                  {{ activeData[activeDot].content.labelBtn }}\n                </button>\n              </a>\n            </div>\n          </div>\n        </div>\n        <div class=\"bmb_advertisement-card-content-paginator\">\n          <bmb-dot-paginator\n            [activeDotIndex]=\"activeDot\"\n            [totalDots]=\"activeData.length\"\n            (onDotPress)=\"onDotPress($event)\"\n          />\n        </div>\n      }\n    }\n  </div>\n</section>\n"
     },
     {
       "name": "BmbBadgeComponent",
@@ -6006,7 +6006,7 @@
     },
     {
       "name": "BmbChatBarComponent",
-      "id": "component-BmbChatBarComponent-f75ce9b307a3bb9647cd08944cfb93442dc7768a85834cfb083ce84a3447ea0c06625c3f068d30b1df7476310261e176eefc45aa380cbdd2dc42ddec6d2a2a54",
+      "id": "component-BmbChatBarComponent-125ac3cb1d461089f0b9f80ac39f5411a54f000e25771d7802c72baff3e88ebcf5ccb7547a90a014b5f44428967bf762c963bf8b5d79d179a08463870aa10021",
       "file": "projects/ds-ng/src/lib/components/bmb-chat-bar/bmb-chat-bar.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": ["ViewEncapsulation.None"],
@@ -6032,7 +6032,7 @@
         },
         {
           "name": "defaultBot",
-          "defaultValue": "{\r\n    name: 'TecGPT',\r\n    icon: '/assets/images/bot-icons/bot.png',\r\n  }",
+          "defaultValue": "{\n    name: 'TecGPT',\n    icon: '/assets/images/bot-icons/bot.png',\n  }",
           "deprecated": false,
           "deprecationMessage": "",
           "line": 30,
@@ -6180,13 +6180,13 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import {\r\n  ChangeDetectionStrategy,\r\n  Component,\r\n  EventEmitter,\r\n  Input,\r\n  Output,\r\n  ViewEncapsulation,\r\n} from '@angular/core';\r\nimport { IBotType } from './types';\r\nimport { defaultBotList } from './bot_list';\r\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\r\nimport { FormControl, ReactiveFormsModule } from '@angular/forms';\r\nimport { CommonModule } from '@angular/common';\r\n\r\nexport { defaultBotList } from './bot_list';\r\nexport { IBotType } from './types';\r\n\r\n@Component({\r\n  selector: 'bmb-chat-bar',\r\n  standalone: true,\r\n  imports: [BmbIconComponent, ReactiveFormsModule, CommonModule],\r\n  templateUrl: './bmb-chat-bar.component.html',\r\n  styleUrl: './bmb-chat-bar.component.scss',\r\n  encapsulation: ViewEncapsulation.None,\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class BmbChatBarComponent {\r\n  @Input() placeholder: string = '¿Qué deseas encontrar hoy?';\r\n  @Input() botList: IBotType[] = defaultBotList;\r\n  @Input() defaultBot: IBotType = {\r\n    name: 'TecGPT',\r\n    icon: '/assets/images/bot-icons/bot.png',\r\n  };\r\n  @Input() isLoading: boolean = false;\r\n\r\n  @Output() onSendMessage: EventEmitter<string> = new EventEmitter<string>();\r\n  @Output() onBotChange: EventEmitter<IBotType> = new EventEmitter<IBotType>();\r\n\r\n  control = new FormControl();\r\n  isDialogOpen = false;\r\n  currentBot: IBotType = this.defaultBot;\r\n\r\n  handleSend() {\r\n    this.onSendMessage.emit(this.control.value);\r\n    this.control.reset();\r\n  }\r\n\r\n  handleChangeBot(bot: IBotType) {\r\n    this.currentBot = bot;\r\n    this.isDialogOpen = false;\r\n    this.onBotChange.emit(bot);\r\n  }\r\n\r\n  handleDialog() {\r\n    this.isDialogOpen = !this.isDialogOpen;\r\n  }\r\n}\r\n",
+      "sourceCode": "import {\n  ChangeDetectionStrategy,\n  Component,\n  EventEmitter,\n  Input,\n  Output,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { IBotType } from './types';\nimport { defaultBotList } from './bot_list';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\nimport { FormControl, ReactiveFormsModule } from '@angular/forms';\nimport { CommonModule } from '@angular/common';\n\nexport { defaultBotList } from './bot_list';\nexport { IBotType } from './types';\n\n@Component({\n  selector: 'bmb-chat-bar',\n  standalone: true,\n  imports: [BmbIconComponent, ReactiveFormsModule, CommonModule],\n  templateUrl: './bmb-chat-bar.component.html',\n  styleUrl: './bmb-chat-bar.component.scss',\n  encapsulation: ViewEncapsulation.None,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbChatBarComponent {\n  @Input() placeholder: string = '¿Qué deseas encontrar hoy?';\n  @Input() botList: IBotType[] = defaultBotList;\n  @Input() defaultBot: IBotType = {\n    name: 'TecGPT',\n    icon: '/assets/images/bot-icons/bot.png',\n  };\n  @Input() isLoading: boolean = false;\n\n  @Output() onSendMessage: EventEmitter<string> = new EventEmitter<string>();\n  @Output() onBotChange: EventEmitter<IBotType> = new EventEmitter<IBotType>();\n\n  control = new FormControl();\n  isDialogOpen = false;\n  currentBot: IBotType = this.defaultBot;\n\n  handleSend() {\n    this.onSendMessage.emit(this.control.value);\n    this.control.reset();\n  }\n\n  handleChangeBot(bot: IBotType) {\n    this.currentBot = bot;\n    this.isDialogOpen = false;\n    this.onBotChange.emit(bot);\n  }\n\n  handleDialog() {\n    this.isDialogOpen = !this.isDialogOpen;\n  }\n}\n",
       "styleUrl": "./bmb-chat-bar.component.scss",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
       "extends": [],
-      "templateData": "<section class=\"bmb_chat-bar\">\r\n  <div class=\"bmb_chat-bar-container\">\r\n    <button class=\"bmb_chat-bar-bot\" (click)=\"handleDialog()\">\r\n      <figure class=\"bmb_chat-bar-bot-picture\">\r\n        <img\r\n          class=\"bmb_chat-bar-bot-picture-image\"\r\n          [src]=\"currentBot.icon\"\r\n          [alt]=\"currentBot.name\"\r\n        />\r\n      </figure>\r\n    </button>\r\n    <input\r\n      id=\"bmbChatBarBot\"\r\n      name=\"bmbChatBarBot\"\r\n      class=\"bmb_chat-bar-input\"\r\n      type=\"text\"\r\n      [placeholder]=\"placeholder\"\r\n      [formControl]=\"control\"\r\n    />\r\n    <button\r\n      (click)=\"handleSend()\"\r\n      class=\"bmb_chat-bar-send\"\r\n      [disabled]=\"!control.value || isLoading\"\r\n    >\r\n      <bmb-icon\r\n        [ngClass]=\"{ 'bmb_chat-bar-send-animated': isLoading }\"\r\n        [icon]=\"isLoading ? 'progress_activity' : 'send'\"\r\n      />\r\n    </button>\r\n  </div>\r\n  <div\r\n    class=\"bmb_chat-bar-dialog\"\r\n    [ngClass]=\"{ 'bmb_chat-bar-dialog-active': isDialogOpen }\"\r\n  >\r\n    <ul class=\"bmb_chat-bar-dialog-list\">\r\n      @if (isDialogOpen) {\r\n        @for (bot of botList; track $index) {\r\n          <li class=\"bmb_chat-bar-dialog-option\">\r\n            <button\r\n              (click)=\"handleChangeBot(bot)\"\r\n              class=\"bmb_chat-bar-dialog-button\"\r\n            >\r\n              <img\r\n                class=\"bmb_chat-bar-dialog-image\"\r\n                [src]=\"bot.icon\"\r\n                [alt]=\"bot.name\"\r\n              />\r\n            </button>\r\n          </li>\r\n        }\r\n      }\r\n    </ul>\r\n  </div>\r\n</section>\r\n"
+      "templateData": "<section class=\"bmb_chat-bar\">\n  <div class=\"bmb_chat-bar-container\">\n    <button class=\"bmb_chat-bar-bot\" (click)=\"handleDialog()\">\n      <figure class=\"bmb_chat-bar-bot-picture\">\n        <img\n          class=\"bmb_chat-bar-bot-picture-image\"\n          [src]=\"currentBot.icon\"\n          [alt]=\"currentBot.name\"\n        />\n      </figure>\n    </button>\n    <input\n      id=\"bmbChatBarBot\"\n      name=\"bmbChatBarBot\"\n      class=\"bmb_chat-bar-input\"\n      type=\"text\"\n      [placeholder]=\"placeholder\"\n      [formControl]=\"control\"\n    />\n    <button\n      (click)=\"handleSend()\"\n      class=\"bmb_chat-bar-send\"\n      [disabled]=\"!control.value || isLoading\"\n    >\n      <bmb-icon\n        [ngClass]=\"{ 'bmb_chat-bar-send-animated': isLoading }\"\n        [icon]=\"isLoading ? 'progress_activity' : 'send'\"\n      />\n    </button>\n  </div>\n  <div\n    class=\"bmb_chat-bar-dialog\"\n    [ngClass]=\"{ 'bmb_chat-bar-dialog-active': isDialogOpen }\"\n  >\n    <ul class=\"bmb_chat-bar-dialog-list\">\n      @if (isDialogOpen) {\n        @for (bot of botList; track $index) {\n          <li class=\"bmb_chat-bar-dialog-option\">\n            <button\n              (click)=\"handleChangeBot(bot)\"\n              class=\"bmb_chat-bar-dialog-button\"\n            >\n              <img\n                class=\"bmb_chat-bar-dialog-image\"\n                [src]=\"bot.icon\"\n                [alt]=\"bot.name\"\n              />\n            </button>\n          </li>\n        }\n      }\n    </ul>\n  </div>\n</section>\n"
     },
     {
       "name": "BmbCheckboxComponent",
@@ -8981,7 +8981,7 @@
     },
     {
       "name": "BmbHomeCardComponent",
-      "id": "component-BmbHomeCardComponent-40f2fe2f70ba0e84ea41845f630ac9d063260d9e15d073b1acd798a27996bde6fe095f0e85d0ed6d0e0f401d3660694c8237dd72fa474ffeacbd4777fd5ff3a8",
+      "id": "component-BmbHomeCardComponent-4913cbe9e03b53ae67994ae3aa6806eb8b5fd9110dc8c2e02ec65b316ace007aa689677502295e9a99f24e75f4090ccaa40c0fe3d9ad5ed3134144fd943f9a2f",
       "file": "projects/ds-ng/src/lib/components/bmb-home-card/bmb-home-card.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": ["ViewEncapsulation.None"],
@@ -9126,17 +9126,17 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import {\r\n  ChangeDetectionStrategy,\r\n  Component,\r\n  EventEmitter,\r\n  Input,\r\n  Output,\r\n  ViewEncapsulation,\r\n} from '@angular/core';\r\nimport { BmbHomeCardHeaderComponent } from './bmb-home-card-header/bmb-home-card-header.component';\r\n\r\n@Component({\r\n  selector: 'bmb-home-card',\r\n  standalone: true,\r\n  imports: [BmbHomeCardHeaderComponent],\r\n  templateUrl: './bmb-home-card.component.html',\r\n  styleUrl: './bmb-home-card.component.scss',\r\n  encapsulation: ViewEncapsulation.None,\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class BmbHomeCardComponent {\r\n  @Input() title: string = '';\r\n  @Input() subtitle: string = '';\r\n  @Input() icon?: string;\r\n  @Input() isMobile?: boolean = false;\r\n\r\n  @Output() onClose: EventEmitter<void> = new EventEmitter<void>();\r\n  @Output() onBack: EventEmitter<void> = new EventEmitter<void>();\r\n\r\n  isExpanded: boolean = false;\r\n\r\n  handleExpandChange(expanded: boolean): void {\r\n    this.isExpanded = expanded;\r\n  }\r\n\r\n  handleClose(): void {\r\n    this.onClose.emit();\r\n  }\r\n\r\n  handleBack(): void {\r\n    this.onBack.emit();\r\n  }\r\n}\r\n",
+      "sourceCode": "import {\n  ChangeDetectionStrategy,\n  Component,\n  EventEmitter,\n  Input,\n  Output,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { BmbHomeCardHeaderComponent } from './bmb-home-card-header/bmb-home-card-header.component';\n\n@Component({\n  selector: 'bmb-home-card',\n  standalone: true,\n  imports: [BmbHomeCardHeaderComponent],\n  templateUrl: './bmb-home-card.component.html',\n  styleUrl: './bmb-home-card.component.scss',\n  encapsulation: ViewEncapsulation.None,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbHomeCardComponent {\n  @Input() title: string = '';\n  @Input() subtitle: string = '';\n  @Input() icon?: string;\n  @Input() isMobile?: boolean = false;\n\n  @Output() onClose: EventEmitter<void> = new EventEmitter<void>();\n  @Output() onBack: EventEmitter<void> = new EventEmitter<void>();\n\n  isExpanded: boolean = false;\n\n  handleExpandChange(expanded: boolean): void {\n    this.isExpanded = expanded;\n  }\n\n  handleClose(): void {\n    this.onClose.emit();\n  }\n\n  handleBack(): void {\n    this.onBack.emit();\n  }\n}\n",
       "styleUrl": "./bmb-home-card.component.scss",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
       "extends": [],
-      "templateData": "<section class=\"bmb_home-card\">\r\n  <bmb-home-card-header\r\n    [title]=\"title\"\r\n    [subtitle]=\"subtitle\"\r\n    [icon]=\"icon\"\r\n    [isMobile]=\"isMobile\"\r\n    [isExpanded]=\"isExpanded\"\r\n    (onExpandChange)=\"handleExpandChange($event)\"\r\n    (onClose)=\"handleClose()\"\r\n    (onBack)=\"handleBack()\"\r\n  />\r\n  <div class=\"bmb_home-card-container\">\r\n    <ng-content />\r\n  </div>\r\n</section>\r\n"
+      "templateData": "<section class=\"bmb_home-card\">\n  <bmb-home-card-header\n    [title]=\"title\"\n    [subtitle]=\"subtitle\"\n    [icon]=\"icon\"\n    [isMobile]=\"isMobile\"\n    [isExpanded]=\"isExpanded\"\n    (onExpandChange)=\"handleExpandChange($event)\"\n    (onClose)=\"handleClose()\"\n    (onBack)=\"handleBack()\"\n  />\n  <div class=\"bmb_home-card-container\">\n    <ng-content />\n  </div>\n</section>\n"
     },
     {
       "name": "BmbHomeCardHeaderComponent",
-      "id": "component-BmbHomeCardHeaderComponent-dc5d189d3a85fc1fe2b0ba3b016187e2152f3abe4b2cbb29da45639186343aa436bd30cc04ca0ac64370a6a95bb0e7aa0b6bf9c5120b49a9715399ddcccff523",
+      "id": "component-BmbHomeCardHeaderComponent-8f2827f70d23e9caacd7ab31a0c035e317db3875212ca6481b6d2372be01226d5054123866a3a6529013b0f190fa3646526c4587530a0bc7814e290e6e07ddf8",
       "file": "projects/ds-ng/src/lib/components/bmb-home-card/bmb-home-card-header/bmb-home-card-header.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": ["ViewEncapsulation.None"],
@@ -9273,13 +9273,13 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import {\r\n  ChangeDetectionStrategy,\r\n  Component,\r\n  EventEmitter,\r\n  Input,\r\n  Output,\r\n  ViewEncapsulation,\r\n} from '@angular/core';\r\nimport { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';\r\nimport { CommonModule } from '@angular/common';\r\n\r\n@Component({\r\n  selector: 'bmb-home-card-header',\r\n  standalone: true,\r\n  imports: [BmbIconComponent, CommonModule],\r\n  templateUrl: './bmb-home-card-header.component.html',\r\n  styleUrl: './bmb-home-card-header.component.scss',\r\n  encapsulation: ViewEncapsulation.None,\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class BmbHomeCardHeaderComponent {\r\n  @Input() title: string = '';\r\n  @Input() subtitle: string = '';\r\n  @Input() icon?: string;\r\n  @Input() isMobile?: boolean = false;\r\n  @Input() isExpanded: boolean = false;\r\n\r\n  @Output() onExpandChange: EventEmitter<boolean> = new EventEmitter<boolean>();\r\n  @Output() onClose: EventEmitter<void> = new EventEmitter<void>();\r\n  @Output() onBack: EventEmitter<void> = new EventEmitter<void>();\r\n\r\n  getIconName(): string {\r\n    if (this.isMobile) return 'close';\r\n    if (this.isExpanded) return 'close_fullscreen';\r\n\r\n    return 'fit_screen';\r\n  }\r\n\r\n  handleExpandChange(): void {\r\n    if (this.isMobile) this.onClose.emit();\r\n    else this.onExpandChange.emit(!this.isExpanded);\r\n  }\r\n\r\n  handleBack(): void {\r\n    this.onBack.emit();\r\n  }\r\n}\r\n",
+      "sourceCode": "import {\n  ChangeDetectionStrategy,\n  Component,\n  EventEmitter,\n  Input,\n  Output,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';\nimport { CommonModule } from '@angular/common';\n\n@Component({\n  selector: 'bmb-home-card-header',\n  standalone: true,\n  imports: [BmbIconComponent, CommonModule],\n  templateUrl: './bmb-home-card-header.component.html',\n  styleUrl: './bmb-home-card-header.component.scss',\n  encapsulation: ViewEncapsulation.None,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbHomeCardHeaderComponent {\n  @Input() title: string = '';\n  @Input() subtitle: string = '';\n  @Input() icon?: string;\n  @Input() isMobile?: boolean = false;\n  @Input() isExpanded: boolean = false;\n\n  @Output() onExpandChange: EventEmitter<boolean> = new EventEmitter<boolean>();\n  @Output() onClose: EventEmitter<void> = new EventEmitter<void>();\n  @Output() onBack: EventEmitter<void> = new EventEmitter<void>();\n\n  getIconName(): string {\n    if (this.isMobile) return 'close';\n    if (this.isExpanded) return 'close_fullscreen';\n\n    return 'fit_screen';\n  }\n\n  handleExpandChange(): void {\n    if (this.isMobile) this.onClose.emit();\n    else this.onExpandChange.emit(!this.isExpanded);\n  }\n\n  handleBack(): void {\n    this.onBack.emit();\n  }\n}\n",
       "styleUrl": "./bmb-home-card-header.component.scss",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
       "extends": [],
-      "templateData": "<header class=\"bmb_home-card-header\">\r\n  @if (isExpanded) {\r\n    <button class=\"bmb_home-card-header-button_back\" (click)=\"handleBack()\">\r\n      <bmb-icon icon=\"chevron_left\" />\r\n    </button>\r\n  }\r\n  @if (icon && !isMobile) {\r\n    <bmb-icon class=\"bmb_home-card-header-icon\" [icon]=\"icon\" />\r\n  }\r\n  <div class=\"bmb_home-card-header-align_title\">\r\n    <h1 class=\"bmb_home-card-header-title\">{{ title }}</h1>\r\n    @if (isExpanded) {\r\n      <h2 class=\"bmb_home-card-header-subTitle\">{{ subtitle }}</h2>\r\n    }\r\n  </div>\r\n  <button\r\n    class=\"bmb_home-card-header-button\"\r\n    [ngClass]=\"{ 'bmb_home-card-header-button-mobile': isMobile }\"\r\n    (click)=\"handleExpandChange()\"\r\n  >\r\n    <bmb-icon [icon]=\"getIconName()\" />\r\n  </button>\r\n</header>\r\n"
+      "templateData": "<header class=\"bmb_home-card-header\">\n  @if (isExpanded) {\n    <button class=\"bmb_home-card-header-button_back\" (click)=\"handleBack()\">\n      <bmb-icon icon=\"chevron_left\" />\n    </button>\n  }\n  @if (icon && !isMobile) {\n    <bmb-icon class=\"bmb_home-card-header-icon\" [icon]=\"icon\" />\n  }\n  <div class=\"bmb_home-card-header-align_title\">\n    <h1 class=\"bmb_home-card-header-title\">{{ title }}</h1>\n    @if (isExpanded) {\n      <h2 class=\"bmb_home-card-header-subTitle\">{{ subtitle }}</h2>\n    }\n  </div>\n  <button\n    class=\"bmb_home-card-header-button\"\n    [ngClass]=\"{ 'bmb_home-card-header-button-mobile': isMobile }\"\n    (click)=\"handleExpandChange()\"\n  >\n    <bmb-icon [icon]=\"getIconName()\" />\n  </button>\n</header>\n"
     },
     {
       "name": "BmbHomeSectionComponent",
@@ -9591,7 +9591,7 @@
     },
     {
       "name": "BmbInputComponent",
-      "id": "component-BmbInputComponent-1124661deaa98501afb6dfd1af64c486f425c90ed7d4c08af5fd805353a217aac916b41ef959873dcc02cdb41ca24da0e8be3880bd928a432113e1753920c065",
+      "id": "component-BmbInputComponent-04f721bd0bfa0e1972817545285637ee4c7fd23b183f4443a67752ab6dab87014c44a8321ae01de6d185cc4024b26f3676d947b15cbb2ba7e45f3e8a930fadd0",
       "file": "projects/ds-ng/src/lib/components/bmb-input/bmb-input.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": ["ViewEncapsulation.None"],
@@ -9823,7 +9823,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import {\r\n  Component,\r\n  Input,\r\n  OnInit,\r\n  ChangeDetectorRef,\r\n  ViewEncapsulation,\r\n  ChangeDetectionStrategy,\r\n  Output,\r\n  EventEmitter,\r\n} from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';\r\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\r\n\r\n@Component({\r\n  selector: 'bmb-input',\r\n  styleUrls: ['./bmb-input.component.scss'],\r\n  templateUrl: './bmb-input.component.html',\r\n  standalone: true,\r\n  imports: [CommonModule, BmbIconComponent, ReactiveFormsModule],\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n  encapsulation: ViewEncapsulation.None,\r\n})\r\nexport class BmbInputComponent implements OnInit {\r\n  @Input() label: string = '';\r\n  @Input() placeholder: string = '';\r\n  @Input() icon: string = '';\r\n  @Input() errorMessage: string = '';\r\n  @Input() helperMessage: string = '';\r\n  @Input() appearance: string = 'normal';\r\n  @Input() disabled: boolean = false;\r\n  @Input() isRequired: boolean = false;\r\n  @Input() showError: boolean = false;\r\n  @Input() control: FormControl = new FormControl();\r\n  @Input() name: string = '';\r\n  @Input() spellcheck: boolean = false;\r\n  @Input() maxlength!: number;\r\n  @Input() minlength!: number;\r\n  @Input() pattern!: string;\r\n  @Input() size!: number;\r\n\r\n  @Output() isFocus: EventEmitter<boolean> = new EventEmitter<boolean>();\r\n\r\n  constructor(private cdr: ChangeDetectorRef) {}\r\n\r\n  ngOnInit(): void {\r\n    if (!this.control) {\r\n      this.control = new FormControl();\r\n    }\r\n\r\n    if (this.isRequired) {\r\n      this.control.addValidators(Validators.required);\r\n    }\r\n\r\n    // else {\r\n    //   this.control.clearValidators();\r\n    // }\r\n\r\n    this.control.updateValueAndValidity();\r\n\r\n    this.control.valueChanges.subscribe(() => {\r\n      this.updateErrorState();\r\n      this.cdr.markForCheck();\r\n    });\r\n  }\r\n\r\n  private updateErrorState(): void {\r\n    this.showError =\r\n      this.isRequired &&\r\n      this.control.invalid &&\r\n      (this.control.touched || this.control.dirty);\r\n  }\r\n\r\n  onFocus() {\r\n    this.isFocus.emit(true);\r\n  }\r\n\r\n  onBlur() {\r\n    this.isFocus.emit(false);\r\n  }\r\n\r\n  get inputClasses(): { [key: string]: boolean } {\r\n    return {\r\n      ['bmb_field-input-' + this.appearance]: true,\r\n      'bmb_field-input-error': this.shouldShowError,\r\n      disabled: this.disabled,\r\n    };\r\n  }\r\n\r\n  get shouldShowError(): boolean {\r\n    return this.showError;\r\n  }\r\n}\r\n",
+      "sourceCode": "import {\n  Component,\n  Input,\n  OnInit,\n  ChangeDetectorRef,\n  ViewEncapsulation,\n  ChangeDetectionStrategy,\n  Output,\n  EventEmitter,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\n\n@Component({\n  selector: 'bmb-input',\n  styleUrls: ['./bmb-input.component.scss'],\n  templateUrl: './bmb-input.component.html',\n  standalone: true,\n  imports: [CommonModule, BmbIconComponent, ReactiveFormsModule],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbInputComponent implements OnInit {\n  @Input() label: string = '';\n  @Input() placeholder: string = '';\n  @Input() icon: string = '';\n  @Input() errorMessage: string = '';\n  @Input() helperMessage: string = '';\n  @Input() appearance: string = 'normal';\n  @Input() disabled: boolean = false;\n  @Input() isRequired: boolean = false;\n  @Input() showError: boolean = false;\n  @Input() control: FormControl = new FormControl();\n  @Input() name: string = '';\n  @Input() spellcheck: boolean = false;\n  @Input() maxlength!: number;\n  @Input() minlength!: number;\n  @Input() pattern!: string;\n  @Input() size!: number;\n\n  @Output() isFocus: EventEmitter<boolean> = new EventEmitter<boolean>();\n\n  constructor(private cdr: ChangeDetectorRef) {}\n\n  ngOnInit(): void {\n    if (!this.control) {\n      this.control = new FormControl();\n    }\n\n    if (this.isRequired) {\n      this.control.addValidators(Validators.required);\n    }\n\n    // else {\n    //   this.control.clearValidators();\n    // }\n\n    this.control.updateValueAndValidity();\n\n    this.control.valueChanges.subscribe(() => {\n      this.updateErrorState();\n      this.cdr.markForCheck();\n    });\n  }\n\n  private updateErrorState(): void {\n    this.showError =\n      this.isRequired &&\n      this.control.invalid &&\n      (this.control.touched || this.control.dirty);\n  }\n\n  onFocus() {\n    this.isFocus.emit(true);\n  }\n\n  onBlur() {\n    this.isFocus.emit(false);\n  }\n\n  get inputClasses(): { [key: string]: boolean } {\n    return {\n      ['bmb_field-input-' + this.appearance]: true,\n      'bmb_field-input-error': this.shouldShowError,\n      disabled: this.disabled,\n    };\n  }\n\n  get shouldShowError(): boolean {\n    return this.showError;\n  }\n}\n",
       "assetsDirs": [],
       "styleUrlsData": [
         {
@@ -9880,7 +9880,7 @@
           }
         }
       },
-      "templateData": "<div class=\"bmb_field\" [ngClass]=\"{ disabled: disabled }\">\r\n  <label [for]=\"name\" class=\"bmb_field-label\" *ngIf=\"label\">\r\n    {{ label }}\r\n    <small *ngIf=\"isRequired\" class=\"bmb_field-label-required\">*</small>\r\n  </label>\r\n  <div class=\"bmb_field-wrapper\">\r\n    <bmb-icon\r\n      *ngIf=\"icon\"\r\n      [icon]=\"icon\"\r\n      class=\"bmb_field-icon\"\r\n      [ngClass]=\"'bmb_field-icon-' + appearance\"\r\n    ></bmb-icon>\r\n    <input\r\n      type=\"text\"\r\n      class=\"bmb_field-input\"\r\n      [ngClass]=\"inputClasses\"\r\n      [required]=\"isRequired\"\r\n      [disabled]=\"disabled\"\r\n      [placeholder]=\"placeholder ? placeholder : ''\"\r\n      [formControl]=\"control\"\r\n      (focus)=\"onFocus()\"\r\n      (blur)=\"onBlur()\"\r\n      [name]=\"name\"\r\n      [id]=\"name\"\r\n      [spellcheck]=\"spellcheck\"\r\n      [maxlength]=\"maxlength\"\r\n      [minlength]=\"minlength\"\r\n      [pattern]=\"pattern\"\r\n    />\r\n  </div>\r\n  <p class=\"bmb_field-helper\" *ngIf=\"helperMessage && !shouldShowError\">\r\n    {{ helperMessage }}\r\n  </p>\r\n  <p class=\"bmb_field-error\" *ngIf=\"errorMessage && shouldShowError\">\r\n    {{ errorMessage }}\r\n  </p>\r\n</div>\r\n"
+      "templateData": "<div class=\"bmb_field\" [ngClass]=\"{ disabled: disabled }\">\n  <label [for]=\"name\" class=\"bmb_field-label\" *ngIf=\"label\">\n    {{ label }}\n    <small *ngIf=\"isRequired\" class=\"bmb_field-label-required\">*</small>\n  </label>\n  <div class=\"bmb_field-wrapper\">\n    <bmb-icon\n      *ngIf=\"icon\"\n      [icon]=\"icon\"\n      class=\"bmb_field-icon\"\n      [ngClass]=\"'bmb_field-icon-' + appearance\"\n    ></bmb-icon>\n    <input\n      type=\"text\"\n      class=\"bmb_field-input\"\n      [ngClass]=\"inputClasses\"\n      [required]=\"isRequired\"\n      [disabled]=\"disabled\"\n      [placeholder]=\"placeholder ? placeholder : ''\"\n      [formControl]=\"control\"\n      (focus)=\"onFocus()\"\n      (blur)=\"onBlur()\"\n      [name]=\"name\"\n      [id]=\"name\"\n      [spellcheck]=\"spellcheck\"\n      [maxlength]=\"maxlength\"\n      [minlength]=\"minlength\"\n      [pattern]=\"pattern\"\n    />\n  </div>\n  <p class=\"bmb_field-helper\" *ngIf=\"helperMessage && !shouldShowError\">\n    {{ helperMessage }}\n  </p>\n  <p class=\"bmb_field-error\" *ngIf=\"errorMessage && shouldShowError\">\n    {{ errorMessage }}\n  </p>\n</div>\n"
     },
     {
       "name": "BmbInputPhoneNumberComponent",
@@ -11031,6 +11031,203 @@
       "extends": [],
       "implements": ["OnInit"],
       "templateData": "<div\n  class=\"bmb_modal-content\"\n  [ngClass]=\"{\n    'bmb_modal-size-small': this.modalData.size == 'small',\n    'bmb_modal-size-medium': this.modalData.size == 'medium',\n    'bmb_modal-size-large': this.modalData.size == 'large',\n  }\"\n>\n  <div class=\"bmb_modal-content-wrapper\">\n    <header class=\"bmb_modal-header\">\n      @if (modalData.type == \"alert\") {\n        <div class=\"bmb_modal-header-icon\">\n          <img [src]=\"this.svgUrl\" alt=\"\" />\n        </div>\n      }\n      <div class=\"bmb_modal-header-text\">\n        <h1 class=\"bmb_modal-header-text-title\">{{ modalData.title }}</h1>\n        @if (modalData.subtitle) {\n          <h3 class=\"bmb_modal-header-text-subtitle\">\n            {{ modalData.subtitle }}\n          </h3>\n        }\n      </div>\n      <div class=\"bmb_modal-header-close\">\n        <bmb-icon\n          class=\"bmb_modal-header-close-icon\"\n          [icon]=\"'close'\"\n          (click)=\"closeModal()\"\n          onkeypress=\"\"\n        />\n      </div>\n    </header>\n    <section class=\"bmb_modal-body\">\n      @if (!isTemplate) {\n        <div\n          class=\"bmb_modal-body-description\"\n          [ngClass]=\"{ 'bmb_modal-body-scrollable': modalData.scrollable }\"\n        >\n          <p class=\"bmb_modal-body-description-text\">{{ modalData.content }}</p>\n        </div>\n      } @else {\n        <ng-container *ngTemplateOutlet=\"modalTemplate\"></ng-container>\n      }\n    </section>\n    @if (this.modalData.type !== \"informative\") {\n      <footer id=\"modal-footer\" class=\"bmb_modal-footer\">\n        @if (this.modalData.secondaryBtnLabel) {\n          <button\n            bmbButton\n            appearance=\"secondary-filled\"\n            class=\"bmb_modal-btn bmb_modal-footer-btn bmb_modal-btn-secondary-action\"\n            (click)=\"this.dialogRef.close(false)\"\n          >\n            {{ modalData.secondaryBtnLabel }}\n          </button>\n        }\n        <button\n          bmbButton\n          class=\"bmb_modal-btn\"\n          [ngClass]=\"btnColor\"\n          (click)=\"this.dialogRef.close(true)\"\n        >\n          {{ modalData.primaryBtnLabel || \"OK\" }}\n        </button>\n      </footer>\n    }\n  </div>\n</div>\n"
+    },
+    {
+      "name": "BmbNotificationCardComponent",
+      "id": "component-BmbNotificationCardComponent-fb5827f45c324f3a238b33b6c33895235b0e2cf854e4f766be94069a59121e24a9fe293ae586524d874d80fb730e7369cb91dc2ad75ec0634dcee7c449735acc",
+      "file": "projects/ds-ng/src/lib/components/bmb-notification-card/bmb-notification-card.component.ts",
+      "changeDetection": "ChangeDetectionStrategy.OnPush",
+      "encapsulation": ["ViewEncapsulation.None"],
+      "entryComponents": [],
+      "inputs": [],
+      "outputs": [],
+      "providers": [],
+      "selector": "bmb-notification-card",
+      "styleUrls": [],
+      "styles": [],
+      "templateUrl": ["./bmb-notification-card.component.html"],
+      "viewProviders": [],
+      "hostDirectives": [],
+      "inputsClass": [
+        {
+          "name": "data",
+          "defaultValue": "null",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 17,
+          "type": "IBmbNotificationCardData | null",
+          "decorators": []
+        }
+      ],
+      "outputsClass": [],
+      "propertiesClass": [
+        {
+          "name": "activeData",
+          "defaultValue": "[]",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "any",
+          "optional": false,
+          "description": "",
+          "line": 20
+        },
+        {
+          "name": "activeDot",
+          "defaultValue": "0",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "number",
+          "optional": false,
+          "description": "",
+          "line": 22
+        },
+        {
+          "name": "activeTab",
+          "defaultValue": "1",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "number",
+          "optional": false,
+          "description": "",
+          "line": 21
+        },
+        {
+          "name": "expanded",
+          "defaultValue": "false",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "boolean",
+          "optional": false,
+          "description": "",
+          "line": 19
+        }
+      ],
+      "methodsClass": [
+        {
+          "name": "ngOnInit",
+          "args": [],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 25,
+          "deprecated": false,
+          "deprecationMessage": ""
+        },
+        {
+          "name": "onDotPress",
+          "args": [
+            {
+              "name": "event",
+              "type": "any",
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 54,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "jsdoctags": [
+            {
+              "name": "event",
+              "type": "any",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            }
+          ]
+        },
+        {
+          "name": "setActiveTab",
+          "args": [
+            {
+              "name": "tab",
+              "type": "number",
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 32,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "jsdoctags": [
+            {
+              "name": "tab",
+              "type": "number",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            }
+          ]
+        },
+        {
+          "name": "setSize",
+          "args": [
+            {
+              "name": "size",
+              "type": "string",
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 58,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "jsdoctags": [
+            {
+              "name": "size",
+              "type": "string",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            }
+          ]
+        }
+      ],
+      "deprecated": false,
+      "deprecationMessage": "",
+      "hostBindings": [],
+      "hostListeners": [],
+      "standalone": true,
+      "imports": [
+        {
+          "name": "BmbIconComponent",
+          "type": "component"
+        },
+        {
+          "name": "CommonModule",
+          "type": "module"
+        },
+        {
+          "name": "BmbBadgeComponent",
+          "type": "component"
+        }
+      ],
+      "description": "",
+      "rawdescription": "\n",
+      "type": "component",
+      "sourceCode": "import { ChangeDetectionStrategy, Component, Input, OnInit, ViewEncapsulation } from '@angular/core';\r\nimport { BmbBadgeComponent, BmbIconComponent } from 'ds-ng';\r\nimport { IBmbNotificationCardData } from './types';\r\nimport { CommonModule } from '@angular/common';\r\n\r\n@Component({\r\n  selector: 'bmb-notification-card',\r\n  standalone: true,\r\n  imports: [BmbIconComponent, CommonModule, BmbBadgeComponent],\r\n  templateUrl: './bmb-notification-card.component.html',\r\n  styleUrl: './bmb-notification-card.component.scss',\r\n  encapsulation: ViewEncapsulation.None,\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class BmbNotificationCardComponent implements OnInit {\r\n\r\n  @Input() data: IBmbNotificationCardData | null = null\r\n\r\n  expanded: boolean = false;\r\n  activeData: any = [];\r\n  activeTab: number = 1;\r\n  activeDot: number = 0;\r\n\r\n\r\n  ngOnInit(): void {\r\n    this.activeTab = 1;\r\n    if(this.data !== null){\r\n      this.activeData = this.data!.new;\r\n    }\r\n  }\r\n\r\n  setActiveTab(tab: number) {\r\n    this.activeTab = tab;\r\n\r\n    if(this.data !== null){\r\n      switch (tab) {\r\n        case 1:\r\n          this.activeData = this.data!.new;\r\n          break;\r\n        case 2:\r\n          this.activeData = this.data!.all;\r\n          break;\r\n        case 3:\r\n          this.activeData = this.data!.seen;\r\n          break;\r\n  \r\n        default:\r\n          this.activeData = this.data!.new;\r\n          break;\r\n      }\r\n    }\r\n  }\r\n\r\n  onDotPress(event: any) {\r\n    this.activeDot = event;\r\n  }\r\n\r\n  setSize(size: string) {\r\n    this.expanded = size === 'expand' ? true : false;\r\n  }\r\n}\r\n",
+      "styleUrl": "./bmb-notification-card.component.scss",
+      "assetsDirs": [],
+      "styleUrlsData": "",
+      "stylesData": "",
+      "extends": [],
+      "implements": ["OnInit"],
+      "templateData": "<section class=\"bmb_home-notification-card\">\r\n    <div class=\"bmb_home-notification-card-header\">\r\n        <div class=\"bmb_home-notification-card-header-title\">\r\n          <div class=\"bmb_home-notification-card-header-iconbox\">\r\n            <bmb-icon\r\n              class=\"bmb_home-notification-card-header-iconbox-icon\"\r\n              [icon]=\"'notifications'\"\r\n            />\r\n          </div>\r\n          <div class=\"bmb_home-notification-card-header-title-text\">\r\n            <h2>Mis Notificaciones</h2>\r\n          </div>\r\n        </div>\r\n        <div class=\"bmb_home-notification-card-header-trailing\">\r\n          @if (expanded) {\r\n            <bmb-icon\r\n              (click)=\"setSize('collapse')\"\r\n              class=\"bmb_home-notification-card-header-trailing-close\"\r\n              [icon]=\"'close_fullscreen'\"\r\n              onkeypress=\"\"\r\n            />\r\n          } @else {\r\n            <bmb-icon\r\n              (click)=\"setSize('expand')\"\r\n              class=\"bmb_home-notification-card-header-trailing-expand\"\r\n              [icon]=\"'fit_screen'\"\r\n              onkeypress=\"\"\r\n            />\r\n          }\r\n        </div>\r\n      </div>\r\n      <div class=\"bmb_home-notification-card-tabs\">\r\n        <div\r\n          class=\"bmb_home-notification-card-tabs-container\"\r\n          [ngClass]=\"{ 'bmb_home-notification-card-tabs-active': activeTab == 1 }\"\r\n          (click)=\"setActiveTab(1)\"\r\n          onkeypress=\"\"\r\n        >\r\n          <span class=\"bmb_home-notification-card-tabs-container-text\">Nuevos</span>\r\n        </div>\r\n        <div\r\n          class=\"bmb_home-notification-card-tabs-container\"\r\n          [ngClass]=\"{ 'bmb_home-notification-card-tabs-active': activeTab == 2 }\"\r\n          (click)=\"setActiveTab(2)\"\r\n          onkeypress=\"\"\r\n        >\r\n          <span class=\"bmb_home-notification-card-tabs-container-text\">Todos</span>\r\n        </div>\r\n        <div\r\n          class=\"bmb_home-notification-card-tabs-container\"\r\n          [ngClass]=\"{ 'bmb_home-notification-card-tabs-active': activeTab == 3 }\"\r\n          (click)=\"setActiveTab(3)\"\r\n          onkeypress=\"\"\r\n        >\r\n          <span class=\"bmb_home-notification-card-tabs-container-text\">\r\n            Leídos\r\n          </span>\r\n        </div>\r\n      </div>\r\n      <div class=\"bmb_home-notification-card-content\">\r\n        @if(data != null){\r\n            @if(activeData.length == 0){\r\n                <div class=\"bmb_home-notification-card-container\">\r\n                    <h1 class=\"bmb_home-notification-card-container-error\">No hay notificaciones!</h1>\r\n                </div>  \r\n            }@else {\r\n                @for (data of activeData; track $index) {\r\n                    <div class=\"bmb_home-notification-card-container\">\r\n                        <div class=\"bmb_home-notification-card-container-card\">\r\n                            <span class=\"bmb_home-notification-card-container-card-bullet\"> </span>\r\n                            <span class=\"bmb_home-notification-card-container-card-description\">{{data.description}}</span>\r\n                            <span class=\"bmb_home-notification-card-container-card-legend\">Hace: {{data.time}}</span>\r\n                        </div>\r\n                    </div>\r\n                }\r\n            }\r\n        }@else {\r\n            <div class=\"bmb_home-notification-card-container\">\r\n                <h1 class=\"bmb_home-notification-card-container-error\">No hay notificaciones</h1>\r\n            </div>\r\n        }\r\n      </div>\r\n</section>\r\n"
     },
     {
       "name": "BmbOverlayComponent",
@@ -12961,7 +13158,7 @@
     },
     {
       "name": "BmbSkeletonComponent",
-      "id": "component-BmbSkeletonComponent-ee05a80779428abe7171d8ae076cb548ae06c3ca0d9f148c7093d68d837615e8975957c52edb67086a94d82e922a46987e2c415edfad561d6fef1674e8b458bb",
+      "id": "component-BmbSkeletonComponent-9dd2c544077689cd30885ac145d8ce45abb68d9f049d34be4ba15f4dda2ef1973bfacfbfaaa265c96ea94cddec9a285cfc37bd6e91ec31a13b20d45c3d7c707d",
       "file": "projects/ds-ng/src/lib/components/bmb-skeleton/bmb-skeleton.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": ["ViewEncapsulation.None"],
@@ -13003,17 +13200,17 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import {\r\n  Component,\r\n  Input,\r\n  ChangeDetectionStrategy,\r\n  ViewEncapsulation,\r\n} from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\n\r\n@Component({\r\n  selector: 'bmb-skeleton',\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n  styleUrls: ['./bmb-skeleton.component.scss'],\r\n  templateUrl: './bmb-skeleton.component.html',\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n  encapsulation: ViewEncapsulation.None,\r\n})\r\nexport class BmbSkeletonComponent {\r\n  @Input() type: string = '';\r\n}\r\n",
+      "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n@Component({\n  selector: 'bmb-skeleton',\n  standalone: true,\n  imports: [CommonModule],\n  styleUrls: ['./bmb-skeleton.component.scss'],\n  templateUrl: './bmb-skeleton.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbSkeletonComponent {\n  @Input() type: string = '';\n}\n",
       "assetsDirs": [],
       "styleUrlsData": [
         {
-          "data": "@use \"../../../assets/styles/base/rem\" as rem;\r\n\r\n@keyframes skeleton-light {\r\n  0% {\r\n    background-color: RGBA(var(--color-charade-100), 1);\r\n  }\r\n  50% {\r\n    background-color: RGBA(var(--color-charade-200), 1);\r\n  }\r\n  100% {\r\n    background-color: RGBA(var(--color-charade-100), 1);\r\n  }\r\n}\r\n\r\n@keyframes skeleton-dark {\r\n  0% {\r\n    background-color: RGBA(var(--color-charade-700), 1);\r\n  }\r\n  50% {\r\n    background-color: RGBA(var(--color-charade-600), 1);\r\n  }\r\n  100% {\r\n    background-color: RGBA(var(--color-charade-700), 1);\r\n  }\r\n}\r\n\r\n.bmb_skeleton {\r\n  &-circle {\r\n    animation: skeleton-light 1.5s infinite linear;\r\n    background-color: RGBA(var(--color-charade-100), 1);\r\n    border-radius: 100%;\r\n  }\r\n\r\n  &-headline {\r\n    animation: skeleton-light 1.5s infinite linear;\r\n    background-color: RGBA(var(--color-charade-100), 1);\r\n    border-radius: rem.rem_calc(15);\r\n    height: rem.rem_calc(24);\r\n    width: 100%;\r\n  }\r\n\r\n  &-header {\r\n    align-items: center;\r\n    background-color: RGBA(var(--color-charade-50), 1);\r\n    border-radius: rem.rem_calc(0 0 12 12);\r\n    display: flex;\r\n    justify-content: space-between;\r\n    margin-bottom: rem.rem_calc(16);\r\n    padding: rem.rem_calc(16);\r\n\r\n    .bmb_skeleton-circle {\r\n      height: rem.rem_calc(24);\r\n      width: rem.rem_calc(24);\r\n    }\r\n\r\n    .bmb_skeleton-headline {\r\n      width: calc(100% - rem.rem_calc(128));\r\n    }\r\n  }\r\n\r\n  &-stray {\r\n    align-items: center;\r\n    background-color: RGBA(var(--color-charade-50), 1);\r\n    display: flex;\r\n    justify-content: space-between;\r\n    margin-bottom: rem.rem_calc(16);\r\n    padding: rem.rem_calc(16 38);\r\n\r\n    &-box {\r\n      width: calc(100% - rem.rem_calc(150));\r\n    }\r\n\r\n    .bmb_skeleton-circle {\r\n      height: rem.rem_calc(64);\r\n      width: rem.rem_calc(64);\r\n    }\r\n\r\n    .bmb_skeleton-headline {\r\n      &:last-child {\r\n        margin-top: rem.rem_calc(16);\r\n      }\r\n    }\r\n  }\r\n\r\n  &-generic1 {\r\n    background-color: RGBA(var(--color-charade-50), 1);\r\n    border-radius: rem.rem_calc(24);\r\n    margin-bottom: rem.rem_calc(16);\r\n    padding: rem.rem_calc(40 16);\r\n\r\n    .bmb_skeleton-headline {\r\n      margin-bottom: rem.rem_calc(40);\r\n\r\n      &:last-child {\r\n        margin: 0;\r\n      }\r\n    }\r\n  }\r\n\r\n  &-generic2 {\r\n    margin-bottom: rem.rem_calc(16);\r\n    padding: rem.rem_calc(0 16);\r\n\r\n    &-box {\r\n      background-color: RGBA(var(--color-charade-50), 1);\r\n      border-radius: rem.rem_calc(24);\r\n      height: rem.rem_calc(296);\r\n      margin-bottom: rem.rem_calc(33);\r\n    }\r\n\r\n    .bmb_skeleton-headline {\r\n      margin: 0 auto rem.rem_calc(40);\r\n      width: calc(100% - rem.rem_calc(32));\r\n\r\n      &:last-child {\r\n        margin-bottom: 0;\r\n      }\r\n    }\r\n  }\r\n\r\n  &-generic3 {\r\n    margin-bottom: rem.rem_calc(16);\r\n\r\n    &-header {\r\n      background-color: RGBA(var(--color-charade-50), 1);\r\n      border: rem.rem_calc(1) solid RGBA(var(--color-charade-300), 1);\r\n      border-radius: rem.rem_calc(24 24 0 0);\r\n      height: rem.rem_calc(80);\r\n    }\r\n\r\n    &-content {\r\n      background-color: RGBA(var(--color-charade-200), 1);\r\n      border: rem.rem_calc(1) solid RGBA(var(--color-charade-300), 1);\r\n      border-radius: rem.rem_calc(0 0 24 24);\r\n      height: rem.rem_calc(368);\r\n    }\r\n  }\r\n}\r\n\r\n[data-theme=\"dark\"],\r\n.storybook-dark-theme {\r\n  .bmb_skeleton {\r\n    &-circle,\r\n    &-headline {\r\n      animation: skeleton-dark 1.5s infinite linear;\r\n      background-color: RGBA(var(--color-charade-700), 1);\r\n    }\r\n\r\n    &-header,\r\n    &-stray,\r\n    &-generic1 {\r\n      background-color: RGBA(var(--color-charade-800), 1);\r\n    }\r\n\r\n    &-generic2 {\r\n      &-box {\r\n        background-color: RGBA(var(--color-charade-800), 1);\r\n      }\r\n    }\r\n\r\n    &-generic3 {\r\n      &-header {\r\n        background-color: RGBA(var(--color-charade-800), 1);\r\n        border-color: RGBA(var(--color-charade-800), 1);\r\n      }\r\n\r\n      &-content {\r\n        background-color: RGBA(var(--color-charade-950), 1);\r\n        border-color: RGBA(var(--color-charade-800), 1);\r\n      }\r\n    }\r\n  }\r\n}\r\n",
+          "data": "@use \"../../../assets/styles/base/rem\" as rem;\n\n@keyframes skeleton-light {\n  0% {\n    background-color: RGBA(var(--color-charade-100), 1);\n  }\n  50% {\n    background-color: RGBA(var(--color-charade-200), 1);\n  }\n  100% {\n    background-color: RGBA(var(--color-charade-100), 1);\n  }\n}\n\n@keyframes skeleton-dark {\n  0% {\n    background-color: RGBA(var(--color-charade-700), 1);\n  }\n  50% {\n    background-color: RGBA(var(--color-charade-600), 1);\n  }\n  100% {\n    background-color: RGBA(var(--color-charade-700), 1);\n  }\n}\n\n.bmb_skeleton {\n  &-circle {\n    animation: skeleton-light 1.5s infinite linear;\n    background-color: RGBA(var(--color-charade-100), 1);\n    border-radius: 100%;\n  }\n\n  &-headline {\n    animation: skeleton-light 1.5s infinite linear;\n    background-color: RGBA(var(--color-charade-100), 1);\n    border-radius: rem.rem_calc(15);\n    height: rem.rem_calc(24);\n    width: 100%;\n  }\n\n  &-header {\n    align-items: center;\n    background-color: RGBA(var(--color-charade-50), 1);\n    border-radius: rem.rem_calc(0 0 12 12);\n    display: flex;\n    justify-content: space-between;\n    margin-bottom: rem.rem_calc(16);\n    padding: rem.rem_calc(16);\n\n    .bmb_skeleton-circle {\n      height: rem.rem_calc(24);\n      width: rem.rem_calc(24);\n    }\n\n    .bmb_skeleton-headline {\n      width: calc(100% - rem.rem_calc(128));\n    }\n  }\n\n  &-stray {\n    align-items: center;\n    background-color: RGBA(var(--color-charade-50), 1);\n    display: flex;\n    justify-content: space-between;\n    margin-bottom: rem.rem_calc(16);\n    padding: rem.rem_calc(16 38);\n\n    &-box {\n      width: calc(100% - rem.rem_calc(150));\n    }\n\n    .bmb_skeleton-circle {\n      height: rem.rem_calc(64);\n      width: rem.rem_calc(64);\n    }\n\n    .bmb_skeleton-headline {\n      &:last-child {\n        margin-top: rem.rem_calc(16);\n      }\n    }\n  }\n\n  &-generic1 {\n    background-color: RGBA(var(--color-charade-50), 1);\n    border-radius: rem.rem_calc(24);\n    margin-bottom: rem.rem_calc(16);\n    padding: rem.rem_calc(40 16);\n\n    .bmb_skeleton-headline {\n      margin-bottom: rem.rem_calc(40);\n\n      &:last-child {\n        margin: 0;\n      }\n    }\n  }\n\n  &-generic2 {\n    margin-bottom: rem.rem_calc(16);\n    padding: rem.rem_calc(0 16);\n\n    &-box {\n      background-color: RGBA(var(--color-charade-50), 1);\n      border-radius: rem.rem_calc(24);\n      height: rem.rem_calc(296);\n      margin-bottom: rem.rem_calc(33);\n    }\n\n    .bmb_skeleton-headline {\n      margin: 0 auto rem.rem_calc(40);\n      width: calc(100% - rem.rem_calc(32));\n\n      &:last-child {\n        margin-bottom: 0;\n      }\n    }\n  }\n\n  &-generic3 {\n    margin-bottom: rem.rem_calc(16);\n\n    &-header {\n      background-color: RGBA(var(--color-charade-50), 1);\n      border: rem.rem_calc(1) solid RGBA(var(--color-charade-300), 1);\n      border-radius: rem.rem_calc(24 24 0 0);\n      height: rem.rem_calc(80);\n    }\n\n    &-content {\n      background-color: RGBA(var(--color-charade-200), 1);\n      border: rem.rem_calc(1) solid RGBA(var(--color-charade-300), 1);\n      border-radius: rem.rem_calc(0 0 24 24);\n      height: rem.rem_calc(368);\n    }\n  }\n}\n\n[data-theme=\"dark\"],\n.storybook-dark-theme {\n  .bmb_skeleton {\n    &-circle,\n    &-headline {\n      animation: skeleton-dark 1.5s infinite linear;\n      background-color: RGBA(var(--color-charade-700), 1);\n    }\n\n    &-header,\n    &-stray,\n    &-generic1 {\n      background-color: RGBA(var(--color-charade-800), 1);\n    }\n\n    &-generic2 {\n      &-box {\n        background-color: RGBA(var(--color-charade-800), 1);\n      }\n    }\n\n    &-generic3 {\n      &-header {\n        background-color: RGBA(var(--color-charade-800), 1);\n        border-color: RGBA(var(--color-charade-800), 1);\n      }\n\n      &-content {\n        background-color: RGBA(var(--color-charade-950), 1);\n        border-color: RGBA(var(--color-charade-800), 1);\n      }\n    }\n  }\n}\n",
           "styleUrl": "./bmb-skeleton.component.scss"
         }
       ],
       "stylesData": "",
       "extends": [],
-      "templateData": "<div class=\"bmb_skeleton\">\r\n  @switch (type) {\r\n    @case (\"stray\") {\r\n      <div class=\"bmb_skeleton-stray\">\r\n        <div class=\"bmb_skeleton-circle\"></div>\r\n        <div class=\"bmb_skeleton-stray-box\">\r\n          <div class=\"bmb_skeleton-headline\"></div>\r\n          <div class=\"bmb_skeleton-headline\"></div>\r\n        </div>\r\n      </div>\r\n    }\r\n    @case (\"generic1\") {\r\n      <div class=\"bmb_skeleton-generic1\">\r\n        <div class=\"bmb_skeleton-headline\"></div>\r\n        <div class=\"bmb_skeleton-headline\"></div>\r\n        <div class=\"bmb_skeleton-headline\"></div>\r\n        <div class=\"bmb_skeleton-headline\"></div>\r\n      </div>\r\n    }\r\n    @case (\"generic2\") {\r\n      <div class=\"bmb_skeleton-generic2\">\r\n        <div class=\"bmb_skeleton-generic2-box\"></div>\r\n        <div class=\"bmb_skeleton-headline\"></div>\r\n        <div class=\"bmb_skeleton-headline\"></div>\r\n      </div>\r\n    }\r\n    @case (\"generic3\") {\r\n      <div class=\"bmb_skeleton-generic3\">\r\n        <div class=\"bmb_skeleton-generic3-header\"></div>\r\n        <div class=\"bmb_skeleton-generic3-content\"></div>\r\n      </div>\r\n    }\r\n    @default {\r\n      <div class=\"bmb_skeleton-header\">\r\n        <div class=\"bmb_skeleton-circle\"></div>\r\n        <div class=\"bmb_skeleton-headline\"></div>\r\n        <div class=\"bmb_skeleton-circle\"></div>\r\n      </div>\r\n    }\r\n  }\r\n</div>\r\n"
+      "templateData": "<div class=\"bmb_skeleton\">\n  @switch (type) {\n    @case (\"stray\") {\n      <div class=\"bmb_skeleton-stray\">\n        <div class=\"bmb_skeleton-circle\"></div>\n        <div class=\"bmb_skeleton-stray-box\">\n          <div class=\"bmb_skeleton-headline\"></div>\n          <div class=\"bmb_skeleton-headline\"></div>\n        </div>\n      </div>\n    }\n    @case (\"generic1\") {\n      <div class=\"bmb_skeleton-generic1\">\n        <div class=\"bmb_skeleton-headline\"></div>\n        <div class=\"bmb_skeleton-headline\"></div>\n        <div class=\"bmb_skeleton-headline\"></div>\n        <div class=\"bmb_skeleton-headline\"></div>\n      </div>\n    }\n    @case (\"generic2\") {\n      <div class=\"bmb_skeleton-generic2\">\n        <div class=\"bmb_skeleton-generic2-box\"></div>\n        <div class=\"bmb_skeleton-headline\"></div>\n        <div class=\"bmb_skeleton-headline\"></div>\n      </div>\n    }\n    @case (\"generic3\") {\n      <div class=\"bmb_skeleton-generic3\">\n        <div class=\"bmb_skeleton-generic3-header\"></div>\n        <div class=\"bmb_skeleton-generic3-content\"></div>\n      </div>\n    }\n    @default {\n      <div class=\"bmb_skeleton-header\">\n        <div class=\"bmb_skeleton-circle\"></div>\n        <div class=\"bmb_skeleton-headline\"></div>\n        <div class=\"bmb_skeleton-circle\"></div>\n      </div>\n    }\n  }\n</div>\n"
     },
     {
       "name": "BmbStatCounterComponent",
@@ -13130,7 +13327,7 @@
     },
     {
       "name": "BmbStepProgressBarComponent",
-      "id": "component-BmbStepProgressBarComponent-ab8389adef32a5c1a74d64547e2cf2a40d2c59b38885e1ae1f533f3bbf597822610f5dda259a75a63890f164cf1d5edc39d502e1eba6ff726a6202ae56dc2587",
+      "id": "component-BmbStepProgressBarComponent-33c6a88b7c6a1a2fd0bb2cfb368e7f39ba3fbd944dd5170dae226a9f26d924ffe2fd1830f6de14c64736c35b8342bec629484847d27f649fa3fc9a03babcf367",
       "file": "projects/ds-ng/src/lib/components/bmb-step-progress-bar/bmb-step-progress-bar.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": ["ViewEncapsulation.None"],
@@ -13287,13 +13484,13 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import {\r\n  Component,\r\n  Input,\r\n  Output,\r\n  EventEmitter,\r\n  ViewEncapsulation,\r\n  ChangeDetectionStrategy,\r\n} from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\r\n\r\n@Component({\r\n  selector: 'bmb-step-progress-bar',\r\n  standalone: true,\r\n  imports: [CommonModule, BmbIconComponent],\r\n  templateUrl: './bmb-step-progress-bar.component.html',\r\n  styleUrl: './bmb-step-progress-bar.component.scss',\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n  encapsulation: ViewEncapsulation.None,\r\n})\r\nexport class BmbStepProgressBarComponent {\r\n  @Input() activeStep: number = 0;\r\n  @Input() totalSteps?: number = 0;\r\n  @Input() size?: 'normal' | 'small' = 'normal';\r\n  @Input() freeze: boolean = false;\r\n  @Input() type: 'horizontal' | 'vertical' = 'vertical'\r\n  @Input() labelSteps: string[] = [];\r\n  @Input() labelComplete: string = 'Completo'\r\n  @Input() labelIncomplete: string = 'Pendiente'\r\n\r\n  @Output() onStepPress: EventEmitter<number> = new EventEmitter<number>();\r\n\r\n  getStepsArray(): number[] {\r\n    return new Array(this.totalSteps || 0).fill(0).map((_, i) => i);\r\n  }\r\n\r\n  onStepClicked(index: number): void {\r\n    if (!this.freeze) {\r\n      this.activeStep = index;\r\n      this.onStepPress.emit(index);\r\n    }\r\n  }\r\n}\r\n",
+      "sourceCode": "import {\r\n  Component,\r\n  Input,\r\n  Output,\r\n  EventEmitter,\r\n  ViewEncapsulation,\r\n  ChangeDetectionStrategy,\r\n} from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\r\n\r\n@Component({\r\n  selector: 'bmb-step-progress-bar',\r\n  standalone: true,\r\n  imports: [CommonModule, BmbIconComponent],\r\n  templateUrl: './bmb-step-progress-bar.component.html',\r\n  styleUrl: './bmb-step-progress-bar.component.scss',\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n  encapsulation: ViewEncapsulation.None,\r\n})\r\nexport class BmbStepProgressBarComponent {\r\n  @Input() activeStep: number = 0;\r\n  @Input() totalSteps?: number = 0;\r\n  @Input() size?: 'normal' | 'small' = 'normal';\r\n  @Input() freeze: boolean = false;\r\n  @Input() type: 'horizontal' | 'vertical' = 'vertical';\r\n  @Input() labelSteps: string[] = [];\r\n  @Input() labelComplete: string = 'Completo';\r\n  @Input() labelIncomplete: string = 'Pendiente';\r\n\r\n  @Output() onStepPress: EventEmitter<number> = new EventEmitter<number>();\r\n\r\n  getStepsArray(): number[] {\r\n    return new Array(this.totalSteps || 0).fill(0).map((_, i) => i);\r\n  }\r\n\r\n  onStepClicked(index: number): void {\r\n    if (!this.freeze) {\r\n      this.activeStep = index;\r\n      this.onStepPress.emit(index);\r\n    }\r\n  }\r\n}\r\n",
       "styleUrl": "./bmb-step-progress-bar.component.scss",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
       "extends": [],
-      "templateData": "<div class=\"bmb_step-progress-bar\" [ngClass]=\"{'bmb_step-progress-bar-vertical': type == 'vertical'}\">\r\n  @if(type == 'horizontal'){\r\n    <div\r\n    class=\"bmb_step-progress-bar-item\"\r\n    *ngFor=\"let i of getStepsArray()\"\r\n    [attr.data-bs-slide-to]=\"i\"\r\n    [ngClass]=\"{ completed: activeStep > i }\"\r\n    (click)=\"onStepClicked(i)\"\r\n    onkeypress=\"\"\r\n  >\r\n    <div\r\n      class=\"bmb_step-progress-bar-step\"\r\n      [ngClass]=\"{\r\n        active: activeStep === i,\r\n        completed: activeStep > i,\r\n        'bmb_step-progress-bar-step-normal': size == 'normal',\r\n        'bmb_step-progress-bar-step-small': size == 'small',\r\n      }\"\r\n    >\r\n      <span *ngIf=\"activeStep == i || activeStep < i\">{{ i + 1 }}</span>\r\n      @if (activeStep > i) {\r\n        <bmb-icon [icon]=\"'done'\" class=\"material-icons\" />\r\n      }\r\n    </div>\r\n  </div>\r\n  }@else {\r\n    <div\r\n      class=\"bmb_step-progress-bar-vertical-item\"\r\n      *ngFor=\"let i of getStepsArray()\"\r\n      [attr.data-bs-slide-to]=\"i\"\r\n      [ngClass]=\"{ completed: activeStep > i, 'bmb_step-progress-bar-vertical-content': labelSteps.length > 0}\"\r\n      (click)=\"onStepClicked(i)\"\r\n      onkeypress=\"\"\r\n    >\r\n      <div\r\n        class=\"bmb_step-progress-bar-vertical-step bmb_step-progress-bar-vertical-step-small\"\r\n        [ngClass]=\"{\r\n          active: activeStep === i,\r\n          completed: activeStep > i,\r\n        }\"\r\n      >\r\n        <span *ngIf=\"activeStep == i || activeStep < i\">{{ i + 1 }}</span>\r\n        @if (activeStep > i) {\r\n          <bmb-icon [icon]=\"'done'\" class=\"material-icons\" />\r\n        }\r\n      </div>\r\n    @if(labelSteps.length > 0){\r\n      <div class=\"bmb_step-progress-bar-vertical-text\">\r\n        <h2 class=\"bmb_step-progress-bar-vertical-text-title\">{{labelSteps[i]}}</h2>\r\n        @if(activeStep > i){\r\n          <span class=\"bmb_step-progress-bar-vertical-text-subtitle\">{{labelComplete}}</span>\r\n        }@else {\r\n          <span class=\"bmb_step-progress-bar-vertical-text-subtitle\">{{labelIncomplete}}</span>\r\n        }\r\n      </div>\r\n    }\r\n  </div>\r\n  }\r\n</div>\r\n"
+      "templateData": "<div\r\n  class=\"bmb_step-progress-bar\"\r\n  [ngClass]=\"{ 'bmb_step-progress-bar-vertical': type == 'vertical' }\"\r\n>\r\n  @if (type == \"horizontal\") {\r\n    <div\r\n      class=\"bmb_step-progress-bar-item\"\r\n      *ngFor=\"let i of getStepsArray()\"\r\n      [attr.data-bs-slide-to]=\"i\"\r\n      [ngClass]=\"{ completed: activeStep > i }\"\r\n      (click)=\"onStepClicked(i)\"\r\n      onkeypress=\"\"\r\n    >\r\n      <div\r\n        class=\"bmb_step-progress-bar-step\"\r\n        [ngClass]=\"{\r\n          active: activeStep === i,\r\n          completed: activeStep > i,\r\n          'bmb_step-progress-bar-step-normal': size == 'normal',\r\n          'bmb_step-progress-bar-step-small': size == 'small',\r\n        }\"\r\n      >\r\n        <span *ngIf=\"activeStep == i || activeStep < i\">{{ i + 1 }}</span>\r\n        @if (activeStep > i) {\r\n          <bmb-icon [icon]=\"'done'\" class=\"material-icons\" />\r\n        }\r\n      </div>\r\n    </div>\r\n  } @else {\r\n    <div\r\n      class=\"bmb_step-progress-bar-vertical-item\"\r\n      *ngFor=\"let i of getStepsArray()\"\r\n      [attr.data-bs-slide-to]=\"i\"\r\n      [ngClass]=\"{\r\n        completed: activeStep > i,\r\n        'bmb_step-progress-bar-vertical-content': labelSteps.length > 0,\r\n      }\"\r\n      (click)=\"onStepClicked(i)\"\r\n      onkeypress=\"\"\r\n    >\r\n      <div\r\n        class=\"bmb_step-progress-bar-vertical-step bmb_step-progress-bar-vertical-step-small\"\r\n        [ngClass]=\"{\r\n          active: activeStep === i,\r\n          completed: activeStep > i,\r\n        }\"\r\n      >\r\n        <span *ngIf=\"activeStep == i || activeStep < i\">{{ i + 1 }}</span>\r\n        @if (activeStep > i) {\r\n          <bmb-icon [icon]=\"'done'\" class=\"material-icons\" />\r\n        }\r\n      </div>\r\n      @if (labelSteps.length > 0) {\r\n        <div class=\"bmb_step-progress-bar-vertical-text\">\r\n          <h2 class=\"bmb_step-progress-bar-vertical-text-title\">\r\n            {{ labelSteps[i] }}\r\n          </h2>\r\n          @if (activeStep > i) {\r\n            <span class=\"bmb_step-progress-bar-vertical-text-subtitle\">{{\r\n              labelComplete\r\n            }}</span>\r\n          } @else {\r\n            <span class=\"bmb_step-progress-bar-vertical-text-subtitle\">{{\r\n              labelIncomplete\r\n            }}</span>\r\n          }\r\n        </div>\r\n      }\r\n    </div>\r\n  }\r\n</div>\r\n"
     },
     {
       "name": "BmbStudentActivityCardComponent",
@@ -13403,7 +13600,7 @@
     },
     {
       "name": "BmbStudentActivitySelectorComponent",
-      "id": "component-BmbStudentActivitySelectorComponent-8388885f61d0870499504fc12df562bfcbf77c00b6f2fa7eaa517b49eed2426441aceac1ae25662d46c582e27299b797285c69dd7213727269ac33629d50b7c4",
+      "id": "component-BmbStudentActivitySelectorComponent-843e9b9e4ee51968fe91c1c2821507a7ae38ea1527329d01a89db27dc6ffb25f25fe101876ce1d8eaf795397159bc6135676846567b05e08d1dfd867cfae31fc",
       "file": "projects/ds-ng/src/lib/components/bmb-student-activity-selector/bmb-student-activity-selector.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": ["ViewEncapsulation.None"],
@@ -13495,7 +13692,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import {\r\n  AfterContentInit,\r\n  ChangeDetectionStrategy,\r\n  Component,\r\n  ContentChildren,\r\n  QueryList,\r\n  ViewEncapsulation,\r\n} from '@angular/core';\r\nimport { BmbTabStudenActivityComponent } from './bmb-student-activity-tab/bmb-student-activity-tab.component';\r\nimport { CommonModule } from '@angular/common';\r\n\r\n@Component({\r\n  selector: 'bmb-student-activity-selector',\r\n  standalone: true,\r\n  imports: [CommonModule, BmbTabStudenActivityComponent],\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n  encapsulation: ViewEncapsulation.None,\r\n  templateUrl: './bmb-student-activity-selector.component.html',\r\n  styleUrl: './bmb-student-activity-selector.component.scss',\r\n})\r\nexport class BmbStudentActivitySelectorComponent implements AfterContentInit {\r\n  @ContentChildren(BmbTabStudenActivityComponent)\r\n  tabs!: QueryList<BmbTabStudenActivityComponent>;\r\n\r\n  ngAfterContentInit(): void {\r\n    const ACTIVE_TABS = this.tabs.filter((tab: any) => tab.active);\r\n\r\n    if (ACTIVE_TABS.length === 0) {\r\n      this.selectTab(this.tabs.first);\r\n    }\r\n  }\r\n\r\n  selectTab(tab: BmbTabStudenActivityComponent) {\r\n    this.tabs.toArray().forEach((t: any) => (t.active = false));\r\n    if (tab) tab.active = true;\r\n  }\r\n}\r\n",
+      "sourceCode": "import {\n  AfterContentInit,\n  ChangeDetectionStrategy,\n  Component,\n  ContentChildren,\n  QueryList,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { BmbTabStudenActivityComponent } from './bmb-student-activity-tab/bmb-student-activity-tab.component';\nimport { CommonModule } from '@angular/common';\n\n@Component({\n  selector: 'bmb-student-activity-selector',\n  standalone: true,\n  imports: [CommonModule, BmbTabStudenActivityComponent],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n  templateUrl: './bmb-student-activity-selector.component.html',\n  styleUrl: './bmb-student-activity-selector.component.scss',\n})\nexport class BmbStudentActivitySelectorComponent implements AfterContentInit {\n  @ContentChildren(BmbTabStudenActivityComponent)\n  tabs!: QueryList<BmbTabStudenActivityComponent>;\n\n  ngAfterContentInit(): void {\n    const ACTIVE_TABS = this.tabs.filter((tab: any) => tab.active);\n\n    if (ACTIVE_TABS.length === 0) {\n      this.selectTab(this.tabs.first);\n    }\n  }\n\n  selectTab(tab: BmbTabStudenActivityComponent) {\n    this.tabs.toArray().forEach((t: any) => (t.active = false));\n    if (tab) tab.active = true;\n  }\n}\n",
       "styleUrl": "./bmb-student-activity-selector.component.scss",
       "assetsDirs": [],
       "styleUrlsData": "",
@@ -15139,7 +15336,7 @@
     },
     {
       "name": "BmbTimestreamComponent",
-      "id": "component-BmbTimestreamComponent-670c60900d325e4e8758da3c4c0b3d8c80d0e1fcb1a1e0ef93d7e954718736ce68a215d8fb0a0dcb1e89bc5745a85265a26ceae2ef2890a33815665653a47561",
+      "id": "component-BmbTimestreamComponent-2dc92aa8008e5ca6e98e66116c271e52877e4c45581ee7d1fda24d3a7bbf1e4238bb378aa9414cc5e28251a73fd6a64f924e2873168d7f966dab0c83db89f6a9",
       "file": "projects/ds-ng/src/lib/components/bmb-timestream/bmb-timestream.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": ["ViewEncapsulation.None"],
@@ -15294,7 +15491,7 @@
         },
         {
           "name": "selectedDate",
-          "defaultValue": "{\r\n    day: '',\r\n    month: '',\r\n    date: this.now,\r\n  }",
+          "defaultValue": "{\n    day: '',\n    month: '',\n    date: this.now,\n  }",
           "deprecated": false,
           "deprecationMessage": "",
           "type": "ISelectedDate",
@@ -15520,7 +15717,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import {\r\n  ChangeDetectionStrategy,\r\n  Component,\r\n  Input,\r\n  OnInit,\r\n  ViewEncapsulation,\r\n} from '@angular/core';\r\nimport { DateTime, Info } from 'luxon';\r\nimport { BmbTimestreamErrorComponent } from './bmb-timestream-error/bmb-timestream-error.component';\r\nimport { BmbTimestreamTimelineComponent } from './bmb-timestream-timeline/bmb-timestream-timeline.component';\r\nimport { BmbTimestreamDetailsComponent } from './bmb-timestream-detail/bmb-timestream-detail.component';\r\nimport { ITimelineEvent, ISelectedDate, ITimelineEventParsed } from './types';\r\nimport { BmbTimestreamDialogComponent } from './bmb-timestream-dialog/bmb-timestream-dialog.component';\r\nimport { CommonModule } from '@angular/common';\r\n\r\ninterface IPlaceholderObject {\r\n  [key: string]: any | any[];\r\n}\r\n\r\n@Component({\r\n  selector: 'bmb-timestream',\r\n  standalone: true,\r\n  imports: [\r\n    BmbTimestreamErrorComponent,\r\n    BmbTimestreamTimelineComponent,\r\n    BmbTimestreamDetailsComponent,\r\n    BmbTimestreamDialogComponent,\r\n    CommonModule,\r\n  ],\r\n  templateUrl: './bmb-timestream.component.html',\r\n  styleUrl: './bmb-timestream.component.scss',\r\n  encapsulation: ViewEncapsulation.None,\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class BmbTimestreamComponent implements OnInit {\r\n  @Input() startDate: string = '';\r\n  @Input() endDate: string = '';\r\n  @Input() dateFormat: string = 'dd/MM/yyyy';\r\n  @Input() lang: string = 'es';\r\n  @Input() events: ITimelineEvent[] | null = null;\r\n\r\n  error = false;\r\n  now = DateTime.now();\r\n  start: DateTime | null = null;\r\n  end: DateTime | null = null;\r\n  difference = 0;\r\n  validMonths: any = [];\r\n  parsedEvents: any | null = null;\r\n  monthsNames = Info.months('long', { locale: this.lang });\r\n  isDialogOpen: null | ITimelineEvent = null;\r\n  selectedDate: ISelectedDate = {\r\n    day: '',\r\n    month: '',\r\n    date: this.now,\r\n  };\r\n  orderedMonths: string[] = [];\r\n  orderedEvents: ITimelineEventParsed[] = [];\r\n\r\n  ngOnInit(): void {\r\n    this.dateValidation();\r\n\r\n    this.start = DateTime.fromFormat(this.startDate, this.dateFormat);\r\n    this.end = DateTime.fromFormat(this.endDate, this.dateFormat);\r\n    this.difference = Math.ceil(this.end.diff(this.start, 'months').months);\r\n    this.parsedEvents = this.prepareEvents(this.events);\r\n    this.orderedMonths = this.orderDates(this.parsedEvents, 'yyyy/MM');\r\n    this.selectedDate = this.selectAValidDate();\r\n  }\r\n\r\n  dateValidation() {\r\n    const isValidStart = DateTime.fromFormat(\r\n      this.startDate,\r\n      this.dateFormat,\r\n    ).isValid;\r\n    const isValidEnd = DateTime.fromFormat(\r\n      this.endDate,\r\n      this.dateFormat,\r\n    ).isValid;\r\n\r\n    this.error = !isValidEnd || !isValidStart;\r\n  }\r\n\r\n  prepareEvents(events: ITimelineEvent[] | null) {\r\n    if (!events) return {};\r\n\r\n    const objectEvent: IPlaceholderObject = {};\r\n    events.forEach((event) => {\r\n      const startDate = DateTime.fromFormat(event.start, this.dateFormat);\r\n      const endDate = DateTime.fromFormat(event.end, this.dateFormat);\r\n      const diff = endDate.diff(startDate, 'days').days + 1;\r\n\r\n      for (let index = 0; index < diff; index++) {\r\n        const currentDate = startDate.plus({ days: index });\r\n        const stringDate = currentDate.toFormat('yyyy/MM/dd');\r\n        const month = currentDate.toFormat('yyyy/MM');\r\n\r\n        objectEvent[month] ??= {\r\n          events: {},\r\n          name: this.monthsNames[currentDate.month - 1],\r\n          stringDate: month,\r\n          year: currentDate.year,\r\n          date: currentDate,\r\n        };\r\n\r\n        objectEvent[month].events[stringDate] ??= {\r\n          events: [],\r\n          date: currentDate,\r\n          stringDate,\r\n          selected: false,\r\n        };\r\n\r\n        objectEvent[month].events[stringDate].events.push({\r\n          ...event,\r\n          start: stringDate,\r\n          startEvent: currentDate,\r\n          endEvent: endDate,\r\n          selected: false,\r\n          diff: diff - 1,\r\n          originalStart: startDate,\r\n        });\r\n      }\r\n    });\r\n\r\n    const orededEvents = this.orderDates(objectEvent, 'yyyy/MM');\r\n    objectEvent['orderedEvents'] = orededEvents;\r\n\r\n    objectEvent['orderedEvents'].forEach((date: string) => {\r\n      objectEvent[date]['orderedEvents'] = this.orderDates(\r\n        objectEvent[date].events,\r\n        'yyyy/MM/dd',\r\n      );\r\n    });\r\n\r\n    this.orderedEvents = objectEvent['orderedEvents']\r\n      .map((month: string) => {\r\n        return objectEvent[month]['orderedEvents'].map(\r\n          (day: string) => objectEvent[month].events[day],\r\n        );\r\n      })\r\n      .flat();\r\n\r\n    return objectEvent;\r\n  }\r\n\r\n  orderDates(events: any, format: string): string[] {\r\n    const monthsList = Object.keys(events);\r\n    const monthsOrdered = monthsList.sort((dateA: string, dateB: string) => {\r\n      const parsedDateA = DateTime.fromFormat(dateA, format);\r\n      const parsedDateB = DateTime.fromFormat(dateB, format);\r\n      return parsedDateA.toMillis() - parsedDateB.toMillis();\r\n    });\r\n\r\n    return monthsOrdered;\r\n  }\r\n\r\n  selectAValidDate(): { month: string; day: string; date: DateTime } {\r\n    const month =\r\n      this.orderedMonths.find((date) => {\r\n        const parsedDate = this.parsedEvents[date].date;\r\n        return (\r\n          this.now.year <= parsedDate.year && this.now.month <= parsedDate.month\r\n        );\r\n      }) ||\r\n      this.orderedMonths.at(-1) ||\r\n      '';\r\n    const orderedEvents = this.parsedEvents?.[month]?.orderedEvents;\r\n\r\n    const day =\r\n      orderedEvents?.find((date: string) => {\r\n        const parsedDate = this.parsedEvents[month].events[date].date;\r\n        return (\r\n          this.now.year <= parsedDate.year &&\r\n          this.now.month <= parsedDate.month &&\r\n          this.now.day <= parsedDate.day\r\n        );\r\n      }) ||\r\n      orderedEvents?.at(-1) ||\r\n      '';\r\n\r\n    if (this.parsedEvents[month]) {\r\n      this.parsedEvents[month].selected = true;\r\n      this.parsedEvents[month].events[day].selected = true;\r\n    }\r\n    return {\r\n      month,\r\n      day,\r\n      date: this.parsedEvents?.[month]?.events?.[day]?.date,\r\n    };\r\n  }\r\n\r\n  handleSelectedDateChange({ month, day }: { month: string; day: string }) {\r\n    this.parsedEvents[this.selectedDate.month].selected = false;\r\n    this.parsedEvents[this.selectedDate.month].events[\r\n      this.selectedDate.day\r\n    ].selected = false;\r\n\r\n    this.parsedEvents[month].selected = true;\r\n    this.parsedEvents[month].events[day].selected = true;\r\n\r\n    this.selectedDate = {\r\n      month,\r\n      day,\r\n      date: this.parsedEvents[month].events[day].date,\r\n    };\r\n  }\r\n\r\n  handleSelectedEventChange(event: ITimelineEvent) {\r\n    this.isDialogOpen = event;\r\n  }\r\n\r\n  closeDetail() {\r\n    this.isDialogOpen = null;\r\n  }\r\n}\r\n",
+      "sourceCode": "import {\n  ChangeDetectionStrategy,\n  Component,\n  Input,\n  OnInit,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { DateTime, Info } from 'luxon';\nimport { BmbTimestreamErrorComponent } from './bmb-timestream-error/bmb-timestream-error.component';\nimport { BmbTimestreamTimelineComponent } from './bmb-timestream-timeline/bmb-timestream-timeline.component';\nimport { BmbTimestreamDetailsComponent } from './bmb-timestream-detail/bmb-timestream-detail.component';\nimport { ITimelineEvent, ISelectedDate, ITimelineEventParsed } from './types';\nimport { BmbTimestreamDialogComponent } from './bmb-timestream-dialog/bmb-timestream-dialog.component';\nimport { CommonModule } from '@angular/common';\n\ninterface IPlaceholderObject {\n  [key: string]: any | any[];\n}\n\n@Component({\n  selector: 'bmb-timestream',\n  standalone: true,\n  imports: [\n    BmbTimestreamErrorComponent,\n    BmbTimestreamTimelineComponent,\n    BmbTimestreamDetailsComponent,\n    BmbTimestreamDialogComponent,\n    CommonModule,\n  ],\n  templateUrl: './bmb-timestream.component.html',\n  styleUrl: './bmb-timestream.component.scss',\n  encapsulation: ViewEncapsulation.None,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbTimestreamComponent implements OnInit {\n  @Input() startDate: string = '';\n  @Input() endDate: string = '';\n  @Input() dateFormat: string = 'dd/MM/yyyy';\n  @Input() lang: string = 'es';\n  @Input() events: ITimelineEvent[] | null = null;\n\n  error = false;\n  now = DateTime.now();\n  start: DateTime | null = null;\n  end: DateTime | null = null;\n  difference = 0;\n  validMonths: any = [];\n  parsedEvents: any | null = null;\n  monthsNames = Info.months('long', { locale: this.lang });\n  isDialogOpen: null | ITimelineEvent = null;\n  selectedDate: ISelectedDate = {\n    day: '',\n    month: '',\n    date: this.now,\n  };\n  orderedMonths: string[] = [];\n  orderedEvents: ITimelineEventParsed[] = [];\n\n  ngOnInit(): void {\n    this.dateValidation();\n\n    this.start = DateTime.fromFormat(this.startDate, this.dateFormat);\n    this.end = DateTime.fromFormat(this.endDate, this.dateFormat);\n    this.difference = Math.ceil(this.end.diff(this.start, 'months').months);\n    this.parsedEvents = this.prepareEvents(this.events);\n    this.orderedMonths = this.orderDates(this.parsedEvents, 'yyyy/MM');\n    this.selectedDate = this.selectAValidDate();\n  }\n\n  dateValidation() {\n    const isValidStart = DateTime.fromFormat(\n      this.startDate,\n      this.dateFormat,\n    ).isValid;\n    const isValidEnd = DateTime.fromFormat(\n      this.endDate,\n      this.dateFormat,\n    ).isValid;\n\n    this.error = !isValidEnd || !isValidStart;\n  }\n\n  prepareEvents(events: ITimelineEvent[] | null) {\n    if (!events) return {};\n\n    const objectEvent: IPlaceholderObject = {};\n    events.forEach((event) => {\n      const startDate = DateTime.fromFormat(event.start, this.dateFormat);\n      const endDate = DateTime.fromFormat(event.end, this.dateFormat);\n      const diff = endDate.diff(startDate, 'days').days + 1;\n\n      for (let index = 0; index < diff; index++) {\n        const currentDate = startDate.plus({ days: index });\n        const stringDate = currentDate.toFormat('yyyy/MM/dd');\n        const month = currentDate.toFormat('yyyy/MM');\n\n        objectEvent[month] ??= {\n          events: {},\n          name: this.monthsNames[currentDate.month - 1],\n          stringDate: month,\n          year: currentDate.year,\n          date: currentDate,\n        };\n\n        objectEvent[month].events[stringDate] ??= {\n          events: [],\n          date: currentDate,\n          stringDate,\n          selected: false,\n        };\n\n        objectEvent[month].events[stringDate].events.push({\n          ...event,\n          start: stringDate,\n          startEvent: currentDate,\n          endEvent: endDate,\n          selected: false,\n          diff: diff - 1,\n          originalStart: startDate,\n        });\n      }\n    });\n\n    const orededEvents = this.orderDates(objectEvent, 'yyyy/MM');\n    objectEvent['orderedEvents'] = orededEvents;\n\n    objectEvent['orderedEvents'].forEach((date: string) => {\n      objectEvent[date]['orderedEvents'] = this.orderDates(\n        objectEvent[date].events,\n        'yyyy/MM/dd',\n      );\n    });\n\n    this.orderedEvents = objectEvent['orderedEvents']\n      .map((month: string) => {\n        return objectEvent[month]['orderedEvents'].map(\n          (day: string) => objectEvent[month].events[day],\n        );\n      })\n      .flat();\n\n    return objectEvent;\n  }\n\n  orderDates(events: any, format: string): string[] {\n    const monthsList = Object.keys(events);\n    const monthsOrdered = monthsList.sort((dateA: string, dateB: string) => {\n      const parsedDateA = DateTime.fromFormat(dateA, format);\n      const parsedDateB = DateTime.fromFormat(dateB, format);\n      return parsedDateA.toMillis() - parsedDateB.toMillis();\n    });\n\n    return monthsOrdered;\n  }\n\n  selectAValidDate(): { month: string; day: string; date: DateTime } {\n    const month =\n      this.orderedMonths.find((date) => {\n        const parsedDate = this.parsedEvents[date].date;\n        return (\n          this.now.year <= parsedDate.year && this.now.month <= parsedDate.month\n        );\n      }) ||\n      this.orderedMonths.at(-1) ||\n      '';\n    const orderedEvents = this.parsedEvents?.[month]?.orderedEvents;\n\n    const day =\n      orderedEvents?.find((date: string) => {\n        const parsedDate = this.parsedEvents[month].events[date].date;\n        return (\n          this.now.year <= parsedDate.year &&\n          this.now.month <= parsedDate.month &&\n          this.now.day <= parsedDate.day\n        );\n      }) ||\n      orderedEvents?.at(-1) ||\n      '';\n\n    if (this.parsedEvents[month]) {\n      this.parsedEvents[month].selected = true;\n      this.parsedEvents[month].events[day].selected = true;\n    }\n    return {\n      month,\n      day,\n      date: this.parsedEvents?.[month]?.events?.[day]?.date,\n    };\n  }\n\n  handleSelectedDateChange({ month, day }: { month: string; day: string }) {\n    this.parsedEvents[this.selectedDate.month].selected = false;\n    this.parsedEvents[this.selectedDate.month].events[\n      this.selectedDate.day\n    ].selected = false;\n\n    this.parsedEvents[month].selected = true;\n    this.parsedEvents[month].events[day].selected = true;\n\n    this.selectedDate = {\n      month,\n      day,\n      date: this.parsedEvents[month].events[day].date,\n    };\n  }\n\n  handleSelectedEventChange(event: ITimelineEvent) {\n    this.isDialogOpen = event;\n  }\n\n  closeDetail() {\n    this.isDialogOpen = null;\n  }\n}\n",
       "styleUrl": "./bmb-timestream.component.scss",
       "assetsDirs": [],
       "styleUrlsData": "",
@@ -15531,7 +15728,7 @@
     },
     {
       "name": "BmbTimestreamDetailsComponent",
-      "id": "component-BmbTimestreamDetailsComponent-4340cde3b87354b535c189cf06f3632f2b71930297bd3ae073b85a2c9accca1d1650eed7b7c0adceda7ff384339e8245acfd206f1d7a6ad115c0bd26b736c20e",
+      "id": "component-BmbTimestreamDetailsComponent-cd995344df09049089988efbe51aeed6109ff1ca6b174388c560a9e78186c96a9e5bdb7ed700b6f697e0bcd685a8e4ef646fd52f676e4fe26af8d0ffbb1b884a",
       "file": "projects/ds-ng/src/lib/components/bmb-timestream/bmb-timestream-detail/bmb-timestream-detail.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": ["ViewEncapsulation.None"],
@@ -15601,7 +15798,7 @@
         },
         {
           "name": "selectedDate",
-          "defaultValue": "{\r\n    day: '',\r\n    month: '',\r\n    date: this.now,\r\n  }",
+          "defaultValue": "{\n    day: '',\n    month: '',\n    date: this.now,\n  }",
           "deprecated": false,
           "deprecationMessage": "",
           "line": 52,
@@ -15902,7 +16099,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { CommonModule } from '@angular/common';\r\nimport {\r\n  AfterViewInit,\r\n  ChangeDetectionStrategy,\r\n  Component,\r\n  ElementRef,\r\n  EventEmitter,\r\n  Input,\r\n  OnChanges,\r\n  Output,\r\n  SimpleChanges,\r\n  ViewChild,\r\n  ViewEncapsulation,\r\n} from '@angular/core';\r\nimport { DateTime } from 'luxon';\r\nimport { ISelectedDate, ITimelineEvent, ITimelineEventParsed } from '../types';\r\nimport {\r\n  BmbCardComponent,\r\n  BmbCardContentComponent,\r\n} from '../../bmb-card/bmb-card.component';\r\nimport { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';\r\nimport { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';\r\nimport { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';\r\nimport { BmbBadgeComponent } from '../../bmb-badge/bmb-badge.component';\r\n\r\n@Component({\r\n  selector: 'bmb-timestream-detail',\r\n  standalone: true,\r\n  imports: [\r\n    CommonModule,\r\n    BmbCardComponent,\r\n    BmbCardContentComponent,\r\n    BmbLayoutDirective,\r\n    BmbLayoutItemDirective,\r\n    BmbIconComponent,\r\n    BmbBadgeComponent,\r\n  ],\r\n  templateUrl: './bmb-timestream-detail.component.html',\r\n  styleUrl: './bmb-timestream-detail.component.scss',\r\n  encapsulation: ViewEncapsulation.None,\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class BmbTimestreamDetailsComponent implements AfterViewInit, OnChanges {\r\n  @ViewChild('monthDetailList') monthList!: ElementRef;\r\n\r\n  @Input() start: DateTime | null = null;\r\n  @Input() end: DateTime | null = null;\r\n  @Input() dateFormat: string = 'dd/MM/yyyy';\r\n  @Input() lang: string = 'en';\r\n  @Input() now: DateTime = DateTime.now();\r\n  @Input() events?: any;\r\n  @Input() selectedDate: ISelectedDate = {\r\n    day: '',\r\n    month: '',\r\n    date: this.now,\r\n  };\r\n  @Input() orderedEvents: ITimelineEventParsed[] = [];\r\n\r\n  @Output() changeSelectedEvent: EventEmitter<ITimelineEvent> =\r\n    new EventEmitter<ITimelineEvent>();\r\n\r\n  ngAfterViewInit(): void {\r\n    setTimeout(() => {\r\n      this.scrollToItem();\r\n    }, 1);\r\n  }\r\n\r\n  ngOnChanges(changes: SimpleChanges) {\r\n    const selectedDateChange = changes['selectedDate'];\r\n    if (\r\n      selectedDateChange.previousValue &&\r\n      selectedDateChange.previousValue.day !==\r\n        selectedDateChange.currentValue?.day\r\n    ) {\r\n      setTimeout(() => {\r\n        this.scrollToItem();\r\n      }, 1);\r\n    }\r\n  }\r\n\r\n  getCurrentMonth(date: string): boolean {\r\n    const parsedDate = DateTime.fromFormat(date, 'yyyy/MM');\r\n    return (\r\n      parsedDate.month === this.selectedDate.date.month &&\r\n      parsedDate.year === this.selectedDate.date.year\r\n    );\r\n  }\r\n\r\n  getMonthTitle(date: DateTime) {\r\n    return date.setLocale(this.lang).toFormat('cccc dd LLLL yyyy');\r\n  }\r\n\r\n  scrollToItem() {\r\n    let currentMonthElement = this.monthList.nativeElement.querySelector(\r\n      '.bmb_timestream-detail-item-current',\r\n    );\r\n\r\n    if (currentMonthElement) {\r\n      currentMonthElement.scrollIntoView();\r\n      this.monthList.nativeElement.scrollTop =\r\n        this.monthList.nativeElement.scrollTop;\r\n    }\r\n  }\r\n\r\n  formatBadgeText(legend: string): string {\r\n    return legend.replace(/_/g, ' ');\r\n  }\r\n\r\n  appearanceBadgeText(type: string): string {\r\n    switch (type) {\r\n      case 'enriquecedor':\r\n        return 'mitec-red';\r\n      case 'seriado':\r\n        return 'mitec-orange';\r\n      case 'inscripciones':\r\n        return 'green-light';\r\n      case 'avance_academico':\r\n        return 'mitec-blue';\r\n      case 'otra':\r\n        return 'purple-light';\r\n      case 'flexible':\r\n        return 'mitec-green';\r\n      default:\r\n        return 'mitec-blue';\r\n    }\r\n  }\r\n\r\n  getDurationString(event: ITimelineEvent): string {\r\n    return `Duración: ${event.originalStart?.day} - ${event.endEvent?.setLocale(this.lang).toFormat('dd LLLL yyyy')} (${(event.diff || 0) + 1} Días)`;\r\n  }\r\n\r\n  handleEventChange(event: ITimelineEvent) {\r\n    this.changeSelectedEvent.emit(event);\r\n  }\r\n}\r\n",
+      "sourceCode": "import { CommonModule } from '@angular/common';\nimport {\n  AfterViewInit,\n  ChangeDetectionStrategy,\n  Component,\n  ElementRef,\n  EventEmitter,\n  Input,\n  OnChanges,\n  Output,\n  SimpleChanges,\n  ViewChild,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { DateTime } from 'luxon';\nimport { ISelectedDate, ITimelineEvent, ITimelineEventParsed } from '../types';\nimport {\n  BmbCardComponent,\n  BmbCardContentComponent,\n} from '../../bmb-card/bmb-card.component';\nimport { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';\nimport { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';\nimport { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';\nimport { BmbBadgeComponent } from '../../bmb-badge/bmb-badge.component';\n\n@Component({\n  selector: 'bmb-timestream-detail',\n  standalone: true,\n  imports: [\n    CommonModule,\n    BmbCardComponent,\n    BmbCardContentComponent,\n    BmbLayoutDirective,\n    BmbLayoutItemDirective,\n    BmbIconComponent,\n    BmbBadgeComponent,\n  ],\n  templateUrl: './bmb-timestream-detail.component.html',\n  styleUrl: './bmb-timestream-detail.component.scss',\n  encapsulation: ViewEncapsulation.None,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbTimestreamDetailsComponent implements AfterViewInit, OnChanges {\n  @ViewChild('monthDetailList') monthList!: ElementRef;\n\n  @Input() start: DateTime | null = null;\n  @Input() end: DateTime | null = null;\n  @Input() dateFormat: string = 'dd/MM/yyyy';\n  @Input() lang: string = 'en';\n  @Input() now: DateTime = DateTime.now();\n  @Input() events?: any;\n  @Input() selectedDate: ISelectedDate = {\n    day: '',\n    month: '',\n    date: this.now,\n  };\n  @Input() orderedEvents: ITimelineEventParsed[] = [];\n\n  @Output() changeSelectedEvent: EventEmitter<ITimelineEvent> =\n    new EventEmitter<ITimelineEvent>();\n\n  ngAfterViewInit(): void {\n    setTimeout(() => {\n      this.scrollToItem();\n    }, 1);\n  }\n\n  ngOnChanges(changes: SimpleChanges) {\n    const selectedDateChange = changes['selectedDate'];\n    if (\n      selectedDateChange.previousValue &&\n      selectedDateChange.previousValue.day !==\n        selectedDateChange.currentValue?.day\n    ) {\n      setTimeout(() => {\n        this.scrollToItem();\n      }, 1);\n    }\n  }\n\n  getCurrentMonth(date: string): boolean {\n    const parsedDate = DateTime.fromFormat(date, 'yyyy/MM');\n    return (\n      parsedDate.month === this.selectedDate.date.month &&\n      parsedDate.year === this.selectedDate.date.year\n    );\n  }\n\n  getMonthTitle(date: DateTime) {\n    return date.setLocale(this.lang).toFormat('cccc dd LLLL yyyy');\n  }\n\n  scrollToItem() {\n    let currentMonthElement = this.monthList.nativeElement.querySelector(\n      '.bmb_timestream-detail-item-current',\n    );\n\n    if (currentMonthElement) {\n      currentMonthElement.scrollIntoView();\n      this.monthList.nativeElement.scrollTop =\n        this.monthList.nativeElement.scrollTop;\n    }\n  }\n\n  formatBadgeText(legend: string): string {\n    return legend.replace(/_/g, ' ');\n  }\n\n  appearanceBadgeText(type: string): string {\n    switch (type) {\n      case 'enriquecedor':\n        return 'mitec-red';\n      case 'seriado':\n        return 'mitec-orange';\n      case 'inscripciones':\n        return 'green-light';\n      case 'avance_academico':\n        return 'mitec-blue';\n      case 'otra':\n        return 'purple-light';\n      case 'flexible':\n        return 'mitec-green';\n      default:\n        return 'mitec-blue';\n    }\n  }\n\n  getDurationString(event: ITimelineEvent): string {\n    return `Duración: ${event.originalStart?.day} - ${event.endEvent?.setLocale(this.lang).toFormat('dd LLLL yyyy')} (${(event.diff || 0) + 1} Días)`;\n  }\n\n  handleEventChange(event: ITimelineEvent) {\n    this.changeSelectedEvent.emit(event);\n  }\n}\n",
       "styleUrl": "./bmb-timestream-detail.component.scss",
       "assetsDirs": [],
       "styleUrlsData": "",
@@ -16265,7 +16462,7 @@
     },
     {
       "name": "BmbTimestreamTimelineComponent",
-      "id": "component-BmbTimestreamTimelineComponent-8969955f44841416c49ca01bac503e7c3af577face857f82a1dd9d00a33a47a05dc898784c6081995781cecd26bf67fe6b3a9c82783a2a4ec08cbc84333e498b",
+      "id": "component-BmbTimestreamTimelineComponent-5f7de66ba91bf26b728ddab589997875878ef22866f1c079d8a5a5126fd0122eb8be97a8ff67c89c5c28b7344e174bcc24013dbe18f2e121ad8b5e5dcab8f33f",
       "file": "projects/ds-ng/src/lib/components/bmb-timestream/bmb-timestream-timeline/bmb-timestream-timeline.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": ["ViewEncapsulation.None"],
@@ -16335,7 +16532,7 @@
         },
         {
           "name": "selectedDate",
-          "defaultValue": "{\r\n    day: '',\r\n    month: '',\r\n    date: this.now,\r\n  }",
+          "defaultValue": "{\n    day: '',\n    month: '',\n    date: this.now,\n  }",
           "deprecated": false,
           "deprecationMessage": "",
           "line": 34,
@@ -16513,7 +16710,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import {\r\n  ChangeDetectionStrategy,\r\n  Component,\r\n  Input,\r\n  ViewEncapsulation,\r\n  ElementRef,\r\n  AfterViewInit,\r\n  ViewChild,\r\n  Output,\r\n  EventEmitter,\r\n} from '@angular/core';\r\nimport { DateTime } from 'luxon';\r\nimport { CommonModule } from '@angular/common';\r\nimport { ISelectedDate } from '../types';\r\n\r\n@Component({\r\n  selector: 'bmb-timestream-timeline',\r\n  standalone: true,\r\n  imports: [CommonModule],\r\n  templateUrl: './bmb-timestream-timeline.component.html',\r\n  styleUrl: './bmb-timestream-timeline.component.scss',\r\n  encapsulation: ViewEncapsulation.None,\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class BmbTimestreamTimelineComponent implements AfterViewInit {\r\n  @ViewChild('monthList') monthList!: ElementRef;\r\n\r\n  @Input() start: DateTime | null = null;\r\n  @Input() end: DateTime | null = null;\r\n  @Input() dateFormat: string = 'dd/MM/yyyy';\r\n  @Input() lang: string = 'es';\r\n  @Input() now: DateTime = DateTime.now();\r\n  @Input() events?: any;\r\n  @Input() selectedDate: ISelectedDate = {\r\n    day: '',\r\n    month: '',\r\n    date: this.now,\r\n  };\r\n  @Input() orderedMonths: string[] = [];\r\n\r\n  @Output() changeSelectedDate: EventEmitter<ISelectedDate> =\r\n    new EventEmitter<ISelectedDate>();\r\n\r\n  ngAfterViewInit(): void {\r\n    this.scrollToItem();\r\n  }\r\n\r\n  scrollToItem() {\r\n    let currentMonthElement = this.monthList.nativeElement.querySelector(\r\n      '.bmb_timestream-timeline-content-item-current',\r\n    );\r\n    if (currentMonthElement) {\r\n      currentMonthElement.scrollIntoView();\r\n      this.monthList.nativeElement.scrollTop =\r\n        this.monthList.nativeElement.scrollTop - 45;\r\n    } else {\r\n      currentMonthElement = this.monthList.nativeElement.querySelector(\r\n        '.bmb_timestream-timeline-item-current',\r\n      );\r\n      currentMonthElement?.scrollIntoView();\r\n    }\r\n  }\r\n\r\n  getMonthTitle(month: string) {\r\n    return `${this.events[month].name} ${this.events[month].year}`;\r\n  }\r\n\r\n  handleDateChange({ event, month }: { event: string; month: string }): void {\r\n    this.changeSelectedDate.emit({\r\n      month,\r\n      day: event,\r\n      date: this.events[month].events[event].date,\r\n    });\r\n  }\r\n\r\n  parseEvent(month: string, date: string) {\r\n    return this.events[month].events[date].date\r\n      .setLocale(this.lang)\r\n      .toFormat('dd LLL yyyy');\r\n  }\r\n}\r\n",
+      "sourceCode": "import {\n  ChangeDetectionStrategy,\n  Component,\n  Input,\n  ViewEncapsulation,\n  ElementRef,\n  AfterViewInit,\n  ViewChild,\n  Output,\n  EventEmitter,\n} from '@angular/core';\nimport { DateTime } from 'luxon';\nimport { CommonModule } from '@angular/common';\nimport { ISelectedDate } from '../types';\n\n@Component({\n  selector: 'bmb-timestream-timeline',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './bmb-timestream-timeline.component.html',\n  styleUrl: './bmb-timestream-timeline.component.scss',\n  encapsulation: ViewEncapsulation.None,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbTimestreamTimelineComponent implements AfterViewInit {\n  @ViewChild('monthList') monthList!: ElementRef;\n\n  @Input() start: DateTime | null = null;\n  @Input() end: DateTime | null = null;\n  @Input() dateFormat: string = 'dd/MM/yyyy';\n  @Input() lang: string = 'es';\n  @Input() now: DateTime = DateTime.now();\n  @Input() events?: any;\n  @Input() selectedDate: ISelectedDate = {\n    day: '',\n    month: '',\n    date: this.now,\n  };\n  @Input() orderedMonths: string[] = [];\n\n  @Output() changeSelectedDate: EventEmitter<ISelectedDate> =\n    new EventEmitter<ISelectedDate>();\n\n  ngAfterViewInit(): void {\n    this.scrollToItem();\n  }\n\n  scrollToItem() {\n    let currentMonthElement = this.monthList.nativeElement.querySelector(\n      '.bmb_timestream-timeline-content-item-current',\n    );\n    if (currentMonthElement) {\n      currentMonthElement.scrollIntoView();\n      this.monthList.nativeElement.scrollTop =\n        this.monthList.nativeElement.scrollTop - 45;\n    } else {\n      currentMonthElement = this.monthList.nativeElement.querySelector(\n        '.bmb_timestream-timeline-item-current',\n      );\n      currentMonthElement?.scrollIntoView();\n    }\n  }\n\n  getMonthTitle(month: string) {\n    return `${this.events[month].name} ${this.events[month].year}`;\n  }\n\n  handleDateChange({ event, month }: { event: string; month: string }): void {\n    this.changeSelectedDate.emit({\n      month,\n      day: event,\n      date: this.events[month].events[event].date,\n    });\n  }\n\n  parseEvent(month: string, date: string) {\n    return this.events[month].events[date].date\n      .setLocale(this.lang)\n      .toFormat('dd LLL yyyy');\n  }\n}\n",
       "styleUrl": "./bmb-timestream-timeline.component.scss",
       "assetsDirs": [],
       "styleUrlsData": "",
@@ -18823,7 +19020,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story",
-        "defaultValue": "{\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n        <bmb-advertisement-card [subtitle]=\"'Titulo'\" [data]=\"data\"></bmb-advertisement-card>\r\n    `,\r\n  }),\r\n}"
+        "defaultValue": "{\n  render: (args) => ({\n    props: args,\n    template: `\n        <bmb-advertisement-card [subtitle]=\"'Titulo'\" [data]=\"data\"></bmb-advertisement-card>\n    `,\n  }),\n}"
       },
       {
         "name": "Default",
@@ -19119,6 +19316,16 @@
         "name": "Default",
         "ctype": "miscellaneous",
         "subtype": "variable",
+        "file": "projects/ds-ng/src/lib/components/bmb-notification-card/bmb-notification-card.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story",
+        "defaultValue": "{\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n        <bmb-notification-card [data]=\"data\"></bmb-notification-card>\r\n    `,\r\n  }),\r\n}"
+      },
+      {
+        "name": "Default",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
         "file": "projects/ds-ng/src/lib/components/bmb-overlay/bmb-overlay.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -19373,7 +19580,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "[]",
-        "defaultValue": "[\r\n  {\r\n    name: 'TecGPT',\r\n    icon: '/assets/images/bot-icons/bot.png',\r\n  },\r\n  {\r\n    name: 'ChatGPT',\r\n    icon: '/assets/images/bot-icons/chat_gpt.svg',\r\n  },\r\n  {\r\n    name: 'Comment',\r\n    icon: '/assets/images/bot-icons/comment.svg',\r\n  },\r\n  {\r\n    name: 'New',\r\n    icon: '/assets/images/bot-icons/new.svg',\r\n  },\r\n  {\r\n    name: 'BotSchool',\r\n    icon: '/assets/images/bot-icons/bot_school.svg',\r\n  },\r\n  {\r\n    name: 'BotTech',\r\n    icon: '/assets/images/bot-icons/bot_tech.svg',\r\n  },\r\n  {\r\n    name: 'BotSport',\r\n    icon: '/assets/images/bot-icons/bot_sport.svg',\r\n  },\r\n  {\r\n    name: 'BotPhone',\r\n    icon: '/assets/images/bot-icons/bot_phone.svg',\r\n  },\r\n  {\r\n    name: 'BotMedic',\r\n    icon: '/assets/images/bot-icons/bot_medic.svg',\r\n  },\r\n  {\r\n    name: 'BotScience',\r\n    icon: '/assets/images/bot-icons/bot_science.svg',\r\n  },\r\n  {\r\n    name: 'Backup',\r\n    icon: '/assets/images/bot-icons/backup.svg',\r\n  },\r\n]"
+        "defaultValue": "[\n  {\n    name: 'TecGPT',\n    icon: '/assets/images/bot-icons/bot.png',\n  },\n  {\n    name: 'ChatGPT',\n    icon: '/assets/images/bot-icons/chat_gpt.svg',\n  },\n  {\n    name: 'Comment',\n    icon: '/assets/images/bot-icons/comment.svg',\n  },\n  {\n    name: 'New',\n    icon: '/assets/images/bot-icons/new.svg',\n  },\n  {\n    name: 'BotSchool',\n    icon: '/assets/images/bot-icons/bot_school.svg',\n  },\n  {\n    name: 'BotTech',\n    icon: '/assets/images/bot-icons/bot_tech.svg',\n  },\n  {\n    name: 'BotSport',\n    icon: '/assets/images/bot-icons/bot_sport.svg',\n  },\n  {\n    name: 'BotPhone',\n    icon: '/assets/images/bot-icons/bot_phone.svg',\n  },\n  {\n    name: 'BotMedic',\n    icon: '/assets/images/bot-icons/bot_medic.svg',\n  },\n  {\n    name: 'BotScience',\n    icon: '/assets/images/bot-icons/bot_science.svg',\n  },\n  {\n    name: 'Backup',\n    icon: '/assets/images/bot-icons/backup.svg',\n  },\n]"
       },
       {
         "name": "eventsInDate",
@@ -19746,7 +19953,7 @@
             "type": "IFixDecimals",
             "deprecated": false,
             "deprecationMessage": "",
-            "destrucuredGroupId": "f539d009-a2fb-4c73-8088-1bc1a00596c6",
+            "destrucuredGroupId": "171eb0c3-6fac-454a-bee0-b0fdc6a85f41",
             "destructuredParameter": true
           },
           {
@@ -19755,7 +19962,7 @@
             "deprecated": false,
             "deprecationMessage": "",
             "defaultValue": "2",
-            "destrucuredGroupId": "f539d009-a2fb-4c73-8088-1bc1a00596c6",
+            "destrucuredGroupId": "171eb0c3-6fac-454a-bee0-b0fdc6a85f41",
             "destructuredParameter": true
           }
         ],
@@ -19765,7 +19972,7 @@
             "type": "IFixDecimals",
             "deprecated": false,
             "deprecationMessage": "",
-            "destrucuredGroupId": "f539d009-a2fb-4c73-8088-1bc1a00596c6",
+            "destrucuredGroupId": "171eb0c3-6fac-454a-bee0-b0fdc6a85f41",
             "destructuredParameter": true,
             "tagName": {
               "text": "param"
@@ -19777,7 +19984,7 @@
             "deprecated": false,
             "deprecationMessage": "",
             "defaultValue": "2",
-            "destrucuredGroupId": "f539d009-a2fb-4c73-8088-1bc1a00596c6",
+            "destrucuredGroupId": "171eb0c3-6fac-454a-bee0-b0fdc6a85f41",
             "destructuredParameter": true,
             "tagName": {
               "text": "param"
@@ -19947,6 +20154,28 @@
         "deprecationMessage": "",
         "description": "",
         "kind": 192
+      },
+      {
+        "name": "IBmbNotificationCard",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "literal type",
+        "file": "projects/ds-ng/src/lib/components/bmb-notification-card/types.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 187
+      },
+      {
+        "name": "IBmbNotificationCardData",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "literal type",
+        "file": "projects/ds-ng/src/lib/components/bmb-notification-card/types.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 187
       },
       {
         "name": "IButtonAppearance",
@@ -20317,6 +20546,17 @@
         "subtype": "typealias",
         "rawtype": "StoryObj<BmbMediaCardComponent>",
         "file": "projects/ds-ng/src/lib/components/bmb-media-card/bmb-media-card.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "kind": 183
+      },
+      {
+        "name": "Story",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "StoryObj<BmbNotificationCardComponent>",
+        "file": "projects/ds-ng/src/lib/components/bmb-notification-card/bmb-notification-card.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "description": "",
@@ -20792,7 +21032,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Story",
-          "defaultValue": "{\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n        <bmb-advertisement-card [subtitle]=\"'Titulo'\" [data]=\"data\"></bmb-advertisement-card>\r\n    `,\r\n  }),\r\n}"
+          "defaultValue": "{\n  render: (args) => ({\n    props: args,\n    template: `\n        <bmb-advertisement-card [subtitle]=\"'Titulo'\" [data]=\"data\"></bmb-advertisement-card>\n    `,\n  }),\n}"
         }
       ],
       "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts": [
@@ -21143,6 +21383,18 @@
           "defaultValue": "(\n  args,\n) => {\n  return {\n    props: args,\n    template: `\n      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->\n      <storybook-toast-wrapper ${attributes(args)}></storybook-toast-wrapper>\n      <!-- Start copying from here -->\n      <div class=\"actions\">\n      <button bmbButton appearance=\"primary\" icon=\"home\" size=\"small\" position=\"left\" [case]=\"false\" (click)=\"onButtonClick()\">Open Modal</button>\n      `,\n  };\n}"
         }
       ],
+      "projects/ds-ng/src/lib/components/bmb-notification-card/bmb-notification-card.stories.ts": [
+        {
+          "name": "Default",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "projects/ds-ng/src/lib/components/bmb-notification-card/bmb-notification-card.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story",
+          "defaultValue": "{\r\n  render: (args) => ({\r\n    props: args,\r\n    template: `\r\n        <bmb-notification-card [data]=\"data\"></bmb-notification-card>\r\n    `,\r\n  }),\r\n}"
+        }
+      ],
       "projects/ds-ng/src/lib/components/bmb-overlay/bmb-overlay.stories.ts": [
         {
           "name": "Default",
@@ -21440,7 +21692,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "[]",
-          "defaultValue": "[\r\n  {\r\n    name: 'TecGPT',\r\n    icon: '/assets/images/bot-icons/bot.png',\r\n  },\r\n  {\r\n    name: 'ChatGPT',\r\n    icon: '/assets/images/bot-icons/chat_gpt.svg',\r\n  },\r\n  {\r\n    name: 'Comment',\r\n    icon: '/assets/images/bot-icons/comment.svg',\r\n  },\r\n  {\r\n    name: 'New',\r\n    icon: '/assets/images/bot-icons/new.svg',\r\n  },\r\n  {\r\n    name: 'BotSchool',\r\n    icon: '/assets/images/bot-icons/bot_school.svg',\r\n  },\r\n  {\r\n    name: 'BotTech',\r\n    icon: '/assets/images/bot-icons/bot_tech.svg',\r\n  },\r\n  {\r\n    name: 'BotSport',\r\n    icon: '/assets/images/bot-icons/bot_sport.svg',\r\n  },\r\n  {\r\n    name: 'BotPhone',\r\n    icon: '/assets/images/bot-icons/bot_phone.svg',\r\n  },\r\n  {\r\n    name: 'BotMedic',\r\n    icon: '/assets/images/bot-icons/bot_medic.svg',\r\n  },\r\n  {\r\n    name: 'BotScience',\r\n    icon: '/assets/images/bot-icons/bot_science.svg',\r\n  },\r\n  {\r\n    name: 'Backup',\r\n    icon: '/assets/images/bot-icons/backup.svg',\r\n  },\r\n]"
+          "defaultValue": "[\n  {\n    name: 'TecGPT',\n    icon: '/assets/images/bot-icons/bot.png',\n  },\n  {\n    name: 'ChatGPT',\n    icon: '/assets/images/bot-icons/chat_gpt.svg',\n  },\n  {\n    name: 'Comment',\n    icon: '/assets/images/bot-icons/comment.svg',\n  },\n  {\n    name: 'New',\n    icon: '/assets/images/bot-icons/new.svg',\n  },\n  {\n    name: 'BotSchool',\n    icon: '/assets/images/bot-icons/bot_school.svg',\n  },\n  {\n    name: 'BotTech',\n    icon: '/assets/images/bot-icons/bot_tech.svg',\n  },\n  {\n    name: 'BotSport',\n    icon: '/assets/images/bot-icons/bot_sport.svg',\n  },\n  {\n    name: 'BotPhone',\n    icon: '/assets/images/bot-icons/bot_phone.svg',\n  },\n  {\n    name: 'BotMedic',\n    icon: '/assets/images/bot-icons/bot_medic.svg',\n  },\n  {\n    name: 'BotScience',\n    icon: '/assets/images/bot-icons/bot_science.svg',\n  },\n  {\n    name: 'Backup',\n    icon: '/assets/images/bot-icons/backup.svg',\n  },\n]"
         }
       ],
       "projects/ds-ng/src/lib/components/bmb-fab/bmb-fab-.interface.ts": [
@@ -21808,7 +22060,7 @@
               "type": "IFixDecimals",
               "deprecated": false,
               "deprecationMessage": "",
-              "destrucuredGroupId": "f539d009-a2fb-4c73-8088-1bc1a00596c6",
+              "destrucuredGroupId": "171eb0c3-6fac-454a-bee0-b0fdc6a85f41",
               "destructuredParameter": true
             },
             {
@@ -21817,7 +22069,7 @@
               "deprecated": false,
               "deprecationMessage": "",
               "defaultValue": "2",
-              "destrucuredGroupId": "f539d009-a2fb-4c73-8088-1bc1a00596c6",
+              "destrucuredGroupId": "171eb0c3-6fac-454a-bee0-b0fdc6a85f41",
               "destructuredParameter": true
             }
           ],
@@ -21827,7 +22079,7 @@
               "type": "IFixDecimals",
               "deprecated": false,
               "deprecationMessage": "",
-              "destrucuredGroupId": "f539d009-a2fb-4c73-8088-1bc1a00596c6",
+              "destrucuredGroupId": "171eb0c3-6fac-454a-bee0-b0fdc6a85f41",
               "destructuredParameter": true,
               "tagName": {
                 "text": "param"
@@ -21839,7 +22091,7 @@
               "deprecated": false,
               "deprecationMessage": "",
               "defaultValue": "2",
-              "destrucuredGroupId": "f539d009-a2fb-4c73-8088-1bc1a00596c6",
+              "destrucuredGroupId": "171eb0c3-6fac-454a-bee0-b0fdc6a85f41",
               "destructuredParameter": true,
               "tagName": {
                 "text": "param"
@@ -22004,6 +22256,30 @@
           "deprecationMessage": "",
           "description": "",
           "kind": 192
+        }
+      ],
+      "projects/ds-ng/src/lib/components/bmb-notification-card/types.ts": [
+        {
+          "name": "IBmbNotificationCard",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "literal type",
+          "file": "projects/ds-ng/src/lib/components/bmb-notification-card/types.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 187
+        },
+        {
+          "name": "IBmbNotificationCardData",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "literal type",
+          "file": "projects/ds-ng/src/lib/components/bmb-notification-card/types.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 187
         }
       ],
       "projects/ds-ng/src/lib/types/index.ts": [
@@ -22427,6 +22703,19 @@
           "subtype": "typealias",
           "rawtype": "StoryObj<BmbMediaCardComponent>",
           "file": "projects/ds-ng/src/lib/components/bmb-media-card/bmb-media-card.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "kind": 183
+        }
+      ],
+      "projects/ds-ng/src/lib/components/bmb-notification-card/bmb-notification-card.stories.ts": [
+        {
+          "name": "Story",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "StoryObj<BmbNotificationCardComponent>",
+          "file": "projects/ds-ng/src/lib/components/bmb-notification-card/bmb-notification-card.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "description": "",
@@ -23698,6 +23987,25 @@
       },
       {
         "filePath": "projects/ds-ng/src/lib/components/bmb-modal/bmb-modal.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Default",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/ds-ng/src/lib/components/bmb-notification-card/bmb-notification-card.component.ts",
+        "type": "component",
+        "linktype": "component",
+        "name": "BmbNotificationCardComponent",
+        "coveragePercent": 0,
+        "coverageCount": "0/10",
+        "status": "low"
+      },
+      {
+        "filePath": "projects/ds-ng/src/lib/components/bmb-notification-card/bmb-notification-card.stories.ts",
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
