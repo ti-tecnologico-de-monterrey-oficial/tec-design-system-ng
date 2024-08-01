@@ -77,36 +77,36 @@ Below is an example of how you can use this component in HTML:
   },
   args: {
     data: {
-        new: [
-            {
-              description: 'Descripcion Corta',
-              time: '4d 12h'
-            },
-          ],
-          all: [
-            {
-              description: 'Descripcion Corta',
-              time: '5d 12h'
-            },
-            {
-              description: 'Descripcion Corta 2',
-              time: '6d 12h'
-            },
-          ],
-          seen: [
-            {
-              description: 'Descripcion Corta',
-              time: '7d 12h'
-            },
-            {
-              description: 'Descripcion Corta 2',
-              time: '8d 12h'
-            },
-            {
-              description: 'Descripcion Corta 3',
-              time: '9d 12h'
-            },
-          ]
+      new: [
+        {
+          description: 'Descripcion Corta',
+          time: '4d 12h',
+        },
+      ],
+      all: [
+        {
+          description: 'Descripcion Corta',
+          time: '5d 12h',
+        },
+        {
+          description: 'Descripcion Corta 2',
+          time: '6d 12h',
+        },
+      ],
+      seen: [
+        {
+          description: 'Descripcion Corta',
+          time: '7d 12h',
+        },
+        {
+          description: 'Descripcion Corta 2',
+          time: '8d 12h',
+        },
+        {
+          description: 'Descripcion Corta 3',
+          time: '9d 12h',
+        },
+      ],
     },
     subtitle: 'Subtitulo',
   },
