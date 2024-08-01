@@ -151,6 +151,10 @@
         }
 
     }
+
+    &-error{
+        @include fonts.font(5, regular);
+    }
   }
 
 }
@@ -201,6 +205,10 @@
                 color: RGBA(var(--color-charade-50));
             }
     
+        }
+
+        &-error{
+            color: RGBA(var(--color-charade-50));
         }
       }
   }
