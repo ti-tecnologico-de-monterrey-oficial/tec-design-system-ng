@@ -7,6 +7,7 @@
   display: flex;
   color: RGBA(var(--color-charade-200));
   @include fonts.font(3, regular);
+  position: relative;
 
   &-error {
     flex: 1;
@@ -21,5 +22,16 @@
   &-main {
     flex: 1;
     background-color: RGBA(var(--color-charade-950));
+  }
+
+  &-dialog {
+    width: 0;
+    max-width: 350px;
+    background-color: RGBA(var(--color-charade-950));
+    transition: all 0.3s ease;
+
+    &-active {
+      width: 30%;
+    }
   }
 }

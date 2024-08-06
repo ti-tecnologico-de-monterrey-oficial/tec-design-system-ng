@@ -22,6 +22,12 @@ export class BmbStepProgressBarComponent {
   @Input() activeStep: number = 0;
   @Input() totalSteps?: number = 0;
   @Input() size?: 'normal' | 'small' = 'normal';
+  @Input() freeze: boolean = false;
+  @Input() type: 'horizontal' | 'vertical' = 'vertical';
+  @Input() labelSteps: string[] = [];
+  @Input() labelComplete: string = 'Completo';
+  @Input() labelIncomplete: string = 'Pendiente';
+
   @Output() onStepPress: EventEmitter<number> = new EventEmitter<number>();
 
   getStepsArray(): number[] {
@@ -29,7 +35,9 @@ export class BmbStepProgressBarComponent {
   }
 
   onStepClicked(index: number): void {
-    this.activeStep = index;
-    this.onStepPress.emit(index);
+    if (!this.freeze) {
+      this.activeStep = index;
+      this.onStepPress.emit(index);
+    }
   }
 }
