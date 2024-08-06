@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   ViewChild,
   ChangeDetectorRef,
+  model,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
@@ -74,6 +75,7 @@ import names from './names.json';
 import { ModalDataConfig } from '../../projects/ds-ng/src/lib/components/bmb-modal/bmb-modal.interface';
 import { MatDialog } from '@angular/material/dialog';
 import timelineEvents from './timelineEvents.json';
+import { BmbHomeCardChatComponent } from '../../projects/ds-ng/src/lib/components/bmb-home-card-chat/bmb-home-card-chat.component';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -130,8 +132,8 @@ import timelineEvents from './timelineEvents.json';
     BmbStudentActivitySelectorComponent,
     BmbTabStudenActivityComponent,
     BmbTimestreamComponent,
-    BmbCardContentComponent,
     BmbHomeCardComponent,
+    BmbHomeCardChatComponent,
     BmbChatBarComponent,
   ],
   templateUrl: './app.component.html',
@@ -623,5 +625,13 @@ export class AppComponent {
   chatBarValue = '';
   handleChatBarChange(value: string) {
     this.chatBarValue = value;
+  }
+
+  testLoading = model<boolean>();
+
+  handelTest(): void {
+    setTimeout(() => {
+      this.testLoading.update((value) => !value);
+    }, 1000);
   }
 }
