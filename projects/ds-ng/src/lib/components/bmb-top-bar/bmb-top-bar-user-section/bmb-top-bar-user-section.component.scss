@@ -8,18 +8,18 @@
   gap: 0;
   width: 100vw;
   @include fonts.font(3, regular);
-  grid-template-columns: rem.rem_calc(46) 1fr rem.rem_calc(46);
+  grid-template-columns: rem.rem_calc(50) 1fr rem.rem_calc(46);
   grid-template-areas:
-    "image name help"
-    "image role help";
+    "image name icons"
+    "image role icons";
 
   align-items: center;
 
   @include mixins.media-query(1000, "min") {
     grid-template-areas:
-      "help image name"
-      "help image role";
-    grid-template-columns: rem.rem_calc(30) rem.rem_calc(64) 1fr;
+      "icons image name"
+      "icons image role";
+    grid-template-columns: rem.rem_calc(80) rem.rem_calc(64) 1fr;
     max-width: max-content;
   }
 
@@ -28,15 +28,59 @@
     padding: 0 rem.rem_calc(16);
   }
 
-  &-help {
-    font-size: rem.rem_calc(26);
-    grid-area: help;
+  &-icons {
+    position: relative;
+    display: inline-flex;
+    grid-area: icons;
     line-height: 0;
-    text-align: center;
-    margin-left: rem.rem_calc(16);
+    margin-left: rem.rem_calc(-40);
 
     @include mixins.media-query(1000, "min") {
-      margin: 0;
+      margin-left: rem.rem_calc(-5);
+    }
+  }
+
+  &-icon {
+    cursor: pointer;
+    font-size: rem.rem_calc(26);
+    line-height: 0;
+    text-align: center;
+    padding: rem.rem_calc(0) rem.rem_calc(2);
+
+    &-mitec {
+      margin-left: rem.rem_calc(56);
+
+      @include mixins.media-query(1000, "min") {
+        margin-left: rem.rem_calc(56);
+      }
+    }
+
+    &-number {
+      position: absolute;
+      background-color: RGBA(var(--color-red-primary));
+      color: RGBA(var(--color-white-primary));
+      border-radius: 50%;
+      padding: rem.rem_calc(5) rem.rem_calc(5);
+      font-size: rem.rem_calc(9);
+      min-width: rem.rem_calc(14);
+      min-height: rem.rem_calc(14);
+      text-align: center;
+      align-content: center;
+
+      &-one {
+        bottom: rem.rem_calc(-3);
+        right: rem.rem_calc(55);
+      }
+
+      &-two {
+        bottom: rem.rem_calc(-3);
+        right: rem.rem_calc(25);
+      }
+
+      &-three {
+        bottom: rem.rem_calc(-3);
+        right: rem.rem_calc(-4);
+      }
     }
   }
 

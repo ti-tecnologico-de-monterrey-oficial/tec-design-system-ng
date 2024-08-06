@@ -1,0 +1,54 @@
+<section class="bmb_chat-bar">
+  <div class="bmb_chat-bar-container">
+    <button class="bmb_chat-bar-bot" (click)="handleDialog()">
+      <figure class="bmb_chat-bar-bot-picture">
+        <img
+          class="bmb_chat-bar-bot-picture-image"
+          [src]="currentBot.icon"
+          [alt]="currentBot.name"
+        />
+      </figure>
+    </button>
+    <input
+      id="bmbChatBarBot"
+      name="bmbChatBarBot"
+      class="bmb_chat-bar-input"
+      type="text"
+      [placeholder]="placeholder"
+      [formControl]="control"
+    />
+    <button
+      (click)="handleSend()"
+      class="bmb_chat-bar-send"
+      [disabled]="!control.value || isLoading"
+    >
+      <bmb-icon
+        [ngClass]="{ 'bmb_chat-bar-send-animated': isLoading }"
+        [icon]="isLoading ? 'progress_activity' : 'send'"
+      />
+    </button>
+  </div>
+  <div
+    class="bmb_chat-bar-dialog"
+    [ngClass]="{ 'bmb_chat-bar-dialog-active': isDialogOpen }"
+  >
+    <ul class="bmb_chat-bar-dialog-list">
+      @if (isDialogOpen) {
+        @for (bot of botList; track $index) {
+          <li class="bmb_chat-bar-dialog-option">
+            <button
+              (click)="handleChangeBot(bot)"
+              class="bmb_chat-bar-dialog-button"
+            >
+              <img
+                class="bmb_chat-bar-dialog-image"
+                [src]="bot.icon"
+                [alt]="bot.name"
+              />
+            </button>
+          </li>
+        }
+      }
+    </ul>
+  </div>
+</section>
