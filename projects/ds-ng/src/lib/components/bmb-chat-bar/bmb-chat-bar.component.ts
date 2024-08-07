@@ -32,7 +32,6 @@ export class BmbChatBarComponent {
   isLoading = model<boolean>();
 
   onSendMessage = output<string>();
-  onBotChange = output<IBotType>();
 
   control = new FormControl();
   isDialogOpen: boolean = false;
@@ -54,7 +53,7 @@ export class BmbChatBarComponent {
 
   handleChangeBot(event: IBotType) {
     this.isDialogOpen = false;
-    this.currentBot.update((): IBotType => event);
+    this.currentBot.set(event);
   }
 
   handleDialog() {

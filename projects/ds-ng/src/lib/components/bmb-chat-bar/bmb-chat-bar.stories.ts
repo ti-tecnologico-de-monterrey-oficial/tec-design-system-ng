@@ -43,17 +43,17 @@ Below is an example of how you can use this component in HTML:
     botList: {
       name: 'Bot list',
       control: { type: 'object' },
-      description: 'Optionally you can customize the bot list.',
+      description: 'Optionally you can customize the bot list input.',
       table: {
         category: 'Properties',
         type: { summary: 'IBotType[]' },
       },
       defaultValue: { summary: 'defaultBotList<IBotType[]>' },
     },
-    defaultBot: {
-      name: 'Default bot',
+    currentBot: {
+      name: 'Current bot',
       control: { type: 'object' },
-      description: 'Set the default bot to chat.',
+      description: 'Set the current bot to chat.',
       table: {
         category: 'Properties',
         type: { summary: 'IBotType' },
@@ -64,26 +64,35 @@ Below is an example of how you can use this component in HTML:
       name: 'Is loading',
       control: { type: 'boolean' },
       description:
-        'Sets loading state, put a loader icon and disable the send button.',
+        'Set loading state, put a loader icon and disable the send button.',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
         type: { summary: 'boolean' },
       },
     },
-    onSendMessage: {
-      name: 'On send message',
+    isLoadingChange: {
+      name: 'Is Loading Change',
       control: null,
-      description: 'Emmit the send event, export the input value.',
+      description: 'Model signal, export the model value. Example: (isLoadingChange)="handleIsLoadingChange()"',
       table: {
         category: 'Events',
         type: { summary: 'function' },
       },
     },
-    onBotChange: {
-      name: 'On bot change',
+    currentBotChange: {
+      name: 'current bot change',
       control: null,
-      description: 'Emmit the selected bot object <IBotType>.',
+      description: 'Emmit the selected bot object <IBotType>. ',
+      table: {
+        category: 'Events',
+        type: { summary: 'function' },
+      },
+    },
+    onSendMessage: {
+      name: 'On send message',
+      control: null,
+      description: 'Emmit the send event, export the output value.',
       table: {
         category: 'Events',
         type: { summary: 'function' },
@@ -138,7 +147,7 @@ Below is an example of how you can use this component in HTML:
         icon: '/assets/images/bot-icons/backup.svg',
       },
     ],
-    defaultBot: {
+    currentBot: {
       name: 'TecGPT',
       icon: '/assets/images/bot-icons/bot.png',
     },
