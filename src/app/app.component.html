@@ -1,7 +1,10 @@
 <div style="margin: 1rem">
   <bmb-home-card-chat
-    [(isLoading)]="testLoading"
-    (isLoadingChange)="handelTest()"
+    [(isLoading)]="isLoading"
+    (isLoadingChange)="handleIsLoadingChange()"
+    [(currentBot)]="currentBot"
+    (currentBotChange)="handleCurrentBotChange()"
+    (onSendMessage)="handleSendMessage($event)"
   >
     <p>Slot test</p>
   </bmb-home-card-chat>

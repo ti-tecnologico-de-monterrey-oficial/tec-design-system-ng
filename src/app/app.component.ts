@@ -57,6 +57,7 @@ import {
   BmbHomeCardComponent,
   BmbCardContentComponent,
   BmbChatBarComponent,
+  IBotType,
 } from '../../projects/ds-ng/src/public-api';
 
 import {
@@ -627,11 +628,20 @@ export class AppComponent {
     this.chatBarValue = value;
   }
 
-  testLoading = model<boolean>();
+  isLoading = model<boolean>();
+  currentBot = model<IBotType>();
 
-  handelTest(): void {
+  handleIsLoadingChange(): void {
     setTimeout(() => {
-      this.testLoading.update((value) => !value);
+      this.isLoading.update((value) => !value);
     }, 1000);
+  }
+
+  handleCurrentBotChange(): void {
+    console.log('handleCurrentBotChange ', this.currentBot());
+  }
+
+  handleSendMessage(message: string): void {
+    console.log('handleSendMessage', message);
   }
 }
