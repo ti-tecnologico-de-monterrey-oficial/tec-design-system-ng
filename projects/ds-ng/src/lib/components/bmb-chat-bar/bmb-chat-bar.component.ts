@@ -51,9 +51,9 @@ export class BmbChatBarComponent {
     this.control.reset();
   }
 
-  handleChangeBot(event: IBotType) {
+  handleChangeBot(bot: IBotType) {
     this.isDialogOpen = false;
-    this.currentBot.set(event);
+    this.currentBot.set(bot);
   }
 
   handleDialog() {
