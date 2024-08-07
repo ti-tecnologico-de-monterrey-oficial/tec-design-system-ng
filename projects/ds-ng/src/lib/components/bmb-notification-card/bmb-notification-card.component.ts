@@ -5,7 +5,8 @@ import {
   OnInit,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbBadgeComponent, BmbIconComponent } from 'ds-ng';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 import { IBmbNotificationCardData } from './types';
 import { CommonModule } from '@angular/common';
 
