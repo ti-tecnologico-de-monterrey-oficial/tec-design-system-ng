@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   ViewChild,
   ChangeDetectorRef,
+  model,
   TemplateRef,
   OnInit,
 } from '@angular/core';
@@ -58,9 +59,11 @@ import {
   BmbHomeCardComponent,
   BmbCardContentComponent,
   BmbChatBarComponent,
+  IBotType,
   BmbPushNotificationComponent,
   BmbNotificationService,
   NotificationType,
+  BmbHomeCardChatComponent,
 } from '../../projects/ds-ng/src/public-api';
 
 import {
@@ -79,6 +82,7 @@ import names from './names.json';
 import { ModalDataConfig } from '../../projects/ds-ng/src/lib/components/bmb-modal/bmb-modal.interface';
 import { MatDialog } from '@angular/material/dialog';
 import timelineEvents from './timelineEvents.json';
+import {} from '../../projects/ds-ng/src/lib/components/bmb-home-card-chat/bmb-home-card-chat.component';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -135,8 +139,8 @@ import timelineEvents from './timelineEvents.json';
     BmbStudentActivitySelectorComponent,
     BmbTabStudenActivityComponent,
     BmbTimestreamComponent,
-    BmbCardContentComponent,
     BmbHomeCardComponent,
+    BmbHomeCardChatComponent,
     BmbChatBarComponent,
     BmbPushNotificationComponent,
   ],
@@ -633,6 +637,23 @@ export class AppComponent implements OnInit {
   chatBarValue = '';
   handleChatBarChange(value: string) {
     this.chatBarValue = value;
+  }
+
+  isLoading = model<boolean>();
+  currentBot = model<IBotType>();
+
+  handleIsLoadingChange(): void {
+    setTimeout(() => {
+      this.isLoading.update((value) => !value);
+    }, 1000);
+  }
+
+  handleCurrentBotChange(): void {
+    console.log('handleCurrentBotChange ', this.currentBot());
+  }
+
+  handleSendMessage(message: string): void {
+    console.log('handleSendMessage', message);
   }
 
   addNotification() {
