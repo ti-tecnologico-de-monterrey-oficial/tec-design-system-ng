@@ -1,9 +1,18 @@
 <section [ngClass]="getNotificationClasses()">
   @if (!notification().isFullColor) {
     <header class="bmb_push-notification-item-header">
-      <img class="bmb_push-notification-item-header-icon" [src]="getAppIcon()" [alt]="getAppName()">
-      <span class="bmb_push-notification-item-header-name">{{ getAppName() }}</span>
-      <button (click)="handleExpandEvent()" class="bmb_push-notification-item-button bmb_push-notification-item-contract">
+      <img
+        class="bmb_push-notification-item-header-icon"
+        [src]="getAppIcon()"
+        [alt]="getAppName()"
+      />
+      <span class="bmb_push-notification-item-header-name">{{
+        getAppName()
+      }}</span>
+      <button
+        (click)="handleExpandEvent()"
+        class="bmb_push-notification-item-button bmb_push-notification-item-contract"
+      >
         <bmb-icon icon="keyboard_arrow_up" />
       </button>
       <button (click)="handleClose()" class="bmb_push-notification-item-button">
@@ -17,14 +26,22 @@
     </li>
     <li class="bmb_push-notification-item-container">
       <h1 class="bmb_push-notification-item-title">
-        <span class="bmb_push-notification-item-title-legend">{{ notification().title }}</span>
-        <span class="bmb_push-notification-item-title-date">{{ notification().date }}</span>
+        <span class="bmb_push-notification-item-title-legend">{{
+          notification().title
+        }}</span>
+        <span class="bmb_push-notification-item-title-date">{{
+          notification().date
+        }}</span>
       </h1>
       @if (notification().subTitle) {
-        <h2 class="bmb_push-notification-item-subtitle">{{ notification().subTitle }}</h2>
+        <h2 class="bmb_push-notification-item-subtitle">
+          {{ notification().subTitle }}
+        </h2>
       }
       @if (notification().content) {
-        <p class="bmb_push-notification-item-content">{{ notification().content }}</p>
+        <p class="bmb_push-notification-item-content">
+          {{ notification().content }}
+        </p>
       }
       @if (notification().dontAskAgainEvent) {
         <div class="bmb_push-notification-item-dont-ask-again">
@@ -41,7 +58,9 @@
                 bmbButton
                 [appearance]="action.type ?? 'primary'"
                 (click)="handleAction(action)"
-              >{{ action.title }}</button>
+              >
+                {{ action.title }}
+              </button>
             }
           </section>
         </div>
@@ -55,19 +74,30 @@
               size="mobile-small"
             />
           </div>
-          <span class="bmb_push-notification-item-user-name">{{ notification().userName }}</span>
-          <span class="bmb_push-notification-item-user-mail">{{ notification().userMail }}</span>
+          <span class="bmb_push-notification-item-user-name">{{
+            notification().userName
+          }}</span>
+          <span class="bmb_push-notification-item-user-mail">{{
+            notification().userMail
+          }}</span>
         </section>
       }
       @if (!notification().isFullColor && notification().media) {
         <figure class="bmb_push-notification-item-media">
-          <img class="bmb_push-notification-item-media-picture" [src]="notification().media" [alt]="notification().title">
+          <img
+            class="bmb_push-notification-item-media-picture"
+            [src]="notification().media"
+            [alt]="notification().title"
+          />
         </figure>
       }
     </li>
     @if (notification().isFullColor) {
       <li class="bmb_push-notification-item-close">
-        <button (click)="handleClose()" class="bmb_push-notification-item-button">
+        <button
+          (click)="handleClose()"
+          class="bmb_push-notification-item-button"
+        >
           <bmb-icon icon="close" />
         </button>
       </li>

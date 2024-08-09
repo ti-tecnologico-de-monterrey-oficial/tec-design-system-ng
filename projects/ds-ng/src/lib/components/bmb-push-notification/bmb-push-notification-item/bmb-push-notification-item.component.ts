@@ -1,5 +1,12 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, input, output, ViewEncapsulation } from '@angular/core';
-import { CommonModule } from "@angular/common";
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  output,
+  ViewEncapsulation,
+} from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { INotification, INotificationAction } from '../types';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { BmbUserImageComponent } from '../../bmb-user-image/bmb-user-image.component';
@@ -9,7 +16,13 @@ import { BmbButtonDirective } from '../../../directives/button.directive';
 @Component({
   selector: 'bmb-push-notification-item',
   standalone: true,
-  imports: [ CommonModule, BmbIconComponent, BmbUserImageComponent, BmbCheckboxComponent, BmbButtonDirective ],
+  imports: [
+    CommonModule,
+    BmbIconComponent,
+    BmbUserImageComponent,
+    BmbCheckboxComponent,
+    BmbButtonDirective,
+  ],
   templateUrl: './bmb-push-notification-item.component.html',
   styleUrl: './bmb-push-notification-item.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -29,10 +42,12 @@ export class BmbPushNotificationItemComponent {
       `bmb_push-notification-item-type-${this.notification()?.type}`,
     ];
 
-    if (this.notification()?.isFullColor) classList.push('bmb_push-notification-item-full-color');
+    if (this.notification()?.isFullColor)
+      classList.push('bmb_push-notification-item-full-color');
     else classList.push('bmb_push-notification-item-regular-tmp');
 
-    if (!this.isExpanded) classList.push('bmb_push-notification-item-contracted');
+    if (!this.isExpanded)
+      classList.push('bmb_push-notification-item-contracted');
 
     return classList;
   }
@@ -40,7 +55,7 @@ export class BmbPushNotificationItemComponent {
   getIconClasses(): string[] {
     return [
       'bmb_push-notification-item-icon',
-      `bmb_push-notification-item-icon-${this.notification()?.type}`
+      `bmb_push-notification-item-icon-${this.notification()?.type}`,
     ];
   }
 
@@ -61,9 +76,9 @@ export class BmbPushNotificationItemComponent {
   }
 
   handleDontAskAgain() {
-    const notification = this.notification()
+    const notification = this.notification();
     if (notification.dontAskAgainEvent && notification?.id) {
-      notification.dontAskAgainEvent(notification?.id)
+      notification.dontAskAgainEvent(notification?.id);
     }
   }
 

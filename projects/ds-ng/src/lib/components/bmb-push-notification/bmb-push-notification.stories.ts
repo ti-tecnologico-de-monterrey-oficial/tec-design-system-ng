@@ -4,7 +4,12 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbButtonDirective } from '../../directives/button.directive';
 import { BmbNotificationService } from '../../services/notification.service';
 import { BmbPushNotificationComponent } from './bmb-push-notification.component';
-import { IMinimalNotification, INotification, INotificationAction, NotificationType } from './types';
+import {
+  IMinimalNotification,
+  INotification,
+  INotificationAction,
+  NotificationType,
+} from './types';
 
 @Component({
   standalone: true,
@@ -40,11 +45,11 @@ class StorybookToastWrapperComponent {
   userAvatar = input('');
   userMail = input('');
 
-  enableDontAskAgain() { alert('Don\'t ask again') };
+  enableDontAskAgain() {
+    alert("Don't ask again");
+  }
 
-  constructor(
-    private notificationSignal: BmbNotificationService,
-  ) {}
+  constructor(private notificationSignal: BmbNotificationService) {}
 
   addNotificationFnc() {
     console.log(typeof this.delay());
@@ -159,15 +164,23 @@ Below is an example of how you can use this component in HTML:
         category: 'Properties',
         type: { summary: 'string' },
       },
-      description:
-        'Set the notification icon.',
+      description: 'Set the notification icon.',
     },
     type: {
       name: 'Type',
       control: {
         type: 'select',
       },
-      options: ['tec', 'success', 'info', 'neutral', 'event', 'error', 'warning', 'black'],
+      options: [
+        'tec',
+        'success',
+        'info',
+        'neutral',
+        'event',
+        'error',
+        'warning',
+        'black',
+      ],
       table: {
         category: 'Properties',
         defaultValue: { summary: 'tec' },
@@ -176,7 +189,7 @@ Below is an example of how you can use this component in HTML:
       description: 'Set the noticication color schema.',
     },
     enableDontAskAgain: {
-      name: 'Enable don\'t ask again',
+      name: "Enable don't ask again",
       control: null,
       description:
         'Enable the option to check the property "Don don\'t ask again", once the user click on the checkbox the function is trigger.',
@@ -189,7 +202,7 @@ Below is an example of how you can use this component in HTML:
       name: 'Actions',
       control: null,
       description:
-        'List of actions and their events to display \`[{ title, action, type?,  icon? }]\`',
+        'List of actions and their events to display `[{ title, action, type?,  icon? }]`',
       table: {
         category: 'Events',
         type: { summary: 'INotificationAction' },
@@ -198,7 +211,8 @@ Below is an example of how you can use this component in HTML:
     isFullColor: {
       name: 'Full color',
       control: { type: 'boolean' },
-      description: 'Set the Notification virtualization type, Full color is a short notification type, a side effect of enable this option hide the next properties: ',
+      description:
+        'Set the Notification virtualization type, Full color is a short notification type, a side effect of enable this option hide the next properties: ',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
@@ -224,8 +238,7 @@ Below is an example of how you can use this component in HTML:
         category: 'Properties',
         type: { summary: 'string' },
       },
-      description:
-        'Set a leyend with a date or days to left.',
+      description: 'Set a leyend with a date or days to left.',
     },
     appName: {
       name: 'App name',
@@ -237,8 +250,7 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: 'mitec.com' },
         type: { summary: 'string' },
       },
-      description:
-        'Set the App name at the top of the notification.',
+      description: 'Set the App name at the top of the notification.',
     },
     appIcon: {
       name: 'App icon',
@@ -250,8 +262,7 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: 'assets/images/tec-logo-mob.svg' },
         type: { summary: 'string' },
       },
-      description:
-        'Set the App name at the top of the notification.',
+      description: 'Set the App name at the top of the notification.',
     },
     media: {
       name: 'Media',
@@ -262,8 +273,7 @@ Below is an example of how you can use this component in HTML:
         category: 'Properties',
         type: { summary: 'string' },
       },
-      description:
-        'Set an image at the bottom of the notification.',
+      description: 'Set an image at the bottom of the notification.',
     },
     userName: {
       name: 'User name',
@@ -275,7 +285,7 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string' },
       },
       description:
-        'Set the user name label, and in order to enable the user section this filed is required as \`userAvatar\`.',
+        'Set the user name label, and in order to enable the user section this filed is required as `userAvatar`.',
     },
     userAvatar: {
       name: 'User avatar',
@@ -287,7 +297,7 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string' },
       },
       description:
-        'Set the user avatar, and in order to enable the user section this filed is required as \`userName\`.',
+        'Set the user avatar, and in order to enable the user section this filed is required as `userName`.',
     },
     userMail: {
       name: 'User email',
@@ -299,7 +309,7 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string' },
       },
       description:
-        'Set the user email for the user section, and in order to enable the user section this filed is required as \`userName\ and \`userName\`.',
+        'Set the user email for the user section, and in order to enable the user section this filed is required as `userName and `userName`.',
     },
   },
   args: {
@@ -313,10 +323,12 @@ Below is an example of how you can use this component in HTML:
     date: '1 day',
     appName: 'mitec.com',
     appIcon: 'assets/images/tec-logo-mob.svg',
-    media: 'https://preview.redd.it/zfohxnf8t3pa1.jpg?width=1024&format=pjpg&auto=webp&v=enabled&s=0f660e0a56476991ee3b97f2885d8c010fec5b97',
+    media:
+      'https://preview.redd.it/zfohxnf8t3pa1.jpg?width=1024&format=pjpg&auto=webp&v=enabled&s=0f660e0a56476991ee3b97f2885d8c010fec5b97',
     userName: 'Some Placeholder Name',
-    userAvatar: 'https://www.yugatech.com/wp-content/uploads/2020/09/Facebook-Avatar.jpg',
-    userMail: 'some.placeholder.name@domian.com'
+    userAvatar:
+      'https://www.yugatech.com/wp-content/uploads/2020/09/Facebook-Avatar.jpg',
+    userMail: 'some.placeholder.name@domian.com',
   },
 } as Meta<typeof BmbPushNotificationComponent>;
 

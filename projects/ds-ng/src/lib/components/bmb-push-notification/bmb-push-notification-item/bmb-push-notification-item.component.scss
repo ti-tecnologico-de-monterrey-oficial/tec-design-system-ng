@@ -43,7 +43,6 @@ $types: (
     }
 
     &.bmb_push-notification-item-type {
-
       @each $name, $color in $types {
         &-#{$name} {
           background-color: $color;
@@ -67,7 +66,6 @@ $types: (
     border-radius: var(--bmb-radius-s);
 
     &.bmb_push-notification-item-type {
-
       @each $name, $color in $types {
         &-#{$name} {
           border-left-color: $color;
@@ -76,7 +74,6 @@ $types: (
     }
 
     .bmb_push-notification-item-icon {
-
       @each $name, $color in $types {
         &-#{$name} {
           background-color: $color;
@@ -108,14 +105,14 @@ $types: (
 
     &-date {
       width: max-content;
-      color: RGBA(var(--color-white-primary), .75);
+      color: RGBA(var(--color-white-primary), 0.75);
     }
   }
 
   &-subtitle {
     @include fonts.font(3, regular);
     font-weight: 400;
-    color: RGBA(var(--color-white-primary), .5);
+    color: RGBA(var(--color-white-primary), 0.5);
     @include textEllipsis();
     margin-bottom: var(--bmb-spacing-xs);
   }
@@ -152,7 +149,7 @@ $types: (
   }
 
   &-contract {
-    transition: all .3s ease;
+    transition: all 0.3s ease;
   }
 
   &-media {
@@ -196,7 +193,6 @@ $types: (
   }
 
   &-contracted {
-
     .bmb_push-notification-item-subtitle,
     .bmb_push-notification-item-user,
     .bmb_push-notification-item-media {
@@ -235,7 +231,7 @@ $types: (
 
     &-mail {
       grid-area: mail;
-      color: RGBA(var(--color-white-primary), .5);
+      color: RGBA(var(--color-white-primary), 0.5);
     }
   }
 }

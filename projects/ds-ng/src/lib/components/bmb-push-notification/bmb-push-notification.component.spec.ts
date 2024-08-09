@@ -8,10 +8,9 @@ describe('BmbPushNotificationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BmbPushNotificationComponent]
-    })
-    .compileComponents();
-    
+      imports: [BmbPushNotificationComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(BmbPushNotificationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
