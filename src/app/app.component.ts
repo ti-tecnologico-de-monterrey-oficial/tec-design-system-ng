@@ -3,6 +3,8 @@ import {
   ChangeDetectionStrategy,
   ViewChild,
   ChangeDetectorRef,
+  TemplateRef,
+  OnInit,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
@@ -56,6 +58,9 @@ import {
   BmbHomeCardComponent,
   BmbCardContentComponent,
   BmbChatBarComponent,
+  BmbPushNotificationComponent,
+  BmbNotificationService,
+  NotificationType,
 } from '../../projects/ds-ng/src/public-api';
 
 import {
@@ -133,15 +138,18 @@ import timelineEvents from './timelineEvents.json';
     BmbCardContentComponent,
     BmbHomeCardComponent,
     BmbChatBarComponent,
+    BmbPushNotificationComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   constructor(
     private cdr: ChangeDetectorRef,
     private matDialog: MatDialog,
+    private notificationSignal: BmbNotificationService,
   ) {}
 
   myTabs: IBmbTab[] = [
@@ -152,6 +160,8 @@ export class AppComponent {
     { id: 5, title: 'Text' },
     { id: 6, title: 'Mas usado' },
   ];
+
+  @ViewChild('buttonContent') actionsTemplate!: TemplateRef<unknown>;
 
   activeTabId: number | null =
     this.myTabs.find((tab: IBmbTab) => tab.isActive)?.id ?? null;
@@ -623,5 +633,63 @@ export class AppComponent {
   chatBarValue = '';
   handleChatBarChange(value: string) {
     this.chatBarValue = value;
+  }
+
+  addNotification() {
+    const types: NotificationType[] = [
+      'tec',
+      'success',
+      'info',
+      'neutral',
+      'event',
+      'error',
+      'warning',
+      'black',
+    ];
+    const type: NotificationType = types[Math.floor(Math.random() * 7)];
+    this.notificationSignal.addNotification({
+      title: timelineEvents[Math.floor(Math.random() * 5)].title,
+      subTitle: timelineEvents[Math.floor(Math.random() * 5)].short_description,
+      content: timelineEvents[Math.floor(Math.random() * 5)].description,
+      icon: 'info',
+      type: type,
+      dontAskAgainEvent: (id) => {
+        alert(id);
+      },
+      actions: [
+        {
+          title: timelineEvents[Math.floor(Math.random() * 5)].type,
+          action: ({ id }) => {
+            alert(id);
+          },
+        },
+        {
+          title: timelineEvents[Math.floor(Math.random() * 5)].type,
+          action: 'close',
+          type: 'secondary-filled',
+          icon: 'close',
+        },
+      ],
+      isFullColor: Math.random() >= 0.5,
+      delay: Math.floor(Math.random() * 5) * 1000,
+      date: `${Math.floor(Math.random() * 3 + 1)} days`,
+      appName: 'Custom app',
+      appIcon:
+        'https://logodownload.org/wp-content/uploads/2014/04/mercedes-benz-logo-1.png',
+      media:
+        'https://img.welt.de/img/kmpkt/mobile163503762/1811350447-ci16x9-w1200/Kitty.jpg',
+      userName: 'Juan Pedro Sanchez Miranda',
+      userAvatar:
+        'https://cdn.dribbble.com/users/1210339/screenshots/2767019/avatar18.gif',
+      userMail: 'example@mail.com',
+    });
+  }
+
+  getNotifications() {
+    return this.notificationSignal.getNotificationList();
+  }
+
+  ngOnInit(): void {
+    console.log('actionsTemplate', this.actionsTemplate);
   }
 }

@@ -3,6 +3,8 @@
  */
 
 export * from './lib/ds-ng.service';
+export * from './lib/services/notification.service';
+
 export * from './lib/ds-ng.component';
 export * from './lib/directives/button.directive';
 export * from './lib/directives/bmb-layout/bmb-layout-item.directive';
@@ -64,6 +66,7 @@ export * from './lib/components/bmb-student-activity-selector/bmb-student-activi
 export * from './lib/components/bmb-student-activity-card/bmb-student-activity-card.component';
 export * from './lib/components/bmb-home-card/bmb-home-card.component';
 export * from './lib/components/bmb-chat-bar/bmb-chat-bar.component';
+export * from './lib/components/bmb-push-notification/bmb-push-notification.component';
 
 // types
 export * from './lib/types';
