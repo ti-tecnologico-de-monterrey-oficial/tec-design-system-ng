@@ -500,6 +500,225 @@
             "extends": []
         },
         {
+            "name": "INotification",
+            "id": "interface-INotification-287fc19b09c6997d03f3c472efab4e6b8c317e97c0a29d144e4c61498073d95ec64b3a7dc52259254f4acf269235d7b35b8c79cd6a92c3afd83885b4acd81bbc",
+            "file": "projects/ds-ng/src/lib/components/bmb-push-notification/types.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { IButtonAppearance } from \"../../types\";\r\n\r\nexport interface INotification {\r\n  title: string;\r\n  isFullColor: boolean;\r\n  subTitle?: string;\r\n  content?: string;\r\n  icon?: string;\r\n  type?: NotificationType;\r\n  dontAskAgainEvent?: (id: string) => void;\r\n  date?: string;\r\n  id?: string;\r\n  delay?: number;\r\n  actions?: INotificationAction[];\r\n  appIcon?: string;\r\n  appName?: string;\r\n  userName?: string;\r\n  userMail?: string;\r\n  userAvatar?: string;\r\n  media?: string;\r\n}\r\n\r\nexport interface INotificationAction {\r\n  title: string,\r\n  action: 'close' | (() => void),\r\n  type?: IButtonAppearance,\r\n  icon?: string;\r\n}\r\n\r\nexport type NotificationType = 'tec' | 'success' | 'info' | 'neutral' | 'event' | 'error' | 'warning' | 'black';\r\n",
+            "properties": [
+                {
+                    "name": "actions",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "INotificationAction[]",
+                    "optional": true,
+                    "description": "",
+                    "line": 14
+                },
+                {
+                    "name": "appIcon",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "",
+                    "line": 15
+                },
+                {
+                    "name": "appName",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "",
+                    "line": 16
+                },
+                {
+                    "name": "content",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "",
+                    "line": 7
+                },
+                {
+                    "name": "date",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "",
+                    "line": 11
+                },
+                {
+                    "name": "delay",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": true,
+                    "description": "",
+                    "line": 13
+                },
+                {
+                    "name": "dontAskAgainEvent",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "function",
+                    "optional": true,
+                    "description": "",
+                    "line": 10
+                },
+                {
+                    "name": "icon",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "",
+                    "line": 8
+                },
+                {
+                    "name": "id",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "",
+                    "line": 12
+                },
+                {
+                    "name": "isFullColor",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": false,
+                    "description": "",
+                    "line": 5
+                },
+                {
+                    "name": "media",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "",
+                    "line": 20
+                },
+                {
+                    "name": "subTitle",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "",
+                    "line": 6
+                },
+                {
+                    "name": "title",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 4
+                },
+                {
+                    "name": "type",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "NotificationType",
+                    "optional": true,
+                    "description": "",
+                    "line": 9
+                },
+                {
+                    "name": "userAvatar",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "",
+                    "line": 19
+                },
+                {
+                    "name": "userMail",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "",
+                    "line": 18
+                },
+                {
+                    "name": "userName",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "",
+                    "line": 17
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 171,
+            "methods": [],
+            "extends": []
+        },
+        {
+            "name": "INotificationAction",
+            "id": "interface-INotificationAction-287fc19b09c6997d03f3c472efab4e6b8c317e97c0a29d144e4c61498073d95ec64b3a7dc52259254f4acf269235d7b35b8c79cd6a92c3afd83885b4acd81bbc",
+            "file": "projects/ds-ng/src/lib/components/bmb-push-notification/types.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { IButtonAppearance } from \"../../types\";\r\n\r\nexport interface INotification {\r\n  title: string;\r\n  isFullColor: boolean;\r\n  subTitle?: string;\r\n  content?: string;\r\n  icon?: string;\r\n  type?: NotificationType;\r\n  dontAskAgainEvent?: (id: string) => void;\r\n  date?: string;\r\n  id?: string;\r\n  delay?: number;\r\n  actions?: INotificationAction[];\r\n  appIcon?: string;\r\n  appName?: string;\r\n  userName?: string;\r\n  userMail?: string;\r\n  userAvatar?: string;\r\n  media?: string;\r\n}\r\n\r\nexport interface INotificationAction {\r\n  title: string,\r\n  action: 'close' | (() => void),\r\n  type?: IButtonAppearance,\r\n  icon?: string;\r\n}\r\n\r\nexport type NotificationType = 'tec' | 'success' | 'info' | 'neutral' | 'event' | 'error' | 'warning' | 'black';\r\n",
+            "properties": [
+                {
+                    "name": "action",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "\"close\" | ",
+                    "optional": false,
+                    "description": "",
+                    "line": 25
+                },
+                {
+                    "name": "icon",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": true,
+                    "description": "",
+                    "line": 27
+                },
+                {
+                    "name": "title",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 24
+                },
+                {
+                    "name": "type",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "IButtonAppearance",
+                    "optional": true,
+                    "description": "",
+                    "line": 26
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 171,
+            "methods": [],
+            "extends": []
+        },
+        {
             "name": "IPlaceholderObject",
             "id": "interface-IPlaceholderObject-2dc92aa8008e5ca6e98e66116c271e52877e4c45581ee7d1fda24d3a7bbf1e4238bb378aa9414cc5e28251a73fd6a64f924e2873168d7f966dab0c83db89f6a9",
             "file": "projects/ds-ng/src/lib/components/bmb-timestream/bmb-timestream.component.ts",
@@ -1538,6 +1757,194 @@
         }
     ],
     "injectables": [
+        {
+            "name": "BmbNotificationService",
+            "id": "injectable-BmbNotificationService-e8a8c282329489b6c76c4df62f7ebbacd6ff9955e18f1bb3b1621b3432bae84f107824d91a225b703eeaa4dbadbced8734e20d6f09f147304d2f5095c5b509a3",
+            "file": "projects/ds-ng/src/lib/services/notification.service.ts",
+            "properties": [
+                {
+                    "name": "notificationList",
+                    "defaultValue": "signal<INotification[]>([])",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 11,
+                    "modifierKind": [
+                        148
+                    ]
+                },
+                {
+                    "name": "positionX",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "NotificationPositionX",
+                    "optional": true,
+                    "description": "",
+                    "line": 14,
+                    "decorators": [
+                        {
+                            "name": "Inject",
+                            "stringifiedArguments": "'positionX'"
+                        },
+                        {
+                            "name": "Optional",
+                            "stringifiedArguments": ""
+                        }
+                    ],
+                    "modifierKind": [
+                        170,
+                        170,
+                        125
+                    ]
+                },
+                {
+                    "name": "positionY",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "NotificationPositionY",
+                    "optional": true,
+                    "description": "",
+                    "line": 15,
+                    "decorators": [
+                        {
+                            "name": "Inject",
+                            "stringifiedArguments": "'positionY'"
+                        },
+                        {
+                            "name": "Optional",
+                            "stringifiedArguments": ""
+                        }
+                    ],
+                    "modifierKind": [
+                        170,
+                        170,
+                        125
+                    ]
+                }
+            ],
+            "methods": [
+                {
+                    "name": "addNotification",
+                    "args": [
+                        {
+                            "name": "notification",
+                            "type": "INotification",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 21,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "notification",
+                            "type": "INotification",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "deleteNotification",
+                    "args": [
+                        {
+                            "name": "id",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 32,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "id",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "getNotificationList",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 38,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Inject, Injectable, Optional, signal } from \"@angular/core\";\r\nimport { INotification } from \"../components/bmb-push-notification/types\";\r\n\r\nexport type NotificationPositionX = 'left' | 'right';\r\nexport type NotificationPositionY = 'top' | 'bottom';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class BmbNotificationService {\r\n  readonly notificationList = signal<INotification[]>([]);\r\n\r\n  constructor(\r\n    @Inject('positionX') @Optional() public positionX?: NotificationPositionX,\r\n    @Inject('positionY') @Optional() public positionY?: NotificationPositionY,\r\n  ) {\r\n    this.positionX = positionX || 'right';\r\n    this.positionY = positionY || 'top';\r\n  }\r\n\r\n  addNotification(notification: INotification) {\r\n    const id = notification.id ?? self.crypto.randomUUID();\r\n\r\n    this.notificationList.update((currentNotifications) => [\r\n      ...currentNotifications,\r\n      { ...notification, id },\r\n    ]);\r\n\r\n    setTimeout(() => { this.deleteNotification(id) }, (notification.delay || 5000));\r\n  }\r\n\r\n  deleteNotification(id: string) {\r\n    console.log('delete');\r\n\r\n    this.notificationList.update((currentNotifications) => currentNotifications.filter((notification) => notification.id !== id));\r\n  }\r\n\r\n  getNotificationList() {\r\n    return this.notificationList();\r\n  }\r\n}\r\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "positionX",
+                        "type": "NotificationPositionX",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "optional": true
+                    },
+                    {
+                        "name": "positionY",
+                        "type": "NotificationPositionY",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "optional": true
+                    }
+                ],
+                "line": 11,
+                "jsdoctags": [
+                    {
+                        "name": "positionX",
+                        "type": "NotificationPositionX",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "optional": true,
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "positionY",
+                        "type": "NotificationPositionY",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "optional": true,
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "extends": [],
+            "type": "injectable"
+        },
         {
             "name": "DsNgService",
             "id": "injectable-DsNgService-e91991127dd8fe0ec548387ab65070beb0485803fcea2c2869027f1a009bf961c6c901a5d51eefbd74b583d360590acefd38ec0295336e71094b3cedf4ed89af",
@@ -9115,7 +9522,7 @@
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<section class=\"bmb_home-card\">\n  <bmb-home-card-header\n    [title]=\"title\"\n    [subtitle]=\"subtitle\"\n    [icon]=\"icon\"\n    [isMobile]=\"isMobile\"\n    [isExpanded]=\"isExpanded\"\n    (onExpandChange)=\"handleExpandChange($event)\"\n    (onClose)=\"handleClose()\"\n  />\n  <div class=\"bmb_home-card-container\">\n    <ng-content />\n  </div>\n</section>\n"
+            "templateData": "<section class=\"bmb_home-card\">\n  <bmb-home-card-header\n    [title]=\"title\"\n    [subtitle]=\"subtitle\"\n    [icon]=\"icon\"\n    [isMobile]=\"isMobile\"\n    [isExpanded]=\"isExpanded\"\n    (onExpandChange)=\"handleExpandChange($event)\"\n    (onClose)=\"handleClose()\"\n    (onBack)=\"handleBack()\"\n  />\n  <div class=\"bmb_home-card-container\">\n    <ng-content />\n  </div>\n</section>\n"
         },
         {
             "name": "BmbHomeCardHeaderComponent",
@@ -11638,6 +12045,322 @@
                 "OnChanges"
             ],
             "templateData": "<svg\n  xmlns=\"http://www.w3.org/2000/svg\"\n  onkeypress=\"\"\n  class=\"bmb_progress-circle\"\n  [attr.viewBox]=\"svg.viewBox\"\n  preserveAspectRatio=\"xMidYMid meet\"\n  [attr.height]=\"svg.height\"\n  [attr.width]=\"svg.width\"\n>\n  @if (this.showBackground) {\n    <ng-container>\n      <circle\n        class=\"bmb_progress-circle-background\"\n        [attr.cx]=\"svg.backgroundCircle.cx\"\n        [attr.cy]=\"svg.backgroundCircle.cy\"\n        [attr.r]=\"svg.backgroundCircle.r\"\n      />\n    </ng-container>\n  }\n  <circle\n    class=\"bmb_progress-circle-fill\"\n    [attr.cx]=\"svg.circle.cx\"\n    [attr.cy]=\"svg.circle.cy\"\n    [attr.r]=\"svg.circle.r\"\n    [attr.stroke-width]=\"svg.circle.strokeWidth\"\n  />\n  <path\n    class=\"bmb_progress-circle-track\"\n    [attr.d]=\"svg.path.d\"\n    [attr.stroke-width]=\"svg.path.strokeWidth\"\n    [attr.fill]=\"svg.path.fill\"\n  />\n  @if (options.showTitle || options.showValueLabel) {\n    <text\n      alignment-baseline=\"baseline\"\n      [attr.x]=\"svg.circle.cx\"\n      [attr.y]=\"svg.circle.cy\"\n      [attr.text-anchor]=\"svg.title.textAnchor\"\n    >\n      @if (options.showTitle) {\n        <ng-container>\n          @for (tspan of svg.title.tspans; track tspan) {\n            <tspan\n              class=\"bmb_progress-circle-title\"\n              [attr.x]=\"svg.title.x\"\n              [attr.y]=\"svg.title.y\"\n              [attr.dy]=\"tspan.dy\"\n            >\n              {{ tspan.span }}\n            </tspan>\n          }\n        </ng-container>\n      }\n      @if (options.showValueLabel) {\n        <ng-container>\n          @for (tspan of svg.valueLabel.tspans; track tspan) {\n            <tspan\n              class=\"bmb_progress-circle-value-label\"\n              [attr.x]=\"svg.valueLabel.x\"\n              [attr.y]=\"svg.valueLabel.y\"\n              [attr.dy]=\"tspan.dy\"\n            >\n              {{ tspan.span }}\n            </tspan>\n          }\n        </ng-container>\n      }\n    </text>\n  }\n</svg>\n"
+        },
+        {
+            "name": "BmbPushNotificationComponent",
+            "id": "component-BmbPushNotificationComponent-b5cb81756bb72898d26cac5f51bd29c159cc25b8ebfd82c3ea241db3242db4fcfb3c60e611422c35b44facb8a0570eabc5285b7f312c224c19374dd3f16f56e1",
+            "file": "projects/ds-ng/src/lib/components/bmb-push-notification/bmb-push-notification.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-push-notification",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-push-notification.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "closeNotification",
+                    "args": [
+                        {
+                            "name": "notification",
+                            "type": "INotification",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 24,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "notification",
+                            "type": "INotification",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "getNotifications",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 20,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "BmbPushNotificationItemComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';\r\nimport { BmbPushNotificationItemComponent } from './bmb-push-notification-item/bmb-push-notification-item.component';\r\nimport { BmbNotificationService } from '../../services/notification.service';\r\nimport { INotification } from './types';\r\n\r\n@Component({\r\n  selector: 'bmb-push-notification',\r\n  standalone: true,\r\n  imports: [BmbPushNotificationItemComponent],\r\n  templateUrl: './bmb-push-notification.component.html',\r\n  styleUrl: './bmb-push-notification.component.scss',\r\n  encapsulation: ViewEncapsulation.None,\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class BmbPushNotificationComponent {\r\n  constructor(\r\n    private notificationSignal: BmbNotificationService,\r\n  ) {}\r\n\r\n  getNotifications() {\r\n    return this.notificationSignal.getNotificationList();\r\n  }\r\n\r\n  closeNotification(notification: INotification) {\r\n    if (notification.id) {\r\n      this.notificationSignal.deleteNotification(notification.id);\r\n    }\r\n  }\r\n}\r\n",
+            "styleUrl": "./bmb-push-notification.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "notificationSignal",
+                        "type": "BmbNotificationService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 15,
+                "jsdoctags": [
+                    {
+                        "name": "notificationSignal",
+                        "type": "BmbNotificationService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "extends": [],
+            "templateData": "<section class=\"bmb_push-notifications\">\r\n  @for (notification of getNotifications(); track $index) {\r\n    <bmb-push-notification-item\r\n      [notification]=\"notification\"\r\n      (onClose)=\"closeNotification(notification)\"\r\n    />\r\n  }\r\n\r\n</section>\r\n"
+        },
+        {
+            "name": "BmbPushNotificationItemComponent",
+            "id": "component-BmbPushNotificationItemComponent-ff04682c702bf6b1a70a2bcb16d98fa6f81a38416ce045527e58fc3b7f7da335717e13e472e845ad0d54bbe951dc0a41b78c8c56a22211b1ade45ffc0bc88710",
+            "file": "projects/ds-ng/src/lib/components/bmb-push-notification/bmb-push-notification-item/bmb-push-notification-item.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-push-notification-item",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-push-notification-item.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "notification",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 18,
+                    "required": true
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onClose",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 19,
+                    "required": false
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "dontAskAgain",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 22
+                },
+                {
+                    "name": "isExpanded",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 21
+                },
+                {
+                    "name": "notification",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 18,
+                    "required": true
+                },
+                {
+                    "name": "onClose",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 19,
+                    "required": false
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "getAppIcon",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 56,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "getAppName",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 60,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "getIconClasses",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "string[]",
+                    "typeParameters": [],
+                    "line": 41,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "getNotificationClasses",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "string[]",
+                    "typeParameters": [],
+                    "line": 27,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "handleClose",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 48,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "handleDontAskAgain",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 64,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "handleExpandEvent",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 52,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "ngAfterViewInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 24,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "BmbIconComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "BmbUserImageComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "BmbCheckboxComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { AfterViewInit, ChangeDetectionStrategy, Component, input, output, ViewEncapsulation } from '@angular/core';\nimport { CommonModule } from \"@angular/common\";\nimport { INotification } from '../types';\nimport { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';\nimport { BmbUserImageComponent } from '../../bmb-user-image/bmb-user-image.component';\nimport { BmbCheckboxComponent } from '../../bmb-checkbox/bmb-checkbox.component';\n\n@Component({\n  selector: 'bmb-push-notification-item',\n  standalone: true,\n  imports: [ CommonModule, BmbIconComponent, BmbUserImageComponent, BmbCheckboxComponent ],\n  templateUrl: './bmb-push-notification-item.component.html',\n  styleUrl: './bmb-push-notification-item.component.scss',\n  encapsulation: ViewEncapsulation.None,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbPushNotificationItemComponent implements AfterViewInit {\n  notification = input.required<INotification>();\n  onClose = output<void>();\n\n  isExpanded = true;\n  dontAskAgain = false;\n\n  ngAfterViewInit(): void {\n  }\n\n  getNotificationClasses(): string[] {\n    const classList = [\n      'bmb_push-notification-item',\n      `bmb_push-notification-item-type-${this.notification()?.type}`,\n    ];\n\n    if (this.notification()?.isFullColor) classList.push('bmb_push-notification-item-full-color');\n    else classList.push('bmb_push-notification-item-regular-tmp');\n\n    if (!this.isExpanded) classList.push('bmb_push-notification-item-contracted');\n\n    return classList;\n  }\n\n  getIconClasses(): string[] {\n    return [\n      'bmb_push-notification-item-icon',\n      `bmb_push-notification-item-icon-${this.notification()?.type}`\n    ];\n  }\n\n  handleClose() {\n    this.onClose.emit();\n  }\n\n  handleExpandEvent() {\n    this.isExpanded = !this.isExpanded;\n  }\n\n  getAppIcon(): string {\n    return this.notification().appIcon ?? 'assets/images/tec-logo-mob.svg';\n  }\n\n  getAppName(): string {\n    return this.notification().appName ?? 'itesm.com';\n  }\n\n  handleDontAskAgain() {\n    const notification = this.notification()\n    if (notification.dontAskAgainEvent && notification?.id) {\n      notification.dontAskAgainEvent(notification?.id)\n    }\n  }\n}\n",
+            "styleUrl": "./bmb-push-notification-item.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "implements": [
+                "AfterViewInit"
+            ],
+            "templateData": "<section [ngClass]=\"getNotificationClasses()\">\r\n  @if (!notification().isFullColor) {\r\n    <header class=\"bmb_push-notification-item-header\">\r\n      <img class=\"bmb_push-notification-item-header-icon\" [src]=\"getAppIcon()\" [alt]=\"getAppName()\">\r\n      <span class=\"bmb_push-notification-item-header-name\">{{ getAppName() }}</span>\r\n      <button (click)=\"handleExpandEvent()\" class=\"bmb_push-notification-item-button bmb_push-notification-item-contract\">\r\n        <bmb-icon icon=\"keyboard_arrow_up\" />\r\n      </button>\r\n      <button (click)=\"handleClose()\" class=\"bmb_push-notification-item-button\">\r\n        <bmb-icon icon=\"close\" />\r\n      </button>\r\n    </header>\r\n  }\r\n  <ul class=\"bmb_push-notification-item-list\">\r\n    <li [ngClass]=\"getIconClasses()\">\r\n      <bmb-icon [icon]=\"notification().icon || 'info'\" />\r\n    </li>\r\n    <li class=\"bmb_push-notification-item-container\">\r\n      <h1 class=\"bmb_push-notification-item-title\">\r\n        <span class=\"bmb_push-notification-item-title-legend\">{{ notification().title }}</span>\r\n        <span class=\"bmb_push-notification-item-title-date\">{{ notification().date }}</span>\r\n      </h1>\r\n      @if (notification().subTitle) {\r\n        <h2 class=\"bmb_push-notification-item-subtitle\">{{ notification().subTitle }}</h2>\r\n      }\r\n      @if (notification().content) {\r\n        <p class=\"bmb_push-notification-item-content\">{{ notification().content }}</p>\r\n      }\r\n      @if (notification().dontAskAgainEvent) {\r\n        <p class=\"bmb_push-notification-item-dont-ask-again\">\r\n          <bmb-checkbox\r\n            id=\"dontAskAgainInput\"\r\n            [checked]=\"false\"\r\n            label=\"Don't ask again\"\r\n            labelPosition=\"after\"\r\n            (change)=\"handleDontAskAgain()\"\r\n          />\r\n        </p>\r\n      }\r\n      @if (notification().userAvatar && notification().userName) {\r\n        <section class=\"bmb_push-notification-item-user\">\r\n          <div class=\"bmb_push-notification-item-user-avatar\">\r\n            <bmb-user-image\r\n              [altImage]=\"notification().userName ?? ''\"\r\n              [image]=\"notification().userAvatar ?? ''\"\r\n              size=\"mobile-small\"\r\n            />\r\n          </div>\r\n          <span class=\"bmb_push-notification-item-user-name\">{{ notification().userName }}</span>\r\n          <span class=\"bmb_push-notification-item-user-mail\">{{ notification().userMail }}</span>\r\n        </section>\r\n      }\r\n      @if (!notification().isFullColor && notification().media) {\r\n        <figure class=\"bmb_push-notification-item-media\">\r\n          <img class=\"bmb_push-notification-item-media-picture\" [src]=\"notification().media\" [alt]=\"notification().title\">\r\n        </figure>\r\n      }\r\n    </li>\r\n    @if (notification().isFullColor) {\r\n      <li class=\"bmb_push-notification-item-close\">\r\n        <button (click)=\"handleClose()\" class=\"bmb_push-notification-item-button\">\r\n          <bmb-icon icon=\"close\" />\r\n        </button>\r\n      </li>\r\n    }\r\n  </ul>\r\n</section>\r\n"
         },
         {
             "name": "BmbRadialComponent",
@@ -18570,7 +19293,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@use \"../../../assets/styles/base/rem\" as rem;\n@use \"../../../assets/styles/base/fonts\" as fonts;\n\n.bmb_wheel {\n  bmb-fab {\n    position: absolute;\n    z-index: 30;\n  }\n\n  bmb-tabs {\n    .bmb_tabs {\n      margin: rem.rem_calc(24) auto;\n\n      &-tab {\n        display: grid;\n        grid-template-columns: repeat(3, 1fr);\n      }\n    }\n  }\n\n  &-wrapper {\n    background-color: RGBA(var(--color-charade-50), 1);\n    border: rem.rem_calc(4) solid RGBA(var(--color-mariner-700), 1);\n    border-radius: 50%;\n    bottom: -38%;\n    height: rem.rem_calc(700);\n    left: 50%;\n    margin-left: rem.rem_calc(-350);\n    overflow: hidden;\n    position: fixed;\n    transition: all 0.5s ease-in;\n    width: rem.rem_calc(700);\n    z-index: 10;\n  }\n\n  &-button {\n    cursor: pointer;\n    height: rem.rem_calc(24);\n    left: 0;\n    margin: auto;\n    position: absolute;\n    right: 0;\n    top: rem.rem_calc(10);\n\n    bmb-icon {\n      color: rgba(var(--color-charade-950), 1);\n      font-size: rem.rem_calc(25);\n    }\n  }\n\n  &-apps {\n    display: flex;\n    flex-wrap: wrap;\n    gap: rem.rem_calc(10);\n    justify-content: center;\n    position: absolute;\n    right: 26%;\n    top: 18%;\n    width: rem.rem_calc(320);\n  }\n\n  &-menu {\n    position: relative;\n  }\n\n  &-item {\n    align-items: center;\n    display: flex;\n    height: rem.rem_calc(50);\n    justify-content: center;\n    position: absolute;\n    width: rem.rem_calc(150);\n\n    .bmb_wheel-nav {\n      fill: rgba(var(--color-charade-500), 1);\n    }\n\n    &.previous {\n      left: rem.rem_calc(70);\n      top: rem.rem_calc(80);\n      transform: rotate(-41deg);\n    }\n\n    &.active {\n      left: 0;\n      margin: auto;\n      right: 0;\n      top: 1.25rem;\n\n      .bmb_wheel-nav {\n        fill: rgba(var(--color-mariner-950), 1);\n      }\n\n      &::after {\n        border: solid rem.rem_calc(4) rgba(var(--color-mariner-700), 1);\n        border-color: rgba(var(--color-mariner-700), 1) transparent transparent\n          transparent;\n        border-radius: 63%;\n        bottom: -18px;\n        content: \"\";\n        height: 25px;\n        left: 0;\n        margin: auto;\n        position: absolute;\n        right: 0;\n        width: 75%;\n      }\n    }\n\n    &.next {\n      right: rem.rem_calc(70);\n      top: rem.rem_calc(80);\n      transform: rotate(41deg);\n    }\n  }\n\n  &-nav {\n    @include fonts.font(5, semibold);\n    height: 40px;\n    position: absolute;\n    top: rem.rem_calc(10);\n    z-index: 10;\n  }\n\n  &-full {\n    background-color: RGBA(var(--color-charade-200), 1);\n    bottom: 0;\n    height: 100%;\n    left: 0;\n    margin: auto;\n    position: fixed;\n    right: 0;\n    width: 100%;\n    z-index: 30;\n\n    .bmb_wheel-apps {\n      padding: rem.rem_calc(0 24);\n      position: relative;\n      right: inherit;\n      top: inherit;\n      width: 100%;\n    }\n  }\n\n  &-svg {\n    height: rem.rem_calc(500);\n    overflow: visible;\n    pointer-events: none;\n    rotate: 270deg;\n    width: rem.rem_calc(500);\n  }\n\n  &-path {\n    @include fonts.font(5, semibold);\n    text-anchor: middle;\n  }\n}\n\n[data-theme=\"dark\"],\n.storybook-dark-theme {\n  .bmb_wheel {\n    &-wrapper {\n      background-color: RGBA(var(--color-charade-950), 1);\n      border: rem.rem_calc(4) solid RGBA(var(--color-neon-primary), 1);\n    }\n\n    &-button {\n      bmb-icon {\n        color: rgba(var(--color-charade-50), 1);\n      }\n    }\n    &-item {\n      .bmb_wheel-nav {\n        fill: rgba(var(--color-charade-500), 1);\n      }\n\n      &.active {\n        &::after {\n          border-color: rgba(var(--color-neon-primary), 1) transparent\n            transparent transparent;\n        }\n\n        .bmb_wheel-nav {\n          fill: rgba(var(--color-charade-50), 1);\n        }\n      }\n    }\n\n    &-full {\n      background-color: RGBA(var(--color-charade-950), 1);\n    }\n  }\n}\n",
+                    "data": "@use \"../../../assets/styles/base/rem\" as rem;\n@use \"../../../assets/styles/base/fonts\" as fonts;\n\n.bmb_wheel {\n  bmb-fab {\n    position: absolute;\n    z-index: 30;\n  }\n\n  bmb-tabs {\n    .bmb_tabs {\n      margin: rem.rem_calc(24) auto;\n\n      &-tab {\n        display: grid;\n        grid-template-columns: repeat(3, 1fr);\n      }\n    }\n  }\n\n  &-wrapper {\n    background-color: RGBA(var(--color-charade-50), 1);\n    border: rem.rem_calc(4) solid RGBA(var(--color-mariner-700), 1);\n    border-radius: 50%;\n    bottom: -38%;\n    height: rem.rem_calc(700);\n    left: 50%;\n    margin-left: rem.rem_calc(-350);\n    overflow: hidden;\n    position: fixed;\n    transition: all 0.5s ease-in;\n    width: rem.rem_calc(700);\n    z-index: 10;\n  }\n\n  &-button {\n    cursor: pointer;\n    height: rem.rem_calc(24);\n    left: 0;\n    margin: auto;\n    position: absolute;\n    right: 0;\n    top: rem.rem_calc(10);\n\n    bmb-icon {\n      color: rgba(var(--color-charade-950), 1);\n      font-size: rem.rem_calc(25);\n    }\n  }\n\n  &-apps {\n    display: flex;\n    flex-wrap: wrap;\n    gap: rem.rem_calc(10);\n    justify-content: center;\n    position: absolute;\n    right: 26%;\n    top: 18%;\n    width: rem.rem_calc(320);\n  }\n\n  &-menu {\n    position: relative;\n  }\n\n  &-item {\n    align-items: center;\n    display: flex;\n    height: rem.rem_calc(50);\n    justify-content: center;\n    position: absolute;\n    width: rem.rem_calc(150);\n    overflow: hidden;\n\n    .bmb_wheel-nav {\n      fill: rgba(var(--color-charade-500), 1);\n    }\n\n    &.previous {\n      left: rem.rem_calc(70);\n      top: rem.rem_calc(80);\n      transform: rotate(-41deg);\n    }\n\n    &.active {\n      left: 0;\n      margin: auto;\n      right: 0;\n      top: 1.25rem;\n\n      .bmb_wheel-nav {\n        fill: rgba(var(--color-mariner-950), 1);\n      }\n\n      &::after {\n        border: solid rem.rem_calc(4) rgba(var(--color-mariner-700), 1);\n        border-color: rgba(var(--color-mariner-700), 1) transparent transparent\n          transparent;\n        border-radius: 63%;\n        bottom: -18px;\n        content: \"\";\n        height: 25px;\n        left: 0;\n        margin: auto;\n        position: absolute;\n        right: 0;\n        width: 75%;\n      }\n    }\n\n    &.next {\n      right: rem.rem_calc(70);\n      top: rem.rem_calc(80);\n      transform: rotate(41deg);\n    }\n  }\n\n  &-nav {\n    @include fonts.font(5, semibold);\n    height: 40px;\n    position: absolute;\n    top: rem.rem_calc(10);\n    z-index: 10;\n  }\n\n  &-full {\n    background-color: RGBA(var(--color-charade-200), 1);\n    bottom: 0;\n    height: 100%;\n    left: 0;\n    margin: auto;\n    position: fixed;\n    right: 0;\n    width: 100%;\n    z-index: 30;\n\n    .bmb_wheel-apps {\n      padding: rem.rem_calc(0 24);\n      position: relative;\n      right: inherit;\n      top: inherit;\n      width: 100%;\n    }\n  }\n\n  &-svg {\n    height: rem.rem_calc(500);\n    overflow: visible;\n    pointer-events: none;\n    rotate: 270deg;\n    width: rem.rem_calc(500);\n  }\n\n  &-path {\n    @include fonts.font(5, semibold);\n    text-anchor: middle;\n  }\n}\n\n[data-theme=\"dark\"],\n.storybook-dark-theme {\n  .bmb_wheel {\n    &-wrapper {\n      background-color: RGBA(var(--color-charade-950), 1);\n      border: rem.rem_calc(4) solid RGBA(var(--color-neon-primary), 1);\n    }\n\n    &-button {\n      bmb-icon {\n        color: rgba(var(--color-charade-50), 1);\n      }\n    }\n    &-item {\n      .bmb_wheel-nav {\n        fill: rgba(var(--color-charade-500), 1);\n      }\n\n      &.active {\n        &::after {\n          border-color: rgba(var(--color-neon-primary), 1) transparent\n            transparent transparent;\n        }\n\n        .bmb_wheel-nav {\n          fill: rgba(var(--color-charade-50), 1);\n        }\n      }\n    }\n\n    &-full {\n      background-color: RGBA(var(--color-charade-950), 1);\n    }\n  }\n}\n",
                     "styleUrl": "./bmb-wheel-menu.component.scss"
                 }
             ],
@@ -18878,7 +19601,152 @@
         },
         {
             "name": "StorybookToastWrapperComponent",
-            "id": "component-StorybookToastWrapperComponent-1cc71e64e6ef300154b1edf3e3020269836878d385b0794d0c519ee2b1cb2a73d35e5d71402d41d91527f9d4b2a17849c68ff790ecafb847ba6880f393c9fece-2",
+            "id": "component-StorybookToastWrapperComponent-0e70af026360a136618cc79b5b14e821202d36187865a39961735c1c60b38f78b1834eece8547b9784943a4a07f1afb1a37200c34cad1e621ce487825475821a-2",
+            "file": "projects/ds-ng/src/lib/components/bmb-push-notification/bmb-push-notification.stories.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "storybook-toast-wrapper",
+            "styleUrls": [],
+            "styles": [],
+            "template": "<div style=\"height: 500px\">\n  <button\n    bmbButton\n    appearance=\"primary\"\n    icon=\"home\"\n    (click)=\"openModalComponent()\"\n  >\n    Add notification\n  </button>\n  <bmb-push-notification />\n</div>\n",
+            "templateUrl": [],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "content",
+                    "defaultValue": "input('')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 30
+                },
+                {
+                    "name": "icon",
+                    "defaultValue": "input('')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 31
+                },
+                {
+                    "name": "subtitle",
+                    "defaultValue": "input('')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 29
+                },
+                {
+                    "name": "title",
+                    "defaultValue": "input('')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 28
+                },
+                {
+                    "name": "type",
+                    "defaultValue": "input<NotificationType>('tec')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 32
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "enableDontAskAgain",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 34,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "openModalComponent",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 40,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "BmbPushNotificationComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "BmbButtonDirective",
+                    "type": "directive"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, input } from '@angular/core';\r\nimport { Meta, StoryFn, moduleMetadata } from '@storybook/angular';\r\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\r\nimport { BmbButtonDirective } from '../../directives/button.directive';\r\nimport { BmbNotificationService } from '../../services/notification.service';\r\nimport { BmbPushNotificationComponent } from './bmb-push-notification.component';\r\nimport { NotificationType } from './types';\r\n\r\n@Component({\r\n  standalone: true,\r\n  imports: [BmbPushNotificationComponent, BmbButtonDirective],\r\n  selector: 'storybook-toast-wrapper',\r\n  template: `\r\n    <div style=\"height: 500px\">\r\n      <button\r\n        bmbButton\r\n        appearance=\"primary\"\r\n        icon=\"home\"\r\n        (click)=\"openModalComponent()\"\r\n      >\r\n        Add notification\r\n      </button>\r\n      <bmb-push-notification />\r\n    </div>\r\n  `,\r\n})\r\nclass StorybookToastWrapperComponent {\r\n  title = input('');\r\n  subtitle = input('');\r\n  content = input('');\r\n  icon = input('');\r\n  type = input<NotificationType>('tec');\r\n\r\n  enableDontAskAgain() { alert('Don\\'t ask again') };\r\n\r\n  constructor(\r\n    private notificationSignal: BmbNotificationService,\r\n  ) {}\r\n\r\n  openModalComponent() {\r\n    this.notificationSignal.addNotification({\r\n      title: this.title(),\r\n      subTitle: this.subtitle(),\r\n      content: this.content(),\r\n      icon: this.icon(),\r\n      type: this.type(),\r\n      dontAskAgainEvent: this.enableDontAskAgain,\r\n\r\n      actions: [\r\n        {\r\n          title: '',\r\n          action: () => {\r\n            alert('text');\r\n          },\r\n        },\r\n        {\r\n          title: '',\r\n          action: 'close',\r\n          type: 'secondary-filled',\r\n          icon: 'close',\r\n        },\r\n      ],\r\n      isFullColor: false,\r\n      delay: 10000,\r\n      date: '',\r\n      appName: '',\r\n      appIcon: '',\r\n      media: '',\r\n      userName: '',\r\n      userAvatar: '',\r\n      userMail: '',\r\n    });\r\n  }\r\n}\r\n\r\nexport default {\r\n  title: 'Macro Componentes/Push notification',\r\n  component: BmbPushNotificationComponent,\r\n  decorators: [\r\n    moduleMetadata({\r\n      imports: [\r\n        StorybookToastWrapperComponent,\r\n        BmbPushNotificationComponent,\r\n        BmbIconComponent,\r\n        BmbButtonDirective,\r\n      ],\r\n      providers: [],\r\n    }),\r\n  ],\r\n  parameters: {\r\n    docs: {\r\n      description: {\r\n        component: `\r\nBelow is an example of how you can use this component in TypeScript:\r\n\r\n##Configuration\r\nAdd the \\`BmbNotificationService\\` to your App providers:\r\n\r\n\\`\\`\\`providers: [\r\n  provideRouter(routes),\r\n  importProvidersFrom([BmbNotificationService, ...]),\r\n],\\`\\`\\`\r\n\r\n##Show notifications\r\nAdd the \\`BmbPushNotificationComponent\\` at the bottom of your **app.component.html**\r\n\r\n\\`\\`\\`typescript\r\nimport { BmbPushNotificationComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';\r\n@Component({\r\n  selector: 'component',\r\n  standalone: true,\r\n  imports: [ BmbPushNotificationComponent ],\r\n  templateUrl: './app.component.html',\r\n  styleUrl: './app.component.scss',\r\n})\r\n\\`\\`\\`\r\n\r\nBelow is an example of how you can use this component in HTML:\r\n        `,\r\n      },\r\n    },\r\n  },\r\n  argTypes: {\r\n    title: {\r\n      name: 'Title',\r\n      control: {\r\n        type: 'text',\r\n      },\r\n      description: 'Set the notification title.',\r\n      table: {\r\n        category: 'Properties',\r\n        type: { summary: 'string' },\r\n      },\r\n    },\r\n    subtitle: {\r\n      name: 'Subtitle',\r\n      control: {\r\n        type: 'text',\r\n      },\r\n      description: 'Set the notification subtitle.',\r\n      table: {\r\n        category: 'Properties',\r\n        type: { summary: 'string' },\r\n      },\r\n    },\r\n    content: {\r\n      name: 'Content',\r\n      control: {\r\n        type: 'text',\r\n      },\r\n      description: 'Set the notification content.',\r\n      table: {\r\n        category: 'Properties',\r\n        type: { summary: ['string', 'Template Reference'] },\r\n      },\r\n    },\r\n    icon: {\r\n      name: 'Icon',\r\n      control: {\r\n        type: 'text',\r\n      },\r\n      table: {\r\n        category: 'Properties',\r\n        type: { summary: 'string' },\r\n      },\r\n      description:\r\n        'Set the notification icon.',\r\n    },\r\n    type: {\r\n      name: 'Type',\r\n      control: {\r\n        type: 'select',\r\n      },\r\n      options: ['tec', 'success', 'info', 'neutral', 'event', 'error', 'warning', 'black'],\r\n      table: {\r\n        category: 'Properties',\r\n        defaultValue: { summary: 'tec' },\r\n        type: { summary: 'NotificationType' },\r\n      },\r\n      description: 'Set the noticication color schema.',\r\n    },\r\n    enableDontAskAgain: {\r\n      name: 'Enable don\\'t ask again',\r\n      control: null,\r\n      description:\r\n        'Enable the option to check the property \"Don don\\'t ask again\", once the user click on the checkbox the function is trigger.',\r\n      table: {\r\n        category: 'Events',\r\n        type: { summary: 'function' },\r\n      },\r\n    },\r\n\r\n\r\n\r\n    // alertStyle: {\r\n    //   name: 'Alert Style',\r\n    //   control: {\r\n    //     type: 'select',\r\n    //   },\r\n    //   options: [\r\n    //     'normal',\r\n    //     'primary',\r\n    //     'success',\r\n    //     'event',\r\n    //     'warning',\r\n    //     'error',\r\n    //     'neutral',\r\n    //   ],\r\n    //   table: {\r\n    //     category: 'Properties',\r\n    //     defaultValue: { summary: 'primary' },\r\n    //     type: { summary: 'string' },\r\n    //   },\r\n    //   description:\r\n    //     'Specifies the size of the modal. This string should be: error, warning, event, neutral, success, primary',\r\n    // },\r\n    // primaryBtnLabel: {\r\n    //   name: 'Primary Button Label',\r\n    //   control: {\r\n    //     type: 'string',\r\n    //   },\r\n    //   description: 'Specifies the text of the main button.',\r\n    //   table: {\r\n    //     category: 'Properties',\r\n    //     type: { summary: 'string' },\r\n    //   },\r\n    // },\r\n    // secondaryBtnLabel: {\r\n    //   name: 'Secondary Button Label',\r\n    //   control: {\r\n    //     type: 'string',\r\n    //   },\r\n    //   description: 'Specifies the text of the secondary button.',\r\n    //   table: {\r\n    //     category: 'Properties',\r\n    //     type: { summary: 'string' },\r\n    //   },\r\n    // },\r\n  },\r\n  args: {\r\n    title: 'Notification Title',\r\n    subtitle: 'Notification Subtitle',\r\n    content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',\r\n    icon: 'info',\r\n    type: 'tec',\r\n\r\n\r\n    size: 'small',\r\n    alertStyle: 'error',\r\n    primaryBtnLabel: 'Action',\r\n    secondaryBtnLabel: 'Cancel',\r\n  },\r\n} as Meta<typeof BmbPushNotificationComponent>;\r\n\r\nfunction attributes(object: { [key: string]: any }): string {\r\n  return Object.entries(object)\r\n    .filter(([key]) => key !== 'text')\r\n    .map(([key, value]) => {\r\n      if (key === 'duration') {\r\n        return `[${key}]=\"${value}\"`;\r\n      }\r\n      return `${key}=\"${value}\"`;\r\n    })\r\n    .join(' ');\r\n}\r\n\r\nexport const Default: StoryFn<typeof StorybookToastWrapperComponent> = (\r\n  args,\r\n) => {\r\n  return {\r\n    props: args,\r\n    template: `\r\n      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->\r\n      <storybook-toast-wrapper ${attributes(args)}></storybook-toast-wrapper>\r\n      <!-- Start copying from here -->\r\n      <div class=\"actions\">\r\n      <button\r\n        bmbButton\r\n        appearance=\"primary\"\r\n        icon=\"home\"\r\n        (click)=\"openModalComponent()\"\r\n      >Add notification</button>\r\n      <bmb-push-notification />\r\n      `,\r\n  };\r\n};\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "notificationSignal",
+                        "type": "BmbNotificationService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 34,
+                "jsdoctags": [
+                    {
+                        "name": "notificationSignal",
+                        "type": "BmbNotificationService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "extends": [],
+            "isDuplicate": true,
+            "duplicateId": 2,
+            "duplicateName": "StorybookToastWrapperComponent-2"
+        },
+        {
+            "name": "StorybookToastWrapperComponent",
+            "id": "component-StorybookToastWrapperComponent-1cc71e64e6ef300154b1edf3e3020269836878d385b0794d0c519ee2b1cb2a73d35e5d71402d41d91527f9d4b2a17849c68ff790ecafb847ba6880f393c9fece-3",
             "file": "projects/ds-ng/src/lib/components/bmb-toast/bmb-toast.stories.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -18986,8 +19854,8 @@
             "stylesData": "",
             "extends": [],
             "isDuplicate": true,
-            "duplicateId": 2,
-            "duplicateName": "StorybookToastWrapperComponent-2"
+            "duplicateId": 3,
+            "duplicateName": "StorybookToastWrapperComponent-3"
         }
     ],
     "modules": [],
@@ -19107,7 +19975,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ds-ng/src/lib/components/bmb-balance-overview/bmb-balance-overview.stories.ts",
+                "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
@@ -19117,7 +19985,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
+                "file": "projects/ds-ng/src/lib/components/bmb-balance-overview/bmb-balance-overview.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
@@ -19422,6 +20290,16 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-push-notification/bmb-push-notification.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "StoryFn<>",
+                "defaultValue": "(\r\n  args,\r\n) => {\r\n  return {\r\n    props: args,\r\n    template: `\r\n      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->\r\n      <storybook-toast-wrapper ${attributes(args)}></storybook-toast-wrapper>\r\n      <!-- Start copying from here -->\r\n      <div class=\"actions\">\r\n      <button\r\n        bmbButton\r\n        appearance=\"primary\"\r\n        icon=\"home\"\r\n        (click)=\"openModalComponent()\"\r\n      >Add notification</button>\r\n      <bmb-push-notification />\r\n      `,\r\n  };\r\n}"
             },
             {
                 "name": "Default",
@@ -19929,6 +20807,33 @@
             },
             {
                 "name": "attributes",
+                "file": "projects/ds-ng/src/lib/components/bmb-push-notification/bmb-push-notification.stories.ts",
+                "ctype": "miscellaneous",
+                "subtype": "function",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "args": [
+                    {
+                        "name": "object",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "returnType": "string",
+                "jsdoctags": [
+                    {
+                        "name": "object",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "attributes",
                 "file": "projects/ds-ng/src/lib/components/bmb-toast/bmb-toast.stories.ts",
                 "ctype": "miscellaneous",
                 "subtype": "function",
@@ -20024,7 +20929,7 @@
                         "type": "IFixDecimals",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "15dd7a0b-c37a-488d-ae30-d8a9ea9e9119",
+                        "destrucuredGroupId": "abf3b8be-e786-4612-8bc1-d95effc0dbc1",
                         "destructuredParameter": true
                     },
                     {
@@ -20033,7 +20938,7 @@
                         "deprecated": false,
                         "deprecationMessage": "",
                         "defaultValue": "2",
-                        "destrucuredGroupId": "15dd7a0b-c37a-488d-ae30-d8a9ea9e9119",
+                        "destrucuredGroupId": "abf3b8be-e786-4612-8bc1-d95effc0dbc1",
                         "destructuredParameter": true
                     }
                 ],
@@ -20043,7 +20948,7 @@
                         "type": "IFixDecimals",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "15dd7a0b-c37a-488d-ae30-d8a9ea9e9119",
+                        "destrucuredGroupId": "abf3b8be-e786-4612-8bc1-d95effc0dbc1",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -20055,7 +20960,7 @@
                         "deprecated": false,
                         "deprecationMessage": "",
                         "defaultValue": "2",
-                        "destrucuredGroupId": "15dd7a0b-c37a-488d-ae30-d8a9ea9e9119",
+                        "destrucuredGroupId": "abf3b8be-e786-4612-8bc1-d95effc0dbc1",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -20216,6 +21121,39 @@
                 "kind": 192
             },
             {
+                "name": "NotificationPositionX",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"left\" | \"right\"",
+                "file": "projects/ds-ng/src/lib/services/notification.service.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 192
+            },
+            {
+                "name": "NotificationPositionY",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"top\" | \"bottom\"",
+                "file": "projects/ds-ng/src/lib/services/notification.service.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 192
+            },
+            {
+                "name": "NotificationType",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"tec\" | \"success\" | \"info\" | \"neutral\" | \"event\" | \"error\" | \"warning\" | \"black\"",
+                "file": "projects/ds-ng/src/lib/components/bmb-push-notification/types.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 192
+            },
+            {
                 "name": "SizeNames",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
@@ -20230,8 +21168,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<BmbBalanceOverviewComponent>",
-                "file": "projects/ds-ng/src/lib/components/bmb-balance-overview/bmb-balance-overview.stories.ts",
+                "rawtype": "StoryObj<BmbBadgeComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -20241,8 +21179,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<BmbBadgeComponent>",
-                "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
+                "rawtype": "StoryObj<BmbBalanceOverviewComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-balance-overview/bmb-balance-overview.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -21006,24 +21944,24 @@
                     "defaultValue": "(date: DateTime): DateTime[] => {\n  const calculateFirstDay = getWeekDays(date);\n\n  let weekDays = [];\n\n  for (let day = 0; day <= 41; day++) {\n    weekDays.push(calculateFirstDay[0].plus({ days: day }));\n  }\n\n  return weekDays;\n}"
                 }
             ],
-            "projects/ds-ng/src/lib/components/bmb-balance-overview/bmb-balance-overview.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ds-ng/src/lib/components/bmb-balance-overview/bmb-balance-overview.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{}"
-                }
-            ],
             "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts": [
                 {
                     "name": "Default",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-balance-overview/bmb-balance-overview.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-balance-overview/bmb-balance-overview.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
@@ -21388,6 +22326,18 @@
                     "deprecationMessage": "",
                     "type": "Story",
                     "defaultValue": "{}"
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-push-notification/bmb-push-notification.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-push-notification/bmb-push-notification.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "StoryFn<>",
+                    "defaultValue": "(\r\n  args,\r\n) => {\r\n  return {\r\n    props: args,\r\n    template: `\r\n      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->\r\n      <storybook-toast-wrapper ${attributes(args)}></storybook-toast-wrapper>\r\n      <!-- Start copying from here -->\r\n      <div class=\"actions\">\r\n      <button\r\n        bmbButton\r\n        appearance=\"primary\"\r\n        icon=\"home\"\r\n        (click)=\"openModalComponent()\"\r\n      >Add notification</button>\r\n      <bmb-push-notification />\r\n      `,\r\n  };\r\n}"
                 }
             ],
             "projects/ds-ng/src/lib/components/bmb-radial/bmb-radial.stories.ts": [
@@ -21915,6 +22865,35 @@
                     ]
                 }
             ],
+            "projects/ds-ng/src/lib/components/bmb-push-notification/bmb-push-notification.stories.ts": [
+                {
+                    "name": "attributes",
+                    "file": "projects/ds-ng/src/lib/components/bmb-push-notification/bmb-push-notification.stories.ts",
+                    "ctype": "miscellaneous",
+                    "subtype": "function",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "args": [
+                        {
+                            "name": "object",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "returnType": "string",
+                    "jsdoctags": [
+                        {
+                            "name": "object",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
             "projects/ds-ng/src/lib/components/bmb-toast/bmb-toast.stories.ts": [
                 {
                     "name": "attributes",
@@ -22019,7 +22998,7 @@
                             "type": "IFixDecimals",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "15dd7a0b-c37a-488d-ae30-d8a9ea9e9119",
+                            "destrucuredGroupId": "abf3b8be-e786-4612-8bc1-d95effc0dbc1",
                             "destructuredParameter": true
                         },
                         {
@@ -22028,7 +23007,7 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "defaultValue": "2",
-                            "destrucuredGroupId": "15dd7a0b-c37a-488d-ae30-d8a9ea9e9119",
+                            "destrucuredGroupId": "abf3b8be-e786-4612-8bc1-d95effc0dbc1",
                             "destructuredParameter": true
                         }
                     ],
@@ -22038,7 +23017,7 @@
                             "type": "IFixDecimals",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "15dd7a0b-c37a-488d-ae30-d8a9ea9e9119",
+                            "destrucuredGroupId": "abf3b8be-e786-4612-8bc1-d95effc0dbc1",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
@@ -22050,7 +23029,7 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "defaultValue": "2",
-                            "destrucuredGroupId": "15dd7a0b-c37a-488d-ae30-d8a9ea9e9119",
+                            "destrucuredGroupId": "abf3b8be-e786-4612-8bc1-d95effc0dbc1",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
@@ -22208,17 +23187,41 @@
                     "kind": 192
                 }
             ],
-            "projects/ds-ng/src/lib/components/bmb-balance-overview/bmb-balance-overview.stories.ts": [
+            "projects/ds-ng/src/lib/services/notification.service.ts": [
                 {
-                    "name": "Story",
+                    "name": "NotificationPositionX",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
-                    "rawtype": "StoryObj<BmbBalanceOverviewComponent>",
-                    "file": "projects/ds-ng/src/lib/components/bmb-balance-overview/bmb-balance-overview.stories.ts",
+                    "rawtype": "\"left\" | \"right\"",
+                    "file": "projects/ds-ng/src/lib/services/notification.service.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
-                    "kind": 183
+                    "kind": 192
+                },
+                {
+                    "name": "NotificationPositionY",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"top\" | \"bottom\"",
+                    "file": "projects/ds-ng/src/lib/services/notification.service.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 192
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-push-notification/types.ts": [
+                {
+                    "name": "NotificationType",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"tec\" | \"success\" | \"info\" | \"neutral\" | \"event\" | \"error\" | \"warning\" | \"black\"",
+                    "file": "projects/ds-ng/src/lib/components/bmb-push-notification/types.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 192
                 }
             ],
             "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts": [
@@ -22228,6 +23231,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<BmbBadgeComponent>",
                     "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-balance-overview/bmb-balance-overview.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbBalanceOverviewComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-balance-overview/bmb-balance-overview.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -23924,6 +24940,71 @@
                 "status": "low"
             },
             {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-push-notification/bmb-push-notification-item/bmb-push-notification-item.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbPushNotificationItemComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/15",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-push-notification/bmb-push-notification.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbPushNotificationComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-push-notification/bmb-push-notification.stories.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "StorybookToastWrapperComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/9",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-push-notification/bmb-push-notification.stories.ts",
+                "type": "function",
+                "linktype": "miscellaneous",
+                "linksubtype": "function",
+                "name": "attributes",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-push-notification/bmb-push-notification.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-push-notification/types.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "INotification",
+                "coveragePercent": 0,
+                "coverageCount": "0/18",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-push-notification/types.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "INotificationAction",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/ds-ng/src/lib/components/bmb-radial/bmb-radial.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -24845,6 +25926,15 @@
                 "name": "ModalService",
                 "coveragePercent": 0,
                 "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/services/notification.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "BmbNotificationService",
+                "coveragePercent": 0,
+                "coverageCount": "0/8",
                 "status": "low"
             },
             {
