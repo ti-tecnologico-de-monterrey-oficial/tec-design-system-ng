@@ -4,6 +4,10 @@
   position: absolute;
   right: rem.rem_calc(16);
   top: rem.rem_calc(16);
-  width: clamp(rem.rem_calc(100), calc(100% - rem.rem_calc(32)), rem.rem_calc(500));
+  width: clamp(
+    rem.rem_calc(100),
+    calc(100% - rem.rem_calc(32)),
+    rem.rem_calc(500)
+  );
   z-index: 9999;
 }

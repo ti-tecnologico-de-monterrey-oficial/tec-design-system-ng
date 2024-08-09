@@ -1,11 +1,11 @@
-import { Inject, Injectable, Optional, signal } from "@angular/core";
-import { INotification } from "../components/bmb-push-notification/types";
+import { Inject, Injectable, Optional, signal } from '@angular/core';
+import { INotification } from '../components/bmb-push-notification/types';
 
 export type NotificationPositionX = 'left' | 'right';
 export type NotificationPositionY = 'top' | 'bottom';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BmbNotificationService {
   readonly notificationList = signal<INotification[]>([]);
@@ -26,13 +26,17 @@ export class BmbNotificationService {
       { ...notification, id },
     ]);
 
-    setTimeout(() => { this.deleteNotification(id) }, (notification.delay || 5000));
+    setTimeout(() => {
+      this.deleteNotification(id);
+    }, notification.delay || 5000);
   }
 
   deleteNotification(id: string) {
     console.log('delete');
 
-    this.notificationList.update((currentNotifications) => currentNotifications.filter((notification) => notification.id !== id));
+    this.notificationList.update((currentNotifications) =>
+      currentNotifications.filter((notification) => notification.id !== id),
+    );
   }
 
   getNotificationList() {

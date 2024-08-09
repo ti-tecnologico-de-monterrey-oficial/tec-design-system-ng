@@ -1,4 +1,4 @@
-import { IButtonAppearance } from "../../types";
+import { IButtonAppearance } from '../../types';
 
 export interface INotification extends IMinimalNotification {
   icon?: string;
@@ -24,10 +24,18 @@ export interface IMinimalNotification {
 }
 
 export interface INotificationAction {
-  title: string,
-  action: 'close' | ((notification: IMinimalNotification) => void),
-  type?: IButtonAppearance,
+  title: string;
+  action: 'close' | ((notification: IMinimalNotification) => void);
+  type?: IButtonAppearance;
   icon?: string;
 }
 
-export type NotificationType = 'tec' | 'success' | 'info' | 'neutral' | 'event' | 'error' | 'warning' | 'black';
+export type NotificationType =
+  | 'tec'
+  | 'success'
+  | 'info'
+  | 'neutral'
+  | 'event'
+  | 'error'
+  | 'warning'
+  | 'black';
