@@ -74,7 +74,8 @@ Below is an example of how you can use this component in HTML:
     isLoadingChange: {
       name: 'Is Loading Change',
       control: null,
-      description: 'Model signal, export the model value. Example: (isLoadingChange)="handleIsLoadingChange()"',
+      description:
+        'Model signal, export the model value. Example: (isLoadingChange)="handleIsLoadingChange()"',
       table: {
         category: 'Events',
         type: { summary: 'function' },
