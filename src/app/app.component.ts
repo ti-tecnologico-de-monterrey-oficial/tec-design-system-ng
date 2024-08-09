@@ -82,7 +82,7 @@ import names from './names.json';
 import { ModalDataConfig } from '../../projects/ds-ng/src/lib/components/bmb-modal/bmb-modal.interface';
 import { MatDialog } from '@angular/material/dialog';
 import timelineEvents from './timelineEvents.json';
-import {  } from '../../projects/ds-ng/src/lib/components/bmb-home-card-chat/bmb-home-card-chat.component';
+import {} from '../../projects/ds-ng/src/lib/components/bmb-home-card-chat/bmb-home-card-chat.component';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -164,10 +164,6 @@ export class AppComponent implements OnInit {
     { id: 5, title: 'Text' },
     { id: 6, title: 'Mas usado' },
   ];
-
-  ngOnInit(): void {
-
-  }
 
   @ViewChild('buttonContent') actionsTemplate!: TemplateRef<unknown>;
 
