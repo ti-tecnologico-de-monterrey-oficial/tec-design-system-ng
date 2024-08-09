@@ -2,29 +2,30 @@
 {{ getNotifications().length }}
 
 <div style="margin: 1rem">
+  <bmb-home-card-chat
+    [(isLoading)]="isLoading"
+    (isLoadingChange)="handleIsLoadingChange()"
+    [(currentBot)]="currentBot"
+    (currentBotChange)="handleCurrentBotChange()"
+    (onSendMessage)="handleSendMessage($event)"
+  >
+    <p>Slot test</p>
+  </bmb-home-card-chat>
+</div>
+
+<bmb-theme [initialTheme]="'light'" />
+
+<div style="margin: 1rem">
   <bmb-home-card
     title="test title"
     subtitle="test subtitle"
     icon="shelf_auto_hide"
-    [isMobile]="true"
+    [isMobile]="false"
   >
     <p>Slot test</p>
   </bmb-home-card>
 </div>
 
-<bmb-theme [initialTheme]="'light'" />
-
-<bmb-datepicker></bmb-datepicker>
-
-<form action="">
-  <bmb-input
-    [isRequired]="true"
-    icon="apps"
-    [minlength]="3"
-    [maxlength]="5"
-    [spellcheck]="true"
-  ></bmb-input>
-</form>
 <br />
 <button bmbButton (click)="handleButtonState()" [textContent]="'text'">
   Button 1

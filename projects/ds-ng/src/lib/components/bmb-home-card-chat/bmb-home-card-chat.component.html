@@ -1,0 +1,21 @@
+<section>
+  <bmb-home-card
+    [title]="title()"
+    [subtitle]="subtitle()"
+    [icon]="icon()"
+    [isMobile]="isMobile()"
+    (onClose)="handleClose()"
+    (onBack)="handleBack()"
+  >
+    <div>
+      <ng-content />
+    </div>
+    <bmb-chat-bar
+      [placeholder]="placeholder()"
+      [botList]="botList()"
+      [(currentBot)]="currentBot"
+      [(isLoading)]="isLoading"
+      (onSendMessage)="handleSend($event)"
+    ></bmb-chat-bar>
+  </bmb-home-card>
+</section>
