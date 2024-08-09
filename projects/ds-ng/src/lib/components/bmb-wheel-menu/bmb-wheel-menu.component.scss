@@ -22,7 +22,7 @@
     background-color: RGBA(var(--color-charade-50), 1);
     border: rem.rem_calc(4) solid RGBA(var(--color-mariner-700), 1);
     border-radius: 50%;
-    bottom: -38%;
+    bottom: rem.rem_calc(-260);
     height: rem.rem_calc(700);
     left: 50%;
     margin-left: rem.rem_calc(-350);
@@ -31,6 +31,34 @@
     transition: all 0.5s ease-in;
     width: rem.rem_calc(700);
     z-index: 10;
+
+    .bmb_wheel-apps {
+      bmb-interactive-icon {
+        &:first-child {
+          transform: translate(rem.rem_calc(-15), rem.rem_calc(60));
+        }
+
+        &:nth-child(3) {
+          transform: translate(rem.rem_calc(20), 0);
+        }
+
+        &:nth-child(4) {
+          transform: translate(rem.rem_calc(35), rem.rem_calc(60));
+        }
+
+        &:nth-child(5) {
+          transform: translate(rem.rem_calc(-15), rem.rem_calc(90));
+        }
+
+        &:nth-child(6) {
+          transform: translate(0, rem.rem_calc(32));
+        }
+
+        &:last-child {
+          transform: translate(rem.rem_calc(20), rem.rem_calc(32));
+        }
+      }
+    }
   }
 
   &-button {
@@ -52,7 +80,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: rem.rem_calc(10);
-    justify-content: center;
+    justify-content: flex-start;
     position: absolute;
     right: 26%;
     top: 18%;
