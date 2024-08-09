@@ -62,8 +62,10 @@ export * from './lib/components/bmb-student-activity-selector/bmb-student-activi
 export * from './lib/components/bmb-timestream/bmb-timestream.component';
 export * from './lib/components/bmb-student-activity-selector/bmb-student-activity-tab/bmb-student-activity-tab.component';
 export * from './lib/components/bmb-student-activity-card/bmb-student-activity-card.component';
+export * from './lib/components/bmb-advertisement-card/bmb-advertisement-card.component';
 export * from './lib/components/bmb-home-card/bmb-home-card.component';
 export * from './lib/components/bmb-chat-bar/bmb-chat-bar.component';
+export * from './lib/components/bmb-notification-card/bmb-notification-card.component';
 
 // types
 export * from './lib/types';
