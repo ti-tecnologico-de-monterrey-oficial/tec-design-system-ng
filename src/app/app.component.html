@@ -1,3 +1,6 @@
+<button bmbButton (click)="addNotification()">Add notification</button>
+{{ getNotifications().length }}
+
 <div style="margin: 1rem">
   <bmb-home-card-chat
     [(isLoading)]="isLoading"
@@ -39,3 +42,4 @@
   <a routerLink="/emprendedor" class="font-bold-6">Emprendedor</a>
 </div>
 <router-outlet></router-outlet>
+<bmb-push-notification />

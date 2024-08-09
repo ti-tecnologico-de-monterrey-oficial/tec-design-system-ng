@@ -1,0 +1,8 @@
+<section class="bmb_push-notifications">
+  @for (notification of getNotifications(); track $index) {
+    <bmb-push-notification-item
+      [notification]="notification"
+      (onClose)="closeNotification(notification)"
+    />
+  }
+</section>
