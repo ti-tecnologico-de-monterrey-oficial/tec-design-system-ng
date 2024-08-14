@@ -39,10 +39,10 @@ export class BmbStudentActivityCardComponent {
     return [
       'bmb_student-activity-card-header',
       `bmb_student-activity-card-header-${this.type()}`,
-    ]
+    ];
   }
 
   formatDateRange() {
-    return `${this.startDate()?.toFormat('hh:mm')} - ${this.endDate()?.toFormat('hh:mm')}`
+    return `${this.startDate()?.toFormat('hh:mm')} - ${this.endDate()?.toFormat('hh:mm')}`;
   }
 }

@@ -1,8 +1,7 @@
 @use "../../../../../assets/styles/base/rem" as rem;
 @use "../../../../../assets/styles/base/fonts" as fonts;
 
-$types: 'academic', 'life', 'event';
-
+$types: "academic", "life", "event";
 
 .bmb_calendar-event {
   box-sizing: border-box;
@@ -76,8 +75,6 @@ $types: 'academic', 'life', 'event';
     grid-area: indicator;
     background-color: RGBA(var(--color-black-primary));
     margin-right: rem.rem-calc(8);
-
-
   }
 
   &-title {
