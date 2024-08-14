@@ -1,7 +1,6 @@
 @use "../../../assets/styles/base/rem" as rem;
 @use "../../../assets/styles/base/fonts" as fonts;
 
-
 $types: (
   "academic": RGBA(var(--color-blue-primary)),
   "life": RGBA(var(--color-green-primary)),
@@ -93,5 +92,3 @@ $types: (
     }
   }
 }
-
-

@@ -1,8 +1,13 @@
 <div class="bmb_student-activity-card">
   <header [ngClass]="getHeaderClasses()">
-    <span class="bmb_student-activity-card-count">{{ startDate()?.toFormat('dd/MM') }}</span>
+    <span class="bmb_student-activity-card-count">{{
+      startDate()?.toFormat("dd/MM")
+    }}</span>
     <span class="bmb_student-activity-card-title">{{ modalTitle() }}</span>
-    <button (click)="handleCloseModal()" class="bmb_student-activity-card-close-button">
+    <button
+      (click)="handleCloseModal()"
+      class="bmb_student-activity-card-close-button"
+    >
       <bmb-icon icon="close" />
     </button>
   </header>
@@ -11,7 +16,9 @@
     <div class="bmb_student-activity-card-detail">{{ detail() }}</div>
     <div class="bmb_student-activity-card-status">
       <span class="bmb_student-activity-card-status-label">{{ status() }}</span>
-      <span class="bmb_student-activity-card-time-range">{{ formatDateRange() }}</span>
+      <span class="bmb_student-activity-card-time-range">{{
+        formatDateRange()
+      }}</span>
     </div>
   </section>
 </div>

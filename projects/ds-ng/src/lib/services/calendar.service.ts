@@ -12,9 +12,8 @@ export class BmbCalendarService {
     const id = event.id ?? self.crypto.randomUUID();
     this.eventList.update((currentevents) => [
       ...currentevents,
-      { ...event, id }
-    ]
-    );
+      { ...event, id },
+    ]);
   }
 
   deleteevent(id: string) {

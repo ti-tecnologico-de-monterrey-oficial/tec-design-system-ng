@@ -30,7 +30,11 @@ import { BmbCalendarTemplateEventComponent } from './common/bmb-calendar-templat
 import { BmbCalendarService } from '../../services/calendar.service';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 
-export { IBmbCalendarEvent, IBmbCalendarEventClick, IBmbEventType } from './types';
+export {
+  IBmbCalendarEvent,
+  IBmbCalendarEventClick,
+  IBmbEventType,
+} from './types';
 
 @Component({
   selector: 'bmb-calendar',
@@ -78,7 +82,7 @@ export class BmbCalendarComponent {
   constructor(private eventsSignal: BmbCalendarService) {}
 
   ngOnInit() {
-    this.view.update(value => window.innerWidth < 1000 ? 'day' : value);
+    this.view.update((value) => (window.innerWidth < 1000 ? 'day' : value));
   }
 
   now =
