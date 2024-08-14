@@ -8,24 +8,23 @@ $variants: (
 );
 
 .bmb_progress-bar {
-
-  &-counter-container{
+  &-counter-container {
     display: flex;
     width: 100%;
     align-items: center;
   }
 
-  &-counter-text{
+  &-counter-text {
     @include fonts.font(4, regular);
-    margin-left:  rem.rem_calc(10);
+    margin-left: rem.rem_calc(10);
   }
 
   &-track {
     height: rem.rem_calc(8);
-    min-width:  rem.rem_calc(48); 
+    min-width: rem.rem_calc(48);
     width: 100%;
     border-radius: rem.rem_calc(5);
-    background-color: RGBA(var(--color-charade-300))
+    background-color: RGBA(var(--color-charade-300));
   }
 
   &-active {
@@ -41,45 +40,45 @@ $variants: (
     }
   }
 
-  &-container{
+  &-container {
     display: inline-flex;
     width: 100%;
 
-    &-main{
+    &-main {
       display: flex;
       flex-direction: column;
       width: 100%;
-      padding:  rem.rem_calc(15 20);
+      padding: rem.rem_calc(15 20);
     }
 
-    &-header{
+    &-header {
       display: inline-flex;
       justify-content: space-between;
       align-items: center;
       width: 100%;
-      padding:  rem.rem_calc(3 0); 
+      padding: rem.rem_calc(3 0);
 
-      &-text{
+      &-text {
         @include fonts.font(5, regular);
       }
     }
 
-    &-bar{
-      padding:  rem.rem_calc(2 0);
+    &-bar {
+      padding: rem.rem_calc(2 0);
     }
 
-    &-link{
+    &-link {
       @include fonts.font(4, medium);
-      padding:  rem.rem_calc(3 0); 
+      padding: rem.rem_calc(3 0);
 
-      &-text{
+      &-text {
         text-decoration: none;
         display: inline-flex;
         align-items: center;
-        color: RGBA(var(--color-blue-primary));        
+        color: RGBA(var(--color-blue-primary));
       }
 
-      bmb-icon{
+      bmb-icon {
         font-size: rem.rem_calc(18);
       }
     }
@@ -97,20 +96,20 @@ $variants: (
       background-color: RGBA(var(--color-neon-primary));
     }
 
-    &-counter-text{
+    &-counter-text {
       color: RGBA(var(--color-charade-500));
     }
 
-    &-container{
-      &-header{
-        &-text{
+    &-container {
+      &-header {
+        &-text {
           color: RGBA(var(--color-charade-50));
         }
       }
-  
-      &-link{
-        &-text{
-          color: RGBA(var(--color-neon-primary));        
+
+      &-link {
+        &-text {
+          color: RGBA(var(--color-neon-primary));
         }
       }
     }

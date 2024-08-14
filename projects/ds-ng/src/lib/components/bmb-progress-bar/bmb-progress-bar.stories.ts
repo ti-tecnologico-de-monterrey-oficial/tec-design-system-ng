@@ -37,7 +37,7 @@ Below is an example of how you can use this component in HTML:
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        defaultValue: { summary: 'simple'}
+        defaultValue: { summary: 'simple' },
       },
     },
     totalCount: {
@@ -49,7 +49,7 @@ Below is an example of how you can use this component in HTML:
       table: {
         category: 'Properties',
         type: { summary: 'number' },
-        defaultValue: { summary: '0'}
+        defaultValue: { summary: '0' },
       },
     },
     counter: {
@@ -68,7 +68,8 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'text',
       },
-      description: 'Set the title that the component will show if the type is set as a container',
+      description:
+        'Set the title that the component will show if the type is set as a container',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -84,7 +85,7 @@ Below is an example of how you can use this component in HTML:
       table: {
         category: 'Properties',
         type: { summary: 'number' },
-        defaultValue: { summary: 'info'}
+        defaultValue: { summary: 'info' },
       },
     },
     textLink: {
@@ -107,7 +108,7 @@ Below is an example of how you can use this component in HTML:
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        defaultValue: { summary: ''}
+        defaultValue: { summary: '' },
       },
     },
     target: {
@@ -115,12 +116,12 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'radio',
       },
-      options: ['_blank','_parent','_self','_top'],
+      options: ['_blank', '_parent', '_self', '_top'],
       description: 'Set the percentage to show in the progress bar',
       table: {
         category: 'Properties',
         type: { summary: 'number' },
-        target:{ summary: '_blank'}
+        target: { summary: '_blank' },
       },
     },
     progress: {
@@ -142,7 +143,7 @@ Below is an example of how you can use this component in HTML:
     title: 'Creditos ocupados para esta iniciativa',
     appearance: 'info',
     textLink: 'Aumentar Creditos',
-    href:'https://www.google.com',
+    href: 'https://www.google.com',
   },
 } as Meta<typeof BmbProgressBarComponent>;
 
