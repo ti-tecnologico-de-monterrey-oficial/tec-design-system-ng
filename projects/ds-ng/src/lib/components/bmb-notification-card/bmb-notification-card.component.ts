@@ -5,15 +5,14 @@ import {
   OnInit,
   ViewEncapsulation,
 } from '@angular/core';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { IBmbNotificationCardData } from './types';
 import { CommonModule } from '@angular/common';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 
 @Component({
   selector: 'bmb-notification-card',
   standalone: true,
-  imports: [BmbIconComponent, CommonModule, BmbBadgeComponent],
+  imports: [BmbIconComponent, CommonModule],
   templateUrl: './bmb-notification-card.component.html',
   styleUrl: './bmb-notification-card.component.scss',
   encapsulation: ViewEncapsulation.None,

@@ -5,11 +5,17 @@ export type IBmbCalendarEvent = {
   detail: string;
   start: string;
   end: string;
+  modalTitle: string;
+  status: string;
+  type?: IBmbEventType;
+  id?: string;
 };
 
 export type IBmbCalendarView = 'week' | 'month' | 'day';
 
 export type IBmbCalendarHourFormat = '12' | '24';
+
+export type IBmbEventType = 'academic' | 'life' | 'events';
 
 export interface IBmbCalendarEventClick {
   event: IBmbCalendarEvent;

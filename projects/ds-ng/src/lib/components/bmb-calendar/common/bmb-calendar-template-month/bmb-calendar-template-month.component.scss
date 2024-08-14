@@ -12,6 +12,8 @@
     box-sizing: border-box;
     width: calc(100% / 7);
     border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
+    overflow: auto;
+    height: calc(100% / 6);
 
     &:not(:nth-child(7n)) {
       border-right: rem.rem_calc(1) solid RGBA(var(--color-charade-200));

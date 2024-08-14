@@ -4,8 +4,8 @@
       <figure class="bmb_chat-bar-bot-picture">
         <img
           class="bmb_chat-bar-bot-picture-image"
-          [src]="currentBot.icon"
-          [alt]="currentBot.name"
+          [src]="currentBot()?.icon"
+          [alt]="currentBot()?.name"
         />
       </figure>
     </button>
@@ -14,17 +14,17 @@
       name="bmbChatBarBot"
       class="bmb_chat-bar-input"
       type="text"
-      [placeholder]="placeholder"
+      [placeholder]="defaultPlaceholder()"
       [formControl]="control"
     />
     <button
       (click)="handleSend()"
       class="bmb_chat-bar-send"
-      [disabled]="!control.value || isLoading"
+      [disabled]="!control.value || isLoading()"
     >
       <bmb-icon
-        [ngClass]="{ 'bmb_chat-bar-send-animated': isLoading }"
-        [icon]="isLoading ? 'progress_activity' : 'send'"
+        [ngClass]="{ 'bmb_chat-bar-send-animated': isLoading() }"
+        [icon]="isLoading() ? 'progress_activity' : 'send'"
       />
     </button>
   </div>
@@ -34,7 +34,7 @@
   >
     <ul class="bmb_chat-bar-dialog-list">
       @if (isDialogOpen) {
-        @for (bot of botList; track $index) {
+        @for (bot of dBotList(); track $index) {
           <li class="bmb_chat-bar-dialog-option">
             <button
               (click)="handleChangeBot(bot)"

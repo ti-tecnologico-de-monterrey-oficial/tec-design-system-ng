@@ -7,14 +7,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 import { BmbInteractiveIconComponent } from '../bmb-interactive-icon/bmb-interactive-icon.component';
-
-interface App {
-  icon: string;
-  title: string;
-  link?: string;
-  target?: string;
-  appearance: string;
-}
+import { IBmbApp } from '../../types';
 
 @Component({
   selector: 'bmb-frequent-apps-selector',
@@ -27,5 +20,5 @@ interface App {
 })
 export class BmbFrequentAppsSelectorComponent {
   @Input() title: string = '';
-  @Input() apps: App[] = [];
+  @Input() apps: IBmbApp[] = [];
 }
