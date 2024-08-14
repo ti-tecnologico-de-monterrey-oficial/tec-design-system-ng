@@ -4,6 +4,7 @@
 
 export * from './lib/ds-ng.service';
 export * from './lib/services/notification.service';
+export * from './lib/services/calendar.service';
 
 export * from './lib/ds-ng.component';
 export * from './lib/directives/button.directive';

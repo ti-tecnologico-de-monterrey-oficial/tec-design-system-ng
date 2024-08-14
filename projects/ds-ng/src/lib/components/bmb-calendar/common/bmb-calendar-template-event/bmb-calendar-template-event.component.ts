@@ -2,7 +2,9 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  input,
   Input,
+  output,
   Output,
   ViewEncapsulation,
 } from '@angular/core';
@@ -13,6 +15,7 @@ import { BmbIconComponent } from '../../../bmb-icon/bmb-icon.component';
 import { DateTime } from 'luxon';
 import { BmbBadgeComponent } from '../../../bmb-badge/bmb-badge.component';
 import { getTimeRange } from '../../utils';
+import { BmbStudentActivityCardComponent } from '../../../bmb-student-activity-card/bmb-student-activity-card.component';
 
 @Component({
   selector: 'bmb-calendar-template-event',
@@ -22,6 +25,7 @@ import { getTimeRange } from '../../utils';
     BmbButtonDirective,
     BmbIconComponent,
     BmbBadgeComponent,
+    BmbStudentActivityCardComponent,
   ],
   templateUrl: './bmb-calendar-template-event.component.html',
   styleUrl: './bmb-calendar-template-event.component.scss',
@@ -29,27 +33,20 @@ import { getTimeRange } from '../../utils';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbCalendarTemplateEventComponent {
-  @Input() event: IBmbCalendarEventClick | null = null;
+  event = input.required<IBmbCalendarEventClick>();
 
-  @Output() closeModal: EventEmitter<null> = new EventEmitter<null>();
+  closeModal = output<void>();
 
-  getPosition(position: any): string {
-    return `top: ${position}px`;
+  getDateFromString(date: string): DateTime {
+    return DateTime.fromISO(date);
   }
 
-  getDateString(event: IBmbCalendarEvent | null | undefined): string {
-    if (!event) return '00:00';
-    const start = DateTime.fromISO(event.start);
-
-    return start.toFormat('hh:mm');
-  }
-
-  handleTimeRange(event: IBmbCalendarEvent | null | undefined): string {
+  handleTimeRange(event: IBmbCalendarEvent): string {
     if (!event) return '';
     return getTimeRange(event);
   }
 
   handleCloseModal() {
-    this.closeModal.emit(null);
+    this.closeModal.emit();
   }
 }

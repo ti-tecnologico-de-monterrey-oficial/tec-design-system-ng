@@ -6,6 +6,8 @@ import {
   Output,
   EventEmitter,
   HostListener,
+  input,
+  model,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DateTime } from 'luxon';
@@ -21,11 +23,14 @@ import {
   IBmbCalendarEventClick,
   IBmbCalendarHourFormat,
   IBmbCalendarView,
+  IBmbEventType,
 } from './types';
 import { getWeekDays, getMonthDays } from './utils';
 import { BmbCalendarTemplateEventComponent } from './common/bmb-calendar-template-event/bmb-calendar-template-event.component';
+import { BmbCalendarService } from '../../services/calendar.service';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 
-export { IBmbCalendarEvent, IBmbCalendarEventClick } from './types';
+export { IBmbCalendarEvent, IBmbCalendarEventClick, IBmbEventType } from './types';
 
 @Component({
   selector: 'bmb-calendar',
@@ -40,6 +45,7 @@ export { IBmbCalendarEvent, IBmbCalendarEventClick } from './types';
     BmbCalendarTemplateEventComponent,
     BmbCalendarTemplateMobileComponent,
     BmbCalendarTemplateEventListComponent,
+    BmbIconComponent,
   ],
   styleUrl: './bmb-calendar.component.scss',
   templateUrl: './bmb-calendar.component.html',
@@ -47,9 +53,8 @@ export { IBmbCalendarEvent, IBmbCalendarEventClick } from './types';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbCalendarComponent {
-  @Input() events: IBmbCalendarEvent[] = [];
-  @Input() view: IBmbCalendarView = 'week';
-  @Input() isLoading: boolean = false;
+  view = model<IBmbCalendarView>('week');
+
   @Input() hourFormat: IBmbCalendarHourFormat = '12';
   @Input() calendarTimezone: string =
     Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -64,14 +69,16 @@ export class BmbCalendarComponent {
   @HostListener('window:resize', ['$event'])
   private resize() {
     if (window.innerWidth < 1000) {
-      this.view = 'day';
+      this.view.set('day');
     } else {
       this.isListShowing = false;
     }
   }
 
+  constructor(private eventsSignal: BmbCalendarService) {}
+
   ngOnInit() {
-    this.view = window.innerWidth < 1000 ? 'day' : this.view;
+    this.view.update(value => window.innerWidth < 1000 ? 'day' : value);
   }
 
   now =
@@ -84,7 +91,7 @@ export class BmbCalendarComponent {
   isListShowing: boolean = false;
 
   handleDateChange(range: IBmbCalendarView, now: DateTime): void {
-    this.view = range;
+    this.view.set(range);
     let visibleDates: (string | null)[] = [];
 
     switch (range) {
@@ -118,6 +125,8 @@ export class BmbCalendarComponent {
   }
 
   handleSelectEvent(newEvent: IBmbCalendarEventClick | null): void {
+    console.log('close modal');
+
     this.selectedEvent = newEvent;
   }
 
@@ -133,5 +142,13 @@ export class BmbCalendarComponent {
 
   onViewTypeChange() {
     this.isListShowing = !this.isListShowing;
+  }
+
+  getEvents() {
+    return this.eventsSignal.geteventList();
+  }
+
+  getIsLoading() {
+    return this.eventsSignal.getIsLoading();
   }
 }

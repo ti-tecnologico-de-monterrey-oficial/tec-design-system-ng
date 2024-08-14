@@ -1,22 +1,14 @@
 <dialog open class="bmb_calendar-event-modal">
-  <div class="bmb_calendar-event-modal-body">
-    <header class="bmb_calendar-event-modal-header">
-      <span class="bmb_calendar-event-modal-header-time">
-        {{ getDateString(event?.event) }}
-      </span>
-      <h1 class="bmb_calendar-event-modal-header-title">
-        {{ event?.event?.title }}
-      </h1>
-      <button bmbButton (click)="handleCloseModal()">
-        <bmb-icon [icon]="'close'" />
-      </button>
-    </header>
-    <p class="bmb_calendar-event-modal-content">{{ event?.event?.detail }}</p>
-    <footer class="bmb_calendar-event-modal-footer">
-      <bmb-badge appearance="strong" text="In progress" />
-      <span class="bmb_calendar-event-modal-footer-time">
-        {{ handleTimeRange(event?.event) }}
-      </span>
-    </footer>
-  </div>
+  @if (!!event) {
+    <bmb-student-activity-card
+      [startDate]="getDateFromString(event().event.start)"
+      [endDate]="getDateFromString(event().event.end)"
+      [title]="event().event.title"
+      [detail]="event().event.detail"
+      [type]="event().event.type"
+      [modalTitle]="event().event.modalTitle"
+      [status]="event().event.status"
+      (closeModal)="handleCloseModal()"
+    />
+  }
 </dialog>

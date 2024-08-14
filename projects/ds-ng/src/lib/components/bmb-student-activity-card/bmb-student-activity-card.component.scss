@@ -1,32 +1,54 @@
 @use "../../../assets/styles/base/rem" as rem;
 @use "../../../assets/styles/base/fonts" as fonts;
-.bmb_student_activity_card {
+
+
+$types: (
+  "academic": RGBA(var(--color-blue-primary)),
+  "life": RGBA(var(--color-green-primary)),
+  "event": RGBA(var(--color-purple-primary)),
+);
+
+.bmb_student-activity-card {
   @include fonts.font(3, medium);
-  background: RGBA(var(--color-charade-950));
+  background-color: RGBA(var(--color-charade-50));
   border-radius: rem.rem_calc(8);
-  color: RGBA(var(--color-white-primary));
-  padding: rem.rem_calc(16);
-  max-width: rem.rem_calc(300);
+  color: RGBA(var(--color-charade-950));
+  width: clamp(rem.rem_calc(200), 100%, rem.rem_calc(600));
+  margin: 0 auto;
   position: relative;
   font-size: rem.rem_calc(14);
+  overflow: hidden;
+  border: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
 
   &-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: var(--bmb-spacing-s);
+    color: rgb(var(--color-white-primary));
+
+    @each $type, $color in $types {
+      &-#{$type} {
+        background-color: $color;
+      }
+    }
   }
 
   &-close-button {
     cursor: pointer;
+    color: rgb(var(--color-white-primary));
+    @include fonts.font(7, medium);
   }
 
   &-content {
-    margin-top: rem.rem_calc(16);
+    padding: rem.rem_calc(24) rem.rem_calc(16);
+    text-align: center;
   }
 
   &-title {
     font-size: rem.rem_calc(18);
     font-weight: bold;
+    text-transform: capitalize;
   }
 
   &-subtitle {
@@ -34,9 +56,9 @@
     margin-top: rem.rem_calc(1);
   }
 
-  &-location {
+  &-detail {
     font-size: rem.rem_calc(14);
-    margin-top: rem.rem_calc(8);
+    margin: rem.rem_calc(16) 0;
   }
 
   &-status {
@@ -44,15 +66,32 @@
     justify-content: space-between;
     align-items: center;
     margin-top: rem.rem_calc(12);
-  }
 
-  &-status-label {
-    background: RGBA(var(--color-charade-700));
-    padding: rem.rem_calc(4, 8);
-    border-radius: rem.rem_calc(4);
-    font-size: rem.rem_calc(12);
+    &-label {
+      background: RGBA(var(--color-charade-100));
+      padding: rem.rem_calc(4, 8);
+      border-radius: rem.rem_calc(4);
+      font-size: rem.rem_calc(12);
+    }
   }
   &-time-range {
     font-size: rem.rem_calc(12);
   }
 }
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_student-activity-card {
+    border-color: RGBA(var(--color-charade-700));
+    background-color: RGBA(var(--color-charade-950));
+    color: rgb(var(--color-white-primary));
+
+    &-status {
+      &-label {
+        background-color: RGBA(var(--color-charade-900));
+      }
+    }
+  }
+}
+
+
