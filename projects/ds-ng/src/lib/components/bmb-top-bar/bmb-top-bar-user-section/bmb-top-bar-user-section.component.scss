@@ -42,6 +42,7 @@
 
   &-icon {
     cursor: pointer;
+    pointer-events: none;
     font-size: rem.rem_calc(26);
     line-height: 0;
     text-align: center;
