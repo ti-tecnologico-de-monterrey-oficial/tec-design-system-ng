@@ -5,9 +5,10 @@ import {
   OnInit,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbBadgeComponent, BmbIconComponent } from 'ds-ng';
 import { IBmbNotificationCardData } from './types';
 import { CommonModule } from '@angular/common';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 
 @Component({
   selector: 'bmb-notification-card',
