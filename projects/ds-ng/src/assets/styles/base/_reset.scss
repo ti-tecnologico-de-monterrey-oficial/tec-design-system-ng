@@ -69,8 +69,10 @@ storybook-toast-wrapper {
   }
 }
 
-#anchor--macro-componentes-sidebar--default {
-  #story--macro-componentes-sidebar--default--primary-inner {
+#anchor--macro-componentes-sidebar--default,
+#anchor--micro-componentes-toast--default {
+  #story--macro-componentes-sidebar--default--primary-inner,
+  #story--micro-componentes-toast--default--primary-inner {
     height: 600px;
   }
 }
