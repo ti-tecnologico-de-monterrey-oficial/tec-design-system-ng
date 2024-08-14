@@ -16,6 +16,7 @@ import {
 } from '../../../projects/ds-ng/src/public-api';
 import { CommonModule } from '@angular/common';
 import { BmbSkeletonComponent } from '../../../projects/ds-ng/src/lib/components/bmb-skeleton/bmb-skeleton.component';
+import { BmbPullWedgeComponent } from '../../../projects/ds-ng/src/lib/components/bmb-pull-wedge/bmb-pull-wedge.component';
 
 interface App {
   appearance: string;
@@ -38,6 +39,7 @@ interface App {
     BmbTabsComponent,
     BmbInnerHeaderComponent,
     BmbSkeletonComponent,
+    BmbPullWedgeComponent,
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
