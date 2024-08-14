@@ -9,8 +9,6 @@ import { BmbContainerComponent } from '../bmb-container/bmb-container.component'
 import { BmbInteractiveIconComponent } from '../bmb-interactive-icon/bmb-interactive-icon.component';
 import { IBmbApp } from '../../types';
 
-
-
 @Component({
   selector: 'bmb-frequent-apps-selector',
   styleUrl: './bmb-frequent-apps-selector.component.scss',

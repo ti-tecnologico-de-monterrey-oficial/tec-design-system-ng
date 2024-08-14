@@ -37,14 +37,15 @@ export class BmbInteractiveIconComponent {
   getClasses(): string[] {
     const classes: string[] = ['bmb_interactive_icon'];
 
-    if (this.appearance()) classes.push(`bmb_interactive_icon-${this.appearance()}`);
-    if (this.isButtonAppearance()) classes.push('bmb_interactive_icon-button')
+    if (this.appearance())
+      classes.push(`bmb_interactive_icon-${this.appearance()}`);
+    if (this.isButtonAppearance()) classes.push('bmb_interactive_icon-button');
 
     return classes;
   }
 
   isExternalLink(link: string | undefined): boolean {
-    if(!link) return false;
+    if (!link) return false;
 
     return (
       link.startsWith('http://') ||
