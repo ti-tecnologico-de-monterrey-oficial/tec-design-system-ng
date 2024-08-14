@@ -1,5 +1,9 @@
-<button bmbButton (click)="addNotification()">Add notification</button>
-{{ getNotifications().length }}
+<button bmbButton (click)="addEvent()">Add event</button><br />
+<button bmbButton (click)="handleLoading()">Change loading</button>
+
+<div style="margin: 1rem">
+  <bmb-calendar />
+</div>
 
 <div style="margin: 1rem">
   <bmb-home-card-chat
@@ -13,7 +17,19 @@
   </bmb-home-card-chat>
 </div>
 
-<bmb-theme [initialTheme]="'light'" />
+<div style="margin: 1rem">
+  <bmb-home-card-chat
+    [(isLoading)]="isLoading"
+    (isLoadingChange)="handleIsLoadingChange()"
+    [(currentBot)]="currentBot"
+    (currentBotChange)="handleCurrentBotChange()"
+    (onSendMessage)="handleSendMessage($event)"
+  >
+    <p>Slot test</p>
+  </bmb-home-card-chat>
+</div>
+
+<bmb-theme initialTheme="dark" [showControls]="true" />
 
 <div style="margin: 1rem">
   <bmb-home-card

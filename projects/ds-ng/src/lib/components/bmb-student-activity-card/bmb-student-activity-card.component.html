@@ -1,20 +1,24 @@
-<div class="bmb_student_activity_card">
-  <div class="bmb_student_activity_card-header">
-    <span class="bmb_student_activity_card-count">{{ count }}</span>
-    <span class="bmb_student_activity_card-category-title">{{
-      categoryTitle
+<div class="bmb_student-activity-card">
+  <header [ngClass]="getHeaderClasses()">
+    <span class="bmb_student-activity-card-count">{{
+      startDate()?.toFormat("dd/MM")
     }}</span>
-    <span class="bmb_student_activity_card-close-button">&times;</span>
-  </div>
-  <div class="bmb_student_activity_card-content">
-    <div class="bmb_student_activity_card-title">{{ classTitle }}</div>
-    <div class="bmb_student_activity_card-subtitle">{{ classSubtitle }}</div>
-    <div class="bmb_student_activity_card-location">{{ location }}</div>
-    <div class="bmb_student_activity_card-status">
-      <span class="bmb_student_activity_card-status-label">{{
-        statusLabel
+    <span class="bmb_student-activity-card-title">{{ modalTitle() }}</span>
+    <button
+      (click)="handleCloseModal()"
+      class="bmb_student-activity-card-close-button"
+    >
+      <bmb-icon icon="close" />
+    </button>
+  </header>
+  <section class="bmb_student-activity-card-content">
+    <div class="bmb_student-activity-card-title">{{ title() }}</div>
+    <div class="bmb_student-activity-card-detail">{{ detail() }}</div>
+    <div class="bmb_student-activity-card-status">
+      <span class="bmb_student-activity-card-status-label">{{ status() }}</span>
+      <span class="bmb_student-activity-card-time-range">{{
+        formatDateRange()
       }}</span>
-      <span class="bmb_student_activity_card-time-range">{{ timeRange }}</span>
     </div>
-  </div>
+  </section>
 </div>
