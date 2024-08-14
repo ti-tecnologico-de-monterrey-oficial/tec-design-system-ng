@@ -1,20 +1,88 @@
 @use "../../../assets/styles/base/rem" as rem;
+@use "../../../assets/styles/base/fonts" as fonts;
+
+$variants: (
+  "info": RGBA(var(--color-blue-primary)),
+  "warning": RGBA(var(--color-yellow-primary)),
+  "error": RGBA(var(--color-red-primary)),
+);
 
 .bmb_progress-bar {
-  padding: rem.rem_calc(1);
+
+  &-counter-container{
+    display: flex;
+    width: 100%;
+    align-items: center;
+  }
+
+  &-counter-text{
+    @include fonts.font(4, regular);
+    margin-left:  rem.rem_calc(10);
+  }
 
   &-track {
     height: rem.rem_calc(8);
+    min-width:  rem.rem_calc(48); 
+    width: 100%;
     border-radius: rem.rem_calc(5);
-    background-color: var(--color-white-min);
+    background-color: RGBA(var(--color-charade-300))
   }
 
   &-active {
     height: rem.rem_calc(8);
     border-radius: rem.rem_calc(5);
-    background-color: RGBA(var(--color-blue-primary));
-    transition: 0.4s linear;
+    transition: 0.3s linear;
     transition-property: width, background-color;
+
+    @each $variant, $color in $variants {
+      &-#{$variant} {
+        background-color: $color;
+      }
+    }
+  }
+
+  &-container{
+    display: inline-flex;
+    width: 100%;
+
+    &-main{
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      padding:  rem.rem_calc(15 20);
+    }
+
+    &-header{
+      display: inline-flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding:  rem.rem_calc(3 0); 
+
+      &-text{
+        @include fonts.font(5, regular);
+      }
+    }
+
+    &-bar{
+      padding:  rem.rem_calc(2 0);
+    }
+
+    &-link{
+      @include fonts.font(4, medium);
+      padding:  rem.rem_calc(3 0); 
+
+      &-text{
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        color: RGBA(var(--color-blue-primary));        
+      }
+
+      bmb-icon{
+        font-size: rem.rem_calc(18);
+      }
+    }
   }
 }
 
@@ -22,11 +90,29 @@
 .storybook-dark-theme {
   .bmb_progress-bar {
     &-track {
-      background-color: var(--color-black-min);
+      background-color: RGBA(var(--color-charade-500));
     }
 
-    &-active {
+    &-active-info {
       background-color: RGBA(var(--color-neon-primary));
+    }
+
+    &-counter-text{
+      color: RGBA(var(--color-charade-500));
+    }
+
+    &-container{
+      &-header{
+        &-text{
+          color: RGBA(var(--color-charade-50));
+        }
+      }
+  
+      &-link{
+        &-text{
+          color: RGBA(var(--color-neon-primary));        
+        }
+      }
     }
   }
 }
