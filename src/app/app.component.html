@@ -1,8 +1,13 @@
-<button bmbButton (click)="addEvent()">Add event</button><br />
-<button bmbButton (click)="handleLoading()">Change loading</button>
-
 <div style="margin: 1rem">
-  <bmb-calendar />
+  <bmb-interactive-icon
+    appearance="red"
+    [title]="'Canvas'"
+    [description]="'Short Description'"
+    [icon]="'face'"
+    [target]="'_blank'"
+    [link]="'https://www.youtube.com/'"
+    [isButtonAppearance]="true"
+  />
 </div>
 
 <div style="margin: 1rem">

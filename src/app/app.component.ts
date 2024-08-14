@@ -67,6 +67,7 @@ import {
   BmbIconComponent,
   BmbCalendarService,
   IBmbEventType,
+  IBmbApp,
 } from '../../projects/ds-ng/src/public-api';
 
 export interface Target {
@@ -519,7 +520,7 @@ export class AppComponent implements OnInit {
   }
 
   //Frequent apps
-  apps = [
+  apps: IBmbApp[] = [
     {
       icon: 'home',
       title: 'Inicio',

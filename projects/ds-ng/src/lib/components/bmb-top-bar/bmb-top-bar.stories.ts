@@ -196,7 +196,7 @@ Below is an example of how you can use this component in HTML:
     positionButtonMenu: 'left',
     hasLogoutButton: false,
     alertNotification: 2,
-    assigmentNotification: 9
+    assigmentNotification: 9,
   },
 } as Meta<typeof BmbTopBarComponent>;
 
