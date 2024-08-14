@@ -1322,22 +1322,13 @@
         },
         {
             "name": "TableColum",
-            "id": "interface-TableColum-0a5291c5b2fd1ec21cfd2fba6f8c037ae9f659d5ff0b1d67b734bcf24ff32eb270fbc2bd355456e71aa842dad4bc30845720c3874d98b25a6d4e7e1c09aa4489",
+            "id": "interface-TableColum-01cc5aa0718b6133b6fe73133e6cda30ee812619ff0d759936b5f4d5038352facea4d8acabf46bf53fbc1defc21e534c0924b611365456cd508b9d1dc0133b99",
             "file": "projects/ds-ng/src/lib/components/bmb-tables/bmb-tables.interface.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { TemplateRef } from '@angular/core';\n\nexport interface TableColum {\n  label: string;\n  def: string;\n  dataKey: string;\n  htmlLabel?: TemplateRef<any>;\n  cellTemplate?: TemplateRef<any>;\n  templateActions?: TemplateRef<any>;\n  width?: number;\n  icon?: string;\n}\n\nexport interface TableConfig {\n  isSelectable?: boolean;\n  isPaginable?: boolean;\n  isExpandible?: boolean;\n  showActions?: boolean;\n}\n",
+            "sourceCode": "import { TemplateRef } from '@angular/core';\n\nexport interface TableColum {\n  label: string;\n  def: string;\n  dataKey: string;\n  templateActions?: TemplateRef<any>;\n  width?: number;\n}\n\nexport interface TableConfig {\n  isSelectable?: boolean;\n  isPaginable?: boolean;\n  isExpandible?: boolean;\n  showActions?: boolean;\n}\n",
             "properties": [
-                {
-                    "name": "cellTemplate",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "TemplateRef<any>",
-                    "optional": true,
-                    "description": "",
-                    "line": 8
-                },
                 {
                     "name": "dataKey",
                     "deprecated": false,
@@ -1357,24 +1348,6 @@
                     "line": 5
                 },
                 {
-                    "name": "htmlLabel",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "TemplateRef<any>",
-                    "optional": true,
-                    "description": "",
-                    "line": 7
-                },
-                {
-                    "name": "icon",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "optional": true,
-                    "description": "",
-                    "line": 11
-                },
-                {
                     "name": "label",
                     "deprecated": false,
                     "deprecationMessage": "",
@@ -1390,7 +1363,7 @@
                     "type": "TemplateRef<any>",
                     "optional": true,
                     "description": "",
-                    "line": 9
+                    "line": 7
                 },
                 {
                     "name": "width",
@@ -1399,7 +1372,7 @@
                     "type": "number",
                     "optional": true,
                     "description": "",
-                    "line": 10
+                    "line": 8
                 }
             ],
             "indexSignatures": [],
@@ -1409,12 +1382,12 @@
         },
         {
             "name": "TableConfig",
-            "id": "interface-TableConfig-0a5291c5b2fd1ec21cfd2fba6f8c037ae9f659d5ff0b1d67b734bcf24ff32eb270fbc2bd355456e71aa842dad4bc30845720c3874d98b25a6d4e7e1c09aa4489",
+            "id": "interface-TableConfig-01cc5aa0718b6133b6fe73133e6cda30ee812619ff0d759936b5f4d5038352facea4d8acabf46bf53fbc1defc21e534c0924b611365456cd508b9d1dc0133b99",
             "file": "projects/ds-ng/src/lib/components/bmb-tables/bmb-tables.interface.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { TemplateRef } from '@angular/core';\n\nexport interface TableColum {\n  label: string;\n  def: string;\n  dataKey: string;\n  htmlLabel?: TemplateRef<any>;\n  cellTemplate?: TemplateRef<any>;\n  templateActions?: TemplateRef<any>;\n  width?: number;\n  icon?: string;\n}\n\nexport interface TableConfig {\n  isSelectable?: boolean;\n  isPaginable?: boolean;\n  isExpandible?: boolean;\n  showActions?: boolean;\n}\n",
+            "sourceCode": "import { TemplateRef } from '@angular/core';\n\nexport interface TableColum {\n  label: string;\n  def: string;\n  dataKey: string;\n  templateActions?: TemplateRef<any>;\n  width?: number;\n}\n\nexport interface TableConfig {\n  isSelectable?: boolean;\n  isPaginable?: boolean;\n  isExpandible?: boolean;\n  showActions?: boolean;\n}\n",
             "properties": [
                 {
                     "name": "isExpandible",
@@ -1423,7 +1396,7 @@
                     "type": "boolean",
                     "optional": true,
                     "description": "",
-                    "line": 17
+                    "line": 14
                 },
                 {
                     "name": "isPaginable",
@@ -1432,7 +1405,7 @@
                     "type": "boolean",
                     "optional": true,
                     "description": "",
-                    "line": 16
+                    "line": 13
                 },
                 {
                     "name": "isSelectable",
@@ -1441,7 +1414,7 @@
                     "type": "boolean",
                     "optional": true,
                     "description": "",
-                    "line": 15
+                    "line": 12
                 },
                 {
                     "name": "showActions",
@@ -1450,7 +1423,7 @@
                     "type": "boolean",
                     "optional": true,
                     "description": "",
-                    "line": 18
+                    "line": 15
                 }
             ],
             "indexSignatures": [],
@@ -11343,7 +11316,7 @@
         },
         {
             "name": "BmbNotificationCardComponent",
-            "id": "component-BmbNotificationCardComponent-589e31d3d2bc566e52765574376ac156fe58461d24075892ff8a698b2049d3acac8f8b53778de0c73c6d4c12e0521411e41ddb15dce2bf5a3d917b8a6624c45a",
+            "id": "component-BmbNotificationCardComponent-789c99ef53a7c3a983b59e6d6866474e86df7b75d6e05e79d13921ac68bec309250c1c0aff049ec5d8df72c1f16efa6f98246fc1e79d6cf94813320af631b752",
             "file": "projects/ds-ng/src/lib/components/bmb-notification-card/bmb-notification-card.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -11367,7 +11340,7 @@
                     "defaultValue": "null",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 22,
+                    "line": 23,
                     "type": "IBmbNotificationCardData | null",
                     "decorators": []
                 }
@@ -11382,7 +11355,7 @@
                     "type": "any",
                     "optional": false,
                     "description": "",
-                    "line": 25
+                    "line": 26
                 },
                 {
                     "name": "activeDot",
@@ -11392,7 +11365,7 @@
                     "type": "number",
                     "optional": false,
                     "description": "",
-                    "line": 27
+                    "line": 28
                 },
                 {
                     "name": "activeTab",
@@ -11402,7 +11375,7 @@
                     "type": "number",
                     "optional": false,
                     "description": "",
-                    "line": 26
+                    "line": 27
                 },
                 {
                     "name": "expanded",
@@ -11412,7 +11385,7 @@
                     "type": "boolean",
                     "optional": false,
                     "description": "",
-                    "line": 24
+                    "line": 25
                 }
             ],
             "methodsClass": [
@@ -11422,7 +11395,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 29,
+                    "line": 30,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -11439,7 +11412,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 58,
+                    "line": 59,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -11467,7 +11440,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 36,
+                    "line": 37,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -11495,7 +11468,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 62,
+                    "line": 63,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -11533,7 +11506,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\n  ChangeDetectionStrategy,\n  Component,\n  Input,\n  OnInit,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { BmbBadgeComponent, BmbIconComponent } from 'ds-ng';\nimport { IBmbNotificationCardData } from './types';\nimport { CommonModule } from '@angular/common';\n\n@Component({\n  selector: 'bmb-notification-card',\n  standalone: true,\n  imports: [BmbIconComponent, CommonModule, BmbBadgeComponent],\n  templateUrl: './bmb-notification-card.component.html',\n  styleUrl: './bmb-notification-card.component.scss',\n  encapsulation: ViewEncapsulation.None,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbNotificationCardComponent implements OnInit {\n  @Input() data: IBmbNotificationCardData | null = null;\n\n  expanded: boolean = false;\n  activeData: any = [];\n  activeTab: number = 1;\n  activeDot: number = 0;\n\n  ngOnInit(): void {\n    this.activeTab = 1;\n    if (this.data !== null) {\n      this.activeData = this.data!.new;\n    }\n  }\n\n  setActiveTab(tab: number) {\n    this.activeTab = tab;\n\n    if (this.data !== null) {\n      switch (tab) {\n        case 1:\n          this.activeData = this.data!.new;\n          break;\n        case 2:\n          this.activeData = this.data!.all;\n          break;\n        case 3:\n          this.activeData = this.data!.seen;\n          break;\n\n        default:\n          this.activeData = this.data!.new;\n          break;\n      }\n    }\n  }\n\n  onDotPress(event: any) {\n    this.activeDot = event;\n  }\n\n  setSize(size: string) {\n    this.expanded = size === 'expand' ? true : false;\n  }\n}\n",
+            "sourceCode": "import {\n  ChangeDetectionStrategy,\n  Component,\n  Input,\n  OnInit,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { IBmbNotificationCardData } from './types';\nimport { CommonModule } from '@angular/common';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\nimport { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';\n\n@Component({\n  selector: 'bmb-notification-card',\n  standalone: true,\n  imports: [BmbIconComponent, CommonModule, BmbBadgeComponent],\n  templateUrl: './bmb-notification-card.component.html',\n  styleUrl: './bmb-notification-card.component.scss',\n  encapsulation: ViewEncapsulation.None,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbNotificationCardComponent implements OnInit {\n  @Input() data: IBmbNotificationCardData | null = null;\n\n  expanded: boolean = false;\n  activeData: any = [];\n  activeTab: number = 1;\n  activeDot: number = 0;\n\n  ngOnInit(): void {\n    this.activeTab = 1;\n    if (this.data !== null) {\n      this.activeData = this.data!.new;\n    }\n  }\n\n  setActiveTab(tab: number) {\n    this.activeTab = tab;\n\n    if (this.data !== null) {\n      switch (tab) {\n        case 1:\n          this.activeData = this.data!.new;\n          break;\n        case 2:\n          this.activeData = this.data!.all;\n          break;\n        case 3:\n          this.activeData = this.data!.seen;\n          break;\n\n        default:\n          this.activeData = this.data!.new;\n          break;\n      }\n    }\n  }\n\n  onDotPress(event: any) {\n    this.activeDot = event;\n  }\n\n  setSize(size: string) {\n    this.expanded = size === 'expand' ? true : false;\n  }\n}\n",
             "styleUrl": "./bmb-notification-card.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -14563,7 +14536,7 @@
         },
         {
             "name": "BmbTablesComponent",
-            "id": "component-BmbTablesComponent-ef2b206da80a2911d73505cb286cda298c9064cb46499e311e57a5be4257d17c4c4be2110e2fdd8ce5f4fdd2b02241bf8b78f16447f4e3528ef1af63f7dab6fb",
+            "id": "component-BmbTablesComponent-6c6a5f080d8e56e17044e0457076b6a7cfd9699a8c8e85e03d6427615f3638828d10196945cf5e83522a715a0c2e90b1a5b07c691bdbbbe657fedcce4016e4f8",
             "file": "projects/ds-ng/src/lib/components/bmb-tables/bmb-tables.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -14588,7 +14561,7 @@
                     "name": "actionTemplate",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 107,
+                    "line": 106,
                     "type": "TemplateRef<any> | null",
                     "decorators": []
                 },
@@ -14596,7 +14569,7 @@
                     "name": "columns",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 98,
+                    "line": 97,
                     "type": "TableColum[]",
                     "decorators": []
                 },
@@ -14604,7 +14577,7 @@
                     "name": "config",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 103,
+                    "line": 102,
                     "type": "TableConfig",
                     "decorators": []
                 },
@@ -14612,7 +14585,7 @@
                     "name": "data",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 94,
+                    "line": 93,
                     "type": "any[]",
                     "decorators": []
                 },
@@ -14621,7 +14594,7 @@
                     "defaultValue": "null",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 108,
+                    "line": 107,
                     "type": "TemplateRef<any> | null",
                     "decorators": []
                 },
@@ -14629,26 +14602,8 @@
                     "name": "pageSize",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 90,
+                    "line": 89,
                     "type": "number",
-                    "decorators": []
-                },
-                {
-                    "name": "truncate",
-                    "defaultValue": "false",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 109,
-                    "type": "boolean",
-                    "decorators": []
-                },
-                {
-                    "name": "wrap",
-                    "defaultValue": "true",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 110,
-                    "type": "boolean",
                     "decorators": []
                 }
             ],
@@ -14658,7 +14613,7 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 112,
+                    "line": 109,
                     "type": "EventEmitter<any>"
                 }
             ],
@@ -14670,7 +14625,7 @@
                     "type": "ElementRef",
                     "optional": false,
                     "description": "",
-                    "line": 117,
+                    "line": 114,
                     "decorators": [
                         {
                             "name": "ViewChild",
@@ -14688,7 +14643,7 @@
                     "type": "number",
                     "optional": true,
                     "description": "",
-                    "line": 83
+                    "line": 82
                 },
                 {
                     "name": "dataSource",
@@ -14698,7 +14653,7 @@
                     "type": "MatTableDataSource<any>",
                     "optional": false,
                     "description": "",
-                    "line": 74
+                    "line": 73
                 },
                 {
                     "name": "expandedElement",
@@ -14707,7 +14662,7 @@
                     "type": "any",
                     "optional": false,
                     "description": "",
-                    "line": 77
+                    "line": 76
                 },
                 {
                     "name": "headerCellRef",
@@ -14716,7 +14671,7 @@
                     "type": "ElementRef",
                     "optional": false,
                     "description": "",
-                    "line": 116,
+                    "line": 113,
                     "decorators": [
                         {
                             "name": "ViewChild",
@@ -14734,7 +14689,7 @@
                     "type": "boolean",
                     "optional": true,
                     "description": "",
-                    "line": 86
+                    "line": 85
                 },
                 {
                     "name": "matTableRef",
@@ -14743,7 +14698,7 @@
                     "type": "ElementRef",
                     "optional": true,
                     "description": "",
-                    "line": 115,
+                    "line": 112,
                     "decorators": [
                         {
                             "name": "ViewChild",
@@ -14762,7 +14717,7 @@
                     "type": "MatPaginator",
                     "optional": false,
                     "description": "",
-                    "line": 114,
+                    "line": 111,
                     "decorators": [
                         {
                             "name": "ViewChild",
@@ -14780,7 +14735,7 @@
                     "type": "number | undefined",
                     "optional": false,
                     "description": "",
-                    "line": 80
+                    "line": 79
                 },
                 {
                     "name": "pressed",
@@ -14790,7 +14745,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 82
+                    "line": 81
                 },
                 {
                     "name": "resizableMousemove",
@@ -14799,7 +14754,7 @@
                     "type": "function",
                     "optional": true,
                     "description": "",
-                    "line": 87
+                    "line": 86
                 },
                 {
                     "name": "resizableMouseup",
@@ -14808,7 +14763,7 @@
                     "type": "function",
                     "optional": true,
                     "description": "",
-                    "line": 88
+                    "line": 87
                 },
                 {
                     "name": "selection",
@@ -14818,7 +14773,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 78
+                    "line": 77
                 },
                 {
                     "name": "startWidth",
@@ -14827,7 +14782,7 @@
                     "type": "number",
                     "optional": true,
                     "description": "",
-                    "line": 85
+                    "line": 84
                 },
                 {
                     "name": "startX",
@@ -14836,7 +14791,7 @@
                     "type": "number",
                     "optional": true,
                     "description": "",
-                    "line": 84
+                    "line": 83
                 },
                 {
                     "name": "tableColumns",
@@ -14846,7 +14801,7 @@
                     "type": "TableColum[]",
                     "optional": false,
                     "description": "",
-                    "line": 76
+                    "line": 75
                 },
                 {
                     "name": "tableConfig",
@@ -14855,7 +14810,7 @@
                     "type": "TableConfig | undefined",
                     "optional": false,
                     "description": "",
-                    "line": 79
+                    "line": 78
                 },
                 {
                     "name": "tableDisplayColumns",
@@ -14865,7 +14820,7 @@
                     "type": "string[]",
                     "optional": false,
                     "description": "",
-                    "line": 75
+                    "line": 74
                 }
             ],
             "methodsClass": [
@@ -14883,7 +14838,7 @@
                     "optional": false,
                     "returnType": "string",
                     "typeParameters": [],
-                    "line": 240,
+                    "line": 232,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -14918,7 +14873,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 178,
+                    "line": 170,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -14955,7 +14910,7 @@
                     "optional": false,
                     "returnType": "any",
                     "typeParameters": [],
-                    "line": 186,
+                    "line": 178,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -14976,7 +14931,7 @@
                     "optional": false,
                     "returnType": "string",
                     "typeParameters": [],
-                    "line": 270,
+                    "line": 262,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -14993,7 +14948,7 @@
                     "optional": false,
                     "returnType": "boolean",
                     "typeParameters": [],
-                    "line": 258,
+                    "line": 250,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -15014,7 +14969,7 @@
                     "optional": false,
                     "returnType": "boolean",
                     "typeParameters": [],
-                    "line": 223,
+                    "line": 215,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -15031,7 +14986,7 @@
                     "optional": false,
                     "returnType": "boolean",
                     "typeParameters": [],
-                    "line": 247,
+                    "line": 239,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -15059,7 +15014,7 @@
                     "optional": false,
                     "returnType": "boolean",
                     "typeParameters": [],
-                    "line": 254,
+                    "line": 246,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -15087,7 +15042,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 155,
+                    "line": 147,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -15108,7 +15063,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 133,
+                    "line": 125,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -15118,7 +15073,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 129,
+                    "line": 123,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -15135,7 +15090,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 120,
+                    "line": 117,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "decorators": [
@@ -15178,7 +15133,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 193,
+                    "line": 185,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -15208,37 +15163,9 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 203,
+                    "line": 195,
                     "deprecated": false,
                     "deprecationMessage": ""
-                },
-                {
-                    "name": "sanitizeHTML",
-                    "args": [
-                        {
-                            "name": "label",
-                            "type": "string",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        }
-                    ],
-                    "optional": false,
-                    "returnType": "SafeHtml",
-                    "typeParameters": [],
-                    "line": 130,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "jsdoctags": [
-                        {
-                            "name": "label",
-                            "type": "string",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        }
-                    ]
                 },
                 {
                     "name": "setConfig",
@@ -15253,7 +15180,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 207,
+                    "line": 199,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -15281,7 +15208,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 146,
+                    "line": 138,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -15302,7 +15229,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 229,
+                    "line": 221,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -15326,7 +15253,7 @@
                     ],
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 120
+                    "line": 117
                 }
             ],
             "standalone": true,
@@ -15379,11 +15306,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport {\n  Component,\n  Input,\n  AfterViewInit,\n  ViewChild,\n  OnInit,\n  Output,\n  EventEmitter,\n  ElementRef,\n  TemplateRef,\n  HostListener,\n  Renderer2,\n  ViewEncapsulation,\n  ChangeDetectionStrategy,\n} from '@angular/core';\nimport { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';\nimport {\n  MatTableDataSource,\n  MatTableModule,\n  MatTable,\n} from '@angular/material/table';\nimport {\n  animate,\n  state,\n  style,\n  transition,\n  trigger,\n} from '@angular/animations';\nimport { MatInputModule } from '@angular/material/input';\nimport { MatFormFieldModule } from '@angular/material/form-field';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatCheckboxModule } from '@angular/material/checkbox';\nimport { SelectionModel } from '@angular/cdk/collections';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\nimport { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';\nimport { TableColum, TableConfig } from './bmb-tables.interface';\nimport { MatTooltipModule } from '@angular/material/tooltip';\nimport { DomSanitizer, SafeHtml } from '@angular/platform-browser';\n\n@Component({\n  selector: 'bmb-table',\n  standalone: true,\n  imports: [\n    CommonModule,\n    BmbIconComponent,\n    BmbCheckboxComponent,\n    MatPaginatorModule,\n    MatTableModule,\n    MatCheckboxModule,\n    MatIconModule,\n    MatButtonModule,\n    MatFormFieldModule,\n    MatInputModule,\n    MatTooltipModule,\n  ],\n  templateUrl: './bmb-tables.component.html',\n  styleUrls: ['./bmb-tables.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n  animations: [\n    trigger('detailExpand', [\n      state('collapsed,void', style({ height: '0px', minHeight: '0' })),\n      state('expanded', style({ height: '*' })),\n      transition(\n        'expanded <=> collapsed',\n        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)'),\n      ),\n    ]),\n  ],\n})\nexport class BmbTablesComponent implements AfterViewInit, OnInit {\n  dataSource: MatTableDataSource<any> = new MatTableDataSource();\n  tableDisplayColumns: string[] = [];\n  tableColumns: TableColum[] = [];\n  expandedElement: any;\n  selection = new SelectionModel<any>(true, []);\n  tableConfig: TableConfig | undefined;\n  paginatorSize: number | undefined;\n\n  pressed = false;\n  currentResizeIndex?: number;\n  startX?: number;\n  startWidth?: number;\n  isResizingRight?: boolean;\n  resizableMousemove?: () => void;\n  resizableMouseup?: () => void;\n\n  @Input() set pageSize(size: number) {\n    this.paginatorSize = size;\n  }\n\n  @Input() set data(data: any[]) {\n    this.dataSource = new MatTableDataSource(data);\n  }\n\n  @Input() set columns(columns: TableColum[]) {\n    this.tableColumns = columns;\n    this.tableDisplayColumns = this.tableColumns.map((col) => col.def);\n  }\n\n  @Input() set config(config: TableConfig) {\n    this.setConfig(config);\n  }\n\n  @Input() actionTemplate?: TemplateRef<any> | null;\n  @Input() detailTemplate: TemplateRef<any> | null = null;\n  @Input() truncate: boolean = false;\n  @Input() wrap: boolean = true;\n\n  @Output() select: EventEmitter<any> = new EventEmitter();\n\n  @ViewChild(MatPaginator) paginator!: MatPaginator;\n  @ViewChild(MatTable, { read: ElementRef }) private matTableRef?: ElementRef;\n  @ViewChild('headerCellRef') headerCellRef!: ElementRef;\n  @ViewChild('cellRef') cellRef!: ElementRef;\n\n  @HostListener('window:resize', ['$event'])\n  onResize(event: any) {\n    this.setTableResize(this.matTableRef!.nativeElement.clientWidth);\n  }\n\n  constructor(\n    private renderer: Renderer2,\n    private sanitizer: DomSanitizer,\n  ) {}\n\n  ngOnInit(): void {}\n  sanitizeHTML(label: string): SafeHtml {\n    return this.sanitizer.bypassSecurityTrustHtml(label);\n  }\n  ngAfterViewInit() {\n    this.dataSource.paginator = this.paginator;\n    this.setTableResize(this.matTableRef!.nativeElement.clientWidth);\n\n    const headerHasEllipsis = this.hasEllipsis(\n      this.headerCellRef?.nativeElement,\n    );\n\n    this.dataSource.data.forEach((row: any) => {\n      const cellHasEllipsis = this.hasEllipsis(this.cellRef?.nativeElement);\n    });\n  }\n\n  setTableResize(tableWidth: number) {\n    let totWidth = 0;\n    this.tableColumns.forEach((column) => {\n      column.width = column.width || 50;\n      totWidth += column.width!;\n    });\n    const scale = (tableWidth - 5) / totWidth;\n  }\n\n  mouseMove(index: number) {\n    this.resizableMousemove = this.renderer.listen(\n      'document',\n      'mousemove',\n      (event) => {\n        if (this.pressed && event.buttons) {\n          const dx = this.isResizingRight\n            ? event.pageX - this.startX!\n            : -event.pageX + this.startX!;\n          const width = this.startWidth! + dx;\n        }\n      },\n    );\n    this.resizableMouseup = this.renderer.listen('document', 'mouseup', () => {\n      if (this.pressed) {\n        this.pressed = false;\n        this.currentResizeIndex = -1;\n        this.resizableMousemove!();\n        this.resizableMouseup!();\n      }\n    });\n  }\n\n  checkResizing(event: any, index: any) {\n    const cellData = this.getCellData(index);\n    this.isResizingRight =\n      index === 0 ||\n      (Math.abs(event.pageX - cellData.right) < cellData.width / 2 &&\n        index !== this.tableColumns.length - 1);\n  }\n\n  getCellData(index: number) {\n    const headerRow =\n      this.matTableRef!.nativeElement.children[0].querySelector('tr');\n    const cell = headerRow.children[index];\n    return cell.getBoundingClientRect();\n  }\n\n  onResizeColumn(event: any, index: number) {\n    this.checkResizing(event, index);\n    this.currentResizeIndex = index;\n    this.pressed = true;\n    this.startX = event.pageX;\n    this.startWidth = event.target.parentElement.clientWidth;\n    event.preventDefault();\n    this.mouseMove(index);\n  }\n\n  onSelect() {\n    this.select.emit(this.selection.selected);\n  }\n\n  setConfig(config: TableConfig) {\n    this.tableConfig = config;\n\n    if (this.tableConfig.isExpandible) {\n      this.tableDisplayColumns?.unshift('expand');\n    }\n\n    if (this.tableConfig.isSelectable) {\n      this.tableDisplayColumns?.unshift('select');\n    }\n\n    if (this.tableConfig.showActions) {\n      this.tableDisplayColumns?.push('actions');\n    }\n  }\n\n  isAllSelected() {\n    const numSelected = this.selection.selected.length;\n    const numRows = this.dataSource.data.length;\n    return numSelected === numRows;\n  }\n\n  toggleAllRows() {\n    if (this.isAllSelected()) {\n      this.selection.clear();\n      this.onSelect();\n      return;\n    }\n\n    this.selection.select(...this.dataSource.data);\n    this.onSelect();\n  }\n\n  checkboxLabel(row?: any): string {\n    if (!row) {\n      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;\n    }\n    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;\n  }\n\n  isEven(rowIndex: number): boolean {\n    const filteredIndex = this.dataSource.data\n      .filter((row) => !row.isDetail)\n      .findIndex((row, index) => index === rowIndex);\n    return filteredIndex % 2 === 0;\n  }\n\n  isOdd(rowIndex: number): boolean {\n    return !this.isEven(rowIndex);\n  }\n\n  hasEllipsis(element: HTMLTableCellElement | undefined): boolean {\n    if (!element) {\n      return false;\n    }\n\n    const elementRef = new ElementRef(element);\n    return (\n      elementRef.nativeElement.scrollWidth >\n      elementRef.nativeElement.clientWidth\n    );\n  }\n\n  getPaginationText(): string {\n    if (\n      !this.paginator ||\n      this.paginator.length === 0 ||\n      this.paginator.pageSize === 0\n    ) {\n      return `0 de ${this.paginator?.length || 0}`;\n    }\n    const startIndex = this.paginator.pageIndex * this.paginator.pageSize + 1;\n    const endIndex = Math.min(\n      (this.paginator.pageIndex + 1) * this.paginator.pageSize,\n      this.paginator.length,\n    );\n    return `${startIndex} - ${endIndex} de ${this.paginator.length}`;\n  }\n}\n",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport {\n  Component,\n  Input,\n  AfterViewInit,\n  ViewChild,\n  OnInit,\n  Output,\n  EventEmitter,\n  ElementRef,\n  TemplateRef,\n  HostListener,\n  Renderer2,\n  ViewEncapsulation,\n  ChangeDetectionStrategy,\n} from '@angular/core';\nimport { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';\nimport {\n  MatTableDataSource,\n  MatTableModule,\n  MatTable,\n} from '@angular/material/table';\nimport {\n  animate,\n  state,\n  style,\n  transition,\n  trigger,\n} from '@angular/animations';\nimport { MatInputModule } from '@angular/material/input';\nimport { MatFormFieldModule } from '@angular/material/form-field';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatCheckboxModule } from '@angular/material/checkbox';\nimport { SelectionModel } from '@angular/cdk/collections';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\nimport { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';\nimport { TableColum, TableConfig } from './bmb-tables.interface';\nimport { MatTooltipModule } from '@angular/material/tooltip';\n\n@Component({\n  selector: 'bmb-table',\n  standalone: true,\n  imports: [\n    CommonModule,\n    BmbIconComponent,\n    BmbCheckboxComponent,\n    MatPaginatorModule,\n    MatTableModule,\n    MatCheckboxModule,\n    MatIconModule,\n    MatButtonModule,\n    MatFormFieldModule,\n    MatInputModule,\n    MatTooltipModule,\n  ],\n  templateUrl: './bmb-tables.component.html',\n  styleUrls: ['./bmb-tables.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n  animations: [\n    trigger('detailExpand', [\n      state('collapsed,void', style({ height: '0px', minHeight: '0' })),\n      state('expanded', style({ height: '*' })),\n      transition(\n        'expanded <=> collapsed',\n        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)'),\n      ),\n    ]),\n  ],\n})\nexport class BmbTablesComponent implements AfterViewInit, OnInit {\n  dataSource: MatTableDataSource<any> = new MatTableDataSource();\n  tableDisplayColumns: string[] = [];\n  tableColumns: TableColum[] = [];\n  expandedElement: any;\n  selection = new SelectionModel<any>(true, []);\n  tableConfig: TableConfig | undefined;\n  paginatorSize: number | undefined;\n\n  pressed = false;\n  currentResizeIndex?: number;\n  startX?: number;\n  startWidth?: number;\n  isResizingRight?: boolean;\n  resizableMousemove?: () => void;\n  resizableMouseup?: () => void;\n\n  @Input() set pageSize(size: number) {\n    this.paginatorSize = size;\n  }\n\n  @Input() set data(data: any[]) {\n    this.dataSource = new MatTableDataSource(data);\n  }\n\n  @Input() set columns(columns: TableColum[]) {\n    this.tableColumns = columns;\n    this.tableDisplayColumns = this.tableColumns.map((col) => col.def);\n  }\n\n  @Input() set config(config: TableConfig) {\n    this.setConfig(config);\n  }\n\n  @Input() actionTemplate?: TemplateRef<any> | null;\n  @Input() detailTemplate: TemplateRef<any> | null = null;\n\n  @Output() select: EventEmitter<any> = new EventEmitter();\n\n  @ViewChild(MatPaginator) paginator!: MatPaginator;\n  @ViewChild(MatTable, { read: ElementRef }) private matTableRef?: ElementRef;\n  @ViewChild('headerCellRef') headerCellRef!: ElementRef;\n  @ViewChild('cellRef') cellRef!: ElementRef;\n\n  @HostListener('window:resize', ['$event'])\n  onResize(event: any) {\n    this.setTableResize(this.matTableRef!.nativeElement.clientWidth);\n  }\n\n  constructor(private renderer: Renderer2) {}\n\n  ngOnInit(): void {}\n\n  ngAfterViewInit() {\n    this.dataSource.paginator = this.paginator;\n    this.setTableResize(this.matTableRef!.nativeElement.clientWidth);\n\n    const headerHasEllipsis = this.hasEllipsis(\n      this.headerCellRef?.nativeElement,\n    );\n\n    this.dataSource.data.forEach((row: any) => {\n      const cellHasEllipsis = this.hasEllipsis(this.cellRef?.nativeElement);\n    });\n  }\n\n  setTableResize(tableWidth: number) {\n    let totWidth = 0;\n    this.tableColumns.forEach((column) => {\n      column.width = column.width || 50;\n      totWidth += column.width!;\n    });\n    const scale = (tableWidth - 5) / totWidth;\n  }\n\n  mouseMove(index: number) {\n    this.resizableMousemove = this.renderer.listen(\n      'document',\n      'mousemove',\n      (event) => {\n        if (this.pressed && event.buttons) {\n          const dx = this.isResizingRight\n            ? event.pageX - this.startX!\n            : -event.pageX + this.startX!;\n          const width = this.startWidth! + dx;\n        }\n      },\n    );\n    this.resizableMouseup = this.renderer.listen('document', 'mouseup', () => {\n      if (this.pressed) {\n        this.pressed = false;\n        this.currentResizeIndex = -1;\n        this.resizableMousemove!();\n        this.resizableMouseup!();\n      }\n    });\n  }\n\n  checkResizing(event: any, index: any) {\n    const cellData = this.getCellData(index);\n    this.isResizingRight =\n      index === 0 ||\n      (Math.abs(event.pageX - cellData.right) < cellData.width / 2 &&\n        index !== this.tableColumns.length - 1);\n  }\n\n  getCellData(index: number) {\n    const headerRow =\n      this.matTableRef!.nativeElement.children[0].querySelector('tr');\n    const cell = headerRow.children[index];\n    return cell.getBoundingClientRect();\n  }\n\n  onResizeColumn(event: any, index: number) {\n    this.checkResizing(event, index);\n    this.currentResizeIndex = index;\n    this.pressed = true;\n    this.startX = event.pageX;\n    this.startWidth = event.target.parentElement.clientWidth;\n    event.preventDefault();\n    this.mouseMove(index);\n  }\n\n  onSelect() {\n    this.select.emit(this.selection.selected);\n  }\n\n  setConfig(config: TableConfig) {\n    this.tableConfig = config;\n\n    if (this.tableConfig.isExpandible) {\n      this.tableDisplayColumns?.unshift('expand');\n    }\n\n    if (this.tableConfig.isSelectable) {\n      this.tableDisplayColumns?.unshift('select');\n    }\n\n    if (this.tableConfig.showActions) {\n      this.tableDisplayColumns?.push('actions');\n    }\n  }\n\n  isAllSelected() {\n    const numSelected = this.selection.selected.length;\n    const numRows = this.dataSource.data.length;\n    return numSelected === numRows;\n  }\n\n  toggleAllRows() {\n    if (this.isAllSelected()) {\n      this.selection.clear();\n      this.onSelect();\n      return;\n    }\n\n    this.selection.select(...this.dataSource.data);\n    this.onSelect();\n  }\n\n  checkboxLabel(row?: any): string {\n    if (!row) {\n      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;\n    }\n    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;\n  }\n\n  isEven(rowIndex: number): boolean {\n    const filteredIndex = this.dataSource.data\n      .filter((row) => !row.isDetail)\n      .findIndex((row, index) => index === rowIndex);\n    return filteredIndex % 2 === 0;\n  }\n\n  isOdd(rowIndex: number): boolean {\n    return !this.isEven(rowIndex);\n  }\n\n  hasEllipsis(element: HTMLTableCellElement | undefined): boolean {\n    if (!element) {\n      return false;\n    }\n\n    const elementRef = new ElementRef(element);\n    return (\n      elementRef.nativeElement.scrollWidth >\n      elementRef.nativeElement.clientWidth\n    );\n  }\n\n  getPaginationText(): string {\n    if (\n      !this.paginator ||\n      this.paginator.length === 0 ||\n      this.paginator.pageSize === 0\n    ) {\n      return `0 de ${this.paginator?.length || 0}`;\n    }\n    const startIndex = this.paginator.pageIndex * this.paginator.pageSize + 1;\n    const endIndex = Math.min(\n      (this.paginator.pageIndex + 1) * this.paginator.pageSize,\n      this.paginator.length,\n    );\n    return `${startIndex} - ${endIndex} de ${this.paginator.length}`;\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@use \"../../../assets/styles/base/fonts\" as fonts;\n@use \"../../../assets/styles/base/rem\" as rem;\n@use \"../../../assets/styles/base/mixins\" as mixins;\n\n.bmb_table {\n  background: RGBA(var(--color-charade-50));\n  border-collapse: collapse;\n  box-shadow: rem.rem_calc(8 8 8 0) RGBA(var(--color-charade-950), 0.5);\n  display: flex;\n  flex-direction: column;\n  padding: rem.rem_calc(24 16);\n  width: 100%;\n\n  &-container {\n    flex: 1 0 auto;\n    max-width: 100%;\n    overflow: auto;\n    width: 100%;\n  }\n\n  &-content {\n    width: 100%;\n  }\n\n  &-row {\n    &.mat-mdc-row {\n      height: rem.rem_calc(34);\n    }\n\n    > td,\n    > th {\n      height: auto;\n      overflow: hidden;\n      padding: rem.rem_calc(0 8);\n\n      &.truncated {\n        max-width: rem.rem_calc(100);\n        min-width: rem.rem_calc(70);\n        text-overflow: ellipsis;\n        white-space: nowrap;\n      }\n\n      &.wrapped {\n        white-space: nowrap;\n      }\n\n      @include mixins.media-query(768, \"min\") {\n        max-width: fit-content;\n      }\n\n      &.bmb_table-checkbox {\n        min-width: rem.rem_calc(58);\n        padding-right: 0;\n        width: rem.rem_calc(58);\n\n        + .bmb_table-sticky {\n          left: rem.rem_calc(58) !important;\n        }\n      }\n\n      &.bmb_table-expand {\n        min-width: rem.rem_calc(40);\n        width: rem.rem_calc(40);\n\n        + .bmb_table-sticky {\n          left: rem.rem_calc(98) !important;\n        }\n      }\n\n      &.bmb_table-sticky {\n        border-right: rem.rem_calc(1) solid RGBA(var(--color-charade-300));\n        max-width: rem.rem_calc(144);\n\n        @include mixins.media-query(1200, \"min\") {\n          max-width: fit-content;\n        }\n      }\n\n      &.bmb_table-actions {\n        border-left: rem.rem_calc(1) solid RGBA(var(--color-charade-300));\n        color: RGBA(var(--color-charade-900));\n\n        button {\n          color: RGBA(var(--color-charade-900));\n        }\n      }\n    }\n\n    > th {\n      border-bottom: 0;\n      color: RGBA(var(--color-charade-500));\n      position: relative;\n      text-transform: uppercase;\n      @include fonts.font(4, medium);\n\n      &.mat-mdc-header-cell {\n        background-color: RGBA(var(--color-charade-50));\n      }\n    }\n\n    > td {\n      @include fonts.font(4, medium);\n      border-bottom-color: RGBA(var(--color-charade-200));\n      border-bottom-style: dashed;\n\n      &.bmb_table-actions {\n        .action-container {\n          display: flex;\n\n          bmb-icon {\n            font-size: rem.rem_calc(18);\n          }\n        }\n      }\n\n      .mat-mdc-icon-button {\n        align-items: center;\n        display: flex;\n        height: auto;\n        padding: 0;\n        width: auto;\n\n        bmb-icon {\n          font-size: rem.rem_calc(24);\n        }\n      }\n    }\n  }\n\n  &-even {\n    &.mat-mdc-row {\n      background-color: RGBA(var(--color-charade-50));\n      color: RGBA(var(--color-charade-950));\n\n      &.bmb_table-expandible {\n        background-color: RGBA(var(--color-mariner-100));\n      }\n    }\n  }\n\n  &-odd {\n    &.mat-mdc-row {\n      background-color: RGBA(var(--color-charade-100));\n      color: RGBA(var(--color-charade-700));\n    }\n\n    &.bmb_table-expandible {\n      background-color: RGBA(var(--color-mariner-100));\n    }\n  }\n\n  &-details {\n    &.mat-mdc-row {\n      background-color: RGBA(var(--color-mariner-100));\n      height: 0;\n\n      > td {\n        border: 0;\n        padding: rem.rem_calc(0 16);\n      }\n\n      &.bmb_table-expanded {\n        > td {\n          border-bottom: rem.rem_calc(1) dashed RGBA(var(--color-charade-200));\n          padding: rem.rem_calc(16);\n        }\n      }\n    }\n  }\n\n  &-detail {\n    color: RGBA(var(--color-charade-700));\n    display: flex;\n    overflow: hidden;\n  }\n\n  &-resize {\n    border-right: rem.rem_calc(1) solid RGBA(var(--color-charade-200));\n    cursor: col-resize;\n    display: inline-block;\n    height: 100%;\n    opacity: 0;\n    position: absolute;\n    right: 0;\n    top: 0;\n\n    &:hover {\n      opacity: 1;\n      width: rem.rem_calc(20);\n    }\n  }\n\n  .mat-mdc-paginator {\n    display: none;\n  }\n\n  &-paginator {\n    align-items: center;\n    bottom: 0;\n    display: flex;\n    height: rem.rem_calc(48);\n    justify-content: flex-end;\n    margin: rem.rem_calc(8 0);\n    position: sticky;\n    right: 0;\n    z-index: 10;\n\n    &-text {\n      color: RGBA(var(--color-charade-700));\n      margin-right: rem.rem_calc(32);\n      @include fonts.font(3, regular);\n    }\n\n    &-btn {\n      color: RGBA(var(--color-charade-900));\n      height: rem.rem_calc(48);\n      padding: 0;\n      width: rem.rem_calc(48);\n\n      &-disabled {\n        color: RGBA(var(--color-charade-300));\n        cursor: not-allowed;\n      }\n    }\n\n    &-icon {\n      font-size: rem.rem_calc(24);\n    }\n  }\n}\n\n[data-theme=\"dark\"],\n.storybook-dark-theme {\n  .bmb_table {\n    background-color: RGBA(var(--color-charade-950));\n    box-shadow: rem.rem_calc(8 8 8 0) RGBA(var(--color-black-primary), 0.2);\n\n    &-row {\n      > td,\n      > th {\n        &.bmb_table-sticky {\n          border-right-color: RGBA(var(--color-charade-700));\n        }\n\n        &.bmb_table-actions {\n          border-left-color: RGBA(var(--color-charade-700));\n          color: RGBA(var(--color-charade-100));\n\n          button {\n            color: RGBA(var(--color-charade-100));\n          }\n        }\n      }\n\n      > th {\n        &.mat-mdc-header-cell {\n          background-color: RGBA(var(--color-charade-950));\n        }\n      }\n\n      > td {\n        border-bottom-color: RGBA(var(--color-charade-700));\n      }\n    }\n\n    &-even {\n      &.mat-mdc-row {\n        background-color: RGBA(var(--color-charade-950));\n        color: RGBA(var(--color-charade-50));\n\n        &.bmb_table-expandible {\n          background-color: RGBA(var(--color-mariner-950));\n        }\n      }\n    }\n\n    &-odd {\n      &.mat-mdc-row {\n        background-color: RGBA(var(--color-charade-800));\n        color: RGBA(var(--color-charade-50));\n      }\n\n      &.bmb_table-expandible {\n        background-color: RGBA(var(--color-mariner-950));\n      }\n    }\n\n    &-details {\n      &.mat-mdc-row {\n        background-color: RGBA(var(--color-mariner-950));\n\n        &.bmb_table-expanded {\n          > td {\n            border-bottom-color: RGBA(var(--color-charade-700));\n          }\n        }\n      }\n    }\n\n    &-detail {\n      color: RGBA(var(--color-charade-200));\n    }\n\n    &-resize {\n      border-right-color: RGBA(var(--color-charade-700));\n    }\n\n    &-paginator {\n      &-text {\n        color: RGBA(var(--color-charade-200));\n      }\n\n      &-btn {\n        color: RGBA(var(--color-charade-50));\n\n        &-disabled {\n          color: RGBA(var(--color-charade-700));\n        }\n      }\n    }\n  }\n}\n",
+                    "data": "@use \"../../../assets/styles/base/fonts\" as fonts;\n@use \"../../../assets/styles/base/rem\" as rem;\n@use \"../../../assets/styles/base/mixins\" as mixins;\n\n.bmb_table {\n  background: RGBA(var(--color-charade-50));\n  border-collapse: collapse;\n  box-shadow: rem.rem_calc(8 8 8 0) RGBA(var(--color-charade-950), 0.5);\n  display: flex;\n  flex-direction: column;\n  padding: rem.rem_calc(24 16);\n  width: 100%;\n\n  &-container {\n    flex: 1 0 auto;\n    max-width: 100%;\n    overflow: auto;\n    width: 100%;\n  }\n\n  &-content {\n    width: 100%;\n  }\n\n  &-row {\n    &.mat-mdc-row {\n      height: rem.rem_calc(34);\n    }\n\n    > td,\n    > th {\n      height: auto;\n      max-width: rem.rem_calc(100);\n      overflow: hidden;\n      padding: rem.rem_calc(0 8);\n      text-overflow: ellipsis;\n      white-space: nowrap;\n\n      @include mixins.media-query(768, \"min\") {\n        max-width: fit-content;\n      }\n\n      &.bmb_table-checkbox {\n        min-width: rem.rem_calc(58);\n        padding-right: 0;\n        width: rem.rem_calc(58);\n\n        + .bmb_table-sticky {\n          left: rem.rem_calc(58) !important;\n        }\n      }\n\n      &.bmb_table-expand {\n        min-width: rem.rem_calc(40);\n        width: rem.rem_calc(40);\n\n        + .bmb_table-sticky {\n          left: rem.rem_calc(98) !important;\n        }\n      }\n\n      &.bmb_table-sticky {\n        border-right: rem.rem_calc(1) solid RGBA(var(--color-charade-300));\n        max-width: rem.rem_calc(144);\n\n        @include mixins.media-query(1200, \"min\") {\n          max-width: fit-content;\n        }\n      }\n\n      &.bmb_table-actions {\n        border-left: rem.rem_calc(1) solid RGBA(var(--color-charade-300));\n        color: RGBA(var(--color-charade-900));\n\n        button {\n          color: RGBA(var(--color-charade-900));\n        }\n      }\n    }\n\n    > th {\n      border-bottom: 0;\n      color: RGBA(var(--color-charade-500));\n      position: relative;\n      text-transform: uppercase;\n      @include fonts.font(4, medium);\n\n      &.mat-mdc-header-cell {\n        background-color: RGBA(var(--color-charade-50));\n      }\n    }\n\n    > td {\n      @include fonts.font(4, medium);\n      border-bottom-color: RGBA(var(--color-charade-200));\n      border-bottom-style: dashed;\n\n      &.bmb_table-actions {\n        .action-container {\n          display: flex;\n\n          bmb-icon {\n            font-size: rem.rem_calc(18);\n          }\n        }\n      }\n\n      .mat-mdc-icon-button {\n        align-items: center;\n        display: flex;\n        height: auto;\n        padding: 0;\n        width: auto;\n\n        bmb-icon {\n          font-size: rem.rem_calc(24);\n        }\n      }\n    }\n  }\n\n  &-even {\n    &.mat-mdc-row {\n      background-color: RGBA(var(--color-charade-50));\n      color: RGBA(var(--color-charade-950));\n\n      &.bmb_table-expandible {\n        background-color: RGBA(var(--color-mariner-100));\n      }\n    }\n  }\n\n  &-odd {\n    &.mat-mdc-row {\n      background-color: RGBA(var(--color-charade-100));\n      color: RGBA(var(--color-charade-700));\n    }\n\n    &.bmb_table-expandible {\n      background-color: RGBA(var(--color-mariner-100));\n    }\n  }\n\n  &-details {\n    &.mat-mdc-row {\n      background-color: RGBA(var(--color-mariner-100));\n      height: 0;\n\n      > td {\n        border: 0;\n        padding: rem.rem_calc(0 16);\n      }\n\n      &.bmb_table-expanded {\n        > td {\n          border-bottom: rem.rem_calc(1) dashed RGBA(var(--color-charade-200));\n          padding: rem.rem_calc(16);\n        }\n      }\n    }\n  }\n\n  &-detail {\n    color: RGBA(var(--color-charade-700));\n    display: flex;\n    overflow: hidden;\n  }\n\n  &-resize {\n    border-right: rem.rem_calc(1) solid RGBA(var(--color-charade-200));\n    cursor: col-resize;\n    display: inline-block;\n    height: 100%;\n    opacity: 0;\n    position: absolute;\n    right: 0;\n    top: 0;\n\n    &:hover {\n      opacity: 1;\n      width: rem.rem_calc(20);\n    }\n  }\n\n  .mat-mdc-paginator {\n    display: none;\n  }\n\n  &-paginator {\n    align-items: center;\n    bottom: 0;\n    display: flex;\n    height: rem.rem_calc(48);\n    justify-content: flex-end;\n    margin: rem.rem_calc(8 0);\n    position: sticky;\n    right: 0;\n    z-index: 10;\n\n    &-text {\n      color: RGBA(var(--color-charade-700));\n      margin-right: rem.rem_calc(32);\n      @include fonts.font(3, regular);\n    }\n\n    &-btn {\n      color: RGBA(var(--color-charade-900));\n      height: rem.rem_calc(48);\n      padding: 0;\n      width: rem.rem_calc(48);\n\n      &-disabled {\n        color: RGBA(var(--color-charade-300));\n        cursor: not-allowed;\n      }\n    }\n\n    &-icon {\n      font-size: rem.rem_calc(24);\n    }\n  }\n}\n\n[data-theme=\"dark\"],\n.storybook-dark-theme {\n  .bmb_table {\n    background-color: RGBA(var(--color-charade-950));\n    box-shadow: rem.rem_calc(8 8 8 0) RGBA(var(--color-black-primary), 0.2);\n\n    &-row {\n      > td,\n      > th {\n        &.bmb_table-sticky {\n          border-right-color: RGBA(var(--color-charade-700));\n        }\n\n        &.bmb_table-actions {\n          border-left-color: RGBA(var(--color-charade-700));\n          color: RGBA(var(--color-charade-100));\n\n          button {\n            color: RGBA(var(--color-charade-100));\n          }\n        }\n      }\n\n      > th {\n        &.mat-mdc-header-cell {\n          background-color: RGBA(var(--color-charade-950));\n        }\n      }\n\n      > td {\n        border-bottom-color: RGBA(var(--color-charade-700));\n      }\n    }\n\n    &-even {\n      &.mat-mdc-row {\n        background-color: RGBA(var(--color-charade-950));\n        color: RGBA(var(--color-charade-50));\n\n        &.bmb_table-expandible {\n          background-color: RGBA(var(--color-mariner-950));\n        }\n      }\n    }\n\n    &-odd {\n      &.mat-mdc-row {\n        background-color: RGBA(var(--color-charade-800));\n        color: RGBA(var(--color-charade-50));\n      }\n\n      &.bmb_table-expandible {\n        background-color: RGBA(var(--color-mariner-950));\n      }\n    }\n\n    &-details {\n      &.mat-mdc-row {\n        background-color: RGBA(var(--color-mariner-950));\n\n        &.bmb_table-expanded {\n          > td {\n            border-bottom-color: RGBA(var(--color-charade-700));\n          }\n        }\n      }\n    }\n\n    &-detail {\n      color: RGBA(var(--color-charade-200));\n    }\n\n    &-resize {\n      border-right-color: RGBA(var(--color-charade-700));\n    }\n\n    &-paginator {\n      &-text {\n        color: RGBA(var(--color-charade-200));\n      }\n\n      &-btn {\n        color: RGBA(var(--color-charade-50));\n\n        &-disabled {\n          color: RGBA(var(--color-charade-700));\n        }\n      }\n    }\n  }\n}\n",
                     "styleUrl": "./bmb-tables.component.scss"
                 }
             ],
@@ -15399,28 +15326,13 @@
                         "type": "Renderer2",
                         "deprecated": false,
                         "deprecationMessage": ""
-                    },
-                    {
-                        "name": "sanitizer",
-                        "type": "DomSanitizer",
-                        "deprecated": false,
-                        "deprecationMessage": ""
                     }
                 ],
-                "line": 122,
+                "line": 119,
                 "jsdoctags": [
                     {
                         "name": "renderer",
                         "type": "Renderer2",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    },
-                    {
-                        "name": "sanitizer",
-                        "type": "DomSanitizer",
                         "deprecated": false,
                         "deprecationMessage": "",
                         "tagName": {
@@ -15451,7 +15363,7 @@
                             }
                         ],
                         "returnType": "void",
-                        "line": 90,
+                        "line": 89,
                         "jsdoctags": [
                             {
                                 "name": "size",
@@ -15481,7 +15393,7 @@
                             }
                         ],
                         "returnType": "void",
-                        "line": 94,
+                        "line": 93,
                         "jsdoctags": [
                             {
                                 "name": "data",
@@ -15511,7 +15423,7 @@
                             }
                         ],
                         "returnType": "void",
-                        "line": 98,
+                        "line": 97,
                         "jsdoctags": [
                             {
                                 "name": "columns",
@@ -15541,7 +15453,7 @@
                             }
                         ],
                         "returnType": "void",
-                        "line": 103,
+                        "line": 102,
                         "jsdoctags": [
                             {
                                 "name": "config",
@@ -15556,7 +15468,7 @@
                     }
                 }
             },
-            "templateData": "<div class=\"bmb_table\">\n  <div class=\"bmb_table-container\">\n    <table\n      mat-table\n      [dataSource]=\"dataSource\"\n      class=\"bmb_table-content\"\n      multiTemplateDataRows\n    >\n      <!-- Checkbox Column -->\n      <ng-container matColumnDef=\"select\" sticky>\n        <th mat-header-cell *matHeaderCellDef class=\"bmb_table-checkbox\">\n          <bmb-checkbox\n            (change)=\"$event ? toggleAllRows() : null\"\n            [checked]=\"selection.hasValue() && isAllSelected()\"\n            [indeterminate]=\"selection.hasValue() && !isAllSelected()\"\n            [ariaLabel]=\"checkboxLabel()\"\n          />\n        </th>\n        <td mat-cell *matCellDef=\"let row\" class=\"bmb_table-checkbox\">\n          <bmb-checkbox\n            (change)=\"$event ? selection.toggle(row) : null; onSelect()\"\n            [checked]=\"selection.isSelected(row)\"\n            [ariaLabel]=\"checkboxLabel(row)\"\n            onkeypress=\"$event.stopPropagation()\"\n          />\n          {{ row.documentos }}\n        </td>\n      </ng-container>\n\n      <!-- Expand Column -->\n      <ng-container matColumnDef=\"expand\" sticky>\n        <th\n          mat-header-cell\n          *matHeaderCellDef\n          class=\"bmb_table-expand\"\n          aria-label=\"row actions\"\n        >\n          &nbsp;\n        </th>\n        <td mat-cell *matCellDef=\"let row\" class=\"bmb_table-expand\">\n          <button\n            mat-icon-button\n            aria-label=\"expand row\"\n            (click)=\"\n              expandedElement = expandedElement === row ? null : row;\n              $event.stopPropagation()\n            \"\n          >\n            <bmb-icon\n              [icon]=\"expandedElement === row ? 'expand_less' : 'expand_more'\"\n            />\n          </button>\n        </td>\n      </ng-container>\n\n      <!-- Display Columns -->\n      <ng-container *ngFor=\"let column of tableColumns; let i = index\">\n        <ng-container matColumnDef=\"{{ column.def }}\" [sticky]=\"i === 0\">\n          <th\n            mat-header-cell\n            *matHeaderCellDef\n            #headerCell\n            [matTooltip]=\"hasEllipsis(headerCell) ? column.label : ''\"\n            matTooltipPosition=\"below\"\n            matTooltipClass=\"bmb_tooltip\"\n            [ngClass]=\"{\n              'bmb_table-sticky': i === 0,\n              truncated: truncate,\n              wrapped: wrap,\n            }\"\n          >\n            @if (column.htmlLabel) {\n              <ng-template\n                [ngTemplateOutlet]=\"column.htmlLabel\"\n                [ngTemplateOutletContext]=\"{\n                  column: column,\n                  index: i,\n                }\"\n              ></ng-template>\n            } @else {\n              {{ column.label }}\n            }\n            <span\n              class=\"bmb_table-resize\"\n              (mousedown)=\"onResizeColumn($event, i)\"\n            ></span>\n          </th>\n          <td\n            mat-cell\n            *matCellDef=\"let row; let a = index\"\n            #cell\n            matTooltipPosition=\"below\"\n            [matTooltip]=\"hasEllipsis(cell) ? row[column.dataKey] : ''\"\n            matTooltipClass=\"bmb_tooltip\"\n            [ngClass]=\"{\n              'bmb_table-sticky': i === 0,\n              truncated: truncate,\n              wrapped: wrap,\n            }\"\n          >\n            @if (column.cellTemplate) {\n              <ng-template\n                [ngTemplateOutlet]=\"column.cellTemplate\"\n                [ngTemplateOutletContext]=\"{\n                  row: row[column.dataKey],\n                  index: i,\n                }\"\n              ></ng-template>\n            } @else {\n              {{ row[column.dataKey] }}\n            }\n          </td>\n        </ng-container>\n      </ng-container>\n\n      <!-- Actions Column -->\n      <ng-container matColumnDef=\"actions\" stickyEnd>\n        <th mat-header-cell *matHeaderCellDef class=\"bmb_table-actions\"></th>\n        <td mat-cell *matCellDef=\"let row\" class=\"bmb_table-actions\">\n          <ng-template [ngTemplateOutlet]=\"actionTemplate!\"> </ng-template>\n        </td>\n      </ng-container>\n\n      <!-- Row to expand -->\n      <ng-container matColumnDef=\"expandedDetail\">\n        <td\n          mat-cell\n          *matCellDef=\"let row\"\n          [attr.colspan]=\"tableDisplayColumns.length\"\n        >\n          <div\n            class=\"bmb_table-detail\"\n            [@detailExpand]=\"row == expandedElement ? 'expanded' : 'collapsed'\"\n          >\n            <ng-container\n              *ngTemplateOutlet=\"detailTemplate; context: { row }\"\n            ></ng-container>\n          </div>\n        </td>\n      </ng-container>\n\n      <!-- Rows -->\n      <tr\n        mat-header-row\n        *matHeaderRowDef=\"tableDisplayColumns\"\n        class=\"bmb_table-row\"\n      ></tr>\n\n      <tr\n        mat-row\n        *matRowDef=\"let row; columns: tableDisplayColumns; let i = dataIndex\"\n        class=\"bmb_table-row\"\n        [class.bmb_table-expandible]=\"expandedElement === row\"\n        [ngClass]=\"{\n          'bmb_table-even': isEven(i),\n          'bmb_table-odd': isOdd(i),\n        }\"\n      ></tr>\n\n      <ng-container *ngIf=\"tableConfig?.isExpandible\">\n        <tr\n          mat-row\n          *matRowDef=\"let row; columns: ['expandedDetail']; let i = dataIndex\"\n          class=\"bmb_table-details\"\n          [class.bmb_table-expanded]=\"expandedElement === row\"\n        ></tr>\n      </ng-container>\n    </table>\n  </div>\n\n  <!-- Paginator -->\n  <ng-container *ngIf=\"tableConfig?.isPaginable\" sticky>\n    <mat-paginator\n      #paginator\n      [pageSize]=\"this.paginatorSize\"\n      [hidePageSize]=\"true\"\n    >\n    </mat-paginator>\n\n    <div class=\"bmb_table-paginator\">\n      <span class=\"bmb_table-paginator-text\">{{ getPaginationText() }}</span>\n      <button\n        [disabled]=\"!paginator || !paginator.hasPreviousPage()\"\n        [ngClass]=\"{\n          'bmb_table-paginator-btn-disabled':\n            !paginator || !paginator.hasPreviousPage(),\n        }\"\n        (click)=\"paginator.firstPage()\"\n        class=\"bmb_table-paginator-btn\"\n      >\n        <bmb-icon\n          icon=\"keyboard_double_arrow_left\"\n          class=\"bmb_table-paginator-icon\"\n        />\n      </button>\n      <button\n        [disabled]=\"!paginator || !paginator.hasPreviousPage()\"\n        [ngClass]=\"{\n          'bmb_table-paginator-btn-disabled':\n            !paginator || !paginator.hasPreviousPage(),\n        }\"\n        (click)=\"paginator.previousPage()\"\n        class=\"bmb_table-paginator-btn\"\n      >\n        <bmb-icon icon=\"keyboard_arrow_left\" class=\"bmb_table-paginator-icon\" />\n      </button>\n      <button\n        [disabled]=\"!paginator || !paginator.hasNextPage()\"\n        [ngClass]=\"{\n          'bmb_table-paginator-btn-disabled':\n            !paginator || !paginator.hasNextPage(),\n        }\"\n        (click)=\"paginator.nextPage()\"\n        class=\"bmb_table-paginator-btn\"\n      >\n        <bmb-icon\n          icon=\"keyboard_arrow_right\"\n          class=\"bmb_table-paginator-icon\"\n        />\n      </button>\n      <button\n        [disabled]=\"!paginator || !paginator.hasNextPage()\"\n        [ngClass]=\"{\n          'bmb_table-paginator-btn-disabled':\n            !paginator || !paginator.hasNextPage(),\n        }\"\n        (click)=\"paginator.lastPage()\"\n        class=\"bmb_table-paginator-btn\"\n      >\n        <bmb-icon\n          icon=\"keyboard_double_arrow_right\"\n          class=\"bmb_table-paginator-icon\"\n        />\n      </button>\n    </div>\n  </ng-container>\n</div>\n"
+            "templateData": "<div class=\"bmb_table\">\n  <div class=\"bmb_table-container\">\n    <table\n      mat-table\n      [dataSource]=\"dataSource\"\n      class=\"bmb_table-content\"\n      multiTemplateDataRows\n    >\n      <!-- Checkbox Column -->\n      <ng-container matColumnDef=\"select\" sticky>\n        <th mat-header-cell *matHeaderCellDef class=\"bmb_table-checkbox\">\n          <bmb-checkbox\n            (change)=\"$event ? toggleAllRows() : null\"\n            [checked]=\"selection.hasValue() && isAllSelected()\"\n            [indeterminate]=\"selection.hasValue() && !isAllSelected()\"\n            [ariaLabel]=\"checkboxLabel()\"\n          />\n        </th>\n        <td mat-cell *matCellDef=\"let row\" class=\"bmb_table-checkbox\">\n          <bmb-checkbox\n            (change)=\"$event ? selection.toggle(row) : null; onSelect()\"\n            [checked]=\"selection.isSelected(row)\"\n            [ariaLabel]=\"checkboxLabel(row)\"\n            onkeypress=\"$event.stopPropagation()\"\n          />\n          {{ row.documentos }}\n        </td>\n      </ng-container>\n\n      <!-- Expand Column -->\n      <ng-container matColumnDef=\"expand\" sticky>\n        <th\n          mat-header-cell\n          *matHeaderCellDef\n          class=\"bmb_table-expand\"\n          aria-label=\"row actions\"\n        >\n          &nbsp;\n        </th>\n        <td mat-cell *matCellDef=\"let row\" class=\"bmb_table-expand\">\n          <button\n            mat-icon-button\n            aria-label=\"expand row\"\n            (click)=\"\n              expandedElement = expandedElement === row ? null : row;\n              $event.stopPropagation()\n            \"\n          >\n            <bmb-icon\n              [icon]=\"expandedElement === row ? 'expand_less' : 'expand_more'\"\n            />\n          </button>\n        </td>\n      </ng-container>\n\n      <!-- Display Columns -->\n      <ng-container *ngFor=\"let column of tableColumns; let i = index\">\n        <ng-container matColumnDef=\"{{ column.def }}\" [sticky]=\"i === 0\">\n          <th\n            mat-header-cell\n            *matHeaderCellDef\n            #headerCell\n            [matTooltip]=\"hasEllipsis(headerCell) ? column.label : ''\"\n            matTooltipPosition=\"below\"\n            matTooltipClass=\"bmb_tooltip\"\n            [ngClass]=\"{\n              'bmb_table-sticky': i === 0,\n            }\"\n          >\n            {{ column.label }}\n            <span\n              class=\"bmb_table-resize\"\n              (mousedown)=\"onResizeColumn($event, i)\"\n            ></span>\n          </th>\n          <td\n            mat-cell\n            *matCellDef=\"let row; let a = index\"\n            #cell\n            matTooltipPosition=\"below\"\n            [matTooltip]=\"hasEllipsis(cell) ? row[column.dataKey] : ''\"\n            matTooltipClass=\"bmb_tooltip\"\n            [ngClass]=\"{\n              'bmb_table-sticky': i === 0,\n            }\"\n          >\n            {{ row[column.dataKey] }}\n          </td>\n        </ng-container>\n      </ng-container>\n\n      <!-- Actions Column -->\n      <ng-container matColumnDef=\"actions\" stickyEnd>\n        <th mat-header-cell *matHeaderCellDef class=\"bmb_table-actions\"></th>\n        <td mat-cell *matCellDef=\"let row\" class=\"bmb_table-actions\">\n          <ng-template [ngTemplateOutlet]=\"actionTemplate!\"> </ng-template>\n        </td>\n      </ng-container>\n\n      <!-- Row to expand -->\n      <ng-container matColumnDef=\"expandedDetail\">\n        <td\n          mat-cell\n          *matCellDef=\"let row\"\n          [attr.colspan]=\"tableDisplayColumns.length\"\n        >\n          <div\n            class=\"bmb_table-detail\"\n            [@detailExpand]=\"row == expandedElement ? 'expanded' : 'collapsed'\"\n          >\n            <ng-container\n              *ngTemplateOutlet=\"detailTemplate; context: { row }\"\n            ></ng-container>\n          </div>\n        </td>\n      </ng-container>\n\n      <!-- Rows -->\n      <tr\n        mat-header-row\n        *matHeaderRowDef=\"tableDisplayColumns\"\n        class=\"bmb_table-row\"\n      ></tr>\n\n      <tr\n        mat-row\n        *matRowDef=\"let row; columns: tableDisplayColumns; let i = dataIndex\"\n        class=\"bmb_table-row\"\n        [class.bmb_table-expandible]=\"expandedElement === row\"\n        [ngClass]=\"{\n          'bmb_table-even': isEven(i),\n          'bmb_table-odd': isOdd(i),\n        }\"\n      ></tr>\n\n      <ng-container *ngIf=\"tableConfig?.isExpandible\">\n        <tr\n          mat-row\n          *matRowDef=\"let row; columns: ['expandedDetail']; let i = dataIndex\"\n          class=\"bmb_table-details\"\n          [class.bmb_table-expanded]=\"expandedElement === row\"\n        ></tr>\n      </ng-container>\n    </table>\n  </div>\n\n  <!-- Paginator -->\n  <ng-container *ngIf=\"tableConfig?.isPaginable\" sticky>\n    <mat-paginator\n      #paginator\n      [pageSize]=\"this.paginatorSize\"\n      [hidePageSize]=\"true\"\n    >\n    </mat-paginator>\n\n    <div class=\"bmb_table-paginator\">\n      <span class=\"bmb_table-paginator-text\">{{ getPaginationText() }}</span>\n      <button\n        [disabled]=\"!paginator || !paginator.hasPreviousPage()\"\n        [ngClass]=\"{\n          'bmb_table-paginator-btn-disabled':\n            !paginator || !paginator.hasPreviousPage(),\n        }\"\n        (click)=\"paginator.firstPage()\"\n        class=\"bmb_table-paginator-btn\"\n      >\n        <bmb-icon\n          icon=\"keyboard_double_arrow_left\"\n          class=\"bmb_table-paginator-icon\"\n        />\n      </button>\n      <button\n        [disabled]=\"!paginator || !paginator.hasPreviousPage()\"\n        [ngClass]=\"{\n          'bmb_table-paginator-btn-disabled':\n            !paginator || !paginator.hasPreviousPage(),\n        }\"\n        (click)=\"paginator.previousPage()\"\n        class=\"bmb_table-paginator-btn\"\n      >\n        <bmb-icon icon=\"keyboard_arrow_left\" class=\"bmb_table-paginator-icon\" />\n      </button>\n      <button\n        [disabled]=\"!paginator || !paginator.hasNextPage()\"\n        [ngClass]=\"{\n          'bmb_table-paginator-btn-disabled':\n            !paginator || !paginator.hasNextPage(),\n        }\"\n        (click)=\"paginator.nextPage()\"\n        class=\"bmb_table-paginator-btn\"\n      >\n        <bmb-icon\n          icon=\"keyboard_arrow_right\"\n          class=\"bmb_table-paginator-icon\"\n        />\n      </button>\n      <button\n        [disabled]=\"!paginator || !paginator.hasNextPage()\"\n        [ngClass]=\"{\n          'bmb_table-paginator-btn-disabled':\n            !paginator || !paginator.hasNextPage(),\n        }\"\n        (click)=\"paginator.lastPage()\"\n        class=\"bmb_table-paginator-btn\"\n      >\n        <bmb-icon\n          icon=\"keyboard_double_arrow_right\"\n          class=\"bmb_table-paginator-icon\"\n        />\n      </button>\n    </div>\n  </ng-container>\n</div>\n"
         },
         {
             "name": "BmbTabsComponent",
@@ -17571,7 +17483,7 @@
         },
         {
             "name": "BmbToastComponent",
-            "id": "component-BmbToastComponent-f3f3f97e626d81e58f9ea8480dd2ff604fe456c3ad42cfe5bded2c8206218f54b4327011610eb1831da2b0d0b97c0d829c36d932ed6ace112a8f7f01e5903826",
+            "id": "component-BmbToastComponent-b8ea2ef35d6c99a5e75d694f7bc5ad5348fdbb48ba8428adfd4a4017696424df9bbd0874919f8aa5b1537e7ecbc8cb3c32b26e8ab8b520ec4961330938ce9767",
             "file": "projects/ds-ng/src/lib/components/bmb-toast/bmb-toast.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -17587,9 +17499,7 @@
                 }
             ],
             "selector": "bmb-toast",
-            "styleUrls": [
-                "./bmb-toast.component.scss"
-            ],
+            "styleUrls": [],
             "styles": [],
             "templateUrl": [
                 "./bmb-toast.component.html"
@@ -17607,36 +17517,28 @@
                     "decorators": []
                 },
                 {
-                    "name": "description",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 27,
-                    "type": "string",
-                    "decorators": []
-                },
-                {
                     "name": "duration",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 28,
+                    "line": 27,
                     "type": "number",
+                    "decorators": []
+                },
+                {
+                    "name": "message",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 26,
+                    "type": "string",
                     "decorators": []
                 },
                 {
                     "name": "position",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 29,
+                    "line": 28,
                     "type": "\"top\" | \"bottom\" | \"middle\"",
-                    "decorators": []
-                },
-                {
-                    "name": "title",
-                    "defaultValue": "''",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 26,
-                    "type": "string",
                     "decorators": []
                 }
             ],
@@ -17650,7 +17552,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 31
+                    "line": 30
                 },
                 {
                     "name": "isOpenSubscription",
@@ -17659,7 +17561,7 @@
                     "type": "Subscription | undefined",
                     "optional": false,
                     "description": "",
-                    "line": 33,
+                    "line": 32,
                     "modifierKind": [
                         123
                     ]
@@ -17667,25 +17569,12 @@
             ],
             "methodsClass": [
                 {
-                    "name": "closeToast",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 75,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "modifierKind": [
-                        125
-                    ]
-                },
-                {
                     "name": "getClasses",
                     "args": [],
                     "optional": false,
                     "returnType": "string[]",
                     "typeParameters": [],
-                    "line": 51,
+                    "line": 50,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -17695,7 +17584,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 45,
+                    "line": 44,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -17705,7 +17594,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 37,
+                    "line": 36,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -17715,7 +17604,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 71,
+                    "line": 70,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -17728,7 +17617,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 65,
+                    "line": 64,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -17754,14 +17643,10 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  OnInit,\n  ViewEncapsulation,\n  OnDestroy,\n} from '@angular/core';\nimport { ToastService } from '../../services';\nimport { Subscription } from 'rxjs';\nimport { CommonModule } from '@angular/common';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\n\n@Component({\n  standalone: true,\n  selector: 'bmb-toast',\n  styleUrls: ['./bmb-toast.component.scss'],\n  imports: [CommonModule, BmbIconComponent],\n  templateUrl: './bmb-toast.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  providers: [ToastService],\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbToastComponent implements OnInit, OnDestroy {\n  @Input() appearance: string = '';\n  @Input() title: string = '';\n  @Input() description?: string;\n  @Input() duration?: number;\n  @Input() position?: 'top' | 'bottom' | 'middle';\n\n  isOpen$ = this.toastService.isOpen$;\n\n  private isOpenSubscription: Subscription | undefined;\n\n  constructor(private toastService: ToastService) {}\n\n  ngOnInit(): void {\n    this.isOpenSubscription = this.isOpen$.subscribe((isOpen) => {\n      if (isOpen && this.duration) {\n        this.setAutoClose();\n      }\n    });\n  }\n\n  ngOnDestroy(): void {\n    if (this.isOpenSubscription) {\n      this.isOpenSubscription.unsubscribe();\n    }\n  }\n\n  getClasses(): string[] {\n    const classes: string[] = ['bmb_toast'];\n\n    if (this.appearance) {\n      classes.push('bmb_toast-' + this.appearance);\n    }\n\n    if (this.position) {\n      classes.push('bmb_toast-' + this.position);\n    }\n\n    return classes;\n  }\n\n  private setAutoClose(): void {\n    setTimeout(() => {\n      this.toastService.closeToast();\n    }, this.duration);\n  }\n\n  public openToast() {\n    this.toastService.openToast();\n  }\n\n  public closeToast() {\n    this.toastService.closeToast();\n  }\n}\n",
+            "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  OnInit,\n  ViewEncapsulation,\n  OnDestroy,\n} from '@angular/core';\nimport { ToastService } from '../../services';\nimport { Subscription } from 'rxjs';\nimport { CommonModule } from '@angular/common';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\n\n@Component({\n  standalone: true,\n  selector: 'bmb-toast',\n  styleUrl: './bmb-toast.component.scss',\n  imports: [CommonModule, BmbIconComponent],\n  templateUrl: './bmb-toast.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  providers: [ToastService],\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbToastComponent implements OnInit, OnDestroy {\n  @Input() appearance: string = '';\n  @Input() message: string = '';\n  @Input() duration?: number;\n  @Input() position?: 'top' | 'bottom' | 'middle';\n\n  isOpen$ = this.toastService.isOpen$;\n\n  private isOpenSubscription: Subscription | undefined;\n\n  constructor(private toastService: ToastService) {}\n\n  ngOnInit(): void {\n    this.isOpenSubscription = this.isOpen$.subscribe((isOpen) => {\n      if (isOpen && this.duration) {\n        this.setAutoClose();\n      }\n    });\n  }\n\n  ngOnDestroy(): void {\n    if (this.isOpenSubscription) {\n      this.isOpenSubscription.unsubscribe();\n    }\n  }\n\n  getClasses(): string[] {\n    const classes: string[] = ['bmb_toast'];\n\n    if (this.appearance) {\n      classes.push('bmb_toast-' + this.appearance);\n    }\n\n    if (this.position) {\n      classes.push('bmb_toast-' + this.position);\n    }\n\n    return classes;\n  }\n\n  private setAutoClose(): void {\n    setTimeout(() => {\n      this.toastService.closeToast();\n    }, this.duration);\n  }\n\n  public openToast() {\n    this.toastService.openToast();\n  }\n}\n",
+            "styleUrl": "./bmb-toast.component.scss",
             "assetsDirs": [],
-            "styleUrlsData": [
-                {
-                    "data": "@use \"../../../assets/styles/base/fonts\" as fonts;\n@use \"../../../assets/styles/base/rem\" as rem;\n\n@mixin toast($appearance: neutral) {\n  align-items: flex-start;\n  background-color: RGBA(var(--color-charade-50));\n  border-radius: rem.rem_calc(4);\n  border-style: solid;\n  border-width: rem.rem_calc(1);\n  color: RGBA(var(--color-charade-950));\n  display: flex;\n  justify-content: space-between;\n  min-width: rem.rem_calc(375);\n  overflow: visible;\n  padding: rem.rem_calc(10 14);\n  position: fixed;\n  right: 0;\n  width: auto;\n\n  &-icon {\n    font-size: rem.rem_calc(16);\n    margin-right: rem.rem_calc(8);\n  }\n\n  @if $appearance == neutral {\n    border-color: RGBA(var(--color-charade-700));\n\n    .bmb_toast {\n      &-close {\n        color: RGBA(var(--color-charade-950));\n      }\n\n      &-icon {\n        color: RGBA(var(--color-charade-700));\n      }\n    }\n  } @else if $appearance == primary {\n    border-color: RGBA(var(--color-neon-primary));\n\n    .bmb_toast {\n      &-close {\n        color: RGBA(var(--color-charade-950));\n      }\n\n      &-icon {\n        color: RGBA(var(--color-blue-primary));\n      }\n    }\n  } @else if $appearance == successful {\n    border-color: RGBA(var(--color-green-primary));\n\n    .bmb_toast {\n      &-close {\n        color: RGBA(var(--color-charade-950));\n      }\n\n      &-icon {\n        color: RGBA(var(--color-green-primary));\n      }\n    }\n  } @else if $appearance == warning {\n    border-color: RGBA(var(--color-yellow-primary));\n\n    .bmb_toast {\n      &-close {\n        color: RGBA(var(--color-charade-950));\n      }\n\n      &-icon {\n        color: RGBA(var(--color-yellow-primary));\n      }\n    }\n  } @else if $appearance == error {\n    border-color: RGBA(var(--color-red-primary));\n\n    .bmb_toast {\n      &-close {\n        color: RGBA(var(--color-charade-950));\n      }\n\n      &-icon {\n        color: RGBA(var(--color-red-primary));\n      }\n    }\n  } @else if $appearance == event {\n    border-color: RGBA(var(--color-purple-light));\n\n    .bmb_toast {\n      &-close {\n        color: RGBA(var(--color-charade-950));\n      }\n\n      &-icon {\n        color: RGBA(var(--color-purple-light));\n      }\n    }\n  } @else if $appearance == reminder {\n    border: none;\n\n    .bmb_toast {\n      &-icon {\n        color: RGBA(var(--color-blue-primary));\n      }\n\n      &-title {\n        color: RGBA(var(--color-blue-primary));\n      }\n    }\n  }\n}\n\n.bmb_toast {\n  &-content {\n    display: flex;\n    flex-direction: column;\n    flex-grow: 1;\n    justify-content: flex-start;\n    margin-top: rem.rem_calc(-1);\n    width: 100%;\n\n    &-with-description {\n      .bmb_toast-title {\n        @include fonts.font(4, medium);\n      }\n    }\n  }\n\n  &-title {\n    display: block;\n    @include fonts.font(4, regular);\n  }\n\n  &-description {\n    color: RGBA(var(--color-charade-700));\n    display: block;\n    margin-top: rem.rem_calc(2);\n    white-space: normal;\n    word-wrap: break-word;\n    @include fonts.font(4, regular);\n  }\n\n  &-icon {\n    font-size: rem.rem_calc(18);\n    margin-right: rem.rem_calc(8);\n  }\n\n  &-button {\n    height: rem.rem_calc(20);\n    margin-left: rem.rem_calc(10);\n    margin-top: rem.rem_calc(-2);\n    padding: 0;\n    width: rem.rem_calc(20);\n  }\n\n  &-close {\n    font-size: rem.rem_calc(20);\n  }\n\n  &-neutral {\n    @include toast(neutral);\n  }\n\n  &-primary {\n    @include toast(primary);\n  }\n\n  &-successful {\n    @include toast(successful);\n  }\n\n  &-warning {\n    @include toast(warning);\n  }\n\n  &-error {\n    @include toast(error);\n  }\n\n  &-event {\n    @include toast(event);\n  }\n\n  &-reminder {\n    @include toast(reminder);\n  }\n\n  &-top {\n    top: 5%;\n  }\n\n  &-middle {\n    top: 45%;\n  }\n\n  &-bottom {\n    bottom: 5%;\n  }\n}\n\n[data-theme=\"dark\"],\n.storybook-dark-theme {\n  .bmb_toast {\n    &-close {\n      color: RGBA(var(--color-charade-50));\n    }\n\n    &-neutral {\n      border-color: RGBA(var(--color-charade-200));\n\n      .bmb_toast-icon {\n        color: RGBA(var(--color-charade-200));\n      }\n    }\n\n    &-primary {\n      .bmb_toast-icon {\n        color: RGBA(var(--color-neon-primary));\n      }\n    }\n\n    &-neutral,\n    &-primary,\n    &-successful,\n    &-warning,\n    &-error,\n    &-event {\n      background-color: RGBA(var(--color-charade-950));\n      color: RGBA(var(--color-charade-50));\n    }\n\n    &-description {\n      color: RGBA(var(--color-charade-200));\n    }\n\n    &-reminder {\n      background-color: RGBA(var(--color-charade-950));\n\n      .bmb_toast {\n        &-title,\n        &-icon {\n          color: RGBA(var(--color-neon-primary));\n        }\n      }\n    }\n  }\n}\n",
-                    "styleUrl": "./bmb-toast.component.scss"
-                }
-            ],
+            "styleUrlsData": "",
             "stylesData": "",
             "constructorObj": {
                 "name": "constructor",
@@ -17776,7 +17661,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 33,
+                "line": 32,
                 "jsdoctags": [
                     {
                         "name": "toastService",
@@ -17794,7 +17679,7 @@
                 "OnInit",
                 "OnDestroy"
             ],
-            "templateData": "<div *ngIf=\"isOpen$ | async\" [ngClass]=\"getClasses()\">\n  @if (appearance === \"warning\") {\n    <bmb-icon icon=\"warning\" [materialIcon]=\"true\" class=\"bmb_toast-icon\" />\n  } @else if (appearance === \"error\") {\n    <bmb-icon icon=\"error\" [materialIcon]=\"true\" class=\"bmb_toast-icon\" />\n  } @else if (appearance === \"successful\") {\n    <bmb-icon\n      icon=\"check_circle\"\n      [materialIcon]=\"true\"\n      class=\"bmb_toast-icon\"\n    />\n  } @else if (appearance === \"event\") {\n    <bmb-icon\n      icon=\"notification_important\"\n      [materialIcon]=\"true\"\n      class=\"bmb_toast-icon\"\n    />\n  } @else if (appearance === \"reminder\") {\n    <bmb-icon icon=\"info\" [materialIcon]=\"true\" class=\"bmb_toast-icon\" />\n  } @else {\n    <bmb-icon icon=\"info\" [materialIcon]=\"true\" class=\"bmb_toast-icon\" />\n  }\n\n  <div\n    class=\"bmb_toast-content\"\n    [ngClass]=\"{\n      'bmb_toast-with-description': description && appearance !== 'reminder',\n    }\"\n  >\n    <span class=\"bmb_toast-title\">\n      {{ title }}\n    </span>\n    @if (description && appearance !== \"reminder\") {\n      <span class=\"bmb_toast-description\">{{ description }}</span>\n    }\n  </div>\n\n  @if (appearance !== \"reminder\") {\n    <button class=\"bmb_toast-button\" (click)=\"closeToast()\">\n      <bmb-icon icon=\"close\" class=\"bmb_toast-close\" />\n    </button>\n  }\n</div>\n"
+            "templateData": "<div *ngIf=\"isOpen$ | async\" [ngClass]=\"getClasses()\">\n  <bmb-icon icon=\"info\" />\n  <span>{{ message }}</span>\n</div>\n"
         },
         {
             "name": "BmbTopBarComponent",
@@ -19742,7 +19627,7 @@
         },
         {
             "name": "StorybookToastWrapperComponent",
-            "id": "component-StorybookToastWrapperComponent-010a2abdf1970ba7468e9b8040c0386ff9b6f42c5d94ce0834f7a8888da4c414dc138d8c0f2480804498e6885850f4fb51f447bd9a776dc4381e611498e06ae8-2",
+            "id": "component-StorybookToastWrapperComponent-1cc71e64e6ef300154b1edf3e3020269836878d385b0794d0c519ee2b1cb2a73d35e5d71402d41d91527f9d4b2a17849c68ff790ecafb847ba6880f393c9fece-2",
             "file": "projects/ds-ng/src/lib/components/bmb-toast/bmb-toast.stories.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -19752,7 +19637,7 @@
             "selector": "storybook-toast-wrapper",
             "styleUrls": [],
             "styles": [],
-            "template": "<button\n  bmbButton\n  appearance=\"primary\"\n  icon=\"home\"\n  size=\"small\"\n  position=\"left\"\n  [case]=\"false\"\n  (click)=\"onButtonClick()\"\n>\n  Click Here\n</button>\n<bmb-toast\n  [title]=\"title\"\n  [description]=\"description\"\n  [appearance]=\"appearance\"\n  [duration]=\"duration\"\n  [position]=\"position\"\n></bmb-toast>\n",
+            "template": "<button\n  bmbButton\n  appearance=\"primary\"\n  icon=\"home\"\n  size=\"small\"\n  position=\"left\"\n  [case]=\"false\"\n  (click)=\"onButtonClick()\"\n>\n  Click Here\n</button>\n<bmb-toast\n  [message]=\"message\"\n  [appearance]=\"appearance\"\n  [duration]=\"duration\"\n  [position]=\"position\"\n></bmb-toast>\n",
             "templateUrl": [],
             "viewProviders": [],
             "hostDirectives": [],
@@ -19762,15 +19647,7 @@
                     "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 34,
-                    "type": "string",
-                    "decorators": []
-                },
-                {
-                    "name": "description",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 36,
+                    "line": 33,
                     "type": "string",
                     "decorators": []
                 },
@@ -19778,25 +19655,25 @@
                     "name": "duration",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 37,
+                    "line": 35,
                     "type": "number",
+                    "decorators": []
+                },
+                {
+                    "name": "message",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 34,
+                    "type": "string",
                     "decorators": []
                 },
                 {
                     "name": "position",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 38,
+                    "line": 36,
                     "type": "\"top\" | \"bottom\" | \"middle\"",
-                    "decorators": []
-                },
-                {
-                    "name": "title",
-                    "defaultValue": "''",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 35,
-                    "type": "string",
                     "decorators": []
                 }
             ],
@@ -19809,7 +19686,7 @@
                     "type": "BmbToastComponent",
                     "optional": false,
                     "description": "",
-                    "line": 41,
+                    "line": 39,
                     "decorators": [
                         {
                             "name": "ViewChild",
@@ -19829,7 +19706,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 43,
+                    "line": 40,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -19852,7 +19729,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, ViewChild } from '@angular/core';\nimport { Meta, StoryFn, moduleMetadata } from '@storybook/angular';\nimport { BmbToastComponent } from './bmb-toast.component';\nimport { ToastService } from '../../services/toast.service';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\nimport { BmbButtonDirective } from '../../directives/button.directive';\n\n@Component({\n  standalone: true,\n  imports: [BmbToastComponent, BmbButtonDirective],\n  selector: 'storybook-toast-wrapper',\n  template: `\n    <button\n      bmbButton\n      appearance=\"primary\"\n      icon=\"home\"\n      size=\"small\"\n      position=\"left\"\n      [case]=\"false\"\n      (click)=\"onButtonClick()\"\n    >\n      Click Here\n    </button>\n    <bmb-toast\n      [title]=\"title\"\n      [description]=\"description\"\n      [appearance]=\"appearance\"\n      [duration]=\"duration\"\n      [position]=\"position\"\n    ></bmb-toast>\n  `,\n})\nclass StorybookToastWrapperComponent {\n  @Input() appearance: string = '';\n  @Input() title: string = '';\n  @Input() description?: string;\n  @Input() duration?: number;\n  @Input() position?: 'top' | 'bottom' | 'middle';\n\n  @ViewChild(BmbToastComponent)\n  private toastComponent!: BmbToastComponent;\n\n  onButtonClick() {\n    this.toastComponent.openToast();\n  }\n}\n\nexport default {\n  title: 'Micro Componentes/Toast',\n  component: BmbToastComponent,\n  decorators: [\n    moduleMetadata({\n      imports: [\n        StorybookToastWrapperComponent,\n        BmbToastComponent,\n        BmbIconComponent,\n        BmbButtonDirective,\n      ],\n      providers: [ToastService],\n    }),\n  ],\n  parameters: {\n    docs: {\n      description: {\n        component: `\nBelow is an example of how you can use this component in TypeScript:\n\n\\`\\`\\`typescript\nimport { BmbButtonDirective, BmbToastComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';\n@Component({\n  selector: 'component',\n  standalone: true,\n  imports: [ BmbButtonDirective, BmbToastComponent ],\n  templateUrl: './component.html',\n  styleUrl: './component.scss',\n})\nexport class Component {\n  title = 'my-app';\n\n  @ViewChild(BmbToastComponent)\n  private toastComponent!: BmbToastComponent;\n  onButtonClick() {\n    this.toastComponent.openToast();\n  }\n}\n\\`\\`\\`\n\nBelow is an example of how you can use this component in HTML:\n        `,\n      },\n    },\n  },\n  argTypes: {\n    title: {\n      name: 'Title',\n      control: {\n        type: 'text',\n      },\n      description:\n        'Specifies the title displayed within the toast notification. This title should be concise and direct, providing the user with immediate feedback or information related to their actions.',\n      table: {\n        category: 'Properties',\n        type: { summary: 'string' },\n      },\n    },\n    description: {\n      name: 'Description',\n      control: {\n        type: 'text',\n      },\n      description:\n        'Provides additional details or context in the toast notification, displayed beneath the title. This is optional and should be used when more information is needed.',\n      table: {\n        category: 'Properties',\n        type: { summary: 'string' },\n      },\n    },\n    appearance: {\n      name: 'Appearance',\n      control: 'select',\n      options: [\n        'neutral',\n        'primary',\n        'successful',\n        'warning',\n        'error',\n        'event',\n        'reminder',\n      ],\n      description:\n        'Defines the visual style of the toast, allowing it to match the context of the notification. Each option represents a different level of notification severity or type, such as informational (neutral), success (successful), warning (warning), error (error), event (event), or reminder (reminder).',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 'neutral' },\n        type: { summary: 'string' },\n      },\n    },\n    duration: {\n      name: 'Duration',\n      control: {\n        type: 'number',\n      },\n      description:\n        'Determines how long the toast remains visible to the user, in milliseconds. A longer duration can be useful for more complex messages that require additional reading time, whereas shorter durations are suitable for succinct, immediate feedback',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: '5000' },\n        type: { summary: 'number' },\n      },\n    },\n    position: {\n      name: 'Position',\n      control: 'select',\n      options: ['top', 'bottom', 'middle'],\n      description:\n        \"Controls the position of the toast on the screen, helping to ensure the notification does not obstruct important interface elements. Options include top, bottom, and middle, allowing you to choose the most appropriate placement based on your application's layout and user experience requirements.\",\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 'top' },\n        type: { summary: 'string' },\n      },\n    },\n  },\n  args: {\n    title: 'Your toast title here',\n    description: 'Your toast description here (optional)',\n    appearance: 'neutral',\n    duration: 5000,\n    position: 'top',\n  },\n} as Meta<typeof BmbToastComponent>;\n\nfunction attributes(object: { [key: string]: any }): string {\n  return Object.entries(object)\n    .filter(([key]) => key !== 'text')\n    .map(([key, value]) => {\n      if (key === 'duration') {\n        return `[${key}]=\"${value}\"`;\n      }\n      return `${key}=\"${value}\"`;\n    })\n    .join(' ');\n}\n\nexport const Default: StoryFn<typeof BmbToastComponent> = (args) => {\n  return {\n    props: args,\n    template: `\n      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->\n      <storybook-toast-wrapper ${attributes(args)}></storybook-toast-wrapper>\n      <!-- Start copying from here -->\n      <div class=\"actions\">\n      <button bmbButton appearance=\"primary\" icon=\"home\" size=\"small\" position=\"left\" [case]=\"false\" (click)=\"onButtonClick()\">Click Here</button>\n      <bmb-toast ${attributes(args)}></bmb-toast></div>`,\n  };\n};\n",
+            "sourceCode": "import { Component, Input, ViewChild } from '@angular/core';\nimport { Meta, StoryFn, moduleMetadata } from '@storybook/angular';\nimport { BmbToastComponent } from './bmb-toast.component';\nimport { ToastService } from '../../services/toast.service';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\nimport { BmbButtonDirective } from '../../directives/button.directive';\n\n@Component({\n  standalone: true,\n  imports: [BmbToastComponent, BmbButtonDirective],\n  selector: 'storybook-toast-wrapper',\n  template: `\n    <button\n      bmbButton\n      appearance=\"primary\"\n      icon=\"home\"\n      size=\"small\"\n      position=\"left\"\n      [case]=\"false\"\n      (click)=\"onButtonClick()\"\n    >\n      Click Here\n    </button>\n    <bmb-toast\n      [message]=\"message\"\n      [appearance]=\"appearance\"\n      [duration]=\"duration\"\n      [position]=\"position\"\n    ></bmb-toast>\n  `,\n})\nclass StorybookToastWrapperComponent {\n  @Input() appearance: string = '';\n  @Input() message: string = '';\n  @Input() duration?: number;\n  @Input() position?: 'top' | 'bottom' | 'middle';\n\n  @ViewChild(BmbToastComponent)\n  private toastComponent!: BmbToastComponent;\n  onButtonClick() {\n    this.toastComponent.openToast();\n  }\n}\n\nexport default {\n  title: 'Micro Componentes/Toast',\n  component: BmbToastComponent,\n  decorators: [\n    moduleMetadata({\n      imports: [\n        StorybookToastWrapperComponent,\n        BmbToastComponent,\n        BmbIconComponent,\n        BmbButtonDirective,\n      ],\n      providers: [ToastService],\n    }),\n  ],\n  parameters: {\n    docs: {\n      description: {\n        component: `\nBelow is an example of how you can use this component in TypeScript:\n\n\\`\\`\\`typescript\nimport { BmbButtonDirective, BmbToastComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';\n@Component({\n  selector: 'component',\n  standalone: true,\n  imports: [ BmbButtonDirective, BmbToastComponent ],\n  templateUrl: './component.html',\n  styleUrl: './component.scss',\n})\nexport class Component {\n  title = 'my-app';\n\n  @ViewChild(BmbToastComponent)\n  private toastComponent!: BmbToastComponent;\n  onButtonClick() {\n    this.toastComponent.openToast();\n  }\n}\n\\`\\`\\`\n\nBelow is an example of how you can use this component in HTML:\n        `,\n      },\n    },\n  },\n  argTypes: {\n    message: {\n      name: 'Message',\n      control: {\n        type: 'text',\n      },\n      description:\n        'Specifies the text displayed within the toast notification. This message should be concise and direct, providing the user with immediate feedback or information related to their actions.',\n      table: {\n        category: 'Properties',\n        type: { summary: 'string' },\n      },\n    },\n    appearance: {\n      name: 'Appearance',\n      control: 'select',\n      options: [\n        'neutral',\n        'primary',\n        'successful',\n        'warning',\n        'error',\n        'event',\n      ],\n      description:\n        'Defines the visual style of the toast, allowing it to match the context of the notification. Each option represents a different level of notification severity or type, such as informational (neutral), success (successful), warning (warning), error (error), or event (event).',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 'neutral' },\n        type: { summary: 'string' },\n      },\n    },\n    duration: {\n      name: 'Duration',\n      control: {\n        type: 'number',\n      },\n      description:\n        'Determines how long the toast remains visible to the user, in milliseconds. A longer duration can be useful for more complex messages that require additional reading time, whereas shorter durations are suitable for succinct, immediate feedback',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: '5000' },\n        type: { summary: 'string' },\n      },\n    },\n    position: {\n      name: 'Position',\n      control: 'select',\n      options: ['top', 'bottom', 'middle'],\n      description:\n        \"Controls the position of the toast on the screen, helping to ensure the notification does not obstruct important interface elements. Options include top, bottom, and middle, allowing you to choose the most appropriate placement based on your application's layout and user experience requirements.\",\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 'top' },\n        type: { summary: 'string' },\n      },\n    },\n  },\n  args: {\n    message: 'Your toast text here',\n    appearance: 'neutral',\n    duration: 5000,\n    position: 'top',\n  },\n} as Meta<typeof BmbToastComponent>;\n\nfunction attributes(object: { [key: string]: any }): string {\n  return Object.entries(object)\n    .filter(([key]) => key !== 'text')\n    .map(([key, value]) => {\n      if (key === 'duration') {\n        return `[${key}]=\"${value}\"`;\n      }\n      return `${key}=\"${value}\"`;\n    })\n    .join(' ');\n}\n\nexport const Default: StoryFn<typeof BmbToastComponent> = (args) => {\n  return {\n    props: args,\n    template: `\n      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->\n      <storybook-toast-wrapper ${attributes(args)}></storybook-toast-wrapper>\n      <!-- Start copying from here -->\n      <div class=\"actions\">\n      <button bmbButton appearance=\"primary\" icon=\"home\" size=\"small\" position=\"left\" [case]=\"false\" (click)=\"onButtonClick()\">Click Here</button>\n      <bmb-toast ${attributes(args)}></bmb-toast></div>`,\n  };\n};\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -20433,7 +20310,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  render: (args) => ({\n    props: {\n      ...args,\n    },\n    template: `\n      <ng-template #dynamicCell let-cellData=\"row\" let-i=\"index\">\n    {{ cellData.value }}\n    <bmb-icon\n      *ngIf=\"cellData.icon\"\n      [icon]=\"cellData.icon\"\n      class=\"bmb_table-data-icon\"\n    ></bmb-icon>\n  </ng-template>\n    <ng-template #nameHeader let-column=\"column\">\n    {{ column.label }}\n    <bmb-icon\n      *ngIf=\"column.icon\"\n      [icon]=\"column.icon\"\n      class=\"bmb_table-data-icon\"\n    ></bmb-icon>\n    </ng-template>\n      \n      <bmb-table\n        [pageSize]=\"4\"\n        [data]=\"data\"\n        [columns]=\"[\n          { def: 'name', label: 'Name', dataKey: 'name', cellTemplate: dynamicCell },\n          { def: 'lastName', label: 'Last Name', dataKey: 'lastName', cellTemplate: dynamicCell, icon:'face' },\n          { def: 'birthday', label: 'Birthday', dataKey: 'birthday', cellTemplate: dynamicCell },\n          { def: 'country', label: 'Country', dataKey: 'country', cellTemplate: dynamicCell },\n          { def: 'extra', label: 'Extra', dataKey: 'extra', cellTemplate: dynamicCell },\n        ]\"\n        [config]=\"config\"\n        [truncate]=\"truncate\"\n        [wrap]=\"wrap\"\n        (select)=\"select($event)\"\n      >\n      </bmb-table>\n    `,\n  }),\n}"
+                "defaultValue": "{}"
             },
             {
                 "name": "Default",
@@ -20926,7 +20803,7 @@
                         "type": "IFixDecimals",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "9bb68464-c715-453f-a379-cd8989ea1d19",
+                        "destrucuredGroupId": "0e190b41-aab9-4228-b539-008ef68fe995",
                         "destructuredParameter": true
                     },
                     {
@@ -20935,7 +20812,7 @@
                         "deprecated": false,
                         "deprecationMessage": "",
                         "defaultValue": "2",
-                        "destrucuredGroupId": "9bb68464-c715-453f-a379-cd8989ea1d19",
+                        "destrucuredGroupId": "0e190b41-aab9-4228-b539-008ef68fe995",
                         "destructuredParameter": true
                     }
                 ],
@@ -20945,7 +20822,7 @@
                         "type": "IFixDecimals",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "9bb68464-c715-453f-a379-cd8989ea1d19",
+                        "destrucuredGroupId": "0e190b41-aab9-4228-b539-008ef68fe995",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -20957,7 +20834,7 @@
                         "deprecated": false,
                         "deprecationMessage": "",
                         "defaultValue": "2",
-                        "destrucuredGroupId": "9bb68464-c715-453f-a379-cd8989ea1d19",
+                        "destrucuredGroupId": "0e190b41-aab9-4228-b539-008ef68fe995",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -22544,7 +22421,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n  render: (args) => ({\n    props: {\n      ...args,\n    },\n    template: `\n      <ng-template #dynamicCell let-cellData=\"row\" let-i=\"index\">\n    {{ cellData.value }}\n    <bmb-icon\n      *ngIf=\"cellData.icon\"\n      [icon]=\"cellData.icon\"\n      class=\"bmb_table-data-icon\"\n    ></bmb-icon>\n  </ng-template>\n    <ng-template #nameHeader let-column=\"column\">\n    {{ column.label }}\n    <bmb-icon\n      *ngIf=\"column.icon\"\n      [icon]=\"column.icon\"\n      class=\"bmb_table-data-icon\"\n    ></bmb-icon>\n    </ng-template>\n      \n      <bmb-table\n        [pageSize]=\"4\"\n        [data]=\"data\"\n        [columns]=\"[\n          { def: 'name', label: 'Name', dataKey: 'name', cellTemplate: dynamicCell },\n          { def: 'lastName', label: 'Last Name', dataKey: 'lastName', cellTemplate: dynamicCell, icon:'face' },\n          { def: 'birthday', label: 'Birthday', dataKey: 'birthday', cellTemplate: dynamicCell },\n          { def: 'country', label: 'Country', dataKey: 'country', cellTemplate: dynamicCell },\n          { def: 'extra', label: 'Extra', dataKey: 'extra', cellTemplate: dynamicCell },\n        ]\"\n        [config]=\"config\"\n        [truncate]=\"truncate\"\n        [wrap]=\"wrap\"\n        (select)=\"select($event)\"\n      >\n      </bmb-table>\n    `,\n  }),\n}"
+                    "defaultValue": "{}"
                 }
             ],
             "projects/ds-ng/src/lib/components/bmb-tabs/bmb-tabs.stories.ts": [
@@ -23056,7 +22933,7 @@
                             "type": "IFixDecimals",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "9bb68464-c715-453f-a379-cd8989ea1d19",
+                            "destrucuredGroupId": "0e190b41-aab9-4228-b539-008ef68fe995",
                             "destructuredParameter": true
                         },
                         {
@@ -23065,7 +22942,7 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "defaultValue": "2",
-                            "destrucuredGroupId": "9bb68464-c715-453f-a379-cd8989ea1d19",
+                            "destrucuredGroupId": "0e190b41-aab9-4228-b539-008ef68fe995",
                             "destructuredParameter": true
                         }
                     ],
@@ -23075,7 +22952,7 @@
                             "type": "IFixDecimals",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "9bb68464-c715-453f-a379-cd8989ea1d19",
+                            "destrucuredGroupId": "0e190b41-aab9-4228-b539-008ef68fe995",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
@@ -23087,7 +22964,7 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "defaultValue": "2",
-                            "destrucuredGroupId": "9bb68464-c715-453f-a379-cd8989ea1d19",
+                            "destrucuredGroupId": "0e190b41-aab9-4228-b539-008ef68fe995",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
@@ -25357,7 +25234,7 @@
                 "linktype": "component",
                 "name": "BmbTablesComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/48",
+                "coverageCount": "0/45",
                 "status": "low"
             },
             {
@@ -25366,7 +25243,7 @@
                 "linktype": "interface",
                 "name": "TableColum",
                 "coveragePercent": 0,
-                "coverageCount": "0/9",
+                "coverageCount": "0/6",
                 "status": "low"
             },
             {
@@ -25569,7 +25446,7 @@
                 "linktype": "component",
                 "name": "BmbToastComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/15",
+                "coverageCount": "0/13",
                 "status": "low"
             },
             {
@@ -25578,7 +25455,7 @@
                 "linktype": "component",
                 "name": "StorybookToastWrapperComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/8",
+                "coverageCount": "0/7",
                 "status": "low"
             },
             {
