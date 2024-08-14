@@ -1,11 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ComponentRef } from '@angular/core'
+import { ComponentRef } from '@angular/core';
 import { BmbHomeCardComponent } from './bmb-home-card.component';
 
 describe('BmbHomeCardComponent', () => {
   let component: BmbHomeCardComponent;
   let fixture: ComponentFixture<BmbHomeCardComponent>;
-  let componentRef: ComponentRef<BmbHomeCardComponent>
+  let componentRef: ComponentRef<BmbHomeCardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

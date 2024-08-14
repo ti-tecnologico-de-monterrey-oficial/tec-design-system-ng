@@ -29,6 +29,23 @@
     }
   }
 
+  &-button {
+    flex-flow: row;
+    border: rem.rem_calc(1) solid RGBA(var(--color-charade-500));
+    padding: var(--bmb-spacing-m);
+    border-radius: var(--bmb-radius-m);
+    margin: 0;
+    width: 100%;
+
+    .bmb_interactive_icon-text {
+      margin-left: rem.rem_calc(8);
+    }
+    .bmb_interactive_icon-title {
+      margin: rem.rem_calc(0 0 8);
+      text-align: left;
+    }
+  }
+
   &-box {
     align-items: center;
     border-radius: rem.rem_calc(8);

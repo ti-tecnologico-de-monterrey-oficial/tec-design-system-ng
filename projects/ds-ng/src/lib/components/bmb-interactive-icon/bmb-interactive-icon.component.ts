@@ -1,12 +1,19 @@
 import {
   Component,
-  Input,
   ChangeDetectionStrategy,
   ViewEncapsulation,
+  input,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+
+export type IBmbInteractiveIconAppearance =
+  | 'red'
+  | 'blue'
+  | 'green'
+  | 'yellow'
+  | 'purple';
 
 @Component({
   selector: 'bmb-interactive-icon',
@@ -18,25 +25,27 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbInteractiveIconComponent {
-  @Input() appearance: string = '';
-  @Input() title: string = '';
-  @Input() description: string = '';
-  @Input() icon: string = 'face';
-  @Input() horizontal: boolean = false;
-  @Input() target: string = '';
-  @Input() link: string = '';
+  appearance = input<IBmbInteractiveIconAppearance>('red');
+  title = input<string>();
+  description = input<string>('');
+  icon = input<string>('face');
+  horizontal = input<boolean>(false);
+  target = input<string>();
+  link = input<string>();
+  isButtonAppearance = input<boolean>(false);
 
   getClasses(): string[] {
     const classes: string[] = ['bmb_interactive_icon'];
 
-    if (this.appearance) {
-      classes.push('bmb_interactive_icon-' + this.appearance);
-    }
+    if (this.appearance()) classes.push(`bmb_interactive_icon-${this.appearance()}`);
+    if (this.isButtonAppearance()) classes.push('bmb_interactive_icon-button')
 
     return classes;
   }
 
-  isExternalLink(link: string): boolean {
+  isExternalLink(link: string | undefined): boolean {
+    if(!link) return false;
+
     return (
       link.startsWith('http://') ||
       link.startsWith('https://') ||

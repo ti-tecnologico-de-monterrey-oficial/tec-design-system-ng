@@ -13,17 +13,10 @@ import {
   BmbWheelMenuComponent,
   BmbInnerHeaderComponent,
   BmbTabsComponent,
+  IBmbApp,
 } from '../../../projects/ds-ng/src/public-api';
 import { CommonModule } from '@angular/common';
 import { BmbSkeletonComponent } from '../../../projects/ds-ng/src/lib/components/bmb-skeleton/bmb-skeleton.component';
-
-interface App {
-  appearance: string;
-  title: string;
-  icon: string;
-  target: string;
-  link: string;
-}
 
 @Component({
   selector: 'bmb-home',
@@ -61,7 +54,7 @@ export class HomeComponent implements OnInit {
     'Midge Girardot',
   ];
   isLoading = true;
-  apps: { [key: number]: App[] } = {
+  apps: { [key: number]: IBmbApp[] } = {
     0: [
       {
         appearance: 'red',
