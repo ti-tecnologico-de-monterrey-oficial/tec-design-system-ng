@@ -13,18 +13,11 @@ import {
   BmbWheelMenuComponent,
   BmbInnerHeaderComponent,
   BmbTabsComponent,
+  IBmbApp,
 } from '../../../projects/ds-ng/src/public-api';
 import { CommonModule } from '@angular/common';
 import { BmbSkeletonComponent } from '../../../projects/ds-ng/src/lib/components/bmb-skeleton/bmb-skeleton.component';
 import { BmbPullWedgeComponent } from '../../../projects/ds-ng/src/lib/components/bmb-pull-wedge/bmb-pull-wedge.component';
-
-interface App {
-  appearance: string;
-  title: string;
-  icon: string;
-  target: string;
-  link: string;
-}
 
 @Component({
   selector: 'bmb-home',
@@ -63,7 +56,7 @@ export class HomeComponent implements OnInit {
     'Midge Girardot',
   ];
   isLoading = true;
-  apps: { [key: number]: App[] } = {
+  apps: { [key: number]: IBmbApp[] } = {
     0: [
       {
         appearance: 'red',
@@ -101,14 +94,14 @@ export class HomeComponent implements OnInit {
         link: 'https://www.example.com/',
       },
       {
-        appearance: 'orange',
+        appearance: 'red',
         title: 'App 6',
         icon: 'face',
         target: '_blank',
         link: 'https://www.example.com/',
       },
       {
-        appearance: 'pink',
+        appearance: 'purple',
         title: 'App 7',
         icon: 'face',
         target: '_blank',
@@ -152,14 +145,14 @@ export class HomeComponent implements OnInit {
         link: 'https://www.example.com/',
       },
       {
-        appearance: 'orange',
+        appearance: 'red',
         title: 'App 13',
         icon: 'face',
         target: '_blank',
         link: 'https://www.example.com/',
       },
       {
-        appearance: 'pink',
+        appearance: 'purple',
         title: 'App 14',
         icon: 'face',
         target: '_blank',
@@ -203,14 +196,14 @@ export class HomeComponent implements OnInit {
         link: 'https://www.example.com/',
       },
       {
-        appearance: 'orange',
+        appearance: 'red',
         title: 'App 20',
         icon: 'face',
         target: '_blank',
         link: 'https://www.example.com/',
       },
       {
-        appearance: 'pink',
+        appearance: 'purple',
         title: 'App 21',
         icon: 'face',
         target: '_blank',

@@ -119,4 +119,10 @@
     RGBA(var(--color-blue-tec)) 100%;
   --color-bg-wheel-tec: RGBA(var(--color-container-home-tec)) 0%,
     RGBA(var(--color-blue-tec)) 100%;
+  --color-academic-gradient: RGBA(var(--color-mariner-950)) 0%,
+    RGBA(var(--color-mariner-900)) 100%;
+  --color-life-gradient: RGBA(var(--color-green-primary)) 0%,
+    RGBA(var(--color-green-light)) 100%;
+  --color-event-gradient: RGBA(var(--color-purple-primary)) 0%,
+    RGBA(var(--color-purple-light)) 100%;
 }

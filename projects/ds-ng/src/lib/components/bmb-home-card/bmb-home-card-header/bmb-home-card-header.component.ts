@@ -1,9 +1,8 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
-  Input,
-  Output,
+  input,
+  output,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
@@ -19,26 +18,30 @@ import { CommonModule } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbHomeCardHeaderComponent {
-  @Input() title: string = '';
-  @Input() subtitle: string = '';
-  @Input() icon?: string;
-  @Input() isMobile?: boolean = false;
-  @Input() isExpanded: boolean = false;
+  title = input.required<string>();
+  subtitle = input<string>();
+  icon = input<string>();
+  isMobile = input<boolean>();
 
-  @Output() onExpandChange: EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Output() onClose: EventEmitter<void> = new EventEmitter<void>();
-  @Output() onBack: EventEmitter<void> = new EventEmitter<void>();
+  onClose = output();
+  onBack = output();
+
+  isExpanded: boolean = false;
 
   getIconName(): string {
-    if (this.isMobile) return 'close';
+    return this.icon() || '';
+  }
+
+  getBehaviorIconName(): string {
+    if (this.isMobile()) return 'close';
     if (this.isExpanded) return 'close_fullscreen';
 
     return 'fit_screen';
   }
 
   handleExpandChange(): void {
-    if (this.isMobile) this.onClose.emit();
-    else this.onExpandChange.emit(!this.isExpanded);
+    if (this.isMobile()) this.onClose.emit();
+    else this.isExpanded = !this.isExpanded;
   }
 
   handleBack(): void {
