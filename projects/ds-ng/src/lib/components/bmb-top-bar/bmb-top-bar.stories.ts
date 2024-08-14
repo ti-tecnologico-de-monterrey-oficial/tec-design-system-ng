@@ -158,6 +158,28 @@ Below is an example of how you can use this component in HTML:
         category: 'Events',
       },
     },
+    assigmentNotification: {
+      name: 'Assigment Notification',
+      control: {
+        type: 'number',
+      },
+      description: 'Set the number of notifications for the icon assignment',
+      table: {
+        type: { summary: 'number' },
+        category: 'Properties',
+      },
+    },
+    alertNotification: {
+      name: 'Alert Notification',
+      control: {
+        type: 'number',
+      },
+      description: 'Set the number of notifications for the icon alert',
+      table: {
+        type: { summary: 'number' },
+        category: 'Properties',
+      },
+    },
   },
   args: {
     appName: 'TecTest',
@@ -173,6 +195,8 @@ Below is an example of how you can use this component in HTML:
     },
     positionButtonMenu: 'left',
     hasLogoutButton: false,
+    alertNotification: 2,
+    assigmentNotification: 9
   },
 } as Meta<typeof BmbTopBarComponent>;
 
