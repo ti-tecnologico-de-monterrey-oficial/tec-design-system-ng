@@ -1,34 +1,55 @@
 <section class="bmb_progress-bar">
-  @if(type !== 'container'){
+  @if (type !== "container") {
     <div class="bmb_progress-bar-counter-container">
       <div class="bmb_progress-bar-track">
-        <div [class]="'bmb_progress-bar-active bmb_progress-bar-active-' + appearance" [style.width.%]="progress"></div>
+        <div
+          [class]="
+            'bmb_progress-bar-active bmb_progress-bar-active-' + appearance
+          "
+          [style.width.%]="progress"
+        ></div>
       </div>
-      @if (type !== 'simple') {
-          <span class="bmb_progress-bar-counter-text">{{counter}}/{{totalCount}}</span>
+      @if (type !== "simple") {
+        <span class="bmb_progress-bar-counter-text"
+          >{{ counter }}/{{ totalCount }}</span
+        >
       }
     </div>
-  }@else {
+  } @else {
     <div class="bmb_progress-bar-container">
       <div class="bmb_progress-bar-container-main">
         <div class="bmb_progress-bar-container-header">
-          <span class="bmb_progress-bar-container-header-text">{{title}}</span>
-          <span class="bmb_progress-bar-container-header-text">{{counter}}/{{totalCount}}</span>
+          <span class="bmb_progress-bar-container-header-text">{{
+            title
+          }}</span>
+          <span class="bmb_progress-bar-container-header-text"
+            >{{ counter }}/{{ totalCount }}</span
+          >
         </div>
         <div class="bmb_progress-bar-container-bar">
           <div class="bmb_progress-bar-counter-container">
             <div class="bmb_progress-bar-track">
-              <div [class]="'bmb_progress-bar-active bmb_progress-bar-active-' + appearance" [style.width.%]="progress"></div>
+              <div
+                [class]="
+                  'bmb_progress-bar-active bmb_progress-bar-active-' +
+                  appearance
+                "
+                [style.width.%]="progress"
+              ></div>
             </div>
-                <span class="bmb_progress-bar-counter-text">{{progress | number: '2.1-1'}}%</span>
+            <span class="bmb_progress-bar-counter-text"
+              >{{ progress | number: "2.1-1" }}%</span
+            >
           </div>
         </div>
         <div class="bmb_progress-bar-container-link">
-          <a class="bmb_progress-bar-container-link-text" [href]="href" [target]="target">
-            <span>{{textLink}}</span>
-            <bmb-icon
-              [icon]="'arrow_forward'"
-            />
+          <a
+            class="bmb_progress-bar-container-link-text"
+            [href]="href"
+            [target]="target"
+          >
+            <span>{{ textLink }}</span>
+            <bmb-icon [icon]="'arrow_forward'" />
           </a>
         </div>
       </div>
