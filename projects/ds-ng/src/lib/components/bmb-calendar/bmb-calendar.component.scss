@@ -77,6 +77,22 @@
     justify-content: center;
     z-index: 1;
     backdrop-filter: blur(rem.rem_calc(1));
+    font-size: rem.rem_calc(128);
+    color: RGBA(var(--color-mariner-950));
+
+    .bmb_loader-icon {
+      animation: rotateAnimation 1s linear infinite;
+    }
+  }
+}
+
+@keyframes rotateAnimation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(359deg);
   }
 }
 

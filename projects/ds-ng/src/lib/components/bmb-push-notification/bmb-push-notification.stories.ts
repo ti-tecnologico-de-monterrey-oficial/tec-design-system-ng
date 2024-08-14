@@ -5,9 +5,6 @@ import { BmbButtonDirective } from '../../directives/button.directive';
 import { BmbNotificationService } from '../../services/notification.service';
 import { BmbPushNotificationComponent } from './bmb-push-notification.component';
 import {
-  IMinimalNotification,
-  INotification,
-  INotificationAction,
   NotificationType,
 } from './types';
 

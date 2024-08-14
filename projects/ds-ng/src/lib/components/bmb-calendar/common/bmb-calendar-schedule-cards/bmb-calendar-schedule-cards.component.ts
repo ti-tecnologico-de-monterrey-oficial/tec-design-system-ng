@@ -26,6 +26,9 @@ export class BmbCalendarScheduleCardsComponent {
     detail: '',
     start: new Date().toISOString(),
     end: new Date().toISOString(),
+    type: 'academic',
+    modalTitle: '',
+    status: '',
   };
   @Input() isPositionAbsolute: boolean = true;
   @Input() extendedContent: boolean = true;
@@ -48,7 +51,7 @@ export class BmbCalendarScheduleCardsComponent {
     date: IBmbCalendarEvent,
     isPositionAbsolute: boolean,
   ): string[] {
-    let newClasses = [];
+    let newClasses = [`bmb_calendar-event-type-${this.event.type}`];
     if (isPositionAbsolute) newClasses.push('bmb_calendar-event-absolute');
     const start = DateTime.fromISO(date.start);
     const end = DateTime.fromISO(date.end);
