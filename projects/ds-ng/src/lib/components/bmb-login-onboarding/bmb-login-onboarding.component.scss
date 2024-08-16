@@ -1,0 +1,17 @@
+@use "../../../assets/styles/base/fonts" as fonts;
+
+@mixin page-flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--bmb-spacing-m);
+  height: 100dvh;
+}
+
+.bmb_login-onboarding {
+  @include page-flex;
+  color: RGBA(var(--color-charade-50));
+
+  @include fonts.font(5, regular);
+  text-align: center;
+}

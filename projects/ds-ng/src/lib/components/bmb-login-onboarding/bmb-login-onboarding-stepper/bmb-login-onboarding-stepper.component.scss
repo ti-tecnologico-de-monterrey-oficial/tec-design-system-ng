@@ -1,0 +1,19 @@
+@use "../bmb-login-onboarding.component.scss" as page;
+@use "../../../../assets/styles/base/fonts" as fonts;
+
+.bmb_login-onboarding-stepper {
+  @include page.page-flex;
+  padding: var(--bmb-spacing-m);
+
+  .bmb_step-progress-bar {
+    margin-top: var(--bmb-spacing-l);
+  }
+
+  &-content {
+    flex: 1;
+
+    .bmb_totp {
+      width: 100%;
+    }
+  }
+}

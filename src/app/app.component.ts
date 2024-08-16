@@ -58,6 +58,7 @@ import {
   BmbCardContentComponent,
   BmbChatBarComponent,
   IBotType,
+  BmbLoginOnboardingComponent,
 } from '../../projects/ds-ng/src/public-api';
 
 import {
@@ -136,6 +137,7 @@ import { BmbHomeCardChatComponent } from '../../projects/ds-ng/src/lib/component
     BmbHomeCardComponent,
     BmbHomeCardChatComponent,
     BmbChatBarComponent,
+    BmbLoginOnboardingComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

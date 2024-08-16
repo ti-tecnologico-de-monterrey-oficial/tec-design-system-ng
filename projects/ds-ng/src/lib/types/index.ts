@@ -6,3 +6,4 @@ export type IButtonAppearance =
   | 'destructive';
 export * from '../components/bmb-timestream/types';
 export * from '../components/bmb-advertisement-card/types';
+export * from '../components/bmb-login-onboarding/types';

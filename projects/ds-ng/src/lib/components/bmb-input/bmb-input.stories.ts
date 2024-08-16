@@ -43,7 +43,6 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    CommonModule,
     BmbButtonDirective,
     BmbInputComponent,
   ],
@@ -51,24 +50,18 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./component.scss'],
 })
 export class AppComponent {
-  userForm: FormGroup;
+  userForm: FormGroup = new FormGroup({
+    name: new FormControl<string>('', Validators.required),
+  });
   showErrors: { [key: string]: boolean } = {};
 
-  constructor(private fb: FormBuilder, private cdr: ChangeDetectorRef) {
-    this.userForm = this.fb.group({
-      name: new FormControl('', Validators.required),
-    });
-  }
-
   onSubmit() {
+
     if (this.userForm.valid) {
-      console.log(this.userForm.value);
-    } else {
-      console.log('Form is invalid');
-      this.userForm.markAllAsTouched();
-      this.updateErrorState();
-      this.cdr.markForCheck();
+      return;
     }
+    this.userForm.markAllAsTouched();
+    this.updateErrorState();
   }
 
   updateErrorState() {
@@ -81,8 +74,8 @@ export class AppComponent {
     });
   }
 
-  get nameControl(): FormControl {
-    return this.userForm.get('name') as FormControl;
+  getFormControl(name: string): FormControl {
+    return this.userForm.get(name) as FormControl;
   }
 }
 \`\`\`
@@ -102,7 +95,7 @@ Below is an example of how to use this component in HTML:
     [disabled]="false"
     [isRequired]="false"
     [appearance]="'normal'"
-    [control]="nameControl"
+    [control]="getFormControl('name')"
     [showError]="showErrors['name']"
   />
   <button bmbButton appearance="primary" type="submit">Submit</button>

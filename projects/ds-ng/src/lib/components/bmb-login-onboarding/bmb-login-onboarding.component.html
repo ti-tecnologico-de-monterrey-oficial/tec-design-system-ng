@@ -1,0 +1,19 @@
+<section class="bmb_login-onboarding">
+  @switch (getActivePage()) {
+    @case (0) {
+      <bmb-login-onboarding-login />
+    }
+    @case (1) {
+      <bmb-login-onboarding-stepper />
+    }
+    @case (2) {
+      <bmb-login-onboarding-logout />
+    }
+    @case (3) {
+      <bmb-login-onboarding-logged />
+    }
+    @default {
+
+    }
+  }
+</section>

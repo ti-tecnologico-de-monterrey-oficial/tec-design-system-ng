@@ -25,6 +25,7 @@ export class BmbHomeCardChatComponent {
   isMobile = input<boolean>();
   placeholder = input<string>();
   botList = input<IBotType[]>();
+
   currentBot= model<IBotType>();
   isLoading = model<boolean>();
 
