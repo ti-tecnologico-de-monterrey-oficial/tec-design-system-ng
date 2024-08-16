@@ -7,7 +7,10 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
-import { BmbChatBarComponent, IBotType } from '../bmb-chat-bar/bmb-chat-bar.component';
+import {
+  BmbChatBarComponent,
+  IBotType,
+} from '../bmb-chat-bar/bmb-chat-bar.component';
 
 @Component({
   selector: 'bmb-home-card-chat',
@@ -26,7 +29,7 @@ export class BmbHomeCardChatComponent {
   placeholder = input<string>();
   botList = input<IBotType[]>();
 
-  currentBot= model<IBotType>();
+  currentBot = model<IBotType>();
   isLoading = model<boolean>();
 
   onClose = output();

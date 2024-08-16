@@ -36,19 +36,25 @@ export class BmbChatBarComponent {
 
   control = new FormControl();
   isDialogOpen: boolean = false;
-  defaultPlaceholder = computed(() => this.placeholder() ?? '¿Qué deseas encontrar hoy?');
+  defaultPlaceholder = computed(
+    () => this.placeholder() ?? '¿Qué deseas encontrar hoy?',
+  );
   dBotList = computed(() => this.botList() ?? defaultBotList);
 
   ngOnInit(): void {
-    this.currentBot.update((bot: IBotType = {
-      name: 'TecGPT',
-      icon: '/assets/images/bot-icons/bot.png',
-    }): IBotType => bot);
+    this.currentBot.update(
+      (
+        bot: IBotType = {
+          name: 'TecGPT',
+          icon: '/assets/images/bot-icons/bot.png',
+        },
+      ): IBotType => bot,
+    );
   }
 
   handleSend() {
     this.onSendMessage.emit(this.control.value);
-    this.isLoading.update( value => !value );
+    this.isLoading.update((value) => !value);
     this.control.reset();
   }
 

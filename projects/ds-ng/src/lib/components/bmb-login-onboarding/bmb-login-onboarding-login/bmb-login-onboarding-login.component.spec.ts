@@ -8,10 +8,9 @@ describe('BmbLoginOnboardingLoginComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BmbLoginOnboardingLoginComponent]
-    })
-    .compileComponents();
-    
+      imports: [BmbLoginOnboardingLoginComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(BmbLoginOnboardingLoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

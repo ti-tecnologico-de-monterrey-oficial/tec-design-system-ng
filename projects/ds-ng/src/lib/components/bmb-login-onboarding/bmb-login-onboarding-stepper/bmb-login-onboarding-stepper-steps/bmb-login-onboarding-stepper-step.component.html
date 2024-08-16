@@ -1,13 +1,19 @@
 <section class="bmb_login-onboarding-stepper-step">
   <section class="bmb_login-onboarding-stepper-step-content">
-    <h1 class="bmb_login-onboarding-stepper-step-content-title">{{title()}}</h1>
-    <p>{{subtitle()}}</p>
+    <h1 class="bmb_login-onboarding-stepper-step-content-title">
+      {{ title() }}
+    </h1>
+    <p>{{ subtitle() }}</p>
     <section class="bmb_login-onboarding-stepper-step-content-child">
       <ng-content />
     </section>
     <section class="bmb_login-onboarding-stepper-step-content-subcontent">
-      <p class="bmb_login-onboarding-stepper-step-content-subcontent-label">{{label()}}</p>
-      <p class="bmb_login-onboarding-stepper-step-content-subcontent-sublabel">{{sublabel()}}</p>
+      <p class="bmb_login-onboarding-stepper-step-content-subcontent-label">
+        {{ label() }}
+      </p>
+      <p class="bmb_login-onboarding-stepper-step-content-subcontent-sublabel">
+        {{ sublabel() }}
+      </p>
     </section>
   </section>
   <section class="bmb_login-onboarding-stepper-step-buttons">
@@ -17,7 +23,7 @@
       size="small"
       (click)="handleCancelBackStept()"
     >
-      {{cancelBackLabel()}}
+      {{ cancelBackLabel() }}
     </button>
     <button
       bmbButton
@@ -25,7 +31,7 @@
       [disabled]="isContinueDisable()"
       (click)="handleContinueStep()"
     >
-      {{continueLabel()}}
+      {{ continueLabel() }}
     </button>
   </section>
 </section>

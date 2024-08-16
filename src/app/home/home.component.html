@@ -5,6 +5,13 @@
   [data]="data"
   (onValueChange)="handleValueChange($event)"
 ></bmb-wheel-menu>
+<bmb-pull-wedge [initialHeight]="50">
+  <bmb-skeleton
+    [type]="'generic3'"
+    collapsible
+    style="width: 100%"
+  ></bmb-skeleton>
+</bmb-pull-wedge>
 
 <bmb-skeleton [type]="'header'"></bmb-skeleton>
 <bmb-skeleton [type]="'stray'"></bmb-skeleton>

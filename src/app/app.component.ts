@@ -4,6 +4,8 @@ import {
   ViewChild,
   ChangeDetectorRef,
   model,
+  TemplateRef,
+  OnInit,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
@@ -62,10 +64,14 @@ import {
 } from '../../projects/ds-ng/src/public-api';
 
 import {
+  BmbPushNotificationComponent,
+  BmbNotificationService,
+  BmbHomeCardChatComponent,
   IBmbTab,
-  IBmbCalendarEvent,
-  IBmbCalendarEventClick,
   BmbIconComponent,
+  BmbCalendarService,
+  IBmbEventType,
+  IBmbApp,
 } from '../../projects/ds-ng/src/public-api';
 
 export interface Target {
@@ -77,7 +83,8 @@ import names from './names.json';
 import { ModalDataConfig } from '../../projects/ds-ng/src/lib/components/bmb-modal/bmb-modal.interface';
 import { MatDialog } from '@angular/material/dialog';
 import timelineEvents from './timelineEvents.json';
-import { BmbHomeCardChatComponent } from '../../projects/ds-ng/src/lib/components/bmb-home-card-chat/bmb-home-card-chat.component';
+import {} from '../../projects/ds-ng/src/lib/components/bmb-home-card-chat/bmb-home-card-chat.component';
+import { DateTime } from 'luxon';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -138,15 +145,19 @@ import { BmbHomeCardChatComponent } from '../../projects/ds-ng/src/lib/component
     BmbHomeCardChatComponent,
     BmbChatBarComponent,
     BmbLoginOnboardingComponent,
+    BmbPushNotificationComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   constructor(
     private cdr: ChangeDetectorRef,
     private matDialog: MatDialog,
+    private notificationSignal: BmbNotificationService,
+    private calendarEventsSignal: BmbCalendarService,
   ) {}
 
   myTabs: IBmbTab[] = [
@@ -157,6 +168,8 @@ export class AppComponent {
     { id: 5, title: 'Text' },
     { id: 6, title: 'Mas usado' },
   ];
+
+  @ViewChild('buttonContent') actionsTemplate!: TemplateRef<unknown>;
 
   activeTabId: number | null =
     this.myTabs.find((tab: IBmbTab) => tab.isActive)?.id ?? null;
@@ -187,20 +200,6 @@ export class AppComponent {
   };
 
   isCalendarLoading = false;
-  calendarEvents: IBmbCalendarEvent[] = [
-    {
-      title: 'Test',
-      detail: 'Detail test',
-      start: '2024-06-27T15:00:00.715Z',
-      end: '2024-06-27T15:30:00.715Z',
-    },
-    {
-      title: 'Test jnsf dkjn jasn kljnsd kljfna klsdj nfklajsndfk lajndksf',
-      detail: 'Dkjaskdjjhasbdfjhasbdjkhfbjkahsdbf',
-      start: '2024-06-27T15:00:00.715Z',
-      end: '2024-06-27T16:00:00.715Z',
-    },
-  ];
 
   sidebarElements: {
     id: number;
@@ -304,37 +303,6 @@ export class AppComponent {
 
   onProfileClick() {
     this.boolUserSummary = !this.boolUserSummary;
-  }
-
-  async fetchData(event: IBmbCalendarEventClick): Promise<void> {
-    console.log(event);
-    try {
-      this.isCalendarLoading = true;
-      await new Promise((resolve) => setTimeout(resolve, 3000));
-    } finally {
-      this.calendarEvents = [
-        {
-          title: 'Test',
-          detail: 'Detail test',
-          start: '2024-05-23T15:00:00.715Z',
-          end: '2024-05-23T15:30:00.715Z',
-        },
-        {
-          title: 'Test jnsf dkjn jasn kljnsd kljfna klsdj nfklajsndfk lajndksf',
-          detail: 'Dkjaskdjjhasbdfjhasbdjkhfbjkahsdbf',
-          start: '2024-05-24T15:00:00.715Z',
-          end: '2024-05-24T16:00:00.715Z',
-        },
-        {
-          title: 'Test',
-          detail: 'Detail test',
-          start: '2024-05-25T22:56:44.715Z',
-          end: '2024-05-25T23:56:44.715Z',
-        },
-      ];
-      this.isCalendarLoading = false;
-      this.cdr.detectChanges();
-    }
   }
 
   correctCodes: { [key: string]: string } = {
@@ -557,7 +525,7 @@ export class AppComponent {
   }
 
   //Frequent apps
-  apps = [
+  apps: IBmbApp[] = [
     {
       icon: 'home',
       title: 'Inicio',
@@ -645,5 +613,49 @@ export class AppComponent {
 
   handleSendMessage(message: string): void {
     console.log('handleSendMessage', message);
+  }
+
+  addEvent() {
+    const title = timelineEvents[Math.floor(Math.random() * 5)].title;
+    const content = timelineEvents[Math.floor(Math.random() * 5)].description;
+    const date = DateTime.now();
+    const start = date.toISO();
+    const end = date.plus({ hours: 1 }).toISO();
+    const eventTypes: IBmbEventType[] = ['academic', 'life', 'events'];
+    const modalTitle = timelineEvents[Math.floor(Math.random() * 5)].related_to;
+    const status = 'En progreso';
+
+    this.calendarEventsSignal.addevent({
+      title,
+      detail: content,
+      start,
+      end,
+      type: eventTypes[Math.floor(Math.random() * 2)],
+      modalTitle,
+      status,
+    });
+
+    this.notificationSignal.addNotification({
+      title: 'Event added succesfully',
+      subTitle: title,
+      icon: 'info',
+      type: 'info',
+      appName: 'TEC',
+      isFullColor: false,
+    });
+  }
+
+  getNotifications() {
+    return this.notificationSignal.getNotificationList();
+  }
+
+  ngOnInit(): void {
+    console.log('actionsTemplate', this.actionsTemplate);
+  }
+
+  handleLoading() {
+    this.calendarEventsSignal.setIsLoading(
+      !this.calendarEventsSignal.getIsLoading(),
+    );
   }
 }

@@ -3,6 +3,9 @@
  */
 
 export * from './lib/ds-ng.service';
+export * from './lib/services/notification.service';
+export * from './lib/services/calendar.service';
+
 export * from './lib/ds-ng.component';
 export * from './lib/directives/button.directive';
 export * from './lib/directives/bmb-layout/bmb-layout-item.directive';
@@ -66,8 +69,10 @@ export * from './lib/components/bmb-student-activity-card/bmb-student-activity-c
 export * from './lib/components/bmb-advertisement-card/bmb-advertisement-card.component';
 export * from './lib/components/bmb-home-card/bmb-home-card.component';
 export * from './lib/components/bmb-chat-bar/bmb-chat-bar.component';
+export * from './lib/components/bmb-push-notification/bmb-push-notification.component';
 export * from './lib/components/bmb-notification-card/bmb-notification-card.component';
 export * from './lib/components/bmb-login-onboarding/bmb-login-onboarding.component';
+export * from './lib/components/bmb-home-card-chat/bmb-home-card-chat.component';
 
 // types
 export * from './lib/types';

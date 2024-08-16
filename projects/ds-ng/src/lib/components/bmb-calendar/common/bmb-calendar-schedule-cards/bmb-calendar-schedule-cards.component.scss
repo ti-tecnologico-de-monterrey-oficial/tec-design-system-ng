@@ -1,6 +1,8 @@
 @use "../../../../../assets/styles/base/rem" as rem;
 @use "../../../../../assets/styles/base/fonts" as fonts;
 
+$types: "academic", "life", "event";
+
 .bmb_calendar-event {
   box-sizing: border-box;
   background-color: RGBA(var(--color-charade-100));
@@ -18,6 +20,14 @@
     position: absolute;
     left: rem.rem_calc(4);
     width: calc(100% - rem.rem_calc(8));
+  }
+
+  &-type {
+    @each $type in $types {
+      &-#{$type} .bmb_calendar-event-indicator {
+        background-image: linear-gradient(var(--color-#{$type}-gradient));
+      }
+    }
   }
 
   &-grid {
