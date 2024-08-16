@@ -1,5 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  ViewEncapsulation,
+} from '@angular/core';
 import { BmbProgressCircleComponent } from '../bmb-progress-cirlce/bmb-progress-circle.component';
 import { BmbLegendComponent } from '../bmb-legend/bmb-legend.component';
 
