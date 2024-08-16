@@ -7,7 +7,10 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
-import { BmbInteractiveIconComponent, IBmbInteractiveIconType } from '../bmb-interactive-icon/bmb-interactive-icon.component';
+import {
+  BmbInteractiveIconComponent,
+  IBmbInteractiveIconType,
+} from '../bmb-interactive-icon/bmb-interactive-icon.component';
 import { IBmbApp } from '../../types';
 
 @Component({
@@ -27,7 +30,7 @@ export class BmbFrequentAppsSelectorComponent {
   getClassesFAC(): string[] {
     return [
       'bmb_frequent_apps-container',
-      `bmb_frequent_apps-container-${this.layout()}`
+      `bmb_frequent_apps-container-${this.layout()}`,
     ];
   }
 }
