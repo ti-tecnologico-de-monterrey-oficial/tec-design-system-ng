@@ -71,6 +71,7 @@ export * from './lib/components/bmb-chat-bar/bmb-chat-bar.component';
 export * from './lib/components/bmb-push-notification/bmb-push-notification.component';
 export * from './lib/components/bmb-notification-card/bmb-notification-card.component';
 export * from './lib/components/bmb-home-card-chat/bmb-home-card-chat.component';
+export * from './lib/components/bmb-paginator/bmb-paginator.component';
 
 // types
 export * from './lib/types';
