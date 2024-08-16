@@ -8,7 +8,7 @@ import { BmbTabsComponent } from '../bmb-tabs/bmb-tabs.component';
 import { BmbInteractiveIconComponent } from '../bmb-interactive-icon/bmb-interactive-icon.component';
 
 export default {
-  title: 'Macro Componentes/Wheel Menu',
+  title: 'Macro Componentes/Wheel Menu (deprecated)',
   component: BmbWheelMenuComponent,
   decorators: [
     moduleMetadata({
@@ -26,6 +26,8 @@ export default {
     docs: {
       description: {
         component: `
+This component is no longer supported.
+
 Below is an example of how you can use this component in TypeScript:
 
 \`\`\`typescript
@@ -215,7 +217,7 @@ export class AppComponent {
       },
     ],
   };
-  
+
 }
 \`\`\`
 

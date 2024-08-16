@@ -15,6 +15,8 @@ export type IBmbInteractiveIconAppearance =
   | 'yellow'
   | 'purple';
 
+export type IBmbInteractiveIconType = 'regular' | 'button' | 'app_drawer';
+
 @Component({
   selector: 'bmb-interactive-icon',
   styleUrl: './bmb-interactive-icon.component.scss',
@@ -32,14 +34,16 @@ export class BmbInteractiveIconComponent {
   horizontal = input<boolean>(false);
   target = input<string>();
   link = input<string>();
-  isButtonAppearance = input<boolean>(false);
+  layout = input<IBmbInteractiveIconType>('regular');
 
   getClasses(): string[] {
-    const classes: string[] = ['bmb_interactive_icon'];
+    const classes: string[] = [
+      'bmb_interactive_icon',
+      `bmb_interactive_icon-${this.layout()}`
+    ];
 
     if (this.appearance())
       classes.push(`bmb_interactive_icon-${this.appearance()}`);
-    if (this.isButtonAppearance()) classes.push('bmb_interactive_icon-button');
 
     return classes;
   }
