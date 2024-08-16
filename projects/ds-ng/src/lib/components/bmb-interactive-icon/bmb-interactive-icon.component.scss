@@ -33,6 +33,7 @@
     border-radius: var(--bmb-radius-m);
     margin: 0;
     width: 100%;
+    min-width: rem.rem_calc(200);
 
     .bmb_interactive_icon-text {
       margin-left: rem.rem_calc(8);
