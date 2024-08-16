@@ -1,0 +1,43 @@
+<section class="bmb_paginator">
+  <span class="bmb_paginator-text">{{ getPaginationText() }}</span>
+  <button
+    [disabled]="currentPage === 1"
+    [ngClass]="{
+      'bmb_paginator-btn-disabled': currentPage == 1,
+    }"
+    (click)="onPageChange(1)"
+    class="bmb_paginator-btn"
+  >
+    <bmb-icon icon="keyboard_double_arrow_left" class="bmb_paginator-icon" />
+  </button>
+  <button
+    [disabled]="currentPage === 1"
+    [ngClass]="{
+      'bmb_paginator-btn-disabled': currentPage == 1,
+    }"
+    (click)="onPageChange(currentPage - 1)"
+    class="bmb_paginator-btn"
+  >
+    <bmb-icon icon="keyboard_arrow_left" class="bmb_paginator-icon" />
+  </button>
+  <button
+    [disabled]="currentPage === totalPages"
+    [ngClass]="{
+      'bmb_paginator-btn-disabled': currentPage === totalPages,
+    }"
+    (click)="onPageChange(currentPage + 1)"
+    class="bmb_paginator-btn"
+  >
+    <bmb-icon icon="keyboard_arrow_right" class="bmb_paginator-icon" />
+  </button>
+  <button
+    [disabled]="currentPage === totalPages"
+    [ngClass]="{
+      'bmb_paginator-btn-disabled': currentPage === totalPages,
+    }"
+    (click)="onPageChange(totalPages)"
+    class="bmb_paginator-btn"
+  >
+    <bmb-icon icon="keyboard_double_arrow_right" class="bmb_paginator-icon" />
+  </button>
+</section>
