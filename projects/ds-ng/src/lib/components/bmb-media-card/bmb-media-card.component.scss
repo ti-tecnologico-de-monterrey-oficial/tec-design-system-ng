@@ -12,6 +12,7 @@
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     gap: 0px 0px;
+    overflow: hidden;
 
     &:hover,
     &.bmb-hover {
@@ -24,6 +25,7 @@
 
     .bmb_media-card-image-container {
       grid-area: 1 / 1 / 2 / 2;
+      margin: 0;
     }
   }
 
@@ -32,12 +34,14 @@
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     gap: 0px 0px;
+    margin-bottom: var(--bmb-spacing-xl);
   }
 
   &-figure {
     margin: 0;
     line-height: 0;
     grid-area: 1 / 1 / 2 / 2;
+    overflow: hidden;
 
     &-backdrop {
       filter: blur(10px);
@@ -53,6 +57,7 @@
 
       & + .bmb_media-card-figure {
         margin: var(--bmb-spacing-m);
+        overflow: hidden;
       }
     }
 
@@ -76,11 +81,12 @@
   }
 
   &-content {
+
     &-inline {
       grid-area: 1 / 1 / 2 / 2;
       display: flex;
       align-items: end;
-      justify-content: center;
+      justify-content: end;
       z-index: 1;
       color: RGBA(var(--color-charade-50));
 
@@ -108,6 +114,39 @@
     &-container-backdrop {
       padding: var(--bmb-spacing-m);
       box-sizing: border-box;
+    }
+
+    &-title,
+    &-subtitle {
+      @include fonts.font(4, regular);
+      font-weight: 400;
+      text-transform: capitalize;
+    }
+
+    &-content {
+      @include fonts.font(3, regular);
+      font-weight: 400;
+      margin: var(--bmb-spacing-s) 0;
+    }
+
+    &-container {
+      display: flex;
+      flex-flow: column;
+      gap: var(--bmb-spacing-m);
+    }
+
+    &-user {
+      display: flex;
+      align-items: center;
+      gap: var(--bmb-spacing-s);
+
+      &-name {
+        flex: 1;
+      }
+
+      &-date {
+        color: rgb(var(--color-charade-500));
+      }
     }
   }
 }

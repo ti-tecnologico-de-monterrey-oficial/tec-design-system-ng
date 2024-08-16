@@ -1,24 +1,24 @@
 <section
   class="bmb_media-card"
-  [ngClass]="'bmb_media-card-' + type"
-  [ngStyle]="{ width: width, 'aspect-ratio': ratio }"
+  [ngClass]="'bmb_media-card-' + type()"
+  [ngStyle]="{ width: width(), 'aspect-ratio': ratio() }"
 >
   <div class="bmb_media-card-image-container">
-    @if (isBlurredBackdrop) {
+    @if (isBlurredBackdrop()) {
       <figure
         class="bmb_media-card-figure bmb_media-card-figure-backdrop"
         [ngClass]="getClasses()"
-        [ngStyle]="{ 'aspect-ratio': ratio }"
+        [ngStyle]="{ 'aspect-ratio': ratio() }"
       >
         <picture>
-          <source media="(min-width: 1000px)" [srcset]="src" />
-          @if (mobileSrc) {
-            <source [srcset]="mobileSrc" />
+          <source media="(min-width: 1000px)" [srcset]="src()" />
+          @if (mobileSrc()) {
+            <source [srcset]="mobileSrc()" />
           }
           <img
-            [srcset]="src"
-            [alt]="alt"
-            [loading]="loading"
+            [srcset]="src()"
+            [alt]="alt()"
+            [loading]="loading()"
             class="bmb_media-card-figure-image"
           />
         </picture>
@@ -27,17 +27,17 @@
     <figure
       class="bmb_media-card-figure"
       [ngClass]="getClasses()"
-      [ngStyle]="{ 'aspect-ratio': ratio }"
+      [ngStyle]="{ 'aspect-ratio': ratio() }"
     >
       <picture>
-        <source media="(min-width: 1000px)" [srcset]="src" />
-        @if (mobileSrc) {
-          <source [srcset]="mobileSrc" />
+        <source media="(min-width: 1000px)" [srcset]="src()" />
+        @if (mobileSrc()) {
+          <source [srcset]="mobileSrc()" />
         }
         <img
-          [srcset]="src"
-          [alt]="alt"
-          [loading]="loading"
+          [srcset]="src()"
+          [alt]="alt()"
+          [loading]="loading()"
           class="bmb_media-card-figure-image"
         />
       </picture>
@@ -45,12 +45,35 @@
   </div>
   <div
     class="bmb_media-card-content"
-    [ngClass]="'bmb_media-card-content-' + type"
+    [ngClass]="'bmb_media-card-content-' + type()"
   >
     <section
       class="bmb_media-card-content-container"
       [ngClass]="getContentClasses()"
     >
+      @if (title()) {
+        <h1 class="bmb_media-card-content-title">{{ title() }}</h1>
+      }
+      @if (subtitle() && type() === 'floating') {
+        <h2 class="bmb_media-card-content-subtitle">{{ subtitle() }}</h2>
+      }
+      @if (content() && type() === 'floating') {
+        <p class="bmb_media-card-content-content">{{ content() }}</p>
+      }
+      @if (date() && type() !== 'author_detail') {
+        <p class="bmb_media-card-content-date">{{ date() }}</p>
+      }
+      @if (userName() && userImage() && type() === 'author_detail') {
+        <section class="bmb_media-card-content-user">
+          <bmb-user-image
+            [altImage]="getUserAttribute(userName())"
+            [image]="getUserAttribute(userImage())"
+            size="mobile-small"
+          ></bmb-user-image>
+          <span class="bmb_media-card-content-user-name">{{ userName() }}</span>
+          <span class="bmb_media-card-content-user-date">{{ date() }}</span>
+        </section>
+      }
       <ng-content></ng-content>
     </section>
   </div>
