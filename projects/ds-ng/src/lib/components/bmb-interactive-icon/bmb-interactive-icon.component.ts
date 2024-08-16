@@ -39,7 +39,7 @@ export class BmbInteractiveIconComponent {
   getClasses(): string[] {
     const classes: string[] = [
       'bmb_interactive_icon',
-      `bmb_interactive_icon-${this.layout()}`
+      `bmb_interactive_icon-${this.layout()}`,
     ];
 
     if (this.appearance())

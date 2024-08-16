@@ -120,8 +120,7 @@ Below is an example of how you can use this component in HTML:
         type: 'select',
       },
       options: ['regular', 'button', 'app_drawer'],
-      description:
-        'Set the layout behavior.',
+      description: 'Set the layout behavior.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
