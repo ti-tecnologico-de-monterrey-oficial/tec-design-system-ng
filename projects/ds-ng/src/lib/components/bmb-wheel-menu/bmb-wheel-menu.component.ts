@@ -15,20 +15,13 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbInnerHeaderComponent } from '../bmb-inner-header/bmb-inner-header.component';
 import { BmbTabsComponent } from '../bmb-tabs/bmb-tabs.component';
 import { BmbInteractiveIconComponent } from '../bmb-interactive-icon/bmb-interactive-icon.component';
+import { IBmbApp } from '../../types';
 
 interface NavItem {
   title: string;
   id: number;
   badge?: number;
   isActive?: boolean;
-}
-
-interface App {
-  appearance: string;
-  title: string;
-  icon: string;
-  target: string;
-  link: string;
 }
 
 @Component({
@@ -49,7 +42,7 @@ interface App {
 })
 export class BmbWheelMenuComponent implements AfterViewInit {
   @Input() navItems: NavItem[] = [];
-  @Input() apps: { [key: number]: App[] } = {};
+  @Input() apps: { [key: number]: IBmbApp[] } = {};
   @Input() data: string[] = [];
   @Input() isLoading: boolean = false;
   @Output() onValueChange: EventEmitter<string> = new EventEmitter<string>();

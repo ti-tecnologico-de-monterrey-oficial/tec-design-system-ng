@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, input, model, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  model,
+  ViewEncapsulation,
+} from '@angular/core';
 import { BmbButtonDirective } from '../../../../directives/button.directive';
 import { BmbLoginOnboardingService } from '../../bmb-login-onboarding.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -12,7 +18,7 @@ import { ModalDataConfig } from '../../../bmb-modal/bmb-modal.interface';
   templateUrl: './bmb-login-onboarding-stepper-step.component.html',
   styleUrl: './bmb-login-onboarding-stepper-step.component.scss',
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbLoginOnboardingStepperStepComponent {
   title = input.required<string>();
@@ -33,9 +39,12 @@ export class BmbLoginOnboardingStepperStepComponent {
     type: 'action',
     alertStyle: 'success',
     primaryBtnLabel: 'Aceptar',
-  }
+  };
 
-  constructor(private loginOnboardingService: BmbLoginOnboardingService, private matDialog: MatDialog) {
+  constructor(
+    private loginOnboardingService: BmbLoginOnboardingService,
+    private matDialog: MatDialog,
+  ) {
     this.totalSteps = this.loginOnboardingService.getTotalSteps();
   }
 
@@ -48,23 +57,23 @@ export class BmbLoginOnboardingStepperStepComponent {
   }
 
   handleCancelBackStept(): void {
-
-    if( this.getActiveStep() && this.getActiveStep() !== this.totalSteps - 1 ){
-      this.loginOnboardingService.setActiveStep( this.getActiveStep() - 1 );
+    if (this.getActiveStep() && this.getActiveStep() !== this.totalSteps - 1) {
+      this.loginOnboardingService.setActiveStep(this.getActiveStep() - 1);
     }
   }
 
   handleContinueStep(): void {
-
-    if( this.getActiveStep() === this.totalSteps - 1 ){
+    if (this.getActiveStep() === this.totalSteps - 1) {
       this.openModalComponent();
       this.matDialog.afterAllClosed.subscribe(() => {
-        this.loginOnboardingService.setActivePage( this.loginOnboardingService.getActivePage() + 1 );
+        this.loginOnboardingService.setActivePage(
+          this.loginOnboardingService.getActivePage() + 1,
+        );
       });
     }
 
     // this.loginOnboardingService.setIsLoading(true);
 
-    this.loginOnboardingService.setActiveStep( this.getActiveStep() + 1 );
+    this.loginOnboardingService.setActiveStep(this.getActiveStep() + 1);
   }
 }

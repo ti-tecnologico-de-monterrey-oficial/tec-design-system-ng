@@ -1,7 +1,7 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
-import { BmbCardComponent } from '../bmb-card/bmb-card.component';
 import { BmbStudentActivityCardComponent } from './bmb-student-activity-card.component';
+import { DateTime } from 'luxon';
 
 export default {
   title: 'Micro Componentes/Student activity card',
@@ -18,57 +18,58 @@ export default {
 Below is an example of how you can use this component in TypeScript:
 
 \`\`\`typescript
-import { Component, ChangeDetectorRef } from '@angular/core';
 import { BmbStudentActivitySelectorComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-import { CommonModule } from '@angular/common';
-
 @Component({
-  selector: 'app-component',
+  selector: 'component',
   standalone: true,
-  imports: [
-    CommonModule,
-    BmbStudentActivityCardComponent,
-  ],
+  imports: [ BmbStudentActivityCardComponent ],
   templateUrl: './component.html',
   styleUrls: ['./component.scss'],
 })
 
 \`\`\`
 
-### Example in HTML
-
-Below is an example of how to use this component in HTML:
-
-\`\`\`html
-<bmb-student-activity-card
-  [count]="'01 / 10'"
-  [categoryTitle]="'Mathematics'"
-  [classTitle]="'Algebra 101'"
-  [classSubtitle]="'Introduction to Algebra'"
-  [location]="'Room 201'"
-  [statusLabel]="'EN PROGRESO'"
-  [timeRange]="'10:00 AM - 11:00 AM'">
-</bmb-student-activity-card>
-
-\`\`\`
+Below is an example of how you can use this component in HTML:
         `,
       },
     },
   },
   argTypes: {
-    count: {
-      control: { type: 'text' },
-      description: 'Content count.',
+    startDate: {
+      name: 'Start date',
+      control: null,
+      description: 'Set the start date label <luxon DateTime>.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'DateTime' },
+      },
+    },
+    endDate: {
+      name: 'End date',
+      control: null,
+      description: 'Set the end date label <luxon DateTime>.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'DateTime' },
+      },
+    },
+    title: {
+      name: 'Title',
+      control: {
+        type: 'text',
+      },
+      description: 'Set the title on the top of the modal content.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
         defaultValue: { summary: '' },
       },
     },
-    categoryTitle: {
+    modalTitle: {
+      name: 'Modal title',
       control: {
         type: 'text',
-        description: 'Category of the subject.',
+        description: 'Set the title on the modal header.',
       },
       table: {
         category: 'Properties',
@@ -76,57 +77,35 @@ Below is an example of how to use this component in HTML:
         defaultValue: { summary: '' },
       },
     },
-    classTitle: {
+    detail: {
+      name: 'Detail',
       control: {
         type: 'text',
+        description: 'Set the content text.',
       },
-      description: 'Name of the subject.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
         defaultValue: { summary: '' },
       },
     },
-
-    classSubtitle: {
-      control: {
-        type: 'text',
-      },
-      description: 'Subtitle of the subject.',
+    type: {
+      name: 'Type',
+      control: 'select',
+      options: ['academic', 'life', 'events'],
+      description: 'Set the color schema for the modal.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        defaultValue: { summary: '' },
+        defaultValue: { summary: 'academic' },
       },
     },
-
-    location: {
+    status: {
+      name: 'Status',
       control: {
         type: 'text',
+        description: 'Set the status label.',
       },
-      description: 'Location of matter.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: '' },
-      },
-    },
-    statusLabel: {
-      control: {
-        type: 'text',
-      },
-      description: 'State of matter.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: '' },
-      },
-    },
-    timeRange: {
-      control: {
-        type: 'text',
-      },
-      description: 'Subject schedule.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -136,14 +115,13 @@ Below is an example of how to use this component in HTML:
   },
 
   args: {
-    count: '01 / 10',
-    categoryTitle: '',
-    subcategorytitle: 'Mathematics',
-    classTitle: 'Algebra 101',
-    classSubtitle: 'Introducción to Algebra',
-    location: 'Room 201',
-    statusLabel: 'En progreso',
-    timeRange: '10:00 AM - 11:00 AM',
+    startDate: DateTime.now(),
+    endDate: DateTime.now(),
+    title: 'Activity title',
+    detail: 'Activity detail',
+    type: 'academic',
+    status: 'In progress',
+    modalTitle: 'Math class',
   },
 } as Meta<typeof BmbStudentActivityCardComponent>;
 

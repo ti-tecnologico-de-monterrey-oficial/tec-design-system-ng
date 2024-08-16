@@ -1,4 +1,8 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from '@angular/core';
 import { BmbButtonDirective } from '../../../directives/button.directive';
 import { BmbUserSummaryComponent } from '../../bmb-user-summary/bmb-user-summary.component';
 import { BmbLoginOnboardingService } from '../bmb-login-onboarding.service';
@@ -7,14 +11,11 @@ import { IBmbUserInfo } from '../types';
 @Component({
   selector: 'bmb-login-onboarding-logged',
   standalone: true,
-  imports: [
-    BmbButtonDirective,
-    BmbUserSummaryComponent,
-  ],
+  imports: [BmbButtonDirective, BmbUserSummaryComponent],
   templateUrl: './bmb-login-onboarding-logged.component.html',
   styleUrl: './bmb-login-onboarding-logged.component.scss',
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbLoginOnboardingLoggedComponent {
   tecLogoImage: string = '../assets/images/tec-logo.svg';
@@ -26,7 +27,5 @@ export class BmbLoginOnboardingLoggedComponent {
     return this.loginOnboardingService.userInfo();
   }
 
-  handleContinue(): void {
-
-  }
+  handleContinue(): void {}
 }

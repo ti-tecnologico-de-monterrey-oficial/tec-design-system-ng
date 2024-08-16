@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, model, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  model,
+  ViewEncapsulation,
+} from '@angular/core';
 import { BmbLoginOnboardingStepperStepComponent } from './bmb-login-onboarding-stepper-step.component';
 import { BmbTotpComponent } from '../../../bmb-totp/bmb-totp.component';
 import { BmbLoginOnboardingService } from '../../bmb-login-onboarding.service';
@@ -7,10 +12,7 @@ import { IBmbError } from '../../types';
 @Component({
   selector: 'bmb-login-onboarding-stepper-step-two',
   standalone: true,
-  imports: [
-    BmbLoginOnboardingStepperStepComponent,
-    BmbTotpComponent,
-  ],
+  imports: [BmbLoginOnboardingStepperStepComponent, BmbTotpComponent],
   template: `
     <bmb-login-onboarding-stepper-step
       title="Paso 2"
@@ -31,12 +33,12 @@ import { IBmbError } from '../../types';
     </bmb-login-onboarding-stepper-step>
   `,
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbLoginOnboardingStepperStepTwoComponent {
   isContinueDisable = model<boolean>(true);
 
-  error: IBmbError = {  codeError: false, errorMessage: '' };
+  error: IBmbError = { codeError: false, errorMessage: '' };
 
   constructor(private loginOnboardingService: BmbLoginOnboardingService) {}
 

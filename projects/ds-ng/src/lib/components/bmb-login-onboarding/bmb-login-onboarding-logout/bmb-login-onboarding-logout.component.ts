@@ -1,4 +1,8 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from '@angular/core';
 import { BmbButtonDirective } from '../../../directives/button.directive';
 import { BmbLoginOnboardingService } from '../bmb-login-onboarding.service';
 
@@ -9,7 +13,7 @@ import { BmbLoginOnboardingService } from '../bmb-login-onboarding.service';
   templateUrl: './bmb-login-onboarding-logout.component.html',
   styleUrl: './bmb-login-onboarding-logout.component.scss',
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbLoginOnboardingLogoutComponent {
   checkCircleImage: string = '../assets/images/placeholders/check-circle.svg';
@@ -18,10 +22,12 @@ export class BmbLoginOnboardingLogoutComponent {
 
   handleContinuePage(): void {
     this.loginOnboardingService.setUserInfo({
-      "id": 'A00123456',
-      "fullName": 'Borrego Perez',
-      "profilePicture": '../assets/images/placeholders/user-icon-test.svg',
+      id: 'A00123456',
+      fullName: 'Borrego Perez',
+      profilePicture: '../assets/images/placeholders/user-icon-test.svg',
     });
-    this.loginOnboardingService.setActivePage( this.loginOnboardingService.getActivePage() + 1 );
+    this.loginOnboardingService.setActivePage(
+      this.loginOnboardingService.getActivePage() + 1,
+    );
   }
 }

@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, model, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  model,
+  ViewEncapsulation,
+} from '@angular/core';
 import { BmbInputComponent } from '../../../bmb-input/bmb-input.component';
 import { BmbLoginOnboardingStepperStepComponent } from './bmb-login-onboarding-stepper-step.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -7,10 +12,7 @@ import { BmbLoginOnboardingService } from '../../bmb-login-onboarding.service';
 @Component({
   selector: 'bmb-login-onboarding-stepper-step-one',
   standalone: true,
-  imports: [
-    BmbLoginOnboardingStepperStepComponent,
-    BmbInputComponent,
-  ],
+  imports: [BmbLoginOnboardingStepperStepComponent, BmbInputComponent],
   template: `
     <bmb-login-onboarding-stepper-step
       title="Paso 1"
@@ -51,23 +53,22 @@ import { BmbLoginOnboardingService } from '../../bmb-login-onboarding.service';
     </bmb-login-onboarding-stepper-step>
   `,
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbLoginOnboardingStepperStepOneComponent {
   isContinueDisable = model<boolean>(true);
 
   userForm: FormGroup = new FormGroup({
-      user: new FormControl<string>('', Validators.required),
-      password: new FormControl<string>('', Validators.required),
-    });
+    user: new FormControl<string>('', Validators.required),
+    password: new FormControl<string>('', Validators.required),
+  });
   showErrors: { [key: string]: boolean } = {};
 
   constructor(private loginOnboardingService: BmbLoginOnboardingService) {}
 
   onSubmit(): void {
-
     if (this.userForm.valid) {
-      this.loginOnboardingService.setCorrectCode('123456');//
+      this.loginOnboardingService.setCorrectCode('123456'); //
       this.isContinueDisable.set(false);
       return;
     }

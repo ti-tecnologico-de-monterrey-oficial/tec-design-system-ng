@@ -1,4 +1,8 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from '@angular/core';
 import { BmbStepProgressBarComponent } from '../../bmb-step-progress-bar/bmb-step-progress-bar.component';
 import { BmbLoginOnboardingStepperStepOneComponent } from './bmb-login-onboarding-stepper-steps/bmb-login-onboarding-stepper-step-one.component';
 import { BmbLoginOnboardingStepperStepTwoComponent } from './bmb-login-onboarding-stepper-steps/bmb-login-onboarding-stepper-step-two.component';
@@ -15,14 +19,13 @@ import { BmbLoginOnboardingService } from '../bmb-login-onboarding.service';
     BmbLoginOnboardingStepperStepTwoComponent,
     BmbLoginOnboardingStepperStepThreeComponent,
     BmbLoginOnboardingStepperStepFourComponent,
-],
+  ],
   templateUrl: './bmb-login-onboarding-stepper.component.html',
   styleUrl: './bmb-login-onboarding-stepper.component.scss',
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbLoginOnboardingStepperComponent {
-
   constructor(private loginOnboardingService: BmbLoginOnboardingService) {
     this.loginOnboardingService.setTotalSteps(4);
   }
@@ -44,6 +47,8 @@ export class BmbLoginOnboardingStepperComponent {
   }
 
   handleContinuePage(): void {
-    this.loginOnboardingService.setActivePage( this.loginOnboardingService.getActivePage() + 1 );
+    this.loginOnboardingService.setActivePage(
+      this.loginOnboardingService.getActivePage() + 1,
+    );
   }
 }

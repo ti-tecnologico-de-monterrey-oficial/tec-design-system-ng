@@ -1,8 +1,8 @@
-import { Injectable, signal } from "@angular/core";
-import { IBmbUserInfo } from "./types";
+import { Injectable, signal } from '@angular/core';
+import { IBmbUserInfo } from './types';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class BmbLoginOnboardingService {
   isLoading = signal<boolean>(false);
@@ -11,9 +11,9 @@ export class BmbLoginOnboardingService {
   totalSteps = signal<number>(0);
   correctCode = signal<string>('');
   userInfo = signal<IBmbUserInfo>({
-    "id": '',
-    "fullName": '',
-    "profilePicture": '',
+    id: '',
+    fullName: '',
+    profilePicture: '',
   });
 
   getIsLoading(): boolean {

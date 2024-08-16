@@ -114,6 +114,17 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'boolean' },
       },
     },
+    isButtonAppearance: {
+      name: 'Is button appearance',
+      control: { type: 'boolean' },
+      description:
+        'This property enable the Button appearance and set `horizontal` to true.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
   },
   args: {
     title: 'Canvas',
@@ -123,6 +134,7 @@ Below is an example of how you can use this component in HTML:
     target: '_blank',
     link: 'https://www.youtube.com/',
     horizontal: false,
+    isButtonAppearance: false,
   },
 } as Meta<typeof BmbInteractiveIconComponent>;
 

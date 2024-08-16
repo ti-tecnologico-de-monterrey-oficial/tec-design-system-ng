@@ -1,4 +1,8 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from '@angular/core';
 import { BmbButtonDirective } from '../../../directives/button.directive';
 import { BmbLoginOnboardingService } from '../bmb-login-onboarding.service';
 
@@ -9,7 +13,7 @@ import { BmbLoginOnboardingService } from '../bmb-login-onboarding.service';
   templateUrl: './bmb-login-onboarding-login.component.html',
   styleUrl: './bmb-login-onboarding-login.component.scss',
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbLoginOnboardingLoginComponent {
   tecLogoImage: string = '../assets/images/tec-logo.svg';
@@ -18,6 +22,8 @@ export class BmbLoginOnboardingLoginComponent {
   constructor(private loginOnboardingService: BmbLoginOnboardingService) {}
 
   handleContinuePage(): void {
-    this.loginOnboardingService.setActivePage( this.loginOnboardingService.getActivePage() + 1 );
+    this.loginOnboardingService.setActivePage(
+      this.loginOnboardingService.getActivePage() + 1,
+    );
   }
 }

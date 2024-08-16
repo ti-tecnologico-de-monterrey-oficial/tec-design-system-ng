@@ -198,7 +198,7 @@
 
       &-image {
         width: 100%;
-        object-fit: fill;
+        object-fit: cover;
         height: rem.rem_calc(500);
         border-radius: rem.rem_calc(25);
       }
