@@ -40,6 +40,7 @@ export class BmbInputComponent implements OnInit {
   @Input() size!: number;
 
   @Output() isFocus: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() isBlur: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private cdr: ChangeDetectorRef) {}
 
@@ -51,10 +52,6 @@ export class BmbInputComponent implements OnInit {
     if (this.isRequired) {
       this.control.addValidators(Validators.required);
     }
-
-    // else {
-    //   this.control.clearValidators();
-    // }
 
     this.control.updateValueAndValidity();
 
@@ -77,6 +74,7 @@ export class BmbInputComponent implements OnInit {
 
   onBlur() {
     this.isFocus.emit(false);
+    this.isBlur.emit(true);
   }
 
   get inputClasses(): { [key: string]: boolean } {
