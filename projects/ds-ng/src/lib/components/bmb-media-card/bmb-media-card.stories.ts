@@ -141,16 +141,82 @@ Below is an example of how you can use this component in HTML:
     type: {
       name: 'Type',
       control: {
-        type: 'radio',
+        type: 'select',
       },
-      options: ['inline', 'floating'],
+      options: ['inline', 'floating', 'author_detail'],
       table: {
         type: { summary: 'string' },
         category: 'Properties',
-        defaultValue: { summary: 'lazy' },
+        defaultValue: { summary: 'inline' },
       },
       description:
-        'Configure the loading behavior, if you set "eager", the browser will load the image immediately, if you set "lazy", the browser will wait until the viewport is close to the image to load it.',
+        'Set the visualization type to the card, the **inline** enables the `title`, `date` and `custom HTML` properties, the **author_detail** enable the `title`, `subtitle`, `date`, `user section`, and `custom HTML` and the **floating** option enables all the content.',
+    },
+    title: {
+      name: 'Title',
+      control: {
+        type: 'text',
+      },
+      description: 'Set title card.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
+    subtitle: {
+      name: 'Subtitle',
+      control: {
+        type: 'text',
+      },
+      description: 'Set title card.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
+    content: {
+      name: 'Content',
+      control: {
+        type: 'text',
+      },
+      description: 'Set an string content, if you needs set complex cotent you can added as <ng-content>.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
+    date: {
+      name: 'Date',
+      control: {
+        type: 'text',
+      },
+      description: 'Set the date element.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
+    userImage: {
+      name: 'User image URL',
+      control: {
+        type: 'text',
+      },
+      description: 'Set the user picture (Required to enable the user section).',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
+    userName: {
+      name: 'User name',
+      control: {
+        type: 'text',
+      },
+      description: 'Set the user picture (Required to enable the user section).',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
     },
   },
   args: {
@@ -185,10 +251,14 @@ export const Default: Story = {
         [enableZoom]="enableZoom"
         [isBlurredBackdrop]="isBlurredBackdrop"
         [type]="type"
+        [title]="title"
+        [subtitle]="subtitle"
+        [content]="content"
+        [date]="date"
+        [userImage]="userImage"
+        [userName]="userName"
       >
-        <h2>Gatos: Misteriosos y Fascinantes</h2>
-        <h4>Explorando el mundo secreto de los felinos</h4>
-        <p>Los gatos son criaturas llenas de misterio. Su elegancia al moverse, sus ojos penetrantes y su habilidad para desaparecer en las sombras han inspirado leyendas y supersticiones. Pero más allá de su aura enigmática, los gatos también son compañeros leales y cariñosos.</p>
+        <p>Custom HTML content</p>
       </bmb-media-card>
     `,
   }),
