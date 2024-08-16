@@ -47,7 +47,8 @@ export class BmbMediaCardComponent {
 
   getContentClasses(): string[] {
     const classes = [];
-    if (this.type() === 'inline') classes.push(`bmb_radius-${this.borderRadius()}`);
+    if (this.type() === 'inline')
+      classes.push(`bmb_radius-${this.borderRadius()}`);
     if (this.isBlurredBackdrop())
       classes.push('bmb_media-card-content-container-backdrop');
     return classes;

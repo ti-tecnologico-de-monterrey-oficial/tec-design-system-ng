@@ -54,16 +54,16 @@
       @if (title()) {
         <h1 class="bmb_media-card-content-title">{{ title() }}</h1>
       }
-      @if (subtitle() && type() === 'floating') {
+      @if (subtitle() && type() === "floating") {
         <h2 class="bmb_media-card-content-subtitle">{{ subtitle() }}</h2>
       }
-      @if (content() && type() === 'floating') {
+      @if (content() && type() === "floating") {
         <p class="bmb_media-card-content-content">{{ content() }}</p>
       }
-      @if (date() && type() !== 'author_detail') {
+      @if (date() && type() !== "author_detail") {
         <p class="bmb_media-card-content-date">{{ date() }}</p>
       }
-      @if (userName() && userImage() && type() === 'author_detail') {
+      @if (userName() && userImage() && type() === "author_detail") {
         <section class="bmb_media-card-content-user">
           <bmb-user-image
             [altImage]="getUserAttribute(userName())"

@@ -179,7 +179,8 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'text',
       },
-      description: 'Set an string content, if you needs set complex cotent you can added as <ng-content>.',
+      description:
+        'Set an string content, if you needs set complex cotent you can added as <ng-content>.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -201,7 +202,8 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'text',
       },
-      description: 'Set the user picture (Required to enable the user section).',
+      description:
+        'Set the user picture (Required to enable the user section).',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -212,7 +214,8 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'text',
       },
-      description: 'Set the user picture (Required to enable the user section).',
+      description:
+        'Set the user picture (Required to enable the user section).',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
