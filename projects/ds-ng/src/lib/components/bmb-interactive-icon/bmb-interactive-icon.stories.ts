@@ -93,7 +93,7 @@ Below is an example of how you can use this component in HTML:
     target: {
       name: 'Target',
       control: {
-        type: 'radio',
+        type: 'select',
       },
       options: ['_blank', '_self', '_parent', '_top'],
       description:
@@ -114,15 +114,17 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'boolean' },
       },
     },
-    isButtonAppearance: {
-      name: 'Is button appearance',
-      control: { type: 'boolean' },
+    layout: {
+      name: 'Layout',
+      control: {
+        type: 'select',
+      },
+      options: ['regular', 'button', 'app_drawer'],
       description:
-        'This property enable the Button appearance and set `horizontal` to true.',
+        'Set the layout behavior.',
       table: {
-        category: 'Properties',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean' },
+        category: 'Events',
+        type: { summary: 'string' },
       },
     },
   },
@@ -134,7 +136,7 @@ Below is an example of how you can use this component in HTML:
     target: '_blank',
     link: 'https://www.youtube.com/',
     horizontal: false,
-    isButtonAppearance: false,
+    layout: 'regular',
   },
 } as Meta<typeof BmbInteractiveIconComponent>;
 
