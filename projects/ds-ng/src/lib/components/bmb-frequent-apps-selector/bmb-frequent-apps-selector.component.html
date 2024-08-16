@@ -1,14 +1,15 @@
 <bmb-container [appearance]="'primary-home'" class="bmb_frequent_apps">
-  <p class="bmb_frequent_apps-title">{{ title }}</p>
-  <div #container class="bmb_frequent_apps-container">
-    <bmb-interactive-icon
-      *ngFor="let app of apps"
-      [icon]="app.icon"
-      [title]="app.title"
-      [link]="app.link ?? '#'"
-      [target]="app.target ?? '_self'"
-      [appearance]="app.appearance"
-    >
-    </bmb-interactive-icon>
+  <p class="bmb_frequent_apps-title">{{ title() }}</p>
+  <div #container [ngClass]="getClassesFAC()">
+    @for (app of apps(); track $index) {
+      <bmb-interactive-icon
+        [icon]="app.icon"
+        [title]="app.title"
+        [link]="app.link ?? '#'"
+        [target]="app.target ?? '_self'"
+        [appearance]="app.appearance"
+        [layout]="layout()"
+      />
+    }
   </div>
 </bmb-container>
