@@ -1,4 +1,4 @@
-<div class="bmb_inner_header">
+<header class="bmb_inner_header">
   <div class="bmb_inner_header-container">
     <ng-container *ngIf="!showSearch">
       <button class="bmb_inner_header-button" (click)="handleBack()">
@@ -19,4 +19,7 @@
       ></bmb-search-input>
     </ng-container>
   </div>
-</div>
+  <section class="bmb_inner_header-content">
+    <ng-content></ng-content>
+  </section>
+</header>
