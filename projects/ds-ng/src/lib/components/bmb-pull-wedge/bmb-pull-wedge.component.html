@@ -1,0 +1,14 @@
+<div class="bmb_pull_wedge" [style.height.px]="contentHeight">
+  <div class="bmb_pull_wedge-container">
+    <div #content class="bmb_pull_wedge-content" [class.visible]="isCollapsed">
+      <ng-content select="[collapsible]"></ng-content>
+    </div>
+    <button
+      class="bmb_pull_wedge-button"
+      type="button"
+      cdkDrag
+      (cdkDragMoved)="onDragMoved($event)"
+      (cdkDragEnded)="onDragEnded($event)"
+    ></button>
+  </div>
+</div>

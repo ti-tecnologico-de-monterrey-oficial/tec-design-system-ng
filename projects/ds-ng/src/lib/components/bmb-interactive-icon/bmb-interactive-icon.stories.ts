@@ -93,7 +93,7 @@ Below is an example of how you can use this component in HTML:
     target: {
       name: 'Target',
       control: {
-        type: 'radio',
+        type: 'select',
       },
       options: ['_blank', '_self', '_parent', '_top'],
       description:
@@ -114,6 +114,18 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'boolean' },
       },
     },
+    layout: {
+      name: 'Layout',
+      control: {
+        type: 'select',
+      },
+      options: ['regular', 'button', 'app_drawer'],
+      description: 'Set the layout behavior.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
   },
   args: {
     title: 'Canvas',
@@ -123,6 +135,7 @@ Below is an example of how you can use this component in HTML:
     target: '_blank',
     link: 'https://www.youtube.com/',
     horizontal: false,
+    layout: 'regular',
   },
 } as Meta<typeof BmbInteractiveIconComponent>;
 

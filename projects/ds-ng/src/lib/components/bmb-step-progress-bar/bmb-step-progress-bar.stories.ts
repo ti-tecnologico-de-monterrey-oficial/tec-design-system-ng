@@ -75,15 +75,65 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: 'false' },
       },
     },
+    type: {
+      name: 'Type',
+      control: {
+        type: 'radio',
+      },
+      options: ['horizontal', 'vertical'],
+      description:
+        'Changes the direction of the step progress bar, could be horizontal or vertical',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'horizontal' },
+      },
+    },
+    labelSteps: {
+      name: 'Label Steps',
+      control: {
+        type: 'array',
+      },
+      description: 'Set the label for each step',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string[]' },
+      },
+    },
   },
   args: {
     totalSteps: 5,
     activeStep: 3,
     size: 'small',
     freeze: false,
+    type: 'vertical',
+    labelSteps: [
+      '¡Orden de compra aprobada!',
+      '¡Orden de compra aprobada!',
+      '¡Orden de compra aprobada!',
+      '¡Orden de compra aprobada!',
+      '¡Orden de compra aprobada!',
+    ],
   },
 } as Meta<typeof BmbStepProgressBarComponent>;
 
 type Story = StoryObj<BmbStepProgressBarComponent>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {},
+  render: (args) => ({
+    props: args,
+    template: `
+    <bmb-step-progress-bar
+      [activeStep]="1"
+      [totalSteps]="4"
+      [size]="'normal'"
+      [freeze]="false"
+      [type]="type"
+      [labelSteps]="['¡Orden de compra aprobada!','¡Orden de compra aprobada!','¡Orden de compra aprobada!','¡Orden de compra aprobada!','¡Orden de compra aprobada!', ]"
+      [labelComplete]="'Hecho'"
+      [labelIncomplete]="'Pendiente'"
+      ></bmb-step-progress-bar>
+    `,
+  }),
+};

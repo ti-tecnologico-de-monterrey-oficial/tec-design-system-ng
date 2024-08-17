@@ -1,9 +1,10 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
-  Input,
-  Output,
+  computed,
+  input,
+  model,
+  output,
   ViewEncapsulation,
 } from '@angular/core';
 import { IBotType } from './types';
@@ -25,30 +26,40 @@ export { IBotType } from './types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbChatBarComponent {
-  @Input() placeholder: string = '¿Qué deseas encontrar hoy?';
-  @Input() botList: IBotType[] = defaultBotList;
-  @Input() defaultBot: IBotType = {
-    name: 'TecGPT',
-    icon: '/assets/images/bot-icons/bot.png',
-  };
-  @Input() isLoading: boolean = false;
+  placeholder = input<string>();
+  botList = input<IBotType[]>();
+  currentBot = model<IBotType>();
+  isLoading = model<boolean>();
 
-  @Output() onSendMessage: EventEmitter<string> = new EventEmitter<string>();
-  @Output() onBotChange: EventEmitter<IBotType> = new EventEmitter<IBotType>();
+  onSendMessage = output<string>();
 
   control = new FormControl();
-  isDialogOpen = false;
-  currentBot: IBotType = this.defaultBot;
+  isDialogOpen: boolean = false;
+  defaultPlaceholder = computed(
+    () => this.placeholder() ?? '¿Qué deseas encontrar hoy?',
+  );
+  dBotList = computed(() => this.botList() ?? defaultBotList);
+
+  ngOnInit(): void {
+    this.currentBot.update(
+      (
+        bot: IBotType = {
+          name: 'TecGPT',
+          icon: '/assets/images/bot-icons/bot.png',
+        },
+      ): IBotType => bot,
+    );
+  }
 
   handleSend() {
     this.onSendMessage.emit(this.control.value);
+    this.isLoading.update((value) => !value);
     this.control.reset();
   }
 
   handleChangeBot(bot: IBotType) {
-    this.currentBot = bot;
     this.isDialogOpen = false;
-    this.onBotChange.emit(bot);
+    this.currentBot.set(bot);
   }
 
   handleDialog() {

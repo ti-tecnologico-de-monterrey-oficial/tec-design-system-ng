@@ -3,18 +3,15 @@ import {
   ChangeDetectionStrategy,
   ViewEncapsulation,
   Input,
+  input,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
-import { BmbInteractiveIconComponent } from '../bmb-interactive-icon/bmb-interactive-icon.component';
-
-interface App {
-  icon: string;
-  title: string;
-  link?: string;
-  target?: string;
-  appearance: string;
-}
+import {
+  BmbInteractiveIconComponent,
+  IBmbInteractiveIconType,
+} from '../bmb-interactive-icon/bmb-interactive-icon.component';
+import { IBmbApp } from '../../types';
 
 @Component({
   selector: 'bmb-frequent-apps-selector',
@@ -26,6 +23,14 @@ interface App {
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbFrequentAppsSelectorComponent {
-  @Input() title: string = '';
-  @Input() apps: App[] = [];
+  title = input<string>('');
+  apps = input<IBmbApp[]>([]);
+  layout = input<IBmbInteractiveIconType>('regular');
+
+  getClassesFAC(): string[] {
+    return [
+      'bmb_frequent_apps-container',
+      `bmb_frequent_apps-container-${this.layout()}`,
+    ];
+  }
 }
