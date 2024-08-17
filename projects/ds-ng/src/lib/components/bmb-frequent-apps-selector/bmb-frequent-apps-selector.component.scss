@@ -22,6 +22,22 @@
       display: flex;
       justify-content: center;
     }
+
+    &-button {
+      flex-flow: column;
+      flex-wrap: wrap;
+      max-height: rem.rem_calc(224);
+      gap: rem.rem_calc(12);
+      overflow: auto;
+
+      bmb-interactive-icon {
+        width: inherit;
+      }
+
+      .bmb_interactive_icon-box {
+        border-radius: var(--bmb-radius-full);
+      }
+    }
   }
 }
 

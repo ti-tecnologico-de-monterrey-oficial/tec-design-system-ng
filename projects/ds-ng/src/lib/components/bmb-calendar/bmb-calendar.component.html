@@ -2,7 +2,7 @@
   <bmb-calendar-template-mobile
     [now]="now"
     [lang]="lang"
-    [events]="events"
+    [events]="getEvents()"
     (onCurrentDateChange)="handleCurrentDateChange($event)"
     [weekDays]="renderWeekDays"
     [isListShowing]="isListShowing"
@@ -11,22 +11,22 @@
   <bmb-calendar-header
     [weekDays]="renderWeekDays"
     [lang]="lang"
-    [view]="view"
+    [view]="view()"
     [currentDate]="now"
     (onRangeChange)="handleDateChange($event, now)"
     (onCurrentDateChange)="handleCurrentDateChange($event)"
   />
   @if (isListShowing) {
     <bmb-calendar-template-event-list
-      [events]="events"
+      [events]="getEvents()"
       (onSelectEvent)="handleSelectEvent($event)"
     />
   } @else {
-    @switch (view) {
+    @switch (view()) {
       @case ("day") {
         <bmb-calendar-template-day
           [now]="now"
-          [events]="events"
+          [events]="getEvents()"
           (onSelectEvent)="handleSelectEvent($event)"
         />
       }
@@ -36,14 +36,14 @@
           [lang]="lang"
           [hourFormat]="hourFormat"
           [now]="now"
-          [events]="events"
+          [events]="getEvents()"
           (onSelectEvent)="handleSelectEvent($event)"
         />
       }
       @case ("month") {
         <bmb-calendar-template-month
           [now]="now"
-          [events]="events"
+          [events]="getEvents()"
           (onSelectEvent)="handleSelectEvent($event)"
         />
       }
@@ -53,7 +53,7 @@
           [lang]="lang"
           [hourFormat]="hourFormat"
           [now]="now"
-          [events]="events"
+          [events]="getEvents()"
         />
       }
     }
@@ -62,13 +62,15 @@
   @if (selectedEvent) {
     <bmb-calendar-template-event
       [event]="selectedEvent"
-      (closeModal)="handleSelectEvent($event)"
+      (closeModal)="handleSelectEvent(null)"
     />
   }
 
-  @if (isLoading) {
+  @if (getIsLoading()) {
     <section class="bmb_calendar-loader">
-      <bmb-loader />
+      <div class="bmb_loader-loading">
+        <bmb-icon icon="progress_activity" class="bmb_loader-icon" />
+      </div>
     </section>
   }
 </div>

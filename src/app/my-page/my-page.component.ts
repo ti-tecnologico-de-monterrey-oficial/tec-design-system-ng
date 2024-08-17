@@ -47,11 +47,7 @@ import {
   BmbStudentActivityCardComponent,
 } from '../../../projects/ds-ng/src/public-api';
 
-import {
-  IBmbTab,
-  IBmbCalendarEvent,
-  IBmbCalendarEventClick,
-} from '../../../projects/ds-ng/src/public-api';
+import { IBmbTab } from '../../../projects/ds-ng/src/public-api';
 export interface Target {
   target: string;
   index: number;
@@ -136,20 +132,6 @@ export class MyPageComponent {
   value = 'tec-design';
 
   isCalendarLoading = false;
-  calendarEvents: IBmbCalendarEvent[] = [
-    {
-      title: 'Test',
-      detail: 'Detail test',
-      start: '2024-04-23T15:00:00.715Z',
-      end: '2024-04-23T15:30:00.715Z',
-    },
-    {
-      title: 'Test jnsf dkjn jasn kljnsd kljfna klsdj nfklajsndfk lajndksf',
-      detail: 'Dkjaskdjjhasbdfjhasbdjkhfbjkahsdbf',
-      start: '2024-04-24T15:00:00.715Z',
-      end: '2024-04-24T16:00:00.715Z',
-    },
-  ];
 
   sidebarElements: {
     id: number;
@@ -237,37 +219,6 @@ export class MyPageComponent {
 
   onProfileClick() {
     this.boolUserSummary = !this.boolUserSummary;
-  }
-
-  async fetchData(event: IBmbCalendarEventClick): Promise<void> {
-    console.log(event);
-    try {
-      this.isCalendarLoading = true;
-      await new Promise((resolve) => setTimeout(resolve, 3000));
-    } finally {
-      this.calendarEvents = [
-        {
-          title: 'Test',
-          detail: 'Detail test',
-          start: '2024-04-23T15:00:00.715Z',
-          end: '2024-04-23T15:30:00.715Z',
-        },
-        {
-          title: 'Test jnsf dkjn jasn kljnsd kljfna klsdj nfklajsndfk lajndksf',
-          detail: 'Dkjaskdjjhasbdfjhasbdjkhfbjkahsdbf',
-          start: '2024-04-24T15:00:00.715Z',
-          end: '2024-04-24T16:00:00.715Z',
-        },
-        {
-          title: 'Test',
-          detail: 'Detail test',
-          start: '2024-04-25T22:56:44.715Z',
-          end: '2024-04-25T23:56:44.715Z',
-        },
-      ];
-      this.isCalendarLoading = false;
-      this.cdr.detectChanges();
-    }
   }
 
   correctCodes: { [key: string]: string } = {

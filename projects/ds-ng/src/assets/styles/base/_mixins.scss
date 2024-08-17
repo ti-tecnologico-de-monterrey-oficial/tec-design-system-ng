@@ -14,8 +14,10 @@
 }
 
 @mixin container-query($breakpoint, $condition) {
-  @debug "divider offset: #{$condition}-width: #{$breakpoint}px";
-
+  /*
+  Add this property to parent style:
+    container-type: inline-size;
+  */
   @container (#{$condition}-width: #{$breakpoint}px) {
     @content;
   }

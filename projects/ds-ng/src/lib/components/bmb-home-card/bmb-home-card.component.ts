@@ -1,9 +1,8 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
-  Input,
-  Output,
+  input,
+  output,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbHomeCardHeaderComponent } from './bmb-home-card-header/bmb-home-card-header.component';
@@ -18,20 +17,19 @@ import { BmbHomeCardHeaderComponent } from './bmb-home-card-header/bmb-home-card
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbHomeCardComponent {
-  @Input() title: string = '';
-  @Input() subtitle: string = '';
-  @Input() icon?: string;
-  @Input() isMobile?: boolean = false;
+  title = input.required<string>();
+  subtitle = input<string>();
+  icon = input<string>();
+  isMobile = input<boolean>();
 
-  @Output() onClose: EventEmitter<void> = new EventEmitter<void>();
-
-  isExpanded: boolean = false;
-
-  handleExpandChange(expanded: boolean): void {
-    this.isExpanded = expanded;
-  }
+  onClose = output();
+  onBack = output();
 
   handleClose(): void {
     this.onClose.emit();
+  }
+
+  handleBack(): void {
+    this.onBack.emit();
   }
 }
