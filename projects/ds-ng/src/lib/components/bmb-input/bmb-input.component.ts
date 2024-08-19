@@ -12,6 +12,8 @@ import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 
+export type IBbmInputType = 'text' | 'password';
+
 @Component({
   selector: 'bmb-input',
   styleUrls: ['./bmb-input.component.scss'],
@@ -23,6 +25,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 })
 export class BmbInputComponent implements OnInit {
   @Input() label: string = '';
+  @Input() type: IBbmInputType = 'text';
   @Input() placeholder: string = '';
   @Input() icon: string = '';
   @Input() errorMessage: string = '';

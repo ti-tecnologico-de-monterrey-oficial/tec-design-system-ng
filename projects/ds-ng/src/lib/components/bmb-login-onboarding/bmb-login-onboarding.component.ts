@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  output,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbLoginOnboardingLoginComponent } from './bmb-login-onboarding-login/bmb-login-onboarding-login.component';
@@ -24,9 +25,15 @@ import { BmbLoginOnboardingLoggedComponent } from './bmb-login-onboarding-logged
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbLoginOnboardingComponent {
+  handleRequetAuthorization = output<any>();
+
   constructor(private loginOnboardingService: BmbLoginOnboardingService) {}
 
   getActivePage(): number {
     return this.loginOnboardingService.getActivePage();
+  }
+
+  handleAuth(event: unknown) {
+    this.handleRequetAuthorization.emit(event);
   }
 }

@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  output,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbStepProgressBarComponent } from '../../bmb-step-progress-bar/bmb-step-progress-bar.component';
@@ -9,6 +10,7 @@ import { BmbLoginOnboardingStepperStepTwoComponent } from './bmb-login-onboardin
 import { BmbLoginOnboardingStepperStepThreeComponent } from './bmb-login-onboarding-stepper-steps/bmb-login-onboarding-stepper-step-three.component';
 import { BmbLoginOnboardingStepperStepFourComponent } from './bmb-login-onboarding-stepper-steps/bmb-login-onboarding-stepper-step-four.component';
 import { BmbLoginOnboardingService } from '../bmb-login-onboarding.service';
+import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 
 @Component({
   selector: 'bmb-login-onboarding-stepper',
@@ -19,6 +21,7 @@ import { BmbLoginOnboardingService } from '../bmb-login-onboarding.service';
     BmbLoginOnboardingStepperStepTwoComponent,
     BmbLoginOnboardingStepperStepThreeComponent,
     BmbLoginOnboardingStepperStepFourComponent,
+    BmbIconComponent,
   ],
   templateUrl: './bmb-login-onboarding-stepper.component.html',
   styleUrl: './bmb-login-onboarding-stepper.component.scss',
@@ -26,16 +29,14 @@ import { BmbLoginOnboardingService } from '../bmb-login-onboarding.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbLoginOnboardingStepperComponent {
+  handleRequetAuthorization = output<any>();
+
   constructor(private loginOnboardingService: BmbLoginOnboardingService) {
     this.loginOnboardingService.setTotalSteps(4);
   }
 
   getIsLoading(): boolean {
     return this.loginOnboardingService.getIsLoading();
-  }
-
-  setIsLoading(state: boolean): void {
-    this.loginOnboardingService.setIsLoading(state);
   }
 
   getTotalSteps(): number {
@@ -50,5 +51,9 @@ export class BmbLoginOnboardingStepperComponent {
     this.loginOnboardingService.setActivePage(
       this.loginOnboardingService.getActivePage() + 1,
     );
+  }
+
+  handleAuth(event: unknown) {
+    this.handleRequetAuthorization.emit(event);
   }
 }

@@ -1,17 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { BmbLoginOnboardingStepperStepComponent } from './bmb-login-onboarding-stepper-step.component';
 
-import { BmbLoginOnboardingLoginStepComponent } from './bmb-login-onboarding-stepper-step.component';
-
-describe('BmbLoginOnboardingLoginStepComponent', () => {
-  let component: BmbLoginOnboardingLoginStepComponent;
-  let fixture: ComponentFixture<BmbLoginOnboardingLoginStepComponent>;
+describe('BmbLoginOnboardingStepperStepComponent', () => {
+  let component: BmbLoginOnboardingStepperStepComponent;
+  let fixture: ComponentFixture<BmbLoginOnboardingStepperStepComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BmbLoginOnboardingLoginStepComponent],
+      imports: [BmbLoginOnboardingStepperStepComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(BmbLoginOnboardingLoginStepComponent);
+    fixture = TestBed.createComponent(BmbLoginOnboardingStepperStepComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

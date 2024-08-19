@@ -3,6 +3,7 @@ import {
   Component,
   input,
   model,
+  output,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbButtonDirective } from '../../../../directives/button.directive';
@@ -29,6 +30,8 @@ export class BmbLoginOnboardingStepperStepComponent {
   continueLabel = input.required<string>();
 
   isContinueDisable = model<boolean>();
+
+  handleRequetAuthorization = output<any>();
 
   totalSteps: number = 0;
   data: ModalDataConfig = {
@@ -62,7 +65,7 @@ export class BmbLoginOnboardingStepperStepComponent {
     }
   }
 
-  handleContinueStep(): void {
+  async handleContinueStep(): Promise<void> {
     if (this.getActiveStep() === this.totalSteps - 1) {
       this.openModalComponent();
       this.matDialog.afterAllClosed.subscribe(() => {
@@ -72,8 +75,16 @@ export class BmbLoginOnboardingStepperStepComponent {
       });
     }
 
-    // this.loginOnboardingService.setIsLoading(true);
+    this.loginOnboardingService.setIsLoading(true);
 
-    this.loginOnboardingService.setActiveStep(this.getActiveStep() + 1);
+    this.handleRequetAuthorization.emit({
+      data: this.loginOnboardingService.getAuthenticateInfo(),
+      callback: (result: boolean) => {
+        if (result) {
+          this.loginOnboardingService.setIsLoading(false);
+          this.loginOnboardingService.setActiveStep(this.getActiveStep() + 1);
+        }
+      },
+    });
   }
 }

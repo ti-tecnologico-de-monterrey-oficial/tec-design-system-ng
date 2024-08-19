@@ -5,7 +5,6 @@ import {
   ChangeDetectorRef,
   model,
   TemplateRef,
-  OnInit,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
@@ -152,7 +151,7 @@ import { DateTime } from 'luxon';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   constructor(
     private cdr: ChangeDetectorRef,
     private matDialog: MatDialog,
@@ -649,13 +648,21 @@ export class AppComponent implements OnInit {
     return this.notificationSignal.getNotificationList();
   }
 
-  ngOnInit(): void {
-    console.log('actionsTemplate', this.actionsTemplate);
-  }
-
   handleLoading() {
     this.calendarEventsSignal.setIsLoading(
       !this.calendarEventsSignal.getIsLoading(),
     );
+  }
+
+  async handleRequetAuthorization(): Promise<boolean> {
+    let result = false;
+    await new Promise((res) => {
+      setTimeout(() => {
+        result = true;
+        res(true);
+      }, 12000);
+    });
+
+    return result;
   }
 }
