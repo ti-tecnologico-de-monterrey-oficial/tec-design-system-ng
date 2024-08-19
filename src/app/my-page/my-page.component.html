@@ -1,111 +1,81 @@
 <bmb-table
+  [truncate]="false"
+  [wrap]="false"
   [data]="[
     {
-      lastName: 1,
-      name: 'Hydrogen',
-      birthday: 1.0079,
-      country: 'H',
-      extra: 'Lorem ipsum dolor.',
-      detail:
-        'Hydrogen is a chemical element with symbol H and atomic number 1. With a standard\n                atomic weight of 1.008,  hydrogen is the lightest element on the periodic table.',
+      lastName: templateForThisCell,
+      name: 'Atenea',
+      birthday: '02/02/2000',
+      country: 'Mexico',
     },
     {
-      lastName: 2,
-      name: 'Helium',
-      birthday: 4.0026,
-      country: 'He',
-      extra: 'Lorem ipsum dolor.',
-      detail:
-        'Hydrogen is a chemical element with symbol H and atomic number 1. With a standard\n                atomic weight of 1.008,  hydrogen is the lightest element on the periodic table.',
-    },
-    {
-      lastName: 3,
-      name: 'Lithium',
-      birthday: 6.941,
-      country: 'Li',
-      extra: 'Lorem ipsum dolor.',
-      detail:
-        'Hydrogen is a chemical element with symbol H and atomic number 1. With a standard\n                atomic weight of 1.008,  hydrogen is the lightest element on the periodic table.',
-    },
-    {
-      lastName: 4,
-      name: 'Beryllium',
-      birthday: 9.0122,
-      country: 'Be',
-      extra: 'Lorem ipsum dolor.',
-      detail:
-        'Hydrogen is a chemical element with symbol H and atomic number 1. With a standard\n                atomic weight of 1.008,  hydrogen is the lightest element on the periodic table.',
-    },
-    {
-      lastName: 5,
-      name: 'Boron',
-      birthday: 10.811,
-      country: 'B',
-      extra: 'Lorem ipsum dolor.',
-      detail:
-        'Hydrogen is a chemical element with symbol H and atomic number 1. With a standard\n                atomic weight of 1.008,  hydrogen is the lightest element on the periodic table.',
-    },
-    {
-      lastName: 6,
-      name: 'Carbon',
-      birthday: 12.0107,
-      country: 'C',
-      extra: 'Lorem ipsum dolor.',
-      detail:
-        'Hydrogen is a chemical element with symbol H and atomic number 1. With a standard\n                atomic weight of 1.008,  hydrogen is the lightest element on the periodic table.',
-    },
-    {
-      lastName: 7,
-      name: 'Nitrogen',
-      birthday: 14.0067,
-      country: 'N',
-      extra: 'Lorem ipsum dolor.',
-      detail:
-        'Hydrogen is a chemical element with symbol H and atomic number 1. With a standard\n                atomic weight of 1.008,  hydrogen is the lightest element on the periodic table.',
-    },
-    {
-      lastName: 8,
-      name: 'Oxygen',
-      birthday: 15.9994,
-      country: 'O',
-      extra: 'Lorem ipsum dolor.',
-      detail:
-        'Hydrogen is a chemical element with symbol H and atomic number 1. With a standard\n                atomic weight of 1.008,  hydrogen is the lightest element on the periodic table.',
-    },
-    {
-      lastName: 9,
-      name: 'Fluorine',
-      birthday: 18.9984,
-      country: 'F',
-      extra: 'Lorem ipsum dolor.',
-      detail:
-        'Hydrogen is a chemical element with symbol H and atomic number 1. With a standard\n                atomic weight of 1.008,  hydrogen is the lightest element on the periodic table.',
-    },
-    {
-      lastName: 10,
-      name: 'Neon',
-      birthday: 20.1797,
-      country: 'Ne',
-      extra: 'Lorem ipsum dolor.',
-      detail:
-        'Hydrogen is a chemical element with symbol H and atomic number 1. With a standard\n                atomic weight of 1.008,  hydrogen is the lightest element on the periodic table.',
+      lastName: 'Nava',
+      name: 'Jesus',
+      birthday: '03/04/1998',
+      country: 'Mexico',
+      detail: 'Detail text',
     },
   ]"
   [columns]="[
-    { def: 'name', label: 'Name', dataKey: 'name' },
-    { def: 'lastName', label: 'Last Name', dataKey: 'lastName' },
-    { def: 'birthday', label: 'Birthday', dataKey: 'birthday' },
-    { def: 'country', label: 'Country', dataKey: 'country' },
-    { def: 'extra', label: 'Extra', dataKey: 'extra' },
+    {
+      def: 'name',
+      label: 'Name',
+      dataKey: 'name',
+      htmlLabel: dynamicLabel,
+    },
+    {
+      def: 'lastName',
+      label: 'Last Name',
+      dataKey: 'lastName',
+    },
+    {
+      def: 'birthday',
+      label: 'Birthday',
+      dataKey: 'birthday',
+    },
+    {
+      def: 'country',
+      label: 'Country',
+      dataKey: 'country',
+    },
   ]"
-  [config]="{
-    isSelectable: false,
-    isExpandible: false,
-    isPaginable: true,
-    showActions: true,
-  }"
+  [config]="config"
   (select)="onSelect($event)"
-></bmb-table>
+  [actionTemplate]="templateAction"
+  [detailTemplate]="detailTemplate"
+>
+  <!-- Define la plantilla dinámica -->
+  <ng-template #templateForThisCell let-row="row">
+    <!-- Aqui puedes meter lo que quieras y como quieras -->
+    <div style="display: flex; align-items: center">
+      <bmb-icon icon="face"></bmb-icon>
+      Benitez
+      <bmb-icon icon="face"></bmb-icon>
+      <bmb-icon icon="face"></bmb-icon>
+    </div>
+  </ng-template>
+
+  <ng-template #templateAction>
+    <div class="action-container">
+      <button (click)="clickButton($event)" size="small">
+        <bmb-icon [icon]="'apps'" />
+      </button>
+      <button (click)="clickButton($event)" size="small">
+        <bmb-icon [icon]="'add'" />
+      </button>
+    </div>
+  </ng-template>
+
+  <ng-template #dynamicLabel let-column="column" let-i="index">
+    Title
+    <bmb-icon icon="face" class="bmb_table-data-icon" />
+  </ng-template>
+
+  <ng-template #detailTemplate let-element="row">
+    {{ element.detail }}
+  </ng-template>
+</bmb-table>
+
 <!-- <bmb-loader [overlay]="true" title="Cargando...." /> -->
 
 <bmb-loader
