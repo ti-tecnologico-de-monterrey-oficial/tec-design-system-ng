@@ -37,7 +37,8 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
 import { TableColum, TableConfig } from './bmb-tables.interface';
 import { MatTooltipModule } from '@angular/material/tooltip';
-
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { TemplateNameDirective } from './bmb-tables.directive';
 @Component({
   selector: 'bmb-table',
   standalone: true,
@@ -105,6 +106,8 @@ export class BmbTablesComponent implements AfterViewInit, OnInit {
 
   @Input() actionTemplate?: TemplateRef<any> | null;
   @Input() detailTemplate: TemplateRef<any> | null = null;
+  @Input() truncate: boolean = false;
+  @Input() wrap: boolean = true;
 
   @Output() select: EventEmitter<any> = new EventEmitter();
 
@@ -118,9 +121,16 @@ export class BmbTablesComponent implements AfterViewInit, OnInit {
     this.setTableResize(this.matTableRef!.nativeElement.clientWidth);
   }
 
-  constructor(private renderer: Renderer2) {}
+  constructor(
+    private renderer: Renderer2,
+    private sanitizer: DomSanitizer,
+  ) {}
 
   ngOnInit(): void {}
+
+  sanitizeHTML(label: string): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(label);
+  }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -273,5 +283,9 @@ export class BmbTablesComponent implements AfterViewInit, OnInit {
       this.paginator.length,
     );
     return `${startIndex} - ${endIndex} de ${this.paginator.length}`;
+  }
+
+  isTemplateRef(value: any): boolean {
+    return value instanceof TemplateRef;
   }
 }
