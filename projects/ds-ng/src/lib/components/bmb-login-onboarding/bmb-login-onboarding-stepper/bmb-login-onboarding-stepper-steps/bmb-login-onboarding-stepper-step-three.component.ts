@@ -16,6 +16,7 @@ import { BmbLoginOnboardingStepperStepComponent } from './bmb-login-onboarding-s
       cancelBackLabel="Anterior"
       continueLabel="Siguiente"
     >
+      <ng-content />
     </bmb-login-onboarding-stepper-step>
   `,
   encapsulation: ViewEncapsulation.None,

@@ -1,9 +1,6 @@
-import { Injectable, signal } from '@angular/core';
-import { IBmbUserInfo } from './types';
+import { signal } from '@angular/core';
+import { IBmbAuthenticateInfo, IBmbUserInfo } from './types';
 
-@Injectable({
-  providedIn: 'root',
-})
 export class BmbLoginOnboardingService {
   isLoading = signal<boolean>(false);
   activePage = signal<number>(0);
@@ -14,6 +11,10 @@ export class BmbLoginOnboardingService {
     id: '',
     fullName: '',
     profilePicture: '',
+  });
+  authenticateInfo = signal<IBmbAuthenticateInfo>({
+    user: '',
+    password: '',
   });
 
   getIsLoading(): boolean {
@@ -62,5 +63,13 @@ export class BmbLoginOnboardingService {
 
   setUserInfo(state: IBmbUserInfo) {
     this.userInfo.set(state);
+  }
+
+  getAuthenticateInfo() {
+    return this.authenticateInfo();
+  }
+
+  setAuthenticateInfo(state: IBmbAuthenticateInfo) {
+    this.authenticateInfo.set(state);
   }
 }

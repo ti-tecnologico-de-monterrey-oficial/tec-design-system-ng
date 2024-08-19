@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   model,
+  output,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbInputComponent } from '../../../bmb-input/bmb-input.component';
@@ -20,6 +21,7 @@ import { BmbLoginOnboardingService } from '../../bmb-login-onboarding.service';
       cancelBackLabel="Cancelar"
       continueLabel="Siguiente"
       [isContinueDisable]="isContinueDisable()"
+      (handleRequetAuthorization)="handleAuth($event)"
     >
       <span class="bmb_login-onboarding-stepper-step-one-input">
         <bmb-input
@@ -36,6 +38,7 @@ import { BmbLoginOnboardingService } from '../../bmb-login-onboarding.service';
       </span>
       <span class="bmb_login-onboarding-stepper-step-one-input">
         <bmb-input
+          type="password"
           placeholder="Contraseña"
           icon="lock"
           errorMessage="La contraseña es requerida"
@@ -56,6 +59,8 @@ import { BmbLoginOnboardingService } from '../../bmb-login-onboarding.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbLoginOnboardingStepperStepOneComponent {
+  handleRequetAuthorization = output<any>();
+
   isContinueDisable = model<boolean>(true);
 
   userForm: FormGroup = new FormGroup({
@@ -66,9 +71,13 @@ export class BmbLoginOnboardingStepperStepOneComponent {
 
   constructor(private loginOnboardingService: BmbLoginOnboardingService) {}
 
+  handleAuth(event: unknown) {
+    this.handleRequetAuthorization.emit(event);
+  }
+
   onSubmit(): void {
     if (this.userForm.valid) {
-      this.loginOnboardingService.setCorrectCode('123456'); //
+      this.loginOnboardingService.setAuthenticateInfo(this.userForm.value);
       this.isContinueDisable.set(false);
       return;
     }
