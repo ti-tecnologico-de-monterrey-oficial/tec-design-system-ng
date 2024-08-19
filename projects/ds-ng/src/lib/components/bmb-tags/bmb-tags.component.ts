@@ -9,6 +9,9 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+
+export type IBmbActivityTags = | 'info' | 'life' | 'event';
+
 @Component({
   selector: 'bmb-tag',
   standalone: true,
@@ -18,8 +21,9 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
+
 export class BmbTagComponent implements AfterViewInit {
-  @Input() appearance: 'info' | 'life' | 'event' = 'info';
+  @Input() appearance: IBmbActivityTags = 'info';
   @Input() text: string = '';
   @Input() grouped: boolean = false;
   @Input() dissmisable: boolean = false;
