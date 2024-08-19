@@ -4,7 +4,7 @@ import { BmbTagComponent } from './bmb-tags.component';
 export default {
   title: 'Micro Componentes/Tag',
   component: BmbTagComponent,
-  parameters:{
+  parameters: {
     docs: {
       description: {
         component: `
@@ -32,13 +32,13 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'radio',
       },
-      options:['info', 'event', 'life'],
+      options: ['info', 'event', 'life'],
       description:
         'When the activity tag property is set as true, the tag can change the appearance.',
       table: {
         category: 'Properties',
         type: { summary: 'radio' },
-        deafaultValue: { summary: 'info'}
+        deafaultValue: { summary: 'info' },
       },
     },
     rounded: {
@@ -51,7 +51,7 @@ Below is an example of how you can use this component in HTML:
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
-        defaultValue: { summary: false}
+        defaultValue: { summary: false },
       },
     },
     activityTag: {
@@ -64,7 +64,7 @@ Below is an example of how you can use this component in HTML:
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'false'}
+        defaultValue: { summary: 'false' },
       },
     },
     text: {
@@ -107,8 +107,7 @@ Below is an example of how you can use this component in HTML:
     grouped: false,
     dissmisable: false,
     activityTag: true,
-    appearance: 'event'
-
+    appearance: 'event',
   },
 } as Meta<typeof BmbTagComponent>;
 

@@ -16,11 +16,11 @@
   width: fit-content;
   cursor: pointer;
 
-  &:hover{
+  &:hover {
     background-color: RGBA(var(--color-charade-500));
   }
 
-  &:active{
+  &:active {
     background-color: RGBA(var(--color-mariner-700));
     border: rem.rem_calc(1) solid RGBA(var(--color-mariner-700));
   }
@@ -30,7 +30,7 @@
     gap: rem.rem_calc(8);
   }
 
-  &-rounded{
+  &-rounded {
     border-radius: rem.rem_calc(50);
   }
 
@@ -48,28 +48,27 @@
     padding: 0;
   }
 
-  &-info{
+  &-info {
     background-color: RGBA(var(--color-mariner-700));
     border: rem.rem_calc(1) solid RGBA(var(--color-mariner-700));
     pointer-events: none;
-    color:RGBA(var(--color-charade-50))
+    color: RGBA(var(--color-charade-50));
   }
 
-  &-event{
+  &-event {
     background-color: RGBA(var(--color-purple-primary));
     border: rem.rem_calc(1) solid RGBA(var(--color-purple-primary));
     pointer-events: none;
-    color:RGBA(var(--color-charade-50))
+    color: RGBA(var(--color-charade-50));
   }
 
-  &-life{
+  &-life {
     background-color: RGBA(var(--color-green-primary));
     border: rem.rem_calc(1) solid RGBA(var(--color-green-primary));
     pointer-events: none;
-    color:RGBA(var(--color-charade-50))
+    color: RGBA(var(--color-charade-50));
   }
 }
-
 
 [data-theme="dark"],
 .storybook-dark-theme {
@@ -77,37 +76,36 @@
     background-color: RGBA(var(--color-charade-950));
     border: rem.rem_calc(1) solid RGBA(var(--color-charade-500));
     color: RGBA(var(--color-white-primary));
-  
-    &:hover{
+
+    &:hover {
       background-color: RGBA(var(--color-charade-500));
     }
-  
-    &:active{
+
+    &:active {
       background-color: RGBA(var(--color-mariner-700));
       border: rem.rem_calc(1) solid RGBA(var(--color-mariner-700));
     }
-  
-  
+
     bmb-icon {
       color: RGBA(var(--color-white-primary));
     }
 
-    &-info{
+    &-info {
       background-color: RGBA(var(--color-mariner-700));
       border: rem.rem_calc(1) solid RGBA(var(--color-mariner-700));
-      color:RGBA(var(--color-charade-50))
+      color: RGBA(var(--color-charade-50));
     }
-  
-    &-event{
+
+    &-event {
       background-color: RGBA(var(--color-purple-primary));
       border: rem.rem_calc(1) solid RGBA(var(--color-purple-primary));
-      color:RGBA(var(--color-charade-50))
+      color: RGBA(var(--color-charade-50));
     }
-  
-    &-life{
+
+    &-life {
       background-color: RGBA(var(--color-green-primary));
       border: rem.rem_calc(1) solid RGBA(var(--color-green-primary));
-      color:RGBA(var(--color-charade-50))
+      color: RGBA(var(--color-charade-50));
     }
   }
 }
