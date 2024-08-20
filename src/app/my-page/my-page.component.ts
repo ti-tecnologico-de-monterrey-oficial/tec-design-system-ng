@@ -1,8 +1,8 @@
 import {
   Component,
   ChangeDetectionStrategy,
-  ViewChild,
   ChangeDetectorRef,
+  ViewChild,
 } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FormControl, Validators } from '@angular/forms';
@@ -45,6 +45,7 @@ import {
   BmbStudentActivitySelectorComponent,
   BmbTabStudenActivityComponent,
   BmbStudentActivityCardComponent,
+  BmbIconComponent,
 } from '../../../projects/ds-ng/src/public-api';
 
 import { IBmbTab } from '../../../projects/ds-ng/src/public-api';
@@ -54,7 +55,6 @@ export interface Target {
 }
 
 import names from '../names.json';
-
 @Component({
   selector: 'bmb-my-page',
   standalone: true,
@@ -98,6 +98,7 @@ import names from '../names.json';
     BmbStudentActivitySelectorComponent,
     BmbTabStudenActivityComponent,
     BmbStudentActivityCardComponent,
+    BmbIconComponent,
   ],
   templateUrl: './my-page.component.html',
   styleUrl: './my-page.component.scss',
@@ -309,7 +310,19 @@ export class MyPageComponent {
     console.log('Button secondary on error loader');
   }
 
-  onSelect(name: string) {
-    window.alert(name.toString());
+  //Table
+  config = {
+    isSelectable: true,
+    isExpandible: true,
+    isPaginable: true,
+    showActions: true,
+  };
+
+  onSelect(selected: any) {
+    // Maneja la selección
+  }
+
+  clickButton(event: any) {
+    // Maneja el click del botón
   }
 }

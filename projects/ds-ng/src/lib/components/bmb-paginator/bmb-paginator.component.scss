@@ -1,0 +1,52 @@
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/rem" as rem;
+
+.bmb_paginator {
+  align-items: center;
+  bottom: 0;
+  display: flex;
+  height: rem.rem_calc(48);
+  justify-content: flex-end;
+  margin: rem.rem_calc(8 0);
+  position: sticky;
+  right: 0;
+
+  &-text {
+    color: RGBA(var(--color-charade-700));
+    margin-right: rem.rem_calc(32);
+    @include fonts.font(3, regular);
+  }
+
+  &-btn {
+    color: RGBA(var(--color-charade-900));
+    height: rem.rem_calc(48);
+    padding: 0;
+    width: rem.rem_calc(48);
+
+    &-disabled {
+      color: RGBA(var(--color-charade-300));
+      cursor: not-allowed;
+    }
+  }
+
+  &-icon {
+    font-size: rem.rem_calc(24);
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_paginator {
+    &-text {
+      color: RGBA(var(--color-charade-200));
+    }
+
+    &-btn {
+      color: RGBA(var(--color-charade-50));
+
+      &-disabled {
+        color: RGBA(var(--color-charade-700));
+      }
+    }
+  }
+}
