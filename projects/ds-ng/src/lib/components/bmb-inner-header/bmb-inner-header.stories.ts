@@ -132,4 +132,26 @@ Below is an example of how you can use this component in HTML:
 
 type Story = StoryObj<BmbInnerHeaderComponent>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: (args) => ({
+    props: args,
+    template: `
+      <bmb-inner-header
+        [src]="src"
+        [mobileSrc]="mobileSrc"
+        [alt]="alt"
+        [width]="width"
+        [ratio]="ratio"
+        [borderRadius]="borderRadius"
+        [loading]="loading"
+        [enableZoom]="enableZoom"
+        [isBlurredBackdrop]="isBlurredBackdrop"
+        [type]="type"
+      >
+        <h2>Custom Component</h2>
+        <p>Custom component area has a max height 90px (transformed to rem) no scrollable.</p>
+        <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Bibendum augue facilisi ac fusce porttitor. Lacus torquent nullam libero iaculis sociosqu parturient. Inceptos amet lectus turpis in curabitur. Ultricies vulputate massa vitae volutpat odio neque. Eros hendrerit dis facilisi praesent placerat diam dapibus primis. Aenean fringilla curabitur tincidunt eu phasellus ante. Class leo diam tristique ligula ullamcorper imperdiet sociosqu fermentum?</p>
+      </bmb-inner-header>
+    `,
+  }),
+};

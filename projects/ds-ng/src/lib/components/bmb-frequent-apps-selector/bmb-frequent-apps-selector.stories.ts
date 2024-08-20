@@ -76,6 +76,18 @@ Below is an example of how to use this component in HTML:
         type: { summary: 'string' },
       },
     },
+    layout: {
+      name: 'Layout',
+      control: {
+        type: 'select',
+      },
+      options: ['regular', 'button', 'app_drawer'],
+      description: 'Set the layout behavior.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
   },
   args: {
     apps: [
@@ -135,6 +147,7 @@ Below is an example of how to use this component in HTML:
       },
     ],
     title: 'Services',
+    layout: 'regular',
   },
 } as Meta<typeof BmbFrequentAppsSelectorComponent>;
 
