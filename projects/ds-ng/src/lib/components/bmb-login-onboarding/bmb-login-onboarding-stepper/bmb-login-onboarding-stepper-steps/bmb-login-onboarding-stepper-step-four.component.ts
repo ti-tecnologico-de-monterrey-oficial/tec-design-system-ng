@@ -34,6 +34,7 @@ import { BmbModalComponent } from '../../../bmb-modal/bmb-modal.component';
 })
 export class BmbLoginOnboardingStepperStepFourComponent {
   handleRequet = output<any>();
+  handleContinuePage = output();
 
   credentialExample: string = '../assets/images/placeholders/credential.svg';
   data: ModalDataConfig = {
@@ -54,7 +55,7 @@ export class BmbLoginOnboardingStepperStepFourComponent {
   openModalComponent(): void {
     this.matDialog.open(BmbModalComponent, { data: this.data });
     this.matDialog.afterAllClosed.subscribe(() => {
-      this._handleRequet();
+      this._handleContinueStep();
     });
   }
 
@@ -62,19 +63,14 @@ export class BmbLoginOnboardingStepperStepFourComponent {
     this.openModalComponent();
   }
 
-  _handleRequet(): void {
+  _handleContinueStep(): void {
     this.loginOnboardingService.setIsLoading(true);
     this.handleRequet.emit({
-      activeStep: this.loginOnboardingService.getActiveStep(),
+      action: 'activate',
       callback: (result: boolean) => {
         if (result) {
           this.loginOnboardingService.setIsLoading(false);
-          this.loginOnboardingService.setActiveStep(
-            this.loginOnboardingService.getActiveStep() + 1,
-          );
-          this.loginOnboardingService.setActivePage(
-            this.loginOnboardingService.getActivePage() + 1,
-          );
+          this.handleContinuePage.emit();
         }
       },
     });

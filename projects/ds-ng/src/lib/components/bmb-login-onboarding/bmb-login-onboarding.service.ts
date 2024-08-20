@@ -1,6 +1,9 @@
-import { signal } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { IBmbUserInfo } from './types';
 
+@Injectable({
+  providedIn: 'root',
+})
 export class BmbLoginOnboardingService {
   isLoading = signal<boolean>(false);
   activePage = signal<number>(0);

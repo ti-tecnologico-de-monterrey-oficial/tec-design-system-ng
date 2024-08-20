@@ -18,6 +18,6 @@ export interface IBmbLoginOnbording {
   data: {
     [x: string]: unknown;
   };
-  activeStep: number;
+  action?: 'auth' | 'toTP' | 'biometric' | 'activate' | 'getUserInfo' | 'init';
   callback: (result: unknown) => void;
 }

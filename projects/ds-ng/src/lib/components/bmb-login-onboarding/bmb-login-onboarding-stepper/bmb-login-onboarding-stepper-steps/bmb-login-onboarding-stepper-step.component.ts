@@ -42,7 +42,11 @@ export class BmbLoginOnboardingStepperStepComponent {
       this.getActiveStep() !== this.loginOnboardingService.getTotalSteps() - 1
     ) {
       this.loginOnboardingService.setActiveStep(this.getActiveStep() - 1);
+      return;
     }
+
+    this.loginOnboardingService.setActiveStep(0);
+    this.loginOnboardingService.setActivePage(0);
   }
 
   handleContinueStep(event: unknown): void {

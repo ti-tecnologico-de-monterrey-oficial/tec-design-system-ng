@@ -61,6 +61,7 @@ import {
   IBotType,
   BmbLoginOnboardingComponent,
   IBmbLoginOnbording,
+  IBmbUserInfo,
 } from '../../projects/ds-ng/src/public-api';
 
 import {
@@ -672,25 +673,47 @@ export class AppComponent {
     return true;
   }
 
-  handleRequet(event: IBmbLoginOnbording) {
-    const { data, activeStep, callback } = event;
+  getUserInfo(data: unknown): IBmbUserInfo {
+    data;
+    return {
+      id: 'A00123456',
+      fullName: 'Borrego Perez',
+      profilePicture: '../assets/images/placeholders/user-icon-test.svg',
+    };
+  }
 
-    switch (activeStep) {
-      case 0:
+  init(): void {
+    console.log('init');
+  }
+
+  handleRequet(event: IBmbLoginOnbording) {
+    const { data, action, callback } = event;
+
+    switch (action) {
+      case 'auth':
         setTimeout(() => {
           callback(this.auth(data));
-        }, 5000);
+        }, 1000);
         break;
-      case 1:
+      case 'toTP':
         callback(this.toTPCode(data));
         break;
-      case 2:
+      case 'biometric':
         callback(this.biometricData());
         break;
-      case 3:
+      case 'activate':
         callback(this.activate());
         break;
+      case 'getUserInfo':
+        callback(this.getUserInfo(data));
+        break;
+      case 'init':
+        setTimeout(() => {
+          callback(this.init());
+        }, 1000);
+        break;
       default:
+        console.log('Invalid action');
     }
   }
 }

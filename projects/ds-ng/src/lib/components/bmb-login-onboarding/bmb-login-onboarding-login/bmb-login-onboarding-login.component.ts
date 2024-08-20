@@ -1,10 +1,10 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  output,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbButtonDirective } from '../../../directives/button.directive';
-import { BmbLoginOnboardingService } from '../bmb-login-onboarding.service';
 
 @Component({
   selector: 'bmb-login-onboarding-login',
@@ -16,14 +16,12 @@ import { BmbLoginOnboardingService } from '../bmb-login-onboarding.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbLoginOnboardingLoginComponent {
+  handleContinuePage = output();
+
   tecLogoImage: string = '../assets/images/tec-logo.svg';
   mitecImage: string = '../assets/images/logos-mitec/logo_mitec-vertical.svg';
 
-  constructor(private loginOnboardingService: BmbLoginOnboardingService) {}
-
-  handleContinuePage(): void {
-    this.loginOnboardingService.setActivePage(
-      this.loginOnboardingService.getActivePage() + 1,
-    );
+  _handleContinuePage(): void {
+    this.handleContinuePage.emit();
   }
 }

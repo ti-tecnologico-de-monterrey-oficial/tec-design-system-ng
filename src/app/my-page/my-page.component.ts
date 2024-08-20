@@ -318,11 +318,13 @@ export class MyPageComponent {
     showActions: true,
   };
 
-  onSelect(selected: any) {
+  onSelect(selected: unknown) {
     // Maneja la selección
+    selected;
   }
 
-  clickButton(event: any) {
+  clickButton(event: unknown) {
     // Maneja el click del botón
+    event;
   }
 }

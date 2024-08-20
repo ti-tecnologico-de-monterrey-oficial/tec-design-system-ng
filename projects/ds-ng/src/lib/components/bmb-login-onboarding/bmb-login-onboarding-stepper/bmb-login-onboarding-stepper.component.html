@@ -11,16 +11,19 @@
       @case (0) {
         <bmb-login-onboarding-stepper-step-one
           (handleRequet)="_handleRequet($event)"
+          (handleContinueStep)="handleContinueStep()"
         />
       }
       @case (1) {
         <bmb-login-onboarding-stepper-step-two
           (handleRequet)="_handleRequet($event)"
+          (handleContinueStep)="handleContinueStep()"
         />
       }
       @case (2) {
         <bmb-login-onboarding-stepper-step-three
           (handleRequet)="_handleRequet($event)"
+          (handleContinueStep)="handleContinueStep()"
         >
           <ng-content />
         </bmb-login-onboarding-stepper-step-three>
@@ -28,16 +31,12 @@
       @case (3) {
         <bmb-login-onboarding-stepper-step-four
           (handleRequet)="_handleRequet($event)"
+          (handleContinuePage)="_handleContinuePage()"
         />
       }
-      @default {}
+      @default {
+        <p>Invalid step</p>
+      }
     }
   </section>
-  @if (getIsLoading()) {
-    <section class="bmb_login-onboarding-stepper-loader">
-      <div class="bmb_loader-loading">
-        <bmb-icon icon="progress_activity" class="bmb_loader-icon" />
-      </div>
-    </section>
-  }
 </section>
