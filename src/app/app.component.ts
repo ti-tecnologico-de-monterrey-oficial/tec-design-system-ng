@@ -60,6 +60,7 @@ import {
   BmbChatBarComponent,
   IBotType,
   BmbLoginOnboardingComponent,
+  IBmbLoginOnbording,
 } from '../../projects/ds-ng/src/public-api';
 
 import {
@@ -654,15 +655,42 @@ export class AppComponent {
     );
   }
 
-  async handleRequetAuthorization(): Promise<boolean> {
-    let result = false;
-    await new Promise((res) => {
-      setTimeout(() => {
-        result = true;
-        res(true);
-      }, 12000);
-    });
+  auth(data: unknown): boolean {
+    data;
+    return true;
+  }
 
-    return result;
+  toTPCode(data: unknown): boolean {
+    return data === '123456';
+  }
+
+  biometricData(): boolean {
+    return true;
+  }
+
+  activate(): boolean {
+    return true;
+  }
+
+  handleRequet(event: IBmbLoginOnbording) {
+    const { data, activeStep, callback } = event;
+
+    switch (activeStep) {
+      case 0:
+        setTimeout(() => {
+          callback(this.auth(data));
+        }, 5000);
+        break;
+      case 1:
+        callback(this.toTPCode(data));
+        break;
+      case 2:
+        callback(this.biometricData());
+        break;
+      case 3:
+        callback(this.activate());
+        break;
+      default:
+    }
   }
 }

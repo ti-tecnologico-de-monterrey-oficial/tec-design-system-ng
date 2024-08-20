@@ -29,7 +29,7 @@
       bmbButton
       size="small"
       [disabled]="isContinueDisable()"
-      (click)="handleContinueStep()"
+      (click)="handleContinueStep($event)"
     >
       {{ continueLabel() }}
     </button>

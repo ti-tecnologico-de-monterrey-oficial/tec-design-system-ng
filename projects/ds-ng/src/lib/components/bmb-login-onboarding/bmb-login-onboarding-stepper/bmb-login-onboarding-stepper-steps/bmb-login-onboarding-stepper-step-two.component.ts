@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   model,
+  output,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbLoginOnboardingStepperStepComponent } from './bmb-login-onboarding-stepper-step.component';
@@ -22,6 +23,7 @@ import { IBmbError } from '../../types';
       cancelBackLabel="Anterior "
       continueLabel="Siguiente"
       [isContinueDisable]="isContinueDisable()"
+      (handleContinue)="handleTPCode()"
     >
       <bmb-totp
         instanceId="toTP"
@@ -38,7 +40,10 @@ import { IBmbError } from '../../types';
 export class BmbLoginOnboardingStepperStepTwoComponent {
   isContinueDisable = model<boolean>(true);
 
+  handleRequet = output<any>();
+
   error: IBmbError = { codeError: false, errorMessage: '' };
+  code: string = '';
 
   constructor(private loginOnboardingService: BmbLoginOnboardingService) {}
 
@@ -50,26 +55,35 @@ export class BmbLoginOnboardingStepperStepTwoComponent {
     return this.error && this.error.errorMessage;
   }
 
-  verifyCode(receivedCode: string) {
-    this.isContinueDisable.set(true);
-
-    if (receivedCode === '') {
-      this.error = {
-        codeError: true,
-        errorMessage: 'Por favor llena todos los campos correctamente',
-      };
-      return;
-    }
-
-    if (receivedCode !== this.loginOnboardingService.getCorrectCode()) {
-      this.error = {
-        codeError: true,
-        errorMessage: 'Código no válido, por favor intenta de nuevo',
-      };
-      return;
-    }
-
-    this.isContinueDisable.set(false);
+  verifyCode(receivedCode: string): void {
     this.error = { codeError: false, errorMessage: '' };
+
+    if (receivedCode.length === 6) {
+      this.isContinueDisable.set(false);
+      this.code = receivedCode;
+    }
+  }
+
+  handleTPCode(): void {
+    this.loginOnboardingService.setIsLoading(true);
+    this.handleRequet.emit({
+      data: this.code,
+      activeStep: this.loginOnboardingService.getActiveStep(),
+      callback: (result: boolean) => {
+        this.loginOnboardingService.setIsLoading(false);
+
+        if (result) {
+          this.loginOnboardingService.setActiveStep(
+            this.loginOnboardingService.getActiveStep() + 1,
+          );
+          return;
+        }
+
+        this.error = {
+          codeError: true,
+          errorMessage: 'Código no válido, por favor intenta de nuevo',
+        };
+      },
+    });
   }
 }

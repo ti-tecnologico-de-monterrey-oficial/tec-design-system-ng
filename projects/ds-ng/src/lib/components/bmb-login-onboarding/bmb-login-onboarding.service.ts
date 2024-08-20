@@ -1,20 +1,15 @@
 import { signal } from '@angular/core';
-import { IBmbAuthenticateInfo, IBmbUserInfo } from './types';
+import { IBmbUserInfo } from './types';
 
 export class BmbLoginOnboardingService {
   isLoading = signal<boolean>(false);
   activePage = signal<number>(0);
   activeStep = signal<number>(0);
   totalSteps = signal<number>(0);
-  correctCode = signal<string>('');
   userInfo = signal<IBmbUserInfo>({
     id: '',
     fullName: '',
     profilePicture: '',
-  });
-  authenticateInfo = signal<IBmbAuthenticateInfo>({
-    user: '',
-    password: '',
   });
 
   getIsLoading(): boolean {
@@ -49,27 +44,11 @@ export class BmbLoginOnboardingService {
     this.totalSteps.set(state);
   }
 
-  getCorrectCode() {
-    return this.correctCode();
-  }
-
-  setCorrectCode(state: string) {
-    this.correctCode.set(state);
-  }
-
   getUserInfo(): IBmbUserInfo {
     return this.userInfo();
   }
 
   setUserInfo(state: IBmbUserInfo) {
     this.userInfo.set(state);
-  }
-
-  getAuthenticateInfo() {
-    return this.authenticateInfo();
-  }
-
-  setAuthenticateInfo(state: IBmbAuthenticateInfo) {
-    this.authenticateInfo.set(state);
   }
 }

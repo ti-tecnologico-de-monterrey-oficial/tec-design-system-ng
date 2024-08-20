@@ -10,19 +10,25 @@
     @switch (getActiveStep()) {
       @case (0) {
         <bmb-login-onboarding-stepper-step-one
-          (handleRequetAuthorization)="handleAuth($event)"
+          (handleRequet)="_handleRequet($event)"
         />
       }
       @case (1) {
-        <bmb-login-onboarding-stepper-step-two />
+        <bmb-login-onboarding-stepper-step-two
+          (handleRequet)="_handleRequet($event)"
+        />
       }
       @case (2) {
-        <bmb-login-onboarding-stepper-step-three>
+        <bmb-login-onboarding-stepper-step-three
+          (handleRequet)="_handleRequet($event)"
+        >
           <ng-content />
         </bmb-login-onboarding-stepper-step-three>
       }
       @case (3) {
-        <bmb-login-onboarding-stepper-step-four />
+        <bmb-login-onboarding-stepper-step-four
+          (handleRequet)="_handleRequet($event)"
+        />
       }
       @default {}
     }

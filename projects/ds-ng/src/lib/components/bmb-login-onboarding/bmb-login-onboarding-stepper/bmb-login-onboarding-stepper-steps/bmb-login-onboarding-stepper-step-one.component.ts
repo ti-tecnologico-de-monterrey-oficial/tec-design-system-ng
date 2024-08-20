@@ -21,7 +21,7 @@ import { BmbLoginOnboardingService } from '../../bmb-login-onboarding.service';
       cancelBackLabel="Cancelar"
       continueLabel="Siguiente"
       [isContinueDisable]="isContinueDisable()"
-      (handleRequetAuthorization)="handleAuth($event)"
+      (handleContinue)="handleAuth()"
     >
       <span class="bmb_login-onboarding-stepper-step-one-input">
         <bmb-input
@@ -59,9 +59,9 @@ import { BmbLoginOnboardingService } from '../../bmb-login-onboarding.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbLoginOnboardingStepperStepOneComponent {
-  handleRequetAuthorization = output<any>();
-
   isContinueDisable = model<boolean>(true);
+
+  handleRequet = output<any>();
 
   userForm: FormGroup = new FormGroup({
     user: new FormControl<string>('', Validators.required),
@@ -71,13 +71,8 @@ export class BmbLoginOnboardingStepperStepOneComponent {
 
   constructor(private loginOnboardingService: BmbLoginOnboardingService) {}
 
-  handleAuth(event: unknown) {
-    this.handleRequetAuthorization.emit(event);
-  }
-
   onSubmit(): void {
     if (this.userForm.valid) {
-      this.loginOnboardingService.setAuthenticateInfo(this.userForm.value);
       this.isContinueDisable.set(false);
       return;
     }
@@ -98,5 +93,21 @@ export class BmbLoginOnboardingStepperStepOneComponent {
 
   getFormControl(name: string): FormControl {
     return this.userForm.get(name) as FormControl;
+  }
+
+  handleAuth(): void {
+    this.loginOnboardingService.setIsLoading(true);
+    this.handleRequet.emit({
+      data: this.userForm.value,
+      activeStep: this.loginOnboardingService.getActiveStep(),
+      callback: (result: boolean) => {
+        if (result) {
+          this.loginOnboardingService.setIsLoading(false);
+          this.loginOnboardingService.setActiveStep(
+            this.loginOnboardingService.getActiveStep() + 1,
+          );
+        }
+      },
+    });
   }
 }
