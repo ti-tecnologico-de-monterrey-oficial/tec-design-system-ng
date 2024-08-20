@@ -4,9 +4,7 @@
       <bmb-login-onboarding-login />
     }
     @case (1) {
-      <bmb-login-onboarding-stepper
-        (handleRequetAuthorization)="handleAuth($event)"
-      >
+      <bmb-login-onboarding-stepper (handleRequet)="_handleRequet($event)">
         <ng-content />
       </bmb-login-onboarding-stepper>
     }

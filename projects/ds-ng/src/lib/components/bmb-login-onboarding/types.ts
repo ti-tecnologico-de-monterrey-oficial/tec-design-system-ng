@@ -14,9 +14,10 @@ export interface IBmbAuthenticateInfo {
   password: string;
 }
 
-export interface IBmbLoginOnbordingChange {
+export interface IBmbLoginOnbording {
   data: {
     [x: string]: unknown;
   };
-  callback: (result: boolean) => void;
+  activeStep: number;
+  callback: (result: unknown) => void;
 }

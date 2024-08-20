@@ -8,9 +8,6 @@ import {
 } from '@angular/core';
 import { BmbButtonDirective } from '../../../../directives/button.directive';
 import { BmbLoginOnboardingService } from '../../bmb-login-onboarding.service';
-import { MatDialog } from '@angular/material/dialog';
-import { BmbModalComponent } from '../../../bmb-modal/bmb-modal.component';
-import { ModalDataConfig } from '../../../bmb-modal/bmb-modal.interface';
 
 @Component({
   selector: 'bmb-login-onboarding-stepper-step',
@@ -31,60 +28,24 @@ export class BmbLoginOnboardingStepperStepComponent {
 
   isContinueDisable = model<boolean>();
 
-  handleRequetAuthorization = output<any>();
+  handleContinue = output<any>();
 
-  totalSteps: number = 0;
-  data: ModalDataConfig = {
-    title: 'Entrada a campus',
-    subtitle: '',
-    content: 'Podrás cambiar esta configuración en cualquier momento',
-    size: 'large',
-    type: 'action',
-    alertStyle: 'success',
-    primaryBtnLabel: 'Aceptar',
-  };
-
-  constructor(
-    private loginOnboardingService: BmbLoginOnboardingService,
-    private matDialog: MatDialog,
-  ) {
-    this.totalSteps = this.loginOnboardingService.getTotalSteps();
-  }
-
-  openModalComponent(): void {
-    this.matDialog.open(BmbModalComponent, { data: this.data });
-  }
+  constructor(private loginOnboardingService: BmbLoginOnboardingService) {}
 
   getActiveStep(): number {
     return this.loginOnboardingService.getActiveStep();
   }
 
   handleCancelBackStept(): void {
-    if (this.getActiveStep() && this.getActiveStep() !== this.totalSteps - 1) {
+    if (
+      this.getActiveStep() &&
+      this.getActiveStep() !== this.loginOnboardingService.getTotalSteps() - 1
+    ) {
       this.loginOnboardingService.setActiveStep(this.getActiveStep() - 1);
     }
   }
 
-  async handleContinueStep(): Promise<void> {
-    if (this.getActiveStep() === this.totalSteps - 1) {
-      this.openModalComponent();
-      this.matDialog.afterAllClosed.subscribe(() => {
-        this.loginOnboardingService.setActivePage(
-          this.loginOnboardingService.getActivePage() + 1,
-        );
-      });
-    }
-
-    this.loginOnboardingService.setIsLoading(true);
-
-    this.handleRequetAuthorization.emit({
-      data: this.loginOnboardingService.getAuthenticateInfo(),
-      callback: (result: boolean) => {
-        if (result) {
-          this.loginOnboardingService.setIsLoading(false);
-          this.loginOnboardingService.setActiveStep(this.getActiveStep() + 1);
-        }
-      },
-    });
+  handleContinueStep(event: unknown): void {
+    this.handleContinue.emit(event);
   }
 }

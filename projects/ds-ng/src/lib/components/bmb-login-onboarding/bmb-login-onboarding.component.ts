@@ -25,7 +25,7 @@ import { BmbLoginOnboardingLoggedComponent } from './bmb-login-onboarding-logged
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbLoginOnboardingComponent {
-  handleRequetAuthorization = output<any>();
+  handleRequet = output<any>();
 
   constructor(private loginOnboardingService: BmbLoginOnboardingService) {}
 
@@ -33,7 +33,7 @@ export class BmbLoginOnboardingComponent {
     return this.loginOnboardingService.getActivePage();
   }
 
-  handleAuth(event: unknown) {
-    this.handleRequetAuthorization.emit(event);
+  _handleRequet(event: unknown): void {
+    this.handleRequet.emit(event);
   }
 }

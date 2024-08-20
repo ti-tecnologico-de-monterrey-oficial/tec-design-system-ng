@@ -29,7 +29,7 @@ import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbLoginOnboardingStepperComponent {
-  handleRequetAuthorization = output<any>();
+  handleRequet = output<any>();
 
   constructor(private loginOnboardingService: BmbLoginOnboardingService) {
     this.loginOnboardingService.setTotalSteps(4);
@@ -53,7 +53,7 @@ export class BmbLoginOnboardingStepperComponent {
     );
   }
 
-  handleAuth(event: unknown) {
-    this.handleRequetAuthorization.emit(event);
+  _handleRequet(event: unknown): void {
+    this.handleRequet.emit(event);
   }
 }
