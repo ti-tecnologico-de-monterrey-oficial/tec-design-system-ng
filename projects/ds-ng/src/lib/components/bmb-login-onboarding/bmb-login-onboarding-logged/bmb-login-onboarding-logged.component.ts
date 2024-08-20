@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  output,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbButtonDirective } from '../../../directives/button.directive';
@@ -18,6 +19,8 @@ import { IBmbUserInfo } from '../types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbLoginOnboardingLoggedComponent {
+  handleRequet = output<any>();
+
   tecLogoImage: string = '../assets/images/tec-logo.svg';
   mitecImage: string = '../assets/images/logos-mitec/logo_mitec-vertical.svg';
 
@@ -27,5 +30,13 @@ export class BmbLoginOnboardingLoggedComponent {
     return this.loginOnboardingService.userInfo();
   }
 
-  handleContinue(): void {}
+  _handleContinue(): void {
+    this.loginOnboardingService.setIsLoading(true);
+    this.handleRequet.emit({
+      action: 'init',
+      callback: () => {
+        this.loginOnboardingService.setIsLoading(false);
+      },
+    });
+  }
 }

@@ -9,6 +9,7 @@ import { BmbLoginOnboardingStepperComponent } from './bmb-login-onboarding-stepp
 import { BmbLoginOnboardingService } from './bmb-login-onboarding.service';
 import { BmbLoginOnboardingLogoutComponent } from './bmb-login-onboarding-logout/bmb-login-onboarding-logout.component';
 import { BmbLoginOnboardingLoggedComponent } from './bmb-login-onboarding-logged/bmb-login-onboarding-logged.component';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 
 @Component({
   selector: 'bmb-login-onboarding',
@@ -18,6 +19,7 @@ import { BmbLoginOnboardingLoggedComponent } from './bmb-login-onboarding-logged
     BmbLoginOnboardingStepperComponent,
     BmbLoginOnboardingLogoutComponent,
     BmbLoginOnboardingLoggedComponent,
+    BmbIconComponent,
   ],
   templateUrl: './bmb-login-onboarding.component.html',
   styleUrl: './bmb-login-onboarding.component.scss',
@@ -29,11 +31,21 @@ export class BmbLoginOnboardingComponent {
 
   constructor(private loginOnboardingService: BmbLoginOnboardingService) {}
 
+  getIsLoading(): boolean {
+    return this.loginOnboardingService.getIsLoading();
+  }
+
   getActivePage(): number {
     return this.loginOnboardingService.getActivePage();
   }
 
   _handleRequet(event: unknown): void {
     this.handleRequet.emit(event);
+  }
+
+  handleContinuePage(): void {
+    this.loginOnboardingService.setActivePage(
+      this.loginOnboardingService.getActivePage() + 1,
+    );
   }
 }

@@ -1,4 +1,5 @@
 @use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/rem" as rem;
 
 @mixin page-flex {
   display: flex;
@@ -14,4 +15,34 @@
 
   @include fonts.font(5, regular);
   text-align: center;
+
+  &-loader {
+    display: flex;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    left: 0;
+    background-color: RGBA(var(--color-charade-100), 0.75);
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    backdrop-filter: blur(rem.rem_calc(1));
+    font-size: rem.rem_calc(128);
+    color: RGBA(var(--color-mariner-950));
+
+    .bmb_loader-icon {
+      animation: rotateAnimation 1s linear infinite;
+    }
+  }
+}
+
+@keyframes rotateAnimation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(359deg);
+  }
 }

@@ -23,11 +23,11 @@ import { IBmbError } from '../../types';
       cancelBackLabel="Anterior "
       continueLabel="Siguiente"
       [isContinueDisable]="isContinueDisable()"
-      (handleContinue)="handleTPCode()"
+      (handleContinue)="_handleContinueStep()"
     >
       <bmb-totp
         instanceId="toTP"
-        [maxCode]="6"
+        [maxCode]="maxCode"
         [codeError]="getCodeError()"
         [errorMessage]="getErrorMessage()"
         (handleSubmit)="verifyCode($event)"
@@ -41,9 +41,11 @@ export class BmbLoginOnboardingStepperStepTwoComponent {
   isContinueDisable = model<boolean>(true);
 
   handleRequet = output<any>();
+  handleContinueStep = output();
 
   error: IBmbError = { codeError: false, errorMessage: '' };
   code: string = '';
+  maxCode: number = 6;
 
   constructor(private loginOnboardingService: BmbLoginOnboardingService) {}
 
@@ -58,24 +60,22 @@ export class BmbLoginOnboardingStepperStepTwoComponent {
   verifyCode(receivedCode: string): void {
     this.error = { codeError: false, errorMessage: '' };
 
-    if (receivedCode.length === 6) {
+    if (receivedCode.length === this.maxCode) {
       this.isContinueDisable.set(false);
       this.code = receivedCode;
     }
   }
 
-  handleTPCode(): void {
+  _handleContinueStep(): void {
     this.loginOnboardingService.setIsLoading(true);
     this.handleRequet.emit({
       data: this.code,
-      activeStep: this.loginOnboardingService.getActiveStep(),
+      action: 'toTP',
       callback: (result: boolean) => {
         this.loginOnboardingService.setIsLoading(false);
 
         if (result) {
-          this.loginOnboardingService.setActiveStep(
-            this.loginOnboardingService.getActiveStep() + 1,
-          );
+          this.handleContinueStep.emit();
           return;
         }
 

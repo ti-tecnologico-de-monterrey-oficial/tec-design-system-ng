@@ -10,7 +10,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 
-export type IBmbActivityTags = | 'info' | 'life' | 'event';
+export type IBmbActivityTags = 'info' | 'life' | 'event';
 
 @Component({
   selector: 'bmb-tag',
@@ -21,7 +21,6 @@ export type IBmbActivityTags = | 'info' | 'life' | 'event';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-
 export class BmbTagComponent implements AfterViewInit {
   @Input() appearance: IBmbActivityTags = 'info';
   @Input() text: string = '';

@@ -17,7 +17,7 @@ import { BmbLoginOnboardingService } from '../../bmb-login-onboarding.service';
       subtitle="Registra tus datos biométricos"
       cancelBackLabel="Anterior"
       continueLabel="Siguiente"
-      (handleContinue)="_handleRequet()"
+      (handleContinue)="_handleContinueStep()"
     >
       <ng-content />
     </bmb-login-onboarding-stepper-step>
@@ -27,19 +27,18 @@ import { BmbLoginOnboardingService } from '../../bmb-login-onboarding.service';
 })
 export class BmbLoginOnboardingStepperStepThreeComponent {
   handleRequet = output<any>();
+  handleContinueStep = output();
 
   constructor(private loginOnboardingService: BmbLoginOnboardingService) {}
 
-  _handleRequet(): void {
+  _handleContinueStep(): void {
     this.loginOnboardingService.setIsLoading(true);
     this.handleRequet.emit({
-      activeStep: this.loginOnboardingService.getActiveStep(),
+      action: 'biometric',
       callback: (result: boolean) => {
         if (result) {
           this.loginOnboardingService.setIsLoading(false);
-          this.loginOnboardingService.setActiveStep(
-            this.loginOnboardingService.getActiveStep() + 1,
-          );
+          this.handleContinueStep.emit();
         }
       },
     });

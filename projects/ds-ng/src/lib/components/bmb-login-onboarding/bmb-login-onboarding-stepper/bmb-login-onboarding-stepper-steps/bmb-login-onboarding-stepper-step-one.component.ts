@@ -21,7 +21,7 @@ import { BmbLoginOnboardingService } from '../../bmb-login-onboarding.service';
       cancelBackLabel="Cancelar"
       continueLabel="Siguiente"
       [isContinueDisable]="isContinueDisable()"
-      (handleContinue)="handleAuth()"
+      (handleContinue)="_handleContinueStep()"
     >
       <span class="bmb_login-onboarding-stepper-step-one-input">
         <bmb-input
@@ -62,6 +62,7 @@ export class BmbLoginOnboardingStepperStepOneComponent {
   isContinueDisable = model<boolean>(true);
 
   handleRequet = output<any>();
+  handleContinueStep = output();
 
   userForm: FormGroup = new FormGroup({
     user: new FormControl<string>('', Validators.required),
@@ -95,17 +96,20 @@ export class BmbLoginOnboardingStepperStepOneComponent {
     return this.userForm.get(name) as FormControl;
   }
 
-  handleAuth(): void {
+  _handleContinueStep(): void {
     this.loginOnboardingService.setIsLoading(true);
     this.handleRequet.emit({
-      data: this.userForm.value,
-      activeStep: this.loginOnboardingService.getActiveStep(),
+      data: this.userForm['value'],
+      action: 'auth',
       callback: (result: boolean) => {
         if (result) {
+          this.loginOnboardingService.setUserInfo({
+            id: this.userForm.value['user'],
+            fullName: '',
+            profilePicture: '',
+          });
           this.loginOnboardingService.setIsLoading(false);
-          this.loginOnboardingService.setActiveStep(
-            this.loginOnboardingService.getActiveStep() + 1,
-          );
+          this.handleContinueStep.emit();
         }
       },
     });
