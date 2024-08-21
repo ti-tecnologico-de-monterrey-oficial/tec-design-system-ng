@@ -5,7 +5,6 @@ import {
   ChangeDetectorRef,
   model,
   TemplateRef,
-  OnInit,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
@@ -60,6 +59,12 @@ import {
   BmbCardContentComponent,
   BmbChatBarComponent,
   IBotType,
+  BmbLoginOnboardingComponent,
+  IBmbLoginOnbording,
+  IBmbUserInfo,
+} from '../../projects/ds-ng/src/public-api';
+
+import {
   BmbPushNotificationComponent,
   BmbNotificationService,
   BmbHomeCardChatComponent,
@@ -140,6 +145,7 @@ import { DateTime } from 'luxon';
     BmbHomeCardComponent,
     BmbHomeCardChatComponent,
     BmbChatBarComponent,
+    BmbLoginOnboardingComponent,
     BmbPushNotificationComponent,
   ],
   templateUrl: './app.component.html',
@@ -147,7 +153,7 @@ import { DateTime } from 'luxon';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   constructor(
     private cdr: ChangeDetectorRef,
     private matDialog: MatDialog,
@@ -644,13 +650,70 @@ export class AppComponent implements OnInit {
     return this.notificationSignal.getNotificationList();
   }
 
-  ngOnInit(): void {
-    console.log('actionsTemplate', this.actionsTemplate);
-  }
-
   handleLoading() {
     this.calendarEventsSignal.setIsLoading(
       !this.calendarEventsSignal.getIsLoading(),
     );
+  }
+
+  auth(data: unknown): boolean {
+    data;
+    return true;
+  }
+
+  toTPCode(data: unknown): boolean {
+    return data === '123456';
+  }
+
+  biometricData(): boolean {
+    return true;
+  }
+
+  activate(): boolean {
+    return true;
+  }
+
+  getUserInfo(data: unknown): IBmbUserInfo {
+    data;
+    return {
+      id: 'A00123456',
+      fullName: 'Borrego Perez',
+      profilePicture: '../assets/images/placeholders/user-icon-test.svg',
+    };
+  }
+
+  init(): void {
+    console.log('init');
+  }
+
+  handleRequet(event: IBmbLoginOnbording) {
+    const { data, action, callback } = event;
+
+    switch (action) {
+      case 'auth':
+        setTimeout(() => {
+          callback(this.auth(data));
+        }, 1000);
+        break;
+      case 'toTP':
+        callback(this.toTPCode(data));
+        break;
+      case 'biometric':
+        callback(this.biometricData());
+        break;
+      case 'activate':
+        callback(this.activate());
+        break;
+      case 'getUserInfo':
+        callback(this.getUserInfo(data));
+        break;
+      case 'init':
+        setTimeout(() => {
+          callback(this.init());
+        }, 1000);
+        break;
+      default:
+        console.log('Invalid action');
+    }
   }
 }
