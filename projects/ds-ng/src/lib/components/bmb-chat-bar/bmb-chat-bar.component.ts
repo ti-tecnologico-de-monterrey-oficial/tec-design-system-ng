@@ -28,6 +28,7 @@ export { IBotType } from './types';
 export class BmbChatBarComponent {
   placeholder = input<string>();
   botList = input<IBotType[]>();
+
   currentBot = model<IBotType>();
   isLoading = model<boolean>();
 
