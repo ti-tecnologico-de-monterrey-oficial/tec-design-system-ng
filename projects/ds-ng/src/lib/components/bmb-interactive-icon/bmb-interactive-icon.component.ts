@@ -65,6 +65,11 @@ export class BmbInteractiveIconComponent {
     );
   }
 
+  isImage(url: string): boolean {
+    const regx = /\.|\//gm;
+    return regx.test(url);
+  }
+
   handleClick(): void {
     this.buttonClick.emit();
   }

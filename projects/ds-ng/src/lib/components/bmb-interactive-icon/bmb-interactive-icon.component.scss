@@ -67,6 +67,8 @@
     height: rem.rem_calc(64);
     justify-content: center;
     width: rem.rem_calc(64);
+    margin: 0;
+    overflow: hidden;
   }
 
   &-icon {
@@ -119,6 +121,12 @@
     .bmb_interactive_icon-box {
       background-color: RGBA(var(--color-purple-primary));
     }
+  }
+
+  &-image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
   }
 }
 

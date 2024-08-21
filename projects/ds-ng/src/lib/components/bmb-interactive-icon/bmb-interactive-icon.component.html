@@ -1,11 +1,16 @@
 <ng-template #commonContent>
-  <span class="bmb_interactive_icon-box">
-    <bmb-icon
-      class="bmb_interactive_icon-icon"
-      icon="{{ icon() }}"
-      *ngIf="icon"
-    ></bmb-icon>
-  </span>
+  @if (isImage(icon())) {
+    <figure class="bmb_interactive_icon-box">
+      <img [src]="icon()" [alt]="title()" class="bmb_interactive_icon-image">
+    </figure>
+  } @else {
+    <span class="bmb_interactive_icon-box">
+      <bmb-icon
+        class="bmb_interactive_icon-icon"
+        [icon]="icon()"
+      ></bmb-icon>
+    </span>
+  }
   <span class="bmb_interactive_icon-text">
     <span class="bmb_interactive_icon-title" *ngIf="title">{{ title() }}</span>
     <span
