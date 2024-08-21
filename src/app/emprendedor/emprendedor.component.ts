@@ -130,7 +130,6 @@ export default class EmprendedorComponent {
       icon: 'face',
       target: '_blank',
       link: 'https://www.example.com/',
-      layout: 'app_drawer',
     },
     {
       appearance: 'blue',
@@ -138,7 +137,6 @@ export default class EmprendedorComponent {
       icon: 'face',
       target: '_blank',
       link: 'https://www.example.com/',
-      layout: 'app_drawer',
     },
     {
       appearance: 'green',
@@ -146,17 +144,20 @@ export default class EmprendedorComponent {
       icon: 'face',
       target: '_blank',
       link: 'https://www.example.com/',
-      layout: 'app_drawer',
     },
     {
       appearance: 'blue',
       title: 'Menú de servicios',
       icon: 'lists',
-      target: '_blank',
-      link: '',
-      layout: 'app_drawer',
+      setButtonTemplate: true,
+      buttonClick: this.handleButtonClick.bind(this),
     },
   ];
+
+  handleButtonClick() {
+    console.log('Button clicked!');
+  }
+
   dataSearch = [
     'Carlee Bengochea',
     'Reynard Howgate',

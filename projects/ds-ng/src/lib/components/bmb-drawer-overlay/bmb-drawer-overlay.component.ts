@@ -36,6 +36,7 @@ export class BmbDrawerOverlayComponent {
   @Input() appServices: { [key: number]: IBmbApp[] } = {};
 
   @Output() onValueChange: EventEmitter<string> = new EventEmitter<string>();
+  @Output() buttonClick: EventEmitter<void> = new EventEmitter<void>();
 
   isOpen: boolean = false;
   isFull: boolean = false;
@@ -49,9 +50,14 @@ export class BmbDrawerOverlayComponent {
     }
   }
 
-  toggleFullDrawer() {
+  toggleFullDrawer(item?: any) {
     this.isFull = !this.isFull;
-    this.isOpen = !this.isFull;
+
+    if (this.isFull) {
+      if (item.buttonClick) {
+        item.buttonClick();
+      }
+    }
   }
 
   selectNavItem(index: number) {
