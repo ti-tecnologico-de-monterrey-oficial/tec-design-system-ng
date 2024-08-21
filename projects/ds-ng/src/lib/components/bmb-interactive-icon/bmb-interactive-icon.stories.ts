@@ -59,7 +59,7 @@ Below is an example of how you can use this component in HTML:
       name: 'Icon',
       control: { type: 'text' },
       description:
-        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons. Do not use the image property if you want to use an icon.',
+        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons. Do not use the image property if you want to use an icon. If you need to set an image as icon, you can set the image path here',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
