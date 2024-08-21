@@ -2,17 +2,21 @@
 
 .bmb_user_image {
   align-items: center;
-  background-color: RGBA(var(--color-white-primary));
-  border-radius: 100%;
+  border-radius: rem.rem_calc(50);
   display: flex;
   height: rem.rem_calc(50);
   justify-content: center;
   overflow: hidden;
   width: rem.rem_calc(50);
 
+  &-bordered {
+    border: rem.rem_calc(2) solid RGBA(var(--color-blue-primary));
+  }
+
   img {
-    height: 100%;
-    width: 100%;
+    border-radius: rem.rem_calc(50);
+    height: 95%;
+    width: 95%;
     object-fit: cover;
   }
 
@@ -44,5 +48,12 @@
   &-desktop-large {
     height: rem.rem_calc(160);
     width: rem.rem_calc(160);
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_user_image {
+    border: 2px solid RGBA(var(--color-neon-primary));
   }
 }

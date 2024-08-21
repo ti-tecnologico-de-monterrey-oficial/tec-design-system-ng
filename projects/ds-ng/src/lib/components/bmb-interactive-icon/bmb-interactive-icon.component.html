@@ -1,14 +1,11 @@
 <ng-template #commonContent>
   @if (isImage(icon())) {
     <figure class="bmb_interactive_icon-box">
-      <img [src]="icon()" [alt]="title()" class="bmb_interactive_icon-image">
+      <img [src]="icon()" [alt]="title()" class="bmb_interactive_icon-image" />
     </figure>
   } @else {
     <span class="bmb_interactive_icon-box">
-      <bmb-icon
-        class="bmb_interactive_icon-icon"
-        [icon]="icon()"
-      ></bmb-icon>
+      <bmb-icon class="bmb_interactive_icon-icon" [icon]="icon()"></bmb-icon>
     </span>
   }
   <span class="bmb_interactive_icon-text">

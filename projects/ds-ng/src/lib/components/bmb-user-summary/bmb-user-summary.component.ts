@@ -24,6 +24,8 @@ export class BmbUserSummaryComponent {
   @Input() name: string = '';
   @Input() id: string = '';
   @Input() image: string = '';
+  @Input() infoCareer: string = '';
+  @Input() noBox: boolean = false;
 
   @Output() onClick: EventEmitter<void> = new EventEmitter<void>();
 
