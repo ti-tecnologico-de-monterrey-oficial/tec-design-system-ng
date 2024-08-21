@@ -1,4 +1,5 @@
 @use "../base/mixins" as mixins;
+@use "../base/rem" as rem;
 
 .bmb_btn {
   &-primary {
@@ -15,6 +16,10 @@
 
   &-destructive {
     @include mixins.button(destructive);
+  }
+
+  &-rounded {
+    border-radius: rem.rem_calc(40);
   }
 }
 

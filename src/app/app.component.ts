@@ -68,6 +68,7 @@ import {
   BmbCalendarService,
   IBmbEventType,
   IBmbApp,
+  BmbAccountStatementComponent,
 } from '../../projects/ds-ng/src/public-api';
 
 export interface Target {
@@ -141,6 +142,7 @@ import { DateTime } from 'luxon';
     BmbHomeCardChatComponent,
     BmbChatBarComponent,
     BmbPushNotificationComponent,
+    BmbAccountStatementComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

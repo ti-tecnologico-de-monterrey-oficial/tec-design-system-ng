@@ -72,6 +72,7 @@ export * from './lib/components/bmb-push-notification/bmb-push-notification.comp
 export * from './lib/components/bmb-notification-card/bmb-notification-card.component';
 export * from './lib/components/bmb-home-card-chat/bmb-home-card-chat.component';
 export * from './lib/components/bmb-paginator/bmb-paginator.component';
+export * from './lib/components/bmb-account-statement/bmb-account-statement.component';
 
 // types
 export * from './lib/types';
