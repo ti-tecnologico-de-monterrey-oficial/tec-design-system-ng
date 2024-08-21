@@ -1,19 +1,12 @@
-<a
-  *ngIf="isExternalLink(link()); else internalLink"
-  [ngClass]="getClasses()"
-  [class.bmb_interactive_icon-horizontal]="horizontal()"
-  [href]="link()"
-  [target]="target() || '_blank'"
-  rel="noopener noreferrer"
->
-  <div class="bmb_interactive_icon-box">
+<ng-template #commonContent>
+  <span class="bmb_interactive_icon-box">
     <bmb-icon
       class="bmb_interactive_icon-icon"
       icon="{{ icon() }}"
       *ngIf="icon"
     ></bmb-icon>
-  </div>
-  <div class="bmb_interactive_icon-text">
+  </span>
+  <span class="bmb_interactive_icon-text">
     <span class="bmb_interactive_icon-title" *ngIf="title">{{ title() }}</span>
     <span
       class="bmb_interactive_icon-description"
@@ -21,10 +14,28 @@
     >
       {{ description() }}
     </span>
-  </div>
-</a>
+  </span>
+</ng-template>
 
-<ng-template #internalLink>
+@if (setButtonTemplate()) {
+  <button
+    [ngClass]="getClasses()"
+    [class.bmb_interactive_icon-horizontal]="horizontal()"
+    (click)="handleClick()"
+  >
+    <ng-container *ngTemplateOutlet="commonContent" />
+  </button>
+} @else if (isExternalLink(link())) {
+  <a
+    [ngClass]="getClasses()"
+    [class.bmb_interactive_icon-horizontal]="horizontal()"
+    [href]="link()"
+    [target]="target() || '_blank'"
+    rel="noopener noreferrer"
+  >
+    <ng-container *ngTemplateOutlet="commonContent" />
+  </a>
+} @else {
   <a
     [ngClass]="getClasses()"
     [class.bmb_interactive_icon-horizontal]="horizontal()"
@@ -32,23 +43,6 @@
     routerLinkActive="active-link"
     [routerLinkActiveOptions]="{ exact: true }"
   >
-    <div class="bmb_interactive_icon-box">
-      <bmb-icon
-        class="bmb_interactive_icon-icon"
-        icon="{{ icon() }}"
-        *ngIf="icon"
-      ></bmb-icon>
-    </div>
-    <div class="bmb_interactive_icon-text">
-      <span class="bmb_interactive_icon-title" *ngIf="title">{{
-        title()
-      }}</span>
-      <span
-        class="bmb_interactive_icon-description"
-        *ngIf="description() && horizontal()"
-      >
-        {{ description() }}
-      </span>
-    </div>
+    <ng-container *ngTemplateOutlet="commonContent" />
   </a>
-</ng-template>
+}
