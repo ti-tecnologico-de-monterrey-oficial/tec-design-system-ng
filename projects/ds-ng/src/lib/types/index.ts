@@ -13,6 +13,7 @@ export interface IBmbApp {
   target?: string;
   appearance: IBmbInteractiveIconAppearance;
 }
+export type IBmbHorizontalPosition = 'left' | 'right';
 export * from '../components/bmb-timestream/types';
 export * from '../components/bmb-push-notification/types';
 export * from '../components/bmb-advertisement-card/types';
