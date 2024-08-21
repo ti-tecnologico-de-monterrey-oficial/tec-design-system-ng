@@ -20,12 +20,17 @@ export class BmbUserImageComponent {
   @Input() altImage: string = '';
   @Input() link: string = '';
   @Input() target: string = '';
+  @Input() bordered: boolean = false;
 
   getClasses(): string[] {
     const classes: string[] = ['bmb_user_image'];
 
     if (this.size) {
       classes.push('bmb_user_image-' + this.size);
+    }
+
+    if (this.bordered) {
+      classes.push('bmb_user_image-bordered');
     }
 
     return classes;
