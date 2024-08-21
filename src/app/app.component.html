@@ -1,5 +1,11 @@
-<bmb-login-onboarding (handleRequet)="handleRequet($event)">
-  <p>custom content</p>
-</bmb-login-onboarding>
-
-<bmb-theme initialTheme="dark" [showControls]="false" />
+<bmb-theme [showControls]="false" initialTheme="dark" />
+<bmb-account-statement
+  title="custom title"
+  [valuePrimary]="9000"
+  [valueSecondary]="1560"
+></bmb-account-statement>
+<bmb-interactive-icon
+  icon="close"
+  [setButtonTemplate]="true"
+  link="https://www.google.com.mx/"
+/>
