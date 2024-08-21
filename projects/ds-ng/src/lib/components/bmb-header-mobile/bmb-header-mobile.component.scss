@@ -29,6 +29,10 @@
   .bmb_header {
     &_mobile {
       color: RGBA(var(--color-charade-50));
+
+      button {
+        color: RGBA(var(--color-charade-50));
+      }
     }
   }
 }
