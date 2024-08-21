@@ -7,7 +7,7 @@ import {
   ChangeDetectionStrategy,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbIconComponent } from 'ds-ng';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 
 @Component({
   selector: 'bmb-paginator',

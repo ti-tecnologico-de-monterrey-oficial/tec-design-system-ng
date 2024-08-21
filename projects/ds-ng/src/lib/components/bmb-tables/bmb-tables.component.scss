@@ -30,11 +30,19 @@
     > td,
     > th {
       height: auto;
-      max-width: rem.rem_calc(100);
       overflow: hidden;
       padding: rem.rem_calc(0 8);
-      text-overflow: ellipsis;
-      white-space: nowrap;
+
+      &.truncated {
+        max-width: rem.rem_calc(100);
+        min-width: rem.rem_calc(70);
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      &.wrapped {
+        white-space: nowrap;
+      }
 
       @include mixins.media-query(768, "min") {
         max-width: fit-content;
