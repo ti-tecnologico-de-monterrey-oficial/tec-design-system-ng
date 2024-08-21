@@ -1,0 +1,57 @@
+@use "../bmb-login-onboarding.component.scss" as page;
+@use "../../../../assets/styles/base/fonts" as fonts;
+@use "../../../../assets/styles/base/rem" as rem;
+
+.bmb_login-onboarding-login {
+  @include page.page-flex;
+
+  &-tec_logo {
+    padding: var(--bmb-spacing-xl);
+
+    img {
+      width: rem.rem_calc(140);
+    }
+  }
+
+  &-mitec_logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+
+    img {
+      width: rem.rem_calc(120);
+      animation: mitecAnimation 1s linear 1;
+    }
+  }
+
+  &-content {
+    flex: 2;
+    animation: contentAnimation 2s ease 1;
+    margin: 0 10%;
+
+    &-button {
+      margin: var(--bmb-spacing-xl) 0;
+    }
+  }
+}
+
+@keyframes contentAnimation {
+  0%,
+  50% {
+    opacity: 0;
+    transform: translate(0, 3rem);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes mitecAnimation {
+  0% {
+    transform: scale(2) translate(0, 5rem);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

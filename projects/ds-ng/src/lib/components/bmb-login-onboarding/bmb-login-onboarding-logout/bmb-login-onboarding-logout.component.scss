@@ -1,0 +1,26 @@
+@use "../bmb-login-onboarding.component.scss" as page;
+@use "../../../../assets/styles/base/fonts" as fonts;
+@use "../../../../assets/styles/base/rem" as rem;
+
+.bmb_login-onboarding-logout {
+  @include page.page-flex;
+  padding: var(--bmb-spacing-m);
+
+  &-content {
+    @include page.page-flex;
+    flex: 1;
+
+    &-title {
+      color: RGBA(var(--color-charade-50));
+      @include fonts.font(9, regular);
+      text-align: center;
+      width: rem.rem_calc(343);
+      margin-bottom: var(--bmb-spacing-xl);
+    }
+
+    &-img {
+      max-width: rem.rem_calc(200);
+      margin: 0 auto;
+    }
+  }
+}
