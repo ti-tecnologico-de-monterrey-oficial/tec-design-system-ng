@@ -1,13 +1,9 @@
 import { CommonModule } from '@angular/common';
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
   Inject,
-  Input,
   OnInit,
-  Output,
   TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
