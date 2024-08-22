@@ -36,7 +36,7 @@ export class BmbDrawerOverlayComponent {
   @Input() appServices: { [key: number]: IBmbApp[] } = {};
 
   @Output() onValueChange: EventEmitter<string> = new EventEmitter<string>();
-  @Output() buttonClick: EventEmitter<void> = new EventEmitter<void>();
+  buttonClick: EventEmitter<void> = new EventEmitter<void>();
 
   isOpen: boolean = false;
   isFull: boolean = false;

@@ -127,7 +127,7 @@ export default class EmprendedorComponent {
     {
       appearance: 'red',
       title: 'App 1',
-      icon: 'face',
+      icon: 'https://img.freepik.com/premium-vector/approved-icon-with-thumb-up-approved-label-quality-control_349999-1321.jpg?w=2000',
       target: '_blank',
       link: 'https://www.example.com/',
     },

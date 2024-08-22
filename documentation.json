@@ -9190,7 +9190,7 @@
         },
         {
             "name": "BmbDrawerOverlayComponent",
-            "id": "component-BmbDrawerOverlayComponent-a0a11ee185695085b3a14c0ac21b7f7d35b6d8c8bbad9590caf197acf4e9643d9c6f0c001734ccf78f28996c9e31480a1a5ea5ef56aa4344d51b0bffb7c04be7",
+            "id": "component-BmbDrawerOverlayComponent-7869cfb827e6abe5646d41db4e20a9819a73d06346a709f2b1f71d4f9f5a27b836b3cd2ced04b4a22db805f015946eb1019295c899abfffd415ab47bf57919ac",
             "file": "projects/ds-ng/src/lib/components/bmb-drawer-overlay/bmb-drawer-overlay.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -9276,7 +9276,17 @@
                     "type": "number",
                     "optional": false,
                     "description": "",
-                    "line": 42
+                    "line": 43
+                },
+                {
+                    "name": "buttonClick",
+                    "defaultValue": "new EventEmitter<void>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "EventEmitter<void>",
+                    "optional": false,
+                    "description": "",
+                    "line": 39
                 },
                 {
                     "name": "isFull",
@@ -9286,7 +9296,7 @@
                     "type": "boolean",
                     "optional": false,
                     "description": "",
-                    "line": 41
+                    "line": 42
                 },
                 {
                     "name": "isOpen",
@@ -9296,7 +9306,7 @@
                     "type": "boolean",
                     "optional": false,
                     "description": "",
-                    "line": 40
+                    "line": 41
                 }
             ],
             "methodsClass": [
@@ -9313,7 +9323,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 61,
+                    "line": 67,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -9341,7 +9351,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 57,
+                    "line": 63,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -9362,19 +9372,39 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 44,
+                    "line": 45,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
                 {
                     "name": "toggleFullDrawer",
-                    "args": [],
+                    "args": [
+                        {
+                            "name": "item",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "optional": true
+                        }
+                    ],
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 52,
+                    "line": 53,
                     "deprecated": false,
-                    "deprecationMessage": ""
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "item",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "optional": true,
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
                 }
             ],
             "deprecated": false,
@@ -9407,7 +9437,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\n  ChangeDetectionStrategy,\n  Component,\n  Output,\n  Input,\n  EventEmitter,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { BmbFabComponent } from '../bmb-fab/bmb-fab.component';\nimport { BmbInteractiveIconComponent } from '../bmb-interactive-icon/bmb-interactive-icon.component';\nimport { IBmbApp } from '../../types';\nimport { BmbInnerHeaderComponent } from '../bmb-inner-header/bmb-inner-header.component';\nimport { BmbTabsComponent } from '../bmb-tabs/bmb-tabs.component';\n\n@Component({\n  selector: 'bmb-drawer-overlay',\n  standalone: true,\n  imports: [\n    CommonModule,\n    BmbFabComponent,\n    BmbInteractiveIconComponent,\n    BmbInnerHeaderComponent,\n    BmbTabsComponent,\n  ],\n  styleUrls: ['./bmb-drawer-overlay.component.scss'],\n  templateUrl: './bmb-drawer-overlay.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbDrawerOverlayComponent {\n  @Input() menu: any = [];\n  @Input() title: string = '';\n  @Input() dataSearch: string[] = [];\n  @Input() tabs: { title: string; id: number }[] = [];\n  @Input() appServices: { [key: number]: IBmbApp[] } = {};\n\n  @Output() onValueChange: EventEmitter<string> = new EventEmitter<string>();\n\n  isOpen: boolean = false;\n  isFull: boolean = false;\n  activeNavItemIndex: number = 0;\n\n  toggleDrawer() {\n    this.isOpen = !this.isOpen;\n\n    if (!this.isOpen) {\n      this.isFull = false;\n    }\n  }\n\n  toggleFullDrawer() {\n    this.isFull = !this.isFull;\n    this.isOpen = !this.isFull;\n  }\n\n  selectNavItem(index: number) {\n    this.activeNavItemIndex = index;\n  }\n\n  handleValueChange(event: string): void {\n    this.onValueChange.emit(event);\n  }\n\n  get appsActive(): IBmbApp[] {\n    const appsForCurrentNav = this.appServices[this.activeNavItemIndex];\n    return Array.isArray(appsForCurrentNav) ? appsForCurrentNav : [];\n  }\n}\n",
+            "sourceCode": "import {\n  ChangeDetectionStrategy,\n  Component,\n  Output,\n  Input,\n  EventEmitter,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { BmbFabComponent } from '../bmb-fab/bmb-fab.component';\nimport { BmbInteractiveIconComponent } from '../bmb-interactive-icon/bmb-interactive-icon.component';\nimport { IBmbApp } from '../../types';\nimport { BmbInnerHeaderComponent } from '../bmb-inner-header/bmb-inner-header.component';\nimport { BmbTabsComponent } from '../bmb-tabs/bmb-tabs.component';\n\n@Component({\n  selector: 'bmb-drawer-overlay',\n  standalone: true,\n  imports: [\n    CommonModule,\n    BmbFabComponent,\n    BmbInteractiveIconComponent,\n    BmbInnerHeaderComponent,\n    BmbTabsComponent,\n  ],\n  styleUrls: ['./bmb-drawer-overlay.component.scss'],\n  templateUrl: './bmb-drawer-overlay.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbDrawerOverlayComponent {\n  @Input() menu: any = [];\n  @Input() title: string = '';\n  @Input() dataSearch: string[] = [];\n  @Input() tabs: { title: string; id: number }[] = [];\n  @Input() appServices: { [key: number]: IBmbApp[] } = {};\n\n  @Output() onValueChange: EventEmitter<string> = new EventEmitter<string>();\n  buttonClick: EventEmitter<void> = new EventEmitter<void>();\n\n  isOpen: boolean = false;\n  isFull: boolean = false;\n  activeNavItemIndex: number = 0;\n\n  toggleDrawer() {\n    this.isOpen = !this.isOpen;\n\n    if (!this.isOpen) {\n      this.isFull = false;\n    }\n  }\n\n  toggleFullDrawer(item?: any) {\n    this.isFull = !this.isFull;\n\n    if (this.isFull) {\n      if (item.buttonClick) {\n        item.buttonClick();\n      }\n    }\n  }\n\n  selectNavItem(index: number) {\n    this.activeNavItemIndex = index;\n  }\n\n  handleValueChange(event: string): void {\n    this.onValueChange.emit(event);\n  }\n\n  get appsActive(): IBmbApp[] {\n    const appsForCurrentNav = this.appServices[this.activeNavItemIndex];\n    return Array.isArray(appsForCurrentNav) ? appsForCurrentNav : [];\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -9424,11 +9454,11 @@
                         "name": "appsActive",
                         "type": "[]",
                         "returnType": "IBmbApp[]",
-                        "line": 65
+                        "line": 71
                     }
                 }
             },
-            "templateData": "<div class=\"bmb_drawer\" [class.open]=\"isOpen\">\n  @if (isOpen) {\n    <div class=\"bmb_drawer-overlay\"></div>\n    <div class=\"bmb_drawer-menu\">\n      <ng-container *ngFor=\"let item of menu; let i = index\">\n        <bmb-interactive-icon\n          *ngIf=\"i < 3\"\n          [appearance]=\"item.appearance\"\n          [title]=\"item.title\"\n          [icon]=\"item.icon\"\n          [target]=\"item.target\"\n          [link]=\"item.link\"\n          [layout]=\"'app_drawer'\"\n        />\n\n        <bmb-interactive-icon\n          *ngIf=\"i === 3\"\n          [appearance]=\"item.appearance\"\n          [title]=\"item.title\"\n          [icon]=\"item.icon\"\n          [layout]=\"'app_drawer'\"\n          (click)=\"toggleFullDrawer()\"\n        />\n      </ng-container>\n    </div>\n  }\n  @if (isFull) {\n    <div class=\"bmb_drawer-full\">\n      <bmb-inner-header\n        [title]=\"title\"\n        (onHandleBack)=\"toggleFullDrawer()\"\n        (onValueChange)=\"handleValueChange($event)\"\n        [data]=\"dataSearch\"\n      />\n      <bmb-tabs [tabs]=\"tabs\" (selected)=\"selectNavItem($event.id)\" />\n      <div class=\"bmb_drawer-apps\">\n        <ng-container *ngFor=\"let app of appsActive\">\n          <bmb-interactive-icon\n            [appearance]=\"app.appearance\"\n            [title]=\"app.title\"\n            [icon]=\"app.icon\"\n            [target]=\"app.target\"\n            [link]=\"app.link\"\n            [layout]=\"'regular'\"\n          />\n        </ng-container>\n      </div>\n    </div>\n  }\n\n  <bmb-fab\n    [icon]=\"'apps'\"\n    [text]=\"'FAB'\"\n    [size]=\"'large'\"\n    [type]=\"'normal'\"\n    (fabClick)=\"toggleDrawer()\"\n  />\n</div>\n"
+            "templateData": "<div class=\"bmb_drawer\" [class.open]=\"isOpen\">\n  @if (isOpen) {\n    <div class=\"bmb_drawer-overlay\"></div>\n    <div class=\"bmb_drawer-menu\">\n      <ng-container *ngFor=\"let item of menu.slice(0, 4); let i = index\">\n        <bmb-interactive-icon\n          [appearance]=\"item.appearance\"\n          [title]=\"item.title\"\n          [icon]=\"item.icon\"\n          [target]=\"item.target\"\n          [link]=\"item.link\"\n          [layout]=\"'app_drawer'\"\n          [setButtonTemplate]=\"item.setButtonTemplate\"\n          (buttonClick)=\"toggleFullDrawer(item)\"\n        />\n      </ng-container>\n    </div>\n  }\n  @if (isFull) {\n    <div class=\"bmb_drawer-full\">\n      <bmb-inner-header\n        [title]=\"title\"\n        (onHandleBack)=\"toggleFullDrawer()\"\n        (onValueChange)=\"handleValueChange($event)\"\n        [data]=\"dataSearch\"\n      />\n      <bmb-tabs [tabs]=\"tabs\" (selected)=\"selectNavItem($event.id)\" />\n      <div class=\"bmb_drawer-apps\">\n        <ng-container *ngFor=\"let app of appsActive\">\n          <bmb-interactive-icon\n            [appearance]=\"app.appearance\"\n            [title]=\"app.title\"\n            [icon]=\"app.icon\"\n            [target]=\"app.target\"\n            [link]=\"app.link\"\n            [layout]=\"'regular'\"\n          />\n        </ng-container>\n      </div>\n    </div>\n  }\n\n  <bmb-fab\n    [icon]=\"'apps'\"\n    [text]=\"'FAB'\"\n    [size]=\"'large'\"\n    [type]=\"'normal'\"\n    (fabClick)=\"toggleDrawer()\"\n  />\n</div>\n"
         },
         {
             "name": "BmbDropdownComponent",
@@ -12318,7 +12348,7 @@
         },
         {
             "name": "BmbInteractiveIconComponent",
-            "id": "component-BmbInteractiveIconComponent-c829f35873a9252f7fcd843c19ed8847b9289f3824cd1accda1d691a358f56fea6a31a94d306b8bddcc2d53e68640f309ad0af11b3a62b2c629e8642eefc0351",
+            "id": "component-BmbInteractiveIconComponent-d4f1051e7797b43bdb5f596c80c7b7deb3677d7fd6a1a03481116b8d9d83f12e7547636d048e874bd37e85b07e25a26f1fc91113c769bf9763f16a4de88cbfd8",
             "file": "projects/ds-ng/src/lib/components/bmb-interactive-icon/bmb-interactive-icon.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -12523,7 +12553,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 68,
+                    "line": 73,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -12547,6 +12577,34 @@
                         {
                             "name": "link",
                             "type": "string | undefined",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "isImage",
+                    "args": [
+                        {
+                            "name": "url",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "boolean",
+                    "typeParameters": [],
+                    "line": 68,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "url",
+                            "type": "string",
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
@@ -12578,13 +12636,13 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\n  Component,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n  input,\n  output,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { RouterModule } from '@angular/router';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\n\nexport type IBmbInteractiveIconAppearance =\n  | 'red'\n  | 'blue'\n  | 'green'\n  | 'yellow'\n  | 'purple';\n\nexport type IBmbInteractiveIconType = 'regular' | 'button' | 'app_drawer';\n\n@Component({\n  selector: 'bmb-interactive-icon',\n  styleUrl: './bmb-interactive-icon.component.scss',\n  templateUrl: './bmb-interactive-icon.component.html',\n  standalone: true,\n  imports: [CommonModule, BmbIconComponent, RouterModule],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbInteractiveIconComponent {\n  appearance = input<IBmbInteractiveIconAppearance>('red');\n  title = input<string>();\n  description = input<string>('');\n  icon = input<string>('face');\n  horizontal = input<boolean>(false);\n  target = input<string>();\n  link = input<string>();\n  layout = input<IBmbInteractiveIconType>('regular');\n  setButtonTemplate = input<boolean>(false);\n\n  buttonClick = output<void>();\n\n  getClasses(): string[] {\n    const classes: string[] = [\n      'bmb_interactive_icon',\n      `bmb_interactive_icon-${this.layout()}`,\n    ];\n\n    if (this.setButtonTemplate())\n      classes.push('bmb_interactive_icon-button-template');\n\n    if (this.appearance())\n      classes.push(`bmb_interactive_icon-${this.appearance()}`);\n\n    return classes;\n  }\n\n  isExternalLink(link: string | undefined): boolean {\n    if (!link) return false;\n\n    return (\n      link.startsWith('http://') ||\n      link.startsWith('https://') ||\n      link.startsWith('#')\n    );\n  }\n\n  handleClick(): void {\n    this.buttonClick.emit();\n  }\n}\n",
+            "sourceCode": "import {\n  Component,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n  input,\n  output,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { RouterModule } from '@angular/router';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\n\nexport type IBmbInteractiveIconAppearance =\n  | 'red'\n  | 'blue'\n  | 'green'\n  | 'yellow'\n  | 'purple';\n\nexport type IBmbInteractiveIconType = 'regular' | 'button' | 'app_drawer';\n\n@Component({\n  selector: 'bmb-interactive-icon',\n  styleUrl: './bmb-interactive-icon.component.scss',\n  templateUrl: './bmb-interactive-icon.component.html',\n  standalone: true,\n  imports: [CommonModule, BmbIconComponent, RouterModule],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbInteractiveIconComponent {\n  appearance = input<IBmbInteractiveIconAppearance>('red');\n  title = input<string>();\n  description = input<string>('');\n  icon = input<string>('face');\n  horizontal = input<boolean>(false);\n  target = input<string>();\n  link = input<string>();\n  layout = input<IBmbInteractiveIconType>('regular');\n  setButtonTemplate = input<boolean>(false);\n\n  buttonClick = output<void>();\n\n  getClasses(): string[] {\n    const classes: string[] = [\n      'bmb_interactive_icon',\n      `bmb_interactive_icon-${this.layout()}`,\n    ];\n\n    if (this.setButtonTemplate())\n      classes.push('bmb_interactive_icon-button-template');\n\n    if (this.appearance())\n      classes.push(`bmb_interactive_icon-${this.appearance()}`);\n\n    return classes;\n  }\n\n  isExternalLink(link: string | undefined): boolean {\n    if (!link) return false;\n\n    return (\n      link.startsWith('http://') ||\n      link.startsWith('https://') ||\n      link.startsWith('#')\n    );\n  }\n\n  isImage(url: string): boolean {\n    const regx = /\\.|\\//gm;\n    return regx.test(url);\n  }\n\n  handleClick(): void {\n    this.buttonClick.emit();\n  }\n}\n",
             "styleUrl": "./bmb-interactive-icon.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<ng-template #commonContent>\n  <span class=\"bmb_interactive_icon-box\">\n    <bmb-icon\n      class=\"bmb_interactive_icon-icon\"\n      icon=\"{{ icon() }}\"\n      *ngIf=\"icon\"\n    ></bmb-icon>\n  </span>\n  <span class=\"bmb_interactive_icon-text\">\n    <span class=\"bmb_interactive_icon-title\" *ngIf=\"title\">{{ title() }}</span>\n    <span\n      class=\"bmb_interactive_icon-description\"\n      *ngIf=\"description() && horizontal()\"\n    >\n      {{ description() }}\n    </span>\n  </span>\n</ng-template>\n\n@if (setButtonTemplate()) {\n  <button\n    [ngClass]=\"getClasses()\"\n    [class.bmb_interactive_icon-horizontal]=\"horizontal()\"\n    (click)=\"handleClick()\"\n  >\n    <ng-container *ngTemplateOutlet=\"commonContent\" />\n  </button>\n} @else if (isExternalLink(link())) {\n  <a\n    [ngClass]=\"getClasses()\"\n    [class.bmb_interactive_icon-horizontal]=\"horizontal()\"\n    [href]=\"link()\"\n    [target]=\"target() || '_blank'\"\n    rel=\"noopener noreferrer\"\n  >\n    <ng-container *ngTemplateOutlet=\"commonContent\" />\n  </a>\n} @else {\n  <a\n    [ngClass]=\"getClasses()\"\n    [class.bmb_interactive_icon-horizontal]=\"horizontal()\"\n    [routerLink]=\"link()\"\n    routerLinkActive=\"active-link\"\n    [routerLinkActiveOptions]=\"{ exact: true }\"\n  >\n    <ng-container *ngTemplateOutlet=\"commonContent\" />\n  </a>\n}\n"
+            "templateData": "<ng-template #commonContent>\n  @if (isImage(icon())) {\n    <figure class=\"bmb_interactive_icon-box\">\n      <img [src]=\"icon()\" [alt]=\"title()\" class=\"bmb_interactive_icon-image\">\n    </figure>\n  } @else {\n    <span class=\"bmb_interactive_icon-box\">\n      <bmb-icon\n        class=\"bmb_interactive_icon-icon\"\n        [icon]=\"icon()\"\n      ></bmb-icon>\n    </span>\n  }\n  <span class=\"bmb_interactive_icon-text\">\n    <span class=\"bmb_interactive_icon-title\" *ngIf=\"title\">{{ title() }}</span>\n    <span\n      class=\"bmb_interactive_icon-description\"\n      *ngIf=\"description() && horizontal()\"\n    >\n      {{ description() }}\n    </span>\n  </span>\n</ng-template>\n\n@if (setButtonTemplate()) {\n  <button\n    [ngClass]=\"getClasses()\"\n    [class.bmb_interactive_icon-horizontal]=\"horizontal()\"\n    (click)=\"handleClick()\"\n  >\n    <ng-container *ngTemplateOutlet=\"commonContent\" />\n  </button>\n} @else if (isExternalLink(link())) {\n  <a\n    [ngClass]=\"getClasses()\"\n    [class.bmb_interactive_icon-horizontal]=\"horizontal()\"\n    [href]=\"link()\"\n    [target]=\"target() || '_blank'\"\n    rel=\"noopener noreferrer\"\n  >\n    <ng-container *ngTemplateOutlet=\"commonContent\" />\n  </a>\n} @else {\n  <a\n    [ngClass]=\"getClasses()\"\n    [class.bmb_interactive_icon-horizontal]=\"horizontal()\"\n    [routerLink]=\"link()\"\n    routerLinkActive=\"active-link\"\n    [routerLinkActiveOptions]=\"{ exact: true }\"\n  >\n    <ng-container *ngTemplateOutlet=\"commonContent\" />\n  </a>\n}\n"
         },
         {
             "name": "BmbLegendComponent",
@@ -25237,11 +25295,11 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ds-ng/src/lib/directives/bmb-button-group/bmb-button-group.stories.ts",
+                "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "customizable()"
+                "type": "Story",
+                "defaultValue": "{}"
             },
             {
                 "name": "Default",
@@ -25252,16 +25310,6 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\n  render: (args) => ({\n    props: args,\n    template: `\n        <bmb-advertisement-card [subtitle]=\"'Titulo'\" [data]=\"data\"></bmb-advertisement-card>\n    `,\n  }),\n}"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{}"
             },
             {
                 "name": "Default",
@@ -25807,7 +25855,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts",
+                "file": "projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
@@ -25817,7 +25865,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary.stories.ts",
+                "file": "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
@@ -25842,6 +25890,16 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/directives/bmb-button-group/bmb-button-group.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "customizable()"
             },
             {
                 "name": "defaultBotList",
@@ -25917,6 +25975,16 @@
                 "name": "meta",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-card/bmb-card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<BmbCardComponent>",
+                "defaultValue": "{\n  title: 'Micro Componentes/Card',\n  component: BmbCardComponent,\n  subcomponents: { BmbCardFooterComponent, BmbCardHeaderComponent },\n  decorators: [\n    moduleMetadata({\n      declarations: [],\n      imports: [\n        CommonModule,\n        BmbCardComponent,\n        BmbCardFooterComponent,\n        BmbCardHeaderComponent,\n      ],\n    }),\n  ],\n  parameters: {\n    docs: {\n      description: {\n        component: `\nBelow is an example of how you can use this component in TypeScript:\n\n\\`\\`\\`typescript\nimport { BmbCardComponent, BmbCardFooterComponent, BmbCardHeaderComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';\n@Component({\n  selector: 'component',\n  standalone: true,\n  imports: [ BmbCardComponent, BmbCardFooterComponent, BmbCardHeaderComponent ],\n  templateUrl: './component.html',\n  styleUrl: './component.scss',\n})\n\\`\\`\\`\n\nBelow is an example of how you can use this component in HTML:\n        `,\n      },\n    },\n  },\n  argTypes: {\n    borderRadius: {\n      name: 'Border radius',\n      control: {\n        type: 'select',\n      },\n      options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'm' },\n      },\n      description: 'Determines the corner radius size',\n    },\n    margin: {\n      name: 'Margin',\n      control: {\n        type: 'select',\n      },\n      options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'm' },\n      },\n      description: 'Set the margin size',\n    },\n    type: {\n      name: 'Type',\n      control: {\n        type: 'select',\n      },\n      options: [\n        'primary',\n        'secondary',\n        'succes',\n        'info',\n        'warning',\n        'error',\n        'normal',\n      ],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'normal' },\n      },\n      description: 'Set the color schema',\n    },\n  },\n  args: {\n    borderRadius: 'm',\n    margin: 'm',\n    type: 'normal',\n  },\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout-item.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -25934,14 +26002,14 @@
                 "defaultValue": "{\n  title: 'Micro Componentes/Layout',\n  component: BmbLayoutDirective,\n  subcomponents: { BmbLayoutItemDirective },\n  decorators: [\n    moduleMetadata({\n      declarations: [],\n      imports: [\n        CommonModule,\n        BmbLayoutDirective,\n        BmbLayoutItemDirective,\n        BmbCardComponent,\n        BmbCardContentComponent,\n      ],\n    }),\n  ],\n  parameters: {\n    docs: {\n      description: {\n        component: `\nBelow is an example of how you can use this component in TypeScript:\n\n\\`\\`\\`typescript\nimport { BmbLayoutDirective, BmbLayoutItemDirective } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';\n@Component({\n  selector: 'component',\n  standalone: true,\n  imports: [ BmbLayoutDirective, BmbLayoutItemDirective ],\n  templateUrl: './component.html',\n  styleUrl: './component.scss',\n})\n\\`\\`\\`\n\nBelow is an example of how you can use this component in HTML:\n        `,\n      },\n    },\n  },\n  argTypes: {\n    gapSise: {\n      name: 'Gap size',\n      control: {\n        type: 'select',\n      },\n      options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'm' },\n      },\n      description: 'Determines the size of the space between elements.',\n    },\n    margin: {\n      name: 'Margin',\n      control: {\n        type: 'select',\n      },\n      options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'm' },\n      },\n      description: 'Set the margin size',\n    },\n    dinamycCols: {\n      name: 'Enable dinamyc cols',\n      control: { type: 'boolean' },\n      description: 'This property enable the dinamic size for bmbLayoutItem',\n      table: {\n        category: 'Properties',\n        defaultValue: { summary: 'false' },\n        type: { summary: 'boolean' },\n      },\n    },\n    justify: {\n      name: 'Justify content',\n      control: {\n        type: 'select',\n      },\n      options: [\n        'center',\n        'end',\n        'start',\n        'stretch',\n        'spaceAround',\n        'spaceBetween',\n        'spaceEvenly',\n      ],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'start' },\n      },\n      description: 'Set the justify content.',\n    },\n    alignItems: {\n      name: 'Align items',\n      control: {\n        type: 'select',\n      },\n      options: ['center', 'end', 'start', 'stretch'],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'start' },\n      },\n      description: 'Set the align items.',\n    },\n  },\n  args: {\n    gapSise: 'm',\n    margin: 'm',\n    dinamycCols: false,\n    justify: 'start',\n    alignItems: 'start',\n  },\n}"
             },
             {
-                "name": "meta",
+                "name": "OneItem",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "projects/ds-ng/src/lib/components/bmb-card/bmb-card.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Meta<BmbCardComponent>",
-                "defaultValue": "{\n  title: 'Micro Componentes/Card',\n  component: BmbCardComponent,\n  subcomponents: { BmbCardFooterComponent, BmbCardHeaderComponent },\n  decorators: [\n    moduleMetadata({\n      declarations: [],\n      imports: [\n        CommonModule,\n        BmbCardComponent,\n        BmbCardFooterComponent,\n        BmbCardHeaderComponent,\n      ],\n    }),\n  ],\n  parameters: {\n    docs: {\n      description: {\n        component: `\nBelow is an example of how you can use this component in TypeScript:\n\n\\`\\`\\`typescript\nimport { BmbCardComponent, BmbCardFooterComponent, BmbCardHeaderComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';\n@Component({\n  selector: 'component',\n  standalone: true,\n  imports: [ BmbCardComponent, BmbCardFooterComponent, BmbCardHeaderComponent ],\n  templateUrl: './component.html',\n  styleUrl: './component.scss',\n})\n\\`\\`\\`\n\nBelow is an example of how you can use this component in HTML:\n        `,\n      },\n    },\n  },\n  argTypes: {\n    borderRadius: {\n      name: 'Border radius',\n      control: {\n        type: 'select',\n      },\n      options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'm' },\n      },\n      description: 'Determines the corner radius size',\n    },\n    margin: {\n      name: 'Margin',\n      control: {\n        type: 'select',\n      },\n      options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'm' },\n      },\n      description: 'Set the margin size',\n    },\n    type: {\n      name: 'Type',\n      control: {\n        type: 'select',\n      },\n      options: [\n        'primary',\n        'secondary',\n        'succes',\n        'info',\n        'warning',\n        'error',\n        'normal',\n      ],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'normal' },\n      },\n      description: 'Set the color schema',\n    },\n  },\n  args: {\n    borderRadius: 'm',\n    margin: 'm',\n    type: 'normal',\n  },\n}"
+                "type": "Story",
+                "defaultValue": "{\n  args: {},\n  render: (args) => ({\n    props: args,\n    template: `\n      <bmb-card [borderRadius]=\"borderRadius\" [margin]=\"margin\" [type]=\"type\">\n        <bmb-card-header padding=\"s\">\n          <h3>Header</h3>\n        </bmb-card-header>\n        <bmb-card-content padding=\"none\">\n          <figure [ngStyle]=\"{margin: 0}\">\n            <img\n              width=\"100%\"\n              alt=\"gatito\"\n              src=\"https://img.freepik.com/fotos-premium/dia-internacional-gato-8-agosto-gatos-lindos-gatito-pequeno-hermosos-pequenos-animales-compania-verdadero-amigo-bonitos-divertidos-tiernos-esponjosos-juguetones-shorties-ia-generativa_887181-4265.jpg?w=2000\"\n            />\n          </figure>\n          <p [ngStyle]=\"{padding: '1rem'}\">Los gatos son criaturas llenas de misterio. Su elegancia al moverse, sus ojos penetrantes y su habilidad para desaparecer en las sombras han inspirado leyendas y supersticiones. Pero más allá de su aura enigmática, los gatos también son compañeros leales y cariñosos.</p>\n        </bmb-card-content>\n        <bmb-card-footer padding=\"xl\">\n          <h3>Footer</h3>\n        </bmb-card-footer>\n      </bmb-card>\n    `,\n  }),\n}"
             },
             {
                 "name": "OneItem",
@@ -25962,16 +26030,6 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{\n  args: {},\n  render: (args) => ({\n    props: args,\n    template: `\n      <section bmbLayout [gapSise]=\"gapSise\" [margin]=\"margin\" [justify]=\"justify\" [alignItems]=\"alignItems\">\n        <bmb-card bmbLayoutItem margin=\"none\" [colLg]=\"4\">\n          <bmb-card-content padding=\"none\">\n            <p [ngStyle]=\"{padding: '1rem'}\">Element</p>\n          </bmb-card-content>\n        </bmb-card>\n        <bmb-card bmbLayoutItem margin=\"none\" [colLg]=\"4\">\n          <bmb-card-content padding=\"none\">\n            <p [ngStyle]=\"{padding: '1rem'}\">Element</p>\n          </bmb-card-content>\n        </bmb-card>\n        <bmb-card bmbLayoutItem margin=\"none\" [colGrow]=\"12\">\n          <bmb-card-content padding=\"none\">\n            <p [ngStyle]=\"{padding: '1rem'}\">Element</p>\n            <p [ngStyle]=\"{padding: '1rem'}\">Element</p>\n            <p [ngStyle]=\"{padding: '1rem'}\">Element</p>\n          </bmb-card-content>\n        </bmb-card>\n      </section>\n    `,\n  }),\n}"
-            },
-            {
-                "name": "OneItem",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/ds-ng/src/lib/components/bmb-card/bmb-card.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story",
-                "defaultValue": "{\n  args: {},\n  render: (args) => ({\n    props: args,\n    template: `\n      <bmb-card [borderRadius]=\"borderRadius\" [margin]=\"margin\" [type]=\"type\">\n        <bmb-card-header padding=\"s\">\n          <h3>Header</h3>\n        </bmb-card-header>\n        <bmb-card-content padding=\"none\">\n          <figure [ngStyle]=\"{margin: 0}\">\n            <img\n              width=\"100%\"\n              alt=\"gatito\"\n              src=\"https://img.freepik.com/fotos-premium/dia-internacional-gato-8-agosto-gatos-lindos-gatito-pequeno-hermosos-pequenos-animales-compania-verdadero-amigo-bonitos-divertidos-tiernos-esponjosos-juguetones-shorties-ia-generativa_887181-4265.jpg?w=2000\"\n            />\n          </figure>\n          <p [ngStyle]=\"{padding: '1rem'}\">Los gatos son criaturas llenas de misterio. Su elegancia al moverse, sus ojos penetrantes y su habilidad para desaparecer en las sombras han inspirado leyendas y supersticiones. Pero más allá de su aura enigmática, los gatos también son compañeros leales y cariñosos.</p>\n        </bmb-card-content>\n        <bmb-card-footer padding=\"xl\">\n          <h3>Footer</h3>\n        </bmb-card-footer>\n      </bmb-card>\n    `,\n  }),\n}"
             },
             {
                 "name": "orderDayNames",
@@ -26251,7 +26309,7 @@
                         "type": "IFixDecimals",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "bdde64a4-3ea5-498f-963e-5f36143d0c52",
+                        "destrucuredGroupId": "7234f0d6-aad5-404a-8c6c-1ecd866e1e2d",
                         "destructuredParameter": true
                     },
                     {
@@ -26260,7 +26318,7 @@
                         "deprecated": false,
                         "deprecationMessage": "",
                         "defaultValue": "2",
-                        "destrucuredGroupId": "bdde64a4-3ea5-498f-963e-5f36143d0c52",
+                        "destrucuredGroupId": "7234f0d6-aad5-404a-8c6c-1ecd866e1e2d",
                         "destructuredParameter": true
                     }
                 ],
@@ -26270,7 +26328,7 @@
                         "type": "IFixDecimals",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "bdde64a4-3ea5-498f-963e-5f36143d0c52",
+                        "destrucuredGroupId": "7234f0d6-aad5-404a-8c6c-1ecd866e1e2d",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -26282,7 +26340,7 @@
                         "deprecated": false,
                         "deprecationMessage": "",
                         "defaultValue": "2",
-                        "destrucuredGroupId": "bdde64a4-3ea5-498f-963e-5f36143d0c52",
+                        "destrucuredGroupId": "7234f0d6-aad5-404a-8c6c-1ecd866e1e2d",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -26666,19 +26724,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<BmbLayoutItemDirective>",
-                "file": "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout-item.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "",
-                "kind": 183
-            },
-            {
-                "name": "Story",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
-                "rawtype": "StoryObj<BmbLayoutDirective>",
-                "file": "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout.stories.ts",
+                "rawtype": "StoryObj<BmbBadgeComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -26690,17 +26737,6 @@
                 "subtype": "typealias",
                 "rawtype": "StoryObj<BmbAdvertisementCardComponent>",
                 "file": "projects/ds-ng/src/lib/components/bmb-advertisement-card/bmb-advertisement-card.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "",
-                "kind": 183
-            },
-            {
-                "name": "Story",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
-                "rawtype": "StoryObj<BmbBadgeComponent>",
-                "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -27260,8 +27296,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<BmbUserImageComponent>",
-                "file": "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts",
+                "rawtype": "StoryObj<BmbUserSummaryComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -27271,8 +27307,8 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "StoryObj<BmbUserSummaryComponent>",
-                "file": "projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary.stories.ts",
+                "rawtype": "StoryObj<BmbUserImageComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -27295,6 +27331,28 @@
                 "subtype": "typealias",
                 "rawtype": "StoryObj<BmbWheelMenuComponent>",
                 "file": "projects/ds-ng/src/lib/components/bmb-wheel-menu/bmb-wheel-menu.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<BmbLayoutItemDirective>",
+                "file": "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout-item.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<BmbLayoutDirective>",
+                "file": "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -27497,18 +27555,6 @@
                     "defaultValue": "(date: DateTime): DateTime[] => {\n  const calculateFirstDay = getWeekDays(date);\n\n  let weekDays = [];\n\n  for (let day = 0; day <= 41; day++) {\n    weekDays.push(calculateFirstDay[0].plus({ days: day }));\n  }\n\n  return weekDays;\n}"
                 }
             ],
-            "projects/ds-ng/src/lib/components/bmb-advertisement-card/bmb-advertisement-card.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ds-ng/src/lib/components/bmb-advertisement-card/bmb-advertisement-card.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  render: (args) => ({\n    props: args,\n    template: `\n        <bmb-advertisement-card [subtitle]=\"'Titulo'\" [data]=\"data\"></bmb-advertisement-card>\n    `,\n  }),\n}"
-                }
-            ],
             "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts": [
                 {
                     "name": "Default",
@@ -27519,6 +27565,18 @@
                     "deprecationMessage": "",
                     "type": "Story",
                     "defaultValue": "{}"
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-advertisement-card/bmb-advertisement-card.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-advertisement-card/bmb-advertisement-card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  render: (args) => ({\n    props: args,\n    template: `\n        <bmb-advertisement-card [subtitle]=\"'Titulo'\" [data]=\"data\"></bmb-advertisement-card>\n    `,\n  }),\n}"
                 }
             ],
             "projects/ds-ng/src/lib/components/bmb-balance-overview/bmb-balance-overview.stories.ts": [
@@ -28169,24 +28227,24 @@
                     "defaultValue": "{}"
                 }
             ],
-            "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{}"
-                }
-            ],
             "projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary.stories.ts": [
                 {
                     "name": "Default",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{}"
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
@@ -28251,6 +28309,28 @@
                     "defaultValue": "{\n  normal: 'normal',\n  extended: 'extended',\n} as const"
                 }
             ],
+            "projects/ds-ng/src/lib/components/bmb-card/bmb-card.stories.ts": [
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-card/bmb-card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<BmbCardComponent>",
+                    "defaultValue": "{\n  title: 'Micro Componentes/Card',\n  component: BmbCardComponent,\n  subcomponents: { BmbCardFooterComponent, BmbCardHeaderComponent },\n  decorators: [\n    moduleMetadata({\n      declarations: [],\n      imports: [\n        CommonModule,\n        BmbCardComponent,\n        BmbCardFooterComponent,\n        BmbCardHeaderComponent,\n      ],\n    }),\n  ],\n  parameters: {\n    docs: {\n      description: {\n        component: `\nBelow is an example of how you can use this component in TypeScript:\n\n\\`\\`\\`typescript\nimport { BmbCardComponent, BmbCardFooterComponent, BmbCardHeaderComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';\n@Component({\n  selector: 'component',\n  standalone: true,\n  imports: [ BmbCardComponent, BmbCardFooterComponent, BmbCardHeaderComponent ],\n  templateUrl: './component.html',\n  styleUrl: './component.scss',\n})\n\\`\\`\\`\n\nBelow is an example of how you can use this component in HTML:\n        `,\n      },\n    },\n  },\n  argTypes: {\n    borderRadius: {\n      name: 'Border radius',\n      control: {\n        type: 'select',\n      },\n      options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'm' },\n      },\n      description: 'Determines the corner radius size',\n    },\n    margin: {\n      name: 'Margin',\n      control: {\n        type: 'select',\n      },\n      options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'm' },\n      },\n      description: 'Set the margin size',\n    },\n    type: {\n      name: 'Type',\n      control: {\n        type: 'select',\n      },\n      options: [\n        'primary',\n        'secondary',\n        'succes',\n        'info',\n        'warning',\n        'error',\n        'normal',\n      ],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'normal' },\n      },\n      description: 'Set the color schema',\n    },\n  },\n  args: {\n    borderRadius: 'm',\n    margin: 'm',\n    type: 'normal',\n  },\n}"
+                },
+                {
+                    "name": "OneItem",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-card/bmb-card.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {},\n  render: (args) => ({\n    props: args,\n    template: `\n      <bmb-card [borderRadius]=\"borderRadius\" [margin]=\"margin\" [type]=\"type\">\n        <bmb-card-header padding=\"s\">\n          <h3>Header</h3>\n        </bmb-card-header>\n        <bmb-card-content padding=\"none\">\n          <figure [ngStyle]=\"{margin: 0}\">\n            <img\n              width=\"100%\"\n              alt=\"gatito\"\n              src=\"https://img.freepik.com/fotos-premium/dia-internacional-gato-8-agosto-gatos-lindos-gatito-pequeno-hermosos-pequenos-animales-compania-verdadero-amigo-bonitos-divertidos-tiernos-esponjosos-juguetones-shorties-ia-generativa_887181-4265.jpg?w=2000\"\n            />\n          </figure>\n          <p [ngStyle]=\"{padding: '1rem'}\">Los gatos son criaturas llenas de misterio. Su elegancia al moverse, sus ojos penetrantes y su habilidad para desaparecer en las sombras han inspirado leyendas y supersticiones. Pero más allá de su aura enigmática, los gatos también son compañeros leales y cariñosos.</p>\n        </bmb-card-content>\n        <bmb-card-footer padding=\"xl\">\n          <h3>Footer</h3>\n        </bmb-card-footer>\n      </bmb-card>\n    `,\n  }),\n}"
+                }
+            ],
             "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout-item.stories.ts": [
                 {
                     "name": "meta",
@@ -28293,28 +28373,6 @@
                     "deprecationMessage": "",
                     "type": "Story",
                     "defaultValue": "{\n  args: {},\n  render: (args) => ({\n    props: args,\n    template: `\n      <section bmbLayout [gapSise]=\"gapSise\" [margin]=\"margin\" [justify]=\"justify\" [alignItems]=\"alignItems\">\n        <bmb-card bmbLayoutItem margin=\"none\" [colLg]=\"4\">\n          <bmb-card-content padding=\"none\">\n            <p [ngStyle]=\"{padding: '1rem'}\">Element</p>\n          </bmb-card-content>\n        </bmb-card>\n        <bmb-card bmbLayoutItem margin=\"none\" [colLg]=\"4\">\n          <bmb-card-content padding=\"none\">\n            <p [ngStyle]=\"{padding: '1rem'}\">Element</p>\n          </bmb-card-content>\n        </bmb-card>\n        <bmb-card bmbLayoutItem margin=\"none\" [colGrow]=\"12\">\n          <bmb-card-content padding=\"none\">\n            <p [ngStyle]=\"{padding: '1rem'}\">Element</p>\n            <p [ngStyle]=\"{padding: '1rem'}\">Element</p>\n            <p [ngStyle]=\"{padding: '1rem'}\">Element</p>\n          </bmb-card-content>\n        </bmb-card>\n      </section>\n    `,\n  }),\n}"
-                }
-            ],
-            "projects/ds-ng/src/lib/components/bmb-card/bmb-card.stories.ts": [
-                {
-                    "name": "meta",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ds-ng/src/lib/components/bmb-card/bmb-card.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Meta<BmbCardComponent>",
-                    "defaultValue": "{\n  title: 'Micro Componentes/Card',\n  component: BmbCardComponent,\n  subcomponents: { BmbCardFooterComponent, BmbCardHeaderComponent },\n  decorators: [\n    moduleMetadata({\n      declarations: [],\n      imports: [\n        CommonModule,\n        BmbCardComponent,\n        BmbCardFooterComponent,\n        BmbCardHeaderComponent,\n      ],\n    }),\n  ],\n  parameters: {\n    docs: {\n      description: {\n        component: `\nBelow is an example of how you can use this component in TypeScript:\n\n\\`\\`\\`typescript\nimport { BmbCardComponent, BmbCardFooterComponent, BmbCardHeaderComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';\n@Component({\n  selector: 'component',\n  standalone: true,\n  imports: [ BmbCardComponent, BmbCardFooterComponent, BmbCardHeaderComponent ],\n  templateUrl: './component.html',\n  styleUrl: './component.scss',\n})\n\\`\\`\\`\n\nBelow is an example of how you can use this component in HTML:\n        `,\n      },\n    },\n  },\n  argTypes: {\n    borderRadius: {\n      name: 'Border radius',\n      control: {\n        type: 'select',\n      },\n      options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'm' },\n      },\n      description: 'Determines the corner radius size',\n    },\n    margin: {\n      name: 'Margin',\n      control: {\n        type: 'select',\n      },\n      options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'm' },\n      },\n      description: 'Set the margin size',\n    },\n    type: {\n      name: 'Type',\n      control: {\n        type: 'select',\n      },\n      options: [\n        'primary',\n        'secondary',\n        'succes',\n        'info',\n        'warning',\n        'error',\n        'normal',\n      ],\n      table: {\n        type: { summary: 'string' },\n        category: 'Properties',\n        defaultValue: { summary: 'normal' },\n      },\n      description: 'Set the color schema',\n    },\n  },\n  args: {\n    borderRadius: 'm',\n    margin: 'm',\n    type: 'normal',\n  },\n}"
-                },
-                {
-                    "name": "OneItem",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/ds-ng/src/lib/components/bmb-card/bmb-card.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story",
-                    "defaultValue": "{\n  args: {},\n  render: (args) => ({\n    props: args,\n    template: `\n      <bmb-card [borderRadius]=\"borderRadius\" [margin]=\"margin\" [type]=\"type\">\n        <bmb-card-header padding=\"s\">\n          <h3>Header</h3>\n        </bmb-card-header>\n        <bmb-card-content padding=\"none\">\n          <figure [ngStyle]=\"{margin: 0}\">\n            <img\n              width=\"100%\"\n              alt=\"gatito\"\n              src=\"https://img.freepik.com/fotos-premium/dia-internacional-gato-8-agosto-gatos-lindos-gatito-pequeno-hermosos-pequenos-animales-compania-verdadero-amigo-bonitos-divertidos-tiernos-esponjosos-juguetones-shorties-ia-generativa_887181-4265.jpg?w=2000\"\n            />\n          </figure>\n          <p [ngStyle]=\"{padding: '1rem'}\">Los gatos son criaturas llenas de misterio. Su elegancia al moverse, sus ojos penetrantes y su habilidad para desaparecer en las sombras han inspirado leyendas y supersticiones. Pero más allá de su aura enigmática, los gatos también son compañeros leales y cariñosos.</p>\n        </bmb-card-content>\n        <bmb-card-footer padding=\"xl\">\n          <h3>Footer</h3>\n        </bmb-card-footer>\n      </bmb-card>\n    `,\n  }),\n}"
                 }
             ],
             "projects/ds-ng/src/lib/utils/pixelToRem.ts": [
@@ -28623,7 +28681,7 @@
                             "type": "IFixDecimals",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "bdde64a4-3ea5-498f-963e-5f36143d0c52",
+                            "destrucuredGroupId": "7234f0d6-aad5-404a-8c6c-1ecd866e1e2d",
                             "destructuredParameter": true
                         },
                         {
@@ -28632,7 +28690,7 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "defaultValue": "2",
-                            "destrucuredGroupId": "bdde64a4-3ea5-498f-963e-5f36143d0c52",
+                            "destrucuredGroupId": "7234f0d6-aad5-404a-8c6c-1ecd866e1e2d",
                             "destructuredParameter": true
                         }
                     ],
@@ -28642,7 +28700,7 @@
                             "type": "IFixDecimals",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "bdde64a4-3ea5-498f-963e-5f36143d0c52",
+                            "destrucuredGroupId": "7234f0d6-aad5-404a-8c6c-1ecd866e1e2d",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
@@ -28654,7 +28712,7 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "defaultValue": "2",
-                            "destrucuredGroupId": "bdde64a4-3ea5-498f-963e-5f36143d0c52",
+                            "destrucuredGroupId": "7234f0d6-aad5-404a-8c6c-1ecd866e1e2d",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
@@ -29039,26 +29097,13 @@
                     "kind": 192
                 }
             ],
-            "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout-item.stories.ts": [
+            "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts": [
                 {
                     "name": "Story",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
-                    "rawtype": "StoryObj<BmbLayoutItemDirective>",
-                    "file": "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout-item.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
-            "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<BmbLayoutDirective>",
-                    "file": "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout.stories.ts",
+                    "rawtype": "StoryObj<BmbBadgeComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -29072,19 +29117,6 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<BmbAdvertisementCardComponent>",
                     "file": "projects/ds-ng/src/lib/components/bmb-advertisement-card/bmb-advertisement-card.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
-            "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<BmbBadgeComponent>",
-                    "file": "projects/ds-ng/src/lib/components/bmb-badge/bmb-badge.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -29741,19 +29773,6 @@
                     "kind": 183
                 }
             ],
-            "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts": [
-                {
-                    "name": "Story",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "StoryObj<BmbUserImageComponent>",
-                    "file": "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 183
-                }
-            ],
             "projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary.stories.ts": [
                 {
                     "name": "Story",
@@ -29761,6 +29780,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<BmbUserSummaryComponent>",
                     "file": "projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbUserImageComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-images.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -29787,6 +29819,32 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<BmbWheelMenuComponent>",
                     "file": "projects/ds-ng/src/lib/components/bmb-wheel-menu/bmb-wheel-menu.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout-item.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbLayoutItemDirective>",
+                    "file": "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout-item.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbLayoutDirective>",
+                    "file": "projects/ds-ng/src/lib/directives/bmb-layout/bmb-layout.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -30343,7 +30401,7 @@
                 "linktype": "component",
                 "name": "BmbDrawerOverlayComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/14",
+                "coverageCount": "0/15",
                 "status": "low"
             },
             {
@@ -30646,7 +30704,7 @@
                 "linktype": "component",
                 "name": "BmbInteractiveIconComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/20",
+                "coverageCount": "0/21",
                 "status": "low"
             },
             {
