@@ -3,3 +3,68 @@
 </bmb-login-onboarding>
 
 <bmb-theme initialTheme="dark" [showControls]="false" />
+<div style="margin: 1rem">
+  <bmb-interactive-icon
+    appearance="red"
+    [title]="'Canvas'"
+    [description]="'Short Description'"
+    [icon]="'face'"
+    [target]="'_blank'"
+    [link]="'https://www.youtube.com/'"
+  />
+</div>
+
+<div style="margin: 1rem">
+  <bmb-home-card-chat
+    [(isLoading)]="isLoading"
+    (isLoadingChange)="handleIsLoadingChange()"
+    [(currentBot)]="currentBot"
+    (currentBotChange)="handleCurrentBotChange()"
+    (onSendMessage)="handleSendMessage($event)"
+  >
+    <p>Slot test</p>
+  </bmb-home-card-chat>
+</div>
+
+<div style="margin: 1rem">
+  <bmb-home-card-chat
+    [(isLoading)]="isLoading"
+    (isLoadingChange)="handleIsLoadingChange()"
+    [(currentBot)]="currentBot"
+    (currentBotChange)="handleCurrentBotChange()"
+    (onSendMessage)="handleSendMessage($event)"
+  >
+    <p>Slot test</p>
+  </bmb-home-card-chat>
+</div>
+
+<bmb-theme initialTheme="dark" [showControls]="true" />
+
+<div style="margin: 1rem">
+  <bmb-home-card
+    title="test title"
+    subtitle="test subtitle"
+    icon="shelf_auto_hide"
+    [isMobile]="false"
+  >
+    <p>Slot test</p>
+  </bmb-home-card>
+</div>
+
+<br />
+<button bmbButton (click)="handleButtonState()" [textContent]="'text'">
+  Button 1
+</button>
+{{ pickerDate }}
+
+<bmb-frequent-apps-selector
+  [title]="'Mis Aplicaciones Frecuentes'"
+  [apps]="apps"
+/>
+<div style="display: flex; gap: 3em">
+  <a routerLink="/home" class="font-bold-6">Home</a>
+  <a routerLink="/my-page" class="font-bold-6">My Page</a>
+  <a routerLink="/emprendedor" class="font-bold-6">Emprendedor</a>
+</div>
+<router-outlet></router-outlet>
+<bmb-push-notification />
