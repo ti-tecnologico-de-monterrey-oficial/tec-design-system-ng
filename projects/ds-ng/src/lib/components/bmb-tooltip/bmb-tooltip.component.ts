@@ -1,8 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  ViewEncapsulation,
+} from '@angular/core';
 
-export type IBmbAlignTooltip = | 'above' | 'below' | 'left' | 'right'
-export type IBmbJustifyTooltip = | 'centered' | 'before' | 'after' 
+export type IBmbAlignTooltip = 'above' | 'below' | 'left' | 'right';
+export type IBmbJustifyTooltip = 'centered' | 'before' | 'after';
 
 @Component({
   selector: 'bmb-tooltip',
@@ -16,10 +21,10 @@ export type IBmbJustifyTooltip = | 'centered' | 'before' | 'after'
 export class BmbTooltipComponent {
   @Input() text: string = '';
   @Input() title: string = '';
-  @Input() align: IBmbAlignTooltip = 'right'
-  @Input() justify: IBmbJustifyTooltip = 'after'
+  @Input() align: IBmbAlignTooltip = 'right';
+  @Input() justify: IBmbJustifyTooltip = 'after';
 
-  getClasses(){
-    return `bmb_tooltip-${this.align}-${this.justify}`
+  getClasses() {
+    return `bmb_tooltip-${this.align}-${this.justify}`;
   }
 }
