@@ -70,9 +70,11 @@ storybook-toast-wrapper {
 }
 
 #anchor--macro-componentes-sidebar--default,
-#anchor--micro-componentes-toast--default {
+#anchor--micro-componentes-toast--default,
+#anchor--micro-componentes-drawer-overlay--default {
   #story--macro-componentes-sidebar--default--primary-inner,
-  #story--micro-componentes-toast--default--primary-inner {
+  #story--micro-componentes-toast--default--primary-inner,
+  #story--micro-componentes-drawer-overlay--default--primary {
     height: 600px;
   }
 }

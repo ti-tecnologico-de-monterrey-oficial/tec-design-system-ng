@@ -3,8 +3,6 @@ import { RouterModule } from '@angular/router';
 import {
   BmbSidebarComponent,
   IBmbApp,
-  IBmbInteractiveIconAppearance,
-  IBmbInteractiveIconType,
 } from '../../../projects/ds-ng/src/public-api';
 import { BmbInteractiveIconComponent } from 'ds-ng';
 import { BmbIconComponent } from 'ds-ng';

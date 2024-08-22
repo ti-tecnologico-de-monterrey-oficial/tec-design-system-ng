@@ -97,7 +97,7 @@ export const Default: Story = {
       {
         appearance: 'red',
         title: 'App 1',
-        icon: 'face',
+        icon: 'https://img.freepik.com/premium-vector/approved-icon-with-thumb-up-approved-label-quality-control_349999-1321.jpg?w=2000',
         target: '_blank',
         link: 'https://www.example.com/',
       },
@@ -116,11 +116,13 @@ export const Default: Story = {
         link: 'https://www.example.com/',
       },
       {
-        appearance: 'yellow',
-        title: 'App 4',
-        icon: 'face',
-        target: '_blank',
-        link: 'https://www.example.com/',
+        appearance: 'blue',
+        title: 'Menú de servicios',
+        icon: 'lists',
+        setButtonTemplate: true,
+        buttonClick: () => {
+          console.log('Button clicked!');
+        },
       },
     ],
     title: 'Inner Header',
@@ -158,6 +160,22 @@ export const Default: Story = {
         {
           appearance: 'yellow',
           title: 'App 4',
+          icon: 'face',
+          target: '_blank',
+          link: 'https://www.example.com/',
+        },
+      ],
+      2: [
+        {
+          appearance: 'green',
+          title: 'App 5',
+          icon: 'face',
+          target: '_blank',
+          link: 'https://www.example.com/',
+        },
+        {
+          appearance: 'yellow',
+          title: 'App 6',
           icon: 'face',
           target: '_blank',
           link: 'https://www.example.com/',
