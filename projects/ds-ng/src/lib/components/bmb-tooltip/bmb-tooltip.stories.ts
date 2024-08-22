@@ -46,23 +46,22 @@ Below is an example of how you can use this component in HTML:
       },
     },
     title: {
-        name: 'Title',
-        control: {
-            type: 'text',
-        },
-        description: 'Set the title to show in the tooltip',
-        table: {
-            category: 'Properties',
-            type: { summary: 'string' },
-            defaultValue: { summary: '' },
-        },
+      name: 'Title',
+      control: {
+        type: 'text',
+      },
+      description: 'Set the title to show in the tooltip',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
     },
     align: {
       name: 'Align',
       control: { type: 'radio' },
       options: ['above', 'below', 'left', 'right'],
-      description:
-        'Defines the position of the tooltip.',
+      description: 'Defines the position of the tooltip.',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'right' },
@@ -84,7 +83,7 @@ Below is an example of how you can use this component in HTML:
   },
   args: {
     title: 'Titulo del tooltip',
-    text:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum nihil modi repellendus ad aspernatur corporis.',
+    text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum nihil modi repellendus ad aspernatur corporis.',
     align: 'right',
     justify: 'centered',
   },
@@ -93,9 +92,9 @@ Below is an example of how you can use this component in HTML:
 type Story = StoryObj<BmbTooltipComponent>;
 
 export const Default: Story = {
-    render: (args) => ({
-        props: args,
-        template: `
+  render: (args) => ({
+    props: args,
+    template: `
         <bmb-tooltip 
             [title]="'Titulo tooltip'" 
             [text]="'Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum nihil modi repellendus ad aspernatur corporis.'"
@@ -105,5 +104,5 @@ export const Default: Story = {
             <bmb-icon style="font-size: 40px;" [icon]="'help'"/>
         </bmb-tooltip>
         `,
-      }),
+  }),
 };
