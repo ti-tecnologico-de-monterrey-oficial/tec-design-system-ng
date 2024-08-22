@@ -2,17 +2,6 @@
 @use "../../../assets/styles/base/mixins" as mixins;
 @use "../../../assets/styles/base/rem" as rem;
 
-@keyframes rotateMenu {
-  0% {
-    transform: rotateX(-90deg);
-  }
-  70% {
-    transform: rotateX(20deg);
-  }
-  100% {
-    transform: rotateX(0deg);
-  }
-}
 @keyframes growOut {
   0% {
     transform: scale(0);
@@ -28,6 +17,7 @@
 .bmb_drawer {
   &-overlay {
     backdrop-filter: blur(rem.rem_calc(1));
+    background-color: RGBA(var(--color-black-primary), 0.2);
     filter: blur(rem.rem_calc(5));
     height: 100%;
     left: 0;
@@ -39,7 +29,6 @@
   &-menu {
     animation: growOut 300ms ease-in-out forwards;
     bottom: rem.rem_calc(100);
-    // animation: rotateMenu 400ms ease-in-out forwards;
     display: flex;
     flex-flow: column;
     gap: rem.rem_calc(16);
