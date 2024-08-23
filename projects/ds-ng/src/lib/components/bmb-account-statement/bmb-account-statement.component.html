@@ -1,16 +1,51 @@
-<bmb-header-mobile
-  [text]="title()"
-  iconLeft="close"
-  (onIconLeftClick)="handleClose()"
-></bmb-header-mobile>
-<main>
-  <bmb-balance-overview
-    [progressCircleTitle]="progressCircleTitle()"
-    [labelPrimary]="labelPrimary()"
-    [labelSecondary]="labelSecondary()"
-  />
-</main>
-<footer>Footer</footer>
+<div class="bmb_account-statement">
+  <bmb-header-mobile
+    [text]="title()"
+    iconLeft="close"
+    (onIconLeftClick)="handleClose()"
+  ></bmb-header-mobile>
+  <main class="bmb_account-statement-content">
+    <div class="bmb_account-statement-content-balance">
+      <bmb-balance-overview
+        [progressCircleTitle]="progressCircleTitle()"
+        [labelPrimary]="labelPrimary()"
+        [labelSecondary]="labelSecondary()"
+      />
+    </div>
+    <bmb-card>
+      <bmb-card-content padding="none">
+        <bmb-progress-bar
+          appearance="info"
+          type="container"
+          [counter]="counter()"
+          [totalCount]="totalCount()"
+          [title]="progressTitle()"
+        />
+      </bmb-card-content>
+    </bmb-card>
+    <bmb-card>
+      <bmb-card-content>
+        <p class="bmb_account-statement-content-date">
+          <span>{{ cutOffDateLabel() }}</span>
+          <span>{{ getFormatedDate(cutOffDate()) }}</span>
+        </p>
+        <bmb-divider />
+        <p class="bmb_account-statement-content-date">
+          <span>{{ paymentDeadlineLabel() }}</span>
+          <span>{{ getFormatedDate(paymentDeadline()) }}</span>
+        </p>
+      </bmb-card-content>
+    </bmb-card>
+  </main>
+  <footer class="bmb_account-statement-footer">
+    <button bmbButton size="large" appearance="secondary-outlined" (click)="handleBack()">
+      Regresar
+    </button>
+    <button bmbButton size="large">
+      Pagar
+    </button>
+  </footer>
+</div>
 
 <!--
   [progressCirclePercent]="75"

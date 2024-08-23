@@ -8,5 +8,5 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
 })
 export class BmbIconComponent {
   @Input() icon: string = 'face';
-  @Input() materialIcon: boolean = false;
+  @Input() materialIcon: boolean = true;
 }
