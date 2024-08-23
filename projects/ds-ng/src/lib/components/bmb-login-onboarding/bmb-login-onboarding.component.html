@@ -1,0 +1,34 @@
+<section class="bmb_login-onboarding">
+  @switch (getActivePage()) {
+    @case (0) {
+      <bmb-login-onboarding-login (handleContinuePage)="handleContinuePage()" />
+    }
+    @case (1) {
+      <bmb-login-onboarding-stepper
+        (handleRequet)="_handleRequet($event)"
+        (handleContinuePage)="handleContinuePage()"
+      >
+        <ng-content />
+      </bmb-login-onboarding-stepper>
+    }
+    @case (2) {
+      <bmb-login-onboarding-logout
+        (handleRequet)="_handleRequet($event)"
+        (handleContinuePage)="handleContinuePage()"
+      />
+    }
+    @case (3) {
+      <bmb-login-onboarding-logged (handleRequet)="_handleRequet($event)" />
+    }
+    @default {
+      <p>Invalid page</p>
+    }
+  }
+  @if (getIsLoading()) {
+    <section class="bmb_login-onboarding-loader">
+      <div class="bmb_loader-loading">
+        <bmb-icon icon="progress_activity" class="bmb_loader-icon" />
+      </div>
+    </section>
+  }
+</section>

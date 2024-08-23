@@ -9,6 +9,9 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+
+export type IBmbActivityTags = 'info' | 'life' | 'event';
+
 @Component({
   selector: 'bmb-tag',
   standalone: true,
@@ -19,10 +22,12 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbTagComponent implements AfterViewInit {
-  @Input() appearance: string = '';
+  @Input() appearance: IBmbActivityTags = 'info';
   @Input() text: string = '';
   @Input() grouped: boolean = false;
   @Input() dissmisable: boolean = false;
+  @Input() rounded: boolean = false;
+  @Input() activityTag: boolean = false;
 
   constructor(
     private el: ElementRef,
@@ -42,15 +47,19 @@ export class BmbTagComponent implements AfterViewInit {
 
       this.renderer.appendChild(wrapperDiv, this.el.nativeElement);
     }
+    this.getClasses();
   }
 
-  getClasses(): string[] {
-    const classes: string[] = ['bmb_tag'];
+  getClasses(): string {
+    let classes: string = 'bmb_tag ';
 
-    if (this.appearance) {
-      classes.push('bmb_tag-' + this.appearance);
+    if (this.rounded && !this.activityTag) {
+      classes = classes + ' bmb_tag-rounded';
     }
-
+    if (this.activityTag) {
+      classes = classes + `bmb_tag-rounded bmb_tag-${this.appearance}`;
+      this.dissmisable = false;
+    }
     return classes;
   }
 

@@ -12,6 +12,8 @@ import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 
+export type IBbmInputType = 'text' | 'password';
+
 @Component({
   selector: 'bmb-input',
   styleUrls: ['./bmb-input.component.scss'],
@@ -23,6 +25,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 })
 export class BmbInputComponent implements OnInit {
   @Input() label: string = '';
+  @Input() type: IBbmInputType = 'text';
   @Input() placeholder: string = '';
   @Input() icon: string = '';
   @Input() errorMessage: string = '';
@@ -40,6 +43,7 @@ export class BmbInputComponent implements OnInit {
   @Input() size!: number;
 
   @Output() isFocus: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() isBlur: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private cdr: ChangeDetectorRef) {}
 
@@ -51,10 +55,6 @@ export class BmbInputComponent implements OnInit {
     if (this.isRequired) {
       this.control.addValidators(Validators.required);
     }
-
-    // else {
-    //   this.control.clearValidators();
-    // }
 
     this.control.updateValueAndValidity();
 
@@ -77,6 +77,7 @@ export class BmbInputComponent implements OnInit {
 
   onBlur() {
     this.isFocus.emit(false);
+    this.isBlur.emit(true);
   }
 
   get inputClasses(): { [key: string]: boolean } {

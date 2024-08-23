@@ -1,0 +1,13 @@
+<div class="bmb_tooltip">
+  <ng-content></ng-content>
+  <div [class]="'bmb_tooltip-container ' + getClasses()">
+    @if (title !== "") {
+      <div class="bmb_tooltip-container-title">
+        <span class="bmb_tooltip-container-title-text">{{ title }}</span>
+      </div>
+    }
+    <div class="bmb_tooltip-container-description">
+      <span class="bmb_tooltip-container-description-text">{{ text }}</span>
+    </div>
+  </div>
+</div>

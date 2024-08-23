@@ -1,0 +1,43 @@
+@use "../../bmb-login-onboarding.component.scss" as page;
+@use "../../../../../assets/styles/base/fonts" as fonts;
+
+.bmb_login-onboarding-stepper-step {
+  @include page.page-flex;
+  height: 100%;
+
+  &-content {
+    flex: 1;
+
+    &-title {
+      @include fonts.font(9, regular);
+      margin-bottom: var(--bmb-spacing-m);
+    }
+
+    &-child {
+      margin-top: var(--bmb-spacing-xl);
+    }
+
+    &-subcontent {
+      margin-top: var(--bmb-spacing-xl);
+
+      &-label {
+        margin-bottom: 0;
+      }
+
+      &-sublabel {
+        @include fonts.font(3, regular);
+      }
+    }
+  }
+
+  &-buttons {
+    display: flex;
+    justify-content: center;
+    gap: var(--bmb-spacing-m);
+  }
+
+  &-one-input {
+    margin-bottom: var(--bmb-spacing-l);
+    display: inline-block;
+  }
+}

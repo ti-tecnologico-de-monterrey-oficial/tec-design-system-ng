@@ -59,7 +59,7 @@ Below is an example of how you can use this component in HTML:
       name: 'Icon',
       control: { type: 'text' },
       description:
-        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons. Do not use the image property if you want to use an icon.',
+        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons. Do not use the image property if you want to use an icon. If you need to set an image as icon, you can set the image path here',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -126,6 +126,27 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string' },
       },
     },
+    setButtonTemplate: {
+      name: 'Set button template',
+      control: { type: 'boolean' },
+      description:
+        'This property switch the template component to a button, if you enable this option, you do not need send the `target`, and `link` properties, and set the ouput `buttonClick`.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
+    buttonClick: {
+      name: 'Set button template',
+      control: null,
+      description:
+        'This property only works if the setButtonTemplate property is enable.',
+      table: {
+        category: 'Events',
+        type: { summary: 'function' },
+      },
+    },
   },
   args: {
     title: 'Canvas',
@@ -136,6 +157,7 @@ Below is an example of how you can use this component in HTML:
     link: 'https://www.youtube.com/',
     horizontal: false,
     layout: 'regular',
+    setButtonTemplate: false,
   },
 } as Meta<typeof BmbInteractiveIconComponent>;
 
