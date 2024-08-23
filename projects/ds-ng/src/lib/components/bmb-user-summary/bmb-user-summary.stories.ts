@@ -78,6 +78,16 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: '' },
       },
     },
+    infoCareer: {
+      name: 'Information Career',
+      control: 'text',
+      description: 'Text to show basic information below the user image',
+      table: {
+        type: { summary: 'string' },
+        category: 'Properties',
+        defaultValue: { summary: '' },
+      },
+    },
     onClick: {
       name: 'On click',
       control: false,
@@ -87,12 +97,24 @@ Below is an example of how you can use this component in HTML:
         category: 'Events',
       },
     },
+    noBox: {
+      name: 'No Box',
+      control: 'boolean',
+      description: 'Hide or show the background when is a profile user summary',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
   },
   args: {
     isProfile: false,
     name: 'Test Name',
     id: 'AC123123',
     profilePic: '',
+    noBox: false,
+    infoCareer: 'ITICS-Semestre 5',
     onClick: () => {
       console.log('test');
     },

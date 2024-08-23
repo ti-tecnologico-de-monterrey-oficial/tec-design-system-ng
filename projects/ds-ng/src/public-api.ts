@@ -11,6 +11,7 @@ export * from './lib/directives/button.directive';
 export * from './lib/directives/bmb-layout/bmb-layout-item.directive';
 export * from './lib/directives/bmb-layout/bmb-layout.directive';
 export * from './lib/directives/bmb-button-group/bmb-button-group.directive';
+export * from './lib/components/bmb-login-onboarding/bmb-login-onboarding.service';
 
 // Components
 export * from './lib/components/bmb-logo/bmb-logo.component';
@@ -70,8 +71,11 @@ export * from './lib/components/bmb-home-card/bmb-home-card.component';
 export * from './lib/components/bmb-chat-bar/bmb-chat-bar.component';
 export * from './lib/components/bmb-push-notification/bmb-push-notification.component';
 export * from './lib/components/bmb-notification-card/bmb-notification-card.component';
+export * from './lib/components/bmb-login-onboarding/bmb-login-onboarding.component';
 export * from './lib/components/bmb-home-card-chat/bmb-home-card-chat.component';
 export * from './lib/components/bmb-paginator/bmb-paginator.component';
+export * from './lib/components/bmb-account-statement/bmb-account-statement.component';
+export * from './lib/components/bmb-tooltip/bmb-tooltip.component';
 
 // types
 export * from './lib/types';

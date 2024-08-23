@@ -4,8 +4,10 @@ export interface TableColum {
   label: string;
   def: string;
   dataKey: string;
+  htmlLabel?: TemplateRef<any>;
   templateActions?: TemplateRef<any>;
   width?: number;
+  icon?: string;
 }
 
 export interface TableConfig {

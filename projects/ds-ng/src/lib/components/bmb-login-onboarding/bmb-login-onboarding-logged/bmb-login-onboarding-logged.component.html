@@ -1,0 +1,19 @@
+<section class="bmb_login-onboarding-logged">
+  <section class="bmb_login-onboarding-logged-tec_logo">
+    <img alt="Tecnológico de Monterrey" [src]="tecLogoImage" />
+  </section>
+  <section class="bmb_login-onboarding-logged-mitec_logo">
+    <img alt="mitec" [src]="mitecImage" />
+  </section>
+  <section class="bmb_login-onboarding-logged-content">
+    <bmb-user-summary
+      [image]="getUserInfo().profilePicture"
+      [name]="getUserInfo().fullName"
+      [id]="getUserInfo().id"
+    />
+    <p>Ingresar con otra cuenta</p>
+  </section>
+  <section>
+    <button bmbButton size="large" (click)="_handleContinue()">Ingresar</button>
+  </section>
+</section>

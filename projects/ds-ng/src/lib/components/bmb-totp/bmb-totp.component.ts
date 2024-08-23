@@ -37,7 +37,6 @@ import {
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbTotpComponent implements OnInit {
-  private lastSubmitTime = Date.now();
   private destroy$ = new Subject<void>();
 
   @Input() title: string = 'TOTP';
@@ -153,17 +152,17 @@ export class BmbTotpComponent implements OnInit {
   }
 
   onSubmit() {
-    const now = Date.now();
-    if (now - this.lastSubmitTime > 300) {
-      this.lastSubmitTime = now;
+    // const now = Date.now();
+    // if (now - this.lastSubmitTime > 300) {
+    //   this.lastSubmitTime = now;
 
-      if (this.codeForm.valid) {
-        const code = Object.values(this.codeForm.value).join('');
-        this.handleSubmit.emit(code);
-      } else {
-        this.handleSubmit.emit('');
-      }
+    if (this.codeForm.valid) {
+      const code = Object.values(this.codeForm.value).join('');
+      this.handleSubmit.emit(code);
+    } else {
+      this.handleSubmit.emit('');
     }
+    // }
   }
 
   ngOnDestroy() {
