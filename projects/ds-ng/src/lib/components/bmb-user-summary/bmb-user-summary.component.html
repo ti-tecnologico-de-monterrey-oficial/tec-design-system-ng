@@ -1,8 +1,16 @@
 <section
   class="bmb_user-summary"
-  [ngClass]="{ 'bmb_user-summary-is-profile': isProfile }"
+  [ngClass]="{
+    'bmb_user-summary-is-profile': isProfile && !noBox,
+    'bmb_user-summary-is-profile-no-box': isProfile && noBox,
+  }"
 >
-  <bmb-user-image [size]="'mobile-large'" [image]="image" [altImage]="name" />
+  <bmb-user-image
+    [size]="'mobile-large'"
+    [image]="image"
+    [altImage]="name"
+    [bordered]="true"
+  />
   <div class="bmb_user-summary-content">
     @if (isProfile) {
       <h3 class="bmb_user-summary-content-title">{{ name }}</h3>
@@ -12,6 +20,7 @@
       </h3>
     }
     <span class="bmb_user-summary-content-id">{{ id }}</span>
+    <span class="bmb_user-summary-content-id">{{ infoCareer }}</span>
   </div>
   @if (isProfile) {
     <button
