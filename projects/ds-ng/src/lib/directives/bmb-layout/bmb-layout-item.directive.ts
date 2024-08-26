@@ -15,7 +15,7 @@ export class BmbLayoutItemDirective implements OnInit {
   @Input() marginLeft?: IMargin;
   @Input() marginRight?: IMargin;
   @Input() colGrow: number = 0;
-  @Input() isDinamycItem: boolean = false;
+  @Input() isDynamicItem: boolean = false;
 
   @HostBinding('class') get elementClass(): string[] {
     const classes = [];
@@ -40,7 +40,7 @@ export class BmbLayoutItemDirective implements OnInit {
   @HostBinding('style.flex') flex?: string;
 
   ngOnInit() {
-    if (this.isDinamycItem) {
+    if (this.isDynamicItem) {
       this.flex = `${this.colGrow} 0 0%`;
     }
   }

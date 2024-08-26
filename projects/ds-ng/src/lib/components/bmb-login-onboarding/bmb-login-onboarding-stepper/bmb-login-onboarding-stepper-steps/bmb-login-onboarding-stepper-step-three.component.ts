@@ -26,14 +26,14 @@ import { BmbLoginOnboardingService } from '../../bmb-login-onboarding.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbLoginOnboardingStepperStepThreeComponent {
-  handleRequet = output<any>();
+  handleRequest = output<any>();
   handleContinueStep = output();
 
   constructor(private loginOnboardingService: BmbLoginOnboardingService) {}
 
   _handleContinueStep(): void {
     this.loginOnboardingService.setIsLoading(true);
-    this.handleRequet.emit({
+    this.handleRequest.emit({
       action: 'biometric',
       callback: (result: boolean) => {
         if (result) {
