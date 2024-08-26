@@ -42,7 +42,7 @@
         <ng-container *ngTemplateOutlet="modalTemplate"></ng-container>
       }
     </section>
-    @if (this.modalData.type !== "informative") {
+    @if (this.modalData.type !== "informative" || !this.modalData.secondaryBtnLabel || !this.modalData.hidePrimaryButton) {
       <footer id="modal-footer" class="bmb_modal-footer">
         @if (this.modalData.secondaryBtnLabel) {
           <button
@@ -54,14 +54,16 @@
             {{ modalData.secondaryBtnLabel }}
           </button>
         }
-        <button
-          bmbButton
-          class="bmb_modal-btn"
-          [ngClass]="btnColor"
-          (click)="this.dialogRef.close(true)"
-        >
-          {{ modalData.primaryBtnLabel || "OK" }}
-        </button>
+        @if (!this.modalData.hidePrimaryButton) {
+          <button
+            bmbButton
+            class="bmb_modal-btn"
+            [ngClass]="btnColor"
+            (click)="this.dialogRef.close(true)"
+          >
+            {{ modalData.primaryBtnLabel || "OK" }}
+          </button>
+        }
       </footer>
     }
   </div>

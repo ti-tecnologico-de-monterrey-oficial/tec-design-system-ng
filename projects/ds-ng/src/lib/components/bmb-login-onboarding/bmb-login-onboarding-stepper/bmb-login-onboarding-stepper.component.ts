@@ -28,7 +28,7 @@ import { BmbLoginOnboardingService } from '../bmb-login-onboarding.service';
 })
 export class BmbLoginOnboardingStepperComponent {
   handleContinuePage = output();
-  handleRequet = output<any>();
+  handleRequest = output<any>();
 
   constructor(private loginOnboardingService: BmbLoginOnboardingService) {
     this.loginOnboardingService.setTotalSteps(4);
@@ -46,8 +46,8 @@ export class BmbLoginOnboardingStepperComponent {
     this.handleContinuePage.emit();
   }
 
-  _handleRequet(event: unknown): void {
-    this.handleRequet.emit(event);
+  _handleRequest(event: unknown): void {
+    this.handleRequest.emit(event);
   }
 
   handleContinueStep(): void {

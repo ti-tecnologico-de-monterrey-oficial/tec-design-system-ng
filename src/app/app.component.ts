@@ -718,4 +718,8 @@ export class AppComponent {
         console.log('Invalid action');
     }
   }
+
+  handlePay(amount: number) {
+    alert(`total a pagar ${amount}`);
+  }
 }

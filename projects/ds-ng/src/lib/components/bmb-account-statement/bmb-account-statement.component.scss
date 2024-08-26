@@ -1,4 +1,5 @@
 @use "../../../assets/styles/base/rem" as rem;
+@use "../../../assets/styles/base/fonts" as fonts;
 
 .bmb_account-statement {
   height: 100dvh;
@@ -26,5 +27,22 @@
     display: flex;
     gap: var(--bmb-spacing-m);
     padding: var(--bmb-spacing-m);
+  }
+
+  &-modal {
+    @include fonts.font(3, medium);
+
+    .bmb_progress-bar-container-main {
+      padding: 0;
+    }
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_account-statement {
+    &-modal {
+      color: RGBA(var(--color-charade-50));
+    }
   }
 }
