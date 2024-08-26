@@ -42,7 +42,11 @@
         <ng-container *ngTemplateOutlet="modalTemplate"></ng-container>
       }
     </section>
-    @if (this.modalData.type !== "informative" || !this.modalData.secondaryBtnLabel || !this.modalData.hidePrimaryButton) {
+    @if (
+      this.modalData.type !== "informative" ||
+      !this.modalData.secondaryBtnLabel ||
+      !this.modalData.hidePrimaryButton
+    ) {
       <footer id="modal-footer" class="bmb_modal-footer">
         @if (this.modalData.secondaryBtnLabel) {
           <button

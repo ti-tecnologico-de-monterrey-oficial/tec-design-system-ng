@@ -77,14 +77,16 @@ export class BmbAccountStatementComponent implements AfterViewInit, OnInit {
   modalRestLabel = input<string>('Pagar restante');
   modalOtherAmountLabel = input<string>('Otra cantidad');
   modalPrimaryButtonLabel = input<string>('Pagar');
-  errorMessage = input<string>('Error, Este campo es requerido y debe ser una cantidad entre 1 y ');
-
+  errorMessage = input<string>(
+    'Error, Este campo es requerido y debe ser una cantidad entre 1 y ',
+  );
 
   closeEvent = output<void>();
   backEvent = output<void>();
   payEvent = output<number>();
 
-  @ViewChild('modalTemplate', { read: TemplateRef }) modalTemplate?: TemplateRef<any>;
+  @ViewChild('modalTemplate', { read: TemplateRef })
+  modalTemplate?: TemplateRef<any>;
 
   newModal: TemplateRef<any> | null = null;
   customAmount: number = 0;
@@ -92,9 +94,7 @@ export class BmbAccountStatementComponent implements AfterViewInit, OnInit {
   maxAmount: number = 0;
 
   amountForm: FormGroup = new FormGroup({
-    amount: new FormControl<number>(0, [
-      Validators.required,
-    ]),
+    amount: new FormControl<number>(0, [Validators.required]),
   });
   showErrors: { [key: string]: boolean } = {};
 

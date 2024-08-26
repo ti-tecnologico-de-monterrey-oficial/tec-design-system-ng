@@ -50,7 +50,9 @@
     >
       {{ backButtonLabel() }}
     </button>
-    <button (click)="handlePay()" bmbButton size="large">{{ payButtonLabel() }}</button>
+    <button (click)="handlePay()" bmbButton size="large">
+      {{ payButtonLabel() }}
+    </button>
   </footer>
 </div>
 
@@ -65,7 +67,12 @@
         [title]="progressTitle()"
       />
       <bmb-divider />
-      <label class="bmb_account-statement-modal-label" bmbLayout alignItems="center" [dynamicCols]="true">
+      <label
+        class="bmb_account-statement-modal-label"
+        bmbLayout
+        alignItems="center"
+        [dynamicCols]="true"
+      >
         <bmb-radial
           id="modalRestInput"
           name="modalAmount"
@@ -80,7 +87,12 @@
         </span>
       </label>
       <bmb-divider />
-      <label class="bmb_account-statement-modal-label" bmbLayout alignItems="center" [dynamicCols]="true">
+      <label
+        class="bmb_account-statement-modal-label"
+        bmbLayout
+        alignItems="center"
+        [dynamicCols]="true"
+      >
         <bmb-radial
           id="modalOtherAmountInput"
           name="modalAmount"
@@ -112,7 +124,9 @@
         >
           {{ backButtonLabel() }}
         </button> -->
-        <button type="submit" bmbButton size="large">{{ modalPrimaryButtonLabel() }}</button>
+        <button type="submit" bmbButton size="large">
+          {{ modalPrimaryButtonLabel() }}
+        </button>
       </footer>
     </form>
   </section>
