@@ -33,8 +33,7 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'text',
       },
-      description:
-        'Set the title on the header.',
+      description: 'Set the title on the header.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -46,8 +45,7 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'text',
       },
-      description:
-        'Set the text for primary text.',
+      description: 'Set the text for primary text.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -59,8 +57,7 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'text',
       },
-      description:
-        'Set the text for secondary text.',
+      description: 'Set the text for secondary text.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -72,8 +69,7 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'number',
       },
-      description:
-        'Set the total amount.',
+      description: 'Set the total amount.',
       table: {
         category: 'Properties',
         type: { summary: 'number' },
@@ -85,8 +81,7 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'number',
       },
-      description:
-        'Set the partial amount.',
+      description: 'Set the partial amount.',
       table: {
         category: 'Properties',
         type: { summary: 'number' },
@@ -98,8 +93,7 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'text',
       },
-      description:
-        'Set the progress title on the header.',
+      description: 'Set the progress title on the header.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -124,8 +118,7 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'text',
       },
-      description:
-        'Set the label for payment deadline.',
+      description: 'Set the label for payment deadline.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -137,8 +130,7 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'text',
       },
-      description:
-        'Set the label for payment cutoff.',
+      description: 'Set the label for payment cutoff.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -150,8 +142,7 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'text',
       },
-      description:
-        'Set the payment deadline label.',
+      description: 'Set the payment deadline label.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -163,8 +154,7 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'text',
       },
-      description:
-        'Set the cutoff date label.',
+      description: 'Set the cutoff date label.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -176,8 +166,7 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'text',
       },
-      description:
-        'Set the text for pay button.',
+      description: 'Set the text for pay button.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -189,8 +178,7 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'text',
       },
-      description:
-        'Set the text for back button.',
+      description: 'Set the text for back button.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -202,8 +190,7 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'text',
       },
-      description:
-        'Set the title for the modal.',
+      description: 'Set the title for the modal.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -215,8 +202,7 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'text',
       },
-      description:
-        'Set the subtitle for the modal.',
+      description: 'Set the subtitle for the modal.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -228,8 +214,7 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'text',
       },
-      description:
-        'Set the rest text for the modal.',
+      description: 'Set the rest text for the modal.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -241,8 +226,7 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'text',
       },
-      description:
-        'Set the label for the custom amount for the modal.',
+      description: 'Set the label for the custom amount for the modal.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -254,8 +238,7 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'text',
       },
-      description:
-        'Set the text for the primary button of the modal.',
+      description: 'Set the text for the primary button of the modal.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -267,12 +250,14 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'text',
       },
-      description:
-        'Set the error message for the custom amount field.',
+      description: 'Set the error message for the custom amount field.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        defaultValue: { summary: 'Error, Este campo es requerido y debe ser una cantidad entre 1 y ' },
+        defaultValue: {
+          summary:
+            'Error, Este campo es requerido y debe ser una cantidad entre 1 y ',
+        },
       },
     },
     progressCircleTitle: {
@@ -285,7 +270,7 @@ Below is an example of how you can use this component in HTML:
       table: {
         category: 'Properties',
         type: { summary: 'object' },
-        defaultValue: { summary: ['Total a pagar', 'este mes']}
+        defaultValue: { summary: ['Total a pagar', 'este mes'] },
       },
     },
   },
@@ -308,7 +293,8 @@ Below is an example of how you can use this component in HTML:
     modalRestLabel: 'Pagar restante',
     modalOtherAmountLabel: 'Otra cantidad',
     modalPrimaryButtonLabel: 'Pagar',
-    errorMessage: 'Error, Este campo es requerido y debe ser una cantidad entre 1 y 9000',
+    errorMessage:
+      'Error, Este campo es requerido y debe ser una cantidad entre 1 y 9000',
     progressCircleTitle: ['Total a pagar', 'este mes'],
   },
 } as Meta<typeof BmbAccountStatementComponent>;
