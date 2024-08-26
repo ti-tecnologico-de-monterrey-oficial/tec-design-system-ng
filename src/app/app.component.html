@@ -1,11 +1,23 @@
 <bmb-theme [showControls]="false" initialTheme="dark" />
 <bmb-account-statement
   title="custom title"
-  [totalCount]="9000"
-  [counter]="1560"
-  paymentDeadline="2024-08-29"
-  cutOffDate="2024-08-15"
-  modalTitle="Adeudo"
-  modalSubtitle="Pagar ahora"
-  (payEvent)="handlePay($event)"
+  [valuePrimary]="9000"
+  [valueSecondary]="1560"
 ></bmb-account-statement>
+<bmb-interactive-icon
+  icon="close"
+  [setButtonTemplate]="true"
+  link="https://www.google.com.mx/"
+/>
+<bmb-interactive-icon
+  icon="https://img.freepik.com/premium-vector/approved-icon-with-thumb-up-approved-label-quality-control_349999-1321.jpg?w=2000"
+  [setButtonTemplate]="true"
+  link="https://www.google.com.mx/"
+/>
+
+<div style="display: flex; gap: 3em">
+  <a routerLink="/home" class="font-bold-6">Home</a>
+  <a routerLink="/my-page" class="font-bold-6">My Page</a>
+  <a routerLink="/emprendedor" class="font-bold-6">Emprendedor</a>
+</div>
+<router-outlet></router-outlet>

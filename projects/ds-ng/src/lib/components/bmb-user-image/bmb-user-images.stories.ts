@@ -94,6 +94,19 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string' },
       },
     },
+    bordered: {
+      name: 'Bordered',
+      control: {
+        type: 'boolean',
+      },
+      description:
+        'The bordered attribute draw a color border around the image.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
   },
   args: {
     image:
@@ -102,6 +115,7 @@ Below is an example of how you can use this component in HTML:
     size: 'desktop-small',
     target: '_blank',
     link: 'https://www.youtube.com/',
+    bordered: true,
   },
 } as Meta<typeof BmbUserImageComponent>;
 
