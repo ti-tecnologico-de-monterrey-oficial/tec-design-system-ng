@@ -106,8 +106,7 @@
     }
 
     &:disabled {
-      background-color: RGBA(var(--color-charade-300));
-      color: RGBA(var(--color-white-min));
+      opacity: 0.5;
     }
   } @else if $appearance == secondary-filled {
     background-color: RGBA(var(--color-charade-50));
