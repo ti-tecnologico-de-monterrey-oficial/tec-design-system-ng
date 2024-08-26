@@ -47,7 +47,7 @@ Below is an example of how you can use this component in HTML:
     },
   },
   argTypes: {
-    gapSise: {
+    gapSize: {
       name: 'Gap size',
       control: {
         type: 'select',
@@ -73,7 +73,7 @@ Below is an example of how you can use this component in HTML:
       },
       description: 'Set the margin size',
     },
-    dinamycCols: {
+    dynamicCols: {
       name: 'Enable dinamyc cols',
       control: { type: 'boolean' },
       description: 'This property enable the dinamic size for bmbLayoutItem',
@@ -119,9 +119,9 @@ Below is an example of how you can use this component in HTML:
     },
   },
   args: {
-    gapSise: 'm',
+    gapSize: 'm',
     margin: 'm',
-    dinamycCols: false,
+    dynamicCols: false,
     justify: 'start',
     alignItems: 'start',
   },
@@ -136,7 +136,7 @@ export const OneItem: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <section bmbLayout [gapSise]="gapSise" [margin]="margin" [justify]="justify" [alignItems]="alignItems">
+      <section bmbLayout [gapSize]="gapSize" [margin]="margin" [justify]="justify" [alignItems]="alignItems">
         <bmb-card bmbLayoutItem margin="none" [colLg]="4">
           <bmb-card-content padding="none">
             <p [ngStyle]="{padding: '1rem'}">Element</p>
