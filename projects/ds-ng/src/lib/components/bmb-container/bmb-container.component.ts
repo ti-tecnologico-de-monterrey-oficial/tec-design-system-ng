@@ -1,10 +1,18 @@
 import {
   Component,
-  Input,
   ChangeDetectionStrategy,
   ViewEncapsulation,
+  input,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+export type IBmbAppearanceType =
+  | 'primary-container'
+  | 'primary-home'
+  | 'primary-header'
+  | 'secondary-container'
+  | 'contrast-box-container'
+  | 'button-container';
 
 @Component({
   selector: 'bmb-container',
@@ -16,15 +24,17 @@ import { CommonModule } from '@angular/common';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbContainerComponent {
-  @Input() appearance: string = '';
-
-  constructor() {}
+  appearance = input<IBmbAppearanceType>('primary-container');
+  isHidden = input<boolean>(false);
 
   getClasses(): string[] {
-    const classes: string[] = ['bmb_container'];
+    const className = 'bmb_container';
+    const classes: string[] = [className];
 
-    if (this.appearance) {
-      classes.push('bmb_container-' + this.appearance);
+    if (this.isHidden()) return [className + '-hidden'];
+
+    if (this.appearance()) {
+      classes.push(className + '-' + this.appearance());
     }
 
     return classes;

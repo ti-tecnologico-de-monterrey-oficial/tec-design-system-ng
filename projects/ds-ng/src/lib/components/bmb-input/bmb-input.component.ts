@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 
-export type IBbmInputType = 'text' | 'password';
+export type IBbmInputType = 'text' | 'password' | 'number';
 
 @Component({
   selector: 'bmb-input',
@@ -41,6 +41,8 @@ export class BmbInputComponent implements OnInit {
   @Input() minlength!: number;
   @Input() pattern!: string;
   @Input() size!: number;
+  @Input() max!: number;
+  @Input() min!: number;
 
   @Output() isFocus: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() isBlur: EventEmitter<boolean> = new EventEmitter<boolean>();

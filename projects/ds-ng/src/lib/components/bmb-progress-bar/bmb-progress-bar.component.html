@@ -42,16 +42,18 @@
             >
           </div>
         </div>
-        <div class="bmb_progress-bar-container-link">
-          <a
-            class="bmb_progress-bar-container-link-text"
-            [href]="href"
-            [target]="target"
-          >
-            <span>{{ textLink }}</span>
-            <bmb-icon [icon]="'arrow_forward'" />
-          </a>
-        </div>
+        @if (textLink) {
+          <div class="bmb_progress-bar-container-link">
+            <a
+              class="bmb_progress-bar-container-link-text"
+              [href]="href"
+              [target]="target"
+            >
+              <span>{{ textLink }}</span>
+              <bmb-icon [icon]="'arrow_forward'" />
+            </a>
+          </div>
+        }
       </div>
     </div>
   }
