@@ -14,7 +14,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 @Component({
   standalone: true,
   selector: 'bmb-toast',
-  styleUrls: ['./bmb-toast.component.scss'],
+  styleUrl: './bmb-toast.component.scss',
   imports: [CommonModule, BmbIconComponent],
   templateUrl: './bmb-toast.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
