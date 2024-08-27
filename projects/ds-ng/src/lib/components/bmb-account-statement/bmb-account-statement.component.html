@@ -1,0 +1,13 @@
+<bmb-header-mobile
+  [text]="title()"
+  iconLeft="close"
+  (onIconLeftClick)="handleClose()"
+></bmb-header-mobile>
+<main>
+  <bmb-balance-overview
+    [progressCircleTitle]="progressCircleTitle()"
+    [labelPrimary]="labelPrimary()"
+    [labelSecondary]="labelSecondary()"
+  />
+</main>
+<footer>Footer</footer>

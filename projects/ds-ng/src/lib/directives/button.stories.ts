@@ -116,6 +116,16 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'boolean' },
       },
     },
+    isRounded: {
+      name: 'Is rounded',
+      control: { type: 'boolean' },
+      description: 'This property change the border radius to 2rem (~32px)',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
   },
   args: {
     appearance: 'primary',
@@ -126,6 +136,7 @@ Below is an example of how you can use this component in HTML:
     text: 'Button text',
     isToggleActive: false,
     enableButtonToggle: false,
+    isRounded: false,
   },
 } as Meta<typeof BmbButtonDirective>;
 

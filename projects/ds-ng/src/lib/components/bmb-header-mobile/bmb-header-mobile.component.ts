@@ -1,10 +1,9 @@
 import {
   Component,
-  Input,
   ChangeDetectionStrategy,
-  Output,
-  EventEmitter,
   ViewEncapsulation,
+  input,
+  output,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
@@ -27,36 +26,36 @@ import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.componen
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbHeaderMobileComponent {
-  @Input() text: string = '';
+  text = input.required<string>();
 
-  @Input() userImage: string = '';
-  @Input() userAltImage: string = '';
-  @Input() userLink: string = '';
-  @Input() userTarget: string = '';
+  userImage = input<string>('');
+  userAltImage = input<string>('');
+  userLink = input<string>('');
+  userTarget = input<string>('');
 
-  @Input() logo: string = '';
-  @Input() altLogo: string = '';
-  @Input() logoLink: string = '';
-  @Input() logoTarget: string = '';
+  logo = input<string>('');
+  altLogo = input<string>('');
+  logoLink = input<string>('');
+  logoTarget = input<string>('');
 
-  @Input() iconLeft: string = '';
-  @Input() iconRight: string = '';
-  @Input() iconRight2: string = '';
+  iconLeft = input<string>('');
+  iconRight = input<string>('');
+  iconRight2 = input<string>('');
 
   // Event handlers
-  @Output() onIconLeftClick: EventEmitter<void> = new EventEmitter<void>();
-  @Output() onIconRightClick: EventEmitter<void> = new EventEmitter<void>();
-  @Output() onIconRight2Click: EventEmitter<void> = new EventEmitter<void>();
+  onIconLeftClick = output();
+  onIconRightClick = output();
+  onIconRight2Click = output();
 
-  handleIconLeftClick() {
-    this.onIconLeftClick.emit();
+  handleIconLeftClick(event: any): void {
+    this.onIconLeftClick.emit(event);
   }
 
-  handleIconRightClick() {
-    this.onIconRightClick.emit();
+  handleIconRightClick(event: any): void {
+    this.onIconRightClick.emit(event);
   }
 
-  handleIconRight2Click() {
-    this.onIconRight2Click.emit();
+  handleIconRight2Click(event: any): void {
+    this.onIconRight2Click.emit(event);
   }
 }

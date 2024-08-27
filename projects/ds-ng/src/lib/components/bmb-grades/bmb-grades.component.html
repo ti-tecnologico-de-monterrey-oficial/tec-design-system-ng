@@ -1,0 +1,67 @@
+<ng-template #detailContent>
+  <section *ngFor="let partial of partials">
+    <section bmbLayout margin="none" justify="spaceAround">
+      <span class="bmb_grades-title" bmbLayoutItem [colSm]="8">{{
+        partial.title
+      }}</span>
+      <bmb-grade-value
+        [score]="partial.score"
+        type="partial-grade"
+        bmbLayoutItem
+        [colSm]="4"
+      />
+    </section>
+    <bmb-divider [type]="'simple'" />
+  </section>
+</ng-template>
+
+<section class="bmb_grades">
+  <bmb-header-mobile
+    [text]="getGradesTitle()"
+    iconLeft="close"
+    [iconRight]="getCalendarIcon()"
+    (onIconLeftClick)="handleLeftGradesClick($event)"
+    (onIconRightClick)="handleRightGradesClick()"
+  >
+    <bmb-chevron-title-selector
+      [title]="getTitle()"
+      (onLeadingClick)="handleLeftPeriodClick()"
+      (onTrailingClick)="handleRightPeriodClick()"
+    ></bmb-chevron-title-selector>
+    <bmb-container [isHidden]="!showPrincipalDetail">
+      <section bmbLayout margin="none" justify="spaceAround">
+        <section bmbLayoutItem [colSm]="4">
+          <bmb-focus-element
+            [number]="getAccreditedClasses()"
+            title="Materias Acreditadas"
+            [isNormal]="true"
+          />
+        </section>
+        <section bmbLayoutItem [colSm]="4">
+          <bmb-focus-element
+            [number]="getPeriodAverage()"
+            title="Promedio Semestre"
+          />
+        </section>
+        <section bmbLayoutItem [colSm]="4">
+          <bmb-focus-element
+            [number]="getServiceHours()"
+            title="Horas Servicio"
+            [isNormal]="true"
+          />
+        </section>
+      </section>
+    </bmb-container>
+  </bmb-header-mobile>
+  <ng-container *ngFor="let element of getElements()">
+    <bmb-container-button
+      [title]="getDetailTitle(element)"
+      [subtitle]="getDetailSubtitle(element)"
+      [score]="getDetailScore(element)"
+      iconLeft="chevron_left"
+      iconRight="chevron_right"
+      [setButtonTemplate]="true"
+      (onButton)="handleDetails(element)"
+    />
+  </ng-container>
+</section>

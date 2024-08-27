@@ -1,8 +1,5 @@
-<bmb-login-onboarding (handleRequet)="handleRequet($event)">
-  <p>custom content</p>
-</bmb-login-onboarding>
-
 <bmb-theme initialTheme="dark" [showControls]="false" />
+<bmb-grades [grades]="getGrades()" />
 <div style="margin: 1rem">
   <bmb-interactive-icon
     appearance="red"
@@ -68,3 +65,7 @@
 </div>
 <router-outlet></router-outlet>
 <bmb-push-notification />
+
+<bmb-login-onboarding (handleRequet)="handleRequet($event)">
+  <p>custom content</p>
+</bmb-login-onboarding>
