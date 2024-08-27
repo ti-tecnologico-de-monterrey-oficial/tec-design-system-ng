@@ -23,7 +23,8 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 })
 export class BmbToastComponent implements OnInit, OnDestroy {
   @Input() appearance: string = '';
-  @Input() message: string = '';
+  @Input() title: string = '';
+  @Input() description?: string;
   @Input() duration?: number;
   @Input() position?: 'top' | 'bottom' | 'middle';
 
@@ -69,5 +70,9 @@ export class BmbToastComponent implements OnInit, OnDestroy {
 
   public openToast() {
     this.toastService.openToast();
+  }
+
+  public closeToast() {
+    this.toastService.closeToast();
   }
 }
