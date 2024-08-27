@@ -2,19 +2,27 @@
 @use "../../../assets/styles/base/mixins" as mixins;
 @use "../../../assets/styles/base/rem" as rem;
 
+@mixin circle {
+  align-items: center;
+  display: flex;
+  height: rem.rem_calc(64);
+  justify-content: center;
+  width: rem.rem_calc(64);
+}
+
 .bmb_focus_element {
   width: fit-content;
 
-  &-circle {
-    align-items: center;
-    background-color: var(--color-charade-50);
+  &-circle_normal {
+    @include circle;
+    border: rem.rem_calc(1) solid;
+    border-radius: 100%;
+  }
+
+  &-circle_focused {
+    @include circle;
     border: rem.rem_calc(1) solid RGBA(var(--color-mariner-700));
     border-radius: 100%;
-    display: flex;
-    height: rem.rem_calc(64);
-    justify-content: center;
-    text-decoration: none;
-    width: rem.rem_calc(64);
   }
 
   &-icon {
@@ -44,9 +52,14 @@
 [data-theme="dark"],
 .storybook-dark-theme {
   .bmb_focus_element {
-    &-circle {
-      background-color: var(--color-black-tint);
+    &-circle_focused {
+      background-color: RGBA(var(--color-black-primary));
       border-color: RGBA(var(--color-neon-primary));
+    }
+
+    &-circle_normal {
+      background-color: RGBA(var(--color-black-primary));
+      border-color: RGBA(var(--color-black-primary));
     }
 
     &-icon {
