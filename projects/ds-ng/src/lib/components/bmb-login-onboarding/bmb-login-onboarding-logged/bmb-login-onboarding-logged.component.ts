@@ -19,7 +19,7 @@ import { IBmbUserInfo } from '../types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbLoginOnboardingLoggedComponent {
-  handleRequet = output<any>();
+  handleRequest = output<any>();
 
   tecLogoImage: string = '../assets/images/tec-logo.svg';
   mitecImage: string = '../assets/images/logos-mitec/logo_mitec-vertical.svg';
@@ -32,7 +32,7 @@ export class BmbLoginOnboardingLoggedComponent {
 
   _handleContinue(): void {
     this.loginOnboardingService.setIsLoading(true);
-    this.handleRequet.emit({
+    this.handleRequest.emit({
       action: 'init',
       callback: () => {
         this.loginOnboardingService.setIsLoading(false);

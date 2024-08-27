@@ -76,6 +76,7 @@ export * from './lib/components/bmb-home-card-chat/bmb-home-card-chat.component'
 export * from './lib/components/bmb-paginator/bmb-paginator.component';
 export * from './lib/components/bmb-account-statement/bmb-account-statement.component';
 export * from './lib/components/bmb-grades/bmb-grades.component';
+export * from './lib/components/bmb-tooltip/bmb-tooltip.component';
 
 // types
 export * from './lib/types';
