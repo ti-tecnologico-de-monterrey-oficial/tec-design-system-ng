@@ -11,3 +11,136 @@
   />
 </main>
 <footer>Footer</footer>
+<div class="bmb_account-statement">
+  <bmb-header-mobile
+    [text]="title()"
+    iconLeft="close"
+    (onIconLeftClick)="handleClose()"
+  ></bmb-header-mobile>
+  <main class="bmb_account-statement-content">
+    <div class="bmb_account-statement-content-balance">
+      <bmb-balance-overview
+        [progressCircleTitle]="progressCircleTitle()"
+        [labelPrimary]="labelPrimary()"
+        [labelSecondary]="labelSecondary()"
+        [progressCircleValue]="getFormattedAmount(totalCount() - counter())"
+        [valuePrimary]="getFormattedAmount(totalCount())"
+        [valueSecondary]="getFormattedAmount(counter())"
+        [progressCirclePercent]="getProgressPercent()"
+      />
+    </div>
+    <bmb-card>
+      <bmb-card-content padding="none">
+        <bmb-progress-bar
+          appearance="info"
+          type="container"
+          [counter]="counter()"
+          [totalCount]="totalCount()"
+          [title]="progressTitle()"
+        />
+      </bmb-card-content>
+    </bmb-card>
+    <bmb-card>
+      <bmb-card-content>
+        <p class="bmb_account-statement-content-date">
+          <span>{{ cutOffDateLabel() }}</span>
+          <span>{{ getFormattedDate(cutOffDate()) }}</span>
+        </p>
+        <bmb-divider />
+        <p class="bmb_account-statement-content-date">
+          <span>{{ paymentDeadlineLabel() }}</span>
+          <span>{{ getFormattedDate(paymentDeadline()) }}</span>
+        </p>
+      </bmb-card-content>
+    </bmb-card>
+  </main>
+  <footer class="bmb_account-statement-footer">
+    <button
+      bmbButton
+      size="large"
+      appearance="secondary-outlined"
+      (click)="handleBack()"
+    >
+      {{ backButtonLabel() }}
+    </button>
+    <button (click)="handlePay()" bmbButton size="large">
+      {{ payButtonLabel() }}
+    </button>
+  </footer>
+</div>
+
+<ng-template #modalTemplate>
+  <section class="bmb_account-statement-modal">
+    <form [formGroup]="amountForm" (ngSubmit)="onSubmit()">
+      <bmb-progress-bar
+        appearance="info"
+        type="container"
+        [counter]="counter()"
+        [totalCount]="totalCount()"
+        [title]="progressTitle()"
+      />
+      <bmb-divider />
+      <label
+        class="bmb_account-statement-modal-label"
+        bmbLayout
+        alignItems="center"
+        [dynamicCols]="true"
+      >
+        <bmb-radial
+          id="modalRestInput"
+          name="modalAmount"
+          [checked]="true"
+          (change)="handleActiveCustomAmount($event)"
+          value="modalRestInput"
+        />
+        <span bmbLayoutItem [colGrow]="1">
+          {{ modalRestLabel() }}
+          <br />
+          {{ getFormattedAmount(totalCount() - counter()) }}
+        </span>
+      </label>
+      <bmb-divider />
+      <label
+        class="bmb_account-statement-modal-label"
+        bmbLayout
+        alignItems="center"
+        [dynamicCols]="true"
+      >
+        <bmb-radial
+          id="modalOtherAmountInput"
+          name="modalAmount"
+          (change)="handleActiveCustomAmount($event)"
+          value="modalOtherAmountInput"
+        />
+        <span bmbLayoutItem [colGrow]="1">
+          {{ modalOtherAmountLabel() }}
+        </span>
+      </label>
+      @if (isEnableCustomAmount) {
+        <bmb-input
+          type="number"
+          [max]="totalCount() - counter()"
+          [min]="0"
+          pattern="\d*"
+          [errorMessage]="errorMessage()"
+          [isRequired]="true"
+          [control]="getFormControl('amount')"
+          [showError]="showErrors['amount']"
+        />
+      }
+      <footer class="bmb_account-statement-footer">
+        <!-- <button
+          bmbButton
+          size="large"
+          appearance="secondary-outlined"
+          (click)="handleBack()"
+        >
+          {{ backButtonLabel() }}
+        </button> -->
+        <button type="submit" bmbButton size="large">
+          {{ modalPrimaryButtonLabel() }}
+        </button>
+      </footer>
+    </form>
+  </section>
+</ng-template>

@@ -16,9 +16,9 @@ export type IAlignItemsOptions = 'center' | 'end' | 'start' | 'stretch';
   standalone: true,
 })
 export class BmbLayoutDirective {
-  @Input() gapSise: SizeNames = 'm';
+  @Input() gapSize: SizeNames = 'm';
   @Input() margin: SizeNames = 'm';
-  @Input() dinamycCols: boolean = false;
+  @Input() dynamicCols: boolean = false;
   @Input() justify: IJustifyOptions = 'start';
   @Input() alignItems: IAlignItemsOptions = 'start';
 
@@ -27,13 +27,13 @@ export class BmbLayoutDirective {
   @HostBinding('class') get elementClass(): string[] {
     const classes = [
       'bmb_layout',
-      `bmb_gap-${this.gapSise}`,
+      `bmb_gap-${this.gapSize}`,
       `bmb_margin-${this.margin}`,
       `bmb_justify-${this.justify}`,
       `bmb_alignItems-${this.alignItems}`,
     ];
 
-    if (this.dinamycCols) classes.push('bmb_layout-smart');
+    if (this.dynamicCols) classes.push('bmb_layout-smart');
     return classes;
   }
 }
