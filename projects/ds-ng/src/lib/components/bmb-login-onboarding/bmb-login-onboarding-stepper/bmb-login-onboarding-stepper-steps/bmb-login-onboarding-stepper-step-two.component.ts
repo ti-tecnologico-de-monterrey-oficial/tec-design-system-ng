@@ -40,7 +40,7 @@ import { IBmbError } from '../../types';
 export class BmbLoginOnboardingStepperStepTwoComponent {
   isContinueDisable = model<boolean>(true);
 
-  handleRequet = output<any>();
+  handleRequest = output<any>();
   handleContinueStep = output();
 
   error: IBmbError = { codeError: false, errorMessage: '' };
@@ -68,7 +68,7 @@ export class BmbLoginOnboardingStepperStepTwoComponent {
 
   _handleContinueStep(): void {
     this.loginOnboardingService.setIsLoading(true);
-    this.handleRequet.emit({
+    this.handleRequest.emit({
       data: this.code,
       action: 'toTP',
       callback: (result: boolean) => {

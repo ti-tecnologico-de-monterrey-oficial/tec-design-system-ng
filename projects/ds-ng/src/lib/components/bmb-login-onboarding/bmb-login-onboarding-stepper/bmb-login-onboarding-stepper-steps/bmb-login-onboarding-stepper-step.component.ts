@@ -36,7 +36,7 @@ export class BmbLoginOnboardingStepperStepComponent {
     return this.loginOnboardingService.getActiveStep();
   }
 
-  handleCancelBackStept(): void {
+  handleCancelBackStep(): void {
     if (
       this.getActiveStep() &&
       this.getActiveStep() !== this.loginOnboardingService.getTotalSteps() - 1

@@ -18,7 +18,7 @@ import { IBmbUserInfo } from '../types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbLoginOnboardingLogoutComponent {
-  handleRequet = output<any>();
+  handleRequest = output<any>();
   handleContinuePage = output();
 
   checkCircleImage: string = '../assets/images/placeholders/check-circle.svg';
@@ -27,7 +27,7 @@ export class BmbLoginOnboardingLogoutComponent {
 
   _handleContinuePage(): void {
     this.loginOnboardingService.setIsLoading(true);
-    this.handleRequet.emit({
+    this.handleRequest.emit({
       data: this.loginOnboardingService.getUserInfo()['id'],
       action: 'getUserInfo',
       callback: (result: IBmbUserInfo) => {
