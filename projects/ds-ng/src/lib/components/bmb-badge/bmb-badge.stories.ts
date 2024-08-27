@@ -71,11 +71,22 @@ Below is an example of how you can use this component in HTML:
       },
       description: 'The appearance of the badge, affecting its visual style.',
     },
+    rounded: {
+      name: 'Rounded',
+      control: { type: 'boolean' },
+      description: 'When set to true, the badge will have rounded corners.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
   },
   args: {
     text: 'Badge text',
     appearance: 'normal',
     grouped: false,
+    rounded: false,
   },
 } as Meta<typeof BmbBadgeComponent>;
 
