@@ -74,6 +74,8 @@ export * from './lib/components/bmb-notification-card/bmb-notification-card.comp
 export * from './lib/components/bmb-login-onboarding/bmb-login-onboarding.component';
 export * from './lib/components/bmb-home-card-chat/bmb-home-card-chat.component';
 export * from './lib/components/bmb-paginator/bmb-paginator.component';
+export * from './lib/components/bmb-account-statement/bmb-account-statement.component';
+export * from './lib/components/bmb-grades/bmb-grades.component';
 
 // types
 export * from './lib/types';

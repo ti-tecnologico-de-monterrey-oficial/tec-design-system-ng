@@ -9,22 +9,24 @@ import {
   OnChanges,
   Renderer2,
   SimpleChanges,
+  input,
 } from '@angular/core';
 import { BmbIconComponent } from '../components/bmb-icon/bmb-icon.component';
-import { IButtonAppearance } from '../types';
+import { IBmbHorizontalPosition, IButtonAppearance } from '../types';
 
 @Directive({
   selector: '[bmbButton]',
   standalone: true,
 })
 export class BmbButtonDirective implements OnInit, OnChanges {
-  @Input() icon: string = '';
-  @Input() position: 'left' | 'right' = 'left';
-  @Input() case: boolean = false;
-  @Input() appearance: IButtonAppearance = 'primary';
-  @Input() size: 'small' | 'large' = 'small';
-  @Input() isToggleActive: boolean = false;
-  @Input() enableButtonToggle: boolean = false;
+  icon = input<string>('');
+  position = input<IBmbHorizontalPosition>('left');
+  case = input<boolean>(false);
+  appearance = input<IButtonAppearance>('primary');
+  size = input<'small' | 'large'>('small');
+  isToggleActive = input<boolean>(false);
+  enableButtonToggle = input<boolean>(false);
+  isRounded = input<boolean>(false);
 
   private providedInputs: Set<string> = new Set();
 
@@ -52,31 +54,32 @@ export class BmbButtonDirective implements OnInit, OnChanges {
 
   private applyAttributes() {
     if (this.providedInputs.has('case')) {
-      if (this.case) {
+      if (this.case()) {
         this.renderer.setAttribute(this.el.nativeElement, 'case', 'true');
       } else {
         this.renderer.removeAttribute(this.el.nativeElement, 'case');
       }
     }
 
-    if (this.providedInputs.has('size') && this.size) {
-      this.renderer.setAttribute(this.el.nativeElement, 'size', this.size);
+    if (this.providedInputs.has('size') && this.size()) {
+      this.renderer.setAttribute(this.el.nativeElement, 'size', this.size());
     }
 
     if (this.providedInputs.has('position')) {
       this.renderer.setAttribute(
         this.el.nativeElement,
         'position',
-        this.position,
+        this.position(),
       );
     }
   }
 
   @HostBinding('class') get elementClass(): string[] {
-    const classList = [`bmb_btn-${this.appearance}`];
-    if (this.enableButtonToggle && this.isToggleActive) {
+    const classList = [`bmb_btn-${this.appearance()}`];
+    if (this.enableButtonToggle() && this.isToggleActive())
       classList.push('bmb_btn-toggle-active');
-    }
+    if (this.isRounded()) classList.push('bmb_btn-rounded');
+
     return classList;
   }
 
@@ -87,9 +90,9 @@ export class BmbButtonDirective implements OnInit, OnChanges {
       const iconComponentRef =
         this.viewContainerRef.createComponent(BmbIconComponent); // Crear una instancia del componente
       const iconComponent = iconComponentRef.instance;
-      iconComponent.icon = this.icon;
+      iconComponent.icon = this.icon();
 
-      if (this.position === 'right') {
+      if (this.position() === 'right') {
         this.el.nativeElement.insertBefore(
           iconComponentRef.location.nativeElement,
           this.el.nativeElement.lastChild.nextSibling,
