@@ -1,0 +1,8 @@
+@use "../../../assets/styles/base/fonts" as fonts;
+
+.bmb_grades {
+  &-title {
+    color: RGBA(var(--color-white-primary));
+    @include fonts.font(4, medium);
+  }
+}
