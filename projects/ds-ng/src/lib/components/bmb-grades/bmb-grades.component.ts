@@ -74,6 +74,7 @@ export class BmbGradesComponent {
       size: 'large',
       type: 'informative',
       alertStyle: 'event',
+      hidePrimaryButton: true,
     };
     this.matDialog.open(BmbModalComponent, { data });
   }

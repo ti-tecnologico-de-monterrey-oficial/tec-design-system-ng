@@ -14,7 +14,8 @@ export type IBmbInteractiveIconAppearance =
   | 'blue'
   | 'green'
   | 'yellow'
-  | 'purple';
+  | 'purple'
+  | 'none';
 
 export type IBmbInteractiveIconType = 'regular' | 'button' | 'app_drawer';
 
