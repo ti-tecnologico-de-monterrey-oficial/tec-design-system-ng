@@ -58,7 +58,7 @@ Below is an example of how you can use this component in HTML:
     size: {
       name: 'Size',
       control: 'radio',
-      options: ['small', 'large'],
+      options: ['small', 'large', 'micro'],
       table: {
         category: 'Properties',
         defaultValue: { summary: 'small' },
@@ -122,7 +122,7 @@ Below is an example of how you can use this component in HTML:
       description: 'This property change the border radius to 2rem (~32px)',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'false' },
+        defaultValue: { summary: 'true' },
         type: { summary: 'boolean' },
       },
     },
@@ -136,7 +136,7 @@ Below is an example of how you can use this component in HTML:
     text: 'Button text',
     isToggleActive: false,
     enableButtonToggle: false,
-    isRounded: false,
+    isRounded: true,
   },
 } as Meta<typeof BmbButtonDirective>;
 
@@ -144,7 +144,12 @@ function attributes(object: { [key: string]: any }): string {
   return Object.entries(object)
     .filter(([key]) => key !== 'text')
     .map(([key, value]) => {
-      if (key === 'case') {
+      if (
+        key === 'case' ||
+        key === 'isRounded' ||
+        key === 'enableButtonToggle' ||
+        key === 'isToggleActive'
+      ) {
         return `[${key}]="${value}"`;
       }
       return `${key}="${value}"`;

@@ -33,7 +33,7 @@ import { BmbModalComponent } from '../../../bmb-modal/bmb-modal.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbLoginOnboardingStepperStepFourComponent {
-  handleRequet = output<any>();
+  handleRequest = output<any>();
   handleContinuePage = output();
 
   credentialExample: string = '../assets/images/placeholders/credential.svg';
@@ -65,7 +65,7 @@ export class BmbLoginOnboardingStepperStepFourComponent {
 
   _handleContinueStep(): void {
     this.loginOnboardingService.setIsLoading(true);
-    this.handleRequet.emit({
+    this.handleRequest.emit({
       action: 'activate',
       callback: (result: boolean) => {
         if (result) {

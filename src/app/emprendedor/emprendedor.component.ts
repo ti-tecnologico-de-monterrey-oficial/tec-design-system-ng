@@ -3,9 +3,9 @@ import { RouterModule } from '@angular/router';
 import {
   BmbSidebarComponent,
   IBmbApp,
+  BmbInteractiveIconComponent,
+  BmbIconComponent,
 } from '../../../projects/ds-ng/src/public-api';
-import { BmbInteractiveIconComponent } from 'ds-ng';
-import { BmbIconComponent } from 'ds-ng';
 import { SidebarElement } from '../../../projects/ds-ng/src/lib/components/bmb-sidebar/bmb-sidebar.interface';
 import { BmbDrawerOverlayComponent } from '../../../projects/ds-ng/src/lib/components/bmb-drawer-overlay/bmb-drawer-overlay.component';
 

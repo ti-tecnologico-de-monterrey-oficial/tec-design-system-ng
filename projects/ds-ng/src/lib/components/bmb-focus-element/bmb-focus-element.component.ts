@@ -1,8 +1,8 @@
 import {
   Component,
-  Input,
   ChangeDetectionStrategy,
   ViewEncapsulation,
+  input,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
@@ -17,7 +17,13 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbFocusElementComponent {
-  @Input() icon: string = '';
-  @Input() number: number = 0;
-  @Input() title: string = '';
+  icon = input<string>('');
+  number = input<number>(0);
+  title = input<string>('');
+  isNormal = input<boolean>();
+
+  getCircleClass(): string {
+    if (this.isNormal()) return 'bmb_focus_element-circle_normal';
+    return 'bmb_focus_element-circle_focused';
+  }
 }

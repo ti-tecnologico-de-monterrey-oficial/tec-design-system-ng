@@ -1,37 +1,46 @@
 <div class="bmb_header_mobile">
-  <bmb-container appearance="primary-header">
+  <bmb-container
+    appearance="primary-header"
+    class="bmb_header_mobile-container"
+  >
     <div class="bmb_header_mobile-left">
       <bmb-logo
         size="small"
-        [image]="logo"
-        [altImage]="altLogo"
-        [link]="logoLink"
-        [target]="logoTarget"
-        *ngIf="logo && !iconLeft"
+        [image]="logo()"
+        [altImage]="altLogo()"
+        [link]="logoLink()"
+        [target]="logoTarget()"
+        *ngIf="logo() && !iconLeft()"
       />
-      <button *ngIf="iconLeft" (click)="handleIconLeftClick()">
-        <bmb-icon [icon]="iconLeft" />
+      <button *ngIf="iconLeft()" (click)="handleIconLeftClick($event)">
+        <bmb-icon [icon]="iconLeft()" />
       </button>
     </div>
-    <span class="bmb_header_mobile-text">{{ text }}</span>
+    <span class="bmb_header_mobile-text">{{ text() }}</span>
     <div class="bmb_header_mobile-right">
-      <button *ngIf="iconRight && !userImage" (click)="handleIconRightClick()">
-        <bmb-icon [icon]="iconRight" />
+      <button
+        *ngIf="iconRight() && !userImage()"
+        (click)="handleIconRightClick($event)"
+      >
+        <bmb-icon [icon]="iconRight()" />
       </button>
       <button
-        *ngIf="iconRight2 && !userImage"
-        (click)="handleIconRight2Click()"
+        *ngIf="iconRight2() && !userImage()"
+        (click)="handleIconRight2Click($event)"
       >
-        <bmb-icon [icon]="iconRight2" />
+        <bmb-icon [icon]="iconRight2()" />
       </button>
       <bmb-user-image
         size="mobile-small"
-        [image]="userImage"
-        [altImage]="userAltImage"
-        [link]="userLink"
-        [target]="userTarget"
-        *ngIf="userImage"
+        [image]="userImage()"
+        [altImage]="userAltImage()"
+        [link]="userLink()"
+        [target]="userTarget()"
+        *ngIf="userImage()"
       />
     </div>
+    <section class="bmb_header_mobile-content">
+      <ng-content />
+    </section>
   </bmb-container>
 </div>

@@ -46,7 +46,7 @@ export class BmbTopBarComponent implements OnInit {
   @Input() showLang: boolean = false;
   @Input() lang: string = 'es';
   @Input() mitec: boolean = false;
-  @Input() assigmentNotification: number = 0;
+  @Input() assignmentNotification: number = 0;
   @Input() alertNotification: number = 0;
 
   @Output() logOut: EventEmitter<any> = new EventEmitter<any>();

@@ -1,4 +1,43 @@
 <div *ngIf="isOpen$ | async" [ngClass]="getClasses()">
-  <bmb-icon icon="info" />
-  <span>{{ message }}</span>
+  @if (appearance === "warning") {
+    <bmb-icon icon="warning" [materialIcon]="true" class="bmb_toast-icon" />
+  } @else if (appearance === "error") {
+    <bmb-icon icon="error" [materialIcon]="true" class="bmb_toast-icon" />
+  } @else if (appearance === "successful") {
+    <bmb-icon
+      icon="check_circle"
+      [materialIcon]="true"
+      class="bmb_toast-icon"
+    />
+  } @else if (appearance === "event") {
+    <bmb-icon
+      icon="notification_important"
+      [materialIcon]="true"
+      class="bmb_toast-icon"
+    />
+  } @else if (appearance === "reminder") {
+    <bmb-icon icon="info" [materialIcon]="true" class="bmb_toast-icon" />
+  } @else {
+    <bmb-icon icon="info" [materialIcon]="true" class="bmb_toast-icon" />
+  }
+
+  <div
+    class="bmb_toast-content"
+    [ngClass]="{
+      'bmb_toast-with-description': description && appearance !== 'reminder',
+    }"
+  >
+    <span class="bmb_toast-title">
+      {{ title }}
+    </span>
+    @if (description && appearance !== "reminder") {
+      <span class="bmb_toast-description">{{ description }}</span>
+    }
+  </div>
+
+  @if (appearance !== "reminder") {
+    <button class="bmb_toast-button" (click)="closeToast()">
+      <bmb-icon icon="close" class="bmb_toast-close" />
+    </button>
+  }
 </div>

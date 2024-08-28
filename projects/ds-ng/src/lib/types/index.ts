@@ -6,6 +6,7 @@ export type IButtonAppearance =
   | 'secondary-filled'
   | 'secondary-outlined'
   | 'destructive';
+export type IButtonSize = 'small' | 'large' | 'micro';
 export interface IBmbApp {
   icon: string;
   title: string;
