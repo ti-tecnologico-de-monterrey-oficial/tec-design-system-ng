@@ -18,7 +18,6 @@
   }
 
   .bmb_web-template {
-
     &-top-bar {
       grid-area: topBar;
     }
@@ -105,12 +104,14 @@
 
 [data-theme="dark"],
 .storybook-dark-theme {
-  .bmb_web-template {
-    &-header,
-    &-main,
-    &-aside {
-      background-color: RGBA(var(--color-charade-900));
-      border-color: RGBA(var(--color-charade-800));
+  .bmb_web-template-aside-first-card {
+    .bmb_web-template {
+      &-header,
+      &-main,
+      &-aside {
+        background-color: RGBA(var(--color-charade-900));
+        border-color: RGBA(var(--color-charade-800));
+      }
     }
   }
 }

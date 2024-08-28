@@ -137,6 +137,7 @@ Below is an example of how you can use this component in HTML:
       table: {
         type: { summary: 'boolean' },
         category: 'Properties',
+        defaultValue: { summary: false },
       },
     },
     logOut: {
@@ -149,7 +150,7 @@ Below is an example of how you can use this component in HTML:
         category: 'Events',
       },
     },
-    onValueChange: {
+    onLangChange: {
       name: 'Language change event',
       control: false,
       description: 'Function that is executed when the lang change.',
@@ -187,7 +188,7 @@ Below is an example of how you can use this component in HTML:
     showLang: false,
     lang: 'es',
     userInformation: { name: 'Name', image: 'ima.pgn', role: 'alumno' },
-    onValueChange: () => {
+    onLangChange: () => {
       console.log('test');
     },
     logOut: () => {
