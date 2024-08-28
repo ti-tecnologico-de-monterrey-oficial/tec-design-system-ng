@@ -72,4 +72,8 @@
   &-brand {
     @include badge(brand);
   }
+
+  &-rounded {
+    border-radius: rem.rem_calc(15);
+  }
 }

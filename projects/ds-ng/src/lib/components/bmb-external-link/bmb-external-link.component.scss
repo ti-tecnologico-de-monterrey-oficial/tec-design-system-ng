@@ -1,0 +1,75 @@
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/rem" as rem;
+
+.bmb_external-link {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+
+  &-header {
+    margin: rem.rem-calc(16);
+
+    .bmb_chevron-title {
+      @include fonts.font(6, bold);
+    }
+  }
+
+  &-menu {
+    background-color: currentColor;
+    position: fixed;
+    right: 1rem;
+    top: 4rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    &-item {
+      line-height: 0;
+
+      .bmb_container-button {
+        border-radius: 0;
+        width: 100%;
+        padding: 0;
+
+        &:hover {
+          .bmb_card-content {
+            background-color: RGBA(var(--color-charade-500));
+          }
+        }
+
+        &-title {
+          @include fonts.font(4, medium);
+        }
+
+        .bmb_card {
+          margin: 0;
+          border: 0 none;
+          border-radius: 0;
+
+          &-content {
+            padding: var(--bmb-spacing-s) var(--bmb-spacing-m);
+          }
+        }
+      }
+    }
+  }
+
+  &-content {
+    flex: 1;
+  }
+
+  &-footer {
+    width: 100%;
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_external-link {
+    background-color: RGBA(var(--color-charade-900));
+
+    .bmb_chevron-content-subtitle {
+      color: RGBA(var(--color-charade-500));
+    }
+  }
+}
