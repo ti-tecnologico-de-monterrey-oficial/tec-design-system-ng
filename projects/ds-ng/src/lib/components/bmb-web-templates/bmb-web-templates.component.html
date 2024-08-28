@@ -1,0 +1,152 @@
+<section [ngClass]="getSectionClass()">
+  <bmb-top-bar
+    [positionButtonMenu]="positionButtonMenu()"
+    [userInformation]="userInformation()"
+    [hasLogoutButton]="hasLogoutButton()"
+    [image]="image()"
+    [mobileImage]="mobileImage()"
+    [appName]="appName()"
+    [appSubTitle]="appSubTitle()"
+    [lang]="lang()"
+    [showLang]="showLang()"
+    [mitec]="mitec()"
+    [assignmentNotification]="assignmentNotification()"
+    [alertNotification]="alertNotification()"
+    class="bmb_web-template-top-bar"
+  />
+  <header class="bmb_web-template-header">
+    <div
+      class="bmb_web-template-header-container"
+      [ngClass]="{ 'bmb_web-template-full-screen': isFullScreen() }"
+    >
+      <h1 class="bmb_web-template-header-title">{{ titleScreen() }}</h1>
+      <h2 class="bmb_web-template-header-subtitle">{{ subTitleScreen() }}</h2>
+    </div>
+  </header>
+  @switch (template()) {
+    @case ("full-width-card") {
+      <ng-container [ngTemplateOutlet]="fullWidthCard" />
+    }
+    @case ("justify-width-card") {
+      <ng-container [ngTemplateOutlet]="justifyWidthCard" />
+    }
+    @case ("single-column-card") {
+      <ng-container [ngTemplateOutlet]="singleColumnCard" />
+    }
+    @case ("aside-first-card") {
+      <ng-container [ngTemplateOutlet]="asideFirstCard" />
+    }
+    @case ("aside-light-card") {
+      <ng-container [ngTemplateOutlet]="asideLightCard" />
+    }
+  }
+  <bmb-sidebar></bmb-sidebar>
+</section>
+
+<ng-template #fullWidthCard>
+  <main class="bmb_web-template-main">
+    <section class="bmb_web-template-main-container">
+      @if (titleMainSlot()) {
+        <h3>{{ titleMainSlot() }}</h3>
+        <bmb-divider />
+      }
+      <ng-container [ngTemplateOutlet]="mainContent" />
+    </section>
+  </main>
+  <aside class="bmb_web-template-aside">
+    @if (titleRightSlot()) {
+      <h3>{{ titleRightSlot() }}</h3>
+      <bmb-divider />
+    }
+    <ng-container [ngTemplateOutlet]="asideContent" />
+  </aside>
+</ng-template>
+
+<ng-template #justifyWidthCard>
+  <section
+    class="bmb_web-template-container"
+    bmbLayout
+    gapSize="m"
+    margin="none"
+  >
+    <main class="bmb_web-template-main" bmbLayoutItem [colLg]="8">
+      <section class="bmb_web-template-main-container">
+        @if (titleMainSlot()) {
+          <h3>{{ titleMainSlot() }}</h3>
+          <bmb-divider />
+        }
+        <ng-container [ngTemplateOutlet]="mainContent" />
+      </section>
+    </main>
+    <aside class="bmb_web-template-aside" bmbLayoutItem [colLg]="4">
+      @if (titleRightSlot()) {
+        <h3>{{ titleRightSlot() }}</h3>
+        <bmb-divider />
+      }
+      <ng-container [ngTemplateOutlet]="asideContent" />
+    </aside>
+  </section>
+</ng-template>
+
+<ng-template #singleColumnCard>
+  <section
+    class="bmb_web-template-container"
+    bmbLayout
+    gapSize="m"
+    margin="none"
+  >
+    <main class="bmb_web-template-main" bmbLayoutItem [colLg]="12">
+      <section class="bmb_web-template-main-container">
+        @if (titleMainSlot()) {
+          <h3>{{ titleMainSlot() }}</h3>
+          <bmb-divider />
+        }
+        <ng-container [ngTemplateOutlet]="mainContent" />
+      </section>
+    </main>
+  </section>
+</ng-template>
+
+<ng-template #asideFirstCard>
+  <section
+    class="bmb_web-template-container"
+    bmbLayout
+    gapSize="m"
+    margin="none"
+  >
+    <aside class="bmb_web-template-aside" bmbLayoutItem [colLg]="12">
+      @if (titleRightSlot()) {
+        <h3>{{ titleRightSlot() }}</h3>
+        <bmb-divider />
+      }
+      <ng-container [ngTemplateOutlet]="asideContent" />
+    </aside>
+    <main class="bmb_web-template-main" bmbLayoutItem [colLg]="12">
+      <section class="bmb_web-template-main-container">
+        <ng-container [ngTemplateOutlet]="mainContent" />
+      </section>
+    </main>
+  </section>
+</ng-template>
+
+<ng-template #asideLightCard>
+  <section
+    class="bmb_web-template-container"
+    bmbLayout
+    gapSize="m"
+    margin="none"
+  >
+    <aside class="bmb_web-template-aside" bmbLayoutItem [colLg]="12">
+      @if (titleRightSlot()) {
+        <h3>{{ titleRightSlot() }}</h3>
+        <bmb-divider />
+      }
+      <ng-container [ngTemplateOutlet]="asideContent" />
+    </aside>
+    <main class="bmb_web-template-main" bmbLayoutItem [colLg]="12">
+      <section class="bmb_web-template-main-container">
+        <ng-container [ngTemplateOutlet]="mainContent" />
+      </section>
+    </main>
+  </section>
+</ng-template>

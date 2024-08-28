@@ -12,7 +12,7 @@
     "storybook": "ng run ds-ng:storybook",
     "start": "ng serve",
     "watch": "ng build --watch --configuration development",
-    "test": "npm run lint && npm run format-check && ng test",
+    "test": "npm run lint && npm run format-check && ng test ds-ng",
     "build-storybook": "ng run ds-ng:build-storybook",
     "build": "ng build",
     "chromatic": "npx chromatic --project-token=chpt_f98e9dab3ebf7df",

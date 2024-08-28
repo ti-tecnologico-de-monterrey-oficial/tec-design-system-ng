@@ -62,8 +62,9 @@ import {
   BmbLoginOnboardingComponent,
   IBmbLoginOnbording,
   IBmbUserInfo,
-  BmbGradesComponent,
-  BmbExternalLinkComponent,
+  BmbWebTemplatesComponent,
+  BmbDropdownComponent,
+  IBmbTemplateName,
 } from '../../projects/ds-ng/src/public-api';
 
 import {
@@ -152,8 +153,8 @@ import { IBmbGrades } from '../../projects/ds-ng/src/lib/components/bmb-grades/t
     BmbLoginOnboardingComponent,
     BmbPushNotificationComponent,
     BmbAccountStatementComponent,
-    BmbGradesComponent,
-    BmbExternalLinkComponent,
+    BmbWebTemplatesComponent,
+    BmbDropdownComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -871,5 +872,17 @@ export class AppComponent {
         ],
       },
     ];
+  }
+
+  isFullScreen = false;
+
+  handleButtonSelection() {
+    this.isFullScreen = !this.isFullScreen;
+  }
+
+  currentTemplate: IBmbTemplateName = 'aside-light-card';
+
+  onTemplateChange(template: IBmbTemplateName) {
+    this.currentTemplate = template;
   }
 }

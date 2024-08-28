@@ -1,0 +1,28 @@
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/rem" as rem;
+@use "../../../assets/styles/base/mixins" as mixins;
+
+.bmb_web-template {
+  background-color: RGBA(var(--color-charade-200));
+  display: grid;
+  gap: 0;
+  min-height: 100dvh;
+  @include mixins.media-query(1000, "min") {
+    height: 100dvh;
+    overflow: hidden;
+  }
+}
+
+@import "./styles/full-width-card.scss";
+@import "./styles/justify-width-card.scss";
+@import "./styles/single-column-card.scss";
+@import "./styles/aside-first-card.scss";
+@import "./styles/aside-light-card.scss";
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_web-template {
+    background-color: RGBA(var(--color-charade-950));
+    color: RGBA(var(--color-charade-50));
+  }
+}

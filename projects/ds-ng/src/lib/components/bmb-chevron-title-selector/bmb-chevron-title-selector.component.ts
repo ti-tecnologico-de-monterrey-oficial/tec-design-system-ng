@@ -11,10 +11,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 @Component({
   selector: 'bmb-chevron-title-selector',
   standalone: true,
-  imports: [
-    CommonModule,
-    BmbIconComponent,
-  ],
+  imports: [CommonModule, BmbIconComponent],
   styleUrl: './bmb-chevron-title-selector.component.scss',
   templateUrl: './bmb-chevron-title-selector.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

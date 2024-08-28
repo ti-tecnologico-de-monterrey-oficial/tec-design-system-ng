@@ -78,6 +78,7 @@ export * from './lib/components/bmb-account-statement/bmb-account-statement.comp
 export * from './lib/components/bmb-grades/bmb-grades.component';
 export * from './lib/components/bmb-tooltip/bmb-tooltip.component';
 export * from './lib/components/bmb-external-link/bmb-external-link.component';
+export * from './lib/components/bmb-web-templates/bmb-web-templates.component';
 
 // types
 export * from './lib/types';
