@@ -8,7 +8,7 @@
     $breakpoint,
     str-slice($breakpoint, 1, -2)
   );
-  @media only screen and (#{$condition}-width: #{$breakpoint-value}px) {
+  @media (#{$condition}-width: #{$breakpoint-value}px) {
     @content;
   }
 }
@@ -54,6 +54,10 @@
   bmb-icon {
     font-size: rem.rem_calc(16);
     height: rem.rem_calc(20);
+  }
+
+  &[size="micro"] {
+    padding: var(--bmb-spacing-s) rem.rem_calc(15);
   }
 
   &[size="large"] {
