@@ -62,6 +62,9 @@ import {
   BmbLoginOnboardingComponent,
   IBmbLoginOnbording,
   IBmbUserInfo,
+  BmbWebTemplatesComponent,
+  BmbDropdownComponent,
+  IBmbTemplateName,
 } from '../../projects/ds-ng/src/public-api';
 
 import {
@@ -149,6 +152,8 @@ import { DateTime } from 'luxon';
     BmbLoginOnboardingComponent,
     BmbPushNotificationComponent,
     BmbAccountStatementComponent,
+    BmbWebTemplatesComponent,
+    BmbDropdownComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -721,5 +726,17 @@ export class AppComponent {
 
   handlePay(amount: number) {
     alert(`total a pagar ${amount}`);
+  }
+
+  isFullScreen = false;
+
+  handleButtonSelection() {
+    this.isFullScreen = !this.isFullScreen;
+  }
+
+  currentTemplate: IBmbTemplateName = 'aside-first-card';
+
+  onTemplateChange(template: IBmbTemplateName) {
+    this.currentTemplate = template;
   }
 }

@@ -2895,12 +2895,12 @@
     "directives": [
         {
             "name": "BmbButtonDirective",
-            "id": "directive-BmbButtonDirective-e871543941ba4d87035c2503fce4b47943f21ebfe83cda884c41e69380ac0a5462024a4421d599888a69ea8bf2e14c23482e39e8aa6bb3e02773c17a867a7b48",
+            "id": "directive-BmbButtonDirective-9c6d518ea8b15097fed2405a715c510595a2abbfc9061bd930d6d0c0eee0862aa112f1151a94bdccfebaf8281bd9d673f520abf66a0faff8e1736bc83279599a",
             "file": "projects/ds-ng/src/lib/directives/button.directive.ts",
             "type": "directive",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import {\n  Directive,\n  Input,\n  ElementRef,\n  HostBinding,\n  ViewContainerRef,\n  ChangeDetectorRef,\n  OnInit,\n  OnChanges,\n  Renderer2,\n  SimpleChanges,\n  input,\n} from '@angular/core';\nimport { BmbIconComponent } from '../components/bmb-icon/bmb-icon.component';\nimport { IBmbHorizontalPosition, IButtonAppearance } from '../types';\n\n@Directive({\n  selector: '[bmbButton]',\n  standalone: true,\n})\nexport class BmbButtonDirective implements OnInit, OnChanges {\n  icon = input<string>('');\n  position = input<IBmbHorizontalPosition>('left');\n  case = input<boolean>(false);\n  appearance = input<IButtonAppearance>('primary');\n  size = input<'small' | 'large'>('small');\n  isToggleActive = input<boolean>(false);\n  enableButtonToggle = input<boolean>(false);\n  isRounded = input<boolean>(false);\n\n  private providedInputs: Set<string> = new Set();\n\n  constructor(\n    private el: ElementRef,\n    private viewContainerRef: ViewContainerRef,\n    private cdr: ChangeDetectorRef,\n    private renderer: Renderer2,\n  ) {}\n\n  ngOnInit(): void {\n    this.addContent();\n    this.applyAttributes();\n  }\n\n  ngOnChanges(changes: SimpleChanges): void {\n    Object.keys(changes).forEach((input) => {\n      this.providedInputs.add(input);\n    });\n\n    this.applyAttributes();\n    this.addContent();\n    this.cdr.markForCheck();\n  }\n\n  private applyAttributes() {\n    if (this.providedInputs.has('case')) {\n      if (this.case()) {\n        this.renderer.setAttribute(this.el.nativeElement, 'case', 'true');\n      } else {\n        this.renderer.removeAttribute(this.el.nativeElement, 'case');\n      }\n    }\n\n    if (this.providedInputs.has('size') && this.size()) {\n      this.renderer.setAttribute(this.el.nativeElement, 'size', this.size());\n    }\n\n    if (this.providedInputs.has('position')) {\n      this.renderer.setAttribute(\n        this.el.nativeElement,\n        'position',\n        this.position(),\n      );\n    }\n  }\n\n  @HostBinding('class') get elementClass(): string[] {\n    const classList = [`bmb_btn-${this.appearance()}`];\n    if (this.enableButtonToggle() && this.isToggleActive())\n      classList.push('bmb_btn-toggle-active');\n    if (this.isRounded()) classList.push('bmb_btn-rounded');\n\n    return classList;\n  }\n\n  private addContent() {\n    this.viewContainerRef.clear();\n\n    if (this.icon) {\n      const iconComponentRef =\n        this.viewContainerRef.createComponent(BmbIconComponent); // Crear una instancia del componente\n      const iconComponent = iconComponentRef.instance;\n      iconComponent.icon = this.icon();\n\n      if (this.position() === 'right') {\n        this.el.nativeElement.insertBefore(\n          iconComponentRef.location.nativeElement,\n          this.el.nativeElement.lastChild.nextSibling,\n        );\n      } else {\n        this.el.nativeElement.insertBefore(\n          iconComponentRef.location.nativeElement,\n          this.el.nativeElement.firstChild,\n        );\n      }\n    }\n  }\n}\n",
+            "sourceCode": "import {\n  Directive,\n  Input,\n  ElementRef,\n  HostBinding,\n  ViewContainerRef,\n  ChangeDetectorRef,\n  OnInit,\n  OnChanges,\n  Renderer2,\n  SimpleChanges,\n  input,\n} from '@angular/core';\nimport { BmbIconComponent } from '../components/bmb-icon/bmb-icon.component';\nimport { IBmbHorizontalPosition, IButtonAppearance } from '../types';\n\n@Directive({\n  selector: '[bmbButton]',\n  standalone: true,\n})\nexport class BmbButtonDirective implements OnInit, OnChanges {\n  icon = input<string>('');\n  position = input<IBmbHorizontalPosition>('left');\n  case = input<boolean>(false);\n  appearance = input<IButtonAppearance>('primary');\n  size = input<'small' | 'large'>('small');\n  isToggleActive = input<boolean>(false);\n  enableButtonToggle = input<boolean>(false);\n  isRounded = input<boolean>(true);\n\n  private providedInputs: Set<string> = new Set();\n\n  constructor(\n    private el: ElementRef,\n    private viewContainerRef: ViewContainerRef,\n    private cdr: ChangeDetectorRef,\n    private renderer: Renderer2,\n  ) {}\n\n  ngOnInit(): void {\n    this.addContent();\n    this.applyAttributes();\n  }\n\n  ngOnChanges(changes: SimpleChanges): void {\n    Object.keys(changes).forEach((input) => {\n      this.providedInputs.add(input);\n    });\n\n    this.applyAttributes();\n    this.addContent();\n    this.cdr.markForCheck();\n  }\n\n  private applyAttributes() {\n    if (this.providedInputs.has('case')) {\n      if (this.case()) {\n        this.renderer.setAttribute(this.el.nativeElement, 'case', 'true');\n      } else {\n        this.renderer.removeAttribute(this.el.nativeElement, 'case');\n      }\n    }\n\n    if (this.providedInputs.has('size') && this.size()) {\n      this.renderer.setAttribute(this.el.nativeElement, 'size', this.size());\n    }\n\n    if (this.providedInputs.has('position')) {\n      this.renderer.setAttribute(\n        this.el.nativeElement,\n        'position',\n        this.position(),\n      );\n    }\n  }\n\n  @HostBinding('class') get elementClass(): string[] {\n    const classList = [`bmb_btn-${this.appearance()}`];\n    if (this.enableButtonToggle() && this.isToggleActive())\n      classList.push('bmb_btn-toggle-active');\n    if (this.isRounded()) classList.push('bmb_btn-rounded');\n\n    return classList;\n  }\n\n  private addContent() {\n    this.viewContainerRef.clear();\n\n    if (this.icon) {\n      const iconComponentRef =\n        this.viewContainerRef.createComponent(BmbIconComponent); // Crear una instancia del componente\n      const iconComponent = iconComponentRef.instance;\n      iconComponent.icon = this.icon();\n\n      if (this.position() === 'right') {\n        this.el.nativeElement.insertBefore(\n          iconComponentRef.location.nativeElement,\n          this.el.nativeElement.lastChild.nextSibling,\n        );\n      } else {\n        this.el.nativeElement.insertBefore(\n          iconComponentRef.location.nativeElement,\n          this.el.nativeElement.firstChild,\n        );\n      }\n    }\n  }\n}\n",
             "selector": "[bmbButton]",
             "providers": [],
             "hostDirectives": [],
@@ -2930,7 +2930,7 @@
                 },
                 {
                     "name": "isRounded",
-                    "defaultValue": "false",
+                    "defaultValue": "true",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -3010,7 +3010,7 @@
                 },
                 {
                     "name": "isRounded",
-                    "defaultValue": "false",
+                    "defaultValue": "true",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -3843,7 +3843,7 @@
     "components": [
         {
             "name": "BmbAccountStatementComponent",
-            "id": "component-BmbAccountStatementComponent-f13fd1950f108d2ae500411624909fb9360133d3cba7a0c961bd74bd40f24d05935b75f56b9de6d38394bbac44441b7a8a8c63c5249211f4cd9eccb8b866d558",
+            "id": "component-BmbAccountStatementComponent-c0514c9a86b0e57b8fdf7ca99636ddcbc8fcc13a67e632f7a56128cbf5e6218388f4aeeef9e37da6c0b820d829e9809c3e985cb3d325f06d795b26f3bc7f2465",
             "file": "projects/ds-ng/src/lib/components/bmb-account-statement/bmb-account-statement.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -3913,7 +3913,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 84,
+                    "line": 85,
                     "required": false
                 },
                 {
@@ -3923,7 +3923,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 83,
+                    "line": 84,
                     "required": false
                 },
                 {
@@ -3933,20 +3933,20 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 85,
+                    "line": 86,
                     "required": false
                 }
             ],
             "propertiesClass": [
                 {
                     "name": "amountForm",
-                    "defaultValue": "new FormGroup({\n    amount: new FormControl<number>(0, [\n      Validators.required,\n    ]),\n  })",
+                    "defaultValue": "new FormGroup({\n    amount: new FormControl<number>(0, [Validators.required]),\n  })",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "FormGroup",
                     "optional": false,
                     "description": "",
-                    "line": 94
+                    "line": 96
                 },
                 {
                     "name": "backButtonLabel",
@@ -3965,7 +3965,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 84,
+                    "line": 85,
                     "required": false
                 },
                 {
@@ -3975,7 +3975,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 83,
+                    "line": 84,
                     "required": false
                 },
                 {
@@ -3997,7 +3997,7 @@
                     "type": "number",
                     "optional": false,
                     "description": "",
-                    "line": 90
+                    "line": 92
                 },
                 {
                     "name": "cutOffDate",
@@ -4021,7 +4021,7 @@
                 },
                 {
                     "name": "errorMessage",
-                    "defaultValue": "input<string>('Error, Este campo es requerido y debe ser una cantidad entre 1 y ')",
+                    "defaultValue": "input<string>(\n    'Error, Este campo es requerido y debe ser una cantidad entre 1 y ',\n  )",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -4047,7 +4047,7 @@
                     "type": "boolean",
                     "optional": false,
                     "description": "",
-                    "line": 91
+                    "line": 93
                 },
                 {
                     "name": "labelPrimary",
@@ -4077,7 +4077,7 @@
                     "type": "number",
                     "optional": false,
                     "description": "",
-                    "line": 92
+                    "line": 94
                 },
                 {
                     "name": "modalOtherAmountLabel",
@@ -4126,7 +4126,7 @@
                     "type": "TemplateRef<any>",
                     "optional": true,
                     "description": "",
-                    "line": 87,
+                    "line": 89,
                     "decorators": [
                         {
                             "name": "ViewChild",
@@ -4155,7 +4155,7 @@
                     "type": "TemplateRef<any> | null",
                     "optional": false,
                     "description": "",
-                    "line": 89
+                    "line": 91
                 },
                 {
                     "name": "payButtonLabel",
@@ -4174,7 +4174,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 85,
+                    "line": 86,
                     "required": false
                 },
                 {
@@ -4250,16 +4250,6 @@
                 }
             ],
             "methodsClass": [
-                {
-                    "name": "getError",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "string",
-                    "typeParameters": [],
-                    "line": 180,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                },
                 {
                     "name": "getFormattedAmount",
                     "args": [
@@ -4352,7 +4342,7 @@
                     "optional": false,
                     "returnType": "number",
                     "typeParameters": [],
-                    "line": 184,
+                    "line": 180,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -4517,7 +4507,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\n  AfterViewInit,\n  ChangeDetectionStrategy,\n  Component,\n  input,\n  OnInit,\n  output,\n  TemplateRef,\n  ViewChild,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { BmbHeaderMobileComponent } from '../bmb-header-mobile/bmb-header-mobile.component';\nimport { BmbBalanceOverviewComponent } from '../bmb-balance-overview/bmb-balance-overview.component';\nimport {\n  BmbCardComponent,\n  BmbCardContentComponent,\n} from '../bmb-card/bmb-card.component';\nimport { BmbProgressBarComponent } from '../bmb-progress-bar/bmb-progress-bar.component';\nimport { DateTime } from 'luxon';\nimport { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';\nimport { BmbButtonDirective } from '../../directives/button.directive';\nimport { MatDialog } from '@angular/material/dialog';\nimport { BmbModalComponent } from '../bmb-modal/bmb-modal.component';\nimport { ModalDataConfig } from '../bmb-modal/bmb-modal.interface';\nimport { BmbRadialComponent } from '../bmb-radial/bmb-radial.component';\nimport { currencyFormat } from '../../utils/currencyFormat';\nimport { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';\nimport { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';\nimport { BmbInputComponent } from '../bmb-input/bmb-input.component';\nimport {\n  FormControl,\n  FormGroup,\n  Validators,\n  ReactiveFormsModule,\n} from '@angular/forms';\n\n@Component({\n  selector: 'bmb-account-statement',\n  standalone: true,\n  imports: [\n    BmbHeaderMobileComponent,\n    BmbBalanceOverviewComponent,\n    BmbCardComponent,\n    BmbCardContentComponent,\n    BmbProgressBarComponent,\n    BmbDividerComponent,\n    BmbButtonDirective,\n    BmbModalComponent,\n    BmbRadialComponent,\n    BmbLayoutDirective,\n    BmbLayoutItemDirective,\n    BmbInputComponent,\n    ReactiveFormsModule,\n  ],\n  templateUrl: './bmb-account-statement.component.html',\n  styleUrl: './bmb-account-statement.component.scss',\n  encapsulation: ViewEncapsulation.None,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbAccountStatementComponent implements AfterViewInit, OnInit {\n  title = input<string>('Estado de cuenta');\n  progressCircleTitle = input<string[]>(['Total a pagar', 'este mes']);\n  labelPrimary = input<string>('Cuota Mensual');\n  labelSecondary = input<string>('Pendiente');\n  totalCount = input<number>(0);\n  counter = input<number>(0);\n  progressTitle = input<string>('Total pagado');\n  formatDates = input<string>('yyyy-MM-dd');\n  paymentDeadline = input<string>();\n  cutOffDate = input<string>();\n  paymentDeadlineLabel = input<string>('Fecha límite de pago:');\n  cutOffDateLabel = input<string>('Fecha de corte:');\n  payButtonLabel = input<string>('Pagar');\n  backButtonLabel = input<string>('Regresar');\n  modalTitle = input<string>('');\n  modalSubtitle = input<string>('');\n  modalRestLabel = input<string>('Pagar restante');\n  modalOtherAmountLabel = input<string>('Otra cantidad');\n  modalPrimaryButtonLabel = input<string>('Pagar');\n  errorMessage = input<string>('Error, Este campo es requerido y debe ser una cantidad entre 1 y ');\n\n\n  closeEvent = output<void>();\n  backEvent = output<void>();\n  payEvent = output<number>();\n\n  @ViewChild('modalTemplate', { read: TemplateRef }) modalTemplate?: TemplateRef<any>;\n\n  newModal: TemplateRef<any> | null = null;\n  customAmount: number = 0;\n  isEnableCustomAmount: boolean = false;\n  maxAmount: number = 0;\n\n  amountForm: FormGroup = new FormGroup({\n    amount: new FormControl<number>(0, [\n      Validators.required,\n    ]),\n  });\n  showErrors: { [key: string]: boolean } = {};\n\n  constructor(private matDialog: MatDialog) {}\n\n  ngOnInit(): void {\n    this.maxAmount = this.totalCount() - this.counter();\n  }\n\n  ngAfterViewInit(): void {\n    if (this.modalTemplate) {\n      this.newModal = this.modalTemplate;\n    }\n  }\n\n  handleClose() {\n    this.closeEvent.emit();\n  }\n\n  handleBack() {\n    this.backEvent.emit();\n  }\n\n  handlePay() {\n    const data: ModalDataConfig = {\n      title: this.modalTitle(),\n      subtitle: this.modalSubtitle(),\n      content: this.newModal,\n      size: 'large',\n      hidePrimaryButton: true,\n    };\n\n    this.matDialog.open(BmbModalComponent, { data });\n  }\n\n  getFormattedDate(date?: string): string {\n    if (!date) return '';\n    const formatDate = DateTime.fromFormat(date, this.formatDates());\n    return formatDate.toLocaleString({\n      day: '2-digit',\n      month: 'short',\n      year: 'numeric',\n    });\n  }\n\n  getFormattedAmount(amount: number): string {\n    return currencyFormat(amount);\n  }\n\n  handleActiveCustomAmount(event: any) {\n    this.isEnableCustomAmount = event.value === 'modalOtherAmountInput';\n  }\n\n  onSubmit() {\n    if (!this.isEnableCustomAmount) {\n      this.payEvent.emit(this.totalCount() - this.counter());\n    } else if (this.amountForm.valid) {\n      const amount = Number(this.amountForm.controls['amount'].value);\n      if (amount > 0 && amount <= this.maxAmount) {\n        this.payEvent.emit(amount);\n      } else {\n        this.showErrors['amount'] = true;\n      }\n    } else {\n      this.showErrors['amount'] = true;\n    }\n  }\n\n  getFormControl(name: string): FormControl {\n    return this.amountForm.get(name) as FormControl;\n  }\n\n  updateErrorState() {\n    Object.keys(this.amountForm.controls).forEach((field) => {\n      const control = this.amountForm.get(field);\n      if (control instanceof FormControl) {\n        this.showErrors[field] =\n          control.invalid && (control.touched || control.dirty);\n      }\n    });\n  }\n\n  getError(): string {\n    return `${this.errorMessage()} ${this.totalCount() - this.counter()}`;\n  }\n\n  getProgressPercent(): number {\n    return (100 * this.counter()) / this.totalCount();\n  }\n}\n",
+            "sourceCode": "import {\n  AfterViewInit,\n  ChangeDetectionStrategy,\n  Component,\n  input,\n  OnInit,\n  output,\n  TemplateRef,\n  ViewChild,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { BmbHeaderMobileComponent } from '../bmb-header-mobile/bmb-header-mobile.component';\nimport { BmbBalanceOverviewComponent } from '../bmb-balance-overview/bmb-balance-overview.component';\nimport {\n  BmbCardComponent,\n  BmbCardContentComponent,\n} from '../bmb-card/bmb-card.component';\nimport { BmbProgressBarComponent } from '../bmb-progress-bar/bmb-progress-bar.component';\nimport { DateTime } from 'luxon';\nimport { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';\nimport { BmbButtonDirective } from '../../directives/button.directive';\nimport { MatDialog } from '@angular/material/dialog';\nimport { BmbModalComponent } from '../bmb-modal/bmb-modal.component';\nimport { ModalDataConfig } from '../bmb-modal/bmb-modal.interface';\nimport { BmbRadialComponent } from '../bmb-radial/bmb-radial.component';\nimport { currencyFormat } from '../../utils/currencyFormat';\nimport { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';\nimport { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';\nimport { BmbInputComponent } from '../bmb-input/bmb-input.component';\nimport {\n  FormControl,\n  FormGroup,\n  Validators,\n  ReactiveFormsModule,\n} from '@angular/forms';\n\n@Component({\n  selector: 'bmb-account-statement',\n  standalone: true,\n  imports: [\n    BmbHeaderMobileComponent,\n    BmbBalanceOverviewComponent,\n    BmbCardComponent,\n    BmbCardContentComponent,\n    BmbProgressBarComponent,\n    BmbDividerComponent,\n    BmbButtonDirective,\n    BmbModalComponent,\n    BmbRadialComponent,\n    BmbLayoutDirective,\n    BmbLayoutItemDirective,\n    BmbInputComponent,\n    ReactiveFormsModule,\n  ],\n  templateUrl: './bmb-account-statement.component.html',\n  styleUrl: './bmb-account-statement.component.scss',\n  encapsulation: ViewEncapsulation.None,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbAccountStatementComponent implements AfterViewInit, OnInit {\n  title = input<string>('Estado de cuenta');\n  progressCircleTitle = input<string[]>(['Total a pagar', 'este mes']);\n  labelPrimary = input<string>('Cuota Mensual');\n  labelSecondary = input<string>('Pendiente');\n  totalCount = input<number>(0);\n  counter = input<number>(0);\n  progressTitle = input<string>('Total pagado');\n  formatDates = input<string>('yyyy-MM-dd');\n  paymentDeadline = input<string>();\n  cutOffDate = input<string>();\n  paymentDeadlineLabel = input<string>('Fecha límite de pago:');\n  cutOffDateLabel = input<string>('Fecha de corte:');\n  payButtonLabel = input<string>('Pagar');\n  backButtonLabel = input<string>('Regresar');\n  modalTitle = input<string>('');\n  modalSubtitle = input<string>('');\n  modalRestLabel = input<string>('Pagar restante');\n  modalOtherAmountLabel = input<string>('Otra cantidad');\n  modalPrimaryButtonLabel = input<string>('Pagar');\n  errorMessage = input<string>(\n    'Error, Este campo es requerido y debe ser una cantidad entre 1 y ',\n  );\n\n  closeEvent = output<void>();\n  backEvent = output<void>();\n  payEvent = output<number>();\n\n  @ViewChild('modalTemplate', { read: TemplateRef })\n  modalTemplate?: TemplateRef<any>;\n\n  newModal: TemplateRef<any> | null = null;\n  customAmount: number = 0;\n  isEnableCustomAmount: boolean = false;\n  maxAmount: number = 0;\n\n  amountForm: FormGroup = new FormGroup({\n    amount: new FormControl<number>(0, [Validators.required]),\n  });\n  showErrors: { [key: string]: boolean } = {};\n\n  constructor(private matDialog: MatDialog) {}\n\n  ngOnInit(): void {\n    this.maxAmount = this.totalCount() - this.counter();\n  }\n\n  ngAfterViewInit(): void {\n    if (this.modalTemplate) {\n      this.newModal = this.modalTemplate;\n    }\n  }\n\n  handleClose() {\n    this.closeEvent.emit();\n  }\n\n  handleBack() {\n    this.backEvent.emit();\n  }\n\n  handlePay() {\n    const data: ModalDataConfig = {\n      title: this.modalTitle(),\n      subtitle: this.modalSubtitle(),\n      content: this.newModal,\n      size: 'large',\n      hidePrimaryButton: true,\n    };\n\n    this.matDialog.open(BmbModalComponent, { data });\n  }\n\n  getFormattedDate(date?: string): string {\n    if (!date) return '';\n    const formatDate = DateTime.fromFormat(date, this.formatDates());\n    return formatDate.toLocaleString({\n      day: '2-digit',\n      month: 'short',\n      year: 'numeric',\n    });\n  }\n\n  getFormattedAmount(amount: number): string {\n    return currencyFormat(amount);\n  }\n\n  handleActiveCustomAmount(event: any) {\n    this.isEnableCustomAmount = event.value === 'modalOtherAmountInput';\n  }\n\n  onSubmit() {\n    if (!this.isEnableCustomAmount) {\n      this.payEvent.emit(this.totalCount() - this.counter());\n    } else if (this.amountForm.valid) {\n      const amount = Number(this.amountForm.controls['amount'].value);\n      if (amount > 0 && amount <= this.maxAmount) {\n        this.payEvent.emit(amount);\n      } else {\n        this.showErrors['amount'] = true;\n      }\n    } else {\n      this.showErrors['amount'] = true;\n    }\n  }\n\n  getFormControl(name: string): FormControl {\n    return this.amountForm.get(name) as FormControl;\n  }\n\n  updateErrorState() {\n    Object.keys(this.amountForm.controls).forEach((field) => {\n      const control = this.amountForm.get(field);\n      if (control instanceof FormControl) {\n        this.showErrors[field] =\n          control.invalid && (control.touched || control.dirty);\n      }\n    });\n  }\n\n  getProgressPercent(): number {\n    return (100 * this.counter()) / this.totalCount();\n  }\n}\n",
             "styleUrl": "./bmb-account-statement.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -4553,7 +4543,7 @@
                 "AfterViewInit",
                 "OnInit"
             ],
-            "templateData": "<div class=\"bmb_account-statement\">\n  <bmb-header-mobile\n    [text]=\"title()\"\n    iconLeft=\"close\"\n    (onIconLeftClick)=\"handleClose()\"\n  ></bmb-header-mobile>\n  <main class=\"bmb_account-statement-content\">\n    <div class=\"bmb_account-statement-content-balance\">\n      <bmb-balance-overview\n        [progressCircleTitle]=\"progressCircleTitle()\"\n        [labelPrimary]=\"labelPrimary()\"\n        [labelSecondary]=\"labelSecondary()\"\n        [progressCircleValue]=\"getFormattedAmount(totalCount() - counter())\"\n        [valuePrimary]=\"getFormattedAmount(totalCount())\"\n        [valueSecondary]=\"getFormattedAmount(counter())\"\n        [progressCirclePercent]=\"getProgressPercent()\"\n      />\n    </div>\n    <bmb-card>\n      <bmb-card-content padding=\"none\">\n        <bmb-progress-bar\n          appearance=\"info\"\n          type=\"container\"\n          [counter]=\"counter()\"\n          [totalCount]=\"totalCount()\"\n          [title]=\"progressTitle()\"\n        />\n      </bmb-card-content>\n    </bmb-card>\n    <bmb-card>\n      <bmb-card-content>\n        <p class=\"bmb_account-statement-content-date\">\n          <span>{{ cutOffDateLabel() }}</span>\n          <span>{{ getFormattedDate(cutOffDate()) }}</span>\n        </p>\n        <bmb-divider />\n        <p class=\"bmb_account-statement-content-date\">\n          <span>{{ paymentDeadlineLabel() }}</span>\n          <span>{{ getFormattedDate(paymentDeadline()) }}</span>\n        </p>\n      </bmb-card-content>\n    </bmb-card>\n  </main>\n  <footer class=\"bmb_account-statement-footer\">\n    <button\n      bmbButton\n      size=\"large\"\n      appearance=\"secondary-outlined\"\n      (click)=\"handleBack()\"\n    >\n      {{ backButtonLabel() }}\n    </button>\n    <button (click)=\"handlePay()\" bmbButton size=\"large\">{{ payButtonLabel() }}</button>\n  </footer>\n</div>\n\n<ng-template #modalTemplate>\n  <section class=\"bmb_account-statement-modal\">\n    <form [formGroup]=\"amountForm\" (ngSubmit)=\"onSubmit()\">\n      <bmb-progress-bar\n        appearance=\"info\"\n        type=\"container\"\n        [counter]=\"counter()\"\n        [totalCount]=\"totalCount()\"\n        [title]=\"progressTitle()\"\n      />\n      <bmb-divider />\n      <label class=\"bmb_account-statement-modal-label\" bmbLayout alignItems=\"center\" [dynamicCols]=\"true\">\n        <bmb-radial\n          id=\"modalRestInput\"\n          name=\"modalAmount\"\n          [checked]=\"true\"\n          (change)=\"handleActiveCustomAmount($event)\"\n          value=\"modalRestInput\"\n        />\n        <span bmbLayoutItem [colGrow]=\"1\">\n          {{ modalRestLabel() }}\n          <br />\n          {{ getFormattedAmount(totalCount() - counter()) }}\n        </span>\n      </label>\n      <bmb-divider />\n      <label class=\"bmb_account-statement-modal-label\" bmbLayout alignItems=\"center\" [dynamicCols]=\"true\">\n        <bmb-radial\n          id=\"modalOtherAmountInput\"\n          name=\"modalAmount\"\n          (change)=\"handleActiveCustomAmount($event)\"\n          value=\"modalOtherAmountInput\"\n        />\n        <span bmbLayoutItem [colGrow]=\"1\">\n          {{ modalOtherAmountLabel() }}\n        </span>\n      </label>\n      @if (isEnableCustomAmount) {\n        <bmb-input\n          type=\"number\"\n          [max]=\"totalCount() - counter()\"\n          [min]=\"0\"\n          pattern=\"\\d*\"\n          [errorMessage]=\"getError()\"\n          [isRequired]=\"true\"\n          [control]=\"getFormControl('amount')\"\n          [showError]=\"showErrors['amount']\"\n        />\n      }\n      <footer class=\"bmb_account-statement-footer\">\n        <!-- <button\n          bmbButton\n          size=\"large\"\n          appearance=\"secondary-outlined\"\n          (click)=\"handleBack()\"\n        >\n          {{ backButtonLabel() }}\n        </button> -->\n        <button type=\"submit\" bmbButton size=\"large\">{{ modalPrimaryButtonLabel() }}</button>\n      </footer>\n    </form>\n  </section>\n</ng-template>\n"
+            "templateData": "<div class=\"bmb_account-statement\">\n  <bmb-header-mobile\n    [text]=\"title()\"\n    iconLeft=\"close\"\n    (onIconLeftClick)=\"handleClose()\"\n  ></bmb-header-mobile>\n  <main class=\"bmb_account-statement-content\">\n    <div class=\"bmb_account-statement-content-balance\">\n      <bmb-balance-overview\n        [progressCircleTitle]=\"progressCircleTitle()\"\n        [labelPrimary]=\"labelPrimary()\"\n        [labelSecondary]=\"labelSecondary()\"\n        [progressCircleValue]=\"getFormattedAmount(totalCount() - counter())\"\n        [valuePrimary]=\"getFormattedAmount(totalCount())\"\n        [valueSecondary]=\"getFormattedAmount(counter())\"\n        [progressCirclePercent]=\"getProgressPercent()\"\n      />\n    </div>\n    <bmb-card>\n      <bmb-card-content padding=\"none\">\n        <bmb-progress-bar\n          appearance=\"info\"\n          type=\"container\"\n          [counter]=\"counter()\"\n          [totalCount]=\"totalCount()\"\n          [title]=\"progressTitle()\"\n        />\n      </bmb-card-content>\n    </bmb-card>\n    <bmb-card>\n      <bmb-card-content>\n        <p class=\"bmb_account-statement-content-date\">\n          <span>{{ cutOffDateLabel() }}</span>\n          <span>{{ getFormattedDate(cutOffDate()) }}</span>\n        </p>\n        <bmb-divider />\n        <p class=\"bmb_account-statement-content-date\">\n          <span>{{ paymentDeadlineLabel() }}</span>\n          <span>{{ getFormattedDate(paymentDeadline()) }}</span>\n        </p>\n      </bmb-card-content>\n    </bmb-card>\n  </main>\n  <footer class=\"bmb_account-statement-footer\">\n    <button\n      bmbButton\n      size=\"large\"\n      appearance=\"secondary-outlined\"\n      (click)=\"handleBack()\"\n    >\n      {{ backButtonLabel() }}\n    </button>\n    <button (click)=\"handlePay()\" bmbButton size=\"large\">\n      {{ payButtonLabel() }}\n    </button>\n  </footer>\n</div>\n\n<ng-template #modalTemplate>\n  <section class=\"bmb_account-statement-modal\">\n    <form [formGroup]=\"amountForm\" (ngSubmit)=\"onSubmit()\">\n      <bmb-progress-bar\n        appearance=\"info\"\n        type=\"container\"\n        [counter]=\"counter()\"\n        [totalCount]=\"totalCount()\"\n        [title]=\"progressTitle()\"\n      />\n      <bmb-divider />\n      <label\n        class=\"bmb_account-statement-modal-label\"\n        bmbLayout\n        alignItems=\"center\"\n        [dynamicCols]=\"true\"\n      >\n        <bmb-radial\n          id=\"modalRestInput\"\n          name=\"modalAmount\"\n          [checked]=\"true\"\n          (change)=\"handleActiveCustomAmount($event)\"\n          value=\"modalRestInput\"\n        />\n        <span bmbLayoutItem [colGrow]=\"1\">\n          {{ modalRestLabel() }}\n          <br />\n          {{ getFormattedAmount(totalCount() - counter()) }}\n        </span>\n      </label>\n      <bmb-divider />\n      <label\n        class=\"bmb_account-statement-modal-label\"\n        bmbLayout\n        alignItems=\"center\"\n        [dynamicCols]=\"true\"\n      >\n        <bmb-radial\n          id=\"modalOtherAmountInput\"\n          name=\"modalAmount\"\n          (change)=\"handleActiveCustomAmount($event)\"\n          value=\"modalOtherAmountInput\"\n        />\n        <span bmbLayoutItem [colGrow]=\"1\">\n          {{ modalOtherAmountLabel() }}\n        </span>\n      </label>\n      @if (isEnableCustomAmount) {\n        <bmb-input\n          type=\"number\"\n          [max]=\"totalCount() - counter()\"\n          [min]=\"0\"\n          pattern=\"\\d*\"\n          [errorMessage]=\"errorMessage()\"\n          [isRequired]=\"true\"\n          [control]=\"getFormControl('amount')\"\n          [showError]=\"showErrors['amount']\"\n        />\n      }\n      <footer class=\"bmb_account-statement-footer\">\n        <!-- <button\n          bmbButton\n          size=\"large\"\n          appearance=\"secondary-outlined\"\n          (click)=\"handleBack()\"\n        >\n          {{ backButtonLabel() }}\n        </button> -->\n        <button type=\"submit\" bmbButton size=\"large\">\n          {{ modalPrimaryButtonLabel() }}\n        </button>\n      </footer>\n    </form>\n  </section>\n</ng-template>\n"
         },
         {
             "name": "BmbAdvertisementCardComponent",
@@ -9742,6 +9732,278 @@
             "stylesData": "",
             "extends": [],
             "templateData": "<ol [ngClass]=\"getClasses()\">\n  <li\n    *ngFor=\"let i of getDotsArray()\"\n    [attr.data-bs-target]=\"targets && targets[i] ? targets[i].target : ''\"\n    [attr.data-bs-slide-to]=\"i\"\n    [ngClass]=\"{ dot: true, active: activeDotIndex === i }\"\n    (click)=\"onDotClicked(i)\"\n  ></li>\n</ol>\n"
+        },
+        {
+            "name": "BmbDrawerOverlayComponent",
+            "id": "component-BmbDrawerOverlayComponent-7869cfb827e6abe5646d41db4e20a9819a73d06346a709f2b1f71d4f9f5a27b836b3cd2ced04b4a22db805f015946eb1019295c899abfffd415ab47bf57919ac",
+            "file": "projects/ds-ng/src/lib/components/bmb-drawer-overlay/bmb-drawer-overlay.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-drawer-overlay",
+            "styleUrls": [
+                "./bmb-drawer-overlay.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-drawer-overlay.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "appServices",
+                    "defaultValue": "{}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 36,
+                    "type": "literal type",
+                    "decorators": []
+                },
+                {
+                    "name": "dataSearch",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 34,
+                    "type": "string[]",
+                    "decorators": []
+                },
+                {
+                    "name": "menu",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 32,
+                    "type": "any",
+                    "decorators": []
+                },
+                {
+                    "name": "tabs",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 35,
+                    "type": "literal type[]",
+                    "decorators": []
+                },
+                {
+                    "name": "title",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 33,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onValueChange",
+                    "defaultValue": "new EventEmitter<string>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 38,
+                    "type": "EventEmitter<string>"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "activeNavItemIndex",
+                    "defaultValue": "0",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 43
+                },
+                {
+                    "name": "buttonClick",
+                    "defaultValue": "new EventEmitter<void>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "EventEmitter<void>",
+                    "optional": false,
+                    "description": "",
+                    "line": 39
+                },
+                {
+                    "name": "isFull",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": false,
+                    "description": "",
+                    "line": 42
+                },
+                {
+                    "name": "isOpen",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": false,
+                    "description": "",
+                    "line": 41
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "handleValueChange",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 67,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "selectNavItem",
+                    "args": [
+                        {
+                            "name": "index",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 63,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "index",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "toggleDrawer",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 45,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "toggleFullDrawer",
+                    "args": [
+                        {
+                            "name": "item",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "optional": true
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 53,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "item",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "optional": true,
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "BmbFabComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "BmbInteractiveIconComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "BmbInnerHeaderComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "BmbTabsComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import {\n  ChangeDetectionStrategy,\n  Component,\n  Output,\n  Input,\n  EventEmitter,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { BmbFabComponent } from '../bmb-fab/bmb-fab.component';\nimport { BmbInteractiveIconComponent } from '../bmb-interactive-icon/bmb-interactive-icon.component';\nimport { IBmbApp } from '../../types';\nimport { BmbInnerHeaderComponent } from '../bmb-inner-header/bmb-inner-header.component';\nimport { BmbTabsComponent } from '../bmb-tabs/bmb-tabs.component';\n\n@Component({\n  selector: 'bmb-drawer-overlay',\n  standalone: true,\n  imports: [\n    CommonModule,\n    BmbFabComponent,\n    BmbInteractiveIconComponent,\n    BmbInnerHeaderComponent,\n    BmbTabsComponent,\n  ],\n  styleUrls: ['./bmb-drawer-overlay.component.scss'],\n  templateUrl: './bmb-drawer-overlay.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbDrawerOverlayComponent {\n  @Input() menu: any = [];\n  @Input() title: string = '';\n  @Input() dataSearch: string[] = [];\n  @Input() tabs: { title: string; id: number }[] = [];\n  @Input() appServices: { [key: number]: IBmbApp[] } = {};\n\n  @Output() onValueChange: EventEmitter<string> = new EventEmitter<string>();\n  buttonClick: EventEmitter<void> = new EventEmitter<void>();\n\n  isOpen: boolean = false;\n  isFull: boolean = false;\n  activeNavItemIndex: number = 0;\n\n  toggleDrawer() {\n    this.isOpen = !this.isOpen;\n\n    if (!this.isOpen) {\n      this.isFull = false;\n    }\n  }\n\n  toggleFullDrawer(item?: any) {\n    this.isFull = !this.isFull;\n\n    if (this.isFull) {\n      if (item.buttonClick) {\n        item.buttonClick();\n      }\n    }\n  }\n\n  selectNavItem(index: number) {\n    this.activeNavItemIndex = index;\n  }\n\n  handleValueChange(event: string): void {\n    this.onValueChange.emit(event);\n  }\n\n  get appsActive(): IBmbApp[] {\n    const appsForCurrentNav = this.appServices[this.activeNavItemIndex];\n    return Array.isArray(appsForCurrentNav) ? appsForCurrentNav : [];\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@use \"../../../assets/styles/base/fonts\" as fonts;\n@use \"../../../assets/styles/base/mixins\" as mixins;\n@use \"../../../assets/styles/base/rem\" as rem;\n\n@keyframes growOut {\n  0% {\n    transform: scale(0);\n  }\n  80% {\n    transform: scale(1.1);\n  }\n  100% {\n    transform: scale(1);\n  }\n}\n\n.bmb_drawer {\n  &-overlay {\n    backdrop-filter: blur(rem.rem_calc(1));\n    background-color: RGBA(var(--color-black-primary), 0.2);\n    filter: blur(rem.rem_calc(5));\n    height: 100%;\n    left: 0;\n    position: absolute;\n    top: 0;\n    width: 100%;\n  }\n\n  &-menu {\n    animation: growOut 300ms ease-in-out forwards;\n    bottom: rem.rem_calc(100);\n    display: flex;\n    flex-flow: column;\n    gap: rem.rem_calc(16);\n    perspective: rem.rem_calc(1000);\n    position: absolute;\n    right: rem.rem_calc(18);\n    transform-origin: bottom center;\n    width: auto;\n  }\n\n  &.open {\n    height: 100%;\n    left: 0;\n    margin: auto;\n    position: fixed;\n    right: 0;\n    top: 0;\n    width: 100%;\n    z-index: 1;\n  }\n\n  &-apps {\n    justify-content: space-evenly;\n    right: 0;\n    width: 100%;\n  }\n\n  bmb-tabs {\n    .bmb_tabs {\n      margin: rem.rem_calc(24) auto;\n\n      &-tab {\n        display: grid;\n        grid-template-columns: repeat(3, 1fr);\n      }\n    }\n  }\n\n  &-full {\n    background-color: RGBA(var(--color-charade-200), 1);\n    display: flex;\n    flex-direction: column;\n    height: 100%;\n    left: 0;\n    position: fixed;\n    top: 0;\n    width: 100%;\n    z-index: 210;\n\n    .bmb_drawer-apps {\n      display: flex;\n      flex-wrap: wrap;\n      gap: rem.rem_calc(10);\n      padding: rem.rem_calc(24);\n    }\n  }\n}\n\n[data-theme=\"dark\"],\n.storybook-dark-theme {\n  .bmb_drawer {\n    &-full {\n      background-color: RGBA(var(--color-charade-950), 1);\n    }\n  }\n}\n",
+                    "styleUrl": "./bmb-drawer-overlay.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "extends": [],
+            "accessors": {
+                "appsActive": {
+                    "name": "appsActive",
+                    "getSignature": {
+                        "name": "appsActive",
+                        "type": "[]",
+                        "returnType": "IBmbApp[]",
+                        "line": 71
+                    }
+                }
+            },
+            "templateData": "<div class=\"bmb_drawer\" [class.open]=\"isOpen\">\n  @if (isOpen) {\n    <div class=\"bmb_drawer-overlay\"></div>\n    <div class=\"bmb_drawer-menu\">\n      <ng-container *ngFor=\"let item of menu.slice(0, 4); let i = index\">\n        <bmb-interactive-icon\n          [appearance]=\"item.appearance\"\n          [title]=\"item.title\"\n          [icon]=\"item.icon\"\n          [target]=\"item.target\"\n          [link]=\"item.link\"\n          [layout]=\"'app_drawer'\"\n          [setButtonTemplate]=\"item.setButtonTemplate\"\n          (buttonClick)=\"toggleFullDrawer(item)\"\n        />\n      </ng-container>\n    </div>\n  }\n  @if (isFull) {\n    <div class=\"bmb_drawer-full\">\n      <bmb-inner-header\n        [title]=\"title\"\n        (onHandleBack)=\"toggleFullDrawer()\"\n        (onValueChange)=\"handleValueChange($event)\"\n        [data]=\"dataSearch\"\n      />\n      <bmb-tabs [tabs]=\"tabs\" (selected)=\"selectNavItem($event.id)\" />\n      <div class=\"bmb_drawer-apps\">\n        <ng-container *ngFor=\"let app of appsActive\">\n          <bmb-interactive-icon\n            [appearance]=\"app.appearance\"\n            [title]=\"app.title\"\n            [icon]=\"app.icon\"\n            [target]=\"app.target\"\n            [link]=\"app.link\"\n            [layout]=\"'regular'\"\n          />\n        </ng-container>\n      </div>\n    </div>\n  }\n\n  <bmb-fab\n    [icon]=\"'apps'\"\n    [text]=\"'FAB'\"\n    [size]=\"'large'\"\n    [type]=\"'normal'\"\n    (fabClick)=\"toggleDrawer()\"\n  />\n</div>\n"
         },
         {
             "name": "BmbDropdownComponent",
@@ -15783,7 +16045,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div\n  class=\"bmb_modal-content\"\n  [ngClass]=\"{\n    'bmb_modal-size-small': this.modalData.size == 'small',\n    'bmb_modal-size-medium': this.modalData.size == 'medium',\n    'bmb_modal-size-large': this.modalData.size == 'large',\n  }\"\n>\n  <div class=\"bmb_modal-content-wrapper\">\n    <header class=\"bmb_modal-header\">\n      @if (modalData.type == \"alert\") {\n        <div class=\"bmb_modal-header-icon\">\n          <img [src]=\"this.svgUrl\" alt=\"\" />\n        </div>\n      }\n      <div class=\"bmb_modal-header-text\">\n        <h1 class=\"bmb_modal-header-text-title\">{{ modalData.title }}</h1>\n        @if (modalData.subtitle) {\n          <h3 class=\"bmb_modal-header-text-subtitle\">\n            {{ modalData.subtitle }}\n          </h3>\n        }\n      </div>\n      <div class=\"bmb_modal-header-close\">\n        <bmb-icon\n          class=\"bmb_modal-header-close-icon\"\n          [icon]=\"'close'\"\n          (click)=\"closeModal()\"\n          onkeypress=\"\"\n        />\n      </div>\n    </header>\n    <section class=\"bmb_modal-body\">\n      @if (!isTemplate) {\n        <div\n          class=\"bmb_modal-body-description\"\n          [ngClass]=\"{ 'bmb_modal-body-scrollable': modalData.scrollable }\"\n        >\n          <p class=\"bmb_modal-body-description-text\">{{ modalData.content }}</p>\n        </div>\n      } @else {\n        <ng-container *ngTemplateOutlet=\"modalTemplate\"></ng-container>\n      }\n    </section>\n    @if (this.modalData.type !== \"informative\" || !this.modalData.secondaryBtnLabel || !this.modalData.hidePrimaryButton) {\n      <footer id=\"modal-footer\" class=\"bmb_modal-footer\">\n        @if (this.modalData.secondaryBtnLabel) {\n          <button\n            bmbButton\n            appearance=\"secondary-filled\"\n            class=\"bmb_modal-btn bmb_modal-footer-btn bmb_modal-btn-secondary-action\"\n            (click)=\"this.dialogRef.close(false)\"\n          >\n            {{ modalData.secondaryBtnLabel }}\n          </button>\n        }\n        @if (!this.modalData.hidePrimaryButton) {\n          <button\n            bmbButton\n            class=\"bmb_modal-btn\"\n            [ngClass]=\"btnColor\"\n            (click)=\"this.dialogRef.close(true)\"\n          >\n            {{ modalData.primaryBtnLabel || \"OK\" }}\n          </button>\n        }\n      </footer>\n    }\n  </div>\n</div>\n"
+            "templateData": "<div\n  class=\"bmb_modal-content\"\n  [ngClass]=\"{\n    'bmb_modal-size-small': this.modalData.size == 'small',\n    'bmb_modal-size-medium': this.modalData.size == 'medium',\n    'bmb_modal-size-large': this.modalData.size == 'large',\n  }\"\n>\n  <div class=\"bmb_modal-content-wrapper\">\n    <header class=\"bmb_modal-header\">\n      @if (modalData.type == \"alert\") {\n        <div class=\"bmb_modal-header-icon\">\n          <img [src]=\"this.svgUrl\" alt=\"\" />\n        </div>\n      }\n      <div class=\"bmb_modal-header-text\">\n        <h1 class=\"bmb_modal-header-text-title\">{{ modalData.title }}</h1>\n        @if (modalData.subtitle) {\n          <h3 class=\"bmb_modal-header-text-subtitle\">\n            {{ modalData.subtitle }}\n          </h3>\n        }\n      </div>\n      <div class=\"bmb_modal-header-close\">\n        <bmb-icon\n          class=\"bmb_modal-header-close-icon\"\n          [icon]=\"'close'\"\n          (click)=\"closeModal()\"\n          onkeypress=\"\"\n        />\n      </div>\n    </header>\n    <section class=\"bmb_modal-body\">\n      @if (!isTemplate) {\n        <div\n          class=\"bmb_modal-body-description\"\n          [ngClass]=\"{ 'bmb_modal-body-scrollable': modalData.scrollable }\"\n        >\n          <p class=\"bmb_modal-body-description-text\">{{ modalData.content }}</p>\n        </div>\n      } @else {\n        <ng-container *ngTemplateOutlet=\"modalTemplate\"></ng-container>\n      }\n    </section>\n    @if (\n      this.modalData.type !== \"informative\" ||\n      !this.modalData.secondaryBtnLabel ||\n      !this.modalData.hidePrimaryButton\n    ) {\n      <footer id=\"modal-footer\" class=\"bmb_modal-footer\">\n        @if (this.modalData.secondaryBtnLabel) {\n          <button\n            bmbButton\n            appearance=\"secondary-filled\"\n            class=\"bmb_modal-btn bmb_modal-footer-btn bmb_modal-btn-secondary-action\"\n            (click)=\"this.dialogRef.close(false)\"\n          >\n            {{ modalData.secondaryBtnLabel }}\n          </button>\n        }\n        @if (!this.modalData.hidePrimaryButton) {\n          <button\n            bmbButton\n            class=\"bmb_modal-btn\"\n            [ngClass]=\"btnColor\"\n            (click)=\"this.dialogRef.close(true)\"\n          >\n            {{ modalData.primaryBtnLabel || \"OK\" }}\n          </button>\n        }\n      </footer>\n    }\n  </div>\n</div>\n"
         },
         {
             "name": "BmbNotificationCardComponent",
@@ -22969,8 +23231,102 @@
             "templateData": "<div *ngIf=\"isOpen$ | async\" [ngClass]=\"getClasses()\">\n  <bmb-icon icon=\"info\" />\n  <span>{{ message }}</span>\n</div>\n"
         },
         {
+            "name": "BmbTooltipComponent",
+            "id": "component-BmbTooltipComponent-1580dca145cbf415dd462e9f752aae31c6b4b70a07b4affbe915029841099b3fdfd0782db2a42351cc0e31c2b6618b74307ff76e5e34fb5c01918b35714e3815",
+            "file": "projects/ds-ng/src/lib/components/bmb-tooltip/bmb-tooltip.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-tooltip",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-tooltip.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "align",
+                    "defaultValue": "'right'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 24,
+                    "type": "IBmbAlignTooltip",
+                    "decorators": []
+                },
+                {
+                    "name": "justify",
+                    "defaultValue": "'after'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 25,
+                    "type": "IBmbJustifyTooltip",
+                    "decorators": []
+                },
+                {
+                    "name": "text",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 22,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "title",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 23,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "getClasses",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 27,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport {\n  ChangeDetectionStrategy,\n  Component,\n  Input,\n  ViewEncapsulation,\n} from '@angular/core';\n\nexport type IBmbAlignTooltip = 'above' | 'below' | 'left' | 'right';\nexport type IBmbJustifyTooltip = 'centered' | 'before' | 'after';\n\n@Component({\n  selector: 'bmb-tooltip',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './bmb-tooltip.component.html',\n  styleUrl: './bmb-tooltip.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbTooltipComponent {\n  @Input() text: string = '';\n  @Input() title: string = '';\n  @Input() align: IBmbAlignTooltip = 'right';\n  @Input() justify: IBmbJustifyTooltip = 'after';\n\n  getClasses() {\n    return `bmb_tooltip-${this.align}-${this.justify}`;\n  }\n}\n",
+            "styleUrl": "./bmb-tooltip.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<div class=\"bmb_tooltip\">\n  <ng-content></ng-content>\n  <div [class]=\"'bmb_tooltip-container ' + getClasses()\">\n    @if (title !== \"\") {\n      <div class=\"bmb_tooltip-container-title\">\n        <span class=\"bmb_tooltip-container-title-text\">{{ title }}</span>\n      </div>\n    }\n    <div class=\"bmb_tooltip-container-description\">\n      <span class=\"bmb_tooltip-container-description-text\">{{ text }}</span>\n    </div>\n  </div>\n</div>\n"
+        },
+        {
             "name": "BmbTopBarComponent",
-            "id": "component-BmbTopBarComponent-deadf30af13aac52ae91f50b5d94c4e4460c4a05bd392c9ec6465e9f5657529f66b3b76e325fb955e05160ac4a6b11dbd06e590f8ce734943b92c52d2b9d032c",
+            "id": "component-BmbTopBarComponent-355617e2b5adcd75fc38f896090354c495bd6c0c77245d56f9da69b14a0d74663e70c298557e5cd56de5b9c9a266acd5eca991976fbdfc3eab33a7d8fb79f738",
             "file": "projects/ds-ng/src/lib/components/bmb-top-bar/bmb-top-bar.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -23017,7 +23373,7 @@
                     "decorators": []
                 },
                 {
-                    "name": "assigmentNotification",
+                    "name": "assignmentNotification",
                     "defaultValue": "0",
                     "deprecated": false,
                     "deprecationMessage": "",
@@ -23335,7 +23691,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\n  Component,\n  ViewEncapsulation,\n  ChangeDetectionStrategy,\n  Input,\n  Output,\n  EventEmitter,\n  TemplateRef,\n  ViewChild,\n  OnInit,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { BmbButtonDirective } from '../../directives/button.directive';\nimport { IPositionButtonMenu, IUserInformation } from './types';\nimport { BmbTopBarUserSectionComponent } from './bmb-top-bar-user-section/bmb-top-bar-user-section.component';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\nimport { BmbSelectComponent } from '../bmb-select/bmb-select.component';\nimport { BmbSelectItemComponent } from '../bmb-select/bmb-select-item/bmb-select-item.component';\n\nexport { IPositionButtonMenu, IUserInformation } from './types';\n\n@Component({\n  selector: 'bmb-top-bar',\n  standalone: true,\n  imports: [\n    CommonModule,\n    BmbButtonDirective,\n    BmbTopBarUserSectionComponent,\n    BmbIconComponent,\n    BmbSelectComponent,\n    BmbSelectItemComponent,\n  ],\n  templateUrl: './bmb-top-bar.component.html',\n  styleUrl: './bmb-top-bar.component.scss',\n  encapsulation: ViewEncapsulation.None,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbTopBarComponent implements OnInit {\n  @Input() positionButtonMenu: IPositionButtonMenu = 'left';\n  @Input() userInformation: IUserInformation | null = null;\n  @Input() hasLogoutButton: boolean = true;\n  @Input() image: string = 'assets/images/tec-logo.svg';\n  @Input() mobileImage: string = 'assets/images/tec-logo-mob.svg';\n  @Input() appName: string = '';\n  @Input() appSubTitle: string = '';\n  @Input() showLang: boolean = false;\n  @Input() lang: string = 'es';\n  @Input() mitec: boolean = false;\n  @Input() assigmentNotification: number = 0;\n  @Input() alertNotification: number = 0;\n\n  @Output() logOut: EventEmitter<any> = new EventEmitter<any>();\n  @Output() onLangChange: EventEmitter<string> = new EventEmitter<string>();\n\n  @ViewChild(TemplateRef) contentTemplate: TemplateRef<unknown> | null = null;\n\n  isMobileMenuOpen: boolean = false;\n\n  ngOnInit(): void {\n    this.image = this.mitec\n      ? 'assets/images/logos-mitec/logo_mitec.png'\n      : 'assets/images/tec-logo.svg';\n  }\n\n  handleLogOutClick(event: Event) {\n    this.logOut.emit(event);\n  }\n\n  handleMobileMenuClick() {\n    this.isMobileMenuOpen = !this.isMobileMenuOpen;\n  }\n\n  getMenuClasses(): string {\n    if (this.isMobileMenuOpen) return 'bmb_top-bar-nav-open';\n    return '';\n  }\n\n  getMenuButtonClasses(): string {\n    if (this.isMobileMenuOpen) return 'bmb_top-bar-button-menu-open';\n    return '';\n  }\n\n  getFlag(lang: string): string {\n    switch (lang) {\n      case 'es':\n        return '/assets/images/lang-flags/mx.svg';\n      case 'en':\n        return `/assets/images/lang-flags/us.svg`;\n\n      default:\n        return '';\n    }\n  }\n\n  getCountryName(lang: string): string {\n    switch (lang) {\n      case 'es':\n        return 'Español';\n      case 'en':\n        return 'English';\n      default:\n        return '';\n    }\n  }\n\n  handleLangChange(lang: string): void {\n    this.onLangChange.emit(lang);\n  }\n}\n",
+            "sourceCode": "import {\n  Component,\n  ViewEncapsulation,\n  ChangeDetectionStrategy,\n  Input,\n  Output,\n  EventEmitter,\n  TemplateRef,\n  ViewChild,\n  OnInit,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { BmbButtonDirective } from '../../directives/button.directive';\nimport { IPositionButtonMenu, IUserInformation } from './types';\nimport { BmbTopBarUserSectionComponent } from './bmb-top-bar-user-section/bmb-top-bar-user-section.component';\nimport { BmbIconComponent } from '../bmb-icon/bmb-icon.component';\nimport { BmbSelectComponent } from '../bmb-select/bmb-select.component';\nimport { BmbSelectItemComponent } from '../bmb-select/bmb-select-item/bmb-select-item.component';\n\nexport { IPositionButtonMenu, IUserInformation } from './types';\n\n@Component({\n  selector: 'bmb-top-bar',\n  standalone: true,\n  imports: [\n    CommonModule,\n    BmbButtonDirective,\n    BmbTopBarUserSectionComponent,\n    BmbIconComponent,\n    BmbSelectComponent,\n    BmbSelectItemComponent,\n  ],\n  templateUrl: './bmb-top-bar.component.html',\n  styleUrl: './bmb-top-bar.component.scss',\n  encapsulation: ViewEncapsulation.None,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbTopBarComponent implements OnInit {\n  @Input() positionButtonMenu: IPositionButtonMenu = 'left';\n  @Input() userInformation: IUserInformation | null = null;\n  @Input() hasLogoutButton: boolean = true;\n  @Input() image: string = 'assets/images/tec-logo.svg';\n  @Input() mobileImage: string = 'assets/images/tec-logo-mob.svg';\n  @Input() appName: string = '';\n  @Input() appSubTitle: string = '';\n  @Input() showLang: boolean = false;\n  @Input() lang: string = 'es';\n  @Input() mitec: boolean = false;\n  @Input() assignmentNotification: number = 0;\n  @Input() alertNotification: number = 0;\n\n  @Output() logOut: EventEmitter<any> = new EventEmitter<any>();\n  @Output() onLangChange: EventEmitter<string> = new EventEmitter<string>();\n\n  @ViewChild(TemplateRef) contentTemplate: TemplateRef<unknown> | null = null;\n\n  isMobileMenuOpen: boolean = false;\n\n  ngOnInit(): void {\n    this.image = this.mitec\n      ? 'assets/images/logos-mitec/logo_mitec.png'\n      : 'assets/images/tec-logo.svg';\n  }\n\n  handleLogOutClick(event: Event) {\n    this.logOut.emit(event);\n  }\n\n  handleMobileMenuClick() {\n    this.isMobileMenuOpen = !this.isMobileMenuOpen;\n  }\n\n  getMenuClasses(): string {\n    if (this.isMobileMenuOpen) return 'bmb_top-bar-nav-open';\n    return '';\n  }\n\n  getMenuButtonClasses(): string {\n    if (this.isMobileMenuOpen) return 'bmb_top-bar-button-menu-open';\n    return '';\n  }\n\n  getFlag(lang: string): string {\n    switch (lang) {\n      case 'es':\n        return '/assets/images/lang-flags/mx.svg';\n      case 'en':\n        return `/assets/images/lang-flags/us.svg`;\n\n      default:\n        return '';\n    }\n  }\n\n  getCountryName(lang: string): string {\n    switch (lang) {\n      case 'es':\n        return 'Español';\n      case 'en':\n        return 'English';\n      default:\n        return '';\n    }\n  }\n\n  handleLangChange(lang: string): void {\n    this.onLangChange.emit(lang);\n  }\n}\n",
             "styleUrl": "./bmb-top-bar.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -23344,7 +23700,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<header class=\"bmb_top-bar\">\n  @if (positionButtonMenu === \"left\") {\n    <div class=\"bmb_top-bar-button-section\" [ngClass]=\"getMenuButtonClasses()\">\n      <button\n        class=\"bmb_top-bar-button-menu\"\n        bmbButton\n        (click)=\"handleMobileMenuClick()\"\n      >\n        <bmb-icon icon=\"menu\" class=\"bmb_top-bar-button-menu-menu\" />\n        <bmb-icon icon=\"close\" class=\"bmb_top-bar-button-menu-close\" />\n      </button>\n    </div>\n  }\n  <figure class=\"bmb_top-bar-logo-section\">\n    @if (mitec) {\n      <picture>\n        <source media=\"(min-width: 1000px)\" [srcset]=\"image\" />\n        <source [srcset]=\"mobileImage\" />\n        <img\n          style=\"width: 30px\"\n          [src]=\"image\"\n          alt=\"TEC de Monterrey\"\n          loading=\"lazy\"\n        />\n      </picture>\n    } @else {\n      <picture>\n        <source media=\"(min-width: 1000px)\" [srcset]=\"image\" />\n        <source [srcset]=\"mobileImage\" />\n        <img\n          src=\"/assets/images/tec-logo-mob.svg\"\n          alt=\"TEC de Monterrey\"\n          loading=\"lazy\"\n        />\n      </picture>\n    }\n  </figure>\n  <nav class=\"bmb_top-bar-nav\" [ngClass]=\"getMenuClasses()\">\n    @if (appName !== \"\") {\n      <li class=\"bmb_top-bar-app-name\">\n        <h1>{{ appName }}</h1>\n        @if (appSubTitle !== \"\" && !mitec) {\n          <span>{{ appSubTitle }}</span>\n        }\n      </li>\n    }\n    <ul class=\"bmb_top-bar-nav-content\">\n      <ng-content></ng-content>\n    </ul>\n    @if (userInformation) {\n      <li>\n        <bmb-top-bar-user-section\n          [mitec]=\"mitec\"\n          [userInformation]=\"userInformation\"\n          [assigmentNotification]=\"assigmentNotification\"\n          [notificationNotification]=\"alertNotification\"\n        />\n      </li>\n    }\n  </nav>\n  <div class=\"bmb_top-bar-always-visible-content\">\n    @if (userInformation && hasLogoutButton) {\n      <button\n        class=\"bmb_top-bar-logoff\"\n        bmbButton\n        appearance=\"secondary-filled\"\n        (click)=\"handleLogOutClick($event)\"\n      >\n        Salir\n      </button>\n    }\n\n    @if (showLang) {\n      <bmb-select (onValueChange)=\"handleLangChange($event)\" [value]=\"lang\">\n        <div class=\"bmb_top-bar-lang\" selectTemplate>\n          <figure class=\"bmb_top-bar-lang-flag\">\n            <img [src]=\"getFlag(lang)\" [alt]=\"getCountryName(lang)\" />\n          </figure>\n          <span>{{ getCountryName(lang) }}</span>\n        </div>\n        <bmb-select-item value=\"es\">\n          <div class=\"bmb_top-bar-lang\">\n            <figure class=\"bmb_top-bar-lang-flag\">\n              <img [src]=\"getFlag('es')\" [alt]=\"getCountryName('es')\" />\n            </figure>\n            <span>{{ getCountryName(\"es\") }}</span>\n          </div>\n        </bmb-select-item>\n        <bmb-select-item value=\"en\">\n          <div class=\"bmb_top-bar-lang\">\n            <figure class=\"bmb_top-bar-lang-flag\">\n              <img [src]=\"getFlag('en')\" [alt]=\"getCountryName('en')\" />\n            </figure>\n            <span>{{ getCountryName(\"en\") }}</span>\n          </div>\n        </bmb-select-item>\n      </bmb-select>\n    }\n  </div>\n  @if (positionButtonMenu === \"right\") {\n    <div class=\"bmb_top-bar-button-section\">\n      <button\n        class=\"bmb_top-bar-button-menu\"\n        bmbButton\n        icon=\"menu\"\n        (click)=\"handleMobileMenuClick()\"\n      ></button>\n    </div>\n  }\n</header>\n"
+            "templateData": "<header class=\"bmb_top-bar\">\n  @if (positionButtonMenu === \"left\") {\n    <div class=\"bmb_top-bar-button-section\" [ngClass]=\"getMenuButtonClasses()\">\n      <button\n        class=\"bmb_top-bar-button-menu\"\n        bmbButton\n        (click)=\"handleMobileMenuClick()\"\n      >\n        <bmb-icon icon=\"menu\" class=\"bmb_top-bar-button-menu-menu\" />\n        <bmb-icon icon=\"close\" class=\"bmb_top-bar-button-menu-close\" />\n      </button>\n    </div>\n  }\n  <figure class=\"bmb_top-bar-logo-section\">\n    @if (mitec) {\n      <picture>\n        <source media=\"(min-width: 1000px)\" [srcset]=\"image\" />\n        <source [srcset]=\"mobileImage\" />\n        <img\n          style=\"width: 30px\"\n          [src]=\"image\"\n          alt=\"TEC de Monterrey\"\n          loading=\"lazy\"\n        />\n      </picture>\n    } @else {\n      <picture>\n        <source media=\"(min-width: 1000px)\" [srcset]=\"image\" />\n        <source [srcset]=\"mobileImage\" />\n        <img\n          src=\"/assets/images/tec-logo-mob.svg\"\n          alt=\"TEC de Monterrey\"\n          loading=\"lazy\"\n        />\n      </picture>\n    }\n  </figure>\n  <nav class=\"bmb_top-bar-nav\" [ngClass]=\"getMenuClasses()\">\n    @if (appName !== \"\") {\n      <li class=\"bmb_top-bar-app-name\">\n        <h1>{{ appName }}</h1>\n        @if (appSubTitle !== \"\" && !mitec) {\n          <span>{{ appSubTitle }}</span>\n        }\n      </li>\n    }\n    <ul class=\"bmb_top-bar-nav-content\">\n      <ng-content></ng-content>\n    </ul>\n    @if (userInformation) {\n      <li>\n        <bmb-top-bar-user-section\n          [mitec]=\"mitec\"\n          [userInformation]=\"userInformation\"\n          [assignmentNotification]=\"assignmentNotification\"\n          [notificationNotification]=\"alertNotification\"\n        />\n      </li>\n    }\n  </nav>\n  <div class=\"bmb_top-bar-always-visible-content\">\n    @if (userInformation && hasLogoutButton) {\n      <button\n        class=\"bmb_top-bar-logoff\"\n        bmbButton\n        appearance=\"secondary-filled\"\n        (click)=\"handleLogOutClick($event)\"\n      >\n        Salir\n      </button>\n    }\n\n    @if (showLang) {\n      <bmb-select (onValueChange)=\"handleLangChange($event)\" [value]=\"lang\">\n        <div class=\"bmb_top-bar-lang\" selectTemplate>\n          <figure class=\"bmb_top-bar-lang-flag\">\n            <img [src]=\"getFlag(lang)\" [alt]=\"getCountryName(lang)\" />\n          </figure>\n          <span>{{ getCountryName(lang) }}</span>\n        </div>\n        <bmb-select-item value=\"es\">\n          <div class=\"bmb_top-bar-lang\">\n            <figure class=\"bmb_top-bar-lang-flag\">\n              <img [src]=\"getFlag('es')\" [alt]=\"getCountryName('es')\" />\n            </figure>\n            <span>{{ getCountryName(\"es\") }}</span>\n          </div>\n        </bmb-select-item>\n        <bmb-select-item value=\"en\">\n          <div class=\"bmb_top-bar-lang\">\n            <figure class=\"bmb_top-bar-lang-flag\">\n              <img [src]=\"getFlag('en')\" [alt]=\"getCountryName('en')\" />\n            </figure>\n            <span>{{ getCountryName(\"en\") }}</span>\n          </div>\n        </bmb-select-item>\n      </bmb-select>\n    }\n  </div>\n  @if (positionButtonMenu === \"right\") {\n    <div class=\"bmb_top-bar-button-section\">\n      <button\n        class=\"bmb_top-bar-button-menu\"\n        bmbButton\n        icon=\"menu\"\n        (click)=\"handleMobileMenuClick()\"\n      ></button>\n    </div>\n  }\n</header>\n"
         },
         {
             "name": "BmbTopBarItemComponent",
@@ -23413,7 +23769,7 @@
         },
         {
             "name": "BmbTopBarUserSectionComponent",
-            "id": "component-BmbTopBarUserSectionComponent-abbfd433e87ef9f5f030dd24a2cfc1bfc37b9e7b7ef4a035e5fceea3d51d19116d0087b14d8831beacecadd25b3a37ada7403f28186f8da172f6586df9e6656d",
+            "id": "component-BmbTopBarUserSectionComponent-06067b9558ac17e4864d2235d08c5a923204a4798cb0f0a8669deb593825818bde7fb44d57c0ca8f0f43c2c4bcc7a7cb50b94a41a157be5d472a80270c86b937",
             "file": "projects/ds-ng/src/lib/components/bmb-top-bar/bmb-top-bar-user-section/bmb-top-bar-user-section.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -23433,7 +23789,7 @@
             "hostDirectives": [],
             "inputsClass": [
                 {
-                    "name": "assigmentNotification",
+                    "name": "assignmentNotification",
                     "defaultValue": "0",
                     "deprecated": false,
                     "deprecationMessage": "",
@@ -23494,13 +23850,13 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\n  Component,\n  Input,\n  ViewEncapsulation,\n  ChangeDetectionStrategy,\n} from '@angular/core';\nimport { BmbUserImageComponent } from '../../bmb-user-image/bmb-user-image.component';\nimport { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';\nimport { IUserInformation, IPositionButtonMenu } from '../types';\nimport { CommonModule } from '@angular/common';\n\n@Component({\n  selector: 'bmb-top-bar-user-section',\n  standalone: true,\n  imports: [CommonModule, BmbUserImageComponent, BmbIconComponent],\n  templateUrl: './bmb-top-bar-user-section.component.html',\n  styleUrl: './bmb-top-bar-user-section.component.scss',\n  encapsulation: ViewEncapsulation.None,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbTopBarUserSectionComponent {\n  @Input() userInformation: IUserInformation = {\n    image: '',\n    name: '',\n    role: '',\n  };\n\n  @Input() mitec: boolean = false;\n  @Input() assigmentNotification: number = 0;\n  @Input() notificationNotification: number = 0;\n}\n",
+            "sourceCode": "import {\n  Component,\n  Input,\n  ViewEncapsulation,\n  ChangeDetectionStrategy,\n} from '@angular/core';\nimport { BmbUserImageComponent } from '../../bmb-user-image/bmb-user-image.component';\nimport { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';\nimport { IUserInformation, IPositionButtonMenu } from '../types';\nimport { CommonModule } from '@angular/common';\n\n@Component({\n  selector: 'bmb-top-bar-user-section',\n  standalone: true,\n  imports: [CommonModule, BmbUserImageComponent, BmbIconComponent],\n  templateUrl: './bmb-top-bar-user-section.component.html',\n  styleUrl: './bmb-top-bar-user-section.component.scss',\n  encapsulation: ViewEncapsulation.None,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbTopBarUserSectionComponent {\n  @Input() userInformation: IUserInformation = {\n    image: '',\n    name: '',\n    role: '',\n  };\n\n  @Input() mitec: boolean = false;\n  @Input() assignmentNotification: number = 0;\n  @Input() notificationNotification: number = 0;\n}\n",
             "styleUrl": "./bmb-top-bar-user-section.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<section class=\"bmb_top-bar-user-section\">\n  <div class=\"bmb_top-bar-user-section-icons\">\n    @if (mitec) {\n      <span class=\"bmb_top-bar-user-section-icon\">\n        <bmb-icon onkeypress=\"\" icon=\"assignment\" />\n        @if (assigmentNotification != 0) {\n          <span\n            class=\"bmb_top-bar-user-section-icon-number bmb_top-bar-user-section-icon-number-one\"\n            onkeypress=\"\"\n            >{{ assigmentNotification }}</span\n          >\n        }\n      </span>\n      <span class=\"bmb_top-bar-user-section-icon\">\n        <bmb-icon onkeypress=\"\" icon=\"notifications\" />\n        @if (notificationNotification != 0) {\n          <span\n            class=\"bmb_top-bar-user-section-icon-number bmb_top-bar-user-section-icon-number-two\"\n            >{{ notificationNotification }}</span\n          >\n        }\n      </span>\n    }\n    <span\n      class=\"bmb_top-bar-user-section-icon\"\n      [ngClass]=\"{ 'bmb_top-bar-user-section-icon-mitec': !mitec }\"\n    >\n      <bmb-icon icon=\"help\" />\n    </span>\n  </div>\n  <bmb-user-image\n    [image]=\"userInformation.image\"\n    size=\"mobile-small\"\n    class=\"bmb_top-bar-user-section-user-image\"\n  />\n  <h3 class=\"bmb_top-bar-user-section-title\">{{ userInformation.name }}</h3>\n  <span class=\"bmb_top-bar-user-section-role\">{{ userInformation.role }}</span>\n</section>\n"
+            "templateData": "<section class=\"bmb_top-bar-user-section\">\n  <div class=\"bmb_top-bar-user-section-icons\">\n    @if (mitec) {\n      <span class=\"bmb_top-bar-user-section-icon\">\n        <bmb-icon onkeypress=\"\" icon=\"assignment\" />\n        @if (assignmentNotification != 0) {\n          <span\n            class=\"bmb_top-bar-user-section-icon-number bmb_top-bar-user-section-icon-number-one\"\n            onkeypress=\"\"\n            >{{ assignmentNotification }}</span\n          >\n        }\n      </span>\n      <span class=\"bmb_top-bar-user-section-icon\">\n        <bmb-icon onkeypress=\"\" icon=\"notifications\" />\n        @if (notificationNotification != 0) {\n          <span\n            class=\"bmb_top-bar-user-section-icon-number bmb_top-bar-user-section-icon-number-two\"\n            >{{ notificationNotification }}</span\n          >\n        }\n      </span>\n    }\n    <span\n      class=\"bmb_top-bar-user-section-icon\"\n      [ngClass]=\"{ 'bmb_top-bar-user-section-icon-mitec': !mitec }\"\n    >\n      <bmb-icon icon=\"help\" />\n    </span>\n  </div>\n  <bmb-user-image\n    [image]=\"userInformation.image\"\n    size=\"mobile-small\"\n    class=\"bmb_top-bar-user-section-user-image\"\n  />\n  <h3 class=\"bmb_top-bar-user-section-title\">{{ userInformation.name }}</h3>\n  <span class=\"bmb_top-bar-user-section-role\">{{ userInformation.role }}</span>\n</section>\n"
         },
         {
             "name": "BmbTotpComponent",
@@ -23940,7 +24296,7 @@
         },
         {
             "name": "BmbUserImageComponent",
-            "id": "component-BmbUserImageComponent-2594fb33154112bd055a449c1d6d25ae01d2adb4b3decaac6e03a93b055fd4abf447062a3b045348cf57e3fb6c11e6621e34c7b9d6d17f3807f6b7b9acd292a0",
+            "id": "component-BmbUserImageComponent-1797c2a6998cf1ef73dee654e675a5a5f0f97df75d14729b7d45889fa3de85426e02c58f1c6b09ae81a449bd1c94fae9f6b058966bd1dcc5af822317ea4e0967",
             "file": "projects/ds-ng/src/lib/components/bmb-user-image/bmb-user-image.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -23966,6 +24322,15 @@
                     "deprecationMessage": "",
                     "line": 20,
                     "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "bordered",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 23,
+                    "type": "boolean",
                     "decorators": []
                 },
                 {
@@ -24014,7 +24379,7 @@
                     "optional": false,
                     "returnType": "string[]",
                     "typeParameters": [],
-                    "line": 24,
+                    "line": 25,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -24033,7 +24398,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\n@Component({\n  selector: 'bmb-user-image',\n  styleUrl: './bmb-user-image.component.scss',\n  templateUrl: './bmb-user-image.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  standalone: true,\n  imports: [CommonModule],\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbUserImageComponent {\n  @Input() size: string = '';\n  @Input() image: string = '';\n  @Input() altImage: string = '';\n  @Input() link: string = '';\n  @Input() target: string = '';\n\n  getClasses(): string[] {\n    const classes: string[] = ['bmb_user_image'];\n\n    if (this.size) {\n      classes.push('bmb_user_image-' + this.size);\n    }\n\n    return classes;\n  }\n}\n",
+            "sourceCode": "import {\n  Component,\n  Input,\n  ChangeDetectionStrategy,\n  ViewEncapsulation,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\n@Component({\n  selector: 'bmb-user-image',\n  styleUrl: './bmb-user-image.component.scss',\n  templateUrl: './bmb-user-image.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  standalone: true,\n  imports: [CommonModule],\n  encapsulation: ViewEncapsulation.None,\n})\nexport class BmbUserImageComponent {\n  @Input() size: string = '';\n  @Input() image: string = '';\n  @Input() altImage: string = '';\n  @Input() link: string = '';\n  @Input() target: string = '';\n  @Input() bordered: boolean = false;\n\n  getClasses(): string[] {\n    const classes: string[] = ['bmb_user_image'];\n\n    if (this.size) {\n      classes.push('bmb_user_image-' + this.size);\n    }\n\n    if (this.bordered) {\n      classes.push('bmb_user_image-bordered');\n    }\n\n    return classes;\n  }\n}\n",
             "styleUrl": "./bmb-user-image.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -24043,7 +24408,7 @@
         },
         {
             "name": "BmbUserSummaryComponent",
-            "id": "component-BmbUserSummaryComponent-d888189967d2cbf6fa4d5abf6253270bc39f982374b7198f722222b1fcfacbebf690b2fd9375240d6886b40ea2740871c916cdd2f749de0df06813ccc1cd8309",
+            "id": "component-BmbUserSummaryComponent-f8e38b4adb657f7c3cbb992bd2b73b11397097121db94262b27b0caaba43f0cf7321541f225dea410e443d2a24739277998cddcbcc557225f192c276b4e3eea1",
             "file": "projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -24081,6 +24446,15 @@
                     "decorators": []
                 },
                 {
+                    "name": "infoCareer",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 27,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
                     "name": "isProfile",
                     "defaultValue": "false",
                     "deprecated": false,
@@ -24097,6 +24471,15 @@
                     "line": 24,
                     "type": "string",
                     "decorators": []
+                },
+                {
+                    "name": "noBox",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 28,
+                    "type": "boolean",
+                    "decorators": []
                 }
             ],
             "outputsClass": [
@@ -24105,7 +24488,7 @@
                     "defaultValue": "new EventEmitter<void>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 28,
+                    "line": 30,
                     "type": "EventEmitter<void>"
                 }
             ],
@@ -24117,7 +24500,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 30,
+                    "line": 32,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -24144,13 +24527,13 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\n  Component,\n  Input,\n  ViewEncapsulation,\n  Output,\n  EventEmitter,\n  ChangeDetectionStrategy,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { BmbButtonDirective } from '../../directives/button.directive';\nimport { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';\n\n@Component({\n  selector: 'bmb-user-summary',\n  standalone: true,\n  imports: [CommonModule, BmbButtonDirective, BmbUserImageComponent],\n  templateUrl: './bmb-user-summary.component.html',\n  styleUrl: './bmb-user-summary.component.scss',\n  encapsulation: ViewEncapsulation.None,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbUserSummaryComponent {\n  @Input() isProfile: boolean = false;\n  @Input() name: string = '';\n  @Input() id: string = '';\n  @Input() image: string = '';\n\n  @Output() onClick: EventEmitter<void> = new EventEmitter<void>();\n\n  handleClick(): void {\n    this.onClick.emit();\n  }\n}\n",
+            "sourceCode": "import {\n  Component,\n  Input,\n  ViewEncapsulation,\n  Output,\n  EventEmitter,\n  ChangeDetectionStrategy,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { BmbButtonDirective } from '../../directives/button.directive';\nimport { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';\n\n@Component({\n  selector: 'bmb-user-summary',\n  standalone: true,\n  imports: [CommonModule, BmbButtonDirective, BmbUserImageComponent],\n  templateUrl: './bmb-user-summary.component.html',\n  styleUrl: './bmb-user-summary.component.scss',\n  encapsulation: ViewEncapsulation.None,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbUserSummaryComponent {\n  @Input() isProfile: boolean = false;\n  @Input() name: string = '';\n  @Input() id: string = '';\n  @Input() image: string = '';\n  @Input() infoCareer: string = '';\n  @Input() noBox: boolean = false;\n\n  @Output() onClick: EventEmitter<void> = new EventEmitter<void>();\n\n  handleClick(): void {\n    this.onClick.emit();\n  }\n}\n",
             "styleUrl": "./bmb-user-summary.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<section\n  class=\"bmb_user-summary\"\n  [ngClass]=\"{ 'bmb_user-summary-is-profile': isProfile }\"\n>\n  <bmb-user-image [size]=\"'mobile-large'\" [image]=\"image\" [altImage]=\"name\" />\n  <div class=\"bmb_user-summary-content\">\n    @if (isProfile) {\n      <h3 class=\"bmb_user-summary-content-title\">{{ name }}</h3>\n    } @else {\n      <h3 class=\"bmb_user-summary-content-title\">\n        ¡Buenas tardes <br />{{ name }}!\n      </h3>\n    }\n    <span class=\"bmb_user-summary-content-id\">{{ id }}</span>\n  </div>\n  @if (isProfile) {\n    <button\n      class=\"bmb_user-summary-button\"\n      bmbButton\n      appearance=\"secondary-outlined\"\n      (click)=\"handleClick()\"\n    >\n      ID Digital\n    </button>\n  }\n</section>\n"
+            "templateData": "<section\n  class=\"bmb_user-summary\"\n  [ngClass]=\"{\n    'bmb_user-summary-is-profile': isProfile && !noBox,\n    'bmb_user-summary-is-profile-no-box': isProfile && noBox,\n  }\"\n>\n  <bmb-user-image\n    [size]=\"'mobile-large'\"\n    [image]=\"image\"\n    [altImage]=\"name\"\n    [bordered]=\"true\"\n  />\n  <div class=\"bmb_user-summary-content\">\n    @if (isProfile) {\n      <h3 class=\"bmb_user-summary-content-title\">{{ name }}</h3>\n    } @else {\n      <h3 class=\"bmb_user-summary-content-title\">\n        ¡Buenas tardes <br />{{ name }}!\n      </h3>\n    }\n    <span class=\"bmb_user-summary-content-id\">{{ id }}</span>\n    <span class=\"bmb_user-summary-content-id\">{{ infoCareer }}</span>\n  </div>\n  @if (isProfile) {\n    <button\n      class=\"bmb_user-summary-button\"\n      bmbButton\n      appearance=\"secondary-outlined\"\n      (click)=\"handleClick()\"\n    >\n      ID Digital\n    </button>\n  }\n</section>\n"
         },
         {
             "name": "BmbValueCounterComponent",
@@ -24224,6 +24607,278 @@
             "stylesData": "",
             "extends": [],
             "templateData": "<div class=\"bmb_value-counter\">\n  <h3 class=\"bmb_value-counter-label\">{{ label }}</h3>\n  <span class=\"bmb_value-counter-progress\">{{ progress }}</span>\n  <span class=\"bmb_value-counter-slash\">/</span>\n  <span class=\"bmb_value-counter-value\">{{ value }}</span>\n</div>\n"
+        },
+        {
+            "name": "BmbWebTemplatesComponent",
+            "id": "component-BmbWebTemplatesComponent-6f561b102ea3fd3cfcdf7b3fbe40873cf68368493b9dd6e2ca9dd5ef93800cd8406246855e4a4ccaca8c74127b31f52c8205f57bc851069ea3d4fadb8ee1aca5",
+            "file": "projects/ds-ng/src/lib/components/bmb-web-templates/bmb-web-templates.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [
+                "ViewEncapsulation.None"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "bmb-web-templates",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./bmb-web-templates.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "alertNotification",
+                    "defaultValue": "0",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 27,
+                    "required": false
+                },
+                {
+                    "name": "assignmentNotification",
+                    "defaultValue": "0",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 26,
+                    "required": false
+                },
+                {
+                    "name": "hasLogoutButton",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 18,
+                    "required": false
+                },
+                {
+                    "name": "image",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 19,
+                    "required": false
+                },
+                {
+                    "name": "mitec",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 25,
+                    "required": false
+                },
+                {
+                    "name": "mobileImage",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 20,
+                    "required": false
+                },
+                {
+                    "name": "showLang",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 23,
+                    "required": false
+                },
+                {
+                    "name": "userInformation",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 17,
+                    "required": false
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "alertNotification",
+                    "defaultValue": "0",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 27,
+                    "required": false
+                },
+                {
+                    "name": "appName",
+                    "defaultValue": "input<string>('')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 21
+                },
+                {
+                    "name": "appSubTitle",
+                    "defaultValue": "input<string>('')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 22
+                },
+                {
+                    "name": "assignmentNotification",
+                    "defaultValue": "0",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 26,
+                    "required": false
+                },
+                {
+                    "name": "elements",
+                    "defaultValue": "input<SidebarElement[][]>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 28
+                },
+                {
+                    "name": "hasLogoutButton",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 18,
+                    "required": false
+                },
+                {
+                    "name": "image",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 19,
+                    "required": false
+                },
+                {
+                    "name": "lang",
+                    "defaultValue": "input<string>('es')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 24
+                },
+                {
+                    "name": "mitec",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 25,
+                    "required": false
+                },
+                {
+                    "name": "mobileImage",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 20,
+                    "required": false
+                },
+                {
+                    "name": "positionButtonMenu",
+                    "defaultValue": "input<IPositionButtonMenu>('left')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 16
+                },
+                {
+                    "name": "showLang",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 23,
+                    "required": false
+                },
+                {
+                    "name": "userInformation",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 17,
+                    "required": false
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "BmbTopBarComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "BmbSidebarComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, input, ViewEncapsulation } from '@angular/core';\r\nimport { BmbTopBarComponent, IPositionButtonMenu, IUserInformation } from '../bmb-top-bar/bmb-top-bar.component';\r\nimport { BmbSidebarComponent } from '../bmb-sidebar/bmb-sidebar.component';\r\nimport { SidebarElement } from '../bmb-sidebar/bmb-sidebar.interface';\r\n\r\n@Component({\r\n  selector: 'bmb-web-templates',\r\n  standalone: true,\r\n  imports: [BmbTopBarComponent, BmbSidebarComponent],\r\n  templateUrl: './bmb-web-templates.component.html',\r\n  styleUrl: './bmb-web-templates.component.scss',\r\n  encapsulation: ViewEncapsulation.None,\r\n  changeDetection: ChangeDetectionStrategy.OnPush\r\n})\r\nexport class BmbWebTemplatesComponent {\r\n  positionButtonMenu = input<IPositionButtonMenu>('left');\r\n  userInformation = input<IUserInformation>();\r\n  hasLogoutButton = input<boolean>(true);\r\n  image = input<string>();\r\n  mobileImage = input<string>();\r\n  appName = input<string>('');\r\n  appSubTitle = input<string>('');\r\n  showLang = input<boolean>(false);\r\n  lang = input<string>('es');\r\n  mitec = input<boolean>(false);\r\n  assignmentNotification = input<number>(0);\r\n  alertNotification = input<number>(0);\r\n  elements = input<SidebarElement[][]>()\r\n\r\n  // @Input() : number = 0;\r\n  // @Input() :  = [];\r\n  // @Input() title: string = 'Navigation';\r\n\r\n  // @Output() logOut: EventEmitter<any> = new EventEmitter<any>();\r\n  // @Output() onLangChange: EventEmitter<string> = new EventEmitter<string>();\r\n\r\n\r\n}\r\n",
+            "styleUrl": "./bmb-web-templates.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<bmb-top-bar />\r\n<main>\r\n  <ng-content></ng-content>\r\n</main>\r\n"
         },
         {
             "name": "BmbWheelMenuComponent",
@@ -25498,7 +26153,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
-                "defaultValue": "(amount: number): string => {\r\n  return Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN'}).format(amount);\r\n}"
+                "defaultValue": "(amount: number): string => {\n  return Intl.NumberFormat('es-MX', {\n    style: 'currency',\n    currency: 'MXN',\n  }).format(amount);\n}"
             },
             {
                 "name": "customizable",
@@ -25729,6 +26384,16 @@
                 "deprecationMessage": "",
                 "type": "Story",
                 "defaultValue": "{}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-drawer-overlay/bmb-drawer-overlay.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    menu: [\n      {\n        appearance: 'red',\n        title: 'App 1',\n        icon: 'https://img.freepik.com/premium-vector/approved-icon-with-thumb-up-approved-label-quality-control_349999-1321.jpg?w=2000',\n        target: '_blank',\n        link: 'https://www.example.com/',\n      },\n      {\n        appearance: 'blue',\n        title: 'App 2',\n        icon: 'face',\n        target: '_blank',\n        link: 'https://www.example.com/',\n      },\n      {\n        appearance: 'green',\n        title: 'App 3',\n        icon: 'face',\n        target: '_blank',\n        link: 'https://www.example.com/',\n      },\n      {\n        appearance: 'blue',\n        title: 'Menú de servicios',\n        icon: 'lists',\n        setButtonTemplate: true,\n        buttonClick: () => {\n          console.log('Button clicked!');\n        },\n      },\n    ],\n    title: 'Inner Header',\n    dataSearch: ['Search Item 1', 'Search Item 2', 'Search Item 3'],\n    tabs: [\n      { title: 'Tab 1', id: 0 },\n      { title: 'Tab 2', id: 1 },\n      { title: 'Tab 3', id: 2 },\n    ],\n    appServices: {\n      0: [\n        {\n          appearance: 'red',\n          title: 'App 1',\n          icon: 'face',\n          target: '_blank',\n          link: 'https://www.example.com/',\n        },\n        {\n          appearance: 'blue',\n          title: 'App 2',\n          icon: 'face',\n          target: '_blank',\n          link: 'https://www.example.com/',\n        },\n      ],\n      1: [\n        {\n          appearance: 'green',\n          title: 'App 3',\n          icon: 'face',\n          target: '_blank',\n          link: 'https://www.example.com/',\n        },\n        {\n          appearance: 'yellow',\n          title: 'App 4',\n          icon: 'face',\n          target: '_blank',\n          link: 'https://www.example.com/',\n        },\n      ],\n      2: [\n        {\n          appearance: 'green',\n          title: 'App 5',\n          icon: 'face',\n          target: '_blank',\n          link: 'https://www.example.com/',\n        },\n        {\n          appearance: 'yellow',\n          title: 'App 6',\n          icon: 'face',\n          target: '_blank',\n          link: 'https://www.example.com/',\n        },\n      ],\n    },\n  },\n}"
             },
             {
                 "name": "Default",
@@ -26139,6 +26804,16 @@
                 "deprecationMessage": "",
                 "type": "StoryFn<>",
                 "defaultValue": "(args) => {\n  return {\n    props: args,\n    template: `\n      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->\n      <storybook-toast-wrapper ${attributes(args)}></storybook-toast-wrapper>\n      <!-- Start copying from here -->\n      <div class=\"actions\">\n      <button bmbButton appearance=\"primary\" icon=\"home\" size=\"small\" position=\"left\" [case]=\"false\" (click)=\"onButtonClick()\">Click Here</button>\n      <bmb-toast ${attributes(args)}></bmb-toast></div>`,\n  };\n}"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/ds-ng/src/lib/components/bmb-tooltip/bmb-tooltip.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  render: (args) => ({\n    props: args,\n    template: `\n        <bmb-tooltip \n            [title]=\"'Titulo tooltip'\" \n            [text]=\"'Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum nihil modi repellendus ad aspernatur corporis.'\"\n            [align]=\"'right'\" \n            [justify]=\"'centered'\"\n            >\n            <bmb-icon style=\"font-size: 40px;\" [icon]=\"'help'\"/>\n        </bmb-tooltip>\n        `,\n  }),\n}"
             },
             {
                 "name": "Default",
@@ -26618,7 +27293,7 @@
                         "type": "IFixDecimals",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "af824f87-c0f5-4a86-a30b-258ea2d08f1b",
+                        "destrucuredGroupId": "d2139903-0ed9-4e9a-92a6-b0d5d0f04d80",
                         "destructuredParameter": true
                     },
                     {
@@ -26627,7 +27302,7 @@
                         "deprecated": false,
                         "deprecationMessage": "",
                         "defaultValue": "2",
-                        "destrucuredGroupId": "af824f87-c0f5-4a86-a30b-258ea2d08f1b",
+                        "destrucuredGroupId": "d2139903-0ed9-4e9a-92a6-b0d5d0f04d80",
                         "destructuredParameter": true
                     }
                 ],
@@ -26637,7 +27312,7 @@
                         "type": "IFixDecimals",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "af824f87-c0f5-4a86-a30b-258ea2d08f1b",
+                        "destrucuredGroupId": "d2139903-0ed9-4e9a-92a6-b0d5d0f04d80",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -26649,7 +27324,7 @@
                         "deprecated": false,
                         "deprecationMessage": "",
                         "defaultValue": "2",
-                        "destrucuredGroupId": "af824f87-c0f5-4a86-a30b-258ea2d08f1b",
+                        "destrucuredGroupId": "d2139903-0ed9-4e9a-92a6-b0d5d0f04d80",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -26788,6 +27463,17 @@
                 "kind": 187
             },
             {
+                "name": "IBmbAlignTooltip",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"above\" | \"below\" | \"left\" | \"right\"",
+                "file": "projects/ds-ng/src/lib/components/bmb-tooltip/bmb-tooltip.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 192
+            },
+            {
                 "name": "IBmbCalendarEvent",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
@@ -26870,6 +27556,17 @@
                 "subtype": "typealias",
                 "rawtype": "\"regular\" | \"button\" | \"app_drawer\"",
                 "file": "projects/ds-ng/src/lib/components/bmb-interactive-icon/bmb-interactive-icon.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 192
+            },
+            {
+                "name": "IBmbJustifyTooltip",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"centered\" | \"before\" | \"after\"",
+                "file": "projects/ds-ng/src/lib/components/bmb-tooltip/bmb-tooltip.component.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -27178,6 +27875,17 @@
                 "subtype": "typealias",
                 "rawtype": "StoryObj<BmbDotPaginatorComponent>",
                 "file": "projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<BmbDrawerOverlayComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-drawer-overlay/bmb-drawer-overlay.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "description": "",
@@ -27583,6 +28291,17 @@
                 "name": "Story",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
+                "rawtype": "StoryObj<BmbTooltipComponent>",
+                "file": "projects/ds-ng/src/lib/components/bmb-tooltip/bmb-tooltip.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
                 "rawtype": "StoryObj<BmbTopBarComponent>",
                 "file": "projects/ds-ng/src/lib/components/bmb-top-bar/bmb-top-bar.stories.ts",
                 "deprecated": false,
@@ -27691,7 +28410,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
-                    "defaultValue": "(amount: number): string => {\r\n  return Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN'}).format(amount);\r\n}"
+                    "defaultValue": "(amount: number): string => {\n  return Intl.NumberFormat('es-MX', {\n    style: 'currency',\n    currency: 'MXN',\n  }).format(amount);\n}"
                 }
             ],
             "projects/ds-ng/src/lib/directives/button.stories.ts": [
@@ -28030,6 +28749,18 @@
                     "deprecationMessage": "",
                     "type": "Story",
                     "defaultValue": "{}"
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-drawer-overlay/bmb-drawer-overlay.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-drawer-overlay/bmb-drawer-overlay.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    menu: [\n      {\n        appearance: 'red',\n        title: 'App 1',\n        icon: 'https://img.freepik.com/premium-vector/approved-icon-with-thumb-up-approved-label-quality-control_349999-1321.jpg?w=2000',\n        target: '_blank',\n        link: 'https://www.example.com/',\n      },\n      {\n        appearance: 'blue',\n        title: 'App 2',\n        icon: 'face',\n        target: '_blank',\n        link: 'https://www.example.com/',\n      },\n      {\n        appearance: 'green',\n        title: 'App 3',\n        icon: 'face',\n        target: '_blank',\n        link: 'https://www.example.com/',\n      },\n      {\n        appearance: 'blue',\n        title: 'Menú de servicios',\n        icon: 'lists',\n        setButtonTemplate: true,\n        buttonClick: () => {\n          console.log('Button clicked!');\n        },\n      },\n    ],\n    title: 'Inner Header',\n    dataSearch: ['Search Item 1', 'Search Item 2', 'Search Item 3'],\n    tabs: [\n      { title: 'Tab 1', id: 0 },\n      { title: 'Tab 2', id: 1 },\n      { title: 'Tab 3', id: 2 },\n    ],\n    appServices: {\n      0: [\n        {\n          appearance: 'red',\n          title: 'App 1',\n          icon: 'face',\n          target: '_blank',\n          link: 'https://www.example.com/',\n        },\n        {\n          appearance: 'blue',\n          title: 'App 2',\n          icon: 'face',\n          target: '_blank',\n          link: 'https://www.example.com/',\n        },\n      ],\n      1: [\n        {\n          appearance: 'green',\n          title: 'App 3',\n          icon: 'face',\n          target: '_blank',\n          link: 'https://www.example.com/',\n        },\n        {\n          appearance: 'yellow',\n          title: 'App 4',\n          icon: 'face',\n          target: '_blank',\n          link: 'https://www.example.com/',\n        },\n      ],\n      2: [\n        {\n          appearance: 'green',\n          title: 'App 5',\n          icon: 'face',\n          target: '_blank',\n          link: 'https://www.example.com/',\n        },\n        {\n          appearance: 'yellow',\n          title: 'App 6',\n          icon: 'face',\n          target: '_blank',\n          link: 'https://www.example.com/',\n        },\n      ],\n    },\n  },\n}"
                 }
             ],
             "projects/ds-ng/src/lib/components/bmb-dropdown/bmb-dropdown.stories.ts": [
@@ -28524,6 +29255,18 @@
                     "defaultValue": "(args) => {\n  return {\n    props: args,\n    template: `\n      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->\n      <storybook-toast-wrapper ${attributes(args)}></storybook-toast-wrapper>\n      <!-- Start copying from here -->\n      <div class=\"actions\">\n      <button bmbButton appearance=\"primary\" icon=\"home\" size=\"small\" position=\"left\" [case]=\"false\" (click)=\"onButtonClick()\">Click Here</button>\n      <bmb-toast ${attributes(args)}></bmb-toast></div>`,\n  };\n}"
                 }
             ],
+            "projects/ds-ng/src/lib/components/bmb-tooltip/bmb-tooltip.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/ds-ng/src/lib/components/bmb-tooltip/bmb-tooltip.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  render: (args) => ({\n    props: args,\n    template: `\n        <bmb-tooltip \n            [title]=\"'Titulo tooltip'\" \n            [text]=\"'Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum nihil modi repellendus ad aspernatur corporis.'\"\n            [align]=\"'right'\" \n            [justify]=\"'centered'\"\n            >\n            <bmb-icon style=\"font-size: 40px;\" [icon]=\"'help'\"/>\n        </bmb-tooltip>\n        `,\n  }),\n}"
+                }
+            ],
             "projects/ds-ng/src/lib/components/bmb-top-bar/bmb-top-bar.stories.ts": [
                 {
                     "name": "Default",
@@ -29002,7 +29745,7 @@
                             "type": "IFixDecimals",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "af824f87-c0f5-4a86-a30b-258ea2d08f1b",
+                            "destrucuredGroupId": "d2139903-0ed9-4e9a-92a6-b0d5d0f04d80",
                             "destructuredParameter": true
                         },
                         {
@@ -29011,7 +29754,7 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "defaultValue": "2",
-                            "destrucuredGroupId": "af824f87-c0f5-4a86-a30b-258ea2d08f1b",
+                            "destrucuredGroupId": "d2139903-0ed9-4e9a-92a6-b0d5d0f04d80",
                             "destructuredParameter": true
                         }
                     ],
@@ -29021,7 +29764,7 @@
                             "type": "IFixDecimals",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "af824f87-c0f5-4a86-a30b-258ea2d08f1b",
+                            "destrucuredGroupId": "d2139903-0ed9-4e9a-92a6-b0d5d0f04d80",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
@@ -29033,7 +29776,7 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "defaultValue": "2",
-                            "destrucuredGroupId": "af824f87-c0f5-4a86-a30b-258ea2d08f1b",
+                            "destrucuredGroupId": "d2139903-0ed9-4e9a-92a6-b0d5d0f04d80",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
@@ -29163,6 +29906,30 @@
                     "deprecationMessage": "",
                     "description": "",
                     "kind": 187
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-tooltip/bmb-tooltip.component.ts": [
+                {
+                    "name": "IBmbAlignTooltip",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"above\" | \"below\" | \"left\" | \"right\"",
+                    "file": "projects/ds-ng/src/lib/components/bmb-tooltip/bmb-tooltip.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 192
+                },
+                {
+                    "name": "IBmbJustifyTooltip",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"centered\" | \"before\" | \"after\"",
+                    "file": "projects/ds-ng/src/lib/components/bmb-tooltip/bmb-tooltip.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 192
                 }
             ],
             "projects/ds-ng/src/lib/components/bmb-calendar/types.ts": [
@@ -29594,6 +30361,19 @@
                     "subtype": "typealias",
                     "rawtype": "StoryObj<BmbDotPaginatorComponent>",
                     "file": "projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-drawer-overlay/bmb-drawer-overlay.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbDrawerOverlayComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-drawer-overlay/bmb-drawer-overlay.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -30068,6 +30848,19 @@
                     "kind": 183
                 }
             ],
+            "projects/ds-ng/src/lib/components/bmb-tooltip/bmb-tooltip.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<BmbTooltipComponent>",
+                    "file": "projects/ds-ng/src/lib/components/bmb-tooltip/bmb-tooltip.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
             "projects/ds-ng/src/lib/components/bmb-top-bar/bmb-top-bar.stories.ts": [
                 {
                     "name": "Story",
@@ -30205,7 +30998,7 @@
                 "linktype": "component",
                 "name": "BmbAccountStatementComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/52",
+                "coverageCount": "0/51",
                 "status": "low"
             },
             {
@@ -30718,6 +31511,25 @@
             },
             {
                 "filePath": "projects/ds-ng/src/lib/components/bmb-dot-paginator/bmb-dot-paginator.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-drawer-overlay/bmb-drawer-overlay.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbDrawerOverlayComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/15",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-drawer-overlay/bmb-drawer-overlay.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -32006,6 +32818,25 @@
                 "status": "low"
             },
             {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-tooltip/bmb-tooltip.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbTooltipComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-tooltip/bmb-tooltip.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/ds-ng/src/lib/components/bmb-top-bar/bmb-top-bar-item/bmb-top-bar-item.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -32076,7 +32907,7 @@
                 "linktype": "component",
                 "name": "BmbUserImageComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/7",
+                "coverageCount": "0/8",
                 "status": "low"
             },
             {
@@ -32095,7 +32926,7 @@
                 "linktype": "component",
                 "name": "BmbUserSummaryComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/7",
+                "coverageCount": "0/9",
                 "status": "low"
             },
             {
@@ -32125,6 +32956,15 @@
                 "name": "Default",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/ds-ng/src/lib/components/bmb-web-templates/bmb-web-templates.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "BmbWebTemplatesComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/22",
                 "status": "low"
             },
             {
