@@ -63,6 +63,7 @@ import {
   IBmbLoginOnbording,
   IBmbUserInfo,
   BmbGradesComponent,
+  BmbExternalLinkComponent,
 } from '../../projects/ds-ng/src/public-api';
 
 import {
@@ -152,6 +153,7 @@ import { IBmbGrades } from '../../projects/ds-ng/src/lib/components/bmb-grades/t
     BmbPushNotificationComponent,
     BmbAccountStatementComponent,
     BmbGradesComponent,
+    BmbExternalLinkComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
