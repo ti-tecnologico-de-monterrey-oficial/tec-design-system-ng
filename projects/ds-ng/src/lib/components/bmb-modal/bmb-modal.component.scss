@@ -8,6 +8,7 @@
 .mdc-dialog__surface {
   border-radius: rem.rem_calc(20);
   background-color: RGBA(var(--color-charade-50));
+  border: rem.rem_calc(1) solid  RGBA(var(--color-charade-300));
 }
 
 .bmb_modal {
@@ -174,12 +175,13 @@
 [data-theme="dark"],
 .storybook-dark-theme {
   .mdc-dialog__surface {
-    background-color: RGBA(var(--color-charade-900));
+    background-color: RGBA(var(--color-charade-950));
+    border: rem.rem_calc(1) solid  RGBA(var(--color-charade-900));
   }
 
   .bmb_modal {
     &-content {
-      background-color: RGBA(var(--color-charade-900));
+      background-color: RGBA(var(--color-charade-950));
     }
 
     &-header {
