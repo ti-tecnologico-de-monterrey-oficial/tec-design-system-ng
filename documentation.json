@@ -108,12 +108,12 @@
         },
         {
             "name": "IBmbApp",
-            "id": "interface-IBmbApp-c3ed0c63e6ffbbd1f18232859e4b83d93f2b305766673cd675df7454edeef3f77e630a7a08c9bbc20901771d083832bfdd307ab2df7c653fa60da96c42a58c11",
+            "id": "interface-IBmbApp-22988405cee08098f50a2bace704a34e061b678ec6812e269a164c377ec901940bbf644fab335df398f2fe2a72a06bc333b8f3ea7eb82d20e98ea9bbad532d5a",
             "file": "projects/ds-ng/src/lib/types/index.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { IBmbInteractiveIconAppearance } from '../components/bmb-interactive-icon/bmb-interactive-icon.component';\n\nexport type SizeNames = 'xs' | 's' | 'm' | 'l' | 'xl' | 'none' | 'auto';\nexport type IButtonAppearance =\n  | 'primary'\n  | 'secondary-filled'\n  | 'secondary-outlined'\n  | 'destructive';\nexport interface IBmbApp {\n  icon: string;\n  title: string;\n  link?: string;\n  target?: string;\n  appearance: IBmbInteractiveIconAppearance;\n}\nexport type IBmbHorizontalPosition = 'left' | 'right';\nexport * from '../components/bmb-timestream/types';\nexport * from '../components/bmb-push-notification/types';\nexport * from '../components/bmb-advertisement-card/types';\nexport * from '../components/bmb-login-onboarding/types';\n",
+            "sourceCode": "import { IBmbInteractiveIconAppearance } from '../components/bmb-interactive-icon/bmb-interactive-icon.component';\n\nexport type SizeNames = 'xs' | 's' | 'm' | 'l' | 'xl' | 'none' | 'auto';\nexport type IButtonAppearance =\n  | 'primary'\n  | 'secondary-filled'\n  | 'secondary-outlined'\n  | 'destructive';\nexport type IButtonSize = 'small' | 'large' | 'micro';\nexport interface IBmbApp {\n  icon: string;\n  title: string;\n  link?: string;\n  target?: string;\n  appearance: IBmbInteractiveIconAppearance;\n}\nexport type IBmbHorizontalPosition = 'left' | 'right';\nexport * from '../components/bmb-timestream/types';\nexport * from '../components/bmb-push-notification/types';\nexport * from '../components/bmb-advertisement-card/types';\nexport * from '../components/bmb-login-onboarding/types';\n",
             "properties": [
                 {
                     "name": "appearance",
@@ -122,7 +122,7 @@
                     "type": "IBmbInteractiveIconAppearance",
                     "optional": false,
                     "description": "",
-                    "line": 14
+                    "line": 15
                 },
                 {
                     "name": "icon",
@@ -131,7 +131,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 10
+                    "line": 11
                 },
                 {
                     "name": "link",
@@ -140,7 +140,7 @@
                     "type": "string",
                     "optional": true,
                     "description": "",
-                    "line": 12
+                    "line": 13
                 },
                 {
                     "name": "target",
@@ -149,7 +149,7 @@
                     "type": "string",
                     "optional": true,
                     "description": "",
-                    "line": 13
+                    "line": 14
                 },
                 {
                     "name": "title",
@@ -158,7 +158,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 11
+                    "line": 12
                 }
             ],
             "indexSignatures": [],
@@ -2895,12 +2895,12 @@
     "directives": [
         {
             "name": "BmbButtonDirective",
-            "id": "directive-BmbButtonDirective-9c6d518ea8b15097fed2405a715c510595a2abbfc9061bd930d6d0c0eee0862aa112f1151a94bdccfebaf8281bd9d673f520abf66a0faff8e1736bc83279599a",
+            "id": "directive-BmbButtonDirective-41eec25ab9604f1989b5821071c6eb4d6357cd7464ed5c7bc13a347344384c7c452d69ffa9786b82cdc42dd5c50a8674bdb4704ceb01394e58bb6977bce91ec7",
             "file": "projects/ds-ng/src/lib/directives/button.directive.ts",
             "type": "directive",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import {\n  Directive,\n  Input,\n  ElementRef,\n  HostBinding,\n  ViewContainerRef,\n  ChangeDetectorRef,\n  OnInit,\n  OnChanges,\n  Renderer2,\n  SimpleChanges,\n  input,\n} from '@angular/core';\nimport { BmbIconComponent } from '../components/bmb-icon/bmb-icon.component';\nimport { IBmbHorizontalPosition, IButtonAppearance } from '../types';\n\n@Directive({\n  selector: '[bmbButton]',\n  standalone: true,\n})\nexport class BmbButtonDirective implements OnInit, OnChanges {\n  icon = input<string>('');\n  position = input<IBmbHorizontalPosition>('left');\n  case = input<boolean>(false);\n  appearance = input<IButtonAppearance>('primary');\n  size = input<'small' | 'large'>('small');\n  isToggleActive = input<boolean>(false);\n  enableButtonToggle = input<boolean>(false);\n  isRounded = input<boolean>(true);\n\n  private providedInputs: Set<string> = new Set();\n\n  constructor(\n    private el: ElementRef,\n    private viewContainerRef: ViewContainerRef,\n    private cdr: ChangeDetectorRef,\n    private renderer: Renderer2,\n  ) {}\n\n  ngOnInit(): void {\n    this.addContent();\n    this.applyAttributes();\n  }\n\n  ngOnChanges(changes: SimpleChanges): void {\n    Object.keys(changes).forEach((input) => {\n      this.providedInputs.add(input);\n    });\n\n    this.applyAttributes();\n    this.addContent();\n    this.cdr.markForCheck();\n  }\n\n  private applyAttributes() {\n    if (this.providedInputs.has('case')) {\n      if (this.case()) {\n        this.renderer.setAttribute(this.el.nativeElement, 'case', 'true');\n      } else {\n        this.renderer.removeAttribute(this.el.nativeElement, 'case');\n      }\n    }\n\n    if (this.providedInputs.has('size') && this.size()) {\n      this.renderer.setAttribute(this.el.nativeElement, 'size', this.size());\n    }\n\n    if (this.providedInputs.has('position')) {\n      this.renderer.setAttribute(\n        this.el.nativeElement,\n        'position',\n        this.position(),\n      );\n    }\n  }\n\n  @HostBinding('class') get elementClass(): string[] {\n    const classList = [`bmb_btn-${this.appearance()}`];\n    if (this.enableButtonToggle() && this.isToggleActive())\n      classList.push('bmb_btn-toggle-active');\n    if (this.isRounded()) classList.push('bmb_btn-rounded');\n\n    return classList;\n  }\n\n  private addContent() {\n    this.viewContainerRef.clear();\n\n    if (this.icon) {\n      const iconComponentRef =\n        this.viewContainerRef.createComponent(BmbIconComponent); // Crear una instancia del componente\n      const iconComponent = iconComponentRef.instance;\n      iconComponent.icon = this.icon();\n\n      if (this.position() === 'right') {\n        this.el.nativeElement.insertBefore(\n          iconComponentRef.location.nativeElement,\n          this.el.nativeElement.lastChild.nextSibling,\n        );\n      } else {\n        this.el.nativeElement.insertBefore(\n          iconComponentRef.location.nativeElement,\n          this.el.nativeElement.firstChild,\n        );\n      }\n    }\n  }\n}\n",
+            "sourceCode": "import {\n  Directive,\n  ElementRef,\n  HostBinding,\n  ViewContainerRef,\n  ChangeDetectorRef,\n  OnInit,\n  OnChanges,\n  Renderer2,\n  SimpleChanges,\n  input,\n} from '@angular/core';\nimport { BmbIconComponent } from '../components/bmb-icon/bmb-icon.component';\nimport {\n  IBmbHorizontalPosition,\n  IButtonAppearance,\n  IButtonSize,\n} from '../types';\n\n@Directive({\n  selector: '[bmbButton]',\n  standalone: true,\n})\nexport class BmbButtonDirective implements OnInit, OnChanges {\n  icon = input<string>('');\n  position = input<IBmbHorizontalPosition>('left');\n  case = input<boolean>(false);\n  appearance = input<IButtonAppearance>('primary');\n  size = input<IButtonSize>('small');\n  isToggleActive = input<boolean>(false);\n  enableButtonToggle = input<boolean>(false);\n  isRounded = input<boolean>(true);\n\n  private providedInputs: Set<string> = new Set();\n\n  constructor(\n    private el: ElementRef,\n    private viewContainerRef: ViewContainerRef,\n    private cdr: ChangeDetectorRef,\n    private renderer: Renderer2,\n  ) {}\n\n  ngOnInit(): void {\n    this.addContent();\n    this.applyAttributes();\n  }\n\n  ngOnChanges(changes: SimpleChanges): void {\n    Object.keys(changes).forEach((input) => {\n      this.providedInputs.add(input);\n    });\n\n    this.applyAttributes();\n    this.addContent();\n    this.cdr.markForCheck();\n  }\n\n  private applyAttributes() {\n    if (this.providedInputs.has('case')) {\n      if (this.case()) {\n        this.renderer.setAttribute(this.el.nativeElement, 'case', 'true');\n      } else {\n        this.renderer.removeAttribute(this.el.nativeElement, 'case');\n      }\n    }\n\n    if (this.providedInputs.has('size') && this.size()) {\n      this.renderer.setAttribute(this.el.nativeElement, 'size', this.size());\n    }\n\n    if (this.providedInputs.has('position')) {\n      this.renderer.setAttribute(\n        this.el.nativeElement,\n        'position',\n        this.position(),\n      );\n    }\n  }\n\n  @HostBinding('class') get elementClass(): string[] {\n    const classList = [`bmb_btn-${this.appearance()}`];\n    console.log(\n      'this.enableButtonToggle() && this.isToggleActive()',\n      this.enableButtonToggle() && this.isToggleActive(),\n    );\n\n    if (this.enableButtonToggle() && this.isToggleActive())\n      classList.push('bmb_btn-toggle-active');\n    if (this.isRounded()) classList.push('bmb_btn-rounded');\n\n    return classList;\n  }\n\n  private addContent() {\n    this.viewContainerRef.clear();\n\n    if (this.icon()) {\n      const iconComponentRef =\n        this.viewContainerRef.createComponent(BmbIconComponent); // Crear una instancia del componente\n      const iconComponent = iconComponentRef.instance;\n      iconComponent.icon = this.icon();\n\n      if (this.position() === 'right') {\n        this.el.nativeElement.insertBefore(\n          iconComponentRef.location.nativeElement,\n          this.el.nativeElement.lastChild.nextSibling,\n        );\n      } else {\n        this.el.nativeElement.insertBefore(\n          iconComponentRef.location.nativeElement,\n          this.el.nativeElement.firstChild,\n        );\n      }\n    }\n  }\n}\n",
             "selector": "[bmbButton]",
             "providers": [],
             "hostDirectives": [],
@@ -2914,7 +2914,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 24,
+                    "line": 27,
                     "required": false
                 },
                 {
@@ -2925,7 +2925,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 28,
+                    "line": 31,
                     "required": false
                 },
                 {
@@ -2936,7 +2936,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 29,
+                    "line": 32,
                     "required": false
                 },
                 {
@@ -2947,7 +2947,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 27,
+                    "line": 30,
                     "required": false
                 }
             ],
@@ -2959,7 +2959,7 @@
                     "name": "class",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 77,
+                    "line": 80,
                     "type": "string[]",
                     "decorators": []
                 }
@@ -2974,53 +2974,10 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 25
+                    "line": 28
                 },
                 {
                     "name": "case",
-                    "defaultValue": "false",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 24,
-                    "required": false
-                },
-                {
-                    "name": "enableButtonToggle",
-                    "defaultValue": "false",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 28,
-                    "required": false
-                },
-                {
-                    "name": "icon",
-                    "defaultValue": "input<string>('')",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 22
-                },
-                {
-                    "name": "isRounded",
-                    "defaultValue": "true",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 29,
-                    "required": false
-                },
-                {
-                    "name": "isToggleActive",
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
@@ -3031,6 +2988,49 @@
                     "required": false
                 },
                 {
+                    "name": "enableButtonToggle",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 31,
+                    "required": false
+                },
+                {
+                    "name": "icon",
+                    "defaultValue": "input<string>('')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 25
+                },
+                {
+                    "name": "isRounded",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 32,
+                    "required": false
+                },
+                {
+                    "name": "isToggleActive",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 30,
+                    "required": false
+                },
+                {
                     "name": "position",
                     "defaultValue": "input<IBmbHorizontalPosition>('left')",
                     "deprecated": false,
@@ -3038,7 +3038,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 23
+                    "line": 26
                 },
                 {
                     "name": "providedInputs",
@@ -3048,20 +3048,20 @@
                     "type": "Set<string>",
                     "optional": false,
                     "description": "",
-                    "line": 31,
+                    "line": 34,
                     "modifierKind": [
                         123
                     ]
                 },
                 {
                     "name": "size",
-                    "defaultValue": "input<'small' | 'large'>('small')",
+                    "defaultValue": "input<IButtonSize>('small')",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 26
+                    "line": 29
                 }
             ],
             "methodsClass": [
@@ -3071,7 +3071,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 86,
+                    "line": 94,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -3084,7 +3084,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 55,
+                    "line": 58,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -3104,7 +3104,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 45,
+                    "line": 48,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -3125,7 +3125,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 40,
+                    "line": 43,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -3166,7 +3166,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 31,
+                "line": 34,
                 "jsdoctags": [
                     {
                         "name": "el",
@@ -3213,7 +3213,7 @@
                         "name": "elementClass",
                         "type": "[]",
                         "returnType": "string[]",
-                        "line": 77
+                        "line": 80
                     }
                 }
             }
@@ -19037,7 +19037,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@use \"../../../assets/styles/base/fonts\" as fonts;\n@use \"../../../assets/styles/base/mixins\" as mixins;\n@use \"../../../assets/styles/base/rem\" as rem;\n\n// Mixins for mobile\n@mixin content() {\n  cursor: pointer;\n  top: 10%;\n  width: rem.rem_calc(28);\n}\n\n@mixin isOpen() {\n  height: 100vh;\n  overflow: auto;\n  padding: rem.rem_calc(24);\n  top: 0;\n  width: 100%;\n\n  .bmb_sidebar-button {\n    border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-800));\n    height: rem.rem_calc(40);\n    justify-content: space-between;\n    margin-bottom: rem.rem_calc(16);\n    padding: rem.rem_calc(8 8 16 8);\n\n    &-icon {\n      font-size: rem.rem_calc(24);\n    }\n  }\n\n  .bmb_sidebar-text {\n    opacity: 1;\n    overflow: hidden;\n    visibility: visible;\n  }\n}\n\n@mixin list() {\n  margin: rem.rem_calc(16 0 0 0);\n}\n\n.bmb_sidebar {\n  background-color: RGBA(var(--color-black-primary));\n  border-radius: rem.rem_calc(0 8 8 0);\n  left: 0;\n  position: fixed;\n  transition: width 0.3s ease;\n  z-index: 1;\n\n  &-body-hide {\n    overflow: hidden;\n  }\n\n  &-mobile {\n    @include content();\n\n    @media (max-height: 630px) {\n      @include content();\n    }\n\n    &.bmb_sidebar-open {\n      @include isOpen();\n\n      @media (max-height: 630px) {\n        @include isOpen();\n      }\n    }\n\n    .bmb_sidebar-button {\n      align-items: center;\n      display: flex;\n      height: rem.rem_calc(72);\n      justify-content: center;\n      margin: 0;\n      padding: 0;\n      width: 100%;\n\n      &-icon {\n        color: RGBA(var(--color-white-primary));\n        font-size: rem.rem_calc(16);\n      }\n\n      &-text {\n        color: RGBA(var(--color-white-primary));\n        overflow: hidden;\n        text-overflow: ellipsis;\n        white-space: nowrap;\n        @include fonts.font(6, semibold);\n      }\n    }\n\n    .bmb_sidebar-list {\n      @include list();\n\n      @media (max-height: 630px) {\n        @include list();\n      }\n    }\n\n    .bmb_sidebar-children {\n      height: 100vh;\n      left: 0;\n      position: fixed;\n      top: 0;\n      width: 100vw;\n\n      &-open {\n        display: flex;\n      }\n    }\n  }\n\n  &-desktop {\n    cursor: auto;\n    display: none;\n    height: rem.rem_calc(480);\n    overflow: hidden;\n    padding: rem.rem_calc(24);\n    top: 50%;\n    transform: translateY(-50%);\n    width: rem.rem_calc(88);\n\n    &:hover,\n    &.active {\n      height: rem.rem_calc(480);\n      overflow: visible;\n      width: rem.rem_calc(280);\n\n      .bmb_sidebar-text {\n        opacity: 1;\n        overflow: hidden;\n        visibility: visible;\n      }\n\n      .bmb_sidebar-item {\n        width: rem.rem_calc(232);\n      }\n    }\n\n    .bmb_sidebar-item {\n      position: relative;\n    }\n\n    .bmb_sidebar-link {\n      &:hover {\n        + .bmb_sidebar-children {\n          border-radius: rem.rem_calc(0 24 24 0);\n          display: flex;\n          left: 100%;\n          position: absolute;\n          top: 0;\n          width: rem.rem_calc(264);\n        }\n      }\n    }\n\n    .bmb_sidebar-children-open {\n      border-radius: rem.rem_calc(0 24 24 0);\n      display: flex;\n      left: 100%;\n      position: absolute;\n      top: 0;\n      width: rem.rem_calc(264);\n    }\n\n    .bmb_sidebar-title {\n      display: none;\n    }\n  }\n\n  &-list {\n    display: flex;\n    flex-flow: column;\n    list-style-type: none;\n    margin: 0;\n    padding: 0;\n\n    &:nth-of-type(n + 2) {\n      border-top: rem.rem_calc(1) solid RGBA(var(--color-charade-800));\n      margin-top: rem.rem_calc(16);\n      padding-top: rem.rem_calc(16);\n    }\n  }\n\n  &-item {\n    align-items: center;\n    display: flex;\n    height: rem.rem_calc(40);\n    justify-content: flex-start;\n    width: auto;\n  }\n\n  &-link {\n    align-items: center;\n    color: RGBA(var(--color-white-primary));\n    cursor: pointer;\n    display: flex;\n    height: 100%;\n    justify-content: flex-start;\n    text-align: left;\n    text-decoration: none;\n    transition: all 0.3s ease;\n    width: 100%;\n\n    &:hover,\n    &-active {\n      background-color: RGBA(var(--color-white-primary));\n      border-radius: rem.rem_calc(24);\n      color: RGBA(var(--color-black-primary));\n    }\n  }\n\n  &-icon,\n  &-arrow {\n    font-size: rem.rem_calc(24);\n    padding: rem.rem_calc(0 8);\n  }\n\n  &-text {\n    display: block;\n    flex: 1;\n    opacity: 0;\n    text-overflow: ellipsis;\n    visibility: hidden;\n    white-space: nowrap;\n    width: rem.rem_calc(132);\n    @include fonts.font(4, medium);\n  }\n\n  &-children {\n    background-color: RGBA(var(--color-black-primary));\n    display: none;\n    flex-flow: column;\n    padding: rem.rem_calc(24);\n  }\n\n  &-title {\n    align-items: center;\n    border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-800));\n    color: RGBA(var(--color-white-primary));\n    display: flex;\n    height: rem.rem_calc(40);\n    justify-content: space-between;\n    margin-bottom: rem.rem_calc(16);\n    padding: rem.rem_calc(8 8 16 8);\n\n    &-button {\n      color: RGBA(var(--color-white-primary));\n      padding: 0;\n\n      .bmb_sidebar-icon {\n        padding: 0;\n      }\n    }\n\n    .bmb_sidebar-text {\n      display: flex;\n      > span {\n        overflow: hidden;\n        text-overflow: ellipsis;\n        white-space: nowrap;\n      }\n    }\n  }\n\n  @include mixins.media-query(768, \"min\") {\n    &-mobile {\n      display: none;\n    }\n\n    &-desktop {\n      display: block;\n    }\n  }\n\n  @media (max-height: 630px) {\n    &-mobile {\n      display: block;\n    }\n\n    &-desktop {\n      display: none;\n    }\n  }\n}\n",
+                    "data": "@use \"../../../assets/styles/base/fonts\" as fonts;\n@use \"../../../assets/styles/base/mixins\" as mixins;\n@use \"../../../assets/styles/base/rem\" as rem;\n\n// Mixins for mobile\n@mixin content() {\n  cursor: pointer;\n  top: 10%;\n  width: rem.rem_calc(28);\n}\n\n@mixin isOpen() {\n  height: 100vh;\n  overflow: auto;\n  padding: rem.rem_calc(24);\n  top: 0;\n  width: 100%;\n\n  .bmb_sidebar-button {\n    border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-800));\n    height: rem.rem_calc(40);\n    justify-content: space-between;\n    margin-bottom: rem.rem_calc(16);\n    padding: rem.rem_calc(8 8 16 8);\n\n    &-icon {\n      font-size: rem.rem_calc(24);\n    }\n  }\n\n  .bmb_sidebar-text {\n    opacity: 1;\n    overflow: hidden;\n    visibility: visible;\n  }\n}\n\n@mixin list() {\n  margin: rem.rem_calc(16 0 0 0);\n}\n\n.bmb_sidebar {\n  background-color: RGBA(var(--color-black-primary));\n  border-radius: rem.rem_calc(0 8 8 0);\n  left: 0;\n  position: fixed;\n  transition: width 0.3s ease;\n  z-index: 1;\n\n  &-body-hide {\n    overflow: hidden;\n  }\n\n  &-mobile {\n    @include content();\n\n    @media (max-height: 630px) {\n      @include content();\n    }\n\n    &.bmb_sidebar-open {\n      @include isOpen();\n\n      @media (max-height: 630px) {\n        @include isOpen();\n      }\n    }\n\n    .bmb_sidebar-button {\n      align-items: center;\n      display: flex;\n      height: rem.rem_calc(72);\n      justify-content: center;\n      margin: 0;\n      padding: 0;\n      width: 100%;\n\n      &-icon {\n        color: RGBA(var(--color-white-primary));\n        font-size: rem.rem_calc(16);\n      }\n\n      &-text {\n        color: RGBA(var(--color-white-primary));\n        overflow: hidden;\n        text-overflow: ellipsis;\n        white-space: nowrap;\n        @include fonts.font(6, semibold);\n      }\n    }\n\n    .bmb_sidebar-list {\n      @include list();\n\n      @media (max-height: 630px) {\n        @include list();\n      }\n    }\n\n    .bmb_sidebar-children {\n      height: 100vh;\n      left: 0;\n      position: fixed;\n      top: 0;\n      width: 100vw;\n\n      &-open {\n        display: flex;\n      }\n    }\n  }\n\n  &-desktop {\n    cursor: auto;\n    display: none;\n    height: rem.rem_calc(480);\n    overflow: hidden;\n    padding: rem.rem_calc(24);\n    top: 50%;\n    transform: translateY(-50%);\n    width: rem.rem_calc(88);\n\n    &:hover,\n    &.active {\n      height: rem.rem_calc(480);\n      overflow: visible;\n      width: rem.rem_calc(280);\n\n      .bmb_sidebar-text {\n        opacity: 1;\n        overflow: hidden;\n        visibility: visible;\n      }\n\n      .bmb_sidebar-item {\n        width: rem.rem_calc(232);\n      }\n    }\n\n    .bmb_sidebar-item {\n      position: relative;\n    }\n\n    .bmb_sidebar-link {\n      &:hover {\n        + .bmb_sidebar-children {\n          border-radius: rem.rem_calc(0 24 24 0);\n          display: flex;\n          left: 100%;\n          position: absolute;\n          top: 0;\n          width: rem.rem_calc(264);\n        }\n      }\n    }\n\n    .bmb_sidebar-children-open {\n      border-radius: rem.rem_calc(0 24 24 0);\n      display: flex;\n      left: 100%;\n      position: absolute;\n      top: 0;\n      width: rem.rem_calc(264);\n    }\n\n    .bmb_sidebar-title {\n      display: none;\n    }\n  }\n\n  &-list {\n    display: flex;\n    flex-flow: column;\n    list-style-type: none;\n    margin: 0;\n    padding: 0;\n\n    &:nth-of-type(n + 2) {\n      border-top: rem.rem_calc(1) solid RGBA(var(--color-charade-800));\n      margin-top: rem.rem_calc(16);\n      padding-top: rem.rem_calc(16);\n    }\n  }\n\n  &-item {\n    align-items: center;\n    display: flex;\n    height: rem.rem_calc(40);\n    justify-content: flex-start;\n    width: auto;\n  }\n\n  &-link {\n    align-items: center;\n    color: RGBA(var(--color-white-primary));\n    cursor: pointer;\n    display: flex;\n    height: 100%;\n    justify-content: flex-start;\n    text-align: left;\n    text-decoration: none;\n    transition: all 0.3s ease;\n    width: 100%;\n\n    &:hover,\n    &-active {\n      background-color: RGBA(var(--color-white-primary));\n      border-radius: rem.rem_calc(24);\n      color: RGBA(var(--color-black-primary));\n    }\n  }\n\n  &-icon,\n  &-arrow {\n    font-size: rem.rem_calc(24);\n    padding: rem.rem_calc(0 8);\n  }\n\n  &-text {\n    display: block;\n    flex: 1;\n    opacity: 0;\n    text-overflow: ellipsis;\n    visibility: hidden;\n    white-space: nowrap;\n    width: rem.rem_calc(132);\n    @include fonts.font(4, medium);\n  }\n\n  &-children {\n    background-color: RGBA(var(--color-black-primary));\n    display: none;\n    flex-flow: column;\n    padding: rem.rem_calc(24);\n  }\n\n  &-title {\n    align-items: center;\n    border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-800));\n    color: RGBA(var(--color-white-primary));\n    display: flex;\n    height: rem.rem_calc(40);\n    justify-content: space-between;\n    margin-bottom: rem.rem_calc(16);\n    padding: rem.rem_calc(8 8 16 8);\n\n    &-button {\n      color: RGBA(var(--color-white-primary));\n      padding: 0;\n\n      .bmb_sidebar-icon {\n        padding: 0;\n      }\n    }\n\n    .bmb_sidebar-text {\n      display: flex;\n      > span {\n        overflow: hidden;\n        text-overflow: ellipsis;\n        white-space: nowrap;\n      }\n    }\n  }\n\n  @include mixins.media-query(1000, \"min\") {\n    &-mobile {\n      display: none;\n    }\n\n    &-desktop {\n      display: block;\n    }\n  }\n\n  @media (max-height: 630px) {\n    &-mobile {\n      display: block;\n    }\n\n    &-desktop {\n      display: none;\n    }\n  }\n}\n",
                     "styleUrl": "./bmb-sidebar.component.scss"
                 }
             ],
@@ -24610,7 +24610,7 @@
         },
         {
             "name": "BmbWebTemplatesComponent",
-            "id": "component-BmbWebTemplatesComponent-6f561b102ea3fd3cfcdf7b3fbe40873cf68368493b9dd6e2ca9dd5ef93800cd8406246855e4a4ccaca8c74127b31f52c8205f57bc851069ea3d4fadb8ee1aca5",
+            "id": "component-BmbWebTemplatesComponent-6eba9a88d17810089ef1d68f014671619b5bb56eeb7a9dbc703998aa31e1d05e2cf817ee95f94c521f6d6eedc974e7da9310bbde1383084360bc94ccbf957c29",
             "file": "projects/ds-ng/src/lib/components/bmb-web-templates/bmb-web-templates.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [
@@ -24630,230 +24630,556 @@
             "hostDirectives": [],
             "inputsClass": [
                 {
-                    "name": "alertNotification",
+                    "name": "isFullScreen",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 50,
+                    "required": false
+                },
+                {
+                    "name": "subTitleScreen",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 52,
+                    "required": false
+                },
+                {
+                    "name": "titleAsideSlot",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 55,
+                    "required": false
+                },
+                {
+                    "name": "titleMainSlot",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 54,
+                    "required": false
+                },
+                {
+                    "name": "titleScreen",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 51,
+                    "required": false
+                },
+                {
+                    "name": "topBarAlertNotification",
                     "defaultValue": "0",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 27,
+                    "line": 69,
                     "required": false
                 },
                 {
-                    "name": "assignmentNotification",
+                    "name": "topBarAssignmentNotification",
                     "defaultValue": "0",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 26,
+                    "line": 68,
                     "required": false
                 },
                 {
-                    "name": "hasLogoutButton",
+                    "name": "topBarHasLogoutButton",
                     "defaultValue": "true",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 18,
+                    "line": 60,
                     "required": false
                 },
                 {
-                    "name": "image",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 19,
-                    "required": false
-                },
-                {
-                    "name": "mitec",
+                    "name": "topBarMitec",
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 25,
+                    "line": 67,
                     "required": false
                 },
                 {
-                    "name": "mobileImage",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 20,
-                    "required": false
-                },
-                {
-                    "name": "showLang",
+                    "name": "topBarShowLang",
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 23,
-                    "required": false
-                },
-                {
-                    "name": "userInformation",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 17,
+                    "line": 65,
                     "required": false
                 }
             ],
-            "outputsClass": [],
+            "outputsClass": [
+                {
+                    "name": "topBarLogOut",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 71,
+                    "required": false
+                },
+                {
+                    "name": "topBarOnLangChange",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 72,
+                    "required": false
+                }
+            ],
             "propertiesClass": [
                 {
-                    "name": "alertNotification",
-                    "defaultValue": "0",
+                    "name": "asideContent",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "TemplateRef<any>",
+                    "optional": false,
+                    "description": "",
+                    "line": 78,
+                    "decorators": [
+                        {
+                            "name": "ContentChild",
+                            "stringifiedArguments": "'bmbTemplateAside'"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ]
+                },
+                {
+                    "name": "asideFirstCard",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "TemplateRef<any>",
+                    "optional": false,
+                    "description": "",
+                    "line": 83,
+                    "decorators": [
+                        {
+                            "name": "ContentChild",
+                            "stringifiedArguments": "'asideFirstCard'"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ]
+                },
+                {
+                    "name": "asideLightCard",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "TemplateRef<any>",
+                    "optional": false,
+                    "description": "",
+                    "line": 84,
+                    "decorators": [
+                        {
+                            "name": "ContentChild",
+                            "stringifiedArguments": "'asideLightCard'"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ]
+                },
+                {
+                    "name": "isFullScreen",
+                    "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 27,
+                    "line": 50,
                     "required": false
                 },
                 {
-                    "name": "appName",
+                    "name": "mainContent",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "TemplateRef<any>",
+                    "optional": false,
+                    "description": "",
+                    "line": 79,
+                    "decorators": [
+                        {
+                            "name": "ContentChild",
+                            "stringifiedArguments": "'bmbTemplateMain'"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ]
+                },
+                {
+                    "name": "secondAsideContent",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "TemplateRef<any>",
+                    "optional": false,
+                    "description": "",
+                    "line": 80,
+                    "decorators": [
+                        {
+                            "name": "ContentChild",
+                            "stringifiedArguments": "'bmbTemplateSecondAside'"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ]
+                },
+                {
+                    "name": "sideBarElements",
+                    "defaultValue": "input<SidebarElement[][]>([])",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 75
+                },
+                {
+                    "name": "sideBarTitle",
                     "defaultValue": "input<string>('')",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 21
+                    "line": 76
                 },
                 {
-                    "name": "appSubTitle",
-                    "defaultValue": "input<string>('')",
+                    "name": "singleColumnCard",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "TemplateRef<any>",
+                    "optional": false,
+                    "description": "",
+                    "line": 82,
+                    "decorators": [
+                        {
+                            "name": "ContentChild",
+                            "stringifiedArguments": "'singleColumnCard'"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ]
+                },
+                {
+                    "name": "subTitleScreen",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 22
+                    "line": 52,
+                    "required": false
                 },
                 {
-                    "name": "assignmentNotification",
+                    "name": "template",
+                    "defaultValue": "input<IBmbTemplateName>('full-width-card')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 53
+                },
+                {
+                    "name": "titleAsideSlot",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 55,
+                    "required": false
+                },
+                {
+                    "name": "titleMainSlot",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 54,
+                    "required": false
+                },
+                {
+                    "name": "titleScreen",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 51,
+                    "required": false
+                },
+                {
+                    "name": "topBarAlertNotification",
                     "defaultValue": "0",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 26,
+                    "line": 69,
                     "required": false
                 },
                 {
-                    "name": "elements",
-                    "defaultValue": "input<SidebarElement[][]>()",
+                    "name": "topBarAppName",
+                    "defaultValue": "input<string>('')",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 28
+                    "line": 63
                 },
                 {
-                    "name": "hasLogoutButton",
+                    "name": "topBarAppSubTitle",
+                    "defaultValue": "input<string>('')",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 64
+                },
+                {
+                    "name": "topBarAssignmentNotification",
+                    "defaultValue": "0",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 68,
+                    "required": false
+                },
+                {
+                    "name": "topBarHasLogoutButton",
                     "defaultValue": "true",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 18,
+                    "line": 60,
                     "required": false
                 },
                 {
-                    "name": "image",
+                    "name": "topBarImage",
+                    "defaultValue": "input<string>('assets/images/tec-logo.svg')",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 19,
-                    "required": false
+                    "line": 61
                 },
                 {
-                    "name": "lang",
+                    "name": "topBarLang",
                     "defaultValue": "input<string>('es')",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 24
+                    "line": 66
                 },
                 {
-                    "name": "mitec",
+                    "name": "topBarLogOut",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 71,
+                    "required": false
+                },
+                {
+                    "name": "topBarMitec",
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 25,
+                    "line": 67,
                     "required": false
                 },
                 {
-                    "name": "mobileImage",
+                    "name": "topBarMobileImage",
+                    "defaultValue": "input<string>('assets/images/tec-logo-mob.svg')",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 20,
+                    "line": 62
+                },
+                {
+                    "name": "topBarOnLangChange",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 72,
                     "required": false
                 },
                 {
-                    "name": "positionButtonMenu",
+                    "name": "topBarPositionButtonMenu",
                     "defaultValue": "input<IPositionButtonMenu>('left')",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 16
+                    "line": 58
                 },
                 {
-                    "name": "showLang",
+                    "name": "topBarShowLang",
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 23,
+                    "line": 65,
                     "required": false
                 },
                 {
-                    "name": "userInformation",
+                    "name": "topBarUserInformation",
+                    "defaultValue": "input<IUserInformation | null>(null)",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 17,
-                    "required": false
+                    "line": 59
+                },
+                {
+                    "name": "twoAsideCard",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "TemplateRef<any>",
+                    "optional": false,
+                    "description": "",
+                    "line": 85,
+                    "decorators": [
+                        {
+                            "name": "ContentChild",
+                            "stringifiedArguments": "'twoAsideCard'"
+                        }
+                    ],
+                    "modifierKind": [
+                        170
+                    ]
                 }
             ],
-            "methodsClass": [],
+            "methodsClass": [
+                {
+                    "name": "getSectionClass",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "string[]",
+                    "typeParameters": [],
+                    "line": 87,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "handleLangChange",
+                    "args": [
+                        {
+                            "name": "lang",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 100,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "lang",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "handleLogOut",
+                    "args": [
+                        {
+                            "name": "param",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 96,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "param",
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
             "deprecated": false,
             "deprecationMessage": "",
             "hostBindings": [],
@@ -24867,18 +25193,38 @@
                 {
                     "name": "BmbSidebarComponent",
                     "type": "component"
+                },
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "BmbDividerComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "BmbLayoutDirective",
+                    "type": "directive"
+                },
+                {
+                    "name": "BmbLayoutItemDirective",
+                    "type": "directive"
+                },
+                {
+                    "name": "BmbTabsComponent",
+                    "type": "component"
                 }
             ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { ChangeDetectionStrategy, Component, input, ViewEncapsulation } from '@angular/core';\r\nimport { BmbTopBarComponent, IPositionButtonMenu, IUserInformation } from '../bmb-top-bar/bmb-top-bar.component';\r\nimport { BmbSidebarComponent } from '../bmb-sidebar/bmb-sidebar.component';\r\nimport { SidebarElement } from '../bmb-sidebar/bmb-sidebar.interface';\r\n\r\n@Component({\r\n  selector: 'bmb-web-templates',\r\n  standalone: true,\r\n  imports: [BmbTopBarComponent, BmbSidebarComponent],\r\n  templateUrl: './bmb-web-templates.component.html',\r\n  styleUrl: './bmb-web-templates.component.scss',\r\n  encapsulation: ViewEncapsulation.None,\r\n  changeDetection: ChangeDetectionStrategy.OnPush\r\n})\r\nexport class BmbWebTemplatesComponent {\r\n  positionButtonMenu = input<IPositionButtonMenu>('left');\r\n  userInformation = input<IUserInformation>();\r\n  hasLogoutButton = input<boolean>(true);\r\n  image = input<string>();\r\n  mobileImage = input<string>();\r\n  appName = input<string>('');\r\n  appSubTitle = input<string>('');\r\n  showLang = input<boolean>(false);\r\n  lang = input<string>('es');\r\n  mitec = input<boolean>(false);\r\n  assignmentNotification = input<number>(0);\r\n  alertNotification = input<number>(0);\r\n  elements = input<SidebarElement[][]>()\r\n\r\n  // @Input() : number = 0;\r\n  // @Input() :  = [];\r\n  // @Input() title: string = 'Navigation';\r\n\r\n  // @Output() logOut: EventEmitter<any> = new EventEmitter<any>();\r\n  // @Output() onLangChange: EventEmitter<string> = new EventEmitter<string>();\r\n\r\n\r\n}\r\n",
+            "sourceCode": "import {\n  AfterViewInit,\n  ChangeDetectionStrategy,\n  Component,\n  ContentChild,\n  input,\n  output,\n  TemplateRef,\n  ViewEncapsulation,\n} from '@angular/core';\nimport {\n  BmbTopBarComponent,\n  IPositionButtonMenu,\n  IUserInformation,\n} from '../bmb-top-bar/bmb-top-bar.component';\nimport { BmbSidebarComponent } from '../bmb-sidebar/bmb-sidebar.component';\nimport { SidebarElement } from '../bmb-sidebar/bmb-sidebar.interface';\nimport { CommonModule } from '@angular/common';\nimport { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';\nimport { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';\nimport { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';\nimport { BmbTabsComponent } from '../bmb-tabs/bmb-tabs.component';\n\nexport type IBmbTemplateName =\n  | 'full-width-card'\n  | 'justify-width-card'\n  | 'single-column-card'\n  | 'aside-first-card'\n  | 'aside-light-card'\n  | 'two-aside-card';\n\n@Component({\n  selector: 'bmb-web-templates',\n  standalone: true,\n  imports: [\n    BmbTopBarComponent,\n    BmbSidebarComponent,\n    CommonModule,\n    BmbDividerComponent,\n    BmbLayoutDirective,\n    BmbLayoutItemDirective,\n    BmbTabsComponent,\n  ],\n  templateUrl: './bmb-web-templates.component.html',\n  styleUrl: './bmb-web-templates.component.scss',\n  encapsulation: ViewEncapsulation.None,\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class BmbWebTemplatesComponent {\n  isFullScreen = input<boolean>(false);\n  titleScreen = input<string>();\n  subTitleScreen = input<string>();\n  template = input<IBmbTemplateName>('full-width-card');\n  titleMainSlot = input<string>();\n  titleAsideSlot = input<string>();\n\n  // top bar inputs\n  topBarPositionButtonMenu = input<IPositionButtonMenu>('left');\n  topBarUserInformation = input<IUserInformation | null>(null);\n  topBarHasLogoutButton = input<boolean>(true);\n  topBarImage = input<string>('assets/images/tec-logo.svg');\n  topBarMobileImage = input<string>('assets/images/tec-logo-mob.svg');\n  topBarAppName = input<string>('');\n  topBarAppSubTitle = input<string>('');\n  topBarShowLang = input<boolean>(false);\n  topBarLang = input<string>('es');\n  topBarMitec = input<boolean>(false);\n  topBarAssignmentNotification = input<number>(0);\n  topBarAlertNotification = input<number>(0);\n\n  topBarLogOut = output<any>();\n  topBarOnLangChange = output<string>();\n\n  // side bar inputs\n  sideBarElements = input<SidebarElement[][]>([]);\n  sideBarTitle = input<string>('');\n\n  @ContentChild('bmbTemplateAside') asideContent!: TemplateRef<any>;\n  @ContentChild('bmbTemplateMain') mainContent!: TemplateRef<any>;\n  @ContentChild('bmbTemplateSecondAside') secondAsideContent!: TemplateRef<any>;\n\n  @ContentChild('singleColumnCard') singleColumnCard!: TemplateRef<any>;\n  @ContentChild('asideFirstCard') asideFirstCard!: TemplateRef<any>;\n  @ContentChild('asideLightCard') asideLightCard!: TemplateRef<any>;\n  @ContentChild('twoAsideCard') twoAsideCard!: TemplateRef<any>;\n\n  getSectionClass(): string[] {\n    const classList = [\n      'bmb_web-template',\n      `bmb_web-template-${this.template()}`,\n    ];\n\n    return classList;\n  }\n\n  handleLogOut(param: any): void {\n    this.topBarLogOut.emit(param);\n  }\n\n  handleLangChange(lang: string): void {\n    this.topBarOnLangChange.emit(lang);\n  }\n}\n",
             "styleUrl": "./bmb-web-templates.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<bmb-top-bar />\r\n<main>\r\n  <ng-content></ng-content>\r\n</main>\r\n"
+            "templateData": "<section [ngClass]=\"getSectionClass()\">\n  <bmb-top-bar\n    [positionButtonMenu]=\"topBarPositionButtonMenu()\"\n    [userInformation]=\"topBarUserInformation()\"\n    [hasLogoutButton]=\"topBarHasLogoutButton()\"\n    [image]=\"topBarImage()\"\n    [mobileImage]=\"topBarMobileImage()\"\n    [appName]=\"topBarAppName()\"\n    [appSubTitle]=\"topBarAppSubTitle()\"\n    [lang]=\"topBarLang()\"\n    [showLang]=\"topBarShowLang()\"\n    [mitec]=\"topBarMitec()\"\n    [assignmentNotification]=\"topBarAssignmentNotification()\"\n    [alertNotification]=\"topBarAlertNotification()\"\n    class=\"bmb_web-template-top-bar\"\n    (logOut)=\"handleLogOut($event)\"\n    (onLangChange)=\"handleLangChange($event)\"\n  />\n  <header class=\"bmb_web-template-header\">\n    <div\n      class=\"bmb_web-template-header-container\"\n      [ngClass]=\"{ 'bmb_web-template-full-screen': isFullScreen() }\"\n    >\n      <h1 class=\"bmb_web-template-header-title\">{{ titleScreen() }}</h1>\n      <h2 class=\"bmb_web-template-header-subtitle\">{{ subTitleScreen() }}</h2>\n    </div>\n  </header>\n  @switch (template()) {\n    @case (\"full-width-card\") {\n      <ng-container [ngTemplateOutlet]=\"fullWidthCard\" />\n    }\n    @case (\"justify-width-card\") {\n      <ng-container [ngTemplateOutlet]=\"justifyWidthCard\" />\n    }\n    @case (\"single-column-card\") {\n      <ng-container [ngTemplateOutlet]=\"singleColumnCard\" />\n    }\n    @case (\"aside-first-card\") {\n      <ng-container [ngTemplateOutlet]=\"asideFirstCard\" />\n    }\n    @case (\"aside-light-card\") {\n      <ng-container [ngTemplateOutlet]=\"asideLightCard\" />\n    }\n    @case (\"two-aside-card\") {\n      <ng-container [ngTemplateOutlet]=\"twoAsideCard\" />\n    }\n  }\n  <bmb-sidebar\n    [elements]=\"sideBarElements()\"\n    [title]=\"sideBarTitle()\"\n  ></bmb-sidebar>\n</section>\n\n<ng-template #fullWidthCard>\n  <main class=\"bmb_web-template-main\">\n    <section class=\"bmb_web-template-main-container\">\n      @if (titleMainSlot()) {\n        <h3>{{ titleMainSlot() }}</h3>\n        <bmb-divider />\n      }\n      <ng-container [ngTemplateOutlet]=\"mainContent\" />\n    </section>\n  </main>\n  <aside class=\"bmb_web-template-aside\">\n    @if (titleAsideSlot()) {\n      <h3>{{ titleAsideSlot() }}</h3>\n      <bmb-divider />\n    }\n    <ng-container [ngTemplateOutlet]=\"asideContent\" />\n  </aside>\n</ng-template>\n\n<ng-template #justifyWidthCard>\n  <section\n    class=\"bmb_web-template-container\"\n    bmbLayout\n    gapSize=\"m\"\n    margin=\"none\"\n  >\n    <main class=\"bmb_web-template-main\" bmbLayoutItem [colLg]=\"8\">\n      <section class=\"bmb_web-template-main-container\">\n        @if (titleMainSlot()) {\n          <h3>{{ titleMainSlot() }}</h3>\n          <bmb-divider />\n        }\n        <ng-container [ngTemplateOutlet]=\"mainContent\" />\n      </section>\n    </main>\n    <aside class=\"bmb_web-template-aside\" bmbLayoutItem [colLg]=\"4\">\n      @if (titleAsideSlot()) {\n        <h3>{{ titleAsideSlot() }}</h3>\n        <bmb-divider />\n      }\n      <ng-container [ngTemplateOutlet]=\"asideContent\" />\n    </aside>\n  </section>\n</ng-template>\n\n<ng-template #singleColumnCard>\n  <section\n    class=\"bmb_web-template-container\"\n    bmbLayout\n    gapSize=\"m\"\n    margin=\"none\"\n  >\n    <main class=\"bmb_web-template-main\" bmbLayoutItem [colLg]=\"12\">\n      <section class=\"bmb_web-template-main-container\">\n        @if (titleMainSlot()) {\n          <h3>{{ titleMainSlot() }}</h3>\n          <bmb-divider />\n        }\n        <ng-container [ngTemplateOutlet]=\"mainContent\" />\n      </section>\n    </main>\n  </section>\n</ng-template>\n\n<ng-template #asideFirstCard>\n  <section\n    class=\"bmb_web-template-container\"\n    bmbLayout\n    gapSize=\"m\"\n    margin=\"none\"\n  >\n    <aside class=\"bmb_web-template-aside\" bmbLayoutItem [colLg]=\"12\">\n      @if (titleAsideSlot()) {\n        <h3>{{ titleAsideSlot() }}</h3>\n        <bmb-divider />\n      }\n      <ng-container [ngTemplateOutlet]=\"asideContent\" />\n    </aside>\n    <main class=\"bmb_web-template-main\" bmbLayoutItem [colLg]=\"12\">\n      <section class=\"bmb_web-template-main-container\">\n        <ng-container [ngTemplateOutlet]=\"mainContent\" />\n      </section>\n    </main>\n  </section>\n</ng-template>\n\n<ng-template #asideLightCard>\n  <section\n    class=\"bmb_web-template-container\"\n    bmbLayout\n    gapSize=\"m\"\n    margin=\"none\"\n  >\n    <aside class=\"bmb_web-template-aside\" bmbLayoutItem [colLg]=\"3\">\n      <ng-container [ngTemplateOutlet]=\"asideContent\" />\n    </aside>\n    <main class=\"bmb_web-template-main\" bmbLayoutItem [colLg]=\"9\">\n      <section class=\"bmb_web-template-main-container\">\n        @if (titleMainSlot()) {\n          <h3>{{ titleMainSlot() }}</h3>\n          <bmb-divider />\n        }\n        <ng-container [ngTemplateOutlet]=\"mainContent\" />\n      </section>\n    </main>\n  </section>\n</ng-template>\n\n<ng-template #twoAsideCard>\n  <section\n    class=\"bmb_web-template-container\"\n    bmbLayout\n    gapSize=\"m\"\n    margin=\"none\"\n  >\n    <aside class=\"bmb_web-template-aside\" bmbLayoutItem [colLg]=\"3\">\n      <ng-container [ngTemplateOutlet]=\"asideContent\" />\n    </aside>\n    <main class=\"bmb_web-template-main\" bmbLayoutItem [colLg]=\"6\">\n      <section class=\"bmb_web-template-main-container\">\n        @if (titleMainSlot()) {\n          <h3>{{ titleMainSlot() }}</h3>\n          <bmb-divider />\n        }\n        <ng-container [ngTemplateOutlet]=\"mainContent\" />\n      </section>\n    </main>\n    <aside class=\"bmb_web-template-aside\" bmbLayoutItem [colLg]=\"3\">\n      <ng-container [ngTemplateOutlet]=\"secondAsideContent\" />\n    </aside>\n  </section>\n</ng-template>\n"
         },
         {
             "name": "BmbWheelMenuComponent",
@@ -27293,7 +27639,7 @@
                         "type": "IFixDecimals",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "d2139903-0ed9-4e9a-92a6-b0d5d0f04d80",
+                        "destrucuredGroupId": "0a6c2f76-7915-4197-8269-d8cd524f5d8a",
                         "destructuredParameter": true
                     },
                     {
@@ -27302,7 +27648,7 @@
                         "deprecated": false,
                         "deprecationMessage": "",
                         "defaultValue": "2",
-                        "destrucuredGroupId": "d2139903-0ed9-4e9a-92a6-b0d5d0f04d80",
+                        "destrucuredGroupId": "0a6c2f76-7915-4197-8269-d8cd524f5d8a",
                         "destructuredParameter": true
                     }
                 ],
@@ -27312,7 +27658,7 @@
                         "type": "IFixDecimals",
                         "deprecated": false,
                         "deprecationMessage": "",
-                        "destrucuredGroupId": "d2139903-0ed9-4e9a-92a6-b0d5d0f04d80",
+                        "destrucuredGroupId": "0a6c2f76-7915-4197-8269-d8cd524f5d8a",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -27324,7 +27670,7 @@
                         "deprecated": false,
                         "deprecationMessage": "",
                         "defaultValue": "2",
-                        "destrucuredGroupId": "d2139903-0ed9-4e9a-92a6-b0d5d0f04d80",
+                        "destrucuredGroupId": "0a6c2f76-7915-4197-8269-d8cd524f5d8a",
                         "destructuredParameter": true,
                         "tagName": {
                             "text": "param"
@@ -27650,10 +27996,32 @@
                 "kind": 192
             },
             {
+                "name": "IBmbTemplateName",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"full-width-card\" | \"justify-width-card\" | \"single-column-card\" | \"aside-first-card\" | \"aside-light-card\" | \"two-aside-card\"",
+                "file": "projects/ds-ng/src/lib/components/bmb-web-templates/bmb-web-templates.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 192
+            },
+            {
                 "name": "IButtonAppearance",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
                 "rawtype": "\"primary\" | \"secondary-filled\" | \"secondary-outlined\" | \"destructive\"",
+                "file": "projects/ds-ng/src/lib/types/index.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 192
+            },
+            {
+                "name": "IButtonSize",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"small\" | \"large\" | \"micro\"",
                 "file": "projects/ds-ng/src/lib/types/index.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -29745,7 +30113,7 @@
                             "type": "IFixDecimals",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "d2139903-0ed9-4e9a-92a6-b0d5d0f04d80",
+                            "destrucuredGroupId": "0a6c2f76-7915-4197-8269-d8cd524f5d8a",
                             "destructuredParameter": true
                         },
                         {
@@ -29754,7 +30122,7 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "defaultValue": "2",
-                            "destrucuredGroupId": "d2139903-0ed9-4e9a-92a6-b0d5d0f04d80",
+                            "destrucuredGroupId": "0a6c2f76-7915-4197-8269-d8cd524f5d8a",
                             "destructuredParameter": true
                         }
                     ],
@@ -29764,7 +30132,7 @@
                             "type": "IFixDecimals",
                             "deprecated": false,
                             "deprecationMessage": "",
-                            "destrucuredGroupId": "d2139903-0ed9-4e9a-92a6-b0d5d0f04d80",
+                            "destrucuredGroupId": "0a6c2f76-7915-4197-8269-d8cd524f5d8a",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
@@ -29776,7 +30144,7 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "defaultValue": "2",
-                            "destrucuredGroupId": "d2139903-0ed9-4e9a-92a6-b0d5d0f04d80",
+                            "destrucuredGroupId": "0a6c2f76-7915-4197-8269-d8cd524f5d8a",
                             "destructuredParameter": true,
                             "tagName": {
                                 "text": "param"
@@ -30015,6 +30383,17 @@
                     "kind": 192
                 },
                 {
+                    "name": "IButtonSize",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"small\" | \"large\" | \"micro\"",
+                    "file": "projects/ds-ng/src/lib/types/index.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 192
+                },
+                {
                     "name": "SizeNames",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
@@ -30129,6 +30508,19 @@
                     "subtype": "typealias",
                     "rawtype": "\"_blank\" | \"_parent\" | \"_self\" | \"_top\"",
                     "file": "projects/ds-ng/src/lib/components/bmb-progress-bar/bmb-progress-bar.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 192
+                }
+            ],
+            "projects/ds-ng/src/lib/components/bmb-web-templates/bmb-web-templates.component.ts": [
+                {
+                    "name": "IBmbTemplateName",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"full-width-card\" | \"justify-width-card\" | \"single-column-card\" | \"aside-first-card\" | \"aside-light-card\" | \"two-aside-card\"",
+                    "file": "projects/ds-ng/src/lib/components/bmb-web-templates/bmb-web-templates.component.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "description": "",
@@ -32964,7 +33356,7 @@
                 "linktype": "component",
                 "name": "BmbWebTemplatesComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/22",
+                "coverageCount": "0/45",
                 "status": "low"
             },
             {

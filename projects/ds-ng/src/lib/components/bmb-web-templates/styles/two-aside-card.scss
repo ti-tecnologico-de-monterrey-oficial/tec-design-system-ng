@@ -1,4 +1,4 @@
-.bmb_web-template-single-column-card {
+.bmb_web-template-two-aside-card {
   grid-template-columns: 1fr;
   grid-template-rows: 71px max-content max-content;
   grid-template-areas:
@@ -94,15 +94,25 @@
         overflow: auto;
       }
     }
+
+    &-aside {
+      background-color: RGBA(var(--color-charade-100));
+      border-radius: var(--bmb-radius-m);
+      padding: var(--bmb-spacing-m);
+      height: 100%;
+      overflow: auto;
+      border: rem.rem_calc(1) solid RGBA(var(--color-charade-300));
+    }
   }
 }
 
 [data-theme="dark"],
 .storybook-dark-theme {
-  .bmb_web-template-single-column-card {
+  .bmb_web-template-two-aside-card {
     .bmb_web-template {
       &-header,
-      &-main {
+      &-main,
+      &-aside {
         background-color: RGBA(var(--color-charade-900));
         border-color: RGBA(var(--color-charade-800));
       }

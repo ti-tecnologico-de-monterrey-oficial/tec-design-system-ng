@@ -1,4 +1,4 @@
-.bmb_web-template-single-column-card {
+.bmb_web-template-single-column-tab {
   grid-template-columns: 1fr;
   grid-template-rows: 71px max-content max-content;
   grid-template-areas:
@@ -99,7 +99,7 @@
 
 [data-theme="dark"],
 .storybook-dark-theme {
-  .bmb_web-template-single-column-card {
+  .bmb_web-template-single-column-tab {
     .bmb_web-template {
       &-header,
       &-main {

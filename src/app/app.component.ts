@@ -734,7 +734,7 @@ export class AppComponent {
     this.isFullScreen = !this.isFullScreen;
   }
 
-  currentTemplate: IBmbTemplateName = 'aside-light-card';
+  currentTemplate: IBmbTemplateName = 'aside-first-card';
 
   onTemplateChange(template: IBmbTemplateName) {
     this.currentTemplate = template;
