@@ -1,23 +1,108 @@
-<bmb-theme [showControls]="false" initialTheme="dark" />
-<bmb-account-statement
-  title="custom title"
-  [valuePrimary]="9000"
-  [valueSecondary]="1560"
-></bmb-account-statement>
-<bmb-interactive-icon
-  icon="close"
-  [setButtonTemplate]="true"
-  link="https://www.google.com.mx/"
-/>
-<bmb-interactive-icon
-  icon="https://img.freepik.com/premium-vector/approved-icon-with-thumb-up-approved-label-quality-control_349999-1321.jpg?w=2000"
-  [setButtonTemplate]="true"
-  link="https://www.google.com.mx/"
-/>
-
-<div style="display: flex; gap: 3em">
-  <a routerLink="/home" class="font-bold-6">Home</a>
-  <a routerLink="/my-page" class="font-bold-6">My Page</a>
-  <a routerLink="/emprendedor" class="font-bold-6">Emprendedor</a>
-</div>
-<router-outlet></router-outlet>
+<bmb-web-templates
+  positionButtonMenu="left"
+  [hasLogoutButton]="true"
+  appName="Test App"
+  appSubTitle="Test subtitle"
+  [showLang]="true"
+  [isFullScreen]="isFullScreen"
+  titleScreen="Screen title"
+  subTitleScreen="Sub title"
+  titleMainSlot="Title main"
+  titleRightSlot="Right title"
+  [template]="currentTemplate"
+>
+  <ng-template #bmbTemplateAside>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo ante,
+      mattis nec libero a, malesuada pellentesque sem. Aliquam erat volutpat.
+      Nulla ut consequat turpis, id efficitur velit. Fusce vitae dolor leo.
+      Praesent diam justo, consectetur in blandit ut, tincidunt vitae enim.
+      Nulla eleifend, leo at finibus volutpat, nulla metus eleifend lacus,
+      ullamcorper dictum augue diam id erat. Donec ac fringilla elit. Aliquam
+      sit amet luctus elit. Suspendisse ante tortor, euismod nec metus id,
+      commodo sollicitudin massa. Aliquam magna nibh, semper eu vestibulum
+      aliquam, aliquet gravida massa. Nullam vehicula, augue non aliquam
+      posuere, enim urna blandit erat, et euismod enim nisi vel eros. Ut dictum
+      egestas mi, faucibus iaculis lorem. Donec risus diam, maximus at varius
+      rutrum, blandit quis augue. Sed consectetur massa ut auctor ultricies.
+      Etiam fringilla venenatis nulla, gravida finibus nulla faucibus fringilla.
+      Morbi luctus porta orci eu iaculis.
+    </p>
+    <bmb-theme initialTheme="light"></bmb-theme>
+  </ng-template>
+  <ng-template #bmbTemplateMain>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo ante,
+      mattis nec libero a, malesuada pellentesque sem. Aliquam erat volutpat.
+      Nulla ut consequat turpis, id efficitur velit. Fusce vitae dolor leo.
+      Praesent diam justo, consectetur in blandit ut, tincidunt vitae enim.
+      Nulla eleifend, leo at finibus volutpat, nulla metus eleifend lacus,
+      ullamcorper dictum augue diam id erat. Donec ac fringilla elit. Aliquam
+      sit amet luctus elit. Suspendisse ante tortor, euismod nec metus id,
+      commodo sollicitudin massa. Aliquam magna nibh, semper eu vestibulum
+      aliquam, aliquet gravida massa. Nullam vehicula, augue non aliquam
+      posuere, enim urna blandit erat, et euismod enim nisi vel eros. Ut dictum
+      egestas mi, faucibus iaculis lorem. Donec risus diam, maximus at varius
+      rutrum, blandit quis augue. Sed consectetur massa ut auctor ultricies.
+      Etiam fringilla venenatis nulla, gravida finibus nulla faucibus fringilla.
+      Morbi luctus porta orci eu iaculis.
+    </p>
+    <bmb-theme initialTheme="light"></bmb-theme>
+    <bmb-dropdown
+      placeholder="Select a template"
+      [options]="[
+        'full-width-card',
+        'justify-width-card',
+        'single-column-card',
+        'aside-first-card',
+      ]"
+      (onValueChange)="onTemplateChange($event)"
+    ></bmb-dropdown>
+    <p>
+      Nam aliquam massa accumsan suscipit posuere. Maecenas in ex malesuada,
+      consequat lacus id, lobortis est. Sed elementum orci congue, viverra metus
+      at, interdum ex. Nullam sed est sollicitudin, iaculis nisi nec, sodales
+      ex. Morbi aliquam tellus ut quam sollicitudin, a elementum tortor
+      vulputate. Cras efficitur sapien sed ipsum aliquam gravida. Fusce accumsan
+      eget nisl vitae dignissim. Vestibulum ante ipsum primis in faucibus orci
+      luctus et ultrices posuere cubilia curae; Maecenas blandit tempus sem eget
+      bibendum. Integer a arcu vestibulum, fringilla dui vitae, aliquet arcu.
+      Maecenas elementum bibendum urna quis porta. In hac habitasse platea
+      dictumst. Maecenas fringilla quam at orci fermentum, in mattis ligula
+      viverra. Maecenas vel sagittis tellus, ac suscipit sapien.
+    </p>
+    <p>
+      Nulla finibus orci justo, in ultrices nisl ullamcorper quis. Etiam at
+      purus ac neque auctor pellentesque non eu ante. Suspendisse pharetra augue
+      id mauris facilisis, non rhoncus lacus tempor. In at auctor turpis. Donec
+      egestas fermentum auctor. Integer nec libero nec justo porta hendrerit. In
+      tempus eleifend urna, nec iaculis magna lobortis id. Duis venenatis a
+      mauris at condimentum. Morbi interdum dolor dui, efficitur molestie purus
+      fringilla quis. Aliquam in nulla at urna consectetur posuere. Pellentesque
+      nec dolor libero. Phasellus dictum, leo sed ornare venenatis, elit turpis
+      cursus tellus, nec maximus erat justo ac risus. Sed tempus sagittis neque,
+      eget gravida eros semper ac. Proin ac tristique leo, ut suscipit turpis.
+      Ut eget metus at purus tristique dictum id et ex.
+    </p>
+    <p>
+      Donec porttitor ut enim eu euismod. Maecenas leo nulla, lacinia a risus
+      nec, porta tristique eros. Curabitur dignissim dolor non justo egestas, in
+      maximus dolor venenatis. Aliquam ornare maximus augue ut aliquam. Maecenas
+      vitae pharetra quam. Maecenas imperdiet, metus et porta ullamcorper, nisl
+      quam bibendum quam, et vulputate sapien diam sit amet felis. Integer
+      tempus blandit vehicula. Fusce tincidunt magna id ullamcorper tempus.
+      Etiam quis tempor ex. Nunc nec nunc quis libero consectetur pellentesque.
+    </p>
+    <p>
+      Nam eu tempor turpis, non consequat arcu. Sed nec pharetra diam, sodales
+      malesuada lorem. Morbi fringilla ac massa quis placerat. Nunc sagittis,
+      ligula vel malesuada ullamcorper, dui diam luctus neque, non imperdiet
+      libero sapien convallis ligula. Nullam eget feugiat erat, et vestibulum
+      ante. Vivamus sollicitudin metus sit amet malesuada ultricies. Aliquam sed
+      leo in justo mattis ullamcorper. Pellentesque commodo mi at lacus interdum
+      bibendum. Aliquam sollicitudin scelerisque nunc a sodales. Suspendisse
+      ornare mauris ex. Curabitur nulla arcu, consectetur ut elementum nec,
+      imperdiet vel augue. Nunc at luctus leo, eu porta metus.
+    </p>
+  </ng-template>
+</bmb-web-templates>

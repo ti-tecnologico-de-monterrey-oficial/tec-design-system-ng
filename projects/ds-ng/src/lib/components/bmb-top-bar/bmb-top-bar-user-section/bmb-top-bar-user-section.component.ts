@@ -26,6 +26,6 @@ export class BmbTopBarUserSectionComponent {
   };
 
   @Input() mitec: boolean = false;
-  @Input() assigmentNotification: number = 0;
+  @Input() assignmentNotification: number = 0;
   @Input() notificationNotification: number = 0;
 }

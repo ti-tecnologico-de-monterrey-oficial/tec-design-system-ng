@@ -273,6 +273,33 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: ['Total a pagar', 'este mes'] },
       },
     },
+    closeEvent: {
+      name: 'Close event',
+      control: false,
+      description: 'Header event click.',
+      table: {
+        type: { summary: 'function' },
+        category: 'Events',
+      },
+    },
+    backEvent: {
+      name: 'Back event',
+      control: false,
+      description: 'Secondary button event.',
+      table: {
+        type: { summary: 'function' },
+        category: 'Events',
+      },
+    },
+    payEvent: {
+      name: 'Pay event',
+      control: false,
+      description: 'Primary button event.',
+      table: {
+        type: { summary: 'function' },
+        category: 'Events',
+      },
+    },
   },
   args: {
     title: 'Estado de cuenta',
