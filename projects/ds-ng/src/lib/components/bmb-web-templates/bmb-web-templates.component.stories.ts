@@ -72,7 +72,8 @@ Below is an example of how you can use this component in HTML:
         'aside-light-card',
         'two-aside-card',
       ],
-      description: 'Set template layut, depending of the template, it required to send the next templates: `#bmbTemplateAside`, `#bmbTemplateSecondAside` and `#bmbTemplateMain`.',
+      description:
+        'Set template layut, depending of the template, it required to send the next templates: `#bmbTemplateAside`, `#bmbTemplateSecondAside` and `#bmbTemplateMain`.',
       table: {
         category: 'Properties',
         type: { summary: 'IBmbTemplateName' },
@@ -246,7 +247,7 @@ Below is an example of how you can use this component in HTML:
         category: 'Events',
       },
     },
-    topBarOnLangChange:{
+    topBarOnLangChange: {
       name: 'Language change event',
       control: false,
       description: 'Function that is executed when the lang change.',
@@ -479,6 +480,6 @@ export const Default: Story = {
         </p>
       </ng-template>
     </bmb-web-templates>
-    `
+    `,
   }),
 };
