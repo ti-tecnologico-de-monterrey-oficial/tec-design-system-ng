@@ -1,18 +1,23 @@
-<div class="bmb_chevron">
+<section class="bmb_chevron">
   <button
     class="bmb_chevron-button"
-    *ngIf="leadingIcon"
-    (click)="handleLeadingClick()"
+    *ngIf="leadingIcon()"
+    (click)="handleLeadingClick($event)"
   >
-    <bmb-icon [icon]="leadingIcon" class="bmb_chevron-icon" />
+    <bmb-icon [icon]="leadingIcon()" class="bmb_chevron-icon" />
   </button>
-
-  <span class="bmb_chevron-title">{{ title }}</span>
+  <section class="bmb_chevron-content">
+    <span class="bmb_chevron-content-title">{{ title() }}</span>
+    <span *ngIf="subtitle()" class="bmb_chevron-content-subtitle">
+      <bmb-icon *ngIf="isIconSubtitle()" [icon]="iconSubtitle()" />
+      {{ subtitle() }}
+    </span>
+  </section>
   <button
     class="bmb_chevron-button"
-    *ngIf="trailingIcon"
-    (click)="handleTrailingClick()"
+    *ngIf="trailingIcon()"
+    (click)="handleTrailingClick($event)"
   >
-    <bmb-icon [icon]="trailingIcon" class="bmb_chevron-icon" />
+    <bmb-icon [icon]="trailingIcon()" class="bmb_chevron-icon" />
   </button>
-</div>
+</section>

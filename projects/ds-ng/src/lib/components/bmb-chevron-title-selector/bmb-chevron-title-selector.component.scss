@@ -8,8 +8,19 @@
   justify-content: space-between;
   width: 100%;
 
-  &-title {
-    @include fonts.font(4, medium);
+  &-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+    &-title {
+      @include fonts.font(4, medium);
+    }
+
+    &-subtitle {
+      color: currentColor;
+    }
   }
 
   &-button {

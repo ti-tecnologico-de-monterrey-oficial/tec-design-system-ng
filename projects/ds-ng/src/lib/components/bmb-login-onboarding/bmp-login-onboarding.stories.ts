@@ -1,9 +1,4 @@
-import {
-  moduleMetadata,
-  type Meta,
-  type StoryFn,
-  type StoryObj,
-} from '@storybook/angular';
+import { moduleMetadata, type Meta, type StoryFn } from '@storybook/angular';
 import { BmbLoginOnboardingComponent } from './bmb-login-onboarding.component';
 import { Component } from '@angular/core';
 import { IBmbLoginOnbording, IBmbUserInfo } from './types';

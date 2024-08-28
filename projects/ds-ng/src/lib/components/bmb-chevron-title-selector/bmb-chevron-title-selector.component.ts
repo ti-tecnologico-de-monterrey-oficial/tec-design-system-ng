@@ -1,10 +1,9 @@
 import {
   Component,
-  Input,
   ChangeDetectionStrategy,
   ViewEncapsulation,
-  EventEmitter,
-  Output,
+  input,
+  output,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
@@ -19,18 +18,21 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbChevronTitleSelectorComponent {
-  @Input() title: string = '';
-  @Input() leadingIcon: string = '';
-  @Input() trailingIcon: string = '';
+  title = input.required<string>();
+  subtitle = input<string>();
+  isIconSubtitle = input<boolean>();
+  iconSubtitle = input<string>('');
+  leadingIcon = input<string>('');
+  trailingIcon = input<string>('');
 
-  @Output() onLeadingClick: EventEmitter<void> = new EventEmitter<void>();
-  @Output() onTrailingClick: EventEmitter<void> = new EventEmitter<void>();
+  onLeadingClick = output();
+  onTrailingClick = output();
 
-  handleLeadingClick() {
-    this.onLeadingClick.emit();
+  handleLeadingClick(event: any): void {
+    this.onLeadingClick.emit(event);
   }
 
-  handleTrailingClick() {
-    this.onTrailingClick.emit();
+  handleTrailingClick(event: any): void {
+    this.onTrailingClick.emit(event);
   }
 }
