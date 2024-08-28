@@ -10,6 +10,10 @@
   display: flex;
   justify-content: space-between;
 
+  &-hidden {
+    display: none;
+  }
+
   &-primary-container {
     align-items: flex-end;
     padding: rem.rem_calc(16);

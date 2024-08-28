@@ -110,7 +110,7 @@ Below is an example of how you can use this component in HTML:
       description:
         'Sets the margin area on the right side of an column. The SM value support 3 as top and LG supports 11 as top',
     },
-    isDinamycItem: {
+    isDynamicItem: {
       name: 'Is dinamyc item',
       control: { type: 'boolean' },
       description:
@@ -125,7 +125,7 @@ Below is an example of how you can use this component in HTML:
       name: 'Col grow',
       control: 'number',
       description:
-        'Sets how much of the flex container positive free space, if any, should be assigned to the flex item main size. (this property will only be enabled when the isDinamycItem property is enabled)',
+        'Sets how much of the flex container positive free space, if any, should be assigned to the flex item main size. (this property will only be enabled when the isDynamicItem property is enabled)',
       table: {
         category: 'Properties',
         defaultValue: { summary: 0 },
@@ -138,7 +138,7 @@ Below is an example of how you can use this component in HTML:
     colLg: 0,
     marginLeft: { sm: 0, lg: 0 },
     marginRight: { sm: 0, lg: 0 },
-    isDinamycItem: false,
+    isDynamicItem: false,
     colGrow: 0,
   },
 };
@@ -159,7 +159,7 @@ export const OneItem: Story = {
           [colLg]="colLg"
           [marginLeft]="marginLeft"
           [marginRight]="marginRight"
-          [isDinamycItem]="isDinamycItem"
+          [isDynamicItem]="isDynamicItem"
           [colGrow]="colGrow"
         >
           <bmb-card-content padding="none">

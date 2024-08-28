@@ -263,7 +263,7 @@
     }
   }
 
-  @include mixins.media-query(768, "min") {
+  @include mixins.media-query(1000, "min") {
     &-mobile {
       display: none;
     }

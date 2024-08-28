@@ -27,7 +27,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbLoginOnboardingComponent {
-  handleRequet = output<any>();
+  handleRequest = output<any>();
 
   constructor(private loginOnboardingService: BmbLoginOnboardingService) {}
 
@@ -39,8 +39,8 @@ export class BmbLoginOnboardingComponent {
     return this.loginOnboardingService.getActivePage();
   }
 
-  _handleRequet(event: unknown): void {
-    this.handleRequet.emit(event);
+  _handleRequest(event: unknown): void {
+    this.handleRequest.emit(event);
   }
 
   handleContinuePage(): void {

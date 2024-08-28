@@ -34,9 +34,10 @@
         color: RGBA(var(--color-white-primary));
       }
 
-      &:active {
+      &:active,
+      &.bmb_btn-toggle-active {
         background-color: RGBA(var(--color-white-primary));
-        color: RGBA(var(--color-black-primary));
+        color: RGBA(var(--color-black-primary), 0.5);
 
         bmb-icon {
           color: RGBA(var(--color-black-primary));

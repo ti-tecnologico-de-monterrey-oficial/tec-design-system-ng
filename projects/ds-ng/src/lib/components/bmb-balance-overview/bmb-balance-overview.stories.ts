@@ -44,7 +44,7 @@ Below is an example of how you can use this component in HTML:
     progressCircleValue: {
       name: 'Progress Circle Value',
       control: {
-        type: 'string',
+        type: 'text',
       },
       description:
         'Refers to the total value that the Progress Circle component show.',

@@ -16,4 +16,5 @@ export interface ModalDataConfig {
   primaryBtnLabel?: string;
   secondaryBtnLabel?: string;
   scrollable?: boolean;
+  hidePrimaryButton?: boolean;
 }

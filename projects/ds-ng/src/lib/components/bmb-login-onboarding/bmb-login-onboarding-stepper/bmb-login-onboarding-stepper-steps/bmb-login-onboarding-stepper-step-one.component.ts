@@ -61,7 +61,7 @@ import { BmbLoginOnboardingService } from '../../bmb-login-onboarding.service';
 export class BmbLoginOnboardingStepperStepOneComponent {
   isContinueDisable = model<boolean>(true);
 
-  handleRequet = output<any>();
+  handleRequest = output<any>();
   handleContinueStep = output();
 
   userForm: FormGroup = new FormGroup({
@@ -98,7 +98,7 @@ export class BmbLoginOnboardingStepperStepOneComponent {
 
   _handleContinueStep(): void {
     this.loginOnboardingService.setIsLoading(true);
-    this.handleRequet.emit({
+    this.handleRequest.emit({
       data: this.userForm['value'],
       action: 'auth',
       callback: (result: boolean) => {

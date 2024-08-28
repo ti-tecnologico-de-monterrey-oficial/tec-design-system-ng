@@ -1,17 +1,15 @@
 @use "../../../assets/styles/base/fonts" as fonts;
 @use "../../../assets/styles/base/rem" as rem;
 
-.bmb_container_button {
+.bmb_container-button {
   align-items: center;
-  background-color: RGBA(var(--color-charade-50));
-  border: rem.rem_calc(1) solid RGBA(var(--color-charade-500));
-  border-radius: rem.rem_calc(8);
+  border-radius: rem.rem_calc(16);
   box-sizing: border-box;
   color: RGBA(var(--color-charade-950));
   display: flex;
-  padding: rem.rem_calc(24);
   text-decoration: none;
-  transition: all 0.5s ease-in;
+  width: 100%;
+  display: inline-block;
 
   &:hover {
     border-color: RGBA(var(--color-charade-200));
@@ -19,45 +17,6 @@
 
   &:focus {
     border-color: RGBA(var(--color-charade-50));
-  }
-
-  &-small {
-    padding: rem.rem_calc(16 24);
-  }
-
-  &-square {
-    display: inline-flex;
-    flex-flow: column;
-    height: rem.rem_calc(148);
-    justify-content: center;
-    min-width: rem.rem_calc(148);
-    padding: rem.rem_calc(32 48);
-
-    .bmb_container_button-left {
-      font-size: rem.rem_calc(48);
-      height: rem.rem_calc(48);
-      margin: 0 0 rem.rem_calc(8);
-    }
-
-    .bmb_container_button-text {
-      margin: 0;
-    }
-  }
-
-  &-score {
-    align-items: center;
-    display: flex;
-    height: rem.rem_calc(40);
-    justify-content: center;
-    margin-right: rem.rem_calc(16);
-    position: relative;
-    width: rem.rem_calc(48);
-
-    span {
-      color: RGBA(var(--color-charade-950));
-      position: absolute;
-      @include fonts.font(4, regular);
-    }
   }
 
   &-text {
@@ -69,6 +28,7 @@
   &-title {
     display: block;
     @include fonts.font(5, medium);
+    text-align: left;
   }
 
   &-subtitle {
@@ -77,36 +37,26 @@
     display: block;
     line-height: normal;
     margin-top: rem.rem_calc(4);
-  }
-
-  bmb-icon {
-    align-items: flex-end;
-    display: flex;
-    font-size: rem.rem_calc(24);
-    height: rem.rem_calc(24);
+    text-align: left;
   }
 
   &-left {
-    height: rem.rem_calc(24);
+    color: RGBA(var(--color-charade-50));
+    @include fonts.font(11, regular);
     margin-right: rem.rem_calc(16);
   }
 
   &-right {
+    color: RGBA(var(--color-charade-50));
+    @include fonts.font(11, regular);
     margin-left: auto;
   }
 }
 
 [data-theme="dark"],
 .storybook-dark-theme {
-  .bmb_container_button {
-    background-color: RGBA(var(--color-charade-900));
+  .bmb_container-button {
     color: RGBA(var(--color-white-primary));
-
-    &-score {
-      span {
-        color: RGBA(var(--color-charade-50));
-      }
-    }
 
     &-subtitle {
       color: RGBA(var(--color-charade-200));

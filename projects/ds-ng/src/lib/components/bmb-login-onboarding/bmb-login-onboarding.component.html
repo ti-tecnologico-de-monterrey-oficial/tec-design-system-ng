@@ -5,7 +5,7 @@
     }
     @case (1) {
       <bmb-login-onboarding-stepper
-        (handleRequet)="_handleRequet($event)"
+        (handleRequet)="_handleRequest($event)"
         (handleContinuePage)="handleContinuePage()"
       >
         <ng-content />
@@ -13,12 +13,12 @@
     }
     @case (2) {
       <bmb-login-onboarding-logout
-        (handleRequet)="_handleRequet($event)"
+        (handleRequet)="_handleRequest($event)"
         (handleContinuePage)="handleContinuePage()"
       />
     }
     @case (3) {
-      <bmb-login-onboarding-logged (handleRequet)="_handleRequet($event)" />
+      <bmb-login-onboarding-logged (handleRequet)="_handleRequest($event)" />
     }
     @default {
       <p>Invalid page</p>
