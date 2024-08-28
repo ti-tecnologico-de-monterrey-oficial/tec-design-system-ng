@@ -6,27 +6,19 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 
 ---
 
-## Cambios de la versión v0.6.0
+## Cambios de la versión v1.0.0
 
 ### Nuevos componentes:
-- [Drawer overlay](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-drawer-overlay--documentation)
-- [Login onbording](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-login-onboarding--documentation)
-- [Push notification](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-push-notification--documentation)
-- [Tooltip](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-tooltip--documentation)
+- [Grades](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-grades--documentation)
+- [Access to external link](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-external-link--documentation)
+- [Account statement](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-account-statement--documentation)
+- [Web templates](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-web-templates--documentation)
 
 ### Componentes actualizados:
-- [Frequent app selector](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-frequent-apps-selector--documentation)
-- [Inner header](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-inner-header--documentation)
-- [Interactive icon](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-interactive-icon--documentation)
-- [Media card](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-media-card--documentation)
+- [Toast](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-toast--documentation)
 - [Modal](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-modal--documentation)
-- [Paginator](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-paginator--documentation)
-- [Progress bar](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-progress-bar--documentation)
-- [Pull wedge](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-pull-wedge--documentation)
-- [Student activity card](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-student-activity-card--documentation)
-- [Tag](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-tag--documentation)
-- [Table](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-table--documentation)
-- [User summary](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-user-summary--documentation)
+- [Badge](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-badge--documentation)
+- [Drawer overlay](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-drawer-overlay--documentation)
 
 Si quieres ver el detalle de los cambios puedes ver la entrada de la wiki [aquí](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/wiki/What's-new) 
 
