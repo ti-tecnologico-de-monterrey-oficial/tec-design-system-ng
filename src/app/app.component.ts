@@ -723,6 +723,10 @@ export class AppComponent {
     }
   }
 
+  logSelection(name: string, event: unknown): void {
+    console.log('logSelection', name, '-', event);
+  }
+
   getGrades(): IBmbGrades[] {
     return [
       {

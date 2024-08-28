@@ -20,6 +20,8 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 export class BmbChevronTitleSelectorComponent {
   title = input.required<string>();
   subtitle = input<string>();
+  isIconSubtitle = input<boolean>();
+  iconSubtitle = input<string>('');
   leadingIcon = input<string>('');
   trailingIcon = input<string>('');
 

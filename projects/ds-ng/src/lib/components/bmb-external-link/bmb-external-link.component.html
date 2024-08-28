@@ -1,0 +1,83 @@
+<section class="bmb_external-link">
+  <bmb-chevron-title-selector
+    class="bmb_external-link-header"
+    [title]="title()"
+    [subtitle]="subtitle()"
+    [isIconSubtitle]="isIconSubtitle()"
+    iconSubtitle="lock"
+    leadingIcon="close"
+    trailingIcon="more_horiz"
+    (onLeadingClick)="handleClose($event)"
+    (onTrailingClick)="handleOpenMenu()"
+  />
+  <section class="bmb_external-link-content">
+    <ng-content />
+  </section>
+  @if (showMenu) {
+    <ul class="bmb_external-link-menu">
+      <li class="bmb_external-link-menu-item">
+        <bmb-container-button
+          title="Copiar enlace"
+          iconLeft="link"
+          (onButton)="onMenuOptionClick('link')"
+          [setButtonTemplate]="true"
+        />
+      </li>
+      <li class="bmb_external-link-menu-item">
+        <bmb-container-button
+          title="Abrir en navegador"
+          iconLeft="open_in_new"
+          (onButton)="onMenuOptionClick('openNew')"
+          [setButtonTemplate]="true"
+        />
+      </li>
+      <li class="bmb_external-link-menu-item">
+        <bmb-container-button
+          title="Más información"
+          iconLeft="info"
+          (onButton)="onMenuOptionClick('info')"
+          [setButtonTemplate]="true"
+        />
+      </li>
+    </ul>
+  }
+  <section
+    class="bmb_external-link-footer"
+    bmbLayout
+    margin="none"
+    justify="spaceAround"
+  >
+    <bmb-interactive-icon
+      bmbLayoutItem
+      [colSm]="3"
+      appearance="none"
+      icon="arrow_back_ios"
+      [setButtonTemplate]="true"
+      (buttonClick)="onFooterOptionClick('back')"
+    />
+    <bmb-interactive-icon
+      bmbLayoutItem
+      [colSm]="3"
+      appearance="none"
+      icon="arrow_forward_ios"
+      [setButtonTemplate]="true"
+      (buttonClick)="onFooterOptionClick('forward')"
+    />
+    <bmb-interactive-icon
+      bmbLayoutItem
+      [colSm]="3"
+      appearance="none"
+      icon="share"
+      [setButtonTemplate]="true"
+      (buttonClick)="onFooterOptionClick('share')"
+    />
+    <bmb-interactive-icon
+      bmbLayoutItem
+      [colSm]="3"
+      appearance="none"
+      icon="refresh"
+      [setButtonTemplate]="true"
+      (buttonClick)="onFooterOptionClick('reload')"
+    />
+  </section>
+</section>
