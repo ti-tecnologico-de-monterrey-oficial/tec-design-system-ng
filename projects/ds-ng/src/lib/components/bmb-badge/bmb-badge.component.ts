@@ -25,6 +25,7 @@ export class BmbBadgeComponent implements AfterViewInit {
   @Input() custom: boolean = false;
   @Input() customBackground?: string;
   @Input() customColor?: string;
+  @Input() rounded: boolean = false;
 
   constructor(
     private el: ElementRef,
@@ -51,6 +52,10 @@ export class BmbBadgeComponent implements AfterViewInit {
 
     if (this.appearance) {
       classes.push('bmb_badge-' + this.appearance);
+    }
+
+    if (this.rounded) {
+      classes.push('bmb_badge-rounded');
     }
 
     return classes;

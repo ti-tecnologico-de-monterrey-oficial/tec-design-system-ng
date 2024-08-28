@@ -1,4 +1,13 @@
-<bmb-theme initialTheme="dark" [showControls]="false" />
+<bmb-external-link
+  title="CONECTA"
+  subtitle="https://www.CONECTA.tec.mx"
+  (onClose)="logSelection('close', $event)"
+  (footerEvent)="logSelection('footer', $event)"
+  (menuEvent)="logSelection('menu', $event)"
+>
+  <bmb-theme initialTheme="dark" [showControls]="true" />
+</bmb-external-link>
+<!-- <bmb-theme initialTheme="dark" [showControls]="false" />
 <bmb-grades [grades]="getGrades()" />
 <div style="margin: 1rem">
   <bmb-interactive-icon
@@ -63,4 +72,4 @@
   <a routerLink="/my-page" class="font-bold-6">My Page</a>
   <a routerLink="/emprendedor" class="font-bold-6">Emprendedor</a>
 </div>
-<router-outlet></router-outlet>
+<router-outlet></router-outlet> -->
