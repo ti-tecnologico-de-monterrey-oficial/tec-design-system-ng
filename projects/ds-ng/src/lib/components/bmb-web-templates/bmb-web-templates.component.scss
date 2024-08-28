@@ -13,10 +13,11 @@
   }
 }
 
-@import "./full-width-card.scss";
-@import "./justify-width-card.scss";
-@import "./single-column-card.scss";
-@import "./aside-first-card.scss";
+@import "./styles/full-width-card.scss";
+@import "./styles/justify-width-card.scss";
+@import "./styles/single-column-card.scss";
+@import "./styles/aside-first-card.scss";
+@import "./styles/aside-light-card.scss";
 
 [data-theme="dark"],
 .storybook-dark-theme {

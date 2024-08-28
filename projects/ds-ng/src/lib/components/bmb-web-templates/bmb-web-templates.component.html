@@ -36,6 +36,9 @@
     @case ('aside-first-card') {
       <ng-container [ngTemplateOutlet]="asideFirstCard" />
     }
+    @case ('aside-light-card') {
+      <ng-container [ngTemplateOutlet]="asideLightCard" />
+    }
   }
   <bmb-sidebar></bmb-sidebar>
 </section>
@@ -105,6 +108,28 @@
 </ng-template>
 
 <ng-template #asideFirstCard>
+  <section
+    class="bmb_web-template-container"
+    bmbLayout
+    gapSize="m"
+    margin="none"
+  >
+    <aside class="bmb_web-template-aside" bmbLayoutItem [colLg]="12">
+      @if (titleRightSlot()) {
+        <h3>{{ titleRightSlot() }}</h3>
+        <bmb-divider />
+      }
+      <ng-container [ngTemplateOutlet]="asideContent" />
+    </aside>
+    <main class="bmb_web-template-main" bmbLayoutItem [colLg]="12">
+      <section class="bmb_web-template-main-container">
+        <ng-container [ngTemplateOutlet]="mainContent" />
+      </section>
+    </main>
+  </section>
+</ng-template>
+
+<ng-template #asideLightCard>
   <section
     class="bmb_web-template-container"
     bmbLayout
