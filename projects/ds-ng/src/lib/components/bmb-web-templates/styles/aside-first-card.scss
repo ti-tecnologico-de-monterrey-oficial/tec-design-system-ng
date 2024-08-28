@@ -10,7 +10,15 @@
     gap: 0;
   }
 
+  &.bmb_web-template {
+    @include mixins.media-query(1000, "min") {
+      height: auto;
+      overflow: auto;
+    }
+  }
+
   .bmb_web-template {
+
     &-top-bar {
       grid-area: topBar;
     }
@@ -83,13 +91,7 @@
       background-color: RGBA(var(--color-charade-100));
       border-radius: var(--bmb-radius-m);
       padding: var(--bmb-spacing-m);
-      height: 100%;
-      overflow: auto;
       border: rem.rem_calc(1) solid RGBA(var(--color-charade-300));
-
-      &-container {
-        overflow: auto;
-      }
     }
 
     &-aside {

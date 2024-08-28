@@ -19,7 +19,12 @@ import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 
-export type IBmbTemplateName = 'full-width-card' | 'justify-width-card' | 'single-column-card' | 'aside-first-card';
+export type IBmbTemplateName =
+  'full-width-card' |
+  'justify-width-card' |
+  'single-column-card' |
+  'aside-first-card' |
+  'aside-light-card';
 
 @Component({
   selector: 'bmb-web-templates',
@@ -65,6 +70,7 @@ export class BmbWebTemplatesComponent {
   @ContentChild('bmbTemplateMain') mainContent!: TemplateRef<any>;
   @ContentChild('singleColumnCard') singleColumnCard!: TemplateRef<any>;
   @ContentChild('asideFirstCard') asideFirstCard!: TemplateRef<any>;
+  @ContentChild('asideLightCard') asideLightCard!: TemplateRef<any>;
 
   // side bar inputs
 
