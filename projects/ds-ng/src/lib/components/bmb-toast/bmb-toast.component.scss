@@ -2,21 +2,22 @@
 @use "../../../assets/styles/base/rem" as rem;
 
 @mixin toast($appearance: neutral) {
-  @include fonts.font(4, regular);
-  align-items: center;
+  align-items: flex-start;
   background-color: RGBA(var(--color-charade-50));
-  color: RGBA(var(--color-charade-950));
   border-radius: rem.rem_calc(4);
   border-style: solid;
   border-width: rem.rem_calc(1);
+  color: RGBA(var(--color-charade-950));
   display: flex;
-  justify-content: flex-start;
-  min-height: rem.rem_calc(40);
-  padding: rem.rem_calc(0 16);
+  justify-content: space-between;
+  min-width: rem.rem_calc(375);
+  overflow: visible;
+  padding: rem.rem_calc(10 14);
   position: fixed;
-  width: 90%;
+  right: 0;
+  width: auto;
 
-  bmb-icon {
+  &-icon {
     font-size: rem.rem_calc(16);
     margin-right: rem.rem_calc(8);
   }
@@ -24,43 +25,137 @@
   @if $appearance == neutral {
     border-color: RGBA(var(--color-charade-700));
 
-    bmb-icon {
-      color: RGBA(var(--color-charade-700));
+    .bmb_toast {
+      &-close {
+        color: RGBA(var(--color-charade-950));
+      }
+
+      &-icon {
+        color: RGBA(var(--color-charade-700));
+      }
     }
   } @else if $appearance == primary {
     border-color: RGBA(var(--color-neon-primary));
 
-    bmb-icon {
-      color: RGBA(var(--color-neon-primary));
+    .bmb_toast {
+      &-close {
+        color: RGBA(var(--color-charade-950));
+      }
+
+      &-icon {
+        color: RGBA(var(--color-blue-primary));
+      }
     }
   } @else if $appearance == successful {
     border-color: RGBA(var(--color-green-primary));
 
-    bmb-icon {
-      color: RGBA(var(--color-green-primary));
+    .bmb_toast {
+      &-close {
+        color: RGBA(var(--color-charade-950));
+      }
+
+      &-icon {
+        color: RGBA(var(--color-green-primary));
+      }
     }
   } @else if $appearance == warning {
     border-color: RGBA(var(--color-yellow-primary));
 
-    bmb-icon {
-      color: RGBA(var(--color-yellow-primary));
+    .bmb_toast {
+      &-close {
+        color: RGBA(var(--color-charade-950));
+      }
+
+      &-icon {
+        color: RGBA(var(--color-yellow-primary));
+      }
     }
   } @else if $appearance == error {
     border-color: RGBA(var(--color-red-primary));
 
-    bmb-icon {
-      color: RGBA(var(--color-red-primary));
+    .bmb_toast {
+      &-close {
+        color: RGBA(var(--color-charade-950));
+      }
+
+      &-icon {
+        color: RGBA(var(--color-red-primary));
+      }
     }
   } @else if $appearance == event {
     border-color: RGBA(var(--color-purple-light));
 
-    bmb-icon {
-      color: RGBA(var(--color-purple-light));
+    .bmb_toast {
+      &-close {
+        color: RGBA(var(--color-charade-950));
+      }
+
+      &-icon {
+        color: RGBA(var(--color-purple-light));
+      }
+    }
+  } @else if $appearance == reminder {
+    border: none;
+
+    .bmb_toast {
+      &-icon {
+        color: RGBA(var(--color-blue-primary));
+      }
+
+      &-title {
+        color: RGBA(var(--color-blue-primary));
+      }
     }
   }
 }
 
 .bmb_toast {
+  &-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: flex-start;
+    margin-top: rem.rem_calc(-1);
+    width: 100%;
+
+    &-with-description {
+      .bmb_toast-title {
+        @include fonts.font(4, medium);
+      }
+    }
+  }
+
+  &-title {
+    display: block;
+    @include fonts.font(4, regular);
+  }
+
+  &-description {
+    color: RGBA(var(--color-charade-700));
+    display: block;
+    margin-top: rem.rem_calc(2);
+    white-space: normal;
+    word-wrap: break-word;
+    @include fonts.font(4, regular);
+  }
+
+  &-icon {
+    font-size: rem.rem_calc(18);
+    margin-right: rem.rem_calc(8);
+  }
+
+  &-button {
+    height: rem.rem_calc(20);
+    margin-left: rem.rem_calc(10);
+    margin-top: rem.rem_calc(-2);
+    padding: 0;
+    width: rem.rem_calc(20);
+  }
+
+  &-close {
+    font-size: rem.rem_calc(20);
+  }
+
   &-neutral {
     @include toast(neutral);
   }
@@ -85,28 +180,44 @@
     @include toast(event);
   }
 
+  &-reminder {
+    @include toast(reminder);
+  }
+
   &-top {
-    left: 50%;
     top: 5%;
-    transform: translateX(-50%);
   }
 
   &-middle {
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    top: 45%;
   }
 
   &-bottom {
     bottom: 5%;
-    left: 50%;
-    transform: translateX(-50%);
   }
 }
 
 [data-theme="dark"],
 .storybook-dark-theme {
   .bmb_toast {
+    &-close {
+      color: RGBA(var(--color-charade-50));
+    }
+
+    &-neutral {
+      border-color: RGBA(var(--color-charade-200));
+
+      .bmb_toast-icon {
+        color: RGBA(var(--color-charade-200));
+      }
+    }
+
+    &-primary {
+      .bmb_toast-icon {
+        color: RGBA(var(--color-neon-primary));
+      }
+    }
+
     &-neutral,
     &-primary,
     &-successful,
@@ -117,11 +228,18 @@
       color: RGBA(var(--color-charade-50));
     }
 
-    &-neutral {
-      border-color: RGBA(var(--color-charade-200));
+    &-description {
+      color: RGBA(var(--color-charade-200));
+    }
 
-      bmb-icon {
-        color: RGBA(var(--color-charade-200));
+    &-reminder {
+      background-color: RGBA(var(--color-charade-950));
+
+      .bmb_toast {
+        &-title,
+        &-icon {
+          color: RGBA(var(--color-neon-primary));
+        }
       }
     }
   }
