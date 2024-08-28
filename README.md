@@ -9,12 +9,14 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 ## Cambios de la versión v0.6.0
 
 ### Nuevos componentes:
+
 - [Drawer overlay](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-drawer-overlay--documentation)
 - [Login onbording](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-login-onboarding--documentation)
 - [Push notification](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-push-notification--documentation)
 - [Tooltip](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-tooltip--documentation)
 
 ### Componentes actualizados:
+
 - [Frequent app selector](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-frequent-apps-selector--documentation)
 - [Inner header](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-inner-header--documentation)
 - [Interactive icon](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-interactive-icon--documentation)
@@ -28,7 +30,7 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 - [Table](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-table--documentation)
 - [User summary](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-user-summary--documentation)
 
-Si quieres ver el detalle de los cambios puedes ver la entrada de la wiki [aquí](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/wiki/What's-new) 
+Si quieres ver el detalle de los cambios puedes ver la entrada de la wiki [aquí](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/wiki/What's-new)
 
 ---
 
