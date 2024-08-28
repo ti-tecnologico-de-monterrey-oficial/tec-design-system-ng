@@ -117,15 +117,16 @@
     align-items: center;
 
     @include mixins.media-query(999, "max") {
-      transition: all 0s ease;
+      transition: opacity 0s ease;
       opacity: 0;
       height: 0;
       overflow: hidden;
+      width: 0;
     }
 
     &-open {
       @include mixins.media-query(999, "max") {
-        transition: all 0.3s ease;
+        transition: opacity 0.3s ease;
         position: absolute;
         top: 100%;
         z-index: 99;

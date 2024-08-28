@@ -62,6 +62,9 @@ import {
   BmbLoginOnboardingComponent,
   IBmbLoginOnbording,
   IBmbUserInfo,
+  BmbWebTemplatesComponent,
+  BmbDropdownComponent,
+  IBmbTemplateName,
   BmbGradesComponent,
   BmbExternalLinkComponent,
 } from '../../projects/ds-ng/src/public-api';
@@ -152,6 +155,8 @@ import { IBmbGrades } from '../../projects/ds-ng/src/lib/components/bmb-grades/t
     BmbLoginOnboardingComponent,
     BmbPushNotificationComponent,
     BmbAccountStatementComponent,
+    BmbWebTemplatesComponent,
+    BmbDropdownComponent,
     BmbGradesComponent,
     BmbExternalLinkComponent,
   ],
@@ -875,5 +880,17 @@ export class AppComponent {
         ],
       },
     ];
+  }
+
+  isFullScreen = false;
+
+  handleButtonSelection() {
+    this.isFullScreen = !this.isFullScreen;
+  }
+
+  currentTemplate: IBmbTemplateName = 'aside-first-card';
+
+  onTemplateChange(template: IBmbTemplateName) {
+    this.currentTemplate = template;
   }
 }

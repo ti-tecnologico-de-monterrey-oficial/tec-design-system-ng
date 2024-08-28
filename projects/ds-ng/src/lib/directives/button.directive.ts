@@ -1,6 +1,5 @@
 import {
   Directive,
-  Input,
   ElementRef,
   HostBinding,
   ViewContainerRef,
@@ -12,7 +11,11 @@ import {
   input,
 } from '@angular/core';
 import { BmbIconComponent } from '../components/bmb-icon/bmb-icon.component';
-import { IBmbHorizontalPosition, IButtonAppearance } from '../types';
+import {
+  IBmbHorizontalPosition,
+  IButtonAppearance,
+  IButtonSize,
+} from '../types';
 
 @Directive({
   selector: '[bmbButton]',
@@ -23,10 +26,10 @@ export class BmbButtonDirective implements OnInit, OnChanges {
   position = input<IBmbHorizontalPosition>('left');
   case = input<boolean>(false);
   appearance = input<IButtonAppearance>('primary');
-  size = input<'small' | 'large'>('small');
+  size = input<IButtonSize>('small');
   isToggleActive = input<boolean>(false);
   enableButtonToggle = input<boolean>(false);
-  isRounded = input<boolean>(false);
+  isRounded = input<boolean>(true);
 
   private providedInputs: Set<string> = new Set();
 
@@ -76,6 +79,11 @@ export class BmbButtonDirective implements OnInit, OnChanges {
 
   @HostBinding('class') get elementClass(): string[] {
     const classList = [`bmb_btn-${this.appearance()}`];
+    console.log(
+      'this.enableButtonToggle() && this.isToggleActive()',
+      this.enableButtonToggle() && this.isToggleActive(),
+    );
+
     if (this.enableButtonToggle() && this.isToggleActive())
       classList.push('bmb_btn-toggle-active');
     if (this.isRounded()) classList.push('bmb_btn-rounded');
@@ -86,7 +94,7 @@ export class BmbButtonDirective implements OnInit, OnChanges {
   private addContent() {
     this.viewContainerRef.clear();
 
-    if (this.icon) {
+    if (this.icon()) {
       const iconComponentRef =
         this.viewContainerRef.createComponent(BmbIconComponent); // Crear una instancia del componente
       const iconComponent = iconComponentRef.instance;

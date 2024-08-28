@@ -178,10 +178,9 @@ Below is an example of how to use this component in HTML:
       description:
         'An array of sidebar elements, each containing a list of child elements.',
       table: {
-        type: {
-          summary:
-            'Array<{ id: number; icon: string; title: string; link: string; target?: string }[]>',
-        },
+        type: { summary: 'SidebarElement[][]' },
+        category: 'Properties',
+        defaultValue: { summary: '[]' },
       },
     },
     title: {
