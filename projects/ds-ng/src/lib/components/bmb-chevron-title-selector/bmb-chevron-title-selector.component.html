@@ -8,7 +8,10 @@
   </button>
   <section class="bmb_chevron-content">
     <span class="bmb_chevron-content-title">{{ title() }}</span>
-    <span *ngIf="subtitle()" class="bmb_chevron-content-subtitle">{{ subtitle() }}</span>
+    <span *ngIf="subtitle()" class="bmb_chevron-content-subtitle">
+      <bmb-icon *ngIf="isIconSubtitle()" [icon]="iconSubtitle()" />
+      {{ subtitle() }}
+    </span>
   </section>
   <button
     class="bmb_chevron-button"

@@ -22,7 +22,8 @@ import { BmbButtonDirective } from '../../directives/button.directive';
       Click Here
     </button>
     <bmb-toast
-      [message]="message"
+      [title]="title"
+      [description]="description"
       [appearance]="appearance"
       [duration]="duration"
       [position]="position"
@@ -31,12 +32,14 @@ import { BmbButtonDirective } from '../../directives/button.directive';
 })
 class StorybookToastWrapperComponent {
   @Input() appearance: string = '';
-  @Input() message: string = '';
+  @Input() title: string = '';
+  @Input() description?: string;
   @Input() duration?: number;
   @Input() position?: 'top' | 'bottom' | 'middle';
 
   @ViewChild(BmbToastComponent)
   private toastComponent!: BmbToastComponent;
+
   onButtonClick() {
     this.toastComponent.openToast();
   }
@@ -88,13 +91,25 @@ Below is an example of how you can use this component in HTML:
     },
   },
   argTypes: {
-    message: {
-      name: 'Message',
+    title: {
+      name: 'Title',
       control: {
         type: 'text',
       },
       description:
-        'Specifies the text displayed within the toast notification. This message should be concise and direct, providing the user with immediate feedback or information related to their actions.',
+        'Specifies the title displayed within the toast notification. This title should be concise and direct, providing the user with immediate feedback or information related to their actions.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
+    description: {
+      name: 'Description',
+      control: {
+        type: 'text',
+      },
+      description:
+        'Provides additional details or context in the toast notification, displayed beneath the title. This is optional and should be used when more information is needed.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -110,9 +125,10 @@ Below is an example of how you can use this component in HTML:
         'warning',
         'error',
         'event',
+        'reminder',
       ],
       description:
-        'Defines the visual style of the toast, allowing it to match the context of the notification. Each option represents a different level of notification severity or type, such as informational (neutral), success (successful), warning (warning), error (error), or event (event).',
+        'Defines the visual style of the toast, allowing it to match the context of the notification. Each option represents a different level of notification severity or type, such as informational (neutral), success (successful), warning (warning), error (error), event (event), or reminder (reminder).',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'neutral' },
@@ -129,7 +145,7 @@ Below is an example of how you can use this component in HTML:
       table: {
         category: 'Properties',
         defaultValue: { summary: '5000' },
-        type: { summary: 'string' },
+        type: { summary: 'number' },
       },
     },
     position: {
@@ -146,7 +162,8 @@ Below is an example of how you can use this component in HTML:
     },
   },
   args: {
-    message: 'Your toast text here',
+    title: 'Your toast title here',
+    description: 'Your toast description here (optional)',
     appearance: 'neutral',
     duration: 5000,
     position: 'top',
