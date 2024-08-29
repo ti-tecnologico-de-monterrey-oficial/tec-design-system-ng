@@ -1,7 +1,7 @@
 import { moduleMetadata, type Meta, type StoryFn } from '@storybook/angular';
 import { BmbLoginOnboardingComponent } from './bmb-login-onboarding.component';
 import { Component } from '@angular/core';
-import { IBmbLoginOnbording, IBmbUserInfo } from './types';
+import { IBmbLoginOnboarding, IBmbUserInfo } from './types';
 
 @Component({
   standalone: true,
@@ -9,7 +9,7 @@ import { IBmbLoginOnbording, IBmbUserInfo } from './types';
   selector: 'storybook-toast-wrapper',
   template: `
     <div style="max-width: 300px; margin: 0 auto">
-      <bmb-login-onboarding (handleRequet)="handleRequet($event)">
+      <bmb-login-onboarding (handleRequest)="handleRequest($event)">
         <p>custom content</p>
       </bmb-login-onboarding>
       <bmb-theme initialTheme="dark" [showControls]="false" />
@@ -48,7 +48,7 @@ class StorybookToastWrapperComponent {
     console.log('init');
   }
 
-  handleRequet(event: IBmbLoginOnbording) {
+  handleRequest(event: IBmbLoginOnboarding) {
     const { data, action, callback } = event;
 
     switch (action) {
@@ -100,7 +100,7 @@ Below is an example of how you can use this component in TypeScript:
 \`\`\`typescript
 import {
   BmbLoginOnboardingComponent,
-  IBmbLoginOnbording,
+  IBmbLoginOnboarding,
    IBmbUserInfo,
 } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
 
@@ -142,7 +142,7 @@ export class AppComponent {
     console.log('init');
   }
 
-  handleRequet(event: IBmbLoginOnbording) {
+  handleRequest(event: IBmbLoginOnboarding) {
     const { data, action, callback } = event;
 
     switch (action) {
@@ -185,8 +185,8 @@ Below is an example of how you can use this component in HTML:
     },
   },
   argTypes: {
-    handleRequet: {
-      name: 'Handle Requet',
+    handleRequest: {
+      name: 'Handle Request',
       control: null,
       description: 'Output function',
       table: {
@@ -207,7 +207,7 @@ export const Default: StoryFn<typeof StorybookToastWrapperComponent> = (
       <storybook-toast-wrapper></storybook-toast-wrapper>
       <!-- Start copying from here -->
       <div class="actions">
-        <bmb-login-onboarding (handleRequet)="handleRequet($event)">
+        <bmb-login-onboarding (handleRequest)="handleRequest($event)">
           <p>custom content</p>
         </bmb-login-onboarding>
       `,

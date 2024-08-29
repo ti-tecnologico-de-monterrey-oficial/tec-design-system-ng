@@ -84,7 +84,8 @@ Below is an example of how you can use this component in HTML:
     title: 'CONECTA',
     subtitle: 'https://www.CONECTA.tec.mx',
     onClose: (event: unknown) => {
-      alert('Selection: ' + event);
+      event;
+      alert('Selection: close');
     },
     footerEvent: (event: unknown) => {
       alert('Selection: ' + event);
