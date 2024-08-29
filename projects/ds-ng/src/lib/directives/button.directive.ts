@@ -79,10 +79,6 @@ export class BmbButtonDirective implements OnInit, OnChanges {
 
   @HostBinding('class') get elementClass(): string[] {
     const classList = [`bmb_btn-${this.appearance()}`];
-    console.log(
-      'this.enableButtonToggle() && this.isToggleActive()',
-      this.enableButtonToggle() && this.isToggleActive(),
-    );
 
     if (this.enableButtonToggle() && this.isToggleActive())
       classList.push('bmb_btn-toggle-active');

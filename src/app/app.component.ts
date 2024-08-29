@@ -60,7 +60,7 @@ import {
   BmbChatBarComponent,
   IBotType,
   BmbLoginOnboardingComponent,
-  IBmbLoginOnbording,
+  IBmbLoginOnboarding,
   IBmbUserInfo,
   BmbWebTemplatesComponent,
   BmbDropdownComponent,
@@ -696,7 +696,7 @@ export class AppComponent {
     console.log('init');
   }
 
-  handleRequet(event: IBmbLoginOnbording): void {
+  handleRequest(event: IBmbLoginOnboarding): void {
     const { data, action, callback } = event;
 
     switch (action) {
