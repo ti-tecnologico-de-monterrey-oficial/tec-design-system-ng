@@ -1,3 +1,39 @@
-<a [ngClass]="getClasses()" [href]="link" [target]="target">
-  <img [src]="image" [alt]="altImage" />
-</a>
+@if (link && isExternalLink(link)) {
+  <a [ngClass]="getClasses()" [href]="link" [target]="target">
+    <img [src]="image" [alt]="altImage" />
+  </a>
+} @else if (link) {
+  <a
+    [ngClass]="getClasses()"
+    [routerLink]="link"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    <img [src]="image" [alt]="altImage" />
+  </a>
+} @else {
+  <span [ngClass]="getClasses()">
+    <img [src]="image" [alt]="altImage" />
+  </span>
+}
+
+<!--
+<a
+  class="bmb_sidebar-link"
+  [id]="element.id"
+  [ngClass]="{
+    'bmb_sidebar-link-active': isLinkActive(element.link),
+  }"
+  [href]="element.link"
+  [target]="element.target ? element.target : '_blank'"
+  rel="noopener noreferrer"
+  (click)="setExternalLinkActive(element.link)"
+  (keydown)="handleKeydown($event, element)"
+>
+  <bmb-icon
+    class="bmb_sidebar-icon"
+    [icon]="element.icon"
+    [materialIcon]="true"
+  />
+  <span class="bmb_sidebar-text">{{ element.title }}</span>
+</a> -->

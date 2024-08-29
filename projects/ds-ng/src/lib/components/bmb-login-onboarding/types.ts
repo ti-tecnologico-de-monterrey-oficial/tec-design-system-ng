@@ -14,7 +14,7 @@ export interface IBmbAuthenticateInfo {
   password: string;
 }
 
-export interface IBmbLoginOnbording {
+export interface IBmbLoginOnboarding {
   data: {
     [x: string]: unknown;
   };
