@@ -8,6 +8,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { isExternalLink } from '../../utils/utils';
 
 export type IBmbInteractiveIconAppearance =
   | 'red'
@@ -56,14 +57,12 @@ export class BmbInteractiveIconComponent {
     return classes;
   }
 
-  isExternalLink(link: string | undefined): boolean {
-    if (!link) return false;
+  isExternalLink(link: string): boolean {
+    if (link) {
+      return isExternalLink(link);
+    }
 
-    return (
-      link.startsWith('http://') ||
-      link.startsWith('https://') ||
-      link.startsWith('#')
-    );
+    return false;
   }
 
   isImage(url: string): boolean {

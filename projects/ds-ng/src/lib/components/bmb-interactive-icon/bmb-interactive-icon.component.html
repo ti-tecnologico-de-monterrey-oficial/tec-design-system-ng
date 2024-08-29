@@ -27,7 +27,7 @@
   >
     <ng-container *ngTemplateOutlet="commonContent" />
   </button>
-} @else if (isExternalLink(link())) {
+} @else if (isExternalLink(link() || '')) {
   <a
     [ngClass]="getClasses()"
     [class.bmb_interactive_icon-horizontal]="horizontal()"
