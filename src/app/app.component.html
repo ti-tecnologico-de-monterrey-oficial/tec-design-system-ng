@@ -1,17 +1,38 @@
 <bmb-web-templates
-  positionButtonMenu="left"
-  [hasLogoutButton]="true"
-  appName="Test App"
-  appSubTitle="Test subtitle"
-  [showLang]="true"
+  topBarPositionButtonMenu="left"
+  [topBarHasLogoutButton]="true"
+  topBarAppName="Test App"
+  topBarAppSubTitle="Test subtitle"
+  [topBarShowLang]="true"
   [isFullScreen]="isFullScreen"
   titleScreen="Screen title"
   subTitleScreen="Sub title"
   titleMainSlot="Title main"
-  titleRightSlot="Right title"
+  titleAsideSlot="Right title"
   [template]="currentTemplate"
+  [sideBarElements]="sidebarElements"
+  sideBarTitle="Template navigation"
 >
   <ng-template #bmbTemplateAside>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo ante,
+      mattis nec libero a, malesuada pellentesque sem. Aliquam erat volutpat.
+      Nulla ut consequat turpis, id efficitur velit. Fusce vitae dolor leo.
+      Praesent diam justo, consectetur in blandit ut, tincidunt vitae enim.
+      Nulla eleifend, leo at finibus volutpat, nulla metus eleifend lacus,
+      ullamcorper dictum augue diam id erat. Donec ac fringilla elit. Aliquam
+      sit amet luctus elit. Suspendisse ante tortor, euismod nec metus id,
+      commodo sollicitudin massa. Aliquam magna nibh, semper eu vestibulum
+      aliquam, aliquet gravida massa. Nullam vehicula, augue non aliquam
+      posuere, enim urna blandit erat, et euismod enim nisi vel eros. Ut dictum
+      egestas mi, faucibus iaculis lorem. Donec risus diam, maximus at varius
+      rutrum, blandit quis augue. Sed consectetur massa ut auctor ultricies.
+      Etiam fringilla venenatis nulla, gravida finibus nulla faucibus fringilla.
+      Morbi luctus porta orci eu iaculis.
+    </p>
+    <bmb-theme initialTheme="light"></bmb-theme>
+  </ng-template>
+  <ng-template #bmbTemplateSecondAside>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo ante,
       mattis nec libero a, malesuada pellentesque sem. Aliquam erat volutpat.
@@ -56,6 +77,7 @@
         'single-column-card',
         'aside-first-card',
         'aside-light-card',
+        'two-aside-card',
       ]"
       (onValueChange)="onTemplateChange($event)"
     ></bmb-dropdown>
@@ -107,3 +129,78 @@
     </p>
   </ng-template>
 </bmb-web-templates>
+<bmb-external-link
+  title="CONECTA"
+  subtitle="https://www.CONECTA.tec.mx"
+  (onClose)="logSelection('close', $event)"
+  (footerEvent)="logSelection('footer', $event)"
+  (menuEvent)="logSelection('menu', $event)"
+>
+  <bmb-theme initialTheme="dark" [showControls]="true" />
+</bmb-external-link>
+<!-- <bmb-theme initialTheme="dark" [showControls]="false" />
+<bmb-grades [grades]="getGrades()" />
+<div style="margin: 1rem">
+  <bmb-interactive-icon
+    appearance="red"
+    [title]="'Canvas'"
+    [description]="'Short Description'"
+    [icon]="'face'"
+    [target]="'_blank'"
+    [link]="'https://www.youtube.com/'"
+  />
+</div>
+
+<div style="margin: 1rem">
+  <bmb-home-card-chat
+    [(isLoading)]="isLoading"
+    (isLoadingChange)="handleIsLoadingChange()"
+    [(currentBot)]="currentBot"
+    (currentBotChange)="handleCurrentBotChange()"
+    (onSendMessage)="handleSendMessage($event)"
+  >
+    <p>Slot test</p>
+  </bmb-home-card-chat>
+</div>
+
+<div style="margin: 1rem">
+  <bmb-home-card-chat
+    [(isLoading)]="isLoading"
+    (isLoadingChange)="handleIsLoadingChange()"
+    [(currentBot)]="currentBot"
+    (currentBotChange)="handleCurrentBotChange()"
+    (onSendMessage)="handleSendMessage($event)"
+  >
+    <p>Slot test</p>
+  </bmb-home-card-chat>
+</div>
+
+<bmb-theme initialTheme="dark" [showControls]="true" />
+
+<div style="margin: 1rem">
+  <bmb-home-card
+    title="test title"
+    subtitle="test subtitle"
+    icon="shelf_auto_hide"
+    [isMobile]="false"
+  >
+    <p>Slot test</p>
+  </bmb-home-card>
+</div>
+
+<br />
+<button bmbButton (click)="handleButtonState()" [textContent]="'text'">
+  Button 1
+</button>
+{{ pickerDate }}
+
+<bmb-frequent-apps-selector
+  [title]="'Mis Aplicaciones Frecuentes'"
+  [apps]="apps"
+/>
+<div style="display: flex; gap: 3em">
+  <a routerLink="/home" class="font-bold-6">Home</a>
+  <a routerLink="/my-page" class="font-bold-6">My Page</a>
+  <a routerLink="/emprendedor" class="font-bold-6">Emprendedor</a>
+</div>
+<router-outlet></router-outlet> -->

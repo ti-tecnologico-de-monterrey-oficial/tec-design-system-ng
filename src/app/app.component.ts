@@ -65,6 +65,8 @@ import {
   BmbWebTemplatesComponent,
   BmbDropdownComponent,
   IBmbTemplateName,
+  BmbGradesComponent,
+  BmbExternalLinkComponent,
 } from '../../projects/ds-ng/src/public-api';
 
 import {
@@ -155,6 +157,8 @@ import { IBmbGrades } from '../../projects/ds-ng/src/lib/components/bmb-grades/t
     BmbAccountStatementComponent,
     BmbWebTemplatesComponent,
     BmbDropdownComponent,
+    BmbGradesComponent,
+    BmbExternalLinkComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -884,7 +888,7 @@ export class AppComponent {
     this.isFullScreen = !this.isFullScreen;
   }
 
-  currentTemplate: IBmbTemplateName = 'full-width-card';
+  currentTemplate: IBmbTemplateName = 'aside-first-card';
 
   onTemplateChange(template: IBmbTemplateName) {
     this.currentTemplate = template;

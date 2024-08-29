@@ -1,18 +1,20 @@
 <section [ngClass]="getSectionClass()">
   <bmb-top-bar
-    [positionButtonMenu]="positionButtonMenu()"
-    [userInformation]="userInformation()"
-    [hasLogoutButton]="hasLogoutButton()"
-    [image]="image()"
-    [mobileImage]="mobileImage()"
-    [appName]="appName()"
-    [appSubTitle]="appSubTitle()"
-    [lang]="lang()"
-    [showLang]="showLang()"
-    [mitec]="mitec()"
-    [assignmentNotification]="assignmentNotification()"
-    [alertNotification]="alertNotification()"
+    [positionButtonMenu]="topBarPositionButtonMenu()"
+    [userInformation]="topBarUserInformation()"
+    [hasLogoutButton]="topBarHasLogoutButton()"
+    [image]="topBarImage()"
+    [mobileImage]="topBarMobileImage()"
+    [appName]="topBarAppName()"
+    [appSubTitle]="topBarAppSubTitle()"
+    [lang]="topBarLang()"
+    [showLang]="topBarShowLang()"
+    [mitec]="topBarMitec()"
+    [assignmentNotification]="topBarAssignmentNotification()"
+    [alertNotification]="topBarAlertNotification()"
     class="bmb_web-template-top-bar"
+    (logOut)="handleLogOut($event)"
+    (onLangChange)="handleLangChange($event)"
   />
   <header class="bmb_web-template-header">
     <div
@@ -39,8 +41,14 @@
     @case ("aside-light-card") {
       <ng-container [ngTemplateOutlet]="asideLightCard" />
     }
+    @case ("two-aside-card") {
+      <ng-container [ngTemplateOutlet]="twoAsideCard" />
+    }
   }
-  <bmb-sidebar></bmb-sidebar>
+  <bmb-sidebar
+    [elements]="sideBarElements()"
+    [title]="sideBarTitle()"
+  ></bmb-sidebar>
 </section>
 
 <ng-template #fullWidthCard>
@@ -54,8 +62,8 @@
     </section>
   </main>
   <aside class="bmb_web-template-aside">
-    @if (titleRightSlot()) {
-      <h3>{{ titleRightSlot() }}</h3>
+    @if (titleAsideSlot()) {
+      <h3>{{ titleAsideSlot() }}</h3>
       <bmb-divider />
     }
     <ng-container [ngTemplateOutlet]="asideContent" />
@@ -79,8 +87,8 @@
       </section>
     </main>
     <aside class="bmb_web-template-aside" bmbLayoutItem [colLg]="4">
-      @if (titleRightSlot()) {
-        <h3>{{ titleRightSlot() }}</h3>
+      @if (titleAsideSlot()) {
+        <h3>{{ titleAsideSlot() }}</h3>
         <bmb-divider />
       }
       <ng-container [ngTemplateOutlet]="asideContent" />
@@ -115,8 +123,8 @@
     margin="none"
   >
     <aside class="bmb_web-template-aside" bmbLayoutItem [colLg]="12">
-      @if (titleRightSlot()) {
-        <h3>{{ titleRightSlot() }}</h3>
+      @if (titleAsideSlot()) {
+        <h3>{{ titleAsideSlot() }}</h3>
         <bmb-divider />
       }
       <ng-container [ngTemplateOutlet]="asideContent" />
@@ -136,17 +144,42 @@
     gapSize="m"
     margin="none"
   >
-    <aside class="bmb_web-template-aside" bmbLayoutItem [colLg]="12">
-      @if (titleRightSlot()) {
-        <h3>{{ titleRightSlot() }}</h3>
-        <bmb-divider />
-      }
+    <aside class="bmb_web-template-aside" bmbLayoutItem [colLg]="3">
       <ng-container [ngTemplateOutlet]="asideContent" />
     </aside>
-    <main class="bmb_web-template-main" bmbLayoutItem [colLg]="12">
+    <main class="bmb_web-template-main" bmbLayoutItem [colLg]="9">
       <section class="bmb_web-template-main-container">
+        @if (titleMainSlot()) {
+          <h3>{{ titleMainSlot() }}</h3>
+          <bmb-divider />
+        }
         <ng-container [ngTemplateOutlet]="mainContent" />
       </section>
     </main>
+  </section>
+</ng-template>
+
+<ng-template #twoAsideCard>
+  <section
+    class="bmb_web-template-container"
+    bmbLayout
+    gapSize="m"
+    margin="none"
+  >
+    <aside class="bmb_web-template-aside" bmbLayoutItem [colLg]="3">
+      <ng-container [ngTemplateOutlet]="asideContent" />
+    </aside>
+    <main class="bmb_web-template-main" bmbLayoutItem [colLg]="6">
+      <section class="bmb_web-template-main-container">
+        @if (titleMainSlot()) {
+          <h3>{{ titleMainSlot() }}</h3>
+          <bmb-divider />
+        }
+        <ng-container [ngTemplateOutlet]="mainContent" />
+      </section>
+    </main>
+    <aside class="bmb_web-template-aside" bmbLayoutItem [colLg]="3">
+      <ng-container [ngTemplateOutlet]="secondAsideContent" />
+    </aside>
   </section>
 </ng-template>
