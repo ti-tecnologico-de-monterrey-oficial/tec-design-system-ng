@@ -1,3 +1,9 @@
-<bmb-user-image link="my-page"></bmb-user-image>
-
-<router-outlet></router-outlet>
+<bmb-external-link
+  [title]="'CONECTA'"
+  [subtitle]="'https://www.CONECTA.tec.mx'"
+  (onClose)="logSelection('close', $event)"
+  (menuEvent)="logSelection('menu', $event)"
+  (footerEvent)="logSelection('footer', $event)"
+>
+  <bmb-theme />
+</bmb-external-link>

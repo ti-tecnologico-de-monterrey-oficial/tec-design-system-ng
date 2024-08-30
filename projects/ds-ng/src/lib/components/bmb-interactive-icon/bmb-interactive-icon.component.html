@@ -5,7 +5,10 @@
     </figure>
   } @else {
     <span class="bmb_interactive_icon-box">
-      <bmb-icon class="bmb_interactive_icon-icon" [icon]="icon()"></bmb-icon>
+      <bmb-icon class="bmb_interactive_icon-icon" [icon]="icon()" />
+      <span class="bmb_interactive_icon-label" *ngIf="label">{{
+        label()
+      }}</span>
     </span>
   }
   <span class="bmb_interactive_icon-text">
