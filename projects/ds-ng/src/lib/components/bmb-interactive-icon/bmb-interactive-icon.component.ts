@@ -33,6 +33,7 @@ export class BmbInteractiveIconComponent {
   appearance = input<IBmbInteractiveIconAppearance>('red');
   title = input<string>();
   description = input<string>('');
+  label = input<string>('');
   icon = input<string>('face');
   horizontal = input<boolean>(false);
   target = input<string>();
