@@ -1,4 +1,4 @@
-<bmb-external-link
+<!-- <bmb-external-link
   [title]="'CONECTA'"
   [subtitle]="'https://www.CONECTA.tec.mx'"
   (onClose)="logSelection('close', $event)"
@@ -6,4 +6,33 @@
   (footerEvent)="logSelection('footer', $event)"
 >
   <bmb-theme />
-</bmb-external-link>
+</bmb-external-link> -->
+<bmb-theme />
+<bmb-bottom-navigation-bar
+  [navigationBarIcons]="{
+    one: { name: 'arrow_back_ios', label: '' },
+    two: { name: 'arrow_forward_ios', label: '' },
+    three: { name: 'share', label: '' },
+    four: { name: 'refresh', label: '' },
+  }"
+/>
+<br />
+<bmb-divider />
+<bmb-bottom-navigation-bar
+  [navigationBarIcons]="{
+    one: { name: 'home', label: 'home' },
+    two: { name: 'insert_emoticon', label: '' },
+    three: { name: 'notifications', label: '' },
+    four: { name: 'favorite', label: '' },
+  }"
+/>
+<br />
+<bmb-divider />
+<bmb-bottom-navigation-bar
+  [navigationBarIcons]="{
+    one: { name: 'mic', label: '' },
+    two: { name: 'thumb_up', label: '' },
+    three: { name: 'thumb_down', label: '' },
+    four: { name: 'send', label: '' },
+  }"
+/>

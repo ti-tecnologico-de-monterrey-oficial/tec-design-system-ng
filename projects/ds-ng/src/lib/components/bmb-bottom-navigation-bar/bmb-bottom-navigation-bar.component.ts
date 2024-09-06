@@ -45,9 +45,9 @@ export class BmbBottomNavigationBarComponent {
     four: { name: 'refresh', label: '' },
   });
 
-  navigationBarEvent = output<IBmbFooterEvent>();
+  navigationBarEvents = output<IBmbFooterEvent>();
 
   onNavigationBarOptionClick(event: IBmbFooterEvent): void {
-    this.navigationBarEvent.emit(event);
+    this.navigationBarEvents.emit(event);
   }
 }
