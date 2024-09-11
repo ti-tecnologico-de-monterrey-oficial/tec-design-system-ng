@@ -79,10 +79,10 @@ export class BmbButtonDirective implements OnInit, OnChanges {
 
   @HostBinding('class') get elementClass(): string[] {
     const classList = [`bmb_btn-${this.appearance()}`];
+    classList.push('bmb_btn-rounded');
 
     if (this.enableButtonToggle() && this.isToggleActive())
       classList.push('bmb_btn-toggle-active');
-    if (this.isRounded()) classList.push('bmb_btn-rounded');
 
     return classList;
   }
