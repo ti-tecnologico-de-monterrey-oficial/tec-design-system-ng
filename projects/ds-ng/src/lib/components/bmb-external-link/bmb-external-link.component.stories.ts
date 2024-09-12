@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { BmbExternalLinkComponent } from './bmb-external-link.component';
 
 export default {
-  title: 'Macro Componentes/External Link',
+  title: 'Macro Componentes/Access to external link',
   component: BmbExternalLinkComponent,
   decorators: [],
   parameters: {

@@ -6,7 +6,6 @@
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
-  background-color: RGBA(var(--color-charade-200));
 
   &-icon {
     color: RGBA(var(--color-mariner-950));
@@ -118,7 +117,6 @@
 [data-theme="dark"],
 .storybook-dark-theme {
   .bmb_loader {
-    background-color: RGBA(var(--color-charade-950));
     &-modal {
       background-color: RGBA(var(--color-charade-950));
       border-color: RGBA(var(--color-charade-700));

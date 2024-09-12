@@ -41,43 +41,8 @@
       </li>
     </ul>
   }
-  <section
+  <bmb-bottom-navigation-bar
     class="bmb_external-link-footer"
-    bmbLayout
-    margin="none"
-    justify="spaceAround"
-  >
-    <bmb-interactive-icon
-      bmbLayoutItem
-      [colSm]="3"
-      appearance="none"
-      icon="arrow_back_ios"
-      [setButtonTemplate]="true"
-      (buttonClick)="onFooterOptionClick('back')"
-    />
-    <bmb-interactive-icon
-      bmbLayoutItem
-      [colSm]="3"
-      appearance="none"
-      icon="arrow_forward_ios"
-      [setButtonTemplate]="true"
-      (buttonClick)="onFooterOptionClick('forward')"
-    />
-    <bmb-interactive-icon
-      bmbLayoutItem
-      [colSm]="3"
-      appearance="none"
-      icon="share"
-      [setButtonTemplate]="true"
-      (buttonClick)="onFooterOptionClick('share')"
-    />
-    <bmb-interactive-icon
-      bmbLayoutItem
-      [colSm]="3"
-      appearance="none"
-      icon="refresh"
-      [setButtonTemplate]="true"
-      (buttonClick)="onFooterOptionClick('reload')"
-    />
-  </section>
+    (navigationBarEvents)="onFooterOptionClick($event)"
+  />
 </section>
