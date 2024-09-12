@@ -136,7 +136,7 @@ Below is an example of how you can use this component in HTML:
     text: 'Button text',
     isToggleActive: false,
     enableButtonToggle: false,
-    isRounded: true,
+    isRounded: false,
   },
 } as Meta<typeof BmbButtonDirective>;
 

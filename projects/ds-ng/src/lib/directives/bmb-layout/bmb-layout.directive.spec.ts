@@ -1,10 +1,10 @@
 import { TestBed } from '@angular/core/testing';
-import { BmbButtonGroupDirective } from './bmb-button-group.directive';
+import { BmbLayoutDirective } from './bmb-layout.directive';
 
-describe('BmbButtonGroupDirective', () => {
+describe('BmbLayoutDirective', () => {
   it('should create an instance', () => {
     TestBed.runInInjectionContext(() => {
-      const directive = new BmbButtonGroupDirective();
+      const directive = new BmbLayoutDirective();
       expect(directive).toBeTruthy();
     });
   });
