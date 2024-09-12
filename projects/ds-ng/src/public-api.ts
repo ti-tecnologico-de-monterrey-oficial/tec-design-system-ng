@@ -79,6 +79,7 @@ export * from './lib/components/bmb-grades/bmb-grades.component';
 export * from './lib/components/bmb-tooltip/bmb-tooltip.component';
 export * from './lib/components/bmb-web-templates/bmb-web-templates.component';
 export * from './lib/components/bmb-external-link/bmb-external-link.component';
+export * from './lib/components/bmb-bottom-navigation-bar/bmb-bottom-navigation-bar.component';
 
 // types
 export * from './lib/types';

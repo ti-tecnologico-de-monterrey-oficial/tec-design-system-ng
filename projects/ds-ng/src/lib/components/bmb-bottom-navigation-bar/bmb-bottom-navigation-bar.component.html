@@ -1,0 +1,40 @@
+<section
+  class="bmb-bottom-navigation-bar"
+  bmbLayout
+  margin="none"
+  justify="spaceBetween"
+  [dynamicCols]="true"
+>
+  <bmb-interactive-icon
+    bmbLayoutItem
+    appearance="none"
+    [icon]="navigationBarIcons().one.name"
+    [label]="navigationBarIcons().one.label"
+    [setButtonTemplate]="true"
+    (buttonClick)="onNavigationBarOptionClick('back')"
+  />
+  <bmb-interactive-icon
+    bmbLayoutItem
+    appearance="none"
+    [icon]="navigationBarIcons().two.name"
+    [label]="navigationBarIcons().two.label"
+    [setButtonTemplate]="true"
+    (buttonClick)="onNavigationBarOptionClick('forward')"
+  />
+  <bmb-interactive-icon
+    bmbLayoutItem
+    appearance="none"
+    [icon]="navigationBarIcons().three.name"
+    [label]="navigationBarIcons().three.label"
+    [setButtonTemplate]="true"
+    (buttonClick)="onNavigationBarOptionClick('share')"
+  />
+  <bmb-interactive-icon
+    bmbLayoutItem
+    appearance="none"
+    [icon]="navigationBarIcons().four.name"
+    [label]="navigationBarIcons().four.label"
+    [setButtonTemplate]="true"
+    (buttonClick)="onNavigationBarOptionClick('reload')"
+  />
+</section>

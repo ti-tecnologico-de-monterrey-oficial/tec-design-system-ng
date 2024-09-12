@@ -93,6 +93,7 @@ import timelineEvents from './timelineEvents.json';
 import {} from '../../projects/ds-ng/src/lib/components/bmb-home-card-chat/bmb-home-card-chat.component';
 import { DateTime } from 'luxon';
 import { IBmbGrades } from '../../projects/ds-ng/src/lib/components/bmb-grades/types';
+import { BmbBottomNavigationBarComponent } from '../../projects/ds-ng/src/lib/components/bmb-bottom-navigation-bar/bmb-bottom-navigation-bar.component';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -159,6 +160,7 @@ import { IBmbGrades } from '../../projects/ds-ng/src/lib/components/bmb-grades/t
     BmbDropdownComponent,
     BmbGradesComponent,
     BmbExternalLinkComponent,
+    BmbBottomNavigationBarComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
