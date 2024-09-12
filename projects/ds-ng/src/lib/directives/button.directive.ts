@@ -4,8 +4,6 @@ import {
   HostBinding,
   ViewContainerRef,
   ChangeDetectorRef,
-  OnInit,
-  OnChanges,
   Renderer2,
   SimpleChanges,
   input,
@@ -21,7 +19,7 @@ import {
   selector: '[bmbButton]',
   standalone: true,
 })
-export class BmbButtonDirective implements OnInit, OnChanges {
+export class BmbButtonDirective {
   icon = input<string>('');
   position = input<IBmbHorizontalPosition>('left');
   case = input<boolean>(false);
@@ -57,11 +55,11 @@ export class BmbButtonDirective implements OnInit, OnChanges {
 
   private applyAttributes() {
     if (this.providedInputs.has('case')) {
-      if (this.case()) {
-        this.renderer.setAttribute(this.el.nativeElement, 'case', 'true');
-      } else {
-        this.renderer.removeAttribute(this.el.nativeElement, 'case');
-      }
+      this.renderer.setAttribute(
+        this.el.nativeElement,
+        'case',
+        String(this.case()),
+      );
     }
 
     if (this.providedInputs.has('size') && this.size()) {
@@ -92,7 +90,7 @@ export class BmbButtonDirective implements OnInit, OnChanges {
 
     if (this.icon()) {
       const iconComponentRef =
-        this.viewContainerRef.createComponent(BmbIconComponent); // Crear una instancia del componente
+        this.viewContainerRef.createComponent(BmbIconComponent);
       const iconComponent = iconComponentRef.instance;
       iconComponent.icon = this.icon();
 
@@ -101,12 +99,13 @@ export class BmbButtonDirective implements OnInit, OnChanges {
           iconComponentRef.location.nativeElement,
           this.el.nativeElement.lastChild.nextSibling,
         );
-      } else {
-        this.el.nativeElement.insertBefore(
-          iconComponentRef.location.nativeElement,
-          this.el.nativeElement.firstChild,
-        );
+        return;
       }
+
+      this.el.nativeElement.insertBefore(
+        iconComponentRef.location.nativeElement,
+        this.el.nativeElement.firstChild,
+      );
     }
   }
 }

@@ -1,19 +1,21 @@
-import { Directive, HostBinding, Input } from '@angular/core';
+import { Directive, HostBinding, input } from '@angular/core';
 import { IButtonAppearance } from '../../types';
+
+export type IBbmButtonGroupType = 'small' | 'large';
 
 @Directive({
   selector: '[bmbButtonGroup]',
   standalone: true,
 })
 export class BmbButtonGroupDirective {
-  @Input() appearance: IButtonAppearance = 'primary';
-  @Input() size: 'small' | 'large' = 'small';
+  appearance = input<IButtonAppearance>('primary');
+  size = input<IBbmButtonGroupType>('small');
 
   @HostBinding('class') get elementClass(): string[] {
     const classList = [
       'bmb_button-group',
-      `bmb_button-group-${this.appearance}`,
-      `bmb_button-group-${this.size}`,
+      `bmb_button-group-${this.appearance()}`,
+      `bmb_button-group-${this.size()}`,
     ];
     return classList;
   }
