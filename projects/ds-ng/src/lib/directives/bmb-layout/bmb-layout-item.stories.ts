@@ -1,6 +1,10 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbLayoutDirective } from './bmb-layout.directive';
-import { BmbLayoutItemDirective } from './bmb-layout-item.directive';
+import {
+  BmbLayoutItemDirective,
+  IColumSizeFull,
+  IColumSizeMobile,
+} from './bmb-layout-item.directive';
 import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import {
@@ -121,8 +125,8 @@ Below is an example of how you can use this component in HTML:
     },
   },
   args: {
-    colSm: 0 as unknown as InputSignal<number>,
-    colLg: 0 as unknown as InputSignal<number>,
+    colSm: 0 as unknown as InputSignal<IColumSizeMobile>,
+    colLg: 0 as unknown as InputSignal<IColumSizeFull>,
     marginLeft: { sm: 0, lg: 0 } as unknown as InputSignal<IMargin>,
     marginRight: { sm: 0, lg: 0 } as unknown as InputSignal<IMargin>,
     isDynamicItem: false as unknown as InputSignal<boolean>,

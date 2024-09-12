@@ -1,5 +1,20 @@
 import { Directive, HostBinding, input } from '@angular/core';
 
+export type IColumSizeMobile = 0 | 1 | 2 | 3 | 4;
+export type IColumSizeFull =
+  | 0
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12;
 export interface IMargin {
   sm: number;
   lg?: number;
@@ -10,8 +25,8 @@ export interface IMargin {
   standalone: true,
 })
 export class BmbLayoutItemDirective {
-  colSm = input<number>(0);
-  colLg = input<number>(0);
+  colSm = input<IColumSizeMobile>(0);
+  colLg = input<IColumSizeFull>(0);
   marginLeft = input<IMargin>({ sm: 0, lg: 0 });
   marginRight = input<IMargin>({ sm: 0, lg: 0 });
   colGrow = input<number>(0);
