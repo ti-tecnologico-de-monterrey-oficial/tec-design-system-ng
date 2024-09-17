@@ -25,6 +25,10 @@
     background-color: RGBA(var(--color-mariner-700));
     border: rem.rem_calc(1) solid RGBA(var(--color-mariner-700));
     color: RGBA(var(--color-charade-50));
+
+    bmb-icon{
+      color: RGBA(var(--color-charade-50));
+    }
   }
 
   &-grouped {
