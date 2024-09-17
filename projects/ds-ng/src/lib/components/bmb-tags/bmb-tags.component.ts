@@ -53,13 +53,6 @@ export class BmbTagComponent implements AfterViewInit {
   getClasses(): string {
     let classes: string = 'bmb_tag bmb_tag-rounded';
 
-    // if (this.rounded && !this.activityTag) {
-    //   classes = classes + ' bmb_tag-rounded';
-    // }
-    // if (this.activityTag) {
-    //   classes = classes + `bmb_tag-rounded bmb_tag-${this.appearance}`;
-    //   this.dissmisable = false;
-    // }
     return classes;
   }
 
