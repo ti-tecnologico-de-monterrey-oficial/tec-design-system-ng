@@ -64,12 +64,9 @@ import {
   IBmbUserInfo,
   BmbWebTemplatesComponent,
   BmbDropdownComponent,
-  IBmbTemplateName,
   BmbGradesComponent,
   BmbExternalLinkComponent,
-} from '../../projects/ds-ng/src/public-api';
-
-import {
+  BmbMobileTemplatesComponent,
   BmbPushNotificationComponent,
   BmbNotificationService,
   BmbHomeCardChatComponent,
@@ -79,6 +76,10 @@ import {
   IBmbEventType,
   IBmbApp,
   BmbAccountStatementComponent,
+  IBmbMobileTemplateName,
+  IBmbButtonAction,
+  BmbStepProgressBarComponent,
+  IBmbMobileTemplateButton,
 } from '../../projects/ds-ng/src/public-api';
 
 export interface Target {
@@ -161,6 +162,8 @@ import { BmbBottomNavigationBarComponent } from '../../projects/ds-ng/src/lib/co
     BmbGradesComponent,
     BmbExternalLinkComponent,
     BmbBottomNavigationBarComponent,
+    BmbMobileTemplatesComponent,
+    BmbStepProgressBarComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -890,9 +893,51 @@ export class AppComponent {
     this.isFullScreen = !this.isFullScreen;
   }
 
-  currentTemplate: IBmbTemplateName = 'aside-first-card';
+  currentTemplate: IBmbMobileTemplateName = 'single-header';
 
-  onTemplateChange(template: IBmbTemplateName) {
+  onTemplateChange(template: IBmbMobileTemplateName) {
     this.currentTemplate = template;
   }
+
+  handleHeaderR(event: unknown) {
+    console.log(event);
+    alert('Right event');
+  }
+
+  handleHeaderL(event: unknown) {
+    console.log(event);
+    alert('Left event');
+  }
+
+  footerActions: IBmbButtonAction[] = [
+    {
+      title: 'Button A',
+      action: () => {
+        alert('Action 1');
+      },
+      icon: 'home',
+    },
+    {
+      title: 'Button B',
+      action: () => {
+        alert('Action 1');
+      },
+      type: 'primary',
+    },
+  ];
+
+  buttonList: IBmbMobileTemplateButton[] = [
+    {
+      title: 'Title 1',
+      target: '_blank',
+      link: 'google.com',
+      subtitle: 'Subtitle',
+      iconLeft: 'home',
+    },
+    {
+      title: 'Title 2',
+      link: 'google.com',
+      iconLeft: 'home',
+    },
+  ];
 }
