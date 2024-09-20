@@ -26,7 +26,6 @@
       top: rem.rem_calc(30);
       min-width: rem.rem_calc(32);
       width: 100%;
-      z-index: -1;
     }
 
     &.active {
@@ -43,7 +42,6 @@
         position: absolute;
         top: rem.rem_calc(30);
         width: 100%;
-        z-index: -1;
       }
 
       .bmb_step-progress-bar-step {

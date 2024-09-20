@@ -34,6 +34,7 @@
 </ng-template>
 
 <button
+  [ngClass]="getClassList()"
   class="bmb_container-button"
   *ngIf="setButtonTemplate()"
   (click)="handleClick($event)"
@@ -42,6 +43,7 @@
 </button>
 
 <a
+  [ngClass]="getClassList()"
   class="bmb_container-button"
   *ngIf="!setButtonTemplate()"
   [href]="link()"
