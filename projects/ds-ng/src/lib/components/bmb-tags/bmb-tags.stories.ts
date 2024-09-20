@@ -52,6 +52,9 @@ Below is an example of how you can use this component in HTML:
         category: 'Properties',
         type: { summary: 'boolean' },
         defaultValue: { summary: false },
+        deprecated: {
+          summary: 'This property is deprecated and will be removed in future versions..',
+        },
       },
     },
     activityTag: {

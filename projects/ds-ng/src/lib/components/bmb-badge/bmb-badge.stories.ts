@@ -79,6 +79,9 @@ Below is an example of how you can use this component in HTML:
         category: 'Properties',
         defaultValue: { summary: 'false' },
         type: { summary: 'boolean' },
+        deprecated: {
+          summary: 'Esta propiedad está obsoleta y será eliminada en futuras versiones.',
+        },
       },
     },
   },
