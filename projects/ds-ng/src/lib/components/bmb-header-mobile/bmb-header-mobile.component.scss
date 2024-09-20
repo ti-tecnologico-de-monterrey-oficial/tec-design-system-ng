@@ -5,6 +5,10 @@
   &_mobile {
     color: RGBA(var(--color-charade-950));
 
+    &-container > .bmb_container {
+      border-radius: 0 0 rem.rem_calc(12) rem.rem_calc(12);
+    }
+
     .bmb_container-primary-header {
       flex-wrap: wrap;
     }
@@ -29,6 +33,10 @@
     &-content {
       width: 100%;
       margin-top: 1rem;
+
+      &:empty {
+        display: none;
+      }
     }
   }
 }

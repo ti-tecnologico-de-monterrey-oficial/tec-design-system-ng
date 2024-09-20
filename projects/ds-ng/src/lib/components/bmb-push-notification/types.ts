@@ -23,11 +23,18 @@ export interface IMinimalNotification {
   id?: string;
 }
 
-export interface INotificationAction {
+export interface IBmbGenericAction {
   title: string;
-  action: 'close' | ((notification: IMinimalNotification) => void);
   type?: IButtonAppearance;
   icon?: string;
+}
+
+export interface INotificationAction extends IBmbGenericAction {
+  action: 'close' | ((notification: IMinimalNotification) => void);
+}
+
+export interface IBmbButtonAction extends IBmbGenericAction {
+  action: () => void;
 }
 
 export type NotificationType =
