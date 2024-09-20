@@ -15,6 +15,7 @@
   &-content {
     background-color: RGBA(var(--color-charade-50));
     border-radius: rem.rem_calc(20);
+    color: RGBA(var(--color-charade-700));
 
     &-wrapper {
       padding: rem.rem_calc(32);
@@ -54,10 +55,12 @@
 
       &-title {
         @include fonts.font(7, semibold);
+        color: RGBA(var(---color-charade-950));
       }
 
       &-subtitle {
         @include fonts.font(3, light);
+        color: RGBA(var(---color-charade-950));
       }
     }
 
@@ -182,6 +185,7 @@
   .bmb_modal {
     &-content {
       background-color: RGBA(var(--color-charade-950));
+      color: RGBA(var(--color-charade-700));
     }
 
     &-header {

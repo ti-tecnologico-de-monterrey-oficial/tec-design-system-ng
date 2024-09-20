@@ -2,28 +2,6 @@
 @use "../../../assets/styles/base/mixins" as mixins;
 @use "../../../assets/styles/base/rem" as rem;
 
-@mixin badge($appearance: normal) {
-  @if $appearance == normal {
-    background-color: RGBA(var(--color-charade-500));
-  } @else if $appearance == strong {
-    background-color: RGBA(var(--color-mariner-700));
-  } @else if $appearance == success {
-    background-color: RGBA(var(--color-green-light));
-    color: RGBA(var(--color-charade-950));
-  } @else if $appearance == info {
-    background-color: RGBA(var(--color-purple-primary));
-  } @else if $appearance == warning {
-    background-color: RGBA(var(--color-yellow-tint));
-    color: RGBA(var(--color-charade-950));
-  } @else if $appearance == error {
-    background-color: RGBA(var(--color-red-light));
-    color: RGBA(var(--color-charade-950));
-  } @else if $appearance == brand {
-    background-color: RGBA(var(--color-neon-primary));
-    color: RGBA(var(--color-charade-950));
-  }
-}
-
 .bmb_badge {
   @include fonts.font(3, regular);
   align-items: center;
@@ -46,31 +24,35 @@
   }
 
   &-normal {
-    @include badge(normal);
+    @include mixins.bgAppearance(normal);
   }
 
   &-strong {
-    @include badge(strong);
+    @include mixins.bgAppearance(strong);
   }
 
   &-success {
-    @include badge(success);
+    @include mixins.bgAppearance(success);
+    color: RGBA(var(--color-charade-950));
   }
 
   &-info {
-    @include badge(info);
+    @include mixins.bgAppearance(info);
   }
 
   &-warning {
-    @include badge(warning);
+    @include mixins.bgAppearance(warning);
+    color: RGBA(var(--color-charade-950));
   }
 
   &-error {
-    @include badge(error);
+    @include mixins.bgAppearance(error);
+    color: RGBA(var(--color-charade-950));
   }
 
   &-brand {
-    @include badge(brand);
+    @include mixins.bgAppearance(brand);
+    color: RGBA(var(--color-charade-950));
   }
 
   &-rounded {

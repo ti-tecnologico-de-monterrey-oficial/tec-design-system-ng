@@ -1,0 +1,36 @@
+<section class="bmb_header-section">
+  <bmb-container>
+    <bmb-interactive-icon
+      *ngIf="leftIcon()"
+      appearance="none"
+      [icon]="leftIcon()"
+      [setButtonTemplate]="true"
+      (buttonClick)="handleClickLeft($event)"
+    />
+    <section class="bmb_header-section-align_title">
+      <bmb-icon
+        [ngClass]="getClasses()"
+        *ngIf="icon()"
+        [icon]="icon()"
+        [size]="16"
+      />
+      <section>
+        <h1 *ngIf="title()" class="bmb_header-section-align_title-title">
+          {{ title() }}
+        </h1>
+        <h2 *ngIf="subtitle()" class="bmb_header-section-align_title-subtitle">
+          {{ subtitle() }}
+        </h2>
+      </section>
+    </section>
+    @for (headerAction of headerActions(); track $index) {
+      <bmb-interactive-icon
+        [ngClass]="isHeader() ? 'bmb_header-section-right_icon' : ''"
+        appearance="none"
+        [icon]="headerAction.icon"
+        [setButtonTemplate]="true"
+        (buttonClick)="handleClickRight(headerAction)"
+      />
+    }
+  </bmb-container>
+</section>

@@ -67,9 +67,7 @@ import {
   IBmbTemplateName,
   BmbGradesComponent,
   BmbExternalLinkComponent,
-} from '../../projects/ds-ng/src/public-api';
-
-import {
+  BmbHeaderSectionComponent,
   BmbPushNotificationComponent,
   BmbNotificationService,
   BmbHomeCardChatComponent,
@@ -79,6 +77,7 @@ import {
   IBmbEventType,
   IBmbApp,
   BmbAccountStatementComponent,
+  IBmbHeaderAction,
 } from '../../projects/ds-ng/src/public-api';
 
 export interface Target {
@@ -161,6 +160,7 @@ import { BmbBottomNavigationBarComponent } from '../../projects/ds-ng/src/lib/co
     BmbGradesComponent,
     BmbExternalLinkComponent,
     BmbBottomNavigationBarComponent,
+    BmbHeaderSectionComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -252,7 +252,7 @@ export class AppComponent {
   };
 
   openModal() {
-    this.matDialog.open(BmbModalComponent, { data: this.data });
+    this.matDialog.open(BmbModalComponent, { data: this.dataModal });
   }
 
   @ViewChild(BmbToastComponent)
@@ -895,4 +895,11 @@ export class AppComponent {
   onTemplateChange(template: IBmbTemplateName) {
     this.currentTemplate = template;
   }
+
+  headerActions: IBmbHeaderAction[] = [
+    {
+      icon: 'north_east',
+      action: () => {},
+    },
+  ];
 }

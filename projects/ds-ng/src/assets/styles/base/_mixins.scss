@@ -299,3 +299,21 @@
   width: fit-content;
   word-wrap: normal;
 }
+
+@mixin bgAppearance($appearance: normal) {
+  @if $appearance == normal {
+    background-color: RGBA(var(--color-charade-500));
+  } @else if $appearance == strong {
+    background-color: RGBA(var(--color-mariner-700));
+  } @else if $appearance == success {
+    background-color: RGBA(var(--color-green-light));
+  } @else if $appearance == info {
+    background-color: RGBA(var(--color-purple-primary));
+  } @else if $appearance == warning {
+    background-color: RGBA(var(--color-yellow-tint));
+  } @else if $appearance == error {
+    background-color: RGBA(var(--color-red-light));
+  } @else if $appearance == brand {
+    background-color: RGBA(var(--color-neon-primary));
+  }
+}
