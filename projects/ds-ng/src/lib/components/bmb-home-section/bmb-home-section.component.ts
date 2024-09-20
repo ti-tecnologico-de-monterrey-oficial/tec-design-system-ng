@@ -1,8 +1,8 @@
 import {
   Component,
-  Input,
   ChangeDetectionStrategy,
   ViewEncapsulation,
+  input,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
@@ -18,10 +18,8 @@ import { BmbContainerComponent } from '../bmb-container/bmb-container.component'
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbHomeSectionComponent {
-  @Input() title: string = '';
-  @Input() icon: string = '';
-  @Input() target: string = '';
-  @Input() link: string = '';
-
-  constructor() {}
+  title = input<string>('');
+  icon = input<string>('');
+  target = input<string>('');
+  link = input<string>('');
 }

@@ -7,6 +7,7 @@
   --color-mariner-200: 195, 226, 250;
   --color-mariner-300: 153, 208, 247;
   --color-mariner-400: 105, 183, 241;
+  // #4599EC (Mariner 500)
   --color-mariner-500: 69, 153, 236;
   --color-mariner-700: 39, 102, 203;
   --color-mariner-800: 38, 84, 167;
@@ -14,18 +15,29 @@
   --color-mariner-950: 26, 46, 81;
 
   // Charade
-  --color-charade-50: 246, 247, 249; // #F6F7F9
-  --color-charade-100: 235, 237, 243; // #EBEDF3
-  --color-charade-200: 211, 215, 228; // #D3D7E4
+  // #F6F7F9 (Charade 50)
+  --color-charade-50: 246, 247, 249;
+  // #EBEDF3
+  --color-charade-100: 235, 237, 243;
+  // #D3D7E4 (Charade 200)
+  --color-charade-200: 211, 215, 228;
+  // #ADB6CC (Charade 300)
   --color-charade-300: 173, 182, 204;
+  //
   --color-charade-500: 97, 113, 150;
+  //
   --color-charade-600: 77, 89, 124;
+  // #3F4965 (Charade 700)
   --color-charade-700: 63, 73, 101;
-  --color-charade-800: 55, 63, 85; // #373F55
-  --color-charade-900: 49, 54, 73; // #313649
-  --color-charade-950: 31, 34, 46; // #1F222E
+  // #373F55 (Charade 800)
+  --color-charade-800: 55, 63, 85;
+  // #313649
+  --color-charade-900: 49, 54, 73;
+  // #1F222E (Charade 950)
+  --color-charade-950: 31, 34, 46;
 
   // Institucional colors
+  // #FFFFFF (White Primary)
   --color-white-primary: 255, 255, 255;
   --color-blue-tec: 0, 57, 166;
 
@@ -36,6 +48,7 @@
   --color-mitec-orange: 255, 153, 1;
 
   // Constrastes principales
+  // #000000 Black Primary
   --color-black-primary: 0, 0, 0;
   --color-black-light: RGBA(var(--color-black-primary), 0.75);
   --color-black-tint: RGBA(var(--color-black-primary), 0.5);

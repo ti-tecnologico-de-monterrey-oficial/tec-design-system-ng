@@ -20,3 +20,12 @@ export type IBmbAdvertisementData = {
   avisos: Array<IBmbAdvertisementCard>;
   informacion: Array<IBmbAdvertisementCard>;
 };
+
+export type IBbmBgAppearance =
+  | 'normal'
+  | 'strong'
+  | 'success'
+  | 'info'
+  | 'warning'
+  | 'error'
+  | 'brand';

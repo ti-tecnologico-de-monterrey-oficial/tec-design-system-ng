@@ -1,5 +1,6 @@
-@if (materialIcon) {
-  <i class="material-icons">{{ icon }}</i>
-} @else {
-  <i class="material-symbols-rounded">{{ icon }}</i>
-}
+<i
+  [ngClass]="materialIcon() ? 'material-icons' : 'material-symbols-rounded'"
+  [ngStyle]="{ 'font-size': !!size() ? size() + 'px' : 'inherit' }"
+>
+  {{ icon() }}
+</i>

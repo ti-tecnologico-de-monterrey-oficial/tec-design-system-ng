@@ -1,11 +1,11 @@
-<div class="bmb_home_section">
+<section class="bmb_home_section">
   <bmb-container appearance="primary-home">
-    <div class="bmb_home_section-header">
-      <span class="bmb_home_section-title">{{ title }}</span>
-      <a class="bmb_home_section-link" [href]="link" [target]="target">
-        <bmb-icon [icon]="icon" class="bmb_home_section-icon" />
+    <section class="bmb_home_section-header">
+      <span class="bmb_home_section-title">{{ title() }}</span>
+      <a class="bmb_home_section-link" [href]="link()" [target]="target()">
+        <bmb-icon [icon]="icon()" class="bmb_home_section-icon" />
       </a>
-    </div>
+    </section>
     <ng-content></ng-content>
   </bmb-container>
-</div>
+</section>

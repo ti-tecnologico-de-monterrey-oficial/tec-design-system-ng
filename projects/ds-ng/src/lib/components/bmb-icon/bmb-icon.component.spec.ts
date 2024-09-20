@@ -15,6 +15,6 @@ describe('BmbIconComponent', () => {
   });
 
   it('should have a default icon value', () => {
-    expect(component.icon).toBe('face');
+    expect(component.icon()).toBe('face');
   });
 });
