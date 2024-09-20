@@ -1,6 +1,6 @@
 <button [class]="getClasses()">
   <span class="bmb_tag-text">{{ text }}</span>
-  @if (this.dissmisable) {
+  @if (this.dismissible) {
     <bmb-icon class="bmb_tag-btn" (click)="closeTag()" [icon]="'close'" />
   }
 </button>
