@@ -1,14 +1,7 @@
 <ng-template #detailContent>
   <section *ngFor="let partial of partials">
-    <section
-      bmbLayout
-      margin="m"
-      justify="spaceBetween"
-      [dynamicCols]="true"
-    >
-      <span class="bmb_grades-title" bmbLayoutItem>{{
-        partial.title
-      }}</span>
+    <section bmbLayout margin="m" justify="spaceBetween" [dynamicCols]="true">
+      <span class="bmb_grades-title" bmbLayoutItem>{{ partial.title }}</span>
       <bmb-grade-value
         [score]="partial.score"
         type="partial-grade"
