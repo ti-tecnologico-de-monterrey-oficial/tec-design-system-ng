@@ -117,9 +117,9 @@ Below is an example of how you can use this component in HTML:
       },
     },
     isRounded: {
-      name: 'Is rounded',
+      name: 'Is rounded (deprecated)',
       control: { type: 'boolean' },
-      description: 'This property change the border radius to 2rem (~32px)',
+      description: 'The border radius button always should be 2rem (~32px)',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'true' },
@@ -136,7 +136,7 @@ Below is an example of how you can use this component in HTML:
     text: 'Button text',
     isToggleActive: false,
     enableButtonToggle: false,
-    isRounded: true,
+    isRounded: false,
   },
 } as Meta<typeof BmbButtonDirective>;
 

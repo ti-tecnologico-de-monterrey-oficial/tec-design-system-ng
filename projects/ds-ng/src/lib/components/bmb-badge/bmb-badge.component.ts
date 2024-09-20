@@ -48,14 +48,10 @@ export class BmbBadgeComponent implements AfterViewInit {
   }
 
   getClasses(): string[] {
-    const classes: string[] = ['bmb_badge'];
+    const classes: string[] = ['bmb_badge', 'bmb_badge-rounded'];
 
     if (this.appearance) {
       classes.push('bmb_badge-' + this.appearance);
-    }
-
-    if (this.rounded) {
-      classes.push('bmb_badge-rounded');
     }
 
     return classes;

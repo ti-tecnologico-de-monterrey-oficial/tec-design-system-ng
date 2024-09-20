@@ -4,4 +4,4 @@ export const isExternalLink = (link: string): boolean => {
     link.startsWith('https://') ||
     link.startsWith('#')
   );
-}
+};

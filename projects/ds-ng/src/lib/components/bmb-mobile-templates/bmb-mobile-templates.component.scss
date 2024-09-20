@@ -1,0 +1,17 @@
+.bmb_mobile-template {
+  height: 100dvh;
+  overflow: hidden;
+  display: flex;
+  flex-flow: column;
+
+  &-main {
+    overflow: auto;
+    flex: 1;
+  }
+
+  &-footer {
+    padding: var(--bmb-spacing-m);
+    display: flex;
+    gap: 0.5rem;
+  }
+}

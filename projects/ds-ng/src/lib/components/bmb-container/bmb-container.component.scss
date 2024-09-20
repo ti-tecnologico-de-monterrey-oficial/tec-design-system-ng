@@ -29,8 +29,8 @@
   // Header
   &-primary-header {
     align-items: flex-end;
-    min-height: rem.rem_calc(70);
-    padding: rem.rem_calc(8 16);
+    padding: rem.rem_calc(10 16);
+    border-width: 0 0 rem.rem_calc(1) 0;
   }
 
   // Modal
