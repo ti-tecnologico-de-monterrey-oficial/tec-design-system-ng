@@ -17,6 +17,12 @@
     border-width: 0;
   }
 
+  &-transparent_bgc {
+    .bmb_container-primary-container {
+      background-color: inherit;
+    }
+  }
+
   &-align_title {
     display: flex;
     flex: 1;
@@ -86,6 +92,12 @@
 [data-theme="dark"],
 .storybook-dark-theme {
   .bmb_header-section {
+    &-transparent_bgc {
+      .bmb_container-primary-container {
+        background-color: inherit;
+      }
+    }
+
     &-align_title {
       &-icon {
         &-none {

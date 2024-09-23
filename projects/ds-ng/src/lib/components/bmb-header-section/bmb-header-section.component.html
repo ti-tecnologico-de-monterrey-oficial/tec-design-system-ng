@@ -1,5 +1,7 @@
 <section class="bmb_header-section">
-  <bmb-container>
+  <bmb-container
+    [ngClass]="transparentBgC() ? 'bmb_header-section-transparent_bgc' : ''"
+  >
     <bmb-interactive-icon
       *ngIf="leftIcon()"
       appearance="none"
@@ -10,6 +12,7 @@
     <section class="bmb_header-section-align_title">
       <bmb-icon
         [ngClass]="getClasses()"
+        [ngStyle]="{ 'background-color': isImage(icon()) ? 'transparent' : '' }"
         *ngIf="icon()"
         [icon]="icon()"
         [size]="16"

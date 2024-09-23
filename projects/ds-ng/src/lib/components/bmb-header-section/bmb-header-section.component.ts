@@ -10,6 +10,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 import { BmbInteractiveIconComponent } from '../bmb-interactive-icon/bmb-interactive-icon.component';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
+import { isImage } from '../../utils/utils';
 
 export interface IBmbHeaderAction {
   icon: string;
@@ -31,13 +32,14 @@ export interface IBmbHeaderAction {
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbHeaderSectionComponent {
-  title = input<string>('');
-  subtitle = input<string>('');
+  title = input<string | undefined>('');
+  subtitle = input<string | undefined>('');
   leftIcon = input<string>('');
   headerActions = input<IBmbHeaderAction[]>([]);
   icon = input<string>('');
   bgIconAppearance = input<IBbmBgAppearance>();
   isHeader = input<boolean>();
+  transparentBgC = input<boolean>();
 
   onClickLeft = output<any>();
 
@@ -52,6 +54,10 @@ export class BmbHeaderSectionComponent {
     }
 
     return classNames;
+  }
+
+  isImage(icon: string): boolean {
+    return isImage(icon);
   }
 
   handleClickLeft(event: any): void {

@@ -3,7 +3,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   Inject,
-  OnInit,
   TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
@@ -16,22 +15,39 @@ import { ModalDataConfig } from './bmb-modal.interface';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbButtonDirective } from '../../directives/button.directive';
 import { ModalService } from '../../services/modal.service';
+import {
+  BmbHeaderSectionComponent,
+  IBmbHeaderAction,
+} from '../bmb-header-section/bmb-header-section.component';
+
+export type IBmbModalSize = 'small' | 'medium' | 'large';
 
 @Component({
   selector: 'bmb-modal',
   standalone: true,
-  imports: [CommonModule, BmbIconComponent, BmbButtonDirective],
+  imports: [
+    CommonModule,
+    BmbIconComponent,
+    BmbButtonDirective,
+    BmbHeaderSectionComponent,
+  ],
   templateUrl: './bmb-modal.component.html',
   providers: [MatDialog, ModalService],
   styleUrl: './bmb-modal.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbModalComponent implements OnInit {
+export class BmbModalComponent {
   svgUrl: string = '../../../assets/svg/';
   btnColor: any = 'bmb_modal-btn-main';
   isTemplate: boolean = false;
   modalTemplate: TemplateRef<any> | null = null;
+  headerActions: IBmbHeaderAction[] = [
+    {
+      icon: 'close',
+      action: () => {},
+    },
+  ];
 
   constructor(
     public dialogRef: MatDialogRef<BmbModalComponent>,
@@ -50,9 +66,18 @@ export class BmbModalComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  getButtonClass(alertStyle: string): string {
+    if (!!alertStyle) {
+      return `bmb_modal-btn-${alertStyle}`;
+    }
+
+    return 'bmb_modal-btn-primary';
+  }
+
   setConfig(data: ModalDataConfig) {
     if (data.type == 'alert') {
-      this.setBtnStyle(data.alertStyle!);
+      this.btnColor = this.getButtonClass(data.alertStyle!);
+      this.setImage(data.alertStyle!);
     }
 
     if (typeof data.content !== 'string') {
@@ -61,36 +86,17 @@ export class BmbModalComponent implements OnInit {
     }
   }
 
-  setBtnStyle(alertStyle: string) {
-    switch (alertStyle) {
-      case 'primary':
-        this.svgUrl = this.svgUrl + 'info_fill_primary.svg';
-        this.btnColor = 'bmb_modal-btn-primary';
-        break;
-      case 'neutral':
-        this.svgUrl = this.svgUrl + 'info_fill.svg';
-        this.btnColor = 'bmb_modal-btn-neutral';
-        break;
-      case 'error':
-        this.svgUrl = this.svgUrl + 'error_fill.svg';
-        this.btnColor = 'bmb_modal-btn-error';
-        break;
-      case 'event':
-        this.svgUrl = this.svgUrl + 'event_fill.svg';
-        this.btnColor = 'bmb_modal-btn-event';
-        break;
-      case 'success':
-        this.svgUrl = this.svgUrl + 'success_fill.svg';
-        this.btnColor = 'bmb_modal-btn-success';
-        break;
-      case 'warning':
-        this.svgUrl = this.svgUrl + 'warning_fill.svg';
-        this.btnColor = 'bmb_modal-btn-warning';
-        break;
-      default:
-        this.svgUrl = this.svgUrl + 'info_fill.svg';
-        this.btnColor = 'bmb_modal-btn-primary';
-        break;
-    }
+  setImage(alertStyle: string) {
+    if ('primary') return `${this.svgUrl}info_fill_${alertStyle}.svg`;
+    if ('neutral') return `${this.svgUrl}info_fill.svg`;
+    if (
+      alertStyle === 'error' ||
+      alertStyle === 'event' ||
+      alertStyle === 'success' ||
+      alertStyle === 'warning'
+    )
+      return `${this.svgUrl}${alertStyle}_fill.svg`;
+
+    return `${this.svgUrl}info_fill.svg`;
   }
 }
