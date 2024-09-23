@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, input, ViewEncapsulation } from '@angular/core';
+import { isImage } from '../../utils/utils';
 
 @Component({
   selector: 'bmb-icon',
@@ -12,4 +13,9 @@ export class BmbIconComponent {
   icon = input<string>('face');
   materialIcon = input<boolean>(true);
   size = input<number>();
+  alt = input<string>('');
+
+  isImage(icon: string): boolean {
+    return isImage(icon);
+  }
 }

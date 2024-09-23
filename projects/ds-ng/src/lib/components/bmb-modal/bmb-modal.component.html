@@ -1,4 +1,4 @@
-<div
+<section
   class="bmb_modal-content"
   [ngClass]="{
     'bmb_modal-size-small': this.modalData.size == 'small',
@@ -6,38 +6,24 @@
     'bmb_modal-size-large': this.modalData.size == 'large',
   }"
 >
-  <div class="bmb_modal-content-wrapper">
-    <header class="bmb_modal-header">
-      @if (modalData.type == "alert") {
-        <div class="bmb_modal-header-icon">
-          <img [src]="this.svgUrl" alt="" />
-        </div>
-      }
-      <div class="bmb_modal-header-text">
-        <h1 class="bmb_modal-header-text-title">{{ modalData.title }}</h1>
-        @if (modalData.subtitle) {
-          <h3 class="bmb_modal-header-text-subtitle">
-            {{ modalData.subtitle }}
-          </h3>
-        }
-      </div>
-      <div class="bmb_modal-header-close">
-        <bmb-icon
-          class="bmb_modal-header-close-icon"
-          [icon]="'close'"
-          (click)="closeModal()"
-          onkeypress=""
-        />
-      </div>
+  <section>
+    <header>
+      <bmb-header-section
+        [title]="modalData.title"
+        [subtitle]="modalData.subtitle"
+        [icon]="this.svgUrl"
+        [headerActions]="headerActions"
+        [transparentBgC]="true"
+      />
     </header>
     <section class="bmb_modal-body">
       @if (!isTemplate) {
-        <div
+        <section
           class="bmb_modal-body-description"
           [ngClass]="{ 'bmb_modal-body-scrollable': modalData.scrollable }"
         >
           <p class="bmb_modal-body-description-text">{{ modalData.content }}</p>
-        </div>
+        </section>
       } @else {
         <ng-container *ngTemplateOutlet="modalTemplate"></ng-container>
       }
@@ -70,5 +56,5 @@
         }
       </footer>
     }
-  </div>
-</div>
+  </section>
+</section>
