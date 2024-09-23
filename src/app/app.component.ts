@@ -64,10 +64,10 @@ import {
   IBmbUserInfo,
   BmbWebTemplatesComponent,
   BmbDropdownComponent,
-  IBmbTemplateName,
   BmbGradesComponent,
   BmbExternalLinkComponent,
   BmbHeaderSectionComponent,
+  BmbMobileTemplatesComponent,
   BmbPushNotificationComponent,
   BmbNotificationService,
   BmbHomeCardChatComponent,
@@ -77,6 +77,10 @@ import {
   IBmbEventType,
   IBmbApp,
   BmbAccountStatementComponent,
+  IBmbButtonAction,
+  IBmbMobileTemplateName,
+  BmbStepProgressBarComponent,
+  IBmbMobileTemplateButton,
   IBmbHeaderAction,
 } from '../../projects/ds-ng/src/public-api';
 
@@ -161,6 +165,8 @@ import { BmbBottomNavigationBarComponent } from '../../projects/ds-ng/src/lib/co
     BmbExternalLinkComponent,
     BmbBottomNavigationBarComponent,
     BmbHeaderSectionComponent,
+    BmbMobileTemplatesComponent,
+    BmbStepProgressBarComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -890,9 +896,9 @@ export class AppComponent {
     this.isFullScreen = !this.isFullScreen;
   }
 
-  currentTemplate: IBmbTemplateName = 'aside-first-card';
+  currentTemplate: IBmbMobileTemplateName = 'single-header';
 
-  onTemplateChange(template: IBmbTemplateName) {
+  onTemplateChange(template: IBmbMobileTemplateName) {
     this.currentTemplate = template;
   }
 
@@ -900,6 +906,48 @@ export class AppComponent {
     {
       icon: 'north_east',
       action: () => {},
+    },
+  ];
+
+  handleHeaderR(event: unknown) {
+    console.log(event);
+    alert('Right event');
+  }
+
+  handleHeaderL(event: unknown) {
+    console.log(event);
+    alert('Left event');
+  }
+
+  footerActions: IBmbButtonAction[] = [
+    {
+      title: 'Button A',
+      action: () => {
+        alert('Action 1');
+      },
+      icon: 'home',
+    },
+    {
+      title: 'Button B',
+      action: () => {
+        alert('Action 1');
+      },
+      type: 'primary',
+    },
+  ];
+
+  buttonList: IBmbMobileTemplateButton[] = [
+    {
+      title: 'Title 1',
+      target: '_blank',
+      link: 'google.com',
+      subtitle: 'Subtitle',
+      iconLeft: 'home',
+    },
+    {
+      title: 'Title 2',
+      link: 'google.com',
+      iconLeft: 'home',
     },
   ];
 }

@@ -25,7 +25,7 @@ export class BmbTagComponent implements AfterViewInit {
   @Input() appearance: IBmbActivityTags = 'info';
   @Input() text: string = '';
   @Input() grouped: boolean = false;
-  @Input() dissmisable: boolean = false;
+  @Input() dismissible: boolean = false;
   @Input() rounded: boolean = false;
   @Input() activityTag: boolean = false;
 
@@ -53,6 +53,13 @@ export class BmbTagComponent implements AfterViewInit {
   getClasses(): string {
     let classes: string = 'bmb_tag bmb_tag-rounded';
 
+    if (this.rounded && !this.activityTag) {
+      classes = classes + ' bmb_tag-rounded';
+    }
+    if (this.activityTag) {
+      classes = classes + `bmb_tag-rounded bmb_tag-${this.appearance}`;
+      this.dismissible = false;
+    }
     return classes;
   }
 
