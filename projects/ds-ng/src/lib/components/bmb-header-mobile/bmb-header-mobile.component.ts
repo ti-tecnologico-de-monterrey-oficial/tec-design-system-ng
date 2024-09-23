@@ -43,9 +43,9 @@ export class BmbHeaderMobileComponent {
   iconRight2 = input<string>('');
 
   // Event handlers
-  onIconLeftClick = output();
-  onIconRightClick = output();
-  onIconRight2Click = output();
+  onIconLeftClick = output<any>();
+  onIconRightClick = output<any>();
+  onIconRight2Click = output<any>();
 
   handleIconLeftClick(event: any): void {
     this.onIconLeftClick.emit(event);

@@ -91,7 +91,7 @@ Below is an example of how you can use this component in HTML:
       },
     },
     onDateChange: {
-      name: 'On date rangle change',
+      name: 'On date change',
       control: {
         type: '',
       },

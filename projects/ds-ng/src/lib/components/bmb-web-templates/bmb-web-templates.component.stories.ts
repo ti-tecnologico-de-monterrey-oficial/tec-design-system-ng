@@ -73,7 +73,7 @@ Below is an example of how you can use this component in HTML:
         'two-aside-card',
       ],
       description:
-        'Set template layut, depending of the template, it required to send the next templates: `#bmbTemplateAside`, `#bmbTemplateSecondAside` and `#bmbTemplateMain`.',
+        'Set template layout, depending of the template, it required to send the next templates: `#bmbTemplateAside`, `#bmbTemplateSecondAside` and `#bmbTemplateMain`.',
       table: {
         category: 'Properties',
         type: { summary: 'IBmbTemplateName' },
