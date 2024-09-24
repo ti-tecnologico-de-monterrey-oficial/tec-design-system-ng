@@ -1,0 +1,52 @@
+@if(isExternalLink(link() || "")){
+    <section [class]="getClass()">
+        <a
+            class="bmb_text-link-text"
+            [class.disabled]="this.disabled()"
+            [href]="this.link()"
+            [target]="this.target()"
+            rel="noopener noreferrer"
+        >
+            @if(this.iconPosition() == 'left' && this.textLinkStyle() == 'icon'){
+                <bmb-icon
+                    [style.padding-right.px]="8" 
+                    [icon]="this.icon()" 
+                />
+            }
+            <span>{{ this.textLink() }}</span>
+            @if(this.iconPosition() == 'right' && this.textLinkStyle() == 'icon'){
+                <bmb-icon 
+                    [style.padding-left.px]="8"
+                    [icon]="this.icon()" 
+                />
+            }
+        </a>
+    </section>
+
+}@else {
+    <section [class]="getClass()">
+        <a
+            class="bmb_text-link-text"
+            [class.disabled]="this.disabled()"
+            [routerLink]="this.link()"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }"
+        >
+            @if(this.iconPosition() == 'left' && this.textLinkStyle() == 'icon'){
+                <bmb-icon
+                    [style.padding-right.px]="8" 
+                    [icon]="this.icon()" 
+                />
+            }
+
+            <span>{{ this.textLink() }}</span>
+
+            @if(this.iconPosition() == 'right' && this.textLinkStyle() == 'icon'){
+                <bmb-icon
+                    [style.padding-left.px]="8" 
+                    [icon]="this.icon()" 
+                />
+            }
+        </a>
+    </section>
+}
