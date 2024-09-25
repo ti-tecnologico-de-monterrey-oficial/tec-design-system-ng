@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BmbTextLinkComponent } from './bmb-text-link.component';
+import { provideRouter } from '@angular/router';
 
 describe('BmbTextLinkComponent', () => {
   let component: BmbTextLinkComponent;
@@ -7,8 +8,9 @@ describe('BmbTextLinkComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BmbTextLinkComponent],
-    }).compileComponents();
+			imports: [BmbTextLinkComponent],
+			providers: [provideRouter([])],
+		}).compileComponents();
 
     fixture = TestBed.createComponent(BmbTextLinkComponent);
     component = fixture.componentInstance;
