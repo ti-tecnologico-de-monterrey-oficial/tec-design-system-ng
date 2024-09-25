@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BmbCalendarHourViewComponent } from './bmb-calendar-hour-view.component';
 
 describe('BmbCalendarHourViewComponent', () => {

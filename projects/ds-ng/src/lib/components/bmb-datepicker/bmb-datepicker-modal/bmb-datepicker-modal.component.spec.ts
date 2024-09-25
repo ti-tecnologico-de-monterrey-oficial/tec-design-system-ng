@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BmbDatepickerModalComponent } from './bmb-datepicker-modal.component';
 
 describe('BmbDatepickerModalComponent', () => {

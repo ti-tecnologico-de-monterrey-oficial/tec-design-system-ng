@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BmbTablesComponent } from './bmb-tables.component';
 
 describe('BmbTablesComponent', () => {

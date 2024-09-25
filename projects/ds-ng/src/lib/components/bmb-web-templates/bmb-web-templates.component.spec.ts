@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BmbWebTemplatesComponent } from './bmb-web-templates.component';
 
 describe('BmbWebTemplatesComponent', () => {
