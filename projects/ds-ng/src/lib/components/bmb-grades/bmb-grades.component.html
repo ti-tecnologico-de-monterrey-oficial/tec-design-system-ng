@@ -1,14 +1,11 @@
 <ng-template #detailContent>
   <section *ngFor="let partial of partials">
-    <section bmbLayout margin="none" justify="spaceAround">
-      <span class="bmb_grades-title" bmbLayoutItem [colSm]="8">{{
-        partial.title
-      }}</span>
+    <section bmbLayout margin="m" justify="spaceBetween" [dynamicCols]="true">
+      <span class="bmb_grades-title" bmbLayoutItem>{{ partial.title }}</span>
       <bmb-grade-value
         [score]="partial.score"
         type="partial-grade"
         bmbLayoutItem
-        [colSm]="4"
       />
     </section>
     <bmb-divider [type]="'simple'" />
@@ -31,21 +28,26 @@
       (onTrailingClick)="handleRightPeriodClick()"
     ></bmb-chevron-title-selector>
     <bmb-container [isHidden]="!showPrincipalDetail">
-      <section bmbLayout margin="none" justify="spaceAround">
-        <section bmbLayoutItem [colSm]="4">
+      <section
+        bmbLayout
+        margin="none"
+        justify="spaceBetween"
+        [dynamicCols]="true"
+      >
+        <section bmbLayoutItem>
           <bmb-focus-element
             [number]="getAccreditedClasses()"
             title="Materias Acreditadas"
             [isNormal]="true"
           />
         </section>
-        <section bmbLayoutItem [colSm]="4">
+        <section bmbLayoutItem>
           <bmb-focus-element
             [number]="getPeriodAverage()"
             title="Promedio Semestre"
           />
         </section>
-        <section bmbLayoutItem [colSm]="4">
+        <section bmbLayoutItem>
           <bmb-focus-element
             [number]="getServiceHours()"
             title="Horas Servicio"

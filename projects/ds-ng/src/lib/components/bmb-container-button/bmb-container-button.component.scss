@@ -19,6 +19,19 @@
     border-color: RGBA(var(--color-charade-50));
   }
 
+  &-square {
+    width: auto;
+
+    .bmb_layout {
+      flex-direction: column;
+      gap: 0.5rem;
+
+      .bmb_container-button-left {
+        margin: 0;
+      }
+    }
+  }
+
   &-text {
     display: flex;
     flex-flow: column;
@@ -41,13 +54,13 @@
   }
 
   &-left {
-    color: RGBA(var(--color-charade-50));
+    color: RGBA(var(--color-charade-500));
     @include fonts.font(11, regular);
     margin-right: rem.rem_calc(16);
   }
 
   &-right {
-    color: RGBA(var(--color-charade-50));
+    color: RGBA(var(--color-charade-500));
     @include fonts.font(11, regular);
     margin-left: auto;
   }
@@ -60,6 +73,11 @@
 
     &-subtitle {
       color: RGBA(var(--color-charade-200));
+    }
+
+    &-left,
+    &-right {
+      color: RGBA(var(--color-charade-50));
     }
   }
 }
