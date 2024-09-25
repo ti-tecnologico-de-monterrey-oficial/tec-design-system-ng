@@ -82,6 +82,7 @@ export * from './lib/components/bmb-external-link/bmb-external-link.component';
 export * from './lib/components/bmb-bottom-navigation-bar/bmb-bottom-navigation-bar.component';
 export * from './lib/components/bmb-header-section/bmb-header-section.component';
 export * from './lib/components/bmb-mobile-templates/bmb-mobile-templates.component';
+export * from './lib/components/bmb-text-link/bmb-text-link.component';
 
 // types
 export * from './lib/types';

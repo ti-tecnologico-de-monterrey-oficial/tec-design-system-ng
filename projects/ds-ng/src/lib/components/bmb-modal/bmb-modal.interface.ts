@@ -20,4 +20,6 @@ export interface ModalDataConfig {
   secondaryBtnLabel?: string;
   scrollable?: boolean;
   hidePrimaryButton?: boolean;
+  primaryAction?: () => void;
+  secondaryAction?: () => void;
 }
