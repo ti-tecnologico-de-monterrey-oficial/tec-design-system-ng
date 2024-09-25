@@ -3,7 +3,8 @@
 @use "../../../assets/styles/base/rem" as rem;
 
 .bmb_text-link{
-    display: inline-flex;
+    display: flex;
+    flex-direction: row;
     align-items: baseline;
 
     &-text{
