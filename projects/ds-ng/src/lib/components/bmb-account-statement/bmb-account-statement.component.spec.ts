@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BmbAccountStatementComponent } from './bmb-account-statement.component';
 
 describe('BmbAccountStatementComponent', () => {

@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BmbBottomNavigationBarComponent } from './bmb-bottom-navigation-bar.component';
 
 describe('BmbBottomNavigationBarComponent', () => {

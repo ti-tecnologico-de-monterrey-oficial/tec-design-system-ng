@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BmbStatCounterComponent } from './bmb-stat-counter.component';
 
 describe('BmbStatCounterComponent', () => {

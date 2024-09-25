@@ -1,10 +1,10 @@
 <ng-template #commonContent>
-  @if (this.iconPosition() == "left" && this.textLinkStyle() == "icon") {
-    <bmb-icon [style.padding-right.px]="8" [icon]="this.icon()" />
+  @if (iconPosition() == "left" && textLinkStyle() == "icon") {
+    <bmb-icon [style.padding-right.px]="8" [icon]="icon()" />
   }
-  <span>{{ this.textLink() }}</span>
-  @if (this.iconPosition() == "right" && this.textLinkStyle() == "icon") {
-    <bmb-icon [style.padding-left.px]="8" [icon]="this.icon()" />
+  <span>{{ textLink() }}</span>
+  @if (iconPosition() == "right" && textLinkStyle() == "icon") {
+    <bmb-icon [style.padding-left.px]="8" [icon]="icon()" />
   }
 </ng-template>
 
@@ -12,9 +12,9 @@
   @if (isExternalLink(link() || "")) {
     <a
       class="bmb_text-link-text"
-      [class.disabled]="this.disabled()"
-      [href]="this.link()"
-      [target]="this.target()"
+      [class.disabled]="disabled()"
+      [href]="link()"
+      [target]="target()"
       rel="noopener noreferrer"
     >
       <ng-container *ngTemplateOutlet="commonContent" />
@@ -22,8 +22,8 @@
   } @else {
     <a
       class="bmb_text-link-text"
-      [class.disabled]="this.disabled()"
-      [routerLink]="this.link()"
+      [class.disabled]="disabled()"
+      [routerLink]="link()"
       routerLinkActive="active-link"
       [routerLinkActiveOptions]="{ exact: true }"
     >

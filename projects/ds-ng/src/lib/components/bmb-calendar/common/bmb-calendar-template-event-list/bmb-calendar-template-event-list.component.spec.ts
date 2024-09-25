@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BmbCalendarTemplateEventListComponent } from './bmb-calendar-template-event-list.component';
 
 describe('BmbCalendarTemplateEventListComponent', () => {

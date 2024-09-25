@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BmbChatBarComponent } from './bmb-chat-bar.component';
 
 describe('BmbChatBarComponent', () => {
