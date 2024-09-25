@@ -6,7 +6,7 @@ describe('BmbTextLinkComponent', () => {
   let component: BmbTextLinkComponent;
   let fixture: ComponentFixture<BmbTextLinkComponent>;
 
-  beforeEach(() => {    
+  beforeEach(() => {
     fixture = TestBed.createComponent(BmbTextLinkComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

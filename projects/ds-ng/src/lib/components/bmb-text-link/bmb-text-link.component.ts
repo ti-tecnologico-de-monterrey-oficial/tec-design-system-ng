@@ -1,5 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  ViewEncapsulation,
+} from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { isExternalLink } from '../../utils/utils';
@@ -19,13 +24,12 @@ export type IBmbTextLinkStyle = 'icon' | 'underlined';
 })
 export class BmbTextLinkComponent {
   textLink = input<string>('');
-  textLinkStyle = input<IBmbTextLinkStyle>('icon')
+  textLinkStyle = input<IBmbTextLinkStyle>('icon');
   target = input<IBmbTargetLink>('_blank');
-  icon = input<string>('arrow_forward')
-  iconPosition = input<IBmbIconPosition>('right')
-  link = input<string>('')
-  disabled = input<boolean>(false)
-
+  icon = input<string>('arrow_forward');
+  iconPosition = input<IBmbIconPosition>('right');
+  link = input<string>('');
+  disabled = input<boolean>(false);
 
   isExternalLink(link: string): boolean {
     if (link) {
@@ -34,10 +38,10 @@ export class BmbTextLinkComponent {
     return false;
   }
 
-  getClass(){
-    if(this.textLinkStyle() == 'underlined'){
-      return 'bmb_text-link-underlined'
+  getClass() {
+    if (this.textLinkStyle() == 'underlined') {
+      return 'bmb_text-link-underlined';
     }
-    return 'bmb_text-link'
+    return 'bmb_text-link';
   }
 }
