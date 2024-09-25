@@ -1,0 +1,57 @@
+<div class="bmb_filter_card">
+  <ng-template #modalTemplate>
+    <div class="bmb_filter_card-modal">
+      <form [formGroup]="filterForm">
+        <bmb-input
+          [placeholder]="placeholderSearch()"
+          [icon]="'search'"
+          [appearance]="'normal'"
+          [control]="getFormControl('search')"
+        />
+
+        @for (controlType of controlTypes(); track $index) {
+          <div class="bmb_filter_card-title">{{ controlType.title }}</div>
+          <div class="bmb_filter_card-control">
+            @for (control of controlType.control; track $index) {
+              @switch (control.type) {
+                @case ("radial") {
+                  <bmb-radial
+                    [name]="control.name"
+                    [checked]="
+                      filterForm.get(control.name)?.value === control.label
+                    "
+                    [label]="control.label"
+                    (change)="onControlChange(control, $event)"
+                  />
+                }
+                @case ("checkbox") {
+                  <bmb-checkbox
+                    [name]="control.name"
+                    [checked]="filterForm.get(control.name)?.value"
+                    [label]="control.label"
+                    (change)="onControlChange(control, $event)"
+                  />
+                }
+                @case ("switch") {
+                  <bmb-switch
+                    [rightText]="control.rightText ?? ''"
+                    [isChecked]="filterForm.get(control.name)?.value === true"
+                    (change)="onControlChange(control, $event)"
+                  />
+                }
+              }
+            }
+          </div>
+        }
+      </form>
+    </div>
+  </ng-template>
+
+  <button
+    type="button"
+    class="bmb_filter_card-button"
+    (click)="openModalComponent()"
+  >
+    <bmb-icon [icon]="icon()" />
+  </button>
+</div>

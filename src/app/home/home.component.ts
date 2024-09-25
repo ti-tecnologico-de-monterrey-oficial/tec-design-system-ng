@@ -18,6 +18,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { BmbSkeletonComponent } from '../../../projects/ds-ng/src/lib/components/bmb-skeleton/bmb-skeleton.component';
 import { BmbPullWedgeComponent } from '../../../projects/ds-ng/src/lib/components/bmb-pull-wedge/bmb-pull-wedge.component';
+import { BmbBreadcrumbComponent } from '../../../projects/ds-ng/src/lib/components/bmb-breadcrumb/bmb-breadcrumb.component';
 
 @Component({
   selector: 'bmb-home',
@@ -33,6 +34,7 @@ import { BmbPullWedgeComponent } from '../../../projects/ds-ng/src/lib/component
     BmbInnerHeaderComponent,
     BmbSkeletonComponent,
     BmbPullWedgeComponent,
+    BmbBreadcrumbComponent,
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
