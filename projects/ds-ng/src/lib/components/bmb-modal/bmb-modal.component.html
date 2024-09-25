@@ -53,7 +53,7 @@
             bmbButton
             appearance="secondary-filled"
             class="bmb_modal-btn bmb_modal-footer-btn bmb_modal-btn-secondary-action"
-            (click)="this.dialogRef.close(false)"
+            (click)="secondaryActionFunction()"
           >
             {{ modalData.secondaryBtnLabel }}
           </button>
@@ -63,7 +63,7 @@
             bmbButton
             class="bmb_modal-btn"
             [ngClass]="btnColor"
-            (click)="this.dialogRef.close(true)"
+            (click)="actionFunction()"
           >
             {{ modalData.primaryBtnLabel || "OK" }}
           </button>
