@@ -32,8 +32,7 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'text',
       },
-      description:
-        'Set the text that the componente will show .',
+      description: 'Set the text that the componente will show .',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -45,7 +44,7 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'radio',
       },
-      options:['icon', 'underlined'],
+      options: ['icon', 'underlined'],
       description:
         'The text link has two styles, with icon or an underlined link, it can be changed with this property',
       table: {
@@ -55,51 +54,51 @@ Below is an example of how you can use this component in HTML:
       },
     },
     target: {
-        name: 'Target',
-        control: {
-          type: 'radio',
-        },
-        options: ['_blank', '_parent', '_self', '_top'],
-        description: 'Set the percentage to show in the progress bar',
-        table: {
-          category: 'Properties',
-          type: { summary: 'number' },
-          target: { summary: '_blank' },
-        },
+      name: 'Target',
+      control: {
+        type: 'radio',
+      },
+      options: ['_blank', '_parent', '_self', '_top'],
+      description: 'Set the percentage to show in the progress bar',
+      table: {
+        category: 'Properties',
+        type: { summary: 'number' },
+        target: { summary: '_blank' },
+      },
     },
     icon: {
-        name: 'Icon',
-        control: { type: 'text' },
-        description:
-          'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons. The color of the icon depend on the parent.',
-        table: {
-          category: 'Properties',
-          type: { summary: 'string' },
-        },
+      name: 'Icon',
+      control: { type: 'text' },
+      description:
+        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons. The color of the icon depend on the parent.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
     },
     iconPosition: {
-        name: 'Icon position',
-        control: {
-          type: 'radio',
-        },
-        options: ['left', 'right'],
-        description: 'Set the position of the icon in the link.',
-        table: {
-          category: 'Properties',
-          type: { summary: 'string' },
-          target: { summary: 'right' },
-        },
+      name: 'Icon position',
+      control: {
+        type: 'radio',
+      },
+      options: ['left', 'right'],
+      description: 'Set the position of the icon in the link.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        target: { summary: 'right' },
+      },
     },
     link: {
-        name: 'Link',
-        control: {
-          type: 'text',
-        },
-        description: 'The link for redirection to another page.',
-        table: {
-          category: 'Events',
-          type: { summary: 'string' },
-        },
+      name: 'Link',
+      control: {
+        type: 'text',
+      },
+      description: 'The link for redirection to another page.',
+      table: {
+        category: 'Events',
+        type: { summary: 'string' },
+      },
     },
     disabled: {
       name: 'Disable',
@@ -116,11 +115,10 @@ Below is an example of how you can use this component in HTML:
   args: {
     textLink: 'Texto de prueba',
     textLinkStyle: 'icon',
-    target:'_blank',
+    target: '_blank',
     icon: 'arrow_forward',
     link: 'https://www.youtube.com',
     disabled: false,
-
   },
 } as Meta<typeof BmbTextLinkComponent>;
 
