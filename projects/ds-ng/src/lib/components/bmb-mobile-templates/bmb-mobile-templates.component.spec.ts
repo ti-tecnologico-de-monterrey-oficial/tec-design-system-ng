@@ -39,6 +39,7 @@ describe('BmbMobileTemplatesComponent', () => {
   it('should set header inputs correctly', () => {
     componentRef.setInput('template', 'header-with-footer');
     componentRef.setInput('title', 'Header Title');
+    componentRef.setInput('buttonList', { subtitle: 'External Link Subtitle' });
     componentRef.setInput('headerIconLeft', 'icon-left');
     componentRef.setInput('headerIconRight', 'icon-right');
     fixture.detectChanges();
@@ -55,7 +56,7 @@ describe('BmbMobileTemplatesComponent', () => {
   // Test external link inputs
   it('should set external link inputs correctly', () => {
     componentRef.setInput('template', 'external-link');
-    componentRef.setInput('subtitle', 'External Link Subtitle');
+    componentRef.setInput('buttonList', { subtitle: 'External Link Subtitle' });
     fixture.detectChanges();
     expect(
       fixture.debugElement.query(By.css('.bmb_external-link')),

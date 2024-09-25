@@ -1,60 +1,49 @@
-<section
-  class="bmb_modal-content"
-  [ngClass]="{
-    'bmb_modal-size-small': this.modalData.size == 'small',
-    'bmb_modal-size-medium': this.modalData.size == 'medium',
-    'bmb_modal-size-large': this.modalData.size == 'large',
-  }"
->
-  <section>
-    <header>
-      <bmb-header-section
-        [title]="modalData.title"
-        [subtitle]="modalData.subtitle"
-        [icon]="this.svgUrl"
-        [headerActions]="headerActions"
-        [transparentBgC]="true"
-      />
-    </header>
-    <section class="bmb_modal-body">
-      @if (!isTemplate) {
-        <section
-          class="bmb_modal-body-description"
-          [ngClass]="{ 'bmb_modal-body-scrollable': modalData.scrollable }"
-        >
-          <p class="bmb_modal-body-description-text">{{ modalData.content }}</p>
-        </section>
-      } @else {
-        <ng-container *ngTemplateOutlet="modalTemplate"></ng-container>
+<section [class]="getModalClasses()">
+  <bmb-container>
+    <section>
+      <header>
+        <bmb-header-section
+          [title]="getTitle()"
+          [subtitle]="getSubtitle()"
+          [icon]="getImage()"
+          [headerActions]="getHeaderActions()"
+          [transparentBgC]="true"
+        />
+      </header>
+      <section class="bmb_modal-content">
+        @if (isModalTemplate()) {
+          <ng-container *ngTemplateOutlet="getContent()" />
+        } @else {
+          <section [class]="getDescriptionClasses()">
+            <p>
+              {{ getContent() }}
+            </p>
+          </section>
+        }
+      </section>
+      @if (showFooter()) {
+        <footer id="modal-footer" class="bmb_modal-footer">
+          @if (showSecondaryButton()) {
+            <button
+              bmbButton
+              appearance="secondary-filled"
+              [class]="getButtonClass(true)"
+              (click)="closeModal(false)"
+            >
+              {{ getSecondaryBtnLabel() }}
+            </button>
+          }
+          @if (showPrimaryButton()) {
+            <button
+              bmbButton
+              [class]="getButtonClass(false)"
+              (click)="closeModal(true)"
+            >
+              {{ getPrimaryBtnLabel() }}
+            </button>
+          }
+        </footer>
       }
     </section>
-    @if (
-      this.modalData.type !== "informative" ||
-      !this.modalData.secondaryBtnLabel ||
-      !this.modalData.hidePrimaryButton
-    ) {
-      <footer id="modal-footer" class="bmb_modal-footer">
-        @if (this.modalData.secondaryBtnLabel) {
-          <button
-            bmbButton
-            appearance="secondary-filled"
-            class="bmb_modal-btn bmb_modal-footer-btn bmb_modal-btn-secondary-action"
-            (click)="this.dialogRef.close(false)"
-          >
-            {{ modalData.secondaryBtnLabel }}
-          </button>
-        }
-        @if (!this.modalData.hidePrimaryButton) {
-          <button
-            bmbButton
-            class="bmb_modal-btn"
-            [ngClass]="btnColor"
-            (click)="this.dialogRef.close(true)"
-          >
-            {{ modalData.primaryBtnLabel || "OK" }}
-          </button>
-        }
-      </footer>
-    }
-  </section>
+  </bmb-container>
 </section>

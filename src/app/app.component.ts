@@ -218,6 +218,8 @@ export class AppComponent {
     alertStyle: 'error',
     primaryBtnLabel: 'Action',
     secondaryBtnLabel: 'Cancel',
+    hidePrimaryButton: false,
+    scrollable: false,
   };
 
   isCalendarLoading = false;
