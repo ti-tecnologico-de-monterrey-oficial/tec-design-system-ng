@@ -8,9 +8,9 @@ describe('BmbTextLinkComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-			imports: [BmbTextLinkComponent],
-			providers: [provideRouter([])],
-		}).compileComponents();
+      imports: [BmbTextLinkComponent],
+      providers: [provideRouter([])],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(BmbTextLinkComponent);
     component = fixture.componentInstance;
