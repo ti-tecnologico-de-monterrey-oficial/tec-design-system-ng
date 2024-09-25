@@ -9,7 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 @Component({
   standalone: true,
   imports: [BmbButtonDirective],
-  selector: 'storybook-toast-wrapper',
+  selector: 'storybook-modal-wrapper',
   template: `
     <button
       bmbButton
@@ -24,33 +24,48 @@ import { MatDialog } from '@angular/material/dialog';
     </button>
   `,
 })
-class StorybookToastWrapperComponent {
+class StorybookModalWrapperComponent {
   @Input() title: string = 'Titulo Modal';
   @Input() subtitle: string = 'Subtitulo Opcional';
   @Input() content?: string =
     'Lorem ipsum dolor sit amet consectetur adipisicing elit.';
-  @Input() size?: 'small' | 'meidum' | 'large';
+  @Input() size?: 'small' | 'medium' | 'large';
   @Input() type?: 'alert' | 'action' | 'informative';
   @Input() alertStyle?: 'error' | 'event' | 'neutral' | 'warning' | 'success';
   @Input() primaryBtnLabel?: string = 'OK';
   @Input() secondaryBtnLabel?: string = 'Cancel';
+
   constructor(private matDialog: MatDialog) {}
 
-  data: ModalDataConfig = {
-    title: 'Modal Title',
-    subtitle: 'Modal Subtitle',
-    content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-    size: 'large',
-    type: 'action',
-    alertStyle: 'error',
-    primaryBtnLabel: 'Ok',
-    scrollable: false,
-  };
-
   openModalComponent() {
+    const updatedData: ModalDataConfig = {
+      title: this.title,
+      subtitle: this.subtitle,
+      content: this.content,
+      size: this.size || 'large',
+      type: this.type || 'action',
+      alertStyle: this.alertStyle || 'error',
+      primaryBtnLabel: this.primaryBtnLabel || 'OK',
+      secondaryBtnLabel: this.secondaryBtnLabel || 'Cancel',
+      scrollable: false,
+      primaryAction: this.primaryActionFunction.bind(this),
+      secondaryAction: this.secondaryActionFunction.bind(this),
+    };
     this.matDialog.open(BmbModalComponent, {
-      data: this.data,
+      data: updatedData,
     });
+  }
+
+  primaryActionFunction() {
+    console.log('Primary action triggered');
+    alert('Primary action executed!');
+    this.matDialog.closeAll();
+  }
+
+  secondaryActionFunction() {
+    console.log('Secondary action triggered');
+    alert('Secondary action executed!');
+    this.matDialog.closeAll();
   }
 }
 
@@ -60,12 +75,12 @@ export default {
   decorators: [
     moduleMetadata({
       imports: [
-        StorybookToastWrapperComponent,
+        StorybookModalWrapperComponent,
         BmbModalComponent,
         BmbIconComponent,
         BmbButtonDirective,
       ],
-      providers: [],
+      providers: [MatDialog],
     }),
   ],
   parameters: {
@@ -117,7 +132,6 @@ Below is an example of how you can use this component in HTML:
         'Specifies the text display. This message should be concise and direct.',
       table: {
         category: 'Properties',
-        type: { summary: 'string' },
       },
     },
     subtitle: {
@@ -129,7 +143,6 @@ Below is an example of how you can use this component in HTML:
         'Specifies the subtitle text display. This message should be concise and direct.',
       table: {
         category: 'Properties',
-        type: { summary: 'string' },
       },
     },
     content: {
@@ -141,7 +154,6 @@ Below is an example of how you can use this component in HTML:
         'Specifies the body text display. This attribute can receive a Template Reference instead of the string.',
       table: {
         category: 'Properties',
-        type: { summary: ['string', 'Template Reference'] },
       },
     },
     size: {
@@ -150,13 +162,10 @@ Below is an example of how you can use this component in HTML:
         type: 'select',
       },
       options: ['small', 'medium', 'large'],
+      description: 'Specifies the size of the modal.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'small' },
-        type: { summary: 'string' },
       },
-      description:
-        'Specifies the size of the modal. This string should be: small, medium or large.',
     },
     type: {
       name: 'Type',
@@ -164,13 +173,10 @@ Below is an example of how you can use this component in HTML:
         type: 'select',
       },
       options: ['alert', 'informative', 'action'],
+      description: 'Specifies the type of the modal.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'action' },
-        type: { summary: 'string' },
       },
-      description:
-        'Specifies the type of the modal. This string should be: alert, informative or action.',
     },
     alertStyle: {
       name: 'Alert Style',
@@ -186,34 +192,53 @@ Below is an example of how you can use this component in HTML:
         'error',
         'neutral',
       ],
+      description: 'Specifies the style of the alert.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'primary' },
-        type: { summary: 'string' },
       },
-      description:
-        'Specifies the size of the modal. This string should be: error, warning, event, neutral, success, primary',
     },
     primaryBtnLabel: {
       name: 'Primary Button Label',
       control: {
-        type: 'string',
+        type: 'text',
       },
-      description: 'Specifies the text of the main button.',
+      description: 'Specifies the text of the primary button.',
       table: {
         category: 'Properties',
-        type: { summary: 'string' },
       },
     },
     secondaryBtnLabel: {
       name: 'Secondary Button Label',
       control: {
-        type: 'string',
+        type: 'text',
       },
       description: 'Specifies the text of the secondary button.',
       table: {
         category: 'Properties',
-        type: { summary: 'string' },
+      },
+    },
+    primaryAction: {
+      name: 'Primary Action',
+      control: {
+        type: null,
+      },
+      description:
+        'Specifies the action to execute when the primary button is clicked.',
+      table: {
+        category: 'Events',
+        type: { summary: 'function' },
+      },
+    },
+    secondaryAction: {
+      name: 'Secondary Action',
+      control: {
+        type: null,
+      },
+      description:
+        'Specifies the action to execute when the secondary button is clicked.',
+      table: {
+        category: 'Events',
+        type: { summary: 'function' },
       },
     },
   },
@@ -226,32 +251,27 @@ Below is an example of how you can use this component in HTML:
     alertStyle: 'error',
     primaryBtnLabel: 'Action',
     secondaryBtnLabel: 'Cancel',
+    primaryAction: () => alert('Primary action triggered!'),
+    secondaryAction: () => alert('Secondary action triggered!'),
   },
 } as Meta<typeof BmbModalComponent>;
 
 function attributes(object: { [key: string]: any }): string {
   return Object.entries(object)
-    .filter(([key]) => key !== 'text')
     .map(([key, value]) => {
-      if (key === 'duration') {
-        return `[${key}]="${value}"`;
-      }
       return `${key}="${value}"`;
     })
     .join(' ');
 }
 
-export const Default: StoryFn<typeof StorybookToastWrapperComponent> = (
+export const Default: StoryFn<typeof StorybookModalWrapperComponent> = (
   args,
 ) => {
   return {
     props: args,
     template: `
-      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->
-      <storybook-toast-wrapper ${attributes(args)}></storybook-toast-wrapper>
-      <!-- Start copying from here -->
-      <div class="actions">
-      <button bmbButton appearance="primary" icon="home" size="small" position="left" [case]="false" (click)="onButtonClick()">Open Modal</button>
-      `,
+      <!-- Instruction to users: Please replace <storybook-modal-wrapper> with <bmb-modal> when using the component in your project -->
+      <storybook-modal-wrapper ${attributes(args)}></storybook-modal-wrapper>
+    `,
   };
 };

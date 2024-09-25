@@ -1,0 +1,40 @@
+@use "../../../assets/styles/base/rem" as rem;
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/mixins" as mixins;
+
+.bmb_filter_card {
+  &-button {
+    height: rem.rem_calc(28);
+    width: rem.rem_calc(28);
+    font-size: rem.rem_calc(28);
+    color: RGBA(var(--color-charade-950));
+  }
+
+  &-title {
+    @include fonts.font(4, medium);
+    margin: rem.rem_calc(24 0 16);
+    color: RGBA(var(--color-charade-700));
+  }
+
+  &-control {
+    border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-500));
+    padding-bottom: rem.rem_calc(10);
+
+    @include mixins.media-query(768, "min") {
+      display: flex;
+    }
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_filter_card {
+    &-button {
+      color: RGBA(var(--color-charade-50));
+    }
+
+    &-title {
+      color: RGBA(var(--color-charade-200));
+    }
+  }
+}
