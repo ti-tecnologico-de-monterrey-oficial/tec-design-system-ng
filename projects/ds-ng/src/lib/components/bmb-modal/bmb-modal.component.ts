@@ -41,7 +41,7 @@ export class BmbModalComponent {
   headerActions: IBmbHeaderAction[] = [
     {
       icon: 'close',
-      action: () => this.closeModal(true),
+      action: () => this.closeModal('close', true),
     },
   ];
 
@@ -57,7 +57,19 @@ export class BmbModalComponent {
     }
   }
 
-  closeModal(event: boolean) {
+  closeModal(buttonName: string, event: boolean) {
+    const data = this.getData();
+
+    if (buttonName === 'primary' && data.primaryAction) {
+      data.primaryAction();
+      return;
+    }
+
+    if (buttonName === 'secondary' && data.secondaryAction) {
+      data.secondaryAction();
+      return;
+    }
+
     this.dialogRef.close(event);
   }
 

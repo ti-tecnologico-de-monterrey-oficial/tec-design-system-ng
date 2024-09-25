@@ -28,7 +28,7 @@
               bmbButton
               appearance="secondary-filled"
               [class]="getButtonClass(true)"
-              (click)="closeModal(false)"
+              (click)="closeModal('secondary', false)"
             >
               {{ getSecondaryBtnLabel() }}
             </button>
@@ -37,7 +37,7 @@
             <button
               bmbButton
               [class]="getButtonClass(false)"
-              (click)="closeModal(true)"
+              (click)="closeModal('primary', true)"
             >
               {{ getPrimaryBtnLabel() }}
             </button>
