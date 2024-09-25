@@ -1,5 +1,9 @@
 import { Meta, StoryObj } from '@storybook/angular';
-import { BmbLayoutDirective } from './bmb-layout.directive';
+import {
+  BmbLayoutDirective,
+  IAlignItemsOptions,
+  IJustifyOptions,
+} from './bmb-layout.directive';
 import { BmbLayoutItemDirective } from './bmb-layout-item.directive';
 import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
@@ -7,6 +11,8 @@ import {
   BmbCardComponent,
   BmbCardContentComponent,
 } from '../../components/bmb-card/bmb-card.component';
+import { InputSignal } from '@angular/core';
+import { SizeNames } from '../../types';
 
 const meta: Meta<BmbLayoutDirective> = {
   title: 'Micro Componentes/Layout',
@@ -119,11 +125,11 @@ Below is an example of how you can use this component in HTML:
     },
   },
   args: {
-    gapSize: 'm',
-    margin: 'm',
-    dynamicCols: false,
-    justify: 'start',
-    alignItems: 'start',
+    gapSize: 'm' as unknown as InputSignal<SizeNames>,
+    margin: 'm' as unknown as InputSignal<SizeNames>,
+    dynamicCols: false as unknown as InputSignal<boolean>,
+    justify: 'start' as unknown as InputSignal<IJustifyOptions>,
+    alignItems: 'start' as unknown as InputSignal<IAlignItemsOptions>,
   },
 };
 

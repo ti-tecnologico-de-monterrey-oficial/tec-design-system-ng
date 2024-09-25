@@ -1,22 +1,24 @@
 <div class="bmb_tabs">
-  <div class="bmb_tabs-tab" #tabsItems>
-    <button
-      role="tab"
-      [attr.aria-selected]="tab.isActive ? 'true' : 'false'"
-      [attr.tabindex]="tab.isActive ? 0 : -1"
-      class="bmb_tabs-item"
-      *ngFor="let tab of tabs; let i = index"
-      (click)="selectTab(tab.id)"
-      [ngClass]="{
-        'bmb_tabs-item-active': tab.isActive,
-        'bmb_tabs-item-uppercase': format === 'uppercase',
-      }"
-    >
-      <span>
-        {{ tab.title }}
-      </span>
-      <span class="bmb_tabs-badge" *ngIf="tab.badge">{{ tab.badge }}</span>
-    </button>
-  </div>
+  <section class="bmb_tab-container">
+    <div class="bmb_tabs-tab" #tabsItems>
+      <button
+        role="tab"
+        [attr.aria-selected]="tab.isActive ? 'true' : 'false'"
+        [attr.tabindex]="tab.isActive ? 0 : -1"
+        class="bmb_tabs-item"
+        *ngFor="let tab of tabs; let i = index"
+        (click)="selectTab(tab.id)"
+        [ngClass]="{
+          'bmb_tabs-item-active': tab.isActive,
+          'bmb_tabs-item-uppercase': format === 'uppercase',
+        }"
+      >
+        <span>
+          {{ tab.title }}
+        </span>
+        <span class="bmb_tabs-badge" *ngIf="tab.badge">{{ tab.badge }}</span>
+      </button>
+    </div>
+  </section>
   <ng-content></ng-content>
 </div>

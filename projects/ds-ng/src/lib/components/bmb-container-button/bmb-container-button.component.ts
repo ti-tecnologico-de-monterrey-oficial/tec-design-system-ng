@@ -49,6 +49,15 @@ export class BmbContainerButtonComponent {
     return Number(this.score());
   }
 
+  getClassList(): string[] {
+    const classList = ['bmb_container-button'];
+    if (this.square()) {
+      classList.push('bmb_container-button-square');
+    }
+
+    return classList;
+  }
+
   handleClick(event: any): void {
     this.onButton.emit(event);
   }

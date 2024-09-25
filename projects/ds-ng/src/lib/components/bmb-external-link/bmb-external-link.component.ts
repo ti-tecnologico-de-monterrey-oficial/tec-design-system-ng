@@ -6,24 +6,21 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbChevronTitleSelectorComponent } from '../bmb-chevron-title-selector/bmb-chevron-title-selector.component';
-import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbContainerButtonComponent } from '../bmb-container-button/bmb-container-button.component';
-import { BmbInteractiveIconComponent } from '../bmb-interactive-icon/bmb-interactive-icon.component';
+import {
+  BmbBottomNavigationBarComponent,
+  IBmbFooterEvent,
+} from '../bmb-bottom-navigation-bar/bmb-bottom-navigation-bar.component';
 
 export type IBmbMenuEvent = 'link' | 'openNew' | 'info';
-
-export type IBmbFooterEvent = 'back' | 'forward' | 'share' | 'reload';
 
 @Component({
   selector: 'bmb-external-link',
   standalone: true,
   imports: [
     BmbChevronTitleSelectorComponent,
-    BmbLayoutDirective,
-    BmbLayoutItemDirective,
     BmbContainerButtonComponent,
-    BmbInteractiveIconComponent,
+    BmbBottomNavigationBarComponent,
   ],
   templateUrl: './bmb-external-link.component.html',
   styleUrl: './bmb-external-link.component.scss',

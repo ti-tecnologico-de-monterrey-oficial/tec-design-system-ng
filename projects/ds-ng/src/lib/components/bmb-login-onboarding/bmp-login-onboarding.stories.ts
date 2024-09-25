@@ -81,7 +81,7 @@ class StorybookToastWrapperComponent {
 }
 
 export default {
-  title: 'Macro Componentes/Login onboarding',
+  title: 'Macro Componentes/Login\\Onboarding',
   component: BmbLoginOnboardingComponent,
   decorators: [
     moduleMetadata({
@@ -210,6 +210,7 @@ export const Default: StoryFn<typeof StorybookToastWrapperComponent> = (
         <bmb-login-onboarding (handleRequest)="handleRequest($event)">
           <p>custom content</p>
         </bmb-login-onboarding>
+      </div>
       `,
   };
 };

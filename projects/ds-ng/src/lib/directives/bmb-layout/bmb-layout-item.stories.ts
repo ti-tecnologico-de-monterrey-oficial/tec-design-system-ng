@@ -1,6 +1,10 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbLayoutDirective } from './bmb-layout.directive';
-import { BmbLayoutItemDirective } from './bmb-layout-item.directive';
+import {
+  BmbLayoutItemDirective,
+  IColumSizeFull,
+  IColumSizeMobile,
+} from './bmb-layout-item.directive';
 import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import {
@@ -8,6 +12,7 @@ import {
   BmbCardContentComponent,
 } from '../../components/bmb-card/bmb-card.component';
 import { IMargin } from './bmb-layout-item.directive';
+import { InputSignal } from '@angular/core';
 
 const meta: Meta<BmbLayoutItemDirective> = {
   title: 'Micro Componentes/Layout item',
@@ -53,11 +58,11 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'select',
       },
-      options: ['0', '1', '2', '3', '4'],
+      options: [0, 1, 2, 3, 4],
       table: {
         type: { summary: 'number' },
         category: 'Properties',
-        defaultValue: { summary: '0' },
+        defaultValue: { summary: 0 },
       },
       description: 'Determines the size of the space between elements.',
     },
@@ -66,25 +71,11 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'select',
       },
-      options: [
-        '0',
-        '1',
-        '2',
-        '3',
-        '4',
-        '5',
-        '6',
-        '7',
-        '8',
-        '9',
-        '10',
-        '11',
-        '12',
-      ],
+      options: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
       table: {
         type: { summary: 'number' },
         category: 'Properties',
-        defaultValue: { summary: '0' },
+        defaultValue: { summary: 0 },
       },
       description: 'Determines the size of the space between elements.',
     },
@@ -134,12 +125,12 @@ Below is an example of how you can use this component in HTML:
     },
   },
   args: {
-    colSm: 0,
-    colLg: 0,
-    marginLeft: { sm: 0, lg: 0 },
-    marginRight: { sm: 0, lg: 0 },
-    isDynamicItem: false,
-    colGrow: 0,
+    colSm: 0 as unknown as InputSignal<IColumSizeMobile>,
+    colLg: 0 as unknown as InputSignal<IColumSizeFull>,
+    marginLeft: { sm: 0, lg: 0 } as unknown as InputSignal<IMargin>,
+    marginRight: { sm: 0, lg: 0 } as unknown as InputSignal<IMargin>,
+    isDynamicItem: false as unknown as InputSignal<boolean>,
+    colGrow: 0 as unknown as InputSignal<number>,
   },
 };
 
