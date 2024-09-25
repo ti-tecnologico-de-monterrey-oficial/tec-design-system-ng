@@ -43,7 +43,19 @@ export class BmbModalComponent implements OnInit {
   }
 
   actionFunction() {
-    this.closeModal();
+    if (this.modalData.primaryAction) {
+      this.modalData.primaryAction();
+    } else {
+      this.closeModal();
+    }
+  }
+
+  secondaryActionFunction() {
+    if (this.modalData.secondaryAction) {
+      this.modalData.secondaryAction();
+    } else {
+      this.dialogRef.close(false);
+    }
   }
 
   closeModal() {
