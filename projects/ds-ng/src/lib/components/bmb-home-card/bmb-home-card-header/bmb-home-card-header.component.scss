@@ -11,6 +11,7 @@
 
   .bmb_container {
     border-radius: var(--bmb-radius-l) var(--bmb-radius-l) 0 0;
+    border-width: rem.rem_calc(2) rem.rem_calc(2) 0;
   }
 
   .bmb_header-section-align_title-icon {

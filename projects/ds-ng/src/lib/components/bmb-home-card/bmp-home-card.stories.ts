@@ -1,4 +1,4 @@
-import { type Meta, type StoryFn } from '@storybook/angular';
+import { Meta, StoryObj } from '@storybook/angular';
 import { BmbHomeCardComponent } from './bmb-home-card.component';
 import { Component } from '@angular/core';
 import { IBmbDataTopBar } from '../bmb-breadcrumb/bmb-breadcrumb.component';
@@ -168,26 +168,23 @@ Below is an example of how you can use this component in HTML:
   },
 } as Meta<typeof BmbHomeCardComponent>;
 
-export const Default: StoryFn<typeof StorybookToastWrapperComponent> = (
-  args,
-) => {
-  return {
+type Story = StoryObj<BmbHomeCardComponent>;
+
+export const Default: Story = {
+  render: (args) => ({
     props: args,
     template: `
-      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->
-      <storybook-toast-wrapper></storybook-toast-wrapper>
-      <!-- Start copying from here -->
-      <bmb-home-card
-        leftIcon="chevron_left"
-        icon="exposure"
-        bgIconAppearance="green-light"
-        title="Title"
-        subtitle="Subtitle"
+    <bmb-home-card
+        [leftIcon]="leftIcon"
+        [icon]="icon"
+        [bgIconAppearance]="bgIconAppearance"
+        [title]="title"
+        [subtitle]="subtitle"
         [dataLocalNav]="dataLocalNav"
-        [isMobile]="false"
+        [isMobile]="isMobile"
       >
         <p>hello world</p>
       </bmb-home-card>
-      `,
-  };
+    `,
+  }),
 };
