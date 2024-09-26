@@ -2,6 +2,16 @@
 @use "../../../assets/styles/base/rem" as rem;
 
 .bmb_modal {
+  .bmb_container-primary-container {
+    padding: 0;
+  }
+
+  .bmb_container {
+    border-radius: 0;
+    border-style: inherit;
+    border-width: 0;
+  }
+
   &-size {
     &-small {
       min-width: rem.rem_calc(344);

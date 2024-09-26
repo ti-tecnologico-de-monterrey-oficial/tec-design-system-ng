@@ -2,12 +2,15 @@
   <bmb-home-card-header
     [title]="title()"
     [subtitle]="subtitle()"
+    [dataLocalNav]="dataLocalNav()"
+    [leftIcon]="leftIcon()"
     [icon]="icon()"
+    [bgIconAppearance]="bgIconAppearance()"
     [isMobile]="isMobile()"
     (onClose)="handleClose()"
     (onBack)="handleBack()"
   />
-  <div class="bmb_home-card-container">
+  <section class="bmb_home-card-container">
     <ng-content />
-  </div>
+  </section>
 </section>
