@@ -9,12 +9,14 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 ## Cambios de la versión v1.0.0
 
 ### Nuevos componentes:
+
 - [Grades](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-grades--documentation)
 - [Access to external link](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-external-link--documentation)
 - [Account statement](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-account-statement--documentation)
 - [Web templates](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-web-templates--documentation)
 
 ### Componentes actualizados:
+
 - [Toast](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-toast--documentation)
 - [Modal](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-modal--documentation)
 - [Badge](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-badge--documentation)

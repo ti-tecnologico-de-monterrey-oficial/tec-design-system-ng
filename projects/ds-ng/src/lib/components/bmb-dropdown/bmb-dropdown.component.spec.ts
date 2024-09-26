@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BmbDropdownComponent } from './bmb-dropdown.component';
 
 describe('BmbDropdownComponent', () => {

@@ -2,68 +2,66 @@
 @use "../../../assets/styles/base/mixins" as mixins;
 @use "../../../assets/styles/base/rem" as rem;
 
-.bmb_text-link{
-    display: flex;
-    flex-direction: row;
-    align-items: baseline;
+.bmb_text-link {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
 
-    &-text{
-        @include fonts.font(4, medium);
-        position: relative;
-        padding: rem.rem_calc(2 0);
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        color: RGBA(var(--color-blue-primary));
-        line-height: 2;
+  &-text {
+    @include fonts.font(4, medium);
+    position: relative;
+    padding: rem.rem_calc(2 0);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    color: RGBA(var(--color-blue-primary));
+    line-height: 2;
 
-        &.disabled{
-            opacity: 0.5;
-            pointer-events: none;
-        }
-    
-        &::after{
-            content: '';
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: rem.rem_calc(5);
-            height: rem.rem_calc(1);
-            background: RGBA(var(--color-blue-primary));
-            transform: scaleX(0);
-            transition: transform 0.2s ease;
-        }
-    
-        &:hover::after {
-            transform: scaleX(1);
-        }
-    
-        bmb-icon {
-            font-size: rem.rem_calc(20);
-        }
+    &.disabled {
+      opacity: 0.5;
+      pointer-events: none;
     }
 
-    &-underlined{
-
-        .bmb_text-link-text{
-            @include fonts.font(4, regular);
-            text-decoration: underline;
-
-            &::after{
-                content: '';
-                left: 0;
-                right: 0;
-                background: RGBA(var(--color-blue-primary));
-                transform: scaleX(0);
-            }
-        
-            &:hover::after {
-                transform: scaleX(0);
-            }
-        }
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: rem.rem_calc(5);
+      height: rem.rem_calc(1);
+      background: RGBA(var(--color-blue-primary));
+      transform: scaleX(0);
+      transition: transform 0.2s ease;
     }
+
+    &:hover::after {
+      transform: scaleX(1);
+    }
+
+    bmb-icon {
+      font-size: rem.rem_calc(20);
+    }
+  }
+
+  &-underlined {
+    .bmb_text-link-text {
+      @include fonts.font(4, regular);
+      text-decoration: underline;
+
+      &::after {
+        content: "";
+        left: 0;
+        right: 0;
+        background: RGBA(var(--color-blue-primary));
+        transform: scaleX(0);
+      }
+
+      &:hover::after {
+        transform: scaleX(0);
+      }
+    }
+  }
 }
-
 
 [data-theme="dark"],
 .storybook-dark-theme {
@@ -71,9 +69,9 @@
     &-text {
       color: RGBA(var(--color-neon-primary));
 
-        &::after{
-            background: RGBA(var(--color-neon-primary));
-        }
+      &::after {
+        background: RGBA(var(--color-neon-primary));
+      }
     }
   }
 }

@@ -1,0 +1,123 @@
+@use "../../../assets/styles/base/mixins" as mixins;
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/rem" as rem;
+
+@mixin setSmallCSS($fontSize) {
+  @include fonts.font($fontSize, regular);
+}
+
+.bmb_header-section {
+  .bmb_container-primary-container {
+    padding: 0;
+  }
+
+  .bmb_container {
+    border-radius: 0;
+    border-style: inherit;
+    border-width: 0;
+  }
+
+  &-transparent_bgc {
+    .bmb_container-primary-container {
+      background-color: inherit;
+    }
+  }
+
+  &-align_title {
+    display: flex;
+    flex: 1;
+    gap: var(--bmb-spacing-m);
+    align-items: center;
+    align-self: center;
+
+    &-icon {
+      justify-content: center;
+      align-items: center;
+      border-radius: var(--bmb-radius-s);
+      color: RGBA(var(--color-white-primary));
+      width: rem.rem_calc(48);
+      height: rem.rem_calc(48);
+
+      &-normal {
+        @include mixins.bgAppearance(normal);
+      }
+
+      &-strong {
+        @include mixins.bgAppearance(strong);
+      }
+
+      &-success {
+        @include mixins.bgAppearance(success);
+      }
+
+      &-info {
+        @include mixins.bgAppearance(info);
+      }
+
+      &-warning {
+        @include mixins.bgAppearance(warning);
+      }
+
+      &-error {
+        @include mixins.bgAppearance(error);
+      }
+
+      &-brand {
+        @include mixins.bgAppearance(brand);
+      }
+
+      &-none {
+        background: RGBA(var(--color-charade-200));
+      }
+    }
+
+    &-title {
+      color: RGBA(var(--color-charade-950));
+      @include fonts.font(5, regular);
+    }
+
+    &-subtitle {
+      color: RGBA(var(--color-charade-700));
+      @include fonts.font(3, regular);
+    }
+  }
+
+  &-right_icon {
+    .bmb_interactive_icon-none .bmb_interactive_icon-icon {
+      color: RGBA(var(--color-mariner-500));
+    }
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_header-section {
+    &-transparent_bgc {
+      .bmb_container-primary-container {
+        background-color: inherit;
+      }
+    }
+
+    &-align_title {
+      &-icon {
+        &-none {
+          background: RGBA(var(--color-black-primary));
+        }
+      }
+
+      &-title {
+        color: RGBA(var(--color-charade-50));
+      }
+
+      &-subtitle {
+        color: RGBA(var(--color-charade-200));
+      }
+    }
+
+    &-right_icon {
+      .bmb_interactive_icon-none .bmb_interactive_icon-icon {
+        color: RGBA(var(--color-mariner-500));
+      }
+    }
+  }
+}

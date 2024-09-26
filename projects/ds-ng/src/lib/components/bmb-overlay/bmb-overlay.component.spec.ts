@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BmbOverlayComponent } from './bmb-overlay.component';
 
 describe('BmbOverlayComponent', () => {

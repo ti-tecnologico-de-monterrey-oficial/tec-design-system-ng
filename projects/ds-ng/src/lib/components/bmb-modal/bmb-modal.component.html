@@ -1,74 +1,49 @@
-<div
-  class="bmb_modal-content"
-  [ngClass]="{
-    'bmb_modal-size-small': this.modalData.size == 'small',
-    'bmb_modal-size-medium': this.modalData.size == 'medium',
-    'bmb_modal-size-large': this.modalData.size == 'large',
-  }"
->
-  <div class="bmb_modal-content-wrapper">
-    <header class="bmb_modal-header">
-      @if (modalData.type == "alert") {
-        <div class="bmb_modal-header-icon">
-          <img [src]="this.svgUrl" alt="" />
-        </div>
-      }
-      <div class="bmb_modal-header-text">
-        <h1 class="bmb_modal-header-text-title">{{ modalData.title }}</h1>
-        @if (modalData.subtitle) {
-          <h3 class="bmb_modal-header-text-subtitle">
-            {{ modalData.subtitle }}
-          </h3>
-        }
-      </div>
-      <div class="bmb_modal-header-close">
-        <bmb-icon
-          class="bmb_modal-header-close-icon"
-          [icon]="'close'"
-          (click)="closeModal()"
-          onkeypress=""
+<section [class]="getModalClasses()">
+  <bmb-container>
+    <section>
+      <header>
+        <bmb-header-section
+          [title]="getTitle()"
+          [subtitle]="getSubtitle()"
+          [icon]="getImage()"
+          [headerActions]="getHeaderActions()"
+          [transparentBgC]="true"
         />
-      </div>
-    </header>
-    <section class="bmb_modal-body">
-      @if (!isTemplate) {
-        <div
-          class="bmb_modal-body-description"
-          [ngClass]="{ 'bmb_modal-body-scrollable': modalData.scrollable }"
-        >
-          <p class="bmb_modal-body-description-text">{{ modalData.content }}</p>
-        </div>
-      } @else {
-        <ng-container *ngTemplateOutlet="modalTemplate"></ng-container>
+      </header>
+      <section class="bmb_modal-content">
+        @if (isModalTemplate()) {
+          <ng-container *ngTemplateOutlet="getContent()" />
+        } @else {
+          <section [class]="getDescriptionClasses()">
+            <p>
+              {{ getContent() }}
+            </p>
+          </section>
+        }
+      </section>
+      @if (showFooter()) {
+        <footer id="modal-footer" class="bmb_modal-footer">
+          @if (showSecondaryButton()) {
+            <button
+              bmbButton
+              appearance="secondary-filled"
+              [class]="getButtonClass(true)"
+              (click)="closeModal('secondary', false)"
+            >
+              {{ getSecondaryBtnLabel() }}
+            </button>
+          }
+          @if (showPrimaryButton()) {
+            <button
+              bmbButton
+              [class]="getButtonClass(false)"
+              (click)="closeModal('primary', true)"
+            >
+              {{ getPrimaryBtnLabel() }}
+            </button>
+          }
+        </footer>
       }
     </section>
-    @if (
-      this.modalData.type !== "informative" ||
-      !this.modalData.secondaryBtnLabel ||
-      !this.modalData.hidePrimaryButton
-    ) {
-      <footer id="modal-footer" class="bmb_modal-footer">
-        @if (this.modalData.secondaryBtnLabel) {
-          <button
-            bmbButton
-            appearance="secondary-filled"
-            class="bmb_modal-btn bmb_modal-footer-btn bmb_modal-btn-secondary-action"
-            (click)="secondaryActionFunction()"
-          >
-            {{ modalData.secondaryBtnLabel }}
-          </button>
-        }
-        @if (!this.modalData.hidePrimaryButton) {
-          <button
-            bmbButton
-            class="bmb_modal-btn"
-            [ngClass]="btnColor"
-            (click)="actionFunction()"
-          >
-            {{ modalData.primaryBtnLabel || "OK" }}
-          </button>
-        }
-      </footer>
-    }
-  </div>
-</div>
+  </bmb-container>
+</section>

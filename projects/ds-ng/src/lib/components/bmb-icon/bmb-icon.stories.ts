@@ -37,9 +37,19 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string' },
       },
     },
+    size: {
+      name: 'size',
+      control: { type: 'number' },
+      description: 'Size of the icon to use. Note: <= 0 will be inherited.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'number' },
+      },
+    },
   },
   args: {
     icon: 'home',
+    size: 0,
   },
 } as Meta<typeof BmbIconComponent>;
 

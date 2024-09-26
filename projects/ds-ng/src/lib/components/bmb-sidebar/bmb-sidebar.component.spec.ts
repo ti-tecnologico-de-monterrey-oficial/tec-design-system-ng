@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BmbSidebarComponent } from './bmb-sidebar.component';
 
 describe('BmbSidebarComponent', () => {
