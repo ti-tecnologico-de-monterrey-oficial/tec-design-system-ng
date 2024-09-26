@@ -9,8 +9,12 @@ import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 import { BmbInteractiveIconComponent } from '../bmb-interactive-icon/bmb-interactive-icon.component';
-import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
 import { isImage } from '../../utils/utils';
+import {
+  BmbBreadcrumbComponent,
+  IBmbDataTopBar,
+} from '../bmb-breadcrumb/bmb-breadcrumb.component';
+import { IBmbColor } from '../../types/colors';
 
 export interface IBmbHeaderAction {
   icon: string;
@@ -24,6 +28,7 @@ export interface IBmbHeaderAction {
     CommonModule,
     BmbContainerComponent,
     BmbIconComponent,
+    BmbBreadcrumbComponent,
     BmbInteractiveIconComponent,
   ],
   styleUrl: './bmb-header-section.component.scss',
@@ -34,30 +39,34 @@ export interface IBmbHeaderAction {
 export class BmbHeaderSectionComponent {
   title = input<string | undefined>('');
   subtitle = input<string | undefined>('');
+  dataLocalNav = input<IBmbDataTopBar[]>([]);
   leftIcon = input<string>('');
   headerActions = input<IBmbHeaderAction[]>([]);
   icon = input<string>('');
-  bgIconAppearance = input<IBbmBgAppearance>();
+  bgIconAppearance = input<IBmbColor>();
   isHeader = input<boolean>();
   transparentBgC = input<boolean>();
 
   onClickLeft = output<any>();
 
-  getClasses(): string[] {
-    const className = 'bmb_header-section-align_title-icon';
-    const classNames = [className];
-
-    if (!!this.bgIconAppearance()) {
-      classNames.push(`${className}-${this.bgIconAppearance()}`);
-    } else {
-      classNames.push(`${className}-none`);
+  getStyles(): object {
+    if (this.isImage(this.icon())) {
+      return { 'background-color': 'transparent' };
     }
-
-    return classNames;
+    if (!!this.bgIconAppearance()) {
+      return {
+        'background-color': `RGBA(var(--color-${this.bgIconAppearance()}))`,
+      };
+    }
+    return {};
   }
 
   isImage(icon: string): boolean {
     return isImage(icon);
+  }
+
+  showBreadcrumbs(): boolean {
+    return !!this.dataLocalNav().length;
   }
 
   handleClickLeft(event: any): void {
