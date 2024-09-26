@@ -4,6 +4,15 @@
 
 .bmb_home-card-header {
   container-type: inline-size;
+
+  .bmb_container-primary-container {
+    padding: rem.rem_calc(8) rem.rem_calc(16);
+  }
+
+  .bmb_container {
+    border-radius: var(--bmb-radius-l) var(--bmb-radius-l) 0 0;
+  }
+
   .bmb_header-section-align_title-icon {
     @include mixins.container-query(559, "max") {
       display: none;

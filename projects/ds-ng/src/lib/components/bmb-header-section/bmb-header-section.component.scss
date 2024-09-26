@@ -2,16 +2,6 @@
 @use "../../../assets/styles/base/rem" as rem;
 
 .bmb_header-section {
-  .bmb_container-primary-container {
-    padding: 0;
-  }
-
-  .bmb_container {
-    border-radius: 0;
-    border-style: inherit;
-    border-width: 0;
-  }
-
   &-transparent_bgc {
     .bmb_container-primary-container {
       background-color: inherit;
