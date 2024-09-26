@@ -6,6 +6,8 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbHomeCardHeaderComponent } from './bmb-home-card-header/bmb-home-card-header.component';
+import { IBmbDataTopBar } from '../bmb-breadcrumb/bmb-breadcrumb.component';
+import { IBmbColor } from '../../types/colors';
 
 @Component({
   selector: 'bmb-home-card',
@@ -19,7 +21,10 @@ import { BmbHomeCardHeaderComponent } from './bmb-home-card-header/bmb-home-card
 export class BmbHomeCardComponent {
   title = input.required<string>();
   subtitle = input<string>();
+  dataLocalNav = input<IBmbDataTopBar[]>([]);
+  leftIcon = input<string>();
   icon = input<string>();
+  bgIconAppearance = input<IBmbColor>();
   isMobile = input<boolean>();
 
   onClose = output();

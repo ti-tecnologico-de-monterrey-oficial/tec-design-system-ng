@@ -13,6 +13,11 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 
+export interface IBmbDataTopBar {
+  text: string;
+  link?: string;
+}
+
 @Component({
   selector: 'bmb-breadcrumb',
   standalone: true,
@@ -23,8 +28,8 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbBreadcrumbComponent implements OnInit, OnDestroy {
-  dataTopBar = input<{ text: string; link?: string }[]>([]);
-  dataLocalNav = input<{ text: string; link?: string }[]>([]);
+  dataTopBar = input<IBmbDataTopBar[]>([]);
+  dataLocalNav = input<IBmbDataTopBar[]>([]);
   isTopBar = input<boolean>(false);
   dropdownOpen = signal<boolean>(false);
 
