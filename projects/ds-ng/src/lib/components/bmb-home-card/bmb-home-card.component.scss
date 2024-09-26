@@ -18,8 +18,6 @@
 [data-theme="dark"],
 .storybook-dark-theme {
   .bmb_home-card {
-    border: rem.rem_calc(2) solid RGBA(var(--color-charade-800));
-
     &-container {
       color: RGBA(var(--color-charade-50));
       border: rem.rem_calc(2) solid RGBA(var(--color-charade-800));
