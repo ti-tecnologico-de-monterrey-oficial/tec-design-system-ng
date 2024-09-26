@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BmbCalendarTemplateDayComponent } from './bmb-calendar-template-day.component';
 
 describe('BmbCalendarTemplateDayComponent', () => {

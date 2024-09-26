@@ -92,7 +92,7 @@ export class BmbButtonDirective {
       const iconComponentRef =
         this.viewContainerRef.createComponent(BmbIconComponent);
       const iconComponent = iconComponentRef.instance;
-      iconComponent.icon = this.icon();
+      iconComponent.icon = this.icon;
 
       if (this.position() === 'right') {
         this.el.nativeElement.insertBefore(

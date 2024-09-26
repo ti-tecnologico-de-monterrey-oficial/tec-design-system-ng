@@ -5,3 +5,8 @@ export const isExternalLink = (link: string): boolean => {
     link.startsWith('#')
   );
 };
+
+export const isImage = (url: string): boolean => {
+  const regx = /\.|\//gm;
+  return regx.test(url);
+};

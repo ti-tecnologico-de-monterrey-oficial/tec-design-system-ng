@@ -133,7 +133,7 @@ Below is an example of how you can use this component in HTML:
         'This property switch the template component to a button, if you enable this option, you do not need send the `target`, and `link` properties, and set the ouput `buttonClick`.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'false' },
+        defaultValue: { summary: false },
         type: { summary: 'boolean' },
       },
     },

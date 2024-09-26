@@ -66,6 +66,7 @@ import {
   BmbDropdownComponent,
   BmbGradesComponent,
   BmbExternalLinkComponent,
+  BmbHeaderSectionComponent,
   BmbMobileTemplatesComponent,
   BmbPushNotificationComponent,
   BmbNotificationService,
@@ -76,10 +77,11 @@ import {
   IBmbEventType,
   IBmbApp,
   BmbAccountStatementComponent,
-  IBmbMobileTemplateName,
   IBmbButtonAction,
+  IBmbMobileTemplateName,
   BmbStepProgressBarComponent,
   IBmbMobileTemplateButton,
+  IBmbHeaderAction,
 } from '../../projects/ds-ng/src/public-api';
 
 export interface Target {
@@ -162,6 +164,7 @@ import { BmbBottomNavigationBarComponent } from '../../projects/ds-ng/src/lib/co
     BmbGradesComponent,
     BmbExternalLinkComponent,
     BmbBottomNavigationBarComponent,
+    BmbHeaderSectionComponent,
     BmbMobileTemplatesComponent,
     BmbStepProgressBarComponent,
   ],
@@ -215,6 +218,14 @@ export class AppComponent {
     alertStyle: 'error',
     primaryBtnLabel: 'Action',
     secondaryBtnLabel: 'Cancel',
+    hidePrimaryButton: false,
+    scrollable: false,
+    primaryAction: () => {
+      console.log('primaryAction');
+    },
+    secondaryAction: () => {
+      console.log('secondaryAction');
+    },
   };
 
   isCalendarLoading = false;
@@ -255,7 +266,7 @@ export class AppComponent {
   };
 
   openModal() {
-    this.matDialog.open(BmbModalComponent, { data: this.data });
+    this.matDialog.open(BmbModalComponent, { data: this.dataModal });
   }
 
   @ViewChild(BmbToastComponent)
@@ -898,6 +909,13 @@ export class AppComponent {
   onTemplateChange(template: IBmbMobileTemplateName) {
     this.currentTemplate = template;
   }
+
+  headerActions: IBmbHeaderAction[] = [
+    {
+      icon: 'north_east',
+      action: () => {},
+    },
+  ];
 
   handleHeaderR(event: unknown) {
     console.log(event);
