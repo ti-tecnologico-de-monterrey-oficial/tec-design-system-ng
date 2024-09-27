@@ -31,7 +31,7 @@
   }
 
   &-icon {
-    align-items: center;
+    align-items: center !important;
     color: currentColor;
     display: flex;
     font-size: rem.rem_calc(24);
