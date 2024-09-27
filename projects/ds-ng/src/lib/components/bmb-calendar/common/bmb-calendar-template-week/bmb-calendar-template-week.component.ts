@@ -15,8 +15,9 @@ import {
   IBmbCalendarRenderEvents,
 } from '../../types';
 import { BmbCalendarHourViewComponent } from '../bmb-calendar-hour-view/bmb-calendar-hour-view.component';
-import { orderDayNames, eventsInDate } from '../../utils';
+import { eventsInDate } from '../../utils';
 import { BmbCalendarScheduleCardsComponent } from '../bmb-calendar-schedule-cards/bmb-calendar-schedule-cards.component';
+import { orderDayNames } from '../../../../utils/utils';
 
 @Component({
   selector: 'bmb-calendar-template-week',
