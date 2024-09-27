@@ -80,6 +80,7 @@ import {
   IBmbButtonAction,
   BmbStepProgressBarComponent,
   IBmbMobileTemplateButton,
+  BmbDateRangeComponent,
 } from '../../projects/ds-ng/src/public-api';
 
 export interface Target {
@@ -164,6 +165,7 @@ import { BmbBottomNavigationBarComponent } from '../../projects/ds-ng/src/lib/co
     BmbBottomNavigationBarComponent,
     BmbMobileTemplatesComponent,
     BmbStepProgressBarComponent,
+    BmbDateRangeComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -205,17 +207,17 @@ export class AppComponent {
   boolUserSummary = true;
   value = 'tec-design';
 
-  dataModal: ModalDataConfig = {
-    title: 'Modal Title',
-    subtitle: 'Modal Subtitle',
-    content:
-      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.',
-    size: 'small',
-    type: 'alert',
-    alertStyle: 'error',
-    primaryBtnLabel: 'Action',
-    secondaryBtnLabel: 'Cancel',
-  };
+  // dataModal: ModalDataConfig = {
+  //   title: 'Modal Title',
+  //   subtitle: 'Modal Subtitle',
+  //   content:
+  //     'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.',
+  //   size: 'small',
+  //   type: 'alert',
+  //   alertStyle: 'error',
+  //   primaryBtnLabel: 'Action',
+  //   secondaryBtnLabel: 'Cancel',
+  // };
 
   isCalendarLoading = false;
 
@@ -255,7 +257,7 @@ export class AppComponent {
   };
 
   openModal() {
-    this.matDialog.open(BmbModalComponent, { data: this.data });
+    this.matDialog.open(BmbModalComponent, { data: this.dataModal });
   }
 
   @ViewChild(BmbToastComponent)
@@ -541,6 +543,20 @@ export class AppComponent {
   clickButton(event: Event) {
     window.alert(event);
   }
+
+  dataModal: ModalDataConfig = {
+    title: 'Modal Title',
+    subtitle: 'Modal Subtitle',
+    content:
+      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus. ',
+    size: 'small',
+    type: 'alert',
+    alertStyle: 'error',
+    primaryBtnLabel: 'Action',
+    secondaryBtnLabel: 'Cancel',
+    hidePrimaryButton: false,
+    scrollable: true,
+  };
 
   //Frequent apps
   apps: IBmbApp[] = [

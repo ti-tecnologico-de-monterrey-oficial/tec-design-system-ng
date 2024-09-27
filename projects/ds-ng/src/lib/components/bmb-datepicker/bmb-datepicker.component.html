@@ -9,7 +9,7 @@
       [appearance]="appearance"
       [control]="control"
       [isRequired]="isRequired"
-      (isFocus)="handleFouseEvent($event)"
+      (isFocus)="handleFocusedEvent($event)"
       [helperMessage]="dateFormat"
       [errorMessage]="getErrorMessage(control.errors)"
       [name]="name"
@@ -28,6 +28,8 @@
         [value]="control.value"
         [dateFormat]="dateFormat"
         [stepYearPicker]="stepYearPicker"
+        [disableDatesBefore]="disableDatesBefore"
+        [disableDatesAfter]="disableDatesAfter"
       />
     }
   </section>
