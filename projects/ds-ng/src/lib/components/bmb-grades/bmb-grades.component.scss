@@ -1,6 +1,23 @@
 @use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/rem" as rem;
 
 .bmb_grades {
+  &-summary {
+    &-container {
+      width: 100%;
+    }
+
+    .bmb_container-primary-container {
+      padding: rem.rem_calc(24) rem.rem_calc(8) rem.rem_calc(8) rem.rem_calc(8);
+    }
+
+    .bmb_container {
+      border-radius: 0;
+      border-style: inherit;
+      border-width: 0;
+    }
+  }
+
   &-title {
     color: RGBA(var(--color-white-primary));
     @include fonts.font(4, medium);

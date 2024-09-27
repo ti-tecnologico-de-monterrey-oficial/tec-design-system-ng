@@ -83,6 +83,7 @@ import {
   IBmbMobileTemplateButton,
   BmbDateRangeComponent,
   IBmbHeaderAction,
+  BmbFocusElementComponent,
 } from '../../projects/ds-ng/src/public-api';
 
 export interface Target {
@@ -168,6 +169,7 @@ import { BmbBottomNavigationBarComponent } from '../../projects/ds-ng/src/lib/co
     BmbHeaderSectionComponent,
     BmbMobileTemplatesComponent,
     BmbStepProgressBarComponent,
+    BmbFocusElementComponent,
     BmbDateRangeComponent,
   ],
   templateUrl: './app.component.html',
