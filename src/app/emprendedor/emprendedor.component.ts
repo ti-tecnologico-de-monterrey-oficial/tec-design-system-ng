@@ -8,6 +8,7 @@ import {
 } from '../../../projects/ds-ng/src/public-api';
 import { SidebarElement } from '../../../projects/ds-ng/src/lib/components/bmb-sidebar/bmb-sidebar.interface';
 import { BmbDrawerOverlayComponent } from '../../../projects/ds-ng/src/lib/components/bmb-drawer-overlay/bmb-drawer-overlay.component';
+import { BmbBreadcrumbComponent } from '../../../projects/ds-ng/src/lib/components/bmb-breadcrumb/bmb-breadcrumb.component';
 
 @Component({
   selector: 'bmb-emprendedor',
@@ -18,11 +19,17 @@ import { BmbDrawerOverlayComponent } from '../../../projects/ds-ng/src/lib/compo
     BmbDrawerOverlayComponent,
     BmbIconComponent,
     BmbInteractiveIconComponent,
+    BmbBreadcrumbComponent,
   ],
   templateUrl: './emprendedor.component.html',
   styleUrls: ['./emprendedor.component.scss'],
 })
 export default class EmprendedorComponent {
+  // breadcrumbPages = [
+  //   { label: 'Emprendedor', link: '/emprendedor' },
+  //   { label: 'Vivencia', link: '/emprendedor/vivencia' },
+  //   { label: 'Inicio', link: '/emprendedor/inicio' },
+  // ];
   sidebarElements: SidebarElement[][] = [
     [
       {
@@ -325,4 +332,20 @@ export default class EmprendedorComponent {
       },
     ],
   };
+
+  dataTopBar = [
+    { text: 'Tec. Sign', link: '/' },
+    {
+      text: 'Elegir documentos Elegir documentosElegir documentosElegir documentosElegir documentos',
+    },
+  ];
+
+  dataLocalNav = [
+    { text: 'Borem ipsum dolor sit amet 1', link: '/' },
+    { text: 'Borem ipsum dolor sit amet 2', link: '/emprendedor' },
+    { text: 'Borem ipsum dolor sit amet 3', link: '/home' },
+    { text: 'Borem ipsum dolor sit amet 4', link: '/my-page' },
+    { text: 'Borem ipsum dolor sit amet 5', link: '/my-page' },
+    { text: 'Borem ipsum dolor sit amet 6', link: '/emprendedor/vivencia' },
+  ];
 }

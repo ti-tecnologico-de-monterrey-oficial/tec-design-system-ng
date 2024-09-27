@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BmbCardComponent } from './bmb-card.component';
 
 describe('BmbCardComponent', () => {
