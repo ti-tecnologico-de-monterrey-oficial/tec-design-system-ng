@@ -2,12 +2,11 @@
   <bmb-header-section
     [title]="title()"
     [subtitle]="subtitle()"
-    [dataLocalNav]="dataLocalNav()"
+    [dataLocalNav]="getDataLocalNav()"
     [leftIcon]="getLeftIcon()"
     (onClickLeft)="handleBack()"
     [icon]="getIconName()"
     [bgIconAppearance]="bgIconAppearance()"
-    [headerActions]="getHeaderActions()"
-    [isHeader]="isHeader()"
+    [actionHeaders]="getActionHeaders()"
   />
 </header>

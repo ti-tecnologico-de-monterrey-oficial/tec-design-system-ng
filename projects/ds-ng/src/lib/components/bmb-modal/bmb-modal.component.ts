@@ -16,7 +16,7 @@ import { BmbButtonDirective } from '../../directives/button.directive';
 import { ModalService } from '../../services/modal.service';
 import {
   BmbHeaderSectionComponent,
-  IBmbHeaderAction,
+  IBmbActionHeader,
 } from '../bmb-header-section/bmb-header-section.component';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 
@@ -38,7 +38,7 @@ import { BmbContainerComponent } from '../bmb-container/bmb-container.component'
 export class BmbModalComponent {
   svgUrl: string = '../../../assets/svg/';
   modalTemplate: TemplateRef<any> | null = null;
-  headerActions: IBmbHeaderAction[] = [
+  actionHeaders: IBmbActionHeader[] = [
     {
       icon: 'close',
       action: () => this.closeModal('close', true),
@@ -157,8 +157,8 @@ export class BmbModalComponent {
     return this.getData().subtitle!;
   }
 
-  getHeaderActions(): IBmbHeaderAction[] {
-    return this.headerActions;
+  getActionHeaders(): IBmbActionHeader[] {
+    return this.actionHeaders;
   }
 
   getContent(): any {
