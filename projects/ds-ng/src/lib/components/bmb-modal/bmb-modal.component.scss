@@ -12,6 +12,10 @@
     border-width: 0;
   }
 
+  &-container {
+    width: 100%;
+  }
+
   &-size {
     &-small {
       min-width: rem.rem_calc(344);
