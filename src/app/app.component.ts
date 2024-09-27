@@ -82,6 +82,7 @@ import {
   BmbStepProgressBarComponent,
   IBmbMobileTemplateButton,
   IBmbHeaderAction,
+  BmbFocusElementComponent,
 } from '../../projects/ds-ng/src/public-api';
 
 export interface Target {
@@ -167,6 +168,7 @@ import { BmbBottomNavigationBarComponent } from '../../projects/ds-ng/src/lib/co
     BmbHeaderSectionComponent,
     BmbMobileTemplatesComponent,
     BmbStepProgressBarComponent,
+    BmbFocusElementComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
