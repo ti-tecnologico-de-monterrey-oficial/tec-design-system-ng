@@ -2,11 +2,11 @@ import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BmbDatepickerComponent } from './bmb-datepicker.component';
+import { BmbDateRangeComponent } from './bmb-date-range.component';
 
 export default {
-  title: 'Micro Componentes/Datepicker',
-  component: BmbDatepickerComponent,
+  title: 'Micro Componentes/Date range',
+  component: BmbDateRangeComponent,
   decorators: [
     moduleMetadata({
       imports: [
@@ -14,7 +14,7 @@ export default {
         FormsModule,
         ReactiveFormsModule,
         BrowserAnimationsModule,
-        BmbDatepickerComponent,
+        BmbDateRangeComponent,
       ],
     }),
   ],
@@ -33,7 +33,7 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { BmbDatepickerComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
+import { BmbDateRangeComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -42,35 +42,11 @@ import { CommonModule } from '@angular/common';
   imports: [
     ReactiveFormsModule,
     CommonModule,
-    BmbDatepickerComponent,
+    BmbDateRangeComponent,
   ],
   templateUrl: './component.html',
   styleUrls: ['./component.scss'],
 })
-export class AppComponent {
-  userForm: FormGroup;
-  showErrors: { [key: string]: boolean } = {};
-
-  constructor(private fb: FormBuilder, private cdr: ChangeDetectorRef) {
-    this.userForm = this.fb.group({
-      name: new FormControl('', Validators.required),
-    });
-  }
-
-  onSubmit() {
-    if (this.userForm.valid) {
-      console.log(this.userForm.value);
-    } else {
-      console.log('Form is invalid');
-      this.userForm.markAllAsTouched();
-      this.cdr.markForCheck();
-    }
-  }
-
-  get nameControl(): FormControl {
-    return this.userForm.get('name') as FormControl;
-  }
-}
 \`\`\`
 
 ### Example in HTML
@@ -79,7 +55,7 @@ Below is an example of how to use this component in HTML:
 
 \`\`\`html
 <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-  <bmb-datepicker
+  <bmb-date-range
     placeholder="Selecciona la fecha de cumpleaños"
     name="datePicker"
     dateFormat="MM/dd/yyyy"
@@ -100,13 +76,37 @@ Below is an example of how to use this component in HTML:
     },
   },
   argTypes: {
-    control: {
-      control: { type: 'object' },
-      description: 'Instance of FormControl to manage the input control state.',
+    label: {
+      name: 'Label',
+      control: {
+        type: 'text',
+      },
+      description: 'Label text to be displayed above the input field.',
       table: {
         category: 'Properties',
-        type: { summary: 'FormControl' },
-        defaultValue: { summary: "FormControl('', Validators.required)" },
+        type: { summary: 'string' },
+      },
+    },
+    placeholderStartDate: {
+      name: 'Placeholder for start date',
+      control: {
+        type: 'text',
+      },
+      description: 'Placeholder text to be displayed inside the start date input field.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
+    placeholderEndDate: {
+      name: 'Placeholder for end date',
+      control: {
+        type: 'text',
+      },
+      description: 'Placeholder text to be displayed inside the end date input field.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
       },
     },
     icon: {
@@ -144,22 +144,13 @@ Below is an example of how to use this component in HTML:
         type: { summary: 'string' },
       },
     },
-    isRequired: {
-      name: 'Required',
-      control: { type: 'boolean' },
-      description: 'Indicates whether the input field is required.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean' },
-      },
-    },
-    placeholder: {
-      name: 'Placeholder',
+    appearance: {
+      name: 'Appearance',
       control: {
-        type: 'text',
+        type: 'select',
       },
-      description: 'Placeholder text to be displayed inside the input field.',
+      options: ['main', 'normal', 'simple'],
+      description: 'Defines the appearance style of the input field.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -175,27 +166,14 @@ Below is an example of how to use this component in HTML:
         type: { summary: 'boolean' },
       },
     },
-    label: {
-      name: 'Label',
-      control: {
-        type: 'text',
-      },
-      description: 'Label text to be displayed above the input field.',
+    isRequired: {
+      name: 'Required',
+      control: { type: 'boolean' },
+      description: 'Indicates whether the input field is required.',
       table: {
         category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
-    appearance: {
-      name: 'Appearance',
-      control: {
-        type: 'select',
-      },
-      options: ['main', 'normal', 'simple'],
-      description: 'Defines the appearance style of the input field.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
       },
     },
     isClearable: {
@@ -208,6 +186,24 @@ Below is an example of how to use this component in HTML:
         category: 'Properties',
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
+      },
+    },
+    controlStart: {
+      control: null,
+      description: 'Instance of FormControl to manage the input control state.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'FormControl' },
+        defaultValue: { summary: "FormControl('', Validators.required)" },
+      },
+    },
+    controlEnd: {
+      control: null,
+      description: 'Instance of FormControl to manage the input control state.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'FormControl' },
+        defaultValue: { summary: "FormControl('', Validators.required)" },
       },
     },
     dateFormat: {
@@ -235,23 +231,36 @@ Below is an example of how to use this component in HTML:
         defaultValue: { summary: '' },
       },
     },
+    multipleRow: {
+      name: 'Multiple rows',
+      control: { type: 'boolean' },
+      description: 'Force the mobile version.',
+
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
   },
 
   args: {
-    icon: 'calendar_month',
-    invalidFormaterrorMessage: 'Formato invalido',
-    requiredFieldErrorMessage: 'Campo requerido',
-    isRequired: false,
-    placeholder: 'Placeholder',
-    disabled: false,
     label: 'Input Label',
+    placeholderStartDate: 'Start date',
+    placeholderEndDate: 'End date',
+    icon: 'calendar_month',
+    invalidFormatErrorMessage: 'Formato invalido',
+    requiredFieldErrorMessage: 'Campo requerido',
     appearance: 'normal',
+    disabled: false,
+    isRequired: false,
     isClearable: false,
     dateFormat: 'dd/MM/yyyy',
     name: 'custom_date_picker',
+    multipleRow: false,
   },
-} as Meta<typeof BmbDatepickerComponent>;
+} as Meta<typeof BmbDateRangeComponent>;
 
-type Story = StoryObj<BmbDatepickerComponent>;
+type Story = StoryObj<BmbDateRangeComponent>;
 
 export const Default: Story = {};

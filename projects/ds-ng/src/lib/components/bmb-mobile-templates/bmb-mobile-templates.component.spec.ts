@@ -42,10 +42,14 @@ describe('BmbMobileTemplatesComponent', () => {
     componentRef.setInput('headerIconLeft', 'icon-left');
     componentRef.setInput('headerIconRight', 'icon-right');
     fixture.detectChanges();
-    const headerElement = fixture.debugElement.query(By.css('.bmb_header_mobile'));
+    const headerElement = fixture.debugElement.query(
+      By.css('.bmb_header_mobile'),
+    );
     expect(headerElement.nativeElement.textContent).toContain('Header Title');
     expect(headerElement.query(By.css('.bmb_header_mobile-left'))).toBeTruthy();
-    expect(headerElement.query(By.css('.bmb_header_mobile-right'))).toBeTruthy();
+    expect(
+      headerElement.query(By.css('.bmb_header_mobile-right')),
+    ).toBeTruthy();
   });
 
   // Test external link inputs
@@ -53,6 +57,8 @@ describe('BmbMobileTemplatesComponent', () => {
     componentRef.setInput('template', 'external-link');
     componentRef.setInput('subtitle', 'External Link Subtitle');
     fixture.detectChanges();
-    expect(fixture.debugElement.query(By.css('.bmb_external-link'))).toBeTruthy();
+    expect(
+      fixture.debugElement.query(By.css('.bmb_external-link')),
+    ).toBeTruthy();
   });
 });
