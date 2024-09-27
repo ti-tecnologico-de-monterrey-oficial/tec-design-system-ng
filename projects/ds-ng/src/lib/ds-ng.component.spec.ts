@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { DsNgComponent } from './ds-ng.component';
 
 describe('DsNgComponent', () => {

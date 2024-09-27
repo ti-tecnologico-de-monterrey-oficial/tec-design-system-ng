@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BmbTopBarUserSectionComponent } from './bmb-top-bar-user-section.component';
 
 describe('BmbTopBarUserSectionComponent', () => {

@@ -13,3 +13,8 @@ export const orderDayNames = (
   days.unshift(lastElement);
   return days;
 };
+
+export const isImage = (url: string): boolean => {
+  const regx = /\.|\//gm;
+  return regx.test(url);
+};

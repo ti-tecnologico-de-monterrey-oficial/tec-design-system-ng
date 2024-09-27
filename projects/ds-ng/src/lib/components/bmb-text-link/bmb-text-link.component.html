@@ -1,0 +1,33 @@
+<ng-template #commonContent>
+  @if (iconPosition() == "left" && textLinkStyle() == "icon") {
+    <bmb-icon [style.padding-right.px]="8" [icon]="icon()" />
+  }
+  <span>{{ textLink() }}</span>
+  @if (iconPosition() == "right" && textLinkStyle() == "icon") {
+    <bmb-icon [style.padding-left.px]="8" [icon]="icon()" />
+  }
+</ng-template>
+
+<section [class]="getClass()">
+  @if (isExternalLink(link() || "")) {
+    <a
+      class="bmb_text-link-text"
+      [class.disabled]="disabled()"
+      [href]="link()"
+      [target]="target()"
+      rel="noopener noreferrer"
+    >
+      <ng-container *ngTemplateOutlet="commonContent" />
+    </a>
+  } @else {
+    <a
+      class="bmb_text-link-text"
+      [class.disabled]="disabled()"
+      [routerLink]="link()"
+      routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <ng-container *ngTemplateOutlet="commonContent" />
+    </a>
+  }
+</section>
