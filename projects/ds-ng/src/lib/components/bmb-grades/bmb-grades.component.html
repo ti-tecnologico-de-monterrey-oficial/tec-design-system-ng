@@ -1,6 +1,7 @@
 <ng-template #detailContent>
-  <section *ngFor="let partial of partials">
+  @for (partial of partials; track $index) {
     <section bmbLayout margin="m" justify="spaceBetween" [dynamicCols]="true">
+      >
       <span class="bmb_grades-title" bmbLayoutItem>{{ partial.title }}</span>
       <bmb-grade-value
         [score]="partial.score"
@@ -9,7 +10,7 @@
       />
     </section>
     <bmb-divider [type]="'simple'" />
-  </section>
+  }
 </ng-template>
 
 <section class="bmb_grades">
@@ -26,38 +27,36 @@
       trailingIcon="chevron_right"
       (onLeadingClick)="handleLeftPeriodClick()"
       (onTrailingClick)="handleRightPeriodClick()"
-    ></bmb-chevron-title-selector>
-    <bmb-container [isHidden]="!showPrincipalDetail">
+    />
+    <bmb-container class="bmb_grades-summary" [isHidden]="!showPrincipalDetail">
       <section
+        class="bmb_grades-summary-container"
         bmbLayout
         margin="none"
-        justify="spaceBetween"
+        justify="spaceAround"
         [dynamicCols]="true"
       >
-        <section bmbLayoutItem>
-          <bmb-focus-element
-            [number]="getAccreditedClasses()"
-            title="Materias Acreditadas"
-            [isNormal]="true"
-          />
-        </section>
-        <section bmbLayoutItem>
-          <bmb-focus-element
-            [number]="getPeriodAverage()"
-            title="Promedio Semestre"
-          />
-        </section>
-        <section bmbLayoutItem>
-          <bmb-focus-element
-            [number]="getServiceHours()"
-            title="Horas Servicio"
-            [isNormal]="true"
-          />
-        </section>
+        <bmb-focus-element
+          bmbLayoutItem
+          [number]="getAccreditedClasses()"
+          title="Materias Acreditadas"
+          [isNormal]="true"
+        />
+        <bmb-focus-element
+          bmbLayoutItem
+          [number]="getPeriodAverage()"
+          title="Promedio Semestre"
+        />
+        <bmb-focus-element
+          bmbLayoutItem
+          [number]="getServiceHours()"
+          title="Horas Servicio"
+          [isNormal]="true"
+        />
       </section>
     </bmb-container>
   </bmb-header-mobile>
-  <ng-container *ngFor="let element of getElements()">
+  @for (element of getElements(); track $index) {
     <bmb-container-button
       [title]="getDetailTitle(element)"
       [subtitle]="getDetailSubtitle(element)"
@@ -67,5 +66,5 @@
       [setButtonTemplate]="true"
       (onButton)="handleDetails(element)"
     />
-  </ng-container>
+  }
 </section>
