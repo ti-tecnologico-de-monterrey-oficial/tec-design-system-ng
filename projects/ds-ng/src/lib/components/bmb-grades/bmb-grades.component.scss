@@ -2,6 +2,10 @@
 @use "../../../assets/styles/base/rem" as rem;
 
 .bmb_grades {
+  .bmb_chevron-content-title {
+    @include fonts.font(4, bold);
+  }
+
   &-summary {
     &-container {
       width: 100%;
@@ -21,5 +25,18 @@
   &-title {
     color: RGBA(var(--color-white-primary));
     @include fonts.font(4, medium);
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_grades {
+    .bmb_card.bmb_card-type-normal {
+      border-color: RGBA(var(--color-charade-500));
+    }
+
+    &-title {
+      color: RGBA(var(--color-charade-50));
+    }
   }
 }
