@@ -12,9 +12,10 @@ import {
 import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
 import { DateTime, Info } from 'luxon';
-import { orderDayNames, weeksAndDays } from '../../bmb-calendar/utils';
+import { weeksAndDays } from '../../bmb-calendar/utils';
 import { BmbButtonDirective } from '../../../directives/button.directive';
 import { CommonModule } from '@angular/common';
+import { orderDayNames } from '../../../utils/utils';
 
 @Component({
   selector: 'bmb-datepicker-modal',
@@ -37,6 +38,8 @@ export class BmbDatepickerModalComponent implements OnInit {
   @Input() value?: string;
   @Input() dateFormat: string = 'dd/MM/yyyy';
   @Input() stepYearPicker: number = 12;
+  @Input() disableDatesBefore?: DateTime;
+  @Input() disableDatesAfter?: DateTime;
 
   @Output() closeWindow: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() onValueChange: EventEmitter<string> = new EventEmitter<string>();
@@ -101,5 +104,39 @@ export class BmbDatepickerModalComponent implements OnInit {
     if (this.value) {
       this.selectedDate = DateTime.fromFormat(this?.value, this.dateFormat);
     }
+  }
+
+  handleChangeMonth(event: string) {
+    if (event === 'less') {
+      if (this.selectedMonth === 1) {
+        this.selectedMonth = 11;
+        this.month = this.monthsNames[this.selectedMonth];
+        this.selectedYear = this.selectedYear - 1;
+      } else {
+        this.selectedMonth = this.selectedMonth - 1;
+        this.month = this.monthsNames[this.selectedMonth - 1];
+      }
+    } else {
+      if (this.selectedMonth === 12) {
+        this.selectedMonth = 1;
+        this.month = this.monthsNames[this.selectedMonth - 1];
+        this.selectedYear = this.selectedYear + 1;
+      } else {
+        this.selectedMonth = this.selectedMonth + 1;
+        this.month = this.monthsNames[this.selectedMonth - 1];
+      }
+    }
+  }
+
+  checkIfDisabled(date: DateTime): boolean {
+    if (this.disableDatesBefore) {
+      return date.startOf('day') <= this.disableDatesBefore.startOf('day');
+    }
+
+    if (this.disableDatesAfter) {
+      return date.startOf('day') >= this.disableDatesAfter.startOf('day');
+    }
+
+    return false;
   }
 }

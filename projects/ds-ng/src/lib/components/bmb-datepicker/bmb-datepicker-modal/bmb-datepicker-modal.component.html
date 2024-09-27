@@ -5,21 +5,33 @@
     margin="none"
     [dynamicCols]="true"
     justify="center"
+    gapSize="s"
   >
     <li bmbLayoutItem>
       <button
-        class="bmb_datepicker-modal-calendar-button"
+        class="bmb_datepicker-modal-calendar-button bmb_datepicker-modal-nav-button bmb_datepicker-modal-nav-button-transparent"
+        (click)="handleChangeMonth('less')"
+        bmbButton
+        appearance="secondary-outlined"
+        icon="keyboard_arrow_left"
+        size="micro"
+      ></button>
+    </li>
+    <li bmbLayoutItem>
+      <button
+        class="bmb_datepicker-modal-calendar-button bmb_datepicker-modal-nav-button"
         (click)="handleChangeView('month')"
         bmbButton
         appearance="secondary-outlined"
         icon="keyboard_arrow_down"
+        size="small"
       >
         {{ month }}
       </button>
     </li>
     <li bmbLayoutItem>
       <button
-        class="bmb_datepicker-modal-calendar-button"
+        class="bmb_datepicker-modal-calendar-button bmb_datepicker-modal-nav-button"
         (click)="handleChangeView('year')"
         bmbButton
         appearance="secondary-outlined"
@@ -27,6 +39,16 @@
       >
         {{ selectedYear }}
       </button>
+    </li>
+    <li bmbLayoutItem>
+      <button
+        class="bmb_datepicker-modal-calendar-button bmb_datepicker-modal-nav-button bmb_datepicker-modal-nav-button-transparent"
+        (click)="handleChangeMonth('plus')"
+        bmbButton
+        appearance="secondary-outlined"
+        icon="keyboard_arrow_right"
+        size="micro"
+      ></button>
     </li>
   </nav>
   @switch (view) {
@@ -45,6 +67,7 @@
               (click)="handleDayChange(date)"
               bmbButton
               appearance="secondary-filled"
+              [disabled]="checkIfDisabled(date)"
             >
               {{ date.day }}
             </button>
