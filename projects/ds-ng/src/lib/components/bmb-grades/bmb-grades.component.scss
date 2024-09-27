@@ -6,6 +6,10 @@
     @include fonts.font(4, bold);
   }
 
+  .bmb_card.bmb_card-type-normal {
+    --border-color: RGBA(var(--color-charade-500));
+  }
+
   &-summary {
     &-container {
       width: 100%;
@@ -23,7 +27,7 @@
   }
 
   &-title {
-    color: RGBA(var(--color-white-primary));
+    color: RGBA(var(--color-charade-950));
     @include fonts.font(4, medium);
   }
 }
