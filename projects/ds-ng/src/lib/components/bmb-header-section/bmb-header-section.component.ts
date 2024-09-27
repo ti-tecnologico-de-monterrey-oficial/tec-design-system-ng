@@ -16,8 +16,10 @@ import {
 } from '../bmb-breadcrumb/bmb-breadcrumb.component';
 import { IBmbColor } from '../../types/colors';
 
-export interface IBmbHeaderAction {
+export interface IBmbActionHeader {
   icon: string;
+  iconActiveToggle?: string;
+  isToggleActive?: boolean;
   action: () => void;
 }
 
@@ -41,10 +43,9 @@ export class BmbHeaderSectionComponent {
   subtitle = input<string | undefined>('');
   dataLocalNav = input<IBmbDataTopBar[]>([]);
   leftIcon = input<string>('');
-  headerActions = input<IBmbHeaderAction[]>([]);
+  actionHeaders = input<IBmbActionHeader[]>([]);
   icon = input<string>('');
   bgIconAppearance = input<IBmbColor>();
-  isHeader = input<boolean>();
   transparentBgC = input<boolean>();
 
   onClickLeft = output<any>();
@@ -73,7 +74,11 @@ export class BmbHeaderSectionComponent {
     this.onClickLeft.emit(event);
   }
 
-  handleClickRight(action: IBmbHeaderAction) {
-    action.action();
+  handleClickRight(actionHeader: IBmbActionHeader) {
+    if (!!actionHeader.iconActiveToggle) {
+      actionHeader.isToggleActive = !actionHeader.isToggleActive;
+    }
+
+    actionHeader.action();
   }
 }
