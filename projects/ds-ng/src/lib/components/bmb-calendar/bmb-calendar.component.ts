@@ -83,12 +83,12 @@ export class BmbCalendarComponent {
 
   ngOnInit() {
     this.view.update((value) => (window.innerWidth < 1000 ? 'day' : value));
+    if (this.currentDate !== '') {
+      this.now = DateTime.fromISO(this.currentDate);
+    }
   }
 
-  now =
-    this.currentDate === ''
-      ? DateTime.now()
-      : DateTime.fromISO(this.currentDate);
+  now: DateTime = DateTime.now();
   weekNumber = this.now.weekNumber;
   renderWeekDays: DateTime[] = getWeekDays(this.now);
   selectedEvent: { event: IBmbCalendarEvent; position: any } | null = null;

@@ -7,14 +7,14 @@
   >
     <li bmbLayoutItem [colGrow]="1" [isDynamicItem]="true">
       <div bmbLayout margin="none" justify="center">
-        <li bmbLayoutItem [colSm]="2">
+        <li bmbLayoutItem [colSm]="2" style="overflow: visible">
           <bmb-calendar-template-select
             [value]="month"
             (onValueChange)="handleMonthChange($event)"
             [options]="monthsNames"
           />
         </li>
-        <li bmbLayoutItem [colSm]="2">
+        <li bmbLayoutItem [colSm]="2" style="overflow: visible">
           <bmb-calendar-template-select
             [value]="year.toString()"
             (onValueChange)="handleYearChange($event)"
