@@ -1,32 +1,29 @@
-<bmb-theme></bmb-theme>
-<hr />
-<bmb-date-range
-  label="test label"
-  [isRequired]="true"
-  placeholderStartDate="test start"
-  placeholderEndDate="test end"
-/>
-<hr />
-<bmb-datepicker
-  placeholder="Selecciona la fecha de cumpleaños"
-  name="datePicker"
-  dateFormat="MM/dd/yyyy"
-  label="Fecha de tu cumpleaños"
-  [disabled]="false"
-  icon="cake"
-  [isRequired]="true"
-  [isClearable]="true"
-  invalidFormaterrorMessage="El formato debe ser el siguiente: dd/mm/yyyy"
-  requiredFieldErrorMessage="Este campo es requerido"
-/>
-<hr />
-<bmb-input
-  [label]="'Input Label'"
-  [placeholder]="'Placeholder'"
-  [icon]="'apps'"
-  [errorMessage]="'Error'"
-  [helperMessage]="'Helper Message'"
-  [disabled]="false"
-  [isRequired]="false"
-  [appearance]="'normal'"
+<bmb-theme />
+<bmb-home-card
+  [leftIcon]="'chevron_left'"
+  icon="exposure"
+  bgIconAppearance="green-light"
+  [title]="'Title'"
+  [subtitle]="'subtitle'"
+  [dataLocalNav]="[
+    { text: 'Breadcrumb 1', link: '/' },
+    { text: 'Breadcrumb 2', link: '/emprendedor' },
+    { text: 'Breadcrumb 3', link: '/emprendedor/vivencia' },
+    { text: 'Breadcrumb 4', link: '/emprendedor/vivencia' },
+    { text: 'Breadcrumb 5', link: '/emprendedor/vivencia' },
+    { text: 'Breadcrumb 6', link: '/emprendedor/vivencia' },
+  ]"
+  [isMobile]="false"
+>
+  <p>hello world</p>
+</bmb-home-card>
+<bmb-divider [type]="'simple'" />
+<bmb-header-section
+  leftIcon="close"
+  [headerActions]="headerActions"
+  title="Header section name"
+  subtitle="Subtitle"
+  icon="exposure"
+  bgIconAppearance="black-primary"
+  [isHeader]="false"
 />
