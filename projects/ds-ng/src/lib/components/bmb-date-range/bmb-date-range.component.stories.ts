@@ -92,7 +92,8 @@ Below is an example of how to use this component in HTML:
       control: {
         type: 'text',
       },
-      description: 'Placeholder text to be displayed inside the start date input field.',
+      description:
+        'Placeholder text to be displayed inside the start date input field.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -103,7 +104,8 @@ Below is an example of how to use this component in HTML:
       control: {
         type: 'text',
       },
-      description: 'Placeholder text to be displayed inside the end date input field.',
+      description:
+        'Placeholder text to be displayed inside the end date input field.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
