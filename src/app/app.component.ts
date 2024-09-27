@@ -935,6 +935,19 @@ export class AppComponent {
     },
   ];
 
+  actionHeadersB: IBmbActionHeader[] = [
+    {
+      icon: 'fit_screen',
+      iconActiveToggle: 'close_fullscreen',
+      isToggleActive: false,
+      action: () => {},
+    },
+    {
+      icon: 'tune',
+      action: () => {},
+    },
+  ];
+
   actionHeadersToggle: IBmbActionHeader[] = [
     {
       icon: 'fit_screen',
