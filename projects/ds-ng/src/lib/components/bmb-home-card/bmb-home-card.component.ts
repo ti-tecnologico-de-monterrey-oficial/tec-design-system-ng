@@ -8,6 +8,7 @@ import {
 import { BmbHomeCardHeaderComponent } from './bmb-home-card-header/bmb-home-card-header.component';
 import { IBmbDataTopBar } from '../bmb-breadcrumb/bmb-breadcrumb.component';
 import { IBmbColor } from '../../types/colors';
+import { IBmbActionHeader } from '../bmb-header-section/bmb-header-section.component';
 
 @Component({
   selector: 'bmb-home-card',
@@ -25,6 +26,7 @@ export class BmbHomeCardComponent {
   leftIcon = input<string>();
   icon = input<string>();
   bgIconAppearance = input<IBmbColor>();
+  actionHeaders = input<IBmbActionHeader[]>([]);
   isMobile = input<boolean>();
 
   onClose = output();
