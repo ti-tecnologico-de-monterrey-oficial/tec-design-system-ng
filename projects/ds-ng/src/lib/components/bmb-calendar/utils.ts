@@ -33,14 +33,6 @@ export const getMonthDays = (date: DateTime): DateTime[] => {
   return weekDays;
 };
 
-export const orderDayNames = (
-  days: (string | undefined)[],
-): (string | undefined)[] => {
-  const lastElement: string | undefined = days.pop();
-  days.unshift(lastElement);
-  return days;
-};
-
 export const getTimeRange = (event: IBmbCalendarEvent): string => {
   const start = DateTime.fromISO(event.start);
   const end = DateTime.fromISO(event.end);
