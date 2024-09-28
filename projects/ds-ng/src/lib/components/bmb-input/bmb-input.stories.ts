@@ -108,6 +108,19 @@ Below is an example of how to use this component in HTML:
     },
   },
   argTypes: {
+    type: {
+      name: 'Type',
+      control: {
+        type: 'radio',
+      },
+      options: ['text', 'password', 'number', 'text-area'],
+      description: 'Select the type of the input',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'text' },
+      },
+    },
     control: {
       control: { type: 'object' },
       description: 'Instance of FormControl to manage the input control state.',
@@ -268,6 +281,27 @@ Below is an example of how to use this component in HTML:
         type: 'text',
       },
       description: 'Sets a fixed size of the text string.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'number' },
+      },
+    },
+    showMaxTextLength: {
+      name: 'Show Max Text Length',
+      control: { type: 'boolean' },
+      description: 'This property shows a text in the right side of the label, the text indicates the max number of characters that the input accept. The maxLength property need to be set.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'true' },
+        type: { summary: 'boolean' },
+      },
+    },
+    rows: {
+      name: 'Rows',
+      control: {
+        type: 'text',
+      },
+      description: 'Sets the number of lines visible in the control. Only for text area input.',
       table: {
         category: 'Properties',
         type: { summary: 'number' },

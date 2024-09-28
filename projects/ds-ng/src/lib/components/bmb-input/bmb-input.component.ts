@@ -7,19 +7,21 @@ import {
   ChangeDetectionStrategy,
   Output,
   EventEmitter,
+  input,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { BmbTooltipComponent } from '../bmb-tooltip/bmb-tooltip.component';
 
-export type IBbmInputType = 'text' | 'password' | 'number';
+export type IBbmInputType = 'text' | 'password' | 'number' | 'text-area';
 
 @Component({
   selector: 'bmb-input',
   styleUrls: ['./bmb-input.component.scss'],
   templateUrl: './bmb-input.component.html',
   standalone: true,
-  imports: [CommonModule, BmbIconComponent, ReactiveFormsModule],
+  imports: [CommonModule, BmbIconComponent, ReactiveFormsModule, BmbTooltipComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
@@ -43,9 +45,14 @@ export class BmbInputComponent implements OnInit {
   @Input() size!: number;
   @Input() max!: number;
   @Input() min!: number;
+  tooltip = input<string>('')
+  rows = input<number>(3)
+  showMaxTextLength = input<boolean>(true)
 
   @Output() isFocus: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() isBlur: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  textLength: number = 0;
 
   constructor(private cdr: ChangeDetectorRef) {}
 
@@ -61,6 +68,7 @@ export class BmbInputComponent implements OnInit {
     this.control.updateValueAndValidity();
 
     this.control.valueChanges.subscribe(() => {
+      this.textLength = this.control.value.toString().length
       this.updateErrorState();
       this.cdr.markForCheck();
     });
@@ -83,8 +91,9 @@ export class BmbInputComponent implements OnInit {
   }
 
   get inputClasses(): { [key: string]: boolean } {
+    const appearance = this.type === 'text-area' ? 'normal' : this.appearance
     return {
-      ['bmb_field-input-' + this.appearance]: true,
+      ['bmb_field-input-' + appearance]: true,
       'bmb_field-input-error': this.shouldShowError,
       disabled: this.disabled,
     };
