@@ -81,9 +81,9 @@ export class BmbModalComponent {
     const baseClassName: string = 'bmb_modal';
     const classNames: string[] = [baseClassName];
 
-    // if (!!this.getData().size) {
-    //   classNames.push(`${baseClassName}-size-${this.getData().size}`);
-    // }
+    if (!!this.getData().size) {
+      classNames.push(`${baseClassName}-size-${this.getData().size}`);
+    }
 
     return classNames;
   }
