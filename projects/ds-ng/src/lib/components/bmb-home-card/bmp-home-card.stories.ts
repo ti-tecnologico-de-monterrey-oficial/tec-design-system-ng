@@ -131,7 +131,8 @@ Below is an example of how you can use this component in HTML:
     actionHeaders: {
       name: 'Action header',
       control: { type: 'boolean' },
-      description: 'Sets an array of IBmbActionHeader objects, default value is an empty array.',
+      description:
+        'Sets an array of IBmbActionHeader objects, default value is an empty array.',
       table: {
         category: 'Properties',
         type: {
