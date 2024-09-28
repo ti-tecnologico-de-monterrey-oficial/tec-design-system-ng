@@ -2,6 +2,11 @@
 @use "../../../assets/styles/base/rem" as rem;
 
 .bmb_modal {
+  border-radius: var(--bmb-radius-xl);
+  border: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
+  box-shadow: rem.rem_calc(12) rem.rem_calc(12) rem.rem_calc(4) 0px
+    RGBA(var(--color-charade-950), 0.5);
+
   .bmb_container-primary-container {
     padding: 0;
   }
@@ -72,7 +77,7 @@
       height: rem.rem_calc(35);
 
       &-secondary_action {
-        border: 1px solid RGBA(var(--color-charade-950));
+        border: rem.rem_calc(1) solid RGBA(var(--color-charade-950));
         color: RGBA(var(--color-charade-950));
         background-color: transparent;
 
@@ -132,6 +137,8 @@
 [data-theme="dark"],
 .storybook-dark-theme {
   .bmb_modal {
+    border-color: RGBA(var(--color-charade-700));
+
     &-content {
       &-description {
         color: RGBA(var(--color-charade-200));
@@ -148,10 +155,12 @@
     &-footer {
       &-button {
         &-secondary_action {
-          border: 1px solid RGBA(var(--color-charade-50));
+          border: rem.rem_calc(1) solid RGBA(var(--color-charade-50));
           color: RGBA(var(--color-charade-50));
+          background-color: transparent;
 
           &:hover:not(:disabled) {
+            background-color: RGBA(var(--color-charade-50));
             color: RGBA(var(--color-charade-950));
           }
         }
