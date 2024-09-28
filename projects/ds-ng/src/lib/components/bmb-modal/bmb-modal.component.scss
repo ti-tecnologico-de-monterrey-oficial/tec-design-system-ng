@@ -13,31 +13,26 @@
   }
 
   &-container {
+    padding: var(--bmb-spacing-xl);
     width: 100%;
   }
 
   &-size {
     &-small {
-      min-width: rem.rem_calc(344);
       max-width: rem.rem_calc(760);
-      width: rem.rem_calc(760);
     }
 
     &-medium {
-      min-width: rem.rem_calc(300);
       max-width: rem.rem_calc(920);
-      width: rem.rem_calc(920);
     }
 
     &-large {
-      min-width: rem.rem_calc(300);
       max-width: rem.rem_calc(1080);
-      width: rem.rem_calc(1080);
     }
   }
 
   &-content {
-    padding-bottom: rem.rem_calc(20);
+    padding: var(--bmb-spacing-l);
 
     &-description {
       @include fonts.font(5, regular);
@@ -54,7 +49,7 @@
       }
 
       &::-webkit-scrollbar-thumb {
-        border-radius: rem.rem_calc(20);
+        border-radius: rem.rem_calc(16);
         border: rem.rem_calc(1) solid RGBA(var(--color-charade-300));
       }
 
@@ -77,11 +72,14 @@
       height: rem.rem_calc(35);
 
       &-secondary_action {
-        // background-color: transparent;
-        border: rem.rem_calc(1) solid RGBA(var(--color-black-primary));
-        // &:hover:not(:disabled) {
-        //   color: RGBA(var(--color-charade-950));
-        // }
+        border: 1px solid RGBA(var(--color-charade-950));
+        color: RGBA(var(--color-charade-950));
+        background-color: transparent;
+
+        &:hover:not(:disabled) {
+          color: RGBA(var(--color-charade-50));
+          background-color: RGBA(var(--color-charade-950));
+        }
       }
 
       &-primary {
@@ -136,13 +134,13 @@
   .bmb_modal {
     &-content {
       &-description {
-        color: RGBA(var(--color-charade-50));
+        color: RGBA(var(--color-charade-200));
       }
 
       &-scrollable {
         &::-webkit-scrollbar-thumb {
-          // background-color: RGBA(var(--color-charade-950));
-          border: rem.rem_calc(1) solid RGBA(var(--color-charade-950));
+          background-color: RGBA(var(--color-charade-950));
+          border-color: RGBA(var(--color-charade-700));
         }
       }
     }
@@ -152,6 +150,7 @@
         &-secondary_action {
           border: 1px solid RGBA(var(--color-charade-50));
           color: RGBA(var(--color-charade-50));
+
           &:hover:not(:disabled) {
             color: RGBA(var(--color-charade-950));
           }
