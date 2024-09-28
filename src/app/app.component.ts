@@ -224,12 +224,12 @@ export class AppComponent {
     secondaryBtnLabel: 'Cancel',
     hidePrimaryButton: false,
     scrollable: true,
-    primaryAction: () => {
-      console.log('primaryAction');
-    },
-    secondaryAction: () => {
-      console.log('secondaryAction');
-    },
+    // primaryAction: () => {
+    //   console.log('primaryAction');
+    // },
+    // secondaryAction: () => {
+    //   console.log('secondaryAction');
+    // },
   };
 
   isCalendarLoading = false;
