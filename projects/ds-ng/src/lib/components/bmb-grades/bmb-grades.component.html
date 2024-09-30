@@ -1,6 +1,11 @@
 <ng-template #detailContent>
   @for (partial of partials; track $index) {
-    <section bmbLayout margin="m" justify="spaceBetween" [dynamicCols]="true">
+    <section
+      bmbLayout
+      margin="none"
+      justify="spaceBetween"
+      [dynamicCols]="true"
+    >
       <span class="bmb_grades-title" bmbLayoutItem>{{ partial.title }}</span>
       <bmb-grade-value
         [score]="partial.score"
@@ -8,7 +13,9 @@
         bmbLayoutItem
       />
     </section>
-    <bmb-divider [type]="'simple'" />
+    @if ($index < partials.length - 1) {
+      <bmb-divider [type]="'simple'" />
+    }
   }
 </ng-template>
 
