@@ -1,32 +1,9 @@
 <bmb-theme></bmb-theme>
 <hr />
-<bmb-date-range
-  label="test label"
-  [isRequired]="true"
-  placeholderStartDate="test start"
-  placeholderEndDate="test end"
-/>
-<hr />
-<bmb-datepicker
-  placeholder="Selecciona la fecha de cumpleaños"
-  name="datePicker"
-  dateFormat="MM/dd/yyyy"
-  label="Fecha de tu cumpleaños"
-  [disabled]="false"
-  icon="cake"
-  [isRequired]="true"
-  [isClearable]="true"
-  invalidFormaterrorMessage="El formato debe ser el siguiente: dd/mm/yyyy"
-  requiredFieldErrorMessage="Este campo es requerido"
-/>
-<hr />
-<bmb-input
-  [label]="'Input Label'"
-  [placeholder]="'Placeholder'"
-  [icon]="'apps'"
-  [errorMessage]="'Error'"
-  [helperMessage]="'Helper Message'"
-  [disabled]="false"
-  [isRequired]="false"
-  [appearance]="'normal'"
+<bmb-timestream
+  title="Test title"
+  dateFormat="dd/MM/yyyy"
+  startDate="27/09/2024"
+  endDate="27/09/2028"
+  [dataLocalNav]="timestreamNav"
 />

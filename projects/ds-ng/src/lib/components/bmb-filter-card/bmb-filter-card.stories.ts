@@ -93,7 +93,7 @@ Below is an example of how you can use this component in HTML:
       table: {
         category: 'Properties',
         type: {
-          summary: 'ControlType[]',
+          summary: 'IBmbControlType[]',
         },
       },
     },
