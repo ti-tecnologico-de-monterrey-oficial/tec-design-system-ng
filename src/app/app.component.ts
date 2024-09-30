@@ -84,6 +84,7 @@ import {
   BmbDateRangeComponent,
   IBmbHeaderAction,
   BmbFocusElementComponent,
+  ITimelineEvent,
 } from '../../projects/ds-ng/src/public-api';
 
 export interface Target {
@@ -974,6 +975,64 @@ export class AppComponent {
       title: 'Title 2',
       link: 'google.com',
       iconLeft: 'home',
+    },
+  ];
+
+  timestreamEvents: ITimelineEvent[] = [
+    {
+      id: 1,
+      start: '24/09/2024',
+      end: '28/09/2024',
+      title: 'Wirey Spindell',
+      image: 'http://dummyimage.com/241x100.png/ff4444/ffffff',
+      short_description:
+        'Phasellus in felis. Donec semper sapien a libero. Nam dui.',
+      description:
+        'Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.',
+      type: 'avance_academico',
+      instances:
+        'Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.\n\nMaecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.\n\nNullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.',
+    },
+    {
+      id: 1,
+      start: '27/09/2024',
+      end: '27/09/2024',
+      title: 'test',
+      image: 'http://dummyimage.com/241x100.png/ff4444/ffffff',
+      short_description:
+        'Phasellus in felis. Donec semper sapien a libero. Nam dui.',
+      description:
+        'Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.',
+      type: 'avance_academico',
+      instances:
+        'Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.\n\nMaecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.\n\nNullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.',
+    },
+  ];
+
+  timestreamNav = [
+    {
+      text: 'Borem ipsum dolor sit amet 1',
+      link: '/',
+    },
+    {
+      text: 'Borem ipsum dolor sit amet 2',
+      link: '/emprendedor',
+    },
+    {
+      text: 'Borem ipsum dolor sit amet 3',
+      link: '/emprendedor/vivencia',
+    },
+    {
+      text: 'Borem ipsum dolor sit amet 4',
+      link: '/emprendedor/vivencia',
+    },
+    {
+      text: 'Borem ipsum dolor sit amet 5',
+      link: '/emprendedor/vivencia',
+    },
+    {
+      text: 'Borem ipsum dolor sit amet 6',
+      link: '/emprendedor/vivencia',
     },
   ];
 }

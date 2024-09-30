@@ -1,46 +1,64 @@
-<section class="bmb_timestream">
-  @if (error) {
-    <div class="bmb_timestream-error">
-      <bmb-timestream-error />
-    </div>
-  } @else {
-    <aside class="bmb_timestream-aside">
-      <bmb-timestream-timeline
-        [start]="start"
-        [end]="end"
-        [dateFormat]="dateFormat"
-        [lang]="lang"
-        [now]="now"
-        [events]="parsedEvents"
-        [selectedDate]="selectedDate"
-        [orderedMonths]="orderedMonths"
-        (changeSelectedDate)="handleSelectedDateChange($event)"
-      />
-    </aside>
-    <section class="bmb_timestream-main">
-      <bmb-timestream-detail
-        [start]="start"
-        [end]="end"
-        [dateFormat]="dateFormat"
-        [lang]="lang"
-        [now]="now"
-        [events]="parsedEvents"
-        [selectedDate]="selectedDate"
-        (changeSelectedEvent)="handleSelectedEventChange($event)"
-        [orderedEvents]="orderedEvents"
-      />
-    </section>
-    <section
-      class="bmb_timestream-dialog"
-      [ngClass]="{
-        'bmb_timestream-dialog-active': !!isDialogOpen,
-      }"
-    >
-      <bmb-timestream-dialog
-        [event]="isDialogOpen"
-        (closeDialog)="closeDetail()"
-        [lang]="lang"
-      />
-    </section>
-  }
-</section>
+<bmb-home-card
+  [icon]="icon()"
+  [bgIconAppearance]="bgIconAppearance()"
+  [title]="title()"
+  [subtitle]="subtitle()"
+  [dataLocalNav]="dataLocalNav()"
+  [isMobile]="isMobile"
+>
+  <section class="bmb_timestream">
+    @if (error) {
+      <div class="bmb_timestream-error">
+        <bmb-timestream-error />
+      </div>
+    }
+    <!--  @else {
+      <aside class="bmb_timestream-aside">
+        <bmb-timestream-timeline
+          [start]="start"
+          [end]="end"
+          [dateFormat]="dateFormat"
+          [lang]="lang"
+          [now]="now"
+          [events]="parsedEvents"
+          [selectedDate]="selectedDate"
+          [orderedMonths]="orderedMonths"
+          (changeSelectedDate)="handleSelectedDateChange($event)"
+        />
+      </aside>
+      <section class="bmb_timestream-main">
+        <bmb-timestream-detail
+          [start]="start"
+          [end]="end"
+          [dateFormat]="dateFormat"
+          [lang]="lang"
+          [now]="now"
+          [events]="parsedEvents"
+          [selectedDate]="selectedDate"
+          (changeSelectedEvent)="handleSelectedEventChange($event)"
+          [orderedEvents]="orderedEvents"
+        />
+      </section>
+      <section
+        class="bmb_timestream-dialog"
+        [ngClass]="{
+          'bmb_timestream-dialog-active': !!isDialogOpen,
+        }"
+      >
+        <bmb-timestream-dialog
+          [event]="isDialogOpen"
+          (closeDialog)="closeDetail()"
+          [lang]="lang"
+        />
+      </section>
+    } -->
+  </section>
+</bmb-home-card>
+<bmb-filter-card
+  [modalTitle]="'Opciones Filtrado'"
+  [primaryBtnLabel]="'Aplicar Filtros'"
+  [secondaryBtnLabel]="'Limpiar Filtros'"
+  [icon]="'tune'"
+  [placeholderSearch]="'Search'"
+  [controlTypes]="controlTypes()"
+></bmb-filter-card>

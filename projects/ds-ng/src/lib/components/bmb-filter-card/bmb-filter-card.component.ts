@@ -20,7 +20,7 @@ import { BmbTagComponent } from '../bmb-tags/bmb-tags.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalDataConfig } from '../bmb-modal/bmb-modal.interface';
 import { BmbInputComponent } from '../bmb-input/bmb-input.component';
-import { ControlType } from './bmb-filter-card.interface';
+import { IBmbControlType } from './bmb-filter-card.interface';
 
 @Component({
   selector: 'bmb-filter-card',
@@ -48,7 +48,7 @@ export class BmbFilterCardComponent implements OnInit {
   secondaryBtnLabel = input<string>('');
   icon = input<string>('');
   placeholderSearch = input<string>('');
-  controlTypes = input<ControlType[]>([]);
+  controlTypes = input<IBmbControlType[]>([]);
   storedValues: { [name: string]: any } = {};
 
   applyFilters = output<void>();
