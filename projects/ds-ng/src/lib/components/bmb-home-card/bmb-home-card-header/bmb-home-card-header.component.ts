@@ -8,7 +8,7 @@ import {
 import { CommonModule } from '@angular/common';
 import {
   BmbHeaderSectionComponent,
-  IBmbHeaderAction,
+  IBmbActionHeader,
 } from '../../bmb-header-section/bmb-header-section.component';
 import { IBmbDataTopBar } from '../../bmb-breadcrumb/bmb-breadcrumb.component';
 import { IBmbColor } from '../../../types/colors';
@@ -29,21 +29,13 @@ export class BmbHomeCardHeaderComponent {
   leftIcon = input<string>();
   icon = input<string>();
   bgIconAppearance = input<IBmbColor>();
+  actionHeaders = input<IBmbActionHeader[]>([]);
   isMobile = input<boolean>();
 
   onClose = output();
   onBack = output();
 
   isExpanded: boolean = false;
-
-  getHeaderActions(): IBmbHeaderAction[] {
-    return [
-      {
-        icon: this.getBehaviorIconName(),
-        action: () => this.handleExpandChange(),
-      },
-    ];
-  }
 
   getLeftIcon(): string {
     if (this.isExpanded && !!this.leftIcon()) return this.leftIcon()!;
@@ -55,15 +47,25 @@ export class BmbHomeCardHeaderComponent {
     return '';
   }
 
-  getBehaviorIconName(): string {
-    if (this.isMobile()) return 'close';
-    if (this.isExpanded) return 'close_fullscreen';
-
-    return 'fit_screen';
+  getDataLocalNav(): IBmbDataTopBar[] {
+    if (this.isMobile()) return [];
+    return this.dataLocalNav();
   }
 
-  isHeader(): boolean {
-    return this.getBehaviorIconName() !== 'close';
+  getActionHeaders(): IBmbActionHeader[] {
+    return [
+      ...this.actionHeaders(),
+      {
+        icon: this.isMobile() ? 'close' : 'fit_screen',
+        iconActiveToggle: this.isMobile() ? '' : 'close_fullscreen',
+        isToggleActive: false,
+        action: () => this.handleExpandChange(),
+      },
+    ];
+  }
+
+  handleBack(): void {
+    this.onBack.emit();
   }
 
   handleExpandChange(): void {
@@ -73,9 +75,5 @@ export class BmbHomeCardHeaderComponent {
     }
 
     this.isExpanded = !this.isExpanded;
-  }
-
-  handleBack(): void {
-    this.onBack.emit();
   }
 }
