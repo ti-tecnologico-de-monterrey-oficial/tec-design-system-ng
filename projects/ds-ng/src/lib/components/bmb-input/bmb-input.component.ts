@@ -21,7 +21,12 @@ export type IBbmInputType = 'text' | 'password' | 'number' | 'text-area';
   styleUrls: ['./bmb-input.component.scss'],
   templateUrl: './bmb-input.component.html',
   standalone: true,
-  imports: [CommonModule, BmbIconComponent, ReactiveFormsModule, BmbTooltipComponent],
+  imports: [
+    CommonModule,
+    BmbIconComponent,
+    ReactiveFormsModule,
+    BmbTooltipComponent,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
@@ -45,9 +50,9 @@ export class BmbInputComponent implements OnInit {
   @Input() size!: number;
   @Input() max!: number;
   @Input() min!: number;
-  tooltip = input<string>('')
-  rows = input<number>(3)
-  showMaxTextLength = input<boolean>(true)
+  tooltip = input<string>('');
+  rows = input<number>(3);
+  showMaxTextLength = input<boolean>(true);
 
   @Output() isFocus: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() isBlur: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -68,7 +73,7 @@ export class BmbInputComponent implements OnInit {
     this.control.updateValueAndValidity();
 
     this.control.valueChanges.subscribe(() => {
-      this.textLength = this.control.value.toString().length
+      this.textLength = this.control.value.toString().length;
       this.updateErrorState();
       this.cdr.markForCheck();
     });
@@ -91,7 +96,7 @@ export class BmbInputComponent implements OnInit {
   }
 
   get inputClasses(): { [key: string]: boolean } {
-    const appearance = this.type === 'text-area' ? 'normal' : this.appearance
+    const appearance = this.type === 'text-area' ? 'normal' : this.appearance;
     return {
       ['bmb_field-input-' + appearance]: true,
       'bmb_field-input-error': this.shouldShowError,

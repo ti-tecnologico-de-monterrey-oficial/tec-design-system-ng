@@ -12,9 +12,11 @@
       </header>
       <section class="bmb_modal-content">
         @if (isModalTemplate()) {
-          <ng-container *ngTemplateOutlet="getContent()" />
+          <section [class]="getDescriptionClasses('template')">
+            <ng-container *ngTemplateOutlet="getContent()" />
+          </section>
         } @else {
-          <section [class]="getDescriptionClasses()">
+          <section [class]="getDescriptionClasses('description')">
             <p>
               {{ getContent() }}
             </p>

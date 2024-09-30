@@ -82,15 +82,15 @@ export class BmbModalComponent {
     const classNames: string[] = [baseClassName];
 
     if (!!this.getData().size) {
-      classNames.push(`${baseClassName}-size-${this.getData().size}`);
+      return [...classNames, `${baseClassName}-size-${this.getData().size}`];
     }
 
     return classNames;
   }
 
-  getDescriptionClasses(): string[] {
+  getDescriptionClasses(sectionName: string): string[] {
     const baseClassName: string = 'bmb_modal-content';
-    const classNames: string[] = [`${baseClassName}-description`];
+    const classNames: string[] = [`${baseClassName}-${sectionName}`];
 
     if (!!this.getData().scrollable) {
       classNames.push(`${baseClassName}-scrollable`);
