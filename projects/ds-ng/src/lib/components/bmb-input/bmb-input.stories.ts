@@ -289,7 +289,8 @@ Below is an example of how to use this component in HTML:
     showMaxTextLength: {
       name: 'Show Max Text Length',
       control: { type: 'boolean' },
-      description: 'This property shows a text in the right side of the label, the text indicates the max number of characters that the input accept. The maxLength property need to be set.',
+      description:
+        'This property shows a text in the right side of the label, the text indicates the max number of characters that the input accept. The maxLength property need to be set.',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'true' },
@@ -301,7 +302,8 @@ Below is an example of how to use this component in HTML:
       control: {
         type: 'text',
       },
-      description: 'Sets the number of lines visible in the control. Only for text area input.',
+      description:
+        'Sets the number of lines visible in the control. Only for text area input.',
       table: {
         category: 'Properties',
         type: { summary: 'number' },
