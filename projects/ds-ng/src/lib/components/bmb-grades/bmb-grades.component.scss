@@ -1,6 +1,10 @@
 @use "../../../assets/styles/base/fonts" as fonts;
 @use "../../../assets/styles/base/rem" as rem;
 
+.bmb_modal-content {
+  padding-bottom: 0px;
+}
+
 .bmb_grades {
   .bmb_chevron-content-title {
     @include fonts.font(4, bold);
