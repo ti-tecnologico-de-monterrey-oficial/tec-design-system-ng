@@ -26,11 +26,11 @@ import { BmbContainerComponent } from '../bmb-container/bmb-container.component'
   imports: [
     CommonModule,
     BmbContainerComponent,
-    BmbButtonDirective,
     BmbHeaderSectionComponent,
+    BmbButtonDirective,
   ],
-  templateUrl: './bmb-modal.component.html',
   providers: [MatDialog, ModalService],
+  templateUrl: './bmb-modal.component.html',
   styleUrl: './bmb-modal.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
