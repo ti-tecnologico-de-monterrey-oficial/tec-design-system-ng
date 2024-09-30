@@ -216,20 +216,20 @@ export class AppComponent {
     title: 'Modal Title',
     subtitle: 'Modal Subtitle',
     content:
-      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.',
+      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.',
     size: 'small',
     type: 'alert',
     alertStyle: 'error',
     primaryBtnLabel: 'Action',
     secondaryBtnLabel: 'Cancel',
     hidePrimaryButton: false,
-    scrollable: false,
-    primaryAction: () => {
-      console.log('primaryAction');
-    },
-    secondaryAction: () => {
-      console.log('secondaryAction');
-    },
+    scrollable: true,
+    // primaryAction: () => {
+    //   console.log('primaryAction');
+    // },
+    // secondaryAction: () => {
+    //   console.log('secondaryAction');
+    // },
   };
 
   isCalendarLoading = false;
