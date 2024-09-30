@@ -70,7 +70,7 @@
     }
 
     &-tooltip{
-      margin-left: 5px;
+      margin-left: rem.rem_calc(5);
       font-size: rem.rem_calc(12);
       color: RGBA(var(--color-charade-500));
     }
