@@ -128,6 +128,19 @@ Below is an example of how you can use this component in HTML:
         },
       },
     },
+    actionHeaders: {
+      name: 'Action header',
+      control: { type: 'boolean' },
+      description:
+        'Sets an array of IBmbActionHeader objects, default value is an empty array.',
+      table: {
+        category: 'Properties',
+        type: {
+          summary:
+            'IBmbActionHeader[], {icon: string; iconActiveToggle?: string; isToggleActive?: boolean; action: () => void;}',
+        },
+      },
+    },
     isMobile: {
       name: 'Is mobile',
       control: { type: 'boolean' },
@@ -159,11 +172,12 @@ Below is an example of how you can use this component in HTML:
   },
   args: {
     leftIcon: 'chevron_left',
+    icon: 'account_balance_wallet',
+    bgIconAppearance: 'green-light',
     title: 'Title',
     subtitle: 'Subtitle',
     dataLocalNav: [],
-    icon: 'account_balance_wallet',
-    bgIconAppearance: 'green-light',
+    actionHeaders: [],
     isMobile: false,
   },
 } as Meta<typeof BmbHomeCardComponent>;
@@ -181,6 +195,7 @@ export const Default: Story = {
         [title]="title"
         [subtitle]="subtitle"
         [dataLocalNav]="dataLocalNav"
+        [actionHeaders]="actionHeaders"
         [isMobile]="isMobile"
       >
         <p>hello world</p>
