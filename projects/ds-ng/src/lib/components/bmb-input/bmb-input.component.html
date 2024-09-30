@@ -1,39 +1,80 @@
 <div class="bmb_field" [ngClass]="{ disabled: disabled }">
-  <label [for]="name" class="bmb_field-label" *ngIf="label">
-    {{ label }}
-    <small *ngIf="isRequired" class="bmb_field-label-required">*</small>
-  </label>
+  @if (label) {
+    <label [for]="name" class="bmb_field-label">
+      {{ label }}
+      @if (isRequired) {
+        <small class="bmb_field-label-required">*</small>
+      }
+      @if (tooltip().length > 0) {
+        <bmb-tooltip [text]="tooltip()" [align]="'right'" [justify]="'before'">
+          <bmb-icon class="bmb_field-label-tooltip" [icon]="'help'" />
+        </bmb-tooltip>
+      }
+      @if (type == "text-area" && showMaxTextLength()) {
+        <span class="bmb_field-label-max"
+          >{{ textLength }}/{{ maxlength || "-" }}</span
+        >
+      }
+    </label>
+  }
   <div class="bmb_field-wrapper">
-    <bmb-icon
-      *ngIf="icon"
-      [icon]="icon"
-      class="bmb_field-icon"
-      [ngClass]="'bmb_field-icon-' + appearance"
-    ></bmb-icon>
-    <input
-      [type]="type"
-      class="bmb_field-input"
-      [ngClass]="inputClasses"
-      [required]="isRequired"
-      [disabled]="disabled"
-      [placeholder]="placeholder ? placeholder : ''"
-      [formControl]="control"
-      (focus)="onFocus()"
-      (blur)="onBlur()"
-      [name]="name"
-      [id]="name"
-      [spellcheck]="spellcheck"
-      [maxlength]="maxlength"
-      [minlength]="minlength"
-      [pattern]="pattern"
-      [max]="max"
-      [min]="min"
-    />
+    @if (icon && type !== "text-area") {
+      <bmb-icon
+        [icon]="icon"
+        class="bmb_field-icon"
+        [ngClass]="'bmb_field-icon-' + appearance"
+      ></bmb-icon>
+    }
+    @if (type == "text-area") {
+      <textarea
+        class="bmb_field-text-area"
+        [ngClass]="inputClasses"
+        [placeholder]="placeholder ? placeholder : ''"
+        [disabled]="disabled"
+        [required]="isRequired"
+        [formControl]="control"
+        [maxlength]="maxlength"
+        [minlength]="minlength"
+        [spellcheck]="spellcheck"
+        (focus)="onFocus()"
+        (blur)="onBlur()"
+        [rows]="rows()"
+        [name]="name"
+        [id]="name"
+      ></textarea>
+      @if (this.shouldShowError) {
+        <bmb-icon class="bmb_field-text-area-error-icon" [icon]="'error'" />
+      }
+    } @else {
+      <input
+        [type]="type"
+        class="bmb_field-input"
+        [ngClass]="inputClasses"
+        [required]="isRequired"
+        [disabled]="disabled"
+        [placeholder]="placeholder ? placeholder : ''"
+        [formControl]="control"
+        (focus)="onFocus()"
+        (blur)="onBlur()"
+        [name]="name"
+        [id]="name"
+        [spellcheck]="spellcheck"
+        [maxlength]="maxlength"
+        [minlength]="minlength"
+        [pattern]="pattern"
+        [max]="max"
+        [min]="min"
+      />
+    }
   </div>
-  <p class="bmb_field-helper" *ngIf="helperMessage && !shouldShowError">
-    {{ helperMessage }}
-  </p>
-  <p class="bmb_field-error" *ngIf="errorMessage && shouldShowError">
-    {{ errorMessage }}
-  </p>
+  @if (helperMessage && !shouldShowError) {
+    <p class="bmb_field-helper">
+      {{ helperMessage }}
+    </p>
+  }
+  @if (errorMessage && shouldShowError) {
+    <p class="bmb_field-error">
+      {{ errorMessage }}
+    </p>
+  }
 </div>
