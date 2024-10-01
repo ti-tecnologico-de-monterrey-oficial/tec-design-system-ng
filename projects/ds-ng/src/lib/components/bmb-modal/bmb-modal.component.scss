@@ -56,6 +56,7 @@
     }
 
     &-scrollable {
+      padding-right: rem.rem_calc(12);
       overflow-x: hidden;
       overflow-y: scroll;
 
