@@ -84,6 +84,7 @@ import {
   BmbDateRangeComponent,
   IBmbActionHeader,
   BmbFocusElementComponent,
+  BmbGradeValueComponent,
 } from '../../projects/ds-ng/src/public-api';
 
 export interface Target {
@@ -99,6 +100,8 @@ import {} from '../../projects/ds-ng/src/lib/components/bmb-home-card-chat/bmb-h
 import { DateTime } from 'luxon';
 import { IBmbGrades } from '../../projects/ds-ng/src/lib/components/bmb-grades/types';
 import { BmbBottomNavigationBarComponent } from '../../projects/ds-ng/src/lib/components/bmb-bottom-navigation-bar/bmb-bottom-navigation-bar.component';
+import { IBmbDataTopBar } from '../../projects/ds-ng/src/lib/components/bmb-breadcrumb/bmb-breadcrumb.component';
+import { BmbEvaluationRubricComponent } from '../../projects/ds-ng/src/lib/components/bmb-evaluation-rubric/bmb-evaluation-rubric.component';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -171,6 +174,8 @@ import { BmbBottomNavigationBarComponent } from '../../projects/ds-ng/src/lib/co
     BmbStepProgressBarComponent,
     BmbFocusElementComponent,
     BmbDateRangeComponent,
+    BmbGradeValueComponent,
+    BmbEvaluationRubricComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -764,6 +769,17 @@ export class AppComponent {
 
   logSelection(name: string, event: unknown): void {
     console.log('logSelection', name, '-', event);
+  }
+
+  getDataTopBar(): IBmbDataTopBar[] {
+    return [
+      { text: 'Breadcrumb 1', link: '/' },
+      { text: 'Breadcrumb 2', link: '/emprendedor' },
+      { text: 'Breadcrumb 3', link: '/emprendedor/vivencia' },
+      { text: 'Breadcrumb 4', link: '/emprendedor/vivencia' },
+      { text: 'Breadcrumb 5', link: '/emprendedor/vivencia' },
+      { text: 'Breadcrumb 6', link: '/emprendedor/vivencia' },
+    ];
   }
 
   getGrades(): IBmbGrades[] {
