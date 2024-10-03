@@ -2,9 +2,6 @@
 @use "../../../assets/styles/base/rem" as rem;
 
 .bmb_header-section {
-  .bmb_interactive_icon-box {
-    align-items: self-end;
-  }
   &-transparent_bgc {
     .bmb_container-primary-container {
       background-color: inherit;
@@ -12,7 +9,13 @@
   }
 
   &-left_icon {
-    color: inherit;
+    .bmb_interactive_icon {
+      width: rem.rem_calc(48);
+      &-box {
+        width: rem.rem_calc(48);
+        align-items: self-start;
+      }
+    }
   }
 
   &-container {
@@ -59,6 +62,12 @@
   &-toggle_icon {
     .bmb_interactive_icon-none .bmb_interactive_icon-icon {
       color: RGBA(var(--color-mariner-500));
+    }
+  }
+
+  &-right_icon {
+    .bmb_interactive_icon-box {
+      align-items: self-end;
     }
   }
 }
