@@ -14,13 +14,12 @@ export interface ITimelineDayEvent {
 }
 
 export interface ITimelineEvent {
-  id: number;
+  id: number | string;
   start: string;
   end: string;
   description: string;
   short_description: string;
-  type: string;
-  instances: string;
+  type: ITimelineEventType;
   related_to?: string;
   decision?: string;
   title: string;
@@ -34,7 +33,10 @@ export interface ITimelineEvent {
   user_last_name?: string;
   user_email?: string;
   tags?: string[];
+  icon?: string;
 }
+
+export type ITimelineEventType = 'pending' | 'done' | 'active' | 'under_review';
 
 export interface ITimelineEventParsed extends ITimelineEvent {
   startEvent: DateTime;

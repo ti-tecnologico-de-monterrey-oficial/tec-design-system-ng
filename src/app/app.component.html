@@ -6,4 +6,17 @@
   startDate="27/09/2024"
   endDate="27/09/2028"
   [dataLocalNav]="timestreamNav"
+  [events]="timestreamEvents"
+  [clamp]="{
+    min: 0,
+    max: '100dvh',
+    size: 500,
+  }"
 />
+
+<bmb-badge text="text" [isFillBadge]="true" appearance="background"></bmb-badge>
+<bmb-badge
+  text="text"
+  [isFillBadge]="false"
+  appearance="background"
+></bmb-badge>

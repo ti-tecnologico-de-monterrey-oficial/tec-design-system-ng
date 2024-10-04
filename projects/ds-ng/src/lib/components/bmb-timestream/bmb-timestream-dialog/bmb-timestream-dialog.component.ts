@@ -50,57 +50,53 @@ export class BmbTimestreamDialogComponent {
 
   @Output() closeDialog: EventEmitter<void> = new EventEmitter<void>();
 
-  handleCloseEvent() {
-    this.closeDialog.emit();
-  }
+  // handleCloseEvent() {
+  //   this.closeDialog.emit();
+  // }
 
-  formatBadgeText(legend: string): string {
-    return legend.replace(/_/g, ' ');
-  }
+  // formatBadgeText(legend: string): string {
+  //   return legend.replace(/_/g, ' ');
+  // }
 
-  appearanceBadgeText(type: string): string {
-    switch (type) {
-      case 'enriquecedor':
-        return 'mitec-red';
-      case 'seriado':
-        return 'mitec-orange';
-      case 'inscripciones':
-        return 'green-light';
-      case 'avance_academico':
-        return 'mitec-blue';
-      case 'otra':
-        return 'purple-light';
-      case 'flexible':
-        return 'mitec-green';
-      default:
-        return 'mitec-blue';
-    }
-  }
+  // appearanceBadgeText(type: string): string {
+  //   switch (type) {
+  //     case 'pending':
+  //       return 'mitec-red';
+  //     case 'done':
+  //       return 'mitec-orange';
+  //     case 'active':
+  //       return 'green-light';
+  //     case 'under_review':
+  //       return 'mitec-blue';
+  //     default:
+  //       return 'mitec-blue';
+  //   }
+  // }
 
-  eventTabs: Tab[] = [
-    { id: 1, title: 'Descripción', isActive: true },
-    { id: 2, title: 'Instancias' },
-  ];
-  tabSelected = 1;
+  // eventTabs: Tab[] = [
+  //   { id: 1, title: 'Descripción', isActive: true },
+  //   { id: 2, title: 'Instancias' },
+  // ];
+  // tabSelected = 1;
 
-  handleTabSelected(tab: Tab) {
-    this.tabSelected = tab.id;
-  }
+  // handleTabSelected(tab: Tab) {
+  //   this.tabSelected = tab.id;
+  // }
 
-  getMonthTitle(date: DateTime) {
-    return date.setLocale(this.lang).toFormat('cccc dd LLLL yyyy');
-  }
+  // getMonthTitle(date: DateTime) {
+  //   return date.setLocale(this.lang).toFormat('cccc dd LLLL yyyy');
+  // }
 
-  getInstances(event: any): string[] {
-    const instances = [];
-    for (let index = 0; index < (event.diff || 0) + 1; index++) {
-      const date = event.originalStart.plus({ days: index });
-      instances.push(this.getMonthTitle(date));
-    }
-    return instances;
-  }
+  // getInstances(event: any): string[] {
+  //   const instances = [];
+  //   for (let index = 0; index < (event.diff || 0) + 1; index++) {
+  //     const date = event.originalStart.plus({ days: index });
+  //     instances.push(this.getMonthTitle(date));
+  //   }
+  //   return instances;
+  // }
 
-  getDurationString(event: ITimelineEvent): string {
-    return `Duración: ${event.originalStart?.day} - ${event.endEvent?.setLocale(this.lang).toFormat('dd LLLL yyyy')} (${(event.diff || 0) + 1} Días)`;
-  }
+  // getDurationString(event: ITimelineEvent): string {
+  //   return `Duración: ${event.originalStart?.day} - ${event.endEvent?.setLocale(this.lang).toFormat('dd LLLL yyyy')} (${(event.diff || 0) + 1} Días)`;
+  // }
 }
