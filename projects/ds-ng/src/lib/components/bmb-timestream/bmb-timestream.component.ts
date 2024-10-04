@@ -2,8 +2,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   input,
-  Input,
-  OnInit,
+  TemplateRef,
+  ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import { DateTime, Info } from 'luxon';
@@ -11,17 +11,27 @@ import { BmbTimestreamErrorComponent } from './bmb-timestream-error/bmb-timestre
 import { BmbTimestreamTimelineComponent } from './bmb-timestream-timeline/bmb-timestream-timeline.component';
 import { BmbTimestreamDetailsComponent } from './bmb-timestream-detail/bmb-timestream-detail.component';
 import { ITimelineEvent, ISelectedDate, ITimelineEventParsed } from './types';
-import { BmbTimestreamDialogComponent } from './bmb-timestream-dialog/bmb-timestream-dialog.component';
 import { CommonModule } from '@angular/common';
-import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
-import { IBmbDataTopBar } from '../bmb-breadcrumb/bmb-breadcrumb.component';
-import { IBmbColor } from '../../types/colors';
 import { BmbFilterCardComponent } from '../bmb-filter-card/bmb-filter-card.component';
 import { IBmbControlType } from '../bmb-filter-card/bmb-filter-card.interface';
-import { IBmbActionHeader } from '../bmb-header-section/bmb-header-section.component';
+import { ModalDataConfig } from '../bmb-modal/bmb-modal.interface';
+import { BmbModalComponent } from '../bmb-modal/bmb-modal.component';
+import { MatDialog } from '@angular/material/dialog';
+import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
+import { BmbTabsComponent } from '../bmb-tabs/bmb-tabs.component';
+import { BmbButtonDirective } from '../../directives/button.directive';
+import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
+import { BmbHitoCardComponent } from '../bmb-hito-card/bmb-hito-card.component';
 
 interface IPlaceholderObject {
   [key: string]: any | any[];
+}
+
+interface Tab {
+  id: number;
+  title: string;
+  isActive?: boolean;
+  badge?: number;
 }
 
 export interface IBmbClamp {
@@ -39,8 +49,13 @@ export interface IBmbClamp {
     BmbTimestreamDetailsComponent,
     // BmbTimestreamDialogComponent,
     CommonModule,
-    BmbHomeCardComponent,
+    // BmbHomeCardComponent,
     BmbFilterCardComponent,
+    BmbUserImageComponent,
+    BmbTabsComponent,
+    BmbButtonDirective,
+    BmbDividerComponent,
+    BmbHitoCardComponent,
   ],
   templateUrl: './bmb-timestream.component.html',
   styleUrl: './bmb-timestream.component.scss',
@@ -48,42 +63,19 @@ export interface IBmbClamp {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbTimestreamComponent {
-  // startDate = input.required<string>();
-  // endDate = input.required<string>();
-
   lang = input<string>('es');
   dateFormat = input<string>('dd/MM/yyyy');
-  title = input.required<string>();
-  subtitle = input<string>();
-  dataLocalNav = input<IBmbDataTopBar[]>([]);
-  icon = input<string>('trending_up');
-  bgIconAppearance = input<IBmbColor>('mitec-red');
-  controlTypes = input<IBmbControlType[]>([]);
   events = input<ITimelineEvent[]>([]);
   clamp = input<IBmbClamp>({ min: 0, max: '100dvh', size: '100%' });
 
+  @ViewChild('modalTemplate', { read: TemplateRef })
+  modalTemplate?: TemplateRef<any>;
+
   // internal state
   error = false;
-  actionHeaders: IBmbActionHeader[] = [
-    {
-      icon: 'tune',
-      isToggleActive: false,
-      action: () => {
-        console.log('header click');
-      },
-    },
-    {
-      icon: 'tune',
-      isToggleActive: false,
-      action: () => {
-        console.log('header click');
-      },
-    },
-  ];
   now = DateTime.now();
   start: DateTime | null = null;
   parsedEvents?: any;
-  isMobile: boolean = false;
   monthsNames = Info.months('long', { locale: this.lang() });
   orderedEvents: ITimelineEventParsed[] = [];
   selectedDate: ISelectedDate = {
@@ -92,46 +84,31 @@ export class BmbTimestreamComponent {
     date: this.now,
   };
   orderedMonths: string[] = [];
-  isDialogOpen: null | ITimelineEvent = null;
+  newModal!: TemplateRef<any>;
+  selectedEvent: ITimelineEvent | null = null;
+  eventTabs: Tab[] = [
+    { id: 1, title: 'Descripción', isActive: true },
+    { id: 2, title: 'Instancias' },
+  ];
+  tabSelected = 1;
 
-  // end: DateTime | null = null;
-  // difference = 0;
-  // validMonths: any = [];
-  //
-  // isModalOpen: boolean = false;
-  // leftIcon: string = 'tune';
-  // headerActions: IBmbHeaderAction[] = [
-  //   {
-  //     icon: 'tune',
-  //     action: () => {
-  //       this.isModalOpen = !this.isModalOpen;
-  //     },
-  //   },
-  // ];
+  constructor(private matDialog: MatDialog) {}
 
   ngOnInit(): void {
     this.parsedEvents = this.prepareEvents(this.events());
     this.orderedMonths = this.orderDates(this.parsedEvents, 'yyyy/MM');
     this.selectedDate = this.selectAValidDate();
-
-    //   this.dateValidation();
-    //   this.start = DateTime.fromFormat(this.startDate(), this.dateFormat);
-    //   this.end = DateTime.fromFormat(this.endDate(), this.dateFormat);
-    //   this.difference = Math.ceil(this.end.diff(this.start, 'months').months);
   }
 
-  // dateValidation() {
-  //   const isValidStart = DateTime.fromFormat(
-  //     this.startDate(),
-  //     this.dateFormat,
-  //   ).isValid;
-  //   const isValidEnd = DateTime.fromFormat(
-  //     this.endDate(),
-  //     this.dateFormat,
-  //   ).isValid;
+  ngAfterViewInit(): void {
+    if (this.modalTemplate) {
+      this.newModal = this.modalTemplate;
+    }
+  }
 
-  //   this.error = !isValidEnd || !isValidStart;
-  // }
+  handleTabSelected(tab: Tab) {
+    this.tabSelected = tab.id;
+  }
 
   getHeight(): string {
     const height =
@@ -284,10 +261,32 @@ export class BmbTimestreamComponent {
   }
 
   handleSelectedEventChange(event: ITimelineEvent) {
-    this.isDialogOpen = event;
+    this.selectedEvent = event;
+
+    const data: ModalDataConfig = {
+      title: event.title,
+      content: this.newModal,
+      size: 'large',
+      hidePrimaryButton: true,
+    };
+
+    this.matDialog.open(BmbModalComponent, { data });
   }
 
-  // closeDetail() {
-  //   this.isDialogOpen = null;
-  // }
+  getMonthTitle(date: DateTime) {
+    return date.setLocale(this.lang()).toFormat('cccc dd LLLL yyyy');
+  }
+
+  getInstances(event: any): string[] {
+    const instances = [];
+    for (let index = 0; index < (event.diff || 0) + 1; index++) {
+      const date = event.originalStart.plus({ days: index });
+      instances.push(this.getMonthTitle(date));
+    }
+    return instances;
+  }
+
+  getDurationString(event: ITimelineEvent): string {
+    return `Duración: ${event.originalStart?.day} - ${event.endEvent?.setLocale(this.lang()).toFormat('dd LLLL yyyy')} (${(event.diff || 0) + 1} Días)`;
+  }
 }
