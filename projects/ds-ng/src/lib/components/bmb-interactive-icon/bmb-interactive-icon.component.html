@@ -11,17 +11,19 @@
       }
     </span>
   }
-  <span class="bmb_interactive_icon-text">
-    @if (title()) {
-      <span class="bmb_interactive_icon-title">{{ title() }}</span>
-    }
-    <span
-      class="bmb_interactive_icon-description"
-      *ngIf="description() && horizontal()"
-    >
-      {{ description() }}
+  @if (title() || description()) {
+    <span class="bmb_interactive_icon-text">
+      @if (title()) {
+        <span class="bmb_interactive_icon-title">{{ title() }}</span>
+      }
+      <span
+        class="bmb_interactive_icon-description"
+        *ngIf="description() && horizontal()"
+      >
+        {{ description() }}
+      </span>
     </span>
-  </span>
+  }
 </ng-template>
 
 @if (setButtonTemplate()) {
