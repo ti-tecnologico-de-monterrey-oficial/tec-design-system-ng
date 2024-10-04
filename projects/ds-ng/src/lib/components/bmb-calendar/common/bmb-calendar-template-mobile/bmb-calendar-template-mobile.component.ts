@@ -16,7 +16,7 @@ import { BmbLayoutItemDirective } from '../../../../directives/bmb-layout/bmb-la
 import { BmbButtonDirective } from '../../../../directives/button.directive';
 import { Info } from 'luxon';
 import { BmbCalendarTemplateSelectComponent } from '../bmb-calendar-template-select/bmb-calendar-template-select.component';
-import { orderDayNames } from '../../utils';
+import { orderDayNames } from '../../../../utils/utils';
 
 @Component({
   selector: 'bmb-calendar-template-mobile',
@@ -46,11 +46,16 @@ export class BmbCalendarTemplateMobileComponent {
   @Output() onViewTypeChange: EventEmitter<void> = new EventEmitter<void>();
 
   monthsNames = Info.months('long', { locale: this.lang });
-  month = this.monthsNames[this.now.month + 1];
+  month = this.monthsNames[this.now.month - 1];
   year = this.now.year;
   isCalendarOpen = false;
   defaultDayOrder = Info.weekdays('narrow', { locale: this.lang });
   dayNames = orderDayNames(this.defaultDayOrder);
+
+  logNow() {
+    console.log(this.now);
+    return 'test';
+  }
 
   handleExpand() {
     this.isCalendarOpen = !this.isCalendarOpen;

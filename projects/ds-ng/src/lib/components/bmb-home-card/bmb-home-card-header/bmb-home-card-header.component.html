@@ -1,23 +1,12 @@
 <header class="bmb_home-card-header">
-  @if (isExpanded) {
-    <button class="bmb_home-card-header-button_back" (click)="handleBack()">
-      <bmb-icon icon="chevron_left" />
-    </button>
-  }
-  @if (icon() && !isMobile()) {
-    <bmb-icon class="bmb_home-card-header-icon" [icon]="getIconName()" />
-  }
-  <div class="bmb_home-card-header-align_title">
-    <h1 class="bmb_home-card-header-title">{{ title() }}</h1>
-    @if (isExpanded) {
-      <h2 class="bmb_home-card-header-subTitle">{{ subtitle() }}</h2>
-    }
-  </div>
-  <button
-    class="bmb_home-card-header-button"
-    [ngClass]="{ 'bmb_home-card-header-button-mobile': isMobile }"
-    (click)="handleExpandChange()"
-  >
-    <bmb-icon [icon]="getBehaviorIconName()" />
-  </button>
+  <bmb-header-section
+    [title]="title()"
+    [subtitle]="subtitle()"
+    [dataLocalNav]="getDataLocalNav()"
+    [leftIcon]="getLeftIcon()"
+    (onClickLeft)="handleBack()"
+    [icon]="getIconName()"
+    [bgIconAppearance]="bgIconAppearance()"
+    [actionHeaders]="getActionHeaders()"
+  />
 </header>

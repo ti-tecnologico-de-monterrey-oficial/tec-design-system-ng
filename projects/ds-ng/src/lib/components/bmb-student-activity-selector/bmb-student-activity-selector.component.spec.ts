@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BmbStudentActivitySelectorComponent } from './bmb-student-activity-selector.component';
 
 describe('BmbStudentActivitySelectorComponent', () => {

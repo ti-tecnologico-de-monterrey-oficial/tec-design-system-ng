@@ -1,0 +1,38 @@
+<section [ngClass]="getClassList()">
+  @if (label()) {
+    <label class="bmb_date-range-label" [for]="name() + '_start'">
+      {{ label() }}
+      @if (isRequired()) {
+        <small class="bmb_field-label-required">*</small>
+      }
+    </label>
+  }
+  <bmb-datepicker
+    [placeholder]="placeholderStartDate()"
+    [name]="name() + '_start'"
+    [control]="controlStart()"
+    [dateFormat]="dateFormat()"
+    [disabled]="disabled()"
+    [icon]="icon()"
+    [isRequired]="isRequired()"
+    [isClearable]="isClearable()"
+    [invalidFormatErrorMessage]="invalidFormatErrorMessage()"
+    [requiredFieldErrorMessage]="requiredFieldErrorMessage()"
+    [disableDatesAfter]="disableDatesAfter"
+    [appearance]="appearance()"
+  />
+  <bmb-datepicker
+    [placeholder]="placeholderEndDate()"
+    [name]="name() + '_start'"
+    [control]="controlEnd()"
+    [dateFormat]="dateFormat()"
+    [disabled]="disabled()"
+    [icon]="icon()"
+    [isRequired]="isRequired()"
+    [isClearable]="isClearable()"
+    [invalidFormatErrorMessage]="invalidFormatErrorMessage()"
+    [requiredFieldErrorMessage]="requiredFieldErrorMessage()"
+    [disableDatesBefore]="disableDatesBefore"
+    [appearance]="appearance()"
+  />
+</section>

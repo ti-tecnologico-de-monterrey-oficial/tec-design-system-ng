@@ -1,4 +1,4 @@
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+import { Meta, StoryObj } from '@storybook/angular';
 import { BmbTimestreamComponent } from './bmb-timestream.component';
 
 export default {
@@ -27,30 +27,6 @@ Below is an example of how you can use this component in HTML:
     },
   },
   argTypes: {
-    startDate: {
-      name: 'Start date',
-      control: {
-        type: 'text',
-      },
-      description:
-        'Set the initial date for the timeline (this date will be expressed as **dateFormat**).',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
-    endDate: {
-      name: 'End date',
-      control: {
-        type: 'text',
-      },
-      description:
-        'Set the last date for the timeline (this date will be expressed as **dateFormat**).',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
     dateFormat: {
       name: 'Date format',
       control: {
@@ -86,12 +62,23 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'object' },
       },
     },
+    clamp: {
+      name: 'Clamp',
+      control: {
+        type: 'object',
+      },
+      description: 'Object that controls the height of the timestream',
+      table: {
+        category: 'Properties',
+        type: { summary: 'object' },
+        defaultValue: { summary: "{ min: 0, max: '100dvh', size: '100%' }" },
+      },
+    },
   },
   args: {
-    startDate: '31/01/2020',
-    endDate: '31/12/2024',
     dateFormat: 'dd/MM/yyyy',
     lang: 'es',
+    clamp: { min: 0, max: '100px', size: '100%' },
     events: [
       {
         id: 1,

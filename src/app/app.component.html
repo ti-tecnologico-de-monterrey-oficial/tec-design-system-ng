@@ -1,83 +1,21 @@
-<bmb-mobile-templates
-  [template]="currentTemplate"
-  headerTitle="Some title"
-  headerIconLeft="close"
-  headerIconRight="close"
-  (onHeaderRightClick)="handleHeaderR($event)"
-  (onHeaderLeftClick)="handleHeaderL($event)"
-  [footerActions]="footerActions"
-  [buttonList]="buttonList"
->
-  <ng-template #bmbTemplateMain>
-    <bmb-theme />
-    <bmb-dropdown
-      placeholder="Select a template"
-      [options]="[
-        'single-header',
-        'header-with-footer',
-        'card-header-with-footer',
-        'header-with-button-list',
-        'header-with-card-list',
-        'calendar',
-      ]"
-      (onValueChange)="onTemplateChange($event)"
-    ></bmb-dropdown>
-    <p>
-      Nam aliquam massa accumsan suscipit posuere. Maecenas in ex malesuada,
-      consequat lacus id, lobortis est. Sed elementum orci congue, viverra metus
-      at, interdum ex. Nullam sed est sollicitudin, iaculis nisi nec, sodales
-      ex. Morbi aliquam tellus ut quam sollicitudin, a elementum tortor
-      vulputate. Cras efficitur sapien sed ipsum aliquam gravida. Fusce accumsan
-      eget nisl vitae dignissim. Vestibulum ante ipsum primis in faucibus orci
-      luctus et ultrices posuere cubilia curae; Maecenas blandit tempus sem eget
-      bibendum. Integer a arcu vestibulum, fringilla dui vitae, aliquet arcu.
-      Maecenas elementum bibendum urna quis porta. In hac habitasse platea
-      dictumst. Maecenas fringilla quam at orci fermentum, in mattis ligula
-      viverra. Maecenas vel sagittis tellus, ac suscipit sapien.
-    </p>
-    <p>
-      Nulla finibus orci justo, in ultrices nisl ullamcorper quis. Etiam at
-      purus ac neque auctor pellentesque non eu ante. Suspendisse pharetra augue
-      id mauris facilisis, non rhoncus lacus tempor. In at auctor turpis. Donec
-      egestas fermentum auctor. Integer nec libero nec justo porta hendrerit. In
-      tempus eleifend urna, nec iaculis magna lobortis id. Duis venenatis a
-      mauris at condimentum. Morbi interdum dolor dui, efficitur molestie purus
-      fringilla quis. Aliquam in nulla at urna consectetur posuere. Pellentesque
-      nec dolor libero. Phasellus dictum, leo sed ornare venenatis, elit turpis
-      cursus tellus, nec maximus erat justo ac risus. Sed tempus sagittis neque,
-      eget gravida eros semper ac. Proin ac tristique leo, ut suscipit turpis.
-      Ut eget metus at purus tristique dictum id et ex.
-    </p>
-    <p>
-      Donec porttitor ut enim eu euismod. Maecenas leo nulla, lacinia a risus
-      nec, porta tristique eros. Curabitur dignissim dolor non justo egestas, in
-      maximus dolor venenatis. Aliquam ornare maximus augue ut aliquam. Maecenas
-      vitae pharetra quam. Maecenas imperdiet, metus et porta ullamcorper, nisl
-      quam bibendum quam, et vulputate sapien diam sit amet felis. Integer
-      tempus blandit vehicula. Fusce tincidunt magna id ullamcorper tempus.
-      Etiam quis tempor ex. Nunc nec nunc quis libero consectetur pellentesque.
-    </p>
-    <p>
-      Nam eu tempor turpis, non consequat arcu. Sed nec pharetra diam, sodales
-      malesuada lorem. Morbi fringilla ac massa quis placerat. Nunc sagittis,
-      ligula vel malesuada ullamcorper, dui diam luctus neque, non imperdiet
-      libero sapien convallis ligula. Nullam eget feugiat erat, et vestibulum
-      ante. Vivamus sollicitudin metus sit amet malesuada ultricies. Aliquam sed
-      leo in justo mattis ullamcorper. Pellentesque commodo mi at lacus interdum
-      bibendum. Aliquam sollicitudin scelerisque nunc a sodales. Suspendisse
-      ornare mauris ex. Curabitur nulla arcu, consectetur ut elementum nec,
-      imperdiet vel augue. Nunc at luctus leo, eu porta metus.
-    </p>
-    <p>
-      Nam eu tempor turpis, non consequat arcu. Sed nec pharetra diam, sodales
-      malesuada lorem. Morbi fringilla ac massa quis placerat. Nunc sagittis,
-      ligula vel malesuada ullamcorper, dui diam luctus neque, non imperdiet
-      libero sapien convallis ligula. Nullam eget feugiat erat, et vestibulum
-      ante. Vivamus sollicitudin metus sit amet malesuada ultricies. Aliquam sed
-      leo in justo mattis ullamcorper. Pellentesque commodo mi at lacus interdum
-      bibendum. Aliquam sollicitudin scelerisque nunc a sodales. Suspendisse
-      ornare mauris ex. Curabitur nulla arcu, consectetur ut elementum nec,
-      imperdiet vel augue. Nunc at luctus leo, eu porta metus.
-    </p>
-  </ng-template>
-</bmb-mobile-templates>
+<bmb-theme></bmb-theme>
+<hr />
+<bmb-timestream
+  title="Test title"
+  dateFormat="dd/MM/yyyy"
+  startDate="27/09/2024"
+  endDate="27/09/2028"
+  [events]="timestreamEvents"
+  [clamp]="{
+    min: 0,
+    max: '100dvh',
+    size: 500,
+  }"
+/>
+
+<bmb-badge text="text" [isFillBadge]="true" appearance="background"></bmb-badge>
+<bmb-badge
+  text="text"
+  [isFillBadge]="false"
+  appearance="background"
+></bmb-badge>

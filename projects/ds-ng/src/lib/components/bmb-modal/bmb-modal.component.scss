@@ -1,89 +1,59 @@
 @use "../../../assets/styles/base/fonts" as fonts;
 @use "../../../assets/styles/base/rem" as rem;
 
-.mat-mdc-dialog-component-host {
-  display: flex;
+.cdk-overlay-pane.mat-mdc-dialog-panel {
+  border-radius: var(--bmb-radius-m);
+  border: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
+  box-shadow: rem.rem_calc(12) rem.rem_calc(12) rem.rem_calc(4) 0px
+    RGBA(var(--color-charade-950), 0.5);
+  overflow: hidden;
 }
 
-.mdc-dialog__surface {
-  border-radius: rem.rem_calc(20);
-  background-color: RGBA(var(--color-charade-50));
-  border: rem.rem_calc(1) solid RGBA(var(--color-charade-300));
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  background-color: transparent;
 }
 
 .bmb_modal {
-  &-content {
-    background-color: RGBA(var(--color-charade-50));
-    border-radius: rem.rem_calc(20);
+  width: calc(80dvw - 2px);
 
-    &-wrapper {
-      padding: rem.rem_calc(32);
-    }
+  .bmb_container-primary-container {
+    padding: 0;
+  }
+
+  .bmb_container {
+    border-radius: 0;
+    border-style: inherit;
+    border-width: 0;
+  }
+
+  &-container {
+    padding: var(--bmb-spacing-xl);
+    width: 100%;
   }
 
   &-size {
     &-small {
-      min-width: rem.rem_calc(300);
       max-width: rem.rem_calc(760);
-      width: rem.rem_calc(760);
     }
 
     &-medium {
       max-width: rem.rem_calc(920);
-      width: rem.rem_calc(920);
-      min-width: rem.rem_calc(300);
     }
 
     &-large {
-      min-width: rem.rem_calc(300);
       max-width: rem.rem_calc(1080);
-      width: rem.rem_calc(1080);
     }
   }
 
-  &-header {
-    width: 100%;
-    display: inline-flex;
-    justify-content: space-between;
-    align-self: center;
-    padding-bottom: rem.rem_calc(15);
-
-    &-text {
-      width: 90%;
-      padding-bottom: rem.rem_calc(5);
-
-      &-title {
-        @include fonts.font(7, semibold);
-      }
-
-      &-subtitle {
-        @include fonts.font(3, light);
-      }
-    }
-
-    &-close {
-      float: right;
-      font-size: rem.rem_calc(24);
-      cursor: pointer;
-    }
-
-    &-icon {
-      margin-right: rem.rem_calc(10);
-    }
-  }
-
-  &-body {
-    padding-bottom: rem.rem_calc(20);
+  &-content {
+    padding-top: var(--bmb-spacing-xl);
 
     &-description {
       @include fonts.font(5, regular);
-      line-height: 30;
-      letter-spacing: 0px;
-      max-height: rem.rem_calc(300);
-      overflow: hidden;
     }
 
     &-scrollable {
+      padding-right: rem.rem_calc(12);
       overflow-x: hidden;
       overflow-y: scroll;
 
@@ -93,8 +63,7 @@
       }
 
       &::-webkit-scrollbar-thumb {
-        background-color: RGBA(var(--color-charade-300));
-        border-radius: rem.rem_calc(20);
+        border-radius: rem.rem_calc(16);
         border: rem.rem_calc(1) solid RGBA(var(--color-charade-300));
       }
 
@@ -107,34 +76,37 @@
   &-footer {
     display: flex;
     justify-content: flex-end;
+    padding-top: var(--bmb-spacing-xl);
 
     &-btn {
       margin-right: rem.rem_calc(10);
     }
 
-    .bmb_modal-btn {
+    &-button {
       width: rem.rem_calc(250);
       height: rem.rem_calc(35);
 
-      &-main {
-        background-color: RGBA(var(--color-blue-primary));
-      }
-
-      &-secondary-action {
+      &-secondary_action {
+        border: rem.rem_calc(1) solid RGBA(var(--color-charade-950));
+        color: RGBA(var(--color-charade-950));
         background-color: transparent;
-        border: rem.rem_calc(1) solid RGBA(var(--color-black-primary));
+
+        &:hover:not(:disabled) {
+          color: RGBA(var(--color-charade-50));
+          background-color: RGBA(var(--color-charade-950));
+        }
       }
 
       &-primary {
         background-color: RGBA(var(--color-neon-primary), 0.75);
-        &:hover {
+        &:hover:not(:disabled) {
           background-color: RGBA(var(--color-neon-primary));
         }
       }
 
       &-neutral {
         background-color: RGBA(var(--color-charade-300));
-        &:hover {
+        &:hover:not(:disabled) {
           background-color: RGBA(var(--color-charade-500), 0.75);
           color: RGBA(var(--color-charade-950));
         }
@@ -142,21 +114,21 @@
 
       &-error {
         background-color: RGBA(var(--color-red-light));
-        &:hover {
+        &:hover:not(:disabled) {
           background-color: RGBA(var(--color-red-primary));
         }
       }
 
       &-event {
         background-color: RGBA(var(--color-purple-light));
-        &:hover {
+        &:hover:not(:disabled) {
           background-color: RGBA(var(--color-purple-primary), 0.75);
         }
       }
 
       &-success {
         background-color: RGBA(var(--color-green-primary), 0.75);
-        &:hover {
+        &:hover:not(:disabled) {
           background-color: RGBA(var(--color-green-primary));
         }
       }
@@ -164,7 +136,7 @@
       &-warning {
         background-color: RGBA(var(--color-yellow-primary));
         color: RGBA(var(--color-black-primary));
-        &:hover {
+        &:hover:not(:disabled) {
           background-color: RGBA(var(--color-yellow-primary), 0.75);
         }
       }
@@ -174,101 +146,34 @@
 
 [data-theme="dark"],
 .storybook-dark-theme {
-  .mdc-dialog__surface {
-    background-color: RGBA(var(--color-charade-950));
-    border: rem.rem_calc(1) solid RGBA(var(--color-charade-900));
+  .cdk-overlay-pane.mat-mdc-dialog-panel {
+    border: rem.rem_calc(1) solid RGBA(var(--color-charade-700));
   }
 
   .bmb_modal {
     &-content {
-      background-color: RGBA(var(--color-charade-950));
-    }
-
-    &-header {
-      &-text {
-        &-title {
-          color: RGBA(var(--color-charade-50));
-        }
-
-        &-subtitle {
-          color: RGBA(var(--color-charade-50));
-        }
-      }
-
-      &-close {
-        &-icon {
-          color: RGBA(var(--color-charade-50));
-        }
-      }
-    }
-
-    &-body {
       &-description {
-        color: RGBA(var(--color-charade-50));
+        color: RGBA(var(--color-charade-200));
       }
 
       &-scrollable {
         &::-webkit-scrollbar-thumb {
           background-color: RGBA(var(--color-charade-950));
-          border: rem.rem_calc(1) solid RGBA(var(--color-charade-950));
+          border-color: RGBA(var(--color-charade-700));
         }
       }
     }
 
     &-footer {
-      .bmb_modal-btn {
-        &-main {
-          background-color: RGBA(var(--color-blue-primary));
-        }
-
-        &-secondary-action {
-          border: 1px solid RGBA(var(--color-charade-50));
+      &-button {
+        &-secondary_action {
+          border: rem.rem_calc(1) solid RGBA(var(--color-charade-50));
           color: RGBA(var(--color-charade-50));
-          &:hover {
+          background-color: transparent;
+
+          &:hover:not(:disabled) {
+            background-color: RGBA(var(--color-charade-50));
             color: RGBA(var(--color-charade-950));
-          }
-        }
-
-        &-primary {
-          background-color: RGBA(var(--color-neon-primary), 0.75);
-          &:hover {
-            background-color: RGBA(var(--color-neon-primary));
-          }
-        }
-
-        &-neutral {
-          background-color: RGBA(var(--color-charade-300));
-          &:hover {
-            background-color: RGBA(var(--color-charade-500), 0.75);
-            color: RGBA(var(--color-charade-950));
-          }
-        }
-
-        &-error {
-          background-color: RGBA(var(--color-red-light));
-          &:hover {
-            background-color: RGBA(var(--color-red-primary));
-          }
-        }
-
-        &-event {
-          background-color: RGBA(var(--color-purple-light));
-          &:hover {
-            background-color: RGBA(var(--color-purple-primary), 0.75);
-          }
-        }
-
-        &-success {
-          background-color: RGBA(var(--color-green-primary), 0.75);
-          &:hover {
-            background-color: RGBA(var(--color-green-primary));
-          }
-        }
-
-        &-warning {
-          background-color: RGBA(var(--color-yellow-primary));
-          &:hover {
-            background-color: RGBA(var(--color-yellow-primary), 0.75);
           }
         }
       }

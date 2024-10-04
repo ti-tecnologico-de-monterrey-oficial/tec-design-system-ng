@@ -22,6 +22,7 @@ import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.di
 import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { BmbBadgeComponent } from '../../bmb-badge/bmb-badge.component';
+import { BmbHitoCardComponent } from '../../bmb-hito-card/bmb-hito-card.component';
 
 @Component({
   selector: 'bmb-timestream-detail',
@@ -34,6 +35,7 @@ import { BmbBadgeComponent } from '../../bmb-badge/bmb-badge.component';
     BmbLayoutItemDirective,
     BmbIconComponent,
     BmbBadgeComponent,
+    BmbHitoCardComponent,
   ],
   templateUrl: './bmb-timestream-detail.component.html',
   styleUrl: './bmb-timestream-detail.component.scss',
@@ -41,10 +43,6 @@ import { BmbBadgeComponent } from '../../bmb-badge/bmb-badge.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbTimestreamDetailsComponent implements AfterViewInit, OnChanges {
-  @ViewChild('monthDetailList') monthList!: ElementRef;
-
-  @Input() start: DateTime | null = null;
-  @Input() end: DateTime | null = null;
   @Input() dateFormat: string = 'dd/MM/yyyy';
   @Input() lang: string = 'en';
   @Input() now: DateTime = DateTime.now();
@@ -58,6 +56,8 @@ export class BmbTimestreamDetailsComponent implements AfterViewInit, OnChanges {
 
   @Output() changeSelectedEvent: EventEmitter<ITimelineEvent> =
     new EventEmitter<ITimelineEvent>();
+
+  @ViewChild('monthDetailList') monthList!: ElementRef;
 
   ngAfterViewInit(): void {
     setTimeout(() => {
@@ -99,29 +99,6 @@ export class BmbTimestreamDetailsComponent implements AfterViewInit, OnChanges {
       currentMonthElement.scrollIntoView();
       this.monthList.nativeElement.scrollTop =
         this.monthList.nativeElement.scrollTop;
-    }
-  }
-
-  formatBadgeText(legend: string): string {
-    return legend.replace(/_/g, ' ');
-  }
-
-  appearanceBadgeText(type: string): string {
-    switch (type) {
-      case 'enriquecedor':
-        return 'mitec-red';
-      case 'seriado':
-        return 'mitec-orange';
-      case 'inscripciones':
-        return 'green-light';
-      case 'avance_academico':
-        return 'mitec-blue';
-      case 'otra':
-        return 'purple-light';
-      case 'flexible':
-        return 'mitec-green';
-      default:
-        return 'mitec-blue';
     }
   }
 

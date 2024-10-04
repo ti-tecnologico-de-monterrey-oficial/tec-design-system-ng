@@ -93,7 +93,8 @@ Below is an example of how you can use this component in HTML:
         category: 'Properties',
         type: { summary: 'string' },
       },
-      description: 'The left icon for the header, only available for templates: `single-header`, `header-with-footer`, `header-with-button-list`, and `header-with-card-list`',
+      description:
+        'The left icon for the header, only available for templates: `single-header`, `header-with-footer`, `header-with-button-list`, and `header-with-card-list`',
     },
     headerIconRight: {
       name: 'Header icon right',
@@ -104,7 +105,8 @@ Below is an example of how you can use this component in HTML:
         category: 'Properties',
         type: { summary: 'string' },
       },
-      description: 'The right icon for the header, only available for templates: `single-header`, `header-with-footer`, `header-with-button-list`, and `header-with-card-list`',
+      description:
+        'The right icon for the header, only available for templates: `single-header`, `header-with-footer`, `header-with-button-list`, and `header-with-card-list`',
     },
     onHeaderLeftClick: {
       name: 'Header left click',
@@ -381,5 +383,5 @@ export const Default: Story = {
       </ng-template>
     </bmb-mobile-templates>
     `,
-  })
+  }),
 };

@@ -2,25 +2,11 @@
 @use "../../../assets/styles/base/mixins" as mixins;
 @use "../../../assets/styles/base/rem" as rem;
 
-@mixin badge($appearance: normal) {
-  @if $appearance == normal {
-    background-color: RGBA(var(--color-charade-500));
-  } @else if $appearance == strong {
-    background-color: RGBA(var(--color-mariner-700));
-  } @else if $appearance == success {
-    background-color: RGBA(var(--color-green-light));
-    color: RGBA(var(--color-charade-950));
-  } @else if $appearance == info {
-    background-color: RGBA(var(--color-purple-primary));
-  } @else if $appearance == warning {
-    background-color: RGBA(var(--color-yellow-tint));
-    color: RGBA(var(--color-charade-950));
-  } @else if $appearance == error {
-    background-color: RGBA(var(--color-red-light));
-    color: RGBA(var(--color-charade-950));
-  } @else if $appearance == brand {
-    background-color: RGBA(var(--color-neon-primary));
-    color: RGBA(var(--color-charade-950));
+@mixin set-white-bullet {
+  color: RGBA(var(--color-charade-50));
+
+  .bmb_badge-bullet {
+    background-color: RGBA(var(--color-charade-50));
   }
 }
 
@@ -28,12 +14,24 @@
   @include fonts.font(3, regular);
   align-items: center;
   border-radius: rem.rem_calc(4);
-  color: RGBA(var(--color-white-primary));
   display: inline-flex;
   justify-content: center;
   min-height: rem.rem_calc(24);
   padding: var(--bmb-spacing-xs) var(--bmb-spacing-m);
   width: fit-content;
+
+  &-content {
+    display: inline-block;
+  }
+
+  &-bullet {
+    width: rem.rem_calc(8);
+    height: rem.rem_calc(8);
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 50%;
+    margin-right: rem.rem_calc(8);
+  }
 
   &-grouped {
     display: flex;
@@ -45,35 +43,163 @@
     }
   }
 
-  &-normal {
-    @include badge(normal);
+  &-filled {
+    color: RGBA(var(--color-charade-950));
+
+    .bmb_badge-bullet {
+      background-color: RGBA(var(--color-charade-950));
+    }
+
+    &.bmb_badge-normal {
+      background-color: RGBA(var(--color-charade-500));
+      @include set-white-bullet;
+    }
+
+    &.bmb_badge-strong {
+      background-color: RGBA(var(--color-mariner-200));
+    }
+
+    &.bmb_badge-success {
+      background-color: RGBA(var(--color-green-light));
+    }
+
+    &.bmb_badge-info {
+      background-color: RGBA(var(--color-purple-tint));
+    }
+
+    &.bmb_badge-warning {
+      background-color: RGBA(var(--color-yellow-tint));
+    }
+
+    &.bmb_badge-error {
+      background-color: RGBA(var(--color-red-light));
+    }
+
+    &.bmb_badge-brand {
+      background-color: RGBA(var(--color-neon-primary));
+    }
+
+    &.bmb_badge-mitec_blue {
+      background-color: RGBA(var(--color-mitec-blue));
+      @include set-white-bullet;
+    }
+
+    &.bmb_badge-mitec_red {
+      background-color: RGBA(var(--color-mitec-red));
+      @include set-white-bullet;
+    }
+
+    &.bmb_badge-mitec_green {
+      background-color: RGBA(var(--color-mitec-green));
+    }
+
+    &.bmb_badge-mitec_orange {
+      background-color: RGBA(var(--color-mitec-orange));
+    }
+
+    &.bmb_badge-mitec_light_green {
+      background-color: RGBA(var(--color-green-light));
+      @include set-white-bullet;
+    }
+
+    &.bmb_badge-mitec_purple {
+      background-color: RGBA(var(--color-purple-light));
+      @include set-white-bullet;
+    }
   }
 
-  &-strong {
-    @include badge(strong);
-  }
+  &-transparent {
+    color: RGBA(var(--color-charade-950));
 
-  &-success {
-    @include badge(success);
-  }
+    &.bmb_badge-normal {
+      @include mixins.bgAppearance("normal");
+    }
 
-  &-info {
-    @include badge(info);
-  }
+    &.bmb_badge-strong {
+      @include mixins.bgAppearance("strong");
+    }
 
-  &-warning {
-    @include badge(warning);
-  }
+    &.bmb_badge-success {
+      @include mixins.bgAppearance("success");
+    }
 
-  &-error {
-    @include badge(error);
-  }
+    &.bmb_badge-info {
+      @include mixins.bgAppearance("info");
+    }
 
-  &-brand {
-    @include badge(brand);
+    &.bmb_badge-warning {
+      @include mixins.bgAppearance("warning");
+    }
+
+    &.bmb_badge-error {
+      @include mixins.bgAppearance("error");
+    }
+
+    &.bmb_badge-brand {
+      @include mixins.bgAppearance("brand");
+    }
+
+    &.bmb_badge-background {
+      @include mixins.bgAppearance("background");
+    }
+
+    &.bmb_badge-mitec_blue {
+      @include mixins.bgAppearance("mitec_blue");
+    }
+
+    &.bmb_badge-mitec_red {
+      @include mixins.bgAppearance("mitec_red");
+    }
+
+    &.bmb_badge-mitec_green {
+      @include mixins.bgAppearance("mitec_green");
+    }
+
+    &.bmb_badge-mitec_orange {
+      @include mixins.bgAppearance("mitec_orange");
+    }
+
+    &.bmb_badge-mitec_light_green {
+      @include mixins.bgAppearance("mitec_light_green");
+    }
+
+    &.bmb_badge-mitec_purple {
+      @include mixins.bgAppearance("mitec_purple");
+    }
   }
 
   &-rounded {
     border-radius: rem.rem_calc(15);
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_badge {
+    &-filled {
+      &.bmb_badge-background {
+        color: RGBA(var(--color-charade-50));
+
+        .bmb_badge-bullet {
+          background-color: RGBA(var(--color-charade-50));
+        }
+      }
+    }
+
+    &-transparent {
+      color: RGBA(var(--color-charade-50));
+
+      &.bmb_badge-normal {
+        .bmb_badge-bullet {
+          background-color: RGBA(var(--color-charade-50));
+        }
+      }
+
+      &.bmb_badge-background {
+        .bmb_badge-bullet {
+          background-color: RGBA(var(--color-charade-900));
+        }
+      }
+    }
   }
 }

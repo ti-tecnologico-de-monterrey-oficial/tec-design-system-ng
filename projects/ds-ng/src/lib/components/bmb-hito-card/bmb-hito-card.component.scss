@@ -1,0 +1,120 @@
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/rem" as rem;
+
+$circleTypes: (
+  "under_review": RGBA(var(--color-yellow-primary)),
+  "active": RGBA(var(--color-mariner-500)),
+  "done": RGBA(var(--color-green-primary)),
+  "pending": RGBA(var(--color-white-primary)),
+);
+
+.bmb_hito-card {
+  position: relative;
+  padding: var(--bmb-spacing-m);
+
+  &-bullet::after {
+    content: "";
+    width: rem.rem_calc(9);
+    height: rem.rem_calc(9);
+    background-color: RGBA(var(--color-charade-500));
+    position: absolute;
+    left: rem.rem_calc(-23);
+    top: 50%;
+    border-radius: 50%;
+    border: rem.rem_calc(2) solid RGBA(var(--color-charade-200));
+    margin-top: rem.rem_calc(-7);
+  }
+
+  &-active::after {
+    background-color: RGBA(var(--color-mariner-700));
+  }
+
+  &-alternative {
+    padding: 0;
+
+    .bmb_card.bmb_card-type-normal {
+      background-color: RGBA(var(--color-charade-100));
+      border: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
+      box-shadow: 6px 6px 4px 0px rgba(0, 0, 0, 0.15);
+    }
+
+    .bmb_hito-card-content-title {
+      margin: 0;
+    }
+
+    .bmb_card-content.bmb_padding-m {
+      padding: var(--bmb-spacing-s) var(--bmb-spacing-m);
+    }
+
+    .bmb_hito-card-content-type {
+      display: none;
+    }
+  }
+
+  &-content {
+    cursor: pointer;
+
+    &-icon {
+      width: rem.rem_calc(32);
+      height: rem.rem_calc(32);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: RGBA(var(--color-white-primary));
+      @include fonts.font(5, regular);
+
+      @each $type, $value in $circleTypes {
+        &-#{$type} {
+          background-color: $value;
+          @if ($type == "pending") {
+            color: RGBA(var(--color-charade-900));
+          }
+        }
+      }
+    }
+
+    &-title {
+      @include fonts.font(3, regular);
+      font-weight: 400;
+      margin-bottom: var(--bmb-spacing-m);
+    }
+
+    &-description {
+      @include fonts.font(1, regular);
+      margin: 0;
+    }
+
+    .bmb_badge {
+      text-transform: capitalize;
+    }
+
+    &-type {
+      text-align: right;
+    }
+
+    &-duration {
+      margin: var(--bmb-spacing-m) 0 0;
+    }
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_hito-card {
+    &-bullet::after {
+      border: rem.rem_calc(2) solid RGBA(var(--color-charade-950));
+    }
+
+    &-active::after {
+      background-color: RGBA(var(--color-neon-primary));
+    }
+
+    &-alternative {
+      .bmb_card.bmb_card-type-normal {
+        background-color: RGBA(var(--color-charade-900));
+        border: rem.rem_calc(1) solid RGBA(var(--color-charade-700));
+      }
+    }
+  }
+}
