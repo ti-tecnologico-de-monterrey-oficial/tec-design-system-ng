@@ -1,11 +1,12 @@
 <bmb-theme />
 <bmb-divider />
-<bmb-focus-element [number]="1" />
-<bmb-focus-element [number]="2" [isNormal]="true" />
-<bmb-divider />
-<bmb-evaluation-rubric icon="checklist_rtl" title="Rubrica de evaluación" />
-<bmb-divider />
-<bmb-grades [grades]="getGrades()" (closeGrades)="closeGrades()" />
+<bmb-evaluation-rubric
+  icon="checklist_rtl"
+  title="Rubrica de evaluación"
+  [evaluationRubricList]="getEvaluationRubricList()"
+/>
+<!-- <bmb-divider />
+<bmb-grades [grades]="getGrades()" (closeGrades)="closeGrades()" /> -->
 <!-- <bmb-divider />
 <button
   bmbButton
@@ -45,15 +46,6 @@
 </bmb-home-card>
 <bmb-divider />
 <bmb-header-section
-  leftIcon="close"
-  title="Header section name"
-  subtitle="Subtitle"
-  icon="exposure"
-  bgIconAppearance="black-primary"
-  [actionHeaders]="actionHeaders"
-/>
-<bmb-divider />
-<bmb-header-section
   leftIcon="swap_horizontal_circle"
   title="Header section name"
   subtitle="Subtitle"
@@ -69,4 +61,14 @@
   icon="exposure"
   bgIconAppearance="black-primary"
   [actionHeaders]="actionHeadersToggle"
+/>
+-->
+<!-- <bmb-divider />
+<bmb-header-section
+  leftIcon="close"
+  title="Header section name"
+  subtitle="Subtitle"
+  icon="exposure"
+  bgIconAppearance="black-primary"
+  [actionHeaders]="actionHeaders"
 /> -->

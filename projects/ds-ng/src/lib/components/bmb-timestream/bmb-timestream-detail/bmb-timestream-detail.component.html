@@ -17,58 +17,16 @@
       </header>
       <section class="bmb_timestream-detail-content">
         @for (event of dayEvent.events; track $index) {
-          <div class="bmb_timestream-detail-content-after">
-            <bmb-card margin="none">
-              <bmb-card-content>
-                <div
-                  bmbLayout
-                  gapSise="m"
-                  margin="none"
-                  alignItems="center"
-                  (click)="handleEventChange(event)"
-                  class="bmb_timestream-detail-content-pointer"
-                >
-                  <section
-                    bmbLayoutItem
-                    class="bmb_timestream-detail-content-icon"
-                    [ngClass]="
-                      'bmb_timestream-detail-content-icon-' + event.type
-                    "
-                  >
-                    <bmb-icon icon="app_badging" />
-                  </section>
-                  <section bmbLayoutItem [colGrow]="2" [isDynamicItem]="true">
-                    <h3 class="bmb_timestream-detail-content-title">
-                      {{ event.title }}
-                    </h3>
-                    <p class="bmb_timestream-detail-content-description">
-                      {{ event.short_description }}
-                    </p>
-                  </section>
-                  <section
-                    bmbLayoutItem
-                    class="bmb_timestream-detail-content-type"
-                  >
-                    <bmb-badge
-                      [custom]="true"
-                      [text]="formatBadgeText(event.type)"
-                      [customBackground]="appearanceBadgeText(event.type)"
-                      [customColor]="
-                        event.type === 'flexible'
-                          ? 'black-primary'
-                          : 'white-primary'
-                      "
-                    />
-                    @if (event.diff) {
-                      <p class="bmb_timestream-detail-content-duration">
-                        {{ getDurationString(event) }}
-                      </p>
-                    }
-                  </section>
-                </div>
-              </bmb-card-content>
-            </bmb-card>
-          </div>
+          <bmb-hito-card
+            [icon]="event.icon || 'app_badging'"
+            (handleClick)="handleEventChange(event)"
+            [title]="event.title"
+            [short_description]="event.short_description"
+            [type]="event.type"
+            [id]="event.id"
+            [sub_content]="getDurationString(event)"
+            [enable_bullet]="true"
+          />
         }
       </section>
     </li>

@@ -28,4 +28,11 @@ export type IBbmBgAppearance =
   | 'info'
   | 'warning'
   | 'error'
-  | 'brand';
+  | 'brand'
+  | 'background'
+  | 'mitec_blue'
+  | 'mitec_red'
+  | 'mitec_green'
+  | 'mitec_orange'
+  | 'mitec_light_green'
+  | 'mitec_purple';

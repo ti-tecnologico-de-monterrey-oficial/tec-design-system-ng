@@ -9,11 +9,13 @@ import { BmbHomeCardHeaderComponent } from './bmb-home-card-header/bmb-home-card
 import { IBmbDataTopBar } from '../bmb-breadcrumb/bmb-breadcrumb.component';
 import { IBmbColor } from '../../types/colors';
 import { IBmbActionHeader } from '../bmb-header-section/bmb-header-section.component';
+import { SizeNames } from '../../types';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'bmb-home-card',
   standalone: true,
-  imports: [BmbHomeCardHeaderComponent],
+  imports: [BmbHomeCardHeaderComponent, CommonModule],
   templateUrl: './bmb-home-card.component.html',
   styleUrl: './bmb-home-card.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -29,6 +31,7 @@ export class BmbHomeCardComponent {
   bgIconAppearance = input<IBmbColor>();
   actionHeaders = input<IBmbActionHeader[]>([]);
   isMobile = input<boolean>();
+  contentPadding = input<SizeNames>('l');
 
   onClose = output();
   onBack = output();

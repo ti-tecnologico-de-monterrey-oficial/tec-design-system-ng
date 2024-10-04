@@ -6,7 +6,13 @@
         <small class="bmb_field-label-required">*</small>
       }
       @if (tooltip().length > 0) {
-        <bmb-tooltip class="bmb_field-label-tooltip" [text]="tooltip()" [align]="'below'" [justify]="'before'" [icon]="'help'" />
+        <bmb-tooltip
+          class="bmb_field-label-tooltip"
+          [text]="tooltip()"
+          [align]="'below'"
+          [justify]="'before'"
+          [icon]="'help'"
+        />
       }
       @if (type == "text-area" && showMaxTextLength()) {
         <span class="bmb_field-label-max"
