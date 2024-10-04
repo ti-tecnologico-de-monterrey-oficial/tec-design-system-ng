@@ -5,20 +5,19 @@
   [subtitle]="subtitle()"
   [dataLocalNav]="dataLocalNav()"
   [isMobile]="isMobile"
+  [actionHeaders]="actionHeaders"
+  contentPadding="none"
 >
-  <section class="bmb_timestream">
+  <section class="bmb_timestream" [ngStyle]="{ height: getHeight() }">
     @if (error) {
       <div class="bmb_timestream-error">
         <bmb-timestream-error />
       </div>
-    }
-    <!--  @else {
+    } @else {
       <aside class="bmb_timestream-aside">
         <bmb-timestream-timeline
-          [start]="start"
-          [end]="end"
-          [dateFormat]="dateFormat"
-          [lang]="lang"
+          [dateFormat]="dateFormat()"
+          [lang]="lang()"
           [now]="now"
           [events]="parsedEvents"
           [selectedDate]="selectedDate"
@@ -28,10 +27,8 @@
       </aside>
       <section class="bmb_timestream-main">
         <bmb-timestream-detail
-          [start]="start"
-          [end]="end"
-          [dateFormat]="dateFormat"
-          [lang]="lang"
+          [dateFormat]="dateFormat()"
+          [lang]="lang()"
           [now]="now"
           [events]="parsedEvents"
           [selectedDate]="selectedDate"
@@ -39,7 +36,7 @@
           [orderedEvents]="orderedEvents"
         />
       </section>
-      <section
+      <!-- <section
         class="bmb_timestream-dialog"
         [ngClass]="{
           'bmb_timestream-dialog-active': !!isDialogOpen,
@@ -50,8 +47,8 @@
           (closeDialog)="closeDetail()"
           [lang]="lang"
         />
-      </section>
-    } -->
+      </section> -->
+    }
   </section>
 </bmb-home-card>
 <bmb-filter-card
