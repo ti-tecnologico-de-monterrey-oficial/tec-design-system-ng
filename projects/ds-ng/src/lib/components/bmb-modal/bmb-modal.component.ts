@@ -82,18 +82,29 @@ export class BmbModalComponent {
     const classNames: string[] = [baseClassName];
 
     if (!!this.getData().size) {
-      classNames.push(`${baseClassName}-size-${this.getData().size}`);
+      return [...classNames, `${baseClassName}-size-${this.getData().size}`];
     }
 
     return classNames;
   }
 
-  getDescriptionClasses(): string[] {
-    const baseClassName: string = 'bmb_modal-content';
-    const classNames: string[] = [`${baseClassName}-description`];
+  getContentClasses(): string[] {
+    const baseClassName: string = 'bmb_modal';
+    const classNames: string[] = [`${baseClassName}-content`];
 
     if (!!this.getData().scrollable) {
-      classNames.push(`${baseClassName}-scrollable`);
+      return [...classNames, `${baseClassName}-scrollable`];
+    }
+
+    return classNames;
+  }
+
+  getDescriptionClasses(sectionName: string): string[] {
+    const baseClassName: string = 'bmb_modal-content';
+    const classNames: string[] = [`${baseClassName}-${sectionName}`];
+
+    if (!!this.getData().scrollable) {
+      return [...classNames, `${baseClassName}-scrollable`];
     }
 
     return classNames;
@@ -106,17 +117,15 @@ export class BmbModalComponent {
     const classNames: string[] = [baseClassName];
 
     if (isSecondaryButton) {
-      classNames.push(`${footerClassName}-btn`);
-      classNames.push(`${baseClassName}-secondary_action`);
-      return classNames;
+      const newClassNames = [...classNames, `${footerClassName}-btn`];
+      return [...newClassNames, `${baseClassName}-secondary_action`];
     }
 
     if (data.type === 'alert') {
       if (!!data.alertStyle) {
-        classNames.push(`${baseClassName}-${data.alertStyle}`);
-      } else {
-        classNames.push(`${baseClassName}-neutral`);
+        return [...classNames, `${baseClassName}-${data.alertStyle}`];
       }
+      return [...classNames, `${baseClassName}-neutral`];
     }
 
     return classNames;
@@ -184,6 +193,6 @@ export class BmbModalComponent {
 
   showSecondaryButton(): boolean {
     const data = this.getData();
-    return data.type !== 'action' || !!data.secondaryBtnLabel;
+    return (data.type && data.type !== 'action') || !!data.secondaryBtnLabel;
   }
 }

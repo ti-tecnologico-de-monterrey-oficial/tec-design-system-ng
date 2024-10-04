@@ -1,12 +1,19 @@
 @use "../../../assets/styles/base/fonts" as fonts;
 @use "../../../assets/styles/base/rem" as rem;
 
-.bmb_modal {
-  // border-radius: var(--bmb-radius-xl);
-  // border: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
-  // box-shadow: rem.rem_calc(12) rem.rem_calc(12) rem.rem_calc(4) 0px
-  //   RGBA(var(--color-charade-950), 0.5);
+.cdk-overlay-pane.mat-mdc-dialog-panel {
+  border-radius: var(--bmb-radius-m);
+  border: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
+  box-shadow: rem.rem_calc(12) rem.rem_calc(12) rem.rem_calc(4) 0px
+    RGBA(var(--color-charade-950), 0.5);
+  overflow: hidden;
+}
 
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  background-color: transparent;
+}
+
+.bmb_modal {
   .bmb_container-primary-container {
     padding: 0;
   }
@@ -37,7 +44,11 @@
   }
 
   &-content {
-    padding: var(--bmb-spacing-l);
+    padding-top: var(--bmb-spacing-xl);
+
+    &-template {
+      max-height: rem.rem_calc(300);
+    }
 
     &-description {
       @include fonts.font(5, regular);
@@ -45,6 +56,7 @@
     }
 
     &-scrollable {
+      padding-right: rem.rem_calc(12);
       overflow-x: hidden;
       overflow-y: scroll;
 
@@ -67,6 +79,7 @@
   &-footer {
     display: flex;
     justify-content: flex-end;
+    padding-top: var(--bmb-spacing-xl);
 
     &-btn {
       margin-right: rem.rem_calc(10);
@@ -136,9 +149,11 @@
 
 [data-theme="dark"],
 .storybook-dark-theme {
-  .bmb_modal {
-    // border-color: RGBA(var(--color-charade-700));
+  .cdk-overlay-pane.mat-mdc-dialog-panel {
+    border: rem.rem_calc(1) solid RGBA(var(--color-charade-700));
+  }
 
+  .bmb_modal {
     &-content {
       &-description {
         color: RGBA(var(--color-charade-200));

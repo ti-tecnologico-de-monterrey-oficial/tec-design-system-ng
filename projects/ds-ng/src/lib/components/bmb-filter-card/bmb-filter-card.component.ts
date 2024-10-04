@@ -82,6 +82,7 @@ export class BmbFilterCardComponent implements OnInit {
       content: this.modalTemplate,
       primaryAction: this.onSubmit.bind(this),
       secondaryAction: this.onReset.bind(this),
+      scrollable: true,
     };
 
     this.matDialog.open(BmbModalComponent, { data });

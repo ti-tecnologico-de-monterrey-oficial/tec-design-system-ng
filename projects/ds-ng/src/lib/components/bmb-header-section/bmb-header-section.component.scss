@@ -2,6 +2,9 @@
 @use "../../../assets/styles/base/rem" as rem;
 
 .bmb_header-section {
+  .bmb_interactive_icon-box {
+    align-items: self-end;
+  }
   &-transparent_bgc {
     .bmb_container-primary-container {
       background-color: inherit;
