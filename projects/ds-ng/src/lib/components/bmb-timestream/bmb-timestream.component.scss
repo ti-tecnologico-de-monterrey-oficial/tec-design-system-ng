@@ -1,4 +1,5 @@
 @use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/rem" as rem;
 
 .bmb_timestream {
   display: flex;
@@ -14,6 +15,75 @@
 
   &-error {
     flex: 1;
+  }
+
+  &-dialog {
+    display: flex;
+    gap: var(--bmb-spacing-m);
+    flex-direction: column;
+    @include fonts.font(3, regular);
+
+    &-hero {
+      margin: 0;
+      line-height: 0;
+      overflow: hidden;
+      border-radius: var(--bmb-radius-l);
+
+      &-image {
+        width: 100%;
+        max-height: rem.rem_calc(230);
+        object-fit: cover;
+      }
+    }
+
+    &-user {
+      display: flex;
+      gap: var(--bmb-spacing-s);
+      align-items: center;
+
+      &-name {
+        color: RGBA(var(--color-charade-700));
+      }
+
+      &-date {
+        color: RGBA(var(--color-charade-500));
+      }
+    }
+
+    &-tab {
+      padding: var(--bmb-spacing-m);
+      color: RGBA(var(--color-charade-700));
+
+      &-title {
+        color: RGBA(var(--color-charade-700));
+        @include fonts.font(3, regular);
+        font-weight: normal;
+      }
+
+      &-hito-list {
+        display: flex;
+        gap: var(--bmb-spacing-s);
+        flex-flow: column;
+        padding: var(--bmb-spacing-m);
+      }
+
+      &-duration {
+        text-align: right;
+        margin: var(--bmb-spacing-s) 0;
+      }
+    }
+
+    .bmb_tabs-item {
+      width: calc(50% - 2rem);
+    }
+
+    &-button-container {
+      padding: var(--bmb-spacing-m);
+
+      button {
+        width: 100%;
+      }
+    }
   }
 }
 
@@ -34,13 +104,20 @@
     }
 
     &-dialog {
-      width: 0;
-      max-width: 350px;
-      background-color: RGBA(var(--color-charade-950));
-      transition: all 0.3s ease;
+      &-user {
+        &-name {
+          color: RGBA(var(--color-charade-200));
+        }
+      }
 
-      &-active {
-        width: 30%;
+      &-tab {
+        color: RGBA(var(--color-charade-200));
+
+        &-title {
+          color: RGBA(var(--color-charade-200));
+          @include fonts.font(3, regular);
+          font-weight: normal;
+        }
       }
     }
   }
