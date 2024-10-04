@@ -14,6 +14,8 @@
 }
 
 .bmb_modal {
+  width: calc(80dvw - 2px);
+
   .bmb_container-primary-container {
     padding: 0;
   }
@@ -46,13 +48,8 @@
   &-content {
     padding-top: var(--bmb-spacing-xl);
 
-    &-template {
-      max-height: rem.rem_calc(300);
-    }
-
     &-description {
       @include fonts.font(5, regular);
-      max-height: rem.rem_calc(300);
     }
 
     &-scrollable {
