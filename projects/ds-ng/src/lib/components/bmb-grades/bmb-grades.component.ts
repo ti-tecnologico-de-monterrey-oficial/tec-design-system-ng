@@ -71,10 +71,9 @@ export class BmbGradesComponent {
       title: element.detail.title,
       subtitle: element.detail.subtitle,
       content: this.modalContent,
-      size: 'large',
+      size: 'small',
       type: 'informative',
-      alertStyle: 'event',
-      hidePrimaryButton: true,
+      scrollable: true,
     };
     this.matDialog.open(BmbModalComponent, { data });
   }
