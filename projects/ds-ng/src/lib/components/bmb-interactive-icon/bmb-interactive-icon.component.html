@@ -6,13 +6,15 @@
   } @else {
     <span class="bmb_interactive_icon-box">
       <bmb-icon class="bmb_interactive_icon-icon" [icon]="icon()" />
-      <span class="bmb_interactive_icon-label" *ngIf="label">{{
-        label()
-      }}</span>
+      @if (label()) {
+        <span class="bmb_interactive_icon-label">{{ label() }}</span>
+      }
     </span>
   }
   <span class="bmb_interactive_icon-text">
-    <span class="bmb_interactive_icon-title" *ngIf="title">{{ title() }}</span>
+    @if (title()) {
+      <span class="bmb_interactive_icon-title">{{ title() }}</span>
+    }
     <span
       class="bmb_interactive_icon-description"
       *ngIf="description() && horizontal()"

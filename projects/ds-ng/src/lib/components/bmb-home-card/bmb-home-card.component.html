@@ -11,7 +11,10 @@
     (onClose)="handleClose()"
     (onBack)="handleBack()"
   />
-  <section class="bmb_home-card-container">
+  <section
+    class="bmb_home-card-container"
+    [ngClass]="'bmb_padding-' + contentPadding()"
+  >
     <ng-content />
   </section>
 </section>
