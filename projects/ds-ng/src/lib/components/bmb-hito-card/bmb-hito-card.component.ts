@@ -61,8 +61,6 @@ export class BmbHitoCardComponent {
   }
 
   appearanceBadge(): IBbmBgAppearance {
-    console.log(this.type());
-
     switch (this.type()) {
       case 'active':
         return 'mitec_blue';
