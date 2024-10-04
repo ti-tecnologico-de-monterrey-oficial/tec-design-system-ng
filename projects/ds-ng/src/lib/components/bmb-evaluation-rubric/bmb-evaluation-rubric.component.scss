@@ -2,35 +2,78 @@
 @use "../../../assets/styles/base/rem" as rem;
 
 .bmb_evaluation-rubric {
-  .bmb_header-section .bmb_container-primary-container {
-    padding: rem.rem_calc(--bmb-spacing-m);
-  }
-
   .bmb_header-section .bmb_container {
     border-radius: var(--bmb-radius-m) var(--bmb-radius-m) 0 0;
-    border-width: rem.rem_calc(2) rem.rem_calc(2) 0;
+    border-width: rem.rem_calc(2) rem.rem_calc(2) 0 rem.rem_calc(2);
   }
 
-  &-header {
-    .bmb_header-section-container-title {
-      @include fonts.font(6, bold);
-    }
+  .bmb_header-section-container-title {
+    @include fonts.font(6, bold);
+  }
+
+  .bmb_header-section-container-icon {
+    color: RGBA(var(--color-charade-950));
   }
 
   &-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--bmb-spacing-l);
     padding: var(--bmb-spacing-l);
     border-radius: 0 0 var(--bmb-radius-m) var(--bmb-radius-m);
     border: rem.rem_calc(2) solid RGBA(var(--color-charade-300));
-    background: RGBA(var(--color-charade-200));
+    background-color: RGBA(var(--color-charade-100));
+
+    &-criterion {
+      gap: var(--bmb-spacing-s);
+
+      &-title {
+        display: flex;
+        align-items: center;
+        gap: var(--bmb-spacing-s);
+        @include fonts.font(4, normal);
+
+        .bmb_tooltip {
+          color: RGBA(var(--color-charade-500));
+        }
+      }
+
+      &-eval {
+        padding: var(--bmb-spacing-s);
+        .bmb_focus-element-normal_circle {
+          height: rem.rem_calc(40);
+          width: rem.rem_calc(40);
+        }
+
+        .bmb_focus-element-number {
+          @include fonts.font(5, normal);
+        }
+      }
+    }
   }
 }
 
 [data-theme="dark"],
 .storybook-dark-theme {
   .bmb_evaluation-rubric {
+    color: RGBA(var(--color-charade-50));
+
+    .bmb_header-section-container-icon {
+      color: RGBA(var(--color-charade-50));
+    }
+
     &-container {
-      border: rem.rem_calc(2) solid RGBA(var(--color-charade-800));
-      background: RGBA(var(--color-charade-900));
+      border-color: RGBA(var(--color-charade-800));
+      background-color: RGBA(var(--color-charade-900));
+
+      &-criterion {
+        &-eval {
+          .bmb_focus-element-normal_circle {
+            border-color: RGBA(var(--color-charade-50));
+          }
+        }
+      }
     }
   }
 }

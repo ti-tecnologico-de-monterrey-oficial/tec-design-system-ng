@@ -1,6 +1,43 @@
 <section class="bmb_evaluation-rubric">
-  <section class="bmb_rubrica-evaluacion-header">
-    <bmb-header-section [icon]="icon()" [iconSize]="24" [title]="title()" />
+  <bmb-header-section
+    [icon]="icon()"
+    [iconSize]="24"
+    [title]="title()"
+    [actionHeaders]="actionHeaders"
+  />
+  <section class="bmb_evaluation-rubric-container">
+    @for (item of evaluationRubricList(); track $index) {
+      <section class="bmb_evaluation-rubric-container-criterion">
+        <section class="bmb_evaluation-rubric-container-criterion-title">
+          <h1>
+            {{ item.criterion }}
+          </h1>
+          <bmb-tooltip
+            [title]="item.criterion"
+            [text]="item.toolTip"
+            [size]="20"
+          />
+        </section>
+        <section
+          class="bmb_evaluation-rubric-container-criterion-eval"
+          bmbLayout
+          margin="none"
+          justify="spaceEvenly"
+          [dynamicCols]="true"
+        >
+          @for (element of getEvalList(); track $index) {
+            <button>
+              <bmb-focus-element
+                bmbLayoutItem
+                [number]="element"
+                [isInheritedBg]="true"
+                [isNormal]="true"
+              />
+            </button>
+          }
+        </section>
+      </section>
+    }
+    <bmb-divider />
   </section>
-  <section class="bmb_home-card-container"></section>
 </section>
