@@ -1,4 +1,4 @@
-export interface ControlType {
+export interface IBmbControlType {
   title: string;
   control: {
     name: string;

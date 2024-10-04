@@ -1,37 +1,47 @@
 @use "../../../assets/styles/base/fonts" as fonts;
 
 .bmb_timestream {
-  height: 100%;
-  min-height: 100px;
-  max-height: 100dvh;
   display: flex;
-  color: RGBA(var(--color-charade-200));
+
   @include fonts.font(3, regular);
   position: relative;
-
-  &-error {
-    flex: 1;
-  }
 
   &-aside {
     width: 50%;
     max-width: 250px;
-    background-color: RGBA(var(--color-charade-900));
+    background-color: RGBA(var(--color-charade-100));
   }
 
-  &-main {
+  &-error {
     flex: 1;
-    background-color: RGBA(var(--color-charade-950));
   }
+}
 
-  &-dialog {
-    width: 0;
-    max-width: 350px;
-    background-color: RGBA(var(--color-charade-950));
-    transition: all 0.3s ease;
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_timestream {
+    color: RGBA(var(--color-charade-200));
 
-    &-active {
-      width: 30%;
+    &-aside {
+      width: 50%;
+      max-width: 250px;
+      background-color: RGBA(var(--color-charade-900));
+    }
+
+    &-main {
+      flex: 1;
+      background-color: RGBA(var(--color-charade-950));
+    }
+
+    &-dialog {
+      width: 0;
+      max-width: 350px;
+      background-color: RGBA(var(--color-charade-950));
+      transition: all 0.3s ease;
+
+      &-active {
+        width: 30%;
+      }
     }
   }
 }

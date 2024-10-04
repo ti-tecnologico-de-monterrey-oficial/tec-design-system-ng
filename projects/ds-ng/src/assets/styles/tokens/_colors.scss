@@ -4,6 +4,7 @@
   // Mariner
   --color-mariner-50: 240, 248, 254;
   --color-mariner-100: 221, 238, 252;
+  // #C3E2FA
   --color-mariner-200: 195, 226, 250;
   --color-mariner-300: 153, 208, 247;
   --color-mariner-400: 105, 183, 241;
@@ -24,14 +25,14 @@
   --color-charade-200: 211, 215, 228;
   // #ADB6CC (Charade 300)
   --color-charade-300: 173, 182, 204;
-  // #617196
+  // #617196 (Charade 500)
   --color-charade-500: 97, 113, 150;
   --color-charade-600: 77, 89, 124;
   // #3F4965 (Charade 700)
   --color-charade-700: 63, 73, 101;
   // #373F55 (Charade 800)
   --color-charade-800: 55, 63, 85;
-  // #313649
+  // #313649 (Charade 900)
   --color-charade-900: 49, 54, 73;
   // #1F222E (Charade 950)
   --color-charade-950: 31, 34, 46;
@@ -42,9 +43,13 @@
   --color-blue-tec: 0, 57, 166;
 
   // MiTec
+  // #00A7F7
   --color-mitec-blue: 0, 167, 247;
+  // #CDDE20
   --color-mitec-green: 205, 222, 32;
+  // #EC2661
   --color-mitec-red: 236, 38, 97;
+  // #FF9901
   --color-mitec-orange: 255, 153, 1;
 
   // Constrastes principales
@@ -58,6 +63,7 @@
   --color-white-min: RGBA(var(--color-white-primary), 0.25);
 
   //Colores base
+  // #1BC0CB
   --color-neon-primary: 27, 192, 203;
   --color-neon-light: 114, 239, 226;
   --color-neon-tint: 208, 252, 240;
@@ -66,20 +72,29 @@
   --color-blue-light: 70, 119, 199;
   --color-blue-tint: 147, 169, 204;
 
+  // #40A213
   --color-green-primary: 64, 162, 19;
+  // #43AA8B
   --color-green-light: 67, 170, 139;
   --color-green-tint: 172, 227, 146;
 
+  //#6A27A1
   --color-purple-primary: 106, 39, 161;
+  // #A12780
   --color-purple-light: 161, 39, 128;
   --color-purple-tint: 200, 123, 189;
 
+  // #D32F2F
   --color-red-primary: 211, 47, 47;
+  // #F05252
   --color-red-light: 240, 82, 82;
   --color-red-tint: 252, 158, 158;
 
+  // #FCBD07
   --color-yellow-primary: 252, 189, 7;
+  // #FED662
   --color-yellow-light: 254, 214, 98;
+  // #FFE7A3
   --color-yellow-tint: 255, 231, 163;
 
   --color-teal-primary: 39, 125, 161;
