@@ -23,10 +23,6 @@ import { ISelectedDate } from '../types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbTimestreamTimelineComponent implements AfterViewInit {
-  @ViewChild('monthList') monthList!: ElementRef;
-
-  @Input() start: DateTime | null = null;
-  @Input() end: DateTime | null = null;
   @Input() dateFormat: string = 'dd/MM/yyyy';
   @Input() lang: string = 'es';
   @Input() now: DateTime = DateTime.now();
@@ -41,8 +37,11 @@ export class BmbTimestreamTimelineComponent implements AfterViewInit {
   @Output() changeSelectedDate: EventEmitter<ISelectedDate> =
     new EventEmitter<ISelectedDate>();
 
+  @ViewChild('monthList') monthList!: ElementRef;
+
   ngAfterViewInit(): void {
     this.scrollToItem();
+    console.log('this.events', this.events);
   }
 
   scrollToItem() {

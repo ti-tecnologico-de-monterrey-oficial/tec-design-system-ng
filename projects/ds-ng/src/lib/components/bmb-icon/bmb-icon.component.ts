@@ -11,7 +11,7 @@ import { isImage } from '../../utils/utils';
 })
 export class BmbIconComponent {
   icon = input<string>('face');
-  materialIcon = input<boolean>(true);
+  materialIcon = input<boolean>(false);
   size = input<number>();
   alt = input<string>('');
 
