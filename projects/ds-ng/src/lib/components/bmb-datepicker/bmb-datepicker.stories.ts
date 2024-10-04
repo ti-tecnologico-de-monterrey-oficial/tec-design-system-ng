@@ -122,7 +122,7 @@ Below is an example of how to use this component in HTML:
         defaultValue: { summary: 'calendar_month' },
       },
     },
-    invalidFormaterrorMessage: {
+    invalidFormatErrorMessage: {
       name: 'Invalid format error message',
       control: {
         type: 'text',

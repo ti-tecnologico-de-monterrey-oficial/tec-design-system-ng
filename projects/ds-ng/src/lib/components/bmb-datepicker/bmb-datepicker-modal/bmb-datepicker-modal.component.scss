@@ -27,6 +27,15 @@
   &-nav {
     list-style: none;
     padding: var(--bmb-spacing-m) var(--bmb-spacing-none);
+
+    &-button {
+      padding: 0.5rem 0.75rem !important;
+
+      &-transparent {
+        padding: 0.5rem 0.75rem !important;
+        border-color: transparent;
+      }
+    }
   }
 
   &-calendar {

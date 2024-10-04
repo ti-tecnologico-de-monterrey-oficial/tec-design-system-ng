@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BmbStepProgressBarComponent } from './bmb-step-progress-bar.component';
 
 describe('BmbStepProgressBarComponent', () => {

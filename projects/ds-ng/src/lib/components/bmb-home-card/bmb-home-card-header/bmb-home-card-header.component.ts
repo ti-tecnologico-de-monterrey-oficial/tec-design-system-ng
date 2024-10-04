@@ -5,13 +5,18 @@ import {
   output,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { CommonModule } from '@angular/common';
+import {
+  BmbHeaderSectionComponent,
+  IBmbActionHeader,
+} from '../../bmb-header-section/bmb-header-section.component';
+import { IBmbDataTopBar } from '../../bmb-breadcrumb/bmb-breadcrumb.component';
+import { IBmbColor } from '../../../types/colors';
 
 @Component({
   selector: 'bmb-home-card-header',
   standalone: true,
-  imports: [BmbIconComponent, CommonModule],
+  imports: [CommonModule, BmbHeaderSectionComponent],
   templateUrl: './bmb-home-card-header.component.html',
   styleUrl: './bmb-home-card-header.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -20,7 +25,11 @@ import { CommonModule } from '@angular/common';
 export class BmbHomeCardHeaderComponent {
   title = input.required<string>();
   subtitle = input<string>();
+  dataLocalNav = input<IBmbDataTopBar[]>([]);
+  leftIcon = input<string>();
   icon = input<string>();
+  bgIconAppearance = input<IBmbColor>();
+  actionHeaders = input<IBmbActionHeader[]>([]);
   isMobile = input<boolean>();
 
   onClose = output();
@@ -28,23 +37,43 @@ export class BmbHomeCardHeaderComponent {
 
   isExpanded: boolean = false;
 
+  getLeftIcon(): string {
+    if (this.isExpanded && !!this.leftIcon()) return this.leftIcon()!;
+    return '';
+  }
+
   getIconName(): string {
-    return this.icon() || '';
+    if (!!this.icon() && !this.isMobile()) return this.icon()!;
+    return '';
   }
 
-  getBehaviorIconName(): string {
-    if (this.isMobile()) return 'close';
-    if (this.isExpanded) return 'close_fullscreen';
-
-    return 'fit_screen';
+  getDataLocalNav(): IBmbDataTopBar[] {
+    if (this.isMobile()) return [];
+    return this.dataLocalNav();
   }
 
-  handleExpandChange(): void {
-    if (this.isMobile()) this.onClose.emit();
-    else this.isExpanded = !this.isExpanded;
+  getActionHeaders(): IBmbActionHeader[] {
+    return [
+      ...this.actionHeaders(),
+      {
+        icon: this.isMobile() ? 'close' : 'fit_screen',
+        iconActiveToggle: this.isMobile() ? '' : 'close_fullscreen',
+        isToggleActive: false,
+        action: () => this.handleExpandChange(),
+      },
+    ];
   }
 
   handleBack(): void {
     this.onBack.emit();
+  }
+
+  handleExpandChange(): void {
+    if (this.isMobile()) {
+      this.onClose.emit();
+      return;
+    }
+
+    this.isExpanded = !this.isExpanded;
   }
 }

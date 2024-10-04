@@ -2,12 +2,19 @@
   <bmb-home-card-header
     [title]="title()"
     [subtitle]="subtitle()"
+    [dataLocalNav]="dataLocalNav()"
+    [leftIcon]="leftIcon()"
     [icon]="icon()"
+    [bgIconAppearance]="bgIconAppearance()"
+    [actionHeaders]="actionHeaders()"
     [isMobile]="isMobile()"
     (onClose)="handleClose()"
     (onBack)="handleBack()"
   />
-  <div class="bmb_home-card-container">
+  <section
+    class="bmb_home-card-container"
+    [ngClass]="'bmb_padding-' + contentPadding()"
+  >
     <ng-content />
-  </div>
+  </section>
 </section>

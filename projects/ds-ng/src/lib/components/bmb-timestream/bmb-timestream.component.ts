@@ -1,8 +1,9 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
-  OnInit,
+  input,
+  TemplateRef,
+  ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import { DateTime, Info } from 'luxon';
@@ -10,11 +11,33 @@ import { BmbTimestreamErrorComponent } from './bmb-timestream-error/bmb-timestre
 import { BmbTimestreamTimelineComponent } from './bmb-timestream-timeline/bmb-timestream-timeline.component';
 import { BmbTimestreamDetailsComponent } from './bmb-timestream-detail/bmb-timestream-detail.component';
 import { ITimelineEvent, ISelectedDate, ITimelineEventParsed } from './types';
-import { BmbTimestreamDialogComponent } from './bmb-timestream-dialog/bmb-timestream-dialog.component';
 import { CommonModule } from '@angular/common';
+import { BmbFilterCardComponent } from '../bmb-filter-card/bmb-filter-card.component';
+import { IBmbControlType } from '../bmb-filter-card/bmb-filter-card.interface';
+import { ModalDataConfig } from '../bmb-modal/bmb-modal.interface';
+import { BmbModalComponent } from '../bmb-modal/bmb-modal.component';
+import { MatDialog } from '@angular/material/dialog';
+import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
+import { BmbTabsComponent } from '../bmb-tabs/bmb-tabs.component';
+import { BmbButtonDirective } from '../../directives/button.directive';
+import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
+import { BmbHitoCardComponent } from '../bmb-hito-card/bmb-hito-card.component';
 
 interface IPlaceholderObject {
   [key: string]: any | any[];
+}
+
+interface Tab {
+  id: number;
+  title: string;
+  isActive?: boolean;
+  badge?: number;
+}
+
+export interface IBmbClamp {
+  min: number | string;
+  max: number | string;
+  size: number | string;
 }
 
 @Component({
@@ -24,69 +47,93 @@ interface IPlaceholderObject {
     BmbTimestreamErrorComponent,
     BmbTimestreamTimelineComponent,
     BmbTimestreamDetailsComponent,
-    BmbTimestreamDialogComponent,
+    // BmbTimestreamDialogComponent,
     CommonModule,
+    // BmbHomeCardComponent,
+    BmbFilterCardComponent,
+    BmbUserImageComponent,
+    BmbTabsComponent,
+    BmbButtonDirective,
+    BmbDividerComponent,
+    BmbHitoCardComponent,
   ],
   templateUrl: './bmb-timestream.component.html',
   styleUrl: './bmb-timestream.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbTimestreamComponent implements OnInit {
-  @Input() startDate: string = '';
-  @Input() endDate: string = '';
-  @Input() dateFormat: string = 'dd/MM/yyyy';
-  @Input() lang: string = 'es';
-  @Input() events: ITimelineEvent[] | null = null;
+export class BmbTimestreamComponent {
+  lang = input<string>('es');
+  dateFormat = input<string>('dd/MM/yyyy');
+  events = input<ITimelineEvent[]>([]);
+  clamp = input<IBmbClamp>({ min: 0, max: '100dvh', size: '100%' });
 
+  @ViewChild('modalTemplate', { read: TemplateRef })
+  modalTemplate?: TemplateRef<any>;
+
+  // internal state
   error = false;
   now = DateTime.now();
   start: DateTime | null = null;
-  end: DateTime | null = null;
-  difference = 0;
-  validMonths: any = [];
-  parsedEvents: any | null = null;
-  monthsNames = Info.months('long', { locale: this.lang });
-  isDialogOpen: null | ITimelineEvent = null;
+  parsedEvents?: any;
+  monthsNames = Info.months('long', { locale: this.lang() });
+  orderedEvents: ITimelineEventParsed[] = [];
   selectedDate: ISelectedDate = {
     day: '',
     month: '',
     date: this.now,
   };
   orderedMonths: string[] = [];
-  orderedEvents: ITimelineEventParsed[] = [];
+  newModal!: TemplateRef<any>;
+  selectedEvent: ITimelineEvent | null = null;
+  eventTabs: Tab[] = [
+    { id: 1, title: 'Descripción', isActive: true },
+    { id: 2, title: 'Instancias' },
+  ];
+  tabSelected = 1;
+
+  constructor(private matDialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.dateValidation();
-
-    this.start = DateTime.fromFormat(this.startDate, this.dateFormat);
-    this.end = DateTime.fromFormat(this.endDate, this.dateFormat);
-    this.difference = Math.ceil(this.end.diff(this.start, 'months').months);
-    this.parsedEvents = this.prepareEvents(this.events);
+    this.parsedEvents = this.prepareEvents(this.events());
     this.orderedMonths = this.orderDates(this.parsedEvents, 'yyyy/MM');
     this.selectedDate = this.selectAValidDate();
   }
 
-  dateValidation() {
-    const isValidStart = DateTime.fromFormat(
-      this.startDate,
-      this.dateFormat,
-    ).isValid;
-    const isValidEnd = DateTime.fromFormat(
-      this.endDate,
-      this.dateFormat,
-    ).isValid;
-
-    this.error = !isValidEnd || !isValidStart;
+  ngAfterViewInit(): void {
+    if (this.modalTemplate) {
+      this.newModal = this.modalTemplate;
+    }
   }
 
-  prepareEvents(events: ITimelineEvent[] | null) {
+  handleTabSelected(tab: Tab) {
+    this.tabSelected = tab.id;
+  }
+
+  getHeight(): string {
+    const height =
+      typeof this.clamp().size === 'string'
+        ? this.clamp().size
+        : `${this.clamp().size}px`;
+    const min =
+      typeof this.clamp().min === 'string'
+        ? this.clamp().min
+        : `${this.clamp().min}px`;
+    const max =
+      typeof this.clamp().max === 'string'
+        ? this.clamp().max
+        : `${this.clamp().max}px`;
+
+    return `clamp(${min}, ${height}, ${max})`;
+  }
+
+  prepareEvents(events?: ITimelineEvent[]) {
     if (!events) return {};
 
     const objectEvent: IPlaceholderObject = {};
     events.forEach((event) => {
-      const startDate = DateTime.fromFormat(event.start, this.dateFormat);
-      const endDate = DateTime.fromFormat(event.end, this.dateFormat);
+      const startDate = DateTime.fromFormat(event.start, this.dateFormat());
+      const endDate = DateTime.fromFormat(event.end, this.dateFormat());
       const diff = endDate.diff(startDate, 'days').days + 1;
 
       for (let index = 0; index < diff; index++) {
@@ -121,24 +168,26 @@ export class BmbTimestreamComponent implements OnInit {
       }
     });
 
-    const orededEvents = this.orderDates(objectEvent, 'yyyy/MM');
-    objectEvent['orderedEvents'] = orededEvents;
+    const orderedEvents = this.orderDates(objectEvent, 'yyyy/MM');
 
-    objectEvent['orderedEvents'].forEach((date: string) => {
-      objectEvent[date]['orderedEvents'] = this.orderDates(
-        objectEvent[date].events,
-        'yyyy/MM/dd',
-      );
-    });
+    if (orderedEvents.length) {
+      objectEvent['orderedEvents'] = orderedEvents;
 
-    this.orderedEvents = objectEvent['orderedEvents']
-      .map((month: string) => {
-        return objectEvent[month]['orderedEvents'].map(
-          (day: string) => objectEvent[month].events[day],
+      objectEvent['orderedEvents'].forEach((date: string) => {
+        objectEvent[date]['orderedEvents'] = this.orderDates(
+          objectEvent[date].events,
+          'yyyy/MM/dd',
         );
-      })
-      .flat();
+      });
 
+      this.orderedEvents = objectEvent['orderedEvents']
+        .map((month: string) => {
+          return objectEvent[month]['orderedEvents'].map(
+            (day: string) => objectEvent[month].events[day],
+          );
+        })
+        .flat();
+    }
     return objectEvent;
   }
 
@@ -154,6 +203,13 @@ export class BmbTimestreamComponent implements OnInit {
   }
 
   selectAValidDate(): { month: string; day: string; date: DateTime } {
+    if (!this.orderedMonths)
+      return {
+        month: this.now.month + '',
+        day: this.now.day + '',
+        date: this.now,
+      };
+
     const month =
       this.orderedMonths.find((date) => {
         const parsedDate = this.parsedEvents[date].date;
@@ -205,10 +261,32 @@ export class BmbTimestreamComponent implements OnInit {
   }
 
   handleSelectedEventChange(event: ITimelineEvent) {
-    this.isDialogOpen = event;
+    this.selectedEvent = event;
+
+    const data: ModalDataConfig = {
+      title: event.title,
+      content: this.newModal,
+      size: 'large',
+      hidePrimaryButton: true,
+    };
+
+    this.matDialog.open(BmbModalComponent, { data });
   }
 
-  closeDetail() {
-    this.isDialogOpen = null;
+  getMonthTitle(date: DateTime) {
+    return date.setLocale(this.lang()).toFormat('cccc dd LLLL yyyy');
+  }
+
+  getInstances(event: any): string[] {
+    const instances = [];
+    for (let index = 0; index < (event.diff || 0) + 1; index++) {
+      const date = event.originalStart.plus({ days: index });
+      instances.push(this.getMonthTitle(date));
+    }
+    return instances;
+  }
+
+  getDurationString(event: ITimelineEvent): string {
+    return `Duración: ${event.originalStart?.day} - ${event.endEvent?.setLocale(this.lang()).toFormat('dd LLLL yyyy')} (${(event.diff || 0) + 1} Días)`;
   }
 }

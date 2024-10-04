@@ -1,0 +1,60 @@
+<section class="bmb_header-section">
+  <bmb-container
+    [ngClass]="transparentBgC() ? 'bmb_header-section-transparent_bgc' : ''"
+  >
+    @if (leftIcon()) {
+      <section class="bmb_header-section-left_icon">
+        <bmb-interactive-icon
+          appearance="none"
+          [icon]="leftIcon()"
+          [setButtonTemplate]="true"
+          (buttonClick)="handleClickLeft($event)"
+        />
+      </section>
+    }
+
+    <section class="bmb_header-section-container">
+      @if (icon()) {
+        <section
+          class="bmb_header-section-container-icon"
+          [ngStyle]="getStyles()"
+        >
+          <bmb-icon [icon]="icon()" [size]="16" />
+        </section>
+      }
+      <section>
+        @if (title()) {
+          <h1 class="bmb_header-section-container-title">
+            {{ title() }}
+          </h1>
+        }
+        @if (showBreadcrumbs()) {
+          <section class="bmb_header-section-container-breadcrumb">
+            <bmb-breadcrumb [dataLocalNav]="dataLocalNav()" />
+          </section>
+        } @else {
+          <h2 class="bmb_header-section-container-subtitle">
+            {{ subtitle() }}
+          </h2>
+        }
+      </section>
+    </section>
+    @for (actionHeader of actionHeaders(); track $index) {
+      <bmb-interactive-icon
+        [ngClass]="
+          !!actionHeader.iconActiveToggle
+            ? 'bmb_header-section-toggle_icon'
+            : ''
+        "
+        appearance="none"
+        [icon]="
+          actionHeader.isToggleActive
+            ? actionHeader.iconActiveToggle!
+            : actionHeader.icon
+        "
+        [setButtonTemplate]="true"
+        (buttonClick)="handleClickRight(actionHeader)"
+      />
+    }
+  </bmb-container>
+</section>

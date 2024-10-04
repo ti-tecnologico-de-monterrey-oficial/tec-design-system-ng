@@ -285,7 +285,7 @@
   color: inherit;
   direction: ltr;
   display: inline-block;
-  font-family: "Material Symbols Outlined";
+  font-family: "Material Symbols Rounded";
   font-feature-settings: "liga";
   -webkit-font-feature-settings: "liga";
   font-size: inherit;
@@ -298,4 +298,46 @@
   white-space: nowrap;
   width: fit-content;
   word-wrap: normal;
+  font-variation-settings:
+    "FILL" 1,
+    "wght" 400,
+    "GRAD" 0,
+    "opsz" 24;
+}
+
+@mixin bgAppearance($appearance: normal) {
+  $color: black;
+  @if $appearance == normal {
+    $color: RGBA(var(--color-charade-950));
+  } @else if $appearance == strong {
+    $color: RGBA(var(--color-mariner-500));
+  } @else if $appearance == success {
+    $color: RGBA(var(--color-green-primary));
+  } @else if $appearance == info {
+    $color: RGBA(var(--color-purple-primary));
+  } @else if $appearance == warning {
+    $color: RGBA(var(--color-yellow-light));
+  } @else if $appearance == error {
+    $color: RGBA(var(--color-red-primary));
+  } @else if $appearance == brand {
+    $color: RGBA(var(--color-neon-primary));
+  } @else if $appearance == background {
+    $color: RGBA(var(--color-charade-100));
+  } @else if $appearance == mitec_blue {
+    $color: RGBA(var(--color-mitec-blue));
+  } @else if $appearance == mitec_red {
+    $color: RGBA(var(--color-mitec-red));
+  } @else if $appearance == mitec_green {
+    $color: RGBA(var(--color-mitec-green));
+  } @else if $appearance == mitec_orange {
+    $color: RGBA(var(--color-mitec-orange));
+  } @else if $appearance == mitec_light_green {
+    $color: RGBA(var(--color-green-light));
+  } @else if $appearance == mitec_purple {
+    $color: RGBA(var(--color-purple-light));
+  }
+
+  .bmb_badge-bullet {
+    background-color: $color;
+  }
 }

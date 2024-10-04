@@ -16,6 +16,7 @@ $circleTypes: (
   list-style: none;
   margin: 0;
   padding: 0;
+  color: RGBA(var(--color-charade-700));
 
   &-item {
     margin-bottom: var(--bmb-spacing-m);
@@ -27,13 +28,13 @@ $circleTypes: (
   }
 
   &-header {
-    background-color: RGBA(var(--color-charade-700));
+    background-color: RGBA(var(--color-charade-200));
+    color: RGBA(var(--color-charade-700));
     padding: var(--bmb-spacing-s) var(--bmb-spacing-m);
     text-transform: capitalize;
     @include fonts.font(4, regular);
     position: sticky;
     top: 0;
-    box-shadow: 0 8px 8px RGBA(var(--color-charade-900));
   }
 
   &-content {
@@ -71,13 +72,12 @@ $circleTypes: (
         display: inline-block;
         width: rem.rem_calc(8);
         height: rem.rem_calc(8);
-        background-color: RGBA(var(--color-charade-200));
+        background-color: RGBA(var(--color-charade-500));
         border-radius: 50%;
-        background-color: RGBA(var(--color-charade-200));
       }
 
       &-current {
-        color: RGBA(var(--color-neon-primary));
+        color: RGBA(var(--color-mariner-700));
 
         .bmb_timestream-timeline-content-item-title {
           font-weight: 600;
@@ -87,6 +87,42 @@ $circleTypes: (
           @each $type, $value in $circleTypes {
             &-#{$type} {
               background-color: $value;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_timestream-timeline {
+    color: RGBA(var(--color-charade-200));
+
+    &-header {
+      background-color: RGBA(var(--color-charade-700));
+      color: RGBA(var(--color-charade-200));
+    }
+
+    &-content {
+      &-item {
+        &-bar {
+          border-top: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
+        }
+
+        &-circle {
+          background-color: RGBA(var(--color-charade-500));
+        }
+
+        &-current {
+          color: RGBA(var(--color-neon-primary));
+
+          .bmb_timestream-timeline-content-item-circle {
+            @each $type, $value in $circleTypes {
+              &-#{$type} {
+                background-color: $value;
+              }
             }
           }
         }

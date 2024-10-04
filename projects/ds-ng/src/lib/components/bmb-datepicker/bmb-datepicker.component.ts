@@ -39,7 +39,7 @@ export class BmbDatepickerComponent implements OnInit {
   @Input() label: string = '';
   @Input() placeholder: string = '';
   @Input() icon: string = 'calendar_month';
-  @Input() invalidFormaterrorMessage: string = 'Formato invalido';
+  @Input() invalidFormatErrorMessage: string = 'Formato invalido';
   @Input() requiredFieldErrorMessage: string = 'Campo requerido';
   @Input() appearance: string = 'normal';
   @Input() disabled: boolean = false;
@@ -50,6 +50,8 @@ export class BmbDatepickerComponent implements OnInit {
   @Input() inline: boolean = false;
   @Input() stepYearPicker: number = 12;
   @Input() name: string = '';
+  @Input() disableDatesBefore?: DateTime;
+  @Input() disableDatesAfter?: DateTime;
 
   now = DateTime.now();
 
@@ -80,12 +82,12 @@ export class BmbDatepickerComponent implements OnInit {
   }
 
   getErrorMessage(errors: ValidationErrors | null): string {
-    if (errors?.['validationDate']) return this.invalidFormaterrorMessage;
+    if (errors?.['validationDate']) return this.invalidFormatErrorMessage;
     if (errors?.['required']) return this.requiredFieldErrorMessage;
     return '';
   }
 
-  handleFouseEvent(event: boolean) {
+  handleFocusedEvent(event: boolean) {
     if (event) {
       this.isWindowOpen = event;
     }

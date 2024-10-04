@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BmbBalanceOverviewComponent } from './bmb-balance-overview.component';
 
 describe('BmbBalanceOverviewComponent', () => {

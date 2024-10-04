@@ -1,13 +1,14 @@
 import {
   Component,
-  Input,
   ChangeDetectionStrategy,
   ElementRef,
   Renderer2,
   AfterViewInit,
   ViewEncapsulation,
+  input,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
 
 @Component({
   selector: 'bmb-badge',
@@ -19,13 +20,11 @@ import { CommonModule } from '@angular/common';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbBadgeComponent implements AfterViewInit {
-  @Input() appearance: string = '';
-  @Input() text: string = '';
-  @Input() grouped: boolean = false;
-  @Input() custom: boolean = false;
-  @Input() customBackground?: string;
-  @Input() customColor?: string;
-  @Input() rounded: boolean = false;
+  appearance = input<IBbmBgAppearance>('normal');
+  text = input<string>('');
+  grouped = input<boolean>(false);
+  rounded = input<boolean>(true);
+  isFillBadge = input<boolean>(true);
 
   constructor(
     private el: ElementRef,
@@ -33,7 +32,7 @@ export class BmbBadgeComponent implements AfterViewInit {
   ) {}
 
   ngAfterViewInit() {
-    if (this.grouped) {
+    if (this.grouped()) {
       const parentElement = this.el.nativeElement.parentElement;
 
       let wrapperDiv = parentElement.querySelector('.bmb_badge-grouped');
@@ -48,22 +47,15 @@ export class BmbBadgeComponent implements AfterViewInit {
   }
 
   getClasses(): string[] {
-    const classes: string[] = ['bmb_badge', 'bmb_badge-rounded'];
+    const classes: string[] = [
+      'bmb_badge',
+      'bmb_badge-rounded',
+      `bmb_badge-${this.appearance()}`,
+    ];
 
-    if (this.appearance) {
-      classes.push('bmb_badge-' + this.appearance);
-    }
+    if (this.isFillBadge()) classes.push('bmb_badge-filled');
+    else classes.push('bmb_badge-transparent');
 
     return classes;
-  }
-
-  getStyles(): any {
-    const newStyles: any = {};
-    if (this.custom) {
-      newStyles['backgroundColor'] =
-        `rgb(var(--color-${this.customBackground}))`;
-      newStyles['color'] = `rgb(var(--color-${this.customColor}))`;
-    }
-    return newStyles;
   }
 }

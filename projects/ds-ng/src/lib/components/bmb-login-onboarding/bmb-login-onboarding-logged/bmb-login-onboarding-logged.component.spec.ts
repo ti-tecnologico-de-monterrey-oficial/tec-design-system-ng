@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BmbLoginOnboardingLoggedComponent } from './bmb-login-onboarding-logged.component';
 
 describe('BmbLoginOnboardingLoggedComponent', () => {

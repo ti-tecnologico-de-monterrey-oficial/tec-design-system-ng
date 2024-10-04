@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BmbNotificationCardComponent } from './bmb-notification-card.component';
 
 describe('BmbNotificationCardComponent', () => {

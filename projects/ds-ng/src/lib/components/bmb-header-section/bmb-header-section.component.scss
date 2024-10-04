@@ -1,0 +1,105 @@
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/rem" as rem;
+
+.bmb_header-section {
+  .bmb_interactive_icon-box {
+    align-items: self-end;
+  }
+  &-transparent_bgc {
+    .bmb_container-primary-container {
+      background-color: inherit;
+    }
+  }
+
+  &-left_icon {
+    color: inherit;
+  }
+
+  &-container {
+    display: flex;
+    flex: 1;
+    gap: var(--bmb-spacing-m);
+    align-items: center;
+    align-self: center;
+
+    &-icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: var(--bmb-radius-s);
+      color: RGBA(var(--color-white-primary));
+      width: rem.rem_calc(48);
+      height: rem.rem_calc(48);
+    }
+
+    &-title {
+      color: RGBA(var(--color-charade-950));
+      @include fonts.font(5, regular);
+    }
+
+    &-subtitle {
+      color: RGBA(var(--color-charade-700));
+      @include fonts.font(3, regular);
+    }
+
+    &-breadcrumb {
+      .bmb_breadcrumb-link,
+      .bmb_breadcrumb-separator,
+      .bmb_breadcrumb-dropdown-button {
+        color: RGBA(var(--color-charade-700));
+        @include fonts.font(3, regular);
+      }
+
+      .bmb_breadcrumb {
+        margin-top: 0px;
+      }
+    }
+  }
+
+  &-toggle_icon {
+    .bmb_interactive_icon-none .bmb_interactive_icon-icon {
+      color: RGBA(var(--color-mariner-500));
+    }
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_header-section {
+    &-transparent_bgc {
+      .bmb_container-primary-container {
+        background-color: inherit;
+      }
+    }
+
+    &-container {
+      &-icon {
+        &-none {
+          background: RGBA(var(--color-black-primary));
+        }
+      }
+
+      &-title {
+        color: RGBA(var(--color-charade-50));
+      }
+
+      &-subtitle {
+        color: RGBA(var(--color-charade-200));
+      }
+
+      &-breadcrumb {
+        .bmb_breadcrumb-link,
+        .bmb_breadcrumb-separator,
+        .bmb_breadcrumb-dropdown-button {
+          color: RGBA(var(--color-charade-200));
+        }
+      }
+    }
+
+    &-toggle_icon {
+      .bmb_interactive_icon-none .bmb_interactive_icon-icon {
+        color: RGBA(var(--color-mariner-500));
+      }
+    }
+  }
+}

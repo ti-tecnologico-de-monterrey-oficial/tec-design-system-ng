@@ -49,7 +49,7 @@ bmb-icon {
   @include mixins.materialIcons();
 }
 
-.material-symbols-outlined {
+.material-symbols-rounded {
   @include mixins.materialSymbols();
 }
 
@@ -79,6 +79,11 @@ storybook-toast-wrapper {
   }
 }
 
+#anchor--micro-componentes-breadcrumb--default {
+  #story--micro-componentes-breadcrumb--default--primary-inner {
+    height: 300px;
+  }
+}
 #anchor--macro-componentes-sidebar--default,
 #anchor--macro-componentes-wheel-menu--default {
   #story--macro-componentes-sidebar--default--primary-inner,
