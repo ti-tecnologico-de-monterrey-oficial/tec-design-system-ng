@@ -33,6 +33,18 @@ Below is an example of how you can use this component in HTML:
     },
   },
   argTypes: {
+    title: {
+      name: 'Title',
+      control: {
+        type: 'text',
+      },
+      description: 'Set the title to show in the tooltip',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
     text: {
       name: 'Text',
       control: {
@@ -45,16 +57,24 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: '' },
       },
     },
-    title: {
-      name: 'Title',
-      control: {
-        type: 'text',
-      },
-      description: 'Set the title to show in the tooltip',
+    icon: {
+      name: 'Icon',
+      control: { type: 'text' },
+      description:
+        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons. The color of the icon depend on the parent.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        defaultValue: { summary: '' },
+        defaultValue: { summary: 'help' },
+      },
+    },
+    size: {
+      name: 'size',
+      control: { type: 'number' },
+      description: 'Size of the icon to use. Note: <= 0 will be inherited.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'number' },
       },
     },
     align: {
@@ -84,25 +104,13 @@ Below is an example of how you can use this component in HTML:
   args: {
     title: 'Titulo del tooltip',
     text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum nihil modi repellendus ad aspernatur corporis.',
+    icon: 'help',
+    size: 40,
     align: 'right',
     justify: 'centered',
   },
-} as Meta<typeof BmbTooltipComponent>;
+} as Meta<typeof BmbIconComponent>;
 
-type Story = StoryObj<BmbTooltipComponent>;
+type Story = StoryObj<BmbIconComponent>;
 
-export const Default: Story = {
-  render: (args) => ({
-    props: args,
-    template: `
-        <bmb-tooltip 
-            [title]="'Titulo tooltip'" 
-            [text]="'Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum nihil modi repellendus ad aspernatur corporis.'"
-            [align]="'right'" 
-            [justify]="'centered'"
-            >
-            <bmb-icon style="font-size: 40px;" [icon]="'help'"/>
-        </bmb-tooltip>
-        `,
-  }),
-};
+export const Default: Story = {};

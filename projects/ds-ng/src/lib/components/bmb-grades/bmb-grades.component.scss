@@ -28,6 +28,10 @@
       border-style: inherit;
       border-width: 0;
     }
+
+    .bmb_focus-element-number {
+      color: RGBA(var(--color-mariner-700));
+    }
   }
 
   &-title {
@@ -41,6 +45,12 @@
   .bmb_grades {
     .bmb_card.bmb_card-type-normal {
       border-color: RGBA(var(--color-charade-500));
+    }
+
+    &-summary {
+      .bmb_focus-element-number {
+        color: RGBA(var(--color-charade-50));
+      }
     }
 
     &-title {

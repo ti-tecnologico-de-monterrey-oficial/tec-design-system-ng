@@ -10,10 +10,10 @@
   width: rem.rem_calc(64);
 }
 
-.bmb_focus_element {
+.bmb_focus-element {
   width: fit-content;
 
-  &-circle_normal {
+  &-normal_circle {
     @include circle;
     border: rem.rem_calc(1) solid;
     border-radius: 100%;
@@ -22,6 +22,20 @@
   &-circle_focused {
     @include circle;
     border: rem.rem_calc(1) solid RGBA(var(--color-mariner-700));
+    border-radius: 100%;
+  }
+
+  &-normal_bg {
+    background-color: RGBA(var(--color-charade-50));
+  }
+
+  &-inherited_bg {
+    background-color: inherit;
+  }
+
+  &-non_focused {
+    @include circle;
+    border: rem.rem_calc(1) solid background-color;
     border-radius: 100%;
   }
 
@@ -52,15 +66,25 @@
 
 [data-theme="dark"],
 .storybook-dark-theme {
-  .bmb_focus_element {
+  .bmb_focus-element {
     &-circle_focused {
-      background-color: RGBA(var(--color-black-primary));
       border-color: RGBA(var(--color-neon-primary));
     }
 
-    &-circle_normal {
-      background-color: RGBA(var(--color-black-primary));
+    &-normal_circle {
       border-color: RGBA(var(--color-black-primary));
+    }
+
+    &-normal_bg {
+      background-color: RGBA(var(--color-black-primary));
+    }
+
+    &-inherited_bg {
+      background-color: inherit;
+    }
+
+    &-non_focused {
+      border-color: rem.rem_calc(1) solid background-color;
     }
 
     &-icon {

@@ -1,13 +1,13 @@
-<div class="bmb_focus_element">
-  <div [ngClass]="getCircleClass()">
+<section class="bmb_focus-element">
+  <section [class]="getCircleClass()">
     @if (icon() && !number()) {
-      <bmb-icon class="bmb_focus_element-icon" icon="{{ icon() }}" />
+      <bmb-icon class="bmb_focus-element-icon" icon="{{ icon() }}" />
     }
     @if (number() && !icon()) {
-      <span class="bmb_focus_element-number">{{ number() }}</span>
+      <span class="bmb_focus-element-number">{{ number() }}</span>
     }
-  </div>
+  </section>
   @if (title()) {
-    <p class="bmb_focus_element-title">{{ title() }}</p>
+    <p class="bmb_focus-element-title">{{ title() }}</p>
   }
-</div>
+</section>

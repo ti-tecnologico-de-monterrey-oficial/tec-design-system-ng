@@ -101,7 +101,10 @@ import { DateTime } from 'luxon';
 import { IBmbGrades } from '../../projects/ds-ng/src/lib/components/bmb-grades/types';
 import { BmbBottomNavigationBarComponent } from '../../projects/ds-ng/src/lib/components/bmb-bottom-navigation-bar/bmb-bottom-navigation-bar.component';
 import { IBmbDataTopBar } from '../../projects/ds-ng/src/lib/components/bmb-breadcrumb/bmb-breadcrumb.component';
-import { BmbEvaluationRubricComponent } from '../../projects/ds-ng/src/lib/components/bmb-evaluation-rubric/bmb-evaluation-rubric.component';
+import {
+  BmbEvaluationRubricComponent,
+  IBmbEvaluationRubric,
+} from '../../projects/ds-ng/src/lib/components/bmb-evaluation-rubric/bmb-evaluation-rubric.component';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -1019,4 +1022,24 @@ export class AppComponent {
       iconLeft: 'home',
     },
   ];
+  getEvaluationRubricList(): IBmbEvaluationRubric[] {
+    return [
+      {
+        criterion: 'Criterio Primero',
+        toolTip: 'Criterio Primero tooltip',
+      },
+      {
+        criterion: 'Criterio Segundo',
+        toolTip: 'Criterio Segundo tooltip',
+      },
+      {
+        criterion: 'Tercer Criterio',
+        toolTip: 'Tercer Criterio tooltip',
+      },
+      {
+        criterion: 'Cuarto Criterio',
+        toolTip: 'Cuarto Criterio tooltip',
+      },
+    ];
+  }
 }
