@@ -1017,6 +1017,11 @@ export class AppComponent {
       description:
         'Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.',
       type: 'under_review',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 2,
@@ -1029,6 +1034,11 @@ export class AppComponent {
       description:
         'In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.\n\nMaecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.',
       type: 'pending',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 3,
@@ -1041,6 +1051,11 @@ export class AppComponent {
       description:
         'Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.',
       type: 'under_review',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 4,
@@ -1053,6 +1068,11 @@ export class AppComponent {
       description:
         'Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.\n\nCras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.\n\nQuisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.',
       type: 'under_review',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 5,
@@ -1065,6 +1085,11 @@ export class AppComponent {
       description:
         'Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.\n\nMauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.\n\nNullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.',
       type: 'under_review',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 6,
@@ -1077,6 +1102,11 @@ export class AppComponent {
       description:
         'Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.',
       type: 'done',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 7,
@@ -1089,6 +1119,11 @@ export class AppComponent {
       description:
         'In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.\n\nSuspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.',
       type: 'pending',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 8,
@@ -1101,6 +1136,11 @@ export class AppComponent {
       description:
         'Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.\n\nDonec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque.',
       type: 'done',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 9,
@@ -1113,6 +1153,11 @@ export class AppComponent {
       description:
         'Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.\n\nMaecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.\n\nNullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.',
       type: 'active',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 11,
@@ -1125,6 +1170,11 @@ export class AppComponent {
       description:
         'In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.\n\nAliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.\n\nSed ante. Vivamus tortor. Duis mattis egestas metus.',
       type: 'under_review',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 12,
@@ -1137,6 +1187,11 @@ export class AppComponent {
       description:
         'Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.\n\nCum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
       type: 'pending',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 13,
@@ -1149,6 +1204,11 @@ export class AppComponent {
       description:
         'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.\n\nVestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.',
       type: 'active',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 14,
@@ -1161,6 +1221,11 @@ export class AppComponent {
       description:
         'In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.\n\nMaecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.\n\nMaecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.',
       type: 'pending',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 15,
@@ -1173,6 +1238,12 @@ export class AppComponent {
       description:
         'Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.\n\nCras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.\n\nProin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.',
       type: 'under_review',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
+      related_to: ['test'],
     },
     {
       id: 16,
@@ -1185,6 +1256,11 @@ export class AppComponent {
       description:
         'Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.\n\nIn congue. Etiam justo. Etiam pretium iaculis justo.',
       type: 'done',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 18,
@@ -1197,6 +1273,11 @@ export class AppComponent {
       description:
         'Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.',
       type: 'pending',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 19,
@@ -1209,6 +1290,11 @@ export class AppComponent {
       description:
         'Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.\n\nDonec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque.\n\nDuis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.',
       type: 'pending',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 20,
@@ -1221,6 +1307,11 @@ export class AppComponent {
       description:
         'Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.\n\nProin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.',
       type: 'done',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 21,
@@ -1233,6 +1324,11 @@ export class AppComponent {
       description:
         'Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.\n\nCurabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.',
       type: 'pending',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 22,
@@ -1245,6 +1341,11 @@ export class AppComponent {
       description:
         'Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.',
       type: 'pending',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 23,
@@ -1257,6 +1358,11 @@ export class AppComponent {
       description:
         'In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.',
       type: 'under_review',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 24,
@@ -1269,6 +1375,11 @@ export class AppComponent {
       description:
         'Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.\n\nSed ante. Vivamus tortor. Duis mattis egestas metus.\n\nAenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.',
       type: 'done',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 25,
@@ -1281,6 +1392,11 @@ export class AppComponent {
       description:
         'Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.\n\nIn quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.',
       type: 'pending',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 26,
@@ -1293,6 +1409,11 @@ export class AppComponent {
       description:
         'Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.\n\nVestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.\n\nIn congue. Etiam justo. Etiam pretium iaculis justo.',
       type: 'pending',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 27,
@@ -1305,6 +1426,11 @@ export class AppComponent {
       description:
         'Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.\n\nCurabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.',
       type: 'pending',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 28,
@@ -1317,6 +1443,11 @@ export class AppComponent {
       description:
         'Sed ante. Vivamus tortor. Duis mattis egestas metus.\n\nAenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.',
       type: 'pending',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 29,
@@ -1329,6 +1460,11 @@ export class AppComponent {
       description:
         'Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.\n\nPraesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.\n\nMorbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.',
       type: 'done',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 30,
@@ -1341,6 +1477,11 @@ export class AppComponent {
       description:
         'Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.\n\nPellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.',
       type: 'done',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 31,
@@ -1353,6 +1494,11 @@ export class AppComponent {
       description:
         'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.\n\nVestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.',
       type: 'under_review',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 32,
@@ -1365,6 +1511,11 @@ export class AppComponent {
       description:
         'Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.\n\nMorbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.',
       type: 'under_review',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 33,
@@ -1376,6 +1527,11 @@ export class AppComponent {
       description:
         'Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.',
       type: 'under_review',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 34,
@@ -1388,6 +1544,11 @@ export class AppComponent {
       description:
         'In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.\n\nMaecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.\n\nMaecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.',
       type: 'done',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 35,
@@ -1400,6 +1561,11 @@ export class AppComponent {
       description:
         'Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.\n\nCurabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.',
       type: 'pending',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 36,
@@ -1412,6 +1578,11 @@ export class AppComponent {
       description:
         'Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.',
       type: 'pending',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 37,
@@ -1424,6 +1595,11 @@ export class AppComponent {
       description:
         'Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.',
       type: 'under_review',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 38,
@@ -1436,6 +1612,11 @@ export class AppComponent {
       description:
         'Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.\n\nVestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.\n\nIn congue. Etiam justo. Etiam pretium iaculis justo.',
       type: 'pending',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 39,
@@ -1448,6 +1629,11 @@ export class AppComponent {
       description:
         'Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.',
       type: 'done',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 40,
@@ -1460,6 +1646,11 @@ export class AppComponent {
       description:
         'Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.',
       type: 'active',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 41,
@@ -1471,6 +1662,11 @@ export class AppComponent {
       description:
         'Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.',
       type: 'done',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 42,
@@ -1483,6 +1679,11 @@ export class AppComponent {
       description:
         'Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.',
       type: 'active',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 43,
@@ -1495,6 +1696,11 @@ export class AppComponent {
       description:
         'Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.\n\nFusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.\n\nSed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.',
       type: 'active',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 44,
@@ -1507,6 +1713,11 @@ export class AppComponent {
       description:
         'Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.',
       type: 'active',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 45,
@@ -1519,6 +1730,11 @@ export class AppComponent {
       description:
         'Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.',
       type: 'done',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 46,
@@ -1531,6 +1747,11 @@ export class AppComponent {
       description:
         'Sed ante. Vivamus tortor. Duis mattis egestas metus.\n\nAenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.',
       type: 'under_review',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 47,
@@ -1543,6 +1764,11 @@ export class AppComponent {
       description:
         'Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.\n\nCurabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.',
       type: 'active',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 48,
@@ -1555,6 +1781,11 @@ export class AppComponent {
       description:
         'Sed ante. Vivamus tortor. Duis mattis egestas metus.\n\nAenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.',
       type: 'active',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 49,
@@ -1567,6 +1798,11 @@ export class AppComponent {
       description:
         'Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.\n\nInteger tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.\n\nPraesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.',
       type: 'done',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 50,
@@ -1579,6 +1815,11 @@ export class AppComponent {
       description:
         'Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.\n\nVestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.\n\nIn congue. Etiam justo. Etiam pretium iaculis justo.',
       type: 'pending',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 51,
@@ -1592,6 +1833,11 @@ export class AppComponent {
         'Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.',
       type: 'done',
       icon: 'app_badging',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 52,
@@ -1605,6 +1851,11 @@ export class AppComponent {
         'Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.\n\nPraesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.',
       type: 'pending',
       icon: 'app_badging',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 53,
@@ -1618,6 +1869,11 @@ export class AppComponent {
         'Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.',
       type: 'done',
       icon: 'app_badging',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 54,
@@ -1631,6 +1887,11 @@ export class AppComponent {
         'Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.',
       type: 'under_review',
       icon: 'app_badging',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
     {
       id: 1000,
@@ -1644,6 +1905,11 @@ export class AppComponent {
         'Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.\n\nIn congue. Etiam justo. Etiam pretium iaculis justo.',
       type: 'under_review',
       icon: 'app_badging',
+      user_first_name: 'Sioux',
+      user_last_name: 'Cadwallader',
+      user_email: 'scadwallader0@chron.com',
+      picture_profile:
+        'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
     },
   ];
 
