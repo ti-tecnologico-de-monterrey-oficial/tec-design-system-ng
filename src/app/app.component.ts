@@ -87,7 +87,7 @@ import {
   BmbFocusElementComponent,
   ITimelineEvent,
 } from '../../projects/ds-ng/src/public-api';
-import { CardButtonComponent } from '../../projects/ds-ng/src/lib/components/bmb-card-button/bmb-card-button.component';
+import { BmbCardButtonComponent } from '../../projects/ds-ng/src/lib/components/bmb-card-button/bmb-card-button.component';
 
 export interface Target {
   target: string;
@@ -102,8 +102,6 @@ import {} from '../../projects/ds-ng/src/lib/components/bmb-home-card-chat/bmb-h
 import { DateTime } from 'luxon';
 import { IBmbGrades } from '../../projects/ds-ng/src/lib/components/bmb-grades/types';
 import { BmbBottomNavigationBarComponent } from '../../projects/ds-ng/src/lib/components/bmb-bottom-navigation-bar/bmb-bottom-navigation-bar.component';
-import { IBmbActivityTags } from 'ds-ng';
-
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'app-root',
@@ -175,7 +173,7 @@ import { IBmbActivityTags } from 'ds-ng';
     BmbStepProgressBarComponent,
     BmbFocusElementComponent,
     BmbDateRangeComponent,
-    CardButtonComponent,
+    BmbCardButtonComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

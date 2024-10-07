@@ -1,4 +1,4 @@
-import { Component, ViewChild, TemplateRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import {
   BmbSidebarComponent,
@@ -6,7 +6,7 @@ import {
   BmbInteractiveIconComponent,
   BmbIconComponent,
 } from '../../../projects/ds-ng/src/public-api';
-import { CardButtonComponent } from '../../../projects/ds-ng/src/lib/components/bmb-card-button/bmb-card-button.component';
+import { BmbCardButtonComponent } from '../../../projects/ds-ng/src/lib/components/bmb-card-button/bmb-card-button.component';
 import { SidebarElement } from '../../../projects/ds-ng/src/lib/components/bmb-sidebar/bmb-sidebar.interface';
 import { BmbDrawerOverlayComponent } from '../../../projects/ds-ng/src/lib/components/bmb-drawer-overlay/bmb-drawer-overlay.component';
 import { BmbBreadcrumbComponent } from '../../../projects/ds-ng/src/lib/components/bmb-breadcrumb/bmb-breadcrumb.component';
@@ -21,7 +21,7 @@ import { BmbBreadcrumbComponent } from '../../../projects/ds-ng/src/lib/componen
     BmbIconComponent,
     BmbInteractiveIconComponent,
     BmbBreadcrumbComponent,
-    CardButtonComponent,
+    BmbCardButtonComponent,
   ],
   templateUrl: './emprendedor.component.html',
   styleUrls: ['./emprendedor.component.scss'],
@@ -32,7 +32,6 @@ export default class EmprendedorComponent {
   //   { label: 'Vivencia', link: '/emprendedor/vivencia' },
   //   { label: 'Inicio', link: '/emprendedor/inicio' },
   // ];
-  @ViewChild('iconTemplate') iconTemplate!: TemplateRef<any>;
   title1 = 'Sample Card Title';
   body = 'This is the body content of the card.';
   badges = [{ text: 'Badge 1' }, { text: 'Badge 2' }];
