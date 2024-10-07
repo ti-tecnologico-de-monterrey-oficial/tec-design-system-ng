@@ -3,6 +3,37 @@
   [dataLocalNav]="dataLocalNav"
   [isTopBar]="true"
 ></bmb-breadcrumb>
+<bmb-card-button
+  [title]="'Card with First Icon'"
+  [body]="'This is the first card with the first icon and some body text.'"
+  [icon]="'settings'"
+  [leftContentIcon]="'home'"
+  [hasMenu]="false"
+>
+  <ng-template #iconTemplate>
+    <div style="display: flex; gap: 1em">
+      <bmb-icon
+        [icon]="'settings'"
+        class="bmb_card_button-circle-icon"
+      ></bmb-icon>
+      <bmb-icon [icon]="'star'" class="bmb_card_button-circle-icon"></bmb-icon>
+    </div>
+  </ng-template>
+</bmb-card-button>
+
+<!-- <bmb-card-button
+  [title]="'Crear nuevo skill'"
+  [body]="'This is the body content of the card button.'"
+  [badges]="[
+    { text: 'Badge 1', appearance: 'normal' },
+    { text: 'Badge 2', appearance: 'info' },
+  ]"
+  [icons]="['settings']"
+  [hasIcon]="true"
+  [hasMenu]="true"
+  [isAddContent]="false"
+></bmb-card-button> -->
+
 <!-- 
 <div style="display: flex; gap: 3em">
   <a routerLink="inicio" class="font-bold-6">Inicio</a>

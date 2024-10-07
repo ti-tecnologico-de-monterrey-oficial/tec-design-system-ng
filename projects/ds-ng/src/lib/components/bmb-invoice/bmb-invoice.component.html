@@ -1,0 +1,39 @@
+<div class="bmb_invoice">
+  <div class="bmb_invoice-list">
+    @for (item of data()?.concept; track $index) {
+      <div class="bmb_invoice-item">
+        <div class="bmb_invoice-concept">
+          <span class="bmb_invoice-concept-text">{{ item.concept }}</span>
+
+          @if (item.badge) {
+            <bmb-badge
+              class="bmb_invoice-badge"
+              [text]="item.badge.label"
+              [rounded]="false"
+              [appearance]="item.badge.appearance"
+            />
+          }
+        </div>
+
+        <span
+          class="bmb_invoice-quantity"
+          [class.bmb_invoice-quantity-negative]="isNegative(item.quantity)"
+        >
+          {{ item.quantity }}
+        </span>
+      </div>
+    }
+  </div>
+
+  <div class="bmb_invoice-total">
+    <span class="bmb_invoice-total-text">{{ data()?.total?.label }}</span>
+    <div class="bmb_invoice-total-box">
+      <span class="bmb_invoice-total-value">{{ data()?.total?.value }}</span>
+      <ul class="bmb_invoice-total-list">
+        @for (item of data()?.total?.equivalence; track $index) {
+          <li class="bmb_invoice-total-item">{{ item }}</li>
+        }
+      </ul>
+    </div>
+  </div>
+</div>
