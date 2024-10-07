@@ -1,3 +1,13 @@
+<<<<<<< HEAD
+<bmb-theme />
+<bmb-divider />
+<bmb-evaluation-rubric
+  title="Rubrica de evaluación"
+  [evaluationRubricList]="evaluationRubricList"
+  summaryLabel="Resumen"
+  [commentEvalRubric]="commentEvalRubric"
+  [evalRubricButtons]="evalRubricButtons"
+=======
 <bmb-theme></bmb-theme>
 <hr />
 <bmb-timestream
@@ -11,11 +21,73 @@
     max: '100dvh',
     size: 500,
   }"
+>>>>>>> e58399c526d66732124d51e04e45e1a22ddbb1e8
 />
 
-<bmb-badge text="text" [isFillBadge]="true" appearance="background"></bmb-badge>
-<bmb-badge
-  text="text"
-  [isFillBadge]="false"
-  appearance="background"
-></bmb-badge>
+<!-- <bmb-divider />
+<bmb-grades [grades]="getGrades()" (closeGrades)="closeGrades()" /> -->
+<!-- <bmb-divider />
+<button
+  bmbButton
+  appearance="primary"
+  icon="home"
+  size="small"
+  position="left"
+  [case]="false"
+  [isToggleActive]="false"
+  [enableButtonToggle]="true"
+  (click)="openModal()"
+>
+  Open modal
+</button>
+<bmb-divider />
+<bmb-home-card
+  [leftIcon]="'chevron_left'"
+  icon="exposure"
+  bgIconAppearance="green-light"
+  [title]="'Title'"
+  [subtitle]="'subtitle'"
+  [dataLocalNav]="getDataTopBar()"
+  [isMobile]="false"
+>
+  <p>hello world</p>
+</bmb-home-card>
+<bmb-home-card
+  [leftIcon]="'chevron_left'"
+  icon="exposure"
+  bgIconAppearance="green-light"
+  [title]="'Title'"
+  [subtitle]="'subtitle'"
+  [dataLocalNav]="getDataTopBar()"
+  [isMobile]="true"
+>
+  <p>hello world</p>
+</bmb-home-card>
+<bmb-divider />
+<bmb-header-section
+  leftIcon="swap_horizontal_circle"
+  title="Header section name"
+  subtitle="Subtitle"
+  icon="exposure"
+  bgIconAppearance="black-primary"
+  [actionHeaders]="actionHeadersB"
+/>
+<bmb-divider />
+<bmb-header-section
+  leftIcon="arrow_back_ios"
+  title="Header section name"
+  subtitle="Subtitle"
+  icon="exposure"
+  bgIconAppearance="black-primary"
+  [actionHeaders]="actionHeadersToggle"
+/>
+-->
+<!-- <bmb-divider />
+<bmb-header-section
+  leftIcon="close"
+  title="Header section name"
+  subtitle="Subtitle"
+  icon="exposure"
+  bgIconAppearance="black-primary"
+  [actionHeaders]="actionHeaders"
+/> -->
