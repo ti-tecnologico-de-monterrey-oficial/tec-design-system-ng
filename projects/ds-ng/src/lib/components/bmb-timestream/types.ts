@@ -20,7 +20,7 @@ export interface ITimelineEvent {
   description: string;
   short_description: string;
   type: ITimelineEventType;
-  related_to?: string;
+  related_to?: string[];
   decision?: string;
   title: string;
   image: string;
