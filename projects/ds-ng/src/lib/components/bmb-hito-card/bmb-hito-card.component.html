@@ -23,9 +23,11 @@
           <h3 class="bmb_hito-card-content-title">
             {{ title() }}
           </h3>
-          <p class="bmb_hito-card-content-description">
-            {{ short_description() }}
-          </p>
+          @if (short_description()) {
+            <p class="bmb_hito-card-content-description">
+              {{ short_description() }}
+            </p>
+          }
         </section>
         <section bmbLayoutItem class="bmb_hito-card-content-type">
           <bmb-badge
