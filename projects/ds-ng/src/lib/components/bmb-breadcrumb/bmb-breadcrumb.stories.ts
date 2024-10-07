@@ -37,6 +37,28 @@ export default {
       ],
     }),
   ],
+  parameters: {
+    docs: {
+      description: {
+        component: `
+Below is an example of how you can use this component in TypeScript:
+
+\`\`\`typescript
+import { BmbBreadcrumbComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
+@Component({
+  selector: 'component',
+  standalone: true,
+  imports: [ BmbBreadcrumbComponent ],
+  templateUrl: './component.html',
+  styleUrl: './component.scss',
+})
+\`\`\`
+
+Below is an example of how you can use this component in HTML:
+        `,
+      },
+    },
+  },
   argTypes: {
     dataTopBar: {
       name: 'Data Top Bar',
@@ -63,6 +85,16 @@ export default {
       control: { type: 'boolean' },
       description:
         'Toggles between Top Bar breadcrumb style and Local Navigation style.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
+    isInactive: {
+      name: 'Inactive Local Navigation',
+      control: { type: 'boolean' },
+      description: 'Indicates whether the local navigation is inactive or not.',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
@@ -102,6 +134,7 @@ export default {
       },
     ],
     isTopBar: false,
+    isInactive: false,
   },
 } as Meta<typeof BmbBreadcrumbComponent>;
 
