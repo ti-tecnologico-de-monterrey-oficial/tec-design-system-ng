@@ -1,5 +1,5 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
-import { CardButtonComponent } from './bmb-card-button.component';
+import { BmbCardButtonComponent } from './bmb-card-button.component';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 
 export default {
   title: 'Macro Componentes/Card Button',
-  component: CardButtonComponent,
+  component: BmbCardButtonComponent,
   decorators: [
     moduleMetadata({
       imports: [
@@ -36,11 +36,11 @@ export default {
 Below is an example of how you can use this component in TypeScript:
 
 \`\`\`typescript
-import { CardButtonComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
+import { BmbCardButtonComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
 @Component({
   selector: 'component',
   standalone: true,
-  imports: [ CardButtonComponent ],
+  imports: [ BmbCardButtonComponent ],
   templateUrl: './component.html',
   styleUrls: ['./component.scss'],
 })
@@ -158,14 +158,14 @@ Below is an example of how to use it in HTML:
         type: { summary: '{ icon: string, text: string }[]' },
       },
     },
-    template: {
-      name: 'Left Content Image',
-      control: { type: 'object' },
+    isTemplate: {
+      name: 'Is Template',
+      control: { type: 'boolean' },
       description:
-        'en el ts necesitas esto @ViewChild("iconTemplate") iconTemplate!: TemplateRef<any>; <ng-template #iconTemplate>Aqui manda lo que quieras</ng-template>',
+        'Enable template usage for the icons show before menu dropdown. You can place less than 4 icons.',
       table: {
         category: 'Properties',
-        type: { summary: '{ src: string, alt: string }' },
+        type: { summary: 'boolean' },
       },
     },
   },
@@ -207,8 +207,8 @@ Below is an example of how to use it in HTML:
       },
     ],
   },
-} as Meta<typeof CardButtonComponent>;
+} as Meta<typeof BmbCardButtonComponent>;
 
-type Story = StoryObj<CardButtonComponent>;
+type Story = StoryObj<BmbCardButtonComponent>;
 
 export const Default: Story = {};

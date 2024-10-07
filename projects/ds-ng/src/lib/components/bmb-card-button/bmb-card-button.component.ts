@@ -46,7 +46,7 @@ export interface ICardButton {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class CardButtonComponent {
+export class BmbCardButtonComponent {
   isFullInteractive = input<boolean>(true);
   title = input<string>('');
   body = input<string>('');

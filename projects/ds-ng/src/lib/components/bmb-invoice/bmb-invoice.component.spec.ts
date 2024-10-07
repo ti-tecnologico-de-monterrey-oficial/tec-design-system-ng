@@ -5,11 +5,7 @@ describe('BmbInvoiceComponent', () => {
   let component: BmbInvoiceComponent;
   let fixture: ComponentFixture<BmbInvoiceComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [BmbInvoiceComponent],
-    }).compileComponents();
-  });
+  beforeEach(async () => {});
 
   beforeEach(() => {
     fixture = TestBed.createComponent(BmbInvoiceComponent);

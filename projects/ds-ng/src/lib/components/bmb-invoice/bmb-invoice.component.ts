@@ -4,7 +4,6 @@ import {
   ChangeDetectionStrategy,
   ViewEncapsulation,
   input,
-  computed,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
