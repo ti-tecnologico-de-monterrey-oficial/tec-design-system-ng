@@ -84,11 +84,8 @@ export * from './lib/components/bmb-header-section/bmb-header-section.component'
 export * from './lib/components/bmb-mobile-templates/bmb-mobile-templates.component';
 export * from './lib/components/bmb-date-range/bmb-date-range.component';
 export * from './lib/components/bmb-text-link/bmb-text-link.component';
-<<<<<<< HEAD
 export * from './lib/components/bmb-evaluation-rubric/bmb-evaluation-rubric.component';
-=======
 export * from './lib/components/bmb-hito-card/bmb-hito-card.component';
->>>>>>> e58399c526d66732124d51e04e45e1a22ddbb1e8
 
 // types
 export * from './lib/types';
