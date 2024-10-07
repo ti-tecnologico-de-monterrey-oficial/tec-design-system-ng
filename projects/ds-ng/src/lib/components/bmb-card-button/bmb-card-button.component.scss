@@ -1,0 +1,202 @@
+@use "../../../assets/styles/base/rem" as rem;
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/mixins" as mixins;
+
+.bmb_card_button {
+  height: rem.rem_calc(195);
+  max-width: rem.rem_calc(328);
+
+  &-wrapper {
+    background-color: RGBA(var(--color-charade-50));
+    border: rem.rem_calc(1) solid RGBA(var(--color-charade-300));
+    border-radius: rem.rem_calc(16);
+    box-shadow: rem.rem_calc(4 4 4 0) RGBA(var(--color-charade-950), 0.5);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: rem.rem_calc(24);
+    position: relative;
+    width: 100%;
+
+    &:hover {
+      background-color: RGBA(var(--color-charade-500));
+
+      .bmb_card_button-header-text {
+        color: RGBA(var(--color-charade-50));
+      }
+
+      .bmb_card_button-header-icon {
+        color: RGBA(var(--color-charade-50));
+      }
+      .bmb_dropdown_menu-icon {
+        color: RGBA(var(--color-charade-50));
+      }
+    }
+  }
+
+  &-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: rem.rem_calc(16);
+    min-height: rem.rem_calc(28);
+  }
+
+  &-left {
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  &-circle {
+    align-items: center;
+    background-color: RGBA(var(--color-charade-950));
+    border-radius: 100%;
+    color: RGBA(var(--color-charade-50));
+    display: flex;
+    height: rem.rem_calc(48);
+    justify-content: center;
+    width: rem.rem_calc(48);
+
+    &-icon {
+      font-size: rem.rem_calc(32);
+    }
+  }
+
+  &-image {
+    border-radius: rem.rem_calc(12);
+    height: rem.rem_calc(66);
+    object-fit: cover;
+    width: rem.rem_calc(66);
+  }
+
+  &-leading {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    margin-left: auto;
+  }
+
+  &-template {
+    display: flex;
+    flex-flow: row wrap;
+    height: rem.rem_calc(40);
+    justify-content: flex-end;
+    overflow: hidden;
+    padding: rem.rem_calc(0 10);
+  }
+
+  &-menu {
+    flex: 1;
+  }
+
+  &-information {
+    display: flex;
+    gap: rem.rem_calc(10);
+    justify-content: flex-end;
+    width: 100%;
+  }
+
+  &-header {
+    align-items: center;
+    display: flex;
+    gap: rem.rem_calc(8);
+
+    &-text {
+      @include fonts.font(4, medium);
+      color: RGBA(var(--color-charade-950));
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    &-icon {
+      color: RGBA(var(--color-charade-300));
+      font-size: rem.rem_calc(16);
+    }
+  }
+
+  &-body {
+    color: RGBA(var(--color-charade-300));
+    margin-top: rem.rem_calc(8);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    @include fonts.font(3, regular);
+  }
+
+  &-add {
+    align-items: center;
+    background-color: RGBA(var(--color-mariner-700));
+    border: none;
+    border-radius: rem.rem_calc(16);
+    box-shadow: rem.rem_calc(4 4 4 0) RGBA(var(--color-charade-950), 0.5);
+    color: RGBA(var(--color-white-primary));
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    padding: rem.rem_calc(24);
+    width: 100%;
+
+    &-title {
+      @include fonts.font(4, medium);
+      margin-top: rem.rem_calc(10);
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    &-icon {
+      font-size: rem.rem_calc(48);
+    }
+
+    &:hover {
+      background-color: RGBA(var(--color-mariner-800));
+    }
+
+    &:focus {
+      background-color: RGBA(var(--color-mariner-500));
+    }
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_card_button {
+    &-wrapper {
+      background-color: RGBA(var(--color-charade-950));
+      border-color: RGBA(var(--color-charade-800));
+
+      &:hover {
+        background-color: RGBA(var(--color-charade-500));
+
+        .bmb_dropdown_menu-icon {
+          color: RGBA(var(--color-charade-50));
+        }
+      }
+    }
+
+    &-header {
+      &-text {
+        color: RGBA(var(--color-charade-50));
+      }
+      &-icon {
+        color: RGBA(var(--color-charade-300));
+      }
+    }
+
+    &-circle {
+      background-color: RGBA(var(--color-charade-50));
+      color: RGBA(var(--color-charade-900));
+    }
+
+    &-title,
+    &-icon,
+    &-body {
+      color: RGBA(var(--color-charade-300));
+    }
+  }
+}

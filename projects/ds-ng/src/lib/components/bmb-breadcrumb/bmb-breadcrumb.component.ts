@@ -1,7 +1,6 @@
 import {
   Component,
   OnInit,
-  Renderer2,
   input,
   signal,
   OnDestroy,
@@ -31,6 +30,7 @@ export class BmbBreadcrumbComponent implements OnInit, OnDestroy {
   dataTopBar = input<IBmbDataTopBar[]>([]);
   dataLocalNav = input<IBmbDataTopBar[]>([]);
   isTopBar = input<boolean>(false);
+  isInactive = input<boolean>(false);
   dropdownOpen = signal<boolean>(false);
 
   constructor(private router: Router) {}
@@ -44,6 +44,14 @@ export class BmbBreadcrumbComponent implements OnInit, OnDestroy {
       return 'bmb_breadcrumb-link-more';
     }
     return `bmb_breadcrumb-link-${length}`;
+  }
+
+  getClasses(item: any): { [key: string]: boolean } {
+    const classes = {
+      [this.getLinkClass(this.dataLocalNav().length)]: true,
+      'bmb_breadcrumb-link-inactive': this.isInactive(),
+    };
+    return classes;
   }
 
   toggleDropdown() {
