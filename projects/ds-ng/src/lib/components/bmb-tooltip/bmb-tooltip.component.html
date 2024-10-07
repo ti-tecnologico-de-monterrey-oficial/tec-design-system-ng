@@ -1,13 +1,17 @@
-<div class="bmb_tooltip">
-  <ng-content></ng-content>
-  <div [class]="'bmb_tooltip-container ' + getClasses()">
-    @if (title !== "") {
-      <div class="bmb_tooltip-container-title">
-        <span class="bmb_tooltip-container-title-text">{{ title }}</span>
-      </div>
+<section class="bmb_tooltip">
+  @if (icon() && size()) {
+    <bmb-icon [size]="size()" [icon]="icon()" />
+  } @else {
+    <ng-content></ng-content>
+  }
+  <section [class]="'bmb_tooltip-container ' + getClasses()">
+    @if (title()) {
+      <section class="bmb_tooltip-container-title">
+        <span class="bmb_tooltip-container-title-text">{{ title() }}</span>
+      </section>
     }
-    <div class="bmb_tooltip-container-description">
-      <span class="bmb_tooltip-container-description-text">{{ text }}</span>
-    </div>
-  </div>
-</div>
+    <section class="bmb_tooltip-container-description">
+      <span class="bmb_tooltip-container-description-text">{{ text() }}</span>
+    </section>
+  </section>
+</section>
