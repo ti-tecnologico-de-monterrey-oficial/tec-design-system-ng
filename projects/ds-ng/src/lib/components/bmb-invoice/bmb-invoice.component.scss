@@ -1,0 +1,100 @@
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/mixins" as mixins;
+@use "../../../assets/styles/base/rem" as rem;
+
+.bmb_invoice {
+  padding: rem.rem_calc(30);
+
+  &-list {
+    border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-300));
+  }
+
+  &-item {
+    align-items: center;
+    display: flex;
+    flex-flow: row wrap;
+    gap: rem.rem_calc(8);
+    justify-content: space-between;
+    padding: rem.rem_calc(8 0);
+  }
+
+  &-concept {
+    align-items: center;
+    display: flex;
+    flex-flow: row wrap;
+    gap: rem.rem_calc(16);
+
+    &-text {
+      color: RGBA(var(--color-charade-700));
+      @include fonts.font(4, regular);
+    }
+  }
+
+  &-quantity {
+    @include fonts.font(4, medium);
+    color: RGBA(var(--color-charade-950));
+
+    &-negative {
+      color: RGBA(var(--color-red-primary));
+    }
+  }
+
+  &-total {
+    align-items: flex-start;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    gap: rem.rem_calc(8);
+    padding-top: rem.rem_calc(11);
+    color: RGBA(var(--color-charade-950));
+
+    &-text {
+      @include fonts.font(6, semibold);
+    }
+
+    &-box {
+      text-align: right;
+    }
+
+    &-value {
+      @include fonts.font(5, medium);
+    }
+
+    &-list {
+      list-style-type: none;
+      margin: rem.rem_calc(8 0 0);
+      padding: 0;
+    }
+
+    &-item {
+      @include fonts.font(3, regular);
+      color: RGBA(var(--color-charade-500));
+    }
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_invoice {
+    &-list {
+      border-color: RGBA(var(--color-charade-800));
+    }
+
+    &-concept {
+      &-text {
+        color: RGBA(var(--color-charade-200));
+      }
+    }
+
+    &-quantity,
+    &-total {
+      color: RGBA(var(--color-charade-50));
+    }
+
+    &-total {
+      &-item {
+        color: RGBA(var(--color-charade-500));
+      }
+    }
+  }
+}
