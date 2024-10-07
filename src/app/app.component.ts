@@ -85,6 +85,7 @@ import {
   IBmbActionHeader,
   BmbFocusElementComponent,
   BmbGradeValueComponent,
+  BmbTooltipComponent,
 } from '../../projects/ds-ng/src/public-api';
 
 export interface Target {
@@ -103,6 +104,8 @@ import { BmbBottomNavigationBarComponent } from '../../projects/ds-ng/src/lib/co
 import { IBmbDataTopBar } from '../../projects/ds-ng/src/lib/components/bmb-breadcrumb/bmb-breadcrumb.component';
 import {
   BmbEvaluationRubricComponent,
+  IBmbCommentEvalRubric,
+  IBmbEvalRubricButtons,
   IBmbEvaluationRubric,
 } from '../../projects/ds-ng/src/lib/components/bmb-evaluation-rubric/bmb-evaluation-rubric.component';
 
@@ -179,6 +182,7 @@ import {
     BmbDateRangeComponent,
     BmbGradeValueComponent,
     BmbEvaluationRubricComponent,
+    BmbTooltipComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -1022,24 +1026,37 @@ export class AppComponent {
       iconLeft: 'home',
     },
   ];
-  getEvaluationRubricList(): IBmbEvaluationRubric[] {
-    return [
-      {
-        criterion: 'Criterio Primero',
-        toolTip: 'Criterio Primero tooltip',
-      },
-      {
-        criterion: 'Criterio Segundo',
-        toolTip: 'Criterio Segundo tooltip',
-      },
-      {
-        criterion: 'Tercer Criterio',
-        toolTip: 'Tercer Criterio tooltip',
-      },
-      {
-        criterion: 'Cuarto Criterio',
-        toolTip: 'Cuarto Criterio tooltip',
-      },
-    ];
-  }
+
+  evaluationRubricList: IBmbEvaluationRubric[] = [
+    {
+      criterion: 'Criterio Primero',
+      tooltip: 'Criterio Primero tooltip',
+    },
+    {
+      criterion: 'Criterio Segundo',
+      tooltip: 'Criterio Segundo tooltip',
+    },
+    {
+      criterion: 'Tercer Criterio',
+      tooltip: 'Tercer Criterio tooltip',
+    },
+    {
+      criterion: 'Cuarto Criterio',
+      tooltip: 'Cuarto Criterio tooltip',
+    },
+  ];
+
+  commentEvalRubric: IBmbCommentEvalRubric = {
+    label: 'Observaciones (Optional)',
+    placeHolder: 'Ingresa los puntos a mejorar del skill.',
+    tooltip: 'Tool tip',
+    showMaxTextLength: false,
+  };
+
+  evalRubricButtons: IBmbEvalRubricButtons = {
+    rightLabel: 'Aprobar Skill',
+    rightIcon: 'check',
+    leftLabel: 'Rechazar Skill',
+    leftIcon: 'close',
+  };
 }

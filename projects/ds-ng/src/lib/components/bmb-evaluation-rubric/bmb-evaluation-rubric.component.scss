@@ -1,4 +1,5 @@
 @use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/mixins" as mixins;
 @use "../../../assets/styles/base/rem" as rem;
 
 .bmb_evaluation-rubric {
@@ -32,7 +33,7 @@
         display: flex;
         align-items: center;
         gap: var(--bmb-spacing-s);
-        @include fonts.font(4, normal);
+        @include fonts.font(4, regular);
 
         .bmb_tooltip {
           color: RGBA(var(--color-charade-500));
@@ -47,8 +48,63 @@
         }
 
         .bmb_focus-element-number {
-          @include fonts.font(5, normal);
+          @include fonts.font(5, regular);
         }
+
+        &-button {
+          &-active {
+            .bmb_focus-element-number {
+              color: RGBA(var(--color-charade-50));
+            }
+
+            .bmb_focus-element-inherited_bg {
+              background-color: RGBA(var(--color-charade-950));
+            }
+          }
+        }
+      }
+    }
+
+    &-divider {
+      width: 100%;
+
+      .bmb_divider {
+        margin: 0;
+      }
+    }
+
+    &-summary {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: var(--bmb-spacing-s);
+      color: RGBA(var(--color-charade-950));
+
+      &-label {
+        @include fonts.font(4, bold);
+      }
+
+      &-eval {
+        display: flex;
+        padding: var(--bmb-spacing-s);
+        justify-content: center;
+        align-items: center;
+        border-radius: var(--bmb-radius-s);
+        background-color: RGBA(var(--color-charade-200));
+        @include fonts.font(9, bold);
+      }
+    }
+
+    &-comment {
+      width: 100%;
+    }
+
+    &-buttons {
+      width: 100%;
+      display: flex;
+
+      @include mixins.media-query(750, "max") {
+        flex-direction: column;
       }
     }
   }
@@ -72,6 +128,26 @@
           .bmb_focus-element-normal_circle {
             border-color: RGBA(var(--color-charade-50));
           }
+
+          &-button {
+            &-active {
+              .bmb_focus-element-number {
+                color: RGBA(var(--color-black-primary));
+              }
+
+              .bmb_focus-element-inherited_bg {
+                background-color: RGBA(var(--color-charade-50));
+              }
+            }
+          }
+        }
+      }
+
+      &-summary {
+        color: RGBA(var(--color-charade-50));
+
+        &-eval {
+          background-color: RGBA(var(--color-charade-950));
         }
       }
     }
