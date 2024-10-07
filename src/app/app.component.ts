@@ -5,6 +5,7 @@ import {
   ChangeDetectorRef,
   model,
   TemplateRef,
+  CUSTOM_ELEMENTS_SCHEMA,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
@@ -87,6 +88,7 @@ import {
   BmbGradeValueComponent,
   BmbTooltipComponent,
 } from '../../projects/ds-ng/src/public-api';
+import { BmbCardButtonComponent } from '../../projects/ds-ng/src/lib/components/bmb-card-button/bmb-card-button.component';
 
 export interface Target {
   target: string;
@@ -108,7 +110,6 @@ import {
   IBmbEvalRubricButtons,
   IBmbEvaluationRubric,
 } from '../../projects/ds-ng/src/lib/components/bmb-evaluation-rubric/bmb-evaluation-rubric.component';
-
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'app-root',
@@ -183,11 +184,14 @@ import {
     BmbGradeValueComponent,
     BmbEvaluationRubricComponent,
     BmbTooltipComponent,
+    BmbCardButtonComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [],
+
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppComponent {
   constructor(
@@ -197,6 +201,14 @@ export class AppComponent {
     private calendarEventsSignal: BmbCalendarService,
   ) {}
 
+  title1 = 'Sample Card Title';
+  body = 'This is the body content of the card.';
+  badges = [{ text: 'Badge 1' }, { text: 'Badge 2' }];
+  icons = ['settings', 'home'];
+  icon = 'info';
+  hasIcon = true;
+  hasMenu = true;
+  isAddContent = true;
   myTabs: IBmbTab[] = [
     { id: 1, title: 'Tec de Monterrey', badge: 1, isActive: true },
     { id: 2, title: 'Prestamo educativo' },
