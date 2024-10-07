@@ -1,0 +1,98 @@
+@use "../../../assets/styles/base/rem" as rem;
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/mixins" as mixins;
+
+.bmb_dropdown_menu {
+  &-button {
+    background-color: transparent;
+    border: none;
+    color: RGBA(var(--color-charade-500));
+    cursor: pointer;
+    padding: 0;
+    position: relative;
+
+    &:hover {
+      color: RGBA(var(--color-mariner-700));
+    }
+
+    &:focus {
+      color: RGBA(var(--color-mariner-500));
+    }
+  }
+
+  &-icon {
+    font-size: rem.rem_calc(24);
+  }
+
+  &-content {
+    background-color: RGBA(var(--color-charade-50));
+    position: absolute;
+    width: rem.rem_calc(250);
+    z-index: 1;
+    box-shadow: rem.rem_calc(8 8 8 0) RGBA(var(--color-charade-950), 0.5);
+  }
+
+  &-item {
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    color: RGBA(var(--color-charade-950));
+    cursor: pointer;
+    display: flex;
+    padding: rem.rem_calc(15) rem.rem_calc(20);
+    text-decoration: none;
+    width: 100%;
+
+    &:hover {
+      .bmb_dropdown_menu-item-text,
+      .bmb_dropdown_menu-item-icon {
+        color: RGBA(var(--color-charade-50));
+      }
+    }
+
+    &:hover,
+    &:focus {
+      background-color: RGBA(var(--color-mariner-700));
+    }
+
+    &-icon {
+      font-size: rem.rem_calc(18);
+      margin-right: rem.rem_calc(16);
+    }
+
+    &-text {
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      @include fonts.font(4, regular);
+    }
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb_dropdown_menu {
+    &-button {
+      color: RGBA(var(--color-charade-300));
+
+      &:hover {
+        color: RGBA(var(--color-mariner-700));
+      }
+
+      &:focus {
+        color: RGBA(var(--color-mariner-500));
+      }
+    }
+    &-content {
+      background-color: RGBA(var(--color-charade-900));
+    }
+    &-item {
+      color: RGBA(var(--color-charade-50));
+      &:hover,
+      &:focus {
+        background-color: RGBA(var(--color-mariner-700));
+      }
+    }
+  }
+}

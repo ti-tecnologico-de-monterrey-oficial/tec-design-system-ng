@@ -19,3 +19,23 @@
   [isFillBadge]="false"
   appearance="background"
 ></bmb-badge>
+
+<bmb-card-button
+  [title]="'Card with First Icon'"
+  [body]="'This is the first card with the first icon and some body text.'"
+  [icon]="'settings'"
+  [badges]="[
+    { text: 'Badge 1', appearance: 'normal' },
+    { text: 'Badge 2', appearance: 'normal' },
+  ]"
+  [menuItems]="[{ text: 'Item 1', icon: 'settings' }]"
+  [leftContent]="true"
+  [leftContentIcon]="'home'"
+  [hasMenu]="true"
+  [isTemplate]="true"
+>
+  <div style="display: flex; gap: 1em">
+    <bmb-icon [icon]="'settings'" class="bmb_card_button-circle-icon" />
+    <bmb-icon [icon]="'star'" class="bmb_card_button-circle-icon"></bmb-icon>
+  </div>
+</bmb-card-button>
