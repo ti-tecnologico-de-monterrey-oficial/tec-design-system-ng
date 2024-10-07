@@ -1,10 +1,13 @@
 <bmb-theme />
 <bmb-divider />
 <bmb-evaluation-rubric
-  icon="checklist_rtl"
   title="Rubrica de evaluación"
-  [evaluationRubricList]="getEvaluationRubricList()"
+  [evaluationRubricList]="evaluationRubricList"
+  summaryLabel="Resumen"
+  [commentEvalRubric]="commentEvalRubric"
+  [evalRubricButtons]="evalRubricButtons"
 />
+
 <!-- <bmb-divider />
 <bmb-grades [grades]="getGrades()" (closeGrades)="closeGrades()" /> -->
 <!-- <bmb-divider />

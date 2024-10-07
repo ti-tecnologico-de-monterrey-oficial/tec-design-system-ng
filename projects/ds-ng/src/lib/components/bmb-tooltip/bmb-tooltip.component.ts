@@ -28,6 +28,6 @@ export class BmbTooltipComponent {
   justify = input<IBmbJustifyTooltip>('after');
 
   getClasses() {
-    return `bmb_tooltip-${this.align}-${this.justify}`;
+    return `bmb_tooltip-${this.align()}-${this.justify()}`;
   }
 }

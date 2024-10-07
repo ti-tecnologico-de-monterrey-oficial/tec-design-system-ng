@@ -1,5 +1,9 @@
 <section class="bmb_tooltip">
-  <bmb-icon [size]="size()" [icon]="icon()" />
+  @if (icon() && size()) {
+    <bmb-icon [size]="size()" [icon]="icon()" />
+  } @else {
+    <ng-content></ng-content>
+  }
   <section [class]="'bmb_tooltip-container ' + getClasses()">
     @if (title()) {
       <section class="bmb_tooltip-container-title">
