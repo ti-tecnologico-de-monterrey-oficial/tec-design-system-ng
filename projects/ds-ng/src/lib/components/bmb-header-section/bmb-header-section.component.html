@@ -19,7 +19,7 @@
           class="bmb_header-section-container-icon"
           [ngStyle]="getStyles()"
         >
-          <bmb-icon [icon]="icon()" [size]="16" />
+          <bmb-icon [icon]="icon()" [size]="iconSize()" />
         </section>
       }
       <section>
@@ -40,21 +40,23 @@
       </section>
     </section>
     @for (actionHeader of actionHeaders(); track $index) {
-      <bmb-interactive-icon
-        [ngClass]="
-          !!actionHeader.iconActiveToggle
-            ? 'bmb_header-section-toggle_icon'
-            : ''
-        "
-        appearance="none"
-        [icon]="
-          actionHeader.isToggleActive
-            ? actionHeader.iconActiveToggle!
-            : actionHeader.icon
-        "
-        [setButtonTemplate]="true"
-        (buttonClick)="handleClickRight(actionHeader)"
-      />
+      <section class="bmb_header-section-right_icon">
+        <bmb-interactive-icon
+          [ngClass]="
+            !!actionHeader.iconActiveToggle
+              ? 'bmb_header-section-toggle_icon'
+              : ''
+          "
+          appearance="none"
+          [icon]="
+            actionHeader.isToggleActive
+              ? actionHeader.iconActiveToggle!
+              : actionHeader.icon
+          "
+          [setButtonTemplate]="true"
+          (buttonClick)="handleClickRight(actionHeader)"
+        />
+      </section>
     }
   </bmb-container>
 </section>

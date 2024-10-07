@@ -27,6 +27,7 @@ export class BmbHomeCardComponent {
   dataLocalNav = input<IBmbDataTopBar[]>([]);
   leftIcon = input<string>();
   icon = input<string>();
+  iconSize = input<number>();
   bgIconAppearance = input<IBmbColor>();
   actionHeaders = input<IBmbActionHeader[]>([]);
   isMobile = input<boolean>();

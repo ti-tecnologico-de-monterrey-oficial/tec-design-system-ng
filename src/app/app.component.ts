@@ -84,7 +84,8 @@ import {
   BmbDateRangeComponent,
   IBmbActionHeader,
   BmbFocusElementComponent,
-  ITimelineEvent,
+  BmbGradeValueComponent,
+  BmbTooltipComponent,
 } from '../../projects/ds-ng/src/public-api';
 
 export interface Target {
@@ -100,6 +101,13 @@ import {} from '../../projects/ds-ng/src/lib/components/bmb-home-card-chat/bmb-h
 import { DateTime } from 'luxon';
 import { IBmbGrades } from '../../projects/ds-ng/src/lib/components/bmb-grades/types';
 import { BmbBottomNavigationBarComponent } from '../../projects/ds-ng/src/lib/components/bmb-bottom-navigation-bar/bmb-bottom-navigation-bar.component';
+import { IBmbDataTopBar } from '../../projects/ds-ng/src/lib/components/bmb-breadcrumb/bmb-breadcrumb.component';
+import {
+  BmbEvaluationRubricComponent,
+  IBmbCommentEvalRubric,
+  IBmbEvalRubricButtons,
+  IBmbEvaluationRubric,
+} from '../../projects/ds-ng/src/lib/components/bmb-evaluation-rubric/bmb-evaluation-rubric.component';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -172,6 +180,9 @@ import { BmbBottomNavigationBarComponent } from '../../projects/ds-ng/src/lib/co
     BmbStepProgressBarComponent,
     BmbFocusElementComponent,
     BmbDateRangeComponent,
+    BmbGradeValueComponent,
+    BmbEvaluationRubricComponent,
+    BmbTooltipComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -767,6 +778,17 @@ export class AppComponent {
     console.log('logSelection', name, '-', event);
   }
 
+  getDataTopBar(): IBmbDataTopBar[] {
+    return [
+      { text: 'Breadcrumb 1', link: '/' },
+      { text: 'Breadcrumb 2', link: '/emprendedor' },
+      { text: 'Breadcrumb 3', link: '/emprendedor/vivencia' },
+      { text: 'Breadcrumb 4', link: '/emprendedor/vivencia' },
+      { text: 'Breadcrumb 5', link: '/emprendedor/vivencia' },
+      { text: 'Breadcrumb 6', link: '/emprendedor/vivencia' },
+    ];
+  }
+
   getGrades(): IBmbGrades[] {
     return [
       {
@@ -1005,8 +1027,24 @@ export class AppComponent {
     },
   ];
 
-  timestreamEvents: ITimelineEvent[] = [
+  evaluationRubricList: IBmbEvaluationRubric[] = [
     {
+<<<<<<< HEAD
+      criterion: 'Criterio Primero',
+      tooltip: 'Criterio Primero tooltip',
+    },
+    {
+      criterion: 'Criterio Segundo',
+      tooltip: 'Criterio Segundo tooltip',
+    },
+    {
+      criterion: 'Tercer Criterio',
+      tooltip: 'Tercer Criterio tooltip',
+    },
+    {
+      criterion: 'Cuarto Criterio',
+      tooltip: 'Cuarto Criterio tooltip',
+=======
       id: 1,
       start: '24/04/2024',
       end: '28/04/2024',
@@ -1910,33 +1948,21 @@ export class AppComponent {
       user_email: 'scadwallader0@chron.com',
       picture_profile:
         'https://robohash.org/illumanimidolore.png?size=50x50&set=set1',
+>>>>>>> e58399c526d66732124d51e04e45e1a22ddbb1e8
     },
   ];
 
-  timestreamNav = [
-    {
-      text: 'Borem ipsum dolor sit amet 1',
-      link: '/',
-    },
-    {
-      text: 'Borem ipsum dolor sit amet 2',
-      link: '/emprendedor',
-    },
-    {
-      text: 'Borem ipsum dolor sit amet 3',
-      link: '/emprendedor/vivencia',
-    },
-    {
-      text: 'Borem ipsum dolor sit amet 4',
-      link: '/emprendedor/vivencia',
-    },
-    {
-      text: 'Borem ipsum dolor sit amet 5',
-      link: '/emprendedor/vivencia',
-    },
-    {
-      text: 'Borem ipsum dolor sit amet 6',
-      link: '/emprendedor/vivencia',
-    },
-  ];
+  commentEvalRubric: IBmbCommentEvalRubric = {
+    label: 'Observaciones (Optional)',
+    placeHolder: 'Ingresa los puntos a mejorar del skill.',
+    tooltip: 'Tool tip',
+    showMaxTextLength: false,
+  };
+
+  evalRubricButtons: IBmbEvalRubricButtons = {
+    rightLabel: 'Aprobar Skill',
+    rightIcon: 'check',
+    leftLabel: 'Rechazar Skill',
+    leftIcon: 'close',
+  };
 }
