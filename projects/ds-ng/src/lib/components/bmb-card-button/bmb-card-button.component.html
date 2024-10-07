@@ -1,0 +1,75 @@
+<div class="bmb_card_button">
+  @if (isFullInteractive()) {
+    <div class="bmb_card_button-wrapper">
+      <div class="bmb_card_button-box">
+        @if (leftContent()) {
+          <div class="bmb_card_button-left">
+            @if (leftContentIcon()) {
+              <div class="bmb_card_button-circle">
+                <bmb-icon
+                  [icon]="leftContentIcon()"
+                  class="bmb_card_button-circle-icon"
+                />
+              </div>
+            } @else {
+              <img
+                [src]="leftContentImage()?.src"
+                [alt]="leftContentImage()?.alt"
+                class="bmb_card_button-image"
+              />
+            }
+          </div>
+        }
+        <div class="bmb_card_button-leading">
+          @if (isTemplate()) {
+            <div class="bmb_card_button-template">
+              <ng-content></ng-content>
+            </div>
+          }
+
+          @if (hasMenu()) {
+            <div class="bmb_card_button-menu">
+              <bmb-dropdown-menu [items]="menuItems()"></bmb-dropdown-menu>
+            </div>
+          }
+          @if (
+            (badge()?.text && badge()?.appearance) ||
+            (tag()?.text && tag()?.appearance)
+          ) {
+            <div class="bmb_card_button-information">
+              @if (badge()?.text && badge()?.appearance) {
+                <bmb-badge
+                  [text]="badge()?.text ?? ''"
+                  [appearance]="badge()?.appearance ?? 'normal'"
+                  class="bmb_card_button-tag"
+                />
+              }
+
+              @if (tag()?.text && tag()?.appearance) {
+                <bmb-tag
+                  [text]="tag()?.text ?? ''"
+                  [appearance]="tag()?.appearance ?? 'info'"
+                  class="bmb_card_button-tag"
+                />
+              }
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="bmb_card_button-header" (click)="handleTitleClick($event)">
+        <span class="bmb_card_button-header-text">{{ title() }}</span>
+        <bmb-icon [icon]="icon()" class="bmb_card_button-header-icon" />
+      </div>
+
+      <div class="bmb_card_button-body">
+        {{ truncateText(body(), 170) }}
+      </div>
+    </div>
+  } @else {
+    <button class="bmb_card_button-add" (click)="handleAddContent($event)">
+      <bmb-icon [icon]="icon()" class="bmb_card_button-add-icon" />
+      <div class="bmb_card_button-add-title">{{ title() }}</div>
+    </button>
+  }
+</div>
