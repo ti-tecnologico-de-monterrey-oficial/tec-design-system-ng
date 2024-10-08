@@ -1,31 +1,39 @@
 <section class="bmb_top-bar-user-section">
   <div class="bmb_top-bar-user-section-icons">
     @if (mitec) {
-      <span class="bmb_top-bar-user-section-icon">
-        <bmb-icon onkeypress="" icon="assignment" />
-        @if (assignmentNotification != 0) {
-          <span
-            class="bmb_top-bar-user-section-icon-number bmb_top-bar-user-section-icon-number-one"
-            onkeypress=""
-            >{{ assignmentNotification }}</span
-          >
-        }
+      <span
+        class="bmb_top-bar-user-section-icon"
+        (click)="this.openNotifications()"
+        onkeypress=""
+      >
+        <bmb-icon 
+          [icon]="'notifications'" 
+          [dotNotification]="totalNotifications()" 
+          [size]="26"
+        />
+        <dialog
+          id="notificationDialog"
+          class="bmb_top-bar-user-section-dialog"
+          [ngClass]="{'bmb_top-bar-user-section-dialog-open': isOpenNotifications}"
+        >
+          <bmb-notification-card [data]="notificationNotification" [hideExpandBtn]="true"></bmb-notification-card>
+        </dialog>
       </span>
-      <span class="bmb_top-bar-user-section-icon">
-        <bmb-icon onkeypress="" icon="notifications" />
-        @if (notificationNotification != 0) {
-          <span
-            class="bmb_top-bar-user-section-icon-number bmb_top-bar-user-section-icon-number-two"
-            >{{ notificationNotification }}</span
-          >
-        }
+      <span
+        class="bmb_top-bar-user-section-icon"
+        onkeypress=""
+      >
+        <bmb-icon 
+          [icon]="'assignment'" 
+          [size]="26"
+        />
       </span>
     }
     <span
       class="bmb_top-bar-user-section-icon"
       [ngClass]="{ 'bmb_top-bar-user-section-icon-mitec': !mitec }"
     >
-      <bmb-icon icon="help" />
+      <bmb-icon icon="help" [size]="26"/>
     </span>
   </div>
   <bmb-user-image
