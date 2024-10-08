@@ -270,7 +270,6 @@ export const Default: StoryFn<typeof StorybookModalWrapperComponent> = (
   return {
     props: args,
     template: `
-      <!-- Instruction to users: Please replace <storybook-modal-wrapper> with <bmb-modal> when using the component in your project -->
       <storybook-modal-wrapper ${attributes(args)}></storybook-modal-wrapper>
     `,
   };
