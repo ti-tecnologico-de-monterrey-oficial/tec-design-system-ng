@@ -29,7 +29,6 @@
   }
 
   &-icons {
-    position: relative;
     display: inline-flex;
     grid-area: icons;
     line-height: 0;
@@ -37,12 +36,12 @@
 
     @include mixins.media-query(1000, "min") {
       margin-left: rem.rem_calc(-5);
+      position: absolute;
     }
   }
 
   &-icon {
     cursor: pointer;
-    pointer-events: none;
     font-size: rem.rem_calc(26);
     line-height: 0;
     text-align: center;
@@ -53,34 +52,7 @@
 
       @include mixins.media-query(1000, "min") {
         margin-left: rem.rem_calc(56);
-      }
-    }
-
-    &-number {
-      position: absolute;
-      background-color: RGBA(var(--color-red-primary));
-      color: RGBA(var(--color-white-primary));
-      border-radius: 50%;
-      padding: rem.rem_calc(5) rem.rem_calc(5);
-      font-size: rem.rem_calc(9);
-      min-width: rem.rem_calc(14);
-      min-height: rem.rem_calc(14);
-      text-align: center;
-      align-content: center;
-
-      &-one {
-        bottom: rem.rem_calc(-3);
-        right: rem.rem_calc(55);
-      }
-
-      &-two {
-        bottom: rem.rem_calc(-3);
-        right: rem.rem_calc(25);
-      }
-
-      &-three {
-        bottom: rem.rem_calc(-3);
-        right: rem.rem_calc(-4);
+        position: relative;
       }
     }
   }
@@ -104,5 +76,35 @@
 
   &-role {
     grid-area: role;
+  }
+
+  &-dialog {
+    position: absolute;
+    display: none;
+    padding: 0;
+    z-index: 999;
+    background-color: transparent;
+    border: 0;
+    border-radius: rem.rem_calc(4);
+    height: max-content;
+    max-height: rem.rem_calc(160);
+    top: 0;
+    left: 0;
+    transform: translateX(-95%);
+    justify-content: center;
+    margin-top: rem.rem_calc(8);
+    box-shadow: rem.rem_calc(10 10 26 -12)
+      RGBA(var(--color-black-primary), 0.75);
+
+    &-open {
+      display: flex;
+      position: absolute;
+
+      @include mixins.media-query(1000, "max") {
+        position: fixed;
+        top: 30%;
+        left: calc(90% - rem.rem_calc(10));
+      }
+    }
   }
 }
