@@ -45,6 +45,7 @@ export class BmbHeaderSectionComponent {
   leftIcon = input<string>('');
   actionHeaders = input<IBmbActionHeader[]>([]);
   icon = input<string>('');
+  iconSize = input<number>(16);
   bgIconAppearance = input<IBmbColor>();
   transparentBgC = input<boolean>();
 

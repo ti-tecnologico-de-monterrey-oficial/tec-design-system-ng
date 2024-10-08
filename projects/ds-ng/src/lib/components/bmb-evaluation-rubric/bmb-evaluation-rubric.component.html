@@ -1,0 +1,93 @@
+<section class="bmb_evaluation-rubric">
+  <bmb-header-section
+    [icon]="icon()"
+    [iconSize]="24"
+    [title]="title()"
+    [actionHeaders]="actionHeaders"
+  />
+  <section class="bmb_evaluation-rubric-container">
+    @for (item of evaluationRubricList(); track $index) {
+      <section class="bmb_evaluation-rubric-container-criterion">
+        <section class="bmb_evaluation-rubric-container-criterion-title">
+          <h1>
+            {{ item.criterion }}
+          </h1>
+          <bmb-tooltip
+            [title]="item.criterion"
+            [text]="item.tooltip"
+            [size]="20"
+          />
+        </section>
+        <section
+          class="bmb_evaluation-rubric-container-criterion-eval"
+          bmbLayout
+          margin="none"
+          justify="spaceEvenly"
+          [dynamicCols]="true"
+        >
+          @for (element of getEvalList(); track $index) {
+            <button (click)="handleEval(item.criterion, element)">
+              <bmb-focus-element
+                [class]="
+                  getButtonClass(
+                    'bmb_evaluation-rubric-container-criterion-eval',
+                    item,
+                    element
+                  )
+                "
+                bmbLayoutItem
+                [number]="element"
+                [isInheritedBg]="true"
+                [isNormal]="true"
+              />
+            </button>
+          }
+        </section>
+      </section>
+    }
+    <bmb-divider class="bmb_evaluation-rubric-container-divider" />
+    <section class="bmb_evaluation-rubric-container-summary">
+      <h3 class="bmb_evaluation-rubric-container-summary-label">
+        {{ summaryLabel() }}
+      </h3>
+      <section class="bmb_evaluation-rubric-container-summary-eval">
+        {{ summary }}
+      </section>
+    </section>
+    <bmb-input
+      class="bmb_evaluation-rubric-container-comment"
+      [label]="commentEvalRubric().label"
+      type="text-area"
+      [tooltip]="commentEvalRubric().tooltip"
+      [placeholder]="commentEvalRubric().placeHolder"
+      [icon]="commentEvalRubric().icon!"
+      [errorMessage]="commentEvalRubric().errorMessage!"
+      [helperMessage]="commentEvalRubric().helperMessage!"
+      [appearance]="commentEvalRubric().appearance!"
+      [disabled]="commentEvalRubric().disabled!"
+      [isRequired]="commentEvalRubric().isRequired!"
+      [showError]="commentEvalRubric().showError!"
+      [showMaxTextLength]="false"
+    />
+    <section class="bmb_evaluation-rubric-container-buttons">
+      <button
+        bmbButton
+        appearance="primary"
+        [icon]="evalRubricButtons().rightIcon!"
+        size="large"
+        position="left"
+      >
+        {{ evalRubricButtons().rightLabel }}
+      </button>
+      <button
+        bmbButton
+        appearance="destructive"
+        [icon]="evalRubricButtons().leftIcon!"
+        size="large"
+        position="left"
+      >
+        {{ evalRubricButtons().leftLabel }}
+      </button>
+    </section>
+  </section>
+</section>

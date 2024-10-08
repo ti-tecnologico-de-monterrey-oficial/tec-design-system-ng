@@ -21,9 +21,22 @@ export class BmbFocusElementComponent {
   number = input<number>(0);
   title = input<string>('');
   isNormal = input<boolean>();
+  isNonFocused = input<boolean>();
+  isInheritedBg = input<boolean>();
 
-  getCircleClass(): string {
-    if (this.isNormal()) return 'bmb_focus_element-circle_normal';
-    return 'bmb_focus_element-circle_focused';
+  baseClass: string = 'bmb_focus-element';
+
+  getBackgroundClass(): string {
+    if (this.isInheritedBg()) return `${this.baseClass}-inherited_bg`;
+    return `${this.baseClass}-normal_bg`;
+  }
+
+  getCircleClass(): string[] {
+    const classNames: string[] = [this.getBackgroundClass()];
+    if (this.isNonFocused())
+      return [...classNames, `${this.baseClass}-non_focused`];
+    if (this.isNormal())
+      return [...classNames, `${this.baseClass}-normal_circle`];
+    return [...classNames, `${this.baseClass}-circle_focused`];
   }
 }
