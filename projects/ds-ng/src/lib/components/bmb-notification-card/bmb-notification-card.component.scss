@@ -116,9 +116,10 @@
     padding-bottom: rem.rem_calc(20);
 
     &-card {
-      display: inline-flex;
+      display: flex;
       width: 90%;
       align-items: center;
+      align-content: center;
       padding: rem.rem_calc(15) rem.rem_calc(0);
       border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-500));
 
@@ -128,26 +129,43 @@
         display: inline-block;
         height: rem.rem_calc(13);
         width: rem.rem_calc(13);
+
+        &-container{
+          width: 4%;
+        }
       }
 
       &-description {
+        @include fonts.font(4, regular);
+        text-align: left;
         overflow: hidden;
         white-space: nowrap;
-        @include fonts.font(4, regular);
-        padding-left: rem.rem_calc(10);
-        width: 70%;
+        padding-left: rem.rem_calc(5);
+        color: RGBA(var(--color-charade-950));
         text-overflow: ellipsis;
+        margin-bottom: 0;
+
+        &-container{
+          width: 65%;
+        }
       }
 
       &-legend {
         @include fonts.font(4, regular);
+        display: flex;
+        align-items: center;
+        justify-content: center;
         min-width: rem.rem_calc(100);
-        width: rem.rem_calc(150);
+        height: rem.rem_calc(20);
         text-align: center;
         background-color: RGBA(var(--color-charade-500));
         color: RGBA(var(--color-white-primary));
-        padding: rem.rem_calc(5) rem.rem_calc(20);
+        padding: rem.rem_calc(5) rem.rem_calc(10);
         border-radius: rem.rem_calc(5);
+
+        &-container{
+          width: 30%;
+        }
       }
     }
 
