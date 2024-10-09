@@ -19,6 +19,7 @@ import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbTabsComponent } from '../bmb-tabs/bmb-tabs.component';
+import { IBmbNotificationCardData } from '../bmb-notification-card/types';
 
 export type IBmbTemplateName =
   | 'full-width-card'
@@ -64,8 +65,8 @@ export class BmbWebTemplatesComponent {
   topBarShowLang = input<boolean>(false);
   topBarLang = input<string>('es');
   topBarMitec = input<boolean>(false);
-  topBarAssignmentNotification = input<number>(0);
-  topBarAlertNotification = input<number>(0);
+  topBarAssignmentNotification = input<string[]>([]);
+  topBarAlertNotification = input<IBmbNotificationCardData | null>(null);
 
   topBarLogOut = output<any>();
   topBarOnLangChange = output<string>();
