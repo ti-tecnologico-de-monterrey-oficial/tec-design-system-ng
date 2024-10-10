@@ -34,6 +34,8 @@ class StorybookModalWrapperComponent {
   @Input() alertStyle?: 'error' | 'event' | 'neutral' | 'warning' | 'success';
   @Input() primaryBtnLabel?: string = 'OK';
   @Input() secondaryBtnLabel?: string = 'Cancel';
+  @Input() primaryAction?: () => void;
+  @Input() secondaryAction?: () => void;
 
   constructor(private matDialog: MatDialog) {}
 
@@ -96,7 +98,19 @@ import { BmbModalComponent, ModalDataConfig } from '@ti-tecnologico-de-monterrey
   selector: 'component',
   standalone: true,
   imports: [],
-  templateUrl: './component.html',
+  templateUrl: '
+    <button
+      bmbButton
+      appearance="primary"
+      icon="home"
+      size="small"
+      position="left"
+      [case]="false"
+      (click)="openModalComponent()"
+    >
+      Open Modal
+    </button>
+  ',
   styleUrl: './component.scss',
 })
 export class Component {
@@ -110,6 +124,8 @@ export class Component {
         type: 'alert',
         alertStyle: 'error',
         primaryBtnLabel: 'Ok',
+        primaryAction: () => window.alert('Primary action triggered!'),
+        secondaryAction: () => window.alert('Secondary action triggered!')
       }
 
     openModalComponent() {
@@ -251,15 +267,15 @@ Below is an example of how you can use this component in HTML:
     alertStyle: 'error',
     primaryBtnLabel: 'Action',
     secondaryBtnLabel: 'Cancel',
-    primaryAction: () => alert('Primary action triggered!'),
-    secondaryAction: () => alert('Secondary action triggered!'),
+    primaryAction: () => window.alert('Primary action triggered!'),
+    secondaryAction: () => window.alert('Secondary action triggered!')
   },
 } as Meta<typeof BmbModalComponent>;
 
 function attributes(object: { [key: string]: any }): string {
   return Object.entries(object)
     .map(([key, value]) => {
-      return `${key}="${value}"`;
+      return `${key}='${value}'`;
     })
     .join(' ');
 }
@@ -270,7 +286,11 @@ export const Default: StoryFn<typeof StorybookModalWrapperComponent> = (
   return {
     props: args,
     template: `
-      <storybook-modal-wrapper ${attributes(args)}></storybook-modal-wrapper>
+      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->
+      <storybook-modal-wrapper
+        ${attributes(args)}
+      >
+      </storybook-modal-wrapper>
     `,
   };
 };
