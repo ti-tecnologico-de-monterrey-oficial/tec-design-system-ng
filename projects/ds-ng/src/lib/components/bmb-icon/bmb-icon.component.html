@@ -2,11 +2,22 @@
   <figure>
     <img [src]="icon()" [alt]="alt()" />
   </figure>
-} @else {
+} @else if(dotNotification() && dotNotification() !== 0){
+  <div class="bmb_icon-container" >
+    <i
+      [ngClass]="materialIcon() ? 'material-icons' : 'material-symbols-rounded'"
+      class="bmb_icon-container-i"
+      [ngStyle]="{ 'font-size': !!size() ? size() + 'px' : 'inherit' }"
+    >
+      {{ icon() }}
+    </i> 
+    <span class="bmb_icon-container-number">{{ dotNotification() }}</span>
+  </div>
+}@else {
   <i
     [ngClass]="materialIcon() ? 'material-icons' : 'material-symbols-rounded'"
     [ngStyle]="{ 'font-size': !!size() ? size() + 'px' : 'inherit' }"
   >
     {{ icon() }}
-  </i>
+  </i> 
 }

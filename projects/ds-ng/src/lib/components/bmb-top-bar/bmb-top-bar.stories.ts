@@ -162,22 +162,22 @@ Below is an example of how you can use this component in HTML:
     assignmentNotification: {
       name: 'Assigment Notification',
       control: {
-        type: 'number',
+        type: 'text',
       },
-      description: 'Set the number of notifications for the icon assignment',
+      description: 'Set the notifications for the  top bar in the assignment icon',
       table: {
-        type: { summary: 'number' },
+        type: { summary: 'string[]' },
         category: 'Properties',
       },
     },
     alertNotification: {
       name: 'Alert Notification',
       control: {
-        type: 'number',
+        type: 'text',
       },
-      description: 'Set the number of notifications for the icon alert',
+      description: 'Set the notifications for the top bar in the alert icon',
       table: {
-        type: { summary: 'number' },
+        type: { summary: 'IBmbNotificationCardData' },
         category: 'Properties',
       },
     },
@@ -196,7 +196,42 @@ Below is an example of how you can use this component in HTML:
     },
     positionButtonMenu: 'left',
     hasLogoutButton: false,
-    alertNotification: 2,
+    alertNotification: {
+      new: [
+          {
+              description: 'Descripcion Corta ',
+              time: '4d 12h'
+          },
+          {
+            description: 'Descripcion Corta Larga asdasd adasdaw',
+            time: '4d 12h'
+        },
+      ],
+      all: [
+          {
+              description: 'Descripcion Corta All',
+              time: '4d 12h'
+          },
+          {
+              description: 'Descripcion Corta all 1',
+              time: '4d 12h'
+          },
+      ],
+      seen: [
+          {
+              description: 'Descripcion Corta seen 1',
+              time: '4d 12h'
+          },
+          {
+              description: 'Descripcion Corta seen 2',
+              time: '4d 12h'
+          },
+          {
+              description: 'Descripcion Corta seen 3',
+              time: '4d 12h'
+          },
+      ]
+    } ,
     assignmentNotification: 9,
   },
 } as Meta<typeof BmbTopBarComponent>;

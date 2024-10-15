@@ -16,6 +16,7 @@ import { BmbTopBarUserSectionComponent } from './bmb-top-bar-user-section/bmb-to
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbSelectComponent } from '../bmb-select/bmb-select.component';
 import { BmbSelectItemComponent } from '../bmb-select/bmb-select-item/bmb-select-item.component';
+import { IBmbNotificationCardData } from '../bmb-notification-card/types';
 
 export { IPositionButtonMenu, IUserInformation } from './types';
 
@@ -46,8 +47,8 @@ export class BmbTopBarComponent implements OnInit {
   @Input() showLang: boolean = false;
   @Input() lang: string = 'es';
   @Input() mitec: boolean = false;
-  @Input() assignmentNotification: number = 0;
-  @Input() alertNotification: number = 0;
+  @Input() assignmentNotification: string[] = [];
+  @Input() alertNotification: IBmbNotificationCardData | null = null;
 
   @Output() logOut: EventEmitter<any> = new EventEmitter<any>();
   @Output() onLangChange: EventEmitter<string> = new EventEmitter<string>();

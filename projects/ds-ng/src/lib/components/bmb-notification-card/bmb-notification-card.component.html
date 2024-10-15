@@ -11,23 +11,25 @@
         <h2>Mis Notificaciones</h2>
       </div>
     </div>
-    <div class="bmb_home-notification-card-header-trailing">
-      @if (expanded) {
-        <bmb-icon
-          (click)="setSize('collapse')"
-          class="bmb_home-notification-card-header-trailing-close"
-          [icon]="'close_fullscreen'"
-          onkeypress=""
-        />
-      } @else {
-        <bmb-icon
-          (click)="setSize('expand')"
-          class="bmb_home-notification-card-header-trailing-expand"
-          [icon]="'fit_screen'"
-          onkeypress=""
-        />
-      }
-    </div>
+    @if(!hideExpandBtn()){
+      <div class="bmb_home-notification-card-header-trailing">
+        @if (expanded) {
+          <bmb-icon
+            (click)="setSize('collapse')"
+            class="bmb_home-notification-card-header-trailing-close"
+            [icon]="'close_fullscreen'"
+            onkeypress=""
+          />
+        } @else {
+          <bmb-icon
+            (click)="setSize('expand')"
+            class="bmb_home-notification-card-header-trailing-expand"
+            [icon]="'fit_screen'"
+            onkeypress=""
+          />
+        }
+      </div>
+    }
   </div>
   <div class="bmb_home-notification-card-tabs">
     <div
@@ -69,15 +71,18 @@
         @for (data of activeData; track $index) {
           <div class="bmb_home-notification-card-container">
             <div class="bmb_home-notification-card-container-card">
-              <span class="bmb_home-notification-card-container-card-bullet">
-              </span>
-              <span
-                class="bmb_home-notification-card-container-card-description"
-                >{{ data.description }}</span
-              >
-              <span class="bmb_home-notification-card-container-card-legend"
-                >Hace: {{ data.time }}</span
-              >
+              <div class="bmb_home-notification-card-container-card-bullet-container">
+                <span class="bmb_home-notification-card-container-card-bullet">
+                </span>
+              </div>
+              <div class="bmb_home-notification-card-container-card-description-container">
+                <p  class="bmb_home-notification-card-container-card-description">{{ data.description }}</p>
+              </div>
+              <div class="bmb_home-notification-card-container-card-legend-container">
+                <span class="bmb_home-notification-card-container-card-legend"
+                  >Hace: {{ data.time }}</span
+                >
+              </div>
             </div>
           </div>
         }
