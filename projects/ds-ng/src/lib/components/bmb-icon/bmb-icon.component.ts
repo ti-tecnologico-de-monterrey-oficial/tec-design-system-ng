@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, input, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, ViewEncapsulation } from '@angular/core';
 import { isImage } from '../../utils/utils';
 
 @Component({
@@ -7,13 +7,16 @@ import { isImage } from '../../utils/utils';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './bmb-icon.component.html',
+  styleUrl: './bmb-icon.component.scss',
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbIconComponent {
   icon = input<string>('face');
   materialIcon = input<boolean>(false);
   size = input<number>();
   alt = input<string>('');
+  dotNotification = input<number>()
 
   isImage(icon: string): boolean {
     return isImage(icon);
