@@ -37,7 +37,7 @@ describe('BmbCardButtonComponent', () => {
     const bodyElement = fixture.nativeElement.querySelector(
       '.bmb_card_button-body',
     );
-    expect(bodyElement.textContent).toBe('Test Body');
+    expect(bodyElement.textContent).toBe(' Test Body ');
   });
 
   it('should render icon', () => {
