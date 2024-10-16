@@ -17,13 +17,11 @@
     </aside>
     <section class="bmb_timestream-main">
       <bmb-timestream-detail
-        [dateFormat]="dateFormat()"
         [lang]="lang()"
         [now]="now"
-        [events]="parsedEvents"
         [selectedDate]="selectedDate"
         (changeSelectedEvent)="handleSelectedEventChange($event)"
-        [orderedEvents]="orderedEvents"
+        [orderedEvents]="orderedEvents()"
       />
     </section>
   }
