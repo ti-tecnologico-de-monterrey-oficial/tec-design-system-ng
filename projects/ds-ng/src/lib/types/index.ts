@@ -7,6 +7,7 @@ export type IButtonAppearance =
   | 'secondary-outlined'
   | 'destructive';
 export type IButtonSize = 'small' | 'large' | 'micro';
+export type IBbmSidePosition = 'before' | 'after';
 export interface IBmbApp {
   icon: string;
   title: string;

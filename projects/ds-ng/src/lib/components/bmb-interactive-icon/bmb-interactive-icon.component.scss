@@ -72,15 +72,6 @@
     overflow: hidden;
   }
 
-  &-icon {
-    align-items: center;
-    color: RGBA(var(--color-white-primary));
-    display: flex;
-    font-size: rem.rem_calc(32);
-    height: rem.rem_calc(32);
-    width: rem.rem_calc(32);
-  }
-
   &-label {
     color: RGBA(var(--color-white-primary));
   }
