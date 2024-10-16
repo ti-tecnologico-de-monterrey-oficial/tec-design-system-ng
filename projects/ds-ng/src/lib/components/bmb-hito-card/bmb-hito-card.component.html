@@ -1,46 +1,37 @@
 <div [ngClass]="getClassList()">
   <bmb-card margin="none">
     <bmb-card-content>
-      <div
-        bmbLayout
-        gapSise="m"
-        margin="none"
-        alignItems="center"
-        (click)="handleEventChange()"
-        class="bmb_hito-card-content"
-      >
+      <div (click)="handleEventChange()" class="bmb_hito-card-content">
         @if (icon()) {
           <section
-            bmbLayoutItem
             class="bmb_hito-card-content-icon"
             [ngClass]="'bmb_hito-card-content-icon-' + type()"
           >
             <bmb-icon [icon]="icon() ?? ''" />
           </section>
         }
-
-        <section bmbLayoutItem [colGrow]="2" [isDynamicItem]="true">
-          <h3 class="bmb_hito-card-content-title">
-            {{ title() }}
-          </h3>
-          @if (short_description()) {
-            <p class="bmb_hito-card-content-description">
-              {{ short_description() }}
-            </p>
-          }
-        </section>
-        <section bmbLayoutItem class="bmb_hito-card-content-type">
-          <bmb-badge
-            [text]="formatBadgeText(type())"
-            [appearance]="appearanceBadge()"
-            [isFillBadge]="false"
-          />
-          @if (sub_content()) {
-            <p class="bmb_hito-card-content-duration">
-              {{ sub_content() }}
-            </p>
-          }
-        </section>
+        <h3 class="bmb_hito-card-content-title">
+          {{ title() }}
+        </h3>
+        @if (short_description()) {
+          <p class="bmb_hito-card-content-description">
+            {{ short_description() }}
+          </p>
+        }
+        @if (type() && !alternative_appearance()) {
+          <div class="bmb_hito-card-content-type">
+            <bmb-badge
+              [text]="formatBadgeText(type())"
+              [appearance]="appearanceBadge()"
+              [isFillBadge]="false"
+            />
+          </div>
+        }
+        @if (sub_content()) {
+          <p class="bmb_hito-card-content-duration">
+            {{ sub_content() }}
+          </p>
+        }
       </div>
     </bmb-card-content>
   </bmb-card>

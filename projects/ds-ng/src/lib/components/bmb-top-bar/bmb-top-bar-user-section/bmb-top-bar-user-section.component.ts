@@ -16,7 +16,12 @@ import { BmbNotificationCardComponent } from '../../bmb-notification-card/bmb-no
 @Component({
   selector: 'bmb-top-bar-user-section',
   standalone: true,
-  imports: [CommonModule, BmbUserImageComponent, BmbIconComponent, BmbNotificationCardComponent],
+  imports: [
+    CommonModule,
+    BmbUserImageComponent,
+    BmbIconComponent,
+    BmbNotificationCardComponent,
+  ],
   templateUrl: './bmb-top-bar-user-section.component.html',
   styleUrl: './bmb-top-bar-user-section.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -31,27 +36,27 @@ export class BmbTopBarUserSectionComponent {
 
   @Input() mitec: boolean = false;
   @Input() assignmentNotification: string[] = [];
-  @Input() notificationNotification: IBmbNotificationCardData | null =  null;
+  @Input() notificationNotification: IBmbNotificationCardData | null = null;
 
-  isOpenNotifications: boolean =  false;
+  isOpenNotifications: boolean = false;
 
   @HostListener('focusout')
   protected onFocusOut(): void {
-    this.closeNotifications()
+    this.closeNotifications();
   }
 
-  openNotifications(){
+  openNotifications() {
     this.isOpenNotifications = true;
   }
 
-  closeNotifications(){
-    this.isOpenNotifications = false
+  closeNotifications() {
+    this.isOpenNotifications = false;
   }
 
-  totalNotifications():number{
-    const seenNotifications = this.notificationNotification!.seen.length
-    const newNotifications = this.notificationNotification!.new.length
-    const allNotifications = this.notificationNotification!.all.length
-    return  seenNotifications + newNotifications + allNotifications;
+  totalNotifications(): number {
+    const seenNotifications = this.notificationNotification!.seen.length;
+    const newNotifications = this.notificationNotification!.new.length;
+    const allNotifications = this.notificationNotification!.all.length;
+    return seenNotifications + newNotifications + allNotifications;
   }
 }

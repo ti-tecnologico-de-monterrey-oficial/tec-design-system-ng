@@ -11,7 +11,7 @@
         <h2>Mis Notificaciones</h2>
       </div>
     </div>
-    @if(!hideExpandBtn()){
+    @if (!hideExpandBtn()) {
       <div class="bmb_home-notification-card-header-trailing">
         @if (expanded) {
           <bmb-icon
@@ -71,14 +71,24 @@
         @for (data of activeData; track $index) {
           <div class="bmb_home-notification-card-container">
             <div class="bmb_home-notification-card-container-card">
-              <div class="bmb_home-notification-card-container-card-bullet-container">
+              <div
+                class="bmb_home-notification-card-container-card-bullet-container"
+              >
                 <span class="bmb_home-notification-card-container-card-bullet">
                 </span>
               </div>
-              <div class="bmb_home-notification-card-container-card-description-container">
-                <p  class="bmb_home-notification-card-container-card-description">{{ data.description }}</p>
+              <div
+                class="bmb_home-notification-card-container-card-description-container"
+              >
+                <p
+                  class="bmb_home-notification-card-container-card-description"
+                >
+                  {{ data.description }}
+                </p>
               </div>
-              <div class="bmb_home-notification-card-container-card-legend-container">
+              <div
+                class="bmb_home-notification-card-container-card-legend-container"
+              >
                 <span class="bmb_home-notification-card-container-card-legend"
                   >Hace: {{ data.time }}</span
                 >

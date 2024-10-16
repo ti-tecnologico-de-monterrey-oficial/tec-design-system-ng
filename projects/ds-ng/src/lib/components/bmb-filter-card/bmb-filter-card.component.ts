@@ -21,6 +21,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ModalDataConfig } from '../bmb-modal/bmb-modal.interface';
 import { BmbInputComponent } from '../bmb-input/bmb-input.component';
 import { IBmbControlType } from './bmb-filter-card.interface';
+import { BmbButtonDirective } from '../../directives/button.directive';
 
 @Component({
   selector: 'bmb-filter-card',
@@ -38,6 +39,7 @@ import { IBmbControlType } from './bmb-filter-card.interface';
     BmbCheckboxComponent,
     BmbTagComponent,
     BmbModalComponent,
+    BmbButtonDirective,
   ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -50,6 +52,7 @@ export class BmbFilterCardComponent implements OnInit {
   placeholderSearch = input<string>('');
   controlTypes = input<IBmbControlType[]>([]);
   storedValues: { [name: string]: any } = {};
+  inLine = input<boolean>(false);
 
   applyFilters = output<void>();
   resetFilters = output<void>();
@@ -63,10 +66,24 @@ export class BmbFilterCardComponent implements OnInit {
   ngOnInit(): void {
     this.controlTypes().forEach((controlType) => {
       controlType.control.forEach((control) => {
-        this.filterForm.addControl(
-          control.name,
-          new FormControl<boolean>(control.checked),
-        );
+        if (control.type === 'radial') {
+          const controlName = this.filterForm.get(control.name);
+          if (controlName) {
+            controlName.setValue(
+              control.checked ? control.label : controlName.value,
+            );
+          } else {
+            this.filterForm.addControl(
+              control.name,
+              new FormControl<string>(control.checked ? control.label : ''),
+            );
+          }
+        } else {
+          this.filterForm.addControl(
+            control.name,
+            new FormControl<boolean>(control.checked),
+          );
+        }
       });
     });
   }
@@ -128,7 +145,6 @@ export class BmbFilterCardComponent implements OnInit {
       formData[key] = this.storedValues[key];
     });
     formData.search = this.filterForm.get('search')?.value;
-    console.log(formData);
     this.applyFilters.emit(formData);
   }
 
