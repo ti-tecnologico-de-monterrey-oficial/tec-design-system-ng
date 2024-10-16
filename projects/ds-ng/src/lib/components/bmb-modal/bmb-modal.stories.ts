@@ -267,30 +267,24 @@ Below is an example of how you can use this component in HTML:
     alertStyle: 'error',
     primaryBtnLabel: 'Action',
     secondaryBtnLabel: 'Cancel',
-    primaryAction: () => window.alert('Primary action triggered!'),
-    secondaryAction: () => window.alert('Secondary action triggered!'),
   },
 } as Meta<typeof BmbModalComponent>;
 
 function attributes(object: { [key: string]: any }): string {
   return Object.entries(object)
+    .filter(([key]) => key !== 'text')
     .map(([key, value]) => {
-      return `${key}='${value}'`;
+      return `${key}="${value}"`;
     })
     .join(' ');
 }
 
-export const Default: StoryFn<typeof StorybookModalWrapperComponent> = (
-  args,
-) => {
+export const Default: StoryFn<typeof BmbModalComponent> = (args) => {
   return {
     props: args,
     template: `
       <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->
-      <storybook-modal-wrapper
-        ${attributes(args)}
-      >
-      </storybook-modal-wrapper>
+      <storybook-modal-wrapper ${attributes(args)}></storybook-modal-wrapper>
     `,
   };
 };

@@ -88,6 +88,8 @@ export * from './lib/components/bmb-evaluation-rubric/bmb-evaluation-rubric.comp
 export * from './lib/components/bmb-hito-card/bmb-hito-card.component';
 export * from './lib/components/bmb-form-validation/bmb-form-validation.component';
 
+export * from './lib/components/bmb-timestream-card/bmb-timestream-card.component';
+export * from './lib/components/bmb-filter-card/bmb-filter-card.component';
 // types
 export * from './lib/types';
 // interface

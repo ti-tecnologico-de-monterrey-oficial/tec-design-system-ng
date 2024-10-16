@@ -52,8 +52,8 @@ $circleTypes: (
         text-transform: capitalize;
         @include fonts.font(3, regular);
         font-weight: 400;
-        width: 40%;
         cursor: pointer;
+        flex: 1;
       }
 
       &-bar {
@@ -66,6 +66,7 @@ $circleTypes: (
         display: flex;
         gap: var(--bmb-spacing-s);
         align-items: center;
+        width: rem.rem_calc(78);
       }
 
       &-circle {

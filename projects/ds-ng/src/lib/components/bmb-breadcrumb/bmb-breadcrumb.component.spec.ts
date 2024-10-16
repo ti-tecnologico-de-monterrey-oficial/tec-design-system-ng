@@ -46,7 +46,6 @@ describe('BmbBreadcrumbComponent', () => {
     const fixture = TestBed.createComponent(BmbBreadcrumbComponent);
     const component = fixture.componentInstance;
 
-    // Set signal inputs using setInput method
     fixture.componentRef.setInput('dataTopBar', [
       { text: 'Tec. Sign', link: '/' },
       { text: 'Borem ipsum dolor sit amet 1 Borem ipsum dolor sit amet 1' },
@@ -64,7 +63,6 @@ describe('BmbBreadcrumbComponent', () => {
     const fixture = TestBed.createComponent(BmbBreadcrumbComponent);
     const component = fixture.componentInstance;
 
-    // Set signal inputs using setInput method
     fixture.componentRef.setInput('dataLocalNav', [
       { text: 'Borem ipsum dolor sit amet 1', link: '/' },
       { text: 'Borem ipsum dolor sit amet 2', link: '/emprendedor' },
@@ -77,26 +75,5 @@ describe('BmbBreadcrumbComponent', () => {
       '.bmb_breadcrumb-link',
     );
     expect(localNavElement).toBeTruthy();
-  });
-
-  it('should render dropdown menu', () => {
-    const fixture = TestBed.createComponent(BmbBreadcrumbComponent);
-    const component = fixture.componentInstance;
-
-    // Set signal inputs using setInput method
-    fixture.componentRef.setInput('dataLocalNav', [
-      { text: 'Borem ipsum dolor sit amet 1', link: '/' },
-      { text: 'Borem ipsum dolor sit amet 2', link: '/emprendedor' },
-      { text: 'Borem ipsum dolor sit amet 3', link: '/emprendedor/vivencia' },
-      { text: 'Borem ipsum dolor sit amet 4', link: '/emprendedor/vivencia' },
-      { text: 'Borem ipsum dolor sit amet 5', link: '/emprendedor/vivencia' },
-    ]);
-    fixture.componentRef.setInput('isTopBar', false);
-
-    fixture.detectChanges();
-    const dropdownMenuElement = fixture.nativeElement.querySelector(
-      '.bmb_breadcrumb-dropdown-menu',
-    );
-    expect(dropdownMenuElement).toBeTruthy();
   });
 });

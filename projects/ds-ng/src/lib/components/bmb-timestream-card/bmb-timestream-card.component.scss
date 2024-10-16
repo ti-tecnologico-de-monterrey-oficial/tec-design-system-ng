@@ -1,0 +1,44 @@
+.bmb-timestream-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  bmb-home-card {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .bmb_home-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .bmb_home-card-container {
+      flex: 1;
+    }
+  }
+
+  &-filters {
+    position: absolute;
+    right: 0;
+    top: 0;
+    max-width: 100%;
+    overflow: hidden;
+    height: 0;
+
+    &-active {
+      height: auto;
+    }
+
+    &-header {
+      display: flex;
+      gap: var(--bmb-spacing-m);
+      margin-bottom: var(--bmb-spacing-m);
+
+      &-title {
+        flex: 1;
+      }
+    }
+  }
+}
