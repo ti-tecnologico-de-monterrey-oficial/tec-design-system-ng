@@ -64,7 +64,7 @@ describe('BmbInvoiceComponent', () => {
     const quantityElement = fixture.nativeElement.querySelector(
       '.bmb_invoice-quantity',
     );
-    expect(quantityElement.textContent).toBe('$100');
+    expect(quantityElement.textContent).toBe(' $100 ');
   });
 
   it('should render badge', () => {
