@@ -1,5 +1,8 @@
 <ul #monthDetailList class="bmb_timestream-detail">
-  @for (dayEvent of orderedEvents; track $index) {
+  @if (!orderedEvents().length) {
+    <p>No events found.</p>
+  }
+  @for (dayEvent of orderedEvents(); track $index) {
     <li
       class="bmb_timestream-detail-item"
       [ngClass]="{
