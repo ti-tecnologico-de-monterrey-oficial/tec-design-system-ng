@@ -47,3 +47,9 @@ export interface ITimelineEventParsed extends ITimelineEvent {
   date: DateTime;
   events: ITimelineEvent[];
 }
+
+export interface IBmbTimestreamFilters {
+  instances?: string;
+  text?: string;
+  type?: string[];
+}
