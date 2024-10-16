@@ -19,11 +19,16 @@ import { isImage } from '../../utils/utils';
 export class BmbIconComponent {
   icon = input<string>('face');
   materialIcon = input<boolean>(false);
-  size = input<number>();
+  size = input<number | undefined>();
   alt = input<string>('');
   dotNotification = input<number>();
 
   isImage(icon: string): boolean {
     return isImage(icon);
+  }
+
+  getIconClass(): string {
+    if (this.dotNotification()) return 'bmb_icon-container-i';
+    return '';
   }
 }

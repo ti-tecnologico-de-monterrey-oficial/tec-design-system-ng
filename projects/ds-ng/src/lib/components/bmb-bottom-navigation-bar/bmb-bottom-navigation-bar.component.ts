@@ -14,6 +14,7 @@ export type IBmbFooterEvent = 'back' | 'forward' | 'share' | 'reload';
 export type IBmbNavigationBarIcon = {
   name: string;
   label: string;
+  dotNotification?: number;
 };
 
 export type IBmbNavigationBarIcons = {
