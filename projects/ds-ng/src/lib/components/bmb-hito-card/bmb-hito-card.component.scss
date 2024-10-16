@@ -1,5 +1,6 @@
 @use "../../../assets/styles/base/fonts" as fonts;
 @use "../../../assets/styles/base/rem" as rem;
+@use "../../../assets/styles/base/mixins" as mixins;
 
 $circleTypes: (
   "under_review": RGBA(var(--color-yellow-primary)),
@@ -11,6 +12,7 @@ $circleTypes: (
 .bmb_hito-card {
   position: relative;
   padding: var(--bmb-spacing-m);
+  container-type: inline-size;
 
   &-bullet::after {
     content: "";
@@ -29,30 +31,24 @@ $circleTypes: (
     background-color: RGBA(var(--color-mariner-700));
   }
 
-  &-alternative {
-    padding: 0;
-
-    .bmb_card.bmb_card-type-normal {
-      background-color: RGBA(var(--color-charade-100));
-      border: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
-      box-shadow: 6px 6px 4px 0px rgba(0, 0, 0, 0.15);
-    }
-
-    .bmb_hito-card-content-title {
-      margin: 0;
-    }
-
-    .bmb_card-content.bmb_padding-m {
-      padding: var(--bmb-spacing-s) var(--bmb-spacing-m);
-    }
-
-    .bmb_hito-card-content-type {
-      display: none;
-    }
-  }
-
   &-content {
     cursor: pointer;
+    display: grid;
+    grid-template-columns: rem.rem_calc(32) 1fr;
+    grid-template-rows: auto;
+    gap: rem.rem_calc(8);
+    grid-template-areas:
+      "icon type"
+      "title title"
+      "description description";
+
+    @include mixins.container-query(500, "min") {
+      grid-template-columns: rem.rem_calc(32) 1fr auto;
+      grid-template-rows: auto;
+      grid-template-areas:
+        "icon title type"
+        "icon description date";
+    }
 
     &-icon {
       width: rem.rem_calc(32);
@@ -63,6 +59,8 @@ $circleTypes: (
       justify-content: center;
       color: RGBA(var(--color-white-primary));
       @include fonts.font(5, regular);
+      grid-area: icon;
+      align-self: center;
 
       @each $type, $value in $circleTypes {
         &-#{$type} {
@@ -77,12 +75,13 @@ $circleTypes: (
     &-title {
       @include fonts.font(3, regular);
       font-weight: 400;
-      margin-bottom: var(--bmb-spacing-m);
+      grid-area: title;
     }
 
     &-description {
       @include fonts.font(1, regular);
       margin: 0;
+      grid-area: description;
     }
 
     .bmb_badge {
@@ -91,10 +90,43 @@ $circleTypes: (
 
     &-type {
       text-align: right;
+      grid-area: type;
     }
 
     &-duration {
-      margin: var(--bmb-spacing-m) 0 0;
+      margin: 0;
+      display: none;
+      grid-area: date;
+      @include mixins.container-query(500, "min") {
+        display: block;
+      }
+    }
+  }
+
+  &-alternative {
+    padding: 0;
+
+    .bmb_card.bmb_card-type-normal {
+      background-color: RGBA(var(--color-charade-100));
+      border: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
+      box-shadow: 6px 6px 4px 0px rgba(0, 0, 0, 0.15);
+    }
+
+    .bmb_hito-card-content {
+      grid-template-areas: "icon title";
+
+      &-type {
+        display: none;
+      }
+
+      &.bmb_padding-m {
+        padding: var(--bmb-spacing-s) var(--bmb-spacing-m);
+      }
+
+      &-title {
+        margin: 0;
+        align-self: center;
+      }
     }
   }
 }

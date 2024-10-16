@@ -1,7 +1,11 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
+  effect,
   input,
+  signal,
+  SimpleChanges,
   TemplateRef,
   ViewChild,
   ViewEncapsulation,
@@ -13,7 +17,6 @@ import { BmbTimestreamDetailsComponent } from './bmb-timestream-detail/bmb-times
 import { ITimelineEvent, ISelectedDate, ITimelineEventParsed } from './types';
 import { CommonModule } from '@angular/common';
 import { BmbFilterCardComponent } from '../bmb-filter-card/bmb-filter-card.component';
-import { IBmbControlType } from '../bmb-filter-card/bmb-filter-card.interface';
 import { ModalDataConfig } from '../bmb-modal/bmb-modal.interface';
 import { BmbModalComponent } from '../bmb-modal/bmb-modal.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -47,9 +50,7 @@ export interface IBmbClamp {
     BmbTimestreamErrorComponent,
     BmbTimestreamTimelineComponent,
     BmbTimestreamDetailsComponent,
-    // BmbTimestreamDialogComponent,
     CommonModule,
-    // BmbHomeCardComponent,
     BmbFilterCardComponent,
     BmbUserImageComponent,
     BmbTabsComponent,
@@ -66,7 +67,7 @@ export class BmbTimestreamComponent {
   lang = input<string>('es');
   dateFormat = input<string>('dd/MM/yyyy');
   events = input<ITimelineEvent[]>([]);
-  clamp = input<IBmbClamp>({ min: 0, max: '100dvh', size: '100%' });
+  clamp = input<IBmbClamp>({ min: 100, max: '100dvh', size: '100dvh' });
 
   @ViewChild('modalTemplate', { read: TemplateRef })
   modalTemplate?: TemplateRef<any>;
@@ -77,7 +78,7 @@ export class BmbTimestreamComponent {
   start: DateTime | null = null;
   parsedEvents?: any;
   monthsNames = Info.months('long', { locale: this.lang() });
-  orderedEvents: ITimelineEventParsed[] = [];
+  orderedEvents = signal<ITimelineEventParsed[]>([]);
   selectedDate: ISelectedDate = {
     day: '',
     month: '',
@@ -93,6 +94,12 @@ export class BmbTimestreamComponent {
   tabSelected = 1;
 
   constructor(private matDialog: MatDialog) {}
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.parsedEvents = this.prepareEvents(changes['events'].currentValue);
+    this.orderedMonths = this.orderDates(this.parsedEvents, 'yyyy/MM');
+    this.selectedDate = this.selectAValidDate();
+  }
 
   ngOnInit(): void {
     this.parsedEvents = this.prepareEvents(this.events());
@@ -128,7 +135,10 @@ export class BmbTimestreamComponent {
   }
 
   prepareEvents(events?: ITimelineEvent[]) {
-    if (!events) return {};
+    if (!events?.length) {
+      this.orderedEvents.set([]);
+      return {};
+    }
 
     const objectEvent: IPlaceholderObject = {};
     events.forEach((event) => {
@@ -180,14 +190,17 @@ export class BmbTimestreamComponent {
         );
       });
 
-      this.orderedEvents = objectEvent['orderedEvents']
-        .map((month: string) => {
-          return objectEvent[month]['orderedEvents'].map(
-            (day: string) => objectEvent[month].events[day],
-          );
-        })
-        .flat();
+      this.orderedEvents.set(
+        objectEvent['orderedEvents']
+          .map((month: string) => {
+            return objectEvent[month]['orderedEvents'].map(
+              (day: string) => objectEvent[month].events[day],
+            );
+          })
+          .flat(),
+      );
     }
+
     return objectEvent;
   }
 
