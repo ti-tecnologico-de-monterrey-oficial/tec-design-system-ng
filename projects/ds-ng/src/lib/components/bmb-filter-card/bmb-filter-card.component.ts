@@ -39,7 +39,7 @@ import { BmbButtonDirective } from '../../directives/button.directive';
     BmbCheckboxComponent,
     BmbTagComponent,
     BmbModalComponent,
-    BmbButtonDirective
+    BmbButtonDirective,
   ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -69,7 +69,9 @@ export class BmbFilterCardComponent implements OnInit {
         if (control.type === 'radial') {
           const controlName = this.filterForm.get(control.name);
           if (controlName) {
-            controlName.setValue(control.checked ? control.label : controlName.value);
+            controlName.setValue(
+              control.checked ? control.label : controlName.value,
+            );
           } else {
             this.filterForm.addControl(
               control.name,

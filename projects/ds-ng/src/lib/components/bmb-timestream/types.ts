@@ -51,5 +51,5 @@ export interface ITimelineEventParsed extends ITimelineEvent {
 export interface IBmbTimestreamFilters {
   instances?: string;
   text?: string;
-  type?:  string[];
+  type?: string[];
 }
