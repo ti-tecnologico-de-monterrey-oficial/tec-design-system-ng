@@ -26,8 +26,9 @@ import { FormControl } from '@angular/forms';
       [errorMessage]="errorMessage()"
       [helperMessage]="helperMessage()"
       [disabled]="disabled()"
-      (onChange)="handleChange($event)"
       [labelPosition]="labelPosition()"
+      (onChange)="handleChange($event)"
+      (myName)="handleMyName($event)"
     />
   `,
   standalone: true,
@@ -53,6 +54,12 @@ export class BmbRadialComponent {
   @Input() control: FormControl = new FormControl();
 
   change = output<HTMLInputElement>();
+  myName = output<string>();
+
+  handleMyName(event: string) {
+    console.log('handleMyName', event);
+    this.myName.emit(event);
+  }
 
   handleChange(event: any) {
     this.change.emit(event);
