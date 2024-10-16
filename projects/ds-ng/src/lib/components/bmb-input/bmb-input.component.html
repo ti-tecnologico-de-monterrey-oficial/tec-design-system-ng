@@ -1,84 +1,115 @@
-<div class="bmb_field" [ngClass]="{ disabled: disabled }">
-  @if (label) {
-    <label [for]="name" class="bmb_field-label">
-      {{ label }}
-      @if (isRequired) {
-        <small class="bmb_field-label-required">*</small>
+<section class="bmb_field" [ngClass]="{ disabled: disabled() }">
+  @if (!!label()) {
+    <span [class]="getClasses('bmb_field')">
+      @if (type() === "radio") {
+        <input
+          class="bmb_field-radio-input"
+          [formControl]="control"
+          [type]="type()"
+          [id]="id()"
+          [name]="name()"
+          [attr.aria-describedby]="ariaDescribedBy()"
+          [attr.aria-label]="ariaLabel()"
+          [attr.aria-labelledby]="ariaLabelledBy()"
+          [attr.value]="value()"
+          [value]="value()"
+          [checked]="checked()"
+          [disabled]="disabled()"
+          [required]="isRequired()"
+          (change)="handleChange($event)"
+          (keydown)="handleKeyDown($event)"
+        />
+        <section class="bmb_field-radio-box">
+          <span class="bmb_field-radio-mark"></span>
+        </section>
       }
-      @if (tooltip().length > 0) {
-        <bmb-tooltip
-          class="bmb_field-label-tooltip"
-          [text]="tooltip()"
-          [align]="'below'"
-          [justify]="'before'"
-          [icon]="'help'"
+      <label
+        [for]="name()"
+        class="bmb_field-label"
+        [ngClass]="getLabelClass('bmb_field-label')"
+      >
+        {{ label() }}
+        @if (isRequired()) {
+          <small class="bmb_field-label-required">*</small>
+        }
+        @if (!!tooltip()) {
+          <bmb-tooltip
+            class="bmb_field-label-tooltip"
+            [text]="tooltip()"
+            [align]="'below'"
+            [justify]="'before'"
+            [icon]="'help'"
+            [size]="15"
+          />
+        }
+        @if (type() === "text-area" && showMaxTextLength()) {
+          <span class="bmb_field-label-max">
+            {{ textLength }}/{{ maxlength() || "-" }}
+          </span>
+        }
+      </label>
+    </span>
+  }
+  @if (type() !== "radio") {
+    <section class="bmb_field-wrapper">
+      @if (!!icon() && type() !== "text-area") {
+        <bmb-icon
+          [icon]="icon()"
+          class="bmb_field-icon"
+          [ngClass]="'bmb_field-icon-' + appearance()"
         />
       }
-      @if (type == "text-area" && showMaxTextLength()) {
-        <span class="bmb_field-label-max"
-          >{{ textLength }}/{{ maxlength || "-" }}</span
-        >
+      @if (type() === "text-area") {
+        <textarea
+          class="bmb_field-text-area"
+          [ngClass]="inputClasses"
+          [placeholder]="placeholder()"
+          [disabled]="disabled()"
+          [required]="isRequired()"
+          [formControl]="control"
+          [maxlength]="maxlength()!"
+          [minlength]="minlength()!"
+          [spellcheck]="spellcheck()"
+          (focus)="onFocus()"
+          (blur)="onBlur()"
+          [rows]="rows()"
+          [name]="name()"
+          [id]="name()"
+        ></textarea>
+        @if (this.shouldShowError) {
+          <bmb-icon class="bmb_field-text-area-error-icon" [icon]="'error'" />
+        }
+      } @else {
+        <input
+          [type]="type()"
+          class="bmb_field-input"
+          [ngClass]="inputClasses"
+          [required]="isRequired()"
+          [disabled]="disabled()"
+          [placeholder]="placeholder()"
+          [formControl]="control"
+          (focus)="onFocus()"
+          (blur)="onBlur()"
+          [name]="name()"
+          [id]="name()"
+          [spellcheck]="spellcheck()"
+          [maxlength]="maxlength()!"
+          [minlength]="minlength()!"
+          [pattern]="pattern()!"
+          [max]="max()"
+          [min]="min()"
+        />
       }
-    </label>
+    </section>
   }
-  <div class="bmb_field-wrapper">
-    @if (icon && type !== "text-area") {
-      <bmb-icon
-        [icon]="icon"
-        class="bmb_field-icon"
-        [ngClass]="'bmb_field-icon-' + appearance"
-      ></bmb-icon>
-    }
-    @if (type == "text-area") {
-      <textarea
-        class="bmb_field-text-area"
-        [ngClass]="inputClasses"
-        [placeholder]="placeholder ? placeholder : ''"
-        [disabled]="disabled"
-        [required]="isRequired"
-        [formControl]="control"
-        [maxlength]="maxlength"
-        [minlength]="minlength"
-        [spellcheck]="spellcheck"
-        (focus)="onFocus()"
-        (blur)="onBlur()"
-        [rows]="rows()"
-        [name]="name"
-        [id]="name"
-      ></textarea>
-      @if (this.shouldShowError) {
-        <bmb-icon class="bmb_field-text-area-error-icon" [icon]="'error'" />
-      }
-    } @else {
-      <input
-        [type]="type"
-        class="bmb_field-input"
-        [ngClass]="inputClasses"
-        [required]="isRequired"
-        [disabled]="disabled"
-        [placeholder]="placeholder ? placeholder : ''"
-        [formControl]="control"
-        (focus)="onFocus()"
-        (blur)="onBlur()"
-        [name]="name"
-        [id]="name"
-        [spellcheck]="spellcheck"
-        [maxlength]="maxlength"
-        [minlength]="minlength"
-        [pattern]="pattern"
-        [max]="max"
-        [min]="min"
-      />
-    }
-  </div>
-  @if (helperMessage && !shouldShowError) {
+  @if (helperMessage() && !shouldShowError) {
     <p class="bmb_field-helper">
-      {{ helperMessage }}
+      {{ helperMessage() }}
     </p>
   }
-  @if (errorMessage && shouldShowError) {
+  @if (errorMessage() && shouldShowError) {
     <p class="bmb_field-error">
-      {{ errorMessage }}
+      {{ errorMessage() }}
     </p>
   }
-</div>
+</section>

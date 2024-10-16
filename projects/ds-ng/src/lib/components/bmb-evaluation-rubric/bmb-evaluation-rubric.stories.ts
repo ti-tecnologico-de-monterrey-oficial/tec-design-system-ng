@@ -94,7 +94,7 @@ Below is an example of how you can use this component in HTML:
         category: 'Properties',
         type: {
           summary:
-            ' Textarea input, IBmbCommentEvalRubric (required), { label: string; placeHolder: string; tooltip: string; icon?: string; errorMessage?: string; helperMessage?: string; appearance?: string; disabled?: boolean; isRequired?: boolean; showError?: boolean; showMaxTextLength?: boolean;}',
+            ' Textarea input, IBmbCommentEvalRubric (required), { label: string; placeHolder: string; tooltip: string; icon?: string; errorMessage?: string; helperMessage?: string; appearance?: IBbmInputAppearance; disabled?: boolean; isRequired?: boolean; showError?: boolean; showMaxTextLength?: boolean;}',
         },
       },
     },

@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbRadialComponent } from './bmb-radial.component';
+import { FormControl } from '@angular/forms';
 
 export default {
   title: 'Micro Componentes/Radial',
@@ -15,17 +16,89 @@ import { BmbRadialComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
 @Component({
   selector: 'component',
   standalone: true,
-  imports: [ BmbRadialComponent ],
+  imports: [
+    BmbRadialComponent
+    FormControl,
+    FormGroup
+    ReactiveFormsModule,
+    Validators,
+  ],
   templateUrl: './component.html',
   styleUrl: './component.scss',
 })
 export class Component {
+  userForm: FormGroup = new FormGroup({
+    contract: new FormControl<string>('', Validators.required),
+  });
+  showErrors: { [key: string]: boolean } = {};
+
+  onSubmit() {
+    if (this.userForm.valid) {
+      return;
+    }
+    this.userForm.markAllAsTouched();
+    this.updateErrorState();
+  }
+
+  updateErrorState() {
+    Object.keys(this.userForm.controls).forEach((field) => {
+      const control = this.userForm.get(field);
+      if (control instanceof FormControl) {
+        this.showErrors[field] =
+          control.invalid && (control.touched || control.dirty);
+      }
+    });
+  }
+
+  getFormControl(name: string): FormControl {
+    return this.userForm.get(name) as FormControl;
+  }
+
   handleRadial(element: HTMLInputElement): void {
     console.log('Radio value:', element.value);
     console.log('Radio name:', element.name);
     console.log('Is it checked?', element.checked);
   }
 }
+\`\`\`
+
+### Example in HTML
+
+Below is an example of how to use this component in HTML:
+
+\`\`\`html
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <bmb-radial
+    id="radio1"
+    value="CCM"
+    name="contract"
+    label="Contract for teacher CCM.pdf"
+    [checked]="false"
+    [required]="true"
+    [disabled]="false"
+    [control]="getFormControl('contract')"
+    [showError]="showErrors['contract']"
+    errorMessage="Error message"
+    helperMessage="Helper message"
+    (change)="handleRadial($event)"
+    labelPosition="before"
+  />
+  <bmb-radial
+    id="radio2"
+    value="CCB"
+    name="contract"
+    label="Contract for teacher CCB.pdf"
+    [checked]="false"
+    [required]="true"
+    [disabled]="false"
+    [control]="getFormControl('contract')"
+    [showError]="showErrors['contract']"
+    errorMessage="Error message"
+    helperMessage="Helper message"
+    (change)="handleRadial($event)"
+  />
+  <button bmbButton appearance="primary" type="submit">Submit</button>
+</form>
 \`\`\`
 
 Below is an example of how you can use this component in HTML:
@@ -147,6 +220,49 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string' },
       },
     },
+    control: {
+      control: { type: 'object' },
+      description: 'Instance of FormControl to manage the input control state.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'FormControl' },
+        defaultValue: { summary: "FormControl('', Validators.required)" },
+      },
+    },
+    showError: {
+      name: 'Show Error',
+      control: {
+        type: 'boolean',
+      },
+      description: 'Boolean to show or hide the error message.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    errorMessage: {
+      name: 'Error Message',
+      control: {
+        type: 'text',
+      },
+      description: 'Text to be displayed when there is an error.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
+    helperMessage: {
+      name: 'Helper Message',
+      control: {
+        type: 'text',
+      },
+      description: 'Text to be displayed as a helper message below the input.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
     change: {
       name: 'Change',
       control: {
@@ -161,13 +277,13 @@ Below is an example of how you can use this component in HTML:
     },
   },
   args: {
-    id: 'checkbox1',
+    id: 'radio1',
     checked: false,
     disabled: false,
     required: false,
     value: '',
     name: '',
-    label: 'Contrato profesor cátedra Biología marina CCM.pdf',
+    label: 'Contract for teacher CCM.pdf',
     ariaDescribedby: '',
     ariaLabel: '',
     ariaLabelledby: '',

@@ -1,4 +1,4 @@
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+import { Meta, StoryObj } from '@storybook/angular';
 import { BmbIconComponent } from './bmb-icon.component';
 
 export default {
@@ -59,7 +59,8 @@ Below is an example of how you can use this component in HTML:
   },
   args: {
     icon: 'home',
-    size: 0,
+    size: 20,
+    dotNotification: 0,
   },
 } as Meta<typeof BmbIconComponent>;
 
