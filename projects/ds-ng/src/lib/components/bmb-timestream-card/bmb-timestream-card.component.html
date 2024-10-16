@@ -1,12 +1,40 @@
-<bmb-home-card
-  [icon]="icon()"
-  [bgIconAppearance]="bgIconAppearance()"
-  [title]="title()"
-  [subtitle]="subtitle()"
-  [dataLocalNav]="dataLocalNav()"
-  [isMobile]="isMobile"
-  [actionHeaders]="actionHeaders"
-  contentPadding="none"
->
-  <bmb-timestream />
-</bmb-home-card>
+<section class="bmb-timestream-card">
+  <bmb-home-card
+    [icon]="icon()"
+    [bgIconAppearance]="bgIconAppearance()"
+    [title]="title()"
+    [subtitle]="subtitle()"
+    [dataLocalNav]="dataLocalNav()"
+    [isMobile]="isMobile"
+    [actionHeaders]="actionHeaders"
+    contentPadding="none"
+  >
+    <bmb-timestream
+      [events]="filteredEvents()"
+      [dateFormat]="dateFormat()"
+      [clamp]="clamp"
+      [lang]="lang()"
+    />
+  </bmb-home-card>
+  <section [ngClass]="getClassList()">
+    <bmb-card>
+      <bmb-card-content>
+        <header class="bmb-timestream-card-filters-header">
+          <h2 class="bmb-timestream-card-filters-header-title">
+            Opciones de filtrado
+          </h2>
+          <button (click)="handleCloseFilters()">
+            <bmb-icon icon="close" [size]="20" />
+          </button>
+        </header>
+        <bmb-filter-card
+          [inLine]="true"
+          primaryBtnLabel="Aplicar filtros"
+          secondaryBtnLabel="Limpiar filtros"
+          [controlTypes]="filters"
+          (applyFilters)="handleFiltersChange($event)"
+        />
+      </bmb-card-content>
+    </bmb-card>
+  </section>
+</section>

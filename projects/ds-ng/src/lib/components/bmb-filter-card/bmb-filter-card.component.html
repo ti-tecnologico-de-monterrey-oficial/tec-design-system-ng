@@ -8,7 +8,6 @@
           [appearance]="'normal'"
           [control]="getFormControl('search')"
         />
-
         @for (controlType of controlTypes(); track $index) {
           <div class="bmb_filter_card-title">{{ controlType.title }}</div>
           <div class="bmb_filter_card-control">
@@ -43,15 +42,25 @@
             }
           </div>
         }
+        @if (inLine()) {
+          <footer class="bmb_filter_card-footer">
+            <button bmbButton appearance="secondary-outlined" type="reset">{{ secondaryBtnLabel() }}</button>
+            <button bmbButton (click)="onSubmit()" type="submit">{{ primaryBtnLabel() }}</button>
+          </footer>
+        }
       </form>
     </div>
   </ng-template>
 
-  <button
-    type="button"
-    class="bmb_filter_card-button"
-    (click)="openModalComponent()"
-  >
-    <bmb-icon [icon]="icon()" />
-  </button>
+  @if (inLine()) {
+    <ng-container [ngTemplateOutlet]="modalTemplate" />
+  } @else {
+    <button
+      type="button"
+      class="bmb_filter_card-button"
+      (click)="openModalComponent()"
+    >
+      <bmb-icon [icon]="icon()" />
+    </button>
+  }
 </div>

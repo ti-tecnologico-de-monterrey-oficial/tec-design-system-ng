@@ -2,9 +2,12 @@ import { CommonModule } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
+  effect,
   ElementRef,
   EventEmitter,
+  input,
   Input,
   OnChanges,
   Output,
@@ -43,21 +46,21 @@ import { BmbHitoCardComponent } from '../../bmb-hito-card/bmb-hito-card.componen
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbTimestreamDetailsComponent implements AfterViewInit, OnChanges {
-  @Input() dateFormat: string = 'dd/MM/yyyy';
-  @Input() lang: string = 'en';
+  lang = input<string>('es');
   @Input() now: DateTime = DateTime.now();
-  @Input() events?: any;
   @Input() selectedDate: ISelectedDate = {
     day: '',
     month: '',
     date: this.now,
   };
-  @Input() orderedEvents: ITimelineEventParsed[] = [];
+  orderedEvents = input<ITimelineEventParsed[]>([]);
 
   @Output() changeSelectedEvent: EventEmitter<ITimelineEvent> =
     new EventEmitter<ITimelineEvent>();
 
   @ViewChild('monthDetailList') monthList!: ElementRef;
+
+  constructor(private cdr: ChangeDetectorRef) {}
 
   ngAfterViewInit(): void {
     setTimeout(() => {
@@ -67,6 +70,8 @@ export class BmbTimestreamDetailsComponent implements AfterViewInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     const selectedDateChange = changes['selectedDate'];
+    console.log('changes', changes);
+
     if (
       selectedDateChange.previousValue &&
       selectedDateChange.previousValue.day !==
@@ -87,7 +92,7 @@ export class BmbTimestreamDetailsComponent implements AfterViewInit, OnChanges {
   }
 
   getMonthTitle(date: DateTime) {
-    return date.setLocale(this.lang).toFormat('cccc dd LLLL yyyy');
+    return date.setLocale(this.lang()).toFormat('cccc dd LLLL yyyy');
   }
 
   scrollToItem() {
@@ -103,7 +108,7 @@ export class BmbTimestreamDetailsComponent implements AfterViewInit, OnChanges {
   }
 
   getDurationString(event: ITimelineEvent): string {
-    return `Duración: ${event.originalStart?.day} - ${event.endEvent?.setLocale(this.lang).toFormat('dd LLLL yyyy')} (${(event.diff || 0) + 1} Días)`;
+    return `Duración: ${event.originalStart?.day} - ${event.endEvent?.setLocale(this.lang()).toFormat('dd LLLL yyyy')} (${(event.diff || 0) + 1} Días)`;
   }
 
   handleEventChange(event: ITimelineEvent) {

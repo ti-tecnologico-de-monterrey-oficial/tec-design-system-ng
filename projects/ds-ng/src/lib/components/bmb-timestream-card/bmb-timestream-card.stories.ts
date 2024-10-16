@@ -1,9 +1,9 @@
 import { Meta, StoryObj } from '@storybook/angular';
-import { BmbTimestreamComponent } from './bmb-timestream.component';
+import { BmbTimestreamCardComponent } from './bmb-timestream-card.component';
 
 export default {
-  title: 'Macro Componentes/Timestream',
-  component: BmbTimestreamComponent,
+  title: 'Macro Componentes/Timestream Card',
+  component: BmbTimestreamCardComponent,
   parameters: {
     docs: {
       description: {
@@ -11,11 +11,11 @@ export default {
 Below is an example of how you can use this component in TypeScript:
 
 \`\`\`typescript
-import { BmbTimestreamComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
+import { BmbTimestreamCardComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
 @Component({
   selector: 'component',
   standalone: true,
-  imports: [ BmbTimestreamComponent ],
+  imports: [ BmbTimestreamCardComponent ],
   templateUrl: './component.html',
   styleUrl: './component.scss',
 })
@@ -27,6 +27,53 @@ Below is an example of how you can use this component in HTML:
     },
   },
   argTypes: {
+    title: {
+      name: 'Title',
+      control: { type: 'text' },
+      description: 'Sets card title.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
+    subtitle: {
+      name: 'Subtitle',
+      control: { type: 'text' },
+      description: 'Sets card subtitle',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
+    dataLocalNav: {
+      name: 'Data Local Navigation',
+      control: { type: 'object' },
+      description: 'Array of breadcrumb data for Local Navigation.',
+      table: {
+        category: 'Properties',
+        type: {
+          summary: 'IBmbDataTopBar[], [{ text: string, link?: string, }]',
+        },
+      },
+    },
+    icon: {
+      name: 'Icon',
+      control: { type: 'text' },
+      description: 'Sets header icon.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
+    bgIconAppearance: {
+      name: 'Icon background color',
+      control: { type: 'text' },
+      description: 'Sets icon background color.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'IBmbColor' },
+      },
+    },
     dateFormat: {
       name: 'Date format',
       control: {
@@ -62,23 +109,15 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'object' },
       },
     },
-    clamp: {
-      name: 'Clamp',
-      control: {
-        type: 'object',
-      },
-      description: 'Object that controls the height of the timestream',
-      table: {
-        category: 'Properties',
-        type: { summary: 'object' },
-        defaultValue: { summary: "{ min: 0, max: '100dvh', size: '100%' }" },
-      },
-    },
   },
   args: {
+    title: 'Title',
+    subtitle: 'Subtitle',
+    dataLocalNav: [],
+    icon: 'account_balance_wallet',
+    bgIconAppearance: 'green-light',
     dateFormat: 'yyyy-MM-dd',
     lang: 'es',
-    clamp: { min: 0, max: '100px', size: '100%' },
     events: [
       {
         "id": 1,
@@ -1882,9 +1921,9 @@ Below is an example of how you can use this component in HTML:
       }
     ],
   },
-} as Meta<typeof BmbTimestreamComponent>;
+} as Meta<typeof BmbTimestreamCardComponent>;
 
-type Story = StoryObj<BmbTimestreamComponent>;
+type Story = StoryObj<BmbTimestreamCardComponent>;
 
 export const Default: Story = {
   args: {},
@@ -1892,9 +1931,12 @@ export const Default: Story = {
     props: args,
     template: `
       <div style="height: 1000px">
-        <bmb-timestream
-          [startDate]="startDate"
-          [endDate]="endDate"
+        <bmb-timestream-card
+          [title]="title"
+          [subtitle]="subtitle"
+          [dataLocalNav]="dataLocalNav"
+          [icon]="icon"
+          [bgIconAppearance]="bgIconAppearance"
           [dateFormat]="dateFormat"
           [lang]="lang"
           [events]="events"
