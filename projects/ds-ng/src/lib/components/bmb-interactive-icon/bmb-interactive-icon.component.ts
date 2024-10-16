@@ -35,6 +35,7 @@ export class BmbInteractiveIconComponent {
   description = input<string>('');
   label = input<string>('');
   icon = input<string>('face');
+  dotNotification = input<number>();
   horizontal = input<boolean>(false);
   target = input<string>();
   link = input<string>();

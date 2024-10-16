@@ -15,7 +15,10 @@ import {
 } from '@angular/forms';
 import { DateTime } from 'luxon';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbInputComponent } from '../bmb-input/bmb-input.component';
+import {
+  BmbInputComponent,
+  IBbmInputAppearance,
+} from '../bmb-input/bmb-input.component';
 import { BmbDatepickerModalComponent } from './bmb-datepicker-modal/bmb-datepicker-modal.component';
 import { ClickOutsideDirective } from '../../directives/utils/clickoutside.directive';
 
@@ -41,7 +44,7 @@ export class BmbDatepickerComponent implements OnInit {
   @Input() icon: string = 'calendar_month';
   @Input() invalidFormatErrorMessage: string = 'Formato invalido';
   @Input() requiredFieldErrorMessage: string = 'Campo requerido';
-  @Input() appearance: string = 'normal';
+  @Input() appearance: IBbmInputAppearance | string = 'normal';
   @Input() disabled: boolean = false;
   @Input() isRequired: boolean = false;
   @Input() isClearable: boolean = false;

@@ -1,54 +1,60 @@
 import {
   Component,
-  EventEmitter,
-  Input,
-  Output,
   ViewEncapsulation,
   ChangeDetectionStrategy,
+  input,
+  output,
+  Input,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { BmbInputComponent } from '../bmb-input/bmb-input.component';
+import { IBbmSidePosition } from '../../types';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'bmb-radial',
-  templateUrl: './bmb-radial.component.html',
-  styleUrls: ['./bmb-radial.component.scss'],
+  template: `
+    <bmb-input
+      type="radio"
+      [id]="id()"
+      [value]="value()"
+      [name]="name()"
+      [label]="label()"
+      [checked]="checked()"
+      [isRequired]="required()"
+      [control]="control"
+      [showError]="showError"
+      [errorMessage]="errorMessage()"
+      [helperMessage]="helperMessage()"
+      [disabled]="disabled()"
+      (onChange)="handleChange($event)"
+      [labelPosition]="labelPosition()"
+    />
+  `,
   standalone: true,
-  imports: [CommonModule],
+  imports: [BmbInputComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbRadialComponent {
-  @Input() id: string = '';
-  @Input() checked: boolean = false;
-  @Input() disabled: boolean = false;
-  @Input() value: string = '';
-  @Input() name: string = '';
-  @Input() label: string = '';
-  @Input() labelPosition: 'before' | 'after' = 'after';
-  @Input() ariaDescribedby: string = '';
-  @Input() ariaLabel: string = '';
-  @Input() ariaLabelledby: string = '';
-  @Input() required: boolean = false;
+  id = input<string>('');
+  checked = input<boolean>(false);
+  disabled = input<boolean>(false);
+  value = input<string>('');
+  name = input<string>('');
+  label = input<string>('');
+  labelPosition = input<IBbmSidePosition>('after');
+  ariaDescribedby = input<string>('');
+  ariaLabel = input<string>('');
+  ariaLabelledby = input<string>('');
+  required = input<boolean>(false);
+  errorMessage = input<string>('');
+  helperMessage = input<string>('');
+  @Input() showError: boolean = false;
+  @Input() control: FormControl = new FormControl();
 
-  @Output() change: EventEmitter<HTMLInputElement> =
-    new EventEmitter<HTMLInputElement>();
+  change = output<HTMLInputElement>();
 
-  handleChange(event: Event) {
-    const target = event.target as HTMLInputElement | null;
-    if (target && target.checked) {
-      this.change.emit(target);
-    }
-    event.stopPropagation();
-  }
-
-  handleKeyDown(event: KeyboardEvent) {
-    const target = event.target as HTMLInputElement | null;
-
-    if (event.key === 'Enter' && target && !target.checked) {
-      target.checked = true;
-      this.change.emit(target);
-      event.preventDefault();
-      event.stopPropagation();
-    }
+  handleChange(event: any) {
+    this.change.emit(event);
   }
 }
