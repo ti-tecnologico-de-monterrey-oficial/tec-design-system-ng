@@ -72,6 +72,10 @@
     overflow: hidden;
   }
 
+  &-icon {
+    color: RGBA(var(--color-white-primary));
+  }
+
   &-label {
     color: RGBA(var(--color-white-primary));
   }
