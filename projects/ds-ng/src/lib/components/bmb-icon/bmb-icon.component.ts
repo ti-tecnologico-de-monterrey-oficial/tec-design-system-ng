@@ -1,5 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  ViewEncapsulation,
+} from '@angular/core';
 import { isImage } from '../../utils/utils';
 
 @Component({
@@ -16,7 +21,7 @@ export class BmbIconComponent {
   materialIcon = input<boolean>(false);
   size = input<number>();
   alt = input<string>('');
-  dotNotification = input<number>()
+  dotNotification = input<number>();
 
   isImage(icon: string): boolean {
     return isImage(icon);

@@ -268,7 +268,7 @@ Below is an example of how you can use this component in HTML:
     primaryBtnLabel: 'Action',
     secondaryBtnLabel: 'Cancel',
     primaryAction: () => window.alert('Primary action triggered!'),
-    secondaryAction: () => window.alert('Secondary action triggered!')
+    secondaryAction: () => window.alert('Secondary action triggered!'),
   },
 } as Meta<typeof BmbModalComponent>;
 

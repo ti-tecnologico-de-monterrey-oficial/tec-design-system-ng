@@ -1,25 +1,24 @@
 @use "../../../assets/styles/base/rem" as rem;
 
-.bmb_icon{
-    &-container{
-        display: inline-block;
-        position: relative;
-        cursor: pointer;
+.bmb_icon {
+  &-container {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
 
-        &-number{
-            display: block;
-            position: absolute;
-            top: 70%;
-            left: 70%;
-            min-width: rem.rem_calc(15);
-            min-height: rem.rem_calc(15);
-            border-radius: 50%;
-            font-size: rem.rem_calc(10);
-            background-color: RGBA(var(--color-red-primary));
-            color: RGBA(var(--color-charade-50));
-            text-align: center;
-            align-content: center;
-
-        }
+    &-number {
+      display: block;
+      position: absolute;
+      top: 70%;
+      left: 70%;
+      min-width: rem.rem_calc(15);
+      min-height: rem.rem_calc(15);
+      border-radius: 50%;
+      font-size: rem.rem_calc(10);
+      background-color: RGBA(var(--color-red-primary));
+      color: RGBA(var(--color-charade-50));
+      text-align: center;
+      align-content: center;
     }
+  }
 }

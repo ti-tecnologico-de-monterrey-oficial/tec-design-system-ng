@@ -1,16 +1,31 @@
 @use "../../../assets/styles/base/fonts" as fonts;
 @use "../../../assets/styles/base/rem" as rem;
+@use "../../../assets/styles/base/mixins" as mixins;
 
 .bmb_timestream {
   display: flex;
+  container-type: inline-size;
 
   @include fonts.font(3, regular);
   position: relative;
 
   &-aside {
-    width: 50%;
-    max-width: 250px;
+    display: none;
     background-color: RGBA(var(--color-charade-100));
+
+    @include mixins.container-query(560, "min") {
+      width: 50%;
+      max-width: 250px;
+      display: block;
+    }
+  }
+
+  &-main {
+    width: 100%;
+
+    @include mixins.container-query(560, "min") {
+      flex: 1;
+    }
   }
 
   &-error {
@@ -93,13 +108,10 @@
     color: RGBA(var(--color-charade-200));
 
     &-aside {
-      width: 50%;
-      max-width: 250px;
       background-color: RGBA(var(--color-charade-900));
     }
 
     &-main {
-      flex: 1;
       background-color: RGBA(var(--color-charade-950));
     }
 
@@ -115,8 +127,6 @@
 
         &-title {
           color: RGBA(var(--color-charade-200));
-          @include fonts.font(3, regular);
-          font-weight: normal;
         }
       }
     }

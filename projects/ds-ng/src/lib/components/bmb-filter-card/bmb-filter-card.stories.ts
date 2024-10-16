@@ -123,6 +123,19 @@ Below is an example of how you can use this component in HTML:
         },
       },
     },
+    inLine: {
+      name: 'In line',
+      control: {
+        type: 'boolean',
+      },
+      description:
+        'Display the filter card in the document instead of the dialog',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+    }
   },
   args: {
     modalTitle: 'Opciones Filtrado',
@@ -179,6 +192,7 @@ Below is an example of how you can use this component in HTML:
         ],
       },
     ],
+    inLine: false,
   },
 } as Meta<typeof BmbFilterCardComponent>;
 

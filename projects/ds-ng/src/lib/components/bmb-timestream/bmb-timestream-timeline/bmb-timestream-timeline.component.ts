@@ -41,7 +41,6 @@ export class BmbTimestreamTimelineComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.scrollToItem();
-    console.log('this.events', this.events);
   }
 
   scrollToItem() {
