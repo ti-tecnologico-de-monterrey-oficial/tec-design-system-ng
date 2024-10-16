@@ -14,6 +14,7 @@ export type IBmbFooterEvent = 'back' | 'forward' | 'share' | 'reload';
 export type IBmbNavigationBarIcon = {
   name: string;
   label: string;
+  dotNotification?: number;
 };
 
 export type IBmbNavigationBarIcons = {
@@ -38,12 +39,7 @@ export type IBmbNavigationBarIcons = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbBottomNavigationBarComponent {
-  navigationBarIcons = input<IBmbNavigationBarIcons>({
-    one: { name: 'arrow_back_ios', label: '' },
-    two: { name: 'arrow_forward_ios', label: '' },
-    three: { name: 'share', label: '' },
-    four: { name: 'refresh', label: '' },
-  });
+  navigationBarIcons = input.required<IBmbNavigationBarIcons>();
 
   navigationBarEvents = output<IBmbFooterEvent>();
 

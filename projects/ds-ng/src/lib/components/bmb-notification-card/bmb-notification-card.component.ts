@@ -21,7 +21,7 @@ import { CommonModule } from '@angular/common';
 })
 export class BmbNotificationCardComponent implements OnInit {
   @Input() data: IBmbNotificationCardData | null = null;
-  hideExpandBtn = input<boolean>(false)
+  hideExpandBtn = input<boolean>(false);
 
   expanded: boolean = false;
   activeData: any = [];

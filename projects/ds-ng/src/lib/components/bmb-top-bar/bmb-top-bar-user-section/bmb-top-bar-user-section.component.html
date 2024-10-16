@@ -6,34 +6,33 @@
         (click)="this.openNotifications()"
         onkeypress=""
       >
-        <bmb-icon 
-          [icon]="'notifications'" 
-          [dotNotification]="totalNotifications()" 
+        <bmb-icon
+          [icon]="'notifications'"
+          [dotNotification]="totalNotifications()"
           [size]="26"
         />
         <dialog
           id="notificationDialog"
           class="bmb_top-bar-user-section-dialog"
-          [ngClass]="{'bmb_top-bar-user-section-dialog-open': isOpenNotifications}"
+          [ngClass]="{
+            'bmb_top-bar-user-section-dialog-open': isOpenNotifications,
+          }"
         >
-          <bmb-notification-card [data]="notificationNotification" [hideExpandBtn]="true"></bmb-notification-card>
+          <bmb-notification-card
+            [data]="notificationNotification"
+            [hideExpandBtn]="true"
+          ></bmb-notification-card>
         </dialog>
       </span>
-      <span
-        class="bmb_top-bar-user-section-icon"
-        onkeypress=""
-      >
-        <bmb-icon 
-          [icon]="'assignment'" 
-          [size]="26"
-        />
+      <span class="bmb_top-bar-user-section-icon" onkeypress="">
+        <bmb-icon [icon]="'assignment'" [size]="26" />
       </span>
     }
     <span
       class="bmb_top-bar-user-section-icon"
       [ngClass]="{ 'bmb_top-bar-user-section-icon-mitec': !mitec }"
     >
-      <bmb-icon icon="help" [size]="26"/>
+      <bmb-icon icon="help" [size]="26" />
     </span>
   </div>
   <bmb-user-image
