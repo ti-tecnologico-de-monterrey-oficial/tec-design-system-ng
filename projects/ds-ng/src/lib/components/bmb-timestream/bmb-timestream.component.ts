@@ -93,9 +93,7 @@ export class BmbTimestreamComponent {
   ];
   tabSelected = 1;
 
-  constructor(
-    private matDialog: MatDialog,
-  ) {}
+  constructor(private matDialog: MatDialog) {}
 
   ngOnChanges(changes: SimpleChanges) {
     this.parsedEvents = this.prepareEvents(changes['events'].currentValue);
@@ -140,7 +138,7 @@ export class BmbTimestreamComponent {
     if (!events?.length) {
       this.orderedEvents.set([]);
       return {};
-    };
+    }
 
     const objectEvent: IPlaceholderObject = {};
     events.forEach((event) => {
@@ -192,13 +190,15 @@ export class BmbTimestreamComponent {
         );
       });
 
-      this.orderedEvents.set(objectEvent['orderedEvents']
-        .map((month: string) => {
-          return objectEvent[month]['orderedEvents'].map(
-            (day: string) => objectEvent[month].events[day],
-          );
-        })
-        .flat());
+      this.orderedEvents.set(
+        objectEvent['orderedEvents']
+          .map((month: string) => {
+            return objectEvent[month]['orderedEvents'].map(
+              (day: string) => objectEvent[month].events[day],
+            );
+          })
+          .flat(),
+      );
     }
 
     return objectEvent;

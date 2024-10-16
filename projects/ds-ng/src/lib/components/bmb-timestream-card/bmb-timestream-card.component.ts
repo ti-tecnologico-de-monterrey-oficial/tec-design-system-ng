@@ -34,7 +34,7 @@ import { CommonModule } from '@angular/common';
     BmbFilterCardComponent,
     BmbCardComponent,
     BmbCardContentComponent,
-    CommonModule
+    CommonModule,
   ],
   templateUrl: './bmb-timestream-card.component.html',
   styleUrl: './bmb-timestream-card.component.scss',
@@ -139,12 +139,16 @@ export class BmbTimestreamCardComponent {
     if (!validFilters.length) {
       this.filteredEvents.set(this.events());
     } else {
-      const filtersValue = validFilters.reduce((obj: IBmbTimestreamFilters, filter) => {
-        if (filter === 'instances') return {...obj,  instances: filters[filter].label};
-        if (filter === 'search') return {...obj,  text: filters[filter]};
-        const types = obj?.type || [];
-        return {...obj, type: [...types, filter]};
-      }, {});
+      const filtersValue = validFilters.reduce(
+        (obj: IBmbTimestreamFilters, filter) => {
+          if (filter === 'instances')
+            return { ...obj, instances: filters[filter].label };
+          if (filter === 'search') return { ...obj, text: filters[filter] };
+          const types = obj?.type || [];
+          return { ...obj, type: [...types, filter] };
+        },
+        {},
+      );
 
       this.filteredEvents.set(timestreamFilter(this.events(), filtersValue));
     }
@@ -152,7 +156,8 @@ export class BmbTimestreamCardComponent {
 
   getClassList(): string[] {
     const classList = ['bmb-timestream-card-filters'];
-    if (this.isFiltersEnabled) classList.push('bmb-timestream-card-filters-active');
+    if (this.isFiltersEnabled)
+      classList.push('bmb-timestream-card-filters-active');
     return classList;
   }
 }
