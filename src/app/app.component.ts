@@ -87,6 +87,7 @@ import {
   BmbFocusElementComponent,
   BmbGradeValueComponent,
   BmbTooltipComponent,
+  BmbFormValidationComponent,
   BmbTimestreamCardComponent,
   ITimelineEvent,
 } from '../../projects/ds-ng/src/public-api';
@@ -187,6 +188,7 @@ import {
     BmbEvaluationRubricComponent,
     BmbTooltipComponent,
     BmbCardButtonComponent,
+    BmbFormValidationComponent,
     BmbTimestreamCardComponent,
   ],
   templateUrl: './app.component.html',
@@ -3005,4 +3007,16 @@ export class AppComponent {
     leftLabel: 'Rechazar Skill',
     leftIcon: 'close',
   };
+
+  onClose(event: unknown) {
+    alert('Selection: close' + event);
+  }
+
+  footerEvent(event: unknown) {
+    alert('Selection: ' + event);
+  }
+
+  menuEvent(event: unknown) {
+    alert('Selection: ' + event);
+  }
 }
