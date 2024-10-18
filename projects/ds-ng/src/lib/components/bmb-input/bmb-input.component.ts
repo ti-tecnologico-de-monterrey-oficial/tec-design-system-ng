@@ -6,6 +6,7 @@ import {
   ChangeDetectionStrategy,
   input,
   output,
+  model,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -67,9 +68,12 @@ export class BmbInputComponent {
   rows = input<number>(3);
   showMaxTextLength = input<boolean>(true);
 
+  controlTest = model<FormControl>();
+
   isFocus = output<boolean>();
   isBlur = output<boolean>();
   onChange = output<HTMLInputElement>();
+  myName = output<string>();
 
   textLength: number = 0;
 
@@ -89,6 +93,17 @@ export class BmbInputComponent {
       this.updateErrorState();
       this.cdr.markForCheck();
     });
+  }
+
+  ngAfterViewInit(): void {
+    if (this.name()) {
+      console.log('ngAfterViewInit', this.name());
+      this.myName.emit(this.name());
+    }
+    // this.controlTest.update(control => {
+    //   console.log('ngAfterViewInit update',control);
+    //   return new FormControl();
+    // });
   }
 
   private updateErrorState(): void {
