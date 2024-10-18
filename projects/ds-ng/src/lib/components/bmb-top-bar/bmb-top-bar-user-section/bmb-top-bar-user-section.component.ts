@@ -5,6 +5,7 @@ import {
   ChangeDetectionStrategy,
   HostListener,
   ElementRef,
+  output,
 } from '@angular/core';
 import { BmbUserImageComponent } from '../../bmb-user-image/bmb-user-image.component';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
@@ -38,6 +39,8 @@ export class BmbTopBarUserSectionComponent {
   @Input() assignmentNotification: string[] = [];
   @Input() notificationNotification: IBmbNotificationCardData | null = null;
 
+  helpButtonClick = output<void>();
+
   isOpenNotifications: boolean = false;
 
   @HostListener('focusout')
@@ -58,5 +61,9 @@ export class BmbTopBarUserSectionComponent {
     const newNotifications = this.notificationNotification!.new.length;
     const allNotifications = this.notificationNotification!.all.length;
     return seenNotifications + newNotifications + allNotifications;
+  }
+
+  handleHelpButtonClick() {
+    this.helpButtonClick.emit();
   }
 }
