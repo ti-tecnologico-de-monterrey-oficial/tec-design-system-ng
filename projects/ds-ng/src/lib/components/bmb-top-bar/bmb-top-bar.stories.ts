@@ -182,6 +182,15 @@ Below is an example of how you can use this component in HTML:
         category: 'Properties',
       },
     },
+    helpButtonClick: {
+      name: 'Handle Help button click',
+      control: false,
+      description: 'Function that is executed when the help button is clicked.',
+      table: {
+        type: { summary: 'function' },
+        category: 'Events',
+      },
+    },
   },
   args: {
     appName: 'TecTest',

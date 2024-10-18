@@ -8,6 +8,7 @@ import {
   TemplateRef,
   ViewChild,
   OnInit,
+  output,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbButtonDirective } from '../../directives/button.directive';
@@ -52,6 +53,7 @@ export class BmbTopBarComponent implements OnInit {
 
   @Output() logOut: EventEmitter<any> = new EventEmitter<any>();
   @Output() onLangChange: EventEmitter<string> = new EventEmitter<string>();
+  helpButtonClick = output<void>();
 
   @ViewChild(TemplateRef) contentTemplate: TemplateRef<unknown> | null = null;
 
@@ -106,5 +108,9 @@ export class BmbTopBarComponent implements OnInit {
 
   handleLangChange(lang: string): void {
     this.onLangChange.emit(lang);
+  }
+
+  handleHelpButtonClick() {
+    this.helpButtonClick.emit();
   }
 }
