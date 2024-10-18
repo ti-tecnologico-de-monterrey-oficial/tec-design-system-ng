@@ -10,6 +10,7 @@ import { BmbContainerButtonComponent } from '../bmb-container-button/bmb-contain
 import {
   BmbBottomNavigationBarComponent,
   IBmbFooterEvent,
+  IBmbNavigationBarIcons,
 } from '../bmb-bottom-navigation-bar/bmb-bottom-navigation-bar.component';
 
 export type IBmbMenuEvent = 'link' | 'openNew' | 'info';
@@ -30,6 +31,12 @@ export type IBmbMenuEvent = 'link' | 'openNew' | 'info';
 export class BmbExternalLinkComponent {
   title = input.required<string>();
   subtitle = input.required<string>();
+  navigationBarIcons = input<IBmbNavigationBarIcons>({
+    one: { name: 'arrow_back_ios', label: '' },
+    two: { name: 'arrow_forward_ios', label: '' },
+    three: { name: 'share', label: '' },
+    four: { name: 'refresh', label: '' },
+  });
 
   onClose = output<unknown>();
   menuEvent = output<IBmbMenuEvent>();
