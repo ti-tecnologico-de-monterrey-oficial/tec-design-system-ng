@@ -50,32 +50,39 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./component.scss'],
 })
 export class AppComponent {
-  userForm: FormGroup = new FormGroup({
+    formGroup: FormGroup = new FormGroup({
     name: new FormControl<string>('', Validators.required),
   });
-  showErrors: { [key: string]: boolean } = {};
 
-  onSubmit() {
-
-    if (this.userForm.valid) {
+  onSubmit(): void {
+    this.formGroup.markAllAsTouched();
+    this.formGroup.updateValueAndValidity();
+    if (this.formGroup.valid) {
+      console.log('FORM VALID');
       return;
     }
-    this.userForm.markAllAsTouched();
+    console.log('FORM', this.formGroup.status);
     this.updateErrorState();
   }
 
   updateErrorState() {
-    Object.keys(this.userForm.controls).forEach((field) => {
-      const control = this.userForm.get(field);
-      if (control instanceof FormControl) {
-        this.showErrors[field] =
-          control.invalid && (control.touched || control.dirty);
+    const invalidInputs = this.el.nativeElement.querySelectorAll('.ng-invalid');
+    invalidInputs.forEach((input: HTMLElement) => {
+      const name =
+        input.getAttribute('name') ||
+        input.getAttribute('ng-reflect-name') ||
+        input.parentElement?.getAttribute('ng-reflect-name') ||
+        '';
+      const control = this.formGroup.get(name);
+      if (control) {
+        control.markAsTouched();
+        control.updateValueAndValidity();
       }
     });
   }
 
   getFormControl(name: string): FormControl {
-    return this.userForm.get(name) as FormControl;
+    return this.formGroup.get(name) as FormControl;
   }
 }
 \`\`\`
@@ -87,6 +94,7 @@ Below is an example of how to use this component in HTML:
 \`\`\`html
 <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
   <bmb-input
+    [name]="'name'"
     [label]="'Input Label'"
     [placeholder]="'Placeholder'"
     [icon]="'apps'"
@@ -96,7 +104,6 @@ Below is an example of how to use this component in HTML:
     [isRequired]="false"
     [appearance]="'normal'"
     [control]="getFormControl('name')"
-    [showError]="showErrors['name']"
   />
   <button bmbButton appearance="primary" type="submit">Submit</button>
 </form>
@@ -119,6 +126,16 @@ Below is an example of how to use this component in HTML:
         category: 'Properties',
         type: { summary: 'string' },
         defaultValue: { summary: 'text' },
+      },
+    },
+    name: {
+      name: 'Name',
+      control: { type: 'text' },
+      description:
+        'The name of the input which is used to identify the form data.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string (required)' },
       },
     },
     control: {
@@ -218,18 +235,6 @@ Below is an example of how to use this component in HTML:
         type: { summary: 'string' },
       },
     },
-    showError: {
-      name: 'Show Error',
-      control: {
-        type: 'boolean',
-      },
-      description: 'Boolean to show or hide the error message.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-    },
     spellcheck: {
       name: 'Spellcheck',
       control: {
@@ -313,6 +318,7 @@ Below is an example of how to use this component in HTML:
 
   args: {
     icon: 'apps',
+    name: 'name',
     errorMessage: 'Error Message',
     helperMessage: 'Helper Message',
     isRequired: false,
@@ -320,7 +326,6 @@ Below is an example of how to use this component in HTML:
     disabled: false,
     label: 'Input Label',
     appearance: 'normal',
-    showError: false,
   },
 } as Meta<typeof BmbInputComponent>;
 

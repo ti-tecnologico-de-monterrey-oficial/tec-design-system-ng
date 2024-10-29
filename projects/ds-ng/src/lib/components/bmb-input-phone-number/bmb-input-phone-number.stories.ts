@@ -54,40 +54,45 @@ import { CommonModule } from '@angular/common';
 export class AppComponent {
   userForm: FormGroup;
   isPhoneDisabled = false;
-  showErrors: { [key: string]: boolean } = {};
 
   constructor(private fb: FormBuilder, private cdr: ChangeDetectorRef) {
     this.userForm = this.fb.group({
       phone: new FormControl(
-        { value: null, disabled: this.isPhoneDisabled },
+        null,
         Validators.required,
       ),
     });
   }
 
   onSubmit() {
-    if (this.userForm.valid) {
-      console.log(this.userForm.value);
-    } else {
-      console.log('Form is invalid');
-      this.userForm.markAllAsTouched();
-      this.updateErrorState();
-      this.cdr.markForCheck();
+    this.formGroup.markAllAsTouched();
+    this.formGroup.updateValueAndValidity();
+    if (this.formGroup.valid) {
+      console.log('FORM VALID');
+      return;
     }
+    console.log('FORM', this.formGroup.status);
+    this.updateErrorState();
   }
 
   updateErrorState() {
-    Object.keys(this.userForm.controls).forEach((field) => {
-      const control = this.userForm.get(field);
-      if (control instanceof FormControl) {
-        this.showErrors[field] =
-          control.invalid && (control.touched || control.dirty);
+    const invalidInputs = this.el.nativeElement.querySelectorAll('.ng-invalid');
+    invalidInputs.forEach((input: HTMLElement) => {
+      const name =
+        input.getAttribute('name') ||
+        input.getAttribute('ng-reflect-name') ||
+        input.parentElement?.getAttribute('ng-reflect-name') ||
+        '';
+      const control = this.formGroup.get(name);
+      if (control) {
+        control.markAsTouched();
+        control.updateValueAndValidity();
       }
     });
   }
 
-  get phoneControl(): FormControl {
-    return this.userForm.get('phone') as FormControl;
+  getFormControl(name: string): FormControl {
+    return this.formGroup.get(name) as FormControl;
   }
 }
 \`\`\`
@@ -99,11 +104,12 @@ Below is an example of how to use this component in HTML:
 \`\`\`html
 <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
   <bmb-input-phone-number
-  [control]="phoneControl"
-  [disabled]="isPhoneDisabled"
-  [isRequired]="false"
-  [showError]="showErrors['phone']"
-  [errorMessage]="'Error Phone'"
+    [name]="'phone'"
+    [disabled]="false"
+    [isRequired]="true"
+    [errorMessage]="'Error phone'"
+    [helperMessage]="'Helper message phone'"
+    [control]="getFormControl('phone')"
   />
   <button bmbButton appearance="primary" type="submit">Submit</button>
 </form>
@@ -114,13 +120,24 @@ Below is an example of how to use this component in HTML:
     },
   },
   argTypes: {
-    control: {
-      control: { type: 'object' },
-      description: 'Instance of FormControl to manage the input control state.',
+    name: {
+      name: 'Name',
+      control: { type: 'text' },
+      description:
+        'The name of the input which is used to identify the form data.',
       table: {
         category: 'Properties',
-        type: { summary: 'FormControl' },
-        defaultValue: { summary: "FormControl('', Validators.required)" },
+        type: { summary: 'string (required)' },
+      },
+    },
+    value: {
+      name: 'Value',
+      control: { type: 'text' },
+      description:
+        'The current value of the input field.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
       },
     },
     disabled: {
@@ -131,6 +148,26 @@ Below is an example of how to use this component in HTML:
         category: 'Properties',
         defaultValue: { summary: 'false' },
         type: { summary: 'boolean' },
+      },
+    },
+    isRequired: {
+      name: 'Required',
+      control: { type: 'boolean' },
+      description: 'Indicates whether the input field is required.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
+    control: {
+      name: 'Control',
+      control: { type: 'object' },
+      description: 'Instance of FormControl to manage the input control state. The control is only required if you do not use the form validations component.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'FormControl' },
+        defaultValue: { summary: "FormControl('', Validators.required)" },
       },
     },
     errorMessage: {
@@ -144,34 +181,25 @@ Below is an example of how to use this component in HTML:
         type: { summary: 'string' },
       },
     },
-    showError: {
-      name: 'Show Error',
+    helperMessage: {
+      name: 'Helper Message',
       control: {
-        type: 'boolean',
+        type: 'text',
       },
-      description: 'Boolean to show or hide the error message.',
+      description: 'Text to be displayed as a helper message below the input.',
       table: {
         category: 'Properties',
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-    },
-    isRequired: {
-      name: 'Required',
-      control: { type: 'boolean' },
-      description: 'Indicates whether the input field is required.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean' },
+        type: { summary: 'string' },
       },
     },
   },
   args: {
+    name: 'phone',
+    value: null,
     disabled: false,
-    showError: false,
+    isRequired: true,
     errorMessage: 'Error Message',
-    isRequired: false,
+    helperMessage: 'Helper Message',
   },
 } as Meta<typeof BmbInputPhoneNumberComponent>;
 

@@ -1,26 +1,30 @@
 import {
   Component,
-  Input,
-  ChangeDetectorRef,
   ViewEncapsulation,
   ChangeDetectionStrategy,
   input,
   output,
+  ChangeDetectorRef,
   model,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbTooltipComponent } from '../bmb-tooltip/bmb-tooltip.component';
 import { IBbmSidePosition } from '../../types';
+import { BmbFormService } from '../../directives/bmb-form-control/bmb-form-control.service';
+import { BmbInputControlDirective } from '../../../public-api';
+import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
+import { MatInputModule } from '@angular/material/input';
 
 export type IBbmInputType =
   | 'text'
   | 'password'
   | 'number'
   | 'text-area'
-  | 'radio';
-
+  | 'radio'
+  | 'email'
+  | 'phone';
 export type IBbmInputAppearance = 'main' | 'normal' | 'simple';
 
 @Component({
@@ -30,9 +34,12 @@ export type IBbmInputAppearance = 'main' | 'normal' | 'simple';
   standalone: true,
   imports: [
     CommonModule,
-    BmbIconComponent,
     ReactiveFormsModule,
+    BmbInputControlDirective,
+    BmbIconComponent,
     BmbTooltipComponent,
+    MatInputModule,
+    NgxMatIntlTelInputComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -47,9 +54,7 @@ export class BmbInputComponent {
   helperMessage = input<string>('');
   disabled = input<boolean>(false);
   isRequired = input<boolean>(false);
-  @Input() showError: boolean = false;
-  @Input() control: FormControl = new FormControl();
-  name = input<string>('');
+  name = input.required<string>();
   spellcheck = input<boolean>(false);
   maxlength = input<number>();
   minlength = input<number>();
@@ -66,61 +71,20 @@ export class BmbInputComponent {
   ariaLabelledBy = input<string>('');
   tooltip = input<string>('');
   rows = input<number>(3);
-  showMaxTextLength = input<boolean>(true);
-
-  controlTest = model<FormControl>();
+  showMaxTextLength = input<boolean>(false);
+  control = model<FormControl>();
+  showError = input<boolean>(false);
 
   isFocus = output<boolean>();
   isBlur = output<boolean>();
   onChange = output<HTMLInputElement>();
-  myName = output<string>();
 
-  textLength: number = 0;
+  validValuePhone: string = '';
 
-  constructor(private cdr: ChangeDetectorRef) {}
-
-  ngOnInit(): void {
-    if (!this.control) {
-      this.control = new FormControl();
-    }
-
-    if (this.isRequired()) {
-      this.control.addValidators(Validators.required);
-    }
-    this.control.updateValueAndValidity();
-    this.control.valueChanges.subscribe(() => {
-      this.textLength = this.control.value.toString().length;
-      this.updateErrorState();
-      this.cdr.markForCheck();
-    });
-  }
-
-  ngAfterViewInit(): void {
-    if (this.name()) {
-      console.log('ngAfterViewInit', this.name());
-      this.myName.emit(this.name());
-    }
-    // this.controlTest.update(control => {
-    //   console.log('ngAfterViewInit update',control);
-    //   return new FormControl();
-    // });
-  }
-
-  private updateErrorState(): void {
-    this.showError =
-      this.isRequired() &&
-      this.control.invalid &&
-      (this.control.touched || this.control.dirty);
-  }
-
-  onFocus() {
-    this.isFocus.emit(true);
-  }
-
-  onBlur() {
-    this.isFocus.emit(false);
-    this.isBlur.emit(true);
-  }
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private formService: BmbFormService,
+  ) {}
 
   getPositionClass(className: string): string {
     if (!!this.labelPosition()) return `${className}-${this.labelPosition()}`;
@@ -160,28 +124,65 @@ export class BmbInputComponent {
     };
   }
 
-  get shouldShowError(): boolean {
-    return this.showError;
+  getTextLength(): number {
+    return this.formService.getTextLength(this.name());
   }
 
-  handleChange(event: Event) {
-    const target = event.target as HTMLInputElement | null;
+  getControl(): FormControl {
+    return this.formService.getControl(
+      this.type(),
+      this.name(),
+      this.value(),
+      this.type() === 'radio' || this.type() === 'phone',
+      this.isRequired(),
+      this.cdr,
+      this.control()!,
+    );
+  }
+
+  get shouldShowError(): boolean {
+    if(this.type() === 'phone') {
+      return this.formService.showErrorByValidation(this.name(), this.validValuePhone);
+    }
+    return this.formService.showError(this.name());
+  }
+
+  handleRadioChange(event: Event) {
+    const target = event.target as HTMLInputElement;
     if (target && target.checked) {
       target.value = this.value()!;
-      this.control.setValue(target.value);
+      this.formService.getFormControl(this.name()).setValue(target.value);
       this.onChange.emit(target);
     }
     event.stopPropagation();
   }
 
-  handleKeyDown(event: KeyboardEvent) {
-    const target = event.target as HTMLInputElement | null;
-
-    if (event.key === 'Enter' && target && !target.checked) {
-      target.checked = true;
+  handleRadioKeyDown(event: KeyboardEvent) {
+    const target = event.target as HTMLInputElement;
+    if (event.key.toLocaleUpperCase() === 'ENTER' && target.checked) {
+      this.formService.getFormControl(this.name()).setValue(target.value);
       this.onChange.emit(target);
       event.preventDefault();
       event.stopPropagation();
     }
+  }
+
+  handlePhoneChange(event: Event) {
+    //ng-reflect-model
+    if(event !== undefined && event !== null) {
+      const name: string = this.name();
+      const value: string = event.toString();
+      this.validValuePhone = value;
+      this.onChange.emit({name, value} as HTMLInputElement);
+    }
+  }
+
+  onFocus() {
+    this.isFocus.emit(true);
+  }
+
+  onBlur() {
+    this.isFocus.emit(false);
+    this.isBlur.emit(true);
   }
 }

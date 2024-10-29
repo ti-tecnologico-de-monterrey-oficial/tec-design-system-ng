@@ -8,6 +8,7 @@ import {
 } from '../../projects/ds-ng/src/public-api';
 
 import { routes } from './app.routes';
+import { BmbFormService } from '../../projects/ds-ng/src/lib/directives/bmb-form-control/bmb-form-control.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,6 +19,7 @@ export const appConfig: ApplicationConfig = {
       BmbNotificationService,
       BmbCalendarService,
       BmbLoginOnboardingService,
+      BmbFormService,
     ]),
   ],
 };

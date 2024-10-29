@@ -9,7 +9,235 @@
 >
 </bmb-external-link> -->
 <bmb-divider />
-<bmb-form-validation></bmb-form-validation>
+<!-- <bmb-form-validation (formGroupState)="onSubmitVal($event)">
+  <bmb-input
+    type="number"
+    name="amount"
+    [max]="8"
+    [min]="0"
+    pattern="\d*"
+    errorMessage="Error message for number"
+    [isRequired]="true"
+  />
+  <bmb-input
+    [placeholder]="'placeholder'"
+    [label]="'label'"
+    icon="calendar_month"
+    [isRequired]="true"
+    [disabled]="false"
+    [appearance]="'appearance'"
+    [helperMessage]="'dateFormat'"
+    errorMessage="Error message for date"
+    [name]="'date'"
+  />
+  <bmb-input
+    name="name"
+    label="Input Label"
+    placeholder="Placeholder"
+    icon="apps"
+    errorMessage="Error message"
+    helperMessage="Helper Message"
+    [disabled]="false"
+    [isRequired]="true"
+    appearance="normal"
+  />
+  <bmb-input
+    name="named"
+    label="Input Label"
+    placeholder="Placeholder"
+    icon="apps"
+    errorMessage="Error message"
+    helperMessage="Helper Message"
+    [disabled]="true"
+    [isRequired]="false"
+    appearance="normal"
+    value="abc"
+  />
+  <bmb-input
+    name="otherName"
+    label="Input Label"
+    placeholder="Placeholder"
+    icon="apps"
+    errorMessage="Error message"
+    helperMessage="Helper Message"
+    [disabled]="false"
+    [isRequired]="true"
+    appearance="simple"
+  />
+  <bmb-input
+    name="comments"
+    label="Label textarea"
+    type="text-area"
+    tooltip="Tooltip text"
+    placeholder="Place holder text"
+    icon="apps"
+    errorMessage="Error message textarea"
+    helperMessage="Helper message textarea"
+    appearance="normal"
+    [disabled]="false"
+    [isRequired]="true"
+    [showMaxTextLength]="true"
+    [maxlength]="20"
+  />
+  <bmb-radial
+    id="radio1"
+    value="CCM"
+    name="contract"
+    label="Contract for teacher CCM.pdf"
+    [checked]="false"
+    [required]="true"
+    [disabled]="false"
+    errorMessage="Error message"
+    helperMessage="Helper message"
+    labelPosition="before"
+    (change)="handleRadial($event)"
+  />
+  <bmb-radial
+    id="radio2"
+    value="CCB"
+    name="contract"
+    label="Contrato profesor cátedra Biología CCB.pdf"
+    [checked]="false"
+    [required]="true"
+    [disabled]="false"
+    errorMessage="Error message"
+    helperMessage="Helper message"
+    (change)="handleRadial($event)"
+  />
+  <button bmbButton size="large" appearance="primary" type="submit">
+    Submit
+  </button>
+</bmb-form-validation> -->
+<bmb-divider />
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+  <bmb-input
+    id="text1"
+    name="name"
+    placeholder="Placeholder"
+    icon="apps"
+    errorMessage="Error message"
+    helperMessage="Helper Message"
+    [disabled]="false"
+    [isRequired]="true"
+    appearance="normal"
+    [control]="getFormControl('name')"
+  />
+  <!-- <bmb-input
+    id="text2"
+    name="named"
+    label="Input Label"
+    placeholder="Placeholder"
+    icon="apps"
+    errorMessage="Error message"
+    helperMessage="Helper Message"
+    [disabled]="true"
+    [isRequired]="false"
+    appearance="normal"
+    value="abc"
+    [control]="getFormControl('named')"
+  />
+  <bmb-input
+    id="text3"
+    name="otherName"
+    label="Input Label"
+    placeholder="Placeholder"
+    icon="apps"
+    errorMessage="Error message"
+    helperMessage="Helper Message"
+    [disabled]="false"
+    [isRequired]="true"
+    appearance="simple"
+    [control]="getFormControl('otherName')"
+  /> -->
+  <!-- <bmb-input-phone-number
+    [name]="'phoneDis'"
+    value="5555555555"
+    [disabled]="true"
+    [isRequired]="false"
+    [errorMessage]="'Error Phone'"
+    [helperMessage]="'Helper message dateFormat'"
+    [control]="getFormControl('phoneDis')"
+  /> -->
+  <!-- <bmb-input
+    id="textarea4"
+    name="comments"
+    label="Label textarea"
+    type="text-area"
+    tooltip="Tooltip text"
+    placeholder="Place holder text"
+    icon="apps"
+    errorMessage="Error message textarea"
+    helperMessage="Helper message textarea"
+    appearance="normal"
+    [disabled]="false"
+    [isRequired]="true"
+    [showMaxTextLength]="true"
+    [maxlength]="20"
+    [control]="getFormControl('comments')"
+  /> -->
+  <!-- <bmb-radial
+    id="radio1"
+    value="CCM"
+    name="contract"
+    label="Contract for teacher CCM.pdf"
+    [checked]="false"
+    [required]="true"
+    [disabled]="false"
+    errorMessage="Error message"
+    helperMessage="Helper message"
+    labelPosition="before"
+    (change)="handleRadial($event)"
+    [control]="getFormControl('contract')"
+  />
+  <bmb-radial
+    id="radio2"
+    value="CCB"
+    name="contract"
+    label="Contrato profesor cátedra Biología CCB.pdf"
+    [checked]="false"
+    [required]="true"
+    [disabled]="false"
+    errorMessage="Error message"
+    helperMessage="Helper message"
+    labelPosition="after"
+    (change)="handleRadial($event)"
+    [control]="getFormControl('contract')"
+  /> -->
+  <!-- <bmb-input
+    type="number"
+    label="Number"
+    name="amount"
+    [max]="8"
+    [min]="0"
+    pattern="\d*"
+    errorMessage="Error message for number"
+    [helperMessage]="'Helper message for number'"
+    [isRequired]="true"
+    [control]="getFormControl('amount')"
+  /> -->
+  <!-- <bmb-input
+    [placeholder]="'placeholder'"
+    [label]="'Date'"
+    icon="calendar_month"
+    [isRequired]="true"
+    [disabled]="false"
+    [appearance]="'appearance'"
+    [control]="getFormControl('date')"
+    [helperMessage]="'Helper message dateFormat'"
+    errorMessage="Error message for date"
+    [name]="'date'"
+  /> -->
+  <bmb-input-phone-number
+    [name]="'phone'"
+    label="Phone"
+    [disabled]="false"
+    [isRequired]="true"
+    [errorMessage]="'Error phone'"
+    [helperMessage]="'Helper message phone'"
+    [control]="getFormControl('phone')"
+  />
+  <button bmbButton appearance="primary" type="submit">Submit</button>
+</form>
 <!-- <bmb-divider />
 <bmb-evaluation-rubric
   title="Rubrica de evaluación"

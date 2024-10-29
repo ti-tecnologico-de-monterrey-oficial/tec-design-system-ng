@@ -25,6 +25,7 @@ import { BmbLoginOnboardingService } from '../../bmb-login-onboarding.service';
     >
       <span class="bmb_login-onboarding-stepper-step-one-input">
         <bmb-input
+          name="user"
           placeholder="Usuario"
           icon="account_circle"
           errorMessage="El usuario es requerido"
@@ -39,6 +40,7 @@ import { BmbLoginOnboardingService } from '../../bmb-login-onboarding.service';
       <span class="bmb_login-onboarding-stepper-step-one-input">
         <bmb-input
           type="password"
+          name="password"
           placeholder="Contraseña"
           icon="lock"
           errorMessage="La contraseña es requerida"

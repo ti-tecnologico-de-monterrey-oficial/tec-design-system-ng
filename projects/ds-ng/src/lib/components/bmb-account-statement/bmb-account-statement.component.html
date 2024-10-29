@@ -106,6 +106,7 @@
       @if (isEnableCustomAmount) {
         <bmb-input
           type="number"
+          name="amount"
           [max]="totalCount() - counter()"
           [min]="0"
           pattern="\d*"

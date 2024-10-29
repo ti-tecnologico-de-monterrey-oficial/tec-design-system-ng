@@ -6,9 +6,10 @@ import {
   model,
   TemplateRef,
   CUSTOM_ELEMENTS_SCHEMA,
+  ElementRef,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import {
   BmbThemeComponent,
@@ -90,6 +91,7 @@ import {
   BmbFormValidationComponent,
   BmbTimestreamCardComponent,
   ITimelineEvent,
+  BmbFormControlDirective,
 } from '../../projects/ds-ng/src/public-api';
 import { BmbCardButtonComponent } from '../../projects/ds-ng/src/lib/components/bmb-card-button/bmb-card-button.component';
 
@@ -113,6 +115,7 @@ import {
   IBmbEvalRubricButtons,
   IBmbEvaluationRubric,
 } from '../../projects/ds-ng/src/lib/components/bmb-evaluation-rubric/bmb-evaluation-rubric.component';
+import { BmbInputControlDirective } from '../../projects/ds-ng/src/lib/directives/bmb-input-control/bmb-input-control.directive';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'app-root',
@@ -190,6 +193,8 @@ import {
     BmbCardButtonComponent,
     BmbFormValidationComponent,
     BmbTimestreamCardComponent,
+    BmbInputControlDirective,
+    BmbFormControlDirective,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -200,6 +205,7 @@ import {
 })
 export class AppComponent {
   constructor(
+    private el: ElementRef,
     private cdr: ChangeDetectorRef,
     private matDialog: MatDialog,
     private notificationSignal: BmbNotificationService,
@@ -231,11 +237,6 @@ export class AppComponent {
   handleTabSelected(tab: IBmbTab): void {
     this.activeTabId = tab.id;
   }
-
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
 
   title = 'tec-design-system-ng';
   boolUserSummary = true;
@@ -3012,11 +3013,58 @@ export class AppComponent {
     alert('Selection: close' + event);
   }
 
+  onSubmitVal(event: unknown) {
+    console.log('onSubmit VALID', event);
+  }
+
   footerEvent(event: unknown) {
     alert('Selection: ' + event);
   }
 
   menuEvent(event: unknown) {
     alert('Selection: ' + event);
+  }
+
+  formGroup: FormGroup = new FormGroup({
+    name: new FormControl<string>(''),
+    named: new FormControl<string>(''),
+    otherName: new FormControl<string>(''),
+    comments: new FormControl<string>(''),
+    contract: new FormControl(''),
+    amount: new FormControl<number>(0),
+    date: new FormControl<string>(''),
+    phone: new FormControl(),
+    // phoneDis: new FormControl(),
+  });
+
+  onSubmit(): void {
+    this.formGroup.markAllAsTouched();
+    this.formGroup.updateValueAndValidity();
+    if (this.formGroup.valid) {
+      console.log('FORM VALID');
+      return;
+    }
+    console.log('FORM', this.formGroup.status);
+    this.updateErrorState();
+  }
+
+  updateErrorState() {
+    const invalidInputs = this.el.nativeElement.querySelectorAll('.ng-invalid');
+    invalidInputs.forEach((input: HTMLElement) => {
+      const name =
+        input.getAttribute('name') ||
+        input.getAttribute('ng-reflect-name') ||
+        input.parentElement?.getAttribute('ng-reflect-name') ||
+        '';
+      const control = this.formGroup.get(name);
+      if (control) {
+        control.markAsTouched();
+        control.updateValueAndValidity();
+      }
+    });
+  }
+
+  getFormControl(name: string): FormControl {
+    return this.formGroup.get(name) as FormControl;
   }
 }

@@ -4,7 +4,6 @@ import {
   ChangeDetectionStrategy,
   input,
   output,
-  Input,
 } from '@angular/core';
 import { BmbInputComponent } from '../bmb-input/bmb-input.component';
 import { IBbmSidePosition } from '../../types';
@@ -16,19 +15,20 @@ import { FormControl } from '@angular/forms';
     <bmb-input
       type="radio"
       [id]="id()"
-      [value]="value()"
       [name]="name()"
+      [value]="value()"
       [label]="label()"
       [checked]="checked()"
       [isRequired]="required()"
-      [control]="control"
-      [showError]="showError"
       [errorMessage]="errorMessage()"
       [helperMessage]="helperMessage()"
       [disabled]="disabled()"
       [labelPosition]="labelPosition()"
       (onChange)="handleChange($event)"
-      (myName)="handleMyName($event)"
+      [control]="control()"
+      [ariaDescribedBy]="ariaDescribedby()"
+      [ariaLabel]="ariaLabel()"
+      [ariaLabelledBy]="ariaLabelledby()"
     />
   `,
   standalone: true,
@@ -41,7 +41,7 @@ export class BmbRadialComponent {
   checked = input<boolean>(false);
   disabled = input<boolean>(false);
   value = input<string>('');
-  name = input<string>('');
+  name = input.required<string>();
   label = input<string>('');
   labelPosition = input<IBbmSidePosition>('after');
   ariaDescribedby = input<string>('');
@@ -50,16 +50,9 @@ export class BmbRadialComponent {
   required = input<boolean>(false);
   errorMessage = input<string>('');
   helperMessage = input<string>('');
-  @Input() showError: boolean = false;
-  @Input() control: FormControl = new FormControl();
+  control = input<FormControl>();
 
   change = output<HTMLInputElement>();
-  myName = output<string>();
-
-  handleMyName(event: string) {
-    console.log('handleMyName', event);
-    this.myName.emit(event);
-  }
 
   handleChange(event: any) {
     this.change.emit(event);

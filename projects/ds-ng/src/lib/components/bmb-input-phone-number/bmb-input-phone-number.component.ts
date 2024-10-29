@@ -1,71 +1,87 @@
 import {
   Component,
-  Input,
-  OnInit,
-  ChangeDetectorRef,
   ViewEncapsulation,
   ChangeDetectionStrategy,
+  input,
+  output,
+  ChangeDetectorRef,
 } from '@angular/core';
-import {
-  FormControl,
-  FormsModule,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { BmbInputComponent } from '../bmb-input/bmb-input.component';
+import { BmbFormService } from '../../directives/bmb-form-control/bmb-form-control.service';
 import { CommonModule } from '@angular/common';
-import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 
 @Component({
   selector: 'bmb-input-phone-number',
-  templateUrl: './bmb-input-phone-number.component.html',
-  styleUrls: ['./bmb-input-phone-number.component.scss'],
+  // styleUrls: ['./bmb-input-phone-number.component.scss'],
+  // templateUrl: './bmb-input-phone-number.component.html',
+  template: `
+    <bmb-input
+      type="phone"
+      [name]="name()"
+      [label]="label()"
+      [value]="value()"
+      [disabled]="disabled()"
+      [isRequired]="isRequired()"
+      [helperMessage]="helperMessage()"
+      [errorMessage]="errorMessage()"
+      [control]="control()"
+      (onChange)="handleChange($event)"
+    />
+  `,
   standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgxMatIntlTelInputComponent,
-    BmbIconComponent,
-  ],
+  imports: [BmbInputComponent],
+  // imports: [
+  //   CommonModule,
+  //   ReactiveFormsModule,
+  //   BmbInputComponent
+  // ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbInputPhoneNumberComponent implements OnInit {
-  @Input() control!: FormControl;
-  @Input() disabled: boolean = false;
-  @Input() showError: boolean = false;
-  @Input() errorMessage: string = '';
-  @Input() isRequired: boolean = false;
+export class BmbInputPhoneNumberComponent {
+  name = input.required<string>();
+  label = input<string>('');
+  value = input<string>();
+  disabled = input<boolean>(false);
+  isRequired = input<boolean>(false);
+  helperMessage = input<string>('');
+  errorMessage = input<string>('');
+  control = input<FormControl>();
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  change = output<HTMLInputElement>();
 
-  ngOnInit(): void {
-    if (!this.control) {
-      this.control = new FormControl();
-    }
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private formService: BmbFormService,
+  ) {}
 
-    if (this.isRequired) {
-      this.control.setValidators(Validators.required);
-    } else {
-      this.control.clearValidators();
-    }
-    this.control.updateValueAndValidity();
-
-    this.control.valueChanges.subscribe(() => {
-      this.updateErrorState();
-      this.cdr.markForCheck();
-    });
-  }
-
-  private updateErrorState(): void {
-    this.showError =
-      this.isRequired &&
-      this.control.invalid &&
-      (this.control.touched || this.control.dirty);
+  getControl(): FormControl {
+    return this.formService.getControl(
+      'phone',
+      this.name(),
+      this.value(),
+      true,
+      this.isRequired(),
+      this.cdr,
+      this.control()!,
+    );
   }
 
   get shouldShowError(): boolean {
-    return this.showError;
+    return this.formService.showError(this.name());
   }
+
+  handleChange(event: any) {
+    this.change.emit(event);
+  }
+
+  // handlePhoneChange(event: Event) {
+  //   //ng-reflect-model
+  //   if(event !== undefined && event !== null) {
+  //     const name: string = this.name();
+  //     const value: string = event.toString();
+  //     this.change.emit({name, value} as HTMLInputElement);
+  //   }
+  // }
 }
