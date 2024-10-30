@@ -63,6 +63,30 @@ export class BmbHeaderSectionComponent {
     return {};
   }
 
+  evaluateConditional(conditional: any): boolean {
+    if (typeof conditional === 'string') return !!conditional;
+    return conditional;
+  }
+
+  getClassNameByConditional(
+    baseClassName: string,
+    conditional: any,
+    className: string,
+  ): string[] {
+    const classes: string[] = [];
+
+    if (this.evaluateConditional(conditional)) {
+      return [...classes, `${baseClassName}-${className}`];
+    }
+    return classes;
+  }
+
+  getRightIcon(actionHeader: IBmbActionHeader): string {
+    if (actionHeader.isToggleActive && !!actionHeader.iconActiveToggle)
+      return actionHeader.iconActiveToggle;
+    return actionHeader.icon;
+  }
+
   isImage(icon: string): boolean {
     return isImage(icon);
   }
@@ -79,7 +103,6 @@ export class BmbHeaderSectionComponent {
     if (!!actionHeader.iconActiveToggle) {
       actionHeader.isToggleActive = !actionHeader.isToggleActive;
     }
-
     actionHeader.action();
   }
 }
