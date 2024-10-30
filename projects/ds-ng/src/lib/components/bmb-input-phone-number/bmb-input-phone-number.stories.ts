@@ -133,8 +133,7 @@ Below is an example of how to use this component in HTML:
     value: {
       name: 'Value',
       control: { type: 'text' },
-      description:
-        'The current value of the input field.',
+      description: 'The current value of the input field.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -163,7 +162,8 @@ Below is an example of how to use this component in HTML:
     control: {
       name: 'Control',
       control: { type: 'object' },
-      description: 'Instance of FormControl to manage the input control state. The control is only required if you do not use the form validations component.',
+      description:
+        'Instance of FormControl to manage the input control state. The control is only required if you do not use the form validations component.',
       table: {
         category: 'Properties',
         type: { summary: 'FormControl' },

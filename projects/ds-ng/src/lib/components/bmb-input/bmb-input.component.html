@@ -1,88 +1,82 @@
 <section class="bmb_field" [ngClass]="{ disabled: disabled() }">
-    <label [class]="getClasses('bmb_field')" tabindex="1">
-      @if (type() === "radio") {
-        <input
-          [type]="type()"
-          class="bmb_field-radio-input"
-          [formControl]="getControl()"
-          [type]="type()"
-          [id]="id()"
-          [name]="name()"
-          [attr.aria-describedby]="ariaDescribedBy()"
-          [attr.aria-label]="ariaLabel()"
-          [attr.aria-labelledby]="ariaLabelledBy()"
-          [attr.value]="value()"
-          [value]="value()"
-          [checked]="checked()"
-          [disabled]="disabled()"
-          [required]="isRequired()"
-          (change)="handleRadioChange($event)"
-          (keydown)="handleRadioKeyDown($event)"
-        />
-        <section class="bmb_field-radio-box">
-          <span class="bmb_field-radio-mark"></span>
-        </section>
+  <label [class]="getClasses('bmb_field')" tabindex="1">
+    @if (type() === "radio") {
+      <input
+        [type]="type()"
+        class="bmb_field-radio-input"
+        [formControl]="getControl()"
+        [type]="type()"
+        [id]="id()"
+        [name]="name()"
+        [attr.aria-describedby]="ariaDescribedBy()"
+        [attr.aria-label]="ariaLabel()"
+        [attr.aria-labelledby]="ariaLabelledBy()"
+        [attr.value]="value()"
+        [value]="value()"
+        [checked]="checked()"
+        [disabled]="disabled()"
+        [required]="isRequired()"
+        (change)="handleRadioChange($event)"
+        (keydown)="handleRadioKeyDown($event)"
+      />
+      <section class="bmb_field-radio-box">
+        <span class="bmb_field-radio-mark"></span>
+      </section>
+    }
+    <span class="bmb_field-label" [ngClass]="getLabelClass('bmb_field-label')">
+      {{ label() }}
+      @if (isRequired() && !!label()) {
+        <small class="bmb_field-label-required">*</small>
       }
-      <span
-        class="bmb_field-label"
-        [ngClass]="getLabelClass('bmb_field-label')"
-      >
-        {{ label() }}
-        @if (isRequired() && !!label()) {
-          <small class="bmb_field-label-required">*</small>
-        }
-        @if (!!tooltip()) {
-          <bmb-tooltip
-            class="bmb_field-label-tooltip"
-            [text]="tooltip()"
-            [align]="'below'"
-            [justify]="'before'"
-            [icon]="'help'"
-            [size]="15"
+      @if (!!tooltip()) {
+        <bmb-tooltip
+          class="bmb_field-label-tooltip"
+          [text]="tooltip()"
+          [align]="'below'"
+          [justify]="'before'"
+          [icon]="'help'"
+          [size]="15"
+        />
+      }
+      @if (type() === "text-area" && showMaxTextLength()) {
+        <span class="bmb_field-label-max">
+          {{ getTextLength() }}/{{ maxlength() || "-" }}
+        </span>
+      }
+    </span>
+    @if (type() !== "radio") {
+      <section class="bmb_field-wrapper">
+        @if (!!icon() && type() !== "text-area") {
+          <bmb-icon
+            [icon]="icon()"
+            class="bmb_field-icon"
+            [ngClass]="'bmb_field-icon-' + appearance()"
           />
         }
-        @if (type() === "text-area" && showMaxTextLength()) {
-          <span class="bmb_field-label-max">
-            {{ getTextLength() }}/{{ maxlength() || "-" }}
-          </span>
-        }
-      </span>
-      @if (type() !== "radio") {
-        <section class="bmb_field-wrapper">
-          @if (!!icon() && type() !== "text-area") {
-            <bmb-icon
-              [icon]="icon()"
-              class="bmb_field-icon"
-              [ngClass]="'bmb_field-icon-' + appearance()"
-            />
+        @if (type() === "text-area") {
+          <textarea
+            bmbControl
+            class="bmb_field-text-area"
+            [ngClass]="inputClasses"
+            [placeholder]="placeholder()"
+            [disabled]="disabled()"
+            [required]="isRequired()"
+            [formControl]="getControl()"
+            [maxlength]="maxlength()!"
+            [minlength]="minlength()!"
+            [spellcheck]="spellcheck()"
+            (focus)="onFocus()"
+            (blur)="onBlur()"
+            [rows]="rows()"
+            [name]="name()"
+            [id]="name()"
+            [value]="value()"
+          ></textarea>
+          @if (shouldShowError) {
+            <bmb-icon class="bmb_field-text-area-error-icon" [icon]="'error'" />
           }
-          @if (type() === "text-area") {
-            <textarea
-              bmbControl
-              class="bmb_field-text-area"
-              [ngClass]="inputClasses"
-              [placeholder]="placeholder()"
-              [disabled]="disabled()"
-              [required]="isRequired()"
-              [formControl]="getControl()"
-              [maxlength]="maxlength()!"
-              [minlength]="minlength()!"
-              [spellcheck]="spellcheck()"
-              (focus)="onFocus()"
-              (blur)="onBlur()"
-              [rows]="rows()"
-              [name]="name()"
-              [id]="name()"
-              [value]="value()"
-            ></textarea>
-            @if (shouldShowError) {
-              <bmb-icon
-                class="bmb_field-text-area-error-icon"
-                [icon]="'error'"
-              />
-            }
-          } @else if (type() === "phone") {
-            <!-- <ngx-mat-intl-tel-input
+        } @else if (type() === "phone") {
+          <!-- <ngx-mat-intl-tel-input
               [class]="getClasses('bmb_field')"
               bmbControl
               [type]="type()"
@@ -94,44 +88,44 @@
               [preferredCountries]="['mx']"
               (ngModelChange)="handlePhoneChange($event)"
             /> -->
-            <!--appearance: fill or fill -->
-            <mat-form-field appearance="outline">
-              <ngx-mat-intl-tel-input
-                [name]="name()"
-                [required]="isRequired()"
-                [disabled]="disabled()"
-                [formControl]="getControl()"
-                [enableSearch]="true"
-                [preferredCountries]="['mx']"
-                (ngModelChange)="handlePhoneChange($event)"
-              />
-            </mat-form-field>
-          } @else {
-            <input
-              bmbControl
-              [type]="type()"
-              class="bmb_field-input"
-              [ngClass]="inputClasses"
+          <!--appearance: fill or fill -->
+          <mat-form-field appearance="outline">
+            <ngx-mat-intl-tel-input
+              [name]="name()"
               [required]="isRequired()"
               [disabled]="disabled()"
-              [placeholder]="placeholder()"
               [formControl]="getControl()"
-              (focus)="onFocus()"
-              (blur)="onBlur()"
-              [name]="name()"
-              [id]="name()"
-              [spellcheck]="spellcheck()"
-              [maxlength]="maxlength()!"
-              [minlength]="minlength()!"
-              [pattern]="pattern()!"
-              [max]="max()"
-              [min]="min()"
-              [value]="value()"
+              [enableSearch]="true"
+              [preferredCountries]="['mx']"
+              (ngModelChange)="handlePhoneChange($event)"
             />
-          }
-        </section>
-      }
-    </label>
+          </mat-form-field>
+        } @else {
+          <input
+            bmbControl
+            [type]="type()"
+            class="bmb_field-input"
+            [ngClass]="inputClasses"
+            [required]="isRequired()"
+            [disabled]="disabled()"
+            [placeholder]="placeholder()"
+            [formControl]="getControl()"
+            (focus)="onFocus()"
+            (blur)="onBlur()"
+            [name]="name()"
+            [id]="name()"
+            [spellcheck]="spellcheck()"
+            [maxlength]="maxlength()!"
+            [minlength]="minlength()!"
+            [pattern]="pattern()!"
+            [max]="max()"
+            [min]="min()"
+            [value]="value()"
+          />
+        }
+      </section>
+    }
+  </label>
   @if (helperMessage() && !shouldShowError) {
     <p class="bmb_field-helper">
       {{ helperMessage() }}

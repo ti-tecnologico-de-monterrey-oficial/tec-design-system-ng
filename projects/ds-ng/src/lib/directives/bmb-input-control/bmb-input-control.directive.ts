@@ -30,7 +30,7 @@ export class BmbInputControlDirective {
     }
 
     const control: FormControl = this.formService.getFormControl(this.name());
-      this.name(),
+    this.name(),
       this.formService.getControl(
         this.type(),
         this.name(),
@@ -39,7 +39,7 @@ export class BmbInputControlDirective {
         this.required()!,
         this.cdr,
         control,
-    );
+      );
   }
 
   @HostListener('blur')

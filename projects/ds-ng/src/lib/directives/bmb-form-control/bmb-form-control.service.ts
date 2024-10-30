@@ -103,7 +103,7 @@ export class BmbFormService {
     if (control !== null) {
       control.setValue(validValue);
       control.updateValueAndValidity();
-      return  !(!!validValue) && (control.touched || control.dirty);
+      return !!!validValue && (control.touched || control.dirty);
     }
 
     return false;

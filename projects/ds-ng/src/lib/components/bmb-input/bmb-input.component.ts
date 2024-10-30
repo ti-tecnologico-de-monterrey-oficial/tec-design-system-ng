@@ -141,8 +141,11 @@ export class BmbInputComponent {
   }
 
   get shouldShowError(): boolean {
-    if(this.type() === 'phone') {
-      return this.formService.showErrorByValidation(this.name(), this.validValuePhone);
+    if (this.type() === 'phone') {
+      return this.formService.showErrorByValidation(
+        this.name(),
+        this.validValuePhone,
+      );
     }
     return this.formService.showError(this.name());
   }
@@ -169,11 +172,11 @@ export class BmbInputComponent {
 
   handlePhoneChange(event: Event) {
     //ng-reflect-model
-    if(event !== undefined && event !== null) {
+    if (event !== undefined && event !== null) {
       const name: string = this.name();
       const value: string = event.toString();
       this.validValuePhone = value;
-      this.onChange.emit({name, value} as HTMLInputElement);
+      this.onChange.emit({ name, value } as HTMLInputElement);
     }
   }
 
