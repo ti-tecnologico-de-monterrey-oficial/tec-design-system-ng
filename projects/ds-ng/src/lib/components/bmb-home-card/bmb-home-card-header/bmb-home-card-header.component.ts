@@ -37,6 +37,17 @@ export class BmbHomeCardHeaderComponent {
   onBack = output();
 
   isExpanded: boolean = false;
+  actionHomeHeader: IBmbActionHeader = {
+    icon: this.isMobile() ? 'close' : 'fit_screen',
+    iconActiveToggle: this.isMobile() ? '' : 'close_fullscreen',
+    isToggleActive: false,
+    action: () => this.handleExpandChange(),
+  };
+  actionHeaderList: IBmbActionHeader[] = [];
+
+  ngOnInit(): void {
+    this.actionHeaderList = [...this.actionHeaders(), this.actionHomeHeader];
+  }
 
   getLeftIcon(): string {
     if (this.isExpanded && !!this.leftIcon()) return this.leftIcon()!;
@@ -51,18 +62,6 @@ export class BmbHomeCardHeaderComponent {
   getDataLocalNav(): IBmbDataTopBar[] {
     if (this.isMobile()) return [];
     return this.dataLocalNav();
-  }
-
-  getActionHeaders(): IBmbActionHeader[] {
-    return [
-      ...this.actionHeaders(),
-      {
-        icon: this.isMobile() ? 'close' : 'fit_screen',
-        iconActiveToggle: this.isMobile() ? '' : 'close_fullscreen',
-        isToggleActive: false,
-        action: () => this.handleExpandChange(),
-      },
-    ];
   }
 
   handleBack(): void {
