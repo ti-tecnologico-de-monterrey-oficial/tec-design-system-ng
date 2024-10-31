@@ -77,13 +77,15 @@ export class BmbFormService {
         control.addValidators(Validators.email);
       }
 
-      if (type !== 'radio') {
+      if (type !== 'radio' && type !== 'phone') {
         control.setValue(value);
       }
 
-      newControl.valueChanges.subscribe(() => {
-        cdr.markForCheck();
-      });
+      if (type !== 'phone') {
+        newControl.valueChanges.subscribe(() => {
+          cdr.markForCheck();
+        });
+      }
     }
 
     return this.getFormControl(name);

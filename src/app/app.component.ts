@@ -116,6 +116,8 @@ import {
   IBmbEvaluationRubric,
 } from '../../projects/ds-ng/src/lib/components/bmb-evaluation-rubric/bmb-evaluation-rubric.component';
 import { BmbInputControlDirective } from '../../projects/ds-ng/src/lib/directives/bmb-input-control/bmb-input-control.directive';
+import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'app-root',
@@ -195,6 +197,8 @@ import { BmbInputControlDirective } from '../../projects/ds-ng/src/lib/directive
     BmbTimestreamCardComponent,
     BmbInputControlDirective,
     BmbFormControlDirective,
+    NgxMatIntlTelInputComponent,
+    MatFormFieldModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -3034,7 +3038,6 @@ export class AppComponent {
     amount: new FormControl<number>(0),
     date: new FormControl<string>(''),
     phone: new FormControl(),
-    // phoneDis: new FormControl(),
   });
 
   onSubmit(): void {

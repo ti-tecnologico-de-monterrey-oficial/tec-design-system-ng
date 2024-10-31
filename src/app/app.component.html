@@ -108,7 +108,6 @@
     Submit
   </button>
 </bmb-form-validation> -->
-<bmb-divider />
 <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
   <bmb-input
     id="text1"
@@ -122,7 +121,7 @@
     appearance="normal"
     [control]="getFormControl('name')"
   />
-  <!-- <bmb-input
+  <bmb-input
     id="text2"
     name="named"
     label="Input Label"
@@ -148,7 +147,7 @@
     [isRequired]="true"
     appearance="simple"
     [control]="getFormControl('otherName')"
-  /> -->
+  />
   <!-- <bmb-input-phone-number
     [name]="'phoneDis'"
     value="5555555555"
@@ -158,7 +157,7 @@
     [helperMessage]="'Helper message dateFormat'"
     [control]="getFormControl('phoneDis')"
   /> -->
-  <!-- <bmb-input
+  <bmb-input
     id="textarea4"
     name="comments"
     label="Label textarea"
@@ -174,8 +173,8 @@
     [showMaxTextLength]="true"
     [maxlength]="20"
     [control]="getFormControl('comments')"
-  /> -->
-  <!-- <bmb-radial
+  />
+  <bmb-radial
     id="radio1"
     value="CCM"
     name="contract"
@@ -202,8 +201,8 @@
     labelPosition="after"
     (change)="handleRadial($event)"
     [control]="getFormControl('contract')"
-  /> -->
-  <!-- <bmb-input
+  />
+  <bmb-input
     type="number"
     label="Number"
     name="amount"
@@ -214,8 +213,8 @@
     [helperMessage]="'Helper message for number'"
     [isRequired]="true"
     [control]="getFormControl('amount')"
-  /> -->
-  <!-- <bmb-input
+  />
+  <bmb-input
     [placeholder]="'placeholder'"
     [label]="'Date'"
     icon="calendar_month"
@@ -226,12 +225,13 @@
     [helperMessage]="'Helper message dateFormat'"
     errorMessage="Error message for date"
     [name]="'date'"
-  /> -->
+  />
   <bmb-input-phone-number
+    appearance="normal"
     [name]="'phone'"
     label="Phone"
-    [disabled]="false"
-    [isRequired]="true"
+    [disabled]="true"
+    [isRequired]="false"
     [errorMessage]="'Error phone'"
     [helperMessage]="'Helper message phone'"
     [control]="getFormControl('phone')"

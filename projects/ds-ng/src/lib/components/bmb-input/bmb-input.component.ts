@@ -15,7 +15,7 @@ import { IBbmSidePosition } from '../../types';
 import { BmbFormService } from '../../directives/bmb-form-control/bmb-form-control.service';
 import { BmbInputControlDirective } from '../../../public-api';
 import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
-import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 export type IBbmInputType =
   | 'text'
@@ -38,8 +38,8 @@ export type IBbmInputAppearance = 'main' | 'normal' | 'simple';
     BmbInputControlDirective,
     BmbIconComponent,
     BmbTooltipComponent,
-    MatInputModule,
     NgxMatIntlTelInputComponent,
+    MatFormFieldModule,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -141,12 +141,6 @@ export class BmbInputComponent {
   }
 
   get shouldShowError(): boolean {
-    if (this.type() === 'phone') {
-      return this.formService.showErrorByValidation(
-        this.name(),
-        this.validValuePhone,
-      );
-    }
     return this.formService.showError(this.name());
   }
 
@@ -167,16 +161,6 @@ export class BmbInputComponent {
       this.onChange.emit(target);
       event.preventDefault();
       event.stopPropagation();
-    }
-  }
-
-  handlePhoneChange(event: Event) {
-    //ng-reflect-model
-    if (event !== undefined && event !== null) {
-      const name: string = this.name();
-      const value: string = event.toString();
-      this.validValuePhone = value;
-      this.onChange.emit({ name, value } as HTMLInputElement);
     }
   }
 

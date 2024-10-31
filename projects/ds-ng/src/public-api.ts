@@ -5,7 +5,6 @@
 export * from './lib/ds-ng.service';
 export * from './lib/services/notification.service';
 export * from './lib/services/calendar.service';
-export * from './lib/components/bmb-login-onboarding/bmb-login-onboarding.service';
 
 export * from './lib/ds-ng.component';
 export * from './lib/directives/button.directive';
@@ -89,7 +88,7 @@ export * from './lib/components/bmb-text-link/bmb-text-link.component';
 export * from './lib/components/bmb-evaluation-rubric/bmb-evaluation-rubric.component';
 export * from './lib/components/bmb-hito-card/bmb-hito-card.component';
 export * from './lib/components/bmb-form-validation/bmb-form-validation.component';
-
+export * from './lib/components/bmb-login-onboarding/bmb-login-onboarding.service';
 export * from './lib/components/bmb-timestream-card/bmb-timestream-card.component';
 export * from './lib/components/bmb-filter-card/bmb-filter-card.component';
 // types

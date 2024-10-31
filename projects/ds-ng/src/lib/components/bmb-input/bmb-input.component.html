@@ -76,30 +76,17 @@
             <bmb-icon class="bmb_field-text-area-error-icon" [icon]="'error'" />
           }
         } @else if (type() === "phone") {
-          <!-- <ngx-mat-intl-tel-input
-              [class]="getClasses('bmb_field')"
-              bmbControl
-              [type]="type()"
-              [name]="name()"
-              [value]="value()"
-              [required]="isRequired()"
-              [disabled]="disabled()"
-              [formControl]="getControl()"
-              [preferredCountries]="['mx']"
-              (ngModelChange)="handlePhoneChange($event)"
-            /> -->
-          <!--appearance: fill or fill -->
-          <mat-form-field appearance="outline">
-            <ngx-mat-intl-tel-input
-              [name]="name()"
-              [required]="isRequired()"
-              [disabled]="disabled()"
-              [formControl]="getControl()"
-              [enableSearch]="true"
-              [preferredCountries]="['mx']"
-              (ngModelChange)="handlePhoneChange($event)"
-            />
-          </mat-form-field>
+          <ngx-mat-intl-tel-input
+            class="bmb_field-input"
+            [ngClass]="inputClasses"
+            [name]="name()"
+            [required]="isRequired()"
+            [disabled]="disabled()"
+            [formControl]="getControl()"
+            [preferredCountries]="['mx']"
+            [enableSearch]="true"
+          >
+          </ngx-mat-intl-tel-input>
         } @else {
           <input
             bmbControl

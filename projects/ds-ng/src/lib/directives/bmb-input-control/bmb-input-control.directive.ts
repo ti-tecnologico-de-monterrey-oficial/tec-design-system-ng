@@ -57,9 +57,5 @@ export class BmbInputControlDirective {
         control.value.toString().length,
       );
     }
-    // if (this.type() === 'phone') {
-    //   console.log(control.errors?.validatePhoneNumber);
-    //   debugger;
-    // }
   }
 }
