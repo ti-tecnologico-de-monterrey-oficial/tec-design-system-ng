@@ -21,7 +21,8 @@ import { BmbPullWedgeComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-n
   styleUrl: './component.scss',
 })
 export class AppComponent {
-  initialHeight = 200;
+  initialHeight = 300;
+  minContentHeight = 50;
 }
 \`\`\`
 
@@ -39,10 +40,20 @@ Below is an example of how you can use this component in HTML:
   },
   argTypes: {
     initialHeight: {
-      name: 'Initial Height',
+      name: 'Full Height',
       control: { type: 'number' },
       description:
-        'The initial height of the pull wedge. Default height is 200px',
+        'The full height of the pull wedge for the content to be shown. Default height is 300px',
+      table: {
+        category: 'Properties',
+        type: { summary: 'number' },
+      },
+    },
+    minContentHeight: {
+      name: 'Minimum Content Height',
+      control: { type: 'number' },
+      description:
+        'The initial height of the pull wedge. Default height is 100px, minimum is 50px',
       table: {
         category: 'Properties',
         type: { summary: 'number' },
@@ -50,7 +61,8 @@ Below is an example of how you can use this component in HTML:
     },
   },
   args: {
-    initialHeight: 200,
+    initialHeight: 300,
+    minContentHeight: 100,
   },
 } as Meta<typeof BmbPullWedgeComponent>;
 
