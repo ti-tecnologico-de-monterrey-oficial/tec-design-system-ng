@@ -1,4 +1,17 @@
 <bmb-theme />
+<!-- <button
+  bmbButton
+  appearance="primary"
+  icon="home"
+  size="small"
+  position="left"
+  [case]="false"
+  [isToggleActive]="false"
+  [enableButtonToggle]="true"
+  (click)="openModal()"
+>
+  Open modal
+</button> -->
 <!-- <bmb-divider />
 <bmb-external-link
   [title]="'CONECTA'"
@@ -121,7 +134,7 @@
     appearance="normal"
     [control]="getFormControl('name')"
   />
-  <bmb-input
+  <!-- <bmb-input
     id="text2"
     name="named"
     label="Input Label"
@@ -147,7 +160,7 @@
     [isRequired]="true"
     appearance="simple"
     [control]="getFormControl('otherName')"
-  />
+  /> -->
   <!-- <bmb-input-phone-number
     [name]="'phoneDis'"
     value="5555555555"
@@ -157,7 +170,7 @@
     [helperMessage]="'Helper message dateFormat'"
     [control]="getFormControl('phoneDis')"
   /> -->
-  <bmb-input
+  <!-- <bmb-input
     id="textarea4"
     name="comments"
     label="Label textarea"
@@ -225,19 +238,212 @@
     [helperMessage]="'Helper message dateFormat'"
     errorMessage="Error message for date"
     [name]="'date'"
-  />
+  /> -->
   <bmb-input-phone-number
     appearance="normal"
     [name]="'phone'"
     label="Phone"
-    [disabled]="true"
-    [isRequired]="false"
+    [disabled]="false"
+    [isRequired]="true"
     [errorMessage]="'Error phone'"
     [helperMessage]="'Helper message phone'"
     [control]="getFormControl('phone')"
   />
   <button bmbButton appearance="primary" type="submit">Submit</button>
 </form>
+<section style="margin: 1rem">
+  <!-- <bmb-calendar
+    [view]="'week'"
+    (onDateChange)="onDateChange($event)"
+  ></bmb-calendar> -->
+  <!-- <bmb-grades
+    [grades]="[
+      {
+        title: 'Calificaciones 2022',
+        subtitle: 'Semestrales 2022',
+        periods: [
+          {
+            detail: {
+              title: 'Semestral X - Y',
+              subtitle: 'Z materias acreditadas',
+              score: 100,
+            },
+            accreditedClasses: 7,
+            periodAverage: 99,
+            serviceHours: 46,
+            classes: [
+              {
+                detail: {
+                  title: 'Nombre de clase 1',
+                  subtitle: 'TC-100000',
+                  score: 100,
+                },
+                partials: [{ title: 'Parcial 1', score: 100 }],
+              },
+            ],
+          },
+          {
+            detail: {
+              title: 'Semestral Y - Z',
+              subtitle: 'Z materias acreditadas',
+              score: 100,
+            },
+            accreditedClasses: 6,
+            periodAverage: 100,
+            serviceHours: 49.5,
+            classes: [
+              {
+                detail: {
+                  title: 'Nombre de clase 2',
+                  subtitle: 'TC-100000',
+                  score: 100,
+                },
+                partials: [
+                  { title: 'Parcial 1', score: 100 },
+                  { title: 'Parcial 2', score: 99 },
+                ],
+              },
+              {
+                detail: {
+                  title: 'Nombre de clase 3',
+                  subtitle: 'TC-100002',
+                  score: 100,
+                },
+                partials: [{ title: 'Parcial 1', score: 100 }],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        title: 'Calificaciones 2023',
+        subtitle: 'Semestrales 2023',
+        periods: [
+          {
+            detail: {
+              title: 'Semestral X - Y  2023',
+              subtitle: 'Z materias acreditadas',
+              score: 100,
+            },
+            accreditedClasses: 7,
+            periodAverage: 99,
+            serviceHours: 46,
+            classes: [
+              {
+                detail: {
+                  title: 'Nombre de clase 1  2023',
+                  subtitle: 'TC-100000',
+                  score: 100,
+                },
+                partials: [{ title: 'Parcial 1  2023', score: 100 }],
+              },
+            ],
+          },
+          {
+            detail: {
+              title: 'Semestral Y - Z  2023 ',
+              subtitle: 'Z materias acreditadas  2023',
+              score: 100,
+            },
+            accreditedClasses: 6,
+            periodAverage: 100,
+            serviceHours: 49.5,
+            classes: [
+              {
+                detail: {
+                  title: 'Nombre de clase 2  2023',
+                  subtitle: 'TC-100000  2023',
+                  score: 100,
+                },
+                partials: [
+                  { title: 'Parcial 1  2023', score: 100 },
+                  { title: 'Parcial 2  2023', score: 99 },
+                ],
+              },
+              {
+                detail: {
+                  title: 'Nombre de clase 3  2023',
+                  subtitle: 'TC-100002',
+                  score: 100,
+                },
+                partials: [{ title: 'Parcial 1  2023', score: 100 }],
+              },
+            ],
+          },
+        ],
+      },
+    ]"
+    (closeGrades)="closeGrades($event)"
+  ></bmb-grades> -->
+  <!-- <bmb-home-card
+    leftIcon="chevron_left"
+    icon="account_balance_wallet"
+    bgIconAppearance="green-light"
+    title="Title"
+    subtitle="Subtitle"
+    [dataLocalNav]="dataLocalNav"
+    [actionHeaders]="actionHeadersB"
+    [isMobile]="false"
+  >
+    <p>hello world</p>
+  </bmb-home-card> -->
+  <!-- <bmb-login-onboarding (handleRequest)="handleRequest($event)" /> -->
+  <!-- <bmb-timestream-card
+    title="Title"
+    subtitle="Subtitle"
+    [dataLocalNav]="dataLocalNav"
+    icon="account_balance_wallet"
+    bgIconAppearance="green-light"
+    dateFormat="yyyy-MM-dd"
+    lang="es"
+    [events]="events"
+  /> -->
+</section>
+<!-- <bmb-chat-bar
+  [placeholder]="'Custom placeholder'"
+  [botList]="[
+    { name: 'TecGPT', icon: '/assets/images/bot-icons/bot.png' },
+    { name: 'ChatGPT', icon: '/assets/images/bot-icons/chat_gpt.svg' },
+    { name: 'Comment', icon: '/assets/images/bot-icons/comment.svg' },
+    { name: 'New', icon: '/assets/images/bot-icons/new.svg' },
+    { name: 'BotSchool', icon: '/assets/images/bot-icons/bot_school.svg' },
+    { name: 'BotTech', icon: '/assets/images/bot-icons/bot_tech.svg' },
+    { name: 'BotSport', icon: '/assets/images/bot-icons/bot_sport.svg' },
+    { name: 'BotPhone', icon: '/assets/images/bot-icons/bot_phone.svg' },
+    { name: 'BotMedic', icon: '/assets/images/bot-icons/bot_medic.svg' },
+    { name: 'BotScience', icon: '/assets/images/bot-icons/bot_science.svg' },
+    { name: 'Backup', icon: '/assets/images/bot-icons/backup.svg' },
+  ]"
+  [currentBot]="{ name: 'TecGPT', icon: '/assets/images/bot-icons/bot.png' }"
+  [isLoading]="false"
+></bmb-chat-bar> -->
+<!-- <bmb-account-statement
+  [title]="'Estado de cuenta'"
+  [progressCircleTitle]="['Total a pagar', 'este mes']"
+  [labelPrimary]="'Cuota Mensual'"
+  [labelSecondary]="'Pendiente'"
+  [totalCount]="10000"
+  [counter]="1000"
+  [progressTitle]="'Total pagado'"
+  [formatDates]="'yyyy-MM-dd'"
+  [paymentDeadline]="'2024-10-20'"
+  [cutOffDate]="'2024-10-01'"
+  [paymentDeadlineLabel]="'Fecha límite de pago:'"
+  [cutOffDateLabel]="'Fecha de corte:'"
+  [payButtonLabel]="'Pagar'"
+  [backButtonLabel]="'Regresar'"
+  [modalTitle]="'Nombre de clase'"
+  [modalSubtitle]="'TS-0001'"
+  [modalRestLabel]="'Pagar restante'"
+  [modalOtherAmountLabel]="'Otra cantidad'"
+  [modalPrimaryButtonLabel]="'Pagar'"
+  [errorMessage]="
+    '
+  Error, Este campo es requerido y debe ser una cantidad entre 1 y 9000
+  '
+  "
+></bmb-account-statement> -->
+<!-- <bmb-form-validation></bmb-form-validation> -->
 <!-- <bmb-divider />
 <bmb-evaluation-rubric
   title="Rubrica de evaluación"

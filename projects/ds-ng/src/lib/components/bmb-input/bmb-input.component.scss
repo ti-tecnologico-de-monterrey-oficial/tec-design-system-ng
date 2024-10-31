@@ -275,6 +275,13 @@
     pointer-events: none;
     opacity: 0.8;
   }
+
+  .ngx-mat-tel-input-container {
+    display: flex;
+    height: 3rem;
+    position: relative;
+    width: 21.375rem;
+  }
 }
 
 [data-theme="dark"],
