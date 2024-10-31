@@ -3,14 +3,12 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   input,
-  ChangeDetectorRef,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import {
   BmbInputComponent,
   IBbmInputAppearance,
 } from '../bmb-input/bmb-input.component';
-import { BmbFormService } from '../../directives/bmb-form-control/bmb-form-control.service';
 
 @Component({
   selector: 'bmb-input-phone-number',
