@@ -91,6 +91,7 @@ import {
   BmbTimestreamCardComponent,
   ITimelineEvent,
 } from '../../projects/ds-ng/src/public-api';
+import { BmbPullWedgeComponent } from '../../projects/ds-ng/src/lib/components/bmb-pull-wedge/bmb-pull-wedge.component';
 import { BmbCardButtonComponent } from '../../projects/ds-ng/src/lib/components/bmb-card-button/bmb-card-button.component';
 
 export interface Target {
@@ -121,6 +122,7 @@ import {
     ReactiveFormsModule,
     CommonModule,
     RouterModule,
+    BmbPullWedgeComponent,
     BmbThemeComponent,
     BmbBadgeComponent,
     BmbButtonDirective,
