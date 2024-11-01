@@ -1,0 +1,89 @@
+<section class="bmb_input-tags" [ngClass]="{ disabled: disabled() }">
+    @if(!!label()){
+        <div class="bmb_input-tags-label">
+            <span class="bmb_input-tags-label-text">
+                <label>
+                    {{label()}}
+                    @if(isRequired()){
+                        <small class="bmb_input-tags-label-required">*</small>
+                    }
+                </label>
+            </span>
+            @if (!!tooltip()) {
+                <bmb-tooltip
+                  class="bmb_input-tags-label-tooltip"
+                  [text]="tooltip()"
+                  [align]="'below'"
+                  [justify]="'before'"
+                  [icon]="'help'"
+                  [size]="15"
+                />
+              }
+        </div>
+    }
+    <div 
+        class="bmb_input-tags-wrapper"
+        [ngClass]="{
+            'focused': this.showDropdown,
+            'error': this.showError
+        }"
+        (click)="showDropdownDialog()"
+        onkeydown=""
+    >
+       <div 
+            class="bmb_input-tags-input"
+            
+        >
+            {{placeholder()}}
+       </div>
+
+       @if(tagsSelected.length >= 1){
+            <div 
+                class="bmb_input-tags-container"
+            >
+                @for (item of tagsSelected; track $index) {
+                    <span class="bmb_input-tags-container-tag">
+                        {{ item }}
+                        <bmb-icon (click)="removeTag(item)" [icon]="'close'" onkeypress=""/> 
+                    </span>
+                }
+            </div>
+       }
+
+       @if(showDropdown){
+        <div 
+            class="bmb_input-tags-dropdown"
+            [ngClass]="{
+                'focused': this.showDropdown,
+                'error': this.showError
+                }"
+        >
+            @for (tag of filteredOptions; track $index) {
+                <div
+                    class="bmb_input-tags-dropdown-item" 
+                    (click)="addTag(tag)" 
+                    [ngClass]="{'bmb_input-tags-dropdown-selected': tagsSelected.includes(tag)}"
+                    onkeypress=""
+                >
+                    {{tag}}
+                </div>
+            }
+
+        </div>
+    }
+    </div>
+
+    @if ((!this.showError && helperMessage()) && !this.showDropdown) {
+        <p class="bmb_input-tags-helper">
+          {{ helperMessage() }}
+        </p>
+    }
+    @if (errorMessage && this.showError  && !this.showDropdown) {
+    <p class="bmb_input-tags-error">
+        {{ errorMessage }}
+    </p>
+    }
+
+</section>
+
+  
