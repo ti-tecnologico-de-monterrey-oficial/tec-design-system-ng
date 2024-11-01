@@ -1,5 +1,6 @@
-<bmb-theme />
-<!-- <button
+<section style="margin: 1rem">
+  <bmb-theme />
+  <!-- <button
   bmbButton
   appearance="primary"
   icon="home"
@@ -12,7 +13,7 @@
 >
   Open modal
 </button> -->
-<!-- <bmb-divider />
+  <!-- <bmb-divider />
 <bmb-external-link
   [title]="'CONECTA'"
   [subtitle]="'https://www.CONECTA.tec.mx'"
@@ -21,8 +22,8 @@
   (footerEvent)="footerEvent($event)"
 >
 </bmb-external-link> -->
-<bmb-divider />
-<!-- <bmb-form-validation (formGroupState)="onSubmitVal($event)">
+  <bmb-divider />
+  <!-- <bmb-form-validation (formGroupState)="onSubmitVal($event)">
   <bmb-input
     type="number"
     name="amount"
@@ -121,47 +122,47 @@
     Submit
   </button>
 </bmb-form-validation> -->
-<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
-  <bmb-input
-    id="text1"
-    name="name"
-    placeholder="Placeholder"
-    icon="apps"
-    errorMessage="Error message"
-    helperMessage="Helper Message"
-    [disabled]="false"
-    [isRequired]="true"
-    appearance="normal"
-    [control]="getFormControl('name')"
-  />
-  <!-- <bmb-input
-    id="text2"
-    name="named"
-    label="Input Label"
-    placeholder="Placeholder"
-    icon="apps"
-    errorMessage="Error message"
-    helperMessage="Helper Message"
-    [disabled]="true"
-    [isRequired]="false"
-    appearance="normal"
-    value="abc"
-    [control]="getFormControl('named')"
-  />
-  <bmb-input
-    id="text3"
-    name="otherName"
-    label="Input Label"
-    placeholder="Placeholder"
-    icon="apps"
-    errorMessage="Error message"
-    helperMessage="Helper Message"
-    [disabled]="false"
-    [isRequired]="true"
-    appearance="simple"
-    [control]="getFormControl('otherName')"
-  /> -->
-  <!-- <bmb-input-phone-number
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <bmb-input
+      id="text1"
+      name="name"
+      placeholder="Placeholder"
+      icon="apps"
+      errorMessage="Error message"
+      helperMessage="Helper Message"
+      [disabled]="false"
+      [isRequired]="true"
+      appearance="normal"
+      [control]="getFormControl('name')"
+    />
+    <bmb-input
+      id="text2"
+      name="named"
+      label="Input Label"
+      placeholder="Placeholder"
+      icon="apps"
+      errorMessage="Error message"
+      helperMessage="Helper Message"
+      [disabled]="true"
+      [isRequired]="false"
+      appearance="normal"
+      value="abc"
+      [control]="getFormControl('named')"
+    />
+    <bmb-input
+      id="text3"
+      name="otherName"
+      label="Input Label"
+      placeholder="Placeholder"
+      icon="apps"
+      errorMessage="Error message"
+      helperMessage="Helper Message"
+      [disabled]="false"
+      [isRequired]="true"
+      appearance="simple"
+      [control]="getFormControl('otherName')"
+    />
+    <!-- <bmb-input-phone-number
     [name]="'phoneDis'"
     value="5555555555"
     [disabled]="true"
@@ -170,7 +171,7 @@
     [helperMessage]="'Helper message dateFormat'"
     [control]="getFormControl('phoneDis')"
   /> -->
-  <!-- <bmb-input
+    <!-- <bmb-input
     id="textarea4"
     name="comments"
     label="Label textarea"
@@ -187,7 +188,31 @@
     [maxlength]="20"
     [control]="getFormControl('comments')"
   />
-  <bmb-radial
+  <bmb-input
+    type="number"
+    label="Number"
+    name="amount"
+    [max]="8"
+    [min]="0"
+    pattern="\d*"
+    errorMessage="Error message for number"
+    [helperMessage]="'Helper message for number'"
+    [isRequired]="true"
+    [control]="getFormControl('amount')"
+  />
+  <bmb-input
+    [placeholder]="'placeholder'"
+    [label]="'Date'"
+    icon="calendar_month"
+    [isRequired]="true"
+    [disabled]="false"
+    [appearance]="'appearance'"
+    [control]="getFormControl('date')"
+    [helperMessage]="'Helper message dateFormat'"
+    errorMessage="Error message for date"
+    [name]="'date'"
+  /> -->
+    <!-- <bmb-radial
     id="radio1"
     value="CCM"
     name="contract"
@@ -214,44 +239,40 @@
     labelPosition="after"
     (change)="handleRadial($event)"
     [control]="getFormControl('contract')"
-  />
-  <bmb-input
-    type="number"
-    label="Number"
-    name="amount"
-    [max]="8"
-    [min]="0"
-    pattern="\d*"
-    errorMessage="Error message for number"
-    [helperMessage]="'Helper message for number'"
-    [isRequired]="true"
-    [control]="getFormControl('amount')"
-  />
-  <bmb-input
-    [placeholder]="'placeholder'"
-    [label]="'Date'"
-    icon="calendar_month"
-    [isRequired]="true"
-    [disabled]="false"
-    [appearance]="'appearance'"
-    [control]="getFormControl('date')"
-    [helperMessage]="'Helper message dateFormat'"
-    errorMessage="Error message for date"
-    [name]="'date'"
   /> -->
-  <bmb-input-phone-number
-    appearance="normal"
-    [name]="'phone'"
-    label="Phone"
-    [disabled]="false"
-    [isRequired]="true"
-    [errorMessage]="'Error phone'"
-    [helperMessage]="'Helper message phone'"
-    [control]="getFormControl('phone')"
-  />
-  <button bmbButton appearance="primary" type="submit">Submit</button>
-</form>
-<section style="margin: 1rem">
+    <bmb-input-phone-number
+      appearance="normal"
+      [name]="'phone'"
+      label="Phone"
+      [disabled]="false"
+      [isRequired]="true"
+      [errorMessage]="'Error phone'"
+      [helperMessage]="'Helper message phone'"
+      [control]="getFormControl('phone')"
+    />
+    <bmb-input-phone-number
+      appearance="normal"
+      [name]="'phone2'"
+      label="Phone 2"
+      [disabled]="true"
+      [isRequired]="false"
+      [errorMessage]="'Error phone'"
+      [helperMessage]="'Helper message phone'"
+      [control]="getFormControl('phone2')"
+    />
+    <bmb-input-phone-number
+      appearance="Simple"
+      [name]="'phone3'"
+      label="Phone 3"
+      [disabled]="false"
+      [isRequired]="true"
+      [errorMessage]="'Error phone'"
+      [helperMessage]="'Helper message phone'"
+      [control]="getFormControl('phone3')"
+    />
+    <button bmbButton appearance="primary" type="submit">Submit</button>
+  </form>
+
   <!-- <bmb-calendar
     [view]="'week'"
     (onDateChange)="onDateChange($event)"

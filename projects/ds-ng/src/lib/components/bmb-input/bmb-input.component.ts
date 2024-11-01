@@ -65,7 +65,7 @@ export class BmbInputComponent {
   id = input<string>();
   checked = input<boolean>(false);
   value = input<string>();
-  labelPosition = input<IBbmSidePosition>('after');
+  labelPosition = input<IBbmSidePosition>();
   ariaDescribedBy = input<string>('');
   ariaLabel = input<string>('');
   ariaLabelledBy = input<string>('');
@@ -87,7 +87,8 @@ export class BmbInputComponent {
   ) {}
 
   getPositionClass(className: string): string {
-    if (!!this.labelPosition()) return `${className}-${this.labelPosition()}`;
+    if (!!this.labelPosition())
+      return `${className}-${this.labelPosition()?.toLocaleLowerCase()}`;
     return '';
   }
 
@@ -102,7 +103,7 @@ export class BmbInputComponent {
   }
 
   getClasses(className: string): string[] {
-    if (this.type() === 'radio') {
+    if (this.type().toLocaleLowerCase() === 'radio') {
       const baseName: string = `${className}-radio`;
       const classes: string[] = [baseName];
       return [
@@ -116,7 +117,9 @@ export class BmbInputComponent {
 
   get inputClasses(): { [key: string]: boolean } {
     const appearance =
-      this.type() === 'text-area' ? 'normal' : this.appearance();
+      this.type() === 'text-area'
+        ? 'normal'
+        : this.appearance().toLocaleLowerCase();
     return {
       ['bmb_field-input-' + appearance]: true,
       'bmb_field-input-error': this.shouldShowError,
@@ -129,11 +132,12 @@ export class BmbInputComponent {
   }
 
   getControl(): FormControl {
+    const type = this.type().toLocaleLowerCase();
     return this.formService.getControl(
-      this.type(),
+      type,
       this.name(),
       this.value(),
-      this.type() === 'radio' || this.type() === 'phone',
+      type === 'radio' || type === 'phone',
       this.isRequired(),
       this.cdr,
       this.control()!,

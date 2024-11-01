@@ -3041,7 +3041,9 @@ export class AppComponent {
     contract: new FormControl(''),
     amount: new FormControl<number>(0),
     date: new FormControl<string>(''),
-    phone: new FormControl(),
+    phone: new FormControl(null, Validators.required),
+    phone2: new FormControl('5555555555'),
+    phone3: new FormControl(),
   });
 
   onSubmit(): void {

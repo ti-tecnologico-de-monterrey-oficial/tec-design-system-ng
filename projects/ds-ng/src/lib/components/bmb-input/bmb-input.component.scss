@@ -2,6 +2,33 @@
 @use "../../../assets/styles/base/mixins" as mixins;
 @use "../../../assets/styles/base/rem" as rem;
 
+.mat-mdc-menu-panel {
+  background-color: RGBA(var(--color-charade-50)) !important;
+  max-height: rem.rem_calc(234);
+
+  input.country-search {
+    position: sticky;
+    left: 0;
+    top: 0;
+    z-index: 1;
+  }
+}
+
+.ngx-mat-tel-input-mat-menu-panel {
+  box-shadow: rem.rem_calc(0 0 8 0) RGBA(var(--color-black-primary), 0.25);
+
+  .country-list-button {
+    &:not([disabled]):hover,
+    &:not([disabled]):focus {
+      background-color: RGBA(var(--color-charade-100));
+    }
+
+    .icon-wrapper {
+      display: none;
+    }
+  }
+}
+
 @mixin label_width($position) {
   @if $position == main {
     width: 100%;
@@ -29,7 +56,6 @@
 
     &:focus {
       border-bottom: rem.rem_calc(2) solid RGBA(var(--color-blue-primary));
-      border-color: RGBA(var(--color-blue-primary));
       color: RGBA(var(--color-mariner-700));
       outline: none;
     }
@@ -40,6 +66,12 @@
 
     &.bmb_field-input-error {
       border-bottom-color: RGBA(var(--color-red-primary));
+
+      .mat-mdc-input-element:not(.country-search) {
+        &:focus {
+          border-color: transparent;
+        }
+      }
     }
   } @else if $type == normal {
     background-color: RGBA(var(--color-charade-50));
@@ -58,7 +90,13 @@
     }
 
     &.bmb_field-input-error {
-      border-color: RGBA(var(--color-red-primary)) !important;
+      border-color: RGBA(var(--color-red-primary));
+
+      .mat-mdc-input-element:not(.country-search) {
+        &:focus {
+          border-color: transparent;
+        }
+      }
     }
   }
 }
@@ -113,6 +151,18 @@
     display: flex;
     position: relative;
     width: 100%;
+
+    .mat-mdc-input-element:not(.country-search) {
+      border-radius: rem.rem_calc(8);
+      padding: var(--bmb-spacing-s) var(--bmb-spacing-s) var(--bmb-spacing-s)
+        rem.rem_calc(96);
+      height: calc(rem.rem_calc(48) - rem.rem_calc(2));
+      box-sizing: border-box;
+
+      &:focus {
+        border-color: RGBA(var(--color-mariner-700));
+      }
+    }
   }
 
   &-error {
@@ -153,6 +203,10 @@
 
     &-main {
       @include input(main);
+    }
+
+    &.bmb_field_input_tel {
+      padding: 0;
     }
   }
 
@@ -273,14 +327,32 @@
 
   &.disabled {
     pointer-events: none;
-    opacity: 0.8;
+    opacity: 0.5;
   }
 
   .ngx-mat-tel-input-container {
     display: flex;
-    height: 3rem;
-    position: relative;
-    width: 21.375rem;
+
+    .country-selector {
+      justify-content: flex-start;
+      background-image: none;
+      padding: 0 0 0 0.625rem;
+      opacity: 1;
+
+      &::after {
+        @include mixins.materialIcons();
+        content: "expand_more";
+        position: absolute;
+        font-size: rem.rem_calc(28);
+        right: rem.rem_calc(6);
+      }
+
+      .mdc-button__label {
+        .country-selector-flag {
+          display: none;
+        }
+      }
+    }
   }
 }
 
