@@ -30,8 +30,13 @@
     padding-top: 1rem;
     display: flex;
     flex-wrap: wrap;
+    flex-flow: column;
     justify-content: center;
     gap: 1rem;
+
+    @include mixins.media-query(768, "min") {
+      flex-flow: row;
+    }
   }
 }
 
