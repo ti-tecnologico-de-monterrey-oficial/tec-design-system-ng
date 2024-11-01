@@ -3041,7 +3041,7 @@ export class AppComponent {
     contract: new FormControl(''),
     amount: new FormControl<number>(0),
     date: new FormControl<string>(''),
-    phone: new FormControl(null, Validators.required),
+    phone: new FormControl(),
     phone2: new FormControl('5555555555'),
     phone3: new FormControl(),
   });
@@ -3067,7 +3067,6 @@ export class AppComponent {
         '';
       const control = this.formGroup.get(name);
       if (control) {
-        control.markAsTouched();
         control.updateValueAndValidity();
       }
     });

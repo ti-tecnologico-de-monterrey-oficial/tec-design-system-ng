@@ -152,6 +152,37 @@
     position: relative;
     width: 100%;
 
+    .mat-mdc-form-field {
+      width: 100%;
+    }
+
+    .mdc-text-field--outlined {
+      padding: rem.rem_calc(5);
+      color: inherit;
+      @include fonts.font(4, regular);
+
+      &:focus {
+        border-color: RGBA(var(--color-mariner-700));
+      }
+    }
+
+    .mdc-text-field--outlined:not(.mdc-text-field--disabled)
+      .mdc-notched-outline__leading,
+    .mdc-text-field--outlined:not(.mdc-text-field--disabled)
+      .mdc-notched-outline__trailing {
+      border-color: transparent !important;
+      // opacity: 0;
+    }
+
+    // .mat-form-field-appearance-outline.mat-focused
+    //   .mat-form-field-outline-thick {
+    //   opacity: 1;
+    // }
+
+    .mdc-text-field--outlined.mat-focused {
+      opacity: 1;
+    }
+
     .mat-mdc-input-element:not(.country-search) {
       border-radius: rem.rem_calc(8);
       padding: var(--bmb-spacing-s) var(--bmb-spacing-s) var(--bmb-spacing-s)

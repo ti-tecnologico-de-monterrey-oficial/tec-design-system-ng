@@ -75,7 +75,6 @@ export class AppComponent {
         '';
       const control = this.formGroup.get(name);
       if (control) {
-        control.markAsTouched();
         control.updateValueAndValidity();
       }
     });

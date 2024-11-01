@@ -76,17 +76,20 @@
             <bmb-icon class="bmb_field-text-area-error-icon" [icon]="'error'" />
           }
         } @else if (type() === "phone") {
-          <ngx-mat-intl-tel-input
+          <mat-form-field
             class="bmb_field-input bmb_field_input_tel"
             [ngClass]="inputClasses"
-            [name]="name()"
-            [required]="isRequired()"
-            [disabled]="disabled()"
-            [formControl]="getControl()"
-            [preferredCountries]="['mx']"
-            [enableSearch]="true"
+            appearance="outline"
           >
-          </ngx-mat-intl-tel-input>
+            <ngx-mat-intl-tel-input
+              [name]="name()"
+              [required]="isRequired()"
+              [disabled]="disabled()"
+              [formControl]="getControl()"
+              [preferredCountries]="['mx']"
+              [enableSearch]="true"
+            />
+          </mat-form-field>
         } @else {
           <input
             bmbControl
