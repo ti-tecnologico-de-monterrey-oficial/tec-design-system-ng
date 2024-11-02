@@ -14,14 +14,72 @@
   Open modal
 </button> -->
   <!-- <bmb-divider />
-<bmb-external-link
-  [title]="'CONECTA'"
-  [subtitle]="'https://www.CONECTA.tec.mx'"
-  (onClose)="onClose($event)"
-  (menuEvent)="menuEvent($event)"
-  (footerEvent)="footerEvent($event)"
->
-</bmb-external-link> -->
+  <bmb-external-link
+    [title]="'CONECTA'"
+    [subtitle]="'https://www.CONECTA.tec.mx'"
+    (onClose)="onClose($event)"
+    (menuEvent)="menuEvent($event)"
+    (footerEvent)="footerEvent($event)"
+  >
+  </bmb-external-link> -->
+  <!-- <bmb-filter-card
+    [modalTitle]="'Opciones Filtrado'"
+    [primaryBtnLabel]="'Aplicar Filtros'"
+    [secondaryBtnLabel]="'Limpiar Filtros'"
+    [icon]="'tune'"
+    [placeholderSearch]="'Search'"
+    [controlTypes]="[
+      {
+        title: 'Filter - Radial',
+        control: [
+          {
+            name: 'radial-1',
+            type: 'radial',
+            label: 'Radial 1',
+            checked: false,
+          },
+          {
+            name: 'radial-1',
+            type: 'radial',
+            label: 'Radial 2',
+            checked: false,
+          },
+        ],
+      },
+      {
+        title: 'Filter - Checkbox',
+        control: [
+          {
+            name: 'checkbox-1',
+            type: 'checkbox',
+            label: 'Checkbox 1',
+            checked: false,
+          },
+          {
+            name: 'checkbox-2',
+            type: 'checkbox',
+            label: 'Checkbox 2',
+            checked: false,
+          },
+        ],
+      },
+      {
+        title: 'Filter - Switch',
+        control: [
+          {
+            name: 'switch-1',
+            type: 'switch',
+            label: 'Switch 2',
+            rightText: 'Switch 3',
+            checked: false,
+          },
+        ],
+      },
+    ]"
+    [inLine]="false"
+    (applyFilters)="applyFilters($event)"
+    (resetFilters)="resetFilters($event)"
+  /> -->
   <bmb-divider />
   <bmb-form-validation (formGroupState)="onSubmitVal($event)">
     <bmb-input-phone-number
@@ -33,9 +91,29 @@
       [errorMessage]="'Error phone'"
       [helperMessage]="'Helper message phone'"
     />
+    <bmb-input-phone-number
+      appearance="normal"
+      [name]="'phone2'"
+      value="5555555555"
+      label="Phone 2"
+      [disabled]="true"
+      [isRequired]="false"
+      [errorMessage]="'Error phone'"
+      [helperMessage]="'Helper message phone'"
+    />
+    <bmb-input-phone-number
+      appearance="simple"
+      [name]="'phone3'"
+      label="Phone 3"
+      [disabled]="false"
+      [isRequired]="true"
+      [errorMessage]="'Error phone'"
+      [helperMessage]="'Helper message phone'"
+    />
     <bmb-input
       type="number"
       name="amount"
+      value="555"
       [max]="8"
       [min]="0"
       pattern="\d*"
@@ -46,6 +124,7 @@
       [placeholder]="'placeholder'"
       [label]="'label'"
       icon="calendar_month"
+      value="12/12/12"
       [isRequired]="true"
       [disabled]="false"
       [appearance]="'appearance'"
@@ -66,6 +145,7 @@
     />
     <bmb-input
       name="named"
+      value="name"
       label="Input Label"
       placeholder="Placeholder"
       icon="apps"
@@ -90,6 +170,7 @@
     <bmb-input
       name="comments"
       label="Label textarea"
+      value="test"
       type="text-area"
       tooltip="Tooltip text"
       placeholder="Place holder text"

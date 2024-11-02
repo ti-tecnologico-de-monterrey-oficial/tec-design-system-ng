@@ -97,6 +97,7 @@ import {
   BmbTimestreamCardComponent,
   ITimelineEvent,
   BmbFormControlDirective,
+  BmbFilterCardComponent,
 } from '../../projects/ds-ng/src/public-api';
 import { BmbPullWedgeComponent } from '../../projects/ds-ng/src/lib/components/bmb-pull-wedge/bmb-pull-wedge.component';
 import { BmbCardButtonComponent } from '../../projects/ds-ng/src/lib/components/bmb-card-button/bmb-card-button.component';
@@ -206,6 +207,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     BmbFormControlDirective,
     NgxMatIntlTelInputComponent,
     MatFormFieldModule,
+    BmbFilterCardComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -5023,4 +5025,12 @@ export class AppComponent {
       icon: 'change_circle',
     },
   ];
+
+  applyFilters(event: unknown): void {
+    console.log('applyFilters', event);
+  }
+
+  resetFilters(event: unknown): void {
+    console.log('resetFilters', event);
+  }
 }

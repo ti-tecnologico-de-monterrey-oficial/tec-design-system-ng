@@ -26,7 +26,11 @@ export class BmbInputControlDirective {
 
   ngOnInit(): void {
     if (this.formService.getFormControl(this.name()) === null) {
-      this.formService.setFormControlByType(this.name(), this.type());
+      this.formService.setFormControlByType(
+        this.type(),
+        this.name(),
+        this.value(),
+      );
     }
 
     const control: FormControl = this.formService.getFormControl(this.name());

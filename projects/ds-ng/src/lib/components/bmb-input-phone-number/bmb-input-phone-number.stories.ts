@@ -141,15 +141,15 @@ Below is an example of how to use this component in HTML:
         type: { summary: 'string (required)' },
       },
     },
-    // value: {
-    //   name: 'Value',
-    //   control: { type: 'text' },
-    //   description: 'The current value of the input field.',
-    //   table: {
-    //     category: 'Properties',
-    //     type: { summary: 'string' },
-    //   },
-    // },
+    value: {
+      name: 'Value',
+      control: { type: 'text' },
+      description: 'The current value of the input field.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
     disabled: {
       name: 'Disabled',
       control: { type: 'boolean' },
@@ -207,7 +207,7 @@ Below is an example of how to use this component in HTML:
   args: {
     appearance: 'normal',
     name: 'phone',
-    // value: null,
+    value: null,
     disabled: false,
     isRequired: true,
     errorMessage: 'Error Message',

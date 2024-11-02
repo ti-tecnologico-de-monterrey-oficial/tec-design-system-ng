@@ -22,18 +22,18 @@ export class BmbFormService {
     this.addFormControl(name, control);
   }
 
-  setFormControlByType(name: string, type: any): void {
-    if (type === 'radio' || type === 'phone') {
+  setFormControlByType(type: any, name: string, value: unknown): void {
+    if (type === 'radio') {
       this.addFormControl(name, new FormControl(null));
       return;
     }
 
-    if (type === 'number') {
-      this.addFormControl(name, new FormControl(0));
+    if (type === 'phone' || type === 'number') {
+      this.addFormControl(name, new FormControl(value || null));
       return;
     }
 
-    this.addFormControl(name, new FormControl<string>(''));
+    this.addFormControl(name, new FormControl(value || ''));
   }
 
   addFormControl(name: string, control: FormControl): void {
@@ -65,7 +65,7 @@ export class BmbFormService {
 
     const newControl = this.getFormControl(name);
     if (newControl === null) {
-      this.setFormControlByType(name, type);
+      this.setFormControlByType(type, name, value);
     }
 
     if (isAddConfig) {
@@ -75,10 +75,6 @@ export class BmbFormService {
 
       if (type === 'email' && !control.hasValidator(Validators.email)) {
         control.addValidators(Validators.email);
-      }
-
-      if (type !== 'radio' && type !== 'phone') {
-        control.setValue(value);
       }
 
       if (type !== 'phone') {

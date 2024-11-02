@@ -18,7 +18,11 @@ export class BmbFormControlDirective {
     const inputs = this.el.nativeElement.querySelectorAll('bmb-input');
     inputs.forEach((input: any) => {
       const type = input.getAttribute('type');
-      this.formService.setFormControlByType(this.getInputName(input), type);
+      this.formService.setFormControlByType(
+        type,
+        this.getInputAttribute(input, 'name'),
+        this.getInputAttribute(input, 'value'),
+      );
     });
   }
 
@@ -35,7 +39,7 @@ export class BmbFormControlDirective {
   updateErrorState(formGroup: FormGroup) {
     const invalidInputs = this.el.nativeElement.querySelectorAll('.ng-invalid');
     invalidInputs.forEach((input: any) => {
-      const control = formGroup.get(this.getInputName(input));
+      const control = formGroup.get(this.getInputAttribute(input, 'name'));
       if (control) {
         control.markAsTouched();
         control.updateValueAndValidity();
@@ -43,11 +47,11 @@ export class BmbFormControlDirective {
     });
   }
 
-  getInputName(input: any): string {
+  getInputAttribute(input: any, attributeName: string): string {
     return (
-      input.getAttribute('name') ||
-      input.getAttribute('ng-reflect-name') ||
-      input.parentElement.getAttribute('ng-reflect-name') ||
+      input.getAttribute(attributeName) ||
+      input.getAttribute(`ng-reflect-${attributeName}`) ||
+      input.parentElement.getAttribute(`ng-reflect-${attributeName}`) ||
       ''
     );
   }
