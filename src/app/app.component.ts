@@ -6,6 +6,7 @@ import {
   model,
   TemplateRef,
   CUSTOM_ELEMENTS_SCHEMA,
+  signal,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
@@ -90,6 +91,8 @@ import {
   BmbFormValidationComponent,
   BmbTimestreamCardComponent,
   ITimelineEvent,
+  BmbDropzoneComponent,
+  IBmbFileUploadStatus,
 } from '../../projects/ds-ng/src/public-api';
 import { BmbCardButtonComponent } from '../../projects/ds-ng/src/lib/components/bmb-card-button/bmb-card-button.component';
 
@@ -190,6 +193,7 @@ import {
     BmbCardButtonComponent,
     BmbFormValidationComponent,
     BmbTimestreamCardComponent,
+    BmbDropzoneComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -3018,5 +3022,25 @@ export class AppComponent {
 
   menuEvent(event: unknown) {
     alert('Selection: ' + event);
+  }
+
+  dropzoneProgress = signal<number>(0);
+  uploadStatus: IBmbFileUploadStatus = 'none';
+
+  dropzoneChange(event: File) {
+    let progress = 0;
+    this.uploadStatus = 'loading';
+
+    const interval = setInterval(() => {
+      this.dropzoneProgress.set(progress + 50);
+      progress += 50;
+
+      if (progress >= 100) {
+        clearInterval(interval);
+        this.uploadStatus = 'success';
+      }
+    }, 1000);
+
+    console.log(event);
   }
 }
