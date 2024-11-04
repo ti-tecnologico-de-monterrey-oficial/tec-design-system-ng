@@ -10,7 +10,10 @@ import {
 } from '@angular/core';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbTextLinkComponent } from '../bmb-text-link/bmb-text-link.component';
-import { BmbCardComponent, BmbCardContentComponent } from '../bmb-card/bmb-card.component';
+import {
+  BmbCardComponent,
+  BmbCardContentComponent,
+} from '../bmb-card/bmb-card.component';
 import { BmbProgressBarComponent } from '../bmb-progress-bar/bmb-progress-bar.component';
 interface FileData {
   name: string;
@@ -23,7 +26,14 @@ export type IBmbFileUploadStatus = 'success' | 'error' | 'loading' | 'none';
 @Component({
   selector: 'bmb-dropzone',
   standalone: true,
-  imports: [CommonModule, BmbIconComponent, BmbTextLinkComponent, BmbCardComponent, BmbCardContentComponent, BmbProgressBarComponent],
+  imports: [
+    CommonModule,
+    BmbIconComponent,
+    BmbTextLinkComponent,
+    BmbCardComponent,
+    BmbCardContentComponent,
+    BmbProgressBarComponent,
+  ],
   templateUrl: './bmb-dropzone.component.html',
   styleUrl: './bmb-dropzone.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -34,7 +44,9 @@ export class BmbDropzoneComponent {
   acceptedExtensions = input.required<string[]>();
   formatFilesLabel = input<string>('Especificación de formatos y peso');
   linkFilesSupported = input<string>('');
-  linkLabel = input<string>('Ver más información de formatos de archivo aceptados.');
+  linkLabel = input<string>(
+    'Ver más información de formatos de archivo aceptados.',
+  );
   name = input<string>('bmbFileInput');
   errorMessage = input<string>('Archivo no compatible');
   fileSize = input<number>(2);
@@ -72,7 +84,9 @@ export class BmbDropzoneComponent {
   private getFileAndValidate(file: File): void {
     this.fileData = {} as File;
     const fileExtension = file.name.split('.').at(-1);
-    const isValidFileType = this.acceptedExtensions().includes(fileExtension ?? '');
+    const isValidFileType = this.acceptedExtensions().includes(
+      fileExtension ?? '',
+    );
     const fileSizeInMB = file.size / 1048576;
     const isValidSize = fileSizeInMB <= this.fileSize();
 
@@ -139,10 +153,10 @@ export class BmbDropzoneComponent {
 
   getIconAnimation(): string[] {
     const classList = ['bmb-drop-zone-list-files-icon'];
-    if  (this.uploadStatus() === 'loading') {
+    if (this.uploadStatus() === 'loading') {
       classList.push('bmb-drop-zone-list-files-icon-spin');
     }
 
-    return classList
+    return classList;
   }
 }
