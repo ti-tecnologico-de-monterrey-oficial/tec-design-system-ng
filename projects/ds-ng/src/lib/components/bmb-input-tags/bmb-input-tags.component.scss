@@ -2,283 +2,278 @@
 @use "../../../assets/styles/base/mixins" as mixins;
 @use "../../../assets/styles/base/rem" as rem;
 
-.bmb_input-tags{
-    position: relative;
+.bmb_input-tags {
+  position: relative;
+  width: 100%;
+
+  &.disabled {
+    pointer-events: none;
+    opacity: 0.8;
+  }
+
+  &-label {
+    margin: rem.rem_calc(2 0 4 2);
+    &-text {
+      @include fonts.font(3, regular);
+    }
+
+    &-required {
+      color: RGBA(var(--color-red-primary));
+    }
+
+    &-tooltip {
+      margin-left: rem.rem_calc(5);
+      font-size: rem.rem_calc(12);
+      color: RGBA(var(--color-charade-500));
+    }
+  }
+
+  &-wrapper {
+    background-color: RGBA(var(--color-charade-50));
     width: 100%;
+    min-height: rem.rem_calc(30);
+    border-radius: rem.rem_calc(8);
+    border: rem.rem_calc(1) solid RGBA(var(--color-charade-500));
 
-    &.disabled {
-        pointer-events: none;
-        opacity: 0.8;
+    &.focused {
+      border-color: RGBA(var(--color-mariner-700));
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      border-bottom: none;
     }
 
-    &-label{
-        margin: rem.rem_calc(2 0 4 2);
-        &-text{
-            @include fonts.font(3, regular);
-        }
+    &.error {
+      border-color: RGBA(var(--color-red-primary));
+    }
+  }
 
-        &-required{
-            color: RGBA(var(--color-red-primary));
-        }
+  &-input {
+    @include fonts.font(4, regular);
+    height: rem.rem_calc(35);
+    max-height: rem.rem_calc(35);
+    width: 100%;
+    vertical-align: middle;
+    background-color: RGBA(var(--color-charade-50));
+    border-radius: rem.rem_calc(8);
+    border: 0;
+    color: RGBA(var(--color-charade-300));
+    padding: var(--bmb-spacing-s);
+  }
 
-        
-        &-tooltip {
-            margin-left: rem.rem_calc(5);
-            font-size: rem.rem_calc(12);
-            color: RGBA(var(--color-charade-500));
-        }
+  &-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    padding: rem.rem_calc(3);
+    gap: rem.rem_calc(5);
+    max-height: rem.rem_calc(130);
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      -webkit-appearance: none;
+      width: rem.rem_calc(10);
     }
 
-    &-wrapper{
-        background-color: RGBA(var(--color-charade-50));
-        width: 100%;
-        min-height: rem.rem_calc(30);
-        border-radius: rem.rem_calc(8);
+    &::-webkit-scrollbar-thumb {
+      background-color: RGBA(var(--color-charade-200));
+      border-radius: rem.rem_calc(20);
+      border: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
+    }
+
+    &::-webkit-scrollbar-track {
+      border-radius: rem.rem_calc(10);
+    }
+
+    &-tag {
+      @include fonts.font(3, regular);
+      align-items: center;
+      background-color: RGBA(var(--color-charade-200));
+      border: rem.rem_calc(1) solid var(--color-black-tint);
+      border-radius: rem.rem_calc(20);
+      color: RGBA(var(--color-charade-950));
+      display: flex;
+      gap: rem.rem_calc(8);
+      justify-content: center;
+      min-height: rem.rem_calc(20);
+      padding: rem.rem_calc(4 16);
+      margin: rem.rem_calc(3);
+      width: fit-content;
+      cursor: pointer;
+
+      &:hover {
+        background-color: RGBA(var(--color-charade-500));
         border: rem.rem_calc(1) solid RGBA(var(--color-charade-500));
+      }
 
-        &.focused{
-            border-color: RGBA(var(--color-mariner-700)); 
-            border-bottom-left-radius: 0;
-            border-bottom-right-radius: 0;
-            border-bottom: none;
-        }
+      &:active {
+        background-color: RGBA(var(--color-mariner-700));
+        border: rem.rem_calc(1) solid RGBA(var(--color-mariner-700));
+        color: RGBA(var(--color-charade-50));
 
-        &.error{
-            border-color: RGBA(var(--color-red-primary)); 
+        bmb-icon {
+          color: RGBA(var(--color-charade-50));
         }
+      }
+    }
+  }
+
+  &-dropdown {
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    padding: 0;
+    left: 0;
+    z-index: 999;
+    background-color: RGBA(var(--color-charade-50));
+    border: 0px;
+    border-radius: rem.rem_calc(8);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    overflow: auto;
+    overflow-x: hidden;
+    height: max-content;
+    max-height: rem.rem_calc(160);
+    justify-content: center;
+    box-shadow: rem.rem_calc(10 10 26 -12)
+      RGBA(var(--color-black-primary), 0.75);
+    &::-webkit-scrollbar {
+      -webkit-appearance: none;
+      width: rem.rem_calc(10);
     }
 
-    &-input{
-        @include fonts.font(4, regular);
-        height: rem.rem_calc(35);
-        max-height: rem.rem_calc(35);
-        width: 100%;
-        vertical-align: middle;
-        background-color: RGBA(var(--color-charade-50));
-        border-radius: rem.rem_calc(8);
-        border: 0;
-        color: RGBA(var(--color-charade-300));
-        padding: var(--bmb-spacing-s);
-    
+    &::-webkit-scrollbar-thumb {
+      background-color: RGBA(var(--color-charade-200));
+      border-radius: rem.rem_calc(20);
+      border: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
     }
 
-    &-container{
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
-        padding: rem.rem_calc(3);
-        gap: rem.rem_calc(5);
-        max-height: rem.rem_calc(130);
-        overflow-y: scroll;
-
-        &::-webkit-scrollbar {
-            -webkit-appearance: none;
-            width: rem.rem_calc(10);
-          }
-      
-          &::-webkit-scrollbar-thumb {
-            background-color: RGBA(var(--color-charade-200));
-            border-radius: rem.rem_calc(20);
-            border: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
-          }
-      
-          &::-webkit-scrollbar-track {
-            border-radius: rem.rem_calc(10);
-          }
-
-        &-tag{
-            @include fonts.font(3, regular);
-            align-items: center;
-            background-color: RGBA(var(--color-charade-200));
-            border: rem.rem_calc(1) solid var(--color-black-tint);
-            border-radius: rem.rem_calc(20);
-            color: RGBA(var(--color-charade-950));
-            display: flex;
-            gap: rem.rem_calc(8);
-            justify-content: center;
-            min-height: rem.rem_calc(20);
-            padding: rem.rem_calc(4 16);
-            margin: rem.rem_calc(3);
-            width: fit-content;
-            cursor: pointer;
-
-            &:hover {
-                background-color: RGBA(var(--color-charade-500));
-                border: rem.rem_calc(1) solid RGBA(var(--color-charade-500));
-              }
-            
-              &:active {
-                background-color: RGBA(var(--color-mariner-700));
-                border: rem.rem_calc(1) solid RGBA(var(--color-mariner-700));
-                color: RGBA(var(--color-charade-50));
-            
-                bmb-icon {
-                  color: RGBA(var(--color-charade-50));
-                }
-              }
-        }
+    &::-webkit-scrollbar-track {
+      border-radius: rem.rem_calc(10);
     }
 
-    &-dropdown{
-        width: 100%;
-        position: absolute;
-        top: 100%;
-        padding: 0;
-        left: 0;
-        z-index: 999;
-        background-color: RGBA(var(--color-charade-50));
-        border: 0px;
-        border-radius: rem.rem_calc(8);
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-        overflow: auto;
-        overflow-x: hidden;
-        height: max-content;
-        max-height: rem.rem_calc(160);
-        justify-content: center;
-        box-shadow: rem.rem_calc(10 10 26 -12)
-          RGBA(var(--color-black-primary), 0.75);
-        &::-webkit-scrollbar {
-          -webkit-appearance: none;
-          width: rem.rem_calc(10);
-        }
-    
-        &::-webkit-scrollbar-thumb {
-          background-color: RGBA(var(--color-charade-200));
-          border-radius: rem.rem_calc(20);
-          border: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
-        }
-    
-        &::-webkit-scrollbar-track {
-          border-radius: rem.rem_calc(10);
-        }
-
-        &.focused{
-            border: rem.rem_calc(1) solid RGBA(var(--color-mariner-700)); 
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-            border-top: none;
-        }
-
-        &.error{
-            border-color: RGBA(var(--color-red-primary)); 
-        }
-
-        &-item{
-            @include fonts.font(4, regular);
-            margin: rem.rem_calc(8 8);
-            padding: rem.rem_calc(4 16);
-            background-color: transparent;
-            width: 100%;
-            text-align: left;
-            cursor: pointer;
-        }
-
-        &-selected {
-            width: 90%;
-            height: 90%;
-            border-radius: rem.rem_calc(5);
-            background-color: RGBA(var(--color-mariner-700));
-            color: RGBA(var(--color-charade-50));
-        }
+    &.focused {
+      border: rem.rem_calc(1) solid RGBA(var(--color-mariner-700));
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      border-top: none;
     }
 
-    &-helper{
-        @include fonts.font(3, regular);
-        margin: rem.rem_calc(8);
+    &.error {
+      border-color: RGBA(var(--color-red-primary));
     }
 
-    &-error{
-        @include fonts.font(3, regular);
-        margin: rem.rem_calc(8);
-        color: RGBA(var(--color-red-primary));
+    &-item {
+      @include fonts.font(4, regular);
+      margin: rem.rem_calc(8 8);
+      padding: rem.rem_calc(4 16);
+      background-color: transparent;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
     }
+
+    &-selected {
+      width: 90%;
+      height: 90%;
+      border-radius: rem.rem_calc(5);
+      background-color: RGBA(var(--color-mariner-700));
+      color: RGBA(var(--color-charade-50));
+    }
+  }
+
+  &-helper {
+    @include fonts.font(3, regular);
+    margin: rem.rem_calc(8);
+  }
+
+  &-error {
+    @include fonts.font(3, regular);
+    margin: rem.rem_calc(8);
+    color: RGBA(var(--color-red-primary));
+  }
 }
 
 [data-theme="dark"],
 .storybook-dark-theme {
-    .bmb_input-tags{
-        &-label{
-            &-text{
-                color: RGBA(var(--color-charade-50))
-            }
-        }
-
-        &-wrapper{
-            background-color: RGBA(var( --color-black-primary));
-
-            &.focused{
-                border-color: RGBA(var(--color-charade-50)); 
-            }
-    
-            &.error{
-                border-color: RGBA(var(--color-red-primary)); 
-            }
-        }
-    
-        &-input{
-            background-color: RGBA(var( --color-black-primary));
-            color: RGBA(var(--color-charade-300));
-        }
-    
-        &-container{
-            &::-webkit-scrollbar-thumb {
-                background-color: RGBA(var(--color-charade-700));
-                border: rem.rem_calc(1) solid RGBA(var(--color-charade-700));
-            }
-            &-tag{
-                background-color: RGBA(var(--color-charade-950));
-                border: rem.rem_calc(1) solid RGBA(var(--color-charade-500));
-                color: RGBA(var(--color-charade-50));
-
-
-    
-                &:hover {
-                    background-color: RGBA(var(--color-charade-500));
-                    border: rem.rem_calc(1) solid RGBA(var(--color-charade-500));
-                  }
-                
-                  &:active {
-                    background-color: RGBA(var(--color-mariner-700));
-                    border: rem.rem_calc(1) solid RGBA(var(--color-mariner-700));
-                    color: RGBA(var(--color-charade-50));
-                
-                    bmb-icon {
-                      color: RGBA(var(--color-charade-50));
-                    }
-                  }
-            }
-        }
-    
-        &-dropdown{
-            background-color: RGBA(var(--color-charade-950));
-
-            &.focused{
-                border-color: RGBA(var(--color-charade-50)); 
-            }
-    
-            &.error{
-                border-color: RGBA(var(--color-red-primary)); 
-            }
-        
-            &::-webkit-scrollbar-thumb {
-              background-color: RGBA(var(--color-charade-200));
-              border: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
-            }
-
-            &-item{
-                color: RGBA(var(--color-charade-50))
-            }
-    
-            &-selected{
-                background-color: RGBA(var(--color-charade-500));
-                color: RGBA(var(--color-charade-50));
-            }
-        }
-
-        &-helper{
-            color: RGBA(var(--color-charade-50))
-        }
+  .bmb_input-tags {
+    &-label {
+      &-text {
+        color: RGBA(var(--color-charade-50));
+      }
     }
 
+    &-wrapper {
+      background-color: RGBA(var(--color-black-primary));
+
+      &.focused {
+        border-color: RGBA(var(--color-charade-50));
+      }
+
+      &.error {
+        border-color: RGBA(var(--color-red-primary));
+      }
+    }
+
+    &-input {
+      background-color: RGBA(var(--color-black-primary));
+      color: RGBA(var(--color-charade-300));
+    }
+
+    &-container {
+      &::-webkit-scrollbar-thumb {
+        background-color: RGBA(var(--color-charade-700));
+        border: rem.rem_calc(1) solid RGBA(var(--color-charade-700));
+      }
+      &-tag {
+        background-color: RGBA(var(--color-charade-950));
+        border: rem.rem_calc(1) solid RGBA(var(--color-charade-500));
+        color: RGBA(var(--color-charade-50));
+
+        &:hover {
+          background-color: RGBA(var(--color-charade-500));
+          border: rem.rem_calc(1) solid RGBA(var(--color-charade-500));
+        }
+
+        &:active {
+          background-color: RGBA(var(--color-mariner-700));
+          border: rem.rem_calc(1) solid RGBA(var(--color-mariner-700));
+          color: RGBA(var(--color-charade-50));
+
+          bmb-icon {
+            color: RGBA(var(--color-charade-50));
+          }
+        }
+      }
+    }
+
+    &-dropdown {
+      background-color: RGBA(var(--color-charade-950));
+
+      &.focused {
+        border-color: RGBA(var(--color-charade-50));
+      }
+
+      &.error {
+        border-color: RGBA(var(--color-red-primary));
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: RGBA(var(--color-charade-200));
+        border: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
+      }
+
+      &-item {
+        color: RGBA(var(--color-charade-50));
+      }
+
+      &-selected {
+        background-color: RGBA(var(--color-charade-500));
+        color: RGBA(var(--color-charade-50));
+      }
+    }
+
+    &-helper {
+      color: RGBA(var(--color-charade-50));
+    }
+  }
 }
