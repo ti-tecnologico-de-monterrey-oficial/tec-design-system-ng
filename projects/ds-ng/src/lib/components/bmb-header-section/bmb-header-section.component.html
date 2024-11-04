@@ -1,6 +1,12 @@
 <section class="bmb_header-section">
   <bmb-container
-    [ngClass]="transparentBgC() ? 'bmb_header-section-transparent_bgc' : ''"
+    [class]="
+      getClassNameByConditional(
+        'bmb_header-section',
+        transparentBgC()!,
+        'transparent_bgc'
+      )
+    "
   >
     @if (leftIcon()) {
       <section class="bmb_header-section-left_icon">
@@ -42,17 +48,15 @@
     @for (actionHeader of actionHeaders(); track $index) {
       <section class="bmb_header-section-right_icon">
         <bmb-interactive-icon
-          [ngClass]="
-            !!actionHeader.iconActiveToggle
-              ? 'bmb_header-section-toggle_icon'
-              : ''
-          "
           appearance="none"
-          [icon]="
-            actionHeader.isToggleActive
-              ? actionHeader.iconActiveToggle!
-              : actionHeader.icon
+          [class]="
+            getClassNameByConditional(
+              'bmb_header-section',
+              actionHeader.iconActiveToggle!,
+              'toggle_icon'
+            )
           "
+          [icon]="getRightIcon(actionHeader)"
           [setButtonTemplate]="true"
           (buttonClick)="handleClickRight(actionHeader)"
         />
