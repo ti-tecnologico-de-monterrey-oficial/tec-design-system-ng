@@ -1,0 +1,130 @@
+@use "../../../assets/styles/base/rem" as rem;
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/mixins" as mixins;
+
+.bmb-drop-zone {
+  display: flex;
+  gap: var(--bmb-spacing-m);
+  flex-direction: column;
+  color: RGBA(var(--color-charade-500));
+  @include fonts.font(4, regular);
+
+  &-container {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: var(--bmb-spacing-m) var(--bmb-spacing-l);
+    gap: var(--bmb-spacing-m);
+    border: rem.rem_calc(2) dashed RGBA(var(--color-charade-300));
+    border-radius: var(--bmb-radius-s);
+  }
+
+  &-drag-over {
+    background: RGBA(var(--color-mariner-100));
+    border-color: RGBA(var(--color-mariner-700));
+  }
+
+  &-error {
+    border-color: RGBA(var(--color-red-primary));
+  }
+
+  &-label-format {
+    margin: 0;
+  }
+
+  &-link {
+    @include fonts.font(4, medium);
+    text-decoration-line: underline;
+    color: RGBA(var(--color-mariner-700));
+    cursor: pointer;
+  }
+
+  &-label-format-error {
+    color: RGBA(var(--color-red-primary));
+  }
+
+  &-icon {
+    &-valid {
+      color: RGBA(var(--color-mariner-700));
+    }
+
+    &-error {
+      color: RGBA(var(--color-red-primary));
+    }
+  }
+
+  &-list {
+    &-files {
+      margin: 0;
+      display: grid;
+      align-items: center;
+      gap: 0.5rem;
+      grid-template-columns: rem.rem_calc(24) 1fr;
+      grid-template-areas:
+        "icon name"
+        "icon progress";
+
+      &-error {
+        color: RGBA(var(--color-red-primary));
+        grid-template-areas: "icon name";
+      }
+
+      &-valid .bmb-drop-zone-list-files-icon {
+        color: RGBA(var(--color-mariner-700));
+      }
+
+      &-icon {
+        grid-area: icon;
+
+        &-spin {
+          animation: spin 1s linear infinite;
+        }
+      }
+    }
+
+    &-upload {
+      grid-area: progress;
+      flex: 1;
+    }
+
+    &-name {
+      grid-area: name;
+    }
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  .bmb-drop-zone {
+    border-color: RGBA(var(--color-charade-800));
+
+    &-drag-over {
+      background: RGBA(var(--color-mariner-950));
+      border-color: RGBA(var(--color-neon-primary));
+    }
+
+    &-icon,
+    &-link {
+      color: RGBA(var(--color-neon-primary));
+    }
+
+    &-list {
+      &-files {
+        &-valid .bmb-drop-zone-list-files-icon {
+          color: RGBA(var(--color-neon-primary));
+        }
+      }
+    }
+  }
+}
