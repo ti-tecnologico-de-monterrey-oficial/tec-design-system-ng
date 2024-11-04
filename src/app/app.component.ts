@@ -5033,4 +5033,8 @@ export class AppComponent {
   resetFilters(event: unknown): void {
     console.log('resetFilters', event);
   }
+
+  onValueChange(event: unknown): void {
+    console.log('onValueChange', event);
+  }
 }
