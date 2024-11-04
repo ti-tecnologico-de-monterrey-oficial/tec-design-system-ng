@@ -29,10 +29,10 @@ export class BmbTagComponent implements AfterViewInit {
   @Input() dismissible: boolean = true;
   @Input() rounded: boolean = false;
   @Input() activityTag: boolean = false;
-  closedTag = output<string>()
-  clickedTag = output<string>()
+  closedTag = output<string>();
+  clickedTag = output<string>();
 
-  groupedTags = []
+  groupedTags = [];
 
   constructor(
     private el: ElementRef,
@@ -69,11 +69,11 @@ export class BmbTagComponent implements AfterViewInit {
   }
 
   closeTag(text: string) {
-    this.closedTag.emit(text)
+    this.closedTag.emit(text);
     this.el.nativeElement.remove();
   }
 
-  clickTag(text:string){
-    this.clickedTag.emit(text)
+  clickTag(text: string) {
+    this.clickedTag.emit(text);
   }
 }
