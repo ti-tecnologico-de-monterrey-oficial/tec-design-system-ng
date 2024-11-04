@@ -1,0 +1,83 @@
+<div class="bmb-drop-zone">
+  <section
+    class="bmb-drop-zone-container"
+    [ngClass]="{
+      'bmb-drop-zone-error': !validFile,
+      'bmb-drop-zone-drag-over': fileData.name,
+    }"
+    (dragover)="onDragOver($event)"
+    (dragleave)="onDragLeave($event)"
+    (drop)="onDrop($event)"
+  >
+    <div
+      class="bmb-drop-zone-icon"
+      [ngClass]="{
+        'bmb-drop-zone-icon-valid': validFile && fileData.name,
+        'bmb-drop-zone-icon-error': !validFile,
+      }"
+    >
+      <bmb-icon icon="image" [size]="48" />
+    </div>
+    <p class="bmb-drop-zone-label-format">{{ formatFilesLabel() }}</p>
+    <p class="bmb-drop-zone-label-format">
+      Arrastra tu archivo y suelta o
+      <label class="bmb-drop-zone-link" [htmlFor]="name()"
+        >sube un archivo
+      </label>
+    </p>
+    @if (!validFile) {
+      <p class="bmb-drop-zone-label-format-error bmb-drop-zone-label-format">
+        {{ errorMessage() }}
+      </p>
+      @if (linkFilesSupported()) {
+        <bmb-text-link
+          textLinkStyle="underlined"
+          [link]="linkFilesSupported()"
+          [textLink]="linkLabel()"
+        />
+      }
+    }
+    <input
+      type="file"
+      [id]="name()"
+      [name]="name()"
+      [accept]="acceptedExtensions().toString()"
+      (change)="onFileSelected($event)"
+      style="display: none"
+    />
+  </section>
+  @if (!validFile || fileData.name) {
+    <bmb-card margin="none" type="transparent">
+      <bmb-card-content>
+        <p
+          class="bmb-drop-zone-list-files"
+          [ngClass]="{
+            'bmb-drop-zone-list-files-valid':
+              validFile && uploadStatus() !== 'error',
+            'bmb-drop-zone-list-files-error':
+              !validFile || uploadStatus() === 'error',
+          }"
+        >
+          <span [ngClass]="getIconAnimation()">
+            <bmb-icon [icon]="getIconByStatus()" [size]="24" />
+          </span>
+          @if (!validFile || uploadStatus() === "error") {
+            <span class="bmb-drop-zone-list-name">Error al cargar</span>
+          } @else {
+            <span class="bmb-drop-zone-list-name">{{ fileData.name }}</span>
+          }
+          @if (
+            progress() !== undefined && validFile && uploadStatus() !== "error"
+          ) {
+            <span class="bmb-drop-zone-list-upload"
+              ><bmb-progress-bar
+                type="simple"
+                [counter]="progress() || 0"
+                [totalCount]="100"
+            /></span>
+          }
+        </p>
+      </bmb-card-content>
+    </bmb-card>
+  }
+</div>

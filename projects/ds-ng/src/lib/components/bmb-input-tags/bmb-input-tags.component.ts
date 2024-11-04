@@ -1,14 +1,43 @@
 import { BmbTagComponent } from './../bmb-tags/bmb-tags.component';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, HostListener, input, Input, OnChanges, SimpleChanges, ViewChild, ViewEncapsulation, signal, ɵINPUT_SIGNAL_BRAND_WRITE_TYPE, output, forwardRef } from '@angular/core';
-import { FormsModule, FormControl, ReactiveFormsModule, Validators, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { BmbIconComponent } from "../bmb-icon/bmb-icon.component";
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  HostListener,
+  input,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  ViewChild,
+  ViewEncapsulation,
+  signal,
+  ɵINPUT_SIGNAL_BRAND_WRITE_TYPE,
+  output,
+  forwardRef,
+} from '@angular/core';
+import {
+  FormsModule,
+  FormControl,
+  ReactiveFormsModule,
+  Validators,
+  NG_VALUE_ACCESSOR,
+} from '@angular/forms';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbTooltipComponent } from '../bmb-tooltip/bmb-tooltip.component';
 
 @Component({
   selector: 'bmb-input-tags',
   standalone: true,
-  imports: [CommonModule, FormsModule, BmbTagComponent, ReactiveFormsModule, BmbIconComponent, BmbTooltipComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    BmbTagComponent,
+    ReactiveFormsModule,
+    BmbIconComponent,
+    BmbTooltipComponent,
+  ],
   templateUrl: './bmb-input-tags.component.html',
   styleUrl: './bmb-input-tags.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -17,20 +46,19 @@ import { BmbTooltipComponent } from '../bmb-tooltip/bmb-tooltip.component';
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => BmbInputTagsComponent),
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
 export class BmbInputTagsComponent {
-
-  @Input() control!: FormControl;  
-  @Input() tagOptions: string[] = []
+  @Input() control!: FormControl;
+  @Input() tagOptions: string[] = [];
   @Input() errorMessage: string = '';
   @Input() showError: boolean | undefined = false;
 
   tooltip = input<string>('');
-  label = input<string>('')
-  placeholder=  input<string>('');
+  label = input<string>('');
+  placeholder = input<string>('');
   isRequired = input<boolean>();
   helperMessage = input<string>('');
   disabled = input<boolean>(false);
@@ -39,7 +67,7 @@ export class BmbInputTagsComponent {
   tagsSelected: Array<string> = [];
   filteredOptions: string[] = [];
   showDropdown: boolean = false;
-  errorMaxLength: string = '¡Límite alcanzado! No puedes añadir más elementos'
+  errorMaxLength: string = '¡Límite alcanzado! No puedes añadir más elementos';
   value: string[] = [];
 
   onChange: any = () => {};
@@ -66,12 +94,12 @@ export class BmbInputTagsComponent {
   onDocumentClick(event: MouseEvent) {
     const clickedInside = this.elementRef.nativeElement.contains(event.target);
     if (!clickedInside) {
-      this.hideDropdownDialog()
+      this.hideDropdownDialog();
     }
   }
 
   ngOnInit() {
-    this.filteredOptions = this.tagOptions
+    this.filteredOptions = this.tagOptions;
 
     if (!this.control) {
       this.control = new FormControl();
@@ -81,8 +109,8 @@ export class BmbInputTagsComponent {
       this.control.addValidators(Validators.required);
     }
 
-    if(this.maxSelectedItems()){
-      this.control.addValidators(Validators.max(this.maxSelectedItems()!))
+    if (this.maxSelectedItems()) {
+      this.control.addValidators(Validators.max(this.maxSelectedItems()!));
     }
     this.control.updateValueAndValidity();
     this.control.valueChanges.subscribe(() => {
@@ -92,37 +120,32 @@ export class BmbInputTagsComponent {
   }
 
   addTag(option: string) {
-    if(this.tagsSelected.length === this.maxSelectedItems()){
+    if (this.tagsSelected.length === this.maxSelectedItems()) {
       this.showError = true;
-      return
+      return;
     }
     if (!this.tagsSelected.includes(option)) {
-      this.tagsSelected.push(option)
-      this.control.setValue(this.tagsSelected)
+      this.tagsSelected.push(option);
+      this.control.setValue(this.tagsSelected);
       this.showDropdown = false;
     }
-
   }
 
   removeTag(tag: string) {
-    this.tagsSelected = this.tagsSelected.filter(t => t !== tag)
-    this.control.setValue(this.tagsSelected)
+    this.tagsSelected = this.tagsSelected.filter((t) => t !== tag);
+    this.control.setValue(this.tagsSelected);
     this.updateErrorState();
   }
 
-  showDropdownDialog(): void{
+  showDropdownDialog(): void {
     this.showDropdown = true;
   }
 
-  hideDropdownDialog(): void{
+  hideDropdownDialog(): void {
     this.showDropdown = false;
   }
 
   private updateErrorState(): void {
-    this.showError = 
-      this.isRequired() && 
-      this.tagsSelected.length == 0
+    this.showError = this.isRequired() && this.tagsSelected.length == 0;
   }
-
-
 }
