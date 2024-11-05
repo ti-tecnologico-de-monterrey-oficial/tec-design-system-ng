@@ -10,6 +10,7 @@
       <ng-container matColumnDef="select" sticky>
         <th mat-header-cell *matHeaderCellDef class="bmb_table-checkbox">
           <bmb-checkbox
+            name="checkbox1"
             (change)="$event ? toggleAllRows() : null"
             [checked]="selection.hasValue() && isAllSelected()"
             [indeterminate]="selection.hasValue() && !isAllSelected()"
@@ -18,6 +19,7 @@
         </th>
         <td mat-cell *matCellDef="let row" class="bmb_table-checkbox">
           <bmb-checkbox
+            name="checkbox1"
             (change)="$event ? selection.toggle(row) : null; onSelect()"
             [checked]="selection.isSelected(row)"
             [ariaLabel]="checkboxLabel(row)"

@@ -24,7 +24,7 @@ import { FormControl } from '@angular/forms';
       [helperMessage]="helperMessage()"
       [disabled]="disabled()"
       [labelPosition]="labelPosition()"
-      (onChange)="handleChange($event)"
+      (onRadioChange)="handleChange($event)"
       [control]="control()"
       [ariaDescribedBy]="ariaDescribedby()"
       [ariaLabel]="ariaLabel()"
@@ -40,8 +40,8 @@ export class BmbRadialComponent {
   id = input<string>('');
   checked = input<boolean>(false);
   disabled = input<boolean>(false);
-  value = input<string>('');
   name = input.required<string>();
+  value = input.required<string>();
   label = input<string>('');
   labelPosition = input<IBbmSidePosition>('after');
   ariaDescribedby = input<string>('');

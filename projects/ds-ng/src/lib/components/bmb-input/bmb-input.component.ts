@@ -23,6 +23,7 @@ export type IBbmInputType =
   | 'number'
   | 'text-area'
   | 'radio'
+  | 'checkbox'
   | 'email'
   | 'phone';
 export type IBbmInputAppearance = 'main' | 'normal' | 'simple';
@@ -63,7 +64,7 @@ export class BmbInputComponent {
   max = input<number>();
   min = input<number>();
   id = input<string>();
-  checked = input<boolean>(false);
+  checked = model<boolean>(false);
   value = input<string>();
   labelPosition = input<IBbmSidePosition>();
   ariaDescribedBy = input<string>('');
@@ -72,12 +73,14 @@ export class BmbInputComponent {
   tooltip = input<string>('');
   rows = input<number>(3);
   showMaxTextLength = input<boolean>(false);
+  indeterminate = model<boolean>(false);
   control = model<FormControl>();
   showError = input<boolean>(false);
 
   isFocus = output<boolean>();
   isBlur = output<boolean>();
-  onChange = output<HTMLInputElement>();
+  onRadioChange = output<HTMLInputElement>();
+  onCheckboxChange = output<any>();
 
   validValuePhone: string = '';
 
@@ -96,20 +99,23 @@ export class BmbInputComponent {
     return this.getPositionClass(className) || `${className}-main`;
   }
 
-  getRadioErrorClass(className: string): string {
+  getTypeErrorClass(className: string): string {
     if (this.errorMessage() && this.shouldShowError)
       return `${className}-error`;
     return '';
   }
 
-  getClasses(className: string): string[] {
-    if (this.type().toLocaleLowerCase() === 'radio') {
-      const baseName: string = `${className}-radio`;
+  getClasses(type: string, className: string): string[] {
+    if (
+      this.type().toLocaleLowerCase() === 'radio' ||
+      this.type().toLocaleLowerCase() === 'checkbox'
+    ) {
+      const baseName: string = `${className}-${type}`;
       const classes: string[] = [baseName];
       return [
         ...classes,
         this.getPositionClass(`${className}-direction`),
-        this.getRadioErrorClass(baseName),
+        this.getTypeErrorClass(baseName),
       ];
     }
     return [];
@@ -137,7 +143,7 @@ export class BmbInputComponent {
       type,
       this.name(),
       this.value(),
-      type === 'radio' || type === 'phone',
+      type === 'radio' || type === 'checkbox' || type === 'phone',
       this.isRequired(),
       this.cdr,
       this.control()!,
@@ -145,7 +151,11 @@ export class BmbInputComponent {
   }
 
   get shouldShowError(): boolean {
-    return this.formService.showError(this.name());
+    return this.formService.showError(this.type(), this.name());
+  }
+
+  isChecked(): boolean {
+    return this.checked() || this.formService.getFormControl(this.name())?.value === this.value();
   }
 
   handleRadioChange(event: Event) {
@@ -153,7 +163,7 @@ export class BmbInputComponent {
     if (target && target.checked) {
       target.value = this.value()!;
       this.formService.getFormControl(this.name()).setValue(target.value);
-      this.onChange.emit(target);
+      this.onRadioChange.emit(target);
     }
     event.stopPropagation();
   }
@@ -162,7 +172,32 @@ export class BmbInputComponent {
     const target = event.target as HTMLInputElement;
     if (event.key.toLocaleUpperCase() === 'ENTER' && target.checked) {
       this.formService.getFormControl(this.name()).setValue(target.value);
-      this.onChange.emit(target);
+      this.onRadioChange.emit(target);
+      event.preventDefault();
+      event.stopPropagation();
+    }
+  }
+
+  handleCheckboxChange(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    this.checked.set(target.checked);
+
+    this.formService.getFormControl(this.name()).setValue(this.checked());
+    this.onCheckboxChange.emit(event);
+    event.stopPropagation();
+  }
+
+  handleCheckboxKeyDown(event: KeyboardEvent) {
+    if (event.key.toLocaleUpperCase() === 'ENTER') {
+      if (this.indeterminate()) {
+        this.indeterminate.set(false);
+        this.checked.set(true);
+      } else {
+        this.checked.update((value) => !value);
+      }
+
+      this.formService.getFormControl(this.name()).setValue(this.checked());
+      this.onCheckboxChange.emit(event);
       event.preventDefault();
       event.stopPropagation();
     }

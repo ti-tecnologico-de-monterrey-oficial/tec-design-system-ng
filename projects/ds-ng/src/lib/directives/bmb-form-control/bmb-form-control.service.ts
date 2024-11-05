@@ -23,7 +23,7 @@ export class BmbFormService {
   }
 
   setFormControlByType(type: any, name: string, value: unknown): void {
-    if (type === 'radio') {
+    if (type === 'radio' || type === 'checkbox') {
       this.addFormControl(name, new FormControl(null));
       return;
     }
@@ -87,9 +87,15 @@ export class BmbFormService {
     return this.getFormControl(name);
   }
 
-  showError(name: string): boolean {
+  showError(type: string, name: string): boolean {
     const control = this.getFormGroup().get(name);
     if (control !== null) {
+      if (
+        type.toLocaleLowerCase() === 'checkbox' &&
+        this.getFormControl(name).value !== null
+      ) {
+        return !this.getFormControl(name).value;
+      }
       return control.invalid && (control.touched || control.dirty);
     }
 

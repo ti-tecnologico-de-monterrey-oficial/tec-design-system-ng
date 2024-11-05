@@ -1,5 +1,5 @@
 <section class="bmb_field" [ngClass]="{ disabled: disabled() }">
-  <label [class]="getClasses('bmb_field')" tabindex="1">
+  <label [class]="getClasses(type(), 'bmb_field')" tabindex="1">
     @if (type() === "radio") {
       <input
         [type]="type()"
@@ -23,6 +23,30 @@
         <span class="bmb_field-radio-mark"></span>
       </section>
     }
+    @if (type() === "checkbox") {
+      <input
+        [type]="type()"
+        class="bmb_field-checkbox-input"
+        [formControl]="getControl()"
+        [id]="id()"
+        [name]="name()"
+        [value]="value()"
+        [attr.aria-describedby]="ariaDescribedBy()"
+        [attr.aria-label]="ariaLabel()"
+        [attr.aria-labelledby]="ariaLabelledBy()"
+        [attr.name]="name()"
+        [attr.value]="value()"
+        [checked]="checked()"
+        [disabled]="disabled()"
+        [required]="isRequired()"
+        [indeterminate]="indeterminate()"
+        (change)="handleCheckboxChange($event)"
+        (keydown)="handleCheckboxKeyDown($event)"
+      />
+      <div class="bmb_field-checkbox-box">
+        <span class="bmb_field-checkbox-mark"></span>
+      </div>
+    }
     <span class="bmb_field-label" [ngClass]="getLabelClass('bmb_field-label')">
       {{ label() }}
       @if (isRequired() && !!label()) {
@@ -44,7 +68,7 @@
         </span>
       }
     </span>
-    @if (type() !== "radio") {
+    @if (type() !== "radio" && type() !== "checkbox") {
       <section class="bmb_field-wrapper">
         @if (!!icon() && type() !== "text-area") {
           <bmb-icon

@@ -1,56 +1,63 @@
 import {
   Component,
-  EventEmitter,
-  Input,
-  Output,
   ViewEncapsulation,
   ChangeDetectionStrategy,
+  input,
+  output,
+  model,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { BmbInputComponent } from '../bmb-input/bmb-input.component';
+import { IBbmSidePosition } from '../../types';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'bmb-checkbox',
-  templateUrl: './bmb-checkbox.component.html',
-  styleUrls: ['./bmb-checkbox.component.scss'],
+  template: `
+    <bmb-input
+      type="checkbox"
+      [id]="id()"
+      [name]="name()"
+      [value]="value()"
+      [label]="label()"
+      [checked]="checked()"
+      [isRequired]="required()"
+      [errorMessage]="errorMessage()"
+      [helperMessage]="helperMessage()"
+      [disabled]="disabled()"
+      [labelPosition]="labelPosition()"
+      (onCheckboxChange)="handleChange($event)"
+      [control]="control()"
+      [ariaDescribedBy]="ariaDescribedby()"
+      [ariaLabel]="ariaLabel()"
+      [ariaLabelledBy]="ariaLabelledby()"
+      [indeterminate]="indeterminate()"
+    />
+  `,
   standalone: true,
-  imports: [CommonModule],
+  imports: [BmbInputComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbCheckboxComponent {
-  @Input() id: string = '';
-  @Input() checked: boolean = false;
-  @Input() disabled: boolean = false;
-  @Input() indeterminate: boolean = false;
-  @Input() required: boolean = false;
-  @Input() value: string = '';
-  @Input() name: string = '';
-  @Input() label: string = '';
-  @Input() labelPosition: 'before' | 'after' = 'after';
-  @Input() ariaDescribedby: string = '';
-  @Input() ariaLabel: string = '';
-  @Input() ariaLabelledby: string = '';
+  id = input<string>('');
+  checked = input<boolean>(false);
+  disabled = input<boolean>(false);
+  indeterminate = input<boolean>(false);
+  required = input<boolean>(false);
+  value = input<string>();
+  name = input.required<string>();
+  label = input<string>('');
+  labelPosition = input<IBbmSidePosition>('after');
+  ariaDescribedby = input<string>('');
+  ariaLabel = input<string>('');
+  ariaLabelledby = input<string>('');
+  helperMessage = input<string>('');
+  errorMessage = input<string>('');
+  control = model<FormControl>();
 
-  @Output() change: EventEmitter<Event> = new EventEmitter<Event>();
+  change = output<any>();
 
-  handleChange(event: Event): void {
-    const target = event.target as HTMLInputElement;
-    this.checked = target.checked;
+  handleChange(event: any) {
     this.change.emit(event);
-    event.stopPropagation();
-  }
-
-  handleKeyDown(event: KeyboardEvent) {
-    if (event.key === 'Enter') {
-      if (this.indeterminate) {
-        this.indeterminate = false;
-        this.checked = true;
-      } else {
-        this.checked = !this.checked;
-      }
-
-      event.preventDefault();
-      this.change.emit(event);
-    }
   }
 }

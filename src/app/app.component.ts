@@ -5037,4 +5037,14 @@ export class AppComponent {
   onValueChange(event: unknown): void {
     console.log('onValueChange', event);
   }
+
+  assignmentNotification: string[] = ['9'];
+
+  logOut(event: unknown): void {
+    console.log('logOut', event);
+  }
+
+  onLangChange(event: unknown): void {
+    console.log('onLangChange', event);
+  }
 }

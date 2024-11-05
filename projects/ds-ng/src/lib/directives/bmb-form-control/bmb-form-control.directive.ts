@@ -29,11 +29,8 @@ export class BmbFormControlDirective {
   @HostListener('ngSubmit')
   submit() {
     const formGroup = this.formService.getFormGroup();
-    if (formGroup.valid) {
-      this.formGroupState.emit(formGroup);
-      return;
-    }
     this.updateErrorState(formGroup);
+    this.formGroupState.emit(formGroup);
   }
 
   updateErrorState(formGroup: FormGroup) {
