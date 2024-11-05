@@ -11,85 +11,91 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbTabsComponent } from '../bmb-tabs/bmb-tabs.component';
-import { BmbCalendarComponent } from '../bmb-calendar/bmb-calendar.component';
 import {
   DragDropModule,
   CdkDragMove,
   CdkDragEnd,
+  CdkDragStart,
 } from '@angular/cdk/drag-drop';
-
-import { BmbInteractiveIconComponent } from '../bmb-interactive-icon/bmb-interactive-icon.component';
 
 @Component({
   selector: 'bmb-pull-wedge',
   standalone: true,
-  imports: [
-    CommonModule,
-    BmbIconComponent,
-    BmbTabsComponent,
-    DragDropModule,
-    BmbInteractiveIconComponent,
-    BmbCalendarComponent,
-  ],
+  imports: [CommonModule, DragDropModule],
   styleUrls: ['./bmb-pull-wedge.component.scss'],
   templateUrl: './bmb-pull-wedge.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbPullWedgeComponent implements AfterViewInit, OnChanges {
-  @Input() initialHeight: number = 200;
+  @Input() initialHeight: number = 300;
+  @Input() minContentHeight: number = 100;
   @ViewChild('content', { static: true }) contentRef!: ElementRef;
 
-  initialY = 0;
-  contentHeight: number = 200;
-  minContentHeight: number = 200;
-  maxContentHeight: number = 0;
-  isCollapsed = true;
+  contentHeight: number = this.minContentHeight;
+  maxDragHeight: number = 0;
+  isOpen = false;
+  isVisible = true;
+  private initialDragHeight = 0;
 
   constructor(private renderer: Renderer2) {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['initialHeight']) {
-      this.contentHeight = changes['initialHeight'].currentValue;
-      this.minContentHeight = changes['initialHeight'].currentValue;
+      this.maxDragHeight = this.initialHeight * 0.51;
+    }
+    if (changes['minContentHeight']) {
+      this.contentHeight = Math.max(this.contentHeight, this.minContentHeight);
+      this.renderer.setStyle(
+        this.contentRef.nativeElement,
+        'height',
+        `${this.contentHeight}px`,
+      );
     }
   }
 
   ngAfterViewInit() {
-    this.calculateHeight();
+    this.renderer.setStyle(
+      this.contentRef.nativeElement,
+      'height',
+      `${this.contentHeight}px`,
+    );
   }
 
-  calculateHeight() {
-    const contentHeight = this.contentRef.nativeElement.scrollHeight;
-    this.maxContentHeight = contentHeight;
-    if (this.isCollapsed) {
-      this.contentHeight = this.minContentHeight;
-    } else {
-      this.contentHeight = this.maxContentHeight;
-    }
+  onDragStarted(event: CdkDragStart) {
+    this.initialDragHeight = this.contentHeight;
   }
 
   onDragMoved(event: CdkDragMove) {
-    if (this.initialY === 0) {
-      this.initialY = event.pointerPosition.y;
+    const newHeight = this.initialDragHeight + event.distance.y;
+
+    if (newHeight >= this.minContentHeight && newHeight <= this.initialHeight) {
+      this.contentHeight = newHeight;
+      this.renderer.setStyle(
+        this.contentRef.nativeElement,
+        'height',
+        `${this.contentHeight}px`,
+      );
     }
-    const deltaY = event.pointerPosition.y - this.initialY;
-    const newHeight = Math.max(
-      this.minContentHeight,
-      Math.min(this.maxContentHeight, this.contentHeight + deltaY),
-    );
-    this.contentHeight = newHeight;
   }
 
   onDragEnded(event: CdkDragEnd) {
-    const finalHeight = this.contentHeight;
-    if (finalHeight > this.minContentHeight) {
-      this.contentHeight = this.maxContentHeight;
-    } else {
+    const midpointThreshold = 150;
+
+    if (this.contentHeight >= this.maxDragHeight) {
+      this.contentHeight = this.initialHeight;
+      this.isOpen = true;
+    } else if (this.contentHeight < midpointThreshold) {
       this.contentHeight = this.minContentHeight;
+      this.isOpen = false;
+    } else {
+      this.contentHeight = this.contentHeight;
     }
-    this.initialY = 0;
+
+    this.renderer.setStyle(
+      this.contentRef.nativeElement,
+      'height',
+      `${this.contentHeight}px`,
+    );
   }
 }
