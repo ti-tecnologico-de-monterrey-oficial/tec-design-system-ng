@@ -6,6 +6,7 @@ import {
   ElementRef,
   Renderer2,
   AfterViewInit,
+  output,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
@@ -25,9 +26,13 @@ export class BmbTagComponent implements AfterViewInit {
   @Input() appearance: IBmbActivityTags = 'info';
   @Input() text: string = '';
   @Input() grouped: boolean = false;
-  @Input() dismissible: boolean = false;
+  @Input() dismissible: boolean = true;
   @Input() rounded: boolean = false;
   @Input() activityTag: boolean = false;
+  closedTag = output<string>();
+  clickedTag = output<string>();
+
+  groupedTags = [];
 
   constructor(
     private el: ElementRef,
@@ -56,14 +61,19 @@ export class BmbTagComponent implements AfterViewInit {
     if (this.rounded && !this.activityTag) {
       classes = classes + ' bmb_tag-rounded';
     }
-    if (this.activityTag) {
-      classes = classes + `bmb_tag-rounded bmb_tag-${this.appearance}`;
-      this.dismissible = false;
-    }
+    // if (this.activityTag) {
+    //   classes = classes + `bmb_tag-rounded bmb_tag-${this.appearance}`;
+    //   this.dismissible = false;
+    // }
     return classes;
   }
 
-  closeTag() {
+  closeTag(text: string) {
+    this.closedTag.emit(text);
     this.el.nativeElement.remove();
+  }
+
+  clickTag(text: string) {
+    this.clickedTag.emit(text);
   }
 }

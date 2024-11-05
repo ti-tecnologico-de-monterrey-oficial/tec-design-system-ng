@@ -18,6 +18,10 @@
     @include mixins.button(destructive);
   }
 
+  &-transparent {
+    @include mixins.button(transparent);
+  }
+
   &-rounded {
     border-radius: rem.rem_calc(40);
   }
@@ -43,6 +47,10 @@
           color: RGBA(var(--color-black-primary));
         }
       }
+    }
+
+    &-transparent {
+      color: RGBA(var(--color-white-primary));
     }
   }
 }
