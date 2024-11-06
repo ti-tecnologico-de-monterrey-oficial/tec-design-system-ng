@@ -158,18 +158,6 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string' },
       },
     },
-    type: {
-      name: 'Type',
-      control: {
-        type: 'text',
-      },
-      description: 'Set the variation of the component',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: 'default' },
-      },
-    },
     control: {
       control: { type: 'object' },
       description: 'Instance of FormControl to manage the input control state.',
@@ -197,7 +185,6 @@ Below is an example of how you can use this component in HTML:
     required: true,
     label: 'Fruit',
     showIcon: true,
-    type: 'default',
     options: ['Apple', 'Banana', 'Orange', 'Pear', 'Grape'],
     onValueChange: (params: any) => {
       window.alert(params.toString());
