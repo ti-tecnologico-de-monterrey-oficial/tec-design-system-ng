@@ -63,28 +63,34 @@ export class BmbFormService {
       this.setFormControl(name, control);
     }
 
-    const newControl = this.getFormControl(name);
-    if (newControl === null) {
-      this.setFormControlByType(type, name, value);
+
+    try {
+      const newControl = this.getFormControl(name);
+      if (newControl === null) {
+        this.setFormControlByType(type, name, value);
+      }
+
+      if (isAddConfig) {
+        if (isRequired && !newControl.hasValidator(Validators.required)) {
+          newControl.addValidators(Validators.required);
+        }
+
+        if (type === 'email' && !control.hasValidator(Validators.email)) {
+          control.addValidators(Validators.email);
+        }
+
+        if (type !== 'phone') {
+          newControl.valueChanges.subscribe(() => {
+            cdr.markForCheck();
+          });
+        }
+      }
+
+      return this.getFormControl(name);
+    } catch(error) {
+
     }
-
-    if (isAddConfig) {
-      if (isRequired && !newControl.hasValidator(Validators.required)) {
-        newControl.addValidators(Validators.required);
-      }
-
-      if (type === 'email' && !control.hasValidator(Validators.email)) {
-        control.addValidators(Validators.email);
-      }
-
-      if (type !== 'phone') {
-        newControl.valueChanges.subscribe(() => {
-          cdr.markForCheck();
-        });
-      }
-    }
-
-    return this.getFormControl(name);
+    return new FormControl();
   }
 
   showError(type: string, name: string): boolean {

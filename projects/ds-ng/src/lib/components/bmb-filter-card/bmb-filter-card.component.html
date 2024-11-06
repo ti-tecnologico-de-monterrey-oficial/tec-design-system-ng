@@ -17,6 +17,7 @@
                 @case ("radial") {
                   <bmb-radial
                     [name]="control.name"
+                    [value]="control.value!"
                     [checked]="
                       filterForm.get(control.name)?.value === control.label
                     "

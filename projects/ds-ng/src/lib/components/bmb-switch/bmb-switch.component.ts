@@ -33,7 +33,7 @@ export class BmbSwitchComponent {
   change = output<boolean>();
 
   toggleSwitch(): void {
-    if (!this.disabled) {
+    if (!this.disabled()) {
       this.isChecked.update((value) => !value);
       this.change.emit(this.isChecked());
     }

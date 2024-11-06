@@ -22,7 +22,7 @@
     (footerEvent)="footerEvent($event)"
   >
   </bmb-external-link> -->
-  <bmb-filter-card
+  <!-- <bmb-filter-card
     [modalTitle]="'Opciones Filtrado'"
     [primaryBtnLabel]="'Aplicar Filtros'"
     [secondaryBtnLabel]="'Limpiar Filtros'"
@@ -34,12 +34,14 @@
         control: [
           {
             name: 'radial-1',
+            value: '',
             type: 'radial',
             label: 'Radial 1',
             checked: false,
           },
           {
             name: 'radial-1',
+            value: '',
             type: 'radial',
             label: 'Radial 2',
             checked: false,
@@ -51,12 +53,14 @@
         control: [
           {
             name: 'checkbox-1',
+            value: '',
             type: 'checkbox',
             label: 'Checkbox 1',
             checked: false,
           },
           {
             name: 'checkbox-2',
+            value: '',
             type: 'checkbox',
             label: 'Checkbox 2',
             checked: false,
@@ -68,6 +72,7 @@
         control: [
           {
             name: 'switch-1',
+            value: '',
             type: 'switch',
             label: 'Switch 2',
             rightText: 'Switch 3',
@@ -79,7 +84,7 @@
     [inLine]="false"
     (applyFilters)="applyFilters($event)"
     (resetFilters)="resetFilters($event)"
-  />
+  /> -->
   <!-- <bmb-top-bar
     [positionButtonMenu]="'left'"
     [userInformation]="{ name: 'Name', image: 'ima.pgn', role: 'alumno' }"
