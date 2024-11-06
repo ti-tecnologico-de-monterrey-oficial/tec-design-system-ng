@@ -12,14 +12,57 @@ export default {
 Below is an example of how you can use this component in TypeScript:
 
 \`\`\`typescript
+import { Component, ChangeDetectorRef } from '@angular/core';
+import {
+  FormControl,
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { BmbDropdownComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
 @Component({
   selector: 'component',
   standalone: true,
-  imports: [ BmbDropdownComponent ],
+  imports: [ 
+    BmbDropdownComponent,
+    ReactiveFormsModule,
+    BmbButtonDirective,
+    BmbInputComponent,
+  ],
   templateUrl: './component.html',
   styleUrl: './component.scss',
 })
+
+export class AppComponent {
+  userForm: FormGroup = new FormGroup({
+    dropdown: new FormControl<string>('', Validators.required),
+  });
+  showErrors: { [key: string]: boolean } = {};
+
+  onSubmit() {
+
+    if (this.userForm.valid) {
+      return;
+    }
+    this.userForm.markAllAsTouched();
+    this.updateErrorState();
+  }
+
+  updateErrorState() {
+    Object.keys(this.userForm.controls).forEach((field) => {
+      const control = this.userForm.get(field);
+      if (control instanceof FormControl) {
+        this.showErrors[field] =
+          control.invalid && (control.touched || control.dirty);
+      }
+    });
+  }
+
+  getFormControl(name: string): FormControl {
+    return this.userForm.get(name) as FormControl;
+  }
+}
 \`\`\`
 
 Below is an example of how you can use this component in HTML:
@@ -125,6 +168,15 @@ Below is an example of how you can use this component in HTML:
         category: 'Properties',
         type: { summary: 'string' },
         defaultValue: { summary: 'default' },
+      },
+    },
+    control: {
+      control: { type: 'object' },
+      description: 'Instance of FormControl to manage the input control state.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'FormControl' },
+        defaultValue: { summary: "FormControl('', Validators.required)" },
       },
     },
     onValueChange: {
