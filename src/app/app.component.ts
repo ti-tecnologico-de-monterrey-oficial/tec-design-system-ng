@@ -7,6 +7,7 @@ import {
   TemplateRef,
   CUSTOM_ELEMENTS_SCHEMA,
   ElementRef,
+  signal,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import {
@@ -98,6 +99,8 @@ import {
   ITimelineEvent,
   BmbFormControlDirective,
   BmbFilterCardComponent,
+  BmbDropzoneComponent,
+  IBmbFileUploadStatus,
 } from '../../projects/ds-ng/src/public-api';
 import { BmbPullWedgeComponent } from '../../projects/ds-ng/src/lib/components/bmb-pull-wedge/bmb-pull-wedge.component';
 import { BmbCardButtonComponent } from '../../projects/ds-ng/src/lib/components/bmb-card-button/bmb-card-button.component';
@@ -208,6 +211,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     NgxMatIntlTelInputComponent,
     MatFormFieldModule,
     BmbFilterCardComponent,
+    BmbDropzoneComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -3080,6 +3084,25 @@ export class AppComponent {
     return this.formGroup.get(name) as FormControl;
   }
 
+  dropzoneProgress = signal<number>(0);
+  uploadStatus: IBmbFileUploadStatus = 'none';
+
+  dropzoneChange(event: File) {
+    let progress = 0;
+    this.uploadStatus = 'loading';
+
+    const interval = setInterval(() => {
+      this.dropzoneProgress.set(progress + 50);
+      progress += 50;
+
+      if (progress >= 100) {
+        clearInterval(interval);
+        this.uploadStatus = 'success';
+      }
+    }, 1000);
+
+    console.log(event);
+  }
   onDateChange(event: unknown): void {
     alert('onDateChange: ' + event);
   }
