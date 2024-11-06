@@ -155,7 +155,10 @@ export class BmbInputComponent {
   }
 
   isChecked(): boolean {
-    return this.checked() || this.formService.getFormControl(this.name())?.value === this.value();
+    return (
+      this.checked() ||
+      this.formService.getFormControl(this.name())?.value === this.value()
+    );
   }
 
   handleRadioChange(event: Event) {

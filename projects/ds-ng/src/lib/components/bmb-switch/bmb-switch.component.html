@@ -24,6 +24,9 @@
     <span *ngIf="rightText() && !rightIcon()" class="bmb_switch-text">{{
       rightText()
     }}</span>
-    <bmb-icon *ngIf="rightIcon() && !rightText()" [icon]="rightIcon()"></bmb-icon>
+    <bmb-icon
+      *ngIf="rightIcon() && !rightText()"
+      [icon]="rightIcon()"
+    ></bmb-icon>
   </div>
 </button>
