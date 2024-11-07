@@ -3,7 +3,7 @@
 
 * {
   box-sizing: border-box;
-  @include fonts.font(5, regular);
+  font-family: var(--font-display);
 }
 
 html {
