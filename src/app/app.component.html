@@ -116,8 +116,8 @@
     (onLangChange)="onLangChange($event)"
   /> -->
   <bmb-divider />
-  <!-- <bmb-form-validation (formGroupState)="onSubmitVal($event)"> -->
-  <!-- <bmb-date-range
+  <bmb-form-validation (formGroupState)="onSubmitVal($event)">
+    <!-- <bmb-date-range
       placeholder="Selecciona la fecha de cumpleaños"
       name="datePicker"
       dateFormat="MM/dd/yyyy"
@@ -129,7 +129,7 @@
       invalidFormaterrorMessage="El formato debe ser el siguiente: dd/mm/yyyy"
       requiredFieldErrorMessage="Este campo es requerido"
     /> -->
-  <!-- <bmb-datepicker
+    <!-- <bmb-datepicker
       placeholder="Selecciona la fecha de cumpleaños"
       name="datePicker"
       dateFormat="MM/dd/yyyy"
@@ -141,7 +141,7 @@
       invalidFormaterrorMessage="El formato debe ser el siguiente: dd/mm/yyyy"
       requiredFieldErrorMessage="Este campo es requerido"
     /> -->
-  <!-- <bmb-dropdown
+    <!-- <bmb-dropdown
       [required]="true"
       [showIcon]="true"
       [placeholder]="'Set Fruit'"
@@ -151,7 +151,7 @@
       [type]="'default'"
       (onValueChange)="onValueChange($event)"
     /> -->
-  <!-- <bmb-totp
+    <!-- <bmb-totp
       instanceId="first"
       [maxCode]="6"
       (handleSubmit)="verifyCode($event, 'first')"
@@ -161,14 +161,14 @@
       buttonText="Verify"
       helperText="Helper text"
     /> -->
-  <!-- <bmb-totp
+    <!-- <bmb-totp
       instanceId="second"
       [maxCode]="4"
       (handleSubmit)="verifyCode($event, 'second')"
       [codeError]="errors['second'] ? errors['second'].codeError : false"
       [errorMessage]="errors['second'] ? errors['second'].errorMessage : ''"
     /> -->
-  <!-- <bmb-input-phone-number
+    <bmb-input-phone-number
       appearance="normal"
       [name]="'phone'"
       label="Phone"
@@ -263,8 +263,8 @@
       [isRequired]="true"
       [showMaxTextLength]="true"
       [maxlength]="20"
-    /> -->
-  <!-- <bmb-radial
+    />
+    <bmb-radial
       id="radio1"
       value="CCM"
       name="contract"
@@ -288,11 +288,11 @@
       errorMessage="Error message"
       helperMessage="Helper message"
       (change)="handleRadial($event)"
-    /> -->
-  <!-- <bmb-checkbox
+    />
+    <bmb-checkbox
       [id]="'checkbox1'"
       name="checkbox1"
-      [checked]="false"
+      [checked]="true"
       [disabled]="false"
       [indeterminate]="false"
       [required]="true"
@@ -304,11 +304,11 @@
       errorMessage="Error message"
       helperMessage="Helper Message"
       (change)="handleCheckboxChange($event)"
-    /> -->
-  <!-- <button bmbButton size="large" appearance="primary" type="submit">
+    />
+    <button bmbButton size="large" appearance="primary" type="submit">
       Submit
     </button>
-  </bmb-form-validation> -->
+  </bmb-form-validation>
   <!-- <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
     <bmb-input
       id="text1"

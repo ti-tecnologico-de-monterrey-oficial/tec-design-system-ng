@@ -137,12 +137,18 @@ export class BmbInputComponent {
     return this.formService.getTextLength(this.name());
   }
 
+  getValue(type: string): string {
+    // if (type === 'radio' || type === 'checkbox') return '';
+    return this.value()!;
+  }
+
   getControl(): FormControl {
     const type = this.type().toLocaleLowerCase();
+
     return this.formService.getControl(
       type,
       this.name(),
-      this.value(),
+      this.getValue(type),
       type === 'radio' || type === 'checkbox' || type === 'phone',
       this.isRequired(),
       this.cdr,
@@ -157,7 +163,7 @@ export class BmbInputComponent {
   isChecked(): boolean {
     return (
       this.checked() ||
-      this.formService.getFormControl(this.name())?.value === this.value()
+      this.formService.getFormControlByName(this.name())?.value === this.value()
     );
   }
 
@@ -165,7 +171,7 @@ export class BmbInputComponent {
     const target = event.target as HTMLInputElement;
     if (target && target.checked) {
       target.value = this.value()!;
-      this.formService.getFormControl(this.name()).setValue(target.value);
+      this.formService.getFormControlByName(this.name()).setValue(target.value);
       this.onRadioChange.emit(target);
     }
     event.stopPropagation();
@@ -174,7 +180,7 @@ export class BmbInputComponent {
   handleRadioKeyDown(event: KeyboardEvent) {
     const target = event.target as HTMLInputElement;
     if (event.key.toLocaleUpperCase() === 'ENTER' && target.checked) {
-      this.formService.getFormControl(this.name()).setValue(target.value);
+      this.formService.getFormControlByName(this.name()).setValue(target.value);
       this.onRadioChange.emit(target);
       event.preventDefault();
       event.stopPropagation();
@@ -185,7 +191,7 @@ export class BmbInputComponent {
     const target = event.target as HTMLInputElement;
     this.checked.set(target.checked);
 
-    this.formService.getFormControl(this.name()).setValue(this.checked());
+    this.formService.getFormControlByName(this.name()).setValue(this.checked());
     this.onCheckboxChange.emit(event);
     event.stopPropagation();
   }
@@ -199,7 +205,7 @@ export class BmbInputComponent {
         this.checked.update((value) => !value);
       }
 
-      this.formService.getFormControl(this.name()).setValue(this.checked());
+      this.formService.getFormControlByName(this.name()).setValue(this.checked());
       this.onCheckboxChange.emit(event);
       event.preventDefault();
       event.stopPropagation();

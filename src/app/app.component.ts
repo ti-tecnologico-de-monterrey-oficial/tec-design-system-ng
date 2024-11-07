@@ -3030,7 +3030,7 @@ export class AppComponent {
   }
 
   onSubmitVal(event: unknown) {
-    console.log('onSubmit VALID', event);
+    console.log('onSubmit', event);
   }
 
   footerEvent(event: unknown) {

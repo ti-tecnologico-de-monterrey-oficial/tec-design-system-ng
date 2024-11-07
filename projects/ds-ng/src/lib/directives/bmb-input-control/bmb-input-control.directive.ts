@@ -25,7 +25,7 @@ export class BmbInputControlDirective {
   ) {}
 
   ngOnInit(): void {
-    if (this.formService.getFormControl(this.name()) === null) {
+    if (this.formService.getFormControlByName(this.name()) === null) {
       this.formService.setFormControlByType(
         this.type(),
         this.name(),
@@ -33,7 +33,7 @@ export class BmbInputControlDirective {
       );
     }
 
-    const control: FormControl = this.formService.getFormControl(this.name());
+    const control: FormControl = this.formService.getFormControlByName(this.name());
     this.name(),
       this.formService.getControl(
         this.type(),
@@ -48,12 +48,12 @@ export class BmbInputControlDirective {
 
   @HostListener('blur')
   onBlur() {
-    this.formService.getFormControl(this.name()).updateValueAndValidity();
+    this.formService.getFormControlByName(this.name()).updateValueAndValidity();
   }
 
   @HostListener('input', ['$event.target'])
   onInput(event: any) {
-    const control: FormControl = this.formService.getFormControl(this.name());
+    const control: FormControl = this.formService.getFormControlByName(this.name());
     control.setValue(event.value);
     if (this.type() === 'text-area') {
       this.formService.setTextLength(

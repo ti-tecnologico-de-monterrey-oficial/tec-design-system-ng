@@ -14,7 +14,7 @@ export class BmbFormService {
     this.formGroup = formGroup;
   }
 
-  getFormControl(name: string): FormControl {
+  getFormControlByName(name: string): FormControl {
     return this.getFormGroup().get(name) as FormControl;
   }
 
@@ -37,7 +37,7 @@ export class BmbFormService {
   }
 
   addFormControl(name: string, control: FormControl): void {
-    if (!this.getFormControl(name)) {
+    if (!this.getFormControlByName(name)) {
       this.formGroup.addControl(name, control);
     }
   }
@@ -63,34 +63,28 @@ export class BmbFormService {
       this.setFormControl(name, control);
     }
 
-
-    try {
-      const newControl = this.getFormControl(name);
-      if (newControl === null) {
-        this.setFormControlByType(type, name, value);
-      }
-
-      if (isAddConfig) {
-        if (isRequired && !newControl.hasValidator(Validators.required)) {
-          newControl.addValidators(Validators.required);
-        }
-
-        if (type === 'email' && !control.hasValidator(Validators.email)) {
-          control.addValidators(Validators.email);
-        }
-
-        if (type !== 'phone') {
-          newControl.valueChanges.subscribe(() => {
-            cdr.markForCheck();
-          });
-        }
-      }
-
-      return this.getFormControl(name);
-    } catch(error) {
-
+    const newControl = this.getFormControlByName(name);
+    if (newControl === null) {
+      this.setFormControlByType(type, name, value);
     }
-    return new FormControl();
+
+    if (isAddConfig) {
+      if (isRequired && !newControl.hasValidator(Validators.required)) {
+        newControl.addValidators(Validators.required);
+      }
+
+      if (type === 'email' && !control.hasValidator(Validators.email)) {
+        control.addValidators(Validators.email);
+      }
+
+      if (type !== 'phone') {
+        newControl.valueChanges.subscribe(() => {
+          cdr.markForCheck();
+        });
+      }
+    }
+
+    return this.getFormControlByName(name);
   }
 
   showError(type: string, name: string): boolean {
@@ -98,9 +92,9 @@ export class BmbFormService {
     if (control !== null) {
       if (
         type.toLocaleLowerCase() === 'checkbox' &&
-        this.getFormControl(name).value !== null
+        this.getFormControlByName(name).value !== null
       ) {
-        return !this.getFormControl(name).value;
+        return !this.getFormControlByName(name).value;
       }
       return control.invalid && (control.touched || control.dirty);
     }
