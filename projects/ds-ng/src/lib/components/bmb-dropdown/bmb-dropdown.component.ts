@@ -64,10 +64,9 @@ export class BmbDropdownComponent
   @Input() icon?: string = '';
   @Input() options?: string[] = [];
   @Input() helperText?: string = '';
-  @Input() formControl?: FormControl | undefined;
+  @Input() control?: FormControl | undefined;
   @Input() disabled?: boolean = false;
   @Input() label?: string;
-  @Input() type?: 'default' | 'autocomplete' = 'default';
 
   @Output() onValueChange: EventEmitter<any> = new EventEmitter<any>();
 
@@ -105,48 +104,48 @@ export class BmbDropdownComponent
   constructor(private elementRef: ElementRef) {}
 
   ngOnInit(): void {
-    if (this.formControl === undefined) {
-      this.formControl = new FormControl();
+    if (this.control === undefined) {
+      this.control = new FormControl();
     }
   }
 
   ngAfterViewInit(): void {
     this.childNodes = this.elementRef.nativeElement;
-    if (this.disabled && this.formControl) {
-      this.formControl.disable();
-    } else if (this.disabled && !this.formControl) {
+    if (this.disabled && this.control) {
+      this.control.disable();
+    } else if (this.disabled && !this.control) {
       this.input?.disabled;
     }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.formControl && changes?.['disabled'] !== undefined) {
-      if (this.formControl.disabled !== changes?.['disabled']?.currentValue) {
+    if (this.control && changes?.['disabled'] !== undefined) {
+      if (this.control.disabled !== changes?.['disabled']?.currentValue) {
         changes?.['disabled']?.currentValue
-          ? this.formControl.disable()
-          : this.formControl.enable();
+          ? this.control.disable()
+          : this.control.enable();
       }
     }
   }
 
   handleItemClick(event: string, index: any): void {
-    if (this.type == 'autocomplete') {
-      let found = this.multipleOptions?.find((element) => element == event);
-      if (found === undefined) {
-        this.multipleOptions?.push(event);
-        this.onValueChange.emit(this.multipleOptions);
-        if (this.formControl) {
-          this.formControl.setValue(this.multipleOptions);
-        }
-      }
-    } else {
+    // if (this.type == 'autocomplete') {
+    //   let found = this.multipleOptions?.find((element) => element == event);
+    //   if (found === undefined) {
+    //     this.multipleOptions?.push(event);
+    //     this.onValueChange.emit(this.multipleOptions);
+    //     if (this.control) {
+    //       this.control.setValue(this.multipleOptions);
+    //     }
+    //   }
+    // } else {
       this.onValueChange.emit(event);
       this.selectedIndexOption = index;
       this.selectedOption = event;
-      if (this.formControl) {
-        this.formControl.setValue(event);
+      if (this.control) {
+        this.control.setValue(event);
       }
-    }
+    // }
 
     this.isFocus = !this.isFocus;
     this.openSelect = false;
@@ -182,8 +181,8 @@ export class BmbDropdownComponent
   deleteTag(index: number) {
     this.multipleOptions?.splice(index, 1);
     this.onValueChange.emit(this.multipleOptions);
-    if (this.formControl) {
-      this.formControl.setValue(this.multipleOptions);
+    if (this.control) {
+      this.control.setValue(this.multipleOptions);
     }
   }
 

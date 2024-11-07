@@ -27,6 +27,7 @@ To use the medium family of Poppins with the 4th size, your HTML element should 
 - **Size 2**: 11px
 - **Size 3**: 12px
 - **Size 4**: 14px
+- **Size 4_5**: 15px
 - **Size 5**: 16px
 - **Size 6**: 18px
 - **Size 7**: 20px
@@ -55,7 +56,21 @@ Remember to replace \`font-medium-4\` with the appropriate class based on the fa
     size: {
       name: 'Size',
       control: { type: 'select' },
-      options: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+      options: [
+        '1',
+        '2',
+        '3',
+        '4',
+        '4_5',
+        '5',
+        '6',
+        '7',
+        '8',
+        '9',
+        '10',
+        '11',
+        '12',
+      ],
       description: 'Select the size to look how works.',
       table: {
         category: 'Properties',
@@ -65,7 +80,7 @@ Remember to replace \`font-medium-4\` with the appropriate class based on the fa
   },
   args: {
     family: 'thin',
-    size: '1',
+    size: { 1: '1' },
   },
 } as Meta;
 
