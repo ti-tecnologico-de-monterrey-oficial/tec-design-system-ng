@@ -76,7 +76,7 @@ $font-map: (
 
 :root,
 :host {
-  --font-display: $font-poppins-regular;
+  --font-display: "Poppins-Regular", sans-serif;
 }
 
 $sizes: (
