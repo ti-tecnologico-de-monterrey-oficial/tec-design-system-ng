@@ -9,7 +9,10 @@
 
   --general_contrasts-main-complimentary: RGBA(var(--color-charade-50), 1);
   --general_contrasts-main-selection: RGBA(var(--color-mariner-700), 1);
-  --general_contrasts-main-selection-alternative: RGBA(var(--color-neon-primary), 1);
+  --general_contrasts-main-selection-alternative: RGBA(
+    var(--color-neon-primary),
+    1
+  );
   --general_contrasts-input-background: RGBA(var(--color-charade-50), 1);
   --general_contrasts-input-outline: RGBA(var(--color-mariner-700), 1);
   --general_contrasts-container-outline: RGBA(var(--color-charade-300), 1);
@@ -29,7 +32,7 @@
   --buttons-active-switch: RGBA(var(--color-charade-700), 1);
   --buttons-inactive-step: RGBA(var(--color-charade-300), 1);
 
-  --alert-successful:  RGBA(var(--color-green-primary), 1);
+  --alert-successful: RGBA(var(--color-green-primary), 1);
   --alert-event: RGBA(var(--color-purple-light), 1);
   --alert-event-tint: RGBA(var(--color-purple-tint), 1);
   --alert-neutral: RGBA(var(--color-charade-300), 1);
@@ -43,8 +46,11 @@
   --menu_select-label-menu-inactive: RGBA(var(--color-charade-950), 1);
   --menu_select-activated-w-checkbox: RGBA(var(--color-mariner-950), 1);
   --menu_select-alternative-focus-label: RGBA(var(--color-purple-primary), 1);
-  --menu_select-on-surface-hovered-w-checkbox: RGBA(var(--color-mariner-100), 1);
-  --menu_select-on-surface-hovered:  RGBA(var(--color-mariner-100), 1);
+  --menu_select-on-surface-hovered-w-checkbox: RGBA(
+    var(--color-mariner-100),
+    1
+  );
+  --menu_select-on-surface-hovered: RGBA(var(--color-mariner-100), 1);
 }
 
 [data-theme="dark"],
@@ -58,8 +64,11 @@
   --general_contrasts-5: RGBA(var(--color-charade-900), 1);
 
   --general_contrasts-main-selection: RGBA(var(--color-neon-primary), 1);
-  --general_contrasts-main-selection-alternative: RGBA(var(--color-mariner-700), 1);
-  --general_contrasts-input-background: RGBA(var(--color-black-primary), .5);
+  --general_contrasts-main-selection-alternative: RGBA(
+    var(--color-mariner-700),
+    1
+  );
+  --general_contrasts-input-background: RGBA(var(--color-black-primary), 0.5);
   --general_contrasts-input-outline: RGBA(var(--color-charade-50), 1);
   --general_contrasts-container-outline: RGBA(var(--color-charade-800), 1);
   --general_contrasts-text-sidebar: RGBA(var(--color-white-primary), 1);
@@ -76,6 +85,9 @@
   --menu_select-label-menu-inactive: RGBA(var(--color-charade-50), 1);
   --menu_select-activated-w-checkbox: RGBA(var(--color-mariner-700), 1);
   --menu_select-alternative-focus-label: RGBA(var(--color-purple-tint), 1);
-  --menu_select-on-surface-hovered-w-checkbox: RGBA(var(--color-mariner-950), 1);
-  --menu_select-on-surface-hovered:  RGBA(var(--color-mariner-950), 1);
+  --menu_select-on-surface-hovered-w-checkbox: RGBA(
+    var(--color-mariner-950),
+    1
+  );
+  --menu_select-on-surface-hovered: RGBA(var(--color-mariner-950), 1);
 }
