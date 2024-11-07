@@ -6,7 +6,6 @@
 
 .storybook-dark-theme {
   .sbdocs {
-    background-color: RGBA(var(--color-charade-950));
 
     &-title {
       color: RGBA(var(--color-white-primary));
@@ -34,7 +33,6 @@
 
 .storybook-light-theme {
   .sbdocs {
-    background-color: RGBA(var(--color-charade-200));
 
     &-title {
       color: RGBA(var(--color-black-primary));
@@ -47,5 +45,80 @@
     .docs-story {
       background-color: RGBA(var(--color-charade-200));
     }
+  }
+}
+
+#storybook-docs {
+  .sbdocs {
+    background-color: var(--general_contrasts-25);
+  }
+
+  .docblock-source {
+    background-color: var(--general_contrasts-15);
+    color: var(--general_contrasts-100);
+
+    .token {
+      &.property {
+        color: var(--buttons-primary-normal);
+      }
+
+      &.function,
+      &.tag {
+        color: var(--alert-successful);
+      }
+
+      &.punctuation,
+      &.operator {
+        color: var(--general_contrasts-75);
+      }
+
+      &.keyword {
+        color: var(--buttons-primary-normal);
+      }
+
+      &.string {
+        color: var(--alert-primary);
+      }
+    }
+  }
+
+  .css-p1dfi6 {
+    background-color: var(--general_contrasts-15);
+    color: var(--general_contrasts-100);
+  }
+
+  button[title="Zoom in"],
+  button[title="Zoom out"],
+  button[title="Reset zoom"] {
+    color: var(--general_contrasts-75);
+  }
+
+  table > tbody > tr {
+    &:first-child,
+    &.css-1oi7qoy {
+      > td {
+        background-color: var(--general_contrasts-5) !important;
+      }
+    }
+
+    > td {
+      background-color: var(--general_contrasts-20);
+      color: var(--general_contrasts-100);
+      border-top-color: var(--general_contrasts-5);
+
+      .css-o1d7ko {
+        background-color: var(--general_contrasts-25);
+        color: var(--general_contrasts-75);
+      }
+    }
+  }
+
+  .css-qa4clq :where(li:not(.sb-anchor, .sb-unstyled, .sb-unstyled li)) {
+    color: var(--general_contrasts-100);
+  }
+
+  code {
+    background-color: var(--general_contrasts-20);
+    color: var(--general_contrasts-100);
   }
 }
