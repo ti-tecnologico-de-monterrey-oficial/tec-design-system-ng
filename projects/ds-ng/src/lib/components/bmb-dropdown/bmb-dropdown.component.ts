@@ -139,12 +139,12 @@ export class BmbDropdownComponent
     //     }
     //   }
     // } else {
-      this.onValueChange.emit(event);
-      this.selectedIndexOption = index;
-      this.selectedOption = event;
-      if (this.control) {
-        this.control.setValue(event);
-      }
+    this.onValueChange.emit(event);
+    this.selectedIndexOption = index;
+    this.selectedOption = event;
+    if (this.control) {
+      this.control.setValue(event);
+    }
     // }
 
     this.isFocus = !this.isFocus;
