@@ -1,0 +1,93 @@
+:root {
+  --general_contrasts-100: RGBA(var(--color-charade-900), 1);
+  --general_contrasts-75: RGBA(var(--color-charade-700), 1);
+  --general_contrasts-50: RGBA(var(--color-charade-500), 1);
+  --general_contrasts-25: RGBA(var(--color-charade-200), 1);
+  --general_contrasts-20: RGBA(var(--color-charade-100), 1);
+  --general_contrasts-15: RGBA(var(--color-charade-100), 1);
+  --general_contrasts-5: RGBA(var(--color-charade-50), 1);
+
+  --general_contrasts-main-complimentary: RGBA(var(--color-charade-50), 1);
+  --general_contrasts-main-selection: RGBA(var(--color-mariner-700), 1);
+  --general_contrasts-main-selection-alternative: RGBA(
+    var(--color-neon-primary),
+    1
+  );
+  --general_contrasts-input-background: RGBA(var(--color-charade-50), 1);
+  --general_contrasts-input-outline: RGBA(var(--color-mariner-700), 1);
+  --general_contrasts-container-outline: RGBA(var(--color-charade-300), 1);
+  --general_contrasts-text-sidebar: RGBA(var(--color-black-primary), 1);
+
+  --containers-background: RGBA(var(--color-charade-200), 1);
+  --containers-main: RGBA(var(--color-charade-100), 1);
+  --containers-modal: RGBA(var(--color-charade-50), 1);
+  --containers-container-button: RGBA(var(--color-charade-50), 1);
+  --containers-background-fade: RGBA(var(--color-charade-200), 1);
+
+  --buttons-primary-normal: RGBA(var(--color-mariner-700), 1);
+  --buttons-primary-hover: RGBA(var(--color-mariner-800), 1);
+  --buttons-primary-select: RGBA(var(--color-mariner-500), 1);
+  --buttons-active-normal: RGBA(var(--color-charade-50), 1);
+  --buttons-alternative-text: RGBA(var(--color-charade-900), 1);
+  --buttons-active-switch: RGBA(var(--color-charade-700), 1);
+  --buttons-inactive-step: RGBA(var(--color-charade-300), 1);
+
+  --alert-successful: RGBA(var(--color-green-primary), 1);
+  --alert-event: RGBA(var(--color-purple-light), 1);
+  --alert-event-tint: RGBA(var(--color-purple-tint), 1);
+  --alert-neutral: RGBA(var(--color-charade-300), 1);
+  --alert-primary: RGBA(var(--color-neon-primary), 1);
+  --alert-warning: RGBA(var(--color-yellow-primary), 1);
+  --alert-error: RGBA(var(--color-red-primary), 1);
+  --alert-error-blend: RGBA(var(--color-red-light), 1);
+
+  --menu_select-surface-activated: RGBA(var(--color-mariner-700), 1);
+  --menu_select-label-menu-active: RGBA(var(--color-charade-50), 1);
+  --menu_select-label-menu-inactive: RGBA(var(--color-charade-950), 1);
+  --menu_select-activated-w-checkbox: RGBA(var(--color-mariner-950), 1);
+  --menu_select-alternative-focus-label: RGBA(var(--color-purple-primary), 1);
+  --menu_select-on-surface-hovered-w-checkbox: RGBA(
+    var(--color-mariner-100),
+    1
+  );
+  --menu_select-on-surface-hovered: RGBA(var(--color-mariner-100), 1);
+}
+
+[data-theme="dark"],
+.storybook-dark-theme {
+  --general_contrasts-100: RGBA(var(--color-charade-50), 1);
+  --general_contrasts-75: RGBA(var(--color-charade-200), 1);
+  --general_contrasts-50: RGBA(var(--color-charade-500), 1);
+  --general_contrasts-25: RGBA(var(--color-charade-700), 1);
+  --general_contrasts-20: RGBA(var(--color-charade-700), 1);
+  --general_contrasts-15: RGBA(var(--color-charade-800), 1);
+  --general_contrasts-5: RGBA(var(--color-charade-900), 1);
+
+  --general_contrasts-main-selection: RGBA(var(--color-neon-primary), 1);
+  --general_contrasts-main-selection-alternative: RGBA(
+    var(--color-mariner-700),
+    1
+  );
+  --general_contrasts-input-background: RGBA(var(--color-black-primary), 0.5);
+  --general_contrasts-input-outline: RGBA(var(--color-charade-50), 1);
+  --general_contrasts-container-outline: RGBA(var(--color-charade-800), 1);
+  --general_contrasts-text-sidebar: RGBA(var(--color-white-primary), 1);
+
+  --containers-background: RGBA(var(--color-charade-950), 1);
+  --containers-main: RGBA(var(--color-charade-900), 1);
+  --containers-modal: RGBA(var(--color-charade-950), 1);
+  --containers-container-button: RGBA(var(--color-charade-900), 1);
+  --containers-background-fade: RGBA(var(--color-charade-950), 1);
+
+  --buttons-active-switch: RGBA(var(--color-green-light), 1);
+  --buttons-inactive-step: RGBA(var(--color-charade-700), 1);
+
+  --menu_select-label-menu-inactive: RGBA(var(--color-charade-50), 1);
+  --menu_select-activated-w-checkbox: RGBA(var(--color-mariner-700), 1);
+  --menu_select-alternative-focus-label: RGBA(var(--color-purple-tint), 1);
+  --menu_select-on-surface-hovered-w-checkbox: RGBA(
+    var(--color-mariner-950),
+    1
+  );
+  --menu_select-on-surface-hovered: RGBA(var(--color-mariner-950), 1);
+}

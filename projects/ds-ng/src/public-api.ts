@@ -92,6 +92,7 @@ export * from './lib/components/bmb-timestream-card/bmb-timestream-card.componen
 export * from './lib/components/bmb-filter-card/bmb-filter-card.component';
 export * from './lib/components/bmb-card-button/bmb-card-button.component';
 export * from './lib/components/bmb-input-tags/bmb-input-tags.component';
+export * from './lib/components/bmb-invoice/bmb-invoice.component';
 // types
 export * from './lib/types';
 // interface
