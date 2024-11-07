@@ -80,7 +80,7 @@ Remember to replace \`font-medium-4\` with the appropriate class based on the fa
   },
   args: {
     family: 'thin',
-    size: { 1: '1' },
+    size: '1',
   },
 } as Meta;
 
