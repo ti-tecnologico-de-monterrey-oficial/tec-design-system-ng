@@ -3,7 +3,7 @@
 
 * {
   box-sizing: border-box;
-  @include fonts.font(4, regular);
+  font-family: var(--font-display);
 }
 
 html {
@@ -13,7 +13,7 @@ html {
 body {
   background-color: RGBA(var(--general_contrasts-15));
   font-family: var(--font-display);
-  font-size: 0.625rem;
+  font-size: 1rem;
   font-weight: 400;
   height: 100dvh;
   margin: 0;
