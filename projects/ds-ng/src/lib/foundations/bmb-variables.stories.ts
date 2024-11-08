@@ -42,6 +42,7 @@ export default {
 - **Size 2**: 11px
 - **Size 3**: 12px
 - **Size 4**: 14px
+- **Size 4_5**: 15px
 - **Size 5**: 16px
 - **Size 6**: 18px
 - **Size 7**: 20px

@@ -192,6 +192,13 @@
     &:disabled {
       opacity: 0.5;
     }
+  } @else if $appearance == transparent {
+    background-color: transparent;
+    padding: 0 rem.rem_calc(10);
+
+    &:disabled {
+      opacity: 0.5;
+    }
   }
 }
 
