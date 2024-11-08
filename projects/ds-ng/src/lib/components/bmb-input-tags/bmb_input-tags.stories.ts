@@ -2,11 +2,13 @@ import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BmbDatepickerComponent } from './bmb-datepicker.component';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+
+import { BmbInputTagsComponent } from './bmb-input-tags.component';
 
 export default {
-  title: 'Micro Componentes/Datepicker',
-  component: BmbDatepickerComponent,
+  title: 'Micro Componentes/ Input Tags',
+  component: BmbInputTagsComponent,
   decorators: [
     moduleMetadata({
       imports: [
@@ -14,7 +16,7 @@ export default {
         FormsModule,
         ReactiveFormsModule,
         BrowserAnimationsModule,
-        BmbDatepickerComponent,
+        BmbIconComponent,
       ],
     }),
   ],
@@ -33,7 +35,7 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { BmbDatepickerComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
+import { BmbInputTagsComponent, BmbButtonDirective } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -41,34 +43,39 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    CommonModule,
-    BmbDatepickerComponent,
+    BmbButtonDirective,
+    BmbInputTagsComponent,
   ],
   templateUrl: './component.html',
   styleUrls: ['./component.scss'],
 })
 export class AppComponent {
-  userForm: FormGroup;
+  userForm: FormGroup = new FormGroup({
+    food: new FormControl<string>('', Validators.required),
+  });
   showErrors: { [key: string]: boolean } = {};
 
-  constructor(private fb: FormBuilder, private cdr: ChangeDetectorRef) {
-    this.userForm = this.fb.group({
-      name: new FormControl('', Validators.required),
+  onSubmit() {
+
+    if (this.userForm.valid) {
+      return;
+    }
+    this.userForm.markAllAsTouched();
+    this.updateErrorState();
+  }
+
+  updateErrorState() {
+    Object.keys(this.userForm.controls).forEach((field) => {
+      const control = this.userForm.get(field);
+      if (control instanceof FormControl) {
+        this.showErrors[field] =
+          control.invalid && (control.touched || control.dirty);
+      }
     });
   }
 
-  onSubmit() {
-    if (this.userForm.valid) {
-      console.log(this.userForm.value);
-    } else {
-      console.log('Form is invalid');
-      this.userForm.markAllAsTouched();
-      this.cdr.markForCheck();
-    }
-  }
-
-  get nameControl(): FormControl {
-    return this.userForm.get('name') as FormControl;
+  getFormControl(name: string): FormControl {
+    return this.userForm.get(name) as FormControl;
   }
 }
 \`\`\`
@@ -79,18 +86,17 @@ Below is an example of how to use this component in HTML:
 
 \`\`\`html
 <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-  <bmb-datepicker
-    placeholder="Selecciona la fecha de cumpleaños"
-    name="datePicker"
-    dateFormat="MM/dd/yyyy"
-    label="Fecha de tu cumpleaños"
-    [disabled]="false"
-    icon="cake"
-    [isRequired]="true"
-    [isClearable]="true"
-    invalidFormaterrorMessage="El formato debe ser el siguiente: dd/mm/yyyy"
-    requiredFieldErrorMessage="Este campo es requerido"
-  />
+    <bmb-input-tags
+      [formControl]="getFormControl('food')"      
+      [label]="'Etiqueta'"
+      [tagOptions]="comidaMexicana"
+      [tooltip]="'Este es un tooltip para el input tags'"
+      [isRequired]="true"
+      [errorMessage]="'Mensaje Error'"
+      [helperMessage]="'Mensaje Ayuda'"
+      [placeholder]="'Ingrese su comida favorita'"
+    />
+  <button bmbButton appearance="primary" type="submit">Submit</button>
 </form>
 
 
@@ -109,36 +115,23 @@ Below is an example of how to use this component in HTML:
         defaultValue: { summary: "FormControl('', Validators.required)" },
       },
     },
-    icon: {
-      name: 'Icon',
+    errorMessage: {
+      name: 'Error Message',
       control: {
         type: 'text',
       },
-      description:
-        'Name of the icon to be displayed in the input field. Refer to Material Icons for options.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: 'calendar_month' },
-      },
-    },
-    invalidFormatErrorMessage: {
-      name: 'Invalid format error message',
-      control: {
-        type: 'text',
-      },
-      description: 'Text to be displayed when there is a format error.',
+      description: 'Text to be displayed when there is an error.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
       },
     },
-    requiredFieldErrorMessage: {
-      name: 'Required field error message',
+    helperMessage: {
+      name: 'Helper Message',
       control: {
         type: 'text',
       },
-      description: 'Text to be displayed when there is a required error.',
+      description: 'Text to be displayed as a helper message below the input.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -186,72 +179,76 @@ Below is an example of how to use this component in HTML:
         type: { summary: 'string' },
       },
     },
-    appearance: {
-      name: 'Appearance',
-      control: {
-        type: 'select',
-      },
-      options: ['main', 'normal', 'simple'],
-      description: 'Defines the appearance style of the input field.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
-    isClearable: {
-      name: 'Is clearable field',
+    showError: {
+      name: 'Show Error',
       control: {
         type: 'boolean',
       },
-      description: 'Display a button to clear the field',
+      description: 'Boolean to show or hide the error message.',
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
       },
     },
-    dateFormat: {
-      name: 'Date format',
+    tagOptions: {
+      name: 'Tag Options',
       control: {
         type: 'text',
       },
-      description:
-        'Set the format to validate the value and set the value format',
+      description: 'Set the array of options that the user can select',
       table: {
         category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: 'dd/MM/yyyy' },
+        type: { summary: 'Array<string>' },
       },
     },
-    name: {
-      name: 'Name',
+    toolTip: {
+      name: 'Tooltip',
       control: {
         type: 'text',
       },
-      description: 'Set the name and ID fields attributes.',
+      description: 'Shows a tooltip with extra information about the input',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        defaultValue: { summary: '' },
       },
     },
   },
 
   args: {
-    icon: 'calendar_month',
-    invalidFormatErrorMessage: 'Formato invalido',
-    requiredFieldErrorMessage: 'Campo requerido',
+    errorMessage: 'Error Message',
+    helperMessage: 'Helper Message',
     isRequired: false,
     placeholder: 'Placeholder',
     disabled: false,
     label: 'Input Label',
-    appearance: 'normal',
-    isClearable: false,
-    dateFormat: 'dd/MM/yyyy',
-    name: 'custom_date_picker',
+    showError: false,
+    tooltip: 'tooltip del input tag',
+    tagOptions: [
+      'Tacos al pastor',
+      'Enchiladas',
+      'Tamales',
+      'Quesadillas',
+      'Chiles en nogada',
+      'Mole poblano',
+      'Sopes',
+      'Gorditas',
+      'Pozole',
+      'Ceviche',
+      'Tortas',
+      'Guacamole',
+      'Tacos de pescado',
+      'Flautas',
+      'Chalupas',
+      'Huevos rancheros',
+      'Elote',
+      'Mole verde',
+      'Arroz a la mexicana',
+      'Burritos',
+    ],
   },
-} as Meta<typeof BmbDatepickerComponent>;
+} as Meta<typeof BmbInputTagsComponent>;
 
-type Story = StoryObj<BmbDatepickerComponent>;
+type Story = StoryObj<BmbInputTagsComponent>;
 
 export const Default: Story = {};

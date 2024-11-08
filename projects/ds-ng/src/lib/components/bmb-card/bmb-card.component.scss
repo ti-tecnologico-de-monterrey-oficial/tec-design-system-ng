@@ -38,6 +38,11 @@ $types: (
     "background": RGBA(var(--color-charade-100)),
     "color": RGBA(var(--color-charade-950)),
   ),
+  "transparent": (
+    "border": RGBA(var(--color-charade-300)),
+    "background": transparent,
+    "color": RGBA(var(--color-charade-950)),
+  ),
 );
 
 $dark: (
@@ -49,6 +54,10 @@ $dark: (
   "normal": (
     "border": RGBA(var(--color-charade-800)),
     "background": RGBA(var(--color-charade-900)),
+    "color": RGBA(var(--color-charade-50)),
+  ),
+  "transparent": (
+    "border": RGBA(var(--color-charade-800)),
     "color": RGBA(var(--color-charade-50)),
   ),
 );

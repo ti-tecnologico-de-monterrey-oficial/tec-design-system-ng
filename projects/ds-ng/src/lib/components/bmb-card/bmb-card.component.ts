@@ -18,7 +18,8 @@ export type IBmbCardType =
   | 'info'
   | 'warning'
   | 'error'
-  | 'normal';
+  | 'normal'
+  | 'transparent';
 
 @Component({
   selector: 'bmb-card',

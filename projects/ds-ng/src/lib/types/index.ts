@@ -5,7 +5,8 @@ export type IButtonAppearance =
   | 'primary'
   | 'secondary-filled'
   | 'secondary-outlined'
-  | 'destructive';
+  | 'destructive'
+  | 'transparent';
 export type IButtonSize = 'small' | 'large' | 'micro';
 export type IBbmSidePosition = 'before' | 'after';
 export interface IBmbApp {
