@@ -1,0 +1,18 @@
+<section class="bmb_accordion" [ngClass]="getClassesAccordion()" [ngStyle]="getStyles()">
+    @if (disabled()) {
+    <section class="bmb_accordion-overlay"></section>
+    }
+    <header [ngClass]="getClassesHeader()" (click)="toggle()">
+        <ng-container [ngTemplateOutlet]="bmbAccordionHeader" />
+        @if (icon()) {
+        <bmb-icon [icon]="icon()" />
+        } @else if (!hideToggle()) {
+        <bmb-icon [icon]="getIconToggle()" />
+        }
+    </header>
+    @if (!disabled()) {
+    <section class="bmb_accordion-content" [ngClass]="getClassesContent()">
+        <ng-container [ngTemplateOutlet]="bmbAccordionContent" />
+    </section>
+    }
+</section>
