@@ -10,7 +10,7 @@ import {
   InputSignal,
   OutputEmitterRef,
   signal,
-  WritableSignal
+  WritableSignal,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SizeNames } from '../../types';
@@ -32,23 +32,31 @@ const calculateSize: any = (pixels: string[]): string => {
 export class BmbAccordionComponent {
   @ContentChild('bmbAccordionContent') bmbAccordionContent!: TemplateRef<any>;
   @ContentChild('bmbAccordionHeader') bmbAccordionHeader!: TemplateRef<any>;
-  public borderRadius: InputSignal<SizeNames | SizeNames[]> = input<SizeNames | SizeNames[]>('m');
-  public margin: InputSignal<SizeNames | SizeNames[]> = input<SizeNames | SizeNames[]>('m');
-  public paddingHeader: InputSignal<SizeNames | SizeNames[]> = input<SizeNames | SizeNames[]>('m');
-  public paddingContent: InputSignal<SizeNames | SizeNames[]> = input<SizeNames | SizeNames[]>('m');
+  public borderRadius: InputSignal<SizeNames | SizeNames[]> = input<
+    SizeNames | SizeNames[]
+  >('m');
+  public margin: InputSignal<SizeNames | SizeNames[]> = input<
+    SizeNames | SizeNames[]
+  >('m');
+  public paddingHeader: InputSignal<SizeNames | SizeNames[]> = input<
+    SizeNames | SizeNames[]
+  >('m');
+  public paddingContent: InputSignal<SizeNames | SizeNames[]> = input<
+    SizeNames | SizeNames[]
+  >('m');
   public icon: InputSignal<string> = input<string>('');
   public hideToggle: InputSignal<boolean> = input<boolean>(false);
   public active: InputSignal<boolean> = input<boolean>(false);
   public disabled: InputSignal<boolean> = input<boolean>(false);
-  public expanded: InputSignal<boolean | undefined> = input<boolean | undefined>();
+  public expanded: InputSignal<boolean | undefined> = input<
+    boolean | undefined
+  >();
   public closed: OutputEmitterRef<void> = output<void>();
   public opened: OutputEmitterRef<void> = output<void>();
   public onClick: OutputEmitterRef<void> = output<void>();
   private _expanded: WritableSignal<boolean> = signal(false);
   private isOpen = computed<boolean | undefined>(() => {
-
     if (this.expanded() != undefined) {
-
       if (this.expanded()) {
         this.opened.emit();
       } else {
@@ -59,7 +67,6 @@ export class BmbAccordionComponent {
     } else {
       return this._expanded();
     }
-
   });
 
   getClassesAccordion(): string[] {
@@ -76,11 +83,9 @@ export class BmbAccordionComponent {
     if (this.disabled()) {
       classNames.push('disabled');
     } else {
-
       if (this.active()) {
         classNames.push('active');
       }
-
     }
 
     return classNames;
@@ -131,26 +136,21 @@ export class BmbAccordionComponent {
   }
 
   toggle(): void {
-
     if (!this.disabled()) {
       this._expanded.update((current) => !current);
       this.onClick.emit();
 
       if (this.expanded() == undefined) {
-
         if (this.isOpen()) {
           this.opened.emit();
         } else {
           this.closed.emit();
         }
-
       }
     }
-
   }
 
   getIconToggle(): string {
     return this.isOpen() ? 'expand_less' : 'expand_more';
   }
-
 }

@@ -9,10 +9,7 @@ const meta: Meta<BmbAccordionComponent> = {
   decorators: [
     moduleMetadata({
       declarations: [],
-      imports: [
-        CommonModule,
-        BmbAccordionComponent
-      ],
+      imports: [CommonModule, BmbAccordionComponent],
     }),
   ],
   parameters: {
@@ -39,138 +36,136 @@ Below is an example of how you can use this component in HTML:
   },
   argTypes: {
     borderRadius: {
-        name: 'Border radius',
-        control: {
-          type: 'select',
-        },
-        options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],
-        table: {
-          type: { summary: 'string' },
-          category: 'Properties',
-          defaultValue: { summary: 'm' },
-        },
-        description: 'Determines the corner radius size',
+      name: 'Border radius',
+      control: {
+        type: 'select',
+      },
+      options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],
+      table: {
+        type: { summary: 'string' },
+        category: 'Properties',
+        defaultValue: { summary: 'm' },
+      },
+      description: 'Determines the corner radius size',
     },
     margin: {
-        name: 'Margin',
-        control: {
-          type: 'select',
-        },
-        options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],
-        table: {
-          type: { summary: 'string' },
-          category: 'Properties',
-          defaultValue: { summary: 'm' },
-        },
+      name: 'Margin',
+      control: {
+        type: 'select',
+      },
+      options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],
+      table: {
+        type: { summary: 'string' },
+        category: 'Properties',
+        defaultValue: { summary: 'm' },
+      },
     },
     paddingHeader: {
-        name: 'Padding Header ',
-        control: {
-          type: 'select',
-        },
-        options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],
-        table: {
-          type: { summary: 'string' },
-          category: 'Properties',
-          defaultValue: { summary: 'm' },
-        },
+      name: 'Padding Header ',
+      control: {
+        type: 'select',
+      },
+      options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],
+      table: {
+        type: { summary: 'string' },
+        category: 'Properties',
+        defaultValue: { summary: 'm' },
+      },
     },
     paddingContent: {
-        name: 'Padding Content ',
-        control: {
-          type: 'select',
-        },
-        options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],
-        table: {
-          type: { summary: 'string' },
-          category: 'Properties',
-          defaultValue: { summary: 'm' },
-        },
+      name: 'Padding Content ',
+      control: {
+        type: 'select',
+      },
+      options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],
+      table: {
+        type: { summary: 'string' },
+        category: 'Properties',
+        defaultValue: { summary: 'm' },
+      },
     },
     icon: {
-        name: 'Icon',
-        control: { type: 'text' },
-        description:
-          'Name of the icon to be displayed in the input field. Refer to Material Icons for options.',
-        table: {
-          category: 'Properties',
-          type: { summary: 'string' },
-        },
+      name: 'Icon',
+      control: { type: 'text' },
+      description:
+        'Name of the icon to be displayed in the input field. Refer to Material Icons for options.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
     },
     hideToggle: {
-        name: 'Hide Toggle',
-        control: { type: 'boolean' },
-        description:
-          'This property hides or show the toggle to collapse the accordion',
-        table: {
-          category: 'Properties',
-          type: { summary: 'boolean' },
-          defaultValue: { summary: 'false'}
-        },
+      name: 'Hide Toggle',
+      control: { type: 'boolean' },
+      description:
+        'This property hides or show the toggle to collapse the accordion',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
     },
     active: {
-        name: 'Active',
-        control: { type: 'boolean' },
-        description:
-          'When this property is set as true, the accordion is not collapsed, so the content is shown.',
-        table: {
-          category: 'Properties',
-          type: { summary: 'boolean' },
-          defaultValue: { summary: 'false'}
-        },
+      name: 'Active',
+      control: { type: 'boolean' },
+      description:
+        'When this property is set as true, the accordion is not collapsed, so the content is shown.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
     },
     disabled: {
-    name: 'Disabled',
-    control: { type: 'boolean' },
-    description:
+      name: 'Disabled',
+      control: { type: 'boolean' },
+      description:
         'If set to true, disables the accordion, making it non-interactive and unclickable. This is useful for conditions where user interaction should be restricted.',
-    table: {
+      table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
         type: { summary: 'boolean' },
-    },
+      },
     },
     expanded: {
-    name: 'Expanded',
-    control: { type: 'boolean' },
-    description:
-        'If set to true, expanded the accordion.',
-    table: {
+      name: 'Expanded',
+      control: { type: 'boolean' },
+      description: 'If set to true, expanded the accordion.',
+      table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
         type: { summary: 'boolean' },
-    },
+      },
     },
     closed: {
-    name: 'Closed',
-    control: null,
-    description: 'Emmit the close event.',
-    table: {
+      name: 'Closed',
+      control: null,
+      description: 'Emmit the close event.',
+      table: {
         category: 'Events',
         type: { summary: 'function' },
-    },
+      },
     },
     opened: {
-    name: 'Opened',
-    control: null,
-    description: 'Emmit the open event.',
-    table: {
+      name: 'Opened',
+      control: null,
+      description: 'Emmit the open event.',
+      table: {
         category: 'Events',
         type: { summary: 'function' },
-    },
+      },
     },
     onClick: {
-    name: 'On Click',
-    control: null,
-    description: 'Emmit the click event.',
-    table: {
+      name: 'On Click',
+      control: null,
+      description: 'Emmit the click event.',
+      table: {
         category: 'Events',
         type: { summary: 'function' },
-    },
+      },
     },
   },
-  args: {
-  },
+  args: {},
 };
 
 export default meta;
