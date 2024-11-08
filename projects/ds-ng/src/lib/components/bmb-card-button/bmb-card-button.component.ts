@@ -5,7 +5,6 @@ import {
   ChangeDetectionStrategy,
   ViewEncapsulation,
   TemplateRef,
-  ViewChild,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -14,14 +13,11 @@ import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
 import { BmbDropdownMenuComponent } from '../bmb-dropdown-menu/bmb-dropdown-menu.component';
 import { IDropdownItem } from '../bmb-dropdown-menu/bmb-dropdown-menu.component';
-import { BmbTagComponent } from '../bmb-tags/bmb-tags.component';
-import { IBmbActivityTags } from '../bmb-tags/bmb-tags.component';
 
 export interface ICardButton {
   title: string;
   body?: string;
   badge?: { text: string; appearance: IBbmBgAppearance };
-  tag?: { text: string; appearance: IBmbActivityTags };
   icon?: string;
   leftContentIcon?: string;
   leftContentImage?: { src: string; alt: string };
@@ -41,7 +37,6 @@ export interface ICardButton {
     FormsModule,
     BmbBadgeComponent,
     BmbDropdownMenuComponent,
-    BmbTagComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -51,7 +46,6 @@ export class BmbCardButtonComponent {
   title = input<string>('');
   body = input<string>('');
   badge = input<{ text: string; appearance: IBbmBgAppearance }>();
-  tag = input<{ text: string; appearance: IBmbActivityTags }>();
   icon = input<string>('');
   leftContentIcon = input<string>('');
   leftContentImage = input<{ src: string; alt: string }>();
@@ -63,6 +57,29 @@ export class BmbCardButtonComponent {
 
   onAddContentClick = output<any>();
   onTitleClick = output<any>();
+  onSmallClick = output<void>();
+
+  //Small card
+  isSmall = input<boolean>(false);
+  botIcon = input<string>('');
+  botImage = input<{ src: string; alt: string }>();
+  smallIcon = input<string>('');
+  smallTitle = input<string>('');
+  smallDescription = input<string>('');
+
+  isFlipped: boolean = false;
+
+  truncateText(text: string, maxLength: number): string {
+    if (text.length > maxLength) {
+      return text.substring(0, maxLength) + '...';
+    }
+    return text;
+  }
+
+  handleSmallClick(event: any): void {
+    this.isFlipped = !this.isFlipped;
+    this.onSmallClick.emit(event);
+  }
 
   handleTitleClick(event: any): void {
     this.onTitleClick.emit(event);
@@ -70,12 +87,5 @@ export class BmbCardButtonComponent {
 
   handleAddContent(event: any): void {
     this.onAddContentClick.emit(event);
-  }
-
-  truncateText(text: string, maxLength: number): string {
-    if (text.length > maxLength) {
-      return text.substring(0, maxLength) + '...';
-    }
-    return text;
   }
 }
