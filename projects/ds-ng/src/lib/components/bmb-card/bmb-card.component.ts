@@ -33,6 +33,8 @@ export class BmbCardComponent {
   @Input() borderRadius: SizeNames | SizeNames[] = 'm';
   @Input() margin: SizeNames | SizeNames[] = 'm';
   @Input() type: IBmbCardType = 'normal';
+  @Input() state: 'disabled' | 'error' | 'normal' = 'normal';
+  @Input() alternative: boolean = false;
 
   getClasses() {
     const classNames = [];
