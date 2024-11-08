@@ -83,7 +83,7 @@ Below is an example of how to use it in HTML:
     },
     botImage: {
       name: 'Bot Image',
-      control: { type: 'text' },
+      control: { type: 'object' },
       description:
         'An object with `src` and `alt` small card to display the image.',
       table: {
@@ -315,7 +315,7 @@ Enable template usage for the icons show before menu dropdown. You can place les
     hasMenu: true,
     onTitleClick: action('Title clicked'),
     onAddContentClick: action('Add content clicked'),
-    onClick: action('Small clicked'),
+    onSmallClick: action('Small clicked'),
     leftContentImage: {
       src: 'https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg',
       alt: 'Left content image',
@@ -343,6 +343,10 @@ Enable template usage for the icons show before menu dropdown. You can place les
         action: () => console.log('Settings clicked'),
       },
     ],
+    botImage: {
+      src: 'https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg',
+      alt: 'Left content image',
+    },
   },
 } as Meta<typeof BmbCardButtonComponent>;
 
