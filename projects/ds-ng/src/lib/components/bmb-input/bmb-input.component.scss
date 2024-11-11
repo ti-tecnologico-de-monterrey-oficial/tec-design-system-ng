@@ -48,8 +48,10 @@
     color: RGBA(var(--color-charade-950));
     padding: var(--bmb-spacing-s);
 
-    &:focus {
+    &:focus,
+    &:focus-visible {
       border: rem.rem_calc(2) solid RGBA(var(--color-mariner-700));
+      padding: calc(var(--bmb-spacing-s) - rem.rem_calc(1));
       outline: none;
     }
 

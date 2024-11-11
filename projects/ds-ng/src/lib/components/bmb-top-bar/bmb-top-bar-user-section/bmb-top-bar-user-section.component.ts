@@ -57,6 +57,7 @@ export class BmbTopBarUserSectionComponent {
   }
 
   totalNotifications(): number {
+    if (this.notificationNotification === null) return 0;
     const seenNotifications = this.notificationNotification!.seen.length;
     const newNotifications = this.notificationNotification!.new.length;
     const allNotifications = this.notificationNotification!.all.length;
