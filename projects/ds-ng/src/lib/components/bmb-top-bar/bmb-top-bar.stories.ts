@@ -55,7 +55,7 @@ Below is an example of how you can use this component in HTML:
       description:
         'Shows the end session button, only works if the user information is provided.',
       table: {
-        category: 'Properties',
+        category: 'Deprecated',
         defaultValue: { summary: 'false' },
         type: { summary: 'boolean' },
       },
