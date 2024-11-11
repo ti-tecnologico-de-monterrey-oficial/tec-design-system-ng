@@ -21,7 +21,6 @@ export class BmbFormControlDirective {
       this.formService.setFormControlByType(
         type,
         this.getInputAttribute(input, 'name'),
-        this.getInputAttribute(input, 'value'),
       );
     });
   }

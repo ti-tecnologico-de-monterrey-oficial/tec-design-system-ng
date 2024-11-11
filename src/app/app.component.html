@@ -116,8 +116,14 @@
     (onLangChange)="onLangChange($event)"
   /> -->
   <bmb-divider />
-  <bmb-form-validation (formGroupState)="onSubmitVal($event)">
+  <!-- <bmb-form-validation (formGroupState)="onSubmitVal($event)">
     <!-- <bmb-date-range
+  placeholder="Selecciona la fecha de cumpleaños" name="datePicker"
+  dateFormat="MM/dd/yyyy" label="Fecha de tu cumpleaños" [disabled]="false"
+  icon="cake" [isRequired]="true" [isClearable]="true"
+  invalidFormaterrorMessage="El formato debe ser el siguiente: dd/mm/yyyy"
+  requiredFieldErrorMessage="Este campo es requerido" /> -->
+  <!-- <bmb-datepicker
       placeholder="Selecciona la fecha de cumpleaños"
       name="datePicker"
       dateFormat="MM/dd/yyyy"
@@ -129,19 +135,7 @@
       invalidFormaterrorMessage="El formato debe ser el siguiente: dd/mm/yyyy"
       requiredFieldErrorMessage="Este campo es requerido"
     /> -->
-    <!-- <bmb-datepicker
-      placeholder="Selecciona la fecha de cumpleaños"
-      name="datePicker"
-      dateFormat="MM/dd/yyyy"
-      label="Fecha de tu cumpleaños"
-      [disabled]="false"
-      icon="cake"
-      [isRequired]="true"
-      [isClearable]="true"
-      invalidFormaterrorMessage="El formato debe ser el siguiente: dd/mm/yyyy"
-      requiredFieldErrorMessage="Este campo es requerido"
-    /> -->
-    <!-- <bmb-dropdown
+  <!-- <bmb-dropdown
       [required]="true"
       [showIcon]="true"
       [placeholder]="'Set Fruit'"
@@ -151,7 +145,7 @@
       [type]="'default'"
       (onValueChange)="onValueChange($event)"
     /> -->
-    <!-- <bmb-totp
+  <!-- <bmb-totp
       instanceId="first"
       [maxCode]="6"
       (handleSubmit)="verifyCode($event, 'first')"
@@ -161,14 +155,14 @@
       buttonText="Verify"
       helperText="Helper text"
     /> -->
-    <!-- <bmb-totp
+  <!-- <bmb-totp
       instanceId="second"
       [maxCode]="4"
       (handleSubmit)="verifyCode($event, 'second')"
       [codeError]="errors['second'] ? errors['second'].codeError : false"
       [errorMessage]="errors['second'] ? errors['second'].errorMessage : ''"
     /> -->
-    <bmb-input-phone-number
+  <!-- <bmb-input-phone-number
       appearance="normal"
       [name]="'phone'"
       label="Phone"
@@ -308,8 +302,8 @@
     <button bmbButton size="large" appearance="primary" type="submit">
       Submit
     </button>
-  </bmb-form-validation>
-  <!-- <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+  </bmb-form-validation> -->
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
     <bmb-input
       id="text1"
       name="name"
@@ -390,12 +384,12 @@
       errorMessage="Error message for date"
       [name]="'date'"
     />
-    <bmb-radial
+    <!-- <bmb-radial
       id="radio1"
       value="CCM"
       name="contract"
       label="Contract for teacher CCM.pdf"
-      [checked]="false"
+      [checked]="true"
       [required]="true"
       [disabled]="false"
       errorMessage="Error message"
@@ -417,7 +411,7 @@
       labelPosition="after"
       (change)="handleRadial($event)"
       [control]="getFormControl('contract')"
-    />
+    /> -->
     <bmb-input-phone-number
       appearance="normal"
       [name]="'phone'"
@@ -432,6 +426,7 @@
       appearance="normal"
       [name]="'phone2'"
       label="Phone 2"
+      value="7777777777"
       [disabled]="true"
       [isRequired]="false"
       [errorMessage]="'Error phone'"
@@ -448,8 +443,52 @@
       [helperMessage]="'Helper message phone'"
       [control]="getFormControl('phone3')"
     />
+    <!-- <bmb-checkbox
+      [id]="'checkbox1'"
+      name="checkbox1"
+      [checked]="true"
+      [disabled]="false"
+      [indeterminate]="false"
+      [required]="true"
+      [label]="'Contrato profesor cátedra Biología marina CCM.pdf'"
+      [labelPosition]="'before'"
+      [ariaDescribedby]="''"
+      [ariaLabel]="''"
+      [ariaLabelledby]="''"
+      errorMessage="Error message"
+      helperMessage="Helper Message"
+      (change)="handleCheckboxChange($event)"
+      [control]="getFormControl('checkbox1')"
+    />
+    <bmb-checkbox
+      [id]="'checkbox2'"
+      name="checkbox2"
+      [checked]="false"
+      [disabled]="false"
+      [indeterminate]="false"
+      [required]="true"
+      [label]="'Contrato profesor cátedra Biología marina CCM.pdf'"
+      [labelPosition]="'before'"
+      [ariaDescribedby]="''"
+      [ariaLabel]="''"
+      [ariaLabelledby]="''"
+      errorMessage="Error message"
+      helperMessage="Helper Message"
+      (change)="handleCheckboxChange($event)"
+      [control]="getFormControl('checkbox2')"
+    /> -->
+    <bmb-switch
+      name="switch1"
+      [leftText]="'Light'"
+      [rightText]="'Dark'"
+      [isChecked]="false"
+      [ariaLabel]="'Describe the button function here'"
+      [id]="'1'"
+      [disabled]="false"
+      [control]="getFormControl('switch1')"
+    />
     <button bmbButton appearance="primary" type="submit">Submit</button>
-  </form> -->
+  </form>
   <!-- <bmb-calendar
     [view]="'week'"
     (onDateChange)="onDateChange($event)"

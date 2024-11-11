@@ -24,7 +24,7 @@ import { FormControl } from '@angular/forms';
       [helperMessage]="helperMessage()"
       [disabled]="disabled()"
       [labelPosition]="labelPosition()"
-      (onRadioChange)="handleChange($event)"
+      (onChange)="handleChange($event)"
       [control]="control()"
       [ariaDescribedBy]="ariaDescribedby()"
       [ariaLabel]="ariaLabel()"
@@ -54,7 +54,8 @@ export class BmbRadialComponent {
 
   change = output<HTMLInputElement>();
 
-  handleChange(event: any) {
-    this.change.emit(event);
+  handleChange(event: Event) {
+    const target = event.target as HTMLInputElement;
+    this.change.emit(target);
   }
 }

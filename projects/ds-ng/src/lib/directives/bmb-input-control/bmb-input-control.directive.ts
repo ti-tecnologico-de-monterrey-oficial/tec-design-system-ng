@@ -1,11 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Directive,
-  HostListener,
-  input,
-} from '@angular/core';
-
-import { FormControl } from '@angular/forms';
+import { Directive, HostListener, input, output } from '@angular/core';
 import { IBbmInputType } from '../../../public-api';
 import { BmbFormService } from '../bmb-form-control/bmb-form-control.service';
 
@@ -16,49 +9,34 @@ import { BmbFormService } from '../bmb-form-control/bmb-form-control.service';
 export class BmbInputControlDirective {
   type = input<IBbmInputType>('text-area');
   name = input.required<string>();
-  value = input.required<unknown>();
-  required = input.required<boolean>();
+  checked = input<boolean>(false);
+  onCheckedChange = output<any>();
 
-  constructor(
-    private cdr: ChangeDetectorRef,
-    private formService: BmbFormService,
-  ) {}
+  constructor(private formService: BmbFormService) {}
 
-  ngOnInit(): void {
-    if (this.formService.getFormControlByName(this.name()) === null) {
-      this.formService.setFormControlByType(
-        this.type(),
-        this.name(),
-        this.value(),
-      );
+  @HostListener('click', ['$event.target', '$event'])
+  onClick(target: any, event: any) {
+    target.checked = !this.checked();
+    if (this.type() === 'checkbox') {
+      target.value = target.checked;
+      this.formService
+        .getFormControlByName(this.name())
+        .setValue(target.checked);
     }
 
-    const control: FormControl = this.formService.getFormControlByName(this.name());
-    this.name(),
-      this.formService.getControl(
-        this.type(),
-        this.name(),
-        this.value(),
-        true,
-        this.required()!,
-        this.cdr,
-        control,
-      );
-  }
-
-  @HostListener('blur')
-  onBlur() {
-    this.formService.getFormControlByName(this.name()).updateValueAndValidity();
+    if (this.type() === 'radio' && target.checked) {
+      this.formService.getFormControlByName(this.name()).setValue(target.value);
+    }
+    this.onCheckedChange.emit(event);
   }
 
   @HostListener('input', ['$event.target'])
-  onInput(event: any) {
-    const control: FormControl = this.formService.getFormControlByName(this.name());
-    control.setValue(event.value);
+  onInput() {
     if (this.type() === 'text-area') {
       this.formService.setTextLength(
         this.name(),
-        control.value.toString().length,
+        this.formService.getFormControlByName(this.name()).value.toString()
+          .length,
       );
     }
   }

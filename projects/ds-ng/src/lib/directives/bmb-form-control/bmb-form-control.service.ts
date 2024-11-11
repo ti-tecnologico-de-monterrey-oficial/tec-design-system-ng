@@ -18,28 +18,30 @@ export class BmbFormService {
     return this.getFormGroup().get(name) as FormControl;
   }
 
-  setFormControl(name: string, control: FormControl): void {
-    this.addFormControl(name, control);
+  setFormControl(controlAdded: FormControl, type: string, name: string): void {
+    if (this.getFormControlByName(name) === null) {
+      if (controlAdded) {
+        this.formGroup.addControl(name, controlAdded);
+        return;
+      }
+
+      this.setFormControlByType(type, name);
+    }
   }
 
-  setFormControlByType(type: any, name: string, value: unknown): void {
-    if (type === 'radio' || type === 'checkbox') {
-      this.addFormControl(name, new FormControl(null));
+  setFormControlByType(type: any, name: string): void {
+    if (
+      type === 'radio' ||
+      type === 'checkbox' ||
+      type === 'phone' ||
+      type === 'number' ||
+      type === 'switch'
+    ) {
+      this.formGroup.addControl(name, new FormControl(null));
       return;
     }
 
-    if (type === 'phone' || type === 'number') {
-      this.addFormControl(name, new FormControl(value || null));
-      return;
-    }
-
-    this.addFormControl(name, new FormControl(value || ''));
-  }
-
-  addFormControl(name: string, control: FormControl): void {
-    if (!this.getFormControlByName(name)) {
-      this.formGroup.addControl(name, control);
-    }
+    this.formGroup.addControl(name, new FormControl(''));
   }
 
   getTextLength(key: string): number {
@@ -50,41 +52,56 @@ export class BmbFormService {
     this.textLength[key] = value;
   }
 
-  getControl(
+  addValue(
+    control: FormControl,
+    type: string,
+    value: unknown,
+    checked: boolean,
+  ): void {
+    if (type === 'radio') {
+      if (checked) control.setValue(value);
+      return;
+    }
+
+    if (type === 'checkbox' || type === 'switch') {
+      if (checked) control.setValue(checked);
+      return;
+    }
+
+    if (value) {
+      control.setValue(value);
+      return;
+    }
+  }
+
+  addControlConfig(
     type: string,
     name: string,
     value: unknown,
-    isAddConfig: boolean,
+    checked: boolean,
     isRequired: boolean,
     cdr: ChangeDetectorRef,
-    control: FormControl,
-  ): FormControl {
-    if (control) {
-      this.setFormControl(name, control);
+  ): void {
+    const formControl: FormControl = this.getFormControlByName(name);
+    const control = this.getFormControlByName(name);
+    const valueControlAdded = control.value;
+    if (!valueControlAdded) {
+      this.addValue(control, type, value, checked);
     }
 
-    const newControl = this.getFormControlByName(name);
-    if (newControl === null) {
-      this.setFormControlByType(type, name, value);
+    if (isRequired && !formControl.hasValidator(Validators.required)) {
+      formControl.addValidators(Validators.required);
     }
 
-    if (isAddConfig) {
-      if (isRequired && !newControl.hasValidator(Validators.required)) {
-        newControl.addValidators(Validators.required);
-      }
-
-      if (type === 'email' && !control.hasValidator(Validators.email)) {
-        control.addValidators(Validators.email);
-      }
-
-      if (type !== 'phone') {
-        newControl.valueChanges.subscribe(() => {
-          cdr.markForCheck();
-        });
-      }
+    if (type === 'email' && !formControl.hasValidator(Validators.email)) {
+      formControl.addValidators(Validators.email);
     }
 
-    return this.getFormControlByName(name);
+    if (type !== 'phone') {
+      formControl.valueChanges.subscribe(() => {
+        cdr.markForCheck();
+      });
+    }
   }
 
   showError(type: string, name: string): boolean {

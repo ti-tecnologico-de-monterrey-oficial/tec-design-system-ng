@@ -25,7 +25,8 @@ export type IBbmInputType =
   | 'radio'
   | 'checkbox'
   | 'email'
-  | 'phone';
+  | 'phone'
+  | 'switch';
 export type IBbmInputAppearance = 'main' | 'normal' | 'simple';
 
 @Component({
@@ -74,13 +75,16 @@ export class BmbInputComponent {
   rows = input<number>(3);
   showMaxTextLength = input<boolean>(false);
   indeterminate = model<boolean>(false);
+  leftText = input<string>('');
+  leftIcon = input<string>('');
+  rightText = input<string>('');
+  rightIcon = input<string>('');
   control = model<FormControl>();
   showError = input<boolean>(false);
 
   isFocus = output<boolean>();
   isBlur = output<boolean>();
-  onRadioChange = output<HTMLInputElement>();
-  onCheckboxChange = output<any>();
+  onChange = output<Event>();
 
   validValuePhone: string = '';
 
@@ -88,6 +92,18 @@ export class BmbInputComponent {
     private cdr: ChangeDetectorRef,
     private formService: BmbFormService,
   ) {}
+
+  ngOnInit(): void {
+    this.formService.setFormControl(this.control()!, this.type(), this.name());
+    this.formService.addControlConfig(
+      this.type(),
+      this.name(),
+      this.value(),
+      this.checked(),
+      this.isRequired(),
+      this.cdr,
+    );
+  }
 
   getPositionClass(className: string): string {
     if (!!this.labelPosition())
@@ -105,11 +121,9 @@ export class BmbInputComponent {
     return '';
   }
 
-  getClasses(type: string, className: string): string[] {
-    if (
-      this.type().toLocaleLowerCase() === 'radio' ||
-      this.type().toLocaleLowerCase() === 'checkbox'
-    ) {
+  getClasses(className: string): string[] {
+    const type = this.type().toLocaleLowerCase();
+    if (type === 'radio' || type === 'checkbox') {
       const baseName: string = `${className}-${type}`;
       const classes: string[] = [baseName];
       return [
@@ -121,9 +135,19 @@ export class BmbInputComponent {
     return [];
   }
 
+  getCheckedClass(className: string): string[] {
+    const type = this.type().toLocaleLowerCase();
+    const baseName: string = `${className}-${type}-input`;
+    const classes: string[] = [baseName];
+    if (this.checked()) {
+      return [...classes, `${baseName}-checked`];
+    }
+    return classes;
+  }
+
   get inputClasses(): { [key: string]: boolean } {
     const appearance =
-      this.type() === 'text-area'
+      this.type().toLocaleLowerCase() === 'text-area'
         ? 'normal'
         : this.appearance().toLocaleLowerCase();
     return {
@@ -137,34 +161,12 @@ export class BmbInputComponent {
     return this.formService.getTextLength(this.name());
   }
 
-  getValue(type: string): string {
-    // if (type === 'radio' || type === 'checkbox') return '';
-    return this.value()!;
-  }
-
-  getControl(): FormControl {
-    const type = this.type().toLocaleLowerCase();
-
-    return this.formService.getControl(
-      type,
-      this.name(),
-      this.getValue(type),
-      type === 'radio' || type === 'checkbox' || type === 'phone',
-      this.isRequired(),
-      this.cdr,
-      this.control()!,
-    );
+  getFormControl(): FormControl {
+    return this.formService.getFormControlByName(this.name());
   }
 
   get shouldShowError(): boolean {
     return this.formService.showError(this.type(), this.name());
-  }
-
-  isChecked(): boolean {
-    return (
-      this.checked() ||
-      this.formService.getFormControlByName(this.name())?.value === this.value()
-    );
   }
 
   handleRadioChange(event: Event) {
@@ -172,7 +174,7 @@ export class BmbInputComponent {
     if (target && target.checked) {
       target.value = this.value()!;
       this.formService.getFormControlByName(this.name()).setValue(target.value);
-      this.onRadioChange.emit(target);
+      this.onChange.emit(event);
     }
     event.stopPropagation();
   }
@@ -181,18 +183,33 @@ export class BmbInputComponent {
     const target = event.target as HTMLInputElement;
     if (event.key.toLocaleUpperCase() === 'ENTER' && target.checked) {
       this.formService.getFormControlByName(this.name()).setValue(target.value);
-      this.onRadioChange.emit(target);
+      this.onChange.emit(event);
       event.preventDefault();
       event.stopPropagation();
     }
   }
 
-  handleCheckboxChange(event: Event): void {
-    const target = event.target as HTMLInputElement;
-    this.checked.set(target.checked);
+  // handleCheckboxChange(event: Event): void {
+  //   const target = event.target as HTMLInputElement;
+  //   this.checked.set(target.checked);
 
-    this.formService.getFormControlByName(this.name()).setValue(this.checked());
-    this.onCheckboxChange.emit(event);
+  //   this.formService.getFormControlByName(this.name()).setValue(this.checked());
+  //   this.onChange.emit(event);
+  //   event.stopPropagation();
+  // }
+
+  handleCheckboxChange(event: Event) {
+    const target = event.target as HTMLInputElement;
+    if (
+      this.type().toLocaleLowerCase() === 'checkbox' &&
+      this.indeterminate()
+    ) {
+      this.indeterminate.set(false);
+    }
+
+    this.checked.set(target.checked);
+    this.onChange.emit(event);
+    event.preventDefault();
     event.stopPropagation();
   }
 
@@ -205,10 +222,19 @@ export class BmbInputComponent {
         this.checked.update((value) => !value);
       }
 
-      this.formService.getFormControlByName(this.name()).setValue(this.checked());
-      this.onCheckboxChange.emit(event);
+      this.formService
+        .getFormControlByName(this.name())
+        .setValue(this.checked());
+      this.onChange.emit(event);
       event.preventDefault();
       event.stopPropagation();
+    }
+  }
+
+  toggleSwitch(): void {
+    if (!this.disabled()) {
+      this.checked.update((value) => !value);
+      // this.change.emit(this.checked());
     }
   }
 

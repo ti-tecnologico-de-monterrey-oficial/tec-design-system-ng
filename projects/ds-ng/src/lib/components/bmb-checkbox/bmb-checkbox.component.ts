@@ -25,7 +25,7 @@ import { FormControl } from '@angular/forms';
       [helperMessage]="helperMessage()"
       [disabled]="disabled()"
       [labelPosition]="labelPosition()"
-      (onCheckboxChange)="handleChange($event)"
+      (onChange)="handleChange($event)"
       [control]="control()"
       [ariaDescribedBy]="ariaDescribedby()"
       [ariaLabel]="ariaLabel()"
@@ -55,9 +55,9 @@ export class BmbCheckboxComponent {
   errorMessage = input<string>('');
   control = model<FormControl>();
 
-  change = output<any>();
+  change = output<Event>();
 
-  handleChange(event: any) {
+  handleChange(event: Event) {
     this.change.emit(event);
   }
 }

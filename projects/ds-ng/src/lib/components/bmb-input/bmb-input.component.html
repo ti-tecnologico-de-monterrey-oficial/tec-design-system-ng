@@ -1,153 +1,199 @@
 <section class="bmb_field" [ngClass]="{ disabled: disabled() }">
-  <label [class]="getClasses(type(), 'bmb_field')" tabindex="1">
-    @if (type() === "radio") {
-      <input
-        [type]="type()"
-        class="bmb_field-radio-input"
-        [formControl]="getControl()"
-        [type]="type()"
-        [id]="id()"
-        [name]="name()"
-        [attr.aria-describedby]="ariaDescribedBy()"
-        [attr.aria-label]="ariaLabel()"
-        [attr.aria-labelledby]="ariaLabelledBy()"
-        [attr.value]="value()"
-        [value]="value()"
-        [checked]="checked()"
-        [disabled]="disabled()"
-        [required]="isRequired()"
-        (change)="handleRadioChange($event)"
-        (keydown)="handleRadioKeyDown($event)"
-      />
-      <section class="bmb_field-radio-box">
-        <span class="bmb_field-radio-mark"></span>
-      </section>
-    }
-    @if (type() === "checkbox") {
-      <input
-        [type]="type()"
-        class="bmb_field-checkbox-input"
-        [formControl]="getControl()"
-        [id]="id()"
-        [name]="name()"
-        [value]="value()"
-        [attr.aria-describedby]="ariaDescribedBy()"
-        [attr.aria-label]="ariaLabel()"
-        [attr.aria-labelledby]="ariaLabelledBy()"
-        [attr.name]="name()"
-        [attr.value]="value()"
-        [checked]="checked()"
-        [disabled]="disabled()"
-        [required]="isRequired()"
-        [indeterminate]="indeterminate()"
-        (change)="handleCheckboxChange($event)"
-        (keydown)="handleCheckboxKeyDown($event)"
-      />
-      <div class="bmb_field-checkbox-box">
-        <span class="bmb_field-checkbox-mark"></span>
-      </div>
-    }
-    <span class="bmb_field-label" [ngClass]="getLabelClass('bmb_field-label')">
-      {{ label() }}
-      @if (isRequired() && !!label()) {
-        <small class="bmb_field-label-required">*</small>
-      }
-      @if (!!tooltip()) {
-        <bmb-tooltip
-          class="bmb_field-label-tooltip"
-          [text]="tooltip()"
-          [align]="'below'"
-          [justify]="'before'"
-          [icon]="'help'"
-          [size]="15"
+  @if (type() === "switch") {
+    <input
+      type="checkbox"
+      [ngClass]="{ bmb_switch: true, 'bmb_switch-checked': checked() }"
+      [formControl]="getFormControl()"
+      [name]="name()"
+      [checked]="checked()"
+      [attr.aria-checked]="checked()"
+      [attr.id]="id()"
+      [attr.aria-disabled]="disabled()"
+      [disabled]="disabled()"
+      [attr.aria-label]="ariaLabel()"
+      [attr.name]="name()"
+      (change)="toggleSwitch()"
+    />
+    <section class="bmb_switch-left" *ngIf="leftText() || leftIcon()">
+      <span *ngIf="leftText() && !leftIcon()" class="bmb_switch-text">{{
+        leftText()
+      }}</span>
+      <bmb-icon
+        *ngIf="leftIcon() && !leftText()"
+        [icon]="leftIcon()"
+      ></bmb-icon>
+    </section>
+
+    <label class="bmb_switch-label" for="bmbSwitch">
+      <span class="bmb_switch-inner"></span>
+      <span class="bmb_switch-switch"></span>
+    </label>
+
+    <section class="bmb_switch-right" *ngIf="rightText || rightIcon">
+      <span *ngIf="rightText() && !rightIcon()" class="bmb_switch-text">{{
+        rightText()
+      }}</span>
+      <bmb-icon
+        *ngIf="rightIcon() && !rightText()"
+        [icon]="rightIcon()"
+      ></bmb-icon>
+    </section>
+  } @else {
+    <label [ngClass]="getClasses('bmb_field')" tabindex="1">
+      @if (type() === "radio") {
+        <input
+          [type]="type()"
+          class="bmb_field-radio-input"
+          [formControl]="getFormControl()"
+          [type]="type()"
+          [id]="id()"
+          [name]="name()"
+          [attr.aria-describedby]="ariaDescribedBy()"
+          [attr.aria-label]="ariaLabel()"
+          [attr.aria-labelledby]="ariaLabelledBy()"
+          [attr.value]="value()"
+          [value]="value()"
+          [checked]="checked()"
+          [disabled]="disabled()"
+          [required]="isRequired()"
+          (change)="handleRadioChange($event)"
+          (keydown)="handleRadioKeyDown($event)"
         />
+        <section class="bmb_field-radio-box">
+          <span class="bmb_field-radio-mark"></span>
+        </section>
+      } @else if (type() === "checkbox") {
+        <input
+          [ngClass]="getCheckedClass('bmb_field')"
+          bmbControl
+          [type]="type()"
+          [formControl]="getFormControl()"
+          [id]="id()"
+          [name]="name()"
+          [value]="value()"
+          [attr.aria-describedby]="ariaDescribedBy()"
+          [attr.aria-label]="ariaLabel()"
+          [attr.aria-labelledby]="ariaLabelledBy()"
+          [attr.name]="name()"
+          [attr.value]="value()"
+          [checked]="checked()"
+          [disabled]="disabled()"
+          [required]="isRequired()"
+          [indeterminate]="indeterminate()"
+          (onCheckedChange)="handleCheckboxChange($event)"
+        />
+        <div class="bmb_field-checkbox-box">
+          <span class="bmb_field-checkbox-mark"></span>
+        </div>
       }
-      @if (type() === "text-area" && showMaxTextLength()) {
-        <span class="bmb_field-label-max">
-          {{ getTextLength() }}/{{ maxlength() || "-" }}
-        </span>
-      }
-    </span>
-    @if (type() !== "radio" && type() !== "checkbox") {
-      <section class="bmb_field-wrapper">
-        @if (!!icon() && type() !== "text-area") {
-          <bmb-icon
-            [icon]="icon()"
-            class="bmb_field-icon"
-            [ngClass]="'bmb_field-icon-' + appearance()"
+      <span
+        class="bmb_field-label"
+        [ngClass]="getLabelClass('bmb_field-label')"
+      >
+        {{ label() }}
+        @if (isRequired() && !!label()) {
+          <small class="bmb_field-label-required">*</small>
+        }
+        @if (!!tooltip()) {
+          <bmb-tooltip
+            class="bmb_field-label-tooltip"
+            [text]="tooltip()"
+            [align]="'below'"
+            [justify]="'before'"
+            [icon]="'help'"
+            [size]="15"
           />
         }
-        @if (type() === "text-area") {
-          <textarea
-            bmbControl
-            class="bmb_field-text-area"
-            [ngClass]="inputClasses"
-            [placeholder]="placeholder()"
-            [disabled]="disabled()"
-            [required]="isRequired()"
-            [formControl]="getControl()"
-            [maxlength]="maxlength()!"
-            [minlength]="minlength()!"
-            [spellcheck]="spellcheck()"
-            (focus)="onFocus()"
-            (blur)="onBlur()"
-            [rows]="rows()"
-            [name]="name()"
-            [id]="name()"
-            [value]="value()"
-          ></textarea>
-          @if (shouldShowError) {
-            <bmb-icon class="bmb_field-text-area-error-icon" [icon]="'error'" />
+        @if (type() === "text-area" && showMaxTextLength()) {
+          <span class="bmb_field-label-max">
+            {{ getTextLength() }}/{{ maxlength() || "-" }}
+          </span>
+        }
+      </span>
+      @if (type() !== "radio" && type() !== "checkbox") {
+        <section class="bmb_field-wrapper">
+          @if (!!icon() && type() !== "text-area") {
+            <bmb-icon
+              [icon]="icon()"
+              class="bmb_field-icon"
+              [ngClass]="'bmb_field-icon-' + appearance()"
+            />
           }
-        } @else if (type() === "phone") {
-          <mat-form-field
-            class="bmb_field-input bmb_field_input_tel"
-            [ngClass]="inputClasses"
-            appearance="outline"
-          >
-            <ngx-mat-intl-tel-input
+          @if (type() === "text-area") {
+            <textarea
+              bmbControl
+              class="bmb_field-text-area"
+              [ngClass]="inputClasses"
+              [placeholder]="placeholder()"
+              [disabled]="disabled()"
+              [required]="isRequired()"
+              [formControl]="getFormControl()"
+              [maxlength]="maxlength()!"
+              [minlength]="minlength()!"
+              [spellcheck]="spellcheck()"
+              (focus)="onFocus()"
+              (blur)="onBlur()"
+              [rows]="rows()"
               [name]="name()"
+              [id]="name()"
+              [value]="value()"
+            ></textarea>
+            @if (shouldShowError) {
+              <bmb-icon
+                class="bmb_field-text-area-error-icon"
+                [icon]="'error'"
+              />
+            }
+          } @else if (type() === "phone") {
+            <mat-form-field
+              class="bmb_field-input bmb_field_input_tel"
+              [ngClass]="inputClasses"
+              appearance="outline"
+            >
+              <ngx-mat-intl-tel-input
+                [name]="name()"
+                [required]="isRequired()"
+                [disabled]="disabled()"
+                [formControl]="getFormControl()"
+                [preferredCountries]="['mx']"
+                [enableSearch]="true"
+              />
+            </mat-form-field>
+          } @else {
+            <input
+              bmbControl
+              [type]="type()"
+              class="bmb_field-input"
+              [ngClass]="inputClasses"
               [required]="isRequired()"
               [disabled]="disabled()"
-              [formControl]="getControl()"
-              [preferredCountries]="['mx']"
-              [enableSearch]="true"
+              [placeholder]="placeholder()"
+              [formControl]="getFormControl()"
+              (focus)="onFocus()"
+              (blur)="onBlur()"
+              [name]="name()"
+              [id]="name()"
+              [spellcheck]="spellcheck()"
+              [maxlength]="maxlength()!"
+              [minlength]="minlength()!"
+              [pattern]="pattern()!"
+              [max]="max()"
+              [min]="min()"
+              [value]="value()"
             />
-          </mat-form-field>
-        } @else {
-          <input
-            bmbControl
-            [type]="type()"
-            class="bmb_field-input"
-            [ngClass]="inputClasses"
-            [required]="isRequired()"
-            [disabled]="disabled()"
-            [placeholder]="placeholder()"
-            [formControl]="getControl()"
-            (focus)="onFocus()"
-            (blur)="onBlur()"
-            [name]="name()"
-            [id]="name()"
-            [spellcheck]="spellcheck()"
-            [maxlength]="maxlength()!"
-            [minlength]="minlength()!"
-            [pattern]="pattern()!"
-            [max]="max()"
-            [min]="min()"
-            [value]="value()"
-          />
-        }
-      </section>
+          }
+        </section>
+      }
+    </label>
+    @if (helperMessage() && !shouldShowError) {
+      <p class="bmb_field-helper">
+        {{ helperMessage() }}
+      </p>
     }
-  </label>
-  @if (helperMessage() && !shouldShowError) {
-    <p class="bmb_field-helper">
-      {{ helperMessage() }}
-    </p>
-  }
-  @if (errorMessage() && shouldShowError) {
-    <p class="bmb_field-error">
-      {{ errorMessage() }}
-    </p>
+    @if (errorMessage() && shouldShowError) {
+      <p class="bmb_field-error">
+        {{ errorMessage() }}
+      </p>
+    }
   }
 </section>

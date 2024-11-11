@@ -356,15 +356,16 @@ export class AppComponent {
   }
 
   handleCheckboxChange(event: Event): void {
-    const element = event.target as HTMLInputElement;
-    console.log('Checkbox checked state:', element.checked);
-    console.log('Checkbox value:', element.value);
+    const target = event.target as HTMLInputElement;
+    console.log('Checkbox name:', target.name);
+    console.log('Checkbox checked state:', target.checked);
+    console.log('Checkbox value:', target.value);
   }
 
-  handleRadial(element: HTMLInputElement): void {
-    console.log('Radio value:', element.value);
-    console.log('Radio name:', element.name);
-    console.log('Is it checked?', element.checked);
+  handleRadial(target: HTMLInputElement): void {
+    console.log('Radio name:', target.name);
+    console.log('Radio value:', target.value);
+    console.log('Is it checked?', target.checked);
   }
 
   plus() {
@@ -3047,16 +3048,20 @@ export class AppComponent {
     otherName: new FormControl<string>('', Validators.required),
     comments: new FormControl<string>(''),
     contract: new FormControl(''),
-    amount: new FormControl<number>(0),
+    amount: new FormControl(),
     date: new FormControl<string>(''),
     phone: new FormControl(),
-    phone2: new FormControl('5555555555'),
+    phone2: new FormControl(),
     phone3: new FormControl(),
+    checkbox1: new FormControl(),
+    checkbox2: new FormControl(),
+    switch1: new FormControl(),
   });
 
   onSubmit(): void {
     this.formGroup.markAllAsTouched();
     this.formGroup.updateValueAndValidity();
+    console.log('FORM status', this.formGroup);
     if (this.formGroup.valid) {
       console.log('FORM VALID');
       return;
