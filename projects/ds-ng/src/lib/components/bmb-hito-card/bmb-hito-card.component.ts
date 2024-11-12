@@ -43,6 +43,7 @@ export class BmbHitoCardComponent {
   sub_content = input<string>();
   enable_bullet = input<boolean>(false);
   is_active = input<boolean>(false);
+  isCompact = input<boolean>(false);
   alternative_appearance = input<boolean>(false);
 
   handleClick = output<string | number>();
@@ -51,8 +52,9 @@ export class BmbHitoCardComponent {
     const classList = ['bmb_hito-card'];
     if (this.enable_bullet()) classList.push('bmb_hito-card-bullet');
     if (this.is_active()) classList.push('bmb_hito-card-active');
-    if (this.alternative_appearance())
-      classList.push('bmb_hito-card-alternative');
+    if (this.isCompact()) classList.push('bmb_hito-card-compact');
+    // if (this.alternative_appearance())
+    //   classList.push('bmb_hito-card-alternative');
 
     return classList;
   }
