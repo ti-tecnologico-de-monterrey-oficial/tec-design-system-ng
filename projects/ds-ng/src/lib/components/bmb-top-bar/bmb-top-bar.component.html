@@ -6,8 +6,16 @@
         bmbButton
         (click)="handleMobileMenuClick()"
       >
-        <bmb-icon icon="menu" class="bmb_top-bar-button-menu-menu" />
-        <bmb-icon icon="close" class="bmb_top-bar-button-menu-close" />
+        <bmb-icon
+          icon="menu"
+          [size]="24"
+          class="bmb_top-bar-button-menu-menu"
+        />
+        <bmb-icon
+          icon="close"
+          [size]="24"
+          class="bmb_top-bar-button-menu-close"
+        />
       </button>
     </div>
   }
@@ -60,7 +68,7 @@
     }
   </nav>
   <div class="bmb_top-bar-always-visible-content">
-    @if (userInformation && hasLogoutButton) {
+    <!-- @if (userInformation && hasLogoutButton) {
       <button
         class="bmb_top-bar-logoff"
         bmbButton
@@ -69,7 +77,7 @@
       >
         Salir
       </button>
-    }
+    } -->
 
     @if (showLang) {
       <bmb-select (onValueChange)="handleLangChange($event)" [value]="lang">
