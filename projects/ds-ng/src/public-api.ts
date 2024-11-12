@@ -93,6 +93,9 @@ export * from './lib/components/bmb-filter-card/bmb-filter-card.component';
 export * from './lib/components/bmb-card-button/bmb-card-button.component';
 export * from './lib/components/bmb-input-tags/bmb-input-tags.component';
 export * from './lib/components/bmb-invoice/bmb-invoice.component';
+export * from './lib/components/bmb-multi-dot-paginator/bmb-multi-dot-paginator.component';
+export * from './lib/components/bmb-multi-dot-paginator/bmb-multi-dot-paginator-item/bmb-multi-dot-paginator-item.component';
+
 // types
 export * from './lib/types';
 // interface

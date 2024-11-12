@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'bmb-bmb-portal',
+  selector: 'bmb-portal',
   standalone: true,
   imports: [],
   templateUrl: './bmb-portal.component.html',
