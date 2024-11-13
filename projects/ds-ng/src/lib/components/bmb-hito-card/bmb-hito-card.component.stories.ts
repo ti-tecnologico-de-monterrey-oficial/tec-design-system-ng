@@ -107,16 +107,16 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'boolean' },
       },
     },
-    alternative_appearance: {
-      name: 'Alternative appearance',
-      control: { type: 'boolean' },
-      description: 'Change the color schema for the card.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean' },
-      },
-    },
+    // alternative_appearance: {
+    //   name: 'Alternative appearance',
+    //   control: { type: 'boolean' },
+    //   description: 'Change the color schema for the card.',
+    //   table: {
+    //     category: 'Properties',
+    //     defaultValue: { summary: 'false' },
+    //     type: { summary: 'boolean' },
+    //   },
+    // },
     handleClick: {
       name: 'Handle click',
       control: false,
