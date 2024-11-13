@@ -1,0 +1,71 @@
+<div class="bmb_multi-dot-paginator">
+  <header class="bmb_multi-dot-paginator-header">
+    <h3 class="bmb_multi-dot-paginator-title">
+      {{ title() }}
+      @if (subtitle()) {
+        <span class="bmb_multi-dot-paginator-subtitle">{{ subtitle() }}</span>
+      }
+    </h3>
+  </header>
+  <section class="bmb_multi-dot-paginator-content">
+    <div
+      class="bmb_multi-dot-paginator-content-list"
+      [style]="
+        '--numberOfElements: ' +
+        numberOfElements.length +
+        '; --selected-child: ' +
+        selectedIndex +
+        ';'
+      "
+    >
+      <ng-content />
+      <div class="bmb_multi-dot-paginator-return">
+        <bmb-fab
+          icon="keyboard_return"
+          size="large"
+          type="normal"
+          text="Regresar al inicio"
+          [mitec]="true"
+          (click)="selectItem(0)"
+        />
+      </div>
+    </div>
+    <button
+      class="bmb_multi-dot-paginator-next"
+      (click)="setNextItem()"
+      title="Siguiente"
+    >
+      Siguiente
+    </button>
+  </section>
+  <footer class="bmb_multi-dot-paginator-footer">
+    <ul
+      class="bmb_multi-dot-paginator-list"
+      [style]="'--selected-child: ' + selectedIndex + ';'"
+    >
+      @for (dot of numberOfElements; track $index) {
+        <li
+          class="bmb_multi-dot-paginator-list-item"
+          [ngClass]="{
+            'bmb_multi-dot-paginator-list-item-active':
+              selectedIndex === $index,
+          }"
+        >
+          <button
+            class="bmb_multi-dot-paginator-dot"
+            (click)="selectItem($index)"
+            [title]="$index"
+            [ngClass]="{
+              'bmb_multi-dot-paginator-dot-active': selectedIndex === $index,
+            }"
+          ></button>
+        </li>
+      }
+    </ul>
+  </footer>
+</div>
+<!-- *ngFor="let i of getDotsArray()"
+[attr.data-bs-target]="targets && targets[i] ? targets[i].target : ''"
+[attr.data-bs-slide-to]="i"
+[ngClass]="{ dot: true, active: activeDotIndex === i }"
+(click)="onDotClicked(i)" -->
