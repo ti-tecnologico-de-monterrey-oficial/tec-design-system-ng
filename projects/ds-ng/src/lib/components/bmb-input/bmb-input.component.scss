@@ -2,120 +2,6 @@
 @use "../../../assets/styles/base/mixins" as mixins;
 @use "../../../assets/styles/base/rem" as rem;
 
-.bmb_switch {
-  align-items: center;
-  cursor: pointer;
-  display: flex;
-  height: rem.rem_calc(32);
-  justify-content: flex-end;
-  margin: rem.rem_calc(2 0);
-  padding: 0;
-  position: relative;
-  width: fit-content;
-
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-
-    .bmb_switch-label {
-      cursor: not-allowed;
-    }
-  }
-
-  &-checked {
-    .bmb_switch-label {
-      background-color: RGBA(var(--color-green-light));
-
-      &:after {
-        left: calc(100% + rem.rem_calc(-18));
-      }
-    }
-
-    .bmb_switch-right {
-      bmb-icon {
-        visibility: visible;
-        opacity: 1;
-      }
-    }
-
-    .bmb_switch-left {
-      bmb-icon {
-        visibility: hidden;
-        opacity: 0;
-      }
-    }
-  }
-
-  &-label {
-    background-color: RGBA(var(--color-charade-700));
-    border: 0;
-    border-radius: rem.rem_calc(15);
-    cursor: pointer;
-    display: block;
-    height: rem.rem_calc(20);
-    margin: rem.rem_calc(0 12);
-    position: relative;
-    transition:
-      background-color 0.3s,
-      left 0.3s;
-    width: rem.rem_calc(40);
-
-    &:after {
-      background-color: RGBA(var(--color-white-primary));
-      border-radius: 50%;
-      bottom: 0;
-      content: "";
-      height: rem.rem_calc(32);
-      left: rem.rem_calc(-12);
-      margin: auto;
-      position: absolute;
-      top: 0;
-      transition: 0.3s;
-      transition: left 0.3s;
-      width: rem.rem_calc(32);
-    }
-  }
-
-  &-text {
-    color: RGBA(var(--color-charade-950));
-
-    @include fonts.font(3, regular);
-    padding: rem.rem_calc(0 5);
-  }
-
-  &-left,
-  &-right {
-    bmb-icon {
-      align-items: center;
-      color: RGBA(var(--color-charade-900));
-      bottom: 0;
-      display: flex;
-      font-size: rem.rem_calc(20);
-      height: rem.rem_calc(20);
-      margin: 0;
-      position: absolute;
-      top: 0;
-      top: rem.rem_calc(6);
-      z-index: 1;
-      transition: all 0.3s ease;
-    }
-  }
-
-  &-left {
-    bmb-icon {
-      left: rem.rem_calc(5.5);
-    }
-  }
-
-  &-right {
-    bmb-icon {
-      visibility: hidden;
-      opacity: 0;
-      right: rem.rem_calc(4.5);
-    }
-  }
-}
-
 .mat-mdc-menu-panel {
   background-color: RGBA(var(--color-charade-50)) !important;
   max-height: rem.rem_calc(234);
@@ -141,6 +27,19 @@
       display: none;
     }
   }
+}
+
+@mixin focused($height, $width, $top, $left, $color, $percent) {
+  content: "";
+  height: rem.rem_calc($height);
+  width: rem.rem_calc($width);
+  position: absolute;
+  z-index: -1;
+  top: rem.rem_calc($top);
+  left: rem.rem_calc($left);
+  border-radius: 50%;
+  opacity: 0.1;
+  background-color: RGBA(var($color), $percent);
 }
 
 @mixin label_width($position) {
@@ -232,6 +131,17 @@
     flex-direction: row;
   }
 
+  &-switch_content {
+    width: max-content;
+    display: inline-block;
+  }
+
+  &-switch_direction {
+    display: inline-flex;
+    flex-direction: row;
+    padding: rem.rem_calc(0 8);
+  }
+
   &-label {
     color: RGBA(var(--color-charade-950));
     display: flex;
@@ -263,6 +173,10 @@
     &-max {
       margin-left: auto;
       padding-right: rem.rem_calc(5);
+    }
+
+    &-switch {
+      margin-top: rem.rem_calc(8);
     }
   }
 
@@ -391,63 +305,55 @@
     width: fit-content;
 
     &-input {
-      cursor: pointer;
       opacity: 0;
-      display: none;
-      z-index: 1;
+      height: 0;
+      width: 0;
+      position: absolute;
 
-      &:hover {
-        + .bmb_field-radio-box {
-          background-color: RGBA(var(--color-blue-primary), 0.1);
+      &:checked + .bmb_field-radio-mark,
+      &[ng-reflect-checked="true"] + .bmb_field-radio-mark {
+        border: rem.rem_calc(2) solid RGBA(var(--color-blue-primary));
+
+        &::after {
+          display: block;
+          position: absolute;
+          margin: rem.rem_calc(2);
+          border-radius: 100%;
+          background-color: RGBA(var(--color-blue-primary));
+          height: rem.rem_calc(16);
+          width: rem.rem_calc(16);
         }
       }
 
-      &:focus {
-        + .bmb_field-radio-box {
-          background-color: RGBA(var(--color-blue-primary), 0.2);
+      &:hover + .bmb_field-radio-mark {
+        border-color: RGBA(var(--color-blue-primary));
+
+        &::before {
+          @include focused(48, 48, -14, -14, --color-blue-primary, 0.8);
         }
       }
 
-      &:checked {
-        + .bmb_field-radio-box {
-          .bmb_field-radio-mark {
-            border-color: RGBA(var(--color-blue-primary));
+      &:focus + .bmb_field-radio-mark,
+      &:focus-visible + .bmb_field-radio-mark {
+        border-color: RGBA(var(--color-blue-primary));
 
-            &::after {
-              display: block;
-              position: absolute;
-              margin: rem.rem_calc(3);
-              border-radius: 100%;
-              background-color: RGBA(var(--color-blue-primary));
-              height: rem.rem_calc(8);
-              width: rem.rem_calc(8);
-            }
-          }
+        &::before {
+          @include focused(48, 48, -14, -14, --color-blue-primary, 0.9);
         }
       }
-
-      &:disabled {
-        cursor: not-allowed;
-      }
-    }
-
-    &-box {
-      border-radius: 100%;
-      display: flex;
-      justify-content: center;
-      height: rem.rem_calc(30);
-      width: rem.rem_calc(30);
     }
 
     &-mark {
-      border-radius: 100%;
+      cursor: pointer;
+      display: inline-block;
+      position: relative;
+      align-items: center;
+      justify-content: center;
+      height: rem.rem_calc(24);
+      width: rem.rem_calc(24);
       background-color: transparent;
       border: rem.rem_calc(2) solid RGBA(var(--color-charade-700));
-      display: inline-block;
-      margin-top: rem.rem_calc(6);
-      height: rem.rem_calc(18);
-      width: rem.rem_calc(18);
-      position: relative;
+      border-radius: 100%;
 
       &::after {
         content: "";
@@ -469,89 +375,180 @@
     width: fit-content;
 
     &-input {
-      cursor: pointer;
       opacity: 0;
-      display: none;
-      z-index: 1;
+      height: 0;
+      width: 0;
+      position: absolute;
 
-      &:hover {
-        + .bmb_field-checkbox-box {
-          background-color: RGBA(var(--color-blue-primary), 0.1);
+      &:checked + .bmb_field-checkbox-mark,
+      &[ng-reflect-checked="true"] + .bmb_field-checkbox-mark {
+        background-color: RGBA(var(--color-blue-primary));
+        border-color: RGBA(var(--color-blue-primary));
+
+        &::after {
+          border: solid RGBA(var(--color-white-primary));
+          border-width: rem.rem_calc(0 2 2 0);
+          display: block;
+          margin-left: rem.rem_calc(7);
+          height: rem.rem_calc(16);
+          transform: rotate(45deg);
+          width: rem.rem_calc(4);
         }
       }
 
-      &:focus {
-        + .bmb_field-checkbox-box {
-          background-color: RGBA(var(--color-blue-primary), 0.2);
+      &-indeterminate + .bmb_field-checkbox-mark {
+        background-color: RGBA(var(--color-blue-primary));
+        border-color: RGBA(var(--color-blue-primary));
+
+        &::after {
+          background-color: RGBA(var(--color-white-primary));
+          display: block;
+          margin: rem.rem_calc(9) rem.rem_calc(2);
+          height: rem.rem_calc(2);
+          width: rem.rem_calc(16);
         }
       }
 
-      &-checked {
-        + .bmb_field-checkbox-box {
-          .bmb_field-checkbox-mark {
-            background-color: RGBA(var(--color-blue-primary));
-            border-color: RGBA(var(--color-blue-primary));
+      &:hover + .bmb_field-checkbox-mark {
+        border-color: RGBA(var(--color-blue-primary));
 
-            &::after {
-              border: solid RGBA(var(--color-white-primary));
-              border-width: rem.rem_calc(0 2 2 0);
-              display: block;
-              margin-left: rem.rem_calc(4);
-              height: rem.rem_calc(10);
-              transform: rotate(45deg);
-              width: rem.rem_calc(4);
-            }
-          }
+        &::before {
+          @include focused(48, 48, -14, -14, --color-blue-primary, 0.8);
         }
       }
 
-      &:indeterminate {
-        + .bmb_field-checkbox-box {
-          .bmb_field-checkbox-mark {
-            background-color: RGBA(var(--color-blue-primary));
-            border-color: RGBA(var(--color-blue-primary));
+      &:focus + .bmb_field-checkbox-mark,
+      &:focus-visible + .bmb_field-checkbox-mark {
+        border-color: RGBA(var(--color-blue-primary));
 
-            &::after {
-              background-color: RGBA(var(--color-white-primary));
-              display: inline-block;
-              margin: rem.rem_calc(3) rem.rem_calc(2);
-              position: relative;
-              height: rem.rem_calc(2);
-              width: rem.rem_calc(10);
-            }
-          }
+        &::before {
+          @include focused(48, 48, -14, -14, --color-blue-primary, 0.9);
         }
       }
-    }
-
-    &-box {
-      align-items: center;
-      border-radius: 100%;
-      display: flex;
-      height: rem.rem_calc(42);
-      justify-content: center;
-      width: rem.rem_calc(42);
     }
 
     &-mark {
+      cursor: pointer;
+      display: inline-block;
+      position: relative;
+      align-items: center;
+      justify-content: center;
+      height: rem.rem_calc(24);
+      width: rem.rem_calc(24);
       background-color: transparent;
       border: rem.rem_calc(2) solid RGBA(var(--color-charade-700));
       border-radius: rem.rem_calc(4);
-      display: inline-block;
-      height: rem.rem_calc(18);
-      position: relative;
-      width: rem.rem_calc(18);
 
       &::after {
         content: "";
         display: none;
         position: absolute;
+        outline: 0px solid RGBA(var(--color-charade-700), 0.25);
       }
     }
 
     &-error {
       .bmb_field-checkbox-mark {
         border-color: RGBA(var(--color-red-light));
+      }
+    }
+  }
+
+  &-switch {
+    position: relative;
+    margin: var(--bmb-spacing-s);
+
+    &-input {
+      opacity: 0;
+      height: 0;
+      width: 0;
+      position: absolute;
+
+      &:checked + .bmb_field-switch-slider,
+      &[ng-reflect-checked="true"] + .bmb_field-switch-slider {
+        background-color: RGBA(var(--color-blue-primary));
+
+        &::after {
+          transform: translate(32px, 0px);
+        }
+
+        .material-symbols-rounded {
+          transform: translate(32px, 0px);
+        }
+
+        &:hover {
+          &::after {
+            outline: 8px solid RGBA(var(--color-blue-primary), 0.25);
+          }
+        }
+      }
+
+      &:not(:checked, [ng-reflect-checked="true"]):hover
+        + .bmb_field-switch-slider {
+        &::after {
+          outline: 8px solid RGBA(var(--color-charade-700), 0.25);
+        }
+      }
+
+      &:not(:checked, [ng-reflect-checked="true"]):focus:focus-visible
+        + .bmb_field-switch-slider {
+        &::after {
+          outline: 8px solid RGBA(var(--color-charade-700), 0.5);
+        }
+      }
+
+      &:is(:checked, [ng-reflect-checked="true"]):focus:focus-visible
+        + .bmb_field-switch-slider {
+        &::after {
+          outline: 8px solid RGBA(var(--color-blue-primary), 0.5);
+        }
+      }
+    }
+
+    &-slider {
+      cursor: pointer;
+      height: rem.rem_calc(20);
+      width: rem.rem_calc(40);
+      display: block;
+      position: relative;
+      margin: rem.rem_calc(0 12);
+      background-color: RGBA(var(--color-charade-700));
+      transition: all 0.3s ease;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: rem.rem_calc(-12);
+        margin: auto;
+        height: rem.rem_calc(32);
+        width: rem.rem_calc(32);
+        background-color: RGBA(var(--color-white-primary));
+        transition: all 0.3s ease;
+      }
+
+      .material-symbols-rounded {
+        transition: all 0.3s ease;
+      }
+
+      &-round {
+        border-radius: rem.rem_calc(15);
+
+        &::after {
+          border-radius: 50%;
+        }
+
+        &-icon {
+          color: RGBA(var(--color-charade-900));
+          font-size: rem.rem_calc(20);
+          height: rem.rem_calc(20);
+          position: absolute;
+          top: rem.rem_calc(-2);
+          left: rem.rem_calc(-6);
+          z-index: 1;
+          transition: all 0.3s ease;
+        }
       }
     }
   }
@@ -639,27 +636,29 @@
 
     &-radio {
       &-input {
-        &:hover {
-          + .bmb_field-radio-box {
-            background-color: RGBA(var(--color-green-light), 0.1);
+        &:checked + .bmb_field-radio-mark,
+        &[ng-reflect-checked="true"] + .bmb_field-radio-mark {
+          border-color: RGBA(var(--color-green-light));
+
+          &::after {
+            background-color: RGBA(var(--color-green-light));
           }
         }
 
-        &:focus {
-          + .bmb_field-radio-box {
-            background-color: RGBA(var(--color-green-light), 0.2);
+        &:hover + .bmb_field-radio-mark {
+          border-color: RGBA(var(--color-green-light));
+
+          &::before {
+            background-color: RGBA(var(--color-green-light), 0.8);
           }
         }
 
-        &:checked {
-          + .bmb_field-radio-box {
-            .bmb_field-radio-mark {
-              border-color: RGBA(var(--color-green-light));
+        &:focus + .bmb_field-radio-mark,
+        &:focus-visible + .bmb_field-radio-mark {
+          border-color: RGBA(var(--color-green-light));
 
-              &::after {
-                background-color: RGBA(var(--color-green-light));
-              }
-            }
+          &::before {
+            background-color: RGBA(var(--color-green-light), 0.9);
           }
         }
       }
@@ -671,33 +670,31 @@
 
     &-checkbox {
       &-input {
-        &:hover {
-          + .bmb_field-checkbox-box {
-            background-color: RGBA(var(--color-green-light), 0.1);
+        &:checked + .bmb_field-checkbox-mark,
+        &[ng-reflect-checked="true"] + .bmb_field-checkbox-mark {
+          background-color: RGBA(var(--color-green-light));
+          border-color: RGBA(var(--color-green-light));
+        }
+
+        &-indeterminate + .bmb_field-checkbox-mark {
+          background-color: RGBA(var(--color-green-light));
+          border-color: RGBA(var(--color-green-light));
+        }
+
+        &:hover + .bmb_field-checkbox-mark {
+          border-color: RGBA(var(--color-green-light));
+
+          &::before {
+            background-color: RGBA(var(--color-green-light), 0.8);
           }
         }
 
-        &:focus {
-          + .bmb_field-checkbox-box {
-            background-color: RGBA(var(--color-green-light), 0.2);
-          }
-        }
+        &:focus + .bmb_field-checkbox-mark,
+        &:focus-visible + .bmb_field-checkbox-mark {
+          border-color: RGBA(var(--color-green-light));
 
-        &-checked {
-          + .bmb_field-checkbox-box {
-            .bmb_field-checkbox-mark {
-              background-color: RGBA(var(--color-green-light));
-              border-color: RGBA(var(--color-green-light));
-            }
-          }
-        }
-
-        &:indeterminate {
-          + .bmb_field-checkbox-box {
-            .bmb_field-checkbox-mark {
-              background-color: RGBA(var(--color-green-light));
-              border-color: RGBA(var(--color-green-light));
-            }
+          &::before {
+            background-color: RGBA(var(--color-green-light), 0.9);
           }
         }
       }
@@ -709,6 +706,56 @@
       &-error {
         .bmb_field-checkbox-mark {
           border-color: RGBA(var(--color-red-light));
+        }
+      }
+    }
+
+    &-switch {
+      &-input {
+        &:checked + .bmb_field-switch-slider,
+        &[ng-reflect-checked="true"] + .bmb_field-switch-slider {
+          background-color: RGBA(var(--color-green-light));
+
+          &:hover {
+            &::after {
+              outline-color: RGBA(var(--color-green-light), 0.25);
+            }
+          }
+        }
+
+        &:not(:checked, [ng-reflect-checked="true"]):hover
+          + .bmb_field-switch-slider {
+          &::after {
+            outline-color: RGBA(var(--color-charade-200), 0.25);
+          }
+        }
+
+        &:not(:checked, [ng-reflect-checked="true"]):focus:focus-visible
+          + .bmb_field-switch-slider {
+          &::after {
+            outline-color: RGBA(var(--color-charade-200), 0.5);
+          }
+        }
+
+        &:is(:checked, [ng-reflect-checked="true"]):focus:focus-visible
+          + .bmb_field-switch-slider {
+          &::after {
+            outline-color: RGBA(var(--color-green-light), 0.5);
+          }
+        }
+      }
+
+      &-slider {
+        background-color: RGBA(var(--color-charade-200));
+
+        &::after {
+          background-color: RGBA(var(--color-white-primary));
+        }
+
+        &-round {
+          &-icon {
+            color: RGBA(var(--color-charade-900));
+          }
         }
       }
     }

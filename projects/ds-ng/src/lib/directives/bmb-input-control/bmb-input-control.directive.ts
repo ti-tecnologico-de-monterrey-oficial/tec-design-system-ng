@@ -9,13 +9,14 @@ import { BmbFormService } from '../bmb-form-control/bmb-form-control.service';
 export class BmbInputControlDirective {
   type = input<IBbmInputType>('text-area');
   name = input.required<string>();
+  value = input<string>();
   checked = input<boolean>(false);
   onCheckedChange = output<any>();
 
   constructor(private formService: BmbFormService) {}
 
-  @HostListener('click', ['$event.target', '$event'])
-  onClick(target: any, event: any) {
+  handleCheck(target: any, event: any): void {
+    target.name = this.name();
     target.checked = !this.checked();
     if (this.type() === 'checkbox') {
       target.value = target.checked;
@@ -25,9 +26,22 @@ export class BmbInputControlDirective {
     }
 
     if (this.type() === 'radio' && target.checked) {
-      this.formService.getFormControlByName(this.name()).setValue(target.value);
+      this.formService.getFormControlByName(this.name()).setValue(this.value());
     }
+
     this.onCheckedChange.emit(event);
+  }
+
+  @HostListener('click', ['$event.target', '$event'])
+  onClick(target: any, event: any) {
+    this.handleCheck(target, event);
+  }
+
+  @HostListener('keypress', ['$event.target', '$event'])
+  onKeyPress(target: any, event: any) {
+    if (event.code.toLocaleUpperCase() === 'ENTER') {
+      this.handleCheck(target, event);
+    }
   }
 
   @HostListener('input', ['$event.target'])

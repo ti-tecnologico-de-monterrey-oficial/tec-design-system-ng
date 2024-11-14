@@ -35,6 +35,7 @@
                 }
                 @case ("switch") {
                   <bmb-switch
+                    [name]="control.name"
                     [rightText]="control.rightText ?? ''"
                     [isChecked]="filterForm.get(control.name)?.value === true"
                     (change)="onControlChange(control, $event)"

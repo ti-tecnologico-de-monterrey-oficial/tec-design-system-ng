@@ -3049,13 +3049,14 @@ export class AppComponent {
     comments: new FormControl<string>(''),
     contract: new FormControl(''),
     amount: new FormControl(),
-    date: new FormControl<string>(''),
+    // date: new FormControl<string>(''),
     phone: new FormControl(),
     phone2: new FormControl(),
     phone3: new FormControl(),
     checkbox1: new FormControl(),
     checkbox2: new FormControl(),
     switch1: new FormControl(),
+    switch2: new FormControl(),
   });
 
   onSubmit(): void {

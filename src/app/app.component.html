@@ -1,5 +1,5 @@
 <section style="margin: 1rem">
-  <bmb-theme />
+  <bmb-theme name="theme" />
   <!-- <button
   bmbButton
   appearance="primary"
@@ -316,6 +316,34 @@
       appearance="normal"
       [control]="getFormControl('name')"
     />
+    <bmb-radial
+      id="radio1"
+      value="CCM"
+      name="contract"
+      label="Contract for teacher CCM.pdf"
+      [checked]="false"
+      [required]="true"
+      [disabled]="false"
+      errorMessage="Error message"
+      helperMessage="Helper message"
+      labelPosition="before"
+      (change)="handleRadial($event)"
+      [control]="getFormControl('contract')"
+    />
+    <bmb-radial
+      id="radio2"
+      value="CCB"
+      name="contract"
+      label="Contrato profesor cátedra Biología CCB.pdf"
+      [checked]="false"
+      [required]="true"
+      [disabled]="false"
+      errorMessage="Error message"
+      helperMessage="Helper message"
+      labelPosition="after"
+      (change)="handleRadial($event)"
+      [control]="getFormControl('contract')"
+    />
     <bmb-input
       id="text2"
       name="named"
@@ -372,46 +400,6 @@
       [isRequired]="true"
       [control]="getFormControl('amount')"
     />
-    <bmb-input
-      [placeholder]="'placeholder'"
-      [label]="'Date'"
-      icon="calendar_month"
-      [isRequired]="true"
-      [disabled]="false"
-      [appearance]="'appearance'"
-      [control]="getFormControl('date')"
-      [helperMessage]="'Helper message dateFormat'"
-      errorMessage="Error message for date"
-      [name]="'date'"
-    />
-    <!-- <bmb-radial
-      id="radio1"
-      value="CCM"
-      name="contract"
-      label="Contract for teacher CCM.pdf"
-      [checked]="true"
-      [required]="true"
-      [disabled]="false"
-      errorMessage="Error message"
-      helperMessage="Helper message"
-      labelPosition="before"
-      (change)="handleRadial($event)"
-      [control]="getFormControl('contract')"
-    />
-    <bmb-radial
-      id="radio2"
-      value="CCB"
-      name="contract"
-      label="Contrato profesor cátedra Biología CCB.pdf"
-      [checked]="false"
-      [required]="true"
-      [disabled]="false"
-      errorMessage="Error message"
-      helperMessage="Helper message"
-      labelPosition="after"
-      (change)="handleRadial($event)"
-      [control]="getFormControl('contract')"
-    /> -->
     <bmb-input-phone-number
       appearance="normal"
       [name]="'phone'"
@@ -426,7 +414,7 @@
       appearance="normal"
       [name]="'phone2'"
       label="Phone 2"
-      value="7777777777"
+      value="+525555555555"
       [disabled]="true"
       [isRequired]="false"
       [errorMessage]="'Error phone'"
@@ -451,7 +439,7 @@
       [indeterminate]="false"
       [required]="true"
       [label]="'Contrato profesor cátedra Biología marina CCM.pdf'"
-      [labelPosition]="'before'"
+      [labelPosition]="'after'"
       [ariaDescribedby]="''"
       [ariaLabel]="''"
       [ariaLabelledby]="''"
@@ -465,7 +453,7 @@
       name="checkbox2"
       [checked]="false"
       [disabled]="false"
-      [indeterminate]="false"
+      [indeterminate]="true"
       [required]="true"
       [label]="'Contrato profesor cátedra Biología marina CCM.pdf'"
       [labelPosition]="'before'"
@@ -486,6 +474,16 @@
       [id]="'1'"
       [disabled]="false"
       [control]="getFormControl('switch1')"
+    />
+    <bmb-switch
+      name="switch2"
+      [isChecked]="false"
+      leftIcon="light_mode"
+      rightIcon="dark_mode"
+      [ariaLabel]="'Describe the button function here'"
+      [id]="'2'"
+      [disabled]="false"
+      [control]="getFormControl('switch2')"
     />
     <button bmbButton appearance="primary" type="submit">Submit</button>
   </form>
@@ -792,4 +790,3 @@
   />
 </div>
 <bmb-timestream [events]="timeStreamEvents" dateFormat="yyyy-MM-dd" /> -->
-<bmb-theme />

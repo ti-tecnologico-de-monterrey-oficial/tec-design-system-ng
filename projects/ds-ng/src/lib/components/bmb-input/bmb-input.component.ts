@@ -16,6 +16,8 @@ import { BmbFormService } from '../../directives/bmb-form-control/bmb-form-contr
 import { BmbInputControlDirective } from '../../../public-api';
 import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 
 export type IBbmInputType =
   | 'text'
@@ -42,6 +44,8 @@ export type IBbmInputAppearance = 'main' | 'normal' | 'simple';
     BmbTooltipComponent,
     NgxMatIntlTelInputComponent,
     MatFormFieldModule,
+    BmbLayoutDirective,
+    BmbLayoutItemDirective,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -121,7 +125,7 @@ export class BmbInputComponent {
     return '';
   }
 
-  getClasses(className: string): string[] {
+  getClasses(className: string, isContent?: boolean): string[] {
     const type = this.type().toLocaleLowerCase();
     if (type === 'radio' || type === 'checkbox') {
       const baseName: string = `${className}-${type}`;
@@ -132,17 +136,16 @@ export class BmbInputComponent {
         this.getTypeErrorClass(baseName),
       ];
     }
-    return [];
-  }
 
-  getCheckedClass(className: string): string[] {
-    const type = this.type().toLocaleLowerCase();
-    const baseName: string = `${className}-${type}-input`;
-    const classes: string[] = [baseName];
-    if (this.checked()) {
-      return [...classes, `${baseName}-checked`];
+    if (type === 'switch') {
+      if (isContent) {
+        return [`${className}-switch_content`];
+      }
+
+      return [`${className}-switch_direction`];
     }
-    return classes;
+
+    return [];
   }
 
   get inputClasses(): { [key: string]: boolean } {
@@ -169,6 +172,34 @@ export class BmbInputComponent {
     return this.formService.showError(this.type(), this.name());
   }
 
+  getSwitchIcon(): string {
+    if (
+      !!this.rightIcon() &&
+      !!this.leftIcon() &&
+      !!!this.rightText() &&
+      !!!this.leftText()
+    ) {
+      if (this.checked()) return this.rightIcon();
+      return this.leftIcon();
+    }
+
+    return '';
+  }
+
+  showSwitchLabel(position: string): boolean {
+    if (
+      !!!this.rightIcon() &&
+      !!!this.leftIcon() &&
+      !!this.rightText() &&
+      !!this.leftText()
+    ) {
+      if (position === 'left') return !!this.leftText();
+      if (position === 'right') return !!this.rightText();
+    }
+
+    return false;
+  }
+
   handleRadioChange(event: Event) {
     const target = event.target as HTMLInputElement;
     if (target && target.checked) {
@@ -189,16 +220,7 @@ export class BmbInputComponent {
     }
   }
 
-  // handleCheckboxChange(event: Event): void {
-  //   const target = event.target as HTMLInputElement;
-  //   this.checked.set(target.checked);
-
-  //   this.formService.getFormControlByName(this.name()).setValue(this.checked());
-  //   this.onChange.emit(event);
-  //   event.stopPropagation();
-  // }
-
-  handleCheckboxChange(event: Event) {
+  handleCheckChange(event: Event) {
     const target = event.target as HTMLInputElement;
     if (
       this.type().toLocaleLowerCase() === 'checkbox' &&
@@ -208,34 +230,10 @@ export class BmbInputComponent {
     }
 
     this.checked.set(target.checked);
+
     this.onChange.emit(event);
     event.preventDefault();
     event.stopPropagation();
-  }
-
-  handleCheckboxKeyDown(event: KeyboardEvent) {
-    if (event.key.toLocaleUpperCase() === 'ENTER') {
-      if (this.indeterminate()) {
-        this.indeterminate.set(false);
-        this.checked.set(true);
-      } else {
-        this.checked.update((value) => !value);
-      }
-
-      this.formService
-        .getFormControlByName(this.name())
-        .setValue(this.checked());
-      this.onChange.emit(event);
-      event.preventDefault();
-      event.stopPropagation();
-    }
-  }
-
-  toggleSwitch(): void {
-    if (!this.disabled()) {
-      this.checked.update((value) => !value);
-      // this.change.emit(this.checked());
-    }
   }
 
   onFocus() {

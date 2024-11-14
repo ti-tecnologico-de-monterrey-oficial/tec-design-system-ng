@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnInit,
-  inject,
-  ViewEncapsulation,
-  Input,
-} from '@angular/core';
+import { Component, inject, ViewEncapsulation, input } from '@angular/core';
 import { ThemeService } from '../../services';
 import { CommonModule } from '@angular/common';
 import { BmbSwitchComponent } from '../bmb-switch/bmb-switch.component';
@@ -14,12 +8,22 @@ import { BmbSwitchComponent } from '../bmb-switch/bmb-switch.component';
   standalone: true,
   imports: [CommonModule, BmbSwitchComponent],
   providers: [ThemeService],
-  templateUrl: './bmb-theme.component.html',
+  template: `
+    @if (showControls()) {
+      <bmb-switch
+        name="theme"
+        [isChecked]="selectedTheme === 'dark'"
+        leftIcon="light_mode"
+        rightIcon="dark_mode"
+        (change)="onThemeChange($event)"
+      />
+    }
+  `,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbThemeComponent implements OnInit {
-  @Input() initialTheme?: string;
-  @Input() showControls: boolean = true;
+export class BmbThemeComponent {
+  initialTheme = input<string>();
+  showControls = input<boolean>(true);
 
   selectedTheme: string = 'light';
   private service = inject(ThemeService);
@@ -41,9 +45,10 @@ export class BmbThemeComponent implements OnInit {
   calculateTheme(): string {
     const savedTheme = localStorage.getItem('theme');
 
-    if (!this.showControls && this.initialTheme) return this.initialTheme;
+    if (!this.showControls() && this.initialTheme())
+      return this.initialTheme()!;
     if (savedTheme) return savedTheme;
-    if (this.initialTheme) return this.initialTheme;
+    if (this.initialTheme()) return this.initialTheme()!;
 
     return this.service.getDefaultTheme();
   }

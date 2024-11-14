@@ -144,10 +144,11 @@ Below is an example of how to use this component in HTML:
     value: {
       name: 'Value',
       control: { type: 'text' },
-      description: 'The current value of the input field.',
+      description:
+        'The current value of the input field, this value must be a phone number including country code, example: +525555555555.',
       table: {
         category: 'Properties',
-        type: { summary: 'string' },
+        type: { summary: 'string, format: +525555555555.' },
       },
     },
     disabled: {
