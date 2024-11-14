@@ -1,53 +1,66 @@
 <ng-template #commonContent>
-  <bmb-card>
-    <bmb-card-content padding="m">
-      <section bmbLayout [dynamicCols]="true" margin="none" alignItems="center">
+  <section
+    bmbLayout
+    [dynamicCols]="true"
+    margin="none"
+    alignItems="center"
+    justify="spaceBetween"
+    class="bmb_container-button-content"
+  >
+    <div class="bmb_container-button-left">
+      @if ((iconLeft() && !score()) || square() || small()) {
         <bmb-icon
           bmbLayoutItem
-          class="bmb_container-button-left"
+          class="bmb_container-button-left-icon"
           [icon]="iconLeft()"
-          *ngIf="iconLeft() && !score()"
         />
-        <bmb-grade-value
-          bmbLayoutItem
-          type="main-grade"
-          [score]="getScore()"
-          *ngIf="score() && !square()"
-        />
-        <section bmbLayoutItem>
-          <span class="bmb_container-button-title">{{ title() }}</span>
-          <span
-            class="bmb_container-button-subtitle"
-            *ngIf="subtitle() && !square()"
-          >
+      }
+      @if (score() && !square() && !small()) {
+        <bmb-grade-value bmbLayoutItem type="main-grade" [score]="getScore()" />
+      }
+      <div class="bmb_container-button-header">
+        <span class="bmb_container-button-title">{{ title() }}</span>
+        @if (subtitle() && !square() && !small()) {
+          <span class="bmb_container-button-subtitle">
             {{ subtitle() }}
           </span>
-        </section>
-        <bmb-icon
-          class="bmb_container-button-right"
-          [icon]="iconRight()"
-          *ngIf="iconRight() && !square()"
+        }
+      </div>
+    </div>
+    <div class="bmb_container-button-right">
+      @if (badgeText() && !square() && !small()) {
+        <bmb-badge
+          [text]="badgeText()"
+          [appearance]="badgeAppearance()"
+          class="bmb_container-button-badge"
         />
-      </section>
-    </bmb-card-content>
-  </bmb-card>
+      }
+      @if (iconRight() && !square() && !small()) {
+        <bmb-icon
+          class="bmb_container-button-right-icon"
+          [icon]="iconRight()"
+        />
+      }
+    </div>
+  </section>
 </ng-template>
 
-<button
-  [ngClass]="getClassList()"
-  class="bmb_container-button"
-  *ngIf="setButtonTemplate()"
-  (click)="handleClick($event)"
->
-  <ng-container *ngTemplateOutlet="commonContent" />
-</button>
-
-<a
-  [ngClass]="getClassList()"
-  class="bmb_container-button"
-  *ngIf="!setButtonTemplate()"
-  [href]="link()"
-  [target]="target()"
->
-  <ng-container *ngTemplateOutlet="commonContent" />
-</a>
+@if (setButtonTemplate()) {
+  <button
+    [ngClass]="getClassList()"
+    class="bmb_container-button"
+    (click)="handleClick($event)"
+  >
+    <ng-container *ngTemplateOutlet="commonContent" />
+  </button>
+}
+@if (!setButtonTemplate()) {
+  <a
+    [ngClass]="getClassList()"
+    class="bmb_container-button"
+    [href]="link()"
+    [target]="target()"
+  >
+    <ng-container *ngTemplateOutlet="commonContent" />
+  </a>
+}
