@@ -21,4 +21,14 @@
   See the full list of available themes in the [Themes](#themes) section.
 </p>
 <p>text</p>
+
+<bmb-inner-header
+  [title]="title"
+  [showReturn]="true"
+  (searchData)="handleSearch($event)"
+  [showSearch]="true"
+  [title]="'My Title'"
+  [placeholderSearch]="'Search'"
+  [subTitle]="'www.link.com'"
+></bmb-inner-header>
 <bmb-icon icon="home"></bmb-icon>
