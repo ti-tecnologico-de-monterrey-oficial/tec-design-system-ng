@@ -14,14 +14,14 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbTooltipComponent } from '../bmb-tooltip/bmb-tooltip.component';
 import { IBbmSidePosition } from '../../types';
 
-export type IBbmInputType =
+export type IBmbInputType =
   | 'text'
   | 'password'
   | 'number'
   | 'text-area'
   | 'radio';
 
-export type IBbmInputAppearance = 'main' | 'normal' | 'simple';
+export type IBmbInputAppearance = 'main' | 'normal' | 'simple';
 
 @Component({
   selector: 'bmb-input',
@@ -39,10 +39,10 @@ export type IBbmInputAppearance = 'main' | 'normal' | 'simple';
 })
 export class BmbInputComponent {
   label = input<string>('');
-  type = input<IBbmInputType>('text');
+  type = input<IBmbInputType>('text');
   placeholder = input<string>('');
   icon = input<string>('');
-  appearance = input<IBbmInputAppearance | string>('normal');
+  appearance = input<IBmbInputAppearance | string>('normal');
   errorMessage = input<string>('');
   helperMessage = input<string>('');
   disabled = input<boolean>(false);
