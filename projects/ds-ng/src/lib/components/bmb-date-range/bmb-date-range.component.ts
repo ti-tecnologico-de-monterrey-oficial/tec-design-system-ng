@@ -8,7 +8,7 @@ import { FormControl } from '@angular/forms';
 import { BmbDatepickerComponent } from '../bmb-datepicker/bmb-datepicker.component';
 import { CommonModule } from '@angular/common';
 import { DateTime } from 'luxon';
-import { IBbmInputAppearance } from '../bmb-input/bmb-input.component';
+import { IBmbInputAppearance } from '../bmb-input/bmb-input.component';
 
 @Component({
   selector: 'bmb-date-range',
@@ -26,7 +26,7 @@ export class BmbDateRangeComponent {
   icon = input<string>('calendar_month');
   invalidFormatErrorMessage = input<string>('');
   requiredFieldErrorMessage = input<string>('');
-  appearance = input<IBbmInputAppearance | string>('normal');
+  appearance = input<IBmbInputAppearance | string>('normal');
   disabled = input<boolean>(false);
   isRequired = input<boolean>(false);
   isClearable = input<boolean>(false);

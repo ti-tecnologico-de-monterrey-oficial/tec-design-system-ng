@@ -1,0 +1,46 @@
+@use "../../../../assets/styles/base/mixins" as mixins;
+
+@mixin previewBlock() {
+  opacity: 0.5;
+
+  .bmb_multi-dot-paginator-item {
+    padding-right: 0;
+    padding-left: 2.5rem;
+  }
+}
+
+bmb-multi-dot-paginator-item {
+  width: calc((100% / var(--numberOfElements)) - 6rem);
+  display: block;
+
+  @media (width <= 999px) {
+    &.bmb_multi-dot-paginator-item-active ~ * {
+      @include previewBlock();
+    }
+  }
+
+  @media (999px < width <= 1999px) {
+    &.bmb_multi-dot-paginator-item-active + * ~ * {
+      @include previewBlock();
+    }
+  }
+
+  @media (1999px < width) {
+    &.bmb_multi-dot-paginator-item-active + * + * ~ * {
+      @include previewBlock();
+    }
+  }
+
+  @include mixins.media-query(1000, "min") {
+    width: calc((50% / var(--numberOfElements)) - 3rem);
+  }
+
+  @include mixins.media-query(2000, "min") {
+    width: calc((33.333% / var(--numberOfElements)) - 2rem);
+  }
+}
+
+.bmb_multi-dot-paginator-item {
+  width: 100%;
+  padding-right: 2.5rem;
+}

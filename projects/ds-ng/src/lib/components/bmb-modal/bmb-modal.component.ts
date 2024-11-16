@@ -36,7 +36,7 @@ import { BmbContainerComponent } from '../bmb-container/bmb-container.component'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbModalComponent {
-  svgUrl: string = '../../../assets/svg/';
+  svgUrl: string = 'assets/svg/';
   modalTemplate: TemplateRef<any> | null = null;
   actionHeaders: IBmbActionHeader[] = [
     {

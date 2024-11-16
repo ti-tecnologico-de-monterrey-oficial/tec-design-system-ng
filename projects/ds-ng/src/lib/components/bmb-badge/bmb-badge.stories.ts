@@ -1,5 +1,24 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbBadgeComponent } from './bmb-badge.component';
+import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
+
+const appearanceOptions: IBbmBgAppearance[] = [
+  'normal',
+  'strong',
+  'success',
+  'info',
+  'warning',
+  'error',
+  'brand',
+  'background',
+  'disabled',
+  'mitec_blue',
+  'mitec_red',
+  'mitec_green',
+  'mitec_orange',
+  'mitec_light_green',
+  'mitec_purple',
+];
 
 export default {
   title: 'Micro Componentes/Badge',
@@ -39,31 +58,12 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string' },
       },
     },
-    grouped: {
-      name: 'Grouped',
-      control: { type: 'boolean' },
-      description:
-        'When set to true, it groups multiple badges into a parent element. By default, it is false, and you do not need to explicitly set it. The badge should always have a parent element.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean' },
-      },
-    },
     appearance: {
       name: 'Appearance',
       control: {
         type: 'select',
       },
-      options: [
-        'normal',
-        'strong',
-        'success',
-        'info',
-        'warning',
-        'error',
-        'brand',
-      ],
+      options: appearanceOptions,
       table: {
         category: 'Properties',
         defaultValue: { summary: 'normal' },
@@ -71,17 +71,16 @@ Below is an example of how you can use this component in HTML:
       },
       description: 'The appearance of the badge, affecting its visual style.',
     },
-    rounded: {
-      name: 'Rounded',
+    container: {
+      name: 'Container',
       control: { type: 'boolean' },
-      description: 'When set to true, the badge will have rounded corners.',
+      description: '',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
         type: { summary: 'boolean' },
         deprecated: {
-          summary:
-            'Esta propiedad está obsoleta y será eliminada en futuras versiones.',
+          summary: '',
         },
       },
     },
@@ -89,8 +88,7 @@ Below is an example of how you can use this component in HTML:
   args: {
     text: 'Badge text',
     appearance: 'normal',
-    grouped: false,
-    rounded: false,
+    container: false,
   },
 } as Meta<typeof BmbBadgeComponent>;
 
