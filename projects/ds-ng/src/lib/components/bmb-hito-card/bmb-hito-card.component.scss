@@ -32,7 +32,6 @@ $circleTypes: (
   }
 
   &-active {
-
     .bmb_card.bmb_card-type-normal {
       border: rem.rem_calc(2) solid var(--general_contrasts-main-selection);
     }
