@@ -42,6 +42,32 @@ Below is an example of how you can use this component in HTML:
     },
   },
   argTypes: {
+    iconRight: {
+      name: 'Icon Right (deprecated)',
+      control: { type: 'text' },
+      description:
+        'This property is deprecated and will be removed in future versions.',
+      table: {
+        category: 'Deprecated',
+        deprecated: {
+          summary:
+            'This property is deprecated and will be removed in future versions.',
+        },
+      },
+    },
+    iconRight2: {
+      name: 'Icon Right 2 (deprecated)',
+      control: { type: 'text' },
+      description:
+        'This property is deprecated and will be removed in future versions.',
+      table: {
+        category: 'Deprecated',
+        deprecated: {
+          summary:
+            'This property is deprecated and will be removed in future versions.',
+        },
+      },
+    },
     text: {
       name: 'Text',
       control: {
@@ -53,31 +79,11 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string' },
       },
     },
-    iconLeft: {
-      name: 'Icon Left',
-      control: { type: 'text' },
-      description:
-        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons. Do not use the logo property if you want to use an iconLeft.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
-    iconRight: {
-      name: 'Icon Right',
+    trailingIcon: {
+      name: 'Trailing Action Icon',
       control: { type: 'text' },
       description:
         'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons. Do not use the image property if you want to use an iconRight.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
-    iconRight2: {
-      name: 'Icon Right 2',
-      control: { type: 'text' },
-      description:
-        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons. Do not use the image property if you want to use an iconRight2',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -179,48 +185,21 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string' },
       },
     },
-    onIconLeftClick: {
-      name: 'On Icon Left Click',
+    onTrailingIconClick: {
+      name: 'On Trailing Icon Click',
       control: {
         type: '',
       },
       description:
-        'This handler can be used when you have the left icon available and want to perform a specific interaction.',
+        'This handler can be used when you have the Trailing Icon available and want to perform a specific interaction.',
       table: {
         category: 'Events',
-        type: { summary: '(onIconLeftClick)="yourFunction()"' },
-      },
-    },
-    onIconRightClick: {
-      name: 'On Icon Right Click',
-      control: {
-        type: '',
-      },
-      description:
-        'This handler can be used when you have the right icon available and want to perform a specific interaction.',
-      table: {
-        category: 'Events',
-        type: { summary: '(onIconRightClick)="yourFunction()"' },
-      },
-    },
-    onIconRight2Click: {
-      name: 'On Icon Right 2 Click',
-      control: {
-        type: '',
-      },
-      description:
-        'This handler can be used when you have the right icon 2 available and want to perform a specific interaction.',
-      table: {
-        category: 'Events',
-        type: { summary: '(onIconRight2Click)="yourFunction()"' },
+        type: { summary: '(onTrailingIconClick)="yourFunction()"' },
       },
     },
   },
   args: {
-    text: 'Text Header',
-    iconLeft: 'chevron_left',
-    iconRight: 'search',
-    iconRight2: 'close',
+    trailingIcon: 'notifications',
     userImage:
       'https://i0.wp.com/gershenson.mx/wp-content/uploads/2020/08/logo-tec-de-monterrey-e1484853084274.png?ssl=1',
     userAltImage: 'Alt image description',
@@ -230,15 +209,10 @@ Below is an example of how you can use this component in HTML:
     altLogo: 'Alt logo description',
     logoLink: '_blank',
     logoTarget: 'https://www.youtube.com/',
-    onIconLeftClick: () => {
-      window.alert('Icon left clicked in Storybook');
+    onTrailingIconClick: () => {
+      window.alert('Trailing Icon clicked in Storybook');
     },
-    onIconRightClick: () => {
-      window.alert('Icon right clicked in Storybook');
-    },
-    onIconRight2Click: () => {
-      window.alert('Icon right 2 clicked in Storybook');
-    },
+    text: 'Title',
   },
 } as Meta<typeof BmbHeaderMobileComponent>;
 

@@ -6,14 +6,9 @@ describe('BmbMultiDotPaginatorComponent', () => {
   let component: BmbMultiDotPaginatorComponent;
   let fixture: ComponentFixture<BmbMultiDotPaginatorComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [BmbMultiDotPaginatorComponent],
-    }).compileComponents();
-
+  beforeEach(() => {
     fixture = TestBed.createComponent(BmbMultiDotPaginatorComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
