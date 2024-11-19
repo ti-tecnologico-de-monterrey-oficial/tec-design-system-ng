@@ -133,6 +133,13 @@
 
     ~ .bmb_field-input {
       padding-left: rem.rem_calc(35);
+
+      &:hover,
+      &:focus,
+      &:active,
+      &:focus-visible {
+        padding-left: rem.rem_calc(35);
+      }
     }
   }
 
