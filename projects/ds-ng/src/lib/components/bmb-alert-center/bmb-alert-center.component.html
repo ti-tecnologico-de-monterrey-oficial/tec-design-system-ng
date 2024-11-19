@@ -1,0 +1,25 @@
+<section [ngClass]="getClassList()" bmbLayout>
+  <div bmbLayoutItem [colSm]="4" [colLg]="5">
+    <bmb-tabs [tabs]="tabs" (selected)="handleTabChange($event)">
+      @if (selectedTab === 0) {
+        <div>
+          Recientes
+          <button (click)="toggleNotification()">fake</button>
+        </div>
+      } @else if (selectedTab === 1) {
+        <div>No leidos</div>
+      } @else if (selectedTab === 2) {
+        <div>Favoritos</div>
+      } @else {
+        <div>Archivados</div>
+      }
+    </bmb-tabs>
+    <footer [ngClass]="getFooterClassList()">
+      <bmb-bottom-navigation-bar
+        class="bmb_alert-center-footer"
+        [navigationBarIcons]="navigationBarIcons"
+      />
+    </footer>
+  </div>
+  <section bmbLayoutItem [colSm]="4" [colLg]="7">content</section>
+</section>

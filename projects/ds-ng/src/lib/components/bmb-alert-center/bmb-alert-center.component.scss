@@ -1,0 +1,21 @@
+.bmb_alert-center {
+  height: 100%;
+
+  .bmb-bottom-navigation-bar {
+    justify-content: center;
+
+    .bmb_interactive_icon-icon {
+      height: auto;
+      width: auto;
+    }
+  }
+
+  &-footer {
+    transform: translateY(100%);
+    transition: all 0.3s ease;
+
+    &-active {
+      transform: translateY(0);
+    }
+  }
+}
