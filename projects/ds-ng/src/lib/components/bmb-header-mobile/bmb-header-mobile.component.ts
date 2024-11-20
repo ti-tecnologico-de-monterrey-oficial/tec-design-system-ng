@@ -27,7 +27,6 @@ import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.componen
 })
 export class BmbHeaderMobileComponent {
   text = input.required<string>();
-
   userImage = input<string>('');
   userAltImage = input<string>('');
   userLink = input<string>('');
@@ -38,24 +37,12 @@ export class BmbHeaderMobileComponent {
   logoLink = input<string>('');
   logoTarget = input<string>('');
 
-  iconLeft = input<string>('');
-  iconRight = input<string>('');
-  iconRight2 = input<string>('');
+  trailingIcon = input<string>('');
 
   // Event handlers
-  onIconLeftClick = output<any>();
-  onIconRightClick = output<any>();
-  onIconRight2Click = output<any>();
+  onTrailingIconClick = output<any>();
 
-  handleIconLeftClick(event: any): void {
-    this.onIconLeftClick.emit(event);
-  }
-
-  handleIconRightClick(event: any): void {
-    this.onIconRightClick.emit(event);
-  }
-
-  handleIconRight2Click(event: any): void {
-    this.onIconRight2Click.emit(event);
+  handleTrailingIconClick(event: any): void {
+    this.onTrailingIconClick.emit(event);
   }
 }

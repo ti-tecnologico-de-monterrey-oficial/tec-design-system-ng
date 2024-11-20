@@ -1,23 +1,70 @@
 <header class="bmb_inner_header">
   <div class="bmb_inner_header-container">
-    <ng-container *ngIf="!showSearch">
-      <button class="bmb_inner_header-button" (click)="handleBack()">
-        <bmb-icon icon="arrow_back" class="bmb_inner_header-icon" />
-      </button>
-      <span class="bmb_inner_header-title">{{ title }}</span>
-      <button class="bmb_inner_header-button" (click)="handleSearch()">
-        <bmb-icon icon="search" class="bmb_inner_header-icon" />
-      </button>
-    </ng-container>
-    <ng-container *ngIf="showSearch">
-      <bmb-search-input
-        class="bmb_inner_header-search"
-        [isLoading]="isLoading"
-        [data]="data"
-        (onValueChange)="handleValueChange($event)"
-        (onClearField)="handleSearch()"
-      ></bmb-search-input>
-    </ng-container>
+    @if (!toggleSearch()) {
+      @if (showClose() && !showReturn()) {
+        <button class="bmb_inner_header-button" (click)="handleBack($event)">
+          <bmb-icon icon="close" class="bmb_inner_header-icon" />
+        </button>
+      }
+      @if (!showClose() && showReturn()) {
+        <button class="bmb_inner_header-button" (click)="handleBack($event)">
+          <bmb-icon icon="arrow_back" class="bmb_inner_header-icon" />
+        </button>
+      }
+      <div class="bmb_inner_header-block">
+        <span class="bmb_inner_header-title">{{ title() }}</span>
+        @if (subTitle()) {
+          <span class="bmb_inner_header-subtitle">
+            <bmb-icon icon="lock" class="bmb_inner_header-subtitle-icon" />
+            {{ subTitle() }}
+          </span>
+        }
+      </div>
+
+      <div class="bmb_inner_header-actions">
+        @if (trailingIconSecondary()) {
+          <button
+            class="bmb_inner_header-button"
+            (click)="handleTrailingIconSecondary($event)"
+          >
+            <bmb-icon
+              [icon]="trailingIconSecondary()"
+              class="bmb_inner_header-icon"
+            />
+          </button>
+        }
+        @if (!showSearch()) {
+          <button
+            class="bmb_inner_header-button"
+            (click)="handleTrailingIconPrimary($event)"
+          >
+            <bmb-icon
+              [icon]="trailingIconPrimary()"
+              class="bmb_inner_header-icon"
+            />
+          </button>
+        }
+        @if (showSearch()) {
+          <button class="bmb_inner_header-button" (click)="handleSearch()">
+            <bmb-icon icon="search" class="bmb_inner_header-icon" />
+          </button>
+        }
+      </div>
+    }
+    @if (toggleSearch()) {
+      <form [formGroup]="searchForm" class="bmb_inner_header-form">
+        <button class="bmb_inner_header-button" (click)="handleSearch()">
+          <bmb-icon icon="close" class="bmb_inner_header-icon" />
+        </button>
+        <bmb-input
+          [placeholder]="placeholderSearch()"
+          [icon]="'search'"
+          (isBlur)="onSubmit()"
+          [appearance]="'normal'"
+          [control]="getFormControl('search')"
+        />
+      </form>
+    }
   </div>
   <section class="bmb_inner_header-content">
     <ng-content></ng-content>
