@@ -93,6 +93,7 @@ import {
   ITimelineEvent,
   BmbDropzoneComponent,
   IBmbFileUploadStatus,
+  BmbHomeMitecComponent,
 } from '../../projects/ds-ng/src/public-api';
 import { BmbPullWedgeComponent } from '../../projects/ds-ng/src/lib/components/bmb-pull-wedge/bmb-pull-wedge.component';
 import { BmbCardButtonComponent } from '../../projects/ds-ng/src/lib/components/bmb-card-button/bmb-card-button.component';
@@ -196,6 +197,7 @@ import {
     BmbFormValidationComponent,
     BmbTimestreamCardComponent,
     BmbDropzoneComponent,
+    BmbHomeMitecComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

@@ -1,0 +1,98 @@
+@use "../../../../assets/styles/base/fonts" as fonts;
+@use "../../../../assets/styles/base/rem" as rem;
+
+.bmb_login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--bmb-spacing-m);
+  height: 100dvh;
+
+  &-tec_logo {
+    padding: var(--bmb-spacing-xl);
+
+    img {
+      width: rem.rem_calc(140);
+    }
+  }
+
+  &-mitec_logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    flex-direction: column;
+    @include fonts.font(9, regular);
+    color: var(--general);
+
+    &-animation_img {
+      width: rem.rem_calc(120);
+      animation: mitecAnimation 1s linear 1;
+    }
+
+    &-animation_text {
+      animation: mitecAnimationText 2s ease-in 1;
+    }
+  }
+
+  &-content {
+    flex: 2;
+    animation: contentAnimation 2s ease 1;
+    margin: 0 10%;
+    align-self: center;
+
+    &-container {
+      display: flex;
+      flex-direction: column;
+      margin: rem.rem_calc(6) 0;
+      height: rem.rem_calc(32);
+      width: rem.rem_calc(448);
+
+      &-input {
+        margin: rem.rem_calc(6) 0;
+      }
+
+      &-sublabel {
+        display: flex;
+        align-self: flex-end;
+        margin: rem.rem_calc(6);
+        @include fonts.font(3, regular);
+      }
+
+      &-button {
+        margin: rem.rem_calc(24) 0;
+      }
+    }
+  }
+}
+
+@keyframes contentAnimation {
+  0%,
+  50% {
+    opacity: 0;
+    transform: translate(0, 3rem);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes mitecAnimation {
+  0% {
+    transform: scale(2) translate(0, 5rem);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes mitecAnimationText {
+  0% {
+    opacity: 0;
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
