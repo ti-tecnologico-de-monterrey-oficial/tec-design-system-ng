@@ -20,10 +20,11 @@
     <div class="bmb_drawer-full">
       <bmb-inner-header
         [title]="title"
+        [showReturn]="true"
         (onHandleBack)="toggleFullDrawer()"
-        (onValueChange)="handleValueChange($event)"
-        [data]="dataSearch"
-      />
+        (searchData)="handleValueChange($event)"
+        [showSearch]="true"
+      ></bmb-inner-header>
       <bmb-tabs [tabs]="tabs" (selected)="selectNavItem($event.id)" />
       <div class="bmb_drawer-apps">
         <ng-container *ngFor="let app of appsActive">
