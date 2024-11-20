@@ -1,25 +1,61 @@
 <section [ngClass]="getClassList()" bmbLayout>
-  <div bmbLayoutItem [colSm]="4" [colLg]="5">
+  <div bmbLayoutItem [colSm]="4" [colLg]="5" class="bmb_alert-center-main">
     <bmb-tabs [tabs]="tabs" (selected)="handleTabChange($event)">
       @if (selectedTab === 0) {
-        <div>
-          Recientes
-          <button (click)="toggleNotification()">fake</button>
-        </div>
+        <bmb-alert-center-form
+          (showAlertDetail)="handleShowAlert($event)"
+          [eventsInCategories]="eventsInCategories"
+        />
       } @else if (selectedTab === 1) {
-        <div>No leidos</div>
+        <bmb-alert-center-form
+          (showAlertDetail)="handleShowAlert($event)"
+          [eventsInCategories]="eventsInCategories"
+        />
       } @else if (selectedTab === 2) {
-        <div>Favoritos</div>
+        <bmb-alert-center-form
+          (showAlertDetail)="handleShowAlert($event)"
+          [eventsInCategories]="eventsInCategories"
+        />
       } @else {
-        <div>Archivados</div>
+        <bmb-alert-center-form
+          (showAlertDetail)="handleShowAlert($event)"
+          [eventsInCategories]="eventsInCategories"
+        />
       }
     </bmb-tabs>
-    <footer [ngClass]="getFooterClassList()">
-      <bmb-bottom-navigation-bar
-        class="bmb_alert-center-footer"
-        [navigationBarIcons]="navigationBarIcons"
-      />
-    </footer>
   </div>
-  <section bmbLayoutItem [colSm]="4" [colLg]="7">content</section>
+  <section
+    class="bmb_alert-center-content"
+    bmbLayoutItem
+    [colSm]="4"
+    [colLg]="7"
+  >
+    @if (visibleAlert) {
+      <h1>{{ visibleAlert.title }}</h1>
+      @for (item of visibleAlert.description; track $index) {
+        @switch (item.type) {
+          @case ('paragraph') {
+            <p [ngClass]="'bmb_alert-center-content-' + (item.style ?? 'normal')">{{ item.text }}</p>
+          }
+          @case ('image') {
+            <figure>
+              <img [src]="item.href" [alt]="item.text" />
+            </figure>
+          }
+          @case ('video') {
+            <video [src]="item.href" controls></video>
+          }
+          @case ('title') {
+            <h3 [ngClass]="'bmb_alert-center-content-' + (item.style ?? 'normal')">{{ item.text }}</h3>
+          }
+          @case ('button') {
+            <button bmbButton [appearance]="item.variant ?? 'primary'" (click)="item.event ? item?.event(visibleAlert.id) : placeholderEvent(visibleAlert.id)">{{ item.text }}</button>
+          }
+          @case ('link') {
+            <a [ngClass]="'bmb_alert-center-content-' + (item.style ?? 'normal')" [href]="item.href">{{ item.text }}</a>
+          }
+        }
+      }
+    }
+  </section>
 </section>
