@@ -36,6 +36,7 @@
     [ngClass]="getClasses()"
     [class.bmb_interactive_icon-horizontal]="horizontal()"
     (click)="handleClick()"
+    [name]="icon()"
   >
     <ng-container *ngTemplateOutlet="commonContent" />
   </button>

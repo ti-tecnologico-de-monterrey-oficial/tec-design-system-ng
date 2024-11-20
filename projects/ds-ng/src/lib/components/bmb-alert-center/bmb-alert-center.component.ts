@@ -8,19 +8,14 @@ import { BmbTabsComponent, IBmbTab } from '../bmb-tabs/bmb-tabs.component';
 import { CommonModule } from '@angular/common';
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
+import { DateTime } from 'luxon';
+import { BmbAlertCenterFormComponent } from './bmb-alert-center-form/bmb-alert-center-form.component';
 import {
-  BmbBottomNavigationBarComponent,
-  IBmbNavigationBarIcons,
-} from '../bmb-bottom-navigation-bar/bmb-bottom-navigation-bar.component';
-
-export interface IBmbDataAlert {
-  id: number | string;
-  title: string;
-  description: string;
-  date: string;
-  isRead: boolean;
-  time: string;
-}
+  IBmbDataAlert,
+  IBmbDataAlertsParsed,
+  IBmbAlertCenterCategories,
+} from './types';
+import { BmbButtonDirective } from '../../directives/button.directive';
 
 @Component({
   selector: 'bmb-alert-center',
@@ -30,7 +25,8 @@ export interface IBmbDataAlert {
     CommonModule,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
-    BmbBottomNavigationBarComponent,
+    BmbAlertCenterFormComponent,
+    BmbButtonDirective,
   ],
   templateUrl: './bmb-alert-center.component.html',
   styleUrl: './bmb-alert-center.component.scss',
@@ -40,17 +36,21 @@ export interface IBmbDataAlert {
 export class BmbAlertCenterComponent {
   tabsName = ['Todos', 'No Leídos', 'Favoritos', 'Archivados'];
   alerts = input.required<IBmbDataAlert[]>();
-  navigationBarIcons: IBmbNavigationBarIcons = {
-    one: { name: 'done_all', label: '' },
-    two: { name: 'sell', label: '' },
-    three: { name: 'star', label: '' },
-    four: { name: 'inventory_2', label: '' },
-  };
+  dateFormat = input<string>('dd/MM/yyyy');
 
   tabs: IBmbTab[] = [];
 
   selectedTab = 0;
   selectedAlert: IBmbDataAlert[] = [];
+  orderedEvents: IBmbDataAlertsParsed[] = [];
+  now = DateTime.now();
+  eventsInCategories: IBmbAlertCenterCategories = {
+    recent: [],
+    sevenDays: [],
+    month: [],
+    rest: [],
+  };
+  visibleAlert: IBmbDataAlertsParsed | null = null;
 
   ngOnInit(): void {
     this.tabs = this.tabsName.map((tab, index) => {
@@ -59,9 +59,12 @@ export class BmbAlertCenterComponent {
         id: index,
         title: tab,
         isActive: index === 0,
-        badge: index === 0 ? badge : 0,
+        badge: index === 0 || index === 1 ? badge : 0,
       };
     });
+
+    this.orderedEvents = this.orderEvents(this.alerts());
+    this.eventsInCategories = this.orderCategories(this.orderedEvents);
   }
 
   getClassList(): string[] {
@@ -71,20 +74,70 @@ export class BmbAlertCenterComponent {
 
   handleTabChange(tabId: IBmbTab): void {
     this.selectedTab = tabId.id;
-  }
-
-  getFooterClassList(): string[] {
-    const classList = ['bmb_alert-center-footer'];
-    if (this.selectedAlert.length)
-      classList.push('bmb_alert-center-footer-active');
-
-    console.log('classList', classList);
-
-    return classList;
+    this.eventsInCategories = this.filterEvents(tabId.id);
   }
 
   toggleNotification() {
     this.selectedAlert = this.selectedAlert.length ? [] : this.alerts();
-    console.log('this.selectedAlert', this.selectedAlert);
+  }
+
+  orderEvents(alerts: IBmbDataAlert[]): IBmbDataAlertsParsed[] {
+    const parserDates = alerts.map((alert) => ({
+      ...alert,
+      pDate: DateTime.fromFormat(
+        `${alert.date} ${alert.time}`,
+        `${this.dateFormat()} HH:mm`,
+      ),
+    }));
+
+    return parserDates.sort((a, b) => {
+      return b.pDate.toMillis() - a.pDate.toMillis();
+    });
+  }
+
+  orderCategories(alerts: IBmbDataAlertsParsed[]): IBmbAlertCenterCategories {
+    const objectEvent: IBmbAlertCenterCategories = {
+      recent: [],
+      sevenDays: [],
+      month: [],
+      rest: [],
+    };
+    alerts.forEach((alert) => {
+      const diff = Math.trunc(this.now.diff(alert.pDate, 'days').days || 0);
+      if (diff === 0) objectEvent.recent.push(alert);
+      else if (diff <= 7) objectEvent.sevenDays.push(alert);
+      else if (diff <= 30) objectEvent.month.push(alert);
+      else objectEvent.rest.push(alert);
+    });
+    return objectEvent;
+  }
+
+  filterEvents(id: number): IBmbAlertCenterCategories {
+    switch (id) {
+      case 0:
+        return this.orderCategories(this.orderedEvents);
+      case 1:
+        return this.orderCategories(
+          this.orderedEvents.filter((alert) => !alert.isRead),
+        );
+      case 2:
+        return this.orderCategories(
+          this.orderedEvents.filter((alert) => alert.isFavorite),
+        );
+      case 3:
+        return this.orderCategories(
+          this.orderedEvents.filter((alert) => alert.isArchived),
+        );
+      default:
+        return this.orderCategories(this.orderedEvents);
+    }
+  }
+
+  handleShowAlert(item: IBmbDataAlertsParsed): void {
+    this.visibleAlert = item;
+  }
+
+  placeholderEvent(id: string | number): void {
+    console.log('Event', id);
   }
 }
