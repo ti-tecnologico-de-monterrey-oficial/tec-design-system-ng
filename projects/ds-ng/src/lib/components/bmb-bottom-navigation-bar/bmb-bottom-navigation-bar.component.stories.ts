@@ -61,6 +61,12 @@ Below is an example of how you can use this component in HTML:
     navigationBarEvents: (event: unknown) => {
       alert('Selection: ' + event);
     },
+    navigationBarIcons : {
+      one: { name: '', label: '' },
+      two: { name: '', label: '' },
+      three: { name: '', label: '' },
+      four: { name: '', label: '' },
+    }
   },
 } as Meta<typeof BmbBottomNavigationBarComponent>;
 

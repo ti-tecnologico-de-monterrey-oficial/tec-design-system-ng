@@ -1,0 +1,51 @@
+<section class="bmb_login">
+  <section class="bmb_login-tec_logo">
+    <img alt="Tecnológico de Monterrey" [src]="tecLogoImage" />
+  </section>
+  <section class="bmb_login-mitec_logo">
+    <img
+      class="bmb_login-mitec_logo-animation_img"
+      alt="mitec"
+      [src]="mitecImage"
+    />
+    <h2 class="bmb_login-mitec_logo-animation_text">ESTUDIANTES</h2>
+  </section>
+  <section class="bmb_login-content">
+    <section class="bmb_login-content-container">
+      <bmb-input
+        class="bmb_login-content-container-input"
+        placeholder="Usuario"
+        icon="account_circle"
+        errorMessage="El usuario es requerido"
+        appearance="normal"
+        [disabled]="false"
+        [isRequired]="true"
+        [control]="getFormControl('user')"
+        [showError]="showErrors['user']"
+      />
+      <bmb-input
+        class="bmb_login-content-container-input"
+        type="password"
+        placeholder="Contraseña"
+        icon="lock"
+        errorMessage="La contraseña es requerida"
+        appearance="normal"
+        [disabled]="false"
+        [isRequired]="true"
+        [control]="getFormControl('password')"
+        [showError]="showErrors['password']"
+      />
+      <p class="bmb_login-content-container-sublabel">
+        ¿Olvidaste tu contraseña?
+      </p>
+      <button
+        bmbButton
+        class="bmb_login-content-container-button"
+        size="large"
+        (click)="onSubmit()"
+      >
+        Ingresar
+      </button>
+    </section>
+  </section>
+</section>
