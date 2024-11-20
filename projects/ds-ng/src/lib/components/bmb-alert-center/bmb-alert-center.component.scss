@@ -1,0 +1,45 @@
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/rem" as rem;
+
+.bmb_alert-center {
+  height: 100%;
+
+  &-main,
+  &-content {
+    height: 100%;
+  }
+
+  &-main {
+    position: relative;
+  }
+
+  .bmb-bottom-navigation-bar {
+    justify-content: center;
+
+    .bmb_interactive_icon-icon {
+      height: auto;
+      width: auto;
+    }
+  }
+
+  .bmb_tabs {
+    height: 100%;
+  }
+
+  &-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--bmb-spacing-m);
+    text-align: center;
+    padding: var(--bmb-spacing-m);
+
+    figure,
+    p {
+      margin: 0;
+
+      img {
+        max-width: 100%;
+      }
+    }
+  }
+}

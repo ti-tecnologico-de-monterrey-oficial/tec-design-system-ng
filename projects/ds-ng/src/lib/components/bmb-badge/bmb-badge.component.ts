@@ -24,8 +24,8 @@ export class BmbBadgeComponent {
   constructor() {}
 
   getClasses(): string[] {
-    const classes: string[] = ['bmb_badge', `bmb_badge-${this.appearance()}`];
-
+    const classes: string[] = ['bmb_badge'];
+    if (this.appearance()) classes.push(`bmb_badge-${this.appearance()}`);
     if (this.container()) classes.push('bmb_badge-container');
 
     return classes;

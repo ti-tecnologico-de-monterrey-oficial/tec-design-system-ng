@@ -107,6 +107,7 @@ export * from './lib/components/bmb-invoice/bmb-invoice.component';
 export * from './lib/components/bmb-multi-dot-paginator/bmb-multi-dot-paginator.component';
 export * from './lib/components/bmb-multi-dot-paginator/bmb-multi-dot-paginator-item/bmb-multi-dot-paginator-item.component';
 export * from './lib/components/bmb-accordion/bmb-accordion.component';
+export * from './lib/components/bmb-alert-center/bmb-alert-center.component';
 // types
 export * from './lib/types';
 // interface

@@ -1,0 +1,37 @@
+<ul class="bmb_alert-center-list">
+  @for (item of alerts(); track $index) {
+    <li class="bmb_alert-center-list-item" (click)="handleRowClick(item)">
+      <section class="bmb_alert-center-list-item-selection">
+        <bmb-checkbox
+          [name]="item.id + ''"
+          [id]="item.id + ''"
+          [value]="item.id + ''"
+          (change)="handleSelection($event, item)"
+        />
+      </section>
+      <div class="bmb_alert-center-list-item-status">
+        @if (!item.isRead) {
+          <div class="bmb_alert-center-list-item-status-circle"></div>
+        }
+      </div>
+      <h4 class="bmb_alert-center-list-item-title">{{ item.title }}</h4>
+      @if (item.tags?.length) {
+        <div class="bmb_alert-center-list-item-tags">
+          @for (tag of item.tags; track $index) {
+            <bmb-badge
+              [appearance]="tag.color"
+              [text]="tag.text"
+              [container]="false"
+            ></bmb-badge>
+          }
+        </div>
+      }
+      <p class="bmb_alert-center-list-item-date">
+        {{ getTextFromDate(item.pDate) }} - {{ item.type }}
+      </p>
+      <span class="bmb_alert-center-list-item-time">
+        {{ item.time }}
+      </span>
+    </li>
+  }
+</ul>
