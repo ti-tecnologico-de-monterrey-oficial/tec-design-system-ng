@@ -94,6 +94,7 @@ import {
   BmbDropzoneComponent,
   IBmbFileUploadStatus,
   BmbHomeMitecComponent,
+  BmbInnerHeaderComponent,
 } from '../../projects/ds-ng/src/public-api';
 import { BmbPullWedgeComponent } from '../../projects/ds-ng/src/lib/components/bmb-pull-wedge/bmb-pull-wedge.component';
 import { BmbCardButtonComponent } from '../../projects/ds-ng/src/lib/components/bmb-card-button/bmb-card-button.component';
@@ -198,6 +199,7 @@ import {
     BmbTimestreamCardComponent,
     BmbDropzoneComponent,
     BmbHomeMitecComponent,
+    BmbInnerHeaderComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -4991,4 +4993,8 @@ export class AppComponent {
       icon: 'change_circle',
     },
   ];
+
+  handleSearch(event: string): void {
+    console.log('Received search value:', event);
+  }
 }

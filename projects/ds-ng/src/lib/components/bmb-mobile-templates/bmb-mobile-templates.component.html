@@ -28,12 +28,12 @@
 </section>
 
 <ng-template #singleHeader>
-  <bmb-header-mobile
-    [text]="this.title()"
-    [iconLeft]="this.headerIconLeft()"
-    [iconRight]="this.headerIconRight()"
-    (onIconLeftClick)="handleLeftClick($event)"
-    (onIconRightClick)="handleRightClick($event)"
+  <bmb-inner-header
+    [title]="this.title()"
+    [showClose]="true"
+    [trailingIconSecondary]="this.headerIconRight()"
+    (onHandleClose)="handleLeftClick($event)"
+    (onHandleTrailingSecondary)="handleRightClick($event)"
   />
   <main class="bmb_mobile-template-main">
     <ng-container [ngTemplateOutlet]="mainContent"></ng-container>
@@ -41,12 +41,12 @@
 </ng-template>
 
 <ng-template #headerWithFooter>
-  <bmb-header-mobile
-    [text]="this.title()"
-    [iconLeft]="this.headerIconLeft()"
-    [iconRight]="this.headerIconRight()"
-    (onIconLeftClick)="handleLeftClick($event)"
-    (onIconRightClick)="handleRightClick($event)"
+  <bmb-inner-header
+    [title]="this.title()"
+    [showClose]="true"
+    [trailingIconSecondary]="this.headerIconRight()"
+    (onHandleClose)="handleLeftClick($event)"
+    (onHandleTrailingSecondary)="handleRightClick($event)"
   />
   <main class="bmb_mobile-template-main">
     <ng-container [ngTemplateOutlet]="mainContent"></ng-container>
@@ -67,12 +67,12 @@
 </ng-template>
 
 <ng-template #cardHeaderWithFooter>
-  <bmb-header-mobile
-    [text]="this.title()"
-    [iconLeft]="this.headerIconLeft()"
-    [iconRight]="this.headerIconRight()"
-    (onIconLeftClick)="handleLeftClick($event)"
-    (onIconRightClick)="handleRightClick($event)"
+  <bmb-inner-header
+    [title]="this.title()"
+    [showClose]="true"
+    [trailingIconSecondary]="this.headerIconRight()"
+    (onHandleClose)="handleLeftClick($event)"
+    (onHandleTrailingSecondary)="handleRightClick($event)"
   />
   <main class="bmb_mobile-template-main">
     <bmb-card>
@@ -97,12 +97,12 @@
 </ng-template>
 
 <ng-template #headerWithButtonList>
-  <bmb-header-mobile
-    [text]="this.title()"
-    [iconLeft]="this.headerIconLeft()"
-    [iconRight]="this.headerIconRight()"
-    (onIconLeftClick)="handleLeftClick($event)"
-    (onIconRightClick)="handleRightClick($event)"
+  <bmb-inner-header
+    [title]="this.title()"
+    [showClose]="true"
+    [trailingIconSecondary]="this.headerIconRight()"
+    (onHandleClose)="handleLeftClick($event)"
+    (onHandleTrailingSecondary)="handleRightClick($event)"
   />
   <main class="bmb_mobile-template-main">
     @for (button of buttonList(); track $index) {

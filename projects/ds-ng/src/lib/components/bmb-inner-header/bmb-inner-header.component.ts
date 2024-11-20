@@ -1,29 +1,15 @@
 import {
   Component,
-  Input,
+  input,
+  output,
   ChangeDetectionStrategy,
   ViewEncapsulation,
-  EventEmitter,
-  Output,
+  signal,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbSearchInputComponent } from '../bmb-search-input/bmb-search-input.component';
-import { BmbTabsComponent } from '../bmb-tabs/bmb-tabs.component';
-
-interface NavItem {
-  title: string;
-  id: string;
-  badge?: number;
-  isActive?: boolean;
-}
-
-interface IBmbTab {
-  title: string;
-  id: number;
-  badge?: number;
-  isActive?: boolean;
-}
+import { BmbInputComponent } from '../bmb-input/bmb-input.component';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'bmb-inner-header',
@@ -31,8 +17,8 @@ interface IBmbTab {
   imports: [
     CommonModule,
     BmbIconComponent,
-    BmbSearchInputComponent,
-    BmbTabsComponent,
+    BmbInputComponent,
+    ReactiveFormsModule,
   ],
   styleUrl: './bmb-inner-header.component.scss',
   templateUrl: './bmb-inner-header.component.html',
@@ -40,23 +26,53 @@ interface IBmbTab {
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbInnerHeaderComponent {
-  @Input() title: string = '';
-  @Input() isLoading: boolean = false;
-  @Input() data: string[] = [];
-  @Output() onHandleBack: EventEmitter<void> = new EventEmitter<void>();
-  @Output() onValueChange: EventEmitter<string> = new EventEmitter<string>();
+  title = input<string>('');
+  placeholderSearch = input<string>('');
+  subTitle = input<string>('');
+  trailingIconPrimary = input<string>('');
+  trailingIconSecondary = input<string>('');
+  showClose = input<boolean>(false);
+  showReturn = input<boolean>(false);
+  showSearch = input<boolean>(false);
+  toggleSearch = signal<boolean>(false);
 
-  showSearch: boolean = false;
+  searchForm: FormGroup = new FormGroup({
+    search: new FormControl<string>(''),
+  });
 
-  handleBack() {
-    this.onHandleBack.emit();
+  // Event handlers
+  onHandleTrailingPrimary = output<any>();
+  onHandleTrailingSecondary = output<any>();
+  onHandleBack = output<any>();
+  onHandleClose = output<any>();
+  searchData = output<string>();
+
+  handleBack(event: any): void {
+    this.onHandleBack.emit(event);
   }
 
-  handleSearch() {
-    this.showSearch = !this.showSearch;
+  handleClose(event: any): void {
+    this.onHandleClose.emit(event);
   }
 
-  handleValueChange(event: string): void {
-    this.onValueChange.emit(event);
+  handleSearch(): void {
+    this.toggleSearch.set(!this.toggleSearch());
+  }
+
+  handleTrailingIconPrimary(event: any): void {
+    this.onHandleTrailingPrimary.emit(event);
+  }
+
+  handleTrailingIconSecondary(event: any): void {
+    this.onHandleTrailingSecondary.emit(event);
+  }
+
+  onSubmit() {
+    const searchValue = this.searchForm.get('search')?.value || '';
+    this.searchData.emit(searchValue);
+  }
+
+  getFormControl(search: string): FormControl {
+    return this.searchForm.get(search) as FormControl;
   }
 }

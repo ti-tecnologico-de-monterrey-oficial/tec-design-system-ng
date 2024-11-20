@@ -45,3 +45,11 @@
   <button bmbButton appearance="primary" type="submit">Button text</button>
 </form>
 -->
+
+<bmb-inner-header
+  [showSearch]="true"
+  (searchData)="handleSearch($event)"
+  [title]="'My Title'"
+  [placeholderSearch]="'Search'"
+  [subTitle]="'www.link.com'"
+></bmb-inner-header>
