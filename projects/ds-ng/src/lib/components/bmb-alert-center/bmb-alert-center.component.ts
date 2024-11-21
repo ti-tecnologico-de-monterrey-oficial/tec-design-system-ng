@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   input,
+  output,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbTabsComponent, IBmbTab } from '../bmb-tabs/bmb-tabs.component';
@@ -14,6 +15,7 @@ import {
   IBmbDataAlert,
   IBmbDataAlertsParsed,
   IBmbAlertCenterCategories,
+  IBmbDataAlertsOutput,
 } from './types';
 import { BmbButtonDirective } from '../../directives/button.directive';
 
@@ -38,8 +40,9 @@ export class BmbAlertCenterComponent {
   alerts = input.required<IBmbDataAlert[]>();
   dateFormat = input<string>('dd/MM/yyyy');
 
-  tabs: IBmbTab[] = [];
+  onChangeAlertStatus = output<IBmbDataAlertsOutput>();
 
+  tabs: IBmbTab[] = [];
   selectedTab = 0;
   selectedAlert: IBmbDataAlert[] = [];
   orderedEvents: IBmbDataAlertsParsed[] = [];
@@ -75,10 +78,6 @@ export class BmbAlertCenterComponent {
   handleTabChange(tabId: IBmbTab): void {
     this.selectedTab = tabId.id;
     this.eventsInCategories = this.filterEvents(tabId.id);
-  }
-
-  toggleNotification() {
-    this.selectedAlert = this.selectedAlert.length ? [] : this.alerts();
   }
 
   orderEvents(alerts: IBmbDataAlert[]): IBmbDataAlertsParsed[] {
@@ -139,5 +138,9 @@ export class BmbAlertCenterComponent {
 
   placeholderEvent(id: string | number): void {
     console.log('Event', id);
+  }
+
+  handleChangeAlertStatus(alert: IBmbDataAlertsOutput): void {
+    this.onChangeAlertStatus.emit(alert);
   }
 }

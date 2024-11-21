@@ -6,7 +6,6 @@ import {
   Output,
   EventEmitter,
   HostListener,
-  input,
   model,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -44,7 +43,6 @@ export {
     BmbCalendarTemplateDayComponent,
     BmbCalendarTemplateWeekComponent,
     BmbCalendarTemplateMonthComponent,
-    BmbLoaderComponent,
     BmbCalendarHeaderComponent,
     BmbCalendarTemplateEventComponent,
     BmbCalendarTemplateMobileComponent,
@@ -149,7 +147,7 @@ export class BmbCalendarComponent {
   }
 
   getEvents() {
-    return this.eventsSignal.geteventList();
+    return this.eventsSignal.getEventList();
   }
 
   getIsLoading() {

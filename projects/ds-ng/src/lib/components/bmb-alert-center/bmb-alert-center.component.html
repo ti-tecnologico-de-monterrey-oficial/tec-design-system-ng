@@ -5,21 +5,25 @@
         <bmb-alert-center-form
           (showAlertDetail)="handleShowAlert($event)"
           [eventsInCategories]="eventsInCategories"
+          (changeAlertStatus)="handleChangeAlertStatus($event)"
         />
       } @else if (selectedTab === 1) {
         <bmb-alert-center-form
           (showAlertDetail)="handleShowAlert($event)"
           [eventsInCategories]="eventsInCategories"
+          (changeAlertStatus)="handleChangeAlertStatus($event)"
         />
       } @else if (selectedTab === 2) {
         <bmb-alert-center-form
           (showAlertDetail)="handleShowAlert($event)"
           [eventsInCategories]="eventsInCategories"
+          (changeAlertStatus)="handleChangeAlertStatus($event)"
         />
       } @else {
         <bmb-alert-center-form
           (showAlertDetail)="handleShowAlert($event)"
           [eventsInCategories]="eventsInCategories"
+          (changeAlertStatus)="handleChangeAlertStatus($event)"
         />
       }
     </bmb-tabs>
