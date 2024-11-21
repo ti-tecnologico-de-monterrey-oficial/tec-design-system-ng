@@ -55,7 +55,9 @@ Below is an example of how you can use this component in HTML:
       table: {
         category: 'Properties',
         type: { summary: 'string[]' },
-        defaultValue: { summary: '["Todos", "No Leídos", "Favoritos", "Archivados"]' },
+        defaultValue: {
+          summary: '["Todos", "No Leídos", "Favoritos", "Archivados"]',
+        },
       },
     },
     dateFormat: {
@@ -89,7 +91,7 @@ Below is an example of how you can use this component in HTML:
         category: 'Events',
         type: { summary: 'IBmbDataAlertsOutput' },
       },
-    }
+    },
   },
   args: {
     tabsName: ['Todos', 'No Leídos', 'Favoritos', 'Archivados'],
@@ -219,7 +221,7 @@ Below is an example of how you can use this component in HTML:
     ],
     onChangeAlertStatus: (event: any) => {
       console.log('onChangeAlertStatus', event);
-    }
+    },
   },
 } as Meta<typeof BmbAlertCenterComponent>;
 

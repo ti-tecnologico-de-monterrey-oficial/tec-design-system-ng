@@ -95,7 +95,12 @@ describe('BmbAlertCenterComponent', () => {
   });
 
   it('should handle tab change correctly', () => {
-    component.handleTabChange({ id: 1, title: 'No Leídos', isActive: true, badge: 0 });
+    component.handleTabChange({
+      id: 1,
+      title: 'No Leídos',
+      isActive: true,
+      badge: 0,
+    });
     expect(component.selectedTab).toBe(1);
   });
 });
