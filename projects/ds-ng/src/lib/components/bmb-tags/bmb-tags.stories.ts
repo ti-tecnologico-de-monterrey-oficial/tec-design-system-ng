@@ -94,8 +94,8 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'boolean' },
       },
     },
-    dissmisable: {
-      name: 'Dissmisable',
+    dismissible: {
+      name: 'Dismissible',
       control: { type: 'boolean' },
       description:
         'When set to true, a close icon appears, when is clicked the tag is remove from the DOM. By default, it is false, and you do not need to explicitly set it. The badge should always have a parent element.',
@@ -109,7 +109,7 @@ Below is an example of how you can use this component in HTML:
   args: {
     text: 'Badge text',
     grouped: false,
-    dissmisable: false,
+    dismissible: false,
     activityTag: true,
     appearance: 'event',
   },

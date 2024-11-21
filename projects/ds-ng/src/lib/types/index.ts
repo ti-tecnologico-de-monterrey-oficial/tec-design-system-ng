@@ -22,6 +22,7 @@ export * from '../components/bmb-push-notification/types';
 export * from '../components/bmb-advertisement-card/types';
 export * from '../components/bmb-login-onboarding/types';
 export * from '../components/bmb-filter-card/bmb-filter-card.interface';
+export * from '../components/bmb-alert-center/types';
 
 export interface IBmbError {
   codeError: boolean;

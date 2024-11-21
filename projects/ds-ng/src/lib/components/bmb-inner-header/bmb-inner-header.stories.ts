@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { BmbInnerHeaderComponent } from './bmb-inner-header.component';
 
 export default {
-  title: 'Micro Componentes/Inner Header',
+  title: 'Micro Componentes/Inner Header Mobile',
   component: BmbInnerHeaderComponent,
   parameters: {
     docs: {
@@ -19,21 +19,9 @@ import { BmbInnerHeaderComponent } from '@ti-tecnologico-de-monterrey-oficial/ds
   templateUrl: './component.html',
   styleUrl: './component.scss',
 })
-export class AppComponent {
-  title = 'My Title';
-  isLoading = false;
-  data = ['Item 1', 'Item 2', 'Item 3'];
-
-  handleBack() {
-    console.log('Back button clicked');
-  }
-
-  handleSearch() {
-    console.log('Search button clicked');
-  }
-
-  handleValueChange(value: string) {
-    console.log('Value changed:', value);
+  export class AppComponent {
+   handleSearch(event: string): void {
+    console.log('Received search value:', event);
   }
 }
 \`\`\`
@@ -43,11 +31,12 @@ Below is an example of how you can use this component in HTML:
 \`\`\`html
 <bmb-inner-header
   [title]="title"
-  [isLoading]="isLoading"
-  [data]="data"
-  (onHandleBack)="handleBack()"
-  (onHandleSearch)="handleSearch()"
-  (onValueChange)="handleValueChange($event)"
+  [showReturn]="true"
+  (searchData)="handleSearch($event)"
+  [showSearch]="true"
+  [title]="'My Title'"
+  [placeholderSearch]="'Search'"
+  [subTitle]="'www.link.com'"
 ></bmb-inner-header>
 \`\`\`
         `,
@@ -57,101 +46,183 @@ Below is an example of how you can use this component in HTML:
   argTypes: {
     title: {
       name: 'Title',
-      control: {
-        type: 'text',
-      },
-      description: 'The title of the inner header section.',
+      control: { type: 'text' },
+      description: 'Sets the main title for the header.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
       },
     },
-    isLoading: {
-      name: 'Is Loading',
+    placeholderSearch: {
+      name: 'Placeholder Search',
+      control: { type: 'text' },
+      description: 'Defines the placeholder text for the search input.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
+    subTitle: {
+      name: 'Sub Title',
+      control: { type: 'text' },
+      description: 'Displays a subtitle below the main title.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
+    trailingIconPrimary: {
+      name: 'Trailing Icon Primary',
+      control: { type: 'text' },
+      description: 'Specifies the icon shown as the primary trailing icon.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
+    trailingIconSecondary: {
+      name: 'Trailing Icon Secondary',
+      control: { type: 'text' },
+      description: 'Specifies the icon shown as the secondary trailing icon.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
+    showClose: {
+      name: 'Show Close',
       control: { type: 'boolean' },
-      description: 'Loading state of the component.',
+      description: 'Toggles the visibility of the close button.',
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
       },
     },
-    data: {
-      name: 'Data',
-      control: {
-        type: 'array',
-      },
-      description: 'Array of data items for the search input.',
+    showReturn: {
+      name: 'Show Return',
+      control: { type: 'boolean' },
+      description: 'Displays the return button if true.',
       table: {
         category: 'Properties',
-        type: { summary: 'string[]' },
+        type: { summary: 'boolean' },
+      },
+    },
+    showSearch: {
+      name: 'Show Search',
+      control: { type: 'boolean' },
+      description: 'Toggles the visibility of the search bar.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
       },
     },
     onHandleBack: {
       name: 'On Handle Back',
       control: { type: '' },
-      description: 'Event emitted when the back button is clicked.',
+      description: 'Event triggered when the back button is clicked.',
       table: {
         category: 'Events',
         type: { summary: '(onHandleBack)="yourFunction()"' },
       },
     },
-    onHandleSearch: {
-      name: 'On Handle Search',
+    onHandleClose: {
+      name: 'On Handle Close',
       control: { type: '' },
-      description: 'Event emitted when the search button is clicked.',
+      description: 'Event triggered when the close button is clicked.',
       table: {
         category: 'Events',
-        type: { summary: '(onHandleSearch)="yourFunction()"' },
+        type: { summary: '(onHandleClose)="yourFunction()"' },
+      },
+    },
+    onHandleTrailingPrimary: {
+      name: 'On Handle Trailing Primary',
+      control: { type: '' },
+      description: 'Event triggered when the primary trailing icon is clicked.',
+      table: {
+        category: 'Events',
+        type: { summary: '(onHandleTrailingPrimary)="yourFunction()"' },
+      },
+    },
+    onHandleTrailingSecondary: {
+      name: 'On Handle Trailing Secondary',
+      control: { type: '' },
+      description:
+        'Event triggered when the secondary trailing icon is clicked.',
+      table: {
+        category: 'Events',
+        type: { summary: '(onHandleTrailingSecondary)="yourFunction()"' },
+      },
+    },
+    searchData: {
+      name: 'Search Data',
+      control: { type: 'void' },
+      description: 'Output emitted when the user initiates a search.',
+      table: {
+        category: 'Outputs',
+        type: { summary: 'void' },
+      },
+    },
+    isLoading: {
+      name: 'Is Loading',
+      description:
+        'This property is deprecated and will be removed in future versions.',
+      table: {
+        category: 'Deprecated',
+        deprecated: {
+          summary:
+            'This property is deprecated and will be removed in future versions.',
+        },
+      },
+    },
+    data: {
+      name: 'Data',
+      description:
+        'This property is deprecated and will be removed in future versions.',
+      table: {
+        category: 'Deprecated',
+        deprecated: {
+          summary:
+            'This property is deprecated and will be removed in future versions.',
+        },
       },
     },
     onValueChange: {
       name: 'On Value Change',
-      control: { type: '' },
-      description: 'Event emitted when the value changes.',
+      description:
+        'This property is deprecated and will be removed in future versions.',
       table: {
-        category: 'Events',
-        type: { summary: '(onValueChange)="yourFunction($event)"' },
+        category: 'Deprecated',
+        deprecated: {
+          summary:
+            'This property is deprecated and will be removed in future versions.',
+        },
       },
     },
   },
   args: {
     title: 'My Title',
-    isLoading: false,
-    data: ['Item 1', 'Item 2', 'Item 3'],
+    placeholderSearch: 'Search',
+    showClose: true,
+    showReturn: false,
+    showSearch: false,
+    subTitle: 'www.link.com',
+    trailingIconPrimary: 'lock',
+    trailingIconSecondary: 'home',
     onHandleBack: () => {
       window.alert('Back button clicked in Storybook');
     },
-    onHandleSearch: () => {
-      window.alert('Search button clicked in Storybook');
+    onHandleTrailingPrimary: () => {
+      window.alert('Trailing Primary button clicked in Storybook');
     },
-    onValueChange: (value: string) => {
-      window.alert(`Value changed in Storybook: ${value}`);
+    onHandleTrailingSecondary: () => {
+      window.alert('Trailing Secondary button clicked in Storybook');
+    },
+    onHandleClose: () => {
+      window.alert('Close button clicked in Storybook');
     },
   },
 } as Meta<typeof BmbInnerHeaderComponent>;
 
 type Story = StoryObj<BmbInnerHeaderComponent>;
 
-export const Default: Story = {
-  render: (args) => ({
-    props: args,
-    template: `
-      <bmb-inner-header
-        [src]="src"
-        [mobileSrc]="mobileSrc"
-        [alt]="alt"
-        [width]="width"
-        [ratio]="ratio"
-        [borderRadius]="borderRadius"
-        [loading]="loading"
-        [enableZoom]="enableZoom"
-        [isBlurredBackdrop]="isBlurredBackdrop"
-        [type]="type"
-      >
-        <h2>Custom Component</h2>
-        <p>Custom component area has a max height 90px (transformed to rem) no scrollable.</p>
-        <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Bibendum augue facilisi ac fusce porttitor. Lacus torquent nullam libero iaculis sociosqu parturient. Inceptos amet lectus turpis in curabitur. Ultricies vulputate massa vitae volutpat odio neque. Eros hendrerit dis facilisi praesent placerat diam dapibus primis. Aenean fringilla curabitur tincidunt eu phasellus ante. Class leo diam tristique ligula ullamcorper imperdiet sociosqu fermentum?</p>
-      </bmb-inner-header>
-    `,
-  }),
-};
+export const Default: Story = {};

@@ -8,7 +8,6 @@ import {
   TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbHeaderMobileComponent } from '../bmb-header-mobile/bmb-header-mobile.component';
 import { IBmbButtonAction } from '../../types';
 import { BmbButtonDirective } from '../../directives/button.directive';
 import {
@@ -23,6 +22,7 @@ import {
   IBmbMenuEvent,
 } from '../bmb-external-link/bmb-external-link.component';
 import { IBmbFooterEvent } from '../bmb-bottom-navigation-bar/bmb-bottom-navigation-bar.component';
+import { BmbInnerHeaderComponent } from '../bmb-inner-header/bmb-inner-header.component';
 
 export type IBmbMobileTemplateName =
   | 'single-header'
@@ -48,7 +48,6 @@ export interface IBmbMobileTemplateButton {
   standalone: true,
   imports: [
     CommonModule,
-    BmbHeaderMobileComponent,
     BmbButtonDirective,
     BmbCardComponent,
     BmbCardContentComponent,
@@ -56,6 +55,7 @@ export interface IBmbMobileTemplateButton {
     BmbLoginOnboardingComponent,
     BmbCalendarComponent,
     BmbExternalLinkComponent,
+    BmbInnerHeaderComponent,
   ],
   templateUrl: './bmb-mobile-templates.component.html',
   styleUrl: './bmb-mobile-templates.component.scss',
@@ -68,7 +68,6 @@ export class BmbMobileTemplatesComponent implements OnInit {
 
   // header inputs
   title = input<string>('');
-  headerIconLeft = input<string>('');
   headerIconRight = input<string>('');
 
   onHeaderLeftClick = output<any>();

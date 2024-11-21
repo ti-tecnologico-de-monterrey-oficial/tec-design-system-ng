@@ -196,7 +196,7 @@ git checkout development
 git pull origin development
 npm i
 npm run build:lib
-npm public --access public
+npm publish --access public
 ```
 
 ## Chromatic
