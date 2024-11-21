@@ -21,6 +21,7 @@ import { BmbContainerComponent } from '../bmb-container/bmb-container.component'
 import { IBmbGrades, IBmbPartial } from './types';
 import { CommonModule } from '@angular/common';
 import { BmbGradeValueComponent } from '../bmb-grade-value/bmb-grade-value.component';
+import { BmbInnerHeaderComponent } from '../bmb-inner-header/bmb-inner-header.component';
 
 @Component({
   selector: 'bmb-grades',
@@ -37,6 +38,7 @@ import { BmbGradeValueComponent } from '../bmb-grade-value/bmb-grade-value.compo
     BmbLayoutDirective,
     BmbLayoutItemDirective,
     BmbGradeValueComponent,
+    BmbInnerHeaderComponent,
   ],
   templateUrl: './bmb-grades.component.html',
   styleUrl: './bmb-grades.component.scss',

@@ -267,4 +267,8 @@ export class HomeComponent implements OnInit {
   handleBack(): void {
     console.log('Back button clicked');
   }
+
+  handleSearch(event: string): void {
+    console.log('Search value changed:', event);
+  }
 }
