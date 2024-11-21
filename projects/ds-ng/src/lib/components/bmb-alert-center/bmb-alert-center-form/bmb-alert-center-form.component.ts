@@ -34,8 +34,8 @@ import { BmbAlertCenterListComponent } from '../bmb-alert-center-list/bmb-alert-
 })
 export class BmbAlertCenterFormComponent {
   eventsInCategories = input.required<IBmbAlertCenterCategories>();
-  showAlertDetail = output<IBmbDataAlertsParsed>();
 
+  showAlertDetail = output<IBmbDataAlertsParsed>();
   changeAlertStatus = output<IBmbDataAlertsOutput>();
 
   alertSelectionForm: FormGroup<{ [key: string]: FormControl }> = new FormGroup(
