@@ -22,3 +22,26 @@ export * from '../components/bmb-push-notification/types';
 export * from '../components/bmb-advertisement-card/types';
 export * from '../components/bmb-login-onboarding/types';
 export * from '../components/bmb-filter-card/bmb-filter-card.interface';
+
+export interface IBmbError {
+  codeError: boolean;
+  errorMessage: string;
+}
+
+export interface IBmbAuthenticateInfo {
+  user: string;
+  password: string;
+}
+export interface IBmbUserInfo {
+  id: string;
+  fullName: string;
+  profilePicture: string;
+}
+
+export interface IBmbHome {
+  data: {
+    [x: string]: unknown;
+  };
+  action?: 'profile' | 'auth';
+  callback: (result: unknown) => void;
+}

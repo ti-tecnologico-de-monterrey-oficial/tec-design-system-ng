@@ -1,0 +1,22 @@
+<section class="bmb_header-mitec">
+  <section class="bmb_header-mitec-tec_logo">
+    <img alt="Tecnológico de Monterrey" [src]="tecLogoImage" />
+  </section>
+  <section class="bmb_header-mitec-mitec_logo">
+    <img
+      class="bmb_header-mitec-mitec_logo-animation_img"
+      alt="mitec"
+      [src]="mitecImage"
+    />
+    @if (!!headerLabel()) {
+      <h2 class="bmb_header-mitec-mitec_logo-animation_text">
+        {{ headerLabel() }}
+      </h2>
+    }
+  </section>
+  <section class="bmb_header-mitec-content">
+    <section class="bmb_header-mitec-content-container">
+      <ng-content />
+    </section>
+  </section>
+</section>
