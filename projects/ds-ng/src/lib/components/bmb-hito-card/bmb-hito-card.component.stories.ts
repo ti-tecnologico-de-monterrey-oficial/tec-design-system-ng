@@ -135,6 +135,7 @@ Below is an example of how you can use this component in HTML:
     type: 'active',
     sub_content: 'Sub content',
     enable_bullet: true,
+    is_active: false,
     onClick: () => {
       console.log('test');
     },
@@ -157,6 +158,7 @@ export const Default: Story = {
           [type]="type"
           [sub_content]="sub_content"
           [enable_bullet]="enable_bullet"
+          [is_active]="is_active"
         />
       </div>
     `,

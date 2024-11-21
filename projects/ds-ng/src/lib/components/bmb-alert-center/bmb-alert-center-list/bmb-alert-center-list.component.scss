@@ -1,0 +1,70 @@
+@use "../../../../assets/styles/base/fonts" as fonts;
+@use "../../../../assets/styles/base/rem" as rem;
+
+@mixin fontTime() {
+  @include fonts.font(3, regular);
+  color: var(--general_contrasts-50);
+  font-weight: 400;
+}
+
+.bmb_alert-center-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--bmb-spacing-xl);
+  display: flex;
+  gap: var(--bmb-spacing-l);
+  flex-direction: column;
+
+  &-item {
+    display: grid;
+    grid-template-columns: rem.rem_calc(42) rem.rem_calc(12) 1fr max-content;
+    grid-template-rows: auto;
+    gap: var(--bmb-spacing-s);
+    border-bottom: rem.rem_calc(1) solid var(--general_contrasts-50);
+    grid-template-areas:
+      "selection status title time"
+      "selection status tags time"
+      "selection status date time";
+
+    &-selection {
+      grid-area: selection;
+    }
+
+    &-status {
+      grid-area: status;
+
+      &-circle {
+        width: rem.rem_calc(12);
+        height: rem.rem_calc(12);
+        border-radius: 50%;
+        background-color: var(--general_contrasts-main-selection);
+        box-shadow: 0 0 rem.rem_calc(4) var(--general_contrasts-main-selection);
+        margin-top: rem.rem_calc(12);
+      }
+    }
+
+    &-title {
+      grid-area: title;
+      margin-top: rem.rem_calc(6);
+      @include fonts.font(4, regular);
+      font-weight: 500;
+    }
+
+    &-tags {
+      display: flex;
+      gap: var(--bmb-spacing-m);
+      grid-area: tags;
+    }
+
+    &-date {
+      @include fontTime();
+      grid-area: date;
+    }
+
+    &-time {
+      @include fontTime();
+      grid-area: time;
+      margin-top: rem.rem_calc(6);
+    }
+  }
+}

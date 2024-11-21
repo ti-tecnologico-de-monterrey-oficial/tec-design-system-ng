@@ -111,6 +111,7 @@ export * from './lib/components/bmb-accordion/bmb-accordion.component';
 export * from './lib/components/bmb-login/bmb-login.component';
 export * from './lib/components/bmb-user-profile/bmb-user-profile.component';
 
+export * from './lib/components/bmb-alert-center/bmb-alert-center.component';
 // types
 export * from './lib/types';
 // interface

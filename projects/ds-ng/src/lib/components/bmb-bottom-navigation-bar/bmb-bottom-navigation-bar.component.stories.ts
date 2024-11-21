@@ -62,10 +62,10 @@ Below is an example of how you can use this component in HTML:
       alert('Selection: ' + event);
     },
     navigationBarIcons: {
-      one: { name: '', label: '' },
-      two: { name: '', label: '' },
-      three: { name: '', label: '' },
-      four: { name: '', label: '' },
+      one: { name: 'home', label: '' },
+      two: { name: 'share', label: '' },
+      three: { name: 'inventory_2', label: '' },
+      four: { name: 'send', label: '' },
     },
   },
 } as Meta<typeof BmbBottomNavigationBarComponent>;

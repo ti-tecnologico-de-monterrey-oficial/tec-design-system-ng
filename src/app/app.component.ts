@@ -95,6 +95,7 @@ import {
   IBmbFileUploadStatus,
   BmbLoginComponent,
   IBmbHome,
+  BmbInnerHeaderComponent,
 } from '../../projects/ds-ng/src/public-api';
 import { BmbPullWedgeComponent } from '../../projects/ds-ng/src/lib/components/bmb-pull-wedge/bmb-pull-wedge.component';
 import { BmbCardButtonComponent } from '../../projects/ds-ng/src/lib/components/bmb-card-button/bmb-card-button.component';
@@ -120,6 +121,8 @@ import {
   IBmbEvaluationRubric,
 } from '../../projects/ds-ng/src/lib/components/bmb-evaluation-rubric/bmb-evaluation-rubric.component';
 import { BmbUserProfileComponent } from '../../projects/ds-ng/src/lib/components/bmb-user-profile/bmb-user-profile.component';
+import { IBmbDataAlert } from '../../projects/ds-ng/src/lib/components/bmb-alert-center/types';
+import { BmbAlertCenterComponent } from '../../projects/ds-ng/src/lib/components/bmb-alert-center/bmb-alert-center.component';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -202,6 +205,8 @@ import { BmbUserProfileComponent } from '../../projects/ds-ng/src/lib/components
     BmbDropzoneComponent,
     BmbLoginComponent,
     BmbUserProfileComponent,
+    BmbAlertCenterComponent,
+    BmbInnerHeaderComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -5022,4 +5027,131 @@ export class AppComponent {
       icon: 'change_circle',
     },
   ];
+
+  alerts: IBmbDataAlert[] = [
+    {
+      id: 10,
+      title: 'Alerta 10',
+      description: [
+        { text: 'Descripción de la alerta 10', type: 'title' },
+        { text: 'Descripción de la alerta 10 paragraph', type: 'paragraph' },
+        {
+          text: 'Descripción de la alerta 10',
+          type: 'button',
+          variant: 'primary',
+        },
+      ],
+      date: '19/11/2024',
+      isRead: false,
+      time: '12:00',
+      tags: [
+        { text: 'tag1', color: 'info' },
+        { text: 'tag2', color: 'brand' },
+      ],
+      type: 'tipo 1',
+      isFavorite: true,
+      isArchived: false,
+    },
+    {
+      id: 1,
+      title: 'Alerta 1',
+      description: [
+        { text: 'Descripción de la alerta 10', type: 'title' },
+        { text: 'Descripción de la alerta 10 paragraph', type: 'paragraph' },
+        {
+          text: 'Descripción de la alerta 10 link',
+          type: 'link',
+          href: 'https://www.google.com',
+        },
+        {
+          text: 'Descripción de la alerta 10',
+          type: 'button',
+          variant: 'secondary-filled',
+        },
+      ],
+      date: '01/11/2024',
+      isRead: false,
+      time: '12:00',
+      type: 'tipo 1',
+      isFavorite: true,
+      isArchived: false,
+    },
+    {
+      id: 2,
+      title: 'Alerta 2',
+      description: [
+        { text: 'Descripción de la alerta 10', type: 'title' },
+        { text: 'Descripción de la alerta 10 paragraph', type: 'paragraph' },
+        {
+          text: 'Descripción de la alerta 10 link',
+          type: 'image',
+          href: 'https://picsum.photos/200',
+        },
+      ],
+      date: '19/11/2024',
+      isRead: true,
+      time: '15:00',
+      type: 'tipo 2',
+      isFavorite: false,
+      isArchived: true,
+    },
+    {
+      id: 3,
+      title: 'Alerta 3',
+      description: [
+        {
+          text: 'Descripción de la alerta 10',
+          type: 'paragraph',
+          style: 'bold',
+        },
+        { text: 'Descripción de la alerta 10 paragraph', type: 'paragraph' },
+      ],
+      date: '18/11/2024',
+      isRead: false,
+      time: '12:00',
+      type: 'tipo 1',
+      isFavorite: false,
+      isArchived: false,
+    },
+    {
+      id: 4,
+      title: 'Alerta 4',
+      description: [
+        {
+          text: 'Descripción de la alerta 10',
+          type: 'paragraph',
+          style: 'bold',
+        },
+        { text: 'Descripción de la alerta 10 paragraph', type: 'paragraph' },
+      ],
+      date: '02/11/2024',
+      isRead: true,
+      time: '12:00',
+      type: 'tipo 3',
+      isFavorite: false,
+      isArchived: false,
+    },
+    {
+      id: 4,
+      title: 'Alerta 40',
+      description: [
+        { text: 'Descripción de la alerta 10', type: 'title' },
+        { text: 'Descripción de la alerta 10 paragraph', type: 'paragraph' },
+        {
+          text: 'Descripción de la alerta 10 link',
+          type: 'image',
+          href: 'https://picsum.photos/200',
+        },
+      ],
+      date: '02/01/2024',
+      isRead: true,
+      time: '12:00',
+      type: 'tipo 1',
+      isFavorite: false,
+      isArchived: false,
+    },
+  ];
+  handleSearch(event: unknown): void {
+    console.log('Received search value:', event);
+  }
 }
