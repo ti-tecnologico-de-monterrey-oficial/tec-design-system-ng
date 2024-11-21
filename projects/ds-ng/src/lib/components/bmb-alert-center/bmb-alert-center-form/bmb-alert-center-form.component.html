@@ -1,0 +1,46 @@
+<form
+  class="bmb_alert-center-form"
+  [formGroup]="alertSelectionForm"
+  (ngSubmit)="onSubmit($event)"
+>
+  <section class="bmb_alert-center-form-content">
+    @if (eventsInCategories().recent.length) {
+      <h2 class="bmb_alert-center-form-title">Recientes</h2>
+      <bmb-alert-center-list
+        (alertSelected)="alertSelected($event)"
+        (selectedAlert)="handleSelection($event)"
+        [alerts]="eventsInCategories().recent"
+      />
+    }
+    @if (eventsInCategories().sevenDays.length) {
+      <h2 class="bmb_alert-center-form-title">Últimos 7 días</h2>
+      <bmb-alert-center-list
+        (alertSelected)="alertSelected($event)"
+        (selectedAlert)="handleSelection($event)"
+        [alerts]="eventsInCategories().sevenDays"
+      />
+    }
+    @if (eventsInCategories().month.length) {
+      <h2 class="bmb_alert-center-form-title">Últimos 30 días</h2>
+      <bmb-alert-center-list
+        (alertSelected)="alertSelected($event)"
+        (selectedAlert)="handleSelection($event)"
+        [alerts]="eventsInCategories().month"
+      />
+    }
+    @if (eventsInCategories().rest.length) {
+      <h2 class="bmb_alert-center-form-title">Restantes</h2>
+      <bmb-alert-center-list
+        (alertSelected)="alertSelected($event)"
+        (selectedAlert)="handleSelection($event)"
+        [alerts]="eventsInCategories().rest"
+      />
+    }
+  </section>
+  <footer [ngClass]="getFooterClassList()">
+    <bmb-bottom-navigation-bar
+      class="bmb_alert-center-footer"
+      [navigationBarIcons]="navigationBarIcons"
+    />
+  </footer>
+</form>

@@ -23,6 +23,7 @@
     @include mixins.media-query(768, "min") {
       display: flex;
       flex-wrap: wrap;
+      gap: var(--bmb-spacing-s);
     }
   }
 
@@ -36,6 +37,10 @@
 
     @include mixins.media-query(768, "min") {
       flex-flow: row;
+
+      .bmb_btn-rounded {
+        width: 50%;
+      }
     }
   }
 }

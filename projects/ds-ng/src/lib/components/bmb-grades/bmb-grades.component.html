@@ -20,12 +20,12 @@
 </ng-template>
 
 <section class="bmb_grades">
-  <bmb-header-mobile
-    [text]="getGradesTitle()"
-    iconLeft="close"
-    [iconRight]="getCalendarIcon()"
-    (onIconLeftClick)="handleLeftGradesClick($event)"
-    (onIconRightClick)="handleRightGradesClick()"
+  <bmb-inner-header
+    [title]="getGradesTitle()"
+    [showClose]="true"
+    [trailingIconSecondary]="getCalendarIcon()"
+    (onHandleClose)="handleLeftGradesClick($event)"
+    (onHandleTrailingSecondary)="handleRightGradesClick()"
   >
     <bmb-chevron-title-selector
       [title]="getTitle()"
@@ -63,7 +63,7 @@
         />
       </section>
     </bmb-container>
-  </bmb-header-mobile>
+  </bmb-inner-header>
   @for (element of getElements(); track $index) {
     <bmb-container-button
       [title]="getDetailTitle(element)"
