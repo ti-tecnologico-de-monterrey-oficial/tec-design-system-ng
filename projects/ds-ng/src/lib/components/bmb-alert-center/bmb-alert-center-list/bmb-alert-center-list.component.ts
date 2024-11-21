@@ -22,10 +22,10 @@ import { DateTime } from 'luxon';
 })
 export class BmbAlertCenterListComponent {
   alerts = input.required<IBmbDataAlertsParsed[]>();
-  selectedAlert = output<{ event: Event; item: IBmbDataAlertsParsed }>();
   name = input<string>('');
 
   alertSelected = output<IBmbDataAlertsParsed>();
+  selectedAlert = output<{ event: Event; item: IBmbDataAlertsParsed }>();
 
   isSelected: IBmbDataAlertsParsed[] = [];
 
