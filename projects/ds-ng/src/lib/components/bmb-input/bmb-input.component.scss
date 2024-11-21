@@ -207,6 +207,7 @@
     align-items: center;
     gap: var(--bmb-spacing-s);
     width: fit-content;
+    position: relative;
 
     &-input {
       cursor: pointer;
