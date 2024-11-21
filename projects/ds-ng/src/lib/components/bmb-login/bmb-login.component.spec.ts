@@ -1,17 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { BmbLoginComponent } from './bmb-login.component';
 
-import { BmbHomeMitecComponent } from './bmb-home-mitec.component';
-
-describe('BmbHomeMitecComponent', () => {
-  let component: BmbHomeMitecComponent;
-  let fixture: ComponentFixture<BmbHomeMitecComponent>;
+describe('BmbLoginComponent', () => {
+  let component: BmbLoginComponent;
+  let fixture: ComponentFixture<BmbLoginComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BmbHomeMitecComponent],
+      imports: [BmbLoginComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(BmbHomeMitecComponent);
+    fixture = TestBed.createComponent(BmbLoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

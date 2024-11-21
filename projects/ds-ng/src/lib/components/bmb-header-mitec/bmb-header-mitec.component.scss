@@ -1,7 +1,8 @@
-@use "../../../../assets/styles/base/fonts" as fonts;
-@use "../../../../assets/styles/base/rem" as rem;
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/rem" as rem;
+@use "../../../assets/styles/base/mixins" as mixins;
 
-.bmb_login {
+.bmb_header-mitec {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,6 +11,7 @@
 
   &-tec_logo {
     padding: var(--bmb-spacing-xl);
+    text-align: center;
 
     img {
       width: rem.rem_calc(140);
@@ -40,28 +42,14 @@
     animation: contentAnimation 2s ease 1;
     margin: 0 10%;
     align-self: center;
+    width: 80%;
 
     &-container {
       display: flex;
       flex-direction: column;
       margin: rem.rem_calc(6) 0;
-      height: rem.rem_calc(32);
-      width: rem.rem_calc(448);
-
-      &-input {
-        margin: rem.rem_calc(6) 0;
-      }
-
-      &-sublabel {
-        display: flex;
-        align-self: flex-end;
-        margin: rem.rem_calc(6);
-        @include fonts.font(3, regular);
-      }
-
-      &-button {
-        margin: rem.rem_calc(24) 0;
-      }
+      height: calc(100% - rem.rem_calc(12));
+      justify-content: space-between;
     }
   }
 }

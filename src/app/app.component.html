@@ -1,2 +1,38 @@
 <bmb-theme />
-<bmb-home-mitec />
+<!-- <bmb-home-mitec (onRequest)="handleRequestHome($event)" /> -->
+
+<!-- <bmb-login-onboarding (handleRequest)="handleRequest($event)">
+  <p>custom content</p>
+</bmb-login-onboarding> -->
+<!-- <bmb-user-profile
+  headerLabel="ESTUDIANTES"
+  [userInfo]="getUserInfo()"
+  (onRequest)="handleRequestHome($event)"
+  (onContinue)="handleContinue($event)"
+/> -->
+
+<bmb-login
+  headerLabel="ESTUDIANTES"
+  (onRequest)="handleRequestHome($event)"
+  (onContinue)="handleContinue($event)"
+/>
+<!--
+<bmb-login
+  headerLabel="ESTUDIANTES"
+  (onRequest)="handleRequestHome($event)"
+  (onContinue)="handleContinue($event)"
+/>
+<bmb-user-profile
+  headerLabel="ESTUDIANTES"
+  [userInfo]="getUserInfo()"
+  (onRequest)="handleRequestHome($event)"
+  (onContinue)="handleContinue($event)"
+/>
+
+<bmb-user-profile
+  headerLabel="ESTUDIANTES"
+  [userInfo]="getUserInfo()"
+  (onRequest)="handleRequestHome($event)"
+  (onContinue)="handleContinue($event)"
+/>
+-->
