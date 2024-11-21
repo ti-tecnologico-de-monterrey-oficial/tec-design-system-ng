@@ -22,13 +22,11 @@ Below is an example of how you can use this component in HTML with the different
       },
     },
   },
-  argTypes: {
-  },
-  args: {
-  },
+  argTypes: {},
+  args: {},
 } as Meta<typeof BmbSidebarComponent>;
 
-type Story = StoryObj<BmbSidebarComponent>
+type Story = StoryObj<BmbSidebarComponent>;
 
 const customizable = (): StoryFn => (args) => ({
   props: args,

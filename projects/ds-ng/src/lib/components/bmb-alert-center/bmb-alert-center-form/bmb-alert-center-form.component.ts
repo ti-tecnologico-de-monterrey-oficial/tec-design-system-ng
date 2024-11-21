@@ -5,7 +5,11 @@ import {
   output,
   ViewEncapsulation,
 } from '@angular/core';
-import { IBmbAlertCenterCategories, IBmbDataAlertsOutput, IBmbDataAlertsParsed } from '../types';
+import {
+  IBmbAlertCenterCategories,
+  IBmbDataAlertsOutput,
+  IBmbDataAlertsParsed,
+} from '../types';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import {
   BmbBottomNavigationBarComponent,
@@ -59,9 +63,10 @@ export class BmbAlertCenterFormComponent {
     });
   }
 
-  handleSelection(
-    eventObject: { event: Event; item: IBmbDataAlertsParsed }
-  ): void {
+  handleSelection(eventObject: {
+    event: Event;
+    item: IBmbDataAlertsParsed;
+  }): void {
     const target = eventObject.event.target as HTMLInputElement;
     const controlName = `${eventObject.item.id}`;
 
