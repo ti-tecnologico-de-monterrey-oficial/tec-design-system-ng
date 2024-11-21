@@ -60,6 +60,20 @@
         @switch (tabSelected) {
           @case (1) {
             <div class="bmb_timestream-dialog-tab">
+              <dl class="bmb_timestream-dialog-dual">
+                <dt class="bmb_timestream-dialog-dual-title">Estado:</dt>
+                <dd class="bmb_timestream-dialog-dual-data">
+                  <bmb-badge
+                    [appearance]="appearanceBadge(selectedEvent.type)"
+                    [text]="selectedEvent.type"
+                    [container]="false"
+                  />
+                </dd>
+                <dt class="bmb_timestream-dialog-dual-title">Duración total:</dt>
+                <dd class="bmb_timestream-dialog-dual-data">
+                  {{ getDiffString(selectedEvent.diff) }}
+                </dd>
+              </dl>
               <p>{{ selectedEvent.description }}</p>
             </div>
           }
@@ -76,6 +90,7 @@
                     [id]="$index"
                     [enable_bullet]="false"
                     [alternative_appearance]="true"
+                    [isCompact]="true"
                   />
                 }
                 @if (selectedEvent.diff) {
@@ -95,6 +110,7 @@
                       [id]="related"
                       [enable_bullet]="false"
                       [alternative_appearance]="true"
+                      [isCompact]="true"
                     />
                   }
                 }
