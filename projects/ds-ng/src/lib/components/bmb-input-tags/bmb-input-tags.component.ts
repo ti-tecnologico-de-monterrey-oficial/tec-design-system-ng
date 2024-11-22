@@ -33,7 +33,6 @@ import { BmbTooltipComponent } from '../bmb-tooltip/bmb-tooltip.component';
   imports: [
     CommonModule,
     FormsModule,
-    BmbTagComponent,
     ReactiveFormsModule,
     BmbIconComponent,
     BmbTooltipComponent,
@@ -86,8 +85,8 @@ export class BmbInputTagsComponent {
   }
 
   constructor(
-    private elementRef: ElementRef,
-    private cdr: ChangeDetectorRef,
+    readonly elementRef: ElementRef,
+    readonly cdr: ChangeDetectorRef,
   ) {}
 
   @HostListener('document:click', ['$event'])
@@ -113,7 +112,8 @@ export class BmbInputTagsComponent {
       this.control.addValidators(Validators.max(this.maxSelectedItems()!));
     }
     this.control.updateValueAndValidity();
-    this.control.valueChanges.subscribe(() => {
+    this.control.valueChanges.subscribe((res) => {
+      this.tagsSelected = this.checkTags(res);
       this.updateErrorState();
       this.cdr.markForCheck();
     });
@@ -147,5 +147,14 @@ export class BmbInputTagsComponent {
 
   private updateErrorState(): void {
     this.showError = this.isRequired() && this.tagsSelected.length == 0;
+  }
+
+  private checkTags(newValues: Array<string>): Array<string>{
+    return newValues.reduce((acc : any, item: any) => {
+      if (this.tagOptions.includes(item) && !acc.includes(item)) {
+        acc.push(item);
+      }
+      return acc;
+    }, []);
   }
 }

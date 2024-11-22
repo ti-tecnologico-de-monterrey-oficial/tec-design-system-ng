@@ -28,7 +28,8 @@ class StorybookModalWrapperComponent {
 }
 
 export default {
-  title: 'Micro Componentes/Web Templates/Twice Full Card',
+  title: 'Hidden/Web Templates/Twice Full Card',
+  tags: ['hideInSidebar'],
   component: BmbTopBarComponent,
   decorators: [
     moduleMetadata({
@@ -41,6 +42,7 @@ export default {
   ],
   parameters: {
     docs: {
+      hidden: true,
       description: {
         component: `
 Below is an example of how you can use this component in TypeScript:
@@ -92,6 +94,9 @@ function attributes(object: { [key: string]: any }): string {
 
 export const Default: StoryFn = (args) => {
   return {
+    docs:{
+      hidden:true,
+    },
     props: args,
     template: `
       <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->
