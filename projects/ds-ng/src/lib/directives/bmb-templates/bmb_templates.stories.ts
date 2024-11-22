@@ -2,7 +2,8 @@ import { Meta, StoryFn, StoryObj } from '@storybook/angular';
 import { BmbSidebarComponent } from '../../../public-api';
 
 export default {
-  title: 'Micro Componentes/Templates',
+  title: 'Hidden/Templates',
+  tags: ['hideInSidebar'],
   component: BmbSidebarComponent,
   parameters: {
     docs: {

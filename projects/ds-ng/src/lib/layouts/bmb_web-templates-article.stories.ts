@@ -28,7 +28,8 @@ class StorybookModalWrapperComponent {
 }
 
 export default {
-  title: 'Micro Componentes/Web Templates/Article',
+  title: 'Hidden/Web Templates/Article',
+  tags: ['hideInSidebar'],
   component: BmbTopBarComponent,
   decorators: [
     moduleMetadata({
@@ -41,6 +42,7 @@ export default {
   ],
   parameters: {
     docs: {
+      hidden: true,
       description: {
         component: `
 Below is an example of how you can use this component in TypeScript:

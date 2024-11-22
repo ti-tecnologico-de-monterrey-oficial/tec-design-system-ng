@@ -28,7 +28,8 @@ class StorybookModalWrapperComponent {
 }
 
 export default {
-  title: 'Micro Componentes/Web Templates/List',
+  title: 'Hidden/Web Templates/List',
+  tags: ['hideInSidebar'],
   component: BmbTopBarComponent,
   decorators: [
     moduleMetadata({

@@ -28,7 +28,8 @@ class StorybookModalWrapperComponent {
 }
 
 export default {
-  title: 'Micro Componentes/Web Templates/Twice Card',
+  title: 'Hidden/Web Templates/Twice Card',
+  tags: ['hideInSidebar'],
   component: BmbTopBarComponent,
   decorators: [
     moduleMetadata({
