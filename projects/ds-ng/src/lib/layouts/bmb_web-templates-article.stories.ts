@@ -7,8 +7,7 @@ import { BmbTopBarComponent } from '../../public-api';
   imports: [BmbTopBarComponent],
   selector: 'storybook-modal-wrapper',
   template: `
-    <bmb-top-bar
-    ></bmb-top-bar>
+    <bmb-top-bar></bmb-top-bar>
     <section class="bmb_template-header">
       <h3>Article</h3>
       <h5>Template</h5>
@@ -16,16 +15,31 @@ import { BmbTopBarComponent } from '../../public-api';
     <div class="bmb_template-article">
       <article class="bmb_template-article-aside">
         <h4 class="bmb_template-article-title">Subheader</h4>
-        <h5>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut ipsa repudiandae hic. Non, fugiat? Repellendus impedit soluta excepturi fugit doloribus. Quos, vel suscipit.</h5>
+        <h5>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut ipsa
+          repudiandae hic. Non, fugiat? Repellendus impedit soluta excepturi
+          fugit doloribus. Quos, vel suscipit.
+        </h5>
       </article>
       <main class="bmb_template-article-main">
-        <h5>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi velit libero eveniet alias esse at perspiciatis minus quia aperiam enim? Commodi cum minima recusandae quidem blanditiis maiores, eaque perspiciatis at molestiae, dicta velit consequatur hic dolor! Nihil ipsa ullam, dolorum ut quod delectus fuga quam neque, velit tenetur corporis autem minima illo eum voluptas blanditiis esse nam obcaecati magni? Consequuntur rerum quas veritatis nobis maiores cumque ut hic consectetur iste quisquam, corporis molestias exercitationem dolore magni molestiae unde animi autem eos odit qui illum? Minus recusandae neque quia debitis nostrum aut, modi in omnis ad accusantium dolores vel eligendi labore.</h5>
+        <h5>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi velit
+          libero eveniet alias esse at perspiciatis minus quia aperiam enim?
+          Commodi cum minima recusandae quidem blanditiis maiores, eaque
+          perspiciatis at molestiae, dicta velit consequatur hic dolor! Nihil
+          ipsa ullam, dolorum ut quod delectus fuga quam neque, velit tenetur
+          corporis autem minima illo eum voluptas blanditiis esse nam obcaecati
+          magni? Consequuntur rerum quas veritatis nobis maiores cumque ut hic
+          consectetur iste quisquam, corporis molestias exercitationem dolore
+          magni molestiae unde animi autem eos odit qui illum? Minus recusandae
+          neque quia debitis nostrum aut, modi in omnis ad accusantium dolores
+          vel eligendi labore.
+        </h5>
       </main>
     </div>
   `,
 })
-class StorybookModalWrapperComponent {
-}
+class StorybookModalWrapperComponent {}
 
 export default {
   title: 'Hidden/Web Templates/Article',
@@ -33,10 +47,7 @@ export default {
   component: BmbTopBarComponent,
   decorators: [
     moduleMetadata({
-      imports: [
-        StorybookModalWrapperComponent,
-        BmbTopBarComponent
-      ],
+      imports: [StorybookModalWrapperComponent, BmbTopBarComponent],
       providers: [],
     }),
   ],

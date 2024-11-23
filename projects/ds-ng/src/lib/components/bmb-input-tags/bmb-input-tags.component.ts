@@ -149,8 +149,8 @@ export class BmbInputTagsComponent {
     this.showError = this.isRequired() && this.tagsSelected.length == 0;
   }
 
-  private checkTags(newValues: Array<string>): Array<string>{
-    return newValues.reduce((acc : any, item: any) => {
+  private checkTags(newValues: Array<string>): Array<string> {
+    return newValues.reduce((acc: any, item: any) => {
       if (this.tagOptions.includes(item) && !acc.includes(item)) {
         acc.push(item);
       }

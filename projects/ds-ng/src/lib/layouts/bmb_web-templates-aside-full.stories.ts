@@ -7,36 +7,45 @@ import { BmbTopBarComponent } from '../../public-api';
   imports: [BmbTopBarComponent],
   selector: 'storybook-modal-wrapper',
   template: `
-    <bmb-top-bar
-    ></bmb-top-bar>
+    <bmb-top-bar></bmb-top-bar>
     <section class="bmb_template-header">
       <h3>2 Column FullScreen</h3>
       <h5>Template</h5>
     </section>
     <div class="bmb_template-aside-full">
       <main class="bmb_template-aside-full-main">
-          <h3 class="bmb_template-aside-full-title">Subheader</h3>
-          <h5>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut ipsa repudiandae hic. Non, fugiat? Repellendus impedit soluta excepturi fugit doloribus. Quos, vel suscipit. Deleniti similique tempore at culpa facilis sunt laudantium, magni maxime dolor reprehenderit saepe! Quam eius, iste voluptate corporis sequi impedit fuga repudiandae amet placeat, delectus, quis sapiente?</h5>
+        <h3 class="bmb_template-aside-full-title">Subheader</h3>
+        <h5>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut ipsa
+          repudiandae hic. Non, fugiat? Repellendus impedit soluta excepturi
+          fugit doloribus. Quos, vel suscipit. Deleniti similique tempore at
+          culpa facilis sunt laudantium, magni maxime dolor reprehenderit saepe!
+          Quam eius, iste voluptate corporis sequi impedit fuga repudiandae amet
+          placeat, delectus, quis sapiente?
+        </h5>
       </main>
       <aside class="bmb_template-aside-full-aside">
-          <h3 class="bmb_template-aside-full-title">Subheader</h3>
-          <h5>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut ipsa repudiandae hic. Non, fugiat? Repellendus impedit soluta excepturi fugit doloribus. Quos, vel suscipit. Deleniti similique tempore at culpa facilis sunt laudantium, magni maxime dolor reprehenderit saepe! Quam eius, iste voluptate corporis sequi impedit fuga repudiandae amet placeat, delectus, quis sapiente?</h5>
+        <h3 class="bmb_template-aside-full-title">Subheader</h3>
+        <h5>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut ipsa
+          repudiandae hic. Non, fugiat? Repellendus impedit soluta excepturi
+          fugit doloribus. Quos, vel suscipit. Deleniti similique tempore at
+          culpa facilis sunt laudantium, magni maxime dolor reprehenderit saepe!
+          Quam eius, iste voluptate corporis sequi impedit fuga repudiandae amet
+          placeat, delectus, quis sapiente?
+        </h5>
       </aside>
     </div>
   `,
 })
-class StorybookModalWrapperComponent {
-}
+class StorybookModalWrapperComponent {}
 
 export default {
   title: 'Micro Componentes/Web Templates/2 Column FullScreen',
   component: BmbTopBarComponent,
   decorators: [
     moduleMetadata({
-      imports: [
-        StorybookModalWrapperComponent,
-        BmbTopBarComponent
-      ],
+      imports: [StorybookModalWrapperComponent, BmbTopBarComponent],
       providers: [],
     }),
   ],

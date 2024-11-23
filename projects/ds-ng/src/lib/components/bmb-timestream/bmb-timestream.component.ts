@@ -55,7 +55,7 @@ export interface IBmbClamp {
     BmbButtonDirective,
     BmbDividerComponent,
     BmbHitoCardComponent,
-    BmbBadgeComponent
+    BmbBadgeComponent,
   ],
   templateUrl: './bmb-timestream.component.html',
   styleUrl: './bmb-timestream.component.scss',
@@ -303,7 +303,7 @@ export class BmbTimestreamComponent {
   }
 
   getDiffString(diff: number = 0): string {
-    return (diff + 1) > 1 ? `${(diff + 1)} Días` : `${(diff + 1)} Día`;
+    return diff + 1 > 1 ? `${diff + 1} Días` : `${diff + 1} Día`;
   }
 
   appearanceBadge(eventType: string): IBbmBgAppearance {
