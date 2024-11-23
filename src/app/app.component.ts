@@ -5123,8 +5123,6 @@ export class AppComponent {
   }
 
   openModalComponent() {
-
-
     const data: ModalDataConfig = {
       title: 'Modal Title',
       subtitle: 'Modal Subtitle',
@@ -5133,7 +5131,7 @@ export class AppComponent {
       type: 'action',
       primaryBtnLabel: 'Ok',
       primaryAction: () => window.alert('Primary action triggered!'),
-    }
+    };
 
     this.matDialog.open(BmbModalComponent, { data });
   }
