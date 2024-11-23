@@ -7,31 +7,38 @@ import { BmbTopBarComponent } from '../../public-api';
   imports: [BmbTopBarComponent],
   selector: 'storybook-modal-wrapper',
   template: `
-    <bmb-top-bar
-    ></bmb-top-bar>
+    <bmb-top-bar></bmb-top-bar>
     <section class="bmb_template-header">
-        <h3>1 Column Box</h3>
-        <h5>Template</h5>
+      <h3>1 Column Box</h3>
+      <h5>Template</h5>
     </section>
     <div class="bmb_template-main-full">
-        <main class="bmb_template-main-full-card">
-            <h5>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi velit libero eveniet alias esse at perspiciatis minus quia aperiam enim? Commodi cum minima recusandae quidem blanditiis maiores, eaque perspiciatis at molestiae, dicta velit consequatur hic dolor! Nihil ipsa ullam, dolorum ut quod delectus fuga quam neque, velit tenetur corporis autem minima illo eum voluptas blanditiis esse nam obcaecati magni? Consequuntur rerum quas veritatis nobis maiores cumque ut hic consectetur iste quisquam, corporis molestias exercitationem dolore magni molestiae unde animi autem eos odit qui illum? Minus recusandae neque quia debitis nostrum aut, modi in omnis ad accusantium dolores vel eligendi labore.</h5>
-        </main>
+      <main class="bmb_template-main-full-card">
+        <h5>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi velit
+          libero eveniet alias esse at perspiciatis minus quia aperiam enim?
+          Commodi cum minima recusandae quidem blanditiis maiores, eaque
+          perspiciatis at molestiae, dicta velit consequatur hic dolor! Nihil
+          ipsa ullam, dolorum ut quod delectus fuga quam neque, velit tenetur
+          corporis autem minima illo eum voluptas blanditiis esse nam obcaecati
+          magni? Consequuntur rerum quas veritatis nobis maiores cumque ut hic
+          consectetur iste quisquam, corporis molestias exercitationem dolore
+          magni molestiae unde animi autem eos odit qui illum? Minus recusandae
+          neque quia debitis nostrum aut, modi in omnis ad accusantium dolores
+          vel eligendi labore.
+        </h5>
+      </main>
     </div>
   `,
 })
-class StorybookModalWrapperComponent {
-}
+class StorybookModalWrapperComponent {}
 
 export default {
   title: 'Micro Componentes/Web Templates/1 Column Box',
   component: BmbTopBarComponent,
   decorators: [
     moduleMetadata({
-      imports: [
-        StorybookModalWrapperComponent,
-        BmbTopBarComponent
-      ],
+      imports: [StorybookModalWrapperComponent, BmbTopBarComponent],
       providers: [],
     }),
   ],
