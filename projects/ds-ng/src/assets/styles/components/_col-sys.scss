@@ -60,14 +60,14 @@ $alignItemsOptions: (
     flex: 0
       0
       calc(#{percentage(math.div($i, 4))} - var(--bmb-gap) / 4 * #{4 - $i});
-    overflow: auto;
+    overflow: visible;
   }
 }
 
 @for $i from 1 through 12 {
   .bmb_col-lg-#{$i} {
     flex: 0 0 100%;
-    overflow: auto;
+    overflow: visible;
 
     @include mixins.media-query(1000, "min") {
       flex: 0 0
