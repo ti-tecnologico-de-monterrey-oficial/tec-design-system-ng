@@ -73,7 +73,9 @@ describe('BmbAccordionComponent', () => {
     componentRef.setInput('margin', ['m', 'l']);
 
     const styles = component.getStyles();
-    expect(styles['border-radius']).toBe('var(--bmb-radius-m) var(--bmb-radius-l)');
+    expect(styles['border-radius']).toBe(
+      'var(--bmb-radius-m) var(--bmb-radius-l)',
+    );
     expect(styles.margin).toBe('var(--bmb-radius-m) var(--bmb-radius-l)');
   });
 
