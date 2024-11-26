@@ -9,7 +9,7 @@ import { BmbTopBarComponent } from '../../public-api';
   template: `
     <bmb-top-bar></bmb-top-bar>
     <section class="bmb_template-header">
-      <h3>Aside Card</h3>
+      <h3>2 Column FullScreen</h3>
       <h5>Template</h5>
     </section>
     <div class="bmb_template-aside-full">
@@ -41,7 +41,7 @@ import { BmbTopBarComponent } from '../../public-api';
 class StorybookModalWrapperComponent {}
 
 export default {
-  title: 'Micro Componentes/Web Templates/Aside full card',
+  title: 'Micro Componentes/Web Templates/2 Column FullScreen',
   component: BmbTopBarComponent,
   decorators: [
     moduleMetadata({

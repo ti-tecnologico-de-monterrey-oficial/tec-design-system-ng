@@ -1,28 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BmbAlertCenterComponent } from './bmb-alert-center.component';
-import { DateTime } from 'luxon';
 import { IBmbDataAlert } from './types';
 import { ComponentRef } from '@angular/core';
 
-// describe('BmbAlertCenterComponent', () => {
-//   let component: BmbAlertCenterComponent;
-//   let fixture: ComponentFixture<BmbAlertCenterComponent>;
-
-//   beforeEach(async () => {
-//     await TestBed.configureTestingModule({
-//       imports: [BmbAlertCenterComponent],
-//     }).compileComponents();
-
-//     fixture = TestBed.createComponent(BmbAlertCenterComponent);
-//     component = fixture.componentInstance;
-//     fixture.detectChanges();
-//   });
-
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
-// });
 describe('BmbAlertCenterComponent', () => {
   let component: BmbAlertCenterComponent;
   let fixture: ComponentFixture<BmbAlertCenterComponent>;
