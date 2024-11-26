@@ -9,7 +9,11 @@ import { BmbTopBarComponent } from '../../public-api';
   template: `
     <bmb-top-bar></bmb-top-bar>
     <section class="bmb_template-header">
+<<<<<<< HEAD
       <h3>Main Full</h3>
+=======
+      <h3>1 Column Box</h3>
+>>>>>>> 014bf9569ecac4b92d186cc25cdea11337b11eb7
       <h5>Template</h5>
     </section>
     <div class="bmb_template-main-full">
@@ -34,7 +38,7 @@ import { BmbTopBarComponent } from '../../public-api';
 class StorybookModalWrapperComponent {}
 
 export default {
-  title: 'Micro Componentes/Web Templates/Main full',
+  title: 'Micro Componentes/Web Templates/1 Column Box',
   component: BmbTopBarComponent,
   decorators: [
     moduleMetadata({

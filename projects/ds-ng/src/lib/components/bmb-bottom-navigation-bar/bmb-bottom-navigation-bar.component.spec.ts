@@ -8,10 +8,6 @@ describe('BmbBottomNavigationBarComponent', () => {
   let componentRef: ComponentRef<BmbBottomNavigationBarComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [BmbBottomNavigationBarComponent],
-    }).compileComponents();
-
     fixture = TestBed.createComponent(BmbBottomNavigationBarComponent);
     component = fixture.componentInstance;
     componentRef = fixture.componentRef;
@@ -68,5 +64,20 @@ describe('BmbBottomNavigationBarComponent', () => {
 
   it('should handle undefined navigationBarIcons gracefully', () => {
     expect(() => component.onNavigationBarOptionClick('back')).not.toThrow();
+  });
+
+  it('should have four navigation bar icons', () => {
+    const icons: any = {
+      one: { name: 'home', label: 'Home' },
+      two: { name: 'search', label: 'Search' },
+      three: { name: 'notifications', label: 'Notifications' },
+      four: { name: 'profile', label: 'Profile' },
+    };
+    componentRef.setInput('navigationBarIcons', icons);
+    fixture.detectChanges();
+    expect(component.navigationBarIcons().one).toBeDefined();
+    expect(component.navigationBarIcons().two).toBeDefined();
+    expect(component.navigationBarIcons().three).toBeDefined();
+    expect(component.navigationBarIcons().four).toBeDefined();
   });
 });

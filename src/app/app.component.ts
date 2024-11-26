@@ -5154,4 +5154,18 @@ export class AppComponent {
   handleSearch(event: unknown): void {
     console.log('Received search value:', event);
   }
+
+  openModalComponent() {
+    const data: ModalDataConfig = {
+      title: 'Modal Title',
+      subtitle: 'Modal Subtitle',
+      content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+      size: 'large',
+      type: 'action',
+      primaryBtnLabel: 'Ok',
+      primaryAction: () => window.alert('Primary action triggered!'),
+    };
+
+    this.matDialog.open(BmbModalComponent, { data });
+  }
 }
