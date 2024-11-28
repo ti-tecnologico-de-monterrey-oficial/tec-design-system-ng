@@ -117,11 +117,12 @@ Below is an example of how you can use this component in HTML:
       },
     },
     isRounded: {
-      name: 'Is rounded (deprecated)',
+      name: 'Is rounded',
       control: { type: 'boolean' },
-      description: 'The border radius button always should be 2rem (~32px)',
+      description:
+        'This property is deprecated and will be removed in future versions.',
       table: {
-        category: 'Properties',
+        category: 'deprecated',
         defaultValue: { summary: 'true' },
         type: { summary: 'boolean' },
       },
