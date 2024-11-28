@@ -41,7 +41,6 @@ describe('BmbAccountStatementComponent', () => {
     expect(component.payEvent.emit).not.toHaveBeenCalled();
   });
 
-
   it('should calculate progress percent correctly', () => {
     componentRef.setInput('totalCount', 100);
     componentRef.setInput('counter', 50);

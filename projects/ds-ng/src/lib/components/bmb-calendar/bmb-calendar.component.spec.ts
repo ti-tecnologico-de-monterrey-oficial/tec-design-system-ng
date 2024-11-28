@@ -1,5 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BmbCalendarComponent, IBmbCalendarEventClick } from './bmb-calendar.component';
+import {
+  BmbCalendarComponent,
+  IBmbCalendarEventClick,
+} from './bmb-calendar.component';
 import { BmbCalendarService } from '../../services/calendar.service';
 import { DateTime } from 'luxon';
 import { of } from 'rxjs';
@@ -21,8 +24,12 @@ describe('BmbCalendarComponent', () => {
 
   it('should set default values for inputs', () => {
     expect(component.hourFormat).toBe('12');
-    expect(component.calendarTimezone).toBe(Intl.DateTimeFormat().resolvedOptions().timeZone);
-    expect(component.clientTimezone).toBe(Intl.DateTimeFormat().resolvedOptions().timeZone);
+    expect(component.calendarTimezone).toBe(
+      Intl.DateTimeFormat().resolvedOptions().timeZone,
+    );
+    expect(component.clientTimezone).toBe(
+      Intl.DateTimeFormat().resolvedOptions().timeZone,
+    );
     expect(component.lang).toBe('es-MX');
     expect(component.currentDate).toBe('');
     expect(component.height).toBe(700);
@@ -71,9 +78,9 @@ describe('BmbCalendarComponent', () => {
         start: '2021-01-01T00:00:00',
         end: '2021-01-01T01:00:00',
         modalTitle: 'Test Modal Title',
-        status: 'Test Status'
+        status: 'Test Status',
       },
-      position: { top: 0, left: 0 }
+      position: { top: 0, left: 0 },
     };
     component.handleSelectEvent(event);
     expect(component.selectedEvent).toEqual(event);
@@ -87,9 +94,9 @@ describe('BmbCalendarComponent', () => {
         start: '2021-01-01T00:00:00',
         end: '2021-01-01T01:00:00',
         modalTitle: 'Test Modal Title',
-        status: 'Test Status'
+        status: 'Test Status',
       },
-      position: { top: 0, left: 0 }
+      position: { top: 0, left: 0 },
     };
     expect(component.isAnEventSelected(event)).toBeTrue();
     expect(component.isAnEventSelected(null)).toBeFalse();
