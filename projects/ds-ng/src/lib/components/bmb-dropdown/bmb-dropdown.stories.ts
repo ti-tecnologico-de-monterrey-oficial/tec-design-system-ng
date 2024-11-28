@@ -123,6 +123,7 @@ Below is an example of how you can use this component in HTML:
         'The inputs to show on the dropdown. The data types it allows are a string array or an array of objects',
       table: {
         category: 'Properties',
+        defaultValue: { summary: '[]' },
         type: {
           summary: `array: string[] | IBmbDropdownItem[]. IBmbDropdownItem = {
             value: string;
@@ -192,7 +193,13 @@ Below is an example of how you can use this component in HTML:
     required: true,
     label: 'Fruit',
     showIcon: true,
-    options: ['Apple', 'Banana', 'Orange', 'Pear', 'Grape'],
+    options: [
+      { value: '1', name: 'Apple' },
+      { value: '2', name: 'Banana' },
+      { value: '3', name: 'Orange' },
+      { value: '4', name: 'Pear' },
+      { value: '5', name: 'Grape' },
+    ],
     onValueChange: (params: any) => {
       window.alert(params.toString());
     },
