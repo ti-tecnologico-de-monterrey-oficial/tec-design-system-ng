@@ -43,3 +43,11 @@
 >
   Open Modal
 </button>
+
+<bmb-tabs [tabs]="tabsData" (selected)="onTabSelected($event)"></bmb-tabs>
+
+<!-- Botón para avanzar -->
+<button (click)="onContinue()" bmbButton>Continuar</button>
+
+<!-- Botón para regresar -->
+<button (click)="onBack()" bmbButton>Regresar</button>

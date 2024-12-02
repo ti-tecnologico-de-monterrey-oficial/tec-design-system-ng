@@ -5135,4 +5135,25 @@ export class AppComponent {
 
     this.matDialog.open(BmbModalComponent, { data });
   }
+
+  @ViewChild(BmbTabsComponent) bmbTabsComponent!: BmbTabsComponent;
+
+  tabsData: IBmbTab[] = [
+    { id: 1, title: 'Tab 1', isActive: true },
+    { id: 2, title: 'Tab 2' },
+    { id: 3, title: 'Tab 3' },
+  ];
+
+  onTabSelected(selectedTab: IBmbTab): void {
+    console.log('Selected Tab:', selectedTab);
+    // Aquí puedes realizar cualquier acción cuando un tab es seleccionado
+  }
+
+  onContinue(): void {
+    this.bmbTabsComponent.goToNextTab();
+  }
+
+  onBack(): void {
+    this.bmbTabsComponent.goToPreviousTab();
+  }
 }
