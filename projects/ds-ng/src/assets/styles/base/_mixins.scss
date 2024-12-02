@@ -43,13 +43,13 @@
   @include fonts.font(5, regular);
   align-items: center;
   border: none;
-  border-radius: var(--bmb-radius-s);
-  display: inline-flex;
-  height: rem.rem_calc(36);
-  justify-content: center;
-  padding: var(--bmb-spacing-none) var(--bmb-spacing-m);
-  gap: var(--bmb-spacing-xs);
+  border-radius: rem.rem_calc(8);
   box-sizing: border-box;
+  display: inline-flex;
+  gap: rem.rem_calc(4);
+  justify-content: center;
+  min-height: rem.rem_calc(36);
+  padding: rem.rem_calc(2 16);
 
   bmb-icon {
     font-size: rem.rem_calc(16);
@@ -205,21 +205,21 @@
 }
 
 @mixin fabInput($size: small, $type: normal) {
-  font-family: fonts.$font-poppins-regular;
-  display: inline-flex;
-  font-size: rem.rem_calc(14);
   align-items: center;
-  justify-content: center;
-  outline: none;
+  background-color: RGBA(var(--color-blue-primary));
   border: 0;
+  bottom: rem.rem_calc(10);
+  box-shadow: rem.rem_calc(2 2 2 1) RGBA(var(--color-black-primary), 0.25);
+  color: RGBA(var(--color-white-primary));
+  display: inline-flex;
+  font-family: fonts.$font-poppins-regular;
+  font-size: rem.rem_calc(14);
+  justify-content: center;
   margin: rem.rem_calc(3);
+  outline: none;
   padding: var(--bmb-spacing-s) var(--bmb-spacing-m);
   position: fixed;
-  bottom: rem.rem_calc(10);
   right: rem.rem_calc(10);
-  box-shadow: rem.rem_calc(2 2 2 1) RGBA(var(--color-black-primary), 0.25);
-  background-color: RGBA(var(--color-blue-primary));
-  color: RGBA(var(--color-white-primary));
   z-index: 2;
 
   &:hover {
@@ -244,28 +244,28 @@
   }
 
   @if $size == small and $type == normal {
+    border-radius: rem.rem_calc(50);
+    height: rem.rem_calc(40);
     width: rem.rem_calc(40);
-    height: rem.rem_calc(40);
-    border-radius: rem.rem_calc(50);
   } @else if $size == small and $type == extended {
-    width: fit-content;
-    height: rem.rem_calc(40);
     border-radius: rem.rem_calc(50);
+    height: rem.rem_calc(40);
+    width: fit-content;
     > span {
-      padding-right: rem.rem_calc(8);
       font-size: rem.rem_calc(14);
+      padding-right: rem.rem_calc(8);
     }
   } @else if $size == large and $type == normal {
-    width: rem.rem_calc(60);
-    height: rem.rem_calc(60);
     border-radius: rem.rem_calc(50);
+    height: rem.rem_calc(60);
+    width: rem.rem_calc(60);
   } @else if $size == large and $type == extended {
+    border-radius: rem.rem_calc(50);
     height: rem.rem_calc(60);
     width: fit-content;
-    border-radius: rem.rem_calc(50);
     > span {
-      padding-right: rem.rem_calc(8);
       font-size: rem.rem_calc(14);
+      padding-right: rem.rem_calc(8);
     }
   }
 }
@@ -300,6 +300,11 @@
   font-size: inherit;
   -webkit-font-smoothing: antialiased;
   font-style: normal;
+  font-variation-settings:
+    "FILL" 1,
+    "wght" 400,
+    "GRAD" 0,
+    "opsz" 24;
   font-weight: normal;
   letter-spacing: normal;
   line-height: normal;
@@ -307,9 +312,4 @@
   white-space: nowrap;
   width: fit-content;
   word-wrap: normal;
-  font-variation-settings:
-    "FILL" 1,
-    "wght" 400,
-    "GRAD" 0,
-    "opsz" 24;
 }
