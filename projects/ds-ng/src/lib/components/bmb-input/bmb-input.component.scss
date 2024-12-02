@@ -99,8 +99,9 @@
     padding: var(--bmb-spacing-s);
 
     &:focus,
-    &:has(.mdc-text-field--focused) {
+    &:focus-visible {
       border: rem.rem_calc(2) solid RGBA(var(--color-mariner-700));
+      padding: calc(var(--bmb-spacing-s) - rem.rem_calc(1));
       outline: none;
     }
 
@@ -232,6 +233,13 @@
 
     ~ .bmb_field-input {
       padding-left: rem.rem_calc(35);
+
+      &:hover,
+      &:focus,
+      &:active,
+      &:focus-visible {
+        padding-left: rem.rem_calc(35);
+      }
     }
   }
 
@@ -303,6 +311,7 @@
     align-items: center;
     gap: var(--bmb-spacing-s);
     width: fit-content;
+    position: relative;
 
     &-input {
       opacity: 0;

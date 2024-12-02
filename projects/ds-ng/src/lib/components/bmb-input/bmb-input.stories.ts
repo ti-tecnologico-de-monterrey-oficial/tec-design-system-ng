@@ -227,7 +227,7 @@ Below is an example of how to use this component in HTML:
       control: {
         type: 'select',
       },
-      options: ['main', 'normal', 'simple'],
+      options: ['normal', 'simple'],
       description: 'Defines the appearance style of the input field.',
       table: {
         category: 'Properties',

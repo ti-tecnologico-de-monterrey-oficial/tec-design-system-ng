@@ -239,7 +239,7 @@ Below is an example of how to use this component in HTML:
 
   args: {
     icon: 'calendar_month',
-    invalidFormaterrorMessage: 'Formato invalido',
+    invalidFormatErrorMessage: 'Formato invalido',
     requiredFieldErrorMessage: 'Campo requerido',
     isRequired: false,
     placeholder: 'Placeholder',

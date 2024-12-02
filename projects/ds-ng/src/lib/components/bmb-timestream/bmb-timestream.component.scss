@@ -99,6 +99,23 @@
         width: 100%;
       }
     }
+
+    &-dual {
+      margin: 0 0 var(--bmb-spacing-m);
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--bmb-spacing-m);
+
+      &-title,
+      &-data {
+        width: calc(50% - var(--bmb-spacing-s));
+      }
+
+      &-data {
+        text-align: right;
+        margin: 0;
+      }
+    }
   }
 }
 

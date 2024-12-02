@@ -3,23 +3,21 @@
 @use "../../../assets/styles/base/mixins" as mixins;
 
 .bmb_card_button {
-  height: rem.rem_calc(195);
-  max-width: rem.rem_calc(328);
-
   &-wrapper {
-    background-color: RGBA(var(--color-charade-50));
-    border: rem.rem_calc(1) solid RGBA(var(--color-charade-300));
+    background-color: var(--general_contrasts-5);
+    border: rem.rem_calc(1) solid var(--general_contrasts-container-outline);
     border-radius: rem.rem_calc(16);
     box-shadow: rem.rem_calc(4 4 4 0) RGBA(var(--color-charade-950), 0.5);
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: rem.rem_calc(195);
+    max-width: rem.rem_calc(328);
     padding: rem.rem_calc(24);
     position: relative;
     width: 100%;
 
     &:hover {
-      background-color: RGBA(var(--color-charade-500));
+      background-color: var(--general_contrasts-50);
 
       .bmb_card_button-header-text {
         color: RGBA(var(--color-charade-50));
@@ -29,7 +27,7 @@
         color: RGBA(var(--color-charade-50));
       }
       .bmb_dropdown_menu-icon {
-        color: RGBA(var(--color-charade-50));
+        color: var(--general_contrasts-5);
       }
     }
   }
@@ -50,9 +48,9 @@
 
   &-circle {
     align-items: center;
-    background-color: RGBA(var(--color-charade-950));
+    background-color: var(--menu_select-label-menu-inactive);
     border-radius: 100%;
-    color: RGBA(var(--color-charade-50));
+    color: var(--general_contrasts-5);
     display: flex;
     height: rem.rem_calc(48);
     justify-content: center;
@@ -72,7 +70,7 @@
 
   &-leading {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     justify-content: flex-end;
     margin-left: auto;
   }
@@ -84,10 +82,6 @@
     justify-content: flex-end;
     overflow: hidden;
     padding: rem.rem_calc(0 10);
-  }
-
-  &-menu {
-    flex: 1;
   }
 
   &-information {
@@ -118,9 +112,12 @@
   }
 
   &-body {
+    -webkit-box-orient: vertical;
     color: RGBA(var(--color-charade-300));
-    margin-top: rem.rem_calc(8);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
     overflow: hidden;
+    padding: rem.rem_calc(10 0);
     text-overflow: ellipsis;
     white-space: normal;
     @include fonts.font(3, regular);
@@ -135,8 +132,9 @@
     color: RGBA(var(--color-white-primary));
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: rem.rem_calc(195);
     justify-content: center;
+    max-width: rem.rem_calc(328);
     padding: rem.rem_calc(24);
     width: 100%;
 
@@ -161,20 +159,120 @@
       background-color: RGBA(var(--color-mariner-500));
     }
   }
+
+  &-small {
+    height: rem.rem_calc(148);
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    width: rem.rem_calc(165);
+
+    &:focus {
+      .bmb_card_button-small-back {
+        background-color: RGBA(var(--color-mariner-100));
+        border-color: RGBA(var(--color-mariner-700));
+      }
+    }
+
+    @include mixins.media-query(992, "min") {
+      &:hover {
+        transform: rotateY(180deg);
+      }
+    }
+
+    &.flipped {
+      transform: rotateY(180deg);
+    }
+
+    &-front,
+    &-back {
+      align-items: center;
+      backface-visibility: hidden;
+      border: rem.rem_calc(1) solid RGBA(var(--color-charade-300));
+      border-radius: rem.rem_calc(8);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: center;
+      left: 0;
+      padding: rem.rem_calc(8);
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+
+    &-front {
+      background-color: RGBA(var(--color-charade-50));
+
+      @include mixins.media-query(992, "max") {
+        justify-content: flex-start;
+      }
+    }
+
+    &-back {
+      background-color: RGBA(var(--color-mariner-100));
+      transform: rotateY(180deg);
+
+      @include mixins.media-query(992, "min") {
+        justify-content: flex-start;
+      }
+    }
+
+    &-top-icon {
+      color: RGBA(var(--color-charade-500));
+    }
+
+    &-close-icon {
+      color: RGBA(var(--color-charade-700));
+    }
+
+    &-top-icon,
+    &-close-icon {
+      align-self: flex-end;
+      display: none;
+      font-size: rem.rem_calc(24);
+
+      @include mixins.media-query(992, "max") {
+        display: flex;
+      }
+    }
+
+    &-bot-icon {
+      height: rem.rem_calc(48);
+      width: rem.rem_calc(48);
+    }
+
+    &-title,
+    &-text {
+      text-align: center;
+    }
+
+    &-title {
+      color: RGBA(var(--color-charade-700));
+      @include fonts.font(4, bold);
+    }
+
+    &-text {
+      @include fonts.font(1, regular);
+      color: RGBA(var(--color-charade-950));
+      margin-top: rem.rem_calc(24);
+      text-align: left;
+      width: 100%;
+
+      @include mixins.media-query(992, "max") {
+        margin-top: rem.rem_calc(8);
+      }
+    }
+  }
 }
 
 [data-theme="dark"],
 .storybook-dark-theme {
   .bmb_card_button {
     &-wrapper {
-      background-color: RGBA(var(--color-charade-950));
-      border-color: RGBA(var(--color-charade-800));
-
       &:hover {
-        background-color: RGBA(var(--color-charade-500));
-
-        .bmb_dropdown_menu-icon {
-          color: RGBA(var(--color-charade-50));
+        .bmb_card_button-body {
+          color: RGBA(var(--color-charade-300));
         }
       }
     }
@@ -183,20 +281,16 @@
       &-text {
         color: RGBA(var(--color-charade-50));
       }
+
       &-icon {
         color: RGBA(var(--color-charade-300));
       }
     }
 
-    &-circle {
-      background-color: RGBA(var(--color-charade-50));
-      color: RGBA(var(--color-charade-900));
-    }
-
     &-title,
     &-icon,
     &-body {
-      color: RGBA(var(--color-charade-300));
+      color: RGBA(var(--color-charade-500));
     }
   }
 }

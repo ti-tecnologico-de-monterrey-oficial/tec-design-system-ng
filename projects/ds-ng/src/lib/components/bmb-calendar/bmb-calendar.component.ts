@@ -6,7 +6,6 @@ import {
   Output,
   EventEmitter,
   HostListener,
-  input,
   model,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -14,7 +13,6 @@ import { DateTime } from 'luxon';
 import { BmbCalendarTemplateWeekComponent } from './common/bmb-calendar-template-week/bmb-calendar-template-week.component';
 import { BmbCalendarTemplateDayComponent } from './common/bmb-calendar-template-day/bmb-calendar-template-day.component';
 import { BmbCalendarTemplateMonthComponent } from './common/bmb-calendar-template-month/bmb-calendar-template-month.component';
-import { BmbLoaderComponent } from '../bmb-loader/bmb-loader.component';
 import { BmbCalendarHeaderComponent } from './common/bmb-calendar-header/bmb-calendar-header.component';
 import { BmbCalendarTemplateMobileComponent } from './common/bmb-calendar-template-mobile/bmb-calendar-template-mobile.component';
 import { BmbCalendarTemplateEventListComponent } from './common/bmb-calendar-template-event-list/bmb-calendar-template-event-list.component';
@@ -44,7 +42,6 @@ export {
     BmbCalendarTemplateDayComponent,
     BmbCalendarTemplateWeekComponent,
     BmbCalendarTemplateMonthComponent,
-    BmbLoaderComponent,
     BmbCalendarHeaderComponent,
     BmbCalendarTemplateEventComponent,
     BmbCalendarTemplateMobileComponent,
@@ -149,7 +146,7 @@ export class BmbCalendarComponent {
   }
 
   getEvents() {
-    return this.eventsSignal.geteventList();
+    return this.eventsSignal.getEventList();
   }
 
   getIsLoading() {

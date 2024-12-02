@@ -1,43 +1,30 @@
 import { CommonModule } from '@angular/common';
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
-  ElementRef,
-  EventEmitter,
-  HostListener,
   Input,
-  OnChanges,
-  OnInit,
-  Output,
-  SimpleChanges,
-  ViewChild,
   ViewEncapsulation,
   forwardRef,
+  input,
+  output,
 } from '@angular/core';
 import {
-  ControlValueAccessor,
   FormControl,
   NG_VALIDATORS,
   NG_VALUE_ACCESSOR,
-  NgModel,
   ReactiveFormsModule,
 } from '@angular/forms';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbLoaderComponent } from '../bmb-loader/bmb-loader.component';
-import { BmbTagComponent } from '../bmb-tags/bmb-tags.component';
+
+export interface IBmbDropdownItem {
+  name: string;
+  value: string;
+}
 
 @Component({
   selector: 'bmb-dropdown',
   standalone: true,
-  imports: [
-    CommonModule,
-    BmbIconComponent,
-    BmbLoaderComponent,
-    ReactiveFormsModule,
-    BmbTagComponent,
-  ],
+  imports: [CommonModule, BmbIconComponent, ReactiveFormsModule],
   templateUrl: './bmb-dropdown.component.html',
   styleUrl: './bmb-dropdown.component.scss',
   providers: [
@@ -55,45 +42,22 @@ import { BmbTagComponent } from '../bmb-tags/bmb-tags.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbDropdownComponent
-  implements AfterViewInit, ControlValueAccessor, OnChanges, OnInit
-{
-  @Input() required?: boolean;
-  @Input() showIcon?: boolean = false;
-  @Input() placeholder?: string = '';
-  @Input() icon?: string = '';
-  @Input() options?: string[] = [];
-  @Input() helperText?: string = '';
-  @Input() formControl?: FormControl | undefined;
-  @Input() disabled?: boolean = false;
-  @Input() label?: string;
-  @Input() type?: 'default' | 'autocomplete' = 'default';
+export class BmbDropdownComponent {
+  required = input<boolean>();
+  showIcon = input<boolean>(false);
+  placeholder = input<string>('');
+  icon = input<string>('');
+  options = input<string[] | IBmbDropdownItem[]>([]);
+  helperText = input<string>('');
+  @Input() control?: FormControl | undefined;
+  disabled = input<boolean>(false);
+  label = input<string>();
 
-  @Output() onValueChange: EventEmitter<any> = new EventEmitter<any>();
-
-  @ViewChild('inputWrapper', { read: ElementRef, static: false })
-  inputWrapper: ElementRef | undefined;
-
-  @ViewChild('filterDropdown') filterField: ElementRef | null = null;
-
-  @ViewChild('input', { static: false })
-  input: NgModel | undefined;
-
-  private childNodes: any = null;
-
-  @HostListener('document:click', ['$event'])
-  onClick(event: MouseEvent) {
-    if (!this.childNodes?.contains(event.target)) {
-      this.openSelect = false;
-      this.isFocus = this.isFocus == false ? false : true;
-    }
-  }
+  onValueChange = output<any>();
 
   isFocus: boolean = false;
   selectedIndexOption?: number;
   selectedOption?: any;
-
-  multipleOptions?: string[] = [];
 
   uid: string = Date.now().toString(36) + (Math.floor(Math.random() * 90) + 10);
   filterControl = new FormControl();
@@ -102,50 +66,18 @@ export class BmbDropdownComponent
   value: string = '';
   openSelect: boolean = false;
 
-  constructor(private elementRef: ElementRef) {}
-
   ngOnInit(): void {
-    if (this.formControl === undefined) {
-      this.formControl = new FormControl();
+    if (this.control === undefined) {
+      this.control = new FormControl();
     }
   }
 
-  ngAfterViewInit(): void {
-    this.childNodes = this.elementRef.nativeElement;
-    if (this.disabled && this.formControl) {
-      this.formControl.disable();
-    } else if (this.disabled && !this.formControl) {
-      this.input?.disabled;
-    }
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (this.formControl && changes?.['disabled'] !== undefined) {
-      if (this.formControl.disabled !== changes?.['disabled']?.currentValue) {
-        changes?.['disabled']?.currentValue
-          ? this.formControl.disable()
-          : this.formControl.enable();
-      }
-    }
-  }
-
-  handleItemClick(event: string, index: any): void {
-    if (this.type == 'autocomplete') {
-      let found = this.multipleOptions?.find((element) => element == event);
-      if (found === undefined) {
-        this.multipleOptions?.push(event);
-        this.onValueChange.emit(this.multipleOptions);
-        if (this.formControl) {
-          this.formControl.setValue(this.multipleOptions);
-        }
-      }
-    } else {
-      this.onValueChange.emit(event);
-      this.selectedIndexOption = index;
-      this.selectedOption = event;
-      if (this.formControl) {
-        this.formControl.setValue(event);
-      }
+  handleItemClick(event: any, index: any): void {
+    this.onValueChange.emit(event.value);
+    this.selectedIndexOption = index;
+    this.selectedOption = event.value;
+    if (this.control) {
+      this.control.setValue(event.name);
     }
 
     this.isFocus = !this.isFocus;
@@ -179,35 +111,32 @@ export class BmbDropdownComponent
     }
   }
 
-  deleteTag(index: number) {
-    this.multipleOptions?.splice(index, 1);
-    this.onValueChange.emit(this.multipleOptions);
-    if (this.formControl) {
-      this.formControl.setValue(this.multipleOptions);
-    }
-  }
+  onChangeFn = (_: any) => {};
 
-  public onChangeFn = (_: any) => {};
+  onTouchedFn = () => {};
 
-  public onTouchedFn = () => {};
-
-  public registerOnChange(fn: any): void {
+  registerOnChange(fn: any): void {
     this.onChangeFn = fn;
   }
 
-  public registerOnTouched(fn: any): void {
+  registerOnTouched(fn: any): void {
     this.onTouchedFn = fn;
   }
 
-  public writeValue(obj: any): void {
+  writeValue(obj: any): void {
     this.value = obj;
   }
 
-  public onTouched() {
+  onTouched() {
     this.onTouchedFn();
   }
 
-  public onChange() {
+  onChange() {
     this.onChangeFn(this.value);
+  }
+
+  getItem(item: unknown): IBmbDropdownItem {
+    if (typeof item === 'string') return { name: item, value: item };
+    return item as IBmbDropdownItem;
   }
 }

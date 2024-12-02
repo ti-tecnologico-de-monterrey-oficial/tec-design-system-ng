@@ -17,17 +17,14 @@ import { BmbInputControlDirective } from '../../../public-api';
 import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
-export type IBbmInputType =
+export type IBmbInputType =
   | 'text'
   | 'password'
   | 'number'
   | 'text-area'
-  | 'radio'
-  | 'checkbox'
-  | 'email'
-  | 'phone'
-  | 'switch';
-export type IBbmInputAppearance = 'main' | 'normal' | 'simple';
+  | 'radio';
+
+export type IBmbInputAppearance = 'main' | 'normal' | 'simple';
 
 @Component({
   selector: 'bmb-input',
@@ -48,10 +45,10 @@ export type IBbmInputAppearance = 'main' | 'normal' | 'simple';
 })
 export class BmbInputComponent {
   label = input<string>('');
-  type = input<IBbmInputType>('text');
+  type = input<IBmbInputType>('text');
   placeholder = input<string>('');
   icon = input<string>('');
-  appearance = input<IBbmInputAppearance | string>('normal');
+  appearance = input<IBmbInputAppearance | string>('normal');
   errorMessage = input<string>('');
   helperMessage = input<string>('');
   disabled = input<boolean>(false);

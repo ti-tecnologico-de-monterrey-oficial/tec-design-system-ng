@@ -17,6 +17,7 @@
 
 // Import and register the design tokens like colors and theme
 @import "tokens/colors";
+@import "tokens/namedColors";
 @import "tokens/theme";
 
 // Import the styles for base
@@ -28,6 +29,7 @@
 @import "components/buttons";
 @import "components/col-sys";
 @import "components/button-group";
+@import "components/templates";
 @import "base/utils";
 @import "base/scrollbar";
 

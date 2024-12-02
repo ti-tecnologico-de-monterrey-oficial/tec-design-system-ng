@@ -17,7 +17,7 @@ import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 import { BmbTooltipComponent } from '../bmb-tooltip/bmb-tooltip.component';
 import {
   BmbInputComponent,
-  IBbmInputAppearance,
+  IBmbInputAppearance,
 } from '../bmb-input/bmb-input.component';
 import { BmbButtonDirective } from '../../directives/button.directive';
 
@@ -34,7 +34,7 @@ export interface IBmbCommentEvalRubric {
   icon?: string;
   errorMessage?: string;
   helperMessage?: string;
-  appearance?: IBbmInputAppearance;
+  appearance?: IBmbInputAppearance;
   disabled?: boolean;
   isRequired?: boolean;
   showError?: boolean;

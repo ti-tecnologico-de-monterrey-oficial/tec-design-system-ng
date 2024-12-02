@@ -10,25 +10,12 @@
         [altImage]="altLogo()"
         [link]="logoLink()"
         [target]="logoTarget()"
-        *ngIf="logo() && !iconLeft()"
       />
-      <button *ngIf="iconLeft()" (click)="handleIconLeftClick($event)">
-        <bmb-icon [icon]="iconLeft()" />
-      </button>
     </div>
     <span class="bmb_header_mobile-text">{{ text() }}</span>
     <div class="bmb_header_mobile-right">
-      <button
-        *ngIf="iconRight() && !userImage()"
-        (click)="handleIconRightClick($event)"
-      >
-        <bmb-icon [icon]="iconRight()" />
-      </button>
-      <button
-        *ngIf="iconRight2() && !userImage()"
-        (click)="handleIconRight2Click($event)"
-      >
-        <bmb-icon [icon]="iconRight2()" />
+      <button type="button" (click)="handleTrailingIconClick($event)">
+        <bmb-icon [icon]="trailingIcon()" />
       </button>
       <bmb-user-image
         size="mobile-small"

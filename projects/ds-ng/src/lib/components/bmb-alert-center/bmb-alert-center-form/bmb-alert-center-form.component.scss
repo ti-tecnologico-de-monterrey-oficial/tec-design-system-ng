@@ -1,0 +1,31 @@
+@use "../../../../assets/styles/base/fonts" as fonts;
+@use "../../../../assets/styles/base/rem" as rem;
+
+.bmb_alert-center-form {
+  padding: var(--bmb-spacing-m);
+  color: var(--general_contrasts-100);
+  height: calc(100% - rem.rem_calc(40));
+  display: flex;
+  flex-direction: column;
+
+  &-content {
+    flex: 1;
+    overflow: auto;
+  }
+
+  &-title {
+    @include fonts.font(3, regular);
+    font-weight: 400;
+    margin-bottom: var(--bmb-spacing-l);
+  }
+
+  &-footer {
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+
+    &-active {
+      height: max-content;
+    }
+  }
+}

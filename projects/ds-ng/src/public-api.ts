@@ -18,6 +18,17 @@ export * from './lib/directives/bmb-form-control/bmb-form-control.directive';
 export * from './lib/components/bmb-logo/bmb-logo.component';
 export * from './lib/components/bmb-icon/bmb-icon.component';
 export * from './lib/components/bmb-badge/bmb-badge.component';
+export * from './lib/components/bmb-breadcrumb/bmb-breadcrumb.component';
+export * from './lib/components/bmb-card-button/bmb-card-button.component';
+export * from './lib/components/bmb-dropdown-menu/bmb-dropdown-menu.component';
+export * from './lib/components/bmb-filter-card/bmb-filter-card.component';
+export * from './lib/components/bmb-inner-header/bmb-inner-header.component';
+export * from './lib/components/bmb-invoice/bmb-invoice.component';
+export * from './lib/components/bmb-pull-wedge/bmb-pull-wedge.component';
+export * from './lib/components/bmb-skeleton/bmb-skeleton.component';
+export * from './lib/components/bmb-tags/bmb-tags.component';
+export * from './lib/components/bmb-toast/bmb-toast.component';
+export * from './lib/components/bmb-wheel-menu/bmb-wheel-menu.component';
 export * from './lib/components/bmb-input/bmb-input.component';
 export * from './lib/components/bmb-divider/bmb-divider.component';
 export * from './lib/components/bmb-container/bmb-container.component';
@@ -94,6 +105,11 @@ export * from './lib/components/bmb-timestream-card/bmb-timestream-card.componen
 export * from './lib/components/bmb-filter-card/bmb-filter-card.component';
 export * from './lib/components/bmb-card-button/bmb-card-button.component';
 export * from './lib/components/bmb-input-tags/bmb-input-tags.component';
+export * from './lib/components/bmb-invoice/bmb-invoice.component';
+export * from './lib/components/bmb-multi-dot-paginator/bmb-multi-dot-paginator.component';
+export * from './lib/components/bmb-multi-dot-paginator/bmb-multi-dot-paginator-item/bmb-multi-dot-paginator-item.component';
+export * from './lib/components/bmb-accordion/bmb-accordion.component';
+export * from './lib/components/bmb-alert-center/bmb-alert-center.component';
 // types
 export * from './lib/types';
 // interface
