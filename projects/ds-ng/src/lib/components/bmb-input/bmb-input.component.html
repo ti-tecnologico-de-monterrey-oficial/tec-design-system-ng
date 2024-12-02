@@ -50,7 +50,7 @@
       </span>
     } @else if (type() === "switch") {
       <section [ngClass]="getClasses('bmb_field')">
-        @if (showSwitchLabel('left')) {
+        @if (showSwitchLabel("left")) {
           <label class="bmb_field-label bmb_field-label-switch">{{
             leftText()
           }}</label>
@@ -80,7 +80,7 @@
             }
           </span>
         </span>
-        @if (showSwitchLabel('right')) {
+        @if (showSwitchLabel("right")) {
           <label class="bmb_field-label bmb_field-label-switch">{{
             rightText()
           }}</label>

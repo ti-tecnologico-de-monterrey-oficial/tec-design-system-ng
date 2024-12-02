@@ -16,8 +16,6 @@ import { BmbFormService } from '../../directives/bmb-form-control/bmb-form-contr
 import { BmbInputControlDirective } from '../../../public-api';
 import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 
 export type IBbmInputType =
   | 'text'
@@ -44,8 +42,6 @@ export type IBbmInputAppearance = 'main' | 'normal' | 'simple';
     BmbTooltipComponent,
     NgxMatIntlTelInputComponent,
     MatFormFieldModule,
-    BmbLayoutDirective,
-    BmbLayoutItemDirective,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
