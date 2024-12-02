@@ -96,6 +96,7 @@ import {
   BmbAlertCenterComponent,
   IBmbDataAlert,
   BmbInnerHeaderComponent,
+  IBmbDropdownItem,
 } from '../../projects/ds-ng/src/public-api';
 import { BmbPullWedgeComponent } from '../../projects/ds-ng/src/lib/components/bmb-pull-wedge/bmb-pull-wedge.component';
 import { BmbCardButtonComponent } from '../../projects/ds-ng/src/lib/components/bmb-card-button/bmb-card-button.component';
@@ -5136,24 +5137,16 @@ export class AppComponent {
     this.matDialog.open(BmbModalComponent, { data });
   }
 
-  @ViewChild(BmbTabsComponent) bmbTabsComponent!: BmbTabsComponent;
-
-  tabsData: IBmbTab[] = [
-    { id: 1, title: 'Tab 1', isActive: true },
-    { id: 2, title: 'Tab 2' },
-    { id: 3, title: 'Tab 3' },
+  // options: string[] = ['Apple', 'Banana', 'Orange', 'Pear', 'Grape'];
+  options: IBmbDropdownItem[] = [
+    { value: '1', name: 'Apple' },
+    { value: '2', name: 'Banana' },
+    { value: '3', name: 'Orange' },
+    { value: '4', name: 'Pear' },
+    { value: '5', name: 'Grape' },
   ];
 
-  onTabSelected(selectedTab: IBmbTab): void {
-    console.log('Selected Tab:', selectedTab);
-    // Aquí puedes realizar cualquier acción cuando un tab es seleccionado
-  }
-
-  onContinue(): void {
-    this.bmbTabsComponent.goToNextTab();
-  }
-
-  onBack(): void {
-    this.bmbTabsComponent.goToPreviousTab();
+  onValueChange(params: unknown): void {
+    window.alert(params?.toString());
   }
 }
