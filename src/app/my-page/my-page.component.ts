@@ -159,9 +159,7 @@ export class MyPageComponent {
 
   @ViewChild(BmbToastComponent)
   private toastComponent!: BmbToastComponent;
-  onButtonClick() {
-    this.toastComponent.openToast();
-  }
+  onButtonClick() {}
 
   handleDot(index: number): void {
     console.log('Index clicked:', index);
