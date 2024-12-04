@@ -1,1 +1,19 @@
-<p>bmb-portal works!</p>
+<section class="bmb_portal">
+  @for (notification of getNotifications(); track $index) {
+    @if (notification.component === "toast") {
+      <bmb-toast
+        [title]="notification.title"
+        [description]="notification.content"
+        [appearance]="notification.appearance || 'neutral'"
+        [isClosable]="true"
+        [id]="notification.id || $index"
+        (onClose)="closeNotification(notification)"
+      />
+    } @else {
+      <bmb-push-notification-item
+        [notification]="notification"
+        (onClose)="closeNotification(notification)"
+      />
+    }
+  }
+</section>

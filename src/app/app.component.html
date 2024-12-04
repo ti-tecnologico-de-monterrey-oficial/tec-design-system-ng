@@ -1,45 +1,18 @@
-<bmb-theme />
-<p style="color: var(--general_contrasts-100)">
-  See the full list of available themes in the [Themes](#themes) section.
-</p>
-<p style="color: var(--general_contrasts-75)">
-  See the full list of available themes in the [Themes](#themes) section.
-</p>
-<p style="color: var(--general_contrasts-50)">
-  See the full list of available themes in the [Themes](#themes) section.
-</p>
-<p style="color: var(--general_contrasts-25)">
-  See the full list of available themes in the [Themes](#themes) section.
-</p>
-<p style="color: var(--general_contrasts-20)">
-  See the full list of available themes in the [Themes](#themes) section.
-</p>
-<p style="color: var(--general_contrasts-15)">
-  See the full list of available themes in the [Themes](#themes) section.
-</p>
-<p style="color: var(--general_contrasts-5)">
-  See the full list of available themes in the [Themes](#themes) section.
-</p>
-<p>text</p>
-
-<bmb-inner-header
-  [title]="title"
-  [showReturn]="true"
-  (searchData)="handleSearch($event)"
-  [showSearch]="true"
-  [title]="'My Title'"
-  [placeholderSearch]="'Search'"
-  [subTitle]="'www.link.com'"
-></bmb-inner-header>
-<bmb-icon icon="home"></bmb-icon>
-<button
-  bmbButton
-  appearance="primary"
-  icon="home"
-  size="small"
-  position="left"
-  [case]="false"
-  (click)="openModalComponent()"
->
-  Open Modal
-</button>
+<bmb-theme></bmb-theme>
+<section style="padding: 1rem">
+  <bmb-toast title="test" description="test" appearance="neutral" id="1" />
+  <bmb-divider></bmb-divider>
+  <bmb-toast title="test" description="test" appearance="primary" id="2" />
+  <bmb-divider></bmb-divider>
+  <bmb-toast title="test" description="test" appearance="warning" id="3" />
+  <bmb-divider></bmb-divider>
+  <bmb-toast title="test" description="test" appearance="error" id="4" />
+  <bmb-divider></bmb-divider>
+  <bmb-toast title="test" description="test" appearance="event" id="5" />
+  <bmb-divider></bmb-divider>
+  <bmb-toast title="test" description="test" appearance="successful" id="6" />
+  <bmb-divider></bmb-divider>
+  <bmb-toast title="test" description="test" appearance="reminder" id="7" />
+</section>
+<button (click)="addNotification()">Add toast</button>
+<bmb-portal />
