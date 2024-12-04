@@ -4,13 +4,21 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbButtonDirective } from '../../directives/button.directive';
 import { BmbNotificationService } from '../../services/notification.service';
 import { BmbPushNotificationItemComponent } from '../bmb-push-notification/bmb-push-notification-item/bmb-push-notification-item.component';
-import { BmbToastComponent, BmbToastAppearance } from '../bmb-toast/bmb-toast.component';
+import {
+  BmbToastComponent,
+  BmbToastAppearance,
+} from '../bmb-toast/bmb-toast.component';
 import { NotificationType } from '../bmb-push-notification/types';
 import { BmbPortalComponent } from './bmb-portal.component';
 
 @Component({
   standalone: true,
-  imports: [BmbPushNotificationItemComponent, BmbButtonDirective, BmbPortalComponent, BmbToastComponent],
+  imports: [
+    BmbPushNotificationItemComponent,
+    BmbButtonDirective,
+    BmbPortalComponent,
+    BmbToastComponent,
+  ],
   selector: 'storybook-toast-wrapper',
   template: `
     <div style="height: 500px">
@@ -317,10 +325,7 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'select',
       },
-      options: [
-        'toast',
-        'notification'
-      ],
+      options: ['toast', 'notification'],
       table: {
         category: 'Properties',
         type: { summary: 'notification | toast' },
@@ -347,7 +352,8 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'BmbToastAppearance' },
         defaultValue: { summary: 'neutral' },
       },
-      description: 'Set the appearance of the component. only valid for `toast` component.',
+      description:
+        'Set the appearance of the component. only valid for `toast` component.',
     },
   },
   args: {

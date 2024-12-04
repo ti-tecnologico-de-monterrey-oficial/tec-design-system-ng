@@ -76,7 +76,7 @@ Below is an example of how you can use this component in HTML:
       control: 'select',
       options: ['top', 'bottom', 'middle'],
       description:
-        "Controls the position of the toast on the screen, **this property is valid only for the `portal` component.**",
+        'Controls the position of the toast on the screen, **this property is valid only for the `portal` component.**',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'top' },
@@ -86,7 +86,8 @@ Below is an example of how you can use this component in HTML:
     isClosable: {
       name: 'Is Closable',
       control: 'boolean',
-      description: 'Determines whether the toast can be closed by the user. **this property is valid only for the `portal` component.**',
+      description:
+        'Determines whether the toast can be closed by the user. **this property is valid only for the `portal` component.**',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
@@ -97,7 +98,7 @@ Below is an example of how you can use this component in HTML:
       name: 'ID',
       control: 'text',
       description:
-      'A unique identifier for the toast, allowing you to target specific notifications for updates or removal.',
+        'A unique identifier for the toast, allowing you to target specific notifications for updates or removal.',
       table: {
         category: 'Properties',
         defaultValue: { summary: '' },
@@ -107,7 +108,8 @@ Below is an example of how you can use this component in HTML:
     onClose: {
       name: 'On Close',
       control: null,
-      description: 'Emits an event when the user closes the toast notification.',
+      description:
+        'Emits an event when the user closes the toast notification.',
       table: {
         category: 'Events',
         type: { summary: 'Event' },
