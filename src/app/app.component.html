@@ -1,18 +1,10 @@
-<bmb-theme></bmb-theme>
-<section style="padding: 1rem">
-  <bmb-toast title="test" description="test" appearance="neutral" id="1" />
-  <bmb-divider></bmb-divider>
-  <bmb-toast title="test" description="test" appearance="primary" id="2" />
-  <bmb-divider></bmb-divider>
-  <bmb-toast title="test" description="test" appearance="warning" id="3" />
-  <bmb-divider></bmb-divider>
-  <bmb-toast title="test" description="test" appearance="error" id="4" />
-  <bmb-divider></bmb-divider>
-  <bmb-toast title="test" description="test" appearance="event" id="5" />
-  <bmb-divider></bmb-divider>
-  <bmb-toast title="test" description="test" appearance="successful" id="6" />
-  <bmb-divider></bmb-divider>
-  <bmb-toast title="test" description="test" appearance="reminder" id="7" />
-</section>
-<button (click)="addNotification()">Add toast</button>
-<bmb-portal />
+<bmb-theme />
+<bmb-dropdown
+  [required]="true"
+  [showIcon]="true"
+  [placeholder]="'Set Fruit'"
+  [icon]="'bolt'"
+  [options]="options"
+  [label]="'Fruit'"
+  (onValueChange)="onValueChange($event)"
+/>
