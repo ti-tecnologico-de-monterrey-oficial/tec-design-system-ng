@@ -1,64 +1,9 @@
-import { Component, Input, ViewChild } from '@angular/core';
-import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
+import { Meta, StoryObj } from '@storybook/angular';
 import { BmbToastComponent } from './bmb-toast.component';
-import { ToastService } from '../../services/toast.service';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbButtonDirective } from '../../directives/button.directive';
-
-@Component({
-  standalone: true,
-  imports: [BmbToastComponent, BmbButtonDirective],
-  selector: 'storybook-toast-wrapper',
-  template: `
-    <button
-      bmbButton
-      appearance="primary"
-      icon="home"
-      size="small"
-      position="left"
-      [case]="false"
-      (click)="onButtonClick()"
-    >
-      Click Here
-    </button>
-    <bmb-toast
-      [title]="title"
-      [description]="description"
-      [appearance]="appearance"
-      [duration]="duration"
-      [position]="position"
-    ></bmb-toast>
-  `,
-})
-class StorybookToastWrapperComponent {
-  @Input() appearance: string = '';
-  @Input() title: string = '';
-  @Input() description?: string;
-  @Input() duration?: number;
-  @Input() position?: 'top' | 'bottom' | 'middle';
-
-  @ViewChild(BmbToastComponent)
-  private toastComponent!: BmbToastComponent;
-
-  onButtonClick() {
-    this.toastComponent.openToast();
-  }
-}
 
 export default {
   title: 'Micro Componentes/Toast',
   component: BmbToastComponent,
-  decorators: [
-    moduleMetadata({
-      imports: [
-        StorybookToastWrapperComponent,
-        BmbToastComponent,
-        BmbIconComponent,
-        BmbButtonDirective,
-      ],
-      providers: [ToastService],
-    }),
-  ],
   parameters: {
     docs: {
       description: {
@@ -66,23 +11,14 @@ export default {
 Below is an example of how you can use this component in TypeScript:
 
 \`\`\`typescript
-import { BmbButtonDirective, BmbToastComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
+import { BmbToastComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
 @Component({
   selector: 'component',
   standalone: true,
-  imports: [ BmbButtonDirective, BmbToastComponent ],
+  imports: [ BmbToastComponent ],
   templateUrl: './component.html',
   styleUrl: './component.scss',
 })
-export class Component {
-  title = 'my-app';
-
-  @ViewChild(BmbToastComponent)
-  private toastComponent!: BmbToastComponent;
-  onButtonClick() {
-    this.toastComponent.openToast();
-  }
-}
 \`\`\`
 
 Below is an example of how you can use this component in HTML:
@@ -135,29 +71,48 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string' },
       },
     },
-    duration: {
-      name: 'Duration',
-      control: {
-        type: 'number',
-      },
-      description:
-        'Determines how long the toast remains visible to the user, in milliseconds. A longer duration can be useful for more complex messages that require additional reading time, whereas shorter durations are suitable for succinct, immediate feedback',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: '5000' },
-        type: { summary: 'number' },
-      },
-    },
     position: {
       name: 'Position',
       control: 'select',
       options: ['top', 'bottom', 'middle'],
       description:
-        "Controls the position of the toast on the screen, helping to ensure the notification does not obstruct important interface elements. Options include top, bottom, and middle, allowing you to choose the most appropriate placement based on your application's layout and user experience requirements.",
+        'Controls the position of the toast on the screen, **this property is valid only for the `portal` component.**',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'top' },
         type: { summary: 'string' },
+      },
+    },
+    isClosable: {
+      name: 'Is Closable',
+      control: 'boolean',
+      description:
+        'Determines whether the toast can be closed by the user. **this property is valid only for the `portal` component.**',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
+    id: {
+      name: 'ID',
+      control: 'text',
+      description:
+        'A unique identifier for the toast, allowing you to target specific notifications for updates or removal.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: '' },
+        type: { summary: 'string' },
+      },
+    },
+    onClose: {
+      name: 'On Close',
+      control: null,
+      description:
+        'Emits an event when the user closes the toast notification.',
+      table: {
+        category: 'Events',
+        type: { summary: 'Event' },
       },
     },
   },
@@ -165,32 +120,12 @@ Below is an example of how you can use this component in HTML:
     title: 'Your toast title here',
     description: 'Your toast description here (optional)',
     appearance: 'neutral',
-    duration: 5000,
     position: 'top',
+    isClosable: false,
+    id: '',
   },
 } as Meta<typeof BmbToastComponent>;
 
-function attributes(object: { [key: string]: any }): string {
-  return Object.entries(object)
-    .filter(([key]) => key !== 'text')
-    .map(([key, value]) => {
-      if (key === 'duration') {
-        return `[${key}]="${value}"`;
-      }
-      return `${key}="${value}"`;
-    })
-    .join(' ');
-}
+type Story = StoryObj<BmbToastComponent>;
 
-export const Default: StoryFn<typeof BmbToastComponent> = (args) => {
-  return {
-    props: args,
-    template: `
-      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->
-      <storybook-toast-wrapper ${attributes(args)}></storybook-toast-wrapper>
-      <!-- Start copying from here -->
-      <div class="actions">
-      <button bmbButton appearance="primary" icon="home" size="small" position="left" [case]="false" (click)="onButtonClick()">Click Here</button>
-      <bmb-toast ${attributes(args)}></bmb-toast></div>`,
-  };
-};
+export const Default: Story = {};
