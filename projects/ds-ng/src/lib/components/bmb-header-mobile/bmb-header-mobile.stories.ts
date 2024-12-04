@@ -43,29 +43,21 @@ Below is an example of how you can use this component in HTML:
   },
   argTypes: {
     iconRight: {
-      name: 'Icon Right (deprecated)',
+      name: 'Icon Right',
       control: { type: 'text' },
       description:
         'This property is deprecated and will be removed in future versions.',
       table: {
         category: 'Deprecated',
-        deprecated: {
-          summary:
-            'This property is deprecated and will be removed in future versions.',
-        },
       },
     },
     iconRight2: {
-      name: 'Icon Right 2 (deprecated)',
+      name: 'Icon Right 2',
       control: { type: 'text' },
       description:
         'This property is deprecated and will be removed in future versions.',
       table: {
         category: 'Deprecated',
-        deprecated: {
-          summary:
-            'This property is deprecated and will be removed in future versions.',
-        },
       },
     },
     text: {
