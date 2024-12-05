@@ -108,6 +108,9 @@ export * from './lib/components/bmb-multi-dot-paginator/bmb-multi-dot-paginator.
 export * from './lib/components/bmb-multi-dot-paginator/bmb-multi-dot-paginator-item/bmb-multi-dot-paginator-item.component';
 export * from './lib/components/bmb-accordion/bmb-accordion.component';
 export * from './lib/components/bmb-alert-center/bmb-alert-center.component';
+export * from './lib/components/bmb-portal/bmb-portal.component';
+export * from './lib/components/bmb-iframe/bmb-iframe.component';
+
 // types
 export * from './lib/types';
 // interface

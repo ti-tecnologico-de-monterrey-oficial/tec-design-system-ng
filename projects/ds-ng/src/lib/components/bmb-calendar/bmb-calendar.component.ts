@@ -126,8 +126,6 @@ export class BmbCalendarComponent {
   }
 
   handleSelectEvent(newEvent: IBmbCalendarEventClick | null): void {
-    console.log('close modal');
-
     this.selectedEvent = newEvent;
   }
 

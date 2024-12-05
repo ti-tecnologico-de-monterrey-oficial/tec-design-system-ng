@@ -1,4 +1,5 @@
 import { IButtonAppearance } from '../../types';
+import { BmbToastAppearance } from '../bmb-toast/bmb-toast.component';
 
 export interface INotification extends IMinimalNotification {
   icon?: string;
@@ -13,6 +14,8 @@ export interface INotification extends IMinimalNotification {
   userMail?: string;
   userAvatar?: string;
   media?: string;
+  appearance?: BmbToastAppearance;
+  component?: 'toast' | 'notification';
 }
 
 export interface IMinimalNotification {
