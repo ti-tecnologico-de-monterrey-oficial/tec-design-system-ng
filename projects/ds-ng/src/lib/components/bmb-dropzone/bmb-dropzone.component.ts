@@ -67,8 +67,6 @@ export class BmbDropzoneComponent {
       changes['fileSize'] ||
       changes['uploadStatus']
     ) {
-      console.log('changes', changes);
-
       this.cdr.detectChanges();
     }
   }

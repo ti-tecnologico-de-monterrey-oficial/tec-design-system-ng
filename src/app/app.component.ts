@@ -96,6 +96,8 @@ import {
   BmbAlertCenterComponent,
   IBmbDataAlert,
   BmbInnerHeaderComponent,
+  BmbPortalComponent,
+  IBmbDropdownItem,
 } from '../../projects/ds-ng/src/public-api';
 import { BmbPullWedgeComponent } from '../../projects/ds-ng/src/lib/components/bmb-pull-wedge/bmb-pull-wedge.component';
 import { BmbCardButtonComponent } from '../../projects/ds-ng/src/lib/components/bmb-card-button/bmb-card-button.component';
@@ -201,6 +203,7 @@ import {
     BmbDropzoneComponent,
     BmbAlertCenterComponent,
     BmbInnerHeaderComponent,
+    BmbPortalComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -316,9 +319,6 @@ export class AppComponent {
 
   @ViewChild(BmbToastComponent)
   private toastComponent!: BmbToastComponent;
-  onButtonClick() {
-    this.toastComponent.openToast();
-  }
 
   handleDot(index: number): void {
     console.log('Index clicked:', index);
@@ -2652,15 +2652,16 @@ export class AppComponent {
   //     status,
   //   });
 
-  //   this.notificationSignal.addNotification({
-  //     title: 'Event added succesfully',
-  //     subTitle: title,
-  //     icon: 'info',
-  //     type: 'info',
-  //     appName: 'TEC',
-  //     isFullColor: false,
-  //   });
-  // }
+  addNotification() {
+    const component = Math.random() < 0.5 ? 'toast' : 'notification';
+    this.notificationSignal.addNotification({
+      component,
+      title: 'Notification',
+      content: 'This is a notification',
+      isFullColor: false,
+      appearance: 'event',
+    });
+  }
 
   getNotifications() {
     return this.notificationSignal.getNotificationList();
@@ -5134,5 +5135,18 @@ export class AppComponent {
     };
 
     this.matDialog.open(BmbModalComponent, { data });
+  }
+
+  // options: string[] = ['Apple', 'Banana', 'Orange', 'Pear', 'Grape'];
+  options: IBmbDropdownItem[] = [
+    { value: '1', name: 'Apple' },
+    { value: '2', name: 'Banana' },
+    { value: '3', name: 'Orange' },
+    { value: '4', name: 'Pear' },
+    { value: '5', name: 'Grape' },
+  ];
+
+  onValueChange(params: unknown): void {
+    window.alert(params?.toString());
   }
 }

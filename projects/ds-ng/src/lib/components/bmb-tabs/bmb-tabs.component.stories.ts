@@ -1,4 +1,4 @@
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+import { Meta, StoryObj } from '@storybook/angular';
 import { BmbTabsComponent } from './bmb-tabs.component';
 
 export default {
@@ -8,26 +8,24 @@ export default {
     docs: {
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
+### Example Usage with "Continue" and "Back" Buttons
 
+Below is an example of how you can use the **BmbTabsComponent** and control the active tab programmatically with "Continue" and "Back" buttons:
+
+#### TypeScript Code
 \`\`\`typescript
-import { BmbTabsComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbTabsComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-export interface Tab {
-  id: number;
-  title: string;
-  isActive?: boolean;
-  badge?: number;
-}
+import { Component, ViewChild } from '@angular/core';
+import { BmbTabsComponent, IBmbTab } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
 
-export class Component {
-  myTabs: Tab[] = [
+@Component({
+  selector: 'app-parent',
+  templateUrl: './parent.component.html',
+  styleUrls: ['./parent.component.scss'],
+})
+export class ParentComponent {
+  @ViewChild(BmbTabsComponent) bmbTabsComponent!: BmbTabsComponent;
+
+  tabsData: IBmbTab[] = [
     { id: 1, title: 'Tec de Monterrey', badge: 1, isActive: true },
     { id: 2, title: 'Prestamo educativo' },
     { id: 3, title: 'Mas usado' },
@@ -36,20 +34,24 @@ export class Component {
     { id: 6, title: 'Mas usado' },
   ];
 
-  activeTabId: number | null =
-    this.myTabs.find((tab: any) => tab.isActive)?.id ?? null;
+  onTabSelected(selectedTab: IBmbTab): void {
+    console.log('Selected tab:', selectedTab);
+    // Handle the selected tab
+  }
 
-  handleTabSelected(tab: any): void {
-    this.activeTabId = tab.id;
+  onContinue(): void {
+    this.bmbTabsComponent.goToNextTab();
+  }
+
+  onBack(): void {
+    this.bmbTabsComponent.goToPreviousTab();
   }
 }
-
 \`\`\`
 
-Below is an example of how you can use this component in HTML:
-
+#### HTML Template
 \`\`\`html
-<bmb-tabs [tabs]="myTabs" (selected)="handleTabSelected($event)">
+<bmb-tabs [tabs]="tabsData" (selected)="handleTabSelected($event)">
   <bmb-container *ngIf="activeTabId === 1" [appearance]="'primary-home'">
     <bmb-user-summary
       name="Test name"
@@ -89,7 +91,21 @@ Below is an example of how you can use this component in HTML:
     <bmb-loader [status]="'noConnection'" />
   </bmb-container>
 </bmb-tabs>
+
+<!-- Button to move to the next tab -->
+<button (click)="onContinue()" bmbButton>Continuar</button>
+
+<!-- Button to move to the previous tab -->
+<button (click)="onBack()" bmbButton>Regresar</button>
 \`\`\`
+
+#### Notes
+- **Tabs Data:** You can define the tabs data dynamically, as shown in the example.
+- **Button Actions:**
+  - The "Continuar" button uses the \`goToNextTab\` method to move to the next tab programmatically.
+  - The "Regresar" button uses the \`goToPreviousTab\` method to move to the previous tab programmatically.
+- **Selected Event:** The \`selected\` event emits the selected tab object whenever a tab is clicked.
+- **Boundaries:** The buttons will not perform any action if the user is already on the first or last tab, preventing out-of-bounds errors.
         `,
       },
     },
@@ -101,7 +117,7 @@ Below is an example of how you can use this component in HTML:
         type: 'text',
       },
       description:
-        'The format of the tab title. Use "uppercase" to capitalize the title.',
+        'The format of the tab title. Use "uppercase" to capitalize the titles.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -111,7 +127,7 @@ Below is an example of how you can use this component in HTML:
       name: 'Tabs',
       control: { type: 'object' },
       description:
-        'An array of objects representing each tab. Each object should have an id, title property, isActive and badge number.',
+        'An array of objects representing each tab. Each object should have an id, title, and optionally isActive and badge.',
       table: {
         category: 'Properties',
         type: { summary: 'Array<Tab>' },
@@ -121,9 +137,10 @@ Below is an example of how you can use this component in HTML:
       name: 'Selected',
       table: {
         category: 'Events',
-        type: { summary: '(selected)="handleTabSelected()"' },
+        type: { summary: 'EventEmitter<Tab>' },
       },
-      description: 'Event emitted when a tab is selected.',
+      description:
+        'Event emitted when a tab is selected. Provides the selected tab object.',
     },
   },
   args: {

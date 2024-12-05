@@ -21,7 +21,11 @@ describe('BmbBadgeComponent', () => {
   it('should return default classes', () => {
     componentRef.setInput('appearance', 'normal');
     componentRef.setInput('container', true);
-    expect(component.getClasses()).toEqual(['bmb_badge', 'bmb_badge-normal', 'bmb_badge-container']);
+    expect(component.getClasses()).toEqual([
+      'bmb_badge',
+      'bmb_badge-normal',
+      'bmb_badge-container',
+    ]);
   });
 
   it('should return classes without container', () => {
@@ -33,12 +37,19 @@ describe('BmbBadgeComponent', () => {
   it('should return classes with different appearance', () => {
     componentRef.setInput('appearance', 'highlight');
     componentRef.setInput('container', true);
-    expect(component.getClasses()).toEqual(['bmb_badge', 'bmb_badge-highlight', 'bmb_badge-container']);
+    expect(component.getClasses()).toEqual([
+      'bmb_badge',
+      'bmb_badge-highlight',
+      'bmb_badge-container',
+    ]);
   });
 
   it('should return classes without appearance', () => {
     componentRef.setInput('appearance', '');
     componentRef.setInput('container', true);
-    expect(component.getClasses()).toEqual(['bmb_badge', 'bmb_badge-container']);
+    expect(component.getClasses()).toEqual([
+      'bmb_badge',
+      'bmb_badge-container',
+    ]);
   });
 });
