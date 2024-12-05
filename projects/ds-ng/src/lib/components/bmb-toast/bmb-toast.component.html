@@ -17,7 +17,7 @@
   </div>
 
   @if (appearance() !== "reminder" && isClosable()) {
-    <button class="bmb_toast-button" (click)="handleClose(id())">
+    <button class="bmb_toast-button" (click)="handleClose()">
       <bmb-icon icon="close" class="bmb_toast-close" />
     </button>
   }

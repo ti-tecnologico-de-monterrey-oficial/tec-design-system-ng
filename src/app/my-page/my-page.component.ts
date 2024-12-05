@@ -46,6 +46,7 @@ import {
   BmbTabStudenActivityComponent,
   BmbStudentActivityCardComponent,
   BmbIconComponent,
+  BmbIframeComponent,
 } from '../../../projects/ds-ng/src/public-api';
 
 import { IBmbTab } from '../../../projects/ds-ng/src/public-api';
@@ -99,6 +100,7 @@ import names from '../names.json';
     BmbTabStudenActivityComponent,
     BmbStudentActivityCardComponent,
     BmbIconComponent,
+    BmbIframeComponent,
   ],
   templateUrl: './my-page.component.html',
   styleUrl: './my-page.component.scss',
