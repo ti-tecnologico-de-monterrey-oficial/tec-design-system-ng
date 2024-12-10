@@ -1,28 +1,198 @@
-<bmb-inner-header
-  [title]="'My Title'"
-  [placeholderSearch]="'Search'"
-  [subTitle]="'www.link.com'"
-  [trailingIconPrimary]="'lock'"
-  [trailingIconSecondary]="'home'"
-  [showClose]="true"
-  [showReturn]="false"
-  [showSearch]="true"
-  (searchData)="onSubmitVal($event)"
+<!-- <bmb-login-onboarding (handleRequest)="handleRequest($event)">
+  <p>custom content</p>
+</bmb-login-onboarding> -->
+<bmb-input
+  id="pcontrase1"
+  type="password"
+  name="contrase"
+  placeholder="Placeholder"
+  icon="lock"
+  errorMessage="Error message"
+  helperMessage="Helper Message"
+  [disabled]="false"
+  [isRequired]="true"
+  appearance="normal"
 />
-
-<bmb-breadcrumb
-  [dataTopBar]="[
-    { text: 'Tec. Sign', link: '/' },
-    { text: 'Borem ipsum dolor sit amet 1 Borem ipsum dolor sit amet 1' },
-  ]"
-  [dataLocalNav]="[
-    { text: 'Borem ipsum dolor sit amet 1', link: '/' },
-    { text: 'Borem ipsum dolor sit amet 2', link: '/emprendedor' },
-    { text: 'Borem ipsum dolor sit amet 3', link: '/emprendedor/vivencia' },
-    { text: 'Borem ipsum dolor sit amet 4', link: '/emprendedor/vivencia' },
-    { text: 'Borem ipsum dolor sit amet 5', link: '/emprendedor/vivencia' },
-    { text: 'Borem ipsum dolor sit amet 6', link: '/emprendedor/vivencia' },
-  ]"
-  [isTopBar]="false"
-  [isInactive]="false"
-></bmb-breadcrumb>
+<bmb-form-validation (formGroupState)="onSubmitVal($event)">
+  <bmb-input
+    id="password1"
+    type="password"
+    name="password"
+    placeholder="Placeholder"
+    icon="lock"
+    errorMessage="Error message"
+    helperMessage="Helper Message"
+    [disabled]="false"
+    [isRequired]="true"
+    appearance="normal"
+  />
+  <bmb-input
+    id="text1"
+    name="name"
+    placeholder="Placeholder"
+    icon="apps"
+    errorMessage="Error message"
+    helperMessage="Helper Message"
+    [disabled]="false"
+    [isRequired]="true"
+    appearance="normal"
+  />
+  <bmb-radial
+    id="radio1"
+    value="CCM"
+    name="contract"
+    label="Contract for teacher CCM.pdf"
+    [checked]="false"
+    [required]="true"
+    [disabled]="false"
+    errorMessage="Error message"
+    helperMessage="Helper message"
+    labelPosition="before"
+    (change)="handleRadial($event)"
+  />
+  <bmb-radial
+    id="radio2"
+    value="CCB"
+    name="contract"
+    label="Contrato profesor cátedra Biología CCB.pdf"
+    [checked]="false"
+    [required]="true"
+    [disabled]="false"
+    errorMessage="Error message"
+    helperMessage="Helper message"
+    labelPosition="after"
+    (change)="handleRadial($event)"
+  />
+  <bmb-input
+    id="text2"
+    name="named"
+    label="Input Label"
+    placeholder="Placeholder"
+    icon="apps"
+    errorMessage="Error message"
+    helperMessage="Helper Message"
+    [disabled]="true"
+    [isRequired]="false"
+    appearance="normal"
+    value="abc"
+  />
+  <bmb-input
+    id="text3"
+    name="otherName"
+    label="Input Label"
+    placeholder="Placeholder"
+    icon="apps"
+    errorMessage="Error message"
+    helperMessage="Helper Message"
+    [disabled]="false"
+    [isRequired]="true"
+    appearance="simple"
+  />
+  <bmb-input
+    id="textarea4"
+    name="comments"
+    label="Label textarea"
+    type="text-area"
+    tooltip="Tooltip text"
+    placeholder="Place holder text"
+    icon="apps"
+    errorMessage="Error message textarea"
+    helperMessage="Helper message textarea"
+    appearance="normal"
+    [disabled]="false"
+    [isRequired]="true"
+    [showMaxTextLength]="true"
+    [maxlength]="20"
+  />
+  <bmb-input
+    type="number"
+    icon="apps"
+    label="Number"
+    name="amount"
+    [max]="8"
+    [min]="0"
+    pattern="\d*"
+    errorMessage="Error message for number"
+    [helperMessage]="'Helper message for number'"
+    [isRequired]="true"
+  />
+  <bmb-input-phone-number
+    appearance="normal"
+    [name]="'phone'"
+    label="Phone"
+    [disabled]="false"
+    [isRequired]="true"
+    [errorMessage]="'Error phone'"
+    [helperMessage]="'Helper message phone'"
+  />
+  <bmb-input-phone-number
+    appearance="normal"
+    [name]="'phone2'"
+    label="Phone 2"
+    value="+525555555555"
+    [disabled]="true"
+    [isRequired]="false"
+    [errorMessage]="'Error phone'"
+    [helperMessage]="'Helper message phone'"
+  />
+  <bmb-input-phone-number
+    appearance="Simple"
+    [name]="'phone3'"
+    label="Phone 3"
+    [disabled]="false"
+    [isRequired]="true"
+    [errorMessage]="'Error phone'"
+    [helperMessage]="'Helper message phone'"
+  />
+  <bmb-checkbox
+    [id]="'checkbox1'"
+    name="checkbox1"
+    [checked]="true"
+    [disabled]="false"
+    [indeterminate]="false"
+    [required]="true"
+    [label]="'Contrato profesor cátedra Biología marina CCM.pdf'"
+    [labelPosition]="'after'"
+    [ariaDescribedby]="''"
+    [ariaLabel]="''"
+    [ariaLabelledby]="''"
+    errorMessage="Error message"
+    helperMessage="Helper Message"
+    (change)="handleCheckboxChange($event)"
+  />
+  <bmb-checkbox
+    [id]="'checkbox2'"
+    name="checkbox2"
+    [checked]="false"
+    [disabled]="false"
+    [indeterminate]="true"
+    [required]="true"
+    [label]="'Contrato profesor cátedra Biología marina CCM.pdf'"
+    [labelPosition]="'before'"
+    [ariaDescribedby]="''"
+    [ariaLabel]="''"
+    [ariaLabelledby]="''"
+    errorMessage="Error message"
+    helperMessage="Helper Message"
+    (change)="handleCheckboxChange($event)"
+  />
+  <bmb-switch
+    name="switch1"
+    [leftText]="'Light'"
+    [rightText]="'Dark'"
+    [isChecked]="false"
+    [ariaLabel]="'Describe the button function here'"
+    [id]="'1'"
+    [disabled]="false"
+  />
+  <bmb-switch
+    name="switch2"
+    [isChecked]="false"
+    leftIcon="light_mode"
+    rightIcon="dark_mode"
+    [ariaLabel]="'Describe the button function here'"
+    [id]="'2'"
+    [disabled]="false"
+  />
+  <button bmbButton appearance="primary" type="submit">Submit</button>
+</bmb-form-validation>

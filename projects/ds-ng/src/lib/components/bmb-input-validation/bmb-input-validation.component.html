@@ -6,7 +6,6 @@
           [type]="type()"
           class="bmb_field-radio-input"
           [formControl]="getFormControl()"
-          [type]="type()"
           [id]="id()"
           [name]="name()"
           [attr.aria-describedby]="ariaDescribedBy()"
@@ -154,6 +153,25 @@
               [enableSearch]="true"
             />
           </mat-form-field>
+        } @else if (type() === "password") {
+          <input
+            bmbControl
+            [type]="type()"
+            class="bmb_field-input"
+            [ngClass]="inputClasses"
+            [required]="isRequired()"
+            [disabled]="disabled()"
+            [placeholder]="placeholder()"
+            [formControl]="getFormControl()"
+            (focus)="handleFocus()"
+            (blur)="handleBlur()"
+            [name]="name()"
+            [id]="name()"
+            [maxlength]="maxlength()!"
+            [minlength]="minlength()!"
+            [pattern]="pattern()!"
+            [value]="value()"
+          />
         } @else {
           <input
             bmbControl

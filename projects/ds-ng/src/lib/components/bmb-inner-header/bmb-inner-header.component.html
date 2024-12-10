@@ -55,11 +55,11 @@
           <bmb-icon icon="close" [size]="24" />
         </button>
         <bmb-input
+          type="text"
           name="search"
           icon="search"
           [placeholder]="placeholderSearch()"
-          [appearance]="'normal'"
-          [value]=""
+          appearance="normal"
           (onBlur)="onSubmit()"
         />
       </form>

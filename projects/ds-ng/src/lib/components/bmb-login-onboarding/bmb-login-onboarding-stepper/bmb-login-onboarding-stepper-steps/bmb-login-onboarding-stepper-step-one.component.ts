@@ -9,6 +9,7 @@ import { BmbInputComponent } from '../../../bmb-input/bmb-input.component';
 import { BmbLoginOnboardingStepperStepComponent } from './bmb-login-onboarding-stepper-step.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BmbLoginOnboardingService } from '../../bmb-login-onboarding.service';
+import { BmbFormService } from '../../../../directives/bmb-form-control/bmb-form-control.service';
 
 @Component({
   selector: 'bmb-login-onboarding-stepper-step-one',
@@ -32,9 +33,7 @@ import { BmbLoginOnboardingService } from '../../bmb-login-onboarding.service';
           appearance="normal"
           [disabled]="false"
           [isRequired]="true"
-          [control]="getFormControl('user')"
-          [showError]="showErrors['user']"
-          (isBlur)="onSubmit()"
+          (onBlur)="onSubmit()"
         />
       </span>
       <span class="bmb_login-onboarding-stepper-step-one-input">
@@ -47,9 +46,7 @@ import { BmbLoginOnboardingService } from '../../bmb-login-onboarding.service';
           appearance="normal"
           [disabled]="false"
           [isRequired]="true"
-          [control]="getFormControl('password')"
-          [showError]="showErrors['password']"
-          (isBlur)="onSubmit()"
+          (onBlur)="onSubmit()"
         />
       </span>
       <p class="bmb_login-onboarding-stepper-step-content-subcontent-sublabel">
@@ -66,47 +63,28 @@ export class BmbLoginOnboardingStepperStepOneComponent {
   handleRequest = output<any>();
   handleContinueStep = output();
 
-  userForm: FormGroup = new FormGroup({
-    user: new FormControl<string>('', Validators.required),
-    password: new FormControl<string>('', Validators.required),
-  });
-  showErrors: { [key: string]: boolean } = {};
-
-  constructor(private loginOnboardingService: BmbLoginOnboardingService) {}
+  constructor(
+    private loginOnboardingService: BmbLoginOnboardingService,
+    private formService: BmbFormService,
+  ) {}
 
   onSubmit(): void {
-    if (this.userForm.valid) {
+    if (this.formService.getFormGroup().valid) {
       this.isContinueDisable.set(false);
       return;
     }
-    this.userForm.markAllAsTouched();
-    this.updateErrorState();
     this.isContinueDisable.set(true);
-  }
-
-  updateErrorState(): void {
-    Object.keys(this.userForm.controls).forEach((field) => {
-      const control = this.userForm.get(field);
-      if (control instanceof FormControl) {
-        this.showErrors[field] =
-          control.invalid && (control.touched || control.dirty);
-      }
-    });
-  }
-
-  getFormControl(name: string): FormControl {
-    return this.userForm.get(name) as FormControl;
   }
 
   _handleContinueStep(): void {
     this.loginOnboardingService.setIsLoading(true);
     this.handleRequest.emit({
-      data: this.userForm['value'],
+      data: this.formService.getFormGroup()['value'],
       action: 'auth',
       callback: (result: boolean) => {
         if (result) {
           this.loginOnboardingService.setUserInfo({
-            id: this.userForm.value['user'],
+            id: this.formService.getFormControlByName('user').value,
             fullName: '',
             profilePicture: '',
           });
