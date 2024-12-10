@@ -15,7 +15,9 @@ export class BmbFormControlDirective {
   ) {}
 
   ngOnInit(): void {
-    const inputs = this.el.nativeElement.querySelectorAll('bmb-input');
+    const inputs = this.el.nativeElement.querySelectorAll(
+      'bmb-input-validation',
+    );
     inputs.forEach((input: any) => {
       const type = input.getAttribute('type');
       this.formService.setFormControlByType(

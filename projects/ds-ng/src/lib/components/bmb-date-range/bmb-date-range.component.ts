@@ -8,7 +8,7 @@ import { FormControl } from '@angular/forms';
 import { BmbDatepickerComponent } from '../bmb-datepicker/bmb-datepicker.component';
 import { CommonModule } from '@angular/common';
 import { DateTime } from 'luxon';
-import { IBmbInputAppearance } from '../bmb-input/bmb-input.component';
+import { IBmbInputAppearance } from '../bmb-input-validation/bmb-input-validation.component';
 
 @Component({
   selector: 'bmb-date-range',

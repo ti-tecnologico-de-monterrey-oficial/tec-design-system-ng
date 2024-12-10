@@ -1,13 +1,13 @@
 import { Directive, HostListener, input, output } from '@angular/core';
-import { IBbmInputType } from '../../../public-api';
 import { BmbFormService } from '../bmb-form-control/bmb-form-control.service';
+import { IBmbInputType } from '../../components/bmb-input-validation/bmb-input-validation.component';
 
 @Directive({
   selector: '[bmbControl]',
   standalone: true,
 })
 export class BmbInputControlDirective {
-  type = input<IBbmInputType>('text-area');
+  type = input<IBmbInputType>('text-area');
   name = input.required<string>();
   value = input<string>();
   checked = input<boolean>(false);

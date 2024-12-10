@@ -9,7 +9,7 @@
       [appearance]="appearance"
       [control]="control"
       [isRequired]="isRequired"
-      (isFocus)="handleFocusedEvent($event)"
+      (onFocus)="handleFocusedEvent($event)"
       [helperMessage]="dateFormat"
       [errorMessage]="getErrorMessage(control.errors)"
       [name]="name"

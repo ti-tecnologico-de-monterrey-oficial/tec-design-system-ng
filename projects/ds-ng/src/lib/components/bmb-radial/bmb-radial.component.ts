@@ -5,14 +5,14 @@ import {
   input,
   output,
 } from '@angular/core';
-import { BmbInputComponent } from '../bmb-input/bmb-input.component';
 import { IBbmSidePosition } from '../../types';
 import { FormControl } from '@angular/forms';
+import { BmbInputValidationComponent } from '../bmb-input-validation/bmb-input-validation.component';
 
 @Component({
   selector: 'bmb-radial',
   template: `
-    <bmb-input
+    <bmb-input-validation
       type="radio"
       [id]="id()"
       [name]="name()"
@@ -24,15 +24,15 @@ import { FormControl } from '@angular/forms';
       [helperMessage]="helperMessage()"
       [disabled]="disabled()"
       [labelPosition]="labelPosition()"
-      (onChange)="handleChange($event)"
       [control]="control()"
       [ariaDescribedBy]="ariaDescribedby()"
       [ariaLabel]="ariaLabel()"
       [ariaLabelledBy]="ariaLabelledby()"
+      (onChange)="handleChange($event)"
     />
   `,
   standalone: true,
-  imports: [BmbInputComponent],
+  imports: [BmbInputValidationComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

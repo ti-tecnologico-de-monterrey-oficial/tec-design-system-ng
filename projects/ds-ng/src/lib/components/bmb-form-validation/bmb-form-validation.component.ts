@@ -34,7 +34,7 @@ export class BmbFormValidationComponent {
     return this.formService.getFormGroup();
   }
 
-  handleFormGroupState(event: FormGroup) {
-    this.formGroupState.emit(event);
+  handleFormGroupState(state: FormGroup) {
+    this.formGroupState.emit(state);
   }
 }

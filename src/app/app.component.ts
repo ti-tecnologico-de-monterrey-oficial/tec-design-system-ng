@@ -41,7 +41,6 @@ import {
   BmbFabComponent,
   BmbTabsComponent,
   BmbProgressCircleComponent,
-  BmbCheckboxComponent,
   BmbCalendarComponent,
   BmbTopBarComponent,
   BmbTopBarItemComponent,
@@ -105,6 +104,7 @@ import {
   IBmbDataAlert,
   BmbInnerHeaderComponent,
   IBmbDropdownItem,
+  BmbCheckboxComponent,
 } from '../../projects/ds-ng/src/public-api';
 import { BmbPullWedgeComponent } from '../../projects/ds-ng/src/lib/components/bmb-pull-wedge/bmb-pull-wedge.component';
 import { BmbCardButtonComponent } from '../../projects/ds-ng/src/lib/components/bmb-card-button/bmb-card-button.component';
@@ -3036,7 +3036,7 @@ export class AppComponent {
     alert('Selection: close' + event);
   }
 
-  onSubmitVal(event: unknown) {
+  onSubmitVal(event: unknown): void {
     console.log('onSubmit', event);
   }
 
@@ -3055,7 +3055,6 @@ export class AppComponent {
     comments: new FormControl<string>(''),
     contract: new FormControl(''),
     amount: new FormControl(),
-    // date: new FormControl<string>(''),
     phone: new FormControl(),
     phone2: new FormControl(),
     phone3: new FormControl(),

@@ -17,7 +17,7 @@ import { BmbInputControlDirective } from '../../../public-api';
 import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
-export type IBbmInputType =
+export type IBmbInputType =
   | 'text'
   | 'password'
   | 'number'
@@ -27,12 +27,12 @@ export type IBbmInputType =
   | 'email'
   | 'phone'
   | 'switch';
-export type IBbmInputAppearance = 'main' | 'normal' | 'simple';
+export type IBmbInputAppearance = 'main' | 'normal' | 'simple';
 
 @Component({
-  selector: 'bmb-input-val',
-  styleUrls: ['./bmb-input.component.scss'],
-  templateUrl: './bmb-input.component.html',
+  selector: 'bmb-input-validation',
+  styleUrls: ['./bmb-input-validation.component.scss'],
+  templateUrl: './bmb-input-validation.component.html',
   standalone: true,
   imports: [
     CommonModule,
@@ -46,12 +46,12 @@ export type IBbmInputAppearance = 'main' | 'normal' | 'simple';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbInputComponent {
+export class BmbInputValidationComponent {
   label = input<string>('');
-  type = input<IBbmInputType>('text');
+  type = input<IBmbInputType>('text');
   placeholder = input<string>('');
   icon = input<string>('');
-  appearance = input<IBbmInputAppearance | string>('normal');
+  appearance = input<IBmbInputAppearance | string>('normal');
   errorMessage = input<string>('');
   helperMessage = input<string>('');
   disabled = input<boolean>(false);
@@ -80,10 +80,9 @@ export class BmbInputComponent {
   rightText = input<string>('');
   rightIcon = input<string>('');
   control = model<FormControl>();
-  showError = input<boolean>(false);
 
-  isFocus = output<boolean>();
-  isBlur = output<boolean>();
+  onFocus = output<boolean>();
+  onBlur = output<FormControl>();
   onChange = output<Event>();
 
   validValuePhone: string = '';
@@ -232,12 +231,11 @@ export class BmbInputComponent {
     event.stopPropagation();
   }
 
-  onFocus() {
-    this.isFocus.emit(true);
+  handleFocus() {
+    this.onFocus.emit(true);
   }
 
-  onBlur() {
-    this.isFocus.emit(false);
-    this.isBlur.emit(true);
+  handleBlur() {
+    this.onBlur.emit(this.control()!);
   }
 }

@@ -5,15 +5,13 @@ import {
   input,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import {
-  BmbInputComponent,
-  IBbmInputAppearance,
-} from '../bmb-input/bmb-input.component';
+import { BmbInputValidationComponent } from '../bmb-input-validation/bmb-input-validation.component';
+import { IBbmInputAppearance } from 'ds-ng';
 
 @Component({
   selector: 'bmb-input-phone-number',
   template: `
-    <bmb-input
+    <bmb-input-validation
       [appearance]="appearance()"
       type="phone"
       [name]="name()"
@@ -27,7 +25,7 @@ import {
     />
   `,
   standalone: true,
-  imports: [BmbInputComponent],
+  imports: [BmbInputValidationComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

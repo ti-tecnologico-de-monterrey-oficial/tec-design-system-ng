@@ -15,12 +15,10 @@ import {
 } from '@angular/forms';
 import { DateTime } from 'luxon';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import {
-  BmbInputComponent,
-  IBmbInputAppearance,
-} from '../bmb-input/bmb-input.component';
+import { BmbInputComponent } from '../bmb-input/bmb-input.component';
 import { BmbDatepickerModalComponent } from './bmb-datepicker-modal/bmb-datepicker-modal.component';
 import { ClickOutsideDirective } from '../../directives/utils/clickoutside.directive';
+import { IBmbInputAppearance } from '../bmb-input-validation/bmb-input-validation.component';
 
 @Component({
   selector: 'bmb-datepicker',

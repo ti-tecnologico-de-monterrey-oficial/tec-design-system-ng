@@ -15,11 +15,9 @@ import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.direc
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 import { BmbTooltipComponent } from '../bmb-tooltip/bmb-tooltip.component';
-import {
-  BmbInputComponent,
-  IBmbInputAppearance,
-} from '../bmb-input/bmb-input.component';
+import { BmbInputComponent } from '../bmb-input/bmb-input.component';
 import { BmbButtonDirective } from '../../directives/button.directive';
+import { IBmbInputAppearance } from '../bmb-input-validation/bmb-input-validation.component';
 
 export interface IBmbEvaluationRubric {
   criterion: string;

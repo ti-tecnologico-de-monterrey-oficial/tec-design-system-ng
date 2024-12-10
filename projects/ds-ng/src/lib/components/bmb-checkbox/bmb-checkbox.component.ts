@@ -6,14 +6,14 @@ import {
   output,
   model,
 } from '@angular/core';
-import { BmbInputComponent } from '../bmb-input/bmb-input.component';
+import { BmbInputValidationComponent } from '../bmb-input-validation/bmb-input-validation.component';
 import { IBbmSidePosition } from '../../types';
 import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'bmb-checkbox',
   template: `
-    <bmb-input
+    <bmb-input-validation
       type="checkbox"
       [id]="id()"
       [name]="name()"
@@ -34,7 +34,7 @@ import { FormControl } from '@angular/forms';
     />
   `,
   standalone: true,
-  imports: [BmbInputComponent],
+  imports: [BmbInputValidationComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

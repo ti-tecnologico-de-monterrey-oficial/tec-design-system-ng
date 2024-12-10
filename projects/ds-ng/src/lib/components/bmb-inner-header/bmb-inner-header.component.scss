@@ -32,10 +32,6 @@
     width: rem.rem_calc(24);
   }
 
-  &-icon {
-    font-size: rem.rem_calc(24);
-  }
-
   &-title {
     @include fonts.font(6, semibold);
     flex-grow: 1;
@@ -55,7 +51,7 @@
     position: relative;
     padding: rem.rem_calc(8 0);
 
-    .bmb_inner_header-button {
+    &-button {
       position: absolute;
       top: rem.rem_calc(20);
       right: rem.rem_calc(10);
