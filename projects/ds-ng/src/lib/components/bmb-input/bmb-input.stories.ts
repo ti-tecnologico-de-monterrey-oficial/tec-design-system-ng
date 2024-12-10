@@ -99,6 +99,7 @@ Below is an example of how to use this component in HTML:
     [icon]="'apps'"
     [errorMessage]="'Error'"
     [helperMessage]="'Helper Message'"
+    [tooltip]="'Esto es un tooltipo'"
     [disabled]="false"
     [isRequired]="false"
     [appearance]="'normal'"
@@ -222,6 +223,18 @@ Below is an example of how to use this component in HTML:
         type: { summary: 'string' },
       },
     },
+    tooltip: {
+      name: 'Tooltip',
+      control: {
+        type: 'text',
+      },
+      description:
+        'Set a text to display a icon tooltip above the input field.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
     appearance: {
       name: 'Appearance',
       control: {
@@ -313,6 +326,18 @@ Below is an example of how to use this component in HTML:
         type: { summary: 'number' },
       },
     },
+    showError: {
+      name: 'Show errors',
+      control: {
+        type: 'text',
+      },
+      description:
+        'This property is deprecated and will be removed in future versions. The handling of error validations is automatic considering the values ​​sent in the configurations (properties) according to the input type.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'number' },
+      },
+    },
   },
 
   args: {
@@ -325,6 +350,7 @@ Below is an example of how to use this component in HTML:
     disabled: false,
     label: 'Input Label',
     appearance: 'normal',
+    tooltip: 'Tooltip de apoyo para el input',
   },
 } as Meta<typeof BmbInputComponent>;
 

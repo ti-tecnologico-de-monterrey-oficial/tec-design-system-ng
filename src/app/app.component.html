@@ -9,3 +9,20 @@
   [showSearch]="true"
   (searchData)="onSubmitVal($event)"
 />
+
+<bmb-breadcrumb
+  [dataTopBar]="[
+    { text: 'Tec. Sign', link: '/' },
+    { text: 'Borem ipsum dolor sit amet 1 Borem ipsum dolor sit amet 1' },
+  ]"
+  [dataLocalNav]="[
+    { text: 'Borem ipsum dolor sit amet 1', link: '/' },
+    { text: 'Borem ipsum dolor sit amet 2', link: '/emprendedor' },
+    { text: 'Borem ipsum dolor sit amet 3', link: '/emprendedor/vivencia' },
+    { text: 'Borem ipsum dolor sit amet 4', link: '/emprendedor/vivencia' },
+    { text: 'Borem ipsum dolor sit amet 5', link: '/emprendedor/vivencia' },
+    { text: 'Borem ipsum dolor sit amet 6', link: '/emprendedor/vivencia' },
+  ]"
+  [isTopBar]="false"
+  [isInactive]="false"
+></bmb-breadcrumb>

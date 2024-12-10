@@ -61,7 +61,7 @@ export class BmbInnerHeaderComponent {
 
   handleCloseSearch(): void {
     this.toggleSearch.set(false);
-    this.formService.getFormControlByName('search').setValue("");
+    this.formService.getFormControlByName('search').setValue('');
   }
 
   handleTrailingIconPrimary(event: any): void {

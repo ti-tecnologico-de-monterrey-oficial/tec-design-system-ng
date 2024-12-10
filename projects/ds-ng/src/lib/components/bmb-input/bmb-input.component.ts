@@ -15,7 +15,6 @@ import {
 
 @Component({
   selector: 'bmb-input',
-  styleUrls: ['./bmb-input.component.scss'],
   template: `
     <bmb-input-validation
       [type]="type()"
