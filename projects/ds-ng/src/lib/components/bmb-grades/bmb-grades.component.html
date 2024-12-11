@@ -34,35 +34,16 @@
       (onLeadingClick)="handleLeftPeriodClick()"
       (onTrailingClick)="handleRightPeriodClick()"
     />
-    <bmb-container class="bmb_grades-summary" [isHidden]="!showPrincipalDetail">
-      <section
-        class="bmb_grades-summary-container"
-        bmbLayout
-        margin="none"
-        justify="spaceAround"
-        [dynamicCols]="true"
-      >
-        <bmb-focus-element
-          bmbLayoutItem
-          [number]="getAccreditedClasses()"
-          title="Materias Acreditadas"
-          [isNormal]="true"
-          [isNonFocused]="true"
-        />
-        <bmb-focus-element
-          bmbLayoutItem
-          [number]="getPeriodAverage()"
-          title="Promedio Semestre"
-        />
-        <bmb-focus-element
-          bmbLayoutItem
-          [number]="getServiceHours()"
-          title="Horas Servicio"
-          [isNormal]="true"
-          [isNonFocused]="true"
-        />
-      </section>
-    </bmb-container>
+    @if (showPrincipalDetail) {
+      <bmb-academic-progress
+        [accredited]="{
+          name: 'Materias Acreditadas',
+          value: getAccreditedClasses(),
+        }"
+        [average]="{ name: 'Promedio Semestre', value: getPeriodAverage() }"
+        [summary]="{ name: 'Horas Servicio', value: getServiceHours() }"
+      />
+    }
   </bmb-inner-header>
   @for (element of getElements(); track $index) {
     <bmb-container-button
