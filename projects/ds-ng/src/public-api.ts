@@ -5,6 +5,7 @@
 export * from './lib/ds-ng.service';
 export * from './lib/services/notification.service';
 export * from './lib/services/calendar.service';
+export * from './lib/services/user/profile.service';
 
 export * from './lib/ds-ng.component';
 export * from './lib/directives/button.directive';
@@ -107,6 +108,10 @@ export * from './lib/components/bmb-invoice/bmb-invoice.component';
 export * from './lib/components/bmb-multi-dot-paginator/bmb-multi-dot-paginator.component';
 export * from './lib/components/bmb-multi-dot-paginator/bmb-multi-dot-paginator-item/bmb-multi-dot-paginator-item.component';
 export * from './lib/components/bmb-accordion/bmb-accordion.component';
+export * from './lib/components/bmb-login/bmb-login.component';
+export * from './lib/components/bmb-user-profile/bmb-user-profile.component';
+export * from './lib/components/bmb-user-profile/bmb-user-profile.component';
+export * from './lib/components/bmb-academic-progress/bmb-academic-progress.component';
 export * from './lib/components/bmb-alert-center/bmb-alert-center.component';
 export * from './lib/components/bmb-portal/bmb-portal.component';
 export * from './lib/components/bmb-iframe/bmb-iframe.component';
