@@ -94,7 +94,12 @@ import {
   BmbDropzoneComponent,
   IBmbFileUploadStatus,
   BmbHomeMitecComponent,
+  BmbAlertCenterComponent,
+  IBmbDataAlert,
   BmbInnerHeaderComponent,
+  BmbPortalComponent,
+  BmbBreadcrumbComponent,
+  IBmbDropdownItem,
 } from '../../projects/ds-ng/src/public-api';
 import { BmbPullWedgeComponent } from '../../projects/ds-ng/src/lib/components/bmb-pull-wedge/bmb-pull-wedge.component';
 import { BmbCardButtonComponent } from '../../projects/ds-ng/src/lib/components/bmb-card-button/bmb-card-button.component';
@@ -133,6 +138,7 @@ import {
     BmbButtonDirective,
     BmbToastComponent,
     BmbContainerComponent,
+    BmbBreadcrumbComponent,
     BmbContainerButtonComponent,
     BmbHeaderMobileComponent,
     BmbHomeSectionComponent,
@@ -199,7 +205,9 @@ import {
     BmbTimestreamCardComponent,
     BmbDropzoneComponent,
     BmbHomeMitecComponent,
+    BmbAlertCenterComponent,
     BmbInnerHeaderComponent,
+    BmbPortalComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -315,9 +323,6 @@ export class AppComponent {
 
   @ViewChild(BmbToastComponent)
   private toastComponent!: BmbToastComponent;
-  onButtonClick() {
-    this.toastComponent.openToast();
-  }
 
   handleDot(index: number): void {
     console.log('Index clicked:', index);
@@ -2651,15 +2656,16 @@ export class AppComponent {
   //     status,
   //   });
 
-  //   this.notificationSignal.addNotification({
-  //     title: 'Event added succesfully',
-  //     subTitle: title,
-  //     icon: 'info',
-  //     type: 'info',
-  //     appName: 'TEC',
-  //     isFullColor: false,
-  //   });
-  // }
+  addNotification() {
+    const component = Math.random() < 0.5 ? 'toast' : 'notification';
+    this.notificationSignal.addNotification({
+      component,
+      title: 'Notification',
+      content: 'This is a notification',
+      isFullColor: false,
+      appearance: 'event',
+    });
+  }
 
   getNotifications() {
     return this.notificationSignal.getNotificationList();
@@ -4994,7 +5000,157 @@ export class AppComponent {
     },
   ];
 
+  alerts: IBmbDataAlert[] = [
+    {
+      id: 10,
+      title: 'Alerta 10',
+      description: [
+        { text: 'Descripción de la alerta 10', type: 'title' },
+        { text: 'Descripción de la alerta 10 paragraph', type: 'paragraph' },
+        {
+          text: 'Descripción de la alerta 10',
+          type: 'button',
+          variant: 'primary',
+        },
+      ],
+      date: '19/11/2024',
+      isRead: false,
+      time: '12:00',
+      tags: [
+        { text: 'tag1', color: 'info' },
+        { text: 'tag2', color: 'brand' },
+      ],
+      type: 'tipo 1',
+      isFavorite: true,
+      isArchived: false,
+    },
+    {
+      id: 1,
+      title: 'Alerta 1',
+      description: [
+        { text: 'Descripción de la alerta 10', type: 'title' },
+        { text: 'Descripción de la alerta 10 paragraph', type: 'paragraph' },
+        {
+          text: 'Descripción de la alerta 10 link',
+          type: 'link',
+          href: 'https://www.google.com',
+        },
+        {
+          text: 'Descripción de la alerta 10',
+          type: 'button',
+          variant: 'secondary-filled',
+        },
+      ],
+      date: '01/11/2024',
+      isRead: false,
+      time: '12:00',
+      type: 'tipo 1',
+      isFavorite: true,
+      isArchived: false,
+    },
+    {
+      id: 2,
+      title: 'Alerta 2',
+      description: [
+        { text: 'Descripción de la alerta 10', type: 'title' },
+        { text: 'Descripción de la alerta 10 paragraph', type: 'paragraph' },
+        {
+          text: 'Descripción de la alerta 10 link',
+          type: 'image',
+          href: 'https://picsum.photos/200',
+        },
+      ],
+      date: '19/11/2024',
+      isRead: true,
+      time: '15:00',
+      type: 'tipo 2',
+      isFavorite: false,
+      isArchived: true,
+    },
+    {
+      id: 3,
+      title: 'Alerta 3',
+      description: [
+        {
+          text: 'Descripción de la alerta 10',
+          type: 'paragraph',
+          style: 'bold',
+        },
+        { text: 'Descripción de la alerta 10 paragraph', type: 'paragraph' },
+      ],
+      date: '18/11/2024',
+      isRead: false,
+      time: '12:00',
+      type: 'tipo 1',
+      isFavorite: false,
+      isArchived: false,
+    },
+    {
+      id: 4,
+      title: 'Alerta 4',
+      description: [
+        {
+          text: 'Descripción de la alerta 10',
+          type: 'paragraph',
+          style: 'bold',
+        },
+        { text: 'Descripción de la alerta 10 paragraph', type: 'paragraph' },
+      ],
+      date: '02/11/2024',
+      isRead: true,
+      time: '12:00',
+      type: 'tipo 3',
+      isFavorite: false,
+      isArchived: false,
+    },
+    {
+      id: 4,
+      title: 'Alerta 40',
+      description: [
+        { text: 'Descripción de la alerta 10', type: 'title' },
+        { text: 'Descripción de la alerta 10 paragraph', type: 'paragraph' },
+        {
+          text: 'Descripción de la alerta 10 link',
+          type: 'image',
+          href: 'https://picsum.photos/200',
+        },
+      ],
+      date: '02/01/2024',
+      isRead: true,
+      time: '12:00',
+      type: 'tipo 1',
+      isFavorite: false,
+      isArchived: false,
+    },
+  ];
   handleSearch(event: string): void {
     console.log('Received search value:', event);
+  }
+
+  openModalComponent() {
+    const data: ModalDataConfig = {
+      title: 'Modal Title',
+      subtitle: 'Modal Subtitle',
+      content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+      size: 'large',
+      type: 'action',
+      primaryBtnLabel: 'Ok',
+      primaryAction: () => window.alert('Primary action triggered!'),
+    };
+
+    this.matDialog.open(BmbModalComponent, { data });
+  }
+
+  // options: string[] = ['Apple', 'Banana', 'Orange', 'Pear', 'Grape'];
+  options: IBmbDropdownItem[] = [
+    { value: '1', name: 'Apple' },
+    { value: '2', name: 'Banana' },
+    { value: '3', name: 'Orange' },
+    { value: '4', name: 'Pear' },
+    { value: '5', name: 'Grape' },
+  ];
+
+  onValueChange(params: unknown): void {
+    window.alert(params?.toString());
   }
 }

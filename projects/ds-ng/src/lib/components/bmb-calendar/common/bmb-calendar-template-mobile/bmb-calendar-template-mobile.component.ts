@@ -52,11 +52,6 @@ export class BmbCalendarTemplateMobileComponent {
   defaultDayOrder = Info.weekdays('narrow', { locale: this.lang });
   dayNames = orderDayNames(this.defaultDayOrder);
 
-  logNow() {
-    console.log(this.now);
-    return 'test';
-  }
-
   handleExpand() {
     this.isCalendarOpen = !this.isCalendarOpen;
   }

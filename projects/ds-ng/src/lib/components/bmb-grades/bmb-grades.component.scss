@@ -38,6 +38,11 @@
     color: RGBA(var(--color-charade-950));
     @include fonts.font(4, medium);
   }
+
+  .bmb_container-button {
+    width: calc(100% - 2rem);
+    margin: 1rem;
+  }
 }
 
 [data-theme="dark"],
