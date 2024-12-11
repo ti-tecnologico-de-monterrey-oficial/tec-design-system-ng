@@ -3,7 +3,7 @@
     @if (type() === "radio") {
       <span class="bmb_field-radio">
         <input
-          [type]="type()"
+          type="radio"
           class="bmb_field-radio-input"
           [formControl]="getFormControl()"
           [id]="id()"
@@ -29,7 +29,7 @@
           [ngClass]="{
             'bmb_field-checkbox-input-indeterminate': indeterminate(),
           }"
-          [type]="type()"
+          type="checkbox"
           [formControl]="getFormControl()"
           [id]="id()"
           [name]="name()"
@@ -156,7 +156,7 @@
         } @else if (type() === "password") {
           <input
             bmbControl
-            [type]="type()"
+            type="password"
             class="bmb_field-input"
             [ngClass]="inputClasses"
             [required]="isRequired()"
