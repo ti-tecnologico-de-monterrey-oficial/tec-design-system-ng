@@ -6,7 +6,13 @@ import {
 } from '@angular/core';
 import { BmbIframePipeTransform } from './bmb-iframe.pipe';
 
-export type BmbIframeReferrerPolicy = 'no-referrer' | 'origin' | 'same-origin' | 'strict-origin' | 'strict-origin-when-cross-origin' | 'unsafe-url';
+export type BmbIframeReferrerPolicy =
+  | 'no-referrer'
+  | 'origin'
+  | 'same-origin'
+  | 'strict-origin'
+  | 'strict-origin-when-cross-origin'
+  | 'unsafe-url';
 
 @Component({
   selector: 'bmb-iframe',
