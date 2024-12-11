@@ -107,6 +107,16 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'boolean' },
       },
     },
+    isCompact: {
+      name: 'Is compact',
+      control: { type: 'boolean' },
+      description: 'Reduce the padding of the card.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
     // alternative_appearance: {
     //   name: 'Alternative appearance',
     //   control: { type: 'boolean' },
@@ -135,6 +145,8 @@ Below is an example of how you can use this component in HTML:
     type: 'active',
     sub_content: 'Sub content',
     enable_bullet: true,
+    is_active: false,
+    isCompact: false,
     onClick: () => {
       console.log('test');
     },
@@ -157,6 +169,8 @@ export const Default: Story = {
           [type]="type"
           [sub_content]="sub_content"
           [enable_bullet]="enable_bullet"
+          [is_active]="is_active"
+          [isCompact]="isCompact"
         />
       </div>
     `,

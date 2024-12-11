@@ -92,6 +92,7 @@ Below is an example of how to use this component in HTML:
     [icon]="'apps'"
     [errorMessage]="'Error'"
     [helperMessage]="'Helper Message'"
+    [tooltip]="'Esto es un tooltipo'"
     [disabled]="false"
     [isRequired]="false"
     [appearance]="'normal'"
@@ -201,6 +202,17 @@ Below is an example of how to use this component in HTML:
         type: 'text',
       },
       description: 'Label text to be displayed above the input field.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
+    tooltip: {
+      name: 'Tooltip',
+      control: {
+        type: 'text',
+      },
+      description: 'Set a text to display a icon tooltip above the input field.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -321,6 +333,7 @@ Below is an example of how to use this component in HTML:
     label: 'Input Label',
     appearance: 'normal',
     showError: false,
+    tooltip: 'Tooltip de apoyo para el input'
   },
 } as Meta<typeof BmbInputComponent>;
 

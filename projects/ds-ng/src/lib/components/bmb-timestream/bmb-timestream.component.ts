@@ -1,8 +1,6 @@
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
-  effect,
   input,
   signal,
   SimpleChanges,
@@ -16,7 +14,6 @@ import { BmbTimestreamTimelineComponent } from './bmb-timestream-timeline/bmb-ti
 import { BmbTimestreamDetailsComponent } from './bmb-timestream-detail/bmb-timestream-detail.component';
 import { ITimelineEvent, ISelectedDate, ITimelineEventParsed } from './types';
 import { CommonModule } from '@angular/common';
-import { BmbFilterCardComponent } from '../bmb-filter-card/bmb-filter-card.component';
 import { ModalDataConfig } from '../bmb-modal/bmb-modal.interface';
 import { BmbModalComponent } from '../bmb-modal/bmb-modal.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -25,6 +22,8 @@ import { BmbTabsComponent } from '../bmb-tabs/bmb-tabs.component';
 import { BmbButtonDirective } from '../../directives/button.directive';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 import { BmbHitoCardComponent } from '../bmb-hito-card/bmb-hito-card.component';
+import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
+import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
 
 interface IPlaceholderObject {
   [key: string]: any | any[];
@@ -51,12 +50,12 @@ export interface IBmbClamp {
     BmbTimestreamTimelineComponent,
     BmbTimestreamDetailsComponent,
     CommonModule,
-    BmbFilterCardComponent,
     BmbUserImageComponent,
     BmbTabsComponent,
     BmbButtonDirective,
     BmbDividerComponent,
     BmbHitoCardComponent,
+    BmbBadgeComponent,
   ],
   templateUrl: './bmb-timestream.component.html',
   styleUrl: './bmb-timestream.component.scss',
@@ -301,5 +300,24 @@ export class BmbTimestreamComponent {
 
   getDurationString(event: ITimelineEvent): string {
     return `Duración: ${event.originalStart?.day} - ${event.endEvent?.setLocale(this.lang()).toFormat('dd LLLL yyyy')} (${(event.diff || 0) + 1} Días)`;
+  }
+
+  getDiffString(diff: number = 0): string {
+    return diff + 1 > 1 ? `${diff + 1} Días` : `${diff + 1} Día`;
+  }
+
+  appearanceBadge(eventType: string): IBbmBgAppearance {
+    switch (eventType) {
+      case 'active':
+        return 'mitec_blue';
+      case 'done':
+        return 'success';
+      case 'pending':
+        return 'normal';
+      case 'under_review':
+        return 'warning';
+      default:
+        return 'mitec_blue';
+    }
   }
 }

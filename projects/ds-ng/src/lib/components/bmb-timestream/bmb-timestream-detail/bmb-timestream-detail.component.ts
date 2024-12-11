@@ -70,7 +70,6 @@ export class BmbTimestreamDetailsComponent implements AfterViewInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     const selectedDateChange = changes['selectedDate'];
-    console.log('changes', changes);
 
     if (
       selectedDateChange.previousValue &&
