@@ -24,7 +24,7 @@ import { BmbDropdownComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng
 @Component({
   selector: 'component',
   standalone: true,
-  imports: [ 
+  imports: [
     BmbDropdownComponent,
     ReactiveFormsModule,
     BmbButtonDirective,
@@ -119,10 +119,16 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'array',
       },
-      description: 'The inputs to show on the dropdown',
+      description:
+        'The inputs to show on the dropdown. The data types it allows are a string array or an array of objects',
       table: {
         category: 'Properties',
-        type: { summary: 'array' },
+        type: {
+          summary: `array: string[] | IBmbDropdownItem[]. IBmbDropdownItem = {
+            value: string;
+            name: string;
+          }`,
+        },
       },
     },
     helperText: {
@@ -168,11 +174,12 @@ Below is an example of how you can use this component in HTML:
       },
     },
     onValueChange: {
-      name: 'Selected value',
+      name: 'On value change',
       control: {
         type: '',
       },
-      description: 'This handler can be used for pull the value selected.',
+      description:
+        'Emitted when an option is selected. Contains the value or item of the selected option.',
       table: {
         category: 'Events',
         type: { summary: 'function' },

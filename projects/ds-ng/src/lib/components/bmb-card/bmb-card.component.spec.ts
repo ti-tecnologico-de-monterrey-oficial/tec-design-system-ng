@@ -45,7 +45,9 @@ describe('BmbCardComponent', () => {
     fixture.detectChanges();
 
     const styles = component.getStyles();
-    expect(styles['border-radius']).toBe('var(--bmb-radius-s) var(--bmb-radius-m)');
+    expect(styles['border-radius']).toBe(
+      'var(--bmb-radius-s) var(--bmb-radius-m)',
+    );
     expect(styles.margin).toBe('var(--bmb-radius-l) var(--bmb-radius-xl)');
   });
 });

@@ -74,14 +74,12 @@ Below is an example of how you can use this component in HTML:
     container: {
       name: 'Container',
       control: { type: 'boolean' },
-      description: '',
+      description:
+        'This property is deprecated and will be removed in future versions.',
       table: {
-        category: 'Properties',
+        category: 'deprecated',
         defaultValue: { summary: 'false' },
         type: { summary: 'boolean' },
-        deprecated: {
-          summary: '',
-        },
       },
     },
   },

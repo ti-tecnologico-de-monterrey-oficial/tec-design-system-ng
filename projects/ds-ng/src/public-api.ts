@@ -112,6 +112,10 @@ export * from './lib/components/bmb-login/bmb-login.component';
 export * from './lib/components/bmb-user-profile/bmb-user-profile.component';
 export * from './lib/components/bmb-user-profile/bmb-user-profile.component';
 export * from './lib/components/bmb-academic-progress/bmb-academic-progress.component';
+export * from './lib/components/bmb-alert-center/bmb-alert-center.component';
+export * from './lib/components/bmb-portal/bmb-portal.component';
+export * from './lib/components/bmb-iframe/bmb-iframe.component';
+
 // types
 export * from './lib/types';
 // interface

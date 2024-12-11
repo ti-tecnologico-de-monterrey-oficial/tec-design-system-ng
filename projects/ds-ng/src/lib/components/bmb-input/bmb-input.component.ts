@@ -97,7 +97,6 @@ export class BmbInputComponent {
 
   ngAfterViewInit(): void {
     if (this.name()) {
-      console.log('ngAfterViewInit', this.name());
       this.myName.emit(this.name());
     }
     // this.controlTest.update(control => {
