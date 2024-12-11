@@ -212,7 +212,8 @@ Below is an example of how to use this component in HTML:
       control: {
         type: 'text',
       },
-      description: 'Set a text to display a icon tooltip above the input field.',
+      description:
+        'Set a text to display a icon tooltip above the input field.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -333,7 +334,7 @@ Below is an example of how to use this component in HTML:
     label: 'Input Label',
     appearance: 'normal',
     showError: false,
-    tooltip: 'Tooltip de apoyo para el input'
+    tooltip: 'Tooltip de apoyo para el input',
   },
 } as Meta<typeof BmbInputComponent>;
 
