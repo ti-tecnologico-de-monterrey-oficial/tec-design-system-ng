@@ -7,7 +7,6 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbHeaderMobileComponent } from '../bmb-header-mobile/bmb-header-mobile.component';
 import { BmbChevronTitleSelectorComponent } from '../bmb-chevron-title-selector/bmb-chevron-title-selector.component';
 import { BmbContainerButtonComponent } from '../bmb-container-button/bmb-container-button.component';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
@@ -28,11 +27,9 @@ import { BmbInnerHeaderComponent } from '../bmb-inner-header/bmb-inner-header.co
   standalone: true,
   imports: [
     CommonModule,
-    BmbHeaderMobileComponent,
     BmbChevronTitleSelectorComponent,
     BmbContainerComponent,
     BmbContainerButtonComponent,
-    BmbModalComponent,
     BmbDividerComponent,
     BmbFocusElementComponent,
     BmbLayoutDirective,
