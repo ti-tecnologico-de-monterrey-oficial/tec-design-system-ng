@@ -40,6 +40,7 @@ import { IBmbNameValuePair } from '../../types';
           bmbLayoutItem
           [title]="getName(average())"
           [number]="getValue(average())"
+          [isNonFocused]="true"
         />
         <bmb-focus-element
           bmbLayoutItem
@@ -55,8 +56,6 @@ import { IBmbNameValuePair } from '../../types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbAcademicProgressComponent {
-  title = input<string>();
-  subtitle = input<string>();
   accredited = input.required<IBmbNameValuePair>();
   average = input.required<IBmbNameValuePair>();
   summary = input.required<IBmbNameValuePair>();
