@@ -1,5 +1,12 @@
 import { IBmbInteractiveIconAppearance } from '../components/bmb-interactive-icon/bmb-interactive-icon.component';
 
+export * from '../components/bmb-timestream/types';
+export * from '../components/bmb-push-notification/types';
+export * from '../components/bmb-advertisement-card/types';
+export * from '../components/bmb-login-onboarding/types';
+export * from '../components/bmb-filter-card/bmb-filter-card.interface';
+export * from '../components/bmb-alert-center/types';
+
 export type SizeNames = 'xs' | 's' | 'm' | 'l' | 'xl' | 'none' | 'auto';
 export type IButtonAppearance =
   | 'primary'
@@ -9,6 +16,31 @@ export type IButtonAppearance =
   | 'transparent';
 export type IButtonSize = 'small' | 'large' | 'micro';
 export type IBbmSidePosition = 'before' | 'after';
+export type IBmbHorizontalPosition = 'left' | 'right';
+
+export interface IBmbError {
+  codeError: boolean;
+  errorMessage: string;
+}
+
+export interface IBmbAuthenticateInfo {
+  user: string;
+  password: string;
+}
+export interface IBmbUserInfo {
+  id: string;
+  fullName: string;
+  profilePicture: string;
+}
+
+export interface IBmbHome {
+  data: {
+    [x: string]: unknown;
+  };
+  action?: 'profile' | 'auth';
+  callback: (result: unknown) => void;
+}
+
 export interface IBmbApp {
   icon: string;
   title: string;
@@ -16,10 +48,8 @@ export interface IBmbApp {
   target?: string;
   appearance: IBmbInteractiveIconAppearance;
 }
-export type IBmbHorizontalPosition = 'left' | 'right';
-export * from '../components/bmb-timestream/types';
-export * from '../components/bmb-push-notification/types';
-export * from '../components/bmb-advertisement-card/types';
-export * from '../components/bmb-login-onboarding/types';
-export * from '../components/bmb-filter-card/bmb-filter-card.interface';
-export * from '../components/bmb-alert-center/types';
+
+export interface IBmbNameValuePair {
+  name: string;
+  value: string | number | boolean;
+}
