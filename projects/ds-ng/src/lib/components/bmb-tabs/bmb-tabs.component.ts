@@ -51,13 +51,31 @@ export class BmbTabsComponent implements OnInit, AfterViewInit {
   selectTab(selectedId: number): void {
     const tabIndex = this.tabs.findIndex((tab) => tab.id === selectedId);
     if (tabIndex !== -1) {
-      this.tabs.forEach((tab) => (tab.isActive = false));
-      this.tabs[tabIndex].isActive = true;
-      this.activeTabIndex = tabIndex;
-      const activeTab = this.tabs[tabIndex];
-      this.selected.emit(activeTab);
-      setTimeout(() => this.showActiveTab(), 0);
+      this.updateActiveTab(tabIndex);
     }
+  }
+
+  goToNextTab(): void {
+    const nextIndex = this.activeTabIndex + 1;
+    if (nextIndex < this.tabs.length) {
+      this.updateActiveTab(nextIndex);
+    }
+  }
+
+  goToPreviousTab(): void {
+    const previousIndex = this.activeTabIndex - 1;
+    if (previousIndex >= 0) {
+      this.updateActiveTab(previousIndex);
+    }
+  }
+
+  private updateActiveTab(index: number): void {
+    this.tabs.forEach((tab) => (tab.isActive = false));
+    this.tabs[index].isActive = true;
+    this.activeTabIndex = index;
+    const activeTab = this.tabs[index];
+    this.selected.emit(activeTab);
+    setTimeout(() => this.showActiveTab(), 0);
   }
 
   showActiveTab(): void {

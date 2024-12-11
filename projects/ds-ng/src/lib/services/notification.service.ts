@@ -32,8 +32,6 @@ export class BmbNotificationService {
   }
 
   deleteNotification(id: string) {
-    console.log('delete');
-
     this.notificationList.update((currentNotifications) =>
       currentNotifications.filter((notification) => notification.id !== id),
     );

@@ -27,12 +27,39 @@ export interface Target {
   selector: 'component',
   standalone: true,
   imports: [ BmbDotPaginatorComponent ],
-  templateUrl: './component.html',
+  templateUrl: '
+  <!-- USE EXAMPLE -->
+      <figure>
+        <picture>
+          <source
+            media="(min-width: 100px)"
+            [srcset]="imgArray[myActiveDotIndex]"
+          />
+          <img
+            [loading]="'lazy'"
+            [srcset]="imgArray[myActiveDotIndex]"
+            alt=""
+          />
+        </picture>
+      </figure>
+
+      <bmb-dot-paginator
+        [activeDotIndex]="myActiveDotIndex"
+        [totalDots]="imgArray.length"
+        (onDotPress)="handleDotPress($event)"
+      ></bmb-dot-paginator>  
+  ',
   styleUrl: './component.scss',
 })
 
 export class Component {
-  myActiveDotIndex: number = 0;
+  imgArray = [
+    'https://es.mypet.com/wp-content/uploads/sites/23/2021/03/GettyImages-1143107320-e1597136744606.jpg',
+    'https://ichef.bbci.co.uk/ace/ws/640/cpsprodpb/15665/production/_107435678_perro1.jpg',
+    'https://definicion.de/wp-content/uploads/2013/03/perro-1.jpg',
+    'https://www.cdc.gov/flu-in-animals/media/images/influenzaindogstp4.jpg'
+  ]
+  myActiveDotIndex: number = 1;
   myTotalDots: number = 5;
   myTargets: Target[] = [
     { target: '#item1', index: 0 },
@@ -115,12 +142,19 @@ Below is an example of how you can use this component in HTML:
       { target: '#item1', index: 0 },
       { target: '#item2', index: 1 },
     ],
-    onDotPress: (index: number) => {
-      window.alert(index);
-    },
   },
 } as Meta<typeof BmbDotPaginatorComponent>;
 
 type Story = StoryObj<BmbDotPaginatorComponent>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: (args) => ({
+    template: `
+      <bmb-dot-paginator
+        [activeDotIndex]="myActiveDotIndex"
+        [totalDots]="5"
+        (onDotPress)="handleDotPress($event)"
+      ></bmb-dot-paginator> 
+    `,
+  }),
+};

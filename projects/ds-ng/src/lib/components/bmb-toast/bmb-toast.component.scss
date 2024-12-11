@@ -1,98 +1,44 @@
 @use "../../../assets/styles/base/fonts" as fonts;
 @use "../../../assets/styles/base/rem" as rem;
 
+$appearanceList: (neutral, primary, warning, error, event, reminder, success);
+
 @mixin toast($appearance: neutral) {
-  align-items: flex-start;
-  background-color: RGBA(var(--color-charade-50));
-  border-radius: rem.rem_calc(4);
-  border-style: solid;
-  border-width: rem.rem_calc(1);
-  color: RGBA(var(--color-charade-950));
-  display: flex;
-  justify-content: space-between;
-  min-width: rem.rem_calc(375);
-  overflow: visible;
-  padding: rem.rem_calc(10 14);
-  position: fixed;
-  right: 0;
-  width: auto;
-
-  &-icon {
-    font-size: rem.rem_calc(16);
-    margin-right: rem.rem_calc(8);
-  }
-
   @if $appearance == neutral {
-    border-color: RGBA(var(--color-charade-700));
+    border-color: var(--general_contrasts-75);
 
-    .bmb_toast {
-      &-close {
-        color: RGBA(var(--color-charade-950));
-      }
-
-      &-icon {
-        color: RGBA(var(--color-charade-700));
-      }
+    .bmb_toast-icon {
+      color: var(--general_contrasts-75);
     }
   } @else if $appearance == primary {
     border-color: RGBA(var(--color-neon-primary));
 
-    .bmb_toast {
-      &-close {
-        color: RGBA(var(--color-charade-950));
-      }
-
-      &-icon {
-        color: RGBA(var(--color-blue-primary));
-      }
+    .bmb_toast-icon {
+      color: RGBA(var(--color-blue-primary));
     }
-  } @else if $appearance == successful {
+  } @else if $appearance == success {
     border-color: RGBA(var(--color-green-primary));
 
-    .bmb_toast {
-      &-close {
-        color: RGBA(var(--color-charade-950));
-      }
-
-      &-icon {
-        color: RGBA(var(--color-green-primary));
-      }
+    .bmb_toast-icon {
+      color: RGBA(var(--color-green-primary));
     }
   } @else if $appearance == warning {
     border-color: RGBA(var(--color-yellow-primary));
 
-    .bmb_toast {
-      &-close {
-        color: RGBA(var(--color-charade-950));
-      }
-
-      &-icon {
-        color: RGBA(var(--color-yellow-primary));
-      }
+    .bmb_toast-icon {
+      color: RGBA(var(--color-yellow-primary));
     }
   } @else if $appearance == error {
     border-color: RGBA(var(--color-red-primary));
 
-    .bmb_toast {
-      &-close {
-        color: RGBA(var(--color-charade-950));
-      }
-
-      &-icon {
-        color: RGBA(var(--color-red-primary));
-      }
+    .bmb_toast-icon {
+      color: RGBA(var(--color-red-primary));
     }
   } @else if $appearance == event {
     border-color: RGBA(var(--color-purple-light));
 
-    .bmb_toast {
-      &-close {
-        color: RGBA(var(--color-charade-950));
-      }
-
-      &-icon {
-        color: RGBA(var(--color-purple-light));
-      }
+    .bmb_toast-icon {
+      color: RGBA(var(--color-purple-light));
     }
   } @else if $appearance == reminder {
     border: none;
@@ -110,6 +56,22 @@
 }
 
 .bmb_toast {
+  align-items: flex-start;
+  background-color: var(--containers-modal);
+  border-radius: rem.rem_calc(4);
+  border-style: solid;
+  border-width: rem.rem_calc(1);
+  color: var(--general_contrasts-100);
+  display: flex;
+  gap: rem.rem_calc(8);
+  justify-content: space-between;
+  min-width: rem.rem_calc(300);
+  padding: rem.rem_calc(10 16);
+
+  &-icon {
+    font-size: rem.rem_calc(20);
+  }
+
   &-content {
     display: flex;
     flex-direction: column;
@@ -128,12 +90,13 @@
   &-title {
     display: block;
     @include fonts.font(4, regular);
+    font-weight: 500;
   }
 
   &-description {
-    color: RGBA(var(--color-charade-700));
+    color: var(--general_contrasts-75);
     display: block;
-    margin-top: rem.rem_calc(2);
+    margin: rem.rem_calc(2) 0 0;
     white-space: normal;
     word-wrap: break-word;
     @include fonts.font(4, regular);
@@ -145,102 +108,21 @@
   }
 
   &-button {
-    height: rem.rem_calc(20);
     margin-left: rem.rem_calc(10);
     margin-top: rem.rem_calc(-2);
     padding: 0;
     width: rem.rem_calc(20);
+    line-height: rem.rem_calc(4);
   }
 
   &-close {
     font-size: rem.rem_calc(20);
+    color: var(--general_contrasts-100);
   }
 
-  &-neutral {
-    @include toast(neutral);
-  }
-
-  &-primary {
-    @include toast(primary);
-  }
-
-  &-successful {
-    @include toast(successful);
-  }
-
-  &-warning {
-    @include toast(warning);
-  }
-
-  &-error {
-    @include toast(error);
-  }
-
-  &-event {
-    @include toast(event);
-  }
-
-  &-reminder {
-    @include toast(reminder);
-  }
-
-  &-top {
-    top: 5%;
-  }
-
-  &-middle {
-    top: 45%;
-  }
-
-  &-bottom {
-    bottom: 5%;
-  }
-}
-
-[data-theme="dark"],
-.storybook-dark-theme {
-  .bmb_toast {
-    &-close {
-      color: RGBA(var(--color-charade-50));
-    }
-
-    &-neutral {
-      border-color: RGBA(var(--color-charade-200));
-
-      .bmb_toast-icon {
-        color: RGBA(var(--color-charade-200));
-      }
-    }
-
-    &-primary {
-      .bmb_toast-icon {
-        color: RGBA(var(--color-neon-primary));
-      }
-    }
-
-    &-neutral,
-    &-primary,
-    &-successful,
-    &-warning,
-    &-error,
-    &-event {
-      background-color: RGBA(var(--color-charade-950));
-      color: RGBA(var(--color-charade-50));
-    }
-
-    &-description {
-      color: RGBA(var(--color-charade-200));
-    }
-
-    &-reminder {
-      background-color: RGBA(var(--color-charade-950));
-
-      .bmb_toast {
-        &-title,
-        &-icon {
-          color: RGBA(var(--color-neon-primary));
-        }
-      }
+  @each $appearance in $appearanceList {
+    &-#{$appearance} {
+      @include toast($appearance);
     }
   }
 }
