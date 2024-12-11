@@ -155,6 +155,6 @@ export const Default: Story = {
         [totalDots]="5"
         (onDotPress)="handleDotPress($event)"
       ></bmb-dot-paginator> 
-    `
-  })
+    `,
+  }),
 };
