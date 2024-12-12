@@ -1,13 +1,12 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
   ViewEncapsulation,
   ElementRef,
   AfterViewInit,
   ViewChild,
-  Output,
-  EventEmitter,
+  input,
+  output,
 } from '@angular/core';
 import { DateTime } from 'luxon';
 import { CommonModule } from '@angular/common';
@@ -23,19 +22,17 @@ import { ISelectedDate } from '../types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbTimestreamTimelineComponent implements AfterViewInit {
-  @Input() dateFormat: string = 'dd/MM/yyyy';
-  @Input() lang: string = 'es';
-  @Input() now: DateTime = DateTime.now();
-  @Input() events?: any;
-  @Input() selectedDate: ISelectedDate = {
+  dateFormat = input<string>('dd/MM/yyyy');
+  lang = input<string>('es');
+  now = input<DateTime>(DateTime.now());
+  events = input<any>([]);
+  selectedDate = input<ISelectedDate>({
     day: '',
     month: '',
-    date: this.now,
-  };
-  @Input() orderedMonths: string[] = [];
-
-  @Output() changeSelectedDate: EventEmitter<ISelectedDate> =
-    new EventEmitter<ISelectedDate>();
+    date: this.now(),
+  });
+  orderedMonths = input<string[]>([]);
+  changeSelectedDate = output<ISelectedDate>();
 
   @ViewChild('monthList') monthList!: ElementRef;
 
@@ -60,20 +57,20 @@ export class BmbTimestreamTimelineComponent implements AfterViewInit {
   }
 
   getMonthTitle(month: string) {
-    return `${this.events[month].name} ${this.events[month].year}`;
+    return `${this.events()[month].name} ${this.events()[month].year}`;
   }
 
   handleDateChange({ event, month }: { event: string; month: string }): void {
     this.changeSelectedDate.emit({
       month,
       day: event,
-      date: this.events[month].events[event].date,
+      date: this.events()[month].events[event].date,
     });
   }
 
   parseEvent(month: string, date: string) {
-    return this.events[month].events[date].date
-      .setLocale(this.lang)
+    return this.events()
+      [month].events[date].date.setLocale(this.lang())
       .toFormat('dd LLL yyyy');
   }
 }

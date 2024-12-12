@@ -27,6 +27,18 @@ Below is an example of how you can use this component in HTML:
     },
   },
   argTypes: {
+    isMicro: {
+      name: 'Micro version',
+      control: {
+        type: 'boolean',
+      },
+      description: 'Show micro version of the timestream.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
     dateFormat: {
       name: 'Date format',
       control: {
@@ -76,6 +88,7 @@ Below is an example of how you can use this component in HTML:
     },
   },
   args: {
+    isMicro: false,
     dateFormat: 'yyyy-MM-dd',
     lang: 'es',
     clamp: { min: 0, max: '100px', size: '100%' },
@@ -1148,7 +1161,7 @@ Below is an example of how you can use this component in HTML:
       },
       {
         id: 56,
-        start: '2024-12-12',
+        start: '2024-12-11',
         end: '2024-12-13',
         description:
           'Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.\n\nMaecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.\n\nCurabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.',
@@ -2024,13 +2037,12 @@ export const Default: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <div style="height: 1000px">
+      <div style="height: 500px">
         <bmb-timestream
-          [startDate]="startDate"
-          [endDate]="endDate"
           [dateFormat]="dateFormat"
           [lang]="lang"
           [events]="events"
+          [isMicro]="isMicro"
         />
       </div>
     `,
