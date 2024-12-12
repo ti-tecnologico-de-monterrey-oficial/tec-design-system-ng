@@ -49,7 +49,7 @@ export class BmbDropdownComponent {
   icon = input<string>('');
   options = input<string[] | IBmbDropdownItem[]>([]);
   helperText = input<string>('');
-  @Input() control?: FormControl | undefined;
+  control?: FormControl | undefined;
   disabled = input<boolean>(false);
   label = input<string>();
 

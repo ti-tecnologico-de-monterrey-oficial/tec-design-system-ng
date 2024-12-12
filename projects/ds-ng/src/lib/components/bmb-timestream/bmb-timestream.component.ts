@@ -131,8 +131,9 @@ export class BmbTimestreamComponent {
       typeof this.clamp().min === 'string'
         ? this.clamp().min
         : `${this.clamp().min}px`;
-    const max = this.isMicro() ? '283px' :
-      typeof this.clamp().max === 'string'
+    const max = this.isMicro()
+      ? '283px'
+      : typeof this.clamp().max === 'string'
         ? this.clamp().max
         : `${this.clamp().max}px`;
 
@@ -146,7 +147,6 @@ export class BmbTimestreamComponent {
     }
 
     console.log('events found', events);
-
 
     const objectEvent: IPlaceholderObject = {};
     events.forEach((event) => {
@@ -188,7 +188,6 @@ export class BmbTimestreamComponent {
 
     console.log('objectEvent', objectEvent);
 
-
     const orderedEvents = this.orderDates(objectEvent, 'yyyy/MM');
 
     if (orderedEvents.length) {
@@ -202,7 +201,6 @@ export class BmbTimestreamComponent {
       });
 
       console.log('objectEvent', objectEvent);
-
 
       this.orderedEvents.set(
         objectEvent['orderedEvents']
@@ -239,7 +237,7 @@ export class BmbTimestreamComponent {
 
     const month =
       this.orderedMonths.find((date) => {
-        if(date === 'orderedEvents') return false;
+        if (date === 'orderedEvents') return false;
         const parsedDate = this.parsedEvents[date].date;
 
         return (
@@ -263,7 +261,7 @@ export class BmbTimestreamComponent {
       '';
 
     if (this.parsedEvents[month] && month !== 'orderedEvents') {
-      debugger
+      debugger;
       this.parsedEvents[month].selected = true;
       this.parsedEvents[month].events[day].selected = true;
     }

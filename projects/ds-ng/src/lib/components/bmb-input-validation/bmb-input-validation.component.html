@@ -86,27 +86,32 @@
         }
       </section>
     }
-    <span class="bmb_field-label" [ngClass]="getLabelClass('bmb_field-label')">
-      {{ label() }}
-      @if (isRequired() && !!label()) {
-        <small class="bmb_field-label-required">*</small>
-      }
-      @if (!!tooltip()) {
-        <bmb-tooltip
-          class="bmb_field-label-tooltip"
-          [text]="tooltip()"
-          [align]="'below'"
-          [justify]="'before'"
-          [icon]="'help'"
-          [size]="15"
-        />
-      }
-      @if (type() === "text-area" && showMaxTextLength()) {
-        <span class="bmb_field-label-max">
-          {{ getTextLength() }}/{{ maxlength() || "-" }}
-        </span>
-      }
-    </span>
+    @if (label()) {
+      <span
+        class="bmb_field-label"
+        [ngClass]="getLabelClass('bmb_field-label')"
+      >
+        {{ label() }}
+        @if (isRequired() && !!label()) {
+          <small class="bmb_field-label-required">*</small>
+        }
+        @if (!!tooltip()) {
+          <bmb-tooltip
+            class="bmb_field-label-tooltip"
+            [text]="tooltip()"
+            [align]="'below'"
+            [justify]="'before'"
+            [icon]="'help'"
+            [size]="15"
+          />
+        }
+        @if (type() === "text-area" && showMaxTextLength()) {
+          <span class="bmb_field-label-max">
+            {{ getTextLength() }}/{{ maxlength() || "-" }}
+          </span>
+        }
+      </span>
+    }
     @if (type() !== "radio" && type() !== "checkbox" && type() !== "switch") {
       <section class="bmb_field-wrapper">
         @if (!!icon() && type() !== "text-area") {

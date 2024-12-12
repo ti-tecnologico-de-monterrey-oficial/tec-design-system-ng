@@ -1,5 +1,14 @@
-<bpm-theme />
+<bmb-theme />
 <bmb-form-validation (formGroupState)="onSubmitVal($event)">
+  <bmb-dropdown
+    [required]="true"
+    [showIcon]="true"
+    [placeholder]="'Set Fruit'"
+    [icon]="'bolt'"
+    [options]="['Apple', 'Banana', 'Orange', 'Pear', 'Grape']"
+    [label]="'Fruit'"
+    (onValueChange)="onValueChange($event)"
+  />
   <bmb-input
     id="password1"
     type="password"
