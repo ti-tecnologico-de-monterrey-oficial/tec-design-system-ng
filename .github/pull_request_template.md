@@ -1,4 +1,4 @@
-[DS01-XXXX](https://tecdemonterrey.atlassian.net/browse/DS01-XXXX) - ISSUE TITLE
+[DS01-XXXX](https://tecdemonterrey.atlassian.net/browse/DS01-XXXX) - ISSUE_TITLE
 
 ## Changes proposed in this PR: 💻
 
