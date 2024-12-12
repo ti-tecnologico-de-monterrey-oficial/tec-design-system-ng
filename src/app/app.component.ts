@@ -107,6 +107,7 @@ import {
   BmbBreadcrumbComponent,
   IBmbDropdownItem,
   BmbCheckboxComponent,
+  BmbGradesMicroComponent,
 } from '../../projects/ds-ng/src/public-api';
 import { BmbPullWedgeComponent } from '../../projects/ds-ng/src/lib/components/bmb-pull-wedge/bmb-pull-wedge.component';
 import { BmbCardButtonComponent } from '../../projects/ds-ng/src/lib/components/bmb-card-button/bmb-card-button.component';
@@ -228,6 +229,7 @@ import { BmbAlertCenterComponent } from '../../projects/ds-ng/src/lib/components
     BmbAlertCenterComponent,
     BmbInnerHeaderComponent,
     BmbPortalComponent,
+    BmbGradesMicroComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
