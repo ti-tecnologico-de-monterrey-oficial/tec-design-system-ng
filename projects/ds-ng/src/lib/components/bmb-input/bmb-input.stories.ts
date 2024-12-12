@@ -350,6 +350,7 @@ Below is an example of how to use this component in HTML:
     disabled: false,
     label: 'Input Label',
     appearance: 'normal',
+    showError: false,
     tooltip: 'Tooltip de apoyo para el input',
   },
 } as Meta<typeof BmbInputComponent>;

@@ -16,7 +16,7 @@ describe('BmbIframeComponent', () => {
     fixture = TestBed.createComponent(BmbIframeComponent);
     component = fixture.componentInstance;
     componentRef = fixture.componentRef;
-    componentRef.setInput('src', 'test');
+    componentRef.setInput('src', 'testSrc');
     fixture.detectChanges();
   });
 

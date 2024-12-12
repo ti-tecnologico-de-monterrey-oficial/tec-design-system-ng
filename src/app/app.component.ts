@@ -100,8 +100,8 @@ import {
   BmbFilterCardComponent,
   BmbDropzoneComponent,
   IBmbFileUploadStatus,
-  BmbAlertCenterComponent,
-  IBmbDataAlert,
+  BmbLoginComponent,
+  IBmbHome,
   BmbInnerHeaderComponent,
   BmbPortalComponent,
   BmbBreadcrumbComponent,
@@ -134,6 +134,10 @@ import {
 import { BmbInputControlDirective } from '../../projects/ds-ng/src/lib/directives/bmb-input-control/bmb-input-control.directive';
 import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { BmbUserProfileComponent } from '../../projects/ds-ng/src/lib/components/bmb-user-profile/bmb-user-profile.component';
+import { IBmbDataAlert } from '../../projects/ds-ng/src/lib/components/bmb-alert-center/types';
+import { BmbAlertCenterComponent } from '../../projects/ds-ng/src/lib/components/bmb-alert-center/bmb-alert-center.component';
+
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'app-root',
@@ -219,6 +223,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatFormFieldModule,
     BmbFilterCardComponent,
     BmbDropzoneComponent,
+    BmbLoginComponent,
+    BmbUserProfileComponent,
     BmbAlertCenterComponent,
     BmbInnerHeaderComponent,
     BmbPortalComponent,
@@ -2689,7 +2695,8 @@ export class AppComponent {
   }
 
   auth(data: unknown): boolean {
-    data;
+    /*The developer should integrate the service used for authentication in this code block. */
+    console.log('auth', data);
     return true;
   }
 
@@ -2705,7 +2712,7 @@ export class AppComponent {
     return true;
   }
 
-  getUserInfo(data: unknown): IBmbUserInfo {
+  getUserInfo(data?: unknown): IBmbUserInfo {
     data;
     return {
       id: 'A00123456',
@@ -2716,6 +2723,36 @@ export class AppComponent {
 
   init(): void {
     console.log('init');
+  }
+
+  handleContinue(event: unknown): void {
+    /*If this event is emitted, it is possible to continue to the next page, next step or next item on the screen. If we are here we can continue because the event has already been emitted.*/
+
+    //Checking the sent event
+    console.log('event', event);
+  }
+
+  handleRequestHome(event: IBmbHome): void {
+    const { data, action, callback } = event;
+
+    switch (action) {
+      case 'auth':
+        /* For testing and development purposes of this tutorial, this code is added as an example.*/
+        setTimeout(() => {
+          /*The callback is provided to perform the screen executions in the corresponding order*/
+          callback(this.auth(data));
+        }, 1000);
+        break;
+      case 'profile':
+        callback(this.getUserInfo(data));
+        break;
+      default:
+        console.log('Invalid action');
+    }
+  }
+
+  logSelection(name: string, event: unknown): void {
+    console.log('logSelection', name, '-', event);
   }
 
   handleRequest(event: IBmbLoginOnboarding): void {
@@ -2747,10 +2784,6 @@ export class AppComponent {
       default:
         console.log('Invalid action');
     }
-  }
-
-  logSelection(name: string, event: unknown): void {
-    console.log('logSelection', name, '-', event);
   }
 
   getDataTopBar(): IBmbDataTopBar[] {
@@ -5203,7 +5236,7 @@ export class AppComponent {
       isArchived: false,
     },
   ];
-  handleSearch(event: string): void {
+  handleSearch(event: unknown): void {
     console.log('Received search value:', event);
   }
 
