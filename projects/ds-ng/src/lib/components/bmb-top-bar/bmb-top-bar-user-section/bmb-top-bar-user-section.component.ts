@@ -40,6 +40,7 @@ export class BmbTopBarUserSectionComponent {
   @Input() notificationNotification: IBmbNotificationCardData | null = null;
 
   helpButtonClick = output<void>();
+  userClick = output<void>();
 
   isOpenNotifications: boolean = false;
 
@@ -66,5 +67,9 @@ export class BmbTopBarUserSectionComponent {
 
   handleHelpButtonClick() {
     this.helpButtonClick.emit();
+  }
+
+  handleUserClick() {
+    this.userClick.emit();
   }
 }
