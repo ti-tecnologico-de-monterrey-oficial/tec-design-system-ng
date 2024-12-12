@@ -11,8 +11,6 @@ import {
 } from '../bmb-card/bmb-card.component';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { ITimelineEventType } from '../bmb-timestream/types';
 import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
@@ -25,8 +23,6 @@ import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
     BmbCardComponent,
     BmbCardContentComponent,
     BmbIconComponent,
-    BmbLayoutDirective,
-    BmbLayoutItemDirective,
     BmbBadgeComponent,
   ],
   templateUrl: './bmb-hito-card.component.html',
