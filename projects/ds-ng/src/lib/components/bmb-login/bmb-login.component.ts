@@ -9,7 +9,6 @@ import { BmbButtonDirective } from '../../directives/button.directive';
 import { BmbInputComponent } from '../bmb-input/bmb-input.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BmbUserProfileService } from '../../services/user/profile.service';
-import { BmbLoaderComponent } from 'ds-ng';
 import { BmbHeaderMitecComponent } from '../bmb-header-mitec/bmb-header-mitec.component';
 
 @Component({
@@ -19,7 +18,6 @@ import { BmbHeaderMitecComponent } from '../bmb-header-mitec/bmb-header-mitec.co
     BmbHeaderMitecComponent,
     BmbInputComponent,
     BmbButtonDirective,
-    BmbLoaderComponent,
   ],
   templateUrl: './bmb-login.component.html',
   styleUrl: './bmb-login.component.scss',
