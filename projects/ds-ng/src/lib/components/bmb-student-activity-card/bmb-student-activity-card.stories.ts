@@ -72,6 +72,30 @@ Below is an example of how you can use this component in HTML:
         description: 'Set the title on the modal header.',
       },
       table: {
+        category: 'Deprecated',
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    location: {
+      name: 'Location',
+      control: {
+        type: 'text',
+        description: 'Set the location text in the card.',
+      },
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    responsible: {
+      name: 'Responsible',
+      control: {
+        type: 'text',
+        description: 'Set the responsible text in the card.',
+      },
+      table: {
         category: 'Properties',
         type: { summary: 'string' },
         defaultValue: { summary: '' },
@@ -84,7 +108,7 @@ Below is an example of how you can use this component in HTML:
         description: 'Set the content text.',
       },
       table: {
-        category: 'Properties',
+        category: 'Deprecated',
         type: { summary: 'string' },
         defaultValue: { summary: '' },
       },
@@ -107,21 +131,53 @@ Below is an example of how you can use this component in HTML:
         description: 'Set the status label.',
       },
       table: {
+        category: 'Deprecated',
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    isListItem: {
+      name: 'Is List Item',
+      control: 'boolean',
+      description: 'Set the card as a list item.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    image: {
+      name: 'Image',
+      control: 'text',
+      description: 'Set the image URL.',
+      table: {
         category: 'Properties',
         type: { summary: 'string' },
         defaultValue: { summary: '' },
       },
     },
+    dateFormat: {
+      name: 'Date Format',
+      control: 'text',
+      description: 'Set the date format.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'yyyy-MM-dd HH:mm:ss'},
+      },
+    },
   },
 
   args: {
-    startDate: DateTime.now(),
-    endDate: DateTime.now(),
+    startDate: '2021-12-24 10:00:00',
+    endDate: '2021-12-24 11:00:00',
     title: 'Activity title',
-    detail: 'Activity detail',
     type: 'academic',
-    status: 'In progress',
-    modalTitle: 'Math class',
+    location: 'Activity location',
+    responsible: 'Activity responsible',
+    isListItem: false,
+    image: 'https://picsum.photos/200/300',
+    dateFormat: 'yyyy-MM-dd HH:mm:ss',
   },
 } as Meta<typeof BmbStudentActivityCardComponent>;
 
