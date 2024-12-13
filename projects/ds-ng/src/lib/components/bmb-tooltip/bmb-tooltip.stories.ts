@@ -61,7 +61,7 @@ Below is an example of how you can use this component in HTML:
       name: 'Icon',
       control: { type: 'text' },
       description:
-        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons. The color of the icon depend on the parent.',
+        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons. The color of the icon depend on the parent. Alternative you can use the ng-content to add custom elements instead of a simple icon.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },

@@ -18,8 +18,14 @@ describe('BmbGradesMicroComponent', () => {
     componentRef = fixture.componentRef;
     componentRef.setInput('gradeTitle', 'Período actual');
     componentRef.setInput('title', 'Semestral AGO-DIC 2024');
-    componentRef.setInput('accredited', { name: 'Créditos aprobados', value: '39' });
-    componentRef.setInput('average', { name: 'Promedio acumulado', value: '90' });
+    componentRef.setInput('accredited', {
+      name: 'Créditos aprobados',
+      value: '39',
+    });
+    componentRef.setInput('average', {
+      name: 'Promedio acumulado',
+      value: '90',
+    });
     componentRef.setInput('summary', { name: 'Faltas totales', value: '3' });
     fixture.detectChanges();
   });
