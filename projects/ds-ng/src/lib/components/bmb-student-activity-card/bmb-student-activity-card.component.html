@@ -1,24 +1,33 @@
-<div class="bmb_student-activity-card">
-  <header [ngClass]="getHeaderClasses()">
-    <span class="bmb_student-activity-card-count">{{
-      startDate()?.toFormat("dd/MM")
-    }}</span>
-    <span class="bmb_student-activity-card-title">{{ modalTitle() }}</span>
-    <button
-      (click)="handleCloseModal()"
-      class="bmb_student-activity-card-close-button"
-    >
-      <bmb-icon icon="close" />
-    </button>
-  </header>
+<div [ngClass]="getCardClasses()">
+  @if (isListItem() && image()) {
+    <figure class="bmb_student-activity-card-image">
+      <img
+        class="bmb_student-activity-card-image-pic"
+        [src]="image()"
+        [alt]="title()"
+      />
+    </figure>
+  }
+  <div class="bmb_student-activity-card-badge">
+    <bmb-badge
+      [appearance]="getBadgeType()"
+      [text]="'Badge text'"
+      [container]="true"
+    />
+  </div>
+  <h4 class="bmb_student-activity-card-title">
+    {{ title() }}
+  </h4>
   <section class="bmb_student-activity-card-content">
-    <div class="bmb_student-activity-card-title">{{ title() }}</div>
-    <div class="bmb_student-activity-card-detail">{{ detail() }}</div>
-    <div class="bmb_student-activity-card-status">
-      <span class="bmb_student-activity-card-status-label">{{ status() }}</span>
-      <span class="bmb_student-activity-card-time-range">{{
-        formatDateRange()
-      }}</span>
-    </div>
+    <strong class="bmb_student-activity-card-content-time">
+      {{ parsedStartDate.toFormat(isListItem() ? "hh:mm" : "hh:mm a") }} -
+      {{ parsedEndDate.toFormat(isListItem() ? "hh:mm" : "hh:mm a") }}
+    </strong>
+    <p class="bmb_student-activity-card-content-location">
+      {{ location() }}<br />
+      @if (!isListItem()) {
+        {{ responsible() }}
+      }
+    </p>
   </section>
 </div>
