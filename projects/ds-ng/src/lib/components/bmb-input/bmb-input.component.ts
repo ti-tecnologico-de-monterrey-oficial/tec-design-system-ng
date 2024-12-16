@@ -14,6 +14,8 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbTooltipComponent } from '../bmb-tooltip/bmb-tooltip.component';
 import { IBbmSidePosition } from '../../types';
 
+export type IBmbAdditionalAction = 'copy' | 'showHide' | 'none';
+
 export type IBmbInputType =
   | 'text'
   | 'password'
@@ -67,6 +69,7 @@ export class BmbInputComponent {
   tooltip = input<string>('');
   rows = input<number>(3);
   showMaxTextLength = input<boolean>(true);
+  additionalAction = input<IBmbAdditionalAction>('none');
 
   controlTest = model<FormControl>();
 
@@ -76,6 +79,7 @@ export class BmbInputComponent {
   myName = output<string>();
 
   textLength: number = 0;
+  isHide: boolean = true;
 
   constructor(private cdr: ChangeDetectorRef) {}
 
@@ -182,5 +186,52 @@ export class BmbInputComponent {
       event.preventDefault();
       event.stopPropagation();
     }
+  }
+
+  getType() {
+    if (this.showAdditionalAction()) {
+      if (this.additionalAction() === 'showHide' && !this.isHide) {
+        return 'text';
+      }
+    }
+
+    return this.type();
+  }
+
+  showAdditionalAction(): boolean {
+    if(this.additionalAction() !== 'none') {
+      if(this.additionalAction() === 'showHide') {
+        return this.type() === 'password';
+      }
+
+      return true
+    }
+
+    return false;
+  }
+
+  actionToExecute(): void {
+    if (this.additionalAction() === 'copy') {
+      const textToCopy = this.control?.value;
+      if (textToCopy) {
+        navigator.clipboard
+          .writeText(textToCopy.toString())
+          .then(() => console.log('Text copied to clipboard!'))
+          .catch((err) => console.error('Error copying text: ', err));
+      }
+    }
+
+    if (this.additionalAction() === 'showHide') {
+      this.isHide = !this.isHide;
+    }
+  }
+
+  getAdditionalActionIcon(): string {
+    if (this.additionalAction() === 'copy') return 'content_copy';
+    if (this.additionalAction() === 'showHide') {
+      if (this.isHide) return 'visibility';
+      return 'visibility_off';
+    }
+    return '';
   }
 }
