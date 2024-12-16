@@ -8,41 +8,53 @@ import {
 } from '@angular/core';
 import { DateTime } from 'luxon';
 import { IBmbEventType } from '../bmb-calendar/types';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
+import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
 
 @Component({
   selector: 'bmb-student-activity-card',
   standalone: true,
-  imports: [CommonModule, BmbIconComponent],
+  imports: [CommonModule, BmbBadgeComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   templateUrl: './bmb-student-activity-card.component.html',
   styleUrl: './bmb-student-activity-card.component.scss',
 })
 export class BmbStudentActivityCardComponent {
-  startDate = input<DateTime>();
-  endDate = input<DateTime>();
+  startDate = input.required<string>();
+  endDate = input.required<string>();
   title = input<string>();
-  detail = input<string>();
-  type = input<IBmbEventType>();
-  id = input<string>();
-  status = input<string>();
-  modalTitle = input<string>();
+  location = input<string>();
+  responsible = input<string>();
+  type = input<IBmbEventType>('academic');
+  isListItem = input<boolean>(false);
+  image = input<string>();
+  dateFormat = input<string>('yyyy-MM-dd HH:mm:ss');
 
-  closeModal = output<void>();
+  parsedStartDate: DateTime = DateTime.now();
+  parsedEndDate: DateTime = DateTime.now();
 
-  handleCloseModal() {
-    this.closeModal.emit();
+  ngOnInit() {
+    this.parsedStartDate = DateTime.fromFormat(this.startDate(), this.dateFormat());
+    this.parsedEndDate = DateTime.fromFormat(this.endDate(), this.dateFormat());
   }
 
-  getHeaderClasses(): string[] {
-    return [
-      'bmb_student-activity-card-header',
-      `bmb_student-activity-card-header-${this.type()}`,
-    ];
+  getCardClasses(): string[] {
+    const classes = ['bmb_student-activity-card'];
+    if (this.isListItem()) classes.push('bmb_student-activity-card-list-item');
+    else classes.push(`bmb_student-activity-card-${this.type()}`);
+
+    return classes;
   }
 
-  formatDateRange() {
-    return `${this.startDate()?.toFormat('hh:mm')} - ${this.endDate()?.toFormat('hh:mm')}`;
+  getBadgeType(): IBbmBgAppearance {
+    switch (this.type()) {
+      case 'academic':
+        return 'strong';
+      case 'life':
+        return 'mitec_green';
+      case 'events':
+        return 'mitec_purple';
+    }
   }
 }
