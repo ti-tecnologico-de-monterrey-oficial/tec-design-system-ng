@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  input,
   output,
   ViewEncapsulation,
 } from '@angular/core';
@@ -26,6 +27,8 @@ import { BmbFormControlDirective } from '../../../public-api';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbFormValidationComponent {
+  formName = input<string>('form-validation');
+
   formGroupState = output<FormGroup>();
 
   constructor(private formService: BmbFormService) {}
