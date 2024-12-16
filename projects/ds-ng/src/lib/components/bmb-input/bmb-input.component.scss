@@ -288,6 +288,15 @@
     pointer-events: none;
     opacity: 0.8;
   }
+
+  &-additional_action {
+    color: RGBA(var(--color-charade-500));
+    font-size: rem.rem_calc(24);
+    right: rem.rem_calc(8);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 }
 
 [data-theme="dark"],
