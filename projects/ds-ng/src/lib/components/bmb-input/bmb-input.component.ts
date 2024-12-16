@@ -199,12 +199,12 @@ export class BmbInputComponent {
   }
 
   showAdditionalAction(): boolean {
-    if(this.additionalAction() !== 'none') {
-      if(this.additionalAction() === 'showHide') {
+    if (this.additionalAction() !== 'none') {
+      if (this.additionalAction() === 'showHide') {
         return this.type() === 'password';
       }
 
-      return true
+      return true;
     }
 
     return false;
