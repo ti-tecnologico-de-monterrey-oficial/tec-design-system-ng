@@ -1,7 +1,6 @@
 import {
   Component,
   input,
-  OnInit,
   ChangeDetectionStrategy,
   ViewEncapsulation,
   TemplateRef,
@@ -11,17 +10,16 @@ import {
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
 import { BmbSwitchComponent } from '../bmb-switch/bmb-switch.component';
 import { BmbRadialComponent } from '../bmb-radial/bmb-radial.component';
 import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
 import { BmbModalComponent } from '../bmb-modal/bmb-modal.component';
-import { BmbTagComponent } from '../bmb-tags/bmb-tags.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalDataConfig } from '../bmb-modal/bmb-modal.interface';
 import { BmbInputComponent } from '../bmb-input/bmb-input.component';
 import { IBmbControlType } from './bmb-filter-card.interface';
 import { BmbButtonDirective } from '../../directives/button.directive';
+import { BmbFormValidationComponent } from '../bmb-form-validation/bmb-form-validation.component';
 
 @Component({
   selector: 'bmb-filter-card',
@@ -29,22 +27,20 @@ import { BmbButtonDirective } from '../../directives/button.directive';
   styleUrls: ['./bmb-filter-card.component.scss'],
   standalone: true,
   imports: [
+    BmbFormValidationComponent,
     CommonModule,
     ReactiveFormsModule,
-    BmbHomeCardComponent,
     BmbIconComponent,
     BmbInputComponent,
     BmbSwitchComponent,
     BmbRadialComponent,
     BmbCheckboxComponent,
-    BmbTagComponent,
-    BmbModalComponent,
     BmbButtonDirective,
   ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbFilterCardComponent implements OnInit {
+export class BmbFilterCardComponent {
   modalTitle = input<string>('');
   primaryBtnLabel = input<string>('');
   secondaryBtnLabel = input<string>('');
@@ -63,89 +59,18 @@ export class BmbFilterCardComponent implements OnInit {
 
   @ViewChild('modalTemplate') modalTemplate!: TemplateRef<any>;
 
-  ngOnInit(): void {
-    this.controlTypes().forEach((controlType) => {
-      controlType.control.forEach((control) => {
-        if (control.type === 'radial') {
-          const controlName = this.filterForm.get(control.name);
-          if (controlName) {
-            controlName.setValue(
-              control.checked ? control.label : controlName.value,
-            );
-          } else {
-            this.filterForm.addControl(
-              control.name,
-              new FormControl<string>(control.checked ? control.label : ''),
-            );
-          }
-        } else {
-          this.filterForm.addControl(
-            control.name,
-            new FormControl<boolean>(control.checked),
-          );
-        }
-      });
-    });
-  }
-
   constructor(private matDialog: MatDialog) {}
 
   openModalComponent() {
     const data: ModalDataConfig = {
+      type: 'informative',
       title: this.modalTitle(),
       size: 'small',
-      primaryBtnLabel: this.primaryBtnLabel(),
-      secondaryBtnLabel: this.secondaryBtnLabel(),
       content: this.modalTemplate,
-      primaryAction: this.onSubmit.bind(this),
-      secondaryAction: this.onReset.bind(this),
       scrollable: true,
     };
 
     this.matDialog.open(BmbModalComponent, { data });
-  }
-
-  onControlChange(control: any, event: any) {
-    const formControl = this.filterForm.get(control.name);
-    if (formControl) {
-      if (control.type === 'switch') {
-        formControl.setValue(event);
-        const switchValue = {
-          name: control.name,
-          label: control.rightText,
-          checked: event,
-          type: control.type,
-        };
-        this.storedValues[control.name] = switchValue;
-      } else if (control.type === 'checkbox') {
-        formControl.setValue(event.target.checked);
-        const checkboxValue = {
-          name: control.name,
-          label: control.label,
-          checked: event.target.checked,
-          type: control.type,
-        };
-        this.storedValues[control.name] = checkboxValue;
-      } else if (control.type === 'radial') {
-        formControl.setValue(control.label);
-        const radialValue = {
-          label: control.label,
-          checked: event.checked,
-          name: control.name,
-          type: control.type,
-        };
-        this.storedValues[control.name] = radialValue;
-      }
-    }
-  }
-
-  onSubmit() {
-    const formData: any = {};
-    Object.keys(this.storedValues).forEach((key) => {
-      formData[key] = this.storedValues[key];
-    });
-    formData.search = this.filterForm.get('search')?.value;
-    this.applyFilters.emit(formData);
   }
 
   onReset() {
@@ -153,7 +78,7 @@ export class BmbFilterCardComponent implements OnInit {
     this.resetFilters.emit();
   }
 
-  getFormControl(search: string): FormControl {
-    return this.filterForm.get(search) as FormControl;
+  onSubmitVal(event: unknown): void {
+    console.log('onSubmit', event);
   }
 }

@@ -1,62 +1,57 @@
-<div class="bmb_filter_card">
+<section class="bmb_filter_card">
   <ng-template #modalTemplate>
-    <div class="bmb_filter_card-modal">
-      <form [formGroup]="filterForm">
+    <section class="bmb_filter_card-modal">
+      <bmb-form-validation (formGroupState)="onSubmitVal($event)">
         <bmb-input
           name="search"
           [placeholder]="placeholderSearch()"
           [icon]="'search'"
           [appearance]="'normal'"
-          [control]="getFormControl('search')"
         />
         @for (controlType of controlTypes(); track $index) {
-          <div class="bmb_filter_card-title">{{ controlType.title }}</div>
-          <div class="bmb_filter_card-control">
+          <section class="bmb_filter_card-title">
+            {{ controlType.title }}
+          </section>
+          <section class="bmb_filter_card-control">
             @for (control of controlType.control; track $index) {
               @switch (control.type) {
                 @case ("radial") {
                   <bmb-radial
                     [name]="control.name"
                     [value]="control.value!"
-                    [checked]="
-                      filterForm.get(control.name)?.value === control.label
-                    "
+                    [checked]="control.checked"
                     [label]="control.label"
-                    (change)="onControlChange(control, $event)"
                   />
                 }
                 @case ("checkbox") {
                   <bmb-checkbox
                     [name]="control.name"
-                    [checked]="filterForm.get(control.name)?.value"
                     [label]="control.label"
-                    (change)="onControlChange(control, $event)"
+                    [checked]="control.checked"
                   />
                 }
                 @case ("switch") {
                   <bmb-switch
                     [name]="control.name"
-                    [rightText]="control.rightText ?? ''"
-                    [isChecked]="filterForm.get(control.name)?.value === true"
-                    (change)="onControlChange(control, $event)"
+                    [leftIcon]="control.leftText!"
+                    [rightText]="control.rightText!"
+                    [isChecked]="control.checked"
                   />
                 }
               }
             }
-          </div>
+          </section>
         }
-        @if (inLine()) {
-          <footer class="bmb_filter_card-footer">
-            <button bmbButton appearance="secondary-outlined" type="reset">
-              {{ secondaryBtnLabel() }}
-            </button>
-            <button bmbButton (click)="onSubmit()" type="submit">
-              {{ primaryBtnLabel() }}
-            </button>
-          </footer>
-        }
-      </form>
-    </div>
+        <footer class="bmb_filter_card-footer">
+          <button bmbButton appearance="secondary-outlined" type="reset">
+            {{ secondaryBtnLabel() }}
+          </button>
+          <button bmbButton type="submit">
+            {{ primaryBtnLabel() }}
+          </button>
+        </footer>
+      </bmb-form-validation>
+    </section>
   </ng-template>
 
   @if (inLine()) {
@@ -70,4 +65,4 @@
       <bmb-icon [icon]="icon()" />
     </button>
   }
-</div>
+</section>

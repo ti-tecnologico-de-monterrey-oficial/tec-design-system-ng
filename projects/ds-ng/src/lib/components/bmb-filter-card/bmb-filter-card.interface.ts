@@ -1,11 +1,14 @@
+export type IBmbFilterControlType = 'radial' | 'checkbox' | 'switch';
+
 export interface IBmbControlType {
   title: string;
   control: {
     name: string;
     value?: string;
-    type: 'radial' | 'checkbox' | 'switch';
+    type: IBmbFilterControlType;
     label: string;
     checked: boolean;
+    leftText?: string;
     rightText?: string;
   }[];
 }
