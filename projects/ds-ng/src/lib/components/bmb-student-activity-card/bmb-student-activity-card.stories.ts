@@ -163,7 +163,7 @@ Below is an example of how you can use this component in HTML:
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        defaultValue: { summary: 'yyyy-MM-dd HH:mm:ss'},
+        defaultValue: { summary: 'yyyy-MM-dd HH:mm:ss' },
       },
     },
   },

@@ -322,6 +322,19 @@ Below is an example of how to use this component in HTML:
         type: { summary: 'number' },
       },
     },
+    additionalAction: {
+      name: 'Additional action',
+      control: {
+        type: 'radio',
+      },
+      options: ['copy', 'showHide', 'none'],
+      description: 'Sets additional action to perform (copy, showHide, none). "copy": copy the contents of the entry to the clipboard and "showHide": works only for password type',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'none' },
+      },
+    },
   },
 
   args: {
@@ -335,6 +348,7 @@ Below is an example of how to use this component in HTML:
     appearance: 'normal',
     showError: false,
     tooltip: 'Tooltip de apoyo para el input',
+    additionalAction: '',
   },
 } as Meta<typeof BmbInputComponent>;
 

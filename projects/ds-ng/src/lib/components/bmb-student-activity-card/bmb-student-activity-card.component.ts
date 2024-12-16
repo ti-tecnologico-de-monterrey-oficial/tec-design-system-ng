@@ -35,7 +35,10 @@ export class BmbStudentActivityCardComponent {
   parsedEndDate: DateTime = DateTime.now();
 
   ngOnInit() {
-    this.parsedStartDate = DateTime.fromFormat(this.startDate(), this.dateFormat());
+    this.parsedStartDate = DateTime.fromFormat(
+      this.startDate(),
+      this.dateFormat(),
+    );
     this.parsedEndDate = DateTime.fromFormat(this.endDate(), this.dateFormat());
   }
 
