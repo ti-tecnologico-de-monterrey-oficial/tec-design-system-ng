@@ -5,7 +5,12 @@
         <span>{{ text }}</span>
       }
       <bmb-icon *ngIf="!active" icon="{{ icon }}" />
-      <bmb-icon *ngIf="type == 'normal' && active" icon="close" />
+      <bmb-icon
+        *ngIf="type == 'normal' && active"
+        icon="close"
+        class="bmb_fab-close"
+        [ngClass]="{ 'bmb_fab-close-rotate': active }"
+      />
     </button>
   } @else {
     <section class="bmb_fab-mitec">
