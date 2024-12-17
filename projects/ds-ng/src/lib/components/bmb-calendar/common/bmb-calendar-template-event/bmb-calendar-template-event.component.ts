@@ -14,10 +14,7 @@ import { BmbStudentActivityCardOldComponent } from './bmb-calendar-template-even
 @Component({
   selector: 'bmb-calendar-template-event',
   standalone: true,
-  imports: [
-    CommonModule,
-    BmbStudentActivityCardOldComponent,
-  ],
+  imports: [CommonModule, BmbStudentActivityCardOldComponent],
   templateUrl: './bmb-calendar-template-event.component.html',
   styleUrl: './bmb-calendar-template-event.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -27,12 +27,18 @@ describe('BmbListGroupComponent', () => {
 
   it('should return correct variable styles', () => {
     expect(component.getVarStyles('m')).toBe('var(--bmb-spacing-m)');
-    expect(component.getVarStyles(['m', 'l'])).toBe('var(--bmb-spacing-m) var(--bmb-spacing-l)');
+    expect(component.getVarStyles(['m', 'l'])).toBe(
+      'var(--bmb-spacing-m) var(--bmb-spacing-l)',
+    );
   });
 
   it('should return correct class names', () => {
     spyOn(component, 'showControls').and.returnValue(false);
-    expect(component.getClassNames()).toEqual(['bmb_list-group', 'bmb_list-group-rounded', 'bmb_list-group-no-controls']);
+    expect(component.getClassNames()).toEqual([
+      'bmb_list-group',
+      'bmb_list-group-rounded',
+      'bmb_list-group-no-controls',
+    ]);
   });
 
   it('should return correct styles', () => {
@@ -83,11 +89,15 @@ describe('BmbListGroupItemComponent', () => {
     componentRef.setInput('isActive', false);
     spyOn(bmbListGroupStatusService, 'updateListGroupStatus');
     component.ngOnInit();
-    expect(bmbListGroupStatusService.updateListGroupStatus).not.toHaveBeenCalled();
+    expect(
+      bmbListGroupStatusService.updateListGroupStatus,
+    ).not.toHaveBeenCalled();
   });
 
   it('should return correct class names', () => {
-    spyOn(bmbListGroupStatusService, 'getListGroupStatus').and.returnValue(['test-id']);
+    spyOn(bmbListGroupStatusService, 'getListGroupStatus').and.returnValue([
+      'test-id',
+    ]);
     componentRef.setInput('isDisabled', true);
     const classNames = component.getClasses();
     expect(classNames).toContain('bmb_list-group-item');
@@ -97,18 +107,26 @@ describe('BmbListGroupItemComponent', () => {
 
   it('should return correct configuration', () => {
     const config = { isMultipleSelection: true, showControls: true };
-    spyOn(bmbListGroupStatusService, 'getListGroupConfiguration').and.returnValue(config);
+    spyOn(
+      bmbListGroupStatusService,
+      'getListGroupConfiguration',
+    ).and.returnValue(config);
     expect(component.getConfig()).toEqual(config);
   });
 
   it('should return correct selection length', () => {
-    spyOn(bmbListGroupStatusService, 'getListGroupStatus').and.returnValue(['test-id']);
+    spyOn(bmbListGroupStatusService, 'getListGroupStatus').and.returnValue([
+      'test-id',
+    ]);
     expect(component.getSelectionLength()).toBe(1);
   });
 
   it('should show controls', () => {
     const config = { isMultipleSelection: true, showControls: true };
-    spyOn(bmbListGroupStatusService, 'getListGroupConfiguration').and.returnValue(config);
+    spyOn(
+      bmbListGroupStatusService,
+      'getListGroupConfiguration',
+    ).and.returnValue(config);
     expect(component.showControls()).toBeTrue();
   });
 });
