@@ -127,6 +127,7 @@ Below is an example of how you can use this component in HTML:
           summary: `array: string[] | IBmbDropdownItem[]. IBmbDropdownItem = {
             value: string;
             name: string;
+            icon: string;
           }`,
         },
       },
@@ -165,7 +166,7 @@ Below is an example of how you can use this component in HTML:
       },
     },
     control: {
-      control: { type: 'object' },
+      control: null,
       description: 'Instance of FormControl to manage the input control state.',
       table: {
         category: 'Properties',
@@ -193,6 +194,8 @@ Below is an example of how you can use this component in HTML:
     label: 'Fruit',
     showIcon: true,
     options: ['Apple', 'Banana', 'Orange', 'Pear', 'Grape'],
+    disabled: false,
+    helperText: 'Select a fruit',
     onValueChange: (params: any) => {
       window.alert(params.toString());
     },
@@ -201,4 +204,24 @@ Below is an example of how you can use this component in HTML:
 
 type Story = StoryObj<BmbDropdownComponent>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {},
+  render: (args) => ({
+    props: args,
+    template: `
+      <div style="height: 500px">
+        <bmb-dropdown
+          [icon]="icon"
+          [placeholder]="placeholder"
+          [required]="required"
+          [label]="label"
+          [showIcon]="showIcon"
+          [options]="options"
+          [disabled]="disabled"
+          [helperText]="helperText"
+          (onValueChange)="onValueChange($event)"
+        />
+      </div>
+    `,
+  }),
+};
