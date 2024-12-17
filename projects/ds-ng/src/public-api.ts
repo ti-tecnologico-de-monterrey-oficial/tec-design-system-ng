@@ -116,6 +116,7 @@ export * from './lib/components/bmb-academic-progress/bmb-academic-progress.comp
 export * from './lib/components/bmb-alert-center/bmb-alert-center.component';
 export * from './lib/components/bmb-portal/bmb-portal.component';
 export * from './lib/components/bmb-iframe/bmb-iframe.component';
+export * from './lib/components/bmb-list-group/bmb-list-group.component';
 
 // types
 export * from './lib/types';

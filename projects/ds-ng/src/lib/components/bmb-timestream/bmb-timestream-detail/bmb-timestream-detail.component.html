@@ -10,9 +10,12 @@
           'bmb_timestream-detail-item-current': dayEvent.selected,
         }"
       >
-        <header class="bmb_timestream-detail-item-header" [ngClass]="{
-          'bmb_timestream-detail-item-header-micro': isMicro(),
-        }">
+        <header
+          class="bmb_timestream-detail-item-header"
+          [ngClass]="{
+            'bmb_timestream-detail-item-header-micro': isMicro(),
+          }"
+        >
           <h3 class="bmb_timestream-detail-item-header-title">
             {{ getMonthTitle(dayEvent.date) }}
           </h3>
@@ -21,7 +24,7 @@
             {{ dayEvent.events.length > 1 ? "HITOS" : "HITO" }}</span
           >
           @if (isMicro()) {
-            <span style="margin-left: auto;">
+            <span style="margin-left: auto">
               <bmb-text-link
                 textLink="Ver más"
                 [target]="'_blank'"
@@ -31,9 +34,12 @@
             </span>
           }
         </header>
-        <section class="bmb_timestream-detail-content" [ngClass]="{
-          'bmb_timestream-detail-content-micro': isMicro(),
-        }">
+        <section
+          class="bmb_timestream-detail-content"
+          [ngClass]="{
+            'bmb_timestream-detail-content-micro': isMicro(),
+          }"
+        >
           @for (event of dayEvent.events; track $index) {
             <bmb-hito-card
               [icon]="event.icon || 'app_badging'"
