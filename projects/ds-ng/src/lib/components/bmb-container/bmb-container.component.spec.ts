@@ -24,7 +24,10 @@ describe('BmbContainerComponent', () => {
   });
 
   it('should return default class when not hidden and default appearance', () => {
-    expect(component.getClasses()).toEqual(['bmb_container', 'bmb_container-primary-container']);
+    expect(component.getClasses()).toEqual([
+      'bmb_container',
+      'bmb_container-primary-container',
+    ]);
   });
 
   it('should return hidden class when isHidden is true', () => {
@@ -36,6 +39,9 @@ describe('BmbContainerComponent', () => {
   it('should return correct class based on appearance', () => {
     componentRef.setInput('appearance', 'primary-header');
     fixture.detectChanges();
-    expect(component.getClasses()).toEqual(['bmb_container', 'bmb_container-primary-header']);
+    expect(component.getClasses()).toEqual([
+      'bmb_container',
+      'bmb_container-primary-header',
+    ]);
   });
 });
