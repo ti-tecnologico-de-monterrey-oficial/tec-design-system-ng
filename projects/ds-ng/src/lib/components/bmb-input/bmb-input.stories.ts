@@ -342,9 +342,9 @@ Below is an example of how to use this component in HTML:
   args: {
     icon: 'apps',
     errorMessage: {
-      required: 'Is required.',
-      minLength: 'Min is 4 characters.',
-      pattern: 'Just letters.',
+      required: 'This field is required.',
+      minLength: 'Minimum 4 characters.',
+      pattern: 'Only accepts letters.',
     },
     helperMessage: 'Helper Message',
     isRequired: true,
@@ -353,7 +353,7 @@ Below is an example of how to use this component in HTML:
     label: 'Input Label',
     appearance: 'normal',
     showError: false,
-    tooltip: 'Tooltip de apoyo para el input',
+    tooltip: 'Tooltip example for the input',
     additionalAction: '',
     minlength: '4',
     maxlength: '20',
