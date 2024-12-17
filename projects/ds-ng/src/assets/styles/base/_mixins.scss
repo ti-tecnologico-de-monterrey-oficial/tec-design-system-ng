@@ -102,10 +102,6 @@
     background-color: RGBA(var(--color-mariner-700));
     color: RGBA(var(--color-white-primary));
 
-    bmb-icon {
-      color: RGBA(var(--color-white-primary));
-    }
-
     &:hover:not(:disabled),
     &:focus-visible:not(:disabled) {
       background-color: RGBA(var(--color-mariner-800));
@@ -120,13 +116,14 @@
     &:disabled {
       opacity: 0.5;
     }
+
+    bmb-icon {
+      color: RGBA(var(--color-white-primary));
+    }
+
   } @else if $appearance == secondary-filled {
     background-color: RGBA(var(--color-charade-50));
     color: RGBA(var(--color-charade-900));
-
-    bmb-icon {
-      color: RGBA(var(--color-charade-900));
-    }
 
     &:hover:not(:disabled),
     &:focus-visible:not(:disabled) {
@@ -157,14 +154,13 @@
         transform: scale(1.2);
       }
     }
+    bmb-icon {
+      color: RGBA(var(--color-charade-900));
+    }
   } @else if $appearance == secondary-outlined {
     background-color: transparent;
     border: rem.rem_calc(1) solid RGBA(var(--color-black-primary));
     color: RGBA(var(--color-black-primary));
-
-    bmb-icon {
-      color: RGBA(var(--color-black-primary));
-    }
 
     &:hover:not(:disabled),
     &:focus-visible:not(:disabled) {
@@ -186,6 +182,11 @@
     &:disabled {
       opacity: 0.5;
     }
+
+    bmb-icon {
+      color: RGBA(var(--color-black-primary));
+    }
+
   } @else if $appearance == destructive {
     background-color: transparent;
     border: rem.rem_calc(1) solid RGBA(var(--color-red-primary));
