@@ -16,7 +16,7 @@
   &-content {
     padding-right: var(--bmb-spacing-m);
 
-    &-micro > *:nth-child(n+4) {
+    &-micro > *:nth-child(n + 4) {
       display: none;
     }
   }
