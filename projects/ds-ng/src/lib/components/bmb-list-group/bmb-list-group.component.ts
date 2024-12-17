@@ -49,8 +49,6 @@ export class BmbListGroupComponent {
   }
 
   getVarStyles(size: SizeNames | SizeNames[]) {
-    console.log(size);
-
     if (Array.isArray(size)) {
       return size.map((s) => `var(--bmb-spacing-${s})`).join(' ');
     } else {
@@ -59,10 +57,7 @@ export class BmbListGroupComponent {
   }
 
   getClassNames() {
-    const classList = [
-      'bmb_list-group',
-      `bmb_list-group-${this.borderType()}`,
-    ];
+    const classList = ['bmb_list-group', `bmb_list-group-${this.borderType()}`];
     if (!this.showControls()) classList.push('bmb_list-group-no-controls');
 
     return classList;
@@ -123,7 +118,8 @@ export class BmbListGroupItemComponent {
   }
 
   showControls(): boolean {
-    return this.bmbListGroupStatusService.getListGroupConfiguration().showControls;
+    return this.bmbListGroupStatusService.getListGroupConfiguration()
+      .showControls;
   }
 
   handleItemSelection() {

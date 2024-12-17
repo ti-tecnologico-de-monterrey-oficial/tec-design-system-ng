@@ -43,12 +43,11 @@ Below is an example of how you can use this component in HTML:
       name: 'Id',
       description: 'The id of the list group item **(required)**',
       control: {
-        type: 'text'
+        type: 'text',
       },
       table: {
         type: { summary: 'string' },
         category: 'Properties',
-        defaultValue: { summary: '' },
       },
     },
     isDisabled: {
