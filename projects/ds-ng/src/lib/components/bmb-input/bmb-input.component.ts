@@ -14,16 +14,22 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbTooltipComponent } from '../bmb-tooltip/bmb-tooltip.component';
 import { IBbmSidePosition } from '../../types';
 
-export type IBmbAdditionalAction = 'copy' | 'showHide' | 'none';
-
 export type IBmbInputType =
   | 'text'
   | 'password'
   | 'number'
   | 'text-area'
   | 'radio';
-
 export type IBmbInputAppearance = 'main' | 'normal' | 'simple';
+export type IBmbAdditionalAction = 'copy' | 'showHide' | 'none';
+
+export interface IBmbInputError {
+  required?: string;
+  min?: string;
+  max?: string;
+  minLength?: string;
+  pattern?: string;
+}
 
 @Component({
   selector: 'bmb-input',
@@ -45,7 +51,7 @@ export class BmbInputComponent {
   placeholder = input<string>('');
   icon = input<string>('');
   appearance = input<IBmbInputAppearance | string>('normal');
-  errorMessage = input<string>('');
+  errorMessage = input<string | IBmbInputError>('');
   helperMessage = input<string>('');
   disabled = input<boolean>(false);
   isRequired = input<boolean>(false);
@@ -88,9 +94,7 @@ export class BmbInputComponent {
       this.control = new FormControl();
     }
 
-    if (this.isRequired()) {
-      this.control.addValidators(Validators.required);
-    }
+    this.addValidators();
     this.control.updateValueAndValidity();
     this.control.valueChanges.subscribe(() => {
       this.textLength = this.control.value.toString().length;
@@ -232,6 +236,48 @@ export class BmbInputComponent {
       if (this.isHide) return 'visibility';
       return 'visibility_off';
     }
+    return '';
+  }
+
+  addValidators(): void {
+    if (this.isRequired()) {
+      this.control.addValidators(Validators.required);
+    }
+
+    if (this.min()) {
+      this.control.addValidators(Validators.min(this.min()!));
+    }
+
+    if (this.max()) {
+      this.control.addValidators(Validators.max(this.max()!));
+    }
+
+    if (this.minlength()) {
+      this.control.addValidators(Validators.minLength(this.minlength()!));
+    }
+
+    if (this.pattern()) {
+      this.control.addValidators(Validators.pattern(this.pattern()!));
+    }
+  }
+
+  getErrorMessage(): string {
+    console.log('setErrorMessage', this.control['errors']);
+    if (typeof this.errorMessage() === 'string') {
+      return this.errorMessage().toString();
+    }
+
+    if (this.control['errors'] !== null) {
+      const errorType = this.control['errors'];
+      const error = this.errorMessage() as IBmbInputError;
+
+      if (errorType['pattern'] && error.pattern) return error.pattern;
+      if (errorType['min'] && error.min) return error.min;
+      if (errorType['max'] && error.max) return error.max;
+      if (errorType['minlength'] && error.minLength) return error.minLength;
+      if (errorType['required'] && error.required) return error.required;
+    }
+
     return '';
   }
 }
