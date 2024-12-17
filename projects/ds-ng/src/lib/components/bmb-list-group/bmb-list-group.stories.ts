@@ -46,7 +46,7 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'select',
       },
-      options: ['xs' , 's' , 'm' , 'l' , 'xl' , 'none' , 'auto'],
+      options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],
       table: {
         type: { summary: 'SizeNames | SizeNames[]' },
         category: 'Properties',
@@ -73,7 +73,7 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'select',
       },
-      options: ['xs' , 's' , 'm' , 'l' , 'xl' , 'none' , 'auto'],
+      options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],
       table: {
         type: { summary: 'SizeNames' },
         category: 'Properties',
@@ -82,11 +82,12 @@ Below is an example of how you can use this component in HTML:
     },
     padding: {
       name: 'Padding',
-      description: 'Determines the space between the list group items and the border',
+      description:
+        'Determines the space between the list group items and the border',
       control: {
         type: 'select',
       },
-      options: ['xs' , 's' , 'm' , 'l' , 'xl' , 'none' , 'auto'],
+      options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],
       table: {
         type: { summary: 'SizeNames | SizeNames[]' },
         category: 'Properties',

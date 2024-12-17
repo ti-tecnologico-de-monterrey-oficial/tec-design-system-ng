@@ -29,8 +29,10 @@
     }
 
     &:hover {
-      &:not(.bmb_list-group-item-selected):not(.bmb_list-group-item-disabled):hover {
-          border-color: var(--menu_select-surface-activated);
+      &:not(.bmb_list-group-item-selected):not(
+          .bmb_list-group-item-disabled
+        ):hover {
+        border-color: var(--menu_select-surface-activated);
       }
     }
 
@@ -43,7 +45,7 @@
     }
   }
 
-  &-flush .bmb_list-group-item  {
+  &-flush .bmb_list-group-item {
     border-width: 0 0 rem.rem_calc(1);
 
     &-selected {
@@ -55,7 +57,10 @@
     border-radius: var(--bmb-list-group-item-radius);
   }
 
-  &-no-controls .bmb_list-group-item:not(.bmb_list-group-item-selected):not(.bmb_list-group-item-disabled) {
+  &-no-controls
+    .bmb_list-group-item:not(.bmb_list-group-item-selected):not(
+      .bmb_list-group-item-disabled
+    ) {
     cursor: pointer;
     gap: 0;
   }
