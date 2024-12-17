@@ -1,4 +1,7 @@
-<section class="bmb_dropdown" [ngClass]="{ 'bmb_dropdown-disabled': disabled() }">
+<section
+  class="bmb_dropdown"
+  [ngClass]="{ 'bmb_dropdown-disabled': disabled() }"
+>
   <div class="bmb_dropdown-wrapper">
     <div class="bmb_dropdown-label">
       @if (label()) {
@@ -49,7 +52,10 @@
             <li class="bmb_dropdown-dialog-list-item">
               <button
                 class="bmb_dropdown-dialog-list-item-button"
-                [ngClass]="{ 'bmb_dropdown-dialog-list-item-button-selected': $index == selectedIndexOption }"
+                [ngClass]="{
+                  'bmb_dropdown-dialog-list-item-button-selected':
+                    $index == selectedIndexOption,
+                }"
                 (click)="handleItemClick(getItem(item), $index)"
               >
                 @if (showIcon()) {

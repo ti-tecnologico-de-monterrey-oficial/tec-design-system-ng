@@ -139,7 +139,8 @@ export class BmbDropdownComponent {
   }
 
   getItem(item: unknown): IBmbDropdownItem {
-    if (typeof item === 'string') return { name: item, value: item, icon: this.icon() || '' };
+    if (typeof item === 'string')
+      return { name: item, value: item, icon: this.icon() || '' };
     return item as IBmbDropdownItem;
   }
 }
