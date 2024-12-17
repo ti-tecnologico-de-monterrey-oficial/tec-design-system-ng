@@ -1,4 +1,4 @@
-<section class="bmb_dropdown">
+<section class="bmb_dropdown" [ngClass]="{ 'bmb_dropdown-disabled': disabled() }">
   <div class="bmb_dropdown-wrapper">
     <div class="bmb_dropdown-label">
       @if (label()) {
@@ -40,6 +40,30 @@
       >
         <bmb-icon icon="keyboard_arrow_down" />
       </button>
+      <dialog
+        class="bmb_dropdown-dialog"
+        [ngClass]="{ 'bmb_dropdown-dialog-open': openSelect }"
+      >
+        <ul class="bmb_dropdown-dialog-list">
+          @for (item of options(); track $index) {
+            <li class="bmb_dropdown-dialog-list-item">
+              <button
+                class="bmb_dropdown-dialog-list-item-button"
+                [ngClass]="{ 'bmb_dropdown-dialog-list-item-button-selected': $index == selectedIndexOption }"
+                (click)="handleItemClick(getItem(item), $index)"
+              >
+                @if (showIcon()) {
+                  <bmb-icon
+                    class="bmb_dropdown-dialog-list-item-button-icon"
+                    [icon]="getItem(item).icon"
+                  />
+                }
+                {{ getItem(item).name }}
+              </button>
+            </li>
+          }
+        </ul>
+      </dialog>
     </div>
     @if (helperText() !== undefined) {
       <div class="bmb_dropdown-helper">
@@ -49,26 +73,4 @@
       </div>
     }
   </div>
-  <dialog
-    class="bmb_dropdown-dialog"
-    [ngClass]="{ 'bmb_dropdown-dialog-open': openSelect }"
-  >
-    <ul class="bmb_dropdown-dialog-list">
-      @for (item of options(); track $index) {
-        <li class="bmb_dropdown-dialog-list-item">
-          <button
-            class="bmb_dropdown-dialog-list-item-button"
-            [ngClass]="{ 'bmb-hover': $index == selectedIndexOption }"
-            (click)="handleItemClick(getItem(item), $index)"
-          >
-            <bmb-icon
-              class="bmb_dropdown-dialog-list-item-button-icon"
-              [icon]="icon()!"
-            />
-            {{ getItem(item).name }}
-          </button>
-        </li>
-      }
-    </ul>
-  </dialog>
 </section>

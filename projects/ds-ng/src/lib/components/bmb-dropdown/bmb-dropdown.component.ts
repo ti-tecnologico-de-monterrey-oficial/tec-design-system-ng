@@ -19,6 +19,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 export interface IBmbDropdownItem {
   name: string;
   value: string;
+  icon: string;
 }
 
 @Component({
@@ -85,8 +86,10 @@ export class BmbDropdownComponent {
   }
 
   openDialog() {
-    this.openSelect = !this.openSelect;
-    this.isFocus = !this.isFocus;
+    if (!this.disabled()) {
+      this.openSelect = !this.openSelect;
+      this.isFocus = !this.isFocus;
+    }
   }
 
   onParentClick() {
@@ -136,7 +139,7 @@ export class BmbDropdownComponent {
   }
 
   getItem(item: unknown): IBmbDropdownItem {
-    if (typeof item === 'string') return { name: item, value: item };
+    if (typeof item === 'string') return { name: item, value: item, icon: this.icon() || '' };
     return item as IBmbDropdownItem;
   }
 }
