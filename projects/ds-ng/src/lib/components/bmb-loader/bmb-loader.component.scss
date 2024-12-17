@@ -1,6 +1,15 @@
 @use "../../../assets/styles/base/fonts" as fonts;
 @use "../../../assets/styles/base/rem" as rem;
 
+@keyframes gradientShift {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 200%;
+  }
+}
+
 .bmb_loader {
   align-items: center;
   display: flex;
@@ -8,7 +17,14 @@
   justify-content: center;
 
   &-icon {
-    color: RGBA(var(--color-mariner-950));
+    color: RGBA(var(--color-mariner-700));
+    background: linear-gradient(
+      90deg,
+      RGBA(var(--color-mariner-700)) 0%,
+      transparent 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   &-loading {
@@ -122,10 +138,20 @@
       border-color: RGBA(var(--color-charade-700));
     }
 
-    &-icon,
     &-title,
     &-subtitle {
       color: RGBA(var(--color-charade-50));
+    }
+
+    &-icon {
+      color: RGBA(var(--color-charade-50));
+      background: linear-gradient(
+        90deg,
+        RGBA(var(--color-charade-50)) 0%,
+        transparent 100%
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
   }
 }

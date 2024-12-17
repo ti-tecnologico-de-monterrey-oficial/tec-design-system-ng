@@ -158,6 +158,10 @@
     &:focus {
       background-color: RGBA(var(--color-mariner-500));
     }
+
+    &:active:not(:disabled) {
+      box-shadow: 0 0 rem.rem_calc(16) rgba(var(--color-mariner-500), 0.6);
+    }
   }
 
   &-small {

@@ -2,29 +2,55 @@
 @use "../../../assets/styles/base/rem" as rem;
 @use "../../../assets/styles/base/fonts" as fonts;
 
+@keyframes rotateAnimation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
 .bmb_fab {
   display: flex;
   justify-content: center;
   width: min-content;
+
+  &-close {
+    bottom: 0;
+    display: block;
+    height: rem.rem_calc(28);
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: transform 0.5s ease-in-out;
+    width: rem.rem_calc(24);
+
+    &-rotate {
+      animation: rotateAnimation 0.5s ease-in-out forwards;
+    }
+  }
 
   &-mitec {
     display: flex;
     flex-direction: column;
 
     &-small-normal {
-      display: flex;
-      width: rem.rem_calc(40);
-      height: rem.rem_calc(40);
       align-items: center;
-      justify-content: center;
-      outline: none;
+      background-color: RGBA(var(--color-white-primary));
       border: 0;
-      margin: rem.rem_calc(3);
-      padding: var(--bmb-spacing-s) var(--bmb-spacing-m);
       border-radius: rem.rem_calc(50);
       box-shadow: rem.rem_calc(2 2 2 1) RGBA(var(--color-black-primary), 0.25);
-      background-color: RGBA(var(--color-white-primary));
       color: RGBA(var(--color-blue-primary));
+      display: flex;
+      height: rem.rem_calc(40);
+      justify-content: center;
+      margin: rem.rem_calc(3);
+      outline: none;
+      padding: var(--bmb-spacing-s) var(--bmb-spacing-m);
+      width: rem.rem_calc(40);
 
       &:active {
         background-color: RGBA(var(--color-blue-primary));
@@ -46,19 +72,19 @@
     }
 
     &-large-normal {
-      display: flex;
-      width: rem.rem_calc(60);
-      height: rem.rem_calc(60);
       align-items: center;
-      justify-content: center;
-      outline: none;
+      background-color: RGBA(var(--color-white-primary));
       border: 0;
-      margin: rem.rem_calc(3);
-      padding: var(--bmb-spacing-s) var(--bmb-spacing-m);
       border-radius: rem.rem_calc(50);
       box-shadow: rem.rem_calc(2 2 2 1) RGBA(var(--color-black-primary), 0.25);
-      background-color: RGBA(var(--color-white-primary));
       color: RGBA(var(--color-blue-primary));
+      display: flex;
+      height: rem.rem_calc(60);
+      justify-content: center;
+      margin: rem.rem_calc(3);
+      outline: none;
+      padding: var(--bmb-spacing-s) var(--bmb-spacing-m);
+      width: rem.rem_calc(60);
 
       &:active {
         background-color: RGBA(var(--color-blue-primary));

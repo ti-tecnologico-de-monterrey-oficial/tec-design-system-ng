@@ -13,8 +13,8 @@
   width: fit-content;
 
   &:disabled {
-    opacity: 0.5;
     cursor: not-allowed;
+    opacity: 0.5;
 
     .bmb_switch-label {
       cursor: not-allowed;
@@ -23,24 +23,24 @@
 
   &-checked {
     .bmb_switch-label {
-      background-color: RGBA(var(--color-green-light));
+      background-color: var(--switch-checked);
 
-      &:after {
+      &::after {
         left: calc(100% + rem.rem_calc(-18));
       }
     }
 
     .bmb_switch-right {
       bmb-icon {
-        visibility: visible;
         opacity: 1;
+        visibility: visible;
       }
     }
 
     .bmb_switch-left {
       bmb-icon {
-        visibility: hidden;
         opacity: 0;
+        visibility: hidden;
       }
     }
   }
@@ -59,7 +59,7 @@
       left 0.3s;
     width: rem.rem_calc(40);
 
-    &:after {
+    &::after {
       background-color: RGBA(var(--color-white-primary));
       border-radius: 50%;
       bottom: 0;
@@ -69,25 +69,24 @@
       margin: auto;
       position: absolute;
       top: 0;
-      transition: 0.3s;
-      transition: left 0.3s;
+      transition: all 0.3s;
       width: rem.rem_calc(32);
     }
   }
 
   &-text {
-    color: RGBA(var(--color-charade-950));
+    color: var(--general_contrasts-150);
+    padding: rem.rem_calc(0 5);
 
     @include fonts.font(3, regular);
-    padding: rem.rem_calc(0 5);
   }
 
   &-left,
   &-right {
     bmb-icon {
       align-items: center;
-      color: RGBA(var(--color-charade-900));
       bottom: 0;
+      color: RGBA(var(--color-charade-900));
       display: flex;
       font-size: rem.rem_calc(20);
       height: rem.rem_calc(20);
@@ -95,8 +94,8 @@
       position: absolute;
       top: 0;
       top: rem.rem_calc(6);
-      z-index: 1;
       transition: all 0.3s ease;
+      z-index: 1;
     }
   }
 
@@ -108,22 +107,27 @@
 
   &-right {
     bmb-icon {
-      visibility: hidden;
       opacity: 0;
       right: rem.rem_calc(4.5);
+      visibility: hidden;
+    }
+  }
+
+  &:hover:not(:disabled) {
+    .bmb_switch-label {
+      &::after {
+        box-shadow: 0 0 0 rem.rem_calc(10) rgba(var(--color-green-light), 0.2);
+      }
     }
   }
 }
 
 [data-theme="dark"],
 .storybook-dark-theme {
-  .bmb_switch {
-    &-text {
-      color: RGBA(var(--color-white-primary));
-    }
-    &-checked {
-      .bmb_switch-label {
-        background-color: RGBA(var(--color-mariner-700));
+  &:hover:not(:disabled) {
+    .bmb_switch-label {
+      &::after {
+        box-shadow: 0 0 0 rem.rem_calc(10) rgba(var(--color-mariner-700), 0.2);
       }
     }
   }
