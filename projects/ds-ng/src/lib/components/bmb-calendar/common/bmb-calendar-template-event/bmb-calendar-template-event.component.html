@@ -1,6 +1,6 @@
 <dialog open class="bmb_calendar-event-modal">
   @if (!!event) {
-    <bmb-student-activity-card
+    <bmb-student-activity-card-old
       [startDate]="getDateFromString(event().event.start)"
       [endDate]="getDateFromString(event().event.end)"
       [title]="event().event.title"

@@ -41,11 +41,12 @@ Below is an example of how you can use this component in HTML:
       },
     },
     userInformation: {
+      name: 'User information',
       value: null,
       control: false,
       table: {
         category: 'Properties',
-        type: { summary: 'object' },
+        type: { summary: 'IUserInformation' },
         defaultValue: { summary: 'null' },
       },
     },
@@ -162,7 +163,7 @@ Below is an example of how you can use this component in HTML:
     assignmentNotification: {
       name: 'Assigment Notification',
       control: {
-        type: 'text',
+        type: 'object',
       },
       description:
         'Set the notifications for the  top bar in the assignment icon',
@@ -174,7 +175,7 @@ Below is an example of how you can use this component in HTML:
     alertNotification: {
       name: 'Alert Notification',
       control: {
-        type: 'text',
+        type: 'object',
       },
       description: 'Set the notifications for the top bar in the alert icon',
       table: {
@@ -197,7 +198,11 @@ Below is an example of how you can use this component in HTML:
     appSubTitle: 'Sub title',
     showLang: false,
     lang: 'es',
-    userInformation: { name: 'Name', image: 'ima.pgn', role: 'alumno' },
+    userInformation: {
+      name: 'Santiago Hernández',
+      image: 'https://i.pravatar.cc/300',
+      role: 'Alumno',
+    },
     onLangChange: () => {
       console.log('test');
     },
@@ -242,7 +247,7 @@ Below is an example of how you can use this component in HTML:
         },
       ],
     },
-    assignmentNotification: 9,
+    assignmentNotification: ['1', '2', '3'],
   },
 } as Meta<typeof BmbTopBarComponent>;
 

@@ -51,14 +51,13 @@
 
   &-badge {
     align-items: center;
-    background-color: RGBA(var(--color-mariner-700));
     border-radius: 100%;
-    color: RGBA(var(--color-white-primary));
+    color: var(--general_contrasts-50);
     display: flex;
     height: rem.rem_calc(22);
     justify-content: center;
     width: rem.rem_calc(20);
-    @include fonts.font(3, regular);
+    @include fonts.font(3, medium);
   }
 }
 

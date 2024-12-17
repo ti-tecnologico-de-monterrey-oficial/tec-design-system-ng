@@ -93,11 +93,13 @@ import {
   ITimelineEvent,
   BmbDropzoneComponent,
   IBmbFileUploadStatus,
-  BmbAlertCenterComponent,
-  IBmbDataAlert,
+  BmbLoginComponent,
+  IBmbHome,
   BmbInnerHeaderComponent,
   BmbPortalComponent,
+  BmbBreadcrumbComponent,
   IBmbDropdownItem,
+  BmbGradesMicroComponent,
 } from '../../projects/ds-ng/src/public-api';
 import { BmbPullWedgeComponent } from '../../projects/ds-ng/src/lib/components/bmb-pull-wedge/bmb-pull-wedge.component';
 import { BmbCardButtonComponent } from '../../projects/ds-ng/src/lib/components/bmb-card-button/bmb-card-button.component';
@@ -122,6 +124,10 @@ import {
   IBmbEvalRubricButtons,
   IBmbEvaluationRubric,
 } from '../../projects/ds-ng/src/lib/components/bmb-evaluation-rubric/bmb-evaluation-rubric.component';
+import { BmbUserProfileComponent } from '../../projects/ds-ng/src/lib/components/bmb-user-profile/bmb-user-profile.component';
+import { IBmbDataAlert } from '../../projects/ds-ng/src/lib/components/bmb-alert-center/types';
+import { BmbAlertCenterComponent } from '../../projects/ds-ng/src/lib/components/bmb-alert-center/bmb-alert-center.component';
+
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'app-root',
@@ -136,6 +142,7 @@ import {
     BmbButtonDirective,
     BmbToastComponent,
     BmbContainerComponent,
+    BmbBreadcrumbComponent,
     BmbContainerButtonComponent,
     BmbHeaderMobileComponent,
     BmbHomeSectionComponent,
@@ -201,9 +208,12 @@ import {
     BmbFormValidationComponent,
     BmbTimestreamCardComponent,
     BmbDropzoneComponent,
+    BmbLoginComponent,
+    BmbUserProfileComponent,
     BmbAlertCenterComponent,
     BmbInnerHeaderComponent,
     BmbPortalComponent,
+    BmbGradesMicroComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -2674,7 +2684,8 @@ export class AppComponent {
   }
 
   auth(data: unknown): boolean {
-    data;
+    /*The developer should integrate the service used for authentication in this code block. */
+    console.log('auth', data);
     return true;
   }
 
@@ -2690,7 +2701,7 @@ export class AppComponent {
     return true;
   }
 
-  getUserInfo(data: unknown): IBmbUserInfo {
+  getUserInfo(data?: unknown): IBmbUserInfo {
     data;
     return {
       id: 'A00123456',
@@ -2701,6 +2712,36 @@ export class AppComponent {
 
   init(): void {
     console.log('init');
+  }
+
+  handleContinue(event: unknown): void {
+    /*If this event is emitted, it is possible to continue to the next page, next step or next item on the screen. If we are here we can continue because the event has already been emitted.*/
+
+    //Checking the sent event
+    console.log('event', event);
+  }
+
+  handleRequestHome(event: IBmbHome): void {
+    const { data, action, callback } = event;
+
+    switch (action) {
+      case 'auth':
+        /* For testing and development purposes of this tutorial, this code is added as an example.*/
+        setTimeout(() => {
+          /*The callback is provided to perform the screen executions in the corresponding order*/
+          callback(this.auth(data));
+        }, 1000);
+        break;
+      case 'profile':
+        callback(this.getUserInfo(data));
+        break;
+      default:
+        console.log('Invalid action');
+    }
+  }
+
+  logSelection(name: string, event: unknown): void {
+    console.log('logSelection', name, '-', event);
   }
 
   handleRequest(event: IBmbLoginOnboarding): void {
@@ -2732,10 +2773,6 @@ export class AppComponent {
       default:
         console.log('Invalid action');
     }
-  }
-
-  logSelection(name: string, event: unknown): void {
-    console.log('logSelection', name, '-', event);
   }
 
   getDataTopBar(): IBmbDataTopBar[] {
@@ -5119,7 +5156,7 @@ export class AppComponent {
       isArchived: false,
     },
   ];
-  handleSearch(event: string): void {
+  handleSearch(event: unknown): void {
     console.log('Received search value:', event);
   }
 
