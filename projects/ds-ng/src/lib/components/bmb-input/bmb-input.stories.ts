@@ -92,6 +92,7 @@ Below is an example of how to use this component in HTML:
     [icon]="'apps'"
     [errorMessage]="'Error'"
     [helperMessage]="'Helper Message'"
+    [tooltip]="'Esto es un tooltipo'"
     [disabled]="false"
     [isRequired]="false"
     [appearance]="'normal'"
@@ -145,12 +146,13 @@ Below is an example of how to use this component in HTML:
     errorMessage: {
       name: 'Error Message',
       control: {
-        type: 'text',
+        type: 'object',
       },
-      description: 'Text to be displayed when there is an error.',
+      description:
+        'Text to be displayed when there is an error. This could be a string or any of the following: required, min, max, minLength, pattern.',
       table: {
         category: 'Properties',
-        type: { summary: 'string' },
+        type: { summary: 'string or IBmbInputError' },
       },
     },
     helperMessage: {
@@ -201,6 +203,18 @@ Below is an example of how to use this component in HTML:
         type: 'text',
       },
       description: 'Label text to be displayed above the input field.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
+    tooltip: {
+      name: 'Tooltip',
+      control: {
+        type: 'text',
+      },
+      description:
+        'Set a text to display a icon tooltip above the input field.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -309,18 +323,41 @@ Below is an example of how to use this component in HTML:
         type: { summary: 'number' },
       },
     },
+    additionalAction: {
+      name: 'Additional action',
+      control: {
+        type: 'radio',
+      },
+      options: ['copy', 'showHide', 'none'],
+      description:
+        'Sets additional action to perform (copy, showHide, none). "copy": copy the contents of the entry to the clipboard and "showHide": works only for password type',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'none' },
+      },
+    },
   },
 
   args: {
     icon: 'apps',
-    errorMessage: 'Error Message',
+    errorMessage: {
+      required: 'This field is required.',
+      minLength: 'Minimum 4 characters.',
+      pattern: 'Only accepts letters.',
+    },
     helperMessage: 'Helper Message',
-    isRequired: false,
+    isRequired: true,
     placeholder: 'Placeholder',
     disabled: false,
     label: 'Input Label',
     appearance: 'normal',
     showError: false,
+    tooltip: 'Tooltip example for the input',
+    additionalAction: '',
+    minlength: '4',
+    maxlength: '20',
+    pattern: '[A-Za-z]+',
   },
 } as Meta<typeof BmbInputComponent>;
 

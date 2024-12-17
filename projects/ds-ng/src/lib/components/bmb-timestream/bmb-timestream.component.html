@@ -1,20 +1,26 @@
-<section class="bmb_timestream" [ngStyle]="{ height: getHeight() }">
+<section
+  class="bmb_timestream"
+  [ngClass]="{ 'bmb_timestream-micro': isMicro() }"
+  [ngStyle]="{ height: getHeight() }"
+>
   @if (error) {
     <div class="bmb_timestream-error">
       <bmb-timestream-error />
     </div>
   } @else {
-    <aside class="bmb_timestream-aside">
-      <bmb-timestream-timeline
-        [dateFormat]="dateFormat()"
-        [lang]="lang()"
-        [now]="now"
-        [events]="parsedEvents"
-        [selectedDate]="selectedDate"
-        [orderedMonths]="orderedMonths"
-        (changeSelectedDate)="handleSelectedDateChange($event)"
-      />
-    </aside>
+    @if (!isMicro()) {
+      <aside class="bmb_timestream-aside">
+        <bmb-timestream-timeline
+          [dateFormat]="dateFormat()"
+          [lang]="lang()"
+          [now]="now"
+          [events]="parsedEvents"
+          [selectedDate]="selectedDate"
+          [orderedMonths]="orderedMonths"
+          (changeSelectedDate)="handleSelectedDateChange($event)"
+        />
+      </aside>
+    }
     <section class="bmb_timestream-main">
       <bmb-timestream-detail
         [lang]="lang()"
@@ -22,6 +28,7 @@
         [selectedDate]="selectedDate"
         (changeSelectedEvent)="handleSelectedEventChange($event)"
         [orderedEvents]="orderedEvents()"
+        [isMicro]="isMicro()"
       />
     </section>
   }
