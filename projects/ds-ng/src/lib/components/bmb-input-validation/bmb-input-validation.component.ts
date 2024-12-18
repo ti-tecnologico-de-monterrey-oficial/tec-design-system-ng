@@ -28,6 +28,15 @@ export type IBmbInputType =
   | 'phone'
   | 'switch';
 export type IBmbInputAppearance = 'main' | 'normal' | 'simple';
+export type IBmbAdditionalAction = 'copy' | 'showHide' | 'none';
+
+export interface IBmbInputError {
+  required?: string;
+  min?: string;
+  max?: string;
+  minLength?: string;
+  pattern?: string;
+}
 
 @Component({
   selector: 'bmb-input-validation',
@@ -52,7 +61,7 @@ export class BmbInputValidationComponent {
   placeholder = input<string>('');
   icon = input<string>('');
   appearance = input<IBmbInputAppearance | string>('normal');
-  errorMessage = input<string>('');
+  errorMessage = input<string | IBmbInputError>('');
   helperMessage = input<string>('');
   disabled = input<boolean>(false);
   isRequired = input<boolean>(false);
@@ -80,12 +89,14 @@ export class BmbInputValidationComponent {
   rightText = input<string>('');
   rightIcon = input<string>('');
   control = model<FormControl>();
+  additionalAction = input<IBmbAdditionalAction>('none');
 
   onFocus = output<boolean>();
   onBlur = output<FormControl>();
   onChange = output<Event>();
 
   validValuePhone: string = '';
+  isHide: boolean = true;
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -100,6 +111,10 @@ export class BmbInputValidationComponent {
       this.value(),
       this.checked(),
       this.isRequired(),
+      this.min()!,
+      this.max()!,
+      this.minlength()!,
+      this.pattern()!,
       this.cdr,
     );
   }
@@ -235,5 +250,74 @@ export class BmbInputValidationComponent {
 
   handleBlur() {
     this.onBlur.emit(this.control()!);
+  }
+
+  getType() {
+    if (this.showAdditionalAction()) {
+      if (this.additionalAction() === 'showHide' && !this.isHide) {
+        return 'text';
+      }
+    }
+
+    return this.type();
+  }
+
+  showAdditionalAction(): boolean {
+    if (this.additionalAction() !== 'none') {
+      if (this.additionalAction() === 'showHide') {
+        return this.type() === 'password';
+      }
+
+      return true;
+    }
+
+    return false;
+  }
+
+  actionToExecute(): void {
+    if (this.additionalAction() === 'copy') {
+      const textToCopy = this.formService.getFormControlByName(
+        this.name(),
+      ).value;
+      if (textToCopy) {
+        navigator.clipboard
+          .writeText(textToCopy.toString())
+          .then(() => console.log('Text copied to clipboard!'))
+          .catch((err) => console.error('Error copying text: ', err));
+      }
+    }
+
+    if (this.additionalAction() === 'showHide') {
+      this.isHide = !this.isHide;
+    }
+  }
+
+  getAdditionalActionIcon(): string {
+    if (this.additionalAction() === 'copy') return 'content_copy';
+    if (this.additionalAction() === 'showHide') {
+      if (this.isHide) return 'visibility';
+      return 'visibility_off';
+    }
+    return '';
+  }
+
+  getErrorMessage(): string {
+    const control = this.formService.getFormControlByName(this.name());
+    if (typeof this.errorMessage() === 'string') {
+      return this.errorMessage().toString();
+    }
+
+    if (control['errors'] !== null) {
+      const errorType = control['errors'];
+      const error = this.errorMessage() as IBmbInputError;
+
+      if (errorType['pattern'] && error.pattern) return error.pattern;
+      if (errorType['min'] && error.min) return error.min;
+      if (errorType['max'] && error.max) return error.max;
+      if (errorType['minlength'] && error.minLength) return error.minLength;
+      if (errorType['required'] && error.required) return error.required;
+    }
+
+    return '';
   }
 }

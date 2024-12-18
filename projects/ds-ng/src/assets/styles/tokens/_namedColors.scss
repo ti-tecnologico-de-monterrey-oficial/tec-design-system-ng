@@ -52,6 +52,7 @@
     1
   );
   --menu_select-on-surface-hovered: RGBA(var(--color-mariner-100), 1);
+  --switch-checked: RGBA(var(--color-green-light), 1);
 }
 
 [data-theme="dark"],
@@ -92,4 +93,5 @@
     1
   );
   --menu_select-on-surface-hovered: RGBA(var(--color-mariner-950), 1);
+  --switch-checked: RGBA(var(--color-mariner-700), 1);
 }

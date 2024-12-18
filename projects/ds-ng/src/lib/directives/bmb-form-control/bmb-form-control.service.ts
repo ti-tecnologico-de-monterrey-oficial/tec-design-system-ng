@@ -80,6 +80,10 @@ export class BmbFormService {
     value: unknown,
     checked: boolean,
     isRequired: boolean,
+    min: number,
+    max: number,
+    minLength: number,
+    pattern: string,
     cdr: ChangeDetectorRef,
   ): void {
     const formControl: FormControl = this.getFormControlByName(name);
@@ -91,6 +95,22 @@ export class BmbFormService {
 
     if (isRequired && !formControl.hasValidator(Validators.required)) {
       formControl.addValidators(Validators.required);
+    }
+
+    if (min) {
+      formControl.addValidators(Validators.min(min));
+    }
+
+    if (max) {
+      formControl.addValidators(Validators.max(max));
+    }
+
+    if (minLength) {
+      formControl.addValidators(Validators.minLength(minLength));
+    }
+
+    if (pattern) {
+      formControl.addValidators(Validators.pattern(pattern));
     }
 
     if (type === 'email' && !formControl.hasValidator(Validators.email)) {

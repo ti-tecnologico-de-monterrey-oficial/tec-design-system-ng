@@ -5258,11 +5258,11 @@ export class AppComponent {
 
   // options: string[] = ['Apple', 'Banana', 'Orange', 'Pear', 'Grape'];
   options: IBmbDropdownItem[] = [
-    { value: '1', name: 'Apple' },
-    { value: '2', name: 'Banana' },
-    { value: '3', name: 'Orange' },
-    { value: '4', name: 'Pear' },
-    { value: '5', name: 'Grape' },
+    { value: '1', name: 'Apple', icon: '' },
+    { value: '2', name: 'Banana', icon: '' },
+    { value: '3', name: 'Orange', icon: '' },
+    { value: '4', name: 'Pear', icon: '' },
+    { value: '5', name: 'Grape', icon: '' },
   ];
 
   onValueChange(params: unknown): void {

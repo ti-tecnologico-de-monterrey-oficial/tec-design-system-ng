@@ -1,3 +1,12 @@
+<ng-template #additionalAction>
+  <button
+    bmbButton
+    class="bmb_field-additional_action"
+    (click)="actionToExecute()"
+  >
+    <bmb-icon [icon]="getAdditionalActionIcon()" [size]="20" />
+  </button>
+</ng-template>
 <section class="bmb_field" [ngClass]="{ disabled: disabled() }">
   <label [ngClass]="getClasses('bmb_field', true)">
     @if (type() === "radio") {
@@ -115,11 +124,7 @@
     @if (type() !== "radio" && type() !== "checkbox" && type() !== "switch") {
       <section class="bmb_field-wrapper">
         @if (!!icon() && type() !== "text-area") {
-          <bmb-icon
-            [icon]="icon()"
-            class="bmb_field-icon"
-            [ngClass]="'bmb_field-icon-' + appearance()"
-          />
+          <bmb-icon [icon]="icon()" class="bmb_field-icon" />
         }
         @if (type() === "text-area") {
           <textarea
@@ -161,7 +166,7 @@
         } @else if (type() === "password") {
           <input
             bmbControl
-            type="password"
+            [type]="getType()"
             class="bmb_field-input"
             [ngClass]="inputClasses"
             [required]="isRequired()"
@@ -177,6 +182,9 @@
             [pattern]="pattern()!"
             [value]="value()"
           />
+          @if (showAdditionalAction()) {
+            <ng-container [ngTemplateOutlet]="additionalAction" />
+          }
         } @else {
           <input
             bmbControl
@@ -199,6 +207,9 @@
             [min]="min()"
             [value]="value()"
           />
+          @if (showAdditionalAction()) {
+            <ng-container [ngTemplateOutlet]="additionalAction" />
+          }
         }
       </section>
     }
@@ -210,7 +221,7 @@
   }
   @if (errorMessage() && shouldShowError) {
     <p class="bmb_field-error">
-      {{ errorMessage() }}
+      {{ getErrorMessage() }}
     </p>
   }
 </section>

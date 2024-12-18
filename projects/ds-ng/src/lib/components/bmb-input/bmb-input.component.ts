@@ -11,6 +11,8 @@ import {
   IBmbInputType,
   IBmbInputAppearance,
   BmbInputValidationComponent,
+  IBmbInputError,
+  IBmbAdditionalAction,
 } from '../bmb-input-validation/bmb-input-validation.component';
 
 @Component({
@@ -39,6 +41,7 @@ import {
       [tooltip]="tooltip()"
       [rows]="rows()"
       [showMaxTextLength]="showMaxTextLength()"
+      [additionalAction]="additionalAction()"
       [control]="control()"
       (onFocus)="handleFocus($event)"
       (onBlur)="handleBlur($event)"
@@ -55,7 +58,7 @@ export class BmbInputComponent {
   placeholder = input<string>('');
   icon = input<string>('');
   appearance = input<IBmbInputAppearance | string>('normal');
-  errorMessage = input<string>('');
+  errorMessage = input<string | IBmbInputError>('');
   helperMessage = input<string>('');
   disabled = input<boolean>(false);
   isRequired = input<boolean>(false);
@@ -74,6 +77,7 @@ export class BmbInputComponent {
   showMaxTextLength = input<boolean>(false);
   control = model<FormControl>();
   showError = input<boolean>(false); //deprecated
+  additionalAction = input<IBmbAdditionalAction>('none');
 
   onFocus = output<boolean>();
   onBlur = output<FormControl>();
