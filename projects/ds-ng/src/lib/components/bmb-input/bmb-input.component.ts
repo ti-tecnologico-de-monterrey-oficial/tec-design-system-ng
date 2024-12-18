@@ -20,8 +20,16 @@ export type IBmbInputType =
   | 'number'
   | 'text-area'
   | 'radio';
-
 export type IBmbInputAppearance = 'main' | 'normal' | 'simple';
+export type IBmbAdditionalAction = 'copy' | 'showHide' | 'none';
+
+export interface IBmbInputError {
+  required?: string;
+  min?: string;
+  max?: string;
+  minLength?: string;
+  pattern?: string;
+}
 
 @Component({
   selector: 'bmb-input',
@@ -43,7 +51,7 @@ export class BmbInputComponent {
   placeholder = input<string>('');
   icon = input<string>('');
   appearance = input<IBmbInputAppearance | string>('normal');
-  errorMessage = input<string>('');
+  errorMessage = input<string | IBmbInputError>('');
   helperMessage = input<string>('');
   disabled = input<boolean>(false);
   isRequired = input<boolean>(false);
@@ -67,6 +75,7 @@ export class BmbInputComponent {
   tooltip = input<string>('');
   rows = input<number>(3);
   showMaxTextLength = input<boolean>(true);
+  additionalAction = input<IBmbAdditionalAction>('none');
 
   controlTest = model<FormControl>();
 
@@ -76,6 +85,7 @@ export class BmbInputComponent {
   myName = output<string>();
 
   textLength: number = 0;
+  isHide: boolean = true;
 
   constructor(private cdr: ChangeDetectorRef) {}
 
@@ -84,9 +94,7 @@ export class BmbInputComponent {
       this.control = new FormControl();
     }
 
-    if (this.isRequired()) {
-      this.control.addValidators(Validators.required);
-    }
+    this.addValidators();
     this.control.updateValueAndValidity();
     this.control.valueChanges.subscribe(() => {
       this.textLength = this.control.value.toString().length;
@@ -182,5 +190,94 @@ export class BmbInputComponent {
       event.preventDefault();
       event.stopPropagation();
     }
+  }
+
+  getType() {
+    if (this.showAdditionalAction()) {
+      if (this.additionalAction() === 'showHide' && !this.isHide) {
+        return 'text';
+      }
+    }
+
+    return this.type();
+  }
+
+  showAdditionalAction(): boolean {
+    if (this.additionalAction() !== 'none') {
+      if (this.additionalAction() === 'showHide') {
+        return this.type() === 'password';
+      }
+
+      return true;
+    }
+
+    return false;
+  }
+
+  actionToExecute(): void {
+    if (this.additionalAction() === 'copy') {
+      const textToCopy = this.control?.value;
+      if (textToCopy) {
+        navigator.clipboard
+          .writeText(textToCopy.toString())
+          .then(() => console.log('Text copied to clipboard!'))
+          .catch((err) => console.error('Error copying text: ', err));
+      }
+    }
+
+    if (this.additionalAction() === 'showHide') {
+      this.isHide = !this.isHide;
+    }
+  }
+
+  getAdditionalActionIcon(): string {
+    if (this.additionalAction() === 'copy') return 'content_copy';
+    if (this.additionalAction() === 'showHide') {
+      if (this.isHide) return 'visibility';
+      return 'visibility_off';
+    }
+    return '';
+  }
+
+  addValidators(): void {
+    if (this.isRequired()) {
+      this.control.addValidators(Validators.required);
+    }
+
+    if (this.min()) {
+      this.control.addValidators(Validators.min(this.min()!));
+    }
+
+    if (this.max()) {
+      this.control.addValidators(Validators.max(this.max()!));
+    }
+
+    if (this.minlength()) {
+      this.control.addValidators(Validators.minLength(this.minlength()!));
+    }
+
+    if (this.pattern()) {
+      this.control.addValidators(Validators.pattern(this.pattern()!));
+    }
+  }
+
+  getErrorMessage(): string {
+    console.log('setErrorMessage', this.control['errors']);
+    if (typeof this.errorMessage() === 'string') {
+      return this.errorMessage().toString();
+    }
+
+    if (this.control['errors'] !== null) {
+      const errorType = this.control['errors'];
+      const error = this.errorMessage() as IBmbInputError;
+
+      if (errorType['pattern'] && error.pattern) return error.pattern;
+      if (errorType['min'] && error.min) return error.min;
+      if (errorType['max'] && error.max) return error.max;
+      if (errorType['minlength'] && error.minLength) return error.minLength;
+      if (errorType['required'] && error.required) return error.required;
+    }
+
+    return '';
   }
 }

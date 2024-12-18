@@ -6,21 +6,20 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 
 ---
 
-## Cambios de la versión v1.0.0
+## Cambios de la versión v1.2.2
 
 ### Nuevos componentes:
 
-- [Grades](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-grades--documentation)
-- [Access to external link](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-external-link--documentation)
-- [Account statement](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-account-statement--documentation)
-- [Web templates](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-web-templates--documentation)
+- [iframe](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-iframe--documentation)
+- [Portal](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-portal--documentation)
 
-### Componentes actualizados:
+## Componentes actualizados:
 
-- [Toast](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-toast--documentation)
-- [Modal](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-modal--documentation)
-- [Badge](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-badge--documentation)
-- [Drawer overlay](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-drawer-overlay--documentation)
+- [Toast](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-toast--documentation) **BREAKING CHANGES** ahora la implementación es contenido estático, si se quiere un comportamiento similar a la anterior versión se debe utilizar el componente `Portal`.
+- [Multi dot paginator](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-multi-dot-paginator--documentation)
+- [Tabs](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-tabs--documentation)
+- [Button](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-button--documentation)
+- [Dropdown](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-dropdown--documentation)
 
 Si quieres ver el detalle de los cambios puedes ver la entrada de la wiki [aquí](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/wiki/What's-new)
 

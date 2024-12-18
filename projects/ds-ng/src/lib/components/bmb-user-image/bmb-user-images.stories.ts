@@ -109,8 +109,7 @@ Below is an example of how you can use this component in HTML:
     },
   },
   args: {
-    image:
-      'https://i0.wp.com/gershenson.mx/wp-content/uploads/2020/08/logo-tec-de-monterrey-e1484853084274.png?ssl=1',
+    image: 'https://picsum.photos/200/300',
     altImage: 'Alt image description',
     size: 'desktop-small',
     target: '_blank',
