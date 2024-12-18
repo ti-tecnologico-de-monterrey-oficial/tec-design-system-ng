@@ -1,0 +1,44 @@
+<bmb-header-mitec [headerLabel]="headerLabel()">
+  <section class="bmb_login">
+    <bmb-input
+      class="bmb_login-input"
+      placeholder="Usuario"
+      icon="account_circle"
+      errorMessage="El usuario es requerido"
+      appearance="normal"
+      [disabled]="false"
+      [isRequired]="true"
+      [control]="getFormControl('user')"
+      [showError]="showErrors['user']"
+      (isBlur)="onSubmit()"
+    />
+    <bmb-input
+      class="bmb_login-input"
+      type="password"
+      placeholder="Contraseña"
+      icon="lock"
+      errorMessage="La contraseña es requerida"
+      appearance="normal"
+      [disabled]="false"
+      [isRequired]="true"
+      [control]="getFormControl('password')"
+      [showError]="showErrors['password']"
+      (isBlur)="onSubmit()"
+    />
+    <p class="bmb_login-sublabel">
+      {{ forgottenPasswordLabel() }}
+    </p>
+  </section>
+  <button
+    bmbButton
+    [disabled]="isContinueDisable"
+    size="large"
+    (click)="handleContinue()"
+  >
+    {{ buttonLabel() }}
+  </button>
+</bmb-header-mitec>
+<!-- <bmb-loader
+  [overlay]="true"
+  [isVisible]="isLoading"
+/> -->

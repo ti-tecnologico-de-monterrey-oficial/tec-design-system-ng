@@ -141,6 +141,8 @@ $circleTypes: (
   }
 
   &-compact {
+    padding: var(--bmb-spacing-s);
+
     .bmb_hito-card-content-icon {
       width: rem.rem_calc(16);
       height: rem.rem_calc(16);

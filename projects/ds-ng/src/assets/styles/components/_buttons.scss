@@ -34,10 +34,6 @@
       border-color: RGBA(var(--color-white-primary));
       color: RGBA(var(--color-white-primary));
 
-      bmb-icon {
-        color: RGBA(var(--color-white-primary));
-      }
-
       &:active,
       &.bmb_btn-toggle-active {
         background-color: RGBA(var(--color-white-primary));
@@ -46,6 +42,10 @@
         bmb-icon {
           color: RGBA(var(--color-black-primary));
         }
+      }
+
+      bmb-icon {
+        color: RGBA(var(--color-white-primary));
       }
     }
 

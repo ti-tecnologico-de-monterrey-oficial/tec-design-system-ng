@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BmbLoginComponent } from './bmb-login.component';
+import { BmbHeaderMitecComponent } from './bmb-header-mitec.component';
 
-describe('BmbLoginComponent', () => {
-  let component: BmbLoginComponent;
-  let fixture: ComponentFixture<BmbLoginComponent>;
+describe('BmbHeaderMitecComponent', () => {
+  let component: BmbHeaderMitecComponent;
+  let fixture: ComponentFixture<BmbHeaderMitecComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BmbLoginComponent],
+      imports: [BmbHeaderMitecComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(BmbLoginComponent);
+    fixture = TestBed.createComponent(BmbHeaderMitecComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

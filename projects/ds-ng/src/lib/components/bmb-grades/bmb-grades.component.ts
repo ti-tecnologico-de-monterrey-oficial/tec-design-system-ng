@@ -13,14 +13,13 @@ import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 import { BmbModalComponent } from '../bmb-modal/bmb-modal.component';
 import { ModalDataConfig } from '../bmb-modal/bmb-modal.interface';
 import { MatDialog } from '@angular/material/dialog';
-import { BmbFocusElementComponent } from '../bmb-focus-element/bmb-focus-element.component';
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
-import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 import { IBmbGrades, IBmbPartial } from './types';
 import { CommonModule } from '@angular/common';
 import { BmbGradeValueComponent } from '../bmb-grade-value/bmb-grade-value.component';
 import { BmbInnerHeaderComponent } from '../bmb-inner-header/bmb-inner-header.component';
+import { BmbAcademicProgressComponent } from '../bmb-academic-progress/bmb-academic-progress.component';
 
 @Component({
   selector: 'bmb-grades',
@@ -28,10 +27,9 @@ import { BmbInnerHeaderComponent } from '../bmb-inner-header/bmb-inner-header.co
   imports: [
     CommonModule,
     BmbChevronTitleSelectorComponent,
-    BmbContainerComponent,
     BmbContainerButtonComponent,
     BmbDividerComponent,
-    BmbFocusElementComponent,
+    BmbAcademicProgressComponent,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
     BmbGradeValueComponent,

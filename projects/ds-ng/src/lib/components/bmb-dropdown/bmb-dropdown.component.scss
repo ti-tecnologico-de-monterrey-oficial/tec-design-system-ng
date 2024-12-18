@@ -2,7 +2,6 @@
 @use "../../../assets/styles/base/rem" as rem;
 
 .bmb_dropdown {
-  max-width: rem.rem_calc(600);
   display: inline-block;
   position: relative;
   width: 100%;
@@ -13,84 +12,50 @@
   }
 
   &-label {
-    padding-left: rem.rem_calc(10);
-    padding-bottom: rem.rem_calc(5);
-
     &-text {
       @include fonts.font(3, regular);
     }
 
     &-asterisk {
       @include fonts.font(3, bold);
-      color: RGBA(var(--color-red-primary));
+      color: var(--alert-error);
     }
 
     &-icon {
-      padding-left: rem.rem_calc(10);
       font-size: rem.rem_calc(24);
+      line-height: 0;
     }
   }
 
   &-input-wrapper {
-    background-color: RGBA(var(--color-charade-100));
-    border-radius: rem.rem_calc(4);
+    background-color: var(--general_contrasts-input-background);
+    border: rem.rem_calc(1) solid var(--general_contrasts-50);
+    border-radius: rem.rem_calc(8);
     display: flex;
-    gap: rem.rem_calc(4);
+    gap: rem.rem_calc(8);
     align-items: center;
     appearance: none;
     width: 100%;
     height: rem.rem_calc(40);
-  }
+    cursor: pointer;
+    padding: var(--bmb-spacing-s);
+    position: relative;
 
-  &-autocomplete {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    gap: rem.rem_calc(4);
-    overflow: hidden;
-    height: 100%;
-
-    &-tag {
-      display: flex;
-      align-items: center;
-      background-color: RGBA(var(--color-charade-200));
-      border: rem.rem_calc(1) solid RGBA(var(--color-charade-300));
-      border-radius: rem.rem_calc(4);
-      color: RGBA(var(--color-charade-950));
-      gap: rem.rem_calc(4);
-      justify-content: center;
-      min-height: rem.rem_calc(20);
-      height: rem.rem_calc(24);
-      padding: rem.rem_calc(4 8);
-      width: fit-content;
-
-      &-text {
-        @include fonts.font(3, regular);
-      }
-
-      &-btn {
-        align-items: center;
-        appearance: none;
-        background: none;
-        border: 0;
-        display: flex;
-        padding: 0;
-        bmb-icon {
-          color: RGBA(var(--color-charade-950));
-          font-size: rem.rem_calc(18);
-        }
-      }
+    &:hover {
+      border-color: var(--general_contrasts-input-outline);
     }
   }
 
   &-field {
     &-input {
-      padding-left: rem.rem_calc(5);
+      padding: 0;
       flex: 1;
       @include fonts.font(4, regular);
       background-color: transparent;
       border: 0 none;
       cursor: pointer;
+      color: var(--general_contrasts-100);
+
       &:focus,
       &:focus-visible,
       &.bmb-focus,
@@ -99,19 +64,21 @@
       }
 
       &:disabled {
-        color: RGBA(var(--color-charade-300));
+        color: var(--general_contrasts-50);
       }
     }
 
     &-open {
+      color: var(--general_contrasts-100);
+
       bmb-icon {
-        font-size: rem.rem_calc(20px);
+        font-size: rem.rem_calc(20);
       }
     }
   }
 
   &-focus {
-    border: 1px solid RGBA(var(--color-blue-primary));
+    border: rem.rem_calc(1) solid var(--general_contrasts-input-outline);
   }
 
   &-helper {
@@ -120,7 +87,7 @@
 
     &-text {
       @include fonts.font(3, regular);
-      color: RGBA(var(--color-blue-primary));
+      color: var(--general_contrasts-input-outline);
     }
   }
 
@@ -130,17 +97,15 @@
     padding: 0;
     left: 0;
     z-index: 999;
-    background-color: RGBA(var(--color-charade-50));
+    background-color: var(--containers-main);
     border: 0;
-    border-radius: rem.rem_calc(4);
     overflow: auto;
     height: max-content;
     max-height: rem.rem_calc(160);
-    top: rem.rem_calc(60);
+    top: 100%;
     justify-content: center;
-    margin-top: rem.rem_calc(8);
-    box-shadow: rem.rem_calc(10 10 26 -12)
-      RGBA(var(--color-black-primary), 0.75);
+    margin-top: rem.rem_calc(1);
+    box-shadow: rem.rem_calc(10 10 26 -12) RGBA(var(--color-black-primary), 0.2);
     &::-webkit-scrollbar {
       -webkit-appearance: none;
       width: rem.rem_calc(10);
@@ -171,20 +136,26 @@
           width: 100%;
           text-align: left;
           @include fonts.font(4, regular);
+          color: var(--menu_select-label-menu-inactive);
 
           &:hover,
           &:focus-visible,
-          &.bmb-hover,
           &.bmb-focus,
           &.bmb-focus-visible {
-            background-color: RGBA(var(--color-blue-primary));
-            color: RGBA(var(--color-white-primary));
+            background-color: var(--menu_select-on-surface-hovered);
+            color: var(--menu_select-label-menu-inactive);
+            font-weight: 500;
           }
 
           &-icon {
             font-size: rem.rem_calc(20);
             padding-left: rem.rem_calc(5);
             padding-right: rem.rem_calc(5);
+          }
+
+          &-selected {
+            background-color: var(--menu_select-surface-activated);
+            color: var(--menu_select-label-menu-active);
           }
         }
       }
@@ -195,89 +166,18 @@
       position: absolute;
     }
   }
-}
 
-[data-theme="dark"],
-.storybook-dark-theme {
-  .bmb_dropdown {
-    &-label {
-      &-text {
-        color: RGBA(var(--color-charade-50));
-      }
+  &-disabled {
+    .bmb_dropdown-input-wrapper {
+      opacity: 0.5;
+      cursor: not-allowed;
 
-      &-icon {
-        bmb-icon {
-          color: RGBA(var(--color-charade-50));
-        }
+      &:hover {
+        border-color: var(--general_contrasts-50);
       }
     }
-
-    &-input-wrapper {
-      background-color: RGBA(var(--color-black-primary));
-    }
-
-    &-autocomplete {
-      display: flex;
-      flex-direction: row;
-      width: 100%;
-      gap: rem.rem_calc(4);
-      overflow: hidden;
-
-      &-tag {
-        background-color: RGBA(var(--color-charade-950));
-        border: rem.rem_calc(1) solid RGBA(var(--color-charade-500));
-        color: RGBA(var(--color-white-primary));
-
-        &-btn {
-          bmb-icon {
-            color: RGBA(var(--color-white-primary));
-          }
-        }
-      }
-    }
-
-    &-field {
-      &-input {
-        color: RGBA(var(--color-charade-50));
-
-        &:disabled {
-          color: RGBA(var(--color-charade-300));
-        }
-      }
-
-      &-open {
-        bmb-icon {
-          color: RGBA(var(--color-charade-50));
-        }
-
-        &:disabled {
-          bmb-icon {
-            color: RGBA(var(--color-charade-300));
-          }
-        }
-      }
-    }
-
-    &-helper {
-      &-text {
-        color: RGBA(var(--color-charade-50));
-      }
-    }
-
-    &-dialog {
-      background-color: RGBA(var(--color-charade-950));
-      &::-webkit-scrollbar-thumb {
-        background-color: RGBA(var(--color-black-primary));
-        border: rem.rem_calc(1) solid RGBA(var(--color-black-primary));
-      }
-
-      &-list {
-        &-item {
-          &-button {
-            color: RGBA(var(--color-charade-50));
-          }
-        }
-      }
+    .bmb_dropdown-field-input {
+      cursor: not-allowed;
     }
   }
 }

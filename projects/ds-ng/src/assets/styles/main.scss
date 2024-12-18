@@ -16,21 +16,21 @@
 @use "base/mixins" as mixins;
 
 // Import and register the design tokens like colors and theme
-@import "tokens/colors";
-@import "tokens/namedColors";
-@import "tokens/theme";
+@use "tokens/colors";
+@use "tokens/namedColors";
+@use "tokens/theme";
 
 // Import the styles for base
-@import "base/reset";
-@import "base/spacing";
+@use "base/reset";
+@use "base/spacing";
 
 // Import the styles for non components
-@import "base/tooltip";
-@import "components/buttons";
-@import "components/col-sys";
-@import "components/button-group";
-@import "components/templates";
-@import "base/utils";
-@import "base/scrollbar";
+@use "base/tooltip";
+@use "components/buttons";
+@use "components/col-sys";
+@use "components/button-group";
+@use "components/templates";
+@use "base/utils";
+@use "base/scrollbar";
 
-@import "@angular/cdk/overlay-prebuilt.css";
+@use "../../../../../node_modules/@angular/cdk/overlay-prebuilt.css";

@@ -37,12 +37,16 @@
       </span>
     </button>
   </div>
-  <bmb-user-image
-    [image]="userInformation.image"
-    size="mobile-small"
+  <button
     class="bmb_top-bar-user-section-user-image"
-    [altImage]="userInformation.name"
-  />
+    (click)="handleUserClick()"
+  >
+    <bmb-user-image
+      [image]="userInformation.image"
+      size="mobile-small"
+      [altImage]="userInformation.name"
+    />
+  </button>
   <h3 class="bmb_top-bar-user-section-title">{{ userInformation.name }}</h3>
   <span class="bmb_top-bar-user-section-role">{{ userInformation.role }}</span>
 </section>

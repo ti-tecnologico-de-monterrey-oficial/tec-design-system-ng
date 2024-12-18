@@ -4,11 +4,9 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  effect,
   ElementRef,
   EventEmitter,
   input,
-  Input,
   OnChanges,
   Output,
   SimpleChanges,
@@ -17,29 +15,13 @@ import {
 } from '@angular/core';
 import { DateTime } from 'luxon';
 import { ISelectedDate, ITimelineEvent, ITimelineEventParsed } from '../types';
-import {
-  BmbCardComponent,
-  BmbCardContentComponent,
-} from '../../bmb-card/bmb-card.component';
-import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
-import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
-import { BmbBadgeComponent } from '../../bmb-badge/bmb-badge.component';
 import { BmbHitoCardComponent } from '../../bmb-hito-card/bmb-hito-card.component';
+import { BmbTextLinkComponent } from '../../bmb-text-link/bmb-text-link.component';
 
 @Component({
   selector: 'bmb-timestream-detail',
   standalone: true,
-  imports: [
-    CommonModule,
-    BmbCardComponent,
-    BmbCardContentComponent,
-    BmbLayoutDirective,
-    BmbLayoutItemDirective,
-    BmbIconComponent,
-    BmbBadgeComponent,
-    BmbHitoCardComponent,
-  ],
+  imports: [CommonModule, BmbHitoCardComponent, BmbTextLinkComponent],
   templateUrl: './bmb-timestream-detail.component.html',
   styleUrl: './bmb-timestream-detail.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -47,13 +29,14 @@ import { BmbHitoCardComponent } from '../../bmb-hito-card/bmb-hito-card.componen
 })
 export class BmbTimestreamDetailsComponent implements AfterViewInit, OnChanges {
   lang = input<string>('es');
-  @Input() now: DateTime = DateTime.now();
-  @Input() selectedDate: ISelectedDate = {
+  now = input<DateTime>(DateTime.now());
+  selectedDate = input<ISelectedDate>({
     day: '',
     month: '',
-    date: this.now,
-  };
+    date: this.now(),
+  });
   orderedEvents = input<ITimelineEventParsed[]>([]);
+  isMicro = input<boolean>(false);
 
   @Output() changeSelectedEvent: EventEmitter<ITimelineEvent> =
     new EventEmitter<ITimelineEvent>();
@@ -85,8 +68,8 @@ export class BmbTimestreamDetailsComponent implements AfterViewInit, OnChanges {
   getCurrentMonth(date: string): boolean {
     const parsedDate = DateTime.fromFormat(date, 'yyyy/MM');
     return (
-      parsedDate.month === this.selectedDate.date.month &&
-      parsedDate.year === this.selectedDate.date.year
+      parsedDate.month === this.selectedDate().date.month &&
+      parsedDate.year === this.selectedDate().date.year
     );
   }
 
@@ -108,6 +91,10 @@ export class BmbTimestreamDetailsComponent implements AfterViewInit, OnChanges {
 
   getDurationString(event: ITimelineEvent): string {
     return `Duración: ${event.originalStart?.day} - ${event.endEvent?.setLocale(this.lang()).toFormat('dd LLLL yyyy')} (${(event.diff || 0) + 1} Días)`;
+  }
+
+  isTodayEvent(event: ITimelineEventParsed): boolean {
+    return event.date.hasSame(this.now(), 'day');
   }
 
   handleEventChange(event: ITimelineEvent) {
