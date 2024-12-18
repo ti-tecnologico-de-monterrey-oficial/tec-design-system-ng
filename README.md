@@ -6,20 +6,33 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 
 ---
 
-## Cambios de la versión v1.2.2
+## Cambios de la versión v1.2.4
 
 ### Nuevos componentes:
 
-- [iframe](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-iframe--documentation)
-- [Portal](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-portal--documentation)
+- [List group](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-listsgroup-list-group--documentation)
+- [List group item](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-listsgroup-list-group-item--documentation)
 
 ## Componentes actualizados:
 
-- [Toast](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-toast--documentation) **BREAKING CHANGES** ahora la implementación es contenido estático, si se quiere un comportamiento similar a la anterior versión se debe utilizar el componente `Portal`.
-- [Multi dot paginator](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-multi-dot-paginator--documentation)
-- [Tabs](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-tabs--documentation)
-- [Button](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-button--documentation)
-- [Dropdown](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-dropdown--documentation)
+- [Grades micro](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-grades-micro--documentation) Se agrego la vista micro para el componente de `Grades`.
+- [Breadcrumb](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-breadcrumb--documentation) Se actualizaron los estilos para acoplarse al nuevo diseño.
+- [Checkbox](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-checkbox--documentation) Se actualizaron los estilos.
+- [Timestream](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-timestream--documentation) Se agregó la vista micro.
+- [Student activity card](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-student-activity-card--documentation) **BREAKING CHANGES** Se actualizaron los estilos para acoplarse al nuevo diseño.
+- [Tabs](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-tabs--documentation) Se actualizaron los estilos.
+- [Input](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-input--documentation)
+  - Ahora puedes mostrar u ocultar el contenido del campo.
+  - Se da soporte para múltiples mensajes de error
+  - Copiar el contenido del campo
+- [Dropdown](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-dropdown--documentation) **BREAKING CHANGES** Se actualizaron los estilos y los tipos para acoplarse al nuevo diseño
+- Se agregaron algunas transiciones para los componentes:
+  - Card button
+  - Fab
+  - Input
+  - Loader
+  - Modal
+  - Switch
 
 Si quieres ver el detalle de los cambios puedes ver la entrada de la wiki [aquí](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/wiki/What's-new)
 
