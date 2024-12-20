@@ -114,12 +114,13 @@ export * from './lib/components/bmb-portal/bmb-portal.component';
 export * from './lib/components/bmb-iframe/bmb-iframe.component';
 export * from './lib/components/bmb-login/bmb-login.component';
 export * from './lib/components/bmb-user-profile/bmb-user-profile.component';
-export * from './lib/components/bmb-user-profile/bmb-user-profile.component';
 export * from './lib/components/bmb-academic-progress/bmb-academic-progress.component';
 export * from './lib/components/bmb-alert-center/bmb-alert-center.component';
 export * from './lib/components/bmb-portal/bmb-portal.component';
 export * from './lib/components/bmb-iframe/bmb-iframe.component';
 export * from './lib/components/bmb-list-group/bmb-list-group.component';
+export * from './lib/components/bmb-simple-header/bmb-simple-header.component';
+export * from './lib/components/bmb-drawer-overlay/bmb-drawer-overlay.component';
 
 // types
 export * from './lib/types';
