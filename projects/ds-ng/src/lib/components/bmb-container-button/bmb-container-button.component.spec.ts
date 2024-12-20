@@ -8,7 +8,6 @@ import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-i
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
 import { ComponentRef } from '@angular/core';
 
-
 describe('BmbContainerButtonComponent', () => {
   let component: BmbContainerButtonComponent;
   let fixture: ComponentFixture<BmbContainerButtonComponent>;
