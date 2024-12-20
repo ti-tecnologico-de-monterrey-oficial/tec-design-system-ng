@@ -100,6 +100,8 @@ import {
   BmbFilterCardComponent,
   BmbDropzoneComponent,
   IBmbFileUploadStatus,
+  BmbAlertCenterComponent,
+  IBmbDataAlert,
   BmbLoginComponent,
   IBmbHome,
   BmbInnerHeaderComponent,
@@ -136,8 +138,6 @@ import { BmbInputControlDirective } from '../../projects/ds-ng/src/lib/directive
 import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BmbUserProfileComponent } from '../../projects/ds-ng/src/lib/components/bmb-user-profile/bmb-user-profile.component';
-import { IBmbDataAlert } from '../../projects/ds-ng/src/lib/components/bmb-alert-center/types';
-import { BmbAlertCenterComponent } from '../../projects/ds-ng/src/lib/components/bmb-alert-center/bmb-alert-center.component';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -224,6 +224,9 @@ import { BmbAlertCenterComponent } from '../../projects/ds-ng/src/lib/components
     MatFormFieldModule,
     BmbFilterCardComponent,
     BmbDropzoneComponent,
+    BmbAlertCenterComponent,
+    BmbInnerHeaderComponent,
+    BmbPortalComponent,
     BmbLoginComponent,
     BmbUserProfileComponent,
     BmbAlertCenterComponent,
