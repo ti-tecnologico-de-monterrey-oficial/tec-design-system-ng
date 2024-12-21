@@ -121,6 +121,8 @@ export * from './lib/components/bmb-iframe/bmb-iframe.component';
 export * from './lib/components/bmb-list-group/bmb-list-group.component';
 export * from './lib/components/bmb-simple-header/bmb-simple-header.component';
 export * from './lib/components/bmb-drawer-overlay/bmb-drawer-overlay.component';
+export * from './lib/components/bmb-login/bmb-login.component';
+export * from './lib/components/bmb-profile/bmb-profile.component';
 
 // types
 export * from './lib/types';
