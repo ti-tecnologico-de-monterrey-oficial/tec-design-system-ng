@@ -14,7 +14,11 @@ import { BmbHeaderMitecComponent } from '../bmb-header-mitec/bmb-header-mitec.co
 @Component({
   selector: 'bmb-login',
   standalone: true,
-  imports: [BmbHeaderMitecComponent, BmbInputComponent, BmbButtonDirective],
+  imports: [
+    BmbHeaderMitecComponent,
+    BmbInputComponent,
+    BmbButtonDirective
+  ],
   templateUrl: './bmb-login.component.html',
   styleUrl: './bmb-login.component.scss',
   encapsulation: ViewEncapsulation.None,
