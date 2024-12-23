@@ -1,17 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BmbLoginComponent } from './bmb-login.component';
 
-describe('BmbLoginComponent', () => {
-  let component: BmbLoginComponent;
-  let fixture: ComponentFixture<BmbLoginComponent>;
+import { BmbProfileComponent } from './bmb-profile.component';
+
+describe('BmbProfileComponent', () => {
+  let component: BmbProfileComponent;
+  let fixture: ComponentFixture<BmbProfileComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BmbLoginComponent]
+      imports: [BmbProfileComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(BmbLoginComponent);
+    fixture = TestBed.createComponent(BmbProfileComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
