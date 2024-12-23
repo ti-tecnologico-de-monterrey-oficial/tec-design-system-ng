@@ -18,8 +18,22 @@ import { BmbHeaderMitecComponent } from '../bmb-header-mitec/bmb-header-mitec.co
     BmbButtonDirective,
     BmbUserSummaryComponent,
   ],
-  templateUrl: './bmb-user-profile.component.html',
   styleUrl: './bmb-user-profile.component.scss',
+  template: `
+    <bmb-header-mitec [headerLabel]="headerLabel()">
+      <section class="bmb_user-profile">
+        <bmb-user-summary
+          [image]="userInfo().profilePicture"
+          [name]="userInfo().fullName"
+          [id]="userInfo().id"
+        />
+        <p class="bmb_user-profile-sublabel">{{ anotherAccountLabel() }}</p>
+      </section>
+      <button bmbButton size="large" (click)="handleContinue()">
+        {{ buttonLabel() }}
+      </button>
+    </bmb-header-mitec>
+  `,
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

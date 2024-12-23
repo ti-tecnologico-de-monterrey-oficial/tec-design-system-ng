@@ -133,7 +133,7 @@ export const Default: Story = {
       { title: 'Tab 3', id: 2 },
     ],
     appServices: {
-      0: [
+      '0': [
         {
           appearance: 'red',
           title: 'App 1',
@@ -149,7 +149,7 @@ export const Default: Story = {
           link: 'https://www.example.com/',
         },
       ],
-      1: [
+      '1': [
         {
           appearance: 'green',
           title: 'App 3',
@@ -165,7 +165,7 @@ export const Default: Story = {
           link: 'https://www.example.com/',
         },
       ],
-      2: [
+      '2': [
         {
           appearance: 'green',
           title: 'App 5',

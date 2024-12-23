@@ -109,14 +109,18 @@ export * from './lib/components/bmb-invoice/bmb-invoice.component';
 export * from './lib/components/bmb-multi-dot-paginator/bmb-multi-dot-paginator.component';
 export * from './lib/components/bmb-multi-dot-paginator/bmb-multi-dot-paginator-item/bmb-multi-dot-paginator-item.component';
 export * from './lib/components/bmb-accordion/bmb-accordion.component';
+export * from './lib/components/bmb-alert-center/bmb-alert-center.component';
+export * from './lib/components/bmb-portal/bmb-portal.component';
+export * from './lib/components/bmb-iframe/bmb-iframe.component';
 export * from './lib/components/bmb-login/bmb-login.component';
-export * from './lib/components/bmb-user-profile/bmb-user-profile.component';
 export * from './lib/components/bmb-user-profile/bmb-user-profile.component';
 export * from './lib/components/bmb-academic-progress/bmb-academic-progress.component';
 export * from './lib/components/bmb-alert-center/bmb-alert-center.component';
 export * from './lib/components/bmb-portal/bmb-portal.component';
 export * from './lib/components/bmb-iframe/bmb-iframe.component';
 export * from './lib/components/bmb-list-group/bmb-list-group.component';
+export * from './lib/components/bmb-simple-header/bmb-simple-header.component';
+export * from './lib/components/bmb-drawer-overlay/bmb-drawer-overlay.component';
 
 // types
 export * from './lib/types';
