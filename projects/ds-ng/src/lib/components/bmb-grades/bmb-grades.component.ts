@@ -21,7 +21,7 @@ import { BmbGradeValueComponent } from '../bmb-grade-value/bmb-grade-value.compo
 import { BmbInnerHeaderComponent } from '../bmb-inner-header/bmb-inner-header.component';
 import { BmbAcademicProgressComponent } from '../bmb-academic-progress/bmb-academic-progress.component';
 import { IBmbNameValuePair } from '../../types';
-import { BmbContainerComponent } from 'ds-ng';
+import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 
 @Component({
   selector: 'bmb-grades',
