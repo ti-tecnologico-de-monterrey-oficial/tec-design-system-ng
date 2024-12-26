@@ -35,19 +35,19 @@
   &-red-circle {
     left: 45.5%;
     @include circle(RGBA(var(--color-mitec-red), 1));
-    animation: bmb_mitec_logo_animation_red_circle 1s .2s 1;
+    animation: bmb_mitec_logo_animation_red_circle 1s 0.2s 1;
   }
 
   &-orange-circle {
     left: 53.2%;
     @include circle(RGBA(var(--color-mitec-orange), 1));
-    animation: bmb_mitec_logo_animation_orange_circle 1s .3s 1;
+    animation: bmb_mitec_logo_animation_orange_circle 1s 0.3s 1;
   }
 
   &-blue-circle {
     left: 61%;
     @include circle(RGBA(var(--color-mitec-blue), 1));
-    animation: bmb_mitec_logo_animation_blue_circle 1s .9s 1;
+    animation: bmb_mitec_logo_animation_blue_circle 1s 0.9s 1;
   }
 
   &-yellow-bar {
@@ -81,7 +81,6 @@
     top: 62.78%;
     animation: bmb_mitec_logo_animation_title 4s 1;
   }
-
 
   &-subtitle {
     position: absolute;

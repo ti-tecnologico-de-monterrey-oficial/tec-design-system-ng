@@ -8,9 +8,8 @@ describe('BmbProfileComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BmbProfileComponent]
-    })
-    .compileComponents();
+      imports: [BmbProfileComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(BmbProfileComponent);
     component = fixture.componentInstance;
