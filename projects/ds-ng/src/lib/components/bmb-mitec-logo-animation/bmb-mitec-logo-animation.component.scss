@@ -1,0 +1,215 @@
+@mixin base($width, $height, $radius) {
+  width: $width;
+  height: $height;
+  position: absolute;
+  border-radius: $radius;
+}
+
+@mixin circle($color) {
+  @include base(1.333%, 1.333%, 50%);
+  background-color: $color;
+  opacity: 0;
+  top: 49.5%;
+}
+
+@mixin bar() {
+  @include base(6.333%, auto, 0);
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: 200%;
+  mask-image: url(/assets/images/animated-svg/yellow-mask.svg);
+  top: 39.7%;
+}
+
+.bmb_mitec-logo-animation {
+  width: 100%;
+  aspect-ratio: 1/1;
+  position: relative;
+
+  &-yellow-circle {
+    left: 38.5%;
+    @include circle(RGBA(var(--color-mitec-green), 1));
+    animation: bmb_mitec_logo_animation_yellow_circle 1s 1;
+  }
+
+  &-red-circle {
+    left: 45.5%;
+    @include circle(RGBA(var(--color-mitec-red), 1));
+    animation: bmb_mitec_logo_animation_red_circle 1s .2s 1;
+  }
+
+  &-orange-circle {
+    left: 53.2%;
+    @include circle(RGBA(var(--color-mitec-orange), 1));
+    animation: bmb_mitec_logo_animation_orange_circle 1s .3s 1;
+  }
+
+  &-blue-circle {
+    left: 61%;
+    @include circle(RGBA(var(--color-mitec-blue), 1));
+    animation: bmb_mitec_logo_animation_blue_circle 1s .9s 1;
+  }
+
+  &-yellow-bar {
+    @include bar();
+    left: 35.7%;
+    animation: bmb_mitec_logo_animation_yellow_bar 4s 1;
+  }
+
+  &-red-bar {
+    @include bar();
+    left: 43.2%;
+    animation: bmb_mitec_logo_animation_red_bar 4s 1;
+  }
+
+  &-orange-bar {
+    @include bar();
+    left: 50.6%;
+    animation: bmb_mitec_logo_animation_orange_bar 4s 1;
+  }
+
+  &-blue-bar {
+    @include bar();
+    left: 58.1%;
+    animation: bmb_mitec_logo_animation_blue_bar 4s 1;
+  }
+
+  &-title {
+    position: absolute;
+    left: 35.7%;
+    width: 28.2%;
+    top: 62.78%;
+    animation: bmb_mitec_logo_animation_title 4s 1;
+  }
+
+
+  &-subtitle {
+    position: absolute;
+    left: 30.3%;
+    width: 39.1%;
+    top: 75.1%;
+    animation: bmb_mitec_logo_animation_subtitle 4s 1;
+  }
+}
+
+@keyframes bmb_mitec_logo_animation_yellow_circle {
+  0% {
+    transform: translate(-600%, -1000%) scale(12);
+    filter: blur(5px);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes bmb_mitec_logo_animation_red_circle {
+  0% {
+    transform: translate(-16%, 1300%) scale(12);
+    filter: blur(5px);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes bmb_mitec_logo_animation_blue_circle {
+  0% {
+    transform: translate(2000%, -1000%) scale(12);
+    filter: blur(5px);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes bmb_mitec_logo_animation_orange_circle {
+  0% {
+    transform: translate(2000%, -1000%) scale(12);
+    filter: blur(5px);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes bmb_mitec_logo_animation_yellow_bar {
+  0%,
+  18.5% {
+    mask-size: 0%;
+  }
+  27.5%,
+  100% {
+    mask-size: 200%;
+  }
+}
+
+@keyframes bmb_mitec_logo_animation_red_bar {
+  0%,
+  23.75% {
+    mask-size: 0%;
+  }
+  33.75%,
+  100% {
+    mask-size: 200%;
+  }
+}
+
+@keyframes bmb_mitec_logo_animation_orange_bar {
+  0%,
+  30% {
+    mask-size: 0%;
+  }
+  40%,
+  100% {
+    mask-size: 200%;
+  }
+}
+
+@keyframes bmb_mitec_logo_animation_blue_bar {
+  0%,
+  40.25% {
+    mask-size: 0%;
+  }
+  50.25%,
+  100% {
+    mask-size: 200%;
+  }
+}
+
+@keyframes bmb_mitec_logo_animation_title {
+  0%,
+  37.5% {
+    opacity: 0;
+    transform: translate(0px, -31%);
+  }
+  56.25%,
+  100% {
+    opacity: 1;
+    transform: translate(0px, 0px);
+  }
+}
+
+@keyframes bmb_mitec_logo_animation_subtitle {
+  0%,
+  50% {
+    opacity: 0;
+    transform: translate(0px, -31%);
+  }
+  65%,
+  100% {
+    opacity: 1;
+    transform: translate(0px, 0px);
+  }
+}

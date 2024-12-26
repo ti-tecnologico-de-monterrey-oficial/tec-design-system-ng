@@ -9,11 +9,11 @@ export * from '../components/bmb-alert-center/types';
 
 export type SizeNames = 'xs' | 's' | 'm' | 'l' | 'xl' | 'none' | 'auto';
 export type IButtonAppearance =
-  | 'primary'
-  | 'secondary-filled'
-  | 'secondary-outlined'
-  | 'destructive'
-  | 'transparent';
+| 'primary'
+| 'secondary-filled'
+| 'secondary-outlined'
+| 'destructive'
+| 'transparent';
 export type IButtonSize = 'small' | 'large' | 'micro';
 export type IBbmSidePosition = 'before' | 'after';
 export type IBmbHorizontalPosition = 'left' | 'right';
@@ -52,4 +52,14 @@ export interface IBmbApp {
 export interface IBmbNameValuePair {
   name: string;
   value: string | number | boolean;
+}
+
+export interface IBmbProfileData{
+  name: string;
+  userImg: string;
+  matricula: string;
+  mail: string;
+  period: string;
+  campus: string;
+  program: string;
 }

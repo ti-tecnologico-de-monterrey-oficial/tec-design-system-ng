@@ -19,41 +19,53 @@
   }
 </ng-template>
 
-<section class="bmb_grades">
-  <bmb-inner-header
-    [title]="getGradesTitle()"
-    [showClose]="true"
-    [trailingIconSecondary]="getCalendarIcon()"
-    (onHandleClose)="handleLeftGradesClick($event)"
-    (onHandleTrailingSecondary)="handleRightGradesClick()"
-  >
-    <bmb-chevron-title-selector
-      [title]="getTitle()"
-      leadingIcon="chevron_left"
-      trailingIcon="chevron_right"
-      (onLeadingClick)="handleLeftPeriodClick()"
-      (onTrailingClick)="handleRightPeriodClick()"
+@if (isMicro()) {
+  <bmb-container appearance="primary-home">
+    <bmb-chevron-title-selector [title]="gradeTitle()!" />
+    <bmb-chevron-title-selector [title]="title()!" />
+    <bmb-academic-progress
+      [accredited]="accredited()!"
+      [average]="average()!"
+      [summary]="summary()!"
     />
-    @if (showPrincipalDetail) {
-      <bmb-academic-progress
-        [accredited]="{
-          name: 'Materias Acreditadas',
-          value: getAccreditedClasses(),
-        }"
-        [average]="{ name: 'Promedio Semestre', value: getPeriodAverage() }"
-        [summary]="{ name: 'Horas Servicio', value: getServiceHours() }"
+  </bmb-container>
+} @else {
+  <section class="bmb_grades">
+    <bmb-inner-header
+      [title]="getGradesTitle()"
+      [showClose]="true"
+      [trailingIconSecondary]="getCalendarIcon()"
+      (onHandleClose)="handleLeftGradesClick($event)"
+      (onHandleTrailingSecondary)="handleRightGradesClick()"
+    >
+      <bmb-chevron-title-selector
+        [title]="getTitle()"
+        leadingIcon="chevron_left"
+        trailingIcon="chevron_right"
+        (onLeadingClick)="handleLeftPeriodClick()"
+        (onTrailingClick)="handleRightPeriodClick()"
+      />
+      @if (showPrincipalDetail) {
+        <bmb-academic-progress
+          [accredited]="{
+            name: 'Materias Acreditadas',
+            value: getAccreditedClasses(),
+          }"
+          [average]="{ name: 'Promedio Semestre', value: getPeriodAverage() }"
+          [summary]="{ name: 'Horas Servicio', value: getServiceHours() }"
+        />
+      }
+    </bmb-inner-header>
+    @for (element of getElements(); track $index) {
+      <bmb-container-button
+        [title]="getDetailTitle(element)"
+        [subtitle]="getDetailSubtitle(element)"
+        [score]="getDetailScore(element)"
+        iconLeft="chevron_left"
+        iconRight="chevron_right"
+        [setButtonTemplate]="true"
+        (onButton)="handleDetails(element)"
       />
     }
-  </bmb-inner-header>
-  @for (element of getElements(); track $index) {
-    <bmb-container-button
-      [title]="getDetailTitle(element)"
-      [subtitle]="getDetailSubtitle(element)"
-      [score]="getDetailScore(element)"
-      iconLeft="chevron_left"
-      iconRight="chevron_right"
-      [setButtonTemplate]="true"
-      (onButton)="handleDetails(element)"
-    />
-  }
-</section>
+  </section>
+}

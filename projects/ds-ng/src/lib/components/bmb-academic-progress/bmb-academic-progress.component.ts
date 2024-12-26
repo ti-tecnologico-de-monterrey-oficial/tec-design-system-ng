@@ -60,11 +60,37 @@ export class BmbAcademicProgressComponent {
   average = input.required<IBmbNameValuePair>();
   summary = input.required<IBmbNameValuePair>();
 
+  ngOnInit() {
+    let inputs = [];
+    let elements = '';
+    if (!this.accredited()) inputs.push('accredited');
+    if (!this.average()) inputs.push('average');
+    if (!this.summary()) inputs.push('summary');
+
+    inputs.forEach((element, index) => {
+      elements += element;
+      elements +=
+        index == inputs.length - 2
+          ? ' and '
+          : inputs.length > 1 && index < inputs.length - 1
+            ? ', '
+            : '';
+    });
+
+    if (inputs.length) {
+      throw new Error(
+        `
+        The "${elements}" input${inputs.length > 1 ? 's' : ''} ${inputs.length > 1 ? 'are' : 'is'} required.
+        `,
+      );
+    }
+  }
+
   getName(element: IBmbNameValuePair): string {
-    return element.name;
+    return element?.name;
   }
 
   getValue(element: IBmbNameValuePair): number {
-    return Number(element.value);
+    return Number(element?.value);
   }
 }
