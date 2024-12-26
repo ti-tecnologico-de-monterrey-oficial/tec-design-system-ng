@@ -11,29 +11,28 @@ import { BmbThemeComponent } from '../bmb-theme/bmb-theme.component';
   selector: 'storybook-wrapper',
   template: `
     <div style="max-width: 450px; margin: 0 auto">
-      <bmb-profile 
+      <bmb-profile
         [userData]="userData()"
         [campusAcessLink]="campusAcessLink()"
         [idDigitalLink]="idDigitalLink()"
         [targetLinks]="targetLinks()"
         (handleCloseSession)="closeSession()"
-        >
+      >
       </bmb-profile>
-      <bmb-theme [initialTheme]="'light'" [showControls]="false"/>
+      <bmb-theme [initialTheme]="'light'" [showControls]="false" />
     </div>
   `,
 })
 class StorybookWrapperComponent {
-    userData =  input.required<IBmbProfileData>()
-    campusAcessLink = input<string>('');
-    idDigitalLink = input<string>('');
-    targetLinks = input<IBmbTargetLink>('_blank')
-    handleCloseSession = output()
-  
-    closeSession():void{
-      window.alert("Cerrar Session")
-    } 
+  userData = input.required<IBmbProfileData>();
+  campusAcessLink = input<string>('');
+  idDigitalLink = input<string>('');
+  targetLinks = input<IBmbTargetLink>('_blank');
+  handleCloseSession = output();
 
+  closeSession(): void {
+    window.alert('Cerrar Session');
+  }
 }
 
 export default {
@@ -106,7 +105,8 @@ Below is an example of how you can use this component in HTML:
     campusAcessLink: {
       name: 'Campus Access Link',
       control: 'text',
-      description: 'Set the link to redirect when the campus access button is clicked',
+      description:
+        'Set the link to redirect when the campus access button is clicked',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -115,69 +115,70 @@ Below is an example of how you can use this component in HTML:
     idDigitalLink: {
       name: 'Id Digital Link',
       control: 'text',
-      description: 'Set the link to redirect when the id digital button is clicked',
+      description:
+        'Set the link to redirect when the id digital button is clicked',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        defaultValue: { summary: 'Ingresar'}
+        defaultValue: { summary: 'Ingresar' },
       },
     },
     targetLinks: {
       name: 'Target Links',
       control: 'text',
-      description: 'The target attribute for the link. Refer to https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a for more information.',
+      description:
+        'The target attribute for the link. Refer to https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a for more information.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        defaultValue: { summary: 'Ingresar'}
+        defaultValue: { summary: 'Ingresar' },
       },
     },
     handleCloseSession: {
       name: 'Handle Close Session',
       control: null,
-      description: 'Output function, returns a void signal to indicates that close session button was clicked',
+      description:
+        'Output function, returns a void signal to indicates that close session button was clicked',
       table: {
         category: 'Events',
         type: { summary: 'function' },
       },
     },
   },
-  args:{
+  args: {
     userData: {
-        name: 'Juanito Perez',
-        userImg: 'https://picsum.photos/200/300',
-        matricula: 'A032132',
-        mail: 'mail@tec.mx',
-        period: 'AGO-DIC 24',
-        campus: 'Monterrey',
-        program: 'ARQ19'
+      name: 'Juanito Perez',
+      userImg: 'https://picsum.photos/200/300',
+      matricula: 'A032132',
+      mail: 'mail@tec.mx',
+      period: 'AGO-DIC 24',
+      campus: 'Monterrey',
+      program: 'ARQ19',
     },
     campusAcessLink: 'https://www.youtube.com',
     idDigitalLink: 'https://www.x.com',
     targetLinks: '_blank',
     handleCloseSession: () => {
-        window.alert('Cerrar Sesion')
-    }
-  }
+      window.alert('Cerrar Sesion');
+    },
+  },
 } as Meta<typeof BmbProfileComponent>;
 
 function attributes(object: { [key: string]: any }): string {
-    console.log("Object", object)
+  console.log('Object', object);
   return Object.entries(object)
     .filter(([key]) => key !== 'text')
     .map(([key, value]) => {
-        if (key === 'userData') {
-            return `[${key}]='${JSON.stringify(value)}'`;
-        }else{
-            return `${key}="${value}"`;
-        }
+      if (key === 'userData') {
+        return `[${key}]='${JSON.stringify(value)}'`;
+      } else {
+        return `${key}="${value}"`;
+      }
     })
     .join(' ');
 }
 
-export const Default: StoryFn<typeof StorybookWrapperComponent> = (
-  args,
-) => {
+export const Default: StoryFn<typeof StorybookWrapperComponent> = (args) => {
   return {
     props: args,
     template: `
