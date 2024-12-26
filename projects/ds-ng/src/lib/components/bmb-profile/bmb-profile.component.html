@@ -1,86 +1,86 @@
-<bmb-mobile-templates
-  [title]="'Mi Perfil'"
->
+<bmb-mobile-templates [title]="'Mi Perfil'">
   <ng-template #bmbTemplateMain>
     <section class="bmb_profile">
-        <section class="bmb_profile-user">
-            <bmb-user-image
-                [size]="'mobile-large'"
-                [image]="userData().userImg"
-                [altImage]="'Profile Image'"
-                [target]="'_blank'"
-                [bordered]="false"
-            />
-            <section class="bmb_profile-user-text">
-                <p class="bmb_profile-user-text-name">
-                    {{userData().name}}
-                </p>
-                <p class="bmb_profile-user-text-matricula">
-                    {{userData().matricula}}
-                </p>
-                <p class="bmb_profile-user-text-mail">
-                    {{userData().mail}}
-                </p>
-            </section>
+      <section class="bmb_profile-user">
+        <bmb-user-image
+          [size]="'mobile-large'"
+          [image]="userData().userImg"
+          [altImage]="'Profile Image'"
+          [target]="'_blank'"
+          [bordered]="false"
+        />
+        <section class="bmb_profile-user-text">
+          <p class="bmb_profile-user-text-name">
+            {{ userData().name }}
+          </p>
+          <p class="bmb_profile-user-text-matricula">
+            {{ userData().matricula }}
+          </p>
+          <p class="bmb_profile-user-text-mail">
+            {{ userData().mail }}
+          </p>
         </section>
-        <section class="bmb_profile-info">
-            <section class="bmb_profile-info-container">
-                <div class="bmb_profile-info-container-item">
-                    <bmb-icon [icon]="'calendar_month'" [size]="24"/>
-                    <span class="bmb_profile-info-container-item-text">Semestre</span>
-                </div>
-                <span class="bmb_profile-info-container-value">{{userData().period}}</span>
-            </section>
-            <section class="bmb_profile-info-container">
-                <div class="bmb_profile-info-container-item">
-                    <bmb-icon [icon]="'location_on'" [size]="24"/>
-                    <span class="bmb_profile-info-container-item-text">Campus</span>
-                </div>
-                <span>{{userData().campus}}</span>
-            </section>
-            <section class="bmb_profile-info-container">
-                <div class="bmb_profile-info-container-item">
-                    <bmb-icon [icon]="'library_books'" [size]="24"/>
-                    <span class="bmb_profile-info-container-item-text">Programa</span>
-                </div>
-                <span>{{userData().program}}</span>
-            </section>
-            <section class="bmb_profile-info-container theme">
-                <div class="bmb_profile-info-container-item">
-                    <bmb-icon [icon]="'palette'" [size]="24"/>
-                    <span class="bmb_profile-info-container-item-text">Tema</span>
-                </div>
-                <bmb-theme [initialTheme]="'light'" />
-            </section>
+      </section>
+      <section class="bmb_profile-info">
+        <section class="bmb_profile-info-container">
+          <div class="bmb_profile-info-container-item">
+            <bmb-icon [icon]="'calendar_month'" [size]="24" />
+            <span class="bmb_profile-info-container-item-text">Semestre</span>
+          </div>
+          <span class="bmb_profile-info-container-value">{{
+            userData().period
+          }}</span>
         </section>
-        <section class="bmb_profile-access">
-            <bmb-container-button            
-                [title]="'ID Digital'"
-                [iconLeft]="'person'"
-                [iconRight]="'chevron_right'"
-                [link]="idDigitalLink()"
-                [target]="targetLinks()!"
-            />
-            <bmb-container-button            
-                [title]="'Acceso a Campus'"
-                [iconLeft]="'qr_code'"
-                [iconRight]="'chevron_right'"
-                [link]="campusAcessLink()"
-                [target]="targetLinks()!"
-            />
+        <section class="bmb_profile-info-container">
+          <div class="bmb_profile-info-container-item">
+            <bmb-icon [icon]="'location_on'" [size]="24" />
+            <span class="bmb_profile-info-container-item-text">Campus</span>
+          </div>
+          <span>{{ userData().campus }}</span>
         </section>
-        <section class="bmb_profile-close">
-            <button 
-                bmbButton
-                appearance="destructive"
-                icon="logout"
-                size="large"
-                position="left"
-                (click)="closeSession()"
-            >
-                Cerrar Sesión
-            </button>
+        <section class="bmb_profile-info-container">
+          <div class="bmb_profile-info-container-item">
+            <bmb-icon [icon]="'library_books'" [size]="24" />
+            <span class="bmb_profile-info-container-item-text">Programa</span>
+          </div>
+          <span>{{ userData().program }}</span>
         </section>
+        <section class="bmb_profile-info-container theme">
+          <div class="bmb_profile-info-container-item">
+            <bmb-icon [icon]="'palette'" [size]="24" />
+            <span class="bmb_profile-info-container-item-text">Tema</span>
+          </div>
+          <bmb-theme [initialTheme]="'light'" />
+        </section>
+      </section>
+      <section class="bmb_profile-access">
+        <bmb-container-button
+          [title]="'ID Digital'"
+          [iconLeft]="'person'"
+          [iconRight]="'chevron_right'"
+          [link]="idDigitalLink()"
+          [target]="targetLinks()!"
+        />
+        <bmb-container-button
+          [title]="'Acceso a Campus'"
+          [iconLeft]="'qr_code'"
+          [iconRight]="'chevron_right'"
+          [link]="campusAcessLink()"
+          [target]="targetLinks()!"
+        />
+      </section>
+      <section class="bmb_profile-close">
+        <button
+          bmbButton
+          appearance="destructive"
+          icon="logout"
+          size="large"
+          position="left"
+          (click)="closeSession()"
+        >
+          Cerrar Sesión
+        </button>
+      </section>
     </section>
   </ng-template>
 </bmb-mobile-templates>
