@@ -26,8 +26,7 @@ Below is an example of how you can use this component in HTML:
       },
     },
   },
-  argTypes: {
-  },
+  argTypes: {},
   args: {},
 } as Meta<typeof BmbMitecLogoAnimationComponent>;
 
