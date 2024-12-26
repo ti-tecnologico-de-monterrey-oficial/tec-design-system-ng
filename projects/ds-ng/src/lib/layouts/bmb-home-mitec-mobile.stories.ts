@@ -5,7 +5,7 @@ import {
   BmbDividerComponent,
   BmbDotPaginatorComponent,
   BmbDrawerOverlayComponent,
-  BmbGradesMicroComponent,
+  BmbGradesComponent,
   BmbHeaderMobileComponent,
   BmbLoginComponent,
   BmbMediaCardComponent,
@@ -32,7 +32,7 @@ import { BmbInteractiveIconComponent } from 'ds-ng';
     BmbDividerComponent,
     BmbStudentActivityCardComponent,
     BmbDrawerOverlayComponent,
-    BmbGradesMicroComponent,
+    BmbGradesComponent,
     BmbInteractiveIconComponent,
     BmbMediaCardComponent,
     BmbDotPaginatorComponent,
@@ -123,7 +123,8 @@ import { BmbInteractiveIconComponent } from 'ds-ng';
         </section>
         <bmb-divider />
         <bmb-simple-header title="Mis Calificaciones" icon="school" />
-        <bmb-grades-micro
+        <bmb-grades
+          [isMicro]="true"
           [gradeTitle]="'Período actual'"
           [title]="'Semestral AGO-DIC 2024'"
           [accredited]="{ name: 'Créditos aprobados', value: '39' }"
