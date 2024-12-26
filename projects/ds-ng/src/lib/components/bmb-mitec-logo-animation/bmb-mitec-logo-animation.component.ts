@@ -13,5 +13,4 @@ import {
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbMitecLogoAnimationComponent {
-}
+export class BmbMitecLogoAnimationComponent {}
