@@ -20,6 +20,8 @@ import { CommonModule } from '@angular/common';
 import { BmbGradeValueComponent } from '../bmb-grade-value/bmb-grade-value.component';
 import { BmbInnerHeaderComponent } from '../bmb-inner-header/bmb-inner-header.component';
 import { BmbAcademicProgressComponent } from '../bmb-academic-progress/bmb-academic-progress.component';
+import { IBmbNameValuePair } from '../../types';
+import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 
 @Component({
   selector: 'bmb-grades',
@@ -34,6 +36,7 @@ import { BmbAcademicProgressComponent } from '../bmb-academic-progress/bmb-acade
     BmbLayoutItemDirective,
     BmbGradeValueComponent,
     BmbInnerHeaderComponent,
+    BmbContainerComponent,
   ],
   templateUrl: './bmb-grades.component.html',
   styleUrl: './bmb-grades.component.scss',
@@ -41,7 +44,13 @@ import { BmbAcademicProgressComponent } from '../bmb-academic-progress/bmb-acade
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbGradesComponent {
-  grades = input.required<IBmbGrades[]>();
+  grades = input<IBmbGrades[]>([]);
+  isMicro = input<boolean>();
+  gradeTitle = input<string>();
+  title = input<string>();
+  accredited = input<IBmbNameValuePair>();
+  average = input<IBmbNameValuePair>();
+  summary = input<IBmbNameValuePair>();
 
   closeGrades = output();
 
@@ -53,6 +62,37 @@ export class BmbGradesComponent {
 
   @ViewChild('detailContent', { read: TemplateRef })
   detailContent?: TemplateRef<any>;
+
+  ngOnInit() {
+    if (this.isMicro()) {
+      let inputs = [];
+      let elements = '';
+
+      if (!this.gradeTitle()) inputs.push('gradeTitle');
+      if (!this.title()) inputs.push('title');
+      if (!this.accredited()) inputs.push('accredited');
+      if (!this.average()) inputs.push('average');
+      if (!this.summary()) inputs.push('summary');
+
+      inputs.forEach((element, index) => {
+        elements += element;
+        elements +=
+          index == inputs.length - 2
+            ? ' and '
+            : inputs.length > 1 && index < inputs.length - 1
+              ? ', '
+              : '';
+      });
+
+      if (inputs.length) {
+        throw new Error(
+          `
+        The "${elements}" input${inputs.length > 1 ? 's' : ''} ${inputs.length > 1 ? 'are' : 'is'} required when "isMicro" is true.
+        `,
+        );
+      }
+    }
+  }
 
   ngAfterViewInit(): void {
     if (this.detailContent) {
