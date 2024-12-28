@@ -109,7 +109,6 @@ import {
   BmbBreadcrumbComponent,
   IBmbDropdownItem,
   BmbCheckboxComponent,
-  BmbGradesMicroComponent,
   BmbMitecLogoAnimationComponent,
 } from '../../projects/ds-ng/src/public-api';
 import { BmbPullWedgeComponent } from '../../projects/ds-ng/src/lib/components/bmb-pull-wedge/bmb-pull-wedge.component';
@@ -233,7 +232,6 @@ import { BmbUserProfileComponent } from '../../projects/ds-ng/src/lib/components
     BmbAlertCenterComponent,
     BmbInnerHeaderComponent,
     BmbPortalComponent,
-    BmbGradesMicroComponent,
     BmbMitecLogoAnimationComponent,
   ],
   templateUrl: './app.component.html',
