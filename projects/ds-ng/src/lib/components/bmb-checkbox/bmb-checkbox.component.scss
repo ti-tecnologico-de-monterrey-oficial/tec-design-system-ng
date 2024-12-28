@@ -120,11 +120,7 @@
 
   &-label {
     color: RGBA(var(--color-charade-950));
-    flex: 1;
-    // overflow: hidden;
     padding-right: rem.rem_calc(10);
-    // text-overflow: ellipsis;
-    // white-space: nowrap;
     @include fonts.font(4, medium);
   }
 

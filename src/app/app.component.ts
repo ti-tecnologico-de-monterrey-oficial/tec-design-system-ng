@@ -110,6 +110,7 @@ import {
   IBmbDropdownItem,
   BmbCheckboxComponent,
   BmbGradesMicroComponent,
+  BmbMitecLogoAnimationComponent,
 } from '../../projects/ds-ng/src/public-api';
 import { BmbPullWedgeComponent } from '../../projects/ds-ng/src/lib/components/bmb-pull-wedge/bmb-pull-wedge.component';
 import { BmbCardButtonComponent } from '../../projects/ds-ng/src/lib/components/bmb-card-button/bmb-card-button.component';
@@ -233,6 +234,7 @@ import { BmbUserProfileComponent } from '../../projects/ds-ng/src/lib/components
     BmbInnerHeaderComponent,
     BmbPortalComponent,
     BmbGradesMicroComponent,
+    BmbMitecLogoAnimationComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

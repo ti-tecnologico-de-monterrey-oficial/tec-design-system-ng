@@ -39,6 +39,69 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'IBmbGrades[]' },
       },
     },
+    isMicro: {
+      name: 'Is micro',
+      control: {
+        type: 'boolean',
+      },
+      description: 'Sets a boolean value when the version is micro.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+      },
+    },
+    gradeTitle: {
+      name: 'Grade title',
+      control: {
+        type: 'text',
+      },
+      description:
+        'Sets a string input that represents the title of the grades section. Required when "isMicro" is true.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
+    title: {
+      name: 'Title',
+      control: { type: 'text' },
+      description:
+        'Sets a string input that represents the main title of the component. Required when "isMicro" is true.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
+    accredited: {
+      name: 'Accredited',
+      control: { type: 'object' },
+      description:
+        'Sets an input of type IBmbNameValuePair that indicates accreditation status. Required when "isMicro" is true.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'IBmbNameValuePair' },
+      },
+    },
+    average: {
+      name: 'Accredited',
+      control: { type: 'object' },
+      description:
+        'Sets an input of type IBmbNameValuePair that represents the average grade. Required when "isMicro" is true.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'IBmbNameValuePair' },
+      },
+    },
+    summary: {
+      name: 'Accredited',
+      control: { type: 'object' },
+      description:
+        'Sets an input of type IBmbNameValuePair that provides a summary of the grades. Required when "isMicro" is true.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'IBmbNameValuePair' },
+      },
+    },
     closeGrades: {
       name: 'Close grades',
       control: false,
@@ -198,6 +261,12 @@ Below is an example of how you can use this component in HTML:
         ],
       },
     ],
+    isMicro: false,
+    gradeTitle: 'Período actual',
+    title: 'Semestral AGO-DIC 2024',
+    accredited: { name: 'Créditos aprobados', value: '39' },
+    average: { name: 'Promedio acumulado', value: '90' },
+    summary: { name: 'Faltas totales', value: '3' },
     closeGrades: () => {
       alert('Close event');
     },

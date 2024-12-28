@@ -89,7 +89,6 @@ export * from './lib/components/bmb-home-card-chat/bmb-home-card-chat.component'
 export * from './lib/components/bmb-paginator/bmb-paginator.component';
 export * from './lib/components/bmb-account-statement/bmb-account-statement.component';
 export * from './lib/components/bmb-grades/bmb-grades.component';
-export * from './lib/components/bmb-grades/bmb-grades-micro/bmb-grades-micro.component';
 export * from './lib/components/bmb-tooltip/bmb-tooltip.component';
 export * from './lib/components/bmb-web-templates/bmb-web-templates.component';
 export * from './lib/components/bmb-external-link/bmb-external-link.component';
@@ -123,6 +122,9 @@ export * from './lib/components/bmb-iframe/bmb-iframe.component';
 export * from './lib/components/bmb-list-group/bmb-list-group.component';
 export * from './lib/components/bmb-simple-header/bmb-simple-header.component';
 export * from './lib/components/bmb-drawer-overlay/bmb-drawer-overlay.component';
+export * from './lib/components/bmb-mitec-logo-animation/bmb-mitec-logo-animation.component';
+export * from './lib/components/bmb-login/bmb-login.component';
+export * from './lib/components/bmb-profile/bmb-profile.component';
 
 // types
 export * from './lib/types';
