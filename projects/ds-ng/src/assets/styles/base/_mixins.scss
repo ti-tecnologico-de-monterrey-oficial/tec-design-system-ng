@@ -120,7 +120,6 @@
     bmb-icon {
       color: RGBA(var(--color-white-primary));
     }
-
   } @else if $appearance == secondary-filled {
     background-color: RGBA(var(--color-charade-50));
     color: RGBA(var(--color-charade-900));
@@ -154,7 +153,7 @@
         transform: scale(1.2);
       }
     }
-    
+
     bmb-icon {
       color: RGBA(var(--color-charade-900));
     }
@@ -187,7 +186,6 @@
     bmb-icon {
       color: RGBA(var(--color-black-primary));
     }
-
   } @else if $appearance == destructive {
     background-color: transparent;
     border: rem.rem_calc(1) solid RGBA(var(--color-red-primary));

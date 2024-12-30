@@ -9,12 +9,44 @@
   gap: var(--bmb-spacing-m);
   height: 100dvh;
 
-  &-tec_logo {
-    padding: var(--bmb-spacing-xl);
-    text-align: center;
+  @media (min-width: 630px) {
+    background: linear-gradient(
+      180deg,
+      RGBA(var(--color-charade-900)) 0%,
+      RGBA(var(--color-charade-950)) 100%
+    );
+  }
 
-    img {
-      width: rem.rem_calc(140);
+  &-top {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+    &-tec_logo {
+      padding: var(--bmb-spacing-xl);
+      text-align: center;
+      width: 100%;
+
+      @media (min-width: 630px) {
+        text-align: start;
+        width: 50%;
+      }
+
+      img {
+        width: rem.rem_calc(140);
+      }
+    }
+
+    &-social {
+      display: none;
+      @media (min-width: 630px) {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        gap: 10px;
+        padding: var(--bmb-spacing-xl);
+      }
     }
   }
 
@@ -33,6 +65,7 @@
     }
 
     &-animation_text {
+      color: RGBA(var(--color-charade-50));
       animation: mitecAnimationText 2s ease-in 1;
     }
   }
@@ -43,6 +76,7 @@
     margin: 0 10%;
     align-self: center;
     width: 80%;
+    max-width: 500px;
 
     &-container {
       display: flex;
@@ -50,6 +84,10 @@
       margin: rem.rem_calc(6) 0;
       height: calc(100% - rem.rem_calc(12));
       justify-content: space-between;
+
+      @media (min-width: 630px) {
+        justify-content: flex-start;
+      }
     }
   }
 }

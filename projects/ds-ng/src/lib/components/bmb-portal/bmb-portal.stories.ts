@@ -30,6 +30,7 @@ import { BmbPortalComponent } from './bmb-portal.component';
       >
         Add notification
       </button>
+      {{ getNogificationLenght() }}
       <bmb-portal />
     </div>
   `,
@@ -57,6 +58,10 @@ class StorybookToastWrapperComponent {
   }
 
   constructor(private notificationSignal: BmbNotificationService) {}
+
+  getNogificationLenght() {
+    return this.notificationSignal.getNotificationList().length;
+  }
 
   addNotificationFnc() {
     console.log(typeof this.delay());

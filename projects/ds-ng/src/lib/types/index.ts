@@ -53,3 +53,13 @@ export interface IBmbNameValuePair {
   name: string;
   value: string | number | boolean;
 }
+
+export interface IBmbProfileData {
+  name: string;
+  userImg: string;
+  matricula: string;
+  mail: string;
+  period: string;
+  campus: string;
+  program: string;
+}

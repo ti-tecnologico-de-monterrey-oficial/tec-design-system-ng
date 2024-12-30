@@ -261,7 +261,6 @@ export class BmbTimestreamComponent {
       '';
 
     if (this.parsedEvents[month] && month !== 'orderedEvents') {
-      debugger;
       this.parsedEvents[month].selected = true;
       this.parsedEvents[month].events[day].selected = true;
     }
