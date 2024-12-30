@@ -6,35 +6,28 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 
 ---
 
-## Cambios de la versión v1.2.4
+## Cambios de la versión v1.2.5
+
+Actualización 1.2.5
+Nuevos componentes:
+
+Componentes actualizados:
+: Se corrigieron los estilos
 
 ### Nuevos componentes:
 
-- [List group](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-listsgroup-list-group--documentation)
-- [List group item](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-listsgroup-list-group-item--documentation)
+- [Mitec logo animation](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-mitec-logo-animation--documentation)
+- [Simple header](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-simple-header--documentation)
+- [Mitec home](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-home-mitec-mobile--documentation)
+- [Login](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-login--documentation)
+- [Profile](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-profile--documentation)
+- [User profile](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-user-profile--documentation)
 
 ## Componentes actualizados:
 
-- [Grades micro](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-grades-micro--documentation) Se agrego la vista micro para el componente de `Grades`.
-- [Breadcrumb](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-breadcrumb--documentation) Se actualizaron los estilos para acoplarse al nuevo diseño.
-- [Checkbox](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-checkbox--documentation) Se actualizaron los estilos.
-- [Timestream](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-timestream--documentation) Se agregó la vista micro.
-- [Student activity card](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-student-activity-card--documentation) **BREAKING CHANGES** Se actualizaron los estilos para acoplarse al nuevo diseño.
-- [Tabs](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-tabs--documentation) Se actualizaron los estilos.
-- [Input](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-input--documentation)
-  - Ahora puedes mostrar u ocultar el contenido del campo.
-  - Se da soporte para múltiples mensajes de error
-  - Copiar el contenido del campo
-- [Dropdown](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-dropdown--documentation) **BREAKING CHANGES** Se actualizaron los estilos y los tipos para acoplarse al nuevo diseño
-- Se agregaron algunas transiciones para los componentes:
-  - Card button
-  - Fab
-  - Input
-  - Loader
-  - Modal
-  - Switch
+- [Badge](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-badge--documentation) Se actualizaron los estilos.
 
-Si quieres ver el detalle de los cambios puedes ver la entrada de la wiki [aquí](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/wiki/What's-new)
+Si quieres ver el detalle de los cambios puedes ver la entrada de la wiki [aquí](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/wiki/What's-new).
 
 ---
 
