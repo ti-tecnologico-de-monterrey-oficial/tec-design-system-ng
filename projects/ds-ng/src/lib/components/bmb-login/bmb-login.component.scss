@@ -6,11 +6,13 @@
     display: block;
     height: max-content;
     margin: rem.rem_calc(6) 0;
+    margin-bottom: var(--bmb-spacing-l);
   }
 
   &-sublabel {
     text-align: right;
     margin: rem.rem_calc(6);
+    margin-bottom: rem.rem_calc(20);
     @include fonts.font(3, regular);
   }
 }

@@ -1,0 +1,92 @@
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/rem" as rem;
+
+.bmb_profile {
+  padding: 22px 16px;
+
+  &-user {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 22px;
+
+    // background-color: darkcyan;
+
+    &-text {
+      // background-color: darkmagenta;
+      display: flex;
+      flex-direction: column;
+      padding: 0 15px;
+      width: 100%;
+
+      &-name {
+        @include fonts.font(7, bold);
+        padding: 0;
+        margin-bottom: 10px;
+      }
+
+      &-matricula {
+        @include fonts.font(4, regular);
+        padding: 0;
+        margin-bottom: 5px;
+      }
+
+      &-mail {
+        @include fonts.font(3, regular);
+        padding: 0;
+        margin-bottom: 5px;
+      }
+    }
+  }
+
+  &-info {
+    &-container {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      padding: 16px 16px;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid RGBA(var(--color-charade-500));
+
+      &.theme {
+        border: 0;
+        padding: 22px 16px;
+      }
+
+      &-item {
+        display: flex;
+        align-items: center;
+
+        &-text {
+          @include fonts.font(5, semibold);
+          margin-left: 16px;
+        }
+      }
+
+      &-value {
+        @include fonts.font(4, regular);
+        text-align: end;
+      }
+    }
+  }
+
+  &-access {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    // height: 100%;
+    gap: 15px;
+    margin-top: 35px;
+
+    bmb-container-button {
+      a {
+        width: 100%;
+      }
+    }
+  }
+
+  &-close {
+    margin-top: calc(20%);
+  }
+}

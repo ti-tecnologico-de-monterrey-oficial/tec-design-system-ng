@@ -88,7 +88,6 @@ export * from './lib/components/bmb-home-card-chat/bmb-home-card-chat.component'
 export * from './lib/components/bmb-paginator/bmb-paginator.component';
 export * from './lib/components/bmb-account-statement/bmb-account-statement.component';
 export * from './lib/components/bmb-grades/bmb-grades.component';
-export * from './lib/components/bmb-grades/bmb-grades-micro/bmb-grades-micro.component';
 export * from './lib/components/bmb-tooltip/bmb-tooltip.component';
 export * from './lib/components/bmb-web-templates/bmb-web-templates.component';
 export * from './lib/components/bmb-external-link/bmb-external-link.component';
@@ -109,14 +108,21 @@ export * from './lib/components/bmb-invoice/bmb-invoice.component';
 export * from './lib/components/bmb-multi-dot-paginator/bmb-multi-dot-paginator.component';
 export * from './lib/components/bmb-multi-dot-paginator/bmb-multi-dot-paginator-item/bmb-multi-dot-paginator-item.component';
 export * from './lib/components/bmb-accordion/bmb-accordion.component';
+export * from './lib/components/bmb-alert-center/bmb-alert-center.component';
+export * from './lib/components/bmb-portal/bmb-portal.component';
+export * from './lib/components/bmb-iframe/bmb-iframe.component';
 export * from './lib/components/bmb-login/bmb-login.component';
-export * from './lib/components/bmb-user-profile/bmb-user-profile.component';
 export * from './lib/components/bmb-user-profile/bmb-user-profile.component';
 export * from './lib/components/bmb-academic-progress/bmb-academic-progress.component';
 export * from './lib/components/bmb-alert-center/bmb-alert-center.component';
 export * from './lib/components/bmb-portal/bmb-portal.component';
 export * from './lib/components/bmb-iframe/bmb-iframe.component';
 export * from './lib/components/bmb-list-group/bmb-list-group.component';
+export * from './lib/components/bmb-simple-header/bmb-simple-header.component';
+export * from './lib/components/bmb-drawer-overlay/bmb-drawer-overlay.component';
+export * from './lib/components/bmb-mitec-logo-animation/bmb-mitec-logo-animation.component';
+export * from './lib/components/bmb-login/bmb-login.component';
+export * from './lib/components/bmb-profile/bmb-profile.component';
 
 // types
 export * from './lib/types';

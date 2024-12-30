@@ -93,6 +93,8 @@ import {
   ITimelineEvent,
   BmbDropzoneComponent,
   IBmbFileUploadStatus,
+  BmbAlertCenterComponent,
+  IBmbDataAlert,
   BmbLoginComponent,
   IBmbHome,
   BmbInnerHeaderComponent,
@@ -100,6 +102,7 @@ import {
   BmbBreadcrumbComponent,
   IBmbDropdownItem,
   BmbGradesMicroComponent,
+  BmbMitecLogoAnimationComponent,
 } from '../../projects/ds-ng/src/public-api';
 import { BmbPullWedgeComponent } from '../../projects/ds-ng/src/lib/components/bmb-pull-wedge/bmb-pull-wedge.component';
 import { BmbCardButtonComponent } from '../../projects/ds-ng/src/lib/components/bmb-card-button/bmb-card-button.component';
@@ -125,8 +128,6 @@ import {
   IBmbEvaluationRubric,
 } from '../../projects/ds-ng/src/lib/components/bmb-evaluation-rubric/bmb-evaluation-rubric.component';
 import { BmbUserProfileComponent } from '../../projects/ds-ng/src/lib/components/bmb-user-profile/bmb-user-profile.component';
-import { IBmbDataAlert } from '../../projects/ds-ng/src/lib/components/bmb-alert-center/types';
-import { BmbAlertCenterComponent } from '../../projects/ds-ng/src/lib/components/bmb-alert-center/bmb-alert-center.component';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -208,12 +209,16 @@ import { BmbAlertCenterComponent } from '../../projects/ds-ng/src/lib/components
     BmbFormValidationComponent,
     BmbTimestreamCardComponent,
     BmbDropzoneComponent,
+    BmbAlertCenterComponent,
+    BmbInnerHeaderComponent,
+    BmbPortalComponent,
     BmbLoginComponent,
     BmbUserProfileComponent,
     BmbAlertCenterComponent,
     BmbInnerHeaderComponent,
     BmbPortalComponent,
     BmbGradesMicroComponent,
+    BmbMitecLogoAnimationComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -5176,11 +5181,11 @@ export class AppComponent {
 
   // options: string[] = ['Apple', 'Banana', 'Orange', 'Pear', 'Grape'];
   options: IBmbDropdownItem[] = [
-    { value: '1', name: 'Apple' },
-    { value: '2', name: 'Banana' },
-    { value: '3', name: 'Orange' },
-    { value: '4', name: 'Pear' },
-    { value: '5', name: 'Grape' },
+    { value: '1', name: 'Apple', icon: '' },
+    { value: '2', name: 'Banana', icon: '' },
+    { value: '3', name: 'Orange', icon: '' },
+    { value: '4', name: 'Pear', icon: '' },
+    { value: '5', name: 'Grape', icon: '' },
   ];
 
   onValueChange(params: unknown): void {

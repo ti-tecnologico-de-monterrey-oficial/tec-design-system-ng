@@ -460,3 +460,16 @@
     padding-bottom: var(--bmb-spacing-s);
   }
 }
+
+.bmb_horizontal-scroll {
+  overflow-x: auto;
+  display: flex;
+  white-space: nowrap;
+  padding: rem.rem_calc(10);
+  margin: rem.rem_calc(16);
+
+  &-wrapper {
+    display: flex;
+    gap: rem.rem_calc(16);
+  }
+}
