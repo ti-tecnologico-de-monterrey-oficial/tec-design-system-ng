@@ -6,7 +6,7 @@ import { ComponentRef } from '@angular/core';
 describe('BmbProfileComponent', () => {
   let component: BmbProfileComponent;
   let fixture: ComponentFixture<BmbProfileComponent>;
-    let componentRef: ComponentRef<BmbProfileComponent>;
+  let componentRef: ComponentRef<BmbProfileComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -14,15 +14,16 @@ describe('BmbProfileComponent', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(BmbProfileComponent);
-    component = fixture.componentInstance;componentRef = fixture.componentRef;
+    component = fixture.componentInstance;
+    componentRef = fixture.componentRef;
     componentRef.setInput('userData', {
       name: '',
       userImg: '',
       matricula: '',
-      mail:  '',
-      period:  '',
-      campus:  '',
-      program:  '',
+      mail: '',
+      period: '',
+      campus: '',
+      program: '',
     });
     fixture.detectChanges();
   });
