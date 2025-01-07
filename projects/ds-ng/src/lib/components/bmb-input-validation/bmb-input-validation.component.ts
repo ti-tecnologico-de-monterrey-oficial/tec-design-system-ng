@@ -160,7 +160,9 @@ export class BmbInputValidationComponent {
 
   get inputClasses(): { [key: string]: boolean } {
     const appearance =
-      this.type() === 'text-area' ? 'normal' : this.appearance().toLocaleLowerCase();
+      this.type() === 'text-area'
+        ? 'normal'
+        : this.appearance().toLocaleLowerCase();
     return {
       ['bmb_field-input-' + appearance]: true,
       'bmb_field-input-error': this.shouldShowError,
