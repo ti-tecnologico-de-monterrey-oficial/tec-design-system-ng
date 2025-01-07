@@ -5,6 +5,7 @@ import {
   BmbDividerComponent,
   BmbDotPaginatorComponent,
   BmbDrawerOverlayComponent,
+  BmbFrequentAppsSelectorComponent,
   BmbGradesComponent,
   BmbHeaderMobileComponent,
   BmbLoginComponent,
@@ -17,7 +18,6 @@ import {
 } from '../../public-api';
 import { IBmbUserInfo } from '../components/bmb-login-onboarding/types';
 import { CommonModule } from '@angular/common';
-import { BmbInteractiveIconComponent } from 'ds-ng';
 
 @Component({
   standalone: true,
@@ -33,7 +33,7 @@ import { BmbInteractiveIconComponent } from 'ds-ng';
     BmbStudentActivityCardComponent,
     BmbDrawerOverlayComponent,
     BmbGradesComponent,
-    BmbInteractiveIconComponent,
+    BmbFrequentAppsSelectorComponent,
     BmbMediaCardComponent,
     BmbDotPaginatorComponent,
   ],
@@ -133,102 +133,11 @@ import { BmbInteractiveIconComponent } from 'ds-ng';
         />
         <bmb-divider />
         <bmb-simple-header title="Mis apps" icon="apps" />
-        <section class="bmb_horizontal-scroll">
-          <section class="bmb_horizontal-scroll-wrapper">
-            <section>
-              <bmb-interactive-icon
-                style="padding: 16px"
-                appearance="red"
-                title="Llamada SOS"
-                icon="SOS"
-                [horizontal]="true"
-                target="_blank"
-                link="https://www.youtube.com/"
-                layout="button"
-                [setButtonTemplate]="true"
-              />
-              <bmb-interactive-icon
-                appearance="blue"
-                title="Acceso a campus"
-                icon="qr_code"
-                [horizontal]="true"
-                target="_blank"
-                link="https://www.youtube.com/"
-                layout="button"
-                [setButtonTemplate]="true"
-              />
-            </section>
-            <section>
-              <bmb-interactive-icon
-                style="padding: 16px"
-                appearance="green"
-                title="Calendario escolar"
-                icon="event"
-                [horizontal]="true"
-                target="_blank"
-                link="https://www.youtube.com/"
-                layout="button"
-                [setButtonTemplate]="true"
-              />
-              <bmb-interactive-icon
-                appearance="red"
-                title="Llamada SOS"
-                icon="SOS"
-                [horizontal]="true"
-                target="_blank"
-                link="https://www.youtube.com/"
-                layout="button"
-                [setButtonTemplate]="true"
-              />
-            </section>
-            <section>
-              <bmb-interactive-icon
-                style="padding: 16px"
-                appearance="blue"
-                title="Acceso a campus"
-                icon="qr_code"
-                [horizontal]="true"
-                target="_blank"
-                link="https://www.youtube.com/"
-                layout="button"
-                [setButtonTemplate]="true"
-              />
-              <bmb-interactive-icon
-                appearance="green"
-                title="Calendario escolar"
-                icon="event"
-                [horizontal]="true"
-                target="_blank"
-                link="https://www.youtube.com/"
-                layout="button"
-                [setButtonTemplate]="true"
-              />
-            </section>
-            <section>
-              <bmb-interactive-icon
-                style="padding: 16px"
-                appearance="red"
-                title="Llamada SOS"
-                icon="SOS"
-                [horizontal]="true"
-                target="_blank"
-                link="https://www.youtube.com/"
-                layout="button"
-                [setButtonTemplate]="true"
-              />
-              <bmb-interactive-icon
-                appearance="blue"
-                title="Acceso a campus"
-                icon="qr_code"
-                [horizontal]="true"
-                target="_blank"
-                link="https://www.youtube.com/"
-                layout="button"
-                [setButtonTemplate]="true"
-              />
-            </section>
-          </section>
-        </section>
+        <bmb-frequent-apps-selector
+          [title]="'Services'"
+          [apps]="selectorApps"
+          [layout]="'button'"
+        />
         <bmb-divider />
         <bmb-simple-header title="CONECTA" icon="open_in_browser" />
         @switch (myActiveDotIndex) {
@@ -261,92 +170,11 @@ import { BmbInteractiveIconComponent } from 'ds-ng';
         />
         <bmb-divider />
         <bmb-drawer-overlay
-          [menu]="[
-            {
-              appearance: 'red',
-              title: 'App 1',
-              icon: 'https://img.freepik.com/premium-vector/approved-icon-with-thumb-up-approved-label-quality-control_349999-1321.jpg?w=2000',
-              target: '_blank',
-              link: 'https://www.example.com/',
-            },
-            {
-              appearance: 'blue',
-              title: 'App 2',
-              icon: 'face',
-              target: '_blank',
-              link: 'https://www.example.com/',
-            },
-            {
-              appearance: 'green',
-              title: 'App 3',
-              icon: 'face',
-              target: '_blank',
-              link: 'https://www.example.com/',
-            },
-            {
-              appearance: 'blue',
-              title: 'Menú de servicios',
-              icon: 'lists',
-              setButtonTemplate: true,
-            },
-          ]"
+          [menu]="menu"
           [title]="'Inner Header'"
           [dataSearch]="['Search Item 1', 'Search Item 2', 'Search Item 3']"
-          [tabs]="[
-            { title: 'Tab 1', id: 0 },
-            { title: 'Tab 2', id: 1 },
-            { title: 'Tab 3', id: 2 },
-          ]"
-          [appServices]="{
-            '0': [
-              {
-                appearance: 'red',
-                title: 'App 1',
-                icon: 'face',
-                target: '_blank',
-                link: 'https://www.example.com/',
-              },
-              {
-                appearance: 'blue',
-                title: 'App 2',
-                icon: 'face',
-                target: '_blank',
-                link: 'https://www.example.com/',
-              },
-            ],
-            '1': [
-              {
-                appearance: 'green',
-                title: 'App 3',
-                icon: 'face',
-                target: '_blank',
-                link: 'https://www.example.com/',
-              },
-              {
-                appearance: 'yellow',
-                title: 'App 4',
-                icon: 'face',
-                target: '_blank',
-                link: 'https://www.example.com/',
-              },
-            ],
-            '2': [
-              {
-                appearance: 'green',
-                title: 'App 5',
-                icon: 'face',
-                target: '_blank',
-                link: 'https://www.example.com/',
-              },
-              {
-                appearance: 'yellow',
-                title: 'App 6',
-                icon: 'face',
-                target: '_blank',
-                link: 'https://www.example.com/',
-              },
-            ],
-          }"
+          [tabs]="tabs"
+          [appServices]="appServices"
         />
       </main>
     } @else if (userHasSession() && !userHasValidToken()) {
@@ -374,7 +202,7 @@ class StorybookHomeMitecMobile {
     {
       id: 1,
       start: '2024-12-18',
-      end: '2024-12-28',
+      end: '2025-12-28',
       description:
         'Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.\n\nCurabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.\n\nPhasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.',
       short_description:
@@ -394,7 +222,7 @@ class StorybookHomeMitecMobile {
     {
       id: 2,
       start: '2023-01-01',
-      end: '2023-01-01',
+      end: '2025-01-01',
       description:
         'Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.\n\nCras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.',
       short_description:
@@ -414,7 +242,7 @@ class StorybookHomeMitecMobile {
     {
       id: 3,
       start: '2023-12-29',
-      end: '2023-12-31',
+      end: '2025-12-31',
       description:
         'Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.\n\nMaecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.\n\nNullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.',
       short_description:
@@ -433,7 +261,7 @@ class StorybookHomeMitecMobile {
     },
     {
       id: 4,
-      start: '2025-01-13',
+      start: '2024-01-13',
       end: '2025-01-16',
       description:
         'Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.\n\nFusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.',
@@ -453,7 +281,7 @@ class StorybookHomeMitecMobile {
     {
       id: 5,
       start: '2024-08-09',
-      end: '2024-08-10',
+      end: '2025-08-10',
       description:
         'Sed ante. Vivamus tortor. Duis mattis egestas metus.\n\nAenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.\n\nQuisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.',
       short_description: 'amet turpis elementum',
@@ -468,6 +296,109 @@ class StorybookHomeMitecMobile {
       user_email: 'fhaton4@bbb.org',
       tags: ['nullam', 'varius', 'nulla', 'facilisi'],
       icon: 'change_circle',
+    },
+  ];
+
+  menu = [
+    {
+      appearance: 'red',
+      title: 'App 1',
+      icon: 'https://img.freepik.com/premium-vector/approved-icon-with-thumb-up-approved-label-quality-control_349999-1321.jpg?w=2000',
+      target: '_blank',
+      link: 'https://www.example.com/',
+    },
+    {
+      appearance: 'blue',
+      title: 'App 2',
+      icon: 'face',
+      target: '_blank',
+      link: 'https://www.example.com/',
+    },
+    {
+      appearance: 'green',
+      title: 'App 3',
+      icon: 'face',
+      target: '_blank',
+      link: 'https://www.example.com/',
+    },
+    {
+      appearance: 'blue',
+      title: 'Menú de servicios',
+      icon: 'lists',
+      setButtonTemplate: true,
+    },
+  ];
+
+  appServices = {
+    '0': [
+      {
+        appearance: 'red',
+        title: 'App 1',
+        icon: 'face',
+        target: '_blank',
+        link: 'https://www.example.com/',
+      },
+      {
+        appearance: 'blue',
+        title: 'App 2',
+        icon: 'face',
+        target: '_blank',
+        link: 'https://www.example.com/',
+      },
+    ],
+    '1': [
+      {
+        appearance: 'green',
+        title: 'App 3',
+        icon: 'face',
+        target: '_blank',
+        link: 'https://www.example.com/',
+      },
+      {
+        appearance: 'yellow',
+        title: 'App 4',
+        icon: 'face',
+        target: '_blank',
+        link: 'https://www.example.com/',
+      },
+    ],
+    '2': [
+      {
+        appearance: 'green',
+        title: 'App 5',
+        icon: 'face',
+        target: '_blank',
+        link: 'https://www.example.com/',
+      },
+      {
+        appearance: 'yellow',
+        title: 'App 6',
+        icon: 'face',
+        target: '_blank',
+        link: 'https://www.example.com/',
+      },
+    ],
+  };
+
+  tabs = [
+    { title: 'Tab 1', id: 0 },
+    { title: 'Tab 2', id: 1 },
+    { title: 'Tab 3', id: 2 },
+  ];
+
+  selectorApps = [
+    {
+      icon: 'home',
+      title: 'Home',
+      link: '/home',
+      target: '_blank',
+      appearance: 'red',
+    },
+    {
+      icon: 'settings',
+      title: 'My Page',
+      link: '/my-page',
+      appearance: 'yellow',
     },
   ];
 
