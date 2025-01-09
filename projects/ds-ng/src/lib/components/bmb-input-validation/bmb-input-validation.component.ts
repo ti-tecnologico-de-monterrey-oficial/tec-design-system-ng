@@ -179,7 +179,7 @@ export class BmbInputValidationComponent {
   }
 
   get shouldShowError(): boolean {
-    return this.formService.showError(this.type(), this.name());
+    return this.formService.showError(this.name());
   }
 
   getSwitchIcon(): string {

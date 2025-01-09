@@ -3076,8 +3076,8 @@ export class AppComponent {
     alert('Selection: close' + event);
   }
 
-  onSubmitVal(event: unknown): void {
-    console.log('onSubmit', event);
+  onSubmitVal(event: FormGroup): void {
+    console.log('onSubmit', event?.valid, event);
   }
 
   footerEvent(event: unknown) {

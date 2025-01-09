@@ -1,12 +1,10 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  input,
   output,
   ViewEncapsulation,
 } from '@angular/core';
 import { ReactiveFormsModule, FormGroup } from '@angular/forms';
-import { BmbFormService } from '../../directives/bmb-form-control/bmb-form-control.service';
 import { BmbFormControlDirective } from '../../../public-api';
 
 @Component({
@@ -16,9 +14,8 @@ import { BmbFormControlDirective } from '../../../public-api';
   template: `
     <form
       bmbForm
+      [formGroup]="formGroup"
       (formGroupState)="handleFormGroupState($event)"
-      [formGroup]="getForm()"
-      (ngSubmit)="(this)"
     >
       <ng-content />
     </form>
@@ -27,17 +24,12 @@ import { BmbFormControlDirective } from '../../../public-api';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbFormValidationComponent {
-  formName = input<string>('form-validation');
-
   formGroupState = output<FormGroup>();
 
-  constructor(private formService: BmbFormService) {}
+  formGroup: FormGroup = new FormGroup({});
 
-  getForm(): FormGroup {
-    return this.formService.getFormGroup();
-  }
-
-  handleFormGroupState(state: FormGroup) {
+  handleFormGroupState(state: FormGroup): void {
+    this.formGroup = state;
     this.formGroupState.emit(state);
   }
 }

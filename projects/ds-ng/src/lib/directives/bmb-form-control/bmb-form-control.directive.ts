@@ -9,6 +9,8 @@ import { BmbFormService } from './bmb-form-control.service';
 export class BmbFormControlDirective {
   formGroupState = output<FormGroup>();
 
+  formGroup: FormGroup = new FormGroup({});
+
   constructor(
     private formService: BmbFormService,
     private el: ElementRef,
@@ -20,24 +22,28 @@ export class BmbFormControlDirective {
     );
     inputs.forEach((input: any) => {
       const type = input.getAttribute('type');
-      this.formService.setFormControlByType(
-        type,
-        this.getInputAttribute(input, 'name'),
-      );
+      const controlName = this.getInputAttribute(input, 'name');
+      this.formService.setFormControlByType(type, controlName);
+      const control = this.formService.getFormControlByName(controlName);
+      if (control) {
+        this.formGroup.addControl(controlName, control);
+      }
     });
+    this.formGroupState.emit(this.formGroup);
   }
 
   @HostListener('ngSubmit')
   submit() {
-    const formGroup = this.formService.getFormGroup();
-    this.updateErrorState(formGroup);
-    this.formGroupState.emit(formGroup);
+    this.updateErrorState();
+    this.formGroupState.emit(this.formGroup);
   }
 
-  updateErrorState(formGroup: FormGroup) {
+  updateErrorState() {
     const invalidInputs = this.el.nativeElement.querySelectorAll('.ng-invalid');
     invalidInputs.forEach((input: any) => {
-      const control = formGroup.get(this.getInputAttribute(input, 'name'));
+      const controlName = this.getInputAttribute(input, 'name');
+      const control = this.formService.getFormControlByName(controlName);
+
       if (control) {
         control.markAsTouched();
         control.updateValueAndValidity();

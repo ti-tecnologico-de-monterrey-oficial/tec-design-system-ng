@@ -1,27 +1,19 @@
 import { ChangeDetectorRef, Injectable } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 
 @Injectable({ providedIn: 'root' })
 export class BmbFormService {
-  private formGroup: FormGroup = new FormGroup({});
+  private controls: { [key: string]: FormControl } = {};
   private textLength: { [key: string]: number } = {};
 
-  getFormGroup(): FormGroup {
-    return this.formGroup;
-  }
-
-  setFormGroup(formGroup: FormGroup): void {
-    this.formGroup = formGroup;
-  }
-
   getFormControlByName(name: string): FormControl {
-    return this.getFormGroup().get(name) as FormControl;
+    return this.controls[name] as FormControl;
   }
 
   setFormControl(controlAdded: FormControl, type: string, name: string): void {
-    if (this.getFormControlByName(name) === null) {
+    if (!this.getFormControlByName(name)) {
       if (controlAdded) {
-        this.formGroup.addControl(name, controlAdded);
+        this.controls[name] = controlAdded;
         return;
       }
 
@@ -37,11 +29,11 @@ export class BmbFormService {
       type === 'number' ||
       type === 'switch'
     ) {
-      this.formGroup.addControl(name, new FormControl(null));
+      this.controls[name] = new FormControl(null);
       return;
     }
 
-    this.formGroup.addControl(name, new FormControl(''));
+    this.controls[name] = new FormControl('');
   }
 
   getTextLength(key: string): number {
@@ -87,10 +79,9 @@ export class BmbFormService {
     cdr: ChangeDetectorRef,
   ): void {
     const formControl: FormControl = this.getFormControlByName(name);
-    const control = this.getFormControlByName(name);
-    const valueControlAdded = control.value;
-    if (!valueControlAdded) {
-      this.addValue(control, type, value, checked);
+
+    if (!formControl.value) {
+      this.addValue(formControl, type, value, checked);
     }
 
     if (isRequired && !formControl.hasValidator(Validators.required)) {
@@ -124,29 +115,8 @@ export class BmbFormService {
     }
   }
 
-  showError(type: string, name: string): boolean {
-    const control = this.getFormGroup().get(name);
-    if (control !== null) {
-      if (
-        type.toLocaleLowerCase() === 'checkbox' &&
-        this.getFormControlByName(name).value !== null
-      ) {
-        return !this.getFormControlByName(name).value;
-      }
-      return control.invalid && (control.touched || control.dirty);
-    }
-
-    return false;
-  }
-
-  showErrorByValidation(name: string, validValue: string): boolean {
-    const control = this.getFormGroup().get(name);
-    if (control !== null) {
-      control.setValue(validValue);
-      control.updateValueAndValidity();
-      return !!!validValue && (control.touched || control.dirty);
-    }
-
-    return false;
+  showError(name: string): boolean {
+    const control = this.getFormControlByName(name);
+    return (control?.invalid && (control?.touched || control?.dirty)) || false;
   }
 }
