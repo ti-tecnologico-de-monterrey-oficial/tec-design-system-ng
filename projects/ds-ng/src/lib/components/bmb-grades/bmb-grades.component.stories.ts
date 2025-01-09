@@ -1,10 +1,20 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { BmbGradesComponent } from './bmb-grades.component';
+import { BmbPortalComponent } from '../bmb-portal/bmb-portal.component';
+import { InputSignal } from '@angular/core';
+import { IBmbNameValuePair } from '../../types';
+import { IBmbGrades } from './types';
 
-export default {
+const meta: Meta<BmbGradesComponent> = {
   title: 'Macro Componentes/Grades',
   component: BmbGradesComponent,
-  decorators: [],
+  subcomponents: { BmbPortalComponent },
+  decorators: [
+    moduleMetadata({
+      imports: [BmbGradesComponent, BmbPortalComponent],
+      providers: [],
+    }),
+  ],
   parameters: {
     docs: {
       description: {
@@ -260,19 +270,46 @@ Below is an example of how you can use this component in HTML:
           },
         ],
       },
-    ],
-    isMicro: false,
-    gradeTitle: 'Período actual',
-    title: 'Semestral AGO-DIC 2024',
-    accredited: { name: 'Créditos aprobados', value: '39' },
-    average: { name: 'Promedio acumulado', value: '90' },
-    summary: { name: 'Faltas totales', value: '3' },
-    closeGrades: () => {
-      alert('Close event');
-    },
+    ] as unknown as InputSignal<IBmbGrades[]>,
+    isMicro: false as unknown as InputSignal<boolean | undefined>,
+    gradeTitle: 'Período actual' as unknown as InputSignal<string | undefined>,
+    title: 'Semestral AGO-DIC 2024' as unknown as InputSignal<
+      string | undefined
+    >,
+    accredited: {
+      name: 'Créditos aprobados',
+      value: '39',
+    } as unknown as InputSignal<IBmbNameValuePair | undefined>,
+    average: {
+      name: 'Promedio acumulado',
+      value: '90',
+    } as unknown as InputSignal<IBmbNameValuePair | undefined>,
+    summary: { name: 'Faltas totales', value: '3' } as unknown as InputSignal<
+      IBmbNameValuePair | undefined
+    >,
   },
-} as Meta<typeof BmbGradesComponent>;
+};
+
+export default meta;
 
 type Story = StoryObj<BmbGradesComponent>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {},
+  render: (args) => ({
+    props: args,
+    template: `
+      <bmb-grades
+        [grades]="grades"
+        [isMicro]="isMicro"
+        [gradeTitle]="gradeTitle"
+        [title]="title"
+        [accredited]="accredited"
+        [average]="average"
+        [summary]="summary"
+      />
+      <!-- The portal component should be added at the end of the app.component.html -->
+      <bmb-portal />
+    `,
+  }),
+};

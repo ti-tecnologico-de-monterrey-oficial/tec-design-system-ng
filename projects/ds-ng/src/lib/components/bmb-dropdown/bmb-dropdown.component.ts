@@ -50,7 +50,7 @@ export class BmbDropdownComponent {
   icon = input<string>('');
   options = input<string[] | IBmbDropdownItem[]>([]);
   helperText = input<string>('');
-  @Input() control?: FormControl | undefined;
+  control = input<FormControl>(new FormControl());
   disabled = input<boolean>(false);
   label = input<string>();
 
@@ -67,18 +67,13 @@ export class BmbDropdownComponent {
   value: string = '';
   openSelect: boolean = false;
 
-  ngOnInit(): void {
-    if (this.control === undefined) {
-      this.control = new FormControl();
-    }
-  }
 
   handleItemClick(event: any, index: any): void {
-    this.onValueChange.emit(event.value);
+    this.onValueChange.emit(event);
     this.selectedIndexOption = index;
     this.selectedOption = event.value;
     if (this.control) {
-      this.control.setValue(event.name);
+      this.control().setValue(event.name);
     }
 
     this.isFocus = !this.isFocus;

@@ -1,17 +1,34 @@
-import { Injectable } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { BmbModalComponent } from '../../public-api';
-import { ModalDataConfig } from '../components/bmb-modal/bmb-modal.interface';
+import { Injectable, signal } from '@angular/core';
+import { ModalDataConfig } from '../../public-api';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ModalService {
-  constructor(private matDialog: MatDialog) {}
+export class BmbModalService {
+  readonly modalList = signal<ModalDataConfig[]>([]);
 
-  public openModal(data: ModalDataConfig) {
-    this.matDialog.open(BmbModalComponent, {
-      data,
-    });
+  openModal(modal: ModalDataConfig): string {
+    const id = self.crypto.randomUUID().toString();
+
+    this.modalList.update((currentModals) => [
+      ...currentModals,
+      { ...modal, id },
+    ]);
+
+    return id;
+  }
+
+  getModalList() {
+    return this.modalList();
+  }
+
+  searchModal(id: string) {
+    return this.modalList().find((modal) => modal.id === id);
+  }
+
+  closeModal(id: string) {
+    this.modalList.update((currentModals) =>
+      currentModals.filter((modal) => modal.id !== id),
+    );
   }
 }

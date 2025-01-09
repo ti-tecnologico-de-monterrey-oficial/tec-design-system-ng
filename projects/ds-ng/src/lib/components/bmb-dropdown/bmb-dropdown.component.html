@@ -30,7 +30,7 @@
         readonly
         [id]="'bmb-dropdown' + uid"
         [name]="'bmb-dropdown' + uid"
-        [formControl]="control!"
+        [formControl]="control()"
         [placeholder]="placeholder()"
         (keydown)="onKeyDown($event)"
         (click)="openDialog()"

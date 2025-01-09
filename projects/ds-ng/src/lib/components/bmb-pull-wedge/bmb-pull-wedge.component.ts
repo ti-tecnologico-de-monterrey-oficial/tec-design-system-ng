@@ -11,17 +11,18 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  DragDropModule,
-  CdkDragMove,
-  CdkDragEnd,
-  CdkDragStart,
-} from '@angular/cdk/drag-drop';
+// import {
+//   DragDropModule,
+//   CdkDragMove,
+//   CdkDragEnd,
+//   CdkDragStart,
+// } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'bmb-pull-wedge',
   standalone: true,
-  imports: [CommonModule, DragDropModule],
+  // imports: [CommonModule, DragDropModule],
+  imports: [CommonModule],
   styleUrls: ['./bmb-pull-wedge.component.scss'],
   templateUrl: './bmb-pull-wedge.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -62,40 +63,40 @@ export class BmbPullWedgeComponent implements AfterViewInit, OnChanges {
     );
   }
 
-  onDragStarted(event: CdkDragStart) {
-    this.initialDragHeight = this.contentHeight;
-  }
+  // onDragStarted(event: CdkDragStart) {
+  //   this.initialDragHeight = this.contentHeight;
+  // }
 
-  onDragMoved(event: CdkDragMove) {
-    const newHeight = this.initialDragHeight + event.distance.y;
+  // onDragMoved(event: CdkDragMove) {
+  //   const newHeight = this.initialDragHeight + event.distance.y;
 
-    if (newHeight >= this.minContentHeight && newHeight <= this.initialHeight) {
-      this.contentHeight = newHeight;
-      this.renderer.setStyle(
-        this.contentRef.nativeElement,
-        'height',
-        `${this.contentHeight}px`,
-      );
-    }
-  }
+  //   if (newHeight >= this.minContentHeight && newHeight <= this.initialHeight) {
+  //     this.contentHeight = newHeight;
+  //     this.renderer.setStyle(
+  //       this.contentRef.nativeElement,
+  //       'height',
+  //       `${this.contentHeight}px`,
+  //     );
+  //   }
+  // }
 
-  onDragEnded(event: CdkDragEnd) {
-    const midpointThreshold = 150;
+  // onDragEnded(event: CdkDragEnd) {
+  //   const midpointThreshold = 150;
 
-    if (this.contentHeight >= this.maxDragHeight) {
-      this.contentHeight = this.initialHeight;
-      this.isOpen = true;
-    } else if (this.contentHeight < midpointThreshold) {
-      this.contentHeight = this.minContentHeight;
-      this.isOpen = false;
-    } else {
-      this.contentHeight = this.contentHeight;
-    }
+  //   if (this.contentHeight >= this.maxDragHeight) {
+  //     this.contentHeight = this.initialHeight;
+  //     this.isOpen = true;
+  //   } else if (this.contentHeight < midpointThreshold) {
+  //     this.contentHeight = this.minContentHeight;
+  //     this.isOpen = false;
+  //   } else {
+  //     this.contentHeight = this.contentHeight;
+  //   }
 
-    this.renderer.setStyle(
-      this.contentRef.nativeElement,
-      'height',
-      `${this.contentHeight}px`,
-    );
-  }
+  //   this.renderer.setStyle(
+  //     this.contentRef.nativeElement,
+  //     'height',
+  //     `${this.contentHeight}px`,
+  //   );
+  // }
 }

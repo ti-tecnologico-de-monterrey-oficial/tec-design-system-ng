@@ -1,0 +1,13 @@
+<footer class="bmb_modal-footer">
+  @for (item of getFooterActions(); track $index) {
+    <button
+      type="button"
+      [icon]="item.icon ?? ''"
+      [appearance]="item.type ?? 'secondary-outlined'"
+      bmbButton
+      (click)="handleButtonFooterClick($index)"
+    >
+      {{ item.label }}
+    </button>
+  }
+</footer>

@@ -6,6 +6,7 @@ export * from './lib/ds-ng.service';
 export * from './lib/services/notification.service';
 export * from './lib/services/calendar.service';
 export * from './lib/services/user/profile.service';
+export * from './lib/services/modal.service';
 
 export * from './lib/ds-ng.component';
 export * from './lib/directives/button.directive';
@@ -123,6 +124,7 @@ export * from './lib/components/bmb-drawer-overlay/bmb-drawer-overlay.component'
 export * from './lib/components/bmb-mitec-logo-animation/bmb-mitec-logo-animation.component';
 export * from './lib/components/bmb-login/bmb-login.component';
 export * from './lib/components/bmb-profile/bmb-profile.component';
+export * from './lib/components/bmb-modal/bmb-modal.component';
 
 // types
 export * from './lib/types';

@@ -1,10 +1,18 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { BmbAccountStatementComponent } from './bmb-account-statement.component';
+import { InputSignal } from '@angular/core';
+import { BmbPortalComponent } from '../bmb-portal/bmb-portal.component';
 
-export default {
+const meta: Meta<BmbAccountStatementComponent> = {
   title: 'Macro Componentes/Account statement',
   component: BmbAccountStatementComponent,
-  decorators: [],
+  subcomponents: { BmbPortalComponent },
+  decorators: [
+    moduleMetadata({
+      imports: [BmbAccountStatementComponent, BmbPortalComponent],
+      providers: [],
+    }),
+  ],
   parameters: {
     docs: {
       description: {
@@ -302,30 +310,67 @@ Below is an example of how you can use this component in HTML:
     },
   },
   args: {
-    title: 'Estado de cuenta',
-    labelPrimary: 'Cuota Mensual',
-    labelSecondary: 'Pendiente',
-    totalCount: 10000,
-    counter: 1000,
-    progressTitle: 'Total pagado',
-    formatDates: 'yyyy-MM-dd',
-    paymentDeadline: '2024-10-20',
-    cutOffDate: '2024-10-01',
-    paymentDeadlineLabel: 'Fecha límite de pago:',
-    cutOffDateLabel: 'Fecha de corte:',
-    payButtonLabel: 'Pagar',
-    backButtonLabel: 'Regresar',
-    modalTitle: 'Nombre de clase',
-    modalSubtitle: 'TS-0001',
-    modalRestLabel: 'Pagar restante',
-    modalOtherAmountLabel: 'Otra cantidad',
-    modalPrimaryButtonLabel: 'Pagar',
+    title: 'Estado de cuenta' as unknown as InputSignal<string>,
+    labelPrimary: 'Cuota Mensual' as unknown as InputSignal<string>,
+    labelSecondary: 'Pendiente' as unknown as InputSignal<string>,
+    totalCount: 10000 as unknown as InputSignal<number>,
+    counter: 1000 as unknown as InputSignal<number>,
+    progressTitle: 'Total pagado' as unknown as InputSignal<string>,
+    formatDates: 'yyyy-MM-dd' as unknown as InputSignal<string>,
+    paymentDeadline: '2024-10-20' as unknown as InputSignal<string | undefined>,
+    cutOffDate: '2024-10-01' as unknown as InputSignal<string | undefined>,
+    paymentDeadlineLabel:
+      'Fecha límite de pago:' as unknown as InputSignal<string>,
+    cutOffDateLabel: 'Fecha de corte:' as unknown as InputSignal<string>,
+    payButtonLabel: 'Pagar' as unknown as InputSignal<string>,
+    backButtonLabel: 'Regresar' as unknown as InputSignal<string>,
+    modalTitle: 'Nombre de clase' as unknown as InputSignal<string>,
+    modalSubtitle: 'TS-0001' as unknown as InputSignal<string>,
+    modalRestLabel: 'Pagar restante' as unknown as InputSignal<string>,
+    modalOtherAmountLabel: 'Otra cantidad' as unknown as InputSignal<string>,
+    modalPrimaryButtonLabel: 'Pagar' as unknown as InputSignal<string>,
     errorMessage:
-      'Error, Este campo es requerido y debe ser una cantidad entre 1 y 9000',
-    progressCircleTitle: ['Total a pagar', 'este mes'],
+      'Error, Este campo es requerido y debe ser una cantidad entre 1 y 9000' as unknown as InputSignal<string>,
+    progressCircleTitle: [
+      'Total a pagar',
+      'este mes',
+    ] as unknown as InputSignal<string[]>,
   },
-} as Meta<typeof BmbAccountStatementComponent>;
+};
+
+export default meta;
 
 type Story = StoryObj<BmbAccountStatementComponent>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {},
+  render: (args) => ({
+    props: args,
+    template: `
+      <bmb-account-statement
+        [title]="title"
+        [progressCircleTitle]="progressCircleTitle"
+        [labelPrimary]="labelPrimary"
+        [labelSecondary]="labelSecondary"
+        [totalCount]="totalCount"
+        [counter]="counter"
+        [progressTitle]="progressTitle"
+        [formatDates]="formatDates"
+        [paymentDeadline]="paymentDeadline"
+        [cutOffDate]="cutOffDate"
+        [paymentDeadlineLabel]="paymentDeadlineLabel"
+        [cutOffDateLabel]="cutOffDateLabel"
+        [payButtonLabel]="payButtonLabel"
+        [backButtonLabel]="backButtonLabel"
+        [modalTitle]="modalTitle"
+        [modalSubtitle]="modalSubtitle"
+        [modalRestLabel]="modalRestLabel"
+        [modalOtherAmountLabel]="modalOtherAmountLabel"
+        [modalPrimaryButtonLabel]="modalPrimaryButtonLabel"
+        [errorMessage]="errorMessage"
+      />
+      <!-- The portal component should be added at the end of the app.component.html -->
+      <bmb-portal />
+    `,
+  }),
+};

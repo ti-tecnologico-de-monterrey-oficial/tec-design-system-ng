@@ -1,13 +1,17 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { BmbFilterCardComponent } from './bmb-filter-card.component';
 import { CommonModule } from '@angular/common';
+import { BmbPortalComponent } from '../bmb-portal/bmb-portal.component';
+import { InputSignal } from '@angular/core';
+import { IBmbControlType } from './bmb-filter-card.interface';
 
-export default {
+const meta: Meta<BmbFilterCardComponent> = {
   title: 'Macro Componentes/Filter Card',
   component: BmbFilterCardComponent,
+  subcomponents: { BmbPortalComponent },
   decorators: [
     moduleMetadata({
-      imports: [CommonModule],
+      imports: [CommonModule, BmbPortalComponent],
     }),
   ],
   parameters: {
@@ -138,13 +142,13 @@ Below is an example of how you can use this component in HTML:
     },
   },
   args: {
-    modalTitle: 'Opciones Filtrado',
-    primaryBtnLabel: 'Aplicar Filtros',
-    secondaryBtnLabel: 'Limpiar Filtros',
-    icon: 'tune',
-    placeholderSearch: 'Search',
-    applyFilters: '',
-    resetFilters: '',
+    modalTitle: 'Opciones Filtrado' as unknown as InputSignal<string>,
+    primaryBtnLabel: 'Aplicar Filtros' as unknown as InputSignal<string>,
+    secondaryBtnLabel: 'Limpiar Filtros' as unknown as InputSignal<string>,
+    icon: 'tune' as unknown as InputSignal<string>,
+    placeholderSearch: 'Search' as unknown as InputSignal<string>,
+    // applyFilters: '',
+    // resetFilters: '',
     controlTypes: [
       {
         title: 'Filter - Radial',
@@ -191,11 +195,35 @@ Below is an example of how you can use this component in HTML:
           },
         ],
       },
-    ],
-    inLine: false,
+    ] as unknown as InputSignal<IBmbControlType[]>,
+    inLine: false as unknown as InputSignal<boolean>,
   },
-} as Meta<typeof BmbFilterCardComponent>;
+};
 
-type Story = StoryObj<typeof BmbFilterCardComponent>;
+export default meta;
 
-export const Default: Story = {};
+type Story = StoryObj<BmbFilterCardComponent>;
+
+export const Default: Story = {
+  args: {},
+  render: (args) => ({
+    props: args,
+    template: `
+      <div style="height: 1000px;">
+        <bmb-filter-card
+          [modalTitle]="'Opciones Filtrado'"
+          [primaryBtnLabel]="'Aplicar Filtros'"
+          [secondaryBtnLabel]="'Limpiar Filtros'"
+          [icon]="'tune'"
+          [placeholderSearch]="'Search'"
+          [controlTypes]="[{title: 'Filter - Radial', control: [{name: 'radial-1', type: 'radial', label: 'Radial 1', checked: false}, {name: 'radial-1', type: 'radial', label: 'Radial 2', checked: false}]}, {title: 'Filter - Checkbox', control: [{name: 'checkbox-1', type: 'checkbox', label: 'Checkbox 1', checked: false}, {name: 'checkbox-2', type: 'checkbox', label: 'Checkbox 2', checked: false}]}, {title: 'Filter - Switch', control: [{name: 'switch-1', type: 'switch', rightText: 'Switch 3', checked: false}]}]"
+          [inLine]="false"
+          (applyFilters)="applyFilters($event)"
+          (resetFilters)="resetFilters($event)"
+        />
+      </div>
+      <!-- The portal component should be added at the end of the app.component.html -->
+      <bmb-portal />
+    `,
+  }),
+};

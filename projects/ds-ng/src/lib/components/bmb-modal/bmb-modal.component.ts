@@ -1,198 +1,148 @@
-import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  Inject,
+  input,
   TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
+import { BmbHeaderSectionComponent } from '../bmb-header-section/bmb-header-section.component';
 import {
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-  MatDialog,
-} from '@angular/material/dialog';
-import { ModalDataConfig } from './bmb-modal.interface';
+  IBmbModalAction,
+  IBmbModalAlertStyle,
+  IBmbModalSize,
+} from './bmb-modal.interface';
+import { CommonModule } from '@angular/common';
+import { BmbModalService } from '../../services/modal.service';
 import { BmbButtonDirective } from '../../directives/button.directive';
-import { ModalService } from '../../services/modal.service';
-import {
-  BmbHeaderSectionComponent,
-  IBmbActionHeader,
-} from '../bmb-header-section/bmb-header-section.component';
-import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
+import { IButtonAppearance } from '../../types';
+
+type BmbModalActions = 'close';
+
+@Component({
+  selector: 'bmb-modal-footer',
+  standalone: true,
+  imports: [BmbButtonDirective],
+  templateUrl: './bmb-modal-footer.component.html',
+  styleUrl: './bmb-modal.component.scss',
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class BmbModalFooterComponent {
+  actions = input<IBmbModalAction[]>([]);
+  id = input.required<string>();
+  disableCloseButtonFooter = input<boolean>(false);
+
+  constructor(private modalService: BmbModalService) {}
+
+  arrayActions: IBmbModalAction[] = this.actions();
+
+  getFooterActions() {
+    const closeButton: IBmbModalAction = {
+      label: 'Cerrar',
+      action: 'close',
+    };
+
+    if (this.disableCloseButtonFooter()) {
+      this.arrayActions = this.actions();
+      return this.actions();
+    }
+
+    const newActions = [...this.actions(), closeButton];
+    this.arrayActions = newActions;
+
+    return newActions;
+  }
+
+  handleButtonFooterClick(event: number) {
+    const action = this.arrayActions[event];
+
+    if (typeof action.action === 'string') {
+      this.modalService.closeModal(this.id());
+    }
+
+    if (typeof action.action === 'function') {
+      action.action();
+    }
+  }
+}
 
 @Component({
   selector: 'bmb-modal',
   standalone: true,
-  imports: [
-    CommonModule,
-    BmbContainerComponent,
-    BmbHeaderSectionComponent,
-    BmbButtonDirective,
-  ],
-  providers: [MatDialog, ModalService],
+  imports: [BmbHeaderSectionComponent, CommonModule, BmbModalFooterComponent],
   templateUrl: './bmb-modal.component.html',
   styleUrl: './bmb-modal.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbModalComponent {
-  svgUrl: string = 'assets/svg/';
-  modalTemplate: TemplateRef<any> | null = null;
-  actionHeaders: IBmbActionHeader[] = [
+  title = input<string>('');
+  subtitle = input<string>('');
+  content = input<string | TemplateRef<any>>('');
+  size = input<IBmbModalSize>('medium');
+  type = input<IBmbModalAlertStyle>('info');
+  actions = input<IBmbModalAction[]>([]);
+  id = input.required<string>();
+  scrollable = input<boolean>(false);
+  hideFooter = input<boolean>(false);
+  disableCloseButtonFooter = input<boolean>(false);
+
+  constructor(private modalService: BmbModalService) {}
+
+  getActionHeaders() {
+    this.modalService.closeModal(this.id());
+  }
+
+  getIcon() {
+    const alertStyle = this.type();
+
+    switch (alertStyle) {
+      case 'warning':
+        return 'warning';
+      case 'neutral':
+        return 'info';
+      case 'primary':
+        return 'info';
+      case 'event':
+        return 'notification_important';
+      case 'error':
+        return 'error';
+      case 'success':
+        return 'check_circle';
+      case 'info':
+        return '';
+      default:
+        return 'info';
+    }
+  }
+
+  getModalSize() {
+    return `bmb_modal-container-${this.size()}`;
+  }
+
+  getModalClassList() {
+    const classList = ['bmb_modal', `bmb_modal-${this.type()}`];
+
+    return classList;
+  }
+
+  getContentType() {
+    return typeof this.content() === 'string';
+  }
+
+  headerActions = [
     {
       icon: 'close',
-      action: () => this.closeModal('close', true),
+      action: () => this.getActionHeaders(),
     },
   ];
 
-  constructor(
-    public dialogRef: MatDialogRef<BmbModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public modalData: ModalDataConfig,
-  ) {}
-
-  ngOnInit() {
-    const data: ModalDataConfig = this.getData();
-    if (typeof data.content !== 'string') {
-      this.modalTemplate = data.content!;
-    }
-  }
-
-  closeModal(buttonName: string, event: boolean) {
-    const data = this.getData();
-
-    if (buttonName === 'primary' && data.primaryAction) {
-      data.primaryAction();
-      return;
-    }
-
-    if (buttonName === 'secondary' && data.secondaryAction) {
-      data.secondaryAction();
-      return;
-    }
-
-    this.dialogRef.close(event);
-  }
-
-  isModalTemplate(): boolean {
-    return !!this.modalTemplate;
-  }
-
-  getModalClasses(): string[] {
-    const baseClassName: string = 'bmb_modal';
-    const classNames: string[] = [baseClassName];
-
-    if (!!this.getData().size) {
-      return [...classNames, `${baseClassName}-size-${this.getData().size}`];
-    }
-
-    return classNames;
-  }
-
-  getContentClasses(): string[] {
-    const baseClassName: string = 'bmb_modal';
-    const classNames: string[] = [`${baseClassName}-content`];
-
-    if (!!this.getData().scrollable) {
-      return [...classNames, `${baseClassName}-scrollable`];
-    }
-
-    return classNames;
-  }
-
-  getDescriptionClasses(sectionName: string): string[] {
-    const baseClassName: string = 'bmb_modal-content';
-    const classNames: string[] = [`${baseClassName}-${sectionName}`];
-
-    if (!!this.getData().scrollable) {
-      return [...classNames, `${baseClassName}-scrollable`];
-    }
-
-    return classNames;
-  }
-
-  getButtonClass(isSecondaryButton: boolean): string[] {
-    const data: ModalDataConfig = this.getData();
-    const footerClassName: string = 'bmb_modal-footer';
-    const baseClassName: string = `${footerClassName}-button`;
-    const classNames: string[] = [baseClassName];
-
-    if (isSecondaryButton) {
-      const newClassNames = [...classNames, `${footerClassName}-btn`];
-      return [...newClassNames, `${baseClassName}-secondary_action`];
-    }
-
-    if (data.type === 'alert') {
-      if (!!data.alertStyle) {
-        return [...classNames, `${baseClassName}-${data.alertStyle}`];
-      }
-      return [...classNames, `${baseClassName}-neutral`];
-    }
-
-    return classNames;
-  }
-
-  getData(): ModalDataConfig {
-    return this.modalData;
-  }
-
-  getImage(): string {
-    const data: ModalDataConfig = this.getData();
-    const alertStyle: string = data.alertStyle!;
-
-    if (data.type === 'alert') {
-      if (alertStyle === 'primary') {
-        return `${this.svgUrl}info_fill_${alertStyle}.svg`;
-      }
-      if (alertStyle === 'neutral') return `${this.svgUrl}info_fill.svg`;
-      if (
-        alertStyle === 'error' ||
-        alertStyle === 'event' ||
-        alertStyle === 'success' ||
-        alertStyle === 'warning'
-      )
-        return `${this.svgUrl}${alertStyle}_fill.svg`;
-
-      return `${this.svgUrl}info_fill.svg`;
-    }
-
-    return '';
-  }
-
-  getTitle(): string {
-    return this.getData().title!;
-  }
-
-  getSubtitle(): string {
-    return this.getData().subtitle!;
-  }
-
-  getActionHeaders(): IBmbActionHeader[] {
-    return this.actionHeaders;
+  getHeaderActions() {
+    return this.headerActions;
   }
 
   getContent(): any {
-    if (this.isModalTemplate()) return this.modalTemplate;
-    return this.getData().content;
-  }
-
-  getPrimaryBtnLabel(): string {
-    return this.getData().primaryBtnLabel || 'OK';
-  }
-
-  getSecondaryBtnLabel(): string {
-    return this.getData().secondaryBtnLabel!;
-  }
-
-  showFooter(): boolean {
-    return this.getData().type !== 'informative';
-  }
-
-  showPrimaryButton(): boolean {
-    return !this.getData().hidePrimaryButton;
-  }
-
-  showSecondaryButton(): boolean {
-    const data = this.getData();
-    return (data.type && data.type !== 'action') || !!data.secondaryBtnLabel;
+    if (typeof this.content() !== 'string' && typeof this.content())
+      return this.content() as TemplateRef<any>;
   }
 }

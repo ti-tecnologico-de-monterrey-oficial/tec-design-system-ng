@@ -3,22 +3,16 @@ import { BmbFilterCardComponent } from './bmb-filter-card.component';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbModalComponent } from '../bmb-modal/bmb-modal.component';
-import { MatDialog } from '@angular/material/dialog';
 import { IBmbControlType } from './bmb-filter-card.interface';
+import { BmbModalService } from '../../services/modal.service';
 
 describe('BmbFilterCardComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        BmbIconComponent,
-        BmbModalComponent,
-      ],
+      imports: [CommonModule, ReactiveFormsModule, BmbIconComponent],
       providers: [
         {
-          provide: MatDialog,
+          provide: BmbModalService,
           useValue: {
             open: () => {},
           },

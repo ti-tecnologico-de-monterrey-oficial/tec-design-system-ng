@@ -1,51 +1,26 @@
-<section [class]="getModalClasses()">
-  <bmb-container>
-    <section class="bmb_modal-container">
-      <header>
-        <bmb-header-section
-          [title]="getTitle()"
-          [subtitle]="getSubtitle()"
-          [icon]="getImage()"
-          [actionHeaders]="getActionHeaders()"
-          [transparentBgC]="true"
-        />
-      </header>
-      <section class="bmb_modal-content">
-        @if (isModalTemplate()) {
-          <section [class]="getDescriptionClasses('template')">
-            <ng-container *ngTemplateOutlet="getContent()" />
-          </section>
-        } @else {
-          <section [class]="getDescriptionClasses('description')">
-            <p>
-              {{ getContent() }}
-            </p>
-          </section>
-        }
-      </section>
-      @if (showFooter()) {
-        <footer id="modal-footer" class="bmb_modal-footer">
-          @if (showSecondaryButton()) {
-            <button
-              bmbButton
-              appearance="secondary-filled"
-              [class]="getButtonClass(true)"
-              (click)="closeModal('secondary', false)"
-            >
-              {{ getSecondaryBtnLabel() }}
-            </button>
-          }
-          @if (showPrimaryButton()) {
-            <button
-              bmbButton
-              [class]="getButtonClass(false)"
-              (click)="closeModal('primary', true)"
-            >
-              {{ getPrimaryBtnLabel() }}
-            </button>
-          }
-        </footer>
+<dialog open [ngClass]="getModalClassList()">
+  <section class="bmb_modal-container" [ngClass]="getModalSize()">
+    <bmb-header-section
+      [title]="title()"
+      [subtitle]="subtitle()"
+      [icon]="getIcon()"
+      [transparentBgC]="true"
+      class="bmb_modal-header"
+      [actionHeaders]="getHeaderActions()"
+    />
+    <div class="bmb_modal-content">
+      @if (getContentType()) {
+        <p class="bmb_modal-content-paragraph">{{ content() }}</p>
+      } @else {
+        <ng-container *ngTemplateOutlet="getContent()" />
       }
-    </section>
-  </bmb-container>
-</section>
+    </div>
+    @if (!hideFooter()) {
+      <bmb-modal-footer
+        [actions]="actions()"
+        [id]="id()"
+        [disableCloseButtonFooter]="disableCloseButtonFooter()"
+      />
+    }
+  </section>
+</dialog>

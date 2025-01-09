@@ -12,7 +12,6 @@ import { BmbContainerButtonComponent } from '../bmb-container-button/bmb-contain
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 import { BmbModalComponent } from '../bmb-modal/bmb-modal.component';
 import { ModalDataConfig } from '../bmb-modal/bmb-modal.interface';
-import { MatDialog } from '@angular/material/dialog';
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
 import { IBmbGrades, IBmbPartial } from './types';
@@ -22,6 +21,7 @@ import { BmbInnerHeaderComponent } from '../bmb-inner-header/bmb-inner-header.co
 import { BmbAcademicProgressComponent } from '../bmb-academic-progress/bmb-academic-progress.component';
 import { IBmbNameValuePair } from '../../types';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
+import { BmbModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'bmb-grades',
@@ -100,7 +100,7 @@ export class BmbGradesComponent {
     }
   }
 
-  constructor(private matDialog: MatDialog) {}
+  constructor(private modalService: BmbModalService) {}
 
   openModalComponent(element: any): void {
     this.partials = element.partials;
@@ -109,10 +109,12 @@ export class BmbGradesComponent {
       subtitle: element.detail.subtitle,
       content: this.modalContent,
       size: 'small',
-      type: 'informative',
+      type: 'info',
       scrollable: true,
+      hideFooter: true,
     };
-    this.matDialog.open(BmbModalComponent, { data });
+
+    this.modalService.openModal(data);
   }
 
   getGradesTitle(): string {
@@ -204,6 +206,8 @@ export class BmbGradesComponent {
   }
 
   handleDetails(element: any): void {
+    console.log('this.showPrincipalDetail', this.showPrincipalDetail);
+
     if (this.showPrincipalDetail) {
       this.openModalComponent(element);
       return;

@@ -46,7 +46,6 @@ import {
   BmbLayoutDirective,
   BmbCardComponent,
   BmbTablesComponent,
-  BmbModalComponent,
   BmbFrequentAppsSelectorComponent,
   BmbMediaCardComponent,
   BmbButtonGroupDirective,
@@ -102,6 +101,8 @@ import {
   BmbBreadcrumbComponent,
   IBmbDropdownItem,
   BmbMitecLogoAnimationComponent,
+  BmbModalService,
+  IBmbModalAction,
 } from '../../projects/ds-ng/src/public-api';
 import { BmbPullWedgeComponent } from '../../projects/ds-ng/src/lib/components/bmb-pull-wedge/bmb-pull-wedge.component';
 import { BmbCardButtonComponent } from '../../projects/ds-ng/src/lib/components/bmb-card-button/bmb-card-button.component';
@@ -113,7 +114,6 @@ export interface Target {
 
 import names from './names.json';
 import { ModalDataConfig } from '../../projects/ds-ng/src/lib/components/bmb-modal/bmb-modal.interface';
-import { MatDialog } from '@angular/material/dialog';
 // import timelineEvents from './timelineEvents.json';
 import {} from '../../projects/ds-ng/src/lib/components/bmb-home-card-chat/bmb-home-card-chat.component';
 // import { DateTime } from 'luxon';
@@ -173,7 +173,6 @@ import { BmbUserProfileComponent } from '../../projects/ds-ng/src/lib/components
     BmbCardComponent,
     BmbIconComponent,
     BmbTablesComponent,
-    BmbModalComponent,
     BmbFrequentAppsSelectorComponent,
     BmbMediaCardComponent,
     BmbButtonGroupDirective,
@@ -215,7 +214,6 @@ import { BmbUserProfileComponent } from '../../projects/ds-ng/src/lib/components
     BmbUserProfileComponent,
     BmbAlertCenterComponent,
     BmbInnerHeaderComponent,
-    BmbPortalComponent,
     BmbMitecLogoAnimationComponent,
   ],
   templateUrl: './app.component.html',
@@ -228,9 +226,9 @@ import { BmbUserProfileComponent } from '../../projects/ds-ng/src/lib/components
 export class AppComponent {
   constructor(
     private cdr: ChangeDetectorRef,
-    private matDialog: MatDialog,
     private notificationSignal: BmbNotificationService,
     private calendarEventsSignal: BmbCalendarService,
+    private modalService: BmbModalService,
   ) {}
 
   title1 = 'Sample Card Title';
@@ -275,11 +273,6 @@ export class AppComponent {
     //   'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.',
     content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit',
     size: 'small',
-    type: 'alert',
-    alertStyle: 'error',
-    primaryBtnLabel: 'Action',
-    secondaryBtnLabel: 'Cancel',
-    hidePrimaryButton: false,
     // scrollable: true,
     // primaryAction: () => {
     //   console.log('primaryAction');
@@ -325,10 +318,6 @@ export class AppComponent {
     name: 'Juan Pedro Sánchez Miranda',
     role: 'Role de usuario',
   };
-
-  openModal() {
-    this.matDialog.open(BmbModalComponent, { data: this.dataModal });
-  }
 
   @ViewChild(BmbToastComponent)
   private toastComponent!: BmbToastComponent;
@@ -5163,21 +5152,6 @@ export class AppComponent {
     console.log('Received search value:', event);
   }
 
-  openModalComponent() {
-    const data: ModalDataConfig = {
-      title: 'Modal Title',
-      subtitle: 'Modal Subtitle',
-      content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-      size: 'large',
-      type: 'action',
-      primaryBtnLabel: 'Ok',
-      primaryAction: () => window.alert('Primary action triggered!'),
-    };
-
-    this.matDialog.open(BmbModalComponent, { data });
-  }
-
-  // options: string[] = ['Apple', 'Banana', 'Orange', 'Pear', 'Grape'];
   options: IBmbDropdownItem[] = [
     { value: '1', name: 'Apple', icon: '' },
     { value: '2', name: 'Banana', icon: '' },
@@ -5189,4 +5163,36 @@ export class AppComponent {
   onValueChange(params: unknown): void {
     window.alert(params?.toString());
   }
+
+  @ViewChild('modalTemplate', { read: TemplateRef })
+  modalTemplate?: TemplateRef<unknown>;
+
+  addModal() {
+    const data: ModalDataConfig = {
+      content: this.modalTemplate,
+      title: 'Add Modal Title',
+      type: 'error',
+      subtitle: 'Add Modal Subtitle',
+      size: 'small',
+      hideFooter: false,
+      disableCloseButtonFooter: false,
+      actions: this.modalActions,
+    };
+
+    const modalId = this.modalService.openModal(data);
+
+    console.log('Modal ID:', modalId);
+  }
+
+  getModalActions() {
+    alert('Handle action');
+  }
+
+  modalActions: IBmbModalAction[] = [
+    {
+      action: () => this.getModalActions(),
+      label: 'Do something',
+      type: 'primary',
+    },
+  ];
 }

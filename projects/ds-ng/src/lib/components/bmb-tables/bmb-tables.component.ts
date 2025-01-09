@@ -14,12 +14,12 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import {
-  MatTableDataSource,
-  MatTableModule,
-  MatTable,
-} from '@angular/material/table';
+// import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+// import {
+//   MatTableDataSource,
+//   MatTableModule,
+//   MatTable,
+// } from '@angular/material/table';
 import {
   animate,
   state,
@@ -27,16 +27,16 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { SelectionModel } from '@angular/cdk/collections';
+// import { MatInputModule } from '@angular/material/input';
+// import { MatFormFieldModule } from '@angular/material/form-field';
+// import { MatIconModule } from '@angular/material/icon';
+// import { MatButtonModule } from '@angular/material/button';
+// import { MatCheckboxModule } from '@angular/material/checkbox';
+// import { SelectionModel } from '@angular/cdk/collections';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
 import { TableColum, TableConfig } from './bmb-tables.interface';
-import { MatTooltipModule } from '@angular/material/tooltip';
+// import { MatTooltipModule } from '@angular/material/tooltip';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { TemplateNameDirective } from './bmb-tables.directive';
 @Component({
@@ -46,14 +46,14 @@ import { TemplateNameDirective } from './bmb-tables.directive';
     CommonModule,
     BmbIconComponent,
     BmbCheckboxComponent,
-    MatPaginatorModule,
-    MatTableModule,
-    MatCheckboxModule,
-    MatIconModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatTooltipModule,
+    // MatPaginatorModule,
+    // MatTableModule,
+    // MatCheckboxModule,
+    // MatIconModule,
+    // MatButtonModule,
+    // MatFormFieldModule,
+    // MatInputModule,
+    // MatTooltipModule,
   ],
   templateUrl: './bmb-tables.component.html',
   styleUrls: ['./bmb-tables.component.scss'],
@@ -71,11 +71,11 @@ import { TemplateNameDirective } from './bmb-tables.directive';
   ],
 })
 export class BmbTablesComponent implements AfterViewInit, OnInit {
-  dataSource: MatTableDataSource<any> = new MatTableDataSource();
+  // dataSource: MatTableDataSource<any> = new MatTableDataSource();
   tableDisplayColumns: string[] = [];
   tableColumns: TableColum[] = [];
   expandedElement: any;
-  selection = new SelectionModel<any>(true, []);
+  // selection = new SelectionModel<any>(true, []);
   tableConfig: TableConfig | undefined;
   paginatorSize: number | undefined;
 
@@ -91,9 +91,9 @@ export class BmbTablesComponent implements AfterViewInit, OnInit {
     this.paginatorSize = size;
   }
 
-  @Input() set data(data: any[]) {
-    this.dataSource = new MatTableDataSource(data);
-  }
+  // @Input() set data(data: any[]) {
+  //   this.dataSource = new MatTableDataSource(data);
+  // }
 
   @Input() set columns(columns: TableColum[]) {
     this.tableColumns = columns;
@@ -111,15 +111,15 @@ export class BmbTablesComponent implements AfterViewInit, OnInit {
 
   @Output() select: EventEmitter<any> = new EventEmitter();
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatTable, { read: ElementRef }) private matTableRef?: ElementRef;
+  // @ViewChild(MatPaginator) paginator!: MatPaginator;
+  // @ViewChild(MatTable, { read: ElementRef }) private matTableRef?: ElementRef;
   @ViewChild('headerCellRef') headerCellRef!: ElementRef;
   @ViewChild('cellRef') cellRef!: ElementRef;
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    this.setTableResize(this.matTableRef!.nativeElement.clientWidth);
-  }
+  // @HostListener('window:resize', ['$event'])
+  // onResize(event: any) {
+  //   this.setTableResize(this.matTableRef!.nativeElement.clientWidth);
+  // }
 
   constructor(
     private renderer: Renderer2,
@@ -133,16 +133,14 @@ export class BmbTablesComponent implements AfterViewInit, OnInit {
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.setTableResize(this.matTableRef!.nativeElement.clientWidth);
-
-    const headerHasEllipsis = this.hasEllipsis(
-      this.headerCellRef?.nativeElement,
-    );
-
-    this.dataSource.data.forEach((row: any) => {
-      const cellHasEllipsis = this.hasEllipsis(this.cellRef?.nativeElement);
-    });
+    // this.dataSource.paginator = this.paginator;
+    // this.setTableResize(this.matTableRef!.nativeElement.clientWidth);
+    // const headerHasEllipsis = this.hasEllipsis(
+    //   this.headerCellRef?.nativeElement,
+    // );
+    // this.dataSource.data.forEach((row: any) => {
+    //   const cellHasEllipsis = this.hasEllipsis(this.cellRef?.nativeElement);
+    // });
   }
 
   setTableResize(tableWidth: number) {
@@ -178,18 +176,18 @@ export class BmbTablesComponent implements AfterViewInit, OnInit {
   }
 
   checkResizing(event: any, index: any) {
-    const cellData = this.getCellData(index);
-    this.isResizingRight =
-      index === 0 ||
-      (Math.abs(event.pageX - cellData.right) < cellData.width / 2 &&
-        index !== this.tableColumns.length - 1);
+    // const cellData = this.getCellData(index);
+    // this.isResizingRight =
+    //   index === 0 ||
+    //   // (Math.abs(event.pageX - cellData.right) < cellData.width / 2 &&
+    //     index !== this.tableColumns.length - 1);
   }
 
   getCellData(index: number) {
-    const headerRow =
-      this.matTableRef!.nativeElement.children[0].querySelector('tr');
-    const cell = headerRow.children[index];
-    return cell.getBoundingClientRect();
+    // const headerRow =
+    //   this.matTableRef!.nativeElement.children[0].querySelector('tr');
+    // const cell = headerRow.children[index];
+    // return cell.getBoundingClientRect();
   }
 
   onResizeColumn(event: any, index: number) {
@@ -203,7 +201,7 @@ export class BmbTablesComponent implements AfterViewInit, OnInit {
   }
 
   onSelect() {
-    this.select.emit(this.selection.selected);
+    // this.select.emit(this.selection.selected);
   }
 
   setConfig(config: TableConfig) {
@@ -223,19 +221,20 @@ export class BmbTablesComponent implements AfterViewInit, OnInit {
   }
 
   isAllSelected() {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
-    return numSelected === numRows;
+    // const numSelected = this.selection.selected.length;
+    // const numRows = this.dataSource.data.length;
+    // return numSelected === numRows;
+    return false;
   }
 
   toggleAllRows() {
     if (this.isAllSelected()) {
-      this.selection.clear();
+      // this.selection.clear();
       this.onSelect();
       return;
     }
 
-    this.selection.select(...this.dataSource.data);
+    // this.selection.select(...this.dataSource.data);
     this.onSelect();
   }
 
@@ -243,14 +242,16 @@ export class BmbTablesComponent implements AfterViewInit, OnInit {
     if (!row) {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
+    // return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
+    return '';
   }
 
   isEven(rowIndex: number): boolean {
-    const filteredIndex = this.dataSource.data
-      .filter((row) => !row.isDetail)
-      .findIndex((row, index) => index === rowIndex);
-    return filteredIndex % 2 === 0;
+    // const filteredIndex = this.dataSource.data
+    //   .filter((row) => !row.isDetail)
+    //   .findIndex((row, index) => index === rowIndex);
+    // return filteredIndex % 2 === 0;
+    return false;
   }
 
   isOdd(rowIndex: number): boolean {
@@ -270,19 +271,20 @@ export class BmbTablesComponent implements AfterViewInit, OnInit {
   }
 
   getPaginationText(): string {
-    if (
-      !this.paginator ||
-      this.paginator.length === 0 ||
-      this.paginator.pageSize === 0
-    ) {
-      return `0 de ${this.paginator?.length || 0}`;
-    }
-    const startIndex = this.paginator.pageIndex * this.paginator.pageSize + 1;
-    const endIndex = Math.min(
-      (this.paginator.pageIndex + 1) * this.paginator.pageSize,
-      this.paginator.length,
-    );
-    return `${startIndex} - ${endIndex} de ${this.paginator.length}`;
+    // if (
+    //   !this.paginator ||
+    //   this.paginator.length === 0 ||
+    //   this.paginator.pageSize === 0
+    // ) {
+    //   return `0 de ${this.paginator?.length || 0}`;
+    // }
+    // const startIndex = this.paginator.pageIndex * this.paginator.pageSize + 1;
+    // const endIndex = Math.min(
+    //   (this.paginator.pageIndex + 1) * this.paginator.pageSize,
+    //   this.paginator.length,
+    // );
+    // return `${startIndex} - ${endIndex} de ${this.paginator.length}`;
+    return '';
   }
 
   isTemplateRef(value: any): boolean {

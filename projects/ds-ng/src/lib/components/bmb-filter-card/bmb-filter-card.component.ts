@@ -11,17 +11,15 @@ import {
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
 import { BmbSwitchComponent } from '../bmb-switch/bmb-switch.component';
 import { BmbRadialComponent } from '../bmb-radial/bmb-radial.component';
 import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
-import { BmbModalComponent } from '../bmb-modal/bmb-modal.component';
 import { BmbTagComponent } from '../bmb-tags/bmb-tags.component';
-import { MatDialog } from '@angular/material/dialog';
 import { ModalDataConfig } from '../bmb-modal/bmb-modal.interface';
 import { BmbInputComponent } from '../bmb-input/bmb-input.component';
 import { IBmbControlType } from './bmb-filter-card.interface';
 import { BmbButtonDirective } from '../../directives/button.directive';
+import { BmbModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'bmb-filter-card',
@@ -31,14 +29,12 @@ import { BmbButtonDirective } from '../../directives/button.directive';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    BmbHomeCardComponent,
     BmbIconComponent,
     BmbInputComponent,
     BmbSwitchComponent,
     BmbRadialComponent,
     BmbCheckboxComponent,
     BmbTagComponent,
-    BmbModalComponent,
     BmbButtonDirective,
   ],
   encapsulation: ViewEncapsulation.None,
@@ -56,6 +52,8 @@ export class BmbFilterCardComponent implements OnInit {
 
   applyFilters = output<void>();
   resetFilters = output<void>();
+
+  modalId = '';
 
   filterForm: FormGroup = new FormGroup({
     search: new FormControl<string>(''),
@@ -88,21 +86,17 @@ export class BmbFilterCardComponent implements OnInit {
     });
   }
 
-  constructor(private matDialog: MatDialog) {}
+  constructor(private modalService: BmbModalService) {}
 
   openModalComponent() {
-    const data: ModalDataConfig = {
+    this.modalId = this.modalService.openModal({
       title: this.modalTitle(),
       size: 'small',
-      primaryBtnLabel: this.primaryBtnLabel(),
-      secondaryBtnLabel: this.secondaryBtnLabel(),
       content: this.modalTemplate,
-      primaryAction: this.onSubmit.bind(this),
-      secondaryAction: this.onReset.bind(this),
       scrollable: true,
-    };
-
-    this.matDialog.open(BmbModalComponent, { data });
+      disableCloseButtonFooter: true,
+      hideFooter: true,
+    });
   }
 
   onControlChange(control: any, event: any) {
@@ -146,6 +140,7 @@ export class BmbFilterCardComponent implements OnInit {
     });
     formData.search = this.filterForm.get('search')?.value;
     this.applyFilters.emit(formData);
+    this.modalService.closeModal(this.modalId);
   }
 
   onReset() {

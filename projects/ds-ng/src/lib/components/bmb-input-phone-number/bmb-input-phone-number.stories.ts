@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BmbInputPhoneNumberComponent } from './bmb-input-phone-number.component';
-import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
+// import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 
 export default {
@@ -16,7 +16,7 @@ export default {
         FormsModule,
         ReactiveFormsModule,
         BrowserAnimationsModule,
-        NgxMatIntlTelInputComponent,
+        // NgxMatIntlTelInputComponent,
         BmbIconComponent,
       ],
     }),
@@ -170,7 +170,6 @@ Below is an example of how to use this component in HTML:
   args: {
     disabled: false,
     showError: false,
-    errorMessage: 'Error Message',
     isRequired: false,
   },
 } as Meta<typeof BmbInputPhoneNumberComponent>;

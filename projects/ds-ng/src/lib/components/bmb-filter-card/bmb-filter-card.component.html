@@ -42,16 +42,14 @@
             }
           </div>
         }
-        @if (inLine()) {
-          <footer class="bmb_filter_card-footer">
-            <button bmbButton appearance="secondary-outlined" type="reset">
-              {{ secondaryBtnLabel() }}
-            </button>
-            <button bmbButton (click)="onSubmit()" type="submit">
-              {{ primaryBtnLabel() }}
-            </button>
-          </footer>
-        }
+        <footer class="bmb_filter_card-footer">
+          <button bmbButton appearance="secondary-outlined" type="reset">
+            {{ secondaryBtnLabel() }}
+          </button>
+          <button bmbButton (click)="onSubmit()" type="submit">
+            {{ primaryBtnLabel() }}
+          </button>
+        </footer>
       </form>
     </div>
   </ng-template>

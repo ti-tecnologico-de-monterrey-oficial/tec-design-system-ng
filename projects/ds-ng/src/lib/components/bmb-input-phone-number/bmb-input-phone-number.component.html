@@ -1,4 +1,63 @@
-<div
+<span class="bmb_input-number">
+  <label for="#bmbInputPhoneNumber">
+    {{ label() }}
+    @if (isRequired()) {
+      <small class="bmb_field-label-required">*</small>
+    }
+    @if (!!tooltip()) {
+      <bmb-tooltip
+        class="bmb_field-label-tooltip"
+        [text]="tooltip()"
+        align="below"
+        justify="before"
+        icon="help"
+        [size]="15"
+      />
+    }
+  </label>
+  <span class="bmb_input-number-container">
+    <bmb-dropdown
+      [required]="true"
+      [showIcon]="false"
+      [options]="getOptions()"
+      (onValueChange)="onValueChange($event)"
+      [control]="getControl('select')"
+    />
+    <bmb-input
+      [placeholder]="placeholder()"
+      [appearance]="appearance()"
+      [errorMessage]="errorMessage()"
+      [disabled]="disabled()"
+      [isRequired]="isRequired()"
+      [maxlength]="selectedCountry().length"
+      [minlength]="selectedCountry().length"
+      [tooltip]="tooltip()"
+      [control]="getControl('input')"
+      [id]="inputId()"
+      type="text"
+    />
+  </span>
+  <bmb-input
+    [placeholder]="placeholder()"
+    [disabled]="disabled()"
+    [isRequired]="isRequired()"
+    [maxlength]="selectedCountry().length"
+    [minlength]="selectedCountry().length"
+    [tooltip]="tooltip()"
+    [control]="control()"
+    hidden
+  />
+  @if (helperMessage()) {
+    <span class="bmb_input-number-helper">{{ helperMessage() }}</span>
+  }
+  @if (showError) {
+    <p class="bmb_field-error">
+      {{ getErrorMessage() }}
+    </p>
+  }
+</span>
+
+<!-- <div
   class="bmb_input_number"
   [ngClass]="{ 'bmb_input_number-disabled': disabled }"
 >
@@ -12,4 +71,4 @@
   <p class="bmb_input_number-error" *ngIf="shouldShowError">
     {{ errorMessage }}
   </p>
-</div>
+</div> -->

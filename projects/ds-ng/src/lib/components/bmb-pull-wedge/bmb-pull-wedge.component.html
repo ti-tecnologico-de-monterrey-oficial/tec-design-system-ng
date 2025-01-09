@@ -3,14 +3,13 @@
     <div #content class="bmb_pull_wedge-content" [class.visible]="isVisible">
       <ng-content select="[collapsible]"></ng-content>
     </div>
-    <div
-      class="bmb_pull_wedge-drag"
-      cdkDrag
-      (cdkDragStarted)="onDragStarted($event)"
-      (cdkDragMoved)="onDragMoved($event)"
-      (cdkDragEnded)="onDragEnded($event)"
-    >
+    <div class="bmb_pull_wedge-drag">
       <button type="button" class="bmb_pull_wedge-button"></button>
     </div>
   </div>
 </div>
+
+<!-- cdkDrag
+(cdkDragStarted)="onDragStarted($event)"
+(cdkDragMoved)="onDragMoved($event)"
+(cdkDragEnded)="onDragEnded($event)" -->

@@ -1,4 +1,19 @@
 <section class="bmb_portal">
+  @for (modal of getModals(); track $index) {
+    <bmb-modal
+      [title]="modal.title || ''"
+      [subtitle]="modal.subtitle || ''"
+      [type]="modal.type || 'info'"
+      [hideFooter]="modal.hideFooter || false"
+      [size]="modal.size || 'medium'"
+      [content]="modal.content || ''"
+      [id]="modal.id || $index + ''"
+      [disableCloseButtonFooter]="modal.disableCloseButtonFooter || false"
+      [scrollable]="modal.scrollable || false"
+      [actions]="modal.actions || []"
+    />
+  }
+
   @for (notification of getNotifications(); track $index) {
     @if (notification.component === "toast") {
       <bmb-toast

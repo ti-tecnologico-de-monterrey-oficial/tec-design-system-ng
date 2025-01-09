@@ -1,14 +1,14 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  effect,
   output,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbLoginOnboardingStepperStepComponent } from './bmb-login-onboarding-stepper-step.component';
 import { BmbLoginOnboardingService } from '../../bmb-login-onboarding.service';
 import { ModalDataConfig } from '../../../bmb-modal/bmb-modal.interface';
-import { MatDialog } from '@angular/material/dialog';
-import { BmbModalComponent } from '../../../bmb-modal/bmb-modal.component';
+import { BmbModalService } from '../../../../services/modal.service';
 
 @Component({
   selector: 'bmb-login-onboarding-stepper-step-four',
@@ -37,26 +37,34 @@ export class BmbLoginOnboardingStepperStepFourComponent {
   handleContinuePage = output();
 
   credentialExample: string = '../assets/images/placeholders/credential.svg';
+  modalId: string = '';
   data: ModalDataConfig = {
     title: 'Entrada a campus',
-    subtitle: '',
     content: 'Podrás cambiar esta configuración en cualquier momento',
     size: 'large',
-    type: 'action',
-    alertStyle: 'success',
-    primaryBtnLabel: 'Aceptar',
+    type: 'success',
+    disableCloseButtonFooter: true,
+    actions: [
+      {
+        label: 'Aceptar',
+        action: () => this.handleConfirm(),
+        type: 'primary',
+      },
+    ],
   };
 
   constructor(
     private loginOnboardingService: BmbLoginOnboardingService,
-    private matDialog: MatDialog,
+    private modalService: BmbModalService,
   ) {}
 
+  handleConfirm(): void {
+    this.modalService.closeModal(this.modalId);
+    this._handleContinueStep();
+  }
+
   openModalComponent(): void {
-    this.matDialog.open(BmbModalComponent, { data: this.data });
-    this.matDialog.afterAllClosed.subscribe(() => {
-      this._handleContinueStep();
-    });
+    this.modalId = this.modalService.openModal(this.data);
   }
 
   handleContinue(): void {

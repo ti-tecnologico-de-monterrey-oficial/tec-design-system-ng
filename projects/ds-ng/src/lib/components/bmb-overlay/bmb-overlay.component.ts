@@ -6,12 +6,11 @@ import {
   AfterViewInit,
   OnChanges,
 } from '@angular/core';
-import { OverlayModule } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'bmb-overlay',
   standalone: true,
-  imports: [CommonModule, OverlayModule],
+  imports: [CommonModule],
   templateUrl: './bmb-overlay.component.html',
   styleUrl: './bmb-overlay.component.scss',
 })

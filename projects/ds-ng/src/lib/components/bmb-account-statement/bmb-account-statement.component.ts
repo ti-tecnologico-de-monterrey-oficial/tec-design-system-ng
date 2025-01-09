@@ -19,8 +19,6 @@ import { BmbProgressBarComponent } from '../bmb-progress-bar/bmb-progress-bar.co
 import { DateTime } from 'luxon';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 import { BmbButtonDirective } from '../../directives/button.directive';
-import { MatDialog } from '@angular/material/dialog';
-import { BmbModalComponent } from '../bmb-modal/bmb-modal.component';
 import { ModalDataConfig } from '../bmb-modal/bmb-modal.interface';
 import { BmbRadialComponent } from '../bmb-radial/bmb-radial.component';
 import { currencyFormat } from '../../utils/currencyFormat';
@@ -33,6 +31,7 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { BmbModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'bmb-account-statement',
@@ -45,7 +44,6 @@ import {
     BmbProgressBarComponent,
     BmbDividerComponent,
     BmbButtonDirective,
-    BmbModalComponent,
     BmbRadialComponent,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
@@ -89,6 +87,7 @@ export class BmbAccountStatementComponent implements AfterViewInit, OnInit {
   modalTemplate?: TemplateRef<any>;
 
   newModal: TemplateRef<any> | null = null;
+  modalId: string = '';
   customAmount: number = 0;
   isEnableCustomAmount: boolean = false;
   maxAmount: number = 0;
@@ -98,7 +97,7 @@ export class BmbAccountStatementComponent implements AfterViewInit, OnInit {
   });
   showErrors: { [key: string]: boolean } = {};
 
-  constructor(private matDialog: MatDialog) {}
+  constructor(private modalService: BmbModalService) {}
 
   ngOnInit(): void {
     this.maxAmount = this.totalCount() - this.counter();
@@ -124,10 +123,10 @@ export class BmbAccountStatementComponent implements AfterViewInit, OnInit {
       subtitle: this.modalSubtitle(),
       content: this.newModal,
       size: 'large',
-      hidePrimaryButton: true,
+      hideFooter: true,
     };
 
-    this.matDialog.open(BmbModalComponent, { data });
+    this.modalId = this.modalService.openModal(data);
   }
 
   getFormattedDate(date?: string): string {

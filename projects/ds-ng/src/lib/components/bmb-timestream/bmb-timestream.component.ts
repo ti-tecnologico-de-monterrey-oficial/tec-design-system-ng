@@ -15,8 +15,6 @@ import { BmbTimestreamDetailsComponent } from './bmb-timestream-detail/bmb-times
 import { ITimelineEvent, ISelectedDate, ITimelineEventParsed } from './types';
 import { CommonModule } from '@angular/common';
 import { ModalDataConfig } from '../bmb-modal/bmb-modal.interface';
-import { BmbModalComponent } from '../bmb-modal/bmb-modal.component';
-import { MatDialog } from '@angular/material/dialog';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
 import { BmbTabsComponent } from '../bmb-tabs/bmb-tabs.component';
 import { BmbButtonDirective } from '../../directives/button.directive';
@@ -24,6 +22,7 @@ import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 import { BmbHitoCardComponent } from '../bmb-hito-card/bmb-hito-card.component';
 import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
+import { BmbModalService } from '../../services/modal.service';
 
 interface IPlaceholderObject {
   [key: string]: any | any[];
@@ -93,23 +92,18 @@ export class BmbTimestreamComponent {
   ];
   tabSelected = 1;
 
-  constructor(private matDialog: MatDialog) {}
+  constructor(private modalService: BmbModalService) {}
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log('changes', changes);
-
     this.parsedEvents = this.prepareEvents(changes['events'].currentValue);
     this.orderedMonths = this.orderDates(this.parsedEvents, 'yyyy/MM');
     this.selectedDate = this.selectAValidDate();
   }
 
   ngOnInit(): void {
-    console.log('events', this.events());
-
     this.parsedEvents = this.prepareEvents(this.events());
     this.orderedMonths = this.orderDates(this.parsedEvents, 'yyyy/MM');
     this.selectedDate = this.selectAValidDate();
-    console.log('isMicro', this.isMicro());
   }
 
   ngAfterViewInit(): void {
@@ -145,8 +139,6 @@ export class BmbTimestreamComponent {
       this.orderedEvents.set([]);
       return {};
     }
-
-    console.log('events found', events);
 
     const objectEvent: IPlaceholderObject = {};
     events.forEach((event) => {
@@ -186,8 +178,6 @@ export class BmbTimestreamComponent {
       }
     });
 
-    console.log('objectEvent', objectEvent);
-
     const orderedEvents = this.orderDates(objectEvent, 'yyyy/MM');
 
     if (orderedEvents.length) {
@@ -199,8 +189,6 @@ export class BmbTimestreamComponent {
           'yyyy/MM/dd',
         );
       });
-
-      console.log('objectEvent', objectEvent);
 
       this.orderedEvents.set(
         objectEvent['orderedEvents']
@@ -294,10 +282,10 @@ export class BmbTimestreamComponent {
       title: event.title,
       content: this.newModal,
       size: 'large',
-      hidePrimaryButton: true,
+      hideFooter: true,
     };
 
-    this.matDialog.open(BmbModalComponent, { data });
+    this.modalService.openModal(data);
   }
 
   getMonthTitle(date: DateTime) {

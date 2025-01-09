@@ -1,12 +1,12 @@
 <div class="bmb_table">
   <div class="bmb_table-container">
-    <table
+    <!-- <table
       mat-table
       [dataSource]="dataSource"
       class="bmb_table-content"
       multiTemplateDataRows
     >
-      <!-- Checkbox Column -->
+      !-- Checkbox Column --
       <ng-container matColumnDef="select" sticky>
         <th mat-header-cell *matHeaderCellDef class="bmb_table-checkbox">
           <bmb-checkbox
@@ -27,7 +27,7 @@
         </td>
       </ng-container>
 
-      <!-- Expand Column -->
+      !-- Expand Column --
       <ng-container matColumnDef="expand" sticky>
         <th
           mat-header-cell
@@ -55,7 +55,7 @@
         </td>
       </ng-container>
 
-      <!-- Display Columns -->
+      !-- Display Columns --
       <ng-container *ngFor="let column of tableColumns; let i = index">
         <ng-container matColumnDef="{{ column.def }}" [sticky]="i === 0">
           <th
@@ -112,7 +112,7 @@
         </ng-container>
       </ng-container>
 
-      <!-- Actions Column -->
+      !-- Actions Column --
       <ng-container matColumnDef="actions" stickyEnd>
         <th mat-header-cell *matHeaderCellDef class="bmb_table-actions"></th>
         <td mat-cell *matCellDef="let row" class="bmb_table-actions">
@@ -120,7 +120,7 @@
         </td>
       </ng-container>
 
-      <!-- Row to expand -->
+      !-- Row to expand --
       <ng-container matColumnDef="expandedDetail">
         <td
           mat-cell
@@ -138,7 +138,7 @@
         </td>
       </ng-container>
 
-      <!-- Rows -->
+      !-- Rows --
       <tr
         mat-header-row
         *matHeaderRowDef="tableDisplayColumns"
@@ -164,12 +164,12 @@
           [class.bmb_table-expanded]="expandedElement === row"
         ></tr>
       </ng-container>
-    </table>
+    </table> -->
   </div>
 
   <!-- Paginator -->
   <ng-container *ngIf="tableConfig?.isPaginable" sticky>
-    <mat-paginator
+    <!-- <mat-paginator
       #paginator
       [pageSize]="this.paginatorSize"
       [hidePageSize]="true"
@@ -231,6 +231,6 @@
           class="bmb_table-paginator-icon"
         />
       </button>
-    </div>
+    </div> -->
   </ng-container>
 </div>

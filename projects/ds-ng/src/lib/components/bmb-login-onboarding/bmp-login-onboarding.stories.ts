@@ -2,10 +2,11 @@ import { moduleMetadata, type Meta, type StoryFn } from '@storybook/angular';
 import { BmbLoginOnboardingComponent } from './bmb-login-onboarding.component';
 import { Component } from '@angular/core';
 import { IBmbLoginOnboarding, IBmbUserInfo } from './types';
+import { BmbPortalComponent } from '../bmb-portal/bmb-portal.component';
 
 @Component({
   standalone: true,
-  imports: [BmbLoginOnboardingComponent],
+  imports: [BmbLoginOnboardingComponent, BmbPortalComponent],
   selector: 'storybook-toast-wrapper',
   template: `
     <div style="max-width: 300px; margin: 0 auto">
@@ -13,6 +14,7 @@ import { IBmbLoginOnboarding, IBmbUserInfo } from './types';
         <p>custom content</p>
       </bmb-login-onboarding>
       <bmb-theme initialTheme="dark" [showControls]="false" />
+      <bmb-portal></bmb-portal>
     </div>
   `,
 })
