@@ -30,11 +30,10 @@
       background: linear-gradient(180deg, var(--color-gradient-blue));
     }
   }
+
   &-title {
     @include fonts.font(6, medium);
   }
-  // &-subtitle {
-  // }
 
   &-content {
     padding: rem.rem_calc(10);

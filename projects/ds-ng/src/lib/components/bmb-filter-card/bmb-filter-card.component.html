@@ -9,7 +9,7 @@
           [control]="getFormControl('search')"
         />
         @for (controlType of controlTypes(); track $index) {
-          <div class="bmb_filter_card-title">{{ controlType.title }}</div>
+          <h4 class="bmb_filter_card-title">{{ controlType.title }}</h4>
           <div class="bmb_filter_card-control">
             @for (control of controlType.control; track $index) {
               @switch (control.type) {
