@@ -60,7 +60,6 @@
 }
 
 .bmb_tooltip {
-
   &.mat-mdc-tooltip {
     .mdc-tooltip__surface {
       color: RGBA(var(--color-charade-50));
@@ -73,7 +72,6 @@
 [data-theme="dark"],
 .storybook-dark-theme {
   .bmb_tooltip {
-
     &.mat-mdc-tooltip {
       .mdc-tooltip__surface {
         color: RGBA(var(--color-charade-900));
