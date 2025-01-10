@@ -1,6 +1,5 @@
 import {
   Component,
-
   ViewEncapsulation,
   ChangeDetectionStrategy,
   HostListener,
@@ -36,23 +35,21 @@ import {
 export class BmbTotpComponent {
   private destroy$ = new Subject<void>();
 
-   title = input<string>('TOTP');
-   subtitle = input<string>('(Time-based One-time Password)');
-   instanceId = input<string>('');
-   codeError = input<boolean>(false);
-   errorMessage = input<string>('');
-   helperText = input<string>('');
-   showButton = input<boolean>(false);
-   buttonText = input<string>('');
-   maxCode = input<number>(6);
+  title = input<string>('TOTP');
+  subtitle = input<string>('(Time-based One-time Password)');
+  instanceId = input<string>('');
+  codeError = input<boolean>(false);
+  errorMessage = input<string>('');
+  helperText = input<string>('');
+  showButton = input<boolean>(false);
+  buttonText = input<string>('');
+  maxCode = input<number>(6);
 
   handleSubmit = output<string>();
 
   codeForm!: FormGroup;
 
-  constructor(
-    private formBuilder: FormBuilder,
-  ) {}
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
     this.buildForm();
