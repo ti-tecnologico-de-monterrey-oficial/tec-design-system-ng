@@ -165,7 +165,14 @@
     &:hover:not(:disabled),
     &:focus-visible:not(:disabled) {
       border-width: rem.rem_calc(2);
-      padding: calc(0.5rem - rem.rem_calc(1)) calc(2.5rem - rem.rem_calc(1));
+      padding: rem.rem_calc(1 15);
+    }
+
+    @include media-query(768, "min") {
+      &:hover:not(:disabled),
+      &:focus-visible:not(:disabled) {
+        padding: rem.rem_calc(7 39);
+      }
     }
 
     &:active:not(:disabled),
