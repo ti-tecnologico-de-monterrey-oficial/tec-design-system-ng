@@ -19,7 +19,7 @@ export class BmbNotificationService {
   }
 
   addNotification(notification: INotification) {
-    const id = notification.id ?? self.crypto.randomUUID();
+    const id = notification.id ?? self.crypto.randomUUID().toString();
 
     this.notificationList.update((currentNotifications) => [
       ...currentNotifications,
