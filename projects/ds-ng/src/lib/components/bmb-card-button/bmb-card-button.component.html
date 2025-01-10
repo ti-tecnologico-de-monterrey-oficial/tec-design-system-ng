@@ -12,7 +12,7 @@
           [alt]="botImage()?.alt"
           class="bmb_card_button-small-bot-icon"
         />
-        <div class="bmb_card_button-small-title">{{ smallTitle() }}</div>
+        <h3 class="bmb_card_button-small-title">{{ smallTitle() }}</h3>
       </div>
       <div class="bmb_card_button-small-back">
         <bmb-icon icon="close" class="bmb_card_button-small-close-icon" />
@@ -67,7 +67,7 @@
       </div>
 
       <div class="bmb_card_button-header" (click)="handleTitleClick($event)">
-        <span class="bmb_card_button-header-text">{{ title() }}</span>
+        <h2 class="bmb_card_button-header-text">{{ title() }}</h2>
         <bmb-icon [icon]="icon()" class="bmb_card_button-header-icon" />
       </div>
 

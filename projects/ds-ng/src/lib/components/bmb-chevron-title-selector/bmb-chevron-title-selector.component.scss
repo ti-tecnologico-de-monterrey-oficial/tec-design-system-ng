@@ -20,6 +20,7 @@
 
     &-subtitle {
       color: currentColor;
+      @include fonts.font(4, medium);
     }
   }
 

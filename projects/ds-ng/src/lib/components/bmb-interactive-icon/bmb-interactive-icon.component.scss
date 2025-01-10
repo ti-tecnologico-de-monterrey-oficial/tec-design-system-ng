@@ -81,7 +81,6 @@
 
   &-title {
     color: RGBA(var(--color-charade-950));
-    display: block;
     text-align: center;
     @include fonts.font(3, regular);
   }
