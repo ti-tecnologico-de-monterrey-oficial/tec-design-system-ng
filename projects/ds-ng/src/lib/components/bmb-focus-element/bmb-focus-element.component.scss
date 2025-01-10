@@ -60,6 +60,7 @@
     text-align: center;
     @include fonts.font(3, regular);
     max-width: 4rem;
+    font-weight: 300;
   }
 }
 

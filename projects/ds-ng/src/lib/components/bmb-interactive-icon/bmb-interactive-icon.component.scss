@@ -83,6 +83,7 @@
     color: RGBA(var(--color-charade-950));
     text-align: center;
     @include fonts.font(3, regular);
+    font-weight: 300;
   }
 
   &-description {

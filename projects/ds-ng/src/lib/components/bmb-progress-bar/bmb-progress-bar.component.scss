@@ -60,6 +60,7 @@ $variants: (
 
       &-text {
         @include fonts.font(5, regular);
+        font-weight: 300;
       }
     }
 
