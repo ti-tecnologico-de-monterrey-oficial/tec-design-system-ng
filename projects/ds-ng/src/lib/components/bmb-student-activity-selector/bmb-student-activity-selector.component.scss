@@ -35,6 +35,10 @@
     @include fonts.font(6, medium);
   }
 
+  &-subtitle {
+    font-weight: 300;
+  }
+
   &-content {
     padding: rem.rem_calc(10);
     color: RGBA(var(--color-white-primary));
