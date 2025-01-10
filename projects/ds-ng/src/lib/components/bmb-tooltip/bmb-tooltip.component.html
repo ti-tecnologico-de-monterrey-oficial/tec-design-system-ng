@@ -4,7 +4,7 @@
   } @else {
     <ng-content></ng-content>
   }
-  <section [class]="'bmb_tooltip-container ' + getClasses()">
+  <section class="bmb_tooltip-container" [class]="getClasses()">
     @if (title()) {
       <section class="bmb_tooltip-container-title">
         <span class="bmb_tooltip-container-title-text">{{ title() }}</span>
