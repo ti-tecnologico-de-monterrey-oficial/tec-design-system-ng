@@ -262,7 +262,6 @@ export class BmbInputComponent {
   }
 
   getErrorMessage(): string {
-    console.log('setErrorMessage', this.control['errors']);
     if (typeof this.errorMessage() === 'string') {
       return this.errorMessage().toString();
     }
