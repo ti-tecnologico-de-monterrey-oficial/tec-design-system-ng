@@ -50,10 +50,9 @@
 
     &:focus:not(:disabled),
     &:focus-visible:not(:disabled) {
-      border: rem.rem_calc(3) solid RGBA(var(--color-mariner-700));
+      border: rem.rem_calc(2) solid RGBA(var(--color-mariner-700));
       padding: calc(var(--bmb-spacing-s) - rem.rem_calc(1));
       outline: none;
-      padding-left: rem.rem_calc(38);
       transition: all 0.3s ease;
     }
 

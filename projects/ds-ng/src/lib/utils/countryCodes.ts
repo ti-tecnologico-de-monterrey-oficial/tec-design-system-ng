@@ -1,0 +1,1094 @@
+export interface IBmbCountryCode {
+  country: string;
+  country_code: string;
+  lada: string;
+  length: number;
+}
+
+export const IBmbCountryCodes: IBmbCountryCode[] = [
+  {
+      country: 'Afganistán',
+      country_code: 'AF',
+      lada: '+93',
+      length: 9
+  },
+  {
+      country: 'Albania',
+      country_code: 'AL',
+      lada: '+355',
+      length: 8
+  },
+  {
+      country: 'Alemania',
+      country_code: 'DE',
+      lada: '+49',
+      length: 11
+  },
+  {
+      country: 'Andorra',
+      country_code: 'AD',
+      lada: '+376',
+      length: 6
+  },
+  {
+      country: 'Angola',
+      country_code: 'AO',
+      lada: '+244',
+      length: 9
+  },
+  {
+      country: 'Antigua y Barbuda',
+      country_code: 'AG',
+      lada: '+1-268',
+      length: 7
+  },
+  {
+      country: 'Argentina',
+      country_code: 'AR',
+      lada: '+54',
+      length: 10
+  },
+  {
+      country: 'Armenia',
+      country_code: 'AM',
+      lada: '+374',
+      length: 8
+  },
+  {
+      country: 'Australia',
+      country_code: 'AU',
+      lada: '+61',
+      length: 9
+  },
+  {
+      country: 'Austria',
+      country_code: 'AT',
+      lada: '+43',
+      length: 13
+  },
+  {
+      country: 'Azerbaiyán',
+      country_code: 'AZ',
+      lada: '+994',
+      length: 9
+  },
+  {
+      country: 'Bahamas',
+      country_code: 'BS',
+      lada: '+1-242',
+      length: 7
+  },
+  {
+      country: 'Bahréin',
+      country_code: 'BH',
+      lada: '+973',
+      length: 8
+  },
+  {
+      country: 'Bangladés',
+      country_code: 'BD',
+      lada: '+880',
+      length: 10
+  },
+  {
+      country: 'Barbados',
+      country_code: 'BB',
+      lada: '+1-246',
+      length: 7
+  },
+  {
+      country: 'Bélgica',
+      country_code: 'BE',
+      lada: '+32',
+      length: 9
+  },
+  {
+      country: 'Belice',
+      country_code: 'BZ',
+      lada: '+501',
+      length: 7
+  },
+  {
+      country: 'Benín',
+      country_code: 'BJ',
+      lada: '+229',
+      length: 8
+  },
+  {
+      country: 'Bielorrusia',
+      country_code: 'BY',
+      lada: '+375',
+      length: 9
+  },
+  {
+      country: 'Bolivia',
+      country_code: 'BO',
+      lada: '+591',
+      length: 8
+  },
+  {
+      country: 'Bosnia y Herzegovina',
+      country_code: 'BA',
+      lada: '+387',
+      length: 8
+  },
+  {
+      country: 'Botsuana',
+      country_code: 'BW',
+      lada: '+267',
+      length: 7
+  },
+  {
+      country: 'Brasil',
+      country_code: 'BR',
+      lada: '+55',
+      length: 11
+  },
+  {
+      country: 'Brunéi',
+      country_code: 'BN',
+      lada: '+673',
+      length: 7
+  },
+  {
+      country: 'Bulgaria',
+      country_code: 'BG',
+      lada: '+359',
+      length: 8
+  },
+  {
+      country: 'Burkina Faso',
+      country_code: 'BF',
+      lada: '+226',
+      length: 8
+  },
+  {
+      country: 'Burundi',
+      country_code: 'BI',
+      lada: '+257',
+      length: 8
+  },
+  {
+      country: 'Cabo Verde',
+      country_code: 'CV',
+      lada: '+238',
+      length: 7
+  },
+  {
+      country: 'Camerún',
+      country_code: 'CM',
+      lada: '+237',
+      length: 9
+  },
+  {
+      country: 'Canadá',
+      country_code: 'CA',
+      lada: '+1',
+      length: 10
+  },
+  {
+      country: 'Chad',
+      country_code: 'TD',
+      lada: '+235',
+      length: 8
+  },
+  {
+      country: 'Chile',
+      country_code: 'CL',
+      lada: '+56',
+      length: 9
+  },
+  {
+      country: 'China',
+      country_code: 'CN',
+      lada: '+86',
+      length: 11
+  },
+  {
+      country: 'Colombia',
+      country_code: 'CO',
+      lada: '+57',
+      length: 10
+  },
+  {
+      country: 'Comoras',
+      country_code: 'KM',
+      lada: '+269',
+      length: 7
+  },
+  {
+      country: 'Congo',
+      country_code: 'CG',
+      lada: '+242',
+      length: 7
+  },
+  {
+      country: 'Congo, República Democrática del',
+      country_code: 'CD',
+      lada: '+243',
+      length: 9
+  },
+  {
+      country: 'Costa Rica',
+      country_code: 'CR',
+      lada: '+506',
+      length: 8
+  },
+  {
+      country: 'Croacia',
+      country_code: 'HR',
+      lada: '+385',
+      length: 9
+  },
+  {
+      country: 'Cuba',
+      country_code: 'CU',
+      lada: '+53',
+      length: 8
+  },
+  {
+      country: 'Chipre',
+      country_code: 'CY',
+      lada: '+357',
+      length: 8
+  },
+  {
+      country: 'República Checa',
+      country_code: 'CZ',
+      lada: '+420',
+      length: 9
+  },
+  {
+      country: 'Dinamarca',
+      country_code: 'DK',
+      lada: '+45',
+      length: 8
+  },
+  {
+      country: 'Dominica',
+      country_code: 'DM',
+      lada: '+1-767',
+      length: 7
+  },
+  {
+      country: 'República Dominicana',
+      country_code: 'DO',
+      lada: '+1-809',
+      length: 10
+  },
+  {
+      country: 'Ecuador',
+      country_code: 'EC',
+      lada: '+593',
+      length: 9
+  },
+  {
+      country: 'Egipto',
+      country_code: 'EG',
+      lada: '+20',
+      length: 10
+  },
+  {
+      country: 'El Salvador',
+      country_code: 'SV',
+      lada: '+503',
+      length: 8
+  },
+  {
+      country: 'Emiratos Árabes Unidos',
+      country_code: 'AE',
+      lada: '+971',
+      length: 9
+  },
+  {
+      country: 'Eslovenia',
+      country_code: 'SI',
+      lada: '+386',
+      length: 8
+  },
+  {
+      country: 'España',
+      country_code: 'ES',
+      lada: '+34',
+      length: 9
+  },
+  {
+      country: 'Estados Unidos',
+      country_code: 'US',
+      lada: '+1',
+      length: 10
+  },
+  {
+      country: 'Estonia',
+      country_code: 'EE',
+      lada: '+372',
+      length: 7
+  },
+  {
+      country: 'Etiopía',
+      country_code: 'ET',
+      lada: '+251',
+      length: 9
+  },
+  {
+      country: 'Fiji',
+      country_code: 'FJ',
+      lada: '+679',
+      length: 7
+  },
+  {
+      country: 'Filipinas',
+      country_code: 'PH',
+      lada: '+63',
+      length: 10
+  },
+  {
+      country: 'Finlandia',
+      country_code: 'FI',
+      lada: '+358',
+      length: 10
+  },
+  {
+      country: 'Francia',
+      country_code: 'FR',
+      lada: '+33',
+      length: 9
+  },
+  {
+      country: 'Gambia',
+      country_code: 'GM',
+      lada: '+220',
+      length: 7
+  },
+  {
+      country: 'Georgia',
+      country_code: 'GE',
+      lada: '+995',
+      length: 9
+  },
+  {
+      country: 'Ghana',
+      country_code: 'GH',
+      lada: '+233',
+      length: 9
+  },
+  {
+      country: 'Grecia',
+      country_code: 'GR',
+      lada: '+30',
+      length: 10
+  },
+  {
+      country: 'Granada',
+      country_code: 'GD',
+      lada: '+1-473',
+      length: 7
+  },
+  {
+      country: 'Guatemala',
+      country_code: 'GT',
+      lada: '+502',
+      length: 8
+  },
+  {
+      country: 'Guinea',
+      country_code: 'GN',
+      lada: '+224',
+      length: 9
+  },
+  {
+      country: 'Guinea-Bisáu',
+      country_code: 'GW',
+      lada: '+245',
+      length: 7
+  },
+  {
+      country: 'Guyana',
+      country_code: 'GY',
+      lada: '+592',
+      length: 7
+  },
+  {
+      country: 'Haití',
+      country_code: 'HT',
+      lada: '+509',
+      length: 8
+  },
+  {
+      country: 'Honduras',
+      country_code: 'HN',
+      lada: '+504',
+      length: 8
+  },
+  {
+      country: 'Hungría',
+      country_code: 'HU',
+      lada: '+36',
+      length: 9
+  },
+  {
+      country: 'Islandia',
+      country_code: 'IS',
+      lada: '+354',
+      length: 7
+  },
+  {
+      country: 'India',
+      country_code: 'IN',
+      lada: '+91',
+      length: 10
+  },
+  {
+      country: 'Indonesia',
+      country_code: 'ID',
+      lada: '+62',
+      length: 10
+  },
+  {
+      country: 'Irán',
+      country_code: 'IR',
+      lada: '+98',
+      length: 10
+  },
+  {
+      country: 'Irak',
+      country_code: 'IQ',
+      lada: '+964',
+      length: 9
+  },
+  {
+      country: 'Irlanda',
+      country_code: 'IE',
+      lada: '+353',
+      length: 9
+  },
+  {
+      country: 'Isla de Man',
+      country_code: 'IM',
+      lada: '+44-1624',
+      length: 7
+  },
+  {
+      country: 'Islas Caimán',
+      country_code: 'KY',
+      lada: '+1-345',
+      length: 7
+  },
+  {
+      country: 'Islas Cook',
+      country_code: 'CK',
+      lada: '+682',
+      length: 7
+  },
+  {
+      country: 'Islas Malvinas',
+      country_code: 'FK',
+      lada: '+500',
+      length: 4
+  },
+  {
+      country: 'Islas Marshall',
+      country_code: 'MH',
+      lada: '+692',
+      length: 7
+  },
+  {
+      country: 'Islas Salomón',
+      country_code: 'SB',
+      lada: '+677',
+      length: 7
+  },
+  {
+      country: 'Islas Vírgenes Británicas',
+      country_code: 'VG',
+      lada: '+1-284',
+      length: 7
+  },
+  {
+      country: 'Islas Vírgenes de los Estados Unidos',
+      country_code: 'VI',
+      lada: '+1-340',
+      length: 7
+  },
+  {
+      country: 'Italia',
+      country_code: 'IT',
+      lada: '+39',
+      length: 10
+  },
+  {
+      country: 'Jamaica',
+      country_code: 'JM',
+      lada: '+1-876',
+      length: 10
+  },
+  {
+      country: 'Japón',
+      country_code: 'JP',
+      lada: '+81',
+      length: 10
+  },
+  {
+      country: 'Jordania',
+      country_code: 'JO',
+      lada: '+962',
+      length: 9
+  },
+  {
+      country: 'Kazajistán',
+      country_code: 'KZ',
+      lada: '+7',
+      length: 10
+  },
+  {
+      country: 'Kenia',
+      country_code: 'KE',
+      lada: '+254',
+      length: 10
+  },
+  {
+      country: 'Kirguistán',
+      country_code: 'KG',
+      lada: '+996',
+      length: 9
+  },
+  {
+      country: 'Kiribati',
+      country_code: 'KI',
+      lada: '+686',
+      length: 7
+  },
+  {
+      country: 'Kuwait',
+      country_code: 'KW',
+      lada: '+965',
+      length: 8
+  },
+  {
+      country: 'Laos',
+      country_code: 'LA',
+      lada: '+856',
+      length: 8
+  },
+  {
+      country: 'Lesoto',
+      country_code: 'LS',
+      lada: '+266',
+      length: 7
+  },
+  {
+      country: 'Letonia',
+      country_code: 'LV',
+      lada: '+371',
+      length: 8
+  },
+  {
+      country: 'Líbano',
+      country_code: 'LB',
+      lada: '+961',
+      length: 8
+  },
+  {
+      country: 'Liberia',
+      country_code: 'LR',
+      lada: '+231',
+      length: 7
+  },
+  {
+      country: 'Libia',
+      country_code: 'LY',
+      lada: '+218',
+      length: 9
+  },
+  {
+      country: 'Liechtenstein',
+      country_code: 'LI',
+      lada: '+423',
+      length: 9
+  },
+  {
+      country: 'Lituania',
+      country_code: 'LT',
+      lada: '+370',
+      length: 8
+  },
+  {
+      country: 'Luxemburgo',
+      country_code: 'LU',
+      lada: '+352',
+      length: 9
+  },
+  {
+      country: 'Madagascar',
+      country_code: 'MG',
+      lada: '+261',
+      length: 9
+  },
+  {
+      country: 'Malasia',
+      country_code: 'MY',
+      lada: '+60',
+      length: 10
+  },
+  {
+      country: 'Malawi',
+      country_code: 'MW',
+      lada: '+265',
+      length: 9
+  },
+  {
+      country: 'Maldivas',
+      country_code: 'MV',
+      lada: '+960',
+      length: 7
+  },
+  {
+      country: 'Malta',
+      country_code: 'MT',
+      lada: '+356',
+      length: 8
+  },
+  {
+      country: 'Marruecos',
+      country_code: 'MA',
+      lada: '+212',
+      length: 10
+  },
+  {
+      country: 'Mauricio',
+      country_code: 'MU',
+      lada: '+230',
+      length: 7
+  },
+  {
+      country: 'Mauritania',
+      country_code: 'MR',
+      lada: '+222',
+      length: 8
+  },
+  {
+      country: 'México',
+      country_code: 'MX',
+      lada: '+52',
+      length: 10
+  },
+  {
+      country: 'Micronesia',
+      country_code: 'FM',
+      lada: '+691',
+      length: 7
+  },
+  {
+      country: 'Moldavia',
+      country_code: 'MD',
+      lada: '+373',
+      length: 8
+  },
+  {
+      country: 'Mónaco',
+      country_code: 'MC',
+      lada: '+377',
+      length: 7
+  },
+  {
+      country: 'Mongolia',
+      country_code: 'MN',
+      lada: '+976',
+      length: 8
+  },
+  {
+      country: 'Montenegro',
+      country_code: 'ME',
+      lada: '+382',
+      length: 8
+  },
+  {
+      country: 'Namibia',
+      country_code: 'NA',
+      lada: '+264',
+      length: 9
+  },
+  {
+      country: 'Nauru',
+      country_code: 'NR',
+      lada: '+674',
+      length: 7
+  },
+  {
+      country: 'Nepal',
+      country_code: 'NP',
+      lada: '+977',
+      length: 10
+  },
+  {
+      country: 'Nicaragua',
+      country_code: 'NI',
+      lada: '+505',
+      length: 8
+  },
+  {
+      country: 'Níger',
+      country_code: 'NE',
+      lada: '+227',
+      length: 8
+  },
+  {
+      country: 'Nigeria',
+      country_code: 'NG',
+      lada: '+234',
+      length: 10
+  },
+  {
+      country: 'Noruega',
+      country_code: 'NO',
+      lada: '+47',
+      length: 8
+  },
+  {
+      country: 'Nueva Zelanda',
+      country_code: 'NZ',
+      lada: '+64',
+      length: 9
+  },
+  {
+      country: 'Omán',
+      country_code: 'OM',
+      lada: '+968',
+      length: 8
+  },
+  {
+      country: 'Pakistán',
+      country_code: 'PK',
+      lada: '+92',
+      length: 10
+  },
+  {
+      country: 'Palaos',
+      country_code: 'PW',
+      lada: '+680',
+      length: 7
+  },
+  {
+      country: 'Panamá',
+      country_code: 'PA',
+      lada: '+507',
+      length: 7
+  },
+  {
+      country: 'Papúa Nueva Guinea',
+      country_code: 'PG',
+      lada: '+675',
+      length: 7
+  },
+  {
+      country: 'Paraguay',
+      country_code: 'PY',
+      lada: '+595',
+      length: 9
+  },
+  {
+      country: 'Perú',
+      country_code: 'PE',
+      lada: '+51',
+      length: 9
+  },
+  {
+      country: 'Polonia',
+      country_code: 'PL',
+      lada: '+48',
+      length: 9
+  },
+  {
+      country: 'Portugal',
+      country_code: 'PT',
+      lada: '+351',
+      length: 9
+  },
+  {
+      country: 'Qatar',
+      country_code: 'QA',
+      lada: '+974',
+      length: 8
+  },
+  {
+      country: 'Reino Unido',
+      country_code: 'GB',
+      lada: '+44',
+      length: 10
+  },
+  {
+      country: 'República Centroafricana',
+      country_code: 'CF',
+      lada: '+236',
+      length: 7
+  },
+  {
+      country: 'República del Congo',
+      country_code: 'CG',
+      lada: '+242',
+      length: 7
+  },
+  {
+      country: 'República Dominicana',
+      country_code: 'DO',
+      lada: '+1-809',
+      length: 10
+  },
+  {
+      country: 'Rumanía',
+      country_code: 'RO',
+      lada: '+40',
+      length: 10
+  },
+  {
+      country: 'Rusia',
+      country_code: 'RU',
+      lada: '+7',
+      length: 10
+  },
+  {
+      country: 'Rwanda',
+      country_code: 'RW',
+      lada: '+250',
+      length: 9
+  },
+  {
+      country: 'San Cristóbal y Nieves',
+      country_code: 'KN',
+      lada: '+1-869',
+      length: 7
+  },
+  {
+      country: 'San Marino',
+      country_code: 'SM',
+      lada: '+378',
+      length: 7
+  },
+  {
+      country: 'San Vicente y las Granadinas',
+      country_code: 'VC',
+      lada: '+1-784',
+      length: 7
+  },
+  {
+      country: 'Santo Tomé y Príncipe',
+      country_code: 'ST',
+      lada: '+239',
+      length: 7
+  },
+  {
+      country: 'Arabia Saudita',
+      country_code: 'SA',
+      lada: '+966',
+      length: 9
+  },
+  {
+      country: 'Senegal',
+      country_code: 'SN',
+      lada: '+221',
+      length: 9
+  },
+  {
+      country: 'Serbia',
+      country_code: 'RS',
+      lada: '+381',
+      length: 9
+  },
+  {
+      country: 'Seychelles',
+      country_code: 'SC',
+      lada: '+248',
+      length: 7
+  },
+  {
+      country: 'Sierra Leona',
+      country_code: 'SL',
+      lada: '+232',
+      length: 8
+  },
+  {
+      country: 'Singapur',
+      country_code: 'SG',
+      lada: '+65',
+      length: 8
+  },
+  {
+      country: 'Eslovaquia',
+      country_code: 'SK',
+      lada: '+421',
+      length: 9
+  },
+  {
+      country: 'Eslovenia',
+      country_code: 'SI',
+      lada: '+386',
+      length: 8
+  },
+  {
+      country: 'Somalia',
+      country_code: 'SO',
+      lada: '+252',
+      length: 9
+  },
+  {
+      country: 'Sudáfrica',
+      country_code: 'ZA',
+      lada: '+27',
+      length: 9
+  },
+  {
+      country: 'Sudán',
+      country_code: 'SD',
+      lada: '+249',
+      length: 9
+  },
+  {
+      country: 'Suecia',
+      country_code: 'SE',
+      lada: '+46',
+      length: 9
+  },
+  {
+      country: 'Suiza',
+      country_code: 'CH',
+      lada: '+41',
+      length: 9
+  },
+  {
+      country: 'Siria',
+      country_code: 'SY',
+      lada: '+963',
+      length: 9
+  },
+  {
+      country: 'Tailandia',
+      country_code: 'TH',
+      lada: '+66',
+      length: 9
+  },
+  {
+      country: 'Tanzania',
+      country_code: 'TZ',
+      lada: '+255',
+      length: 9
+  },
+  {
+      country: 'Tayikistán',
+      country_code: 'TJ',
+      lada: '+992',
+      length: 9
+  },
+  {
+      country: 'Timor Oriental',
+      country_code: 'TL',
+      lada: '+670',
+      length: 7
+  },
+  {
+      country: 'Togo',
+      country_code: 'TG',
+      lada: '+228',
+      length: 8
+  },
+  {
+      country: 'Tonga',
+      country_code: 'TO',
+      lada: '+676',
+      length: 7
+  },
+  {
+      country: 'Trinidad y Tobago',
+      country_code: 'TT',
+      lada: '+1-868',
+      length: 7
+  },
+  {
+      country: 'Túnez',
+      country_code: 'TN',
+      lada: '+216',
+      length: 8
+  },
+  {
+      country: 'Turkmenistán',
+      country_code: 'TM',
+      lada: '+993',
+      length: 8
+  },
+  {
+      country: 'Turquía',
+      country_code: 'TR',
+      lada: '+90',
+      length: 10
+  },
+  {
+      country: 'Tuvalu',
+      country_code: 'TV',
+      lada: '+688',
+      length: 7
+  },
+  {
+      country: 'Uganda',
+      country_code: 'UG',
+      lada: '+256',
+      length: 10 },
+  {
+      country: 'Ucrania',
+      country_code: 'UA',
+      lada: '+380',
+      length: 9
+  },
+  {
+      country: 'Uruguay',
+      country_code: 'UY',
+      lada: '+598',
+      length: 8
+  },
+  {
+      country: 'Uzbekistán',
+      country_code: 'UZ',
+      lada: '+998',
+      length: 9
+  },
+  {
+      country: 'Vanuatu',
+      country_code: 'VU',
+      lada: '+678',
+      length: 7
+  },
+  {
+      country: 'Vaticano',
+      country_code: 'VA',
+      lada: '+39',
+      length: 10
+  },
+  {
+      country: 'Venezuela',
+      country_code: 'VE',
+      lada: '+58',
+      length: 10
+  },
+  {
+      country: 'Vietnam',
+      country_code: 'VN',
+      lada: '+84',
+      length: 9
+  },
+  {
+      country: 'Yemen',
+      country_code: 'YE',
+      lada: '+967',
+      length: 9
+  },
+  {
+      country: 'Zambia',
+      country_code: 'ZM',
+      lada: '+260',
+      length: 10
+  },
+  {
+      country: 'Zimbabue',
+      country_code: 'ZW',
+      lada: '+263',
+      length: 9
+  }
+];

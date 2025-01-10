@@ -54,6 +54,7 @@ export class BmbTopBarComponent implements OnInit {
   @Output() logOut: EventEmitter<any> = new EventEmitter<any>();
   @Output() onLangChange: EventEmitter<string> = new EventEmitter<string>();
   helpButtonClick = output<void>();
+  userProfileClick = output<void>();
 
   @ViewChild(TemplateRef) contentTemplate: TemplateRef<unknown> | null = null;
 
@@ -112,5 +113,9 @@ export class BmbTopBarComponent implements OnInit {
 
   handleHelpButtonClick() {
     this.helpButtonClick.emit();
+  }
+
+  handleUserClick() {
+    this.userProfileClick.emit();
   }
 }
