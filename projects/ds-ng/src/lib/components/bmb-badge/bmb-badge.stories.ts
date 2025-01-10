@@ -77,7 +77,7 @@ Below is an example of how you can use this component in HTML:
       description:
         'This property is deprecated and will be removed in future versions.',
       table: {
-        category: 'deprecated',
+        category: 'Properties',
         defaultValue: { summary: 'false' },
         type: { summary: 'boolean' },
       },

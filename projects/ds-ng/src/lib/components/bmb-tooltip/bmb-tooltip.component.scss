@@ -1,12 +1,12 @@
 @use "../../../assets/styles/base/fonts" as fonts;
 @use "../../../assets/styles/base/rem" as rem;
 
+$tooltip_justify: "centered", "before", "after";
+
 .bmb_tooltip {
   position: relative;
   display: inline-block;
   cursor: pointer;
-  background-color: transparent;
-  box-shadow: none;
 
   &:hover .bmb_tooltip-container {
     visibility: visible;
@@ -18,7 +18,8 @@
     min-width: rem.rem_calc(280);
     max-width: rem.rem_calc(400);
     min-height: rem.rem_calc(35);
-    background-color: RGBA(var(--color-charade-950));
+    background-color: var(--general_contrasts-100);
+    color: var(--general_contrasts-5);
     text-align: center;
     border-radius: rem.rem_calc(5);
     padding: rem.rem_calc(8 16);
@@ -29,12 +30,12 @@
     overflow-wrap: break-word;
     text-overflow: ellipsis;
     white-space: normal;
+    @include fonts.font(3, regular);
 
     &-title {
       @include fonts.font(3, regular);
       width: 100%;
       text-align: left;
-      color: RGBA(var(--color-charade-50));
       padding-bottom: rem.rem_calc(5);
     }
 
@@ -44,98 +45,95 @@
       @include fonts.font(3, regular);
       width: 100%;
       text-align: left;
-      color: RGBA(var(--color-charade-50));
     }
-  }
 
-  &-above-before {
-    bottom: 0%;
-    right: 100%;
-    transform: translateX(100%) translateY(100%);
-  }
+    &-above-before {
+      top: 100%;
+      left: 0;
+    }
 
-  &-above-centered {
-    bottom: 0%;
-    right: -50%;
-    transform: translateX(50%) translateY(rem.rem_calc(-25));
-  }
+    &-above-centered {
+      top: 100%;
+      right: 0;
+      transform: translatex(calc(50% - 1rem));
+    }
 
-  &-above-after {
-    bottom: 0%;
-    left: 100%;
-    transform: translateX(-100%) translateY(100%);
-  }
+    &-above-after {
+      top: 100%;
+      left: 100%;
+      transform: translateX(-100%);
+    }
 
-  &-below-before {
-    bottom: 0%;
-    right: 100%;
-    transform: translateX(100%) translateY(rem.rem_calc(-25));
-  }
+    &-below-before {
+      bottom: 100%;
+      right: 100%;
+      transform: translateX(100%);
+    }
 
-  &-below-centered {
-    bottom: 0%;
-    right: -50%;
-    transform: translateX(50%) translateY(rem.rem_calc(-25));
-  }
+    &-below-centered {
+      bottom: 100%;
+      right: 0;
+      transform: translatex(calc(50% - 1rem));
+    }
 
-  &-below-after {
-    bottom: 0%;
-    left: 100%;
-    transform: translateX(-100%) translateY(rem.rem_calc(-25));
-  }
+    &-below-after {
+      bottom: 100%;
+      left: 100%;
+      transform: translateX(-100%);
+    }
 
-  &-left-before {
-    top: 125%;
-    right: 50%;
-    transform: translateX(rem.rem_calc(-15)) translateY(-40%);
-  }
+    &-left-before {
+      top: 0;
+      right: 100%;
+      transform: translateX(-0.5rem);
+    }
 
-  &-left-centered {
-    top: 50%;
-    right: 100%;
-    transform: translateY(-50%) translateX(rem.rem_calc(-15));
-  }
+    &-left-centered {
+      top: 50%;
+      right: 100%;
+      transform: translate(-0.5rem, -50%);
+    }
 
-  &-left-after {
-    top: 80%;
-    right: 50%;
-    margin-left: -10px;
-    transform: translateX(rem.rem_calc(-15)) translateY(-100%);
-  }
+    &-left-after {
+      bottom: 0;
+      right: 100%;
+      transform: translateX(-0.5rem);
+    }
 
-  &-right-before {
-    top: 125%;
-    left: 100%;
-    transform: translateX(rem.rem_calc(15)) translateY(-40%);
-  }
+    &-right-before {
+      bottom: 0;
+      left: 100%;
+      transform: translateX(0.5rem);
+    }
 
-  &-right-centered {
-    top: 50%;
-    left: 100%;
-    transform: translateY(-50%) translateX(rem.rem_calc(15));
-  }
+    &-right-centered {
+      top: 50%;
+      left: 100%;
+      transform: translate(0.5rem, -50%);
+    }
 
-  &-right-after {
-    top: 80%;
-    left: 100%;
-    transform: translateX(rem.rem_calc(15)) translateY(-100%);
-  }
-}
-
-[data-theme="dark"],
-.storybook-dark-theme {
-  .bmb_tooltip {
-    background-color: transparent;
-    &-container {
-      background-color: RGBA(var(--color-charade-50));
-
-      &-title {
-        color: RGBA(var(--color-charade-950));
-      }
-
-      &-description {
-        color: RGBA(var(--color-charade-950));
-      }
+    &-right-after {
+      bottom: 0;
+      left: 100%;
+      transform: translateX(0.5rem);
     }
   }
 }
+
+// [data-theme="dark"],
+// .storybook-dark-theme {
+//   // .bmb_tooltip {
+//   //   background-color: transparent;
+//   //   &-container {
+//   //     background-color: RGBA(var(--color-charade-50));
+
+//   //     &-title {
+//   //       color: RGBA(var(--color-charade-950));
+//   //     }
+
+//   //     &-description {
+//   //       color: RGBA(var(--color-charade-950));
+//   //     }
+//   //   }
+//   // }
+// }

@@ -12,6 +12,7 @@
 
   &-secondary-outlined {
     @include mixins.button(secondary-outlined);
+    transition: none;
   }
 
   &-destructive {

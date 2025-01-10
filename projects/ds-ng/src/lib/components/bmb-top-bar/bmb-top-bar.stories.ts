@@ -192,6 +192,16 @@ Below is an example of how you can use this component in HTML:
         category: 'Events',
       },
     },
+    userProfileClick: {
+      name: 'Handle user profile click',
+      control: false,
+      description:
+        'Function that is executed when the user profile is clicked.',
+      table: {
+        type: { summary: 'function' },
+        category: 'Events',
+      },
+    },
   },
   args: {
     appName: 'TecTest',
@@ -208,6 +218,9 @@ Below is an example of how you can use this component in HTML:
     },
     logOut: () => {
       console.log('test');
+    },
+    userProfileClick: () => {
+      alert('User profile clicked');
     },
     positionButtonMenu: 'left',
     hasLogoutButton: false,
