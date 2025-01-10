@@ -113,4 +113,21 @@ Below is an example of how you can use this component in HTML:
 
 type Story = StoryObj<BmbIconComponent>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {},
+  render: (args) => ({
+    props: args,
+    template: `
+      <div style="height: 500px; display: flex; justify-content: center; align-items: center;">
+        <bmb-tooltip
+          [text]="text"
+          [title]="title"
+          [icon]="icon"
+          [size]="size"
+          [align]="align"
+          [justify]="justify"
+        />
+      </div>
+    `,
+  }),
+};
