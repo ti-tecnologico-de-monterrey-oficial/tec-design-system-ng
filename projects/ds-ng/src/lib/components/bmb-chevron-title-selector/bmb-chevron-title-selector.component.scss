@@ -16,10 +16,13 @@
 
     &-title {
       @include fonts.font(4, medium);
+      font-weight: 300;
     }
 
     &-subtitle {
       color: currentColor;
+      @include fonts.font(4, medium);
+      font-weight: 300;
     }
   }
 

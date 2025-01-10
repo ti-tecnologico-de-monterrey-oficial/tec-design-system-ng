@@ -1,16 +1,12 @@
 import {
   Component,
-  Input,
-  EventEmitter,
-  Output,
-  OnInit,
-  ChangeDetectorRef,
   ViewEncapsulation,
   ChangeDetectionStrategy,
   HostListener,
+  input,
+  output,
 } from '@angular/core';
-import { Subject, timer } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbButtonDirective } from '../../directives/button.directive';
@@ -36,27 +32,24 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbTotpComponent implements OnInit {
+export class BmbTotpComponent {
   private destroy$ = new Subject<void>();
 
-  @Input() title: string = 'TOTP';
-  @Input() subtitle: string = '(Time-based One-time Password)';
-  @Input() instanceId: string = '';
-  @Input() codeError: boolean = false;
-  @Input() errorMessage: string = '';
-  @Input() helperText: string = '';
-  @Input() showButton: boolean = false;
-  @Input() buttonText: string = '';
-  @Input() maxCode: number = 6;
+  title = input<string>('TOTP');
+  subtitle = input<string>('(Time-based One-time Password)');
+  instanceId = input<string>('');
+  codeError = input<boolean>(false);
+  errorMessage = input<string>('');
+  helperText = input<string>('');
+  showButton = input<boolean>(false);
+  buttonText = input<string>('');
+  maxCode = input<number>(6);
 
-  @Output() handleSubmit = new EventEmitter<string>();
+  handleSubmit = output<string>();
 
   codeForm!: FormGroup;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private cdr: ChangeDetectorRef,
-  ) {}
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
     this.buildForm();
@@ -64,7 +57,7 @@ export class BmbTotpComponent implements OnInit {
 
   buildForm() {
     let group: { [key: string]: FormControl } = {};
-    for (let i = 0; i < this.maxCode; i++) {
+    for (let i = 0; i < this.maxCode(); i++) {
       group[`code${i}`] = new FormControl('', [
         Validators.required,
         Validators.pattern('[0-9a-zA-Z]'),
@@ -95,15 +88,15 @@ export class BmbTotpComponent implements OnInit {
     }
 
     if (value && value.length === input.maxLength) {
-      if (idx < this.maxCode - 1) {
+      if (idx < this.maxCode() - 1) {
         const nextInput = document.getElementById(
-          `code-${this.instanceId}-${idx + 1}`,
+          `code-${this.instanceId()}-${idx + 1}`,
         ) as HTMLInputElement;
         if (nextInput) {
           nextInput.focus();
           nextInput.select();
         }
-      } else if (idx === this.maxCode - 1 && !this.showButton) {
+      } else if (idx === this.maxCode() - 1 && !this.showButton()) {
         this.onSubmit();
       }
     }
@@ -115,7 +108,7 @@ export class BmbTotpComponent implements OnInit {
 
     if (event.key === 'Backspace' && input.value.length === 0 && idx > 0) {
       const previousInput = document.getElementById(
-        `code-${this.instanceId}-${idx - 1}`,
+        `code-${this.instanceId()}-${idx - 1}`,
       ) as HTMLInputElement;
       if (previousInput) {
         previousInput.focus();
@@ -127,8 +120,8 @@ export class BmbTotpComponent implements OnInit {
   @HostListener('paste', ['$event'])
   handlePaste(event: ClipboardEvent) {
     let pasteData = event.clipboardData?.getData('text/plain');
-    if (pasteData && pasteData.length === this.maxCode) {
-      for (let i = 0; i < this.maxCode; i++) {
+    if (pasteData && pasteData.length === this.maxCode()) {
+      for (let i = 0; i < this.maxCode(); i++) {
         const control = this.codeForm.get(`code${i}`);
         if (control) {
           control.setValue(pasteData[i]);
@@ -136,7 +129,7 @@ export class BmbTotpComponent implements OnInit {
       }
 
       const lastInput = document.getElementById(
-        `code-${this.instanceId}-${this.maxCode - 1}`,
+        `code-${this.instanceId}-${this.maxCode() - 1}`,
       ) as HTMLInputElement;
       if (lastInput) {
         lastInput.focus();
@@ -152,17 +145,13 @@ export class BmbTotpComponent implements OnInit {
   }
 
   onSubmit() {
-    // const now = Date.now();
-    // if (now - this.lastSubmitTime > 300) {
-    //   this.lastSubmitTime = now;
-
     if (this.codeForm.valid) {
       const code = Object.values(this.codeForm.value).join('');
       this.handleSubmit.emit(code);
-    } else {
-      this.handleSubmit.emit('');
+      return;
     }
-    // }
+
+    this.handleSubmit.emit('');
   }
 
   ngOnDestroy() {

@@ -1,126 +1,129 @@
 <bmb-theme />
-<bmb-grades
-  [grades]="[
-    {
-      title: 'Calificaciones 2022',
-      subtitle: 'Semestrales 2022',
-      periods: [
-        {
-          detail: {
-            title: 'Semestral X - Y',
-            subtitle: 'Z materias acreditadas',
-            score: 100,
-          },
-          accreditedClasses: 7,
-          periodAverage: 99,
-          serviceHours: 46,
-          classes: [
-            {
-              detail: {
-                title: 'Nombre de clase 1',
-                subtitle: 'TC-100000',
-                score: 100,
-              },
-              partials: [{ title: 'Parcial 1', score: 100 }],
-            },
-          ],
+<bmb-advertisement-card
+  [subtitle]="'Titulo'"
+  [data]="{
+    promociones: [
+      {
+        imgData: {
+          url: 'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg',
+          alt: 'Imagen',
         },
-        {
-          detail: {
-            title: 'Semestral Y - Z',
-            subtitle: 'Z materias acreditadas',
-            score: 100,
-          },
-          accreditedClasses: 6,
-          periodAverage: 100,
-          serviceHours: 49.5,
-          classes: [
-            {
-              detail: {
-                title: 'Nombre de clase 2',
-                subtitle: 'TC-100000',
-                score: 100,
-              },
-              partials: [
-                { title: 'Parcial 1', score: 100 },
-                { title: 'Parcial 2', score: 99 },
-              ],
-            },
-            {
-              detail: {
-                title: 'Nombre de clase 3',
-                subtitle: 'TC-100002',
-                score: 100,
-              },
-              partials: [{ title: 'Parcial 1', score: 100 }],
-            },
-          ],
+        content: {
+          title: 'Lorem ipsum dolor sit amet',
+          description:
+            'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
+          linkBtn: 'www.google.com',
+          labelBtn: 'ACTION',
         },
-      ],
-    },
-    {
-      title: 'Calificaciones 2023',
-      subtitle: 'Semestrales 2023',
-      periods: [
-        {
-          detail: {
-            title: 'Semestral X - Y  2023',
-            subtitle: 'Z materias acreditadas',
-            score: 100,
-          },
-          accreditedClasses: 7,
-          periodAverage: 99,
-          serviceHours: 46,
-          classes: [
-            {
-              detail: {
-                title: 'Nombre de clase 1  2023',
-                subtitle: 'TC-100000',
-                score: 100,
-              },
-              partials: [{ title: 'Parcial 1  2023', score: 100 }],
-            },
-          ],
+      },
+      {
+        imgData: {
+          url: 'https://content.elmueble.com/medio/2023/03/29/razas-de-perros_725466fb_230329160906_900x900.jpg',
+          alt: 'Imagen',
         },
-        {
-          detail: {
-            title: 'Semestral Y - Z  2023 ',
-            subtitle: 'Z materias acreditadas  2023',
-            score: 100,
-          },
-          accreditedClasses: 6,
-          periodAverage: 100,
-          serviceHours: 49.5,
-          classes: [
-            {
-              detail: {
-                title: 'Nombre de clase 2  2023',
-                subtitle: 'TC-100000  2023',
-                score: 100,
-              },
-              partials: [
-                { title: 'Parcial 1  2023', score: 100 },
-                { title: 'Parcial 2  2023', score: 99 },
-              ],
-            },
-            {
-              detail: {
-                title: 'Nombre de clase 3  2023',
-                subtitle: 'TC-100002',
-                score: 100,
-              },
-              partials: [{ title: 'Parcial 1  2023', score: 100 }],
-            },
-          ],
+        content: {
+          title: 'Lorem ipsum',
+          description:
+            'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente. lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente. lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
+          linkBtn: 'www.google.com',
+          labelBtn: 'GO',
         },
-      ],
-    },
-  ]"
-  [isMicro]="true"
-  [gradeTitle]="'Período actual'"
-  [title]="'Semestral AGO-DIC 2024'"
-  [accredited]="{ name: 'Créditos aprobados', value: '39' }"
-  [average]="{ name: 'Promedio acumulado', value: '90' }"
-  [summary]="{ name: 'Faltas totales', value: '3' }"
-  (closeGrades)="closeGrades($event)"
+      },
+      {
+        imgData: {
+          url: 'https://content.elmueble.com/medio/2024/04/03/razas-de-perros-pequenos_0718680a_240403083147_900x900.jpg',
+          alt: 'Imagen',
+        },
+        content: {
+          title: 'Lorem ipsum dolor',
+          description:
+            'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente. lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente. lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente. lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente. lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente. lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
+          linkBtn: 'www.google.com',
+          labelBtn: 'ACTION',
+        },
+      },
+    ],
+    avisos: [
+      {
+        imgData: {
+          url: 'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg',
+          alt: 'AVISOS',
+        },
+        content: {
+          title: 'Lorem ipsum dolor sit amet avisos',
+          description:
+            'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
+          linkBtn: 'www.google.com',
+          labelBtn: 'ACTION',
+        },
+      },
+      {
+        imgData: {
+          url: 'https://content.elmueble.com/medio/2023/03/29/razas-de-perros_725466fb_230329160906_900x900.jpg',
+          alt: 'AVISOS',
+        },
+        content: {
+          title: 'Lorem ipsum dolor sit amet',
+          description:
+            'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
+          linkBtn: 'www.google.com',
+          labelBtn: 'ACTION',
+        },
+      },
+      {
+        imgData: {
+          url: 'https://content.elmueble.com/medio/2024/04/03/razas-de-perros-pequenos_0718680a_240403083147_900x900.jpg',
+          alt: 'Imagen',
+        },
+        content: {
+          title: 'Lorem ipsum dolor sit amet',
+          description:
+            'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
+          linkBtn: 'www.google.com',
+          labelBtn: 'ACTION',
+        },
+      },
+    ],
+    informacion: [
+      {
+        imgData: {
+          url: 'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg',
+          alt: 'PROMO',
+        },
+        content: {
+          title: 'Lorem ipsum dolor sit amet',
+          description:
+            'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
+          linkBtn: 'www.google.com',
+          labelBtn: 'ACTION',
+        },
+      },
+      {
+        imgData: {
+          url: 'https://content.elmueble.com/medio/2023/03/29/razas-de-perros_725466fb_230329160906_900x900.jpg',
+          alt: 'PROMO',
+        },
+        content: {
+          title: 'Lorem ipsum dolor sit amet',
+          description:
+            'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
+          linkBtn: 'www.google.com',
+          labelBtn: 'ACTION',
+        },
+      },
+      {
+        imgData: {
+          url: 'https://content.elmueble.com/medio/2024/04/03/razas-de-perros-pequenos_0718680a_240403083147_900x900.jpg',
+          alt: 'PROMO',
+        },
+        content: {
+          title: 'Lorem ipsum dolor sit amet',
+          description:
+            'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
+          linkBtn: 'www.google.com',
+          labelBtn: 'ACTION',
+        },
+      },
+    ],
+  }"
 />
