@@ -6,26 +6,18 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 
 ---
 
-## Cambios de la versión v1.2.5
-
-Actualización 1.2.5
-Nuevos componentes:
-
-Componentes actualizados:
-: Se corrigieron los estilos
-
-### Nuevos componentes:
-
-- [Mitec logo animation](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-mitec-logo-animation--documentation)
-- [Simple header](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-simple-header--documentation)
-- [Mitec home](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-home-mitec-mobile--documentation)
-- [Login](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-login--documentation)
-- [Profile](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-profile--documentation)
-- [User profile](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-user-profile--documentation)
+## Cambios de la versión v1.2.6
 
 ## Componentes actualizados:
 
-- [Badge](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-badge--documentation) Se actualizaron los estilos.
+- [Tooltip](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-tooltip--documentation)
+- [Button](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-button--documentation)
+- [Tabs](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-tabs--documentation)
+- [Button](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-button--documentation)
+- [Badge](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-badge--documentation)
+- [Checkbox](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-checkbox--documentation)
+- [Top bar](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-top-bar--documentation)
+- [Input](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-input--documentation)
 
 Si quieres ver el detalle de los cambios puedes ver la entrada de la wiki [aquí](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/wiki/What's-new).
 

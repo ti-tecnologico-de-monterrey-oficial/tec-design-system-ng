@@ -1,7 +1,7 @@
 @use "../../../assets/styles/base/fonts" as fonts;
 @use "../../../assets/styles/base/rem" as rem;
 
-$tooltip_justify: 'centered', 'before', 'after';
+$tooltip_justify: "centered", "before", "after";
 
 .bmb_tooltip {
   position: relative;
@@ -91,7 +91,7 @@ $tooltip_justify: 'centered', 'before', 'after';
     &-left-centered {
       top: 50%;
       right: 100%;
-      transform: translate(-.5rem, -50%);
+      transform: translate(-0.5rem, -50%);
     }
 
     &-left-after {
@@ -109,7 +109,7 @@ $tooltip_justify: 'centered', 'before', 'after';
     &-right-centered {
       top: 50%;
       left: 100%;
-      transform: translate(.5rem, -50%);
+      transform: translate(0.5rem, -50%);
     }
 
     &-right-after {
@@ -118,10 +118,6 @@ $tooltip_justify: 'centered', 'before', 'after';
       transform: translateX(0.5rem);
     }
   }
-
-
-
-
 }
 
 // [data-theme="dark"],
