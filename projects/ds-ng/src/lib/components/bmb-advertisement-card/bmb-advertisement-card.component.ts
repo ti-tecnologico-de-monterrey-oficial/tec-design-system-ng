@@ -2,27 +2,22 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
-  OnInit,
+  input,
+  model,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbFrequentAppsSelectorComponent } from '../bmb-frequent-apps-selector/bmb-frequent-apps-selector.component';
-import { BmbInteractiveIconComponent } from '../bmb-interactive-icon/bmb-interactive-icon.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbDotPaginatorComponent } from '../bmb-dot-paginator/bmb-dot-paginator.component';
-import { BmbMediaCardComponent } from '../bmb-media-card/bmb-media-card.component';
 import { BmbButtonDirective } from '../../directives/button.directive';
-import { IBmbAdvertisementCard, IBmbAdvertisementData } from './types';
+import { IBmbAdvertisementData } from './types';
 
 @Component({
   selector: 'bmb-advertisement-card',
   standalone: true,
   imports: [
     CommonModule,
-    BmbInteractiveIconComponent,
     BmbIconComponent,
     BmbDotPaginatorComponent,
-    BmbMediaCardComponent,
     BmbButtonDirective,
   ],
   templateUrl: './bmb-advertisement-card.component.html',
@@ -30,8 +25,8 @@ import { IBmbAdvertisementCard, IBmbAdvertisementData } from './types';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbAdvertisementCardComponent implements OnInit {
-  @Input() data: IBmbAdvertisementData = {
+export class BmbAdvertisementCardComponent {
+  data = model<IBmbAdvertisementData>({
     promociones: [
       {
         imgData: {
@@ -75,9 +70,9 @@ export class BmbAdvertisementCardComponent implements OnInit {
         },
       },
     ],
-  };
+  });
 
-  @Input() subtitle: string = '';
+  subtitle = input<string>('');
 
   expanded: boolean = false;
   activeData: any = null;
@@ -86,7 +81,7 @@ export class BmbAdvertisementCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.activeTab = 1;
-    this.activeData = this.data.promociones;
+    this.activeData = this.data()['promociones'];
   }
 
   setActiveTab(tab: number) {
@@ -94,17 +89,17 @@ export class BmbAdvertisementCardComponent implements OnInit {
 
     switch (tab) {
       case 1:
-        this.activeData = this.data.promociones;
+        this.activeData = this.data()['promociones'];
         break;
       case 2:
-        this.activeData = this.data.avisos;
+        this.activeData = this.data()['avisos'];
         break;
       case 3:
-        this.activeData = this.data.informacion;
+        this.activeData = this.data()['informacion'];
         break;
 
       default:
-        this.activeData = this.data.promociones;
+        this.activeData = this.data()['promociones'];
         break;
     }
   }

@@ -13,7 +13,9 @@
       <div class="bmb_advertisement-card-header-title-text">
         <h2>Mis Anuncios</h2>
         @if (expanded) {
-          <span>{{ subtitle }}</span>
+          <h3 class="bmb_advertisement-card-header-title-text-subtitle">
+            {{ subtitle() }}
+          </h3>
         }
       </div>
     </div>

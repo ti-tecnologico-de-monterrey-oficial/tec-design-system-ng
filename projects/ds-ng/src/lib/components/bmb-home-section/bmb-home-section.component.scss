@@ -16,6 +16,7 @@
   &-title {
     color: RGBA(var(--color-charade-950));
     @include fonts.font(5, regular);
+    font-weight: 300;
   }
 
   &-icon {

@@ -1,15 +1,11 @@
 import {
   Component,
-  Input,
   ChangeDetectionStrategy,
   ViewEncapsulation,
-  OnInit,
-  OnDestroy,
   Renderer2,
   ElementRef,
-  Output,
-  EventEmitter,
-  OnChanges,
+  input,
+  output,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
@@ -24,18 +20,18 @@ import { BmbButtonDirective } from '../../directives/button.directive';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbLoaderComponent implements OnInit, OnDestroy, OnChanges {
-  @Input() title: string = '';
-  @Input() subtitle: string = '';
-  @Input() overlay: boolean = false;
-  @Input() isVisible: boolean = true;
-  @Input() errorState: boolean = false;
-  @Input() actions: boolean = false;
-  @Input() buttonPrimary: string = '';
-  @Input() buttonSecondary: string = '';
+export class BmbLoaderComponent {
+  title = input<string>('');
+  subtitle = input<string>('');
+  overlay = input<boolean>(false);
+  isVisible = input<boolean>(true);
+  errorState = input<boolean>(false);
+  actions = input<boolean>(false);
+  buttonPrimary = input<string>('');
+  buttonSecondary = input<string>('');
 
-  @Output() onButtonPrimary: EventEmitter<void> = new EventEmitter<void>();
-  @Output() onButtonSecondary: EventEmitter<void> = new EventEmitter<void>();
+  onButtonPrimary = output<void>();
+  onButtonSecondary = output<void>();
 
   constructor(
     private renderer: Renderer2,
@@ -55,10 +51,10 @@ export class BmbLoaderComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   private updateBodyClass() {
-    if (this.isVisible) {
+    if (this.isVisible()) {
       document.body.appendChild(this.elRef.nativeElement);
 
-      if (this.overlay && !this.errorState) {
+      if (this.overlay() && !this.errorState()) {
         this.renderer.addClass(document.body, 'bmb_loader-body-overlay');
       }
     } else {

@@ -32,6 +32,7 @@
     color: RGBA(var(--color-charade-700));
     margin-bottom: rem.rem_calc(16);
     @include fonts.font(3, regular);
+    font-weight: 300;
   }
 
   &-code {

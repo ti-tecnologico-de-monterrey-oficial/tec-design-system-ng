@@ -19,11 +19,11 @@
         <bmb-grade-value bmbLayoutItem type="main-grade" [score]="getScore()" />
       }
       <div class="bmb_container-button-header">
-        <span class="bmb_container-button-title">{{ title() }}</span>
+        <h2 class="bmb_container-button-title">{{ title() }}</h2>
         @if (subtitle() && !square() && !small()) {
-          <span class="bmb_container-button-subtitle">
+          <h4 class="bmb_container-button-subtitle">
             {{ subtitle() }}
-          </span>
+          </h4>
         }
       </div>
     </div>
