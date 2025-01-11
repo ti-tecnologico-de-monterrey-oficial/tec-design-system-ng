@@ -220,6 +220,18 @@ Below is an example of how to use this component in HTML:
         type: { summary: 'string' },
       },
     },
+    tooltipPosition: {
+      name: 'Tooltip Position',
+      control: {
+        type: 'object',
+      },
+      description: 'Set the position of the tooltip.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: '{ align: "above", justify: "before" }' },
+        type: { summary: 'IBmbInputTooltipPosition' },
+      },
+    },
     appearance: {
       name: 'Appearance',
       control: {
@@ -358,6 +370,7 @@ Below is an example of how to use this component in HTML:
     minlength: '4',
     maxlength: '20',
     pattern: '[A-Za-z]+',
+    tooltipPosition: { align: 'above', justify: 'before' },
   },
 } as Meta<typeof BmbInputComponent>;
 
