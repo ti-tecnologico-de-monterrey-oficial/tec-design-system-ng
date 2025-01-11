@@ -36,7 +36,6 @@
     align-items: center;
     appearance: none;
     width: 100%;
-    height: rem.rem_calc(40);
     cursor: pointer;
     padding: var(--bmb-spacing-s);
     position: relative;
@@ -70,6 +69,9 @@
 
     &-open {
       color: var(--general_contrasts-100);
+      display: flex;
+      padding: rem.rem_calc(3 0);
+      align-items: center;
 
       bmb-icon {
         font-size: rem.rem_calc(20);
