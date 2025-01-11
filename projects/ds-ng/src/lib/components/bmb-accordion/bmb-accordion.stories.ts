@@ -2,6 +2,8 @@ import { BmbAccordionComponent } from './bmb-accordion.component';
 import { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
+import { InputSignal } from '@angular/core';
+import { SizeNames } from '../../types';
 
 const meta: Meta<BmbAccordionComponent> = {
   title: 'Micro Componentes/Accordion',
@@ -165,7 +167,9 @@ Below is an example of how you can use this component in HTML:
       },
     },
   },
-  args: {},
+  args: {
+    borderRadius: 'm' as unknown as InputSignal<SizeNames | SizeNames[]>,
+  },
 };
 
 export default meta;
@@ -177,14 +181,14 @@ export const OneItem: Story = {
   render: (args) => ({
     props: args,
     template: `
-  <bmb-accordion 
-    [borderRadius]="'m'" 
-    [margin]="'m'" 
-    [paddingHeader]="'m'" 
-    [paddingContent]="'m'" 
-    [hideToggle]="false" 
-    [active]="true" 
-    (closed)="closed(1)" 
+  <bmb-accordion
+    [borderRadius]="borderRadius"
+    [margin]="'m'"
+    [paddingHeader]="'m'"
+    [paddingContent]="'m'"
+    [hideToggle]="false"
+    [active]="true"
+    (closed)="closed(1)"
     (opened)="opened(1)"
   >
     <ng-template #bmbAccordionHeader>

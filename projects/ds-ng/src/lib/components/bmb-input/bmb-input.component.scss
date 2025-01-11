@@ -143,7 +143,7 @@
       &:focus,
       &:active,
       &:focus-visible {
-        padding-left: rem.rem_calc(35);
+        padding-left: rem.rem_calc(35) !important;
       }
     }
   }
