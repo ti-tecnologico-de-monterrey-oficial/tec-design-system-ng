@@ -169,6 +169,14 @@ Below is an example of how you can use this component in HTML:
   },
   args: {
     borderRadius: 'm' as unknown as InputSignal<SizeNames | SizeNames[]>,
+    margin: 'm' as unknown as InputSignal<SizeNames | SizeNames[]>,
+    paddingHeader: 'm' as unknown as InputSignal<SizeNames | SizeNames[]>,
+    paddingContent: 'm' as unknown as InputSignal<SizeNames | SizeNames[]>,
+    hideToggle: false as unknown as InputSignal<boolean>,
+    icon: 'keyboard_arrow_down' as unknown as InputSignal<string>,
+    active: false as unknown as InputSignal<boolean>,
+    disabled: false as unknown as InputSignal<boolean>,
+    expanded: false as unknown as InputSignal<boolean | undefined>,
   },
 };
 
@@ -177,19 +185,19 @@ export default meta;
 type Story = StoryObj<BmbAccordionComponent>;
 
 export const OneItem: Story = {
-  args: {},
   render: (args) => ({
     props: args,
     template: `
-  <bmb-accordion
-    [borderRadius]="borderRadius"
-    [margin]="'m'"
-    [paddingHeader]="'m'"
-    [paddingContent]="'m'"
-    [hideToggle]="false"
-    [active]="true"
-    (closed)="closed(1)"
-    (opened)="opened(1)"
+  <bmb-accordion 
+    [icon]="icon"
+    [borderRadius]="borderRadius" 
+    [margin]="margin" 
+    [paddingHeader]="paddingHeader" 
+    [paddingContent]="paddingContent" 
+    [hideToggle]="hideToggle" 
+    [active]="active"
+    [expanded]="expanded"
+    [disabled]="disabled"
   >
     <ng-template #bmbAccordionHeader>
       1

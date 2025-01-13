@@ -34,6 +34,7 @@
     [trailingIconSecondary]="this.headerIconRight()"
     (onHandleClose)="handleLeftClick($event)"
     (onHandleTrailingSecondary)="handleRightClick($event)"
+    (onHandleBack)="handleClose($event)"
   />
   <main class="bmb_mobile-template-main">
     <ng-container [ngTemplateOutlet]="mainContent"></ng-container>
@@ -108,7 +109,7 @@
     @for (button of buttonList(); track $index) {
       <bmb-container-button
         [title]="button.title"
-        [target]="button.target || ''"
+        [target]="button.target || '_blank'"
         [link]="button.link || ''"
         [subtitle]="button.subtitle || ''"
         [iconLeft]="button.iconLeft"
