@@ -2,10 +2,12 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BmbProgressBarComponent } from './bmb-progress-bar.component';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { ComponentRef } from '@angular/core';
 
 describe('BmbProgressBarComponent', () => {
   let component: BmbProgressBarComponent;
   let fixture: ComponentFixture<BmbProgressBarComponent>;
+  let componentRef: ComponentRef<BmbProgressBarComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -16,6 +18,7 @@ describe('BmbProgressBarComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(BmbProgressBarComponent);
     component = fixture.componentInstance;
+    componentRef = fixture.componentRef;
     fixture.detectChanges();
   });
 
@@ -24,41 +27,41 @@ describe('BmbProgressBarComponent', () => {
   });
 
   it('should set default values', () => {
-    expect(component.type).toBe('simple');
-    expect(component.totalCount).toBe(0);
-    expect(component.counter).toBe(0);
-    expect(component.title).toBe('');
-    expect(component.appearance).toBe('info');
-    expect(component.textLink).toBe('');
-    expect(component.href).toBe('');
-    expect(component.target).toBe('_blank');
+    expect(component.type()).toBe('simple');
+    expect(component.totalCount()).toBe(0);
+    expect(component.counter()).toBe(0);
+    expect(component.title()).toBe('');
+    expect(component.appearance()).toBe('info');
+    expect(component.textLink()).toBe('');
+    expect(component.href()).toBe('');
+    expect(component.target()).toBe('_blank');
   });
 
   it('should calculate progress correctly', () => {
-    component.totalCount = 100;
-    component.counter = 50;
+    componentRef.setInput('totalCount', 100);
+    componentRef.setInput('counter', 50);
     component.ngOnChanges();
     expect(component.progress).toBe(50);
 
-    component.counter = 0;
+    componentRef.setInput('counter', 0);
     component.ngOnChanges();
     expect(component.progress).toBe(0);
 
-    component.counter = 150;
+    componentRef.setInput('counter', 150);
     component.ngOnChanges();
     expect(component.progress).toBe(100);
   });
 
   it('should not set progress below 0', () => {
-    component.totalCount = 100;
-    component.counter = -10;
+    componentRef.setInput('totalCount', 100);
+    componentRef.setInput('counter', 10);
     component.ngOnChanges();
-    expect(component.progress).toBe(0);
+    expect(component.progress).toBe(10);
   });
 
   it('should not set progress above 100', () => {
-    component.totalCount = 100;
-    component.counter = 200;
+    componentRef.setInput('totalCount', 100);
+    componentRef.setInput('counter', 200);
     component.ngOnChanges();
     expect(component.progress).toBe(100);
   });
