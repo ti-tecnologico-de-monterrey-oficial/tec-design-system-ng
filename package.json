@@ -1,6 +1,6 @@
 {
   "name": "@ti-tecnologico-de-monterrey-oficial/tec-design-system-ng",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "description": "Design System oficial del Tecnológico de Monterrey - Descubre cómo nuestro Design System no solo da forma a la estética, sino que también impulsa la consistencia en cada rincón de nuestro diseño, proporcionando una base sólida para construir experiencias memorables y coherentes. Únete a nosotros en este viaje donde la creatividad, coherencia y elegancia se encuentran para dar vida a un mundo visualmente armonioso y funcionalmente fluido.",
   "keywords": [
     "angular",
@@ -18,14 +18,15 @@
     "build": "ng build",
     "chromatic": "npx chromatic --project-token=chpt_f98e9dab3ebf7df",
     "build:styles": "sass projects/ds-ng/src/assets/styles/main.scss dist/ds-ng/assets/styles/main.min.css --style=compressed",
-    "build:lib": "ng build ds-ng && npm run build:styles",
+    "build:lib": "ng build ds-ng && npm run build:styles && npm run build:micro",
     "version": "auto-changelog -p && git add CHANGELOG.md",
     "lint": "ng lint",
     "format": "prettier --write .",
     "format-check": "prettier --check \"src/**/*.ts\"",
     "compodoc:build": "compodoc -p tsconfig.doc.json",
     "compodoc:build-and-serve": "compodoc -p tsconfig.doc.json -s",
-    "compodoc:serve": "compodoc -s"
+    "compodoc:serve": "compodoc -s",
+    "build:micro": "sass projects/ds-ng/src/assets/styles/micro.scss dist/ds-ng/assets/styles/micro.min.css --style=compressed"
   },
   "auto-changelog": {
     "output": "CHANGELOG.md",
