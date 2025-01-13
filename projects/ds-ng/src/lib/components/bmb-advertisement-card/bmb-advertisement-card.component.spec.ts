@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BmbAdvertisementCardComponent } from './bmb-advertisement-card.component';
-import { CommonModule } from '@angular/common';
 
 describe('BmbAdvertisementCardComponent', () => {
   let component: BmbAdvertisementCardComponent;
