@@ -8,8 +8,8 @@ import {
 import { RouterModule } from '@angular/router';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { isExternalLink } from '../../utils/utils';
+import { IBmbTargetLink } from '../../types';
 
-export type IBmbTargetLink = '_blank' | '_parent' | '_self' | '_top';
 export type IBmbIconPosition = 'left' | 'right';
 export type IBmbTextLinkStyle = 'icon' | 'underlined';
 

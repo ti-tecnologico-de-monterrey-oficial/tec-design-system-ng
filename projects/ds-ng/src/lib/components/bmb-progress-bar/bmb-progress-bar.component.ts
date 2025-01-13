@@ -7,10 +7,11 @@ import {
   input,
 } from '@angular/core';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { IBmbTargetLink } from '../../types';
 
 export type IBmbProgressBarVariations = 'info' | 'warning' | 'error';
-export type IBmbTarget = '_blank' | '_parent' | '_self' | '_top';
 export type IBmbProgressBarTypes = 'simple' | 'counter' | 'container';
+
 
 @Component({
   selector: 'bmb-progress-bar',
@@ -29,7 +30,7 @@ export class BmbProgressBarComponent implements OnChanges {
   appearance = input<IBmbProgressBarVariations>('info');
   textLink = input<string>('');
   href = input<string>('');
-  target = input<IBmbTarget>('_blank');
+  target = input<IBmbTargetLink>('_blank');
 
   progress: number = 0;
 
