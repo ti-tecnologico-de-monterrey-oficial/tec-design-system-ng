@@ -2,8 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BmbProfileComponent } from './bmb-profile.component';
 import { ComponentRef } from '@angular/core';
-import { IBmbProfileData } from '../../types';
-import { IBmbTargetLink } from '../bmb-text-link/bmb-text-link.component';
+import { IBmbProfileData, IBmbTargetLink } from '../../types';
 
 describe('BmbProfileComponent', () => {
   let component: BmbProfileComponent;
