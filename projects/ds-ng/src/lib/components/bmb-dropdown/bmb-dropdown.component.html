@@ -6,7 +6,6 @@
   (click)="openDialog()"
 >
   <div class="bmb_dropdown-wrapper">
-
     @if (label()) {
       <div class="bmb_dropdown-label">
         <label class="bmb_dropdown-label-text"
@@ -38,11 +37,7 @@
         [placeholder]="placeholder()"
         (keydown)="onKeyDown($event)"
       />
-      <button
-        class="bmb_dropdown-field-open"
-        [disabled]="disabled()"
-        bmbButton
-      >
+      <button class="bmb_dropdown-field-open" [disabled]="disabled()" bmbButton>
         <bmb-icon icon="keyboard_arrow_down" />
       </button>
       <dialog
