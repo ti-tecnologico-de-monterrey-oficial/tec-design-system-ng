@@ -1,0 +1,46 @@
+// Design System Global Stylesheet
+// Created by Tec de Monterrey
+
+// This file provides the global variables, resets, and styles for an app to properly use the design system
+// It is mandatory to load this scss file as style dependency before any other
+
+// Import the global style to avoid bloat of code and could be use in components will a unique charge.
+// Import and register the rem convertion
+@use "base/css-vars";
+@use "base/rem" as rem;
+
+// Import fonts
+@use "base/fonts" as fonts;
+
+// Import the styles for base
+@use "base/mixins" as mixins;
+
+// Import and register the design tokens like colors and theme
+@use "tokens/colors";
+@use "tokens/namedColors";
+@use "tokens/theme";
+
+// Import the styles for base
+@use "base/reset";
+@use "base/spacing";
+
+// Import the styles for non components
+@use "base/tooltip";
+@use "components/buttons";
+@use "components/col-sys";
+@use "components/button-group";
+@use "base/utils";
+@use "base/scrollbar";
+@use "../../../src/lib/components/bmb-accordion/bmb-accordion.component.scss";
+@use "../../../src/lib/components/bmb-advertisement-card/bmb-advertisement-card.component.scss";
+@use "../../../src/lib/components/bmb-badge/bmb-badge.component.scss";
+@use "../../../src/lib/components/bmb-breadcrumb/bmb-breadcrumb.component.scss";
+@use "../../../src/lib/components/bmb-card/bmb-card.component.scss";
+@use "../../../src/lib/components/bmb-chat-bar/bmb-chat-bar.component.scss";
+@use "../../../src/lib/components/bmb-checkbox/bmb-checkbox.component.scss";
+@use "../../../src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component.scss";
+@use "../../../src/lib/components/bmb-divider/bmb-divider.component.scss";
+@use "../../../src/lib/components/bmb-icon/bmb-icon.component.scss";
+@use "../../../src/lib/components/bmb-iframe/bmb-iframe.component.scss";
+@use "../../../src/lib/components/bmb-input/bmb-input.component.scss";
+@use "../../../src/lib/components/bmb-toast/bmb-toast.component.scss";
