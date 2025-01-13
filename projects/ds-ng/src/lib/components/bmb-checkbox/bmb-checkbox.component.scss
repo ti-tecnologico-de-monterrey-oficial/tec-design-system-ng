@@ -6,24 +6,10 @@
   display: inline-flex;
   align-items: center;
   gap: rem.rem_calc(16);
-  // position: relative;
-  width: 100%;
   cursor: pointer;
 
   input[type="checkbox"] {
     display: none;
-
-    // &:hover {
-    //   + .bmb_checkbox-box {
-    //     background-color: RGBA(var(--color-blue-primary), 0.1);
-    //   }
-    // }
-
-    // &:focus {
-    //   + .bmb_checkbox-box {
-    //     background-color: RGBA(var(--color-blue-primary), 0.2);
-    //   }
-    // }
 
     &:checked {
       + .bmb_checkbox-box {
@@ -79,6 +65,10 @@
         }
       }
     }
+  }
+
+  &:hover .bmb_checkbox-box {
+    background-color: RGBA(var(--color-blue-primary), 0.1);
   }
 
   &-required {
