@@ -11,7 +11,11 @@ import {
 import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbTooltipComponent, IBmbAlignTooltip, IBmbJustifyTooltip } from '../bmb-tooltip/bmb-tooltip.component';
+import {
+  BmbTooltipComponent,
+  IBmbAlignTooltip,
+  IBmbJustifyTooltip,
+} from '../bmb-tooltip/bmb-tooltip.component';
 import { IBbmSidePosition } from '../../types';
 
 export type IBmbInputType =
@@ -81,7 +85,10 @@ export class BmbInputComponent {
   rows = input<number>(3);
   showMaxTextLength = input<boolean>(true);
   additionalAction = input<IBmbAdditionalAction>('none');
-  tooltipPosition = input<IBmbInputTooltipPosition>({ align: 'above', justify: 'before' });
+  tooltipPosition = input<IBmbInputTooltipPosition>({
+    align: 'above',
+    justify: 'before',
+  });
 
   controlTest = model<FormControl>();
 
