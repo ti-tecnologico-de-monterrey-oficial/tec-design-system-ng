@@ -1,4 +1,7 @@
-<bmb-mobile-templates [title]="'Mi Perfil'">
+<bmb-mobile-templates
+  [title]="'Mi Perfil'"
+  (externalLinkOnClose)="closeProfile()"
+>
   <ng-template #bmbTemplateMain>
     <section class="bmb_profile">
       <section class="bmb_profile-user">
