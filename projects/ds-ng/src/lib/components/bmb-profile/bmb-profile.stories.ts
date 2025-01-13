@@ -1,8 +1,7 @@
 import { moduleMetadata, type Meta, type StoryFn } from '@storybook/angular';
 import { BmbProfileComponent } from './bmb-profile.component';
 import { Component, input, output } from '@angular/core';
-import { IBmbProfileData } from '../../types';
-import { IBmbTargetLink } from '../bmb-text-link/bmb-text-link.component';
+import { IBmbProfileData, IBmbTargetLink } from '../../types';
 import { BmbThemeComponent } from '../bmb-theme/bmb-theme.component';
 
 @Component({
@@ -17,22 +16,28 @@ import { BmbThemeComponent } from '../bmb-theme/bmb-theme.component';
         [idDigitalLink]="idDigitalLink()"
         [targetLinks]="targetLinks()"
         (handleCloseSession)="closeSession()"
-      >
+        (handleCloseProfile)="closeProfile()"
+        >
       </bmb-profile>
       <bmb-theme [initialTheme]="'light'" [showControls]="false" />
     </div>
   `,
 })
 class StorybookWrapperComponent {
-  userData = input.required<IBmbProfileData>();
-  campusAcessLink = input<string>('');
-  idDigitalLink = input<string>('');
-  targetLinks = input<IBmbTargetLink>('_blank');
-  handleCloseSession = output();
+    userData =  input.required<IBmbProfileData>()
+    campusAcessLink = input<string>('');
+    idDigitalLink = input<string>('');
+    targetLinks = input<IBmbTargetLink>('_blank')
+    handleCloseSession = output()
+    handleCloseProfile = output()
+  
+    closeSession():void {
+      window.alert("Cerrar Session")
+    }
 
-  closeSession(): void {
-    window.alert('Cerrar Session');
-  }
+    closeProfile(): void {
+      window.alert('Close Profile')
+    }
 }
 
 export default {
@@ -74,6 +79,7 @@ import {
         [idDigitalLink]="'https://www.x.com'"
         [targetLinks]="'_blank'"
         (handleCloseSession)="closeSession()"
+        (handleCloseProfile)="closeProfile()"
      />
   ',
   styleUrl: './component.scss',
@@ -82,6 +88,10 @@ export class AppComponent {
  
   closeSession(){
     console.log("Cerrar Sesion")
+  }
+
+  closeProfile: () => {
+    console.log('Close Profile')
   }
 }
 
@@ -144,6 +154,15 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'function' },
       },
     },
+    handleCloseProfile: {
+      name: 'Handle Close Profile',
+      control: null,
+      description: 'Output function, returns a void signal to indicates that close profile window button was clicked',
+      table: {
+        category: 'Events',
+        type: { summary: 'function' },
+      },
+    },
   },
   args: {
     userData: {
@@ -159,13 +178,15 @@ Below is an example of how you can use this component in HTML:
     idDigitalLink: 'https://www.x.com',
     targetLinks: '_blank',
     handleCloseSession: () => {
-      window.alert('Cerrar Sesion');
+        window.alert('Cerrar Sesion')
     },
-  },
+    handleCloseProfile: () => {
+      window.alert('Close Profile')
+    }
+  }
 } as Meta<typeof BmbProfileComponent>;
 
 function attributes(object: { [key: string]: any }): string {
-  console.log('Object', object);
   return Object.entries(object)
     .filter(([key]) => key !== 'text')
     .map(([key, value]) => {
@@ -186,6 +207,7 @@ export const Default: StoryFn<typeof StorybookWrapperComponent> = (args) => {
       <storybook-wrapper
         ${attributes(args)}
         (handleCloseSession)="closeSession()"
+        (handleCloseProfile)="closeProfile()"
       ></storybook-wrapper>
       <!-- HTML CODE IS IN THE TOP OF THE DOCUMENTATION -->
       `,

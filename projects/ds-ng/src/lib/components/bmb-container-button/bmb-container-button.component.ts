@@ -11,7 +11,7 @@ import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 import { BmbGradeValueComponent } from '../bmb-grade-value/bmb-grade-value.component';
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
-import { IBbmBgAppearance } from '../../types';
+import { IBbmBgAppearance, IBmbTargetLink } from '../../types';
 
 @Component({
   selector: 'bmb-container-button',
@@ -34,7 +34,7 @@ export class BmbContainerButtonComponent {
   score = input<string>('');
   square = input<boolean>();
   small = input<boolean>();
-  target = input<string>('');
+  target = input<IBmbTargetLink>('_blank');
   link = input<string>('');
   subtitle = input<string>('');
   iconLeft = input<string>('');
