@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'bmb-student-activity-selector',
   standalone: true,
-  imports: [CommonModule, BmbTabStudenActivityComponent],
+  imports: [CommonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   templateUrl: './bmb-student-activity-selector.component.html',

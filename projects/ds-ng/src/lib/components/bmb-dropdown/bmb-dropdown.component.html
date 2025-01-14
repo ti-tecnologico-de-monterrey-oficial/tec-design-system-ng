@@ -1,18 +1,21 @@
 <section
   class="bmb_dropdown"
   [ngClass]="{ 'bmb_dropdown-disabled': disabled() }"
+  clickOutside
+  (clickOutside)="closeDialog()"
+  (click)="openDialog()"
 >
   <div class="bmb_dropdown-wrapper">
-    <div class="bmb_dropdown-label">
-      @if (label()) {
+    @if (label()) {
+      <div class="bmb_dropdown-label">
         <label class="bmb_dropdown-label-text"
           >{{ label() }}
           @if (required()) {
             <span class="bmb_dropdown-label-asterisk"> *</span>
           }
         </label>
-      }
-    </div>
+      </div>
+    }
     <div
       class="bmb_dropdown-input-wrapper"
       onkeypress=""
@@ -33,14 +36,8 @@
         [formControl]="control!"
         [placeholder]="placeholder()"
         (keydown)="onKeyDown($event)"
-        (click)="openDialog()"
       />
-      <button
-        class="bmb_dropdown-field-open"
-        [disabled]="disabled()"
-        bmbButton
-        (click)="openDialog()"
-      >
+      <button class="bmb_dropdown-field-open" [disabled]="disabled()" bmbButton>
         <bmb-icon icon="keyboard_arrow_down" />
       </button>
       <dialog
@@ -71,7 +68,7 @@
         </ul>
       </dialog>
     </div>
-    @if (helperText() !== undefined) {
+    @if (helperText()) {
       <div class="bmb_dropdown-helper">
         <span class="bmb_dropdown-helper-text">
           {{ helperText() }}

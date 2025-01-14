@@ -2,15 +2,16 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
   ViewEncapsulation,
   OnChanges,
+  input,
 } from '@angular/core';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { IBmbTargetLink } from '../../types';
 
 export type IBmbProgressBarVariations = 'info' | 'warning' | 'error';
+export type IBmbProgressBarTypes = 'simple' | 'counter' | 'container';
 
-export type IBmbTarget = '_blank' | '_parent' | '_self' | '_top';
 
 @Component({
   selector: 'bmb-progress-bar',
@@ -22,14 +23,14 @@ export type IBmbTarget = '_blank' | '_parent' | '_self' | '_top';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbProgressBarComponent implements OnChanges {
-  @Input() type: 'simple' | 'counter' | 'container' = 'simple';
-  @Input() totalCount: number = 0;
-  @Input() counter: number = 0;
-  @Input() title: string = '';
-  @Input() appearance: IBmbProgressBarVariations = 'info';
-  @Input() textLink: string = '';
-  @Input() href: string = '';
-  @Input() target: IBmbTarget = '_blank';
+  type = input<IBmbProgressBarTypes>('simple');
+  totalCount = input<number>(0);
+  counter = input<number>(0);
+  title = input<string>('');
+  appearance = input<IBmbProgressBarVariations>('info');
+  textLink = input<string>('');
+  href = input<string>('');
+  target = input<IBmbTargetLink>('_blank');
 
   progress: number = 0;
 
@@ -38,7 +39,7 @@ export class BmbProgressBarComponent implements OnChanges {
   }
 
   verifyPercentage(): void {
-    this.progress = (this.counter / this.totalCount) * 100;
+    this.progress = (this.counter() / this.totalCount()) * 100;
     if (this.progress < 0) {
       this.progress = 0;
     }

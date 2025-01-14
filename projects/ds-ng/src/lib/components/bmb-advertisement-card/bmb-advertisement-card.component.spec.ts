@@ -1,7 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BmbAdvertisementCardComponent } from './bmb-advertisement-card.component';
-import { BmbInteractiveIconComponent } from '../bmb-interactive-icon/bmb-interactive-icon.component';
-import { CommonModule } from '@angular/common';
 
 describe('BmbAdvertisementCardComponent', () => {
   let component: BmbAdvertisementCardComponent;
@@ -18,19 +16,19 @@ describe('BmbAdvertisementCardComponent', () => {
   });
 
   it('should initialize with default data', () => {
-    expect(component.data.promociones.length).toBe(1);
-    expect(component.data.avisos.length).toBe(1);
-    expect(component.data.informacion.length).toBe(1);
+    expect(component.data().promociones.length).toBe(1);
+    expect(component.data().avisos.length).toBe(1);
+    expect(component.data().informacion.length).toBe(1);
   });
 
   it('should set active tab and data correctly', () => {
     component.setActiveTab(2);
     expect(component.activeTab).toBe(2);
-    expect(component.activeData).toBe(component.data.avisos);
+    expect(component.activeData).toBe(component.data().avisos);
 
     component.setActiveTab(3);
     expect(component.activeTab).toBe(3);
-    expect(component.activeData).toBe(component.data.informacion);
+    expect(component.activeData).toBe(component.data().informacion);
   });
 
   it('should set active dot correctly', () => {
