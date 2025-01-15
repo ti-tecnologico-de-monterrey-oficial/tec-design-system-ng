@@ -31,6 +31,31 @@ import { BmbAccordionComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-n
 })
 \`\`\`
 
+## Architecture
+
+\`\`\`html
+<section class="bmb_accordion"
+<!-- conditional class bmb_border-radius-{borderRadius} bmb_margin-{this.margin} -> >
+  <!-- if Accordion is disabled -->
+  <section class="bmb_accordion-overlay"></section>
+
+  <header <!-- conditional class bmb_padding-{paddingHeader} bmb_accordion-header bmb_accordion-header-icon --> >
+    <!-- Header content -->
+    <div> {Header content} </div>
+
+    <!-- if icon is defined -->
+    < icon content >
+
+    <!-- if hideToggle is false -->
+    < icon content toggle >
+  </header>
+
+  <section class="bmb_accordion-content" <!-- conditional class bmb_padding-{paddingContent} bmb_accordion-content-open --> >
+    <div> {content} </div>
+  </section>
+</section>
+\`\`\`
+
 Below is an example of how you can use this component in HTML:
         `,
       },
@@ -188,13 +213,13 @@ export const OneItem: Story = {
   render: (args) => ({
     props: args,
     template: `
-  <bmb-accordion 
+  <bmb-accordion
     [icon]="icon"
-    [borderRadius]="borderRadius" 
-    [margin]="margin" 
-    [paddingHeader]="paddingHeader" 
-    [paddingContent]="paddingContent" 
-    [hideToggle]="hideToggle" 
+    [borderRadius]="borderRadius"
+    [margin]="margin"
+    [paddingHeader]="paddingHeader"
+    [paddingContent]="paddingContent"
+    [hideToggle]="hideToggle"
     [active]="active"
     [expanded]="expanded"
     [disabled]="disabled"
