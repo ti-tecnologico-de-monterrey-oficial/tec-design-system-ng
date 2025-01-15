@@ -17,27 +17,27 @@ import { BmbThemeComponent } from '../bmb-theme/bmb-theme.component';
         [targetLinks]="targetLinks()"
         (handleCloseSession)="closeSession()"
         (handleCloseProfile)="closeProfile()"
-        >
+      >
       </bmb-profile>
       <bmb-theme [initialTheme]="'light'" [showControls]="false" />
     </div>
   `,
 })
 class StorybookWrapperComponent {
-    userData =  input.required<IBmbProfileData>()
-    campusAcessLink = input<string>('');
-    idDigitalLink = input<string>('');
-    targetLinks = input<IBmbTargetLink>('_blank')
-    handleCloseSession = output()
-    handleCloseProfile = output()
-  
-    closeSession():void {
-      window.alert("Cerrar Session")
-    }
+  userData = input.required<IBmbProfileData>();
+  campusAcessLink = input<string>('');
+  idDigitalLink = input<string>('');
+  targetLinks = input<IBmbTargetLink>('_blank');
+  handleCloseSession = output();
+  handleCloseProfile = output();
 
-    closeProfile(): void {
-      window.alert('Close Profile')
-    }
+  closeSession(): void {
+    window.alert('Cerrar Session');
+  }
+
+  closeProfile(): void {
+    window.alert('Close Profile');
+  }
 }
 
 export default {
@@ -157,7 +157,8 @@ Below is an example of how you can use this component in HTML:
     handleCloseProfile: {
       name: 'Handle Close Profile',
       control: null,
-      description: 'Output function, returns a void signal to indicates that close profile window button was clicked',
+      description:
+        'Output function, returns a void signal to indicates that close profile window button was clicked',
       table: {
         category: 'Events',
         type: { summary: 'function' },
@@ -178,12 +179,12 @@ Below is an example of how you can use this component in HTML:
     idDigitalLink: 'https://www.x.com',
     targetLinks: '_blank',
     handleCloseSession: () => {
-        window.alert('Cerrar Sesion')
+      window.alert('Cerrar Sesion');
     },
     handleCloseProfile: () => {
-      window.alert('Close Profile')
-    }
-  }
+      window.alert('Close Profile');
+    },
+  },
 } as Meta<typeof BmbProfileComponent>;
 
 function attributes(object: { [key: string]: any }): string {
