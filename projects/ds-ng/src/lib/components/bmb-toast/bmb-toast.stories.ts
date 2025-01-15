@@ -21,6 +21,25 @@ import { BmbToastComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
 })
 \`\`\`
 
+## Architecture
+
+\`\`\`html
+<div class="bmb_toast" <!-- conditional classes bmb_toast bmb_toast-{this.appearance} >
+  < icon />
+  <div class="bmb_toast-content" <!-- conditional classes bmb_toast-content bmb_toast-content-{appearance} --> >
+    <h4 class="bmb_toast-title">{ title }</h4>
+
+    <!-- if description is defined -->
+    <p class="bmb_toast-description">{ description }</p>
+  </div>
+
+  <!-- if appearance is not reminder and is closable -->
+  <button class="bmb_toast-button">
+    < icon />
+  </button>
+</div>
+\`\`\`
+
 Below is an example of how you can use this component in HTML:
         `,
       },

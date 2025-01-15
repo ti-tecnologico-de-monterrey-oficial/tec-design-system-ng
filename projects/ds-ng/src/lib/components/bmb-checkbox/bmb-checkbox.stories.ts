@@ -29,6 +29,20 @@ export class Component {
 }
 \`\`\`
 
+## Architecture
+
+\`\`\`html
+<label class="bmb_checkbox" <!-- conditional class bmb_checkbox-before bmb_checkbox-after bmb_checkbox-required --> >
+  <input { input config } />
+  <div class="bmb_checkbox-box">
+    <span class="bmb_checkbox-mark"></span>
+  </div>
+
+  <!-- if label is defined -->
+  <span class="bmb_checkbox-label">{{ label }}</span>
+</label>
+\`\`\`
+
 Below is an example of how you can use this component in HTML:
         `,
       },
