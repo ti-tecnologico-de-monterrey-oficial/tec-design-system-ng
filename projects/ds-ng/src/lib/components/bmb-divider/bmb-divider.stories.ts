@@ -21,6 +21,13 @@ import { BmbDividerComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'
 })
 \`\`\`
 
+## Architecture
+
+\`\`\`html
+<div class="bmb_divider" <!-- conditional classes bmb_divider bmb_divider-{this.type} >
+</div>
+\`\`\`
+
 Below is an example of how you can use this component in HTML:
         `,
       },
