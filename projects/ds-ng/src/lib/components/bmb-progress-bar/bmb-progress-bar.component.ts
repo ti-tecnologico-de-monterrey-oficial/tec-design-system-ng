@@ -12,7 +12,6 @@ import { IBmbTargetLink } from '../../types';
 export type IBmbProgressBarVariations = 'info' | 'warning' | 'error';
 export type IBmbProgressBarTypes = 'simple' | 'counter' | 'container';
 
-
 @Component({
   selector: 'bmb-progress-bar',
   standalone: true,

@@ -33,16 +33,15 @@ export class BmbProfileComponent {
   userData = input.required<IBmbProfileData>();
   campusAcessLink = input<string>('');
   idDigitalLink = input<string>('');
-  targetLinks = input<IBmbTargetLink>('_blank')
+  targetLinks = input<IBmbTargetLink>('_blank');
   handleCloseSession = output();
   handleCloseProfile = output();
 
-
-  closeSession():void{
-    this.handleCloseSession.emit()
+  closeSession(): void {
+    this.handleCloseSession.emit();
   }
 
-  closeProfile():void {
-    this.handleCloseProfile.emit()
+  closeProfile(): void {
+    this.handleCloseProfile.emit();
   }
 }
