@@ -15,6 +15,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { ClickOutsideDirective } from '../../directives/utils/clickoutside.directive';
 
 export interface IBmbDropdownItem {
   name: string;
@@ -25,7 +26,12 @@ export interface IBmbDropdownItem {
 @Component({
   selector: 'bmb-dropdown',
   standalone: true,
-  imports: [CommonModule, BmbIconComponent, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    BmbIconComponent,
+    ReactiveFormsModule,
+    ClickOutsideDirective,
+  ],
   templateUrl: './bmb-dropdown.component.html',
   styleUrl: './bmb-dropdown.component.scss',
   providers: [
@@ -67,6 +73,10 @@ export class BmbDropdownComponent {
   value: string = '';
   openSelect: boolean = false;
 
+
+  closeDialog() {
+    this.openSelect = false;
+  }
 
   handleItemClick(event: any, index: any): void {
     this.onValueChange.emit(event);

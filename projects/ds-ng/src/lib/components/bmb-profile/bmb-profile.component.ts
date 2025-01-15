@@ -11,8 +11,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbContainerButtonComponent } from '../bmb-container-button/bmb-container-button.component';
 import { BmbThemeComponent } from '../bmb-theme/bmb-theme.component';
 import { BmbButtonDirective } from '../../directives/button.directive';
-import { IBmbProfileData } from '../../types';
-import { IBmbTargetLink } from '../bmb-text-link/bmb-text-link.component';
+import { IBmbProfileData, IBmbTargetLink } from '../../types';
 
 @Component({
   selector: 'bmb-profile',
@@ -36,8 +35,13 @@ export class BmbProfileComponent {
   idDigitalLink = input<string>('');
   targetLinks = input<IBmbTargetLink>('_blank');
   handleCloseSession = output();
+  handleCloseProfile = output();
 
   closeSession(): void {
     this.handleCloseSession.emit();
+  }
+
+  closeProfile(): void {
+    this.handleCloseProfile.emit();
   }
 }

@@ -11,7 +11,11 @@ import {
 import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbTooltipComponent } from '../bmb-tooltip/bmb-tooltip.component';
+import {
+  BmbTooltipComponent,
+  IBmbAlignTooltip,
+  IBmbJustifyTooltip,
+} from '../bmb-tooltip/bmb-tooltip.component';
 import { IBbmSidePosition } from '../../types';
 
 export type IBmbInputType =
@@ -29,6 +33,11 @@ export interface IBmbInputError {
   max?: string;
   minLength?: string;
   pattern?: string;
+}
+
+export interface IBmbInputTooltipPosition {
+  align: IBmbAlignTooltip;
+  justify: IBmbJustifyTooltip;
 }
 
 @Component({
@@ -76,6 +85,10 @@ export class BmbInputComponent {
   rows = input<number>(3);
   showMaxTextLength = input<boolean>(true);
   additionalAction = input<IBmbAdditionalAction>('none');
+  tooltipPosition = input<IBmbInputTooltipPosition>({
+    align: 'above',
+    justify: 'before',
+  });
 
   controlTest = model<FormControl>();
 
@@ -97,7 +110,7 @@ export class BmbInputComponent {
     this.addValidators();
     this.control.updateValueAndValidity();
     this.control.valueChanges.subscribe(() => {
-      this.textLength = this.control.value.toString().length;
+      this.textLength = this.control.value?.toString().length;
       this.updateErrorState();
       this.cdr.markForCheck();
     });
@@ -107,10 +120,6 @@ export class BmbInputComponent {
     if (this.name()) {
       this.myName.emit(this.name());
     }
-    // this.controlTest.update(control => {
-    //   console.log('ngAfterViewInit update',control);
-    //   return new FormControl();
-    // });
   }
 
   private updateErrorState(): void {
@@ -262,7 +271,6 @@ export class BmbInputComponent {
   }
 
   getErrorMessage(): string {
-    console.log('setErrorMessage', this.control['errors']);
     if (typeof this.errorMessage() === 'string') {
       return this.errorMessage().toString();
     }

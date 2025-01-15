@@ -59,7 +59,7 @@
 
       &-text {
         @include fonts.font(3, regular);
-        span {
+        &-subtitle {
           color: RGBA(var(--color-charade-700));
         }
       }

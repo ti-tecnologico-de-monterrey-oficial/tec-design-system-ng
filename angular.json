@@ -39,7 +39,10 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": ["projects/ds-ng/src/assets/styles/main.scss"],
+            "styles": [
+              "projects/ds-ng/src/assets/styles/main.scss",
+              "projects/ds-ng/src/assets/styles/micro.scss"
+            ],
             "scripts": [],
             "allowedCommonJsDependencies": []
           },

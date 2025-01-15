@@ -2,6 +2,8 @@ import { BmbAccordionComponent } from './bmb-accordion.component';
 import { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
+import { InputSignal } from '@angular/core';
+import { SizeNames } from '../../types';
 
 const meta: Meta<BmbAccordionComponent> = {
   title: 'Micro Componentes/Accordion',
@@ -27,6 +29,31 @@ import { BmbAccordionComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-n
   templateUrl: './component.html',
   styleUrl: './component.scss',
 })
+\`\`\`
+
+## Architecture
+
+\`\`\`html
+<section class="bmb_accordion"
+<!-- conditional class bmb_border-radius-{borderRadius} bmb_margin-{this.margin} -> >
+  <!-- if Accordion is disabled -->
+  <section class="bmb_accordion-overlay"></section>
+
+  <header <!-- conditional class bmb_padding-{paddingHeader} bmb_accordion-header bmb_accordion-header-icon --> >
+    <!-- Header content -->
+    <div> {Header content} </div>
+
+    <!-- if icon is defined -->
+    < icon content >
+
+    <!-- if hideToggle is false -->
+    < icon content toggle >
+  </header>
+
+  <section class="bmb_accordion-content" <!-- conditional class bmb_padding-{paddingContent} bmb_accordion-content-open --> >
+    <div> {content} </div>
+  </section>
+</section>
 \`\`\`
 
 Below is an example of how you can use this component in HTML:
@@ -165,7 +192,17 @@ Below is an example of how you can use this component in HTML:
       },
     },
   },
-  args: {},
+  args: {
+    borderRadius: 'm' as unknown as InputSignal<SizeNames | SizeNames[]>,
+    margin: 'm' as unknown as InputSignal<SizeNames | SizeNames[]>,
+    paddingHeader: 'm' as unknown as InputSignal<SizeNames | SizeNames[]>,
+    paddingContent: 'm' as unknown as InputSignal<SizeNames | SizeNames[]>,
+    hideToggle: false as unknown as InputSignal<boolean>,
+    icon: 'keyboard_arrow_down' as unknown as InputSignal<string>,
+    active: false as unknown as InputSignal<boolean>,
+    disabled: false as unknown as InputSignal<boolean>,
+    expanded: false as unknown as InputSignal<boolean | undefined>,
+  },
 };
 
 export default meta;
@@ -173,19 +210,19 @@ export default meta;
 type Story = StoryObj<BmbAccordionComponent>;
 
 export const OneItem: Story = {
-  args: {},
   render: (args) => ({
     props: args,
     template: `
-  <bmb-accordion 
-    [borderRadius]="'m'" 
-    [margin]="'m'" 
-    [paddingHeader]="'m'" 
-    [paddingContent]="'m'" 
-    [hideToggle]="false" 
-    [active]="true" 
-    (closed)="closed(1)" 
-    (opened)="opened(1)"
+  <bmb-accordion
+    [icon]="icon"
+    [borderRadius]="borderRadius"
+    [margin]="margin"
+    [paddingHeader]="paddingHeader"
+    [paddingContent]="paddingContent"
+    [hideToggle]="hideToggle"
+    [active]="active"
+    [expanded]="expanded"
+    [disabled]="disabled"
   >
     <ng-template #bmbAccordionHeader>
       1
