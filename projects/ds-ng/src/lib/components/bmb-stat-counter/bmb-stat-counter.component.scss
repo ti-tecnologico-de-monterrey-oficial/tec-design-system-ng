@@ -62,12 +62,6 @@
 
       .bmb_stat_counter-step {
         background-color: RGBA(var(--color-mariner-700));
-
-        .material-icons {
-          color: RGBA(var(--color-charade-50));
-          font-size: rem.rem_calc(24);
-          font-weight: 500;
-        }
       }
     }
 
@@ -106,6 +100,10 @@
       height: rem.rem_calc(64);
       width: rem.rem_calc(64);
     }
+  }
+
+  &-icon {
+    color: RGBA(var(--color-charade-50));
   }
 }
 

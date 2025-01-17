@@ -47,7 +47,11 @@
       >
         <span *ngIf="activeStep == i || activeStep < i">{{ i + 1 }}</span>
         @if (activeStep > i) {
-          <bmb-icon [icon]="'done'" class="material-icons" />
+          <bmb-icon
+            [icon]="'done'"
+            class="bmb_step-progress-bar-icon"
+            [size]="24"
+          />
         }
       </div>
       @if (labelSteps.length > 0) {

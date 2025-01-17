@@ -18,7 +18,9 @@ import { isImage } from '../../utils/utils';
 })
 export class BmbIconComponent {
   icon = input<string>('face');
-  materialIcon = input<boolean>(false);
+  styleIcon = input<string>('material-symbols-outlined');
+  isFill = input<boolean>(true);
+  fontWeight = input<string>('400');
   size = input<number | undefined>();
   alt = input<string>('');
   dotNotification = input<number>();
@@ -28,7 +30,19 @@ export class BmbIconComponent {
   }
 
   getIconClass(): string {
-    if (this.dotNotification()) return 'bmb_icon-container-i';
-    return '';
+    const validStyles = [
+      'material-symbols-outlined',
+      'material-symbols-rounded',
+      'material-symbols-sharp',
+    ];
+    return validStyles.includes(this.styleIcon())
+      ? this.styleIcon()
+      : 'material-symbols-outlined';
+  }
+
+  getFontVariationSettings(): string {
+    const fill = this.isFill() ? "'FILL' 1" : "'FILL' 0";
+    const weight = `'wght' ${this.fontWeight()}`;
+    return `${fill}, ${weight}`;
   }
 }
