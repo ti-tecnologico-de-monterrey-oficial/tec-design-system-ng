@@ -21,6 +21,14 @@ import { BmbIframeComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
 })
 \`\`\`
 
+## Architecture
+
+\`\`\`html
+<section class="bmb_iframe">
+  <iframe { configuration } ></iframe>
+</section>
+\`\`\`
+
 Below is an example of how you can use this component in HTML:
         `,
       },

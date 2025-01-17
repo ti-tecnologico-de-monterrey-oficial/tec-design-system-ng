@@ -40,6 +40,15 @@ import { BmbBadgeComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
 })
 \`\`\`
 
+## Architecture
+
+\`\`\`html
+<section class="bmb_badge"> <!-- conditional classes bmb_badge-{appearance} bmb_badge-container ->
+  <span class="bmb_badge-bullet"></span>
+  <span class="bmb_badge-content"></span>
+</section>
+\`\`\`
+
 Below is an example of how you can use this component in HTML:
         `,
       },
