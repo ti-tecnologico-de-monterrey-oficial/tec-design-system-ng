@@ -6,6 +6,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { isImage } from '../../utils/utils';
+import { StyleIconType } from './types';
 
 @Component({
   selector: 'bmb-icon',
@@ -18,7 +19,8 @@ import { isImage } from '../../utils/utils';
 })
 export class BmbIconComponent {
   icon = input<string>('face');
-  styleIcon = input<string>('material-symbols-outlined');
+  materialIcon = input<boolean>(false);
+  styleIcon = input<StyleIconType>('material-symbols-outlined');
   isFill = input<boolean>(true);
   fontWeight = input<string>('400');
   size = input<number | undefined>();
@@ -30,14 +32,7 @@ export class BmbIconComponent {
   }
 
   getIconClass(): string {
-    const validStyles = [
-      'material-symbols-outlined',
-      'material-symbols-rounded',
-      'material-symbols-sharp',
-    ];
-    return validStyles.includes(this.styleIcon())
-      ? this.styleIcon()
-      : 'material-symbols-outlined';
+    return this.styleIcon();
   }
 
   getFontVariationSettings(): string {
