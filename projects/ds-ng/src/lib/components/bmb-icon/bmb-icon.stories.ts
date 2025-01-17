@@ -93,6 +93,13 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'boolean' },
       },
     },
+    materialIcon: {
+      name: 'Material Icon',
+      description: 'Deprecated',
+      table: {
+        category: 'Properties',
+      },
+    },
     fontWeight: {
       name: 'Font Weight',
       control: { type: 'text' },
