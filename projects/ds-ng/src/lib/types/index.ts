@@ -46,7 +46,7 @@ export interface IBmbApp {
   icon: string;
   title: string;
   link?: string;
-  target?: string;
+  target?: IBmbTargetLink;
   appearance: IBmbInteractiveIconAppearance;
 }
 

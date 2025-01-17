@@ -27,8 +27,12 @@ export class BmbIconComponent {
     return isImage(icon);
   }
 
-  getIconClass(): string {
-    if (this.dotNotification()) return 'bmb_icon-container-i';
-    return '';
+  getIconClass(): string[] {
+    const classList = ['bmb_icon-token'];
+    if (this.dotNotification()) classList.push('bmb_icon-container-i');
+    if (this.materialIcon()) classList.push('material-icons');
+    else classList.push('material-symbols-rounded');
+
+    return classList;
   }
 }
