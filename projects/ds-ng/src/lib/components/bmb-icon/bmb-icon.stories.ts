@@ -22,6 +22,14 @@ import { BmbIconComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
 export class Component {}
 \`\`\`
 
+## Architecture
+
+\`\`\`html
+<i class="bmb_icon-container-i material-symbols-rounded">
+  < icon />
+</i>
+\`\`\`
+
 Below is an example of how you can use this component in HTML:
 \`\`\`html
 <bmb-icon icon="home" styleIcon="material-symbols-rounded" [size]="24"></bmb-icon>

@@ -36,8 +36,8 @@
           <bmb-tooltip
             class="bmb_field-label-tooltip"
             [text]="tooltip()"
-            [align]="'below'"
-            [justify]="'before'"
+            [align]="tooltipPosition().align"
+            [justify]="tooltipPosition().justify"
             [icon]="'help'"
             [size]="15"
           />

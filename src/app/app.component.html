@@ -1,129 +1,39 @@
 <bmb-theme />
-<bmb-advertisement-card
-  [subtitle]="'Titulo'"
-  [data]="{
-    promociones: [
-      {
-        imgData: {
-          url: 'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg',
-          alt: 'Imagen',
-        },
-        content: {
-          title: 'Lorem ipsum dolor sit amet',
-          description:
-            'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
-          linkBtn: 'www.google.com',
-          labelBtn: 'ACTION',
-        },
-      },
-      {
-        imgData: {
-          url: 'https://content.elmueble.com/medio/2023/03/29/razas-de-perros_725466fb_230329160906_900x900.jpg',
-          alt: 'Imagen',
-        },
-        content: {
-          title: 'Lorem ipsum',
-          description:
-            'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente. lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente. lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
-          linkBtn: 'www.google.com',
-          labelBtn: 'GO',
-        },
-      },
-      {
-        imgData: {
-          url: 'https://content.elmueble.com/medio/2024/04/03/razas-de-perros-pequenos_0718680a_240403083147_900x900.jpg',
-          alt: 'Imagen',
-        },
-        content: {
-          title: 'Lorem ipsum dolor',
-          description:
-            'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente. lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente. lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente. lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente. lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente. lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
-          linkBtn: 'www.google.com',
-          labelBtn: 'ACTION',
-        },
-      },
-    ],
-    avisos: [
-      {
-        imgData: {
-          url: 'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg',
-          alt: 'AVISOS',
-        },
-        content: {
-          title: 'Lorem ipsum dolor sit amet avisos',
-          description:
-            'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
-          linkBtn: 'www.google.com',
-          labelBtn: 'ACTION',
-        },
-      },
-      {
-        imgData: {
-          url: 'https://content.elmueble.com/medio/2023/03/29/razas-de-perros_725466fb_230329160906_900x900.jpg',
-          alt: 'AVISOS',
-        },
-        content: {
-          title: 'Lorem ipsum dolor sit amet',
-          description:
-            'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
-          linkBtn: 'www.google.com',
-          labelBtn: 'ACTION',
-        },
-      },
-      {
-        imgData: {
-          url: 'https://content.elmueble.com/medio/2024/04/03/razas-de-perros-pequenos_0718680a_240403083147_900x900.jpg',
-          alt: 'Imagen',
-        },
-        content: {
-          title: 'Lorem ipsum dolor sit amet',
-          description:
-            'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
-          linkBtn: 'www.google.com',
-          labelBtn: 'ACTION',
-        },
-      },
-    ],
-    informacion: [
-      {
-        imgData: {
-          url: 'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg',
-          alt: 'PROMO',
-        },
-        content: {
-          title: 'Lorem ipsum dolor sit amet',
-          description:
-            'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
-          linkBtn: 'www.google.com',
-          labelBtn: 'ACTION',
-        },
-      },
-      {
-        imgData: {
-          url: 'https://content.elmueble.com/medio/2023/03/29/razas-de-perros_725466fb_230329160906_900x900.jpg',
-          alt: 'PROMO',
-        },
-        content: {
-          title: 'Lorem ipsum dolor sit amet',
-          description:
-            'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
-          linkBtn: 'www.google.com',
-          labelBtn: 'ACTION',
-        },
-      },
-      {
-        imgData: {
-          url: 'https://content.elmueble.com/medio/2024/04/03/razas-de-perros-pequenos_0718680a_240403083147_900x900.jpg',
-          alt: 'PROMO',
-        },
-        content: {
-          title: 'Lorem ipsum dolor sit amet',
-          description:
-            'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
-          linkBtn: 'www.google.com',
-          labelBtn: 'ACTION',
-        },
-      },
-    ],
-  }"
-/>
+<bmb-accordion
+  icon="home"
+  borderRadius="m"
+  margin="m"
+  paddingHeader="m"
+  paddingContent="xl"
+  [hideToggle]="false"
+  [active]="true"
+  [expanded]="true"
+>
+  <ng-template #bmbAccordionHeader>1</ng-template>
+  <ng-template #bmbAccordionContent>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo ante,
+      mattis nec libero a, malesuada pellentesque sem. Aliquam erat volutpat.
+      Nulla ut consequat turpis, id efficitur velit. Fusce vitae dolor leo.
+      Praesent diam justo, consectetur in blandit ut, tincidunt vitae enim.
+      Nulla eleifend, leo at finibus volutpat, nulla metus eleifend lacus,
+      ullamcorper dictum augue diam id erat. Donec ac fringilla elit. Aliquam
+      sit amet luctus elit. Suspendisse ante tortor, euismod nec metus id,
+      commodo sollicitudin massa. Aliquam magna nibh, semper eu vestibulum
+      aliquam, aliquet gravida massa. Nullam vehicula, augue non aliquam
+      posuere, enim urna blandit erat, et euismod enim nisi vel eros. Ut dictum
+      egestas mi, faucibus iaculis lorem. Donec risus diam, maximus at varius
+      rutrum, blandit quis augue. Sed consectetur massa ut auctor ultricies.
+      Etiam fringilla venenatis nulla, gravida finibus nulla faucibus fringilla.
+      Morbi luctus porta orci eu iaculis.
+    </p>
+  </ng-template>
+</bmb-accordion>
+
+
+
+<!--
+
+
+
+[disabled]="false" -->
