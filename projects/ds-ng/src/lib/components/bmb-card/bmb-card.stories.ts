@@ -39,6 +39,22 @@ import { BmbCardComponent, BmbCardFooterComponent, BmbCardHeaderComponent } from
 })
 \`\`\`
 
+## Architecture
+
+\`\`\`html
+<section class="bmb_card" <!-- conditional class bmb_border-radius-{borderRadius} bmb_margin-{this.margin} bmb_card-{type} --> >
+  <header class="bmb_card-header" <!-- conditional class bmb_padding-{padding} --> >
+      { header content }
+  </header>
+  <section class="bmb_card-content" <!-- conditional class bmb_padding-{padding} --> >
+      { content }
+  </section>
+  <footer class="bmb_card-footer" <!-- conditional class bmb_padding-{padding} --> >
+    <ng-content></ng-content>
+  </footer>
+</section>
+\`\`\`
+
 Below is an example of how you can use this component in HTML:
         `,
       },

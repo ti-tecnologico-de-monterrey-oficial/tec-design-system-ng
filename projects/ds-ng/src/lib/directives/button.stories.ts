@@ -23,6 +23,17 @@ import { BmbButtonDirective } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
 })
 \`\`\`
 
+## Architecture
+
+\`\`\`HTML
+<button class="bmb_btn-{appearance} bmb_btn-rounded">
+  <!-- if icon is defined -->
+  < icon content >
+
+  {content}
+</section>
+\`\`\`
+
 Below is an example of how you can use this component in HTML:
         `,
       },
