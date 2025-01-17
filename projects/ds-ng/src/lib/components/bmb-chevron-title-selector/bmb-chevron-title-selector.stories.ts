@@ -22,6 +22,30 @@ import { BmbChevronTitleSelectorComponent } from '@ti-tecnologico-de-monterrey-o
 })
 \`\`\`
 
+## Architecture
+
+\`\`\`html
+<section class="bmb_chevron">
+  <button class="bmb_chevron-button">
+    < icon />
+  </button>
+  <section class="bmb_chevron-content">
+    <h2 class="bmb_chevron-content-title">{{ title }}</h2>
+
+    <!-- if subtitle is defined -->
+    <h4 class="bmb_chevron-content-subtitle">
+      <!-- if subtitle icon is defined -->
+      < icon />
+
+      {{ subtitle }}
+    </h4>
+  </section>
+  <button class="bmb_chevron-button">
+    < icon />
+  </button>
+</section>
+\`\`\`
+
 Below is an example of how you can use this component in HTML:
         `,
       },

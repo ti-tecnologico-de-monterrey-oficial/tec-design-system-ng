@@ -23,6 +23,7 @@ import {
 } from '../bmb-external-link/bmb-external-link.component';
 import { IBmbFooterEvent } from '../bmb-bottom-navigation-bar/bmb-bottom-navigation-bar.component';
 import { BmbInnerHeaderComponent } from '../bmb-inner-header/bmb-inner-header.component';
+import { IBmbTargetLink } from '../../types';
 
 export type IBmbMobileTemplateName =
   | 'single-header'
@@ -38,7 +39,7 @@ export interface IBmbMobileTemplateButton {
   title: string;
   iconLeft: string;
   subtitle?: string;
-  target?: string;
+  target?: IBmbTargetLink;
   link?: string;
   onButton?: () => void;
 }
