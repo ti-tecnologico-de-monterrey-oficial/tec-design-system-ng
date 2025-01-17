@@ -18,6 +18,13 @@ export type IButtonSize = 'small' | 'large' | 'micro';
 export type IBbmSidePosition = 'before' | 'after';
 export type IBmbHorizontalPosition = 'left' | 'right';
 export type IBmbTargetLink = '_blank' | '_parent' | '_self' | '_top';
+export type IBmbUserImageSize =
+  | 'desktop-small'
+  | 'desktop-large'
+  | 'mobile-small'
+  | 'mobile-medium'
+  | 'mobile-large'
+  | 'mobile-xlarge';
 
 export interface IBmbError {
   codeError: boolean;
