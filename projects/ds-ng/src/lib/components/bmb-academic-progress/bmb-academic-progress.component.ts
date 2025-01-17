@@ -9,6 +9,7 @@ import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.direc
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 import { IBmbNameValuePair } from '../../types';
+import { buildErrorMessage } from '../../utils/utils';
 
 @Component({
   selector: 'bmb-academic-progress',
@@ -62,25 +63,14 @@ export class BmbAcademicProgressComponent {
 
   ngOnInit() {
     let inputs = [];
-    let elements = '';
     if (!this.accredited()) inputs.push('accredited');
     if (!this.average()) inputs.push('average');
     if (!this.summary()) inputs.push('summary');
 
-    inputs.forEach((element, index) => {
-      elements += element;
-      elements +=
-        index == inputs.length - 2
-          ? ' and '
-          : inputs.length > 1 && index < inputs.length - 1
-            ? ', '
-            : '';
-    });
-
     if (inputs.length) {
       throw new Error(
         `
-        The "${elements}" input${inputs.length > 1 ? 's' : ''} ${inputs.length > 1 ? 'are' : 'is'} required.
+        The ${buildErrorMessage(inputs)} required.
         `,
       );
     }

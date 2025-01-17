@@ -1,44 +1,25 @@
-<div class="bmb_dropdown_menu">
+<section class="bmb_dropdown_menu">
   <button
     type="button"
     class="bmb_dropdown_menu-button"
     (click)="toggleDropdown()"
   >
-    <bmb-icon icon="more_vert" class="bmb_dropdown_menu-icon" />
+    <bmb-icon class="bmb_dropdown_menu-icon" icon="more_vert" />
   </button>
   @if (isOpen()) {
-    <div class="bmb_dropdown_menu-content">
+    <ul class="bmb_dropdown_menu-content">
       @for (item of items(); track $index) {
-        @if (item && item.url && isExternalLink(item.url)) {
-          <a
-            [href]="item.url"
-            [target]="item.target ? item.target : '_blank'"
-            class="bmb_dropdown_menu-item"
+        <li class="bmb_dropdown_menu-item">
+          <bmb-check-external-link-button
+            [link]="item.url!"
+            [target]="item.target!"
+            (buttonClick)="item?.action()"
           >
             <bmb-icon [icon]="item.icon" class="bmb_dropdown_menu-item-icon" />
             <span class="bmb_dropdown_menu-item-text">{{ item.text }}</span>
-          </a>
-        } @else if (item && item.url && !isExternalLink(item.url)) {
-          <a
-            class="bmb_dropdown_menu-item"
-            [routerLink]="item.url"
-            routerLinkActive="active-link"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
-            <bmb-icon [icon]="item.icon" class="bmb_dropdown_menu-item-icon" />
-            <span class="bmb_dropdown_menu-item-text">{{ item.text }}</span>
-          </a>
-        } @else {
-          <button
-            class="bmb_dropdown_menu-item"
-            type="button"
-            (click)="item?.action()"
-          >
-            <bmb-icon [icon]="item.icon" class="bmb_dropdown_menu-item-icon" />
-            <span class="bmb_dropdown_menu-item-text">{{ item.text }}</span>
-          </button>
-        }
+          </bmb-check-external-link-button>
+        </li>
       }
-    </div>
+    </ul>
   }
-</div>
+</section>

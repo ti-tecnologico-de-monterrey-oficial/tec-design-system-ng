@@ -6,14 +6,9 @@
   align-items: center;
   display: flex;
   flex-flow: column;
-  text-decoration: none;
   width: rem.rem_calc(64);
   gap: var(--bmb-spacing-s);
   cursor: pointer;
-
-  &-button-template {
-    padding: 0;
-  }
 
   &-horizontal {
     border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-700));
@@ -69,10 +64,6 @@
     width: rem.rem_calc(64);
     margin: 0;
     overflow: hidden;
-  }
-
-  &-icon {
-    color: RGBA(var(--color-white-primary));
   }
 
   &-label {
@@ -138,9 +129,18 @@
     }
   }
 
-  &-image {
-    height: 100%;
-    width: 100%;
+  .bmb_icon-token {
+    color: RGBA(var(--color-white-primary));
+  }
+
+  .bmb_icon-figure {
+    margin: 0;
+    line-height: 0;
+  }
+
+  .bmb_icon-figure-image {
+    height: rem.rem_calc(64);
+    width: rem.rem_calc(64);
     object-fit: cover;
   }
 }

@@ -21,6 +21,7 @@ import {
 })
 export class BmbButtonDirective {
   icon = input<string>('');
+  iconSize = input<number | undefined>();
   position = input<IBmbHorizontalPosition>('left');
   case = input<boolean>(false);
   appearance = input<IButtonAppearance>('primary');
@@ -93,6 +94,10 @@ export class BmbButtonDirective {
         this.viewContainerRef.createComponent(BmbIconComponent);
       const iconComponent = iconComponentRef.instance;
       iconComponent.icon = this.icon;
+
+      if (this.iconSize()) {
+        iconComponent.size = this.iconSize;
+      }
 
       if (this.position() === 'right') {
         this.el.nativeElement.insertBefore(

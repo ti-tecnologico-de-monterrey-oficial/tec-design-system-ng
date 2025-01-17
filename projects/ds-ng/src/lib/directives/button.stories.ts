@@ -37,8 +37,10 @@ Below is an example of how you can use this component in HTML:
         'secondary-filled',
         'secondary-outlined',
         'destructive',
+        'transparent',
       ],
-      description: 'The appearance of the button, affecting its visual style.',
+      description:
+        'Sets the appearance of the button, affecting its visual style.',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'primary' },
@@ -49,10 +51,20 @@ Below is an example of how you can use this component in HTML:
       name: 'Icon',
       control: { type: 'text' },
       description:
-        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons. Do not use the image property if you want to use an icon.',
+        'Sets the name of the icon to use. Please use Material icons: https://fonts.google.com/icons. Do not use the image property if you want to use an icon.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
+      },
+    },
+    iconSize: {
+      name: 'Icon size',
+      control: { type: 'number' },
+      description:
+        'Sets size of the icon to use. Note: <= 0 will be inherited. Icon size is only recommended when no text or content is added.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'number' },
       },
     },
     size: {
@@ -64,7 +76,7 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: 'small' },
         type: { summary: 'string' },
       },
-      description: 'The size of the button, affecting its visual size.',
+      description: 'Sets the size of the button, affecting its visual size.',
     },
     position: {
       name: 'Position',
@@ -75,13 +87,13 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: 'left' },
         type: { summary: 'string' },
       },
-      description: 'The position of the icon.',
+      description: 'Sets the position of the icon.',
     },
     case: {
       name: 'Case',
       control: { type: 'boolean' },
       description:
-        'This property places the icon at the end of the button, away from the text. Only visible when the button size is large.',
+        'Sets the icon at the end of the button, away from the text. Only visible when the button size is large.',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
@@ -90,7 +102,7 @@ Below is an example of how you can use this component in HTML:
     },
     text: {
       name: 'Text',
-      description: 'The text content of the button.',
+      description: 'Sets the text content of the button.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -131,6 +143,7 @@ Below is an example of how you can use this component in HTML:
   args: {
     appearance: 'primary',
     icon: 'home',
+    iconSize: 0,
     size: 'small',
     position: 'left',
     case: false,
@@ -149,7 +162,8 @@ function attributes(object: { [key: string]: any }): string {
         key === 'case' ||
         key === 'isRounded' ||
         key === 'enableButtonToggle' ||
-        key === 'isToggleActive'
+        key === 'isToggleActive' ||
+        key === 'iconSize'
       ) {
         return `[${key}]="${value}"`;
       }
