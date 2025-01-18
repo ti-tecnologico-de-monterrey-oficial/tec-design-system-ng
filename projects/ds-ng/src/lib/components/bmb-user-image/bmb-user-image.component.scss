@@ -2,7 +2,7 @@
 
 .bmb_user_image {
   align-items: center;
-  border-radius: rem.rem_calc(50);
+  border-radius: 50%;
   display: flex;
   height: rem.rem_calc(50);
   justify-content: center;
@@ -14,7 +14,7 @@
   }
 
   img {
-    border-radius: rem.rem_calc(50);
+    border-radius: 50%;
     height: 95%;
     width: 95%;
     object-fit: cover;

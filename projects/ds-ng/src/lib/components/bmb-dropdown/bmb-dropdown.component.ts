@@ -73,7 +73,6 @@ export class BmbDropdownComponent {
   value: string = '';
   openSelect: boolean = false;
 
-
   closeDialog() {
     this.openSelect = false;
   }

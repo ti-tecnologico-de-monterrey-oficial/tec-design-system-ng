@@ -5,15 +5,18 @@ import {
   input,
   signal,
 } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { IBmbCountryCode, IBmbCountryCodes } from '../../utils/countryCodes';
-import { BmbDropdownComponent, IBmbDropdownItem } from '../bmb-dropdown/bmb-dropdown.component';
-import { BmbInputComponent, IBmbInputAppearance, IBmbInputError } from '../bmb-input/bmb-input.component';
+import {
+  BmbDropdownComponent,
+  IBmbDropdownItem,
+} from '../bmb-dropdown/bmb-dropdown.component';
+import {
+  BmbInputComponent,
+  IBmbInputAppearance,
+  IBmbInputError,
+} from '../bmb-input/bmb-input.component';
 import { BmbTooltipComponent } from '../bmb-tooltip/bmb-tooltip.component';
 
 @Component({
@@ -39,16 +42,17 @@ export class BmbInputPhoneNumberComponent {
   errorMessage = input<string | IBmbInputError>({
     required: 'This field is required.',
     minLength: 'Minimum characters.',
-    pattern: 'Only accepts numbers.'
+    pattern: 'Only accepts numbers.',
   });
   appearance = input<IBmbInputAppearance>('normal');
   isRequired = input<boolean>(true);
   control = input<FormControl>(new FormControl());
   inputId = input<string>('bmbInputPhoneNumber');
 
-
   allCountryCodes: IBmbCountryCode[] = IBmbCountryCodes;
-  selectedCountry = signal<IBmbCountryCode>(this.findCountryCode(this.defaultLada()));
+  selectedCountry = signal<IBmbCountryCode>(
+    this.findCountryCode(this.defaultLada()),
+  );
   phoneNumber: any;
   showError = false;
 
@@ -57,10 +61,12 @@ export class BmbInputPhoneNumberComponent {
   }
 
   ngOnInit() {
-    this.phoneNumber = this.controls.get('input')?.valueChanges.subscribe((value) => {
-      this.control().setValue(`${this.selectedCountry().lada}${value}`);
-      this.showError = !!this.controls.get('input')?.errors
-    });
+    this.phoneNumber = this.controls
+      .get('input')
+      ?.valueChanges.subscribe((value) => {
+        this.control().setValue(`${this.selectedCountry().lada}${value}`);
+        this.showError = !!this.controls.get('input')?.errors;
+      });
   }
 
   buildValidators() {
@@ -80,7 +86,6 @@ export class BmbInputPhoneNumberComponent {
     }));
   }
 
-
   controls = new FormGroup({
     select: new FormControl(this.defaultLada()),
     input: new FormControl(''),
@@ -92,13 +97,16 @@ export class BmbInputPhoneNumberComponent {
   }
 
   findCountryCode(lada: string): IBmbCountryCode {
-    const country = this.allCountryCodes.find((country) => country.lada === lada);
-    if (!country) return {
-      country: 'México',
-      country_code: 'MX',
-      lada: '+52',
-      length: 10
-    };
+    const country = this.allCountryCodes.find(
+      (country) => country.lada === lada,
+    );
+    if (!country)
+      return {
+        country: 'México',
+        country_code: 'MX',
+        lada: '+52',
+        length: 10,
+      };
 
     return country;
   }
