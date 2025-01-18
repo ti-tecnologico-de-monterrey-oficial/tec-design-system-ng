@@ -19,6 +19,7 @@ import { BmbIconComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
   templateUrl: './component.html',
   styleUrl: './component.scss',
 })
+export class Component {}
 \`\`\`
 
 ## Architecture
@@ -30,6 +31,9 @@ import { BmbIconComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
 \`\`\`
 
 Below is an example of how you can use this component in HTML:
+\`\`\`html
+<bmb-icon icon="home" styleIcon="material-symbols-rounded" [size]="24"></bmb-icon>
+\`\`\`
         `,
       },
     },
@@ -39,16 +43,79 @@ Below is an example of how you can use this component in HTML:
       name: 'Icon',
       control: { type: 'text' },
       description:
-        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons. The color of the icon depend on the parent.',
+        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons. The color of the icon depends on the parent. You can also place an image here.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
       },
     },
+    styleIcon: {
+      name: 'Style Icon',
+      control: { type: 'radio' },
+      options: [
+        'material-symbols-outlined',
+        'material-symbols-rounded',
+        'material-symbols-sharp',
+      ],
+      description: `
+    ### Available Icon Styles
+    Below are the options for defining the style of Material Symbols icons:
+    
+    - **Outlined**  
+      - **Description:** Icons with defined contours, minimalistic, and without fill.  
+      - **Visual Features:** Thin lines, clear contours, empty background. Ideal for clean and modern interfaces.  
+      - **Class Name:** \`material-symbols-outlined\`
+    
+    - **Rounded**  
+      - **Description:** Icons with rounded edges. They feel softer and more friendly.  
+      - **Visual Features:** Rounded corners. The design is more approachable and less technical.  
+      - **Class Name:** \`material-symbols-rounded\`
+    
+    - **Sharp**  
+      - **Description:** Icons with angular and sharp edges, providing a more technical and defined appearance.  
+      - **Visual Features:** Sharp edges without rounding. Suitable for robust or industrial interfaces.  
+      - **Class Name:** \`material-symbols-sharp\`
+    `,
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'material-symbols-outlined' },
+        type: { summary: 'string' },
+      },
+    },
+    isFill: {
+      name: 'Is Fill',
+      control: { type: 'boolean' },
+      description:
+        'Determines whether the icon is filled (`true`) or outlined (`false`).',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'true' },
+        type: { summary: 'boolean' },
+      },
+    },
+    materialIcon: {
+      name: 'Material Icon',
+      description: 'Deprecated',
+      table: {
+        category: 'Properties',
+      },
+    },
+    fontWeight: {
+      name: 'Font Weight',
+      control: { type: 'text' },
+      description:
+        'Specifies the weight of the font. Common values are `400` (normal) or `700` (bold).',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: '400' },
+        type: { summary: 'string' },
+      },
+    },
     size: {
-      name: 'size',
+      name: 'Size',
       control: { type: 'number' },
-      description: 'Size of the icon to use. Note: <= 0 will be inherited.',
+      description:
+        'Size of the icon or width of the image to use. Note: <= 0 will be inherited.',
       table: {
         category: 'Properties',
         type: { summary: 'number' },
@@ -64,11 +131,26 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'number' },
       },
     },
+    alt: {
+      name: 'Alt',
+      control: { type: 'text' },
+      description:
+        'Alternative text for the icon when it is an image. This improves accessibility.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: '""' },
+        type: { summary: 'string' },
+      },
+    },
   },
   args: {
     icon: 'home',
-    size: 20,
+    styleIcon: 'material-symbols-outlined',
+    isFill: true,
+    fontWeight: '400',
+    size: 24,
     dotNotification: 0,
+    alt: 'Default alt text for image',
   },
 } as Meta<typeof BmbIconComponent>;
 

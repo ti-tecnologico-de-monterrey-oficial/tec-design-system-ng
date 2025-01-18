@@ -2,15 +2,56 @@
 @use "../../../assets/styles/base/fonts" as fonts;
 @use "../../../assets/styles/base/mixins" as mixins;
 
+@keyframes expandWidthSmooth {
+  0% {
+    width: rem.rem_calc(416);
+  }
+  75% {
+    width: 100%;
+    transform: scaleX(1.05);
+  }
+  100% {
+    width: 100%;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
 .bmb_top-bar {
   background-color: RGBA(var(--color-black-primary));
   color: RGBA(var(--color-white-primary));
   display: flex;
   justify-content: space-between;
-  padding: rem.rem_calc(12) rem.rem_calc(16);
+  padding: rem.rem_calc(12 16);
   gap: rem.rem_calc(16);
   align-items: center;
   position: relative;
+  border-radius: rem.rem_calc(0 0 12 12);
+
+  &-animated {
+    @include mixins.media-query(768, "min") {
+      width: rem.rem_calc(416);
+      animation: expandWidthSmooth 2s ease-out 1s forwards;
+      margin: auto;
+
+      > div,
+      > nav {
+        opacity: 0;
+        visibility: hidden;
+        animation: fadeIn 1s ease-in 3s forwards;
+      }
+    }
+  }
 
   &-button-section {
     @include mixins.media-query(1000, "min") {
@@ -53,7 +94,6 @@
     i {
       position: absolute;
       left: rem.rem_calc(8);
-      // font-size: rem.rem_calc(24);
       top: rem.rem_calc(2);
     }
   }
@@ -100,7 +140,7 @@
 
   &-always-visible-content {
     flex: 1;
-    justify-content: end;
+    justify-content: flex-end;
     display: flex;
 
     @include mixins.media-query(1000, "min") {
@@ -159,7 +199,7 @@
 
     @include mixins.media-query(1000, "min") {
       display: flex;
-      justify-content: end;
+      justify-content: flex-end;
       overflow: hidden;
     }
 

@@ -1,4 +1,7 @@
-<header class="bmb_top-bar">
+<header
+  class="bmb_top-bar bmb_top-bar-animated"
+  [ngClass]="{ 'bmb_top-bar-animated': showAnimation }"
+>
   @if (positionButtonMenu === "left") {
     <div class="bmb_top-bar-button-section" [ngClass]="getMenuButtonClasses()">
       <button
