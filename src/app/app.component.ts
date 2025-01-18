@@ -222,6 +222,7 @@ import { BmbUserProfileComponent } from '../../projects/ds-ng/src/lib/components
     BmbAdvertisementCardComponent,
     BmbAccordionComponent,
     BmbSidebarComponent,
+    BmbUserImageComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

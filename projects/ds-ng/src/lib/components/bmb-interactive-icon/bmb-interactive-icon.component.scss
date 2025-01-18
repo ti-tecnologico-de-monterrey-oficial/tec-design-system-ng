@@ -8,7 +8,6 @@
   flex-flow: column;
   width: rem.rem_calc(64);
   gap: var(--bmb-spacing-s);
-  cursor: pointer;
 
   &-horizontal {
     border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-700));

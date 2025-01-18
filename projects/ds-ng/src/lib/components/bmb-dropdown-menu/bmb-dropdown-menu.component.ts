@@ -8,6 +8,7 @@ import {
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
 import { IBmbTargetLink } from '../../types';
+import { BmbButtonDirective } from '../../directives/button.directive';
 
 export interface IDropdownItem {
   icon: string;
@@ -22,7 +23,11 @@ export interface IDropdownItem {
   standalone: true,
   templateUrl: './bmb-dropdown-menu.component.html',
   styleUrls: ['./bmb-dropdown-menu.component.scss'],
-  imports: [BmbIconComponent, BmbCheckExternalLinkButtonComponent],
+  imports: [
+    BmbCheckExternalLinkButtonComponent,
+    BmbButtonDirective,
+    BmbIconComponent,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

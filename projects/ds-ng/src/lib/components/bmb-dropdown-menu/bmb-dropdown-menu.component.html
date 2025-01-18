@@ -1,11 +1,14 @@
 <section class="bmb_dropdown_menu">
   <button
+    bmbButton
     type="button"
     class="bmb_dropdown_menu-button"
+    appearance="transparent"
+    icon="more_vert"
+    [iconSize]="24"
+    size="micro"
     (click)="toggleDropdown()"
-  >
-    <bmb-icon class="bmb_dropdown_menu-icon" icon="more_vert" />
-  </button>
+  ></button>
   @if (isOpen()) {
     <ul class="bmb_dropdown_menu-content">
       @for (item of items(); track $index) {
