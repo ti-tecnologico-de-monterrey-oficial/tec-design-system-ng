@@ -2,6 +2,24 @@
 @use "../../../assets/styles/base/rem" as rem;
 @use "../../../assets/styles/base/mixins" as mixins;
 
+@keyframes bounce {
+  0% {
+    margin-left: 0;
+  }
+  25% {
+    margin-left: -10px;
+  }
+  50% {
+    margin-left: 10px;
+  }
+  75% {
+    margin-left: -5px;
+  }
+  100% {
+    margin-left: 0;
+  }
+}
+
 .bmb_multi-dot-paginator {
   display: flex;
   flex-direction: column;
@@ -45,6 +63,10 @@
 
       @include mixins.media-query(2000, "min") {
         --child-size: calc(33.333% / var(--numberOfElements) - 2rem);
+      }
+
+      &.bounce {
+        animation: bounce 0.3s ease;
       }
     }
   }

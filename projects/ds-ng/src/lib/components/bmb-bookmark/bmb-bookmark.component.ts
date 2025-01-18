@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { BmbButtonDirective } from '../../directives/button.directive';
 import { CommonModule } from '@angular/common';
-import { BmbIconComponent } from 'ds-ng';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 
 @Component({
   selector: 'bmb-bookmark',

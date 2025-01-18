@@ -59,11 +59,20 @@ export class BmbTopBarComponent implements OnInit {
   @ViewChild(TemplateRef) contentTemplate: TemplateRef<unknown> | null = null;
 
   isMobileMenuOpen: boolean = false;
+  showAnimation: boolean = true;
 
   ngOnInit(): void {
     this.image = this.mitec
       ? 'assets/images/logos-mitec/logo_mitec.png'
       : 'assets/images/tec-logo.svg';
+
+    const hasBeenViewed = localStorage.getItem('bmbTopBarViewed');
+    if (hasBeenViewed) {
+      this.showAnimation = false;
+    } else {
+      this.showAnimation = true;
+      localStorage.setItem('bmbTopBarViewed', 'true');
+    }
   }
 
   handleLogOutClick(event: Event) {

@@ -43,15 +43,30 @@ export class BmbMultiDotPaginatorComponent implements AfterContentInit {
   setClassActive(newIndex: number, oldIndex: number = 0) {
     const activeItem = this.contentChildren?.get(newIndex) as any;
     const oldItem = this.contentChildren?.get(oldIndex) as any;
+
+    if (!activeItem) return;
+
+    const container =
+      activeItem.multiDotPaginatorItem.nativeElement.parentElement
+        .parentElement;
+
     if (oldItem) {
       oldItem.multiDotPaginatorItem.nativeElement.parentElement.classList.remove(
         'bmb_multi-dot-paginator-item-active',
       );
     }
-    if (activeItem) {
-      activeItem.multiDotPaginatorItem.nativeElement.parentElement.classList.add(
-        'bmb_multi-dot-paginator-item-active',
-      );
+
+    activeItem.multiDotPaginatorItem.nativeElement.parentElement.classList.add(
+      'bmb_multi-dot-paginator-item-active',
+    );
+
+    if (newIndex !== oldIndex) {
+      container.classList.remove('bounce');
+      container.getBoundingClientRect();
+
+      setTimeout(() => {
+        container.classList.add('bounce');
+      }, 500);
     }
 
     this.selectedIndex = newIndex;

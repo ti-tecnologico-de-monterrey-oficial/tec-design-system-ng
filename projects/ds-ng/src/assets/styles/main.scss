@@ -6,6 +6,10 @@
 
 // Import the global style to avoid bloat of code and could be use in components will a unique charge.
 // Import and register the rem convertion
+@use "../../../../../node_modules/material-symbols/outlined.css";
+@use "../../../../../node_modules/material-symbols/rounded.css";
+@use "../../../../../node_modules/material-symbols/sharp.css";
+
 @use "base/css-vars";
 @use "base/rem" as rem;
 
