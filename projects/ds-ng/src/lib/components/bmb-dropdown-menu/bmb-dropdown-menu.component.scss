@@ -7,7 +7,6 @@
     background-color: transparent;
     border: none;
     color: RGBA(var(--color-charade-500));
-    cursor: pointer;
     padding: 0;
     position: relative;
 
@@ -41,7 +40,6 @@
       background-color: transparent;
       border: none;
       color: RGBA(var(--color-charade-950));
-      cursor: pointer;
       display: flex;
       padding: rem.rem_calc(15) rem.rem_calc(20);
       text-decoration: none;

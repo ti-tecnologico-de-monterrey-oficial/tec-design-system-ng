@@ -121,7 +121,7 @@
     width: rem.rem_calc(88);
 
     &:hover,
-    &.active {
+    &.bmb-active {
       height: rem.rem_calc(480);
       overflow: visible;
       width: rem.rem_calc(280);
@@ -154,15 +154,6 @@
       }
     }
 
-    .bmb_sidebar-children-open {
-      border-radius: rem.rem_calc(0 24 24 0);
-      display: flex;
-      left: 100%;
-      position: absolute;
-      top: 0;
-      width: rem.rem_calc(264);
-    }
-
     .bmb_sidebar-title {
       display: none;
     }
@@ -188,26 +179,51 @@
     height: rem.rem_calc(40);
     justify-content: flex-start;
     width: auto;
+
+    .bmb_check-external-link-button {
+      display: inline-flex;
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+    }
   }
 
   &-link {
-    align-items: center;
-    color: RGBA(var(--color-white-primary));
-    cursor: pointer;
     display: flex;
+    align-items: center;
     height: 100%;
-    justify-content: flex-start;
-    text-align: left;
-    text-decoration: none;
-    transition: all 0.3s ease;
     width: 100%;
+    border-radius: rem.rem_calc(24);
+    overflow: hidden;
 
-    &:hover,
-    &-active {
-      background-color: RGBA(var(--color-white-primary));
-      border-radius: rem.rem_calc(24);
-      color: RGBA(var(--color-black-primary));
+    .bmb_check-external-link-button-element {
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-start;
+      color: RGBA(var(--color-white-primary));
+      text-align: left;
+      transition: all 0.3s ease;
+      width: 100%;
+      height: 100%;
+
+      &:hover,
+      &:focus,
+      &:focus-visible {
+        background-color: RGBA(var(--color-white-primary));
+        color: RGBA(var(--color-black-primary));
+      }
     }
+  }
+
+  .bmb-active-link {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-color: RGBA(var(--color-white-primary));
+    border-radius: rem.rem_calc(24);
+    color: RGBA(var(--color-black-primary));
   }
 
   &-icon,
@@ -232,6 +248,15 @@
     display: none;
     flex-flow: column;
     padding: rem.rem_calc(24);
+
+    &-open {
+      border-radius: rem.rem_calc(0 24 24 0);
+      display: flex;
+      left: 100%;
+      position: absolute;
+      top: 0;
+      width: rem.rem_calc(264);
+    }
   }
 
   &-title {
@@ -247,6 +272,7 @@
     &-button {
       color: RGBA(var(--color-white-primary));
       padding: 0;
+      margin-bottom: rem.rem_calc(12);
 
       .bmb_sidebar-icon {
         padding: 0;

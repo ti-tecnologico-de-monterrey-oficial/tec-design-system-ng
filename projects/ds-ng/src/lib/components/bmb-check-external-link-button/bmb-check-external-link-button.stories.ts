@@ -33,6 +33,17 @@ Below is an example of how you can use this component in HTML:
     },
   },
   argTypes: {
+    idElement: {
+      name: 'Id element',
+      control: {
+        type: 'text',
+      },
+      description: 'Sets the id property for the link or the button.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
     link: {
       name: 'Link',
       control: {
@@ -56,6 +67,7 @@ Below is an example of how you can use this component in HTML:
       table: {
         category: 'Properties',
         type: { summary: 'string' },
+        defaultValue: { summary: '_blank' },
       },
     },
     buttonClick: {
@@ -70,8 +82,9 @@ Below is an example of how you can use this component in HTML:
     },
   },
   args: {
-    target: '_blank',
+    idElement: '',
     link: 'https://www.youtube.com/',
+    target: '_blank',
   },
 } as Meta<typeof BmbCheckExternalLinkButtonComponent>;
 
