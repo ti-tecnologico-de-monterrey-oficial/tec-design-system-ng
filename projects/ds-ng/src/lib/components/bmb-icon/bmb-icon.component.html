@@ -1,14 +1,22 @@
 <ng-template #commonIcon>
   <i
-    [ngClass]="getIconClass()"
-    [ngStyle]="{ 'font-size': !!size() ? size() + 'px' : 'inherit' }"
+    [ngClass]="styleIcon()"
+    [ngStyle]="{
+      'font-size': !!size() ? size() + 'px' : 'inherit',
+      'font-variation-settings': getFontVariationSettings(),
+    }"
   >
     {{ icon() }}
   </i>
 </ng-template>
 @if (isImage(icon())) {
   <figure class="bmb_icon-figure">
-    <img class="bmb_icon-figure-image" [src]="icon()" [alt]="alt()" />
+    <img
+      class="bmb_icon-figure-image"
+      [src]="icon()"
+      [alt]="alt()"
+      [width]="size()"
+    />
   </figure>
 } @else if (dotNotification()) {
   <section class="bmb_icon-container">

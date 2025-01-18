@@ -1,8 +1,5 @@
 import {
   Component,
-  Input,
-  Output,
-  EventEmitter,
   ChangeDetectionStrategy,
   ViewEncapsulation,
   input,

@@ -207,23 +207,6 @@ Below is an example of how to use it in HTML:
     - \`url\`: (optional, string) The URL to navigate to when the menu item is clicked.
     - \`target\`: (optional, string) Specifies where to display the linked URL (e.g., \`_self\`, \`_blank\`).
     - \`action\`: (optional, function) A custom function executed when the menu item is clicked. This is useful for triggering specific behaviors or events.
-    
-    Example:
-    \`\`\`json
-    [
-      {
-        "icon": "settings",
-        "text": "Settings",
-        "action": () => console.log("Settings clicked")
-      },
-      {
-        "icon": "link",
-        "text": "External Link",
-        "url": "https://example.com",
-        "target": "_blank"
-      }
-    ]
-    \`\`\`
       `,
       table: {
         category: 'Full Interactive',
@@ -237,18 +220,19 @@ Below is an example of how to use it in HTML:
       name: 'Is Template',
       control: { type: 'boolean' },
       description: `
-Enable template usage for the icons show before menu dropdown. You can place less than 4 icons. Example of an icon Template:
+Enable template usage for the icons show before menu dropdown. You can place less than 4 icons. 
+Example:
 
 \`\`\`html
-<ng-template #iconTemplate>
-    <div style="display: flex; gap: 1em">
-      <bmb-icon
-        [icon]="'settings'"
-        class="bmb_card_button-circle-icon"
-      ></bmb-icon>
-      <bmb-icon [icon]="'star'" class="bmb_card_button-circle-icon"></bmb-icon>
-    </div>
-  </ng-template>
+    <bmb-card-button>
+      <div style="display: flex; gap: 1em">
+        <bmb-icon
+          [icon]="'settings'"
+          class="bmb_card_button-circle-icon"
+        ></bmb-icon>
+        <bmb-icon [icon]="'star'" class="bmb_card_button-circle-icon"></bmb-icon>
+      </div>
+    </bmb-card-button>
 \`\`\`
         `,
       table: {
@@ -344,7 +328,7 @@ Enable template usage for the icons show before menu dropdown. You can place les
       },
     ],
     botImage: {
-      src: 'https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg',
+      src: 'https://image',
       alt: 'Left content image',
     },
   },
