@@ -40,9 +40,9 @@
       @include fonts.font(4, medium);
 
       &::after {
-        @include mixins.materialIcons();
         color: RGBA(var(--color-charade-950));
         content: "expand_more";
+        font-family: "Material Symbols Outlined", sans-serif;
         font-size: rem.rem_calc(28);
         position: absolute;
         right: rem.rem_calc(6);
