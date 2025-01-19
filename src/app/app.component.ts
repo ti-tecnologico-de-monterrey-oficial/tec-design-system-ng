@@ -46,6 +46,7 @@ export class AppComponent {
     {
       title: 'First name',
       name: 'first_name',
+      isSortable: true,
     },
     {
       title: 'Last name',
@@ -72,7 +73,7 @@ export class AppComponent {
       last_name: 'Billows',
       email: 'dbillows0@go.com',
       gender: 'Male',
-      ip_address: '24.96.201.15',
+      // ip_address: '24.96.201.15',
     },
     {
       id: 2,

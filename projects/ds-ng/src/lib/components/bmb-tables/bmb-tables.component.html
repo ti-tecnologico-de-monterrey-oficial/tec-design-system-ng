@@ -3,10 +3,40 @@
     <thead class="bmb_table-header">
       <tr class="bmb_table-header-row">
         @for (column of columnDefinition(); track $index) {
-          <th scope="col" [hidden]="column.isHidden" class="bmb_table-header-col">{{ column.title }}</th>
+          <th
+            scope="col"
+            [hidden]="column.isHidden"
+            class="bmb_table-header-col"
+          >
+            <span class="bmb_table-header-col-content">
+              <span>
+                {{ column.title }}
+              </span>
+              @if (column.isSortable) {
+                <button
+                  bmbButton
+                  icon="keyboard_arrow_down"
+                  class="bmb_table-sort"
+                  appearance="transparent"
+                  size="micro"
+                ></button>
+              }
+            </span>
+          </th>
         }
       </tr>
     </thead>
+    <tbody>
+      @for (row of dataSource(); track $index) {
+        <tr class="bmb_table-row">
+          @for (column of columnDefinition(); track $index) {
+            <td [hidden]="column.isHidden" class="bmb_table-body-col">
+              {{ getContent(column, row) }}
+            </td>
+          }
+        </tr>
+      }
+    </tbody>
   </table>
 </section>
 

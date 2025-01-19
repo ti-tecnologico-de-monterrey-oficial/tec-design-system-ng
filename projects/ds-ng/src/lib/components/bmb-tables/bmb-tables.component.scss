@@ -11,6 +11,12 @@
     border-collapse: collapse;
     width: 100%;
   }
+
+  &-header-col-content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
 }
 
 //   &-container {

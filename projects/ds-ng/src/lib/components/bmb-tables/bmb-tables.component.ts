@@ -5,6 +5,7 @@ import {
   model,
   ViewEncapsulation,
 } from '@angular/core';
+import { BmbButtonDirective } from '../../directives/button.directive';
 
 export interface IBmbColumn {
   id?: string | number;
@@ -28,13 +29,18 @@ export interface IBmbColumn {
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  imports: [BmbButtonDirective],
 })
 export class BmbTablesComponent {
-  dataSource = input<object[]>([]);
+  dataSource = input<any[]>([]);
   columnDefinition = input<IBmbColumn[]>([]);
   loading = model<boolean>(false);
 
   tableState = model({});
+
+  getContent(column: IBmbColumn, row: any): string {
+    return row[column.name as string] ?? '';
+  }
 }
 
 // import { CommonModule } from '@angular/common';
