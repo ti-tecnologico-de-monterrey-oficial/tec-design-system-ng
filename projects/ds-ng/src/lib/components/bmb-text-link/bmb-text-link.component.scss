@@ -39,11 +39,13 @@
     &-position_left {
       display: inline-flex;
       flex-direction: row;
+      align-items: center;
     }
 
     &-position_right {
       display: inline-flex;
       flex-direction: row-reverse;
+      align-items: center;
     }
 
     &-icon {
