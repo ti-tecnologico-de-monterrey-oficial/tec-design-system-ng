@@ -8,7 +8,6 @@
 <ng-template #itemsTemplate let-item="item">
   <bmb-check-external-link-button
     class="bmb_sidebar-link"
-    [ngClass]="{ 'modal-persist': !!item.children }"
     [idElement]="item.id.toString()"
     [link]="getLink(item.link, !!item.children)"
     [target]="item.target!"

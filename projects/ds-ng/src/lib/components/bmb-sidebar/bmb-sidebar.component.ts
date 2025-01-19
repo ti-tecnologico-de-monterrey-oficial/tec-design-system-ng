@@ -51,6 +51,7 @@ export class BmbSidebarComponent {
 
   toggleSidebar() {
     this.isOpen = !this.isOpen;
+    this.selectedElement = null;
   }
 
   toggleChildren(element: SidebarElement) {
