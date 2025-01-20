@@ -48,14 +48,6 @@ bmb-icon {
   display: inline-flex;
 }
 
-.material-icons {
-  @include mixins.materialIcons();
-}
-
-.material-symbols-rounded {
-  @include mixins.materialSymbols();
-}
-
 storybook-toast-wrapper {
   ~ .actions {
     display: none;

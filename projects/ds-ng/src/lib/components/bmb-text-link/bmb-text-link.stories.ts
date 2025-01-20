@@ -35,8 +35,7 @@ Below is an example of how you can use this component in HTML:
       description: 'Set the text that the componente will show .',
       table: {
         category: 'Properties',
-        type: { summary: 'string' },
-        deafaultValue: { summary: '' },
+        type: { summary: 'string (required)' },
       },
     },
     textLinkStyle: {
@@ -63,7 +62,7 @@ Below is an example of how you can use this component in HTML:
       table: {
         category: 'Properties',
         type: { summary: 'number' },
-        target: { summary: '_blank' },
+        defaultValue: { summary: '_blank' },
       },
     },
     icon: {
@@ -86,7 +85,7 @@ Below is an example of how you can use this component in HTML:
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        target: { summary: 'right' },
+        defaultValue: { summary: 'right' },
       },
     },
     link: {
@@ -96,8 +95,8 @@ Below is an example of how you can use this component in HTML:
       },
       description: 'The link for redirection to another page.',
       table: {
-        category: 'Events',
-        type: { summary: 'string' },
+        category: 'Properties',
+        type: { summary: 'string (required)' },
       },
     },
     disabled: {
@@ -114,10 +113,11 @@ Below is an example of how you can use this component in HTML:
   },
   args: {
     textLink: 'Texto de prueba',
+    link: 'https://www.youtube.com',
     textLinkStyle: 'icon',
     target: '_blank',
     icon: 'arrow_forward',
-    link: 'https://www.youtube.com',
+    iconPosition: 'right',
     disabled: false,
   },
 } as Meta<typeof BmbTextLinkComponent>;

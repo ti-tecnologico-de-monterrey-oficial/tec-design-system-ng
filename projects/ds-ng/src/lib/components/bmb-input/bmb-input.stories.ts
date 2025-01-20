@@ -101,7 +101,25 @@ Below is an example of how to use this component in HTML:
   />
   <button bmbButton appearance="primary" type="submit">Submit</button>
 </form>
+\`\`\`
 
+## Architecture
+
+\`\`\`html
+<section class="bmb_field" <!-- conditional class bmb_field-disabled --> >
+  <!-- if label is defined -->
+  <label class="bmb_field-label" for="input">{ label }</label>
+
+  <section class="bmb_field-wrapper">
+    <input { configuration } />
+  </section>
+
+  <!-- if helper message is defined -->
+  <p class="bmb_field-helper">{ helperMessage }</p>
+
+  <!-- if error message is defined -->
+  <p class="bmb_field-error">{ errorMessage }</p>
+</section>
 
 \`\`\`
         `,

@@ -1,6 +1,6 @@
 <div class="bmb_totp">
   <form [formGroup]="codeForm" (ngSubmit)="onSubmit()" class="bmb_totp-form">
-    <bmb-icon icon="lock" class="bmb_totp-icon" [materialIcon]="true" />
+    <bmb-icon icon="lock" class="bmb_totp-icon" fontWeight="600" />
     <h2 class="bmb_totp-title">{{ title() }}</h2>
     <h4 class="bmb_totp-subtitle">{{ subtitle() }}</h4>
     <div class="bmb_totp-code">
