@@ -1,23 +1,26 @@
 @use "../../../assets/styles/base/rem" as rem;
 
 .bmb_user_image {
-  align-items: center;
-  border-radius: rem.rem_calc(50);
   display: flex;
-  height: rem.rem_calc(50);
+  align-items: center;
   justify-content: center;
+  border-radius: 50%;
   overflow: hidden;
-  width: rem.rem_calc(50);
 
   &-bordered {
+    align-items: normal;
     border: rem.rem_calc(2) solid RGBA(var(--color-blue-primary));
   }
 
-  img {
-    border-radius: rem.rem_calc(50);
-    height: 95%;
-    width: 95%;
+  &-image {
+    border-radius: 50%;
     object-fit: cover;
+
+    &-bordered {
+      margin: 3%;
+      height: 95%;
+      width: 95%;
+    }
   }
 
   &-mobile-small {
@@ -54,6 +57,8 @@
 [data-theme="dark"],
 .storybook-dark-theme {
   .bmb_user_image {
-    border: 2px solid RGBA(var(--color-neon-primary));
+    &-bordered {
+      border-color: RGBA(var(--color-neon-primary));
+    }
   }
 }

@@ -1,0 +1,48 @@
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ContentChild,
+  input,
+  output,
+  TemplateRef,
+  ViewEncapsulation,
+} from '@angular/core';
+import { isExternalLink } from '../../utils/utils';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { IBmbTargetLink } from '../../types';
+
+@Component({
+  selector: 'bmb-check-external-link-button',
+  standalone: true,
+  imports: [RouterModule, CommonModule],
+  templateUrl: './bmb-check-external-link-button.component.html',
+  styleUrl: './bmb-check-external-link-button.component.scss',
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class BmbCheckExternalLinkButtonComponent {
+  idElement = input<string>('');
+  link = input<string>('');
+  target = input<IBmbTargetLink>('_blank');
+
+  buttonClick = output<void>();
+
+  @ContentChild('commonTemplate') commonTemplate!: TemplateRef<any>;
+
+  isExternalLink(link: string): boolean {
+    if (link) {
+      return isExternalLink(link);
+    }
+
+    return false;
+  }
+
+  isButton(link: string): boolean {
+    return !link;
+  }
+
+  handleClick(): void {
+    this.buttonClick.emit();
+  }
+}
