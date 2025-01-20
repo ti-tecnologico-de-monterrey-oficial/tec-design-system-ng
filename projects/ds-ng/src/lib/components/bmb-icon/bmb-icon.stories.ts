@@ -60,20 +60,20 @@ Below is an example of how you can use this component in HTML:
       description: `
     ### Available Icon Styles
     Below are the options for defining the style of Material Symbols icons:
-    
-    - **Outlined**  
-      - **Description:** Icons with defined contours, minimalistic, and without fill.  
-      - **Visual Features:** Thin lines, clear contours, empty background. Ideal for clean and modern interfaces.  
+
+    - **Outlined**
+      - **Description:** Icons with defined contours, minimalistic, and without fill.
+      - **Visual Features:** Thin lines, clear contours, empty background. Ideal for clean and modern interfaces.
       - **Class Name:** \`material-symbols-outlined\`
-    
-    - **Rounded**  
-      - **Description:** Icons with rounded edges. They feel softer and more friendly.  
-      - **Visual Features:** Rounded corners. The design is more approachable and less technical.  
+
+    - **Rounded**
+      - **Description:** Icons with rounded edges. They feel softer and more friendly.
+      - **Visual Features:** Rounded corners. The design is more approachable and less technical.
       - **Class Name:** \`material-symbols-rounded\`
-    
-    - **Sharp**  
-      - **Description:** Icons with angular and sharp edges, providing a more technical and defined appearance.  
-      - **Visual Features:** Sharp edges without rounding. Suitable for robust or industrial interfaces.  
+
+    - **Sharp**
+      - **Description:** Icons with angular and sharp edges, providing a more technical and defined appearance.
+      - **Visual Features:** Sharp edges without rounding. Suitable for robust or industrial interfaces.
       - **Class Name:** \`material-symbols-sharp\`
     `,
       table: {
@@ -97,7 +97,7 @@ Below is an example of how you can use this component in HTML:
       name: 'Material Icon',
       description: 'Deprecated',
       table: {
-        category: 'Properties',
+        category: 'Deprecated',
       },
     },
     fontWeight: {

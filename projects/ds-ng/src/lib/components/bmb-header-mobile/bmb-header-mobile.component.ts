@@ -10,6 +10,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 import { BmbLogoComponent } from '../bmb-logo/bmb-logo.component';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
+import { IBmbTargetLink } from '../../types';
 @Component({
   selector: 'bmb-header-mobile',
   standalone: true,
@@ -30,7 +31,7 @@ export class BmbHeaderMobileComponent {
   userImage = input<string>('');
   userAltImage = input<string>('');
   userLink = input<string>('');
-  userTarget = input<string>('');
+  userTarget = input<IBmbTargetLink>();
 
   logo = input<string>('');
   altLogo = input<string>('');

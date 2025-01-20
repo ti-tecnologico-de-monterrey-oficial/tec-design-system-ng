@@ -1,6 +1,23 @@
 @use "../base/mixins" as mixins;
 @use "../base/rem" as rem;
 
+@mixin first_child() {
+  &:first-child {
+    border-left-width: rem.rem_calc(1);
+
+    &:hover:not(:disabled),
+    &:focus-visible:not(:disabled) {
+      border-left-width: rem.rem_calc(2);
+    }
+  }
+
+  &:hover:not(:disabled),
+  &:focus-visible:not(:disabled) {
+    border-left-width: rem.rem_calc(1);
+    border-right-width: rem.rem_calc(2);
+  }
+}
+
 .bmb_button-group {
   display: inline-flex;
 
@@ -21,20 +38,7 @@
       @include mixins.button(secondary-outlined);
       border-left-width: 0;
 
-      &:first-child {
-        border-left-width: rem.rem_calc(1);
-
-        &:hover:not(:disabled),
-        &:focus-visible:not(:disabled) {
-          border-left-width: rem.rem_calc(2);
-        }
-      }
-
-      &:hover:not(:disabled),
-      &:focus-visible:not(:disabled) {
-        border-left-width: rem.rem_calc(1);
-        border-right-width: rem.rem_calc(2);
-      }
+      @include first_child();
     }
   }
 
@@ -43,20 +47,13 @@
       @include mixins.button(destructive);
       border-left-width: 0;
 
-      &:first-child {
-        border-left-width: rem.rem_calc(1);
+      @include first_child();
+    }
+  }
 
-        &:hover:not(:disabled),
-        &:focus-visible:not(:disabled) {
-          border-left-width: rem.rem_calc(2);
-        }
-      }
-
-      &:hover:not(:disabled),
-      &:focus-visible:not(:disabled) {
-        border-left-width: rem.rem_calc(1);
-        border-right-width: rem.rem_calc(2);
-      }
+  &-transparent {
+    > * {
+      @include mixins.button(transparent);
     }
   }
 

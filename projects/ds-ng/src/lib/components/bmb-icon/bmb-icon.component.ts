@@ -1,10 +1,10 @@
-import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   input,
   ViewEncapsulation,
 } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { isImage } from '../../utils/utils';
 import { StyleIconType } from './types';
 
@@ -29,10 +29,6 @@ export class BmbIconComponent {
 
   isImage(icon: string): boolean {
     return isImage(icon);
-  }
-
-  getIconClass(): string {
-    return this.styleIcon();
   }
 
   getFontVariationSettings(): string {

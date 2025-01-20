@@ -72,17 +72,6 @@
     }
   </nav>
   <div class="bmb_top-bar-always-visible-content">
-    <!-- @if (userInformation && hasLogoutButton) {
-      <button
-        class="bmb_top-bar-logoff"
-        bmbButton
-        appearance="secondary-filled"
-        (click)="handleLogOutClick($event)"
-      >
-        Salir
-      </button>
-    } -->
-
     @if (showLang) {
       <bmb-select (onValueChange)="handleLangChange($event)" [value]="lang">
         <div class="bmb_top-bar-lang" selectTemplate>
