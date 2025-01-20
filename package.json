@@ -18,7 +18,7 @@
     "build": "ng build",
     "chromatic": "npx chromatic --project-token=chpt_f98e9dab3ebf7df",
     "build:styles": "sass projects/ds-ng/src/assets/styles/main.scss dist/ds-ng/assets/styles/main.min.css --style=compressed",
-    "build:lib": "ng build ds-ng && npm run build:styles && npm run build:micro",
+    "build:lib": "ng build ds-ng && npm run build:styles && npm run build:micro && build:git-micro",
     "version": "auto-changelog -p && git add CHANGELOG.md",
     "lint": "ng lint",
     "format": "prettier --write .",
@@ -26,7 +26,8 @@
     "compodoc:build": "compodoc -p tsconfig.doc.json",
     "compodoc:build-and-serve": "compodoc -p tsconfig.doc.json -s",
     "compodoc:serve": "compodoc -s",
-    "build:micro": "sass projects/ds-ng/src/assets/styles/micro.scss dist/ds-ng/assets/styles/micro.min.css --style=compressed"
+    "build:micro": "sass projects/ds-ng/src/assets/styles/micro.scss dist/ds-ng/assets/styles/micro.min.css --style=compressed",
+    "build:git-micro": "sass projects/ds-ng/src/assets/styles/micro.scss projects/ds-ng/src/lib/foundations/micro.min.css --style=compressed"
   },
   "auto-changelog": {
     "output": "CHANGELOG.md",
