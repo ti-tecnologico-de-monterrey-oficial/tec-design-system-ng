@@ -84,7 +84,6 @@ import {
   BmbStepProgressBarComponent,
   IBmbMobileTemplateButton,
   BmbDateRangeComponent,
-  IBmbActionHeader,
   BmbFocusElementComponent,
   BmbGradeValueComponent,
   BmbTooltipComponent,
@@ -104,6 +103,8 @@ import {
   BmbMitecLogoAnimationComponent,
   BmbAdvertisementCardComponent,
   BmbAccordionComponent,
+  IBmbActionHeader,
+  BmbNavigationBarComponent,
 } from '../../projects/ds-ng/src/public-api';
 import { BmbPullWedgeComponent } from '../../projects/ds-ng/src/lib/components/bmb-pull-wedge/bmb-pull-wedge.component';
 import { BmbCardButtonComponent } from '../../projects/ds-ng/src/lib/components/bmb-card-button/bmb-card-button.component';
@@ -223,6 +224,7 @@ import { BmbUserProfileComponent } from '../../projects/ds-ng/src/lib/components
     BmbAccordionComponent,
     BmbSidebarComponent,
     BmbUserImageComponent,
+    BmbNavigationBarComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -2973,11 +2975,15 @@ export class AppComponent {
     {
       icon: 'timer',
       isToggleActive: false,
-      action: () => {},
+      action: () => {
+        alert('timer');
+      },
     },
     {
       icon: 'tune',
-      action: () => {},
+      action: () => {
+        alert('tune');
+      },
     },
   ];
 

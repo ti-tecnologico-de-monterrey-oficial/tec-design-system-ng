@@ -6,12 +6,10 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  BmbHeaderSectionComponent,
-  IBmbActionHeader,
-} from '../../bmb-header-section/bmb-header-section.component';
+import { BmbHeaderSectionComponent } from '../../bmb-header-section/bmb-header-section.component';
 import { IBmbDataTopBar } from '../../bmb-breadcrumb/bmb-breadcrumb.component';
 import { IBmbColor } from '../../../types/colors';
+import { IBmbActionHeader } from '../../../types';
 
 @Component({
   selector: 'bmb-home-card-header',

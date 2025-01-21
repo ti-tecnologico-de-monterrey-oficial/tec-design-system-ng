@@ -1,85 +1,50 @@
 <bmb-theme />
 <bmb-divider />
-<bmb-sidebar
-  [elements]="[
-    [
-      {
-        id: 1,
-        icon: 'assignment_add',
-        title: 'Elegir documentos',
-        link: 'https://www.youtube.com/watch?v=beh56CrNRsQ',
-      },
-      {
-        id: 2,
-        icon: 'task',
-        title: 'Agregar firmantes',
-        link: '/home',
-      },
-      {
-        id: 3,
-        icon: 'note_alt',
-        title: 'Crear envelope',
-        link: '#contact',
-        target: '_self',
-      },
-      {
-        id: 4,
-        icon: 'checklist_rtl',
-        title: 'Estado de archivos anonimos',
-        link: 'inicio',
-        children: [
-          {
-            id: 4.1,
-            icon: 'file_copy',
-            title: 'Sub-item 1',
-            link: '/emprendedor',
-          },
-          {
-            id: 4.2,
-            icon: 'file_copy',
-            title: 'Sub-item 2',
-            link: 'https://www.youtube.com/watch?v=beh56CrNRsQ',
-          },
-        ],
-      },
-      {
-        id: 5,
-        icon: 'account_box',
-        title: 'Admin.usuariosusuariosusuarios',
-        link: 'vivencia',
-        children: [
-          { id: 5.1, icon: 'file_copy', title: 'Sub-item 3', link: '/home' },
-          {
-            id: 5.2,
-            icon: 'file_copy',
-            title: 'Sub-item 4',
-            link: 'https://www.youtube.com/watch?v=beh56CrNRsQ',
-          },
-        ],
-      },
-    ],
-    [
-      {
-        id: 7,
-        icon: 'account_box',
-        title: 'Admin. usuarios',
-        link: '/my-app',
-      },
-      {
-        id: 8,
-        icon: 'account_box',
-        title: 'Admin. usuarios',
-        link: 'vivencia2',
-      },
-      {
-        id: 9,
-        icon: 'account_box',
-        title: 'Admin. usuarios',
-        link: 'vivencia3',
-      },
-      { id: 10, icon: 'account_box', title: 'Hi', link: 'vivencia4' },
-      { id: 11, icon: 'account_box', title: 'Hi', link: 'vivencia5' },
-    ],
-  ]"
-  [title]="'Navegacion para mobiles'"
+<bmb-home-card
+  leftIcon="chevron_left"
+  icon="account_balance_wallet"
+  bgIconAppearance="green-light"
+  title="Title"
+  subtitle="Subtitle"
+  [dataLocalNav]="dataLocalNav"
+  [actionHeaders]="actionHeadersB"
+  [isMobile]="false"
+>
+  <p>hello world</p>
+</bmb-home-card>
+<bmb-divider />
+<bmb-home-card
+  leftIcon="chevron_left"
+  icon="account_balance_wallet"
+  bgIconAppearance="green-light"
+  title="Title"
+  subtitle="Subtitle"
+  [dataLocalNav]="dataLocalNav"
+  [actionHeaders]="actionHeaders"
+  [isMobile]="true"
+>
+  <p>hello world</p>
+</bmb-home-card>
+<bmb-divider />
+<bmb-navigation-bar [actionHeaders]="actionHeadersB" />
+<bmb-divider />
+<bmb-header-section
+  leftIcon="chevron_left"
+  icon="account_balance_wallet"
+  bgIconAppearance="green-light"
+  title="Title"
+  subtitle="Subtitle"
+  [dataLocalNav]="dataLocalNav"
+  [actionHeaders]="actionHeaders"
+  [transparentBgC]="true"
+/>
+<bmb-divider />
+<bmb-header-section
+  leftIcon="chevron_left"
+  icon="account_balance_wallet"
+  bgIconAppearance="green-light"
+  title="Title"
+  subtitle="Subtitle"
+  [dataLocalNav]="dataLocalNav"
+  [actionHeaders]="actionHeaders"
 />
