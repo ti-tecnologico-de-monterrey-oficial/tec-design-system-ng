@@ -124,6 +124,10 @@ getProgressPercent(): number {
 
 **Install Dependencies**: `npm install`.
 
+**Download the .env file** Download the env file from: Documentos/13. Design System/DS01. Tec.Design/5. Knowledge base/Desarrollo
+
+**Add the .env File**: Add the downloaded .env file to the root of the project.
+
 **Build the Project**: `npm run build`.
 
 **Serve the Application**: `ng serve`.
