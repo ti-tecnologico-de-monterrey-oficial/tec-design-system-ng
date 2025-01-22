@@ -71,3 +71,12 @@ export interface IBmbProfileData {
   campus: string;
   program: string;
 }
+
+export interface IBmbActionHeader {
+  icon: string;
+  iconActiveToggle?: string;
+  isToggleActive?: boolean;
+  link?: string;
+  target?: IBmbTargetLink;
+  action: () => void;
+}

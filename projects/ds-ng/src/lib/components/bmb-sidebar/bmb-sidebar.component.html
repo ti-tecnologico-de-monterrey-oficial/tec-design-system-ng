@@ -38,7 +38,7 @@
                 'bmb_sidebar-children-open': selectedElement === element,
               }"
             >
-              @if (!!selectedElement) {
+              @if (!!selectedElement && isOpen) {
                 <section class="bmb_sidebar-title">
                   <button
                     class="bmb_sidebar-title-button"

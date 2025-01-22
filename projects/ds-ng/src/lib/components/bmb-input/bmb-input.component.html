@@ -1,6 +1,6 @@
 <section class="bmb_field" [ngClass]="{ disabled: disabled() }">
   @if (!!label()) {
-    <span [class]="getClasses('bmb_field')">
+    <span [ngClass]="getClasses('bmb_field')">
       @if (type() === "radio") {
         <input
           class="bmb_field-radio-input"

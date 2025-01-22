@@ -4,44 +4,12 @@
       <img alt="Tecnológico de Monterrey" [src]="tecLogoImage" />
     </section>
     <section class="bmb_header-mitec-top-social">
-      <a href="" target="_blank">
-        <img
-          class="bmb_login-header-social-icon"
-          [src]="appleIcon"
-          alt="Apple"
-        />
-      </a>
-      <a href="" target="_blank">
-        <img
-          class="bmb_login-header-social-icon"
-          [src]="androidIcon"
-          alt="Android"
-        />
-      </a>
-      <a href="" target="_blank">
-        <img class="bmb_login-header-social-icon" [src]="twitterIcon" alt="X" />
-      </a>
-      <a href="" target="_blank">
-        <img
-          class="bmb_login-header-social-icon"
-          [src]="facebookIcon"
-          alt="Facebook"
-        />
-      </a>
-      <a href="" target="_blank">
-        <img
-          class="bmb_login-header-social-icon"
-          [src]="instagramIcon"
-          alt="Instagram"
-        />
-      </a>
-      <a href="" target="_blank">
-        <img
-          class="bmb_login-header-social-icon"
-          [src]="youTubeIcon"
-          alt="Youtube"
-        />
-      </a>
+      <bmb-navigation-bar
+        [actionHeaders]="actionHeaders()"
+        justify="stretch"
+        gapSize="m"
+        alignItems="stretch"
+      />
     </section>
   </section>
 
