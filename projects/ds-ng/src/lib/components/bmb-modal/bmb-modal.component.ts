@@ -14,11 +14,9 @@ import {
 import { ModalDataConfig } from './bmb-modal.interface';
 import { BmbButtonDirective } from '../../directives/button.directive';
 import { ModalService } from '../../services/modal.service';
-import {
-  BmbHeaderSectionComponent,
-  IBmbActionHeader,
-} from '../bmb-header-section/bmb-header-section.component';
+import { BmbHeaderSectionComponent } from '../bmb-header-section/bmb-header-section.component';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
+import { IBmbActionHeader } from '../../types';
 
 @Component({
   selector: 'bmb-modal',

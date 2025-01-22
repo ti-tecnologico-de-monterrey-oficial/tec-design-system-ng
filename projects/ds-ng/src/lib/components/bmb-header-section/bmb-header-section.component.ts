@@ -8,20 +8,16 @@ import {
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
-import { BmbInteractiveIconComponent } from '../bmb-interactive-icon/bmb-interactive-icon.component';
 import { isImage } from '../../utils/utils';
 import {
   BmbBreadcrumbComponent,
   IBmbDataTopBar,
 } from '../bmb-breadcrumb/bmb-breadcrumb.component';
 import { IBmbColor } from '../../types/colors';
-
-export interface IBmbActionHeader {
-  icon: string;
-  iconActiveToggle?: string;
-  isToggleActive?: boolean;
-  action: () => void;
-}
+import { IBmbActionHeader } from '../../types';
+import { BmbNavigationBarComponent } from '../bmb-navigation-bar/bmb-navigation-bar.component';
+import { getClassNameByConditional } from '../../utils/getClassName';
+import { BmbNavigationIconComponent } from '../bmb-navigation-bar/bmb-navigation-icon/bmb-navigation-icon.component';
 
 @Component({
   selector: 'bmb-header-section',
@@ -31,7 +27,8 @@ export interface IBmbActionHeader {
     BmbContainerComponent,
     BmbIconComponent,
     BmbBreadcrumbComponent,
-    BmbInteractiveIconComponent,
+    BmbNavigationIconComponent,
+    BmbNavigationBarComponent,
   ],
   styleUrl: './bmb-header-section.component.scss',
   templateUrl: './bmb-header-section.component.html',
@@ -64,27 +61,16 @@ export class BmbHeaderSectionComponent {
   }
 
   evaluateConditional(conditional: any): boolean {
-    if (typeof conditional === 'string') return !!conditional;
-    return conditional;
+    if (typeof conditional === 'boolean') return conditional;
+    return !!conditional;
   }
 
   getClassNameByConditional(
-    baseClassName: string,
+    mainClassName: string,
     conditional: any,
-    className: string,
+    newClassName: string,
   ): string[] {
-    const classes: string[] = [];
-
-    if (this.evaluateConditional(conditional)) {
-      return [...classes, `${baseClassName}-${className}`];
-    }
-    return classes;
-  }
-
-  getRightIcon(actionHeader: IBmbActionHeader): string {
-    if (actionHeader.isToggleActive && !!actionHeader.iconActiveToggle)
-      return actionHeader.iconActiveToggle;
-    return actionHeader.icon;
+    return getClassNameByConditional(mainClassName, conditional, newClassName);
   }
 
   isImage(icon: string): boolean {
@@ -97,12 +83,5 @@ export class BmbHeaderSectionComponent {
 
   handleClickLeft(event: any): void {
     this.onClickLeft.emit(event);
-  }
-
-  handleClickRight(actionHeader: IBmbActionHeader) {
-    if (!!actionHeader.iconActiveToggle) {
-      actionHeader.isToggleActive = !actionHeader.isToggleActive;
-    }
-    actionHeader.action();
   }
 }

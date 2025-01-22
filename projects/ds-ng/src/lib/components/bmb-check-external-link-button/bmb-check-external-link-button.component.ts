@@ -22,7 +22,7 @@ import { IBmbTargetLink } from '../../types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbCheckExternalLinkButtonComponent {
-  idElement = input<string>('');
+  idElement = input<string | undefined>('');
   link = input<string>('');
   target = input<IBmbTargetLink>('_blank');
 

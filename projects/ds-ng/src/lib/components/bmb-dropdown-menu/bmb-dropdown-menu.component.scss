@@ -7,8 +7,9 @@
     background-color: transparent;
     border: none;
     color: RGBA(var(--color-charade-500));
-    padding: 0;
+    padding: rem.rem_calc(6) 0 !important;
     position: relative;
+    min-height: auto;
 
     &:hover {
       color: RGBA(var(--color-mariner-700));
