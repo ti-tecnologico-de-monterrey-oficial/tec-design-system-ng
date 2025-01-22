@@ -47,5 +47,4 @@ Alternatively, you can find it on the Bamboo UI repository on the path [Bamboo G
   },
 } as Meta;
 
-
 export const Default = {};
