@@ -15,6 +15,6 @@
   </bmb-check-external-link-button>
 } @else {
   <span [ngClass]="getClasses('bmb_user_image', size()!, bordered())">
-    <img [src]="image()" [alt]="altImage()" />
+    <ng-container [ngTemplateOutlet]="commonTemplate" />
   </span>
 }
