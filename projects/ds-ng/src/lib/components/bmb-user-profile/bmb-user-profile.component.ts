@@ -20,10 +20,7 @@ import { BmbHeaderMitecComponent } from '../bmb-header-mitec/bmb-header-mitec.co
   ],
   styleUrl: './bmb-user-profile.component.scss',
   template: `
-    <bmb-header-mitec
-      [headerLabel]="headerLabel()"
-      [actionHeaders]="actionHeaders()"
-    >
+    <bmb-header-mitec [actionHeaders]="actionHeaders()">
       <section class="bmb_user-profile">
         <bmb-user-summary
           [image]="userInfo().profilePicture"

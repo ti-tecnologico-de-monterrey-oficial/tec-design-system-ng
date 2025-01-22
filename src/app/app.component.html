@@ -1,71 +1,8 @@
 <bmb-theme />
 <bmb-divider />
-<!-- <bmb-home-card
-  leftIcon="chevron_left"
-  icon="account_balance_wallet"
-  bgIconAppearance="green-light"
-  title="Title"
-  subtitle="Subtitle"
-  [dataLocalNav]="dataLocalNav"
-  [actionHeaders]="actionHeadersB"
-  [isMobile]="false"
->
-  <p>hello world</p>
-</bmb-home-card>
-<bmb-divider />
-<bmb-home-card
-  leftIcon="chevron_left"
-  icon="account_balance_wallet"
-  bgIconAppearance="green-light"
-  title="Title"
-  subtitle="Subtitle"
-  [dataLocalNav]="dataLocalNav"
-  [actionHeaders]="actionHeaders"
-  [isMobile]="true"
->
-  <p>hello world</p>
-</bmb-home-card>
-<bmb-divider /> -->
-<!-- <bmb-navigation-bar [actionHeaders]="actionHeadersB" />
-<bmb-divider />
-<bmb-header-section
-  leftIcon="chevron_left"
-  icon="account_balance_wallet"
-  bgIconAppearance="green-light"
-  title="Title"
-  subtitle="Subtitle"
-  [dataLocalNav]="dataLocalNav"
-  [actionHeaders]="actionHeaders"
-  [transparentBgC]="true"
-/>
-<bmb-divider />
-<bmb-header-section
-  leftIcon="chevron_left"
-  icon="account_balance_wallet"
-  bgIconAppearance="green-light"
-  title="Title"
-  subtitle="Subtitle"
-  [dataLocalNav]="dataLocalNav"
-  [actionHeaders]="actionHeaders"
-/> -->
-<!-- <bmb-user-profile
+<!-- <bmb-login
   [headerLabel]="'ESTUDIANTES'"
-  [anotherAccountLabel]="'Ingresar con otra cuenta'"
+  [forgottenPasswordLabel]="'¿Olvidaste tu contraseña?'"
   [buttonLabel]="'Ingresar'"
-  [userInfo]="{
-    id: 'A00123456',
-    fullName: 'Borrego Perez',
-    profilePicture:
-      'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/assets/images/placeholders/user-icon-test.svg',
-  }"
-  [actionHeaders]="mitecSocial"
-></bmb-user-profile> -->
-<bmb-bottom-navigation-bar
-  [navigationBarIcons]="{
-    one: { name: 'home', label: '' },
-    two: { name: 'share', label: '' },
-    three: { name: 'inventory_2', label: '' },
-    four: { name: 'send', label: '' },
-  }"
-  (navigationBarEvents)="navigationBarEvents($event)"
-></bmb-bottom-navigation-bar>
+/> -->
+<bmb-header-mitec headerLabel="Test" [actionHeaders]="mitecSocial" />
