@@ -225,6 +225,7 @@ import { BmbUserProfileComponent } from '../../projects/ds-ng/src/lib/components
     BmbSidebarComponent,
     BmbUserImageComponent,
     BmbNavigationBarComponent,
+    BmbUserProfileComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -469,6 +470,10 @@ export class AppComponent {
   }
 
   handleLogOff(event: Event) {
+    console.log(event);
+  }
+
+  navigationBarEvents(event: string) {
     console.log(event);
   }
 
@@ -2992,6 +2997,39 @@ export class AppComponent {
       icon: 'fit_screen',
       iconActiveToggle: 'close_fullscreen',
       isToggleActive: false,
+      action: () => {},
+    },
+  ];
+
+  mitecSocial: IBmbActionHeader[] = [
+    {
+      icon: '../assets/images/social-icons/icon_Apple.svg',
+      link: 'https://www.youtube.com/',
+      action: () => {},
+    },
+    {
+      icon: '../assets/images/social-icons/icon_Android.svg',
+      link: 'https://www.youtube.com/',
+      action: () => {},
+    },
+    {
+      icon: '../assets/images/social-icons/icon_Twitter.svg',
+      link: 'https://www.youtube.com/',
+      action: () => {},
+    },
+    {
+      icon: '../assets/images/social-icons/icon_Facebook.svg',
+      link: 'https://www.youtube.com/',
+      action: () => {},
+    },
+    {
+      icon: '../assets/images/social-icons/icon_Instagram.svg',
+      link: 'https://www.youtube.com/',
+      action: () => {},
+    },
+    {
+      icon: '../assets/images/social-icons/icon_Youtube.svg',
+      link: 'https://www.youtube.com/',
       action: () => {},
     },
   ];

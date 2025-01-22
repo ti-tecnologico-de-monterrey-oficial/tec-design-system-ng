@@ -1,6 +1,6 @@
 <bmb-theme />
 <bmb-divider />
-<bmb-home-card
+<!-- <bmb-home-card
   leftIcon="chevron_left"
   icon="account_balance_wallet"
   bgIconAppearance="green-light"
@@ -25,8 +25,8 @@
 >
   <p>hello world</p>
 </bmb-home-card>
-<bmb-divider />
-<bmb-navigation-bar [actionHeaders]="actionHeadersB" />
+<bmb-divider /> -->
+<!-- <bmb-navigation-bar [actionHeaders]="actionHeadersB" />
 <bmb-divider />
 <bmb-header-section
   leftIcon="chevron_left"
@@ -47,4 +47,25 @@
   subtitle="Subtitle"
   [dataLocalNav]="dataLocalNav"
   [actionHeaders]="actionHeaders"
-/>
+/> -->
+<!-- <bmb-user-profile
+  [headerLabel]="'ESTUDIANTES'"
+  [anotherAccountLabel]="'Ingresar con otra cuenta'"
+  [buttonLabel]="'Ingresar'"
+  [userInfo]="{
+    id: 'A00123456',
+    fullName: 'Borrego Perez',
+    profilePicture:
+      'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/assets/images/placeholders/user-icon-test.svg',
+  }"
+  [actionHeaders]="mitecSocial"
+></bmb-user-profile> -->
+<bmb-bottom-navigation-bar
+  [navigationBarIcons]="{
+    one: { name: 'home', label: '' },
+    two: { name: 'share', label: '' },
+    three: { name: 'inventory_2', label: '' },
+    four: { name: 'send', label: '' },
+  }"
+  (navigationBarEvents)="navigationBarEvents($event)"
+></bmb-bottom-navigation-bar>

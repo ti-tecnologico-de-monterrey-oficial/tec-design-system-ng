@@ -47,6 +47,12 @@
         gap: 10px;
         padding: var(--bmb-spacing-xl);
       }
+
+      .bmb_navigation-bar-icon {
+        .bmb_icon-figure-image {
+          width: rem.rem_calc(24);
+        }
+      }
     }
   }
 

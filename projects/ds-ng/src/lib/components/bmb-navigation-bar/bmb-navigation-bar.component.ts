@@ -34,7 +34,7 @@ export class BmbNavigationBarComponent {
   justify = input<IJustifyOptions>('spaceBetween');
   alignItems = input<IAlignItemsOptions>('start');
 
-  handleClick(actionHeader: IBmbActionHeader) {
+  handleClick(actionHeader: IBmbActionHeader): void {
     actionHeader.action();
   }
 }
