@@ -14,16 +14,7 @@
   </section>
 
   <section class="bmb_header-mitec-mitec_logo">
-    <img
-      class="bmb_header-mitec-mitec_logo-animation_img"
-      alt="mitec"
-      [src]="mitecImage"
-    />
-    @if (!!headerLabel()) {
-      <h2 class="bmb_header-mitec-mitec_logo-animation_text">
-        {{ headerLabel() }}
-      </h2>
-    }
+    <bmb-mitec-logo-animation />
   </section>
   <section class="bmb_header-mitec-content">
     <section class="bmb_header-mitec-content-container">

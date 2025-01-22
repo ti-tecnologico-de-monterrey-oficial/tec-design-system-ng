@@ -130,6 +130,7 @@ import {
   IBmbEvaluationRubric,
 } from '../../projects/ds-ng/src/lib/components/bmb-evaluation-rubric/bmb-evaluation-rubric.component';
 import { BmbUserProfileComponent } from '../../projects/ds-ng/src/lib/components/bmb-user-profile/bmb-user-profile.component';
+import { BmbHeaderMitecComponent } from '../../projects/ds-ng/src/lib/components/bmb-header-mitec/bmb-header-mitec.component';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -226,6 +227,7 @@ import { BmbUserProfileComponent } from '../../projects/ds-ng/src/lib/components
     BmbUserImageComponent,
     BmbNavigationBarComponent,
     BmbUserProfileComponent,
+    BmbHeaderMitecComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
