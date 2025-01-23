@@ -7,12 +7,12 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbButtonDirective } from '../../directives/button.directive';
-import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
+import { BmbUserSummaryContentComponent } from './bmb-user-summary-content/bmb-user-summary-content.component';
 
 @Component({
   selector: 'bmb-user-summary',
   standalone: true,
-  imports: [CommonModule, BmbButtonDirective, BmbUserImageComponent],
+  imports: [CommonModule, BmbUserSummaryContentComponent, BmbButtonDirective],
   templateUrl: './bmb-user-summary.component.html',
   styleUrl: './bmb-user-summary.component.scss',
   encapsulation: ViewEncapsulation.None,

@@ -2,9 +2,7 @@
 @use "../../../assets/styles/base/rem" as rem;
 
 .bmb_container-button {
-  &:not(.bmb_container-button-disabled):not(
-    .bmb_container-button-error
-  ) {
+  &:not(.bmb_container-button-disabled):not(.bmb_container-button-error) {
     .bmb_check-external-link-button-element {
       &:hover {
         background-color: var(--general_contrasts-50);
@@ -21,8 +19,8 @@
       }
 
       &:focus-visible:not(.bmb_container-button-disabled):not(
-        .bmb_container-button-error
-      ) {
+          .bmb_container-button-error
+        ) {
         background-color: var(--buttons-primary-select);
         color: RGBA(var(--color-white-primary));
 
@@ -36,7 +34,6 @@
           }
         }
       }
-
     }
   }
 
@@ -162,7 +159,6 @@
   }
 
   &.bmb_container-button-alternative {
-
     &.bmb_container-button-error {
       .bmb_check-external-link-button-element {
         background-color: RGBA(var(--color-charade-700), 1);

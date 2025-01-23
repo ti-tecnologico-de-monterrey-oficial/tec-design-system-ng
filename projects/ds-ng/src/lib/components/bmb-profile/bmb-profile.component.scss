@@ -2,56 +2,21 @@
 @use "../../../assets/styles/base/rem" as rem;
 
 .bmb_profile {
-  padding: 22px 16px;
-
-  &-user {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-bottom: 22px;
-
-    // background-color: darkcyan;
-
-    &-text {
-      // background-color: darkmagenta;
-      display: flex;
-      flex-direction: column;
-      padding: 0 15px;
-      width: 100%;
-
-      &-name {
-        @include fonts.font(7, bold);
-        padding: 0;
-        margin-bottom: 10px;
-      }
-
-      &-matricula {
-        @include fonts.font(4, regular);
-        padding: 0;
-        margin-bottom: 5px;
-      }
-
-      &-mail {
-        @include fonts.font(3, regular);
-        padding: 0;
-        margin-bottom: 5px;
-      }
-    }
-  }
+  padding: rem.rem_calc(22) rem.rem_calc(16);
 
   &-info {
     &-container {
       width: 100%;
       display: flex;
       flex-direction: row;
-      padding: 16px 16px;
+      padding: rem.rem_calc(16) rem.rem_calc(16);
       align-items: center;
       justify-content: space-between;
-      border-bottom: 1px solid RGBA(var(--color-charade-500));
+      border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-500));
 
       &.theme {
         border: 0;
-        padding: 22px 16px;
+        padding: rem.rem_calc(22) rem.rem_calc(16);
       }
 
       &-item {
@@ -60,7 +25,7 @@
 
         &-text {
           @include fonts.font(5, semibold);
-          margin-left: 16px;
+          margin-left: rem.rem_calc(16);
         }
       }
 
@@ -75,11 +40,10 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    // height: 100%;
-    gap: 15px;
-    margin-top: 35px;
+    gap: rem.rem_calc(15);
+    margin-top: rem.rem_calc(35);
 
-    bmb-container-button {
+    .bmb_check-external-link-button {
       a {
         width: 100%;
       }

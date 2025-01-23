@@ -6,19 +6,19 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbMobileTemplatesComponent } from '../bmb-mobile-templates/bmb-mobile-templates.component';
-import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbContainerButtonComponent } from '../bmb-container-button/bmb-container-button.component';
 import { BmbThemeComponent } from '../bmb-theme/bmb-theme.component';
 import { BmbButtonDirective } from '../../directives/button.directive';
 import { IBmbProfileData, IBmbTargetLink } from '../../types';
+import { BmbUserSummaryContentComponent } from '../bmb-user-summary/bmb-user-summary-content/bmb-user-summary-content.component';
 
 @Component({
   selector: 'bmb-profile',
   standalone: true,
   imports: [
     BmbMobileTemplatesComponent,
-    BmbUserImageComponent,
+    BmbUserSummaryContentComponent,
     BmbIconComponent,
     BmbContainerButtonComponent,
     BmbThemeComponent,

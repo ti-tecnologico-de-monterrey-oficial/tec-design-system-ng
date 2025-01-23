@@ -5,25 +5,14 @@
     'bmb_user-summary-is_profile-no_box': isProfile() && noBox(),
   }"
 >
-  <bmb-user-image
-    size="mobile-large"
+  <bmb-user-summary-content
+    [isProfile]="isProfile()"
+    [name]="name()"
+    [userId]="userId()"
     [image]="image()"
-    [altImage]="name()"
-    [bordered]="true"
+    [infoCareer]="infoCareer()"
+    [salutation]="salutation()"
   />
-  <div class="bmb_user-summary-content">
-    @if (isProfile()) {
-      <h3 class="bmb_user-summary-content-title">{{ name() }}</h3>
-    } @else {
-      <h3
-        class="bmb_user-summary-content-title bmb_user-summary-content-title-salutation"
-      >
-        ¡{{ salutation() }} <br />{{ name() }}!
-      </h3>
-    }
-    <span class="bmb_user-summary-content-id">{{ getUserId() }}</span>
-    <span class="bmb_user-summary-content-id">{{ infoCareer() }}</span>
-  </div>
   @if (isProfile()) {
     <button
       class="bmb_user-summary-button"

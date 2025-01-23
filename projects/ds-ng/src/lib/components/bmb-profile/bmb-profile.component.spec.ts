@@ -61,15 +61,15 @@ describe('BmbProfileComponent', () => {
   });
 
   it('should set campusAcessLink input correctly', () => {
-    componentRef.setInput('campusAcessLink', 'new-link');
+    componentRef.setInput('campusAcessLink', 'https://www.youtube.com/');
     fixture.detectChanges();
-    expect(component.campusAcessLink()).toBe('new-link');
+    expect(component.campusAcessLink()).toEqual('https://www.youtube.com/');
   });
 
   it('should set idDigitalLink input correctly', () => {
-    componentRef.setInput('idDigitalLink', 'new-id-link');
+    componentRef.setInput('idDigitalLink', 'https://www.youtube.com/');
     fixture.detectChanges();
-    expect(component.idDigitalLink()).toBe('new-id-link');
+    expect(component.idDigitalLink()).toEqual('https://www.youtube.com/');
   });
 
   it('should set targetLinks input correctly', () => {

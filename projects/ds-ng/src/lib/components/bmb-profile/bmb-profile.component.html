@@ -4,26 +4,15 @@
 >
   <ng-template #bmbTemplateMain>
     <section class="bmb_profile">
-      <section class="bmb_profile-user">
-        <bmb-user-image
-          [size]="'mobile-large'"
-          [image]="userData().userImg"
-          [altImage]="'Profile Image'"
-          [target]="'_blank'"
-          [bordered]="false"
-        />
-        <section class="bmb_profile-user-text">
-          <p class="bmb_profile-user-text-name">
-            {{ userData().name }}
-          </p>
-          <p class="bmb_profile-user-text-matricula">
-            {{ userData().matricula }}
-          </p>
-          <p class="bmb_profile-user-text-mail">
-            {{ userData().mail }}
-          </p>
-        </section>
-      </section>
+      <bmb-user-summary-content
+        [isProfile]="true"
+        [name]="userData().name"
+        [userId]="userData().matricula"
+        [image]="userData().userImg"
+        [email]="userData().mail"
+        contentLayout="row"
+        [isImageBordered]="false"
+      />
       <section class="bmb_profile-info">
         <section class="bmb_profile-info-container">
           <div class="bmb_profile-info-container-item">

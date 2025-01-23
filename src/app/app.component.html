@@ -6,7 +6,7 @@
   [buttonLabel]="'Ingresar'"
 /> -->
 <!-- <bmb-header-mitec headerLabel="Test" [actionHeaders]="mitecSocial" /> -->
-<bmb-container-button
+<!-- <bmb-container-button
   [title]="'Tema de App'"
   [target]="'_blank'"
   [link]="''"
@@ -78,4 +78,56 @@
   [alternative]="true"
   state="disabled"
   [small]="true"
+/> -->
+<bmb-user-summary
+  [isProfile]="false"
+  [name]="'Test Name'"
+  [userId]="'AC123123'"
+  [image]="'https://picsum.photos/200/300'"
+  [infoCareer]="'ITICS-Semestre 5'"
+  [noBox]="false"
+  [salutation]="'Buenas tardes'"
+  (onClick)="handleButtonPrimary()"
+/>
+<bmb-divider />
+<bmb-user-summary
+  [isProfile]="true"
+  [name]="'Test Name'"
+  [userId]="'AC123123'"
+  [image]="'https://picsum.photos/200/300'"
+  [infoCareer]="'ITICS-Semestre 5'"
+  [noBox]="false"
+  [salutation]="'Buenas tardes'"
+  (onClick)="handleButtonPrimary()"
+/>
+<bmb-divider />
+<bmb-user-summary
+  [isProfile]="true"
+  [name]="'Test Name'"
+  [userId]="'AC123123'"
+  [image]="'https://picsum.photos/200/300'"
+  [infoCareer]="'ITICS-Semestre 5'"
+  [noBox]="true"
+  [salutation]="'Buenas tardes'"
+  (onClick)="handleButtonPrimary()"
+/>
+<bmb-divider />
+<bmb-user-summary-content
+  [isProfile]="true"
+  [name]="'Test Name'"
+  [userId]="'AC123123'"
+  [image]="'https://picsum.photos/200/300'"
+  [email]="'mail@tec.mx'"
+  [salutation]="'Buenas tardes'"
+  contentLayout="row"
+  [isImageBordered]="false"
+/>
+<bmb-divider />
+<bmb-user-summary-content
+  [isProfile]="true"
+  [name]="'Test Name'"
+  [userId]="'AC123123'"
+  [image]="'https://picsum.photos/200/300'"
+  [infoCareer]="'ITICS-Semestre 5'"
+  [salutation]="'Buenas tardes'"
 />
