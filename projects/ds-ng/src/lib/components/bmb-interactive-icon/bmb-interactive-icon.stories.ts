@@ -85,23 +85,24 @@ Below is an example of how you can use this component in HTML:
         type: 'text',
       },
       description:
-        'Sets the link for redirection to another page. If this property is empty it will emit the button event.',
+        'Sets the link for redirection to another page. If this input is empty it will emit the button event.',
       table: {
-        category: 'Properties',
+        category: 'Events',
         type: { summary: 'string' },
       },
     },
     target: {
       name: 'Target',
       control: {
-        type: 'select',
+        type: 'radio',
       },
       options: ['_blank', '_self', '_parent', '_top'],
       description:
-        'Sets the target property for the link. Refer to https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a for more information.',
+        'Sets the target for the link. Refer to https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a for more information.',
       table: {
-        category: 'Properties',
-        type: { summary: 'string' },
+        category: 'Events',
+        type: { summary: 'IBmbTargetLink' },
+        defaultValue: { summary: '_blank' },
       },
     },
     horizontal: {

@@ -21,7 +21,7 @@ import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.componen
 export class BmbUserSummaryComponent {
   isProfile = input<boolean>(false);
   name = input<string>('');
-  id = input<string>('');//Deprecated
+  id = input<string>(''); //Deprecated
   userId = input<string>('');
   image = input<string>('');
   infoCareer = input<string>('');
@@ -30,7 +30,7 @@ export class BmbUserSummaryComponent {
 
   onClick = output<void>();
   getUserId(): string {
-    return !!this.userId() && this.userId() || this.id();
+    return (!!this.userId() && this.userId()) || this.id();
   }
 
   handleClick(): void {

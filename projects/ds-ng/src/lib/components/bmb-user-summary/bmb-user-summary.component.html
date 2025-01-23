@@ -15,8 +15,10 @@
     @if (isProfile()) {
       <h3 class="bmb_user-summary-content-title">{{ name() }}</h3>
     } @else {
-      <h3 class="bmb_user-summary-content-title bmb_user-summary-content-title-salutation">
-        ¡{{salutation()}} <br />{{ name() }}!
+      <h3
+        class="bmb_user-summary-content-title bmb_user-summary-content-title-salutation"
+      >
+        ¡{{ salutation() }} <br />{{ name() }}!
       </h3>
     }
     <span class="bmb_user-summary-content-id">{{ getUserId() }}</span>
