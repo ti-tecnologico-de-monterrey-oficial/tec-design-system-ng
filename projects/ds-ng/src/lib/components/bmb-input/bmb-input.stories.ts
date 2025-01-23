@@ -367,12 +367,33 @@ Below is an example of how to use this component in HTML:
         defaultValue: { summary: 'none' },
       },
     },
+    jsonFormat: {
+      name: 'JSON Format',
+      control: { type: 'boolean' },
+      description:
+        'If enabled, the input field will validate the content as a JSON format. Only applies to textarea inputs. You will need to remove the pattern.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
+    heightTextArea: {
+      name: 'Height (TextArea)',
+      control: { type: 'number' },
+      description: 'Sets the height of the textarea in pixels.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'number' },
+      },
+    },
   },
 
   args: {
     icon: 'apps',
     errorMessage: {
       required: 'This field is required.',
+      jsonFormat: 'El contenido no es un JSON válido.',
       minLength: 'Minimum 4 characters.',
       pattern: 'Only accepts letters.',
     },
