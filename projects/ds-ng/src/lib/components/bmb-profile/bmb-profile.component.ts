@@ -12,11 +12,13 @@ import { BmbThemeComponent } from '../bmb-theme/bmb-theme.component';
 import { BmbButtonDirective } from '../../directives/button.directive';
 import { IBmbProfileData, IBmbTargetLink } from '../../types';
 import { BmbUserSummaryContentComponent } from '../bmb-user-summary/bmb-user-summary-content/bmb-user-summary-content.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'bmb-profile',
   standalone: true,
   imports: [
+    CommonModule,
     BmbMobileTemplatesComponent,
     BmbUserSummaryContentComponent,
     BmbIconComponent,

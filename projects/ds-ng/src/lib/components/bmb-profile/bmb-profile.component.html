@@ -1,3 +1,17 @@
+<ng-template #elementTemplate let-element="element">
+  <section class="bmb_profile-info-container">
+    <div class="bmb_profile-info-container-item">
+      <bmb-icon [icon]="element.icon" [size]="24" />
+      <span class="bmb_profile-info-container-item-text">{{
+        element.content
+      }}</span>
+    </div>
+    <span class="bmb_profile-info-container-value">
+      {{ element.value }}
+    </span>
+  </section>
+</ng-template>
+
 <bmb-mobile-templates
   [title]="'Mi Perfil'"
   (externalLinkOnClose)="closeProfile()"
@@ -14,29 +28,42 @@
         [isImageBordered]="false"
       />
       <section class="bmb_profile-info">
-        <section class="bmb_profile-info-container">
-          <div class="bmb_profile-info-container-item">
-            <bmb-icon [icon]="'calendar_month'" [size]="24" />
-            <span class="bmb_profile-info-container-item-text">Semestre</span>
-          </div>
-          <span class="bmb_profile-info-container-value">{{
-            userData().period
-          }}</span>
-        </section>
-        <section class="bmb_profile-info-container">
-          <div class="bmb_profile-info-container-item">
-            <bmb-icon [icon]="'location_on'" [size]="24" />
-            <span class="bmb_profile-info-container-item-text">Campus</span>
-          </div>
-          <span>{{ userData().campus }}</span>
-        </section>
-        <section class="bmb_profile-info-container">
-          <div class="bmb_profile-info-container-item">
-            <bmb-icon [icon]="'library_books'" [size]="24" />
-            <span class="bmb_profile-info-container-item-text">Programa</span>
-          </div>
-          <span>{{ userData().program }}</span>
-        </section>
+        <ng-container
+          *ngTemplateOutlet="
+            elementTemplate;
+            context: {
+              element: {
+                icon: 'calendar_month',
+                content: 'Semestre',
+                value: userData().period,
+              },
+            }
+          "
+        />
+        <ng-container
+          *ngTemplateOutlet="
+            elementTemplate;
+            context: {
+              element: {
+                icon: 'location_on',
+                content: 'Campus',
+                value: userData().campus,
+              },
+            }
+          "
+        />
+        <ng-container
+          *ngTemplateOutlet="
+            elementTemplate;
+            context: {
+              element: {
+                icon: 'library_books',
+                content: 'Programa',
+                value: userData().program,
+              },
+            }
+          "
+        />
         <section class="bmb_profile-info-container theme">
           <div class="bmb_profile-info-container-item">
             <bmb-icon [icon]="'palette'" [size]="24" />
