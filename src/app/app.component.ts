@@ -5243,4 +5243,115 @@ export class AppComponent {
   onValueChange(params: unknown): void {
     window.alert(params?.toString());
   }
+
+  appTest: IBmbApp[] = [
+    {
+      icon: 'home',
+      title: 'Home',
+      link: '/home',
+      target: '_blank',
+      appearance: 'red',
+    },
+    {
+      icon: 'settings',
+      title: 'My Page',
+      link: '/my-page',
+      appearance: 'yellow',
+    },
+    {
+      icon: 'settings',
+      title: 'School Calendar',
+      link: 'https://configuration.com',
+      target: '_blank',
+      appearance: 'yellow',
+    },
+    {
+      icon: 'settings',
+      title: 'Configuration',
+      link: 'https://configuration.com',
+      target: '_blank',
+      appearance: 'yellow',
+    },
+    {
+      icon: 'home',
+      title: 'Home',
+      link: '/home',
+      target: '_blank',
+      appearance: 'red',
+    },
+    {
+      icon: 'settings',
+      title: 'My Page',
+      link: '/my-page',
+      appearance: 'yellow',
+    },
+    {
+      icon: 'settings',
+      title: 'School Calendar',
+      link: 'https://configuration.com',
+      target: '_blank',
+      appearance: 'yellow',
+    },
+    {
+      icon: 'settings',
+      title: 'Configuration',
+      link: 'https://configuration.com',
+      target: '_blank',
+      appearance: 'yellow',
+    },
+    {
+      icon: 'home',
+      title: 'Home',
+      link: '/home',
+      target: '_blank',
+      appearance: 'red',
+    },
+    {
+      icon: 'settings',
+      title: 'My Page',
+      link: '/my-page',
+      appearance: 'yellow',
+    },
+    {
+      icon: 'settings',
+      title: 'School Calendar',
+      link: 'https://configuration.com',
+      target: '_blank',
+      appearance: 'yellow',
+    },
+    {
+      icon: 'settings',
+      title: 'Configuration',
+      link: 'https://configuration.com',
+      target: '_blank',
+      appearance: 'yellow',
+    },
+    {
+      icon: 'home',
+      title: 'Home',
+      link: '/home',
+      target: '_blank',
+      appearance: 'red',
+    },
+    {
+      icon: 'settings',
+      title: 'My Page',
+      link: '/my-page',
+      appearance: 'yellow',
+    },
+    {
+      icon: 'settings',
+      title: 'School Calendar',
+      link: 'https://configuration.com',
+      target: '_blank',
+      appearance: 'yellow',
+    },
+    {
+      icon: 'settings',
+      title: 'Configuration',
+      link: 'https://configuration.com',
+      target: '_blank',
+      appearance: 'yellow',
+    },
+  ];
 }

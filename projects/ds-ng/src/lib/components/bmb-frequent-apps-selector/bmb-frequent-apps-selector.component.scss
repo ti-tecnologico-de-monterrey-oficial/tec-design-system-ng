@@ -7,9 +7,11 @@
     color: RGBA(var(--color-charade-950));
     text-align: center;
     @include fonts.font(5, regular);
+    font-weight: 300;
   }
 
   &-container {
+    margin-top: var(--bmb-spacing-m);
     display: flex;
     overflow: auto;
     scroll-behavior: smooth;
