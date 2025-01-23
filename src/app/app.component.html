@@ -29,3 +29,26 @@
     </p>
   </ng-template>
 </bmb-accordion>
+
+<bmb-input
+  [label]="'Text Area Label'"
+  [type]="'text-area'"
+  [jsonFormat]="true"
+  placeholder="Ingresa un JSON válido"
+  [icon]="'apps'"
+  [appearance]="'normal'"
+  [errorMessage]="{
+    required: 'Este campo es obligatorio.',
+    jsonFormat: 'El contenido no es un JSON válido.',
+    minLength: 'Minimum 4 characters.',
+    pattern: 'Only accepts letters.',
+  }"
+  [helperMessage]="'Helper Message'"
+  [isRequired]="true"
+  [showError]="true"
+  [maxlength]="8000"
+  [heightTextArea]="100"
+  [minlength]="4"
+  [tooltip]="'Tooltip example for the input'"
+  [tooltipPosition]="{ align: 'above', justify: 'before' }"
+></bmb-input>
