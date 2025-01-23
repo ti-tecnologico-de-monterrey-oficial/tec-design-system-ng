@@ -43,8 +43,9 @@
     &-item {
       line-height: 0;
 
-      .bmb_container-button {
+      .bmb_container-button .bmb_check-external-link-button-element {
         border-radius: 0;
+        border-color: transparent;
         width: 100%;
         padding: 0;
 
@@ -103,13 +104,13 @@
       background-color: RGBA(var(--color-charade-900));
     }
 
-    .bmb_container-button:hover {
+    .bmb_container-button .bmb_check-external-link-button-element:hover {
       .bmb_card-content {
         background-color: RGBA(var(--color-charade-700));
       }
     }
 
-    .bmb_container-button-left {
+    .bmb_container-button-left .bmb_check-external-link-button-element {
       color: RGBA(var(--color-charade-50));
     }
   }
