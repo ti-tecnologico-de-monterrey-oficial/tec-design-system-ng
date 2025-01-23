@@ -32,7 +32,7 @@ describe('BmbExternalLinkComponent', () => {
     componentRef.setInput('title', 'Test Title');
     fixture.detectChanges();
     const titleElement = fixture.nativeElement.querySelector(
-      'span.bmb_chevron-content-title',
+      'h2.bmb_chevron-content-title',
     );
     expect(titleElement.textContent).toBe('Test Title');
   });
@@ -41,7 +41,7 @@ describe('BmbExternalLinkComponent', () => {
     componentRef.setInput('subtitle', 'Test subtitle');
     fixture.detectChanges();
     const subtitleElement = fixture.nativeElement.querySelector(
-      'span.bmb_chevron-content-subtitle',
+      'h4.bmb_chevron-content-subtitle',
     );
     expect(subtitleElement.textContent.trim()).toBe('Test subtitle');
   });

@@ -36,6 +36,7 @@ Below is an example of how you can use this component in HTML:
         'secondary-filled',
         'secondary-outlined',
         'destructive',
+        'transparent',
       ],
       description: 'The appearance of the buttons, affecting its visual style.',
       table: {
@@ -64,11 +65,11 @@ Below is an example of how you can use this component in HTML:
 
 const customizable = (): StoryFn => (args) => ({
   props: args,
-  template: `<button bmbButtonGroup [appearance]="appearance" [size]="size">
+  template: `<section bmbButtonGroup [appearance]="appearance" [size]="size">
     <button>Button 1</button>
     <button>Button 2</button>
     <button>Button 3</button>
-  </button>`,
+  </section>`,
 });
 
 export const Default = customizable();

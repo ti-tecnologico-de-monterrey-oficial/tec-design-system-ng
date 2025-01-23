@@ -101,7 +101,25 @@ Below is an example of how to use this component in HTML:
   />
   <button bmbButton appearance="primary" type="submit">Submit</button>
 </form>
+\`\`\`
 
+## Architecture
+
+\`\`\`html
+<section class="bmb_field" <!-- conditional class bmb_field-disabled --> >
+  <!-- if label is defined -->
+  <label class="bmb_field-label" for="input">{ label }</label>
+
+  <section class="bmb_field-wrapper">
+    <input { configuration } />
+  </section>
+
+  <!-- if helper message is defined -->
+  <p class="bmb_field-helper">{ helperMessage }</p>
+
+  <!-- if error message is defined -->
+  <p class="bmb_field-error">{ errorMessage }</p>
+</section>
 
 \`\`\`
         `,
@@ -218,6 +236,18 @@ Below is an example of how to use this component in HTML:
       table: {
         category: 'Properties',
         type: { summary: 'string' },
+      },
+    },
+    tooltipPosition: {
+      name: 'Tooltip Position',
+      control: {
+        type: 'object',
+      },
+      description: 'Set the position of the tooltip.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: '{ align: "above", justify: "before" }' },
+        type: { summary: 'IBmbInputTooltipPosition' },
       },
     },
     appearance: {
@@ -337,12 +367,33 @@ Below is an example of how to use this component in HTML:
         defaultValue: { summary: 'none' },
       },
     },
+    jsonFormat: {
+      name: 'JSON Format',
+      control: { type: 'boolean' },
+      description:
+        'If enabled, the input field will validate the content as a JSON format. Only applies to textarea inputs. You will need to remove the pattern.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
+    heightTextArea: {
+      name: 'Height (TextArea)',
+      control: { type: 'number' },
+      description: 'Sets the height of the textarea in pixels.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'number' },
+      },
+    },
   },
 
   args: {
     icon: 'apps',
     errorMessage: {
       required: 'This field is required.',
+      jsonFormat: 'El contenido no es un JSON válido.',
       minLength: 'Minimum 4 characters.',
       pattern: 'Only accepts letters.',
     },
@@ -358,6 +409,7 @@ Below is an example of how to use this component in HTML:
     minlength: '4',
     maxlength: '20',
     pattern: '[A-Za-z]+',
+    tooltipPosition: { align: 'above', justify: 'before' },
   },
 } as Meta<typeof BmbInputComponent>;
 

@@ -17,6 +17,14 @@ export type IButtonAppearance =
 export type IButtonSize = 'small' | 'large' | 'micro';
 export type IBbmSidePosition = 'before' | 'after';
 export type IBmbHorizontalPosition = 'left' | 'right';
+export type IBmbTargetLink = '_blank' | '_parent' | '_self' | '_top';
+export type IBmbUserImageSize =
+  | 'desktop-small'
+  | 'desktop-large'
+  | 'mobile-small'
+  | 'mobile-medium'
+  | 'mobile-large'
+  | 'mobile-xlarge';
 
 export interface IBmbError {
   codeError: boolean;
@@ -45,7 +53,7 @@ export interface IBmbApp {
   icon: string;
   title: string;
   link?: string;
-  target?: string;
+  target?: IBmbTargetLink;
   appearance: IBmbInteractiveIconAppearance;
   horizontal?: boolean,
   setButtonTemplate?: boolean,
@@ -64,4 +72,13 @@ export interface IBmbProfileData {
   period: string;
   campus: string;
   program: string;
+}
+
+export interface IBmbActionHeader {
+  icon: string;
+  iconActiveToggle?: string;
+  isToggleActive?: boolean;
+  link?: string;
+  target?: IBmbTargetLink;
+  action: () => void;
 }

@@ -22,7 +22,12 @@ const preview: Preview = {
     options: {
       storySort: {
         method: 'alphabetical',
-        order: ['Foundations', 'Micro Componentes', 'Macro Componentes'],
+        order: [
+          'Foundations',
+          'Micro Componentes',
+          'Macro Componentes',
+          'INTERNAL',
+        ],
         locales: 'en-US',
       },
     },

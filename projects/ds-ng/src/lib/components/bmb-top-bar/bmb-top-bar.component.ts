@@ -54,15 +54,25 @@ export class BmbTopBarComponent implements OnInit {
   @Output() logOut: EventEmitter<any> = new EventEmitter<any>();
   @Output() onLangChange: EventEmitter<string> = new EventEmitter<string>();
   helpButtonClick = output<void>();
+  userProfileClick = output<void>();
 
   @ViewChild(TemplateRef) contentTemplate: TemplateRef<unknown> | null = null;
 
   isMobileMenuOpen: boolean = false;
+  showAnimation: boolean = true;
 
   ngOnInit(): void {
     this.image = this.mitec
       ? 'assets/images/logos-mitec/logo_mitec.png'
       : 'assets/images/tec-logo.svg';
+
+    const hasBeenViewed = localStorage.getItem('bmbTopBarViewed');
+    if (hasBeenViewed) {
+      this.showAnimation = false;
+    } else {
+      this.showAnimation = true;
+      localStorage.setItem('bmbTopBarViewed', 'true');
+    }
   }
 
   handleLogOutClick(event: Event) {
@@ -112,5 +122,9 @@ export class BmbTopBarComponent implements OnInit {
 
   handleHelpButtonClick() {
     this.helpButtonClick.emit();
+  }
+
+  handleUserClick() {
+    this.userProfileClick.emit();
   }
 }

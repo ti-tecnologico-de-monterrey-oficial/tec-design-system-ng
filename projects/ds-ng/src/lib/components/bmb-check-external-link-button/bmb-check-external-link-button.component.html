@@ -1,0 +1,34 @@
+<ng-template #commonTemplate>
+  <ng-content />
+</ng-template>
+<span class="bmb_check-external-link-button">
+  @if (isButton(link())) {
+    <button
+      class="bmb_check-external-link-button-element"
+      [id]="idElement()"
+      (click)="handleClick()"
+    >
+      <ng-container [ngTemplateOutlet]="commonTemplate" />
+    </button>
+  } @else if (isExternalLink(link())) {
+    <a
+      class="bmb_check-external-link-button-element"
+      [id]="idElement()"
+      [href]="link()"
+      [target]="target()"
+      rel="noopener noreferrer"
+    >
+      <ng-container [ngTemplateOutlet]="commonTemplate" />
+    </a>
+  } @else {
+    <a
+      class="bmb_check-external-link-button-element"
+      [id]="idElement()"
+      [routerLink]="link()"
+      routerLinkActive="bmb-active-link"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <ng-container [ngTemplateOutlet]="commonTemplate" />
+    </a>
+  }
+</span>

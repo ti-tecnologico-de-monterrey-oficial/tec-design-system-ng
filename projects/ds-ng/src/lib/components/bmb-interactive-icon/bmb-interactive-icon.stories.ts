@@ -38,7 +38,7 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'text',
       },
-      description: 'The title of the interactive icon.',
+      description: 'Sets the title of the interactive icon.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -49,7 +49,7 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'text',
       },
-      description: 'The description of the interactive icon.',
+      description: 'Sets the description of the interactive icon.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -59,7 +59,7 @@ Below is an example of how you can use this component in HTML:
       name: 'Icon',
       control: { type: 'text' },
       description:
-        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons. Do not use the image property if you want to use an icon. If you need to set an image as icon, you can set the image path here',
+        'Sets the name of the icon to use. Please use Material icons: https://fonts.google.com/icons. Do not use the image property if you want to use an icon. If you need to set an image as icon, you can set the image path here.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -72,7 +72,7 @@ Below is an example of how you can use this component in HTML:
       },
       options: ['red', 'blue', 'green', 'yellow', 'purple'],
       description:
-        'The appearance of the interactive icon, affecting its visual style.',
+        'Sets the appearance of the interactive icon, affecting its visual style.',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'red' },
@@ -84,7 +84,8 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'text',
       },
-      description: 'The link for redirection to another page.',
+      description:
+        'Sets the link for redirection to another page. If this input is empty it will emit the button event.',
       table: {
         category: 'Events',
         type: { summary: 'string' },
@@ -93,14 +94,15 @@ Below is an example of how you can use this component in HTML:
     target: {
       name: 'Target',
       control: {
-        type: 'select',
+        type: 'radio',
       },
       options: ['_blank', '_self', '_parent', '_top'],
       description:
-        'The target property for the link. Refer to https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a for more information.',
+        'Sets the target for the link. Refer to https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a for more information.',
       table: {
         category: 'Events',
-        type: { summary: 'string' },
+        type: { summary: 'IBmbTargetLink' },
+        defaultValue: { summary: '_blank' },
       },
     },
     horizontal: {
@@ -120,7 +122,7 @@ Below is an example of how you can use this component in HTML:
         type: 'select',
       },
       options: ['regular', 'button', 'app_drawer'],
-      description: 'Set the layout behavior.',
+      description: 'Sets the layout behavior.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -132,16 +134,16 @@ Below is an example of how you can use this component in HTML:
       description:
         'This property switch the template component to a button, if you enable this option, you do not need send the `target`, and `link` properties, and set the ouput `buttonClick`.',
       table: {
-        category: 'Properties',
+        category: 'Deprecated',
         defaultValue: { summary: false },
         type: { summary: 'boolean' },
       },
     },
     buttonClick: {
-      name: 'Set button template',
+      name: 'Button click',
       control: null,
       description:
-        'This property only works if the setButtonTemplate property is enable.',
+        'This event is only emitted if the "Link" property is empty.',
       table: {
         category: 'Events',
         type: { summary: 'function' },

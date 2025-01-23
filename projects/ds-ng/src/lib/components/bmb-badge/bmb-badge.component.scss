@@ -63,7 +63,7 @@
 
   &-brand {
     .bmb_badge-bullet {
-      background-color: RGBA(var(--color-neon-primary));
+      background-color: var(--buttons-primary-normal);
     }
   }
 
@@ -153,7 +153,7 @@
       }
 
       &-info {
-        background-color: RGBA(var(--color-purple-primary));
+        background-color: RGBA(var(--color-purple-tint));
       }
 
       &-warning {
@@ -174,7 +174,11 @@
       }
 
       &-brand {
-        background-color: RGBA(var(--color-neon-primary));
+        background-color: var(--general_contrasts-main-selection);
+
+        .bmb_badge-content {
+          color: RGBA(var(--color-white-primary));
+        }
       }
 
       &-mitec_blue {

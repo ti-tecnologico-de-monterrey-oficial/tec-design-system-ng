@@ -114,7 +114,7 @@ Below is an example of how you can use this component in HTML:
     size: 'desktop-small',
     target: '_blank',
     link: 'https://www.youtube.com/',
-    bordered: true,
+    bordered: false,
   },
 } as Meta<typeof BmbUserImageComponent>;
 

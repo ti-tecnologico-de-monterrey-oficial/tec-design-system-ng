@@ -12,6 +12,7 @@
 
   &-secondary-outlined {
     @include mixins.button(secondary-outlined);
+    transition: none;
   }
 
   &-destructive {
@@ -20,6 +21,7 @@
 
   &-transparent {
     @include mixins.button(transparent);
+    padding: rem.rem_calc(0 4);
   }
 
   &-rounded {

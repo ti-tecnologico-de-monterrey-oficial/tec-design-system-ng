@@ -1,0 +1,19 @@
+.bmb_check-external-link-button {
+  &:has(.bmb_icon-figure) {
+    display: inline-block;
+    line-height: 0;
+  }
+
+  &-element {
+    padding: 0;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-flex;
+    color: var(--general_contrasts-100);
+
+    &:has(img) {
+      height: 100%;
+      width: 100%;
+    }
+  }
+}

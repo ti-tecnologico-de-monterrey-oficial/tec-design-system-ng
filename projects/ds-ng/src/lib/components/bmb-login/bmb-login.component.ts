@@ -10,6 +10,7 @@ import { BmbInputComponent } from '../bmb-input/bmb-input.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BmbUserProfileService } from '../../services/user/profile.service';
 import { BmbHeaderMitecComponent } from '../bmb-header-mitec/bmb-header-mitec.component';
+import { IBmbActionHeader } from '../../types';
 
 @Component({
   selector: 'bmb-login',
@@ -24,6 +25,38 @@ export class BmbLoginComponent {
   headerLabel = input<string>();
   forgottenPasswordLabel = input<string>('¿Olvidaste tu contraseña?');
   buttonLabel = input<string>('Ingresar');
+  actionHeaders = input<IBmbActionHeader[]>([
+    {
+      icon: '../assets/images/social-icons/icon_Apple.svg',
+      link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-login--documentation',
+      action: () => {},
+    },
+    {
+      icon: '../assets/images/social-icons/icon_Android.svg',
+      link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-login--documentation',
+      action: () => {},
+    },
+    {
+      icon: '../assets/images/social-icons/icon_Twitter.svg',
+      link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-login--documentation',
+      action: () => {},
+    },
+    {
+      icon: '../assets/images/social-icons/icon_Facebook.svg',
+      link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-login--documentation',
+      action: () => {},
+    },
+    {
+      icon: '../assets/images/social-icons/icon_Instagram.svg',
+      link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-login--documentation',
+      action: () => {},
+    },
+    {
+      icon: '../assets/images/social-icons/icon_Youtube.svg',
+      link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-login--documentation',
+      action: () => {},
+    },
+  ]);
 
   onRequest = output<any>();
   onContinue = output();

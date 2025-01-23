@@ -95,7 +95,7 @@ Below is an example of how you can use this component in HTML:
       },
       description: 'Set the text for the link',
       table: {
-        category: 'Properties',
+        category: 'Events',
         type: { summary: 'string' },
       },
     },
@@ -119,9 +119,9 @@ Below is an example of how you can use this component in HTML:
       options: ['_blank', '_parent', '_self', '_top'],
       description: 'Set the percentage to show in the progress bar',
       table: {
-        category: 'Properties',
-        type: { summary: 'number' },
-        target: { summary: '_blank' },
+        category: 'Events',
+        type: { summary: 'IBmbTargetLink' },
+        defaultValue: { summary: '_blank' },
       },
     },
     progress: {
@@ -143,6 +143,7 @@ Below is an example of how you can use this component in HTML:
     title: 'Creditos ocupados para esta iniciativa',
     appearance: 'info',
     textLink: 'Aumentar Creditos',
+    target: '_blank',
     href: 'https://www.google.com',
   },
 } as Meta<typeof BmbProgressBarComponent>;

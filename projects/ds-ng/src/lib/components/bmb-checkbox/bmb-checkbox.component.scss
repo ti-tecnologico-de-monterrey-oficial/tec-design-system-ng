@@ -3,33 +3,13 @@
 @use "../../../assets/styles/base/rem" as rem;
 
 .bmb_checkbox {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: rem.rem_calc(8);
-  // position: relative;
-  width: 100%;
+  gap: rem.rem_calc(16);
+  cursor: pointer;
 
   input[type="checkbox"] {
-    cursor: pointer;
-    height: rem.rem_calc(42);
-    margin: 0;
-    opacity: 0;
-    padding: 0;
-    position: absolute;
-    width: 100%;
-    z-index: 1;
-
-    &:hover {
-      + .bmb_checkbox-box {
-        background-color: RGBA(var(--color-blue-primary), 0.1);
-      }
-    }
-
-    &:focus {
-      + .bmb_checkbox-box {
-        background-color: RGBA(var(--color-blue-primary), 0.2);
-      }
-    }
+    display: none;
 
     &:checked {
       + .bmb_checkbox-box {
@@ -87,6 +67,10 @@
     }
   }
 
+  &:hover .bmb_checkbox-box {
+    background-color: RGBA(var(--color-blue-primary), 0.1);
+  }
+
   &-required {
     .bmb_checkbox-mark {
       border-color: RGBA(var(--color-mitec-red));
@@ -120,7 +104,7 @@
 
   &-label {
     color: RGBA(var(--color-charade-950));
-    padding-right: rem.rem_calc(10);
+    flex: 1;
     @include fonts.font(4, medium);
   }
 
@@ -178,3 +162,12 @@
     }
   }
 }
+
+// cursor: pointer;
+// height: rem.rem_calc(42);
+// margin: 0;
+// opacity: 0;
+// padding: 0;
+// position: absolute;
+// width: 100%;
+// z-index: 1;

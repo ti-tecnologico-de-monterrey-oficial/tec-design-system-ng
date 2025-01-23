@@ -24,10 +24,10 @@ export class BmbTooltipComponent {
   title = input<string>('');
   icon = input<string>('help');
   size = input<number>();
-  align = input<IBmbAlignTooltip>('right');
+  align = input<IBmbAlignTooltip>('below');
   justify = input<IBmbJustifyTooltip>('after');
 
   getClasses() {
-    return `bmb_tooltip-${this.align()}-${this.justify()}`;
+    return `bmb_tooltip-container-${this.align()}-${this.justify()}`;
   }
 }

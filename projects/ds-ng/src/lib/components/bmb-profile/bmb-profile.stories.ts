@@ -1,8 +1,7 @@
 import { moduleMetadata, type Meta, type StoryFn } from '@storybook/angular';
 import { BmbProfileComponent } from './bmb-profile.component';
 import { Component, input, output } from '@angular/core';
-import { IBmbProfileData } from '../../types';
-import { IBmbTargetLink } from '../bmb-text-link/bmb-text-link.component';
+import { IBmbProfileData, IBmbTargetLink } from '../../types';
 import { BmbThemeComponent } from '../bmb-theme/bmb-theme.component';
 
 @Component({
@@ -17,6 +16,7 @@ import { BmbThemeComponent } from '../bmb-theme/bmb-theme.component';
         [idDigitalLink]="idDigitalLink()"
         [targetLinks]="targetLinks()"
         (handleCloseSession)="closeSession()"
+        (handleCloseProfile)="closeProfile()"
       >
       </bmb-profile>
       <bmb-theme [initialTheme]="'light'" [showControls]="false" />
@@ -29,9 +29,14 @@ class StorybookWrapperComponent {
   idDigitalLink = input<string>('');
   targetLinks = input<IBmbTargetLink>('_blank');
   handleCloseSession = output();
+  handleCloseProfile = output();
 
   closeSession(): void {
     window.alert('Cerrar Session');
+  }
+
+  closeProfile(): void {
+    window.alert('Close Profile');
   }
 }
 
@@ -51,16 +56,16 @@ Below is an example of how you can use this component in TypeScript:
 
 \`\`\`typescript
 import {
-  BmbLoginComponent,
+  BmbProfileComponent,
 } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
 
 @Component({
   selector: 'component',
   standalone: true,
-  imports: [ BmbLoginComponent ],
+  imports: [ BmbProfileComponent ],
   templateUrl: '
   <!-- USE EXAMPLE -->
-    <bmb-profile 
+    <bmb-profile
         [userData]="{
             name: 'Juanito Perez',
             userImg: 'https://picsum.photos/200/300',
@@ -74,14 +79,19 @@ import {
         [idDigitalLink]="'https://www.x.com'"
         [targetLinks]="'_blank'"
         (handleCloseSession)="closeSession()"
+        (handleCloseProfile)="closeProfile()"
      />
   ',
   styleUrl: './component.scss',
 })
 export class AppComponent {
- 
+
   closeSession(){
     console.log("Cerrar Sesion")
+  }
+
+  closeProfile: () => {
+    console.log('Close Profile')
   }
 }
 
@@ -108,7 +118,7 @@ Below is an example of how you can use this component in HTML:
       description:
         'Set the link to redirect when the campus access button is clicked',
       table: {
-        category: 'Properties',
+        category: 'Events',
         type: { summary: 'string' },
       },
     },
@@ -125,13 +135,14 @@ Below is an example of how you can use this component in HTML:
     },
     targetLinks: {
       name: 'Target Links',
-      control: 'text',
+      control: 'radio',
+      options: ['_blank', '_parent', '_self', '_top'],
       description:
         'The target attribute for the link. Refer to https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a for more information.',
       table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: 'Ingresar' },
+        category: 'Events',
+        type: { summary: 'IBmbTargetLink' },
+        defaultValue: { summary: '_blank' },
       },
     },
     handleCloseSession: {
@@ -139,6 +150,16 @@ Below is an example of how you can use this component in HTML:
       control: null,
       description:
         'Output function, returns a void signal to indicates that close session button was clicked',
+      table: {
+        category: 'Events',
+        type: { summary: 'function' },
+      },
+    },
+    handleCloseProfile: {
+      name: 'Handle Close Profile',
+      control: null,
+      description:
+        'Output function, returns a void signal to indicates that close profile window button was clicked',
       table: {
         category: 'Events',
         type: { summary: 'function' },
@@ -161,11 +182,13 @@ Below is an example of how you can use this component in HTML:
     handleCloseSession: () => {
       window.alert('Cerrar Sesion');
     },
+    handleCloseProfile: () => {
+      window.alert('Close Profile');
+    },
   },
 } as Meta<typeof BmbProfileComponent>;
 
 function attributes(object: { [key: string]: any }): string {
-  console.log('Object', object);
   return Object.entries(object)
     .filter(([key]) => key !== 'text')
     .map(([key, value]) => {
@@ -186,6 +209,7 @@ export const Default: StoryFn<typeof StorybookWrapperComponent> = (args) => {
       <storybook-wrapper
         ${attributes(args)}
         (handleCloseSession)="closeSession()"
+        (handleCloseProfile)="closeProfile()"
       ></storybook-wrapper>
       <!-- HTML CODE IS IN THE TOP OF THE DOCUMENTATION -->
       `,

@@ -126,7 +126,8 @@ Below is an example of how you can use this component in HTML:
         'The target attribute for the link. Refer to https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a for more information.',
       table: {
         category: 'Events',
-        type: { summary: 'string' },
+        type: { summary: 'IBmbTargetLink' },
+        defaultValue: { summary: '_blank' },
       },
     },
     logo: {
@@ -174,7 +175,8 @@ Below is an example of how you can use this component in HTML:
         'The target attribute for the link. Refer to https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a for more information.',
       table: {
         category: 'Events',
-        type: { summary: 'string' },
+        type: { summary: 'IBmbTargetLink' },
+        defaultValue: { summary: '_blank' },
       },
     },
     onTrailingIconClick: {
@@ -195,11 +197,11 @@ Below is an example of how you can use this component in HTML:
     userImage:
       'https://i0.wp.com/gershenson.mx/wp-content/uploads/2020/08/logo-tec-de-monterrey-e1484853084274.png?ssl=1',
     userAltImage: 'Alt image description',
-    userTarget: '_blank',
     userLink: 'https://www.youtube.com/',
+    userTarget: '_blank',
     logo: 'https://i0.wp.com/gershenson.mx/wp-content/uploads/2020/08/logo-tec-de-monterrey-e1484853084274.png?ssl=1',
     altLogo: 'Alt logo description',
-    logoLink: '_blank',
+    logoLink: '',
     logoTarget: 'https://www.youtube.com/',
     onTrailingIconClick: () => {
       window.alert('Trailing Icon clicked in Storybook');

@@ -8,7 +8,6 @@ import {
 import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
 import { IBmbColor } from '../../types/colors';
 import { IBmbDataTopBar } from '../bmb-breadcrumb/bmb-breadcrumb.component';
-import { IBmbActionHeader } from '../bmb-header-section/bmb-header-section.component';
 import {
   BmbTimestreamComponent,
   IBmbClamp,
@@ -23,6 +22,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { IBmbControlType } from '../bmb-filter-card/bmb-filter-card.interface';
 import { timestreamFilter } from '../../utils/timestreamFilters';
 import { CommonModule } from '@angular/common';
+import { IBmbActionHeader } from '../../types';
 
 @Component({
   selector: 'bmb-timestream-card',

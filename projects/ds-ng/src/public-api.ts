@@ -49,6 +49,7 @@ export * from './lib/components/bmb-value-counter/bmb-value-counter.component';
 export * from './lib/components/bmb-step-progress-bar/bmb-step-progress-bar.component';
 export * from './lib/components/bmb-focus-element/bmb-focus-element.component';
 export * from './lib/components/bmb-user-summary/bmb-user-summary.component';
+export * from './lib/components/bmb-user-summary/bmb-user-summary-content/bmb-user-summary-content.component';
 export * from './lib/components/bmb-tabs/bmb-tabs.component';
 export * from './lib/components/bmb-progress-cirlce/bmb-progress-circle.component';
 export * from './lib/components/bmb-sidebar/bmb-sidebar.component';
@@ -123,6 +124,10 @@ export * from './lib/components/bmb-drawer-overlay/bmb-drawer-overlay.component'
 export * from './lib/components/bmb-mitec-logo-animation/bmb-mitec-logo-animation.component';
 export * from './lib/components/bmb-login/bmb-login.component';
 export * from './lib/components/bmb-profile/bmb-profile.component';
+export * from './lib/components/bmb-check-external-link-button/bmb-check-external-link-button.component';
+export * from './lib/components/bmb-bookmark/bmb-bookmark.component';
+export * from './lib/components/bmb-navigation-bar/bmb-navigation-bar.component';
+export * from './lib/components/bmb-navigation-bar/bmb-navigation-icon/bmb-navigation-icon.component';
 
 // types
 export * from './lib/types';
