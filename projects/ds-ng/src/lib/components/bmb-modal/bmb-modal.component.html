@@ -1,4 +1,4 @@
-<section [class]="getModalClasses()">
+<section [ngClass]="getModalClasses()">
   <bmb-container>
     <section class="bmb_modal-container">
       <header>
@@ -12,11 +12,11 @@
       </header>
       <section class="bmb_modal-content">
         @if (isModalTemplate()) {
-          <section [class]="getDescriptionClasses('template')">
+          <section [ngClass]="getDescriptionClasses('template')">
             <ng-container *ngTemplateOutlet="getContent()" />
           </section>
         } @else {
-          <section [class]="getDescriptionClasses('description')">
+          <section [ngClass]="getDescriptionClasses('description')">
             <p>
               {{ getContent() }}
             </p>
@@ -29,7 +29,7 @@
             <button
               bmbButton
               appearance="secondary-filled"
-              [class]="getButtonClass(true)"
+              [ngClass]="getButtonClass(true)"
               (click)="closeModal('secondary', false)"
             >
               {{ getSecondaryBtnLabel() }}
@@ -38,7 +38,7 @@
           @if (showPrimaryButton()) {
             <button
               bmbButton
-              [class]="getButtonClass(false)"
+              [ngClass]="getButtonClass(false)"
               (click)="closeModal('primary', true)"
             >
               {{ getPrimaryBtnLabel() }}

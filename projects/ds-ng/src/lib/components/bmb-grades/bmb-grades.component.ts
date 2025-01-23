@@ -22,6 +22,7 @@ import { BmbInnerHeaderComponent } from '../bmb-inner-header/bmb-inner-header.co
 import { BmbAcademicProgressComponent } from '../bmb-academic-progress/bmb-academic-progress.component';
 import { IBmbNameValuePair } from '../../types';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
+import { buildErrorMessage } from '../../utils/utils';
 
 @Component({
   selector: 'bmb-grades',
@@ -66,7 +67,6 @@ export class BmbGradesComponent {
   ngOnInit() {
     if (this.isMicro()) {
       let inputs = [];
-      let elements = '';
 
       if (!this.gradeTitle()) inputs.push('gradeTitle');
       if (!this.title()) inputs.push('title');
@@ -74,21 +74,11 @@ export class BmbGradesComponent {
       if (!this.average()) inputs.push('average');
       if (!this.summary()) inputs.push('summary');
 
-      inputs.forEach((element, index) => {
-        elements += element;
-        elements +=
-          index == inputs.length - 2
-            ? ' and '
-            : inputs.length > 1 && index < inputs.length - 1
-              ? ', '
-              : '';
-      });
-
       if (inputs.length) {
         throw new Error(
           `
-        The "${elements}" input${inputs.length > 1 ? 's' : ''} ${inputs.length > 1 ? 'are' : 'is'} required when "isMicro" is true.
-        `,
+          The ${buildErrorMessage(inputs)} required when "isMicro" is true.
+          `,
         );
       }
     }

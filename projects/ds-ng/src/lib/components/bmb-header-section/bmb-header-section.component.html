@@ -1,6 +1,6 @@
 <section class="bmb_header-section">
   <bmb-container
-    [class]="
+    [ngClass]="
       getClassNameByConditional(
         'bmb_header-section',
         transparentBgC()!,
@@ -9,14 +9,11 @@
     "
   >
     @if (leftIcon()) {
-      <section class="bmb_header-section-left_icon">
-        <bmb-interactive-icon
-          appearance="none"
-          [icon]="leftIcon()"
-          [setButtonTemplate]="true"
-          (buttonClick)="handleClickLeft($event)"
-        />
-      </section>
+      <bmb-navigation-icon
+        class="bmb_header-section-left_icon"
+        [icon]="leftIcon()"
+        (buttonClick)="handleClickLeft($event)"
+      />
     }
 
     <section class="bmb_header-section-container">
@@ -45,22 +42,6 @@
         }
       </section>
     </section>
-    @for (actionHeader of actionHeaders(); track $index) {
-      <section class="bmb_header-section-right_icon">
-        <bmb-interactive-icon
-          appearance="none"
-          [class]="
-            getClassNameByConditional(
-              'bmb_header-section',
-              actionHeader.iconActiveToggle!,
-              'toggle_icon'
-            )
-          "
-          [icon]="getRightIcon(actionHeader)"
-          [setButtonTemplate]="true"
-          (buttonClick)="handleClickRight(actionHeader)"
-        />
-      </section>
-    }
+    <bmb-navigation-bar [actionHeaders]="actionHeaders()" />
   </bmb-container>
 </section>

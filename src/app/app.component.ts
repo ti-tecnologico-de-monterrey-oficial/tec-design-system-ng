@@ -84,7 +84,6 @@ import {
   BmbStepProgressBarComponent,
   IBmbMobileTemplateButton,
   BmbDateRangeComponent,
-  IBmbActionHeader,
   BmbFocusElementComponent,
   BmbGradeValueComponent,
   BmbTooltipComponent,
@@ -104,6 +103,8 @@ import {
   BmbMitecLogoAnimationComponent,
   BmbAdvertisementCardComponent,
   BmbAccordionComponent,
+  IBmbActionHeader,
+  BmbNavigationBarComponent,
 } from '../../projects/ds-ng/src/public-api';
 import { BmbPullWedgeComponent } from '../../projects/ds-ng/src/lib/components/bmb-pull-wedge/bmb-pull-wedge.component';
 import { BmbCardButtonComponent } from '../../projects/ds-ng/src/lib/components/bmb-card-button/bmb-card-button.component';
@@ -129,6 +130,7 @@ import {
   IBmbEvaluationRubric,
 } from '../../projects/ds-ng/src/lib/components/bmb-evaluation-rubric/bmb-evaluation-rubric.component';
 import { BmbUserProfileComponent } from '../../projects/ds-ng/src/lib/components/bmb-user-profile/bmb-user-profile.component';
+import { BmbHeaderMitecComponent } from '../../projects/ds-ng/src/lib/components/bmb-header-mitec/bmb-header-mitec.component';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -221,6 +223,11 @@ import { BmbUserProfileComponent } from '../../projects/ds-ng/src/lib/components
     BmbMitecLogoAnimationComponent,
     BmbAdvertisementCardComponent,
     BmbAccordionComponent,
+    BmbSidebarComponent,
+    BmbUserImageComponent,
+    BmbNavigationBarComponent,
+    BmbUserProfileComponent,
+    BmbHeaderMitecComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -465,6 +472,10 @@ export class AppComponent {
   }
 
   handleLogOff(event: Event) {
+    console.log(event);
+  }
+
+  navigationBarEvents(event: string) {
     console.log(event);
   }
 
@@ -2971,11 +2982,15 @@ export class AppComponent {
     {
       icon: 'timer',
       isToggleActive: false,
-      action: () => {},
+      action: () => {
+        alert('timer');
+      },
     },
     {
       icon: 'tune',
-      action: () => {},
+      action: () => {
+        alert('tune');
+      },
     },
   ];
 
@@ -2984,6 +2999,39 @@ export class AppComponent {
       icon: 'fit_screen',
       iconActiveToggle: 'close_fullscreen',
       isToggleActive: false,
+      action: () => {},
+    },
+  ];
+
+  mitecSocial: IBmbActionHeader[] = [
+    {
+      icon: '../assets/images/social-icons/icon_Apple.svg',
+      link: 'https://www.youtube.com/',
+      action: () => {},
+    },
+    {
+      icon: '../assets/images/social-icons/icon_Android.svg',
+      link: 'https://www.youtube.com/',
+      action: () => {},
+    },
+    {
+      icon: '../assets/images/social-icons/icon_Twitter.svg',
+      link: 'https://www.youtube.com/',
+      action: () => {},
+    },
+    {
+      icon: '../assets/images/social-icons/icon_Facebook.svg',
+      link: 'https://www.youtube.com/',
+      action: () => {},
+    },
+    {
+      icon: '../assets/images/social-icons/icon_Instagram.svg',
+      link: 'https://www.youtube.com/',
+      action: () => {},
+    },
+    {
+      icon: '../assets/images/social-icons/icon_Youtube.svg',
+      link: 'https://www.youtube.com/',
       action: () => {},
     },
   ];

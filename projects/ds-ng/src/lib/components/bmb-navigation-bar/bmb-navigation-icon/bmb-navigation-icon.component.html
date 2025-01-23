@@ -1,0 +1,15 @@
+<bmb-check-external-link-button
+  class="bmb_navigation_icon"
+  [idElement]="idElement()"
+  [link]="link()!"
+  [target]="target()!"
+  (buttonClick)="handleClick()"
+>
+  <bmb-icon
+    class="bmb_navigation_icon-icon"
+    [ngClass]="{ 'bmb_navigation_icon-toggle_icon': !!iconActiveToggle() }"
+    [icon]="getIcon()"
+    [size]="iconSize()"
+    [dotNotification]="dotNotification()"
+  />
+</bmb-check-external-link-button>

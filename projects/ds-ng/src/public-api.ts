@@ -123,7 +123,10 @@ export * from './lib/components/bmb-drawer-overlay/bmb-drawer-overlay.component'
 export * from './lib/components/bmb-mitec-logo-animation/bmb-mitec-logo-animation.component';
 export * from './lib/components/bmb-login/bmb-login.component';
 export * from './lib/components/bmb-profile/bmb-profile.component';
+export * from './lib/components/bmb-check-external-link-button/bmb-check-external-link-button.component';
 export * from './lib/components/bmb-bookmark/bmb-bookmark.component';
+export * from './lib/components/bmb-navigation-bar/bmb-navigation-bar.component';
+export * from './lib/components/bmb-navigation-bar/bmb-navigation-icon/bmb-navigation-icon.component';
 
 // types
 export * from './lib/types';

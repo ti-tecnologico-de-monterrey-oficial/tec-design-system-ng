@@ -17,7 +17,7 @@ import {
 } from '../../public-api';
 import { IBmbUserInfo } from '../components/bmb-login-onboarding/types';
 import { CommonModule } from '@angular/common';
-import { BmbInteractiveIconComponent } from 'ds-ng';
+import { BmbInteractiveIconComponent } from '../components/bmb-interactive-icon/bmb-interactive-icon.component';
 
 @Component({
   standalone: true,

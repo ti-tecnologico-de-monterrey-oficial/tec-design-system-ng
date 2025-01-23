@@ -1,18 +1,20 @@
-@if (link && isExternalLink(link)) {
-  <a [ngClass]="getClasses()" [href]="link" [target]="target">
-    <img [src]="image" [alt]="altImage" />
-  </a>
-} @else if (link) {
-  <a
-    [ngClass]="getClasses()"
-    [routerLink]="link"
-    routerLinkActive="active-link"
-    [routerLinkActiveOptions]="{ exact: true }"
+<ng-template #commonTemplate>
+  <img
+    [ngClass]="getClasses('bmb_user_image-image', '', bordered())"
+    [src]="image()"
+    [alt]="altImage()"
+  />
+</ng-template>
+@if (!!link()) {
+  <bmb-check-external-link-button
+    [ngClass]="getClasses('bmb_user_image', size()!, bordered())"
+    [link]="link()"
+    [target]="target()!"
   >
-    <img [src]="image" [alt]="altImage" />
-  </a>
+    <ng-container [ngTemplateOutlet]="commonTemplate" />
+  </bmb-check-external-link-button>
 } @else {
-  <span [ngClass]="getClasses()">
-    <img [src]="image" [alt]="altImage" />
+  <span [ngClass]="getClasses('bmb_user_image', size()!, bordered())">
+    <img [src]="image()" [alt]="altImage()" />
   </span>
 }

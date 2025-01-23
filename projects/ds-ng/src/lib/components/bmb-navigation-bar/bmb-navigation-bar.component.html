@@ -1,0 +1,24 @@
+<span
+  class="bmb_navigation-bar"
+  bmbLayout
+  margin="none"
+  [justify]="justify()"
+  [gapSize]="gapSize()"
+  [alignItems]="alignItems()"
+  [dynamicCols]="true"
+>
+  @for (actionHeader of actionHeaders(); track $index) {
+    <bmb-navigation-icon
+      class="bmb_navigation-bar-icon"
+      bmbLayoutItem
+      [isDynamicItem]="true"
+      [idElement]="$index.toString()"
+      [icon]="actionHeader.icon"
+      [iconActiveToggle]="actionHeader.iconActiveToggle"
+      [(isToggleActive)]="actionHeader.isToggleActive"
+      [link]="actionHeader.link"
+      [target]="actionHeader.target"
+      (buttonClick)="handleClick(actionHeader)"
+    />
+  }
+</span>

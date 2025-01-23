@@ -31,9 +31,9 @@ Below is an example of how you can use this component in HTML:
     headerLabel: {
       name: 'Header label',
       control: 'text',
-      description: 'Sets the label to be displayed in the header.',
+      description: 'Deprecated',
       table: {
-        category: 'Properties',
+        category: 'Deprecated',
         type: { summary: 'string' },
       },
     },

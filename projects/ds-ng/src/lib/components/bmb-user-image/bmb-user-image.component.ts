@@ -1,13 +1,12 @@
 import {
   Component,
-  Input,
   ChangeDetectionStrategy,
   ViewEncapsulation,
+  input,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterModule, NavigationEnd } from '@angular/router';
-import { filter } from 'rxjs/operators';
-import { isExternalLink } from '../../utils/utils';
+import { IBmbTargetLink, IBmbUserImageSize } from '../../types';
+import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
 
 @Component({
   selector: 'bmb-user-image',
@@ -15,46 +14,28 @@ import { isExternalLink } from '../../utils/utils';
   templateUrl: './bmb-user-image.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, BmbCheckExternalLinkButtonComponent],
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbUserImageComponent {
-  @Input() size: string = '';
-  @Input() image: string = '';
-  @Input() altImage: string = '';
-  @Input() link: string = '';
-  @Input() target: string = '';
-  @Input() bordered: boolean = false;
+  size = input<IBmbUserImageSize>();
+  image = input<string>('');
+  altImage = input<string>('');
+  link = input<string>('');
+  target = input<IBmbTargetLink>();
+  bordered = input<boolean>(false);
 
-  currentUrl: string = '';
+  getClasses(
+    principalClassName: string,
+    size: string,
+    isBordered: boolean,
+  ): string[] {
+    const classes: string[] = [principalClassName];
 
-  constructor(private router: Router) {
-    this.router.events
-      .pipe(
-        filter(
-          (event): event is NavigationEnd => event instanceof NavigationEnd,
-        ),
-      )
-      .subscribe((event: NavigationEnd) => {
-        this.currentUrl = event.urlAfterRedirects;
-      });
-  }
+    if (!!size) classes.push(`${principalClassName}-${this.size()}`);
 
-  getClasses(): string[] {
-    const classes: string[] = ['bmb_user_image'];
-
-    if (this.size) {
-      classes.push('bmb_user_image-' + this.size);
-    }
-
-    if (this.bordered) {
-      classes.push('bmb_user_image-bordered');
-    }
+    if (isBordered) classes.push(`${principalClassName}-bordered`);
 
     return classes;
-  }
-
-  isExternalLink(link: string): boolean {
-    return isExternalLink(link);
   }
 }
