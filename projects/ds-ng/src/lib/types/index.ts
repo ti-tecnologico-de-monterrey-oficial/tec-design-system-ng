@@ -55,8 +55,8 @@ export interface IBmbApp {
   link?: string;
   target?: IBmbTargetLink;
   appearance: IBmbInteractiveIconAppearance;
-  horizontal?: boolean,
-  setButtonTemplate?: boolean,
+  horizontal?: boolean;
+  setButtonTemplate?: boolean;
 }
 
 export interface IBmbNameValuePair {
