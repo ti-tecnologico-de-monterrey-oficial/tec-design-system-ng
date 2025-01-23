@@ -5,4 +5,129 @@
   [forgottenPasswordLabel]="'¿Olvidaste tu contraseña?'"
   [buttonLabel]="'Ingresar'"
 /> -->
-<bmb-header-mitec headerLabel="Test" [actionHeaders]="mitecSocial" />
+<!-- <bmb-header-mitec headerLabel="Test" [actionHeaders]="mitecSocial" /> -->
+<!-- <bmb-container-button
+  [title]="'Tema de App'"
+  [target]="'_blank'"
+  [link]="''"
+  [iconLeft]="'home'"
+  [iconRight]="'chevron_right'"
+  (onButton)="handleButtonPrimary()"
+  state="disabled"
+/>
+<br />
+<bmb-container-button
+  [title]="'Tema de App'"
+  [target]="'_blank'"
+  [link]="'/text'"
+  [iconLeft]="'home'"
+  [iconRight]="'chevron_right'"
+  (onButton)="handleButtonPrimary()"
+/>
+<br />
+<bmb-container-button
+  [title]="'Tema de App'"
+  [target]="'_blank'"
+  [link]="'/text'"
+  [iconLeft]="'home'"
+  [iconRight]="'chevron_right'"
+  (onButton)="handleButtonPrimary()"
+  state="error"
+/>
+
+<br />
+<bmb-container-button
+  [title]="'Tema de App'"
+  [target]="'_blank'"
+  [link]="'/text'"
+  [iconLeft]="'home'"
+  [iconRight]="'chevron_right'"
+  (onButton)="handleButtonPrimary()"
+  [alternative]="true"
+/>
+<br />
+<bmb-container-button
+  [title]="'Tema de App'"
+  [target]="'_blank'"
+  [link]="'/text'"
+  [iconLeft]="'home'"
+  [iconRight]="'chevron_right'"
+  (onButton)="handleButtonPrimary()"
+  [alternative]="true"
+  state="error"
+/>
+<br />
+<bmb-container-button
+  [title]="'Tema de App'"
+  [target]="'_blank'"
+  [link]="'/text'"
+  [iconLeft]="'home'"
+  [iconRight]="'chevron_right'"
+  (onButton)="handleButtonPrimary()"
+  [alternative]="true"
+  state="disabled"
+  [square]="true"
+/>
+<bmb-container-button
+  [title]="'Tema de App'"
+  [target]="'_blank'"
+  [link]="'/text'"
+  [iconLeft]="'home'"
+  [iconRight]="'chevron_right'"
+  (onButton)="handleButtonPrimary()"
+  [alternative]="true"
+  state="disabled"
+  [small]="true"
+/> -->
+<bmb-user-summary
+  [isProfile]="false"
+  [name]="'Test Name'"
+  [userId]="'AC123123'"
+  [image]="'https://picsum.photos/200/300'"
+  [infoCareer]="'ITICS-Semestre 5'"
+  [noBox]="false"
+  [salutation]="'Buenas tardes'"
+  (onClick)="handleButtonPrimary()"
+/>
+<bmb-divider />
+<bmb-user-summary
+  [isProfile]="true"
+  [name]="'Test Name'"
+  [userId]="'AC123123'"
+  [image]="'https://picsum.photos/200/300'"
+  [infoCareer]="'ITICS-Semestre 5'"
+  [noBox]="false"
+  [salutation]="'Buenas tardes'"
+  (onClick)="handleButtonPrimary()"
+/>
+<bmb-divider />
+<bmb-user-summary
+  [isProfile]="true"
+  [name]="'Test Name'"
+  [userId]="'AC123123'"
+  [image]="'https://picsum.photos/200/300'"
+  [infoCareer]="'ITICS-Semestre 5'"
+  [noBox]="true"
+  [salutation]="'Buenas tardes'"
+  (onClick)="handleButtonPrimary()"
+/>
+<bmb-divider />
+<bmb-user-summary-content
+  [isProfile]="true"
+  [name]="'Test Name'"
+  [userId]="'AC123123'"
+  [image]="'https://picsum.photos/200/300'"
+  [email]="'mail@tec.mx'"
+  [salutation]="'Buenas tardes'"
+  contentLayout="row"
+  [isImageBordered]="false"
+/>
+<bmb-divider />
+<bmb-user-summary-content
+  [isProfile]="true"
+  [name]="'Test Name'"
+  [userId]="'AC123123'"
+  [image]="'https://picsum.photos/200/300'"
+  [infoCareer]="'ITICS-Semestre 5'"
+  [salutation]="'Buenas tardes'"
+/>

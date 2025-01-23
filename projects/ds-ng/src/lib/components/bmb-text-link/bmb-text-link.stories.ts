@@ -34,7 +34,7 @@ Below is an example of how you can use this component in HTML:
       },
       description: 'Set the text that the componente will show .',
       table: {
-        category: 'Properties',
+        category: 'Events',
         type: { summary: 'string (required)' },
       },
     },
@@ -60,8 +60,8 @@ Below is an example of how you can use this component in HTML:
       options: ['_blank', '_parent', '_self', '_top'],
       description: 'Set the percentage to show in the progress bar',
       table: {
-        category: 'Properties',
-        type: { summary: 'number' },
+        category: 'Events',
+        type: { summary: 'IBmbTargetLink' },
         defaultValue: { summary: '_blank' },
       },
     },

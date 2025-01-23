@@ -1,4 +1,10 @@
-<ng-template #commonContent>
+<bmb-check-external-link-button
+  class="bmb_container-button"
+  [ngClass]="getClassList()"
+  [link]="link()"
+  [target]="target()"
+  (buttonClick)="handleClick($event)"
+>
   <section
     bmbLayout
     [dynamicCols]="true"
@@ -7,7 +13,7 @@
     justify="spaceBetween"
     class="bmb_container-button-content"
   >
-    <div class="bmb_container-button-left">
+    <section class="bmb_container-button-left">
       @if ((iconLeft() && !score()) || square() || small()) {
         <bmb-icon
           bmbLayoutItem
@@ -26,8 +32,8 @@
           </h4>
         }
       </div>
-    </div>
-    <div class="bmb_container-button-right">
+    </section>
+    <section class="bmb_container-button-right">
       @if (badgeText() && !square() && !small()) {
         <bmb-badge
           [text]="badgeText()"
@@ -41,26 +47,6 @@
           [icon]="iconRight()"
         />
       }
-    </div>
+    </section>
   </section>
-</ng-template>
-
-@if (setButtonTemplate()) {
-  <button
-    [ngClass]="getClassList()"
-    class="bmb_container-button"
-    (click)="handleClick($event)"
-  >
-    <ng-container *ngTemplateOutlet="commonContent" />
-  </button>
-}
-@if (!setButtonTemplate()) {
-  <a
-    [ngClass]="getClassList()"
-    class="bmb_container-button"
-    [href]="link()"
-    [target]="target()"
-  >
-    <ng-container *ngTemplateOutlet="commonContent" />
-  </a>
-}
+</bmb-check-external-link-button>

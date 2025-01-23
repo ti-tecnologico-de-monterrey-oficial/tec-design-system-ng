@@ -1,0 +1,40 @@
+<section
+  class="bmb_user-summary_content"
+  [ngClass]="getClass('bmb_user-summary_content')"
+>
+  <bmb-user-image
+    size="mobile-large"
+    [image]="image()"
+    [altImage]="name()"
+    [bordered]="isImageBordered()"
+  />
+  <section
+    class="bmb_user-summary_content-wrapper"
+    [ngClass]="getClass('bmb_user-summary_content-wrapper')"
+  >
+    @if (isProfile()) {
+      <h3
+        class="bmb_user-summary_content-wrapper-title"
+        [ngClass]="getClass('bmb_user-summary_content-wrapper-title')"
+      >
+        {{ name() }}
+      </h3>
+    } @else {
+      <h3
+        class="bmb_user-summary_content-wrapper-title bmb_user-summary_content-wrapper-title-salutation"
+        [ngClass]="getClass('bmb_user-summary_content-wrapper-title')"
+      >
+        ¡{{ salutation() }} <br />{{ name() }}!
+      </h3>
+    }
+    <span class="bmb_user-summary_content-wrapper-id">{{ userId() }}</span>
+    @if (!!infoCareer()) {
+      <span class="bmb_user-summary_content-wrapper-id">{{
+        infoCareer()
+      }}</span>
+    }
+    @if (!!email()) {
+      <span class="bmb_user-summary_content-wrapper-email">{{ email() }}</span>
+    }
+  </section>
+</section>

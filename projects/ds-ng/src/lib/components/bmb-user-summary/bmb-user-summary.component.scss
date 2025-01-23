@@ -3,43 +3,21 @@
 @use "../../../assets/styles/base/rem" as rem;
 
 .bmb_user-summary {
-  align-items: center;
   background-color: RGBA(var(--color-charade-50));
   border: rem.rem_calc(1) solid RGBA(var(--color-black-primary), 0.25);
   border-radius: rem.rem_calc(24);
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   padding: rem.rem_calc(24);
 
-  &.bmb_user-summary-is-profile {
+  &-is_profile {
     background-color: RGBA(var(--color-charade-100));
-    border: rem.rem_calc(1) solid transparent;
-    border-radius: rem.rem_calc(8);
-  }
+    padding-left: rem.rem_calc(6);
+    padding-right: rem.rem_calc(6);
 
-  &.bmb_user-summary-is-profile-no-box {
-    background-color: transparent;
-    border: rem.rem_calc(1) solid transparent;
-  }
-
-  &-content {
-    display: flex;
-    flex-direction: column;
-    margin-top: rem.rem_calc(16);
-    text-align: center;
-
-    &-title {
-      @include fonts.font(4, regular);
-      color: RGBA(var(--color-charade-950));
-      margin-bottom: rem.rem_calc(4);
-    }
-
-    &-id {
-      color: RGBA(var(--color-charade-700));
-      font-style: italic;
-      @include fonts.font(3, regular);
+    &-no_box {
+      background-color: transparent;
+      border-color: transparent;
     }
   }
 
@@ -53,21 +31,14 @@
 .storybook-dark-theme {
   .bmb_user-summary {
     background-color: RGBA(var(--color-black-primary), 0.5);
-  }
 
-  .bmb_user-summary.bmb_user-summary-is-profile {
-    background-color: RGBA(var(--color-charade-900));
-  }
+    &-is_profile {
+      background-color: RGBA(var(--color-charade-900));
 
-  .bmb_user-summary-is-profile-no-box {
-    background-color: transparent;
-  }
-
-  .bmb_user-summary-content-title {
-    color: RGBA(var(--color-charade-50));
-  }
-
-  .bmb_user-summary-content-id {
-    color: RGBA(var(--color-charade-200));
+      &-no_box {
+        background-color: transparent;
+        border-color: transparent;
+      }
+    }
   }
 }

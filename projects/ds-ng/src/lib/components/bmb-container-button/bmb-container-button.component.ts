@@ -12,12 +12,14 @@ import { BmbGradeValueComponent } from '../bmb-grade-value/bmb-grade-value.compo
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
 import { IBbmBgAppearance, IBmbTargetLink } from '../../types';
+import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
 
 @Component({
   selector: 'bmb-container-button',
   standalone: true,
   imports: [
     CommonModule,
+    BmbCheckExternalLinkButtonComponent,
     BmbIconComponent,
     BmbGradeValueComponent,
     BmbLayoutDirective,
@@ -39,7 +41,7 @@ export class BmbContainerButtonComponent {
   subtitle = input<string>('');
   iconLeft = input<string>('');
   iconRight = input<string>('');
-  setButtonTemplate = input<boolean>();
+  setButtonTemplate = input<boolean>(); //Deprecated
   badgeText = input<string>('');
   badgeAppearance = input<IBbmBgAppearance>('normal');
   state = input<'disabled' | 'error'>();
