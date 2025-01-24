@@ -1,5 +1,5 @@
-@use "../../../../assets/styles/base/fonts" as fonts;
-@use "../../../../assets/styles/base/rem" as rem;
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/rem" as rem;
 
 $circleTypes: (
   "avance_academico": RGBA(var(--color-mitec-blue)),
@@ -10,7 +10,7 @@ $circleTypes: (
   "otra": RGBA(var(--color-purple-light)),
 );
 
-.bmb_timestream-timeline {
+.bmb_hito_list {
   overflow: auto;
   height: 100%;
   list-style: none;
@@ -22,7 +22,7 @@ $circleTypes: (
     margin-bottom: var(--bmb-spacing-m);
     opacity: 0.5;
 
-    &.bmb_timestream-timeline-item-current {
+    &.bmb_hito_list-item-current {
       opacity: 1;
     }
   }
@@ -80,11 +80,11 @@ $circleTypes: (
       &-current {
         color: RGBA(var(--color-mariner-700));
 
-        .bmb_timestream-timeline-content-item-title {
+        .bmb_hito_list-content-item-title {
           font-weight: 600;
         }
 
-        .bmb_timestream-timeline-content-item-circle {
+        .bmb_hito_list-content-item-circle {
           @each $type, $value in $circleTypes {
             &-#{$type} {
               background-color: $value;
@@ -98,7 +98,7 @@ $circleTypes: (
 
 [data-theme="dark"],
 .storybook-dark-theme {
-  .bmb_timestream-timeline {
+  .bmb_hito_list {
     color: RGBA(var(--color-charade-200));
 
     &-header {
@@ -119,7 +119,7 @@ $circleTypes: (
         &-current {
           color: RGBA(var(--color-neon-primary));
 
-          .bmb_timestream-timeline-content-item-circle {
+          .bmb_hito_list-content-item-circle {
             @each $type, $value in $circleTypes {
               &-#{$type} {
                 background-color: $value;

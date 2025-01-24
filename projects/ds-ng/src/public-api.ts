@@ -99,6 +99,7 @@ export * from './lib/components/bmb-date-range/bmb-date-range.component';
 export * from './lib/components/bmb-text-link/bmb-text-link.component';
 export * from './lib/components/bmb-evaluation-rubric/bmb-evaluation-rubric.component';
 export * from './lib/components/bmb-hito-card/bmb-hito-card.component';
+export * from './lib/components/bmb-hito-list/bmb-hito-list.component';
 export * from './lib/components/bmb-form-validation/bmb-form-validation.component';
 export * from './lib/components/bmb-dropzone/bmb-dropzone.component';
 export * from './lib/components/bmb-timestream-card/bmb-timestream-card.component';
