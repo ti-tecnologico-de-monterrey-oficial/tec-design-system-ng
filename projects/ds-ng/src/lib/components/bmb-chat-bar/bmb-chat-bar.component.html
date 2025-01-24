@@ -1,36 +1,151 @@
 <section class="bmb_chat-bar">
-  <div class="bmb_chat-bar-container">
-    <button class="bmb_chat-bar-bot" (click)="handleDialog()">
-      <figure class="bmb_chat-bar-bot-picture">
-        <img
-          class="bmb_chat-bar-bot-picture-image"
-          [src]="currentBot()?.icon"
-          [alt]="currentBot()?.name"
-        />
-      </figure>
-    </button>
-    <input
-      id="bmbChatBarBot"
-      name="bmbChatBarBot"
-      class="bmb_chat-bar-input"
-      type="text"
-      [placeholder]="defaultPlaceholder()"
-      [formControl]="control"
-    />
-    <button
-      (click)="handleSend()"
-      class="bmb_chat-bar-send"
-      [disabled]="!control.value || isLoading()"
+  <div
+    class="bmb_chat-bar-container"
+    (drop)="onDrop($event)"
+    (dragover)="onDragOver($event)"
+    (dragleave)="onDragLeave($event)"
+    [ngClass]="{
+      'bmb_chat-bar-drag': onDragFiles,
+      'bmb_chat-bar-container-files': files.length > 0,
+    }"
+  >
+    <div
+      class="bmb_chat-bar-files-list"
+      [ngClass]="{ 'bmb_chat-bar-files-list-active': files.length > 0 }"
     >
-      <bmb-icon
-        [ngClass]="{ 'bmb_chat-bar-send-animated': isLoading() }"
-        [icon]="isLoading() ? 'progress_activity' : 'send'"
-      />
-    </button>
+      @for (file of files; track $index) {
+        @if (file.type.includes("image")) {
+          <div class="bmb_chat-bar-files-list-image">
+            <img
+              class="bmb_chat-bar-files-list-thumbnail"
+              [src]="arrayThumbnail[$index]"
+              [alt]="file.name"
+            />
+            <button
+              class="bmb_chat-bar-files-list-image-delete"
+              (click)="deleteFile($index)"
+            >
+              <bmb-icon [icon]="'delete'" />
+            </button>
+          </div>
+        } @else {
+          <div class="bmb_chat-bar-files-list-option">
+            <bmb-icon [icon]="'upload_file'" />
+            <span class="bmb_chat-bar-files-list-option-text">{{
+              file.name
+            }}</span>
+            <button
+              class="bmb_chat-bar-files-list-delete"
+              (click)="deleteFile($index)"
+            >
+              <bmb-icon [icon]="'delete'" />
+            </button>
+          </div>
+        }
+      }
+    </div>
+    <div class="bmb_chat-bar-main">
+      <button class="bmb_chat-bar-bot" (click)="handleDialog()">
+        <figure class="bmb_chat-bar-bot-picture">
+          <img
+            class="bmb_chat-bar-bot-picture-image"
+            [src]="currentBot()?.icon"
+            [alt]="currentBot()?.name"
+          />
+        </figure>
+      </button>
+      @if (!onDragFiles) {
+        <input
+          id="bmbChatBarBot"
+          name="bmbChatBarBot"
+          class="bmb_chat-bar-input"
+          type="text"
+          [placeholder]="defaultPlaceholder()"
+          [formControl]="control"
+          autocomplete="off"
+        />
+        <div class="bmb_chat-bar-container-btns">
+          @if (showMicControls) {
+            <button class="bmb_chat-bar-pause" (click)="handleStopMic()">
+              <bmb-icon [icon]="'pause'" />
+            </button>
+
+            <button class="bmb_chat-bar-record">
+              <bmb-icon
+                class="bmb_chat-bar-record-animated"
+                [icon]="'graphic_eq'"
+              />
+            </button>
+          }
+
+          @if (!showMicControls) {
+            @if (showEmoji()) {
+              <button class="bmb_chat-bar-emoji">
+                <bmb-icon [icon]="'mood'" />
+              </button>
+            }
+            <button class="bmb_chat-bar-add" (click)="handleAddDialog()">
+              <bmb-icon [icon]="'add'" />
+
+              <section
+                class="bmb_chat-bar-add-dialog"
+                [ngClass]="{
+                  'bmb_chat-bar-add-dialog-active':
+                    openAddDialog && versionAddDialog == 'web',
+                }"
+              >
+                <ul class="bmb_chat-bar-add-dialog-list">
+                  @for (bot of dActionsList(); track $index) {
+                    <li class="bmb_chat-bar-add-dialog-option">
+                      <button
+                        (click)="bot.action()"
+                        class="bmb_chat-bar-add-dialog-button"
+                      >
+                        <bmb-icon [icon]="bot.icon" />
+                        <p class="bmb_chat-bar-add-dialog-option-text">
+                          {{ bot.name }}
+                        </p>
+                      </button>
+                    </li>
+                  }
+                </ul>
+              </section>
+            </button>
+
+            <button class="bmb_chat-bar-mic" (click)="handleMic()">
+              <bmb-icon [icon]="'mic'" />
+            </button>
+          }
+        </div>
+
+        <button
+          (click)="handleSend()"
+          class="bmb_chat-bar-send"
+          [disabled]="
+            (this.files.length == 0 && this.control.value == null) ||
+            this.isLoading()
+          "
+        >
+          <bmb-icon
+            [ngClass]="{ 'bmb_chat-bar-send-animated': isLoading() }"
+            [icon]="isLoading() ? 'progress_activity' : 'send'"
+          />
+        </button>
+      }
+
+      @if (onDragFiles) {
+        <div class="bmb_chat-bar-container-drag">
+          <p class="bmb_chat-bar-container-drag-text">
+            Arrastra tus archivos aquí
+          </p>
+        </div>
+      }
+    </div>
   </div>
   <div
     class="bmb_chat-bar-dialog"
     [ngClass]="{ 'bmb_chat-bar-dialog-active': isDialogOpen }"
+    [ngStyle]="{ bottom: files.length > 0 ? '70%' : '50%' }"
   >
     <ul class="bmb_chat-bar-dialog-list">
       @if (isDialogOpen) {
@@ -39,8 +154,16 @@
             <button
               (click)="handleChangeBot(bot)"
               class="bmb_chat-bar-dialog-button"
+              [ngClass]="{
+                'bmb_chat-bar-dialog-button-active':
+                  bot.name === currentBot()?.name,
+              }"
             >
               <img
+                [ngClass]="{
+                  'bmb_chat-bar-dialog-image-active':
+                    bot.name === currentBot()?.name,
+                }"
                 class="bmb_chat-bar-dialog-image"
                 [src]="bot.icon"
                 [alt]="bot.name"
@@ -51,4 +174,46 @@
       }
     </ul>
   </div>
+  <div
+    class="bmb_chat-bar-mb-add-dialog"
+    [ngClass]="{
+      'bmb_chat-bar-mb-add-dialog-active':
+        openAddDialog && versionAddDialog == 'mobile',
+    }"
+  >
+    <div class="bmb_chat-bar-mb-add-dialog-header">
+      <span class="bmb_chat-bar-mb-add-dialog-title">Opciones Chatbar</span>
+      <button (click)="close()" class="bmb_chat-bar-mb-add-dialog-close">
+        <bmb-icon [icon]="'close'" />
+      </button>
+    </div>
+    <div class="bmb_chat-bar-mb-add-dialog-body">
+      @for (bot of actionListPagination; track $index) {
+        <div class="bmb_chat-bar-mb-add-dialog-item">
+          <div class="bmb_chat-bar-mb-add-dialog-icon">
+            <button
+              (click)="bot.action()"
+              class="bmb_chat-bar-mb-add-dialog-button"
+            >
+              <bmb-icon [icon]="bot.icon" />
+            </button>
+          </div>
+          <p class="bmb_chat-bar-mb-add-dialog-label">{{ bot.name }}</p>
+        </div>
+      }
+    </div>
+
+    <bmb-dot-paginator
+      [activeDotIndex]="activeDot"
+      [totalDots]="totalDots()"
+      (onDotPress)="handleDotPress($event)"
+    ></bmb-dot-paginator>
+  </div>
+  <input
+    multiple
+    type="file"
+    id="inputFile"
+    (change)="onFileSelect($event)"
+    style="display: none"
+  />
 </section>
