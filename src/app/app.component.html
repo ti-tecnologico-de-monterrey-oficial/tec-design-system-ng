@@ -1,133 +1,72 @@
 <bmb-theme />
 <bmb-divider />
-<!-- <bmb-login
-  [headerLabel]="'ESTUDIANTES'"
-  [forgottenPasswordLabel]="'¿Olvidaste tu contraseña?'"
-  [buttonLabel]="'Ingresar'"
-/> -->
-<!-- <bmb-header-mitec headerLabel="Test" [actionHeaders]="mitecSocial" /> -->
-<!-- <bmb-container-button
-  [title]="'Tema de App'"
+<bmb-interactive-icon
+  [appearance]="'red'"
+  [title]="'Canvas Canvas Canvas Canvas'"
+  [description]="'Short Description'"
+  [icon]="'face'"
+  [horizontal]="false"
   [target]="'_blank'"
-  [link]="''"
-  [iconLeft]="'home'"
-  [iconRight]="'chevron_right'"
-  (onButton)="handleButtonPrimary()"
-  state="disabled"
+  [link]="'https://www.youtube.com/'"
+  [layout]="'button'"
 />
-<br />
-<bmb-container-button
-  [title]="'Tema de App'"
+<bmb-interactive-icon
+  [appearance]="'red'"
+  [title]="'Canvas'"
+  [description]="'Short Description'"
+  [icon]="
+    'https://img.freepik.com/premium-vector/approved-icon-with-thumb-up-approved-label-quality-control_349999-1321.jpg?w=2000'
+  "
+  [horizontal]="false"
   [target]="'_blank'"
-  [link]="'/text'"
-  [iconLeft]="'home'"
-  [iconRight]="'chevron_right'"
-  (onButton)="handleButtonPrimary()"
+  [link]="'https://www.example.com/'"
+  [layout]="'button'"
 />
-<br />
-<bmb-container-button
-  [title]="'Tema de App'"
+<bmb-interactive-icon
+  [appearance]="'red'"
+  [title]="'Canvas'"
+  [description]="'Short Description'"
+  [icon]="
+    'https://img.freepik.com/premium-vector/approved-icon-with-thumb-up-approved-label-quality-control_349999-1321.jpg?w=2000'
+  "
+  [horizontal]="false"
   [target]="'_blank'"
-  [link]="'/text'"
-  [iconLeft]="'home'"
-  [iconRight]="'chevron_right'"
-  (onButton)="handleButtonPrimary()"
-  state="error"
+  [link]="'https://www.example.com/'"
+  [layout]="'regular'"
 />
-
-<br />
-<bmb-container-button
-  [title]="'Tema de App'"
+<bmb-interactive-icon
+  [appearance]="'red'"
+  [title]="'Canvas'"
+  [description]="'Short Description'"
+  [icon]="
+    'https://img.freepik.com/premium-vector/approved-icon-with-thumb-up-approved-label-quality-control_349999-1321.jpg?w=2000'
+  "
+  [horizontal]="false"
   [target]="'_blank'"
-  [link]="'/text'"
-  [iconLeft]="'home'"
-  [iconRight]="'chevron_right'"
-  (onButton)="handleButtonPrimary()"
-  [alternative]="true"
+  [link]="'https://www.example.com/'"
+  [layout]="'app_drawer'"
 />
-<br />
-<bmb-container-button
-  [title]="'Tema de App'"
-  [target]="'_blank'"
-  [link]="'/text'"
-  [iconLeft]="'home'"
-  [iconRight]="'chevron_right'"
-  (onButton)="handleButtonPrimary()"
-  [alternative]="true"
-  state="error"
-/>
-<br />
-<bmb-container-button
-  [title]="'Tema de App'"
-  [target]="'_blank'"
-  [link]="'/text'"
-  [iconLeft]="'home'"
-  [iconRight]="'chevron_right'"
-  (onButton)="handleButtonPrimary()"
-  [alternative]="true"
-  state="disabled"
-  [square]="true"
-/>
-<bmb-container-button
-  [title]="'Tema de App'"
-  [target]="'_blank'"
-  [link]="'/text'"
-  [iconLeft]="'home'"
-  [iconRight]="'chevron_right'"
-  (onButton)="handleButtonPrimary()"
-  [alternative]="true"
-  state="disabled"
-  [small]="true"
-/> -->
-<bmb-user-summary
-  [isProfile]="false"
-  [name]="'Test Name'"
-  [userId]="'AC123123'"
-  [image]="'https://picsum.photos/200/300'"
-  [infoCareer]="'ITICS-Semestre 5'"
-  [noBox]="false"
-  [salutation]="'Buenas tardes'"
-  (onClick)="handleButtonPrimary()"
+<bmb-frequent-apps-selector
+  [title]="'Services'"
+  [apps]="appTest"
+  [layout]="'button'"
 />
 <bmb-divider />
-<bmb-user-summary
-  [isProfile]="true"
-  [name]="'Test Name'"
-  [userId]="'AC123123'"
-  [image]="'https://picsum.photos/200/300'"
-  [infoCareer]="'ITICS-Semestre 5'"
-  [noBox]="false"
-  [salutation]="'Buenas tardes'"
-  (onClick)="handleButtonPrimary()"
+<bmb-frequent-apps-selector
+  [title]="'Services'"
+  [apps]="apps"
+  [layout]="'button'"
 />
 <bmb-divider />
-<bmb-user-summary
-  [isProfile]="true"
-  [name]="'Test Name'"
-  [userId]="'AC123123'"
-  [image]="'https://picsum.photos/200/300'"
-  [infoCareer]="'ITICS-Semestre 5'"
-  [noBox]="true"
-  [salutation]="'Buenas tardes'"
-  (onClick)="handleButtonPrimary()"
+<bmb-frequent-apps-selector
+  [title]="'Services'"
+  [apps]="appTest"
+  [layout]="'regular'"
 />
 <bmb-divider />
-<bmb-user-summary-content
-  [isProfile]="true"
-  [name]="'Test Name'"
-  [userId]="'AC123123'"
-  [image]="'https://picsum.photos/200/300'"
-  [email]="'mail@tec.mx'"
-  [salutation]="'Buenas tardes'"
-  contentLayout="row"
-  [isImageBordered]="false"
+<bmb-frequent-apps-selector
+  [title]="'Services'"
+  [apps]="appTest"
+  [layout]="'app_drawer'"
 />
 <bmb-divider />
-<bmb-user-summary-content
-  [isProfile]="true"
-  [name]="'Test Name'"
-  [userId]="'AC123123'"
-  [image]="'https://picsum.photos/200/300'"
-  [infoCareer]="'ITICS-Semestre 5'"
-  [salutation]="'Buenas tardes'"
-/>
