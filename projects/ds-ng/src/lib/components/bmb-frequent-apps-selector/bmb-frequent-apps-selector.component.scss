@@ -29,19 +29,11 @@
 
     &-app_drawer {
       white-space: nowrap;
-      padding-bottom: var(--bmb-spacing-m);
+      padding-bottom: rem.rem_calc(20);
       gap: var(--bmb-spacing-m);
 
       bmb-interactive-icon {
         scroll-snap-align: center;
-      }
-
-      .bmb_interactive_icon-title {
-        text-align: end;
-      }
-
-      .bmb_interactive_icon.bmb_interactive_icon-app_drawer {
-        gap: var(--bmb-spacing-s);
       }
     }
 
