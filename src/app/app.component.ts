@@ -5273,8 +5273,8 @@ export class AppComponent {
       appearance: 'yellow',
     },
     {
-      icon: 'home',
-      title: 'Home',
+      icon: 'https://img.freepik.com/premium-vector/approved-icon-with-thumb-up-approved-label-quality-control_349999-1321.jpg?w=2000',
+      title: 'Home img',
       link: '/home',
       target: '_blank',
       appearance: 'red',
@@ -5341,16 +5341,14 @@ export class AppComponent {
     },
     {
       icon: 'settings',
-      title: 'School Calendar',
+      title: 'School Calendar external link',
       link: 'https://configuration.com',
       target: '_blank',
       appearance: 'yellow',
     },
     {
       icon: 'settings',
-      title: 'Configuration',
-      link: 'https://configuration.com',
-      target: '_blank',
+      title: 'Configuration Button',
       appearance: 'yellow',
     },
   ];

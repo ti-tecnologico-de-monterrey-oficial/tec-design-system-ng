@@ -36,6 +36,13 @@
         width: inherit;
       }
 
+      bmb-check-external-link-button,
+      .bmb_check-external-link-button,
+      .bmb_check-external-link-button-element {
+        display: inline-block;
+        width: 100%;
+      }
+
       .bmb_interactive_icon-box {
         border-radius: var(--bmb-radius-full);
       }

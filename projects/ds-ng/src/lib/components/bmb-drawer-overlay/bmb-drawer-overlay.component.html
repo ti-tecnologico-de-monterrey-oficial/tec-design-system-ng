@@ -7,10 +7,9 @@
           [appearance]="item.appearance"
           [title]="item.title"
           [icon]="item.icon"
-          [target]="item.target"
-          [link]="item.link"
+          [target]="item?.target!"
+          [link]="item?.link!"
           [layout]="'app_drawer'"
-          [setButtonTemplate]="item.setButtonTemplate"
           (buttonClick)="toggleFullDrawer(item)"
         />
       </ng-container>
@@ -32,8 +31,8 @@
             [appearance]="app.appearance"
             [title]="app.title"
             [icon]="app.icon"
-            [target]="app.target"
-            [link]="app.link"
+            [target]="app?.target!"
+            [link]="app?.link!"
             [layout]="'regular'"
           />
         </ng-container>

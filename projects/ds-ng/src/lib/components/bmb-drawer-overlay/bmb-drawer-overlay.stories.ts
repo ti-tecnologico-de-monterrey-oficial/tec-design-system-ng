@@ -119,7 +119,6 @@ export const Default: Story = {
         appearance: 'blue',
         title: 'Menú de servicios',
         icon: 'lists',
-        setButtonTemplate: true,
         buttonClick: () => {
           console.log('Button clicked!');
         },
