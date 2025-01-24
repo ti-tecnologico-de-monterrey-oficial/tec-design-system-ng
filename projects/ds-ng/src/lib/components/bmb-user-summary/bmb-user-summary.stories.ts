@@ -49,16 +49,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     id: {
-      name: 'ID',
-      control: 'text',
-      description: 'Deprecated. This input will be removed in future versions.',
-      table: {
-        type: { summary: 'string' },
-        category: 'Deprecated',
-        defaultValue: { summary: '' },
-      },
-    },
-    userId: {
       name: 'User ID',
       control: 'text',
       description: 'Sets the user information.',
@@ -124,7 +114,7 @@ Below is an example of how you can use this component in HTML:
   args: {
     image: 'https://picsum.photos/200/300',
     name: 'Test Name',
-    userId: 'AC123123',
+    id: 'AC123123',
     infoCareer: 'ITICS-Semestre 5',
     salutation: 'Buenas tardes',
     isProfile: false,
