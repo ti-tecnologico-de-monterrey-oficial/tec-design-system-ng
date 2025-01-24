@@ -19,7 +19,6 @@ import {
 } from '../../public-api';
 import { IBmbUserInfo } from '../components/bmb-login-onboarding/types';
 import { CommonModule } from '@angular/common';
-import { BmbInteractiveIconComponent } from '../components/bmb-interactive-icon/bmb-interactive-icon.component';
 
 @Component({
   standalone: true,
@@ -35,7 +34,6 @@ import { BmbInteractiveIconComponent } from '../components/bmb-interactive-icon/
     BmbStudentActivityCardComponent,
     BmbDrawerOverlayComponent,
     BmbGradesComponent,
-    BmbInteractiveIconComponent,
     BmbFrequentAppsSelectorComponent,
     BmbMediaCardComponent,
     BmbDotPaginatorComponent,

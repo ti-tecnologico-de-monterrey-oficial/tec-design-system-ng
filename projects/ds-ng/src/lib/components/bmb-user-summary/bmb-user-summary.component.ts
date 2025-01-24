@@ -21,7 +21,7 @@ import { BmbUserSummaryContentComponent } from './bmb-user-summary-content/bmb-u
 export class BmbUserSummaryComponent {
   isProfile = input<boolean>(false);
   name = input<string>('');
-  id = input<string>('')
+  id = input<string>('');
   image = input<string>('');
   infoCareer = input<string>('');
   noBox = input<boolean>(false);
