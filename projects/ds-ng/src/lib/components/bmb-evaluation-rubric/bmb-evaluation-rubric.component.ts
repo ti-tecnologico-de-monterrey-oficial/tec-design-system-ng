@@ -6,10 +6,7 @@ import {
   output,
   ViewEncapsulation,
 } from '@angular/core';
-import {
-  BmbHeaderSectionComponent,
-  IBmbActionHeader,
-} from '../bmb-header-section/bmb-header-section.component';
+import { BmbHeaderSectionComponent } from '../bmb-header-section/bmb-header-section.component';
 import { BmbFocusElementComponent } from '../bmb-focus-element/bmb-focus-element.component';
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
@@ -20,6 +17,8 @@ import {
   IBmbInputAppearance,
 } from '../bmb-input/bmb-input.component';
 import { BmbButtonDirective } from '../../directives/button.directive';
+import { CommonModule } from '@angular/common';
+import { IBmbActionHeader } from '../../types';
 
 export interface IBmbEvaluationRubric {
   criterion: string;
@@ -52,6 +51,7 @@ export interface IBmbEvalRubricButtons {
   selector: 'bmb-evaluation-rubric',
   standalone: true,
   imports: [
+    CommonModule,
     BmbHeaderSectionComponent,
     BmbTooltipComponent,
     BmbFocusElementComponent,

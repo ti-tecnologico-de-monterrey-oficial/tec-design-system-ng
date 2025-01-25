@@ -1,6 +1,6 @@
 {
   "name": "@ti-tecnologico-de-monterrey-oficial/tec-design-system-ng",
-  "version": "1.2.7",
+  "version": "1.2.8",
   "description": "Design System oficial del Tecnológico de Monterrey - Descubre cómo nuestro Design System no solo da forma a la estética, sino que también impulsa la consistencia en cada rincón de nuestro diseño, proporcionando una base sólida para construir experiencias memorables y coherentes. Únete a nosotros en este viaje donde la creatividad, coherencia y elegancia se encuentran para dar vida a un mundo visualmente armonioso y funcionalmente fluido.",
   "keywords": [
     "angular",
@@ -16,9 +16,9 @@
     "test": "npm run lint && npm run format-check && ng test ds-ng",
     "build-storybook": "ng run ds-ng:build-storybook",
     "build": "ng build",
-    "chromatic": "npx chromatic --project-token=chpt_f98e9dab3ebf7df",
+    "chromatic": "npx chromatic",
     "build:styles": "sass projects/ds-ng/src/assets/styles/main.scss dist/ds-ng/assets/styles/main.min.css --style=compressed",
-    "build:lib": "ng build ds-ng && npm run build:styles && npm run build:micro",
+    "build:lib": "ng build ds-ng && npm run build:styles && npm run build:micro && build:git-micro",
     "version": "auto-changelog -p && git add CHANGELOG.md",
     "lint": "ng lint",
     "format": "prettier --write .",
@@ -26,7 +26,8 @@
     "compodoc:build": "compodoc -p tsconfig.doc.json",
     "compodoc:build-and-serve": "compodoc -p tsconfig.doc.json -s",
     "compodoc:serve": "compodoc -s",
-    "build:micro": "sass projects/ds-ng/src/assets/styles/micro.scss dist/ds-ng/assets/styles/micro.min.css --style=compressed"
+    "build:micro": "sass projects/ds-ng/src/assets/styles/micro.scss dist/ds-ng/assets/styles/micro.min.css --style=compressed",
+    "build:git-micro": "sass projects/ds-ng/src/assets/styles/micro.scss projects/ds-ng/src/lib/foundations/micro.min.css --style=compressed"
   },
   "auto-changelog": {
     "output": "CHANGELOG.md",
@@ -94,6 +95,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "material-symbols": "^0.27.2",
     "ng-packagr": "^18.2.1",
     "prettier": "^3.2.5",
     "prettier-eslint": "^16.3.0",

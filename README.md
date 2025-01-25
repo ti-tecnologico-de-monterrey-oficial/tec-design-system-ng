@@ -6,28 +6,33 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 
 ---
 
-## Cambios de la versión v1.2.7
+## Cambios de la versión v1.2.8
 
-## Componentes actualizados:
+### Nuevas características:
+- Ahora las fuentes no se necesitan incrustar y solo se agregan aquellos caracteres que se utilizan dentro del proyecto en el build general.
 
-- [Accordion](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-accordion--documentation)
-- [Advertisement Card](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-advertisement-card--documentation)
-- [Card Button](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-card-button--documentation)
-- [Checkbox](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-checkbox--documentation)
-- [Chevron Title Selector](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-chevron-title-selector--documentation)
-- [Container Button](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-container-button--documentation)
-- [Dropdown](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-dropdown--documentation)
-- [Access to external link](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-access-to-external-link--documentation)
-- [Filter card](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-filter-card--documentation)
-- [Focus Element](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-focus-element--documentation)
+### Nuevos componentes:
+- Bookmark
+- Server table
+- Micro CSS version
+
+### Componentes actualizados:
+
+- [Button group](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-button-group--documentation)
+- [Button](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-button--documentation)
 - [Grades](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-grades--documentation)
-- [Header Mobile](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-header-mobile--documentation)
-- [Home Section](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-home-section--documentation)
-- [Inner Header Mobile](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-inner-header-mobile--documentation)
+- [Badge](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-badge--documentation)
+- [Bottom navigation bar](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-bottom-navigation-bar--documentation)
+- [Card button](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-card-button--documentation)
+- [Dot paginator](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-dot-paginator--documentation)
+- [Dropdown menu](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-dropdown-menu--documentation)
+- [Header section](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-home-section--documentation)
+- [Icon](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-icon--documentation)
 - [Input](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-input--documentation)
-- [Interactive Icon](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-interactive-icon--documentation)
-- [Profile](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-profile--documentation)
-- [Progress Bar](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-progress-bar--documentation)
+- [Sidebar](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-sidebar--documentation)
+- [Text link](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-text-link--documentation)
+- [Timestream](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-timestream--documentation)
+- [Top bar](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-top-bar--documentation)
 
 Si quieres ver el detalle de los cambios puedes ver la entrada de la wiki [aquí](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/wiki/What's-new).
 

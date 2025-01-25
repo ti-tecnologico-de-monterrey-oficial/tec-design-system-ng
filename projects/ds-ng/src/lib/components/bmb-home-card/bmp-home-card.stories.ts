@@ -130,7 +130,7 @@ Below is an example of how you can use this component in HTML:
     },
     actionHeaders: {
       name: 'Action header',
-      control: { type: 'boolean' },
+      control: { type: 'object' },
       description:
         'Sets an array of IBmbActionHeader objects, default value is an empty array.',
       table: {

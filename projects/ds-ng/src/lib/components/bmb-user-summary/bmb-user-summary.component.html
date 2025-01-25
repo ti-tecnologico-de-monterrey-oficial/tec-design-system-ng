@@ -1,28 +1,19 @@
 <section
   class="bmb_user-summary"
   [ngClass]="{
-    'bmb_user-summary-is-profile': isProfile && !noBox,
-    'bmb_user-summary-is-profile-no-box': isProfile && noBox,
+    'bmb_user-summary-is_profile': isProfile(),
+    'bmb_user-summary-is_profile-no_box': isProfile() && noBox(),
   }"
 >
-  <bmb-user-image
-    [size]="'mobile-large'"
-    [image]="image"
-    [altImage]="name"
-    [bordered]="true"
+  <bmb-user-summary-content
+    [isProfile]="isProfile()"
+    [name]="name()"
+    [userId]="id()"
+    [image]="image()"
+    [infoCareer]="infoCareer()"
+    [salutation]="salutation()"
   />
-  <div class="bmb_user-summary-content">
-    @if (isProfile) {
-      <h3 class="bmb_user-summary-content-title">{{ name }}</h3>
-    } @else {
-      <h3 class="bmb_user-summary-content-title">
-        ¡Buenas tardes <br />{{ name }}!
-      </h3>
-    }
-    <span class="bmb_user-summary-content-id">{{ id }}</span>
-    <span class="bmb_user-summary-content-id">{{ infoCareer }}</span>
-  </div>
-  @if (isProfile) {
+  @if (isProfile()) {
     <button
       class="bmb_user-summary-button"
       bmbButton

@@ -28,7 +28,7 @@
           @for (element of getEvalList(); track $index) {
             <button (click)="handleEval(item.criterion, element)">
               <bmb-focus-element
-                [class]="
+                [ngClass]="
                   getButtonClass(
                     'bmb_evaluation-rubric-container-criterion-eval',
                     item,

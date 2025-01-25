@@ -9,7 +9,13 @@ import {
   model,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormControl,
+  ReactiveFormsModule,
+  Validators,
+  AbstractControl,
+  ValidatorFn,
+} from '@angular/forms';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import {
   BmbTooltipComponent,
@@ -33,6 +39,7 @@ export interface IBmbInputError {
   max?: string;
   minLength?: string;
   pattern?: string;
+  jsonFormat?: string;
 }
 
 export interface IBmbInputTooltipPosition {
@@ -68,6 +75,8 @@ export class BmbInputComponent {
   @Input() control: FormControl = new FormControl();
   name = input<string>('');
   spellcheck = input<boolean>(false);
+  jsonFormat = input<boolean>(false);
+  heightTextArea = input<number>();
   maxlength = input<number>();
   minlength = input<number>();
   pattern = input<string>();
@@ -268,6 +277,25 @@ export class BmbInputComponent {
     if (this.pattern()) {
       this.control.addValidators(Validators.pattern(this.pattern()!));
     }
+
+    if (this.jsonFormat()) {
+      this.control.addValidators(this.jsonValidator());
+    }
+  }
+
+  private jsonValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      if (!this.jsonFormat() || !control.value) {
+        return null;
+      }
+
+      try {
+        JSON.parse(control.value);
+        return null;
+      } catch (e) {
+        return { invalidJson: true };
+      }
+    };
   }
 
   getErrorMessage(): string {
@@ -279,6 +307,7 @@ export class BmbInputComponent {
       const errorType = this.control['errors'];
       const error = this.errorMessage() as IBmbInputError;
 
+      if (errorType['invalidJson'] && error.jsonFormat) return error.jsonFormat;
       if (errorType['pattern'] && error.pattern) return error.pattern;
       if (errorType['min'] && error.min) return error.min;
       if (errorType['max'] && error.max) return error.max;

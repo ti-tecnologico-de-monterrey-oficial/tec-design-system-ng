@@ -1,0 +1,17 @@
+@use "../../../assets/styles/base/rem" as rem;
+@use "../../../assets/styles/base/fonts" as fonts;
+
+.bmb_text-editor {
+  border: rem.rem_calc(1) solid var(--general_contrasts-50);
+  border-radius: var(--bmb-spacing-s);
+
+  &-header {
+    border-bottom: rem.rem_calc(1) solid var(--general_contrasts-50);
+    padding: var(--bmb-spacing-s);
+  }
+
+  &-content {
+    padding: var(--bmb-spacing-s);
+    background-color: var(--general_contrasts-input-background);
+  }
+}

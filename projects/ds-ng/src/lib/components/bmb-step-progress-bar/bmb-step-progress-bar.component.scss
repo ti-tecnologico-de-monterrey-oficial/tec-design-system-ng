@@ -46,12 +46,6 @@
 
       .bmb_step-progress-bar-step {
         background-color: RGBA(var(--color-mariner-700));
-
-        .material-icons {
-          color: RGBA(var(--color-charade-50));
-          font-size: rem.rem_calc(24);
-          font-weight: 500;
-        }
       }
     }
 
@@ -107,6 +101,10 @@
     }
   }
 
+  &-icon {
+    color: RGBA(var(--color-charade-50));
+  }
+
   &-vertical {
     flex-direction: column;
 
@@ -146,12 +144,6 @@
 
         .bmb_step-progress-bar-vertical-step {
           background-color: RGBA(var(--color-mariner-700));
-
-          .material-icons {
-            color: RGBA(var(--color-charade-50));
-            font-size: rem.rem_calc(24);
-            font-weight: 500;
-          }
         }
       }
 
@@ -246,10 +238,6 @@
         .bmb_step-progress-bar-step {
           background-color: RGBA(var(--color-neon-primary));
           font-weight: 700;
-
-          .material-icons {
-            color: RGBA(var(--color-charade-50));
-          }
         }
       }
     }

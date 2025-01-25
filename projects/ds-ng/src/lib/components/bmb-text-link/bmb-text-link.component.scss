@@ -3,11 +3,12 @@
 @use "../../../assets/styles/base/rem" as rem;
 
 .bmb_text-link {
-  display: flex;
-  flex-direction: row;
-  align-items: baseline;
+  &-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
 
-  &-text {
+  .bmb_check-external-link-button-element {
     @include fonts.font(4, medium);
     position: relative;
     padding: rem.rem_calc(2 0);
@@ -16,11 +17,6 @@
     align-items: center;
     color: RGBA(var(--color-blue-primary));
     line-height: 2;
-
-    &.disabled {
-      opacity: 0.5;
-      pointer-events: none;
-    }
 
     &::after {
       content: "";
@@ -37,14 +33,36 @@
     &:hover::after {
       transform: scaleX(1);
     }
+  }
 
-    bmb-icon {
+  &-item {
+    &-position_left {
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    &-position_right {
+      display: inline-flex;
+      flex-direction: row-reverse;
+      align-items: center;
+    }
+
+    &-icon {
       font-size: rem.rem_calc(20);
+
+      &-position_left {
+        padding-right: rem.rem_calc(8);
+      }
+
+      &-position_right {
+        padding-left: rem.rem_calc(8);
+      }
     }
   }
 
   &-underlined {
-    .bmb_text-link-text {
+    .bmb_check-external-link-button-element {
       @include fonts.font(4, regular);
       text-decoration: underline;
 
@@ -65,13 +83,11 @@
 
 [data-theme="dark"],
 .storybook-dark-theme {
-  .bmb_text-link {
-    &-text {
-      color: RGBA(var(--color-neon-primary));
+  .bmb_check-external-link-button-element {
+    color: RGBA(var(--color-neon-primary));
 
-      &::after {
-        background: RGBA(var(--color-neon-primary));
-      }
+    &::after {
+      background: RGBA(var(--color-neon-primary));
     }
   }
 }

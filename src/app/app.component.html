@@ -1,39 +1,72 @@
 <bmb-theme />
-<bmb-accordion
-  icon="home"
-  borderRadius="m"
-  margin="m"
-  paddingHeader="m"
-  paddingContent="xl"
-  [hideToggle]="false"
-  [active]="true"
-  [expanded]="true"
->
-  <ng-template #bmbAccordionHeader>1</ng-template>
-  <ng-template #bmbAccordionContent>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo ante,
-      mattis nec libero a, malesuada pellentesque sem. Aliquam erat volutpat.
-      Nulla ut consequat turpis, id efficitur velit. Fusce vitae dolor leo.
-      Praesent diam justo, consectetur in blandit ut, tincidunt vitae enim.
-      Nulla eleifend, leo at finibus volutpat, nulla metus eleifend lacus,
-      ullamcorper dictum augue diam id erat. Donec ac fringilla elit. Aliquam
-      sit amet luctus elit. Suspendisse ante tortor, euismod nec metus id,
-      commodo sollicitudin massa. Aliquam magna nibh, semper eu vestibulum
-      aliquam, aliquet gravida massa. Nullam vehicula, augue non aliquam
-      posuere, enim urna blandit erat, et euismod enim nisi vel eros. Ut dictum
-      egestas mi, faucibus iaculis lorem. Donec risus diam, maximus at varius
-      rutrum, blandit quis augue. Sed consectetur massa ut auctor ultricies.
-      Etiam fringilla venenatis nulla, gravida finibus nulla faucibus fringilla.
-      Morbi luctus porta orci eu iaculis.
-    </p>
-  </ng-template>
-</bmb-accordion>
-
-
-
-<!--
-
-
-
-[disabled]="false" -->
+<bmb-divider />
+<bmb-interactive-icon
+  [appearance]="'red'"
+  [title]="'Canvas Canvas Canvas Canvas'"
+  [description]="'Short Description'"
+  [icon]="'face'"
+  [horizontal]="false"
+  [target]="'_blank'"
+  [link]="'https://www.youtube.com/'"
+  [layout]="'button'"
+/>
+<bmb-interactive-icon
+  [appearance]="'red'"
+  [title]="'Canvas'"
+  [description]="'Short Description'"
+  [icon]="
+    'https://img.freepik.com/premium-vector/approved-icon-with-thumb-up-approved-label-quality-control_349999-1321.jpg?w=2000'
+  "
+  [horizontal]="false"
+  [target]="'_blank'"
+  [link]="'https://www.example.com/'"
+  [layout]="'button'"
+/>
+<bmb-interactive-icon
+  [appearance]="'red'"
+  [title]="'Canvas'"
+  [description]="'Short Description'"
+  [icon]="
+    'https://img.freepik.com/premium-vector/approved-icon-with-thumb-up-approved-label-quality-control_349999-1321.jpg?w=2000'
+  "
+  [horizontal]="false"
+  [target]="'_blank'"
+  [link]="'https://www.example.com/'"
+  [layout]="'regular'"
+/>
+<bmb-interactive-icon
+  [appearance]="'red'"
+  [title]="'Canvas'"
+  [description]="'Short Description'"
+  [icon]="
+    'https://img.freepik.com/premium-vector/approved-icon-with-thumb-up-approved-label-quality-control_349999-1321.jpg?w=2000'
+  "
+  [horizontal]="false"
+  [target]="'_blank'"
+  [link]="'https://www.example.com/'"
+  [layout]="'app_drawer'"
+/>
+<bmb-frequent-apps-selector
+  [title]="'Services'"
+  [apps]="appTest"
+  [layout]="'button'"
+/>
+<bmb-divider />
+<bmb-frequent-apps-selector
+  [title]="'Services'"
+  [apps]="apps"
+  [layout]="'button'"
+/>
+<bmb-divider />
+<bmb-frequent-apps-selector
+  [title]="'Services'"
+  [apps]="appTest"
+  [layout]="'regular'"
+/>
+<bmb-divider />
+<bmb-frequent-apps-selector
+  [title]="'Services'"
+  [apps]="appTest"
+  [layout]="'app_drawer'"
+/>
+<bmb-divider />

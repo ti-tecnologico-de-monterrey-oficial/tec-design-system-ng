@@ -8,8 +8,7 @@ import {
 import { BmbHomeCardHeaderComponent } from './bmb-home-card-header/bmb-home-card-header.component';
 import { IBmbDataTopBar } from '../bmb-breadcrumb/bmb-breadcrumb.component';
 import { IBmbColor } from '../../types/colors';
-import { IBmbActionHeader } from '../bmb-header-section/bmb-header-section.component';
-import { SizeNames } from '../../types';
+import { IBmbActionHeader, SizeNames } from '../../types';
 import { CommonModule } from '@angular/common';
 
 @Component({

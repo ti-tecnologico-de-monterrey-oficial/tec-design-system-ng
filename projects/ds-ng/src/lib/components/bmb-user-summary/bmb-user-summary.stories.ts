@@ -29,9 +29,9 @@ Below is an example of how you can use this component in HTML:
   },
   argTypes: {
     isProfile: {
-      name: 'isProfile',
+      name: 'Is profile',
       control: 'boolean',
-      description: 'Change the content template.',
+      description: 'Changes the content template.',
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
@@ -41,17 +41,7 @@ Below is an example of how you can use this component in HTML:
     name: {
       name: 'Name',
       control: 'text',
-      description: "user's full name.",
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: '' },
-      },
-    },
-    profilePic: {
-      name: 'Profile picture',
-      control: 'text',
-      description: "user's profile picture.",
+      description: 'Sets the user full name.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -59,9 +49,9 @@ Below is an example of how you can use this component in HTML:
       },
     },
     id: {
-      name: 'ID',
+      name: 'User ID',
       control: 'text',
-      description: 'Users information.',
+      description: 'Sets the user information.',
       table: {
         type: { summary: 'string' },
         category: 'Properties',
@@ -69,32 +59,36 @@ Below is an example of how you can use this component in HTML:
       },
     },
     image: {
-      name: 'Profile picture',
+      name: 'Image (Profile picture)',
       control: 'text',
-      description: 'User image path.',
+      description:
+        "Sets the user's profile picture using the user's image path.",
       table: {
-        type: { summary: 'string' },
         category: 'Properties',
+        type: { summary: 'string' },
         defaultValue: { summary: '' },
       },
     },
     infoCareer: {
       name: 'Information Career',
       control: 'text',
-      description: 'Text to show basic information below the user image',
+      description:
+        "Sets the text to display basic information below the user's image.",
       table: {
         type: { summary: 'string' },
         category: 'Properties',
         defaultValue: { summary: '' },
       },
     },
-    onClick: {
-      name: 'On click',
-      control: false,
-      description: 'Click event.',
+    salutation: {
+      name: 'Salutation',
+      control: 'text',
+      description:
+        "Sets the salutation for the user. This is added only when the 'Is profile' is false.",
       table: {
-        type: { summary: 'function' },
-        category: 'Events',
+        type: { summary: 'string' },
+        category: 'Properties',
+        defaultValue: { summary: 'Buenas tardes' },
       },
     },
     noBox: {
@@ -107,14 +101,24 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: 'false' },
       },
     },
+    onClick: {
+      name: 'On click',
+      control: false,
+      description: 'Click event.',
+      table: {
+        type: { summary: 'function' },
+        category: 'Events',
+      },
+    },
   },
   args: {
-    isProfile: false,
+    image: 'https://picsum.photos/200/300',
     name: 'Test Name',
     id: 'AC123123',
-    profilePic: '',
-    noBox: false,
     infoCareer: 'ITICS-Semestre 5',
+    salutation: 'Buenas tardes',
+    isProfile: false,
+    noBox: false,
     onClick: () => {
       console.log('test');
     },

@@ -5,16 +5,16 @@ import {
   ChangeDetectionStrategy,
   ViewEncapsulation,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { isExternalLink } from '../../utils/utils';
+import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
+import { IBmbTargetLink } from '../../types';
+import { BmbButtonDirective } from '../../directives/button.directive';
 
 export interface IDropdownItem {
   icon: string;
   text: string;
   url?: string;
-  target?: string;
+  target?: IBmbTargetLink;
   action?: () => void;
 }
 
@@ -23,7 +23,11 @@ export interface IDropdownItem {
   standalone: true,
   templateUrl: './bmb-dropdown-menu.component.html',
   styleUrls: ['./bmb-dropdown-menu.component.scss'],
-  imports: [CommonModule, BmbIconComponent, RouterModule],
+  imports: [
+    BmbCheckExternalLinkButtonComponent,
+    BmbButtonDirective,
+    BmbIconComponent,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
@@ -33,13 +37,5 @@ export class BmbDropdownMenuComponent {
 
   toggleDropdown() {
     this.isOpen.set(!this.isOpen());
-  }
-
-  isExternalLink(link: string): boolean {
-    if (link) {
-      return isExternalLink(link);
-    }
-
-    return false;
   }
 }

@@ -27,6 +27,7 @@
     "libphonenumber-js",
     "ngx-mat-intl-tel-input",
     "@types/luxon",
-    "@angular/cdk"
+    "@angular/cdk",
+    "material-symbols"
   ]
 }
