@@ -1,0 +1,25 @@
+<section class="bmb_text-editor">
+  <header class="bmb_text-editor-header" bmbLayout [dynamicCols]="true">
+    <!-- <bmb-dropdown
+      bmbLayoutItem
+      [isDynamicItem]="true"
+      [options]="dropDownOptions"
+      [control]="dropDownControl"
+    /> -->
+    <select name="" id="">
+      <option value="normal">Normal</option>
+      <option value="h1">H1</option>
+    </select>
+    <button (click)="wrapSelectedText('h1')">Wrap in H1</button>
+    <button (click)="wrapSelectedText('h2')">Wrap in H2</button>
+  </header>
+  <div
+    class="bmb_text-editor-content"
+    contenteditable="true"
+    (input)="updateContent($event)"
+    [innerHTML]="htmlContent"
+    (mouseup)="getSelectedText($event)"
+    #editableDiv
+  >
+  </div>
+</section>

@@ -127,6 +127,8 @@ export * from './lib/components/bmb-check-external-link-button/bmb-check-externa
 export * from './lib/components/bmb-bookmark/bmb-bookmark.component';
 export * from './lib/components/bmb-navigation-bar/bmb-navigation-bar.component';
 export * from './lib/components/bmb-navigation-bar/bmb-navigation-icon/bmb-navigation-icon.component';
+export * from './lib/components/bmb-text-editor/bmb-text-editor.component';
+export * from './lib/components/bmb-server-table/bmb-server-table.component';
 
 // types
 export * from './lib/types';
