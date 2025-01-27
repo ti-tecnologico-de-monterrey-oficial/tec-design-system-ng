@@ -170,7 +170,10 @@
             "browserTarget": "ds-ng:build",
             "compodoc": true,
             "compodocArgs": ["-e", "json", "-d", "."],
-            "styles": ["projects/ds-ng/src/assets/styles/main.scss"],
+            "styles": [
+              "projects/ds-ng/src/assets/styles/main.scss",
+              "src/styles.scss"
+            ],
             "outputDir": "dist/storybook/ds-ng"
           }
         },
