@@ -6,6 +6,14 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 
 ---
 
+## Cambios de la versión v1.2.9
+
+## Error los íconos
+
+Para corregir el problema de visualización de los íconos es necesario incluir `@import "material-symbols";` en el archivo `styles.scss` o en tu archivo de estilos globales.
+
+---
+
 ## Cambios de la versión v1.2.8
 
 ### Nuevas características:
