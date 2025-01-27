@@ -10,18 +10,18 @@ import {
 } from '@angular/core';
 import { DateTime } from 'luxon';
 import { CommonModule } from '@angular/common';
-import { ISelectedDate } from '../types';
+import { ISelectedDate } from '../bmb-timestream/types';
 
 @Component({
-  selector: 'bmb-timestream-timeline',
+  selector: 'bmb-hito-list',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './bmb-timestream-timeline.component.html',
-  styleUrl: './bmb-timestream-timeline.component.scss',
+  templateUrl: './bmb-hito-list.component.html',
+  styleUrl: './bmb-hito-list.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbTimestreamTimelineComponent implements AfterViewInit {
+export class BmbHitoListComponent implements AfterViewInit {
   dateFormat = input<string>('dd/MM/yyyy');
   lang = input<string>('es');
   now = input<DateTime>(DateTime.now());
@@ -42,7 +42,7 @@ export class BmbTimestreamTimelineComponent implements AfterViewInit {
 
   scrollToItem() {
     let currentMonthElement = this.monthList.nativeElement.querySelector(
-      '.bmb_timestream-timeline-content-item-current',
+      '.bmb_hito_list-content-item-current',
     );
     if (currentMonthElement) {
       currentMonthElement.scrollIntoView();
@@ -50,7 +50,7 @@ export class BmbTimestreamTimelineComponent implements AfterViewInit {
         this.monthList.nativeElement.scrollTop - 45;
     } else {
       currentMonthElement = this.monthList.nativeElement.querySelector(
-        '.bmb_timestream-timeline-item-current',
+        '.bmb_hito_list-item-current',
       );
       currentMonthElement?.scrollIntoView();
     }

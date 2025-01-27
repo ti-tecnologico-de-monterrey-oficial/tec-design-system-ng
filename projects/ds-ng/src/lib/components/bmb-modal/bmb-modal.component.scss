@@ -87,61 +87,6 @@
     &-button {
       width: rem.rem_calc(250);
       height: rem.rem_calc(35);
-
-      &-secondary_action {
-        border: rem.rem_calc(1) solid RGBA(var(--color-charade-950));
-        color: RGBA(var(--color-charade-950));
-        background-color: transparent;
-
-        &:hover:not(:disabled) {
-          color: RGBA(var(--color-charade-50));
-          background-color: RGBA(var(--color-charade-950));
-        }
-      }
-
-      &-primary {
-        background-color: RGBA(var(--color-neon-primary), 0.75);
-        &:hover:not(:disabled) {
-          background-color: RGBA(var(--color-neon-primary));
-        }
-      }
-
-      &-neutral {
-        background-color: RGBA(var(--color-charade-300));
-        &:hover:not(:disabled) {
-          background-color: RGBA(var(--color-charade-500), 0.75);
-          color: RGBA(var(--color-charade-950));
-        }
-      }
-
-      &-error {
-        background-color: RGBA(var(--color-red-light));
-        &:hover:not(:disabled) {
-          background-color: RGBA(var(--color-red-primary));
-        }
-      }
-
-      &-event {
-        background-color: RGBA(var(--color-purple-light));
-        &:hover:not(:disabled) {
-          background-color: RGBA(var(--color-purple-primary), 0.75);
-        }
-      }
-
-      &-success {
-        background-color: RGBA(var(--color-green-primary), 0.75);
-        &:hover:not(:disabled) {
-          background-color: RGBA(var(--color-green-primary));
-        }
-      }
-
-      &-warning {
-        background-color: RGBA(var(--color-yellow-primary));
-        color: RGBA(var(--color-black-primary));
-        &:hover:not(:disabled) {
-          background-color: RGBA(var(--color-yellow-primary), 0.75);
-        }
-      }
     }
   }
 }
@@ -160,21 +105,6 @@
         &::-webkit-scrollbar-thumb {
           background-color: RGBA(var(--color-charade-950));
           border-color: RGBA(var(--color-charade-700));
-        }
-      }
-    }
-
-    &-footer {
-      &-button {
-        &-secondary_action {
-          border: rem.rem_calc(1) solid RGBA(var(--color-charade-50));
-          color: RGBA(var(--color-charade-50));
-          background-color: transparent;
-
-          &:hover:not(:disabled) {
-            background-color: RGBA(var(--color-charade-50));
-            color: RGBA(var(--color-charade-950));
-          }
         }
       }
     }

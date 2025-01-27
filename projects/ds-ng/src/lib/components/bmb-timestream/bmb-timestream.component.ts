@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { DateTime, Info } from 'luxon';
 import { BmbTimestreamErrorComponent } from './bmb-timestream-error/bmb-timestream-error.component';
-import { BmbTimestreamTimelineComponent } from './bmb-timestream-timeline/bmb-timestream-timeline.component';
+import { BmbHitoListComponent } from '../bmb-hito-list/bmb-hito-list.component';
 import { BmbTimestreamDetailsComponent } from './bmb-timestream-detail/bmb-timestream-detail.component';
 import { ITimelineEvent, ISelectedDate, ITimelineEventParsed } from './types';
 import { CommonModule } from '@angular/common';
@@ -47,7 +47,7 @@ export interface IBmbClamp {
   standalone: true,
   imports: [
     BmbTimestreamErrorComponent,
-    BmbTimestreamTimelineComponent,
+    BmbHitoListComponent,
     BmbTimestreamDetailsComponent,
     CommonModule,
     BmbUserImageComponent,
@@ -96,20 +96,15 @@ export class BmbTimestreamComponent {
   constructor(private matDialog: MatDialog) {}
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log('changes', changes);
-
     this.parsedEvents = this.prepareEvents(changes['events'].currentValue);
     this.orderedMonths = this.orderDates(this.parsedEvents, 'yyyy/MM');
     this.selectedDate = this.selectAValidDate();
   }
 
   ngOnInit(): void {
-    console.log('events', this.events());
-
     this.parsedEvents = this.prepareEvents(this.events());
     this.orderedMonths = this.orderDates(this.parsedEvents, 'yyyy/MM');
     this.selectedDate = this.selectAValidDate();
-    console.log('isMicro', this.isMicro());
   }
 
   ngAfterViewInit(): void {
@@ -145,8 +140,6 @@ export class BmbTimestreamComponent {
       this.orderedEvents.set([]);
       return {};
     }
-
-    console.log('events found', events);
 
     const objectEvent: IPlaceholderObject = {};
     events.forEach((event) => {
@@ -186,8 +179,6 @@ export class BmbTimestreamComponent {
       }
     });
 
-    console.log('objectEvent', objectEvent);
-
     const orderedEvents = this.orderDates(objectEvent, 'yyyy/MM');
 
     if (orderedEvents.length) {
@@ -199,8 +190,6 @@ export class BmbTimestreamComponent {
           'yyyy/MM/dd',
         );
       });
-
-      console.log('objectEvent', objectEvent);
 
       this.orderedEvents.set(
         objectEvent['orderedEvents']

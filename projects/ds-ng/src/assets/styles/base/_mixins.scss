@@ -95,7 +95,6 @@
 
   &:active:not(:disabled),
   &.bmb_btn-toggle-active {
-    mix-blend-mode: hard-light;
     transition: all 0.3s ease-in-out;
   }
 

@@ -98,6 +98,16 @@
         </bmb-select-item>
       </bmb-select>
     }
+    @if (userInformation && hasLogoutButton) {
+      <button
+        class="bmb_top-bar-logoff"
+        bmbButton
+        appearance="secondary-filled"
+        (click)="handleLogOutClick($event)"
+      >
+        Salir
+      </button>
+    }
   </div>
   @if (positionButtonMenu === "right") {
     <div class="bmb_top-bar-button-section">
