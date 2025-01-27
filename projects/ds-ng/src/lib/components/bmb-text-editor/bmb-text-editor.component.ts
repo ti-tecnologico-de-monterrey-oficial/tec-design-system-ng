@@ -1,6 +1,17 @@
-import { ChangeDetectionStrategy, Component, ElementRef, input, model, ViewChild, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  input,
+  model,
+  ViewChild,
+  ViewEncapsulation,
+} from '@angular/core';
 import { BmbDropdownComponent } from '../bmb-dropdown/bmb-dropdown.component';
-import { BmbLayoutDirective, BmbLayoutItemDirective } from '../../../public-api';
+import {
+  BmbLayoutDirective,
+  BmbLayoutItemDirective,
+} from '../../../public-api';
 import { FormControl } from '@angular/forms';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
@@ -11,7 +22,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
   templateUrl: './bmb-text-editor.component.html',
   styleUrl: './bmb-text-editor.component.scss',
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbTextEditorComponent {
   // content = model<string>('');
@@ -31,7 +42,9 @@ export class BmbTextEditorComponent {
   ];
 
   constructor(private sanitizer: DomSanitizer) {
-    this.htmlContent = this.sanitizer.bypassSecurityTrustHtml(this.control().value);
+    this.htmlContent = this.sanitizer.bypassSecurityTrustHtml(
+      this.control().value,
+    );
   }
 
   @ViewChild('editableDiv') editableDiv!: ElementRef;
@@ -62,7 +75,8 @@ export class BmbTextEditorComponent {
     const range = window.getSelection()?.getRangeAt(0);
 
     if (this.selectedText) {
-      const wrappedText = '<' + tag + '>' + this.selectedText + '</' + tag + '>';
+      const wrappedText =
+        '<' + tag + '>' + this.selectedText + '</' + tag + '>';
       const newHtml = html.replace(this.selectedText, wrappedText);
 
       div.innerHTML = newHtml;

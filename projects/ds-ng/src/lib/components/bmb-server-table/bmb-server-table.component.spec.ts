@@ -8,9 +8,8 @@ describe('BmbServerTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BmbServerTableComponent]
-    })
-    .compileComponents();
+      imports: [BmbServerTableComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(BmbServerTableComponent);
     component = fixture.componentInstance;
