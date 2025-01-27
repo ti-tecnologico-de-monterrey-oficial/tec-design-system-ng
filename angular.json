@@ -157,7 +157,10 @@
             "compodoc": true,
             "compodocArgs": ["-e", "json", "-d", "."],
             "port": 6006,
-            "styles": ["projects/ds-ng/src/assets/styles/main.scss"]
+            "styles": [
+              "projects/ds-ng/src/assets/styles/main.scss",
+              "src/styles.scss"
+            ]
           }
         },
         "build-storybook": {
