@@ -8,9 +8,8 @@ describe('BmbTextEditorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BmbTextEditorComponent]
-    })
-    .compileComponents();
+      imports: [BmbTextEditorComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(BmbTextEditorComponent);
     component = fixture.componentInstance;

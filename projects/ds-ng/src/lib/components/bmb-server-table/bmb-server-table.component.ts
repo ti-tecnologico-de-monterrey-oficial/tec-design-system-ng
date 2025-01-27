@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, Output, OnChanges, SimpleChanges, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  OnChanges,
+  SimpleChanges,
+  OnInit,
+} from '@angular/core';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -16,10 +24,10 @@ export interface IBmbServerTableColumn {
     MatPaginatorModule,
     MatTableModule,
     MatProgressSpinnerModule,
-    CommonModule
+    CommonModule,
   ],
   templateUrl: './bmb-server-table.component.html',
-  styleUrls: ['./bmb-server-table.component.scss']
+  styleUrls: ['./bmb-server-table.component.scss'],
 })
 export class BmbServerTableComponent implements OnChanges {
   @Input() columns: IBmbServerTableColumn[] = [];
@@ -45,7 +53,7 @@ export class BmbServerTableComponent implements OnChanges {
 
   validateColumns(): void {
     if (this.columns && this.columns.length > 0) {
-      this.displayedColumns = this.columns.map(col => col.key);
+      this.displayedColumns = this.columns.map((col) => col.key);
     } else {
       console.warn('Las columnas están vacías o mal configuradas.');
       this.displayedColumns = [];
@@ -56,7 +64,7 @@ export class BmbServerTableComponent implements OnChanges {
     this.pageChange.emit(event.pageIndex + 1);
   }
 
-  onRowClick(row: any ): void {
+  onRowClick(row: any): void {
     this.selectedRow = row;
     this.onClickRow.emit(row);
   }
