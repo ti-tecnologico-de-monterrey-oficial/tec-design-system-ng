@@ -49,8 +49,6 @@ export class BmbHitoCardComponent {
     if (this.enable_bullet()) classList.push('bmb_hito-card-bullet');
     if (this.is_active()) classList.push('bmb_hito-card-active');
     if (this.isCompact()) classList.push('bmb_hito-card-compact');
-    // if (this.alternative_appearance())
-    //   classList.push('bmb_hito-card-alternative');
 
     return classList;
   }

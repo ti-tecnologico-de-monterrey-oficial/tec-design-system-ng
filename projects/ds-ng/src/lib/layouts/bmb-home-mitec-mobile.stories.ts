@@ -73,7 +73,7 @@ import { CommonModule } from '@angular/common';
               [responsible]="'Activity responsible'"
               [type]="'academic'"
               [isListItem]="false"
-              [image]="'https://picsum.photos/200/300'"
+              [image]="'https://picsum.photos/id/370/200/300'"
               [dateFormat]="'yyyy-MM-dd HH:mm:ss'"
             />
             <bmb-student-activity-card
@@ -84,7 +84,7 @@ import { CommonModule } from '@angular/common';
               [responsible]="'Activity responsible'"
               [type]="'life'"
               [isListItem]="false"
-              [image]="'https://picsum.photos/200/300'"
+              [image]="'https://picsum.photos/id/370/200/300'"
               [dateFormat]="'yyyy-MM-dd HH:mm:ss'"
             />
             <bmb-student-activity-card
@@ -95,7 +95,7 @@ import { CommonModule } from '@angular/common';
               [responsible]="'Activity responsible'"
               [type]="'events'"
               [isListItem]="false"
-              [image]="'https://picsum.photos/200/300'"
+              [image]="'https://picsum.photos/id/370/200/300'"
               [dateFormat]="'yyyy-MM-dd HH:mm:ss'"
             />
             <bmb-student-activity-card
@@ -106,7 +106,7 @@ import { CommonModule } from '@angular/common';
               [responsible]="'Activity responsible'"
               [type]="'academic'"
               [isListItem]="false"
-              [image]="'https://picsum.photos/200/300'"
+              [image]="'https://picsum.photos/id/370/200/300'"
               [dateFormat]="'yyyy-MM-dd HH:mm:ss'"
             />
             <bmb-student-activity-card
@@ -117,7 +117,7 @@ import { CommonModule } from '@angular/common';
               [responsible]="'Activity responsible'"
               [type]="'life'"
               [isListItem]="false"
-              [image]="'https://picsum.photos/200/300'"
+              [image]="'https://picsum.photos/id/370/200/300'"
               [dateFormat]="'yyyy-MM-dd HH:mm:ss'"
             />
           </section>
@@ -580,7 +580,7 @@ import { BmbModalComponent, ModalDataConfig } from '@ti-tecnologico-de-monterrey
               [responsible]="'Activity responsible'"
               [type]="'academic'"
               [isListItem]="false"
-              [image]="'https://picsum.photos/200/300'"
+              [image]="'https://picsum.photos/id/370/200/300'"
               [dateFormat]="'yyyy-MM-dd HH:mm:ss'"
             />
             <bmb-student-activity-card
@@ -591,7 +591,7 @@ import { BmbModalComponent, ModalDataConfig } from '@ti-tecnologico-de-monterrey
               [responsible]="'Activity responsible'"
               [type]="'life'"
               [isListItem]="false"
-              [image]="'https://picsum.photos/200/300'"
+              [image]="'https://picsum.photos/id/370/200/300'"
               [dateFormat]="'yyyy-MM-dd HH:mm:ss'"
             />
             <bmb-student-activity-card
@@ -602,7 +602,7 @@ import { BmbModalComponent, ModalDataConfig } from '@ti-tecnologico-de-monterrey
               [responsible]="'Activity responsible'"
               [type]="'events'"
               [isListItem]="false"
-              [image]="'https://picsum.photos/200/300'"
+              [image]="'https://picsum.photos/id/370/200/300'"
               [dateFormat]="'yyyy-MM-dd HH:mm:ss'"
             />
             <bmb-student-activity-card
@@ -613,7 +613,7 @@ import { BmbModalComponent, ModalDataConfig } from '@ti-tecnologico-de-monterrey
               [responsible]="'Activity responsible'"
               [type]="'academic'"
               [isListItem]="false"
-              [image]="'https://picsum.photos/200/300'"
+              [image]="'https://picsum.photos/id/370/200/300'"
               [dateFormat]="'yyyy-MM-dd HH:mm:ss'"
             />
             <bmb-student-activity-card
@@ -624,7 +624,7 @@ import { BmbModalComponent, ModalDataConfig } from '@ti-tecnologico-de-monterrey
               [responsible]="'Activity responsible'"
               [type]="'life'"
               [isListItem]="false"
-              [image]="'https://picsum.photos/200/300'"
+              [image]="'https://picsum.photos/id/370/200/300'"
               [dateFormat]="'yyyy-MM-dd HH:mm:ss'"
             />
           </section>
