@@ -2,24 +2,31 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  HostListener,
   input,
   model,
   output,
   ViewEncapsulation,
 } from '@angular/core';
-import { IBotType } from './types';
-import { defaultBotList } from './bot_list';
+import { IBotType, IChatBarActions } from './types';
+import { defaultActionList, defaultBotList } from './bot_list';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { BmbDotPaginatorComponent } from '../bmb-dot-paginator/bmb-dot-paginator.component';
 
-export { defaultBotList } from './bot_list';
-export { IBotType } from './types';
+export { defaultBotList, defaultActionList } from './bot_list';
+export { IBotType, IChatBarActions } from './types';
 
 @Component({
   selector: 'bmb-chat-bar',
   standalone: true,
-  imports: [BmbIconComponent, ReactiveFormsModule, CommonModule],
+  imports: [
+    BmbIconComponent,
+    ReactiveFormsModule,
+    CommonModule,
+    BmbDotPaginatorComponent,
+  ],
   templateUrl: './bmb-chat-bar.component.html',
   styleUrl: './bmb-chat-bar.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -28,34 +35,67 @@ export { IBotType } from './types';
 export class BmbChatBarComponent {
   placeholder = input<string>();
   botList = input<IBotType[]>();
+  actionsList = input<IChatBarActions[]>();
+  showEmoji = input<boolean>(false);
 
   currentBot = model<IBotType>();
   isLoading = model<boolean>();
 
+  files: File[] = [];
+
   onSendMessage = output<string>();
+  onSendFiles = output<File[]>();
+  onRecord = output<boolean>();
 
   control = new FormControl();
   isDialogOpen: boolean = false;
+  openAddDialog: boolean = false;
   defaultPlaceholder = computed(
     () => this.placeholder() ?? '¿Qué deseas encontrar hoy?',
   );
   dBotList = computed(() => this.botList() ?? defaultBotList);
+  dActionsList = computed(() =>
+    this.actionsList()
+      ? defaultActionList.concat(this.actionsList()!)
+      : defaultActionList,
+  );
+  showMicControls: boolean = false;
+  onDragFiles: boolean = false;
+  arrayThumbnail: string[] = [];
+  totalDots = computed(() => Math.round(this.dActionsList().length / 6));
+  activeDot: number = 0;
+  actionListPagination: any[] = [];
+  versionAddDialog: 'mobile' | 'web' = 'web';
+
+  windowWidth: number = window.innerWidth;
+  windowHeight: number = window.innerHeight;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    this.versionAddDialog = window.innerWidth < 480 ? 'mobile' : 'web';
+  }
 
   ngOnInit(): void {
+    this.versionAddDialog = window.innerWidth < 480 ? 'mobile' : 'web';
     this.currentBot.update(
       (
         bot: IBotType = {
-          name: 'TecGPT',
-          icon: '/assets/images/bot-icons/bot.png',
+          name: 'TecBot',
+          icon: '/assets/images/bot-icons/bot_tecStandar.svg',
         },
       ): IBotType => bot,
     );
+    this.handlePaginate(this.dActionsList(), this.activeDot);
   }
 
   handleSend() {
     this.onSendMessage.emit(this.control.value);
+    if (this.files.length > 0) {
+      this.onSendFiles.emit(this.files);
+    }
     this.isLoading.update((value) => !value);
     this.control.reset();
+    this.files = [];
   }
 
   handleChangeBot(bot: IBotType) {
@@ -65,5 +105,81 @@ export class BmbChatBarComponent {
 
   handleDialog() {
     this.isDialogOpen = !this.isDialogOpen;
+  }
+
+  handleMic() {
+    this.showMicControls = !this.showMicControls;
+    this.onRecord.emit(true);
+  }
+
+  handleStopMic() {
+    this.showMicControls = !this.showMicControls;
+    this.onRecord.emit(false);
+  }
+
+  handleAddDialog() {
+    this.openAddDialog = !this.openAddDialog;
+  }
+
+  onDrop(event: any) {
+    event.preventDefault();
+    const droppedFiles = event.dataTransfer.files;
+
+    for (let i = 0; i < droppedFiles.length; i++) {
+      if (droppedFiles[i].type.startsWith('image/')) {
+        this.createImageThumbnail(droppedFiles[i]);
+      } else {
+        this.arrayThumbnail?.push('');
+      }
+      this.files.push(droppedFiles[i]);
+    }
+    this.onDragFiles = false;
+  }
+
+  onFileSelect(event: any): void {
+    const selectedFiles = event.target.files;
+    for (let i = 0; i < selectedFiles.length; i++) {
+      if (selectedFiles[i].type.startsWith('image/')) {
+        this.createImageThumbnail(selectedFiles[i]);
+      } else {
+        this.arrayThumbnail?.push('');
+      }
+      this.files.push(selectedFiles[i]);
+    }
+    this.openAddDialog = false;
+  }
+
+  onDragOver(event: any): void {
+    event.preventDefault();
+    this.onDragFiles = true;
+  }
+
+  onDragLeave(event: any): void {
+    event.preventDefault();
+    this.onDragFiles = false;
+  }
+
+  createImageThumbnail(file: File): void {
+    const reader = new FileReader();
+    this.arrayThumbnail?.push(URL.createObjectURL(file));
+    reader.readAsDataURL(file);
+  }
+
+  deleteFile(index: number): void {
+    this.files.splice(index, 1);
+    this.arrayThumbnail.splice(index, 1);
+  }
+
+  handlePaginate(items: any[], page: number) {
+    const startIndex = page * 6;
+    this.actionListPagination = items.slice(startIndex, startIndex + 6);
+  }
+
+  handleDotPress(index: number): void {
+    this.handlePaginate(this.dActionsList(), index);
+  }
+
+  close(): void {
+    this.openAddDialog = false;
   }
 }
