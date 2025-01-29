@@ -13,7 +13,7 @@ export interface IBmbConcept {
   concept: string;
   quantity: string;
   price: number;
-  badge?: { label: string; appearance: IBbmBgAppearance };
+  badge?: { label: string; appearance: IBbmBgAppearance; container: boolean };
 }
 
 export interface IBmbInvoice {
