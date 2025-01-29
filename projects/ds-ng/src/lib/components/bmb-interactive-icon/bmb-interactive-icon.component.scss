@@ -2,6 +2,34 @@
 @use "../../../assets/styles/base/mixins" as mixins;
 @use "../../../assets/styles/base/rem" as rem;
 
+$backgrounds: (
+  'red': RGBA(var(--color-red-primary)),
+  'blue': RGBA(var(--color-mariner-700)),
+  'green': RGBA(var(--color-green-primary)),
+  'yellow': RGBA(var(--color-yellow-primary)),
+  'purple': RGBA(var(--color-purple-primary)),
+  'mitec_blue': RGBA(var(--color-mitec-blue)),
+  'mitec_red': RGBA(var(--color-mitec-red)),
+  'mitec_green': RGBA(var(--color-mitec-green)),
+  'mitec_orange': RGBA(var(--color-mitec-orange)),
+  'mitec_light_green': RGBA(var(--color-green-light)),
+  'mitec_purple': RGBA(var(--color-purple-light)),
+  'creative_violet': var(--creative-use-violet),
+  'creative_indigo': var(--creative-use-indigo),
+  'creative_emerald': var(--creative-use-emerald),
+  'creative_licorice': var(--creative-use-licorice),
+  'creative_darkteal': var(--creative-use-darkteal),
+  'creative_peach': var(--creative-use-peach),
+  'creative_sepia': var(--creative-use-sepia),
+  'creative_softred': var(--creative-use-softred),
+  'creative_wattle': var(--creative-use-wattle),
+  'creative_shipcove': var(--creative-use-shipcove),
+  'creative_plantation': var(--creative-use-plantation),
+  'creative_rum': var(--creative-use-rum),
+  'creative_hibiscus': var(--creative-use-hibiscus),
+  'creative_ripelemon': var(--creative-use-ripelemon),
+);
+
 .bmb_interactive_icon {
   align-items: center;
   display: flex;
@@ -81,33 +109,11 @@
     @include fonts.font(3, regular);
   }
 
-  &-red {
-    .bmb_interactive_icon-box {
-      background-color: RGBA(var(--color-red-primary));
-    }
-  }
-
-  &-blue {
-    .bmb_interactive_icon-box {
-      background-color: RGBA(var(--color-mariner-700));
-    }
-  }
-
-  &-green {
-    .bmb_interactive_icon-box {
-      background-color: RGBA(var(--color-green-primary));
-    }
-  }
-
-  &-yellow {
-    .bmb_interactive_icon-box {
-      background-color: RGBA(var(--color-yellow-primary));
-    }
-  }
-
-  &-purple {
-    .bmb_interactive_icon-box {
-      background-color: RGBA(var(--color-purple-primary));
+  @each $name, $color in $backgrounds {
+    &-#{$name} {
+      .bmb_interactive_icon-box {
+        background-color: $color;
+      }
     }
   }
 
