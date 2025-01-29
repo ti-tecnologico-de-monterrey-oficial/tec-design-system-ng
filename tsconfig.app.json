@@ -6,7 +6,10 @@
     "types": []
   },
   "angularCompilerOptions": {
-    "external": ["projects/ds-ng/src/assets/styles/main.css"]
+    "external": [
+      "projects/ds-ng/src/assets/styles/main.css",
+      "src/styles.scss",
+    ]
   },
   "files": ["src/main.ts"],
   "include": ["src/**/*.d.ts"]

@@ -1,56 +1,53 @@
 @use "../../../assets/styles/base/fonts" as fonts;
 @use "../../../assets/styles/base/rem" as rem;
 
-$appearanceList: (neutral, primary, warning, error, event, reminder, success);
+// $appearanceList: (neutral, primary, warning, error, event, reminder, success);
 
-@mixin toast($appearance: neutral) {
-  @if $appearance == neutral {
-    border-color: var(--general_contrasts-75);
+$appearanceList: (
+  'neutral': var(--general_contrasts-75),
+  'primary': RGBA(var(--color-mariner-400)),
+  'warning': RGBA(var(--color-yellow-tint)),
+  'error': RGBA(var(--color-red-tint)),
+  'event': RGBA(var(--color-purple-light)),
+  'success': RGBA(var(--color-green-light)),
+  'mitec_blue': RGBA(var(--color-mitec-blue)),
+  'mitec_red': RGBA(var(--color-mitec-red)),
+  'mitec_green': RGBA(var(--color-mitec-green)),
+  'mitec_orange': RGBA(var(--color-mitec-orange)),
+  'mitec_light_green': RGBA(var(--color-green-light)),
+  'mitec_purple': RGBA(var(--color-mitec-purple)),
+  'creative_violet': var(--creative-use-violet),
+  'creative_indigo': var(--creative-use-indigo),
+  'creative_emerald': var(--creative-use-emerald),
+  'creative_licorice': var(--creative-use-licorice),
+  'creative_darkteal': var(--creative-use-darkteal),
+  'creative_peach': var(--creative-use-peach),
+  'creative_sepia': var(--creative-use-sepia),
+  'creative_softred': var(--creative-use-softred),
+  'creative_wattle': var(--creative-use-wattle),
+  'creative_shipcove': var(--creative-use-shipcove),
+  'creative_plantation': var(--creative-use-plantation),
+  'creative_rum': var(--creative-use-rum),
+  'creative_hibiscus': var(--creative-use-hibiscus),
+  'creative_ripelemon': var(--creative-use-ripelemon),
+);
 
+@mixin toast($appearance: neutral, $color: var(--general_contrasts-75)) {
+  border-color: $color;
+  @if (
+    $appearance == 'warning' or
+    $appearance == 'primary' or
+    $appearance == 'neutral' or
+    $appearance == 'error' or
+    $appearance == 'event' or
+    $appearance == 'success'
+  ) {
+    .bmb_toast-icon {
+      color: $color;
+    }
+  } @else {
     .bmb_toast-icon {
       color: var(--general_contrasts-75);
-    }
-  } @else if $appearance == primary {
-    border-color: RGBA(var(--color-neon-primary));
-
-    .bmb_toast-icon {
-      color: RGBA(var(--color-blue-primary));
-    }
-  } @else if $appearance == success {
-    border-color: RGBA(var(--color-green-primary));
-
-    .bmb_toast-icon {
-      color: RGBA(var(--color-green-primary));
-    }
-  } @else if $appearance == warning {
-    border-color: RGBA(var(--color-yellow-primary));
-
-    .bmb_toast-icon {
-      color: RGBA(var(--color-yellow-primary));
-    }
-  } @else if $appearance == error {
-    border-color: RGBA(var(--color-red-primary));
-
-    .bmb_toast-icon {
-      color: RGBA(var(--color-red-primary));
-    }
-  } @else if $appearance == event {
-    border-color: RGBA(var(--color-purple-light));
-
-    .bmb_toast-icon {
-      color: RGBA(var(--color-purple-light));
-    }
-  } @else if $appearance == reminder {
-    border: none;
-
-    .bmb_toast {
-      &-icon {
-        color: RGBA(var(--color-blue-primary));
-      }
-
-      &-title {
-        color: RGBA(var(--color-blue-primary));
-      }
     }
   }
 }
@@ -120,9 +117,9 @@ $appearanceList: (neutral, primary, warning, error, event, reminder, success);
     color: var(--general_contrasts-100);
   }
 
-  @each $appearance in $appearanceList {
+  @each $appearance, $color in $appearanceList {
     &-#{$appearance} {
-      @include toast($appearance);
+      @include toast($appearance, $color);
     }
   }
 }

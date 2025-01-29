@@ -2,6 +2,80 @@
 @use "../../../assets/styles/base/mixins" as mixins;
 @use "../../../assets/styles/base/rem" as rem;
 
+$bullets: (
+  'normal': RGBA(var(--color-charade-950)),
+  'strong': RGBA(var(--color-mariner-500)),
+  'success': RGBA(var(--color-green-primary)),
+  'info': RGBA(var(--color-purple-primary)),
+  'warning': RGBA(var(--color-yellow-light)),
+  'error': RGBA(var(--color-red-primary)),
+  'brand': var(--buttons-primary-normal),
+  'background': RGBA(var(--color-charade-900)),
+  'disabled': RGBA(var(--color-charade-500)),
+  'mitec_blue': RGBA(var(--color-mitec-blue)),
+  'mitec_red': RGBA(var(--color-mitec-red)),
+  'mitec_green': RGBA(var(--color-mitec-green)),
+  'mitec_orange': RGBA(var(--color-mitec-orange)),
+  'mitec_light_green': RGBA(var(--color-green-light)),
+  'mitec_purple': RGBA(var(--color-purple-light)),
+  'creative_violet': var(--creative-use-violet),
+  'creative_indigo': var(--creative-use-indigo),
+  'creative_emerald': var(--creative-use-emerald),
+  'creative_licorice': var(--creative-use-licorice),
+  'creative_darkteal': var(--creative-use-darkteal),
+  'creative_peach': var(--creative-use-peach),
+  'creative_sepia': var(--creative-use-sepia),
+  'creative_softred': var(--creative-use-softred),
+  'creative_wattle': var(--creative-use-wattle),
+  'creative_shipcove': var(--creative-use-shipcove),
+  'creative_plantation': var(--creative-use-plantation),
+  'creative_rum': var(--creative-use-rum),
+  'creative_hibiscus': var(--creative-use-hibiscus),
+  'creative_ripelemon': var(--creative-use-ripelemon),
+);
+
+$containers: (
+  'normal': RGBA(var(--color-charade-500)),
+  'strong': RGBA(var(--color-mariner-200)),
+  'success': RGBA(var(--color-green-light)),
+  'info': RGBA(var(--color-purple-tint)),
+  'warning': RGBA(var(--color-yellow-tint)),
+  'error': RGBA(var(--color-red-light)),
+  'brand': var(--general_contrasts-main-selection),
+  'background': RGBA(var(--color-charade-900)),
+  'disabled': RGBA(var(--color-charade-500)),
+  'mitec_blue': RGBA(var(--color-mitec-blue)),
+  'mitec_red': RGBA(var(--color-mitec-red)),
+  'mitec_green': RGBA(var(--color-mitec-green)),
+  'mitec_orange': RGBA(var(--color-mitec-orange)),
+  'mitec_light_green': RGBA(var(--color-green-light)),
+  'mitec_purple': RGBA(var(--color-purple-light)),
+  'creative_violet': var(--creative-use-violet),
+  'creative_indigo': var(--creative-use-indigo),
+  'creative_emerald': var(--creative-use-emerald),
+  'creative_licorice': var(--creative-use-licorice),
+  'creative_darkteal': var(--creative-use-darkteal),
+  'creative_peach': var(--creative-use-peach),
+  'creative_sepia': var(--creative-use-sepia),
+  'creative_softred': var(--creative-use-softred),
+  'creative_wattle': var(--creative-use-wattle),
+  'creative_shipcove': var(--creative-use-shipcove),
+  'creative_plantation': var(--creative-use-plantation),
+  'creative_rum': var(--creative-use-rum),
+  'creative_hibiscus': var(--creative-use-hibiscus),
+  'creative_ripelemon': var(--creative-use-ripelemon),
+);
+
+@mixin bullet($name, $color) {
+  .bmb_badge-bullet {
+    background-color: $color;
+  }
+}
+
+@mixin container($color) {
+  background-color: $color;
+}
+
 .bmb_badge {
   @include fonts.font(3, regular);
   align-items: center;
@@ -25,96 +99,15 @@
     width: rem.rem_calc(8);
   }
 
-  &-normal {
-    .bmb_badge-bullet {
-      background-color: RGBA(var(--color-charade-950));
-    }
-  }
-
-  &-strong {
-    .bmb_badge-bullet {
-      background-color: RGBA(var(--color-mariner-500));
-    }
-  }
-
-  &-success {
-    .bmb_badge-bullet {
-      background-color: RGBA(var(--color-green-primary));
-    }
-  }
-
-  &-info {
-    .bmb_badge-bullet {
-      background-color: RGBA(var(--color-purple-primary));
-    }
-  }
-
-  &-warning {
-    .bmb_badge-bullet {
-      background-color: RGBA(var(--color-yellow-light));
-    }
-  }
-
-  &-error {
-    .bmb_badge-bullet {
-      background-color: RGBA(var(--color-red-primary));
-    }
-  }
-
-  &-brand {
-    .bmb_badge-bullet {
-      background-color: var(--buttons-primary-normal);
-    }
-  }
-
-  &-background {
-    .bmb_badge-bullet {
-      background-color: RGBA(var(--color-charade-900));
+  @each $name, $color in $bullets {
+    &-#{$name} {
+      @include bullet($name, $color);
     }
   }
 
   &-disabled {
-    .bmb_badge-bullet {
-      background-color: RGBA(var(--color-charade-500));
-    }
     .bmb_badge-content {
       color: RGBA(var(--color-charade-500));
-    }
-  }
-
-  &-mitec_blue {
-    .bmb_badge-bullet {
-      background-color: RGBA(var(--color-mitec-blue));
-    }
-  }
-
-  &-mitec_red {
-    .bmb_badge-bullet {
-      background-color: RGBA(var(--color-mitec-red));
-    }
-  }
-
-  &-mitec_green {
-    .bmb_badge-bullet {
-      background-color: RGBA(var(--color-mitec-green));
-    }
-  }
-
-  &-mitec_orange {
-    .bmb_badge-bullet {
-      background-color: RGBA(var(--color-mitec-orange));
-    }
-  }
-
-  &-mitec_light_green {
-    .bmb_badge-bullet {
-      background-color: RGBA(var(--color-green-light));
-    }
-  }
-
-  &-mitec_purple {
-    .bmb_badge-bullet {
-      background-color: RGBA(var(--color-purple-light));
     }
   }
 
@@ -132,9 +125,13 @@
     }
 
     &.bmb_badge {
-      &-normal {
-        background-color: RGBA(var(--color-charade-500));
+      @each $name, $color in $containers {
+        &-#{$name} {
+          @include container($color);
+        }
+      }
 
+      &-normal {
         .bmb_badge-bullet {
           background-color: RGBA(var(--color-charade-50));
         }
@@ -142,26 +139,6 @@
         .bmb_badge-content {
           color: RGBA(var(--color-charade-50));
         }
-      }
-
-      &-strong {
-        background-color: RGBA(var(--color-mariner-200));
-      }
-
-      &-success {
-        background-color: RGBA(var(--color-green-light));
-      }
-
-      &-info {
-        background-color: RGBA(var(--color-purple-tint));
-      }
-
-      &-warning {
-        background-color: RGBA(var(--color-yellow-tint));
-      }
-
-      &-error {
-        background-color: RGBA(var(--color-red-light));
       }
 
       &-disabled {
@@ -174,16 +151,12 @@
       }
 
       &-brand {
-        background-color: var(--general_contrasts-main-selection);
-
         .bmb_badge-content {
           color: RGBA(var(--color-white-primary));
         }
       }
 
       &-mitec_blue {
-        background-color: RGBA(var(--color-mitec-blue));
-
         .bmb_badge-bullet {
           background-color: RGBA(var(--color-white-primary));
         }
@@ -194,8 +167,6 @@
       }
 
       &-mitec_red {
-        background-color: RGBA(var(--color-mitec-red));
-
         .bmb_badge-bullet {
           background-color: RGBA(var(--color-white-primary));
         }
@@ -205,17 +176,7 @@
         }
       }
 
-      &-mitec_green {
-        background-color: RGBA(var(--color-mitec-green));
-      }
-
-      &-mitec_orange {
-        background-color: RGBA(var(--color-mitec-orange));
-      }
-
       &-mitec_light_green {
-        background-color: RGBA(var(--color-green-light));
-
         .bmb_badge-bullet {
           background-color: RGBA(var(--color-white-primary));
         }
@@ -226,8 +187,6 @@
       }
 
       &-mitec_purple {
-        background-color: RGBA(var(--color-purple-light));
-
         .bmb_badge-bullet {
           background-color: RGBA(var(--color-white-primary));
         }

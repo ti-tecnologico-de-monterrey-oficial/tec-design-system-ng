@@ -41,7 +41,7 @@
             ],
             "styles": [
               "projects/ds-ng/src/assets/styles/main.scss",
-              "projects/ds-ng/src/assets/styles/micro.scss"
+              "src/styles.scss"
             ],
             "scripts": [],
             "allowedCommonJsDependencies": []
