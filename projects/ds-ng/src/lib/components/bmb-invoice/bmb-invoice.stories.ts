@@ -61,7 +61,7 @@ Below is an example of how you can use this component in HTML:
         {
           concept: 'Fecha de solicitud',
           quantity: '$0,000 USD',
-          badge: { label: 'Discount', appearance: 'success' },
+          badge: { label: 'Discount', appearance: 'success', container: true },
         },
         {
           concept: 'Tipo de cambio al día de hoy *',
@@ -70,7 +70,7 @@ Below is an example of how you can use this component in HTML:
         {
           concept: 'Fecha de solicitud',
           quantity: '$0,000 USD',
-          badge: { label: 'Discount', appearance: 'success' },
+          badge: { label: 'Discount', appearance: 'success', container: false },
         },
       ],
       total: {

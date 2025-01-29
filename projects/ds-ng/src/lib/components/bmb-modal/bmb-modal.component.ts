@@ -13,7 +13,6 @@ import {
 } from '@angular/material/dialog';
 import { ModalDataConfig } from './bmb-modal.interface';
 import { BmbButtonDirective } from '../../directives/button.directive';
-import { ModalService } from '../../services/modal.service';
 import { BmbHeaderSectionComponent } from '../bmb-header-section/bmb-header-section.component';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 import { IBmbActionHeader } from '../../types';
@@ -27,7 +26,7 @@ import { IBmbActionHeader } from '../../types';
     BmbHeaderSectionComponent,
     BmbButtonDirective,
   ],
-  providers: [MatDialog, ModalService],
+  providers: [MatDialog],
   templateUrl: './bmb-modal.component.html',
   styleUrl: './bmb-modal.component.scss',
   encapsulation: ViewEncapsulation.None,
