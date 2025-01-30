@@ -39,11 +39,13 @@ $font-sizes: 1, 2, 3, 4, 4_5, 5, 6, 7, 8, 9, 10, 11, 12;
     &-title {
       color: RGBA(var(--color-charade-950));
       @include fontSizes();
+      font-weight: 600;
     }
 
     &-subtitle {
       color: RGBA(var(--color-charade-700));
       @include fontSizes();
+      font-weight: 400;
     }
 
     &-breadcrumb {
@@ -62,6 +64,10 @@ $font-sizes: 1, 2, 3, 4, 4_5, 5, 6, 7, 8, 9, 10, 11, 12;
 
   .bmb_container {
     border-color: transparent;
+  }
+
+  .bmb_container-primary-container {
+    padding: 0;
   }
 }
 

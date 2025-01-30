@@ -14,17 +14,19 @@ import {
 import { ModalDataConfig } from './bmb-modal.interface';
 import { BmbButtonDirective } from '../../directives/button.directive';
 import { ModalService } from '../../services/modal.service';
-import { BmbHeaderSectionComponent } from '../bmb-header-section/bmb-header-section.component';
-import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 import { IBmbActionHeader } from '../../types';
+import { BmbThreeColsComponent } from '../bmb-three-cols/bmb-three-cols.component';
+import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
+import { BmbNavigationIconComponent } from '../bmb-navigation-bar/bmb-navigation-icon/bmb-navigation-icon.component';
 
 @Component({
   selector: 'bmb-modal',
   standalone: true,
   imports: [
     CommonModule,
-    BmbContainerComponent,
-    BmbHeaderSectionComponent,
+    BmbThreeColsComponent,
+    BmbTitleContentComponent,
+    BmbNavigationIconComponent,
     BmbButtonDirective,
   ],
   providers: [MatDialog, ModalService],
