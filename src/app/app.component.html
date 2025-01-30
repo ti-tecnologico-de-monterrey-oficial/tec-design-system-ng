@@ -1,87 +1,82 @@
 <bmb-theme />
 <bmb-divider />
-<bmb-interactive-icon
-  [appearance]="'red'"
-  [title]="'Canvas Canvas Canvas Canvas'"
-  [description]="'Short Description'"
-  [icon]="'face'"
-  [horizontal]="false"
-  [target]="'_blank'"
-  [link]="'https://www.youtube.com/'"
-  [layout]="'button'"
-/>
-<bmb-interactive-icon
-  [appearance]="'red'"
-  [title]="'Canvas'"
-  [description]="'Short Description'"
-  [icon]="
-    'https://img.freepik.com/premium-vector/approved-icon-with-thumb-up-approved-label-quality-control_349999-1321.jpg?w=2000'
-  "
-  [horizontal]="false"
-  [target]="'_blank'"
-  [link]="'https://www.example.com/'"
-  [layout]="'button'"
-/>
-<bmb-interactive-icon
-  [appearance]="'red'"
-  [title]="'Canvas'"
-  [description]="'Short Description'"
-  [icon]="
-    'https://img.freepik.com/premium-vector/approved-icon-with-thumb-up-approved-label-quality-control_349999-1321.jpg?w=2000'
-  "
-  [horizontal]="false"
-  [target]="'_blank'"
-  [link]="'https://www.example.com/'"
-  [layout]="'regular'"
-/>
-<bmb-interactive-icon
-  [appearance]="'red'"
-  [title]="'Canvas'"
-  [description]="'Short Description'"
-  [icon]="
-    'https://img.freepik.com/premium-vector/approved-icon-with-thumb-up-approved-label-quality-control_349999-1321.jpg?w=2000'
-  "
-  [horizontal]="false"
-  [target]="'_blank'"
-  [link]="'https://www.example.com/'"
-  [layout]="'app_drawer'"
-/>
-<bmb-frequent-apps-selector
-  [title]="'Services'"
-  [apps]="appTest"
-  [layout]="'button'"
-/>
-<bmb-divider />
-<bmb-frequent-apps-selector
-  [title]="'Services'"
-  [apps]="apps"
-  [layout]="'button'"
-/>
-<bmb-divider />
-<bmb-frequent-apps-selector
-  [title]="'Services'"
-  [apps]="appTest"
-  [layout]="'regular'"
-/>
-<bmb-divider />
-<bmb-frequent-apps-selector
-  [title]="'Services'"
-  [apps]="appTest"
-  [layout]="'app_drawer'"
-/>
-<bmb-divider />
-
+<!-- <bmb-icon
+  icon="home"
+  styleIcon="material-symbols-outlined"
+  [isFill]="true"
+  fontWeight="400"
+  [size]="24"
+/> -->
 <button
   bmbButton
   appearance="primary"
   icon="home"
-  [iconSize]="0"
   size="small"
   position="left"
   [case]="false"
-  [isToggleActive]="false"
-  [enableButtonToggle]="false"
-  [isRounded]="false"
+  (click)="openModalComponent()"
 >
-  Button text
+  Open Modal
 </button>
+<bmb-container>
+  <bmb-three-cols [expandMainColumn]="true">
+    <ng-template #bmbLeftContent>
+      <bmb-icon
+        icon="home"
+        styleIcon="material-symbols-outlined"
+        [isFill]="true"
+        fontWeight="400"
+        [size]="24"
+      />
+    </ng-template>
+    <ng-template #bmbMainContent>
+      <bmb-title-content
+        icon="account_balance_wallet"
+        bgIconAppearance="green-light"
+        title="Title"
+        subtitle="Subtitle"
+        [dataLocalNav]="dataLocalNav"
+      />
+    </ng-template>
+    <ng-template #bmbRightContent>
+      <bmb-icon
+        icon="close"
+        styleIcon="material-symbols-outlined"
+        [isFill]="true"
+        fontWeight="400"
+        [size]="24"
+      />
+    </ng-template>
+  </bmb-three-cols>
+</bmb-container>
+
+<bmb-divider />
+<bmb-three-cols>
+  <ng-template #bmbLeftContent>
+    <bmb-icon
+      icon="home"
+      styleIcon="material-symbols-outlined"
+      [isFill]="true"
+      fontWeight="400"
+      [size]="24"
+    />
+  </ng-template>
+  <ng-template #bmbMainContent>
+    <bmb-title-content
+      [transparentBgC]="true"
+      icon="account_balance_wallet"
+      bgIconAppearance="green-light"
+      title="Title"
+      subtitle="Subtitle"
+    />
+  </ng-template>
+  <ng-template #bmbRightContent>
+    <bmb-icon
+      icon="close"
+      styleIcon="material-symbols-outlined"
+      [isFill]="true"
+      fontWeight="400"
+      [size]="24"
+    />
+  </ng-template>
+</bmb-three-cols>

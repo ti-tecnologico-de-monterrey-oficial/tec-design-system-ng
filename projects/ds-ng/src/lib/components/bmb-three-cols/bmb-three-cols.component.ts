@@ -52,7 +52,10 @@ export class BmbThreeColsComponent {
   alignItems = input<IAlignItemsOptions>('center');
   expandMainColumn = input<boolean>(false);
 
-  @ContentChild('bmbLeftContent') leftContent!: TemplateRef<any>;
-  @ContentChild('bmbMainContent') mainContent!: TemplateRef<any>;
-  @ContentChild('bmbRightContent') rightContent!: TemplateRef<any>;
+  @ContentChild('bmbLeftContent', { read: TemplateRef })
+  leftContent!: TemplateRef<any>;
+  @ContentChild('bmbMainContent', { read: TemplateRef })
+  mainContent!: TemplateRef<any>;
+  @ContentChild('bmbRightContent', { read: TemplateRef })
+  rightContent!: TemplateRef<any>;
 }

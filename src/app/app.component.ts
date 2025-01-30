@@ -106,6 +106,8 @@ import {
   IBmbActionHeader,
   BmbNavigationBarComponent,
   BmbUserSummaryContentComponent,
+  BmbThreeColsComponent,
+  BmbTitleContentComponent,
 } from '../../projects/ds-ng/src/public-api';
 import { BmbPullWedgeComponent } from '../../projects/ds-ng/src/lib/components/bmb-pull-wedge/bmb-pull-wedge.component';
 import { BmbCardButtonComponent } from '../../projects/ds-ng/src/lib/components/bmb-card-button/bmb-card-button.component';
@@ -230,6 +232,8 @@ import { BmbHeaderMitecComponent } from '../../projects/ds-ng/src/lib/components
     BmbUserProfileComponent,
     BmbHeaderMitecComponent,
     BmbUserSummaryContentComponent,
+    BmbThreeColsComponent,
+    BmbTitleContentComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -5218,14 +5222,27 @@ export class AppComponent {
   }
 
   openModalComponent() {
+    // const data: ModalDataConfig = {
+    //   title: 'Modal Title',
+    //   subtitle: 'Modal Subtitle',
+    //   content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+    //   size: 'large',
+    //   type: 'action',
+    //   primaryBtnLabel: 'Ok',
+    //   primaryAction: () => window.alert('Primary action triggered!'),
+    // };
+
     const data: ModalDataConfig = {
       title: 'Modal Title',
       subtitle: 'Modal Subtitle',
       content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
       size: 'large',
-      type: 'action',
+      type: 'alert',
+      alertStyle: 'error',
       primaryBtnLabel: 'Ok',
+      secondaryBtnLabel: 'Cancel',
       primaryAction: () => window.alert('Primary action triggered!'),
+      secondaryAction: () => window.alert('Secondary action triggered!'),
     };
 
     this.matDialog.open(BmbModalComponent, { data });

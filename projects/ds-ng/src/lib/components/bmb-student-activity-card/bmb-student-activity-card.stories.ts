@@ -176,7 +176,7 @@ Below is an example of how you can use this component in HTML:
     location: 'Activity location',
     responsible: 'Activity responsible',
     isListItem: false,
-    image: 'https://picsum.photos/id/370/200/300',
+    image: 'https://picsum.photos/id/64/200/300',
     dateFormat: 'yyyy-MM-dd HH:mm:ss',
   },
 } as Meta<typeof BmbStudentActivityCardComponent>;
