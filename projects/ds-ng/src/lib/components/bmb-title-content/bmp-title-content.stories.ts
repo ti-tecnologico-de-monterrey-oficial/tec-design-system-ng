@@ -237,11 +237,10 @@ Below is an example of how you can use this component in HTML:
         'container-button-tec',
         'background-main-tec',
       ],
-      description:
-        'Sets icon background color. This applies only if transparentBgC (Transparent background color) is false.',
+      description: 'Sets icon background color.',
       table: {
         category: 'Properties',
-        type: { summary: 'IBmbColor' },
+        type: { summary: 'IBmbColor (optional)' },
       },
     },
     transparentBgC: {

@@ -38,12 +38,6 @@ import { BmbNavigationIconComponent } from '../bmb-navigation-bar/bmb-navigation
 export class BmbModalComponent {
   svgUrl: string = 'assets/svg/';
   modalTemplate: TemplateRef<any> | null = null;
-  actionHeaders: IBmbActionHeader[] = [
-    {
-      icon: 'close',
-      action: () => this.closeModal('close', true),
-    },
-  ];
 
   constructor(
     public dialogRef: MatDialogRef<BmbModalComponent>,
@@ -83,17 +77,6 @@ export class BmbModalComponent {
 
     if (!!this.getData().size) {
       return [...classNames, `${baseClassName}-size-${this.getData().size}`];
-    }
-
-    return classNames;
-  }
-
-  getContentClasses(): string[] {
-    const baseClassName: string = 'bmb_modal';
-    const classNames: string[] = [`${baseClassName}-content`];
-
-    if (!!this.getData().scrollable) {
-      return [...classNames, `${baseClassName}-scrollable`];
     }
 
     return classNames;
@@ -164,10 +147,6 @@ export class BmbModalComponent {
 
   getSubtitle(): string {
     return this.getData().subtitle!;
-  }
-
-  getActionHeaders(): IBmbActionHeader[] {
-    return this.actionHeaders;
   }
 
   getContent(): any {

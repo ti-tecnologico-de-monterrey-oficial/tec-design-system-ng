@@ -1,26 +1,31 @@
 <section [ngClass]="getModalClasses()">
   <section class="bmb_modal-container">
-    <header>
+    <header class="bmb_modal-container-header">
       <bmb-three-cols
         [expandMainColumn]="true"
         gapSize="none"
         alignItems="start"
       >
         <ng-template #bmbMainContent>
-          <bmb-title-content
-            [title]="getTitle()"
-            titleSize="9"
-            [subtitle]="getSubtitle()"
-            [icon]="getImage()"
-            [transparentBgC]="true"
-          />
+          <span class="bmb_modal-container-header-title">
+            <bmb-title-content
+              [title]="getTitle()"
+              titleSize="9"
+              [subtitle]="getSubtitle()"
+              [icon]="getImage()"
+              [iconSize]="48"
+              [transparentBgC]="true"
+            />
+          </span>
         </ng-template>
         <ng-template #bmbRightContent>
-          <bmb-navigation-icon
-            icon="close"
-            [iconSize]="24"
-            (buttonClick)="closeModal('close', true)"
-          />
+          <span class="bmb_modal-container-header-icon_close">
+            <bmb-navigation-icon
+              icon="close"
+              [iconSize]="24"
+              (buttonClick)="closeModal('close', true)"
+            />
+          </span>
         </ng-template>
       </bmb-three-cols>
     </header>

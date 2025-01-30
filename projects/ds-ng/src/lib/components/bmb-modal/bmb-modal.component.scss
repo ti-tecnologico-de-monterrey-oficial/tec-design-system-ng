@@ -22,6 +22,14 @@
     background-color: var(--containers-modal);
     border: rem.rem_calc(1) solid var(--general_contrasts-25);
     border-radius: rem.rem_calc(16);
+
+    &-header {
+      &-icon_close {
+        .bmb_check-external-link-button-element {
+          padding-top: var(--bmb-spacing-xs);
+        }
+      }
+    }
   }
 
   &-size {
