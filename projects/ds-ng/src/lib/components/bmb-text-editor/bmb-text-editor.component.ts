@@ -14,10 +14,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 @Component({
   selector: 'bmb-text-editor',
   standalone: true,
-  imports: [
-    BmbButtonDirective,
-    BmbIconComponent
-  ],
+  imports: [BmbButtonDirective, BmbIconComponent],
   templateUrl: './bmb-text-editor.component.html',
   styleUrl: './bmb-text-editor.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -35,7 +32,8 @@ export class BmbTextEditorComponent {
   detectAlignment() {
     const selection = window.getSelection();
     if (selection && selection.rangeCount > 0) {
-      const element = selection.getRangeAt(0).commonAncestorContainer as HTMLElement;
+      const element = selection.getRangeAt(0)
+        .commonAncestorContainer as HTMLElement;
       const parentElement = element.parentElement;
 
       if (parentElement) {
@@ -47,7 +45,9 @@ export class BmbTextEditorComponent {
 
   applyAlignment(alignment: string) {
     this.execCommand('styleWithCSS', 'true');
-    this.execCommand('justify' + alignment.charAt(0).toUpperCase() + alignment.slice(1));
+    this.execCommand(
+      'justify' + alignment.charAt(0).toUpperCase() + alignment.slice(1),
+    );
   }
 
   constructor(private sanitizer: DomSanitizer) {}
