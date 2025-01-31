@@ -6,7 +6,7 @@ export default {
   component: BmbPushNotificationItemComponent,
   decorators: [
     moduleMetadata({
-      imports: [ BmbPushNotificationItemComponent ],
+      imports: [BmbPushNotificationItemComponent],
     }),
   ],
   parameters: {
@@ -54,9 +54,9 @@ import { CommonModule } from '@angular/common';
         category: 'Properties',
         type: {
           summary: 'INotification',
-          required: true
+          required: true,
         },
-      }
+      },
     },
     onClose: {
       name: 'On Close',
@@ -67,8 +67,8 @@ import { CommonModule } from '@angular/common';
         type: {
           summary: 'void',
         },
-      }
-    }
+      },
+    },
   },
 
   args: {

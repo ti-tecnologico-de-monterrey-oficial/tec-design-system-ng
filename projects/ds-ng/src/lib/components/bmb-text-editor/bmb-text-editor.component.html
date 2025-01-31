@@ -1,84 +1,170 @@
 <section class="bmb_text-editor">
   <header class="bmb_text-editor-header">
     <span class="bmb_text-editor-header-group">
-      <select id="BmbTextEditorSelect" class="bmb_text-editor-header-select" (change)="handleChange($event, 'formatBlock')" title="Estilo de párrafo">
+      <select
+        id="BmbTextEditorSelect"
+        class="bmb_text-editor-header-select"
+        (change)="handleChange($event, 'formatBlock')"
+        title="Estilo de párrafo"
+      >
         <option value="p">Párrafo</option>
         <option value="h1">Título 1</option>
         <option value="h2">Título 2</option>
         <option value="h3">Título 3</option>
         <option value="blockquote">Cita</option>
       </select>
-      <button bmbButton appearance="transparent" size="micro" type="button" (click)="execCommand('bold')" title="Negrita">
-        <bmb-icon icon="format_bold" [size]="24"/>
+      <button
+        bmbButton
+        appearance="transparent"
+        size="micro"
+        type="button"
+        (click)="execCommand('bold')"
+        title="Negrita"
+      >
+        <bmb-icon icon="format_bold" [size]="24" />
       </button>
-      <button bmbButton appearance="transparent" size="micro" type="button" (click)="execCommand('italic')" title="Cursiva">
-        <bmb-icon icon="format_italic" [size]="24"/>
+      <button
+        bmbButton
+        appearance="transparent"
+        size="micro"
+        type="button"
+        (click)="execCommand('italic')"
+        title="Cursiva"
+      >
+        <bmb-icon icon="format_italic" [size]="24" />
       </button>
-      <button bmbButton appearance="transparent" size="micro" type="button" (click)="execCommand('underline')" title="Subrayado">
-        <bmb-icon icon="format_underlined" [size]="24"/>
+      <button
+        bmbButton
+        appearance="transparent"
+        size="micro"
+        type="button"
+        (click)="execCommand('underline')"
+        title="Subrayado"
+      >
+        <bmb-icon icon="format_underlined" [size]="24" />
       </button>
-      <input id="BmbTextEditorColor" type="color" (change)="handleChange($event, 'foreColor')" title="Color de texto">
+      <input
+        id="BmbTextEditorColor"
+        type="color"
+        (change)="handleChange($event, 'foreColor')"
+        title="Color de texto"
+      />
     </span>
 
     <span class="bmb_text-editor-header-group">
       <button
-        bmbButton appearance="transparent" size="micro"
+        bmbButton
+        appearance="transparent"
+        size="micro"
         type="button"
         (click)="applyAlignment('left')"
         [class.active]="currentAlignment === 'left'"
         title="Alinear a la izquierda"
       >
-        <bmb-icon icon="format_align_left" [size]="24"/>
+        <bmb-icon icon="format_align_left" [size]="24" />
       </button>
       <button
-        bmbButton appearance="transparent" size="micro"
+        bmbButton
+        appearance="transparent"
+        size="micro"
         type="button"
         (click)="applyAlignment('center')"
         [class.active]="currentAlignment === 'center'"
         title="Centrar"
       >
-        <bmb-icon icon="format_align_center" [size]="24"/>
+        <bmb-icon icon="format_align_center" [size]="24" />
       </button>
       <button
-        bmbButton appearance="transparent" size="micro"
+        bmbButton
+        appearance="transparent"
+        size="micro"
         type="button"
         (click)="applyAlignment('right')"
         [class.active]="currentAlignment === 'right'"
         title="Alinear a la derecha"
       >
-        <bmb-icon icon="format_align_right" [size]="24"/>
+        <bmb-icon icon="format_align_right" [size]="24" />
       </button>
     </span>
 
     <span class="bmb_text-editor-header-group">
-      <button bmbButton appearance="transparent" size="micro" type="button" (click)="execCommand('insertOrderedList')" title="Lista numerada">
-        <bmb-icon icon="format_list_numbered" [size]="24"/>
+      <button
+        bmbButton
+        appearance="transparent"
+        size="micro"
+        type="button"
+        (click)="execCommand('insertOrderedList')"
+        title="Lista numerada"
+      >
+        <bmb-icon icon="format_list_numbered" [size]="24" />
       </button>
-      <button bmbButton appearance="transparent" size="micro" type="button" (click)="execCommand('insertUnorderedList')" title="Lista con viñetas">
+      <button
+        bmbButton
+        appearance="transparent"
+        size="micro"
+        type="button"
+        (click)="execCommand('insertUnorderedList')"
+        title="Lista con viñetas"
+      >
         <bmb-icon icon="format_list_bulleted" [size]="24" />
       </button>
     </span>
 
     <span class="bmb_text-editor-header-group">
-      <button bmbButton appearance="transparent" size="micro" type="button" (click)="execCommand('indent')" title="Aumentar sangría">
-        <bmb-icon icon="format_indent_increase" [size]="24"/>
+      <button
+        bmbButton
+        appearance="transparent"
+        size="micro"
+        type="button"
+        (click)="execCommand('indent')"
+        title="Aumentar sangría"
+      >
+        <bmb-icon icon="format_indent_increase" [size]="24" />
       </button>
-      <button bmbButton appearance="transparent" size="micro" type="button" (click)="execCommand('outdent')" title="Disminuir sangría">
-        <bmb-icon icon="format_indent_decrease" [size]="24"/>
+      <button
+        bmbButton
+        appearance="transparent"
+        size="micro"
+        type="button"
+        (click)="execCommand('outdent')"
+        title="Disminuir sangría"
+      >
+        <bmb-icon icon="format_indent_decrease" [size]="24" />
       </button>
     </span>
 
     <span class="bmb_text-editor-header-group">
-      <button bmbButton appearance="transparent" size="micro" type="button" (click)="insertLink()" title="Insertar enlace">
-        <bmb-icon icon="link" [size]="24"/>
+      <button
+        bmbButton
+        appearance="transparent"
+        size="micro"
+        type="button"
+        (click)="insertLink()"
+        title="Insertar enlace"
+      >
+        <bmb-icon icon="link" [size]="24" />
       </button>
-      <button bmbButton appearance="transparent" size="micro" type="button" (click)="insertImage()" title="Insertar imagen">
-        <bmb-icon icon="image" [size]="24"/>
+      <button
+        bmbButton
+        appearance="transparent"
+        size="micro"
+        type="button"
+        (click)="insertImage()"
+        title="Insertar imagen"
+      >
+        <bmb-icon icon="image" [size]="24" />
       </button>
     </span>
     <span class="bmb_text-editor-header-group">
-      <button bmbButton appearance="transparent" size="micro" type="button" (click)="clearFormatting()" title="Limpiar formato">
-        <bmb-icon icon="format_clear" [size]="24"/>
+      <button
+        bmbButton
+        appearance="transparent"
+        size="micro"
+        type="button"
+        (click)="clearFormatting()"
+        title="Limpiar formato"
+      >
+        <bmb-icon icon="format_clear" [size]="24" />
       </button>
     </span>
   </header>
