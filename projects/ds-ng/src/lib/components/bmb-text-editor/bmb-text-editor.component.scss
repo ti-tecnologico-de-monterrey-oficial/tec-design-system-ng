@@ -11,9 +11,10 @@
     border-bottom: rem.rem_calc(1) solid var(--general_contrasts-50);
     padding: var(--bmb-spacing-s);
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
     gap: var(--bmb-spacing-m);
+    overflow: auto;
 
     &-select {
       background: transparent;
