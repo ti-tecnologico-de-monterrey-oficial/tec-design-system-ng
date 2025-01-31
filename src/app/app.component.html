@@ -18,37 +18,43 @@
 >
   Open Modal
 </button>
-<bmb-container>
-  <bmb-three-cols [expandMainColumn]="true">
-    <ng-template #bmbLeftContent>
-      <bmb-icon
-        icon="home"
-        styleIcon="material-symbols-outlined"
-        [isFill]="true"
-        fontWeight="400"
-        [size]="24"
-      />
-    </ng-template>
-    <ng-template #bmbMainContent>
-      <bmb-title-content
-        icon="account_balance_wallet"
-        bgIconAppearance="green-light"
-        title="Title"
-        subtitle="Subtitle"
-        [dataLocalNav]="dataLocalNav"
-      />
-    </ng-template>
-    <ng-template #bmbRightContent>
-      <bmb-icon
-        icon="close"
-        styleIcon="material-symbols-outlined"
-        [isFill]="true"
-        fontWeight="400"
-        [size]="24"
-      />
-    </ng-template>
-  </bmb-three-cols>
-</bmb-container>
+<bmb-three-cols [expandMainColumn]="false">
+  <ng-template #bmbLeftContent>
+    <bmb-icon
+      icon="home"
+      styleIcon="material-symbols-outlined"
+      [isFill]="true"
+      fontWeight="400"
+      [size]="24"
+    />
+  </ng-template>
+  <ng-template #bmbMainContent>
+    <bmb-title-content
+      icon="account_balance_wallet"
+      bgIconAppearance="green-light"
+      title="Title"
+      subtitle="Subtitle"
+      [dataLocalNav]="dataLocalNav"
+      [transparentBgC]="true"
+    />
+  </ng-template>
+  <ng-template #bmbRightContent>
+    <bmb-icon
+      icon="close"
+      styleIcon="material-symbols-outlined"
+      [isFill]="true"
+      fontWeight="400"
+      [size]="24"
+    />
+    <bmb-icon
+      icon="close"
+      styleIcon="material-symbols-outlined"
+      [isFill]="true"
+      fontWeight="400"
+      [size]="24"
+    />
+  </ng-template>
+</bmb-three-cols>
 
 <bmb-divider />
 <bmb-three-cols>
@@ -80,3 +86,17 @@
     />
   </ng-template>
 </bmb-three-cols>
+
+<bmb-divider />
+<bmb-home-card
+  leftIcon="chevron_left"
+  icon="account_balance_wallet"
+  bgIconAppearance="green-light"
+  title="Title"
+  subtitle="Subtitle"
+  [dataLocalNav]="dataLocalNav"
+  [actionHeaders]="actionHeadersB"
+  [isMobile]="false"
+>
+  <p>hello world</p>
+</bmb-home-card>

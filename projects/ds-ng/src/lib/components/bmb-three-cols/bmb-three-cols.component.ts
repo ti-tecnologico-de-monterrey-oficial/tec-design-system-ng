@@ -19,30 +19,8 @@ import { CommonModule } from '@angular/common';
   selector: 'bmb-three-cols',
   standalone: true,
   imports: [CommonModule, BmbLayoutDirective, BmbLayoutItemDirective],
-  template: `
-    <span
-      bmbLayout
-      margin="none"
-      [justify]="justify()"
-      [alignItems]="alignItems()"
-      [gapSize]="gapSize()"
-      [dynamicCols]="true"
-    >
-      <span bmbLayoutItem [isDynamicItem]="true">
-        <ng-container [ngTemplateOutlet]="leftContent" />
-      </span>
-      <span
-        bmbLayoutItem
-        [isDynamicItem]="true"
-        [colGrow]="(expandMainColumn() && 1) || 0"
-      >
-        <ng-container [ngTemplateOutlet]="mainContent" />
-      </span>
-      <span bmbLayoutItem [isDynamicItem]="true">
-        <ng-container [ngTemplateOutlet]="rightContent" />
-      </span>
-    </span>
-  `,
+  templateUrl: './bmb-three-cols.component.html',
+  styleUrl: './bmb-three-cols.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

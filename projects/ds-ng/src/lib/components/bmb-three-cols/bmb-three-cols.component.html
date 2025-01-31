@@ -1,0 +1,23 @@
+<span
+  bmbLayout
+  margin="none"
+  class="bmb_three-cols"
+  [justify]="justify()"
+  [alignItems]="alignItems()"
+  [gapSize]="gapSize()"
+  [dynamicCols]="true"
+>
+  <span bmbLayoutItem [isDynamicItem]="true">
+    <ng-container [ngTemplateOutlet]="leftContent" />
+  </span>
+  <span
+    bmbLayoutItem
+    [isDynamicItem]="true"
+    [colGrow]="(expandMainColumn() && 1) || 0"
+  >
+    <ng-container [ngTemplateOutlet]="mainContent" />
+  </span>
+  <span bmbLayoutItem [isDynamicItem]="true">
+    <ng-container [ngTemplateOutlet]="rightContent" />
+  </span>
+</span>
