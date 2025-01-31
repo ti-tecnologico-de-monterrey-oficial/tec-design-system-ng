@@ -75,6 +75,9 @@
       <button bmbButton appearance="transparent" size="micro" type="button" (click)="insertImage()" title="Insertar imagen">
         <bmb-icon icon="image" [size]="24"/>
       </button>
+      <!-- <button bmbButton appearance="transparent" size="micro" type="button" (click)="openTableDialog()" title="Insertar tabla">
+        <bmb-icon icon="table_chart" [size]="24"/>
+      </button> -->
     </span>
     <span class="bmb_text-editor-header-group">
       <button bmbButton appearance="transparent" size="micro" type="button" (click)="clearFormatting()" title="Limpiar formato">
@@ -91,3 +94,21 @@
     [innerHTML]="sanitizedContent"
   ></div>
 </section>
+
+
+<!-- Diálogo para definir filas y columnas -->
+<dialog class="dialog-overlay" [open]="showTableDialog">
+  <div class="dialog">
+    <h3>Insertar tabla</h3>
+    <label for="rows">Filas:</label>
+    <input type="number" id="rows" min="1" max="10" />
+
+    <label for="columns">Columnas:</label>
+    <input type="number" id="columns" min="1" max="10" />
+
+    <div class="dialog-buttons">
+      <button type="button" (click)="insertTable()">Insertar</button>
+      <button type="button" (click)="closeTableDialog()">Cancelar</button>
+    </div>
+  </div>
+</dialog>

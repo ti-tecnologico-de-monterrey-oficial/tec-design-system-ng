@@ -31,6 +31,9 @@ export class BmbTextEditorComponent {
   htmlContent: string = '';
   sanitizedContent: SafeHtml = '';
   currentAlignment: string = 'left';
+  showTableDialog: boolean = false;
+  tableRows: number = 2;
+  tableColumns: number = 2;
 
   detectAlignment() {
     const selection = window.getSelection();
@@ -105,6 +108,54 @@ export class BmbTextEditorComponent {
       return true;
     } catch (error) {
       return false;
+    }
+  }
+
+  // Método para abrir el diálogo de la tabla
+  openTableDialog() {
+    this.showTableDialog = true;
+  }
+
+  // Método para cerrar el diálogo de la tabla
+  closeTableDialog() {
+    this.showTableDialog = false;
+  }
+
+  // Método para insertar la tabla
+  insertTable() {
+    const rows = this.tableRows;
+    const columns = this.tableColumns;
+
+    if (rows > 0 && columns > 0) {
+      const tableHtml = this.generateTableHtml(rows, columns);
+      this.insertHtml(tableHtml);
+      this.closeTableDialog();
+    }
+  }
+
+  // Método para generar el HTML de la tabla
+  generateTableHtml(rows: number, columns: number): string {
+    let tableHtml = '<table style="border-collapse: collapse; width: 100%;">';
+    for (let i = 0; i < rows; i++) {
+      tableHtml += '<tr>';
+      for (let j = 0; j < columns; j++) {
+        tableHtml += `<td style="border: 1px solid #000; padding: 8px;">&nbsp;</td>`;
+      }
+      tableHtml += '</tr>';
+    }
+    tableHtml += '</table>';
+    return tableHtml;
+  }
+
+  // Método para insertar HTML en el editor
+  insertHtml(html: string) {
+    const selection = window.getSelection();
+    if (selection && selection.rangeCount > 0) {
+      const range = selection.getRangeAt(0);
+      const div = document.createElement('div');
+      div.innerHTML = html;
+      range.insertNode(div);
+      this.updateContent();
     }
   }
 }
