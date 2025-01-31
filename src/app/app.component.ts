@@ -106,6 +106,7 @@ import {
   IBmbActionHeader,
   BmbNavigationBarComponent,
   BmbUserSummaryContentComponent,
+  BmbTextEditorComponent,
 } from '../../projects/ds-ng/src/public-api';
 import { BmbPullWedgeComponent } from '../../projects/ds-ng/src/lib/components/bmb-pull-wedge/bmb-pull-wedge.component';
 import { BmbCardButtonComponent } from '../../projects/ds-ng/src/lib/components/bmb-card-button/bmb-card-button.component';
@@ -230,6 +231,7 @@ import { BmbHeaderMitecComponent } from '../../projects/ds-ng/src/lib/components
     BmbUserProfileComponent,
     BmbHeaderMitecComponent,
     BmbUserSummaryContentComponent,
+    BmbTextEditorComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

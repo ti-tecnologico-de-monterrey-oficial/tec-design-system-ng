@@ -1,6 +1,9 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbInteractiveIconComponent, IBmbInteractiveIconAppearance } from './bmb-interactive-icon.component';
+import {
+  BmbInteractiveIconComponent,
+  IBmbInteractiveIconAppearance,
+} from './bmb-interactive-icon.component';
 
 const appearanceOptions: IBmbInteractiveIconAppearance[] = [
   'red',
@@ -28,7 +31,7 @@ const appearanceOptions: IBmbInteractiveIconAppearance[] = [
   'creative_rum',
   'creative_hibiscus',
   'creative_ripelemon',
-]
+];
 
 export default {
   title: 'Micro Componentes/Interactive Icon',
