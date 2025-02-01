@@ -15,7 +15,27 @@ export type BmbToastAppearance =
   | 'error'
   | 'event'
   | 'successful'
-  | 'reminder';
+  | 'reminder'
+  | 'mitec_blue'
+  | 'mitec_red'
+  | 'mitec_green'
+  | 'mitec_orange'
+  | 'mitec_light_green'
+  | 'mitec_purple'
+  | 'creative_violet'
+  | 'creative_indigo'
+  | 'creative_emerald'
+  | 'creative_licorice'
+  | 'creative_darkteal'
+  | 'creative_peach'
+  | 'creative_sepia'
+  | 'creative_softred'
+  | 'creative_wattle'
+  | 'creative_shipcove'
+  | 'creative_plantation'
+  | 'creative_rum'
+  | 'creative_hibiscus'
+  | 'creative_ripelemon';
 
 @Component({
   standalone: true,
@@ -61,7 +81,9 @@ export class BmbToastComponent {
       primary: 'info',
     };
 
-    return icons[this.appearance()];
+    if (icons[this.appearance()]) return icons[this.appearance()];
+
+    return 'info';
   }
 
   handleClose(): void {

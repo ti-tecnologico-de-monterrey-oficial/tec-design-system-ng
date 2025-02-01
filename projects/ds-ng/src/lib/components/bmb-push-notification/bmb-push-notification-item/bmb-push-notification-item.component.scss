@@ -14,14 +14,28 @@
 }
 
 $types: (
-  "tec": RGBA(var(--color-blue-tec)),
+  "tec": RGBA(var(--color-blue-primary)),
   "success": RGBA(var(--color-green-primary)),
   "info": RGBA(var(--color-neon-primary)),
   "neutral": RGBA(var(--color-charade-300)),
   "event": RGBA(var(--color-purple-light)),
-  "error": RGBA(var(--color-purple-light)),
+  "error": RGBA(var(--color-red-primary)),
   "warning": RGBA(var(--color-mitec-orange)),
   "black": RGBA(var(--color-black-primary)),
+  "creative_violet": var(--creative-use-violet),
+  "creative_indigo": var(--creative-use-indigo),
+  "creative_emerald": var(--creative-use-emerald),
+  "creative_licorice": var(--creative-use-licorice),
+  "creative_darkteal": var(--creative-use-darkteal),
+  "creative_peach": var(--creative-use-peach),
+  "creative_sepia": var(--creative-use-sepia),
+  "creative_softred": var(--creative-use-softred),
+  "creative_wattle": var(--creative-use-wattle),
+  "creative_shipcove": var(--creative-use-shipcove),
+  "creative_plantation": var(--creative-use-plantation),
+  "creative_rum": var(--creative-use-rum),
+  "creative_hibiscus": var(--creative-use-hibiscus),
+  "creative_ripelemon": var(--creative-use-ripelemon),
 );
 
 .bmb_push-notification-item {
@@ -125,13 +139,12 @@ $types: (
 
   &-icon {
     font-size: rem.rem_calc(24);
-    font-size: rem.rem_calc(24);
-    line-height: rem.rem_calc(24);
     width: rem.rem_calc(32);
     height: rem.rem_calc(32);
-    padding: rem.rem_calc(2) rem.rem_calc(4);
     border-radius: 50%;
-    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   &-container {

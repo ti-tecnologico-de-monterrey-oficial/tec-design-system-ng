@@ -1,5 +1,29 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { BmbTagComponent } from './bmb-tags.component';
+import { BmbTagComponent, IBmbActivityTags } from './bmb-tags.component';
+
+const appearanceOptions: IBmbActivityTags[] = [
+  'normal',
+  'mitec_blue',
+  'mitec_red',
+  'mitec_green',
+  'mitec_orange',
+  'mitec_light_green',
+  'mitec_purple',
+  'creative_violet',
+  'creative_indigo',
+  'creative_emerald',
+  'creative_licorice',
+  'creative_darkteal',
+  'creative_peach',
+  'creative_sepia',
+  'creative_softred',
+  'creative_wattle',
+  'creative_shipcove',
+  'creative_plantation',
+  'creative_rum',
+  'creative_hibiscus',
+  'creative_ripelemon',
+];
 
 export default {
   title: 'Micro Componentes/Tag',
@@ -30,9 +54,9 @@ Below is an example of how you can use this component in HTML:
     appearance: {
       name: 'Appearance',
       control: {
-        type: 'radio',
+        type: 'select',
       },
-      options: ['info', 'event', 'life'],
+      options: appearanceOptions,
       description:
         'When the activity tag property is set as true, the tag can change the appearance.',
       table: {
@@ -49,7 +73,7 @@ Below is an example of how you can use this component in HTML:
       description:
         'The tag changes their border-radius to a higher border-radius. When the activity tag property is set as true, the rounded property always be set as true, and cannot be changed.',
       table: {
-        category: 'Properties',
+        category: 'Deprecated',
         type: { summary: 'boolean' },
         defaultValue: { summary: false },
         deprecated: {
@@ -111,7 +135,7 @@ Below is an example of how you can use this component in HTML:
     grouped: false,
     dismissible: false,
     activityTag: true,
-    appearance: 'event',
+    appearance: 'normal',
   },
 } as Meta<typeof BmbTagComponent>;
 
