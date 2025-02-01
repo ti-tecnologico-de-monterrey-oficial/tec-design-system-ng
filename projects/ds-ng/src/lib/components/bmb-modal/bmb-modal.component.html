@@ -1,51 +1,69 @@
 <section [ngClass]="getModalClasses()">
-  <bmb-container>
-    <section class="bmb_modal-container">
-      <header>
-        <bmb-header-section
-          [title]="getTitle()"
-          [subtitle]="getSubtitle()"
-          [icon]="getImage()"
-          [actionHeaders]="getActionHeaders()"
-          [transparentBgC]="true"
-        />
-      </header>
-      <section class="bmb_modal-content">
-        @if (isModalTemplate()) {
-          <section [ngClass]="getDescriptionClasses('template')">
-            <ng-container *ngTemplateOutlet="getContent()" />
-          </section>
-        } @else {
-          <section [ngClass]="getDescriptionClasses('description')">
-            <p>
-              {{ getContent() }}
-            </p>
-          </section>
-        }
-      </section>
-      @if (showFooter()) {
-        <footer id="modal-footer" class="bmb_modal-footer">
-          @if (showSecondaryButton()) {
-            <button
-              bmbButton
-              appearance="secondary-filled"
-              [ngClass]="getButtonClass(true)"
-              (click)="closeModal('secondary', false)"
-            >
-              {{ getSecondaryBtnLabel() }}
-            </button>
-          }
-          @if (showPrimaryButton()) {
-            <button
-              bmbButton
-              [ngClass]="getButtonClass(false)"
-              (click)="closeModal('primary', true)"
-            >
-              {{ getPrimaryBtnLabel() }}
-            </button>
-          }
-        </footer>
+  <section class="bmb_modal-container">
+    <header class="bmb_modal-container-header">
+      <bmb-three-cols
+        [expandMainColumn]="true"
+        gapSize="none"
+        alignItems="start"
+      >
+        <ng-template #bmbMainContent>
+          <span class="bmb_modal-container-header-title">
+            <bmb-title-content
+              [title]="getTitle()"
+              titleSize="9"
+              [subtitle]="getSubtitle()"
+              [icon]="getImage()"
+              [iconSize]="48"
+              [transparentBgC]="true"
+            />
+          </span>
+        </ng-template>
+        <ng-template #bmbRightContent>
+          <span class="bmb_modal-container-header-icon_close">
+            <bmb-navigation-icon
+              icon="close"
+              [iconSize]="24"
+              (buttonClick)="closeModal('close', true)"
+            />
+          </span>
+        </ng-template>
+      </bmb-three-cols>
+    </header>
+    <section class="bmb_modal-content">
+      @if (isModalTemplate()) {
+        <section [ngClass]="getDescriptionClasses('template')">
+          <ng-container *ngTemplateOutlet="getContent()" />
+        </section>
+      } @else {
+        <section [ngClass]="getDescriptionClasses('description')">
+          <p>
+            {{ getContent() }}
+          </p>
+        </section>
       }
     </section>
-  </bmb-container>
+    @if (showFooter()) {
+      <footer id="modal-footer" class="bmb_modal-footer">
+        @if (showSecondaryButton()) {
+          <button
+            bmbButton
+            appearance="secondary-outlined"
+            [ngClass]="getButtonClass(true)"
+            (click)="closeModal('secondary', false)"
+          >
+            {{ getSecondaryBtnLabel() }}
+          </button>
+        }
+        @if (showPrimaryButton()) {
+          <button
+            bmbButton
+            [ngClass]="getButtonClass(false)"
+            (click)="closeModal('primary', true)"
+          >
+            {{ getPrimaryBtnLabel() }}
+          </button>
+        }
+      </footer>
+    }
+  </section>
 </section>

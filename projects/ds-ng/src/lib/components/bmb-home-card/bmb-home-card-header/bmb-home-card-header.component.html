@@ -1,13 +1,35 @@
 <header class="bmb_home-card-header">
-  <bmb-header-section
-    [title]="title()"
-    [subtitle]="subtitle()"
-    [dataLocalNav]="getDataLocalNav()"
-    [leftIcon]="getLeftIcon()"
-    (onClickLeft)="handleBack()"
-    [icon]="getIconName()"
-    [iconSize]="iconSize()!"
-    [bgIconAppearance]="bgIconAppearance()"
-    [actionHeaders]="actionHeaderList"
-  />
+  <bmb-container>
+    <span class="bmb_home-card-header-container">
+      <bmb-three-cols [expandMainColumn]="true">
+        <ng-template #bmbLeftContent>
+          @if (isExpanded && !!leftIcon()) {
+            <span class="bmb_home-card-header-container-left_template">
+              <bmb-navigation-icon
+                [icon]="leftIcon()!"
+                [iconSize]="24"
+                (buttonClick)="handleBack()"
+              />
+            </span>
+          }
+        </ng-template>
+        <ng-template #bmbMainContent>
+          <bmb-title-content
+            [title]="title()"
+            [subtitle]="subtitle()"
+            [icon]="getIconName()"
+            [iconSize]="iconSize()!"
+            [bgIconAppearance]="bgIconAppearance()"
+            [dataLocalNav]="getDataLocalNav()"
+          />
+        </ng-template>
+        <ng-template #bmbRightContent>
+          <bmb-navigation-bar
+            [actionHeaders]="actionHeaderList"
+            alignItems="center"
+          />
+        </ng-template>
+      </bmb-three-cols>
+    </span>
+  </bmb-container>
 </header>

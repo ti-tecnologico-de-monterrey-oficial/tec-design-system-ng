@@ -210,7 +210,7 @@ Below is an example of how you can use this component in HTML:
     lang: 'es',
     userInformation: {
       name: 'Santiago Hernández',
-      image: 'https://i.pravatar.cc/300',
+      image: 'https://picsum.photos/id/64/200/300',
       role: 'Alumno',
     },
     onLangChange: () => {

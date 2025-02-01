@@ -1,15 +1,40 @@
 <section class="bmb_external-link">
-  <bmb-chevron-title-selector
-    class="bmb_external-link-header"
-    [title]="title()"
-    [subtitle]="subtitle()"
-    [isIconSubtitle]="isIconSubtitle()"
-    iconSubtitle="lock"
-    leadingIcon="close"
-    trailingIcon="more_horiz"
-    (onLeadingClick)="handleClose($event)"
-    (onTrailingClick)="handleOpenMenu()"
-  />
+  <header class="bmb_external-link-header">
+    <bmb-three-cols [expandMainColumn]="true">
+      <ng-template #bmbLeftContent>
+        <span class="bmb_external-link-header-button">
+          <bmb-navigation-icon
+            icon="close"
+            [iconSize]="24"
+            (buttonClick)="handleClose($event)"
+          />
+        </span>
+      </ng-template>
+      <ng-template #bmbMainContent>
+        <section class="bmb_external-link-header-title">
+          <bmb-title-content
+            [title]="title()"
+            titleSize="6"
+            [subtitle]="subtitle()"
+            subtitleSize="3"
+            subtitleFontWeight="300"
+            subtitleIcon="lock"
+            [isCenterContent]="true"
+            [transparentBgC]="true"
+          />
+        </section>
+      </ng-template>
+      <ng-template #bmbRightContent>
+        <span class="bmb_external-link-header-button">
+          <bmb-navigation-icon
+            icon="more_horiz"
+            [iconSize]="24"
+            (buttonClick)="handleOpenMenu()"
+          />
+        </span>
+      </ng-template>
+    </bmb-three-cols>
+  </header>
   <section class="bmb_external-link-content">
     <ng-content />
   </section>
@@ -41,9 +66,10 @@
       </li>
     </ul>
   }
-  <bmb-bottom-navigation-bar
-    class="bmb_external-link-footer"
-    [navigationBarIcons]="navigationBarIcons()"
-    (navigationBarEvents)="onFooterOptionClick($event)"
-  />
+  <span class="bmb_external-link-footer">
+    <bmb-bottom-navigation-bar
+      [navigationBarIcons]="navigationBarIcons()"
+      (navigationBarEvents)="onFooterOptionClick($event)"
+    />
+  </span>
 </section>

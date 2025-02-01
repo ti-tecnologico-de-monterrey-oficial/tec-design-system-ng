@@ -1,0 +1,9 @@
+.bmb_three-cols {
+  > *:empty {
+    display: none;
+  }
+
+  > div {
+    display: flex;
+  }
+}

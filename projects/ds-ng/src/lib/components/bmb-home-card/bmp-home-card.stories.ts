@@ -137,7 +137,7 @@ Below is an example of how you can use this component in HTML:
         category: 'Properties',
         type: {
           summary:
-            'IBmbActionHeader[], {icon: string; iconActiveToggle?: string; isToggleActive?: boolean; action: () => void;}',
+            'IBmbActionHeader[], {icon: string; iconSize?: number; iconActiveToggle?: string; isToggleActive?: boolean; action: () => void;}',
         },
       },
     },

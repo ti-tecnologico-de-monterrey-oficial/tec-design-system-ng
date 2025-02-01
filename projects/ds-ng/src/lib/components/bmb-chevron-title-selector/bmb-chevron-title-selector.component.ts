@@ -5,13 +5,18 @@ import {
   input,
   output,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { BmbNavigationIconComponent } from '../bmb-navigation-bar/bmb-navigation-icon/bmb-navigation-icon.component';
+import { BmbThreeColsComponent } from '../bmb-three-cols/bmb-three-cols.component';
+import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
 
 @Component({
   selector: 'bmb-chevron-title-selector',
   standalone: true,
-  imports: [CommonModule, BmbIconComponent],
+  imports: [
+    BmbThreeColsComponent,
+    BmbTitleContentComponent,
+    BmbNavigationIconComponent,
+  ],
   styleUrl: './bmb-chevron-title-selector.component.scss',
   templateUrl: './bmb-chevron-title-selector.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
