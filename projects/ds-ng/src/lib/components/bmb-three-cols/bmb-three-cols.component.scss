@@ -2,4 +2,8 @@
   > *:empty {
     display: none;
   }
+
+  > div {
+    display: flex;
+  }
 }

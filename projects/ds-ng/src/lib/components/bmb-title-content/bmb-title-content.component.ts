@@ -14,6 +14,17 @@ import { BmbContainerComponent } from '../bmb-container/bmb-container.component'
 import { isImage } from '../../utils/utils';
 import { IBmbColor } from '../../types/colors';
 
+export type IBmbFontWeightContent =
+  | '100'
+  | '200'
+  | '300'
+  | '400'
+  | '500'
+  | '600'
+  | '700'
+  | '800'
+  | '900';
+
 @Component({
   selector: 'bmb-title-content',
   standalone: true,
@@ -31,8 +42,13 @@ import { IBmbColor } from '../../types/colors';
 export class BmbTitleContentComponent {
   title = input.required<string>();
   titleSize = input<string>('5');
+  titleFontWeight = input<string>('600');
   subtitle = input<string | undefined>('');
   subtitleSize = input<string>('4');
+  subtitleFontWeight = input<string>('400');
+  subtitleIcon = input<string>('');
+  subtitleIconSize = input<number>(0);
+  isCenterContent = input<boolean>(false);
   dataLocalNav = input<IBmbDataTopBar[]>([]);
   transparentBgC = input<boolean>(false);
   icon = input<string>('');
@@ -53,6 +69,14 @@ export class BmbTitleContentComponent {
       };
     }
     return {};
+  }
+
+  getClassNames(mainName: string, size: string, fontWeight: string): string[] {
+    const classes = [`${mainName}-${size}`, `${mainName}-${fontWeight}`];
+
+    if (this.isCenterContent()) classes.push(`${mainName}-centered`);
+
+    return classes;
   }
 
   showBreadcrumbs(): boolean {

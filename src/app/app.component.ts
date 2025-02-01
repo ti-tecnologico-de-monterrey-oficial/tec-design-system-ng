@@ -134,6 +134,7 @@ import {
 } from '../../projects/ds-ng/src/lib/components/bmb-evaluation-rubric/bmb-evaluation-rubric.component';
 import { BmbUserProfileComponent } from '../../projects/ds-ng/src/lib/components/bmb-user-profile/bmb-user-profile.component';
 import { BmbHeaderMitecComponent } from '../../projects/ds-ng/src/lib/components/bmb-header-mitec/bmb-header-mitec.component';
+import { BmbChevronTitleSelectorComponent } from '../../projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -234,6 +235,7 @@ import { BmbHeaderMitecComponent } from '../../projects/ds-ng/src/lib/components
     BmbUserSummaryContentComponent,
     BmbThreeColsComponent,
     BmbTitleContentComponent,
+    BmbChevronTitleSelectorComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

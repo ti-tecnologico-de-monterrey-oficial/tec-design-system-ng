@@ -8,26 +8,41 @@
         <bmb-icon [icon]="icon()" [size]="iconSize()" />
       </span>
     }
-    <section>
+    <section class="bmb_title-content-container-wrapper">
       @if (!!title()) {
-        <h1
-          class="bmb_title-content-container-title"
-          [ngClass]="'bmb_title-content-container-title-' + titleSize()"
+        <h2
+          class="bmb_title-content-container-wrapper-title"
+          [ngClass]="
+            getClassNames(
+              'bmb_title-content-container-wrapper-title',
+              titleSize(),
+              titleFontWeight()
+            )
+          "
         >
           {{ title() }}
-        </h1>
+        </h2>
       }
       @if (showBreadcrumbs()) {
-        <span class="bmb_title-content-container-breadcrumb">
+        <span class="bmb_title-content-container-wrapper-breadcrumb">
           <bmb-breadcrumb [dataLocalNav]="dataLocalNav()" />
         </span>
       } @else if (!!subtitle()) {
-        <h2
-          class="bmb_title-content-container-subtitle"
-          [ngClass]="'bmb_title-content-container-subtitle-' + subtitleSize()"
+        <h4
+          class="bmb_title-content-container-wrapper-subtitle"
+          [ngClass]="
+            getClassNames(
+              'bmb_title-content-container-wrapper-subtitle',
+              subtitleSize(),
+              subtitleFontWeight()
+            )
+          "
         >
+          @if (!!subtitleIcon()) {
+            <bmb-icon [icon]="subtitleIcon()" [size]="subtitleIconSize()" />
+          }
           {{ subtitle() }}
-        </h2>
+        </h4>
       }
     </section>
   </section>

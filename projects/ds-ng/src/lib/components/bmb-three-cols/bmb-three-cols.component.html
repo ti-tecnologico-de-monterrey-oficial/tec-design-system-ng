@@ -1,4 +1,4 @@
-<span
+<section
   bmbLayout
   margin="none"
   class="bmb_three-cols"
@@ -7,17 +7,18 @@
   [gapSize]="gapSize()"
   [dynamicCols]="true"
 >
-  <span bmbLayoutItem [isDynamicItem]="true">
+  <div bmbLayoutItem [isDynamicItem]="true" class="bmb_three-cols-child">
     <ng-container [ngTemplateOutlet]="leftContent" />
-  </span>
-  <span
+  </div>
+  <div
     bmbLayoutItem
     [isDynamicItem]="true"
+    class="bmb_three-cols-child"
     [colGrow]="(expandMainColumn() && 1) || 0"
   >
     <ng-container [ngTemplateOutlet]="mainContent" />
-  </span>
-  <span bmbLayoutItem [isDynamicItem]="true">
+  </div>
+  <div bmbLayoutItem [isDynamicItem]="true" class="bmb_three-cols-child">
     <ng-container [ngTemplateOutlet]="rightContent" />
-  </span>
-</span>
+  </div>
+</section>

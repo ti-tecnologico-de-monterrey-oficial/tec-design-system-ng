@@ -4,6 +4,7 @@ import { BmbTitleContentComponent } from './bmb-title-content.component';
 export default {
   title: 'Internal/Title content template',
   component: BmbTitleContentComponent,
+  decorators: [],
   parameters: {
     docs: {
       description: {
@@ -82,6 +83,20 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string (required)' },
       },
     },
+    titleFontWeight: {
+      name: 'Title font weight',
+      control: {
+        type: 'select',
+      },
+      options: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+      description:
+        'Sets the title font weight. Font weights: 100, 200, 300, 400, 500, 600, 700, 800, 900',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: '600' },
+        type: { summary: 'IBmbFontWeightContent (optional)' },
+      },
+    },
     subtitle: {
       name: 'Subtitle',
       control: { type: 'text' },
@@ -129,7 +144,52 @@ Below is an example of how you can use this component in HTML:
       table: {
         category: 'Properties',
         defaultValue: { summary: '4' },
-        type: { summary: 'string (required)' },
+        type: { summary: 'string (optional)' },
+      },
+    },
+    subtitleFontWeight: {
+      name: 'Title font weight',
+      control: {
+        type: 'select',
+      },
+      options: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+      description:
+        'Sets the title font weight. Font weights: 100, 200, 300, 400, 500, 600, 700, 800, 900',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: '400' },
+        type: { summary: 'IBmbFontWeightContent (optional)' },
+      },
+    },
+    subtitleIcon: {
+      name: 'Subtitle icon',
+      control: { type: 'text' },
+      description: 'Sets the subtitle icon.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string (optional)' },
+      },
+    },
+    subtitleIconSize: {
+      name: 'Subtitle icon size',
+      control: { type: 'number' },
+      description:
+        'Size of the subtitle icon or width of the image to use. Note: <= 0 will be inherited.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: '0' },
+        type: { summary: 'number (optional)' },
+      },
+    },
+    isCenterContent: {
+      name: 'Center content',
+      control: { type: 'boolean' },
+      description:
+        'Sets the content centered when true, refers to the title and subtitle.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean  (optional)' },
       },
     },
     dataLocalNav: {
@@ -161,7 +221,7 @@ Below is an example of how you can use this component in HTML:
       table: {
         category: 'Properties',
         defaultValue: { summary: '24' },
-        type: { summary: 'number' },
+        type: { summary: 'number  (optional)' },
       },
     },
     bgIconAppearance: {
@@ -250,15 +310,20 @@ Below is an example of how you can use this component in HTML:
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
-        type: { summary: 'boolean' },
+        type: { summary: 'boolean (optional)' },
       },
     },
   },
   args: {
     title: 'Title',
     titleSize: '5',
+    titleFontWeight: '600',
     subtitle: 'Subtitle',
     subtitleSize: '4',
+    subtitleFontWeight: '400',
+    subtitleIcon: '',
+    subtitleIconSize: 0,
+    isCenterContent: false,
     dataLocalNav: [],
     transparentBgC: false,
     icon: 'account_balance_wallet',
@@ -269,20 +334,4 @@ Below is an example of how you can use this component in HTML:
 
 type Story = StoryObj<BmbTitleContentComponent>;
 
-export const Default: Story = {
-  render: (args) => ({
-    props: args,
-    template: `
-      <bmb-title-content
-        [title]="title"
-        [titleSize]="titleSize"
-        [subtitle]="subtitle"
-        [subtitleSize]="subtitleSize"
-        [transparentBgC]="transparentBgC"
-        [icon]="icon"
-        [iconSize]="iconSize"
-        [bgIconAppearance]="bgIconAppearance"
-      />
-    `,
-  }),
-};
+export const Default: Story = {};

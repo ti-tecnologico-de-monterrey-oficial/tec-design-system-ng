@@ -2,12 +2,28 @@
 @use "../../../assets/styles/base/rem" as rem;
 
 $font-sizes: 1, 2, 3, 4, 4_5, 5, 6, 7, 8, 9, 10, 11, 12;
+$font-weights: 100, 200, 300, 400, 500, 600, 700, 800, 900;
 
 @mixin fontSizes() {
   @each $size in $font-sizes {
     &-#{$size} {
       @include fonts.font($size, regular);
     }
+  }
+}
+
+@mixin fontWeights() {
+  @each $font-weight in $font-weights {
+    &-#{$font-weight} {
+      font-weight: $font-weight;
+    }
+  }
+}
+
+@mixin centered() {
+  &-centered {
+    display: flex;
+    justify-content: center;
   }
 }
 
@@ -36,16 +52,22 @@ $font-sizes: 1, 2, 3, 4, 4_5, 5, 6, 7, 8, 9, 10, 11, 12;
       height: rem.rem_calc(48);
     }
 
-    &-title {
-      color: RGBA(var(--color-charade-950));
-      @include fontSizes();
-      font-weight: 600;
-    }
+    &-wrapper {
+      flex: 1;
 
-    &-subtitle {
-      color: RGBA(var(--color-charade-700));
-      @include fontSizes();
-      font-weight: 400;
+      &-title {
+        color: RGBA(var(--color-charade-950));
+        @include fontSizes();
+        @include fontWeights();
+        @include centered();
+      }
+
+      &-subtitle {
+        color: RGBA(var(--color-charade-700));
+        @include fontSizes();
+        @include fontWeights();
+        @include centered();
+      }
     }
 
     &-breadcrumb {
@@ -68,6 +90,10 @@ $font-sizes: 1, 2, 3, 4, 4_5, 5, 6, 7, 8, 9, 10, 11, 12;
 
   .bmb_container-primary-container {
     padding: 0;
+  }
+
+  .material-symbols-outlined {
+    line-height: 1.5;
   }
 }
 

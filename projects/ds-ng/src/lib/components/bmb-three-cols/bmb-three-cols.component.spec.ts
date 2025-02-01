@@ -22,10 +22,9 @@ describe('BmbThreeMainColumnsTemplateComponent', () => {
   });
 
   it('should render content in left, main, and right columns', () => {
-    const leftContent = fixture.nativeElement.querySelector('span:first-child');
-    const mainContent =
-      fixture.nativeElement.querySelector('span:nth-child(2)');
-    const rightContent = fixture.nativeElement.querySelector('span:last-child');
+    const leftContent = fixture.nativeElement.querySelector('div:first-child');
+    const mainContent = fixture.nativeElement.querySelector('div:nth-child(2)');
+    const rightContent = fixture.nativeElement.querySelector('div:last-child');
 
     expect(leftContent).toBeTruthy();
     expect(mainContent).toBeTruthy();

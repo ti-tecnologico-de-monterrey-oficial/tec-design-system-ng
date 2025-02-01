@@ -1,4 +1,7 @@
 .bmb_check-external-link-button {
+  display: flex;
+  align-items: center;
+
   &:has(.bmb_icon-figure) {
     display: inline-block;
   }

@@ -7,7 +7,7 @@
   fontWeight="400"
   [size]="24"
 /> -->
-<button
+<!-- <button
   bmbButton
   appearance="primary"
   icon="home"
@@ -111,4 +111,11 @@
   [isMobile]="false"
 >
   <p>hello world</p>
-</bmb-home-card>
+</bmb-home-card> -->
+<bmb-chevron-title-selector
+  [title]="'Title'"
+  [leadingIcon]="'chevron_left'"
+  [trailingIcon]="'chevron_right'"
+  (onLeadingClick)="handleIconLeftClick()"
+  (onTrailingClick)="handleIconRightClick()"
+></bmb-chevron-title-selector>

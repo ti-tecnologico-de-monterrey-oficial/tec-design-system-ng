@@ -1,15 +1,21 @@
-<bmb-check-external-link-button
-  class="bmb_navigation_icon"
-  [idElement]="idElement()"
-  [link]="link()!"
-  [target]="target()!"
-  (buttonClick)="handleClick()"
->
-  <bmb-icon
-    class="bmb_navigation_icon-icon"
-    [ngClass]="{ 'bmb_navigation_icon-toggle_icon': !!iconActiveToggle() }"
-    [icon]="getIcon()"
-    [size]="iconSize()"
-    [dotNotification]="dotNotification()"
-  />
-</bmb-check-external-link-button>
+<span class="bmb_navigation_icon">
+  <bmb-check-external-link-button
+    [idElement]="idElement()"
+    [link]="link()!"
+    [target]="target()!"
+    (buttonClick)="handleClick()"
+  >
+    <span
+      class="bmb_navigation_icon-icon"
+      [ngClass]="{
+        'bmb_navigation_icon-icon-toggle_icon': !!iconActiveToggle(),
+      }"
+    >
+      <bmb-icon
+        [icon]="getIcon()"
+        [size]="iconSize()"
+        [dotNotification]="dotNotification()"
+      />
+    </span>
+  </bmb-check-external-link-button>
+</span>
