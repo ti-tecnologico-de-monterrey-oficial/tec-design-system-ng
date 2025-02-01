@@ -4,12 +4,11 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   HostListener,
-  ElementRef,
   output,
 } from '@angular/core';
 import { BmbUserImageComponent } from '../../bmb-user-image/bmb-user-image.component';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
-import { IUserInformation, IPositionButtonMenu } from '../types';
+import { IUserInformation } from '../types';
 import { IBmbNotificationCardData } from '../../bmb-notification-card/types';
 import { CommonModule } from '@angular/common';
 import { BmbNotificationCardComponent } from '../../bmb-notification-card/bmb-notification-card.component';
@@ -43,14 +42,27 @@ export class BmbTopBarUserSectionComponent {
   userClick = output<void>();
 
   isOpenNotifications: boolean = false;
+  dialogPosition: { top: string; left: string } | null = {
+    top: '0px',
+    left: '0px',
+  };
+  windowWidth = window.innerWidth;
 
-  @HostListener('focusout')
-  protected onFocusOut(): void {
-    this.closeNotifications();
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    this.windowWidth = window.innerWidth;
+    this.isOpenNotifications = false;
   }
 
-  openNotifications() {
-    this.isOpenNotifications = true;
+  openNotifications(event: MouseEvent) {
+    const { clientX, clientY } = event;
+    const offsetX = this.windowWidth < 1000 ? 300 : -40;
+
+    this.dialogPosition = {
+      top: `${clientY}px`,
+      left: `${((clientX + offsetX) / this.windowWidth) * 100}%`,
+    };
+    this.isOpenNotifications = this.isOpenNotifications ? false : true;
   }
 
   closeNotifications() {
