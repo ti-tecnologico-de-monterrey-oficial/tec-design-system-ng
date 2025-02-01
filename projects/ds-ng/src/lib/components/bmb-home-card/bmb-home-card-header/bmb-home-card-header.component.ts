@@ -5,16 +5,25 @@ import {
   output,
   ViewEncapsulation,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { BmbHeaderSectionComponent } from '../../bmb-header-section/bmb-header-section.component';
 import { IBmbDataTopBar } from '../../bmb-breadcrumb/bmb-breadcrumb.component';
 import { IBmbColor } from '../../../types/colors';
 import { IBmbActionHeader } from '../../../types';
+import { BmbTitleContentComponent } from '../../bmb-title-content/bmb-title-content.component';
+import { BmbThreeColsComponent } from '../../bmb-three-cols/bmb-three-cols.component';
+import { BmbNavigationIconComponent } from '../../bmb-navigation-bar/bmb-navigation-icon/bmb-navigation-icon.component';
+import { BmbNavigationBarComponent } from '../../bmb-navigation-bar/bmb-navigation-bar.component';
+import { BmbContainerComponent } from '../../bmb-container/bmb-container.component';
 
 @Component({
   selector: 'bmb-home-card-header',
   standalone: true,
-  imports: [CommonModule, BmbHeaderSectionComponent],
+  imports: [
+    BmbContainerComponent,
+    BmbThreeColsComponent,
+    BmbNavigationIconComponent,
+    BmbTitleContentComponent,
+    BmbNavigationBarComponent,
+  ],
   templateUrl: './bmb-home-card-header.component.html',
   styleUrl: './bmb-home-card-header.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -49,11 +58,6 @@ export class BmbHomeCardHeaderComponent {
         action: () => this.handleExpandChange(),
       },
     ];
-  }
-
-  getLeftIcon(): string {
-    if (this.isExpanded && !!this.leftIcon()) return this.leftIcon()!;
-    return '';
   }
 
   getIconName(): string {

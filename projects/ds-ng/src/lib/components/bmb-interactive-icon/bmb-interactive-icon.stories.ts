@@ -1,6 +1,37 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbInteractiveIconComponent } from './bmb-interactive-icon.component';
+import {
+  BmbInteractiveIconComponent,
+  IBmbInteractiveIconAppearance,
+} from './bmb-interactive-icon.component';
+
+const appearanceOptions: IBmbInteractiveIconAppearance[] = [
+  'red',
+  'blue',
+  'green',
+  'yellow',
+  'purple',
+  'mitec_blue',
+  'mitec_red',
+  'mitec_green',
+  'mitec_orange',
+  'mitec_light_green',
+  'mitec_purple',
+  'creative_violet',
+  'creative_indigo',
+  'creative_emerald',
+  'creative_licorice',
+  'creative_darkteal',
+  'creative_peach',
+  'creative_sepia',
+  'creative_softred',
+  'creative_wattle',
+  'creative_shipcove',
+  'creative_plantation',
+  'creative_rum',
+  'creative_hibiscus',
+  'creative_ripelemon',
+];
 
 export default {
   title: 'Micro Componentes/Interactive Icon',
@@ -70,7 +101,7 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'select',
       },
-      options: ['red', 'blue', 'green', 'yellow', 'purple'],
+      options: appearanceOptions,
       description:
         'Sets the appearance of the interactive icon, affecting its visual style.',
       table: {

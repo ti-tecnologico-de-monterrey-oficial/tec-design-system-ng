@@ -1,0 +1,49 @@
+<bmb-container
+  class="bmb_title-content"
+  [ngClass]="{ 'bmb_title-content-transparent_bgc': transparentBgC() }"
+>
+  <section class="bmb_title-content-container">
+    @if (!!icon()) {
+      <span class="bmb_title-content-container-icon" [ngStyle]="getStyles()">
+        <bmb-icon [icon]="icon()" [size]="iconSize()" />
+      </span>
+    }
+    <section class="bmb_title-content-container-wrapper">
+      @if (!!title()) {
+        <h2
+          class="bmb_title-content-container-wrapper-title"
+          [ngClass]="
+            getClassNames(
+              'bmb_title-content-container-wrapper-title',
+              titleSize(),
+              titleFontWeight()
+            )
+          "
+        >
+          {{ title() }}
+        </h2>
+      }
+      @if (showBreadcrumbs()) {
+        <span class="bmb_title-content-container-wrapper-breadcrumb">
+          <bmb-breadcrumb [dataLocalNav]="dataLocalNav()" />
+        </span>
+      } @else if (!!subtitle()) {
+        <h4
+          class="bmb_title-content-container-wrapper-subtitle"
+          [ngClass]="
+            getClassNames(
+              'bmb_title-content-container-wrapper-subtitle',
+              subtitleSize(),
+              subtitleFontWeight()
+            )
+          "
+        >
+          @if (!!subtitleIcon()) {
+            <bmb-icon [icon]="subtitleIcon()" [size]="subtitleIconSize()" />
+          }
+          {{ subtitle() }}
+        </h4>
+      }
+    </section>
+  </section>
+</bmb-container>

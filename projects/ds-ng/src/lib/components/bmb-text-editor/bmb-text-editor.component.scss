@@ -1,17 +1,44 @@
 @use "../../../assets/styles/base/rem" as rem;
 @use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/mixins" as mixins;
 
 .bmb_text-editor {
   border: rem.rem_calc(1) solid var(--general_contrasts-50);
   border-radius: var(--bmb-spacing-s);
+  container-type: inline-size;
 
   &-header {
     border-bottom: rem.rem_calc(1) solid var(--general_contrasts-50);
     padding: var(--bmb-spacing-s);
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: var(--bmb-spacing-m);
+    overflow: auto;
+
+    &-select {
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      color: var(--general_contrasts-100);
+    }
+
+    &-group {
+      display: inline-flex;
+      align-items: center;
+      flex-wrap: nowrap;
+
+      &:not(:last-child) {
+        padding-right: var(--bmb-spacing-m);
+        border-right: rem.rem_calc(1) solid var(--general_contrasts-50);
+      }
+    }
   }
 
   &-content {
     padding: var(--bmb-spacing-s);
     background-color: var(--general_contrasts-input-background);
+    min-height: 100px;
+    border-radius: 0 0 var(--bmb-spacing-s) var(--bmb-spacing-s);
   }
 }

@@ -112,7 +112,7 @@ Below is an example of how you can use this component in HTML:
     },
   },
   args: {
-    image: 'https://picsum.photos/200/300',
+    image: 'https://picsum.photos/id/64/200/300',
     name: 'Test Name',
     id: 'AC123123',
     infoCareer: 'ITICS-Semestre 5',

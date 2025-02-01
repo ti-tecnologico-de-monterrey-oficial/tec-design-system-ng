@@ -106,6 +106,8 @@ import {
   IBmbActionHeader,
   BmbNavigationBarComponent,
   BmbUserSummaryContentComponent,
+  BmbThreeColsComponent,
+  BmbTitleContentComponent,
 } from '../../projects/ds-ng/src/public-api';
 import { BmbPullWedgeComponent } from '../../projects/ds-ng/src/lib/components/bmb-pull-wedge/bmb-pull-wedge.component';
 import { BmbCardButtonComponent } from '../../projects/ds-ng/src/lib/components/bmb-card-button/bmb-card-button.component';
@@ -132,6 +134,7 @@ import {
 } from '../../projects/ds-ng/src/lib/components/bmb-evaluation-rubric/bmb-evaluation-rubric.component';
 import { BmbUserProfileComponent } from '../../projects/ds-ng/src/lib/components/bmb-user-profile/bmb-user-profile.component';
 import { BmbHeaderMitecComponent } from '../../projects/ds-ng/src/lib/components/bmb-header-mitec/bmb-header-mitec.component';
+import { BmbChevronTitleSelectorComponent } from '../../projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -230,6 +233,9 @@ import { BmbHeaderMitecComponent } from '../../projects/ds-ng/src/lib/components
     BmbUserProfileComponent,
     BmbHeaderMitecComponent,
     BmbUserSummaryContentComponent,
+    BmbThreeColsComponent,
+    BmbTitleContentComponent,
+    BmbChevronTitleSelectorComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -5218,14 +5224,27 @@ export class AppComponent {
   }
 
   openModalComponent() {
+    // const data: ModalDataConfig = {
+    //   title: 'Modal Title',
+    //   subtitle: 'Modal Subtitle',
+    //   content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+    //   size: 'large',
+    //   type: 'action',
+    //   primaryBtnLabel: 'Ok',
+    //   primaryAction: () => window.alert('Primary action triggered!'),
+    // };
+
     const data: ModalDataConfig = {
       title: 'Modal Title',
       subtitle: 'Modal Subtitle',
       content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
       size: 'large',
-      type: 'action',
+      type: 'alert',
+      alertStyle: 'error',
       primaryBtnLabel: 'Ok',
+      secondaryBtnLabel: 'Cancel',
       primaryAction: () => window.alert('Primary action triggered!'),
+      secondaryAction: () => window.alert('Secondary action triggered!'),
     };
 
     this.matDialog.open(BmbModalComponent, { data });

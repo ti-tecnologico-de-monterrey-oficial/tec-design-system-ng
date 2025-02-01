@@ -11,7 +11,28 @@ import {
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 
-export type IBmbActivityTags = 'info' | 'life' | 'event';
+export type IBmbActivityTags =
+  | 'normal'
+  | 'mitec_blue'
+  | 'mitec_red'
+  | 'mitec_green'
+  | 'mitec_orange'
+  | 'mitec_light_green'
+  | 'mitec_purple'
+  | 'creative_violet'
+  | 'creative_indigo'
+  | 'creative_emerald'
+  | 'creative_licorice'
+  | 'creative_darkteal'
+  | 'creative_peach'
+  | 'creative_sepia'
+  | 'creative_softred'
+  | 'creative_wattle'
+  | 'creative_shipcove'
+  | 'creative_plantation'
+  | 'creative_rum'
+  | 'creative_hibiscus'
+  | 'creative_ripelemon';
 
 @Component({
   selector: 'bmb-tag',
@@ -23,7 +44,7 @@ export type IBmbActivityTags = 'info' | 'life' | 'event';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbTagComponent implements AfterViewInit {
-  @Input() appearance: IBmbActivityTags = 'info';
+  @Input() appearance: IBmbActivityTags = 'normal';
   @Input() text: string = '';
   @Input() grouped: boolean = false;
   @Input() dismissible: boolean = true;
@@ -55,12 +76,13 @@ export class BmbTagComponent implements AfterViewInit {
     this.getClasses();
   }
 
-  getClasses(): string {
-    let classes: string = 'bmb_tag bmb_tag-rounded';
+  getClasses(): string[] {
+    const classes = [
+      'bmb_tag',
+      'bmb_tag-rounded',
+      `bmb_tag-${this.appearance}`,
+    ];
 
-    if (this.rounded && !this.activityTag) {
-      classes = classes + ' bmb_tag-rounded';
-    }
     return classes;
   }
 

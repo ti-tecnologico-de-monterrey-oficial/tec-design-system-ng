@@ -74,6 +74,7 @@ export interface IBmbProfileData {
 
 export interface IBmbActionHeader {
   icon: string;
+  iconSize?: number;
   iconActiveToggle?: string;
   isToggleActive?: boolean;
   link?: string;

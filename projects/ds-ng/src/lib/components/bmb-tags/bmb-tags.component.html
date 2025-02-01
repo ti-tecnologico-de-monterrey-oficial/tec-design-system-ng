@@ -1,6 +1,11 @@
 <button [ngClass]="getClasses()" (click)="clickTag(text)">
   <span class="bmb_tag-text">{{ text }}</span>
   @if (this.dismissible) {
-    <bmb-icon class="bmb_tag-btn" (click)="closeTag(text)" [icon]="'close'" />
+    <bmb-icon
+      [size]="16"
+      class="bmb_tag-btn"
+      (click)="closeTag(text)"
+      [icon]="'close'"
+    />
   }
 </button>

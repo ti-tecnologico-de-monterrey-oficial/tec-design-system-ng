@@ -1,24 +1,199 @@
 <section class="bmb_text-editor">
-  <header class="bmb_text-editor-header" bmbLayout [dynamicCols]="true">
-    <!-- <bmb-dropdown
-      bmbLayoutItem
-      [isDynamicItem]="true"
-      [options]="dropDownOptions"
-      [control]="dropDownControl"
-    /> -->
-    <select name="" id="">
-      <option value="normal">Normal</option>
-      <option value="h1">H1</option>
-    </select>
-    <button (click)="wrapSelectedText('h1')">Wrap in H1</button>
-    <button (click)="wrapSelectedText('h2')">Wrap in H2</button>
+  <header class="bmb_text-editor-header">
+    <span class="bmb_text-editor-header-group">
+      <select
+        id="BmbTextEditorSelect"
+        class="bmb_text-editor-header-select"
+        (change)="handleChange($event, 'formatBlock')"
+        title="Estilo de párrafo"
+      >
+        <option value="p">Párrafo</option>
+        <option value="h1">Título 1</option>
+        <option value="h2">Título 2</option>
+        <option value="h3">Título 3</option>
+        <option value="blockquote">Cita</option>
+      </select>
+      <button
+        bmbButton
+        appearance="transparent"
+        size="micro"
+        type="button"
+        (click)="execCommand('bold')"
+        title="Negrita"
+      >
+        <bmb-icon icon="format_bold" [size]="24" />
+      </button>
+      <button
+        bmbButton
+        appearance="transparent"
+        size="micro"
+        type="button"
+        (click)="execCommand('italic')"
+        title="Cursiva"
+      >
+        <bmb-icon icon="format_italic" [size]="24" />
+      </button>
+      <button
+        bmbButton
+        appearance="transparent"
+        size="micro"
+        type="button"
+        (click)="execCommand('underline')"
+        title="Subrayado"
+      >
+        <bmb-icon icon="format_underlined" [size]="24" />
+      </button>
+      <input
+        id="BmbTextEditorColor"
+        type="color"
+        (change)="handleChange($event, 'foreColor')"
+        title="Color de texto"
+      />
+    </span>
+
+    <span class="bmb_text-editor-header-group">
+      <button
+        bmbButton
+        appearance="transparent"
+        size="micro"
+        type="button"
+        (click)="applyAlignment('left')"
+        [class.active]="currentAlignment === 'left'"
+        title="Alinear a la izquierda"
+      >
+        <bmb-icon icon="format_align_left" [size]="24" />
+      </button>
+      <button
+        bmbButton
+        appearance="transparent"
+        size="micro"
+        type="button"
+        (click)="applyAlignment('center')"
+        [class.active]="currentAlignment === 'center'"
+        title="Centrar"
+      >
+        <bmb-icon icon="format_align_center" [size]="24" />
+      </button>
+      <button
+        bmbButton
+        appearance="transparent"
+        size="micro"
+        type="button"
+        (click)="applyAlignment('right')"
+        [class.active]="currentAlignment === 'right'"
+        title="Alinear a la derecha"
+      >
+        <bmb-icon icon="format_align_right" [size]="24" />
+      </button>
+    </span>
+
+    <span class="bmb_text-editor-header-group">
+      <button
+        bmbButton
+        appearance="transparent"
+        size="micro"
+        type="button"
+        (click)="execCommand('insertOrderedList')"
+        title="Lista numerada"
+      >
+        <bmb-icon icon="format_list_numbered" [size]="24" />
+      </button>
+      <button
+        bmbButton
+        appearance="transparent"
+        size="micro"
+        type="button"
+        (click)="execCommand('insertUnorderedList')"
+        title="Lista con viñetas"
+      >
+        <bmb-icon icon="format_list_bulleted" [size]="24" />
+      </button>
+    </span>
+
+    <span class="bmb_text-editor-header-group">
+      <button
+        bmbButton
+        appearance="transparent"
+        size="micro"
+        type="button"
+        (click)="execCommand('indent')"
+        title="Aumentar sangría"
+      >
+        <bmb-icon icon="format_indent_increase" [size]="24" />
+      </button>
+      <button
+        bmbButton
+        appearance="transparent"
+        size="micro"
+        type="button"
+        (click)="execCommand('outdent')"
+        title="Disminuir sangría"
+      >
+        <bmb-icon icon="format_indent_decrease" [size]="24" />
+      </button>
+    </span>
+
+    <span class="bmb_text-editor-header-group">
+      <button
+        bmbButton
+        appearance="transparent"
+        size="micro"
+        type="button"
+        (click)="insertLink()"
+        title="Insertar enlace"
+      >
+        <bmb-icon icon="link" [size]="24" />
+      </button>
+      <button
+        bmbButton
+        appearance="transparent"
+        size="micro"
+        type="button"
+        (click)="insertImage()"
+        title="Insertar imagen"
+      >
+        <bmb-icon icon="image" [size]="24" />
+      </button>
+      <!-- <button bmbButton appearance="transparent" size="micro" type="button" (click)="openTableDialog()" title="Insertar tabla">
+        <bmb-icon icon="table_chart" [size]="24"/>
+      </button> -->
+    </span>
+    <span class="bmb_text-editor-header-group">
+      <button
+        bmbButton
+        appearance="transparent"
+        size="micro"
+        type="button"
+        (click)="clearFormatting()"
+        title="Limpiar formato"
+      >
+        <bmb-icon icon="format_clear" [size]="24" />
+      </button>
+    </span>
   </header>
+
   <div
     class="bmb_text-editor-content"
+    #editor
     contenteditable="true"
-    (input)="updateContent($event)"
-    [innerHTML]="htmlContent"
-    (mouseup)="getSelectedText($event)"
-    #editableDiv
+    (input)="updateContent()"
+    [innerHTML]="sanitizedContent"
   ></div>
 </section>
+
+<!-- Diálogo para definir filas y columnas -->
+<dialog class="dialog-overlay" [open]="showTableDialog">
+  <div class="dialog">
+    <h3>Insertar tabla</h3>
+    <label for="rows">Filas:</label>
+    <input type="number" id="rows" min="1" max="10" />
+
+    <label for="columns">Columnas:</label>
+    <input type="number" id="columns" min="1" max="10" />
+
+    <div class="dialog-buttons">
+      <button type="button" (click)="insertTable()">Insertar</button>
+      <button type="button" (click)="closeTableDialog()">Cancelar</button>
+    </div>
+  </div>
+</dialog>

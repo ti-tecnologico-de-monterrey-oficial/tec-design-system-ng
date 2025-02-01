@@ -131,8 +131,11 @@ export * from './lib/components/bmb-navigation-bar/bmb-navigation-bar.component'
 export * from './lib/components/bmb-navigation-bar/bmb-navigation-icon/bmb-navigation-icon.component';
 export * from './lib/components/bmb-text-editor/bmb-text-editor.component';
 export * from './lib/components/bmb-server-table/bmb-server-table.component';
+export * from './lib/components/bmb-three-cols/bmb-three-cols.component';
+export * from './lib/components/bmb-title-content/bmb-title-content.component';
 
 // types
 export * from './lib/types';
+
 // interface
 export * from './lib/components/bmb-modal/bmb-modal.interface';

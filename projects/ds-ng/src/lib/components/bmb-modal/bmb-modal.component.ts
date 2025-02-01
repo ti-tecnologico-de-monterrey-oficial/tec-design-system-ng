@@ -13,21 +13,21 @@ import {
 } from '@angular/material/dialog';
 import { ModalDataConfig } from './bmb-modal.interface';
 import { BmbButtonDirective } from '../../directives/button.directive';
-import { ModalService } from '../../services/modal.service';
-import { BmbHeaderSectionComponent } from '../bmb-header-section/bmb-header-section.component';
-import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
-import { IBmbActionHeader } from '../../types';
+import { BmbThreeColsComponent } from '../bmb-three-cols/bmb-three-cols.component';
+import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
+import { BmbNavigationIconComponent } from '../bmb-navigation-bar/bmb-navigation-icon/bmb-navigation-icon.component';
 
 @Component({
   selector: 'bmb-modal',
   standalone: true,
   imports: [
     CommonModule,
-    BmbContainerComponent,
-    BmbHeaderSectionComponent,
+    BmbThreeColsComponent,
+    BmbTitleContentComponent,
+    BmbNavigationIconComponent,
     BmbButtonDirective,
   ],
-  providers: [MatDialog, ModalService],
+  providers: [MatDialog],
   templateUrl: './bmb-modal.component.html',
   styleUrl: './bmb-modal.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -36,12 +36,6 @@ import { IBmbActionHeader } from '../../types';
 export class BmbModalComponent {
   svgUrl: string = 'assets/svg/';
   modalTemplate: TemplateRef<any> | null = null;
-  actionHeaders: IBmbActionHeader[] = [
-    {
-      icon: 'close',
-      action: () => this.closeModal('close', true),
-    },
-  ];
 
   constructor(
     public dialogRef: MatDialogRef<BmbModalComponent>,
@@ -81,17 +75,6 @@ export class BmbModalComponent {
 
     if (!!this.getData().size) {
       return [...classNames, `${baseClassName}-size-${this.getData().size}`];
-    }
-
-    return classNames;
-  }
-
-  getContentClasses(): string[] {
-    const baseClassName: string = 'bmb_modal';
-    const classNames: string[] = [`${baseClassName}-content`];
-
-    if (!!this.getData().scrollable) {
-      return [...classNames, `${baseClassName}-scrollable`];
     }
 
     return classNames;
@@ -162,10 +145,6 @@ export class BmbModalComponent {
 
   getSubtitle(): string {
     return this.getData().subtitle!;
-  }
-
-  getActionHeaders(): IBmbActionHeader[] {
-    return this.actionHeaders;
   }
 
   getContent(): any {

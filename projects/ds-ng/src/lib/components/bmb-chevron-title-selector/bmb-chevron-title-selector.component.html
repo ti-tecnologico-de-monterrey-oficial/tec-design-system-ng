@@ -1,23 +1,38 @@
 <section class="bmb_chevron">
-  <button
-    class="bmb_chevron-button"
-    *ngIf="leadingIcon()"
-    (click)="handleLeadingClick($event)"
-  >
-    <bmb-icon [icon]="leadingIcon()" class="bmb_chevron-icon" />
-  </button>
-  <section class="bmb_chevron-content">
-    <h2 class="bmb_chevron-content-title">{{ title() }}</h2>
-    <h4 *ngIf="subtitle()" class="bmb_chevron-content-subtitle">
-      <bmb-icon *ngIf="isIconSubtitle()" [icon]="iconSubtitle()" />
-      {{ subtitle() }}
-    </h4>
-  </section>
-  <button
-    class="bmb_chevron-button"
-    *ngIf="trailingIcon()"
-    (click)="handleTrailingClick($event)"
-  >
-    <bmb-icon [icon]="trailingIcon()" class="bmb_chevron-icon" />
-  </button>
+  <bmb-three-cols>
+    <ng-template #bmbLeftContent>
+      @if (!!leadingIcon()) {
+        <span class="bmb_chevron-button">
+          <bmb-navigation-icon
+            [icon]="leadingIcon()"
+            [iconSize]="24"
+            (buttonClick)="handleLeadingClick($event)"
+          />
+        </span>
+      }
+    </ng-template>
+    <ng-template #bmbMainContent>
+      <bmb-title-content
+        [title]="title()"
+        titleSize="4"
+        titleFontWeight="300"
+        [subtitle]="subtitle()"
+        subtitleSize="4"
+        subtitleFontWeight="300"
+        [subtitleIcon]="iconSubtitle()"
+        [transparentBgC]="true"
+      />
+    </ng-template>
+    <ng-template #bmbRightContent>
+      @if (trailingIcon()) {
+        <span class="bmb_chevron-button">
+          <bmb-navigation-icon
+            [icon]="trailingIcon()"
+            [iconSize]="24"
+            (buttonClick)="handleTrailingClick($event)"
+          />
+        </span>
+      }
+    </ng-template>
+  </bmb-three-cols>
 </section>

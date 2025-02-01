@@ -50,6 +50,27 @@ Below is an example of how you can use this component in HTML:
       },
       defaultValue: { summary: 'defaultBotList<IBotType[]>' },
     },
+    actionList: {
+      name: 'Action list',
+      control: { type: 'object' },
+      description:
+        'Optionally you can customize the Action list input. By default, the "Upload File Action" is enable in the component',
+      table: {
+        category: 'Properties',
+        type: { summary: 'IBotActions[]' },
+      },
+      defaultValue: { summary: 'defaultActionList<IActions[]>' },
+    },
+    showEmoji: {
+      name: 'Show Emoji',
+      control: { type: 'boolean' },
+      description: 'Set if the Emoji Button will be shown in the componente.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
     currentBot: {
       name: 'Current bot',
       control: { type: 'object' },
@@ -99,17 +120,36 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'function' },
       },
     },
+    onSendFiles: {
+      name: 'On send Files',
+      control: null,
+      description: 'Emmit the send event, export the files output.',
+      table: {
+        category: 'Events',
+        type: { summary: 'function' },
+      },
+    },
+    onRecord: {
+      name: 'On Record',
+      control: null,
+      description:
+        'Emmit the Record event, returns a true value when the user clicks the button of the microphone and returns a false value when the pause icon is clicked.',
+      table: {
+        category: 'Events',
+        type: { summary: 'function' },
+      },
+    },
   },
   args: {
     placeholder: 'Custom placeholder',
     botList: [
       {
-        name: 'TecGPT',
-        icon: '/assets/images/bot-icons/bot.png',
+        name: 'TecBot',
+        icon: '/assets/images/bot-icons/bot_tecStandar.svg',
       },
       {
         name: 'ChatGPT',
-        icon: '/assets/images/bot-icons/chat_gpt.svg',
+        icon: '/assets/images/bot-icons/bot_tecGPT.svg',
       },
       {
         name: 'Comment',
@@ -121,27 +161,27 @@ Below is an example of how you can use this component in HTML:
       },
       {
         name: 'BotSchool',
-        icon: '/assets/images/bot-icons/bot_school.svg',
+        icon: '/assets/images/bot-icons/bot_tecSchool.svg',
       },
       {
         name: 'BotTech',
-        icon: '/assets/images/bot-icons/bot_tech.svg',
+        icon: '/assets/images/bot-icons/bot_tecTech.svg',
       },
       {
         name: 'BotSport',
-        icon: '/assets/images/bot-icons/bot_sport.svg',
+        icon: '/assets/images/bot-icons/bot_tecSport.svg',
       },
       {
         name: 'BotPhone',
-        icon: '/assets/images/bot-icons/bot_phone.svg',
+        icon: '/assets/images/bot-icons/bot_tecPhone.svg',
       },
       {
         name: 'BotMedic',
-        icon: '/assets/images/bot-icons/bot_medic.svg',
+        icon: '/assets/images/bot-icons/bot_health.svg',
       },
       {
         name: 'BotScience',
-        icon: '/assets/images/bot-icons/bot_science.svg',
+        icon: '/assets/images/bot-icons/bot_tecScience.svg',
       },
       {
         name: 'Backup',
@@ -149,8 +189,8 @@ Below is an example of how you can use this component in HTML:
       },
     ],
     currentBot: {
-      name: 'TecGPT',
-      icon: '/assets/images/bot-icons/bot.png',
+      name: 'TecBot',
+      icon: '/assets/images/bot-icons/bot_tecStandar.svg',
     },
     isLoading: false,
   },

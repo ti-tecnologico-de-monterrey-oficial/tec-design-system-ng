@@ -145,25 +145,10 @@ Below is an example of how you can use this component in HTML:
     textLink: 'Aumentar Creditos',
     target: '_blank',
     href: 'https://www.google.com',
+    progress: 0,
   },
 } as Meta<typeof BmbProgressBarComponent>;
 
 type Story = StoryObj<BmbProgressBarComponent>;
 
-export const Default: Story = {
-  args: {},
-  render: (args) => ({
-    props: args,
-    template: `
-      <bmb-progress-bar
-        [appearance]="appearance"
-        [type]="type"
-        [counter]="counter"
-        [totalCount]="totalCount"
-        [title]="'title'"
-        [textLink]="textLink"
-        [href]="href"
-      />
-    `,
-  }),
-};
+export const Default: Story = {};
