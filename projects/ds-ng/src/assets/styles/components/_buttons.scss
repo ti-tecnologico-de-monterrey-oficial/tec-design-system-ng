@@ -27,6 +27,10 @@
   &-rounded {
     border-radius: rem.rem_calc(40);
   }
+
+  .material-symbols-outlined {
+    line-height: inherit;
+  }
 }
 
 [data-theme="dark"],

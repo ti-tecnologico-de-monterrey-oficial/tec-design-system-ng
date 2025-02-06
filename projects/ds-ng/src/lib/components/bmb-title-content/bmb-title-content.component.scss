@@ -56,14 +56,14 @@ $font-weights: 100, 200, 300, 400, 500, 600, 700, 800, 900;
       flex: 1;
 
       &-title {
-        color: RGBA(var(--color-charade-950));
+        color: var(--general_contrasts-150);
         @include fontSizes();
         @include fontWeights();
         @include centered();
       }
 
       &-subtitle {
-        color: RGBA(var(--color-charade-700));
+        color: var(--general_contrasts-75);
         @include fontSizes();
         @include fontWeights();
         @include centered();
@@ -74,7 +74,7 @@ $font-weights: 100, 200, 300, 400, 500, 600, 700, 800, 900;
       .bmb_breadcrumb-link,
       .bmb_breadcrumb-separator,
       .bmb_breadcrumb-dropdown-button {
-        color: RGBA(var(--color-charade-700));
+        color: var(--general_contrasts-75);
         @include fonts.font(4, regular);
       }
 
@@ -103,36 +103,6 @@ $font-weights: 100, 200, 300, 400, 500, 600, 700, 800, 900;
     &-transparent_bgc {
       .bmb_container-primary-container {
         background-color: inherit;
-      }
-    }
-
-    &-left_icon {
-      .bmb_navigation_icon-icon {
-        color: RGBA(var(--color-charade-50));
-      }
-    }
-
-    &-container {
-      &-icon {
-        &-none {
-          background: RGBA(var(--color-black-primary));
-        }
-      }
-
-      &-title {
-        color: RGBA(var(--color-charade-50));
-      }
-
-      &-subtitle {
-        color: RGBA(var(--color-charade-200));
-      }
-
-      &-breadcrumb {
-        .bmb_breadcrumb-link,
-        .bmb_breadcrumb-separator,
-        .bmb_breadcrumb-dropdown-button {
-          color: RGBA(var(--color-charade-200));
-        }
       }
     }
 
