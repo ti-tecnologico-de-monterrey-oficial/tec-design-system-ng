@@ -5,13 +5,15 @@ import {
   output,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbChevronTitleSelectorComponent } from '../bmb-chevron-title-selector/bmb-chevron-title-selector.component';
 import { BmbContainerButtonComponent } from '../bmb-container-button/bmb-container-button.component';
 import {
   BmbBottomNavigationBarComponent,
   IBmbFooterEvent,
   IBmbNavigationBarIcons,
 } from '../bmb-bottom-navigation-bar/bmb-bottom-navigation-bar.component';
+import { BmbThreeColsComponent } from '../bmb-three-cols/bmb-three-cols.component';
+import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
+import { BmbNavigationIconComponent } from '../bmb-navigation-bar/bmb-navigation-icon/bmb-navigation-icon.component';
 
 export type IBmbMenuEvent = 'link' | 'openNew' | 'info';
 
@@ -19,7 +21,9 @@ export type IBmbMenuEvent = 'link' | 'openNew' | 'info';
   selector: 'bmb-external-link',
   standalone: true,
   imports: [
-    BmbChevronTitleSelectorComponent,
+    BmbThreeColsComponent,
+    BmbTitleContentComponent,
+    BmbNavigationIconComponent,
     BmbContainerButtonComponent,
     BmbBottomNavigationBarComponent,
   ],

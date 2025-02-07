@@ -55,7 +55,7 @@ export class BmbLayoutItemDirective {
   @HostBinding('style.flex') flex?: string;
 
   ngOnInit() {
-    if (this.isDynamicItem()) {
+    if (this.isDynamicItem() && this.colGrow()) {
       this.flex = `${this.colGrow()} 0 0%`;
     }
   }

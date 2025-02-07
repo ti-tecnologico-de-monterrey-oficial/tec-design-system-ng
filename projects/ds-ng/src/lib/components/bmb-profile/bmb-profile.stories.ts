@@ -56,19 +56,19 @@ Below is an example of how you can use this component in TypeScript:
 
 \`\`\`typescript
 import {
-  BmbLoginComponent,
+  BmbProfileComponent,
 } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
 
 @Component({
   selector: 'component',
   standalone: true,
-  imports: [ BmbLoginComponent ],
+  imports: [ BmbProfileComponent ],
   templateUrl: '
   <!-- USE EXAMPLE -->
-    <bmb-profile 
+    <bmb-profile
         [userData]="{
             name: 'Juanito Perez',
-            userImg: 'https://picsum.photos/200/300',
+            userImg: 'https://picsum.photos/id/64/200/300',
             matricula: 'A032132',
             mail: 'mail@tec.mx',
             period: 'AGO-DIC 24',
@@ -85,7 +85,7 @@ import {
   styleUrl: './component.scss',
 })
 export class AppComponent {
- 
+
   closeSession(){
     console.log("Cerrar Sesion")
   }
@@ -118,7 +118,7 @@ Below is an example of how you can use this component in HTML:
       description:
         'Set the link to redirect when the campus access button is clicked',
       table: {
-        category: 'Properties',
+        category: 'Events',
         type: { summary: 'string' },
       },
     },
@@ -135,13 +135,14 @@ Below is an example of how you can use this component in HTML:
     },
     targetLinks: {
       name: 'Target Links',
-      control: 'text',
+      control: 'radio',
+      options: ['_blank', '_parent', '_self', '_top'],
       description:
         'The target attribute for the link. Refer to https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a for more information.',
       table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: 'Ingresar' },
+        category: 'Events',
+        type: { summary: 'IBmbTargetLink' },
+        defaultValue: { summary: '_blank' },
       },
     },
     handleCloseSession: {
@@ -168,7 +169,7 @@ Below is an example of how you can use this component in HTML:
   args: {
     userData: {
       name: 'Juanito Perez',
-      userImg: 'https://picsum.photos/200/300',
+      userImg: 'https://picsum.photos/id/64/200/300',
       matricula: 'A032132',
       mail: 'mail@tec.mx',
       period: 'AGO-DIC 24',

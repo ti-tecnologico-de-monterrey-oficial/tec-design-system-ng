@@ -97,7 +97,8 @@ Below is an example of how you can use this component in HTML:
         'The target attribute for the link. Refer to https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a for more information.',
       table: {
         category: 'Events',
-        type: { summary: 'string' },
+        type: { summary: 'IBmbTargetLink' },
+        defaultValue: { summary: '_blank' },
       },
     },
     iconLeft: {
@@ -206,9 +207,10 @@ Below is an example of how you can use this component in HTML:
     setButtonTemplate: {
       name: 'Set Button Template',
       control: { type: 'boolean' },
-      description: 'If true, sets a custom button template.',
+      description:
+        'This property switch the template component to a button, if you enable this option, you do not need send the `target`, and `link` properties, and set the ouput `onButton`.',
       table: {
-        category: 'Properties',
+        category: 'Deprecated',
         defaultValue: { summary: false },
         type: { summary: 'boolean' },
       },
@@ -226,6 +228,8 @@ Below is an example of how you can use this component in HTML:
     title: 'Tema de App',
     iconLeft: 'home',
     iconRight: 'chevron_right',
+    link: '',
+    target: '_blank',
   },
 } as Meta<typeof BmbContainerButtonComponent>;
 

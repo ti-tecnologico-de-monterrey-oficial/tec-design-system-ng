@@ -1,5 +1,35 @@
 import { Meta, StoryObj } from '@storybook/angular';
-import { BmbToastComponent } from './bmb-toast.component';
+import { BmbToastAppearance, BmbToastComponent } from './bmb-toast.component';
+
+const appearanceOptions: BmbToastAppearance[] = [
+  'neutral',
+  'primary',
+  'successful',
+  'warning',
+  'error',
+  'event',
+  'reminder',
+  'mitec_blue',
+  'mitec_red',
+  'mitec_green',
+  'mitec_orange',
+  'mitec_light_green',
+  'mitec_purple',
+  'creative_violet',
+  'creative_indigo',
+  'creative_emerald',
+  'creative_licorice',
+  'creative_darkteal',
+  'creative_peach',
+  'creative_sepia',
+  'creative_softred',
+  'creative_wattle',
+  'creative_shipcove',
+  'creative_plantation',
+  'creative_rum',
+  'creative_hibiscus',
+  'creative_ripelemon',
+];
 
 export default {
   title: 'Micro Componentes/Toast',
@@ -73,15 +103,7 @@ Below is an example of how you can use this component in HTML:
     appearance: {
       name: 'Appearance',
       control: 'select',
-      options: [
-        'neutral',
-        'primary',
-        'successful',
-        'warning',
-        'error',
-        'event',
-        'reminder',
-      ],
+      options: appearanceOptions,
       description:
         'Defines the visual style of the toast, allowing it to match the context of the notification. Each option represents a different level of notification severity or type, such as informational (neutral), success (successful), warning (warning), error (error), event (event), or reminder (reminder).',
       table: {

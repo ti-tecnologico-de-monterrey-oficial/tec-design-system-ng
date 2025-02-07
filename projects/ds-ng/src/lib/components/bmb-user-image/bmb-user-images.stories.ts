@@ -109,12 +109,12 @@ Below is an example of how you can use this component in HTML:
     },
   },
   args: {
-    image: 'https://picsum.photos/200/300',
+    image: 'https://picsum.photos/id/64/200/300',
     altImage: 'Alt image description',
     size: 'desktop-small',
     target: '_blank',
     link: 'https://www.youtube.com/',
-    bordered: true,
+    bordered: false,
   },
 } as Meta<typeof BmbUserImageComponent>;
 

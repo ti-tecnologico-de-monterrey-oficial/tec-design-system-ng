@@ -41,7 +41,7 @@
             ],
             "styles": [
               "projects/ds-ng/src/assets/styles/main.scss",
-              "projects/ds-ng/src/assets/styles/micro.scss"
+              "src/styles.scss"
             ],
             "scripts": [],
             "allowedCommonJsDependencies": []
@@ -157,7 +157,10 @@
             "compodoc": true,
             "compodocArgs": ["-e", "json", "-d", "."],
             "port": 6006,
-            "styles": ["projects/ds-ng/src/assets/styles/main.scss"]
+            "styles": [
+              "projects/ds-ng/src/assets/styles/main.scss",
+              "src/styles.scss"
+            ]
           }
         },
         "build-storybook": {
@@ -167,7 +170,10 @@
             "browserTarget": "ds-ng:build",
             "compodoc": true,
             "compodocArgs": ["-e", "json", "-d", "."],
-            "styles": ["projects/ds-ng/src/assets/styles/main.scss"],
+            "styles": [
+              "projects/ds-ng/src/assets/styles/main.scss",
+              "src/styles.scss"
+            ],
             "outputDir": "dist/storybook/ds-ng"
           }
         },

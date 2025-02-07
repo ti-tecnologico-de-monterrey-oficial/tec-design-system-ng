@@ -10,7 +10,7 @@
     width: 100%;
   }
 
-  .bmb_chevron-content-title {
+  .bmb_title-content-container-wrapper-title {
     @include fonts.font(4, bold);
   }
 
@@ -23,7 +23,7 @@
     @include fonts.font(4, medium);
   }
 
-  .bmb_container-button {
+  .bmb_container-button .bmb_check-external-link-button-element {
     width: calc(100% - 2rem);
     margin: 1rem;
   }

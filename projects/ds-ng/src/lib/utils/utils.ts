@@ -18,3 +18,23 @@ export const isImage = (url: string): boolean => {
   const regx = /\.|\//gm;
   return regx.test(url);
 };
+
+export const buildErrorMessage = (inputs: string[]): string => {
+  let elements = '';
+
+  inputs.forEach((element, index) => {
+    elements += element;
+    elements +=
+      index == inputs.length - 2
+        ? ' and '
+        : inputs.length > 1 && index < inputs.length - 1
+          ? ', '
+          : '';
+  });
+
+  if (inputs.length) {
+    return `"${elements}" input${inputs.length > 1 ? 's' : ''} ${inputs.length > 1 ? 'are' : 'is'}`;
+  }
+
+  return elements;
+};

@@ -76,7 +76,8 @@ Below is an example of how you can use this component in HTML and also you can i
         'The target attribute for the link. Refer to https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a for more information.',
       table: {
         category: 'Events',
-        type: { summary: 'string' },
+        type: { summary: 'IBmbTargetLink' },
+        defaultValue: { summary: '_blank' },
       },
     },
   },

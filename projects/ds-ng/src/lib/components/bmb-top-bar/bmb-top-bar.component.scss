@@ -2,27 +2,84 @@
 @use "../../../assets/styles/base/fonts" as fonts;
 @use "../../../assets/styles/base/mixins" as mixins;
 
+@keyframes expandWidthSmooth {
+  0% {
+    width: rem.rem_calc(416);
+  }
+  75% {
+    width: 100%;
+    transform: scaleX(1.05);
+  }
+  100% {
+    width: 100%;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
 .bmb_top-bar {
   background-color: RGBA(var(--color-black-primary));
   color: RGBA(var(--color-white-primary));
   display: flex;
   justify-content: space-between;
-  padding: rem.rem_calc(12) rem.rem_calc(16);
+  padding: rem.rem_calc(12 16);
   gap: rem.rem_calc(16);
   align-items: center;
   position: relative;
+  border-radius: rem.rem_calc(0 0 12 12);
+
+  &-open {
+    border-radius: rem.rem_calc(0 0 0 0);
+  }
+
+  &-animated {
+    @include mixins.media-query(768, "min") {
+      width: rem.rem_calc(416);
+      animation: expandWidthSmooth 2s ease-out 1s forwards;
+      margin: auto;
+
+      > div:not(.bmb_top-bar-button-section),
+      > nav {
+        opacity: 0;
+        visibility: hidden;
+        animation: fadeIn 1s ease-in 3s forwards;
+      }
+    }
+  }
 
   &-button-section {
+    display: flex;
+    align-items: center;
+    gap: rem.rem_calc(4);
     @include mixins.media-query(1000, "min") {
       display: none;
     }
   }
 
   &-button-menu {
-    padding: rem.rem_calc(8);
+    padding: rem.rem_calc(20);
     background-color: transparent;
+    display: flex;
+    align-items: center;
     position: relative;
     width: rem.rem_calc(40);
+    border-radius: rem.rem_calc(20);
+
+    &-icon {
+      position: absolute;
+      left: rem.rem_calc(8);
+      top: rem.rem_calc(2);
+    }
 
     &:hover:not(:disabled),
     &:focus-visible:not(:disabled) {
@@ -31,6 +88,7 @@
 
     &-close i,
     &-menu i {
+      color: RGBA(var(--color-charade-50));
       transition: all 0.3s ease;
     }
 
@@ -52,9 +110,8 @@
 
     i {
       position: absolute;
-      left: rem.rem_calc(8);
-      // font-size: rem.rem_calc(24);
-      top: rem.rem_calc(2);
+      left: rem.rem_calc(0);
+      top: rem.rem_calc(4);
     }
   }
 
@@ -71,6 +128,17 @@
         width: rem.rem_calc(128);
         scale: 16/9;
       }
+    }
+  }
+
+  &-mb-app {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    &-name {
+      @include fonts.font(6, regular);
+      text-align: center;
     }
   }
 
@@ -100,8 +168,9 @@
 
   &-always-visible-content {
     flex: 1;
-    justify-content: end;
+    justify-content: flex-end;
     display: flex;
+    gap: rem.rem_calc(10);
 
     @include mixins.media-query(1000, "min") {
       flex: auto;
@@ -152,15 +221,14 @@
         }
 
         > li:last-child {
-          order: -1;
+          order: 0;
         }
       }
     }
 
     @include mixins.media-query(1000, "min") {
       display: flex;
-      justify-content: end;
-      overflow: hidden;
+      justify-content: flex-end;
     }
 
     &-content {
@@ -173,6 +241,12 @@
       align-items: center;
       gap: rem.rem_calc(16);
       overflow: hidden;
+    }
+
+    bmb-top-bar-user-section {
+      .bmb_top-bar-user-section {
+        width: auto;
+      }
     }
   }
 

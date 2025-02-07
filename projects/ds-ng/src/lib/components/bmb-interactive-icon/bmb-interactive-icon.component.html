@@ -1,12 +1,11 @@
-<ng-template #commonContent>
-  @if (isImage(icon())) {
-    <figure class="bmb_interactive_icon-box">
-      <img [src]="icon()" [alt]="title()" class="bmb_interactive_icon-image" />
-    </figure>
-  } @else {
+<bmb-check-external-link-button
+  [link]="link()!"
+  [target]="target()!"
+  (buttonClick)="handleClick()"
+>
+  <section [ngClass]="getClasses()">
     <span class="bmb_interactive_icon-box">
       <bmb-icon
-        class="bmb_interactive_icon-icon"
         [icon]="icon()"
         [size]="32"
         [dotNotification]="dotNotification()"
@@ -15,49 +14,17 @@
         <span class="bmb_interactive_icon-label">{{ label() }}</span>
       }
     </span>
-  }
-  @if (title() || description()) {
-    <span class="bmb_interactive_icon-text">
-      @if (title()) {
-        <h4 class="bmb_interactive_icon-title">{{ title() }}</h4>
-      }
-      <span
-        class="bmb_interactive_icon-description"
-        *ngIf="description() && horizontal()"
-      >
-        {{ description() }}
+    @if (title() || description()) {
+      <span class="bmb_interactive_icon-text">
+        @if (title()) {
+          <h4 class="bmb_interactive_icon-title">{{ title() }}</h4>
+        }
+        @if (description() && horizontal()) {
+          <span class="bmb_interactive_icon-description">
+            {{ description() }}
+          </span>
+        }
       </span>
-    </span>
-  }
-</ng-template>
-
-@if (setButtonTemplate()) {
-  <button
-    [ngClass]="getClasses()"
-    [class.bmb_interactive_icon-horizontal]="horizontal()"
-    (click)="handleClick()"
-    [name]="icon()"
-  >
-    <ng-container *ngTemplateOutlet="commonContent" />
-  </button>
-} @else if (isExternalLink(link() || "")) {
-  <a
-    [ngClass]="getClasses()"
-    [class.bmb_interactive_icon-horizontal]="horizontal()"
-    [href]="link()"
-    [target]="target() || '_blank'"
-    rel="noopener noreferrer"
-  >
-    <ng-container *ngTemplateOutlet="commonContent" />
-  </a>
-} @else {
-  <a
-    [ngClass]="getClasses()"
-    [class.bmb_interactive_icon-horizontal]="horizontal()"
-    [routerLink]="link()"
-    routerLinkActive="active-link"
-    [routerLinkActiveOptions]="{ exact: true }"
-  >
-    <ng-container *ngTemplateOutlet="commonContent" />
-  </a>
-}
+    }
+  </section>
+</bmb-check-external-link-button>

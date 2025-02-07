@@ -1,5 +1,5 @@
 <section class="bmb_focus-element">
-  <section [class]="getCircleClass()">
+  <section [ngClass]="getCircleClass()">
     @if (icon() && !number()) {
       <bmb-icon class="bmb_focus-element-icon" icon="{{ icon() }}" />
     }

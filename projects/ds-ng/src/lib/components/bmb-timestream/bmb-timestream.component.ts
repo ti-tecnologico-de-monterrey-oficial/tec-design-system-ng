@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { DateTime, Info } from 'luxon';
 import { BmbTimestreamErrorComponent } from './bmb-timestream-error/bmb-timestream-error.component';
-import { BmbTimestreamTimelineComponent } from './bmb-timestream-timeline/bmb-timestream-timeline.component';
+import { BmbHitoListComponent } from '../bmb-hito-list/bmb-hito-list.component';
 import { BmbTimestreamDetailsComponent } from './bmb-timestream-detail/bmb-timestream-detail.component';
 import { ITimelineEvent, ISelectedDate, ITimelineEventParsed } from './types';
 import { CommonModule } from '@angular/common';
@@ -46,7 +46,7 @@ export interface IBmbClamp {
   standalone: true,
   imports: [
     BmbTimestreamErrorComponent,
-    BmbTimestreamTimelineComponent,
+    BmbHitoListComponent,
     BmbTimestreamDetailsComponent,
     CommonModule,
     BmbUserImageComponent,

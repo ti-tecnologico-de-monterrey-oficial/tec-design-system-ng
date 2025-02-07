@@ -1,4 +1,5 @@
 @use "../../../assets/styles/base/rem" as rem;
+@use "../../../assets/styles/base/fonts" as fonts;
 
 .bmb_chat-bar {
   position: relative;
@@ -6,20 +7,22 @@
   &-dialog {
     position: absolute;
     bottom: 100%;
-    left: rem.rem_calc(42);
-    width: calc(100% - rem.rem_calc(84));
+    left: rem.rem_calc(0);
+    width: calc(100% - rem.rem_calc(40));
     overflow: hidden;
     height: 0;
-    transition: height 0.3s ease;
     border-radius: var(--bmb-radius-s) var(--bmb-radius-s) 0 0;
     background-color: RGBA(var(--color-white-primary));
+    z-index: 1;
 
     &-active {
-      height: rem.rem_calc(94);
+      height: rem.rem_calc(140);
+      bottom: 50%;
       overflow: auto;
       border-width: rem.rem_calc(1) rem.rem_calc(1) 0 rem.rem_calc(1);
       border-style: solid;
       border-color: RGBA(var(--color-charade-300));
+      transition: height 0.3s ease;
     }
 
     &-list {
@@ -34,6 +37,10 @@
       width: rem.rem_calc(40);
       height: rem.rem_calc(40);
       object-fit: contain;
+
+      &-active {
+        filter: contrast(100%);
+      }
     }
 
     &-button {
@@ -41,31 +48,78 @@
       line-height: 0;
       border-radius: 50%;
       background-color: RGBA(var(--color-charade-500));
-      box-shadow: rem.rem_calc(8) rem.rem_calc(8) rem.rem_calc(8) 0px
-        rgba(var(--color-charade-950), 0.2);
+      box-shadow: rem.rem_calc(8) rem.rem_calc(8) rem.rem_calc(8)
+        rem.rem_calc(0) rgba(var(--color-charade-950), 0.2);
+
+      &-active {
+        background-color: RGBA(var(--color-charade-950));
+      }
     }
   }
 
   &-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
     padding: var(--bmb-spacing-m);
     border-radius: rem.rem_calc(44);
     border: rem.rem_calc(1) solid RGBA(var(--color-charade-300));
     background: RGBA(var(--color-charade-100));
-    display: flex;
     gap: var(--bmb-spacing-m);
+    z-index: 2;
+
+    &-files {
+      height: rem.rem_calc(170);
+
+      @media (max-width: 480px) {
+        height: rem.rem_calc(210);
+      }
+    }
+
+    &-btns {
+      display: flex;
+      gap: var(--bmb-spacing-xs);
+    }
+
+    &-drag {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      padding: var(--bmb-spacing-m);
+      color: RGBA(var(--color-mariner-500));
+
+      &-text {
+        margin: 0;
+      }
+    }
+  }
+
+  &-drag {
+    border: rem.rem_calc(2) dashed;
+    border-color: RGBA(var(--color-mariner-500));
+  }
+
+  &-main {
+    display: inline-flex;
+    width: 100%;
   }
 
   &-bot {
     border: 0 none;
     padding: 0;
+    padding-right: rem.rem_calc(10);
 
     &-picture {
       margin: 0;
+      padding: rem.rem_calc(10);
       line-height: 0;
       width: rem.rem_calc(60);
       height: rem.rem_calc(60);
       display: flex;
       align-items: center;
+      border-radius: 50%;
+      background-color: RGBA(var(--color-charade-500));
 
       &-image {
         width: 100%;
@@ -78,6 +132,126 @@
     background-color: transparent;
     flex: 1;
     font-size: 1rem;
+    min-width: rem.rem_calc(100);
+  }
+
+  &-emoji {
+    color: RGBA(var(--color-charade-500));
+    font-size: 2rem;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  &-add {
+    position: relative;
+    color: RGBA(var(--color-charade-500));
+    font-size: 2rem;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+
+    &-dialog {
+      display: none;
+      position: absolute;
+      width: rem.rem_calc(350);
+      border-radius: var(--bmb-radius-m) var(--bmb-radius-m) var(--bmb-radius-m)
+        var(--bmb-radius-m);
+      box-shadow: rem.rem_calc(5) rem.rem_calc(10) rem.rem_calc(5)
+        var(--color-black-min);
+      background: RGBA(var(--color-charade-100));
+
+      &-active {
+        display: block;
+        bottom: 90%;
+        transform: translateX(-90%);
+        min-height: rem.rem_calc(50);
+        max-height: rem.rem_calc(145);
+        transition: height 0.3s ease;
+        overflow-y: scroll;
+      }
+
+      &-list {
+        display: flex;
+        flex-direction: column;
+        padding: var(--bmb-spacing-s);
+        margin: 0;
+        list-style: none;
+        gap: var(--bmb-spacing-xs);
+      }
+
+      &-button {
+        display: flex;
+        align-items: center;
+        padding: rem.rem_calc(5);
+        line-height: 0;
+        vertical-align: middle;
+      }
+
+      &-option {
+        display: flex;
+        align-items: center;
+        height: rem.rem_calc(40);
+        padding-left: rem.rem_calc(10);
+        cursor: pointer;
+
+        &:hover {
+          background-color: RGBA(var(--color-charade-400));
+        }
+
+        &-text {
+          margin: 0;
+          @include fonts.font(5, regular);
+        }
+
+        bmb-icon {
+          color: RGBA(var(--color-charade-500));
+          font-size: 1.5rem;
+          padding-right: rem.rem_calc(15);
+        }
+      }
+    }
+  }
+
+  &-mic {
+    color: RGBA(var(--color-charade-500));
+    font-size: 2rem;
+
+    @media screen and (max-width: 560px) {
+      display: none;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  &-pause {
+    color: RGBA(var(--color-red-primary));
+    font-size: 2.5rem;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  &-record {
+    color: RGBA(var(--color-charade-500));
+    font-size: 2.5rem;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+
+    &-animated {
+      .material-symbols-rounded {
+        animation-name: recordColor;
+        animation-duration: 3s;
+        animation-iteration-count: infinite;
+      }
+    }
   }
 
   &-send {
@@ -94,6 +268,194 @@
       }
     }
   }
+
+  &-files-list {
+    display: none;
+    gap: var(--bmb-spacing-m);
+    overflow-x: scroll;
+    overflow-y: hidden;
+
+    @media (max-width: 480px) {
+      overflow-x: hidden;
+      overflow-y: scroll;
+      direction: rtl;
+    }
+
+    &-image {
+      position: relative;
+      min-width: rem.rem_calc(50);
+      width: rem.rem_calc(50);
+      height: rem.rem_calc(50);
+
+      @media (max-width: 480px) {
+        width: rem.rem_calc(75);
+        height: rem.rem_calc(75);
+      }
+
+      bmb-icon {
+        color: RGBA(var(--color-charade-50));
+        font-size: 1.5rem;
+        padding: rem.rem_calc(0) rem.rem_calc(5);
+      }
+
+      &-delete {
+        position: absolute;
+        top: 25%;
+        right: 15%;
+        transform: translateY(-50%) translateX(50%);
+      }
+    }
+
+    &-thumbnail {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      border-radius: rem.rem_calc(10);
+    }
+
+    &-active {
+      display: flex;
+      align-items: center;
+      height: rem.rem_calc(70);
+
+      @media (max-width: 480px) {
+        height: rem.rem_calc(100);
+        flex-direction: column;
+      }
+    }
+
+    &-option {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: rem.rem_calc(250);
+      min-width: rem.rem_calc(200);
+      height: rem.rem_calc(50);
+      padding: rem.rem_calc(2) rem.rem_calc(10);
+      border-radius: rem.rem_calc(5);
+      background-color: RGBA(var(--color-charade-50));
+      border: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
+
+      @media (max-width: 480px) {
+        padding: rem.rem_calc(15) rem.rem_calc(8);
+        width: rem.rem_calc(350);
+        height: rem.rem_calc(55);
+        direction: ltr;
+      }
+
+      &-text {
+        width: rem.rem_calc(180);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      bmb-icon {
+        color: RGBA(var(--color-mariner-500));
+        font-size: 1.5rem;
+        padding: rem.rem_calc(0) rem.rem_calc(5);
+      }
+    }
+
+    &-delete {
+      position: absolute;
+      top: 60%;
+      left: 105%;
+      transform: translateY(-100%) translateX(-100%);
+
+      bmb-icon {
+        color: RGBA(var(--color-charade-500));
+      }
+    }
+  }
+
+  &-mb-add-dialog {
+    display: none;
+    margin: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: RGBA(var(--color-charade-50));
+    z-index: 99;
+    padding: var(--bmb-spacing-l);
+    flex-direction: column;
+    border-radius: rem.rem_calc(20);
+    border: rem.rem_calc(1) solid RGBA(var(--color-charade-300));
+
+    &-active {
+      display: block;
+    }
+
+    &-header {
+      @include fonts.font(7, semibold);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      height: rem.rem_calc(80);
+      padding: var(--bmb-spacing-m);
+    }
+
+    &-close {
+      @include fonts.font(9, semibold);
+    }
+
+    &-body {
+      width: 100%;
+      height: 85%;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      grid-column-gap: rem.rem_calc(0);
+      grid-row-gap: rem.rem_calc(0);
+    }
+
+    &-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &-icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: rem.rem_calc(70);
+      height: rem.rem_calc(70);
+      font-size: rem.rem_calc(50);
+      border-radius: 50%;
+      margin-bottom: rem.rem_calc(20);
+      background-color: RGBA(var(--color-charade-100));
+      color: RGBA(var(--color-charade-500));
+    }
+
+    &-button {
+      display: flex;
+      align-items: center;
+      padding: rem.rem_calc(5);
+      line-height: 0;
+      vertical-align: middle;
+
+      bmb-icon {
+        font-size: rem.rem_calc(40);
+        color: RGBA(var(--color-charade-500));
+      }
+    }
+
+    &-label {
+      @include fonts.font(5, regular);
+      word-wrap: break-word; /* Hace que las palabras largas se dividan en líneas */
+      overflow-wrap: break-word;
+
+      @media (max-width: 480px) {
+        word-wrap: break-word; /* Hace que las palabras largas se dividan en líneas */
+        overflow-wrap: break-word;
+      }
+    }
+  }
 }
 
 @keyframes loading {
@@ -106,6 +468,28 @@
   }
 }
 
+@keyframes recordColor {
+  0% {
+    color: RGBA(var(--color-green-primary));
+  }
+
+  25% {
+    color: RGBA(var(--color-charade-500));
+  }
+
+  50% {
+    color: RGBA(var(--color-green-primary));
+  }
+
+  75% {
+    color: RGBA(var(--color-charade-500));
+  }
+
+  100% {
+    color: RGBA(var(--color-green-primary));
+  }
+}
+
 [data-theme="dark"],
 .storybook-dark-theme {
   .bmb_chat-bar {
@@ -114,6 +498,14 @@
     &-container {
       background-color: RGBA(var(--color-charade-900));
       border-color: RGBA(var(--color-charade-800));
+
+      &-active {
+        border-color: RGBA(var(--color-mariner-500));
+      }
+
+      &-drag {
+        color: RGBA(var(--color-mariner-500));
+      }
     }
 
     &-input {
@@ -125,6 +517,70 @@
 
       &-active {
         border-color: RGBA(var(--color-charade-700));
+      }
+
+      &-button {
+        &-active {
+          background-color: RGBA(var(--color-charade-50));
+        }
+      }
+
+      &-image {
+        &-active {
+          filter: contrast(0%);
+        }
+      }
+    }
+
+    &-add {
+      &-dialog {
+        background-color: RGBA(var(--color-charade-900));
+
+        &-option-text {
+          color: RGBA(var(--color-charade-50));
+        }
+
+        &-button {
+          color: RGBA(var(--color-charade-50));
+
+          bmb-icon {
+            color: RGBA(var(--color-charade-50));
+          }
+        }
+      }
+    }
+
+    &-files {
+      background-color: RGBA(var(--color-charade-900));
+      border-color: RGBA(var(--color-charade-800));
+      &-list {
+        &-option {
+          background-color: RGBA(var(--color-charade-950));
+          border-color: RGBA(var(--color-charade-700));
+        }
+      }
+    }
+
+    &-drag {
+      border-color: RGBA(var(--color-mariner-500));
+    }
+
+    &-mb-add-dialog {
+      background-color: RGBA(var(--color-charade-900));
+      border-color: RGBA(var(--color-charade-800));
+
+      &-close {
+        color: RGBA(var(--color-charade-50));
+      }
+
+      &-icon {
+        background-color: RGBA(var(--color-charade-500));
+      }
+
+      &-button {
+        bmb-icon {
+          color: RGBA(var(--color-charade-200));
+        }
       }
     }
   }

@@ -130,14 +130,14 @@ Below is an example of how you can use this component in HTML:
     },
     actionHeaders: {
       name: 'Action header',
-      control: { type: 'boolean' },
+      control: { type: 'object' },
       description:
         'Sets an array of IBmbActionHeader objects, default value is an empty array.',
       table: {
         category: 'Properties',
         type: {
           summary:
-            'IBmbActionHeader[], {icon: string; iconActiveToggle?: string; isToggleActive?: boolean; action: () => void;}',
+            'IBmbActionHeader[], {icon: string; iconSize?: number; iconActiveToggle?: string; isToggleActive?: boolean; action: () => void;}',
         },
       },
     },

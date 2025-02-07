@@ -6,9 +6,9 @@ import {
   output,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { isExternalLink } from '../../utils/utils';
+import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
+import { IBmbTargetLink } from '../../types';
 
 export type IBmbInteractiveIconAppearance =
   | 'red'
@@ -16,7 +16,27 @@ export type IBmbInteractiveIconAppearance =
   | 'green'
   | 'yellow'
   | 'purple'
-  | 'none';
+  | 'none'
+  | 'mitec_blue'
+  | 'mitec_red'
+  | 'mitec_green'
+  | 'mitec_orange'
+  | 'mitec_light_green'
+  | 'mitec_purple'
+  | 'creative_violet'
+  | 'creative_indigo'
+  | 'creative_emerald'
+  | 'creative_licorice'
+  | 'creative_darkteal'
+  | 'creative_peach'
+  | 'creative_sepia'
+  | 'creative_softred'
+  | 'creative_wattle'
+  | 'creative_shipcove'
+  | 'creative_plantation'
+  | 'creative_rum'
+  | 'creative_hibiscus'
+  | 'creative_ripelemon';
 
 export type IBmbInteractiveIconType = 'regular' | 'button' | 'app_drawer';
 
@@ -25,7 +45,11 @@ export type IBmbInteractiveIconType = 'regular' | 'button' | 'app_drawer';
   styleUrl: './bmb-interactive-icon.component.scss',
   templateUrl: './bmb-interactive-icon.component.html',
   standalone: true,
-  imports: [CommonModule, BmbIconComponent, RouterModule],
+  imports: [
+    CommonModule,
+    BmbCheckExternalLinkButtonComponent,
+    BmbIconComponent,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
@@ -37,7 +61,7 @@ export class BmbInteractiveIconComponent {
   icon = input<string>('face');
   dotNotification = input<number>();
   horizontal = input<boolean>(false);
-  target = input<string>();
+  target = input<IBmbTargetLink>();
   link = input<string>();
   layout = input<IBmbInteractiveIconType>('regular');
   setButtonTemplate = input<boolean>(false);
@@ -45,31 +69,18 @@ export class BmbInteractiveIconComponent {
   buttonClick = output<void>();
 
   getClasses(): string[] {
+    const principalClassName: string = 'bmb_interactive_icon';
     const classes: string[] = [
-      'bmb_interactive_icon',
-      `bmb_interactive_icon-${this.layout()}`,
+      principalClassName,
+      `${principalClassName}-${this.layout()}`,
     ];
 
-    if (this.setButtonTemplate())
-      classes.push('bmb_interactive_icon-button-template');
+    if (this.horizontal()) classes.push(`${principalClassName}-horizontal`);
 
     if (this.appearance())
       classes.push(`bmb_interactive_icon-${this.appearance()}`);
 
     return classes;
-  }
-
-  isExternalLink(link: string): boolean {
-    if (link) {
-      return isExternalLink(link);
-    }
-
-    return false;
-  }
-
-  isImage(url: string): boolean {
-    const regx = /\.|\//gm;
-    return regx.test(url);
   }
 
   handleClick(): void {
