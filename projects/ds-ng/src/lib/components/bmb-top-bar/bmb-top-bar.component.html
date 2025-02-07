@@ -34,10 +34,7 @@
       <h1 class="bmb_top-bar-mb-app-name">{{ appName }}</h1>
     </div>
   }
-  <nav
-    class="bmb_top-bar-nav"
-    [ngClass]="getMenuClasses()"
-  >
+  <nav class="bmb_top-bar-nav" [ngClass]="getMenuClasses()">
     @if (appName !== "") {
       <li class="bmb_top-bar-app-name">
         <h1>{{ appName }}</h1>

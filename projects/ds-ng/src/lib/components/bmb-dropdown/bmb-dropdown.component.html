@@ -3,7 +3,7 @@
   [ngClass]="{ 'bmb_dropdown-disabled': disabled() }"
   clickOutside
   (clickOutside)="closeDialog()"
-  (click)="openDialog()"
+  (click)="openDialog($event)"
 >
   <div class="bmb_dropdown-wrapper">
     @if (label()) {
@@ -33,7 +33,7 @@
         readonly
         [id]="'bmb-dropdown' + uid"
         [name]="'bmb-dropdown' + uid"
-        [formControl]="control!"
+        [formControl]="inputControl"
         [placeholder]="placeholder()"
         (keydown)="onKeyDown($event)"
       />
@@ -43,6 +43,7 @@
       <dialog
         class="bmb_dropdown-dialog"
         [ngClass]="{ 'bmb_dropdown-dialog-open': openSelect }"
+        [open]="getDialogStatus()"
       >
         <ul class="bmb_dropdown-dialog-list">
           @for (item of options(); track $index) {
@@ -53,7 +54,7 @@
                   'bmb_dropdown-dialog-list-item-button-selected':
                     $index == selectedIndexOption,
                 }"
-                (click)="handleItemClick(getItem(item), $index)"
+                (click)="handleItemClick(getItem(item), $index, item)"
               >
                 @if (showIcon()) {
                   <bmb-icon
