@@ -21,13 +21,13 @@
 
 @if (isMicro()) {
   <bmb-container appearance="primary-home">
-      <bmb-chevron-title-selector [title]="gradeTitle()!" />
-      <bmb-chevron-title-selector [title]="title()!" />
-      <bmb-academic-progress
-        [accredited]="accredited()!"
-        [average]="average()!"
-        [summary]="summary()!"
-      />
+    <bmb-chevron-title-selector [title]="gradeTitle()!" />
+    <bmb-chevron-title-selector [title]="title()!" />
+    <bmb-academic-progress
+      [accredited]="accredited()!"
+      [average]="average()!"
+      [summary]="summary()!"
+    />
   </bmb-container>
 } @else {
   <section class="bmb_grades">
