@@ -7,16 +7,23 @@ import {
   signal,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbInputComponent } from '../bmb-input/bmb-input.component';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { BmbThreeColsComponent } from '../bmb-three-cols/bmb-three-cols.component';
+import { BmbNavigationIconComponent } from '../bmb-navigation-bar/bmb-navigation-icon/bmb-navigation-icon.component';
+import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
+import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
+import { isExternalLink } from '../../utils/utils';
 
 @Component({
   selector: 'bmb-inner-header',
   standalone: true,
   imports: [
     CommonModule,
-    BmbIconComponent,
+    BmbContainerComponent,
+    BmbThreeColsComponent,
+    BmbNavigationIconComponent,
+    BmbTitleContentComponent,
     BmbInputComponent,
     ReactiveFormsModule,
   ],
@@ -46,6 +53,19 @@ export class BmbInnerHeaderComponent {
   onHandleBack = output<any>();
   onHandleClose = output<any>();
   searchData = output<string>();
+
+  getLeftIcon(): string {
+    if (!this.showClose() && this.showReturn()) return 'arrow_back';
+    if (this.showClose() && !this.showReturn()) return 'close';
+
+    return '';
+  }
+
+  getSubtitleIcon(): string {
+    return (
+      (!!this.subTitle() && isExternalLink(this.subTitle()) && 'lock') || ''
+    );
+  }
 
   handleBack(event: any): void {
     this.onHandleBack.emit(event);

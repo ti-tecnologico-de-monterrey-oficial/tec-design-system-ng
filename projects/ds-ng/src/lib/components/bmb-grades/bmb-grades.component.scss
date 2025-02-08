@@ -6,6 +6,15 @@
 }
 
 .bmb_grades {
+  &-micro {
+    width: 100%;
+  }
+
+  &-title {
+    color: var(--general_contrasts-100);
+    @include fonts.font(4, medium);
+  }
+
   .bmb_inner_header-content {
     width: 100%;
   }
@@ -14,36 +23,8 @@
     @include fonts.font(4, bold);
   }
 
-  .bmb_card.bmb_card-type-normal {
-    --border-color: RGBA(var(--color-charade-500));
-  }
-
-  &-title {
-    color: RGBA(var(--color-charade-950));
-    @include fonts.font(4, medium);
-  }
-
   .bmb_container-button .bmb_check-external-link-button-element {
     width: calc(100% - 2rem);
     margin: 1rem;
-  }
-}
-
-[data-theme="dark"],
-.storybook-dark-theme {
-  .bmb_grades {
-    .bmb_card.bmb_card-type-normal {
-      border-color: RGBA(var(--color-charade-500));
-    }
-
-    &-summary {
-      .bmb_focus-element-number {
-        color: RGBA(var(--color-charade-50));
-      }
-    }
-
-    &-title {
-      color: RGBA(var(--color-charade-50));
-    }
   }
 }

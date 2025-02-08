@@ -31,36 +31,12 @@
         align-items: center;
         gap: var(--bmb-spacing-s);
         @include fonts.font(4, regular);
-
-        .bmb_tooltip {
-          color: var(--general_contrasts-50);
-        }
       }
 
       &-eval {
         padding: var(--bmb-spacing-s);
         gap: var(--bmb-spacing-xs);
         margin: 0 var(--bmb-spacing-s);
-        .bmb_focus-element-normal_circle {
-          height: rem.rem_calc(40);
-          width: rem.rem_calc(40);
-        }
-
-        .bmb_focus-element-number {
-          @include fonts.font(5, regular);
-        }
-
-        &-button {
-          &-active {
-            .bmb_focus-element-number {
-              color: var(--general_contrasts-input-background);
-            }
-
-            .bmb_focus-element-inherited_bg {
-              background-color: var(--general_contrasts-100);
-            }
-          }
-        }
       }
     }
 
@@ -106,6 +82,29 @@
         flex-direction: column;
       }
     }
+  }
+
+  .bmb_evaluation-rubric-container-criterion-title .bmb_tooltip {
+    color: var(--general_contrasts-50);
+  }
+
+  .bmb_evaluation-rubric-container-criterion-eval-button-active
+    .bmb_focus-element-number {
+    color: var(--general_contrasts-input-background);
+  }
+
+  .bmb_evaluation-rubric-container-criterion-eval-button-active
+    .bmb_focus-element-inherited_bg {
+    background-color: var(--general_contrasts-100);
+  }
+
+  .bmb_focus-element-normal_circle {
+    height: rem.rem_calc(40);
+    width: rem.rem_calc(40);
+  }
+
+  .bmb_focus-element-number {
+    @include fonts.font(5, regular);
   }
 
   .bmb_container {
