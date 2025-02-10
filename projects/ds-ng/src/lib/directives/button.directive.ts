@@ -77,7 +77,7 @@ export class BmbButtonDirective {
   }
 
   @HostBinding('class') get elementClass(): string[] {
-    const classList = ['bmb_btn', `bmb_btn-${this.appearance()}`];
+    const classList = [`bmb_btn-${this.appearance()}`];
     classList.push('bmb_btn-rounded');
 
     if (this.enableButtonToggle() && this.isToggleActive())
