@@ -2,7 +2,9 @@
 @use "../../../assets/styles/base/rem" as rem;
 
 .bmb_grade-value {
-  width: 100%;
+  &:has(svg) {
+    line-height: 0;
+  }
 
   &-main {
     fill: RGBA(var(--color-black-primary));
