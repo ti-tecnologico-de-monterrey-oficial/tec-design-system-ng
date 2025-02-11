@@ -107,7 +107,7 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: '[] (empty array)' },
         type: {
           summary:
-            'IBmbActionHeader[], {icon: string; iconSize?: number; iconActiveToggle?: string; isToggleActive?: boolean; link?: string; target?: IBmbTargetLink; action: () => void;}',
+            'IBmbActionHeader[], {icon: string; iconSize?: number; iconActiveToggle?: string; isToggleActive?: boolean; isAccentColor?: boolean; link?: string; target?: IBmbTargetLink; action: () => void;}',
         },
       },
     },

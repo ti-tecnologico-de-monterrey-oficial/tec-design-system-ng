@@ -34,78 +34,128 @@ Below is an example of how you can use this component in HTML:
   },
   argTypes: {
     idElement: {
-      name: '',
+      name: 'Id element',
       control: {
-        type: '',
+        type: 'text',
       },
-      description: '',
+      description: 'Sets the id element',
       table: {
         category: 'Properties',
-        defaultValue: { summary: '' },
-        type: { summary: ' ()' },
+        type: { summary: 'string (optional)' },
       },
     },
     icon: {
-      name: '',
-      control: {
-        type: '',
-      },
-      description: '',
+      name: 'Icon',
+      control: { type: 'text' },
+      description:
+        'Sets the name of the icon to use. Please use Material icons: https://fonts.google.com/icons. The color of the icon depends on the parent. You can also place an image here. **This icon has button behavior**',
       table: {
         category: 'Properties',
-        defaultValue: { summary: '' },
-        type: { summary: ' ()' },
+        type: { summary: 'string (required)' },
       },
     },
     iconSize: {
-      name: '',
-      control: {
-        type: '',
-      },
-      description: '',
+      name: 'Icon size',
+      control: { type: 'number' },
+      description:
+        'Size of the icon or width of the image to use. Note: <= 0 will be inherited.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: '' },
-        type: { summary: ' ()' },
+        type: { summary: 'number (optional)' },
       },
     },
-    iconActiveToggle: {
-      name: '',
+    toggleIconActive: {
+      name: 'Toggle icon active',
       control: {
-        type: '',
+        type: 'text',
       },
-      description: '',
+      description: 'Sets the icon name to toggle',
       table: {
         category: 'Properties',
-        defaultValue: { summary: '' },
-        type: { summary: ' ()' },
+        type: { summary: 'string (optional)' },
       },
     },
     isToggleActive: {
-      name: '',
+      name: 'Toggle active',
       control: {
-        type: '',
+        type: 'boolean',
       },
-      description: '',
+      description:
+        "Sets the toggle activation to change the icons depending on whether it is active or inactive. 'Icon active toggle' when true.",
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
-        type: { summary: ' (optional)' },
+        type: { summary: 'boolean (optional)' },
       },
     },
-    dotNotification: 0,
-    target: '',
-    link: '',
-    buttonClick: () => {},
+    isAccentColor: {
+      name: 'Accent color',
+      control: {
+        type: 'boolean',
+      },
+      description: 'Sets the accent color on toggle icons when true.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'true' },
+        type: { summary: 'boolean (optional)' },
+      },
+    },
+    dotNotification: {
+      name: 'Dot Notification',
+      control: { type: 'number' },
+      description:
+        'Set a dot with the number of notifications in the bottom right of the icon.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'number (option)' },
+      },
+    },
+    link: {
+      name: 'Link',
+      control: {
+        type: 'text',
+      },
+      description:
+        'Sets the link for redirection to another page. If this property is empty it will emit the button event.',
+      table: {
+        category: 'Events',
+        type: { summary: 'string (option)' },
+      },
+    },
+    target: {
+      name: 'Target',
+      control: {
+        type: 'radio',
+      },
+      options: ['_blank', '_self', '_parent', '_top'],
+      description:
+        'Sets the target property for the link. Refer to https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a for more information.',
+      table: {
+        category: 'Events',
+        type: { summary: 'IBmbTargetLink (option)' },
+        defaultValue: { summary: '_blank' },
+      },
+    },
+    buttonClick: {
+      name: 'Button click',
+      control: null,
+      description:
+        'This event is only emitted if the "Link" property is empty.',
+      table: {
+        category: 'Events',
+        type: { summary: 'function (option)' },
+      },
+    },
   },
   args: {
     idElement: '',
     icon: 'close',
     iconSize: 24,
-    iconActiveToggle: '',
+    toggleIconActive: '',
     isToggleActive: false,
+    isAccentColor: true,
     dotNotification: 0,
-    target: '',
+    target: '_blank',
     link: '',
     buttonClick: () => {},
   },
