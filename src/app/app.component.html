@@ -1,13 +1,10 @@
-<bmb-top-bar
-  [showLang]="true"
-  [mitec]="true"
-/>
+<bmb-top-bar [showLang]="true" [mitec]="true" />
 
 <bmb-theme />
 <bmb-accordion>
   <ng-template #bmbAccordionHeader>1</ng-template>
   <ng-template #bmbAccordionContent>
-    <div style="overflow: visible; height: max-content;">
+    <div style="overflow: visible; height: max-content">
       <bmb-datepicker
         placeholder="Selecciona la fecha de cumpleaños"
         name="datePicker"

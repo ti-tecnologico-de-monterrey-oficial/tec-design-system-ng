@@ -1,38 +1,6 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import { Meta, StoryFn } from '@storybook/angular';
 import { BmbHomeCardComponent } from './bmb-home-card.component';
-import { Component } from '@angular/core';
-import { IBmbDataTopBar } from '../bmb-breadcrumb/bmb-breadcrumb.component';
-
-@Component({
-  standalone: true,
-  imports: [BmbHomeCardComponent],
-  selector: 'storybook-toast-wrapper',
-  template: `
-    <div style="max-width: 300px; margin: 0 auto">
-      <bmb-home-card
-        leftIcon="chevron_left"
-        icon="exposure"
-        bgIconAppearance="green-light"
-        title="Title"
-        subtitle="subtitle"
-        [dataLocalNav]="dataLocalNav"
-        [isMobile]="false"
-      >
-        <p>hello world</p>
-      </bmb-home-card>
-    </div>
-  `,
-})
-class StorybookToastWrapperComponent {
-  dataLocalNav: IBmbDataTopBar[] = [
-    { text: 'Breadcrumb 1', link: '/' },
-    { text: 'Breadcrumb 2', link: '/emprendedor' },
-    { text: 'Breadcrumb 3', link: '/emprendedor/vivencia' },
-    { text: 'Breadcrumb 4', link: '/emprendedor/vivencia' },
-    { text: 'Breadcrumb 5', link: '/emprendedor/vivencia' },
-    { text: 'Breadcrumb 6', link: '/emprendedor/vivencia' },
-  ];
-}
+import { attributes, attributesText } from '../../utils/utils';
 
 export default {
   title: 'Micro Componentes/Home Card',
@@ -78,7 +46,7 @@ Below is an example of how you can use this component in HTML:
       description: 'Sets left header icon.',
       table: {
         category: 'Properties',
-        type: { summary: 'string' },
+        type: { summary: 'string (optional)' },
       },
     },
     icon: {
@@ -87,7 +55,7 @@ Below is an example of how you can use this component in HTML:
       description: 'Sets header icon.',
       table: {
         category: 'Properties',
-        type: { summary: 'string' },
+        type: { summary: 'string (optional)' },
       },
     },
     bgIconAppearance: {
@@ -96,16 +64,16 @@ Below is an example of how you can use this component in HTML:
       description: 'Sets icon background color.',
       table: {
         category: 'Properties',
-        type: { summary: 'IBmbColor' },
+        type: { summary: 'IBmbColor (optional)' },
       },
     },
     title: {
       name: 'Title',
       control: { type: 'text' },
-      description: 'Sets card title.',
+      description: 'Sets he main title of the home card..',
       table: {
         category: 'Properties',
-        type: { summary: 'string' },
+        type: { summary: 'string (required)' },
       },
     },
     subtitle: {
@@ -114,7 +82,7 @@ Below is an example of how you can use this component in HTML:
       description: 'Sets card subtitle',
       table: {
         category: 'Properties',
-        type: { summary: 'string' },
+        type: { summary: 'string (optional)' },
       },
     },
     dataLocalNav: {
@@ -124,7 +92,8 @@ Below is an example of how you can use this component in HTML:
       table: {
         category: 'Properties',
         type: {
-          summary: 'IBmbDataTopBar[], [{ text: string, link?: string, }]',
+          summary:
+            'IBmbDataTopBar[] (optional), [{ text: string, link?: string, }]',
         },
       },
     },
@@ -135,20 +104,33 @@ Below is an example of how you can use this component in HTML:
         'Sets an array of IBmbActionHeader objects, default value is an empty array.',
       table: {
         category: 'Properties',
+        defaultValue: { summary: '[] (empty array)' },
         type: {
           summary:
-            'IBmbActionHeader[], {icon: string; iconSize?: number; iconActiveToggle?: string; isToggleActive?: boolean; action: () => void;}',
+            'IBmbActionHeader[], {icon: string; iconSize?: number; iconActiveToggle?: string; isToggleActive?: boolean; isAccentColor?: boolean; link?: string; target?: IBmbTargetLink; action: () => void;}',
         },
       },
     },
     isMobile: {
       name: 'Is mobile',
       control: { type: 'boolean' },
-      description: 'Sets mobile state.',
+      description:
+        'Sets a flag to indicate if the card should adapt to mobile view.',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
         type: { summary: 'boolean' },
+      },
+    },
+    contentPadding: {
+      name: 'Content padding',
+      control: { type: 'text' },
+      description:
+        "Sets the he padding size for the card's content. Uses predefined size names (e.g., 'xs','s','m','l','xl','none','auto')",
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'l' },
+        type: { summary: 'SizeNames (optional)' },
       },
     },
     onClose: {
@@ -169,6 +151,14 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'function' },
       },
     },
+    text: {
+      name: 'Text',
+      description: 'Header content example.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
   },
   args: {
     leftIcon: 'chevron_left',
@@ -179,27 +169,19 @@ Below is an example of how you can use this component in HTML:
     dataLocalNav: [],
     actionHeaders: [],
     isMobile: false,
+    text: 'hello world',
   },
 } as Meta<typeof BmbHomeCardComponent>;
 
-type Story = StoryObj<BmbHomeCardComponent>;
-
-export const Default: Story = {
-  render: (args) => ({
-    props: args,
-    template: `
+const customizable = (): StoryFn => (args) => ({
+  props: args,
+  template: `
     <bmb-home-card
-        [leftIcon]="leftIcon"
-        [icon]="icon"
-        [bgIconAppearance]="bgIconAppearance"
-        [title]="title"
-        [subtitle]="subtitle"
-        [dataLocalNav]="dataLocalNav"
-        [actionHeaders]="actionHeaders"
-        [isMobile]="isMobile"
-      >
-        <p>hello world</p>
-      </bmb-home-card>
-    `,
-  }),
-};
+      ${attributes(args)}
+    >
+      <p>${attributesText(args)}</p>
+    </bmb-home-card>
+  `,
+});
+
+export const Default = customizable();

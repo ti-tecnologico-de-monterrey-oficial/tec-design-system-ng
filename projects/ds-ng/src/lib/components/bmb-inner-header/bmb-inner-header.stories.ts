@@ -36,7 +36,7 @@ Below is an example of how you can use this component in HTML:
   [showSearch]="true"
   [title]="'My Title'"
   [placeholderSearch]="'Search'"
-  [subTitle]="'www.link.com'"
+  [subTitle]="'http://www.link.com'"
 ></bmb-inner-header>
 \`\`\`
         `,
@@ -205,7 +205,7 @@ Below is an example of how you can use this component in HTML:
     showClose: true,
     showReturn: false,
     showSearch: false,
-    subTitle: 'www.link.com',
+    subTitle: 'http://www.link.com',
     trailingIconPrimary: 'lock',
     trailingIconSecondary: 'home',
     onHandleBack: () => {

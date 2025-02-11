@@ -1,18 +1,7 @@
-@use "../../../assets/styles/base/mixins" as mixins;
-@use "../../../assets/styles/base/fonts" as fonts;
-@use "../../../assets/styles/base/rem" as rem;
-
 .bmb_chevron {
-  color: RGBA(var(--color-charade-950));
+  color: var(--general_contrasts-100);
 
-  &-button {
-    padding: 0;
-  }
-}
-
-[data-theme="dark"],
-.storybook-dark-theme {
-  .bmb_chevron {
-    color: RGBA(var(--color-charade-50));
+  .bmb_title-content-container-wrapper-title {
+    color: var(--general_contrasts-100);
   }
 }

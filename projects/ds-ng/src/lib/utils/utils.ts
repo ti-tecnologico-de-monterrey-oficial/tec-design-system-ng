@@ -38,3 +38,19 @@ export const buildErrorMessage = (inputs: string[]): string => {
 
   return elements;
 };
+
+export const attributes = (object: { [key: string]: any }): string =>
+  Object.entries(object)
+    .filter(([key]) => key !== 'text')
+    .map(
+      ([key, value]) =>
+        (typeof value !== 'string' && `[${key}]="${value}"`) ||
+        `${key}="${value}"`,
+    )
+    .join(' ');
+
+export const attributesText = (object: { [key: string]: any }): string =>
+  Object.entries(object)
+    .filter(([key]) => key === 'text')
+    .map(([_, value]) => `${value}`)
+    .join(' ');

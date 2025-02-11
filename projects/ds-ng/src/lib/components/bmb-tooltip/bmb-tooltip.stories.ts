@@ -1,6 +1,7 @@
-import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
+import { moduleMetadata, StoryFn, type Meta } from '@storybook/angular';
 import { BmbTooltipComponent } from './bmb-tooltip.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { attributes } from '../../utils/utils';
 
 export default {
   title: 'Micro Componentes/ToolTip',
@@ -77,6 +78,17 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'number' },
       },
     },
+    isFill: {
+      name: 'Is Fill',
+      control: { type: 'boolean' },
+      description:
+        'Determines whether the icon is filled (`true`) or outlined (`false`).',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'true' },
+        type: { summary: 'boolean' },
+      },
+    },
     align: {
       name: 'Align',
       control: { type: 'radio' },
@@ -106,28 +118,21 @@ Below is an example of how you can use this component in HTML:
     text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum nihil modi repellendus ad aspernatur corporis.',
     icon: 'help',
     size: 40,
+    isFill: true,
     align: 'right',
     justify: 'centered',
   },
 } as Meta<typeof BmbIconComponent>;
 
-type Story = StoryObj<BmbIconComponent>;
+const customizable = (): StoryFn => (args) => ({
+  props: args,
+  template: `
+    <div style="height: 500px; display: flex; justify-content: center; align-items: center;">
+      <bmb-tooltip
+        ${attributes(args)}
+      />
+    </div>
+  `,
+});
 
-export const Default: Story = {
-  args: {},
-  render: (args) => ({
-    props: args,
-    template: `
-      <div style="height: 500px; display: flex; justify-content: center; align-items: center;">
-        <bmb-tooltip
-          [text]="text"
-          [title]="title"
-          [icon]="icon"
-          [size]="size"
-          [align]="align"
-          [justify]="justify"
-        />
-      </div>
-    `,
-  }),
-};
+export const Default = customizable();
