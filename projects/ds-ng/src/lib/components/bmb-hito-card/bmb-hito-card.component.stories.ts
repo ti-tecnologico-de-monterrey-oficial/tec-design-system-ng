@@ -1,5 +1,6 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import { Meta, StoryFn } from '@storybook/angular';
 import { BmbHitoCardComponent } from './bmb-hito-card.component';
+import { attributes } from '../../utils/utils';
 
 export default {
   title: 'Micro Componentes/Hito card',
@@ -117,16 +118,6 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'boolean' },
       },
     },
-    // alternative_appearance: {
-    //   name: 'Alternative appearance',
-    //   control: { type: 'boolean' },
-    //   description: 'Change the color schema for the card.',
-    //   table: {
-    //     category: 'Properties',
-    //     defaultValue: { summary: 'false' },
-    //     type: { summary: 'boolean' },
-    //   },
-    // },
     handleClick: {
       name: 'Handle click',
       control: false,
@@ -153,26 +144,15 @@ Below is an example of how you can use this component in HTML:
   },
 } as Meta<typeof BmbHitoCardComponent>;
 
-type Story = StoryObj<BmbHitoCardComponent>;
-
-export const Default: Story = {
-  args: {},
-  render: (args) => ({
-    props: args,
+const customizable = (): StoryFn => (args) => ({
+  props: args,
     template: `
       <div style="padding: 3rem">
         <bmb-hito-card
-          [icon]="icon"
-          [title]="title"
-          [id]="id"
-          [short_description]="short_description"
-          [type]="type"
-          [sub_content]="sub_content"
-          [enable_bullet]="enable_bullet"
-          [is_active]="is_active"
-          [isCompact]="isCompact"
+          ${attributes(args)}
         />
       </div>
     `,
-  }),
-};
+});
+
+export const Default = customizable();

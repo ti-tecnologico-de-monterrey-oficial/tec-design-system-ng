@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BehaviorSubject } from 'rxjs';
 import { BmbDotPaginatorComponent } from './bmb-dot-paginator.component';
+import { attributes } from '../../utils/utils';
 
 export interface Target {
   target: string;
@@ -48,7 +49,7 @@ export interface Target {
         [activeDotIndex]="myActiveDotIndex"
         [totalDots]="imgArray.length"
         (onDotPress)="handleDotPress($event)"
-      ></bmb-dot-paginator>  
+      ></bmb-dot-paginator>
   ',
   styleUrl: './component.scss',
 })
@@ -228,9 +229,8 @@ export const Default: Story = {
         </div>
         <!-- Dot paginator with event binding -->
         <bmb-dot-paginator
-          [activeDotIndex]="getActiveDotIndex()"
-          [totalDots]="4"
-          (onDotPress)="handleDotPress($event)"
+           ${attributes(args)}
+           (onDotPress)="handleDotPress($event)"
         ></bmb-dot-paginator>
       `,
     };
