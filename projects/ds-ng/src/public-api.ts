@@ -12,6 +12,7 @@ export * from './lib/directives/button.directive';
 export * from './lib/directives/bmb-layout/bmb-layout-item.directive';
 export * from './lib/directives/bmb-layout/bmb-layout.directive';
 export * from './lib/directives/bmb-button-group/bmb-button-group.directive';
+export * from './lib/directives/bmb-accordion/bmb-accordion-control.directive';
 export * from './lib/components/bmb-login-onboarding/bmb-login-onboarding.service';
 
 // Components

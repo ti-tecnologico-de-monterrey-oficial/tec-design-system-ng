@@ -11,6 +11,7 @@ import {
   OutputEmitterRef,
   signal,
   WritableSignal,
+  OnInit,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SizeNames } from '../../types';
@@ -29,7 +30,7 @@ const calculateSize: any = (pixels: string[]): string => {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbAccordionComponent {
+export class BmbAccordionComponent implements OnInit {
   @ContentChild('bmbAccordionContent') bmbAccordionContent!: TemplateRef<any>;
   @ContentChild('bmbAccordionHeader') bmbAccordionHeader!: TemplateRef<any>;
   public borderRadius: InputSignal<SizeNames | SizeNames[]> = input<
@@ -45,6 +46,7 @@ export class BmbAccordionComponent {
     SizeNames | SizeNames[]
   >('m');
   public icon: InputSignal<string> = input<string>('');
+  public accordionId: InputSignal<number> = input<number>(0);
   public hideToggle: InputSignal<boolean> = input<boolean>(false);
   public active: InputSignal<boolean> = input<boolean>(false);
   public disabled: InputSignal<boolean> = input<boolean>(false);
@@ -54,8 +56,8 @@ export class BmbAccordionComponent {
   public closed: OutputEmitterRef<void> = output<void>();
   public opened: OutputEmitterRef<void> = output<void>();
   public onClick: OutputEmitterRef<void> = output<void>();
-  private _expanded: WritableSignal<boolean> = signal(false);
-  private isOpen = computed<boolean | undefined>(() => {
+  public _expanded: WritableSignal<boolean> = signal(false);
+  public isOpen = computed<boolean | undefined>(() => {
     if (this.expanded() != undefined) {
       if (this.expanded()) {
         this.opened.emit();
@@ -68,6 +70,10 @@ export class BmbAccordionComponent {
       return this._expanded();
     }
   });
+
+  ngOnInit(): void {
+    this._expanded.update((current) => this.expanded() || current);
+  }
 
   getClassesAccordion(): string[] {
     const classNames = [];
@@ -107,18 +113,18 @@ export class BmbAccordionComponent {
     return classNames;
   }
 
-  getClassesContent(): string[] {
+  getClassesContent(): string {
     const classNames = [];
 
     if (typeof this.paddingContent() === 'string') {
       classNames.push(`bmb_padding-${this.paddingContent()}`);
     }
 
-    if (this.isOpen()) {
-      classNames.push('bmb_accordion-content-open');
-    }
+    // if (this.isOpen()) {
+    //   classNames.push('bmb_accordion-content-open');
+    // }
 
-    return classNames;
+    return classNames.toString();
   }
 
   getStyles(): any {
