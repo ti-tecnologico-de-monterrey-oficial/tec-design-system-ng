@@ -37,6 +37,8 @@ export class BmbInputPhoneNumberComponent implements OnInit {
   @Input() showError: boolean = false;
   @Input() errorMessage: string = '';
   @Input() isRequired: boolean = false;
+  @Input() preferredCountries: string[] = ['mx'];
+  @Input() onlyCountries: string[] = [];
 
   constructor(private cdr: ChangeDetectorRef) {}
 
