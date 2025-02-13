@@ -38,10 +38,10 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'text',
       },
-      description: 'The title of the focus element.',
+      description: 'Sets the title of the focus element.',
       table: {
         category: 'Properties',
-        type: { summary: 'string' },
+        type: { summary: 'string (optional)' },
       },
     },
     number: {
@@ -49,20 +49,51 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'text',
       },
-      description: 'The number of the focus element.',
+      description:
+        'Sets the number of the focus element. The number is only considered if it does not have icon.',
       table: {
         category: 'Properties',
-        type: { summary: 'string' },
+        type: { summary: 'string (optional)' },
       },
     },
     icon: {
       name: 'Icon',
       control: { type: 'text' },
       description:
-        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons. Do not use the number property if you want to use an icon.',
+        'Sets the name of the icon to use. Please use Material icons: https://fonts.google.com/icons. Do not use the number property if you want to use an icon.',
       table: {
         category: 'Properties',
-        type: { summary: 'string' },
+        type: { summary: 'string (optional)' },
+      },
+    },
+    isNonFocused: {
+      name: 'Non focused',
+      control: { type: 'boolean' },
+      description: 'Removes focus state when true',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean (optional)' },
+      },
+    },
+    isNormal: {
+      name: 'Normal',
+      control: { type: 'boolean' },
+      description: 'Sets the normal border and color',
+      table: {
+        category: 'Internal',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean (optional)' },
+      },
+    },
+    isInheritedBg: {
+      name: 'Inherited background color',
+      control: { type: 'boolean' },
+      description: 'Sets the inherited background color when true',
+      table: {
+        category: 'Internal',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean (optional)' },
       },
     },
   },
@@ -70,6 +101,9 @@ Below is an example of how you can use this component in HTML:
     title: 'Title',
     icon: 'close',
     number: '',
+    isNonFocused: false,
+    isNormal: false,
+    isInheritedBg: false,
   },
 } as Meta<typeof BmbFocusElementComponent>;
 

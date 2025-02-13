@@ -56,7 +56,7 @@ export class BmbDropdownComponent {
   icon = input<string>('');
   options = input<string[] | IBmbDropdownItem[]>([]);
   helperText = input<string>('');
-  @Input() control?: FormControl | undefined;
+  control = input<FormControl>(new FormControl());
   disabled = input<boolean>(false);
   label = input<string>();
 
@@ -65,6 +65,7 @@ export class BmbDropdownComponent {
   isFocus: boolean = false;
   selectedIndexOption?: number;
   selectedOption?: any;
+  inputControl = new FormControl();
 
   uid: string = Date.now().toString(36) + (Math.floor(Math.random() * 90) + 10);
   filterControl = new FormControl();
@@ -73,37 +74,43 @@ export class BmbDropdownComponent {
   value: string = '';
   openSelect: boolean = false;
 
-  ngOnInit(): void {
-    if (this.control === undefined) {
-      this.control = new FormControl();
-    }
+  ngOnInit() {
+    const value = this.control().value;
+    const dDItem = this.options().find((item: string | IBmbDropdownItem) => {
+      if (typeof item === 'string') return item === value;
+      return item.value === value;
+    });
+    const name = typeof dDItem === 'string' ? dDItem : dDItem?.name;
+    this.inputControl.setValue(name);
   }
 
   closeDialog() {
     this.openSelect = false;
   }
 
-  handleItemClick(event: any, index: any): void {
-    this.onValueChange.emit(event.value);
+  handleItemClick(
+    event: IBmbDropdownItem,
+    index: number,
+    item: IBmbDropdownItem | string,
+  ): void {
+    this.onValueChange.emit(item);
     this.selectedIndexOption = index;
     this.selectedOption = event.value;
-    if (this.control) {
-      this.control.setValue(event.name);
-    }
-
+    this.control().setValue(event.value);
     this.isFocus = !this.isFocus;
     this.openSelect = false;
+    this.inputControl.setValue(event.name);
   }
 
-  openDialog() {
-    if (!this.disabled()) {
+  openDialog(event: any): void {
+    if (
+      !this.disabled() &&
+      (event.target.classList.contains('bmb_dropdown-input-wrapper') ||
+        event.target.classList.contains('bmb_dropdown-field-input') ||
+        event.target.classList.contains('bmb_dropdown-field-open') ||
+        event.target.classList.contains('material-symbols-outlined'))
+    ) {
       this.openSelect = !this.openSelect;
-      this.isFocus = !this.isFocus;
-    }
-  }
-
-  onParentClick() {
-    if (this.openSelect) {
       this.isFocus = !this.isFocus;
     }
   }
@@ -114,7 +121,7 @@ export class BmbDropdownComponent {
       -1
     ) {
       if (!this.openSelect) {
-        this.openDialog();
+        this.openDialog(event);
       }
 
       if (!this.options!.length) {
@@ -124,28 +131,10 @@ export class BmbDropdownComponent {
     }
   }
 
-  onChangeFn = (_: any) => {};
+  getDialogStatus() {
+    console.log('getDialogStatus', this.openSelect);
 
-  onTouchedFn = () => {};
-
-  registerOnChange(fn: any): void {
-    this.onChangeFn = fn;
-  }
-
-  registerOnTouched(fn: any): void {
-    this.onTouchedFn = fn;
-  }
-
-  writeValue(obj: any): void {
-    this.value = obj;
-  }
-
-  onTouched() {
-    this.onTouchedFn();
-  }
-
-  onChange() {
-    this.onChangeFn(this.value);
+    return this.openSelect;
   }
 
   getItem(item: unknown): IBmbDropdownItem {

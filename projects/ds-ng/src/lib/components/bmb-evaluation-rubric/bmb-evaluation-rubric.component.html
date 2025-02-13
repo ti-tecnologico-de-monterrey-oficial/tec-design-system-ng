@@ -1,10 +1,30 @@
 <section class="bmb_evaluation-rubric">
-  <bmb-header-section
-    [icon]="icon()"
-    [iconSize]="24"
-    [title]="title()"
-    [actionHeaders]="actionHeaders"
-  />
+  <bmb-container>
+    <header class="bmb_evaluation-rubric-header">
+      <bmb-three-cols>
+        <ng-template #bmbLeftContent>
+          <bmb-icon [icon]="icon()" [size]="24" />
+        </ng-template>
+        <ng-template #bmbMainContent>
+          <bmb-title-content
+            [title]="title()"
+            titleSize="6"
+            titleFontWeight="600"
+            [transparentBgC]="true"
+          />
+        </ng-template>
+        <ng-template #bmbRightContent>
+          <span class="bmb_evaluation-rubric-header-button">
+            <bmb-navigation-icon
+              [icon]="rightIcon()"
+              [iconSize]="24"
+              (buttonClick)="handleClose()"
+            />
+          </span>
+        </ng-template>
+      </bmb-three-cols>
+    </header>
+  </bmb-container>
   <section class="bmb_evaluation-rubric-container">
     @for (item of evaluationRubricList(); track $index) {
       <section class="bmb_evaluation-rubric-container-criterion">
@@ -16,6 +36,7 @@
             [title]="item.criterion"
             [text]="item.tooltip"
             [size]="20"
+            [isFill]="false"
           />
         </section>
         <section

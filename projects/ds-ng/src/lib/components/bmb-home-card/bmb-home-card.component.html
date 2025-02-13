@@ -1,17 +1,19 @@
 <section class="bmb_home-card">
-  <bmb-home-card-header
-    [title]="title()"
-    [subtitle]="subtitle()"
-    [dataLocalNav]="dataLocalNav()"
-    [leftIcon]="leftIcon()"
-    [icon]="icon()"
-    [iconSize]="iconSize()"
-    [bgIconAppearance]="bgIconAppearance()"
-    [actionHeaders]="actionHeaders()"
-    [isMobile]="isMobile()"
-    (onClose)="handleClose()"
-    (onBack)="handleBack()"
-  />
+  <span class="bmb_home-card">
+    <bmb-home-card-header
+      [title]="title()"
+      [subtitle]="subtitle()"
+      [dataLocalNav]="dataLocalNav()"
+      [leftIcon]="leftIcon()"
+      [icon]="icon()"
+      [iconSize]="iconSize()"
+      [bgIconAppearance]="bgIconAppearance()"
+      [actionHeaders]="actionHeaders()"
+      [isMobile]="isMobile()"
+      (onClose)="handleClose()"
+      (onBack)="handleBack()"
+    />
+  </span>
   <section
     class="bmb_home-card-container"
     [ngClass]="'bmb_padding-' + contentPadding()"

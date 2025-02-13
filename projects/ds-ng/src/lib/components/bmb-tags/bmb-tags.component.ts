@@ -12,27 +12,27 @@ import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 
 export type IBmbActivityTags =
-| 'normal'
-| 'mitec_blue'
-| 'mitec_red'
-| 'mitec_green'
-| 'mitec_orange'
-| 'mitec_light_green'
-| 'mitec_purple'
-| 'creative_violet'
-| 'creative_indigo'
-| 'creative_emerald'
-| 'creative_licorice'
-| 'creative_darkteal'
-| 'creative_peach'
-| 'creative_sepia'
-| 'creative_softred'
-| 'creative_wattle'
-| 'creative_shipcove'
-| 'creative_plantation'
-| 'creative_rum'
-| 'creative_hibiscus'
-| 'creative_ripelemon';
+  | 'normal'
+  | 'mitec_blue'
+  | 'mitec_red'
+  | 'mitec_green'
+  | 'mitec_orange'
+  | 'mitec_light_green'
+  | 'mitec_purple'
+  | 'creative_violet'
+  | 'creative_indigo'
+  | 'creative_emerald'
+  | 'creative_licorice'
+  | 'creative_darkteal'
+  | 'creative_peach'
+  | 'creative_sepia'
+  | 'creative_softred'
+  | 'creative_wattle'
+  | 'creative_shipcove'
+  | 'creative_plantation'
+  | 'creative_rum'
+  | 'creative_hibiscus'
+  | 'creative_ripelemon';
 
 @Component({
   selector: 'bmb-tag',

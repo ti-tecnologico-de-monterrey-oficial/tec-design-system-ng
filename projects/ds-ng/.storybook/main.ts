@@ -32,6 +32,10 @@ const config: StorybookConfig = {
             from: 'projects/ds-ng/src/assets/images',
             to: 'assets/images',
           },
+          {
+            from: 'projects/ds-ng/src/assets/svg',
+            to: 'assets/svg',
+          },
         ],
       }),
     );

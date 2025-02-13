@@ -3,95 +3,159 @@ import {
   Component,
   ElementRef,
   input,
-  model,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbDropdownComponent } from '../bmb-dropdown/bmb-dropdown.component';
-import {
-  BmbLayoutDirective,
-  BmbLayoutItemDirective,
-} from '../../../public-api';
 import { FormControl } from '@angular/forms';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { BmbButtonDirective } from '../../directives/button.directive';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 
 @Component({
   selector: 'bmb-text-editor',
   standalone: true,
-  imports: [BmbDropdownComponent, BmbLayoutDirective, BmbLayoutItemDirective],
+  imports: [BmbButtonDirective, BmbIconComponent],
   templateUrl: './bmb-text-editor.component.html',
   styleUrl: './bmb-text-editor.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbTextEditorComponent {
-  // content = model<string>('');
   control = input<FormControl>(new FormControl(''));
 
-  initialContent = '';
-  htmlContent: SafeHtml;
-  dropDownControl = new FormControl('normal');
-  dropDownOptions = [
-    { value: 'normal', name: 'Normal', icon: '' },
-    { value: 'h1', name: 'Heading 1', icon: '' },
-    { value: 'h2', name: 'Heading 2', icon: '' },
-    { value: 'h3', name: 'Heading 3', icon: '' },
-    { value: 'h4', name: 'Heading 4', icon: '' },
-    { value: 'h5', name: 'Heading 5', icon: '' },
-    { value: 'h6', name: 'Heading 6', icon: '' },
-  ];
+  @ViewChild('editor') editor!: ElementRef<HTMLDivElement>;
 
-  constructor(private sanitizer: DomSanitizer) {
-    this.htmlContent = this.sanitizer.bypassSecurityTrustHtml(
-      this.control().value,
-    );
-  }
+  htmlContent: string = '';
+  sanitizedContent: SafeHtml = '';
+  currentAlignment: string = 'left';
+  showTableDialog: boolean = false;
+  tableRows: number = 2;
+  tableColumns: number = 2;
 
-  @ViewChild('editableDiv') editableDiv!: ElementRef;
-  selectedText: string = '';
+  detectAlignment() {
+    const selection = window.getSelection();
+    if (selection && selection.rangeCount > 0) {
+      const element = selection.getRangeAt(0)
+        .commonAncestorContainer as HTMLElement;
+      const parentElement = element.parentElement;
 
-  // formControls = new FormDa
-
-  updateContent(event: Event): void {
-    const target = event.target as HTMLElement;
-    this.control().setValue(target.innerHTML);
-    // this.content.set(target.innerHTML);
-  }
-
-  getSelectedText(event: MouseEvent): void {
-    const selectedText = window.getSelection()?.toString();
-    if (selectedText) {
-      this.selectedText = selectedText;
-      console.log('Selected text:', selectedText);
-    } else {
-      this.selectedText = '';
-      console.log('No text selected');
+      if (parentElement) {
+        const textAlign = parentElement.style.textAlign || 'left';
+        this.currentAlignment = textAlign;
+      }
     }
   }
 
-  wrapSelectedText(tag: string): void {
-    const div = this.editableDiv.nativeElement;
-    const html = div.innerHTML;
-    const range = window.getSelection()?.getRangeAt(0);
+  applyAlignment(alignment: string) {
+    this.execCommand('styleWithCSS', 'true');
+    this.execCommand(
+      'justify' + alignment.charAt(0).toUpperCase() + alignment.slice(1),
+    );
+  }
 
-    if (this.selectedText) {
-      const wrappedText =
-        '<' + tag + '>' + this.selectedText + '</' + tag + '>';
-      const newHtml = html.replace(this.selectedText, wrappedText);
+  constructor(private sanitizer: DomSanitizer) {}
 
-      div.innerHTML = newHtml;
-      console.log('Wrapped text:', wrappedText);
-    } else {
-      const paragraph = range?.startContainer?.parentElement;
-      if (paragraph && paragraph.tagName === 'DIV') {
-        const paragraphText = paragraph.innerText;
-        const wrappedText = '<' + tag + '>' + paragraphText + '</' + tag + '>';
-        const newHtml = html.replace(paragraphText, wrappedText);
+  ngAfterViewInit() {
+    this.editor.nativeElement.focus();
+  }
 
-        div.innerHTML = newHtml;
-        console.log('Wrapped text:', wrappedText);
+  handleChange(event: Event, type: string) {
+    const target = event.target as HTMLSelectElement;
+    if (target?.value) {
+      this.execCommand(type, target.value);
+    }
+  }
+
+  execCommand(command: string, value: string | null = null) {
+    document.execCommand(command, false, value || undefined);
+    this.updateContent();
+  }
+
+  insertLink() {
+    const url = prompt('Ingrese la URL:');
+    if (url) {
+      this.execCommand('createLink', url);
+    }
+  }
+
+  updateContent() {
+    this.control().setValue(this.editor.nativeElement.innerHTML);
+  }
+
+  clearFormatting() {
+    this.execCommand('removeFormat');
+    this.execCommand('unlink');
+  }
+
+  getCurrentState() {
+    return this.control().value;
+  }
+
+  insertImage() {
+    const url = prompt('Ingrese la URL de la imagen:');
+    if (url) {
+      if (this.isValidImageUrl(url)) {
+        this.execCommand('insertImage', url);
+      } else {
+        alert('La URL de la imagen no es válida.');
       }
-      console.log('No text selected to wrap');
+    }
+  }
+
+  isValidImageUrl(url: string): boolean {
+    try {
+      new URL(url); // Intenta crear un objeto URL
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  // Método para abrir el diálogo de la tabla
+  openTableDialog() {
+    this.showTableDialog = true;
+  }
+
+  // Método para cerrar el diálogo de la tabla
+  closeTableDialog() {
+    this.showTableDialog = false;
+  }
+
+  // Método para insertar la tabla
+  insertTable() {
+    const rows = this.tableRows;
+    const columns = this.tableColumns;
+
+    if (rows > 0 && columns > 0) {
+      const tableHtml = this.generateTableHtml(rows, columns);
+      this.insertHtml(tableHtml);
+      this.closeTableDialog();
+    }
+  }
+
+  // Método para generar el HTML de la tabla
+  generateTableHtml(rows: number, columns: number): string {
+    let tableHtml = '<table style="border-collapse: collapse; width: 100%;">';
+    for (let i = 0; i < rows; i++) {
+      tableHtml += '<tr>';
+      for (let j = 0; j < columns; j++) {
+        tableHtml += `<td style="border: 1px solid #000; padding: 8px;">&nbsp;</td>`;
+      }
+      tableHtml += '</tr>';
+    }
+    tableHtml += '</table>';
+    return tableHtml;
+  }
+
+  // Método para insertar HTML en el editor
+  insertHtml(html: string) {
+    const selection = window.getSelection();
+    if (selection && selection.rangeCount > 0) {
+      const range = selection.getRangeAt(0);
+      const div = document.createElement('div');
+      div.innerHTML = html;
+      range.insertNode(div);
+      this.updateContent();
     }
   }
 }

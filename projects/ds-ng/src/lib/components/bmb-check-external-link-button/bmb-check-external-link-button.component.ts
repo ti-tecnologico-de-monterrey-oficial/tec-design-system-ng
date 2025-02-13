@@ -31,11 +31,7 @@ export class BmbCheckExternalLinkButtonComponent {
   @ContentChild('commonTemplate') commonTemplate!: TemplateRef<any>;
 
   isExternalLink(link: string): boolean {
-    if (link) {
-      return isExternalLink(link);
-    }
-
-    return false;
+    return (!!link && isExternalLink(link)) || false;
   }
 
   isButton(link: string): boolean {

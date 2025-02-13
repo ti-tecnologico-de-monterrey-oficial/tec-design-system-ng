@@ -5,6 +5,7 @@ import { BmbModalComponent } from './bmb-modal.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbButtonDirective } from '../../directives/button.directive';
 import { MatDialog } from '@angular/material/dialog';
+import { attributes } from '../../utils/utils';
 
 @Component({
   standalone: true,
@@ -269,15 +270,6 @@ Below is an example of how you can use this component in HTML:
     secondaryBtnLabel: 'Cancel',
   },
 } as Meta<typeof BmbModalComponent>;
-
-function attributes(object: { [key: string]: any }): string {
-  return Object.entries(object)
-    .filter(([key]) => key !== 'text')
-    .map(([key, value]) => {
-      return `${key}="${value}"`;
-    })
-    .join(' ');
-}
 
 export const Default: StoryFn<typeof BmbModalComponent> = (args) => {
   return {

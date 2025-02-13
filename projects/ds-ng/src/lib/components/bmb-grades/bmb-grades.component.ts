@@ -23,6 +23,7 @@ import { BmbAcademicProgressComponent } from '../bmb-academic-progress/bmb-acade
 import { IBmbNameValuePair } from '../../types';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 import { buildErrorMessage } from '../../utils/utils';
+import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
 
 @Component({
   selector: 'bmb-grades',
@@ -32,6 +33,7 @@ import { buildErrorMessage } from '../../utils/utils';
     BmbChevronTitleSelectorComponent,
     BmbContainerButtonComponent,
     BmbDividerComponent,
+    BmbTitleContentComponent,
     BmbAcademicProgressComponent,
     BmbLayoutDirective,
     BmbLayoutItemDirective,

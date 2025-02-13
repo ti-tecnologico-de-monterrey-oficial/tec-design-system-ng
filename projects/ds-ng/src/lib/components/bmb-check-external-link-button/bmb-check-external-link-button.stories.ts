@@ -1,6 +1,7 @@
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbCheckExternalLinkButtonComponent } from './bmb-check-external-link-button.component';
+import { attributes } from '../../utils/utils';
 
 export default {
   title: 'INTERNAL/Check link (external, internal) or button',
@@ -85,19 +86,20 @@ Below is an example of how you can use this component in HTML:
     idElement: '',
     link: 'https://www.youtube.com/',
     target: '_blank',
+    buttonClick: () => alert('hola'),
   },
 } as Meta<typeof BmbCheckExternalLinkButtonComponent>;
 
-type Story = StoryObj<BmbCheckExternalLinkButtonComponent>;
-
-export const Default: Story = {
-  render: (args) => ({
-    props: args,
-    template: `
-      <bmb-check-external-link-button [link]="link" [target]="target">
+const customizable = (): StoryFn => (args) => ({
+  props: args,
+  template: `
+      <bmb-check-external-link-button
+        ${attributes(args)}
+      >
         <bmb-icon icon="face" [size]="20"/>
         <span>Custom</span>
       </bmb-check-external-link-button>
     `,
-  }),
-};
+});
+
+export const Default = customizable();

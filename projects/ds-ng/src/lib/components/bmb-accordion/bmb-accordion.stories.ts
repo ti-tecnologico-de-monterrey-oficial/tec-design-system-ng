@@ -4,6 +4,7 @@ import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { InputSignal } from '@angular/core';
 import { SizeNames } from '../../types';
+import { attributes } from '../../utils/utils';
 
 const meta: Meta<BmbAccordionComponent> = {
   title: 'Micro Componentes/Accordion',
@@ -214,15 +215,7 @@ export const OneItem: Story = {
     props: args,
     template: `
   <bmb-accordion
-    [icon]="icon"
-    [borderRadius]="borderRadius"
-    [margin]="margin"
-    [paddingHeader]="paddingHeader"
-    [paddingContent]="paddingContent"
-    [hideToggle]="hideToggle"
-    [active]="active"
-    [expanded]="expanded"
-    [disabled]="disabled"
+    ${attributes(args)}
   >
     <ng-template #bmbAccordionHeader>
       1

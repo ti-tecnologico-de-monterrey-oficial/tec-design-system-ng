@@ -38,3 +38,32 @@ export const buildErrorMessage = (inputs: string[]): string => {
 
   return elements;
 };
+
+const getValueFuntion = (key: string, value: undefined): any =>
+  ((typeof value === 'function' || typeof value === 'object') && `${key}`) ||
+  `${value}`;
+
+const getKeyFormatFuntion = (key: string, value: string): string =>
+  (typeof value === 'function' && `(${key})`) || `[${key}]`;
+
+const getValue = (key: string, value: undefined): any =>
+  (typeof value === 'object' && `${key}`) || `${value}`;
+
+const getKeyFormat = (key: string): string => `[${key}]`;
+
+export const attributes = (object: { [key: string]: any }): string =>
+  Object.entries(object)
+    .filter(([key, value]) => key !== 'text' && typeof value !== 'function')
+    .map(
+      ([key, value]) =>
+        (typeof value !== 'string' &&
+          `${getKeyFormat(key)}="${getValue(key, value)}"`) ||
+        `${key}="${value}"`,
+    )
+    .join(' ');
+
+export const attributesText = (object: { [key: string]: any }): string =>
+  Object.entries(object)
+    .filter(([key]) => key === 'text')
+    .map(([_, value]) => `${value}`)
+    .join(' ');

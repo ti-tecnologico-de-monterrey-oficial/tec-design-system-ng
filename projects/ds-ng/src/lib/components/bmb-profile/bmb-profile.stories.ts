@@ -69,7 +69,7 @@ import {
     <bmb-profile
         [userData]="{
             name: 'Juanito Perez',
-            userImg: 'https://picsum.photos/200/300',
+            userImg: 'https://picsum.photos/id/64/200/300',
             matricula: 'A032132',
             mail: 'mail@tec.mx',
             period: 'AGO-DIC 24',
@@ -170,7 +170,7 @@ Below is an example of how you can use this component in HTML:
   args: {
     userData: {
       name: 'Juanito Perez',
-      userImg: 'https://picsum.photos/200/300',
+      userImg: 'https://picsum.photos/id/64/200/300',
       matricula: 'A032132',
       mail: 'mail@tec.mx',
       period: 'AGO-DIC 24',

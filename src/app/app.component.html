@@ -1,87 +1,22 @@
-<bmb-theme />
-<bmb-divider />
-<bmb-interactive-icon
-  [appearance]="'red'"
-  [title]="'Canvas Canvas Canvas Canvas'"
-  [description]="'Short Description'"
-  [icon]="'face'"
-  [horizontal]="false"
-  [target]="'_blank'"
-  [link]="'https://www.youtube.com/'"
-  [layout]="'button'"
-/>
-<bmb-interactive-icon
-  [appearance]="'red'"
-  [title]="'Canvas'"
-  [description]="'Short Description'"
-  [icon]="
-    'https://img.freepik.com/premium-vector/approved-icon-with-thumb-up-approved-label-quality-control_349999-1321.jpg?w=2000'
-  "
-  [horizontal]="false"
-  [target]="'_blank'"
-  [link]="'https://www.example.com/'"
-  [layout]="'button'"
-/>
-<bmb-interactive-icon
-  [appearance]="'red'"
-  [title]="'Canvas'"
-  [description]="'Short Description'"
-  [icon]="
-    'https://img.freepik.com/premium-vector/approved-icon-with-thumb-up-approved-label-quality-control_349999-1321.jpg?w=2000'
-  "
-  [horizontal]="false"
-  [target]="'_blank'"
-  [link]="'https://www.example.com/'"
-  [layout]="'regular'"
-/>
-<bmb-interactive-icon
-  [appearance]="'red'"
-  [title]="'Canvas'"
-  [description]="'Short Description'"
-  [icon]="
-    'https://img.freepik.com/premium-vector/approved-icon-with-thumb-up-approved-label-quality-control_349999-1321.jpg?w=2000'
-  "
-  [horizontal]="false"
-  [target]="'_blank'"
-  [link]="'https://www.example.com/'"
-  [layout]="'app_drawer'"
-/>
-<bmb-frequent-apps-selector
-  [title]="'Services'"
-  [apps]="appTest"
-  [layout]="'button'"
-/>
-<bmb-divider />
-<bmb-frequent-apps-selector
-  [title]="'Services'"
-  [apps]="apps"
-  [layout]="'button'"
-/>
-<bmb-divider />
-<bmb-frequent-apps-selector
-  [title]="'Services'"
-  [apps]="appTest"
-  [layout]="'regular'"
-/>
-<bmb-divider />
-<bmb-frequent-apps-selector
-  [title]="'Services'"
-  [apps]="appTest"
-  [layout]="'app_drawer'"
-/>
-<bmb-divider />
+<bmb-top-bar [showLang]="true" [mitec]="true" />
 
-<button
-  bmbButton
-  appearance="primary"
-  icon="home"
-  [iconSize]="0"
-  size="small"
-  position="left"
-  [case]="false"
-  [isToggleActive]="false"
-  [enableButtonToggle]="false"
-  [isRounded]="false"
->
-  Button text
-</button>
+<bmb-theme />
+<bmb-accordion>
+  <ng-template #bmbAccordionHeader>1</ng-template>
+  <ng-template #bmbAccordionContent>
+    <div style="overflow: visible; height: max-content">
+      <bmb-datepicker
+        placeholder="Selecciona la fecha de cumpleaños"
+        name="datePicker"
+        dateFormat="MM/dd/yyyy"
+        label="Fecha de tu cumpleaños"
+        [disabled]="false"
+        icon="cake"
+        [isRequired]="true"
+        [isClearable]="true"
+        invalidFormaterrorMessage="El formato debe ser el siguiente: dd/mm/yyyy"
+        requiredFieldErrorMessage="Este campo es requerido"
+      />
+    </div>
+  </ng-template>
+</bmb-accordion>

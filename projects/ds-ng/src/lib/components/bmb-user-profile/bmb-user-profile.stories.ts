@@ -48,6 +48,31 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: 'Ingresar con otra cuenta' },
       },
     },
+    anotherAccountLink: {
+      name: 'Another account link',
+      control: 'text',
+      description:
+        'Sets the link for the option to log in with another account.',
+      table: {
+        category: 'Events',
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    anotherAccountTarget: {
+      name: 'Another account target',
+      control: {
+        type: 'radio',
+      },
+      options: ['_blank', '_parent', '_self', '_top'],
+      description:
+        'Sets the target for the option to log in with another account.',
+      table: {
+        category: 'Events',
+        type: { summary: 'IBmbTargetLink' },
+        defaultValue: { summary: '_blank' },
+      },
+    },
     buttonLabel: {
       name: 'Button label',
       control: 'text',

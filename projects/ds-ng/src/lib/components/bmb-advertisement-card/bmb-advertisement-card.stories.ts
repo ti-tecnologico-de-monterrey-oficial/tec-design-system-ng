@@ -1,5 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/angular';
+import type { Meta, StoryFn } from '@storybook/angular';
 import { BmbAdvertisementCardComponent } from './bmb-advertisement-card.component';
+import { attributes } from '../../utils/utils';
 
 export default {
   title: 'Micro Componentes/Advertisement Card',
@@ -229,13 +230,14 @@ Below is an example of how you can use this component in HTML:
   },
 } as Meta<typeof BmbAdvertisementCardComponent>;
 
-type Story = StoryObj<BmbAdvertisementCardComponent>;
+const customizable = (): StoryFn => (args) => ({
+  props: args,
+  template: `
+    <bmb-advertisement-card
+      ${attributes(args)}
+    >
+    </bmb-advertisement-card>
+  `,
+});
 
-export const Default: Story = {
-  render: (args) => ({
-    props: args,
-    template: `
-        <bmb-advertisement-card [subtitle]="'Titulo'" [data]="data"></bmb-advertisement-card>
-    `,
-  }),
-};
+export const Default = customizable();
