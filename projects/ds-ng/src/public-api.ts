@@ -12,7 +12,6 @@ export * from './lib/directives/button.directive';
 export * from './lib/directives/bmb-layout/bmb-layout-item.directive';
 export * from './lib/directives/bmb-layout/bmb-layout.directive';
 export * from './lib/directives/bmb-button-group/bmb-button-group.directive';
-export * from './lib/components/bmb-login-onboarding/bmb-login-onboarding.service';
 
 // Components
 export * from './lib/components/bmb-logo/bmb-logo.component';
@@ -43,13 +42,13 @@ export * from './lib/components/bmb-toast/bmb-toast.component';
 export * from './lib/components/bmb-theme/bmb-theme.component';
 export * from './lib/components/bmb-home-section/bmb-home-section.component';
 export * from './lib/components/bmb-loader/bmb-loader.component';
+export * from './lib/components/bmb-login-onboarding/bmb-login-onboarding.service';
 export * from './lib/components/bmb-switch/bmb-switch.component';
 export * from './lib/components/bmb-legend/bmb-legend.component';
 export * from './lib/components/bmb-value-counter/bmb-value-counter.component';
 export * from './lib/components/bmb-step-progress-bar/bmb-step-progress-bar.component';
 export * from './lib/components/bmb-focus-element/bmb-focus-element.component';
 export * from './lib/components/bmb-user-summary/bmb-user-summary.component';
-export * from './lib/components/bmb-user-summary/bmb-user-summary-content/bmb-user-summary-content.component';
 export * from './lib/components/bmb-tabs/bmb-tabs.component';
 export * from './lib/components/bmb-progress-cirlce/bmb-progress-circle.component';
 export * from './lib/components/bmb-sidebar/bmb-sidebar.component';
@@ -125,14 +124,9 @@ export * from './lib/components/bmb-drawer-overlay/bmb-drawer-overlay.component'
 export * from './lib/components/bmb-mitec-logo-animation/bmb-mitec-logo-animation.component';
 export * from './lib/components/bmb-login/bmb-login.component';
 export * from './lib/components/bmb-profile/bmb-profile.component';
-export * from './lib/components/bmb-check-external-link-button/bmb-check-external-link-button.component';
 export * from './lib/components/bmb-bookmark/bmb-bookmark.component';
-export * from './lib/components/bmb-navigation-bar/bmb-navigation-bar.component';
-export * from './lib/components/bmb-navigation-bar/bmb-navigation-icon/bmb-navigation-icon.component';
 export * from './lib/components/bmb-text-editor/bmb-text-editor.component';
 export * from './lib/components/bmb-server-table/bmb-server-table.component';
-export * from './lib/components/bmb-three-cols/bmb-three-cols.component';
-export * from './lib/components/bmb-title-content/bmb-title-content.component';
 
 // types
 export * from './lib/types';
