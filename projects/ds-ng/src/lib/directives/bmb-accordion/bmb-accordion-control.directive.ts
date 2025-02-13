@@ -3,7 +3,6 @@ import {
   ElementRef,
   Renderer2,
   HostListener,
-  Input,
   OnInit,
 } from '@angular/core';
 
@@ -13,6 +12,7 @@ import {
 })
 export class BmbAccordionControlDirective implements OnInit {
   private accordions: any[] = [];
+  private openAccordion: number | null = null;
 
   constructor(
     private readonly el: ElementRef,
@@ -28,19 +28,19 @@ export class BmbAccordionControlDirective implements OnInit {
   @HostListener('click', ['$event']) onClick(event: MouseEvent) {
     const parent = event.target as HTMLElement;
     const selectedAccordion = parent.closest('section');
+    const idAccordion = selectedAccordion?.closest('bmb-accordion')?.getAttribute('ng-reflect-accordion-id');
 
-    this.accordions.forEach((accordion: any) => {
-      if (accordion.querySelector('section') !== selectedAccordion) {
-        const content = accordion
-          .querySelector('section')
-          .querySelector('section');
-        this.renderer.removeClass(content, 'bmb_accordion-content-open');
-      } else {
-        const content = accordion
-          .querySelector('section')
-          .querySelector('section');
-        this.renderer.addClass(content, 'bmb_accordion-content-open');
-      }
-    });
+    if(this.openAccordion !== Number(idAccordion)) {
+      this.openAccordion = Number(idAccordion)
+      this.accordions.forEach((accordion: any) => {
+        if (accordion.querySelector('section') !== selectedAccordion) {
+          const content = accordion.querySelector('section').querySelector('section');
+          this.renderer.removeClass(content, 'bmb_accordion-content-open');
+        } else { 
+          const content = accordion.querySelector('section').querySelector('section');
+          this.renderer.addClass(content, 'bmb_accordion-content-open');
+        }
+      });
+    }
   }
 }

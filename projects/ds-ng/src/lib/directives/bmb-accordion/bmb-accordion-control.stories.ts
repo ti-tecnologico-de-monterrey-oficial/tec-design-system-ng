@@ -34,6 +34,8 @@ import { BmbAccordionControlDirective, BmbAccordionComponent } from '@ti-tecnolo
 })
 \`\`\`
 
+**For the correct operation of the Accordion Control Directive the Accordion Components need to have the attribute "accordionId"**
+
 Below is an example of how you can use this component in HTML:
         `,
       },
