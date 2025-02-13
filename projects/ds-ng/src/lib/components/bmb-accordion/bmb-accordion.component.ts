@@ -120,10 +120,6 @@ export class BmbAccordionComponent implements OnInit {
       classNames.push(`bmb_padding-${this.paddingContent()}`);
     }
 
-    // if (this.isOpen()) {
-    //   classNames.push('bmb_accordion-content-open');
-    // }
-
     return classNames.toString();
   }
 
