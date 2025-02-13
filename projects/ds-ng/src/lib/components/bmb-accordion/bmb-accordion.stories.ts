@@ -122,6 +122,16 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string' },
       },
     },
+    accordionId: {
+      name: 'Accordion Id',
+      control: { type: 'text' },
+      description:
+        'Is a identifier for the component, this attribute is REQUIRED to use the accordion control directive',
+      table: {
+        category: 'Properties',
+        type: { summary: 'number' },
+      },
+    },
     hideToggle: {
       name: 'Hide Toggle',
       control: { type: 'boolean' },
