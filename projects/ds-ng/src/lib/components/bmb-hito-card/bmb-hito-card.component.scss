@@ -23,7 +23,7 @@ $circleTypes: (
     left: rem.rem_calc(-23);
     top: 50%;
     border-radius: 50%;
-    border: rem.rem_calc(2) solid RGBA(var(--color-charade-200));
+    border: rem.rem_calc(2) solid var(--containers-background);
     margin-top: rem.rem_calc(-7);
   }
 
@@ -38,6 +38,10 @@ $circleTypes: (
 
     .bmb_card-content {
       padding: calc(var(--bmb-spacing-m) - rem.rem_calc(1));
+    }
+
+    &::after {
+      background-color: var(--general_contrasts-main-selection);
     }
   }
 
@@ -117,8 +121,8 @@ $circleTypes: (
     padding: 0;
 
     .bmb_card.bmb_card-type-normal {
-      background-color: RGBA(var(--color-charade-100));
-      border: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
+      background-color: var(--containers-main);
+      border: rem.rem_calc(1) solid var(--general_contrasts-25);
       box-shadow: 6px 6px 4px 0px rgba(0, 0, 0, 0.15);
     }
 
@@ -167,26 +171,6 @@ $circleTypes: (
         "icon description date";
       @include mixins.container-query(779, "max") {
         grid-template-columns: 1rem 1fr auto;
-      }
-    }
-  }
-}
-
-[data-theme="dark"],
-.storybook-dark-theme {
-  .bmb_hito-card {
-    &-bullet::after {
-      border: rem.rem_calc(2) solid RGBA(var(--color-charade-950));
-    }
-
-    &-active::after {
-      background-color: RGBA(var(--color-neon-primary));
-    }
-
-    &-alternative {
-      .bmb_card.bmb_card-type-normal {
-        background-color: RGBA(var(--color-charade-900));
-        border: rem.rem_calc(1) solid RGBA(var(--color-charade-700));
       }
     }
   }

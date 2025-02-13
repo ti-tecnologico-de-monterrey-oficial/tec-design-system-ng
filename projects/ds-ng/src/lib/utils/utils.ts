@@ -49,7 +49,7 @@ const getKeyFormatFuntion = (key: string, value: string): string =>
 const getValue = (key: string, value: undefined): any =>
   (typeof value === 'object' && `${key}`) || `${value}`;
 
-const getKeyFormat = (key: string, value: string): string => `[${key}]`;
+const getKeyFormat = (key: string): string => `[${key}]`;
 
 export const attributes = (object: { [key: string]: any }): string =>
   Object.entries(object)
@@ -57,7 +57,7 @@ export const attributes = (object: { [key: string]: any }): string =>
     .map(
       ([key, value]) =>
         (typeof value !== 'string' &&
-          `${getKeyFormat(key, value)}="${getValue(key, value)}"`) ||
+          `${getKeyFormat(key)}="${getValue(key, value)}"`) ||
         `${key}="${value}"`,
     )
     .join(' ');
