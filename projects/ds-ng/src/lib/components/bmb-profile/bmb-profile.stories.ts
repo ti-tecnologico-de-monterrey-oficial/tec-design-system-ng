@@ -52,6 +52,7 @@ export default {
     docs: {
       description: {
         component: `
+Note: The theme toggle does not work correctly in Storybook. However, if you use it in the project, it functions without any issues.
 Below is an example of how you can use this component in TypeScript:
 
 \`\`\`typescript
