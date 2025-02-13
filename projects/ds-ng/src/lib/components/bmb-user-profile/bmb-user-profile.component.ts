@@ -7,8 +7,9 @@ import {
 } from '@angular/core';
 import { BmbButtonDirective } from '../../directives/button.directive';
 import { BmbUserSummaryComponent } from '../bmb-user-summary/bmb-user-summary.component';
-import { IBmbActionHeader, IBmbUserInfo } from '../../types';
+import { IBmbActionHeader, IBmbTargetLink, IBmbUserInfo } from '../../types';
 import { BmbHeaderMitecComponent } from '../bmb-header-mitec/bmb-header-mitec.component';
+import { BmbTextLinkComponent } from '../bmb-text-link/bmb-text-link.component';
 
 @Component({
   selector: 'bmb-user-profile',
@@ -17,6 +18,7 @@ import { BmbHeaderMitecComponent } from '../bmb-header-mitec/bmb-header-mitec.co
     BmbHeaderMitecComponent,
     BmbButtonDirective,
     BmbUserSummaryComponent,
+    BmbTextLinkComponent,
   ],
   styleUrl: './bmb-user-profile.component.scss',
   template: `
@@ -27,7 +29,14 @@ import { BmbHeaderMitecComponent } from '../bmb-header-mitec/bmb-header-mitec.co
           [name]="userInfo().fullName"
           [id]="userInfo().id"
         />
-        <p class="bmb_user-profile-sublabel">{{ anotherAccountLabel() }}</p>
+        <section class="bmb_user-profile-sublabel">
+          <bmb-text-link
+            [textLink]="anotherAccountLabel()"
+            icon=""
+            [link]="'https://www.youtube.com'"
+            [target]="'_blank'"
+          />
+        </section>
       </section>
       <button bmbButton size="large" (click)="handleContinue()">
         {{ buttonLabel() }}
@@ -40,6 +49,8 @@ import { BmbHeaderMitecComponent } from '../bmb-header-mitec/bmb-header-mitec.co
 export class BmbUserProfileComponent {
   headerLabel = input<string>();
   anotherAccountLabel = input<string>('Ingresar con otra cuenta');
+  anotherAccountLink = input<string>('');
+  anotherAccountTarget = input<IBmbTargetLink>('_blank');
   buttonLabel = input<string>('Ingresar');
   userInfo = input.required<IBmbUserInfo>();
   actionHeaders = input<IBmbActionHeader[]>([

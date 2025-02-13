@@ -146,7 +146,7 @@ Below is an example of how you can use this component in HTML:
 
 const customizable = (): StoryFn => (args) => ({
   props: args,
-    template: `
+  template: `
       <div style="padding: 3rem">
         <bmb-hito-card
           ${attributes(args)}

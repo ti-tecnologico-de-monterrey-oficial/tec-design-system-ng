@@ -44,20 +44,20 @@ const getValueFuntion = (key: string, value: undefined): any =>
   `${value}`;
 
 const getKeyFormatFuntion = (key: string, value: string): string =>
-    (typeof value === 'function' && `(${key})`) || `[${key}]`;
+  (typeof value === 'function' && `(${key})`) || `[${key}]`;
 
 const getValue = (key: string, value: undefined): any =>
   (typeof value === 'object' && `${key}`) || `${value}`;
 
-const getKeyFormat = (key: string, value: string): string => `[${key}]`;
+const getKeyFormat = (key: string): string => `[${key}]`;
 
 export const attributes = (object: { [key: string]: any }): string =>
   Object.entries(object)
-    .filter(([key, value]) => (key !== 'text' && typeof value !== 'function'))
+    .filter(([key, value]) => key !== 'text' && typeof value !== 'function')
     .map(
       ([key, value]) =>
         (typeof value !== 'string' &&
-          `${getKeyFormat(key, value)}="${getValue(key, value)}"`) ||
+          `${getKeyFormat(key)}="${getValue(key, value)}"`) ||
         `${key}="${value}"`,
     )
     .join(' ');
