@@ -114,13 +114,13 @@ export class BmbAccordionComponent implements OnInit {
   }
 
   getClassesContent(): string {
-    const classNames = [];
+    let classNames = 'bmb_accordion-content';
 
     if (typeof this.paddingContent() === 'string') {
-      classNames.push(`bmb_padding-${this.paddingContent()}`);
+      classNames = classNames + ` bmb_padding-${this.paddingContent()}`;
     }
 
-    return classNames.toString();
+    return classNames;
   }
 
   getStyles(): any {
