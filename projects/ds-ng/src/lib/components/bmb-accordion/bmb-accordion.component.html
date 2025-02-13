@@ -17,7 +17,7 @@
   </header>
   @if (!disabled()) {
     <section
-      [class]="'bmb_accordion-content ' + getClassesContent()"
+      [class]="getClassesContent()"
       [ngClass]="{
         'bmb_accordion-content-open': this._expanded(),
       }"
