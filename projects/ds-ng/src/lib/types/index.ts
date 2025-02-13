@@ -6,6 +6,7 @@ export * from '../components/bmb-advertisement-card/types';
 export * from '../components/bmb-login-onboarding/types';
 export * from '../components/bmb-filter-card/bmb-filter-card.interface';
 export * from '../components/bmb-alert-center/types';
+export * from '../components/bmb-tables/types';
 
 export type SizeNames = 'xs' | 's' | 'm' | 'l' | 'xl' | 'none' | 'auto';
 export type IButtonAppearance =

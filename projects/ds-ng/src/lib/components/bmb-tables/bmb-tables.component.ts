@@ -6,21 +6,8 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbButtonDirective } from '../../directives/button.directive';
-
-export interface IBmbColumn {
-  id?: string | number;
-  name: string;
-  width?: string;
-  isSortable?: boolean;
-  isFilterable?: boolean;
-  isEditable?: boolean;
-  isHidden?: boolean;
-  isResizable?: boolean;
-  minWidth?: string | number;
-  maxWidth?: string | number;
-  templateRef?: any;
-  title?: string;
-}
+import { BmbTableService } from './bmb-tables.service';
+import { IBmbColumn } from './types';
 
 @Component({
   selector: 'bmb-tables',
@@ -30,307 +17,97 @@ export interface IBmbColumn {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   imports: [BmbButtonDirective],
+  providers: [BmbTableService],
 })
 export class BmbTablesComponent {
   dataSource = input<any[]>([]);
   columnDefinition = input<IBmbColumn[]>([]);
   loading = model<boolean>(false);
+  currentPage = model<number>(1);
+  pageSize = model<number>(10);
+  columnOrder = model<string | number>('');
+  orderType = input<'asc' | 'desc'>('asc');
 
   tableState = model({});
+  constOrderedData: any[] = [];
+
+  constructor(
+    private tableService: BmbTableService,
+  ) {}
+
+  ngOnInit() {
+    this.tableService.setTableConfig({
+      data: this.dataSource(),
+      columns: this.columnDefinition(),
+      columnOrder: this.columnOrder(),
+      orderType: this.orderType(),
+      pageSize: this.pageSize(),
+      page: this.currentPage(),
+    });
+  }
+
+  getOrderedData(): any[] {
+    if (!!this.columnOrder()) {
+      return this.dataSource();
+    }
+
+    return this.dataSource().sort((a, b) => {
+      const valueA = a[this.columnOrder()];
+      const valueB = b[this.columnOrder()];
+
+      if (valueA < valueB) {
+        return this.orderType() === 'asc' ? -1 : 1;
+      } else if (valueA > valueB) {
+        return this.orderType() === 'asc' ? 1 : -1;
+      } else {
+        return 0;
+      }
+    });
+  }
+
+  setColumnOrder(column: string | number) {
+    this.columnOrder.set(column);
+  }
 
   getContent(column: IBmbColumn, row: any): string {
     return row[column.name as string] ?? '';
   }
 }
 
-// import { CommonModule } from '@angular/common';
-// import {
-//   Component,
-//   Input,
-//   AfterViewInit,
-//   ViewChild,
-//   OnInit,
-//   Output,
-//   EventEmitter,
-//   ElementRef,
-//   TemplateRef,
-//   HostListener,
-//   Renderer2,
-//   ViewEncapsulation,
-//   ChangeDetectionStrategy,
-// } from '@angular/core';
-// import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-// import {
-//   MatTableDataSource,
-//   MatTableModule,
-//   MatTable,
-// } from '@angular/material/table';
-// import {
-//   animate,
-//   state,
-//   style,
-//   transition,
-//   trigger,
-// } from '@angular/animations';
-// import { MatInputModule } from '@angular/material/input';
-// import { MatFormFieldModule } from '@angular/material/form-field';
-// import { MatIconModule } from '@angular/material/icon';
-// import { MatButtonModule } from '@angular/material/button';
-// import { MatCheckboxModule } from '@angular/material/checkbox';
-// import { SelectionModel } from '@angular/cdk/collections';
-// import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-// import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
-// import { TableColum, TableConfig } from './bmb-tables.interface';
-// import { MatTooltipModule } from '@angular/material/tooltip';
-// import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-// import { TemplateNameDirective } from './bmb-tables.directive';
+
+// import { Component, Input, Output, EventEmitter } from '@angular/core';
+
 // @Component({
-//   selector: 'bmb-table',
-//   standalone: true,
-//   imports: [
-//     CommonModule,
-//     BmbIconComponent,
-//     BmbCheckboxComponent,
-//     MatPaginatorModule,
-//     MatTableModule,
-//     MatCheckboxModule,
-//     MatIconModule,
-//     MatButtonModule,
-//     MatFormFieldModule,
-//     MatInputModule,
-//     MatTooltipModule,
-//   ],
+//   selector: 'app-tabla',
 //   templateUrl: './bmb-tables.component.html',
-//   styleUrls: ['./bmb-tables.component.scss'],
-//   changeDetection: ChangeDetectionStrategy.OnPush,
-//   encapsulation: ViewEncapsulation.None,
-//   animations: [
-//     trigger('detailExpand', [
-//       state('collapsed,void', style({ height: '0px', minHeight: '0' })),
-//       state('expanded', style({ height: '*' })),
-//       transition(
-//         'expanded <=> collapsed',
-//         animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)'),
-//       ),
-//     ]),
-//   ],
+//   styleUrls: ['./bmb-tables.component.css']
 // })
-// export class BmbTablesComponent implements AfterViewInit, OnInit {
-//   dataSource: MatTableDataSource<any> = new MatTableDataSource();
-//   tableDisplayColumns: string[] = [];
-//   tableColumns: TableColum[] = [];
-//   expandedElement: any;
-//   selection = new SelectionModel<any>(true, []);
-//   tableConfig: TableConfig | undefined;
-//   paginatorSize: number | undefined;
+// export class TablaComponent {
+//
 
-//   pressed = false;
-//   currentResizeIndex?: number;
-//   startX?: number;
-//   startWidth?: number;
-//   isResizingRight?: boolean;
-//   resizableMousemove?: () => void;
-//   resizableMouseup?: () => void;
-
-//   @Input() set pageSize(size: number) {
-//     this.paginatorSize = size;
+//   get datosPaginados() {
+//     const inicio = (this.paginaActual - 1) * this.elementosPorPagina;
+//     const fin = inicio + this.elementosPorPagina;
+//     return this.datosOrdenados.slice(inicio, fin);
 //   }
 
-//   @Input() set data(data: any[]) {
-//     this.dataSource = new MatTableDataSource(data);
-//   }
 
-//   @Input() set columns(columns: TableColum[]) {
-//     this.tableColumns = columns;
-//     this.tableDisplayColumns = this.tableColumns.map((col) => col.def);
-//   }
-
-//   @Input() set config(config: TableConfig) {
-//     this.setConfig(config);
-//   }
-
-//   @Input() actionTemplate?: TemplateRef<any> | null;
-//   @Input() detailTemplate: TemplateRef<any> | null = null;
-//   @Input() truncate: boolean = false;
-//   @Input() wrap: boolean = true;
-
-//   @Output() select: EventEmitter<any> = new EventEmitter();
-
-//   @ViewChild(MatPaginator) paginator!: MatPaginator;
-//   @ViewChild(MatTable, { read: ElementRef }) private matTableRef?: ElementRef;
-//   @ViewChild('headerCellRef') headerCellRef!: ElementRef;
-//   @ViewChild('cellRef') cellRef!: ElementRef;
-
-//   @HostListener('window:resize', ['$event'])
-//   onResize(event: any) {
-//     this.setTableResize(this.matTableRef!.nativeElement.clientWidth);
-//   }
-
-//   constructor(
-//     private renderer: Renderer2,
-//     private sanitizer: DomSanitizer,
-//   ) {}
-
-//   ngOnInit(): void {}
-
-//   sanitizeHTML(label: string): SafeHtml {
-//     return this.sanitizer.bypassSecurityTrustHtml(label);
-//   }
-
-//   ngAfterViewInit() {
-//     this.dataSource.paginator = this.paginator;
-//     this.setTableResize(this.matTableRef!.nativeElement.clientWidth);
-
-//     const headerHasEllipsis = this.hasEllipsis(
-//       this.headerCellRef?.nativeElement,
-//     );
-
-//     this.dataSource.data.forEach((row: any) => {
-//       const cellHasEllipsis = this.hasEllipsis(this.cellRef?.nativeElement);
-//     });
-//   }
-
-//   setTableResize(tableWidth: number) {
-//     let totWidth = 0;
-//     this.tableColumns.forEach((column) => {
-//       column.width = column.width || 50;
-//       totWidth += column.width!;
-//     });
-//     const scale = (tableWidth - 5) / totWidth;
-//   }
-
-//   mouseMove(index: number) {
-//     this.resizableMousemove = this.renderer.listen(
-//       'document',
-//       'mousemove',
-//       (event) => {
-//         if (this.pressed && event.buttons) {
-//           const dx = this.isResizingRight
-//             ? event.pageX - this.startX!
-//             : -event.pageX + this.startX!;
-//           const width = this.startWidth! + dx;
-//         }
-//       },
-//     );
-//     this.resizableMouseup = this.renderer.listen('document', 'mouseup', () => {
-//       if (this.pressed) {
-//         this.pressed = false;
-//         this.currentResizeIndex = -1;
-//         this.resizableMousemove!();
-//         this.resizableMouseup!();
-//       }
-//     });
-//   }
-
-//   checkResizing(event: any, index: any) {
-//     const cellData = this.getCellData(index);
-//     this.isResizingRight =
-//       index === 0 ||
-//       (Math.abs(event.pageX - cellData.right) < cellData.width / 2 &&
-//         index !== this.tableColumns.length - 1);
-//   }
-
-//   getCellData(index: number) {
-//     const headerRow =
-//       this.matTableRef!.nativeElement.children[0].querySelector('tr');
-//     const cell = headerRow.children[index];
-//     return cell.getBoundingClientRect();
-//   }
-
-//   onResizeColumn(event: any, index: number) {
-//     this.checkResizing(event, index);
-//     this.currentResizeIndex = index;
-//     this.pressed = true;
-//     this.startX = event.pageX;
-//     this.startWidth = event.target.parentElement.clientWidth;
-//     event.preventDefault();
-//     this.mouseMove(index);
-//   }
-
-//   onSelect() {
-//     this.select.emit(this.selection.selected);
-//   }
-
-//   setConfig(config: TableConfig) {
-//     this.tableConfig = config;
-
-//     if (this.tableConfig.isExpandible) {
-//       this.tableDisplayColumns?.unshift('expand');
-//     }
-
-//     if (this.tableConfig.isSelectable) {
-//       this.tableDisplayColumns?.unshift('select');
-//     }
-
-//     if (this.tableConfig.showActions) {
-//       this.tableDisplayColumns?.push('actions');
+//   cambiarOrden(columna: string) {
+//     if (this.ordenColumna === columna) {
+//       this.ordenDireccion = this.ordenDireccion === 'asc' ? 'desc' : 'asc';
+//     } else {
+//       this.ordenColumna = columna;
+//       this.ordenDireccion = 'asc';
 //     }
 //   }
 
-//   isAllSelected() {
-//     const numSelected = this.selection.selected.length;
-//     const numRows = this.dataSource.data.length;
-//     return numSelected === numRows;
+//   cambiarPagina(pagina: number) {
+//     this.paginaActual = pagina;
+//     this.paginaCambiada.emit(pagina);
 //   }
 
-//   toggleAllRows() {
-//     if (this.isAllSelected()) {
-//       this.selection.clear();
-//       this.onSelect();
-//       return;
-//     }
-
-//     this.selection.select(...this.dataSource.data);
-//     this.onSelect();
-//   }
-
-//   checkboxLabel(row?: any): string {
-//     if (!row) {
-//       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
-//     }
-//     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
-//   }
-
-//   isEven(rowIndex: number): boolean {
-//     const filteredIndex = this.dataSource.data
-//       .filter((row) => !row.isDetail)
-//       .findIndex((row, index) => index === rowIndex);
-//     return filteredIndex % 2 === 0;
-//   }
-
-//   isOdd(rowIndex: number): boolean {
-//     return !this.isEven(rowIndex);
-//   }
-
-//   hasEllipsis(element: HTMLTableCellElement | undefined): boolean {
-//     if (!element) {
-//       return false;
-//     }
-
-//     const elementRef = new ElementRef(element);
-//     return (
-//       elementRef.nativeElement.scrollWidth >
-//       elementRef.nativeElement.clientWidth
-//     );
-//   }
-
-//   getPaginationText(): string {
-//     if (
-//       !this.paginator ||
-//       this.paginator.length === 0 ||
-//       this.paginator.pageSize === 0
-//     ) {
-//       return `0 de ${this.paginator?.length || 0}`;
-//     }
-//     const startIndex = this.paginator.pageIndex * this.paginator.pageSize + 1;
-//     const endIndex = Math.min(
-//       (this.paginator.pageIndex + 1) * this.paginator.pageSize,
-//       this.paginator.length,
-//     );
-//     return `${startIndex} - ${endIndex} de ${this.paginator.length}`;
-//   }
-
-//   isTemplateRef(value: any): boolean {
-//     return value instanceof TemplateRef;
+//   get paginas() {
+//     const totalPaginas = Math.ceil(this.datos.length / this.elementosPorPagina);
+//     return Array.from({ length: totalPaginas }, (_, i) => i + 1);
 //   }
 // }

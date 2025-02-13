@@ -21,5 +21,10 @@
       "output": "./assets/svg"
     }
   ],
-  "allowedNonPeerDependencies": ["luxon", "libphonenumber-js", "@types/luxon", "material-symbols"]
+  "allowedNonPeerDependencies": [
+    "luxon",
+    "libphonenumber-js",
+    "@types/luxon",
+    "material-symbols"
+  ]
 }
