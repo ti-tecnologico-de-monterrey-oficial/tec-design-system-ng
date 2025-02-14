@@ -6,10 +6,10 @@ export default {
   title: 'Internal/Navigation bar',
   component: BmbNavigationBarComponent,
   decorators: [
-      moduleMetadata({
-        imports: [RouterTestingModule],
-      }),
-    ],
+    moduleMetadata({
+      imports: [RouterTestingModule],
+    }),
+  ],
   parameters: {
     docs: {
       description: {
@@ -118,7 +118,9 @@ Below is an example of how you can use this component in HTML:
       },
       {
         icon: 'share',
-        action: () => {alert('share')},
+        action: () => {
+          alert('share');
+        },
       },
       {
         icon: 'inventory_2',
@@ -127,7 +129,9 @@ Below is an example of how you can use this component in HTML:
       },
       {
         icon: 'send',
-        action: () => {alert('send')},
+        action: () => {
+          alert('send');
+        },
       },
     ],
     iconSize: 24,

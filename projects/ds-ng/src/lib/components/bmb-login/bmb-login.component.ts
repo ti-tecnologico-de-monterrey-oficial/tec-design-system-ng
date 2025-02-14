@@ -6,16 +6,20 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbButtonDirective } from '../../directives/button.directive';
-import { BmbInputComponent } from '../bmb-input/bmb-input.component';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { BmbUserProfileService } from '../../services/user/profile.service';
 import { BmbHeaderMitecComponent } from '../bmb-header-mitec/bmb-header-mitec.component';
-import { IBmbActionHeader } from '../../types';
+import { IBmbActionHeader, IBmbTargetLink } from '../../types';
+import { BmbLoginContentComponent } from './bmb-login-content/bmb-login-content.component';
 
 @Component({
   selector: 'bmb-login',
   standalone: true,
-  imports: [BmbHeaderMitecComponent, BmbInputComponent, BmbButtonDirective],
+  imports: [
+    BmbHeaderMitecComponent,
+    BmbLoginContentComponent,
+    BmbButtonDirective,
+  ],
   templateUrl: './bmb-login.component.html',
   styleUrl: './bmb-login.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -24,6 +28,8 @@ import { IBmbActionHeader } from '../../types';
 export class BmbLoginComponent {
   headerLabel = input<string>();
   forgottenPasswordLabel = input<string>('¿Olvidaste tu contraseña?');
+  forgottenPasswordLink = input<string>('');
+  forgottenPasswordTarget = input<IBmbTargetLink>('_blank');
   buttonLabel = input<string>('Ingresar');
   actionHeaders = input<IBmbActionHeader[]>([
     {
@@ -64,36 +70,13 @@ export class BmbLoginComponent {
   isContinueDisable: boolean = true;
   isLoading: boolean = false;
 
-  userForm: FormGroup = new FormGroup({
-    user: new FormControl<string>('', Validators.required),
-    password: new FormControl<string>('', Validators.required),
-  });
-  showErrors: { [key: string]: boolean } = {};
+  userForm: FormGroup = new FormGroup({});
 
   constructor(private userProfileService: BmbUserProfileService) {}
 
-  onSubmit(): void {
-    if (this.userForm.valid) {
-      this.isContinueDisable = false;
-      return;
-    }
-    this.userForm.markAllAsTouched();
-    this.updateErrorState();
-    this.isContinueDisable = true;
-  }
-
-  updateErrorState(): void {
-    Object.keys(this.userForm.controls).forEach((field) => {
-      const control = this.userForm.get(field);
-      if (control instanceof FormControl) {
-        this.showErrors[field] =
-          control.invalid && (control.touched || control.dirty);
-      }
-    });
-  }
-
-  getFormControl(name: string): FormControl {
-    return this.userForm.get(name) as FormControl;
+  handleContinueForm(event: FormGroup): void {
+    this.userForm = event;
+    this.isContinueDisable = !this.userForm.valid;
   }
 
   handleContinue(): void {

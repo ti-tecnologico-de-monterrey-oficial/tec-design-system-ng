@@ -35,6 +35,7 @@ import { BmbTextLinkComponent } from '../bmb-text-link/bmb-text-link.component';
             icon=""
             [link]="'https://www.youtube.com'"
             [target]="'_blank'"
+            textLink="another account"
           />
         </section>
       </section>
