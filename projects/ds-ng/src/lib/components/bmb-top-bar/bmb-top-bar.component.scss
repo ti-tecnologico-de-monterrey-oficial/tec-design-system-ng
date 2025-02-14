@@ -36,7 +36,6 @@
   gap: rem.rem_calc(16);
   align-items: center;
   position: relative;
-  border-radius: rem.rem_calc(0 0 12 12);
 
   &-open {
     border-radius: rem.rem_calc(0 0 0 0);

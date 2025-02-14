@@ -1,22 +1,6 @@
 <bmb-top-bar [showLang]="true" [mitec]="true" />
 
 <bmb-theme />
-<bmb-accordion>
-  <ng-template #bmbAccordionHeader>1</ng-template>
-  <ng-template #bmbAccordionContent>
-    <div style="overflow: visible; height: max-content">
-      <bmb-datepicker
-        placeholder="Selecciona la fecha de cumpleaños"
-        name="datePicker"
-        dateFormat="MM/dd/yyyy"
-        label="Fecha de tu cumpleaños"
-        [disabled]="false"
-        icon="cake"
-        [isRequired]="true"
-        [isClearable]="true"
-        invalidFormaterrorMessage="El formato debe ser el siguiente: dd/mm/yyyy"
-        requiredFieldErrorMessage="Este campo es requerido"
-      />
-    </div>
-  </ng-template>
-</bmb-accordion>
+<div style="height: 500px; display: block">
+  <bmb-list-items />
+</div>

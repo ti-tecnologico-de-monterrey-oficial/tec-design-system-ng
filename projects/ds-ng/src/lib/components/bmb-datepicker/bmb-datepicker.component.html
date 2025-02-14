@@ -13,12 +13,8 @@
       [helperMessage]="dateFormat"
       [errorMessage]="getErrorMessage(control.errors)"
       [name]="name"
+      [isClearable]="isClearable"
     />
-    @if (isClearable) {
-      <button class="bmb_datepicker-clear" (click)="clearValue()">
-        <bmb-icon icon="close" />
-      </button>
-    }
     @if (isWindowOpen) {
       <bmb-datepicker-modal
         [now]="now"

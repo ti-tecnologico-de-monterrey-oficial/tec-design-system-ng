@@ -108,6 +108,7 @@ import {
   BmbUserSummaryContentComponent,
   BmbThreeColsComponent,
   BmbTitleContentComponent,
+  BmbListItemsComponent,
 } from '../../projects/ds-ng/src/public-api';
 import { BmbPullWedgeComponent } from '../../projects/ds-ng/src/lib/components/bmb-pull-wedge/bmb-pull-wedge.component';
 import { BmbCardButtonComponent } from '../../projects/ds-ng/src/lib/components/bmb-card-button/bmb-card-button.component';
@@ -236,6 +237,7 @@ import { BmbChevronTitleSelectorComponent } from '../../projects/ds-ng/src/lib/c
     BmbThreeColsComponent,
     BmbTitleContentComponent,
     BmbChevronTitleSelectorComponent,
+    BmbListItemsComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
