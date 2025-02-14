@@ -3,11 +3,12 @@
     [forgottenPasswordLabel]="forgottenPasswordLabel()"
     [forgottenPasswordLink]="forgottenPasswordLink()"
     [forgottenPasswordTarget]="forgottenPasswordTarget()"
-    (onContinue)="handleContinueForm($event)"
+    [(onContinue)]="isEnabled"
+    (onFormGroup)="handleFormGroup($event)"
   />
   <button
     bmbButton
-    [disabled]="isContinueDisable"
+    [disabled]="!isEnabled"
     size="large"
     (click)="handleContinue()"
   >

@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { BmbButtonDirective } from '../../../directives/button.directive';
 import { BmbLoginOnboardingService } from '../bmb-login-onboarding.service';
-import { IBmbUserInfo } from '../types';
+import { IBmbUserInfo } from '../../../types';
 
 @Component({
   selector: 'bmb-login-onboarding-logout',

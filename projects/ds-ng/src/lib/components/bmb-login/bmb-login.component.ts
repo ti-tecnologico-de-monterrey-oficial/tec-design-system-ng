@@ -67,16 +67,14 @@ export class BmbLoginComponent {
   onRequest = output<any>();
   onContinue = output();
 
-  isContinueDisable: boolean = true;
+  isEnabled: boolean = false;
   isLoading: boolean = false;
-
   userForm: FormGroup = new FormGroup({});
 
   constructor(private userProfileService: BmbUserProfileService) {}
 
-  handleContinueForm(event: FormGroup): void {
+  handleFormGroup(event: FormGroup): void {
     this.userForm = event;
-    this.isContinueDisable = !this.userForm.valid;
   }
 
   handleContinue(): void {

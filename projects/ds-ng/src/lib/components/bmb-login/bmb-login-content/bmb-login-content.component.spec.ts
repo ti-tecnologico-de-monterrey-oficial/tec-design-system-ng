@@ -6,7 +6,7 @@ import { ComponentRef } from '@angular/core';
 describe('BmbLoginContentComponent', () => {
   let component: BmbLoginContentComponent;
   let fixture: ComponentFixture<BmbLoginContentComponent>;
-    let componentRef: ComponentRef<BmbLoginContentComponent>;
+  let componentRef: ComponentRef<BmbLoginContentComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -16,7 +16,10 @@ describe('BmbLoginContentComponent', () => {
     fixture = TestBed.createComponent(BmbLoginContentComponent);
     component = fixture.componentInstance;
     componentRef = fixture.componentRef;
-    componentRef.setInput('forgottenPasswordLabel', '¿Olvidaste tu contraseña?');
+    componentRef.setInput(
+      'forgottenPasswordLabel',
+      '¿Olvidaste tu contraseña?',
+    );
     fixture.detectChanges();
   });
 

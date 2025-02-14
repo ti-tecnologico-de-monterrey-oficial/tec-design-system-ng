@@ -6,39 +6,27 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbButtonDirective } from '../../directives/button.directive';
-import { BmbUserSummaryComponent } from '../bmb-user-summary/bmb-user-summary.component';
 import { IBmbActionHeader, IBmbTargetLink, IBmbUserInfo } from '../../types';
 import { BmbHeaderMitecComponent } from '../bmb-header-mitec/bmb-header-mitec.component';
-import { BmbTextLinkComponent } from '../bmb-text-link/bmb-text-link.component';
+import { BmbUserProfileContentComponent } from './bmb-user-profile-content/bmb-user-profile-content.component';
 
 @Component({
   selector: 'bmb-user-profile',
   standalone: true,
   imports: [
     BmbHeaderMitecComponent,
+    BmbUserProfileContentComponent,
     BmbButtonDirective,
-    BmbUserSummaryComponent,
-    BmbTextLinkComponent,
   ],
   styleUrl: './bmb-user-profile.component.scss',
   template: `
     <bmb-header-mitec [actionHeaders]="actionHeaders()">
-      <section class="bmb_user-profile">
-        <bmb-user-summary
-          [image]="userInfo().profilePicture"
-          [name]="userInfo().fullName"
-          [id]="userInfo().id"
-        />
-        <section class="bmb_user-profile-sublabel">
-          <bmb-text-link
-            [textLink]="anotherAccountLabel()"
-            icon=""
-            [link]="'https://www.youtube.com'"
-            [target]="'_blank'"
-            textLink="another account"
-          />
-        </section>
-      </section>
+      <bmb-user-profile-content
+        [anotherAccountLabel]="anotherAccountLabel()"
+        [anotherAccountLink]="anotherAccountLink()"
+        [anotherAccountTarget]="anotherAccountTarget()"
+        [userInfo]="userInfo()"
+      />
       <button bmbButton size="large" (click)="handleContinue()">
         {{ buttonLabel() }}
       </button>

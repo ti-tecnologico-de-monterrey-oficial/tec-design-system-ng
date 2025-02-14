@@ -85,8 +85,7 @@ Below is an example of how you can use this component in HTML:
     actionHeaders: {
       name: 'Action header',
       control: { type: 'object' },
-      description:
-        'Sets an array of IBmbActionHeader objects.',
+      description: 'Sets an array of IBmbActionHeader objects.',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'Action header example' },

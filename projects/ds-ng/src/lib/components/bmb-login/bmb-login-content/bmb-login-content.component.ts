@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   input,
+  model,
   output,
   ViewEncapsulation,
 } from '@angular/core';
@@ -23,8 +24,9 @@ export class BmbLoginContentComponent {
   forgottenPasswordLabel = input.required<string>();
   forgottenPasswordLink = input<string>('');
   forgottenPasswordTarget = input<IBmbTargetLink>('_blank');
+  onContinue = model<boolean>();
 
-  onContinue = output<FormGroup>();
+  onFormGroup = output<FormGroup>();
 
   userForm: FormGroup = new FormGroup({
     user: new FormControl<string>('', Validators.required),
@@ -33,10 +35,8 @@ export class BmbLoginContentComponent {
   showErrors: { [key: string]: boolean } = {};
 
   onSubmit(): void {
-    if (this.userForm.valid) {
-      this.onContinue.emit(this.userForm);
-      return;
-    }
+    this.onFormGroup.emit(this.userForm);
+    this.onContinue.set(this.userForm.valid);
     this.userForm.markAllAsTouched();
     this.updateErrorState();
   }
