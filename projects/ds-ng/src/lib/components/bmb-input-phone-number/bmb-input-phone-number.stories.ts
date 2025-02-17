@@ -104,6 +104,9 @@ Below is an example of how to use this component in HTML:
   [isRequired]="false"
   [showError]="showErrors['phone']"
   [errorMessage]="'Error Phone'"
+  [preferredCountries]="['mx', 'us']"
+  [onlyCountries]="['mx', 'us', 'ca']"
+  [useOnlyCountries]="true"
   />
   <button bmbButton appearance="primary" type="submit">Submit</button>
 </form>
@@ -166,12 +169,34 @@ Below is an example of how to use this component in HTML:
         type: { summary: 'boolean' },
       },
     },
+    preferredCountries: {
+      name: 'Preferred Countries',
+      control: { type: 'array' },
+      description: 'List of countries that should be shown at the top.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string[]' },
+        defaultValue: { summary: "['mx']" },
+      },
+    },
+    onlyCountries: {
+      name: 'Only Countries',
+      control: { type: 'array' },
+      description: 'Restricts the dropdown to only these countries.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string[]' },
+        defaultValue: { summary: "['mx']" },
+      },
+    },
   },
   args: {
     disabled: false,
     showError: false,
     errorMessage: 'Error Message',
     isRequired: false,
+    preferredCountries: ['mx'],
+    onlyCountries: ['mx'],
   },
 } as Meta<typeof BmbInputPhoneNumberComponent>;
 

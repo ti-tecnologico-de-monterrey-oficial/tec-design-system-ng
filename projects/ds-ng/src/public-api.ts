@@ -6,12 +6,14 @@ export * from './lib/ds-ng.service';
 export * from './lib/services/notification.service';
 export * from './lib/services/calendar.service';
 export * from './lib/services/user/profile.service';
+export * from './lib/components/bmb-login-onboarding/bmb-login-onboarding.service';
 
 export * from './lib/ds-ng.component';
 export * from './lib/directives/button.directive';
 export * from './lib/directives/bmb-layout/bmb-layout-item.directive';
 export * from './lib/directives/bmb-layout/bmb-layout.directive';
 export * from './lib/directives/bmb-button-group/bmb-button-group.directive';
+export * from './lib/directives/bmb-accordion/bmb-accordion-control.directive';
 
 // Components
 export * from './lib/components/bmb-logo/bmb-logo.component';
