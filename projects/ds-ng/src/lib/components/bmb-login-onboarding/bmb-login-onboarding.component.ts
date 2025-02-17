@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  input,
   output,
   ViewEncapsulation,
 } from '@angular/core';
@@ -10,6 +11,12 @@ import { BmbLoginOnboardingService } from './bmb-login-onboarding.service';
 import { BmbLoginOnboardingLogoutComponent } from './bmb-login-onboarding-logout/bmb-login-onboarding-logout.component';
 import { BmbLoginOnboardingLoggedComponent } from './bmb-login-onboarding-logged/bmb-login-onboarding-logged.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { IBmbLinkConfiguration } from '../../types';
+
+export interface IBmbLoginOnBoardingCustomization {
+  anotherAccount: IBmbLinkConfiguration;
+  forgottenPassword: IBmbLinkConfiguration;
+}
 
 @Component({
   selector: 'bmb-login-onboarding',
@@ -27,9 +34,25 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbLoginOnboardingComponent {
+  loginOnBoardingCustomization = input<IBmbLoginOnBoardingCustomization>({
+    anotherAccount: {
+      label: 'Ingresar con otra cuenta',
+      link: '',
+    },
+    forgottenPassword: {
+      label: '¿Olvidaste tu contraseña?',
+      link: '',
+    },
+  });
   handleRequest = output<any>();
 
   constructor(private loginOnboardingService: BmbLoginOnboardingService) {}
+
+  ngOnInit(): void {
+    this.loginOnboardingService.setLoginOnBoardingCustomization(
+      this.loginOnBoardingCustomization(),
+    );
+  }
 
   getIsLoading(): boolean {
     return this.loginOnboardingService.getIsLoading();

@@ -1,0 +1,16 @@
+<section class="bmb_user-profile-content">
+  <bmb-user-summary
+    [image]="userInfo().profilePicture"
+    [name]="userInfo().fullName"
+    [id]="userInfo().id"
+  />
+  <section class="bmb_user-profile-content-sublabel">
+    <bmb-text-link
+      [textLink]="anotherAccountLabel()"
+      icon=""
+      [link]="anotherAccountLink()"
+      [target]="anotherAccountTarget()"
+      textLink="another account"
+    />
+  </section>
+</section>

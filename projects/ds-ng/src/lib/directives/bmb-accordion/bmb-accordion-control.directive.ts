@@ -28,16 +28,22 @@ export class BmbAccordionControlDirective implements OnInit {
   @HostListener('click', ['$event']) onClick(event: MouseEvent) {
     const parent = event.target as HTMLElement;
     const selectedAccordion = parent.closest('section');
-    const idAccordion = selectedAccordion?.closest('bmb-accordion')?.getAttribute('ng-reflect-accordion-id');
+    const idAccordion = selectedAccordion
+      ?.closest('bmb-accordion')
+      ?.getAttribute('ng-reflect-accordion-id');
 
-    if(this.openAccordion !== Number(idAccordion)) {
-      this.openAccordion = Number(idAccordion)
+    if (this.openAccordion !== Number(idAccordion)) {
+      this.openAccordion = Number(idAccordion);
       this.accordions.forEach((accordion: any) => {
         if (accordion.querySelector('section') !== selectedAccordion) {
-          const content = accordion.querySelector('section').querySelector('section');
+          const content = accordion
+            .querySelector('section')
+            .querySelector('section');
           this.renderer.removeClass(content, 'bmb_accordion-content-open');
-        } else { 
-          const content = accordion.querySelector('section').querySelector('section');
+        } else {
+          const content = accordion
+            .querySelector('section')
+            .querySelector('section');
           this.renderer.addClass(content, 'bmb_accordion-content-open');
         }
       });
