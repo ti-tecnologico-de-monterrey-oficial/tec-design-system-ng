@@ -6,12 +6,12 @@
     <img alt="mitec" [src]="mitecImage" />
   </section>
   <section class="bmb_login-onboarding-logged-content">
-    <bmb-user-summary
-      [image]="getUserInfo().profilePicture"
-      [name]="getUserInfo().fullName"
-      [id]="getUserInfo().id"
+    <bmb-user-profile-content
+      [anotherAccountLabel]="getAnotherAccount().label"
+      [anotherAccountLink]="getAnotherAccount().link"
+      [anotherAccountTarget]="getAnotherAccount().target!"
+      [userInfo]="getUserInfo()"
     />
-    <p>Ingresar con otra cuenta</p>
   </section>
   <section>
     <button bmbButton size="large" (click)="_handleContinue()">Ingresar</button>

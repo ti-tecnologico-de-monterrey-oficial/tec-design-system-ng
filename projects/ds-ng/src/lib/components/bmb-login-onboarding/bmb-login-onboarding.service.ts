@@ -1,5 +1,6 @@
 import { Injectable, signal } from '@angular/core';
-import { IBmbUserInfo } from './types';
+import { IBmbUserInfo } from '../../types';
+import { IBmbLoginOnBoardingCustomization } from './bmb-login-onboarding.component';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,24 @@ export class BmbLoginOnboardingService {
     fullName: '',
     profilePicture: '',
   });
+  loginOnBoardingCustomization: IBmbLoginOnBoardingCustomization = {
+    anotherAccount: {
+      label: '',
+      link: '',
+    },
+    forgottenPassword: {
+      label: '',
+      link: '',
+    },
+  };
+
+  getLoginOnBoardingCustomization(): IBmbLoginOnBoardingCustomization {
+    return this.loginOnBoardingCustomization;
+  }
+
+  setLoginOnBoardingCustomization(value: IBmbLoginOnBoardingCustomization) {
+    this.loginOnBoardingCustomization = value;
+  }
 
   getIsLoading(): boolean {
     return this.isLoading();

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BmbUserProfileComponent } from './bmb-user-profile.component';
+import { BmbUserProfileContentComponent } from './bmb-user-profile-content.component';
 import { ComponentRef } from '@angular/core';
 
-describe('BmbUserProfileComponent', () => {
-  let component: BmbUserProfileComponent;
-  let fixture: ComponentFixture<BmbUserProfileComponent>;
-  let componentRef: ComponentRef<BmbUserProfileComponent>;
+describe('BmbUserProfileContentComponent', () => {
+  let component: BmbUserProfileContentComponent;
+  let fixture: ComponentFixture<BmbUserProfileContentComponent>;
+  let componentRef: ComponentRef<BmbUserProfileContentComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BmbUserProfileComponent],
+      imports: [BmbUserProfileContentComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(BmbUserProfileComponent);
+    fixture = TestBed.createComponent(BmbUserProfileContentComponent);
     componentRef = fixture.componentRef;
     component = fixture.componentInstance;
     componentRef.setInput('userInfo', {

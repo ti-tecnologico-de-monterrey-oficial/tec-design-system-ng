@@ -34,8 +34,8 @@ export class BmbCheckExternalLinkButtonComponent {
     return (!!link && isExternalLink(link)) || false;
   }
 
-  isButton(link: string): boolean {
-    return !link;
+  isButton(isLink: boolean): boolean {
+    return !isLink;
   }
 
   handleClick(): void {
