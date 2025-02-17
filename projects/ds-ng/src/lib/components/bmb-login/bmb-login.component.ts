@@ -26,7 +26,7 @@ import { BmbLoginContentComponent } from './bmb-login-content/bmb-login-content.
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbLoginComponent {
-  headerLabel = input<string>();
+  headerLabel = input<string>(); //Deprecated
   forgottenPasswordLabel = input<string>('¿Olvidaste tu contraseña?');
   forgottenPasswordLink = input<string>('');
   forgottenPasswordTarget = input<IBmbTargetLink>('_blank');

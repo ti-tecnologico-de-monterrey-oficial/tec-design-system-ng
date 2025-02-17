@@ -100,6 +100,30 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string[]' },
       },
     },
+    labelComplete: {
+      name: 'Label complete',
+      control: {
+        type: 'text',
+      },
+      description: 'Set the label for complete steps',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'Completo' },
+      },
+    },
+    labelIncomplete: {
+      name: 'Label incomplete',
+      control: {
+        type: 'text',
+      },
+      description: 'Set the label for incomplete steps',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'Pendiente' },
+      },
+    },
   },
   args: {
     totalSteps: 5,
@@ -114,26 +138,11 @@ Below is an example of how you can use this component in HTML:
       '¡Orden de compra aprobada!',
       '¡Orden de compra aprobada!',
     ],
+    labelComplete: 'Completo',
+    labelIncomplete: 'Pendiente',
   },
 } as Meta<typeof BmbStepProgressBarComponent>;
 
 type Story = StoryObj<BmbStepProgressBarComponent>;
 
-export const Default: Story = {
-  args: {},
-  render: (args) => ({
-    props: args,
-    template: `
-    <bmb-step-progress-bar
-      [activeStep]="1"
-      [totalSteps]="4"
-      [size]="'normal'"
-      [freeze]="false"
-      [type]="type"
-      [labelSteps]="['¡Orden de compra aprobada!','¡Orden de compra aprobada!','¡Orden de compra aprobada!','¡Orden de compra aprobada!','¡Orden de compra aprobada!', ]"
-      [labelComplete]="'Hecho'"
-      [labelIncomplete]="'Pendiente'"
-      ></bmb-step-progress-bar>
-    `,
-  }),
-};
+export const Default: Story = {};
