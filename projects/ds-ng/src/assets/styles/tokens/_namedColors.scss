@@ -29,6 +29,7 @@
   --buttons-primary-hover: RGBA(var(--color-mariner-800), 1);
   --buttons-primary-select: RGBA(var(--color-mariner-500), 1);
   --buttons-active-normal: RGBA(var(--color-charade-50), 1);
+  --buttons-alternative-normal: RGBA(var(--color-charade-50), 1);
   --buttons-alternative-text: RGBA(var(--color-charade-900), 1);
   --buttons-active-switch: RGBA(var(--color-charade-700), 1);
   --buttons-inactive-step: RGBA(var(--color-charade-300), 1);
@@ -57,7 +58,7 @@
   --drop_shadow-color-test-shadow: 0.5rem 0.5rem 0.5rem 0px
     RGBA(var(--color-charade-950), 0.5);
 
-  --creative-use-violet: RGBA(var());
+  --white-primary: RGBA(var(--color-white-primary), 1);
 }
 
 [data-theme="dark"],
