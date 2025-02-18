@@ -19,6 +19,7 @@ import {
   IBmbUserInfo,
 } from '../../public-api';
 import { CommonModule } from '@angular/common';
+import { attributes } from '../utils/utils';
 
 @Component({
   standalone: true,
@@ -303,10 +304,10 @@ class StorybookHomeMitecMobile {
   menu = [
     {
       appearance: 'red',
-      title: 'App 1',
-      icon: 'https://img.freepik.com/premium-vector/approved-icon-with-thumb-up-approved-label-quality-control_349999-1321.jpg?w=2000',
+      title: 'Llamada SOS',
+      icon: 'SOS',
+      link: 'tel:+3313620464',
       target: '_blank',
-      link: 'https://www.example.com/',
     },
     {
       appearance: 'blue',
@@ -334,7 +335,7 @@ class StorybookHomeMitecMobile {
     '0': [
       {
         appearance: 'red',
-        title: 'App 1',
+        title: 'Llamada SOS',
         icon: 'face',
         target: '_blank',
         link: 'https://www.example.com/',
@@ -1048,15 +1049,6 @@ Below is an example of how you can use the components needed for this organizati
     userHasValidToken: true,
   },
 } as Meta;
-
-function attributes(object: { [key: string]: any }): string {
-  return Object.entries(object)
-    .filter(([key]) => key !== 'text')
-    .map(([key, value]) => {
-      return `[${key}]="${value}"`;
-    })
-    .join(' ');
-}
 
 export const Default: StoryFn = (args) => {
   return {
