@@ -20,7 +20,8 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 export class BmbBookmarkComponent {
   isActive = model<boolean>(false);
 
-  handleClick() {
+  handleClick(event: any) {
+    event.stopPropagation();
     this.isActive.set(!this.isActive());
   }
 

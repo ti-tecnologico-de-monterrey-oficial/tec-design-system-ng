@@ -1,1 +1,79 @@
-<p>bmb-list-items works!</p>
+<ng-template #elementTemplate let-elements="elements" let-title="title">
+  <li class="bmb_list-items-content-section">
+    <h3 class="bmb_list-items-content-title">{{ title }}</h3>
+    <ul class="bmb_list-items-content-list">
+      @for (item of elements; track $index) {
+        <li class="bmb_list-items-content-item" tabindex="0">
+          <span class="bmb_list-items-content-item-title">{{
+            item.title
+          }}</span>
+          <span>{{ getFormattedDate(item.formattedDate) }}</span>
+        </li>
+      }
+    </ul>
+  </li>
+</ng-template>
+
+<section class="bmb_list-items">
+  <header class="bmb_list-items-header">
+    <h2 class="bmb_list-items-title">{{ title() }}</h2>
+    <bmb-navigation-icon
+      [icon]="addButtonIcon()"
+      [iconSize]="24"
+      (buttonClick)="handleAddButtonClick()"
+    />
+  </header>
+  <ul class="bmb_list-items-content">
+    @if (isNewEnable) {
+      <li class="bmb_list-items-content-section">
+        <form action="">
+          <bmb-input />
+        </form>
+      </li>
+    }
+    @if (itemsGropedByDate.recent.length) {
+      <ng-container
+        *ngTemplateOutlet="
+          elementTemplate;
+          context: {
+            elements: itemsGropedByDate.recent,
+            title: 'Recientes',
+          }
+        "
+      />
+    }
+    @if (itemsGropedByDate.lastWeek.length) {
+      <ng-container
+        *ngTemplateOutlet="
+          elementTemplate;
+          context: {
+            elements: itemsGropedByDate.lastWeek,
+            title: 'La semana pasada',
+          }
+        "
+      />
+    }
+    @if (itemsGropedByDate.lastMonth.length) {
+      <ng-container
+        *ngTemplateOutlet="
+          elementTemplate;
+          context: {
+            elements: itemsGropedByDate.lastMonth,
+            title: 'Hace 30 días',
+          }
+        "
+      />
+    }
+    @if (itemsGropedByDate.rest.length) {
+      <ng-container
+        *ngTemplateOutlet="
+          elementTemplate;
+          context: {
+            elements: itemsGropedByDate.rest,
+            title: 'Resto',
+          }
+        "
+      />
+    }
+  </ul>
+</section>

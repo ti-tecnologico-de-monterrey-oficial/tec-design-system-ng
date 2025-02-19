@@ -135,6 +135,7 @@ export * from './lib/components/bmb-server-table/bmb-server-table.component';
 export * from './lib/components/bmb-three-cols/bmb-three-cols.component';
 export * from './lib/components/bmb-title-content/bmb-title-content.component';
 export * from './lib/components/bmb-list-items/bmb-list-items.component';
+export * from './lib/components/bmb-image/bmb-image.component';
 
 // types
 export * from './lib/types';

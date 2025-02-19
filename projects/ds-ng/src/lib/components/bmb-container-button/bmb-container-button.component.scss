@@ -3,7 +3,7 @@
 
 .bmb_container-button {
   &:not(.bmb_container-button-disabled):not(.bmb_container-button-error) {
-    .bmb_check-external-link-button-element {
+    > .bmb_check-external-link-button-element {
       &:hover {
         background-color: var(--general_contrasts-50);
 
@@ -193,6 +193,25 @@
 
     &:focus-visible {
       outline: none;
+    }
+  }
+
+  .bmb_container-button-right-action {
+    .bmb_check-external-link-button-element {
+      align-items: center;
+      background-color: inherit;
+      border: none;
+      border-radius: inherit;
+      color: inherit;
+      display: inline-flex;
+      min-height: auto;
+      min-width: auto;
+      padding: rem.rem_calc(3);
+      width: auto;
+
+      &:focus-visible {
+        outline: none;
+      }
     }
   }
 }

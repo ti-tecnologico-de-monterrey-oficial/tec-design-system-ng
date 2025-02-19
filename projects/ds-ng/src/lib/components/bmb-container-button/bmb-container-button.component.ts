@@ -13,6 +13,8 @@ import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-i
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
 import { IBbmBgAppearance, IBmbTargetLink } from '../../types';
 import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
+import { BmbNavigationIconComponent } from '../bmb-navigation-bar/bmb-navigation-icon/bmb-navigation-icon.component';
+import { BmbBookmarkComponent } from '../bmb-bookmark/bmb-bookmark.component';
 
 @Component({
   selector: 'bmb-container-button',
@@ -25,6 +27,8 @@ import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-
     BmbLayoutDirective,
     BmbLayoutItemDirective,
     BmbBadgeComponent,
+    BmbNavigationIconComponent,
+    BmbBookmarkComponent,
   ],
   styleUrl: './bmb-container-button.component.scss',
   templateUrl: './bmb-container-button.component.html',
@@ -46,7 +50,12 @@ export class BmbContainerButtonComponent {
   badgeAppearance = input<IBbmBgAppearance>('normal');
   state = input<'disabled' | 'error'>();
   alternative = input<boolean>(false);
+  enableSecondaryAction = input<boolean>(false);
+  enableBookmark = input<boolean>(false);
+  isBookmarkActive = input<boolean>(false);
+
   onButton = output();
+  secondaryAction = output();
 
   getScore(): number {
     return Number(this.score());
@@ -78,5 +87,9 @@ export class BmbContainerButtonComponent {
 
   handleClick(event: any): void {
     this.onButton.emit(event);
+  }
+
+  handleSecondaryClick(event: any): void {
+    this.secondaryAction.emit(event);
   }
 }

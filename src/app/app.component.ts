@@ -109,6 +109,7 @@ import {
   BmbThreeColsComponent,
   BmbTitleContentComponent,
   BmbListItemsComponent,
+  BmbContainerButtonComplexComponent,
 } from '../../projects/ds-ng/src/public-api';
 import { BmbPullWedgeComponent } from '../../projects/ds-ng/src/lib/components/bmb-pull-wedge/bmb-pull-wedge.component';
 import { BmbCardButtonComponent } from '../../projects/ds-ng/src/lib/components/bmb-card-button/bmb-card-button.component';
@@ -136,6 +137,7 @@ import {
 import { BmbUserProfileComponent } from '../../projects/ds-ng/src/lib/components/bmb-user-profile/bmb-user-profile.component';
 import { BmbHeaderMitecComponent } from '../../projects/ds-ng/src/lib/components/bmb-header-mitec/bmb-header-mitec.component';
 import { BmbChevronTitleSelectorComponent } from '../../projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component';
+import { DateTime } from 'luxon';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -145,6 +147,7 @@ import { BmbChevronTitleSelectorComponent } from '../../projects/ds-ng/src/lib/c
     ReactiveFormsModule,
     CommonModule,
     RouterModule,
+    BmbContainerButtonComplexComponent,
     BmbPullWedgeComponent,
     BmbThemeComponent,
     BmbBadgeComponent,
@@ -5427,4 +5430,21 @@ export class AppComponent {
       appearance: 'yellow',
     },
   ];
+
+  addButtonAction() {
+    console.log('Button clicked');
+  }
+
+  generateListItems() {
+    const now = DateTime.now();
+    return new Array(100).fill(null).map((_, index) => {
+      const date = now.minus({ days: index });
+      return {
+        id: index,
+        title: `Item ${index}`,
+        date: date.toISODate(),
+        time: date.toISODate(),
+      };
+    });
+  }
 }
