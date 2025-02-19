@@ -74,20 +74,30 @@
       </section>
       <section class="bmb_profile-access">
         <bmb-container-button
-          [title]="'ID Digital'"
-          [iconLeft]="'person'"
-          [iconRight]="'chevron_right'"
+          title="ID Digital"
+          iconLeft="person"
+          iconRight="chevron_right"
           [link]="idDigitalLink()"
           [target]="targetLinks()!"
         />
         <bmb-container-button
-          [title]="'Acceso a Campus'"
-          [iconLeft]="'qr_code'"
-          [iconRight]="'chevron_right'"
+          title="Acceso a Campus"
+          iconLeft="qr_code"
+          iconRight="chevron_right"
+          [link]="campusAcessLink()"
+          [target]="targetLinks()!"
+        />
+        <bmb-container-button
+          title="TecServices"
+          iconLeft="forum"
+          iconRight="chevron_right"
           [link]="campusAcessLink()"
           [target]="targetLinks()!"
         />
       </section>
+      <span class="bmb_profile-version">
+        {{ versionLabel() }}
+      </span>
       <section class="bmb_profile-close">
         <button
           bmbButton
