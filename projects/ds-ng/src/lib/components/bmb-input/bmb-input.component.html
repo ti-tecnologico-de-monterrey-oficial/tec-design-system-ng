@@ -96,14 +96,21 @@
           [max]="max()"
           [min]="min()"
         />
+        @if (this.isClearable()) {
+          <bmb-navigation-icon
+            class="bmb_field-clear"
+            icon="close"
+            [iconSize]="20"
+            (buttonClick)="clearValue()"
+          />
+        }
         @if (showAdditionalAction()) {
-          <button
-            bmbButton
+          <bmb-navigation-icon
             class="bmb_field-additional_action"
-            (click)="actionToExecute()"
-          >
-            <bmb-icon [icon]="getAdditionalActionIcon()" [size]="20" />
-          </button>
+            [icon]="getAdditionalActionIcon()"
+            [iconSize]="20"
+            (buttonClick)="actionToExecute()"
+          />
         }
       }
     </section>

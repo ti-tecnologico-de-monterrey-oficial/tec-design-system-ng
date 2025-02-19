@@ -1,0 +1,73 @@
+@use "sass:map";
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/rem" as rem;
+
+.bmb_image {
+  position: relative;
+  grid-area: 1/1/2/2;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+
+  &-inline {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    overflow: hidden;
+
+    &:hover,
+    &.bmb-hover {
+      .bmb_image-figure-zoom {
+        .bmb_image-figure-image {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+
+  &-figure {
+    margin: 0;
+    line-height: 0;
+    grid-area: 1 / 1 / 2 / 2;
+    overflow: hidden;
+
+    &-backdrop {
+      filter: blur(10px);
+      z-index: -1;
+      opacity: 0.75;
+      padding: var(--bmb-spacing-m);
+
+      &:has(+ .bmb_image-figure-zoom) {
+        .bmb_image-figure-image {
+          transition: all 0.3s ease;
+        }
+      }
+
+      & + .bmb_image-figure {
+        margin: var(--bmb-spacing-m);
+        overflow: hidden;
+      }
+    }
+
+    &-zoom {
+      .bmb_image-figure-image {
+        transition: all 0.3s ease;
+
+        &:hover,
+        &.bmb-hover {
+          transform: scale(1.3);
+        }
+      }
+    }
+
+    &-image {
+      width: 100%;
+      object-fit: cover;
+      object-position: center;
+      height: 100%;
+    }
+  }
+}

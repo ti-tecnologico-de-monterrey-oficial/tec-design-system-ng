@@ -387,6 +387,17 @@ Below is an example of how to use this component in HTML:
         type: { summary: 'number' },
       },
     },
+    isClearable: {
+      name: 'Is Clearable',
+      control: { type: 'boolean' },
+      description:
+        'If enabled, a clear button will be displayed in the input field.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
   },
 
   args: {
@@ -410,6 +421,8 @@ Below is an example of how to use this component in HTML:
     maxlength: '20',
     pattern: '[A-Za-z]+',
     tooltipPosition: { align: 'above', justify: 'before' },
+    isClearable: false,
+    spellcheck: false,
   },
 } as Meta<typeof BmbInputComponent>;
 

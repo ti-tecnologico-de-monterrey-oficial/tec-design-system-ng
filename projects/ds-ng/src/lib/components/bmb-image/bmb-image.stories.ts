@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { BmbMediaCardComponent } from './bmb-media-card.component';
+import { BmbImageComponent } from './bmb-image.component';
 
 export default {
-  title: 'Micro Componentes/Media card',
-  component: BmbMediaCardComponent,
+  title: 'Micro Componentes/Image',
+  component: BmbImageComponent,
   parameters: {
     docs: {
       description: {
@@ -11,14 +11,23 @@ export default {
 Below is an example of how you can use this component in TypeScript:
 
 \`\`\`typescript
-import { BmbMediaCardComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
+import { BmbImageComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
 @Component({
   selector: 'component',
   standalone: true,
-  imports: [ BmbMediaCardComponent ],
+  imports: [ BmbImageComponent ],
   templateUrl: './component.html',
   styleUrl: './component.scss',
 })
+\`\`\`
+
+## Architecture
+
+\`\`\`html
+<section class="bmb_badge"> <!-- conditional classes bmb_badge-{appearance} bmb_badge-container ->
+  <span class="bmb_badge-bullet"></span>
+  <span class="bmb_badge-content"></span>
+</section>
 \`\`\`
 
 Below is an example of how you can use this component in HTML:
@@ -136,89 +145,6 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'boolean' },
       },
     },
-    type: {
-      name: 'Type',
-      control: {
-        type: 'select',
-      },
-      options: ['inline', 'floating', 'author_detail'],
-      table: {
-        type: { summary: 'string' },
-        category: 'Properties',
-        defaultValue: { summary: 'inline' },
-      },
-      description:
-        'Set the visualization type to the card, the **inline** enables the `title`, `date` and `custom HTML` properties, the **author_detail** enable the `title`, `subtitle`, `date`, `user section`, and `custom HTML` and the **floating** option enables all the content.',
-    },
-    title: {
-      name: 'Title',
-      control: {
-        type: 'text',
-      },
-      description: 'Set title card.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
-    subtitle: {
-      name: 'Subtitle',
-      control: {
-        type: 'text',
-      },
-      description: 'Set title card.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
-    content: {
-      name: 'Content',
-      control: {
-        type: 'text',
-      },
-      description:
-        'Set an string content, if you needs set complex cotent you can added as <ng-content>.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
-    date: {
-      name: 'Date',
-      control: {
-        type: 'text',
-      },
-      description: 'Set the date element.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
-    userImage: {
-      name: 'User image URL',
-      control: {
-        type: 'text',
-      },
-      description:
-        'Set the user picture (Required to enable the user section).',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
-    userName: {
-      name: 'User name',
-      control: {
-        type: 'text',
-      },
-      description:
-        'Set the user picture (Required to enable the user section).',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
   },
   args: {
     src: 'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg',
@@ -231,36 +157,9 @@ Below is an example of how you can use this component in HTML:
     loading: 'lazy',
     enableZoom: false,
     isBlurredBackdrop: false,
-    type: 'inline',
   },
-} as Meta<typeof BmbMediaCardComponent>;
+} as Meta<typeof BmbImageComponent>;
 
-type Story = StoryObj<BmbMediaCardComponent>;
+type Story = StoryObj<BmbImageComponent>;
 
-export const Default: Story = {
-  render: (args) => ({
-    props: args,
-    template: `
-      <bmb-media-card
-        [src]="src"
-        [mobileSrc]="mobileSrc"
-        [alt]="alt"
-        [width]="width"
-        [ratio]="ratio"
-        [borderRadius]="borderRadius"
-        [loading]="loading"
-        [enableZoom]="enableZoom"
-        [isBlurredBackdrop]="isBlurredBackdrop"
-        [type]="type"
-        [title]="title"
-        [subtitle]="subtitle"
-        [content]="content"
-        [date]="date"
-        [userImage]="userImage"
-        [userName]="userName"
-      >
-        <p>Custom HTML content</p>
-      </bmb-media-card>
-    `,
-  }),
-};
+export const Default: Story = {};

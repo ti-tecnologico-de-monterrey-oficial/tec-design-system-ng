@@ -103,6 +103,7 @@ import {
   BmbAdvertisementCardComponent,
   BmbAccordionComponent,
   IBmbActionHeader,
+  BmbListItemsComponent,
   IBmbUserInfo,
 } from '../../projects/ds-ng/src/public-api';
 import { BmbPullWedgeComponent } from '../../projects/ds-ng/src/lib/components/bmb-pull-wedge/bmb-pull-wedge.component';
@@ -131,6 +132,7 @@ import {
 import { BmbUserProfileComponent } from '../../projects/ds-ng/src/lib/components/bmb-user-profile/bmb-user-profile.component';
 import { BmbHeaderMitecComponent } from '../../projects/ds-ng/src/lib/components/bmb-header-mitec/bmb-header-mitec.component';
 import { BmbChevronTitleSelectorComponent } from '../../projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component';
+import { DateTime } from 'luxon';
 import { BmbNavigationBarComponent } from '../../projects/ds-ng/src/lib/components/bmb-navigation-bar/bmb-navigation-bar.component';
 import { BmbUserSummaryContentComponent } from '../../projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary-content/bmb-user-summary-content.component';
 import { BmbThreeColsComponent } from '../../projects/ds-ng/src/lib/components/bmb-three-cols/bmb-three-cols.component';
@@ -236,6 +238,7 @@ import { BmbTitleContentComponent } from '../../projects/ds-ng/src/lib/component
     BmbThreeColsComponent,
     BmbTitleContentComponent,
     BmbChevronTitleSelectorComponent,
+    BmbListItemsComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -5425,4 +5428,21 @@ export class AppComponent {
       appearance: 'yellow',
     },
   ];
+
+  addButtonAction() {
+    console.log('Button clicked');
+  }
+
+  generateListItems() {
+    const now = DateTime.now();
+    return new Array(100).fill(null).map((_, index) => {
+      const date = now.minus({ days: index });
+      return {
+        id: index,
+        title: `Item ${index}`,
+        date: date.toISODate(),
+        time: date.toISODate(),
+      };
+    });
+  }
 }
