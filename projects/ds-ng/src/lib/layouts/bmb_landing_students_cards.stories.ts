@@ -25,7 +25,7 @@ import { BmbImageComponent } from '../components/bmb-image/bmb-image.component';
     BmbLayoutItemDirective,
     BmbImageComponent,
     BmbCardComponent,
-    BmbButtonDirective
+    BmbButtonDirective,
   ],
   selector: 'storybook-home-mitec-mobile',
   template: `
@@ -69,62 +69,89 @@ import { BmbImageComponent } from '../components/bmb-image/bmb-image.component';
           title="Nombre del servicio"
           contentPadding="xl"
         >
-            <section bmbLayout margin="none" class="bmb_padding-m">
-              <div bmbLayoutItem [colSm]="4" [colLg]="6">
-                <bmb-card margin="none">
-                  <section bmbLayout margin="none" class="bmb_padding-m">
-                    <div bmbLayoutItem [colSm]="1">
-                      <bmb-image
-                        src="https://picsum.photos/400"
-                        alt="Alt text"
-                        ratio="9/26"
-                        borderRadius="none"
-                        [enableZoom]="true"
-                      />
-                    </div>
-                    <div bmbLayoutItem [colSm]="3">
-                      <h1 class="font-medium-8">Lorem ipsum dolor sit amet consectetur. </h1>
-                      <p>Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus condimentum mi faucibus. In quisque justo senectus in sed adipiscing. Arcu neque feugiat aenean nam accumsan justo ut. Pulvinar urna amet proin sit sed tellus ipsum.</p>
-                      <p>Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus condimentum mi faucibus. In quisque justo senectus in sed adipiscing. Arcu neque feugiat aenean nam accumsan justo ut. Pulvinar urna amet proin sit sed tellus ipsum.</p>
-                    </div>
-                  </section>
-                </bmb-card>
-              </div>
-              <div bmbLayoutItem [colSm]="4" [colLg]="6">
-                <bmb-card margin="none">
-                  <section bmbLayout margin="none" class="bmb_padding-m">
-                    <h1 bmbLayoutItem [colSm]="4" class="font-medium-8">Lorem ipsum dolor sit amet consectetur. </h1>
-                    <div bmbLayoutItem [colSm]="1">
-                      <bmb-image
-                        src="https://picsum.photos/400"
-                        alt="Alt text"
-                        ratio="9/26"
-                        borderRadius="none"
-                        [enableZoom]="true"
-                      />
-                    </div>
-                    <div bmbLayoutItem [colSm]="3">
-                      <p>Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus condimentum mi faucibus.</p>
-                      <p>
-                        <button bmbButton>Action</button>
-                      </p>
-                    </div>
-                  </section>
-                </bmb-card>
-                <bmb-card margin="none" style="margin-top: 1rem; display: block;">
-                  <section bmbLayout margin="none" class="bmb_padding-m">
-                    <h1 bmbLayoutItem [colSm]="4" class="font-medium-8">Lorem ipsum dolor sit amet</h1>
-                    <div bmbLayoutItem [colSm]="4">
-                      <p>Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus condimentum mi faucibus. In quisque justo senectus in sed .</p>
-                    </div>
-                    <div bmbLayoutItem [colSm]="4">
-                      <button bmbButton appearance="secondary-outlined">Action</button>
-                      <button bmbButton>2</button>
-                    </div>
-                  </section>
-                </bmb-card>
-              </div>
-            </section>
+          <section bmbLayout margin="none" class="bmb_padding-m">
+            <div bmbLayoutItem [colSm]="4" [colLg]="6">
+              <bmb-card margin="none">
+                <section bmbLayout margin="none" class="bmb_padding-m">
+                  <div bmbLayoutItem [colSm]="1">
+                    <bmb-image
+                      src="https://picsum.photos/400"
+                      alt="Alt text"
+                      ratio="9/26"
+                      borderRadius="none"
+                      [enableZoom]="true"
+                    />
+                  </div>
+                  <div bmbLayoutItem [colSm]="3">
+                    <h1 class="font-medium-8">
+                      Lorem ipsum dolor sit amet consectetur.
+                    </h1>
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur. Nisl nibh
+                      phasellus condimentum mi faucibus. In quisque justo
+                      senectus in sed adipiscing. Arcu neque feugiat aenean nam
+                      accumsan justo ut. Pulvinar urna amet proin sit sed tellus
+                      ipsum.
+                    </p>
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur. Nisl nibh
+                      phasellus condimentum mi faucibus. In quisque justo
+                      senectus in sed adipiscing. Arcu neque feugiat aenean nam
+                      accumsan justo ut. Pulvinar urna amet proin sit sed tellus
+                      ipsum.
+                    </p>
+                  </div>
+                </section>
+              </bmb-card>
+            </div>
+            <div bmbLayoutItem [colSm]="4" [colLg]="6">
+              <bmb-card margin="none">
+                <section bmbLayout margin="none" class="bmb_padding-m">
+                  <h1 bmbLayoutItem [colSm]="4" class="font-medium-8">
+                    Lorem ipsum dolor sit amet consectetur.
+                  </h1>
+                  <div bmbLayoutItem [colSm]="1">
+                    <bmb-image
+                      src="https://picsum.photos/400"
+                      alt="Alt text"
+                      ratio="9/26"
+                      borderRadius="none"
+                      [enableZoom]="true"
+                    />
+                  </div>
+                  <div bmbLayoutItem [colSm]="3">
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur. Nisl nibh
+                      phasellus condimentum mi faucibus.
+                    </p>
+                    <p>
+                      <button bmbButton>Action</button>
+                    </p>
+                  </div>
+                </section>
+              </bmb-card>
+              <bmb-card margin="none" style="margin-top: 1rem; display: block;">
+                <section bmbLayout margin="none" class="bmb_padding-m">
+                  <h1 bmbLayoutItem [colSm]="4" class="font-medium-8">
+                    Lorem ipsum dolor sit amet
+                  </h1>
+                  <div bmbLayoutItem [colSm]="4">
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur. Nisl nibh
+                      phasellus condimentum mi faucibus. In quisque justo
+                      senectus in sed .
+                    </p>
+                  </div>
+                  <div bmbLayoutItem [colSm]="4">
+                    <button bmbButton appearance="secondary-outlined">
+                      Action
+                    </button>
+                    <button bmbButton>2</button>
+                  </div>
+                </section>
+              </bmb-card>
+            </div>
+          </section>
         </bmb-home-card>
       </main>
     </div>

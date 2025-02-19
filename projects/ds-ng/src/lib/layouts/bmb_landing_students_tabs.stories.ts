@@ -22,7 +22,7 @@ import { BmbImageComponent } from '../components/bmb-image/bmb-image.component';
     BmbLayoutDirective,
     BmbLayoutItemDirective,
     BmbTabsComponent,
-    BmbImageComponent
+    BmbImageComponent,
   ],
   selector: 'storybook-home-mitec-mobile',
   template: `
@@ -81,8 +81,8 @@ import { BmbImageComponent } from '../components/bmb-image/bmb-image.component';
             ]"
             (selected)="handleSelectedTab($event)"
           ></bmb-tabs>
-          @switch(selectedTab) {
-            @case(1) {
+          @switch (selectedTab) {
+            @case (1) {
               <section bmbLayout margin="none" class="bmb_padding-m">
                 <div bmbLayoutItem [colSm]="1">
                   <bmb-image
@@ -94,18 +94,44 @@ import { BmbImageComponent } from '../components/bmb-image/bmb-image.component';
                   />
                 </div>
                 <div bmbLayoutItem [colSm]="3">
-                  <h1 class="font-medium-8">Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus condimentum </h1>
-                  <p>Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus condimentum mi faucibus. In quisque justo senectus in sed adipiscing. Arcu neque feugiat aenean nam accumsan justo ut. Pulvinar urna amet proin sit sed tellus ipsum.</p>
-                  <p>Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus condimentum mi faucibus. In quisque justo senectus in sed adipiscing. Arcu neque feugiat aenean nam accumsan justo ut. Pulvinar urna amet proin sit sed tellus ipsum.</p>
+                  <h1 class="font-medium-8">
+                    Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus
+                    condimentum
+                  </h1>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus
+                    condimentum mi faucibus. In quisque justo senectus in sed
+                    adipiscing. Arcu neque feugiat aenean nam accumsan justo ut.
+                    Pulvinar urna amet proin sit sed tellus ipsum.
+                  </p>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus
+                    condimentum mi faucibus. In quisque justo senectus in sed
+                    adipiscing. Arcu neque feugiat aenean nam accumsan justo ut.
+                    Pulvinar urna amet proin sit sed tellus ipsum.
+                  </p>
                 </div>
               </section>
             }
-            @case(2) {
+            @case (2) {
               <section bmbLayout margin="none" class="bmb_padding-m">
                 <div bmbLayoutItem [colSm]="4">
-                  <h1 class="font-medium-8">Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus condimentum </h1>
-                  <p>Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus condimentum mi faucibus. In quisque justo senectus in sed adipiscing. Arcu neque feugiat aenean nam accumsan justo ut. Pulvinar urna amet proin sit sed tellus ipsum.</p>
-                  <p>Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus condimentum mi faucibus. In quisque justo senectus in sed adipiscing. Arcu neque feugiat aenean nam accumsan justo ut. Pulvinar urna amet proin sit sed tellus ipsum.</p>
+                  <h1 class="font-medium-8">
+                    Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus
+                    condimentum
+                  </h1>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus
+                    condimentum mi faucibus. In quisque justo senectus in sed
+                    adipiscing. Arcu neque feugiat aenean nam accumsan justo ut.
+                    Pulvinar urna amet proin sit sed tellus ipsum.
+                  </p>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus
+                    condimentum mi faucibus. In quisque justo senectus in sed
+                    adipiscing. Arcu neque feugiat aenean nam accumsan justo ut.
+                    Pulvinar urna amet proin sit sed tellus ipsum.
+                  </p>
                 </div>
               </section>
             }

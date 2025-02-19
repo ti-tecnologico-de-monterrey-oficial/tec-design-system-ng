@@ -21,8 +21,7 @@ import { BmbImageComponent } from '../components/bmb-image/bmb-image.component';
     BmbLayoutDirective,
     BmbLayoutItemDirective,
     BmbTextLinkComponent,
-    BmbImageComponent
-
+    BmbImageComponent,
   ],
   selector: 'storybook-home-mitec-mobile',
   template: `
