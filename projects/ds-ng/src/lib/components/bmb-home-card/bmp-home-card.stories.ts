@@ -151,7 +151,7 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'function' },
       },
     },
-    text: {
+    test_text: {
       name: 'Text',
       description: 'Header content example.',
       table: {
@@ -169,7 +169,7 @@ Below is an example of how you can use this component in HTML:
     dataLocalNav: [],
     actionHeaders: [],
     isMobile: false,
-    text: 'hello world',
+    test_text: 'hello world',
   },
 } as Meta<typeof BmbHomeCardComponent>;
 

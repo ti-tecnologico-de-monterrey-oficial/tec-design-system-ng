@@ -23,7 +23,7 @@
 
   &-drag-over {
     background: RGBA(var(--color-mariner-100));
-    border-color: RGBA(var(--color-mariner-700));
+    border-color: var(--general_contrasts-50);
   }
 
   &-error {
@@ -37,7 +37,7 @@
   &-link {
     @include fonts.font(4, medium);
     text-decoration-line: underline;
-    color: RGBA(var(--color-mariner-700));
+    color: var(--general_contrasts-main-selection);
     cursor: pointer;
   }
 
@@ -111,20 +111,6 @@
 
     &-drag-over {
       background: RGBA(var(--color-mariner-950));
-      border-color: RGBA(var(--color-neon-primary));
-    }
-
-    &-icon,
-    &-link {
-      color: RGBA(var(--color-neon-primary));
-    }
-
-    &-list {
-      &-files {
-        &-valid .bmb-drop-zone-list-files-icon {
-          color: RGBA(var(--color-neon-primary));
-        }
-      }
     }
   }
 }

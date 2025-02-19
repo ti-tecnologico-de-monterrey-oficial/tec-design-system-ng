@@ -1,9 +1,16 @@
-import type { Meta, StoryObj } from '@storybook/angular';
+import { moduleMetadata, Meta, StoryFn } from '@storybook/angular';
 import { BmbFabComponent } from './bmb-fab.component';
+import { attributes } from '../../utils/utils';
+import { BmbDividerComponent } from 'ds-ng';
 
 export default {
   title: 'Micro Componentes/Fab',
   component: BmbFabComponent,
+  decorators: [
+    moduleMetadata({
+      imports: [BmbDividerComponent],
+    }),
+  ],
   parameters: {
     docs: {
       description: {
@@ -94,6 +101,7 @@ Below is an example of how you can use this component in HTML:
         'The component changes to a version that is used for the platform "Mitec", this version changes the color and the position of the text.',
       table: {
         type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
       },
     },
   },
@@ -102,12 +110,25 @@ Below is an example of how you can use this component in HTML:
     text: 'FAB',
     size: 'small',
     type: 'extended',
+    mitec: false,
     onFabClick: (params: any) => {
       window.alert(params.toString());
     },
   },
 } as Meta<typeof BmbFabComponent>;
 
-type Story = StoryObj<BmbFabComponent>;
+const customizable = (): StoryFn => (args) => ({
+  props: args,
+  template: `
+  <!-- Instruction to users: This html is used for internal Storybook logic and should not be copied -->
+  <div style="height: 50px">
+    <!-- Example of how you can use this component -->
+    <bmb-fab
+      ${attributes(args)}
+    />
+    <!-- End of the example -->
+  </div>
+  `,
+});
 
-export const Default: Story = {};
+export const Default = customizable();

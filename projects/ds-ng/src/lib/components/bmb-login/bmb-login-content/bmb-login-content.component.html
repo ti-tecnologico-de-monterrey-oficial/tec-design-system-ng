@@ -27,6 +27,16 @@
       (isBlur)="onSubmit()"
     />
   </span>
+  @if (showRememberMeCheckbox()) {
+    <span class="bmb_login-content-input">
+      <bmb-checkbox
+        id="checkbox1"
+        [label]="rememberMeCheckboxLabel()"
+        value="checked"
+        (change)="handleRememberMe($event)"
+      />
+    </span>
+  }
   <section class="bmb_login-content-sublabel">
     <bmb-text-link
       [textLink]="forgottenPasswordLabel()"

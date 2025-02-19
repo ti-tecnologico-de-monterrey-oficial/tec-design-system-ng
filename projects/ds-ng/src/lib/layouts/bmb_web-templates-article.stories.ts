@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
 import { BmbTopBarComponent } from '../../public-api';
+import { attributes } from '../utils/utils';
 
 @Component({
   standalone: true,
@@ -93,15 +94,6 @@ Below is an example of how you can use this component in HTML:
     },
   },
 } as Meta;
-
-function attributes(object: { [key: string]: any }): string {
-  return Object.entries(object)
-    .filter(([key]) => key !== 'text')
-    .map(([key, value]) => {
-      return `${key}="${value}"`;
-    })
-    .join(' ');
-}
 
 export const Default: StoryFn = (args) => {
   return {
