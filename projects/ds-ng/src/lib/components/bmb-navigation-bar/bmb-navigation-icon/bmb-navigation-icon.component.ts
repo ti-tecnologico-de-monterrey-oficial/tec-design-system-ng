@@ -34,6 +34,7 @@ export class BmbNavigationIconComponent {
   dotNotification = input<number>();
   target = input<IBmbTargetLink>();
   link = input<string>();
+  disabled = input<boolean>(false);
 
   buttonClick = output<void>();
 

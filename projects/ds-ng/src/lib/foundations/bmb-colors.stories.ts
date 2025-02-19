@@ -62,8 +62,6 @@ background: radial-gradient(circle, var(--color-gradient-blue));
         '--color-white-tint',
         '--color-white-min',
         '--color-neon-primary',
-        '--color-neon-light',
-        '--color-neon-tint',
         '--color-blue-primary',
         '--color-blue-light',
         '--color-blue-tint',

@@ -61,10 +61,6 @@ export class BmbDatepickerComponent implements OnInit {
   defaultDate = new Date();
   isWindowOpen = false;
 
-  clearValue() {
-    this.control.reset();
-  }
-
   ngOnInit() {
     this.control.addValidators(this.customValidatorDate());
     this.control.updateValueAndValidity();
