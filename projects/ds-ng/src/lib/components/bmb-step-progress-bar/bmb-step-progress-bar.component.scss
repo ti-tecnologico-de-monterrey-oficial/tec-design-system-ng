@@ -64,9 +64,9 @@
 
   &-step {
     align-items: center;
-    background: RGBA(var(--color-charade-300));
+    background-color: var(--buttons-inactive-step);
     border-radius: 50%;
-    color: RGBA(var(--color-charade-950));
+    color: var(--general_contrasts-main-complimentary);
     cursor: pointer;
     display: flex;
     justify-content: center;
@@ -228,9 +228,6 @@
     }
 
     &-step {
-      background: RGBA(var(--color-charade-700));
-      color: RGBA(var(--color-charade-950));
-
       &-small {
         &.active {
           background-color: RGBA(var(--color-charade-950));

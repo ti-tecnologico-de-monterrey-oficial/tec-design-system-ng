@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
+  OnInit,
   ViewEncapsulation,
   forwardRef,
   input,
@@ -49,7 +49,7 @@ export interface IBmbDropdownItem {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbDropdownComponent {
+export class BmbDropdownComponent implements OnInit {
   required = input<boolean>();
   showIcon = input<boolean>(false);
   placeholder = input<string>('');
@@ -132,8 +132,6 @@ export class BmbDropdownComponent {
   }
 
   getDialogStatus() {
-    console.log('getDialogStatus', this.openSelect);
-
     return this.openSelect;
   }
 

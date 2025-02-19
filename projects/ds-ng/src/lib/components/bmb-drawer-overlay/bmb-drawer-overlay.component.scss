@@ -2,22 +2,10 @@
 @use "../../../assets/styles/base/mixins" as mixins;
 @use "../../../assets/styles/base/rem" as rem;
 
-@keyframes growOut {
-  0% {
-    transform: scale(0);
-  }
-  80% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
 .bmb_drawer {
   &-overlay {
     backdrop-filter: blur(rem.rem_calc(1));
-    background-color: RGBA(var(--color-black-primary), 0.2);
+    background-color: var(--color-black-tint);
     filter: blur(rem.rem_calc(5));
     height: 100%;
     left: 0;
@@ -68,7 +56,7 @@
   }
 
   &-full {
-    background-color: RGBA(var(--color-charade-200), 1);
+    background-color: var(--containers-background);
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -87,11 +75,14 @@
   }
 }
 
-[data-theme="dark"],
-.storybook-dark-theme {
-  .bmb_drawer {
-    &-full {
-      background-color: RGBA(var(--color-charade-950), 1);
-    }
+@keyframes growOut {
+  0% {
+    transform: scale(0);
+  }
+  80% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
   }
 }

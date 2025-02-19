@@ -1,6 +1,5 @@
-import type { Meta, StoryFn } from '@storybook/angular';
+import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbAdvertisementCardComponent } from './bmb-advertisement-card.component';
-import { attributes } from '../../utils/utils';
 
 export default {
   title: 'Micro Componentes/Advertisement Card',
@@ -22,50 +21,7 @@ import { BmbAdvertisementCardComponent } from '@ti-tecnologico-de-monterrey-ofic
 })
 
 export class AppComponent {
-        data: IBmbAdvertisementData = {
-        promociones: [
-          {
-            imgData:{
-              url:'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg',
-              alt:'Imagen',
-            },
-            content:{
-              title: 'Lorem ipsum dolor sit amet',
-              description: 'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
-              linkBtn: 'www.google.com',
-              labelBtn: 'ACTION'
-            }
-          },
-        ],
-        avisos: [
-          {
-            imgData:{
-              url:'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg',
-              alt:'AVISOS',
-            },
-            content:{
-                title: 'Lorem ipsum dolor sit amet avisos',
-                description: 'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
-                linkBtn: 'www.google.com',
-                labelBtn: 'ACTION'
-            }
-          },
-        ],
-        informacion: [
-          {
-            imgData:{
-              url:'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg',
-              alt:'PROMO',
-            },
-            content:{
-                title: 'Lorem ipsum dolor sit amet',
-                description: 'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
-                linkBtn: 'www.google.com',
-                labelBtn: 'ACTION'
-            }
-          },
-        ],
-    },
+...
 }
 \`\`\`
 
@@ -80,10 +36,37 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'IBmbAdvertisementData',
       },
-      description: 'Set information that the component will show',
+      description: `
+Sets information that the component will show.
+
+    IBmbAdvertisementData = {
+      promociones: Array<IBmbAdvertisementCard>;
+      avisos: Array<IBmbAdvertisementCard>;
+      informacion: Array<IBmbAdvertisementCard>;
+    }
+
+    IBmbAdvertisementCard = {
+      content: IBmbAdvertisementContent;
+      imgData: IBmbAdvertisementImage;
+    };
+
+    IBmbAdvertisementContent = {
+      description: string;
+      linkBtn?: string;
+      title: string;
+      labelBtn?: string;
+    };
+
+    export type IBmbAdvertisementImage = {
+      alt: string;
+      url: string;
+    };
+
+    IBmbTargetLink = '_blank' | '_parent' | '_self' | '_top';
+      `,
       table: {
         category: 'Properties',
-        type: { summary: 'object' },
+        type: { summary: 'IBmbAdvertisementData' },
         defaultValue: { summary: `{}` },
       },
     },
@@ -92,7 +75,7 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'text',
       },
-      description: 'Set the subtitle that the card shows when its expanded',
+      description: 'Sets the subtitle that the card shows when its expanded',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -230,14 +213,6 @@ Below is an example of how you can use this component in HTML:
   },
 } as Meta<typeof BmbAdvertisementCardComponent>;
 
-const customizable = (): StoryFn => (args) => ({
-  props: args,
-  template: `
-    <bmb-advertisement-card
-      ${attributes(args)}
-    >
-    </bmb-advertisement-card>
-  `,
-});
+type Story = StoryObj<BmbAdvertisementCardComponent>;
 
-export const Default = customizable();
+export const Default: Story = {};

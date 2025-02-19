@@ -1,23 +1,20 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  Output,
-  Input,
-  EventEmitter,
   ViewEncapsulation,
+  input,
+  output,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { BmbFabComponent } from '../bmb-fab/bmb-fab.component';
 import { BmbInteractiveIconComponent } from '../bmb-interactive-icon/bmb-interactive-icon.component';
 import { IBmbApp } from '../../types';
 import { BmbInnerHeaderComponent } from '../bmb-inner-header/bmb-inner-header.component';
-import { BmbTabsComponent } from '../bmb-tabs/bmb-tabs.component';
+import { BmbTabsComponent, IBmbTab } from '../bmb-tabs/bmb-tabs.component';
 
 @Component({
   selector: 'bmb-drawer-overlay',
   standalone: true,
   imports: [
-    CommonModule,
     BmbFabComponent,
     BmbInteractiveIconComponent,
     BmbInnerHeaderComponent,
@@ -29,14 +26,14 @@ import { BmbTabsComponent } from '../bmb-tabs/bmb-tabs.component';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbDrawerOverlayComponent {
-  @Input() menu: any = [];
-  @Input() title: string = '';
-  @Input() dataSearch: string[] = [];
-  @Input() tabs: { title: string; id: number }[] = [];
-  @Input() appServices: { [key: number]: IBmbApp[] } = {};
+  menu = input<any>([]);
+  title = input<string>('');
+  dataSearch = input<string[]>([]);
+  tabs = input<IBmbTab[]>([]);
+  appServices = input<{ [key: number]: IBmbApp[] }>({});
 
-  @Output() onValueChange: EventEmitter<string> = new EventEmitter<string>();
-  buttonClick: EventEmitter<void> = new EventEmitter<void>();
+  onValueChange = output<string>();
+  buttonClick = output<void>();
 
   isOpen: boolean = false;
   isFull: boolean = false;
@@ -53,10 +50,8 @@ export class BmbDrawerOverlayComponent {
   toggleFullDrawer(item?: any) {
     this.isFull = !this.isFull;
 
-    if (this.isFull) {
-      if (item.buttonClick) {
-        item.buttonClick();
-      }
+    if (this.isFull && item.buttonClick) {
+      item.buttonClick();
     }
   }
 
@@ -69,7 +64,7 @@ export class BmbDrawerOverlayComponent {
   }
 
   get appsActive(): IBmbApp[] {
-    const appsForCurrentNav = this.appServices[this.activeNavItemIndex];
+    const appsForCurrentNav = this.appServices()[this.activeNavItemIndex];
     return Array.isArray(appsForCurrentNav) ? appsForCurrentNav : [];
   }
 }

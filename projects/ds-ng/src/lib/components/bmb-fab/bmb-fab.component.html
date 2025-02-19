@@ -1,25 +1,28 @@
+<ng-template #fabButton>
+  <button [ngClass]="getClassName()" type="button">
+    @if (!mitec() && type() === "extended") {
+      <span>{{ text() }}</span>
+    }
+    <bmb-icon
+      [ngClass]="{
+        'bmb_fab-close': !mitec() && type() === 'normal',
+        'bmb_fab-close-rotate': !mitec() && type() === 'normal' && active,
+      }"
+      [icon]="(!mitec() && type() === 'normal' && active && 'close') || icon()"
+      [size]="24"
+    />
+  </button>
+  @if (mitec() && !!text()) {
+    <span class="bmb_fab-mitec-text">{{ text() }}</span>
+  }
+</ng-template>
+
 <section class="bmb_fab">
-  @if (!mitec) {
-    <button [ngClass]="this.fabStyle" type="button">
-      @if (type == "extended") {
-        <span>{{ text }}</span>
-      }
-      <bmb-icon *ngIf="!active" icon="{{ icon }}" />
-      <bmb-icon
-        *ngIf="type == 'normal' && active"
-        icon="close"
-        class="bmb_fab-close"
-        [ngClass]="{ 'bmb_fab-close-rotate': active }"
-      />
-    </button>
-  } @else {
+  @if (mitec()) {
     <section class="bmb_fab-mitec">
-      <button [ngClass]="this.fabStyle" type="button">
-        <bmb-icon icon="{{ icon }}" />
-      </button>
-      @if (text) {
-        <span class="bmb_fab-mitec-text">{{ text }}</span>
-      }
+      <ng-container [ngTemplateOutlet]="fabButton" />
     </section>
+  } @else {
+    <ng-container [ngTemplateOutlet]="fabButton" />
   }
 </section>

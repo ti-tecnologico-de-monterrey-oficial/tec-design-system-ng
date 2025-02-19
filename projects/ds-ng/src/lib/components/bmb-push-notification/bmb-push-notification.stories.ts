@@ -5,6 +5,7 @@ import { BmbButtonDirective } from '../../directives/button.directive';
 import { BmbNotificationService } from '../../services/notification.service';
 import { BmbPushNotificationComponent } from './bmb-push-notification.component';
 import { NotificationType } from './types';
+import { attributes } from '../../utils/utils';
 
 @Component({
   standalone: true,
@@ -341,18 +342,6 @@ Below is an example of how you can use this component in HTML:
     userMail: 'some.placeholder.name@domian.com',
   },
 } as Meta<typeof BmbPushNotificationComponent>;
-
-function attributes(object: { [key: string]: any }): string {
-  return Object.entries(object)
-    .filter(([key]) => key !== 'text')
-    .map(([key, value]) => {
-      if (key === 'isFullColor' || key === 'delay') {
-        return `[${key}]="${value}"`;
-      }
-      return `${key}="${value}"`;
-    })
-    .join(' ');
-}
 
 export const Default: StoryFn<typeof StorybookToastWrapperComponent> = (
   args,
