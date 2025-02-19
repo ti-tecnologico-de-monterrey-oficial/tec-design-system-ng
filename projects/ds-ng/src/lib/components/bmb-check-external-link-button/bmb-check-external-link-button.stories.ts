@@ -81,11 +81,24 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'function' },
       },
     },
+    disabled: {
+      name: 'Disabled',
+      control: {
+        type: 'boolean',
+      },
+      description: 'Disables the button or the link.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
   },
   args: {
     idElement: '',
     link: 'https://www.youtube.com/',
     target: '_blank',
+    disabled: false,
     buttonClick: () => alert('hola'),
   },
 } as Meta<typeof BmbCheckExternalLinkButtonComponent>;

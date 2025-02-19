@@ -10,6 +10,10 @@
     display: inline-flex;
     color: var(--general_contrasts-100);
 
+    &-disabled {
+      cursor: not-allowed;
+    }
+
     &:has(img) {
       height: 100%;
       width: 100%;

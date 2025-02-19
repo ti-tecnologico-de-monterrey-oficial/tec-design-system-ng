@@ -4,6 +4,7 @@
   [link]="link()"
   [target]="target()"
   (buttonClick)="handleClick($event)"
+  [disabled]="state() === 'disabled'"
 >
   <section
     bmbLayout
@@ -42,10 +43,26 @@
         />
       }
       @if (iconRight() && !square() && !small()) {
-        <bmb-icon
-          class="bmb_container-button-right-icon"
-          [icon]="iconRight()"
-        />
+        @if (enableBookmark()) {
+          <bmb-bookmark
+            [isActive]="isBookmarkActive()"
+            class="bmb_container-button-right-icon"
+          />
+        } @else if (enableSecondaryAction()) {
+          <bmb-navigation-icon
+            [icon]="iconRight()"
+            [iconSize]="24"
+            (buttonClick)="handleSecondaryClick($event)"
+            class="bmb_container-button-right-action"
+            [disabled]="state() === 'disabled'"
+          />
+        } @else {
+          <bmb-icon
+            class="bmb_container-button-right-icon"
+            [icon]="iconRight()"
+            [size]="24"
+          />
+        }
       }
     </section>
   </section>

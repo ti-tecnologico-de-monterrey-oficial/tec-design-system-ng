@@ -215,9 +215,49 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'boolean' },
       },
     },
+    enableSecondaryAction: {
+      name: 'Enable Secondary Action',
+      control: { type: 'boolean' },
+      description:
+        'When set to true, it will enable the secondary action button. The secondary action button will be displayed on the right side of the button.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: false },
+        type: { summary: 'boolean' },
+      },
+    },
+    enableBookmark: {
+      name: 'Enable Bookmark',
+      control: { type: 'boolean' },
+      description:
+        'When set to true, it will enable the bookmark button. The bookmark button will be displayed on the right side of the button.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: false },
+        type: { summary: 'boolean' },
+      },
+    },
+    isBookmarkActive: {
+      name: 'Is Bookmark Active',
+      control: { type: 'boolean' },
+      description: 'When set to true, the bookmark button will be active.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: false },
+        type: { summary: 'boolean' },
+      },
+    },
     onButton: {
-      action: 'buttonClick',
+      action: 'onButton',
       description: 'Event emitted when the button is clicked.',
+      table: {
+        category: 'Events',
+        type: { summary: 'EventEmitter<any>' },
+      },
+    },
+    secondaryAction: {
+      action: 'secondaryAction',
+      description: 'Event emitted when the secondary action button is clicked.',
       table: {
         category: 'Events',
         type: { summary: 'EventEmitter<any>' },
@@ -230,6 +270,15 @@ Below is an example of how you can use this component in HTML:
     iconRight: 'chevron_right',
     link: '',
     target: '_blank',
+    enableSecondaryAction: false,
+    enableBookmark: false,
+    isBookmarkActive: false,
+    onButton: (event: any) => {
+      console.log('Button clicked', event);
+    },
+    secondaryAction: (event: any) => {
+      console.log('Secondary action clicked', event);
+    },
   },
 } as Meta<typeof BmbContainerButtonComponent>;
 

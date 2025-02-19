@@ -146,6 +146,18 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'function (option)' },
       },
     },
+    disabled: {
+      name: 'Disabled',
+      control: {
+        type: 'boolean',
+      },
+      description: 'Disables the button or the link.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'false' },
+      },
+    },
   },
   args: {
     idElement: '',
@@ -157,6 +169,7 @@ Below is an example of how you can use this component in HTML:
     dotNotification: 0,
     target: '_blank',
     link: '',
+    disabled: false,
     buttonClick: () => {},
   },
 } as Meta<typeof BmbNavigationIconComponent>;
