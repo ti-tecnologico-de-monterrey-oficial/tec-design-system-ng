@@ -63,6 +63,26 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: '_blank' },
       },
     },
+    showRememberMeCheckbox: {
+      name: 'Shows remember me checkbox',
+      control: null,
+      description: 'Shows remember me checkbox when true',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    rememberMeCheckboxLabel: {
+      name: 'Remember me checkbox label',
+      control: 'text',
+      description: 'Sets the label to be displayed for remember me checkbox.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'Recordarme' },
+      },
+    },
     onContinue: {
       name: 'On Continue',
       control: null,
@@ -73,13 +93,32 @@ Below is an example of how you can use this component in HTML:
         category: 'Events',
       },
     },
+    onRememberMeChecked: {
+      name: 'Remember me checked',
+      control: {
+        type: '',
+      },
+      description:
+        'Event that is emitted when the state of the checkbox changes, such as when it is checked or unchecked. This can be used to trigger functions or actions based on the checkbox’s state change.',
+      table: {
+        category: 'Events',
+        type: {
+          summary: '(onRememberMeChecked)="handleCheckboxChange($event)"',
+        },
+      },
+    },
   },
   args: {
     forgottenPasswordLabel: '¿Olvidaste tu contraseña?',
     forgottenPasswordLink: '',
     forgottenPasswordTarget: '_blank',
+    showRememberMeCheckbox: false,
+    rememberMeCheckboxLabel: 'Recordarme',
     onContinue: () => {
       alert('onContinue');
+    },
+    onRememberMeChecked: () => {
+      window.alert('Remember me clicked');
     },
   },
 } as Meta<typeof BmbLoginContentComponent>;

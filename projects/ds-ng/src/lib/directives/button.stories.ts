@@ -112,7 +112,7 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'boolean' },
       },
     },
-    text: {
+    test_text: {
       name: 'Text',
       description: 'Button content example.',
       table: {
@@ -159,7 +159,7 @@ Below is an example of how you can use this component in HTML:
     size: 'small',
     position: 'left',
     case: false,
-    text: 'Button text',
+    test_text: 'Button text',
     isToggleActive: false,
     enableButtonToggle: false,
     isRounded: false,

@@ -29,7 +29,6 @@ import { BmbDropdownComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng
     BmbDropdownComponent,
     ReactiveFormsModule,
     BmbButtonDirective,
-    BmbInputComponent,
   ],
   templateUrl: './component.html',
   styleUrl: './component.scss',
@@ -206,12 +205,11 @@ Below is an example of how you can use this component in HTML:
 const customizable = (): StoryFn => (args) => ({
   props: args,
   template: `
-      <div style="height: 500px">
-        <bmb-dropdown
-          ${attributes(args)}
-          (onValueChange)="onValueChange($event)"
-        />
-      </div>
+    <div style="height: 500px">
+      <bmb-dropdown
+        ${attributes(args)}
+      />
+    </div>
     `,
 });
 

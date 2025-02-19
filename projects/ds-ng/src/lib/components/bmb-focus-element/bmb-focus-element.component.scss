@@ -50,13 +50,9 @@
   }
 
   &-number {
-    color: var(--general_contrasts-100);
+    color: var(--general_contrasts-input-outline);
     display: block;
     @include fonts.font(9, semibold);
-
-    &-focused {
-      color: var(--general_contrasts-main-selection);
-    }
   }
 
   &-title {

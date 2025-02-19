@@ -1,25 +1,9 @@
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+import { Meta, StoryObj } from '@storybook/angular';
 import { BmbDrawerOverlayComponent } from './bmb-drawer-overlay.component';
-import { CommonModule } from '@angular/common';
-import { BmbFabComponent } from '../bmb-fab/bmb-fab.component';
-import { BmbInteractiveIconComponent } from '../bmb-interactive-icon/bmb-interactive-icon.component';
-import { BmbInnerHeaderComponent } from '../bmb-inner-header/bmb-inner-header.component';
-import { BmbTabsComponent } from '../bmb-tabs/bmb-tabs.component';
 
 export default {
   title: 'Micro Componentes/Drawer Overlay',
   component: BmbDrawerOverlayComponent,
-  decorators: [
-    moduleMetadata({
-      imports: [
-        CommonModule,
-        BmbFabComponent,
-        BmbInteractiveIconComponent,
-        BmbInnerHeaderComponent,
-        BmbTabsComponent,
-      ],
-    }),
-  ],
   parameters: {
     docs: {
       description: {
@@ -87,11 +71,6 @@ import { BmbDrawerOverlayComponent } from '@your-library';
       },
     },
   },
-} as Meta<BmbDrawerOverlayComponent>;
-
-type Story = StoryObj<BmbDrawerOverlayComponent>;
-
-export const Default: Story = {
   args: {
     menu: [
       {
@@ -182,4 +161,8 @@ export const Default: Story = {
       ],
     },
   },
-};
+} as Meta<typeof BmbDrawerOverlayComponent>;
+
+type Story = StoryObj<BmbDrawerOverlayComponent>;
+
+export const Default: Story = {};

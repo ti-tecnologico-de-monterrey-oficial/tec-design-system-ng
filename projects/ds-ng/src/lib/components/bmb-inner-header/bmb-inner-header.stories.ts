@@ -1,5 +1,6 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import { Meta, StoryFn } from '@storybook/angular';
 import { BmbInnerHeaderComponent } from './bmb-inner-header.component';
+import { attributes, attributesText } from '../../utils/utils';
 
 export default {
   title: 'Micro Componentes/Inner Header Mobile',
@@ -186,6 +187,14 @@ Below is an example of how you can use this component in HTML:
         },
       },
     },
+    test_text: {
+      name: 'Text',
+      description: 'Header content example.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
     onValueChange: {
       name: 'On Value Change',
       description:
@@ -208,6 +217,7 @@ Below is an example of how you can use this component in HTML:
     subTitle: 'http://www.link.com',
     trailingIconPrimary: 'lock',
     trailingIconSecondary: 'home',
+    test_text: 'hello world',
     onHandleBack: () => {
       window.alert('Back button clicked in Storybook');
     },
@@ -223,6 +233,17 @@ Below is an example of how you can use this component in HTML:
   },
 } as Meta<typeof BmbInnerHeaderComponent>;
 
-type Story = StoryObj<BmbInnerHeaderComponent>;
+const customizable = (): StoryFn => (args) => ({
+  props: args,
+  template: `
+    <!-- Example of how you can use this component. -->
+    <bmb-inner-header
+      ${attributes(args)}
+    >
+      <!-- Example of content. The content can be a bamboo component or html. -->
+      <div style="text-align: center;">${attributesText(args)}</div>
+    </bmb-inner-header>
+  `,
+});
 
-export const Default: Story = {};
+export const Default = customizable();
