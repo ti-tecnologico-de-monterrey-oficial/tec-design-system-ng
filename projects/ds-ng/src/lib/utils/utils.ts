@@ -2,7 +2,10 @@ export const isExternalLink = (link: string): boolean => {
   return (
     link.startsWith('http://') ||
     link.startsWith('https://') ||
-    link.startsWith('#')
+    link.startsWith('#') ||
+    link.startsWith('tel:') ||
+    link.startsWith('mailto:') ||
+    link.startsWith('app:')
   );
 };
 

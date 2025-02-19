@@ -303,28 +303,28 @@ class StorybookHomeMitecMobile {
 
   menu = [
     {
-      appearance: 'red',
+      appearance: 'mitec_red',
       title: 'Llamada SOS',
       icon: 'SOS',
-      link: 'tel:+3313620464',
+      link: 'tel:+5555555555',
       target: '_blank',
     },
     {
-      appearance: 'blue',
-      title: 'App 2',
+      appearance: 'buttons-primary-normal',
+      title: 'Acceso a Campus',
+      icon: 'qr_code_scanner',
+      target: '_blank',
+      link: 'https://www.example.com/',
+    },
+    {
+      appearance: 'purple-primary',
+      title: 'App',
       icon: 'face',
       target: '_blank',
       link: 'https://www.example.com/',
     },
     {
-      appearance: 'green',
-      title: 'App 3',
-      icon: 'face',
-      target: '_blank',
-      link: 'https://www.example.com/',
-    },
-    {
-      appearance: 'blue',
+      appearance: 'general_contrasts-main-selection',
       title: 'Menú de servicios',
       icon: 'lists',
       setButtonTemplate: true,
@@ -335,7 +335,7 @@ class StorybookHomeMitecMobile {
     '0': [
       {
         appearance: 'red',
-        title: 'Llamada SOS',
+        title: 'App 1',
         icon: 'face',
         target: '_blank',
         link: 'https://www.example.com/',

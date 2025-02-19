@@ -11,7 +11,7 @@
   --general_contrasts-main-complimentary: RGBA(var(--color-charade-50), 1);
   --general_contrasts-main-selection: RGBA(var(--color-mariner-700), 1);
   --general_contrasts-main-selection-alternative: RGBA(
-    var(--color-mariner-700),
+    var(--color-green-light),
     1
   );
   --general_contrasts-input-background: RGBA(var(--color-charade-50), 1);
@@ -59,6 +59,7 @@
     RGBA(var(--color-charade-950), 0.5);
 
   --white-primary: RGBA(var(--color-white-primary), 1);
+  --purple-primary: RGBA(var(--color-purple-primary), 1);
 }
 
 [data-theme="dark"],
