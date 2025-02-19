@@ -22,14 +22,7 @@ import { BmbActionMenuComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-
   styleUrl: './component.scss',
 })
 export class AppComponent {
-  dataLocalNav: IBmbDataTopBar[] = [
-      { text: 'Breadcrumb 1', link: '/' },
-      { text: 'Breadcrumb 2', link: '/emprendedor' },
-      { text: 'Breadcrumb 3', link: '/emprendedor/vivencia' },
-      { text: 'Breadcrumb 4', link: '/emprendedor/vivencia' },
-      { text: 'Breadcrumb 5', link: '/emprendedor/vivencia' },
-      { text: 'Breadcrumb 6', link: '/emprendedor/vivencia' },
-    ]
+}
 ...
 \`\`\`
 
@@ -40,15 +33,6 @@ Below is an example of how you can use this component in HTML:
     },
   },
   argTypes: {
-    leftIcon: {
-      name: 'Left icon',
-      control: { type: 'text' },
-      description: 'Sets left header icon.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string (optional)' },
-      },
-    },
     icon: {
       name: 'Icon',
       control: { type: 'text' },
@@ -85,102 +69,64 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string (optional)' },
       },
     },
-    dataLocalNav: {
-      name: 'Data Local Navigation',
-      control: { type: 'object' },
-      description: 'Array of breadcrumb data for Local Navigation.',
+    showHeader: {
+      name: 'Show header',
+      control: { type: 'boolean' },
+      description: 'This property hides or show the header',
       table: {
         category: 'Properties',
-        type: {
-          summary:
-            'IBmbDataTopBar[] (optional), [{ text: string, link?: string, }]',
-        },
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
       },
     },
-    actionHeaders: {
-      name: 'Action header',
-      control: { type: 'object' },
-      description:
-        'Sets an array of IBmbActionHeader objects, default value is an empty array.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: '[] (empty array)' },
-        type: {
-          summary:
-            'IBmbActionHeader[], {icon: string; iconSize?: number; iconActiveToggle?: string; isToggleActive?: boolean; isAccentColor?: boolean; link?: string; target?: IBmbTargetLink; action: () => void;}',
-        },
-      },
-    },
-    isMobile: {
-      name: 'Is mobile',
+    isAList: {
+      name: 'Is a list',
       control: { type: 'boolean' },
       description:
-        'Sets a flag to indicate if the card should adapt to mobile view.',
+        'This property hides or show the divider on each item and you can place whatever you want',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'false' },
         type: { summary: 'boolean' },
-      },
-    },
-    contentPadding: {
-      name: 'Content padding',
-      control: { type: 'text' },
-      description:
-        "Sets the he padding size for the card's content. Uses predefined size names (e.g., 'xs','s','m','l','xl','none','auto')",
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'l' },
-        type: { summary: 'SizeNames (optional)' },
-      },
-    },
-    onClose: {
-      name: 'On close',
-      control: null,
-      description: 'Emmit the close event.',
-      table: {
-        category: 'Events',
-        type: { summary: 'function' },
-      },
-    },
-    onBack: {
-      name: 'On back',
-      control: null,
-      description: 'Emmit the back event.',
-      table: {
-        category: 'Events',
-        type: { summary: 'function' },
-      },
-    },
-    text: {
-      name: 'Text',
-      description: 'Header content example.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
+        defaultValue: { summary: 'true' },
       },
     },
   },
   args: {
-    leftIcon: 'chevron_left',
     icon: 'account_balance_wallet',
     bgIconAppearance: 'green-light',
     title: 'Title',
     subtitle: 'Subtitle',
-    dataLocalNav: [],
-    actionHeaders: [],
-    isMobile: false,
-    text: 'hello world',
+    showHeader: true,
+    isAList: true,
   },
 } as Meta<typeof BmbActionMenuComponent>;
 
 const customizable = (): StoryFn => (args) => ({
   props: args,
   template: `
-    <bmb-home-card
-      ${attributes(args)}
-    >
-      <p>${attributesText(args)}</p>
-    </bmb-home-card>
+    <div style="height: 200px;">
+      <bmb-action-menu ${attributes(args)}>
+        ${
+          args['isAList']
+            ? `
+            <ng-template>
+              <button class="action-btn">Option 1</button>
+            </ng-template>
+            <ng-template>
+              <a href="#">Option 2</a>
+            </ng-template>
+            <ng-template>
+              <div>Only Text</div>
+            </ng-template>
+          `
+            : `
+            <button class="action-btn">Option 1</button>
+            <a href="#">Option 2</a>
+            <div>Only Text</div>
+          `
+        }
+      </bmb-action-menu>
+    </div>
   `,
 });
 

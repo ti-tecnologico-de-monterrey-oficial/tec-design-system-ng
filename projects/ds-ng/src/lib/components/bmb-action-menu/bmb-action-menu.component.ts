@@ -2,43 +2,37 @@ import {
   ChangeDetectionStrategy,
   Component,
   input,
-  output,
   ViewEncapsulation,
+  ContentChildren,
+  QueryList,
+  TemplateRef,
+  AfterContentInit,
 } from '@angular/core';
-import { IBmbDataTopBar } from '../bmb-breadcrumb/bmb-breadcrumb.component';
 import { IBmbColor } from '../../types/colors';
-import { IBmbActionHeader, SizeNames } from '../../types';
 import { CommonModule } from '@angular/common';
+import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
 
 @Component({
   selector: 'bmb-action-menu',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, BmbTitleContentComponent],
   templateUrl: './bmb-action-menu.component.html',
   styleUrl: './bmb-action-menu.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbActionMenuComponent {
+export class BmbActionMenuComponent implements AfterContentInit {
   title = input.required<string>();
   subtitle = input<string>();
-  dataLocalNav = input<IBmbDataTopBar[]>([]);
-  leftIcon = input<string>();
-  icon = input<string>();
+  icon = input<string>('');
   iconSize = input<number>(24);
   bgIconAppearance = input<IBmbColor>();
-  actionHeaders = input<IBmbActionHeader[]>([]);
-  isMobile = input<boolean>();
-  contentPadding = input<SizeNames>('l');
+  showHeader = input<boolean>(true);
+  isAList = input<boolean>(true);
+  projectedContent: TemplateRef<any>[] = [];
+  @ContentChildren(TemplateRef) contentTemplates!: QueryList<TemplateRef<any>>;
 
-  onClose = output();
-  onBack = output();
-
-  handleClose(): void {
-    this.onClose.emit();
-  }
-
-  handleBack(): void {
-    this.onBack.emit();
+  ngAfterContentInit() {
+    this.projectedContent = this.contentTemplates.toArray();
   }
 }

@@ -1,5 +1,15 @@
 <bmb-top-bar [showLang]="true" [mitec]="true" />
 
+<bmb-loader
+  title="Cargando..."
+  subtitle=""
+  [overlay]="true"
+  [isVisible]="true"
+  [errorState]="true"
+  [actions]="true"
+  buttonPrimary="Reintentar"
+  buttonSecondary="Salir"
+></bmb-loader>
 <bmb-theme />
 <bmb-accordion>
   <ng-template #bmbAccordionHeader>1</ng-template>

@@ -1,4 +1,6 @@
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
+import { attributes } from '../../utils/utils';
+
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbLoaderComponent } from './bmb-loader.component';
 import { BmbButtonDirective } from '../../directives/button.directive';
@@ -163,6 +165,14 @@ Below is an example of how you can use this component in HTML:
   },
 } as Meta<typeof BmbLoaderComponent>;
 
-type Story = StoryObj<BmbLoaderComponent>;
+const customizable = (): StoryFn => (args) => ({
+  props: args,
+  template: `
+    <bmb-loader
+      ${attributes(args)}
+    >
+    </bmb-loader>
+  `,
+});
 
-export const Default: Story = {};
+export const Default = customizable();

@@ -51,6 +51,10 @@ export class BmbLoaderComponent {
   }
 
   private updateBodyClass() {
+    if (this.isInsideIframe()) {
+      return;
+    }
+
     if (this.isVisible()) {
       document.body.appendChild(this.elRef.nativeElement);
 
@@ -63,10 +67,18 @@ export class BmbLoaderComponent {
   }
 
   private cleanupBody() {
+    if (this.isInsideIframe()) {
+      return;
+    }
+
     if (document.body.contains(this.elRef.nativeElement)) {
       this.renderer.removeChild(document.body, this.elRef.nativeElement);
     }
     this.renderer.removeClass(document.body, 'bmb_loader-body-overlay');
+  }
+
+  private isInsideIframe(): boolean {
+    return window.self !== window.top;
   }
 
   handleButtonPrimary() {
