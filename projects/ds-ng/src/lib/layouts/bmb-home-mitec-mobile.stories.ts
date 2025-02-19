@@ -124,7 +124,7 @@ import { attributes } from '../utils/utils';
           </section>
         </section>
         <bmb-divider />
-        <bmb-simple-header title="Mis Calificaciones" icon="school" />
+        <bmb-simple-header title="Mi avance académico" icon="school" />
         <bmb-grades
           [isMicro]="true"
           [gradeTitle]="'Período actual'"
@@ -135,11 +135,7 @@ import { attributes } from '../utils/utils';
         />
         <bmb-divider />
         <bmb-simple-header title="Mis apps" icon="apps" />
-        <bmb-frequent-apps-selector
-          [title]="'Services'"
-          [apps]="selectorApps"
-          [layout]="'button'"
-        />
+        <bmb-frequent-apps-selector [apps]="selectorApps" layout="button" />
         <bmb-divider />
         <bmb-simple-header title="CONECTA" icon="open_in_browser" />
         @switch (myActiveDotIndex) {
@@ -631,7 +627,7 @@ import { BmbModalComponent, ModalDataConfig } from '@ti-tecnologico-de-monterrey
           </section>
         </section>
         <bmb-divider />
-        <bmb-simple-header title="Mis Calificaciones" icon="school" />
+        <bmb-simple-header title="Mi avance académico" icon="school" />
         <bmb-grades
           [isMicro]="true"
           [gradeTitle]="'Período actual'"
@@ -643,9 +639,8 @@ import { BmbModalComponent, ModalDataConfig } from '@ti-tecnologico-de-monterrey
         <bmb-divider />
         <bmb-simple-header title="Mis apps" icon="apps" />
         <bmb-frequent-apps-selector
-          [title]="'Services'"
           [apps]="selectorApps"
-          [layout]="'button'"
+          layout="button"
         />
         <bmb-divider />
         <bmb-simple-header title="CONECTA" icon="open_in_browser" />

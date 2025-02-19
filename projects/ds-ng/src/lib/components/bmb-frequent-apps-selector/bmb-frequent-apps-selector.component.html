@@ -1,4 +1,4 @@
-<bmb-container [appearance]="'primary-home'" class="bmb_frequent_apps">
+<section class="bmb_frequent_apps">
   <h2 class="bmb_frequent_apps-title">{{ title() }}</h2>
   <div #container [ngClass]="getClassesFAC()">
     @for (app of apps(); track $index) {
@@ -12,4 +12,4 @@
       />
     }
   </div>
-</bmb-container>
+</section>

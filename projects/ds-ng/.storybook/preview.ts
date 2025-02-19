@@ -26,7 +26,7 @@ const preview: Preview = {
           'Foundations',
           'Micro Componentes',
           'Macro Componentes',
-          'INTERNAL',
+          'Internal',
         ],
         locales: 'en-US',
       },
