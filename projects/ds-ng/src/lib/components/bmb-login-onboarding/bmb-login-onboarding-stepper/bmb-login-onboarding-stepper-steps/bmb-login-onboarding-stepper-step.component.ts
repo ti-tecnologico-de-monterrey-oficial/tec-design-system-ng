@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   input,
-  model,
   output,
   ViewEncapsulation,
 } from '@angular/core';
@@ -26,7 +25,7 @@ export class BmbLoginOnboardingStepperStepComponent {
   cancelBackLabel = input.required<string>();
   continueLabel = input.required<string>();
 
-  isContinueDisable = model<boolean>();
+  isContinueDisable = input<boolean>();
 
   handleContinue = output<any>();
 

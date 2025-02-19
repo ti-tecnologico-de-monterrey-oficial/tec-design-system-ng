@@ -82,3 +82,9 @@ export interface IBmbActionHeader {
   target?: IBmbTargetLink;
   action: () => void;
 }
+
+export interface IBmbLinkConfiguration {
+  label: string;
+  link: string;
+  target?: IBmbTargetLink;
+}

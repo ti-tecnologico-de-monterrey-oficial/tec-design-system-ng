@@ -1,7 +1,7 @@
 import { moduleMetadata, type Meta, type StoryFn } from '@storybook/angular';
 import { BmbLoginOnboardingComponent } from './bmb-login-onboarding.component';
 import { Component } from '@angular/core';
-import { IBmbLoginOnboarding, IBmbUserInfo } from './types';
+import { IBmbLoginOnboarding, IBmbUserInfo } from '../../types';
 
 @Component({
   standalone: true,
@@ -185,6 +185,28 @@ Below is an example of how you can use this component in HTML:
     },
   },
   argTypes: {
+    loginOnBoardingCustomization: {
+      name: 'Customization',
+      control: 'object',
+      description: `
+Sets the customization of the steps.
+
+    IBmbLoginOnBoardingCustomization {
+      anotherAccount: IBmbLinkConfiguration;
+      forgottenPassword: IBmbLinkConfiguration;
+    }
+
+    IBmbLinkConfiguration {
+      label: string;
+      link: string;
+      target?: IBmbTargetLink;
+    }
+      `,
+      table: {
+        category: 'properties',
+        type: { summary: 'IBmbLoginOnBoardingCustomization' },
+      },
+    },
     handleRequest: {
       name: 'Handle Request',
       control: null,
