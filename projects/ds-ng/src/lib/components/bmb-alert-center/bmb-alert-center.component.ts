@@ -46,15 +46,17 @@ export class BmbAlertCenterComponent {
   alerts = input.required<IBmbDataAlert[]>();
   dateFormat = input<string>('dd/MM/yyyy');
   isSmall = input<boolean>(false);
+  tabsName = input<string[]>(['Todos', 'No Leídos', 'Favoritos', 'Archivados']);
 
   onChangeAlertStatus = output<IBmbDataAlertsOutput>();
+  alertEvent = output<IBmbDataAlert>();
 
   @ViewChild('detailContent', { read: TemplateRef })
   detailContent?: TemplateRef<any>;
 
   constructor(private matDialog: MatDialog) {}
 
-  tabsName = ['Todos', 'No Leídos', 'Favoritos', 'Archivados'];
+
   tabs: IBmbTab[] = [];
   selectedTab = 0;
   selectedAlert: IBmbDataAlert[] = [];
@@ -69,7 +71,7 @@ export class BmbAlertCenterComponent {
   visibleAlert: IBmbDataAlertsParsed | null = null;
 
   ngOnInit(): void {
-    this.tabs = this.tabsName.map((tab, index) => {
+    this.tabs = this.tabsName().map((tab, index) => {
       const badge = this.alerts().filter((alert) => !alert.isRead).length;
       return {
         id: index,
@@ -155,8 +157,8 @@ export class BmbAlertCenterComponent {
     }
   }
 
-  placeholderEvent(id: string | number): void {
-    console.log('Event', id);
+  handleAlertEvent(alert: IBmbDataAlert): void {
+    this.alertEvent.emit(alert);
   }
 
   handleChangeAlertStatus(alert: IBmbDataAlertsOutput): void {

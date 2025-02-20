@@ -92,6 +92,15 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'IBmbDataAlertsOutput' },
       },
     },
+    alertEvent: {
+      name: 'Alert Event',
+      action: 'alertEvent',
+      description: 'Event emitted when an alert is clicked.',
+      table: {
+        category: 'Events',
+        type: { summary: 'IBmbDataAlert' },
+      },
+    }
   },
   args: {
     tabsName: ['Todos', 'No Leídos', 'Favoritos', 'Archivados'],
@@ -221,6 +230,9 @@ Below is an example of how you can use this component in HTML:
     ],
     onChangeAlertStatus: (event: any) => {
       console.log('onChangeAlertStatus', event);
+    },
+    alertEvent: (event: any) => {
+      console.log('alertEvent', event);
     },
   },
 } as Meta<typeof BmbAlertCenterComponent>;

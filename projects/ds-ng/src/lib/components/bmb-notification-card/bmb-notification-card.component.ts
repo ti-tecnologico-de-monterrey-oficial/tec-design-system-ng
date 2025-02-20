@@ -5,6 +5,7 @@ import {
   Input,
   OnChanges,
   OnInit,
+  output,
   SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
@@ -15,16 +16,21 @@ import { BmbAlertCenterComponent } from '../bmb-alert-center/bmb-alert-center.co
 import { IBmbDataAlert } from '../bmb-alert-center/types';
 import { BmbTabsComponent, IBmbTab } from '../bmb-tabs/bmb-tabs.component';
 import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
+import { BmbCarouselComponent} from '../bmb-carousel/bmb-carousel.component';
+import { BmbButtonDirective } from '../../directives/button.directive';
+import { BmbImageComponent } from '../bmb-image/bmb-image.component';
 
 @Component({
   selector: 'bmb-notification-card',
   standalone: true,
   imports: [
-    BmbIconComponent,
     CommonModule,
     BmbAlertCenterComponent,
     BmbTabsComponent,
     BmbHomeCardComponent,
+    BmbCarouselComponent,
+    BmbButtonDirective,
+    BmbImageComponent,
   ],
   templateUrl: './bmb-notification-card.component.html',
   styleUrl: './bmb-notification-card.component.scss',
@@ -35,6 +41,8 @@ export class BmbNotificationCardComponent implements OnInit {
   data = input<IBmbDataAlert[]>([]);
   alerts = input<IBmbDataAlert[]>([]);
   hideExpandBtn = input<boolean>(false);
+
+  alertEvent = output<IBmbDataAlert>();
 
   expanded: boolean = false;
   activeData: any = [];
@@ -69,5 +77,9 @@ export class BmbNotificationCardComponent implements OnInit {
       },
       0,
     );
+  }
+
+  handleAlertEvent(alert: IBmbDataAlert) {
+    this.alertEvent.emit(alert);
   }
 }

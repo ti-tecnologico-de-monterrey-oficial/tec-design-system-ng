@@ -92,7 +92,7 @@
               (click)="
                 item.event
                   ? item?.event(visibleAlert.id)
-                  : placeholderEvent(visibleAlert.id)
+                  : handleAlertEvent(visibleAlert)
               "
             >
               {{ item.text }}
