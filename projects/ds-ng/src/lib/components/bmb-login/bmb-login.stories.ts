@@ -97,7 +97,9 @@ Below is an example of how you can use this component in HTML:
     },
     onRequest: {
       name: 'On Request',
-      control: null,
+      control: {
+        type: '',
+      },
       description:
         'Emits an event when a request is made, typically when the continue button is clicked.',
       table: {
@@ -107,11 +109,88 @@ Below is an example of how you can use this component in HTML:
     },
     onContinue: {
       name: 'On Continue',
-      control: null,
+      control: {
+        type: '',
+      },
       description:
         'Emits an event when the continue action is completed successfully.',
       table: {
         type: { summary: 'function' },
+        category: 'Events',
+      },
+    },showRememberMeCheckbox: {
+      name: 'Shows remember me checkbox',
+      control: 'boolean',
+      description: 'Shows remember me checkbox when true',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    rememberMeCheckboxLabel: {
+      name: 'Remember me checkbox label',
+      control: 'text',
+      description: 'Sets the label to be displayed for remember me checkbox.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'Recordarme' },
+      },
+    },
+    showLoginAsGuest:{
+      name: 'Show log in as a guest',
+      control: 'boolean',
+      description: 'Shows log in as a guest when true',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    loginAsGuestLabel: {
+      name: 'Log in as a guest label',
+      control: 'text',
+      description: 'Sets the label to be displayed for log in as a guest.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string  (required)' },
+        defaultValue: { summary: 'Entrar como invitado' },
+      },
+    },
+    loginAsGuestLink: {
+      name: 'Log in as a guest link',
+      control: 'text',
+      description:
+        'Sets the link for log in as a guest.',
+      table: {
+        category: 'Events',
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    loginAsGuestTarget: {
+      name: 'Log in as a guest target',
+      control: {
+        type: 'radio',
+      },
+      options: ['_blank', '_parent', '_self', '_top'],
+      description:
+        'Sets the target for log in as a guest.',
+      table: {
+        category: 'Events',
+        type: { summary: 'IBmbTargetLink' },
+        defaultValue: { summary: '_blank' },
+      },
+    },
+    onRememberMeChecked: {
+      name: 'Remember me checked',
+      control: {
+        type: '',
+      },
+      description:
+        'Event that is emitted when the state of the checkbox changes, such as when it is checked or unchecked. This can be used to trigger functions or actions based on the checkbox’s state change.',
+      table: {
         category: 'Events',
       },
     },
@@ -120,6 +199,12 @@ Below is an example of how you can use this component in HTML:
     forgottenPasswordLabel: '¿Olvidaste tu contraseña?',
     forgottenPasswordLink: '',
     forgottenPasswordTarget: '_blank',
+    showRememberMeCheckbox: false,
+    rememberMeCheckboxLabel: 'Recordarme',
+    showLoginAsGuest: false,
+    loginAsGuestLabel: 'Entrar como invitado',
+    loginAsGuestLink: '',
+    loginAsGuestTarget: '_blank',
     buttonLabel: 'Ingresar',
     actionHeaders: [
       {
@@ -153,6 +238,15 @@ Below is an example of how you can use this component in HTML:
         action: () => {},
       },
     ],
+    onRequest: () => {
+      alert('On request');
+    },
+    onContinue: () => {
+      alert('On continue');
+    },
+    onRememberMeChecked: () => {
+      alert('Remember me clicked');
+    },
   },
 } as Meta<typeof BmbLoginComponent>;
 

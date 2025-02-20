@@ -137,9 +137,6 @@ Below is an example of how you can use this component in HTML:
         'Event that is emitted when the state of the checkbox changes, such as when it is checked or unchecked. This can be used to trigger functions or actions based on the checkbox’s state change.',
       table: {
         category: 'Events',
-        type: {
-          summary: '(onRememberMeChecked)="handleCheckboxChange($event)"',
-        },
       },
     },
   },
