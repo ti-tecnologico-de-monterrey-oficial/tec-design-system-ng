@@ -1,0 +1,34 @@
+<div class="bmb_carousel">
+  <section class="bmb_carousel-content">
+    <div
+      class="bmb_carousel-content-list"
+      [style]="
+        '--numberOfElements: ' +
+        numberOfElements.length +
+        '; --selected-child: ' +
+        selectedIndex +
+        ';'
+      "
+    >
+      <ng-content></ng-content>
+    </div>
+  </section>
+
+  <footer class="bmb_carousel-footer">
+    <ul
+      class="bmb_carousel-list"
+      [style]="'--selected-child: ' + selectedIndex + ';'"
+    >
+      @for (dot of numberOfElements; track $index) {
+        <li class="bmb_carousel-list-item">
+          <button
+            class="bmb_carousel-dot"
+            (click)="selectItem($index)"
+            [title]="'Slide ' + ($index + 1)"
+            [ngClass]="{ 'bmb_carousel-dot-active': selectedIndex === $index }"
+          ></button>
+        </li>
+      }
+    </ul>
+  </footer>
+</div>
