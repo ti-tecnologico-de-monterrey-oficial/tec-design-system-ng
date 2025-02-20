@@ -3,6 +3,8 @@ import {
   Component,
   input,
   output,
+  TemplateRef,
+  ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbTabsComponent, IBmbTab } from '../bmb-tabs/bmb-tabs.component';
@@ -18,6 +20,10 @@ import {
   IBmbDataAlertsOutput,
 } from './types';
 import { BmbButtonDirective } from '../../directives/button.directive';
+import { BmbImageComponent } from '../bmb-image/bmb-image.component';
+import { BmbModalComponent } from '../bmb-modal/bmb-modal.component';
+import { ModalDataConfig } from '../bmb-modal/bmb-modal.interface';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'bmb-alert-center',
@@ -29,6 +35,7 @@ import { BmbButtonDirective } from '../../directives/button.directive';
     BmbLayoutItemDirective,
     BmbAlertCenterFormComponent,
     BmbButtonDirective,
+    BmbImageComponent,
   ],
   templateUrl: './bmb-alert-center.component.html',
   styleUrl: './bmb-alert-center.component.scss',
@@ -36,12 +43,18 @@ import { BmbButtonDirective } from '../../directives/button.directive';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbAlertCenterComponent {
-  tabsName = ['Todos', 'No Leídos', 'Favoritos', 'Archivados'];
   alerts = input.required<IBmbDataAlert[]>();
   dateFormat = input<string>('dd/MM/yyyy');
+  isSmall = input<boolean>(false);
 
   onChangeAlertStatus = output<IBmbDataAlertsOutput>();
 
+  @ViewChild('detailContent', { read: TemplateRef })
+  detailContent?: TemplateRef<any>;
+
+  constructor(private matDialog: MatDialog) {}
+
+  tabsName = ['Todos', 'No Leídos', 'Favoritos', 'Archivados'];
   tabs: IBmbTab[] = [];
   selectedTab = 0;
   selectedAlert: IBmbDataAlert[] = [];
@@ -68,11 +81,6 @@ export class BmbAlertCenterComponent {
 
     this.orderedEvents = this.orderEvents(this.alerts());
     this.eventsInCategories = this.orderCategories(this.orderedEvents);
-  }
-
-  getClassList(): string[] {
-    const classList = ['bmb_alert-center'];
-    return classList;
   }
 
   handleTabChange(tabId: IBmbTab): void {
@@ -134,6 +142,17 @@ export class BmbAlertCenterComponent {
 
   handleShowAlert(item: IBmbDataAlertsParsed): void {
     this.visibleAlert = item;
+
+    if (this.isSmall()) {
+      const data: ModalDataConfig = {
+        title: item.title,
+        content: this.detailContent,
+        size: 'small',
+        type: 'informative',
+        scrollable: true,
+      };
+      this.matDialog.open(BmbModalComponent, { data });
+    }
   }
 
   placeholderEvent(id: string | number): void {

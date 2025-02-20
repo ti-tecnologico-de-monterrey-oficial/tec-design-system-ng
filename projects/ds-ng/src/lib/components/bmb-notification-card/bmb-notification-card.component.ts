@@ -3,58 +3,54 @@ import {
   Component,
   input,
   Input,
+  OnChanges,
   OnInit,
+  SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { IBmbNotificationCardData } from './types';
 import { CommonModule } from '@angular/common';
+import { BmbAlertCenterComponent } from '../bmb-alert-center/bmb-alert-center.component';
+import { IBmbDataAlert } from '../bmb-alert-center/types';
+import { BmbTabsComponent, IBmbTab } from '../bmb-tabs/bmb-tabs.component';
+import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
 
 @Component({
   selector: 'bmb-notification-card',
   standalone: true,
-  imports: [BmbIconComponent, CommonModule],
+  imports: [
+    BmbIconComponent,
+    CommonModule,
+    BmbAlertCenterComponent,
+    BmbTabsComponent,
+    BmbHomeCardComponent,
+  ],
   templateUrl: './bmb-notification-card.component.html',
   styleUrl: './bmb-notification-card.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbNotificationCardComponent implements OnInit {
-  @Input() data: IBmbNotificationCardData | null = null;
+  data = input<IBmbDataAlert[]>([]);
+  alerts = input<IBmbDataAlert[]>([]);
   hideExpandBtn = input<boolean>(false);
 
   expanded: boolean = false;
   activeData: any = [];
   activeTab: number = 1;
   activeDot: number = 0;
+  tabs = [
+    { id: 1, title: 'Notificaciones', badge: 0, isActive: true },
+    { id: 2, title: 'Anuncios' },
+  ];
 
   ngOnInit(): void {
-    this.activeTab = 1;
-    if (this.data !== null) {
-      this.activeData = this.data!.new;
-    }
+    this.tabs[0].badge = this.newAlerts()
   }
 
-  setActiveTab(tab: number) {
-    this.activeTab = tab;
-
-    if (this.data !== null) {
-      switch (tab) {
-        case 1:
-          this.activeData = this.data!.new;
-          break;
-        case 2:
-          this.activeData = this.data!.all;
-          break;
-        case 3:
-          this.activeData = this.data!.seen;
-          break;
-
-        default:
-          this.activeData = this.data!.new;
-          break;
-      }
-    }
+  setActiveTab(tab: IBmbTab) {
+    this.activeTab = tab.id;
   }
 
   onDotPress(event: any) {
@@ -63,5 +59,15 @@ export class BmbNotificationCardComponent implements OnInit {
 
   setSize(size: string) {
     this.expanded = size === 'expand' ? true : false;
+  }
+
+  newAlerts() {
+    return this.data().reduce(
+      (acc: number, alert: IBmbDataAlert) => {
+        if (!alert.isRead) return acc + 1;
+        return acc;
+      },
+      0,
+    );
   }
 }

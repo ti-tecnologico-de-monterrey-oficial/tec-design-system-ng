@@ -1,108 +1,24 @@
 <section class="bmb_home-notification-card">
-  <div class="bmb_home-notification-card-header">
-    <div class="bmb_home-notification-card-header-title">
-      <div class="bmb_home-notification-card-header-iconbox">
-        <bmb-icon
-          class="bmb_home-notification-card-header-iconbox-icon"
-          [icon]="'notifications'"
-        />
-      </div>
-      <div class="bmb_home-notification-card-header-title-text">
-        <h2>Mis Notificaciones</h2>
-      </div>
-    </div>
-    @if (!hideExpandBtn()) {
-      <div class="bmb_home-notification-card-header-trailing">
-        @if (expanded) {
-          <bmb-icon
-            (click)="setSize('collapse')"
-            class="bmb_home-notification-card-header-trailing-close"
-            [icon]="'close_fullscreen'"
-            onkeypress=""
-          />
-        } @else {
-          <bmb-icon
-            (click)="setSize('expand')"
-            class="bmb_home-notification-card-header-trailing-expand"
-            [icon]="'fit_screen'"
-            onkeypress=""
+  <bmb-home-card
+    leftIcon="chevron_left"
+    icon="notifications"
+    bgIconAppearance="red-primary"
+    title="Mis Notificaciones"
+    [isMobile]="false"
+  >
+    <bmb-tabs [tabs]="tabs" (selected)="setActiveTab($event)" />
+    <div class="bmb_home-notification-card-content">
+      @switch (activeTab) {
+        @case (1) {
+          <bmb-alert-center
+            [alerts]="data()"
+            [isSmall]="true"
           />
         }
-      </div>
-    }
-  </div>
-  <div class="bmb_home-notification-card-tabs">
-    <div
-      class="bmb_home-notification-card-tabs-container"
-      [ngClass]="{ 'bmb_home-notification-card-tabs-active': activeTab == 1 }"
-      (click)="setActiveTab(1)"
-      onkeypress=""
-    >
-      <span class="bmb_home-notification-card-tabs-container-text">Nuevos</span>
-    </div>
-    <div
-      class="bmb_home-notification-card-tabs-container"
-      [ngClass]="{ 'bmb_home-notification-card-tabs-active': activeTab == 2 }"
-      (click)="setActiveTab(2)"
-      onkeypress=""
-    >
-      <span class="bmb_home-notification-card-tabs-container-text">Todos</span>
-    </div>
-    <div
-      class="bmb_home-notification-card-tabs-container"
-      [ngClass]="{ 'bmb_home-notification-card-tabs-active': activeTab == 3 }"
-      (click)="setActiveTab(3)"
-      onkeypress=""
-    >
-      <span class="bmb_home-notification-card-tabs-container-text">
-        Leídos
-      </span>
-    </div>
-  </div>
-  <div class="bmb_home-notification-card-content">
-    @if (data != null) {
-      @if (activeData.length == 0) {
-        <div class="bmb_home-notification-card-container">
-          <h1 class="bmb_home-notification-card-container-error">
-            No hay notificaciones!
-          </h1>
-        </div>
-      } @else {
-        @for (data of activeData; track $index) {
-          <div class="bmb_home-notification-card-container">
-            <div class="bmb_home-notification-card-container-card">
-              <div
-                class="bmb_home-notification-card-container-card-bullet-container"
-              >
-                <span class="bmb_home-notification-card-container-card-bullet">
-                </span>
-              </div>
-              <div
-                class="bmb_home-notification-card-container-card-description-container"
-              >
-                <p
-                  class="bmb_home-notification-card-container-card-description"
-                >
-                  {{ data.description }}
-                </p>
-              </div>
-              <div
-                class="bmb_home-notification-card-container-card-legend-container"
-              >
-                <span class="bmb_home-notification-card-container-card-legend"
-                  >Hace: {{ data.time }}</span
-                >
-              </div>
-            </div>
-          </div>
+        @case (2) {
+          <div>test</div>
         }
       }
-    } @else {
-      <div class="bmb_home-notification-card-container">
-        <h1 class="bmb_home-notification-card-container-error">
-          No hay notificaciones
-        </h1>
-      </div>
-    }
-  </div>
+    </div>
+  </bmb-home-card>
 </section>
