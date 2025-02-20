@@ -85,6 +85,15 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'IBmbDataAlert[]' },
         defaultValue: { summary: `[]` },
       },
+    },
+    alertEvent: {
+      name: 'Alert Event',
+      action: 'alertEvent',
+      description: 'Event emitted when an alert is clicked.',
+      table: {
+        category: 'Events',
+        type: { summary: 'IBmbDataAlert' },
+      },
     }
   },
   args: {
