@@ -69,7 +69,7 @@
             <bmb-icon [icon]="'palette'" [size]="24" />
             <span class="bmb_profile-info-container-item-text">Tema</span>
           </div>
-          <bmb-theme [initialTheme]="'light'" />
+          <bmb-theme leftText="Light" rightText="Dark" />
         </section>
       </section>
       <section class="bmb_profile-access">
@@ -95,9 +95,9 @@
           [target]="targetLinks()!"
         />
       </section>
-      <span class="bmb_profile-version">
+      <div class="bmb_profile-version">
         {{ versionLabel() }}
-      </span>
+      </div>
       <section class="bmb_profile-close">
         <button
           bmbButton
