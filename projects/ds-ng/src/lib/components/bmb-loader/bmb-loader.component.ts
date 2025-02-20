@@ -10,6 +10,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbButtonDirective } from '../../directives/button.directive';
+import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
 
 @Component({
   selector: 'bmb-loader',
@@ -21,7 +22,9 @@ import { BmbButtonDirective } from '../../directives/button.directive';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbLoaderComponent {
+  appearance = input<IBbmBgAppearance>('normal');
   title = input<string>('');
+  icon = input<string>('wifi_off');
   subtitle = input<string>('');
   overlay = input<boolean>(false);
   isVisible = input<boolean>(true);
