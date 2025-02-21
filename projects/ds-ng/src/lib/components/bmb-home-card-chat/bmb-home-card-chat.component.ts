@@ -25,7 +25,7 @@ import { BmbChatBubblesComponent } from '../bmb-chat-bubbles/bmb-chat-bubbles.co
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbHomeCardChatComponent{
+export class BmbHomeCardChatComponent {
   title = input<string>('Asistente TecBot');
   subtitle = input<string>('Chat');
   icon = input<string>('smart_toy');
@@ -34,7 +34,7 @@ export class BmbHomeCardChatComponent{
   botList = input<IBotType[]>();
   leftIcon = input<string>('chevron_left');
   bgIconAppearance = input<IBmbColor>('charade-500');
-  messagesHistory = input.required<IBmbChatMessage[]>()
+  messagesHistory = input.required<IBmbChatMessage[]>();
 
   currentBot = model<IBotType>();
   isLoading = model<boolean>();

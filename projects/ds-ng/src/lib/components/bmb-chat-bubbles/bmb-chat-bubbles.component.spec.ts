@@ -6,7 +6,7 @@ describe('BmbChatBubblesComponent', () => {
   let component: BmbChatBubblesComponent;
   let fixture: ComponentFixture<BmbChatBubblesComponent>;
 
-  beforeEach( () => {
+  beforeEach(() => {
     fixture = TestBed.createComponent(BmbChatBubblesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

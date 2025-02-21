@@ -12,10 +12,7 @@
   >
     <div class="bmb_chat-card-container">
       @for (message of messagesHistory(); track $index) {
-        <bmb-chat-bubble
-          [message]="message"
-        />
-
+        <bmb-chat-bubble [message]="message" />
       }
     </div>
     <div class="bmb_chat-card-chatBar">

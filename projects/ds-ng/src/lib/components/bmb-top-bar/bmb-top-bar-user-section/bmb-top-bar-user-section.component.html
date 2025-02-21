@@ -11,7 +11,7 @@
         <bmb-icon icon="help" [size]="32" />
       </span>
     </button>
-    @if(showNotifications && mitec){
+    @if (showNotifications && mitec) {
       <button (click)="openNotifications($event)">
         <bmb-icon
           class="bmb_top-bar-user-section-icon"
@@ -34,7 +34,7 @@
         ></bmb-notification-card>
       </dialog>
     }
-    @if(!mitec && windowWidth > 1000){
+    @if (!mitec && windowWidth > 1000) {
       <button
         class="bmb_top-bar-user-section-user-image"
         (click)="handleUserClick()"
@@ -46,24 +46,23 @@
         />
       </button>
     }
-
   </div>
-   @if(mitec){
-     <button
-       class="bmb_top-bar-user-section-user-image"
-       (click)="handleUserClick()"
-     >
-       <bmb-user-image
-         [image]="userInformation.image"
-         size="mobile-small"
-         [altImage]="userInformation.name"
-       />
-     </button>
-   }
-    @if(showUserName && mitec){
-      <h3 class="bmb_top-bar-user-section-title">{{ userInformation.name }}</h3>
-      <span class="bmb_top-bar-user-section-role">{{
-        userInformation.role
-      }}</span>
-    }
+  @if (mitec) {
+    <button
+      class="bmb_top-bar-user-section-user-image"
+      (click)="handleUserClick()"
+    >
+      <bmb-user-image
+        [image]="userInformation.image"
+        size="mobile-small"
+        [altImage]="userInformation.name"
+      />
+    </button>
+  }
+  @if (showUserName && mitec) {
+    <h3 class="bmb_top-bar-user-section-title">{{ userInformation.name }}</h3>
+    <span class="bmb_top-bar-user-section-role">{{
+      userInformation.role
+    }}</span>
+  }
 </section>
