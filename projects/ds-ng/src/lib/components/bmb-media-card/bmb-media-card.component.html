@@ -1,8 +1,30 @@
-<section
-  class="bmb_media-card"
-  [ngClass]="'bmb_media-card-' + type()"
-  [ngStyle]="{ width: width(), 'aspect-ratio': ratio() }"
->
+@if (
+  isExternalLink(link()) &&
+  type() !== "floating" &&
+  type() !== "author_detail" &&
+  !isBlurredBackdrop()
+) {
+  <a
+    class="bmb_media-card bmb_media-card-link"
+    [ngClass]="'bmb_media-card-' + type()"
+    [ngStyle]="{ width: width(), 'aspect-ratio': ratio() }"
+    [href]="link()"
+    [target]="target()"
+    rel="noopener noreferrer"
+  >
+    <ng-container [ngTemplateOutlet]="mediaCardContent"></ng-container>
+  </a>
+} @else {
+  <section
+    class="bmb_media-card"
+    [ngClass]="'bmb_media-card-' + type()"
+    [ngStyle]="{ width: width(), 'aspect-ratio': ratio() }"
+  >
+    <ng-container [ngTemplateOutlet]="mediaCardContent"></ng-container>
+  </section>
+}
+
+<ng-template #mediaCardContent>
   <div class="bmb_media-card-image-container">
     @if (isBlurredBackdrop()) {
       <figure
@@ -77,4 +99,4 @@
       <ng-content></ng-content>
     </section>
   </div>
-</section>
+</ng-template>
