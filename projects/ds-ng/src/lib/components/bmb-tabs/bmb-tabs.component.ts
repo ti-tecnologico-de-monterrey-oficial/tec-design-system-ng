@@ -17,6 +17,8 @@ export interface IBmbTab {
   title: string;
   isActive?: boolean;
   badge?: number;
+  isMobile?: boolean;
+  isDesktop?: boolean;
 }
 
 @Component({

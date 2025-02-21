@@ -46,10 +46,24 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string' },
       },
     },
+    onIconClick: {
+      name: 'On icon click',
+      control: {
+        type: '',
+      },
+      description: 'Emits the icon click event.',
+      table: {
+        category: 'Events',
+        type: { summary: 'function' },
+      },
+    },
   },
   args: {
     title: 'Mis apps',
     icon: 'apps',
+    onIconClick: () => {
+      alert('On icon click');
+    },
   },
 } as Meta<typeof BmbSimpleHeaderComponent>;
 

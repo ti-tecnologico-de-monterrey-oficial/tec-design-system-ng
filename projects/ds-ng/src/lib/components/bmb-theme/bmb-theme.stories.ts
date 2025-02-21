@@ -34,6 +34,54 @@ Below is an example of how you can use this component in HTML:
     },
   },
   argTypes: {
+    leftText: {
+      name: 'Left Text',
+      control: {
+        type: 'text',
+      },
+      description:
+        'Text displayed on the left side of the switch. Useful for indicating the action or state associated with the "on" position. Do not use the leftIcon property if you want to use leftText.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    leftIcon: {
+      name: 'Left Icon',
+      control: { type: 'text' },
+      description:
+        'Icon displayed on the left side of the switch. It visually represents the action or state associated with the "on" position. Please use Material icons: https://fonts.google.com/icons. Do not use the leftText property if you want to use leftIcon.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'light_mode' },
+      },
+    },
+    rightText: {
+      name: 'Right Text',
+      control: {
+        type: 'text',
+      },
+      description:
+        'Text displayed on the right side of the switch. Useful for indicating the action or state associated with the "off" position. Do not use the rightIcon property if you want to use rightText',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    rightIcon: {
+      name: 'Right Icon',
+      control: { type: 'text' },
+      description:
+        'Icon displayed on the right side of the switch. It visually represents the action or state associated with the "off" position. Please use Material icons: https://fonts.google.com/icons. Do not use the rightText property if you want to use rightIcon.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'dark_mode' },
+      },
+    },
     initialTheme: {
       name: 'Initial Theme',
       control: {
@@ -60,7 +108,12 @@ Below is an example of how you can use this component in HTML:
     },
   },
   args: {
-    initialTheme: 'dark',
+    initialTheme: 'light',
+    leftIcon: 'light_mode',
+    rightIcon: 'dark_mode',
+    leftText: '',
+    rightText: '',
+    showControls: true,
   },
 } as Meta<typeof BmbThemeComponent>;
 

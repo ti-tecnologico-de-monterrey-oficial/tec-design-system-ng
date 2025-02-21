@@ -3,6 +3,13 @@
     [forgottenPasswordLabel]="forgottenPasswordLabel()"
     [forgottenPasswordLink]="forgottenPasswordLink()"
     [forgottenPasswordTarget]="forgottenPasswordTarget()"
+    [showRememberMeCheckbox]="showRememberMeCheckbox()"
+    [rememberMeCheckboxLabel]="rememberMeCheckboxLabel()"
+    [showLoginAsGuest]="showLoginAsGuest()"
+    [loginAsGuestLabel]="loginAsGuestLabel()"
+    [loginAsGuestLink]="loginAsGuestLink()"
+    [loginAsGuestTarget]="loginAsGuestTarget()"
+    (onRememberMeChecked)="handleRememberMe($event)"
     [(onContinue)]="isEnabled"
     (onFormGroup)="handleFormGroup($event)"
   />

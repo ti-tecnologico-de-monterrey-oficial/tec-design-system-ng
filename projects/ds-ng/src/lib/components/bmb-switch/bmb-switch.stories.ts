@@ -136,6 +136,8 @@ Below is an example of how you can use this component in HTML:
   args: {
     leftText: 'Light',
     rightText: 'Dark',
+    leftIcon: '',
+    rightIcon: '',
     id: '1',
     isChecked: false,
     disabled: false,

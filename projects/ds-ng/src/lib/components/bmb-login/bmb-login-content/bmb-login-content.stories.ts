@@ -65,7 +65,7 @@ Below is an example of how you can use this component in HTML:
     },
     showRememberMeCheckbox: {
       name: 'Shows remember me checkbox',
-      control: null,
+      control: 'boolean',
       description: 'Shows remember me checkbox when true',
       table: {
         category: 'Properties',
@@ -83,14 +83,47 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: 'Recordarme' },
       },
     },
-    onContinue: {
-      name: 'On Continue',
-      control: null,
-      description:
-        'Emits an event when the continue action is completed successfully.',
+    showLoginAsGuest: {
+      name: 'Show log in as a guest',
+      control: 'boolean',
+      description: 'Shows log in as a guest when true',
       table: {
-        type: { summary: 'function' },
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    loginAsGuestLabel: {
+      name: 'Log in as a guest label',
+      control: 'text',
+      description: 'Sets the label to be displayed for log in as a guest.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string  (required)' },
+        defaultValue: { summary: 'Entrar como invitado' },
+      },
+    },
+    loginAsGuestLink: {
+      name: 'Log in as a guest link',
+      control: 'text',
+      description: 'Sets the link for log in as a guest.',
+      table: {
         category: 'Events',
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    loginAsGuestTarget: {
+      name: 'Log in as a guest target',
+      control: {
+        type: 'radio',
+      },
+      options: ['_blank', '_parent', '_self', '_top'],
+      description: 'Sets the target for log in as a guest.',
+      table: {
+        category: 'Events',
+        type: { summary: 'IBmbTargetLink' },
+        defaultValue: { summary: '_blank' },
       },
     },
     onRememberMeChecked: {
@@ -102,9 +135,6 @@ Below is an example of how you can use this component in HTML:
         'Event that is emitted when the state of the checkbox changes, such as when it is checked or unchecked. This can be used to trigger functions or actions based on the checkbox’s state change.',
       table: {
         category: 'Events',
-        type: {
-          summary: '(onRememberMeChecked)="handleCheckboxChange($event)"',
-        },
       },
     },
   },
@@ -114,11 +144,12 @@ Below is an example of how you can use this component in HTML:
     forgottenPasswordTarget: '_blank',
     showRememberMeCheckbox: false,
     rememberMeCheckboxLabel: 'Recordarme',
-    onContinue: () => {
-      alert('onContinue');
-    },
+    showLoginAsGuest: false,
+    loginAsGuestLabel: 'Entrar como invitado',
+    loginAsGuestLink: '',
+    loginAsGuestTarget: '_blank',
     onRememberMeChecked: () => {
-      window.alert('Remember me clicked');
+      alert('Remember me clicked');
     },
   },
 } as Meta<typeof BmbLoginContentComponent>;
