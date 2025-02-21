@@ -78,11 +78,24 @@ export class BmbCalendarComponent {
 
   constructor(private eventsSignal: BmbCalendarService) {}
 
+  currentTime: DateTime = DateTime.now();
+  private timerId: any
+
+  ngOnDestroy() {
+    if (this.timerId) {
+      clearInterval(this.timerId);
+    }
+  }
+
   ngOnInit() {
     this.view.update((value) => (window.innerWidth < 1000 ? 'day' : value));
     if (this.currentDate !== '') {
       this.now = DateTime.fromISO(this.currentDate);
     }
+
+    this.timerId = setInterval(() => {
+      this.updateTime();
+    }, 60000); // Actualiza cada 60000 milisegundos (1 minuto)
   }
 
   now: DateTime = DateTime.now();
@@ -90,6 +103,10 @@ export class BmbCalendarComponent {
   renderWeekDays: DateTime[] = getWeekDays(this.now);
   selectedEvent: { event: IBmbCalendarEvent; position: any } | null = null;
   isListShowing: boolean = false;
+
+  updateTime() {
+    this.currentTime = DateTime.now();
+  }
 
   handleDateChange(range: IBmbCalendarView, now: DateTime): void {
     this.view.set(range);
@@ -144,7 +161,17 @@ export class BmbCalendarComponent {
   }
 
   getEvents() {
-    return this.eventsSignal.getEventList();
+    return [
+      {
+        title: 'test title',
+        detail: 'test detail',
+        start: '2025-02-21T13:00:00',
+        end: '2025-02-21T14:00:00',
+        modalTitle: 'test modal title',
+        status: 'test status',
+      }
+    ]
+    // return this.eventsSignal.getEventList();
   }
 
   getIsLoading() {

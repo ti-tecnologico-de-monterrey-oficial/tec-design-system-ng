@@ -3,14 +3,18 @@
   bmbLayout
   [dynamicCols]="true"
   margin="none"
+  alignItems="center"
 >
   <div
     bmbLayoutItem
     [isDynamicItem]="true"
     bmbButtonGroup
-    appearance="secondary-filled"
+    appearance="transparent"
     size="large"
   >
+    <button (click)="handleChangeDate('-')">
+      Hoy
+    </button>
     <button (click)="handleChangeDate('-')">
       <bmb-icon [icon]="'arrow_back_ios'" />
     </button>
@@ -26,7 +30,7 @@
   >
     {{ getTitle() }}
   </h1>
-  <div bmbButtonGroup appearance="secondary-filled" size="large">
+  <div bmbButtonGroup appearance="secondary-outlined" size="large">
     <button (click)="handleRangeChange('day')" [disabled]="view === 'day'">
       Day
     </button>

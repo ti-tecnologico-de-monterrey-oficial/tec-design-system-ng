@@ -36,6 +36,7 @@
     }
 
     &-name {
+      text-transform: capitalize;
       @include mixins.media-query(999, "max") {
         display: none;
       }

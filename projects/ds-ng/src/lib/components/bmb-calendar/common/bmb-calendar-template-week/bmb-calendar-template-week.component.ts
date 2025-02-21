@@ -5,6 +5,7 @@ import {
   ViewEncapsulation,
   Output,
   EventEmitter,
+  input,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Info, DateTime } from 'luxon';
@@ -18,6 +19,7 @@ import { BmbCalendarHourViewComponent } from '../bmb-calendar-hour-view/bmb-cale
 import { eventsInDate } from '../../utils';
 import { BmbCalendarScheduleCardsComponent } from '../bmb-calendar-schedule-cards/bmb-calendar-schedule-cards.component';
 import { orderDayNames } from '../../../../utils/utils';
+import { BmbCalendarTimeIndicatorComponent } from '../bmb-calendar-time-indicator/bmb-calendar-time-indicator.component';
 
 @Component({
   selector: 'bmb-calendar-template-week',
@@ -26,6 +28,7 @@ import { orderDayNames } from '../../../../utils/utils';
     CommonModule,
     BmbCalendarHourViewComponent,
     BmbCalendarScheduleCardsComponent,
+    BmbCalendarTimeIndicatorComponent,
   ],
   templateUrl: './bmb-calendar-template-week.component.html',
   styleUrl: './bmb-calendar-template-week.component.scss',
@@ -38,6 +41,7 @@ export class BmbCalendarTemplateWeekComponent {
   @Input() hourFormat: IBmbCalendarHourFormat = '12';
   @Input() now: DateTime = DateTime.now();
   @Input() events: IBmbCalendarEvent[] = [];
+  currentTime = input<DateTime>(DateTime.now());
 
   @Output() onSelectEvent: EventEmitter<IBmbCalendarEventClick> =
     new EventEmitter<IBmbCalendarEventClick>();

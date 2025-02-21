@@ -38,6 +38,7 @@
           [now]="now"
           [events]="getEvents()"
           (onSelectEvent)="handleSelectEvent($event)"
+          [currentTime]="currentTime"
         />
       }
       @case ("month") {
