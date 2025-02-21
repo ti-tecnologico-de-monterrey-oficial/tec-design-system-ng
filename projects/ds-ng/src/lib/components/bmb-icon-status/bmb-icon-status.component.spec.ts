@@ -8,9 +8,8 @@ describe('BmbIconStatusComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BmbIconStatusComponent]
-    })
-    .compileComponents();
+      imports: [BmbIconStatusComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(BmbIconStatusComponent);
     component = fixture.componentInstance;

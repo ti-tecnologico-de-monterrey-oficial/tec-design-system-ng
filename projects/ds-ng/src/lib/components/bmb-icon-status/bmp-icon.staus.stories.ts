@@ -59,15 +59,12 @@ Sets the background color of the icon, which affects its visual style.
       | 'error'
       `,
     },
-      options: ['', 'success'
-  , 'event'
-  , 'warning'
-  , 'error'],
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: '' },
-        type: { summary: 'IBmbStatusAppearance (optional)' },
-      },
+    options: ['', 'success', 'event', 'warning', 'error'],
+    table: {
+      category: 'Properties',
+      defaultValue: { summary: '' },
+      type: { summary: 'IBmbStatusAppearance (optional)' },
+    },
   },
   args: {
     icon: 'check',

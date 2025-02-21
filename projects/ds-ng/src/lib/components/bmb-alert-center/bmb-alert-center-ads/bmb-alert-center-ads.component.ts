@@ -5,9 +5,7 @@ import {
   output,
   ViewEncapsulation,
 } from '@angular/core';
-import {
-  IBmbDataAlert,
-} from '../types';
+import { IBmbDataAlert } from '../types';
 import { CommonModule } from '@angular/common';
 import { BmbImageComponent } from '../../bmb-image/bmb-image.component';
 import { BmbButtonDirective } from '../../../directives/button.directive';
@@ -31,7 +29,6 @@ export class BmbAlertCenterAdsComponent {
   advertisements = input.required<IBmbDataAlert[]>();
 
   alertEvent = output<IBmbDataAlert>();
-
 
   handleAlertEvent(alert: IBmbDataAlert) {
     this.alertEvent.emit(alert);

@@ -106,7 +106,8 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'IBmbDataAlert[]',
       },
-      description: 'Set information that the component will show on the ads tab',
+      description:
+        'Set information that the component will show on the ads tab',
       table: {
         category: 'Properties',
         type: { summary: 'IBmbDataAlert[]' },
