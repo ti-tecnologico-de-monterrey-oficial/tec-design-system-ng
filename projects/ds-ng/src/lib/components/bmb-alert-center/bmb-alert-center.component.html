@@ -1,63 +1,55 @@
-<section class="bmb_alert-center" bmbLayout margin="none">
+<section class="bmb_alert-center" #container bmbLayout margin="none">
   <div
     bmbLayoutItem
     [colSm]="4"
     [colLg]="5"
     class="bmb_alert-center-main"
-    [ngClass]="{ 'bmb_alert-center-main-small': isSmall() }"
   >
-    @if (!isSmall()) {
-      <bmb-tabs [tabs]="tabs" (selected)="handleTabChange($event)">
-        @if (selectedTab === 0) {
-          <bmb-alert-center-form
-            (showAlertDetail)="handleShowAlert($event)"
-            [eventsInCategories]="eventsInCategories"
-            (changeAlertStatus)="handleChangeAlertStatus($event)"
-          />
-        } @else if (selectedTab === 1) {
-          <bmb-alert-center-form
-            (showAlertDetail)="handleShowAlert($event)"
-            [eventsInCategories]="eventsInCategories"
-            (changeAlertStatus)="handleChangeAlertStatus($event)"
-          />
-        } @else if (selectedTab === 2) {
-          <bmb-alert-center-form
-            (showAlertDetail)="handleShowAlert($event)"
-            [eventsInCategories]="eventsInCategories"
-            (changeAlertStatus)="handleChangeAlertStatus($event)"
-          />
-        } @else {
-          <bmb-alert-center-form
-            (showAlertDetail)="handleShowAlert($event)"
-            [eventsInCategories]="eventsInCategories"
-            (changeAlertStatus)="handleChangeAlertStatus($event)"
-          />
-        }
-      </bmb-tabs>
-    } @else {
-      <bmb-alert-center-form
-        (showAlertDetail)="handleShowAlert($event)"
-        [eventsInCategories]="eventsInCategories"
-        (changeAlertStatus)="handleChangeAlertStatus($event)"
-      />
-    }
+  <bmb-tabs [tabs]="tabs" (selected)="handleTabChange($event)" />
+  @if (selectedTab === 0) {
+    <bmb-alert-center-form
+      (showAlertDetail)="handleShowAlert($event)"
+      [eventsInCategories]="eventsInCategories"
+      (changeAlertStatus)="handleChangeAlertStatus($event)"
+    />
+  } @else if (selectedTab === 1) {
+    <bmb-alert-center-form
+      (showAlertDetail)="handleShowAlert($event)"
+      [eventsInCategories]="eventsInCategories"
+      (changeAlertStatus)="handleChangeAlertStatus($event)"
+    />
+  } @else if (selectedTab === 2) {
+    <bmb-alert-center-form
+      (showAlertDetail)="handleShowAlert($event)"
+      [eventsInCategories]="eventsInCategories"
+      (changeAlertStatus)="handleChangeAlertStatus($event)"
+    />
+  } @else if (selectedTab === 3) {
+    <bmb-alert-center-form
+      (showAlertDetail)="handleShowAlert($event)"
+      [eventsInCategories]="eventsInCategories"
+      (changeAlertStatus)="handleChangeAlertStatus($event)"
+    />
+  } @else {
+    <bmb-alert-center-ads
+      [advertisements]="advertisements()"
+      (alertEvent)="handleAlertEvent($event)"
+    />
+  }
   </div>
-  @if (!isSmall()) {
     <section
       class="bmb_alert-center-content"
       bmbLayoutItem
       [colSm]="4"
       [colLg]="7"
-      [ngClass]="{ 'bmb_alert-center-content-small': isSmall() }"
     >
       <ng-container [ngTemplateOutlet]="detailContent" />
     </section>
-  }
 </section>
 
 <ng-template #detailContent>
   @if (visibleAlert) {
-    <section class="bmb_alert-center-content">
+    <section class="bmb_alert-center-content-modal">
       <h1 class="font-bold-7">{{ visibleAlert.title }}</h1>
       @for (item of visibleAlert.description; track $index) {
         @switch (item.type) {

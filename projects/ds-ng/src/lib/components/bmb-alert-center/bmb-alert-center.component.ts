@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   input,
   output,
   TemplateRef,
@@ -24,6 +25,13 @@ import { BmbImageComponent } from '../bmb-image/bmb-image.component';
 import { BmbModalComponent } from '../bmb-modal/bmb-modal.component';
 import { ModalDataConfig } from '../bmb-modal/bmb-modal.interface';
 import { MatDialog } from '@angular/material/dialog';
+import { BmbAlertCenterAdsComponent } from './bmb-alert-center-ads/bmb-alert-center-ads.component';
+
+export interface IBmbAlertCenterTabConfig {
+  title: string;
+  isMobile: boolean;
+  isDesktop: boolean;
+}
 
 @Component({
   selector: 'bmb-alert-center',
@@ -36,6 +44,7 @@ import { MatDialog } from '@angular/material/dialog';
     BmbAlertCenterFormComponent,
     BmbButtonDirective,
     BmbImageComponent,
+    BmbAlertCenterAdsComponent
   ],
   templateUrl: './bmb-alert-center.component.html',
   styleUrl: './bmb-alert-center.component.scss',
@@ -44,15 +53,21 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class BmbAlertCenterComponent {
   alerts = input.required<IBmbDataAlert[]>();
+  advertisements = input<IBmbDataAlert[]>([]);
   dateFormat = input<string>('dd/MM/yyyy');
-  isSmall = input<boolean>(false);
-  tabsName = input<string[]>(['Todos', 'No Leídos', 'Favoritos', 'Archivados']);
+  tabsName = input<string[] | IBmbAlertCenterTabConfig[]>([
+    { title: 'Recientes', isMobile: true, isDesktop: true },
+    { title: 'No leídos', isMobile: false, isDesktop: true },
+    { title: 'Favoritos', isMobile: false, isDesktop: true },
+    { title: 'Archivados', isMobile: false, isDesktop: true },
+    { title: 'Anuncios', isMobile: true, isDesktop: true },
+  ]);
 
   onChangeAlertStatus = output<IBmbDataAlertsOutput>();
   alertEvent = output<IBmbDataAlert>();
 
-  @ViewChild('detailContent', { read: TemplateRef })
-  detailContent?: TemplateRef<any>;
+  @ViewChild('detailContent', { read: TemplateRef }) detailContent?: TemplateRef<any>;
+  @ViewChild('container') container!: ElementRef;
 
   constructor(private matDialog: MatDialog) {}
 
@@ -72,13 +87,14 @@ export class BmbAlertCenterComponent {
 
   ngOnInit(): void {
     this.tabs = this.tabsName().map((tab, index) => {
-      const badge = this.alerts().filter((alert) => !alert.isRead).length;
       return {
         id: index,
-        title: tab,
+        title: typeof tab === 'string' ? tab : tab.title,
         isActive: index === 0,
-        badge: index === 0 || index === 1 ? badge : 0,
-      };
+        badge: index === 0 || index === 1 ? this.alerts().filter((alert) => !alert.isRead).length : 0,
+        isMobile: typeof tab === 'string' ? true : tab.isMobile,
+        isDesktop: typeof tab === 'string' ? true : tab.isDesktop,
+      }
     });
 
     this.orderedEvents = this.orderEvents(this.alerts());
@@ -86,6 +102,8 @@ export class BmbAlertCenterComponent {
   }
 
   handleTabChange(tabId: IBmbTab): void {
+    console.log(this.tabs);
+
     this.selectedTab = tabId.id;
     this.eventsInCategories = this.filterEvents(tabId.id);
   }
@@ -145,7 +163,10 @@ export class BmbAlertCenterComponent {
   handleShowAlert(item: IBmbDataAlertsParsed): void {
     this.visibleAlert = item;
 
-    if (this.isSmall()) {
+    if (
+      this.container.nativeElement.clientWidth < 350 ||
+      window.innerWidth < 1000
+    ) {
       const data: ModalDataConfig = {
         title: item.title,
         content: this.detailContent,

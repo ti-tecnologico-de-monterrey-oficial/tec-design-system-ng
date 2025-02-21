@@ -12,16 +12,15 @@
         @case (1) {
           <bmb-alert-center
             [alerts]="data()"
-            [isSmall]="true"
           />
         }
         @case (2) {
           <bmb-carousel>
-            @for (alert of alerts(); track $index) {
+            @for (advertisement of advertisements(); track $index) {
               <div #carouselItem>
                 <ng-container
                   [ngTemplateOutlet]="detailContent"
-                  [ngTemplateOutletContext]="{ alert: alert }"
+                  [ngTemplateOutletContext]="{ advertisement: advertisement }"
                 />
               </div>
             }
@@ -33,10 +32,10 @@
 </section>
 
 
-<ng-template #detailContent let-alert="alert">
+<ng-template #detailContent let-advertisement="advertisement">
   <section class="bmb_alert-center-content" >
-    <h1 class="font-bold-7">{{ alert.title }}</h1>
-    @for (item of alert.description; track $index) {
+    <h1 class="font-bold-7">{{ advertisement.title }}</h1>
+    @for (item of advertisement.description; track $index) {
       @switch (item.type) {
         @case ("paragraph") {
           <p
@@ -68,8 +67,8 @@
             [appearance]="item.variant ?? 'primary'"
             (click)="
               item.event
-                ? item?.event(alert.id)
-                : handleAlertEvent(alert.id)
+                ? item?.event(advertisement.id)
+                : handleAlertEvent(advertisement)
             "
           >
             {{ item.text }}

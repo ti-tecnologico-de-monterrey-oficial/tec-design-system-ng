@@ -39,7 +39,7 @@ import { BmbImageComponent } from '../bmb-image/bmb-image.component';
 })
 export class BmbNotificationCardComponent implements OnInit {
   data = input<IBmbDataAlert[]>([]);
-  alerts = input<IBmbDataAlert[]>([]);
+  advertisements = input<IBmbDataAlert[]>([]);
   hideExpandBtn = input<boolean>(false);
 
   alertEvent = output<IBmbDataAlert>();
