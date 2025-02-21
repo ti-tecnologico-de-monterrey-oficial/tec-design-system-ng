@@ -3,7 +3,6 @@ import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
 import {
   BmbButtonDirective,
   BmbDividerComponent,
-  BmbDotPaginatorComponent,
   BmbDrawerOverlayComponent,
   BmbFrequentAppsSelectorComponent,
   BmbGradesComponent,
@@ -20,6 +19,7 @@ import {
 } from '../../public-api';
 import { CommonModule } from '@angular/common';
 import { attributes } from '../utils/utils';
+import { BmbCarouselComponent } from '../components/bmb-carousel/bmb-carousel.component';
 
 @Component({
   standalone: true,
@@ -37,7 +37,7 @@ import { attributes } from '../utils/utils';
     BmbGradesComponent,
     BmbFrequentAppsSelectorComponent,
     BmbMediaCardComponent,
-    BmbDotPaginatorComponent,
+    BmbCarouselComponent,
   ],
   selector: 'storybook-home-mitec-mobile',
   template: `
@@ -138,8 +138,8 @@ import { attributes } from '../utils/utils';
         <bmb-frequent-apps-selector [apps]="selectorApps" layout="button" />
         <bmb-divider />
         <bmb-simple-header title="CONECTA" icon="open_in_browser" />
-        @switch (myActiveDotIndex) {
-          @case (0) {
+        <bmb-carousel>
+          <section #carouselItem>
             <bmb-media-card
               src="https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg"
               alt="test"
@@ -148,24 +148,30 @@ import { attributes } from '../utils/utils';
               type="floating"
               title="Custom HTML content 1"
             />
-          }
-          @case (1) {
+          </section>
+          <section #carouselItem>
             <bmb-media-card
-              src="https://es.mypet.com/wp-content/uploads/sites/23/2021/03/GettyImages-1143107320-e1597136744606.jpg"
+              src="https://img.freepik.com/fotos-premium/dia-internacional-gato-8-agosto-gatos-lindos-gatito-pequeno-hermosos-pequenos-animales-compania-verdadero-amigo-bonitos-divertidos-tiernos-esponjosos-juguetones-shorties-ia-generativa_887181-4265.jpg?w=2000"
               alt="test"
               ratio="1/1"
               borderRadius="m"
               type="floating"
               title="Custom HTML content 2"
             />
-          }
-          @default {}
-        }
-        <bmb-dot-paginator
-          [activeDotIndex]="myActiveDotIndex"
-          [totalDots]="2"
-          (onDotPress)="handleDotPress($event)"
-        />
+          </section>
+          <section #carouselItem>
+            <bmb-media-card
+              src="https://es.mypet.com/wp-content/uploads/sites/23/2021/03/GettyImages-1143107320-e1597136744606.jpg"
+              alt="test"
+              ratio="1/1"
+              borderRadius="m"
+              type="floating"
+              title="Custom HTML content 3"
+            >
+              <span>Custom HTML</span>
+            </bmb-media-card>
+          </section>
+        </bmb-carousel>
         <bmb-divider />
         <bmb-drawer-overlay
           [menu]="menu"
@@ -452,12 +458,6 @@ class StorybookHomeMitecMobile {
     },
   ];
 
-  myActiveDotIndex: number = 0;
-
-  handleDotPress(index: number): void {
-    this.myActiveDotIndex = index;
-  }
-
   logHTML(data: boolean): string {
     console.log(`LOG HTML ${data}`);
     return `${data}`;
@@ -644,8 +644,8 @@ import { BmbModalComponent, ModalDataConfig } from '@ti-tecnologico-de-monterrey
         />
         <bmb-divider />
         <bmb-simple-header title="CONECTA" icon="open_in_browser" />
-        @switch (myActiveDotIndex) {
-          @case (0) {
+        <bmb-carousel>
+          <section #carouselItem>
             <bmb-media-card
               src="https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg"
               alt="test"
@@ -654,24 +654,30 @@ import { BmbModalComponent, ModalDataConfig } from '@ti-tecnologico-de-monterrey
               type="floating"
               title="Custom HTML content 1"
             />
-          }
-          @case (1) {
+          </section>
+          <section #carouselItem>
             <bmb-media-card
-              src="https://es.mypet.com/wp-content/uploads/sites/23/2021/03/GettyImages-1143107320-e1597136744606.jpg"
+              src="https://img.freepik.com/fotos-premium/dia-internacional-gato-8-agosto-gatos-lindos-gatito-pequeno-hermosos-pequenos-animales-compania-verdadero-amigo-bonitos-divertidos-tiernos-esponjosos-juguetones-shorties-ia-generativa_887181-4265.jpg?w=2000"
               alt="test"
               ratio="1/1"
               borderRadius="m"
               type="floating"
               title="Custom HTML content 2"
             />
-          }
-          @default {}
-        }
-        <bmb-dot-paginator
-          [activeDotIndex]="myActiveDotIndex"
-          [totalDots]="2"
-          (onDotPress)="handleDotPress($event)"
-        />
+          </section>
+          <section #carouselItem>
+            <bmb-media-card
+              src="https://es.mypet.com/wp-content/uploads/sites/23/2021/03/GettyImages-1143107320-e1597136744606.jpg"
+              alt="test"
+              ratio="1/1"
+              borderRadius="m"
+              type="floating"
+              title="Custom HTML content 3"
+            >
+              <span>Custom HTML</span>
+            </bmb-media-card>
+          </section>
+        </bmb-carousel>
         <bmb-divider />
         <bmb-drawer-overlay
           [menu]="menu"

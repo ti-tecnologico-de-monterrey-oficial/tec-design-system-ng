@@ -118,7 +118,8 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'function' },
         category: 'Events',
       },
-    },showRememberMeCheckbox: {
+    },
+    showRememberMeCheckbox: {
       name: 'Shows remember me checkbox',
       control: 'boolean',
       description: 'Shows remember me checkbox when true',
@@ -138,7 +139,7 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: 'Recordarme' },
       },
     },
-    showLoginAsGuest:{
+    showLoginAsGuest: {
       name: 'Show log in as a guest',
       control: 'boolean',
       description: 'Shows log in as a guest when true',
@@ -161,8 +162,7 @@ Below is an example of how you can use this component in HTML:
     loginAsGuestLink: {
       name: 'Log in as a guest link',
       control: 'text',
-      description:
-        'Sets the link for log in as a guest.',
+      description: 'Sets the link for log in as a guest.',
       table: {
         category: 'Events',
         type: { summary: 'string' },
@@ -175,8 +175,7 @@ Below is an example of how you can use this component in HTML:
         type: 'radio',
       },
       options: ['_blank', '_parent', '_self', '_top'],
-      description:
-        'Sets the target for log in as a guest.',
+      description: 'Sets the target for log in as a guest.',
       table: {
         category: 'Events',
         type: { summary: 'IBmbTargetLink' },

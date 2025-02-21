@@ -14,11 +14,12 @@ $types: (
       RGBA(var(--color-green-primary)) 18.73%,
       RGBA(var(--color-green-light)) 103.37%
     ),
-  "events": linear-gradient(
-    132deg,
-    RGBA(var(--color-purple-primary)) -7.51%,
-    RGBA(var(--color-purple-light)) 98.98%
-  ),
+  "events":
+    linear-gradient(
+      132deg,
+      RGBA(var(--color-purple-primary)) -7.51%,
+      RGBA(var(--color-purple-light)) 98.98%
+    ),
 );
 
 .bmb_student-activity-card {
