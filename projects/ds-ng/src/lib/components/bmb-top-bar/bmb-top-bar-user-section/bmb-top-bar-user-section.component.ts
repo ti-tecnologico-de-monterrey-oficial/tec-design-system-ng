@@ -37,6 +37,8 @@ export class BmbTopBarUserSectionComponent {
   @Input() mitec: boolean = false;
   @Input() assignmentNotification: string[] = [];
   @Input() notificationNotification: IBmbNotificationCardData | null = null;
+  @Input() showUserName: boolean = true;
+  @Input() showNotifications: boolean = true;
 
   helpButtonClick = output<void>();
   userClick = output<void>();
@@ -56,7 +58,7 @@ export class BmbTopBarUserSectionComponent {
 
   openNotifications(event: MouseEvent) {
     const { clientX, clientY } = event;
-    const offsetX = this.windowWidth < 1000 ? 300 : -40;
+    const offsetX = this.windowWidth < 1000 ? 300 : 0;
 
     this.dialogPosition = {
       top: `${clientY}px`,

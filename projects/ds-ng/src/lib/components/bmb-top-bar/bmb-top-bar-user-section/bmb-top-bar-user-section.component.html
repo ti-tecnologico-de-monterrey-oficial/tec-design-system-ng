@@ -8,45 +8,62 @@
         class="bmb_top-bar-user-section-icon"
         [ngClass]="{ 'bmb_top-bar-user-section-icon-mitec': !mitec }"
       >
-        <bmb-icon icon="help" [size]="26" />
+        <bmb-icon icon="help" [size]="32" />
       </span>
     </button>
-    <button (click)="openNotifications($event)">
-      <bmb-icon
-        class="bmb_top-bar-user-section-icon"
-        [icon]="'notifications'"
-        [dotNotification]="totalNotifications()"
-        [size]="26"
-      />
-    </button>
-    <dialog
-      id="notificationDialog"
-      class="bmb_top-bar-user-section-dialog"
-      [ngClass]="{
-        'bmb_top-bar-user-section-dialog-open': isOpenNotifications,
-      }"
-      [ngStyle]="{ top: dialogPosition!.top, left: dialogPosition!.left }"
-    >
-      <bmb-notification-card
-        [data]="notificationNotification"
-        [hideExpandBtn]="true"
-      ></bmb-notification-card>
-    </dialog>
+    @if(showNotifications && mitec){
+      <button (click)="openNotifications($event)">
+        <bmb-icon
+          class="bmb_top-bar-user-section-icon"
+          [icon]="'notifications'"
+          [dotNotification]="totalNotifications()"
+          [size]="32"
+        />
+      </button>
+      <dialog
+        id="notificationDialog"
+        class="bmb_top-bar-user-section-dialog"
+        [ngClass]="{
+          'bmb_top-bar-user-section-dialog-open': isOpenNotifications,
+        }"
+        [ngStyle]="{ top: dialogPosition!.top, left: dialogPosition!.left }"
+      >
+        <bmb-notification-card
+          [data]="notificationNotification"
+          [hideExpandBtn]="true"
+        ></bmb-notification-card>
+      </dialog>
+    }
+    @if(!mitec && windowWidth > 1000){
+      <button
+        class="bmb_top-bar-user-section-user-image"
+        (click)="handleUserClick()"
+      >
+        <bmb-user-image
+          [image]="userInformation.image"
+          size="mobile-small"
+          [altImage]="userInformation.name"
+        />
+      </button>
+    }
+
   </div>
-  @if (mitec) {
-    <button
-      class="bmb_top-bar-user-section-user-image"
-      (click)="handleUserClick()"
-    >
-      <bmb-user-image
-        [image]="userInformation.image"
-        size="mobile-small"
-        [altImage]="userInformation.name"
-      />
-    </button>
-    <h3 class="bmb_top-bar-user-section-title">{{ userInformation.name }}</h3>
-    <span class="bmb_top-bar-user-section-role">{{
-      userInformation.role
-    }}</span>
-  }
+   @if(mitec){
+     <button
+       class="bmb_top-bar-user-section-user-image"
+       (click)="handleUserClick()"
+     >
+       <bmb-user-image
+         [image]="userInformation.image"
+         size="mobile-small"
+         [altImage]="userInformation.name"
+       />
+     </button>
+   }
+    @if(showUserName && mitec){
+      <h3 class="bmb_top-bar-user-section-title">{{ userInformation.name }}</h3>
+      <span class="bmb_top-bar-user-section-role">{{
+        userInformation.role
+      }}</span>
+    }
 </section>
