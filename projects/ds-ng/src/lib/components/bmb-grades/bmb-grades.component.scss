@@ -13,4 +13,10 @@
     width: calc(100% - 2rem);
     margin: 1rem;
   }
+
+  &-micro > .bmb_container {
+    border-radius: rem.rem_calc(16);
+    border: rem.rem_calc(1) solid var(--general_contrasts-50);
+    background: var(--containers-main);
+  }
 }

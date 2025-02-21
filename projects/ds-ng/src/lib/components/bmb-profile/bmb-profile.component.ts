@@ -36,6 +36,8 @@ export class BmbProfileComponent {
   campusAcessLink = input<string>('');
   idDigitalLink = input<string>('');
   targetLinks = input<IBmbTargetLink>('_blank');
+  versionLabel = input<string>('');
+
   handleCloseSession = output();
   handleCloseProfile = output();
 

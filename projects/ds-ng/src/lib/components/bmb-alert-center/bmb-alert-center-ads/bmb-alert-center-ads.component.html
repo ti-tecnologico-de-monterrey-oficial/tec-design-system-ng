@@ -1,0 +1,58 @@
+<div class="bmb_alert-center-ads">
+  <bmb-carousel>
+    @for (advertisement of advertisements(); track $index) {
+      <section class="bmb_alert-center-content" #carouselItem>
+        <h1 class="font-bold-7">{{ advertisement.title }}</h1>
+        @for (item of advertisement.description; track $index) {
+          @switch (item.type) {
+            @case ("paragraph") {
+              <p
+                [ngClass]="'bmb_alert-center-content-' + (item.style ?? 'normal')"
+              >
+                {{ item.text }}
+              </p>
+            }
+            @case ("image") {
+              <bmb-image
+                [src]="item.href || ''"
+                [alt]="item.text"
+                borderRadius="none"
+              />
+            }
+            @case ("video") {
+              <video [src]="item.href" controls></video>
+            }
+            @case ("title") {
+              <h3
+                [ngClass]="'bmb_alert-center-content-' + (item.style ?? 'normal')"
+              >
+                {{ item.text }}
+              </h3>
+            }
+            @case ("button") {
+              <button
+                bmbButton
+                [appearance]="item.variant ?? 'primary'"
+                (click)="
+                  item.event
+                    ? item?.event(advertisement.id)
+                    : handleAlertEvent(advertisement)
+                "
+              >
+                {{ item.text }}
+              </button>
+            }
+            @case ("link") {
+              <a
+                [ngClass]="'bmb_alert-center-content-' + (item.style ?? 'normal')"
+                [href]="item.href"
+                >{{ item.text }}</a
+              >
+            }
+          }
+        }
+      </section>
+    }
+  </bmb-carousel>
+</div>
+

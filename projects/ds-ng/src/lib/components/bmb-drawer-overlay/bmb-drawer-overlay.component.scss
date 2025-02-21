@@ -73,6 +73,10 @@
       padding: rem.rem_calc(24);
     }
   }
+
+  .bmb_interactive_icon-title {
+    color: var(--white-primary);
+  }
 }
 
 @keyframes growOut {

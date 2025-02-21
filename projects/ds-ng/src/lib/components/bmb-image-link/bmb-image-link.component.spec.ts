@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BmbBookmarkComponent } from './bmb-bookmark.component';
+import { BmbBookmarkComponent } from './bmb-image-link.component';
 
 describe('BmbBookmarkComponent', () => {
   let component: BmbBookmarkComponent;
@@ -22,9 +22,9 @@ describe('BmbBookmarkComponent', () => {
 
   it('should toggle isActive when handleClick is called', () => {
     expect(component.isActive()).toBeFalse();
-    component.handleClick(event);
+    component.handleClick();
     expect(component.isActive()).toBeTrue();
-    component.handleClick(event);
+    component.handleClick();
     expect(component.isActive()).toBeFalse();
   });
 

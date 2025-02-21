@@ -12,6 +12,7 @@ import { IUserInformation } from '../types';
 import { IBmbNotificationCardData } from '../../bmb-notification-card/types';
 import { CommonModule } from '@angular/common';
 import { BmbNotificationCardComponent } from '../../bmb-notification-card/bmb-notification-card.component';
+import { IBmbDataAlert } from '../../bmb-alert-center/types';
 
 @Component({
   selector: 'bmb-top-bar-user-section',
@@ -36,9 +37,9 @@ export class BmbTopBarUserSectionComponent {
 
   @Input() mitec: boolean = false;
   @Input() assignmentNotification: string[] = [];
-  @Input() notificationNotification: IBmbNotificationCardData | null = null;
   @Input() showUserName: boolean = true;
   @Input() showNotifications: boolean = true;
+  @Input() notificationNotification: IBmbDataAlert[] = [];
 
   helpButtonClick = output<void>();
   userClick = output<void>();
@@ -72,11 +73,7 @@ export class BmbTopBarUserSectionComponent {
   }
 
   totalNotifications(): number {
-    if (this.notificationNotification === null) return 0;
-    const seenNotifications = this.notificationNotification!.seen.length;
-    const newNotifications = this.notificationNotification!.new.length;
-    const allNotifications = this.notificationNotification!.all.length;
-    return seenNotifications + newNotifications + allNotifications;
+    return this.notificationNotification.length;
   }
 
   handleHelpButtonClick() {

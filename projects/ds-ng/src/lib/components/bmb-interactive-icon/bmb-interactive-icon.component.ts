@@ -61,7 +61,6 @@ export class BmbInteractiveIconComponent {
   appearance = input<IBmbInteractiveIconAppearance>('red');
   title = input<string>();
   description = input<string>('');
-  label = input<string>('');
   icon = input<string>('face');
   dotNotification = input<number>();
   horizontal = input<boolean>(false);

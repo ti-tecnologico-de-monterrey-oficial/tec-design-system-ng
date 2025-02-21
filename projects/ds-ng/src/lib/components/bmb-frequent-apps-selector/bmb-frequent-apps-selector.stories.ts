@@ -68,7 +68,7 @@ Below is an example of how to use this component in HTML:
     title: {
       name: 'Title',
       control: {
-        type: 'string',
+        type: 'text',
       },
       description: 'Title to display above the list of applications.',
       table: {

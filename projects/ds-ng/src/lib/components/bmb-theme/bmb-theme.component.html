@@ -1,8 +1,10 @@
-@if (showControls) {
+@if (showControls()) {
   <bmb-switch
     [isChecked]="selectedTheme === 'dark'"
-    leftIcon="light_mode"
-    rightIcon="dark_mode"
+    [leftIcon]="leftIcon()"
+    [rightIcon]="rightIcon()"
+    [leftText]="leftText()"
+    [rightText]="rightText()"
     (change)="onThemeChange($event)"
-  ></bmb-switch>
+  />
 }

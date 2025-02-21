@@ -14,6 +14,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { ITimelineEventType } from '../bmb-timestream/types';
 import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
+import { BmbThreeColsComponent } from '../bmb-three-cols/bmb-three-cols.component';
 
 @Component({
   selector: 'bmb-hito-card',
