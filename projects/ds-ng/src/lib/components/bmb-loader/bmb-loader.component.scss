@@ -66,27 +66,19 @@
     &-icon {
       align-items: center;
       display: flex;
-      height: rem.rem_calc(160);
+      height: rem.rem_calc(120);
 
       .bmb_loader-icon {
         background: transparent;
-        font-size: rem.rem_calc(160);
+        font-size: rem.rem_calc(120);
         -webkit-background-clip: inherit;
         -webkit-text-fill-color: inherit;
-
-        @include mixins.media-query(768, "min") {
-          font-size: rem.rem_calc(240);
-        }
       }
 
       @each $name, $color in appearance.$colors {
         &-#{$name} {
           @include icon($name, $color);
         }
-      }
-
-      @include mixins.media-query(768, "min") {
-        height: rem.rem_calc(240);
       }
     }
   }
