@@ -18,8 +18,7 @@ import { CommonModule } from '@angular/common';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
-import { BmbTabsComponent } from '../bmb-tabs/bmb-tabs.component';
-import { IBmbNotificationCardData } from '../bmb-notification-card/types';
+import { IBmbDataAlert } from '../bmb-alert-center/types';
 
 export type IBmbTemplateName =
   | 'full-width-card'
@@ -39,7 +38,6 @@ export type IBmbTemplateName =
     BmbDividerComponent,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
-    BmbTabsComponent,
   ],
   templateUrl: './bmb-web-templates.component.html',
   styleUrl: './bmb-web-templates.component.scss',
@@ -66,7 +64,7 @@ export class BmbWebTemplatesComponent {
   topBarLang = input<string>('es');
   topBarMitec = input<boolean>(false);
   topBarAssignmentNotification = input<string[]>([]);
-  topBarAlertNotification = input<IBmbNotificationCardData | null>(null);
+  topBarAlertNotification = input<IBmbDataAlert[]>([]);
 
   topBarLogOut = output<any>();
   topBarOnLangChange = output<string>();

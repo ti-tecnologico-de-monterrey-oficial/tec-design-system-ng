@@ -47,6 +47,18 @@
       text-transform: uppercase;
       @include fonts.font(3, regular);
     }
+
+    &-mobile:not(.bmb_tabs-item-desktop) {
+      @include mixins.media-query(1000, "min") {
+        display: none;
+      }
+    }
+
+    &-desktop:not(.bmb_tabs-item-mobile) {
+      @include mixins.media-query(1001, "max") {
+        display: none;
+      }
+    }
   }
 
   &-badge {

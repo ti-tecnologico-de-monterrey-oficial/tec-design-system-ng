@@ -1,0 +1,33 @@
+import {
+  ChangeDetectionStrategy,
+  Component,
+  model,
+  ViewEncapsulation,
+} from '@angular/core';
+import { BmbButtonDirective } from '../../directives/button.directive';
+import { CommonModule } from '@angular/common';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+
+@Component({
+  selector: 'bmb-image-link',
+  standalone: true,
+  imports: [BmbButtonDirective, CommonModule, BmbIconComponent],
+  templateUrl: './bmb-image-link.component.html',
+  styleUrl: './bmb-image-link.component.scss',
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class BmbImageLinkComponent {
+  isActive = model<boolean>(false);
+
+  handleClick(event: any) {
+    event.stopPropagation();
+    this.isActive.set(!this.isActive());
+  }
+
+  getClassList() {
+    const classList = ['bmb_bookmark'];
+    if (this.isActive()) classList.push('bmb_bookmark-active');
+    return classList;
+  }
+}
