@@ -20,6 +20,7 @@ import { BmbSelectComponent } from '../bmb-select/bmb-select.component';
 import { BmbSelectItemComponent } from '../bmb-select/bmb-select-item/bmb-select-item.component';
 import { IBmbNotificationCardData } from '../bmb-notification-card/types';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
+import { IBmbDataAlert } from '../bmb-alert-center/types';
 
 export { IPositionButtonMenu, IUserInformation } from './types';
 
@@ -53,7 +54,7 @@ export class BmbTopBarComponent implements OnInit {
   @Input() lang: string = 'es';
   @Input() mitec: boolean = false;
   @Input() assignmentNotification: string[] = [];
-  @Input() alertNotification: IBmbNotificationCardData | null = null;
+  @Input() alertNotification: IBmbDataAlert[] = [];
 
   @Output() logOut: EventEmitter<any> = new EventEmitter<any>();
   @Output() onLangChange: EventEmitter<string> = new EventEmitter<string>();

@@ -1,7 +1,6 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  inject,
   input,
   output,
   ViewEncapsulation,
@@ -39,5 +38,9 @@ export class BmbAlertCenterListComponent {
 
   handleRowClick(item: IBmbDataAlertsParsed): void {
     this.alertSelected.emit(item);
+  }
+
+  getFormattedTime(date: any): string {
+    return DateTime.fromFormat(date, 'HH:mm').toFormat('h:mm a');
   }
 }

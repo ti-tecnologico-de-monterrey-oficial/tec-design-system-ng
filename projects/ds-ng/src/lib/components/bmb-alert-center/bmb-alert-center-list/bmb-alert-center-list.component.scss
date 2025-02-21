@@ -65,6 +65,7 @@
       @include fontTime();
       grid-area: time;
       margin-top: rem.rem_calc(6);
+      text-transform: lowercase;
     }
   }
 }
