@@ -60,6 +60,8 @@
 
   --white-primary: RGBA(var(--color-white-primary), 1);
   --purple-primary: RGBA(var(--color-purple-primary), 1);
+
+  --track-progress-bar: RGBA(var(--color-green-primary), 1);
 }
 
 [data-theme="dark"],
@@ -104,4 +106,6 @@
 
   --drop_shadow-color-test-shadow: 0.5rem 0.5rem 0.5rem 0px
     RGBA(var(--color-black-primary), 0.2);
+
+  --track-progress-bar: RGBA(var(--color-green-light), 1);
 }
