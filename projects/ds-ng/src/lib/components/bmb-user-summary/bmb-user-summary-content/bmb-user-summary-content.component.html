@@ -24,7 +24,13 @@
         class="bmb_user-summary_content-wrapper-title bmb_user-summary_content-wrapper-title-salutation"
         [ngClass]="getClass('bmb_user-summary_content-wrapper-title')"
       >
-        ¡{{ salutation() }} <br />{{ name() }}!
+        @if(!!salutation()) {
+          ¡{{ salutation() }} <br />
+        }
+          {{ name() }}
+        @if(salutation()) {
+          !
+        }
       </h3>
     }
     <span class="bmb_user-summary_content-wrapper-id">{{ userId() }}</span>

@@ -11,7 +11,7 @@
         <source media="(min-width: 1000px)" [srcset]="image" />
         <source [srcset]="image" />
         <img
-          style="width: 30px"
+          style="width: 32px"
           [src]="image"
           alt="TEC de Monterrey"
           loading="lazy"
@@ -51,6 +51,7 @@
           [userInformation]="userInformation"
           [assignmentNotification]="assignmentNotification"
           [notificationNotification]="alertNotification"
+          [showUserName]="showUserName"
           (helpButtonClick)="handleHelpButtonClick()"
           (userClick)="handleUserClick()"
         />
@@ -84,16 +85,6 @@
         </bmb-select-item>
       </bmb-select>
     }
-    @if (userInformation && hasLogoutButton && windowWidth >= 1000) {
-      <button
-        class="bmb_top-bar-logoff"
-        bmbButton
-        appearance="secondary-filled"
-        (click)="handleLogOutClick($event)"
-      >
-        Salir
-      </button>
-    }
   </div>
   @if (windowWidth < 1000) {
     <div class="bmb_top-bar-button-section" style="display: inline-flex">
@@ -106,7 +97,7 @@
           />
         </button>
       }
-      @if (windowWidth < 1000 && hasLogoutButton) {
+      <!-- @if (windowWidth < 1000 && hasLogoutButton) {
         <button
           class="bmb_top-bar-logoff"
           bmbButton
@@ -115,7 +106,7 @@
         >
           Salir
         </button>
-      }
+      } -->
       <button
         class="bmb_top-bar-button-menu"
         (click)="handleMobileMenuClick()"

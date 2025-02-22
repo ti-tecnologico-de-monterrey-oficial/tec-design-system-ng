@@ -23,16 +23,6 @@
             >{{ dayEvent.events.length }}
             {{ dayEvent.events.length > 1 ? "HITOS" : "HITO" }}</span
           >
-          @if (isMicro()) {
-            <span style="margin-left: auto">
-              <bmb-text-link
-                textLink="Ver más"
-                [target]="'_blank'"
-                icon="arrow_right"
-                [link]="'https://www.youtube.com'"
-              />
-            </span>
-          }
         </header>
         <section
           class="bmb_timestream-detail-content"

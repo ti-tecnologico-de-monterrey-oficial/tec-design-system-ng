@@ -22,9 +22,9 @@ describe('BmbBookmarkComponent', () => {
 
   it('should toggle isActive when handleClick is called', () => {
     expect(component.isActive()).toBeFalse();
-    component.handleClick();
+    component.handleClick(event);
     expect(component.isActive()).toBeTrue();
-    component.handleClick();
+    component.handleClick(event);
     expect(component.isActive()).toBeFalse();
   });
 

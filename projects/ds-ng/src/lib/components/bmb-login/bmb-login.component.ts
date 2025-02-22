@@ -30,6 +30,12 @@ export class BmbLoginComponent {
   forgottenPasswordLabel = input<string>('¿Olvidaste tu contraseña?');
   forgottenPasswordLink = input<string>('');
   forgottenPasswordTarget = input<IBmbTargetLink>('_blank');
+  showRememberMeCheckbox = input<boolean>(false);
+  rememberMeCheckboxLabel = input<string>('Recordarme');
+  showLoginAsGuest = input<boolean>(false);
+  loginAsGuestLabel = input<string>('Entrar como invitado');
+  loginAsGuestLink = input<string>('');
+  loginAsGuestTarget = input<IBmbTargetLink>('_blank');
   buttonLabel = input<string>('Ingresar');
   actionHeaders = input<IBmbActionHeader[]>([
     {
@@ -66,6 +72,7 @@ export class BmbLoginComponent {
 
   onRequest = output<any>();
   onContinue = output();
+  onRememberMeChecked = output<any>();
 
   isEnabled: boolean = false;
   isLoading: boolean = false;
@@ -94,5 +101,9 @@ export class BmbLoginComponent {
         }
       },
     });
+  }
+
+  handleRememberMe(event: any): void {
+    this.onRememberMeChecked.emit(event);
   }
 }

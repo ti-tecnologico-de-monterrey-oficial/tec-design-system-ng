@@ -27,6 +27,10 @@ export class BmbLoginContentComponent {
   forgottenPasswordTarget = input<IBmbTargetLink>('_blank');
   showRememberMeCheckbox = input<boolean>(false);
   rememberMeCheckboxLabel = input<string>('Recordarme');
+  showLoginAsGuest = input<boolean>(false);
+  loginAsGuestLabel = input<string>('Entrar como invitado');
+  loginAsGuestLink = input<string>('');
+  loginAsGuestTarget = input<IBmbTargetLink>('_blank');
   onContinue = model<boolean>();
 
   onFormGroup = output<FormGroup>();

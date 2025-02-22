@@ -1,0 +1,34 @@
+@use "../../../assets/styles/base/rem" as rem;
+
+$colors: (
+  "success": var(--alert-successful),
+  "event": var(--alert-event),
+  "warning": var(--alert-warning),
+  "error": var(--alert-error),
+);
+
+@mixin statusAppearances($color) {
+  background-color: $color;
+}
+
+.bmb_icon-status {
+  &-wrapper {
+    display: flex;
+    border-radius: 50%;
+    height: rem.rem_calc(120);
+    width: rem.rem_calc(120);
+    align-items: center;
+    justify-content: center;
+    color: var(--white-primary);
+
+    @each $name, $color in $colors {
+      &-#{$name} {
+        @include statusAppearances($color);
+      }
+    }
+  }
+
+  &-icon {
+    color: var(--general_contrasts-main-selection);
+  }
+}

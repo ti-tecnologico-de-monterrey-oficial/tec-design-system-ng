@@ -42,8 +42,19 @@
       [textLink]="forgottenPasswordLabel()"
       icon=""
       [link]="forgottenPasswordLink()"
-      textLink="another acount"
+      textLink="forgotten password"
       [target]="forgottenPasswordTarget()"
     />
   </section>
+  @if (showLoginAsGuest()) {
+    <section class="bmb_login-content-sublabel">
+      <bmb-text-link
+        [textLink]="loginAsGuestLabel()"
+        icon=""
+        [link]="loginAsGuestLink()"
+        textLink="guest"
+        [target]="loginAsGuestTarget()"
+      />
+    </section>
+  }
 </section>

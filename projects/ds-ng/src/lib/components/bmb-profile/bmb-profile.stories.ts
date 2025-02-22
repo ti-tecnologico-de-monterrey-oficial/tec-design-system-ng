@@ -46,7 +46,7 @@ Below is an example of how you can use this component in HTML:
     userData: {
       name: 'User Data',
       control: 'object',
-      description: 'Set the basic information to display in the component',
+      description: 'Sets the basic information to display in the component',
       table: {
         category: 'Properties',
         type: { summary: 'object' },
@@ -56,7 +56,7 @@ Below is an example of how you can use this component in HTML:
       name: 'Campus Access Link',
       control: 'text',
       description:
-        'Set the link to redirect when the campus access button is clicked',
+        'Sets the link to redirect when the campus access button is clicked',
       table: {
         category: 'Events',
         type: { summary: 'string' },
@@ -66,7 +66,7 @@ Below is an example of how you can use this component in HTML:
       name: 'Id Digital Link',
       control: 'text',
       description:
-        'Set the link to redirect when the id digital button is clicked',
+        'Sets the link to redirect when the id digital button is clicked',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -83,6 +83,15 @@ Below is an example of how you can use this component in HTML:
         category: 'Events',
         type: { summary: 'IBmbTargetLink' },
         defaultValue: { summary: '_blank' },
+      },
+    },
+    versionLabel: {
+      name: 'Version label',
+      control: 'text',
+      description: 'Sets the version label to display in the component',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
       },
     },
     handleCloseSession: {
@@ -123,6 +132,7 @@ Below is an example of how you can use this component in HTML:
     campusAcessLink: 'https://www.youtube.com',
     idDigitalLink: 'https://www.x.com',
     targetLinks: '_blank',
+    versionLabel: 'Versión 1.5.10',
     handleCloseSession: () => {
       window.alert('Cerrar Sesion');
     },

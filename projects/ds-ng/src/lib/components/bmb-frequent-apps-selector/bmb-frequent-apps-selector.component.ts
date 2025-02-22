@@ -5,7 +5,6 @@ import {
   input,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 import {
   BmbInteractiveIconComponent,
   IBmbInteractiveIconType,
@@ -17,7 +16,7 @@ import { IBmbApp } from '../../types';
   styleUrl: './bmb-frequent-apps-selector.component.scss',
   templateUrl: './bmb-frequent-apps-selector.component.html',
   standalone: true,
-  imports: [CommonModule, BmbContainerComponent, BmbInteractiveIconComponent],
+  imports: [CommonModule, BmbInteractiveIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

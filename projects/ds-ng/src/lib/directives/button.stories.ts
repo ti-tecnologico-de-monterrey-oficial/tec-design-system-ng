@@ -116,7 +116,7 @@ Below is an example of how you can use this component in HTML:
       name: 'Text',
       description: 'Button content example.',
       table: {
-        category: 'Properties',
+        category: 'Example',
         type: { summary: 'string' },
       },
     },

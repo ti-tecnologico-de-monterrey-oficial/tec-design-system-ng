@@ -28,18 +28,6 @@ import { BmbInnerHeaderComponent } from '@ti-tecnologico-de-monterrey-oficial/ds
 \`\`\`
 
 Below is an example of how you can use this component in HTML:
-
-\`\`\`html
-<bmb-inner-header
-  [title]="title"
-  [showReturn]="true"
-  (searchData)="handleSearch($event)"
-  [showSearch]="true"
-  [title]="'My Title'"
-  [placeholderSearch]="'Search'"
-  [subTitle]="'http://www.link.com'"
-></bmb-inner-header>
-\`\`\`
         `,
       },
     },
@@ -191,7 +179,7 @@ Below is an example of how you can use this component in HTML:
       name: 'Text',
       description: 'Header content example.',
       table: {
-        category: 'Properties',
+        category: 'Example',
         type: { summary: 'string' },
       },
     },
