@@ -37,7 +37,7 @@ Below is an example of how you can use this component in HTML:
       name: 'Icon',
       control: { type: 'text' },
       description:
-        'Sets the name of the icon to use. Please use Material icons: https://fonts.google.com/icons. The color of the icon depends on the parent. You can also place an image here. **This icon has button behavior**',
+        'Sets the name of the icon to use. Please use Material icons: https://fonts.google.com/icons.',
       table: {
         category: 'Properties',
         type: { summary: 'string (required)' },
@@ -52,23 +52,22 @@ Below is an example of how you can use this component in HTML:
 Sets the background color of the icon, which affects its visual style.
 
     IBmbStatusAppearance =
-      | ''
       | 'success'
       | 'event'
       | 'warning'
       | 'error'
       `,
-    },
-    options: ['', 'success', 'event', 'warning', 'error'],
-    table: {
-      category: 'Properties',
-      defaultValue: { summary: '' },
-      type: { summary: 'IBmbStatusAppearance (optional)' },
+      options: ['', 'success', 'event', 'warning', 'error'],
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: '' },
+        type: { summary: 'IBmbStatusAppearance (optional)' },
+      },
     },
   },
   args: {
     icon: 'check',
-    statusAppearance: '',
+    statusAppearance: 'success',
   },
 } as Meta<typeof BmbIconStatusComponent>;
 

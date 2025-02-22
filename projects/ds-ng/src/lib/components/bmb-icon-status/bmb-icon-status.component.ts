@@ -5,9 +5,9 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { CommonModule } from '@angular/common';
 
 export type IBmbStatusAppearance =
-  | ''
   | 'success'
   | 'event'
   | 'warning'
@@ -16,7 +16,7 @@ export type IBmbStatusAppearance =
 @Component({
   selector: 'bmb-icon-status',
   standalone: true,
-  imports: [BmbIconComponent],
+  imports: [CommonModule, BmbIconComponent],
   templateUrl: './bmb-icon-status.component.html',
   styleUrl: './bmb-icon-status.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -24,9 +24,13 @@ export type IBmbStatusAppearance =
 })
 export class BmbIconStatusComponent {
   icon = input.required<string>();
-  statusAppearance = input<IBmbStatusAppearance | undefined>();
+  statusAppearance = input<IBmbStatusAppearance>();
 
   getIconSize(): number {
     return (!!this.statusAppearance() && 60) || 120;
+  }
+
+  getClassName(baseClassName: string, className: string): string {
+    return (!!className && `${baseClassName}-${className}`) || '';
   }
 }

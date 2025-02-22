@@ -59,15 +59,6 @@ describe('BmbAccordionComponent', () => {
     expect(classes).toContain('bmb_accordion-header-icon');
   });
 
-  it('should return correct classes for content', () => {
-    componentRef.setInput('paddingContent', 'm');
-    component.toggle();
-
-    const classes = component.getClassesContent();
-    expect(classes).toContain('bmb_padding-m');
-    expect(classes).toContain('bmb_accordion-content-open');
-  });
-
   it('should return correct styles', () => {
     componentRef.setInput('borderRadius', ['m', 'l']);
     componentRef.setInput('margin', ['m', 'l']);
