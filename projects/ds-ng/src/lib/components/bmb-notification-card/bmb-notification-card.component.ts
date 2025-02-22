@@ -16,7 +16,7 @@ import { BmbAlertCenterComponent } from '../bmb-alert-center/bmb-alert-center.co
 import { IBmbDataAlert } from '../bmb-alert-center/types';
 import { BmbTabsComponent, IBmbTab } from '../bmb-tabs/bmb-tabs.component';
 import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
-import { BmbCarouselComponent} from '../bmb-carousel/bmb-carousel.component';
+import { BmbCarouselComponent } from '../bmb-carousel/bmb-carousel.component';
 import { BmbButtonDirective } from '../../directives/button.directive';
 import { BmbImageComponent } from '../bmb-image/bmb-image.component';
 
@@ -54,7 +54,7 @@ export class BmbNotificationCardComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    this.tabs[0].badge = this.newAlerts()
+    this.tabs[0].badge = this.newAlerts();
   }
 
   setActiveTab(tab: IBmbTab) {
@@ -70,13 +70,10 @@ export class BmbNotificationCardComponent implements OnInit {
   }
 
   newAlerts() {
-    return this.data().reduce(
-      (acc: number, alert: IBmbDataAlert) => {
-        if (!alert.isRead) return acc + 1;
-        return acc;
-      },
-      0,
-    );
+    return this.data().reduce((acc: number, alert: IBmbDataAlert) => {
+      if (!alert.isRead) return acc + 1;
+      return acc;
+    }, 0);
   }
 
   handleAlertEvent(alert: IBmbDataAlert) {

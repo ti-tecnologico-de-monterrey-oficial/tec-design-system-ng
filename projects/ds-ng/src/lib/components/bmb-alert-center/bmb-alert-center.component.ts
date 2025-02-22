@@ -44,7 +44,7 @@ export interface IBmbAlertCenterTabConfig {
     BmbAlertCenterFormComponent,
     BmbButtonDirective,
     BmbImageComponent,
-    BmbAlertCenterAdsComponent
+    BmbAlertCenterAdsComponent,
   ],
   templateUrl: './bmb-alert-center.component.html',
   styleUrl: './bmb-alert-center.component.scss',
@@ -66,11 +66,11 @@ export class BmbAlertCenterComponent {
   onChangeAlertStatus = output<IBmbDataAlertsOutput>();
   alertEvent = output<IBmbDataAlert>();
 
-  @ViewChild('detailContent', { read: TemplateRef }) detailContent?: TemplateRef<any>;
+  @ViewChild('detailContent', { read: TemplateRef })
+  detailContent?: TemplateRef<any>;
   @ViewChild('container') container!: ElementRef;
 
   constructor(private matDialog: MatDialog) {}
-
 
   tabs: IBmbTab[] = [];
   selectedTab = 0;
@@ -91,10 +91,13 @@ export class BmbAlertCenterComponent {
         id: index,
         title: typeof tab === 'string' ? tab : tab.title,
         isActive: index === 0,
-        badge: index === 0 || index === 1 ? this.alerts().filter((alert) => !alert.isRead).length : 0,
+        badge:
+          index === 0 || index === 1
+            ? this.alerts().filter((alert) => !alert.isRead).length
+            : 0,
         isMobile: typeof tab === 'string' ? true : tab.isMobile,
         isDesktop: typeof tab === 'string' ? true : tab.isDesktop,
-      }
+      };
     });
 
     this.orderedEvents = this.orderEvents(this.alerts());

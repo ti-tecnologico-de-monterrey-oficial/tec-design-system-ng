@@ -12,6 +12,8 @@ export * from './lib/ds-ng.component';
 export * from './lib/directives/button.directive';
 export * from './lib/directives/bmb-layout/bmb-layout-item.directive';
 export * from './lib/directives/bmb-layout/bmb-layout.directive';
+export * from './lib/directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
+export * from './lib/directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
 export * from './lib/directives/bmb-button-group/bmb-button-group.directive';
 export * from './lib/directives/bmb-accordion/bmb-accordion-control.directive';
 
@@ -133,6 +135,7 @@ export * from './lib/components/bmb-three-cols/bmb-three-cols.component';
 export * from './lib/components/bmb-title-content/bmb-title-content.component';
 export * from './lib/components/bmb-list-items/bmb-list-items.component';
 export * from './lib/components/bmb-image/bmb-image.component';
+export * from './lib/components/bmb-icon-status/bmb-icon-status.component';
 export * from './lib/components/bmb-chat-bubbles/bmb-chat-bubbles.component';
 export * from './lib/components/bmb-digital-id/bmb-digital-id.component';
 

@@ -79,7 +79,8 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'IBmbDataAlert[]',
       },
-      description: 'Set information that the component will show on the alerts tab',
+      description:
+        'Set information that the component will show on the alerts tab',
       table: {
         category: 'Properties',
         type: { summary: 'IBmbDataAlert[]' },
@@ -94,7 +95,7 @@ Below is an example of how you can use this component in HTML:
         category: 'Events',
         type: { summary: 'IBmbDataAlert' },
       },
-    }
+    },
   },
   args: {
     data: [
