@@ -34,6 +34,7 @@ export class BmbCheckboxComponent {
   @Output() change: EventEmitter<Event> = new EventEmitter<Event>();
 
   handleChange(event: Event): void {
+    event.stopPropagation();
     const target = event.target as HTMLInputElement;
     this.checked = target.checked;
     this.change.emit(event);

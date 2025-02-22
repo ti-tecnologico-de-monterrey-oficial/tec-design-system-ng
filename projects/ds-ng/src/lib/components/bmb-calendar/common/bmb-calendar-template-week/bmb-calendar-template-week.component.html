@@ -1,5 +1,8 @@
 <div class="bmb_calendar-week-view">
-  <bmb-calendar-hour-view [hourFormat]="hourFormat" />
+  <bmb-calendar-hour-view
+    [hourFormat]="hourFormat"
+    [startBusinessHour]="startBusinessHour()"
+  />
   @for (day of dayNames; track $index) {
     <section
       class="bmb_calendar-col"
@@ -26,4 +29,5 @@
       </div>
     </section>
   }
+  <bmb-calendar-time-indicator [currentTime]="currentTime()" />
 </div>

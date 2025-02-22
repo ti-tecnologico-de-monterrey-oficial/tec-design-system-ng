@@ -1,19 +1,15 @@
 import { Component, input, output } from '@angular/core';
-import { BmbImageComponent } from '../bmb-image/bmb-image.component';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbButtonDirective } from '../../directives/button.directive';
-import { BmbLogoComponent } from '../bmb-logo/bmb-logo.component';
 
 @Component({
   selector: 'bmb-digital-id',
   standalone: true,
   imports: [
-    BmbImageComponent,
     BmbUserImageComponent,
     BmbIconComponent,
     BmbButtonDirective,
-    BmbLogoComponent,
   ],
   templateUrl: './bmb-digital-id.component.html',
   styleUrl: './bmb-digital-id.component.scss',

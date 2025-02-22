@@ -5,6 +5,8 @@ import {
   ViewEncapsulation,
   Output,
   EventEmitter,
+  input,
+  output,
 } from '@angular/core';
 import { DateTime } from 'luxon';
 import { eventsInDate, dayName, weeksAndDays } from '../../utils';
@@ -17,17 +19,23 @@ import { BmbButtonDirective } from '../../../../directives/button.directive';
 import { Info } from 'luxon';
 import { BmbCalendarTemplateSelectComponent } from '../bmb-calendar-template-select/bmb-calendar-template-select.component';
 import { orderDayNames } from '../../../../utils/utils';
+import { BmbInnerHeaderComponent } from '../../../bmb-inner-header/bmb-inner-header.component';
+import { BmbChevronTitleSelectorComponent } from '../../../bmb-chevron-title-selector/bmb-chevron-title-selector.component';
+import { BmbPullWedgeComponent } from '../../../bmb-pull-wedge/bmb-pull-wedge.component';
 
 @Component({
   selector: 'bmb-calendar-template-mobile',
   standalone: true,
   imports: [
     CommonModule,
-    BmbCalendarScheduleCardsComponent,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
     BmbButtonDirective,
     BmbCalendarTemplateSelectComponent,
+    BmbInnerHeaderComponent,
+    BmbChevronTitleSelectorComponent,
+    BmbChevronTitleSelectorComponent,
+    BmbPullWedgeComponent,
   ],
   templateUrl: './bmb-calendar-template-mobile.component.html',
   styleUrl: './bmb-calendar-template-mobile.component.scss',
@@ -40,10 +48,12 @@ export class BmbCalendarTemplateMobileComponent {
   @Input() lang: string = '';
   @Input() events: IBmbCalendarEvent[] = [];
   @Input() isListShowing: boolean = false;
+  calendarTitle = input<string>('Mi calendario');
 
   @Output() onCurrentDateChange: EventEmitter<DateTime> =
     new EventEmitter<DateTime>();
   @Output() onViewTypeChange: EventEmitter<void> = new EventEmitter<void>();
+  onClose = output<any>();
 
   monthsNames = Info.months('long', { locale: this.lang });
   month = this.monthsNames[this.now.month - 1];
@@ -51,38 +61,33 @@ export class BmbCalendarTemplateMobileComponent {
   isCalendarOpen = false;
   defaultDayOrder = Info.weekdays('narrow', { locale: this.lang });
   dayNames = orderDayNames(this.defaultDayOrder);
+  isWedgeOpen = false;
 
-  handleExpand() {
-    this.isCalendarOpen = !this.isCalendarOpen;
+  handleClose() {
+    this.onClose.emit('close');
   }
 
-  getYears() {
-    const yearsList = new Array(21).fill(0);
-    const currentYear = this.now.year;
-    const yearsFinal = yearsList.map((_, index) => {
-      return (currentYear + (-10 + index)).toString();
-    });
-    return yearsFinal;
+  switchToMonthList() {
+    console.log('switchToMonthList');
   }
 
-  handleMonthChange(value: string) {
-    this.month = value;
+  handleMonthChange(event: string): void {
+    const modifyDate = ({ config, date }: any) => {
+      if (event === '+') {
+        this.onCurrentDateChange.emit(date.plus(config));
+      } else {
+        this.onCurrentDateChange.emit(date.minus(config));
+      }
+    };
+
     const newDate = DateTime.fromObject({
-      day: 1,
-      month: this.monthsNames.indexOf(value) + 1,
-      year: this.now.year,
-    });
-    this.onCurrentDateChange.emit(newDate);
-  }
-
-  handleYearChange(value: string) {
-    this.year = Number(value);
-    const newDate = DateTime.fromObject({
-      day: 1,
       month: this.now.month,
-      year: Number(value),
+      year: this.now.year,
+      day: 1,
     });
-    this.onCurrentDateChange.emit(newDate);
+
+    modifyDate({ config: { month: 1 }, date: newDate });
+    this.isWedgeOpen = false;
   }
 
   isSelectedDay(date: DateTime): boolean {
@@ -103,15 +108,12 @@ export class BmbCalendarTemplateMobileComponent {
     this.month = this.monthsNames[date.month - 1];
     this.year = date.year;
     this.isCalendarOpen = false;
-  }
-
-  isNow(date: DateTime): boolean {
-    const diff = date.diffNow('day').days;
-    return diff < 0 && diff > -1;
+    this.isWedgeOpen = false;
   }
 
   handleViewTypeChange() {
     this.onViewTypeChange.emit();
+    this.isWedgeOpen = false;
   }
 
   findEventsForToday(date: DateTime) {
@@ -120,5 +122,9 @@ export class BmbCalendarTemplateMobileComponent {
     });
 
     return todayHasEvents;
+  }
+
+  handleCloseWedge() {
+    console.log('close wedge');
   }
 }

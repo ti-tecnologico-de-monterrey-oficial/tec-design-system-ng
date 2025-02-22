@@ -5,6 +5,7 @@ import {
   ViewEncapsulation,
   Output,
   EventEmitter,
+  input,
 } from '@angular/core';
 import { BmbCalendarHourViewComponent } from '../bmb-calendar-hour-view/bmb-calendar-hour-view.component';
 import { CommonModule } from '@angular/common';
@@ -17,6 +18,7 @@ import {
 import { DateTime } from 'luxon';
 import { BmbCalendarScheduleCardsComponent } from '../bmb-calendar-schedule-cards/bmb-calendar-schedule-cards.component';
 import { eventsInDate } from '../../utils';
+import { BmbCalendarTimeIndicatorComponent } from '../bmb-calendar-time-indicator/bmb-calendar-time-indicator.component';
 
 @Component({
   selector: 'bmb-calendar-template-day',
@@ -25,6 +27,7 @@ import { eventsInDate } from '../../utils';
     CommonModule,
     BmbCalendarHourViewComponent,
     BmbCalendarScheduleCardsComponent,
+    BmbCalendarTimeIndicatorComponent,
   ],
   templateUrl: './bmb-calendar-template-day.component.html',
   styleUrl: './bmb-calendar-template-day.component.scss',
@@ -36,6 +39,8 @@ export class BmbCalendarTemplateDayComponent {
   @Input() hourFormat: IBmbCalendarHourFormat = '12';
   @Input() now: DateTime = DateTime.now();
   @Input() events: IBmbCalendarEvent[] = [];
+  currentTime = input<DateTime>(DateTime.now());
+  startBusinessHour = input<number>(8);
 
   @Output() onSelectEvent: EventEmitter<IBmbCalendarEventClick> =
     new EventEmitter<IBmbCalendarEventClick>();
@@ -52,10 +57,5 @@ export class BmbCalendarTemplateDayComponent {
 
   handleEventSelection(newEvent: IBmbCalendarEventClick) {
     this.onSelectEvent.emit(newEvent);
-  }
-
-  isNow(date: DateTime): boolean {
-    const diff = date.diffNow('day').days;
-    return diff < 0 && diff > -1;
   }
 }

@@ -1,5 +1,91 @@
-<div class="bmb_calendar-month-mobile bmb_padding-m">
-  <nav
+<div class="bmb_calendar-month-mobile">
+  <bmb-inner-header
+    [title]="calendarTitle()"
+    [showClose]="true"
+    trailingIconSecondary="calendar_month"
+    (onHandleClose)="handleClose()"
+    (onHandleTrailingSecondary)="handleViewTypeChange()"
+  >
+    <div class="bmb_calendar-month-mobile-nav">
+      <bmb-chevron-title-selector
+        [title]="now.setLocale(lang).toFormat('MMM')"
+        leadingIcon="chevron_left"
+        trailingIcon="chevron_right"
+        (onLeadingClick)="handleMonthChange('-')"
+        (onTrailingClick)="handleMonthChange('+')"
+      />
+    </div>
+    <bmb-pull-wedge
+      [initialHeight]="300"
+      [minContentHeight]="100"
+      [(isOpen)]="isWedgeOpen"
+    >
+      <div class="bmb_calendar-month-mobile-collapsible" collapsible>
+        <ul class="bmb_calendar-month-mobile-calendar">
+          @for (day of dayNames; track $index) {
+            <li class="bmb_calendar-month-mobile-calendar-header">
+              {{ day }}
+            </li>
+          }
+        </ul>
+        <ul
+          class="bmb_calendar-month-mobile-calendar bmb_calendar-month-mobile-calendar-small"
+        >
+          @for (date of weekDays; track $index) {
+            <li class="bmb_calendar-month-mobile-calendar-item">
+              <button
+                class="bmb_calendar-month-mobile-calendar-button"
+                (click)="handleDayChange(date)"
+                bmbButton
+                appearance="transparent"
+                [ngClass]="{
+                  'bmb_calendar-month-mobile-calendar-button-selected':
+                    isSelectedDay(date),
+                }"
+                [disabled]="isSelectedDay(date)"
+              >
+                {{ date.day }}
+              </button>
+              @if (findEventsForToday(date)) {
+                <span
+                  class="bmb_calendar-month-mobile-calendar-item-indicator"
+                ></span>
+              }
+            </li>
+          }
+        </ul>
+        <ul
+          class="bmb_calendar-month-mobile-calendar bmb_calendar-month-mobile-calendar-large"
+        >
+          @for (date of getWeeksAndDays(); track $index) {
+            <li class="bmb_calendar-month-mobile-calendar-item">
+              <button
+                class="bmb_calendar-month-mobile-calendar-button"
+                (click)="handleDayChange(date)"
+                bmbButton
+                appearance="transparent"
+                [ngClass]="{
+                  'bmb_calendar-month-mobile-calendar-button-selected':
+                    isSelectedDay(date),
+                }"
+                [disabled]="isSelectedDay(date)"
+              >
+                {{ date.day }}
+              </button>
+              @if (findEventsForToday(date)) {
+                <span
+                  class="bmb_calendar-month-mobile-calendar-item-indicator"
+                ></span>
+              }
+            </li>
+          }
+        </ul>
+      </div>
+    </bmb-pull-wedge>
+  </bmb-inner-header>
+</div>
+
+<!-- <nav
     class="bmb_calendar-month-mobile-nav"
     bmbLayout
     margin="none"
@@ -34,50 +120,11 @@
     </li>
   </nav>
   @if (!isListShowing) {
-    <ul class="bmb_calendar-month-mobile-calendar">
-      @for (day of dayNames; track $index) {
-        <li class="bmb_calendar-month-mobile-calendar-header">
-          {{ day }}
-        </li>
-      }
+
       @if (!isCalendarOpen) {
-        @for (date of weekDays; track $index) {
-          <li class="bmb_calendar-month-mobile-calendar-item">
-            <button
-              class="bmb_calendar-month-mobile-calendar-button"
-              (click)="handleDayChange(date)"
-              bmbButton
-              appearance="secondary-filled"
-              [disabled]="isSelectedDay(date)"
-            >
-              {{ date.day }}
-            </button>
-            @if (findEventsForToday(date)) {
-              <span
-                class="bmb_calendar-month-mobile-calendar-item-indicator"
-              ></span>
-            }
-          </li>
-        }
+
       } @else {
-        @for (date of getWeeksAndDays(); track $index) {
-          <li class="bmb_calendar-month-mobile-calendar-item">
-            <button
-              class="bmb_calendar-month-mobile-calendar-button"
-              (click)="handleDayChange(date)"
-              bmbButton
-              appearance="secondary-filled"
-              [disabled]="isSelectedDay(date)"
-            >
-              {{ date.day }}
-            </button>
-            @if (findEventsForToday(date)) {
-              <span
-                class="bmb_calendar-month-mobile-calendar-item-indicator"
-              ></span>
-            }
-          </li>
-        }
+
       }
     </ul>
     <div
@@ -93,5 +140,4 @@
         icon="keyboard_arrow_down"
       ></button>
     </div>
-  }
-</div>
+  } -->

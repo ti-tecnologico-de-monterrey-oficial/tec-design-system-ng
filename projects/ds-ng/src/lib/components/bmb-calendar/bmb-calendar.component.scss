@@ -3,13 +3,18 @@
 @use "../../../assets/styles/base/mixins" as mixins;
 
 .bmb_calendar {
-  background-color: RGBA(var(--color-charade-200));
+  background-color: var(--containers-background);
   position: relative;
   overflow: hidden;
 
-  @include mixins.media-query(1000, "min") {
+  @include mixins.media-query(1000, "max") {
+    display: flex;
+    flex-flow: column;
+  }
+
+  @include mixins.media-query(1001, "min") {
     padding: var(--bmb-spacing-xl);
-    background-color: RGBA(var(--color-charade-100));
+    background-color: var(--containers-main);
   }
 
   &-detail-header {
@@ -18,11 +23,11 @@
     gap: rem.rem_calc(8);
     justify-content: center;
     padding: var(--bmb-spacing-n) var(--bmb-spacing-none);
-    border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
+    border-bottom: rem.rem_calc(1) solid var(--general_contrasts-25);
     position: sticky;
     top: 0;
     z-index: 1;
-    background: RGBA(var(--color-charade-100));
+    background-color: var(--containers-main);
     @include mixins.media-query(999, "max") {
       display: none;
     }
@@ -48,15 +53,16 @@
   &-col {
     flex: 1;
     height: fit-content;
+    border-left: rem.rem_calc(1) solid var(--general_contrasts-25);
 
     &-today {
-      background-color: RGBA(var(--color-yellow-tint), 0.5);
+      background-color: var(--general_contrasts-25);
     }
   }
 
   &-row-body {
     min-height: rem.rem_calc(60);
-    border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
+    border-bottom: rem.rem_calc(1) solid var(--general_contrasts-25);
   }
 
   &-week-view,
@@ -84,6 +90,11 @@
       animation: rotateAnimation 1s linear infinite;
     }
   }
+
+  &-content {
+    flex: 1 0 0%;
+    overflow: hidden;
+  }
 }
 
 @keyframes rotateAnimation {
@@ -96,23 +107,21 @@
   }
 }
 
-[data-theme="dark"],
-.storybook-dark-theme {
-  .bmb_calendar {
-    background-color: RGBA(var(--color-charade-900));
-    color: RGBA(var(--color-charade-50));
+// [data-theme="dark"],
+// .storybook-dark-theme {
+//   .bmb_calendar {;
 
-    &-detail-header,
-    &-row-body {
-      border-bottom-color: RGBA(var(--color-charade-700), 0.75);
-    }
+//     &-detail-header,
+//     &-row-body {
+//       border-bottom-color: RGBA(var(--color-charade-700), 0.75);
+//     }
 
-    &-detail-header {
-      background-color: RGBA(var(--color-charade-900));
-    }
+//     &-detail-header {
+//       background-color: RGBA(var(--color-charade-900));
+//     }
 
-    &-loader {
-      background-color: RGBA(var(--color-charade-900), 0.75);
-    }
-  }
-}
+//     &-loader {
+//       background-color: RGBA(var(--color-charade-900), 0.75);
+//     }
+//   }
+// }

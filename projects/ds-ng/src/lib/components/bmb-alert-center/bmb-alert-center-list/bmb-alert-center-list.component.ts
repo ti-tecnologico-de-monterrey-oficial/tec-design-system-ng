@@ -36,8 +36,13 @@ export class BmbAlertCenterListComponent {
     return date.toFormat('EEEE dd LLLL yyyy', { locale: 'es' });
   }
 
-  handleRowClick(item: IBmbDataAlertsParsed): void {
-    this.alertSelected.emit(item);
+  handleRowClick(event: Event, item: IBmbDataAlertsParsed): void {
+    const target = event.target as HTMLElement;
+    if (target?.id || target.classList?.[0]?.search(/bmb_checkbox/) !== -1) {
+      console.log('remove this log');
+    } else {
+      this.alertSelected.emit(item);
+    }
   }
 
   getFormattedTime(date: any): string {

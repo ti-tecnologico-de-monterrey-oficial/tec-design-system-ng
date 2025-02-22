@@ -1,15 +1,131 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import { Meta, moduleMetadata, StoryFn, StoryObj } from '@storybook/angular';
 import { BmbCalendarComponent } from './bmb-calendar.component';
+import { Component, input, OnInit } from '@angular/core';
+import { BmbCalendarService } from '../../services/calendar.service';
+import { attributes } from '../../utils/utils';
+
+@Component({
+  standalone: true,
+  imports: [BmbCalendarComponent],
+  selector: 'storybook-toast-wrapper',
+  template: `
+    <div style="height: 1000px">
+      <bmb-calendar
+        [calendarTimezone]="calendarTimezone()"
+        [clientTimezone]="clientTimezone()"
+        [height]="height()"
+        (onDateChange)="onDateChange($event)"
+      ></bmb-calendar>
+    </div>
+  `,
+})
+class ToastWrapperComponent implements OnInit {
+  calendarTimezone = input<string>('America/Mexico_City');
+  clientTimezone = input<string>('America/Mexico_City');
+  height = input<number>(700);
+
+  constructor(private bmbCalendarService: BmbCalendarService) {}
+
+  ngOnInit() {
+    this.bmbCalendarService.addMultipleEvents([
+      {
+        title: 'Event 0',
+        start: '2025-02-22T15:00:00.715Z',
+        end: '2025-02-22T16:00:00.715Z',
+        detail: 'Event 1 detail',
+        modalTitle: 'Event 1',
+      },
+      {
+        title: 'Event 1',
+        start: '2025-02-23T15:00:00.715Z',
+        end: '2025-02-23T16:00:00.715Z',
+        detail: 'Event 1 detail',
+        modalTitle: 'Event 1',
+      },
+      {
+        title: 'Event 2',
+        start: '2025-02-24T15:00:00.715Z',
+        end: '2025-02-24T16:00:00.715Z',
+        detail: 'Event 2 detail',
+        modalTitle: 'Event 2',
+        tags: [{
+          appearance: 'success',
+          text: 'Event 2 tag',
+        }]
+      },
+      {
+        title: 'Event 3',
+        start: '2025-02-24T15:00:00.715Z',
+        end: '2025-02-24T16:00:00.715Z',
+        detail: 'Event 2 detail',
+        modalTitle: 'Event 2',
+        tags: [{
+          appearance: 'success',
+          text: 'Event 2 tag',
+        }]
+      },
+      {
+        title: 'Event 4',
+        start: '2025-02-25T15:00:00.715Z',
+        end: '2025-02-25T16:00:00.715Z',
+        detail: 'Event 2 detail',
+        modalTitle: 'Event 2',
+        tags: [{
+          appearance: 'success',
+          text: 'Event 2 tag',
+        }]
+      },
+      {
+        title: 'Event 4',
+        start: '2025-02-26T15:00:00.715Z',
+        end: '2025-02-26T16:00:00.715Z',
+        detail: 'Event 2 detail',
+        modalTitle: 'Event 2',
+        tags: [{
+          appearance: 'success',
+          text: 'Event 2 tag',
+        }]
+      },
+      {
+        title: 'Event 4',
+        start: '2025-02-27T15:00:00.715Z',
+        end: '2025-02-27T16:00:00.715Z',
+        detail: 'Event 2 detail',
+        modalTitle: 'Event 2',
+        tags: [{
+          appearance: 'success',
+          text: 'Event 2 tag',
+        }]
+      },
+    ]);
+  }
+}
 
 export default {
   title: 'Macro Componentes/Calendar',
   component: BmbCalendarComponent,
-  decorators: [],
+  decorators: [
+    moduleMetadata({
+      imports: [
+        ToastWrapperComponent,
+        BmbCalendarComponent,
+      ],
+      providers: [],
+    }),
+  ],
   parameters: {
     docs: {
       description: {
         component: `
 Below is an example of how you can use this component in TypeScript:
+
+##Configuration
+Add the \`BmbCalendarService\` to your App providers:
+
+\`\`\`providers: [
+  provideRouter(routes),
+  importProvidersFrom([BmbCalendarService, ...]),
+],\`\`\`
 
 \`\`\`typescript
 import { BmbCalendarComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
@@ -28,27 +144,6 @@ Below is an example of how you can use this component in HTML:
     },
   },
   argTypes: {
-    view: {
-      name: 'View',
-      control: 'select',
-      options: ['day', 'week', 'month'],
-      description: 'Select the view type.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: 'week' },
-      },
-    },
-    isLoading: {
-      name: 'Is loading',
-      control: { type: 'boolean' },
-      description: 'Set the loader spinner when the property is true',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean' },
-      },
-    },
     calendarTimezone: {
       name: 'Calendar timezone',
       control: { type: 'text' },
@@ -81,7 +176,7 @@ Below is an example of how you can use this component in HTML:
     },
     height: {
       name: 'Height',
-      control: { type: 'text' },
+      control: { type: 'number' },
       description:
         'Change the default height, you can also set a valid CSS value (example: 100vh).',
       defaultValue: { summary: '700' },
@@ -101,36 +196,35 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'function' },
       },
     },
-    events: {
-      name: 'Events',
-      control: {
-        type: '',
-      },
-      description:
-        'It is the collection of user events that will be seen on the calendar.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'object' },
-      },
-    },
   },
   args: {
-    events: [
-      {
-        title: 'Test',
-        detail: 'Detail test',
-        start: '2024-04-23T15:00:00.715Z',
-        end: '2024-04-23T15:30:00.715Z',
-      },
-    ],
-    view: 'week',
+    calendarTimezone: 'America/Mexico_City',
+    clientTimezone: 'America/Mexico_City',
+    height: 700,
     onDateChange: (params: any) => {
       window.alert(params.toString());
     },
-    isLoading: false,
   },
 } as Meta<typeof BmbCalendarComponent>;
 
-type Story = StoryObj<BmbCalendarComponent>;
-
-export const Default: Story = {};
+export const Default: StoryFn<typeof ToastWrapperComponent> = (
+  args,
+) => {
+  return {
+    props: args,
+    template: `
+      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->
+      <storybook-toast-wrapper ${attributes(args)}></storybook-toast-wrapper>
+      <!-- Start copying from here -->
+      <div class="actions">
+      <div style="height: 1000px">
+        <bmb-calendar
+          [calendarTimezone]="calendarTimezone"
+          [clientTimezone]="clientTimezone"
+          [height]="height"
+          (onDateChange)="onDateChange($event)"
+        ></bmb-calendar>
+      </div>
+      `,
+  };
+};

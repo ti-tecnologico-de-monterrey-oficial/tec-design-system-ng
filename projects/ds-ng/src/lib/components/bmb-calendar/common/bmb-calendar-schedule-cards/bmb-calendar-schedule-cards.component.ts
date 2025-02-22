@@ -28,13 +28,15 @@ export class BmbCalendarScheduleCardsComponent {
     end: new Date().toISOString(),
     type: 'academic',
     modalTitle: '',
-    status: '',
+    status: 'active',
   };
   @Input() isPositionAbsolute: boolean = true;
   @Input() extendedContent: boolean = true;
 
   @Output() onSelectEvent: EventEmitter<IBmbCalendarEventClick> =
     new EventEmitter<IBmbCalendarEventClick>();
+
+  now = DateTime.now();
 
   getPosition(date: IBmbCalendarEvent, isPositionAbsolute: boolean): string {
     if (!isPositionAbsolute) return '';
@@ -53,6 +55,8 @@ export class BmbCalendarScheduleCardsComponent {
   ): string[] {
     let newClasses = [`bmb_calendar-event-type-${this.event.type}`];
     if (isPositionAbsolute) newClasses.push('bmb_calendar-event-absolute');
+    if (this.event.status === 'disabled')
+      newClasses.push('bmb_calendar-event-disabled');
     const start = DateTime.fromISO(date.start);
     const end = DateTime.fromISO(date.end);
     const diff = end.hour * 60 + end.minute - (start.hour * 60 + start.minute);
@@ -61,6 +65,10 @@ export class BmbCalendarScheduleCardsComponent {
       newClasses.push('bmb_calendar-event-grid-reduced');
     } else {
       newClasses.push('bmb_calendar-event-grid-full');
+    }
+
+    if (this.now >= start && this.now <= end) {
+      newClasses.push('bmb_calendar-event-active');
     }
 
     return newClasses;
