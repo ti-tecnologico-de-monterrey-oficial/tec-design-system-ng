@@ -12,6 +12,8 @@ export * from './lib/ds-ng.component';
 export * from './lib/directives/button.directive';
 export * from './lib/directives/bmb-layout/bmb-layout-item.directive';
 export * from './lib/directives/bmb-layout/bmb-layout.directive';
+export * from './lib/directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';
+export * from './lib/directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
 export * from './lib/directives/bmb-button-group/bmb-button-group.directive';
 export * from './lib/directives/bmb-accordion/bmb-accordion-control.directive';
 

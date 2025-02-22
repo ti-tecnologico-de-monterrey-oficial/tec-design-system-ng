@@ -7,11 +7,7 @@ import {
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { CommonModule } from '@angular/common';
 
-export type IBmbStatusAppearance =
-  | 'success'
-  | 'event'
-  | 'warning'
-  | 'error';
+export type IBmbStatusAppearance = 'success' | 'event' | 'warning' | 'error';
 
 @Component({
   selector: 'bmb-icon-status',
