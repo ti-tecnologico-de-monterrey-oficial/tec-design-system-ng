@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { BmbIconStatusComponent } from './bmb-icon-status.component';
 
 export default {
-  title: 'Macro Componentes/Icon status',
+  title: 'Micro Componentes/Icon status',
   component: BmbIconStatusComponent,
   decorators: [],
   parameters: {
