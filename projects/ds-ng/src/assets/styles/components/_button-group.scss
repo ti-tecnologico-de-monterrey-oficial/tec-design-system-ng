@@ -38,7 +38,15 @@
       @include mixins.button(secondary-outlined);
       border-left-width: 0;
 
+      &:hover:not(:disabled) {
+        padding: 0.0625rem 0.9375rem;
+      }
+
       @include first_child();
+    }
+
+    .bmb_button-selected {
+      background-color: var(--general_contrasts-input-background);
     }
   }
 

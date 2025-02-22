@@ -7,7 +7,9 @@
           @switch (item.type) {
             @case ("paragraph") {
               <p
-                [ngClass]="'bmb_alert-center-content-' + (item.style ?? 'normal')"
+                [ngClass]="
+                  'bmb_alert-center-content-' + (item.style ?? 'normal')
+                "
               >
                 {{ item.text }}
               </p>
@@ -24,7 +26,9 @@
             }
             @case ("title") {
               <h3
-                [ngClass]="'bmb_alert-center-content-' + (item.style ?? 'normal')"
+                [ngClass]="
+                  'bmb_alert-center-content-' + (item.style ?? 'normal')
+                "
               >
                 {{ item.text }}
               </h3>
@@ -44,7 +48,9 @@
             }
             @case ("link") {
               <a
-                [ngClass]="'bmb_alert-center-content-' + (item.style ?? 'normal')"
+                [ngClass]="
+                  'bmb_alert-center-content-' + (item.style ?? 'normal')
+                "
                 [href]="item.href"
                 >{{ item.text }}</a
               >
@@ -55,4 +61,3 @@
     }
   </bmb-carousel>
 </div>
-

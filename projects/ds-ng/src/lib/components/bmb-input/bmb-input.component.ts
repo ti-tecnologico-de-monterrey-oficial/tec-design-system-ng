@@ -193,6 +193,8 @@ export class BmbInputComponent {
   }
 
   handleChange(event: Event) {
+    console.log('event', event);
+
     const target = event.target as HTMLInputElement | null;
     if (target && target.checked) {
       target.value = this.value()!;

@@ -3,4 +3,11 @@
 .bmb_calendar-day-view {
   height: calc(100% - rem.rem_calc(52));
   overflow: auto;
+  position: relative;
+
+  .bmb_calendar-detail-header {
+    padding: rem.rem_calc(16);
+    text-transform: capitalize;
+    justify-content: start;
+  }
 }

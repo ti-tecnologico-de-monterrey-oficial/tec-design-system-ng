@@ -1,9 +1,6 @@
 <div class="bmb_calendar-day-view">
   <bmb-calendar-hour-view [hourFormat]="hourFormat" />
-  <section
-    class="bmb_calendar-col"
-    [ngClass]="{ 'bmb_calendar-col-today': isNow(now) }"
-  >
+  <section class="bmb_calendar-col">
     <header class="bmb_calendar-detail-header">
       <h2>{{ getNameDay() }}</h2>
       <span>{{ now.month }}/{{ now.day }}</span>
@@ -21,4 +18,5 @@
       }
     </div>
   </section>
+  <bmb-calendar-time-indicator [currentTime]="currentTime()" />
 </div>

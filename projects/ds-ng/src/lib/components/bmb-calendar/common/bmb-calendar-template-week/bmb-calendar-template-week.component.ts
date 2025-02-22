@@ -42,6 +42,7 @@ export class BmbCalendarTemplateWeekComponent {
   @Input() now: DateTime = DateTime.now();
   @Input() events: IBmbCalendarEvent[] = [];
   currentTime = input<DateTime>(DateTime.now());
+  startBusinessHour = input<number>(8);
 
   @Output() onSelectEvent: EventEmitter<IBmbCalendarEventClick> =
     new EventEmitter<IBmbCalendarEventClick>();

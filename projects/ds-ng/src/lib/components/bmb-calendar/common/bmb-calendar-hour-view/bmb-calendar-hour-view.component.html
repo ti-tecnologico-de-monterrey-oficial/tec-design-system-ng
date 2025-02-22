@@ -4,7 +4,12 @@
   </header>
   <div class="bmb_calendar-hours-row">All-day</div>
   @for (item of hours; track $index) {
-    <div class="bmb_calendar-hours-row">
+    <div
+      class="bmb_calendar-hours-row"
+      [attr.id]="
+        $index + 1 === startBusinessHour() ? 'BmbCalendarHourViewStart' : null
+      "
+    >
       {{ item }}
     </div>
   }

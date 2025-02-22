@@ -7,6 +7,8 @@
     [weekDays]="renderWeekDays"
     [isListShowing]="isListShowing"
     (onViewTypeChange)="onViewTypeChange()"
+    [calendarTitle]="calendarTitle()"
+    (onClose)="handleClose()"
   />
   <bmb-calendar-header
     [weekDays]="renderWeekDays"
@@ -19,7 +21,8 @@
   @if (isListShowing) {
     <bmb-calendar-template-event-list
       [events]="getEvents()"
-      (onSelectEvent)="handleSelectEvent($event)"
+      (onCurrentDateChange)="handleCurrentDateChange($event)"
+      class="bmb_calendar-content"
     />
   } @else {
     @switch (view()) {
@@ -28,6 +31,9 @@
           [now]="now"
           [events]="getEvents()"
           (onSelectEvent)="handleSelectEvent($event)"
+          [currentTime]="currentTime"
+          [startBusinessHour]="startBusinessHour()"
+          class="bmb_calendar-content"
         />
       }
       @case ("week") {
@@ -39,6 +45,8 @@
           [events]="getEvents()"
           (onSelectEvent)="handleSelectEvent($event)"
           [currentTime]="currentTime"
+          [startBusinessHour]="startBusinessHour()"
+          class="bmb_calendar-content"
         />
       }
       @case ("month") {
@@ -46,6 +54,7 @@
           [now]="now"
           [events]="getEvents()"
           (onSelectEvent)="handleSelectEvent($event)"
+          class="bmb_calendar-content"
         />
       }
       @default {
@@ -55,16 +64,10 @@
           [hourFormat]="hourFormat"
           [now]="now"
           [events]="getEvents()"
+          class="bmb_calendar-content"
         />
       }
     }
-  }
-
-  @if (selectedEvent) {
-    <bmb-calendar-template-event
-      [event]="selectedEvent"
-      (closeModal)="handleSelectEvent(null)"
-    />
   }
 
   @if (getIsLoading()) {
@@ -75,3 +78,24 @@
     </section>
   }
 </div>
+
+<ng-template #detailContent>
+  @if (selectedEvent) {
+    <section>
+      @if (selectedEvent.tags?.length) {
+        <p>
+          @for (item of selectedEvent.tags; track $index) {
+            <bmb-badge [text]="item.text" [appearance]="item.appearance" />
+          }
+        </p>
+      }
+      @if (selectedEvent.detail) {
+        <p>{{ selectedEvent.detail }}</p>
+      }
+      @if (selectedEvent.place) {
+        <p>{{ selectedEvent.place }}</p>
+      }
+      <div>{{ getDuration() }}</div>
+    </section>
+  }
+</ng-template>

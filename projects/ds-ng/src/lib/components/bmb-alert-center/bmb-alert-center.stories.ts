@@ -106,7 +106,8 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'IBmbDataAlert[]',
       },
-      description: 'Set information that the component will show on the ads tab',
+      description:
+        'Set information that the component will show on the ads tab',
       table: {
         category: 'Properties',
         type: { summary: 'IBmbDataAlert[]' },
@@ -116,7 +117,7 @@ Below is an example of how you can use this component in HTML:
   },
   args: {
     tabsName: [
-      { title: 'Recientes', isMobile: true, isDesktop: true },
+      { title: 'Notificaciones', isMobile: true, isDesktop: true },
       { title: 'No leídos', isMobile: false, isDesktop: true },
       { title: 'Favoritos', isMobile: false, isDesktop: true },
       { title: 'Archivados', isMobile: false, isDesktop: true },

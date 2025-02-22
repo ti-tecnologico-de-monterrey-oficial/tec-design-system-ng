@@ -7,6 +7,10 @@ import {
   EventEmitter,
   HostListener,
   model,
+  input,
+  ViewChild,
+  TemplateRef,
+  output,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DateTime } from 'luxon';
@@ -21,12 +25,14 @@ import {
   IBmbCalendarEventClick,
   IBmbCalendarHourFormat,
   IBmbCalendarView,
-  IBmbEventType,
 } from './types';
 import { getWeekDays, getMonthDays } from './utils';
-import { BmbCalendarTemplateEventComponent } from './common/bmb-calendar-template-event/bmb-calendar-template-event.component';
 import { BmbCalendarService } from '../../services/calendar.service';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalDataConfig } from '../bmb-modal/bmb-modal.interface';
+import { BmbModalComponent } from '../bmb-modal/bmb-modal.component';
+import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 
 export {
   IBmbCalendarEvent,
@@ -43,10 +49,10 @@ export {
     BmbCalendarTemplateWeekComponent,
     BmbCalendarTemplateMonthComponent,
     BmbCalendarHeaderComponent,
-    BmbCalendarTemplateEventComponent,
     BmbCalendarTemplateMobileComponent,
     BmbCalendarTemplateEventListComponent,
     BmbIconComponent,
+    BmbBadgeComponent,
   ],
   styleUrl: './bmb-calendar.component.scss',
   templateUrl: './bmb-calendar.component.html',
@@ -64,8 +70,14 @@ export class BmbCalendarComponent {
   @Input() lang: string = 'es-MX';
   @Input() currentDate: string = '';
   @Input() height: number | string = 700;
+  startBusinessHour = input<number>(8);
+  calendarTitle = input<string>('Mi horario');
 
   @Output() onDateChange: EventEmitter<any> = new EventEmitter<any>();
+  onClose = output<any>();
+
+  @ViewChild('detailContent', { read: TemplateRef })
+  detailContent?: TemplateRef<any>;
 
   @HostListener('window:resize', ['$event'])
   private resize() {
@@ -76,10 +88,13 @@ export class BmbCalendarComponent {
     }
   }
 
-  constructor(private eventsSignal: BmbCalendarService) {}
+  constructor(
+    private eventsSignal: BmbCalendarService,
+    private matDialog: MatDialog,
+  ) {}
 
   currentTime: DateTime = DateTime.now();
-  private timerId: any
+  private timerId: any;
 
   ngOnDestroy() {
     if (this.timerId) {
@@ -101,7 +116,7 @@ export class BmbCalendarComponent {
   now: DateTime = DateTime.now();
   weekNumber = this.now.weekNumber;
   renderWeekDays: DateTime[] = getWeekDays(this.now);
-  selectedEvent: { event: IBmbCalendarEvent; position: any } | null = null;
+  selectedEvent: IBmbCalendarEvent | null = null;
   isListShowing: boolean = false;
 
   updateTime() {
@@ -137,13 +152,30 @@ export class BmbCalendarComponent {
   }
 
   handleCurrentDateChange(newDate: DateTime): void {
+    console.log('newDate', newDate);
+
     this.now = newDate;
     this.weekNumber = newDate.weekNumber;
     this.renderWeekDays = getWeekDays(newDate);
   }
 
-  handleSelectEvent(newEvent: IBmbCalendarEventClick | null): void {
-    this.selectedEvent = newEvent;
+  handleSelectEvent(newEvent: IBmbCalendarEventClick): void {
+    const { event } = newEvent;
+    const title = event.modalTitle ?? event.title;
+    const modalTitle =
+      event.status === 'disabled' ? `(Cancelado) ${title}` : title;
+
+    this.selectedEvent = event;
+
+    const data: ModalDataConfig = {
+      title: modalTitle,
+      subtitle: event.subtitle,
+      content: this.detailContent,
+      size: 'small',
+      type: 'informative',
+      scrollable: true,
+    };
+    this.matDialog.open(BmbModalComponent, { data });
   }
 
   isAnEventSelected(event: IBmbCalendarEventClick | null): boolean {
@@ -160,21 +192,52 @@ export class BmbCalendarComponent {
     this.isListShowing = !this.isListShowing;
   }
 
-  getEvents() {
-    return [
-      {
-        title: 'test title',
-        detail: 'test detail',
-        start: '2025-02-21T13:00:00',
-        end: '2025-02-21T14:00:00',
-        modalTitle: 'test modal title',
-        status: 'test status',
-      }
-    ]
-    // return this.eventsSignal.getEventList();
+  getEvents(): IBmbCalendarEvent[] {
+    // return [
+    //   {
+    //     title: 'test title',
+    //     detail: 'test detail',
+    //     start: '2025-02-21T13:00:00',
+    //     end: '2025-02-21T13:30:00',
+    //     modalTitle: 'test modal title',
+    //     subtitle: 'test subtitle',
+    //     place: 'test place',
+    //     tags: [
+    //       {
+    //         appearance: 'success',
+    //         text: 'test tag',
+    //       },
+    //     ],
+    //   },
+    //   {
+    //     title: 'test title',
+    //     detail: 'test detail',
+    //     start: '2025-02-21T20:30:00',
+    //     end: '2025-02-21T21:30:00',
+    //     modalTitle: 'test modal title',
+    //   },
+    //   {
+    //     title: 'test title',
+    //     detail: 'test detail',
+    //     start: '2025-02-21T21:30:00',
+    //     end: '2025-02-21T22:00:00',
+    //     modalTitle: 'test modal title',
+    //     status: 'disabled',
+    //   }
+    // ]
+    return this.eventsSignal.getEventList();
   }
 
   getIsLoading() {
     return this.eventsSignal.getIsLoading();
+  }
+
+  getDuration() {
+    if (!this.selectedEvent) return '';
+    return `${DateTime.fromISO(this.selectedEvent.start).toFormat('hh:mm a')} - ${DateTime.fromISO(this.selectedEvent.end).toFormat('hh:mm a')}`;
+  }
+
+  handleClose() {
+    this.onClose.emit('close');
   }
 }

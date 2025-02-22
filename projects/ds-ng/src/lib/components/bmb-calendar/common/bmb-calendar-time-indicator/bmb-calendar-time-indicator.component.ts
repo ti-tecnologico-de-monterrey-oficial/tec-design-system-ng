@@ -10,9 +10,7 @@ import { DateTime } from 'luxon';
 @Component({
   selector: 'bmb-calendar-time-indicator',
   standalone: true,
-  imports: [
-    CommonModule,
-  ],
+  imports: [CommonModule],
   templateUrl: './bmb-calendar-time-indicator.component.html',
   styleUrl: './bmb-calendar-time-indicator.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -24,10 +22,10 @@ export class BmbCalendarTimeIndicatorComponent {
   getPosition(): string {
     const startMin = this.currentTime().hour * 60 + this.currentTime().minute;
 
-    return `top: ${startMin + 112 }px`;
+    return `top: ${startMin + 112}px`;
   }
 
   getFormattedTime(): string {
-    return this.currentTime().toFormat('HH:mm a');
+    return this.currentTime().toFormat('hh:mm a');
   }
 }

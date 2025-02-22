@@ -8,23 +8,31 @@ export class BmbCalendarService {
   readonly eventList = signal<IBmbCalendarEvent[]>([]);
   readonly isLoading = signal<boolean>(false);
 
+  addMultipleEvents(events: IBmbCalendarEvent[]) {
+    const newEvents = events.map((event) => {
+      const id = event.id ?? self.crypto.randomUUID();
+      return { ...event, id };
+    });
+    this.eventList.update((currentEvents) => [...currentEvents, ...newEvents]);
+  }
+
   addEvent(event: IBmbCalendarEvent) {
     const id = event.id ?? self.crypto.randomUUID();
-    this.eventList.update((currentevents) => [
-      ...currentevents,
+    this.eventList.update((currentEvents) => [
+      ...currentEvents,
       { ...event, id },
     ]);
   }
 
   deleteEvent(id: string) {
-    this.eventList.update((currentevents) =>
-      currentevents.filter((event) => event.id !== id),
+    this.eventList.update((currentEvents) =>
+      currentEvents.filter((event) => event.id !== id),
     );
   }
 
   editEvent(id: string) {
-    this.eventList.update((currentevents) =>
-      currentevents.map((event) => {
+    this.eventList.update((currentEvents) =>
+      currentEvents.map((event) => {
         if (event.id !== id) return event;
 
         return event;

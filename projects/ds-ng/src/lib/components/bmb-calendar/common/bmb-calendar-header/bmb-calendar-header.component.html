@@ -12,9 +12,7 @@
     appearance="transparent"
     size="large"
   >
-    <button (click)="handleChangeDate('-')">
-      Hoy
-    </button>
+    <button (click)="goToToday()">Hoy</button>
     <button (click)="handleChangeDate('-')">
       <bmb-icon [icon]="'arrow_back_ios'" />
     </button>
@@ -31,14 +29,23 @@
     {{ getTitle() }}
   </h1>
   <div bmbButtonGroup appearance="secondary-outlined" size="large">
-    <button (click)="handleRangeChange('day')" [disabled]="view === 'day'">
-      Day
+    <button
+      (click)="handleRangeChange('day')"
+      [ngClass]="{ 'bmb_button-selected': view === 'day' }"
+    >
+      Día
     </button>
-    <button (click)="handleRangeChange('week')" [disabled]="view === 'week'">
-      Week
+    <button
+      (click)="handleRangeChange('week')"
+      [ngClass]="{ 'bmb_button-selected': view === 'week' }"
+    >
+      Semana
     </button>
-    <button (click)="handleRangeChange('month')" [disabled]="view === 'month'">
-      Month
+    <button
+      (click)="handleRangeChange('month')"
+      [ngClass]="{ 'bmb_button-selected': view === 'month' }"
+    >
+      Mes
     </button>
   </div>
 </section>
