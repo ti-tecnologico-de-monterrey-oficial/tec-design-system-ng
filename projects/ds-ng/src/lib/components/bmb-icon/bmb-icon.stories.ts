@@ -52,29 +52,14 @@ Below is an example of how you can use this component in HTML:
     styleIcon: {
       name: 'Style Icon',
       control: { type: 'radio' },
-      options: [
-        'material-symbols-outlined',
-        'material-symbols-rounded',
-        'material-symbols-sharp',
-      ],
+      options: ['material-symbols-rounded'],
       description: `
     ### Available Icon Styles
-    Below are the options for defining the style of Material Symbols icons:
-
-    - **Outlined**
-      - **Description:** Icons with defined contours, minimalistic, and without fill.
-      - **Visual Features:** Thin lines, clear contours, empty background. Ideal for clean and modern interfaces.
-      - **Class Name:** \`material-symbols-outlined\`
 
     - **Rounded**
       - **Description:** Icons with rounded edges. They feel softer and more friendly.
       - **Visual Features:** Rounded corners. The design is more approachable and less technical.
       - **Class Name:** \`material-symbols-rounded\`
-
-    - **Sharp**
-      - **Description:** Icons with angular and sharp edges, providing a more technical and defined appearance.
-      - **Visual Features:** Sharp edges without rounding. Suitable for robust or industrial interfaces.
-      - **Class Name:** \`material-symbols-sharp\`
     `,
       table: {
         category: 'Properties',

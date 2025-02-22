@@ -30,10 +30,11 @@ class ToastWrapperComponent implements OnInit {
     this.bmbCalendarService.addMultipleEvents([
       {
         title: 'Event 0',
-        start: '2025-02-22T15:00:00.715Z',
-        end: '2025-02-22T16:00:00.715Z',
+        start: '2025-02-22T17:00:00.715Z',
+        end: '2025-02-22T18:00:00.715Z',
         detail: 'Event 1 detail',
         modalTitle: 'Event 1',
+        status: 'disabled'
       },
       {
         title: 'Event 1',

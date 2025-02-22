@@ -83,6 +83,9 @@
       </div>
     </bmb-pull-wedge>
   </bmb-inner-header>
+  <div class="bmb_calendar-month-mobile-title-day" [ngClass]="{ 'bmb_calendar-month-mobile-title-day-not-visible': isWedgeOpen }">
+    {{ now.setLocale(lang).toFormat('cccc LLLL dd, yyyy') }}
+  </div>
 </div>
 
 <!-- <nav

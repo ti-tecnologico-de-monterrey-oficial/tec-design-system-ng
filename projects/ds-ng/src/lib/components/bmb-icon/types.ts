@@ -1,4 +1,1 @@
-export type StyleIconType =
-  | 'material-symbols-outlined'
-  | 'material-symbols-rounded'
-  | 'material-symbols-sharp';
+export type StyleIconType = 'material-symbols-rounded';
