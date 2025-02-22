@@ -8,12 +8,17 @@ import { BmbLogoComponent } from '../bmb-logo/bmb-logo.component';
 @Component({
   selector: 'bmb-digital-id',
   standalone: true,
-  imports: [BmbImageComponent, BmbUserImageComponent, BmbIconComponent, BmbButtonDirective, BmbLogoComponent],
+  imports: [
+    BmbImageComponent,
+    BmbUserImageComponent,
+    BmbIconComponent,
+    BmbButtonDirective,
+    BmbLogoComponent,
+  ],
   templateUrl: './bmb-digital-id.component.html',
-  styleUrl: './bmb-digital-id.component.scss'
+  styleUrl: './bmb-digital-id.component.scss',
 })
 export class BmbDigitalIdComponent {
-
   name = input.required<string>();
   matricula = input.required<string>();
   career = input.required<string>();
@@ -24,16 +29,15 @@ export class BmbDigitalIdComponent {
   imgBackground = input.required<string>();
 
   logoSrc = 'assets/images/tec-logo.svg';
-  
 
   close = output<void>();
   access = output<void>();
 
-  closeDigitalId(){
-    this.close.emit()
+  closeDigitalId() {
+    this.close.emit();
   }
 
-  clickAccess(){
-    this.access.emit()
+  clickAccess() {
+    this.access.emit();
   }
 }
