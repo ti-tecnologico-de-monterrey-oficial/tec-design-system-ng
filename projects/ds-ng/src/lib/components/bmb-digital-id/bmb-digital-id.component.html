@@ -1,0 +1,56 @@
+<section class="bmb_digital-id">
+    <div class="bmb_digital-id-top">
+        <button class="bmb_digital-id-top-btn" (click)="closeDigitalId()">
+            <bmb-icon
+                class="bmb_digital-id-top-close"
+                [icon]="'close'"
+                [styleIcon]="'material-symbols-outlined'"
+                [isFill]="true"
+                [fontWeight]="'400'"
+                [size]="26"
+            ></bmb-icon>
+        </button>
+            <img
+                class="bmb_digital-id-top-image"
+                [src]="imgBackground()"
+                [alt]="'Background Img'"
+            />
+            <img
+                class="bmb_digital-id-top-logo"
+                [src]="logoSrc"
+                [alt]="'Background Img'"
+            />
+    </div>
+    <div class="bmb_digital-id-mid">
+        <bmb-user-image
+            class="bmb_digital-id-photo"
+            [size]="'mobile-xlarge'"
+            [image]="imgProfile()"
+            [altImage]="'Alt image description'"
+            [bordered]="true"
+        />
+    </div>
+    <div class="bmb_digital-id-bottom">
+        <div class="bmb_digital-id-bottom-info">
+            <p class="bmb_digital-id-bottom-name">{{name()}}</p>
+            <p class="bmb_digital-id-bottom-id">{{matricula()}}</p>
+            <p class="bmb_digital-id-bottom-career">{{career()}}</p>
+            <p class="bmb_digital-id-bottom-role">{{role()}}</p>
+        </div>
+    </div>
+
+    <div class="bmb_digital-id-bottom-btn">
+        <button 
+            class="bmb_digital-id-btnAccess"
+            bmbButton
+            appearance="primary"
+            [icon]="icon()"
+            [iconSize]="0"
+            size="large"
+            position="left"
+            (click)="clickAccess()"
+        >
+            {{textButton()}}
+        </button>
+    </div>
+</section>

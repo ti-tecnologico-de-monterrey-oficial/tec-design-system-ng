@@ -136,6 +136,8 @@ export * from './lib/components/bmb-title-content/bmb-title-content.component';
 export * from './lib/components/bmb-list-items/bmb-list-items.component';
 export * from './lib/components/bmb-image/bmb-image.component';
 export * from './lib/components/bmb-icon-status/bmb-icon-status.component';
+export * from './lib/components/bmb-chat-bubbles/bmb-chat-bubbles.component';
+export * from './lib/components/bmb-digital-id/bmb-digital-id.component';
 
 // types
 export * from './lib/types';

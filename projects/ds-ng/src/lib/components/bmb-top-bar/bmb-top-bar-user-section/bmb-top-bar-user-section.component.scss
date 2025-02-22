@@ -30,6 +30,10 @@
         "icons image role";
       grid-template-columns: rem.rem_calc(64) rem.rem_calc(64) 1fr;
       max-width: max-content;
+
+      > .bmb_top-bar-user-section-icons {
+        display: inline-flex;
+      }
     }
   }
 
@@ -39,13 +43,14 @@
   }
 
   &-icons {
-    display: inline-flex;
+    justify-content: right;
+    align-content: center;
     grid-area: icons;
     line-height: 0;
     gap: 4rem;
 
     @include mixins.media-query(1000, "min") {
-      gap: 0rem;
+      gap: rem.rem_calc(6);
     }
   }
 
@@ -53,7 +58,7 @@
     cursor: pointer;
     line-height: 0;
     text-align: center;
-    padding: rem.rem_calc(0) rem.rem_calc(2);
+    padding: rem.rem_calc(1) rem.rem_calc(2);
     color: RGBA(var(--color-white-primary), 1);
   }
 
@@ -72,12 +77,19 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    padding-top: rem.rem_calc(10);
+    padding-top: rem.rem_calc(20);
+
+    @include mixins.media-query(1000, "min") {
+      padding-top: rem.rem_calc(4);
+    }
   }
 
   &-role {
-    padding-bottom: rem.rem_calc(10);
+    padding-bottom: rem.rem_calc(20);
     grid-area: role;
+    @include mixins.media-query(1000, "min") {
+      padding-bottom: rem.rem_calc(4);
+    }
   }
 
   &-dialog {
