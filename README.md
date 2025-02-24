@@ -18,13 +18,13 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 
 ### Componentes actualizados:
 
-- Top bar -  Refactorización de código y se ajusto la implementación al diseño
+- Top bar - Refactorización de código y se ajusto la implementación al diseño
 - Dropdown - Ahora se cierra el listado cuando se realiza una selección
 - Chevron title selector - Se ajustaron estilos
 - Focus element - Se ajustaron estilos
-- Grades  - Se ajustaron estilos
+- Grades - Se ajustaron estilos
 - Home card - Se ajustaron estilos
-- Modal  - Se ajustaron estilos
+- Modal - Se ajustaron estilos
 - Dot paginator - Se ajustaron estilos
 - Timestream - Se ajustaron estilos
 - Accordion - Se ajustaron estilos
@@ -34,7 +34,7 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 - Layouts - Se agregaron nuevos layouts y se ajustaron estilos
 - Container button - Ahora soporta funcionalidad compleja
 - Date picker - Se ajustaron estilos
-- Input - Ahora todos los inputs pueden ser limpiados 
+- Input - Ahora todos los inputs pueden ser limpiados
 - Media card - Se ajustaron estilos y se agregaron animaciones
 - Action menu - Se ajustaron estilos
 - Tabs - Ahora se pueden ocultar de manera responsiva
