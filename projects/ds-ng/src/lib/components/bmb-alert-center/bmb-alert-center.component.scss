@@ -1,8 +1,10 @@
 @use "../../../assets/styles/base/fonts" as fonts;
 @use "../../../assets/styles/base/rem" as rem;
+@use "../../../assets/styles/base/mixins" as mixins;
 
 .bmb_alert-center {
   height: 100%;
+  container-type: inline-size;
 
   &-main,
   &-content {
@@ -11,6 +13,10 @@
 
   &-main {
     position: relative;
+
+    @include mixins.media-query(1000, "min") {
+      border-right: rem.rem_calc(1) solid var(--general_contrasts-15);
+    }
   }
 
   .bmb-bottom-navigation-bar {
@@ -30,8 +36,22 @@
     display: flex;
     flex-direction: column;
     gap: var(--bmb-spacing-m);
-    text-align: center;
     padding: var(--bmb-spacing-m);
+
+    @include mixins.container-query(350, "max") {
+      display: none;
+    }
+
+    @include mixins.media-query(1000, "max") {
+      display: none;
+    }
+
+    &-modal {
+      display: flex;
+      flex-direction: column;
+      gap: var(--bmb-spacing-m);
+      padding: var(--bmb-spacing-m);
+    }
 
     figure,
     p {

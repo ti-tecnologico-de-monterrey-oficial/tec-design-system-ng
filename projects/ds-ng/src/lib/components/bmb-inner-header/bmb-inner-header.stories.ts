@@ -1,5 +1,6 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import { Meta, StoryFn } from '@storybook/angular';
 import { BmbInnerHeaderComponent } from './bmb-inner-header.component';
+import { attributes, attributesText } from '../../utils/utils';
 
 export default {
   title: 'Micro Componentes/Inner Header Mobile',
@@ -27,18 +28,6 @@ import { BmbInnerHeaderComponent } from '@ti-tecnologico-de-monterrey-oficial/ds
 \`\`\`
 
 Below is an example of how you can use this component in HTML:
-
-\`\`\`html
-<bmb-inner-header
-  [title]="title"
-  [showReturn]="true"
-  (searchData)="handleSearch($event)"
-  [showSearch]="true"
-  [title]="'My Title'"
-  [placeholderSearch]="'Search'"
-  [subTitle]="'www.link.com'"
-></bmb-inner-header>
-\`\`\`
         `,
       },
     },
@@ -186,6 +175,14 @@ Below is an example of how you can use this component in HTML:
         },
       },
     },
+    test_text: {
+      name: 'Text',
+      description: 'Header content example.',
+      table: {
+        category: 'Example',
+        type: { summary: 'string' },
+      },
+    },
     onValueChange: {
       name: 'On Value Change',
       description:
@@ -205,9 +202,10 @@ Below is an example of how you can use this component in HTML:
     showClose: true,
     showReturn: false,
     showSearch: false,
-    subTitle: 'www.link.com',
+    subTitle: 'http://www.link.com',
     trailingIconPrimary: 'lock',
     trailingIconSecondary: 'home',
+    test_text: 'hello world',
     onHandleBack: () => {
       window.alert('Back button clicked in Storybook');
     },
@@ -223,6 +221,17 @@ Below is an example of how you can use this component in HTML:
   },
 } as Meta<typeof BmbInnerHeaderComponent>;
 
-type Story = StoryObj<BmbInnerHeaderComponent>;
+const customizable = (): StoryFn => (args) => ({
+  props: args,
+  template: `
+    <!-- Example of how you can use this component. -->
+    <bmb-inner-header
+      ${attributes(args)}
+    >
+      <!-- Example of content. The content can be a bamboo component or html. -->
+      <div style="text-align: center;">${attributesText(args)}</div>
+    </bmb-inner-header>
+  `,
+});
 
-export const Default: Story = {};
+export const Default = customizable();

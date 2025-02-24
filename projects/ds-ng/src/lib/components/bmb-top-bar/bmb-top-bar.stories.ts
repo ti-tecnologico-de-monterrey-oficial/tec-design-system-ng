@@ -35,7 +35,7 @@ Below is an example of how you can use this component in HTML:
       options: ['left', 'right'],
       description: 'Set responsive menu button position.',
       table: {
-        category: 'Properties',
+        category: 'Deprecated',
         type: { summary: 'string' },
         defaultValue: { summary: 'left' },
       },
@@ -97,14 +97,9 @@ Below is an example of how you can use this component in HTML:
     },
     appSubTitle: {
       name: 'App sub-title',
-      control: {
-        type: 'text',
-      },
-      description: 'Set the App sub-title.',
+      description: 'Deprecated',
       table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: '' },
+        category: 'Deprecated',
       },
     },
     showLang: {

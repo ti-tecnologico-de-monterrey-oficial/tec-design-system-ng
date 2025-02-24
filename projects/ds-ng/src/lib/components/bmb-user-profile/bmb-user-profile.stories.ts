@@ -48,6 +48,31 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: 'Ingresar con otra cuenta' },
       },
     },
+    anotherAccountLink: {
+      name: 'Another account link',
+      control: 'text',
+      description:
+        'Sets the link for the option to log in with another account.',
+      table: {
+        category: 'Events',
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    anotherAccountTarget: {
+      name: 'Another account target',
+      control: {
+        type: 'radio',
+      },
+      options: ['_blank', '_parent', '_self', '_top'],
+      description:
+        'Sets the target for the option to log in with another account.',
+      table: {
+        category: 'Events',
+        type: { summary: 'IBmbTargetLink' },
+        defaultValue: { summary: '_blank' },
+      },
+    },
     buttonLabel: {
       name: 'Button label',
       control: 'text',
@@ -71,6 +96,19 @@ Below is an example of how you can use this component in HTML:
       table: {
         type: { summary: 'IBmbUserInfo (required)' },
         category: 'Properties',
+      },
+    },
+    actionHeaders: {
+      name: 'Action header',
+      control: { type: 'object' },
+      description: 'Sets an array of IBmbActionHeader objects.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'Action header example' },
+        type: {
+          summary:
+            'IBmbActionHeader[], {icon: string; iconSize?: number; iconActiveToggle?: string; isToggleActive?: boolean; isAccentColor?: boolean; link?: string; target?: IBmbTargetLink; action: () => void;}',
+        },
       },
     },
     onRequest: {
@@ -97,6 +135,8 @@ Below is an example of how you can use this component in HTML:
   args: {
     headerLabel: 'ESTUDIANTES',
     anotherAccountLabel: 'Ingresar con otra cuenta',
+    anotherAccountLink: '',
+    anotherAccountTarget: '_blank',
     buttonLabel: 'Ingresar',
     userInfo: {
       id: 'A00123456',
@@ -104,6 +144,38 @@ Below is an example of how you can use this component in HTML:
       profilePicture:
         'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/assets/images/placeholders/user-icon-test.svg',
     },
+    actionHeaders: [
+      {
+        icon: '../assets/images/social-icons/icon_Apple.svg',
+        link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-user-profile--documentation',
+        action: () => {},
+      },
+      {
+        icon: '../assets/images/social-icons/icon_Android.svg',
+        link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-user-profile--documentation',
+        action: () => {},
+      },
+      {
+        icon: '../assets/images/social-icons/icon_Twitter.svg',
+        link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-user-profile--documentation',
+        action: () => {},
+      },
+      {
+        icon: '../assets/images/social-icons/icon_Facebook.svg',
+        link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-user-profile--documentation',
+        action: () => {},
+      },
+      {
+        icon: '../assets/images/social-icons/icon_Instagram.svg',
+        link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-user-profile--documentation',
+        action: () => {},
+      },
+      {
+        icon: '../assets/images/social-icons/icon_Youtube.svg',
+        link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-user-profile--documentation',
+        action: () => {},
+      },
+    ],
   },
 } as Meta<typeof BmbUserProfileComponent>;
 

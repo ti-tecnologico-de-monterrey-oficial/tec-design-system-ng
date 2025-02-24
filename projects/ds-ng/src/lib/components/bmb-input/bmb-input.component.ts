@@ -23,6 +23,7 @@ import {
   IBmbJustifyTooltip,
 } from '../bmb-tooltip/bmb-tooltip.component';
 import { IBbmSidePosition } from '../../types';
+import { BmbNavigationIconComponent } from '../bmb-navigation-bar/bmb-navigation-icon/bmb-navigation-icon.component';
 
 export type IBmbInputType =
   | 'text'
@@ -57,6 +58,7 @@ export interface IBmbInputTooltipPosition {
     BmbIconComponent,
     ReactiveFormsModule,
     BmbTooltipComponent,
+    BmbNavigationIconComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -98,6 +100,7 @@ export class BmbInputComponent {
     align: 'above',
     justify: 'before',
   });
+  isClearable = input<boolean>(false);
 
   controlTest = model<FormControl>();
 
@@ -190,6 +193,8 @@ export class BmbInputComponent {
   }
 
   handleChange(event: Event) {
+    console.log('event', event);
+
     const target = event.target as HTMLInputElement | null;
     if (target && target.checked) {
       target.value = this.value()!;
@@ -316,5 +321,9 @@ export class BmbInputComponent {
     }
 
     return '';
+  }
+
+  clearValue() {
+    this.control.reset();
   }
 }

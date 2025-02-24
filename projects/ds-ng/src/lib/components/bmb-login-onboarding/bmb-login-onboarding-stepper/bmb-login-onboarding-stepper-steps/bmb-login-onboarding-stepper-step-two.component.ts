@@ -1,7 +1,6 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  model,
   output,
   ViewEncapsulation,
 } from '@angular/core';
@@ -22,7 +21,7 @@ import { IBmbError } from '../../types';
       sublabel="(Google/Microsoft Authenticator)"
       cancelBackLabel="Anterior "
       continueLabel="Siguiente"
-      [isContinueDisable]="isContinueDisable()"
+      [isContinueDisable]="isContinueDisable"
       (handleContinue)="_handleContinueStep()"
     >
       <bmb-totp
@@ -38,14 +37,13 @@ import { IBmbError } from '../../types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbLoginOnboardingStepperStepTwoComponent {
-  isContinueDisable = model<boolean>(true);
-
   handleRequest = output<any>();
   handleContinueStep = output();
 
   error: IBmbError = { codeError: false, errorMessage: '' };
   code: string = '';
   maxCode: number = 6;
+  isContinueDisable: boolean = true;
 
   constructor(private loginOnboardingService: BmbLoginOnboardingService) {}
 
@@ -61,7 +59,7 @@ export class BmbLoginOnboardingStepperStepTwoComponent {
     this.error = { codeError: false, errorMessage: '' };
 
     if (receivedCode.length === this.maxCode) {
-      this.isContinueDisable.set(false);
+      this.isContinueDisable = false;
       this.code = receivedCode;
     }
   }

@@ -36,7 +36,11 @@ export type IBmbInteractiveIconAppearance =
   | 'creative_plantation'
   | 'creative_rum'
   | 'creative_hibiscus'
-  | 'creative_ripelemon';
+  | 'creative_ripelemon'
+  | 'buttons-primary-normal'
+  | 'purple-primary'
+  | 'general_contrasts-main-selection'
+  | 'general_contrasts-main-selection-alternative';
 
 export type IBmbInteractiveIconType = 'regular' | 'button' | 'app_drawer';
 
@@ -57,7 +61,6 @@ export class BmbInteractiveIconComponent {
   appearance = input<IBmbInteractiveIconAppearance>('red');
   title = input<string>();
   description = input<string>('');
-  label = input<string>('');
   icon = input<string>('face');
   dotNotification = input<number>();
   horizontal = input<boolean>(false);

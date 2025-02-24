@@ -26,6 +26,7 @@ export class BmbTooltipComponent {
   size = input<number>();
   align = input<IBmbAlignTooltip>('below');
   justify = input<IBmbJustifyTooltip>('after');
+  isFill = input<boolean>(true);
 
   getClasses() {
     return `bmb_tooltip-container-${this.align()}-${this.justify()}`;

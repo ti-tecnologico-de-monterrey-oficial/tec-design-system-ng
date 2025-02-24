@@ -30,6 +30,7 @@ import {
 })
 export class BmbNavigationBarComponent {
   actionHeaders = input<IBmbActionHeader[]>([]);
+  iconSize = input<number | undefined>();
   gapSize = input<SizeNames>('m');
   justify = input<IJustifyOptions>('spaceBetween');
   alignItems = input<IAlignItemsOptions>('start');

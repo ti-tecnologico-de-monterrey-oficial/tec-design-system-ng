@@ -1,17 +1,18 @@
 <section class="bmb_header-mitec">
-  <section class="bmb_header-mitec-top">
+  <header class="bmb_header-mitec-top">
     <section class="bmb_header-mitec-top-tec_logo">
       <img alt="Tecnológico de Monterrey" [src]="tecLogoImage" />
     </section>
     <section class="bmb_header-mitec-top-social">
       <bmb-navigation-bar
         [actionHeaders]="actionHeaders()"
+        [iconSize]="24"
         justify="stretch"
         gapSize="m"
         alignItems="stretch"
       />
     </section>
-  </section>
+  </header>
 
   <section class="bmb_header-mitec-mitec_logo">
     <bmb-mitec-logo-animation />

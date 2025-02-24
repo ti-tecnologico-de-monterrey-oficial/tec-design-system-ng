@@ -27,8 +27,6 @@ Below is an example of how you can use this component in HTML:
     },
   },
   argTypes: {
-    // @Input() : 'inline' | 'floating' = 'inline';
-
     src: {
       name: 'Image source URL',
       control: {
@@ -221,6 +219,32 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string' },
       },
     },
+    link: {
+      name: 'Link',
+      control: {
+        type: 'text',
+      },
+      description:
+        'Sets the link for redirection to another page. If this property is empty it will emit the button event.',
+      table: {
+        category: 'Events',
+        type: { summary: 'string' },
+      },
+    },
+    target: {
+      name: 'Target',
+      control: {
+        type: 'radio',
+      },
+      options: ['_blank', '_self', '_parent', '_top'],
+      description:
+        'Sets the target property for the link. Refer to https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a for more information.',
+      table: {
+        category: 'Events',
+        type: { summary: 'IBmbTargetLink' },
+        defaultValue: { summary: '_blank' },
+      },
+    },
   },
   args: {
     src: 'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg',
@@ -234,6 +258,8 @@ Below is an example of how you can use this component in HTML:
     enableZoom: false,
     isBlurredBackdrop: false,
     type: 'inline',
+    link: 'https://www.youtube.com/',
+    target: '_blank',
   },
 } as Meta<typeof BmbMediaCardComponent>;
 
@@ -260,6 +286,8 @@ export const Default: Story = {
         [date]="date"
         [userImage]="userImage"
         [userName]="userName"
+        [link]="link"
+        [target]="target"
       >
         <p>Custom HTML content</p>
       </bmb-media-card>

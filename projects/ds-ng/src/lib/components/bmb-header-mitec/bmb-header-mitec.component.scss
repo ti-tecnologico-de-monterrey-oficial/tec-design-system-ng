@@ -12,8 +12,8 @@
   @media (min-width: 630px) {
     background: linear-gradient(
       180deg,
-      RGBA(var(--color-charade-900)) 0%,
-      RGBA(var(--color-charade-950)) 100%
+      var(--containers-main) 0%,
+      var(--containers-background) 100%
     );
   }
 
@@ -47,12 +47,6 @@
         gap: 10px;
         padding: var(--bmb-spacing-xl);
       }
-
-      .bmb_navigation-bar-icon {
-        .bmb_icon-figure-image {
-          width: rem.rem_calc(24);
-        }
-      }
     }
   }
 
@@ -80,6 +74,10 @@
         justify-content: flex-start;
       }
     }
+  }
+
+  .bmb_check-external-link-button-element {
+    color: RGBA(var(--color-charade-50));
   }
 }
 

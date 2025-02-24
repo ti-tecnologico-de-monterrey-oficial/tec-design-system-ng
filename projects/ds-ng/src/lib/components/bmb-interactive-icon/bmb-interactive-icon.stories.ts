@@ -31,6 +31,10 @@ const appearanceOptions: IBmbInteractiveIconAppearance[] = [
   'creative_rum',
   'creative_hibiscus',
   'creative_ripelemon',
+  'buttons-primary-normal',
+  'purple-primary',
+  'general_contrasts-main-selection',
+  'general_contrasts-main-selection-alternative',
 ];
 
 export default {

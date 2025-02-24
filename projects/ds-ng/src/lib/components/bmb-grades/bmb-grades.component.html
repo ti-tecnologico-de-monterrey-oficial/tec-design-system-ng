@@ -1,36 +1,50 @@
 <ng-template #detailContent>
-  @for (partial of partials; track $index) {
-    <section
-      bmbLayout
-      margin="none"
-      justify="spaceBetween"
-      [dynamicCols]="true"
-    >
-      <h2 class="bmb_grades-title" bmbLayoutItem>{{ partial.title }}</h2>
-      <bmb-grade-value
-        [score]="partial.score"
-        type="partial-grade"
-        bmbLayoutItem
-      />
-    </section>
-    @if ($index < partials.length - 1) {
-      <bmb-divider [type]="'simple'" />
+  <section class="bmb_grades-modal">
+    @for (partial of partials; track $index) {
+      <section
+        bmbLayout
+        margin="none"
+        justify="spaceBetween"
+        [dynamicCols]="true"
+      >
+        <h2 class="bmb_grades-modal-title" bmbLayoutItem>
+          {{ partial.title }}
+        </h2>
+        <bmb-grade-value
+          [score]="partial.score"
+          type="partial-grade"
+          bmbLayoutItem
+        />
+      </section>
+      @if ($index < partials.length - 1) {
+        <bmb-divider [type]="'simple'" />
+      }
     }
-  }
+  </section>
 </ng-template>
 
-@if (isMicro()) {
-  <bmb-container appearance="primary-home">
-    <bmb-chevron-title-selector [title]="gradeTitle()!" />
-    <bmb-chevron-title-selector [title]="title()!" />
-    <bmb-academic-progress
-      [accredited]="accredited()!"
-      [average]="average()!"
-      [summary]="summary()!"
-    />
-  </bmb-container>
-} @else {
-  <section class="bmb_grades">
+<section class="bmb_grades">
+  @if (isMicro()) {
+    <bmb-container appearance="primary-home" class="bmb_grades-micro">
+      <bmb-title-content
+        [title]="gradeTitle()!"
+        titleSize="4"
+        titleFontWeight="500"
+        [isCenterContent]="true"
+      />
+      <bmb-title-content
+        [title]="title()!"
+        titleSize="4"
+        titleFontWeight="400"
+        [isCenterContent]="true"
+      />
+      <bmb-academic-progress
+        [accredited]="accredited()!"
+        [average]="average()!"
+        [summary]="summary()!"
+      />
+    </bmb-container>
+  } @else {
     <bmb-inner-header
       [title]="getGradesTitle()"
       [showClose]="true"
@@ -67,5 +81,5 @@
         (onButton)="handleDetails(element)"
       />
     }
-  </section>
-}
+  }
+</section>

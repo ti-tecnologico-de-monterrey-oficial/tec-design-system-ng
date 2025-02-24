@@ -95,7 +95,7 @@ export default {
   },
 } as Meta;
 
-function attributes(args: any): any {
+function getStyle(args: any): any {
   const classList = `
     margin: var(--bmb-spacing-${args.margin});
     padding: var(--bmb-spacing-${args.padding});
@@ -107,7 +107,7 @@ function attributes(args: any): any {
 
 const customizable = (): StoryFn => (args) => ({
   props: args,
-  template: `<div class="font-regular-5" ${attributes(args)}>Typography</div>`,
+  template: `<div class="font-regular-5" ${getStyle(args)}>Typography</div>`,
 });
 
 export const Default = customizable();

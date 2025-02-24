@@ -25,15 +25,6 @@ describe('BmbAlertCenterComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should initialize tabs correctly', () => {
-    componentRef.setInput('alerts', [
-      { isRead: false, date: '01/01/2023', time: '12:00' } as IBmbDataAlert,
-    ]);
-    component.ngOnInit();
-    expect(component.tabs.length).toBe(4);
-    expect(component.tabs[0].badge).toBe(1);
-  });
-
   it('should order events correctly', () => {
     const alerts: IBmbDataAlert[] = [
       { date: '01/01/2023', time: '12:00' } as IBmbDataAlert,

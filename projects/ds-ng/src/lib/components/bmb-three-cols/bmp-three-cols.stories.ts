@@ -3,6 +3,7 @@ import { BmbThreeColsComponent } from './bmb-three-cols.component';
 import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
+import { attributes } from '../../utils/utils';
 
 export default {
   title: 'Internal/Three column content template',
@@ -135,7 +136,7 @@ export const Default: Story = {
     props: args,
     template: `
 <bmb-container>
-  <bmb-three-cols style="width: 100%" [expandMainColumn]="expandMainColumn" [gapSize]="gapSize" [justify]="justify" [alignItems]="alignItems">
+  <bmb-three-cols style="width: 100%" ${attributes(args)}>
     <ng-template #bmbLeftContent>
       <bmb-icon
         icon="home"

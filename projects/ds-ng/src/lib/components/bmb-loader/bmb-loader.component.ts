@@ -10,6 +10,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbButtonDirective } from '../../directives/button.directive';
+import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
 
 @Component({
   selector: 'bmb-loader',
@@ -21,7 +22,9 @@ import { BmbButtonDirective } from '../../directives/button.directive';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbLoaderComponent {
+  appearance = input<IBbmBgAppearance>('normal');
   title = input<string>('');
+  icon = input<string>('wifi_off');
   subtitle = input<string>('');
   overlay = input<boolean>(false);
   isVisible = input<boolean>(true);
@@ -51,6 +54,10 @@ export class BmbLoaderComponent {
   }
 
   private updateBodyClass() {
+    if (this.isInsideIframe()) {
+      return;
+    }
+
     if (this.isVisible()) {
       document.body.appendChild(this.elRef.nativeElement);
 
@@ -63,10 +70,18 @@ export class BmbLoaderComponent {
   }
 
   private cleanupBody() {
+    if (this.isInsideIframe()) {
+      return;
+    }
+
     if (document.body.contains(this.elRef.nativeElement)) {
       this.renderer.removeChild(document.body, this.elRef.nativeElement);
     }
     this.renderer.removeClass(document.body, 'bmb_loader-body-overlay');
+  }
+
+  private isInsideIframe(): boolean {
+    return window.self !== window.top;
   }
 
   handleButtonPrimary() {

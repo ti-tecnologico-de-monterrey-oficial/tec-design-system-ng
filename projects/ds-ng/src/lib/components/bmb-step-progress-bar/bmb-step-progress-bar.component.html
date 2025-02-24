@@ -22,7 +22,7 @@
       >
         <span *ngIf="activeStep == i || activeStep < i">{{ i + 1 }}</span>
         @if (activeStep > i) {
-          <bmb-icon [icon]="'done'" class="material-icons" />
+          <bmb-icon [icon]="'done'" class="material-icons" [size]="24" />
         }
       </div>
     </div>

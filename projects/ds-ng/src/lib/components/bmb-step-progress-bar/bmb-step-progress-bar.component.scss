@@ -64,9 +64,9 @@
 
   &-step {
     align-items: center;
-    background: RGBA(var(--color-charade-300));
+    background-color: var(--buttons-inactive-step);
     border-radius: 50%;
-    color: RGBA(var(--color-charade-950));
+    color: var(--general_contrasts-main-complimentary);
     cursor: pointer;
     display: flex;
     justify-content: center;
@@ -222,34 +222,15 @@
 .storybook-dark-theme {
   .bmb_step-progress-bar {
     &-item {
-      &::before {
-        border-bottom: rem.rem_calc(2) solid RGBA(var(--color-neon-700));
-      }
-
       &::after {
         border-bottom: rem.rem_calc(2) solid RGBA(var(--color-charade-700));
-      }
-
-      &.completed {
-        &::after {
-          border-bottom: rem.rem_calc(2) solid RGBA(var(--color-neon-primary));
-        }
-
-        .bmb_step-progress-bar-step {
-          background-color: RGBA(var(--color-neon-primary));
-          font-weight: 700;
-        }
       }
     }
 
     &-step {
-      background: RGBA(var(--color-charade-700));
-      color: RGBA(var(--color-charade-950));
-
       &-small {
         &.active {
           background-color: RGBA(var(--color-charade-950));
-          border: rem.rem_calc(1) solid RGBA(var(--color-neon-primary));
           color: RGBA(var(--color-charade-50));
         }
       }
@@ -257,7 +238,6 @@
       &-normal {
         &.active {
           background-color: RGBA(var(--color-charade-950));
-          border: rem.rem_calc(1) solid RGBA(var(--color-neon-primary));
           color: RGBA(var(--color-charade-50));
         }
       }
@@ -268,16 +248,6 @@
         &::after {
           background-color: RGBA(var(--color-charade-700));
         }
-
-        &.completed {
-          &::after {
-            background-color: RGBA(var(--color-neon-primary));
-          }
-
-          .bmb_step-progress-bar-vertical-step {
-            background-color: RGBA(var(--color-neon-primary));
-          }
-        }
       }
 
       &-step {
@@ -287,7 +257,6 @@
         &-small {
           &.active {
             background-color: RGBA(var(--color-charade-700));
-            border: rem.rem_calc(1) solid RGBA(var(--color-neon-primary));
             color: RGBA(var(--color-charade-50));
           }
         }
@@ -295,7 +264,6 @@
         &-normal {
           &.active {
             background-color: RGBA(var(--color-charade-700));
-            border: rem.rem_calc(1) solid RGBA(var(--color-neon-primary));
             color: RGBA(var(--color-charade-50));
           }
         }

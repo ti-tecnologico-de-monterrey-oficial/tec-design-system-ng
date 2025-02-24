@@ -5,4 +5,10 @@
   justify-content: space-between;
   overflow: auto;
   height: calc(100% - rem.rem_calc(52));
+  position: relative;
+
+  .bmb_calendar-detail-header {
+    padding: rem.rem_calc(16);
+    text-transform: capitalize;
+  }
 }

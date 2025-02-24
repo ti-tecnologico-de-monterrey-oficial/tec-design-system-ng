@@ -11,7 +11,7 @@
 
   &-aside {
     display: none;
-    background-color: RGBA(var(--color-charade-100));
+    background-color: var(--containers-main);
 
     @include mixins.container-query(560, "min") {
       width: 50%;
@@ -57,7 +57,7 @@
       align-items: center;
 
       &-name {
-        color: RGBA(var(--color-charade-700));
+        color: var(--general_contrasts-75);
       }
 
       &-date {
@@ -67,10 +67,10 @@
 
     &-tab {
       padding: var(--bmb-spacing-m);
-      color: RGBA(var(--color-charade-700));
+      color: var(--general_contrasts-75);
 
       &-title {
-        color: RGBA(var(--color-charade-700));
+        color: var(--general_contrasts-75);
         @include fonts.font(3, regular);
         font-weight: normal;
       }
@@ -117,35 +117,10 @@
       }
     }
   }
-}
 
-[data-theme="dark"],
-.storybook-dark-theme {
-  .bmb_timestream {
-    color: RGBA(var(--color-charade-200));
-
-    &-aside {
-      background-color: RGBA(var(--color-charade-900));
-    }
-
-    &-main {
-      background-color: RGBA(var(--color-charade-950));
-    }
-
-    &-dialog {
-      &-user {
-        &-name {
-          color: RGBA(var(--color-charade-200));
-        }
-      }
-
-      &-tab {
-        color: RGBA(var(--color-charade-200));
-
-        &-title {
-          color: RGBA(var(--color-charade-200));
-        }
-      }
+  &-micro {
+    .bmb_hito-card-active::after {
+      background-color: var(--general_contrasts-50);
     }
   }
 }

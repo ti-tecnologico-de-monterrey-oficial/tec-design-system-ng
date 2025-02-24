@@ -2,11 +2,14 @@
   <ng-content />
 </ng-template>
 <span class="bmb_check-external-link-button">
-  @if (isButton(link())) {
+  @if (isButton(!!link())) {
     <button
       class="bmb_check-external-link-button-element"
       [id]="idElement()"
-      (click)="handleClick()"
+      (click)="handleClick($event)"
+      [ngClass]="{
+        'bmb_check-external-link-button-element-disabled': disabled(),
+      }"
     >
       <ng-container [ngTemplateOutlet]="commonTemplate" />
     </button>

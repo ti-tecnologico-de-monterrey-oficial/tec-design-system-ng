@@ -1,0 +1,30 @@
+<section class="bmb_action_menu">
+  @if (showHeader()) {
+    <div class="bmb_action_menu-header">
+      <bmb-title-content
+        [transparentBgC]="true"
+        [title]="title()"
+        [subtitle]="subtitle()"
+        [icon]="icon()"
+        [iconSize]="iconSize()!"
+        [bgIconAppearance]="bgIconAppearance()"
+      />
+    </div>
+  }
+  <section
+    class="bmb_action_menu-container"
+    [ngClass]="{ 'bmb_action_menu-container-no-header': !showHeader() }"
+  >
+    @if (isAList()) {
+      <ul class="bmb_action_menu-list">
+        @for (item of projectedContent; track $index) {
+          <li class="bmb_action_menu-item">
+            <ng-container [ngTemplateOutlet]="item" />
+          </li>
+        }
+      </ul>
+    } @else {
+      <ng-content />
+    }
+  </section>
+</section>

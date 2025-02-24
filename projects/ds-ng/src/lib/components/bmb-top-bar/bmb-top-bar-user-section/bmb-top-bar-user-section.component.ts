@@ -4,15 +4,15 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   HostListener,
-  ElementRef,
   output,
 } from '@angular/core';
 import { BmbUserImageComponent } from '../../bmb-user-image/bmb-user-image.component';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
-import { IUserInformation, IPositionButtonMenu } from '../types';
+import { IUserInformation } from '../types';
 import { IBmbNotificationCardData } from '../../bmb-notification-card/types';
 import { CommonModule } from '@angular/common';
 import { BmbNotificationCardComponent } from '../../bmb-notification-card/bmb-notification-card.component';
+import { IBmbDataAlert } from '../../bmb-alert-center/types';
 
 @Component({
   selector: 'bmb-top-bar-user-section',
@@ -37,20 +37,35 @@ export class BmbTopBarUserSectionComponent {
 
   @Input() mitec: boolean = false;
   @Input() assignmentNotification: string[] = [];
-  @Input() notificationNotification: IBmbNotificationCardData | null = null;
+  @Input() showUserName: boolean = true;
+  @Input() showNotifications: boolean = true;
+  @Input() notificationNotification: IBmbDataAlert[] = [];
 
   helpButtonClick = output<void>();
   userClick = output<void>();
 
   isOpenNotifications: boolean = false;
+  dialogPosition: { top: string; left: string } | null = {
+    top: '0px',
+    left: '0px',
+  };
+  windowWidth = window.innerWidth;
 
-  @HostListener('focusout')
-  protected onFocusOut(): void {
-    this.closeNotifications();
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    this.windowWidth = window.innerWidth;
+    this.isOpenNotifications = false;
   }
 
-  openNotifications() {
-    this.isOpenNotifications = true;
+  openNotifications(event: MouseEvent) {
+    const { clientX, clientY } = event;
+    const offsetX = this.windowWidth < 1000 ? 300 : 0;
+
+    this.dialogPosition = {
+      top: `${clientY}px`,
+      left: `${((clientX + offsetX) / this.windowWidth) * 100}%`,
+    };
+    this.isOpenNotifications = this.isOpenNotifications ? false : true;
   }
 
   closeNotifications() {
@@ -58,11 +73,7 @@ export class BmbTopBarUserSectionComponent {
   }
 
   totalNotifications(): number {
-    if (this.notificationNotification === null) return 0;
-    const seenNotifications = this.notificationNotification!.seen.length;
-    const newNotifications = this.notificationNotification!.new.length;
-    const allNotifications = this.notificationNotification!.all.length;
-    return seenNotifications + newNotifications + allNotifications;
+    return this.notificationNotification.length;
   }
 
   handleHelpButtonClick() {

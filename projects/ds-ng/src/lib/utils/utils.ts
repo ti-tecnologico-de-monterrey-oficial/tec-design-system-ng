@@ -2,7 +2,10 @@ export const isExternalLink = (link: string): boolean => {
   return (
     link.startsWith('http://') ||
     link.startsWith('https://') ||
-    link.startsWith('#')
+    link.startsWith('#') ||
+    link.startsWith('tel:') ||
+    link.startsWith('mailto:') ||
+    link.startsWith('app:')
   );
 };
 
@@ -38,3 +41,28 @@ export const buildErrorMessage = (inputs: string[]): string => {
 
   return elements;
 };
+
+const getValue = (key: string, value: undefined): any =>
+  (typeof value === 'function' && `${key}($event)`) ||
+  (typeof value === 'object' && `${JSON.stringify(value)}`) ||
+  `${value}`;
+
+const getKeyFormat = (key: string, value: string): string =>
+  (typeof value === 'function' && `(${key})`) || `[${key}]`;
+
+export const attributes = (object: { [key: string]: any }): string =>
+  Object.entries(object)
+    .filter(([key]) => key !== 'test_text')
+    .map(
+      ([key, value]) =>
+        (typeof value !== 'string' &&
+          `${getKeyFormat(key, value)}='${getValue(key, value)}'`) ||
+        `${key}="${value}"`,
+    )
+    .join(' ');
+
+export const attributesText = (object: { [key: string]: any }): string =>
+  Object.entries(object)
+    .filter(([key]) => key === 'test_text')
+    .map(([_, value]) => `${value}`)
+    .join(' ');

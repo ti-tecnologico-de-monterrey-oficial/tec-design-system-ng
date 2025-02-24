@@ -6,7 +6,7 @@ import {
   output,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbHeaderSectionComponent } from '../bmb-header-section/bmb-header-section.component';
+import { CommonModule } from '@angular/common';
 import { BmbFocusElementComponent } from '../bmb-focus-element/bmb-focus-element.component';
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
@@ -17,8 +17,11 @@ import {
   IBmbInputAppearance,
 } from '../bmb-input/bmb-input.component';
 import { BmbButtonDirective } from '../../directives/button.directive';
-import { CommonModule } from '@angular/common';
-import { IBmbActionHeader } from '../../types';
+import { BmbThreeColsComponent } from '../bmb-three-cols/bmb-three-cols.component';
+import { BmbNavigationIconComponent } from '../bmb-navigation-bar/bmb-navigation-icon/bmb-navigation-icon.component';
+import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
+import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 
 export interface IBmbEvaluationRubric {
   criterion: string;
@@ -52,7 +55,11 @@ export interface IBmbEvalRubricButtons {
   standalone: true,
   imports: [
     CommonModule,
-    BmbHeaderSectionComponent,
+    BmbContainerComponent,
+    BmbThreeColsComponent,
+    BmbIconComponent,
+    BmbTitleContentComponent,
+    BmbNavigationIconComponent,
     BmbTooltipComponent,
     BmbFocusElementComponent,
     BmbLayoutDirective,
@@ -79,12 +86,6 @@ export class BmbEvaluationRubricComponent {
   onClose = output();
 
   summary: number = 0;
-  actionHeaders: IBmbActionHeader[] = [
-    {
-      icon: this.rightIcon(),
-      action: () => this.handleClose(),
-    },
-  ];
 
   getEvalList(): number[] {
     const evalList: number[] = [];

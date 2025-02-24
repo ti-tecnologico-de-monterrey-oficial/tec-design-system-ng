@@ -63,7 +63,6 @@ import {
   IBotType,
   BmbLoginOnboardingComponent,
   IBmbLoginOnboarding,
-  IBmbUserInfo,
   BmbWebTemplatesComponent,
   BmbDropdownComponent,
   BmbGradesComponent,
@@ -104,10 +103,12 @@ import {
   BmbAdvertisementCardComponent,
   BmbAccordionComponent,
   IBmbActionHeader,
-  BmbNavigationBarComponent,
-  BmbUserSummaryContentComponent,
-  BmbThreeColsComponent,
-  BmbTitleContentComponent,
+  BmbListItemsComponent,
+  IBmbUserInfo,
+  BmbIconStatusComponent,
+  BmbVerticalLayoutDirective,
+  BmbVerticalLayoutItemDirective,
+  BmbProgressBarComponent,
 } from '../../projects/ds-ng/src/public-api';
 import { BmbPullWedgeComponent } from '../../projects/ds-ng/src/lib/components/bmb-pull-wedge/bmb-pull-wedge.component';
 import { BmbCardButtonComponent } from '../../projects/ds-ng/src/lib/components/bmb-card-button/bmb-card-button.component';
@@ -135,6 +136,11 @@ import {
 import { BmbUserProfileComponent } from '../../projects/ds-ng/src/lib/components/bmb-user-profile/bmb-user-profile.component';
 import { BmbHeaderMitecComponent } from '../../projects/ds-ng/src/lib/components/bmb-header-mitec/bmb-header-mitec.component';
 import { BmbChevronTitleSelectorComponent } from '../../projects/ds-ng/src/lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component';
+import { DateTime } from 'luxon';
+import { BmbNavigationBarComponent } from '../../projects/ds-ng/src/lib/components/bmb-navigation-bar/bmb-navigation-bar.component';
+import { BmbUserSummaryContentComponent } from '../../projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary-content/bmb-user-summary-content.component';
+import { BmbThreeColsComponent } from '../../projects/ds-ng/src/lib/components/bmb-three-cols/bmb-three-cols.component';
+import { BmbTitleContentComponent } from '../../projects/ds-ng/src/lib/components/bmb-title-content/bmb-title-content.component';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -236,6 +242,11 @@ import { BmbChevronTitleSelectorComponent } from '../../projects/ds-ng/src/lib/c
     BmbThreeColsComponent,
     BmbTitleContentComponent,
     BmbChevronTitleSelectorComponent,
+    BmbListItemsComponent,
+    BmbIconStatusComponent,
+    BmbVerticalLayoutDirective,
+    BmbVerticalLayoutItemDirective,
+    BmbProgressBarComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -5425,4 +5436,21 @@ export class AppComponent {
       appearance: 'yellow',
     },
   ];
+
+  addButtonAction() {
+    console.log('Button clicked');
+  }
+
+  generateListItems() {
+    const now = DateTime.now();
+    return new Array(100).fill(null).map((_, index) => {
+      const date = now.minus({ days: index });
+      return {
+        id: index,
+        title: `Item ${index}`,
+        date: date.toISODate(),
+        time: date.toISODate(),
+      };
+    });
+  }
 }

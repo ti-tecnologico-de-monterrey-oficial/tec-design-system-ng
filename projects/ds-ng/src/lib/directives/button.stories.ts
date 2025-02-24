@@ -1,6 +1,7 @@
 import { Meta, StoryFn } from '@storybook/angular';
 import { BmbButtonDirective } from './button.directive';
 import { BmbIconComponent } from '../components/bmb-icon/bmb-icon.component';
+import { attributes, attributesText } from '../utils/utils';
 
 export default {
   title: 'Micro Componentes/Button',
@@ -111,11 +112,11 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'boolean' },
       },
     },
-    text: {
+    test_text: {
       name: 'Text',
-      description: 'Sets the text content of the button.',
+      description: 'Button content example.',
       table: {
-        category: 'Properties',
+        category: 'Example',
         type: { summary: 'string' },
       },
     },
@@ -158,43 +159,22 @@ Below is an example of how you can use this component in HTML:
     size: 'small',
     position: 'left',
     case: false,
-    text: 'Button text',
+    test_text: 'Button text',
     isToggleActive: false,
     enableButtonToggle: false,
     isRounded: false,
   },
 } as Meta<typeof BmbButtonDirective>;
 
-function attributes(object: { [key: string]: any }): string {
-  return Object.entries(object)
-    .filter(([key]) => key !== 'text')
-    .map(([key, value]) => {
-      if (
-        key === 'case' ||
-        key === 'isRounded' ||
-        key === 'enableButtonToggle' ||
-        key === 'isToggleActive' ||
-        key === 'iconSize'
-      ) {
-        return `[${key}]="${value}"`;
-      }
-      return `${key}="${value}"`;
-    })
-    .join(' ');
-}
-
-function attributesText(object: { [key: string]: any }): string {
-  return Object.entries(object)
-    .filter(([key]) => key === 'text')
-    .map(([_, value]) => `${value}`)
-    .join(' ');
-}
-
 const customizable = (): StoryFn => (args) => ({
   props: args,
-  template: `<button bmbButton ${attributes(args)}>${attributesText(
-    args,
-  )}</button>`,
+  template: `
+    <button
+      bmbButton
+      ${attributes(args)}
+    >
+      ${attributesText(args)}
+    </button>`,
 });
 
 export const Default = customizable();

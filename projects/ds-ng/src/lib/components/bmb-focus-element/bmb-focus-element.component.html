@@ -1,10 +1,23 @@
 <section class="bmb_focus-element">
   <section [ngClass]="getCircleClass()">
-    @if (icon() && !number()) {
-      <bmb-icon class="bmb_focus-element-icon" icon="{{ icon() }}" />
-    }
-    @if (number() && !icon()) {
-      <span class="bmb_focus-element-number">{{ number() }}</span>
+    @if (icon()) {
+      <bmb-icon
+        class="bmb_focus-element-icon"
+        [ngClass]="{
+          'bmb_focus-element-icon-focused': !isNonFocused() && !isNormal(),
+        }"
+        [icon]="icon()"
+        [size]="24"
+      />
+    } @else if (number()) {
+      <span
+        class="bmb_focus-element-number"
+        [ngClass]="{
+          'bmb_focus-element-number-focused': !isNonFocused() && !isNormal(),
+        }"
+      >
+        {{ number() }}
+      </span>
     }
   </section>
   @if (title()) {

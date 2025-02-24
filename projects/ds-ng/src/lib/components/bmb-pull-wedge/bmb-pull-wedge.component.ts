@@ -9,6 +9,8 @@ import {
   Renderer2,
   OnChanges,
   SimpleChanges,
+  output,
+  model,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
@@ -30,11 +32,13 @@ import {
 export class BmbPullWedgeComponent implements AfterViewInit, OnChanges {
   @Input() initialHeight: number = 300;
   @Input() minContentHeight: number = 100;
+
+  isOpen = model<boolean>(false);
   @ViewChild('content', { static: true }) contentRef!: ElementRef;
 
   contentHeight: number = this.minContentHeight;
   maxDragHeight: number = 0;
-  isOpen = false;
+  // isOpen = false;
   isVisible = true;
   private initialDragHeight = 0;
 
@@ -46,6 +50,16 @@ export class BmbPullWedgeComponent implements AfterViewInit, OnChanges {
     }
     if (changes['minContentHeight']) {
       this.contentHeight = Math.max(this.contentHeight, this.minContentHeight);
+      this.renderer.setStyle(
+        this.contentRef.nativeElement,
+        'height',
+        `${this.contentHeight}px`,
+      );
+    }
+    if (changes['isOpen']) {
+      this.contentHeight = this.isOpen()
+        ? this.initialHeight
+        : this.minContentHeight;
       this.renderer.setStyle(
         this.contentRef.nativeElement,
         'height',
@@ -84,10 +98,10 @@ export class BmbPullWedgeComponent implements AfterViewInit, OnChanges {
 
     if (this.contentHeight >= this.maxDragHeight) {
       this.contentHeight = this.initialHeight;
-      this.isOpen = true;
+      this.isOpen.set(true);
     } else if (this.contentHeight < midpointThreshold) {
       this.contentHeight = this.minContentHeight;
-      this.isOpen = false;
+      this.isOpen.set(false);
     } else {
       this.contentHeight = this.contentHeight;
     }
@@ -97,5 +111,25 @@ export class BmbPullWedgeComponent implements AfterViewInit, OnChanges {
       'height',
       `${this.contentHeight}px`,
     );
+  }
+
+  toggleWedge() {
+    if (this.isOpen()) {
+      this.isOpen.set(false);
+      this.contentHeight = this.minContentHeight;
+      this.renderer.setStyle(
+        this.contentRef.nativeElement,
+        'height',
+        `${this.minContentHeight}px`,
+      );
+    } else {
+      this.isOpen.set(true);
+      this.contentHeight = this.initialHeight;
+      this.renderer.setStyle(
+        this.contentRef.nativeElement,
+        'height',
+        `${this.initialHeight}px`,
+      );
+    }
   }
 }

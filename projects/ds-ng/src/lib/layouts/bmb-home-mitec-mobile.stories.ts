@@ -3,7 +3,6 @@ import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
 import {
   BmbButtonDirective,
   BmbDividerComponent,
-  BmbDotPaginatorComponent,
   BmbDrawerOverlayComponent,
   BmbFrequentAppsSelectorComponent,
   BmbGradesComponent,
@@ -16,9 +15,11 @@ import {
   BmbUserProfileComponent,
   IBmbApp,
   IBmbHome,
+  IBmbUserInfo,
 } from '../../public-api';
-import { IBmbUserInfo } from '../components/bmb-login-onboarding/types';
 import { CommonModule } from '@angular/common';
+import { attributes } from '../utils/utils';
+import { BmbCarouselComponent } from '../components/bmb-carousel/bmb-carousel.component';
 
 @Component({
   standalone: true,
@@ -36,7 +37,7 @@ import { CommonModule } from '@angular/common';
     BmbGradesComponent,
     BmbFrequentAppsSelectorComponent,
     BmbMediaCardComponent,
-    BmbDotPaginatorComponent,
+    BmbCarouselComponent,
   ],
   selector: 'storybook-home-mitec-mobile',
   template: `
@@ -123,7 +124,7 @@ import { CommonModule } from '@angular/common';
           </section>
         </section>
         <bmb-divider />
-        <bmb-simple-header title="Mis Calificaciones" icon="school" />
+        <bmb-simple-header title="Mi avance académico" icon="school" />
         <bmb-grades
           [isMicro]="true"
           [gradeTitle]="'Período actual'"
@@ -134,15 +135,11 @@ import { CommonModule } from '@angular/common';
         />
         <bmb-divider />
         <bmb-simple-header title="Mis apps" icon="apps" />
-        <bmb-frequent-apps-selector
-          [title]="'Services'"
-          [apps]="selectorApps"
-          [layout]="'button'"
-        />
+        <bmb-frequent-apps-selector [apps]="selectorApps" layout="button" />
         <bmb-divider />
         <bmb-simple-header title="CONECTA" icon="open_in_browser" />
-        @switch (myActiveDotIndex) {
-          @case (0) {
+        <bmb-carousel>
+          <section #carouselItem>
             <bmb-media-card
               src="https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg"
               alt="test"
@@ -151,24 +148,30 @@ import { CommonModule } from '@angular/common';
               type="floating"
               title="Custom HTML content 1"
             />
-          }
-          @case (1) {
+          </section>
+          <section #carouselItem>
             <bmb-media-card
-              src="https://es.mypet.com/wp-content/uploads/sites/23/2021/03/GettyImages-1143107320-e1597136744606.jpg"
+              src="https://img.freepik.com/fotos-premium/dia-internacional-gato-8-agosto-gatos-lindos-gatito-pequeno-hermosos-pequenos-animales-compania-verdadero-amigo-bonitos-divertidos-tiernos-esponjosos-juguetones-shorties-ia-generativa_887181-4265.jpg?w=2000"
               alt="test"
               ratio="1/1"
               borderRadius="m"
               type="floating"
               title="Custom HTML content 2"
             />
-          }
-          @default {}
-        }
-        <bmb-dot-paginator
-          [activeDotIndex]="myActiveDotIndex"
-          [totalDots]="2"
-          (onDotPress)="handleDotPress($event)"
-        />
+          </section>
+          <section #carouselItem>
+            <bmb-media-card
+              src="https://es.mypet.com/wp-content/uploads/sites/23/2021/03/GettyImages-1143107320-e1597136744606.jpg"
+              alt="test"
+              ratio="1/1"
+              borderRadius="m"
+              type="floating"
+              title="Custom HTML content 3"
+            >
+              <span>Custom HTML</span>
+            </bmb-media-card>
+          </section>
+        </bmb-carousel>
         <bmb-divider />
         <bmb-drawer-overlay
           [menu]="menu"
@@ -302,28 +305,28 @@ class StorybookHomeMitecMobile {
 
   menu = [
     {
-      appearance: 'red',
-      title: 'App 1',
-      icon: 'https://img.freepik.com/premium-vector/approved-icon-with-thumb-up-approved-label-quality-control_349999-1321.jpg?w=2000',
+      appearance: 'mitec_red',
+      title: 'Llamada SOS',
+      icon: 'SOS',
+      link: 'tel:+5555555555',
+      target: '_blank',
+    },
+    {
+      appearance: 'buttons-primary-normal',
+      title: 'Acceso a Campus',
+      icon: 'qr_code_scanner',
       target: '_blank',
       link: 'https://www.example.com/',
     },
     {
-      appearance: 'blue',
-      title: 'App 2',
+      appearance: 'purple-primary',
+      title: 'App',
       icon: 'face',
       target: '_blank',
       link: 'https://www.example.com/',
     },
     {
-      appearance: 'green',
-      title: 'App 3',
-      icon: 'face',
-      target: '_blank',
-      link: 'https://www.example.com/',
-    },
-    {
-      appearance: 'blue',
+      appearance: 'general_contrasts-main-selection-alternative',
       title: 'Menú de servicios',
       icon: 'lists',
       setButtonTemplate: true,
@@ -454,12 +457,6 @@ class StorybookHomeMitecMobile {
       appearance: 'yellow',
     },
   ];
-
-  myActiveDotIndex: number = 0;
-
-  handleDotPress(index: number): void {
-    this.myActiveDotIndex = index;
-  }
 
   logHTML(data: boolean): string {
     console.log(`LOG HTML ${data}`);
@@ -630,7 +627,7 @@ import { BmbModalComponent, ModalDataConfig } from '@ti-tecnologico-de-monterrey
           </section>
         </section>
         <bmb-divider />
-        <bmb-simple-header title="Mis Calificaciones" icon="school" />
+        <bmb-simple-header title="Mi avance académico" icon="school" />
         <bmb-grades
           [isMicro]="true"
           [gradeTitle]="'Período actual'"
@@ -642,14 +639,13 @@ import { BmbModalComponent, ModalDataConfig } from '@ti-tecnologico-de-monterrey
         <bmb-divider />
         <bmb-simple-header title="Mis apps" icon="apps" />
         <bmb-frequent-apps-selector
-          [title]="'Services'"
           [apps]="selectorApps"
-          [layout]="'button'"
+          layout="button"
         />
         <bmb-divider />
         <bmb-simple-header title="CONECTA" icon="open_in_browser" />
-        @switch (myActiveDotIndex) {
-          @case (0) {
+        <bmb-carousel>
+          <section #carouselItem>
             <bmb-media-card
               src="https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg"
               alt="test"
@@ -658,24 +654,30 @@ import { BmbModalComponent, ModalDataConfig } from '@ti-tecnologico-de-monterrey
               type="floating"
               title="Custom HTML content 1"
             />
-          }
-          @case (1) {
+          </section>
+          <section #carouselItem>
             <bmb-media-card
-              src="https://es.mypet.com/wp-content/uploads/sites/23/2021/03/GettyImages-1143107320-e1597136744606.jpg"
+              src="https://img.freepik.com/fotos-premium/dia-internacional-gato-8-agosto-gatos-lindos-gatito-pequeno-hermosos-pequenos-animales-compania-verdadero-amigo-bonitos-divertidos-tiernos-esponjosos-juguetones-shorties-ia-generativa_887181-4265.jpg?w=2000"
               alt="test"
               ratio="1/1"
               borderRadius="m"
               type="floating"
               title="Custom HTML content 2"
             />
-          }
-          @default {}
-        }
-        <bmb-dot-paginator
-          [activeDotIndex]="myActiveDotIndex"
-          [totalDots]="2"
-          (onDotPress)="handleDotPress($event)"
-        />
+          </section>
+          <section #carouselItem>
+            <bmb-media-card
+              src="https://es.mypet.com/wp-content/uploads/sites/23/2021/03/GettyImages-1143107320-e1597136744606.jpg"
+              alt="test"
+              ratio="1/1"
+              borderRadius="m"
+              type="floating"
+              title="Custom HTML content 3"
+            >
+              <span>Custom HTML</span>
+            </bmb-media-card>
+          </section>
+        </bmb-carousel>
         <bmb-divider />
         <bmb-drawer-overlay
           [menu]="menu"
@@ -810,28 +812,28 @@ export class Component {
 
   menu = [
     {
-      appearance: 'red',
-      title: 'App 1',
-      icon: 'https://img.freepik.com/premium-vector/approved-icon-with-thumb-up-approved-label-quality-control_349999-1321.jpg?w=2000',
+      appearance: 'mitec_red',
+      title: 'Llamada SOS',
+      icon: 'SOS',
+      link: 'tel:+5555555555',
+      target: '_blank',
+    },
+    {
+      appearance: 'buttons-primary-normal',
+      title: 'Acceso a Campus',
+      icon: 'qr_code_scanner',
       target: '_blank',
       link: 'https://www.example.com/',
     },
     {
-      appearance: 'blue',
-      title: 'App 2',
+      appearance: 'purple-primary',
+      title: 'App',
       icon: 'face',
       target: '_blank',
       link: 'https://www.example.com/',
     },
     {
-      appearance: 'green',
-      title: 'App 3',
-      icon: 'face',
-      target: '_blank',
-      link: 'https://www.example.com/',
-    },
-    {
-      appearance: 'blue',
+      appearance: 'general_contrasts-main-selection-alternative',
       title: 'Menú de servicios',
       icon: 'lists',
       setButtonTemplate: true,
@@ -1048,15 +1050,6 @@ Below is an example of how you can use the components needed for this organizati
     userHasValidToken: true,
   },
 } as Meta;
-
-function attributes(object: { [key: string]: any }): string {
-  return Object.entries(object)
-    .filter(([key]) => key !== 'text')
-    .map(([key, value]) => {
-      return `[${key}]="${value}"`;
-    })
-    .join(' ');
-}
 
 export const Default: StoryFn = (args) => {
   return {

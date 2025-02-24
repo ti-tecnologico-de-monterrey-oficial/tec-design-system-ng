@@ -7,10 +7,8 @@ import {
   input,
   output,
   computed,
-  InputSignal,
-  OutputEmitterRef,
   signal,
-  WritableSignal,
+  OnInit,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SizeNames } from '../../types';
@@ -29,33 +27,24 @@ const calculateSize: any = (pixels: string[]): string => {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbAccordionComponent {
+export class BmbAccordionComponent implements OnInit {
   @ContentChild('bmbAccordionContent') bmbAccordionContent!: TemplateRef<any>;
   @ContentChild('bmbAccordionHeader') bmbAccordionHeader!: TemplateRef<any>;
-  public borderRadius: InputSignal<SizeNames | SizeNames[]> = input<
-    SizeNames | SizeNames[]
-  >('m');
-  public margin: InputSignal<SizeNames | SizeNames[]> = input<
-    SizeNames | SizeNames[]
-  >('m');
-  public paddingHeader: InputSignal<SizeNames | SizeNames[]> = input<
-    SizeNames | SizeNames[]
-  >('m');
-  public paddingContent: InputSignal<SizeNames | SizeNames[]> = input<
-    SizeNames | SizeNames[]
-  >('m');
-  public icon: InputSignal<string> = input<string>('');
-  public hideToggle: InputSignal<boolean> = input<boolean>(false);
-  public active: InputSignal<boolean> = input<boolean>(false);
-  public disabled: InputSignal<boolean> = input<boolean>(false);
-  public expanded: InputSignal<boolean | undefined> = input<
-    boolean | undefined
-  >();
-  public closed: OutputEmitterRef<void> = output<void>();
-  public opened: OutputEmitterRef<void> = output<void>();
-  public onClick: OutputEmitterRef<void> = output<void>();
-  private _expanded: WritableSignal<boolean> = signal(false);
-  private isOpen = computed<boolean | undefined>(() => {
+  public borderRadius = input<SizeNames | SizeNames[]>('m');
+  public margin = input<SizeNames | SizeNames[]>('m');
+  public paddingHeader = input<SizeNames | SizeNames[]>('m');
+  public paddingContent = input<SizeNames | SizeNames[]>('m');
+  public icon = input<string>('');
+  public accordionId = input<number>(0);
+  public hideToggle = input<boolean>(false);
+  public active = input<boolean>(false);
+  public disabled = input<boolean>(false);
+  public expanded = input<boolean | undefined>();
+  public closed = output<void>();
+  public opened = output<void>();
+  public onClick = output<void>();
+  public _expanded = signal(false);
+  public isOpen = computed<boolean | undefined>(() => {
     if (this.expanded() != undefined) {
       if (this.expanded()) {
         this.opened.emit();
@@ -68,6 +57,10 @@ export class BmbAccordionComponent {
       return this._expanded();
     }
   });
+
+  ngOnInit(): void {
+    this._expanded.update((current) => this.expanded() || current);
+  }
 
   getClassesAccordion(): string[] {
     const classNames = [];
@@ -107,15 +100,11 @@ export class BmbAccordionComponent {
     return classNames;
   }
 
-  getClassesContent(): string[] {
-    const classNames = [];
+  getClassesContent(): string {
+    let classNames = 'bmb_accordion-content';
 
     if (typeof this.paddingContent() === 'string') {
-      classNames.push(`bmb_padding-${this.paddingContent()}`);
-    }
-
-    if (this.isOpen()) {
-      classNames.push('bmb_accordion-content-open');
+      classNames = classNames + ` bmb_padding-${this.paddingContent()}`;
     }
 
     return classNames;

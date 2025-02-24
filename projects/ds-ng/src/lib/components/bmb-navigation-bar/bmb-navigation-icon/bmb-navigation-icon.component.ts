@@ -28,22 +28,24 @@ export class BmbNavigationIconComponent {
   idElement = input<string>();
   icon = input.required<string>();
   iconSize = input<number | undefined>();
-  iconActiveToggle = input<string | undefined>();
+  toggleIconActive = input<string | undefined>();
   isToggleActive = model<boolean | undefined>(false);
+  isAccentColor = model<boolean | undefined>(true);
   dotNotification = input<number>();
   target = input<IBmbTargetLink>();
   link = input<string>();
+  disabled = input<boolean>(false);
 
   buttonClick = output<void>();
 
   getIcon(): string {
-    if (this.isToggleActive() && !!this.iconActiveToggle())
-      return this.iconActiveToggle()!;
+    if (this.isToggleActive() && !!this.toggleIconActive())
+      return this.toggleIconActive()!;
     return this.icon();
   }
 
   handleClick() {
-    if (!!this.iconActiveToggle()) {
+    if (!!this.toggleIconActive()) {
       this.isToggleActive.update((value) => !value);
     }
 

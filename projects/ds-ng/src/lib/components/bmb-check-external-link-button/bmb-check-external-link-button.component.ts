@@ -25,24 +25,22 @@ export class BmbCheckExternalLinkButtonComponent {
   idElement = input<string | undefined>('');
   link = input<string>('');
   target = input<IBmbTargetLink>('_blank');
+  disabled = input<boolean>(false);
 
   buttonClick = output<void>();
 
   @ContentChild('commonTemplate') commonTemplate!: TemplateRef<any>;
 
   isExternalLink(link: string): boolean {
-    if (link) {
-      return isExternalLink(link);
-    }
-
-    return false;
+    return (!!link && isExternalLink(link)) || false;
   }
 
-  isButton(link: string): boolean {
-    return !link;
+  isButton(isLink: boolean): boolean {
+    return !isLink;
   }
 
-  handleClick(): void {
+  handleClick(event: any): void {
     this.buttonClick.emit();
+    event.stopPropagation();
   }
 }

@@ -6,7 +6,6 @@
   @include fonts.font(3, regular);
   border: rem.rem_calc(1) solid RGBA(var(--color-charade-300));
   background-color: var(--general_contrasts-5);
-  overflow: hidden;
   position: relative;
 
   &-header {
@@ -30,7 +29,6 @@
   &-content {
     @include fonts.font(3, regular);
     border-top: rem.rem_calc(1) solid RGBA(var(--color-charade-300));
-    overflow: hidden;
     max-height: 0;
     opacity: 0;
     transition:
@@ -39,6 +37,12 @@
     display: none;
 
     &.bmb_accordion-content-open {
+      opacity: 1;
+      max-height: 100%;
+      display: block;
+    }
+
+    &-init-open {
       opacity: 1;
       max-height: 100%;
       display: block;

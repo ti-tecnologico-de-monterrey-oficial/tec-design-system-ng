@@ -1,0 +1,13 @@
+<section class="bmb_icon-status">
+  <div
+    class="bmb_icon-status-wrapper"
+    [ngClass]="getClassName('bmb_icon-status-wrapper', statusAppearance()!)"
+  >
+    <bmb-icon
+      class="bmb_icon-status-icon"
+      [icon]="icon()"
+      [size]="getIconSize()"
+      [ngClass]="{ 'bmb_icon-status-icon': !statusAppearance() }"
+    />
+  </div>
+</section>

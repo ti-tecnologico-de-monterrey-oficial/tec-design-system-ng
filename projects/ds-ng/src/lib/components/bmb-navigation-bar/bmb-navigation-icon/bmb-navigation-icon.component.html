@@ -4,11 +4,13 @@
     [link]="link()!"
     [target]="target()!"
     (buttonClick)="handleClick()"
+    [disabled]="disabled()"
   >
     <span
       class="bmb_navigation_icon-icon"
       [ngClass]="{
-        'bmb_navigation_icon-icon-toggle_icon': !!iconActiveToggle(),
+        'bmb_navigation_icon-icon-toggle_icon':
+          !!toggleIconActive() && isAccentColor(),
       }"
     >
       <bmb-icon

@@ -1,8 +1,11 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   input,
   output,
+  TemplateRef,
+  ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbTabsComponent, IBmbTab } from '../bmb-tabs/bmb-tabs.component';
@@ -18,6 +21,17 @@ import {
   IBmbDataAlertsOutput,
 } from './types';
 import { BmbButtonDirective } from '../../directives/button.directive';
+import { BmbImageComponent } from '../bmb-image/bmb-image.component';
+import { BmbModalComponent } from '../bmb-modal/bmb-modal.component';
+import { ModalDataConfig } from '../bmb-modal/bmb-modal.interface';
+import { MatDialog } from '@angular/material/dialog';
+import { BmbAlertCenterAdsComponent } from './bmb-alert-center-ads/bmb-alert-center-ads.component';
+
+export interface IBmbAlertCenterTabConfig {
+  title: string;
+  isMobile: boolean;
+  isDesktop: boolean;
+}
 
 @Component({
   selector: 'bmb-alert-center',
@@ -29,6 +43,8 @@ import { BmbButtonDirective } from '../../directives/button.directive';
     BmbLayoutItemDirective,
     BmbAlertCenterFormComponent,
     BmbButtonDirective,
+    BmbImageComponent,
+    BmbAlertCenterAdsComponent,
   ],
   templateUrl: './bmb-alert-center.component.html',
   styleUrl: './bmb-alert-center.component.scss',
@@ -36,11 +52,25 @@ import { BmbButtonDirective } from '../../directives/button.directive';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbAlertCenterComponent {
-  tabsName = ['Todos', 'No Leídos', 'Favoritos', 'Archivados'];
   alerts = input.required<IBmbDataAlert[]>();
+  advertisements = input<IBmbDataAlert[]>([]);
   dateFormat = input<string>('dd/MM/yyyy');
+  tabsName = input<string[] | IBmbAlertCenterTabConfig[]>([
+    { title: 'Notificaciones', isMobile: true, isDesktop: true },
+    { title: 'No leídos', isMobile: false, isDesktop: true },
+    { title: 'Favoritos', isMobile: false, isDesktop: true },
+    { title: 'Archivados', isMobile: false, isDesktop: true },
+    { title: 'Anuncios', isMobile: true, isDesktop: true },
+  ]);
 
   onChangeAlertStatus = output<IBmbDataAlertsOutput>();
+  alertEvent = output<IBmbDataAlert>();
+
+  @ViewChild('detailContent', { read: TemplateRef })
+  detailContent?: TemplateRef<any>;
+  @ViewChild('container') container!: ElementRef;
+
+  constructor(private matDialog: MatDialog) {}
 
   tabs: IBmbTab[] = [];
   selectedTab = 0;
@@ -56,13 +86,17 @@ export class BmbAlertCenterComponent {
   visibleAlert: IBmbDataAlertsParsed | null = null;
 
   ngOnInit(): void {
-    this.tabs = this.tabsName.map((tab, index) => {
-      const badge = this.alerts().filter((alert) => !alert.isRead).length;
+    this.tabs = this.tabsName().map((tab, index) => {
       return {
         id: index,
-        title: tab,
+        title: typeof tab === 'string' ? tab : tab.title,
         isActive: index === 0,
-        badge: index === 0 || index === 1 ? badge : 0,
+        badge:
+          index === 0 || index === 1
+            ? this.alerts().filter((alert) => !alert.isRead).length
+            : 0,
+        isMobile: typeof tab === 'string' ? true : tab.isMobile,
+        isDesktop: typeof tab === 'string' ? true : tab.isDesktop,
       };
     });
 
@@ -70,12 +104,9 @@ export class BmbAlertCenterComponent {
     this.eventsInCategories = this.orderCategories(this.orderedEvents);
   }
 
-  getClassList(): string[] {
-    const classList = ['bmb_alert-center'];
-    return classList;
-  }
-
   handleTabChange(tabId: IBmbTab): void {
+    console.log(this.tabs);
+
     this.selectedTab = tabId.id;
     this.eventsInCategories = this.filterEvents(tabId.id);
   }
@@ -134,10 +165,24 @@ export class BmbAlertCenterComponent {
 
   handleShowAlert(item: IBmbDataAlertsParsed): void {
     this.visibleAlert = item;
+
+    if (
+      this.container.nativeElement.clientWidth < 350 ||
+      window.innerWidth < 1000
+    ) {
+      const data: ModalDataConfig = {
+        title: item.title,
+        content: this.detailContent,
+        size: 'small',
+        type: 'informative',
+        scrollable: true,
+      };
+      this.matDialog.open(BmbModalComponent, { data });
+    }
   }
 
-  placeholderEvent(id: string | number): void {
-    console.log('Event', id);
+  handleAlertEvent(alert: IBmbDataAlert): void {
+    this.alertEvent.emit(alert);
   }
 
   handleChangeAlertStatus(alert: IBmbDataAlertsOutput): void {

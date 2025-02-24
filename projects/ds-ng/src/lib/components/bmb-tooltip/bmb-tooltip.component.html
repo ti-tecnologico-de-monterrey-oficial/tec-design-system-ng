@@ -1,6 +1,6 @@
 <section class="bmb_tooltip">
   @if (icon() && size()) {
-    <bmb-icon [size]="size()" [icon]="icon()" />
+    <bmb-icon [size]="size()" [icon]="icon()" [isFill]="isFill()" />
   } @else {
     <ng-content></ng-content>
   }

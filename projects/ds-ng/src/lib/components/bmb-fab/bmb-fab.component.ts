@@ -1,10 +1,9 @@
 import {
   Component,
   HostListener,
-  Input,
-  Output,
-  EventEmitter,
   ViewEncapsulation,
+  input,
+  output,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
@@ -19,43 +18,26 @@ import { FabSize, FabType } from './bmb-fab-.interface';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbFabComponent {
-  @Input() icon = '';
-  @Input() text?: string | null = '';
-  @Input() size?: FabSize;
-  @Input() type?: FabType;
-  @Input() mitec?: boolean = false;
+  icon = input<string>('');
+  text = input<string | null>('');
+  size = input<FabSize>();
+  type = input<FabType>();
+  mitec = input<boolean>(false);
 
-  @Output() fabClick = new EventEmitter<void>();
+  fabClick = output<void>();
 
   active: boolean = false;
-  closeIcon = 'close';
-  fabStyle = '';
 
   @HostListener('click') onFabClick() {
-    if (this.type == 'normal') {
+    if (this.type() == 'normal') {
       this.active = !this.active;
     }
     this.fabClick.emit();
   }
 
-  ngOnInit() {
-    this.fabStyle = this.setStyles();
-  }
-
-  setStyles() {
-    let style = !this.mitec ? 'bmb_fab' : 'bmb_fab-mitec';
-
-    if (this.size == 'small') {
-      style = `${style}-small`;
-    } else {
-      style = `${style}-large`;
-    }
-
-    if (this.type === 'extended' && !this.mitec) {
-      style = `${style}-extended`;
-    } else {
-      style = `${style}-normal`;
-    }
-    return style;
+  getClassName(): string {
+    const baseClassName = `${(this.mitec() && 'bmb_fab-mitec') || 'bmb_fab'}`;
+    const typeClassName = `${(this.mitec() && 'normal') || this.type()}`;
+    return `${baseClassName}-${this.size()}-${typeClassName}`;
   }
 }

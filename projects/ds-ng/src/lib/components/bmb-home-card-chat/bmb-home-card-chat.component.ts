@@ -3,6 +3,7 @@ import {
   Component,
   input,
   model,
+  OnInit,
   output,
   ViewEncapsulation,
 } from '@angular/core';
@@ -11,11 +12,14 @@ import {
   BmbChatBarComponent,
   IBotType,
 } from '../bmb-chat-bar/bmb-chat-bar.component';
+import { IBmbColor } from '../../types/colors';
+import { IBmbChatMessage } from '../bmb-chat-bubbles/types';
+import { BmbChatBubblesComponent } from '../bmb-chat-bubbles/bmb-chat-bubbles.component';
 
 @Component({
   selector: 'bmb-home-card-chat',
   standalone: true,
-  imports: [BmbHomeCardComponent, BmbChatBarComponent],
+  imports: [BmbHomeCardComponent, BmbChatBarComponent, BmbChatBubblesComponent],
   templateUrl: './bmb-home-card-chat.component.html',
   styleUrl: './bmb-home-card-chat.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -28,6 +32,9 @@ export class BmbHomeCardChatComponent {
   isMobile = input<boolean>();
   placeholder = input<string>();
   botList = input<IBotType[]>();
+  leftIcon = input<string>('chevron_left');
+  bgIconAppearance = input<IBmbColor>('charade-500');
+  messagesHistory = input.required<IBmbChatMessage[]>();
 
   currentBot = model<IBotType>();
   isLoading = model<boolean>();

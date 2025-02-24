@@ -49,7 +49,15 @@
     }
   }
 
+  &-version {
+    margin-top: rem.rem_calc(16);
+    @include fonts.font(3, regular);
+    color: var(--general_contrasts-75);
+    font-weight: 400;
+    text-align: center;
+  }
+
   &-close {
-    margin-top: calc(20%);
+    margin-top: rem.rem_calc(25);
   }
 }

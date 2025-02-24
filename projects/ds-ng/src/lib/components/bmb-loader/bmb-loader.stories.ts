@@ -1,7 +1,42 @@
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
+import { attributes } from '../../utils/utils';
+
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbLoaderComponent } from './bmb-loader.component';
 import { BmbButtonDirective } from '../../directives/button.directive';
+import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
+
+const appearanceOptions: IBbmBgAppearance[] = [
+  'normal',
+  'strong',
+  'success',
+  'info',
+  'warning',
+  'error',
+  'brand',
+  'background',
+  'disabled',
+  'mitec_blue',
+  'mitec_red',
+  'mitec_green',
+  'mitec_orange',
+  'mitec_light_green',
+  'mitec_purple',
+  'creative_violet',
+  'creative_indigo',
+  'creative_emerald',
+  'creative_licorice',
+  'creative_darkteal',
+  'creative_peach',
+  'creative_sepia',
+  'creative_softred',
+  'creative_wattle',
+  'creative_shipcove',
+  'creative_plantation',
+  'creative_rum',
+  'creative_hibiscus',
+  'creative_ripelemon',
+];
 
 export default {
   title: 'Micro Componentes/Loader',
@@ -88,6 +123,31 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string' },
       },
     },
+    appearance: {
+      name: 'Appearance',
+      control: {
+        type: 'select',
+      },
+      options: appearanceOptions,
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'normal' },
+        type: { summary: 'string' },
+      },
+      description: 'The color of the icon loader, affecting its visual style.',
+    },
+    icon: {
+      name: 'Icon',
+      control: {
+        type: 'text',
+      },
+      description: 'Icon on error state',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'optional' },
+      },
+    },
     actions: {
       name: 'Actions',
       control: { type: 'boolean' },
@@ -151,6 +211,8 @@ Below is an example of how you can use this component in HTML:
     overlay: false,
     isVisible: true,
     errorState: false,
+    appearance: 'normal',
+    icon: 'wifi_off',
     actions: false,
     buttonPrimary: 'Reintentar',
     buttonSecondary: 'Salir',
@@ -163,6 +225,14 @@ Below is an example of how you can use this component in HTML:
   },
 } as Meta<typeof BmbLoaderComponent>;
 
-type Story = StoryObj<BmbLoaderComponent>;
+const customizable = (): StoryFn => (args) => ({
+  props: args,
+  template: `
+    <bmb-loader
+      ${attributes(args)}
+    >
+    </bmb-loader>
+  `,
+});
 
-export const Default: Story = {};
+export const Default = customizable();

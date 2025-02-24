@@ -10,6 +10,7 @@ import {
 } from '../bmb-toast/bmb-toast.component';
 import { NotificationType } from '../bmb-push-notification/types';
 import { BmbPortalComponent } from './bmb-portal.component';
+import { attributes } from '../../utils/utils';
 
 @Component({
   standalone: true,
@@ -382,18 +383,6 @@ Below is an example of how you can use this component in HTML:
     appearance: 'neutral',
   },
 } as Meta<typeof BmbPushNotificationItemComponent>;
-
-function attributes(object: { [key: string]: any }): string {
-  return Object.entries(object)
-    .filter(([key]) => key !== 'text')
-    .map(([key, value]) => {
-      if (key === 'isFullColor' || key === 'delay') {
-        return `[${key}]="${value}"`;
-      }
-      return `${key}="${value}"`;
-    })
-    .join(' ');
-}
 
 export const Default: StoryFn<typeof StorybookToastWrapperComponent> = (
   args,

@@ -5,14 +5,14 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbButtonDirective } from '../../../directives/button.directive';
-import { BmbUserSummaryComponent } from '../../bmb-user-summary/bmb-user-summary.component';
 import { BmbLoginOnboardingService } from '../bmb-login-onboarding.service';
-import { IBmbUserInfo } from '../types';
+import { IBmbLinkConfiguration, IBmbUserInfo } from '../../../types';
+import { BmbUserProfileContentComponent } from '../../bmb-user-profile/bmb-user-profile-content/bmb-user-profile-content.component';
 
 @Component({
   selector: 'bmb-login-onboarding-logged',
   standalone: true,
-  imports: [BmbButtonDirective, BmbUserSummaryComponent],
+  imports: [BmbButtonDirective, BmbUserProfileContentComponent],
   templateUrl: './bmb-login-onboarding-logged.component.html',
   styleUrl: './bmb-login-onboarding-logged.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -28,6 +28,11 @@ export class BmbLoginOnboardingLoggedComponent {
 
   getUserInfo(): IBmbUserInfo {
     return this.loginOnboardingService.userInfo();
+  }
+
+  getAnotherAccount(): IBmbLinkConfiguration {
+    return this.loginOnboardingService.getLoginOnBoardingCustomization()
+      .anotherAccount;
   }
 
   _handleContinue(): void {

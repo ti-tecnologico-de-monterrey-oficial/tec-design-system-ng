@@ -33,7 +33,6 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 - [Toast](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-toast--documentation)
 - [Top bar](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-top-bar--documentation)
 
-
 Si quieres ver el detalle de los cambios puedes ver la entrada de la wiki [aquí](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/wiki/What's-new).
 
 ---

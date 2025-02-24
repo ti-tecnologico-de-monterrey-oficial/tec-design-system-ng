@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'bmb-home-card',
   standalone: true,
-  imports: [BmbHomeCardHeaderComponent, CommonModule],
+  imports: [CommonModule, BmbHomeCardHeaderComponent],
   templateUrl: './bmb-home-card.component.html',
   styleUrl: './bmb-home-card.component.scss',
   encapsulation: ViewEncapsulation.None,

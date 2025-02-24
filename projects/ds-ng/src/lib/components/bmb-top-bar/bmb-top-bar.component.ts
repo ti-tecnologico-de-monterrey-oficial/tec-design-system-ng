@@ -9,6 +9,7 @@ import {
   ViewChild,
   OnInit,
   output,
+  HostListener,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbButtonDirective } from '../../directives/button.directive';
@@ -18,6 +19,8 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbSelectComponent } from '../bmb-select/bmb-select.component';
 import { BmbSelectItemComponent } from '../bmb-select/bmb-select-item/bmb-select-item.component';
 import { IBmbNotificationCardData } from '../bmb-notification-card/types';
+import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
+import { IBmbDataAlert } from '../bmb-alert-center/types';
 
 export { IPositionButtonMenu, IUserInformation } from './types';
 
@@ -26,11 +29,11 @@ export { IPositionButtonMenu, IUserInformation } from './types';
   standalone: true,
   imports: [
     CommonModule,
-    BmbButtonDirective,
     BmbTopBarUserSectionComponent,
     BmbIconComponent,
     BmbSelectComponent,
     BmbSelectItemComponent,
+    BmbUserImageComponent,
   ],
   templateUrl: './bmb-top-bar.component.html',
   styleUrl: './bmb-top-bar.component.scss',
@@ -38,7 +41,7 @@ export { IPositionButtonMenu, IUserInformation } from './types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbTopBarComponent implements OnInit {
-  @Input() positionButtonMenu: IPositionButtonMenu = 'left';
+  @Input() positionButtonMenu: IPositionButtonMenu = 'left'; // Deprecated
   @Input() userInformation: IUserInformation | null = null;
   @Input() hasLogoutButton: boolean = true;
   @Input() image: string = 'assets/images/tec-logo.svg';
@@ -49,7 +52,8 @@ export class BmbTopBarComponent implements OnInit {
   @Input() lang: string = 'es';
   @Input() mitec: boolean = false;
   @Input() assignmentNotification: string[] = [];
-  @Input() alertNotification: IBmbNotificationCardData | null = null;
+  @Input() showUserName: boolean = true;
+  @Input() alertNotification: IBmbDataAlert[] = [];
 
   @Output() logOut: EventEmitter<any> = new EventEmitter<any>();
   @Output() onLangChange: EventEmitter<string> = new EventEmitter<string>();
@@ -60,6 +64,14 @@ export class BmbTopBarComponent implements OnInit {
 
   isMobileMenuOpen: boolean = false;
   showAnimation: boolean = true;
+  windowWidth: number = window.innerWidth;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    this.windowWidth = window.innerWidth;
+    this.isMobileMenuOpen =
+      this.windowWidth > 1000 ? false : this.isMobileMenuOpen;
+  }
 
   ngOnInit(): void {
     this.image = this.mitec

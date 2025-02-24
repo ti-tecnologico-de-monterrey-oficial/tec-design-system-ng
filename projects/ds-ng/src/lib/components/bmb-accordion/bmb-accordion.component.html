@@ -1,4 +1,5 @@
 <section
+  [id]="accordionId()"
   class="bmb_accordion"
   [ngClass]="getClassesAccordion()"
   [ngStyle]="getStyles()"
@@ -15,7 +16,12 @@
     }
   </header>
   @if (!disabled()) {
-    <section class="bmb_accordion-content" [ngClass]="getClassesContent()">
+    <section
+      [class]="getClassesContent()"
+      [ngClass]="{
+        'bmb_accordion-content-open': this._expanded(),
+      }"
+    >
       <ng-container [ngTemplateOutlet]="bmbAccordionContent" />
     </section>
   }

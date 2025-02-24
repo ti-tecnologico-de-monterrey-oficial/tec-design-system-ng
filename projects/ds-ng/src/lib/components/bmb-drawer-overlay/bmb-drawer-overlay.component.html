@@ -1,8 +1,8 @@
-<div class="bmb_drawer" [class.open]="isOpen">
+<section class="bmb_drawer" [class.open]="isOpen">
   @if (isOpen) {
     <div class="bmb_drawer-overlay"></div>
-    <div class="bmb_drawer-menu">
-      <ng-container *ngFor="let item of menu.slice(0, 4); let i = index">
+    <section class="bmb_drawer-menu">
+      @for (item of menu().slice(0, 4); track $index) {
         <bmb-interactive-icon
           [appearance]="item.appearance"
           [title]="item.title"
@@ -12,21 +12,21 @@
           [layout]="'app_drawer'"
           (buttonClick)="toggleFullDrawer(item)"
         />
-      </ng-container>
-    </div>
+      }
+    </section>
   }
   @if (isFull) {
-    <div class="bmb_drawer-full">
+    <section class="bmb_drawer-full">
       <bmb-inner-header
-        [title]="title"
+        [title]="title()"
         [showReturn]="true"
         (onHandleBack)="toggleFullDrawer()"
         (searchData)="handleValueChange($event)"
         [showSearch]="true"
-      ></bmb-inner-header>
-      <bmb-tabs [tabs]="tabs" (selected)="selectNavItem($event.id)" />
-      <div class="bmb_drawer-apps">
-        <ng-container *ngFor="let app of appsActive">
+      />
+      <bmb-tabs [tabs]="tabs()" (selected)="selectNavItem($event.id)" />
+      <section class="bmb_drawer-apps">
+        @for (app of appsActive; track $index) {
           <bmb-interactive-icon
             [appearance]="app.appearance"
             [title]="app.title"
@@ -35,16 +35,10 @@
             [link]="app?.link!"
             [layout]="'regular'"
           />
-        </ng-container>
-      </div>
-    </div>
+        }
+      </section>
+    </section>
   }
 
-  <bmb-fab
-    [icon]="'apps'"
-    [text]="'FAB'"
-    [size]="'large'"
-    [type]="'normal'"
-    (fabClick)="toggleDrawer()"
-  />
-</div>
+  <bmb-fab icon="apps" size="large" type="normal" (fabClick)="toggleDrawer()" />
+</section>

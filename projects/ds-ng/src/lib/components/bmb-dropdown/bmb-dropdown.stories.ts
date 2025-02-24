@@ -1,5 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/angular';
+import type { Meta, StoryFn } from '@storybook/angular';
 import { BmbDropdownComponent } from './bmb-dropdown.component';
+import { attributes } from '../../utils/utils';
 
 export default {
   title: 'Micro Componentes/Dropdown',
@@ -28,7 +29,6 @@ import { BmbDropdownComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng
     BmbDropdownComponent,
     ReactiveFormsModule,
     BmbButtonDirective,
-    BmbInputComponent,
   ],
   templateUrl: './component.html',
   styleUrl: './component.scss',
@@ -202,26 +202,15 @@ Below is an example of how you can use this component in HTML:
   },
 } as Meta<typeof BmbDropdownComponent>;
 
-type Story = StoryObj<BmbDropdownComponent>;
-
-export const Default: Story = {
-  args: {},
-  render: (args) => ({
-    props: args,
-    template: `
-      <div style="height: 500px">
-        <bmb-dropdown
-          [icon]="icon"
-          [placeholder]="placeholder"
-          [required]="required"
-          [label]="label"
-          [showIcon]="showIcon"
-          [options]="options"
-          [disabled]="disabled"
-          [helperText]="helperText"
-          (onValueChange)="onValueChange($event)"
-        />
-      </div>
+const customizable = (): StoryFn => (args) => ({
+  props: args,
+  template: `
+    <div style="height: 500px">
+      <bmb-dropdown
+        ${attributes(args)}
+      />
+    </div>
     `,
-  }),
-};
+});
+
+export const Default = customizable();

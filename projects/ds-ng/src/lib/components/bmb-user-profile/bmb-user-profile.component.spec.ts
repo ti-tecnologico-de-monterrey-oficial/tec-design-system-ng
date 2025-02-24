@@ -14,12 +14,12 @@ describe('BmbUserProfileComponent', () => {
 
     fixture = TestBed.createComponent(BmbUserProfileComponent);
     componentRef = fixture.componentRef;
+    component = fixture.componentInstance;
     componentRef.setInput('userInfo', {
       id: 'A00123456',
       fullName: 'Borrego Perez',
       profilePicture: '../assets/images/placeholders/user-icon-test.svg',
     });
-    component = fixture.componentInstance;
     fixture.detectChanges();
   });
 

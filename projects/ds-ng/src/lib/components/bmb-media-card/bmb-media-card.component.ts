@@ -5,8 +5,9 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SizeNames } from '../../types';
+import { SizeNames, IBmbTargetLink } from '../../types';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
+import { isExternalLink } from '../../utils/utils';
 
 export type IBmbMediaCardType = 'inline' | 'floating' | 'author_detail';
 export type IBmbMediaCardLoading = 'lazy' | 'eager';
@@ -21,6 +22,8 @@ export type IBmbMediaCardLoading = 'lazy' | 'eager';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbMediaCardComponent {
+  link = input<string>('');
+  target = input<IBmbTargetLink>('_blank');
   src = input<string>('');
   mobileSrc = input<string>();
   alt = input<string>('');
@@ -37,6 +40,10 @@ export class BmbMediaCardComponent {
   date = input<string>();
   userName = input<string>();
   userImage = input<string>();
+
+  isExternalLink(link: string): boolean {
+    return (!!link && isExternalLink(link)) || false;
+  }
 
   getClasses(): string[] {
     const classes = [];

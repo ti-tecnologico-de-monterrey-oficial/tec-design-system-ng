@@ -2,8 +2,8 @@
 
 .bmb_container {
   align-items: flex-start;
-  background-color: RGBA(var(--color-charade-100));
-  border-color: RGBA(var(--color-charade-300));
+  background-color: var(--containers-main);
+  border-color: var(--general_contrasts-container-outline);
   border-radius: rem.rem_calc(8);
   border-style: solid;
   border-width: rem.rem_calc(1);
@@ -35,8 +35,8 @@
 
   // Modal
   &-secondary-container {
-    background-color: RGBA(var(--color-charade-50));
-    border-color: RGBA(var(--color-charade-200));
+    background-color: var(--containers-modal);
+    border-color: var(--general_contrasts-25);
     flex-direction: column;
     justify-content: center;
     padding: rem.rem_calc(16);
@@ -44,7 +44,7 @@
 
   &-contrast-box-container {
     align-items: center;
-    background-color: RGBA(var(--color-charade-50));
+    background-color: var(--general_contrasts-input-background);
     border-color: var(--color-black-min);
     border-radius: rem.rem_calc(24);
     flex-direction: column;
@@ -57,27 +57,5 @@
     align-items: center;
     margin: rem.rem-calc(16);
     padding: rem.rem_calc(24);
-  }
-}
-
-[data-theme="dark"],
-.storybook-dark-theme {
-  .bmb_container {
-    &-primary-container,
-    &-primary-home,
-    &-primary-header,
-    &-button-container {
-      background-color: RGBA(var(--color-charade-900));
-      border-color: RGBA(var(--color-charade-800));
-    }
-
-    &-secondary-container {
-      background-color: RGBA(var(--color-charade-950));
-      border-color: RGBA(var(--color-charade-700));
-    }
-
-    &-contrast-box-container {
-      background-color: var(--color-black-tint);
-    }
   }
 }

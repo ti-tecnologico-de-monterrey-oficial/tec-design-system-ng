@@ -6,6 +6,7 @@ import {
 } from './bmb-card.component';
 import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
+import { attributes } from '../../utils/utils';
 
 const meta: Meta<BmbCardComponent> = {
   title: 'Micro Componentes/Card',
@@ -125,7 +126,7 @@ export const OneItem: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <bmb-card [borderRadius]="borderRadius" [margin]="margin" [type]="type">
+      <bmb-card ${attributes(args)}>
         <bmb-card-header padding="s">
           <h3>Header</h3>
         </bmb-card-header>
