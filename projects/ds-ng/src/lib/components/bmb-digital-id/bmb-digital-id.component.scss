@@ -62,19 +62,19 @@
     &-name {
       @include fonts.font(9, semibold);
       text-align: center;
-      padding-top:rem.rem_calc(10);
+      padding-top: rem.rem_calc(10);
     }
 
     &-surname {
       @include fonts.font(9, semibold);
       text-align: center;
-      padding-bottom:rem.rem_calc(10);
+      padding-bottom: rem.rem_calc(10);
     }
 
     &-id {
       @include fonts.font(7, regular);
       text-align: center;
-      padding-bottom:rem.rem_calc(5);
+      padding-bottom: rem.rem_calc(5);
     }
 
     &-campus {
@@ -85,12 +85,13 @@
     &-career {
       @include fonts.font(5, regular);
       text-align: center;
-      padding-bottom:rem.rem_calc(5);
+      padding-bottom: rem.rem_calc(5);
     }
 
     &-role {
       @include fonts.font(9, semibold);
       text-align: center;
+      text-transform: uppercase;
     }
 
     &-btn {
@@ -102,8 +103,8 @@
       width: 100%;
       padding: rem.rem_calc(0 20);
 
-      &-hide{
-        display:none;
+      &-hide {
+        display: none;
       }
     }
   }

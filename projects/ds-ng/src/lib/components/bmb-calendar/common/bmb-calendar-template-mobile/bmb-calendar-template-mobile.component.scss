@@ -126,93 +126,18 @@
     }
   }
 
-  // background-color: RGBA(var(--color-charade-100));
-  // border-radius: 0 0 rem.rem_calc(16) rem.rem_calc(16);
+  &-title-day {
+    background-color: var(--containers-background);
+    text-align: center;
+    font-size: 1rem;
+    padding: 1rem;
+    text-transform: capitalize;
+    overflow: hidden;
+    transition: all 0.3s ease;
 
-  // &-nav {
-  //   list-style: none;
-
-  //   &-button {
-  //     @include buttonReset();
-  //   }
-  // }
-
-  // &-calendar {
-  //   list-style: none;
-  //   padding: 0;
-  //   margin: 0;
-  //   display: flex;
-  //   gap: rem.rem_calc(8);
-  //   flex-wrap: wrap;
-  //   @include fonts.font(3, medium);
-
-  //   @include mixins.media-query(1000, "min") {
-  //     gap: rem.rem_calc(16);
-  //   }
-
-  //   &-item,
-  //   &-header {
-  //     flex: 0 0 calc(14.285% - (rem.rem_calc(8) / 7 * 6));
-  //     text-align: center;
-  //     box-sizing: border-box;
-  //     position: relative;
-
-  //     @include mixins.media-query(1000, "min") {
-  //       flex: 0 0 calc(14.285% - (rem.rem_calc(16) / 7 * 6));
-  //     }
-
-  //     button {
-  //       width: rem.rem_calc(36);
-  //       box-sizing: border-box;
-  //       padding: rem.rem_calc(8) !important;
-  //       border-radius: 50% !important;
-  //       margin: 0 auto;
-  //       @include buttonReset();
-
-  //       &:disabled,
-  //       &.bmb-disabled {
-  //         opacity: 1;
-  //         background-color: RGBA(var(--color-blue-primary));
-  //         color: RGBA(var(--color-white-primary));
-  //       }
-  //     }
-
-  //   }
-
-  //   &-header {
-  //     padding: rem.rem_calc(8);
-  //   }
-  // }
-
-  // &-expander {
-  //   height: rem.rem_calc(18);
-  //   position: relative;
-
-  //   &-active {
-  //     i {
-  //       rotate: 180deg;
-  //     }
-  //   }
-
-  //   button {
-  //     border-radius: 50% !important;
-  //     position: absolute;
-  //     padding: 0 !important;
-  //     width: 2.25rem;
-  //     transform: translateX(-50%);
-  //     left: 50%;
-  //     top: 100%;
-  //     z-index: 1;
-
-  //     i {
-  //       transition: all 0.3s ease;
-  //     }
-  //   }
-  // }
+    &-not-visible {
+      height: 0;
+      padding: 0;
+    }
+  }
 }
-
-// @container (height > 100px) {
-//   .bmb_calendar-month-mobile-calendar-small {
-//     opacity: 0;
-//   }
-// }

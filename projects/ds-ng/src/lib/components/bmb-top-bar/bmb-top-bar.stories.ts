@@ -35,7 +35,7 @@ Below is an example of how you can use this component in HTML:
       options: ['left', 'right'],
       description: 'Set responsive menu button position.',
       table: {
-        category: 'Properties',
+        category: 'Deprecated',
         type: { summary: 'string' },
         defaultValue: { summary: 'left' },
       },

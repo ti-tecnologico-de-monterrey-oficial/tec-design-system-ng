@@ -30,10 +30,11 @@ class ToastWrapperComponent implements OnInit {
     this.bmbCalendarService.addMultipleEvents([
       {
         title: 'Event 0',
-        start: '2025-02-22T15:00:00.715Z',
-        end: '2025-02-22T16:00:00.715Z',
+        start: '2025-02-22T17:00:00.715Z',
+        end: '2025-02-22T18:00:00.715Z',
         detail: 'Event 1 detail',
         modalTitle: 'Event 1',
+        status: 'disabled',
       },
       {
         title: 'Event 1',
@@ -48,10 +49,12 @@ class ToastWrapperComponent implements OnInit {
         end: '2025-02-24T16:00:00.715Z',
         detail: 'Event 2 detail',
         modalTitle: 'Event 2',
-        tags: [{
-          appearance: 'success',
-          text: 'Event 2 tag',
-        }]
+        tags: [
+          {
+            appearance: 'success',
+            text: 'Event 2 tag',
+          },
+        ],
       },
       {
         title: 'Event 3',
@@ -59,10 +62,12 @@ class ToastWrapperComponent implements OnInit {
         end: '2025-02-24T16:00:00.715Z',
         detail: 'Event 2 detail',
         modalTitle: 'Event 2',
-        tags: [{
-          appearance: 'success',
-          text: 'Event 2 tag',
-        }]
+        tags: [
+          {
+            appearance: 'success',
+            text: 'Event 2 tag',
+          },
+        ],
       },
       {
         title: 'Event 4',
@@ -70,10 +75,12 @@ class ToastWrapperComponent implements OnInit {
         end: '2025-02-25T16:00:00.715Z',
         detail: 'Event 2 detail',
         modalTitle: 'Event 2',
-        tags: [{
-          appearance: 'success',
-          text: 'Event 2 tag',
-        }]
+        tags: [
+          {
+            appearance: 'success',
+            text: 'Event 2 tag',
+          },
+        ],
       },
       {
         title: 'Event 4',
@@ -81,10 +88,12 @@ class ToastWrapperComponent implements OnInit {
         end: '2025-02-26T16:00:00.715Z',
         detail: 'Event 2 detail',
         modalTitle: 'Event 2',
-        tags: [{
-          appearance: 'success',
-          text: 'Event 2 tag',
-        }]
+        tags: [
+          {
+            appearance: 'success',
+            text: 'Event 2 tag',
+          },
+        ],
       },
       {
         title: 'Event 4',
@@ -92,10 +101,12 @@ class ToastWrapperComponent implements OnInit {
         end: '2025-02-27T16:00:00.715Z',
         detail: 'Event 2 detail',
         modalTitle: 'Event 2',
-        tags: [{
-          appearance: 'success',
-          text: 'Event 2 tag',
-        }]
+        tags: [
+          {
+            appearance: 'success',
+            text: 'Event 2 tag',
+          },
+        ],
       },
     ]);
   }
@@ -106,10 +117,7 @@ export default {
   component: BmbCalendarComponent,
   decorators: [
     moduleMetadata({
-      imports: [
-        ToastWrapperComponent,
-        BmbCalendarComponent,
-      ],
+      imports: [ToastWrapperComponent, BmbCalendarComponent],
       providers: [],
     }),
   ],
@@ -207,9 +215,7 @@ Below is an example of how you can use this component in HTML:
   },
 } as Meta<typeof BmbCalendarComponent>;
 
-export const Default: StoryFn<typeof ToastWrapperComponent> = (
-  args,
-) => {
+export const Default: StoryFn<typeof ToastWrapperComponent> = (args) => {
   return {
     props: args,
     template: `

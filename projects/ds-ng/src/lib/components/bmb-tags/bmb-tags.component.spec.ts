@@ -1,9 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BmbTagComponent } from './bmb-tags.component';
+import { ComponentRef } from '@angular/core';
 
 describe('BmbTagComponent', () => {
   let component: BmbTagComponent;
   let fixture: ComponentFixture<BmbTagComponent>;
+  let componentRef: ComponentRef<BmbTagComponent>;
 
   beforeEach(() => {
     fixture = TestBed.createComponent(BmbTagComponent);
@@ -24,7 +26,8 @@ describe('BmbTagComponent', () => {
   });
 
   it('should display text inside the badge', () => {
-    component.text = 'Sample Text';
+    componentRef = fixture.componentRef;
+    componentRef.setInput('text', 'Sample Text');
     fixture.detectChanges();
 
     const element: HTMLElement = fixture.nativeElement;
