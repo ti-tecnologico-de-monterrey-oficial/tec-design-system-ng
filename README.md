@@ -6,34 +6,47 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 
 ---
 
-## Cambios de la versión v1.2.10
-
-### Nuevas características:
-
-- Se agregaron nuevos colores a la paleta de colores.
+## Cambios de la versión v1.5.0
 
 ### Nuevos componentes:
 
-- Text editor
+- Image
+- Carousel
+- Digital ID
+- Icon status
+- Vertical layout
 
 ### Componentes actualizados:
 
-- [Advertisement Card](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-advertisement-card--documentation)
-- [Badge](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-badge--documentation)
-- [Bottom Navigation Bar](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-bottom-navigation-bar--documentation)
-- [Chat Bar](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-chat-bar--documentation)
-- [Chevron Title Selector](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-chevron-title-selector--documentation)
-- [Access to external link](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-access-to-external-link--documentation)
-- [Home card](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-home-card--documentation)
-- [Interactive icon](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-interactive-icon--documentation)
-- [Invoice](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-invoice--documentation)
-- [Modal](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-modal--documentation)
-- [Push notification](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-push-notification--documentation)
-- [Tags](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-tag--documentation)
-- [Toast](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-toast--documentation)
-- [Top bar](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-top-bar--documentation)
+- Top bar -  Refactorización de código y se ajusto la implementación al diseño
+- Dropdown - Ahora se cierra el listado cuando se realiza una selección
+- Chevron title selector - Se ajustaron estilos
+- Focus element - Se ajustaron estilos
+- Grades  - Se ajustaron estilos
+- Home card - Se ajustaron estilos
+- Modal  - Se ajustaron estilos
+- Dot paginator - Se ajustaron estilos
+- Timestream - Se ajustaron estilos
+- Accordion - Se ajustaron estilos
+- Input phone - Ahora se pueden limitar las ladas a seleccionar
+- Login - Se ajustaron estilos
+- Push notifications - Se ajustaron estilos
+- Layouts - Se agregaron nuevos layouts y se ajustaron estilos
+- Container button - Ahora soporta funcionalidad compleja
+- Date picker - Se ajustaron estilos
+- Input - Ahora todos los inputs pueden ser limpiados 
+- Media card - Se ajustaron estilos y se agregaron animaciones
+- Action menu - Se ajustaron estilos
+- Tabs - Ahora se pueden ocultar de manera responsiva
+- Bookmark - Se ajustaron estilos
+- Frequent app selector - Se ajustaron estilos
+- Interactive icon - Se ajustaron estilos
+- Theme - Ahora puedes configurar los controles del tema
+- Alert center - Se refactorizo el código ** BREAKING CHANGES **
+- Calendar - Se actualizo la implementación e interfaz
+- Pull wedge - Se agregaron notificaciones de eventos
 
-Si quieres ver el detalle de los cambios puedes ver la entrada de la wiki [aquí](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/wiki/What's-new).
+Puedes ver todos los componentes aqui: [Bamboo](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/foundations-colors--documentation)
 
 ---
 
