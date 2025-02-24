@@ -134,7 +134,7 @@ Below is an example of how you can use this component in HTML:
     text: 'Badge text',
     grouped: false,
     dismissible: false,
-    activityTag: true,
+    activityTag: false,
     appearance: 'normal',
   },
 } as Meta<typeof BmbTagComponent>;
