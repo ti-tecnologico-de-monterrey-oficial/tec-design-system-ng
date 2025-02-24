@@ -91,6 +91,7 @@
     &-role {
       @include fonts.font(9, semibold);
       text-align: center;
+      text-transform: uppercase;
     }
 
     &-btn {

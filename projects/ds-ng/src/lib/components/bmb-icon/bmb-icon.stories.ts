@@ -62,7 +62,7 @@ Below is an example of how you can use this component in HTML:
       - **Class Name:** \`material-symbols-rounded\`
     `,
       table: {
-        category: 'Properties',
+        category: 'Deprecated',
         defaultValue: { summary: 'material-symbols-outlined' },
         type: { summary: 'string' },
       },
