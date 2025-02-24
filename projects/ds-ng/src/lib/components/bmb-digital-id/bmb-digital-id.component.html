@@ -32,14 +32,19 @@
   </div>
   <div class="bmb_digital-id-bottom">
     <div class="bmb_digital-id-bottom-info">
-      <p class="bmb_digital-id-bottom-name">{{ name() }}</p>
-      <p class="bmb_digital-id-bottom-id">{{ matricula() }}</p>
-      <p class="bmb_digital-id-bottom-career">{{ career() }}</p>
-      <p class="bmb_digital-id-bottom-role">{{ role() }}</p>
+      <span class="bmb_digital-id-bottom-name">{{ name() }}</span>
+      <span class="bmb_digital-id-bottom-surname">{{ surname() }}</span>
+      <span class="bmb_digital-id-bottom-id">{{ registration() }}</span>
+      <span class="bmb_digital-id-bottom-campus">{{ campus() }}</span>
+      <span class="bmb_digital-id-bottom-career">{{ career() }}</span>
+      <span class="bmb_digital-id-bottom-role">{{ role() }}</span>
     </div>
   </div>
 
-  <div class="bmb_digital-id-bottom-btn">
+  <div 
+    class="bmb_digital-id-bottom-btn"
+    [ngClass]="{'bmb_digital-id-bottom-btn-hide': hideButton() }"
+  >
     <button
       class="bmb_digital-id-btnAccess"
       bmbButton
