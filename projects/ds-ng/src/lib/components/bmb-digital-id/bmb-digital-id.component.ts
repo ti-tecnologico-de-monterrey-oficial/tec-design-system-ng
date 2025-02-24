@@ -1,32 +1,41 @@
-import { Component, input, output } from '@angular/core';
-import { BmbImageComponent } from '../bmb-image/bmb-image.component';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  output,
+  ViewEncapsulation,
+} from '@angular/core';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbButtonDirective } from '../../directives/button.directive';
-import { BmbLogoComponent } from '../bmb-logo/bmb-logo.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'bmb-digital-id',
   standalone: true,
   imports: [
-    BmbImageComponent,
+    CommonModule,
     BmbUserImageComponent,
     BmbIconComponent,
     BmbButtonDirective,
-    BmbLogoComponent,
   ],
   templateUrl: './bmb-digital-id.component.html',
   styleUrl: './bmb-digital-id.component.scss',
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbDigitalIdComponent {
   name = input.required<string>();
-  matricula = input.required<string>();
+  surname = input.required<string>();
+  registration = input.required<string>();
+  campus = input.required<string>();
   career = input.required<string>();
   role = input.required<string>();
-  textButton = input.required<string>();
+  textButton = input<string>();
   icon = input<string>('qr_code_scanner');
   imgProfile = input.required<string>();
   imgBackground = input.required<string>();
+  hideButton = input<boolean>(false);
 
   logoSrc = 'assets/images/tec-logo.svg';
 

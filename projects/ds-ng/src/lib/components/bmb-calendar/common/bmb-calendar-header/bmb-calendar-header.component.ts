@@ -43,13 +43,8 @@ export class BmbCalendarHeaderComponent {
 
   getTitle(): string {
     if (this.view === 'week') {
-      return `${this.weekDays[0].toLocaleString({
-        month: 'short',
-        day: 'numeric',
-      })} - ${this.weekDays[6].toLocaleString({
-        month: 'short',
-        day: 'numeric',
-      })}, ${this.currentDate.toLocaleString({ year: 'numeric' })}`;
+      return `${this.weekDays[6].setLocale(this.lang).toFormat('LLL dd')} -
+        ${this.weekDays[0].setLocale(this.lang).toFormat('LLL dd')}`;
     }
 
     if (this.view === 'day') {
@@ -60,7 +55,7 @@ export class BmbCalendarHeaderComponent {
       });
     }
 
-    return this.currentDate.toLocaleString({ month: 'long', year: 'numeric' });
+    return this.currentDate.toLocaleString({ month: 'long' });
   }
 
   handleRangeChange(event: IBmbCalendarView): void {
@@ -106,5 +101,9 @@ export class BmbCalendarHeaderComponent {
       default:
         break;
     }
+  }
+
+  goToToday(): void {
+    this.onCurrentDateChange.emit(DateTime.now());
   }
 }

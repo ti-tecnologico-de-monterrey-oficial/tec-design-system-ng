@@ -3,6 +3,13 @@ import {
   Input,
   ChangeDetectionStrategy,
   ViewEncapsulation,
+  input,
+  OnInit,
+  OnChanges,
+  SimpleChanges,
+  ViewChild,
+  ElementRef,
+  AfterViewInit,
 } from '@angular/core';
 import { IBmbCalendarEvent, IBmbCalendarHourFormat } from '../../types';
 
@@ -15,9 +22,10 @@ import { IBmbCalendarEvent, IBmbCalendarHourFormat } from '../../types';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbCalendarHourViewComponent {
+export class BmbCalendarHourViewComponent implements OnChanges, AfterViewInit {
   @Input() events: IBmbCalendarEvent[] = [];
   @Input() hourFormat: IBmbCalendarHourFormat = '12';
+  startBusinessHour = input<number>(8);
 
   createHoursRows() {
     const placeholderArray = new Array(24).fill(0);
@@ -39,7 +47,14 @@ export class BmbCalendarHourViewComponent {
 
   hours = this.createHoursRows();
 
-  ngOnchanges(): void {
+  ngOnChanges(): void {
     this.hours = this.createHoursRows();
+  }
+
+  ngAfterViewInit() {
+    const startElement = document.getElementById('BmbCalendarHourViewStart');
+    if (startElement) {
+      startElement.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 }

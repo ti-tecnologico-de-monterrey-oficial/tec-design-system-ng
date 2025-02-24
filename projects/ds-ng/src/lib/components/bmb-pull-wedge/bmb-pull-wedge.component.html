@@ -1,6 +1,11 @@
 <div class="bmb_pull_wedge" [style.height.px]="contentHeight">
   <div class="bmb_pull_wedge-wrapper">
-    <div #content class="bmb_pull_wedge-content" [class.visible]="isVisible">
+    <div
+      #content
+      class="bmb_pull_wedge-content"
+      [class.visible]="isVisible"
+      [ngClass]="{ 'bmb_pull_wedge-content-open': isOpen() }"
+    >
       <ng-content select="[collapsible]"></ng-content>
     </div>
     <div
@@ -10,7 +15,11 @@
       (cdkDragMoved)="onDragMoved($event)"
       (cdkDragEnded)="onDragEnded($event)"
     >
-      <button type="button" class="bmb_pull_wedge-button"></button>
+      <button
+        type="button"
+        class="bmb_pull_wedge-button"
+        (click)="toggleWedge()"
+      ></button>
     </div>
   </div>
 </div>

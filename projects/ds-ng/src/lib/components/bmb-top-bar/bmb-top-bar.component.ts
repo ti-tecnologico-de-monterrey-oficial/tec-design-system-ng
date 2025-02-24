@@ -29,7 +29,6 @@ export { IPositionButtonMenu, IUserInformation } from './types';
   standalone: true,
   imports: [
     CommonModule,
-    BmbButtonDirective,
     BmbTopBarUserSectionComponent,
     BmbIconComponent,
     BmbSelectComponent,
@@ -42,8 +41,7 @@ export { IPositionButtonMenu, IUserInformation } from './types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbTopBarComponent implements OnInit {
-  // @Input() positionButtonMenu: IPositionButtonMenu = 'left';
-  positionButtonMenu: IPositionButtonMenu = 'right';
+  @Input() positionButtonMenu: IPositionButtonMenu = 'left'; // Deprecated
   @Input() userInformation: IUserInformation | null = null;
   @Input() hasLogoutButton: boolean = true;
   @Input() image: string = 'assets/images/tec-logo.svg';

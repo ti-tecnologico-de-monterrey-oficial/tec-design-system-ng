@@ -5,7 +5,6 @@ import {
 } from './bmb-calendar.component';
 import { BmbCalendarService } from '../../services/calendar.service';
 import { DateTime } from 'luxon';
-import { of } from 'rxjs';
 
 describe('BmbCalendarComponent', () => {
   let component: BmbCalendarComponent;
@@ -70,35 +69,30 @@ describe('BmbCalendarComponent', () => {
     expect(component.getHeight('100%')).toBe('100%');
   });
 
-  it('should select event on handleSelectEvent', () => {
-    const event: IBmbCalendarEventClick = {
-      event: {
-        title: 'Test Event',
-        detail: 'Test Detail',
-        start: '2021-01-01T00:00:00',
-        end: '2021-01-01T01:00:00',
-        modalTitle: 'Test Modal Title',
-        status: 'Test Status',
-      },
-      position: { top: 0, left: 0 },
+  it('should return correct duration string', () => {
+    component.selectedEvent = {
+      title: 'Test Event',
+      detail: 'Test Detail',
+      start: '2025-02-21T13:00:00',
+      end: '2025-02-21T13:30:00',
+      modalTitle: 'Test Modal Title',
+      subtitle: 'Test Subtitle',
+      place: 'Test Place',
+      tags: [],
+      status: 'active',
     };
-    component.handleSelectEvent(event);
-    expect(component.selectedEvent).toEqual(event);
+
+    const duration = component.getDuration();
+    expect(duration).toBe('01:00 PM - 01:30 PM');
   });
 
-  it('should check if an event is selected', () => {
-    const event = {
-      event: {
-        title: 'Test Event',
-        detail: 'Test Detail',
-        start: '2021-01-01T00:00:00',
-        end: '2021-01-01T01:00:00',
-        modalTitle: 'Test Modal Title',
-        status: 'Test Status',
-      },
-      position: { top: 0, left: 0 },
-    };
-    expect(component.isAnEventSelected(event)).toBeTrue();
-    expect(component.isAnEventSelected(null)).toBeFalse();
+  it('should emit onClose when handleClose is called', () => {
+    spyOn(component.onClose, 'emit');
+    component.handleClose();
+    expect(component.onClose.emit).toHaveBeenCalledWith('close');
+  });
+
+  afterEach(() => {
+    component.ngOnDestroy();
   });
 });

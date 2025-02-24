@@ -1,6 +1,9 @@
 <ul class="bmb_alert-center-list">
   @for (item of alerts(); track $index) {
-    <li class="bmb_alert-center-list-item" (click)="handleRowClick(item)">
+    <li
+      class="bmb_alert-center-list-item"
+      (click)="handleRowClick($event, item)"
+    >
       <section class="bmb_alert-center-list-item-selection">
         <bmb-checkbox
           [name]="item.id + ''"

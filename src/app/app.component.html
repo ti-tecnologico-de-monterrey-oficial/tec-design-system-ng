@@ -1,21 +1,2 @@
-<bmb-theme initialTheme="dark" [showControls]="false" />
-<section bmbVerticalLayout>
-  <div bmbVerticalLayoutItem style="width: 100%">
-    <bmb-inner-header>
-      <bmb-chevron-title-selector
-        [title]="'Acceso a Campus'"
-        [leadingIcon]="'chevron_left'"
-        [trailingIcon]="'chevron_right'"
-      />
-    </bmb-inner-header>
-  </div>
-  <div bmbVerticalLayoutItem [rowGrow]="1">
-    <bmb-icon-status [icon]="'id_card'" />
-    <p class="font-regular-9" style="text-align: center">
-      Estamos activando tu credencial digital en este equipo
-    </p>
-  </div>
-  <div class="bmb_padding-m" bmbVerticalLayoutItem style="width: 100%">
-    <bmb-progress-bar [totalCount]="100" [counter]="50" />
-  </div>
-</section>
+<bmb-calendar [height]="1000"></bmb-calendar>
+<bmb-theme />

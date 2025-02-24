@@ -20,12 +20,14 @@ import { StyleIconType } from './types';
 export class BmbIconComponent {
   icon = input<string>('face');
   materialIcon = input<boolean>(false);
-  styleIcon = input<StyleIconType>('material-symbols-outlined');
+  styleIcon = input<StyleIconType>('material-symbols-rounded');
   isFill = input<boolean>(true);
   fontWeight = input<string>('400');
   size = input<number | undefined>();
   alt = input<string>('');
   dotNotification = input<number>();
+
+  styleIconGoogle = 'material-symbols-rounded';
 
   isImage(icon: string): boolean {
     return isImage(icon);

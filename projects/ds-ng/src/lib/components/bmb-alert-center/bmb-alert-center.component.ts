@@ -56,7 +56,7 @@ export class BmbAlertCenterComponent {
   advertisements = input<IBmbDataAlert[]>([]);
   dateFormat = input<string>('dd/MM/yyyy');
   tabsName = input<string[] | IBmbAlertCenterTabConfig[]>([
-    { title: 'Recientes', isMobile: true, isDesktop: true },
+    { title: 'Notificaciones', isMobile: true, isDesktop: true },
     { title: 'No leídos', isMobile: false, isDesktop: true },
     { title: 'Favoritos', isMobile: false, isDesktop: true },
     { title: 'Archivados', isMobile: false, isDesktop: true },
