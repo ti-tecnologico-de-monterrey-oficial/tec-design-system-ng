@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, input, output, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  output,
+  ViewEncapsulation,
+} from '@angular/core';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbButtonDirective } from '../../directives/button.directive';
@@ -15,8 +21,8 @@ import { CommonModule } from '@angular/common';
   ],
   templateUrl: './bmb-digital-id.component.html',
   styleUrl: './bmb-digital-id.component.scss',
-    encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbDigitalIdComponent {
   name = input.required<string>();
@@ -29,7 +35,7 @@ export class BmbDigitalIdComponent {
   icon = input<string>('qr_code_scanner');
   imgProfile = input.required<string>();
   imgBackground = input.required<string>();
-  hideButton = input<boolean>(false)
+  hideButton = input<boolean>(false);
 
   logoSrc = 'assets/images/tec-logo.svg';
 

@@ -139,8 +139,7 @@ Below is an example of how you can use this component in HTML:
     hideButton: {
       name: 'Hide Button',
       control: { type: 'boolean' },
-      description:
-        'Sets the if the button is visible to the user',
+      description: 'Sets the if the button is visible to the user',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -173,10 +172,10 @@ Below is an example of how you can use this component in HTML:
   },
   args: {
     name: 'Paola',
-    surname:'Montes Perez',
+    surname: 'Montes Perez',
     registration: 'L0353882',
     career: 'ITICS',
-    campus:'Campus Tec Norte',
+    campus: 'Campus Tec Norte',
     role: 'Estudiante',
     textButton: 'Acceso a Campues',
     icon: 'qr_code_scanner',

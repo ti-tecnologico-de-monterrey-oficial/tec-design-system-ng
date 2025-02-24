@@ -30,26 +30,16 @@ const calculateSize: any = (pixels: string[]): string => {
 export class BmbAccordionComponent implements OnInit {
   @ContentChild('bmbAccordionContent') bmbAccordionContent!: TemplateRef<any>;
   @ContentChild('bmbAccordionHeader') bmbAccordionHeader!: TemplateRef<any>;
-  public borderRadius = input<
-    SizeNames | SizeNames[]
-  >('m');
-  public margin = input<
-    SizeNames | SizeNames[]
-  >('m');
-  public paddingHeader = input<
-    SizeNames | SizeNames[]
-  >('m');
-  public paddingContent = input<
-    SizeNames | SizeNames[]
-  >('m');
+  public borderRadius = input<SizeNames | SizeNames[]>('m');
+  public margin = input<SizeNames | SizeNames[]>('m');
+  public paddingHeader = input<SizeNames | SizeNames[]>('m');
+  public paddingContent = input<SizeNames | SizeNames[]>('m');
   public icon = input<string>('');
   public accordionId = input<number>(0);
   public hideToggle = input<boolean>(false);
   public active = input<boolean>(false);
   public disabled = input<boolean>(false);
-  public expanded = input<
-    boolean | undefined
-  >();
+  public expanded = input<boolean | undefined>();
   public closed = output<void>();
   public opened = output<void>();
   public onClick = output<void>();

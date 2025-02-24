@@ -7,7 +7,6 @@ describe('BmbHomeCardChatComponent', () => {
   let fixture: ComponentFixture<BmbHomeCardChatComponent>;
   let componentRef: ComponentRef<BmbHomeCardChatComponent>;
 
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [BmbHomeCardChatComponent],

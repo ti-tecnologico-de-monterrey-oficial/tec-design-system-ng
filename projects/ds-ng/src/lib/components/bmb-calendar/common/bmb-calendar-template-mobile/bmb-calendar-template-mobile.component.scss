@@ -48,7 +48,6 @@
     margin: rem.rem_calc(16 0);
   }
 
-
   &-calendar {
     list-style: none;
     padding: 0;
@@ -134,7 +133,7 @@
     padding: 1rem;
     text-transform: capitalize;
     overflow: hidden;
-    transition: all .3s ease;
+    transition: all 0.3s ease;
 
     &-not-visible {
       height: 0;
