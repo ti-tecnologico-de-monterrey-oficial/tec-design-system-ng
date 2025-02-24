@@ -16,7 +16,7 @@ import { BmbDigitalIdComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-n
 @Component({
   selector: 'component',
   standalone: true,
-  imports: [],
+  imports: [BmbDigitalIdComponent],
   templateUrl: './component.html',
   styleUrl: './component.scss',
 })
@@ -43,12 +43,32 @@ Below is an example of how you can use this component in HTML:
         category: 'Properties',
       },
     },
-    matricula: {
-      name: 'Matricula',
+    surname: {
+      name: 'SurName',
+      control: {
+        type: 'text',
+      },
+      description: 'The Surname of the user to show.',
+      table: {
+        category: 'Properties',
+      },
+    },
+    registration: {
+      name: 'Registration',
       control: {
         type: 'text',
       },
       description: 'The id of the user to show.',
+      table: {
+        category: 'Properties',
+      },
+    },
+    campus: {
+      name: 'Campus',
+      control: {
+        type: 'text',
+      },
+      description: 'The Campus of the user to show.',
       table: {
         category: 'Properties',
       },
@@ -142,9 +162,11 @@ Below is an example of how you can use this component in HTML:
     },
   },
   args: {
-    name: 'Paola Montes',
-    matricula: 'L0353882',
-    career: 'Licencida en Estrategia y Transformacion de Negocios',
+    name: 'Paola',
+    surname:'Montes Perez',
+    registration: 'L0353882',
+    career: 'ITICS',
+    campus:'Campus Tec Norte',
     role: 'Estudiante',
     textButton: 'Acceso a Campues',
     icon: 'qr_code_scanner',
