@@ -136,6 +136,16 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string' },
       },
     },
+    hideButton: {
+      name: 'Hide Button',
+      control: { type: 'boolean' },
+      description:
+        'Sets the if the button is visible to the user',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
     close: {
       name: 'Handle Close',
       control: {
@@ -170,6 +180,7 @@ Below is an example of how you can use this component in HTML:
     role: 'Estudiante',
     textButton: 'Acceso a Campues',
     icon: 'qr_code_scanner',
+    hideButton: false,
     imgProfile: 'https://picsum.photos/id/64/200/300',
     imgBackground:
       'https://2.bp.blogspot.com/-YkNDZEbKt_g/TYzcbF2_tkI/AAAAAAAAalk/Vt_MHS60Xv8/s1600/www.JoseLuisAvilaHerrera.BLOGSPOT.com%2B-%2BFunny%2BCats%2B-%2BGatitos%2Bmuy%2Btiernos%2B8.jpg',
