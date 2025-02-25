@@ -25,7 +25,7 @@
     border-bottom-color: transparent;
     border-bottom-style: solid;
     border-bottom-width: rem.rem_calc(2);
-    color: RGBA(var(--color-charade-500));
+    color: var(--general_contrasts-50);
     display: flex;
     flex: 0 0 auto;
     gap: rem.rem_calc(8);
@@ -36,11 +36,17 @@
     scroll-behavior: smooth;
     scroll-snap-align: start;
     text-align: center;
+    transition: all 0.3s ease;
     @include fonts.font(5, medium);
 
+    &:hover,
+    &:focus-visible {
+      color: var(--general_contrasts-150);
+    }
+
     &-active {
-      border-bottom-color: RGBA(var(--color-mariner-700));
-      color: RGBA(var(--color-charade-950));
+      border-bottom-color: var(--general_contrasts-input-outline);
+      color: var(--general_contrasts-150);
     }
 
     &-uppercase {
@@ -70,17 +76,5 @@
     justify-content: center;
     width: rem.rem_calc(20);
     @include fonts.font(3, medium);
-  }
-}
-
-[data-theme="dark"],
-.storybook-dark-theme {
-  .bmb_tabs {
-    &-item {
-      &-active {
-        border-bottom-color: RGBA(var(--color-charade-50));
-        color: RGBA(var(--color-charade-50));
-      }
-    }
   }
 }
