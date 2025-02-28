@@ -7,7 +7,8 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: `
+        component: `Note: When you click on fullscreen icon, in Storybook doesn’t look the best due to the many elements, but in your project, it should display correctly.
+        
 Below is an example of how you can use this component in TypeScript:
 
 \`\`\`typescript

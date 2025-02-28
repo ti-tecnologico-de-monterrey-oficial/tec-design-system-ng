@@ -13,31 +13,33 @@ import { attributes } from '../utils/utils';
   imports: [BmbTopBarComponent, BmbSidebarComponent, BmbHomeCardChatComponent],
   selector: 'storybook-modal-wrapper',
   template: `
-    <bmb-top-bar
-      [userInformation]="{
-        name: 'Santiago Hernández',
-        image: 'https://picsum.photos/id/64/200/300',
-        role: 'Alumno',
-      }"
-      [mitec]="true"
-      [hasLogoutButton]="false"
-      [appName]="'TecTest'"
-      [appSubTitle]="'Sub title'"
-      [showLang]="false"
-      [lang]="'es'"
-    />
-    <main class="bmb_template-single-home-card-main">
-      <bmb-home-card-chat
-        leftIcon="chevron_left"
-        icon="/assets/images/bot-icons/bot_tecStandar.svg"
-        bgIconAppearance="charade-500"
-        title="Asistente TECbot"
-        contentPadding="none"
-        subtitle="Assitente TECbot"
-        [messagesHistory]="messages"
-      >
-      </bmb-home-card-chat>
-    </main>
+    <div class="bmb_template-single-home-card">
+      <bmb-top-bar
+        [userInformation]="{
+          name: 'Santiago Hernández',
+          image: 'https://picsum.photos/id/64/200/300',
+          role: 'Alumno',
+        }"
+        [mitec]="true"
+        [hasLogoutButton]="false"
+        [appName]="'TecTest'"
+        [appSubTitle]="'Sub title'"
+        [showLang]="false"
+        [lang]="'es'"
+      />
+      <main class="bmb_template-single-home-card-main">
+        <bmb-home-card-chat
+          leftIcon="chevron_left"
+          icon="/assets/images/bot-icons/bot_tecStandar.svg"
+          bgIconAppearance="charade-500"
+          title="Asistente TECbot"
+          contentPadding="none"
+          subtitle="Assitente TECbot"
+          [messagesHistory]="messages"
+        >
+        </bmb-home-card-chat>
+      </main>
+    </div>
     <bmb-sidebar
       [elements]="[
         [
@@ -101,7 +103,8 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: `
+        component: `Note: When you click on fullscreen icon, in Storybook doesn’t look the best due to the many elements, but in your project, it should display correctly.
+        
 Below is an example of how you can use this component in TypeScript:
 
 \`\`\`typescript

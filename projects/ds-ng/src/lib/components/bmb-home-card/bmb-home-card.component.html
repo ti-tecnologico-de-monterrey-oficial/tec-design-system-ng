@@ -1,5 +1,5 @@
 <section class="bmb_home-card">
-  <span class="bmb_home-card">
+  <div class="bmb_home-card-wrapper">
     <bmb-home-card-header
       [title]="title()"
       [subtitle]="subtitle()"
@@ -13,11 +13,11 @@
       (onClose)="handleClose()"
       (onBack)="handleBack()"
     />
-  </span>
-  <section
-    class="bmb_home-card-container"
-    [ngClass]="'bmb_padding-' + contentPadding()"
-  >
-    <ng-content />
-  </section>
+    <section
+      class="bmb_home-card-container"
+      [ngClass]="'bmb_padding-' + contentPadding()"
+    >
+      <ng-content />
+    </section>
+  </div>
 </section>
