@@ -63,6 +63,7 @@ export interface IBmbNameValuePair {
   value: string | number | boolean;
 }
 
+//Deprecated
 export interface IBmbProfileData {
   name: string;
   userImg: string;
@@ -71,6 +72,34 @@ export interface IBmbProfileData {
   period: string;
   campus: string;
   program: string;
+}
+
+export interface IBmbUserData {
+  name: string;
+  userImg: string;
+  email: string;
+  registration?: string;
+}
+
+export interface IBmbStudentProfileData {
+  userData: IBmbUserData;
+  period: string;
+  campus: string;
+  program: string;
+}
+
+export interface IBmbHierarchyProfileData {
+  userData: IBmbUserData;
+  hierarchyLink: string;
+  hierarchyTarget: IBmbTargetLink;
+}
+
+export interface IBmbCollaboratorProfileData {
+  userData: IBmbUserData;
+  position: string;
+  area: string;
+  leader: IBmbHierarchyProfileData;
+  generalist: IBmbHierarchyProfileData;
 }
 
 export interface IBmbActionHeader {

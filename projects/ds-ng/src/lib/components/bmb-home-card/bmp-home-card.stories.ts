@@ -111,11 +111,22 @@ Below is an example of how you can use this component in HTML:
         },
       },
     },
+    showRightButton: {
+      name: 'Show right button',
+      control: { type: 'boolean' },
+      description:
+        'Sets a flag to indicate whether the card should show the right button or buttons.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'true' },
+        type: { summary: 'boolean' },
+      },
+    },
     isMobile: {
       name: 'Is mobile',
       control: { type: 'boolean' },
       description:
-        'Sets a flag to indicate if the card should adapt to mobile view.',
+        'Sets a flag to indicate whether the card should adapt to mobile view.',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
@@ -168,6 +179,7 @@ Below is an example of how you can use this component in HTML:
     subtitle: 'Subtitle',
     dataLocalNav: [],
     actionHeaders: [],
+    showRightButton: true,
     isMobile: false,
     test_text: 'hello world',
   },

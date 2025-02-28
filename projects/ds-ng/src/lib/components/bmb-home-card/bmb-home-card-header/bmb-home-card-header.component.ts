@@ -39,6 +39,7 @@ export class BmbHomeCardHeaderComponent {
   bgIconAppearance = input<IBmbColor>();
   actionHeaders = input<IBmbActionHeader[]>([]);
   isMobile = input<boolean>();
+  showRightButton = input<boolean>(true);
 
   onClose = output();
   onBack = output();
@@ -47,22 +48,25 @@ export class BmbHomeCardHeaderComponent {
   actionHeaderList: IBmbActionHeader[] = [];
 
   ngOnInit(): void {
-    const mainIcon: string = this.isMobile() ? 'close' : 'fit_screen';
-    const iconActiveToggle: string = this.isMobile() ? '' : 'close_fullscreen';
-    this.actionHeaderList = [
-      ...this.actionHeaders(),
-      {
-        icon: mainIcon,
-        iconActiveToggle: iconActiveToggle,
-        isToggleActive: false,
-        action: () => this.handleExpandChange(),
-      },
-    ];
+    if (this.showRightButton()) {
+      const mainIcon: string = this.isMobile() ? 'close' : 'fit_screen';
+      const iconActiveToggle: string = this.isMobile()
+        ? ''
+        : 'close_fullscreen';
+      this.actionHeaderList = [
+        ...this.actionHeaders(),
+        {
+          icon: mainIcon,
+          iconActiveToggle: iconActiveToggle,
+          isToggleActive: false,
+          action: () => this.handleExpandChange(),
+        },
+      ];
+    }
   }
 
   getIconName(): string {
-    if (!!this.icon() && !this.isMobile()) return this.icon()!;
-    return '';
+    return (!this.isMobile() && this.icon()) || '';
   }
 
   getDataLocalNav(): IBmbDataTopBar[] {
