@@ -4,6 +4,8 @@ import {
   input,
   output,
   ViewEncapsulation,
+  Renderer2,
+  ElementRef,
 } from '@angular/core';
 import { IBmbDataTopBar } from '../../bmb-breadcrumb/bmb-breadcrumb.component';
 import { IBmbColor } from '../../../types/colors';
@@ -45,6 +47,12 @@ export class BmbHomeCardHeaderComponent {
 
   isExpanded: boolean = false;
   actionHeaderList: IBmbActionHeader[] = [];
+  private originalParent: HTMLElement | null = null;
+
+  constructor(
+    private renderer: Renderer2,
+    private elRef: ElementRef,
+  ) {}
 
   ngOnInit(): void {
     const mainIcon: string = this.isMobile() ? 'close' : 'fit_screen';
@@ -81,5 +89,38 @@ export class BmbHomeCardHeaderComponent {
     }
 
     this.isExpanded = !this.isExpanded;
+
+    const homeCardElement = this.elRef.nativeElement.closest('.bmb_home-card');
+
+    if (homeCardElement) {
+      const rect = homeCardElement.getBoundingClientRect();
+      const screenCenter = window.innerWidth / 2;
+      const isLeft = rect.left < screenCenter;
+
+      if (this.isExpanded) {
+        if (!this.originalParent) {
+          this.originalParent = homeCardElement.closest('bmb-home-card');
+        }
+
+        this.renderer.appendChild(document.body, homeCardElement);
+        this.renderer.addClass(homeCardElement, 'bmb_home-card-expanded');
+
+        if (isLeft) {
+          this.renderer.addClass(homeCardElement, 'expand-left');
+          this.renderer.removeClass(homeCardElement, 'expand-right');
+        } else {
+          this.renderer.addClass(homeCardElement, 'expand-right');
+          this.renderer.removeClass(homeCardElement, 'expand-left');
+        }
+      } else {
+        if (this.originalParent) {
+          this.renderer.appendChild(this.originalParent, homeCardElement);
+        }
+
+        this.renderer.removeClass(homeCardElement, 'bmb_home-card-expanded');
+        this.renderer.removeClass(homeCardElement, 'expand-left');
+        this.renderer.removeClass(homeCardElement, 'expand-right');
+      }
+    }
   }
 }
