@@ -1,6 +1,6 @@
 {
   "name": "@ti-tecnologico-de-monterrey-oficial/ds-ng",
-  "version": "1.5.0",
+  "version": "1.5.1-beta.2",
   "repository": "https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng",
   "peerDependencies": {
     "rxjs": "~7.8.0"
@@ -9,7 +9,6 @@
     "@angular/material": "*",
     "libphonenumber-js": "1.11.15",
     "luxon": "3.5.0",
-    "ngx-mat-intl-tel-input": "5.0.0",
     "tslib": "2.8.1",
     "@types/luxon": "3.4.2",
     "@angular/cdk": "*",
