@@ -16,8 +16,8 @@
   </a>
 } @else {
   <section
-    class="bmb_media-card"
-    [ngClass]="'bmb_media-card-' + type()"
+    [class]="'bmb_media-card bmb_media-card-' + type()"
+    [ngClass]="{ 'bmb_media-card-boxShadow': boxShadow() }"
     [ngStyle]="{ width: width(), 'aspect-ratio': ratio() }"
   >
     <ng-container [ngTemplateOutlet]="mediaCardContent"></ng-container>
@@ -71,6 +71,7 @@
   >
     <section
       class="bmb_media-card-content-container"
+      [ngStyle]="{ 'background-color': getBackgroundColor() }"
       [ngClass]="getContentClasses()"
     >
       @if (title()) {

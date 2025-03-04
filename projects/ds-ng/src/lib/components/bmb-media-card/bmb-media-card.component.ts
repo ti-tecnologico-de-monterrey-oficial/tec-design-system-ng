@@ -40,6 +40,9 @@ export class BmbMediaCardComponent {
   date = input<string>();
   userName = input<string>();
   userImage = input<string>();
+  fullmediaCard = input<boolean>(false);
+  bgColor = input<string>();
+  boxShadow = input<boolean>(false);
 
   isExternalLink(link: string): boolean {
     return (!!link && isExternalLink(link)) || false;
@@ -58,7 +61,12 @@ export class BmbMediaCardComponent {
       classes.push(`bmb_radius-${this.borderRadius()}`);
     if (this.isBlurredBackdrop())
       classes.push('bmb_media-card-content-container-backdrop');
+    if (this.fullmediaCard()) classes.push('bmb_media-card-content-full');
     return classes;
+  }
+
+  getBackgroundColor(): string {
+    return this.bgColor() ? `RGBA(var(${this.bgColor()}))` : 'transparent';
   }
 
   getUserAttribute(attribute: string | undefined): string {
