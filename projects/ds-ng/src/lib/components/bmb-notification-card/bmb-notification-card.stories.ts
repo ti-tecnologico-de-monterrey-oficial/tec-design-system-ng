@@ -87,7 +87,7 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'IBmbDataAlert[]' },
         defaultValue: { summary: `[]` },
       },
-    }
+    },
   },
   args: {
     data: [

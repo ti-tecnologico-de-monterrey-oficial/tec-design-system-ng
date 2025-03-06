@@ -68,7 +68,9 @@ $alignItemsOptions: (
   .bmb_col-lg-#{$i} {
     overflow: visible auto;
 
-    &:not(.bmb_col-sm-1):not(.bmb_col-sm-2):not(.bmb_col-sm-3):not(.bmb_col-sm-4) {
+    &:not(.bmb_col-sm-1):not(.bmb_col-sm-2):not(.bmb_col-sm-3):not(
+        .bmb_col-sm-4
+      ) {
       flex: 0 0 100%;
     }
 

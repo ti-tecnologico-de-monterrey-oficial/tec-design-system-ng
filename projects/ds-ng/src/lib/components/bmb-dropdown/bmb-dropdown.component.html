@@ -37,7 +37,12 @@
         [placeholder]="placeholder()"
         (keydown)="onKeyDown($event)"
       />
-      <button (click)="handleChevronClick()" class="bmb_dropdown-field-open" [disabled]="disabled()" bmbButton>
+      <button
+        (click)="handleChevronClick()"
+        class="bmb_dropdown-field-open"
+        [disabled]="disabled()"
+        bmbButton
+      >
         <bmb-icon icon="keyboard_arrow_down" />
       </button>
       <dialog

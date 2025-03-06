@@ -31,7 +31,6 @@ interface IBmbDropdownParsedItem {
   item: IBmbDropdownItem | string;
 }
 
-
 @Component({
   selector: 'bmb-dropdown',
   standalone: true,
@@ -160,17 +159,19 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   }
 
   getPreferredOptions(): IBmbDropdownItem[] {
-    const options = this.preferredOptions().reduce<IBmbDropdownItem[]>((acc, item) => {
-      const option = this.options().find((option) => {
-        if (typeof option === 'string') return option === item;
-        return option.value === item;
-      });
-      if (option) acc.push(this.getItem(option) as IBmbDropdownItem);
-      return acc;
-    }, []);
+    const options = this.preferredOptions().reduce<IBmbDropdownItem[]>(
+      (acc, item) => {
+        const option = this.options().find((option) => {
+          if (typeof option === 'string') return option === item;
+          return option.value === item;
+        });
+        if (option) acc.push(this.getItem(option) as IBmbDropdownItem);
+        return acc;
+      },
+      [],
+    );
 
     console.log('options', options);
-
 
     return options;
   }

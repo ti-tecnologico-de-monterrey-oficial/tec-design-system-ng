@@ -189,11 +189,12 @@ Below is an example of how you can use this component in HTML:
     preferredOptions: {
       name: 'Preferred options',
       control: { type: 'array' },
-      description: 'List of options to be displayed at the top, the text must match the value property of an option or must be equal to an option in case the options are text.',
+      description:
+        'List of options to be displayed at the top, the text must match the value property of an option or must be equal to an option in case the options are text.',
       table: {
         category: 'Properties',
         type: { summary: 'string[]' },
-        defaultValue: { summary: "[]" },
+        defaultValue: { summary: '[]' },
       },
     },
   },

@@ -1,5 +1,11 @@
 <section class="bmb_alert-center" #container bmbLayout margin="none">
-  <div bmbLayoutItem [colSm]="4" [colLg]="hideTabs() ? 12 : 5" class="bmb_alert-center-main" [ngClass]="{ 'bmb_alert-center-main-no-border': hideTabs() }">
+  <div
+    bmbLayoutItem
+    [colSm]="4"
+    [colLg]="hideTabs() ? 12 : 5"
+    class="bmb_alert-center-main"
+    [ngClass]="{ 'bmb_alert-center-main-no-border': hideTabs() }"
+  >
     @if (!hideTabs()) {
       <bmb-tabs [tabs]="tabs" (selected)="handleTabChange($event)" />
     }

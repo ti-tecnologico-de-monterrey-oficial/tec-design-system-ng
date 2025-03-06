@@ -18,9 +18,16 @@ import {
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BmbTooltipComponent } from '../bmb-tooltip/bmb-tooltip.component';
-import { BmbDropdownComponent, IBmbDropdownItem } from '../bmb-dropdown/bmb-dropdown.component';
+import {
+  BmbDropdownComponent,
+  IBmbDropdownItem,
+} from '../bmb-dropdown/bmb-dropdown.component';
 import { IBmbCountryCode, IBmbCountryCodes } from '../../utils/countryCodes';
-import { BmbInputComponent, IBmbInputAppearance, IBmbInputError } from '../bmb-input/bmb-input.component';
+import {
+  BmbInputComponent,
+  IBmbInputAppearance,
+  IBmbInputError,
+} from '../bmb-input/bmb-input.component';
 
 @Component({
   selector: 'bmb-input-phone-number',
@@ -33,7 +40,7 @@ import { BmbInputComponent, IBmbInputAppearance, IBmbInputError } from '../bmb-i
     ReactiveFormsModule,
     BmbTooltipComponent,
     BmbDropdownComponent,
-    BmbInputComponent
+    BmbInputComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -70,9 +77,13 @@ export class BmbInputPhoneNumberComponent implements OnInit {
     }
 
     const selectedLada = this.allCountryCodes.find(
-      ({ lada }) => lada === this.defaultLada()
+      ({ lada }) => lada === this.defaultLada(),
     );
-    this.control().setValidators(Validators.pattern(`^\\${this.defaultLada()}\\d{${selectedLada?.length}}$`));
+    this.control().setValidators(
+      Validators.pattern(
+        `^\\${this.defaultLada()}\\d{${selectedLada?.length}}$`,
+      ),
+    );
     this.control().setValue(this.defaultLada());
 
     this.control().valueChanges.subscribe(() => {
@@ -81,7 +92,7 @@ export class BmbInputPhoneNumberComponent implements OnInit {
     });
 
     this.controls.controls['input'].valueChanges.subscribe((value) => {
-      const lada = this.controls.controls['select'].value || ''
+      const lada = this.controls.controls['select'].value || '';
       this.control().setValue(lada + value);
     });
   }
@@ -94,19 +105,25 @@ export class BmbInputPhoneNumberComponent implements OnInit {
 
   onValueChange(event: any) {
     this.selectedLada = this.allCountryCodes.find(
-      ({ lada }) => lada === event.value
+      ({ lada }) => lada === event.value,
     );
 
-    this.control().setValidators(Validators.pattern(`^\\${event.value}\\d{${this.selectedLada?.length}}$`));
+    this.control().setValidators(
+      Validators.pattern(`^\\${event.value}\\d{${this.selectedLada?.length}}$`),
+    );
     this.control().setValue(event.value);
   }
 
   getOptions(): IBmbDropdownItem[] {
     if (this.onlyCountries().length) {
-      const lowerCaseCountries = this.onlyCountries().map(country => country.toLocaleLowerCase());
-      const filteredOptions = this.allCountryCodes.filter(({ country_code }) => {
-        return lowerCaseCountries.includes(country_code.toLocaleLowerCase());
-      });
+      const lowerCaseCountries = this.onlyCountries().map((country) =>
+        country.toLocaleLowerCase(),
+      );
+      const filteredOptions = this.allCountryCodes.filter(
+        ({ country_code }) => {
+          return lowerCaseCountries.includes(country_code.toLocaleLowerCase());
+        },
+      );
 
       return filteredOptions.map(({ country, lada }) => ({
         name: `${country} (${lada})`,
@@ -135,9 +152,7 @@ export class BmbInputPhoneNumberComponent implements OnInit {
   }
 
   getPattern() {
-
-
-    return "^\\+52\\d{10}$";
+    return '^\\+52\\d{10}$';
   }
 
   getErrorMessage(): string {

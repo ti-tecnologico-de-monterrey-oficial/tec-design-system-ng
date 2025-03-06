@@ -181,11 +181,12 @@ Below is an example of how to use this component in HTML:
     onlyCountries: {
       name: 'Only Countries',
       control: { type: 'array' },
-      description: 'Restricts the dropdown to only these countries (county codes example: mx, us, ca).',
+      description:
+        'Restricts the dropdown to only these countries (county codes example: mx, us, ca).',
       table: {
         category: 'Properties',
         type: { summary: 'string[]' },
-        defaultValue: { summary: "[]" },
+        defaultValue: { summary: '[]' },
       },
     },
     label: {
