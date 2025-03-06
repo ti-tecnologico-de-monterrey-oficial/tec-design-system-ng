@@ -37,7 +37,7 @@
     appearance: none;
     width: 100%;
     cursor: pointer;
-    padding: var(--bmb-spacing-s);
+    padding: rem.rem_calc(10) var(--bmb-spacing-s);
     position: relative;
 
     &:hover {
@@ -158,6 +158,17 @@
           &-selected {
             background-color: var(--menu_select-surface-activated);
             color: var(--menu_select-label-menu-active);
+          }
+        }
+
+        &-preferred {
+          &-options {
+            border-bottom: rem.rem_calc(1) solid var(--general_contrasts-25);
+          }
+
+          &-list {
+            padding: 0;
+            list-style: none;
           }
         }
       }

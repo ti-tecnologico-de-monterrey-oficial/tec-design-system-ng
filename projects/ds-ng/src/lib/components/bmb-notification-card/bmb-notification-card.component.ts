@@ -2,15 +2,10 @@ import {
   ChangeDetectionStrategy,
   Component,
   input,
-  Input,
-  OnChanges,
   OnInit,
   output,
-  SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { IBmbNotificationCardData } from './types';
 import { CommonModule } from '@angular/common';
 import { BmbAlertCenterComponent } from '../bmb-alert-center/bmb-alert-center.component';
 import { IBmbDataAlert } from '../bmb-alert-center/types';

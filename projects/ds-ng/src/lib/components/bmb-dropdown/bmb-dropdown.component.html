@@ -37,7 +37,7 @@
         [placeholder]="placeholder()"
         (keydown)="onKeyDown($event)"
       />
-      <button class="bmb_dropdown-field-open" [disabled]="disabled()" bmbButton>
+      <button (click)="handleChevronClick()" class="bmb_dropdown-field-open" [disabled]="disabled()" bmbButton>
         <bmb-icon icon="keyboard_arrow_down" />
       </button>
       <dialog
@@ -46,23 +46,45 @@
         [open]="getDialogStatus()"
       >
         <ul class="bmb_dropdown-dialog-list">
-          @for (item of options(); track $index) {
+          @if (preferredOptions().length) {
+            <li class="bmb_dropdown-dialog-list-item-preferred-options">
+              <ul class="bmb_dropdown-dialog-list-item-preferred-list">
+                @for (item of getPreferredOptions(); track $index) {
+                  <li class="bmb_dropdown-dialog-list-item">
+                    <button
+                      class="bmb_dropdown-dialog-list-item-button"
+                      (click)="handleItemClick(item)"
+                    >
+                      @if (showIcon()) {
+                        <bmb-icon
+                          class="bmb_dropdown-dialog-list-item-button-icon"
+                          [icon]="item.icon"
+                        />
+                      }
+                      {{ item.name }}
+                    </button>
+                  </li>
+                }
+              </ul>
+            </li>
+          }
+          @for (item of parsedOptions; track $index) {
             <li class="bmb_dropdown-dialog-list-item">
               <button
                 class="bmb_dropdown-dialog-list-item-button"
                 [ngClass]="{
                   'bmb_dropdown-dialog-list-item-button-selected':
-                    $index == selectedIndexOption,
+                    item.value == selectedIndexOption,
                 }"
-                (click)="handleItemClick(getItem(item), $index, item)"
+                (click)="handleItemClick(item)"
               >
                 @if (showIcon()) {
                   <bmb-icon
                     class="bmb_dropdown-dialog-list-item-button-icon"
-                    [icon]="getItem(item).icon"
+                    [icon]="item.icon"
                   />
                 }
-                {{ getItem(item).name }}
+                {{ item.name }}
               </button>
             </li>
           }

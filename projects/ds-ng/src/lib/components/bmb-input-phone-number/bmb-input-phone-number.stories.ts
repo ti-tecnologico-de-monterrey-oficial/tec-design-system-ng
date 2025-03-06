@@ -1,10 +1,10 @@
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BmbInputPhoneNumberComponent } from './bmb-input-phone-number.component';
-import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { attributes } from '../../utils/utils';
 
 export default {
   title: 'Micro Componentes/Input Phone Number',
@@ -16,7 +16,6 @@ export default {
         FormsModule,
         ReactiveFormsModule,
         BrowserAnimationsModule,
-        NgxMatIntlTelInputComponent,
         BmbIconComponent,
       ],
     }),
@@ -154,7 +153,7 @@ Below is an example of how to use this component in HTML:
       },
       description: 'Boolean to show or hide the error message.',
       table: {
-        category: 'Properties',
+        category: 'Deprecated',
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
       },
@@ -182,11 +181,20 @@ Below is an example of how to use this component in HTML:
     onlyCountries: {
       name: 'Only Countries',
       control: { type: 'array' },
-      description: 'Restricts the dropdown to only these countries.',
+      description: 'Restricts the dropdown to only these countries (county codes example: mx, us, ca).',
       table: {
         category: 'Properties',
         type: { summary: 'string[]' },
-        defaultValue: { summary: "['mx']" },
+        defaultValue: { summary: "[]" },
+      },
+    },
+    label: {
+      name: 'Label',
+      control: { type: 'text' },
+      description: 'Label to be displayed above the input field.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
       },
     },
   },
@@ -196,10 +204,19 @@ Below is an example of how to use this component in HTML:
     errorMessage: 'Error Message',
     isRequired: false,
     preferredCountries: ['mx'],
-    onlyCountries: ['mx'],
+    onlyCountries: ['mx', 'us', 'ca'],
   },
 } as Meta<typeof BmbInputPhoneNumberComponent>;
 
-type Story = StoryObj<BmbInputPhoneNumberComponent>;
+const customizable = (): StoryFn => (args) => ({
+  props: args,
+  template: `
+    <div style="height: 500px">
+      <bmb-input-phone-number
+        ${attributes(args)}
+      />
+    </div>
+    `,
+});
 
-export const Default: Story = {};
+export const Default = customizable();

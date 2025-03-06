@@ -66,7 +66,7 @@ Below is an example of how you can use this component in HTML:
     data: {
       name: 'Data Source',
       control: {
-        type: 'IBmbNotificationCardData',
+        type: 'object',
       },
       description: 'Set information that the component will show',
       table: {
@@ -75,28 +75,19 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: `{}` },
       },
     },
-    alerts: {
-      name: 'Alerts',
+    advertisements: {
+      name: 'Advertisements',
       control: {
-        type: 'IBmbDataAlert[]',
+        type: 'object',
       },
       description:
-        'Set information that the component will show on the alerts tab',
+        'Set information that the component will show on the advertisement tab',
       table: {
         category: 'Properties',
         type: { summary: 'IBmbDataAlert[]' },
         defaultValue: { summary: `[]` },
       },
-    },
-    alertEvent: {
-      name: 'Alert Event',
-      action: 'alertEvent',
-      description: 'Event emitted when an alert is clicked.',
-      table: {
-        category: 'Events',
-        type: { summary: 'IBmbDataAlert' },
-      },
-    },
+    }
   },
   args: {
     data: [
@@ -222,8 +213,7 @@ Below is an example of how you can use this component in HTML:
         isArchived: false,
       },
     ],
-    subtitle: 'Subtitulo',
-    alerts: [
+    advertisements: [
       {
         id: 10,
         title: 'Alerta 10',
