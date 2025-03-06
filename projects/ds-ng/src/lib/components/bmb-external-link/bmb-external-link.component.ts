@@ -5,15 +5,14 @@ import {
   output,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbContainerButtonComponent } from '../bmb-container-button/bmb-container-button.component';
 import {
   BmbBottomNavigationBarComponent,
   IBmbFooterEvent,
   IBmbNavigationBarIcons,
 } from '../bmb-bottom-navigation-bar/bmb-bottom-navigation-bar.component';
-import { BmbThreeColsComponent } from '../bmb-three-cols/bmb-three-cols.component';
-import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
-import { BmbNavigationIconComponent } from '../bmb-navigation-bar/bmb-navigation-icon/bmb-navigation-icon.component';
+import { IDropdownItem } from '../bmb-dropdown-menu/bmb-dropdown-menu.component';
+import { BmbInnerHeaderComponent } from '../bmb-inner-header/bmb-inner-header.component';
+import { BmbDropdownMenuContentComponent } from '../bmb-dropdown-menu/bmb-dropdown-menu-content/bmb-dropdown-menu-content.component';
 
 export type IBmbMenuEvent = 'link' | 'openNew' | 'info';
 
@@ -21,10 +20,8 @@ export type IBmbMenuEvent = 'link' | 'openNew' | 'info';
   selector: 'bmb-external-link',
   standalone: true,
   imports: [
-    BmbThreeColsComponent,
-    BmbTitleContentComponent,
-    BmbNavigationIconComponent,
-    BmbContainerButtonComponent,
+    BmbInnerHeaderComponent,
+    BmbDropdownMenuContentComponent,
     BmbBottomNavigationBarComponent,
   ],
   templateUrl: './bmb-external-link.component.html',
@@ -52,6 +49,26 @@ export class BmbExternalLinkComponent {
     return /^https/.test(this.subtitle().toLowerCase());
   }
 
+  getMenuItems(): IDropdownItem[] {
+    return [
+      {
+        icon: 'link',
+        text: 'Copiar enlace',
+        action: () => this.onMenuOptionClick('link'),
+      },
+      {
+        icon: 'open_in_new',
+        text: 'Abrir en navegador',
+        action: () => this.onMenuOptionClick('openNew'),
+      },
+      {
+        icon: 'info',
+        text: 'Más información',
+        action: () => this.onMenuOptionClick('info'),
+      },
+    ];
+  }
+
   handleClose(event: any): void {
     this.onClose.emit(event);
   }
@@ -62,7 +79,6 @@ export class BmbExternalLinkComponent {
 
   onMenuOptionClick(event: IBmbMenuEvent): void {
     this.menuEvent.emit(event);
-    this.showMenu = false;
   }
 
   onFooterOptionClick(event: IBmbFooterEvent): void {

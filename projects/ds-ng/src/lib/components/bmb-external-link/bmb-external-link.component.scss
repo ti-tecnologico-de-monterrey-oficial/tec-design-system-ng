@@ -6,92 +6,12 @@
   display: flex;
   flex-direction: column;
 
-  &-header {
-    border-radius: 0 0 rem.rem_calc(12 12);
-    border-bottom: rem.rem_calc(1) solid
-      var(--general_contrasts-container-outline);
-
-    padding: rem.rem_calc(16);
-    background-color: RGBA(var(--color-charade-100));
-
-    &-title {
-      flex: 1;
-    }
-  }
-
-  &-menu {
-    background-color: currentColor;
-    position: fixed;
-    right: 1rem;
-    top: 4rem;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-
-    &-item {
-      line-height: 0;
-
-      .bmb_container-button .bmb_check-external-link-button-element {
-        border-radius: 0;
-        border-color: transparent;
-        width: 100%;
-        padding: 0;
-
-        &:hover {
-          .bmb_card-content {
-            background-color: RGBA(var(--color-charade-200));
-          }
-        }
-
-        &-title {
-          @include fonts.font(4, medium);
-        }
-
-        .bmb_card {
-          margin: 0;
-          border: 0 none;
-          border-radius: 0;
-
-          &-content {
-            padding: var(--bmb-spacing-s) var(--bmb-spacing-m);
-          }
-        }
-
-        &-left {
-          color: RGBA(var(--color-charade-950));
-        }
-      }
-    }
-  }
-
   &-content {
     flex: 1;
   }
 
-  .bmb_title-content-container-wrapper-subtitle {
-    color: RGBA(var(--color-charade-500));
-  }
-}
-
-[data-theme="dark"],
-.storybook-dark-theme {
-  .bmb_external-link {
-    &-header {
-      background-color: RGBA(var(--color-charade-900));
-    }
-
-    .bmb_title-content-container-wrapper-subtitle {
-      color: RGBA(var(--color-charade-500));
-    }
-
-    .bmb_container-button .bmb_check-external-link-button-element:hover {
-      .bmb_card-content {
-        background-color: RGBA(var(--color-charade-700));
-      }
-    }
-
-    .bmb_container-button-left .bmb_check-external-link-button-element {
-      color: RGBA(var(--color-charade-50));
-    }
+  .bmb_dropdown_menu-content-container {
+    top: rem.rem_calc(64);
+    right: rem.rem_calc(16);
   }
 }

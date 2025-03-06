@@ -57,12 +57,14 @@ Below is an example of how you can use this component in HTML:
       },
       description: `
         Header subtitle. The subtitle can also be a URL.
+
         IBmbNavigationBarIcons = {
           one: IBmbNavigationBarIcon;
           two: IBmbNavigationBarIcon;
           three: IBmbNavigationBarIcon;
           four: IBmbNavigationBarIcon;
         }
+
         IBmbNavigationBarIcon = {
         name: string;
         label: string;
@@ -74,12 +76,12 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'IBmbNavigationBarIcons (optional)' },
         defaultValue: {
           summary: `
-          {
-            one: { name: 'arrow_back_ios', label: '' },
-            two: { name: 'arrow_forward_ios', label: '' },
-            three: { name: 'share', label: '' },
-            four: { name: 'refresh', label: '' },
-          }
+      {
+        one: { name: 'arrow_back_ios', label: '' },
+        two: { name: 'arrow_forward_ios', label: '' },
+        three: { name: 'share', label: '' },
+        four: { name: 'refresh', label: '' },
+      }
         `,
         },
       },
@@ -124,14 +126,14 @@ Below is an example of how you can use this component in HTML:
       three: { name: 'share', label: '' },
       four: { name: 'refresh', label: '' },
     },
-    onClose: (event: unknown) => {
-      alert('Selection: close');
-    },
-    footerEvent: (event: unknown) => {
-      alert('Selection: ' + event);
+    onClose: () => {
+      alert('Close button clicked in Storybook');
     },
     menuEvent: (event: unknown) => {
-      alert('Selection: ' + event);
+      alert('Menu selection: ' + event + ' in Storybook');
+    },
+    footerEvent: (event: unknown) => {
+      alert('Footer selection: ' + event + ' in Storybook');
     },
   },
 } as Meta<typeof BmbExternalLinkComponent>;
