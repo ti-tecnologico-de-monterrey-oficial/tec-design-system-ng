@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   input,
+  OnInit,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbFocusElementComponent } from '../bmb-focus-element/bmb-focus-element.component';
@@ -56,13 +57,13 @@ import { buildErrorMessage } from '../../utils/utils';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbAcademicProgressComponent {
+export class BmbAcademicProgressComponent implements OnInit {
   accredited = input.required<IBmbNameValuePair>();
   average = input.required<IBmbNameValuePair>();
   summary = input.required<IBmbNameValuePair>();
 
   ngOnInit() {
-    let inputs = [];
+    let inputs: string[] = [];
     if (!this.accredited()) inputs.push('accredited');
     if (!this.average()) inputs.push('average');
     if (!this.summary()) inputs.push('summary');

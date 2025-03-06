@@ -12,10 +12,10 @@
 
 @if (activityTag()) {
   <div [ngClass]="getClasses()">
-    <ng-container *ngTemplateOutlet="tag" />
+    <ng-container [ngTemplateOutlet]="tag" />
   </div>
 } @else {
   <button [ngClass]="getClasses()" (click)="clickTag(text())">
-    <ng-container *ngTemplateOutlet="tag" />
+    <ng-container [ngTemplateOutlet]="tag" />
   </button>
 }

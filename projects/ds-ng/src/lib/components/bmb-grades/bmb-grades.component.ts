@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   input,
+  OnInit,
   output,
   TemplateRef,
   ViewChild,
@@ -46,7 +47,7 @@ import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbGradesComponent {
+export class BmbGradesComponent implements OnInit {
   grades = input<IBmbGrades[]>([]);
   isMicro = input<boolean>();
   gradeTitle = input<string>();
@@ -68,7 +69,7 @@ export class BmbGradesComponent {
 
   ngOnInit() {
     if (this.isMicro()) {
-      let inputs = [];
+      let inputs: string[] = [];
 
       if (!this.gradeTitle()) inputs.push('gradeTitle');
       if (!this.title()) inputs.push('title');

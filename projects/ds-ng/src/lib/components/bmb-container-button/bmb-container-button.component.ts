@@ -15,6 +15,7 @@ import { IBbmBgAppearance, IBmbTargetLink } from '../../types';
 import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
 import { BmbNavigationIconComponent } from '../bmb-navigation-bar/bmb-navigation-icon/bmb-navigation-icon.component';
 import { BmbBookmarkComponent } from '../bmb-bookmark/bmb-bookmark.component';
+import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
 
 @Component({
   selector: 'bmb-container-button',
@@ -22,6 +23,7 @@ import { BmbBookmarkComponent } from '../bmb-bookmark/bmb-bookmark.component';
   imports: [
     CommonModule,
     BmbCheckExternalLinkButtonComponent,
+    BmbUserImageComponent,
     BmbIconComponent,
     BmbGradeValueComponent,
     BmbLayoutDirective,
@@ -44,6 +46,7 @@ export class BmbContainerButtonComponent {
   link = input<string>('');
   subtitle = input<string>('');
   iconLeft = input<string>('');
+  isUserImage = input<boolean>(false);
   iconRight = input<string>('');
   setButtonTemplate = input<boolean>(); //Deprecated
   badgeText = input<string>('');
