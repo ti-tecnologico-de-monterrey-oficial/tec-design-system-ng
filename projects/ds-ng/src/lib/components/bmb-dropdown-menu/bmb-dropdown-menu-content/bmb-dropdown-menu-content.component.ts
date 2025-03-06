@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { IDropdownItem } from '../bmb-dropdown-menu.component';
 import { BmbCheckExternalLinkButtonComponent } from '../../bmb-check-external-link-button/bmb-check-external-link-button.component';
-import { BmbIconComponent } from 'ds-ng';
+import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 
 @Component({
   selector: 'bmb-dropdown-menu-content',
