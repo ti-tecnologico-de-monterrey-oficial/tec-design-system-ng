@@ -9,20 +9,5 @@
     size="micro"
     (click)="toggleDropdown()"
   ></button>
-  @if (isOpen()) {
-    <ul class="bmb_dropdown_menu-content">
-      @for (item of items(); track $index) {
-        <li class="bmb_dropdown_menu-item">
-          <bmb-check-external-link-button
-            [link]="item.url!"
-            [target]="item.target!"
-            (buttonClick)="item?.action()"
-          >
-            <bmb-icon [icon]="item.icon" class="bmb_dropdown_menu-item-icon" />
-            <span class="bmb_dropdown_menu-item-text">{{ item.text }}</span>
-          </bmb-check-external-link-button>
-        </li>
-      }
-    </ul>
-  }
+  <bmb-dropdown-menu-content [items]="items()" [(isOpen)]="isOpen" />
 </span>

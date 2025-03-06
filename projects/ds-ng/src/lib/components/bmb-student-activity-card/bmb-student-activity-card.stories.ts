@@ -1,7 +1,6 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { BmbStudentActivityCardComponent } from './bmb-student-activity-card.component';
-import { DateTime } from 'luxon';
 
 export default {
   title: 'Micro Componentes/Student activity card',

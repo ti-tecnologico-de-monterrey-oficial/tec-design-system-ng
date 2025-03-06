@@ -1,2 +1,13 @@
-<bmb-calendar [height]="1000"></bmb-calendar>
-<bmb-theme />
+<bmb-external-link
+  [title]="'CONECTA'"
+  [subtitle]="'https://www.CONECTA.tec.mx'"
+  [navigationBarIcons]="{
+    one: { name: 'arrow_back_ios', label: '' },
+    two: { name: 'arrow_forward_ios', label: '' },
+    three: { name: 'share', label: '' },
+    four: { name: 'refresh', label: '' },
+  }"
+  (onClose)="onClose($event)"
+  (menuEvent)="menuEvent($event)"
+  (footerEvent)="footerEvent($event)"
+/>

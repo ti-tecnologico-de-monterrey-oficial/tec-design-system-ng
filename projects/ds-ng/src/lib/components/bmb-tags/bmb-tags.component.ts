@@ -1,12 +1,12 @@
 import {
   Component,
-  Input,
   ViewEncapsulation,
   ChangeDetectionStrategy,
   ElementRef,
   Renderer2,
   AfterViewInit,
   output,
+  input,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
@@ -44,12 +44,12 @@ export type IBmbActivityTags =
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbTagComponent implements AfterViewInit {
-  @Input() appearance: IBmbActivityTags = 'normal';
-  @Input() text: string = '';
-  @Input() grouped: boolean = false;
-  @Input() dismissible: boolean = true;
-  @Input() rounded: boolean = false;
-  @Input() activityTag: boolean = false;
+  appearance = input<IBmbActivityTags>('normal');
+  text = input<string>('');
+  grouped = input<boolean>(false);
+  dismissible = input<boolean>(true);
+  rounded = input<boolean>(false);
+  activityTag = input<boolean>(false);
   closedTag = output<string>();
   clickedTag = output<string>();
 
@@ -61,7 +61,7 @@ export class BmbTagComponent implements AfterViewInit {
   ) {}
 
   ngAfterViewInit() {
-    if (this.grouped) {
+    if (this.grouped()) {
       const parentElement = this.el.nativeElement.parentElement;
 
       let wrapperDiv = parentElement.querySelector('.bmb_tag-grouped');
@@ -80,7 +80,7 @@ export class BmbTagComponent implements AfterViewInit {
     const classes = [
       'bmb_tag',
       'bmb_tag-rounded',
-      `bmb_tag-${this.appearance}`,
+      `bmb_tag-${this.appearance()}`,
     ];
 
     return classes;

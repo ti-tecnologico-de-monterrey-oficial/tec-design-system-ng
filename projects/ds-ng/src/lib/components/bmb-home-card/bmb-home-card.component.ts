@@ -31,6 +31,7 @@ export class BmbHomeCardComponent {
   actionHeaders = input<IBmbActionHeader[]>([]);
   isMobile = input<boolean>();
   contentPadding = input<SizeNames>('l');
+  showRightButton = input<boolean>(true);
 
   onClose = output();
   onBack = output();

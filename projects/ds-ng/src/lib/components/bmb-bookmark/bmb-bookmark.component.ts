@@ -21,7 +21,7 @@ export class BmbBookmarkComponent {
   isActive = model<boolean>(false);
 
   handleClick(event: any) {
-    event.stopPropagation();
+    event?.stopPropagation();
     this.isActive.set(!this.isActive());
   }
 

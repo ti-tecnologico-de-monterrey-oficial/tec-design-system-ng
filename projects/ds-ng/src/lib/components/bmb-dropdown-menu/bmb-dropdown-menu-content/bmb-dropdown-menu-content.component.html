@@ -1,0 +1,23 @@
+<section class="bmb_dropdown_menu-content">
+  @if (isOpen()) {
+    <ul class="bmb_dropdown_menu-content-container">
+      @for (item of items(); track $index) {
+        <li class="bmb_dropdown_menu-content-item">
+          <bmb-check-external-link-button
+            [link]="item.url!"
+            [target]="item.target!"
+            (buttonClick)="handleDropdown(item)"
+          >
+            <bmb-icon
+              class="bmb_dropdown_menu-content-item-icon"
+              [icon]="item.icon"
+            />
+            <span class="bmb_dropdown_menu-content-item-text">
+              {{ item.text }}
+            </span>
+          </bmb-check-external-link-button>
+        </li>
+      }
+    </ul>
+  }
+</section>

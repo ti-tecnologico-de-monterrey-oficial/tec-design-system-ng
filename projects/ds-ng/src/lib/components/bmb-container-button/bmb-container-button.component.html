@@ -16,11 +16,19 @@
   >
     <section class="bmb_container-button-left">
       @if ((iconLeft() && !score()) || square() || small()) {
-        <bmb-icon
-          bmbLayoutItem
-          class="bmb_container-button-left-icon"
-          [icon]="iconLeft()"
-        />
+        @if (isUserImage()) {
+          <bmb-user-image
+            size="desktop-small"
+            [image]="iconLeft()"
+            altImage="Image of icon left"
+          />
+        } @else {
+          <bmb-icon
+            bmbLayoutItem
+            class="bmb_container-button-left-icon"
+            [icon]="iconLeft()"
+          />
+        }
       }
       @if (score() && !square() && !small()) {
         <bmb-grade-value bmbLayoutItem type="main-grade" [score]="getScore()" />
