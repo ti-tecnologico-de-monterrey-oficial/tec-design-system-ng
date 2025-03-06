@@ -6,7 +6,7 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 
 ---
 
-## Cambios de la versión v1.5.1
+## Cambios de la versión v1.5.2
 
 ### Novedades
 
