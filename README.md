@@ -6,45 +6,19 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 
 ---
 
-## Cambios de la versión v1.5.0
+## Cambios de la versión v1.5.2
 
-### Nuevos componentes:
+### Novedades
 
-- Image
-- Carousel
-- Digital ID
-- Icon status
-- Vertical layout
+- Se agregó la compatibilidad con **Angular 19**
 
 ### Componentes actualizados:
 
-- Top bar - Refactorización de código y se ajusto la implementación al diseño
-- Dropdown - Ahora se cierra el listado cuando se realiza una selección
-- Chevron title selector - Se ajustaron estilos
-- Focus element - Se ajustaron estilos
-- Grades - Se ajustaron estilos
-- Home card - Se ajustaron estilos
-- Modal - Se ajustaron estilos
-- Dot paginator - Se ajustaron estilos
-- Timestream - Se ajustaron estilos
-- Accordion - Se ajustaron estilos
-- Input phone - Ahora se pueden limitar las ladas a seleccionar
-- Login - Se ajustaron estilos
-- Push notifications - Se ajustaron estilos
-- Layouts - Se agregaron nuevos layouts y se ajustaron estilos
-- Container button - Ahora soporta funcionalidad compleja
-- Date picker - Se ajustaron estilos
-- Input - Ahora todos los inputs pueden ser limpiados
-- Media card - Se ajustaron estilos y se agregaron animaciones
-- Action menu - Se ajustaron estilos
-- Tabs - Ahora se pueden ocultar de manera responsiva
-- Bookmark - Se ajustaron estilos
-- Frequent app selector - Se ajustaron estilos
-- Interactive icon - Se ajustaron estilos
-- Theme - Ahora puedes configurar los controles del tema
-- Alert center - Se refactorizo el código ** BREAKING CHANGES **
-- Calendar - Se actualizo la implementación e interfaz
-- Pull wedge - Se agregaron notificaciones de eventos
+- Layout: Se solucionó el problema con las columnas SM
+- Alert center: Se solucionó el problema de las tabs duplicadas
+- Dropdown: Se agregó la opción de 'opciones preferidas'
+- Phone number: Se refactorizó el código del componente (ya no tiene dependencias)
+- Notification card: Se solucionó las tabs duplicadas
 
 Puedes ver todos los componentes aqui: [Bamboo](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/foundations-colors--documentation)
 

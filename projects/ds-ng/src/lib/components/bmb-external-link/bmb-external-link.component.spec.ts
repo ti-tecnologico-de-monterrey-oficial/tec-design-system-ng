@@ -28,24 +28,6 @@ describe('BmbExternalLinkComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  // it('should display the provided title', () => {
-  //   componentRef.setInput('title', 'Test Title');
-  //   fixture.detectChanges();
-  //   const titleElement = fixture.nativeElement.querySelector(
-  //     'h2.bmb_title-content-container-wrapper-title',
-  //   );
-  //   expect(titleElement.textContent).toBe('Test Title');
-  // });
-
-  // it('should display the provided subtitle', () => {
-  //   componentRef.setInput('subtitle', 'Test subtitle');
-  //   fixture.detectChanges();
-  //   const subtitleElement = fixture.nativeElement.querySelector(
-  //     'h4.bmb_title-content-container-wrapper-subtitle',
-  //   );
-  //   expect(subtitleElement.textContent.trim()).toBe('Test subtitle');
-  // });
-
   it('should emit onClose event when handleClose is called', () => {
     spyOn(component.onClose, 'emit');
     const event = { some: 'data' };

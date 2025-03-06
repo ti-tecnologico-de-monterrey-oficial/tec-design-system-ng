@@ -115,6 +115,17 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string' },
       },
     },
+    isUserImage: {
+      name: 'Is user image',
+      control: { type: 'boolean' },
+      description:
+        'When set to true, the container button will display a user image for the left icon.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
     iconRight: {
       name: 'Icon Right',
       control: { type: 'text' },
@@ -267,6 +278,7 @@ Below is an example of how you can use this component in HTML:
   args: {
     title: 'Tema de App',
     iconLeft: 'home',
+    isUserImage: false,
     iconRight: 'chevron_right',
     link: '',
     target: '_blank',

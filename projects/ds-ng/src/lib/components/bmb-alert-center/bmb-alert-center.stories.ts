@@ -114,6 +114,18 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: `[]` },
       },
     },
+    hideTabs: {
+      name: 'Hide Tabs',
+      control: {
+        type: 'boolean',
+      },
+      description: 'Hide tabs.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
   },
   args: {
     tabsName: [
@@ -376,6 +388,7 @@ Below is an example of how you can use this component in HTML:
     alertEvent: (event: any) => {
       console.log('alertEvent', event);
     },
+    hideTabs: false,
   },
 } as Meta<typeof BmbAlertCenterComponent>;
 

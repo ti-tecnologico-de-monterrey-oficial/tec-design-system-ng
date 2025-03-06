@@ -12,66 +12,122 @@
   </section>
 </ng-template>
 
-<bmb-mobile-templates
-  [title]="'Mi Perfil'"
-  (externalLinkOnClose)="closeProfile()"
->
-  <ng-template #bmbTemplateMain>
-    <section class="bmb_profile">
-      <bmb-user-summary-content
-        [isProfile]="true"
-        [name]="userData().name"
-        [userId]="userData().matricula"
-        [image]="userData().userImg"
-        [email]="userData().mail"
-        contentLayout="row"
-        [isImageBordered]="false"
-      />
-      <section class="bmb_profile-info">
-        <ng-container
-          *ngTemplateOutlet="
-            elementTemplate;
-            context: {
-              element: {
-                icon: 'calendar_month',
-                content: 'Semestre',
-                value: userData().period,
-              },
-            }
-          "
-        />
-        <ng-container
-          *ngTemplateOutlet="
-            elementTemplate;
-            context: {
-              element: {
-                icon: 'location_on',
-                content: 'Campus',
-                value: userData().campus,
-              },
-            }
-          "
-        />
-        <ng-container
-          *ngTemplateOutlet="
-            elementTemplate;
-            context: {
-              element: {
-                icon: 'library_books',
-                content: 'Programa',
-                value: userData().program,
-              },
-            }
-          "
-        />
-        <section class="bmb_profile-info-container theme">
-          <div class="bmb_profile-info-container-item">
-            <bmb-icon [icon]="'palette'" [size]="24" />
-            <span class="bmb_profile-info-container-item-text">Tema</span>
-          </div>
-          <bmb-theme leftText="Light" rightText="Dark" />
-        </section>
-      </section>
+<ng-template #student>
+  <section class="bmb_profile-info">
+    <ng-container
+      *ngTemplateOutlet="
+        elementTemplate;
+        context: {
+          element: {
+            icon: 'calendar_month',
+            content: 'Semestre',
+            value: _studentData?.period,
+          },
+        }
+      "
+    />
+    <ng-container
+      *ngTemplateOutlet="
+        elementTemplate;
+        context: {
+          element: {
+            icon: 'location_on',
+            content: 'Campus',
+            value: _studentData?.campus,
+          },
+        }
+      "
+    />
+    <ng-container
+      *ngTemplateOutlet="
+        elementTemplate;
+        context: {
+          element: {
+            icon: 'library_books',
+            content: 'Programa',
+            value: _studentData?.program,
+          },
+        }
+      "
+    />
+  </section>
+</ng-template>
+
+<ng-template #collaborator>
+  <section class="bmb_profile-info">
+    <ng-container
+      *ngTemplateOutlet="
+        elementTemplate;
+        context: {
+          element: {
+            icon: 'id_card',
+            content: 'Puesto',
+            value: collaboratorData()?.position,
+          },
+        }
+      "
+    />
+    <ng-container
+      *ngTemplateOutlet="
+        elementTemplate;
+        context: {
+          element: {
+            icon: 'location_on',
+            content: 'Área',
+            value: collaboratorData()?.area,
+          },
+        }
+      "
+    />
+  </section>
+  <section class="bmb_profile-access">
+    <h2 class="bmb_profile-title">Mi Líder</h2>
+    <bmb-container-button
+      [title]="collaboratorData()?.leader?.userData?.name!"
+      [subtitle]="collaboratorData()?.leader?.userData?.email!"
+      [iconLeft]="collaboratorData()?.leader?.userData?.userImg!"
+      [isUserImage]="true"
+      [link]="collaboratorData()?.leader?.hierarchyLink!"
+      [target]="collaboratorData()?.leader?.hierarchyTarget!"
+    />
+    <h2 class="bmb_profile-title">Mi Generalista</h2>
+    <bmb-container-button
+      [title]="collaboratorData()?.generalist?.userData?.name!"
+      [subtitle]="collaboratorData()?.generalist?.userData?.email!"
+      [iconLeft]="collaboratorData()?.generalist?.userData?.userImg!"
+      [isUserImage]="true"
+      [link]="collaboratorData()?.generalist?.hierarchyLink!"
+      [target]="collaboratorData()?.generalist?.hierarchyTarget!"
+    />
+  </section>
+</ng-template>
+
+<ng-template #content>
+  <section class="bmb_profile">
+    <bmb-user-summary-content
+      [isProfile]="true"
+      [name]="getUserData().name!"
+      [userId]="getUserData().registration!"
+      [image]="getUserData().userImg"
+      [email]="getUserData().email"
+      contentLayout="row"
+      [isImageBordered]="false"
+    />
+    @if (!isStandAlone()) {
+      @if (isStudent()) {
+        <ng-container [ngTemplateOutlet]="student" />
+      } @else {
+        <ng-container [ngTemplateOutlet]="collaborator" />
+      }
+    }
+    <section class="bmb_profile-info-container theme">
+      <div class="bmb_profile-info-container-item">
+        <bmb-icon [icon]="'palette'" [size]="24" />
+        <span class="bmb_profile-info-container-item-text">Tema</span>
+      </div>
+      <bmb-theme leftText="Light" rightText="Dark" />
+    </section>
+    @if (isMobile() && !isStandAlone()) {
       <section class="bmb_profile-access">
         <bmb-container-button
           title="ID Digital"
@@ -91,25 +147,50 @@
           title="TecServices"
           iconLeft="forum"
           iconRight="chevron_right"
-          [link]="campusAcessLink()"
+          [link]="tecServicesLink()"
           [target]="targetLinks()!"
         />
       </section>
       <div class="bmb_profile-version">
         {{ versionLabel() }}
       </div>
-      <section class="bmb_profile-close">
-        <button
-          bmbButton
-          appearance="destructive"
-          icon="logout"
-          size="large"
-          position="left"
-          (click)="closeSession()"
-        >
-          Cerrar Sesión
-        </button>
-      </section>
+    }
+    <section class="bmb_profile-close">
+      <button
+        bmbButton
+        appearance="destructive"
+        icon="logout"
+        size="large"
+        position="left"
+        (click)="closeSession()"
+      >
+        Cerrar Sesión
+      </button>
     </section>
-  </ng-template>
-</bmb-mobile-templates>
+  </section>
+</ng-template>
+
+@if (isStandAlone()) {
+  <section class="bmb_profile-stand_alone">
+    <ng-container [ngTemplateOutlet]="content" />
+  </section>
+} @else if (isMobile()) {
+  <bmb-mobile-templates
+    [title]="'Mi Perfil'"
+    (externalLinkOnClose)="closeProfile()"
+  >
+    <ng-template #bmbTemplateMain>
+      <ng-container [ngTemplateOutlet]="content" />
+    </ng-template>
+  </bmb-mobile-templates>
+} @else {
+  <bmb-home-card
+    icon="person"
+    bgIconAppearance="green-light"
+    title="Mi perfil"
+    [showRightButton]="false"
+    contentPadding="l"
+  >
+    <ng-container [ngTemplateOutlet]="content" />
+  </bmb-home-card>
+}

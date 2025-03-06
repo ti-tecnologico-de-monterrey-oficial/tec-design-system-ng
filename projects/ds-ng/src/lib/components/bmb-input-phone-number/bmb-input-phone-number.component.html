@@ -1,16 +1,54 @@
-<div
-  class="bmb_input_number"
-  [ngClass]="{ 'bmb_input_number-disabled': disabled }"
->
-  <ngx-mat-intl-tel-input
-    [formControl]="control"
-    [onlyCountries]="onlyCountries"
-    [preferredCountries]="preferredCountries"
-    [enablePlaceholder]="false"
-    [enableSearch]="false"
-    [disabled]="disabled"
-  ></ngx-mat-intl-tel-input>
-  <p class="bmb_input_number-error" *ngIf="shouldShowError">
-    {{ errorMessage }}
-  </p>
-</div>
+<span class="bmb_input-number">
+  <label for="#bmbInputPhoneNumber">
+    {{ label() }}
+    @if (isRequired()) {
+      <small class="bmb_field-label-required">*</small>
+    }
+    @if (!!tooltip()) {
+      <bmb-tooltip
+        class="bmb_field-label-tooltip"
+        [text]="tooltip()"
+        align="below"
+        justify="before"
+        icon="help"
+        [size]="15"
+      />
+    }
+  </label>
+  <span class="bmb_input-number-container">
+    <bmb-dropdown
+      [required]="true"
+      [showIcon]="false"
+      [options]="getOptions()"
+      (onValueChange)="onValueChange($event)"
+      [control]="getControl('select')"
+    />
+    <bmb-input
+      [placeholder]="placeholder()"
+      [appearance]="appearance()"
+      [errorMessage]="errorMessage()"
+      [disabled]="disabled()"
+      [tooltip]="tooltip()"
+      [control]="getControl('input')"
+      [id]="inputId()"
+      type="text"
+      class="bmb_input-number-input"
+    />
+  </span>
+  <bmb-input
+    [placeholder]="placeholder()"
+    [disabled]="disabled()"
+    [isRequired]="isRequired()"
+    [tooltip]="tooltip()"
+    [control]="control()"
+    hidden
+  />
+  @if (helperMessage()) {
+    <span class="bmb_input-number-helper">{{ helperMessage() }}</span>
+  }
+  @if (getErrors()) {
+    <p class="bmb_field-error">
+      {{ getErrorMessage() }}
+    </p>
+  }
+</span>

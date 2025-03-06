@@ -138,7 +138,7 @@ Below is an example of how you can use this component in HTML:
     },
     buttonClick: {
       name: 'Button click',
-      control: null,
+      control: false,
       description:
         'This event is only emitted if the "Link" property is empty.',
       table: {

@@ -1,71 +1,16 @@
 <section class="bmb_external-link">
-  <header class="bmb_external-link-header">
-    <bmb-three-cols [expandMainColumn]="true">
-      <ng-template #bmbLeftContent>
-        <span class="bmb_external-link-header-button">
-          <bmb-navigation-icon
-            icon="close"
-            [iconSize]="24"
-            (buttonClick)="handleClose($event)"
-          />
-        </span>
-      </ng-template>
-      <ng-template #bmbMainContent>
-        <section class="bmb_external-link-header-title">
-          <bmb-title-content
-            [title]="title()"
-            titleSize="6"
-            [subtitle]="subtitle()"
-            subtitleSize="3"
-            subtitleFontWeight="300"
-            subtitleIcon="lock"
-            [isCenterContent]="true"
-            [transparentBgC]="true"
-          />
-        </section>
-      </ng-template>
-      <ng-template #bmbRightContent>
-        <span class="bmb_external-link-header-button">
-          <bmb-navigation-icon
-            icon="more_horiz"
-            [iconSize]="24"
-            (buttonClick)="handleOpenMenu()"
-          />
-        </span>
-      </ng-template>
-    </bmb-three-cols>
-  </header>
+  <bmb-inner-header
+    [title]="title()"
+    [showClose]="true"
+    [subTitle]="subtitle()"
+    trailingIconSecondary="more_horiz"
+    (onHandleTrailingSecondary)="handleOpenMenu()"
+    (onHandleBack)="handleClose($event)"
+  />
+  <bmb-dropdown-menu-content [items]="getMenuItems()" [(isOpen)]="showMenu" />
   <section class="bmb_external-link-content">
     <ng-content />
   </section>
-  @if (showMenu) {
-    <ul class="bmb_external-link-menu">
-      <li class="bmb_external-link-menu-item">
-        <bmb-container-button
-          title="Copiar enlace"
-          iconLeft="link"
-          (onButton)="onMenuOptionClick('link')"
-          [setButtonTemplate]="true"
-        />
-      </li>
-      <li class="bmb_external-link-menu-item">
-        <bmb-container-button
-          title="Abrir en navegador"
-          iconLeft="open_in_new"
-          (onButton)="onMenuOptionClick('openNew')"
-          [setButtonTemplate]="true"
-        />
-      </li>
-      <li class="bmb_external-link-menu-item">
-        <bmb-container-button
-          title="Más información"
-          iconLeft="info"
-          (onButton)="onMenuOptionClick('info')"
-          [setButtonTemplate]="true"
-        />
-      </li>
-    </ul>
-  }
   <span class="bmb_external-link-footer">
     <bmb-bottom-navigation-bar
       [navigationBarIcons]="navigationBarIcons()"
