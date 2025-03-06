@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BmbInputPhoneNumberComponent } from './bmb-input-phone-number.component';
-import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { attributes } from '../../utils/utils';
 
@@ -17,7 +16,6 @@ export default {
         FormsModule,
         ReactiveFormsModule,
         BrowserAnimationsModule,
-        NgxMatIntlTelInputComponent,
         BmbIconComponent,
       ],
     }),
@@ -188,6 +186,15 @@ Below is an example of how to use this component in HTML:
         category: 'Properties',
         type: { summary: 'string[]' },
         defaultValue: { summary: "[]" },
+      },
+    },
+    label: {
+      name: 'Label',
+      control: { type: 'text' },
+      description: 'Label to be displayed above the input field.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
       },
     },
   },

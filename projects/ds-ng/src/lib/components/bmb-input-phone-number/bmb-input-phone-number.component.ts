@@ -8,10 +8,12 @@ import {
   input,
 } from '@angular/core';
 import {
+  AbstractControl,
   FormControl,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
+  ValidatorFn,
   Validators,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -58,28 +60,29 @@ export class BmbInputPhoneNumberComponent implements OnInit {
     select: new FormControl(this.defaultLada()),
     input: new FormControl(''),
   });
+  selectedLada: IBmbCountryCode | undefined;
 
   constructor(private cdr: ChangeDetectorRef) {}
-
-  findDefaultCountryCode(lada: string): Validators[] {
-    const selectedLada = this.allCountryCodes.find(({ lada: countryCode }) => countryCode === lada);
-    if (selectedLada) {
-      return [
-        Validators.pattern(`[0-9 ]{${selectedLada.length}}`)
-      ]
-    }
-
-    return []
-  }
 
   ngOnInit(): void {
     if (this.isRequired()) {
       this.control().setValidators(Validators.required);
     }
 
+    const selectedLada = this.allCountryCodes.find(
+      ({ lada }) => lada === this.defaultLada()
+    );
+    this.control().setValidators(Validators.pattern(`^\\${this.defaultLada()}\\d{${selectedLada?.length}}$`));
+    this.control().setValue(this.defaultLada());
+
     this.control().valueChanges.subscribe(() => {
       this.updateErrorState();
       this.cdr.markForCheck();
+    });
+
+    this.controls.controls['input'].valueChanges.subscribe((value) => {
+      const lada = this.controls.controls['select'].value || ''
+      this.control().setValue(lada + value);
     });
   }
 
@@ -90,8 +93,12 @@ export class BmbInputPhoneNumberComponent implements OnInit {
   }
 
   onValueChange(event: any) {
-    // const country = this.findCountryCode(event.value);
-    // this.selectedCountry.set(country);
+    this.selectedLada = this.allCountryCodes.find(
+      ({ lada }) => lada === event.value
+    );
+
+    this.control().setValidators(Validators.pattern(`^\\${event.value}\\d{${this.selectedLada?.length}}$`));
+    this.control().setValue(event.value);
   }
 
   getOptions(): IBmbDropdownItem[] {
@@ -123,22 +130,28 @@ export class BmbInputPhoneNumberComponent implements OnInit {
     return this.showError;
   }
 
+  getErrors(): boolean {
+    return this.control().errors !== null;
+  }
+
+  getPattern() {
+
+
+    return "^\\+52\\d{10}$";
+  }
+
   getErrorMessage(): string {
     if (typeof this.errorMessage() === 'string') {
       return this.errorMessage().toString();
     }
 
-    // if (this.control['errors'] !== null) {
-    //   const errorType = this.control['errors'];
-    //   const error = this.errorMessage() as IBmbInputError;
+    if (this.control()['errors'] !== null) {
+      const errorType = this.control()['errors'];
+      const error = this.errorMessage() as IBmbInputError;
 
-    //   if (errorType['invalidJson'] && error.jsonFormat) return error.jsonFormat;
-    //   if (errorType['pattern'] && error.pattern) return error.pattern;
-    //   if (errorType['min'] && error.min) return error.min;
-    //   if (errorType['max'] && error.max) return error.max;
-    //   if (errorType['minlength'] && error.minLength) return error.minLength;
-    //   if (errorType['required'] && error.required) return error.required;
-    // }
+      if (errorType?.['pattern'] && error.pattern) return error.pattern;
+      if (errorType?.['required'] && error.required) return error.required;
+    }
 
     return '';
   }

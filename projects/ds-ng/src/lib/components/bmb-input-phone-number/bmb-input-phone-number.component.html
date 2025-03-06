@@ -28,7 +28,6 @@
       [appearance]="appearance()"
       [errorMessage]="errorMessage()"
       [disabled]="disabled()"
-      [isRequired]="isRequired()"
       [tooltip]="tooltip()"
       [control]="getControl('input')"
       [id]="inputId()"
@@ -47,7 +46,7 @@
   @if (helperMessage()) {
     <span class="bmb_input-number-helper">{{ helperMessage() }}</span>
   }
-  @if (showError) {
+  @if (getErrors()) {
     <p class="bmb_field-error">
       {{ getErrorMessage() }}
     </p>
