@@ -62,6 +62,7 @@ export class BmbAlertCenterComponent {
     { title: 'Archivados', isMobile: false, isDesktop: true },
     { title: 'Anuncios', isMobile: true, isDesktop: true },
   ]);
+  hideTabs = input<boolean>(false);
 
   onChangeAlertStatus = output<IBmbDataAlertsOutput>();
   alertEvent = output<IBmbDataAlert>();

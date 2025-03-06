@@ -2,7 +2,9 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  OnChanges,
   OnInit,
+  SimpleChanges,
   ViewEncapsulation,
   forwardRef,
   input,
@@ -21,6 +23,12 @@ export interface IBmbDropdownItem {
   name: string;
   value: string;
   icon: string;
+}
+
+interface IBmbDropdownParsedItem {
+  event: IBmbDropdownItem;
+  index: number;
+  item: IBmbDropdownItem | string;
 }
 
 @Component({
@@ -49,7 +57,7 @@ export interface IBmbDropdownItem {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbDropdownComponent implements OnInit {
+export class BmbDropdownComponent implements OnInit, OnChanges {
   required = input<boolean>();
   showIcon = input<boolean>(false);
   placeholder = input<string>('');
@@ -59,11 +67,12 @@ export class BmbDropdownComponent implements OnInit {
   control = input<FormControl>(new FormControl());
   disabled = input<boolean>(false);
   label = input<string>();
+  preferredOptions = input<string[]>([]);
 
   onValueChange = output<any>();
 
   isFocus: boolean = false;
-  selectedIndexOption?: number;
+  selectedIndexOption?: number | string;
   selectedOption?: any;
   inputControl = new FormControl();
 
@@ -73,6 +82,7 @@ export class BmbDropdownComponent implements OnInit {
 
   value: string = '';
   openSelect: boolean = false;
+  parsedOptions: IBmbDropdownItem[] = [];
 
   ngOnInit() {
     const value = this.control().value;
@@ -82,19 +92,21 @@ export class BmbDropdownComponent implements OnInit {
     });
     const name = typeof dDItem === 'string' ? dDItem : dDItem?.name;
     this.inputControl.setValue(name);
+
+    this.parsedOptions = this.options().map((item) => this.getItem(item));
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.parsedOptions = this.options().map((item) => this.getItem(item));
   }
 
   closeDialog() {
     this.openSelect = false;
   }
 
-  handleItemClick(
-    event: IBmbDropdownItem,
-    index: number,
-    item: IBmbDropdownItem | string,
-  ): void {
-    this.onValueChange.emit(item);
-    this.selectedIndexOption = index;
+  handleItemClick(event: IBmbDropdownItem): void {
+    this.onValueChange.emit(event);
+    this.selectedIndexOption = event.value;
     this.selectedOption = event.value;
     this.control().setValue(event.value);
     this.isFocus = !this.isFocus;
@@ -131,6 +143,11 @@ export class BmbDropdownComponent implements OnInit {
     }
   }
 
+  handleChevronClick() {
+    this.openSelect = !this.openSelect;
+    this.isFocus = !this.isFocus;
+  }
+
   getDialogStatus() {
     return this.openSelect;
   }
@@ -139,5 +156,23 @@ export class BmbDropdownComponent implements OnInit {
     if (typeof item === 'string')
       return { name: item, value: item, icon: this.icon() || '' };
     return item as IBmbDropdownItem;
+  }
+
+  getPreferredOptions(): IBmbDropdownItem[] {
+    const options = this.preferredOptions().reduce<IBmbDropdownItem[]>(
+      (acc, item) => {
+        const option = this.options().find((option) => {
+          if (typeof option === 'string') return option === item;
+          return option.value === item;
+        });
+        if (option) acc.push(this.getItem(option) as IBmbDropdownItem);
+        return acc;
+      },
+      [],
+    );
+
+    console.log('options', options);
+
+    return options;
   }
 }

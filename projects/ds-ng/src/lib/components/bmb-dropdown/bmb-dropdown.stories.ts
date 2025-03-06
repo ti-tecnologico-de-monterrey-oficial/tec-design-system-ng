@@ -186,6 +186,17 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'function' },
       },
     },
+    preferredOptions: {
+      name: 'Preferred options',
+      control: { type: 'array' },
+      description:
+        'List of options to be displayed at the top, the text must match the value property of an option or must be equal to an option in case the options are text.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string[]' },
+        defaultValue: { summary: '[]' },
+      },
+    },
   },
   args: {
     icon: 'bolt',
@@ -196,6 +207,7 @@ Below is an example of how you can use this component in HTML:
     options: ['Apple', 'Banana', 'Orange', 'Pear', 'Grape'],
     disabled: false,
     helperText: 'Select a fruit',
+    preferredOptions: ['Banana'],
     onValueChange: (params: any) => {
       window.alert(params.toString());
     },

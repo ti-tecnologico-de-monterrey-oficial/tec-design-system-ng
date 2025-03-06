@@ -168,15 +168,38 @@ More details: [Conventional Commits](https://www.conventionalcommits.org/en/v1.0
 
 ## PRs
 
-Once the code is ready to be merged into the feature-prod branch, the following template should be added:
+Once the code is ready to be merged into the feature-prod branch, fill out the template as directed, making sure to include the chromatic link with evidence of your changes.
 
-**Title**: _Proposed changes_
+If your changes have a significant impact, you should provide a reason for the changes.
 
-**Body**:
+### Template
 
-- Link to the task in Jira and its title
-- List of proposed changes
-- If applicable, a screenshot of how the proposed changes should look
+---
+
+[DS01-XXXX](https://tecdemonterrey.atlassian.net/browse/DS01-XXXX) - ISSUE_TITLE
+
+## Changes proposed in this PR: 💻
+
+-
+
+## Chromatic URL
+
+[Chromatic](https://www.chromatic.com/build?appId=65c3b4d1f966b98bb1f4e774&number=)
+
+## Visuals 🎴
+
+Add screenshots of the result of your changes proposed.
+
+## Checklist ✔️
+
+Please check all steps on the checklist
+
+- [ ] My code matches all coding standars.
+- [ ] I included the documentation files (.stories.ts).
+- [ ] I ran the unit test before submitting.
+- [ ] My code resolved all of the task's acceptance criteria.
+
+---
 
 ## Versions
 
@@ -200,12 +223,21 @@ git checkout development
 git pull origin development
 npm i
 npm run build:lib
-npm publish --access public
 ```
 
-## Chromatic
+To test the installation you need change the library package version as beta.
 
-**_This step is for admin users only._**
+`tec-design-system-ng/projects/ds-ng/package.json`
+
+- This is an example of a beta version: `"version": "X.X.X-beta.X",`
+- Run the follow command: `npm publish:beta`
+
+**After test the installation successfully** you need to publish the latest version.
+
+- Remove the beta version on the package file `"version": "X.X.X",`
+- Run the follow command: `npm publish:latest`
+
+## Chromatic
 
 The order of the commands is as follows:
 
@@ -214,9 +246,13 @@ git checkout development
 git pull origin development
 npm i
 npm run storybook
-# Check that everything works properly
+```
+
+**Check that everything works properly**
+
+```
 npm run build-storybook
-npm run chromatic --project-token={token}
+npm run chromatic
 ```
 
 This documentation provides an overview of the project structure, key components, build and development processes, and configuration details. For more information, refer to the individual files and directories mentioned above.

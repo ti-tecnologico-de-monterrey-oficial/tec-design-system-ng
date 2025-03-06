@@ -1,6 +1,14 @@
 <section class="bmb_alert-center" #container bmbLayout margin="none">
-  <div bmbLayoutItem [colSm]="4" [colLg]="5" class="bmb_alert-center-main">
-    <bmb-tabs [tabs]="tabs" (selected)="handleTabChange($event)" />
+  <div
+    bmbLayoutItem
+    [colSm]="4"
+    [colLg]="hideTabs() ? 12 : 5"
+    class="bmb_alert-center-main"
+    [ngClass]="{ 'bmb_alert-center-main-no-border': hideTabs() }"
+  >
+    @if (!hideTabs()) {
+      <bmb-tabs [tabs]="tabs" (selected)="handleTabChange($event)" />
+    }
     @if (selectedTab === 0) {
       <bmb-alert-center-form
         (showAlertDetail)="handleShowAlert($event)"
@@ -32,14 +40,16 @@
       />
     }
   </div>
-  <section
-    class="bmb_alert-center-content"
-    bmbLayoutItem
-    [colSm]="4"
-    [colLg]="7"
-  >
-    <ng-container [ngTemplateOutlet]="detailContent" />
-  </section>
+  @if (!hideTabs()) {
+    <section
+      class="bmb_alert-center-content"
+      bmbLayoutItem
+      [colSm]="4"
+      [colLg]="7"
+    >
+      <ng-container [ngTemplateOutlet]="detailContent" />
+    </section>
+  }
 </section>
 
 <ng-template #detailContent>

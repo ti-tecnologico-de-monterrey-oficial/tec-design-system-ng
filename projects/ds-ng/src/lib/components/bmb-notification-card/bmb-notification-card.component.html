@@ -10,7 +10,7 @@
     <div class="bmb_home-notification-card-content">
       @switch (activeTab) {
         @case (1) {
-          <bmb-alert-center [alerts]="data()" />
+          <bmb-alert-center [alerts]="data()" [hideTabs]="true" />
         }
         @case (2) {
           <bmb-carousel>
