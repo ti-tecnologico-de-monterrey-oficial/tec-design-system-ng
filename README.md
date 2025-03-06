@@ -9,6 +9,7 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 ## Cambios de la versión v1.5.1
 
 ### Novedades
+
 - Se agregó la compatibilidad con **Angular 19**
 
 ### Componentes actualizados:
