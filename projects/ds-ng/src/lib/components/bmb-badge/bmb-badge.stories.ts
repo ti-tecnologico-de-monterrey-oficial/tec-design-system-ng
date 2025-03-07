@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbBadgeComponent } from './bmb-badge.component';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
+import { InputSignal, Signal } from '@angular/core';
 
 const appearanceOptions: IBbmBgAppearance[] = [
   'normal',
@@ -116,3 +117,11 @@ Below is an example of how you can use this component in HTML:
 type Story = StoryObj<BmbBadgeComponent>;
 
 export const Default: Story = {};
+
+export const Container = {
+  ...Default,
+  args: {
+    ...Default.args,
+    container: true,
+  }
+}

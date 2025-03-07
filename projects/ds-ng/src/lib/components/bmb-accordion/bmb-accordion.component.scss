@@ -69,6 +69,11 @@
     .bmb_accordion-header,
     .bmb_accordion-header-icon {
       background-color: RGBA(var(--color-mariner-100));
+      border-radius: rem.rem_calc(16);
+    }
+
+    .bmb_accordion-header-open {
+      border-radius: rem.rem_calc(16 16 0 0);
     }
 
     .bmb_accordion-content {

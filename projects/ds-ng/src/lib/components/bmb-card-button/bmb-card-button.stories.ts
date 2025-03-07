@@ -201,7 +201,7 @@ Below is an example of how to use it in HTML:
       control: { type: 'object' },
       description: `
     An array of objects representing menu items, providing additional actions or navigation options within the card button. Each object in the array should contain the following properties:
-    
+
     - \`icon\`: (string) The name of the icon displayed next to the menu item text.
     - \`text\`: (string) The text label for the menu item.
     - \`url\`: (optional, string) The URL to navigate to when the menu item is clicked.
@@ -220,7 +220,7 @@ Below is an example of how to use it in HTML:
       name: 'Is Template',
       control: { type: 'boolean' },
       description: `
-Enable template usage for the icons show before menu dropdown. You can place less than 4 icons. 
+Enable template usage for the icons show before menu dropdown. You can place less than 4 icons.
 Example:
 
 \`\`\`html
@@ -254,11 +254,11 @@ Example:
       control: { type: 'text' },
       description: `
     Specifies the icon displayed on the card button. This icon is used to visually represent the primary action or state of the button. You can use any icon from the Material Icons library or a custom icon set.
-    
+
     Examples:
     - \`'info'\`: Displays an information icon.
     - \`'settings'\`: Displays a settings icon.
-    
+
     Usage:
     \`\`\`html
     <bmb-icon [icon]="'info'"></bmb-icon>
@@ -331,9 +331,43 @@ Example:
       src: 'https://image',
       alt: 'Left content image',
     },
+    isSmall: false,
+    smallIcon: 'info',
   },
 } as Meta<typeof BmbCardButtonComponent>;
 
 type Story = StoryObj<BmbCardButtonComponent>;
 
 export const Default: Story = {};
+
+export const NoFullInteractive = {
+  ...Default,
+  args: {
+    ...Default.args,
+    isFullInteractive: false,
+  },
+};
+
+export const LeftContent = {
+  ...Default,
+  args: {
+    ...Default.args,
+    leftContent: true,
+  },
+};
+
+export const NoMenu = {
+  ...Default,
+  args: {
+    ...Default.args,
+    hasMenu: false,
+  },
+};
+
+export const SmallCard = {
+  ...Default,
+  args: {
+    ...Default.args,
+    isSmall: true,
+  },
+};

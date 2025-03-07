@@ -252,3 +252,11 @@ export const OneItem: Story = {
     `,
   }),
 };
+
+export const SelectedItem = {
+  ...OneItem,
+  args: {
+    ...OneItem.args,
+    active: true,
+  },
+};

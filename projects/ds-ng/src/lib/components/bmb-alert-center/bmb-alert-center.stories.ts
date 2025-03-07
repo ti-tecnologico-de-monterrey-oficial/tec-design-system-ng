@@ -395,3 +395,11 @@ Below is an example of how you can use this component in HTML:
 type Story = StoryObj<BmbAlertCenterComponent>;
 
 export const Default: Story = {};
+
+export const HideTabs = {
+  ...Default,
+  args: {
+    ...Default.args,
+    hideTabs: true,
+  },
+};
