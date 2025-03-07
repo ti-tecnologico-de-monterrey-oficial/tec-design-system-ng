@@ -125,3 +125,35 @@ Below is an example of how you can use this component in HTML:
 type Story = StoryObj<BmbTextLinkComponent>;
 
 export const Default: Story = {};
+
+export const Underlined = {
+  ...Default,
+  args: {
+    ...Default.args,
+    textLinkStyle: 'underlined',
+  },
+};
+
+export const IconPositionLeft = {
+  ...Default,
+  args: {
+    ...Default.args,
+    iconPosition: 'left',
+  },
+};
+
+export const IconPositionRight = {
+  ...Default,
+  args: {
+    ...Default.args,
+    iconPosition: 'right',
+  },
+};
+
+export const Disable = {
+  ...Default,
+  args: {
+    ...Default.args,
+    disabled: true,
+  },
+};
