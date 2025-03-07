@@ -226,10 +226,21 @@ Below is an example of how to use this component in HTML:
       control: {
         type: '',
       },
-      description: 'This output can be used to save the row selected .',
+      description: 'This output can be used to save the row selected by the checkbox configuration.',
       table: {
         category: 'Events',
         type: { summary: 'onSelect($event)' },
+      },
+    },
+    clickedRow: {
+      name: 'Clicked Row',
+      control: {
+        type: '',
+      },
+      description: 'This output can be used to save the row selected by the interaction of a click.',
+      table: {
+        category: 'Events',
+        type: { summary: 'clickedRow($event)' },
       },
     },
   },

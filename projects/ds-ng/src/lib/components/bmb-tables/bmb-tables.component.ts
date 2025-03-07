@@ -110,6 +110,7 @@ export class BmbTablesComponent implements AfterViewInit, OnInit {
   @Input() wrap: boolean = true;
 
   @Output() select: EventEmitter<any> = new EventEmitter();
+  @Output() clickedRow: EventEmitter<any> = new EventEmitter();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatTable, { read: ElementRef }) private matTableRef?: ElementRef;
@@ -288,4 +289,8 @@ export class BmbTablesComponent implements AfterViewInit, OnInit {
   isTemplateRef(value: any): boolean {
     return value instanceof TemplateRef;
   }
+
+  onSelectRow(row: any){
+    this.clickedRow.emit(row);
+  } 
 }
