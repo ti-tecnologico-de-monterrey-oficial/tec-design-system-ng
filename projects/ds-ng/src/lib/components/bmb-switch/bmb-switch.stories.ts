@@ -134,17 +134,32 @@ Below is an example of how you can use this component in HTML:
     },
   },
   args: {
-    leftText: 'Light',
-    rightText: 'Dark',
-    leftIcon: '',
-    rightIcon: '',
-    id: '1',
-    isChecked: false,
-    disabled: false,
-    ariaLabel: 'Describe the button function here',
+
   },
 } as Meta<typeof BmbSwitchComponent>;
 
 type Story = StoryObj<BmbSwitchComponent>;
 
 export const Default: Story = {};
+
+
+export const IconExample = {
+  args: {
+    leftText: '',
+    rightText: '',
+    leftIcon: 'light_mode',
+    rightIcon: 'dark_mode',
+  },
+};
+
+export const CheckedExample = {
+  args: {
+    isChecked: true,
+  },
+};
+
+export const DisabledExample = {
+  args: {
+    disabled: true,
+  },
+};

@@ -116,19 +116,9 @@
   &:hover:not(:disabled) {
     .bmb_switch-label {
       &::after {
-        box-shadow: 0 0 0 rem.rem_calc(10) rgba(var(--color-green-light), 0.2);
+        box-shadow: 0 0 0 rem.rem_calc(10) var(--switch-checked-shadow);
       }
     }
   }
 }
 
-[data-theme="dark"],
-.storybook-dark-theme {
-  &:hover:not(:disabled) {
-    .bmb_switch-label {
-      &::after {
-        box-shadow: 0 0 0 rem.rem_calc(10) rgba(var(--color-mariner-700), 0.2);
-      }
-    }
-  }
-}
