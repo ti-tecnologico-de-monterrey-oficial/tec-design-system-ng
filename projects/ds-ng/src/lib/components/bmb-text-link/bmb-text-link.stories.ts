@@ -126,34 +126,20 @@ type Story = StoryObj<BmbTextLinkComponent>;
 
 export const Default: Story = {};
 
-export const Underlined = {
-  ...Default,
-  args: {
-    ...Default.args,
-    textLinkStyle: 'underlined',
-  },
-};
-
 export const IconPositionLeft = {
-  ...Default,
   args: {
-    ...Default.args,
     iconPosition: 'left',
   },
 };
 
-export const IconPositionRight = {
-  ...Default,
+export const Underlined = {
   args: {
-    ...Default.args,
-    iconPosition: 'right',
+    textLinkStyle: 'underlined',
   },
 };
 
 export const Disable = {
-  ...Default,
   args: {
-    ...Default.args,
     disabled: true,
   },
 };
