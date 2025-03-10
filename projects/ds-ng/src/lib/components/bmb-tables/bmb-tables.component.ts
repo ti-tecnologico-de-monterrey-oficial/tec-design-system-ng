@@ -290,7 +290,7 @@ export class BmbTablesComponent implements AfterViewInit, OnInit {
     return value instanceof TemplateRef;
   }
 
-  onSelectRow(row: any){
+  onSelectRow(row: any) {
     this.clickedRow.emit(row);
-  } 
+  }
 }
