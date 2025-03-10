@@ -149,7 +149,6 @@ type Story = StoryObj<BmbSwitchComponent>;
 
 export const Default: Story = {};
 
-
 export const IconExample = {
   args: {
     leftText: '',
