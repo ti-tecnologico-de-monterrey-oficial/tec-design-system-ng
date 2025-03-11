@@ -193,7 +193,7 @@ Below is an example of how you can use this component in HTML:
           {
             text: 'Descripción de la alerta 10 link',
             type: 'image',
-            href: 'https://picsum.photos/200',
+            href: 'https://picsum.photos/id/25/200',
           },
         ],
         date: '19/11/2024',
@@ -248,7 +248,7 @@ Below is an example of how you can use this component in HTML:
           {
             text: 'Descripción de la alerta 10 link',
             type: 'image',
-            href: 'https://picsum.photos/200',
+            href: 'https://picsum.photos/id/26/200',
           },
         ],
         date: '02/01/2024',
@@ -316,7 +316,7 @@ Below is an example of how you can use this component in HTML:
           {
             text: 'Descripción de la alerta 10 link',
             type: 'image',
-            href: 'https://picsum.photos/200',
+            href: 'https://picsum.photos/id/28/200',
           },
         ],
         date: '19/11/2024',
@@ -371,7 +371,7 @@ Below is an example of how you can use this component in HTML:
           {
             text: 'Descripción de la alerta 10 link',
             type: 'image',
-            href: 'https://picsum.photos/200',
+            href: 'https://picsum.photos/id/24/200',
           },
         ],
         date: '02/01/2024',
