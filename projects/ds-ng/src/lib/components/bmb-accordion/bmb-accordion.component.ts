@@ -97,6 +97,10 @@ export class BmbAccordionComponent implements OnInit {
       classNames.push('bmb_accordion-header-icon');
     }
 
+    if (this._expanded()) {
+      classNames.push('bmb_accordion-header-open');
+    }
+
     return classNames;
   }
 
