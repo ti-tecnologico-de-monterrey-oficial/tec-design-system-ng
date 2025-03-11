@@ -148,6 +148,7 @@
       <tr
         mat-row
         *matRowDef="let row; columns: tableDisplayColumns; let i = dataIndex"
+        (click)="onSelectRow(row)"
         class="bmb_table-row"
         [class.bmb_table-expandible]="expandedElement === row"
         [ngClass]="{
