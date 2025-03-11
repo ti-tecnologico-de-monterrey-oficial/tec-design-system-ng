@@ -8,7 +8,7 @@ export default {
     docs: {
       description: {
         component: `Note: When you click on fullscreen icon, in Storybook doesn’t look the best due to the many elements, but in your project, it should display correctly.
-        
+
 Below is an example of how you can use this component in TypeScript:
 
 \`\`\`typescript
@@ -147,7 +147,7 @@ Below is an example of how you can use this component in HTML:
           {
             text: 'Descripción de la alerta 10 link',
             type: 'image',
-            href: 'https://picsum.photos/200',
+            href: 'https://picsum.photos/id/24/200',
           },
         ],
         date: '19/11/2024',
@@ -202,7 +202,7 @@ Below is an example of how you can use this component in HTML:
           {
             text: 'Descripción de la alerta 10 link',
             type: 'image',
-            href: 'https://picsum.photos/200',
+            href: 'https://picsum.photos/id/25/200',
           },
         ],
         date: '02/01/2024',
@@ -270,7 +270,7 @@ Below is an example of how you can use this component in HTML:
           {
             text: 'Descripción de la alerta 10 link',
             type: 'image',
-            href: 'https://picsum.photos/200',
+            href: 'https://picsum.photos/id/26/200',
           },
         ],
         date: '19/11/2024',
@@ -325,7 +325,7 @@ Below is an example of how you can use this component in HTML:
           {
             text: 'Descripción de la alerta 10 link',
             type: 'image',
-            href: 'https://picsum.photos/200',
+            href: 'https://picsum.photos/id/28/200',
           },
         ],
         date: '02/01/2024',

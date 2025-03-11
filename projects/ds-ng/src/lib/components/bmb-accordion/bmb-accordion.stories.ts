@@ -6,7 +6,7 @@ import { InputSignal } from '@angular/core';
 import { SizeNames } from '../../types';
 import { attributes } from '../../utils/utils';
 
-const meta: Meta<BmbAccordionComponent> = {
+export default {
   title: 'Micro Componentes/Accordion',
   component: BmbAccordionComponent,
   decorators: [
@@ -214,9 +214,7 @@ Below is an example of how you can use this component in HTML:
     disabled: false as unknown as InputSignal<boolean>,
     expanded: false as unknown as InputSignal<boolean | undefined>,
   },
-};
-
-export default meta;
+} as Meta<typeof BmbAccordionComponent>;
 
 type Story = StoryObj<BmbAccordionComponent>;
 

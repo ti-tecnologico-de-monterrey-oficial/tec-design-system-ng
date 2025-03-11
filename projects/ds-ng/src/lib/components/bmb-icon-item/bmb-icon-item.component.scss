@@ -1,0 +1,25 @@
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/rem" as rem;
+
+.bmb_icon-item {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  &-item {
+    display: flex;
+    align-items: center;
+
+    &-label {
+      @include fonts.font(5, semibold);
+      margin-left: rem.rem_calc(16);
+    }
+  }
+
+  &-value {
+    @include fonts.font(4, regular);
+    text-align: end;
+  }
+}

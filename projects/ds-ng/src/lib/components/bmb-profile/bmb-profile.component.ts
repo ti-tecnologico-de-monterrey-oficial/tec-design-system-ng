@@ -23,6 +23,8 @@ import { BmbUserSummaryContentComponent } from '../bmb-user-summary/bmb-user-sum
 import { CommonModule } from '@angular/common';
 import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
 import { buildErrorMessage } from '../../utils/utils';
+import { BmbIconItemComponent } from '../bmb-icon-item/bmb-icon-item.component';
+import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 
 @Component({
   selector: 'bmb-profile',
@@ -31,6 +33,8 @@ import { buildErrorMessage } from '../../utils/utils';
     CommonModule,
     BmbMobileTemplatesComponent,
     BmbUserSummaryContentComponent,
+    BmbIconItemComponent,
+    BmbDividerComponent,
     BmbIconComponent,
     BmbContainerButtonComponent,
     BmbThemeComponent,
