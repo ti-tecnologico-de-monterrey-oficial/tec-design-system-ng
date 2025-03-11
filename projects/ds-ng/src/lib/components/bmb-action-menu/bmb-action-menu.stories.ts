@@ -1,10 +1,16 @@
-import { Meta, StoryFn } from '@storybook/angular';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { BmbActionMenuComponent } from './bmb-action-menu.component';
-import { attributes, attributesText } from '../../utils/utils';
+import { attributes } from '../../utils/utils';
+import { BmbIconItemComponent } from '../bmb-icon-item/bmb-icon-item.component';
 
 export default {
   title: 'Micro Componentes/Action Menu',
   component: BmbActionMenuComponent,
+  decorators: [
+    moduleMetadata({
+      imports: [BmbIconItemComponent],
+    }),
+  ],
   parameters: {
     docs: {
       description: {
@@ -101,33 +107,72 @@ Below is an example of how you can use this component in HTML:
   },
 } as Meta<typeof BmbActionMenuComponent>;
 
-const customizable = (): StoryFn => (args) => ({
-  props: args,
-  template: `
-    <div style="height: 200px;">
+type Story = StoryObj<BmbActionMenuComponent>;
+
+export const ListExample: Story = {
+  render: (args) => ({
+    props: args,
+    template: `
+    <!-- Instruction to users: This html is used for internal Storybook logic and should not be copied -->
+    <div style="height: ${args['isAList'] ? '420' : '200'}px;">
+      <!-- Example of how you can use this component. -->
       <bmb-action-menu ${attributes(args)}>
         ${
           args['isAList']
             ? `
             <ng-template>
+              <!-- Example of content. The content can be a bamboo component or html. -->
               <button class="action-btn">Option 1</button>
             </ng-template>
             <ng-template>
+               <!-- Example of content. The content can be a bamboo component or html. -->
               <a href="#">Option 2</a>
             </ng-template>
             <ng-template>
+               <!-- Example of content. The content can be a bamboo component or html. -->
               <div>Only Text</div>
+            </ng-template>
+            <ng-template>
+               <!-- Example of content. The content can be a bamboo component or html. -->
+              <bmb-icon-item
+                icon="calendar_month"
+                [iconSize]="24"
+                label="Semestre"
+                value="AGO-DIC 24"
+              />
             </ng-template>
           `
             : `
+            <!-- Example of content. The content can be a bamboo component or html. -->
             <button class="action-btn">Option 1</button>
-            <a href="#">Option 2</a>
+              <a href="#">Option 2</a>
             <div>Only Text</div>
           `
         }
       </bmb-action-menu>
     </div>
   `,
-});
+  }),
+};
 
-export const Default = customizable();
+export const NotListExample = {
+  render: (args: any) => ({
+    props: args,
+    template: `
+    <!-- Instruction to users: This html is used for internal Storybook logic and should not be copied -->
+    <div style="height: 200px;">
+      <!-- Example of how you can use this component. -->
+      <bmb-action-menu ${attributes({ ...args, isAList: false })}>
+        <!-- Example of content. The content can be a bamboo component or html. -->
+        <bmb-icon-item
+          icon="calendar_month"
+          [iconSize]="24"
+          label="Semestre"
+          value="AGO-DIC 24"
+        />
+        <a href="#">Option 2</a>
+      </bmb-action-menu>
+    </div>
+    `,
+  }),
+};
