@@ -123,5 +123,5 @@ export const Container = {
   args: {
     ...Default.args,
     container: true,
-  }
-}
+  },
+};
