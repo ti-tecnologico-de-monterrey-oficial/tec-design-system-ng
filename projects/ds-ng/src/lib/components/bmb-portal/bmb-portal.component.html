@@ -2,42 +2,64 @@
   <div class="bmb_portal-top-left">
     <ng-container
       [ngTemplateOutlet]="commonTemplate"
-      [ngTemplateOutletContext]="{ notifications: getNotifications(), position: 'top-left' }"
+      [ngTemplateOutletContext]="{
+        notifications: getNotifications(),
+        position: 'top-left',
+      }"
     />
   </div>
   <div class="bmb_portal-top-center">
     <ng-container
       [ngTemplateOutlet]="commonTemplate"
-      [ngTemplateOutletContext]="{ notifications: getNotifications(), position: 'top-center' }"
+      [ngTemplateOutletContext]="{
+        notifications: getNotifications(),
+        position: 'top-center',
+      }"
     />
   </div>
   <div class="bmb_portal-top-right">
     <ng-container
       [ngTemplateOutlet]="commonTemplate"
-      [ngTemplateOutletContext]="{ notifications: getNotifications(), position: 'top-right' }"
+      [ngTemplateOutletContext]="{
+        notifications: getNotifications(),
+        position: 'top-right',
+      }"
     />
   </div>
   <div class="bmb_portal-bottom-left">
     <ng-container
       [ngTemplateOutlet]="commonTemplate"
-      [ngTemplateOutletContext]="{ notifications: getNotifications(), position: 'bottom-left' }"
+      [ngTemplateOutletContext]="{
+        notifications: getNotifications(),
+        position: 'bottom-left',
+      }"
     />
   </div>
   <div class="bmb_portal-bottom-center">
     <ng-container
       [ngTemplateOutlet]="commonTemplate"
-      [ngTemplateOutletContext]="{ notifications: getNotifications(), position: 'bottom-center' }"
+      [ngTemplateOutletContext]="{
+        notifications: getNotifications(),
+        position: 'bottom-center',
+      }"
     />
   </div>
   <div class="bmb_portal-bottom-right">
     <ng-container
       [ngTemplateOutlet]="commonTemplate"
-      [ngTemplateOutletContext]="{ notifications: getNotifications(), position: 'bottom-right' }"
+      [ngTemplateOutletContext]="{
+        notifications: getNotifications(),
+        position: 'bottom-right',
+      }"
     />
   </div>
 </section>
 
-<ng-template #commonTemplate let-notifications="notifications" let-position="position">
+<ng-template
+  #commonTemplate
+  let-notifications="notifications"
+  let-position="position"
+>
   @for (notification of notifications; track $index) {
     @if (notification.position === position) {
       @if (notification.component === "toast") {

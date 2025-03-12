@@ -16,7 +16,13 @@ export interface INotification extends IMinimalNotification {
   media?: string;
   appearance?: BmbToastAppearance;
   component?: 'toast' | 'notification';
-  position?: 'top-left' | 'top-right' | 'top-center' | 'bottom-left' | 'bottom-right' | 'bottom-center';
+  position?:
+    | 'top-left'
+    | 'top-right'
+    | 'top-center'
+    | 'bottom-left'
+    | 'bottom-right'
+    | 'bottom-center';
 }
 
 export interface IMinimalNotification {

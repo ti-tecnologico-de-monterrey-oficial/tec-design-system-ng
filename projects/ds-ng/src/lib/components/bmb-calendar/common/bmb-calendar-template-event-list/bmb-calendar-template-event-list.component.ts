@@ -15,9 +15,7 @@ import { BmbContainerButtonComponent } from '../../../bmb-container-button/bmb-c
 @Component({
   selector: 'bmb-calendar-template-event-list',
   standalone: true,
-  imports: [
-    BmbContainerButtonComponent,
-  ],
+  imports: [BmbContainerButtonComponent],
   templateUrl: './bmb-calendar-template-event-list.component.html',
   styleUrl: './bmb-calendar-template-event-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

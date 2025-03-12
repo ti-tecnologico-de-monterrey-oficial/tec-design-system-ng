@@ -149,30 +149,31 @@
   //GRADIENTS
   // To use this gradient you should use it in this way
   // background-color: linear-gradient(180deg, var(--color-gradient-blue)); or background-color: radial-gradient(circle, var(--color-gradient-blue));
-  --color-button-gradient: RGBA(var(--color-teal-primary)) 0%,
-    RGBA(var(--color-blue-primary)) 100%;
-  --color-blue-gradient: RGBA(var(--color-teal-primary)) 0%,
-    RGBA(var(--color-blue-pigment)) 100%;
-  --color-green-gradient: RGBA(var(--color-neon-primary)) 0%,
-    RGBA(var(--color-green-light)) 100%;
-  --color-purple-gradient: RGBA(var(--color-purple-primary)) 0%,
-    RGBA(var(--color-purple-light)) 100%;
-  --color-bg-gradient: RGBA(var(--color-japanese-indigo)) 0%,
+  --color-button-gradient:
+    RGBA(var(--color-teal-primary)) 0%, RGBA(var(--color-blue-primary)) 100%;
+  --color-blue-gradient:
+    RGBA(var(--color-teal-primary)) 0%, RGBA(var(--color-blue-pigment)) 100%;
+  --color-green-gradient:
+    RGBA(var(--color-neon-primary)) 0%, RGBA(var(--color-green-light)) 100%;
+  --color-purple-gradient:
+    RGBA(var(--color-purple-primary)) 0%, RGBA(var(--color-purple-light)) 100%;
+  --color-bg-gradient:
+    RGBA(var(--color-japanese-indigo)) 0%,
     RGBA(var(--color-background-main)) 100%;
-  --color-bg-wheel: RGBA(var(--color-eerie-black)) 0%,
-    RGBA(var(--color-background-main)) 100%;
-  --color-bg-gradient-light: RGBA(var(--color-white-primary)) 0%,
-    RGBA(var(--color-blue-tint)) 100%;
-  --color-bg-wheel-light: RGBA(var(--color-white-primary)) 0%,
-    RGBA(var(--color-blue-tint)) 100%;
-  --color-bg-gradient-tec: RGBA(var(--color-container-home-tec)) 0%,
-    RGBA(var(--color-blue-tec)) 100%;
-  --color-bg-wheel-tec: RGBA(var(--color-container-home-tec)) 0%,
-    RGBA(var(--color-blue-tec)) 100%;
-  --color-academic-gradient: RGBA(var(--color-mariner-950)) 0%,
-    RGBA(var(--color-mariner-900)) 100%;
-  --color-life-gradient: RGBA(var(--color-green-primary)) 0%,
-    RGBA(var(--color-green-light)) 100%;
-  --color-event-gradient: RGBA(var(--color-purple-primary)) 0%,
-    RGBA(var(--color-purple-light)) 100%;
+  --color-bg-wheel:
+    RGBA(var(--color-eerie-black)) 0%, RGBA(var(--color-background-main)) 100%;
+  --color-bg-gradient-light:
+    RGBA(var(--color-white-primary)) 0%, RGBA(var(--color-blue-tint)) 100%;
+  --color-bg-wheel-light:
+    RGBA(var(--color-white-primary)) 0%, RGBA(var(--color-blue-tint)) 100%;
+  --color-bg-gradient-tec:
+    RGBA(var(--color-container-home-tec)) 0%, RGBA(var(--color-blue-tec)) 100%;
+  --color-bg-wheel-tec:
+    RGBA(var(--color-container-home-tec)) 0%, RGBA(var(--color-blue-tec)) 100%;
+  --color-academic-gradient:
+    RGBA(var(--color-mariner-950)) 0%, RGBA(var(--color-mariner-900)) 100%;
+  --color-life-gradient:
+    RGBA(var(--color-green-primary)) 0%, RGBA(var(--color-green-light)) 100%;
+  --color-event-gradient:
+    RGBA(var(--color-purple-primary)) 0%, RGBA(var(--color-purple-light)) 100%;
 }

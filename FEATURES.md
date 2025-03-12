@@ -1,8 +1,6 @@
 # Novedades ## [] -
 
-
 ### 🚀 Novedades
-
 
 ### 🆕 Nuevos Componentes
 

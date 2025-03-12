@@ -3,10 +3,10 @@
 @mixin base() {
   position: absolute;
   width: clamp(
-      rem.rem_calc(100),
-      calc(100% - rem.rem_calc(32)),
-      rem.rem_calc(500)
-    );
+    rem.rem_calc(100),
+    calc(100% - rem.rem_calc(32)),
+    rem.rem_calc(500)
+  );
   z-index: 9999;
   display: flex;
   gap: rem.rem_calc(16);
@@ -24,7 +24,6 @@
 }
 
 .bmb_portal {
-
   &-top-right {
     right: rem.rem_calc(16);
     @include topMixin();

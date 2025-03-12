@@ -52,7 +52,14 @@ class StorybookToastWrapperComponent {
   userMail = input('');
   component = input<'toast' | 'notification'>('notification');
   appearance = input<BmbToastAppearance>('neutral');
-  position = input<'top-left' | 'top-right' | 'top-center' | 'bottom-left' | 'bottom-right' | 'bottom-center'>('top-right');
+  position = input<
+    | 'top-left'
+    | 'top-right'
+    | 'top-center'
+    | 'bottom-left'
+    | 'bottom-right'
+    | 'bottom-center'
+  >('top-right');
 
   enableDontAskAgain() {
     alert("Don't ask again");
@@ -403,14 +410,21 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'select',
       },
-      options: ['top-left', 'top-center', 'top-right', 'bottom-left', 'bottom-center', 'bottom-right'],
+      options: [
+        'top-left',
+        'top-center',
+        'top-right',
+        'bottom-left',
+        'bottom-center',
+        'bottom-right',
+      ],
       table: {
         category: 'Properties',
         type: { summary: 'string' },
         defaultValue: { summary: 'top-right' },
       },
       description: 'Set the position of the notification.',
-    }
+    },
   },
   args: {
     title: 'Notification Title',

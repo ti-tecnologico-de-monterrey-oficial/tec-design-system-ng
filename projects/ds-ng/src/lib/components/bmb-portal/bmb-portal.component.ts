@@ -22,7 +22,6 @@ import { CommonModule } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbPortalComponent {
-
   constructor(private notificationSignal: BmbNotificationService) {}
 
   getNotifications() {
