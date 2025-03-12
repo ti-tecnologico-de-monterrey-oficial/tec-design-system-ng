@@ -60,6 +60,9 @@ export class BmbThemeComponent implements OnInit {
   applyTheme(theme: string): void {
     if (theme !== this.selectedTheme || !this.initialized) {
       document.documentElement.setAttribute('data-theme', theme);
+      document
+        .querySelector('#background-content')
+        ?.setAttribute('data-theme', theme);
       localStorage.setItem('theme', theme);
       this.selectedTheme = theme;
     }
