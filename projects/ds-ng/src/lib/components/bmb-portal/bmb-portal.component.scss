@@ -1,16 +1,65 @@
 @use "../../../assets/styles/base/rem" as rem;
 
-.bmb_portal {
+@mixin base() {
   position: absolute;
-  right: rem.rem_calc(16);
-  top: rem.rem_calc(16);
   width: clamp(
-    rem.rem_calc(100),
-    calc(100% - rem.rem_calc(32)),
-    rem.rem_calc(500)
-  );
+      rem.rem_calc(100),
+      calc(100% - rem.rem_calc(32)),
+      rem.rem_calc(500)
+    );
   z-index: 9999;
   display: flex;
   gap: rem.rem_calc(16);
   flex-flow: column;
+}
+
+@mixin topMixin() {
+  @include base();
+  top: rem.rem_calc(16);
+}
+
+@mixin bottomMixin() {
+  @include base();
+  bottom: rem.rem_calc(16);
+}
+
+.bmb_portal {
+
+  &-top-right {
+    right: rem.rem_calc(16);
+    @include topMixin();
+  }
+
+  &-top-left {
+    left: rem.rem_calc(16);
+    @include topMixin();
+  }
+
+  &-top-center {
+    left: 50%;
+    @include topMixin();
+
+    > * {
+      transform: translateX(-50%);
+    }
+  }
+
+  &-bottom-right {
+    right: rem.rem_calc(16);
+    @include bottomMixin();
+  }
+
+  &-bottom-left {
+    left: rem.rem_calc(16);
+    @include bottomMixin();
+  }
+
+  &-bottom-center {
+    left: 50%;
+    @include bottomMixin();
+
+    > * {
+      transform: translateX(-50%);
+    }
+  }
 }

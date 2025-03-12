@@ -8,22 +8,14 @@ import {
   Output,
   ViewEncapsulation,
 } from '@angular/core';
-import { IBmbCalendarEvent, IBmbCalendarEventClick } from '../../types';
-import { BmbCalendarScheduleCardsComponent } from '../bmb-calendar-schedule-cards/bmb-calendar-schedule-cards.component';
+import { IBmbCalendarEvent } from '../../types';
 import { DateTime } from 'luxon';
-import { BmbLayoutDirective } from '../../../../directives/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../../../../directives/bmb-layout/bmb-layout-item.directive';
-import { BmbCardComponent } from '../../../bmb-card/bmb-card.component';
 import { BmbContainerButtonComponent } from '../../../bmb-container-button/bmb-container-button.component';
 
 @Component({
   selector: 'bmb-calendar-template-event-list',
   standalone: true,
   imports: [
-    BmbCalendarScheduleCardsComponent,
-    BmbCardComponent,
-    BmbLayoutDirective,
-    BmbLayoutItemDirective,
     BmbContainerButtonComponent,
   ],
   templateUrl: './bmb-calendar-template-event-list.component.html',

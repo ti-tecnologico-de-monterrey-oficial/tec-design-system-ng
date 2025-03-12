@@ -1,23 +1,28 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
+  effect,
+  signal,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbNotificationService } from '../../services/notification.service';
 import { INotification } from '../bmb-push-notification/types';
 import { BmbPushNotificationItemComponent } from '../bmb-push-notification/bmb-push-notification-item/bmb-push-notification-item.component';
 import { BmbToastComponent } from '../bmb-toast/bmb-toast.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'bmb-portal',
   standalone: true,
-  imports: [BmbPushNotificationItemComponent, BmbToastComponent],
+  imports: [BmbPushNotificationItemComponent, BmbToastComponent, CommonModule],
   templateUrl: './bmb-portal.component.html',
   styleUrl: './bmb-portal.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbPortalComponent {
+
   constructor(private notificationSignal: BmbNotificationService) {}
 
   getNotifications() {
@@ -28,5 +33,9 @@ export class BmbPortalComponent {
     if (notification.id) {
       this.notificationSignal.deleteNotification(notification.id);
     }
+  }
+
+  getNotificationPosition() {
+    return this.notificationSignal.positionX;
   }
 }
