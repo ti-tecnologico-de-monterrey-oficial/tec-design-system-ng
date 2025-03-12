@@ -67,7 +67,7 @@ import { BmbImageComponent } from '../components/bmb-image/bmb-image.component';
           contentPadding="xl"
         >
           <bmb-image
-            src="https://picsum.photos/1000"
+            src="https://picsum.photos/id/13/1000"
             alt="Alt text"
             ratio="26/9"
             borderRadius="none"
@@ -86,7 +86,7 @@ import { BmbImageComponent } from '../components/bmb-image/bmb-image.component';
               <section bmbLayout margin="none" class="bmb_padding-m">
                 <div bmbLayoutItem [colSm]="1">
                   <bmb-image
-                    src="https://picsum.photos/400"
+                    src="https://picsum.photos/id/11/400"
                     alt="Alt text"
                     ratio="1/1"
                     borderRadius="none"
@@ -175,7 +175,7 @@ export default {
     docs: {
       description: {
         component: `Note: When you click on fullscreen icon, in Storybook doesn’t look the best due to the many elements, but in your project, it should display correctly.
-        
+
 Below is an example of how you can use the components needed for this organization ingit status
  TypeScript:
 
@@ -235,7 +235,7 @@ Below is an example of how you can use the components needed for this organizati
           contentPadding="xl"
         >
           <bmb-image
-            src="https://picsum.photos/1000"
+            src="https://picsum.photos/id/15/1000"
             alt="Alt text"
             ratio="26/9"
             borderRadius="none"
@@ -254,7 +254,7 @@ Below is an example of how you can use the components needed for this organizati
               <section bmbLayout margin="none" class="bmb_padding-m">
                 <div bmbLayoutItem [colSm]="1">
                   <bmb-image
-                    src="https://picsum.photos/400"
+                    src="https://picsum.photos/id/16/400"
                     alt="Alt text"
                     ratio="1/1"
                     borderRadius="none"

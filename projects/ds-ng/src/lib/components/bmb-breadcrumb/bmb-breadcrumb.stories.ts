@@ -141,3 +141,11 @@ Below is an example of how you can use this component in HTML:
 type Story = StoryObj<BmbBreadcrumbComponent>;
 
 export const Default: Story = {};
+
+export const TopBar = {
+  ...Default,
+  args: {
+    ...Default.args,
+    isTopBar: true,
+  },
+};

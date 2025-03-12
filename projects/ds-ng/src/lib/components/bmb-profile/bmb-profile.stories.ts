@@ -1,4 +1,4 @@
-import { type Meta, type StoryFn } from '@storybook/angular';
+import { StoryObj, type Meta, type StoryFn } from '@storybook/angular';
 import { BmbProfileComponent } from './bmb-profile.component';
 import { attributes } from '../../utils/utils';
 
@@ -287,15 +287,20 @@ Sets the collaborator data to display in the component.
   },
 } as Meta<typeof BmbProfileComponent>;
 
-const customizable = (): StoryFn => (args) => ({
-  props: args,
-  template: `
+type Story = StoryObj<BmbProfileComponent>;
+
+export const Default: Story = {
+  render: (args) => ({
+    props: args,
+    template: `
+    <!-- Instruction to users: This html is used for internal Storybook logic and should not be copied -->
     <div style="max-width: 560px; margin: 0 auto">
+      <!-- Example of how you can use this component -->
       <bmb-profile
         ${attributes(args)}
       />
+      <!-- End of the example -->
     </div>
-  `,
-});
-
-export const Default = customizable();
+    `,
+  }),
+};

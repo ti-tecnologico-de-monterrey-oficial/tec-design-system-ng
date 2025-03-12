@@ -75,7 +75,7 @@ import { BmbImageComponent } from '../components/bmb-image/bmb-image.component';
                 <section bmbLayout margin="none" class="bmb_padding-m">
                   <div bmbLayoutItem [colSm]="1">
                     <bmb-image
-                      src="https://picsum.photos/400"
+                      src="https://picsum.photos/id/28/400"
                       alt="Alt text"
                       ratio="9/26"
                       borderRadius="none"
@@ -112,7 +112,7 @@ import { BmbImageComponent } from '../components/bmb-image/bmb-image.component';
                   </h1>
                   <div bmbLayoutItem [colSm]="1">
                     <bmb-image
-                      src="https://picsum.photos/400"
+                      src="https://picsum.photos/id/29/400"
                       alt="Alt text"
                       ratio="9/26"
                       borderRadius="none"
@@ -185,7 +185,7 @@ export default {
     docs: {
       description: {
         component: `Note: When you click on fullscreen icon, in Storybook doesn’t look the best due to the many elements, but in your project, it should display correctly.
-        
+
 Below is an example of how you can use the components needed for this organization ingit status
  TypeScript:
 
@@ -251,7 +251,7 @@ Below is an example of how you can use the components needed for this organizati
                   <section bmbLayout margin="none" class="bmb_padding-m">
                     <div bmbLayoutItem [colSm]="1">
                       <bmb-image
-                        src="https://picsum.photos/400"
+                        src="https://picsum.photos/id/15/400"
                         alt="Alt text"
                         ratio="9/26"
                         borderRadius="none"
@@ -272,7 +272,7 @@ Below is an example of how you can use the components needed for this organizati
                     <h1 bmbLayoutItem [colSm]="4" class="font-medium-8">Lorem ipsum dolor sit amet consectetur. </h1>
                     <div bmbLayoutItem [colSm]="1">
                       <bmb-image
-                        src="https://picsum.photos/400"
+                        src="https://picsum.photos/id/25/400"
                         alt="Alt text"
                         ratio="9/26"
                         borderRadius="none"
