@@ -6,7 +6,7 @@ import {
   BmbInnerHeaderComponent,
   BmbVerticalLayoutItemDirective,
 } from '../../../../public-api';
-import { BmbProgressBarComponent } from 'ds-ng';
+import { BmbProgressBarComponent } from '../../../components/bmb-progress-bar/bmb-progress-bar.component';
 import { BmbChevronTitleSelectorComponent } from '../../../components/bmb-chevron-title-selector/bmb-chevron-title-selector.component';
 
 export default {
@@ -67,9 +67,7 @@ Sets the size of the space between elements.
     | 'none'
     | 'auto'
     `,
-      control: {
-        type: 'select',
-      },
+      control: { type: 'select' },
       options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],
       table: {
         type: { summary: 'SizeNames' },
@@ -91,9 +89,7 @@ Sets the justify content.
     | 'spaceBetween'
     | 'spaceEvenly'
       `,
-      control: {
-        type: 'select',
-      },
+      control: { type: 'select' },
       options: [
         'center',
         'end',
@@ -120,9 +116,7 @@ Set the align items.
       | 'start'
       | 'stretch'
       `,
-      control: {
-        type: 'select',
-      },
+      control: { type: 'select' },
       options: ['center', 'end', 'start', 'stretch'],
       table: {
         type: { summary: 'IAlignItemsOptions' },
@@ -131,11 +125,7 @@ Set the align items.
       },
     },
   },
-  args: {
-    gapSize: 'm',
-    justify: 'start',
-    alignItems: 'start',
-  },
+  args: { gapSize: 'm', justify: 'start', alignItems: 'start' },
 } as Meta<typeof BmbVerticalLayoutDirective>;
 
 const customizable = (): StoryFn => (args) => ({
