@@ -1,11 +1,6 @@
-<button
+<bmb-navigation-icon
   [ngClass]="getClassList()"
-  bmbButton
-  appearance="transparent"
-  size="micro"
-  (click)="handleClick($event)"
->
-  <span class="bmb_bookmark-container">
-    <bmb-icon icon="bookmark" [size]="24"></bmb-icon>
-  </span>
-</button>
+  icon="bookmark"
+  [iconSize]="24"
+  (buttonClick)="handleClick($event)"
+/>

@@ -29,33 +29,56 @@ Below is an example of how you can use this component in HTML:
     type: {
       name: 'Type',
       control: {
-        type: 'text',
+        type: 'radio',
       },
-      description:
-        'This indicates to the component is for a main grade or a partial grade',
+      options: ['main-grade', 'partial-grade'],
+      description: `
+Sets the type of anatomy variation to display.
+
+      IBmbGradeType =
+      | 'main-grade'
+      | 'partial-grade'
+      `,
       table: {
         category: 'Properties',
-        type: { summary: 'string' },
+        type: { summary: 'IBmbGradeType' },
         defaultValue: { summary: 'main-grade' },
       },
     },
     score: {
       name: 'Score',
-      control: { type: 'number' },
-      description: 'Is the number to show as the score',
+      control: { type: 'text' },
+      description: 'Sets the number or text to display as score',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 100 },
-        type: { summary: 'number' },
+        type: { summary: 'number or string' },
+        defaultValue: { summary: 0 },
       },
     },
   },
   args: {
     type: 'main-grade',
-    score: 89,
+    score: '89',
   },
 } as Meta<typeof BmbGradeValueComponent>;
 
 type Story = StoryObj<BmbGradeValueComponent>;
 
-export const Default: Story = {};
+export const MainGradeTypeExample: Story = {
+  name: "'main-grade' type example",
+};
+
+export const PartialGradeTypeExample = {
+  name: "'partial-grade' type example",
+  args: {
+    type: 'partial-grade',
+    score: '89',
+  },
+};
+
+export const TextScoreExample = {
+  name: 'Example text for score',
+  args: {
+    score: 'Cu',
+  },
+};

@@ -132,7 +132,7 @@ Below is an example of how you can use this component in HTML:
                 detail: {
                   title: 'Nombre de clase 1',
                   subtitle: 'TC-100000',
-                  score: 100,
+                  score: 'Cu',
                 },
                 partials: [
                   {

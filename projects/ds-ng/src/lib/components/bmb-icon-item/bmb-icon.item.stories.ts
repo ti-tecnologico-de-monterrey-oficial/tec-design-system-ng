@@ -1,16 +1,12 @@
 import { moduleMetadata, StoryObj, type Meta } from '@storybook/angular';
 import { attributes } from '../../utils/utils';
 import { BmbIconItemComponent } from './bmb-icon-item.component';
-import { BmbDividerComponent } from 'ds-ng';
+import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 
 export default {
   title: 'Macro Componentes/Icon item',
   component: BmbIconItemComponent,
-  decorators: [
-    moduleMetadata({
-      imports: [BmbDividerComponent],
-    }),
-  ],
+  decorators: [moduleMetadata({ imports: [BmbDividerComponent] })],
   parameters: {
     docs: {
       description: {
@@ -43,10 +39,7 @@ Below is an example of how you can use this component in HTML:
       name: 'Icon',
       control: { type: 'text' },
       description: 'Sets the icon for the item.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string (required)' },
-      },
+      table: { category: 'Properties', type: { summary: 'string (required)' } },
     },
     iconSize: {
       name: 'Icon size',
@@ -63,20 +56,14 @@ Below is an example of how you can use this component in HTML:
       control: { type: 'text' },
       description:
         'Sets the label for the item. This corresponds to the text shown on the left.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string (required)' },
-      },
+      table: { category: 'Properties', type: { summary: 'string (required)' } },
     },
     value: {
       name: 'Value',
       control: { type: 'text' },
       description:
         'Sets the value for the item. This corresponds to the text shown on the right.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string (required)' },
-      },
+      table: { category: 'Properties', type: { summary: 'string (required)' } },
     },
   },
   args: {
