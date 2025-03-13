@@ -11,17 +11,16 @@ import {
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
 import { BmbSwitchComponent } from '../bmb-switch/bmb-switch.component';
 import { BmbRadialComponent } from '../bmb-radial/bmb-radial.component';
 import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
 import { BmbModalComponent } from '../bmb-modal/bmb-modal.component';
-import { BmbTagComponent } from '../bmb-tags/bmb-tags.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalDataConfig } from '../bmb-modal/bmb-modal.interface';
 import { BmbInputComponent } from '../bmb-input/bmb-input.component';
 import { IBmbControlType } from './bmb-filter-card.interface';
 import { BmbButtonDirective } from '../../directives/button.directive';
+import { BmbDropdownComponent } from '../bmb-dropdown/bmb-dropdown.component';
 
 @Component({
   selector: 'bmb-filter-card',
@@ -31,14 +30,12 @@ import { BmbButtonDirective } from '../../directives/button.directive';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    BmbHomeCardComponent,
     BmbIconComponent,
     BmbInputComponent,
     BmbSwitchComponent,
     BmbRadialComponent,
     BmbCheckboxComponent,
-    BmbTagComponent,
-    BmbModalComponent,
+    BmbDropdownComponent,
     BmbButtonDirective,
   ],
   encapsulation: ViewEncapsulation.None,
@@ -53,12 +50,15 @@ export class BmbFilterCardComponent implements OnInit {
   controlTypes = input<IBmbControlType[]>([]);
   storedValues: { [name: string]: any } = {};
   inLine = input<boolean>(false);
+  showDropdown = input<boolean>(false);
+  dropdownOptions = input<string[]>([]);
 
   applyFilters = output<void>();
   resetFilters = output<void>();
 
   filterForm: FormGroup = new FormGroup({
     search: new FormControl<string>(''),
+    selectedDropdown: new FormControl<string>(''),
   });
 
   @ViewChild('modalTemplate') modalTemplate!: TemplateRef<any>;
@@ -155,5 +155,9 @@ export class BmbFilterCardComponent implements OnInit {
 
   getFormControl(search: string): FormControl {
     return this.filterForm.get(search) as FormControl;
+  }
+
+  onValueChange(event: string) {
+    this.filterForm.get('search')?.setValue(event);
   }
 }
