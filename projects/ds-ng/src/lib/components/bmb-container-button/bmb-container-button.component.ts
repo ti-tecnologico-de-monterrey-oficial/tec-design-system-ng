@@ -4,6 +4,7 @@ import {
   ViewEncapsulation,
   input,
   output,
+  model,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
@@ -55,7 +56,7 @@ export class BmbContainerButtonComponent {
   alternative = input<boolean>(false);
   enableSecondaryAction = input<boolean>(false);
   enableBookmark = input<boolean>(false);
-  isBookmarkActive = input<boolean>(false);
+  isBookmarkActive = model<boolean>(false);
 
   onButton = output();
   secondaryAction = output();

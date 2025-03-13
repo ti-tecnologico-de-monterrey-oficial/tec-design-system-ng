@@ -12,7 +12,6 @@
     &-score {
       @include fonts.font(4, medium);
       font-size: rem.rem_calc(160);
-      fill: var(--general_contrasts-100);
     }
   }
 

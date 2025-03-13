@@ -1,18 +1,20 @@
 .bmb_bookmark {
   &:hover {
-    .bmb_bookmark-container {
-      color: RGBA(var(--color-red-primary));
+    .bmb_navigation_icon-icon {
+      color: var(--red-primary);
     }
   }
 
-  &-container {
-    color: RGBA(var(--color-black-primary), 0.5);
-    transition: all 0.3s ease;
+  &-active {
+    .bmb_navigation_icon-icon {
+      color: var(--red-primary);
+    }
   }
 
-  &-active {
-    .bmb_bookmark-container {
-      color: RGBA(var(--color-red-light));
+  &:not(.bmb_bookmark-active) {
+    .bmb_navigation_icon-icon {
+      color: var(--color-black-tint);
+      transition: all 0.3s ease;
     }
   }
 }

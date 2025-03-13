@@ -4,14 +4,13 @@ import {
   model,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbButtonDirective } from '../../directives/button.directive';
 import { CommonModule } from '@angular/common';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { BmbNavigationIconComponent } from '../bmb-navigation-bar/bmb-navigation-icon/bmb-navigation-icon.component';
 
 @Component({
   selector: 'bmb-bookmark',
   standalone: true,
-  imports: [BmbButtonDirective, CommonModule, BmbIconComponent],
+  imports: [CommonModule, BmbNavigationIconComponent],
   templateUrl: './bmb-bookmark.component.html',
   styleUrl: './bmb-bookmark.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -22,7 +21,7 @@ export class BmbBookmarkComponent {
 
   handleClick(event: any) {
     event?.stopPropagation();
-    this.isActive.set(!this.isActive());
+    this.isActive.update((value) => !value);
   }
 
   getClassList() {

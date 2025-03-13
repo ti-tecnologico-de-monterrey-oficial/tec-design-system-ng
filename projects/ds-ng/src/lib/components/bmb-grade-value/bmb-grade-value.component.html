@@ -20,22 +20,18 @@
         stroke-linejoin="round"
       />
 
-            <path
-              d="M364.269,453.155H121.416L0,242.844L121.416,32.533h242.853l121.419,210.312L364.269,453.155z M131.905,434.997h221.878 l110.939-192.152L353.783,50.691H131.905L20.966,242.844L131.905,434.997z"
-            ></path>
-            <text
-              alignment-baseline="baseline"
-              [attr.text-anchor]="'middle'"
-              transform="rotate(270,240,240)"
-            >
-              <tspan
-                class="bmb_grade-value-main-score"
-                [attr.x]="250"
-                [attr.y]="300"
-              >
-                {{ score() }}
-              </tspan>
-            </text>
+      <path
+        d="M364.269,453.155H121.416L0,242.844L121.416,32.533h242.853l121.419,210.312L364.269,453.155z M131.905,434.997h221.878 l110.939-192.152L353.783,50.691H131.905L20.966,242.844L131.905,434.997z"
+      />
+      <text
+        alignment-baseline="baseline"
+        [attr.text-anchor]="'middle'"
+        transform="rotate(270,240,240)"
+      >
+        <tspan class="bmb_grade-value-main-score" [attr.x]="250" [attr.y]="300">
+          {{ score() }}
+        </tspan>
+      </text>
     </svg>
   } @else {
     <div class="bmb_grade-value-partial">

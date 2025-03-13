@@ -261,7 +261,6 @@ Below is an example of how you can use this component in HTML:
     onButton: {
       name: 'On Button',
       control: { summary: 'function' },
-      type: 'function',
       description: 'Event emitted when the button is clicked.',
       table: {
         category: 'Events',
@@ -283,7 +282,7 @@ Below is an example of how you can use this component in HTML:
     iconLeft: 'home',
     iconRight: 'chevron_right',
     onButton: (event: any) => {
-      alert('Button clicked');
+      alert('Container button clicked');
     },
   },
 } as Meta<typeof BmbContainerButtonComponent>;
@@ -292,17 +291,26 @@ type Story = StoryObj<BmbContainerButtonComponent>;
 
 export const Default: Story = {
   name: 'Default example (button click event emission)',
-}
+};
 
-export const SquareExample = {
-  name: 'Square version example',
+export const TitleExample = {
+  name: 'Example with only title',
   args: {
-    square: true,
+    iconLeft: '',
+    iconRight: '',
+  },
+};
+
+export const RightIconExample = {
+  name: 'Example of variant with icon on the right',
+  args: {
+    iconLeft: '',
+    iconRight: 'chevron_right',
   },
 };
 
 export const ScoreExample = {
-  name: 'Variant for grades (number) example',
+  name: 'Example of variant for grades (number)',
   args: {
     iconLeft: '',
     score: 90,
@@ -310,7 +318,7 @@ export const ScoreExample = {
 };
 
 export const TextScoreExample = {
-  name: 'Variant for grades (string) example',
+  name: 'Example of variant for grades (string)',
   args: {
     iconLeft: '',
     score: 'Cu',
@@ -320,8 +328,8 @@ export const TextScoreExample = {
 export const BadgeExample = {
   name: 'Variant with badge example',
   args: {
-    badgeText:'Example',
-    badgeAppearance:'normal',
+    badgeText: 'Example',
+    badgeAppearance: 'normal',
   },
 };
 
@@ -329,6 +337,14 @@ export const BookmarkExample = {
   name: 'Variant with bookmark example',
   args: {
     enableBookmark: true,
+  },
+};
+
+export const BookmarkActiveExample = {
+  name: 'Variant with bookmark active example',
+  args: {
+    enableBookmark: true,
+    isBookmarkActive: true,
   },
 };
 
@@ -343,11 +359,71 @@ export const UserImageExample = {
   },
 };
 
+export const ErrorStateExample = {
+  name: 'Example for the error state variant',
+  args: {
+    state: 'error',
+  },
+};
+
+export const DisableStateExample = {
+  name: 'Example for the disabled state variant',
+  args: {
+    state: 'disabled',
+  },
+};
+
+export const AlternativeVersionExample = {
+  name: 'Alternative version example',
+  args: {
+    alternative: true,
+  },
+};
+
+export const AlternativeVersionErrorExample = {
+  name: 'Example of an alternative version for the error state variant',
+  args: {
+    alternative: true,
+    state: 'error',
+  },
+};
+
+export const AlternativeVersionDisableExample = {
+  name: 'Example of an alternative version for the disabled state variant',
+  args: {
+    alternative: true,
+    state: 'disabled',
+  },
+};
+
+export const SquareExample = {
+  name: 'Square version example',
+  args: {
+    square: true,
+  },
+};
+
+export const SmallExample = {
+  name: 'Small version example',
+  args: {
+    small: true,
+  },
+};
+
+export const SecondaryActionExample = {
+  name: 'Enable secondary action example',
+  args: {
+    enableSecondaryAction: true,
+    secondaryAction: (event: any) => {
+      alert('Secondary action clicked');
+    },
+  },
+};
+
 export const LinkExample = {
-  name: 'Example for link',
+  name: 'Link example',
   args: {
     link: 'https://www.example.com/',
     target: '_blank',
   },
 };
-
