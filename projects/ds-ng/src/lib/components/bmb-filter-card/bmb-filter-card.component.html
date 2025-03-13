@@ -2,12 +2,21 @@
   <ng-template #modalTemplate>
     <div class="bmb_filter_card-modal">
       <form [formGroup]="filterForm">
-        <bmb-input
-          [placeholder]="placeholderSearch()"
-          [icon]="'search'"
-          [appearance]="'normal'"
-          [control]="getFormControl('search')"
-        />
+        @if (showDropdown()) {
+          <bmb-dropdown
+            [placeholder]="placeholderSearch()"
+            [options]="dropdownOptions()"
+            [control]="getFormControl('search')"
+            (onValueChange)="onValueChange($event)"
+          />
+        } @else {
+          <bmb-input
+            [placeholder]="placeholderSearch()"
+            [icon]="'search'"
+            [appearance]="'normal'"
+            [control]="getFormControl('search')"
+          />
+        }
         @for (controlType of controlTypes(); track $index) {
           <h4 class="bmb_filter_card-title">{{ controlType.title }}</h4>
           <div class="bmb_filter_card-control">

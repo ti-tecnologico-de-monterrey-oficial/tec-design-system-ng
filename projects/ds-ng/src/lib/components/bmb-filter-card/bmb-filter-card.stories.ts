@@ -5,11 +5,7 @@ import { CommonModule } from '@angular/common';
 export default {
   title: 'Macro Componentes/Filter Card',
   component: BmbFilterCardComponent,
-  decorators: [
-    moduleMetadata({
-      imports: [CommonModule],
-    }),
-  ],
+  decorators: [moduleMetadata({ imports: [CommonModule] })],
   parameters: {
     docs: {
       description: {
@@ -35,99 +31,56 @@ Below is an example of how you can use this component in HTML:
   argTypes: {
     modalTitle: {
       name: 'Title',
-      control: {
-        type: 'text',
-      },
+      control: { type: 'text' },
       description: 'The title of the modal dialog.',
-      table: {
-        category: 'Properties',
-      },
+      table: { category: 'Properties' },
     },
     primaryBtnLabel: {
       name: 'Primary Button Label',
-      control: {
-        type: 'text',
-      },
+      control: { type: 'text' },
       description: 'The label of the primary button.',
-      table: {
-        category: 'Properties',
-      },
+      table: { category: 'Properties' },
     },
     secondaryBtnLabel: {
       name: 'Secondary Button Label',
-      control: {
-        type: 'text',
-      },
+      control: { type: 'text' },
       description: 'The label of the secondary button.',
-      table: {
-        category: 'Properties',
-      },
+      table: { category: 'Properties' },
     },
     icon: {
-      name: 'icon',
-      control: {
-        type: 'text',
-      },
+      name: 'Icon',
+      control: { type: 'text' },
       description: 'The icon to display on the button.',
-      table: {
-        category: 'Properties',
-      },
+      table: { category: 'Properties' },
     },
     placeholderSearch: {
       name: 'Placeholder Search',
-      control: {
-        type: 'text',
-      },
+      control: { type: 'text' },
       description: 'The placeholder text for the search input.',
-      table: {
-        category: 'Properties',
-      },
+      table: { category: 'Properties' },
     },
     controlTypes: {
       name: 'Control Types',
-      control: {
-        type: 'array',
-      },
+      control: { type: 'array' },
       description:
         'An array of control types, each with a title and an array of controls.',
-      table: {
-        category: 'Properties',
-        type: {
-          summary: 'IBmbControlType[]',
-        },
-      },
+      table: { category: 'Properties', type: { summary: 'IBmbControlType[]' } },
     },
     applyFilters: {
       name: 'Apply Filters',
-      control: {
-        type: 'void',
-      },
+      control: { type: 'void' },
       description: 'Emits an event when the user applies the filters.',
-      table: {
-        category: 'Outputs',
-        type: {
-          summary: 'void',
-        },
-      },
+      table: { category: 'Outputs', type: { summary: 'void' } },
     },
     resetFilters: {
       name: 'Reset Filters',
-      control: {
-        type: 'void',
-      },
+      control: { type: 'void' },
       description: 'Emits an event when the user resets the filters.',
-      table: {
-        category: 'Outputs ',
-        type: {
-          summary: 'void',
-        },
-      },
+      table: { category: 'Outputs ', type: { summary: 'void' } },
     },
     inLine: {
       name: 'In line',
-      control: {
-        type: 'boolean',
-      },
+      control: { type: 'boolean' },
       description:
         'Display the filter card in the document instead of the dialog',
       table: {
@@ -136,8 +89,33 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: false },
       },
     },
+    showDropdown: {
+      name: 'Show Dropdown / Hide Input',
+      control: { type: 'boolean' },
+      description:
+        'Determines if the dropdown should be displayed instead of the input.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+    },
+    dropdownOptions: {
+      name: 'Dropdown Options',
+      control: { type: 'array' },
+      description: 'Defines the list of options available in the dropdown.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string[]' },
+        defaultValue: {
+          summary: "['Apple', 'Banana', 'Orange', 'Pear', 'Grape']",
+        },
+      },
+    },
   },
   args: {
+    showDropdown: false,
+    dropdownOptions: ['Apple', 'Banana', 'Orange', 'Pear', 'Grape'],
     modalTitle: 'Opciones Filtrado',
     primaryBtnLabel: 'Aplicar Filtros',
     secondaryBtnLabel: 'Limpiar Filtros',
