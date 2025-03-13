@@ -8,8 +8,9 @@ import { CommonModule } from '@angular/common';
 import { InputSignal } from '@angular/core';
 import { SizeNames } from '../../types';
 import { BorderType } from './types';
+import { attributes } from '../../utils/utils';
 
-const meta: Meta<BmbListGroupComponent> = {
+export default {
   title: 'Macro componentes/ListsGroup/List group',
   component: BmbListGroupComponent,
   subcomponents: { BmbListGroupItemComponent },
@@ -127,27 +128,21 @@ Below is an example of how you can use this component in HTML:
     showControls: true as unknown as InputSignal<boolean>,
     isRowView: false as unknown as InputSignal<boolean>,
   },
-};
-
-export default meta;
+} as Meta<typeof BmbListGroupComponent>;;
 
 type Story = StoryObj<BmbListGroupComponent>;
 
-export const Primary: Story = {
-  args: {},
-  render: (args) => ({
-    props: args,
-    template: `
-      <bmb-list-group
-        [borderRadius]="borderRadius"
-        [margin]="margin"
-        [padding]="[padding]"
-        [borderType]="borderType"
-        [isMultipleSelection]="isMultipleSelection"
-        [showControls]="showControls"
-        [isRowView]="isRowView"
-      >
-        <bmb-list-group-item id="list-group-item-1">
+export const Default: Story = {
+  name: 'Example with a personalized template',
+  render:(args) => ({
+    props:args,
+    template:
+    `
+      <bmb-list-group ${attributes(args)}>
+        <bmb-list-group-item
+          id="list-group-item-1"
+          [personalizedTemplate]="true"
+        >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo ante,
           mattis nec libero a, malesuada pellentesque sem. Aliquam erat volutpat.
           Nulla ut consequat turpis, id efficitur velit. Fusce vitae dolor leo.
@@ -161,9 +156,13 @@ export const Primary: Story = {
           Donec risus diam, maximus at varius rutrum, blandit quis augue. Sed
           consectetur massa ut auctor ultricies. Etiam fringilla venenatis nulla,
           gravida finibus nulla faucibus fringilla. Morbi luctus porta orci eu
-          iaculis.
+          iaculis. sfdsd
         </bmb-list-group-item>
-        <bmb-list-group-item id="list-group-item-2" [isDisabled]="true">
+
+        <bmb-list-group-item
+          id="list-group-item-2"
+          [personalizedTemplate]="true"
+        >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo ante,
           mattis nec libero a, malesuada pellentesque sem. Aliquam erat volutpat.
           Nulla ut consequat turpis, id efficitur velit. Fusce vitae dolor leo.
@@ -177,41 +176,9 @@ export const Primary: Story = {
           Donec risus diam, maximus at varius rutrum, blandit quis augue. Sed
           consectetur massa ut auctor ultricies. Etiam fringilla venenatis nulla,
           gravida finibus nulla faucibus fringilla. Morbi luctus porta orci eu
-          iaculis.
-        </bmb-list-group-item>
-        <bmb-list-group-item id="list-group-item-3">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo ante,
-          mattis nec libero a, malesuada pellentesque sem. Aliquam erat volutpat.
-          Nulla ut consequat turpis, id efficitur velit. Fusce vitae dolor leo.
-          Praesent diam justo, consectetur in blandit ut, tincidunt vitae enim. Nulla
-          eleifend, leo at finibus volutpat, nulla metus eleifend lacus, ullamcorper
-          dictum augue diam id erat. Donec ac fringilla elit. Aliquam sit amet luctus
-          elit. Suspendisse ante tortor, euismod nec metus id, commodo sollicitudin
-          massa. Aliquam magna nibh, semper eu vestibulum aliquam, aliquet gravida
-          massa. Nullam vehicula, augue non aliquam posuere, enim urna blandit erat,
-          et euismod enim nisi vel eros. Ut dictum egestas mi, faucibus iaculis lorem.
-          Donec risus diam, maximus at varius rutrum, blandit quis augue. Sed
-          consectetur massa ut auctor ultricies. Etiam fringilla venenatis nulla,
-          gravida finibus nulla faucibus fringilla. Morbi luctus porta orci eu
-          iaculis.
-        </bmb-list-group-item>
-        <bmb-list-group-item id="list-group-item-3">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo ante,
-          mattis nec libero a, malesuada pellentesque sem. Aliquam erat volutpat.
-          Nulla ut consequat turpis, id efficitur velit. Fusce vitae dolor leo.
-          Praesent diam justo, consectetur in blandit ut, tincidunt vitae enim. Nulla
-          eleifend, leo at finibus volutpat, nulla metus eleifend lacus, ullamcorper
-          dictum augue diam id erat. Donec ac fringilla elit. Aliquam sit amet luctus
-          elit. Suspendisse ante tortor, euismod nec metus id, commodo sollicitudin
-          massa. Aliquam magna nibh, semper eu vestibulum aliquam, aliquet gravida
-          massa. Nullam vehicula, augue non aliquam posuere, enim urna blandit erat,
-          et euismod enim nisi vel eros. Ut dictum egestas mi, faucibus iaculis lorem.
-          Donec risus diam, maximus at varius rutrum, blandit quis augue. Sed
-          consectetur massa ut auctor ultricies. Etiam fringilla venenatis nulla,
-          gravida finibus nulla faucibus fringilla. Morbi luctus porta orci eu
-          iaculis.
+          iaculis. sfdsd
         </bmb-list-group-item>
       </bmb-list-group>
     `,
-  }),
-};
+  })
+}
