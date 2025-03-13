@@ -1,6 +1,4 @@
-# Novedades
-
-## [] -
+# Novedades ## [] -
 
 ### 🚀 Novedades
 

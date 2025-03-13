@@ -29,6 +29,7 @@ export class BmbListGroupComponent {
   margin = input<SizeNames>('m');
   padding = input<SizeNames | SizeNames[]>('m');
   isMultipleSelection = input<boolean>(false);
+  isRowView = input<boolean>(false);
   showControls = input<boolean>(false);
 
   selectionChange = output<string[]>();
@@ -59,7 +60,7 @@ export class BmbListGroupComponent {
   getClassNames() {
     const classList = ['bmb_list-group', `bmb_list-group-${this.borderType()}`];
     if (!this.showControls()) classList.push('bmb_list-group-no-controls');
-
+    if (this.isRowView()) classList.push('bmb_list-group-row');
     return classList;
   }
 

@@ -1,19 +1,82 @@
 <section class="bmb_portal">
-  @for (notification of getNotifications(); track $index) {
-    @if (notification.component === "toast") {
-      <bmb-toast
-        [title]="notification.title"
-        [description]="notification.content"
-        [appearance]="notification.appearance || 'neutral'"
-        [isClosable]="true"
-        [id]="notification.id || $index"
-        (onClose)="closeNotification(notification)"
-      />
-    } @else {
-      <bmb-push-notification-item
-        [notification]="notification"
-        (onClose)="closeNotification(notification)"
-      />
+  <div class="bmb_portal-top-left">
+    <ng-container
+      [ngTemplateOutlet]="commonTemplate"
+      [ngTemplateOutletContext]="{
+        notifications: getNotifications(),
+        position: 'top-left',
+      }"
+    />
+  </div>
+  <div class="bmb_portal-top-center">
+    <ng-container
+      [ngTemplateOutlet]="commonTemplate"
+      [ngTemplateOutletContext]="{
+        notifications: getNotifications(),
+        position: 'top-center',
+      }"
+    />
+  </div>
+  <div class="bmb_portal-top-right">
+    <ng-container
+      [ngTemplateOutlet]="commonTemplate"
+      [ngTemplateOutletContext]="{
+        notifications: getNotifications(),
+        position: 'top-right',
+      }"
+    />
+  </div>
+  <div class="bmb_portal-bottom-left">
+    <ng-container
+      [ngTemplateOutlet]="commonTemplate"
+      [ngTemplateOutletContext]="{
+        notifications: getNotifications(),
+        position: 'bottom-left',
+      }"
+    />
+  </div>
+  <div class="bmb_portal-bottom-center">
+    <ng-container
+      [ngTemplateOutlet]="commonTemplate"
+      [ngTemplateOutletContext]="{
+        notifications: getNotifications(),
+        position: 'bottom-center',
+      }"
+    />
+  </div>
+  <div class="bmb_portal-bottom-right">
+    <ng-container
+      [ngTemplateOutlet]="commonTemplate"
+      [ngTemplateOutletContext]="{
+        notifications: getNotifications(),
+        position: 'bottom-right',
+      }"
+    />
+  </div>
+</section>
+
+<ng-template
+  #commonTemplate
+  let-notifications="notifications"
+  let-position="position"
+>
+  @for (notification of notifications; track $index) {
+    @if (notification.position === position) {
+      @if (notification.component === "toast") {
+        <bmb-toast
+          [title]="notification.title"
+          [description]="notification.content"
+          [appearance]="notification.appearance || 'neutral'"
+          [isClosable]="true"
+          [id]="notification.id || $index"
+          (onClose)="closeNotification(notification)"
+        />
+      } @else {
+        <bmb-push-notification-item
+          [notification]="notification"
+          (onClose)="closeNotification(notification)"
+        />
+      }
     }
   }
-</section>
+</ng-template>

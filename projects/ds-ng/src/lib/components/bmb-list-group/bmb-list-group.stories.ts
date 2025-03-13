@@ -43,9 +43,7 @@ Below is an example of how you can use this component in HTML:
   argTypes: {
     borderRadius: {
       name: 'Border radius',
-      control: {
-        type: 'select',
-      },
+      control: { type: 'select' },
       options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],
       table: {
         type: { summary: 'SizeNames | SizeNames[]' },
@@ -56,9 +54,7 @@ Below is an example of how you can use this component in HTML:
     },
     borderType: {
       name: 'Border type',
-      control: {
-        type: 'select',
-      },
+      control: { type: 'select' },
       options: ['rounded', 'flush'],
       table: {
         type: { summary: 'BorderType' },
@@ -70,9 +66,7 @@ Below is an example of how you can use this component in HTML:
     margin: {
       name: 'Margin',
       description: 'Determines the separation between the list group items',
-      control: {
-        type: 'select',
-      },
+      control: { type: 'select' },
       options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],
       table: {
         type: { summary: 'SizeNames' },
@@ -84,9 +78,7 @@ Below is an example of how you can use this component in HTML:
       name: 'Padding',
       description:
         'Determines the space between the list group items and the border',
-      control: {
-        type: 'select',
-      },
+      control: { type: 'select' },
       options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],
       table: {
         type: { summary: 'SizeNames | SizeNames[]' },
@@ -97,9 +89,7 @@ Below is an example of how you can use this component in HTML:
     isMultipleSelection: {
       name: 'Is multiple selection',
       description: 'Allows multiple items to be selected',
-      control: {
-        type: 'boolean',
-      },
+      control: { type: 'boolean' },
       table: {
         type: { summary: 'boolean' },
         category: 'Properties',
@@ -109,13 +99,22 @@ Below is an example of how you can use this component in HTML:
     showControls: {
       name: 'Show controls',
       description: 'Shows the control buttons',
-      control: {
-        type: 'boolean',
-      },
+      control: { type: 'boolean' },
       table: {
         type: { summary: 'boolean' },
         category: 'Properties',
         defaultValue: { summary: 'true' },
+      },
+    },
+    isRowView: {
+      name: 'Is row view',
+      description:
+        'Determines if the list items should be displayed in a horizontal row with wrapping. When set to true, items will be arranged in a flex container with a row direction and wrap behavior.',
+      control: { type: 'boolean' },
+      table: {
+        type: { summary: 'boolean' },
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
       },
     },
   },
@@ -126,6 +125,7 @@ Below is an example of how you can use this component in HTML:
     padding: 'm' as unknown as InputSignal<SizeNames | SizeNames[]>,
     isMultipleSelection: false as unknown as InputSignal<boolean>,
     showControls: true as unknown as InputSignal<boolean>,
+    isRowView: false as unknown as InputSignal<boolean>,
   },
 };
 
@@ -145,6 +145,7 @@ export const Primary: Story = {
         [borderType]="borderType"
         [isMultipleSelection]="isMultipleSelection"
         [showControls]="showControls"
+        [isRowView]="isRowView"
       >
         <bmb-list-group-item id="list-group-item-1">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo ante,
@@ -163,6 +164,22 @@ export const Primary: Story = {
           iaculis.
         </bmb-list-group-item>
         <bmb-list-group-item id="list-group-item-2" [isDisabled]="true">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo ante,
+          mattis nec libero a, malesuada pellentesque sem. Aliquam erat volutpat.
+          Nulla ut consequat turpis, id efficitur velit. Fusce vitae dolor leo.
+          Praesent diam justo, consectetur in blandit ut, tincidunt vitae enim. Nulla
+          eleifend, leo at finibus volutpat, nulla metus eleifend lacus, ullamcorper
+          dictum augue diam id erat. Donec ac fringilla elit. Aliquam sit amet luctus
+          elit. Suspendisse ante tortor, euismod nec metus id, commodo sollicitudin
+          massa. Aliquam magna nibh, semper eu vestibulum aliquam, aliquet gravida
+          massa. Nullam vehicula, augue non aliquam posuere, enim urna blandit erat,
+          et euismod enim nisi vel eros. Ut dictum egestas mi, faucibus iaculis lorem.
+          Donec risus diam, maximus at varius rutrum, blandit quis augue. Sed
+          consectetur massa ut auctor ultricies. Etiam fringilla venenatis nulla,
+          gravida finibus nulla faucibus fringilla. Morbi luctus porta orci eu
+          iaculis.
+        </bmb-list-group-item>
+        <bmb-list-group-item id="list-group-item-3">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo ante,
           mattis nec libero a, malesuada pellentesque sem. Aliquam erat volutpat.
           Nulla ut consequat turpis, id efficitur velit. Fusce vitae dolor leo.

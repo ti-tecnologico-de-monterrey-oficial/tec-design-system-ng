@@ -164,3 +164,11 @@ Below is an example of how you can use this component in HTML:
 type Story = StoryObj<BmbBalanceOverviewComponent>;
 
 export const Default: Story = {};
+
+export const WithProgressCircle = {
+  ...Default,
+  args: {
+    ...Default.args,
+    showProgressCircleValue: false,
+  },
+};
