@@ -71,15 +71,17 @@
       }
     </bmb-inner-header>
     @for (element of getElements(); track $index) {
-      <bmb-container-button
-        [title]="getDetailTitle(element)"
-        [subtitle]="getDetailSubtitle(element)"
-        [score]="getDetailScore(element)"
-        iconLeft="chevron_left"
-        iconRight="chevron_right"
-        [setButtonTemplate]="true"
-        (onButton)="handleDetails(element)"
-      />
+      <section class="bmb_grades-content">
+        <bmb-container-button
+          [title]="getDetailTitle(element)"
+          [subtitle]="getDetailSubtitle(element)"
+          [score]="getDetailScore(element)"
+          iconLeft="chevron_left"
+          iconRight="chevron_right"
+          [setButtonTemplate]="true"
+          (onButton)="handleDetails(element)"
+        />
+      </section>
     }
   }
 </section>

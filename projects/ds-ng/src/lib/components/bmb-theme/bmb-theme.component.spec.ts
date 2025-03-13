@@ -12,12 +12,12 @@ describe('BmbThemeComponent', () => {
     themeServiceStub = {
       theme$: of('dark'),
       getDefaultTheme: () => 'light',
-      setTheme: jasmine.createSpy('setTheme')
+      setTheme: jasmine.createSpy('setTheme'),
     };
 
     TestBed.configureTestingModule({
       imports: [BmbThemeComponent],
-      providers: [{ provide: ThemeService, useValue: themeServiceStub }]
+      providers: [{ provide: ThemeService, useValue: themeServiceStub }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BmbThemeComponent);
