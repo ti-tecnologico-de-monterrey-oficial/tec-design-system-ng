@@ -126,6 +126,7 @@
     &:hover:not(:disabled),
     &:focus-visible:not(:disabled) {
       background-color: RGBA(var(--color-charade-100));
+      color: RGBA(var(--color-charade-900));
     }
 
     &:active:not(:disabled),
