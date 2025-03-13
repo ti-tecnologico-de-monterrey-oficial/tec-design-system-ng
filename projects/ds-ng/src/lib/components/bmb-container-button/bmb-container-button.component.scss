@@ -2,8 +2,7 @@
 @use "../../../assets/styles/base/rem" as rem;
 
 @mixin buttonClass() {
-  > .bmb_check-external-link-button
-    > .bmb_check-external-link-button-element {
+  > .bmb_check-external-link-button > .bmb_check-external-link-button-element {
     @content;
   }
 }
@@ -86,6 +85,7 @@
       padding: rem.rem_calc(32 48);
       min-width: rem.rem_calc(148);
       min-height: rem.rem_calc(148);
+      width: auto;
       flex-flow: column;
       justify-content: center;
     }
@@ -117,6 +117,7 @@
     @include buttonClass() {
       min-width: rem.rem_calc(160);
       padding: rem.rem_calc(16);
+      width: auto;
     }
 
     .bmb_container-button-title {
@@ -180,7 +181,7 @@
       height: rem.rem_calc(80);
       min-width: rem.rem_calc(343);
       padding: rem.rem_calc(24);
-      width: auto;
+      width: 100%;
 
       &:focus-visible {
         outline: none;
@@ -191,21 +192,21 @@
   .bmb_container-button-right-action {
     &:not(.bmb_container-button-wrapper) {
       @include buttonClass() {
-          align-items: center;
-          background-color: inherit;
-          border: none;
-          border-radius: inherit;
-          color: inherit;
-          display: inline-flex;
-          min-height: auto;
-          min-width: auto;
-          padding: rem.rem_calc(3);
-          width: auto;
+        align-items: center;
+        background-color: inherit;
+        border: none;
+        border-radius: inherit;
+        color: inherit;
+        display: inline-flex;
+        min-height: auto;
+        min-width: auto;
+        padding: rem.rem_calc(3);
+        width: auto;
 
-          &:focus-visible {
-            outline: none;
-          }
+        &:focus-visible {
+          outline: none;
         }
+      }
     }
   }
 
