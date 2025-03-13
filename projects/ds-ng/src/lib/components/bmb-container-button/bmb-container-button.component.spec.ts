@@ -37,7 +37,7 @@ describe('BmbContainerButtonComponent', () => {
 
   it('should return the correct score', () => {
     componentRef.setInput('score', '10');
-    expect(component.getScore()).toBe(10);
+    expect(component.score()).toBe('10');
   });
 
   it('should return the correct class list', () => {

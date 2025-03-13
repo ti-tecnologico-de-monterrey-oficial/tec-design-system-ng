@@ -60,10 +60,6 @@ export class BmbContainerButtonComponent {
   onButton = output();
   secondaryAction = output();
 
-  getScore(): number {
-    return Number(this.score());
-  }
-
   getClassList(): string[] {
     const classList = ['bmb_container-button'];
     if (this.square()) {

@@ -2,9 +2,11 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
+  input,
   ViewEncapsulation,
 } from '@angular/core';
+
+export type IBmbGradeType = 'main-grade' | 'partial-grade';
 
 @Component({
   selector: 'bmb-grade-value',
@@ -16,6 +18,6 @@ import {
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbGradeValueComponent {
-  @Input() type: 'main-grade' | 'partial-grade' = 'main-grade';
-  @Input() score: number | undefined = 0;
+  type = input<IBmbGradeType>('main-grade');
+  score = input<number | string | undefined>(0);
 }

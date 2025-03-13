@@ -24,10 +24,6 @@ describe('BmbBottomNavigationBarComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should create the component', () => {
-    expect(component).toBeDefined();
-  });
-
   it('should bind navigationBarIcons input property', () => {
     const icons: any = {
       one: { name: 'home', label: 'Home' },

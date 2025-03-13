@@ -259,41 +259,95 @@ Below is an example of how you can use this component in HTML:
       },
     },
     onButton: {
-      action: 'onButton',
+      name: 'On Button',
+      control: { summary: 'function' },
+      type: 'function',
       description: 'Event emitted when the button is clicked.',
       table: {
         category: 'Events',
-        type: { summary: 'EventEmitter<any>' },
+        type: { summary: 'function' },
       },
     },
     secondaryAction: {
-      action: 'secondaryAction',
+      name: 'Secondary action',
+      control: { summary: 'function' },
       description: 'Event emitted when the secondary action button is clicked.',
       table: {
         category: 'Events',
-        type: { summary: 'EventEmitter<any>' },
+        type: { summary: 'function' },
       },
     },
   },
   args: {
     title: 'Tema de App',
     iconLeft: 'home',
-    isUserImage: false,
     iconRight: 'chevron_right',
-    link: '',
-    target: '_blank',
-    enableSecondaryAction: false,
-    enableBookmark: false,
-    isBookmarkActive: false,
     onButton: (event: any) => {
-      console.log('Button clicked', event);
-    },
-    secondaryAction: (event: any) => {
-      console.log('Secondary action clicked', event);
+      alert('Button clicked');
     },
   },
 } as Meta<typeof BmbContainerButtonComponent>;
 
 type Story = StoryObj<BmbContainerButtonComponent>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  name: 'Default example (button click event emission)',
+}
+
+export const SquareExample = {
+  name: 'Square version example',
+  args: {
+    square: true,
+  },
+};
+
+export const ScoreExample = {
+  name: 'Variant for grades (number) example',
+  args: {
+    iconLeft: '',
+    score: 90,
+  },
+};
+
+export const TextScoreExample = {
+  name: 'Variant for grades (string) example',
+  args: {
+    iconLeft: '',
+    score: 'Cu',
+  },
+};
+
+export const BadgeExample = {
+  name: 'Variant with badge example',
+  args: {
+    badgeText:'Example',
+    badgeAppearance:'normal',
+  },
+};
+
+export const BookmarkExample = {
+  name: 'Variant with bookmark example',
+  args: {
+    enableBookmark: true,
+  },
+};
+
+export const UserImageExample = {
+  name: 'Varian for profile (user image) example',
+  args: {
+    title: 'Ana María Gutiérrez Pineda',
+    subtitle: 'email@email.com',
+    iconRight: '',
+    iconLeft: 'https://picsum.photos/id/64/200/300',
+    isUserImage: true,
+  },
+};
+
+export const LinkExample = {
+  name: 'Example for link',
+  args: {
+    link: 'https://www.example.com/',
+    target: '_blank',
+  },
+};
+

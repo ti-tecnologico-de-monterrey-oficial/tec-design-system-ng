@@ -31,7 +31,7 @@
         }
       }
       @if (score() && !square() && !small()) {
-        <bmb-grade-value bmbLayoutItem type="main-grade" [score]="getScore()" />
+        <bmb-grade-value bmbLayoutItem type="main-grade" [score]="score()" />
       }
       <div class="bmb_container-button-header">
         <h2 class="bmb_container-button-title">{{ title() }}</h2>

@@ -77,6 +77,7 @@
   }
 
   &-subtitle {
+    text-align: left;
     @include fonts.font(3, regular);
     color: var(--general_contrasts-75);
     font-weight: 300;
