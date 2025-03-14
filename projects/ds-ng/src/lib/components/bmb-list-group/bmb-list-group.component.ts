@@ -37,6 +37,7 @@ export class BmbListGroupComponent {
   isMultipleSelection = input<boolean>(false);
   isRowView = input<boolean>(false);
   showControls = input<boolean>(false);
+  listGroupId= input<string>('listGroupStatus');
 
   selectionChange = output<string[]>();
 
@@ -53,6 +54,7 @@ export class BmbListGroupComponent {
       isMultipleSelection: this.isMultipleSelection(),
       showControls: this.showControls(),
     });
+    this.bmbListGroupStatusService.setListGroupId(this.listGroupId())
   }
 
   getVarStyles(size: SizeNames | SizeNames[]) {
@@ -102,6 +104,7 @@ export class BmbListGroupItemComponent {
   badgeAppearance = input<IBbmBgAppearance>('mitec_purple');
   badgeText = input<string>('');
 
+  inputRadioName: string = '';
   defaultWidthImage = '40px';
 
   constructor(private bmbListGroupStatusService: BmbListGroupStatusService) {}
@@ -110,6 +113,7 @@ export class BmbListGroupItemComponent {
     if (this.isActive()) {
       this.bmbListGroupStatusService.updateListGroupStatus(this.id());
     }
+    this.inputRadioName = this.bmbListGroupStatusService.getListGroupId()
   }
 
   handleSelection() {

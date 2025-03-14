@@ -14,6 +14,7 @@ export class BmbListGroupStatusService {
     isMultipleSelection: false,
     showControls: true,
   });
+  listGroupId: string = '';
 
   getListGroupStatus() {
     return this.listGroupStatus();
@@ -40,7 +41,15 @@ export class BmbListGroupStatusService {
     this.listGroupConfiguration.set(config);
   }
 
+  setListGroupId(id:string) {
+    this.listGroupId = id;
+  }
+
   getListGroupConfiguration() {
     return this.listGroupConfiguration();
+  }
+
+  getListGroupId() {
+    return this.listGroupId;
   }
 }
