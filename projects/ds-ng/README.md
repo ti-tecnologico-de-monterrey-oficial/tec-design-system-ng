@@ -2,7 +2,7 @@
 
 > El framework de diseño Bamboo ofrece a los desarrolladores las herramientas indispensables para potenciar la eficiencia en el desarrollo de productos, permitiéndoles crear más en menos tiempo y liberándolos de la monótona tarea de construir componentes básicos repetitivos.
 
-**Este sistema se desarrolló con Angular CLI version 17.0.7.**
+**Este sistema se desarrolló con Angular CLI version 17.3.0.**
 
 ## Requisitos básicos para instalar el paquete de Bamboo en tu ambiente local:
 
@@ -30,7 +30,7 @@ Ahora podemos hacer la instalación de Bamboo nuevamente
 
 Ahora el paquete deberá tener la versión 0.2.2 o superior.
 
-`"@ti-tecnologico-de-monterrey7-oficial/ds-ng": "^0.2.2",`
+`"@ti-tecnologico-de-monterrey7-oficial/ds-ng": "^1.5.X",`
 
 ### Visual Studio Code
 
@@ -62,6 +62,16 @@ En el archivo `angular.json` de tu proyecto, agrega el siguiente contenido donde
         "glob": "**/*",
         "input": "./node_modules/@ti-tecnologico-de-monterrey-oficial/ds-ng/assets/fonts/",
         "output": "/assets/fonts/"
+    },
+    {
+        "glob": "**/*",
+        "input": "./node_modules/@ti-tecnologico-de-monterrey-oficial/ds-ng/assets/images/",
+        "output": "/assets/images/"
+    },
+    {
+        "glob": "**/*",
+        "input": "./node_modules/@ti-tecnologico-de-monterrey-oficial/ds-ng/assets/svg/",
+        "output": "/assets/svg/"
     }
 ],
 "styles": [
@@ -69,6 +79,25 @@ En el archivo `angular.json` de tu proyecto, agrega el siguiente contenido donde
     "node_modules/@ti-tecnologico-de-monterrey-oficial/ds-ng/assets/styles/main.min.css"
 ],
 ```
+
+## Instalación de íconos
+
+Agrega las siguientes lineas a tu archivo de estilos global `src/styles.scss`.
+ 
+**Angular 17.3**
+
+```
+$material-symbols-font-path: 'material-symbols/';
+@import 'material-symbols/rounded';
+```
+
+**Angular 18+**
+
+```
+@import 'material-symbols/rounded';
+```
+
+---
 
 Cuando necesites utilizar componentes del sistema de diseño, asegúrate de añadirlos a la página o archivo correspondiente. A continuación, te presento un ejemplo para ilustrar este proceso:
 

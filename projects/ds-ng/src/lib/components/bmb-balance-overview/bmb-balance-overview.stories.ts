@@ -166,9 +166,7 @@ type Story = StoryObj<BmbBalanceOverviewComponent>;
 export const Default: Story = {};
 
 export const WithProgressCircle = {
-  ...Default,
   args: {
-    ...Default.args,
     showProgressCircleValue: false,
   },
 };

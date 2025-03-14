@@ -112,18 +112,6 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string' },
       },
     },
-    position: {
-      name: 'Position',
-      control: 'select',
-      options: ['top', 'bottom', 'middle'],
-      description:
-        'Controls the position of the toast on the screen, **this property is valid only for the `portal` component.**',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'top' },
-        type: { summary: 'string' },
-      },
-    },
     isClosable: {
       name: 'Is Closable',
       control: 'boolean',
@@ -156,12 +144,22 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'Event' },
       },
     },
+    position: {
+      name: 'Position',
+      control: null,
+      description:
+        'Controls the position of the toast on the screen, **this property is valid only for the `portal` component.**',
+      table: {
+        category: 'Deprecated',
+        defaultValue: { summary: 'top' },
+        type: { summary: 'string' },
+      },
+    },
   },
   args: {
     title: 'Your toast title here',
     description: 'Your toast description here (optional)',
     appearance: 'neutral',
-    position: 'top',
     isClosable: false,
     id: '',
   },
