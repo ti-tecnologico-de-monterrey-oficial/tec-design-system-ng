@@ -176,7 +176,7 @@ Below is an example of how to use this component in HTML:
         type: 'object',
       },
       description:
-        'An array of sidebar elements, each containing a list of child elements.',
+        'An array of sidebar elements, each containing a list of child elements. There is a limit of two levels of nesting and the main list must have a maximum of two lists, the first has a limit of 5 elements and the second a limit of 3.',
       table: {
         type: { summary: 'SidebarElement[][]' },
         category: 'Properties',
@@ -192,6 +192,19 @@ Below is an example of how to use this component in HTML:
       table: {
         category: 'Properties',
         type: { summary: 'string' },
+      },
+    },
+    position: {
+      name: 'Position',
+      control: {
+        type: 'select',
+      },
+      options: ['left', 'right'],
+      description: 'The position of the sidebar.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'IPositionButtonMenu' },
+        defaultValue: { summary: 'left' },
       },
     },
   },
@@ -277,21 +290,10 @@ Below is an example of how to use this component in HTML:
           title: 'Admin. usuarios',
           link: 'vivencia3',
         },
-        {
-          id: 10,
-          icon: 'account_box',
-          title: 'Hi',
-          link: 'vivencia4',
-        },
-        {
-          id: 11,
-          icon: 'account_box',
-          title: 'Hi',
-          link: 'vivencia5',
-        },
       ],
     ],
     title: 'Navegacion para mobiles',
+    position: 'left',
   },
 } as Meta<typeof BmbSidebarComponent>;
 
