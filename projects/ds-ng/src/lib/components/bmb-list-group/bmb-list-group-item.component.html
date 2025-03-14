@@ -1,6 +1,49 @@
 <li [ngClass]="getClasses()" (click)="handleItemSelection()">
   <section class="bmb_list-group-item-content">
-    <ng-content></ng-content>
+    @if(personalizedTemplate()){
+      <ng-content></ng-content>
+    }@else{
+      <section class="bmb_list-group-item-main">
+        <div class="bmb_list-group-item-main-icon">
+          @if (icon()) {
+            <bmb-icon [icon]="icon()" [size]="40" />
+          }@else{
+            <bmb-image
+              [src]="imgSrc()"
+              [alt]="'icon'"
+              [width]="this.defaultWidthImage"
+              [ratio]="'1/1'"
+              [borderRadius]="'xs'"
+            ></bmb-image>
+          }
+        </div>
+        <div class="bmb_list-group-item-main-data">
+          <span class="bmb_list-group-item-main-data-header">
+            {{headerText()}}
+            <bmb-tooltip
+              [title]="tooltipTitle()"
+              [text]="tooltipText()"
+              icon="help"
+              [size]="16"
+              [isFill]="true"
+              align="right"
+              justify="centered"
+            />
+          </span>
+          <span class="bmb_list-group-item-main-data-description">{{descriptionText()}}</span>
+          <span class="bmb_list-group-item-main-data-info">{{infoText()}}</span>
+        </div>
+        @if(badgeText()){
+          <div class="bmb_list-group-item-main-badge">
+            <bmb-badge 
+              [text]="badgeText()" 
+              [appearance]="badgeAppearance()"
+              [container]="false"
+            />
+          </div>
+        }
+      </section>
+    }
   </section>
   @if (showControls()) {
     <section>

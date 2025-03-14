@@ -130,6 +130,7 @@ export * from './lib/components/bmb-sounds-card/bmb-sounds-card.component';
 export * from './lib/components/bmb-chevron-title-selector/bmb-chevron-title-selector.component';
 export * from './lib/components/bmb-overlay/bmb-overlay.component';
 export * from './lib/components/bmb-icon-item/bmb-icon-item.component';
+export * from './lib/components/bmb-carousel/bmb-carousel.component';
 
 // types
 export * from './lib/types';

@@ -57,7 +57,6 @@ export class BmbRadialComponent {
   myName = output<string>();
 
   handleMyName(event: string) {
-    console.log('handleMyName', event);
     this.myName.emit(event);
   }
 
