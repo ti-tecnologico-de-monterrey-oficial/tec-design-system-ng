@@ -41,7 +41,7 @@ export class BmbListGroupStatusService {
     this.listGroupConfiguration.set(config);
   }
 
-  setListGroupId(id:string) {
+  setListGroupId(id: string) {
     this.listGroupId = id;
   }
 

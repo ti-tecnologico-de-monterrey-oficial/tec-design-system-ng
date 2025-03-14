@@ -18,7 +18,6 @@ import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 import { BmbImageComponent } from '../bmb-image/bmb-image.component';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
 
-
 @Component({
   selector: 'bmb-list-group',
   standalone: true,
@@ -37,7 +36,7 @@ export class BmbListGroupComponent {
   isMultipleSelection = input<boolean>(false);
   isRowView = input<boolean>(false);
   showControls = input<boolean>(false);
-  listGroupId= input<string>('listGroupStatus');
+  listGroupId = input<string>('listGroupStatus');
 
   selectionChange = output<string[]>();
 
@@ -54,7 +53,7 @@ export class BmbListGroupComponent {
       isMultipleSelection: this.isMultipleSelection(),
       showControls: this.showControls(),
     });
-    this.bmbListGroupStatusService.setListGroupId(this.listGroupId())
+    this.bmbListGroupStatusService.setListGroupId(this.listGroupId());
   }
 
   getVarStyles(size: SizeNames | SizeNames[]) {
@@ -84,7 +83,15 @@ export class BmbListGroupComponent {
 @Component({
   selector: 'bmb-list-group-item',
   standalone: true,
-  imports: [CommonModule, BmbRadialComponent, BmbCheckboxComponent, BmbIconComponent, BmbTooltipComponent, BmbBadgeComponent, BmbImageComponent],
+  imports: [
+    CommonModule,
+    BmbRadialComponent,
+    BmbCheckboxComponent,
+    BmbIconComponent,
+    BmbTooltipComponent,
+    BmbBadgeComponent,
+    BmbImageComponent,
+  ],
   templateUrl: './bmb-list-group-item.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -113,7 +120,7 @@ export class BmbListGroupItemComponent {
     if (this.isActive()) {
       this.bmbListGroupStatusService.updateListGroupStatus(this.id());
     }
-    this.inputRadioName = this.bmbListGroupStatusService.getListGroupId()
+    this.inputRadioName = this.bmbListGroupStatusService.getListGroupId();
   }
 
   handleSelection() {
