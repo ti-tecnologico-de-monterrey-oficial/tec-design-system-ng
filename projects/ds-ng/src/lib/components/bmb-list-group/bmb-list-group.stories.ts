@@ -122,12 +122,10 @@ Below is an example of how you can use this component in HTML:
       name: 'List Group Id',
       description:
         'This property is used when you have multiple List Group, each instance of the component must have different ID, which will be defined with this property.',
-      control: { type: 'select' },
-      options: ['xs', 's', 'm', 'l', 'xl', 'none', 'auto'],
+      control: { type: 'string' },
       table: {
-        type: { summary: 'SizeNames | SizeNames[]' },
+        type: { summary: 'string' },
         category: 'Properties',
-        defaultValue: { summary: 'm' },
       },
     },
     selectionChange: {
