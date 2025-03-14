@@ -194,6 +194,19 @@ Below is an example of how to use this component in HTML:
         type: { summary: 'string' },
       },
     },
+    position: {
+      name: 'Position',
+      control: {
+        type: 'select',
+      },
+      options: ['left', 'right'],
+      description: 'The position of the sidebar.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'IPositionButtonMenu' },
+        defaultValue: { summary: 'left' },
+      },
+    },
   },
   args: {
     elements: [
@@ -280,6 +293,7 @@ Below is an example of how to use this component in HTML:
       ],
     ],
     title: 'Navegacion para mobiles',
+    position: 'left',
   },
 } as Meta<typeof BmbSidebarComponent>;
 
