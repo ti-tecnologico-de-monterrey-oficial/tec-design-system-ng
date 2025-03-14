@@ -3,7 +3,7 @@ import {
   BmbListGroupComponent,
   BmbListGroupItemComponent,
 } from './bmb-list-group.component';
-import { IBbmBgAppearance } from '../bmb-advertisement-card/types'
+import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
 import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { InputSignal } from '@angular/core';
@@ -86,13 +86,14 @@ Below is an example of how you can use this component in HTML:
     },
     personalizedTemplate: {
       name: 'Personalized Template',
-      description: 'When the value is true, the component will use the template that the user provides, instead of that, you need to provide the inputs por the deafult template',
+      description:
+        'When the value is true, the component will use the template that the user provides, instead of that, you need to provide the inputs por the deafult template',
       control: {
         type: 'boolean',
       },
       table: {
         type: { summary: 'boolean' },
-        defaultValue: {summary: true},
+        defaultValue: { summary: true },
         category: 'Properties',
       },
     },
@@ -233,13 +234,12 @@ type Story = StoryObj<BmbListGroupItemComponent>;
 
 export const Default: Story = {
   name: 'Example with a personalized template',
-  args:{
+  args: {
     personalizedTemplate: true as unknown as InputSignal<boolean>,
   },
-  render:(args) => ({
-    props:args,
-    template:
-    `
+  render: (args) => ({
+    props: args,
+    template: `
       <bmb-list-group>
         <bmb-list-group-item ${attributes(args)}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo ante,
@@ -259,12 +259,12 @@ export const Default: Story = {
         </bmb-list-group-item>
       </bmb-list-group>
     `,
-  })
-}
+  }),
+};
 
 export const WithDefaultTemplate: Story = {
   name: 'Example with the default template',
-  args:{
+  args: {
     personalizedTemplate: false as unknown as InputSignal<boolean>,
     headerText: 'Header text' as unknown as InputSignal<string>,
     descriptionText: 'Description text' as unknown as InputSignal<string>,
@@ -275,14 +275,13 @@ export const WithDefaultTemplate: Story = {
     badgeAppearance: 'mitec_blue' as unknown as InputSignal<IBbmBgAppearance>,
     badgeText: 'Badge Text' as unknown as InputSignal<string>,
   },
-  render:(args) => ({
-    props:args,
-    template:
-    `
+  render: (args) => ({
+    props: args,
+    template: `
        <bmb-list-group>
         <bmb-list-group-item ${attributes(args)}>
         </bmb-list-group-item>
       </bmb-list-group>
-    `
-  })
-}
+    `,
+  }),
+};

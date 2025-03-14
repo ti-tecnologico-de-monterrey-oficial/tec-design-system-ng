@@ -58,7 +58,7 @@
       flex: 1;
     }
 
-    &-main{
+    &-main {
       display: flex;
       flex-direction: row;
 
@@ -66,7 +66,7 @@
         flex-direction: column;
       }
 
-      &-icon{
+      &-icon {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -77,26 +77,26 @@
         }
       }
 
-      &-data{
+      &-data {
         display: flex;
         flex-direction: column;
         width: 100%;
         padding: 0 var(--bmb-spacing-s);
 
-        &-header{
+        &-header {
           @include fonts.font(4, medium);
         }
 
-        &-description{
+        &-description {
           @include fonts.font(4, regular);
         }
 
-        &-info{
+        &-info {
           @include fonts.font(3, regular);
         }
       }
 
-      &-badge{
+      &-badge {
         display: flex;
         align-items: center;
         justify-content: center;
