@@ -31,7 +31,6 @@ import { attributes } from '../../utils/utils';
       >
         Add notification
       </button>
-      {{ getNogificationLenght() }}
       <bmb-portal />
     </div>
   `,
@@ -53,6 +52,14 @@ class StorybookToastWrapperComponent {
   userMail = input('');
   component = input<'toast' | 'notification'>('notification');
   appearance = input<BmbToastAppearance>('neutral');
+  position = input<
+    | 'top-left'
+    | 'top-right'
+    | 'top-center'
+    | 'bottom-left'
+    | 'bottom-right'
+    | 'bottom-center'
+  >('top-right');
 
   enableDontAskAgain() {
     alert("Don't ask again");
@@ -65,8 +72,6 @@ class StorybookToastWrapperComponent {
   }
 
   addNotificationFnc() {
-    console.log(typeof this.delay());
-
     this.notificationSignal.addNotification({
       title: this.title(),
       subTitle: this.subtitle(),
@@ -85,6 +90,7 @@ class StorybookToastWrapperComponent {
       userMail: this.userMail(),
       component: this.component(),
       appearance: this.appearance(),
+      position: this.position(),
     });
   }
 }
@@ -112,23 +118,61 @@ Below is an example of how you can use this component in TypeScript:
 ##Configuration
 Add the \`BmbNotificationService\` to your App providers:
 
-\`\`\`providers: [
+\`\`\`
+providers: [
   provideRouter(routes),
   importProvidersFrom([BmbNotificationService, ...]),
-],\`\`\`
+],
+\`\`\`
+
+##Notification service methods
+
+###Add notification
+
+\`\`\`
+addNotification(notification: INotification);
+\`\`\`
+
+This function returns an ID which can be used to delete the notification or check the notification state.
+
+###Delete notification
+
+\`\`\`
+deleteNotification(id: string);
+\`\`\`
+
+This function deletes a notification by its ID.
+
+###Get notification list
+
+\`\`\`
+getNotificationList(): INotification[];
+\`\`\`
+
+This function returns the current notification list.
 
 ##Show notifications
-Add the \`BmbPushNotificationComponent\` at the bottom of your **app.component.html**
+Add the \`BmbPortalComponent\` at the bottom of your **app.component.html**
 
 \`\`\`typescript
-import { BmbPushNotificationComponent, NotificationType, INotificationAction, NotificationType } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
+import { BmbPortalComponent, NotificationType, INotificationAction, NotificationType } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
 @Component({
   selector: 'component',
   standalone: true,
-  imports: [ BmbPushNotificationComponent ],
+  imports: [ BmbPortalComponent ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
+class MyComponent {
+
+  constructor(private notificationSignal: BmbNotificationService) {}
+
+  addNotificationFnc() {
+    this.notificationSignal.addNotification({
+      // Notification properties
+    });
+  }
+}
 \`\`\`
 
 Below is an example of how you can use this component in HTML:
@@ -361,6 +405,26 @@ Below is an example of how you can use this component in HTML:
       description:
         'Set the appearance of the component. only valid for `toast` component.',
     },
+    position: {
+      name: 'Position',
+      control: {
+        type: 'select',
+      },
+      options: [
+        'top-left',
+        'top-center',
+        'top-right',
+        'bottom-left',
+        'bottom-center',
+        'bottom-right',
+      ],
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'top-right' },
+      },
+      description: 'Set the position of the notification.',
+    },
   },
   args: {
     title: 'Notification Title',
@@ -381,6 +445,7 @@ Below is an example of how you can use this component in HTML:
     userMail: 'some.placeholder.name@domian.com',
     component: 'notification',
     appearance: 'neutral',
+    position: 'top-right',
   },
 } as Meta<typeof BmbPushNotificationItemComponent>;
 

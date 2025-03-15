@@ -1,0 +1,9 @@
+#!/bin/sh
+
+echo "🔄 Generando CHANGELOG.md y FEATURES.md..."
+
+# Asegurar que npm esté en el PATH
+export PATH=$PATH:/usr/local/bin:/opt/homebrew/bin
+
+npm run version
+git add CHANGELOG.md FEATURES.md

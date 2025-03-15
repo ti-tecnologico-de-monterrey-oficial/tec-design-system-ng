@@ -6,6 +6,15 @@
   @include fonts.font(3, regular);
   color: RGBA(var(--color-charade-950));
   position: relative;
+  border-radius: rem.rem_calc(20);
+
+  &-boxShadow {
+    -webkit-box-shadow: rem.rem_calc(15 15 0 -4)
+      rgba(var(--color-black-primary), 0.8);
+    -moz-box-shadow: rem.rem_calc(15 15 0 -4)
+      rgba(var(--color-black-primary), 0.8);
+    box-shadow: rem.rem_calc(15 15 0 -4) rgba(var(--color-black-primary), 0.8);
+  }
 
   &-inline {
     display: grid;
@@ -146,6 +155,10 @@
       &-date {
         color: rgb(var(--color-charade-500));
       }
+    }
+
+    &-full {
+      height: 100%;
     }
   }
 

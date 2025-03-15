@@ -94,6 +94,12 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
     this.inputControl.setValue(name);
 
     this.parsedOptions = this.options().map((item) => this.getItem(item));
+
+    this.control().valueChanges.subscribe((change) => {
+      this.selectedIndexOption = change;
+      this.selectedOption = change;
+      this.inputControl.setValue(change);
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -170,8 +176,6 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
       },
       [],
     );
-
-    console.log('options', options);
 
     return options;
   }

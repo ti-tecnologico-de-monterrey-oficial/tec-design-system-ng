@@ -7,17 +7,16 @@
   }
 
   &-main {
-    fill: RGBA(var(--color-black-primary));
+    fill: var(--general_contrasts-100);
 
     &-score {
       @include fonts.font(4, medium);
       font-size: rem.rem_calc(160);
-      fill: RGBA(var(--color-black-primary));
     }
   }
 
   &-partial {
-    border: rem.rem_calc(2) solid RGBA(var(--color-black-primary));
+    border: rem.rem_calc(2) solid var(--general_contrasts-100);
     border-radius: rem.rem_calc(5);
     width: rem.rem_calc(40);
     height: rem.rem_calc(24);
@@ -28,26 +27,6 @@
 
     &-score {
       @include fonts.font(4, medium);
-    }
-  }
-}
-
-[data-theme="dark"],
-.storybook-dark-theme {
-  .bmb_grade-value {
-    &-main {
-      fill: RGBA(var(--color-white-primary));
-
-      &-score {
-        fill: RGBA(var(--color-white-primary));
-      }
-    }
-
-    &-partial {
-      border: rem.rem_calc(2) solid RGBA(var(--color-white-primary));
-      &-score {
-        color: RGBA(var(--color-white-primary));
-      }
     }
   }
 }

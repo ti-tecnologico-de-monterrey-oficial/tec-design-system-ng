@@ -53,13 +53,16 @@
     1
   );
   --menu_select-on-surface-hovered: RGBA(var(--color-mariner-100), 1);
-  --switch-checked: RGBA(var(--color-green-light), 1);
+  --switch-checked: RGBA(var(--color-mariner-700), 1);
+  --switch-checked-shadow: RGBA(var(--color-mariner-700), 0.2);
 
   --drop_shadow-color-test-shadow: 0.5rem 0.5rem 0.5rem 0px
     RGBA(var(--color-charade-950), 0.5);
 
   --white-primary: RGBA(var(--color-white-primary), 1);
   --purple-primary: RGBA(var(--color-purple-primary), 1);
+  --red-primary: RGBA(var(--color-red-primary), 1);
+  --black-primary: RGBA(var(--color-white-primary), 1);
 
   --track-progress-bar: RGBA(var(--color-green-primary), 1);
 }
@@ -102,7 +105,8 @@
     1
   );
   --menu_select-on-surface-hovered: RGBA(var(--color-charade-500), 1);
-  --switch-checked: RGBA(var(--color-mariner-700), 1);
+  --switch-checked: RGBA(var(--color-green-light), 1);
+  --switch-checked-shadow: RGBA(var(--color-green-light), 0.2);
 
   --drop_shadow-color-test-shadow: 0.5rem 0.5rem 0.5rem 0px
     RGBA(var(--color-black-primary), 0.2);

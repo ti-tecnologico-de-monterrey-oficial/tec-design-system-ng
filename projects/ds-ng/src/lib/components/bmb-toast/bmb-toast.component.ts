@@ -51,7 +51,7 @@ export class BmbToastComponent {
   isClosable = input<boolean>(false);
   title = input<string>('');
   description = input<string>();
-  position = input<string>('top');
+  position = input<string>('top'); // deprecated
   id = input<string | number>('');
 
   onClose = output<void>();
@@ -61,10 +61,6 @@ export class BmbToastComponent {
 
     if (this.appearance()) {
       classes.push('bmb_toast-' + this.appearance());
-    }
-
-    if (this.position) {
-      classes.push('bmb_toast-' + this.position);
     }
 
     return classes;

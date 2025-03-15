@@ -70,8 +70,8 @@ $alignItemsOptions: (
 
     @include mixins.media-query(999, "max") {
       &:not(.bmb_col-sm-1):not(.bmb_col-sm-2):not(.bmb_col-sm-3):not(
-        .bmb_col-sm-4
-      ) {
+          .bmb_col-sm-4
+        ) {
         flex: 0 0 100%;
       }
     }

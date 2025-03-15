@@ -10,8 +10,12 @@
       color: RGBA(var(--color-white-primary));
     }
 
-    &-content :where(p:not(.sb-anchor, .sb-unstyled, .sb-unstyled p)) {
-      color: RGBA(var(--color-white-primary));
+    &-content {
+      :where(p:not(.sb-anchor, .sb-unstyled, .sb-unstyled p)),
+      :where(h2:not(.sb-anchor, .sb-unstyled, .sb-unstyled h2)),
+      :where(h3:not(.sb-anchor, .sb-unstyled, .sb-unstyled h3)) {
+        color: RGBA(var(--color-white-primary));
+      }
     }
 
     .docs-story {

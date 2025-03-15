@@ -12,6 +12,11 @@ import { BorderType } from './types';
 import { BmbListGroupStatusService } from './bmb-list-group.service';
 import { BmbRadialComponent } from '../bmb-radial/bmb-radial.component';
 import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { BmbTooltipComponent } from '../bmb-tooltip/bmb-tooltip.component';
+import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
+import { BmbImageComponent } from '../bmb-image/bmb-image.component';
+import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
 
 @Component({
   selector: 'bmb-list-group',
@@ -29,7 +34,9 @@ export class BmbListGroupComponent {
   margin = input<SizeNames>('m');
   padding = input<SizeNames | SizeNames[]>('m');
   isMultipleSelection = input<boolean>(false);
+  isRowView = input<boolean>(false);
   showControls = input<boolean>(false);
+  listGroupId = input<string>('listGroupStatus');
 
   selectionChange = output<string[]>();
 
@@ -46,6 +53,7 @@ export class BmbListGroupComponent {
       isMultipleSelection: this.isMultipleSelection(),
       showControls: this.showControls(),
     });
+    this.bmbListGroupStatusService.setListGroupId(this.listGroupId());
   }
 
   getVarStyles(size: SizeNames | SizeNames[]) {
@@ -59,7 +67,7 @@ export class BmbListGroupComponent {
   getClassNames() {
     const classList = ['bmb_list-group', `bmb_list-group-${this.borderType()}`];
     if (!this.showControls()) classList.push('bmb_list-group-no-controls');
-
+    if (this.isRowView()) classList.push('bmb_list-group-row');
     return classList;
   }
 
@@ -75,7 +83,15 @@ export class BmbListGroupComponent {
 @Component({
   selector: 'bmb-list-group-item',
   standalone: true,
-  imports: [CommonModule, BmbRadialComponent, BmbCheckboxComponent],
+  imports: [
+    CommonModule,
+    BmbRadialComponent,
+    BmbCheckboxComponent,
+    BmbIconComponent,
+    BmbTooltipComponent,
+    BmbBadgeComponent,
+    BmbImageComponent,
+  ],
   templateUrl: './bmb-list-group-item.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -84,6 +100,19 @@ export class BmbListGroupItemComponent {
   id = input.required<string>();
   isDisabled = input<boolean>(false);
   isActive = input<boolean>(false);
+  personalizedTemplate = input<boolean>(true);
+  headerText = input<string>('');
+  descriptionText = input<string>('');
+  infoText = input<string>('');
+  icon = input<string>('');
+  imgSrc = input<string>('');
+  tooltipTitle = input<string>('');
+  tooltipText = input<string>('');
+  badgeAppearance = input<IBbmBgAppearance>('mitec_purple');
+  badgeText = input<string>('');
+
+  inputRadioName: string = '';
+  defaultWidthImage = '40px';
 
   constructor(private bmbListGroupStatusService: BmbListGroupStatusService) {}
 
@@ -91,6 +120,7 @@ export class BmbListGroupItemComponent {
     if (this.isActive()) {
       this.bmbListGroupStatusService.updateListGroupStatus(this.id());
     }
+    this.inputRadioName = this.bmbListGroupStatusService.getListGroupId();
   }
 
   handleSelection() {

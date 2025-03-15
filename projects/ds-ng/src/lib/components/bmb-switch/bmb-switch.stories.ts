@@ -147,4 +147,25 @@ Below is an example of how you can use this component in HTML:
 
 type Story = StoryObj<BmbSwitchComponent>;
 
-export const Default: Story = {};
+export const TextExample: Story = {};
+
+export const IconExample = {
+  args: {
+    leftText: '',
+    rightText: '',
+    leftIcon: 'light_mode',
+    rightIcon: 'dark_mode',
+  },
+};
+
+export const CheckedExample = {
+  args: {
+    isChecked: true,
+  },
+};
+
+export const DisabledExample = {
+  args: {
+    disabled: true,
+  },
+};

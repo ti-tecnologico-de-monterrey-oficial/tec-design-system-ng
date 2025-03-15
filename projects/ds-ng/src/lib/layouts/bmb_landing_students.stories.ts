@@ -100,7 +100,7 @@ import { BmbImageComponent } from '../components/bmb-image/bmb-image.component';
               [colLg]="4"
             >
               <bmb-image
-                src="https://picsum.photos/400"
+                src="https://picsum.photos/id/48/400"
                 alt="Alt text"
                 ratio="1/1"
                 borderRadius="none"
@@ -186,7 +186,7 @@ export default {
     docs: {
       description: {
         component: `Note: When you click on fullscreen icon, in Storybook doesn’t look the best due to the many elements, but in your project, it should display correctly.
-        
+
 Below is an example of how you can use the components needed for this organization ingit status
  TypeScript:
 
@@ -281,7 +281,7 @@ Below is an example of how you can use the components needed for this organizati
               [colLg]="4"
             >
               <bmb-image
-                src="https://picsum.photos/400"
+                src="https://picsum.photos/id/48/400"
                 alt="Alt text"
                 ratio="1/1"
                 borderRadius="none"

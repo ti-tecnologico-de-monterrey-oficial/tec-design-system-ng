@@ -10,6 +10,7 @@
       [ngClass]="{
         'bmb_check-external-link-button-element-disabled': disabled(),
       }"
+      [disabled]="disabled()"
     >
       <ng-container [ngTemplateOutlet]="commonTemplate" />
     </button>

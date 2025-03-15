@@ -124,4 +124,27 @@ Below is an example of how you can use this component in HTML:
 
 type Story = StoryObj<BmbTextLinkComponent>;
 
-export const Default: Story = {};
+export const IconPositionRightExample: Story = {
+  name: 'Example of an icon positioned on the right',
+};
+
+export const IconPositionLeftExample = {
+  name: 'Example of an icon positioned on the left',
+  args: {
+    iconPosition: 'left',
+  },
+};
+
+export const UnderlinedExample = {
+  name: 'Underlined example',
+  args: {
+    textLinkStyle: 'underlined',
+  },
+};
+
+export const DisableExample = {
+  name: 'Disable example',
+  args: {
+    disabled: true,
+  },
+};
