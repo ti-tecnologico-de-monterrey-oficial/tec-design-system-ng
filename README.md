@@ -6,19 +6,46 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 
 ---
 
-## Cambios de la versión v1.5.2
+## Cambios de la versión v1.5.3
 
 ### Novedades
 
-- Se agregó la compatibilidad con **Angular 19**
+- Se agregó la compatibilidad con **Angular 17.3**.
+- Se actualizó la documentación de instalación.
+
+### Componentes nuevos:
+
+- Icon menu
+- Card sounds
 
 ### Componentes actualizados:
 
-- Layout: Se solucionó el problema con las columnas SM
-- Alert center: Se solucionó el problema de las tabs duplicadas
-- Dropdown: Se agregó la opción de 'opciones preferidas'
-- Phone number: Se refactorizó el código del componente (ya no tiene dependencias)
-- Notification card: Se solucionó las tabs duplicadas
+- Container button:
+  - Refactorización de código.
+  - Alineación de implementación según documentación de diseño.
+  - Documentación de cada una de las versiones y variantes en Storybook.
+- Dropdown: Ahora se puede cambiar el valor del Dropdown de manera externa.
+- Modal:
+  - Se evita mostrar el secondary button cuando no tiene label.
+  - Se eliminaron los valores por defecto en  la documentación del modal.
+- Sidebar:
+  - El Sidebar se cierra cuando seleccionas una opción.
+  - Se agregó la posibilidad de poner el sidebar a la derecha
+  - Se corrigieron los estilo.
+  - Se exporta la interfaz del sidebar.
+- Toast: se corrigieron los colores.
+- Topbar: Se corrigió la documentación del top bar.
+- List group:
+  - Se agrega nuevo diseño.
+  - Se corrige comportamiento del componente al tener varios list group.
+- Portal: Se habilitaron las posiciones para el componente portal.
+- Grades: la propiedad ‘score’ ahora permite texto además de números. Esta nueva característica también puede ser utilizada en ‘Container button’, a su vez en el componente ‘Grades‘.
+- Switch: Se actualizaron los colores azul para la selección cuan el tema es claro y color verde para el tema obscuro.
+- Text link: Se actualizó el peso de la fuente y la documentación.
+- Table: Ahora regresa datos al hacer click a una fila.
+- Button group: Se actualiza documentación para indicar el estado activo del button group.
+- Accordion: Se corrige error visual al abrir un acordeón con la directiva.
+- Carousel: Ahora se exporta el componente correctamente.
 
 Puedes ver todos los componentes aqui: [Bamboo](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/foundations-colors--documentation)
 
