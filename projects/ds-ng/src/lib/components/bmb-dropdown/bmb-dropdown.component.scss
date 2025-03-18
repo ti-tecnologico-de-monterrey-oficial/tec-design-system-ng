@@ -24,6 +24,7 @@
     &-icon {
       font-size: rem.rem_calc(24);
       line-height: 0;
+      pointer-events: none;
     }
   }
 
@@ -46,7 +47,8 @@
   }
 
   &-field {
-    &-input {
+    &-input,
+    &-chips {
       padding: 0;
       flex: 1;
       @include fonts.font(4, regular);
@@ -64,6 +66,10 @@
 
       &:disabled {
         color: var(--general_contrasts-50);
+      }
+
+      &-placeholder {
+        opacity: 0.7;
       }
     }
 
@@ -129,11 +135,27 @@
       list-style: none;
       width: 100%;
 
+      &-checkbox {
+        .bmb_checkbox {
+          display: flex;
+          gap: rem.rem_calc(4);
+        }
+
+        &:hover,
+        &:focus-visible,
+        &.bmb-focus,
+        &.bmb-focus-visible {
+          background-color: var(--menu_select-on-surface-hovered);
+          color: var(--menu_select-label-menu-inactive);
+          font-weight: 500;
+        }
+      }
+
       &-item {
         &-button {
           display: flex;
           align-items: center;
-          padding: rem.rem_calc(8) rem.rem_calc(6);
+          padding: rem.rem_calc(8 6);
           background-color: transparent;
           width: 100%;
           text-align: left;

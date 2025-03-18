@@ -73,14 +73,9 @@ Below is an example of how you can use this component in HTML:
   argTypes: {
     icon: {
       name: 'Icon',
-      control: {
-        type: 'text',
-      },
+      control: { type: 'text' },
       description: 'The name of the icon. See Material Icons.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
+      table: { category: 'Properties', type: { summary: 'string' } },
     },
     required: {
       name: 'Required',
@@ -105,20 +100,13 @@ Below is an example of how you can use this component in HTML:
     },
     placeholder: {
       name: 'Placeholder',
-      control: {
-        type: 'text',
-      },
+      control: { type: 'text' },
       description: 'The text of the placeholder for the dropdown.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
+      table: { category: 'Properties', type: { summary: 'string' } },
     },
     options: {
       name: 'Options',
-      control: {
-        type: 'array',
-      },
+      control: { type: 'array' },
       description:
         'The inputs to show on the dropdown. The data types it allows are a string array or an array of objects',
       table: {
@@ -128,20 +116,16 @@ Below is an example of how you can use this component in HTML:
             value: string;
             name: string;
             icon: string;
+            id?: string;
           }`,
         },
       },
     },
     helperText: {
       name: 'Helper Text',
-      control: {
-        type: 'text',
-      },
+      control: { type: 'text' },
       description: 'The text of the bottom for the dropdown.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
+      table: { category: 'Properties', type: { summary: 'string' } },
     },
     disabled: {
       name: 'Disabled',
@@ -156,17 +140,13 @@ Below is an example of how you can use this component in HTML:
     },
     label: {
       name: 'Label',
-      control: {
-        type: 'text',
-      },
+      control: { type: 'text' },
       description: 'The text show an text as a label',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
+      table: { category: 'Properties', type: { summary: 'string' } },
     },
     control: {
       control: null,
+      name: 'Control',
       description: 'Instance of FormControl to manage the input control state.',
       table: {
         category: 'Properties',
@@ -176,15 +156,10 @@ Below is an example of how you can use this component in HTML:
     },
     onValueChange: {
       name: 'On value change',
-      control: {
-        type: '',
-      },
+      control: { type: '' },
       description:
         'Emitted when an option is selected. Contains the value or item of the selected option.',
-      table: {
-        category: 'Events',
-        type: { summary: 'function' },
-      },
+      table: { category: 'Events', type: { summary: 'function' } },
     },
     preferredOptions: {
       name: 'Preferred options',
@@ -197,11 +172,22 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: '[]' },
       },
     },
+    isMultiSelect: {
+      name: 'Is Multi Select',
+      control: { type: 'boolean' },
+      description: '',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
   },
   args: {
+    isMultiSelect: false,
     icon: 'bolt',
     placeholder: 'Set Fruit',
-    required: true,
+    required: false,
     label: 'Fruit',
     showIcon: true,
     options: ['Apple', 'Banana', 'Orange', 'Pear', 'Grape'],
@@ -209,7 +195,8 @@ Below is an example of how you can use this component in HTML:
     helperText: 'Select a fruit',
     preferredOptions: ['Banana'],
     onValueChange: (params: any) => {
-      window.alert(params.toString());
+      console.log(params);
+      window.alert(params.name.toString());
     },
   },
 } as Meta<typeof BmbDropdownComponent>;
@@ -217,7 +204,7 @@ Below is an example of how you can use this component in HTML:
 const customizable = (): StoryFn => (args) => ({
   props: args,
   template: `
-    <div style="height: 500px">
+    <div style="height: 300px">
       <bmb-dropdown
         ${attributes(args)}
       />
