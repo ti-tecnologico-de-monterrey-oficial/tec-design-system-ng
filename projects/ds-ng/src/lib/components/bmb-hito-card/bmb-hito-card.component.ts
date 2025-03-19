@@ -65,15 +65,17 @@ export class BmbHitoCardComponent {
   appearanceBadge(): IBbmBgAppearance {
     switch (this.type()) {
       case 'active':
-        return 'mitec_blue';
+        return 'strong';
       case 'done':
         return 'success';
       case 'pending':
         return 'normal';
       case 'under_review':
         return 'warning';
+      case 'canceled':
+        return 'error';
       default:
-        return 'mitec_blue';
+        return 'strong';
     }
   }
 }

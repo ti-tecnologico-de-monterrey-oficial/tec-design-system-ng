@@ -72,7 +72,7 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'select',
       },
-      options: ['pending', 'done', 'active', 'under_review'],
+      options: ['pending', 'done', 'active', 'under_review', 'canceled'],
       description: 'Set the type for the badge component.',
       table: {
         category: 'Properties',
