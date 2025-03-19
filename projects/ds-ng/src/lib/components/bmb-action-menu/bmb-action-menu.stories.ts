@@ -110,8 +110,7 @@ Below is an example of how you can use this component in HTML:
 type Story = StoryObj<BmbActionMenuComponent>;
 
 export const ListExample: Story = {
-  render: (args) => ({
-    props: args,
+  render: (args: any) => ({
     template: `
     <!-- Instruction to users: This html is used for internal Storybook logic and should not be copied -->
     <div style="height: ${args['isAList'] ? '420' : '200'}px;">
@@ -156,13 +155,15 @@ export const ListExample: Story = {
 };
 
 export const NotListExample = {
+  args: {
+    isAList: false,
+  },
   render: (args: any) => ({
-    props: args,
     template: `
     <!-- Instruction to users: This html is used for internal Storybook logic and should not be copied -->
     <div style="height: 200px;">
       <!-- Example of how you can use this component. -->
-      <bmb-action-menu ${attributes({ ...args, isAList: false })}>
+      <bmb-action-menu ${attributes(args)}>
         <!-- Example of content. The content can be a bamboo component or html. -->
         <bmb-icon-item
           icon="calendar_month"

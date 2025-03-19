@@ -36,7 +36,12 @@ export interface ITimelineEvent {
   icon?: string;
 }
 
-export type ITimelineEventType = 'pending' | 'done' | 'active' | 'under_review';
+export type ITimelineEventType =
+  | 'pending'
+  | 'done'
+  | 'active'
+  | 'under_review'
+  | 'canceled';
 
 export interface ITimelineEventParsed extends ITimelineEvent {
   startEvent: DateTime;

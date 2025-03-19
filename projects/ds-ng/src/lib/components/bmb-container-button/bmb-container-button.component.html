@@ -51,7 +51,7 @@
             class="bmb_container-button-badge"
           />
         }
-        @if (iconRight() && !square() && !small()) {
+        @if ((iconRight() || enableBookmark()) && !square() && !small()) {
           @if (enableBookmark()) {
             <bmb-bookmark
               class="bmb_container-button-right-bookmark"

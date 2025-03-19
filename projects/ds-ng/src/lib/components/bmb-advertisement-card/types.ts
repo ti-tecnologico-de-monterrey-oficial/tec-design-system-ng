@@ -29,6 +29,7 @@ export type IBbmBgAppearance =
   | 'warning'
   | 'error'
   | 'brand'
+  | 'alert'
   | 'background'
   | 'disabled'
   | 'mitec_blue'
