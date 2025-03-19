@@ -29,17 +29,17 @@
   }
 
   &-input-wrapper {
+    align-items: center;
+    appearance: none;
     background-color: var(--general_contrasts-input-background);
     border: rem.rem_calc(1) solid var(--general_contrasts-50);
     border-radius: rem.rem_calc(8);
+    cursor: pointer;
     display: flex;
     gap: rem.rem_calc(8);
-    align-items: center;
-    appearance: none;
-    width: 100%;
-    cursor: pointer;
     padding: rem.rem_calc(10) var(--bmb-spacing-s);
     position: relative;
+    width: 100%;
 
     &:hover {
       border-color: var(--general_contrasts-input-outline);
@@ -47,15 +47,45 @@
   }
 
   &-field {
+    &-chips {
+      flex-flow: row wrap;
+      gap: rem.rem_calc(10);
+    }
+
+    &-chip {
+      align-items: center;
+      background-color: var(--menu_select-on-surface-hovered);
+      border-radius: rem.rem_calc(8);
+      display: flex;
+      padding: rem.rem_calc(2 6);
+      word-break: break-word;
+      @include fonts.font(4, regular);
+
+      &-remove {
+        color: var(--general_contrasts-100);
+        display: flex;
+        padding: rem.rem_calc(0 0 0 5);
+
+        bmb-icon {
+          i {
+            height: rem.rem_calc(14);
+            width: rem.rem_calc(14);
+          }
+        }
+      }
+    }
+
     &-input,
     &-chips {
-      padding: 0;
-      flex: 1;
-      @include fonts.font(4, regular);
       background-color: transparent;
       border: 0 none;
-      cursor: pointer;
       color: var(--general_contrasts-100);
+      cursor: pointer;
+      display: flex;
+      flex: 1;
+      padding: 0;
+      text-overflow: ellipsis;
+      @include fonts.font(4, regular);
 
       &:focus,
       &:focus-visible,
@@ -74,10 +104,10 @@
     }
 
     &-open {
+      align-items: center;
       color: var(--general_contrasts-100);
       display: flex;
       padding: rem.rem_calc(3 0);
-      align-items: center;
 
       bmb-icon {
         font-size: rem.rem_calc(20);
@@ -90,8 +120,8 @@
   }
 
   &-helper {
-    padding-top: rem.rem_calc(3);
     padding-left: rem.rem_calc(10);
+    padding-top: rem.rem_calc(3);
 
     &-text {
       @include fonts.font(3, regular);
@@ -100,20 +130,20 @@
   }
 
   &-dialog {
-    display: none;
-    width: 100%;
-    padding: 0;
-    left: 0;
-    z-index: 999;
     background-color: var(--containers-main);
     border: 0;
-    overflow: auto;
-    height: max-content;
-    max-height: rem.rem_calc(160);
-    top: 100%;
-    justify-content: center;
-    margin-top: rem.rem_calc(1);
     box-shadow: rem.rem_calc(10 10 26 -12) RGBA(var(--color-black-primary), 0.2);
+    display: none;
+    height: max-content;
+    justify-content: center;
+    left: 0;
+    margin-top: rem.rem_calc(1);
+    max-height: rem.rem_calc(160);
+    overflow: auto;
+    padding: 0;
+    top: 100%;
+    width: 100%;
+    z-index: 999;
     &::-webkit-scrollbar {
       -webkit-appearance: none;
       width: rem.rem_calc(10);
@@ -121,8 +151,8 @@
 
     &::-webkit-scrollbar-thumb {
       background-color: RGBA(var(--color-charade-200));
-      border-radius: rem.rem_calc(20);
       border: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
+      border-radius: rem.rem_calc(20);
     }
 
     &::-webkit-scrollbar-track {
@@ -130,15 +160,23 @@
     }
 
     &-list {
+      list-style: none;
       margin: 0;
       padding: 0;
-      list-style: none;
       width: 100%;
 
       &-checkbox {
+        &-all {
+          border-bottom: rem.rem_calc(1) solid var(--general_contrasts-50);
+        }
+
         .bmb_checkbox {
           display: flex;
           gap: rem.rem_calc(4);
+
+          .bmb_checkbox-label {
+            word-break: break-word;
+          }
         }
 
         &:hover,
@@ -146,21 +184,36 @@
         &.bmb-focus,
         &.bmb-focus-visible {
           background-color: var(--menu_select-on-surface-hovered);
-          color: var(--menu_select-label-menu-inactive);
-          font-weight: 500;
+
+          .bmb_checkbox-label {
+            color: var(--menu_select-label-menu-inactive);
+          }
+        }
+
+        &-selected {
+          background-color: var(--menu_select-surface-activated);
+
+          &.bmb_dropdown-dialog-list-checkbox-all {
+            border-bottom-color: var(--color-white-light);
+          }
+
+          .bmb_checkbox-label {
+            color: var(--menu_select-label-menu-active);
+          }
         }
       }
 
       &-item {
         &-button {
-          display: flex;
           align-items: center;
-          padding: rem.rem_calc(8 6);
           background-color: transparent;
-          width: 100%;
-          text-align: left;
-          @include fonts.font(4, regular);
           color: var(--menu_select-label-menu-inactive);
+          display: flex;
+          padding: rem.rem_calc(8 6);
+          text-align: left;
+          width: 100%;
+          word-break: break-word;
+          @include fonts.font(4, regular);
 
           &:hover,
           &:focus-visible,
@@ -189,8 +242,8 @@
           }
 
           &-list {
-            padding: 0;
             list-style: none;
+            padding: 0;
           }
         }
       }
@@ -204,8 +257,8 @@
 
   &-disabled {
     .bmb_dropdown-input-wrapper {
-      opacity: 0.5;
       cursor: not-allowed;
+      opacity: 0.5;
 
       &:hover {
         border-color: var(--general_contrasts-50);

@@ -196,7 +196,7 @@ Below is an example of how you can use this component in HTML:
     preferredOptions: ['Banana'],
     onValueChange: (params: any) => {
       console.log(params);
-      window.alert(params.name.toString());
+      window.alert('You can see the console to see what is returned');
     },
   },
 } as Meta<typeof BmbDropdownComponent>;
@@ -204,7 +204,7 @@ Below is an example of how you can use this component in HTML:
 const customizable = (): StoryFn => (args) => ({
   props: args,
   template: `
-    <div style="height: 300px">
+    <div style="height: 240px">
       <bmb-dropdown
         ${attributes(args)}
       />

@@ -67,6 +67,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   preferredOptions = input<string[]>([]);
   isMultiSelect = input<boolean>(false);
   selectedValuesSet: Set<string> = new Set();
+
   onValueChange = output<any>();
 
   isFocus: boolean = false;
@@ -83,6 +84,8 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   parsedOptions: IBmbDropdownItem[] = [];
 
   ngOnInit() {
+    this.control().valueChanges.subscribe(() => this.updateDisplay());
+
     const value = this.control().value;
     if (this.isMultiSelect() && Array.isArray(value)) {
       this.inputControl.setValue(
@@ -194,6 +197,22 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
     }
   }
 
+  onKeySelect(
+    event: KeyboardEvent,
+    item?: IBmbDropdownItem,
+    selectAll = false,
+  ) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+
+      if (selectAll) {
+        this.toggleSelectAll();
+      } else if (item) {
+        this.handleItemClick(item);
+      }
+    }
+  }
+
   handleChevronClick() {
     this.openSelect = !this.openSelect;
     this.isFocus = !this.isFocus;
@@ -227,19 +246,32 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
 
     this.control().setValue(selectedValues.filter((val: any) => val !== value));
     this.onValueChange.emit(this.control().value);
-    this.updateDisplay(); // ¡Ahora se actualiza el input y los chips al eliminar!
+    this.updateDisplay();
   }
 
   toggleSelectAll(): void {
     const allValues = this.parsedOptions.map((item) => this.formatItem(item));
 
-    const isCurrentlyAllSelected =
-      this.control().value?.length === allValues.length;
+    let selectedValues = this.control().value || [];
+    if (!Array.isArray(selectedValues)) {
+      selectedValues = [];
+    }
 
-    const selectedValues = isCurrentlyAllSelected ? [] : [...allValues];
+    const isCurrentlyAllSelected = selectedValues.length === allValues.length;
 
-    // Ensure control updates properly
-    this.control().setValue([...selectedValues], { emitEvent: true });
+    if (isCurrentlyAllSelected) {
+      selectedValues = [];
+    } else {
+      const selectedSet = new Set(
+        selectedValues.map((item: any) => item.value),
+      );
+      selectedValues = [
+        ...selectedValues,
+        ...allValues.filter((item) => !selectedSet.has(item.value)),
+      ];
+    }
+
+    this.control().setValue(selectedValues, { emitEvent: true });
     this.onValueChange.emit(this.control().value);
     this.updateDisplay();
   }
@@ -249,7 +281,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
       name: item.name,
       value: item.value,
       icon: item.icon,
-      id: item.name.toLowerCase().replace(/\s+/g, '_'), // Convierte espacios en "_"
+      id: item.name.toLowerCase().replace(/\s+/g, '_'),
     };
   }
 

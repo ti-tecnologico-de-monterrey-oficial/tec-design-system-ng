@@ -1,13 +1,16 @@
-<bmb-external-link
-  [title]="'CONECTA'"
-  [subtitle]="'https://www.CONECTA.tec.mx'"
-  [navigationBarIcons]="{
-    one: { name: 'arrow_back_ios', label: '' },
-    two: { name: 'arrow_forward_ios', label: '' },
-    three: { name: 'share', label: '' },
-    four: { name: 'refresh', label: '' },
-  }"
-  (onClose)="onClose($event)"
-  (menuEvent)="menuEvent($event)"
-  (footerEvent)="footerEvent($event)"
-/>
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <bmb-dropdown
+    formControlName="dropdown"
+    [isMultiSelect]="true"
+    [options]="['Apple', 'Banana', 'Orange', 'Pear', 'Grape']"
+    helperText="Select a fruit"
+    [preferredOptions]="['Banana']"
+    (onValueChange)="onValueChange($event)"
+    [required]="true"
+    label="Fruit"
+    [showIcon]="true"
+    icon="bolt"
+  ></bmb-dropdown>
+
+  <button type="submit" bmbButton>Submit</button>
+</form>

@@ -32,15 +32,15 @@
         <div class="bmb_dropdown-field-chips">
           @if (control().value?.length) {
             @for (selected of control().value; track $index) {
-              <span class="bmb_dropdown-field-chip">
+              <div class="bmb_dropdown-field-chip">
                 {{ getItem(selected).name }}
                 <button
                   class="bmb_dropdown-field-chip-remove"
                   (click)="removeSelected(selected)"
                 >
-                  <bmb-icon icon="close" />
+                  <bmb-icon icon="close" [size]="14" />
                 </button>
-              </span>
+              </div>
             }
           } @else {
             <span class="bmb_dropdown-field-chips-placeholder">{{
@@ -77,7 +77,15 @@
         <ul class="bmb_dropdown-dialog-list">
           @if (isMultiSelect()) {
             <li
-              class="bmb_dropdown-dialog-list-checkbox bmb_dropdown-dialog-list-all"
+              tabindex="0"
+              class="bmb_dropdown-dialog-list-checkbox bmb_dropdown-dialog-list-checkbox-all"
+              (keydown)="onKeySelect($event, undefined, true)"
+              role="button"
+              [ngClass]="{
+                'bmb_dropdown-dialog-list-checkbox-selected':
+                  control().value?.length === parsedOptions.length &&
+                  control().value?.length > 0,
+              }"
             >
               <bmb-checkbox
                 [label]="'Select All'"
@@ -89,7 +97,16 @@
 
           @for (item of getPreferredOptions(); track $index) {
             @if (isMultiSelect()) {
-              <li class="bmb_dropdown-dialog-list-checkbox">
+              <li
+                tabindex="0"
+                class="bmb_dropdown-dialog-list-checkbox"
+                role="button"
+                [ngClass]="{
+                  'bmb_dropdown-dialog-list-checkbox-selected':
+                    isItemSelected(item),
+                }"
+                (keydown)="onKeySelect($event, item)"
+              >
                 <bmb-checkbox
                   name="selectOptions"
                   [id]="item.value"
