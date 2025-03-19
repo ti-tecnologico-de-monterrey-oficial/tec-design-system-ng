@@ -58,6 +58,57 @@
       flex: 1;
     }
 
+    &-main {
+      display: flex;
+      flex-direction: row;
+
+      @media (max-width: 630px) {
+        flex-direction: column;
+      }
+
+      &-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 var(--bmb-spacing-s);
+
+        @media (max-width: 630px) {
+          justify-content: flex-start;
+        }
+      }
+
+      &-data {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 0 var(--bmb-spacing-s);
+
+        &-header {
+          @include fonts.font(4, medium);
+        }
+
+        &-description {
+          @include fonts.font(4, regular);
+        }
+
+        &-info {
+          @include fonts.font(3, regular);
+        }
+      }
+
+      &-badge {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 var(--bmb-spacing-s);
+
+        @media (max-width: 630px) {
+          justify-content: flex-start;
+          padding: 0 var(--bmb-spacing-m);
+        }
+      }
+    }
+
     .bmb_field-label {
       display: none;
     }

@@ -4,12 +4,16 @@ import {
   ViewEncapsulation,
   HostListener,
   input,
+  ViewChild,
+  ElementRef,
+  OnInit,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SidebarElement } from './bmb-sidebar.interface';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
 import { BmbButtonDirective } from '../../directives/button.directive';
+import { IPositionButtonMenu } from '../bmb-top-bar/types';
 
 @Component({
   selector: 'bmb-sidebar',
@@ -25,14 +29,18 @@ import { BmbButtonDirective } from '../../directives/button.directive';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbSidebarComponent {
+export class BmbSidebarComponent implements OnInit {
   elements = input<SidebarElement[][]>([]);
   title = input<string>('Navigation');
+  position = input<IPositionButtonMenu>('left');
 
   currentUrl: string = '';
   isOpen: boolean = false;
   selectedElement: SidebarElement | null = null;
   isActive: boolean = false;
+  hasSubmenu: boolean = false;
+
+  @ViewChild('sideNav') sideNav!: ElementRef;
 
   @HostListener('window:focusin', ['$event'])
   onFocusIn() {
@@ -42,6 +50,22 @@ export class BmbSidebarComponent {
   @HostListener('window:focusout', ['$event'])
   onFocusOut() {
     this.checkIfFocusInsideSidebar();
+  }
+
+  ngOnInit(): void {
+    if (this.elements().length > 2) {
+      console.error('The sidebar component only supports two levels of navigation');
+    }
+
+    if (this.elements()[0].length > 5) {
+      console.error('The sidebar component only supports a maximum of 5 elements in the first level of navigation');
+    }
+
+    if (this.elements()[1] && this.elements()[1].length > 3) {
+      console.error('The sidebar component only supports a maximum of 3 elements in the second level of navigation');
+    }
+
+    this.hasSubmenu = this.elements().some((element) => element.some((el) => el.children));
   }
 
   getLink(link: string, hasChildren: boolean): string {
@@ -61,6 +85,10 @@ export class BmbSidebarComponent {
     }
 
     this.selectedElement = element;
+
+    if (element.children) {
+      element.isOpen = !element.isOpen
+    }
   }
 
   closeSideBar() {
@@ -72,5 +100,25 @@ export class BmbSidebarComponent {
     const activeElement = document.activeElement;
     this.isActive =
       (sidebar && activeElement && sidebar.contains(activeElement)) || false;
+  }
+
+  checkToCloseSidebar(event: any) {
+    console.log('checkToCloseSidebar', event);
+
+    if(event.link && !event.children) {
+      this.toggleSidebar();
+      this.sideNav.nativeElement.classList.add('bmb_sidebar-desktop-close');
+
+      setTimeout(() => {
+        this.sideNav.nativeElement.classList.remove('bmb_sidebar-desktop-close');
+        this.sideNav.nativeElement.classList.remove('bmb-active');
+      }, 500);
+    }
+  }
+
+  getMobileIcon(): string {
+    if(this.isOpen) return 'close';
+    if(this.position() === 'left') return 'arrow_forward_ios';
+    return 'arrow_back_ios_new';
   }
 }

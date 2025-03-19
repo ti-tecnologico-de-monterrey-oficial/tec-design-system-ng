@@ -8,8 +8,9 @@ import { CommonModule } from '@angular/common';
 import { InputSignal } from '@angular/core';
 import { SizeNames } from '../../types';
 import { BorderType } from './types';
+import { attributes } from '../../utils/utils';
 
-const meta: Meta<BmbListGroupComponent> = {
+export default {
   title: 'Macro componentes/ListsGroup/List group',
   component: BmbListGroupComponent,
   subcomponents: { BmbListGroupItemComponent },
@@ -117,6 +118,28 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: 'false' },
       },
     },
+    listGroupId: {
+      name: 'List Group Id',
+      description:
+        'This property is used when you have multiple List Group, each instance of the component must have different ID, which will be defined with this property.',
+      control: { type: 'string' },
+      table: {
+        type: { summary: 'string' },
+        category: 'Properties',
+      },
+    },
+    selectionChange: {
+      name: 'Selection Change',
+      control: {
+        type: '',
+      },
+      description:
+        'Emitted when an option is selected. Contains the id of the selected option.',
+      table: {
+        category: 'Events',
+        type: { summary: 'function' },
+      },
+    },
   },
   args: {
     borderRadius: 'm' as unknown as InputSignal<SizeNames | SizeNames[]>,
@@ -127,27 +150,20 @@ Below is an example of how you can use this component in HTML:
     showControls: true as unknown as InputSignal<boolean>,
     isRowView: false as unknown as InputSignal<boolean>,
   },
-};
-
-export default meta;
+} as Meta<typeof BmbListGroupComponent>;
 
 type Story = StoryObj<BmbListGroupComponent>;
 
-export const Primary: Story = {
-  args: {},
+export const Default: Story = {
+  name: 'Default',
   render: (args) => ({
     props: args,
     template: `
-      <bmb-list-group
-        [borderRadius]="borderRadius"
-        [margin]="margin"
-        [padding]="[padding]"
-        [borderType]="borderType"
-        [isMultipleSelection]="isMultipleSelection"
-        [showControls]="showControls"
-        [isRowView]="isRowView"
-      >
-        <bmb-list-group-item id="list-group-item-1">
+      <bmb-list-group ${attributes(args)}>
+        <bmb-list-group-item
+          id="list-group-item-1"
+          [personalizedTemplate]="true"
+        >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo ante,
           mattis nec libero a, malesuada pellentesque sem. Aliquam erat volutpat.
           Nulla ut consequat turpis, id efficitur velit. Fusce vitae dolor leo.
@@ -163,7 +179,12 @@ export const Primary: Story = {
           gravida finibus nulla faucibus fringilla. Morbi luctus porta orci eu
           iaculis.
         </bmb-list-group-item>
-        <bmb-list-group-item id="list-group-item-2" [isDisabled]="true">
+
+        <bmb-list-group-item
+          id="list-group-item-2"
+          [personalizedTemplate]="true"
+          [isDisabled]="true"
+        >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo ante,
           mattis nec libero a, malesuada pellentesque sem. Aliquam erat volutpat.
           Nulla ut consequat turpis, id efficitur velit. Fusce vitae dolor leo.
@@ -179,7 +200,11 @@ export const Primary: Story = {
           gravida finibus nulla faucibus fringilla. Morbi luctus porta orci eu
           iaculis.
         </bmb-list-group-item>
-        <bmb-list-group-item id="list-group-item-3">
+
+        <bmb-list-group-item
+          id="list-group-item-3"
+          [personalizedTemplate]="true"
+        >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo ante,
           mattis nec libero a, malesuada pellentesque sem. Aliquam erat volutpat.
           Nulla ut consequat turpis, id efficitur velit. Fusce vitae dolor leo.
@@ -195,21 +220,70 @@ export const Primary: Story = {
           gravida finibus nulla faucibus fringilla. Morbi luctus porta orci eu
           iaculis.
         </bmb-list-group-item>
-        <bmb-list-group-item id="list-group-item-3">
+      </bmb-list-group>
+    `,
+  }),
+};
+
+export const MultipleListGroup: Story = {
+  name: 'Example With Multiple List Group',
+  render: (args) => ({
+    props: args,
+    template: `
+    <!-- First List Group -->
+      <h1>First Bmb List Group </h1>
+      <bmb-list-group ${attributes(args)} [listGroupId]="'group-1'">
+        <bmb-list-group-item
+          id="list-group-item-1"
+          [personalizedTemplate]="true"
+        >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo ante,
           mattis nec libero a, malesuada pellentesque sem. Aliquam erat volutpat.
           Nulla ut consequat turpis, id efficitur velit. Fusce vitae dolor leo.
           Praesent diam justo, consectetur in blandit ut, tincidunt vitae enim. Nulla
           eleifend, leo at finibus volutpat, nulla metus eleifend lacus, ullamcorper
-          dictum augue diam id erat. Donec ac fringilla elit. Aliquam sit amet luctus
-          elit. Suspendisse ante tortor, euismod nec metus id, commodo sollicitudin
-          massa. Aliquam magna nibh, semper eu vestibulum aliquam, aliquet gravida
-          massa. Nullam vehicula, augue non aliquam posuere, enim urna blandit erat,
-          et euismod enim nisi vel eros. Ut dictum egestas mi, faucibus iaculis lorem.
-          Donec risus diam, maximus at varius rutrum, blandit quis augue. Sed
-          consectetur massa ut auctor ultricies. Etiam fringilla venenatis nulla,
-          gravida finibus nulla faucibus fringilla. Morbi luctus porta orci eu
-          iaculis.
+          dictum augue diam id erat.
+        </bmb-list-group-item>
+
+        <bmb-list-group-item
+          id="list-group-item-2"
+          [personalizedTemplate]="true"
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo ante,
+          mattis nec libero a, malesuada pellentesque sem. Aliquam erat volutpat.
+          Nulla ut consequat turpis, id efficitur velit. Fusce vitae dolor leo.
+          Praesent diam justo, consectetur in blandit ut, tincidunt vitae enim. Nulla
+          eleifend, leo at finibus volutpat, nulla metus eleifend lacus, ullamcorper
+          dictum augue diam id erat.
+        </bmb-list-group-item>
+      </bmb-list-group>
+      <hr>
+
+      <!-- Second List Group -->
+      <h1>Second Bmb List Group </h1>
+      <bmb-list-group ${attributes(args)} [listGroupId]="'group-2'">
+        <bmb-list-group-item
+          id="list-group2-item-1"
+          [personalizedTemplate]="true"
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo ante,
+          mattis nec libero a, malesuada pellentesque sem. Aliquam erat volutpat.
+          Nulla ut consequat turpis, id efficitur velit. Fusce vitae dolor leo.
+          Praesent diam justo, consectetur in blandit ut, tincidunt vitae enim. Nulla
+          eleifend, leo at finibus volutpat, nulla metus eleifend lacus, ullamcorper
+          dictum augue diam id erat.
+        </bmb-list-group-item>
+
+        <bmb-list-group-item
+          id="list-group2-item-2"
+          [personalizedTemplate]="true"
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo ante,
+          mattis nec libero a, malesuada pellentesque sem. Aliquam erat volutpat.
+          Nulla ut consequat turpis, id efficitur velit. Fusce vitae dolor leo.
+          Praesent diam justo, consectetur in blandit ut, tincidunt vitae enim. Nulla
+          eleifend, leo at finibus volutpat, nulla metus eleifend lacus, ullamcorper
+          dictum augue diam id erat.
         </bmb-list-group-item>
       </bmb-list-group>
     `,

@@ -5,7 +5,7 @@
 </ng-template>
 
 <!-- Template for menu items -->
-<ng-template #itemsTemplate let-item="item">
+<ng-template #itemsTemplate let-item="item" let-isMobile="isMobile">
   <bmb-check-external-link-button
     class="bmb_sidebar-link"
     [idElement]="item.id.toString()"
@@ -17,19 +17,23 @@
       *ngTemplateOutlet="elementTemplate; context: { element: item }"
     />
     @if (!!item.children) {
-      <bmb-icon class="bmb_sidebar-arrow" icon="chevron_right" />
+      @if (position() === 'right') {
+        <bmb-icon class="bmb_sidebar-arrow" icon="chevron_left" />
+      } @else {
+        <bmb-icon class="bmb_sidebar-arrow" icon="chevron_right" />
+      }
     }
   </bmb-check-external-link-button>
 </ng-template>
 
 <!-- Template for navigation -->
-<ng-template #sidebarTemplate>
+<ng-template #sidebarTemplate let-isMobile="isMobile">
   @for (group of elements().slice(0, 2); track $index) {
     <ul class="bmb_sidebar-list">
       @for (element of group.slice(0, 5); track $index) {
-        <li class="bmb_sidebar-item">
+        <li class="bmb_sidebar-item" [ngClass]="{ 'bmb_sidebar-item-left-space': (position() === 'right' && hasSubmenu && !element.children?.length) }" (click)="checkToCloseSidebar(element)">
           <ng-container
-            *ngTemplateOutlet="itemsTemplate; context: { item: element }"
+            *ngTemplateOutlet="itemsTemplate; context: { item: element, isMobile: isMobile }"
           />
           @if (!!element.children) {
             <section
@@ -71,7 +75,7 @@
               }
               <ul class="bmb_sidebar-list">
                 @for (child of element?.children?.slice(0, 6); track $index) {
-                  <li class="bmb_sidebar-item">
+                  <li class="bmb_sidebar-item" (click)="checkToCloseSidebar(child)">
                     <ng-container
                       *ngTemplateOutlet="
                         itemsTemplate;
@@ -91,20 +95,21 @@
 
 <!-- Web -->
 <nav
+  #sideNav
   class="bmb_sidebar bmb_sidebar-desktop"
   aria-label="Sidebar Navigation"
-  [ngClass]="{ 'bmb-active': isActive }"
+  [ngClass]="{ 'bmb-active': isActive, 'bmb_sidebar-desktop-right': position() === 'right' }"
   (mouseleave)="closeSideBar()"
 >
   <div class="bmb_sidebar-content">
-    <ng-container *ngTemplateOutlet="sidebarTemplate" />
+    <ng-container *ngTemplateOutlet="sidebarTemplate; context: { isMobile: false }" />
   </div>
 </nav>
 
 <!-- Mobile -->
 <nav
   class="bmb_sidebar bmb_sidebar-mobile"
-  [ngClass]="{ 'bmb_sidebar-open': isOpen }"
+  [ngClass]="{ 'bmb_sidebar-open': isOpen, 'bmb_sidebar-mobile-right': position() === 'right' }"
   aria-label="Sidebar Navigation"
 >
   <button class="bmb_sidebar-button" type="button" (click)="toggleSidebar()">
@@ -113,10 +118,10 @@
     }
     <bmb-icon
       class="bmb_sidebar-button-icon"
-      [icon]="isOpen ? 'close' : 'arrow_forward_ios'"
+      [icon]="getMobileIcon()"
     />
   </button>
   @if (isOpen) {
-    <ng-container *ngTemplateOutlet="sidebarTemplate" />
+    <ng-container *ngTemplateOutlet="sidebarTemplate; context: { isMobile: true }" />
   }
 </nav>

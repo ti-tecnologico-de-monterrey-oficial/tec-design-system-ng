@@ -109,6 +109,7 @@ import {
   BmbProgressBarComponent,
   BmbMultiDotPaginatorComponent,
   BmbMultiDotPaginatorItemComponent,
+  SidebarElement,
 } from '../../projects/ds-ng/src/public-api';
 import { BmbPullWedgeComponent } from '../../projects/ds-ng/src/lib/components/bmb-pull-wedge/bmb-pull-wedge.component';
 import { BmbCardButtonComponent } from '../../projects/ds-ng/src/lib/components/bmb-card-button/bmb-card-button.component';
@@ -294,59 +295,24 @@ export class AppComponent {
     Validators.email,
   ]);
 
+  selectControl = new FormControl('Banana');
+
   title = 'tec-design-system-ng';
   boolUserSummary = true;
   value = 'tec-design';
 
   dataModal: ModalDataConfig = {
-    title: 'Modal Title',
-    subtitle: 'Modal Subtitle',
-    // content:
-    //   'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus, repellat veniam necessitatibus.',
-    content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit',
-    size: 'small',
+    title: 'Entrada a campus',
+    subtitle: '',
+    content: 'Podrás cambiar esta configuración en cualquier momento',
+    size: 'large',
     type: 'alert',
-    alertStyle: 'error',
-    primaryBtnLabel: 'Action',
-    secondaryBtnLabel: 'Cancel',
-    hidePrimaryButton: false,
-    // scrollable: true,
-    // primaryAction: () => {
-    //   console.log('primaryAction');
-    // },
-    // secondaryAction: () => {
-    //   console.log('secondaryAction');
-    // },
+    alertStyle: 'success',
+    primaryBtnLabel: 'Aceptar',
   };
 
   isCalendarLoading = false;
 
-  sidebarElements: {
-    id: number;
-    icon: string;
-    title: string;
-    link: string;
-  }[][] = [
-    [
-      { id: 1, icon: 'assignment_add', title: 'Elegir documentos', link: '#' },
-      { id: 2, icon: 'task', title: 'Agregar firmantes', link: '#' },
-      { id: 3, icon: 'note_alt', title: 'Crear envelope', link: '#' },
-      {
-        id: 4,
-        icon: 'checklist_rtl',
-        title: 'Estado de archivos',
-        link: '/home',
-      },
-    ],
-    [
-      {
-        id: 5,
-        icon: 'account_box',
-        title: 'Admin. usuarios',
-        link: '/my-page',
-      },
-    ],
-  ];
   i = 0;
 
   userInformation = {
@@ -5452,5 +5418,93 @@ export class AppComponent {
         time: date.toISODate(),
       };
     });
+  }
+
+  sidebarElements: SidebarElement[][] = [
+    [
+      {
+        id: 1,
+        icon: 'assignment_add',
+        title: 'Elegir documentos',
+        link: '/home',
+      },
+      {
+        id: 2,
+        icon: 'task',
+        title: 'Agregar firmantes',
+        link: '/emprendedor',
+      },
+      {
+        id: 3,
+        icon: 'note_alt',
+        title: 'Crear envelope',
+        link: '#contact',
+        target: '_self',
+      },
+      {
+        id: 4,
+        icon: 'checklist_rtl',
+        title: 'Estado de archivos anonimos',
+        link: 'inicio',
+        children: [
+          {
+            id: 4.1,
+            icon: 'file_copy',
+            title: 'Sub-item 1',
+            link: '/emprendedor',
+          },
+          {
+            id: 4.2,
+            icon: 'file_copy',
+            title: 'Sub-item 2',
+            link: 'https://www.youtube.com/watch?v=beh56CrNRsQ',
+          },
+        ],
+      },
+      {
+        id: 5,
+        icon: 'account_box',
+        title: 'Admin.usuariosusuariosusuarios',
+        link: 'vivencia',
+        children: [
+          {
+            id: 5.1,
+            icon: 'file_copy',
+            title: 'Sub-item 3',
+            link: '/home',
+          },
+          {
+            id: 5.2,
+            icon: 'file_copy',
+            title: 'Sub-item 4',
+            link: 'https://www.youtube.com/watch?v=beh56CrNRsQ',
+          },
+        ],
+      },
+    ],
+    [
+      {
+        id: 7,
+        icon: 'account_box',
+        title: 'Admin. usuarios',
+        link: 'vivencia1',
+      },
+      {
+        id: 8,
+        icon: 'account_box',
+        title: 'Admin. usuarios',
+        link: 'vivencia2',
+      },
+      {
+        id: 9,
+        icon: 'account_box',
+        title: 'Admin. usuarios',
+        link: 'vivencia3',
+      },
+    ],
+  ];
+
+  changeSelectValue() {
+    this.selectControl.setValue('Grape');
   }
 }

@@ -39,12 +39,16 @@ export class BmbAccordionControlDirective implements OnInit {
           const content = accordion
             .querySelector('section')
             .querySelector('section');
+          const header = accordion.querySelector('section').querySelector('header')
           this.renderer.removeClass(content, 'bmb_accordion-content-open');
+          this.renderer.removeClass(header, 'bmb_accordion-header-open');
         } else {
+          const header = accordion.querySelector('section').querySelector('header')
           const content = accordion
             .querySelector('section')
             .querySelector('section');
           this.renderer.addClass(content, 'bmb_accordion-content-open');
+          this.renderer.addClass(header, 'bmb_accordion-header-open');
         }
       });
     }
