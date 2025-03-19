@@ -34,7 +34,7 @@
   --buttons-active-switch: RGBA(var(--color-charade-700), 1);
   --buttons-inactive-step: RGBA(var(--color-charade-300), 1);
 
-  --alert-successful: rgb(64, 162, 19);
+  --alert-successful: rgb(var(--color-green-primary));
   --alert-event: RGBA(var(--color-purple-light), 1);
   --alert-event-tint: RGBA(var(--color-purple-tint), 1);
   --alert-neutral: RGBA(var(--color-charade-300), 1);
@@ -59,12 +59,35 @@
   --drop_shadow-color-test-shadow: 0.5rem 0.5rem 0.5rem 0px
     RGBA(var(--color-charade-950), 0.5);
 
-  --white-primary: RGBA(var(--color-white-primary), 1);
-  --purple-primary: RGBA(var(--color-purple-primary), 1);
-  --red-primary: RGBA(var(--color-red-primary), 1);
-  --black-primary: RGBA(var(--color-white-primary), 1);
-
   --track-progress-bar: RGBA(var(--color-green-primary), 1);
+
+  --semantic-normal: rgb(var(--color-charade-500));
+  --semantic-strong: rgb(var(--color-mariner-200));
+  --semantic-success: rgb(var(--success-primary));
+  --semantic-info-event: rgb(var(--color-purple-primary));
+  --semantic-warning: rgb(var(--warning-primary));
+  --semantic-error: rgb(var(--error-primary));
+  --semantic-brand: rgb(var(--branding-primary));
+  --semantic-alert: rgb(var(--alert_primary-alert-primary));
+  --mitec_blue: rgb(var(--mitec_blue-primary));
+  --mitec_red: rgb(var(--mitec_red-primary));
+  --mitec_green: rgb(var(--mitec_green-primary));
+  --mitec_orange: rgb(var(--mitec_orange-primary));
+  --mitec_purple: rgb(var(--mitec_purple-primary));
+  --creative-use-violet: rgb(var(--violet-primary));
+  --creative-use-indigo: rgb(var(--indigo-primary));
+  --creative-use-emerald: rgb(var(--emerald-primary));
+  --creative-use-licorice: rgb(var(--licorice-primary));
+  --creative-use-darkteal: rgb(var(--dark-teal-primary));
+  --creative-use-peach: rgb(var(--peach-primary));
+  --creative-use-sepia: rgb(var(--sepia-primary));
+  --creative-use-softred: rgb(var(--soft-red-primary));
+  --creative-use-wattle: rgb(var(--wattle-primary));
+  --creative-use-shipcove: rgb(var(--ship-cove-primary));
+  --creative-use-plantation: rgb(var(--plantation-primary));
+  --creative-use-rum: rgb(var(--rum-primary));
+  --creative-use-ripelemon: rgb(var(--ripe-lemon-primary));
+  --creative-use-hibiscus: rgb(var(--hibiscus-primary));
 }
 
 [data-theme="dark"],
@@ -112,4 +135,33 @@
     RGBA(var(--color-black-primary), 0.2);
 
   --track-progress-bar: RGBA(var(--color-green-light), 1);
+
+  //Semantic
+  --semantic-normal: rgb(var(--color-charade-500));
+  --semantic-strong: rgb(var(--color-mariner-200));
+  --semantic-success: rgb(var(--success-light));
+  --semantic-info-event: rgb(var(--purple-tint));
+  --semantic-warning: rgb(var(--warning-tint));
+  --semantic-error: rgb(var(--error-light));
+  --semantic-brand: rgb(var(--branding-tint));
+  --semantic-alert: rgb(var(--alert_primary-alert-light));
+  --mitec_blue: rgb(var(--mitec_blue-light));
+  --mitec_red: rgb(var(--mitec_red-light));
+  --mitec_green: rgb(var(--mitec_green-light));
+  --mitec_orange: rgb(var(--mitec_orange-light));
+  --mitec_purple: rgb(var(--mitec_purple-tint));
+  --creative-use-violet: rgb(var(--violet-tint));
+  --creative-use-indigo: rgb(var(--indigo-tint));
+  --creative-use-emerald: rgb(var(--emerald-tint));
+  --creative-use-licorice: rgb(var(--licorice-tint));
+  --creative-use-darkteal: rgb(var(--dark-teal-tint));
+  --creative-use-peach: rgb(var(--peach-tint));
+  --creative-use-sepia: rgb(var(--sepia-tint));
+  --creative-use-softred: rgb(var(--soft-red-tint));
+  --creative-use-wattle: rgb(var(--wattle-tint));
+  --creative-use-shipcove: rgb(var(--ship-cove-tint));
+  --creative-use-plantation: rgb(var(--plantation-tint));
+  --creative-use-rum: rgb(var(--rum-tint));
+  --creative-use-ripelemon: rgb(var(--ripe-lemon-tint));
+  --creative-use-hibiscus: rgb(var(--hibiscus-tint));
 }
