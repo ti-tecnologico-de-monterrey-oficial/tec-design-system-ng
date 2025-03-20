@@ -1,16 +1,3 @@
-<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-  <bmb-dropdown
-    formControlName="dropdown"
-    [isMultiSelect]="true"
-    [options]="['Apple', 'Banana', 'Orange', 'Pear', 'Grape']"
-    helperText="Select a fruit"
-    [preferredOptions]="['Banana']"
-    (onValueChange)="onValueChange($event)"
-    [required]="true"
-    label="Fruit"
-    [showIcon]="true"
-    icon="bolt"
-  ></bmb-dropdown>
-
-  <button type="submit" bmbButton>Submit</button>
-</form>
+<div>
+  <button (click)="openModal()">text</button>
+</div>
