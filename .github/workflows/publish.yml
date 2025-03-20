@@ -11,15 +11,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
-          registry-url: https://registry.npmjs.org
+          registry-url: "https://registry.npmjs.org"
 
       - run: npm ci
       - run: npm run build:lib
-      - run: cd dist/ds-ng/
-      - run: npm adduser --registry=https://registry.npmjs.org/ --scope=@ti-tecnologico-de-monterrey-oficial --always-auth
-      - run: npm publish --provenance --access public
+      - run: npm publish ./dist/ds-ng --provenance --access public --tag beta
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
