@@ -26,15 +26,14 @@ import { attributes } from '../../utils/utils';
   `,
 })
 class StorybookModalWrapperComponent {
-  @Input() title: string = 'Titulo Modal';
-  @Input() subtitle: string = 'Subtitulo Opcional';
-  @Input() content?: string =
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit.';
+  @Input() title?: string;
+  @Input() subtitle?: string;
+  @Input() content?: string;
   @Input() size?: 'small' | 'medium' | 'large';
   @Input() type?: 'alert' | 'action' | 'informative';
   @Input() alertStyle?: 'error' | 'event' | 'neutral' | 'warning' | 'success';
-  @Input() primaryBtnLabel?: string = 'OK';
-  @Input() secondaryBtnLabel?: string = 'Cancel';
+  @Input() primaryBtnLabel?: string;
+  @Input() secondaryBtnLabel?: string;
   @Input() primaryAction?: () => void;
   @Input() secondaryAction?: () => void;
 
@@ -259,16 +258,7 @@ Below is an example of how you can use this component in HTML:
       },
     },
   },
-  args: {
-    title: 'Modal Title',
-    subtitle: 'Modal Subtitle',
-    content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-    size: 'small',
-    type: 'action',
-    alertStyle: 'error',
-    primaryBtnLabel: 'Action',
-    secondaryBtnLabel: 'Cancel',
-  },
+  args: {},
 } as Meta<typeof BmbModalComponent>;
 
 export const Default: StoryFn<typeof BmbModalComponent> = (args) => {

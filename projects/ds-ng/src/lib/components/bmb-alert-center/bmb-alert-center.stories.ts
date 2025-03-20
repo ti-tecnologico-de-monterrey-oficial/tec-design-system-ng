@@ -1,24 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbAlertCenterComponent } from './bmb-alert-center.component';
-import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
-
-const appearanceOptions: IBbmBgAppearance[] = [
-  'normal',
-  'strong',
-  'success',
-  'info',
-  'warning',
-  'error',
-  'brand',
-  'background',
-  'disabled',
-  'mitec_blue',
-  'mitec_red',
-  'mitec_green',
-  'mitec_orange',
-  'mitec_light_green',
-  'mitec_purple',
-];
 
 export default {
   title: 'Macro Componentes/Alert center',
@@ -397,9 +378,7 @@ type Story = StoryObj<BmbAlertCenterComponent>;
 export const Default: Story = {};
 
 export const HideTabs = {
-  ...Default,
   args: {
-    ...Default.args,
     hideTabs: true,
   },
 };

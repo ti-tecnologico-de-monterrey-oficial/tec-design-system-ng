@@ -170,6 +170,9 @@ export class BmbModalComponent {
 
   showSecondaryButton(): boolean {
     const data = this.getData();
-    return (data.type && data.type !== 'action') || !!data.secondaryBtnLabel;
+    return (
+      (data.type && data.type !== 'action' && !!data.secondaryBtnLabel) ||
+      !!data.secondaryBtnLabel
+    );
   }
 }

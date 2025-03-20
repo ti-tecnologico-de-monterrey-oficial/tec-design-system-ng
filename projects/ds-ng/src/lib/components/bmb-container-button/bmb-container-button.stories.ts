@@ -3,6 +3,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbContainerButtonComponent } from './bmb-container-button.component';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
+import { attributes } from '../../utils/utils';
 
 const appearanceOptions: IBbmBgAppearance[] = [
   'normal',
@@ -12,14 +13,26 @@ const appearanceOptions: IBbmBgAppearance[] = [
   'warning',
   'error',
   'brand',
-  'background',
-  'disabled',
+  'alert',
   'mitec_blue',
   'mitec_red',
   'mitec_green',
   'mitec_orange',
-  'mitec_light_green',
   'mitec_purple',
+  'creative_violet',
+  'creative_indigo',
+  'creative_emerald',
+  'creative_licorice',
+  'creative_darkteal',
+  'creative_peach',
+  'creative_sepia',
+  'creative_softred',
+  'creative_wattle',
+  'creative_shipcove',
+  'creative_plantation',
+  'creative_rum',
+  'creative_hibiscus',
+  'creative_ripelemon',
 ];
 
 export default {
@@ -336,6 +349,7 @@ export const BadgeExample = {
 export const BookmarkExample = {
   name: 'Variant with bookmark example',
   args: {
+    iconRight: '',
     enableBookmark: true,
   },
 };
@@ -343,6 +357,7 @@ export const BookmarkExample = {
 export const BookmarkActiveExample = {
   name: 'Variant with bookmark active example',
   args: {
+    iconRight: '',
     enableBookmark: true,
     isBookmarkActive: true,
   },
@@ -399,14 +414,18 @@ export const AlternativeVersionDisableExample = {
 export const SquareExample = {
   name: 'Square version example',
   args: {
+    iconRight: '',
     square: true,
+    small: false,
   },
 };
 
 export const SmallExample = {
   name: 'Small version example',
   args: {
+    iconRight: '',
     small: true,
+    square: false,
   },
 };
 
@@ -418,6 +437,15 @@ export const SecondaryActionExample = {
       alert('Secondary action clicked');
     },
   },
+  render: (args: any) => ({
+    template: `
+    <!--
+    This allows the action of the left icon to be executed as a secondary action
+    in addition to the primary action of the container button.
+    -->
+    <bmb-container-button ${attributes(args)} />
+    `,
+  }),
 };
 
 export const LinkExample = {
@@ -426,4 +454,10 @@ export const LinkExample = {
     link: 'https://www.example.com/',
     target: '_blank',
   },
+  render: (args: any) => ({
+    template: `
+    <!-- It is not necessary to add the onbutton event. -->
+    <bmb-container-button ${attributes(args)} />
+    `,
+  }),
 };
