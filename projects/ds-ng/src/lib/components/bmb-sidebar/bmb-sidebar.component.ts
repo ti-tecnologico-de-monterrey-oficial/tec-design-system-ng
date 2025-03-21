@@ -53,19 +53,19 @@ export class BmbSidebarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.elements().length > 2) {
+    if (this.elements()?.length > 2) {
       console.error(
         'The sidebar component only supports two levels of navigation',
       );
     }
 
-    if (this.elements()[0].length > 5) {
+    if (this.elements()[0]?.length > 5) {
       console.error(
         'The sidebar component only supports a maximum of 5 elements in the first level of navigation',
       );
     }
 
-    if (this.elements()[1] && this.elements()[1].length > 3) {
+    if (this.elements()[1] && this.elements()[1]?.length > 3) {
       console.error(
         'The sidebar component only supports a maximum of 3 elements in the second level of navigation',
       );
