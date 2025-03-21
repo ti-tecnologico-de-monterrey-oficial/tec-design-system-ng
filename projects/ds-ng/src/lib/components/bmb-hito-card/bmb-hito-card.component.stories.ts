@@ -149,7 +149,7 @@ type Story = StoryObj<BmbHitoCardComponent>;
 export const Default: Story = {
   name: 'Example of active type',
   render: (args: any) => ({
-  template: `
+    template: `
       <div style="padding: 1.5rem">
         <bmb-hito-card
           ${attributes(args)}
@@ -165,7 +165,7 @@ export const PendingExample = {
     type: 'pending',
   },
   render: (args: any) => ({
-  template: `
+    template: `
       <div style="padding: 1.5rem">
         <bmb-hito-card
           ${attributes(args)}
@@ -181,7 +181,7 @@ export const DoneExample = {
     type: 'done',
   },
   render: (args: any) => ({
-  template: `
+    template: `
       <div style="padding: 1.5rem">
         <bmb-hito-card
           ${attributes(args)}
@@ -197,7 +197,7 @@ export const UnderReviewExample = {
     type: 'under_review',
   },
   render: (args: any) => ({
-  template: `
+    template: `
       <div style="padding: 1.5rem">
         <bmb-hito-card
           ${attributes(args)}
@@ -213,7 +213,7 @@ export const CanceledExample = {
     type: 'canceled',
   },
   render: (args: any) => ({
-  template: `
+    template: `
       <div style="padding: 1.5rem">
         <bmb-hito-card
           ${attributes(args)}
@@ -229,7 +229,7 @@ export const CompactExample = {
     isCompact: true,
   },
   render: (args: any) => ({
-  template: `
+    template: `
       <div style="padding: 1.5rem">
         <bmb-hito-card
           ${attributes(args)}
@@ -245,7 +245,7 @@ export const EnableBulletExample = {
     enable_bullet: true,
   },
   render: (args: any) => ({
-  template: `
+    template: `
       <div style="padding: 1.5rem">
         <bmb-hito-card
           ${attributes(args)}
@@ -262,7 +262,7 @@ export const ActiveExample = {
     enable_bullet: true,
   },
   render: (args: any) => ({
-  template: `
+    template: `
       <div style="padding: 1.5rem">
         <bmb-hito-card
           ${attributes(args)}
