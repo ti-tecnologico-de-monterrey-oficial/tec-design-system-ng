@@ -101,7 +101,7 @@ Below is an example of how you can use this component in HTML:
           'Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.\n\nCurabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.\n\nPhasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.',
         short_description:
           'lacinia nisi venenatis tristique fusce congue diam id ornare',
-        type: 'active',
+        type: 'canceled',
         related_to: ['task3'],
         decision: 'et magnis',
         title: 'Betrayal',

@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbBadgeComponent } from './bmb-badge.component';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
-import { InputSignal, Signal } from '@angular/core';
 
 const appearanceOptions: IBbmBgAppearance[] = [
   'normal',
@@ -11,13 +10,13 @@ const appearanceOptions: IBbmBgAppearance[] = [
   'warning',
   'error',
   'brand',
+  'alert',
   'background',
   'disabled',
   'mitec_blue',
   'mitec_red',
   'mitec_green',
   'mitec_orange',
-  'mitec_light_green',
   'mitec_purple',
   'creative_violet',
   'creative_indigo',
@@ -93,7 +92,11 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: 'normal' },
         type: { summary: 'string' },
       },
-      description: 'The appearance of the badge, affecting its visual style.',
+      description: `
+The appearance of the badge, affecting its visual style.
+
+  **Note**: disabled and background do not exist for container.
+      `,
     },
     container: {
       name: 'Container',
@@ -119,9 +122,7 @@ type Story = StoryObj<BmbBadgeComponent>;
 export const Default: Story = {};
 
 export const Container = {
-  ...Default,
   args: {
-    ...Default.args,
     container: true,
   },
 };
