@@ -258,8 +258,7 @@ Below is an example of how you can use this component in HTML:
       },
     },
   },
-  args: {
-  },
+  args: {},
 } as Meta<typeof BmbModalComponent>;
 
 export const Default: StoryFn<typeof BmbModalComponent> = (args) => {

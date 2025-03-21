@@ -83,7 +83,7 @@ En el archivo `angular.json` de tu proyecto, agrega el siguiente contenido donde
 ## Instalación de íconos
 
 Agrega las siguientes lineas a tu archivo de estilos global `src/styles.scss`.
- 
+
 **Angular 17.3**
 
 ```
