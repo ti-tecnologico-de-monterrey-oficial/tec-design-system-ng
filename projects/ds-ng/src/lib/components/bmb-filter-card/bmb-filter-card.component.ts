@@ -110,33 +110,47 @@ export class BmbFilterCardComponent implements OnInit {
   onControlChange(control: any, event: any) {
     const formControl = this.filterForm.get(control.name);
     if (formControl) {
-      if (control.type === 'switch') {
-        formControl.setValue(event);
-        const switchValue = {
-          name: control.name,
-          label: control.rightText,
-          checked: event,
-          type: control.type,
-        };
-        this.storedValues[control.name] = switchValue;
-      } else if (control.type === 'checkbox') {
-        formControl.setValue(event.target.checked);
-        const checkboxValue = {
-          name: control.name,
-          label: control.label,
-          checked: event.target.checked,
-          type: control.type,
-        };
-        this.storedValues[control.name] = checkboxValue;
-      } else if (control.type === 'radial') {
-        formControl.setValue(control.label);
-        const radialValue = {
-          label: control.label,
-          checked: event.checked,
-          name: control.name,
-          type: control.type,
-        };
-        this.storedValues[control.name] = radialValue;
+      switch (control.type) {
+        case 'switch':
+          formControl.setValue(event);
+          const switchValue = {
+            name: control.name,
+            label: control.rightText,
+            checked: event,
+            type: control.type,
+          };
+          this.storedValues[control.name] = switchValue;
+          break;
+        case 'checkbox':
+          formControl.setValue(event.target.checked);
+          const checkboxValue = {
+            name: control.name,
+            label: control.label,
+            checked: event.target.checked,
+            type: control.type,
+          };
+          this.storedValues[control.name] = checkboxValue;
+          break;
+        case 'radial':
+          formControl.setValue(control.label);
+          const radialValue = {
+            label: control.label,
+            checked: event.checked,
+            name: control.name,
+            type: control.type,
+          };
+          this.storedValues[control.name] = radialValue;
+          break;
+        default: //for the tag option or any other option that does not have an activated control
+          formControl.setValue(control.label);
+          const elementValue = {
+            label: control.label,
+            checked: !this.storedValues[control.name]?.checked,
+            name: control,
+            type: control.type,
+          };
+          this.storedValues[control.name] = elementValue;
+          break;
       }
     }
   }

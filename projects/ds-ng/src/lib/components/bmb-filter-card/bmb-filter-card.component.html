@@ -27,6 +27,9 @@
                   <bmb-tag
                     [text]="control.label"
                     [dismissible]="false"
+                    [activityTag]="
+                      filterForm.get(control.name)?.value === control.label
+                    "
                     (clickedTag)="onControlChange(control, $event)"
                   />
                 }
