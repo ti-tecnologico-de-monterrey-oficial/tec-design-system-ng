@@ -21,6 +21,7 @@ import { BmbInputComponent } from '../bmb-input/bmb-input.component';
 import { IBmbControlType } from './bmb-filter-card.interface';
 import { BmbButtonDirective } from '../../directives/button.directive';
 import { BmbDropdownComponent } from '../bmb-dropdown/bmb-dropdown.component';
+import { BmbTagComponent } from '../bmb-tags/bmb-tags.component';
 
 @Component({
   selector: 'bmb-filter-card',
@@ -37,6 +38,7 @@ import { BmbDropdownComponent } from '../bmb-dropdown/bmb-dropdown.component';
     BmbCheckboxComponent,
     BmbDropdownComponent,
     BmbButtonDirective,
+    BmbTagComponent,
   ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
