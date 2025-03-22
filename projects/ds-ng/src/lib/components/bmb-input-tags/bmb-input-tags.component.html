@@ -16,12 +16,19 @@
     </label>
   }
   <div class="bmb_input-tags-wrapper">
-    <bmb-input [control]="filterControl" [disabled]="disabled()" (isFocus)="handleFocus()" />
-    <bmb-input hidden [control]="control()" [name]="name()" [disabled]="disabled()" [isRequired]="isRequired()" />
-    <dialog
-      class="bmb_input-tags-dialog"
-      [open]="showDropdown"
-    >
+    <bmb-input
+      [control]="filterControl"
+      [disabled]="disabled()"
+      (isFocus)="handleFocus()"
+    />
+    <bmb-input
+      hidden
+      [control]="control()"
+      [name]="name()"
+      [disabled]="disabled()"
+      [isRequired]="isRequired()"
+    />
+    <dialog class="bmb_input-tags-dialog" [open]="showDropdown">
       <ul class="bmb_input-tags-dialog-list">
         @for (item of filteredOptions; track $index) {
           @if (checkIfIsSelected(item)) {

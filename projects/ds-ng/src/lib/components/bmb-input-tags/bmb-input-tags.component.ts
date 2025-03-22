@@ -8,15 +8,15 @@ import {
   ViewEncapsulation,
   OnInit,
 } from '@angular/core';
-import {
-  FormControl,
-} from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { BmbTooltipComponent } from '../bmb-tooltip/bmb-tooltip.component';
 import { IBmbDropdownItem } from '../bmb-dropdown/bmb-dropdown.component';
-import { IBmbInputError, BmbInputComponent } from '../bmb-input/bmb-input.component';
+import {
+  IBmbInputError,
+  BmbInputComponent,
+} from '../bmb-input/bmb-input.component';
 import { ClickOutsideDirective } from '../../directives/utils/clickoutside.directive';
 import { debounceTime } from 'rxjs';
-
 
 @Component({
   selector: 'bmb-input-tags',
@@ -27,7 +27,7 @@ import { debounceTime } from 'rxjs';
     BmbInputComponent,
     ClickOutsideDirective,
     BmbTagComponent,
-],
+  ],
   templateUrl: './bmb-input-tags.component.html',
   styleUrl: './bmb-input-tags.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -81,7 +81,10 @@ export class BmbInputTagsComponent implements OnInit {
 
   filteredValue(value: string): void {
     const formattedOptions = this.transFormOptions(this.tagOptions());
-    let filteredOptions: string[] | IBmbDropdownItem[] = formattedOptions.filter((item: IBmbDropdownItem) => item.name.toLowerCase().includes(value.toLowerCase()));
+    let filteredOptions: string[] | IBmbDropdownItem[] =
+      formattedOptions.filter((item: IBmbDropdownItem) =>
+        item.name.toLowerCase().includes(value.toLowerCase()),
+      );
 
     this.filteredOptions = filteredOptions;
     this.cdr.detectChanges();
