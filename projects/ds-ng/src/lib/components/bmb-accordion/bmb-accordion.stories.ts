@@ -220,7 +220,6 @@ type Story = StoryObj<BmbAccordionComponent>;
 
 export const OneItem: Story = {
   render: (args) => ({
-    props: args,
     template: `
   <bmb-accordion
     ${attributes(args)}
