@@ -161,20 +161,17 @@
       @if (isDialogOpen) {
         @for (bot of dBotList(); track $index) {
           <li class="bmb_chat-bar-dialog-option">
-            <button
-              (click)="handleChangeBot(bot)"
+            <bmb-navigation-icon
               class="bmb_chat-bar-dialog-button"
               [ngClass]="{
                 'bmb_chat-bar-dialog-button-active':
                   bot.name === currentBot()?.name,
               }"
-            >
-              <img
-                class="bmb_chat-bar-dialog-button-image bmb_chat-bar-dialog-button-image-active"
-                [src]="bot.icon"
-                [alt]="bot.name"
-              />
-            </button>
+              [icon]="bot.icon"
+              [alt]="bot.name"
+              [iconSize]="40"
+              (buttonClick)="handleChangeBot(bot)"
+            />
           </li>
         }
       }
