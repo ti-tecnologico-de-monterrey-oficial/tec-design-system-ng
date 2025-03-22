@@ -27,6 +27,7 @@ import { IBmbTargetLink } from '../../../types';
 export class BmbNavigationIconComponent {
   idElement = input<string>();
   icon = input.required<string>();
+  alt = input<string>('');
   iconSize = input<number | undefined>();
   toggleIconActive = input<string | undefined>();
   isToggleActive = model<boolean | undefined>(false);

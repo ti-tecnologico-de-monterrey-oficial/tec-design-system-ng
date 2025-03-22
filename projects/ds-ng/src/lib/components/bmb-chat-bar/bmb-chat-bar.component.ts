@@ -14,6 +14,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BmbDotPaginatorComponent } from '../bmb-dot-paginator/bmb-dot-paginator.component';
+import { BmbNavigationIconComponent } from '../bmb-navigation-bar/bmb-navigation-icon/bmb-navigation-icon.component';
 
 export { defaultBotList, defaultActionList } from './bot_list';
 export { IBotType, IChatBarActions } from './types';
@@ -26,6 +27,7 @@ export { IBotType, IChatBarActions } from './types';
     ReactiveFormsModule,
     CommonModule,
     BmbDotPaginatorComponent,
+    BmbNavigationIconComponent,
   ],
   templateUrl: './bmb-chat-bar.component.html',
   styleUrl: './bmb-chat-bar.component.scss',
@@ -46,6 +48,7 @@ export class BmbChatBarComponent {
   onSendMessage = output<string>();
   onSendFiles = output<File[]>();
   onRecord = output<boolean>();
+  onEmoji = output<boolean>();
 
   control = new FormControl();
   isDialogOpen: boolean = false;
@@ -88,7 +91,7 @@ export class BmbChatBarComponent {
     this.handlePaginate(this.dActionsList(), this.activeDot);
   }
 
-  handleSend() {
+  handleSend(): void {
     this.onSendMessage.emit(this.control.value);
     if (this.files.length > 0) {
       this.onSendFiles.emit(this.files);
@@ -98,30 +101,30 @@ export class BmbChatBarComponent {
     this.files = [];
   }
 
-  handleChangeBot(bot: IBotType) {
+  handleChangeBot(bot: IBotType): void {
     this.isDialogOpen = false;
     this.currentBot.set(bot);
   }
 
-  handleDialog() {
+  handleDialog(): void {
     this.isDialogOpen = !this.isDialogOpen;
   }
 
-  handleMic() {
+  handleMic(): void {
     this.showMicControls = !this.showMicControls;
     this.onRecord.emit(true);
   }
 
-  handleStopMic() {
+  handleStopMic(): void {
     this.showMicControls = !this.showMicControls;
     this.onRecord.emit(false);
   }
 
-  handleAddDialog() {
+  handleAddDialog(): void {
     this.openAddDialog = !this.openAddDialog;
   }
 
-  onDrop(event: any) {
+  onDrop(event: any): void {
     event.preventDefault();
     const droppedFiles = event.dataTransfer.files;
 
@@ -170,7 +173,7 @@ export class BmbChatBarComponent {
     this.arrayThumbnail.splice(index, 1);
   }
 
-  handlePaginate(items: any[], page: number) {
+  handlePaginate(items: any[], page: number): void {
     const startIndex = page * 6;
     this.actionListPagination = items.slice(startIndex, startIndex + 6);
   }
@@ -181,5 +184,13 @@ export class BmbChatBarComponent {
 
   close(): void {
     this.openAddDialog = false;
+  }
+
+  handleEmoji(): void {
+    this.onEmoji.emit(true);
+  }
+
+  handleRecord(): void {
+    this.onRecord.emit(true);
   }
 }

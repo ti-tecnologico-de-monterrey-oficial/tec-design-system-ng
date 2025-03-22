@@ -54,6 +54,17 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string (required)' },
       },
     },
+    alt: {
+      name: 'Alt',
+      control: { type: 'text' },
+      description:
+        'Sets alternative text for the icon when it is an image. This improves accessibility.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: '""' },
+        type: { summary: 'string' },
+      },
+    },
     iconSize: {
       name: 'Icon size',
       control: { type: 'number' },
@@ -162,6 +173,7 @@ Below is an example of how you can use this component in HTML:
   args: {
     idElement: '',
     icon: 'close',
+    alt: '',
     iconSize: 24,
     toggleIconActive: '',
     isToggleActive: false,

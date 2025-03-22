@@ -2,10 +2,11 @@ import {
   ChangeDetectionStrategy,
   Component,
   input,
+  OnInit,
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { isImage } from '../../utils/utils';
+import { buildErrorMessage, isImage } from '../../utils/utils';
 import { StyleIconType } from './types';
 
 @Component({
@@ -17,7 +18,7 @@ import { StyleIconType } from './types';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbIconComponent {
+export class BmbIconComponent implements OnInit {
   icon = input<string>('face');
   materialIcon = input<boolean>(false);
   styleIcon = input<StyleIconType>('material-symbols-rounded');
@@ -28,6 +29,19 @@ export class BmbIconComponent {
   dotNotification = input<number>();
 
   styleIconGoogle = 'material-symbols-rounded';
+
+  ngOnInit() {
+    let inputs: string[] = [];
+    if (this.isImage(this.icon()) && !this.alt()) inputs.push('alt');
+
+    if (inputs.length) {
+      throw new Error(
+        `
+        The ${buildErrorMessage(inputs)} required when the icon is an image.
+        `,
+      );
+    }
+  }
 
   isImage(icon: string): boolean {
     return isImage(icon);

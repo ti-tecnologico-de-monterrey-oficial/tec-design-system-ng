@@ -61,8 +61,8 @@ Below is an example of how you can use this component in HTML:
         'When the activity tag property is set as true, the tag can change the appearance.',
       table: {
         category: 'Properties',
-        type: { summary: 'radio' },
-        deafaultValue: { summary: 'info' },
+        type: { summary: 'string' },
+        defaultValue: { summary: 'normal' },
       },
     },
     rounded: {
@@ -125,7 +125,7 @@ Below is an example of how you can use this component in HTML:
         'When set to true, a close icon appears, when is clicked the tag is remove from the DOM. By default, it is false, and you do not need to explicitly set it. The badge should always have a parent element.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'false' },
+        defaultValue: { summary: 'true' },
         type: { summary: 'boolean' },
       },
     },
@@ -133,7 +133,7 @@ Below is an example of how you can use this component in HTML:
   args: {
     text: 'Badge text',
     grouped: false,
-    dismissible: false,
+    dismissible: true,
     activityTag: false,
     appearance: 'normal',
   },

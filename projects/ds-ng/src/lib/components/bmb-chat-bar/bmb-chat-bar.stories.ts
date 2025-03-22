@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/angular';
+import { Meta, StoryObj } from '@storybook/angular';
 import { BmbChatBarComponent } from './bmb-chat-bar.component';
 
 export default {
@@ -105,7 +105,7 @@ Below is an example of how you can use this component in HTML:
     currentBotChange: {
       name: 'current bot change',
       control: null,
-      description: 'Emmit the selected bot object <IBotType>. ',
+      description: 'Emit the selected bot object <IBotType>. ',
       table: {
         category: 'Events',
         type: { summary: 'function' },
@@ -114,7 +114,7 @@ Below is an example of how you can use this component in HTML:
     onSendMessage: {
       name: 'On send message',
       control: null,
-      description: 'Emmit the send event, export the output value.',
+      description: 'Emit the send event, export the output value.',
       table: {
         category: 'Events',
         type: { summary: 'function' },
@@ -123,7 +123,7 @@ Below is an example of how you can use this component in HTML:
     onSendFiles: {
       name: 'On send Files',
       control: null,
-      description: 'Emmit the send event, export the files output.',
+      description: 'Emit the send event, export the files output.',
       table: {
         category: 'Events',
         type: { summary: 'function' },
@@ -133,7 +133,17 @@ Below is an example of how you can use this component in HTML:
       name: 'On Record',
       control: null,
       description:
-        'Emmit the Record event, returns a true value when the user clicks the button of the microphone and returns a false value when the pause icon is clicked.',
+        'Emit the Record event, returns a true value when the user clicks the button of the microphone and returns a false value when the pause icon is clicked.',
+      table: {
+        category: 'Events',
+        type: { summary: 'function' },
+      },
+    },
+    onEmoji: {
+      name: 'On Emoji',
+      control: null,
+      description:
+        'Emit the Emoji event, emits true value when the user clicks the button of the emoji.',
       table: {
         category: 'Events',
         type: { summary: 'function' },

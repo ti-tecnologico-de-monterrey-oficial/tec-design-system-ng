@@ -45,31 +45,37 @@ export class BmbUserProfileComponent {
   actionHeaders = input<IBmbActionHeader[]>([
     {
       icon: '../assets/images/social-icons/icon_Apple.svg',
+      alt: 'icon Apple',
       link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-user-profile--documentation',
       action: () => {},
     },
     {
       icon: '../assets/images/social-icons/icon_Android.svg',
+      alt: 'icon Android',
       link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-user-profile--documentation',
       action: () => {},
     },
     {
       icon: '../assets/images/social-icons/icon_Twitter.svg',
+      alt: 'icon Twitter',
       link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-user-profile--documentation',
       action: () => {},
     },
     {
       icon: '../assets/images/social-icons/icon_Facebook.svg',
+      alt: 'icon Facebook',
       link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-user-profile--documentation',
       action: () => {},
     },
     {
       icon: '../assets/images/social-icons/icon_Instagram.svg',
+      alt: 'icon Instagram',
       link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-user-profile--documentation',
       action: () => {},
     },
     {
       icon: '../assets/images/social-icons/icon_Youtube.svg',
+      alt: 'icon Youtube',
       link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-user-profile--documentation',
       action: () => {},
     },
