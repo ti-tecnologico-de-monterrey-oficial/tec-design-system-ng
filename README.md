@@ -27,7 +27,7 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 - Dropdown: Ahora se puede cambiar el valor del Dropdown de manera externa.
 - Modal:
   - Se evita mostrar el secondary button cuando no tiene label.
-  - Se eliminaron los valores por defecto en  la documentación del modal.
+  - Se eliminaron los valores por defecto en la documentación del modal.
 - Sidebar:
   - El Sidebar se cierra cuando seleccionas una opción.
   - Se agregó la posibilidad de poner el sidebar a la derecha

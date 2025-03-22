@@ -1,3 +1,5 @@
+@use "../../../assets/styles/base/rem" as rem;
+
 :root {
   --general_contrasts-150: RGBA(var(--color-charade-950), 1);
   --general_contrasts-100: RGBA(var(--color-charade-900), 1);
@@ -56,7 +58,7 @@
   --switch-checked: RGBA(var(--color-mariner-700), 1);
   --switch-checked-shadow: RGBA(var(--color-mariner-700), 0.2);
 
-  --drop_shadow-color-test-shadow: 0.5rem 0.5rem 0.5rem 0px
+  --drop_shadow-color-test-shadow: rem.rem_calc(8 8 8 0)
     RGBA(var(--color-charade-950), 0.5);
 
   --track-progress-bar: RGBA(var(--color-green-primary), 1);
@@ -131,7 +133,7 @@
   --switch-checked: RGBA(var(--color-green-light), 1);
   --switch-checked-shadow: RGBA(var(--color-green-light), 0.2);
 
-  --drop_shadow-color-test-shadow: 0.5rem 0.5rem 0.5rem 0px
+  --drop_shadow-color-test-shadow: rem.rem_calc(8 8 8 0)
     RGBA(var(--color-black-primary), 0.2);
 
   --track-progress-bar: RGBA(var(--color-green-light), 1);
