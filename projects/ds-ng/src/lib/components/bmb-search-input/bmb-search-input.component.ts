@@ -15,8 +15,6 @@ import {
 import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbButtonDirective } from '../../directives/button.directive';
-import { BmbLoaderComponent } from '../bmb-loader/bmb-loader.component';
 import { debounceTime } from 'rxjs/operators';
 
 @Component({
@@ -25,8 +23,6 @@ import { debounceTime } from 'rxjs/operators';
   imports: [
     CommonModule,
     BmbIconComponent,
-    BmbButtonDirective,
-    BmbLoaderComponent,
     ReactiveFormsModule,
   ],
   templateUrl: './bmb-search-input.component.html',

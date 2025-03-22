@@ -4,157 +4,136 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  ElementRef,
-  HostListener,
   input,
-  Input,
-  OnChanges,
-  SimpleChanges,
-  ViewChild,
   ViewEncapsulation,
-  signal,
-  ɵINPUT_SIGNAL_BRAND_WRITE_TYPE,
-  output,
-  forwardRef,
+  OnInit,
 } from '@angular/core';
-import {
-  FormsModule,
-  FormControl,
-  ReactiveFormsModule,
-  Validators,
-  NG_VALUE_ACCESSOR,
-} from '@angular/forms';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { FormControl } from '@angular/forms';
 import { BmbTooltipComponent } from '../bmb-tooltip/bmb-tooltip.component';
+import { IBmbDropdownItem } from '../bmb-dropdown/bmb-dropdown.component';
+import {
+  IBmbInputError,
+  BmbInputComponent,
+} from '../bmb-input/bmb-input.component';
+import { ClickOutsideDirective } from '../../directives/utils/clickoutside.directive';
+import { debounceTime } from 'rxjs';
 
 @Component({
   selector: 'bmb-input-tags',
   standalone: true,
   imports: [
     CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    BmbIconComponent,
     BmbTooltipComponent,
+    BmbInputComponent,
+    ClickOutsideDirective,
+    BmbTagComponent,
   ],
   templateUrl: './bmb-input-tags.component.html',
   styleUrl: './bmb-input-tags.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => BmbInputTagsComponent),
-      multi: true,
-    },
-  ],
+  providers: [],
 })
-export class BmbInputTagsComponent {
-  @Input() control!: FormControl;
-  @Input() tagOptions: string[] = [];
-  @Input() errorMessage: string = '';
-  @Input() showError: boolean | undefined = false;
-
+export class BmbInputTagsComponent implements OnInit {
+  control = input<FormControl>(new FormControl());
+  tagOptions = input<string[] | IBmbDropdownItem[]>([]);
+  errorMessage = input<string | IBmbInputError>('');
   tooltip = input<string>('');
   label = input<string>('');
   placeholder = input<string>('');
-  isRequired = input<boolean>();
+  isRequired = input<boolean>(false);
   helperMessage = input<string>('');
   disabled = input<boolean>(false);
   maxSelectedItems = input<number>();
+  name = input<string>('');
 
-  tagsSelected: Array<string> = [];
-  filteredOptions: string[] = [];
+  showError = input<boolean>(false); // deprecated
+
   showDropdown: boolean = false;
-  errorMaxLength: string = '¡Límite alcanzado! No puedes añadir más elementos';
-  value: string[] = [];
+  shouldShowError: boolean = false;
+  selectedTags: IBmbDropdownItem[] = [];
+  filteredOptions: IBmbDropdownItem[] = [];
+  filterControl = new FormControl();
 
-  onChange: any = () => {};
-  onTouched: any = () => {};
+  constructor(private cdr: ChangeDetectorRef) {}
 
-  writeValue(value: any): void {
-    this.value = value;
-  }
-
-  registerOnChange(fn: any): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: any): void {
-    this.onTouched = fn;
-  }
-
-  constructor(
-    readonly elementRef: ElementRef,
-    readonly cdr: ChangeDetectorRef,
-  ) {}
-
-  @HostListener('document:click', ['$event'])
-  onDocumentClick(event: MouseEvent) {
-    const clickedInside = this.elementRef.nativeElement.contains(event.target);
-    if (!clickedInside) {
-      this.hideDropdownDialog();
-    }
-  }
-
-  ngOnInit() {
-    this.filteredOptions = this.tagOptions;
-
-    if (!this.control) {
-      this.control = new FormControl();
-    }
-
-    if (this.isRequired()) {
-      this.control.addValidators(Validators.required);
-    }
-
-    if (this.maxSelectedItems()) {
-      this.control.addValidators(Validators.max(this.maxSelectedItems()!));
-    }
-    this.control.updateValueAndValidity();
-    this.control.valueChanges.subscribe((res) => {
-      this.tagsSelected = this.checkTags(res);
-      this.updateErrorState();
-      this.cdr.markForCheck();
-    });
-  }
-
-  addTag(option: string) {
-    if (this.tagsSelected.length === this.maxSelectedItems()) {
-      this.showError = true;
-      return;
-    }
-    if (!this.tagsSelected.includes(option)) {
-      this.tagsSelected.push(option);
-      this.control.setValue(this.tagsSelected);
-      this.showDropdown = false;
-    }
-  }
-
-  removeTag(tag: string) {
-    this.tagsSelected = this.tagsSelected.filter((t) => t !== tag);
-    this.control.setValue(this.tagsSelected);
-    this.updateErrorState();
-  }
-
-  showDropdownDialog(): void {
+  handleFocus() {
     this.showDropdown = true;
   }
 
-  hideDropdownDialog(): void {
+  closeDialog() {
     this.showDropdown = false;
   }
 
-  private updateErrorState(): void {
-    this.showError = this.isRequired() && this.tagsSelected.length == 0;
+  ngOnInit(): void {
+    this.control().valueChanges.subscribe(() => {
+      this.updateErrorState();
+    });
+
+    this.filterControl.valueChanges
+      .pipe(debounceTime(300))
+      .subscribe((value) => {
+        this.filteredValue(value);
+      });
+
+    this.filteredOptions = this.transFormOptions(this.tagOptions());
   }
 
-  private checkTags(newValues: Array<string>): Array<string> {
-    return newValues.reduce((acc: any, item: any) => {
-      if (this.tagOptions.includes(item) && !acc.includes(item)) {
-        acc.push(item);
-      }
-      return acc;
-    }, []);
+  filteredValue(value: string): void {
+    const formattedOptions = this.transFormOptions(this.tagOptions());
+    let filteredOptions: string[] | IBmbDropdownItem[] =
+      formattedOptions.filter((item: IBmbDropdownItem) =>
+        item.name.toLowerCase().includes(value.toLowerCase()),
+      );
+
+    this.filteredOptions = filteredOptions;
+    this.cdr.detectChanges();
+  }
+
+  transFormOptions(options: string[] | IBmbDropdownItem[]): IBmbDropdownItem[] {
+    if (options.length === 0) return [];
+    if (typeof options[0] === 'string') {
+      return (options as string[]).map((item) => ({ name: item, value: item }));
+    }
+
+    return options as IBmbDropdownItem[];
+  }
+
+  updateErrorState(): void {
+    this.shouldShowError =
+      this.isRequired() &&
+      this.control().invalid &&
+      (this.control().touched || this.control().dirty);
+  }
+
+  getErrorMessage(): string {
+    if (typeof this.errorMessage() === 'string') {
+      return this.errorMessage().toString();
+    }
+
+    if (this.control()['errors'] !== null) {
+      const errorType = this.control()['errors'];
+      const error = this.errorMessage() as IBmbInputError;
+
+      if (errorType?.['required'] && error.required) return error.required;
+    }
+
+    return '';
+  }
+
+  handleItemClick(item: IBmbDropdownItem) {
+    this.selectedTags.push(item);
+    const selectedTagsString = this.selectedTags.map((tag) => tag.value);
+    this.control().setValue(selectedTagsString.toString());
+  }
+
+  checkIfIsSelected(item: IBmbDropdownItem): boolean {
+    return !this.selectedTags.some((tag) => tag.value === item.value);
+  }
+
+  removeTag(tag: IBmbDropdownItem) {
+    this.selectedTags = this.selectedTags.filter((t) => t.value !== tag.value);
+    const selectedTagsString = this.selectedTags.map((tag) => tag.value);
+    this.control().setValue(selectedTagsString.toString());
   }
 }

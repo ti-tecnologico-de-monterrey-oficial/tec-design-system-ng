@@ -28,7 +28,7 @@ import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
 export interface IBmbDropdownItem {
   name: string;
   value: string;
-  icon: string;
+  icon?: string;
   id?: string;
 }
 

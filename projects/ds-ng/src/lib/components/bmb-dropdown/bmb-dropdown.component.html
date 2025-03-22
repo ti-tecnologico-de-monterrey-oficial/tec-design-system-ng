@@ -126,7 +126,7 @@
                       selectedOption === item.value,
                   }"
                 >
-                  @if (showIcon()) {
+                  @if (showIcon() && item.icon) {
                     <bmb-icon
                       class="bmb_dropdown-dialog-list-item-button-icon"
                       [icon]="item.icon"
