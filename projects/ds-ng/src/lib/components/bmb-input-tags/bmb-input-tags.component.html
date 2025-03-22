@@ -1,86 +1,60 @@
-<section class="bmb_input-tags" [ngClass]="{ disabled: disabled() }">
+<section class="bmb_input-tags" (clickOutside)="closeDialog()">
   @if (!!label()) {
-    <div class="bmb_input-tags-label">
-      <span class="bmb_input-tags-label-text">
-        <label>
-          {{ label() }}
-          @if (isRequired()) {
-            <small class="bmb_input-tags-label-required">*</small>
-          }
-        </label>
-      </span>
+    <label class="bmb_input-tags-label" [for]="name()">
+      {{ label() }}
+      @if (isRequired()) {
+        <small class="bmb_input-tags-label-required">*</small>
+      }
       @if (!!tooltip()) {
         <bmb-tooltip
           class="bmb_input-tags-label-tooltip"
           [text]="tooltip()"
-          [align]="'below'"
-          [justify]="'before'"
           [icon]="'help'"
           [size]="15"
         />
       }
-    </div>
+    </label>
   }
-  <div
-    class="bmb_input-tags-wrapper"
-    [ngClass]="{
-      focused: this.showDropdown,
-      error: this.showError,
-    }"
-    (click)="showDropdownDialog()"
-    onkeydown=""
-  >
-    <div class="bmb_input-tags-input">
-      {{ placeholder() }}
-    </div>
-
-    @if (tagsSelected.length >= 1) {
-      <div class="bmb_input-tags-container">
-        @for (item of tagsSelected; track $index) {
-          <span class="bmb_input-tags-container-tag">
-            {{ item }}
-            <bmb-icon
-              (click)="removeTag(item)"
-              [icon]="'close'"
-              onkeypress=""
-            />
-          </span>
+  <div class="bmb_input-tags-wrapper">
+    <bmb-input [control]="filterControl" [disabled]="disabled()" (isFocus)="handleFocus()" />
+    <bmb-input hidden [control]="control()" [name]="name()" [disabled]="disabled()" [isRequired]="isRequired()" />
+    <dialog
+      class="bmb_input-tags-dialog"
+      [open]="showDropdown"
+    >
+      <ul class="bmb_input-tags-dialog-list">
+        @for (item of filteredOptions; track $index) {
+          @if (checkIfIsSelected(item)) {
+            <li class="bmb_input-tags-dialog-list-item">
+              <button
+                class="bmb_input-tags-dialog-list-item-button"
+                (click)="handleItemClick(item)"
+              >
+                {{ item.name }}
+              </button>
+            </li>
+          }
         }
-      </div>
-    }
-
-    @if (showDropdown) {
-      <div
-        class="bmb_input-tags-dropdown"
-        [ngClass]="{
-          focused: this.showDropdown,
-          error: this.showError,
-        }"
-      >
-        @for (tag of filteredOptions; track $index) {
-          <div
-            class="bmb_input-tags-dropdown-item"
-            (click)="addTag(tag)"
-            [ngClass]="{
-              'bmb_input-tags-dropdown-selected': tagsSelected.includes(tag),
-            }"
-            onkeypress=""
-          >
-            {{ tag }}
-          </div>
-        }
-      </div>
+      </ul>
+    </dialog>
+  </div>
+  <div class="bmb_input-tags-selected-list">
+    @for (item of selectedTags; track $index) {
+      <bmb-tag
+        [text]="item.name"
+        [dismissible]="true"
+        (click)="removeTag(item)"
+      />
     }
   </div>
-
-  @if (!this.showError && helperMessage() && !this.showDropdown) {
-    <p class="bmb_input-tags-helper">
+  @if (helperMessage() && !shouldShowError) {
+    <p class="bmb_field-helper">
       {{ helperMessage() }}
     </p>
   }
-  @if (errorMessage && this.showError && !this.showDropdown) {
-    <p class="bmb_input-tags-error">
-      {{ errorMessage }}
+  @if (errorMessage() && shouldShowError) {
+    <p class="bmb_field-error">
+      {{ getErrorMessage() }}
     </p>
   }
 </section>

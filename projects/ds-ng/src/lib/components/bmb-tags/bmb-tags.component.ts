@@ -50,6 +50,7 @@ export class BmbTagComponent implements AfterViewInit {
   dismissible = input<boolean>(true);
   rounded = input<boolean>(false);
   activityTag = input<boolean>(false);
+
   closedTag = output<string>();
   clickedTag = output<string>();
 
@@ -88,7 +89,6 @@ export class BmbTagComponent implements AfterViewInit {
 
   closeTag(text: string) {
     this.closedTag.emit(text);
-    this.el.nativeElement.remove();
   }
 
   clickTag(text: string) {
