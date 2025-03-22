@@ -8,40 +8,64 @@
   <div class="bmb_dropdown-wrapper">
     @if (label()) {
       <div class="bmb_dropdown-label">
-        <label class="bmb_dropdown-label-text"
-          >{{ label() }}
+        <label class="bmb_dropdown-label-text" [for]="'bmb-dropdown' + uid">
+          {{ label() }}
           @if (required()) {
             <span class="bmb_dropdown-label-asterisk"> *</span>
           }
         </label>
       </div>
     }
+
     <div
       class="bmb_dropdown-input-wrapper"
-      onkeypress=""
       #inputWrapper
       [ngClass]="{ 'bmb_dropdown-focus': isFocus }"
     >
       @if (showIcon()) {
-        <label class="bmb_dropdown-label-icon" [for]="'dropdown-'">
+        <span class="bmb_dropdown-label-icon">
           <bmb-icon [icon]="icon()!" />
-        </label>
+        </span>
       }
-      <input
-        class="bmb_dropdown-field-input"
-        type="text"
-        readonly
-        [id]="'bmb-dropdown' + uid"
-        [name]="'bmb-dropdown' + uid"
-        [formControl]="inputControl"
-        [placeholder]="placeholder()"
-        (keydown)="onKeyDown($event)"
-      />
+
+      @if (isMultiSelect()) {
+        <div class="bmb_dropdown-field-chips">
+          @if (control().value?.length) {
+            @for (selected of control().value; track $index) {
+              <div class="bmb_dropdown-field-chip">
+                {{ getItem(selected).name }}
+                <button
+                  class="bmb_dropdown-field-chip-remove"
+                  (click)="removeSelected(selected)"
+                >
+                  <bmb-icon icon="close" [size]="14" />
+                </button>
+              </div>
+            }
+          } @else {
+            <span class="bmb_dropdown-field-chips-placeholder">{{
+              placeholder()
+            }}</span>
+          }
+        </div>
+      } @else {
+        <input
+          class="bmb_dropdown-field-input"
+          type="text"
+          readonly
+          [id]="'bmb-dropdown' + uid"
+          [name]="'bmb-dropdown' + uid"
+          [formControl]="inputControl"
+          [placeholder]="placeholder()"
+        />
+      }
+
       <button
         (click)="handleChevronClick()"
         class="bmb_dropdown-field-open"
         [disabled]="disabled()"
         bmbButton
+        (keydown)="onKeyDown($event)"
       >
         <bmb-icon icon="keyboard_arrow_down" />
       </button>
@@ -51,56 +75,75 @@
         [open]="getDialogStatus()"
       >
         <ul class="bmb_dropdown-dialog-list">
-          @if (preferredOptions().length) {
-            <li class="bmb_dropdown-dialog-list-item-preferred-options">
-              <ul class="bmb_dropdown-dialog-list-item-preferred-list">
-                @for (item of getPreferredOptions(); track $index) {
-                  <li class="bmb_dropdown-dialog-list-item">
-                    <button
-                      class="bmb_dropdown-dialog-list-item-button"
-                      (click)="handleItemClick(item)"
-                    >
-                      @if (showIcon()) {
-                        <bmb-icon
-                          class="bmb_dropdown-dialog-list-item-button-icon"
-                          [icon]="item.icon"
-                        />
-                      }
-                      {{ item.name }}
-                    </button>
-                  </li>
-                }
-              </ul>
+          @if (isMultiSelect()) {
+            <li
+              tabindex="0"
+              class="bmb_dropdown-dialog-list-checkbox bmb_dropdown-dialog-list-checkbox-all"
+              (keydown)="onKeySelect($event, undefined, true)"
+              role="button"
+              [ngClass]="{
+                'bmb_dropdown-dialog-list-checkbox-selected':
+                  control().value?.length === parsedOptions.length &&
+                  control().value?.length > 0,
+              }"
+            >
+              <bmb-checkbox
+                [label]="'Select All'"
+                [checked]="control().value?.length === parsedOptions.length"
+                (change)="toggleSelectAll()"
+              />
             </li>
           }
-          @for (item of parsedOptions; track $index) {
-            <li class="bmb_dropdown-dialog-list-item">
-              <button
-                class="bmb_dropdown-dialog-list-item-button"
+
+          @for (item of getPreferredOptions(); track $index) {
+            @if (isMultiSelect()) {
+              <li
+                tabindex="0"
+                class="bmb_dropdown-dialog-list-checkbox"
+                role="button"
                 [ngClass]="{
-                  'bmb_dropdown-dialog-list-item-button-selected':
-                    item.value == selectedIndexOption,
+                  'bmb_dropdown-dialog-list-checkbox-selected':
+                    isItemSelected(item),
                 }"
-                (click)="handleItemClick(item)"
+                (keydown)="onKeySelect($event, item)"
               >
-                @if (showIcon()) {
-                  <bmb-icon
-                    class="bmb_dropdown-dialog-list-item-button-icon"
-                    [icon]="item.icon"
-                  />
-                }
-                {{ item.name }}
-              </button>
-            </li>
+                <bmb-checkbox
+                  name="selectOptions"
+                  [id]="item.value"
+                  [value]="item.value"
+                  [checked]="isItemSelected(item)"
+                  [label]="item.name"
+                  (change)="handleItemClick(item)"
+                />
+              </li>
+            } @else {
+              <li class="bmb_dropdown-dialog-list-item">
+                <button
+                  class="bmb_dropdown-dialog-list-item-button"
+                  (click)="handleItemClick(item)"
+                  [ngClass]="{
+                    'bmb_dropdown-dialog-list-item-button-selected':
+                      selectedOption === item.value,
+                  }"
+                >
+                  @if (showIcon()) {
+                    <bmb-icon
+                      class="bmb_dropdown-dialog-list-item-button-icon"
+                      [icon]="item.icon"
+                    />
+                  }
+                  {{ item.name }}
+                </button>
+              </li>
+            }
           }
         </ul>
       </dialog>
     </div>
+
     @if (helperText()) {
       <div class="bmb_dropdown-helper">
-        <span class="bmb_dropdown-helper-text">
-          {{ helperText() }}
-        </span>
+        <span class="bmb_dropdown-helper-text">{{ helperText() }}</span>
       </div>
     }
   </div>
