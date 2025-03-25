@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BmbNavigationIconComponent } from './bmb-navigation-icon.component';
+import { BmbActionIconComponent } from './bmb-action-icon.component';
 import { ComponentRef } from '@angular/core';
 
-describe('BmbNavigationIconComponent', () => {
-  let component: BmbNavigationIconComponent;
-  let fixture: ComponentFixture<BmbNavigationIconComponent>;
-  let componentRef: ComponentRef<BmbNavigationIconComponent>;
+describe('BmbActionIconComponent', () => {
+  let component: BmbActionIconComponent;
+  let fixture: ComponentFixture<BmbActionIconComponent>;
+  let componentRef: ComponentRef<BmbActionIconComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BmbNavigationIconComponent],
+      imports: [BmbActionIconComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(BmbNavigationIconComponent);
+    fixture = TestBed.createComponent(BmbActionIconComponent);
     component = fixture.componentInstance;
     componentRef = fixture.componentRef;
     componentRef.setInput('icon', 'face');

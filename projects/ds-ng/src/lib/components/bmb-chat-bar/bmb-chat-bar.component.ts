@@ -14,7 +14,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BmbDotPaginatorComponent } from '../bmb-dot-paginator/bmb-dot-paginator.component';
-import { BmbNavigationIconComponent } from '../bmb-navigation-bar/bmb-navigation-icon/bmb-navigation-icon.component';
+import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 
 export { defaultBotList, defaultActionList } from './bot_list';
 export { IBotType, IChatBarActions } from './types';
@@ -27,7 +27,7 @@ export { IBotType, IChatBarActions } from './types';
     ReactiveFormsModule,
     CommonModule,
     BmbDotPaginatorComponent,
-    BmbNavigationIconComponent,
+    BmbActionIconComponent,
   ],
   templateUrl: './bmb-chat-bar.component.html',
   styleUrl: './bmb-chat-bar.component.scss',

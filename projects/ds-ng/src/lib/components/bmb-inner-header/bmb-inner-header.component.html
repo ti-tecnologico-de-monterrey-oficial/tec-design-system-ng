@@ -4,7 +4,7 @@
       @if (toggleSearch()) {
         <form [formGroup]="searchForm" class="bmb_inner_header-form">
           <span class="bmb_inner_header-button">
-            <bmb-navigation-icon
+            <bmb-action-icon
               icon="close"
               [iconSize]="24"
               (buttonClick)="handleSearch()"
@@ -20,7 +20,7 @@
       } @else {
         <bmb-three-cols>
           <ng-template #bmbLeftContent>
-            <bmb-navigation-icon
+            <bmb-action-icon
               [icon]="getLeftIcon()"
               [iconSize]="24"
               (buttonClick)="handleBack($event)"
@@ -41,7 +41,7 @@
           <ng-template #bmbRightContent>
             <span class="bmb_inner_header-actions">
               @if (trailingIconSecondary()) {
-                <bmb-navigation-icon
+                <bmb-action-icon
                   [icon]="trailingIconSecondary()"
                   [iconSize]="24"
                   (buttonClick)="handleTrailingIconSecondary($event)"
@@ -49,13 +49,13 @@
               }
               @if (!!trailingIconPrimary() || showSearch()) {
                 @if (showSearch()) {
-                  <bmb-navigation-icon
+                  <bmb-action-icon
                     icon="search"
                     [iconSize]="24"
                     (buttonClick)="handleSearch()"
                   />
                 } @else {
-                  <bmb-navigation-icon
+                  <bmb-action-icon
                     [icon]="trailingIconPrimary()"
                     [iconSize]="24"
                     (buttonClick)="handleTrailingIconPrimary($event)"

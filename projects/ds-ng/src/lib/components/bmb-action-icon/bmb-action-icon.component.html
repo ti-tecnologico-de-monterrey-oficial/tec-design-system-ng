@@ -1,4 +1,4 @@
-<span class="bmb_navigation_icon">
+<span class="bmb_action_icon">
   <bmb-check-external-link-button
     [idElement]="idElement()"
     [link]="link()!"
@@ -8,9 +8,9 @@
     [disabled]="disabled()"
   >
     <span
-      class="bmb_navigation_icon-icon"
+      class="bmb_action_icon-icon"
       [ngClass]="{
-        'bmb_navigation_icon-icon-toggle_icon':
+        'bmb_action_icon-icon-toggle_icon':
           !!toggleIconActive() && isAccentColor(),
       }"
     >

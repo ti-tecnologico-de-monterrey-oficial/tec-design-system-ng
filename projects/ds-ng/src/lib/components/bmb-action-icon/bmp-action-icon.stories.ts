@@ -1,9 +1,9 @@
 import { Meta, StoryObj } from '@storybook/angular';
-import { BmbNavigationIconComponent } from './bmb-navigation-icon.component';
+import { BmbActionIconComponent } from './bmb-action-icon.component';
 
 export default {
-  title: 'Internal/Navigation icon',
-  component: BmbNavigationIconComponent,
+  title: 'Micro Componentes/Action icon',
+  component: BmbActionIconComponent,
   decorators: [],
   parameters: {
     docs: {
@@ -12,12 +12,12 @@ export default {
 Below is an example of how you can use this component in TypeScript:
 
 \`\`\`typescript
-import { BmbNavigationIconComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
+import { BmbActionIconComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
 
 @Component({
   selector: 'component',
   standalone: true,
-  imports: [ BmbNavigationIconComponent ],
+  imports: [ BmbActionIconComponent ],
   templateUrl: './component.html',
   styleUrl: './component.scss',
 })
@@ -184,8 +184,8 @@ Below is an example of how you can use this component in HTML:
     disabled: false,
     buttonClick: () => {},
   },
-} as Meta<typeof BmbNavigationIconComponent>;
+} as Meta<typeof BmbActionIconComponent>;
 
-type Story = StoryObj<BmbNavigationIconComponent>;
+type Story = StoryObj<BmbActionIconComponent>;
 
 export const Default: Story = {};

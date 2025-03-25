@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { IBmbActionHeader, SizeNames } from '../../types';
 import { CommonModule } from '@angular/common';
-import { BmbNavigationIconComponent } from './bmb-navigation-icon/bmb-navigation-icon.component';
+import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import {
   BmbLayoutDirective,
   BmbLayoutItemDirective,
@@ -21,7 +21,7 @@ import {
     CommonModule,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
-    BmbNavigationIconComponent,
+    BmbActionIconComponent,
   ],
   templateUrl: './bmb-navigation-bar.component.html',
   styleUrl: './bmb-navigation-bar.component.scss',
