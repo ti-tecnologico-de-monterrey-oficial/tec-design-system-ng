@@ -1,112 +1,176 @@
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-
+import type { Meta, StoryFn } from '@storybook/angular';
+import { attributes } from '../../utils/utils';
 import { BmbInputTagsComponent } from './bmb-input-tags.component';
 
 export default {
   title: 'Micro Componentes/ Input Tags',
   component: BmbInputTagsComponent,
-  decorators: [
-    moduleMetadata({
-      imports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        BrowserAnimationsModule,
-        BmbIconComponent,
-      ],
-    }),
-  ],
   parameters: {
     docs: {
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
+  Below is an example of how you can use this component in TypeScript:
 
-\`\`\`typescript
-import { Component, ChangeDetectorRef } from '@angular/core';
-import {
-  FormControl,
-  FormBuilder,
-  FormGroup,
-  Validators,
-  ReactiveFormsModule,
-} from '@angular/forms';
-import { BmbInputTagsComponent, BmbButtonDirective } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-import { CommonModule } from '@angular/common';
+  \`\`\`typescript
+  import { CommonModule } from '@angular/common';
+  import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
-@Component({
-  selector: 'app-component',
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    BmbButtonDirective,
+  import {
+    FormBuilder,
+    FormControl,
+    FormGroup,
+    Validators,
+  } from '@angular/forms';
+  import {
     BmbInputTagsComponent,
-  ],
-  templateUrl: './component.html',
-  styleUrls: ['./component.scss'],
-})
-export class AppComponent {
-  userForm: FormGroup = new FormGroup({
-    food: new FormControl<string>('', Validators.required),
-  });
-  showErrors: { [key: string]: boolean } = {};
+    BmbLayoutItemDirective,
+  } from '../../projects/ds-ng/src/public-api';
+  @Component({
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: 'app-root',
+    standalone: true,
+    imports: [CommonModule, BmbInputTagsComponent, BmbLayoutItemDirective],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+  })
+  export class AppComponent implements OnInit {
+    projectForm!: FormGroup;
 
-  onSubmit() {
+    constructor(private fb: FormBuilder) {}
 
-    if (this.userForm.valid) {
-      return;
+    ngOnInit(): void {
+      this.loadForm();
+      this.setValueToForm();
     }
-    this.userForm.markAllAsTouched();
-    this.updateErrorState();
+
+    loadForm() {
+      this.projectForm = this.fb.group({
+        nombre: new FormControl({ value: '', disabled: false }),
+        descripcion: new FormControl({ value: '', disabled: false }),
+        tipoEmprendimiento: new FormControl({ value: '', disabled: false }),
+        perfilEmprendedor: new FormControl({ value: '', disabled: false }),
+        odsImpactada: new FormControl({ value: '', disabled: false }),
+        liderProyecto: new FormControl({ value: '', disabled: false }),
+        socios: new FormControl({ value: '', disabled: false }),
+      });
+    }
+
+    setValueToForm() {
+      this.projectForm.patchValue({
+        nombre: 'TEST1',
+        descripcion: 'Esto es una prueba',
+        tipoEmprendimiento: ['Enchiladas'],
+        perfilEmprendedor: ['Quesadillas', 'Enchiladas'],
+        odsImpactada: '',
+        liderProyecto: 'Osvaldo Mendoza',
+        socios: '',
+      });
+    }
+
+    getFormControl(name: string): FormControl {
+      return this.projectForm.get(name) as FormControl;
+    }
   }
+  \`\`\`
 
-  updateErrorState() {
-    Object.keys(this.userForm.controls).forEach((field) => {
-      const control = this.userForm.get(field);
-      if (control instanceof FormControl) {
-        this.showErrors[field] =
-          control.invalid && (control.touched || control.dirty);
-      }
-    });
-  }
+  ### Example in HTML
 
-  getFormControl(name: string): FormControl {
-    return this.userForm.get(name) as FormControl;
-  }
-}
-\`\`\`
+  Below is an example of how to use this component in HTML:
 
-### Example in HTML
-
-Below is an example of how to use this component in HTML:
-
-\`\`\`html
-<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  \`\`\`html
+  <div>
     <bmb-input-tags
-      [formControl]="getFormControl('food')"      
-      [label]="'Etiqueta'"
-      [tagOptions]="comidaMexicana"
-      [tooltip]="'Este es un tooltip para el input tags'"
-      [isRequired]="true"
-      [errorMessage]="'Mensaje Error'"
-      [helperMessage]="'Mensaje Ayuda'"
-      [placeholder]="'Ingrese su comida favorita'"
-    />
-  <button bmbButton appearance="primary" type="submit">Submit</button>
-</form>
+      [tagOptions]="[
+        'Tacos al pastor',
+        'Enchiladas',
+        'Tamales',
+        'Quesadillas',
+        'Chiles en nogada',
+        'Mole poblano',
+        'Sopes',
+        'Gorditas',
+        'Pozole',
+        'Ceviche',
+        'Tortas',
+        'Guacamole',
+        'Tacos de pescado',
+        'Flautas',
+        'Chalupas',
+        'Huevos rancheros',
+        'Elote',
+      ]"
+      [errorMessage]="'Error Message'"
+      [label]="'Tipo de emprendimiento'"
+      [placeholder]="'Selecciona una opción'"
+      [isRequired]="false"
+      [disabled]="false"
+      [control]="getFormControl('tipoEmprendimiento')"
+    ></bmb-input-tags>
+    <bmb-input-tags
+      [tagOptions]="[
+        'Tacos al pastor',
+        'Enchiladas',
+        'Tamales',
+        'Quesadillas',
+        'Chiles en nogada',
+        'Mole poblano',
+        'Sopes',
+        'Gorditas',
+        'Pozole',
+        'Ceviche',
+        'Tortas',
+        'Guacamole',
+        'Tacos de pescado',
+        'Flautas',
+        'Chalupas',
+        'Huevos rancheros',
+        'Elote',
+      ]"
+      [errorMessage]="'Error Message'"
+      [label]="'Perfil emprendedor'"
+      [placeholder]="'Selecciona una opción'"
+      [isRequired]="false"
+      [control]="getFormControl('perfilEmprendedor')"
+    ></bmb-input-tags>
+    <bmb-input-tags
+      [tagOptions]="[
+        'Tacos al pastor',
+        'Enchiladas',
+        'Tamales',
+        'Quesadillas',
+        'Chiles en nogada',
+        'Mole poblano',
+        'Sopes',
+        'Gorditas',
+        'Pozole',
+        'Ceviche',
+        'Tortas',
+        'Guacamole',
+        'Tacos de pescado',
+        'Flautas',
+        'Chalupas',
+        'Huevos rancheros',
+        'Elote',
+      ]"
+      [errorMessage]="'Error Message'"
+      [label]="'ODC Impactada'"
+      [placeholder]="'Selecciona una opción'"
+      [isRequired]="false"
+      [disabled]="false"
+      [tooltip]="'tooltip del input tag'"
+      [control]="getFormControl('odsImpactada')"
+    ></bmb-input-tags>
+  </div>
 
-
-\`\`\`
-        `,
+  \`\`\`
+          `,
       },
     },
   },
   argTypes: {
     control: {
+      name: 'Control',
       control: { type: 'object' },
       description: 'Instance of FormControl to manage the input control state.',
       table: {
@@ -194,15 +258,16 @@ Below is an example of how to use this component in HTML:
     tagOptions: {
       name: 'Tag Options',
       control: {
-        type: 'text',
+        type: 'array',
       },
-      description: 'Set the array of options that the user can select',
+      description:
+        'The options the user can select from. It accepts a string array.',
       table: {
         category: 'Properties',
         type: { summary: 'Array<string>' },
       },
     },
-    toolTip: {
+    tooltip: {
       name: 'Tooltip',
       control: {
         type: 'text',
@@ -214,7 +279,6 @@ Below is an example of how to use this component in HTML:
       },
     },
   },
-
   args: {
     errorMessage: 'Error Message',
     helperMessage: 'Helper Message',
@@ -223,7 +287,6 @@ Below is an example of how to use this component in HTML:
     disabled: false,
     label: 'Input Label',
     showError: false,
-    tooltip: 'tooltip del input tag',
     tagOptions: [
       'Tacos al pastor',
       'Enchiladas',
@@ -246,9 +309,19 @@ Below is an example of how to use this component in HTML:
       'Arroz a la mexicana',
       'Burritos',
     ],
+    tooltip: 'tooltip del input tag',
   },
 } as Meta<typeof BmbInputTagsComponent>;
 
-type Story = StoryObj<BmbInputTagsComponent>;
+const customizable = (): StoryFn => (args) => ({
+  template: `
+    <div style="height: 240px">
+      <bmb-input-tags
+        ${attributes(args)}
+        (onValueChange)="onValueChange($event)"
+      />
+    </div>
+  `,
+});
 
-export const Default: Story = {};
+export const Default = customizable();
