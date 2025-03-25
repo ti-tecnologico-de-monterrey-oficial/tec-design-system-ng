@@ -23,7 +23,7 @@ import {
   IBmbJustifyTooltip,
 } from '../bmb-tooltip/bmb-tooltip.component';
 import { IBbmSidePosition } from '../../types';
-import { BmbNavigationIconComponent } from '../bmb-navigation-bar/bmb-navigation-icon/bmb-navigation-icon.component';
+import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 
 export type IBmbInputType =
   | 'text'
@@ -58,7 +58,7 @@ export interface IBmbInputTooltipPosition {
     BmbIconComponent,
     ReactiveFormsModule,
     BmbTooltipComponent,
-    BmbNavigationIconComponent,
+    BmbActionIconComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,

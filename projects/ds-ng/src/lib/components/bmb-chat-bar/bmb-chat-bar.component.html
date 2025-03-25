@@ -21,7 +21,7 @@
               [src]="arrayThumbnail[$index]"
               [alt]="file.name"
             />
-            <bmb-navigation-icon
+            <bmb-action-icon
               class="bmb_chat-bar-files-list-image-delete"
               icon="delete"
               [iconSize]="24"
@@ -38,7 +38,7 @@
             <span class="bmb_chat-bar-files-list-option-text">
               {{ file.name }}
             </span>
-            <bmb-navigation-icon
+            <bmb-action-icon
               class="bmb_chat-bar-files-list-option-delete"
               icon="delete"
               [iconSize]="24"
@@ -49,7 +49,7 @@
       }
     </div>
     <div class="bmb_chat-bar-main">
-      <bmb-navigation-icon
+      <bmb-action-icon
         class="bmb_chat-bar-bot"
         [icon]="currentBot()?.icon!"
         [alt]="currentBot()?.name!"
@@ -68,13 +68,13 @@
         />
         <section class="bmb_chat-bar-container-btns">
           @if (showMicControls) {
-            <bmb-navigation-icon
+            <bmb-action-icon
               class="bmb_chat-bar-pause"
               icon="pause"
               [iconSize]="40"
               (buttonClick)="handleStopMic()"
             />
-            <bmb-navigation-icon
+            <bmb-action-icon
               class="bmb_chat-bar-record bmb_chat-bar-record-animated"
               icon="graphic_eq"
               [iconSize]="40"
@@ -82,7 +82,7 @@
             />
           } @else {
             @if (showEmoji()) {
-              <bmb-navigation-icon
+              <bmb-action-icon
                 class="bmb_chat-bar-emoji"
                 icon="mood"
                 [iconSize]="32"
@@ -116,13 +116,13 @@
                 }
               </ul>
             </section>
-            <bmb-navigation-icon
+            <bmb-action-icon
               class="bmb_chat-bar-add"
               icon="add"
               [iconSize]="32"
               (buttonClick)="handleAddDialog()"
             />
-            <bmb-navigation-icon
+            <bmb-action-icon
               class="bmb_chat-bar-mic"
               icon="mic"
               [iconSize]="32"
@@ -130,7 +130,7 @@
             />
           }
         </section>
-        <bmb-navigation-icon
+        <bmb-action-icon
           class="bmb_chat-bar-send"
           [ngClass]="{ 'bmb_chat-bar-send-animated': isLoading() }"
           [icon]="isLoading() ? 'progress_activity' : 'send'"
@@ -161,7 +161,7 @@
       @if (isDialogOpen) {
         @for (bot of dBotList(); track $index) {
           <li class="bmb_chat-bar-dialog-option">
-            <bmb-navigation-icon
+            <bmb-action-icon
               class="bmb_chat-bar-dialog-button"
               [ngClass]="{
                 'bmb_chat-bar-dialog-button-active':
@@ -186,7 +186,7 @@
   >
     <div class="bmb_chat-bar-mb-add-dialog-header">
       <span class="bmb_chat-bar-mb-add-dialog-title"> Opciones Chatbar </span>
-      <bmb-navigation-icon
+      <bmb-action-icon
         class="bmb_chat-bar-mb-add-dialog-close"
         icon="close"
         [iconSize]="24"
@@ -197,7 +197,7 @@
       @for (bot of actionListPagination; track $index) {
         <div class="bmb_chat-bar-mb-add-dialog-item">
           <div class="bmb_chat-bar-mb-add-dialog-icon">
-            <bmb-navigation-icon
+            <bmb-action-icon
               class="bmb_chat-bar-mb-add-dialog-button"
               [icon]="bot.icon"
               [iconSize]="40"

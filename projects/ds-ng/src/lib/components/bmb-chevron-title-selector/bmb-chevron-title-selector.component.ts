@@ -5,7 +5,7 @@ import {
   input,
   output,
 } from '@angular/core';
-import { BmbNavigationIconComponent } from '../bmb-navigation-bar/bmb-navigation-icon/bmb-navigation-icon.component';
+import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { BmbThreeColsComponent } from '../bmb-three-cols/bmb-three-cols.component';
 import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
 
@@ -15,7 +15,7 @@ import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content
   imports: [
     BmbThreeColsComponent,
     BmbTitleContentComponent,
-    BmbNavigationIconComponent,
+    BmbActionIconComponent,
   ],
   styleUrl: './bmb-chevron-title-selector.component.scss',
   templateUrl: './bmb-chevron-title-selector.component.html',

@@ -1,17 +1,10 @@
-import { Meta, moduleMetadata, StoryFn } from '@storybook/angular';
+import { Meta, StoryFn } from '@storybook/angular';
 import { BmbDropdownMenuContentComponent } from './bmb-dropdown-menu-content.component';
 import { attributes } from '../../../utils/utils';
-import { BmbNavigationIconComponent } from '../../bmb-navigation-bar/bmb-navigation-icon/bmb-navigation-icon.component';
 
 export default {
   title: 'Internal/Dropdown menu content',
   component: BmbDropdownMenuContentComponent,
-  decorators: [
-    moduleMetadata({
-      imports: [BmbNavigationIconComponent],
-      providers: [],
-    }),
-  ],
   parameters: {
     docs: {
       description: {

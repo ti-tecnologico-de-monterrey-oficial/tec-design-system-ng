@@ -14,7 +14,7 @@ import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-i
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
 import { IBbmBgAppearance, IBmbTargetLink } from '../../types';
 import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
-import { BmbNavigationIconComponent } from '../bmb-navigation-bar/bmb-navigation-icon/bmb-navigation-icon.component';
+import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { BmbBookmarkComponent } from '../bmb-bookmark/bmb-bookmark.component';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
 
@@ -30,7 +30,7 @@ import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.componen
     BmbLayoutDirective,
     BmbLayoutItemDirective,
     BmbBadgeComponent,
-    BmbNavigationIconComponent,
+    BmbActionIconComponent,
     BmbBookmarkComponent,
   ],
   styleUrl: './bmb-container-button.component.scss',

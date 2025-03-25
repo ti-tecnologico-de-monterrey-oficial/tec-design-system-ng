@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 import { BmbInputComponent } from '../bmb-input/bmb-input.component';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { BmbThreeColsComponent } from '../bmb-three-cols/bmb-three-cols.component';
-import { BmbNavigationIconComponent } from '../bmb-navigation-bar/bmb-navigation-icon/bmb-navigation-icon.component';
+import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 import { isExternalLink } from '../../utils/utils';
@@ -22,7 +22,7 @@ import { isExternalLink } from '../../utils/utils';
     CommonModule,
     BmbContainerComponent,
     BmbThreeColsComponent,
-    BmbNavigationIconComponent,
+    BmbActionIconComponent,
     BmbTitleContentComponent,
     BmbInputComponent,
     ReactiveFormsModule,

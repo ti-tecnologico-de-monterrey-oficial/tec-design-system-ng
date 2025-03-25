@@ -12,7 +12,7 @@ import { IBmbColor } from '../../../types/colors';
 import { IBmbActionHeader } from '../../../types';
 import { BmbTitleContentComponent } from '../../bmb-title-content/bmb-title-content.component';
 import { BmbThreeColsComponent } from '../../bmb-three-cols/bmb-three-cols.component';
-import { BmbNavigationIconComponent } from '../../bmb-navigation-bar/bmb-navigation-icon/bmb-navigation-icon.component';
+import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
 import { BmbNavigationBarComponent } from '../../bmb-navigation-bar/bmb-navigation-bar.component';
 import { BmbContainerComponent } from '../../bmb-container/bmb-container.component';
 
@@ -22,7 +22,7 @@ import { BmbContainerComponent } from '../../bmb-container/bmb-container.compone
   imports: [
     BmbContainerComponent,
     BmbThreeColsComponent,
-    BmbNavigationIconComponent,
+    BmbActionIconComponent,
     BmbTitleContentComponent,
     BmbNavigationBarComponent,
   ],

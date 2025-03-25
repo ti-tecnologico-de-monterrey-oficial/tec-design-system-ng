@@ -52,9 +52,8 @@ describe('BmbBottomNavigationBarComponent', () => {
     };
     component.navigationBarIcons = icons;
     fixture.detectChanges();
-    const renderedIcons = fixture.nativeElement.querySelectorAll(
-      'bmb-navigation-icon',
-    );
+    const renderedIcons =
+      fixture.nativeElement.querySelectorAll('bmb-action-icon');
     expect(renderedIcons.length).toBe(4);
   });
 

@@ -27,6 +27,7 @@ export class BmbCheckExternalLinkButtonComponent {
   target = input<IBmbTargetLink>('_blank');
   disabled = input<boolean>(false);
 
+  buttonPress = output<void>();
   buttonClick = output<void>();
 
   @ContentChild('commonTemplate') commonTemplate!: TemplateRef<any>;
@@ -37,6 +38,11 @@ export class BmbCheckExternalLinkButtonComponent {
 
   isButton(isLink: boolean): boolean {
     return !isLink;
+  }
+
+  handlePress(event: any): void {
+    this.buttonPress.emit();
+    event.stopPropagation();
   }
 
   handleClick(event: any): void {
