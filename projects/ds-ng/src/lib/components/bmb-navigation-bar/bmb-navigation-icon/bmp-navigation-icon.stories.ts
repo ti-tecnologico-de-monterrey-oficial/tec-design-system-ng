@@ -166,7 +166,7 @@ Below is an example of how you can use this component in HTML:
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
-        type: { summary: 'false' },
+        type: { summary: 'boolean' },
       },
     },
   },

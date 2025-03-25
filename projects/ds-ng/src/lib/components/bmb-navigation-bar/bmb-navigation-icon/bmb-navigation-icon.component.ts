@@ -37,12 +37,17 @@ export class BmbNavigationIconComponent {
   link = input<string>();
   disabled = input<boolean>(false);
 
+  buttonPress = output<void>();
   buttonClick = output<void>();
 
   getIcon(): string {
     if (this.isToggleActive() && !!this.toggleIconActive())
       return this.toggleIconActive()!;
     return this.icon();
+  }
+
+  handlePress(): void {
+    this.buttonPress.emit();
   }
 
   handleClick() {

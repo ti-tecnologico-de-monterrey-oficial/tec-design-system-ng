@@ -1,0 +1,17 @@
+<span
+  class="bmb_button_icon"
+  [ngClass]="{
+    'bmb_button_icon-active': active(),
+    'bmb_button_icon-container': showContainer(),
+    'bmb_button_icon-disabled': disabled(),
+  }"
+>
+  <bmb-navigation-icon
+    [idElement]="idElement()"
+    [icon]="icon()"
+    [iconSize]="showContainer() ? 24 : 32"
+    [disabled]="disabled()!"
+    (buttonPress)="handlePress()"
+    (buttonClick)="handleClick()"
+  />
+</span>
