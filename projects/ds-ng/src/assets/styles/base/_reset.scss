@@ -33,6 +33,11 @@ button {
   background-color: transparent;
   border: none;
   cursor: pointer;
+  font-family: var(--font-display);
+}
+
+textarea {
+  font-family: var(--font-display);
 }
 
 h1,

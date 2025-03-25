@@ -6,7 +6,6 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import { BmbCalendarHourViewComponent } from '../bmb-calendar-hour-view/bmb-calendar-hour-view.component';
 import {
   IBmbCalendarHourFormat,
   IBmbCalendarEvent,
@@ -21,11 +20,7 @@ import { BmbCalendarScheduleCardsComponent } from '../bmb-calendar-schedule-card
 @Component({
   selector: 'bmb-calendar-template-month',
   standalone: true,
-  imports: [
-    CommonModule,
-    BmbCalendarHourViewComponent,
-    BmbCalendarScheduleCardsComponent,
-  ],
+  imports: [CommonModule, BmbCalendarScheduleCardsComponent],
   templateUrl: './bmb-calendar-template-month.component.html',
   styleUrl: './bmb-calendar-template-month.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

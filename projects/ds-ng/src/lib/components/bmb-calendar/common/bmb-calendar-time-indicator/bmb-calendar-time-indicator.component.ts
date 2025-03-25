@@ -22,7 +22,7 @@ export class BmbCalendarTimeIndicatorComponent {
   getPosition(): string {
     const startMin = this.currentTime().hour * 60 + this.currentTime().minute;
 
-    return `top: ${startMin + 112}px`;
+    return `top: ${startMin + 52}px`;
   }
 
   getFormattedTime(): string {

@@ -1,18 +1,18 @@
 .bmb_bookmark {
   &:hover {
-    .bmb_navigation_icon-icon {
+    .bmb_action_icon-icon {
       color: var(--red-primary);
     }
   }
 
   &-active {
-    .bmb_navigation_icon-icon {
+    .bmb_action_icon-icon {
       color: var(--red-primary);
     }
   }
 
   &:not(.bmb_bookmark-active) {
-    .bmb_navigation_icon-icon {
+    .bmb_action_icon-icon {
       color: var(--color-black-tint);
       transition: all 0.3s ease;
     }

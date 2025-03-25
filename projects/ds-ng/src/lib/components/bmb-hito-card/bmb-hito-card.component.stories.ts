@@ -1,4 +1,4 @@
-import { Meta, StoryFn } from '@storybook/angular';
+import { Meta, StoryObj } from '@storybook/angular';
 import { BmbHitoCardComponent } from './bmb-hito-card.component';
 import { attributes } from '../../utils/utils';
 
@@ -72,7 +72,7 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'select',
       },
-      options: ['pending', 'done', 'active', 'under_review'],
+      options: ['pending', 'done', 'active', 'under_review', 'canceled'],
       description: 'Set the type for the badge component.',
       table: {
         category: 'Properties',
@@ -94,14 +94,14 @@ Below is an example of how you can use this component in HTML:
       description: 'When set to true, shows a bullet element at the right.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'true' },
+        defaultValue: { summary: 'false' },
         type: { summary: 'boolean' },
       },
     },
     is_active: {
       name: 'Is active',
       control: { type: 'boolean' },
-      description: 'Change the color of the bullet.',
+      description: 'Change the color of the bullet. Selected hito card.',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
@@ -135,7 +135,7 @@ Below is an example of how you can use this component in HTML:
     short_description: 'Short description',
     type: 'active',
     sub_content: 'Sub content',
-    enable_bullet: true,
+    enable_bullet: false,
     is_active: false,
     isCompact: false,
     onClick: () => {
@@ -144,15 +144,130 @@ Below is an example of how you can use this component in HTML:
   },
 } as Meta<typeof BmbHitoCardComponent>;
 
-const customizable = (): StoryFn => (args) => ({
-  props: args,
-  template: `
-      <div style="padding: 3rem">
+type Story = StoryObj<BmbHitoCardComponent>;
+
+export const Default: Story = {
+  name: 'Example of active type',
+  render: (args: any) => ({
+    template: `
+      <div style="padding: 1.5rem">
         <bmb-hito-card
           ${attributes(args)}
         />
       </div>
     `,
-});
+  }),
+};
 
-export const Default = customizable();
+export const PendingExample = {
+  name: 'Example of pending type',
+  args: {
+    type: 'pending',
+  },
+  render: (args: any) => ({
+    template: `
+      <div style="padding: 1.5rem">
+        <bmb-hito-card
+          ${attributes(args)}
+        />
+      </div>
+    `,
+  }),
+};
+
+export const DoneExample = {
+  name: 'Example of done type',
+  args: {
+    type: 'done',
+  },
+  render: (args: any) => ({
+    template: `
+      <div style="padding: 1.5rem">
+        <bmb-hito-card
+          ${attributes(args)}
+        />
+      </div>
+    `,
+  }),
+};
+
+export const UnderReviewExample = {
+  name: 'Example of under review type',
+  args: {
+    type: 'under_review',
+  },
+  render: (args: any) => ({
+    template: `
+      <div style="padding: 1.5rem">
+        <bmb-hito-card
+          ${attributes(args)}
+        />
+      </div>
+    `,
+  }),
+};
+
+export const CanceledExample = {
+  name: 'Example of canceled type',
+  args: {
+    type: 'canceled',
+  },
+  render: (args: any) => ({
+    template: `
+      <div style="padding: 1.5rem">
+        <bmb-hito-card
+          ${attributes(args)}
+        />
+      </div>
+    `,
+  }),
+};
+
+export const CompactExample = {
+  name: 'Compact version example',
+  args: {
+    isCompact: true,
+  },
+  render: (args: any) => ({
+    template: `
+      <div style="padding: 1.5rem">
+        <bmb-hito-card
+          ${attributes(args)}
+        />
+      </div>
+    `,
+  }),
+};
+
+export const EnableBulletExample = {
+  name: 'Example of enable bullet',
+  args: {
+    enable_bullet: true,
+  },
+  render: (args: any) => ({
+    template: `
+      <div style="padding: 1.5rem">
+        <bmb-hito-card
+          ${attributes(args)}
+        />
+      </div>
+    `,
+  }),
+};
+
+export const ActiveExample = {
+  name: 'Active example',
+  args: {
+    is_active: true,
+    enable_bullet: true,
+  },
+  render: (args: any) => ({
+    template: `
+      <div style="padding: 1.5rem">
+        <bmb-hito-card
+          ${attributes(args)}
+        />
+      </div>
+    `,
+  }),
+};

@@ -9,15 +9,11 @@ import {
   output,
 } from '@angular/core';
 import { DateTime } from 'luxon';
-import { eventsInDate, dayName, weeksAndDays } from '../../utils';
+import { weeksAndDays } from '../../utils';
 import { CommonModule } from '@angular/common';
-import { BmbCalendarScheduleCardsComponent } from '../bmb-calendar-schedule-cards/bmb-calendar-schedule-cards.component';
 import { IBmbCalendarEvent } from '../../types';
-import { BmbLayoutDirective } from '../../../../directives/bmb-layout/bmb-layout.directive';
-import { BmbLayoutItemDirective } from '../../../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbButtonDirective } from '../../../../directives/button.directive';
 import { Info } from 'luxon';
-import { BmbCalendarTemplateSelectComponent } from '../bmb-calendar-template-select/bmb-calendar-template-select.component';
 import { orderDayNames } from '../../../../utils/utils';
 import { BmbInnerHeaderComponent } from '../../../bmb-inner-header/bmb-inner-header.component';
 import { BmbChevronTitleSelectorComponent } from '../../../bmb-chevron-title-selector/bmb-chevron-title-selector.component';
@@ -28,10 +24,7 @@ import { BmbPullWedgeComponent } from '../../../bmb-pull-wedge/bmb-pull-wedge.co
   standalone: true,
   imports: [
     CommonModule,
-    BmbLayoutDirective,
-    BmbLayoutItemDirective,
     BmbButtonDirective,
-    BmbCalendarTemplateSelectComponent,
     BmbInnerHeaderComponent,
     BmbChevronTitleSelectorComponent,
     BmbChevronTitleSelectorComponent,

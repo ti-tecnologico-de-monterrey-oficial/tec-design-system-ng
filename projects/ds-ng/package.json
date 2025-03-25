@@ -1,6 +1,6 @@
 {
   "name": "@ti-tecnologico-de-monterrey-oficial/ds-ng",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "description": "Design System oficial del Tecnológico de Monterrey - Descubre cómo nuestro Design System no solo da forma a la estética, sino que también impulsa la consistencia en cada rincón de nuestro diseño, proporcionando una base sólida para construir experiencias memorables y coherentes. Únete a nosotros en este viaje donde la creatividad, coherencia y elegancia se encuentran para dar vida a un mundo visualmente armonioso y funcionalmente fluido.",
   "keywords": [
     "angular",
@@ -10,11 +10,12 @@
   "license": "MIT",
   "repository": "https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng",
   "peerDependencies": {
-    "rxjs": "~7.8.0"
+    "rxjs": "~7.8.0",
+    "@angular/animations": "*"
   },
   "dependencies": {
     "@angular/material": "*",
-    "libphonenumber-js": "1.11.15",
+    "libphonenumber-js": "1.11.16",
     "luxon": "3.5.0",
     "tslib": "2.3.0",
     "@types/luxon": "3.4.2",

@@ -51,14 +51,14 @@
             class="bmb_container-button-badge"
           />
         }
-        @if (iconRight() && !square() && !small()) {
+        @if ((iconRight() || enableBookmark()) && !square() && !small()) {
           @if (enableBookmark()) {
             <bmb-bookmark
               class="bmb_container-button-right-bookmark"
               [isActive]="isBookmarkActive()"
             />
           } @else if (enableSecondaryAction()) {
-            <bmb-navigation-icon
+            <bmb-action-icon
               class="bmb_container-button-right-action"
               [icon]="iconRight()"
               [iconSize]="24"

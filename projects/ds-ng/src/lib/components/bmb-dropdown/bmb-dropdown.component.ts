@@ -8,27 +8,28 @@ import {
   ViewEncapsulation,
   forwardRef,
   input,
+  ChangeDetectorRef,
   output,
 } from '@angular/core';
 import {
+  ControlValueAccessor,
   FormControl,
   NG_VALIDATORS,
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
+  AbstractControl,
+  ValidationErrors,
+  Validator,
 } from '@angular/forms';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { ClickOutsideDirective } from '../../directives/utils/clickoutside.directive';
+import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
 
 export interface IBmbDropdownItem {
   name: string;
   value: string;
-  icon: string;
-}
-
-interface IBmbDropdownParsedItem {
-  event: IBmbDropdownItem;
-  index: number;
-  item: IBmbDropdownItem | string;
+  icon?: string;
+  id?: string;
 }
 
 @Component({
@@ -39,6 +40,7 @@ interface IBmbDropdownParsedItem {
     BmbIconComponent,
     ReactiveFormsModule,
     ClickOutsideDirective,
+    BmbCheckboxComponent,
   ],
   templateUrl: './bmb-dropdown.component.html',
   styleUrl: './bmb-dropdown.component.scss',
@@ -57,7 +59,9 @@ interface IBmbDropdownParsedItem {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbDropdownComponent implements OnInit, OnChanges {
+export class BmbDropdownComponent
+  implements OnInit, OnChanges, ControlValueAccessor, Validator
+{
   required = input<boolean>();
   showIcon = input<boolean>(false);
   placeholder = input<string>('');
@@ -65,9 +69,10 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   options = input<string[] | IBmbDropdownItem[]>([]);
   helperText = input<string>('');
   control = input<FormControl>(new FormControl());
-  disabled = input<boolean>(false);
   label = input<string>();
   preferredOptions = input<string[]>([]);
+  isMultiSelect = input<boolean>(false);
+  selectedValuesSet: Set<string> = new Set();
 
   onValueChange = output<any>();
 
@@ -81,58 +86,104 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   filteredData: string[] = [];
 
   value: string = '';
+  disabled = input<boolean>(false);
   openSelect: boolean = false;
   parsedOptions: IBmbDropdownItem[] = [];
 
+  onChange: (value: any) => void = () => {};
+  onTouched: () => void = () => {};
+
+  constructor(private cdr: ChangeDetectorRef) {}
+
+  writeValue(value: any): void {
+    if (!value) {
+      return;
+    }
+
+    this.value = value;
+    if (this.control() && this.control().setValue) {
+      this.control().setValue(value, { emitEvent: false });
+    }
+    this.updateDisplay();
+  }
+
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+    this.onTouched = fn;
+  }
+
   ngOnInit() {
-    const value = this.control().value;
-    const dDItem = this.options().find((item: string | IBmbDropdownItem) => {
-      if (typeof item === 'string') return item === value;
-      return item.value === value;
-    });
-    const name = typeof dDItem === 'string' ? dDItem : dDItem?.name;
-    this.inputControl.setValue(name);
-
-    this.parsedOptions = this.options().map((item) => this.getItem(item));
-
-    this.control().valueChanges.subscribe((change) => {
-      this.selectedIndexOption = change;
-      this.selectedOption = change;
-      this.inputControl.setValue(change);
-    });
+    this.updateDisplay();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.parsedOptions = this.options().map((item) => this.getItem(item));
   }
 
-  closeDialog() {
-    this.openSelect = false;
+  updateDisplay() {
+    let value = this.control().value;
+    if (this.isMultiSelect()) {
+      this.isItemSelected(value);
+      if (!Array.isArray(value)) {
+        value = value ? [value] : [];
+        this.control().setValue(value, { emitEvent: false });
+      }
+      this.control().setValue(value);
+    } else {
+      const dDItem = (this.options() as IBmbDropdownItem[]).find(
+        (item) => item.value === value?.value,
+      );
+      const name = dDItem?.name || '';
+      this.inputControl.setValue(name, { emitEvent: false });
+      this.selectedOption = name || null;
+    }
+
+    this.cdr.detectChanges();
+    this.onChange(this.value);
   }
 
   handleItemClick(event: IBmbDropdownItem): void {
-    this.onValueChange.emit(event);
-    this.selectedIndexOption = event.value;
-    this.selectedOption = event.value;
-    this.control().setValue(event.value);
-    this.isFocus = !this.isFocus;
-    this.openSelect = false;
-    this.inputControl.setValue(event.name);
-  }
+    if (this.isMultiSelect()) {
+      let selectedValues = this.control().value || [];
 
-  openDialog(event: any): void {
-    if (
-      !this.disabled() &&
-      (event.target.classList.contains('bmb_dropdown-input-wrapper') ||
-        event.target.classList.contains('bmb_dropdown-field-input') ||
-        event.target.classList.contains('bmb_dropdown-field-open') ||
-        event.target.classList.contains('material-symbols-outlined'))
-    ) {
-      this.openSelect = !this.openSelect;
+      if (!Array.isArray(selectedValues)) {
+        selectedValues = [];
+      }
+      if (selectedValues.some((item: any) => item.value === event.value)) {
+        selectedValues = selectedValues.filter(
+          (item: any) => item.value !== event.value,
+        );
+      } else {
+        selectedValues.push(event);
+      }
+
+      this.control().setValue(selectedValues);
+      this.onValueChange.emit(selectedValues);
+    } else {
+      this.inputControl.setValue(event.value, { emitEvent: false });
+      this.onValueChange.emit(event);
+      this.selectedIndexOption = event.value;
+      this.selectedOption = event.value;
+      this.control().setValue(event.value);
       this.isFocus = !this.isFocus;
+      this.openSelect = false;
     }
   }
 
+  getPreferredOptions(): IBmbDropdownItem[] {
+    const preferred = this.preferredOptions().map(
+      (item) =>
+        this.parsedOptions.find((option) => option.value === item) ||
+        this.getItem(item),
+    );
+
+    return [...new Set([...preferred, ...this.parsedOptions])];
+  }
+
+  // Keyboards events
   onKeyDown(event: KeyboardEvent) {
     if (
       ['Enter', ' ', 'ArrowDown', 'Down', 'ArrowUp', 'Up'].indexOf(event.key) >
@@ -149,6 +200,23 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
     }
   }
 
+  onKeySelect(
+    event: KeyboardEvent,
+    item?: IBmbDropdownItem,
+    selectAll = false,
+  ) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+
+      if (selectAll) {
+        this.toggleSelectAll();
+      } else if (item) {
+        this.handleItemClick(item);
+      }
+    }
+  }
+
+  // Dialog actions to open and close
   handleChevronClick() {
     this.openSelect = !this.openSelect;
     this.isFocus = !this.isFocus;
@@ -158,25 +226,105 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
     return this.openSelect;
   }
 
-  getItem(item: unknown): IBmbDropdownItem {
-    if (typeof item === 'string')
-      return { name: item, value: item, icon: this.icon() || '' };
-    return item as IBmbDropdownItem;
+  closeDialog() {
+    this.openSelect = false;
   }
 
-  getPreferredOptions(): IBmbDropdownItem[] {
-    const options = this.preferredOptions().reduce<IBmbDropdownItem[]>(
-      (acc, item) => {
-        const option = this.options().find((option) => {
-          if (typeof option === 'string') return option === item;
-          return option.value === item;
-        });
-        if (option) acc.push(this.getItem(option) as IBmbDropdownItem);
-        return acc;
-      },
-      [],
-    );
+  openDialog(event: any): void {
+    if (
+      !this.disabled() &&
+      (event.target.classList.contains('bmb_dropdown-input-wrapper') ||
+        event.target.classList.contains('bmb_dropdown-field-input') ||
+        event.target.classList.contains('bmb_dropdown-field-chips') ||
+        event.target.classList.contains('bmb_dropdown-field-chip') ||
+        event.target.classList.contains('bmb_dropdown-field-open') ||
+        event.target.classList.contains('material-symbols-outlined'))
+    ) {
+      this.openSelect = !this.openSelect;
+      this.isFocus = !this.isFocus;
+    }
+  }
 
-    return options;
+  // Multiselect actions
+  removeSelected(value: string) {
+    let selectedValues = this.control().value || [];
+    if (!Array.isArray(selectedValues)) {
+      selectedValues = [];
+    }
+
+    this.control().setValue(selectedValues.filter((val: any) => val !== value));
+    this.onValueChange.emit(this.control().value);
+    this.updateDisplay();
+  }
+
+  toggleSelectAll(): void {
+    const allValues = this.parsedOptions.map((item) => item);
+    let selectedValues = this.control().value || [];
+    if (!Array.isArray(selectedValues)) {
+      selectedValues = [];
+    }
+
+    const isCurrentlyAllSelected = selectedValues.length === allValues.length;
+
+    if (isCurrentlyAllSelected) {
+      selectedValues = [];
+    } else {
+      const selectedSet = new Set(
+        selectedValues.map((item: any) => item.value),
+      );
+      selectedValues = [
+        ...selectedValues,
+        ...allValues.filter((item) => !selectedSet.has(item.value)),
+      ];
+    }
+
+    this.control().setValue(selectedValues, { emitEvent: true });
+    this.onValueChange.emit(this.control().value);
+    this.updateDisplay();
+  }
+
+  isItemSelected(item: IBmbDropdownItem): boolean {
+    const value = this.control().value;
+    if (!value) return false;
+
+    if (Array.isArray(value))
+      return value.some((val) => val.value === item.value);
+
+    if (typeof value === 'object' && value.value)
+      return value.value === item.value;
+
+    return false;
+  }
+
+  getItem(item: string | IBmbDropdownItem): IBmbDropdownItem {
+    if (typeof item === 'string') {
+      const foundItem = (this.options() as IBmbDropdownItem[]).find(
+        (opt) => opt.value === item,
+      );
+
+      return (
+        foundItem || {
+          name: item,
+          value: item,
+          icon: 'bolt',
+          id: item.toLowerCase().replace(/\s+/g, '_'),
+        }
+      );
+    }
+
+    return item;
+  }
+
+  // Validation error control
+  validate(control: AbstractControl): ValidationErrors | null {
+    if (
+      this.required() &&
+      (this.value === null ||
+        this.value === undefined ||
+        this.value.length === 0)
+    ) {
+      return { required: true };
+    }
+    return null;
   }
 }

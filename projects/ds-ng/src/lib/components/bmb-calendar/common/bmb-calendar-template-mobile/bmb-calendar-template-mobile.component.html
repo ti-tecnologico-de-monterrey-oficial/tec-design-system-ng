@@ -49,6 +49,10 @@
               @if (findEventsForToday(date)) {
                 <span
                   class="bmb_calendar-month-mobile-calendar-item-indicator"
+                  [ngClass]="{
+                    'bmb_calendar-month-mobile-calendar-item-indicator-selected':
+                      isSelectedDay(date),
+                  }"
                 ></span>
               }
             </li>
@@ -75,6 +79,10 @@
               @if (findEventsForToday(date)) {
                 <span
                   class="bmb_calendar-month-mobile-calendar-item-indicator"
+                  [ngClass]="{
+                    'bmb_calendar-month-mobile-calendar-item-indicator-selected':
+                      isSelectedDay(date),
+                  }"
                 ></span>
               }
             </li>

@@ -15,7 +15,7 @@ import { ModalDataConfig } from './bmb-modal.interface';
 import { BmbButtonDirective } from '../../directives/button.directive';
 import { BmbThreeColsComponent } from '../bmb-three-cols/bmb-three-cols.component';
 import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
-import { BmbNavigationIconComponent } from '../bmb-navigation-bar/bmb-navigation-icon/bmb-navigation-icon.component';
+import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 
 @Component({
   selector: 'bmb-modal',
@@ -24,7 +24,7 @@ import { BmbNavigationIconComponent } from '../bmb-navigation-bar/bmb-navigation
     CommonModule,
     BmbThreeColsComponent,
     BmbTitleContentComponent,
-    BmbNavigationIconComponent,
+    BmbActionIconComponent,
     BmbButtonDirective,
   ],
   providers: [MatDialog],
@@ -170,6 +170,9 @@ export class BmbModalComponent {
 
   showSecondaryButton(): boolean {
     const data = this.getData();
-    return (data.type && data.type !== 'action' && !!data.secondaryBtnLabel) || !!data.secondaryBtnLabel;
+    return (
+      (data.type && data.type !== 'action' && !!data.secondaryBtnLabel) ||
+      !!data.secondaryBtnLabel
+    );
   }
 }

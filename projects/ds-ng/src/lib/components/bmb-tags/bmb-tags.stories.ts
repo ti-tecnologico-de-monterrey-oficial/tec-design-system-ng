@@ -61,8 +61,8 @@ Below is an example of how you can use this component in HTML:
         'When the activity tag property is set as true, the tag can change the appearance.',
       table: {
         category: 'Properties',
-        type: { summary: 'radio' },
-        deafaultValue: { summary: 'info' },
+        type: { summary: 'string' },
+        defaultValue: { summary: 'normal' },
       },
     },
     rounded: {

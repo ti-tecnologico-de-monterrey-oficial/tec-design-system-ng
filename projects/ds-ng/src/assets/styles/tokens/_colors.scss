@@ -47,16 +47,35 @@
   --color-blue-tec: 0, 57, 166;
 
   // MiTec
+
   // #00A7F7
   --color-mitec-blue: 0, 167, 247;
+  --mitec_blue-light: var(--color-mitec-blue);
+  // #00598D
+  --mitec_blue-primary: 0, 89, 141;
+
   // #CDDE20
   --color-mitec-green: 205, 222, 32;
+  --mitec_green-light: var(--color-mitec-green);
+  // #485116
+  --mitec_green-primary: 72, 81, 22;
+
   // #EC2661
   --color-mitec-red: 236, 38, 97;
+  --mitec_red-light: var(--color-mitec-red);
+  // #8D0E3F
+  --mitec_red-primary: 141, 14, 63;
+
   // #FF9901
   --color-mitec-orange: 255, 153, 1;
+  --mitec_orange-light: var(--color-mitec-orange);
+  // #BB4C02
+  --mitec_orange-primary: 187, 76, 2;
+
   // #EF83D6
   --color-mitec-purple: 239, 131, 214;
+  --mitec_purple-tint: var(--color-mitec-purple);
+  --mitec_purple-primary: var(--color-purple-light);
 
   // Constrastes principales
   // #000000 Black Primary
@@ -69,7 +88,6 @@
   --color-white-min: RGBA(var(--color-white-primary), 0.25);
 
   //Colores base
-  // #1BC0CB
   //This one is not used anymore but I change the value to mariner-700 because is used in several components
   --color-neon-primary: 39, 102, 203;
 
@@ -131,48 +149,141 @@
   --color-eerie-black: 20, 25, 28;
 
   // Creative colors
-  --creative-use-violet: rgb(171, 143, 246);
-  --creative-use-indigo: rgb(129, 140, 248);
-  --creative-use-emerald: rgb(74, 222, 128);
-  --creative-use-licorice: rgb(176, 135, 142);
-  --creative-use-darkteal: rgb(154, 197, 223);
-  --creative-use-peach: rgb(236, 115, 87);
-  --creative-use-sepia: rgb(168, 152, 88);
-  --creative-use-softred: rgb(226, 138, 142);
-  --creative-use-wattle: rgb(205, 185, 37);
-  --creative-use-shipcove: rgb(105, 135, 201);
-  --creative-use-plantation: rgb(111, 146, 135);
-  --creative-use-rum: rgb(189, 170, 200);
-  --creative-use-hibiscus: rgb(226, 132, 181);
-  --creative-use-ripelemon: rgb(241, 211, 2);
+  // #AB8FF6
+  --violet-tint: 171, 143, 246;
+  // #6929C4
+  --violet-primary: 105, 41, 196;
+
+  // #818CF8
+  --indigo-tint: 129, 140, 248;
+  // #4338CA
+  --indigo-primary: 67, 56, 202;
+
+  // #4ADE80
+  --emerald-tint: 74, 222, 128;
+  // #14532D
+  --emerald-primary: 20, 83, 45;
+
+  // #B0878E
+  --licorice-tint: 176, 135, 142;
+  // #523C45
+  --licorice-primary: 82, 60, 69;
+
+  // #9AC5DF
+  --dark-teal-tint: 154, 197, 223;
+  // #234157
+  --dark-teal-primary: 35, 65, 87;
+
+  // #EC7357
+  --peach-tint: 236, 115, 87;
+  // #B53C20
+  --peach-primary: 181, 60, 32;
+
+  // #A89858
+  --sepia-tint: 168, 152, 88;
+  // #675239
+  --sepia-primary: 103, 82, 57;
+
+  // #E28A8E
+  --soft-red-tint: 226, 138, 142;
+  // #912F40
+  --soft-red-primary: 145, 47, 64;
+
+  // #CDB925
+  --wattle-tint: 205, 185, 37;
+  // #8D6C1B
+  --wattle-primary: 141, 108, 27;
+
+  // #6987C9
+  --ship-cove-tint: 105, 135, 201;
+  // #414E8C
+  --ship-cove-primary: 65, 78, 140;
+
+  // #6F9287
+  --plantation-tint: 111, 146, 135;
+  // #384D48
+  --plantation-primary: 56, 77, 72;
+
+  // #BDAAC8
+  --rum-tint: 189, 170, 200;
+  // #594662
+  --rum-primary: 89, 70, 98;
+
+  // #F1D302
+  --ripe-lemon-tint: 241, 211, 2;
+  // #744B0F
+  --ripe-lemon-primary: 116, 75, 15;
+
+  // #E284B5
+  --hibiscus-tint: 226, 132, 181;
+  // #8B2951
+  --hibiscus-primary: 139, 41, 81;
+
+  //Semantic colors
+  --success-light: var(--color-green-light);
+  // #216453
+  --success-primary: 33, 100, 83;
+
+  //info-event
+  --purple-tint: var(--color-purple-tint);
+
+  --error-light: var(--color-red-light);
+  // #B91C1C
+  --error-primary: 185, 28, 28;
+
+  --warning-tint: var(--color-yellow-tint);
+  // #7A2D0D
+  --warning-primary: 122, 45, 13;
+
+  --branding-tint: var(--color-mariner-400);
+  --branding-primary: var(--color-mariner-700);
+
+  /*
+    These names have a different structure intentionally
+    so that they look more like the names in the Figma documentation,
+    apparently the name alert_primary was given due to duplicate names
+    used in the status icon.
+  */
+  // #1A7684
+  --alert_primary-alert-primary: 26, 118, 132;
+  // #1BC0CB
+  --alert_primary-alert-light: 27, 192, 203;
 
   //GRADIENTS
   // To use this gradient you should use it in this way
   // background-color: linear-gradient(180deg, var(--color-gradient-blue)); or background-color: radial-gradient(circle, var(--color-gradient-blue));
-  --color-button-gradient: RGBA(var(--color-teal-primary)) 0%,
-    RGBA(var(--color-blue-primary)) 100%;
-  --color-blue-gradient: RGBA(var(--color-teal-primary)) 0%,
-    RGBA(var(--color-blue-pigment)) 100%;
-  --color-green-gradient: RGBA(var(--color-neon-primary)) 0%,
-    RGBA(var(--color-green-light)) 100%;
-  --color-purple-gradient: RGBA(var(--color-purple-primary)) 0%,
-    RGBA(var(--color-purple-light)) 100%;
-  --color-bg-gradient: RGBA(var(--color-japanese-indigo)) 0%,
+  --color-button-gradient:
+    RGBA(var(--color-teal-primary)) 0%, RGBA(var(--color-blue-primary)) 100%;
+  --color-blue-gradient:
+    RGBA(var(--color-teal-primary)) 0%, RGBA(var(--color-blue-pigment)) 100%;
+  --color-green-gradient:
+    RGBA(var(--color-neon-primary)) 0%, RGBA(var(--color-green-light)) 100%;
+  --color-purple-gradient:
+    RGBA(var(--color-purple-primary)) 0%, RGBA(var(--color-purple-light)) 100%;
+  --color-bg-gradient:
+    RGBA(var(--color-japanese-indigo)) 0%,
     RGBA(var(--color-background-main)) 100%;
-  --color-bg-wheel: RGBA(var(--color-eerie-black)) 0%,
-    RGBA(var(--color-background-main)) 100%;
-  --color-bg-gradient-light: RGBA(var(--color-white-primary)) 0%,
-    RGBA(var(--color-blue-tint)) 100%;
-  --color-bg-wheel-light: RGBA(var(--color-white-primary)) 0%,
-    RGBA(var(--color-blue-tint)) 100%;
-  --color-bg-gradient-tec: RGBA(var(--color-container-home-tec)) 0%,
-    RGBA(var(--color-blue-tec)) 100%;
-  --color-bg-wheel-tec: RGBA(var(--color-container-home-tec)) 0%,
-    RGBA(var(--color-blue-tec)) 100%;
-  --color-academic-gradient: RGBA(var(--color-mariner-950)) 0%,
-    RGBA(var(--color-mariner-900)) 100%;
-  --color-life-gradient: RGBA(var(--color-green-primary)) 0%,
-    RGBA(var(--color-green-light)) 100%;
-  --color-event-gradient: RGBA(var(--color-purple-primary)) 0%,
-    RGBA(var(--color-purple-light)) 100%;
+  --color-bg-wheel:
+    RGBA(var(--color-eerie-black)) 0%, RGBA(var(--color-background-main)) 100%;
+  --color-bg-gradient-light:
+    RGBA(var(--color-white-primary)) 0%, RGBA(var(--color-blue-tint)) 100%;
+  --color-bg-wheel-light:
+    RGBA(var(--color-white-primary)) 0%, RGBA(var(--color-blue-tint)) 100%;
+  --color-bg-gradient-tec:
+    RGBA(var(--color-container-home-tec)) 0%, RGBA(var(--color-blue-tec)) 100%;
+  --color-bg-wheel-tec:
+    RGBA(var(--color-container-home-tec)) 0%, RGBA(var(--color-blue-tec)) 100%;
+  --color-academic-gradient:
+    RGBA(var(--color-mariner-950)) 0%, RGBA(var(--color-mariner-900)) 100%;
+  --color-life-gradient:
+    RGBA(var(--color-green-primary)) 0%, RGBA(var(--color-green-light)) 100%;
+  --color-event-gradient:
+    RGBA(var(--color-purple-primary)) 0%, RGBA(var(--color-purple-light)) 100%;
+
+  //Named base colors
+  --white-primary: RGBA(var(--color-white-primary), 1);
+  --purple-primary: RGBA(var(--color-purple-primary), 1);
+  --red-primary: RGBA(var(--color-red-primary), 1);
+  --black-primary: RGBA(var(--color-white-primary), 1);
+  --green-primary: RGBA(var(--color-green-primary), 1);
 }

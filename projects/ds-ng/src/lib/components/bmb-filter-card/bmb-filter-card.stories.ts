@@ -125,6 +125,23 @@ Below is an example of how you can use this component in HTML:
     resetFilters: '',
     controlTypes: [
       {
+        title: 'Filter - tags',
+        control: [
+          {
+            name: 'tag-1',
+            type: 'tag',
+            label: 'Name tag 1',
+            checked: false,
+          },
+          {
+            name: 'tag-2',
+            type: 'tag',
+            label: 'Name tag 2',
+            checked: false,
+          },
+        ],
+      },
+      {
         title: 'Filter - Radial',
         control: [
           {

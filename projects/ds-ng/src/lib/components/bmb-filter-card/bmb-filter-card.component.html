@@ -15,6 +15,7 @@
             [icon]="'search'"
             [appearance]="'normal'"
             [control]="getFormControl('search')"
+            [isClearable]="true"
           />
         }
         @for (controlType of controlTypes(); track $index) {
@@ -22,6 +23,16 @@
           <div class="bmb_filter_card-control">
             @for (control of controlType.control; track $index) {
               @switch (control.type) {
+                @case ("tag") {
+                  <bmb-tag
+                    [text]="control.label"
+                    [dismissible]="false"
+                    [activityTag]="
+                      filterForm.get(control.name)?.value === control.label
+                    "
+                    (clickedTag)="onControlChange(control, $event)"
+                  />
+                }
                 @case ("radial") {
                   <bmb-radial
                     [name]="control.name"

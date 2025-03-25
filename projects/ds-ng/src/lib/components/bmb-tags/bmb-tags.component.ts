@@ -47,9 +47,10 @@ export class BmbTagComponent implements AfterViewInit {
   appearance = input<IBmbActivityTags>('normal');
   text = input<string>('');
   grouped = input<boolean>(false);
-  dismissible = input<boolean>(true);
+  dismissible = input<boolean>(false);
   rounded = input<boolean>(false);
   activityTag = input<boolean>(false);
+
   closedTag = output<string>();
   clickedTag = output<string>();
 
@@ -83,12 +84,15 @@ export class BmbTagComponent implements AfterViewInit {
       `bmb_tag-${this.appearance()}`,
     ];
 
+    if (this.activityTag()) {
+      classes.push('bmb_tag-activity');
+    }
+
     return classes;
   }
 
   closeTag(text: string) {
     this.closedTag.emit(text);
-    this.el.nativeElement.remove();
   }
 
   clickTag(text: string) {

@@ -53,19 +53,27 @@ export class BmbSidebarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.elements().length > 2) {
-      console.error('The sidebar component only supports two levels of navigation');
+    if (this.elements()?.length > 2) {
+      console.error(
+        'The sidebar component only supports two levels of navigation',
+      );
     }
 
-    if (this.elements()[0].length > 5) {
-      console.error('The sidebar component only supports a maximum of 5 elements in the first level of navigation');
+    if (this.elements()[0]?.length > 5) {
+      console.error(
+        'The sidebar component only supports a maximum of 5 elements in the first level of navigation',
+      );
     }
 
-    if (this.elements()[1] && this.elements()[1].length > 3) {
-      console.error('The sidebar component only supports a maximum of 3 elements in the second level of navigation');
+    if (this.elements()[1] && this.elements()[1]?.length > 3) {
+      console.error(
+        'The sidebar component only supports a maximum of 3 elements in the second level of navigation',
+      );
     }
 
-    this.hasSubmenu = this.elements().some((element) => element.some((el) => el.children));
+    this.hasSubmenu = this.elements().some((element) =>
+      element.some((el) => el.children),
+    );
   }
 
   getLink(link: string, hasChildren: boolean): string {
@@ -87,7 +95,7 @@ export class BmbSidebarComponent implements OnInit {
     this.selectedElement = element;
 
     if (element.children) {
-      element.isOpen = !element.isOpen
+      element.isOpen = !element.isOpen;
     }
   }
 
@@ -105,20 +113,22 @@ export class BmbSidebarComponent implements OnInit {
   checkToCloseSidebar(event: any) {
     console.log('checkToCloseSidebar', event);
 
-    if(event.link && !event.children) {
+    if (event.link && !event.children) {
       this.toggleSidebar();
       this.sideNav.nativeElement.classList.add('bmb_sidebar-desktop-close');
 
       setTimeout(() => {
-        this.sideNav.nativeElement.classList.remove('bmb_sidebar-desktop-close');
+        this.sideNav.nativeElement.classList.remove(
+          'bmb_sidebar-desktop-close',
+        );
         this.sideNav.nativeElement.classList.remove('bmb-active');
       }, 500);
     }
   }
 
   getMobileIcon(): string {
-    if(this.isOpen) return 'close';
-    if(this.position() === 'left') return 'arrow_forward_ios';
+    if (this.isOpen) return 'close';
+    if (this.position() === 'left') return 'arrow_forward_ios';
     return 'arrow_back_ios_new';
   }
 }

@@ -6,7 +6,7 @@ import {
   output,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbNavigationIconComponent } from '../bmb-navigation-bar/bmb-navigation-icon/bmb-navigation-icon.component';
+import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { DateTime } from 'luxon';
 import { CommonModule } from '@angular/common';
 import { BmbInputComponent } from '../bmb-input/bmb-input.component';
@@ -29,7 +29,7 @@ interface IBmbListItemsElementGroupedByDate {
 @Component({
   selector: 'bmb-list-items',
   standalone: true,
-  imports: [BmbNavigationIconComponent, CommonModule, BmbInputComponent],
+  imports: [BmbActionIconComponent, CommonModule, BmbInputComponent],
   templateUrl: './bmb-list-items.component.html',
   styleUrl: './bmb-list-items.component.scss',
   encapsulation: ViewEncapsulation.None,

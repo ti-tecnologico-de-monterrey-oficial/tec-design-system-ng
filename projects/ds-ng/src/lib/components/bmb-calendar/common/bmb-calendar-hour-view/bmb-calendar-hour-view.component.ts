@@ -4,11 +4,7 @@ import {
   ChangeDetectionStrategy,
   ViewEncapsulation,
   input,
-  OnInit,
   OnChanges,
-  SimpleChanges,
-  ViewChild,
-  ElementRef,
   AfterViewInit,
 } from '@angular/core';
 import { IBmbCalendarEvent, IBmbCalendarHourFormat } from '../../types';

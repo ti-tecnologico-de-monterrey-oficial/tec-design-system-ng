@@ -12,16 +12,16 @@
     overflow: hidden;
     height: 0;
     border-radius: var(--bmb-radius-s) var(--bmb-radius-s) 0 0;
-    background-color: RGBA(var(--color-white-primary));
+    background-color: var(--containers-modal);
     z-index: 1;
 
     &-active {
       height: rem.rem_calc(140);
       bottom: 50%;
       overflow: auto;
-      border-width: rem.rem_calc(1) rem.rem_calc(1) 0 rem.rem_calc(1);
+      border-width: rem.rem_calc(1 1 0 1);
       border-style: solid;
-      border-color: RGBA(var(--color-charade-300));
+      border-color: var(--buttons-inactive-step);
       transition: height 0.3s ease;
     }
 
@@ -31,28 +31,21 @@
       margin: 0;
       list-style: none;
       gap: var(--bmb-spacing-m);
-    }
-
-    &-image {
-      width: rem.rem_calc(40);
-      height: rem.rem_calc(40);
-      object-fit: contain;
-
-      &-active {
-        filter: contrast(100%);
-      }
+      overflow: auto;
     }
 
     &-button {
       padding: 10px;
       line-height: 0;
       border-radius: 50%;
-      background-color: RGBA(var(--color-charade-500));
-      box-shadow: rem.rem_calc(8) rem.rem_calc(8) rem.rem_calc(8)
-        rem.rem_calc(0) rgba(var(--color-charade-950), 0.2);
+      background-color: var(--general_contrasts-50);
+      box-shadow: var(--drop_shadow-color-test-shadow);
+      display: inline-flex;
+      min-height: rem.rem_calc(60);
+      align-items: center;
 
       &-active {
-        background-color: RGBA(var(--color-charade-950));
+        background-color: var(--general_contrasts-150);
       }
     }
   }
@@ -63,8 +56,8 @@
     flex-direction: column;
     padding: var(--bmb-spacing-m);
     border-radius: rem.rem_calc(44);
-    border: rem.rem_calc(1) solid RGBA(var(--color-charade-300));
-    background: RGBA(var(--color-charade-100));
+    border: rem.rem_calc(1) solid var(--general_contrasts-container-outline);
+    background: var(--containers-main);
     gap: var(--bmb-spacing-m);
     z-index: 2;
 
@@ -79,6 +72,8 @@
     &-btns {
       display: flex;
       gap: var(--bmb-spacing-xs);
+      align-items: center;
+      padding-right: rem.rem_calc(4);
     }
 
     &-drag {
@@ -87,7 +82,7 @@
       align-items: center;
       width: 100%;
       padding: var(--bmb-spacing-m);
-      color: RGBA(var(--color-mariner-500));
+      color: var(--general_contrasts-50);
 
       &-text {
         margin: 0;
@@ -97,12 +92,13 @@
 
   &-drag {
     border: rem.rem_calc(2) dashed;
-    border-color: RGBA(var(--color-mariner-500));
+    border-color: var(--general_contrasts-50);
   }
 
   &-main {
     display: inline-flex;
     width: 100%;
+    align-items: center;
   }
 
   &-bot {
@@ -110,16 +106,14 @@
     padding: 0;
     padding-right: rem.rem_calc(10);
 
-    &-picture {
+    .bmb_icon-figure {
       margin: 0;
       padding: rem.rem_calc(10);
       line-height: 0;
-      width: rem.rem_calc(60);
-      height: rem.rem_calc(60);
       display: flex;
       align-items: center;
       border-radius: 50%;
-      background-color: RGBA(var(--color-charade-500));
+      background-color: var(--general_contrasts-50);
 
       &-image {
         width: 100%;
@@ -133,25 +127,12 @@
     flex: 1;
     font-size: 1rem;
     min-width: rem.rem_calc(100);
-  }
-
-  &-emoji {
-    color: RGBA(var(--color-charade-500));
-    font-size: 2rem;
-
-    &:disabled {
-      cursor: not-allowed;
-    }
+    height: rem.rem_calc(60);
+    color: var(--general_contrasts-50);
   }
 
   &-add {
     position: relative;
-    color: RGBA(var(--color-charade-500));
-    font-size: 2rem;
-
-    &:disabled {
-      cursor: not-allowed;
-    }
 
     &-dialog {
       display: none;
@@ -159,9 +140,8 @@
       width: rem.rem_calc(350);
       border-radius: var(--bmb-radius-m) var(--bmb-radius-m) var(--bmb-radius-m)
         var(--bmb-radius-m);
-      box-shadow: rem.rem_calc(5) rem.rem_calc(10) rem.rem_calc(5)
-        var(--color-black-min);
-      background: RGBA(var(--color-charade-100));
+      box-shadow: var(--drop_shadow-color-test-shadow);
+      background-color: var(--containers-main);
 
       &-active {
         display: block;
@@ -182,14 +162,6 @@
         gap: var(--bmb-spacing-xs);
       }
 
-      &-button {
-        display: flex;
-        align-items: center;
-        padding: rem.rem_calc(5);
-        line-height: 0;
-        vertical-align: middle;
-      }
-
       &-option {
         display: flex;
         align-items: center;
@@ -197,54 +169,41 @@
         padding-left: rem.rem_calc(10);
         cursor: pointer;
 
-        &:hover {
-          background-color: RGBA(var(--color-charade-400));
-        }
+        &-button {
+          display: flex;
+          align-items: center;
+          padding: rem.rem_calc(5);
+          line-height: 0;
+          vertical-align: middle;
 
-        &-text {
-          margin: 0;
-          @include fonts.font(5, regular);
-        }
+          &-text {
+            margin: 0;
+            padding-left: rem.rem_calc(15);
+            @include fonts.font(5, regular);
+            color: var(--general_contrasts-150);
+          }
 
-        bmb-icon {
-          color: RGBA(var(--color-charade-500));
-          font-size: 1.5rem;
-          padding-right: rem.rem_calc(15);
+          &-icon {
+            color: var(--general_contrasts-150) !important;
+          }
         }
       }
     }
   }
 
   &-mic {
-    color: RGBA(var(--color-charade-500));
-    font-size: 2rem;
-
     @media screen and (max-width: 560px) {
       display: none;
-    }
-
-    &:disabled {
-      cursor: not-allowed;
     }
   }
 
   &-pause {
-    color: RGBA(var(--color-red-primary));
-    font-size: 2.5rem;
-
-    &:disabled {
-      cursor: not-allowed;
+    bmb-icon {
+      color: var(--red-primary) !important;
     }
   }
 
   &-record {
-    color: RGBA(var(--color-charade-500));
-    font-size: 2.5rem;
-
-    &:disabled {
-      cursor: not-allowed;
-    }
-
     &-animated {
       .material-symbols-rounded {
         animation-name: recordColor;
@@ -255,13 +214,6 @@
   }
 
   &-send {
-    color: RGBA(var(--color-charade-500));
-    font-size: 2rem;
-
-    &:disabled {
-      cursor: not-allowed;
-    }
-
     &-animated {
       .material-symbols-rounded {
         animation: loading 1.5s ease infinite;
@@ -290,12 +242,6 @@
       @media (max-width: 480px) {
         width: rem.rem_calc(75);
         height: rem.rem_calc(75);
-      }
-
-      bmb-icon {
-        color: RGBA(var(--color-charade-50));
-        font-size: 1.5rem;
-        padding: rem.rem_calc(0) rem.rem_calc(5);
       }
 
       &-delete {
@@ -333,8 +279,8 @@
       height: rem.rem_calc(50);
       padding: rem.rem_calc(2) rem.rem_calc(10);
       border-radius: rem.rem_calc(5);
-      background-color: RGBA(var(--color-charade-50));
-      border: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
+      background-color: var(--containers-modal);
+      border: rem.rem_calc(1) solid var(--general_contrasts-25);
 
       @media (max-width: 480px) {
         padding: rem.rem_calc(15) rem.rem_calc(8);
@@ -350,21 +296,18 @@
         text-overflow: ellipsis;
       }
 
-      bmb-icon {
-        color: RGBA(var(--color-mariner-500));
-        font-size: 1.5rem;
-        padding: rem.rem_calc(0) rem.rem_calc(5);
+      &-icon {
+        .material-symbols-rounded {
+          color: RGBA(var(--color-mariner-500));
+          padding-right: rem.rem_calc(5);
+        }
       }
-    }
 
-    &-delete {
-      position: absolute;
-      top: 60%;
-      left: 105%;
-      transform: translateY(-100%) translateX(-100%);
-
-      bmb-icon {
-        color: RGBA(var(--color-charade-500));
+      &-delete {
+        position: absolute;
+        top: 50%;
+        left: 105%;
+        transform: translateY(-100%) translateX(-100%);
       }
     }
   }
@@ -377,12 +320,12 @@
     left: 0;
     height: 100%;
     width: 100%;
-    background-color: RGBA(var(--color-charade-50));
+    background-color: var(--general_contrasts-5);
     z-index: 99;
     padding: var(--bmb-spacing-l);
     flex-direction: column;
     border-radius: rem.rem_calc(20);
-    border: rem.rem_calc(1) solid RGBA(var(--color-charade-300));
+    border: rem.rem_calc(1) solid var(--buttons-inactive-step);
 
     &-active {
       display: block;
@@ -396,10 +339,6 @@
       width: 100%;
       height: rem.rem_calc(80);
       padding: var(--bmb-spacing-m);
-    }
-
-    &-close {
-      @include fonts.font(9, semibold);
     }
 
     &-body {
@@ -425,11 +364,10 @@
       align-items: center;
       width: rem.rem_calc(70);
       height: rem.rem_calc(70);
-      font-size: rem.rem_calc(50);
       border-radius: 50%;
       margin-bottom: rem.rem_calc(20);
-      background-color: RGBA(var(--color-charade-100));
-      color: RGBA(var(--color-charade-500));
+      background-color: var(--general_contrasts-20);
+      color: var(--general_contrasts-50);
     }
 
     &-button {
@@ -438,11 +376,6 @@
       padding: rem.rem_calc(5);
       line-height: 0;
       vertical-align: middle;
-
-      bmb-icon {
-        font-size: rem.rem_calc(40);
-        color: RGBA(var(--color-charade-500));
-      }
     }
 
     &-label {
@@ -455,6 +388,16 @@
         overflow-wrap: break-word;
       }
     }
+
+    &-close {
+      .material-symbols-rounded {
+        color: var(--general_contrasts-150);
+      }
+    }
+  }
+
+  bmb-icon {
+    color: var(--general_contrasts-50);
   }
 }
 
@@ -470,118 +413,22 @@
 
 @keyframes recordColor {
   0% {
-    color: RGBA(var(--color-green-primary));
+    color: var(--green-primary);
   }
 
   25% {
-    color: RGBA(var(--color-charade-500));
+    color: var(--general_contrasts-50);
   }
 
   50% {
-    color: RGBA(var(--color-green-primary));
+    color: var(--green-primary);
   }
 
   75% {
-    color: RGBA(var(--color-charade-500));
+    color: var(--general_contrasts-50);
   }
 
   100% {
-    color: RGBA(var(--color-green-primary));
-  }
-}
-
-[data-theme="dark"],
-.storybook-dark-theme {
-  .bmb_chat-bar {
-    border-color: RGBA(var(--color-charade-800));
-
-    &-container {
-      background-color: RGBA(var(--color-charade-900));
-      border-color: RGBA(var(--color-charade-800));
-
-      &-active {
-        border-color: RGBA(var(--color-mariner-500));
-      }
-
-      &-drag {
-        color: RGBA(var(--color-mariner-500));
-      }
-    }
-
-    &-input {
-      color: RGBA(var(--color-charade-500));
-    }
-
-    &-dialog {
-      background-color: RGBA(var(--color-charade-950));
-
-      &-active {
-        border-color: RGBA(var(--color-charade-700));
-      }
-
-      &-button {
-        &-active {
-          background-color: RGBA(var(--color-charade-50));
-        }
-      }
-
-      &-image {
-        &-active {
-          filter: contrast(0%);
-        }
-      }
-    }
-
-    &-add {
-      &-dialog {
-        background-color: RGBA(var(--color-charade-900));
-
-        &-option-text {
-          color: RGBA(var(--color-charade-50));
-        }
-
-        &-button {
-          color: RGBA(var(--color-charade-50));
-
-          bmb-icon {
-            color: RGBA(var(--color-charade-50));
-          }
-        }
-      }
-    }
-
-    &-files {
-      background-color: RGBA(var(--color-charade-900));
-      border-color: RGBA(var(--color-charade-800));
-      &-list {
-        &-option {
-          background-color: RGBA(var(--color-charade-950));
-          border-color: RGBA(var(--color-charade-700));
-        }
-      }
-    }
-
-    &-drag {
-      border-color: RGBA(var(--color-mariner-500));
-    }
-
-    &-mb-add-dialog {
-      background-color: RGBA(var(--color-charade-900));
-      border-color: RGBA(var(--color-charade-800));
-
-      &-close {
-        color: RGBA(var(--color-charade-50));
-      }
-
-      &-icon {
-        background-color: RGBA(var(--color-charade-500));
-      }
-
-      &-button {
-        bmb-icon {
-          color: RGBA(var(--color-charade-200));
-        }
-      }
-    }
+    color: var(--green-primary);
   }
 }

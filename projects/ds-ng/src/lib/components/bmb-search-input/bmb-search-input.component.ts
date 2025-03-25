@@ -15,20 +15,12 @@ import {
 import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbButtonDirective } from '../../directives/button.directive';
-import { BmbLoaderComponent } from '../bmb-loader/bmb-loader.component';
 import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'bmb-search-input',
   standalone: true,
-  imports: [
-    CommonModule,
-    BmbIconComponent,
-    BmbButtonDirective,
-    BmbLoaderComponent,
-    ReactiveFormsModule,
-  ],
+  imports: [CommonModule, BmbIconComponent, ReactiveFormsModule],
   templateUrl: './bmb-search-input.component.html',
   styleUrl: './bmb-search-input.component.scss',
   encapsulation: ViewEncapsulation.None,
