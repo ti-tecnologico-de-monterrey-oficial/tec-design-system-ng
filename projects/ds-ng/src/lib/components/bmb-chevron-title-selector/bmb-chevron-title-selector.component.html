@@ -3,7 +3,7 @@
     <ng-template #bmbLeftContent>
       @if (!!leadingIcon()) {
         <span class="bmb_chevron-button">
-          <bmb-navigation-icon
+          <bmb-action-icon
             [icon]="leadingIcon()"
             [iconSize]="24"
             (buttonClick)="handleLeadingClick($event)"
@@ -26,7 +26,7 @@
     <ng-template #bmbRightContent>
       @if (trailingIcon()) {
         <span class="bmb_chevron-button">
-          <bmb-navigation-icon
+          <bmb-action-icon
             [icon]="trailingIcon()"
             [iconSize]="24"
             (buttonClick)="handleTrailingClick($event)"

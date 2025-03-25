@@ -3,7 +3,7 @@ import { BmbNavigationBarComponent } from './bmb-navigation-bar.component';
 import { RouterTestingModule } from '@angular/router/testing';
 
 export default {
-  title: 'Internal/Navigation bar',
+  title: 'Micro Componentes/Navigation bar',
   component: BmbNavigationBarComponent,
   decorators: [
     moduleMetadata({
@@ -114,7 +114,7 @@ Below is an example of how you can use this component in HTML:
     actionHeaders: [
       {
         icon: 'home',
-        link: 'https://www.youtube.com/',
+        link: 'https://www.example.com/',
       },
       {
         icon: 'share',
@@ -124,7 +124,7 @@ Below is an example of how you can use this component in HTML:
       },
       {
         icon: 'inventory_2',
-        link: '/home',
+        link: 'https://www.example.com/',
         target: '_blank',
       },
       {

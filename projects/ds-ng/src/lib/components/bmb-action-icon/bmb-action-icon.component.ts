@@ -6,25 +6,25 @@ import {
   output,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
-import { BmbCheckExternalLinkButtonComponent } from '../../bmb-check-external-link-button/bmb-check-external-link-button.component';
+import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
 import { CommonModule } from '@angular/common';
-import { IBmbTargetLink } from '../../../types';
+import { IBmbTargetLink } from '../../types';
 
 @Component({
-  selector: 'bmb-navigation-icon',
+  selector: 'bmb-action-icon',
   standalone: true,
   imports: [
     CommonModule,
     BmbCheckExternalLinkButtonComponent,
     BmbIconComponent,
   ],
-  templateUrl: './bmb-navigation-icon.component.html',
-  styleUrl: './bmb-navigation-icon.component.scss',
+  templateUrl: './bmb-action-icon.component.html',
+  styleUrl: './bmb-action-icon.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbNavigationIconComponent {
+export class BmbActionIconComponent {
   idElement = input<string>();
   icon = input.required<string>();
   alt = input<string>('');
@@ -37,12 +37,17 @@ export class BmbNavigationIconComponent {
   link = input<string>();
   disabled = input<boolean>(false);
 
+  buttonPress = output<void>();
   buttonClick = output<void>();
 
   getIcon(): string {
     if (this.isToggleActive() && !!this.toggleIconActive())
       return this.toggleIconActive()!;
     return this.icon();
+  }
+
+  handlePress(): void {
+    this.buttonPress.emit();
   }
 
   handleClick() {

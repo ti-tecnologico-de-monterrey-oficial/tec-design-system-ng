@@ -9,21 +9,17 @@ import {
   BmbLayoutDirective,
   BmbLayoutItemDirective,
 } from '../../../public-api';
-import { BmbNavigationIconComponent } from '../bmb-navigation-bar/bmb-navigation-icon/bmb-navigation-icon.component';
+import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 
 @Component({
   selector: 'bmb-simple-header',
   standalone: true,
-  imports: [
-    BmbLayoutDirective,
-    BmbLayoutItemDirective,
-    BmbNavigationIconComponent,
-  ],
+  imports: [BmbLayoutDirective, BmbLayoutItemDirective, BmbActionIconComponent],
   template: `
     <section bmbLayout alignItems="center">
       <h4 bmbLayoutItem [isDynamicItem]="true" [colGrow]="1">{{ title() }}</h4>
       <span>
-        <bmb-navigation-icon
+        <bmb-action-icon
           [icon]="icon()"
           [iconSize]="24"
           (buttonClick)="handleClick($event)"

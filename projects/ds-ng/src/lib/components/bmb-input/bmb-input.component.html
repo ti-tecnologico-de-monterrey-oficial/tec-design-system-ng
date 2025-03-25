@@ -97,7 +97,7 @@
           [min]="min()"
         />
         @if (this.isClearable()) {
-          <bmb-navigation-icon
+          <bmb-action-icon
             class="bmb_field-clear"
             icon="close"
             [iconSize]="20"
@@ -105,7 +105,7 @@
           />
         }
         @if (showAdditionalAction()) {
-          <bmb-navigation-icon
+          <bmb-action-icon
             class="bmb_field-additional_action"
             [icon]="getAdditionalActionIcon()"
             [iconSize]="20"

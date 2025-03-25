@@ -18,7 +18,7 @@ import {
 } from '../bmb-input/bmb-input.component';
 import { BmbButtonDirective } from '../../directives/button.directive';
 import { BmbThreeColsComponent } from '../bmb-three-cols/bmb-three-cols.component';
-import { BmbNavigationIconComponent } from '../bmb-navigation-bar/bmb-navigation-icon/bmb-navigation-icon.component';
+import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
@@ -59,7 +59,7 @@ export interface IBmbEvalRubricButtons {
     BmbThreeColsComponent,
     BmbIconComponent,
     BmbTitleContentComponent,
-    BmbNavigationIconComponent,
+    BmbActionIconComponent,
     BmbTooltipComponent,
     BmbFocusElementComponent,
     BmbLayoutDirective,
