@@ -398,6 +398,22 @@ Below is an example of how to use this component in HTML:
         defaultValue: { summary: 'false' },
       },
     },
+    isFocus: {
+      name: 'Is Focus',
+      description: 'If enabled, the input field will be focused.',
+      table: {
+        category: 'Events',
+        type: { summary: 'boolean' },
+      },
+    },
+    isBlur: {
+      name: 'Is Blur',
+      description: 'If enabled, the input field will be blurred.',
+      table: {
+        category: 'Events',
+        type: { summary: 'boolean' },
+      },
+    },
   },
 
   args: {

@@ -45,7 +45,7 @@ export class BmbCalendarTemplateDayComponent {
   @Output() onSelectEvent: EventEmitter<IBmbCalendarEventClick> =
     new EventEmitter<IBmbCalendarEventClick>();
 
-  rows = new Array(25).fill(0);
+  rows = new Array(24).fill(0);
 
   getNameDay(): string {
     return this.now.toFormat('cccc', { locale: this.lang });
