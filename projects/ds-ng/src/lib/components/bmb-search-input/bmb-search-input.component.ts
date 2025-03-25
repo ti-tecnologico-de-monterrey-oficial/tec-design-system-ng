@@ -20,11 +20,7 @@ import { debounceTime } from 'rxjs/operators';
 @Component({
   selector: 'bmb-search-input',
   standalone: true,
-  imports: [
-    CommonModule,
-    BmbIconComponent,
-    ReactiveFormsModule,
-  ],
+  imports: [CommonModule, BmbIconComponent, ReactiveFormsModule],
   templateUrl: './bmb-search-input.component.html',
   styleUrl: './bmb-search-input.component.scss',
   encapsulation: ViewEncapsulation.None,
