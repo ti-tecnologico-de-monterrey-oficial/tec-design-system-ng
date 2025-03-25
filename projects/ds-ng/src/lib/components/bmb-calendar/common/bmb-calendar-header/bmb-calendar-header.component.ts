@@ -7,7 +7,6 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import { BmbButtonDirective } from '../../../../directives/button.directive';
 import { BmbIconComponent } from '../../../bmb-icon/bmb-icon.component';
 import { DateTime } from 'luxon';
 import { IBmbCalendarView } from '../../types';
@@ -20,7 +19,6 @@ import { BmbLayoutItemDirective } from '../../../../directives/bmb-layout/bmb-la
   standalone: true,
   imports: [
     CommonModule,
-    BmbButtonDirective,
     BmbIconComponent,
     BmbButtonGroupDirective,
     BmbLayoutDirective,

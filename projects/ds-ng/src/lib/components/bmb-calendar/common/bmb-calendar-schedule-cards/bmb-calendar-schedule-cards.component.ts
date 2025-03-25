@@ -46,7 +46,7 @@ export class BmbCalendarScheduleCardsComponent {
     const startMin = start.hour * 60 + start.minute;
     const endMin = end.hour * 60 + end.minute - startMin;
 
-    return `top: ${startMin + 60}px; height: ${endMin}px`;
+    return `top: ${startMin}px; height: ${endMin}px`;
   }
 
   getClassNames(
@@ -66,6 +66,9 @@ export class BmbCalendarScheduleCardsComponent {
     } else {
       newClasses.push('bmb_calendar-event-grid-full');
     }
+
+    console.log(this.now >= start && this.now <= end);
+
 
     if (this.now >= start && this.now <= end) {
       newClasses.push('bmb_calendar-event-active');
