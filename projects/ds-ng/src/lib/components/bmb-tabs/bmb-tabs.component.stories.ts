@@ -8,22 +8,47 @@ export default {
     docs: {
       description: {
         component: `
-### Example Usage with "Continue" and "Back" Buttons
+### Example Usage with "Next", "Back" Buttons and TabService
 
 Below is an example of how you can use the **BmbTabsComponent** and control the active tab programmatically with "Continue" and "Back" buttons:
 
 #### TypeScript Code
 \`\`\`typescript
-import { Component, ViewChild } from '@angular/core';
-import { BmbTabsComponent, IBmbTab } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
+import { CommonModule } from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewChild,
+  OnInit,
+  inject,
+  DestroyRef,
+} from '@angular/core';
+import {
+  BmbLegendComponent,
+  BmbTabsComponent,
+  IBmbTab,
+  BmbContainerComponent,
+  TabsService,
+} from '../../projects/ds-ng/src/public-api';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
-  selector: 'app-parent',
-  templateUrl: './parent.component.html',
-  styleUrls: ['./parent.component.scss'],
+  selector: 'app-root',
+  standalone: true,
+  imports: [
+    CommonModule,
+    BmbTabsComponent,
+    BmbLegendComponent,
+    BmbContainerComponent,
+  ],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ParentComponent {
+export class AppComponent implements OnInit {
   @ViewChild(BmbTabsComponent) bmbTabsComponent!: BmbTabsComponent;
+  private destroyRef = inject(DestroyRef);
+  activeTabId = 1;
 
   tabsData: IBmbTab[] = [
     { id: 1, title: 'Tec de Monterrey', badge: 1, isActive: true },
@@ -34,9 +59,25 @@ export class ParentComponent {
     { id: 6, title: 'Mas usado' },
   ];
 
+  constructor(private tabsService: TabsService) {}
+
+  ngOnInit(): void {
+    this.tabsService.setTabs(this.tabsData);
+
+    this.tabsService.selectedTab$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((tab) => {
+        if (tab) {
+          console.log('🔁 Servicio recibió tab:', tab);
+          this.activeTabId = tab.id;
+        }
+      });
+  }
+
   onTabSelected(selectedTab: IBmbTab): void {
-    console.log('Selected tab:', selectedTab);
-    // Handle the selected tab
+    if (this.activeTabId !== selectedTab.id) {
+      this.tabsService.selectTab(selectedTab);
+    }
   }
 
   onContinue(): void {
@@ -46,19 +87,22 @@ export class ParentComponent {
   onBack(): void {
     this.bmbTabsComponent.goToPreviousTab();
   }
+
+  setFirstTabFromOutside() {
+    const firstTab = this.tabsData[0];
+    this.tabsService.selectTab(firstTab);
+  }
 }
 \`\`\`
 
 #### HTML Template
 \`\`\`html
-<bmb-tabs [tabs]="tabsData" (selected)="handleTabSelected($event)">
+<bmb-tabs [tabs]="tabsData" (selected)="onTabSelected($event)">
   <bmb-container *ngIf="activeTabId === 1" [appearance]="'primary-home'">
-    <bmb-user-summary
-      name="Test name"
-      id="A00123456"
-      [isProfile]="boolUserSummary"
-      image="https://writestylesonline.com/wp-content/uploads/2016/08/Follow-These-Steps-for-a-Flawless-Professional-Profile-Picture.jpg"
-      (onClick)="onProfileClick()"
+    <bmb-legend
+      label="Label string"
+      value="Value test"
+      indicatorAppearance="warning"
     />
   </bmb-container>
   <bmb-container *ngIf="activeTabId === 2" [appearance]="'primary-home'">
@@ -69,16 +113,10 @@ export class ParentComponent {
     />
   </bmb-container>
   <bmb-container *ngIf="activeTabId === 3" [appearance]="'primary-home'">
-    <bmb-loader [status]="'noConnection'" />
+    5
   </bmb-container>
   <bmb-container *ngIf="activeTabId === 4" [appearance]="'primary-home'">
-    <bmb-user-summary
-      name="Test name"
-      id="A00123456"
-      [isProfile]="boolUserSummary"
-      image="https://writestylesonline.com/wp-content/uploads/2016/08/Follow-These-Steps-for-a-Flawless-Professional-Profile-Picture.jpg"
-      (onClick)="onProfileClick()"
-    />
+    4
   </bmb-container>
   <bmb-container *ngIf="activeTabId === 5" [appearance]="'primary-home'">
     <bmb-legend
@@ -88,15 +126,17 @@ export class ParentComponent {
     />
   </bmb-container>
   <bmb-container *ngIf="activeTabId === 6" [appearance]="'primary-home'">
-    <bmb-loader [status]="'noConnection'" />
+    6
   </bmb-container>
 </bmb-tabs>
 
 <!-- Button to move to the next tab -->
-<button (click)="onContinue()" bmbButton>Continuar</button>
+<button (click)="onContinue()" bmbButton>Next</button>
 
 <!-- Button to move to the previous tab -->
-<button (click)="onBack()" bmbButton>Regresar</button>
+<button (click)="onBack()" bmbButton>Back</button>
+
+<button (click)="setFirstTabFromOutside()">Set first tab</button>
 \`\`\`
 
 #### Notes
@@ -106,6 +146,17 @@ export class ParentComponent {
   - The "Regresar" button uses the \`goToPreviousTab\` method to move to the previous tab programmatically.
 - **Selected Event:** The \`selected\` event emits the selected tab object whenever a tab is clicked.
 - **Boundaries:** The buttons will not perform any action if the user is already on the first or last tab, preventing out-of-bounds errors.
+
+---
+
+### 🧠 Integration with TabsService
+
+The \`BmbTabsComponent\` optionally integrates with the \`TabsService\`, which allows:
+
+- Controlling the active tab externally.
+- Syncing the selected tab across different views/components.
+- Programmatically switching tabs.
+- Make sure to **avoid re-emitting the already active tab**, as it could cause infinite loops.
         `,
       },
     },

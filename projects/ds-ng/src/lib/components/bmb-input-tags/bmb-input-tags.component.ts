@@ -47,7 +47,7 @@ export class BmbInputTagsComponent implements OnInit {
   maxSelectedItems = input<number>();
   name = input<string>('');
 
-  showError = input<boolean>(false); // deprecated
+  showError = input<boolean>(false);
 
   showDropdown: boolean = false;
   shouldShowError: boolean = false;
@@ -66,8 +66,13 @@ export class BmbInputTagsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.control().valueChanges.subscribe(() => {
+    this.control().valueChanges.subscribe((value: string[]) => {
       this.updateErrorState();
+      const formattedOptions = this.transFormOptions(this.tagOptions());
+      this.selectedTags = formattedOptions.filter((item) =>
+        value?.includes(item.value),
+      );
+      this.cdr.markForCheck();
     });
 
     this.filterControl.valueChanges
@@ -79,7 +84,6 @@ export class BmbInputTagsComponent implements OnInit {
     const formattedOptions = this.transFormOptions(this.tagOptions());
     this.filteredOptions = formattedOptions;
 
-    // ✅ Si ya hay valores en el FormControl (por ejemplo, al hacer patchValue), los marcamos como seleccionados
     const currentValues = this.control().value;
     if (Array.isArray(currentValues)) {
       this.selectedTags = formattedOptions.filter((item) =>
@@ -139,13 +143,13 @@ export class BmbInputTagsComponent implements OnInit {
   handleItemClick(item: IBmbDropdownItem) {
     this.selectedTags.push(item);
     const selectedTagsString = this.selectedTags.map((tag) => tag.value);
-    this.control().setValue(selectedTagsString); // ❌ Sin .toString()
+    this.control().setValue(selectedTagsString);
   }
 
   removeTag(tag: IBmbDropdownItem) {
     this.selectedTags = this.selectedTags.filter((t) => t.value !== tag.value);
     const selectedTagsString = this.selectedTags.map((tag) => tag.value);
-    this.control().setValue(selectedTagsString); // ❌ Sin .toString()
+    this.control().setValue(selectedTagsString);
   }
 
   checkIfIsSelected(item: IBmbDropdownItem): boolean {
