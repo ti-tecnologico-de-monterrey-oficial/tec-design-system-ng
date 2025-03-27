@@ -31,10 +31,11 @@ Below is an example of how you can use this component in HTML:
     headerLabel: {
       name: 'Header label',
       control: 'text',
-      description: 'Deprecated',
+      description: 'Sets the label to be displayed in the header.',
       table: {
-        category: 'Deprecated',
+        category: 'Properties',
         type: { summary: 'string' },
+        defaultValue: { summary: 'ESTUDIANTES' },
       },
     },
     anotherAccountLabel: {
@@ -101,19 +102,43 @@ Below is an example of how you can use this component in HTML:
     actionHeaders: {
       name: 'Action header',
       control: { type: 'object' },
-      description: 'Sets an array of IBmbActionHeader objects.',
+      description: `
+Sets an array of IBmbActionHeader objects, default value is an empty array.
+
+    export interface IBmbActionHeader {
+      icon: IBmbHeaderSocialIcons | string;
+      alt?: string;
+      iconSize?: number;
+      iconActiveToggle?: string;
+      isToggleActive?: boolean;
+      isAccentColor?: boolean;
+      link?: string;
+      target?: IBmbTargetLink;
+      action: () => void;
+    }
+
+    export type IBmbHeaderSocialIcons =
+    | 'apple_svg'
+    | 'android_svg'
+    | 'twitter_svg'
+    | 'facebook_svg'
+    | 'instagram_svg'
+    | 'youtube_svg'
+    | 'whatsapp_svg';
+      `,
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'Action header example' },
+        defaultValue: { summary: '[]' },
         type: {
-          summary:
-            'IBmbActionHeader[], {icon: string; iconSize?: number; iconActiveToggle?: string; isToggleActive?: boolean; isAccentColor?: boolean; link?: string; target?: IBmbTargetLink; action: () => void;}',
+          summary: 'IBmbActionHeader[]',
         },
       },
     },
     onRequest: {
       name: 'On Request',
-      control: null,
+      control: {
+        type: '',
+      },
       description:
         'Emits an event when a request is made, typically when the continue button is clicked.',
       table: {
@@ -123,7 +148,9 @@ Below is an example of how you can use this component in HTML:
     },
     onContinue: {
       name: 'On Continue',
-      control: null,
+      control: {
+        type: '',
+      },
       description:
         'Emits an event when the continue action is completed successfully.',
       table: {
@@ -133,11 +160,34 @@ Below is an example of how you can use this component in HTML:
     },
   },
   args: {
-    headerLabel: 'ESTUDIANTES',
-    anotherAccountLabel: 'Ingresar con otra cuenta',
-    anotherAccountLink: '',
-    anotherAccountTarget: '_blank',
-    buttonLabel: 'Ingresar',
+    userInfo: {
+      id: '',
+      fullName: '',
+      profilePicture: '',
+    },
+    actionHeaders: [
+      {
+        icon: '',
+        alt: '',
+        link: '',
+      },
+    ],
+    onRequest: () => {
+      console.log('On request');
+    },
+    onContinue: () => {
+      console.log('On continue');
+    },
+  },
+} as Meta<typeof BmbUserProfileComponent>;
+
+type Story = StoryObj<BmbUserProfileComponent>;
+
+export const Default: Story = {};
+
+export const Example = {
+  name: 'Example with the structures of the userInfo and actionHeaders objects',
+  args: {
     userInfo: {
       id: 'A00123456',
       fullName: 'Borrego Perez',
@@ -146,39 +196,35 @@ Below is an example of how you can use this component in HTML:
     },
     actionHeaders: [
       {
-        icon: '../assets/images/social-icons/icon_Apple.svg',
-        link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-user-profile--documentation',
-        action: () => {},
+        icon: 'apple_svg',
+        alt: 'apple social icon',
+        link: 'https://www.example.com',
       },
       {
-        icon: '../assets/images/social-icons/icon_Android.svg',
-        link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-user-profile--documentation',
-        action: () => {},
+        icon: 'android_svg',
+        alt: 'android social icon',
+        link: 'https://www.example.com',
       },
       {
-        icon: '../assets/images/social-icons/icon_Twitter.svg',
-        link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-user-profile--documentation',
-        action: () => {},
+        icon: 'twitter_svg',
+        alt: 'witter social icon',
+        link: 'https://www.example.com',
       },
       {
-        icon: '../assets/images/social-icons/icon_Facebook.svg',
-        link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-user-profile--documentation',
-        action: () => {},
+        icon: 'facebook_svg',
+        alt: 'facebook social icon',
+        link: 'https://www.example.com',
       },
       {
-        icon: '../assets/images/social-icons/icon_Instagram.svg',
-        link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-user-profile--documentation',
-        action: () => {},
+        icon: 'instagram_svg',
+        alt: 'instagram social icon',
+        link: 'https://www.example.com',
       },
       {
-        icon: '../assets/images/social-icons/icon_Youtube.svg',
-        link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-user-profile--documentation',
-        action: () => {},
+        icon: 'youtube_svg',
+        alt: 'youtube social icon',
+        link: 'https://www.example.com',
       },
     ],
   },
-} as Meta<typeof BmbUserProfileComponent>;
-
-type Story = StoryObj<BmbUserProfileComponent>;
-
-export const Default: Story = {};
+};

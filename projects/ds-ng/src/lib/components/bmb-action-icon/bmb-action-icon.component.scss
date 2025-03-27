@@ -9,6 +9,15 @@
     &-toggle_icon {
       color: RGBA(var(--color-mariner-500));
     }
+
+    &-social {
+      display: inline-flex;
+      margin: 0;
+
+      &-image {
+        color: var(--general_contrasts-100);
+      }
+    }
   }
 
   .bmb_check-external-link-button {

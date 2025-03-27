@@ -103,8 +103,19 @@ export interface IBmbCollaboratorProfileData {
   generalist: IBmbHierarchyProfileData;
 }
 
+export type IBmbHeaderSocialIcons =
+  | 'apple_svg'
+  | 'android_svg'
+  | 'twitter_svg'
+  | 'facebook_svg'
+  | 'instagram_svg'
+  | 'youtube_svg'
+  | 'drive_svg'
+  | 'teams_svg'
+  | 'whatsapp_svg';
+
 export interface IBmbActionHeader {
-  icon: string;
+  icon: IBmbHeaderSocialIcons | string;
   alt?: string;
   iconSize?: number;
   iconActiveToggle?: string;

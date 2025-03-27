@@ -20,7 +20,10 @@ import { BmbUserProfileContentComponent } from './bmb-user-profile-content/bmb-u
   ],
   styleUrl: './bmb-user-profile.component.scss',
   template: `
-    <bmb-header-mitec [actionHeaders]="actionHeaders()">
+    <bmb-header-mitec
+      [headerLabel]="headerLabel()"
+      [actionHeaders]="actionHeaders()"
+    >
       <bmb-user-profile-content
         [anotherAccountLabel]="anotherAccountLabel()"
         [anotherAccountLink]="anotherAccountLink()"
@@ -36,50 +39,13 @@ import { BmbUserProfileContentComponent } from './bmb-user-profile-content/bmb-u
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbUserProfileComponent {
-  headerLabel = input<string>();
+  headerLabel = input<string>('ESTUDIANTES');
   anotherAccountLabel = input<string>('Ingresar con otra cuenta');
   anotherAccountLink = input<string>('');
   anotherAccountTarget = input<IBmbTargetLink>('_blank');
   buttonLabel = input<string>('Ingresar');
   userInfo = input.required<IBmbUserInfo>();
-  actionHeaders = input<IBmbActionHeader[]>([
-    {
-      icon: '../assets/images/social-icons/icon_Apple.svg',
-      alt: 'icon Apple',
-      link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-user-profile--documentation',
-      action: () => {},
-    },
-    {
-      icon: '../assets/images/social-icons/icon_Android.svg',
-      alt: 'icon Android',
-      link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-user-profile--documentation',
-      action: () => {},
-    },
-    {
-      icon: '../assets/images/social-icons/icon_Twitter.svg',
-      alt: 'icon Twitter',
-      link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-user-profile--documentation',
-      action: () => {},
-    },
-    {
-      icon: '../assets/images/social-icons/icon_Facebook.svg',
-      alt: 'icon Facebook',
-      link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-user-profile--documentation',
-      action: () => {},
-    },
-    {
-      icon: '../assets/images/social-icons/icon_Instagram.svg',
-      alt: 'icon Instagram',
-      link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-user-profile--documentation',
-      action: () => {},
-    },
-    {
-      icon: '../assets/images/social-icons/icon_Youtube.svg',
-      alt: 'icon Youtube',
-      link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-user-profile--documentation',
-      action: () => {},
-    },
-  ]);
+  actionHeaders = input<IBmbActionHeader[]>([]);
 
   onRequest = output<any>();
   onContinue = output();

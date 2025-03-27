@@ -18,10 +18,6 @@ import { BmbMitecLogoAnimationComponent } from '../bmb-mitec-logo-animation/bmb-
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbHeaderMitecComponent {
+  headerLabel = input<string>('ESTUDIANTES');
   actionHeaders = input<IBmbActionHeader[]>([]);
-
-  tecLogoImage: string = '../assets/images/tec-logo.svg';
-  mitecImage: string = '../assets/images/logos-mitec/logo_mitec-vertical.svg';
-  mitecLogoIntroWeb: string = '../assets/images/gif/mitecLogoIntroWeb.gif';
-  mitecLogoIntroMob: string = '../assets/images/gif/mitecLogoIntroMob.gif';
 }

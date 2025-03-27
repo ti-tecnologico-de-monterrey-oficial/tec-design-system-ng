@@ -26,22 +26,54 @@ Below is an example of how you can use this component in HTML:
     },
   },
   argTypes: {
+    headerLabel: {
+      name: 'Header label',
+      control: 'text',
+      description: 'Sets the label to be displayed in the header.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'ESTUDIANTES' },
+      },
+    },
     actionHeaders: {
       name: 'Action header',
       control: { type: 'object' },
-      description:
-        'Sets an array of IBmbActionHeader objects, default value is an empty array.',
+      description: `
+Sets an array of IBmbActionHeader objects, default value is an empty array.
+
+    export interface IBmbActionHeader {
+      icon: IBmbHeaderSocialIcons | string;
+      alt?: string;
+      iconSize?: number;
+      iconActiveToggle?: string;
+      isToggleActive?: boolean;
+      isAccentColor?: boolean;
+      link?: string;
+      target?: IBmbTargetLink;
+      action: () => void;
+    }
+
+    export type IBmbHeaderSocialIcons =
+    | 'apple_svg'
+    | 'android_svg'
+    | 'twitter_svg'
+    | 'facebook_svg'
+    | 'instagram_svg'
+    | 'youtube_svg'
+    | 'whatsapp_svg';
+      `,
       table: {
         category: 'Properties',
-        defaultValue: { summary: '[] (empty array)' },
+        defaultValue: { summary: '[]' },
         type: {
-          summary:
-            'IBmbActionHeader[], {icon: string; iconSize?: number; iconActiveToggle?: string; isToggleActive?: boolean; isAccentColor?: boolean; link?: string; target?: IBmbTargetLink; action: () => void;}',
+          summary: 'IBmbActionHeader[]',
         },
       },
     },
   },
   args: {
+    headerLabel: 'ESTUDIANTES',
     actionHeaders: [
       {
         icon: 'nutrition',

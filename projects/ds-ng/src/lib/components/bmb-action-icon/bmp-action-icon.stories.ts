@@ -47,11 +47,21 @@ Below is an example of how you can use this component in HTML:
     icon: {
       name: 'Icon',
       control: { type: 'text' },
-      description:
-        'Sets the name of the icon to use. Please use Material icons: https://fonts.google.com/icons. The color of the icon depends on the parent. You can also place an image here. **This icon has button behavior**',
+      description: `
+Sets the name of the icon to use. Please use Material icons: https://fonts.google.com/icons. The color of the icon depends on the parent. You can also place an image here. **This icon has button behavior**.
+
+    export type IBmbHeaderSocialIcons =
+    | 'apple_svg'
+    | 'android_svg'
+    | 'twitter_svg'
+    | 'facebook_svg'
+    | 'instagram_svg'
+    | 'youtube_svg'
+    | 'whatsapp_svg';
+      `,
       table: {
         category: 'Properties',
-        type: { summary: 'string (required)' },
+        type: { summary: 'IBmbHeaderSocialIcons | string (required)' },
       },
     },
     alt: {
@@ -173,19 +183,70 @@ Below is an example of how you can use this component in HTML:
   args: {
     idElement: '',
     icon: 'close',
-    alt: '',
     iconSize: 24,
-    toggleIconActive: '',
-    isToggleActive: false,
-    isAccentColor: true,
-    dotNotification: 0,
-    target: '_blank',
-    link: '',
-    disabled: false,
-    buttonClick: () => {},
+    buttonClick: () => {
+      console.log('Action icon click');
+    },
   },
 } as Meta<typeof BmbActionIconComponent>;
 
 type Story = StoryObj<BmbActionIconComponent>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  name: 'Default example',
+};
+
+export const ToggleAccentColorExample = {
+  name: 'Toggle icon example (accent color)',
+  args: {
+    icon: 'fit_screen',
+    toggleIconActive: 'close_fullscreen',
+    iconSize: 24,
+  },
+};
+
+export const ToggleExample = {
+  name: 'Example of a toggle icon without accent color',
+  args: {
+    ...ToggleAccentColorExample.args,
+    isAccentColor: false,
+  },
+};
+
+export const DotNotificationExample = {
+  name: 'Example of an icon with a notification',
+  args: {
+    dotNotification: 5,
+  },
+};
+
+export const DisabledIconExample = {
+  name: 'Disabled icon example',
+  args: {
+    disabled: true,
+  },
+};
+
+export const SocialIconExample = {
+  args: {
+    icon: 'instagram_svg',
+    alt: 'Instagram (social icon)',
+    iconSize: 32,
+  },
+};
+
+export const ImageExample = {
+  args: {
+    icon: '../assets/images/social-icons/icon_Youtube.svg',
+    alt: 'Youtube icon',
+    iconSize: 32,
+  },
+};
+
+export const IconLinkExample = {
+  name: 'Example of an icon as a link',
+  args: {
+    link: 'https://www.example.com/',
+    target: '_blank',
+  },
+};

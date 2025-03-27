@@ -1,3 +1,5 @@
+@use "../../../assets/styles/base/fonts" as fonts;
+
 @mixin base($width, $height, $radius) {
   width: $width;
   height: $height;
@@ -79,14 +81,16 @@
     left: 35.7%;
     width: 28.2%;
     top: 62.78%;
+    color: var(--general_contrasts-100);
     animation: bmb_mitec_logo_animation_title 4s 1;
   }
 
-  &-subtitle {
-    position: absolute;
-    left: 30.3%;
-    width: 39.1%;
-    top: 75.1%;
+  &-subtitle > text {
+    @include fonts.font(9, semibold);
+    text-align: center;
+    font-size: 60%;
+    fill: var(--general_contrasts-100);
+    text-anchor: middle;
     animation: bmb_mitec_logo_animation_subtitle 4s 1;
   }
 }
