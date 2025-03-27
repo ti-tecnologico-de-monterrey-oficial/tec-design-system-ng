@@ -142,6 +142,7 @@ import { BmbNavigationBarComponent } from '../../projects/ds-ng/src/lib/componen
 import { BmbUserSummaryContentComponent } from '../../projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary-content/bmb-user-summary-content.component';
 import { BmbThreeColsComponent } from '../../projects/ds-ng/src/lib/components/bmb-three-cols/bmb-three-cols.component';
 import { BmbTitleContentComponent } from '../../projects/ds-ng/src/lib/components/bmb-title-content/bmb-title-content.component';
+import { BmbInputTagsComponent } from '../../projects/ds-ng/src/lib/components/bmb-input-tags/bmb-input-tags.component';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -248,6 +249,7 @@ import { BmbTitleContentComponent } from '../../projects/ds-ng/src/lib/component
     BmbProgressBarComponent,
     BmbMultiDotPaginatorComponent,
     BmbMultiDotPaginatorItemComponent,
+    BmbInputTagsComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -5506,5 +5508,48 @@ export class AppComponent {
 
   changeSelectValue() {
     this.selectControl.setValue('Grape');
+  }
+
+  tagControl = new FormControl('banana');
+
+  handleClick() {
+    this.tagControl.setValue('apple');
+  }
+
+  dropdownOptions = [
+    {
+      "name": "Apple",
+      "value": "Apple",
+      "icon": "home",
+      "id": "apple"
+    },
+    {
+      "name": "Banana",
+      "value": "Banana",
+      "icon": "bolt",
+      "id": "banana"
+    },
+    {
+      "name": "Orange",
+      "value": "Orange",
+      "icon": "bolt",
+      "id": "orange"
+    },
+    {
+      "name": "Pear",
+      "value": "Pear",
+      "icon": "bolt",
+      "id": "pear"
+    },
+    {
+      "name": "Grape",
+      "value": "Grape",
+      "icon": "bolt",
+      "id": "grape"
+    }
+  ]
+
+  gethelper(text: string) {
+    return 'text 2 ' + text;
   }
 }

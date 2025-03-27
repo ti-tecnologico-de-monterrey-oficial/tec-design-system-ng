@@ -198,6 +198,38 @@ Below is an example of how to use this component in HTML:
         type: { summary: 'string' },
       },
     },
+    tooltip: {
+      name: 'Tooltip',
+      control: { type: 'text' },
+      description: 'Text to be displayed when hovering over the tooltip icon.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
+    tooltipTitle: {
+      name: 'Tooltip Title',
+      control: {
+        type: 'text',
+      },
+      description: 'Sets the title of the tooltip.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
+    tooltipPosition: {
+      name: 'Tooltip Position',
+      control: {
+        type: 'object',
+      },
+      description: 'Set the position of the tooltip.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: '{ align: "above", justify: "before" }' },
+        type: { summary: 'IBmbInputTooltipPosition' },
+      },
+    },
   },
   args: {
     disabled: false,

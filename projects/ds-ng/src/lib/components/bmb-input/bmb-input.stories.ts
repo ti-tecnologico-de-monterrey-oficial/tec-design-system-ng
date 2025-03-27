@@ -414,6 +414,17 @@ Below is an example of how to use this component in HTML:
         type: { summary: 'boolean' },
       },
     },
+    tooltipTitle: {
+      name: 'Tooltip Title',
+      control: {
+        type: 'text',
+      },
+      description: 'Sets the title of the tooltip.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
   },
 
   args: {
@@ -432,6 +443,7 @@ Below is an example of how to use this component in HTML:
     appearance: 'normal',
     showError: false,
     tooltip: 'Tooltip example for the input',
+    tootipTitle: 'Tooltip title',
     additionalAction: '',
     minlength: '4',
     maxlength: '20',

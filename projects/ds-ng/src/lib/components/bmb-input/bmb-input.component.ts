@@ -93,6 +93,7 @@ export class BmbInputComponent {
   ariaLabel = input<string>('');
   ariaLabelledBy = input<string>('');
   tooltip = input<string>('');
+  tooltipTitle = input<string>('');
   rows = input<number>(3);
   showMaxTextLength = input<boolean>(true);
   additionalAction = input<IBmbAdditionalAction>('none');
@@ -114,6 +115,7 @@ export class BmbInputComponent {
 
   constructor(private cdr: ChangeDetectorRef) {}
 
+
   ngOnInit(): void {
     if (!this.control) {
       this.control = new FormControl();
@@ -126,6 +128,10 @@ export class BmbInputComponent {
       this.updateErrorState();
       this.cdr.markForCheck();
     });
+
+    if (this.control.value) {
+      this.textLength = this.control.value?.toString().length;
+    }
   }
 
   ngAfterViewInit(): void {

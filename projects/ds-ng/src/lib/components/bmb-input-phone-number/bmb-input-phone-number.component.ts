@@ -25,6 +25,7 @@ import {
   BmbInputComponent,
   IBmbInputAppearance,
   IBmbInputError,
+  IBmbInputTooltipPosition,
 } from '../bmb-input/bmb-input.component';
 
 @Component({
@@ -57,6 +58,11 @@ export class BmbInputPhoneNumberComponent implements OnInit {
   helperMessage = input<string>('');
   preferredCountries = input<string[]>(['mx']);
   onlyCountries = input<string[]>([]);
+  tooltipPosition = input<IBmbInputTooltipPosition>({
+    align: 'above',
+    justify: 'before',
+  });
+  tooltipTitle = input<string>('');
 
   @Input() showError: boolean = false; // deprecated
 

@@ -27,7 +27,7 @@
       border-bottom: rem.rem_calc(1) dashed var(--containers-main);
 
       @include mixins.media-query(1001, "min") {
-        display: none;
+        border-bottom: rem.rem_calc(1) dashed var(--general_contrasts-25);
       }
     }
   }

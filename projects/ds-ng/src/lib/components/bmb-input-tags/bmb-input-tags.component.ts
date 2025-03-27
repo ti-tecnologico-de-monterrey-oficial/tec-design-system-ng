@@ -14,6 +14,7 @@ import { IBmbDropdownItem } from '../bmb-dropdown/bmb-dropdown.component';
 import {
   IBmbInputError,
   BmbInputComponent,
+  IBmbInputTooltipPosition,
 } from '../bmb-input/bmb-input.component';
 import { ClickOutsideDirective } from '../../directives/utils/clickoutside.directive';
 import { debounceTime } from 'rxjs';
@@ -46,6 +47,11 @@ export class BmbInputTagsComponent implements OnInit {
   disabled = input<boolean>(false);
   maxSelectedItems = input<number>();
   name = input<string>('');
+  tooltipPosition = input<IBmbInputTooltipPosition>({
+    align: 'above',
+    justify: 'before',
+  });
+  tooltipTitle = input<string>('');
 
   showError = input<boolean>(false); // deprecated
 

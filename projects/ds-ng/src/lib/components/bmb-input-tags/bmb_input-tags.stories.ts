@@ -278,6 +278,29 @@ export default {
         type: { summary: 'string' },
       },
     },
+    tooltipTitle: {
+      name: 'Tooltip Title',
+      control: {
+        type: 'text',
+      },
+      description: 'Sets the title of the tooltip.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
+    tooltipPosition: {
+      name: 'Tooltip Position',
+      control: {
+        type: 'object',
+      },
+      description: 'Set the position of the tooltip.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: '{ align: "above", justify: "before" }' },
+        type: { summary: 'IBmbInputTooltipPosition' },
+      },
+    },
   },
   args: {
     errorMessage: 'Error Message',

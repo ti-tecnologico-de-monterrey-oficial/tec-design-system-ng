@@ -62,8 +62,8 @@ export const OneItem: Story = {
             [paddingHeader]="'m'"
             [paddingContent]="'m'"
             [hideToggle]="true"
-            [active]="true"
             [disabled]="false"
+            accordionId="1"
         >
             <ng-template #bmbAccordionHeader>1</ng-template>
             <ng-template #bmbAccordionContent>
@@ -93,8 +93,8 @@ export const OneItem: Story = {
             [paddingHeader]="'m'"
             [paddingContent]="'m'"
             [hideToggle]="true"
-            [active]="true"
             [disabled]="false"
+            accordionId="2"
         >
             <ng-template #bmbAccordionHeader>2</ng-template>
             <ng-template #bmbAccordionContent>
@@ -124,8 +124,8 @@ export const OneItem: Story = {
             [paddingHeader]="'m'"
             [paddingContent]="'m'"
             [hideToggle]="true"
-            [active]="true"
             [disabled]="false"
+            accordionId="3"
         >
             <ng-template #bmbAccordionHeader>3</ng-template>
             <ng-template #bmbAccordionContent>

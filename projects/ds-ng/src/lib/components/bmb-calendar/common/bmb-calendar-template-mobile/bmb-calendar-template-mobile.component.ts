@@ -38,7 +38,7 @@ import { BmbPullWedgeComponent } from '../../../bmb-pull-wedge/bmb-pull-wedge.co
 export class BmbCalendarTemplateMobileComponent {
   @Input() weekDays: DateTime[] = [];
   @Input() now: DateTime = DateTime.now();
-  @Input() lang: string = '';
+  @Input() lang: string = 'es';
   @Input() events: IBmbCalendarEvent[] = [];
   @Input() isListShowing: boolean = false;
   calendarTitle = input<string>('Mi calendario');

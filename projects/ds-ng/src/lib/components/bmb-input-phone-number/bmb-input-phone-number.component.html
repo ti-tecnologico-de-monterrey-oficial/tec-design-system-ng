@@ -8,10 +8,11 @@
       <bmb-tooltip
         class="bmb_field-label-tooltip"
         [text]="tooltip()"
-        align="below"
-        justify="before"
         icon="help"
         [size]="15"
+        [title]="tooltipTitle()"
+        [align]="tooltipPosition().align"
+        [justify]="tooltipPosition().justify"
       />
     }
   </label>

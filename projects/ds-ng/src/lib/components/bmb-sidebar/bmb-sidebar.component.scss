@@ -109,10 +109,6 @@
   transition: width 0.3s ease;
   z-index: 2;
 
-  @media (min-width: 1000px) {
-    border-radius: rem.rem_calc(0 24 24 0);
-  }
-
   &-body-hide {
     overflow: hidden;
   }
