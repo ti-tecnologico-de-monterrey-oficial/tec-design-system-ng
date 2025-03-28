@@ -47,21 +47,11 @@ Below is an example of how you can use this component in HTML:
     icon: {
       name: 'Icon',
       control: { type: 'text' },
-      description: `
-Sets the name of the icon to use. Please use Material icons: https://fonts.google.com/icons. The color of the icon depends on the parent. You can also place an image here. **This icon has button behavior**.
-
-    export type IBmbHeaderSocialIcons =
-    | 'apple_svg'
-    | 'android_svg'
-    | 'twitter_svg'
-    | 'facebook_svg'
-    | 'instagram_svg'
-    | 'youtube_svg'
-    | 'whatsapp_svg';
-      `,
+      description:
+        'Sets the name of the icon to use. Please use Material icons: https://fonts.google.com/icons. The color of the icon depends on the parent. You can also place an image here. **This icon has button behavior**.',
       table: {
         category: 'Properties',
-        type: { summary: 'IBmbHeaderSocialIcons | string (required)' },
+        type: { summary: 'string (required)' },
       },
     },
     alt: {
@@ -227,17 +217,9 @@ export const DisabledIconExample = {
   },
 };
 
-export const SocialIconExample = {
-  args: {
-    icon: 'instagram_svg',
-    alt: 'Instagram (social icon)',
-    iconSize: 32,
-  },
-};
-
 export const ImageExample = {
   args: {
-    icon: '../assets/images/social-icons/icon_Youtube.svg',
+    icon: 'https://img.freepik.com/premium-vector/approved-icon-with-thumb-up-approved-label-quality-control_349999-1321.jpg?w=2000',
     alt: 'Youtube icon',
     iconSize: 32,
   },

@@ -83,36 +83,63 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: 'Ingresar' },
       },
     },
-    actionHeaders: {
-      name: 'Action header',
+    actionHeaderLinks: {
+      name: 'Action header Links',
       control: { type: 'object' },
       description: `
-Sets an array of IBmbActionHeader objects, default value is an empty array.
+Sets an object of IBmbActionHeaderLinks type.
 
-    export interface IBmbActionHeader {
-      icon: IBmbHeaderSocialIcons | string;
-      alt?: string;
-      iconSize?: number;
-      iconActiveToggle?: string;
-      isToggleActive?: boolean;
-      isAccentColor?: boolean;
-      link?: string;
-      target?: IBmbTargetLink;
-      action: () => void;
+    export interface IBmbActionHeaderLinks {
+      apple: IBmbLinkInfo,
+      android: IBmbLinkInfo,
+      twitter: IBmbLinkInfo,
+      facebook: IBmbLinkInfo,
+      instagram: IBmbLinkInfo,
+      youtube: IBmbLinkInfo,
     }
 
-    export type IBmbHeaderSocialIcons =
-    | 'apple_svg'
-    | 'android_svg'
-    | 'twitter_svg'
-    | 'facebook_svg'
-    | 'instagram_svg'
-    | 'youtube_svg'
-    | 'whatsapp_svg';
+Template:
+
+    actionHeaderLinks:IBmbActionHeaderLinks = {
+      apple: {
+        link: '',
+        target: '',
+      },
+      android: {
+        link: '',
+        target: '',
+      },
+      twitter: {
+        link: '',
+        target: '',
+      },
+      facebook: {
+        link: '',
+        target: '',
+      },
+      instagram: {
+        link: '',
+        target: '',
+      },
+      youtube: {
+        link: '',
+        target: '',
+      },
+    },
       `,
       table: {
         category: 'Properties',
-        defaultValue: { summary: '[]' },
+        type: {
+          summary: 'IBmbActionHeaderLinks',
+        },
+      },
+    },
+    actionHeaders: {
+      name: 'Action header',
+      control: { type: 'object' },
+      description: '',
+      table: {
+        category: 'Deprecated',
         type: {
           summary: 'IBmbActionHeader[]',
         },
@@ -218,13 +245,33 @@ Sets an array of IBmbActionHeader objects, default value is an empty array.
     },
   },
   args: {
-    actionHeaders: [
-      {
-        icon: '',
-        alt: '',
+    headerLabel: '',
+    actionHeaderLinks: {
+      apple: {
         link: '',
+        target: '',
       },
-    ],
+      android: {
+        link: '',
+        target: '',
+      },
+      twitter: {
+        link: '',
+        target: '',
+      },
+      facebook: {
+        link: '',
+        target: '',
+      },
+      instagram: {
+        link: '',
+        target: '',
+      },
+      youtube: {
+        link: '',
+        target: '',
+      },
+    },
     onRequest: () => {
       console.log('On request');
     },
@@ -240,41 +287,3 @@ Sets an array of IBmbActionHeader objects, default value is an empty array.
 type Story = StoryObj<BmbLoginComponent>;
 
 export const Default: Story = {};
-
-export const Example = {
-  name: 'Example with the structure of the actionHeaders array',
-  args: {
-    actionHeaders: [
-      {
-        icon: 'apple_svg',
-        alt: 'apple social icon',
-        link: 'https://www.example.com',
-      },
-      {
-        icon: 'android_svg',
-        alt: 'android social icon',
-        link: 'https://www.example.com',
-      },
-      {
-        icon: 'twitter_svg',
-        alt: 'witter social icon',
-        link: 'https://www.example.com',
-      },
-      {
-        icon: 'facebook_svg',
-        alt: 'facebook social icon',
-        link: 'https://www.example.com',
-      },
-      {
-        icon: 'instagram_svg',
-        alt: 'instagram social icon',
-        link: 'https://www.example.com',
-      },
-      {
-        icon: 'youtube_svg',
-        alt: 'youtube social icon',
-        link: 'https://www.example.com',
-      },
-    ],
-  },
-};

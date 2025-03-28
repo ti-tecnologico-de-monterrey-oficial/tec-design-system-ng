@@ -7,7 +7,10 @@ import {
 } from '@angular/core';
 import { BmbButtonDirective } from '../../directives/button.directive';
 import { IBmbActionHeader, IBmbTargetLink, IBmbUserInfo } from '../../types';
-import { BmbHeaderMitecComponent } from '../bmb-header-mitec/bmb-header-mitec.component';
+import {
+  BmbHeaderMitecComponent,
+  IBmbActionHeaderLinks,
+} from '../bmb-header-mitec/bmb-header-mitec.component';
 import { BmbUserProfileContentComponent } from './bmb-user-profile-content/bmb-user-profile-content.component';
 
 @Component({
@@ -22,7 +25,7 @@ import { BmbUserProfileContentComponent } from './bmb-user-profile-content/bmb-u
   template: `
     <bmb-header-mitec
       [headerLabel]="headerLabel()"
-      [actionHeaders]="actionHeaders()"
+      [actionHeaderLinks]="actionHeaderLinks()"
     >
       <bmb-user-profile-content
         [anotherAccountLabel]="anotherAccountLabel()"
@@ -45,7 +48,8 @@ export class BmbUserProfileComponent {
   anotherAccountTarget = input<IBmbTargetLink>('_blank');
   buttonLabel = input<string>('Ingresar');
   userInfo = input.required<IBmbUserInfo>();
-  actionHeaders = input<IBmbActionHeader[]>([]);
+  actionHeaderLinks = input<IBmbActionHeaderLinks>();
+  actionHeaders = input<IBmbActionHeader[]>([]); //Deprecated
 
   onRequest = output<any>();
   onContinue = output();

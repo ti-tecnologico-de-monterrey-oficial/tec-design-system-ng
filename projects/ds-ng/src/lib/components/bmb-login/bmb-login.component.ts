@@ -8,7 +8,10 @@ import {
 import { BmbButtonDirective } from '../../directives/button.directive';
 import { FormGroup } from '@angular/forms';
 import { BmbUserProfileService } from '../../services/user/profile.service';
-import { BmbHeaderMitecComponent } from '../bmb-header-mitec/bmb-header-mitec.component';
+import {
+  BmbHeaderMitecComponent,
+  IBmbActionHeaderLinks,
+} from '../bmb-header-mitec/bmb-header-mitec.component';
 import { IBmbActionHeader, IBmbTargetLink } from '../../types';
 import { BmbLoginContentComponent } from './bmb-login-content/bmb-login-content.component';
 
@@ -37,7 +40,8 @@ export class BmbLoginComponent {
   loginAsGuestLink = input<string>('');
   loginAsGuestTarget = input<IBmbTargetLink>('_blank');
   buttonLabel = input<string>('Ingresar');
-  actionHeaders = input<IBmbActionHeader[]>([]);
+  actionHeaderLinks = input<IBmbActionHeaderLinks>();
+  actionHeaders = input<IBmbActionHeader[]>([]); //Deprecated
 
   onRequest = output<any>();
   onContinue = output();

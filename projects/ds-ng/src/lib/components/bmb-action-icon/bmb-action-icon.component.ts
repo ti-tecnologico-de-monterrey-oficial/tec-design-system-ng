@@ -9,7 +9,7 @@ import {
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
 import { CommonModule } from '@angular/common';
-import { IBmbHeaderSocialIcons, IBmbTargetLink } from '../../types';
+import { IBmbTargetLink } from '../../types';
 
 @Component({
   selector: 'bmb-action-icon',
@@ -25,7 +25,7 @@ import { IBmbHeaderSocialIcons, IBmbTargetLink } from '../../types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbActionIconComponent {
-  idElement = input<IBmbHeaderSocialIcons | string>();
+  idElement = input<string>();
   icon = input.required<string>();
   alt = input<string>('');
   iconSize = input<number | undefined>();
