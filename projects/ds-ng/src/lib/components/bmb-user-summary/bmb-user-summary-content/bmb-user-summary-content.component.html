@@ -25,11 +25,9 @@
         [ngClass]="getClass('bmb_user-summary_content-wrapper-title')"
       >
         @if (!!salutation()) {
-          ¡{{ salutation() }} <br />
-        }
-        {{ name() }}
-        @if (salutation()) {
-          !
+          ¡{{ salutation() }} {{ name() }}!
+        } @else {
+          {{ name() }}
         }
       </h3>
     }
