@@ -36,6 +36,7 @@ class StorybookModalWrapperComponent {
   @Input() secondaryBtnLabel?: string;
   @Input() hidePrimaryButton?: boolean;
   @Input() hideSecondaryButton?: boolean;
+  @Input() extendButtons?: boolean;
   @Input() primaryAction?: () => void;
   @Input() secondaryAction?: () => void;
 
@@ -54,6 +55,7 @@ class StorybookModalWrapperComponent {
       hidePrimaryButton: this.hidePrimaryButton,
       hideSecondaryButton: this.hideSecondaryButton,
       scrollable: false,
+      extendButtons: this.extendButtons,
       primaryAction: this.primaryActionFunction.bind(this),
       secondaryAction: this.secondaryActionFunction.bind(this),
     };
@@ -344,6 +346,12 @@ export default {
       name: 'Hide Secondary Button',
       control: { type: 'boolean' },
       description: 'If true, hides the secondary button.',
+      table: { category: 'Properties' },
+    },
+    extendButtons: {
+      name: 'Extend Buttons',
+      control: { type: 'boolean' },
+      description: 'If true, extends the buttons to the 50% of the modal.',
       table: { category: 'Properties' },
     },
   },

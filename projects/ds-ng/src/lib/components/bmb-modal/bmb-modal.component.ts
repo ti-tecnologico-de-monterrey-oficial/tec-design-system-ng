@@ -178,4 +178,8 @@ export class BmbModalComponent {
       (!this.showPrimaryButton() && this.showSecondaryButton())
     );
   }
+
+  extendButtons(): boolean {
+    return !!this.getData().extendButtons;
+  }
 }
