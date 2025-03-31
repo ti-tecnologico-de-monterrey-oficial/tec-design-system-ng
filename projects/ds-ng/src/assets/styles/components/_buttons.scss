@@ -57,6 +57,12 @@
     width: 100%;
   }
 
+  &-mobile {
+    @include mixins.media-query(1000, "max") {
+      width: 100%;
+    }
+  }
+
   &-secondary-outlined[size="large"],
   &-destructive[size="large"] {
     width: calc(100% - rem.rem_calc(1));
@@ -66,6 +72,20 @@
     &:active:not(:disabled)[size="large"],
     &.bmb_btn-toggle-active[size="large"] {
       width: calc(100% - rem.rem_calc(1));
+    }
+  }
+
+  &-secondary-outlined.bmb_btn-mobile,
+  &-destructive.bmb_btn-mobile {
+    @include mixins.media-query(1000, "max") {
+      width: calc(100% - rem.rem_calc(1));
+
+      &:hover:not(:disabled),
+      &:focus-visible:not(:disabled),
+      &:active:not(:disabled),
+      &.bmb_btn-toggle-active {
+        width: calc(100% - rem.rem_calc(1));
+      }
     }
   }
 
