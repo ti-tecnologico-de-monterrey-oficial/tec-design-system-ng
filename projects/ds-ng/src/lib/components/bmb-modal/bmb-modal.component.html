@@ -43,7 +43,11 @@
       }
     </section>
     @if (showFooter()) {
-      <footer id="modal-footer" class="bmb_modal-footer">
+      <footer
+        id="modal-footer"
+        class="bmb_modal-footer"
+        [ngClass]="{ 'bmb_modal-footer-single-button': isSingleButton() }"
+      >
         @if (showSecondaryButton()) {
           <button
             bmbButton

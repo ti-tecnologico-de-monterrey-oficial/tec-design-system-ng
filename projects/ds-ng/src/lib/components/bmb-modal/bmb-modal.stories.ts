@@ -34,6 +34,8 @@ class StorybookModalWrapperComponent {
   @Input() alertStyle?: 'error' | 'event' | 'neutral' | 'warning' | 'success';
   @Input() primaryBtnLabel?: string;
   @Input() secondaryBtnLabel?: string;
+  @Input() hidePrimaryButton?: boolean;
+  @Input() hideSecondaryButton?: boolean;
   @Input() primaryAction?: () => void;
   @Input() secondaryAction?: () => void;
 
@@ -44,11 +46,13 @@ class StorybookModalWrapperComponent {
       title: this.title,
       subtitle: this.subtitle,
       content: this.content,
-      size: this.size || 'large',
-      type: this.type || 'action',
+      size: this.size ?? 'large',
+      type: this.type ?? 'action',
       alertStyle: this.alertStyle || 'error',
-      primaryBtnLabel: this.primaryBtnLabel || 'OK',
-      secondaryBtnLabel: this.secondaryBtnLabel || 'Cancel',
+      primaryBtnLabel: this.primaryBtnLabel ?? 'OK',
+      secondaryBtnLabel: this.secondaryBtnLabel ?? 'Cancel',
+      hidePrimaryButton: this.hidePrimaryButton,
+      hideSecondaryButton: this.hideSecondaryButton,
       scrollable: false,
       primaryAction: this.primaryActionFunction.bind(this),
       secondaryAction: this.secondaryActionFunction.bind(this),
@@ -89,51 +93,134 @@ export default {
     docs: {
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
+  ### 🟣 Modal Usage with String Content
+  
+  The simplest way to use the \`BmbModalComponent\` is by providing a plain text as content:
+  
+  \`\`\`typescript
+  constructor(private matDialog: MatDialog) {}
 
-\`\`\`typescript
-import { MatDialog } from '@angular/material/dialog';
-import { BmbModalComponent, ModalDataConfig } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [],
-  templateUrl: '
-    <button
-      bmbButton
-      appearance="primary"
-      icon="home"
-      size="small"
-      position="left"
-      [case]="false"
-      (click)="openModalComponent()"
-    >
-      Open Modal
-    </button>
-  ',
-  styleUrl: './component.scss',
-})
-export class Component {
+  dataModal: ModalDataConfig = {
+    title: 'My Modal',
+    content: 'This is plain text content.',
+    primaryBtnLabel: 'Ok',
+    secondaryBtnLabel: 'Cancel',
+    hidePrimaryButton: false,
+    hideSecondaryButton: true
+  }
+
+  openModal() {
+    this.matDialog.open(BmbModalComponent, { data: this.dataModal });
+  }
+  \`\`\`
+  \`\`\`html
+    <!-- Inside your component -->
+    <button bmbButton (click)="openModal()">Open Modal</button>
+  \`\`\`
+  ---
+  
+  ### 🟢 Modal Usage with TemplateRef Content (Recommended for complex content)
+  
+  If you need to render custom components, inputs, or forms inside the modal, you can pass a \`TemplateRef\` instead of a plain string.
+  
+  This behavior is automatically detected internally using the \`isModalTemplate()\` method.
+  
+  ---
+  
+  #### Example Template:
+  \`\`\`typescript
+  @ViewChild('modalTemplate') modalTemplate!: TemplateRef<any>;
+
+  constructor(private matDialog: MatDialog) {}
+      
+  openModalTemplate() {
+    const data: ModalDataConfig = {
+      title: "Modal's Title",
+      size: 'small',
+      primaryBtnLabel: "Action",
+      secondaryBtnLabel: "Cancel",
+      content: this.modalTemplate,
+      scrollable: true,
+    };
+
+    this.matDialog.open(BmbModalComponent, { data });
+  }
+  \`\`\`
+  \`\`\`html
+  <!-- Inside your component -->
+  <ng-template #modalTemplate>
+    <div>
+      <p>Filter Modal Example</p>
+      <bmb-input [placeholder]="'Search'"></bmb-input>
+      <bmb-switch [rightText]="'Enable Option'"></bmb-switch>
+      <bmb-checkbox [label]="'Accept Terms'"></bmb-checkbox>
+    </div>
+  </ng-template>
+  
+  <button (click)="openModalTemplate()">Open Modal</button>
+  \`\`\`
+  
+  ---
+  
+  #### Example Component:
+  
+  \`\`\`typescript
+  import { Component, ViewChild, TemplateRef } from '@angular/core';
+  import { MatDialog } from '@angular/material/dialog';
+  import { BmbModalComponent } from '@your-library/bmb-modal';
+  import { BmbInputComponent } from '@your-library/bmb-input';
+  import { BmbSwitchComponent } from '@your-library/bmb-switch';
+  import { BmbCheckboxComponent } from '@your-library/bmb-checkbox';
+  
+  @Component({
+    standalone: true,
+    imports: [
+      BmbInputComponent,
+      BmbSwitchComponent,
+      BmbCheckboxComponent,
+      BmbModalComponent
+    ]
+  })
+  export class ExampleComponent {
+    @ViewChild('modalTemplate') modalTemplate!: TemplateRef<any>;
+  
     constructor(private matDialog: MatDialog) {}
-
-    data: ModalDataConfig = {
-        title: 'Modal Title',
-        subtitle: 'Modal Subtitle',
-        content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-        size: 'large',
-        type: 'alert',
-        alertStyle: 'error',
-        primaryBtnLabel: 'Ok',
-        primaryAction: () => window.alert('Primary action triggered!'),
-        secondaryAction: () => window.alert('Secondary action triggered!')
-      }
-
-    openModalComponent() {
-      this.matDialog.open(BmbModalComponent, { data: this.data });
+  
+    openModal() {
+      this.matDialog.open(BmbModalComponent, {
+        data: {
+          title: 'Filter Modal',
+          content: this.modalTemplate,
+          primaryBtnLabel: 'Apply',
+          secondaryBtnLabel: 'Reset',
+          hidePrimaryButton: false,
+          hideSecondaryButton: false  
+        }
+      });
     }
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+  }
+  \`\`\`
+  
+  ---
+  
+  ### ✅ Required Components:
+  
+  - \`BmbModalComponent\`
+  - \`BmbInputComponent\`
+  - \`BmbSwitchComponent\`
+  - \`BmbCheckboxComponent\`
+  - \`MatDialog\` from \`@angular/material/dialog\`
+  
+  ---
+  
+  ### ⚠ Note:
+  
+  Make sure you are using:
+  
+  \`\`\`typescript
+  constructor(private matDialog: MatDialog) {}
+  \`\`\`
+  
         `,
       },
     },
@@ -256,6 +343,18 @@ Below is an example of how you can use this component in HTML:
         category: 'Events',
         type: { summary: 'function' },
       },
+    },
+    hidePrimaryButton: {
+      name: 'Hide Primary Button',
+      control: { type: 'boolean' },
+      description: 'If true, hides the primary button.',
+      table: { category: 'Properties' },
+    },
+    hideSecondaryButton: {
+      name: 'Hide Secondary Button',
+      control: { type: 'boolean' },
+      description: 'If true, hides the secondary button.',
+      table: { category: 'Properties' },
     },
   },
   args: {},

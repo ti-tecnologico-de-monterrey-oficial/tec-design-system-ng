@@ -90,6 +90,13 @@
       width: rem.rem_calc(250);
       height: rem.rem_calc(35);
     }
+
+    &-single-button {
+      .bmb_modal-footer-button {
+        width: 100%;
+        margin: 0;
+      }
+    }
   }
 
   .bmb_title-content-container-wrapper-title {
