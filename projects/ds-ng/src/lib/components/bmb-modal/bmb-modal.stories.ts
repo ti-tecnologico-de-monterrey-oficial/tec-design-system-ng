@@ -203,16 +203,6 @@ export default {
   
   ---
   
-  ### ✅ Required Components:
-  
-  - \`BmbModalComponent\`
-  - \`BmbInputComponent\`
-  - \`BmbSwitchComponent\`
-  - \`BmbCheckboxComponent\`
-  - \`MatDialog\` from \`@angular/material/dialog\`
-  
-  ---
-  
   ### ⚠ Note:
   
   Make sure you are using:
