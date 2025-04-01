@@ -19,6 +19,7 @@
     "chromatic": "npx chromatic",
     "build:styles": "sass projects/ds-ng/src/assets/styles/main.scss dist/ds-ng/assets/styles/main.min.css --style=compressed",
     "build:lib": "ng build ds-ng --configuration production && npm run build:styles && npm run build:micro && npm run build:git-micro && npm run version",
+    "docker-build": "ng build ds-ng --configuration production && npm run build:styles",
     "changelog:default": "auto-changelog -p --output CHANGELOG.md --template keepachangelog",
     "changelog:custom": "auto-changelog -p --output FEATURES.md --template changelog-template.hbs",
     "version": "npm run changelog:default && npm run changelog:custom && git add CHANGELOG.md FEATURES.md",
