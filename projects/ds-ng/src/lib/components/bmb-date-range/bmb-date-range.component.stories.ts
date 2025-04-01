@@ -240,7 +240,7 @@ Below is an example of how to use this component in HTML:
 
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'false' },
+        defaultValue: { summary: 'true' },
         type: { summary: 'boolean' },
       },
     },
@@ -259,7 +259,7 @@ Below is an example of how to use this component in HTML:
     isClearable: false,
     dateFormat: 'dd/MM/yyyy',
     name: 'custom_date_picker',
-    multipleRow: false,
+    multipleRow: true,
   },
 } as Meta<typeof BmbDateRangeComponent>;
 

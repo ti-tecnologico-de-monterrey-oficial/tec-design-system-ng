@@ -9,11 +9,12 @@ import { BmbDatepickerComponent } from '../bmb-datepicker/bmb-datepicker.compone
 import { CommonModule } from '@angular/common';
 import { DateTime } from 'luxon';
 import { IBmbInputAppearance } from '../bmb-input/bmb-input.component';
+import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 
 @Component({
   selector: 'bmb-date-range',
   standalone: true,
-  imports: [BmbDatepickerComponent, CommonModule],
+  imports: [BmbDatepickerComponent, CommonModule, BmbDividerComponent],
   templateUrl: './bmb-date-range.component.html',
   styleUrl: './bmb-date-range.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -35,7 +36,7 @@ export class BmbDateRangeComponent {
   dateFormat = input<string>('dd/MM/yyyy');
   stepYearPicker = input<number>(12);
   name = input<string>('');
-  multipleRow = input<boolean>(false);
+  multipleRow = input<boolean>(true);
 
   disableDatesBefore?: DateTime;
   disableDatesAfter?: DateTime;
