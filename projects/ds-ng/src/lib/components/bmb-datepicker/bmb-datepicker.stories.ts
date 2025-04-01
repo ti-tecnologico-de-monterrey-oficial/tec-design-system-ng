@@ -101,7 +101,7 @@ Below is an example of how to use this component in HTML:
   },
   argTypes: {
     control: {
-      control: { type: 'object' },
+      control: null,
       description: 'Instance of FormControl to manage the input control state.',
       table: {
         category: 'Properties',
@@ -254,4 +254,26 @@ Below is an example of how to use this component in HTML:
 
 type Story = StoryObj<BmbDatepickerComponent>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: (args: BmbDatepickerComponent) => ({
+    props: {
+      ...args,
+    },
+    template: `
+      <div style="height: 500px;">
+        <bmb-datepicker
+          [placeholder]="placeholder"
+          name="datePicker"
+          dateFormat="MM/dd/yyyy"
+          label="Fecha de tu cumpleaños"
+          [disabled]="disabled"
+          icon="cake"
+          [isRequired]="isRequired"
+          [isClearable]="isClearable"
+          invalidFormaterrorMessage="El formato debe ser el siguiente: dd/mm/yyyy"
+          requiredFieldErrorMessage="Este campo es requerido"
+        />
+      </div>
+    `,
+  }),
+};
