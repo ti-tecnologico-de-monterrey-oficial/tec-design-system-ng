@@ -115,8 +115,11 @@ export interface IBmbActionHeader {
   action: () => void;
 }
 
-export interface IBmbLinkConfiguration {
+export interface IBmbLinkConfiguration extends IBmbLinkInfo {
   label: string;
+}
+
+export interface IBmbLinkInfo {
   link: string;
   target?: IBmbTargetLink;
 }

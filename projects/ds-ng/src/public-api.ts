@@ -4,6 +4,7 @@
 
 export * from './lib/ds-ng.service';
 export * from './lib/services/notification.service';
+export * from './lib/services/tabs.service';
 export * from './lib/services/calendar.service';
 export * from './lib/services/user/profile.service';
 export * from './lib/components/bmb-login-onboarding/bmb-login-onboarding.service';

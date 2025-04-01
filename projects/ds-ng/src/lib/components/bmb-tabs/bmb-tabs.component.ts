@@ -11,6 +11,7 @@ import {
   AfterViewInit,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TabsService } from '../../services/tabs.service';
 
 export interface IBmbTab {
   id: number;
@@ -38,12 +39,22 @@ export class BmbTabsComponent implements OnInit, AfterViewInit {
   activeTabIndex: number = 0;
   @ViewChild('tabsItems') tabsItems!: ElementRef;
 
+  constructor(private tabsService: TabsService) {}
+
   ngOnInit(): void {
     const initialActiveTab = this.tabs.findIndex((tab) => tab.isActive);
     this.activeTabIndex = initialActiveTab !== -1 ? initialActiveTab : 0;
     this.tabs.forEach(
       (tab, index) => (tab.isActive = index === this.activeTabIndex),
     );
+
+    this.tabsService.setTabs(this.tabs);
+
+    this.tabsService.selectedTab$.subscribe((tab: any) => {
+      if (tab && tab.id !== this.tabs[this.activeTabIndex].id) {
+        this.selectTab(tab.id);
+      }
+    });
   }
 
   ngAfterViewInit(): void {

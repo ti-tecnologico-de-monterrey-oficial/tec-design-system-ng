@@ -2986,39 +2986,6 @@ export class AppComponent {
     },
   ];
 
-  mitecSocial: IBmbActionHeader[] = [
-    {
-      icon: '../assets/images/social-icons/icon_Apple.svg',
-      link: 'https://www.youtube.com/',
-      action: () => {},
-    },
-    {
-      icon: '../assets/images/social-icons/icon_Android.svg',
-      link: 'https://www.youtube.com/',
-      action: () => {},
-    },
-    {
-      icon: '../assets/images/social-icons/icon_Twitter.svg',
-      link: 'https://www.youtube.com/',
-      action: () => {},
-    },
-    {
-      icon: '../assets/images/social-icons/icon_Facebook.svg',
-      link: 'https://www.youtube.com/',
-      action: () => {},
-    },
-    {
-      icon: '../assets/images/social-icons/icon_Instagram.svg',
-      link: 'https://www.youtube.com/',
-      action: () => {},
-    },
-    {
-      icon: '../assets/images/social-icons/icon_Youtube.svg',
-      link: 'https://www.youtube.com/',
-      action: () => {},
-    },
-  ];
-
   handleHeaderR(event: unknown) {
     console.log(event);
     alert('Right event');

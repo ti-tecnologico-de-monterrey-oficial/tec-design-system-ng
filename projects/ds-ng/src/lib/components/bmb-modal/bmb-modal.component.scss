@@ -85,6 +85,22 @@
     &-btn {
       margin-right: rem.rem_calc(10);
     }
+
+    &-extend-buttons {
+      gap: rem.rem_calc(8);
+
+      .bmb_modal-footer-button {
+        flex: 1;
+        margin: 0;
+      }
+    }
+
+    &-single-button {
+      .bmb_modal-footer-button {
+        width: 100%;
+        margin: 0;
+      }
+    }
   }
 
   .bmb_title-content-container-wrapper-title {

@@ -8,7 +8,7 @@ import { IBmbLoginOnboarding, IBmbUserInfo } from '../../types';
   imports: [BmbLoginOnboardingComponent],
   selector: 'storybook-toast-wrapper',
   template: `
-    <div style="max-width: 300px; margin: 0 auto">
+    <div style="max-width: 500px; margin: 0 auto">
       <bmb-login-onboarding (handleRequest)="handleRequest($event)">
         <p>custom content</p>
       </bmb-login-onboarding>

@@ -8,7 +8,10 @@ import {
 import { BmbButtonDirective } from '../../directives/button.directive';
 import { FormGroup } from '@angular/forms';
 import { BmbUserProfileService } from '../../services/user/profile.service';
-import { BmbHeaderMitecComponent } from '../bmb-header-mitec/bmb-header-mitec.component';
+import {
+  BmbHeaderMitecComponent,
+  IBmbActionHeaderLinks,
+} from '../bmb-header-mitec/bmb-header-mitec.component';
 import { IBmbActionHeader, IBmbTargetLink } from '../../types';
 import { BmbLoginContentComponent } from './bmb-login-content/bmb-login-content.component';
 
@@ -26,7 +29,7 @@ import { BmbLoginContentComponent } from './bmb-login-content/bmb-login-content.
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbLoginComponent {
-  headerLabel = input<string>(); //Deprecated
+  headerLabel = input<string>('ESTUDIANTES');
   forgottenPasswordLabel = input<string>('¿Olvidaste tu contraseña?');
   forgottenPasswordLink = input<string>('');
   forgottenPasswordTarget = input<IBmbTargetLink>('_blank');
@@ -37,44 +40,8 @@ export class BmbLoginComponent {
   loginAsGuestLink = input<string>('');
   loginAsGuestTarget = input<IBmbTargetLink>('_blank');
   buttonLabel = input<string>('Ingresar');
-  actionHeaders = input<IBmbActionHeader[]>([
-    {
-      icon: '../assets/images/social-icons/icon_Apple.svg',
-      alt: 'iconApple',
-      link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-login--documentation',
-      action: () => {},
-    },
-    {
-      icon: '../assets/images/social-icons/icon_Android.svg',
-      alt: 'iconAndroid',
-      link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-login--documentation',
-      action: () => {},
-    },
-    {
-      icon: '../assets/images/social-icons/icon_Twitter.svg',
-      alt: 'iconAndroid',
-      link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-login--documentation',
-      action: () => {},
-    },
-    {
-      icon: '../assets/images/social-icons/icon_Facebook.svg',
-      alt: 'iconTwitter',
-      link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-login--documentation',
-      action: () => {},
-    },
-    {
-      icon: '../assets/images/social-icons/icon_Instagram.svg',
-      alt: 'iconInstagram',
-      link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-login--documentation',
-      action: () => {},
-    },
-    {
-      icon: '../assets/images/social-icons/icon_Youtube.svg',
-      alt: 'iconYoutube',
-      link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-login--documentation',
-      action: () => {},
-    },
-  ]);
+  actionHeaderLinks = input<IBmbActionHeaderLinks>();
+  actionHeaders = input<IBmbActionHeader[]>([]); //Deprecated
 
   onRequest = output<any>();
   onContinue = output();

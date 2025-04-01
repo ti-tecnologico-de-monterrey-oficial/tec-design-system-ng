@@ -26,54 +26,107 @@ Below is an example of how you can use this component in HTML:
     },
   },
   argTypes: {
+    headerLabel: {
+      name: 'Header label',
+      control: 'text',
+      description: 'Sets the label to be displayed in the header.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'ESTUDIANTES' },
+      },
+    },
+    actionHeaderLinks: {
+      name: 'Action header Links',
+      control: { type: 'object' },
+      description: `
+Sets an object of IBmbActionHeaderLinks type.
+
+    export interface IBmbActionHeaderLinks {
+      apple: IBmbLinkInfo,
+      android: IBmbLinkInfo,
+      twitter: IBmbLinkInfo,
+      facebook: IBmbLinkInfo,
+      instagram: IBmbLinkInfo,
+      youtube: IBmbLinkInfo,
+    }
+
+Template:
+
+    actionHeaderLinks:IBmbActionHeaderLinks = {
+      apple: {
+        link: '',
+        target: '',
+      },
+      android: {
+        link: '',
+        target: '',
+      },
+      twitter: {
+        link: '',
+        target: '',
+      },
+      facebook: {
+        link: '',
+        target: '',
+      },
+      instagram: {
+        link: '',
+        target: '',
+      },
+      youtube: {
+        link: '',
+        target: '',
+      },
+    },
+      `,
+      table: {
+        category: 'Properties',
+        type: {
+          summary: 'IBmbActionHeaderLinks',
+        },
+      },
+    },
     actionHeaders: {
       name: 'Action header',
       control: { type: 'object' },
-      description:
-        'Sets an array of IBmbActionHeader objects, default value is an empty array.',
+      description: '',
       table: {
-        category: 'Properties',
-        defaultValue: { summary: '[] (empty array)' },
+        category: 'Deprecated',
         type: {
-          summary:
-            'IBmbActionHeader[], {icon: string; iconSize?: number; iconActiveToggle?: string; isToggleActive?: boolean; isAccentColor?: boolean; link?: string; target?: IBmbTargetLink; action: () => void;}',
+          summary: 'IBmbActionHeader[]',
         },
       },
     },
   },
   args: {
-    actionHeaders: [
-      {
-        icon: 'nutrition',
-        link: 'https://www.youtube.com/',
-        action: () => {},
+    headerLabel: '',
+    actionHeaderLinks: {
+      apple: {
+        link: '',
+        target: '',
       },
-      {
-        icon: 'smart_toy',
-        link: 'https://www.youtube.com/',
-        action: () => {},
+      android: {
+        link: '',
+        target: '',
       },
-      {
-        icon: 'raven',
-        link: 'https://www.youtube.com/',
-        action: () => {},
+      twitter: {
+        link: '',
+        target: '',
       },
-      {
-        icon: 'ar_on_you',
-        link: 'https://www.youtube.com/',
-        action: () => {},
+      facebook: {
+        link: '',
+        target: '',
       },
-      {
-        icon: 'photo_camera',
-        link: 'https://www.youtube.com/',
-        action: () => {},
+      instagram: {
+        link: '',
+        target: '',
       },
-      {
-        icon: 'youtube_activity',
-        link: 'https://www.youtube.com/',
-        action: () => {},
+      youtube: {
+        link: '',
+        target: '',
       },
-    ],
+    },
   },
 } as Meta<typeof BmbHeaderMitecComponent>;
 

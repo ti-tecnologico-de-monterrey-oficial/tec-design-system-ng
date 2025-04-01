@@ -15,13 +15,7 @@
   }
 
   &-mitec_logo {
-    display: flex;
-    justify-content: center;
-    flex: 1;
-
-    img {
-      width: rem.rem_calc(120);
-    }
+    width: 100%;
   }
 
   &-content {
