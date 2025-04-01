@@ -1,31 +1,47 @@
 <div class="bmb_datepicker" clickOutside (clickOutside)="clickOutside()">
   <section class="bmb-datepicker-container">
-    <bmb-input
-      [placeholder]="placeholder"
-      [label]="label"
-      [icon]="icon"
-      [isRequired]="isRequired"
-      [disabled]="disabled"
-      [appearance]="appearance"
-      [control]="control"
-      [isRequired]="isRequired"
-      (isFocus)="handleFocusedEvent($event)"
-      [helperMessage]="dateFormat"
-      [errorMessage]="getErrorMessage(control.errors)"
-      [name]="name"
-      [isClearable]="isClearable"
-    />
+    <!-- @if (inline()) {
+      <bmb-datepicker-modal
+        [now]="now"
+        [isWindowOpen]="isWindowOpen"
+        (closeWindow)="handleWindowOpen($event)"
+        (onValueChange)="handleValueChange($event)"
+        [value]="control().value"
+        [dateFormat]="dateFormat()"
+        [stepYearPicker]="stepYearPicker()"
+        [disableDatesBefore]="disableDatesBefore()"
+        [disableDatesAfter]="disableDatesAfter()"
+        [lang]="lang()"
+      />
+    } @else { -->
+      <bmb-input
+        [placeholder]="placeholder()"
+        [label]="label()"
+        [icon]="icon()"
+        [isRequired]="isRequired()"
+        [disabled]="disabled()"
+        [appearance]="appearance()"
+        [control]="control()"
+        [isRequired]="isRequired()"
+        (isFocus)="handleFocusedEvent($event)"
+        [helperMessage]="dateFormat()"
+        [errorMessage]="getErrorMessage(control().errors)"
+        [name]="name()"
+        [isClearable]="isClearable()"
+      />
+    <!-- } -->
     @if (isWindowOpen) {
       <bmb-datepicker-modal
         [now]="now"
         [isWindowOpen]="isWindowOpen"
         (closeWindow)="handleWindowOpen($event)"
         (onValueChange)="handleValueChange($event)"
-        [value]="control.value"
-        [dateFormat]="dateFormat"
-        [stepYearPicker]="stepYearPicker"
-        [disableDatesBefore]="disableDatesBefore"
-        [disableDatesAfter]="disableDatesAfter"
+        [value]="control().value"
+        [dateFormat]="dateFormat()"
+        [stepYearPicker]="stepYearPicker()"
+        [disableDatesBefore]="disableDatesBefore()"
+        [disableDatesAfter]="disableDatesAfter()"
+        [lang]="lang()"
       />
     }
   </section>
