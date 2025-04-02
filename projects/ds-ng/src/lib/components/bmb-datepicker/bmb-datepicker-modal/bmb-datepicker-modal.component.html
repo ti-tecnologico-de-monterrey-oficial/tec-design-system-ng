@@ -6,48 +6,54 @@
     [dynamicCols]="true"
     justify="center"
     gapSize="s"
+    alignItems="center"
   >
     <li bmbLayoutItem>
       <button
-        class="bmb_datepicker-modal-calendar-button bmb_datepicker-modal-nav-button bmb_datepicker-modal-nav-button-transparent"
+        class="bmb_datepicker-modal-button bmb_datepicker-modal-nav-button"
         (click)="handleChangeMonth('less')"
         bmbButton
-        appearance="secondary-outlined"
+        appearance="transparent"
         icon="keyboard_arrow_left"
         size="micro"
+        [iconSize]="24"
       ></button>
     </li>
-    <li bmbLayoutItem>
+    <li bmbLayoutItem [isDynamicItem]="true" [colGrow]="1">
       <button
-        class="bmb_datepicker-modal-calendar-button bmb_datepicker-modal-nav-button"
+        class="bmb_datepicker-modal-button bmb_field-input-normal bmb_datepicker-modal-nav-button"
         (click)="handleChangeView('month')"
         bmbButton
-        appearance="secondary-outlined"
+        appearance="transparent"
         icon="keyboard_arrow_down"
-        size="small"
+        position="right"
+        [iconSize]="24"
       >
         {{ month }}
       </button>
     </li>
-    <li bmbLayoutItem>
+    <li bmbLayoutItem [isDynamicItem]="true" [colGrow]="1">
       <button
-        class="bmb_datepicker-modal-calendar-button bmb_datepicker-modal-nav-button"
+        class="bmb_datepicker-modal-button bmb_field-input-normal bmb_datepicker-modal-nav-button"
         (click)="handleChangeView('year')"
         bmbButton
-        appearance="secondary-outlined"
+        appearance="transparent"
         icon="keyboard_arrow_down"
+        position="right"
+        [iconSize]="24"
       >
         {{ selectedYear }}
       </button>
     </li>
     <li bmbLayoutItem>
       <button
-        class="bmb_datepicker-modal-calendar-button bmb_datepicker-modal-nav-button bmb_datepicker-modal-nav-button-transparent"
+        class="bmb_datepicker-modal-button bmb_datepicker-modal-nav-button"
         (click)="handleChangeMonth('plus')"
         bmbButton
-        appearance="secondary-outlined"
+        appearance="transparent"
         icon="keyboard_arrow_right"
         size="micro"
+        [iconSize]="24"
       ></button>
     </li>
   </nav>
@@ -62,11 +68,11 @@
         @for (date of getWeeksAndDays(); track $index) {
           <li class="bmb_datepicker-modal-calendar-item">
             <button
-              class="bmb_datepicker-modal-calendar-item-button"
+              class="bmb_datepicker-modal-button"
               [ngClass]="isSelectedDay(date)"
               (click)="handleDayChange(date)"
               bmbButton
-              appearance="secondary-filled"
+              appearance="transparent"
               [disabled]="checkIfDisabled(date)"
             >
               {{ date.day }}
@@ -76,15 +82,16 @@
       </ul>
     }
     @case ("month") {
-      <ul class="bmb_datepicker-modal-list">
+      <ul class="bmb_datepicker-modal-calendar-list-months bmb_datepicker-modal-calendar">
         @for (month of monthsNames; track $index) {
           <li
-            class="bmb_datepicker-modal-list-item bmb_datepicker-modal-list-item-month"
+            class="bmb_datepicker-modal-calendar-item"
           >
             <button
-              class="bmb_datepicker-modal-calendar-item-button bmb_datepicker-modal-calendar-item-button-full modal-persist"
+              class="bmb_datepicker-modal-button bmb_datepicker-modal-calendar-list-item modal-persist"
+              [ngClass]="{'bmb_datepicker-modal-calendar-list-item-selected': (selectedMonth - 1) === $index}"
               bmbButton
-              appearance="secondary-filled"
+              appearance="transparent"
               (click)="handleMonthChange($index)"
             >
               {{ month }}
@@ -94,13 +101,14 @@
       </ul>
     }
     @case ("year") {
-      <ul class="bmb_datepicker-modal-list">
+      <ul class="bmb_datepicker-modal-calendar-list-years bmb_datepicker-modal-calendar">
         @for (year of getYears(); track $index) {
-          <li class="bmb_datepicker-modal-list-item">
+          <li class="bmb_datepicker-modal-calendar-item">
             <button
-              class="bmb_datepicker-modal-calendar-item-button bmb_datepicker-modal-calendar-item-button-full modal-persist"
+              class="bmb_datepicker-modal-button bmb_datepicker-modal-calendar-list-item modal-persist"
+              [ngClass]="{'bmb_datepicker-modal-calendar-list-item-selected': isSelectedYear(year)}"
               bmbButton
-              appearance="secondary-filled"
+              appearance="transparent"
               (click)="handleYearChange(year)"
             >
               {{ year }}

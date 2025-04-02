@@ -2,30 +2,6 @@
 @use "../../../../../assets/styles/base/fonts" as fonts;
 @use "../../../../../assets/styles/base/mixins" as mixins;
 
-@mixin buttonReset() {
-  color: RGBA(var(--color-charade-900), 0.5);
-  background-color: transparent;
-
-  &:hover:not(:disabled):not(.bmb-disabled),
-  &.bmb-hover:not(:disabled):not(.bmb-disabled),
-  &:focus-visible:not(:disabled):not(.bmb-disabled),
-  &.bmb-focus-visible:not(:disabled):not(.bmb-disabled) {
-    background-color: RGBA(var(--color-charade-50));
-  }
-}
-
-@mixin buttonResetDark() {
-  color: RGBA(var(--color-charade-200), 0.5);
-
-  &:hover:not(:disabled):not(.bmb-disabled),
-  &.bmb-hover:not(:disabled):not(.bmb-disabled),
-  &:focus-visible:not(:disabled):not(.bmb-disabled),
-  &.bmb-focus-visible:not(:disabled):not(.bmb-disabled) {
-    background-color: RGBA(var(--color-charade-50));
-    color: RGBA(var(--color-charade-900));
-  }
-}
-
 @mixin buttonNavDark() {
   color: RGBA(var(--color-charade-200), 0.5);
 
@@ -98,6 +74,10 @@
       min-height: auto;
       opacity: 0.55;
       padding: rem.rem_calc(0 4);
+
+      &:hover:not(:disabled):not(.bmb-disabled) {
+        background-color: var(--general_contrasts-5);
+      }
 
       &-selected {
         background-color: var(--general_contrasts-main-selection);

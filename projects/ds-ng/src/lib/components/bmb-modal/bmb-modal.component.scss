@@ -86,9 +86,20 @@
       margin-right: rem.rem_calc(10);
     }
 
-    &-button {
-      width: rem.rem_calc(250);
-      height: rem.rem_calc(35);
+    &-extend-buttons {
+      gap: rem.rem_calc(8);
+
+      .bmb_modal-footer-button {
+        flex: 1;
+        margin: 0;
+      }
+    }
+
+    &-single-button {
+      .bmb_modal-footer-button {
+        width: 100%;
+        margin: 0;
+      }
     }
   }
 

@@ -1,20 +1,20 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
+  input,
   OnInit,
+  output,
   ViewEncapsulation,
 } from '@angular/core';
 import {
   FormsModule,
-  FormControl,
   ValidatorFn,
   AbstractControl,
   ReactiveFormsModule,
   ValidationErrors,
+  FormControl,
 } from '@angular/forms';
 import { DateTime } from 'luxon';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import {
   BmbInputComponent,
   IBmbInputAppearance,
@@ -26,7 +26,6 @@ import { ClickOutsideDirective } from '../../directives/utils/clickoutside.direc
   selector: 'bmb-datepicker',
   standalone: true,
   imports: [
-    BmbIconComponent,
     FormsModule,
     BmbInputComponent,
     ReactiveFormsModule,
@@ -39,31 +38,33 @@ import { ClickOutsideDirective } from '../../directives/utils/clickoutside.direc
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbDatepickerComponent implements OnInit {
-  @Input() label: string = '';
-  @Input() placeholder: string = '';
-  @Input() icon: string = 'calendar_month';
-  @Input() invalidFormatErrorMessage: string = 'Formato invalido';
-  @Input() requiredFieldErrorMessage: string = 'Campo requerido';
-  @Input() appearance: IBmbInputAppearance | string = 'normal';
-  @Input() disabled: boolean = false;
-  @Input() isRequired: boolean = false;
-  @Input() isClearable: boolean = false;
-  @Input() control: FormControl = new FormControl();
-  @Input() dateFormat: string = 'dd/MM/yyyy';
-  @Input() inline: boolean = false;
-  @Input() stepYearPicker: number = 12;
-  @Input() name: string = '';
-  @Input() disableDatesBefore?: DateTime;
-  @Input() disableDatesAfter?: DateTime;
+  label = input<string>('');
+  placeholder = input<string>('');
+  icon = input<string>('calendar_month');
+  invalidFormatErrorMessage = input<string>('Formato invalido');
+  requiredFieldErrorMessage = input<string>('Campo requerido');
+  appearance = input<IBmbInputAppearance | string>('normal');
+  disabled = input<boolean>(false);
+  isRequired = input<boolean>(false);
+  isClearable = input<boolean>(false);
+  control = input<FormControl>(new FormControl());
+  dateFormat = input<string>('dd/MM/yyyy');
+  // inline = input<boolean>(false);
+  stepYearPicker = input<number>(18);
+  name = input<string>('');
+  disableDatesBefore = input<DateTime | undefined>(undefined);
+  disableDatesAfter = input<DateTime | undefined>(undefined);
+  lang = input<string>('es-MX');
+
+  onChange = output<string>();
 
   now = DateTime.now();
-
   defaultDate = new Date();
   isWindowOpen = false;
 
   ngOnInit() {
-    this.control.addValidators(this.customValidatorDate());
-    this.control.updateValueAndValidity();
+    this.control().addValidators(this.customValidatorDate());
+    this.control().updateValueAndValidity();
   }
 
   customValidatorDate(): ValidatorFn {
@@ -73,7 +74,7 @@ export class BmbDatepickerComponent implements OnInit {
 
       const isValidDate = DateTime.fromFormat(
         control.value,
-        this.dateFormat,
+        this.dateFormat(),
       ).isValid;
 
       return !isValidDate ? { validationDate: true } : null;
@@ -81,8 +82,8 @@ export class BmbDatepickerComponent implements OnInit {
   }
 
   getErrorMessage(errors: ValidationErrors | null): string {
-    if (errors?.['validationDate']) return this.invalidFormatErrorMessage;
-    if (errors?.['required']) return this.requiredFieldErrorMessage;
+    if (errors?.['validationDate']) return this.invalidFormatErrorMessage();
+    if (errors?.['required']) return this.requiredFieldErrorMessage();
     return '';
   }
 
@@ -97,8 +98,9 @@ export class BmbDatepickerComponent implements OnInit {
   }
 
   handleValueChange(event: string) {
-    this.control.setValue(event);
+    this.control().setValue(event);
     this.isWindowOpen = false;
+    this.onChange.emit(event);
   }
 
   clickOutside(): void {

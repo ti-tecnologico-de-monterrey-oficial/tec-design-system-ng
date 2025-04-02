@@ -29,6 +29,7 @@ export class BmbButtonDirective {
   isToggleActive = input<boolean>(false);
   enableButtonToggle = input<boolean>(false);
   isRounded = input<boolean>(true);
+  isMobile = input<boolean>(false);
 
   private providedInputs: Set<string> = new Set();
 
@@ -82,6 +83,8 @@ export class BmbButtonDirective {
 
     if (this.enableButtonToggle() && this.isToggleActive())
       classList.push('bmb_btn-toggle-active');
+
+    if (this.isMobile()) classList.push('bmb_btn-mobile');
 
     return classList;
   }
