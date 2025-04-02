@@ -5,6 +5,7 @@ import {
   ChangeDetectionStrategy,
   ViewEncapsulation,
   TemplateRef,
+  ContentChild,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -13,6 +14,12 @@ import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
 import { BmbDropdownMenuComponent } from '../bmb-dropdown-menu/bmb-dropdown-menu.component';
 import { IDropdownItem } from '../bmb-dropdown-menu/bmb-dropdown-menu.component';
+import {
+  IBmbBadgeInfo,
+  IBmbImageInfo,
+  IBmbLinkConfiguration,
+} from '../../types';
+import { BmbTextLinkComponent } from '../bmb-text-link/bmb-text-link.component';
 
 export interface ICardButton {
   title: string;
@@ -20,7 +27,7 @@ export interface ICardButton {
   badge?: { text: string; appearance: IBbmBgAppearance };
   icon?: string;
   leftContentIcon?: string;
-  leftContentImage?: { src: string; alt: string };
+  leftContentImage?: IBmbImageInfo;
   leftContent?: boolean;
   hasMenu?: boolean;
   menuItems?: IDropdownItem[];
@@ -37,6 +44,7 @@ export interface ICardButton {
     FormsModule,
     BmbBadgeComponent,
     BmbDropdownMenuComponent,
+    BmbTextLinkComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -45,15 +53,16 @@ export class BmbCardButtonComponent {
   isFullInteractive = input<boolean>(true);
   title = input<string>('');
   body = input<string>('');
-  badge = input<{ text: string; appearance: IBbmBgAppearance }>();
+  badge = input<IBmbBadgeInfo>();
   icon = input<string>('');
   leftContentIcon = input<string>('');
-  leftContentImage = input<{ src: string; alt: string }>();
+  leftContentImage = input<IBmbImageInfo>();
   leftContent = input<boolean>(false);
   hasMenu = input<boolean>(false);
   menuItems = input<IDropdownItem[]>([]);
-  iconTemplate: TemplateRef<any> | null = null;
+  iconTemplate: TemplateRef<any> | null = null; //Deprecated
   isTemplate = input<boolean>(false);
+  textLink = input<IBmbLinkConfiguration>();
 
   onAddContentClick = output<any>();
   onTitleClick = output<any>();
@@ -62,12 +71,14 @@ export class BmbCardButtonComponent {
   //Small card
   isSmall = input<boolean>(false);
   botIcon = input<string>('');
-  botImage = input<{ src: string; alt: string }>();
+  botImage = input<IBmbImageInfo>();
   smallIcon = input<string>('');
   smallTitle = input<string>('');
   smallDescription = input<string>('');
 
   isFlipped: boolean = false;
+
+  @ContentChild('customContent') customContent!: TemplateRef<any>;
 
   truncateText(text: string, maxLength: number): string {
     if (text.length > maxLength) {
@@ -86,6 +97,14 @@ export class BmbCardButtonComponent {
   }
 
   handleAddContent(event: any): void {
-    this.onAddContentClick.emit(event);
+    if (
+      (this.isFullInteractive() &&
+        this.leftContent() &&
+        !this.leftContentIcon() &&
+        this.leftContentImage() &&
+        !this.textLink()) ||
+      !this.isFullInteractive()
+    )
+      this.onAddContentClick.emit(event);
   }
 }

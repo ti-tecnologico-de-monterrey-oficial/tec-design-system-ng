@@ -19,6 +19,7 @@ describe('BmbCardButtonComponent', () => {
     componentRef.setInput('body', 'Test Body');
     componentRef.setInput('icon', 'test-icon');
     componentRef.setInput('isFullInteractive', true);
+    componentRef.setInput('leftContentIcon', 'test');
     fixture.detectChanges();
   });
 

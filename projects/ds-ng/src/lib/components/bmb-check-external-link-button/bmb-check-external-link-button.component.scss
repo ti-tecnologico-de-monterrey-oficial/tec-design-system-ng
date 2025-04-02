@@ -8,7 +8,7 @@
     text-decoration: none;
     cursor: pointer;
     display: inline-flex;
-    color: var(--general_contrasts-100);
+    color: currentColor;
 
     &-disabled {
       cursor: not-allowed;
