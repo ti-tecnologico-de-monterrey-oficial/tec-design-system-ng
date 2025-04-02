@@ -178,7 +178,7 @@
       border-radius: rem.rem_calc(16);
       color: var(--general_contrasts-100);
       display: inline-flex;
-      height: rem.rem_calc(80);
+      min-height: rem.rem_calc(80);
       min-width: rem.rem_calc(343);
       padding: rem.rem_calc(24);
       width: 100%;
