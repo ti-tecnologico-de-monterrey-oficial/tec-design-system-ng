@@ -6,40 +6,27 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 
 ---
 
-## Cambios de la versión v1.5.4
+# Versión 1.5.5
 
-### Novedades
+> **Importante se actualizó el proceso de proceso de instalación** puedes ver los cambios en el siguiente enlace [Proceso de instalación de Bamboo](https://bamboo.tec.mx/latest/instalacion/angular-guia-de-instalacion-de-bamboo-Gx0hKkrO-Gx0hKkrO)
 
-- Nuevos workflows.
-- Se actualizaron las dependencias.
+## Novedades
 
-### Componentes nuevos:
+- Se actualizó el proceso de compilación.
 
-- Button icon
+## Componentes nuevos
 
-### Componentes actualizados:
+- `button-icon`
 
-- Alert center: Se cambio el puntero para sus elementos.
-- Hito: Nuevo tipo de evento.
-- Badge:
-  - Se agregaron los colores semánticos para los tipos de badges.
-  - se agregaron diferentes colores de fondo e índices para tema obscuro y claro.
-  - Nuevo color de apariencia: `alerta`.
-- Chatbar:
-  - Refactorización de código.
-  - Ajustes de CSS.
-- Input tag:
-  - Refactorización de código.
-  - Ajustes de CSS.
-- Tag: Se corrigió el estado hover y active cuando la tag es activity.
-- Filter card:
-  - Se agregó la opción de tag al componente.
-  - Se agregó la capacidad de limpiar el campo de texto.
-- Action icon:
-  - Cambio de nombre de `navigation icon` a `action icon`.
-  - Publicación de componente para uso externo.
-- Button: Se actualizó la apariencia.
-- Calendar: Se actualizó la apariencia.
+## Componentes actualizados
+
+- `card-button`: Se añadió una nueva variante con el título a la derecha de la imagen, soporte para `textlink` y `badge` alineado.
+- `bmb-tabs`: Se agregó soporte para manipulación externa del estado en el componente.
+- `login`: Ajuste de colores en logos e íconos por tema, y se añadieron íconos de redes sociales (Apple, Android, Twitter, Facebook, Instagram, YouTube y WhatsApp).
+- `datepicker`: Se actualizó el estilo del componente.
+- `bmb-chat-bubbles`: Se homologaron los estilos del componente.
+- `bmb-input-tags`: Se añadió el estado de selección inicial en el componente.
+- `Modal`: Se realizaron ajustes en los botones del componente para homologar su diseño.
 
 Puedes ver todos los componentes aqui: [Bamboo](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/foundations-colors--documentation)
 

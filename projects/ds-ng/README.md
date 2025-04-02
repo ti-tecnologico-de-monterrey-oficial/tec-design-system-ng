@@ -2,8 +2,6 @@
 
 > El framework de diseño Bamboo ofrece a los desarrolladores las herramientas indispensables para potenciar la eficiencia en el desarrollo de productos, permitiéndoles crear más en menos tiempo y liberándolos de la monótona tarea de construir componentes básicos repetitivos.
 
-**Este sistema se desarrolló con Angular CLI version 17.3.0.**
-
 ## Requisitos básicos para instalar el paquete de Bamboo en tu ambiente local:
 
 ### Nodejs y npm
@@ -24,13 +22,17 @@ Una vez hecho lo anterior es necesario borrar el archivo .npmrc con la línea:
 
 `@ti-tecnologico-de-monterrey-oficial:registry=https://npm.pkg.github.com`
 
-Ahora podemos hacer la instalación de Bamboo nuevamente
+Ahora podemos hacer la instalación de Bamboo nuevamente dependiendo de tu versión de Angular
 
-`npm i @ti-tecnologico-de-monterrey-oficial/ds-ng@latest`
+`npm i @ti-tecnologico-de-monterrey-oficial/ds-ng@a17`
 
-Ahora el paquete deberá tener la versión 0.2.2 o superior.
+`npm i @ti-tecnologico-de-monterrey-oficial/ds-ng@a18`
 
-`"@ti-tecnologico-de-monterrey7-oficial/ds-ng": "^1.5.X",`
+`npm i @ti-tecnologico-de-monterrey-oficial/ds-ng@a19`
+
+Ahora el paquete deberá tener la versión 0.2.2 o superior, ejemplo para Angular 18.
+
+`"@ti-tecnologico-de-monterrey7-oficial/ds-ng": "^1.5.X18",`
 
 ### Visual Studio Code
 
@@ -40,11 +42,15 @@ Si aún no tienes Visual Studio Code instalado, puedes descargarlo desde el siti
 
 [Visual Studio Code](https://code.visualstudio.com)
 
-## Instala Design System Bamboo y librerías adicionales
+## Instala Design System Bamboo
 
-Ejecuta el siguiente comando en la raíz del proyecto:
+Ejecuta el siguiente comando en la raíz del proyecto dependiendo de tu versión de Angular:
 
-`npm install @ti-tecnologico-de-monterrey-oficial/ds-ng@latest`
+- Angular 17: `npm install @ti-tecnologico-de-monterrey-oficial/ds-ng@a17`
+
+- Angular 18: `npm install @ti-tecnologico-de-monterrey-oficial/ds-ng@a18`
+
+- Angular 19: `npm install @ti-tecnologico-de-monterrey-oficial/ds-ng@a19`
 
 Sigue los pasos de la guía para configurar los estilos y las fuentes.
 

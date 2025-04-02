@@ -35,15 +35,24 @@ describe('BmbActionMenuComponent', () => {
   });
 
   it('should update projectedContent after content initialization', () => {
-    const mockTemplateRef = jasmine.createSpyObj<TemplateRef<any>>('TemplateRef', ['elementRef']);
+    const mockTemplateRef = jasmine.createSpyObj<TemplateRef<any>>(
+      'TemplateRef',
+      ['elementRef'],
+    );
     component.contentTemplates.reset([mockTemplateRef]);
     component.ngAfterContentInit();
     expect(component.projectedContent).toEqual([mockTemplateRef]);
   });
 
   it('should handle ContentChildren correctly', () => {
-    const mockTemplateRef1 = jasmine.createSpyObj<TemplateRef<any>>('TemplateRef1', ['elementRef']);
-    const mockTemplateRef2 = jasmine.createSpyObj<TemplateRef<any>>('TemplateRef2', ['elementRef']);
+    const mockTemplateRef1 = jasmine.createSpyObj<TemplateRef<any>>(
+      'TemplateRef1',
+      ['elementRef'],
+    );
+    const mockTemplateRef2 = jasmine.createSpyObj<TemplateRef<any>>(
+      'TemplateRef2',
+      ['elementRef'],
+    );
     component.contentTemplates.reset([mockTemplateRef1, mockTemplateRef2]);
     component.ngAfterContentInit();
     expect(component.projectedContent.length).toBe(2);
