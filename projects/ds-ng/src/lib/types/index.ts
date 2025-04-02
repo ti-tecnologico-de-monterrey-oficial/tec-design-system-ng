@@ -1,3 +1,4 @@
+import { IBbmBgAppearance } from '../../public-api';
 import { IBmbInteractiveIconAppearance } from '../components/bmb-interactive-icon/bmb-interactive-icon.component';
 
 export * from '../components/bmb-timestream/types';
@@ -115,8 +116,22 @@ export interface IBmbActionHeader {
   action: () => void;
 }
 
-export interface IBmbLinkConfiguration {
+export interface IBmbLinkConfiguration extends IBmbLinkInfo {
   label: string;
+}
+
+export interface IBmbLinkInfo {
   link: string;
   target?: IBmbTargetLink;
+}
+
+export interface IBmbImageInfo {
+  src: string;
+  alt: string;
+}
+
+export interface IBmbBadgeInfo {
+  text: string;
+  appearance: IBbmBgAppearance;
+  container?: boolean;
 }

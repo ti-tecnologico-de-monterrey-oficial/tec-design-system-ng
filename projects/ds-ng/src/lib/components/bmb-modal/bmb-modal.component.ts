@@ -169,10 +169,17 @@ export class BmbModalComponent {
   }
 
   showSecondaryButton(): boolean {
-    const data = this.getData();
+    return !this.getData().hideSecondaryButton;
+  }
+
+  isSingleButton(): boolean {
     return (
-      (data.type && data.type !== 'action' && !!data.secondaryBtnLabel) ||
-      !!data.secondaryBtnLabel
+      (this.showPrimaryButton() && !this.showSecondaryButton()) ||
+      (!this.showPrimaryButton() && this.showSecondaryButton())
     );
+  }
+
+  extendButtons(): boolean {
+    return !!this.getData().extendButtons;
   }
 }

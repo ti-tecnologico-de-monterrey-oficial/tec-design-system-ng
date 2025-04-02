@@ -13,7 +13,7 @@
         )
       "
     >
-      @if (textLinkStyle() === "icon") {
+      @if (textLinkStyle() === "icon" && !!icon()) {
         <bmb-icon
           [ngClass]="
             getPositionClass(

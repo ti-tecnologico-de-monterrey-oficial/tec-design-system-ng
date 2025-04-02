@@ -1,6 +1,6 @@
 {
   "name": "@ti-tecnologico-de-monterrey-oficial/tec-design-system-ng",
-  "version": "1.5.4",
+  "version": "1.5.5",
   "description": "Design System oficial del Tecnológico de Monterrey - Descubre cómo nuestro Design System no solo da forma a la estética, sino que también impulsa la consistencia en cada rincón de nuestro diseño, proporcionando una base sólida para construir experiencias memorables y coherentes. Únete a nosotros en este viaje donde la creatividad, coherencia y elegancia se encuentran para dar vida a un mundo visualmente armonioso y funcionalmente fluido.",
   "keywords": [
     "angular",
@@ -19,6 +19,7 @@
     "chromatic": "npx chromatic",
     "build:styles": "sass projects/ds-ng/src/assets/styles/main.scss dist/ds-ng/assets/styles/main.min.css --style=compressed",
     "build:lib": "ng build ds-ng --configuration production && npm run build:styles && npm run build:micro && npm run build:git-micro && npm run version",
+    "docker-build": "ng build ds-ng --configuration production && npm run build:styles",
     "changelog:default": "auto-changelog -p --output CHANGELOG.md --template keepachangelog",
     "changelog:custom": "auto-changelog -p --output FEATURES.md --template changelog-template.hbs",
     "version": "npm run changelog:default && npm run changelog:custom && git add CHANGELOG.md FEATURES.md",

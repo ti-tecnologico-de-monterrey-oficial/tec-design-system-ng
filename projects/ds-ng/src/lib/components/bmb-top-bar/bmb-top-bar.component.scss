@@ -119,6 +119,10 @@
     margin: 0;
     width: max-content;
 
+    @include mixins.media-query(1000, "max") {
+      margin-right: rem.rem_calc(75);
+    }
+
     img {
       width: rem.rem_calc(34);
       scale: 1/1;

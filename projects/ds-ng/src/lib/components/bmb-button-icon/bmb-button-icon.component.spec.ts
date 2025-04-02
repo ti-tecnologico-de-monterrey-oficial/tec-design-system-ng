@@ -22,4 +22,17 @@ describe('BmbButtonIconComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should toggle the active state when handlePress is called', () => {
+    // Initial state
+    expect(componentRef.instance.active()).toBe(false);
+
+    // Call handlePress to toggle the state
+    component.handlePress();
+    expect(componentRef.instance.active()).toBe(true);
+
+    // Call handlePress again to toggle back
+    component.handlePress();
+    expect(componentRef.instance.active()).toBe(false);
+  });
 });

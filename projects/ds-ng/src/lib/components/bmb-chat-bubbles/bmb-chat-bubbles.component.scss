@@ -33,6 +33,7 @@
 
     &-bottom {
       align-items: flex-end;
+      margin-bottom: rem.rem_calc(18);
     }
 
     &-bot {
@@ -53,15 +54,19 @@
 
   &-msg {
     @include fonts.font(4, regular);
-    max-width: 70%;
     min-height: rem.rem_calc(45);
+    width: fit-content;
     border-radius: rem.rem_calc(16 16 16 0);
-    background-color: var(--general_contrasts-20);
     padding: var(--bmb-radius-m);
     box-shadow: rem.rem_calc(0 2 5) rgba(0, 0, 0, 0.1);
 
+    &-container {
+      max-width: 70%;
+    }
+
     &-top {
       border-radius: rem.rem_calc(0 16 16 16);
+      background-color: var(--general_contrasts-20);
     }
 
     p {
@@ -77,10 +82,45 @@
 
     &-userProfile-bottom {
       border-radius: rem.rem_calc(16 16 0 16);
+      background-color: var(--general_contrasts-5);
     }
 
     &-userProfile-top {
       border-radius: rem.rem_calc(16 0 16 16);
+    }
+
+    &-thinking-dots {
+      display: flex;
+      gap: rem.rem_calc(8);
+    }
+
+    &-thinking-dot {
+      width: rem.rem_calc(12);
+      height: rem.rem_calc(12);
+      background-color: RGBA(var(--color-mariner-500));
+      border-radius: 50%;
+      opacity: 0.3;
+      animation: thinking 1.5s infinite ease-in-out;
+    }
+
+    &-thinking-dot:nth-child(1) {
+      animation-delay: 0s;
+    }
+    &-thinking-dot:nth-child(2) {
+      animation-delay: 0.3s;
+    }
+    &-thinking-dot:nth-child(3) {
+      animation-delay: 0.6s;
+    }
+
+    @keyframes thinking {
+      0%,
+      100% {
+        opacity: 0.3;
+      }
+      50% {
+        opacity: 1;
+      }
     }
   }
 
@@ -88,22 +128,34 @@
     @include fonts.font(3, regular);
     display: flex;
     align-items: center;
-    margin-left: rem.rem_calc(45);
+    justify-content: space-between;
+    width: 100%;
     gap: 0.5rem;
     height: rem.rem_calc(20);
 
     p {
-      padding: 0;
       margin: 0;
     }
 
     &-user {
-      justify-content: flex-end;
+      justify-content: flex-start;
       margin-right: rem.rem_calc(45);
     }
 
     &-icon {
       color: var(--general_contrasts-50);
+      cursor: pointer;
+    }
+
+    &-container {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding-top: rem.rem_calc(15);
+    }
+
+    &-time {
+      padding-top: rem.rem_calc(15);
     }
   }
 }

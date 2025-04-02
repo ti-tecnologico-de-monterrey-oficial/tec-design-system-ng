@@ -151,6 +151,17 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'boolean' },
       },
     },
+    isMobile: {
+      name: 'Is mobile',
+      control: { type: 'boolean' },
+      description:
+        'This property enables the mobile button state, which is a rounded button and width is 100%.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
   },
   args: {
     appearance: 'primary',
@@ -163,6 +174,7 @@ Below is an example of how you can use this component in HTML:
     isToggleActive: false,
     enableButtonToggle: false,
     isRounded: false,
+    isMobile: false,
   },
 } as Meta<typeof BmbButtonDirective>;
 

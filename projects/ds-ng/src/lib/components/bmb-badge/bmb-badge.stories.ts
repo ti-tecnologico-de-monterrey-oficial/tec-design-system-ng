@@ -75,7 +75,7 @@ Below is an example of how you can use this component in HTML:
         type: 'text',
       },
       description:
-        'The text of the badge. The width will increase depending on the length of the text.',
+        'Sets the text of the badge. The width will increase depending on the length of the text.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -93,7 +93,9 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string' },
       },
       description: `
-The appearance of the badge, affecting its visual style.
+Sets the appearance of the badge, affecting its visual style.
+
+  **Default appearance**: normal.
 
   **Note**: disabled and background do not exist for container.
       `,
@@ -102,10 +104,10 @@ The appearance of the badge, affecting its visual style.
       name: 'Container',
       control: { type: 'boolean' },
       description:
-        'This property is deprecated and will be removed in future versions.',
+        'Sets the container flag. This displays the container when true; if false, it displays a bullet.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'false' },
+        defaultValue: { summary: 'true' },
         type: { summary: 'boolean' },
       },
     },

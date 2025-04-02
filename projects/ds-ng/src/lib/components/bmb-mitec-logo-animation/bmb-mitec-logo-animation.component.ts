@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  input,
   ViewEncapsulation,
 } from '@angular/core';
 
@@ -13,4 +14,6 @@ import {
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbMitecLogoAnimationComponent {}
+export class BmbMitecLogoAnimationComponent {
+  label = input<string>('ESTUDIANTES');
+}

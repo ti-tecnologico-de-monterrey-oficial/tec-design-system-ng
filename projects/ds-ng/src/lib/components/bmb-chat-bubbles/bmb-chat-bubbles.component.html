@@ -24,77 +24,113 @@
           <span class="bmb_chat-bubble-profile-bot">
             <img
               class="bmb_chat-bubble-profile-bot-image"
-              [src]="iconBot()"
+              [src]="iconBotDefault()"
               [alt]="'Bot'"
             />
           </span>
         }
       </div>
-      <div
-        class="bmb_chat-bubble-msg"
-        [ngClass]="{
-          'bmb_chat-bubble-msg-userProfile-bottom': message().isUserMessage,
-          'bmb_chat-bubble-msg-top':
-            bubblePosition() == 'top' && !message().isUserMessage,
-        }"
-      >
-        @if (message().type === "mixed") {
-          <p>{{ message().content.text }}</p>
-          <img
-            class="bmb_chat-bubble-msg-image"
-            [src]="message().content.imageUrl"
-            alt="Message Img"
-          />
-        }
+      <div class="bmb_chat-bubble-msg-container">
+        <div
+          class="bmb_chat-bubble-msg"
+          [ngClass]="{
+            'bmb_chat-bubble-msg-userProfile-bottom': message().isUserMessage,
+            'bmb_chat-bubble-msg-top': !message().isUserMessage,
+          }"
+        >
+          @if (isThinking()) {
+            <div class="bmb_chat-bubble-msg-thinking-dots">
+              <span class="bmb_chat-bubble-msg-thinking-dot"></span>
+              <span class="bmb_chat-bubble-msg-thinking-dot"></span>
+              <span class="bmb_chat-bubble-msg-thinking-dot"></span>
+            </div>
+          } @else {
+            @if (message().type === "mixed") {
+              <p>{{ message().content.text }}</p>
+              <img
+                class="bmb_chat-bubble-msg-image"
+                [src]="message().content.imageUrl"
+                alt="Message Img"
+              />
+            }
 
-        @if (message().type === "text") {
-          <p>{{ message().content.text }}</p>
-        }
+            @if (message().type === "text") {
+              <p>{{ message().content.text }}</p>
+            }
+
+            @if (message().type === "link") {
+              <bmb-text-link
+                [textLink]="message().content.text!"
+                [textLinkStyle]="'underlined'"
+                [target]="'_blank'"
+                [link]="message().content.link!"
+                [disabled]="false"
+              ></bmb-text-link>
+            }
+
+            @if (message().type === "template") {
+              <ng-container
+                *ngTemplateOutlet="message().content.template!"
+              ></ng-container>
+            }
+          }
+        </div>
+        <div
+          class="bmb_chat-bubble-extra"
+          [ngClass]="{
+            'bmb_chat-bubble-extra-user': message().isUserMessage,
+          }"
+        >
+          @if (message().isUserMessage) {
+            <p class="bmb_chat-bubble-extra-time">
+              {{ message().time | date: "hh:mm a" }}
+            </p>
+          } @else {
+            <div class="bmb_chat-bubble-extra-container">
+              @if (gptIcons()) {
+                <bmb-icon
+                  class="bmb_chat-bubble-extra-icon"
+                  [icon]="'repeat'"
+                  [isFill]="true"
+                  [size]="24"
+                  (click)="handleRepeat()"
+                ></bmb-icon>
+                <bmb-icon
+                  class="bmb_chat-bubble-extra-icon"
+                  [icon]="'record_voice_over'"
+                  [isFill]="true"
+                  [size]="24"
+                  (click)="handleVoice()"
+                ></bmb-icon>
+                <bmb-icon
+                  class="bmb_chat-bubble-extra-icon"
+                  [icon]="'content_copy'"
+                  [isFill]="true"
+                  [size]="24"
+                  (click)="handleCopyContent()"
+                ></bmb-icon>
+                <bmb-icon
+                  class="bmb_chat-bubble-extra-icon"
+                  [icon]="'thumb_up'"
+                  [isFill]="true"
+                  [size]="24"
+                  (click)="handleLike()"
+                ></bmb-icon>
+                <bmb-icon
+                  class="bmb_chat-bubble-extra-icon"
+                  [icon]="'thumb_down'"
+                  [isFill]="true"
+                  [size]="24"
+                  (click)="handleDislike()"
+                ></bmb-icon>
+              }
+            </div>
+            <p class="bmb_chat-bubble-extra-time">
+              {{ message().time | date: "hh:mm a" }}
+            </p>
+          }
+        </div>
       </div>
-    </div>
-    <div
-      class="bmb_chat-bubble-extra"
-      [ngClass]="{
-        'bmb_chat-bubble-extra-user': message().isUserMessage,
-      }"
-    >
-      @if (message().isUserMessage) {
-        <p>{{ message().time | date: "hh:mm a" }}</p>
-      } @else {
-        <p>{{ message().time | date: "hh:mm a" }}</p>
-        @if (showExtraIcons()) {
-          <bmb-icon
-            class="bmb_chat-bubble-extra-icon"
-            [icon]="'repeat'"
-            [isFill]="true"
-            [size]="24"
-          ></bmb-icon>
-          <bmb-icon
-            class="bmb_chat-bubble-extra-icon"
-            [icon]="'record_voice_over'"
-            [isFill]="true"
-            [size]="24"
-          ></bmb-icon>
-          <bmb-icon
-            class="bmb_chat-bubble-extra-icon"
-            [icon]="'content_copy'"
-            [isFill]="true"
-            [size]="24"
-          ></bmb-icon>
-          <bmb-icon
-            class="bmb_chat-bubble-extra-icon"
-            [icon]="'thumb_up'"
-            [isFill]="true"
-            [size]="24"
-          ></bmb-icon>
-          <bmb-icon
-            class="bmb_chat-bubble-extra-icon"
-            [icon]="'thumb_down'"
-            [isFill]="true"
-            [size]="24"
-          ></bmb-icon>
-        }
-      }
     </div>
   </section>
 </section>

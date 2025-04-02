@@ -1,12 +1,9 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  ElementRef,
-  EventEmitter,
-  HostListener,
-  Input,
+  input,
   OnInit,
-  Output,
+  output,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
@@ -27,30 +24,33 @@ import { orderDayNames } from '../../../utils/utils';
     BmbButtonDirective,
   ],
   templateUrl: './bmb-datepicker-modal.component.html',
-  styleUrl: './bmb-datepicker-modal.component.scss',
+  styleUrls: [
+    './bmb-datepicker-modal.component.scss',
+    '../../bmb-input/bmb-input.component.scss',
+  ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbDatepickerModalComponent implements OnInit {
-  @Input() isWindowOpen: boolean = false;
-  @Input() now: DateTime = DateTime.now();
-  @Input() lang: string = 'es';
-  @Input() value?: string;
-  @Input() dateFormat: string = 'dd/MM/yyyy';
-  @Input() stepYearPicker: number = 12;
-  @Input() disableDatesBefore?: DateTime;
-  @Input() disableDatesAfter?: DateTime;
+  isWindowOpen = input<boolean>(false);
+  now = input<DateTime>(DateTime.now());
+  lang = input<string>('es-MX');
+  value = input<string>('');
+  dateFormat = input<string>('dd/MM/yyyy');
+  stepYearPicker = input<number>(18);
+  disableDatesBefore = input<DateTime>();
+  disableDatesAfter = input<DateTime>();
 
-  @Output() closeWindow: EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Output() onValueChange: EventEmitter<string> = new EventEmitter<string>();
+  closeWindow = output<boolean>();
+  onValueChange = output<string>();
 
-  selectedMonth = this.now.month;
-  monthsNames = Info.months('long', { locale: this.lang });
-  month = this.monthsNames[(this.selectedMonth || this.now.month) - 1];
-  year = this.now.year;
-  defaultDayOrder = Info.weekdays('narrow', { locale: this.lang });
+  selectedMonth = 0;
+  monthsNames = Info.months('long', { locale: this.lang() });
+  month = '';
+  year = this.now().year;
+  defaultDayOrder = Info.weekdays('narrow', { locale: this.lang() });
   dayNames = orderDayNames(this.defaultDayOrder);
-  selectedYear = this.now.year;
+  selectedYear = 0;
   view = 'calendar';
   selectedDate: DateTime | null = null;
 
@@ -66,32 +66,35 @@ export class BmbDatepickerModalComponent implements OnInit {
   }
 
   getYears() {
-    const yearsList = new Array(this.stepYearPicker).fill(0);
+    const yearsList = new Array(this.stepYearPicker()).fill(0);
     const currentYear = this.selectedYear;
     const yearsFinal = yearsList.map((_, index) => {
-      return (currentYear - (this.stepYearPicker / 2 - 1) + index).toString();
+      return (currentYear - (this.stepYearPicker() / 2 - 1) + index).toString();
     });
     return yearsFinal;
   }
 
   handleDayChange(date: DateTime): void {
-    const newValue = date.toFormat(this.dateFormat);
+    const newValue = date.toFormat(this.dateFormat());
     this.onValueChange.emit(newValue);
   }
 
   getWeeksAndDays(): DateTime[] {
     const firstDayOfMonth = DateTime.fromObject({
       day: 1,
-      month: this.selectedMonth ?? this.now.month,
-      year: this.selectedYear ?? this.now.year,
+      month: this.selectedMonth ?? this.now().month,
+      year: this.selectedYear ?? this.now().year,
     });
     return weeksAndDays(firstDayOfMonth);
   }
 
-  isSelectedDay(date: DateTime): string {
+  isSelectedDay(date: DateTime): string[] {
+    const classList = [];
     if (this.selectedDate && date.hasSame(this.selectedDate, 'day'))
-      return 'bmb_datepicker-modal-calendar-item-button-selected';
-    return '';
+      classList.push('bmb_datepicker-modal-button-selected');
+    if (this.now().hasSame(date, 'day'))
+      classList.push('bmb_datepicker-modal-button-today');
+    return classList;
   }
 
   handleChangeView(view: string) {
@@ -99,10 +102,20 @@ export class BmbDatepickerModalComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.selectedYear = this.now.year;
-    this.selectedMonth = this.now.month;
-    if (this.value) {
-      this.selectedDate = DateTime.fromFormat(this?.value, this.dateFormat);
+    if (this.value()) {
+      const formattedDate = DateTime.fromFormat(
+        this.value(),
+        this.dateFormat(),
+      );
+      this.selectedDate = formattedDate;
+      this.selectedYear = formattedDate.year;
+      this.selectedMonth = formattedDate.month;
+      this.month = this.monthsNames[formattedDate.month - 1];
+    } else {
+      this.selectedYear = this.now().year;
+      this.selectedMonth = this.now().month;
+      this.month =
+        this.monthsNames[(this.selectedMonth || this.now().month) - 1];
     }
   }
 
@@ -129,14 +142,23 @@ export class BmbDatepickerModalComponent implements OnInit {
   }
 
   checkIfDisabled(date: DateTime): boolean {
-    if (this.disableDatesBefore) {
-      return date.startOf('day') <= this.disableDatesBefore.startOf('day');
+    if (this.disableDatesBefore()) {
+      return (
+        date.startOf('day') <=
+        (this.disableDatesBefore()?.startOf('day') ?? DateTime.fromMillis(0))
+      );
     }
 
-    if (this.disableDatesAfter) {
-      return date.startOf('day') >= this.disableDatesAfter.startOf('day');
+    if (this.disableDatesAfter()) {
+      return this.disableDatesAfter()
+        ? date.startOf('day') >= this.disableDatesAfter()!.startOf('day')
+        : false;
     }
 
     return false;
+  }
+
+  isSelectedYear(year: string): boolean {
+    return this.selectedYear === parseInt(year);
   }
 }

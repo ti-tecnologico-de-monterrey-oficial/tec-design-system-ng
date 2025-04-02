@@ -48,7 +48,7 @@ Below is an example of how you can use this component in HTML:
       name: 'Icon',
       control: { type: 'text' },
       description:
-        'Sets the name of the icon to use. Please use Material icons: https://fonts.google.com/icons. The color of the icon depends on the parent. You can also place an image here. **This icon has button behavior**',
+        'Sets the name of the icon to use. Please use Material icons: https://fonts.google.com/icons. The color of the icon depends on the parent. You can also place an image here. **This icon has button behavior**.',
       table: {
         category: 'Properties',
         type: { summary: 'string (required)' },
@@ -173,19 +173,62 @@ Below is an example of how you can use this component in HTML:
   args: {
     idElement: '',
     icon: 'close',
-    alt: '',
     iconSize: 24,
-    toggleIconActive: '',
-    isToggleActive: false,
-    isAccentColor: true,
-    dotNotification: 0,
-    target: '_blank',
-    link: '',
-    disabled: false,
-    buttonClick: () => {},
+    buttonClick: () => {
+      console.log('Action icon click');
+    },
   },
 } as Meta<typeof BmbActionIconComponent>;
 
 type Story = StoryObj<BmbActionIconComponent>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  name: 'Default example',
+};
+
+export const ToggleAccentColorExample = {
+  name: 'Toggle icon example (accent color)',
+  args: {
+    icon: 'fit_screen',
+    toggleIconActive: 'close_fullscreen',
+    iconSize: 24,
+  },
+};
+
+export const ToggleExample = {
+  name: 'Example of a toggle icon without accent color',
+  args: {
+    ...ToggleAccentColorExample.args,
+    isAccentColor: false,
+  },
+};
+
+export const DotNotificationExample = {
+  name: 'Example of an icon with a notification',
+  args: {
+    dotNotification: 5,
+  },
+};
+
+export const DisabledIconExample = {
+  name: 'Disabled icon example',
+  args: {
+    disabled: true,
+  },
+};
+
+export const ImageExample = {
+  args: {
+    icon: 'https://img.freepik.com/premium-vector/approved-icon-with-thumb-up-approved-label-quality-control_349999-1321.jpg?w=2000',
+    alt: 'Youtube icon',
+    iconSize: 32,
+  },
+};
+
+export const IconLinkExample = {
+  name: 'Example of an icon as a link',
+  args: {
+    link: 'https://www.example.com/',
+    target: '_blank',
+  },
+};

@@ -31,10 +31,11 @@ Below is an example of how you can use this component in HTML:
     headerLabel: {
       name: 'Header label',
       control: 'text',
-      description: 'Deprecated',
+      description: 'Sets the label to be displayed in the header.',
       table: {
-        category: 'Deprecated',
+        category: 'Properties',
         type: { summary: 'string' },
+        defaultValue: { summary: 'ESTUDIANTES' },
       },
     },
     forgottenPasswordLabel: {
@@ -82,16 +83,65 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: 'Ingresar' },
       },
     },
+    actionHeaderLinks: {
+      name: 'Action header Links',
+      control: { type: 'object' },
+      description: `
+Sets an object of IBmbActionHeaderLinks type.
+
+    export interface IBmbActionHeaderLinks {
+      apple: IBmbLinkInfo,
+      android: IBmbLinkInfo,
+      twitter: IBmbLinkInfo,
+      facebook: IBmbLinkInfo,
+      instagram: IBmbLinkInfo,
+      youtube: IBmbLinkInfo,
+    }
+
+Template:
+
+    actionHeaderLinks:IBmbActionHeaderLinks = {
+      apple: {
+        link: '',
+        target: '',
+      },
+      android: {
+        link: '',
+        target: '',
+      },
+      twitter: {
+        link: '',
+        target: '',
+      },
+      facebook: {
+        link: '',
+        target: '',
+      },
+      instagram: {
+        link: '',
+        target: '',
+      },
+      youtube: {
+        link: '',
+        target: '',
+      },
+    },
+      `,
+      table: {
+        category: 'Properties',
+        type: {
+          summary: 'IBmbActionHeaderLinks',
+        },
+      },
+    },
     actionHeaders: {
       name: 'Action header',
       control: { type: 'object' },
-      description: 'Sets an array of IBmbActionHeader objects.',
+      description: '',
       table: {
-        category: 'Properties',
-        defaultValue: { summary: 'Action header example' },
+        category: 'Deprecated',
         type: {
-          summary:
-            'IBmbActionHeader[], {icon: string; iconSize?: number; iconActiveToggle?: string; isToggleActive?: boolean; isAccentColor?: boolean; link?: string; target?: IBmbTargetLink; action: () => void;}',
+          summary: 'IBmbActionHeader[]',
         },
       },
     },
@@ -195,56 +245,41 @@ Below is an example of how you can use this component in HTML:
     },
   },
   args: {
-    forgottenPasswordLabel: '¿Olvidaste tu contraseña?',
-    forgottenPasswordLink: '',
-    forgottenPasswordTarget: '_blank',
-    showRememberMeCheckbox: false,
-    rememberMeCheckboxLabel: 'Recordarme',
-    showLoginAsGuest: false,
-    loginAsGuestLabel: 'Entrar como invitado',
-    loginAsGuestLink: '',
-    loginAsGuestTarget: '_blank',
-    buttonLabel: 'Ingresar',
-    actionHeaders: [
-      {
-        icon: '../assets/images/social-icons/icon_Apple.svg',
-        link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-user-profile--documentation',
-        action: () => {},
+    headerLabel: '',
+    actionHeaderLinks: {
+      apple: {
+        link: '',
+        target: '',
       },
-      {
-        icon: '../assets/images/social-icons/icon_Android.svg',
-        link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-user-profile--documentation',
-        action: () => {},
+      android: {
+        link: '',
+        target: '',
       },
-      {
-        icon: '../assets/images/social-icons/icon_Twitter.svg',
-        link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-user-profile--documentation',
-        action: () => {},
+      twitter: {
+        link: '',
+        target: '',
       },
-      {
-        icon: '../assets/images/social-icons/icon_Facebook.svg',
-        link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-user-profile--documentation',
-        action: () => {},
+      facebook: {
+        link: '',
+        target: '',
       },
-      {
-        icon: '../assets/images/social-icons/icon_Instagram.svg',
-        link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-user-profile--documentation',
-        action: () => {},
+      instagram: {
+        link: '',
+        target: '',
       },
-      {
-        icon: '../assets/images/social-icons/icon_Youtube.svg',
-        link: 'https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/macro-componentes-user-profile--documentation',
-        action: () => {},
+      youtube: {
+        link: '',
+        target: '',
       },
-    ],
+    },
     onRequest: () => {
-      alert('On request');
+      console.log('On request');
     },
     onContinue: () => {
-      alert('On continue');
+      console.log('On continue');
     },
     onRememberMeChecked: () => {
-      alert('Remember me clicked');
+      console.log('Remember me clicked');
     },
   },
 } as Meta<typeof BmbLoginComponent>;

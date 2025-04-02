@@ -84,7 +84,6 @@ import {
   BmbFocusElementComponent,
   BmbGradeValueComponent,
   BmbTooltipComponent,
-  BmbFormValidationComponent,
   BmbTimestreamCardComponent,
   ITimelineEvent,
   BmbDropzoneComponent,
@@ -218,7 +217,6 @@ import { BmbTitleContentComponent } from '../../projects/ds-ng/src/lib/component
     BmbEvaluationRubricComponent,
     BmbTooltipComponent,
     BmbCardButtonComponent,
-    BmbFormValidationComponent,
     BmbTimestreamCardComponent,
     BmbDropzoneComponent,
     BmbAlertCenterComponent,
@@ -2984,39 +2982,6 @@ export class AppComponent {
       icon: 'fit_screen',
       iconActiveToggle: 'close_fullscreen',
       isToggleActive: false,
-      action: () => {},
-    },
-  ];
-
-  mitecSocial: IBmbActionHeader[] = [
-    {
-      icon: '../assets/images/social-icons/icon_Apple.svg',
-      link: 'https://www.youtube.com/',
-      action: () => {},
-    },
-    {
-      icon: '../assets/images/social-icons/icon_Android.svg',
-      link: 'https://www.youtube.com/',
-      action: () => {},
-    },
-    {
-      icon: '../assets/images/social-icons/icon_Twitter.svg',
-      link: 'https://www.youtube.com/',
-      action: () => {},
-    },
-    {
-      icon: '../assets/images/social-icons/icon_Facebook.svg',
-      link: 'https://www.youtube.com/',
-      action: () => {},
-    },
-    {
-      icon: '../assets/images/social-icons/icon_Instagram.svg',
-      link: 'https://www.youtube.com/',
-      action: () => {},
-    },
-    {
-      icon: '../assets/images/social-icons/icon_Youtube.svg',
-      link: 'https://www.youtube.com/',
       action: () => {},
     },
   ];

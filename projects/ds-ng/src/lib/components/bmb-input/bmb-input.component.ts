@@ -107,7 +107,6 @@ export class BmbInputComponent {
   isFocus = output<boolean>();
   isBlur = output<boolean>();
   onChange = output<HTMLInputElement>();
-  myName = output<string>();
 
   textLength: number = 0;
   isHide: boolean = true;
@@ -126,12 +125,6 @@ export class BmbInputComponent {
       this.updateErrorState();
       this.cdr.markForCheck();
     });
-  }
-
-  ngAfterViewInit(): void {
-    if (this.name()) {
-      this.myName.emit(this.name());
-    }
   }
 
   private updateErrorState(): void {

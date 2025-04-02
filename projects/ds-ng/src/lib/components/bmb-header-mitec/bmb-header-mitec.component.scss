@@ -24,16 +24,18 @@
 
     &-tec_logo {
       padding: var(--bmb-spacing-xl);
-      text-align: center;
       width: 100%;
+      height: auto;
 
       @media (min-width: 630px) {
         text-align: start;
         width: 50%;
       }
 
-      img {
+      &-image {
+        display: flex;
         width: rem.rem_calc(140);
+        fill: var(--general_contrasts-100);
       }
     }
 
@@ -74,10 +76,6 @@
         justify-content: flex-start;
       }
     }
-  }
-
-  .bmb_check-external-link-button-element {
-    color: RGBA(var(--color-charade-50));
   }
 }
 

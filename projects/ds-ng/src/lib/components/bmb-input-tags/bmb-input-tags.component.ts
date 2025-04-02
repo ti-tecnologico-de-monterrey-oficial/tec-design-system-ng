@@ -47,7 +47,7 @@ export class BmbInputTagsComponent implements OnInit {
   maxSelectedItems = input<number>();
   name = input<string>('');
 
-  showError = input<boolean>(false); // deprecated
+  showError = input<boolean>(false);
 
   showDropdown: boolean = false;
   shouldShowError: boolean = false;
@@ -66,8 +66,13 @@ export class BmbInputTagsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.control().valueChanges.subscribe(() => {
+    this.control().valueChanges.subscribe((value: string[]) => {
       this.updateErrorState();
+      const formattedOptions = this.transFormOptions(this.tagOptions());
+      this.selectedTags = formattedOptions.filter((item) =>
+        value?.includes(item.value),
+      );
+      this.cdr.markForCheck();
     });
 
     this.filterControl.valueChanges
@@ -76,15 +81,29 @@ export class BmbInputTagsComponent implements OnInit {
         this.filteredValue(value);
       });
 
-    this.filteredOptions = this.transFormOptions(this.tagOptions());
+    const formattedOptions = this.transFormOptions(this.tagOptions());
+    this.filteredOptions = formattedOptions;
+
+    const currentValues = this.control().value;
+    if (Array.isArray(currentValues)) {
+      this.selectedTags = formattedOptions.filter((item) =>
+        currentValues.includes(item.value),
+      );
+    }
   }
 
   filteredValue(value: string): void {
+    if (!value) {
+      this.filteredOptions = this.transFormOptions(this.tagOptions());
+      this.cdr.detectChanges();
+      return;
+    }
+
     const formattedOptions = this.transFormOptions(this.tagOptions());
-    let filteredOptions: string[] | IBmbDropdownItem[] =
-      formattedOptions.filter((item: IBmbDropdownItem) =>
+    let filteredOptions: IBmbDropdownItem[] = formattedOptions.filter(
+      (item: IBmbDropdownItem) =>
         item.name.toLowerCase().includes(value.toLowerCase()),
-      );
+    );
 
     this.filteredOptions = filteredOptions;
     this.cdr.detectChanges();
@@ -124,16 +143,16 @@ export class BmbInputTagsComponent implements OnInit {
   handleItemClick(item: IBmbDropdownItem) {
     this.selectedTags.push(item);
     const selectedTagsString = this.selectedTags.map((tag) => tag.value);
-    this.control().setValue(selectedTagsString.toString());
-  }
-
-  checkIfIsSelected(item: IBmbDropdownItem): boolean {
-    return !this.selectedTags.some((tag) => tag.value === item.value);
+    this.control().setValue(selectedTagsString);
   }
 
   removeTag(tag: IBmbDropdownItem) {
     this.selectedTags = this.selectedTags.filter((t) => t.value !== tag.value);
     const selectedTagsString = this.selectedTags.map((tag) => tag.value);
-    this.control().setValue(selectedTagsString.toString());
+    this.control().setValue(selectedTagsString);
+  }
+
+  checkIfIsSelected(item: IBmbDropdownItem): boolean {
+    return !this.selectedTags.some((tag) => tag.value === item.value);
   }
 }
