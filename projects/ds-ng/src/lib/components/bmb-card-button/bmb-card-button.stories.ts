@@ -422,6 +422,36 @@ export const AddContentExample = {
   },
 };
 
+export const CustomContentImageExample = {
+  name: 'Example with image, badge, and custom content',
+  args: {
+    leftContent: true,
+    leftContentImage: {
+      src: 'https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg',
+      alt: 'Left content image',
+    },
+    title: 'Title or summary',
+    badge: { text: 'Badge 1', container: false, appearance: 'success' },
+    onAddContentClick: () => {
+      console.log('onAddContentClick');
+    },
+  },
+  render: (args: any) => ({
+    template: `
+    <bmb-card-button ${attributes(args)}>
+      <!-- Custom content can be used with any combination of full interactive -->
+      <ng-template #customContent>
+        <p>
+          <strong>14 de abril de 2025, 3:00 p. m. - 3:30 p. m.</strong> <br/>
+          Campus Norte, Edificio D, Piso 1 <br/>
+          Capacidad: 8 personas · Proyector
+        </p>
+      </ng-template>
+    </bmb-card-button>
+    `,
+  }),
+};
+
 export const ImageExample = {
   name: 'Example of variant with image',
   argTypes: {
@@ -444,7 +474,7 @@ export const ImageExample = {
 };
 
 export const BadgeImageExample = {
-  name: 'Example of variant with badge and image',
+  name: 'Example of variant with badge, image, and text link.',
   args: {
     ...ImageExample.args,
     badge: { text: 'Badge 1', container: false },
@@ -459,7 +489,7 @@ export const BadgeImageExample = {
 };
 
 export const BadgeContainerImageExample = {
-  name: 'Example of variant with badge with container and image',
+  name: 'Example of variant with badge with container, image, and text link.',
   args: {
     ...BadgeImageExample.args,
     badge: { text: 'Badge 1', appearance: 'mitec_purple' },

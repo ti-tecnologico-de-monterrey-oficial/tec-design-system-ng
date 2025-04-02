@@ -1,4 +1,4 @@
-<div class="bmb_card_button">
+<section class="bmb_card_button">
   @if (isSmall()) {
     <button
       class="bmb_card_button-small"
@@ -31,6 +31,7 @@
     </button>
   } @else if (isFullInteractive()) {
     <section
+      tabindex="0"
       class="bmb_card_button-wrapper"
       [ngClass]="{
         'bmb_card_button-wrapper-button':
@@ -41,62 +42,65 @@
       }"
       (click)="handleAddContent($event)"
     >
-      <section class="bmb_card_button-box">
-        @if (leftContent()) {
-          <section
-            class="bmb_card_button-left"
-            [ngClass]="{
-              'bmb_card_button-top-header': !leftContentIcon(),
-              'bmb_card_button-top-header-start':
-                !leftContentIcon() && !!badge(),
-            }"
-          >
-            @if (!!leftContentIcon()) {
-              <div class="bmb_card_button-circle">
-                <bmb-icon
-                  [icon]="leftContentIcon()"
-                  [size]="32"
-                  class="bmb_card_button-circle-icon"
-                />
-              </div>
-            } @else {
-              <img
-                class="bmb_card_button-top-header-image"
-                [src]="leftContentImage()?.src"
-                [alt]="leftContentImage()?.alt"
-              />
-              <section class="bmb_card_button-top-header-container">
-                @if (!!badge()) {
-                  <bmb-badge
-                    class="bmb_card_button-top-header-container-title"
-                    [text]="badge()?.text!"
-                    [appearance]="badge()?.appearance ?? 'normal'"
-                    [container]="badge()?.container ?? true"
+      @if (leftContent() || isTemplate() || hasMenu()) {
+        <section class="bmb_card_button-box">
+          @if (leftContent()) {
+            <section
+              class="bmb_card_button-left"
+              [ngClass]="{
+                'bmb_card_button-top-header': !leftContentIcon(),
+                'bmb_card_button-top-header-start':
+                  !leftContentIcon() && !!badge(),
+              }"
+            >
+              @if (!!leftContentIcon()) {
+                <div class="bmb_card_button-circle">
+                  <bmb-icon
+                    [icon]="leftContentIcon()"
+                    [size]="32"
+                    class="bmb_card_button-circle-icon"
                   />
-                }
-                <h2 class="bmb_card_button-top-header-container-title">
-                  {{ title() }}
-                </h2>
-              </section>
+                </div>
+              } @else {
+                <img
+                  class="bmb_card_button-top-header-image"
+                  [src]="leftContentImage()?.src"
+                  [alt]="leftContentImage()?.alt"
+                />
+                <section class="bmb_card_button-top-header-container">
+                  @if (!!badge()) {
+                    <bmb-badge
+                      class="bmb_card_button-top-header-container-title"
+                      [text]="badge()?.text!"
+                      [appearance]="badge()?.appearance ?? 'normal'"
+                      [container]="badge()?.container ?? true"
+                    />
+                  }
+                  <h2 class="bmb_card_button-top-header-container-title">
+                    {{ title() }}
+                  </h2>
+                </section>
+              }
+            </section>
+          }
+          <section class="bmb_card_button-leading">
+            @if (isTemplate()) {
+              <div class="bmb_card_button-template">
+                <ng-content />
+              </div>
+            }
+
+            @if (hasMenu()) {
+              <div class="bmb_card_button-menu">
+                <bmb-dropdown-menu [items]="menuItems()" />
+              </div>
             }
           </section>
-        }
-        <section class="bmb_card_button-leading">
-          @if (isTemplate()) {
-            <div class="bmb_card_button-template">
-              <ng-content />
-            </div>
-          }
-
-          @if (hasMenu()) {
-            <div class="bmb_card_button-menu">
-              <bmb-dropdown-menu [items]="menuItems()" />
-            </div>
-          }
         </section>
-      </section>
+      }
       @if (!!leftContentIcon() && !leftContentImage()) {
         <section
+          tabindex="0"
           class="bmb_card_button-header"
           (click)="handleTitleClick($event)"
         >
@@ -109,21 +113,33 @@
         </section>
       }
 
-      <div class="bmb_card_button-body">
-        {{ body() }}
-        @if (
-          leftContent() &&
+      @if (
+        (leftContent() &&
           !leftContentIcon() &&
           leftContentImage() &&
-          textLink()
-        ) {
-          <bmb-text-link
-            [textLink]="textLink()?.label!"
-            icon=""
-            [link]="textLink()?.link!"
-            [target]="textLink()?.target!"
-          />
-        }
+          textLink()) ||
+        body()
+      ) {
+        <section class="bmb_card_button-body">
+          {{ body() }}
+
+          @if (
+            leftContent() &&
+            !leftContentIcon() &&
+            leftContentImage() &&
+            textLink()
+          ) {
+            <bmb-text-link
+              [textLink]="textLink()?.label!"
+              icon=""
+              [link]="textLink()?.link!"
+              [target]="textLink()?.target!"
+            />
+          }
+        </section>
+      }
+      <div class="bmb_card_button-custom-content">
+        <ng-container [ngTemplateOutlet]="customContent" />
       </div>
     </section>
   } @else {
@@ -137,4 +153,4 @@
       <div class="bmb_card_button-add-title">{{ title() }}</div>
     </button>
   }
-</div>
+</section>
