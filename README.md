@@ -16,17 +16,21 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 
 ## Componentes nuevos
 
-- `button-icon`
+- `button icon`
 
 ## Componentes actualizados
 
-- `card-button`: Se añadió una nueva variante con el título a la derecha de la imagen, soporte para `textlink` y `badge` alineado.
-- `bmb-tabs`: Se agregó soporte para manipulación externa del estado en el componente.
+- `Card button`: Se añadió una nueva variante con el título a la derecha de la imagen, soporte para `textlink` y `badge` alineado.
+- `Tabs`: Se agregó soporte para manipulación externa del estado en el componente.
 - `login`: Ajuste de colores en logos e íconos por tema, y se añadieron íconos de redes sociales (Apple, Android, Twitter, Facebook, Instagram, YouTube y WhatsApp).
-- `datepicker`: Se actualizó el estilo del componente.
-- `bmb-chat-bubbles`: Se homologaron los estilos del componente.
-- `bmb-input-tags`: Se añadió el estado de selección inicial en el componente.
+- `Datepicker`: Se actualizó el estilo del componente.
+- `Date range`: Se actualizó el estilo del componente.
+- `Chat bubbles`: Se homologaron los estilos del componente.
+- `Input tags`: Se añadió el estado de selección inicial en el componente.
 - `Modal`: Se realizaron ajustes en los botones del componente para homologar su diseño.
+- `Top bar`: Se homologaron los estilos del componente.
+- `Accordion`:  Actualización de documentación y estilos.
+- `Container button`: Se realizaron ajustes a los estilos.
 
 Puedes ver todos los componentes aqui: [Bamboo](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/foundations-colors--documentation)
 
