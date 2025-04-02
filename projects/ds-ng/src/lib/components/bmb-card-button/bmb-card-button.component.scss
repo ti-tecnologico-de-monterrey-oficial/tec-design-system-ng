@@ -2,33 +2,63 @@
 @use "../../../assets/styles/base/fonts" as fonts;
 @use "../../../assets/styles/base/mixins" as mixins;
 
+@mixin shadow($border_radius) {
+  border-radius: rem.rem_calc($border_radius);
+  box-shadow: var(--drop_shadow-color-test-shadow);
+}
+
+@mixin small_selected() {
+  .bmb_card_button-small-back {
+    background-color: var(--menu_select-surface-activated);
+  }
+
+  .bmb_card_button-small-text,
+  .bmb_card_button-small-close-icon {
+    color: var(--buttons-alternative-normal);
+  }
+}
+
 .bmb_card_button {
+  display: flex;
+  flex-direction: column;
+  border: rem.rem_calc(1) solid var(--general_contrasts-container-outline);
+  border-radius: rem.rem_calc(16);
+  height: rem.rem_calc(195);
+  width: rem.rem_calc(328);
+  position: relative;
+
+  &:has(&-small) {
+    height: rem.rem_calc(148);
+    width: rem.rem_calc(165);
+    border-radius: rem.rem_calc(8);
+    border: 0;
+  }
+
   &-wrapper {
-    background-color: var(--general_contrasts-5);
-    border: rem.rem_calc(1) solid var(--general_contrasts-container-outline);
-    border-radius: rem.rem_calc(16);
-    box-shadow: rem.rem_calc(4 4 4 0) RGBA(var(--color-charade-950), 0.5);
-    display: flex;
-    flex-direction: column;
-    height: rem.rem_calc(195);
-    max-width: rem.rem_calc(328);
+    display: block;
+    background-color: var(--containers-modal);
     padding: rem.rem_calc(24);
     position: relative;
     width: 100%;
+    height: 100%;
+    @include shadow(16);
 
-    &:hover {
-      background-color: var(--general_contrasts-50);
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 
-      .bmb_card_button-header-text {
-        color: RGBA(var(--color-charade-50));
-      }
+    &:hover:not(:disabled) {
+      background-color: var(--general_contrasts-15);
+    }
 
-      .bmb_card_button-header-icon {
-        color: RGBA(var(--color-charade-50));
-      }
-      .bmb_dropdown_menu-icon {
-        color: var(--general_contrasts-5);
-      }
+    &:focus:not(:disabled),
+    &:active:not(:disabled) {
+      background-color: var(--general_contrasts-25);
+    }
+
+    &-button {
+      cursor: pointer;
     }
   }
 
@@ -36,7 +66,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-bottom: rem.rem_calc(16);
+    margin-bottom: rem.rem_calc(8);
     min-height: rem.rem_calc(28);
   }
 
@@ -44,28 +74,48 @@
     align-items: center;
     display: flex;
     justify-content: flex-start;
+
+    &.bmb_card_button-top-header-start {
+      align-items: start;
+    }
   }
 
   &-circle {
     align-items: center;
-    background-color: var(--menu_select-label-menu-inactive);
+    background-color: var(--general_contrasts-100);
     border-radius: 100%;
     color: var(--general_contrasts-5);
     display: flex;
     height: rem.rem_calc(48);
     justify-content: center;
     width: rem.rem_calc(48);
-
-    &-icon {
-      font-size: rem.rem_calc(32);
-    }
   }
 
-  &-image {
-    border-radius: rem.rem_calc(12);
-    height: rem.rem_calc(66);
-    object-fit: cover;
-    width: rem.rem_calc(66);
+  &-top-header {
+    display: flex;
+    flex-direction: row;
+    gap: rem.rem_calc(16);
+
+    &-image {
+      border-radius: rem.rem_calc(12);
+      height: rem.rem_calc(66);
+      object-fit: cover;
+      width: rem.rem_calc(66);
+    }
+
+    &-container {
+      display: flex;
+      flex-direction: column;
+      gap: rem.rem_calc(8);
+
+      &-title {
+        @include fonts.font(5, medium);
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
   }
 
   &-leading {
@@ -75,6 +125,12 @@
     margin-left: auto;
   }
 
+  &-menu {
+    .bmb_dropdown_menu-button {
+      padding: 0 !important;
+    }
+  }
+
   &-template {
     display: flex;
     flex-flow: row wrap;
@@ -82,23 +138,18 @@
     justify-content: flex-end;
     overflow: hidden;
     padding: rem.rem_calc(0 10);
-  }
-
-  &-information {
-    display: flex;
-    gap: rem.rem_calc(10);
-    justify-content: flex-end;
-    width: 100%;
+    color: var(--general_contrasts-50);
+    gap: rem.rem_calc(16);
   }
 
   &-header {
     align-items: center;
     display: flex;
     gap: rem.rem_calc(8);
+    cursor: pointer;
 
     &-text {
       @include fonts.font(4, medium);
-      color: RGBA(var(--color-charade-950));
       max-width: 100%;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -106,37 +157,35 @@
     }
 
     &-icon {
-      color: RGBA(var(--color-charade-300));
-      font-size: rem.rem_calc(16);
+      color: rgb(var(--color-charade-300));
     }
   }
 
   &-body {
-    -webkit-box-orient: vertical;
-    color: RGBA(var(--color-charade-300));
+    @include fonts.font(3, regular);
+    color: var(--general_contrasts-50);
     display: -webkit-box;
+    max-block-size: rem.rem_calc(64);
+    -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
+    line-clamp: 3;
     overflow: hidden;
-    padding: rem.rem_calc(10 0);
+    padding: rem.rem_calc(8 0);
     text-overflow: ellipsis;
     white-space: normal;
-    @include fonts.font(3, regular);
+
+    .bmb_text-link .bmb_check-external-link-button-element {
+      line-height: 1;
+    }
   }
 
   &-add {
-    align-items: center;
-    background-color: RGBA(var(--color-mariner-700));
+    background-color: var(--buttons-primary-normal);
     border: none;
-    border-radius: rem.rem_calc(16);
-    box-shadow: rem.rem_calc(4 4 4 0) RGBA(var(--color-charade-950), 0.5);
-    color: RGBA(var(--color-white-primary));
-    display: flex;
-    flex-direction: column;
-    height: rem.rem_calc(195);
-    justify-content: center;
-    max-width: rem.rem_calc(328);
-    padding: rem.rem_calc(24);
+    color: rgb(var(--color-white-primary));
     width: 100%;
+    height: 100%;
+    @include shadow(16);
 
     &-title {
       @include fonts.font(4, medium);
@@ -147,98 +196,77 @@
       white-space: nowrap;
     }
 
-    &-icon {
-      font-size: rem.rem_calc(48);
+    &:hover:not(:disabled) {
+      background-color: var(--buttons-primary-hover);
     }
 
-    &:hover {
-      background-color: RGBA(var(--color-mariner-800));
-    }
-
-    &:focus {
-      background-color: RGBA(var(--color-mariner-500));
-    }
-
+    &:focus:not(:disabled),
     &:active:not(:disabled) {
-      box-shadow: 0 0 rem.rem_calc(16) rgba(var(--color-mariner-500), 0.6);
+      background-color: var(--buttons-primary-select);
     }
   }
 
   &-small {
-    height: rem.rem_calc(148);
+    border: none;
+    height: 100%;
     position: relative;
     transform-style: preserve-3d;
     transition: transform 0.6s;
-    width: rem.rem_calc(165);
+    width: 100%;
+    border-color: var(--general_contrasts-container-outline);
+    justify-content: flex-start;
 
-    &:focus {
-      .bmb_card_button-small-back {
-        background-color: RGBA(var(--color-mariner-100));
-        border-color: RGBA(var(--color-mariner-700));
-      }
+    &:active:not(:disabled) {
+      @include small_selected();
     }
 
-    @include mixins.media-query(992, "min") {
-      &:hover {
-        transform: rotateY(180deg);
-      }
-    }
-
-    &.flipped {
+    &:hover {
+      border-radius: rem.rem_calc(8);
+      background-color: var(--menu_select-on-surface-hovered);
       transform: rotateY(180deg);
+    }
+
+    &-flipped {
+      transform: rotateY(180deg);
+      @include small_selected();
     }
 
     &-front,
     &-back {
       align-items: center;
       backface-visibility: hidden;
-      border: rem.rem_calc(1) solid RGBA(var(--color-charade-300));
       border-radius: rem.rem_calc(8);
       display: flex;
       flex-direction: column;
       height: 100%;
-      justify-content: center;
+      justify-content: start;
       left: 0;
       padding: rem.rem_calc(8);
       position: absolute;
       top: 0;
       width: 100%;
+      gap: rem.rem_calc(8);
     }
 
     &-front {
-      background-color: RGBA(var(--color-charade-50));
-
-      @include mixins.media-query(992, "max") {
-        justify-content: flex-start;
-      }
+      background-color: var(--containers-container-button);
+      border: rem.rem_calc(1) solid var(--general_contrasts-container-outline);
+      @include shadow(8);
     }
 
     &-back {
-      background-color: RGBA(var(--color-mariner-100));
+      background-color: var(--menu_select-on-surface-hovered);
       transform: rotateY(180deg);
-
-      @include mixins.media-query(992, "min") {
-        justify-content: flex-start;
-      }
     }
 
     &-top-icon {
-      color: RGBA(var(--color-charade-500));
+      align-self: flex-end;
+      color: var(--general_contrasts-50);
     }
 
-    &-close-icon {
-      color: RGBA(var(--color-charade-700));
-    }
-
-    &-top-icon,
     &-close-icon {
       align-self: flex-end;
-      display: none;
-      font-size: rem.rem_calc(24);
-
-      @include mixins.media-query(992, "max") {
-        display: flex;
-      }
+      color: var(--general_contrasts-75);
     }
 
     &-bot-icon {
@@ -246,55 +274,18 @@
       width: rem.rem_calc(48);
     }
 
-    &-title,
-    &-text {
-      text-align: center;
-    }
-
     &-title {
-      color: RGBA(var(--color-charade-700));
+      color: var(--general_contrasts-75);
       @include fonts.font(4, bold);
+      text-align: center;
     }
 
     &-text {
       @include fonts.font(1, regular);
-      color: RGBA(var(--color-charade-950));
-      margin-top: rem.rem_calc(24);
-      text-align: left;
+      color: var(--general_contrasts-75);
+      padding-top: rem.rem_calc(16);
+      text-align: center;
       width: 100%;
-
-      @include mixins.media-query(992, "max") {
-        margin-top: rem.rem_calc(8);
-      }
-    }
-  }
-}
-
-[data-theme="dark"],
-.storybook-dark-theme {
-  .bmb_card_button {
-    &-wrapper {
-      &:hover {
-        .bmb_card_button-body {
-          color: RGBA(var(--color-charade-300));
-        }
-      }
-    }
-
-    &-header {
-      &-text {
-        color: RGBA(var(--color-charade-50));
-      }
-
-      &-icon {
-        color: RGBA(var(--color-charade-300));
-      }
-    }
-
-    &-title,
-    &-icon,
-    &-body {
-      color: RGBA(var(--color-charade-500));
     }
   }
 }

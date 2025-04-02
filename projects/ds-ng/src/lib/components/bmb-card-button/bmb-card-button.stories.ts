@@ -1,52 +1,17 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { BmbCardButtonComponent } from './bmb-card-button.component';
-import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
-import { BmbTagComponent } from '../bmb-tags/bmb-tags.component';
-import { ActivatedRoute } from '@angular/router';
-import { action } from '@storybook/addon-actions';
-import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
-
-const appearanceOptions: IBbmBgAppearance[] = [
-  'normal',
-  'strong',
-  'success',
-  'info',
-  'warning',
-  'error',
-  'brand',
-  'background',
-  'disabled',
-  'mitec_blue',
-  'mitec_red',
-  'mitec_green',
-  'mitec_orange',
-  'mitec_light_green',
-  'mitec_purple',
-];
+import { attributes } from '../../utils/utils';
+import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
+import { InputSignal } from '@angular/core';
+import { IDropdownItem } from '../bmb-dropdown-menu/bmb-dropdown-menu.component';
 
 export default {
   title: 'Macro Componentes/Card Button',
   component: BmbCardButtonComponent,
   decorators: [
     moduleMetadata({
-      imports: [
-        CommonModule,
-        BmbIconComponent,
-        BmbBadgeComponent,
-        BmbTagComponent,
-      ],
-      providers: [
-        {
-          provide: ActivatedRoute,
-          useValue: {
-            snapshot: {
-              url: [],
-            },
-          },
-        },
-      ],
+      imports: [BmbIconComponent, BmbActionIconComponent],
     }),
   ],
   parameters: {
@@ -120,7 +85,7 @@ Below is an example of how to use it in HTML:
     },
     onSmallClick: {
       name: 'On click(small)',
-      control: false,
+      control: null,
       description:
         'These events are triggered once the button small is clicked. (onSmallClick)="onSmallClick($event)"',
       table: {
@@ -134,7 +99,7 @@ Below is an example of how to use it in HTML:
       description: 'Toggle between Full Interactive and Add Content mode.',
       table: {
         category: 'Full Interactive',
-        defaultValue: { summary: 'false' },
+        defaultValue: { summary: 'true' },
         type: { summary: 'boolean' },
       },
     },
@@ -151,20 +116,29 @@ Below is an example of how to use it in HTML:
     badge: {
       name: 'Badge',
       control: { type: 'object' },
-      description: 'Text and appearance of the Badge.',
+      description: `
+Text, appearance, and container of the Badge.
+
+
+- \`text\`: (string) Sets the text of the badge. The width will increase depending on the length of the text..
+
+- \`appearance\`: (optional, string) Sets the appearance of the badge, affecting its visual style.
+
+  **Default appearance**: normal.
+
+  **Note**: disabled and background do not exist for container.
+
+- \`container\`: (optional, boolean) Sets the container flag. This displays the container when true; if false, it displays a bullet..
+
+      IBmbBadgeInfo {
+        text: string;
+        appearance: string;
+        container?: boolean;
+      }
+      `,
       table: {
         category: 'Full Interactive',
-        type: { summary: '{ text: string; appearance: IBbmBgAppearance }' },
-      },
-    },
-    leftContentIcon: {
-      name: 'Left Content Icon',
-      control: { type: 'text' },
-      description:
-        'The icon for the left content when the card is interactive.',
-      table: {
-        category: 'Full Interactive',
-        type: { summary: 'string' },
+        type: { summary: 'IBmbBadgeInfo' },
       },
     },
     leftContent: {
@@ -177,6 +151,32 @@ Below is an example of how to use it in HTML:
         type: { summary: 'boolean' },
       },
     },
+    leftContentIcon: {
+      name: 'Left Content Icon',
+      control: { type: 'text' },
+      description:
+        'The icon for the left content when the card is interactive.',
+      table: {
+        category: 'Full Interactive',
+        type: { summary: 'string' },
+      },
+    },
+    leftContentImage: {
+      name: 'Left Content Image',
+      control: { type: 'object' },
+      description: `
+An object with \`src\` and \`alt\` Full Interactive to display the image if left content is enabled and no icon is provided.
+
+    IBmbImageInfo {
+      src: string;
+      alt: string;
+    }
+      `,
+      table: {
+        category: 'Full Interactive',
+        type: { summary: 'IBmbImageInfo' },
+      },
+    },
     hasMenu: {
       name: 'Has Menu',
       control: { type: 'boolean' },
@@ -186,33 +186,37 @@ Below is an example of how to use it in HTML:
         type: { summary: 'boolean' },
       },
     },
-    leftContentImage: {
-      name: 'Left Content Image',
-      control: { type: 'object' },
-      description:
-        'An object with `src` and `alt` Full Interactive to display the image if left content is enabled and no icon is provided.',
-      table: {
-        category: 'Full Interactive',
-        type: { summary: '{ src: string, alt: string }' },
-      },
-    },
     menuItems: {
       name: 'Menu Items',
       control: { type: 'object' },
       description: `
-    An array of objects representing menu items, providing additional actions or navigation options within the card button. Each object in the array should contain the following properties:
+An array of objects representing menu items, providing additional actions or navigation options within the card button. Each object in the array should contain the following properties:
 
-    - \`icon\`: (string) The name of the icon displayed next to the menu item text.
-    - \`text\`: (string) The text label for the menu item.
-    - \`url\`: (optional, string) The URL to navigate to when the menu item is clicked.
-    - \`target\`: (optional, string) Specifies where to display the linked URL (e.g., \`_self\`, \`_blank\`).
-    - \`action\`: (optional, function) A custom function executed when the menu item is clicked. This is useful for triggering specific behaviors or events.
+- \`icon\`: (string) The name of the icon displayed next to the menu item text.
+
+- \`text\`: (string) The text label for the menu item.
+
+- \`url\`: (optional, string) The URL to navigate to when the menu item is clicked.
+
+- \`target\`: (optional, string) Specifies where to display the linked URL (e.g., \`_self\`, \`_blank\`).
+
+- \`action\`: (optional, function) A custom function executed when the menu item is clicked. This is useful for triggering specific behaviors or events.
+
+      IDropdownItem {
+        icon: string;
+        text: string;
+        url?: string;
+        target?: IBmbTargetLink;
+        action?: () => void;
+      }
+
+      IBmbTargetLink = '_blank' | '_parent' | '_self' | '_top'
+
       `,
       table: {
         category: 'Full Interactive',
         type: {
-          summary:
-            '{ icon: string, text: string, url?: string, target?: string, action?: function }[]',
+          summary: 'IDropdownItem[]',
         },
       },
     },
@@ -220,24 +224,41 @@ Below is an example of how to use it in HTML:
       name: 'Is Template',
       control: { type: 'boolean' },
       description: `
-Enable template usage for the icons show before menu dropdown. You can place less than 4 icons.
-Example:
+Enable the use of templates so that icons appear before the drop-down menu. You cannot place more than four icons or action icon.
 
-\`\`\`html
+**HTML architecture**
+
+\`\`\`
     <bmb-card-button>
-      <div style="display: flex; gap: 1em">
-        <bmb-icon
-          [icon]="'settings'"
-          class="bmb_card_button-circle-icon"
-        ></bmb-icon>
-        <bmb-icon [icon]="'star'" class="bmb_card_button-circle-icon"></bmb-icon>
+      <div>
+        <bmb-action-icon />
+        <bmb-icon />
       </div>
     </bmb-card-button>
 \`\`\`
+
+Note: there is an example in the **Template example** the section.
         `,
       table: {
         category: 'Full Interactive',
         type: { summary: 'boolean' },
+      },
+    },
+    textLink: {
+      name: 'Text link',
+      control: { type: 'object' },
+      description: `
+Text link used in the image variant.
+
+      IBmbLinkConfiguration = {
+        label: string;
+        link: string;
+        target?: IBmbTargetLink;
+      }
+      `,
+      table: {
+        category: 'Full Interactive',
+        type: { summary: 'IBmbLinkConfiguration' },
       },
     },
     title: {
@@ -253,16 +274,18 @@ Example:
       name: 'Icon',
       control: { type: 'text' },
       description: `
-    Specifies the icon displayed on the card button. This icon is used to visually represent the primary action or state of the button. You can use any icon from the Material Icons library or a custom icon set.
+Specifies the icon displayed on the card button. This icon is used to visually represent the primary action or state of the button. You can use any icon from the Material Icons library or a custom icon set.
 
-    Examples:
-    - \`'info'\`: Displays an information icon.
-    - \`'settings'\`: Displays a settings icon.
+Examples:
 
-    Usage:
-    \`\`\`html
-    <bmb-icon [icon]="'info'"></bmb-icon>
-    \`\`\`
+- \`info\`: Displays an information icon.
+- \`settings\`: Displays a settings icon.
+
+Usage:
+
+\`\`\`html
+<bmb-icon [icon]="'info'"></bmb-icon>
+\`\`\`
       `,
       table: {
         category: 'Common Properties',
@@ -271,7 +294,7 @@ Example:
     },
     onTitleClick: {
       name: 'On Title Click',
-      control: false,
+      control: null,
       description: 'Event emitted when the title is clicked.',
       table: {
         type: { summary: 'function' },
@@ -280,7 +303,7 @@ Example:
     },
     onAddContentClick: {
       name: 'On Add Content Click',
-      control: false,
+      control: null,
       description: 'Event emitted when the add content button is clicked.',
       table: {
         type: { summary: 'function' },
@@ -288,86 +311,179 @@ Example:
       },
     },
   },
-  args: {
-    isFullInteractive: true,
-    title: 'Sample Card Title Sample Card Title Sample Card Title',
-    body: 'This is the body content of the card button. It can be long and will be truncated with ellipsis after 3 lines. This is the body content of the card button. It can be long and will be truncated with ellipsis after 3 lines.',
-    badge: { text: 'Badge 1', appearance: 'normal' },
-    icon: 'info',
-    leftContentIcon: '',
-    leftContent: false,
-    hasMenu: true,
-    onTitleClick: action('Title clicked'),
-    onAddContentClick: action('Add content clicked'),
-    onSmallClick: action('Small clicked'),
-    leftContentImage: {
-      src: 'https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg',
-      alt: 'Left content image',
-    },
-    menuItems: [
-      {
-        icon: 'link',
-        text: 'External Link External Link External Link',
-        url: 'https://example.com',
-        target: '_self',
-      },
-      {
-        icon: 'link',
-        text: 'internal Link',
-        url: '/vivencia',
-      },
-      {
-        icon: 'delete',
-        text: 'Delete',
-        action: () => alert('Delete clicked!'),
-      },
-      {
-        icon: 'settings',
-        text: 'Settings',
-        action: () => console.log('Settings clicked'),
-      },
-    ],
-    botImage: {
-      src: 'https://image',
-      alt: 'Left content image',
-    },
-    isSmall: false,
-    smallIcon: 'info',
-  },
+  args: {},
 } as Meta<typeof BmbCardButtonComponent>;
 
 type Story = StoryObj<BmbCardButtonComponent>;
 
-export const Default: Story = {};
+export const Default = {
+  name: 'Full interactive example (no menu)',
+  argTypes: {
+    onTitleClick: {
+      control: false,
+    },
+  },
+  args: {
+    leftContent: true as unknown as InputSignal<boolean>,
+    leftContentIcon: 'note_add' as unknown as InputSignal<string>,
+    title: 'Title or Text summary' as unknown as InputSignal<string>,
+    icon: 'group' as unknown as InputSignal<string>,
+    body: `This is the body content of the card button.
+    It can be long and will be truncated with ellipsis after 3 lines.
+    This is the body content of the card button.
+    It can be long and will be truncated with ellipsis after 3 lines.` as unknown as InputSignal<string>,
+  },
+  onTitleClick: () => {
+    console.log('onTitleClick');
+  },
+};
 
-export const NoFullInteractive = {
-  ...Default,
+export const MenuExample = {
+  name: 'Full interactive example (menu)',
+  argTypes: {
+    onTitleClick: {
+      control: false,
+    },
+  },
   args: {
     ...Default.args,
+    hasMenu: true as unknown as InputSignal<boolean>,
+    menuItems: [
+      {
+        icon: 'link',
+        text: 'Link',
+        url: 'https://example.com',
+        target: '_back',
+      },
+      {
+        icon: 'delete',
+        text: 'Delete',
+        url: 'https://example.com',
+        target: '_back',
+      },
+      {
+        icon: 'settings',
+        text: 'Settings',
+        url: 'https://example.com',
+        target: '_back',
+      },
+    ] as unknown as InputSignal<IDropdownItem[]>,
+    onTitleClick: () => {
+      console.log('onTitleClick');
+    },
+  },
+};
+
+export const TemplateExample = {
+  name: 'Template example',
+  argTypes: {
+    onTitleClick: {
+      control: false,
+    },
+  },
+  args: {
+    ...MenuExample.args,
+    isTemplate: 'true',
+    onTitleClick: () => {
+      console.log('onTitleClick');
+    },
+  },
+  render: (args: any) => ({
+    template: `
+    <bmb-card-button ${attributes(args)}>
+    <!-- In the template you can use bmb-icon or bmb-action-icon -->
+      <bmb-icon icon="settings" [size]="24" />
+      <bmb-action-icon
+        icon="thumb_up"
+        [iconSize]="24"
+        [dotNotification]="5"
+        (buttonClick)="buttonClick($event)"
+      />
+    </bmb-card-button>
+    `,
+  }),
+};
+
+export const AddContentExample = {
+  name: 'Add content example',
+  argTypes: {
+    onAddContentClick: {
+      control: false,
+    },
+  },
+  args: {
     isFullInteractive: false,
+    title: 'Create new skill',
+    icon: 'add_circle',
+    onAddContentClick: () => {
+      console.log('onAddContentClick');
+    },
   },
 };
 
-export const LeftContent = {
-  ...Default,
+export const ImageExample = {
+  name: 'Example of variant with image',
+  argTypes: {
+    onAddContentClick: {
+      control: false,
+    },
+  },
   args: {
-    ...Default.args,
     leftContent: true,
+    leftContentImage: {
+      src: 'https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg',
+      alt: 'Left content image',
+    },
+    title: 'Title or summary',
+    body: `Test example | Test example | Test example`,
+    onAddContentClick: () => {
+      console.log('onAddContentClick');
+    },
   },
 };
 
-export const NoMenu = {
-  ...Default,
+export const BadgeImageExample = {
+  name: 'Example of variant with badge and image',
   args: {
-    ...Default.args,
-    hasMenu: false,
+    ...ImageExample.args,
+    badge: { text: 'Badge 1', container: false },
+    body: `This is the body content of the card button.
+    Lorem upsum aovei trirangil porilnem menuandos flenzhcrunf...`,
+    textLink: {
+      label: 'More',
+      link: 'https://example.com',
+      target: '_back',
+    },
   },
 };
 
-export const SmallCard = {
-  ...Default,
+export const BadgeContainerImageExample = {
+  name: 'Example of variant with badge with container and image',
   args: {
-    ...Default.args,
+    ...BadgeImageExample.args,
+    badge: { text: 'Badge 1', appearance: 'mitec_purple' },
+  },
+};
+
+export const SmallCardExample = {
+  name: 'Small card example',
+  argTypes: {
+    onSmallClick: {
+      control: false,
+    },
+  },
+  args: {
     isSmall: true,
+    smallTitle: 'Title',
+    smallDescription:
+      'Lorem upsum aovei trirangil porilnem menuandos flenzhcrunf',
+    botImage: {
+      src: 'https://picsum.photos/id/9/200/300',
+      alt: 'Left content image',
+    },
+    smallIcon: 'info',
+    onSmallClick: () => {
+      console.log('onSmallClick');
+    },
   },
 };

@@ -5,13 +5,14 @@
     padding: rem.rem_calc(6) 0 !important;
     position: relative;
     min-height: auto;
+    color: var(--general_contrasts-50);
 
     &:hover {
-      color: var(--buttons-primary-normal);
+      color: var(--buttons-primary-hover);
     }
 
     &:focus {
-      color: var(--general_contrasts-50);
+      color: var(--buttons-primary-select);
     }
   }
 }
