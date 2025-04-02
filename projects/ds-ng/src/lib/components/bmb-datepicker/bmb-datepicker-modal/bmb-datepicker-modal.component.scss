@@ -16,7 +16,8 @@
 
   &-nav {
     list-style: none;
-    padding: var(--bmb-spacing-none) var(--bmb-spacing-none) var(--bmb-spacing-m);
+    padding: var(--bmb-spacing-none) var(--bmb-spacing-none)
+      var(--bmb-spacing-m);
 
     &-button {
       &.bmb_datepicker-modal-button {

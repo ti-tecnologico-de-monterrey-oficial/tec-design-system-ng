@@ -14,21 +14,21 @@
         [lang]="lang()"
       />
     } @else { -->
-      <bmb-input
-        [placeholder]="placeholder()"
-        [label]="label()"
-        [icon]="icon()"
-        [isRequired]="isRequired()"
-        [disabled]="disabled()"
-        [appearance]="appearance()"
-        [control]="control()"
-        [isRequired]="isRequired()"
-        (isFocus)="handleFocusedEvent($event)"
-        [helperMessage]="dateFormat()"
-        [errorMessage]="getErrorMessage(control().errors)"
-        [name]="name()"
-        [isClearable]="isClearable()"
-      />
+    <bmb-input
+      [placeholder]="placeholder()"
+      [label]="label()"
+      [icon]="icon()"
+      [isRequired]="isRequired()"
+      [disabled]="disabled()"
+      [appearance]="appearance()"
+      [control]="control()"
+      [isRequired]="isRequired()"
+      (isFocus)="handleFocusedEvent($event)"
+      [helperMessage]="dateFormat()"
+      [errorMessage]="getErrorMessage(control().errors)"
+      [name]="name()"
+      [isClearable]="isClearable()"
+    />
     <!-- } -->
     @if (isWindowOpen) {
       <bmb-datepicker-modal

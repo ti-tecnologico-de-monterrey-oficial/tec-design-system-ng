@@ -60,7 +60,7 @@
     padding: var(--bmb-radius-m);
     box-shadow: rem.rem_calc(0 2 5) rgba(0, 0, 0, 0.1);
 
-    &-container{
+    &-container {
       max-width: 70%;
     }
 
@@ -114,7 +114,8 @@
     }
 
     @keyframes thinking {
-      0%, 100% {
+      0%,
+      100% {
         opacity: 0.3;
       }
       50% {
@@ -153,7 +154,7 @@
       padding-top: rem.rem_calc(15);
     }
 
-    &-time{
+    &-time {
       padding-top: rem.rem_calc(15);
     }
   }

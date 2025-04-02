@@ -67,7 +67,7 @@ export class BmbTopBarComponent implements OnInit {
   windowWidth: number = window.innerWidth;
   imageDefault = 'assets/images/tec-logo.svg';
   mobileImageDefault = 'assets/images/tec-logo-mob.svg';
-  imageMitecDefault = 'assets/images/logos-mitec/logo_mitec.png'
+  imageMitecDefault = 'assets/images/logos-mitec/logo_mitec.png';
 
   @HostListener('window:resize', ['$event'])
   onResize(event: Event): void {
@@ -77,13 +77,11 @@ export class BmbTopBarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(this.image == ''){
-      this.image = this.mitec
-        ? this.imageMitecDefault
-        : this.imageDefault;
+    if (this.image == '') {
+      this.image = this.mitec ? this.imageMitecDefault : this.imageDefault;
     }
 
-    if(this.mobileImage == ''){
+    if (this.mobileImage == '') {
       this.mobileImage = this.mitec
         ? this.imageMitecDefault
         : this.mobileImageDefault;

@@ -82,14 +82,17 @@
       </ul>
     }
     @case ("month") {
-      <ul class="bmb_datepicker-modal-calendar-list-months bmb_datepicker-modal-calendar">
+      <ul
+        class="bmb_datepicker-modal-calendar-list-months bmb_datepicker-modal-calendar"
+      >
         @for (month of monthsNames; track $index) {
-          <li
-            class="bmb_datepicker-modal-calendar-item"
-          >
+          <li class="bmb_datepicker-modal-calendar-item">
             <button
               class="bmb_datepicker-modal-button bmb_datepicker-modal-calendar-list-item modal-persist"
-              [ngClass]="{'bmb_datepicker-modal-calendar-list-item-selected': (selectedMonth - 1) === $index}"
+              [ngClass]="{
+                'bmb_datepicker-modal-calendar-list-item-selected':
+                  selectedMonth - 1 === $index,
+              }"
               bmbButton
               appearance="transparent"
               (click)="handleMonthChange($index)"
@@ -101,12 +104,17 @@
       </ul>
     }
     @case ("year") {
-      <ul class="bmb_datepicker-modal-calendar-list-years bmb_datepicker-modal-calendar">
+      <ul
+        class="bmb_datepicker-modal-calendar-list-years bmb_datepicker-modal-calendar"
+      >
         @for (year of getYears(); track $index) {
           <li class="bmb_datepicker-modal-calendar-item">
             <button
               class="bmb_datepicker-modal-button bmb_datepicker-modal-calendar-list-item modal-persist"
-              [ngClass]="{'bmb_datepicker-modal-calendar-list-item-selected': isSelectedYear(year)}"
+              [ngClass]="{
+                'bmb_datepicker-modal-calendar-list-item-selected':
+                  isSelectedYear(year),
+              }"
               bmbButton
               appearance="transparent"
               (click)="handleYearChange(year)"

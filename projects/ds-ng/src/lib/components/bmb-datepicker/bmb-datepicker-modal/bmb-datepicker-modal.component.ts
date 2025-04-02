@@ -24,7 +24,10 @@ import { orderDayNames } from '../../../utils/utils';
     BmbButtonDirective,
   ],
   templateUrl: './bmb-datepicker-modal.component.html',
-  styleUrls: ['./bmb-datepicker-modal.component.scss', '../../bmb-input/bmb-input.component.scss'],
+  styleUrls: [
+    './bmb-datepicker-modal.component.scss',
+    '../../bmb-input/bmb-input.component.scss',
+  ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -89,7 +92,8 @@ export class BmbDatepickerModalComponent implements OnInit {
     const classList = [];
     if (this.selectedDate && date.hasSame(this.selectedDate, 'day'))
       classList.push('bmb_datepicker-modal-button-selected');
-    if (this.now().hasSame(date, 'day')) classList.push('bmb_datepicker-modal-button-today');
+    if (this.now().hasSame(date, 'day'))
+      classList.push('bmb_datepicker-modal-button-today');
     return classList;
   }
 
@@ -98,17 +102,20 @@ export class BmbDatepickerModalComponent implements OnInit {
   }
 
   ngOnInit() {
-
     if (this.value()) {
-      const formattedDate = DateTime.fromFormat(this.value(), this.dateFormat());
+      const formattedDate = DateTime.fromFormat(
+        this.value(),
+        this.dateFormat(),
+      );
       this.selectedDate = formattedDate;
       this.selectedYear = formattedDate.year;
       this.selectedMonth = formattedDate.month;
-      this.month = this.monthsNames[formattedDate.month - 1]
+      this.month = this.monthsNames[formattedDate.month - 1];
     } else {
       this.selectedYear = this.now().year;
       this.selectedMonth = this.now().month;
-      this.month = this.monthsNames[(this.selectedMonth || this.now().month) - 1]
+      this.month =
+        this.monthsNames[(this.selectedMonth || this.now().month) - 1];
     }
   }
 
@@ -136,7 +143,10 @@ export class BmbDatepickerModalComponent implements OnInit {
 
   checkIfDisabled(date: DateTime): boolean {
     if (this.disableDatesBefore()) {
-      return date.startOf('day') <= (this.disableDatesBefore()?.startOf('day') ?? DateTime.fromMillis(0));
+      return (
+        date.startOf('day') <=
+        (this.disableDatesBefore()?.startOf('day') ?? DateTime.fromMillis(0))
+      );
     }
 
     if (this.disableDatesAfter()) {

@@ -16,7 +16,13 @@ import { BmbDotPaginatorComponent } from '../bmb-dot-paginator/bmb-dot-paginator
 @Component({
   selector: 'bmb-chat-bubble',
   standalone: true,
-  imports: [BmbUserImageComponent, CommonModule, BmbIconComponent, BmbTextLinkComponent, BmbDotPaginatorComponent],
+  imports: [
+    BmbUserImageComponent,
+    CommonModule,
+    BmbIconComponent,
+    BmbTextLinkComponent,
+    BmbDotPaginatorComponent,
+  ],
   templateUrl: './bmb-chat-bubbles.component.html',
   styleUrl: './bmb-chat-bubbles.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -29,44 +35,41 @@ export class BmbChatBubblesComponent {
   gptIcons = input<boolean>(false);
   isThinking = input<boolean>(false);
 
-  iconBotDefault = computed(
-      () => this.gptBot() ? '/assets/images/bot-icons/chat_gpt.svg' : this.iconBot(),
+  iconBotDefault = computed(() =>
+    this.gptBot() ? '/assets/images/bot-icons/chat_gpt.svg' : this.iconBot(),
   );
 
-  gptActiveIcons = input<IBmbChatGptIcons>(
-    {
-      repeat: true,
-      voice: true,
-      copy: true,
-      like: true,
-      dislike: true,
-    }
-  )
+  gptActiveIcons = input<IBmbChatGptIcons>({
+    repeat: true,
+    voice: true,
+    copy: true,
+    like: true,
+    dislike: true,
+  });
 
   onRepeatRequest = output<void>();
   onVoice = output<void>();
   onCopy = output<void>();
   onLike = output<void>();
   onDislike = output<void>();
-  
 
-  handleRepeat(){
-    this.onRepeatRequest.emit()
+  handleRepeat() {
+    this.onRepeatRequest.emit();
   }
 
-  handleVoice(){
-    this.onVoice.emit()
+  handleVoice() {
+    this.onVoice.emit();
   }
 
-  handleCopyContent(){
+  handleCopyContent() {
     this.onCopy.emit();
   }
 
-  handleLike(){
-    this.onLike.emit()
+  handleLike() {
+    this.onLike.emit();
   }
 
-  handleDislike(){
-    this.onDislike.emit()
+  handleDislike() {
+    this.onDislike.emit();
   }
 }
