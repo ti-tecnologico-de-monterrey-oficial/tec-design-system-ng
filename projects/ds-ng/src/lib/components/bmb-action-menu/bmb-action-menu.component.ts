@@ -30,6 +30,7 @@ export class BmbActionMenuComponent implements AfterContentInit {
   showHeader = input<boolean>(true);
   isAList = input<boolean>(true);
   projectedContent: TemplateRef<any>[] = [];
+
   @ContentChildren(TemplateRef) contentTemplates!: QueryList<TemplateRef<any>>;
 
   ngAfterContentInit() {
