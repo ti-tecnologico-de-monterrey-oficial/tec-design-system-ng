@@ -42,7 +42,7 @@ export class BmbAccordionControlDirective implements OnInit {
           const header = accordion
             .querySelector('section')
             .querySelector('header');
-          const section = accordion.querySelector('section')
+          const section = accordion.querySelector('section');
 
           this.renderer.removeClass(section, 'active');
           this.renderer.removeClass(content, 'bmb_accordion-content-open');
@@ -54,8 +54,8 @@ export class BmbAccordionControlDirective implements OnInit {
           const content = accordion
             .querySelector('section')
             .querySelector('section');
-          const section = accordion.querySelector('section')
-          
+          const section = accordion.querySelector('section');
+
           this.renderer.addClass(section, 'active');
           this.renderer.addClass(content, 'bmb_accordion-content-open');
           this.renderer.addClass(header, 'bmb_accordion-header-open');

@@ -1,4 +1,4 @@
-import { TemplateRef } from "@angular/core";
+import { TemplateRef } from '@angular/core';
 
 export type TBmbMessageType = 'text' | 'mixed' | 'image' | 'link' | 'template';
 export type IBmbBubblePosition = 'top' | 'bottom';
@@ -15,7 +15,7 @@ export interface MessageContent {
   text?: string;
   imageUrl?: string;
   link?: string;
-  template?: TemplateRef<any>
+  template?: TemplateRef<any>;
 }
 
 export interface IBmbChatGptIcons {

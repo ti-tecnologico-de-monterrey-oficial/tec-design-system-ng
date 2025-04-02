@@ -38,13 +38,13 @@
             'bmb_chat-bubble-msg-top': !message().isUserMessage,
           }"
         >
-          @if(isThinking()){
+          @if (isThinking()) {
             <div class="bmb_chat-bubble-msg-thinking-dots">
               <span class="bmb_chat-bubble-msg-thinking-dot"></span>
               <span class="bmb_chat-bubble-msg-thinking-dot"></span>
               <span class="bmb_chat-bubble-msg-thinking-dot"></span>
             </div>
-          }@else {
+          } @else {
             @if (message().type === "mixed") {
               <p>{{ message().content.text }}</p>
               <img
@@ -53,11 +53,11 @@
                 alt="Message Img"
               />
             }
-  
+
             @if (message().type === "text") {
               <p>{{ message().content.text }}</p>
             }
-  
+
             @if (message().type === "link") {
               <bmb-text-link
                 [textLink]="message().content.text!"
@@ -67,9 +67,11 @@
                 [disabled]="false"
               ></bmb-text-link>
             }
-  
-            @if(message().type === "template"){
-              <ng-container *ngTemplateOutlet="message().content.template!"></ng-container>
+
+            @if (message().type === "template") {
+              <ng-container
+                *ngTemplateOutlet="message().content.template!"
+              ></ng-container>
             }
           }
         </div>
@@ -80,7 +82,9 @@
           }"
         >
           @if (message().isUserMessage) {
-            <p class="bmb_chat-bubble-extra-time">{{ message().time | date: "hh:mm a" }}</p>
+            <p class="bmb_chat-bubble-extra-time">
+              {{ message().time | date: "hh:mm a" }}
+            </p>
           } @else {
             <div class="bmb_chat-bubble-extra-container">
               @if (gptIcons()) {
@@ -121,11 +125,12 @@
                 ></bmb-icon>
               }
             </div>
-            <p class="bmb_chat-bubble-extra-time">{{ message().time | date: "hh:mm a" }}</p>
+            <p class="bmb_chat-bubble-extra-time">
+              {{ message().time | date: "hh:mm a" }}
+            </p>
           }
         </div>
       </div>
     </div>
-
   </section>
 </section>
