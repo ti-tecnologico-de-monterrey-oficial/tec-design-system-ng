@@ -64,6 +64,20 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'boolean (optional)' },
       },
     },
+    isOutline: {
+      name: 'Outline',
+      control: { type: 'boolean' },
+      description: `
+Sets the appearance of the outline when true.
+
+**Note:** Show container must also be true.
+      `,
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'true' },
+        type: { summary: 'boolean (optional)' },
+      },
+    },
     disabled: {
       name: 'Disabled',
       control: {
@@ -112,9 +126,20 @@ Below is an example of how you can use this component in HTML:
 
 type Story = StoryObj<BmbButtonIconComponent>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  name: 'Container on, default variant example',
+};
+
+export const outlineExample = {
+  name: 'Container on, outline variant example',
+  args: {
+    icon: 'thumb_down',
+    isOutline: true,
+  },
+};
 
 export const NoContainerExample = {
+  name: 'No container variant example',
   args: {
     icon: 'help',
     showContainer: false,

@@ -224,7 +224,7 @@ An array of objects representing menu items, providing additional actions or nav
       name: 'Is Template',
       control: { type: 'boolean' },
       description: `
-Enable the use of templates so that icons appear before the drop-down menu. You cannot place more than four icons or action icon.
+Enable the use of templates so that icons appear before the drop-down menu. You cannot place more than four icons or action icon or bookmark.
 
 **HTML architecture**
 
@@ -233,6 +233,7 @@ Enable the use of templates so that icons appear before the drop-down menu. You 
       <div>
         <bmb-action-icon />
         <bmb-icon />
+        <bmb-bookmark />
       </div>
     </bmb-card-button>
 \`\`\`

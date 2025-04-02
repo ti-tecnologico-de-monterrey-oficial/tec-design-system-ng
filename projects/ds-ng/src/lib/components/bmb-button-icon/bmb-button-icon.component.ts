@@ -24,6 +24,7 @@ export class BmbButtonIconComponent {
   showContainer = input<boolean>(true);
   disabled = input<boolean>(false);
   active = model<boolean>(false);
+  isOutline = model<boolean>(false);
 
   onButtonClick = output<void>();
 
