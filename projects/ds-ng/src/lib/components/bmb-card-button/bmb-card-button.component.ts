@@ -59,7 +59,7 @@ export class BmbCardButtonComponent {
   leftContent = input<boolean>(false);
   hasMenu = input<boolean>(false);
   menuItems = input<IDropdownItem[]>([]);
-  iconTemplate: TemplateRef<any> | null = null;//Deprecated
+  iconTemplate: TemplateRef<any> | null = null; //Deprecated
   isTemplate = input<boolean>(false);
   textLink = input<IBmbLinkConfiguration>();
 
