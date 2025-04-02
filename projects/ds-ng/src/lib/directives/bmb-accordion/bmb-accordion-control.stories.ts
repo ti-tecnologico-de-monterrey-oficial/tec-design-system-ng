@@ -56,13 +56,13 @@ export const OneItem: Story = {
     template: `
       <section bmbAccordionControl>
         <bmb-accordion
+            [accordionId]="1"
             [icon]="icon"
             [borderRadius]="'m'"
             [margin]="'m'"
             [paddingHeader]="'m'"
             [paddingContent]="'m'"
             [hideToggle]="true"
-            [active]="true"
             [disabled]="false"
         >
             <ng-template #bmbAccordionHeader>1</ng-template>
@@ -87,13 +87,13 @@ export const OneItem: Story = {
         </bmb-accordion>
 
         <bmb-accordion
+            [accordionId]="2"
             [icon]="icon"
             [borderRadius]="'m'"
             [margin]="'m'"
             [paddingHeader]="'m'"
             [paddingContent]="'m'"
             [hideToggle]="true"
-            [active]="true"
             [disabled]="false"
         >
             <ng-template #bmbAccordionHeader>2</ng-template>
@@ -118,13 +118,13 @@ export const OneItem: Story = {
         </bmb-accordion>
 
         <bmb-accordion
+            [accordionId]="3"
             [icon]="icon"
             [borderRadius]="'m'"
             [margin]="'m'"
             [paddingHeader]="'m'"
             [paddingContent]="'m'"
             [hideToggle]="true"
-            [active]="true"
             [disabled]="false"
         >
             <ng-template #bmbAccordionHeader>3</ng-template>

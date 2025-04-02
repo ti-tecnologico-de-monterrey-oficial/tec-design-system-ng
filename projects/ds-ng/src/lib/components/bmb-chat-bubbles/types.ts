@@ -1,4 +1,6 @@
-export type TBmbMessageType = 'text' | 'mixed' | 'image' | 'personalized';
+import { TemplateRef } from "@angular/core";
+
+export type TBmbMessageType = 'text' | 'mixed' | 'image' | 'link' | 'template';
 export type IBmbBubblePosition = 'top' | 'bottom';
 
 export interface IBmbChatMessage {
@@ -7,10 +9,19 @@ export interface IBmbChatMessage {
   type: TBmbMessageType;
   content: MessageContent;
   time: Date;
-  loading?: boolean;
 }
 
 export interface MessageContent {
   text?: string;
   imageUrl?: string;
+  link?: string;
+  template?: TemplateRef<any>
+}
+
+export interface IBmbChatGptIcons {
+  repeat: boolean;
+  voice: boolean;
+  copy: boolean;
+  like: boolean;
+  dislike: boolean;
 }
