@@ -867,6 +867,9 @@ storybook-toast-wrapper ~ .actions {
 ion-content {
   background-color: rgba(0, 0, 0, 0);
 }
+.cdk-overlay-pane.mat-mdc-dialog-panel {
+  max-width: 80dvw !important;
+}
 [data-theme="dark"] body,
 .storybook-dark-theme body {
   color: var(--general_contrasts-100);
@@ -1091,6 +1094,11 @@ ion-content {
 .bmb_btn[size="large"] {
   width: 100%;
 }
+@media (max-width: 1000px) {
+  .bmb_btn-mobile {
+    width: 100%;
+  }
+}
 .bmb_btn-secondary-outlined[size="large"],
 .bmb_btn-destructive[size="large"] {
   width: calc(100% - 0.0625rem);
@@ -1104,6 +1112,22 @@ ion-content {
 .bmb_btn-destructive[size="large"]:active:not(:disabled)[size="large"],
 .bmb_btn-destructive[size="large"].bmb_btn-toggle-active[size="large"] {
   width: calc(100% - 0.0625rem);
+}
+@media (max-width: 1000px) {
+  .bmb_btn-secondary-outlined.bmb_btn-mobile,
+  .bmb_btn-destructive.bmb_btn-mobile {
+    width: calc(100% - 0.0625rem);
+  }
+  .bmb_btn-secondary-outlined.bmb_btn-mobile:hover:not(:disabled),
+  .bmb_btn-secondary-outlined.bmb_btn-mobile:focus-visible:not(:disabled),
+  .bmb_btn-secondary-outlined.bmb_btn-mobile:active:not(:disabled),
+  .bmb_btn-secondary-outlined.bmb_btn-mobile.bmb_btn-toggle-active,
+  .bmb_btn-destructive.bmb_btn-mobile:hover:not(:disabled),
+  .bmb_btn-destructive.bmb_btn-mobile:focus-visible:not(:disabled),
+  .bmb_btn-destructive.bmb_btn-mobile:active:not(:disabled),
+  .bmb_btn-destructive.bmb_btn-mobile.bmb_btn-toggle-active {
+    width: calc(100% - 0.0625rem);
+  }
 }
 .bmb_btn[case="true"] {
   align-items: center;
@@ -2828,15 +2852,13 @@ ion-content {
   position: absolute;
   top: 50%;
   left: 70%;
-  min-width: 0.75rem;
+  min-width: 0.9375rem;
   min-height: 0.75rem;
   border-radius: 50%;
   font-size: 0.625rem;
   background-color: RGBA(var(--color-red-light), 1);
   color: RGBA(var(--color-charade-50));
   text-align: center;
-  align-content: center;
-  padding-top: 0.0625rem;
 }
 .bmb_icon-figure {
   margin: 0;

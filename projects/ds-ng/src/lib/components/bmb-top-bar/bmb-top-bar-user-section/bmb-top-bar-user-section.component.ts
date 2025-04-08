@@ -3,16 +3,14 @@ import {
   Input,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  HostListener,
   output,
 } from '@angular/core';
 import { BmbUserImageComponent } from '../../bmb-user-image/bmb-user-image.component';
-import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { IUserInformation } from '../types';
-import { IBmbNotificationCardData } from '../../bmb-notification-card/types';
 import { CommonModule } from '@angular/common';
 import { BmbNotificationCardComponent } from '../../bmb-notification-card/bmb-notification-card.component';
 import { IBmbDataAlert } from '../../bmb-alert-center/types';
+import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
 
 @Component({
   selector: 'bmb-top-bar-user-section',
@@ -20,8 +18,8 @@ import { IBmbDataAlert } from '../../bmb-alert-center/types';
   imports: [
     CommonModule,
     BmbUserImageComponent,
-    BmbIconComponent,
     BmbNotificationCardComponent,
+    BmbActionIconComponent,
   ],
   templateUrl: './bmb-top-bar-user-section.component.html',
   styleUrl: './bmb-top-bar-user-section.component.scss',
@@ -37,12 +35,16 @@ export class BmbTopBarUserSectionComponent {
 
   @Input() mitec: boolean = false;
   @Input() assignmentNotification: string[] = [];
-  @Input() showUserName: boolean = true;
   @Input() showNotifications: boolean = true;
   @Input() notificationNotification: IBmbDataAlert[] = [];
+  @Input() showQualtrics: boolean = false;
+  @Input() showRoleButton: boolean = false;
 
   helpButtonClick = output<void>();
   userClick = output<void>();
+  qualtricsButtonClick = output<void>();
+  alertClick = output<void>();
+  roleButtonClick = output<void>();
 
   isOpenNotifications: boolean = false;
   dialogPosition: { top: string; left: string } | null = {
@@ -51,21 +53,8 @@ export class BmbTopBarUserSectionComponent {
   };
   windowWidth = window.innerWidth;
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event: Event): void {
-    this.windowWidth = window.innerWidth;
-    this.isOpenNotifications = false;
-  }
-
-  openNotifications(event: MouseEvent) {
-    const { clientX, clientY } = event;
-    const offsetX = this.windowWidth < 1000 ? 300 : 0;
-
-    this.dialogPosition = {
-      top: `${clientY}px`,
-      left: `${((clientX + offsetX) / this.windowWidth) * 100}%`,
-    };
-    this.isOpenNotifications = this.isOpenNotifications ? false : true;
+  openNotifications() {
+    this.alertClick.emit();
   }
 
   closeNotifications() {
@@ -82,5 +71,13 @@ export class BmbTopBarUserSectionComponent {
 
   handleUserClick() {
     this.userClick.emit();
+  }
+
+  handleQualtricsButtonClick() {
+    this.qualtricsButtonClick.emit();
+  }
+
+  handleRoleChange() {
+    this.roleButtonClick.emit();
   }
 }

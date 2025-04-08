@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbTopBarComponent } from './bmb-top-bar.component';
+import { EventEmitter } from '@angular/core';
 
 export default {
   title: 'Macro Componentes/Top bar',
@@ -27,19 +28,6 @@ Below is an example of how you can use this component in HTML:
     },
   },
   argTypes: {
-    positionButtonMenu: {
-      name: 'Responsive menu button position',
-      control: {
-        type: 'radio',
-      },
-      options: ['left', 'right'],
-      description: 'Set responsive menu button position.',
-      table: {
-        category: 'Deprecated',
-        type: { summary: 'string' },
-        defaultValue: { summary: 'left' },
-      },
-    },
     userInformation: {
       name: 'User information',
       value: null,
@@ -48,17 +36,6 @@ Below is an example of how you can use this component in HTML:
         category: 'Properties',
         type: { summary: 'IUserInformation' },
         defaultValue: { summary: 'null' },
-      },
-    },
-    hasLogoutButton: {
-      name: 'Has logout button',
-      control: { type: 'boolean' },
-      description:
-        'Shows the end session button, only works if the user information is provided.',
-      table: {
-        category: 'Deprecated',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean' },
       },
     },
     image: {
@@ -95,23 +72,6 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: '' },
       },
     },
-    appSubTitle: {
-      name: 'App sub-title',
-      description: 'Deprecated',
-      table: {
-        category: 'Deprecated',
-      },
-    },
-    showLang: {
-      name: 'Lang selector',
-      control: { type: 'boolean' },
-      description: 'Shows the lang selector.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean' },
-      },
-    },
     lang: {
       name: 'Language',
       control: {
@@ -134,37 +94,6 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'boolean' },
         category: 'Properties',
         defaultValue: { summary: false },
-      },
-    },
-    logOut: {
-      name: 'Logout event',
-      control: false,
-      description:
-        'Function that is executed when the logout button is clicked.',
-      table: {
-        type: { summary: 'function' },
-        category: 'Events',
-      },
-    },
-    onLangChange: {
-      name: 'Language change event',
-      control: false,
-      description: 'Function that is executed when the lang change.',
-      table: {
-        type: { summary: 'function' },
-        category: 'Events',
-      },
-    },
-    assignmentNotification: {
-      name: 'Assigment Notification',
-      control: {
-        type: 'object',
-      },
-      description:
-        'Set the notifications for the  top bar in the assignment icon',
-      table: {
-        type: { summary: 'string[]' },
-        category: 'Deprecated',
       },
     },
     alertNotification: {
@@ -197,35 +126,215 @@ Below is an example of how you can use this component in HTML:
         category: 'Events',
       },
     },
+    showQualtrics: {
+      name: 'Show Qualtrics',
+      control: { type: 'boolean' },
+      description: 'Shows the Qualtrics button.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    qualtricsButtonClick: {
+      name: 'Handle Qualtrics button click',
+      control: false,
+      description:
+        'Function that is executed when the Qualtrics button is clicked.',
+      table: {
+        type: { summary: 'function' },
+        category: 'Events',
+      },
+    },
+    alertButtonClick: {
+      name: 'Handle alert button click',
+      control: false,
+      description:
+        'Function that is executed when the alert button is clicked.',
+      table: {
+        type: { summary: 'function' },
+        category: 'Events',
+      },
+    },
+    positionButtonMenu: {
+      name: 'Responsive menu button position',
+      control: {
+        type: 'radio',
+      },
+      options: ['left', 'right'],
+      description: 'Set responsive menu button position.',
+      table: {
+        category: 'Deprecated',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'left' },
+      },
+    },
+    roleButtonClick: {
+      name: 'Handle role button click',
+      control: false,
+      description: 'Function that is executed when the role button is clicked.',
+      table: {
+        type: { summary: 'function' },
+        category: 'Events',
+      },
+    },
+    showRoleButton: {
+      name: 'Show role button',
+      control: { type: 'boolean' },
+      description: 'Shows the role button only available for Mitec version.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+
+    onLangChange: {
+      name: 'Language change event',
+      control: false,
+      description: 'Function that is executed when the lang change.',
+      table: {
+        type: { summary: 'function' },
+        category: 'Deprecated',
+      },
+    },
+    logOut: {
+      name: 'Logout event',
+      control: false,
+      description:
+        'Function that is executed when the logout button is clicked.',
+      table: {
+        type: { summary: 'function' },
+        category: 'Deprecated',
+      },
+    },
+    assignmentNotification: {
+      name: 'Assigment Notification',
+      control: {
+        type: 'object',
+      },
+      description:
+        'Set the notifications for the  top bar in the assignment icon',
+      table: {
+        type: { summary: 'string[]' },
+        category: 'Deprecated',
+      },
+    },
+    appSubTitle: {
+      name: 'App sub-title',
+      description: 'Deprecated',
+      table: {
+        category: 'Deprecated',
+      },
+    },
+    hasLogoutButton: {
+      name: 'Has logout button',
+      control: { type: 'boolean' },
+      description:
+        'Shows the end session button, only works if the user information is provided.',
+      table: {
+        category: 'Deprecated',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
+    showLang: {
+      name: 'Lang selector',
+      control: { type: 'boolean' },
+      description: 'Shows the lang selector.',
+      table: {
+        category: 'Deprecated',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
   },
   args: {
-    appName: 'TecTest',
-    appSubTitle: 'Sub title',
-    showLang: false,
+    showQualtrics: false,
+    userInformation: null,
     lang: 'es',
+    mitec: false,
+    showRoleButton: false,
+  },
+} as Meta<typeof BmbTopBarComponent>;
+
+type Story = StoryObj<BmbTopBarComponent>;
+
+export const Default: Story = {};
+
+export const StandaloneWithTitle: Story = {
+  name: 'Standalone with title',
+  args: {
+    appName: 'TecTest',
+  },
+};
+
+export const StandaloneWithUserInformation: Story = {
+  name: 'Standalone with user information',
+  args: {
+    appName: 'TecTest',
     userInformation: {
       name: 'Santiago Hernández',
       image: 'https://picsum.photos/id/64/200/300',
       role: 'Alumno',
     },
-    onLangChange: () => {
-      console.log('test');
+  },
+};
+
+export const StandaloneWithUserInformationAndQualtrics: Story = {
+  name: 'Standalone with user information and Qualtrics button',
+  args: {
+    appName: 'TecTest',
+    userInformation: {
+      name: 'Santiago Hernández',
+      image: 'https://picsum.photos/id/64/200/300',
+      role: 'Alumno',
     },
-    logOut: () => {
-      console.log('test');
+    showQualtrics: true,
+    // qualtricsButtonClick: () => {}
+  },
+};
+
+export const Mitec: Story = {
+  name: 'Mitec default',
+  args: {
+    mitec: true,
+  },
+};
+
+export const MitecWithUserInformation: Story = {
+  args: {
+    mitec: true,
+    userInformation: {
+      name: 'Santiago Hernández',
+      image: 'https://picsum.photos/id/64/200/300',
+      role: 'Alumno',
     },
-    userProfileClick: () => {
-      alert('User profile clicked');
+  },
+};
+
+export const MitecWithUserInformationWithRoleChange: Story = {
+  args: {
+    mitec: true,
+    userInformation: {
+      name: 'Santiago Hernández',
+      image: 'https://picsum.photos/id/64/200/300',
+      role: 'Alumno',
     },
-    positionButtonMenu: 'left',
-    hasLogoutButton: false,
+    showRoleButton: true,
     alertNotification: [
       {
         id: 10,
         title: 'Alerta 10',
         description: [
-          { text: 'Descripción de la alerta 10', type: 'title' },
-          { text: 'Descripción de la alerta 10 paragraph', type: 'paragraph' },
+          {
+            text: 'Descripción de la alerta 10',
+            type: 'title',
+          },
+          {
+            text: 'Descripción de la alerta 10 paragraph',
+            type: 'paragraph',
+          },
           {
             text: 'Descripción de la alerta 10',
             type: 'button',
@@ -236,8 +345,14 @@ Below is an example of how you can use this component in HTML:
         isRead: false,
         time: '12:00',
         tags: [
-          { text: 'tag1', color: 'info' },
-          { text: 'tag2', color: 'brand' },
+          {
+            text: 'tag1',
+            color: 'info',
+          },
+          {
+            text: 'tag2',
+            color: 'brand',
+          },
         ],
         type: 'tipo 1',
         isFavorite: true,
@@ -247,8 +362,14 @@ Below is an example of how you can use this component in HTML:
         id: 1,
         title: 'Alerta 1',
         description: [
-          { text: 'Descripción de la alerta 10', type: 'title' },
-          { text: 'Descripción de la alerta 10 paragraph', type: 'paragraph' },
+          {
+            text: 'Descripción de la alerta 10',
+            type: 'title',
+          },
+          {
+            text: 'Descripción de la alerta 10 paragraph',
+            type: 'paragraph',
+          },
           {
             text: 'Descripción de la alerta 10 link',
             type: 'link',
@@ -271,8 +392,14 @@ Below is an example of how you can use this component in HTML:
         id: 2,
         title: 'Alerta 2',
         description: [
-          { text: 'Descripción de la alerta 10', type: 'title' },
-          { text: 'Descripción de la alerta 10 paragraph', type: 'paragraph' },
+          {
+            text: 'Descripción de la alerta 10',
+            type: 'title',
+          },
+          {
+            text: 'Descripción de la alerta 10 paragraph',
+            type: 'paragraph',
+          },
           {
             text: 'Descripción de la alerta 10 link',
             type: 'image',
@@ -295,7 +422,10 @@ Below is an example of how you can use this component in HTML:
             type: 'paragraph',
             style: 'bold',
           },
-          { text: 'Descripción de la alerta 10 paragraph', type: 'paragraph' },
+          {
+            text: 'Descripción de la alerta 10 paragraph',
+            type: 'paragraph',
+          },
         ],
         date: '18/11/2024',
         isRead: false,
@@ -313,7 +443,10 @@ Below is an example of how you can use this component in HTML:
             type: 'paragraph',
             style: 'bold',
           },
-          { text: 'Descripción de la alerta 10 paragraph', type: 'paragraph' },
+          {
+            text: 'Descripción de la alerta 10 paragraph',
+            type: 'paragraph',
+          },
         ],
         date: '02/11/2024',
         isRead: true,
@@ -326,8 +459,14 @@ Below is an example of how you can use this component in HTML:
         id: 4,
         title: 'Alerta 40',
         description: [
-          { text: 'Descripción de la alerta 10', type: 'title' },
-          { text: 'Descripción de la alerta 10 paragraph', type: 'paragraph' },
+          {
+            text: 'Descripción de la alerta 10',
+            type: 'title',
+          },
+          {
+            text: 'Descripción de la alerta 10 paragraph',
+            type: 'paragraph',
+          },
           {
             text: 'Descripción de la alerta 10 link',
             type: 'image',
@@ -343,8 +482,4 @@ Below is an example of how you can use this component in HTML:
       },
     ],
   },
-} as Meta<typeof BmbTopBarComponent>;
-
-type Story = StoryObj<BmbTopBarComponent>;
-
-export const Default: Story = {};
+};
