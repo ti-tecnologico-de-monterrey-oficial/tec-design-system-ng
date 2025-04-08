@@ -6,31 +6,16 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 
 ---
 
-# Versión 1.5.5
+# 🚀 Versión 1.5.6 ya está aquí
 
-> **Importante se actualizó el proceso de proceso de instalación** puedes ver los cambios en el siguiente enlace [Proceso de instalación de Bamboo](https://bamboo.tec.mx/latest/instalacion/angular-guia-de-instalacion-de-bamboo-Gx0hKkrO-Gx0hKkrO)
+En esta versión, nos enfocamos en mejorar la experiencia de las personas desarrolladoras y diseñadoras mediante actualizaciones clave, nuevos componentes y la resolución de problemas reportados. Nuestro objetivo es seguir construyendo un sistema de diseño accesible, inclusivo y funcional para todos. 🌱✨
 
-## Novedades
+# 🔵 Componentes actualizados
 
-- Se actualizó el proceso de compilación.
-
-## Componentes nuevos
-
-- `button icon`
-
-## Componentes actualizados
-
-- `Card button`: Se añadió una nueva variante con el título a la derecha de la imagen, soporte para `textlink` y `badge` alineado.
-- `Tabs`: Se agregó soporte para manipulación externa del estado en el componente.
-- `login`: Ajuste de colores en logos e íconos por tema, y se añadieron íconos de redes sociales (Apple, Android, Twitter, Facebook, Instagram, YouTube y WhatsApp).
-- `Datepicker`: Se actualizó el estilo del componente.
-- `Date range`: Se actualizó el estilo del componente.
-- `Chat bubbles`: Se homologaron los estilos del componente.
-- `Input tags`: Se añadió el estado de selección inicial en el componente.
-- `Modal`: Se realizaron ajustes en los botones del componente para homologar su diseño.
-- `Top bar`: Se homologaron los estilos del componente.
-- `Accordion`: Actualización de documentación y estilos.
-- `Container button`: Se realizaron ajustes a los estilos.
+- `Top bar`: Se agregó un botón para cambio de rol y soporte para Qualtrics, mejorando la flexibilidad y funcionalidad.
+- `Container button`: Ahora incluye un menú desplegable (`dropdown menu`) para ampliar las posibilidades de interacción.
+- `Modal`: Se ajustaron los estilos para garantizar compatibilidad con Angular 19 y mejorar la consistencia visual.
+- `Radial`: Se optimizó el componente eliminando elementos redundantes.
 
 Puedes ver todos los componentes aqui: [Bamboo](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/foundations-colors--documentation)
 
