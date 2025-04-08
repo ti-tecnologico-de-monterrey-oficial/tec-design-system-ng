@@ -39,7 +39,6 @@ export { IPositionButtonMenu, IUserInformation } from './types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbTopBarComponent implements OnInit {
-
   @Input() userInformation: IUserInformation | null = null;
   @Input() image: string = '';
   @Input() mobileImage: string = '';

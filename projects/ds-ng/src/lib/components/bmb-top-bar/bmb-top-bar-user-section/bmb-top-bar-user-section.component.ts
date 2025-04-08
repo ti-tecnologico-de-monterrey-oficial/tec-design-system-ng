@@ -19,7 +19,7 @@ import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.co
     CommonModule,
     BmbUserImageComponent,
     BmbNotificationCardComponent,
-    BmbActionIconComponent
+    BmbActionIconComponent,
   ],
   templateUrl: './bmb-top-bar-user-section.component.html',
   styleUrl: './bmb-top-bar-user-section.component.scss',

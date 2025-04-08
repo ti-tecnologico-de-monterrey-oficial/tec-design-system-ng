@@ -29,7 +29,7 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 - `Input tags`: Se añadió el estado de selección inicial en el componente.
 - `Modal`: Se realizaron ajustes en los botones del componente para homologar su diseño.
 - `Top bar`: Se homologaron los estilos del componente.
-- `Accordion`:  Actualización de documentación y estilos.
+- `Accordion`: Actualización de documentación y estilos.
 - `Container button`: Se realizaron ajustes a los estilos.
 
 Puedes ver todos los componentes aqui: [Bamboo](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/foundations-colors--documentation)

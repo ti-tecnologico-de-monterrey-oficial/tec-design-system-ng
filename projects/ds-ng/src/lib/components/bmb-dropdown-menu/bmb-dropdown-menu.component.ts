@@ -23,7 +23,11 @@ export interface IDropdownItem {
   standalone: true,
   templateUrl: './bmb-dropdown-menu.component.html',
   styleUrls: ['./bmb-dropdown-menu.component.scss'],
-  imports: [BmbDropdownMenuContentComponent, BmbActionIconComponent, ClickOutsideDirective],
+  imports: [
+    BmbDropdownMenuContentComponent,
+    BmbActionIconComponent,
+    ClickOutsideDirective,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

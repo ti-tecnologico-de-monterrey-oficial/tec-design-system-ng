@@ -17,7 +17,10 @@ import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { BmbBookmarkComponent } from '../bmb-bookmark/bmb-bookmark.component';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
-import { BmbDropdownMenuComponent, IDropdownItem } from '../bmb-dropdown-menu/bmb-dropdown-menu.component';
+import {
+  BmbDropdownMenuComponent,
+  IDropdownItem,
+} from '../bmb-dropdown-menu/bmb-dropdown-menu.component';
 
 @Component({
   selector: 'bmb-container-button',
@@ -60,7 +63,6 @@ export class BmbContainerButtonComponent {
   enableBookmark = input<boolean>(false);
   isBookmarkActive = model<boolean>(false);
   dropdownMenuItems = input<IDropdownItem[]>([]);
-
 
   onButton = output();
   secondaryAction = output();

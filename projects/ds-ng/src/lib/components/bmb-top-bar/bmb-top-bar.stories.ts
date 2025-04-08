@@ -139,7 +139,8 @@ Below is an example of how you can use this component in HTML:
     qualtricsButtonClick: {
       name: 'Handle Qualtrics button click',
       control: false,
-      description: 'Function that is executed when the Qualtrics button is clicked.',
+      description:
+        'Function that is executed when the Qualtrics button is clicked.',
       table: {
         type: { summary: 'function' },
         category: 'Events',
@@ -148,7 +149,8 @@ Below is an example of how you can use this component in HTML:
     alertButtonClick: {
       name: 'Handle alert button click',
       control: false,
-      description: 'Function that is executed when the alert button is clicked.',
+      description:
+        'Function that is executed when the alert button is clicked.',
       table: {
         type: { summary: 'function' },
         category: 'Events',
@@ -311,7 +313,6 @@ export const MitecWithUserInformation: Story = {
   },
 };
 
-
 export const MitecWithUserInformationWithRoleChange: Story = {
   args: {
     mitec: true,
@@ -323,162 +324,162 @@ export const MitecWithUserInformationWithRoleChange: Story = {
     showRoleButton: true,
     alertNotification: [
       {
-        "id": 10,
-        "title": "Alerta 10",
-        "description": [
+        id: 10,
+        title: 'Alerta 10',
+        description: [
           {
-            "text": "Descripción de la alerta 10",
-            "type": "title"
+            text: 'Descripción de la alerta 10',
+            type: 'title',
           },
           {
-            "text": "Descripción de la alerta 10 paragraph",
-            "type": "paragraph"
+            text: 'Descripción de la alerta 10 paragraph',
+            type: 'paragraph',
           },
           {
-            "text": "Descripción de la alerta 10",
-            "type": "button",
-            "variant": "primary"
-          }
+            text: 'Descripción de la alerta 10',
+            type: 'button',
+            variant: 'primary',
+          },
         ],
-        "date": "19/11/2024",
-        "isRead": false,
-        "time": "12:00",
-        "tags": [
+        date: '19/11/2024',
+        isRead: false,
+        time: '12:00',
+        tags: [
           {
-            "text": "tag1",
-            "color": "info"
+            text: 'tag1',
+            color: 'info',
           },
           {
-            "text": "tag2",
-            "color": "brand"
-          }
+            text: 'tag2',
+            color: 'brand',
+          },
         ],
-        "type": "tipo 1",
-        "isFavorite": true,
-        "isArchived": false
+        type: 'tipo 1',
+        isFavorite: true,
+        isArchived: false,
       },
       {
-        "id": 1,
-        "title": "Alerta 1",
-        "description": [
+        id: 1,
+        title: 'Alerta 1',
+        description: [
           {
-            "text": "Descripción de la alerta 10",
-            "type": "title"
+            text: 'Descripción de la alerta 10',
+            type: 'title',
           },
           {
-            "text": "Descripción de la alerta 10 paragraph",
-            "type": "paragraph"
+            text: 'Descripción de la alerta 10 paragraph',
+            type: 'paragraph',
           },
           {
-            "text": "Descripción de la alerta 10 link",
-            "type": "link",
-            "href": "https://www.google.com"
+            text: 'Descripción de la alerta 10 link',
+            type: 'link',
+            href: 'https://www.google.com',
           },
           {
-            "text": "Descripción de la alerta 10",
-            "type": "button",
-            "variant": "secondary-filled"
-          }
+            text: 'Descripción de la alerta 10',
+            type: 'button',
+            variant: 'secondary-filled',
+          },
         ],
-        "date": "01/11/2024",
-        "isRead": false,
-        "time": "12:00",
-        "type": "tipo 1",
-        "isFavorite": true,
-        "isArchived": false
+        date: '01/11/2024',
+        isRead: false,
+        time: '12:00',
+        type: 'tipo 1',
+        isFavorite: true,
+        isArchived: false,
       },
       {
-        "id": 2,
-        "title": "Alerta 2",
-        "description": [
+        id: 2,
+        title: 'Alerta 2',
+        description: [
           {
-            "text": "Descripción de la alerta 10",
-            "type": "title"
+            text: 'Descripción de la alerta 10',
+            type: 'title',
           },
           {
-            "text": "Descripción de la alerta 10 paragraph",
-            "type": "paragraph"
+            text: 'Descripción de la alerta 10 paragraph',
+            type: 'paragraph',
           },
           {
-            "text": "Descripción de la alerta 10 link",
-            "type": "image",
-            "href": "https://picsum.photos/id/25/200"
-          }
+            text: 'Descripción de la alerta 10 link',
+            type: 'image',
+            href: 'https://picsum.photos/id/25/200',
+          },
         ],
-        "date": "19/11/2024",
-        "isRead": true,
-        "time": "15:00",
-        "type": "tipo 2",
-        "isFavorite": false,
-        "isArchived": true
+        date: '19/11/2024',
+        isRead: true,
+        time: '15:00',
+        type: 'tipo 2',
+        isFavorite: false,
+        isArchived: true,
       },
       {
-        "id": 3,
-        "title": "Alerta 3",
-        "description": [
+        id: 3,
+        title: 'Alerta 3',
+        description: [
           {
-            "text": "Descripción de la alerta 10",
-            "type": "paragraph",
-            "style": "bold"
+            text: 'Descripción de la alerta 10',
+            type: 'paragraph',
+            style: 'bold',
           },
           {
-            "text": "Descripción de la alerta 10 paragraph",
-            "type": "paragraph"
-          }
+            text: 'Descripción de la alerta 10 paragraph',
+            type: 'paragraph',
+          },
         ],
-        "date": "18/11/2024",
-        "isRead": false,
-        "time": "12:00",
-        "type": "tipo 1",
-        "isFavorite": false,
-        "isArchived": false
+        date: '18/11/2024',
+        isRead: false,
+        time: '12:00',
+        type: 'tipo 1',
+        isFavorite: false,
+        isArchived: false,
       },
       {
-        "id": 4,
-        "title": "Alerta 4",
-        "description": [
+        id: 4,
+        title: 'Alerta 4',
+        description: [
           {
-            "text": "Descripción de la alerta 10",
-            "type": "paragraph",
-            "style": "bold"
+            text: 'Descripción de la alerta 10',
+            type: 'paragraph',
+            style: 'bold',
           },
           {
-            "text": "Descripción de la alerta 10 paragraph",
-            "type": "paragraph"
-          }
+            text: 'Descripción de la alerta 10 paragraph',
+            type: 'paragraph',
+          },
         ],
-        "date": "02/11/2024",
-        "isRead": true,
-        "time": "12:00",
-        "type": "tipo 3",
-        "isFavorite": false,
-        "isArchived": false
+        date: '02/11/2024',
+        isRead: true,
+        time: '12:00',
+        type: 'tipo 3',
+        isFavorite: false,
+        isArchived: false,
       },
       {
-        "id": 4,
-        "title": "Alerta 40",
-        "description": [
+        id: 4,
+        title: 'Alerta 40',
+        description: [
           {
-            "text": "Descripción de la alerta 10",
-            "type": "title"
+            text: 'Descripción de la alerta 10',
+            type: 'title',
           },
           {
-            "text": "Descripción de la alerta 10 paragraph",
-            "type": "paragraph"
+            text: 'Descripción de la alerta 10 paragraph',
+            type: 'paragraph',
           },
           {
-            "text": "Descripción de la alerta 10 link",
-            "type": "image",
-            "href": "https://picsum.photos/id/26/200"
-          }
+            text: 'Descripción de la alerta 10 link',
+            type: 'image',
+            href: 'https://picsum.photos/id/26/200',
+          },
         ],
-        "date": "02/01/2024",
-        "isRead": true,
-        "time": "12:00",
-        "type": "tipo 1",
-        "isFavorite": false,
-        "isArchived": false
-      }
-    ]
+        date: '02/01/2024',
+        isRead: true,
+        time: '12:00',
+        type: 'tipo 1',
+        isFavorite: false,
+        isArchived: false,
+      },
+    ],
   },
 };
