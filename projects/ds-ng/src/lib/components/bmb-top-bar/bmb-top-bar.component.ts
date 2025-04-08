@@ -12,13 +12,11 @@ import {
   HostListener,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BmbButtonDirective } from '../../directives/button.directive';
 import { IPositionButtonMenu, IUserInformation } from './types';
 import { BmbTopBarUserSectionComponent } from './bmb-top-bar-user-section/bmb-top-bar-user-section.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbSelectComponent } from '../bmb-select/bmb-select.component';
 import { BmbSelectItemComponent } from '../bmb-select/bmb-select-item/bmb-select-item.component';
-import { IBmbNotificationCardData } from '../bmb-notification-card/types';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
 import { IBmbDataAlert } from '../bmb-alert-center/types';
 
@@ -41,40 +39,47 @@ export { IPositionButtonMenu, IUserInformation } from './types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbTopBarComponent implements OnInit {
-  @Input() positionButtonMenu: IPositionButtonMenu = 'left'; // Deprecated
+
   @Input() userInformation: IUserInformation | null = null;
-  @Input() hasLogoutButton: boolean = true;
   @Input() image: string = '';
   @Input() mobileImage: string = '';
   @Input() appName: string = '';
   @Input() appSubTitle: string = '';
-  @Input() showLang: boolean = false;
   @Input() lang: string = 'es';
   @Input() mitec: boolean = false;
-  @Input() assignmentNotification: string[] = [];
-  @Input() showUserName: boolean = true;
   @Input() alertNotification: IBmbDataAlert[] = [];
+  @Input() showQualtrics: boolean = false;
+  @Input() showRoleButton: boolean = false;
 
-  @Output() logOut: EventEmitter<any> = new EventEmitter<any>();
-  @Output() onLangChange: EventEmitter<string> = new EventEmitter<string>();
+  @Input() positionButtonMenu: IPositionButtonMenu = 'left'; // Deprecated
+  @Input() hasLogoutButton: boolean = true; // Deprecated
+  @Input() showLang: boolean = false; // Deprecated
+  @Input() showUserName: boolean = true; // Deprecated
+  @Input() assignmentNotification: string[] = []; // Deprecated
+
+  logOut = output<any>(); // Deprecated
+  onLangChange = output<string>(); // Deprecated
   helpButtonClick = output<void>();
   userProfileClick = output<void>();
+  qualtricsButtonClick = output<void>();
+  alertButtonClick = output<void>();
+  roleButtonClick = output<void>();
 
-  @ViewChild(TemplateRef) contentTemplate: TemplateRef<unknown> | null = null;
+  // @ViewChild(TemplateRef) contentTemplate: TemplateRef<unknown> | null = null;
 
-  isMobileMenuOpen: boolean = false;
+  // isMobileMenuOpen: boolean = false;
   showAnimation: boolean = true;
-  windowWidth: number = window.innerWidth;
   imageDefault = 'assets/images/tec-logo.svg';
   mobileImageDefault = 'assets/images/tec-logo-mob.svg';
-  imageMitecDefault = 'assets/images/logos-mitec/logo_mitec.png';
+  mobileImageMitecDefault = 'assets/images/logos-mitec/logo_mitec.png';
+  imageMitecDefault = 'assets/images/logos-mitec/logo_mitec-mob.svg';
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event: Event): void {
-    this.windowWidth = window.innerWidth;
-    this.isMobileMenuOpen =
-      this.windowWidth > 1000 ? false : this.isMobileMenuOpen;
-  }
+  // @HostListener('window:resize', ['$event'])
+  // onResize(event: Event): void {
+  //   this.windowWidth = window.innerWidth;
+  //   this.isMobileMenuOpen =
+  //     this.windowWidth > 1000 ? false : this.isMobileMenuOpen;
+  // }
 
   ngOnInit(): void {
     if (this.image == '') {
@@ -83,7 +88,7 @@ export class BmbTopBarComponent implements OnInit {
 
     if (this.mobileImage == '') {
       this.mobileImage = this.mitec
-        ? this.imageMitecDefault
+        ? this.mobileImageMitecDefault
         : this.mobileImageDefault;
     }
 
@@ -100,18 +105,8 @@ export class BmbTopBarComponent implements OnInit {
     this.logOut.emit(event);
   }
 
-  handleMobileMenuClick() {
-    this.isMobileMenuOpen = !this.isMobileMenuOpen;
-  }
-
-  getMenuClasses(): string {
-    if (this.isMobileMenuOpen) return 'bmb_top-bar-nav-open';
-    return '';
-  }
-
-  getMenuButtonClasses(): string {
-    if (this.isMobileMenuOpen) return 'bmb_top-bar-button-menu-open';
-    return '';
+  handleAlertClick() {
+    this.alertButtonClick.emit();
   }
 
   getFlag(lang: string): string {
@@ -147,5 +142,13 @@ export class BmbTopBarComponent implements OnInit {
 
   handleUserClick() {
     this.userProfileClick.emit();
+  }
+
+  handleQualtricsClick() {
+    this.qualtricsButtonClick.emit();
+  }
+
+  handleRoleChange() {
+    this.roleButtonClick.emit();
   }
 }

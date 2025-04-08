@@ -32,11 +32,16 @@
   color: RGBA(var(--color-white-primary));
   display: flex;
   justify-content: space-between;
-  padding: rem.rem_calc(12 16);
+  padding: rem.rem_calc(8 16);
   gap: rem.rem_calc(16);
   align-items: center;
   position: relative;
   z-index: 2;
+  height: 64px;
+
+  @include mixins.media-query(1000, "min") {
+    padding: rem.rem_calc(8 32);
+  }
 
   &-open {
     border-radius: rem.rem_calc(0 0 0 0);
@@ -117,21 +122,16 @@
 
   &-logo-section {
     margin: 0;
-    width: max-content;
+    width: rem.rem_calc(80);
+    line-height: 0;
 
-    @include mixins.media-query(1000, "max") {
-      margin-right: rem.rem_calc(75);
+    @include mixins.media-query(1000, "min") {
+      width: max-content;
     }
 
     img {
-      width: rem.rem_calc(34);
-      scale: 1/1;
-      max-height: rem.rem_calc(34);
-
-      @include mixins.media-query(1000, "min") {
-        width: rem.rem_calc(128);
-        scale: 16/9;
-      }
+      width: auto;
+      height: rem.rem_calc(34);
     }
   }
 
@@ -149,24 +149,33 @@
   &-app-name {
     max-width: 100%;
     display: flex;
-    gap: rem.rem_calc(8);
+    gap: rem.rem_calc(16);
     align-items: center;
-    padding-left: rem.rem_calc(16);
+    flex: 1;
+    justify-content: center;
+
+    @include mixins.media-query(1000, "min") {
+      justify-content: start;
+    }
 
     h1 {
       @include fonts.font(6, regular);
+
+      @include mixins.media-query(1000, "min") {
+        display: flex;
+      }
     }
 
-    span {
+    &-powered {
       @include fonts.font(4, regular);
       border-left: rem.rem_calc(1) solid RGBA(var(--color-white-primary));
-      display: inline-block;
-      padding: 0 rem.rem_calc(8);
-    }
+      display: none;
 
-    @include mixins.media-query(1000, "min") {
-      max-width: max-content;
-      padding-left: rem.rem_calc(8);
+      @include mixins.media-query(1000, "min") {
+        display: inline-block;
+        max-width: max-content;
+        padding-left: rem.rem_calc(16);
+      }
     }
   }
 
@@ -188,14 +197,6 @@
     list-style: none;
     gap: rem.rem_calc(16);
     align-items: center;
-
-    @include mixins.media-query(999, "max") {
-      transition: opacity 0s ease;
-      opacity: 0;
-      height: 0;
-      overflow: hidden;
-      width: 0;
-    }
 
     &-open {
       @include mixins.media-query(999, "max") {
@@ -232,7 +233,7 @@
 
     @include mixins.media-query(1000, "min") {
       display: flex;
-      justify-content: flex-end;
+      justify-content: inherit;
     }
 
     &-content {

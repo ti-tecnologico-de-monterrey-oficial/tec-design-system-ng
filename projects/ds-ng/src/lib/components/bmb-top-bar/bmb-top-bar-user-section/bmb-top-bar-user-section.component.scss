@@ -6,6 +6,9 @@
   @include fonts.font(3, regular);
   width: 100vw;
   align-items: center;
+  display: flex;
+  justify-content: center;
+  gap: rem.rem_calc(16);
 
   @include mixins.media-query(1000, "min") {
     grid-template-rows: 1fr;
@@ -14,82 +17,39 @@
     max-width: max-content;
   }
 
-  &-mitec {
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-template-columns: rem.rem_calc(50) 1fr 1fr;
-    grid-template-areas:
-      "image name"
-      "image role"
-      "icons icons";
+  &-icon {
+    &-qualtrics {
+      display: none;
 
-    @include mixins.media-query(1000, "min") {
-      grid-template-rows: 1fr 1fr;
-      grid-template-areas:
-        "icons image name"
-        "icons image role";
-      grid-template-columns: rem.rem_calc(64) rem.rem_calc(64) 1fr;
-      max-width: max-content;
-
-      > .bmb_top-bar-user-section-icons {
+      @include mixins.media-query(1000, "min") {
         display: inline-flex;
       }
     }
   }
 
-  @include mixins.media-query(999, "max") {
-    justify-self: flex-start;
-    padding: 0 rem.rem_calc(16);
-  }
-
-  &-icons {
-    justify-content: right;
-    align-content: center;
-    grid-area: icons;
-    line-height: 0;
-    gap: 4rem;
-
-    @include mixins.media-query(1000, "min") {
-      gap: rem.rem_calc(6);
-    }
-  }
-
-  &-icon {
-    cursor: pointer;
-    line-height: 0;
-    text-align: center;
-    padding: rem.rem_calc(1) rem.rem_calc(2);
-    color: RGBA(var(--color-white-primary), 1);
-  }
-
   &-user-image {
-    grid-area: image;
-    margin: 0 rem.rem_calc(16) 0 0;
-
-    @include mixins.media-query(1000, "min") {
-      margin: 0 rem.rem_calc(16);
-    }
+    padding: 0;
   }
 
   &-title {
     @include fonts.font(4, regular);
-    grid-area: name;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    padding-top: rem.rem_calc(20);
-
-    @include mixins.media-query(1000, "min") {
-      padding-top: rem.rem_calc(4);
-    }
+    font-weight: 500;
   }
 
   &-role {
-    padding-bottom: rem.rem_calc(20);
-    grid-area: role;
-    @include mixins.media-query(1000, "min") {
-      padding-bottom: rem.rem_calc(4);
-    }
+    @include fonts.font(3, regular);
+    font-weight: 300;
+  }
+
+  &-notification {
+    position: relative;
+  }
+
+  &-name {
+
   }
 
   &-dialog {
