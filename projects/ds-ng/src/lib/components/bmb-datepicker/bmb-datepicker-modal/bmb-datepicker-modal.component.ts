@@ -38,8 +38,8 @@ export class BmbDatepickerModalComponent implements OnInit {
   value = input<string>('');
   dateFormat = input<string>('dd/MM/yyyy');
   stepYearPicker = input<number>(18);
-  disableDatesBefore = input<DateTime>();
-  disableDatesAfter = input<DateTime>();
+  disableDatesBefore = input<DateTime | null>();
+  disableDatesAfter = input<DateTime | null>();
 
   closeWindow = output<boolean>();
   onValueChange = output<string>();
@@ -142,20 +142,15 @@ export class BmbDatepickerModalComponent implements OnInit {
   }
 
   checkIfDisabled(date: DateTime): boolean {
-    if (this.disableDatesBefore()) {
-      return (
-        date.startOf('day') <=
-        (this.disableDatesBefore()?.startOf('day') ?? DateTime.fromMillis(0))
-      );
-    }
-
-    if (this.disableDatesAfter()) {
-      return this.disableDatesAfter()
-        ? date.startOf('day') >= this.disableDatesAfter()!.startOf('day')
+    let isValid: boolean = this.disableDatesBefore()
+        ? date.startOf('day') <= this.disableDatesBefore()!.startOf('day')
         : false;
-    }
 
-    return false;
+    isValid = !isValid && this.disableDatesAfter()
+      ? date.startOf('day') >= this.disableDatesAfter()!.startOf('day')
+      : isValid;
+
+    return isValid;
   }
 
   isSelectedYear(year: string): boolean {

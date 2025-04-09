@@ -2,19 +2,14 @@
   class="bmb_top-bar-user-section"
   [ngClass]="{ 'bmb_top-bar-user-section-mitec': mitec }"
 >
-  @if (showQualtrics && !mitec) {
+  @if (mitec && showRoleButton) {
     <bmb-action-icon
-      class="bmb_top-bar-user-section-icon-qualtrics"
-      icon="tag_faces"
+      class="bmb_top-bar-user-section-no-mobile"
+      icon="compare_arrows"
       [iconSize]="32"
-      (buttonClick)="handleQualtricsButtonClick()"
+      (buttonClick)="handleRoleChange()"
     />
   }
-  <bmb-action-icon
-    icon="help"
-    [iconSize]="32"
-    (buttonClick)="handleHelpButtonClick()"
-  />
   @if (showNotifications && mitec) {
     <span class="bmb_top-bar-user-section-notification">
       <bmb-action-icon
@@ -23,7 +18,7 @@
         (buttonClick)="openNotifications()"
         [dotNotification]="totalNotifications()"
       />
-      <dialog
+      <!-- <dialog
         id="notificationDialog"
         class="bmb_top-bar-user-section-dialog"
         [ngClass]="{
@@ -35,16 +30,15 @@
           [data]="notificationNotification"
           [hideExpandBtn]="true"
         ></bmb-notification-card>
-      </dialog>
+      </dialog> -->
     </span>
   }
-  @if (mitec && showRoleButton) {
-    <bmb-action-icon
-      icon="compare_arrows"
-      [iconSize]="32"
-      (buttonClick)="handleRoleChange()"
-    />
-  }
+  <bmb-action-icon
+    [ngClass]="{'bmb_top-bar-user-section-no-mobile': mitec}"
+    icon="help"
+    [iconSize]="32"
+    (buttonClick)="handleHelpButtonClick()"
+  />
   <button
     class="bmb_top-bar-user-section-user-image"
     (click)="handleUserClick()"
@@ -56,7 +50,7 @@
     />
   </button>
   @if (mitec) {
-    <div class="bmb_top-bar-user-section-name">
+    <div class="bmb_top-bar-user-section-name bmb_top-bar-user-section-no-mobile">
       <h3 class="bmb_top-bar-user-section-title">{{ userInformation.name }}</h3>
       <h4 class="bmb_top-bar-user-section-role">
         {{ userInformation.role }}

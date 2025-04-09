@@ -8,13 +8,11 @@
   align-items: center;
   display: flex;
   justify-content: center;
-  gap: rem.rem_calc(16);
+  gap: rem.rem_calc(8);
 
   @include mixins.media-query(1000, "min") {
-    grid-template-rows: 1fr;
-    grid-template-areas: "icons";
-    grid-template-columns: 1fr;
     max-width: max-content;
+    gap: rem.rem_calc(16);
   }
 
   &-icon {
@@ -48,7 +46,12 @@
     position: relative;
   }
 
-  &-name {
+  &-no-mobile {
+    display: none;
+
+    @include mixins.media-query(1000, "min") {
+      display: block;
+    }
   }
 
   &-dialog {

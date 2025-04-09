@@ -47,7 +47,6 @@ export class BmbTopBarComponent implements OnInit {
   @Input() lang: string = 'es';
   @Input() mitec: boolean = false;
   @Input() alertNotification: IBmbDataAlert[] = [];
-  @Input() showQualtrics: boolean = false;
   @Input() showRoleButton: boolean = false;
 
   @Input() positionButtonMenu: IPositionButtonMenu = 'left'; // Deprecated
@@ -60,7 +59,6 @@ export class BmbTopBarComponent implements OnInit {
   onLangChange = output<string>(); // Deprecated
   helpButtonClick = output<void>();
   userProfileClick = output<void>();
-  qualtricsButtonClick = output<void>();
   alertButtonClick = output<void>();
   roleButtonClick = output<void>();
 
@@ -141,10 +139,6 @@ export class BmbTopBarComponent implements OnInit {
 
   handleUserClick() {
     this.userProfileClick.emit();
-  }
-
-  handleQualtricsClick() {
-    this.qualtricsButtonClick.emit();
   }
 
   handleRoleChange() {

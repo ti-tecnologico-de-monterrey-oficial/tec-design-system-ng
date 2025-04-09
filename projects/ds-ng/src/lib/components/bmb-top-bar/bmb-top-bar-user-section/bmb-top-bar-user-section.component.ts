@@ -32,17 +32,14 @@ export class BmbTopBarUserSectionComponent {
     name: '',
     role: '',
   };
-
   @Input() mitec: boolean = false;
   @Input() assignmentNotification: string[] = [];
   @Input() showNotifications: boolean = true;
   @Input() notificationNotification: IBmbDataAlert[] = [];
-  @Input() showQualtrics: boolean = false;
   @Input() showRoleButton: boolean = false;
 
   helpButtonClick = output<void>();
   userClick = output<void>();
-  qualtricsButtonClick = output<void>();
   alertClick = output<void>();
   roleButtonClick = output<void>();
 
@@ -71,10 +68,6 @@ export class BmbTopBarUserSectionComponent {
 
   handleUserClick() {
     this.userClick.emit();
-  }
-
-  handleQualtricsButtonClick() {
-    this.qualtricsButtonClick.emit();
   }
 
   handleRoleChange() {

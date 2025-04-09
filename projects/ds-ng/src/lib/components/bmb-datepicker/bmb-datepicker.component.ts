@@ -52,8 +52,8 @@ export class BmbDatepickerComponent implements OnInit {
   // inline = input<boolean>(false);
   stepYearPicker = input<number>(18);
   name = input<string>('');
-  disableDatesBefore = input<DateTime | undefined>(undefined);
-  disableDatesAfter = input<DateTime | undefined>(undefined);
+  disableDatesBefore = input<string>('');
+  disableDatesAfter = input<string>('');
   lang = input<string>('es-MX');
 
   onChange = output<string>();
@@ -105,5 +105,10 @@ export class BmbDatepickerComponent implements OnInit {
 
   clickOutside(): void {
     this.isWindowOpen = false;
+  }
+
+  convertToDate(date: string): DateTime | null {
+    const dateTime = DateTime.fromFormat(date, this.dateFormat());
+    return dateTime.isValid ? dateTime : null;
   }
 }

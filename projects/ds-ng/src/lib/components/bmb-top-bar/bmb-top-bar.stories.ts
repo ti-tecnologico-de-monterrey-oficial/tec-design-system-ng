@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbTopBarComponent } from './bmb-top-bar.component';
-import { EventEmitter } from '@angular/core';
 
 export default {
   title: 'Macro Componentes/Top bar',
@@ -278,20 +277,6 @@ export const StandaloneWithUserInformation: Story = {
       image: 'https://picsum.photos/id/64/200/300',
       role: 'Alumno',
     },
-  },
-};
-
-export const StandaloneWithUserInformationAndQualtrics: Story = {
-  name: 'Standalone with user information and Qualtrics button',
-  args: {
-    appName: 'TecTest',
-    userInformation: {
-      name: 'Santiago Hernández',
-      image: 'https://picsum.photos/id/64/200/300',
-      role: 'Alumno',
-    },
-    showQualtrics: true,
-    // qualtricsButtonClick: () => {}
   },
 };
 

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BmbDatepickerComponent } from './bmb-datepicker.component';
+import { attributes } from '../../utils/utils';
 
 export default {
   title: 'Micro Componentes/Datepicker',
@@ -235,6 +236,44 @@ Below is an example of how to use this component in HTML:
         defaultValue: { summary: '' },
       },
     },
+    disableDatesBefore: {
+      name: 'Disable dates before',
+      control: {
+        type: 'text',
+      },
+      description:
+        'Set the date to disable all dates before this date. This date should be have the same format as dateFormat',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    disableDatesAfter: {
+      name: 'Disable dates after',
+      control: {
+        type: 'text',
+      },
+      description:
+        'Set the date to disable all dates after this date. This date should be have the same format as dateFormat',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    lang: {
+      name: 'Language',
+      control: {
+        type: 'text',
+      },
+      description: 'Set the language to be used in the component.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'es-MX' },
+      },
+    },
   },
 
   args: {
@@ -242,13 +281,16 @@ Below is an example of how to use this component in HTML:
     invalidFormatErrorMessage: 'Formato invalido',
     requiredFieldErrorMessage: 'Campo requerido',
     isRequired: false,
-    placeholder: 'Placeholder',
+    placeholder: '',
     disabled: false,
-    label: 'Input Label',
+    label: '',
     appearance: 'normal',
     isClearable: false,
     dateFormat: 'dd/MM/yyyy',
-    name: 'custom_date_picker',
+    name: '',
+    disableDatesBefore: '',
+    disableDatesAfter: '',
+    lang: 'es-MX',
   },
 } as Meta<typeof BmbDatepickerComponent>;
 
@@ -261,18 +303,7 @@ export const Default: Story = {
     },
     template: `
       <div style="height: 500px;">
-        <bmb-datepicker
-          [placeholder]="placeholder"
-          name="datePicker"
-          dateFormat="MM/dd/yyyy"
-          label="Fecha de tu cumpleaños"
-          [disabled]="disabled"
-          icon="cake"
-          [isRequired]="isRequired"
-          [isClearable]="isClearable"
-          invalidFormaterrorMessage="El formato debe ser el siguiente: dd/mm/yyyy"
-          requiredFieldErrorMessage="Este campo es requerido"
-        />
+        <bmb-datepicker ${attributes(args)} />
       </div>
     `,
   }),

@@ -5,7 +5,7 @@
   <section class="bmb_title-content-container">
     @if (!!icon()) {
       <span class="bmb_title-content-container-icon" [ngStyle]="getStyles()">
-        <bmb-icon [icon]="icon()" [size]="iconSize()" />
+        <bmb-icon [icon]="icon()" [size]="iconSize()" [alt]="title()" />
       </span>
     }
     <section class="bmb_title-content-container-wrapper">
