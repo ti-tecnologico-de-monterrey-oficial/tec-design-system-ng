@@ -1,13 +1,8 @@
-<span class="bmb_dropdown_menu">
-  <button
-    bmbButton
-    type="button"
-    class="bmb_dropdown_menu-button"
-    appearance="transparent"
+<span class="bmb_dropdown_menu" clickOutside (clickOutside)="closeDropdown()">
+  <bmb-action-icon
     icon="more_vert"
     [iconSize]="24"
-    size="micro"
-    (click)="toggleDropdown()"
-  ></button>
+    (buttonClick)="toggleDropdown()"
+  />
   <bmb-dropdown-menu-content [items]="items()" [(isOpen)]="isOpen" />
 </span>

@@ -28,7 +28,6 @@ import { FormControl } from '@angular/forms';
       [disabled]="disabled()"
       [labelPosition]="labelPosition()"
       (onChange)="handleChange($event)"
-      (myName)="handleMyName($event)"
     />
   `,
   standalone: true,

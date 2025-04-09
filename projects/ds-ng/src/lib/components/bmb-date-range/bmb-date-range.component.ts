@@ -38,25 +38,19 @@ export class BmbDateRangeComponent {
   name = input<string>('');
   multipleRow = input<boolean>(true);
 
-  disableDatesBefore?: DateTime;
-  disableDatesAfter?: DateTime;
+  disableDatesBefore: string = '';
+  disableDatesAfter: string = '';
 
   constructor() {
     this.controlStart().valueChanges.subscribe((newValue) => {
       if (newValue) {
-        this.disableDatesBefore = DateTime.fromFormat(
-          newValue,
-          this.dateFormat(),
-        );
+        this.disableDatesBefore = newValue
       }
     });
 
     this.controlEnd().valueChanges.subscribe((newValue) => {
       if (newValue) {
-        this.disableDatesAfter = DateTime.fromFormat(
-          newValue,
-          this.dateFormat(),
-        );
+        this.disableDatesAfter = newValue
       }
     });
   }

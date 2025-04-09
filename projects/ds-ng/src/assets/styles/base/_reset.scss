@@ -98,6 +98,10 @@ ion-content {
   background-color: transparent;
 }
 
+.cdk-overlay-pane.mat-mdc-dialog-panel {
+  max-width: 80dvw !important;
+}
+
 [data-theme="dark"],
 .storybook-dark-theme {
   body {
