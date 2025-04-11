@@ -34,7 +34,7 @@ Below is an example of how you can use this component in HTML:
     data: {
       name: 'Data Source',
       control: {
-        type: 'IBmbAdvertisementData',
+        type: 'object',
       },
       description: `
 Sets information that the component will show.
@@ -70,6 +70,18 @@ Sets information that the component will show.
         defaultValue: { summary: `{}` },
       },
     },
+    title: {
+      name: 'Title',
+      control: {
+        type: 'text',
+      },
+      description: 'Sets the title that the card shows',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'Mis Anuncios' },
+      },
+    },
     subtitle: {
       name: 'Subititle',
       control: {
@@ -92,7 +104,7 @@ Sets information that the component will show.
             alt: 'Imagen',
           },
           content: {
-            title: 'Lorem ipsum dolor sit amet',
+            title: 'Lorem ipsum dolor sit amet p1',
             description:
               'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
             linkBtn: 'www.google.com',
@@ -105,7 +117,7 @@ Sets information that the component will show.
             alt: 'Imagen',
           },
           content: {
-            title: 'Lorem ipsum',
+            title: 'Lorem ipsum p2',
             description:
               'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente. lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente. lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
             linkBtn: 'www.google.com',
@@ -118,7 +130,7 @@ Sets information that the component will show.
             alt: 'Imagen',
           },
           content: {
-            title: 'Lorem ipsum dolor',
+            title: 'Lorem ipsum dolor p3',
             description:
               'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente. lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente. lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente. lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente. lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente. lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
             linkBtn: 'www.google.com',
@@ -129,7 +141,7 @@ Sets information that the component will show.
       avisos: [
         {
           imgData: {
-            url: 'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg',
+            url: 'https://picsum.photos/id/10/200/300',
             alt: 'AVISOS',
           },
           content: {
@@ -142,11 +154,11 @@ Sets information that the component will show.
         },
         {
           imgData: {
-            url: 'https://content.elmueble.com/medio/2023/03/29/razas-de-perros_725466fb_230329160906_900x900.jpg',
+            url: 'https://picsum.photos/id/11/200/300',
             alt: 'AVISOS',
           },
           content: {
-            title: 'Lorem ipsum dolor sit amet',
+            title: 'Lorem ipsum dolor sit amet a2',
             description:
               'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
             linkBtn: 'www.google.com',
@@ -155,11 +167,11 @@ Sets information that the component will show.
         },
         {
           imgData: {
-            url: 'https://content.elmueble.com/medio/2024/04/03/razas-de-perros-pequenos_0718680a_240403083147_900x900.jpg',
+            url: 'https://picsum.photos/id/18/200/300',
             alt: 'Imagen',
           },
           content: {
-            title: 'Lorem ipsum dolor sit amet',
+            title: 'Lorem ipsum dolor sit amet a3',
             description:
               'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
             linkBtn: 'www.google.com',
@@ -170,11 +182,11 @@ Sets information that the component will show.
       informacion: [
         {
           imgData: {
-            url: 'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg',
+            url: 'https://picsum.photos/id/48/200/300',
             alt: 'PROMO',
           },
           content: {
-            title: 'Lorem ipsum dolor sit amet',
+            title: 'Lorem ipsum dolor sit amet i1',
             description:
               'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
             linkBtn: 'www.google.com',
@@ -183,24 +195,11 @@ Sets information that the component will show.
         },
         {
           imgData: {
-            url: 'https://content.elmueble.com/medio/2023/03/29/razas-de-perros_725466fb_230329160906_900x900.jpg',
+            url: 'https://picsum.photos/id/8/200/300',
             alt: 'PROMO',
           },
           content: {
-            title: 'Lorem ipsum dolor sit amet',
-            description:
-              'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
-            linkBtn: 'www.google.com',
-            labelBtn: 'ACTION',
-          },
-        },
-        {
-          imgData: {
-            url: 'https://content.elmueble.com/medio/2024/04/03/razas-de-perros-pequenos_0718680a_240403083147_900x900.jpg',
-            alt: 'PROMO',
-          },
-          content: {
-            title: 'Lorem ipsum dolor sit amet',
+            title: 'Lorem ipsum dolor sit amet i2',
             description:
               'lorem commodi eveniet ullam accusantium officiis mollitia error ipsa sapiente.',
             linkBtn: 'www.google.com',

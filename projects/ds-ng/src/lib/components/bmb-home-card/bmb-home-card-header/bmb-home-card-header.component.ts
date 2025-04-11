@@ -6,6 +6,7 @@ import {
   ViewEncapsulation,
   Renderer2,
   ElementRef,
+  model,
 } from '@angular/core';
 import { IBmbDataTopBar } from '../../bmb-breadcrumb/bmb-breadcrumb.component';
 import { IBmbColor } from '../../../types/colors';
@@ -42,11 +43,12 @@ export class BmbHomeCardHeaderComponent {
   actionHeaders = input<IBmbActionHeader[]>([]);
   isMobile = input<boolean>();
   showRightButton = input<boolean>(true);
+  isExpanded = model<boolean>(false); //Internal
+  useAutoExpand = input<boolean>(true); //Internal
 
   onClose = output();
   onBack = output();
 
-  isExpanded: boolean = false;
   actionHeaderList: IBmbActionHeader[] = [];
   private originalParent: HTMLElement | null = null;
 
@@ -92,7 +94,7 @@ export class BmbHomeCardHeaderComponent {
       return;
     }
 
-    this.isExpanded = !this.isExpanded;
+    this.isExpanded.update((value) => !value);
 
     const homeCardElement = this.elRef.nativeElement.closest('.bmb_home-card');
 
@@ -101,29 +103,31 @@ export class BmbHomeCardHeaderComponent {
       const screenCenter = window.innerWidth / 2;
       const isLeft = rect.left < screenCenter;
 
-      if (this.isExpanded) {
-        if (!this.originalParent) {
-          this.originalParent = homeCardElement.closest('bmb-home-card');
-        }
+      if (this.useAutoExpand()) {
+        if (this.isExpanded()) {
+          if (!this.originalParent) {
+            this.originalParent = homeCardElement.closest('bmb-home-card');
+          }
 
-        this.renderer.appendChild(document.body, homeCardElement);
-        this.renderer.addClass(homeCardElement, 'bmb_home-card-expanded');
+          this.renderer.appendChild(document.body, homeCardElement);
+          this.renderer.addClass(homeCardElement, 'bmb_home-card-expanded');
 
-        if (isLeft) {
-          this.renderer.addClass(homeCardElement, 'expand-left');
-          this.renderer.removeClass(homeCardElement, 'expand-right');
+          if (isLeft) {
+            this.renderer.addClass(homeCardElement, 'expand-left');
+            this.renderer.removeClass(homeCardElement, 'expand-right');
+          } else {
+            this.renderer.addClass(homeCardElement, 'expand-right');
+            this.renderer.removeClass(homeCardElement, 'expand-left');
+          }
         } else {
-          this.renderer.addClass(homeCardElement, 'expand-right');
-          this.renderer.removeClass(homeCardElement, 'expand-left');
-        }
-      } else {
-        if (this.originalParent) {
-          this.renderer.appendChild(this.originalParent, homeCardElement);
-        }
+          if (this.originalParent) {
+            this.renderer.appendChild(this.originalParent, homeCardElement);
+          }
 
-        this.renderer.removeClass(homeCardElement, 'bmb_home-card-expanded');
-        this.renderer.removeClass(homeCardElement, 'expand-left');
-        this.renderer.removeClass(homeCardElement, 'expand-right');
+          this.renderer.removeClass(homeCardElement, 'bmb_home-card-expanded');
+          this.renderer.removeClass(homeCardElement, 'expand-left');
+          this.renderer.removeClass(homeCardElement, 'expand-right');
+        }
       }
     }
   }
