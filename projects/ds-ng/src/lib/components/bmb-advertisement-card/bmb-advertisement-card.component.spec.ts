@@ -64,7 +64,7 @@ describe('BmbAdvertisementCardComponent', () => {
           },
         },
       ],
-    }
+    };
     componentRef.setInput('data', data);
     expect(component.data()?.promociones.length).toBe(1);
     expect(component.data()?.avisos.length).toBe(1);
@@ -103,8 +103,7 @@ describe('BmbAdvertisementCardComponent', () => {
           },
           content: {
             title: 'Test Title',
-            description:
-              'Test Description',
+            description: 'Test Description',
           },
         },
       ],

@@ -509,7 +509,7 @@ export const SmallCardExample = {
     smallDescription:
       'Lorem upsum aovei trirangil porilnem menuandos flenzhcrunf',
     botImage: {
-      src: 'https://picsum.photos/id/9/200/300',
+      src: '/assets/images/bot-icons/bot_tecGPT.svg',
       alt: 'Left content image',
     },
     smallIcon: 'info',
