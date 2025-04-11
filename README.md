@@ -6,40 +6,16 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 
 ---
 
-## Cambios de la versión v1.5.4
+# 🚀 Versión 1.5.6 ya está aquí
 
-### Novedades
+En esta versión, nos enfocamos en mejorar la experiencia de las personas desarrolladoras y diseñadoras mediante actualizaciones clave, nuevos componentes y la resolución de problemas reportados. Nuestro objetivo es seguir construyendo un sistema de diseño accesible, inclusivo y funcional para todos. 🌱✨
 
-- Nuevos workflows.
-- Se actualizaron las dependencias.
+# 🔵 Componentes actualizados
 
-### Componentes nuevos:
-
-- Button icon
-
-### Componentes actualizados:
-
-- Alert center: Se cambio el puntero para sus elementos.
-- Hito: Nuevo tipo de evento.
-- Badge:
-  - Se agregaron los colores semánticos para los tipos de badges.
-  - se agregaron diferentes colores de fondo e índices para tema obscuro y claro.
-  - Nuevo color de apariencia: `alerta`.
-- Chatbar:
-  - Refactorización de código.
-  - Ajustes de CSS.
-- Input tag:
-  - Refactorización de código.
-  - Ajustes de CSS.
-- Tag: Se corrigió el estado hover y active cuando la tag es activity.
-- Filter card:
-  - Se agregó la opción de tag al componente.
-  - Se agregó la capacidad de limpiar el campo de texto.
-- Action icon:
-  - Cambio de nombre de `navigation icon` a `action icon`.
-  - Publicación de componente para uso externo.
-- Button: Se actualizó la apariencia.
-- Calendar: Se actualizó la apariencia.
+- `Top bar`: Se agregó un botón para cambio de rol y soporte para Qualtrics, mejorando la flexibilidad y funcionalidad.
+- `Container button`: Ahora incluye un menú desplegable (`dropdown menu`) para ampliar las posibilidades de interacción.
+- `Modal`: Se ajustaron los estilos para garantizar compatibilidad con Angular 19 y mejorar la consistencia visual.
+- `Radial`: Se optimizó el componente eliminando elementos redundantes.
 
 Puedes ver todos los componentes aqui: [Bamboo](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/foundations-colors--documentation)
 

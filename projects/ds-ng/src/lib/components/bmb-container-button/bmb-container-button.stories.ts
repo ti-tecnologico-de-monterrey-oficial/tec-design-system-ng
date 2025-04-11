@@ -289,6 +289,16 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'function' },
       },
     },
+    dropdownMenuItems: {
+      name: 'Dropdown Menu Items',
+      control: { summary: 'IDropdownItem[]' },
+      description:
+        'Array of items to be displayed in the dropdown menu. Each item should have a label and an action.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'IDropdownItem[]' },
+      },
+    },
   },
   args: {
     title: 'Tema de App',
@@ -460,4 +470,31 @@ export const LinkExample = {
     <bmb-container-button ${attributes(args)} />
     `,
   }),
+};
+
+export const SecondaryMenuExample = {
+  name: 'Enable secondary menu example',
+  args: {
+    dropdownMenuItems: [
+      {
+        icon: 'link',
+        text: 'External Link External Link External Link',
+        url: 'https://example.com',
+        target: '_self',
+      },
+      {
+        icon: 'link',
+        text: 'internal Link',
+        url: '/vivencia',
+      },
+      {
+        icon: 'delete',
+        text: 'Delete',
+      },
+      {
+        icon: 'settings',
+        text: 'Settings',
+      },
+    ],
+  },
 };
