@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   input,
+  model,
   output,
   ViewEncapsulation,
 } from '@angular/core';
@@ -32,6 +33,8 @@ export class BmbHomeCardComponent {
   isMobile = input<boolean>();
   contentPadding = input<SizeNames>('l');
   showRightButton = input<boolean>(true);
+  isExpanded = model<boolean>(false); //Internal
+  useAutoExpand = input<boolean>(true); //Internal
 
   onClose = output();
   onBack = output();
