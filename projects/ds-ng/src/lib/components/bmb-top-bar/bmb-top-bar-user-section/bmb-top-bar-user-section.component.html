@@ -34,7 +34,7 @@
     </span>
   }
   <bmb-action-icon
-    [ngClass]="{'bmb_top-bar-user-section-no-mobile': mitec}"
+    [ngClass]="{ 'bmb_top-bar-user-section-no-mobile': mitec }"
     icon="help"
     [iconSize]="32"
     (buttonClick)="handleHelpButtonClick()"
@@ -50,7 +50,9 @@
     />
   </button>
   @if (mitec) {
-    <div class="bmb_top-bar-user-section-name bmb_top-bar-user-section-no-mobile">
+    <div
+      class="bmb_top-bar-user-section-name bmb_top-bar-user-section-no-mobile"
+    >
       <h3 class="bmb_top-bar-user-section-title">{{ userInformation.name }}</h3>
       <h4 class="bmb_top-bar-user-section-role">
         {{ userInformation.role }}

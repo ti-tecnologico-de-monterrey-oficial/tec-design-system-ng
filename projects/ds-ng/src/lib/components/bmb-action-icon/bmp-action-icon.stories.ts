@@ -69,10 +69,21 @@ Below is an example of how you can use this component in HTML:
       name: 'Icon size',
       control: { type: 'number' },
       description:
-        'Size of the icon or width of the image to use. Note: <= 0 will be inherited.',
+        'Sets the size of the icon or the image to use. Note: <= 0 will be inherited.',
       table: {
         category: 'Properties',
         type: { summary: 'number (optional)' },
+      },
+    },
+    isFill: {
+      name: 'Is Fill',
+      control: { type: 'boolean' },
+      description:
+        'Sets the icon fill when true or the outline when false.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'true' },
+        type: { summary: 'boolean' },
       },
     },
     toggleIconActive: {
@@ -172,7 +183,7 @@ Below is an example of how you can use this component in HTML:
   },
   args: {
     idElement: '',
-    icon: 'close',
+    icon: 'info',
     iconSize: 24,
     buttonClick: () => {
       console.log('Action icon click');
@@ -184,6 +195,13 @@ type Story = StoryObj<BmbActionIconComponent>;
 
 export const Default: Story = {
   name: 'Default example',
+};
+
+export const OutlineExample = {
+  name: 'Example of an icon with outline',
+  args: {
+    isFill: false,
+  },
 };
 
 export const ToggleAccentColorExample = {

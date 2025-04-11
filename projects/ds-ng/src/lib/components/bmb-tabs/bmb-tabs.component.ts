@@ -1,14 +1,14 @@
 import {
   Component,
-  Input,
-  Output,
   ViewChild,
   ElementRef,
   ChangeDetectionStrategy,
   ViewEncapsulation,
-  EventEmitter,
   OnInit,
   AfterViewInit,
+  input,
+  output,
+  model,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TabsService } from '../../services/tabs.service';
@@ -32,9 +32,11 @@ export interface IBmbTab {
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbTabsComponent implements OnInit, AfterViewInit {
-  @Input() format: string = '';
-  @Input() tabs: IBmbTab[] = [];
-  @Output() selected = new EventEmitter<IBmbTab>();
+  format = input<string>('');
+  tabs = input<IBmbTab[]>([]);
+  selectedTabId = model<number>(0); //internal
+
+  selected = output<IBmbTab>();
 
   activeTabIndex: number = 0;
   @ViewChild('tabsItems') tabsItems!: ElementRef;
@@ -42,19 +44,23 @@ export class BmbTabsComponent implements OnInit, AfterViewInit {
   constructor(private tabsService: TabsService) {}
 
   ngOnInit(): void {
-    const initialActiveTab = this.tabs.findIndex((tab) => tab.isActive);
-    this.activeTabIndex = initialActiveTab !== -1 ? initialActiveTab : 0;
-    this.tabs.forEach(
+    const initialActiveTab = this.tabs().findIndex(
+      (tab: IBmbTab) => tab.isActive,
+    );
+    this.activeTabIndex = initialActiveTab || 0;
+    this.tabs().forEach(
       (tab, index) => (tab.isActive = index === this.activeTabIndex),
     );
 
-    this.tabsService.setTabs(this.tabs);
+    this.tabsService.setTabs(this.tabs());
 
     this.tabsService.selectedTab$.subscribe((tab: any) => {
-      if (tab && tab.id !== this.tabs[this.activeTabIndex].id) {
+      if (tab && tab.id !== this.tabs()[this.activeTabIndex].id) {
         this.selectTab(tab.id);
       }
     });
+
+    this.selectedTabId.set(this.activeTabIndex + 1);
   }
 
   ngAfterViewInit(): void {
@@ -62,7 +68,7 @@ export class BmbTabsComponent implements OnInit, AfterViewInit {
   }
 
   selectTab(selectedId: number): void {
-    const tabIndex = this.tabs.findIndex((tab) => tab.id === selectedId);
+    const tabIndex = this.tabs().findIndex((tab) => tab.id === selectedId);
     if (tabIndex !== -1) {
       this.updateActiveTab(tabIndex);
     }
@@ -83,12 +89,14 @@ export class BmbTabsComponent implements OnInit, AfterViewInit {
   }
 
   private updateActiveTab(index: number): void {
-    this.tabs.forEach((tab) => (tab.isActive = false));
-    this.tabs[index].isActive = true;
+    this.tabs().forEach((tab) => (tab.isActive = false));
+    this.tabs()[index].isActive = true;
     this.activeTabIndex = index;
-    const activeTab = this.tabs[index];
+    const activeTab = this.tabs()[index];
     this.selected.emit(activeTab);
     setTimeout(() => this.showActiveTab(), 0);
+
+    this.selectedTabId.set(this.activeTabIndex + 1);
   }
 
   showActiveTab(): void {
