@@ -87,9 +87,8 @@ $alignItemsOptions: (
           if($margin == "sm", "max", "min")
         ) {
           margin-#{$side}: calc(
-            #{percentage(math.div($i, $size))} + var(--bmb-gap) - (var(
-                    --bmb-gap
-                  ) / $size * #{$size - $i})
+            #{percentage(math.div($i, $size))} + var(--bmb-gap) -
+              (var(--bmb-gap) / $size * #{$size - $i})
           );
         }
       }

@@ -15,7 +15,11 @@ import { FormControl, FormGroup } from '@angular/forms';
 @Component({
   selector: 'bmb-login-onboarding-stepper-step-one',
   standalone: true,
-  imports: [BmbLoginOnboardingStepperStepComponent, BmbInputComponent, BmbFormValidationComponent],
+  imports: [
+    BmbLoginOnboardingStepperStepComponent,
+    BmbInputComponent,
+    BmbFormValidationComponent,
+  ],
   template: `
     <bmb-login-onboarding-stepper-step
       title="Paso 1"
@@ -25,36 +29,36 @@ import { FormControl, FormGroup } from '@angular/forms';
       [isContinueDisable]="isContinueDisable()"
       (handleContinue)="_handleContinueStep()"
     >
-    <span class="bmb_login-onboarding-stepper-step-one-input">
-          <bmb-input
-            name="user"
-            placeholder="Usuario"
-            icon="account_circle"
-            errorMessage="El usuario es requerido"
-            appearance="normal"
-            [disabled]="false"
-            [isRequired]="true"
-            [control]="getFormControl('user')"
-            (onBlur)="onSubmit()"
-          />
-        </span>
-        <span class="bmb_login-onboarding-stepper-step-one-input">
-          <bmb-input
-            type="password"
-            name="password"
-            placeholder="Contraseña"
-            icon="lock"
-            errorMessage="La contraseña es requerida"
-            appearance="normal"
-            [disabled]="false"
-            [isRequired]="true"
-            [control]="getFormControl('password')"
-            (onBlur)="onSubmit()"
-          />
-        </span>
-        <p class="bmb_login-onboarding-stepper-step-content-subcontent-sublabel">
-          ¿Olvidaste tu contraseña?
-        </p>
+      <span class="bmb_login-onboarding-stepper-step-one-input">
+        <bmb-input
+          name="user"
+          placeholder="Usuario"
+          icon="account_circle"
+          errorMessage="El usuario es requerido"
+          appearance="normal"
+          [disabled]="false"
+          [isRequired]="true"
+          [control]="getFormControl('user')"
+          (onBlur)="onSubmit()"
+        />
+      </span>
+      <span class="bmb_login-onboarding-stepper-step-one-input">
+        <bmb-input
+          type="password"
+          name="password"
+          placeholder="Contraseña"
+          icon="lock"
+          errorMessage="La contraseña es requerida"
+          appearance="normal"
+          [disabled]="false"
+          [isRequired]="true"
+          [control]="getFormControl('password')"
+          (onBlur)="onSubmit()"
+        />
+      </span>
+      <p class="bmb_login-onboarding-stepper-step-content-subcontent-sublabel">
+        ¿Olvidaste tu contraseña?
+      </p>
     </bmb-login-onboarding-stepper-step>
   `,
   encapsulation: ViewEncapsulation.None,
