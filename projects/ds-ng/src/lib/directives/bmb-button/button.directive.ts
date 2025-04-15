@@ -8,12 +8,12 @@ import {
   SimpleChanges,
   input,
 } from '@angular/core';
-import { BmbIconComponent } from '../components/bmb-icon/bmb-icon.component';
+import { BmbIconComponent } from '../../components/bmb-icon/bmb-icon.component';
 import {
   IBmbHorizontalPosition,
   IButtonAppearance,
   IButtonSize,
-} from '../types';
+} from '../../types';
 
 @Directive({
   selector: '[bmbButton]',

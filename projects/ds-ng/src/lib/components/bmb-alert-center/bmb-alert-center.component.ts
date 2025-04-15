@@ -20,7 +20,7 @@ import {
   IBmbAlertCenterCategories,
   IBmbDataAlertsOutput,
 } from './types';
-import { BmbButtonDirective } from '../../directives/button.directive';
+import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { BmbImageComponent } from '../bmb-image/bmb-image.component';
 import { BmbModalComponent } from '../bmb-modal/bmb-modal.component';
 import { ModalDataConfig } from '../bmb-modal/bmb-modal.interface';

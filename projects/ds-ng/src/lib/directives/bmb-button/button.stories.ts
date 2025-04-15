@@ -1,7 +1,7 @@
 import { Meta, StoryFn } from '@storybook/angular';
 import { BmbButtonDirective } from './button.directive';
-import { BmbIconComponent } from '../components/bmb-icon/bmb-icon.component';
-import { attributes, attributesText } from '../utils/utils';
+import { BmbIconComponent } from '../../components/bmb-icon/bmb-icon.component';
+import { attributes, attributesText } from '../../utils/utils';
 
 export default {
   title: 'Micro Componentes/Button',

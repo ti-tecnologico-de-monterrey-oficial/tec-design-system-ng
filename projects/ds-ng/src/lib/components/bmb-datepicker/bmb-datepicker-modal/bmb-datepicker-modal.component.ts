@@ -10,7 +10,7 @@ import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.di
 import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
 import { DateTime, Info } from 'luxon';
 import { weeksAndDays } from '../../bmb-calendar/utils';
-import { BmbButtonDirective } from '../../../directives/button.directive';
+import { BmbButtonDirective } from '../../../directives/bmb-button/button.directive';
 import { CommonModule } from '@angular/common';
 import { orderDayNames } from '../../../utils/utils';
 

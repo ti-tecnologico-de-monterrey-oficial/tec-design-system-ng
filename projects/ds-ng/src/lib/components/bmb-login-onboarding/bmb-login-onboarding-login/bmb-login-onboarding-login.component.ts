@@ -4,7 +4,7 @@ import {
   output,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbButtonDirective } from '../../../directives/button.directive';
+import { BmbButtonDirective } from '../../../directives/bmb-button/button.directive';
 import { BmbMitecLogoAnimationComponent } from '../../bmb-mitec-logo-animation/bmb-mitec-logo-animation.component';
 
 @Component({

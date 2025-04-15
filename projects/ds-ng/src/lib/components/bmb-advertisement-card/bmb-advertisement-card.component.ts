@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbDotPaginatorComponent } from '../bmb-dot-paginator/bmb-dot-paginator.component';
-import { BmbButtonDirective } from '../../directives/button.directive';
+import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { IBmbAdvertisementData } from './types';
 
 @Component({
