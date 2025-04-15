@@ -238,7 +238,7 @@ export class BmbDropdownComponent
         event.target.classList.contains('bmb_dropdown-field-chips') ||
         event.target.classList.contains('bmb_dropdown-field-chip') ||
         event.target.classList.contains('bmb_dropdown-field-open') ||
-        event.target.classList.contains('material-symbols-outlined'))
+        event.target.classList.contains('material-symbols-rounded'))
     ) {
       this.openSelect = !this.openSelect;
       this.isFocus = !this.isFocus;

@@ -140,7 +140,6 @@ export const Default: Story = {
     <ng-template #bmbLeftContent>
       <bmb-icon
         icon="home"
-        styleIcon="material-symbols-outlined"
         [isFill]="true"
         fontWeight="400"
         [size]="24"
@@ -157,7 +156,6 @@ export const Default: Story = {
     <ng-template #bmbRightContent>
       <bmb-icon
         icon="close"
-        styleIcon="material-symbols-outlined"
         [isFill]="true"
         fontWeight="400"
         [size]="24"
