@@ -13,7 +13,7 @@ export default {
   Below is an example of how you can use this component in TypeScript:
   
   \`\`\`typescript
-  import { Component } from '@angular/core';
+  import { Component, Injectable, OnInit } from '@angular/core';
   import {
     FormControl,
     FormGroup,
@@ -25,12 +25,27 @@ export default {
     BmbButtonDirective,
   } from '../../projects/ds-ng/src/public-api';
   import { CommonModule } from '@angular/common';
+  import { delay, Observable, of } from 'rxjs';
+  
   export interface IBmbDropdownItem {
     name: string;
     value: string;
     icon: string;
     id?: string;
   }
+  
+  @Injectable({ providedIn: 'root' })
+  export class FruitService {
+    getSelectedFruit(): Observable<IBmbDropdownItem> {
+      return of({
+        name: 'Banana',
+        value: 'Banana',
+        icon: 'bolt',
+        id: 'banana',
+      }).pipe(delay(1000));
+    }
+  }
+  
   @Component({
     selector: 'app-root',
     standalone: true,
@@ -43,8 +58,7 @@ export default {
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
   })
-  export class AppComponent {
-    // ✅ Define the FormGroup and FormControl inside it
+  export class AppComponent implements OnInit {
     form = new FormGroup({
       category: new FormControl<IBmbDropdownItem | null>(
         null,
@@ -52,7 +66,6 @@ export default {
       ),
     });
   
-    // ✅ Define dropdown options
     dropdownOptions: IBmbDropdownItem[] = [
       { name: 'Apple', value: 'Apple', icon: 'bolt', id: 'apple' },
       { name: 'Banana', value: 'Banana', icon: 'bolt', id: 'banana' },
@@ -61,30 +74,22 @@ export default {
       { name: 'Grape', value: 'Grape', icon: 'bolt', id: 'grape' },
     ];
   
-    constructor() {
-      setTimeout(() => {
-        console.log('Setting value to Banana...');
-        const bananaItem = this.dropdownOptions.find(
-          (item): item is IBmbDropdownItem =>
-            typeof item === 'object' && item.value === 'Banana',
-        );
+    constructor(private fruitService: FruitService) {}
   
-        if (bananaItem) {
-          this.form.get('category')?.setValue(bananaItem); // ✅ Set the full object
-        }
-      }, 2000);
+    ngOnInit(): void {
+      this.fruitService.getSelectedFruit().subscribe((selectedFruit) => {
+        console.log('Setting value from service:', selectedFruit);
+        this.form.get('category')?.setValue(selectedFruit);
+      });
     }
   
-    selectApple() {
-      console.log('Selecting Apple...');
-  
+    selectApple(): void {
       const selectedItem = this.dropdownOptions.find(
         (item) => item.value === 'Apple',
       );
       this.form.get('category')?.setValue(selectedItem || null);
     }
   
-    // ✅ Ensure FormControl gets an IBmbDropdownItem
     getItem(item: string | IBmbDropdownItem): IBmbDropdownItem {
       if (typeof item === 'string') {
         return {
@@ -97,26 +102,16 @@ export default {
       return item;
     }
   
-    onSubmit() {
+    onSubmit(): void {
       if (this.form.valid) {
         console.log('Form submitted with:', this.form.value);
-        return;
+      } else {
+        this.form.markAllAsTouched();
       }
-      this.form.markAllAsTouched();
     }
   
     onValueChange(value: string | IBmbDropdownItem): void {
       console.log('Value changed:', value);
-  
-      const selectedItem =
-        typeof value === 'string'
-          ? this.dropdownOptions.find((item) => item.value === value) ||
-            this.getItem(value)
-          : value;
-  
-      setTimeout(() => {
-        this.form.get('category')?.setValue(selectedItem, { emitEvent: false });
-      });
     }
   }
   \`\`\`
