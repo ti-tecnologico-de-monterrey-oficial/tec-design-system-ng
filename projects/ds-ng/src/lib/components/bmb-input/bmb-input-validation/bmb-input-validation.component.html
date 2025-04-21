@@ -1,0 +1,36 @@
+<section class="bmb_input-validation" [ngClass]="{ disabled: disabled() }">
+  <label [ngClass]="getClasses('bmb_input-validation', true)">
+    <ng-content />
+    @if (label()) {
+      <span
+        class="bmb_input-validation-label"
+        [ngClass]="getLabelClass('bmb_input-validation-label')"
+      >
+        {{ label() }}
+        @if (isRequired() && !!label()) {
+          <small class="bmb_input-validation-label-required">*</small>
+        }
+        @if (!!tooltip()) {
+          <bmb-tooltip
+            class="bmb_input-validation-label-tooltip"
+            [text]="tooltip()"
+            [align]="tooltipPosition().align"
+            [justify]="tooltipPosition().justify"
+            [icon]="'help'"
+            [size]="15"
+          />
+        }
+      </span>
+    }
+  </label>
+  @if (helperMessage() && !shouldShowError) {
+    <p class="bmb_input-validation-helper">
+      {{ helperMessage() }}
+    </p>
+  }
+  @if (errorMessage() && shouldShowError) {
+    <p class="bmb_input-validation-error">
+      {{ getErrorMessage() }}
+    </p>
+  }
+</section>

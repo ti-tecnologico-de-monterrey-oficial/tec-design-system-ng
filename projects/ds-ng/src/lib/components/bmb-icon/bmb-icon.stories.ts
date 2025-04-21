@@ -63,7 +63,7 @@ Below is an example of how you can use this component in HTML:
     `,
       table: {
         category: 'Deprecated',
-        defaultValue: { summary: 'material-symbols-outlined' },
+        defaultValue: { summary: 'material-symbols-rounded' },
         type: { summary: 'string' },
       },
     },
@@ -130,7 +130,6 @@ Below is an example of how you can use this component in HTML:
   },
   args: {
     icon: 'home',
-    styleIcon: 'material-symbols-outlined',
     isFill: true,
     fontWeight: '400',
     size: 24,

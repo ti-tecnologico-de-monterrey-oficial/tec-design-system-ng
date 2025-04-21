@@ -1,3 +1,31 @@
-<div>
-  <button (click)="openModal()">text</button>
-</div>
+<bmb-form-validation (formGroupChange)="handleFormGroupState($event)">
+  <bmb-radial
+    id="radio1"
+    value="CCM"
+    name="contract"
+    label="Contract for teacher CCM.pdf"
+    [checked]="true"
+    [required]="true"
+    [disabled]="false"
+    errorMessage="Error message CCM"
+    helperMessage="Helper message CCM"
+    labelPosition="before"
+    (change)="handleRadial($event)"
+  />
+  <bmb-radial
+    id="radio2"
+    value="CCB"
+    name="contract"
+    label="Contrato profesor cátedra Biología CCB.pdf"
+    [checked]="false"
+    [required]="true"
+    [disabled]="false"
+    errorMessage="Error message CCB"
+    helperMessage="Helper message CCB"
+    labelPosition="after"
+    (change)="handleRadial($event)"
+  />
+  <button bmbButton appearance="primary" type="submit">Submit</button>
+</bmb-form-validation>
+
+<!-- <bmb-theme /> -->

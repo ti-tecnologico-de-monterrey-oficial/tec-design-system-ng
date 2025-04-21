@@ -7,9 +7,15 @@ import {
   TemplateRef,
   CUSTOM_ELEMENTS_SCHEMA,
   signal,
+  ElementRef,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormControl,
+  Validators,
+  ReactiveFormsModule,
+  FormGroup,
+} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import {
   BmbThemeComponent,
@@ -109,6 +115,7 @@ import {
   BmbMultiDotPaginatorComponent,
   BmbMultiDotPaginatorItemComponent,
   SidebarElement,
+  BmbFormValidationComponent,
 } from '../../projects/ds-ng/src/public-api';
 import { BmbPullWedgeComponent } from '../../projects/ds-ng/src/lib/components/bmb-pull-wedge/bmb-pull-wedge.component';
 import { BmbCardButtonComponent } from '../../projects/ds-ng/src/lib/components/bmb-card-button/bmb-card-button.component';
@@ -246,6 +253,7 @@ import { BmbTitleContentComponent } from '../../projects/ds-ng/src/lib/component
     BmbProgressBarComponent,
     BmbMultiDotPaginatorComponent,
     BmbMultiDotPaginatorItemComponent,
+    BmbFormValidationComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -256,6 +264,7 @@ import { BmbTitleContentComponent } from '../../projects/ds-ng/src/lib/component
 })
 export class AppComponent {
   constructor(
+    private el: ElementRef,
     private cdr: ChangeDetectorRef,
     private matDialog: MatDialog,
     private notificationSignal: BmbNotificationService,
@@ -361,10 +370,11 @@ export class AppComponent {
     console.log('Checkbox value:', element.value);
   }
 
-  handleRadial(element: HTMLInputElement): void {
-    console.log('Radio value:', element.value);
-    console.log('Radio name:', element.name);
-    console.log('Is it checked?', element.checked);
+  handleRadial(element: Event): void {
+    console.log('App - Radio value:', element);
+    // console.log('Radio value:', element.value);
+    // console.log('Radio name:', element.name);
+    // console.log('Is it checked?', element.checked);
   }
 
   plus() {
@@ -5471,5 +5481,56 @@ export class AppComponent {
 
   changeSelectValue() {
     this.selectControl.setValue('Grape');
+  }
+
+  formGroup: FormGroup = new FormGroup({
+    name: new FormControl<string>(''),
+    named: new FormControl<string>(''),
+    otherName: new FormControl<string>('', Validators.required),
+    comments: new FormControl<string>(''),
+    contract: new FormControl(''),
+    amount: new FormControl(),
+    phone: new FormControl(),
+    phone2: new FormControl(),
+    phone3: new FormControl(),
+    checkbox1: new FormControl(),
+    checkbox2: new FormControl(),
+    switch1: new FormControl(),
+    switch2: new FormControl(),
+  });
+
+  onSubmit(): void {
+    this.formGroup.markAllAsTouched();
+    this.formGroup.updateValueAndValidity();
+    console.log('FORM status', this.formGroup);
+    if (this.formGroup.valid) {
+      console.log('FORM VALID');
+      return;
+    }
+    console.log('FORM', this.formGroup.status);
+    this.updateErrorState();
+  }
+
+  updateErrorState() {
+    const invalidInputs = this.el.nativeElement.querySelectorAll('.ng-invalid');
+    invalidInputs.forEach((input: HTMLElement) => {
+      const name =
+        input.getAttribute('name') ||
+        input.getAttribute('ng-reflect-name') ||
+        input.parentElement?.getAttribute('ng-reflect-name') ||
+        '';
+      const control = this.formGroup.get(name);
+      if (control) {
+        control.updateValueAndValidity();
+      }
+    });
+  }
+
+  getFormControl(name: string): FormControl {
+    return this.formGroup.get(name) as FormControl;
+  }
+
+  handleFormGroupState(state: FormGroup): void {
+    console.log('App - onSubmit', state?.valid, state);
   }
 }
