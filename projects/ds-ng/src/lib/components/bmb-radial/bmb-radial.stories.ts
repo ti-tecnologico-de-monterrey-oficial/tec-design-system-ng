@@ -32,20 +32,25 @@ export class Component {
   });
   showErrors: { [key: string]: boolean } = {};
 
-  onSubmit() {
-    if (this.userForm.valid) {
+   onSubmit(): void {
+    this.formGroup.markAllAsTouched();
+    this.formGroup.updateValueAndValidity();
+    console.log('FORM STATE', this.formGroup);
+    if (this.formGroup.valid) {
+      console.log('FORM VALID');
       return;
     }
-    this.userForm.markAllAsTouched();
+    console.log('FORM STATUS', this.formGroup.status);
     this.updateErrorState();
   }
 
   updateErrorState() {
-    Object.keys(this.userForm.controls).forEach((field) => {
-      const control = this.userForm.get(field);
+    Object.keys(this.formGroup.controls).forEach((field) => {
+      const control = this.getFormControl(field);
+
       if (control instanceof FormControl) {
-        this.showErrors[field] =
-          control.invalid && (control.touched || control.dirty);
+        control.markAsTouched();
+        control.updateValueAndValidity();
       }
     });
   }
@@ -76,12 +81,11 @@ Below is an example of how to use this component in HTML:
     [checked]="false"
     [required]="true"
     [disabled]="false"
-    [control]="getFormControl('contract')"
-    [showError]="showErrors['contract']"
     errorMessage="Error message"
     helperMessage="Helper message"
-    (change)="handleRadial($event)"
     labelPosition="before"
+    [control]="getFormControl('contract')"
+    (change)="handleRadial($event)"
   />
   <bmb-radial
     id="radio2"
@@ -91,10 +95,9 @@ Below is an example of how to use this component in HTML:
     [checked]="false"
     [required]="true"
     [disabled]="false"
-    [control]="getFormControl('contract')"
-    [showError]="showErrors['contract']"
     errorMessage="Error message"
     helperMessage="Helper message"
+    [control]="getFormControl('contract')"
     (change)="handleRadial($event)"
   />
   <button bmbButton appearance="primary" type="submit">Submit</button>
@@ -111,7 +114,7 @@ Below is an example of how you can use this component in HTML:
       name: 'Id',
       control: { type: 'text' },
       description:
-        'The unique identifier for the checkbox component. It is used to link the label with the checkbox input element through the "for" attribute, enhancing accessibility and usability.',
+        'Sets the unique identifier for the radial component. This is used to link the label to the checkbox input element using the "for" attribute, improving accessibility and usability.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -121,7 +124,7 @@ Below is an example of how you can use this component in HTML:
       name: 'Checked',
       control: { type: 'boolean' },
       description:
-        'Determines whether the checkbox is checked or not. Setting this property to true checks the checkbox, and false unchecks it.',
+        'Sets the value given to the radial when true.',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
@@ -132,7 +135,7 @@ Below is an example of how you can use this component in HTML:
       name: 'Disabled',
       control: { type: 'boolean' },
       description:
-        'If set to true, disables the checkbox input, making it non-interactive and unclickable. This is useful for conditions where user interaction should be restricted.',
+        'Sets the input to disabled when true.',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
@@ -143,7 +146,7 @@ Below is an example of how you can use this component in HTML:
       name: 'Required',
       control: { type: 'boolean' },
       description:
-        'Specifies whether the radio button must be filled out before submitting the form. If set to true, a radio button within the group must be selected to validate the form. This is commonly used to ensure that users do not skip mandatory choices in forms, enhancing data integrity and user interaction compliance.',
+        'Sets the input as required when true..',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
@@ -154,7 +157,7 @@ Below is an example of how you can use this component in HTML:
       name: 'Value',
       control: { type: 'text' },
       description:
-        'The value that will be submitted with the form if the checkbox is checked. This is the value that will be sent to the server or handled on form submission.',
+        'Sets the value of the control when the radial is true.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -164,7 +167,7 @@ Below is an example of how you can use this component in HTML:
       name: 'Name',
       control: { type: 'text' },
       description:
-        'The name of the checkbox, which is used to identify the form data after it’s submitted. Multiple checkboxes can share the same name to create a group where multiple items can be selected.',
+        'Sets the name of the radial. Multiple radials can share the same name to create a group where one item can be selected.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -174,7 +177,7 @@ Below is an example of how you can use this component in HTML:
       name: 'Label',
       control: { type: 'text' },
       description:
-        'The text label associated with the checkbox. It is displayed next to the checkbox and helps users understand the context of what the checkbox represents.',
+        'Sets the label associated with the radial.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -184,7 +187,7 @@ Below is an example of how you can use this component in HTML:
       name: 'Aria Described by',
       control: { type: 'text' },
       description:
-        'Provides additional descriptive text for the checkbox, enhancing accessibility by linking the checkbox to a descriptive element by ID.',
+        'Sets additional descriptive text for the radial, improving accessibility by linking the radial to a descriptive element by ID.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -194,7 +197,7 @@ Below is an example of how you can use this component in HTML:
       name: 'Aria Label',
       control: { type: 'text' },
       description:
-        'Defines a string that labels the checkbox for accessibility purposes, which can be used when a visible label text is not present.',
+        'Sets a label for the radial for accessibility purposes, which can be used when there is no visible label text.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -204,7 +207,7 @@ Below is an example of how you can use this component in HTML:
       name: 'Aria Labelled by',
       control: { type: 'text' },
       description:
-        'Identifies the element(s) that labels the checkbox for accessibility purposes, providing a reference to the IDs of the elements that serve as the checkbox label.',
+        'Identifies the element(s) that labels the radial for accessibility purposes, providing a reference to the IDs of the elements that serve as the radial label.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -212,21 +215,24 @@ Below is an example of how you can use this component in HTML:
     },
     labelPosition: {
       name: 'Label Position',
-      control: { type: 'text' },
-      description:
-        'Specifies the position of the label relative to the checkbox. Can be set to "before" or "after", indicating whether the label appears to the left or right of the checkbox.',
+      control: { type: 'radio' },
+      options: [ 'before', 'after' ],
+      description:`
+Sets the position of the label relative to the radial, indicating whether the label appears to the left or right of the radial.
+
+    IBbmSidePosition = 'before' | 'after'
+      `,
       table: {
         category: 'Properties',
-        type: { summary: 'string' },
+        type: { summary: 'IBbmSidePosition' },
       },
     },
     control: {
       control: { type: 'object' },
-      description: 'Instance of FormControl to manage the input control state.',
+      description: 'Instance of FormControl to manage the control state.',
       table: {
         category: 'Properties',
         type: { summary: 'FormControl' },
-        defaultValue: { summary: "FormControl('', Validators.required)" },
       },
     },
     showError: {
@@ -234,9 +240,9 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'boolean',
       },
-      description: 'Boolean to show or hide the error message.',
+      description: 'This is deprecated because errors are evaluated from the control',
       table: {
-        category: 'Properties',
+        category: 'Deprecated',
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
       },
@@ -269,7 +275,7 @@ Below is an example of how you can use this component in HTML:
         type: '',
       },
       description:
-        'An event that is emitted when the state of the checkbox changes, such as when it is checked or unchecked. This can be used to trigger functions or actions based on the checkbox’s state change.',
+        'An event that is emitted when the state of the radial changes, such as when it is checked or unchecked. This can be used to trigger functions or actions based on the radial state change.',
       table: {
         category: 'Events',
         type: { summary: '(change)="handleRadial($event)"' },

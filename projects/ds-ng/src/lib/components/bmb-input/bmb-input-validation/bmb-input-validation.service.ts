@@ -27,7 +27,8 @@ export class BmbInputValidationService {
       type === 'phone' ||
       type === 'number' ||
       type === 'switch'
-    )  return new FormControl(null);
+    )
+      return new FormControl(null);
 
     return new FormControl('');
   }

@@ -28,9 +28,9 @@ export class BmbFormValidationComponent {
   formGroupState = output<FormGroup>();
 
   constructor(
-      private ivs: BmbInputValidationService,
-      private el: ElementRef,
-    ) {}
+    private ivs: BmbInputValidationService,
+    private el: ElementRef,
+  ) {}
 
   ngOnInit(): void {
     const inputs = this.el.nativeElement.querySelectorAll(
