@@ -1,10 +1,16 @@
-import { Meta, StoryFn } from '@storybook/angular';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { BmbInnerHeaderComponent } from './bmb-inner-header.component';
 import { attributes, attributesText } from '../../utils/utils';
+import { BmbChevronTitleSelectorComponent } from '../bmb-chevron-title-selector/bmb-chevron-title-selector.component';
 
 export default {
   title: 'Micro Componentes/Inner Header Mobile',
   component: BmbInnerHeaderComponent,
+  decorators: [
+    moduleMetadata({
+      imports: [BmbChevronTitleSelectorComponent],
+    }),
+  ],
   parameters: {
     docs: {
       description: {
@@ -52,12 +58,16 @@ Below is an example of how you can use this component in HTML:
       },
     },
     subTitle: {
-      name: 'Sub Title',
-      control: { type: 'text' },
-      description: 'Displays a subtitle below the main title.',
+      name: 'Subtitle',
+      control: null,
+      description:
+        'This property is deprecated and will be removed in future versions.',
       table: {
-        category: 'Properties',
-        type: { summary: 'string' },
+        category: 'Deprecated',
+        deprecated: {
+          summary:
+            'This property is deprecated and will be removed in future versions.',
+        },
       },
     },
     trailingIconPrimary: {
@@ -107,7 +117,7 @@ Below is an example of how you can use this component in HTML:
     },
     onHandleBack: {
       name: 'On Handle Back',
-      control: { type: '' },
+      control: { summary: 'function' },
       description: 'Event triggered when the back button is clicked.',
       table: {
         category: 'Events',
@@ -116,7 +126,7 @@ Below is an example of how you can use this component in HTML:
     },
     onHandleClose: {
       name: 'On Handle Close',
-      control: { type: '' },
+      control: null,
       description: 'Event triggered when the close button is clicked.',
       table: {
         category: 'Events',
@@ -125,7 +135,7 @@ Below is an example of how you can use this component in HTML:
     },
     onHandleTrailingPrimary: {
       name: 'On Handle Trailing Primary',
-      control: { type: '' },
+      control: { summary: 'function' },
       description: 'Event triggered when the primary trailing icon is clicked.',
       table: {
         category: 'Events',
@@ -134,7 +144,7 @@ Below is an example of how you can use this component in HTML:
     },
     onHandleTrailingSecondary: {
       name: 'On Handle Trailing Secondary',
-      control: { type: '' },
+      control: null,
       description:
         'Event triggered when the secondary trailing icon is clicked.',
       table: {
@@ -197,41 +207,113 @@ Below is an example of how you can use this component in HTML:
     },
   },
   args: {
-    title: 'My Title',
+    title: 'Inner Header',
     placeholderSearch: 'Search',
     showClose: true,
-    showReturn: false,
-    showSearch: false,
-    subTitle: 'http://www.link.com',
     trailingIconPrimary: 'lock',
-    trailingIconSecondary: 'home',
-    test_text: 'hello world',
     onHandleBack: () => {
-      window.alert('Back button clicked in Storybook');
+      console.log('Close button clicked in Storybook');
     },
     onHandleTrailingPrimary: () => {
-      window.alert('Trailing Primary button clicked in Storybook');
-    },
-    onHandleTrailingSecondary: () => {
-      window.alert('Trailing Secondary button clicked in Storybook');
-    },
-    onHandleClose: () => {
-      window.alert('Close button clicked in Storybook');
+      console.log('Trailing Primary button clicked in Storybook');
     },
   },
 } as Meta<typeof BmbInnerHeaderComponent>;
 
-const customizable = (): StoryFn => (args) => ({
-  props: args,
-  template: `
+type Story = StoryObj<BmbInnerHeaderComponent>;
+
+export const Default: Story = {
+  name: 'Base variant (an icon on the left) example',
+};
+
+export const BaseVariantExample = {
+  name: 'Base variant example',
+  argTypes: {
+    onHandleTrailingSecondary: {
+      control: 'function',
+    },
+  },
+  args: {
+    trailingIconSecondary: 'home',
+    onHandleTrailingSecondary: () => {
+      console.log('Trailing Secondary button clicked in Storybook');
+    },
+  },
+};
+
+export const SearchVariantExample = {
+  name: 'Search variant',
+  args: {
+    trailingIconPrimary: '',
+    showSearch: true,
+  },
+};
+
+export const ResponsiveExample = {
+  name: 'Responsive example',
+  argTypes: {
+    ...BaseVariantExample.argTypes,
+  },
+  args: {
+    ...BaseVariantExample.args,
+  },
+  render: (args: any) => ({
+    template: `
+    <!-- Example of how you can use this component. -->
+    <div style="width: 50%; margin: 0 auto;">
+      <bmb-inner-header
+        ${attributes(args)}
+      />
+    </div>
+    `,
+  }),
+};
+
+export const CustomExample = {
+  name: 'Custom content example',
+  argTypes: {
+    ...BaseVariantExample.args,
+  },
+  args: {
+    ...BaseVariantExample.args,
+    test_text: 'Custom content (Bamboo component or HTML code)',
+  },
+  render: (args: any) => ({
+    template: `
     <!-- Example of how you can use this component. -->
     <bmb-inner-header
       ${attributes(args)}
     >
       <!-- Example of content. The content can be a bamboo component or html. -->
-      <div style="text-align: center;">${attributesText(args)}</div>
+      <div style="padding: 4rem; text-align: center;">${attributesText(args)}</div>
     </bmb-inner-header>
-  `,
-});
+    `,
+  }),
+};
 
-export const Default = customizable();
+export const AnotherCustomExample = {
+  name: 'Another custom example',
+  argTypes: {
+    ...BaseVariantExample.args,
+  },
+  args: {
+    ...BaseVariantExample.args,
+  },
+  render: (args: any) => ({
+    template: `
+    <!-- Example of how you can use this component. -->
+    <bmb-inner-header
+      ${attributes(args)}
+    >
+      <!-- This example implements "Chevron Title Selector" component. -->
+      <bmb-chevron-title-selector
+        title="Title"
+        leadingIcon="chevron_left"
+        trailingIcon="chevron_right"
+        (onLeadingClick)="onLeadingClick($event)"
+        (onTrailingClick)="onTrailingClick($event)"
+      />
+    </bmb-inner-header>
+    `,
+  }),
+};
