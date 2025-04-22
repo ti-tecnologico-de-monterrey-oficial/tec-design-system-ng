@@ -58,15 +58,15 @@ describe('BmbExternalLinkComponent', () => {
     expect(component.footerEvent.emit).toHaveBeenCalledWith(event);
   });
 
-  it('should return true for isIconSubtitle if subtitle is a URL', () => {
+  it('should return true for getSubtitleIcon if subtitle is a URL', () => {
     componentRef.setInput('subtitle', 'https://www.example.com');
     fixture.detectChanges();
-    expect(component.isIconSubtitle()).toBeTrue();
+    expect(component.getSubtitleIcon()).toBe('lock');
   });
 
-  it('should return false for isIconSubtitle if subtitle is not a URL', () => {
+  it('should return false for getSubtitleIcon if subtitle is not a URL', () => {
     componentRef.setInput('subtitle', 'Not a URL');
     fixture.detectChanges();
-    expect(component.isIconSubtitle()).toBeFalse();
+    expect(component.getSubtitleIcon()).toBe('');
   });
 });
