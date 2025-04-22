@@ -370,13 +370,6 @@ export class AppComponent {
     console.log('Checkbox value:', element.value);
   }
 
-  handleRadial(element: Event): void {
-    console.log('App - Radio value:', element);
-    // console.log('Radio value:', element.value);
-    // console.log('Radio name:', element.name);
-    // console.log('Is it checked?', element.checked);
-  }
-
   plus() {
     this.i++;
   }
@@ -5483,44 +5476,47 @@ export class AppComponent {
     this.selectControl.setValue('Grape');
   }
 
+  handleRadial(element: Event): void {
+    console.log('App - Radio value:', element);
+    // console.log('Radio value:', element.value);
+    // console.log('Radio name:', element.name);
+    // console.log('Is it checked?', element.checked);
+  }
+
   formGroup: FormGroup = new FormGroup({
-    name: new FormControl<string>(''),
-    named: new FormControl<string>(''),
-    otherName: new FormControl<string>('', Validators.required),
-    comments: new FormControl<string>(''),
-    contract: new FormControl(''),
-    amount: new FormControl(),
-    phone: new FormControl(),
-    phone2: new FormControl(),
-    phone3: new FormControl(),
-    checkbox1: new FormControl(),
-    checkbox2: new FormControl(),
-    switch1: new FormControl(),
-    switch2: new FormControl(),
+    // name: new FormControl<string>(''),
+    // named: new FormControl<string>(''),
+    // otherName: new FormControl<string>('', Validators.required),
+    // comments: new FormControl<string>(''),
+    contract2: new FormControl('', Validators.required),
+    // amount: new FormControl(),
+    // phone: new FormControl(),
+    // phone2: new FormControl(),
+    // phone3: new FormControl(),
+    // checkbox1: new FormControl(),
+    // checkbox2: new FormControl(),
+    // switch1: new FormControl(),
+    // switch2: new FormControl(),
   });
 
   onSubmit(): void {
     this.formGroup.markAllAsTouched();
     this.formGroup.updateValueAndValidity();
-    console.log('FORM status', this.formGroup);
+    console.log('FORM STATE', this.formGroup);
     if (this.formGroup.valid) {
       console.log('FORM VALID');
       return;
     }
-    console.log('FORM', this.formGroup.status);
+    console.log('FORM STATUS', this.formGroup.status);
     this.updateErrorState();
   }
 
   updateErrorState() {
-    const invalidInputs = this.el.nativeElement.querySelectorAll('.ng-invalid');
-    invalidInputs.forEach((input: HTMLElement) => {
-      const name =
-        input.getAttribute('name') ||
-        input.getAttribute('ng-reflect-name') ||
-        input.parentElement?.getAttribute('ng-reflect-name') ||
-        '';
-      const control = this.formGroup.get(name);
-      if (control) {
+    Object.keys(this.formGroup.controls).forEach((field) => {
+      const control = this.getFormControl(field);
+
+      if (control instanceof FormControl) {
+        control.markAsTouched();
         control.updateValueAndValidity();
       }
     });

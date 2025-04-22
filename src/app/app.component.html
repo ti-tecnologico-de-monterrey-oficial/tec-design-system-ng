@@ -1,10 +1,10 @@
-<bmb-form-validation (formGroupChange)="handleFormGroupState($event)">
+<bmb-form-validation (formGroupState)="handleFormGroupState($event)">
   <bmb-radial
     id="radio1"
     value="CCM"
     name="contract"
     label="Contract for teacher CCM.pdf"
-    [checked]="true"
+    [checked]="false"
     [required]="true"
     [disabled]="false"
     errorMessage="Error message CCM"
@@ -25,7 +25,41 @@
     labelPosition="after"
     (change)="handleRadial($event)"
   />
-  <button bmbButton appearance="primary" type="submit">Submit</button>
+  <button bmbButton appearance="primary" type="submit">Submit form-val</button>
 </bmb-form-validation>
 
 <!-- <bmb-theme /> -->
+
+<section style="margin: 1rem">
+  <form [formGroup]="formGroup" (submit)="onSubmit()">
+    <bmb-radial
+      id="radio3"
+      value="CCM"
+      name="contract2"
+      label="Contract for teacher CCM.pdf"
+      [checked]="false"
+      [required]="true"
+      [disabled]="false"
+      errorMessage="Error message CCM"
+      helperMessage="Helper message CCM"
+      labelPosition="before"
+      [control]="getFormControl('contract2')"
+      (change)="handleRadial($event)"
+    />
+    <bmb-radial
+      id="radio4"
+      value="CCB"
+      name="contract2"
+      label="Contrato profesor cátedra Biología CCB.pdf"
+      [checked]="false"
+      [required]="true"
+      [disabled]="false"
+      errorMessage="Error message CCB"
+      helperMessage="Helper message CCB"
+      labelPosition="after"
+      [control]="getFormControl('contract2')"
+      (change)="handleRadial($event)"
+    />
+    <button bmbButton appearance="primary" type="submit">Submit form</button>
+  </form>
+</section>
