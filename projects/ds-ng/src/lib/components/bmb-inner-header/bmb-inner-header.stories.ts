@@ -58,7 +58,7 @@ Below is an example of how you can use this component in HTML:
       },
     },
     subTitle: {
-      name: 'Sub Title',
+      name: 'Subtitle',
       control: null,
       description:
         'This property is deprecated and will be removed in future versions.',
