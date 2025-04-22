@@ -78,8 +78,7 @@ Below is an example of how you can use this component in HTML:
     isFill: {
       name: 'Is Fill',
       control: { type: 'boolean' },
-      description:
-        'Sets the icon fill when true or the outline when false.',
+      description: 'Sets the icon fill when true or the outline when false.',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'true' },

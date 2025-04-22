@@ -1,12 +1,36 @@
 <section class="bmb_external-link">
-  <bmb-inner-header
-    [title]="title()"
-    [showClose]="true"
-    [subTitle]="subtitle()"
-    trailingIconSecondary="more_horiz"
-    (onHandleTrailingSecondary)="handleOpenMenu()"
-    (onHandleBack)="handleClose($event)"
-  />
+  <header>
+    <bmb-container>
+      <bmb-three-cols>
+        <ng-template #bmbLeftContent>
+          <bmb-action-icon
+            icon="close"
+            [iconSize]="24"
+            (buttonClick)="handleClose($event)"
+          />
+        </ng-template>
+        <ng-template #bmbMainContent>
+          <bmb-title-content
+            [title]="title()"
+            titleSize="6"
+            [subtitle]="subtitle()"
+            subtitleSize="3"
+            subtitleFontWeight="300"
+            [subtitleIcon]="getSubtitleIcon()"
+            [isCenterContent]="true"
+            [transparentBgC]="true"
+          />
+        </ng-template>
+        <ng-template #bmbRightContent>
+          <bmb-action-icon
+            icon="more_horiz"
+            [iconSize]="24"
+            (buttonClick)="handleOpenMenu()"
+          />
+        </ng-template>
+      </bmb-three-cols>
+    </bmb-container>
+  </header>
   <bmb-dropdown-menu-content [items]="getMenuItems()" [(isOpen)]="showMenu" />
   <section class="bmb_external-link-content">
     <ng-content />
