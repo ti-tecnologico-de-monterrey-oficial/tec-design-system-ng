@@ -125,6 +125,7 @@ export class BmbDropdownComponent
 
   updateDisplay() {
     let value = this.control().value;
+
     if (this.isMultiSelect()) {
       this.isItemSelected(value);
       if (!Array.isArray(value)) {
@@ -134,11 +135,11 @@ export class BmbDropdownComponent
       this.control().setValue(value);
     } else {
       const dDItem = (this.options() as IBmbDropdownItem[]).find(
-        (item) => item.value === value?.value,
+        (item) => item.value === value?.value || item.value === value,
       );
-      const name = dDItem?.name || '';
-      this.inputControl.setValue(name, { emitEvent: false });
-      this.selectedOption = name || null;
+
+      this.inputControl.setValue(dDItem?.name || '', { emitEvent: false });
+      this.selectedOption = dDItem || null;
     }
 
     this.cdr.detectChanges();

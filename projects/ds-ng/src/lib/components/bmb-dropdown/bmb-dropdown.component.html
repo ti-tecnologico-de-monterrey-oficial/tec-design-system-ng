@@ -123,7 +123,7 @@
                   (click)="handleItemClick(item)"
                   [ngClass]="{
                     'bmb_dropdown-dialog-list-item-button-selected':
-                      selectedOption === item.value,
+                      selectedOption?.value === item.value,
                   }"
                 >
                   @if (showIcon() && item.icon) {
