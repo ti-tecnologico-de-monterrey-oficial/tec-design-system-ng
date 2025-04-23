@@ -43,6 +43,7 @@
       errorMessage="Error message CCM"
       helperMessage="Helper message CCM"
       labelPosition="before"
+      [showError]="showErrors['contract2']"
       [control]="getFormControl('contract2')"
       (change)="handleRadial($event)"
     />
@@ -54,12 +55,23 @@
       [checked]="false"
       [required]="true"
       [disabled]="false"
-      errorMessage="Error message CCB"
+      [errorMessage]="{
+        required: 'Error message CCB',
+      }"
       helperMessage="Helper message CCB"
       labelPosition="after"
       [control]="getFormControl('contract2')"
+      [showError]="showErrors['contract2']"
       (change)="handleRadial($event)"
     />
     <button bmbButton appearance="primary" type="submit">Submit form</button>
+    <bmb-action-icon
+      [idElement]="''"
+      [icon]="'error'"
+      [iconSize]="24"
+      (buttonClick)="handleError()"
+    />
   </form>
 </section>
+
+{{ showErrors['contract2'] }}

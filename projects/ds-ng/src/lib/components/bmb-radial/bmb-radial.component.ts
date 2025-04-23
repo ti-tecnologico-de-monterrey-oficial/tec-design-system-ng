@@ -12,6 +12,7 @@ import { BmbInputValidationComponent } from '../bmb-input/bmb-input-validation/b
 import { CommonModule } from '@angular/common';
 import { getPositionClass } from '../../utils/utils';
 import { BmbInputValidationService } from '../bmb-input/bmb-input-validation/bmb-input-validation.service';
+import { IBmbInputError } from '../bmb-input/bmb-input.component';
 
 @Component({
   selector: 'bmb-radial',
@@ -34,9 +35,9 @@ export class BmbRadialComponent {
   ariaLabel = input<string>('');
   ariaLabelledby = input<string>('');
   required = input<boolean>(false);
-  errorMessage = input<string>('');
+  errorMessage = input<string | IBmbInputError>('');
   helperMessage = input<string>('');
-  showError = input<boolean>(false); //Deprecated
+  showError = input<boolean>(false);
   control = model<FormControl>();
 
   change = output<Event>();

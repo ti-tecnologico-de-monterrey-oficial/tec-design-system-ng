@@ -45,6 +45,7 @@ export interface IBmbInputError {
   minLength?: string;
   pattern?: string;
   jsonFormat?: string;
+  validation?: string;
 }
 
 export interface IBmbInputTooltipPosition {

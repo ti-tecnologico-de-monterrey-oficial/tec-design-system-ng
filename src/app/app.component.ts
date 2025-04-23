@@ -116,6 +116,7 @@ import {
   BmbMultiDotPaginatorItemComponent,
   SidebarElement,
   BmbFormValidationComponent,
+  BmbActionIconComponent,
 } from '../../projects/ds-ng/src/public-api';
 import { BmbPullWedgeComponent } from '../../projects/ds-ng/src/lib/components/bmb-pull-wedge/bmb-pull-wedge.component';
 import { BmbCardButtonComponent } from '../../projects/ds-ng/src/lib/components/bmb-card-button/bmb-card-button.component';
@@ -157,6 +158,7 @@ import { BmbTitleContentComponent } from '../../projects/ds-ng/src/lib/component
     ReactiveFormsModule,
     CommonModule,
     RouterModule,
+    BmbActionIconComponent,
     BmbPullWedgeComponent,
     BmbThemeComponent,
     BmbBadgeComponent,
@@ -5498,26 +5500,49 @@ export class AppComponent {
     // switch1: new FormControl(),
     // switch2: new FormControl(),
   });
+  showErrors: { [key: string]: boolean } = {};
 
-  onSubmit(): void {
-    this.formGroup.markAllAsTouched();
-    this.formGroup.updateValueAndValidity();
-    console.log('FORM STATE', this.formGroup);
+  // onSubmit(): void {
+  //   this.formGroup.markAllAsTouched();
+  //   this.formGroup.updateValueAndValidity();
+  //   console.log('FORM STATE', this.formGroup);
+  //   if (this.formGroup.valid) {
+  //     console.log('FORM VALID');
+  //     return;
+  //   }
+  //   console.log('FORM STATUS', this.formGroup.status);
+  //   this.updateErrorState();
+  // }
+
+  // updateErrorState() {
+  //   Object.keys(this.formGroup.controls).forEach((field) => {
+  //     const control = this.getFormControl(field);
+
+  //     if (control instanceof FormControl) {
+  //       control.markAsTouched();
+  //       control.updateValueAndValidity();
+  //     }
+  //   });
+  // }
+
+  onSubmit() {
+    console.log('App - onSubmit', this.formGroup);
+
     if (this.formGroup.valid) {
-      console.log('FORM VALID');
       return;
     }
-    console.log('FORM STATUS', this.formGroup.status);
+    this.formGroup.markAllAsTouched();
     this.updateErrorState();
   }
 
   updateErrorState() {
     Object.keys(this.formGroup.controls).forEach((field) => {
-      const control = this.getFormControl(field);
+      const control = this.formGroup.get(field);
+      console.log('control', control);
 
       if (control instanceof FormControl) {
-        control.markAsTouched();
-        control.updateValueAndValidity();
+        this.showErrors[field] =
+          control.invalid && (control.touched || control.dirty);
       }
     });
   }
@@ -5528,5 +5553,15 @@ export class AppComponent {
 
   handleFormGroupState(state: FormGroup): void {
     console.log('App - onSubmit', state?.valid, state);
+  }
+
+  handleFormGroupValue(value: unknown): void {
+    console.log('App - onSubmit', value);
+  }
+
+  error: boolean = false;
+
+  handleError(): void {
+    this.error = !this.error;
   }
 }

@@ -49,6 +49,7 @@ export class BmbInputValidationComponent {
   });
   errorMessage = input<string | IBmbInputError>('');
   helperMessage = input<string>('');
+  showError = input<boolean>(false);
 
   control = model<FormControl>();
 
@@ -108,24 +109,27 @@ export class BmbInputValidationComponent {
   }
 
   get shouldShowError(): boolean {
-    return this.ivs.showError(this.name());
+    return this.showError() || this.ivs.showError(this.name());
   }
 
   getErrorMessage(): string {
     const control = this.ivs.getFormControlByName(this.name());
+    const error = this.errorMessage() as IBmbInputError;
+
     if (typeof this.errorMessage() === 'string') {
       return this.errorMessage().toString();
     }
 
+    if(this.showError() && !!error.validation) return error.validation;
+
     if (control['errors'] !== null) {
       const errorType = control['errors'];
-      const error = this.errorMessage() as IBmbInputError;
 
-      if (errorType['pattern'] && error.pattern) return error.pattern;
-      if (errorType['min'] && error.min) return error.min;
-      if (errorType['max'] && error.max) return error.max;
-      if (errorType['minlength'] && error.minLength) return error.minLength;
-      if (errorType['required'] && error.required) return error.required;
+      if (errorType['pattern'] && !!error.pattern) return error.pattern;
+      if (errorType['min'] && !!error.min) return error.min;
+      if (errorType['max'] && !!error.max) return error.max;
+      if (errorType['minlength'] && !!error.minLength) return error.minLength;
+      if (errorType['required'] && !!error.required) return error.required;
     }
 
     return '';

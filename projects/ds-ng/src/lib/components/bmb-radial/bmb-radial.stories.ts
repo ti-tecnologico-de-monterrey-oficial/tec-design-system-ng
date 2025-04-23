@@ -44,7 +44,7 @@ export class Component {
     this.updateErrorState();
   }
 
-  updateErrorState() {
+  updateErrorState(): void {
     Object.keys(this.formGroup.controls).forEach((field) => {
       const control = this.getFormControl(field);
 
@@ -123,8 +123,7 @@ Below is an example of how you can use this component in HTML:
     checked: {
       name: 'Checked',
       control: { type: 'boolean' },
-      description:
-        'Sets the value given to the radial when true.',
+      description: 'Sets the value given to the radial when true.',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
@@ -134,8 +133,7 @@ Below is an example of how you can use this component in HTML:
     disabled: {
       name: 'Disabled',
       control: { type: 'boolean' },
-      description:
-        'Sets the input to disabled when true.',
+      description: 'Sets the input to disabled when true.',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
@@ -145,8 +143,7 @@ Below is an example of how you can use this component in HTML:
     required: {
       name: 'Required',
       control: { type: 'boolean' },
-      description:
-        'Sets the input as required when true..',
+      description: 'Sets the input as required when true..',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
@@ -156,8 +153,7 @@ Below is an example of how you can use this component in HTML:
     value: {
       name: 'Value',
       control: { type: 'text' },
-      description:
-        'Sets the value of the control when the radial is true.',
+      description: 'Sets the value of the control when the radial is true.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -176,8 +172,7 @@ Below is an example of how you can use this component in HTML:
     label: {
       name: 'Label',
       control: { type: 'text' },
-      description:
-        'Sets the label associated with the radial.',
+      description: 'Sets the label associated with the radial.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -216,8 +211,8 @@ Below is an example of how you can use this component in HTML:
     labelPosition: {
       name: 'Label Position',
       control: { type: 'radio' },
-      options: [ 'before', 'after' ],
-      description:`
+      options: ['before', 'after'],
+      description: `
 Sets the position of the label relative to the radial, indicating whether the label appears to the left or right of the radial.
 
     IBbmSidePosition = 'before' | 'after'
@@ -240,9 +235,30 @@ Sets the position of the label relative to the radial, indicating whether the la
       control: {
         type: 'boolean',
       },
-      description: 'This is deprecated because errors are evaluated from the control',
+      description:`
+Shows the error when true.
+
+Sets the trigger for a specific error when it is not supported by the component.
+
+Recommendation for use:
+
+- Can be used to handle dependency errors.
+
+- It is not necessary to set this flag to true for error validation when the field is required.
+
+- For required field validation, it is recommended to use:
+
+      ...
+      updateErrorState(): void {
+        ...
+        control.markAsTouched();
+        control.updateValueAndValidity();
+        ...
+
+    **Note**: This is a snippet from the TypeScript example above.
+      `,
       table: {
-        category: 'Deprecated',
+        category: 'Properties',
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
       },
