@@ -18,7 +18,11 @@
           />
         </form>
       } @else {
-        <bmb-three-cols>
+        <bmb-three-cols
+          [ngClass]="{
+            'bmb_inner_header-container-space': !!trailingIconSecondary(),
+          }"
+        >
           <ng-template #bmbLeftContent>
             <bmb-action-icon
               [icon]="getLeftIcon()"
@@ -30,10 +34,6 @@
             <bmb-title-content
               [title]="title()"
               titleSize="6"
-              [subtitle]="subTitle()"
-              subtitleSize="3"
-              subtitleFontWeight="300"
-              [subtitleIcon]="getSubtitleIcon()"
               [isCenterContent]="true"
               [transparentBgC]="true"
             />
