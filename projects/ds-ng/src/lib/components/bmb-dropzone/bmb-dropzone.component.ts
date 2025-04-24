@@ -19,9 +19,9 @@ interface FileData {
   name: string;
   size: number;
   base64?: string;
+  error?: boolean;
+  errorType?: 'format' | 'size' | null;
 }
-
-export type IBmbFileUploadStatus = 'success' | 'error' | 'loading' | 'none';
 
 @Component({
   selector: 'bmb-dropzone',
@@ -40,23 +40,29 @@ export type IBmbFileUploadStatus = 'success' | 'error' | 'loading' | 'none';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbDropzoneComponent {
-  progress = input<number>();
   acceptedExtensions = input.required<string[]>();
+  dropInstruction = input<string>('Arrastra tus archivos aquí o');
+  dropLabel = input<string>('selecciona tus archivos');
+  errorMessage = input<string>('Archivo no compatible');
+  errorMessageFormat = input<string>('Formato no soportado');
+  errorMessageSize = input<string>('El archivo supera el tamaño permitido');
+  fileDataList: FileData[] = [];
+  fileSize = input<number>(2);
   formatFilesLabel = input<string>('Especificación de formatos y peso');
   linkFilesSupported = input<string>('');
   linkLabel = input<string>(
     'Ver más información de formatos de archivo aceptados.',
   );
+  mainIcon = input<string>('image');
+  multiple = input<boolean>(false);
   name = input<string>('bmbFileInput');
-  errorMessage = input<string>('Archivo no compatible');
-  fileSize = input<number>(2);
-  uploadStatus = input<IBmbFileUploadStatus>('none');
+  progress = input<Record<string, number>>({});
 
-  newFile = output<File>();
+  newFile = output<File | File[]>();
+  fileRemoved = output<string>();
 
   validFile: boolean = true;
   input?: HTMLInputElement;
-  fileData: FileData = {} as FileData;
 
   constructor(private cdr: ChangeDetectorRef) {}
 
@@ -64,8 +70,7 @@ export class BmbDropzoneComponent {
     if (
       changes['progress'] ||
       changes['acceptedExtensions'] ||
-      changes['fileSize'] ||
-      changes['uploadStatus']
+      changes['fileSize']
     ) {
       this.cdr.detectChanges();
     }
@@ -74,32 +79,82 @@ export class BmbDropzoneComponent {
   public onFileSelected(event: Event) {
     this.input = event.target as HTMLInputElement;
     if (this.input.files?.[0]) {
-      const file: File = this.input.files[0];
-      this.getFileAndValidate(file);
+      const files = this.input.files;
+      if (files && files.length > 0) {
+        this.getFileAndValidate(this.multiple() ? Array.from(files) : files[0]);
+      }
     }
   }
 
-  private getFileAndValidate(file: File): void {
-    this.fileData = {} as File;
-    const fileExtension = file.name.split('.').at(-1);
-    const isValidFileType = this.acceptedExtensions().includes(
-      fileExtension ?? '',
-    );
-    const fileSizeInMB = file.size / 1048576;
-    const isValidSize = fileSizeInMB <= this.fileSize();
+  private getFileAndValidate(file: File | File[]): void {
+    const filesArray = Array.isArray(file) ? file : [file];
+    const validFiles: File[] = [];
 
-    if (isValidFileType && isValidSize) {
-      this.validFile = true;
-      this.newFile.emit(file);
-      this.fileData.name = file.name;
-      this.fileData.size = fileSizeInMB;
+    if (!this.multiple()) {
+      this.fileDataList = [];
+    }
+
+    for (const singleFile of filesArray) {
+      const fileExtension = singleFile.name.split('.').at(-1);
+      const isValidFileType = this.acceptedExtensions().includes(
+        fileExtension ?? '',
+      );
+      const fileSizeInMB = singleFile.size / 1048576;
+      const isValidSize = fileSizeInMB <= this.fileSize();
+
+      const alreadyExists = this.fileDataList.some(
+        (existing) => existing.name === singleFile.name,
+      );
+
+      if (alreadyExists) {
+        continue;
+      }
+
+      if (isValidFileType && isValidSize) {
+        const fileData: FileData = {
+          name: singleFile.name,
+          size: fileSizeInMB,
+          error: false,
+          errorType: null,
+        };
+
+        this.fileDataList.push(fileData);
+        validFiles.push(singleFile);
+      } else {
+        this.fileDataList.push({
+          name: singleFile.name,
+          size: fileSizeInMB,
+          error: true,
+          errorType: !isValidFileType ? 'format' : 'size',
+        });
+      }
+    }
+
+    this.validFile = validFiles.length > 0;
+
+    if (this.validFile) {
+      this.newFile.emit(this.multiple() ? validFiles : validFiles[0]);
     } else {
       this.onErrorFile();
     }
   }
 
-  public removeFile(): void {
-    this.fileData = {} as File;
+  public removeFile(fileName: string): void {
+    this.fileDataList = this.fileDataList.filter(
+      (file) => file.name !== fileName,
+    );
+
+    const hasFormatErrorsOnly = this.fileDataList.some(
+      (file) => file.error && file.errorType === 'format',
+    );
+
+    this.validFile = this.fileDataList.length > 0 && !hasFormatErrorsOnly;
+
+    if (this.fileDataList.length === 0 && this.input) {
+      this.input.value = '';
+    }
+
+    this.fileRemoved.emit(fileName);
   }
 
   private onErrorFile(): void {
@@ -131,30 +186,27 @@ export class BmbDropzoneComponent {
 
     const files = event.dataTransfer?.files;
     if (files && files.length > 0) {
-      const file = files[0];
-      this.getFileAndValidate(file);
+      this.getFileAndValidate(this.multiple() ? Array.from(files) : files[0]);
     }
   }
 
-  getIconByStatus(): string {
-    switch (this.uploadStatus()) {
-      case 'success':
-        return 'task';
-      case 'error':
-        return 'upload_file';
-      case 'loading':
-        return 'progress_activity';
-      default:
-        return 'progress_activity';
-    }
+  getProgress(fileName: string): number {
+    const progress = this.progress?.();
+    return progress?.[fileName] ?? 0;
   }
 
-  getIconAnimation(): string[] {
-    const classList = ['bmb-drop-zone-list-files-icon'];
-    if (this.uploadStatus() === 'loading') {
-      classList.push('bmb-drop-zone-list-files-icon-spin');
-    }
+  isInvalidFileOnly(): boolean {
+    return this.fileDataList.some(
+      (file) => file.error && file.errorType === 'format',
+    );
+  }
 
-    return classList;
+  public reset(): void {
+    this.fileDataList = [];
+    this.validFile = true;
+    if (this.input) {
+      this.input.value = '';
+    }
+    this.cdr.detectChanges();
   }
 }
