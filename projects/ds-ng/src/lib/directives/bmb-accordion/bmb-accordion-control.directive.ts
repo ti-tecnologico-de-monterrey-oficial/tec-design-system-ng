@@ -1,66 +1,97 @@
 import {
   Directive,
-  ElementRef,
-  Renderer2,
+  ContentChildren,
+  QueryList,
+  AfterContentInit,
+  Input,
+  DoCheck,
+  KeyValueDiffer,
+  KeyValueDiffers,
+  OnDestroy,
   HostListener,
-  OnInit,
 } from '@angular/core';
+import { BmbAccordionComponent } from '../../../public-api';
+import { Subscription } from 'rxjs';
 
 @Directive({
   selector: '[bmbAccordionControl]',
   standalone: true,
 })
-export class BmbAccordionControlDirective implements OnInit {
-  private accordions: any[] = [];
-  private openAccordion: number | null = null;
+export class BmbAccordionControlDirective implements AfterContentInit, DoCheck, OnDestroy {
+  @Input() accordionStates?: { [id: string]: boolean };
 
-  constructor(
-    private readonly el: ElementRef,
-    private readonly renderer: Renderer2,
-  ) {}
+  @ContentChildren(BmbAccordionComponent) accordions!: QueryList<BmbAccordionComponent>;
 
-  ngOnInit() {
-    this.accordions = Array.from(
-      this.el.nativeElement.querySelectorAll('bmb-accordion'),
-    );
-  }
+  private differ?: KeyValueDiffer<string, boolean>;
+  private subscriptions: Subscription[] = [];
+  private contentReady = false;
 
-  @HostListener('click', ['$event']) onClick(event: MouseEvent) {
-    const parent = event.target as HTMLElement;
-    const selectedAccordion = parent.closest('section');
-    const idAccordion = selectedAccordion
-      ?.closest('bmb-accordion')
-      ?.getAttribute('ng-reflect-accordion-id');
+  constructor(private differs: KeyValueDiffers) {}
 
-    if (this.openAccordion !== Number(idAccordion)) {
-      this.openAccordion = Number(idAccordion);
-      this.accordions.forEach((accordion: any) => {
-        if (accordion.querySelector('section') !== selectedAccordion) {
-          const content = accordion
-            .querySelector('section')
-            .querySelector('section');
-          const header = accordion
-            .querySelector('section')
-            .querySelector('header');
-          const section = accordion.querySelector('section');
-
-          this.renderer.removeClass(section, 'active');
-          this.renderer.removeClass(content, 'bmb_accordion-content-open');
-          this.renderer.removeClass(header, 'bmb_accordion-header-open');
-        } else {
-          const header = accordion
-            .querySelector('section')
-            .querySelector('header');
-          const content = accordion
-            .querySelector('section')
-            .querySelector('section');
-          const section = accordion.querySelector('section');
-
-          this.renderer.addClass(section, 'active');
-          this.renderer.addClass(content, 'bmb_accordion-content-open');
-          this.renderer.addClass(header, 'bmb_accordion-header-open');
+  ngAfterContentInit(): void {
+    this.subscriptions = this.accordions.map((accordion) => {
+      return accordion.opened.subscribe(() => {
+        if(!this.accordionStates){
+          this.closeOthers(String(accordion.accordionId()));
+        }else{
+          this.updateExternalState(String(accordion.accordionId()));
         }
       });
+    });
+
+    if (this.accordionStates) {
+      this.differ = this.differs.find({}).create();
+      this.applyControlledStates();
     }
+    this.contentReady = true;
+  }
+
+  ngDoCheck(): void {
+    if (!this.contentReady || !this.accordionStates || !this.differ) return;
+
+    const changes = this.differ.diff(this.accordionStates);
+    if (changes) {
+      this.applyControlledStates();
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
+  }
+
+  private applyControlledStates(): void {
+    this.accordions.forEach((accordion) => {
+      const state = this.accordionStates![accordion.accordionId()!];
+      accordion._disabled.set(false);
+      if(!state){
+        accordion._disabled.set(true);
+      }
+      accordion._expanded.set(state);
+      accordion._active.set(state);
+    });
+  }
+
+  private closeOthers(openId: string): void {
+    this.accordions.forEach((accordion) => {
+      if(String(accordion.accordionId()) !== openId) {
+        accordion._expanded.set(false);
+        accordion._active.set(false);
+
+        if(this.accordionStates){
+          accordion._disabled.set(true);
+        }else{
+          accordion._disabled.set(false);
+        }
+      }else{
+        accordion._active.set(true);
+      }
+    });
+  }
+
+  private updateExternalState(openId: string): void {
+    if (!this.accordionStates) return;
+    Object.keys(this.accordionStates).forEach((id) => {
+      this.accordionStates![id] = id === openId;
+    });
   }
 }
