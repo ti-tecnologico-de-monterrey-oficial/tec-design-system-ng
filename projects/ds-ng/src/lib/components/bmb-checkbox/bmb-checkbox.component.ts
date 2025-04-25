@@ -1,57 +1,82 @@
 import {
   Component,
-  EventEmitter,
-  Input,
-  Output,
   ViewEncapsulation,
   ChangeDetectionStrategy,
+  input,
+  output,
+  model,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { IBbmSidePosition } from '../../types';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { BmbInputValidationService } from '../bmb-input/bmb-input-validation/bmb-input-validation.service';
+import { BmbInputValidationComponent } from '../bmb-input/bmb-input-validation/bmb-input-validation.component';
+import { getPositionClass } from '../../utils/utils';
+import { IBmbInputError } from '../bmb-input/bmb-input.component';
 
 @Component({
   selector: 'bmb-checkbox',
   templateUrl: './bmb-checkbox.component.html',
   styleUrls: ['./bmb-checkbox.component.scss'],
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule, BmbInputValidationComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbCheckboxComponent {
-  @Input() id: string = '';
-  @Input() checked: boolean = false;
-  @Input() disabled: boolean = false;
-  @Input() indeterminate: boolean = false;
-  @Input() required: boolean = false;
-  @Input() value: string = '';
-  @Input() name: string = '';
-  @Input() label: string = '';
-  @Input() labelPosition: 'before' | 'after' = 'after';
-  @Input() ariaDescribedby: string = '';
-  @Input() ariaLabel: string = '';
-  @Input() ariaLabelledby: string = '';
+  id = input<string>('');
+  disabled = input<boolean>(false);
+  required = input<boolean>(false);
+  value = input<string>('');
+  name = input<string>('');
+  label = input<string>('');
+  labelPosition = input<IBbmSidePosition>('after');
+  ariaDescribedby = input<string>('');
+  ariaLabel = input<string>('');
+  ariaLabelledby = input<string>('');
+  errorMessage = input<string | IBmbInputError>('');
+  helperMessage = input<string>('');
+  control = model<FormControl>();
 
-  @Output() change: EventEmitter<Event> = new EventEmitter<Event>();
+  checked = model<boolean>();
+  indeterminate = model<boolean>(false);
 
+  change = output<Event>();
+
+  constructor(private ivs: BmbInputValidationService) {}
+
+  getPositionClass(className: string): string {
+    return getPositionClass(className, this.labelPosition());
+  }
   handleChange(event: Event): void {
     event.stopPropagation();
     const target = event.target as HTMLInputElement;
-    this.checked = target.checked;
+    if (this.indeterminate()) {
+      this.indeterminate.set(false);
+    }
+    this.checked.set(target.checked);
+    this.ivs.getFormControlByName(this.name()).setValue(this.checked());
     this.change.emit(event);
-    event.stopPropagation();
+    event.preventDefault();
   }
 
   handleKeyDown(event: KeyboardEvent) {
     if (event.key === 'Enter') {
-      if (this.indeterminate) {
-        this.indeterminate = false;
-        this.checked = true;
+      if (this.indeterminate()) {
+        this.indeterminate.set(false);
+        this.checked.set(true);
       } else {
-        this.checked = !this.checked;
+        this.checked.update((value) => !value);
       }
+
+      this.ivs.getFormControlByName(this.name()).setValue(this.checked());
 
       event.preventDefault();
       this.change.emit(event);
     }
+  }
+
+  getFormControl(): FormControl {
+    return this.ivs.getFormControlByName(this.name());
   }
 }

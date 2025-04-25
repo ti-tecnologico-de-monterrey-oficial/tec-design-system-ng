@@ -30,11 +30,7 @@ export type IBmbInputType =
   | 'password'
   | 'number'
   | 'text-area'
-  | 'radio'
-  | 'checkbox'
-  | 'email'
-  | 'phone'
-  | 'switch';
+  | 'radio';
 export type IBmbInputAppearance = 'main' | 'normal' | 'simple';
 export type IBmbAdditionalAction = 'copy' | 'showHide' | 'none';
 

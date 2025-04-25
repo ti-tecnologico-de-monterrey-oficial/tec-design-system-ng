@@ -75,6 +75,7 @@ export class BmbFormValidationComponent {
     return (
       input.getAttribute(attributeName) ||
       input.getAttribute(`ng-reflect-${attributeName}`) ||
+      input.parentElement.getAttribute(attributeName) ||
       input.parentElement.getAttribute(`ng-reflect-${attributeName}`) ||
       ''
     );

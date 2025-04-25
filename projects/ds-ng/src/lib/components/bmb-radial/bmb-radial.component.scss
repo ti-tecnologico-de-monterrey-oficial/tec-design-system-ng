@@ -13,13 +13,10 @@
       border: rem.rem_calc(2) solid var(--switch-checked);
 
       &::after {
-        display: block;
         position: absolute;
-        margin: rem.rem_calc(2);
+        @include mixins.mark_position(13, 13, 0);
         border-radius: 100%;
         background-color: var(--switch-checked);
-        height: rem.rem_calc(12);
-        width: rem.rem_calc(12);
       }
     }
 
@@ -27,7 +24,7 @@
       border-color: var(--switch-checked);
 
       &::before {
-        @include mixins.focused(34, 34, -9, -9);
+        @include mixins.focused(48, 48, -14);
       }
     }
 
@@ -36,7 +33,7 @@
       border-color: var(--switch-checked);
 
       &::before {
-        @include mixins.focused(34, 34, -9, -9);
+        @include mixins.focused(48, 48, -14);
       }
     }
   }
@@ -55,8 +52,8 @@
     position: relative;
     align-items: center;
     justify-content: center;
-    height: rem.rem_calc(20);
-    width: rem.rem_calc(20);
+    height: rem.rem_calc(24);
+    width: rem.rem_calc(24);
     background-color: transparent;
     border: rem.rem_calc(2) solid var(--general_contrasts-100);
     border-radius: 100%;
@@ -70,5 +67,5 @@
 }
 
 .bmb_input-validation-error .bmb_radio-mark {
-  border-color: RGBA(var(--color-red-light));
+  border-color: var(--input-error);
 }

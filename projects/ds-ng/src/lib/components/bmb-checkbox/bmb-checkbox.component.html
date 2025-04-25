@@ -1,28 +1,39 @@
-<label
-  class="bmb_checkbox"
-  [class.bmb_checkbox-before]="labelPosition === 'before'"
-  [class.bmb_checkbox-after]="labelPosition === 'after'"
-  [class.bmb_checkbox-required]="required"
+<bmb-input-validation
+  type="checkbox"
+  [name]="name()"
+  [label]="label()"
+  [labelPosition]="labelPosition()"
+  [checked]="checked()!"
+  [value]="value()"
+  [errorMessage]="errorMessage()"
+  [helperMessage]="helperMessage()"
+  [isRequired]="required()"
+  [disabled]="disabled()"
+  [control]="control()"
 >
-  <input
-    type="checkbox"
-    [id]="id"
-    [attr.aria-describedby]="ariaDescribedby"
-    [attr.aria-label]="ariaLabel"
-    [attr.aria-labelledby]="ariaLabelledby"
-    [attr.name]="name"
-    [attr.value]="value"
-    [checked]="checked"
-    [disabled]="disabled"
-    [required]="required"
-    [indeterminate]="indeterminate"
-    (change)="handleChange($event)"
-    (keydown)="handleKeyDown($event)"
-  />
-  <div class="bmb_checkbox-box">
+  <span class="bmb_checkbox" [ngClass]="getPositionClass('bmb_checkbox')">
+    <input
+      class="bmb_checkbox-input"
+      [ngClass]="{
+        'bmb_checkbox-input-indeterminate': indeterminate(),
+      }"
+      type="checkbox"
+      [id]="id()"
+      [formControl]="getFormControl()"
+      [name]="name()"
+      [attr.aria-describedby]="ariaDescribedby()"
+      [attr.aria-label]="ariaLabel()"
+      [attr.aria-labelledby]="ariaLabelledby()"
+      [attr.value]="value()"
+      [value]="value()"
+      [checked]="checked()"
+      [disabled]="disabled()"
+      [required]="required()"
+      [indeterminate]="indeterminate()"
+      (change)="handleChange($event)"
+      (keydown)="handleKeyDown($event)"
+      [tabindex]="disabled() ? -1 : 0"
+    />
     <span class="bmb_checkbox-mark"></span>
-  </div>
-  @if (label) {
-    <span class="bmb_checkbox-label">{{ label }}</span>
-  }
-</label>
+  </span>
+</bmb-input-validation>

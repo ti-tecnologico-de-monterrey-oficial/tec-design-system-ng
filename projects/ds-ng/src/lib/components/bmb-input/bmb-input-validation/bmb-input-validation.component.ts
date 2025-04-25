@@ -18,6 +18,8 @@ import { BmbTooltipComponent } from '../../bmb-tooltip/bmb-tooltip.component';
 import { getPositionClass } from '../../../utils/utils';
 import { BmbInputValidationService } from './bmb-input-validation.service';
 
+export type IBmbInputValType = 'checkbox' | 'email' | 'phone' | 'switch';
+
 @Component({
   selector: 'bmb-input-validation',
   standalone: true,
@@ -28,7 +30,7 @@ import { BmbInputValidationService } from './bmb-input-validation.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbInputValidationComponent {
-  type = input<IBmbInputType>('text');
+  type = input<IBmbInputType | IBmbInputValType>('text');
   label = input<string>('');
   labelPosition = input<IBbmSidePosition>('after');
   name = input<string>('');
@@ -49,7 +51,7 @@ export class BmbInputValidationComponent {
   });
   errorMessage = input<string | IBmbInputError>('');
   helperMessage = input<string>('');
-  showError = input<boolean>(false);
+  showError = model<boolean>(false);
 
   control = model<FormControl>();
 
@@ -72,6 +74,14 @@ export class BmbInputValidationComponent {
       this.pattern()!,
       this.cdr,
     );
+
+    this.control()?.valueChanges.subscribe(() => {
+      this.showError.set(
+        (this.control()?.invalid &&
+          (this.control()?.touched || this.control()?.dirty)) ||
+          false,
+      );
+    });
   }
 
   getPositionClass(className: string): string {
@@ -109,7 +119,7 @@ export class BmbInputValidationComponent {
   }
 
   get shouldShowError(): boolean {
-    return this.showError() || this.ivs.showError(this.name());
+    return this.ivs.showError(this.name()) || this.showError();
   }
 
   getErrorMessage(): string {
@@ -120,8 +130,6 @@ export class BmbInputValidationComponent {
       return this.errorMessage().toString();
     }
 
-    if(this.showError() && !!error.validation) return error.validation;
-
     if (control['errors'] !== null) {
       const errorType = control['errors'];
 
@@ -131,6 +139,8 @@ export class BmbInputValidationComponent {
       if (errorType['minlength'] && !!error.minLength) return error.minLength;
       if (errorType['required'] && !!error.required) return error.required;
     }
+
+    if (this.showError() && !!error.validation) return error.validation;
 
     return '';
   }

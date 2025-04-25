@@ -5495,10 +5495,14 @@ export class AppComponent {
     // phone: new FormControl(),
     // phone2: new FormControl(),
     // phone3: new FormControl(),
-    // checkbox1: new FormControl(),
+    checkbox1: new FormControl(),
     // checkbox2: new FormControl(),
     // switch1: new FormControl(),
     // switch2: new FormControl(),
+    phone: new FormControl(
+      { value: '+525555555555', disabled: false },
+      Validators.required,
+    ),
   });
   showErrors: { [key: string]: boolean } = {};
 
@@ -5538,7 +5542,6 @@ export class AppComponent {
   updateErrorState() {
     Object.keys(this.formGroup.controls).forEach((field) => {
       const control = this.formGroup.get(field);
-      console.log('control', control);
 
       if (control instanceof FormControl) {
         this.showErrors[field] =

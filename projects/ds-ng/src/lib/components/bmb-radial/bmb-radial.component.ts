@@ -37,7 +37,7 @@ export class BmbRadialComponent {
   required = input<boolean>(false);
   errorMessage = input<string | IBmbInputError>('');
   helperMessage = input<string>('');
-  showError = input<boolean>(false);
+  showError = model<boolean>(false);
   control = model<FormControl>();
 
   change = output<Event>();

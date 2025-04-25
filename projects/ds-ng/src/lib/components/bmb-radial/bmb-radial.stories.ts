@@ -232,21 +232,11 @@ Sets the position of the label relative to the radial, indicating whether the la
     },
     showError: {
       name: 'Show Error',
-      control: {
-        type: 'boolean',
-      },
-      description:`
-Shows the error when true.
+      control: null,
+      description: `
+This property is deprecated. No support will be provided for this property and will be removed in future releases.
 
-Sets the trigger for a specific error when it is not supported by the component.
-
-Recommendation for use:
-
-- Can be used to handle dependency errors.
-
-- It is not necessary to set this flag to true for error validation when the field is required.
-
-- For required field validation, it is recommended to use:
+For form control validation, it is recommended to use:
 
       ...
       updateErrorState(): void {
@@ -255,12 +245,11 @@ Recommendation for use:
         control.updateValueAndValidity();
         ...
 
-    **Note**: This is a snippet from the TypeScript example above.
+**Note**: This is a snippet from the TypeScript example above.
       `,
       table: {
-        category: 'Properties',
+        category: 'Deprecated',
         type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
       },
     },
     errorMessage: {
