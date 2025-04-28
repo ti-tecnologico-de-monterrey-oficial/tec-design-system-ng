@@ -16,9 +16,9 @@ The `BmbAdvertisementCardComponent` is a standalone Angular component designed t
 
 The component accepts the following inputs to customize its behavior and appearance:
 
-| Input      | Type     | Default     | Description                                   |
-|------------|----------|-------------|-----------------------------------------------|
-| `subtitle` | `string` | `''`        | The subtitle displayed in the advertisement card. |
+| Input      | Type     | Default | Description                                       |
+| ---------- | -------- | ------- | ------------------------------------------------- |
+| `subtitle` | `string` | `''`    | The subtitle displayed in the advertisement card. |
 
 ---
 
@@ -48,12 +48,15 @@ interface IBmbAdvertisementData {
 ## Methods
 
 ### `setActiveTab(tab: number): void`
+
 Sets the active tab and updates the displayed content based on the selected category (`promociones`, `avisos`, or `informacion`).
 
 ### `onDotPress(event: any): void`
+
 Handles the event when a pagination dot is pressed, updating the active dot.
 
 ### `setSize(size: string): void`
+
 Expands or collapses the card based on the provided size (`expand` or `collapse`).
 
 ---
@@ -76,17 +79,12 @@ The component's template is structured as follows:
         <img [src]="item.imgData.url" [alt]="item.imgData.alt" />
         <h3>{{ item.content.title }}</h3>
         <p>{{ item.content.description }}</p>
-        <button *ngIf="item.content.linkBtn" [href]="item.content.linkBtn">
-          {{ item.content.labelBtn }}
-        </button>
+        <button *ngIf="item.content.linkBtn" [href]="item.content.linkBtn">{{ item.content.labelBtn }}</button>
       </div>
     </ng-container>
   </div>
 
-  <bmb-dot-paginator
-    [dots]="activeData.length"
-    (dotPress)="onDotPress($event)"
-  ></bmb-dot-paginator>
+  <bmb-dot-paginator [dots]="activeData.length" (dotPress)="onDotPress($event)"></bmb-dot-paginator>
 </bmb-advertisement-card>
 ```
 
@@ -95,8 +93,7 @@ The component's template is structured as follows:
 ## Usage Example
 
 ```html
-<bmb-advertisement-card [subtitle]="'Latest Promotions'">
-</bmb-advertisement-card>
+<bmb-advertisement-card [subtitle]="'Latest Promotions'"> </bmb-advertisement-card>
 ```
 
 ---

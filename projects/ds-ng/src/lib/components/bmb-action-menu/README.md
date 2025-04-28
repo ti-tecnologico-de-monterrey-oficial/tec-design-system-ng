@@ -16,15 +16,15 @@ The `BmbActionMenuComponent` is a standalone Angular component designed to displ
 
 The component accepts the following inputs to customize its behavior and appearance:
 
-| Input              | Type         | Default     | Description                                                                 |
-|---------------------|--------------|-------------|-----------------------------------------------------------------------------|
-| `title` (required) | `string`     | `undefined` | The title of the action menu.                                              |
-| `subtitle`         | `string`     | `undefined` | The subtitle of the action menu.                                           |
-| `icon`             | `string`     | `''`        | The name of the icon to display in the header.                             |
-| `iconSize`         | `number`     | `24`        | The size of the icon in pixels.                                            |
-| `bgIconAppearance` | `IBmbColor`  | `undefined` | The background color of the icon.                                          |
-| `showHeader`       | `boolean`    | `true`      | Determines whether the header (title, subtitle, and icon) is displayed.    |
-| `isAList`          | `boolean`    | `true`      | Indicates whether the menu content should be displayed as a list.          |
+| Input              | Type        | Default     | Description                                                             |
+| ------------------ | ----------- | ----------- | ----------------------------------------------------------------------- |
+| `title` (required) | `string`    | `undefined` | The title of the action menu.                                           |
+| `subtitle`         | `string`    | `undefined` | The subtitle of the action menu.                                        |
+| `icon`             | `string`    | `''`        | The name of the icon to display in the header.                          |
+| `iconSize`         | `number`    | `24`        | The size of the icon in pixels.                                         |
+| `bgIconAppearance` | `IBmbColor` | `undefined` | The background color of the icon.                                       |
+| `showHeader`       | `boolean`   | `true`      | Determines whether the header (title, subtitle, and icon) is displayed. |
+| `isAList`          | `boolean`   | `true`      | Indicates whether the menu content should be displayed as a list.       |
 
 ---
 
@@ -32,9 +32,9 @@ The component accepts the following inputs to customize its behavior and appeara
 
 The component supports content projection for flexible customization of menu items. You can use Angular's `<ng-template>` to define the projected content.
 
-| Template Reference | Description                              |
-|---------------------|------------------------------------------|
-| `contentTemplates` | Defines the content of the action menu.  |
+| Template Reference | Description                             |
+| ------------------ | --------------------------------------- |
+| `contentTemplates` | Defines the content of the action menu. |
 
 ---
 
@@ -43,15 +43,7 @@ The component supports content projection for flexible customization of menu ite
 The component's template is structured as follows:
 
 ```html
-<bmb-action-menu
-  [title]="'Menu Title'"
-  [subtitle]="'Menu Subtitle'"
-  [icon]="'menu'"
-  [iconSize]="32"
-  [bgIconAppearance]="'primary'"
-  [showHeader]="true"
-  [isAList]="true"
->
+<bmb-action-menu [title]="'Menu Title'" [subtitle]="'Menu Subtitle'" [icon]="'menu'" [iconSize]="32" [bgIconAppearance]="'primary'" [showHeader]="true" [isAList]="true">
   <ng-template>
     <p>Menu Item 1</p>
   </ng-template>
@@ -66,6 +58,7 @@ The component's template is structured as follows:
 ## Methods
 
 ### `ngAfterContentInit()`
+
 This lifecycle hook initializes the projected content by converting the `ContentChildren` query list into an array of templates.
 
 ---
@@ -73,15 +66,7 @@ This lifecycle hook initializes the projected content by converting the `Content
 ## Usage Example
 
 ```html
-<bmb-action-menu
-  [title]="'Actions'"
-  [subtitle]="'Choose an option'"
-  [icon]="'settings'"
-  [iconSize]="24"
-  [bgIconAppearance]="'secondary'"
-  [showHeader]="true"
-  [isAList]="false"
->
+<bmb-action-menu [title]="'Actions'" [subtitle]="'Choose an option'" [icon]="'settings'" [iconSize]="24" [bgIconAppearance]="'secondary'" [showHeader]="true" [isAList]="false">
   <ng-template>
     <button>Option 1</button>
   </ng-template>

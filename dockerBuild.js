@@ -8,7 +8,9 @@ const supportedVersions = ["17", "18", "19"];
 async function runDockerCommands(version) {
   try {
     // 1. Build Docker image
-    await execPromise(`docker build -t angular-lib-${version} -f Dockerfile-${version} .`);
+    await execPromise(
+      `docker build -t angular-lib-${version} -f Dockerfile-${version} .`,
+    );
     console.log("Docker image built successfully");
 
     // 2. Create temporary container

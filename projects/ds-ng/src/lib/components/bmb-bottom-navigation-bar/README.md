@@ -16,9 +16,9 @@ The `BmbBottomNavigationBarComponent` is a standalone Angular component designed
 
 The component accepts the following inputs to customize its behavior and appearance:
 
-| Input               | Type                     | Description                                                                 |
-|----------------------|--------------------------|-----------------------------------------------------------------------------|
-| `navigationBarIcons` | `IBmbNavigationBarIcons` | An object containing the configuration for the navigation bar icons.        |
+| Input                | Type                     | Description                                                          |
+| -------------------- | ------------------------ | -------------------------------------------------------------------- |
+| `navigationBarIcons` | `IBmbNavigationBarIcons` | An object containing the configuration for the navigation bar icons. |
 
 ### `IBmbNavigationBarIcons` Structure
 
@@ -37,12 +37,12 @@ export type IBmbNavigationBarIcons = {
 
 Each icon in the `navigationBarIcons` object has the following properties:
 
-| Property          | Type       | Description                                                                 |
-|-------------------|------------|-----------------------------------------------------------------------------|
-| `name`            | `string`   | The name of the icon to display.                                            |
-| `label`           | `string`   | The label for the icon.                                                    |
-| `eventName`       | `IBmbFooterEvent` | The event name associated with the icon (e.g., `back`, `forward`).         |
-| `dotNotification` | `number`   | (Optional) Displays a notification dot with the specified number.           |
+| Property          | Type              | Description                                                        |
+| ----------------- | ----------------- | ------------------------------------------------------------------ |
+| `name`            | `string`          | The name of the icon to display.                                   |
+| `label`           | `string`          | The label for the icon.                                            |
+| `eventName`       | `IBmbFooterEvent` | The event name associated with the icon (e.g., `back`, `forward`). |
+| `dotNotification` | `number`          | (Optional) Displays a notification dot with the specified number.  |
 
 ---
 
@@ -50,9 +50,9 @@ Each icon in the `navigationBarIcons` object has the following properties:
 
 The component emits the following events:
 
-| Output               | Type              | Description                                                                 |
-|----------------------|-------------------|-----------------------------------------------------------------------------|
-| `navigationBarEvents` | `IBmbFooterEvent` | Emitted when a navigation bar option is clicked, passing the event name.    |
+| Output                | Type              | Description                                                              |
+| --------------------- | ----------------- | ------------------------------------------------------------------------ |
+| `navigationBarEvents` | `IBmbFooterEvent` | Emitted when a navigation bar option is clicked, passing the event name. |
 
 ### `IBmbFooterEvent` Values
 
@@ -68,9 +68,11 @@ The `navigationBarEvents` output emits one of the following values:
 ## Methods
 
 ### `buildElement(element: IBmbNavigationBarIcon, eventName: IBmbFooterEvent): IBmbNavigationBarIcon`
+
 Creates a new navigation bar icon object with the specified event name.
 
 ### `onNavigationBarOptionClick(event: IBmbFooterEvent): void`
+
 Handles the click event for a navigation bar option and emits the corresponding `navigationBarEvents` output.
 
 ---

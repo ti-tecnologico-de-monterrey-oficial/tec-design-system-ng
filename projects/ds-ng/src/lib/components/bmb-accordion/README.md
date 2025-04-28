@@ -16,18 +16,18 @@ The `BmbAccordionComponent` is a standalone Angular component designed to create
 
 The component accepts the following inputs to customize its behavior and appearance:
 
-| Input           | Type                        | Default | Description                                                                 |
-|------------------|-----------------------------|---------|-----------------------------------------------------------------------------|
-| `borderRadius`   | `SizeNames | SizeNames[]`   | `'m'`   | Defines the border radius of the accordion.                                |
-| `margin`         | `SizeNames | SizeNames[]`   | `'m'`   | Sets the margin around the accordion.                                      |
-| `paddingHeader`  | `SizeNames | SizeNames[]`   | `'m'`   | Sets the padding for the accordion header.                                 |
-| `paddingContent` | `SizeNames | SizeNames[]`   | `'m'`   | Sets the padding for the accordion content.                                |
-| `icon`           | `string`                   | `''`    | Specifies the icon to display in the header.                               |
-| `accordionId`    | `number`                   | `0`     | Unique identifier for the accordion.                                       |
-| `hideToggle`     | `boolean`                  | `false` | Hides the toggle icon if set to `true`.                                    |
-| `active`         | `boolean`                  | `false` | Marks the accordion as active.                                             |
-| `disabled`       | `boolean`                  | `false` | Disables the accordion, preventing interaction.                            |
-| `expanded`       | `boolean | undefined`      | `undefined` | Controls whether the accordion is expanded or collapsed.                  |
+| Input            | Type       | Default      | Description                                     |
+| ---------------- | ---------- | ------------ | ----------------------------------------------- | -------------------------------------------------------- |
+| `borderRadius`   | `SizeNames | SizeNames[]` | `'m'`                                           | Defines the border radius of the accordion.              |
+| `margin`         | `SizeNames | SizeNames[]` | `'m'`                                           | Sets the margin around the accordion.                    |
+| `paddingHeader`  | `SizeNames | SizeNames[]` | `'m'`                                           | Sets the padding for the accordion header.               |
+| `paddingContent` | `SizeNames | SizeNames[]` | `'m'`                                           | Sets the padding for the accordion content.              |
+| `icon`           | `string`   | `''`         | Specifies the icon to display in the header.    |
+| `accordionId`    | `number`   | `0`          | Unique identifier for the accordion.            |
+| `hideToggle`     | `boolean`  | `false`      | Hides the toggle icon if set to `true`.         |
+| `active`         | `boolean`  | `false`      | Marks the accordion as active.                  |
+| `disabled`       | `boolean`  | `false`      | Disables the accordion, preventing interaction. |
+| `expanded`       | `boolean   | undefined`   | `undefined`                                     | Controls whether the accordion is expanded or collapsed. |
 
 ---
 
@@ -35,11 +35,11 @@ The component accepts the following inputs to customize its behavior and appeara
 
 The component emits the following events:
 
-| Output     | Type       | Description                                                                 |
-|------------|------------|-----------------------------------------------------------------------------|
-| `closed`   | `void`     | Emitted when the accordion is collapsed.                                   |
-| `opened`   | `void`     | Emitted when the accordion is expanded.                                    |
-| `onClick`  | `void`     | Emitted when the accordion header is clicked.                              |
+| Output    | Type   | Description                                   |
+| --------- | ------ | --------------------------------------------- |
+| `closed`  | `void` | Emitted when the accordion is collapsed.      |
+| `opened`  | `void` | Emitted when the accordion is expanded.       |
+| `onClick` | `void` | Emitted when the accordion header is clicked. |
 
 ---
 
@@ -47,10 +47,10 @@ The component emits the following events:
 
 The component supports content projection for the header and content sections using the following template references:
 
-| Template Reference       | Description                              |
-|---------------------------|------------------------------------------|
-| `bmbAccordionHeader`      | Defines the content for the accordion header. |
-| `bmbAccordionContent`     | Defines the content for the accordion body.   |
+| Template Reference    | Description                                   |
+| --------------------- | --------------------------------------------- |
+| `bmbAccordionHeader`  | Defines the content for the accordion header. |
+| `bmbAccordionContent` | Defines the content for the accordion body.   |
 
 ---
 
@@ -59,21 +59,7 @@ The component supports content projection for the header and content sections us
 The component's template is structured as follows:
 
 ```html
-<bmb-accordion
-  [borderRadius]="'m'"
-  [margin]="'m'"
-  [paddingHeader]="'m'"
-  [paddingContent]="'m'"
-  [icon]="'expand_more'"
-  [accordionId]="1"
-  [hideToggle]="false"
-  [active]="false"
-  [disabled]="false"
-  [expanded]="true"
-  (closed)="onAccordionClosed()"
-  (opened)="onAccordionOpened()"
-  (onClick)="onAccordionClicked()"
->
+<bmb-accordion [borderRadius]="'m'" [margin]="'m'" [paddingHeader]="'m'" [paddingContent]="'m'" [icon]="'expand_more'" [accordionId]="1" [hideToggle]="false" [active]="false" [disabled]="false" [expanded]="true" (closed)="onAccordionClosed()" (opened)="onAccordionOpened()" (onClick)="onAccordionClicked()">
   <ng-template #bmbAccordionHeader>
     <h3>Accordion Header</h3>
   </ng-template>
@@ -88,12 +74,15 @@ The component's template is structured as follows:
 ## Methods
 
 ### `toggle()`
+
 Toggles the accordion's expanded or collapsed state.
 
 ### `getIconToggle()`
+
 Returns the appropriate icon based on the accordion's state (`expand_more` or `expand_less`).
 
 ### `onKeydown(event: KeyboardEvent)`
+
 Handles keyboard interactions (`Enter` or `Space`) to toggle the accordion.
 
 ---
@@ -101,21 +90,7 @@ Handles keyboard interactions (`Enter` or `Space`) to toggle the accordion.
 ## Usage Example
 
 ```html
-<bmb-accordion
-  [borderRadius]="'l'"
-  [margin]="'s'"
-  [paddingHeader]="'m'"
-  [paddingContent]="'l'"
-  [icon]="'expand_more'"
-  [accordionId]="2"
-  [hideToggle]="false"
-  [active]="true"
-  [disabled]="false"
-  [expanded]="false"
-  (closed)="onAccordionClosed()"
-  (opened)="onAccordionOpened()"
-  (onClick)="onAccordionClicked()"
->
+<bmb-accordion [borderRadius]="'l'" [margin]="'s'" [paddingHeader]="'m'" [paddingContent]="'l'" [icon]="'expand_more'" [accordionId]="2" [hideToggle]="false" [active]="true" [disabled]="false" [expanded]="false" (closed)="onAccordionClosed()" (opened)="onAccordionOpened()" (onClick)="onAccordionClicked()">
   <ng-template #bmbAccordionHeader>
     <h3>Custom Header</h3>
   </ng-template>

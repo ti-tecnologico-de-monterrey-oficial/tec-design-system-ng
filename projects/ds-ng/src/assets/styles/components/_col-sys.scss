@@ -56,12 +56,16 @@ $alignItemsOptions: (
     @include mixins.media-query(999, "max") {
       flex: 0 0
         calc(#{percentage(math.div($i, 4))} - var(--bmb-gap) / 4 * #{4 - $i});
-      max-width: calc(#{percentage(math.div($i, 4))} - var(--bmb-gap) / 4 * #{4 - $i});
+      max-width: calc(
+        #{percentage(math.div($i, 4))} - var(--bmb-gap) / 4 * #{4 - $i}
+      );
     }
     flex: 0
       0
       calc(#{percentage(math.div($i, 4))} - var(--bmb-gap) / 4 * #{4 - $i});
-      max-width: calc(#{percentage(math.div($i, 4))} - var(--bmb-gap) / 4 * #{4 - $i});
+    max-width: calc(
+      #{percentage(math.div($i, 4))} - var(--bmb-gap) / 4 * #{4 - $i}
+    );
     overflow: visible;
   }
 }

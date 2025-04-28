@@ -16,11 +16,11 @@ The `BmbAlertCenterComponent` is a standalone Angular component designed to disp
 
 The component accepts the following inputs to customize its behavior and appearance:
 
-| Input          | Type         | Default     | Description                                                                 |
-|-----------------|--------------|-------------|-----------------------------------------------------------------------------|
-| `alerts`       | `Array<any>` | `[]`        | An array of alert objects to display in the alert center.                  |
-| `title`        | `string`     | `''`        | The title of the alert center.                                             |
-| `showCloseAll` | `boolean`    | `true`      | Determines whether the "Close All" button is displayed.                    |
+| Input          | Type         | Default | Description                                               |
+| -------------- | ------------ | ------- | --------------------------------------------------------- |
+| `alerts`       | `Array<any>` | `[]`    | An array of alert objects to display in the alert center. |
+| `title`        | `string`     | `''`    | The title of the alert center.                            |
+| `showCloseAll` | `boolean`    | `true`  | Determines whether the "Close All" button is displayed.   |
 
 ---
 
@@ -28,19 +28,21 @@ The component accepts the following inputs to customize its behavior and appeara
 
 The component emits the following events:
 
-| Output         | Type       | Description                                                                 |
-|-----------------|------------|-----------------------------------------------------------------------------|
-| `alertClick`   | `any`      | Emitted when an alert is clicked, passing the alert object as a parameter.   |
-| `closeAll`     | `void`     | Emitted when the "Close All" button is clicked.                             |
+| Output       | Type   | Description                                                                |
+| ------------ | ------ | -------------------------------------------------------------------------- |
+| `alertClick` | `any`  | Emitted when an alert is clicked, passing the alert object as a parameter. |
+| `closeAll`   | `void` | Emitted when the "Close All" button is clicked.                            |
 
 ---
 
 ## Methods
 
 ### `closeAlert(alert: any): void`
+
 Closes a specific alert and removes it from the list of alerts.
 
 ### `handleCloseAll(): void`
+
 Closes all alerts and emits the `closeAll` event.
 
 ---
@@ -50,13 +52,7 @@ Closes all alerts and emits the `closeAll` event.
 The component's template is structured as follows:
 
 ```html
-<bmb-alert-center
-  [alerts]="alerts"
-  [title]="'Notifications'"
-  [showCloseAll]="true"
-  (alertClick)="onAlertClick($event)"
-  (closeAll)="onCloseAll()"
->
+<bmb-alert-center [alerts]="alerts" [title]="'Notifications'" [showCloseAll]="true" (alertClick)="onAlertClick($event)" (closeAll)="onCloseAll()">
   <ng-container *ngFor="let alert of alerts">
     <div class="alert">
       <h3>{{ alert.title }}</h3>

@@ -16,17 +16,18 @@ The `BmbBadgeComponent` is a standalone Angular component designed to display ba
 
 The component accepts the following inputs to customize its behavior and appearance:
 
-| Input        | Type                | Default     | Description                                                                 |
-|--------------|---------------------|-------------|-----------------------------------------------------------------------------|
-| `appearance` | `IBbmBgAppearance` | `'normal'`  | Defines the visual appearance of the badge (e.g., `normal`, `primary`).    |
-| `text`       | `string`            | `''`        | The text content displayed inside the badge.                               |
-| `container`  | `boolean`           | `true`      | Determines whether the badge has a container style applied.                |
+| Input        | Type               | Default    | Description                                                             |
+| ------------ | ------------------ | ---------- | ----------------------------------------------------------------------- |
+| `appearance` | `IBbmBgAppearance` | `'normal'` | Defines the visual appearance of the badge (e.g., `normal`, `primary`). |
+| `text`       | `string`           | `''`       | The text content displayed inside the badge.                            |
+| `container`  | `boolean`          | `true`     | Determines whether the badge has a container style applied.             |
 
 ---
 
 ## Methods
 
 ### `getClasses(): string[]`
+
 Returns an array of CSS classes based on the `appearance` and `container` inputs. These classes are applied to the badge for styling.
 
 ---
@@ -36,11 +37,7 @@ Returns an array of CSS classes based on the `appearance` and `container` inputs
 The component's template is structured as follows:
 
 ```html
-<bmb-badge
-  [appearance]="'primary'"
-  [text]="'New'"
-  [container]="true"
-></bmb-badge>
+<bmb-badge [appearance]="'primary'" [text]="'New'" [container]="true"></bmb-badge>
 ```
 
 ---
@@ -48,17 +45,9 @@ The component's template is structured as follows:
 ## Usage Example
 
 ```html
-<bmb-badge
-  [appearance]="'success'"
-  [text]="'Active'"
-  [container]="true"
-></bmb-badge>
+<bmb-badge [appearance]="'success'" [text]="'Active'" [container]="true"></bmb-badge>
 
-<bmb-badge
-  [appearance]="'warning'"
-  [text]="'Pending'"
-  [container]="false"
-></bmb-badge>
+<bmb-badge [appearance]="'warning'" [text]="'Pending'" [container]="false"></bmb-badge>
 ```
 
 ---

@@ -21,9 +21,11 @@ The component maintains an internal state (`isActive`) to track whether the book
 ## Methods
 
 ### `handleClick(event: any): void`
+
 Handles the click event on the bookmark. It toggles the `isActive` state and prevents event propagation.
 
 ### `getClassList(): string[]`
+
 Returns an array of CSS classes based on the `isActive` state. If the bookmark is active, the `bmb_bookmark-active` class is added.
 
 ---
