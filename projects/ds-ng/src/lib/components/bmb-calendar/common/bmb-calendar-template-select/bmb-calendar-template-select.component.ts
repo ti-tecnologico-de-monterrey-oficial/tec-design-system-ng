@@ -6,7 +6,7 @@ import {
   Output,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbButtonDirective } from '../../../../directives/button.directive';
+import { BmbButtonDirective } from '../../../../directives/bmb-button/button.directive';
 import { CommonModule } from '@angular/common';
 import { ClickOutsideDirective } from '../../../../directives/utils/clickoutside.directive';
 

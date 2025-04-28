@@ -12,7 +12,7 @@ import { IBmbDataAlert } from '../bmb-alert-center/types';
 import { BmbTabsComponent, IBmbTab } from '../bmb-tabs/bmb-tabs.component';
 import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
 import { BmbCarouselComponent } from '../bmb-carousel/bmb-carousel.component';
-import { BmbButtonDirective } from '../../directives/button.directive';
+import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { BmbImageComponent } from '../bmb-image/bmb-image.component';
 
 @Component({

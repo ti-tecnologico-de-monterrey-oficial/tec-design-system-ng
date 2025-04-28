@@ -19,7 +19,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ModalDataConfig } from '../bmb-modal/bmb-modal.interface';
 import { BmbInputComponent } from '../bmb-input/bmb-input.component';
 import { IBmbControlType } from './bmb-filter-card.interface';
-import { BmbButtonDirective } from '../../directives/button.directive';
+import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { BmbDropdownComponent } from '../bmb-dropdown/bmb-dropdown.component';
 import { BmbTagComponent } from '../bmb-tags/bmb-tags.component';
 

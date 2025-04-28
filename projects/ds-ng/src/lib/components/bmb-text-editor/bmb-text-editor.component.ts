@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { BmbButtonDirective } from '../../directives/button.directive';
+import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 
 @Component({
