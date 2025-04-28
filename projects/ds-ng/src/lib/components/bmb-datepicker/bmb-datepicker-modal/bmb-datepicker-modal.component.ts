@@ -143,12 +143,13 @@ export class BmbDatepickerModalComponent implements OnInit {
 
   checkIfDisabled(date: DateTime): boolean {
     let isValid: boolean = this.disableDatesBefore()
-        ? date.startOf('day') <= this.disableDatesBefore()!.startOf('day')
-        : false;
+      ? date.startOf('day') <= this.disableDatesBefore()!.startOf('day')
+      : false;
 
-    isValid = !isValid && this.disableDatesAfter()
-      ? date.startOf('day') >= this.disableDatesAfter()!.startOf('day')
-      : isValid;
+    isValid =
+      !isValid && this.disableDatesAfter()
+        ? date.startOf('day') >= this.disableDatesAfter()!.startOf('day')
+        : isValid;
 
     return isValid;
   }

@@ -225,14 +225,43 @@ Sets the collaborator data to display in the component.
     },
   },
   args: {
-    isStandAlone: false,
+    handleCloseSession: () => {
+      console.log('Close session');
+    },
+  },
+} as Meta<typeof BmbProfileComponent>;
+
+type Story = StoryObj<BmbProfileComponent>;
+
+export const Default = {
+  name: 'Example of Stand alone variant',
+  args: {
+    isStandAlone: true,
     standAloneData: {
       name: 'Paloma Araujo',
       userImg: 'https://picsum.photos/id/64/200/300',
       registration: 'A032132',
       email: 'mail@tec.mx',
     },
-    isStudent: true,
+  },
+  render: (args: any) => ({
+    props: args,
+    template: `
+    <!-- Instruction to users: This html is used for internal Storybook logic -->
+    <div style="max-width: 560px; margin: 0 auto">
+      <!-- Example of how you can use this component -->
+      <bmb-profile
+        ${attributes(args)}
+      />
+      <!-- End of the example -->
+    </div>
+    `,
+  }),
+};
+
+export const StudentMobileExample = {
+  name: 'Example of Student (mobile) variant',
+  args: {
     studentData: {
       userData: {
         name: 'Paloma Araujo',
@@ -244,6 +273,70 @@ Sets the collaborator data to display in the component.
       campus: 'Monterrey',
       program: 'ARQ19',
     },
+    campusAcessLink: 'https://www.example.com',
+    idDigitalLink: 'https://www.example.com',
+    tecServicesLink: 'https://www.example.com',
+    targetLinks: '_blank',
+    versionLabel: 'Versión 1.5.10',
+    handleCloseProfile: () => {
+      console.log('Close Profile');
+    },
+  },
+  render: (args: any) => ({
+    props: args,
+    template: `
+    <!-- Instruction to users: This html is used for internal Storybook logic -->
+    <div style="max-width: 560px; margin: 0 auto">
+      <!-- Example of how you can use this component -->
+      <bmb-profile
+        ${attributes(args)}
+      />
+      <!-- End of the example -->
+    </div>
+    `,
+  }),
+};
+
+export const StudentWebExample = {
+  name: 'Example of Student (web) variant',
+  argTypes: {
+    handleCloseProfile: {
+      control: false,
+    },
+  },
+  args: {
+    isMobile: false,
+    studentData: {
+      userData: {
+        name: 'Paloma Araujo',
+        userImg: 'https://picsum.photos/id/64/200/300',
+        registration: 'A032132',
+        email: 'mail@tec.mx',
+      },
+      period: 'AGO-DIC 24',
+      campus: 'Monterrey',
+      program: 'ARQ19',
+    },
+  },
+  render: (args: any) => ({
+    props: args,
+    template: `
+    <!-- Instruction to users: This html is used for internal Storybook logic -->
+    <div style="max-width: 560px; margin: 0 auto">
+      <!-- Example of how you can use this component -->
+      <bmb-profile
+        ${attributes(args)}
+      />
+      <!-- End of the example -->
+    </div>
+    `,
+  }),
+};
+
+export const CollaboratorMobileExample = {
+  name: 'Example of Collaborator (mobile) variant',
+  args: {
+    isStudent: false,
     collaboratorData: {
       userData: {
         name: 'Paloma Araujo',
@@ -272,28 +365,73 @@ Sets the collaborator data to display in the component.
         hierarchyTarget: '_blank',
       },
     },
-    isMobile: true,
     campusAcessLink: 'https://www.example.com',
     idDigitalLink: 'https://www.example.com',
     tecServicesLink: 'https://www.example.com',
     targetLinks: '_blank',
     versionLabel: 'Versión 1.5.10',
-    handleCloseSession: () => {
-      window.alert('Cerrar Sesion');
-    },
     handleCloseProfile: () => {
-      window.alert('Close Profile');
+      console.log('Close Profile');
     },
   },
-} as Meta<typeof BmbProfileComponent>;
-
-type Story = StoryObj<BmbProfileComponent>;
-
-export const Default: Story = {
-  render: (args) => ({
+  render: (args: any) => ({
     props: args,
     template: `
-    <!-- Instruction to users: This html is used for internal Storybook logic and should not be copied -->
+    <!-- Instruction to users: This html is used for internal Storybook logic -->
+    <div style="max-width: 560px; margin: 0 auto">
+      <!-- Example of how you can use this component -->
+      <bmb-profile
+        ${attributes(args)}
+      />
+      <!-- End of the example -->
+    </div>
+    `,
+  }),
+};
+
+export const CollaboratorWebExample = {
+  name: 'Example of Collaborator (web) variant',
+  argTypes: {
+    handleCloseProfile: {
+      control: false,
+    },
+  },
+  args: {
+    isStudent: false,
+    isMobile: false,
+    collaboratorData: {
+      userData: {
+        name: 'Paloma Araujo',
+        userImg: 'https://picsum.photos/id/64/200/300',
+        registration: 'L0123456',
+        email: 'mail@tec.mx',
+      },
+      position: 'Desarrollador de Software',
+      area: 'Dirección de Desarrollo-Techvolution 2.0',
+      leader: {
+        userData: {
+          name: 'Arturo González Martínez',
+          userImg: 'https://picsum.photos/id/64/200/300',
+          email: 'mail@tec.mx',
+        },
+        hierarchyLink: 'https://www.example.com',
+        hierarchyTarget: '_blank',
+      },
+      generalist: {
+        userData: {
+          name: 'Ana María Gutiérrez Pineda',
+          userImg: 'https://picsum.photos/id/64/200/300',
+          email: 'mail@tec.mx',
+        },
+        hierarchyLink: 'https://www.example.com',
+        hierarchyTarget: '_blank',
+      },
+    },
+  },
+  render: (args: any) => ({
+    props: args,
+    template: `
+    <!-- Instruction to users: This html is used for internal Storybook logic -->
     <div style="max-width: 560px; margin: 0 auto">
       <!-- Example of how you can use this component -->
       <bmb-profile

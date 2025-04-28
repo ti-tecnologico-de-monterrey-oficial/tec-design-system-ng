@@ -65,7 +65,7 @@ export class BmbTitleContentComponent {
     }
     if (!!this.bgIconAppearance()) {
       return {
-        'background-color': `RGBA(var(--color-${this.bgIconAppearance()}))`,
+        'background-color': `rgb(var(--color-${this.bgIconAppearance()}))`,
       };
     }
     return {};

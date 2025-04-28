@@ -44,13 +44,13 @@ export class BmbDateRangeComponent {
   constructor() {
     this.controlStart().valueChanges.subscribe((newValue) => {
       if (newValue) {
-        this.disableDatesBefore = newValue
+        this.disableDatesBefore = newValue;
       }
     });
 
     this.controlEnd().valueChanges.subscribe((newValue) => {
       if (newValue) {
-        this.disableDatesAfter = newValue
+        this.disableDatesAfter = newValue;
       }
     });
   }

@@ -11,8 +11,12 @@ import {
   IBmbNavigationBarIcons,
 } from '../bmb-bottom-navigation-bar/bmb-bottom-navigation-bar.component';
 import { IDropdownItem } from '../bmb-dropdown-menu/bmb-dropdown-menu.component';
-import { BmbInnerHeaderComponent } from '../bmb-inner-header/bmb-inner-header.component';
 import { BmbDropdownMenuContentComponent } from '../bmb-dropdown-menu/bmb-dropdown-menu-content/bmb-dropdown-menu-content.component';
+import { BmbThreeColsComponent } from '../bmb-three-cols/bmb-three-cols.component';
+import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
+import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
+import { isExternalLink } from '../../utils/utils';
+import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 
 export type IBmbMenuEvent = 'link' | 'openNew' | 'info';
 
@@ -20,9 +24,12 @@ export type IBmbMenuEvent = 'link' | 'openNew' | 'info';
   selector: 'bmb-external-link',
   standalone: true,
   imports: [
-    BmbInnerHeaderComponent,
+    BmbContainerComponent,
     BmbDropdownMenuContentComponent,
     BmbBottomNavigationBarComponent,
+    BmbThreeColsComponent,
+    BmbActionIconComponent,
+    BmbTitleContentComponent,
   ],
   templateUrl: './bmb-external-link.component.html',
   styleUrl: './bmb-external-link.component.scss',
@@ -45,8 +52,10 @@ export class BmbExternalLinkComponent {
 
   showMenu: boolean = false;
 
-  isIconSubtitle(): boolean {
-    return /^https/.test(this.subtitle().toLowerCase());
+  getSubtitleIcon(): string {
+    return (
+      (!!this.subtitle() && isExternalLink(this.subtitle()) && 'lock') || ''
+    );
   }
 
   getMenuItems(): IDropdownItem[] {

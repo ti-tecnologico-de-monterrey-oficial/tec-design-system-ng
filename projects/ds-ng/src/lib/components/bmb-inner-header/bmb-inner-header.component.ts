@@ -13,7 +13,6 @@ import { BmbThreeColsComponent } from '../bmb-three-cols/bmb-three-cols.componen
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
-import { isExternalLink } from '../../utils/utils';
 
 @Component({
   selector: 'bmb-inner-header',
@@ -35,7 +34,7 @@ import { isExternalLink } from '../../utils/utils';
 export class BmbInnerHeaderComponent {
   title = input<string>('');
   placeholderSearch = input<string>('');
-  subTitle = input<string>('');
+  subTitle = input<string>(''); //Deprecated
   trailingIconPrimary = input<string>('');
   trailingIconSecondary = input<string>('');
   showClose = input<boolean>(false);
@@ -59,12 +58,6 @@ export class BmbInnerHeaderComponent {
     if (this.showClose() && !this.showReturn()) return 'close';
 
     return '';
-  }
-
-  getSubtitleIcon(): string {
-    return (
-      (!!this.subTitle() && isExternalLink(this.subTitle()) && 'lock') || ''
-    );
   }
 
   handleBack(event: any): void {
