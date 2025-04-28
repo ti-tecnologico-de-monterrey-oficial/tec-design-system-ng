@@ -414,6 +414,14 @@ Below is an example of how to use this component in HTML:
         type: { summary: 'boolean' },
       },
     },
+    keyDown: {
+      name: 'Key Down',
+      description: 'Emits key down event.',
+      table: {
+        category: 'Events',
+        type: { summary: 'KeyboardEvent' },
+      },
+    }
   },
 
   args: {
