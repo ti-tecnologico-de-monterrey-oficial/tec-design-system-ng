@@ -49,7 +49,7 @@
       [altImage]="userInformation.name"
     />
   </button>
-  @if (mitec) {
+  @if (mitec && (userInformation.name || userInformation.role)) {
     <div class="bmb_top-bar-user-section-name bmb_top-bar-user-section-no-mobile">
       <h3 class="bmb_top-bar-user-section-title">{{ userInformation.name }}</h3>
       <h4 class="bmb_top-bar-user-section-role">

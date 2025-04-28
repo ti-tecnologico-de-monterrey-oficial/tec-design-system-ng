@@ -56,23 +56,26 @@ $alignItemsOptions: (
     @include mixins.media-query(999, "max") {
       flex: 0 0
         calc(#{percentage(math.div($i, 4))} - var(--bmb-gap) / 4 * #{4 - $i});
+      max-width: calc(#{percentage(math.div($i, 4))} - var(--bmb-gap) / 4 * #{4 - $i});
     }
     flex: 0
       0
       calc(#{percentage(math.div($i, 4))} - var(--bmb-gap) / 4 * #{4 - $i});
-    overflow: visible auto;
+      max-width: calc(#{percentage(math.div($i, 4))} - var(--bmb-gap) / 4 * #{4 - $i});
+    overflow: visible;
   }
 }
 
 @for $i from 1 through 12 {
   .bmb_col-lg-#{$i} {
-    overflow: visible auto;
+    overflow: visible;
 
     @include mixins.media-query(999, "max") {
       &:not(.bmb_col-sm-1):not(.bmb_col-sm-2):not(.bmb_col-sm-3):not(
           .bmb_col-sm-4
         ) {
         flex: 0 0 100%;
+        max-width: 100%;
       }
     }
 
@@ -81,6 +84,9 @@ $alignItemsOptions: (
         calc(
           #{percentage(math.div($i, 12))} - (var(--bmb-gap) / 12 * #{12 - $i})
         );
+      max-width: calc(
+        #{percentage(math.div($i, 12))} - (var(--bmb-gap) / 12 * #{12 - $i})
+      );
     }
   }
 }
