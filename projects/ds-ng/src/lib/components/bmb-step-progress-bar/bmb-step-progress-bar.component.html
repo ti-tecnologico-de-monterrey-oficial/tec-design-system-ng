@@ -1,6 +1,9 @@
 <div
   class="bmb_step-progress-bar"
-  [ngClass]="{ 'bmb_step-progress-bar-vertical': type == 'vertical' }"
+  [ngClass]="{
+    'bmb_step-progress-bar-vertical': type == 'vertical',
+    'bmb_step-progress-bar-step-panel': type == 'step-panel',
+  }"
 >
   @if (type == "horizontal") {
     <div
@@ -26,7 +29,7 @@
         }
       </div>
     </div>
-  } @else {
+  } @else if (type === "vertical") {
     <div
       class="bmb_step-progress-bar-vertical-item"
       *ngFor="let i of getStepsArray()"
@@ -70,6 +73,55 @@
           }
         </div>
       }
+    </div>
+  } @else if (type === "step-panel") {
+    <div class="bmb_step-progress-bar-step-panel-item">
+      <div
+        class="bmb_step-progress-bar-step-panel-wrapper"
+        [ngClass]="{
+          active: activeStep === i,
+          completed: activeStep > i,
+        }"
+        *ngFor="let step of getStepsArray(); let i = index"
+      >
+        <div
+          class="bmb_step-progress-bar-step-panel-header"
+          (click)="onStepPanelClicked(i)"
+        >
+          <div
+            class="bmb_step-progress-bar-step-panel-step"
+            [ngClass]="{
+              active: activeStep === i,
+              completed: activeStep > i,
+            }"
+          >
+            @if (activeStep > i) {
+              <bmb-icon
+                [icon]="'done'"
+                class="bmb_step-progress-bar-icon"
+                [size]="24"
+              />
+            } @else {
+              <span class="index">{{ i + 1 }}</span>
+            }
+          </div>
+
+          <span
+            class="bmb_step-progress-bar-step-panel-label"
+            [ngClass]="{
+              active: activeStep === i,
+              completed: activeStep > i,
+            }"
+            >{{ labelSteps[i] }}</span
+          >
+        </div>
+
+        @if (activeStep === i && stepTemplates.length > i) {
+          <div class="bmb_step-progress-bar-step-panel-content">
+            <ng-container [ngTemplateOutlet]="stepTemplates[i]"></ng-container>
+          </div>
+        }
+      </div>
     </div>
   }
 </div>

@@ -5,6 +5,7 @@ import {
   EventEmitter,
   ViewEncapsulation,
   ChangeDetectionStrategy,
+  TemplateRef,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
@@ -23,15 +24,26 @@ export class BmbStepProgressBarComponent {
   @Input() totalSteps?: number = 0;
   @Input() size?: 'normal' | 'small' = 'normal';
   @Input() freeze: boolean = false;
-  @Input() type: 'horizontal' | 'vertical' = 'vertical';
+  @Input() type: 'horizontal' | 'vertical' | 'step-panel' = 'vertical';
   @Input() labelSteps: string[] = [];
   @Input() labelComplete: string = 'Completo';
   @Input() labelIncomplete: string = 'Pendiente';
+  @Input() stepTemplates: TemplateRef<any>[] = [];
 
   @Output() onStepPress: EventEmitter<number> = new EventEmitter<number>();
+  @Output() onStepPanelPress: EventEmitter<number> = new EventEmitter<number>();
+  @Output() next = new EventEmitter<void>();
+  @Output() back = new EventEmitter<void>();
+  @Output() finish = new EventEmitter<void>();
 
   getStepsArray(): number[] {
     return new Array(this.totalSteps || 0).fill(0).map((_, i) => i);
+  }
+
+  onStepPanelClicked(index: number): void {
+    if (!this.freeze) {
+      this.onStepPanelPress.emit(index);
+    }
   }
 
   onStepClicked(index: number): void {
@@ -39,5 +51,17 @@ export class BmbStepProgressBarComponent {
       this.activeStep = index;
       this.onStepPress.emit(index);
     }
+  }
+
+  goNext() {
+    this.next.emit();
+  }
+
+  goBack() {
+    this.back.emit();
+  }
+
+  complete() {
+    this.finish.emit();
   }
 }
