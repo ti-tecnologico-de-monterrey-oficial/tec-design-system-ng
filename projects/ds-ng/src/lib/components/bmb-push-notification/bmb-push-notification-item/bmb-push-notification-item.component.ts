@@ -11,7 +11,7 @@ import { INotification, INotificationAction } from '../types';
 import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 import { BmbUserImageComponent } from '../../bmb-user-image/bmb-user-image.component';
 import { BmbCheckboxComponent } from '../../bmb-checkbox/bmb-checkbox.component';
-import { BmbButtonDirective } from '../../../directives/button.directive';
+import { BmbButtonDirective } from '../../../directives/bmb-button/button.directive';
 
 @Component({
   selector: 'bmb-push-notification-item',

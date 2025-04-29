@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
 import { SidebarElement } from './bmb-sidebar.interface';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
-import { BmbButtonDirective } from '../../directives/button.directive';
+import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { IPositionButtonMenu } from '../bmb-top-bar/types';
 
 @Component({

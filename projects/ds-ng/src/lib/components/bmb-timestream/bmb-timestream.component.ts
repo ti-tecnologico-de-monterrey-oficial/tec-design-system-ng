@@ -19,7 +19,7 @@ import { BmbModalComponent } from '../bmb-modal/bmb-modal.component';
 import { MatDialog } from '@angular/material/dialog';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
 import { BmbTabsComponent } from '../bmb-tabs/bmb-tabs.component';
-import { BmbButtonDirective } from '../../directives/button.directive';
+import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 import { BmbHitoCardComponent } from '../bmb-hito-card/bmb-hito-card.component';
 import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';

@@ -6,7 +6,7 @@ import {
   output,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BmbButtonDirective } from '../../directives/button.directive';
+import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { BmbUserSummaryContentComponent } from './bmb-user-summary-content/bmb-user-summary-content.component';
 
 @Component({

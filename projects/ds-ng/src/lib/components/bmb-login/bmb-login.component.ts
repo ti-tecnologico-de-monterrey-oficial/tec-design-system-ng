@@ -5,7 +5,7 @@ import {
   output,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbButtonDirective } from '../../directives/button.directive';
+import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { FormGroup } from '@angular/forms';
 import { BmbUserProfileService } from '../../services/user/profile.service';
 import {

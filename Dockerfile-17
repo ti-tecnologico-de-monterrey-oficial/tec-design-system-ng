@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package/v17/package.json ./
 
 # Instalar Angular CLI y dependencias
-RUN npm install
+RUN npm install -g @angular/cli@17 && npm install
 
 # Copiar todo el código del proyecto
 COPY . .
