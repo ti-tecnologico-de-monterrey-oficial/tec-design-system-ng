@@ -42,6 +42,7 @@ describe('BmbAccordionComponent', () => {
     componentRef.setInput('margin', 'm');
     componentRef.setInput('disabled', false);
     componentRef.setInput('active', true);
+    fixture.detectChanges();
 
     const classes = component.getClassesAccordion();
     expect(classes).toContain('bmb_border-radius-m');
