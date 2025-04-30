@@ -3,6 +3,7 @@ import {
   BmbCardComponent,
   BmbCardFooterComponent,
   BmbCardHeaderComponent,
+  BmbCardContentComponent,
 } from './bmb-card.component';
 import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
@@ -11,13 +12,18 @@ import { attributes } from '../../utils/utils';
 const meta: Meta<BmbCardComponent> = {
   title: 'Micro Componentes/Card',
   component: BmbCardComponent,
-  subcomponents: { BmbCardFooterComponent, BmbCardHeaderComponent },
+  subcomponents: {
+    BmbCardFooterComponent,
+    BmbCardHeaderComponent,
+    BmbCardContentComponent,
+  },
   decorators: [
     moduleMetadata({
       declarations: [],
       imports: [
         CommonModule,
         BmbCardComponent,
+        BmbCardContentComponent,
         BmbCardFooterComponent,
         BmbCardHeaderComponent,
       ],
@@ -109,11 +115,55 @@ Below is an example of how you can use this component in HTML:
       },
       description: 'Set the color schema',
     },
+    boxShadowStyle: {
+      name: 'Box Shadow Style',
+      control: {
+        type: 'select',
+      },
+      options: [
+        'box-shadow-1',
+        'box-shadow-2',
+        'box-shadow-3',
+        'box-shadow-4',
+        'box-shadow-5',
+        'box-shadow-6',
+      ],
+      table: {
+        type: { summary: 'string' },
+        category: 'Properties',
+        defaultValue: { summary: 'null' },
+      },
+      description: 'Set the style of the box shadow',
+    },
+    borderColor: {
+      name: 'Border Color',
+      control: {
+        type: 'select',
+      },
+      options: [
+        '--general_contrasts-150',
+        '--general_contrasts-100',
+        '--general_contrasts-75',
+        '--general_contrasts-50',
+        '--general_contrasts-25',
+        '--general_contrasts-20',
+        '--general_contrasts-15',
+        '--general_contrasts-5',
+      ],
+      table: {
+        type: { summary: 'string' },
+        category: 'Properties',
+        defaultValue: { summary: 'null' },
+      },
+      description: 'Set the color border of the card',
+    },
   },
   args: {
     borderRadius: 'm',
     margin: 'm',
     type: 'normal',
+    boxShadowStyle: null,
+    borderColor: null,
   },
 };
 
@@ -141,6 +191,98 @@ export const OneItem: Story = {
           <p [ngStyle]="{padding: '1rem'}">Los gatos son criaturas llenas de misterio. Su elegancia al moverse, sus ojos penetrantes y su habilidad para desaparecer en las sombras han inspirado leyendas y supersticiones. Pero más allá de su aura enigmática, los gatos también son compañeros leales y cariñosos.</p>
         </bmb-card-content>
         <bmb-card-footer padding="xl">
+          <h3>Footer</h3>
+        </bmb-card-footer>
+      </bmb-card>
+    `,
+  }),
+};
+
+export const BackgroundContent: Story = {
+  args: {},
+  render: (args) => ({
+    props: args,
+    template: `
+      <!--
+      **********
+        IMPORTANT:
+        You can change the background color of the HEADER, CONTENT and FOOTER adding
+        the property colorBackground and the name of the color
+      **********
+      -->
+      <bmb-card ${attributes(args)}>
+        <bmb-card-header padding="s">
+          <h3>Header</h3>
+        </bmb-card-header>
+        <bmb-card-content colorBackground="--general_contrasts-5">
+          <p>
+            Los gatos son criaturas llenas de misterio. Su elegancia al moverse, sus
+            ojos penetrantes y su habilidad para desaparecer en las sombras han
+            inspirado leyendas y supersticiones. Pero más allá de su aura enigmática,
+            los gatos también son compañeros leales y cariñosos.
+          </p>
+        </bmb-card-content>
+        <bmb-card-footer padding="xl">
+          <h3>Footer</h3>
+        </bmb-card-footer>
+      </bmb-card>
+    `,
+  }),
+};
+
+export const HeaderAndFooterBackground: Story = {
+  args: {},
+  render: (args) => ({
+    props: args,
+    template: `
+      <!--
+      **********
+        IMPORTANT:
+        You can change the background color of the HEADER, CONTENT and FOOTER adding
+        the property colorBackground and the name of the color
+      **********
+      -->
+      <bmb-card ${attributes(args)}>
+        <bmb-card-header padding="m" colorBackground="--general_contrasts-50">
+          <h3>Header</h3>
+        </bmb-card-header>
+        <bmb-card-content>
+          <p>
+            Los gatos son criaturas llenas de misterio. Su elegancia al moverse, sus
+            ojos penetrantes y su habilidad para desaparecer en las sombras han
+            inspirado leyendas y supersticiones. Pero más allá de su aura enigmática,
+            los gatos también son compañeros leales y cariñosos.
+          </p>
+        </bmb-card-content>
+        <bmb-card-footer padding="m" colorBackground="--general_contrasts-50">
+          <h3>Footer</h3>
+        </bmb-card-footer>
+      </bmb-card>
+    `,
+  }),
+};
+
+export const BoxShadowAndBorderColor: Story = {
+  args: {
+    boxShadowStyle: 'box-shadow-4',
+    borderColor: '--general_contrasts-150',
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <bmb-card ${attributes(args)}>
+        <bmb-card-header padding="m">
+          <h3>Header</h3>
+        </bmb-card-header>
+        <bmb-card-content>
+          <p>
+            Los gatos son criaturas llenas de misterio. Su elegancia al moverse, sus
+            ojos penetrantes y su habilidad para desaparecer en las sombras han
+            inspirado leyendas y supersticiones. Pero más allá de su aura enigmática,
+            los gatos también son compañeros leales y cariñosos.
+          </p>
+        </bmb-card-content>
+        <bmb-card-footer padding="m">
           <h3>Footer</h3>
         </bmb-card-footer>
       </bmb-card>
