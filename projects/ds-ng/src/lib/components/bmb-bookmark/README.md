@@ -12,6 +12,18 @@ The `BmbBookmarkComponent` is a standalone Angular component designed to provide
 
 ---
 
+## Inputs
+
+The component accepts the following inputs to customize its behavior and appearance:
+
+### Progress Circle Inputs
+
+| Input                          | Type      | Default            | Description                                                     |
+| ------------------------------ | --------- | ------------------ | --------------------------------------------------------------- |
+| `isActive`        | `boolean`  | `false`                | Set the active state of the bookmark, this input is a model so you can detect a change in the state in the same place. |
+
+---
+
 ## Behavior
 
 The component maintains an internal state (`isActive`) to track whether the bookmark is active or inactive. Clicking on the bookmark toggles this state.

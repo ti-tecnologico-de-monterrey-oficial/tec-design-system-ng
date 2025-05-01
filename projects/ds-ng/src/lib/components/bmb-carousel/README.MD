@@ -1,39 +1,96 @@
-# BmbMultiDotPaginatorComponent
+# BmbCarouselComponent
 
-## Description
+The `BmbCarouselComponent` is a standalone Angular component designed to display a carousel of items. It supports touch gestures for navigation, dynamic content, and active item highlighting. The component is lightweight and customizable, making it suitable for various use cases.
 
-The `BmbMultiDotPaginatorComponent` is a component that manages a multi-dot paginator.
+---
 
-It allows for the selection and highlighting of items within a list of paginator items.
+## Selector
 
-## Inputs
-
-### Title
-
-The title of the paginator. `@type` `tring` `required`.
-
-### Subtitle
-
-The subtitle of the paginator. `@type` `string`
-
-## Usage
-
-To use this component, simply include it in your HTML template and provide the content elements you want to paginate.
-
-```
-<bmb-multi-dot-paginator>
-  <bmb-multi-dot-paginator-item>Custom component</bmb-multi-dot-paginator-item>
-  <bmb-multi-dot-paginator-item>Custom component</bmb-multi-dot-paginator-item>
-  <!-- More elements -->
-</bmb-multi-dot-paginator>
+```html
+<bmb-carousel></bmb-carousel>
 ```
 
-This component is useful for creating interactive user interfaces where you need to navigate between multiple sections of content in an intuitive and visually appealing way.
+---
 
-# BmbMultiDotPaginatorItemComponent
+## Features
 
-## Description
+- **Dynamic Content**: Automatically detects and manages carousel items using `ContentChildren`.
+- **Touch Gestures**: Supports swipe gestures for navigation on touch devices.
+- **Active Item Highlighting**: Highlights the currently active item with CSS classes.
+- **Responsive Design**: Adapts to different screen sizes.
 
-The `bmb-multi-dot-paginator-item.component.ts` is a component that represents an individual item within the multi-dot paginator. This component is standalone and can be used within the `BmbMultiDotPaginatorComponent` to create a pagination structure.
+---
 
-This component is useful for creating individual pagination items that can be navigated using the `BmbMultiDotPaginatorComponent`.
+## Methods
+
+### `ngAfterContentInit(): void`
+Initializes the carousel by detecting the number of items and setting the first item as active.
+
+### `selectItem(index: number): void`
+Selects a specific item in the carousel by its index and updates the active state.
+
+### `setClassActive(newIndex: number, oldIndex: number = 0): void`
+Applies the active class to the new item and removes it from the old item. Adds a bounce animation when the active item changes.
+
+---
+
+## Touch Gesture Handlers
+
+### `onTouchStart(event: TouchEvent): void`
+Captures the starting position of a touch gesture.
+
+### `onTouchMove(event: TouchEvent): void`
+Tracks the movement of a touch gesture.
+
+### `onTouchEnd(): void`
+Calculates the swipe distance and navigates to the next or previous item if the swipe exceeds the threshold.
+
+---
+
+## HTML Structure
+
+The component's template is structured as follows:
+
+```html
+<bmb-carousel>
+  <div #carouselItem class="carousel-item">Item 1</div>
+  <div #carouselItem class="carousel-item">Item 2</div>
+  <div #carouselItem class="carousel-item">Item 3</div>
+</bmb-carousel>
+```
+
+---
+
+## Usage Example
+
+```html
+<bmb-carousel>
+  <div #carouselItem class="carousel-item">Slide 1</div>
+  <div #carouselItem class="carousel-item">Slide 2</div>
+  <div #carouselItem class="carousel-item">Slide 3</div>
+</bmb-carousel>
+```
+
+---
+
+## Dependencies
+
+The component relies on the following modules:
+
+- `CommonModule` (Angular)
+
+Ensure these dependencies are properly imported and available in your project.
+
+---
+
+## Touch Gesture Threshold
+
+The swipe threshold is set to `50px`. Swipes shorter than this distance will not trigger navigation. You can adjust the threshold by modifying the `swipeThreshold` property in the component.
+
+---
+
+## Notes
+
+- The carousel automatically detects items using the `#carouselItem` template reference.
+- Ensure that each carousel item has the `carousel-item` class for proper styling and functionality.
+- The component uses Angular's `ChangeDetectorRef` to ensure smooth updates to the UI.
