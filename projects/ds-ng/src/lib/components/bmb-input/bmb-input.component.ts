@@ -99,6 +99,7 @@ export class BmbInputComponent {
   isFocus = output<boolean>();
   isBlur = output<boolean>();
   onChange = output<HTMLInputElement>();
+  onKeyDown = output<KeyboardEvent>();
 
   isHide: boolean = true;
 
@@ -133,6 +134,14 @@ export class BmbInputComponent {
 
   get shouldShowError(): boolean {
     return this.ivs.showError(this.name());
+  }
+
+  handleKeyPress(event: KeyboardEvent) {
+    const target = event.target as HTMLInputElement | null;
+    if (target) {
+      this.onKeyDown.emit(event);
+      this.textLength = target.value.length;
+    }
   }
 
   getType() {

@@ -9,6 +9,12 @@ import {
   computed,
   signal,
   OnInit,
+  Output,
+  EventEmitter,
+  OnChanges,
+  SimpleChanges,
+  ViewChild,
+  ElementRef,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SizeNames } from '../../types';
@@ -27,7 +33,7 @@ const calculateSize: any = (pixels: string[]): string => {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbAccordionComponent implements OnInit {
+export class BmbAccordionComponent implements OnInit, OnChanges {
   @ContentChild('bmbAccordionContent') bmbAccordionContent!: TemplateRef<any>;
   @ContentChild('bmbAccordionHeader') bmbAccordionHeader!: TemplateRef<any>;
   public borderRadius = input<SizeNames | SizeNames[]>('m');
@@ -35,15 +41,17 @@ export class BmbAccordionComponent implements OnInit {
   public paddingHeader = input<SizeNames | SizeNames[]>('m');
   public paddingContent = input<SizeNames | SizeNames[]>('m');
   public icon = input<string>('');
-  public accordionId = input<number>(0);
+  public accordionId = input<number | null>(null);
   public hideToggle = input<boolean>(false);
   public active = input<boolean>(false);
   public disabled = input<boolean>(false);
   public expanded = input<boolean | undefined>();
-  public closed = output<void>();
-  public opened = output<void>();
+  public closed = output<void>(); 
+  @Output() opened = new EventEmitter<void>();
   public onClick = output<void>();
   public _expanded = signal(false);
+  public _active = signal(false);
+  public _disabled = signal(false);
   public isOpen = computed<boolean | undefined>(() => {
     if (this.expanded() != undefined) {
       if (this.expanded()) {
@@ -60,6 +68,22 @@ export class BmbAccordionComponent implements OnInit {
 
   ngOnInit(): void {
     this._expanded.update((current) => this.expanded() || current);
+    this._active.update((current) => this.active() || current);
+    this._disabled.update((current) => this.disabled() || current);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['expanded']) {
+      this._expanded.update(() => this.expanded() || false);
+    }
+
+    if (changes['active']) {
+      this._active.update(() => this.active() || false);
+    }
+
+    if (changes['disabled']) {
+      this._disabled.update(() => this.disabled() || false);
+    }
   }
 
   getClassesAccordion(): string[] {
@@ -73,10 +97,10 @@ export class BmbAccordionComponent implements OnInit {
       classNames.push(`bmb_margin-${this.margin()}`);
     }
 
-    if (this.disabled()) {
+    if (this._disabled()) {
       classNames.push('disabled');
     } else {
-      if (this.active()) {
+      if (this._active()) {
         classNames.push('active');
       }
     }
@@ -129,8 +153,9 @@ export class BmbAccordionComponent implements OnInit {
   }
 
   toggle(): void {
-    if (!this.disabled()) {
+    if (!this._disabled()) {
       this._expanded.update((current) => !current);
+      this._active.update((current) => !current);
       this.onClick.emit();
 
       if (this.expanded() == undefined) {

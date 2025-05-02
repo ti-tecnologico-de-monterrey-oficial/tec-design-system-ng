@@ -37,6 +37,7 @@
                 <button
                   class="bmb_dropdown-field-chip-remove"
                   (click)="removeSelected(selected)"
+                  type="button"
                 >
                   <bmb-icon icon="close" [size]="14" />
                 </button>
@@ -66,6 +67,7 @@
         [disabled]="disabled()"
         bmbButton
         (keydown)="onKeyDown($event)"
+        type="button"
       >
         <bmb-icon icon="keyboard_arrow_down" />
       </button>
@@ -125,6 +127,7 @@
                     'bmb_dropdown-dialog-list-item-button-selected':
                       selectedOption?.value === item.value,
                   }"
+                  type="button"
                 >
                   @if (showIcon() && item.icon) {
                     <bmb-icon

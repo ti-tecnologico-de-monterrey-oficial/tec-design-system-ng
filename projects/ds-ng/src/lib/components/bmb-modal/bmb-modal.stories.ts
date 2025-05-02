@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
 import { BmbModalComponent } from './bmb-modal.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbButtonDirective } from '../../directives/button.directive';
+import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { MatDialog } from '@angular/material/dialog';
 import { attributes } from '../../utils/utils';
 
@@ -96,9 +96,9 @@ export default {
       description: {
         component: `
   ### 🟣 Modal Usage with String Content
-  
+
   The simplest way to use the \`BmbModalComponent\` is by providing a plain text as content:
-  
+
   \`\`\`typescript
   constructor(private matDialog: MatDialog) {}
 
@@ -120,21 +120,21 @@ export default {
     <button bmbButton (click)="openModal()">Open Modal</button>
   \`\`\`
   ---
-  
+
   ### 🟢 Modal Usage with TemplateRef Content (Recommended for complex content)
-  
+
   If you need to render custom components, inputs, or forms inside the modal, you can pass a \`TemplateRef\` instead of a plain string.
-  
+
   This behavior is automatically detected internally using the \`isModalTemplate()\` method.
-  
+
   ---
-  
+
   #### Example Template:
   \`\`\`typescript
   @ViewChild('modalTemplate') modalTemplate!: TemplateRef<any>;
 
   constructor(private matDialog: MatDialog) {}
-      
+
   openModalTemplate() {
     const data: ModalDataConfig = {
       title: "Modal's Title",
@@ -158,14 +158,14 @@ export default {
       <bmb-checkbox [label]="'Accept Terms'"></bmb-checkbox>
     </div>
   </ng-template>
-  
+
   <button (click)="openModalTemplate()">Open Modal</button>
   \`\`\`
-  
+
   ---
-  
+
   #### Example Component:
-  
+
   \`\`\`typescript
   import { Component, ViewChild, TemplateRef } from '@angular/core';
   import { MatDialog } from '@angular/material/dialog';
@@ -173,7 +173,7 @@ export default {
   import { BmbInputComponent } from '@your-library/bmb-input';
   import { BmbSwitchComponent } from '@your-library/bmb-switch';
   import { BmbCheckboxComponent } from '@your-library/bmb-checkbox';
-  
+
   @Component({
     standalone: true,
     imports: [
@@ -185,9 +185,9 @@ export default {
   })
   export class ExampleComponent {
     @ViewChild('modalTemplate') modalTemplate!: TemplateRef<any>;
-  
+
     constructor(private matDialog: MatDialog) {}
-  
+
     openModal() {
       this.matDialog.open(BmbModalComponent, {
         data: {
@@ -196,23 +196,23 @@ export default {
           primaryBtnLabel: 'Apply',
           secondaryBtnLabel: 'Reset',
           hidePrimaryButton: false,
-          hideSecondaryButton: false  
+          hideSecondaryButton: false
         }
       });
     }
   }
   \`\`\`
-  
+
   ---
-  
+
   ### ⚠ Note:
-  
+
   Make sure you are using:
-  
+
   \`\`\`typescript
   constructor(private matDialog: MatDialog) {}
   \`\`\`
-  
+
         `,
       },
     },

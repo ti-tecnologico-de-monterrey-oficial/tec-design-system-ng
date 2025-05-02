@@ -4,6 +4,7 @@
 <span class="bmb_check-external-link-button">
   @if (isButton(!!link())) {
     <button
+      type="button"
       class="bmb_check-external-link-button-element"
       [id]="idElement()"
       (click)="handleClick($event)"

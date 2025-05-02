@@ -11,7 +11,7 @@ import { BmbMobileTemplatesComponent } from '../bmb-mobile-templates/bmb-mobile-
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbContainerButtonComponent } from '../bmb-container-button/bmb-container-button.component';
 import { BmbThemeComponent } from '../bmb-theme/bmb-theme.component';
-import { BmbButtonDirective } from '../../directives/button.directive';
+import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import {
   IBmbCollaboratorProfileData,
   IBmbProfileData,

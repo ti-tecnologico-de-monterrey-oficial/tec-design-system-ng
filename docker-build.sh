@@ -1,1 +1,1 @@
-docker build -t angular-lib-builder .
+docker build -t angular-lib-builder  -f Dockerfile-17 .

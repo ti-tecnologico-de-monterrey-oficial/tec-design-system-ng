@@ -12,7 +12,7 @@ import { DateTime } from 'luxon';
 import { weeksAndDays } from '../../utils';
 import { CommonModule } from '@angular/common';
 import { IBmbCalendarEvent } from '../../types';
-import { BmbButtonDirective } from '../../../../directives/button.directive';
+import { BmbButtonDirective } from '../../../../directives/bmb-button/button.directive';
 import { Info } from 'luxon';
 import { orderDayNames } from '../../../../utils/utils';
 import { BmbInnerHeaderComponent } from '../../../bmb-inner-header/bmb-inner-header.component';

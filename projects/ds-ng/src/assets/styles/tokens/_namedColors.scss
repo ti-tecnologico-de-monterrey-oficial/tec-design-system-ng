@@ -63,6 +63,9 @@
     RGBA(var(--color-charade-950), 0.5);
 
   --track-progress-bar: RGBA(var(--color-green-primary), 1);
+  --vertical-step-active: RGBA(var(--color-charade-50), 1);
+  --vertical-step-active-color: RGBA(var(--color-charade-700), 1);
+  --vertical-step-subtitle: RGBA(var(--color-charade-700), 1);
 
   --gris-charade-50: rgba(var(--color-charade-50), 1);
   --gris-charade-100: rgba(var(--color-charade-100), 1);
@@ -146,6 +149,9 @@
     RGBA(var(--color-black-primary), 0.2);
 
   --track-progress-bar: RGBA(var(--color-green-light), 1);
+  --vertical-step-active: RGBA(var(--color-charade-700), 1);
+  --vertical-step-active-color: RGBA(var(--color-charade-50), 1);
+  --vertical-step-subtitle: RGBA(var(--color-charade-500), 1);
 
   //Semantic
   --semantic-normal: rgb(var(--color-charade-500));

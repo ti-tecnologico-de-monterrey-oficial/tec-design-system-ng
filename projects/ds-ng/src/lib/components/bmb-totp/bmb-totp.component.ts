@@ -9,7 +9,7 @@ import {
 import { Subject } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbButtonDirective } from '../../directives/button.directive';
+import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import {
   FormGroup,
   FormBuilder,

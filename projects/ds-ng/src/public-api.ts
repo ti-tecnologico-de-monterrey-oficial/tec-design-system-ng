@@ -10,7 +10,7 @@ export * from './lib/services/user/profile.service';
 export * from './lib/components/bmb-login-onboarding/bmb-login-onboarding.service';
 
 export * from './lib/ds-ng.component';
-export * from './lib/directives/button.directive';
+export * from './lib/directives/bmb-button/button.directive';
 export * from './lib/directives/bmb-layout/bmb-layout-item.directive';
 export * from './lib/directives/bmb-layout/bmb-layout.directive';
 export * from './lib/directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout.directive';

@@ -130,6 +130,7 @@ Below is an example of how you can use this component in HTML:
   },
   args: {
     icon: 'home',
+    styleIcon: 'material-symbols-rounded',
     isFill: true,
     fontWeight: '400',
     size: 24,

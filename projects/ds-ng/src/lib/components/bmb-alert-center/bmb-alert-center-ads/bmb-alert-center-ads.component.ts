@@ -8,7 +8,7 @@ import {
 import { IBmbDataAlert } from '../types';
 import { CommonModule } from '@angular/common';
 import { BmbImageComponent } from '../../bmb-image/bmb-image.component';
-import { BmbButtonDirective } from '../../../directives/button.directive';
+import { BmbButtonDirective } from '../../../directives/bmb-button/button.directive';
 import { BmbCarouselComponent } from '../../bmb-carousel/bmb-carousel.component';
 
 @Component({

@@ -6,7 +6,7 @@ import {
   model,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbButtonDirective } from '../../directives/button.directive';
+import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { IBmbAdvertisementData } from './types';
 import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
 import { BmbCarouselComponent } from '../bmb-carousel/bmb-carousel.component';
