@@ -58,6 +58,10 @@ export const getPositionClass = (
   return '';
 };
 
+export const getUUID = (): string => {
+  return window.crypto.randomUUID();
+};
+
 export const attributes = (object: { [key: string]: any }): string =>
   Object.entries(object)
     .filter(([key]) => key !== 'test_text')

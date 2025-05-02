@@ -1,12 +1,12 @@
 <span class="bmb_input-number">
-  <label for="#bmbInputPhoneNumber">
+  <label class="bmb_input-validation-label" for="#bmbInputPhoneNumber">
     {{ label() }}
     @if (isRequired()) {
-      <small class="bmb_field-label-required">*</small>
+      <small class="bmb_input-validation-label-required">*</small>
     }
     @if (!!tooltip()) {
       <bmb-tooltip
-        class="bmb_field-label-tooltip"
+        class="bmb_input-validation-label-tooltip"
         [text]="tooltip()"
         align="below"
         justify="before"
@@ -44,11 +44,57 @@
     hidden
   />
   @if (helperMessage()) {
-    <span class="bmb_input-number-helper">{{ helperMessage() }}</span>
+    <span class="bmb_input-validation-helper">{{ helperMessage() }}</span>
   }
   @if (getErrors()) {
-    <p class="bmb_field-error">
+    <p class="bmb_input-validation-error">
       {{ getErrorMessage() }}
     </p>
   }
 </span>
+<!-- Please don´t remove thiss code is for input validation
+<span class="bmb_input-number">
+  <bmb-input-validation
+    type="phone"
+    [name]="name()"
+    [label]="label()!"
+    [value]="value()"
+    [errorMessage]="errorMessage()"
+    [helperMessage]="helperMessage()"
+    [isRequired]="isRequired()"
+    [disabled]="disabled()"
+    [control]="control()"
+    [pattern]="getPatternVal()"
+    [tooltip]="tooltip()"
+  >
+  <input
+    type="text"
+    hidden
+    [id]="inputId()"
+    [placeholder]="placeholder()"
+    [name]="name()"
+    [required]="isRequired()"
+    [formControl]="control()"
+  />
+  <span class="bmb_input-number-container">
+    <bmb-dropdown
+      name="select"
+      [required]="true"
+      [showIcon]="false"
+      [options]="getOptions()"
+      [control]="getControl('select')"
+      (onValueChange)="onValueChange($event)"
+    />
+    <bmb-input
+      class="bmb_input-number-input"
+      type="number"
+      name="input"
+      [placeholder]="placeholder()"
+      [appearance]="appearance()"
+      [isRequired]="isRequired()"
+      [disabled]="disabled()"
+      [control]="getControl('input')"
+    />
+  </span>
+  </bmb-input-validation>
+</span> -->
