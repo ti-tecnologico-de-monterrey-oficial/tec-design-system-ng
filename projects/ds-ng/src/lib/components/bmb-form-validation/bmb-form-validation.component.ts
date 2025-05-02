@@ -38,16 +38,18 @@ export class BmbFormValidationComponent {
     );
 
     inputs.forEach((input: any) => {
-      const type = input.getAttribute('type');
+      const type = this.getInputAttribute(input, 'type');
       const controlName = this.getInputAttribute(input, 'name');
+      console.log('form val name', controlName, type, input);
 
-      const control = this.getFormControl(controlName);
+      let control = this.getFormControl(controlName);
 
       if (!control) {
-        const control = this.ivs.newFormControlByType(type);
+        control = this.ivs.newFormControlByType(type);
         this.formGroup().addControl(controlName, control);
-        this.ivs.setFormControl(control, type, controlName);
       }
+
+      this.ivs.setFormControl(control, type, controlName);
     });
   }
 
@@ -62,7 +64,7 @@ export class BmbFormValidationComponent {
 
     invalidInputs.forEach((input: any) => {
       const controlName = this.getInputAttribute(input, 'name');
-      const control = this.getFormControl(controlName);
+      const control = this.getFormControlService(controlName);
 
       if (control) {
         control.markAsTouched();
@@ -79,6 +81,10 @@ export class BmbFormValidationComponent {
       input.parentElement.getAttribute(`ng-reflect-${attributeName}`) ||
       ''
     );
+  }
+
+  getFormControlService(name: string): FormControl {
+    return this.formGroup().get(name) as FormControl;
   }
 
   getFormControl(name: string): FormControl {

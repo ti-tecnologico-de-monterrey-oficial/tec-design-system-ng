@@ -32,15 +32,13 @@ export class Component {
   });
   showErrors: { [key: string]: boolean } = {};
 
-   onSubmit(): void {
-    this.formGroup.markAllAsTouched();
+  onSubmit(): void {
     this.formGroup.updateValueAndValidity();
-    console.log('FORM STATE', this.formGroup);
     if (this.formGroup.valid) {
       console.log('FORM VALID');
       return;
     }
-    console.log('FORM STATUS', this.formGroup.status);
+
     this.updateErrorState();
   }
 
@@ -114,7 +112,7 @@ Below is an example of how you can use this component in HTML:
       name: 'Id',
       control: { type: 'text' },
       description:
-        'Sets the unique identifier for the radial component. This is used to link the label to the checkbox input element using the "for" attribute, improving accessibility and usability.',
+        'Sets the unique identifier for the radial component. This is used to link the label to the radial input element using the "for" attribute, improving accessibility and usability.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -123,7 +121,17 @@ Below is an example of how you can use this component in HTML:
     checked: {
       name: 'Checked',
       control: { type: 'boolean' },
-      description: 'Sets the value given to the radial when true.',
+      description: `
+Sets the value given to the radial when true.
+
+**Note**: The configuration implemented in the formControl object will always be prioritized.
+
+The selection will be assigned by the value given to the formControl.
+
+    formGroup: FormGroup = new FormGroup({
+      contract: new FormControl('CCB'),
+    });
+`,
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },

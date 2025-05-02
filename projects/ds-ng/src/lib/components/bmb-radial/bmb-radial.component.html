@@ -1,5 +1,6 @@
 <bmb-input-validation
   type="radio"
+  [inputId]="id()"
   [name]="name()"
   [label]="label()"
   [labelPosition]="labelPosition()"
@@ -32,5 +33,9 @@
       [tabindex]="disabled() ? -1 : 0"
     />
     <span class="bmb_radio-mark"></span>
+    <!-- <span
+      class="bmb_radio-mark"
+      [ngClass]="{ 'bmb_radio-mark-error': shouldShowError }"
+    ></span> -->
   </span>
 </bmb-input-validation>

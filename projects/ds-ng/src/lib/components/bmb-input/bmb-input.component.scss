@@ -2,119 +2,61 @@
 @use "../../../assets/styles/base/mixins" as mixins;
 @use "../../../assets/styles/base/rem" as rem;
 
-@mixin label_width($position) {
-  @if $position == main {
-    width: 100%;
-  }
-}
-
-@mixin input($type: main) {
+@mixin input($type: normal) {
   @include mixins.resetElement();
   @include fonts.font(4, regular);
-  appearance: none;
   height: rem.rem_calc(48);
   width: 100%;
+  padding: var(--bmb-spacing-s);
 
   &:focus,
-  &:focus:hover,
-  &:disabled:focus {
+  &:focus,
+  &:hover {
     @include mixins.focusElement();
   }
 
-  @if $type == simple {
+  @if $type == "simple" {
     background-color: transparent;
     border: 0;
-    border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-950));
-    color: RGBA(var(--color-charade-700));
+    border-bottom: rem.rem_calc(1) solid var(--general_contrasts-150);
+    color: var(--general_contrasts-75);
 
-    &:focus {
-      border-bottom: rem.rem_calc(2) solid RGBA(var(--color-blue-primary));
-      border-color: RGBA(var(--color-blue-primary));
-      color: RGBA(var(--color-mariner-700));
+    &:focus,
+    &:focus-visible,
+    &:hover {
+      border-bottom: rem.rem_calc(2)
+        solid
+        var(--general_contrasts-input-outline);
+      color: var(--general_contrasts-input-outline);
+      caret-color: var(--general_contrasts-input-outline);
       outline: none;
     }
-
-    &::placeholder {
-      color: RGBA(var(--color-charade-300));
-    }
-
-    &.bmb_field-input-error {
-      border-bottom-color: RGBA(var(--color-red-primary));
-    }
-  } @else if $type == normal {
-    background-color: RGBA(var(--color-charade-50));
-    border: rem.rem_calc(1) solid RGBA(var(--color-charade-500));
+  } @else if $type == "normal" {
+    background-color: var(--general_contrasts-5);
+    border: rem.rem_calc(1) solid var(--general_contrasts-75);
     border-radius: rem.rem_calc(8);
-    color: RGBA(var(--color-charade-950));
-    padding: var(--bmb-spacing-s);
+    color: var(--general_contrasts-150);
 
-    &:focus:not(:disabled),
-    &:focus-visible:not(:disabled) {
-      border: rem.rem_calc(2) solid RGBA(var(--color-mariner-700));
+    &:focus,
+    &:focus-visible,
+    &:hover {
+      border: rem.rem_calc(2) solid var(--general_contrasts-input-outline);
       padding: calc(var(--bmb-spacing-s) - rem.rem_calc(1));
       outline: none;
       transition: all 0.3s ease;
     }
+  }
 
-    &:hover:not(:disabled) {
-      border-width: rem.rem_calc(2);
-    }
+  &::placeholder {
+    color: var(--input-support-text);
+  }
 
-    &::placeholder {
-      color: RGBA(var(--color-charade-300));
-    }
-
-    &.bmb_field-input-error {
-      border-color: RGBA(var(--color-red-primary)) !important;
-    }
+  &.bmb_field-input-error {
+    @include mixins.error_input();
   }
 }
 
 .bmb_field {
-  &-direction-before {
-    display: inline-flex;
-    flex-direction: row-reverse;
-  }
-
-  &-direction-after {
-    display: inline-flex;
-    flex-direction: row;
-  }
-
-  &-label {
-    color: RGBA(var(--color-charade-950));
-    display: flex;
-    margin: rem.rem_calc(2 0 4 2);
-    @include fonts.font(3, regular);
-
-    &-before {
-      @include label_width(before);
-    }
-
-    &-after {
-      @include label_width(after);
-    }
-
-    &-main {
-      @include label_width(main);
-    }
-
-    &-required {
-      color: RGBA(var(--color-red-light));
-    }
-
-    &-tooltip {
-      margin-left: rem.rem_calc(5);
-      font-size: rem.rem_calc(12);
-      color: RGBA(var(--color-charade-500));
-    }
-
-    &-max {
-      margin-left: auto;
-      padding-right: rem.rem_calc(5);
-    }
-  }
-
   &-wrapper {
     align-items: center;
     display: flex;
@@ -122,14 +64,8 @@
     width: 100%;
   }
 
-  &-error {
-    @include fonts.font(3, regular);
-    color: RGBA(var(--color-red-light));
-    margin: rem.rem_calc(8);
-  }
-
   &-icon {
-    color: RGBA(var(--color-charade-500));
+    color: var(--general_contrasts-50);
     font-size: rem.rem_calc(24);
     left: rem.rem_calc(8);
     position: absolute;
@@ -148,25 +84,15 @@
     }
   }
 
-  &-helper {
-    @include fonts.font(3, regular);
-    color: RGBA(var(--color-charade-950));
-    margin: rem.rem_calc(8);
-  }
-
   &-input {
     margin: 0;
 
     &-normal {
-      @include input(normal);
+      @include input("normal");
     }
 
     &-simple {
-      @include input(simple);
-    }
-
-    &-main {
-      @include input(main);
+      @include input("simple");
     }
   }
 
@@ -182,23 +108,23 @@
     }
 
     &::-webkit-scrollbar-thumb {
-      background-color: RGBA(var(--color-charade-300));
+      background-color: var(--buttons-inactive-step);
       border-radius: rem.rem_calc(20);
-      border: rem.rem_calc(1) solid RGBA(var(--color-charade-300));
+      border: rem.rem_calc(1) solid var(--buttons-inactive-step);
     }
 
     &::-webkit-scrollbar-track {
       border-radius: rem.rem_calc(10);
     }
 
-    &:focus:not(:disabled),
-    &:focus-visible:not(:disabled) {
+    &:focus,
+    &:focus-visible {
       padding-left: var(--bmb-spacing-s);
     }
 
     &-error-icon {
       font-size: 15px;
-      color: RGBA(var(--color-red-primary));
+      color: var(--input-error);
       position: absolute;
       top: rem.rem_calc(5);
       right: 2%;
@@ -213,92 +139,6 @@
     }
   }
 
-  &-radio {
-    align-items: center;
-    gap: var(--bmb-spacing-s);
-    width: fit-content;
-    position: relative;
-
-    &-input {
-      cursor: pointer;
-      height: rem.rem_calc(16);
-      opacity: 0;
-      position: absolute;
-      width: 100%;
-      z-index: 1;
-
-      &:hover {
-        + .bmb_field-radio-box {
-          background-color: RGBA(var(--color-blue-primary), 0.1);
-        }
-      }
-
-      &:focus {
-        + .bmb_field-radio-box {
-          background-color: RGBA(var(--color-blue-primary), 0.2);
-        }
-      }
-
-      &:checked {
-        + .bmb_field-radio-box {
-          .bmb_field-radio-mark {
-            border-color: RGBA(var(--color-blue-primary));
-
-            &::after {
-              display: block;
-              position: absolute;
-              margin: rem.rem_calc(3);
-              border-radius: 100%;
-              background-color: RGBA(var(--color-blue-primary));
-              height: rem.rem_calc(8);
-              width: rem.rem_calc(8);
-            }
-          }
-        }
-      }
-
-      &:disabled {
-        cursor: not-allowed;
-      }
-    }
-
-    &-box {
-      border-radius: 100%;
-      display: flex;
-      justify-content: center;
-      height: rem.rem_calc(30);
-      width: rem.rem_calc(30);
-    }
-
-    &-mark {
-      border-radius: 100%;
-      background-color: transparent;
-      border: rem.rem_calc(2) solid RGBA(var(--color-charade-700));
-      display: inline-block;
-      margin-top: rem.rem_calc(6);
-      height: rem.rem_calc(18);
-      width: rem.rem_calc(18);
-      position: relative;
-
-      &::after {
-        content: "";
-        display: none;
-        position: absolute;
-      }
-    }
-
-    &-error {
-      .bmb_field-radio-mark {
-        border-color: RGBA(var(--color-red-light));
-      }
-    }
-  }
-
-  &.disabled {
-    pointer-events: none;
-    opacity: 0.8;
-  }
-
   &-additional_action,
   &-clear {
     font-size: rem.rem_calc(24);
@@ -311,95 +151,11 @@
     padding: rem.rem_calc(4);
 
     .bmb_check-external-link-button-element {
-      color: RGBA(var(--color-charade-500));
+      color: var(--general_contrasts-50);
     }
   }
 
   &-clear + &-additional_action {
     right: rem.rem_calc(44);
-  }
-}
-
-[data-theme="dark"],
-.storybook-dark-theme {
-  .bmb_field {
-    &-label {
-      color: RGBA(var(--color-charade-50));
-    }
-
-    &-input-normal {
-      background-color: RGBA(var(--color-charade-950));
-      color: RGBA(var(--color-charade-200));
-
-      &:hover {
-        border-color: RGBA(var(--color-charade-500));
-      }
-
-      &:focus {
-        border-color: RGBA(var(--color-charade-50));
-        color: RGBA(var(--color-charade-50));
-      }
-    }
-
-    &-icon {
-      color: RGBA(var(--color-charade-50));
-    }
-
-    &-helper {
-      color: RGBA(var(--color-charade-300));
-    }
-
-    &-input-simple {
-      border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-700));
-      color: RGBA(var(--color-charade-200));
-
-      &:hover {
-        border-color: RGBA(var(--color-charade-700));
-      }
-
-      &:focus {
-        border-bottom: rem.rem_calc(2) solid RGBA(var(--color-charade-50));
-        color: RGBA(var(--color-charade-50));
-      }
-    }
-
-    &-text-area {
-      &::-webkit-scrollbar-thumb {
-        background-color: RGBA(var(--color-charade-700));
-        border: rem.rem_calc(1) solid RGBA(var(--color-charade-700));
-      }
-    }
-
-    &-radio {
-      &-input {
-        &:hover {
-          + .bmb_field-radio-box {
-            background-color: RGBA(var(--color-green-light), 0.1);
-          }
-        }
-
-        &:focus {
-          + .bmb_field-radio-box {
-            background-color: RGBA(var(--color-green-light), 0.2);
-          }
-        }
-
-        &:checked {
-          + .bmb_field-radio-box {
-            .bmb_field-radio-mark {
-              border-color: RGBA(var(--color-green-light));
-
-              &::after {
-                background-color: RGBA(var(--color-green-light));
-              }
-            }
-          }
-        }
-      }
-
-      &-mark {
-        border-color: RGBA(var(--color-charade-200));
-      }
-    }
   }
 }

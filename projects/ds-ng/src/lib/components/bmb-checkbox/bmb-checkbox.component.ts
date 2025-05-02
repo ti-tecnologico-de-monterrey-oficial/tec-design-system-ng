@@ -5,6 +5,7 @@ import {
   input,
   output,
   model,
+  OnInit,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IBbmSidePosition } from '../../types';
@@ -23,12 +24,12 @@ import { IBmbInputError } from '../bmb-input/bmb-input.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbCheckboxComponent {
+export class BmbCheckboxComponent implements OnInit {
   id = input<string>('');
   disabled = input<boolean>(false);
   required = input<boolean>(false);
   value = input<string>('');
-  name = input<string>('');
+  name = input<string>(window.crypto.randomUUID());
   label = input<string>('');
   labelPosition = input<IBbmSidePosition>('after');
   ariaDescribedby = input<string>('');
@@ -39,15 +40,31 @@ export class BmbCheckboxComponent {
   control = model<FormControl>();
 
   checked = model<boolean>();
+  showError = model<boolean>(false);
   indeterminate = model<boolean>(false);
 
   change = output<Event>();
 
   constructor(private ivs: BmbInputValidationService) {}
 
+  ngOnInit(): void {
+    if (this.indeterminate()) {
+      this.checked.set(false);
+    }
+  }
+
   getPositionClass(className: string): string {
     return getPositionClass(className, this.labelPosition());
   }
+
+  getFormControl(): FormControl {
+    return this.ivs.getFormControlByName(this.name());
+  }
+
+  get shouldShowError(): boolean {
+    return this.ivs.showError(this.name());
+  }
+
   handleChange(event: Event): void {
     event.stopPropagation();
     const target = event.target as HTMLInputElement;
@@ -74,9 +91,5 @@ export class BmbCheckboxComponent {
       event.preventDefault();
       this.change.emit(event);
     }
-  }
-
-  getFormControl(): FormControl {
-    return this.ivs.getFormControlByName(this.name());
   }
 }

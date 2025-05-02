@@ -30,9 +30,10 @@ export type IBmbInputValType = 'checkbox' | 'email' | 'phone' | 'switch';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbInputValidationComponent {
+  inputId = input<string>('');
   type = input<IBmbInputType | IBmbInputValType>('text');
   label = input<string>('');
-  labelPosition = input<IBbmSidePosition>('after');
+  labelPosition = input<IBbmSidePosition | null>();
   name = input<string>('');
   value = input<string>();
   checked = input<boolean>(false);
@@ -43,16 +44,19 @@ export class BmbInputValidationComponent {
   maxlength = input<number>();
   minlength = input<number>();
   pattern = input<string>();
+  jsonFormat = input<boolean>(false);
   tooltip = input<string>('');
   rows = input<number>(3);
   tooltipPosition = input<IBmbInputTooltipPosition>({
     align: 'above',
     justify: 'before',
   });
+  showMaxTextLength = input<boolean | null>(true);
   errorMessage = input<string | IBmbInputError>('');
   helperMessage = input<string>('');
-  showError = model<boolean>(false);
+  isSupportTextNormal = input<boolean>(false);
 
+  showError = model<boolean>(false);
   control = model<FormControl>();
 
   constructor(
@@ -72,20 +76,13 @@ export class BmbInputValidationComponent {
       this.max()!,
       this.minlength()!,
       this.pattern()!,
+      this.jsonFormat(),
       this.cdr,
     );
-
-    this.control()?.valueChanges.subscribe(() => {
-      this.showError.set(
-        (this.control()?.invalid &&
-          (this.control()?.touched || this.control()?.dirty)) ||
-          false,
-      );
-    });
   }
 
   getPositionClass(className: string): string {
-    return getPositionClass(className, this.labelPosition());
+    return getPositionClass(className, this.labelPosition()!);
   }
 
   getLabelClass(className: string): string {
@@ -98,11 +95,11 @@ export class BmbInputValidationComponent {
     return '';
   }
 
-  getClasses(className: string, isContent?: boolean): string[] {
+  getClasses(className: string): string[] {
     const type = this.type().toLocaleLowerCase();
     if (type === 'radio' || type === 'checkbox') {
       const baseName: string = `${className}`;
-      const classes: string[] = [baseName];
+      const classes: string[] = [];
 
       return [
         ...classes,
@@ -119,28 +116,28 @@ export class BmbInputValidationComponent {
   }
 
   get shouldShowError(): boolean {
-    return this.ivs.showError(this.name()) || this.showError();
+    return this.ivs.showError(this.name());
   }
 
   getErrorMessage(): string {
     const control = this.ivs.getFormControlByName(this.name());
-    const error = this.errorMessage() as IBmbInputError;
 
     if (typeof this.errorMessage() === 'string') {
       return this.errorMessage().toString();
     }
 
+    const error = this.errorMessage() as IBmbInputError;
+
     if (control['errors'] !== null) {
       const errorType = control['errors'];
 
+      if (errorType['invalidJson'] && error.jsonFormat) return error.jsonFormat;
       if (errorType['pattern'] && !!error.pattern) return error.pattern;
       if (errorType['min'] && !!error.min) return error.min;
       if (errorType['max'] && !!error.max) return error.max;
       if (errorType['minlength'] && !!error.minLength) return error.minLength;
       if (errorType['required'] && !!error.required) return error.required;
     }
-
-    if (this.showError() && !!error.validation) return error.validation;
 
     return '';
   }

@@ -45,7 +45,7 @@ export class BmbInputTagsComponent implements OnInit {
   helperMessage = input<string>('');
   disabled = input<boolean>(false);
   maxSelectedItems = input<number>();
-  name = input<string>('');
+  name = input<string>(window.crypto.randomUUID());
 
   showError = input<boolean>(false);
 

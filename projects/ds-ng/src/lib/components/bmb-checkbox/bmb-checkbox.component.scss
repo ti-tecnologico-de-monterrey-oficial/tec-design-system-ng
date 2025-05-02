@@ -35,19 +35,23 @@
     }
 
     &:hover + .bmb_checkbox-mark {
-      border-color: var(--switch-checked);
+      &:not(.bmb_checkbox-mark-error) {
+        border-color: var(--switch-checked);
+      }
 
       &::before {
-        @include mixins.focused(48, 48, -14);
+        @include mixins.shadow_mark(48, 48, -14);
       }
     }
 
     &:focus:not(:disabled) + .bmb_checkbox-mark,
     &:focus-visible:not(:disabled) + .bmb_checkbox-mark {
-      border-color: var(--switch-checked);
+      &:not(.bmb_checkbox-mark-error) {
+        border-color: var(--switch-checked);
+      }
 
       &::before {
-        @include mixins.focused(48, 48, -14);
+        @include mixins.shadow_mark(48, 48, -14);
       }
     }
   }
@@ -72,6 +76,10 @@
     border: rem.rem_calc(2) solid var(--general_contrasts-100);
     border-radius: rem.rem_calc(4);
 
+    &-error {
+      @include mixins.error_input();
+    }
+
     &::after {
       content: "";
       display: none;
@@ -79,8 +87,4 @@
       outline: 0px solid var(--radio-checked-shadow);
     }
   }
-}
-
-.bmb_input-validation-error .bmb_checkbox-mark {
-  border-color: var(--input-error);
 }

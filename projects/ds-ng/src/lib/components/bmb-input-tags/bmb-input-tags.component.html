@@ -17,6 +17,7 @@
   }
   <div class="bmb_input-tags-wrapper">
     <bmb-input
+      name="selector"
       [control]="filterControl"
       [disabled]="disabled()"
       (isFocus)="handleFocus()"
@@ -35,6 +36,7 @@
             <li class="bmb_input-tags-dialog-list-item">
               <button
                 class="bmb_input-tags-dialog-list-item-button"
+                type="button"
                 (click)="handleItemClick(item)"
               >
                 {{ item.name }}
@@ -55,12 +57,12 @@
     }
   </div>
   @if (helperMessage() && !shouldShowError) {
-    <p class="bmb_field-helper">
+    <p class="bmb_input-validation-helper">
       {{ helperMessage() }}
     </p>
   }
   @if (errorMessage() && shouldShowError) {
-    <p class="bmb_field-error">
+    <p class="bmb_input-validation-error">
       {{ getErrorMessage() }}
     </p>
   }

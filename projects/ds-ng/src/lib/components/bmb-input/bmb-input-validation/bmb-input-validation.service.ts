@@ -1,5 +1,10 @@
 import { ChangeDetectorRef, Injectable } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  Validators,
+  ValidatorFn,
+} from '@angular/forms';
 
 @Injectable({ providedIn: 'root' })
 export class BmbInputValidationService {
@@ -65,11 +70,12 @@ export class BmbInputValidationService {
     max: number,
     minLength: number,
     pattern: string,
+    isJsonFormat: boolean,
     cdr: ChangeDetectorRef,
   ): void {
     const formControl: FormControl = this.getFormControlByName(name);
 
-    if (!formControl.value) {
+    if (!formControl.value && !!value) {
       this.addValue(formControl, type, value, checked);
     }
 
@@ -97,9 +103,32 @@ export class BmbInputValidationService {
       formControl.addValidators(Validators.email);
     }
 
+    if (isJsonFormat) {
+      formControl.addValidators(this.validatorError('invalidJson'));
+    }
+
     formControl.valueChanges.subscribe(() => {
       cdr.markForCheck();
     });
+  }
+
+  validatorError(errorType: string): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      if (errorType === 'invalidJson') {
+        if (!control.value) {
+          return null;
+        }
+
+        try {
+          JSON.parse(control.value);
+          return null;
+        } catch (e) {
+          return { invalidJson: true };
+        }
+      }
+
+      return null;
+    };
   }
 
   showError(name: string): boolean {

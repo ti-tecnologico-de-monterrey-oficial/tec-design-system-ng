@@ -14,12 +14,14 @@
 
   &-direction-before {
     display: inline-flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
+    cursor: pointer;
   }
 
   &-direction-after {
     display: inline-flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
+    cursor: pointer;
   }
 
   &-label {
@@ -36,8 +38,12 @@
       @include label_width(after);
     }
 
+    &-main {
+      @include label_width(main);
+    }
+
     &-required {
-      color: rgb(var(--color-red-light));
+      color: var(--input-error);
     }
 
     &-tooltip {
@@ -45,17 +51,26 @@
       font-size: rem.rem_calc(12);
       color: RGBA(var(--color-charade-500));
     }
+
+    &-max {
+      margin-left: auto;
+      padding-right: var(--bmb-spacing-s);
+    }
   }
 
   &-helper {
     @include fonts.font(3, regular);
-    color: RGBA(var(--color-charade-950));
+    color: var(--general_contrasts-150);
     padding: rem.rem_calc(8 0 0 8);
+
+    &-normal {
+      color: var(--general_contrasts-input-outline);
+    }
   }
 
   &-error {
     @include fonts.font(3, regular);
-    color: rgb(var(--color-red-light));
+    color: var(--input-error);
     padding: rem.rem_calc(8 0 0 8);
   }
 

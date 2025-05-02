@@ -28,7 +28,7 @@ export class BmbRadialComponent {
   checked = input<boolean>(false);
   disabled = input<boolean>(false);
   value = input<string>('');
-  name = input<string>('');
+  name = input<string>(window.crypto.randomUUID());
   label = input<string>('');
   labelPosition = input<IBbmSidePosition>('after');
   ariaDescribedby = input<string>('');
@@ -40,7 +40,7 @@ export class BmbRadialComponent {
   showError = model<boolean>(false);
   control = model<FormControl>();
 
-  change = output<Event>();
+  change = output<HTMLInputElement>();
 
   constructor(private ivs: BmbInputValidationService) {}
 
@@ -48,12 +48,21 @@ export class BmbRadialComponent {
     return getPositionClass(className, this.labelPosition());
   }
 
+  getFormControl(): FormControl {
+    return this.ivs.getFormControlByName(this.name());
+  }
+
+  get shouldShowError(): boolean {
+    return this.ivs.showError(this.name()) || this.showError();
+  }
+
   handleRadioChange(event: Event) {
     const target = event.target as HTMLInputElement;
 
     if (target && target.checked) {
       this.ivs.getFormControlByName(this.name()).setValue(target.value);
-      this.change.emit(event);
+      target.name = this.name();
+      this.change.emit(target);
     }
     event.stopPropagation();
   }
@@ -64,14 +73,11 @@ export class BmbRadialComponent {
     if (event.key === 'Enter' || event.key === ' ') {
       if (!target.checked) {
         this.ivs.getFormControlByName(this.name()).setValue(target.value);
-        this.change.emit(event);
+        target.name = this.name();
+        this.change.emit(target);
       }
       event.preventDefault();
     }
     event.stopPropagation();
-  }
-
-  getFormControl(): FormControl {
-    return this.ivs.getFormControlByName(this.name());
   }
 }

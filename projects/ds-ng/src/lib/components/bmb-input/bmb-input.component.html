@@ -1,128 +1,85 @@
-<section class="bmb_field" [ngClass]="{ disabled: disabled() }">
-  @if (!!label()) {
-    <span [ngClass]="getClasses('bmb_field')">
-      @if (type() === "radio") {
-        <input
-          class="bmb_field-radio-input"
-          [formControl]="control"
-          [type]="type()"
-          [id]="id()"
-          [name]="name()"
-          [attr.aria-describedby]="ariaDescribedBy()"
-          [attr.aria-label]="ariaLabel()"
-          [attr.aria-labelledby]="ariaLabelledBy()"
-          [attr.value]="value()"
-          [value]="value()"
-          [checked]="checked()"
-          [disabled]="disabled()"
-          [required]="isRequired()"
-          (change)="handleChange($event)"
-          (keydown)="handleKeyDown($event)"
+<bmb-input-validation
+  [type]="type()"
+  [name]="name()"
+  [label]="label()"
+  [checked]="checked()"
+  [value]="value()"
+  [errorMessage]="errorMessage()"
+  [helperMessage]="helperMessage()"
+  [isRequired]="isRequired()"
+  [disabled]="disabled()"
+  [control]="control()"
+  [showError]="showError()"
+  [pattern]="pattern()"
+  [jsonFormat]="jsonFormat()"
+  [tooltip]="tooltip()"
+  [tooltipPosition]="tooltipPosition()"
+  [isSupportTextNormal]="appearance() === 'normal'"
+>
+  <section class="bmb_field-wrapper">
+    @if (!!icon() && type() !== "text-area") {
+      <bmb-icon [icon]="icon()" class="bmb_field-icon" />
+    }
+    @if (type() === "text-area") {
+      <textarea
+        class="bmb_field-text-area"
+        [ngClass]="inputClasses"
+        [placeholder]="placeholder()"
+        [disabled]="disabled()"
+        [required]="isRequired()"
+        [formControl]="getFormControl()"
+        [maxlength]="maxlength()!"
+        [style.height.px]="heightTextArea()!"
+        [minlength]="minlength()!"
+        [spellcheck]="spellcheck()"
+        (focus)="onFocus()"
+        (blur)="onBlur()"
+        [rows]="rows()"
+        [name]="name()"
+        [id]="name()"
+        [pattern]="pattern()!"
+        [tabindex]="disabled() ? -1 : 0"
+      ></textarea>
+      @if (this.shouldShowError) {
+        <bmb-icon class="bmb_field-text-area-error-icon" [icon]="'error'" />
+      }
+    } @else {
+      <input
+        [type]="getType()"
+        class="bmb_field-input"
+        [ngClass]="inputClasses"
+        [required]="isRequired()"
+        [disabled]="disabled()"
+        [placeholder]="placeholder()"
+        [formControl]="getFormControl()"
+        (focus)="onFocus()"
+        (blur)="onBlur()"
+        [name]="name()"
+        [id]="name()"
+        [spellcheck]="spellcheck()"
+        [maxlength]="maxlength()!"
+        [minlength]="minlength()!"
+        [pattern]="pattern()!"
+        [max]="max()"
+        [min]="min()"
+        [tabindex]="disabled() ? -1 : 0"
+      />
+      @if (this.isClearable()) {
+        <bmb-action-icon
+          class="bmb_field-clear"
+          icon="close"
+          [iconSize]="20"
+          (buttonClick)="clearValue()"
         />
-        <section class="bmb_field-radio-box">
-          <span class="bmb_field-radio-mark"></span>
-        </section>
       }
-      <label
-        [for]="name()"
-        class="bmb_field-label"
-        [ngClass]="getLabelClass('bmb_field-label')"
-      >
-        {{ label() }}
-        @if (isRequired()) {
-          <small class="bmb_field-label-required">*</small>
-        }
-        @if (!!tooltip()) {
-          <bmb-tooltip
-            class="bmb_field-label-tooltip"
-            [text]="tooltip()"
-            [align]="tooltipPosition().align"
-            [justify]="tooltipPosition().justify"
-            [icon]="'help'"
-            [size]="15"
-          />
-        }
-        @if (type() === "text-area" && showMaxTextLength()) {
-          <span class="bmb_field-label-max">
-            {{ textLength }}/{{ maxlength() || "-" }}
-          </span>
-        }
-      </label>
-    </span>
-  }
-  @if (type() !== "radio") {
-    <section class="bmb_field-wrapper">
-      @if (!!icon() && type() !== "text-area") {
-        <bmb-icon [icon]="icon()" class="bmb_field-icon" />
-      }
-      @if (type() === "text-area") {
-        <textarea
-          class="bmb_field-text-area"
-          [ngClass]="inputClasses"
-          [placeholder]="placeholder()"
-          [disabled]="disabled()"
-          [required]="isRequired()"
-          [formControl]="control"
-          [maxlength]="maxlength()!"
-          [style.height.px]="heightTextArea()!"
-          [minlength]="minlength()!"
-          [spellcheck]="spellcheck()"
-          (focus)="onFocus()"
-          (blur)="onBlur()"
-          [rows]="rows()"
-          [name]="name()"
-          [id]="name()"
-        ></textarea>
-        @if (this.shouldShowError) {
-          <bmb-icon class="bmb_field-text-area-error-icon" [icon]="'error'" />
-        }
-      } @else {
-        <input
-          [type]="getType()"
-          class="bmb_field-input"
-          [ngClass]="inputClasses"
-          [required]="isRequired()"
-          [disabled]="disabled()"
-          [placeholder]="placeholder()"
-          [formControl]="control"
-          (focus)="onFocus()"
-          (blur)="onBlur()"
-          [name]="name()"
-          [id]="name()"
-          [spellcheck]="spellcheck()"
-          [maxlength]="maxlength()!"
-          [minlength]="minlength()!"
-          [pattern]="pattern()!"
-          [max]="max()"
-          [min]="min()"
+      @if (showAdditionalAction()) {
+        <bmb-action-icon
+          class="bmb_field-additional_action"
+          [icon]="getAdditionalActionIcon()"
+          [iconSize]="20"
+          (buttonClick)="actionToExecute()"
         />
-        @if (this.isClearable()) {
-          <bmb-action-icon
-            class="bmb_field-clear"
-            icon="close"
-            [iconSize]="20"
-            (buttonClick)="clearValue()"
-          />
-        }
-        @if (showAdditionalAction()) {
-          <bmb-action-icon
-            class="bmb_field-additional_action"
-            [icon]="getAdditionalActionIcon()"
-            [iconSize]="20"
-            (buttonClick)="actionToExecute()"
-          />
-        }
       }
-    </section>
-  }
-  @if (helperMessage() && !shouldShowError) {
-    <p class="bmb_field-helper">
-      {{ helperMessage() }}
-    </p>
-  }
-  @if (errorMessage() && shouldShowError) {
-    <p class="bmb_field-error">
-      {{ getErrorMessage() }}
-    </p>
-  }
-</section>
+    }
+  </section>
+</bmb-input-validation>

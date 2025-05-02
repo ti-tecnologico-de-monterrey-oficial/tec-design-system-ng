@@ -15,16 +15,52 @@ import { BmbCheckboxComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng
 @Component({
   selector: 'component',
   standalone: true,
-  imports: [ BmbCheckboxComponent ],
+  imports: [
+    BmbCheckboxComponent ,
+    FormControl,
+    FormGroup
+    ReactiveFormsModule,
+    Validators,
+    ],
   templateUrl: './component.html',
   styleUrl: './component.scss',
 })
 
 export class Component {
+  userForm: FormGroup = new FormGroup({
+    checkbox1: new FormControl<boolean>('', Validators.required),
+  });
+  showErrors: { [key: string]: boolean } = {};
+
+   onSubmit(): void {
+    this.formGroup.updateValueAndValidity();
+    if (this.formGroup.valid) {
+      console.log('FORM VALID');
+      return;
+    }
+
+    this.updateErrorState();
+  }
+
+  updateErrorState(): void {
+    Object.keys(this.formGroup.controls).forEach((field) => {
+      const control = this.getFormControl(field);
+
+      if (control instanceof FormControl) {
+        control.markAsTouched();
+        control.updateValueAndValidity();
+      }
+    });
+  }
+
+  getFormControl(name: string): FormControl {
+    return this.userForm.get(name) as FormControl;
+  }
+
   handleCheckboxChange(event: Event): void {
     const element = event.target as HTMLInputElement;
     console.log('Checkbox checked state:', element.checked);
-    console.log('Checkbox value:', element.value);
+    console.log('Checkbox name:', element.name);
   }
 }
 \`\`\`
@@ -168,6 +204,36 @@ Below is an example of how you can use this component in HTML:
       control: { type: 'text' },
       description:
         'Specifies the position of the label relative to the checkbox. Can be set to "before" or "after", indicating whether the label appears to the left or right of the checkbox.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
+    control: {
+      control: { type: 'object' },
+      description: 'Instance of FormControl to manage the control state.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'FormControl' },
+      },
+    },
+    errorMessage: {
+      name: 'Error Message',
+      control: {
+        type: 'text',
+      },
+      description: 'Text to be displayed when there is an error.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
+    helperMessage: {
+      name: 'Helper Message',
+      control: {
+        type: 'text',
+      },
+      description: 'Text to be displayed as a helper message below the input.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
