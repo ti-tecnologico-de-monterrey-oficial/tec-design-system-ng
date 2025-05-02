@@ -251,3 +251,46 @@
     }
   }
 }
+
+@mixin shadow_mark($height, $width, $left) {
+  content: "";
+  height: rem.rem_calc($height);
+  width: rem.rem_calc($width);
+  border-radius: 50%;
+  opacity: 0.1;
+  background-color: var(--radio-checked-shadow);
+  position: absolute;
+  z-index: -1;
+  display: block;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: rem.rem_calc($left);
+}
+
+@mixin mark_position($height, $width, $top) {
+  height: rem.rem_calc($height);
+  width: rem.rem_calc($width);
+  display: block;
+  margin: auto;
+  top: rem.rem_calc($top);
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+@mixin error_input() {
+  border-color: var(--input-error);
+}
+
+@mixin truncated_string($max-block-size, $line-clamp) {
+  display: -webkit-box;
+  max-block-size: rem.rem_calc($max-block-size);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $line-clamp;
+  line-clamp: $line-clamp;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -1,24 +1,22 @@
 <bmb-input-validation
-  type="checkbox"
+  type="radio"
   [inputId]="id()"
   [name]="name()"
   [label]="label()"
   [labelPosition]="labelPosition()"
-  [checked]="checked()!"
+  [checked]="checked()"
+  [value]="value()"
   [errorMessage]="errorMessage()"
-  [showError]="showError()"
   [helperMessage]="helperMessage()"
   [isRequired]="required()"
   [disabled]="disabled()"
   [control]="control()"
+  [showError]="showError()"
 >
-  <span class="bmb_checkbox" [ngClass]="getPositionClass('bmb_checkbox')">
+  <span class="bmb_radio" [ngClass]="getPositionClass('bmb_radio')">
     <input
-      class="bmb_checkbox-input"
-      [ngClass]="{
-        'bmb_checkbox-input-indeterminate': indeterminate(),
-      }"
-      type="checkbox"
+      class="bmb_radio-input"
+      type="radio"
       [id]="id()"
       [formControl]="getFormControl()"
       [name]="name()"
@@ -26,17 +24,18 @@
       [attr.aria-label]="ariaLabel()"
       [attr.aria-labelledby]="ariaLabelledby()"
       [attr.value]="value()"
+      [value]="value()"
       [checked]="checked()"
       [disabled]="disabled()"
       [required]="required()"
-      [indeterminate]="indeterminate()"
-      (change)="handleChange($event)"
-      (keydown)="handleKeyDown($event)"
+      (change)="handleRadioChange($event)"
+      (keydown)="handleRadioKeyDown($event)"
       [tabindex]="disabled() ? -1 : 0"
     />
-    <span
-      class="bmb_checkbox-mark"
-      [ngClass]="{ 'bmb_checkbox-mark-error': shouldShowError }"
-    ></span>
+    <span class="bmb_radio-mark"></span>
+    <!-- <span
+      class="bmb_radio-mark"
+      [ngClass]="{ 'bmb_radio-mark-error': shouldShowError }"
+    ></span> -->
   </span>
 </bmb-input-validation>

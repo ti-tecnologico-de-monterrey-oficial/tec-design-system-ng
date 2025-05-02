@@ -1,7 +1,5 @@
 import {
   Component,
-  Input,
-  ChangeDetectorRef,
   ViewEncapsulation,
   ChangeDetectionStrategy,
   input,
@@ -9,21 +7,16 @@ import {
   model,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  FormControl,
-  ReactiveFormsModule,
-  Validators,
-  AbstractControl,
-  ValidatorFn,
-} from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import {
-  BmbTooltipComponent,
   IBmbAlignTooltip,
   IBmbJustifyTooltip,
 } from '../bmb-tooltip/bmb-tooltip.component';
 import { IBbmSidePosition } from '../../types';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
+import { BmbInputValidationService } from './bmb-input-validation/bmb-input-validation.service';
+import { BmbInputValidationComponent } from './bmb-input-validation/bmb-input-validation.component';
 
 export type IBmbInputType =
   | 'text'
@@ -57,8 +50,8 @@ export interface IBmbInputTooltipPosition {
     CommonModule,
     BmbIconComponent,
     ReactiveFormsModule,
-    BmbTooltipComponent,
     BmbActionIconComponent,
+    BmbInputValidationComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -73,9 +66,7 @@ export class BmbInputComponent {
   helperMessage = input<string>('');
   disabled = input<boolean>(false);
   isRequired = input<boolean>(false);
-  @Input() showError: boolean = false;
-  @Input() control: FormControl = new FormControl();
-  name = input<string>('');
+  name = input<string>(window.crypto.randomUUID());
   spellcheck = input<boolean>(false);
   jsonFormat = input<boolean>(false);
   heightTextArea = input<number>();
@@ -102,38 +93,17 @@ export class BmbInputComponent {
   });
   isClearable = input<boolean>(false);
 
-  controlTest = model<FormControl>();
+  showError = model<boolean>(false);
+  control = model<FormControl>();
 
   isFocus = output<boolean>();
   isBlur = output<boolean>();
   onChange = output<HTMLInputElement>();
   onKeyDown = output<KeyboardEvent>();
 
-  textLength: number = 0;
   isHide: boolean = true;
 
-  constructor(private cdr: ChangeDetectorRef) {}
-
-  ngOnInit(): void {
-    if (!this.control) {
-      this.control = new FormControl();
-    }
-
-    this.addValidators();
-    this.control.updateValueAndValidity();
-    this.control.valueChanges.subscribe(() => {
-      this.textLength = this.control.value?.toString().length;
-      this.updateErrorState();
-      this.cdr.markForCheck();
-    });
-  }
-
-  private updateErrorState(): void {
-    this.showError =
-      this.isRequired() &&
-      this.control.invalid &&
-      (this.control.touched || this.control.dirty);
-  }
+  constructor(private ivs: BmbInputValidationService) {}
 
   onFocus() {
     this.isFocus.emit(true);
@@ -144,67 +114,26 @@ export class BmbInputComponent {
     this.isBlur.emit(true);
   }
 
-  getPositionClass(className: string): string {
-    if (!!this.labelPosition()) return `${className}-${this.labelPosition()}`;
-    return '';
-  }
-
-  getLabelClass(className: string): string {
-    return this.getPositionClass(className) || `${className}-main`;
-  }
-
-  getRadioErrorClass(className: string): string {
-    if (this.errorMessage() && this.shouldShowError)
-      return `${className}-error`;
-    return '';
-  }
-
-  getClasses(className: string): string[] {
-    if (this.type() === 'radio') {
-      const baseName: string = `${className}-radio`;
-      const classes: string[] = [baseName];
-      return [
-        ...classes,
-        this.getPositionClass(`${className}-direction`),
-        this.getRadioErrorClass(baseName),
-      ];
-    }
-    return [];
-  }
-
   get inputClasses(): { [key: string]: boolean } {
     const appearance =
       this.type() === 'text-area' ? 'normal' : this.appearance();
-    return {
-      ['bmb_field-input-' + appearance]: true,
-      'bmb_field-input-error': this.shouldShowError,
-      disabled: this.disabled(),
-    };
+    const baseName = 'bmb_field-input';
+    const classes = [`${baseName}-${appearance}`];
+    if (this.shouldShowError) {
+      classes.push(`${baseName}-error`);
+    }
+
+    return classes.reduce(
+      (acc, className) => {
+        acc[className] = true;
+        return acc;
+      },
+      {} as { [key: string]: boolean },
+    );
   }
 
   get shouldShowError(): boolean {
-    return this.showError;
-  }
-
-  handleChange(event: Event) {
-    const target = event.target as HTMLInputElement | null;
-    if (target && target.checked) {
-      target.value = this.value()!;
-      this.control.setValue(target.value);
-      this.onChange.emit(target);
-    }
-    event.stopPropagation();
-  }
-
-  handleKeyDown(event: KeyboardEvent) {
-    const target = event.target as HTMLInputElement | null;
-
-    if (event.key === 'Enter' && target && !target.checked) {
-      target.checked = true;
-      this.onChange.emit(target);
-      event.preventDefault();
-      event.stopPropagation();
-    }
+    return this.ivs.showError(this.name());
   }
 
   handleKeyPress(event: KeyboardEvent) {
@@ -239,7 +168,7 @@ export class BmbInputComponent {
 
   actionToExecute(): void {
     if (this.additionalAction() === 'copy') {
-      const textToCopy = this.control?.value;
+      const textToCopy = this.getFormControl()?.value;
       if (textToCopy) {
         navigator.clipboard
           .writeText(textToCopy.toString())
@@ -262,68 +191,11 @@ export class BmbInputComponent {
     return '';
   }
 
-  addValidators(): void {
-    if (this.isRequired()) {
-      this.control.addValidators(Validators.required);
-    }
-
-    if (this.min()) {
-      this.control.addValidators(Validators.min(this.min()!));
-    }
-
-    if (this.max()) {
-      this.control.addValidators(Validators.max(this.max()!));
-    }
-
-    if (this.minlength()) {
-      this.control.addValidators(Validators.minLength(this.minlength()!));
-    }
-
-    if (this.pattern()) {
-      this.control.addValidators(Validators.pattern(this.pattern()!));
-    }
-
-    if (this.jsonFormat()) {
-      this.control.addValidators(this.jsonValidator());
-    }
-  }
-
-  private jsonValidator(): ValidatorFn {
-    return (control: AbstractControl): { [key: string]: any } | null => {
-      if (!this.jsonFormat() || !control.value) {
-        return null;
-      }
-
-      try {
-        JSON.parse(control.value);
-        return null;
-      } catch (e) {
-        return { invalidJson: true };
-      }
-    };
-  }
-
-  getErrorMessage(): string {
-    if (typeof this.errorMessage() === 'string') {
-      return this.errorMessage().toString();
-    }
-
-    if (this.control['errors'] !== null) {
-      const errorType = this.control['errors'];
-      const error = this.errorMessage() as IBmbInputError;
-
-      if (errorType['invalidJson'] && error.jsonFormat) return error.jsonFormat;
-      if (errorType['pattern'] && error.pattern) return error.pattern;
-      if (errorType['min'] && error.min) return error.min;
-      if (errorType['max'] && error.max) return error.max;
-      if (errorType['minlength'] && error.minLength) return error.minLength;
-      if (errorType['required'] && error.required) return error.required;
-    }
-
-    return '';
-  }
-
   clearValue() {
-    this.control.reset();
+    this.getFormControl()?.reset();
+  }
+
+  getFormControl(): FormControl {
+    return this.ivs.getFormControlByName(this.name());
   }
 }

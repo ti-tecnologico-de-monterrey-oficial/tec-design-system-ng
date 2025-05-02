@@ -11,6 +11,7 @@
     <li bmbLayoutItem>
       <button
         class="bmb_datepicker-modal-button bmb_datepicker-modal-nav-button"
+        type="button"
         (click)="handleChangeMonth('less')"
         bmbButton
         appearance="transparent"
@@ -22,6 +23,7 @@
     <li bmbLayoutItem [isDynamicItem]="true" [colGrow]="1">
       <button
         class="bmb_datepicker-modal-button bmb_field-input-normal bmb_datepicker-modal-nav-button"
+        type="button"
         (click)="handleChangeView('month')"
         bmbButton
         appearance="transparent"
@@ -35,6 +37,7 @@
     <li bmbLayoutItem [isDynamicItem]="true" [colGrow]="1">
       <button
         class="bmb_datepicker-modal-button bmb_field-input-normal bmb_datepicker-modal-nav-button"
+        type="button"
         (click)="handleChangeView('year')"
         bmbButton
         appearance="transparent"
@@ -48,6 +51,7 @@
     <li bmbLayoutItem>
       <button
         class="bmb_datepicker-modal-button bmb_datepicker-modal-nav-button"
+        type="button"
         (click)="handleChangeMonth('plus')"
         bmbButton
         appearance="transparent"
@@ -69,6 +73,7 @@
           <li class="bmb_datepicker-modal-calendar-item">
             <button
               class="bmb_datepicker-modal-button"
+              type="button"
               [ngClass]="isSelectedDay(date)"
               (click)="handleDayChange(date)"
               bmbButton
@@ -89,6 +94,7 @@
           <li class="bmb_datepicker-modal-calendar-item">
             <button
               class="bmb_datepicker-modal-button bmb_datepicker-modal-calendar-list-item modal-persist"
+              type="button"
               [ngClass]="{
                 'bmb_datepicker-modal-calendar-list-item-selected':
                   selectedMonth - 1 === $index,
@@ -111,6 +117,7 @@
           <li class="bmb_datepicker-modal-calendar-item">
             <button
               class="bmb_datepicker-modal-button bmb_datepicker-modal-calendar-list-item modal-persist"
+              type="button"
               [ngClass]="{
                 'bmb_datepicker-modal-calendar-list-item-selected':
                   isSelectedYear(year),

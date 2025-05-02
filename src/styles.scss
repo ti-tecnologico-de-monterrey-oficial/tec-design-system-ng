@@ -1,8 +1,8 @@
 // -- DO NOT DELETE THE COMMENTED LINES BELOW --
 
 // Angular 18+
-@use "material-symbols";
+// @use "material-symbols";
 
 // Angular 17
-// $material-symbols-font-path: 'material-symbols/';
-// @import 'material-symbols/rounded';
+$material-symbols-font-path: "material-symbols/";
+@import "material-symbols/rounded";

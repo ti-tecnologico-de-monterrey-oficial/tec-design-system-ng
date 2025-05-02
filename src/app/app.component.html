@@ -1,3 +1,170 @@
-<div>
-  <button (click)="openModal()">text</button>
-</div>
+<!-- <bmb-theme /> -->
+
+<bmb-form-validation (formGroupState)="handleFormGroupState($event)">
+  <bmb-checkbox
+    [id]="'checkbox1'"
+    [checked]="true"
+    [disabled]="false"
+    [indeterminate]="false"
+    [required]="true"
+    [value]="''"
+    name="checkboxCCM"
+    [label]="'Contrato profesor cátedra Biología marina CCM.pdf'"
+    [labelPosition]="'before'"
+    [ariaDescribedby]="''"
+    [ariaLabel]="''"
+    [ariaLabelledby]="''"
+    errorMessage="Error message CCM"
+    helperMessage="Helper message CCM"
+    (change)="handleCheckboxChange($event)"
+  />
+  <bmb-checkbox
+    [id]="'checkbox2'"
+    [checked]="false"
+    [disabled]="false"
+    [indeterminate]="true"
+    [required]="true"
+    [value]="''"
+    name="checkboxCCB"
+    [label]="'Contrato profesor cátedra Biología marina CCB.pdf'"
+    [ariaDescribedby]="''"
+    [ariaLabel]="''"
+    [ariaLabelledby]="''"
+    errorMessage="Error message CCM"
+    helperMessage="Helper message CCM"
+    (change)="handleCheckboxChange($event)"
+  />
+  <bmb-checkbox
+    [id]="'checkbox3'"
+    [checked]="false"
+    [disabled]="true"
+    [indeterminate]="false"
+    [required]="true"
+    [value]="'true'"
+    name="Disable"
+    [label]="'Disable'"
+    [ariaDescribedby]="''"
+    [ariaLabel]="''"
+    [ariaLabelledby]="''"
+    errorMessage="Error message Disable"
+    helperMessage="Helper message Disable"
+    (change)="handleCheckboxChange($event)"
+  />
+  <bmb-radial
+    id="radio1"
+    value="CCM"
+    name="contract"
+    label="Contract for teacher CCM.pdf"
+    [checked]="false"
+    [required]="true"
+    [disabled]="false"
+    errorMessage="Error message CCM"
+    helperMessage="Helper message CCM"
+    labelPosition="before"
+    (change)="handleRadial($event)"
+  />
+  <bmb-radial
+    id="radio2"
+    value="CCB"
+    name="contract"
+    label="Contrato profesor cátedra Biología CCB.pdf"
+    [checked]="false"
+    [required]="true"
+    [disabled]="false"
+    errorMessage="Error message CCB"
+    helperMessage="Helper message CCB"
+    (change)="handleRadial($event)"
+  />
+  <button bmbButton appearance="primary" type="submit">Submit form-val</button>
+</bmb-form-validation>
+
+<!-- <section style="margin: 1rem">
+  <form [formGroup]="formGroup" (submit)="onSubmit()">
+    <bmb-radial
+      id="radio3"
+      value="CCM"
+      name="contract2"
+      label="Contract for teacher CCM.pdf"
+      [checked]="false"
+      [required]="true"
+      [disabled]="false"
+      errorMessage="Error message CCM"
+      helperMessage="Helper message CCM"
+      labelPosition="before"
+      [showError]="showErrors['contract2']"
+      [control]="getFormControl('contract2')"
+      (change)="handleRadial($event)"
+    />
+    <bmb-radial
+      id="radio4"
+      value="CCB"
+      name="contract2"
+      label="Contrato profesor cátedra Biología CCB.pdf"
+      [checked]="false"
+      [required]="true"
+      [disabled]="false"
+      [errorMessage]="{
+        required: 'Error message CCB',
+      }"
+      helperMessage="Helper message CCB"
+      [control]="getFormControl('contract2')"
+      [showError]="showErrors['contract2']"
+      (change)="handleRadial($event)"
+    />
+    <bmb-input-phone-number
+      [disabled]="false"
+      [showError]="false"
+      errorMessage="Error Message"
+      [isRequired]="false"
+      [preferredCountries]="['mx']"
+      [onlyCountries]="['mx', 'us', 'ca']"
+      [control]="getFormControl('phone')"
+      [showError]="showErrors['phone']"
+    />
+    <button bmbButton appearance="primary" type="submit">Submit form</button>
+  </form>
+</section> -->
+
+<!-- <section style="margin: 1rem">
+  <form [formGroup]="formGroup" (submit)="onSubmit()">
+    <bmb-radial
+      id="radio3"
+      value="CCM"
+      name="contract2"
+      label="Contract for teacher CCM.pdf"
+      [checked]="false"
+      [required]="true"
+      [disabled]="false"
+      errorMessage="Error message CCM"
+      helperMessage="Helper message CCM"
+      labelPosition="before"
+      [showError]="error"
+      [control]="getFormControl('contract2')"
+      (change)="handleRadial($event)"
+    />
+    <bmb-radial
+      id="radio4"
+      value="CCB"
+      name="contract2"
+      label="Contrato profesor cátedra Biología CCB.pdf"
+      [checked]="false"
+      [required]="true"
+      [disabled]="false"
+      [errorMessage]="{
+        required: 'Error message CCB',
+        validation: 'Error val message CCB',
+      }"
+      helperMessage="Helper message CCB"
+      [control]="getFormControl('contract2')"
+      [showError]="error"
+      (change)="handleRadial($event)"
+    />
+    <button bmbButton appearance="primary" type="submit">Submit error</button>
+    <bmb-action-icon
+      [idElement]="''"
+      [icon]="'error'"
+      [iconSize]="24"
+      (buttonClick)="handleError()"
+    />
+  </form>
+</section> -->
