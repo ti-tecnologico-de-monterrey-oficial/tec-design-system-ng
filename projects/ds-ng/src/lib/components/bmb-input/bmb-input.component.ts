@@ -140,7 +140,6 @@ export class BmbInputComponent {
     const target = event.target as HTMLInputElement | null;
     if (target) {
       this.onKeyDown.emit(event);
-      this.textLength = target.value.length;
     }
   }
 

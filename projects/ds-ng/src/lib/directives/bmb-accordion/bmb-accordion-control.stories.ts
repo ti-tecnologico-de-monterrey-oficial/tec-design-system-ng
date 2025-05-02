@@ -42,8 +42,9 @@ Below is an example of how you can use this component in HTML:
     },
   },
   argTypes: {
-    accordionStates:{
-      description: 'Accordion states to control the open/close state of the accordions. The name of the property must be the same as the accordionId of the accordion component.',
+    accordionStates: {
+      description:
+        'Accordion states to control the open/close state of the accordions. The name of the property must be the same as the accordionId of the accordion component.',
       control: {
         type: 'object',
       },
@@ -51,10 +52,9 @@ Below is an example of how you can use this component in HTML:
         type: { summary: '{ [id: string]: boolean }' },
         defaultValue: { '1': true, '2': false, '3': false },
       },
-    }
+    },
   },
-  args: {
-  },
+  args: {},
 };
 
 export default meta;
@@ -202,4 +202,4 @@ export const accordionStates: Story = {
       </section>
     `,
   }),
-}
+};

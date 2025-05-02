@@ -30,6 +30,7 @@
       [required]="required()"
       (change)="handleRadioChange($event)"
       (keydown)="handleRadioKeyDown($event)"
+      (keypress)="handleKeyPress($event)"
       [tabindex]="disabled() ? -1 : 0"
     />
     <span class="bmb_radio-mark"></span>
