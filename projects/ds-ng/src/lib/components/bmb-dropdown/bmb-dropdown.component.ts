@@ -70,6 +70,7 @@ export class BmbDropdownComponent
   helperText = input<string>('');
   control = input<FormControl>(new FormControl());
   label = input<string>();
+  name = input<string>(window.crypto.randomUUID());
   preferredOptions = input<string[]>([]);
   isMultiSelect = input<boolean>(false);
   selectedValuesSet: Set<string> = new Set();

@@ -17,10 +17,13 @@ import { Subscription } from 'rxjs';
   selector: '[bmbAccordionControl]',
   standalone: true,
 })
-export class BmbAccordionControlDirective implements AfterContentInit, DoCheck, OnDestroy {
+export class BmbAccordionControlDirective
+  implements AfterContentInit, DoCheck, OnDestroy
+{
   @Input() accordionStates?: { [id: string]: boolean };
 
-  @ContentChildren(BmbAccordionComponent) accordions!: QueryList<BmbAccordionComponent>;
+  @ContentChildren(BmbAccordionComponent)
+  accordions!: QueryList<BmbAccordionComponent>;
 
   private differ?: KeyValueDiffer<string, boolean>;
   private subscriptions: Subscription[] = [];
@@ -31,9 +34,9 @@ export class BmbAccordionControlDirective implements AfterContentInit, DoCheck, 
   ngAfterContentInit(): void {
     this.subscriptions = this.accordions.map((accordion) => {
       return accordion.opened.subscribe(() => {
-        if(!this.accordionStates){
+        if (!this.accordionStates) {
           this.closeOthers(String(accordion.accordionId()));
-        }else{
+        } else {
           this.updateExternalState(String(accordion.accordionId()));
         }
       });
@@ -63,7 +66,7 @@ export class BmbAccordionControlDirective implements AfterContentInit, DoCheck, 
     this.accordions.forEach((accordion) => {
       const state = this.accordionStates![accordion.accordionId()!];
       accordion._disabled.set(false);
-      if(!state){
+      if (!state) {
         accordion._disabled.set(true);
       }
       accordion._expanded.set(state);
@@ -73,16 +76,16 @@ export class BmbAccordionControlDirective implements AfterContentInit, DoCheck, 
 
   private closeOthers(openId: string): void {
     this.accordions.forEach((accordion) => {
-      if(String(accordion.accordionId()) !== openId) {
+      if (String(accordion.accordionId()) !== openId) {
         accordion._expanded.set(false);
         accordion._active.set(false);
 
-        if(this.accordionStates){
+        if (this.accordionStates) {
           accordion._disabled.set(true);
-        }else{
+        } else {
           accordion._disabled.set(false);
         }
-      }else{
+      } else {
         accordion._active.set(true);
       }
     });

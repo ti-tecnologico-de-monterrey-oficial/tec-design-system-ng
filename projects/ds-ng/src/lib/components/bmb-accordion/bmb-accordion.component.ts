@@ -46,7 +46,7 @@ export class BmbAccordionComponent implements OnInit, OnChanges {
   public active = input<boolean>(false);
   public disabled = input<boolean>(false);
   public expanded = input<boolean | undefined>();
-  public closed = output<void>(); 
+  public closed = output<void>();
   @Output() opened = new EventEmitter<void>();
   public onClick = output<void>();
   public _expanded = signal(false);
