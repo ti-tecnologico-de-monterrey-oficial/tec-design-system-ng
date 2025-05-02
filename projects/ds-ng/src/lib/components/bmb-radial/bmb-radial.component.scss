@@ -1,41 +1,27 @@
-@use "../../../assets/styles/base/fonts" as fonts;
 @use "../../../assets/styles/base/mixins" as mixins;
 @use "../../../assets/styles/base/rem" as rem;
 
-.bmb_checkbox {
+.bmb_radio {
   &-input {
     opacity: 0;
     height: 0;
     width: 0;
     position: absolute;
 
-    &:checked + .bmb_checkbox-mark,
-    &[ng-reflect-checked="true"] + .bmb_checkbox-mark {
-      background-color: var(--switch-checked);
-      border-color: var(--switch-checked);
+    &:checked + .bmb_radio-mark,
+    &[ng-reflect-checked="true"] + .bmb_radio-mark {
+      border: rem.rem_calc(2) solid var(--switch-checked);
 
       &::after {
-        border: solid var(--white-primary);
-        border-width: rem.rem_calc(0 3 3 0);
         position: absolute;
-        @include mixins.mark_position(12, 3, -3);
-        transform: rotate(45deg);
+        @include mixins.mark_position(12, 12, 0);
+        border-radius: 100%;
+        background-color: var(--switch-checked);
       }
     }
 
-    &-indeterminate + .bmb_checkbox-mark {
-      background-color: var(--switch-checked);
-      border-color: var(--switch-checked);
-
-      &::after {
-        background-color: var(--white-primary);
-        position: relative;
-        @include mixins.mark_position(3, 12, 8);
-      }
-    }
-
-    &:hover + .bmb_checkbox-mark {
-      &:not(.bmb_checkbox-mark-error) {
+    &:hover + .bmb_radio-mark {
+      &:not(.bmb_radio-mark-error) {
         border-color: var(--switch-checked);
       }
 
@@ -44,9 +30,9 @@
       }
     }
 
-    &:focus:not(:disabled) + .bmb_checkbox-mark,
-    &:focus-visible:not(:disabled) + .bmb_checkbox-mark {
-      &:not(.bmb_checkbox-mark-error) {
+    &:focus + .bmb_radio-mark,
+    &:focus-visible + .bmb_radio-mark {
+      &:not(.bmb_radio-mark-error) {
         border-color: var(--switch-checked);
       }
 
@@ -74,7 +60,7 @@
     width: rem.rem_calc(24);
     background-color: transparent;
     border: rem.rem_calc(2) solid var(--general_contrasts-100);
-    border-radius: rem.rem_calc(4);
+    border-radius: 100%;
 
     &-error {
       @include mixins.error_input();
@@ -84,7 +70,10 @@
       content: "";
       display: none;
       position: absolute;
-      outline: 0px solid var(--radio-checked-shadow);
     }
   }
+}
+
+.bmb_input-validation-error .bmb_radio-mark {
+  @include mixins.error_input();
 }
