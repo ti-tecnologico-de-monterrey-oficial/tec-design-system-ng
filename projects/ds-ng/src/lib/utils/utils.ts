@@ -60,7 +60,7 @@ export const getPositionClass = (
 
 export const getUUID = (): string => {
   return window.crypto.randomUUID();
-}
+};
 
 export const attributes = (object: { [key: string]: any }): string =>
   Object.entries(object)

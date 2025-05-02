@@ -88,7 +88,9 @@ export class BmbInputPhoneNumberComponent implements OnInit {
       ),
     );
 
-    this.controls.controls['input'].setValue(this.control().value?.replace(this.defaultLada(),''))
+    this.controls.controls['input'].setValue(
+      this.control().value?.replace(this.defaultLada(), ''),
+    );
 
     this.control().valueChanges.subscribe(() => {
       this.updateErrorState();
