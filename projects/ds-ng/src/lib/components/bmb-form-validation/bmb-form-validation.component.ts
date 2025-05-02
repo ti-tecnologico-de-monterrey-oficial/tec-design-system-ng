@@ -1,8 +1,10 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   ElementRef,
   model,
+  OnInit,
   output,
   ViewEncapsulation,
 } from '@angular/core';
@@ -22,7 +24,7 @@ import { BmbInputValidationService } from '../bmb-input/bmb-input-validation/bmb
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbFormValidationComponent {
+export class BmbFormValidationComponent implements AfterViewInit {
   formGroup = model<FormGroup>(new FormGroup({}));
 
   formGroupState = output<FormGroup>();
@@ -32,7 +34,7 @@ export class BmbFormValidationComponent {
     private el: ElementRef,
   ) {}
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     const inputs = this.el.nativeElement.querySelectorAll(
       'bmb-input-validation',
     );
@@ -40,7 +42,6 @@ export class BmbFormValidationComponent {
     inputs.forEach((input: any) => {
       const type = this.getInputAttribute(input, 'type');
       const controlName = this.getInputAttribute(input, 'name');
-      console.log('form val name', controlName, type, input);
 
       let control = this.getFormControl(controlName);
 

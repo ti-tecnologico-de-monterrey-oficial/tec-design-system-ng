@@ -26,6 +26,8 @@ import {
   IBmbInputAppearance,
   IBmbInputError,
 } from '../bmb-input/bmb-input.component';
+import { BmbInputValidationComponent } from '../bmb-input/bmb-input-validation/bmb-input-validation.component';
+import { getUUID } from '../../utils/utils';
 
 @Component({
   selector: 'bmb-input-phone-number',
@@ -39,12 +41,15 @@ import {
     BmbTooltipComponent,
     BmbDropdownComponent,
     BmbInputComponent,
+    BmbInputValidationComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbInputPhoneNumberComponent implements OnInit {
   label = input<string>();
+  name = input<string>(window.crypto.randomUUID());
+  value = input<string>();
   isRequired = input<boolean>(false);
   tooltip = input<string>('');
   defaultLada = input<string>('+52');
@@ -82,7 +87,8 @@ export class BmbInputPhoneNumberComponent implements OnInit {
         `^\\${this.defaultLada()}\\d{${selectedLada?.length}}$`,
       ),
     );
-    this.control().setValue(this.defaultLada());
+
+    this.controls.controls['input'].setValue(this.control().value?.replace(this.defaultLada(),''))
 
     this.control().valueChanges.subscribe(() => {
       this.updateErrorState();
@@ -93,6 +99,17 @@ export class BmbInputPhoneNumberComponent implements OnInit {
       const lada = this.controls.controls['select'].value || '';
       this.control().setValue(lada + value);
     });
+  }
+
+  getPatternVal(): string {
+    const selectedLada = this.allCountryCodes.find(
+      ({ lada }) => lada === this.defaultLada(),
+    );
+    return `^\\${this.defaultLada()}\\d{${selectedLada?.length}}$`;
+  }
+
+  generateID(): string {
+    return getUUID();
   }
 
   private updateErrorState(): void {
@@ -141,16 +158,8 @@ export class BmbInputPhoneNumberComponent implements OnInit {
     return this.controls.get(name) as FormControl;
   }
 
-  get shouldShowError(): boolean {
-    return this.showError;
-  }
-
   getErrors(): boolean {
     return this.control().errors !== null;
-  }
-
-  getPattern() {
-    return '^\\+52\\d{10}$';
   }
 
   getErrorMessage(): string {
