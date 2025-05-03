@@ -207,7 +207,7 @@ export const Default: Story = {
         ${attributesText(args)}
       </button>`,
   }),
-}
+};
 
 export const Icon = {
   name: 'Icon',
@@ -224,7 +224,7 @@ export const Icon = {
         ${attributesText(args)}
       </button>`,
   }),
-}
+};
 
 export const IconSize = {
   name: 'Icon size',
@@ -242,7 +242,7 @@ export const IconSize = {
         ${attributesText(args)}
       </button>`,
   }),
-}
+};
 
 export const IconPosition = {
   name: 'Icon position',
@@ -260,7 +260,7 @@ export const IconPosition = {
         ${attributesText(args)}
       </button>`,
   }),
-}
+};
 
 export const ImageIcon = {
   name: 'Image icon',
@@ -279,7 +279,7 @@ export const ImageIcon = {
         ${attributesText(args)}
       </button>`,
   }),
-}
+};
 
 export const Appearance = {
   name: 'Appearance',
@@ -297,7 +297,7 @@ export const Appearance = {
         ${attributesText(args)}
       </button>`,
   }),
-}
+};
 
 export const Size = {
   name: 'Size',
@@ -315,7 +315,7 @@ export const Size = {
         ${attributesText(args)}
       </button>`,
   }),
-}
+};
 
 export const Case = {
   name: 'Case',
@@ -333,4 +333,4 @@ export const Case = {
         ${attributesText(args)}
       </button>`,
   }),
-}
+};

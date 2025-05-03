@@ -6,16 +6,39 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 
 ---
 
-# 🚀 Versión 1.5.6 ya está aquí
+# ¡La Versión 1.5.7 ya está aquí! 🎉
 
-En esta versión, nos enfocamos en mejorar la experiencia de las personas desarrolladoras y diseñadoras mediante actualizaciones clave, nuevos componentes y la resolución de problemas reportados. Nuestro objetivo es seguir construyendo un sistema de diseño accesible, inclusivo y funcional para todos. 🌱✨
+En esta versión, hemos trabajado arduamente para mejorar y optimizar el sistema de diseño, añadiendo nuevas funcionalidades, corrigiendo errores y refinando componentes existentes. Aquí tienes un resumen de los cambios más destacados:
 
-# 🔵 Componentes actualizados
+## 🆕 Novedades
 
-- `Top bar`: Se agregó un botón para cambio de rol y soporte para Qualtrics, mejorando la flexibilidad y funcionalidad.
-- `Container button`: Ahora incluye un menú desplegable (`dropdown menu`) para ampliar las posibilidades de interacción.
-- `Modal`: Se ajustaron los estilos para garantizar compatibilidad con Angular 19 y mejorar la consistencia visual.
-- `Radial`: Se optimizó el componente eliminando elementos redundantes.
+- Se agregaron nuevos archivos readme para los componentes.
+- Actualización del proceso de compilación.
+
+## 🟢 Nuevos componentes
+
+- `Form validation`: Nuevo componente, permite validar automáticamente los inputs dentro de este componente, lo anterior sin necesidad de enviarle el formControl ni las configuraciones de ese.
+- `Step progress bar`: Nueva variante (template).
+
+## 🔵 Componentes actualizados
+
+- `Input phone`: Se actualizó la validación del componente 
+- `Input`: Se agregó la implementación necesaria para que se haga la validación automática al implementar el form-validation, se agregó el evento keyDown.
+- `Checkbox`: Se agregó la implementación necesaria para que se haga la validación automática al implementar el form-validation.
+- `Radio`: Implementación para permitir convivir con las validaciones de error existentes al momento de la actualización de versión.
+- `Accordion control`: Se corrije funcionamiento del accordion y se agrega nueva funcionalidad de manejo de estados.
+- `Generic card`: Se agregan opciones para cambiar fondo, borde y sombra.
+- `Inner header`: El subtítulo ya no será permitido, se deja la variable para no romper código y eliminó la funcionalidad.
+- `Button`: Se actualizaron los estilos.
+- `Button group`: Se corrigieron los comportamientos para alinearse con los botones base.
+- `Dropdown`: Se mejoró la accesibilidad del componente.
+- `Card button`: Se agregó soporte para iconos personalizados, se modificaron estilos para evitar que el título se desborde con respecto al contenedor.
+- `Toast`: Se agregaron estilos para la versión reminder.
+- `Column system`: Se corrigió el problema con el overflow.
+- `Profile`: Ahora se puede escuchar el evento clic sobre el líder o generalista.
+- `Account statement`: Se esconde el botón secundario.
+- `Chat bar`: Se actualizó la configuración del componente.
+- `Icon`: Se mejora el soporte para iconos personalizados.
 
 Puedes ver todos los componentes aqui: [Bamboo](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/foundations-colors--documentation)
 

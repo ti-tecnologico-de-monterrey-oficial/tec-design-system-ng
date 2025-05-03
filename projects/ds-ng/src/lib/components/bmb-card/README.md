@@ -16,13 +16,13 @@ The `BmbCardComponent` is a standalone Angular component designed to display con
 
 The component accepts the following inputs to customize its behavior and appearance:
 
-| Input          | Type                     | Default     | Description                                                                 |
-|-----------------|--------------------------|-------------|-----------------------------------------------------------------------------|
-| `borderRadius` | `SizeNames | SizeNames[]` | `'m'`       | Defines the border radius of the card.                                     |
-| `margin`       | `SizeNames | SizeNames[]` | `'m'`       | Sets the margin around the card.                                           |
-| `type`         | `IBmbCardType`           | `'normal'`  | Specifies the type of the card (e.g., `primary`, `secondary`, `error`).    |
-| `state`        | `'disabled' | 'error' | 'normal'` | `'normal'`  | Defines the state of the card.                                             |
-| `alternative`  | `boolean`                | `false`     | Enables an alternative style for the card.                                 |
+| Input          | Type           | Default      | Description                                                             |
+| -------------- | -------------- | ------------ | ----------------------------------------------------------------------- | -------------------------------------- | ------------------------------ |
+| `borderRadius` | `SizeNames     | SizeNames[]` | `'m'`                                                                   | Defines the border radius of the card. |
+| `margin`       | `SizeNames     | SizeNames[]` | `'m'`                                                                   | Sets the margin around the card.       |
+| `type`         | `IBmbCardType` | `'normal'`   | Specifies the type of the card (e.g., `primary`, `secondary`, `error`). |
+| `state`        | `'disabled'    | 'error'      | 'normal'`                                                               | `'normal'`                             | Defines the state of the card. |
+| `alternative`  | `boolean`      | `false`      | Enables an alternative style for the card.                              |
 
 ### `IBmbCardType` Values
 
@@ -42,9 +42,11 @@ The `type` input accepts the following values:
 ## Methods
 
 ### `getClasses(): string[]`
+
 Returns an array of CSS classes based on the `borderRadius`, `margin`, and `type` inputs.
 
 ### `getStyles(): any`
+
 Returns an object of inline styles for the card, including `border-radius` and `margin`.
 
 ---
@@ -61,9 +63,9 @@ Returns an object of inline styles for the card, including `border-radius` and `
 
 #### Inputs
 
-| Input     | Type                     | Default | Description                                                                 |
-|-----------|--------------------------|---------|-----------------------------------------------------------------------------|
-| `padding` | `SizeNames | SizeNames[]` | `'m'`   | Sets the padding for the card header.                                      |
+| Input     | Type       | Default      | Description |
+| --------- | ---------- | ------------ | ----------- | ------------------------------------- |
+| `padding` | `SizeNames | SizeNames[]` | `'m'`       | Sets the padding for the card header. |
 
 ---
 
@@ -77,9 +79,9 @@ Returns an object of inline styles for the card, including `border-radius` and `
 
 #### Inputs
 
-| Input     | Type                     | Default | Description                                                                 |
-|-----------|--------------------------|---------|-----------------------------------------------------------------------------|
-| `padding` | `SizeNames | SizeNames[]` | `'m'`   | Sets the padding for the card footer.                                      |
+| Input     | Type       | Default      | Description |
+| --------- | ---------- | ------------ | ----------- | ------------------------------------- |
+| `padding` | `SizeNames | SizeNames[]` | `'m'`       | Sets the padding for the card footer. |
 
 ---
 
@@ -93,9 +95,9 @@ Returns an object of inline styles for the card, including `border-radius` and `
 
 #### Inputs
 
-| Input     | Type                     | Default | Description                                                                 |
-|-----------|--------------------------|---------|-----------------------------------------------------------------------------|
-| `padding` | `SizeNames | SizeNames[]` | `'m'`   | Sets the padding for the card content.                                     |
+| Input     | Type       | Default      | Description |
+| --------- | ---------- | ------------ | ----------- | -------------------------------------- |
+| `padding` | `SizeNames | SizeNames[]` | `'m'`       | Sets the padding for the card content. |
 
 ---
 

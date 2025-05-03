@@ -12,7 +12,7 @@ import { IBbmSidePosition } from '../../types';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { BmbInputValidationService } from '../bmb-input/bmb-input-validation/bmb-input-validation.service';
 import { BmbInputValidationComponent } from '../bmb-input/bmb-input-validation/bmb-input-validation.component';
-import { getPositionClass } from '../../utils/utils';
+import { getPositionClass, getUUID } from '../../utils/utils';
 import { IBmbInputError } from '../bmb-input/bmb-input.component';
 
 @Component({
@@ -29,7 +29,7 @@ export class BmbCheckboxComponent implements OnInit {
   disabled = input<boolean>(false);
   required = input<boolean>(false);
   value = input<string>('');
-  name = input<string>(window.crypto.randomUUID());
+  name = input<string>(getUUID());
   label = input<string>('');
   labelPosition = input<IBbmSidePosition>('after');
   ariaDescribedby = input<string>('');

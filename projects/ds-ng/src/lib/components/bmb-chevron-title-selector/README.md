@@ -16,14 +16,14 @@ The `BmbChevronTitleSelectorComponent` is a standalone Angular component designe
 
 The component accepts the following inputs to customize its behavior and appearance:
 
-| Input            | Type      | Default     | Description                                                                 |
-|-------------------|-----------|-------------|-----------------------------------------------------------------------------|
-| `title` (required)| `string`  | `undefined` | The main title text to display.                                            |
-| `subtitle`        | `string`  | `undefined` | The subtitle text to display below the title.                              |
-| `isIconSubtitle`  | `boolean` | `undefined` | Determines whether the subtitle is displayed as an icon.                   |
-| `iconSubtitle`    | `string`  | `''`        | The icon to display as the subtitle (if `isIconSubtitle` is `true`).       |
-| `leadingIcon`     | `string`  | `''`        | The icon displayed on the left side of the title.                          |
-| `trailingIcon`    | `string`  | `''`        | The icon displayed on the right side of the title.                         |
+| Input              | Type      | Default     | Description                                                          |
+| ------------------ | --------- | ----------- | -------------------------------------------------------------------- |
+| `title` (required) | `string`  | `undefined` | The main title text to display.                                      |
+| `subtitle`         | `string`  | `undefined` | The subtitle text to display below the title.                        |
+| `isIconSubtitle`   | `boolean` | `undefined` | Determines whether the subtitle is displayed as an icon.             |
+| `iconSubtitle`     | `string`  | `''`        | The icon to display as the subtitle (if `isIconSubtitle` is `true`). |
+| `leadingIcon`      | `string`  | `''`        | The icon displayed on the left side of the title.                    |
+| `trailingIcon`     | `string`  | `''`        | The icon displayed on the right side of the title.                   |
 
 ---
 
@@ -31,19 +31,21 @@ The component accepts the following inputs to customize its behavior and appeara
 
 The component emits the following events:
 
-| Output            | Type       | Description                                                                 |
-|--------------------|------------|-----------------------------------------------------------------------------|
-| `onLeadingClick`   | `any`      | Emitted when the leading icon is clicked.                                   |
-| `onTrailingClick`  | `any`      | Emitted when the trailing icon is clicked.                                  |
+| Output            | Type  | Description                                |
+| ----------------- | ----- | ------------------------------------------ |
+| `onLeadingClick`  | `any` | Emitted when the leading icon is clicked.  |
+| `onTrailingClick` | `any` | Emitted when the trailing icon is clicked. |
 
 ---
 
 ## Methods
 
 ### `handleLeadingClick(event: any): void`
+
 Handles the click event for the leading icon and emits the `onLeadingClick` output.
 
 ### `handleTrailingClick(event: any): void`
+
 Handles the click event for the trailing icon and emits the `onTrailingClick` output.
 
 ---
@@ -53,16 +55,7 @@ Handles the click event for the trailing icon and emits the `onTrailingClick` ou
 The component's template is structured as follows:
 
 ```html
-<bmb-chevron-title-selector
-  [title]="'Main Title'"
-  [subtitle]="'Subtitle Text'"
-  [isIconSubtitle]="false"
-  [iconSubtitle]="'info'"
-  [leadingIcon]="'menu'"
-  [trailingIcon]="'chevron-right'"
-  (onLeadingClick)="handleLeadingIconClick($event)"
-  (onTrailingClick)="handleTrailingIconClick($event)"
-></bmb-chevron-title-selector>
+<bmb-chevron-title-selector [title]="'Main Title'" [subtitle]="'Subtitle Text'" [isIconSubtitle]="false" [iconSubtitle]="'info'" [leadingIcon]="'menu'" [trailingIcon]="'chevron-right'" (onLeadingClick)="handleLeadingIconClick($event)" (onTrailingClick)="handleTrailingIconClick($event)"></bmb-chevron-title-selector>
 ```
 
 ---
@@ -72,26 +65,13 @@ The component's template is structured as follows:
 ### Example 1: Basic Title with Subtitle
 
 ```html
-<bmb-chevron-title-selector
-  [title]="'Settings'"
-  [subtitle]="'Manage your preferences'"
-  [leadingIcon]="'settings'"
-  [trailingIcon]="'chevron-right'"
-  (onTrailingClick)="navigateToSettings()"
-></bmb-chevron-title-selector>
+<bmb-chevron-title-selector [title]="'Settings'" [subtitle]="'Manage your preferences'" [leadingIcon]="'settings'" [trailingIcon]="'chevron-right'" (onTrailingClick)="navigateToSettings()"></bmb-chevron-title-selector>
 ```
 
 ### Example 2: Icon Subtitle
 
 ```html
-<bmb-chevron-title-selector
-  [title]="'Notifications'"
-  [isIconSubtitle]="true"
-  [iconSubtitle]="'bell'"
-  [leadingIcon]="'notifications'"
-  [trailingIcon]="'chevron-right'"
-  (onTrailingClick)="openNotifications()"
-></bmb-chevron-title-selector>
+<bmb-chevron-title-selector [title]="'Notifications'" [isIconSubtitle]="true" [iconSubtitle]="'bell'" [leadingIcon]="'notifications'" [trailingIcon]="'chevron-right'" (onTrailingClick)="openNotifications()"></bmb-chevron-title-selector>
 ```
 
 ---

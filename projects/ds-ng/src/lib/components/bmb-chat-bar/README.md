@@ -16,12 +16,12 @@ The `BmbChatBarComponent` is a standalone Angular component designed to provide 
 
 The component accepts the following inputs to customize its behavior and appearance:
 
-| Input         | Type                  | Default                          | Description                                                                 |
-|---------------|-----------------------|----------------------------------|-----------------------------------------------------------------------------|
-| `placeholder` | `string`             | `'¿Qué deseas encontrar hoy?'`  | Placeholder text for the input field.                                       |
-| `botList`     | `IBotType[]`         | `defaultBotList`                | List of available bots for selection.                                       |
-| `actionsList` | `IChatBarActions[]`  | `defaultActionList`             | List of available actions for the chat bar.                                 |
-| `showEmoji`   | `boolean`            | `false`                         | Determines whether the emoji picker is displayed.                           |
+| Input         | Type                | Default                        | Description                                       |
+| ------------- | ------------------- | ------------------------------ | ------------------------------------------------- |
+| `placeholder` | `string`            | `'¿Qué deseas encontrar hoy?'` | Placeholder text for the input field.             |
+| `botList`     | `IBotType[]`        | `defaultBotList`               | List of available bots for selection.             |
+| `actionsList` | `IChatBarActions[]` | `defaultActionList`            | List of available actions for the chat bar.       |
+| `showEmoji`   | `boolean`           | `false`                        | Determines whether the emoji picker is displayed. |
 
 ---
 
@@ -29,45 +29,55 @@ The component accepts the following inputs to customize its behavior and appeara
 
 The component emits the following events:
 
-| Output           | Type         | Description                                                                 |
-|-------------------|--------------|-----------------------------------------------------------------------------|
-| `onSendMessage`   | `string`     | Emitted when a message is sent.                                             |
-| `onSendFiles`     | `File[]`     | Emitted when files are uploaded.                                            |
-| `onRecord`        | `boolean`    | Emitted when voice recording starts or stops.                               |
-| `onEmoji`         | `boolean`    | Emitted when the emoji picker is triggered.                                 |
+| Output          | Type      | Description                                   |
+| --------------- | --------- | --------------------------------------------- |
+| `onSendMessage` | `string`  | Emitted when a message is sent.               |
+| `onSendFiles`   | `File[]`  | Emitted when files are uploaded.              |
+| `onRecord`      | `boolean` | Emitted when voice recording starts or stops. |
+| `onEmoji`       | `boolean` | Emitted when the emoji picker is triggered.   |
 
 ---
 
 ## Methods
 
 ### `handleSend(): void`
+
 Sends the current message and any attached files. Emits the `onSendMessage` and `onSendFiles` events.
 
 ### `handleChangeBot(bot: IBotType): void`
+
 Changes the current bot and updates the bot selection dialog.
 
 ### `handleMic(): void`
+
 Starts voice recording and emits the `onRecord` event.
 
 ### `handleStopMic(): void`
+
 Stops voice recording and emits the `onRecord` event.
 
 ### `onDrop(event: any): void`
+
 Handles file drop events for uploading files.
 
 ### `onFileSelect(event: any): void`
+
 Handles file selection via the file input.
 
 ### `createImageThumbnail(file: File): void`
+
 Creates a thumbnail for image files.
 
 ### `deleteFile(index: number): void`
+
 Deletes a file from the uploaded files list.
 
 ### `handlePaginate(items: any[], page: number): void`
+
 Handles pagination for the actions list.
 
 ### `handleDotPress(index: number): void`
+
 Navigates to a specific page in the actions list.
 
 ---
@@ -77,16 +87,7 @@ Navigates to a specific page in the actions list.
 The component's template is structured as follows:
 
 ```html
-<bmb-chat-bar
-  [placeholder]="'Escribe un mensaje...'"
-  [botList]="[{ name: 'TecBot', icon: '/assets/images/bot-icons/bot_tecStandar.svg' }]"
-  [actionsList]="[{ name: 'Action 1', icon: 'icon1' }, { name: 'Action 2', icon: 'icon2' }]"
-  [showEmoji]="true"
-  (onSendMessage)="handleSendMessage($event)"
-  (onSendFiles)="handleSendFiles($event)"
-  (onRecord)="handleRecord($event)"
-  (onEmoji)="handleEmoji($event)"
-></bmb-chat-bar>
+<bmb-chat-bar [placeholder]="'Escribe un mensaje...'" [botList]="[{ name: 'TecBot', icon: '/assets/images/bot-icons/bot_tecStandar.svg' }]" [actionsList]="[{ name: 'Action 1', icon: 'icon1' }, { name: 'Action 2', icon: 'icon2' }]" [showEmoji]="true" (onSendMessage)="handleSendMessage($event)" (onSendFiles)="handleSendFiles($event)" (onRecord)="handleRecord($event)" (onEmoji)="handleEmoji($event)"></bmb-chat-bar>
 ```
 
 ---

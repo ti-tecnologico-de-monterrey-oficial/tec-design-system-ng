@@ -150,6 +150,6 @@ export class BmbProfileComponent implements OnInit, AfterViewInit {
   }
 
   handleButtonClick(data: IBmbUserData | undefined): void {
-    if(data) this.handleCollaboratorClick.emit(data);
+    if (data) this.handleCollaboratorClick.emit(data);
   }
 }

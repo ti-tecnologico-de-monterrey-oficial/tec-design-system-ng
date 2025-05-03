@@ -18,9 +18,9 @@ The component accepts the following inputs to customize its behavior and appeara
 
 ### Progress Circle Inputs
 
-| Input                          | Type      | Default            | Description                                                     |
-| ------------------------------ | --------- | ------------------ | --------------------------------------------------------------- |
-| `isActive`        | `boolean`  | `false`                | Set the active state of the bookmark, this input is a model so you can detect a change in the state in the same place. |
+| Input      | Type      | Default | Description                                                                                                            |
+| ---------- | --------- | ------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `isActive` | `boolean` | `false` | Set the active state of the bookmark, this input is a model so you can detect a change in the state in the same place. |
 
 ---
 

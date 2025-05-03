@@ -74,7 +74,7 @@ export class BmbButtonDirective {
     const classList = ['bmb_btn', `bmb_btn-${this.appearance()}`];
     classList.push('bmb_btn-rounded');
 
-    if(this.case()) classList.push('bmb_btn-case');
+    if (this.case()) classList.push('bmb_btn-case');
 
     if (this.enableButtonToggle() && this.isToggleActive())
       classList.push('bmb_btn-toggle-active');

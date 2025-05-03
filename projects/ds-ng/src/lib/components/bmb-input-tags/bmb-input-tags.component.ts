@@ -18,6 +18,7 @@ import {
 } from '../bmb-input/bmb-input.component';
 import { ClickOutsideDirective } from '../../directives/utils/clickoutside.directive';
 import { debounceTime } from 'rxjs';
+import { getUUID } from '../../utils/utils';
 
 @Component({
   selector: 'bmb-input-tags',
@@ -46,7 +47,7 @@ export class BmbInputTagsComponent implements OnInit {
   helperMessage = input<string>('');
   disabled = input<boolean>(false);
   maxSelectedItems = input<number>();
-  name = input<string>(window.crypto.randomUUID());
+  name = input<string>(getUUID());
   showError = input<boolean>(false);
 
   onKeyDown = output<KeyboardEvent>();

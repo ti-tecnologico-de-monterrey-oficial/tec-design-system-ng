@@ -24,12 +24,15 @@ The `BmbCarouselComponent` is a standalone Angular component designed to display
 ## Methods
 
 ### `ngAfterContentInit(): void`
+
 Initializes the carousel by detecting the number of items and setting the first item as active.
 
 ### `selectItem(index: number): void`
+
 Selects a specific item in the carousel by its index and updates the active state.
 
 ### `setClassActive(newIndex: number, oldIndex: number = 0): void`
+
 Applies the active class to the new item and removes it from the old item. Adds a bounce animation when the active item changes.
 
 ---
@@ -37,12 +40,15 @@ Applies the active class to the new item and removes it from the old item. Adds 
 ## Touch Gesture Handlers
 
 ### `onTouchStart(event: TouchEvent): void`
+
 Captures the starting position of a touch gesture.
 
 ### `onTouchMove(event: TouchEvent): void`
+
 Tracks the movement of a touch gesture.
 
 ### `onTouchEnd(): void`
+
 Calculates the swipe distance and navigates to the next or previous item if the swipe exceeds the threshold.
 
 ---

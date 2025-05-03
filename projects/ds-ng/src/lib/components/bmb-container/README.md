@@ -16,10 +16,10 @@ The `BmbContainerComponent` is a standalone Angular component designed to act as
 
 The component accepts the following inputs to customize its behavior and appearance:
 
-| Input       | Type                  | Default             | Description                                                                 |
-|-------------|-----------------------|---------------------|-----------------------------------------------------------------------------|
-| `appearance`| `IBmbAppearanceType` | `'primary-container'` | Defines the appearance style of the container.                             |
-| `isHidden`  | `boolean`            | `false`             | Determines whether the container is hidden.                                |
+| Input        | Type                 | Default               | Description                                    |
+| ------------ | -------------------- | --------------------- | ---------------------------------------------- |
+| `appearance` | `IBmbAppearanceType` | `'primary-container'` | Defines the appearance style of the container. |
+| `isHidden`   | `boolean`            | `false`               | Determines whether the container is hidden.    |
 
 ### `IBmbAppearanceType` Values
 
@@ -37,6 +37,7 @@ The `appearance` input accepts the following values:
 ## Methods
 
 ### `getClasses(): string[]`
+
 Returns an array of CSS classes based on the `appearance` and `isHidden` inputs. If `isHidden` is `true`, the container will have a `bmb_container-hidden` class.
 
 ---
@@ -46,10 +47,7 @@ Returns an array of CSS classes based on the `appearance` and `isHidden` inputs.
 The component's template is structured as follows:
 
 ```html
-<bmb-container
-  [appearance]="'primary-container'"
-  [isHidden]="false"
->
+<bmb-container [appearance]="'primary-container'" [isHidden]="false">
   <p>Content inside the container</p>
 </bmb-container>
 ```
