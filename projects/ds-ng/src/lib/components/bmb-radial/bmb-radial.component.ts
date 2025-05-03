@@ -4,34 +4,22 @@ import {
   ChangeDetectionStrategy,
   input,
   output,
-  Input,
+  model,
 } from '@angular/core';
-import { BmbInputComponent } from '../bmb-input/bmb-input.component';
 import { IBbmSidePosition } from '../../types';
-import { FormControl } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { BmbInputValidationComponent } from '../bmb-input/bmb-input-validation/bmb-input-validation.component';
+import { CommonModule } from '@angular/common';
+import { getPositionClass, getUUID } from '../../utils/utils';
+import { BmbInputValidationService } from '../bmb-input/bmb-input-validation/bmb-input-validation.service';
+import { IBmbInputError } from '../bmb-input/bmb-input.component';
 
 @Component({
   selector: 'bmb-radial',
-  template: `
-    <bmb-input
-      type="radio"
-      [id]="id()"
-      [value]="value()"
-      [name]="name()"
-      [label]="label()"
-      [checked]="checked()"
-      [isRequired]="required()"
-      [control]="control"
-      [showError]="showError"
-      [errorMessage]="errorMessage()"
-      [helperMessage]="helperMessage()"
-      [disabled]="disabled()"
-      [labelPosition]="labelPosition()"
-      (onChange)="handleChange($event)"
-    />
-  `,
   standalone: true,
-  imports: [BmbInputComponent],
+  imports: [CommonModule, ReactiveFormsModule, BmbInputValidationComponent],
+  templateUrl: './bmb-radial.component.html',
+  styleUrl: './bmb-radial.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
@@ -40,26 +28,65 @@ export class BmbRadialComponent {
   checked = input<boolean>(false);
   disabled = input<boolean>(false);
   value = input<string>('');
-  name = input<string>('');
+  name = input<string>(getUUID());
   label = input<string>('');
   labelPosition = input<IBbmSidePosition>('after');
   ariaDescribedby = input<string>('');
   ariaLabel = input<string>('');
   ariaLabelledby = input<string>('');
   required = input<boolean>(false);
-  errorMessage = input<string>('');
+  errorMessage = input<string | IBmbInputError>('');
   helperMessage = input<string>('');
-  @Input() showError: boolean = false;
-  @Input() control: FormControl = new FormControl();
+
+  showError = model<boolean>(false);
+  control = model<FormControl>();
 
   change = output<HTMLInputElement>();
-  myName = output<string>();
+  onKeyDown = output<KeyboardEvent>();
 
-  handleMyName(event: string) {
-    this.myName.emit(event);
+  constructor(private ivs: BmbInputValidationService) {}
+
+  getPositionClass(className: string): string {
+    return getPositionClass(className, this.labelPosition());
   }
 
-  handleChange(event: any) {
-    this.change.emit(event);
+  getFormControl(): FormControl {
+    return this.ivs.getFormControlByName(this.name());
+  }
+
+  get shouldShowError(): boolean {
+    return this.ivs.showError(this.name()) || this.showError();
+  }
+
+  handleRadioChange(event: Event) {
+    const target = event.target as HTMLInputElement;
+
+    if (target && target.checked) {
+      this.ivs.getFormControlByName(this.name()).setValue(target.value);
+      target.name = this.name();
+      this.change.emit(target);
+    }
+    event.stopPropagation();
+  }
+
+  handleRadioKeyDown(event: KeyboardEvent) {
+    const target = event.target as HTMLInputElement;
+
+    if (event.key === 'Enter' || event.key === ' ') {
+      if (!target.checked) {
+        this.ivs.getFormControlByName(this.name()).setValue(target.value);
+        target.name = this.name();
+        this.change.emit(target);
+      }
+      event.preventDefault();
+    }
+    event.stopPropagation();
+  }
+
+  handleKeyPress(event: KeyboardEvent) {
+    const target = event.target as HTMLInputElement | null;
+    if (target) {
+      this.onKeyDown.emit(event);
+    }
   }
 }

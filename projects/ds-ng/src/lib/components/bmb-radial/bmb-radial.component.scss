@@ -1,0 +1,79 @@
+@use "../../../assets/styles/base/mixins" as mixins;
+@use "../../../assets/styles/base/rem" as rem;
+
+.bmb_radio {
+  &-input {
+    opacity: 0;
+    height: 0;
+    width: 0;
+    position: absolute;
+
+    &:checked + .bmb_radio-mark,
+    &[ng-reflect-checked="true"] + .bmb_radio-mark {
+      border: rem.rem_calc(2) solid var(--switch-checked);
+
+      &::after {
+        position: absolute;
+        @include mixins.mark_position(12, 12, 0);
+        border-radius: 100%;
+        background-color: var(--switch-checked);
+      }
+    }
+
+    &:hover + .bmb_radio-mark {
+      &:not(.bmb_radio-mark-error) {
+        border-color: var(--switch-checked);
+      }
+
+      &::before {
+        @include mixins.shadow_mark(48, 48, -14);
+      }
+    }
+
+    &:focus + .bmb_radio-mark,
+    &:focus-visible + .bmb_radio-mark {
+      &:not(.bmb_radio-mark-error) {
+        border-color: var(--switch-checked);
+      }
+
+      &::before {
+        @include mixins.shadow_mark(48, 48, -14);
+      }
+    }
+  }
+
+  &-before {
+    padding-left: rem.rem_calc(8);
+  }
+
+  &-after {
+    padding-right: rem.rem_calc(8);
+  }
+
+  &-mark {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    height: rem.rem_calc(24);
+    width: rem.rem_calc(24);
+    background-color: transparent;
+    border: rem.rem_calc(2) solid var(--general_contrasts-100);
+    border-radius: 100%;
+
+    &-error {
+      @include mixins.error_input();
+    }
+
+    &::after {
+      content: "";
+      display: none;
+      position: absolute;
+    }
+  }
+}
+
+.bmb_input-validation-error .bmb_radio-mark {
+  @include mixins.error_input();
+}

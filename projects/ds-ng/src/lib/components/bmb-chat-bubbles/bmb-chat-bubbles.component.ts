@@ -6,12 +6,11 @@ import {
   output,
   ViewEncapsulation,
 } from '@angular/core';
-import { IBmbChatMessage, IBmbBubblePosition, IBmbChatGptIcons } from './types';
+import { IBmbChatMessage, IBmbChatGptIcons } from './types';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbTextLinkComponent } from '../bmb-text-link/bmb-text-link.component';
-import { BmbDotPaginatorComponent } from '../bmb-dot-paginator/bmb-dot-paginator.component';
 
 @Component({
   selector: 'bmb-chat-bubble',
@@ -21,7 +20,6 @@ import { BmbDotPaginatorComponent } from '../bmb-dot-paginator/bmb-dot-paginator
     CommonModule,
     BmbIconComponent,
     BmbTextLinkComponent,
-    BmbDotPaginatorComponent,
   ],
   templateUrl: './bmb-chat-bubbles.component.html',
   styleUrl: './bmb-chat-bubbles.component.scss',

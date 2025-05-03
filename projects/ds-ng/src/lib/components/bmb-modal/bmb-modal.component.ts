@@ -12,7 +12,7 @@ import {
   MatDialog,
 } from '@angular/material/dialog';
 import { ModalDataConfig } from './bmb-modal.interface';
-import { BmbButtonDirective } from '../../directives/button.directive';
+import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { BmbThreeColsComponent } from '../bmb-three-cols/bmb-three-cols.component';
 import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
@@ -161,7 +161,9 @@ export class BmbModalComponent {
   }
 
   showFooter(): boolean {
-    return this.getData().type !== 'informative';
+    const hiddenButtons =
+      this.getData().hidePrimaryButton || this.getData().hideSecondaryButton;
+    return this.getData().type !== 'informative' && !hiddenButtons;
   }
 
   showPrimaryButton(): boolean {

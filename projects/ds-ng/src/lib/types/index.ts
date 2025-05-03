@@ -92,8 +92,8 @@ export interface IBmbStudentProfileData {
 
 export interface IBmbHierarchyProfileData {
   userData: IBmbUserData;
-  hierarchyLink: string;
-  hierarchyTarget: IBmbTargetLink;
+  hierarchyLink?: string;
+  hierarchyTarget?: IBmbTargetLink;
 }
 
 export interface IBmbCollaboratorProfileData {

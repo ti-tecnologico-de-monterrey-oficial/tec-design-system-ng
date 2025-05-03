@@ -17,6 +17,7 @@
   }
   <div class="bmb_input-tags-wrapper">
     <bmb-input
+      name="selector"
       [control]="filterControl"
       [disabled]="disabled()"
       (isFocus)="handleFocus()"
@@ -27,15 +28,18 @@
       [name]="name()"
       [disabled]="disabled()"
       [isRequired]="isRequired()"
+      (onKeyDown)="handleKeyDown($event)"
     />
-    <dialog class="bmb_input-tags-dialog" [open]="showDropdown">
+    <dialog class="bmb_input-tags-dialog" [open]="showDropdown" tabindex="-1">
       <ul class="bmb_input-tags-dialog-list">
         @for (item of filteredOptions; track $index) {
           @if (checkIfIsSelected(item)) {
             <li class="bmb_input-tags-dialog-list-item">
               <button
                 class="bmb_input-tags-dialog-list-item-button"
+                type="button"
                 (click)="handleItemClick(item)"
+                (keydown)="handleItemKeyDown($event, item)"
               >
                 {{ item.name }}
               </button>
@@ -55,12 +59,12 @@
     }
   </div>
   @if (helperMessage() && !shouldShowError) {
-    <p class="bmb_field-helper">
+    <p class="bmb_input-validation-helper">
       {{ helperMessage() }}
     </p>
   }
   @if (errorMessage() && shouldShowError) {
-    <p class="bmb_field-error">
+    <p class="bmb_input-validation-error">
       {{ getErrorMessage() }}
     </p>
   }

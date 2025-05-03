@@ -1,13 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BmbCheckboxComponent } from './bmb-checkbox.component';
+import { ComponentRef } from '@angular/core';
 
 describe('BmbCheckboxComponent', () => {
   let component: BmbCheckboxComponent;
   let fixture: ComponentFixture<BmbCheckboxComponent>;
+  let componentRef: ComponentRef<BmbCheckboxComponent>;
 
   beforeEach(() => {
     fixture = TestBed.createComponent(BmbCheckboxComponent);
     component = fixture.componentInstance;
+    componentRef = fixture.componentRef;
+    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -26,7 +30,7 @@ describe('BmbCheckboxComponent', () => {
 
     component.handleChange(event);
 
-    expect(component.checked).toBe(true);
+    expect(component.checked()).toBe(true);
     expect(component.change.emit).toHaveBeenCalledWith(event);
     expect(event.stopPropagation).toHaveBeenCalled();
   });
@@ -43,7 +47,7 @@ describe('BmbCheckboxComponent', () => {
 
     component.handleChange(event);
 
-    expect(component.checked).toBe(false);
+    expect(component.checked()).toBe(false);
     expect(component.change.emit).toHaveBeenCalledWith(event);
     expect(event.stopPropagation).toHaveBeenCalled();
   });

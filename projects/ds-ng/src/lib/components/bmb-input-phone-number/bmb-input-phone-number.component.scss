@@ -3,6 +3,7 @@
 @use "../../../assets/styles/base/rem" as rem;
 
 .bmb_input-number {
+  display: block;
   position: relative;
 
   &-container {
@@ -26,6 +27,10 @@
       border-bottom-left-radius: 0;
       border-left: 0 none;
       width: 100%;
+    }
+
+    .bmb_input-validation {
+      padding: 0;
     }
   }
 

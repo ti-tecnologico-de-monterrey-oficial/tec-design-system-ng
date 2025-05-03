@@ -41,7 +41,19 @@ Below is an example of how you can use this component in HTML:
       },
     },
   },
-  argTypes: {},
+  argTypes: {
+    accordionStates: {
+      description:
+        'Accordion states to control the open/close state of the accordions. The name of the property must be the same as the accordionId of the accordion component.',
+      control: {
+        type: 'object',
+      },
+      table: {
+        type: { summary: '{ [id: string]: boolean }' },
+        defaultValue: { '1': true, '2': false, '3': false },
+      },
+    },
+  },
   args: {},
 };
 
@@ -49,7 +61,7 @@ export default meta;
 
 type Story = StoryObj<BmbAccordionControlDirective>;
 
-export const OneItem: Story = {
+export const Default: Story = {
   args: {},
   render: (args) => ({
     props: args,
@@ -63,25 +75,13 @@ export const OneItem: Story = {
             [paddingHeader]="'m'"
             [paddingContent]="'m'"
             [hideToggle]="true"
-            [disabled]="false"
         >
             <ng-template #bmbAccordionHeader>1</ng-template>
             <ng-template #bmbAccordionContent>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo ante,
                 mattis nec libero a, malesuada pellentesque sem. Aliquam erat volutpat.
-                Nulla ut consequat turpis, id efficitur velit. Fusce vitae dolor leo.
-                Praesent diam justo, consectetur in blandit ut, tincidunt vitae enim.
-                Nulla eleifend, leo at finibus volutpat, nulla metus eleifend lacus,
-                ullamcorper dictum augue diam id erat. Donec ac fringilla elit. Aliquam
-                sit amet luctus elit. Suspendisse ante tortor, euismod nec metus id,
-                commodo sollicitudin massa. Aliquam magna nibh, semper eu vestibulum
-                aliquam, aliquet gravida massa. Nullam vehicula, augue non aliquam
-                posuere, enim urna blandit erat, et euismod enim nisi vel eros. Ut dictum
-                egestas mi, faucibus iaculis lorem. Donec risus diam, maximus at varius
-                rutrum, blandit quis augue. Sed consectetur massa ut auctor ultricies.
-                Etiam fringilla venenatis nulla, gravida finibus nulla faucibus fringilla.
-                Morbi luctus porta orci eu iaculis.
+                Nulla ut consequat turpis, id efficitur velit.
             </p>
             </ng-template>
         </bmb-accordion>
@@ -94,25 +94,13 @@ export const OneItem: Story = {
             [paddingHeader]="'m'"
             [paddingContent]="'m'"
             [hideToggle]="true"
-            [disabled]="false"
         >
             <ng-template #bmbAccordionHeader>2</ng-template>
             <ng-template #bmbAccordionContent>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo ante,
                 mattis nec libero a, malesuada pellentesque sem. Aliquam erat volutpat.
-                Nulla ut consequat turpis, id efficitur velit. Fusce vitae dolor leo.
-                Praesent diam justo, consectetur in blandit ut, tincidunt vitae enim.
-                Nulla eleifend, leo at finibus volutpat, nulla metus eleifend lacus,
-                ullamcorper dictum augue diam id erat. Donec ac fringilla elit. Aliquam
-                sit amet luctus elit. Suspendisse ante tortor, euismod nec metus id,
-                commodo sollicitudin massa. Aliquam magna nibh, semper eu vestibulum
-                aliquam, aliquet gravida massa. Nullam vehicula, augue non aliquam
-                posuere, enim urna blandit erat, et euismod enim nisi vel eros. Ut dictum
-                egestas mi, faucibus iaculis lorem. Donec risus diam, maximus at varius
-                rutrum, blandit quis augue. Sed consectetur massa ut auctor ultricies.
-                Etiam fringilla venenatis nulla, gravida finibus nulla faucibus fringilla.
-                Morbi luctus porta orci eu iaculis.
+                Nulla ut consequat turpis, id efficitur velit.
             </p>
             </ng-template>
         </bmb-accordion>
@@ -125,7 +113,79 @@ export const OneItem: Story = {
             [paddingHeader]="'m'"
             [paddingContent]="'m'"
             [hideToggle]="true"
-            [disabled]="false"
+        >
+            <ng-template #bmbAccordionHeader>3</ng-template>
+            <ng-template #bmbAccordionContent>
+            <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo ante,
+            mattis nec libero a, malesuada pellentesque sem. Aliquam erat volutpat.
+            Nulla ut consequat turpis, id efficitur velit.
+            </p>
+            </ng-template>
+        </bmb-accordion>
+      </section>
+    `,
+  }),
+};
+
+export const accordionStates: Story = {
+  args: {},
+  render: (args) => ({
+    props: args,
+    template: `
+      <section bmbAccordionControl [accordionStates]="{ '1': true, '2': false, '3': false }">
+        <bmb-accordion
+            [accordionId]="1"
+            [icon]="icon"
+            [borderRadius]="'m'"
+            [margin]="'m'"
+            [paddingHeader]="'m'"
+            [paddingContent]="'m'"
+            [hideToggle]="true"
+        >
+            <ng-template #bmbAccordionHeader>1</ng-template>
+            <ng-template #bmbAccordionContent>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo ante,
+                mattis nec libero a, malesuada pellentesque sem. Aliquam erat volutpat.
+                Nulla ut consequat turpis, id efficitur velit. Fusce vitae dolor leo.
+                Praesent diam justo, consectetur in blandit ut, tincidunt vitae enim.
+                Nulla eleifend, leo at finibus volutpat, nulla metus eleifend lacus,
+                ullamcorper dictum augue diam id erat. Donec ac fringilla elit.
+            </p>
+            </ng-template>
+        </bmb-accordion>
+
+        <bmb-accordion
+            [accordionId]="2"
+            [icon]="icon"
+            [borderRadius]="'m'"
+            [margin]="'m'"
+            [paddingHeader]="'m'"
+            [paddingContent]="'m'"
+            [hideToggle]="true"
+        >
+            <ng-template #bmbAccordionHeader>2</ng-template>
+            <ng-template #bmbAccordionContent>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo ante,
+                mattis nec libero a, malesuada pellentesque sem. Aliquam erat volutpat.
+                Nulla ut consequat turpis, id efficitur velit. Fusce vitae dolor leo.
+                Praesent diam justo, consectetur in blandit ut, tincidunt vitae enim.
+                Nulla eleifend, leo at finibus volutpat, nulla metus eleifend lacus,
+                ullamcorper dictum augue diam id erat. Donec ac fringilla elit.
+            </p>
+            </ng-template>
+        </bmb-accordion>
+
+        <bmb-accordion
+            [accordionId]="3"
+            [icon]="icon"
+            [borderRadius]="'m'"
+            [margin]="'m'"
+            [paddingHeader]="'m'"
+            [paddingContent]="'m'"
+            [hideToggle]="true"
         >
             <ng-template #bmbAccordionHeader>3</ng-template>
             <ng-template #bmbAccordionContent>
@@ -135,15 +195,7 @@ export const OneItem: Story = {
             Nulla ut consequat turpis, id efficitur velit. Fusce vitae dolor leo.
             Praesent diam justo, consectetur in blandit ut, tincidunt vitae enim.
             Nulla eleifend, leo at finibus volutpat, nulla metus eleifend lacus,
-            ullamcorper dictum augue diam id erat. Donec ac fringilla elit. Aliquam
-            sit amet luctus elit. Suspendisse ante tortor, euismod nec metus id,
-            commodo sollicitudin massa. Aliquam magna nibh, semper eu vestibulum
-            aliquam, aliquet gravida massa. Nullam vehicula, augue non aliquam
-            posuere, enim urna blandit erat, et euismod enim nisi vel eros. Ut dictum
-            egestas mi, faucibus iaculis lorem. Donec risus diam, maximus at varius
-            rutrum, blandit quis augue. Sed consectetur massa ut auctor ultricies.
-            Etiam fringilla venenatis nulla, gravida finibus nulla faucibus fringilla.
-            Morbi luctus porta orci eu iaculis.
+            ullamcorper dictum augue diam id erat. Donec ac fringilla elit.
             </p>
             </ng-template>
         </bmb-accordion>

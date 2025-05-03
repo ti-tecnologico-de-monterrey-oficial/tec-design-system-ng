@@ -7,9 +7,15 @@ import {
   TemplateRef,
   CUSTOM_ELEMENTS_SCHEMA,
   signal,
+  ElementRef,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormControl,
+  Validators,
+  ReactiveFormsModule,
+  FormGroup,
+} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import {
   BmbThemeComponent,
@@ -109,6 +115,8 @@ import {
   BmbMultiDotPaginatorComponent,
   BmbMultiDotPaginatorItemComponent,
   SidebarElement,
+  BmbFormValidationComponent,
+  BmbActionIconComponent,
 } from '../../projects/ds-ng/src/public-api';
 import { BmbPullWedgeComponent } from '../../projects/ds-ng/src/lib/components/bmb-pull-wedge/bmb-pull-wedge.component';
 import { BmbCardButtonComponent } from '../../projects/ds-ng/src/lib/components/bmb-card-button/bmb-card-button.component';
@@ -150,6 +158,7 @@ import { BmbTitleContentComponent } from '../../projects/ds-ng/src/lib/component
     ReactiveFormsModule,
     CommonModule,
     RouterModule,
+    BmbActionIconComponent,
     BmbPullWedgeComponent,
     BmbThemeComponent,
     BmbBadgeComponent,
@@ -246,6 +255,7 @@ import { BmbTitleContentComponent } from '../../projects/ds-ng/src/lib/component
     BmbProgressBarComponent,
     BmbMultiDotPaginatorComponent,
     BmbMultiDotPaginatorItemComponent,
+    BmbFormValidationComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -256,6 +266,7 @@ import { BmbTitleContentComponent } from '../../projects/ds-ng/src/lib/component
 })
 export class AppComponent {
   constructor(
+    private el: ElementRef,
     private cdr: ChangeDetectorRef,
     private matDialog: MatDialog,
     private notificationSignal: BmbNotificationService,
@@ -359,12 +370,6 @@ export class AppComponent {
     const element = event.target as HTMLInputElement;
     console.log('Checkbox checked state:', element.checked);
     console.log('Checkbox value:', element.value);
-  }
-
-  handleRadial(element: HTMLInputElement): void {
-    console.log('Radio value:', element.value);
-    console.log('Radio name:', element.name);
-    console.log('Is it checked?', element.checked);
   }
 
   plus() {
@@ -5471,5 +5476,95 @@ export class AppComponent {
 
   changeSelectValue() {
     this.selectControl.setValue('Grape');
+  }
+
+  handleRadial(element: Event): void {
+    console.log('App - Radio value:', element);
+    // console.log('Radio value:', element.value);
+    // console.log('Radio name:', element.name);
+    // console.log('Is it checked?', element.checked);
+  }
+
+  formGroup: FormGroup = new FormGroup({
+    // name: new FormControl<string>(''),
+    // named: new FormControl<string>(''),
+    // otherName: new FormControl<string>('', Validators.required),
+    // comments: new FormControl<string>(''),
+    contract2: new FormControl('', Validators.required),
+    // amount: new FormControl(),
+    // phone: new FormControl(),
+    // phone2: new FormControl(),
+    // phone3: new FormControl(),
+    checkbox1: new FormControl(),
+    // checkbox2: new FormControl(),
+    // switch1: new FormControl(),
+    // switch2: new FormControl(),
+    phone: new FormControl(
+      { value: '+525555555555', disabled: false },
+      Validators.required,
+    ),
+  });
+  showErrors: { [key: string]: boolean } = {};
+
+  // onSubmit(): void {
+  //   this.formGroup.markAllAsTouched();
+  //   this.formGroup.updateValueAndValidity();
+  //   console.log('FORM STATE', this.formGroup);
+  //   if (this.formGroup.valid) {
+  //     console.log('FORM VALID');
+  //     return;
+  //   }
+  //   console.log('FORM STATUS', this.formGroup.status);
+  //   this.updateErrorState();
+  // }
+
+  // updateErrorState() {
+  //   Object.keys(this.formGroup.controls).forEach((field) => {
+  //     const control = this.getFormControl(field);
+
+  //     if (control instanceof FormControl) {
+  //       control.markAsTouched();
+  //       control.updateValueAndValidity();
+  //     }
+  //   });
+  // }
+
+  onSubmit() {
+    console.log('App - onSubmit', this.formGroup);
+
+    if (this.formGroup.valid) {
+      return;
+    }
+    this.formGroup.markAllAsTouched();
+    this.updateErrorState();
+  }
+
+  updateErrorState() {
+    Object.keys(this.formGroup.controls).forEach((field) => {
+      const control = this.formGroup.get(field);
+
+      if (control instanceof FormControl) {
+        this.showErrors[field] =
+          control.invalid && (control.touched || control.dirty);
+      }
+    });
+  }
+
+  getFormControl(name: string): FormControl {
+    return this.formGroup.get(name) as FormControl;
+  }
+
+  handleFormGroupState(state: FormGroup): void {
+    console.log('App - onSubmit', state?.valid, state);
+  }
+
+  handleFormGroupValue(value: unknown): void {
+    console.log('App - onSubmit', value);
+  }
+
+  error: boolean = false;
+
+  handleError(): void {
+    this.error = !this.error;
   }
 }

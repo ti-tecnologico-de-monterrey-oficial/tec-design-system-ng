@@ -2,7 +2,7 @@ import { Component, Input, ViewChild } from '@angular/core';
 import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
 import { BmbOverlayComponent } from './bmb-overlay.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbButtonDirective } from '../../directives/button.directive';
+import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 
 @Component({
   standalone: true,

@@ -1,3 +1,7 @@
-<section class="bmb_card-content" [ngClass]="getClasses()">
+<section
+  class="bmb_card-content"
+  [ngClass]="getClasses()"
+  [ngStyle]="getStyles()"
+>
   <ng-content></ng-content>
 </section>

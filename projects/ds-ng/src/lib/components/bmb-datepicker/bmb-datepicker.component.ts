@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   input,
+  model,
   OnInit,
   output,
   ViewEncapsulation,
@@ -21,6 +22,7 @@ import {
 } from '../bmb-input/bmb-input.component';
 import { BmbDatepickerModalComponent } from './bmb-datepicker-modal/bmb-datepicker-modal.component';
 import { ClickOutsideDirective } from '../../directives/utils/clickoutside.directive';
+import { getUUID } from '../../utils/utils';
 
 @Component({
   selector: 'bmb-datepicker',
@@ -47,14 +49,15 @@ export class BmbDatepickerComponent implements OnInit {
   disabled = input<boolean>(false);
   isRequired = input<boolean>(false);
   isClearable = input<boolean>(false);
-  control = input<FormControl>(new FormControl());
   dateFormat = input<string>('dd/MM/yyyy');
   // inline = input<boolean>(false);
   stepYearPicker = input<number>(18);
-  name = input<string>('');
+  name = input<string>(getUUID());
   disableDatesBefore = input<string>('');
   disableDatesAfter = input<string>('');
   lang = input<string>('es-MX');
+
+  control = model<FormControl>(new FormControl());
 
   onChange = output<string>();
 
@@ -64,6 +67,7 @@ export class BmbDatepickerComponent implements OnInit {
 
   ngOnInit() {
     this.control().addValidators(this.customValidatorDate());
+    this.control().markAsTouched();
     this.control().updateValueAndValidity();
   }
 

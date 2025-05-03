@@ -95,6 +95,8 @@
     display: flex;
     flex-direction: row;
     gap: rem.rem_calc(16);
+    flex: 1;
+    max-width: 100%;
 
     &-image {
       border-radius: rem.rem_calc(12);
@@ -107,6 +109,8 @@
       display: flex;
       flex-direction: column;
       gap: rem.rem_calc(8);
+      flex: 1;
+      overflow: hidden;
 
       &-title {
         @include fonts.font(5, medium);
@@ -165,15 +169,8 @@
   &-custom-content {
     @include fonts.font(3, regular);
     color: var(--general_contrasts-50);
-    display: -webkit-box;
-    max-block-size: rem.rem_calc(64);
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
-    overflow: hidden;
     padding: rem.rem_calc(8 0);
-    text-overflow: ellipsis;
-    white-space: normal;
+    @include mixins.truncated_string(64, 3);
 
     .bmb_text-link .bmb_check-external-link-button-element {
       line-height: 1;
@@ -192,9 +189,8 @@
       @include fonts.font(4, medium);
       margin-top: rem.rem_calc(10);
       max-width: 100%;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      padding: rem.rem_calc(0 16);
+      @include mixins.truncated_string(40, 2);
     }
 
     &:hover:not(:disabled) {
@@ -279,6 +275,7 @@
       color: var(--general_contrasts-75);
       @include fonts.font(4, bold);
       text-align: center;
+      @include mixins.truncated_string(40, 2);
     }
 
     &-text {

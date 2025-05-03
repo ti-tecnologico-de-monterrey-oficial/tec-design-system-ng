@@ -44,6 +44,7 @@
       [isUserImage]="true"
       [link]="collaboratorData()?.leader?.hierarchyLink!"
       [target]="collaboratorData()?.leader?.hierarchyTarget!"
+      (onButton)="handleButtonClick(collaboratorData()?.leader?.userData)"
     />
     <h2 class="bmb_profile-title">Mi Generalista</h2>
     <bmb-container-button
@@ -53,6 +54,7 @@
       [isUserImage]="true"
       [link]="collaboratorData()?.generalist?.hierarchyLink!"
       [target]="collaboratorData()?.generalist?.hierarchyTarget!"
+      (onButton)="handleButtonClick(collaboratorData()?.generalist?.userData)"
     />
   </section>
 </ng-template>

@@ -18,7 +18,7 @@ import {
 import { BmbProgressBarComponent } from '../bmb-progress-bar/bmb-progress-bar.component';
 import { DateTime } from 'luxon';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
-import { BmbButtonDirective } from '../../directives/button.directive';
+import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { MatDialog } from '@angular/material/dialog';
 import { BmbModalComponent } from '../bmb-modal/bmb-modal.component';
 import { ModalDataConfig } from '../bmb-modal/bmb-modal.interface';
@@ -45,7 +45,6 @@ import {
     BmbProgressBarComponent,
     BmbDividerComponent,
     BmbButtonDirective,
-    BmbModalComponent,
     BmbRadialComponent,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
@@ -125,6 +124,7 @@ export class BmbAccountStatementComponent implements AfterViewInit, OnInit {
       content: this.newModal,
       size: 'large',
       hidePrimaryButton: true,
+      hideSecondaryButton: true,
     };
 
     this.matDialog.open(BmbModalComponent, { data });

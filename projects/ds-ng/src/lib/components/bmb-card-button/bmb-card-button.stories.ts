@@ -473,6 +473,36 @@ export const ImageExample = {
   },
 };
 
+export const ImageTemplateExample = {
+  name: 'Image with template example',
+  argTypes: {
+    onTitleClick: {
+      control: false,
+    },
+  },
+  args: {
+    ...ImageExample.args,
+    isTemplate: 'true',
+    onTitleClick: () => {
+      console.log('onTitleClick');
+    },
+  },
+  render: (args: any) => ({
+    template: `
+    <bmb-card-button ${attributes(args)}>
+    <!-- In the template you can use bmb-icon or bmb-action-icon -->
+      <bmb-icon icon="settings" [size]="24" />
+      <bmb-action-icon
+        icon="thumb_up"
+        [iconSize]="24"
+        [dotNotification]="5"
+        (buttonClick)="buttonClick($event)"
+      />
+    </bmb-card-button>
+    `,
+  }),
+};
+
 export const BadgeImageExample = {
   name: 'Example of variant with badge, image, and text link.',
   args: {

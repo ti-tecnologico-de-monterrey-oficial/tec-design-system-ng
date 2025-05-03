@@ -1,7 +1,7 @@
-import { Meta, StoryFn } from '@storybook/angular';
+import { Meta, StoryFn, StoryObj } from '@storybook/angular';
 import { BmbButtonDirective } from './button.directive';
-import { BmbIconComponent } from '../components/bmb-icon/bmb-icon.component';
-import { attributes, attributesText } from '../utils/utils';
+import { BmbIconComponent } from '../../components/bmb-icon/bmb-icon.component';
+import { attributes, attributesText } from '../../utils/utils';
 
 export default {
   title: 'Micro Componentes/Button',
@@ -62,8 +62,11 @@ Below is an example of how you can use this component in HTML:
     icon: {
       name: 'Icon',
       control: { type: 'text' },
-      description:
-        'Sets the name of the icon to use. Please use Material icons: https://fonts.google.com/icons. Do not use the image property if you want to use an icon.',
+      description: `
+Sets the name of the icon to use. Please use [Material icons](https://fonts.google.com/icons).
+
+**Important** if you are using images make sure the aspect ratio is 1/1.
+      `,
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -162,31 +165,172 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'boolean' },
       },
     },
+    iconAlt: {
+      name: 'Icon altetnative text',
+      control: { type: 'text' },
+      description:
+        'Sets the alternative text for the icon. This is important for accessibility.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'icon' },
+      },
+    },
   },
   args: {
-    appearance: 'primary',
-    icon: 'home',
-    iconSize: 0,
-    size: 'small',
-    position: 'left',
-    case: false,
+    // appearance: 'primary',
+    // icon: 'home',
+    // iconSize: 16,
+    // size: 'small',
+    // position: 'left',
+    // case: false,
     test_text: 'Button text',
-    isToggleActive: false,
-    enableButtonToggle: false,
-    isRounded: false,
-    isMobile: false,
+    // isToggleActive: false,
+    // enableButtonToggle: false,
+    // isRounded: false,
+    // isMobile: false,
+    // iconAlt: 'icon',
   },
 } as Meta<typeof BmbButtonDirective>;
 
-const customizable = (): StoryFn => (args) => ({
-  props: args,
-  template: `
-    <button
-      bmbButton
-      ${attributes(args)}
-    >
-      ${attributesText(args)}
-    </button>`,
-});
+type Story = StoryObj<typeof BmbButtonDirective>;
 
-export const Default = customizable();
+export const Default: Story = {
+  name: 'Default',
+  render: (args) => ({
+    props: args,
+    template: `
+      <button
+        bmbButton
+        ${attributes(args)}
+      >
+        ${attributesText(args)}
+      </button>`,
+  }),
+};
+
+export const Icon = {
+  name: 'Icon',
+  args: {
+    icon: 'home',
+  },
+  render: (args: any) => ({
+    props: args,
+    template: `
+      <button
+        bmbButton
+        ${attributes(args)}
+      >
+        ${attributesText(args)}
+      </button>`,
+  }),
+};
+
+export const IconSize = {
+  name: 'Icon size',
+  args: {
+    icon: 'home',
+    iconSize: 32,
+  },
+  render: (args: any) => ({
+    props: args,
+    template: `
+      <button
+        bmbButton
+        ${attributes(args)}
+      >
+        ${attributesText(args)}
+      </button>`,
+  }),
+};
+
+export const IconPosition = {
+  name: 'Icon position',
+  args: {
+    icon: 'home',
+    position: 'right',
+  },
+  render: (args: any) => ({
+    props: args,
+    template: `
+      <button
+        bmbButton
+        ${attributes(args)}
+      >
+        ${attributesText(args)}
+      </button>`,
+  }),
+};
+
+export const ImageIcon = {
+  name: 'Image icon',
+  args: {
+    icon: 'https://png.pngtree.com/png-clipart/20230418/original/pngtree-deep-learning-line-icon-png-image_9064959.png',
+    iconSize: 32,
+    iconAlt: 'Google logo',
+  },
+  render: (args: any) => ({
+    props: args,
+    template: `
+      <button
+        bmbButton
+        ${attributes(args)}
+      >
+        ${attributesText(args)}
+      </button>`,
+  }),
+};
+
+export const Appearance = {
+  name: 'Appearance',
+  args: {
+    icon: 'home',
+    appearance: 'secondary-filled',
+  },
+  render: (args: any) => ({
+    props: args,
+    template: `
+      <button
+        bmbButton
+        ${attributes(args)}
+      >
+        ${attributesText(args)}
+      </button>`,
+  }),
+};
+
+export const Size = {
+  name: 'Size',
+  args: {
+    icon: 'home',
+    size: 'large',
+  },
+  render: (args: any) => ({
+    props: args,
+    template: `
+      <button
+        bmbButton
+        ${attributes(args)}
+      >
+        ${attributesText(args)}
+      </button>`,
+  }),
+};
+
+export const Case = {
+  name: 'Case',
+  args: {
+    icon: 'home',
+    case: true,
+  },
+  render: (args: any) => ({
+    props: args,
+    template: `
+      <button
+        bmbButton
+        ${attributes(args)}
+      >
+        ${attributesText(args)}
+      </button>`,
+  }),
+};

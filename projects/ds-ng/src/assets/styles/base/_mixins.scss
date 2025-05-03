@@ -47,13 +47,13 @@
     &:hover:not(:disabled),
     &:focus-visible:not(:disabled) {
       background-color: var(--buttons-primary-hover);
-      box-shadow: 0 0 rem.rem_calc(2) var(--azul-mariner-500);
+      // box-shadow: 0 0 rem.rem_calc(2) var(--azul-mariner-500);
     }
 
     &:active:not(:disabled),
     &.bmb_btn-toggle-active {
       background-color: var(--buttons-primary-select);
-      box-shadow: 0 0 rem.rem_calc(20) var(--azul-mariner-500);
+      // box-shadow: 0 0 rem.rem_calc(20) var(--azul-mariner-500);
     }
 
     bmb-icon {
@@ -98,10 +98,10 @@
     &:focus-visible:not(:disabled) {
       border-width: rem.rem_calc(2);
       padding: rem.rem_calc(10 14);
-      box-shadow:
-        0px 0px rem.rem_calc(5) var(--gris-charade-500),
-        inset 0px 0px rem.rem_calc(5) var(--gris-charade-500);
-      text-shadow: 0px 0px rem.rem_calc(5) var(--gris-charade-500);
+      // box-shadow:
+      //   0px 0px rem.rem_calc(5) var(--gris-charade-500),
+      //   inset 0px 0px rem.rem_calc(5) var(--gris-charade-500);
+      // text-shadow: 0px 0px rem.rem_calc(5) var(--gris-charade-500);
 
       @include media-query(1000, "min") {
         padding: rem.rem_calc(6 38);
@@ -151,7 +151,7 @@
 
     &:active:not(:disabled),
     &.bmb_btn-toggle-active {
-      box-shadow: 0 0 rem.rem_calc(20) var(--red-primary);
+      // box-shadow: 0 0 rem.rem_calc(20) var(--red-primary);
       background-color: var(--red-primary);
       color: var(--white-primary);
       padding: rem.rem_calc(10 14);
@@ -250,4 +250,47 @@
       color: var(--general_contrasts-main-selection);
     }
   }
+}
+
+@mixin shadow_mark($height, $width, $left) {
+  content: "";
+  height: rem.rem_calc($height);
+  width: rem.rem_calc($width);
+  border-radius: 50%;
+  opacity: 0.1;
+  background-color: var(--radio-checked-shadow);
+  position: absolute;
+  z-index: -1;
+  display: block;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: rem.rem_calc($left);
+}
+
+@mixin mark_position($height, $width, $top) {
+  height: rem.rem_calc($height);
+  width: rem.rem_calc($width);
+  display: block;
+  margin: auto;
+  top: rem.rem_calc($top);
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+@mixin error_input() {
+  border-color: var(--input-error);
+}
+
+@mixin truncated_string($max-block-size, $line-clamp) {
+  display: -webkit-box;
+  max-block-size: rem.rem_calc($max-block-size);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $line-clamp;
+  line-clamp: $line-clamp;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

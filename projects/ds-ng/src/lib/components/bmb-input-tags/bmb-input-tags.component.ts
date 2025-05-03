@@ -7,6 +7,7 @@ import {
   input,
   ViewEncapsulation,
   OnInit,
+  output,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { BmbTooltipComponent } from '../bmb-tooltip/bmb-tooltip.component';
@@ -17,6 +18,7 @@ import {
 } from '../bmb-input/bmb-input.component';
 import { ClickOutsideDirective } from '../../directives/utils/clickoutside.directive';
 import { debounceTime } from 'rxjs';
+import { getUUID } from '../../utils/utils';
 
 @Component({
   selector: 'bmb-input-tags',
@@ -45,9 +47,11 @@ export class BmbInputTagsComponent implements OnInit {
   helperMessage = input<string>('');
   disabled = input<boolean>(false);
   maxSelectedItems = input<number>();
-  name = input<string>('');
-
+  name = input<string>(getUUID());
   showError = input<boolean>(false);
+
+  onKeyDown = output<KeyboardEvent>();
+  onChange = output<string[]>();
 
   showDropdown: boolean = false;
   shouldShowError: boolean = false;
@@ -144,6 +148,18 @@ export class BmbInputTagsComponent implements OnInit {
     this.selectedTags.push(item);
     const selectedTagsString = this.selectedTags.map((tag) => tag.value);
     this.control().setValue(selectedTagsString);
+    this.onChange.emit(selectedTagsString);
+    this.filterControl.setValue('');
+  }
+
+  handleItemKeyDown(event: KeyboardEvent, item: IBmbDropdownItem) {
+    console.log('handleItemKeyDown', event, item);
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      this.handleItemClick(item);
+      this.filterControl.setValue('');
+      this.showDropdown = false;
+    }
   }
 
   removeTag(tag: IBmbDropdownItem) {
@@ -154,5 +170,23 @@ export class BmbInputTagsComponent implements OnInit {
 
   checkIfIsSelected(item: IBmbDropdownItem): boolean {
     return !this.selectedTags.some((tag) => tag.value === item.value);
+  }
+
+  handleKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      const value = this.filterControl.value;
+      if (value && this.checkIfIsSelected({ name: value, value })) {
+        const newTag = { name: value, value };
+        this.handleItemClick(newTag);
+        this.filterControl.setValue('');
+        this.showDropdown = false;
+      }
+    }
+    // if (event.key === 'Backspace') {
+    //   if (this.selectedTags.length > 0) {
+    //     this.removeTag(this.selectedTags[this.selectedTags.length - 1]);
+    //   }
+    // }
   }
 }

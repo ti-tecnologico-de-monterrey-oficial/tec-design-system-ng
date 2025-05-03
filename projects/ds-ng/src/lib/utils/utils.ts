@@ -50,6 +50,18 @@ const getValue = (key: string, value: undefined): any =>
 const getKeyFormat = (key: string, value: string): string =>
   (typeof value === 'function' && `(${key})`) || `[${key}]`;
 
+export const getPositionClass = (
+  className: string,
+  labelPosition: String,
+): string => {
+  if (!!labelPosition) return `${className}-${labelPosition}`;
+  return '';
+};
+
+export const getUUID = (): string => {
+  return window.crypto.randomUUID();
+};
+
 export const attributes = (object: { [key: string]: any }): string =>
   Object.entries(object)
     .filter(([key]) => key !== 'test_text')

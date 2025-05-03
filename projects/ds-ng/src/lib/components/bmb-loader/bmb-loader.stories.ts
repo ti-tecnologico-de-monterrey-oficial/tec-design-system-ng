@@ -3,7 +3,7 @@ import { attributes } from '../../utils/utils';
 
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbLoaderComponent } from './bmb-loader.component';
-import { BmbButtonDirective } from '../../directives/button.directive';
+import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
 
 const appearanceOptions: IBbmBgAppearance[] = [

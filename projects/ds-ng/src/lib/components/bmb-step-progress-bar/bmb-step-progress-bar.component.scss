@@ -3,10 +3,10 @@
 
 .bmb_step-progress-bar {
   display: flex;
-  margin-bottom: rem.rem_calc(20);
-  width: 100%;
-  min-height: rem.rem_calc(70);
   height: auto;
+  margin-bottom: rem.rem_calc(20);
+  min-height: rem.rem_calc(70);
+  width: 100%;
 
   &-item {
     align-items: center;
@@ -14,17 +14,17 @@
     flex: 1;
     flex-direction: column;
     justify-content: center;
-    position: relative;
     min-width: rem.rem_calc(32);
+    position: relative;
     @include fonts.font(6, regular);
 
     &::after {
-      border-bottom: rem.rem_calc(2) solid RGBA(var(--color-charade-300));
+      border-bottom: rem.rem_calc(2) solid var(--buttons-inactive-step);
       content: "";
       left: 50%;
+      min-width: rem.rem_calc(32);
       position: absolute;
       top: rem.rem_calc(30);
-      min-width: rem.rem_calc(32);
       width: 100%;
     }
 
@@ -76,25 +76,26 @@
     @include fonts.font(6, regular);
 
     &-small {
-      width: rem.rem_calc(42);
       height: rem.rem_calc(42);
+      width: rem.rem_calc(42);
 
       &.active {
         @include fonts.font(6, medium);
-        background-color: RGBA(var(--color-charade-50));
+        background-color: var(--containers-modal);
         border: rem.rem_calc(1) solid RGBA(var(--color-mariner-700));
-        color: RGBA(var(--color-mariner-700));
+        color: var(--general_contrasts-input-outline);
       }
     }
 
     &-normal {
-      width: rem.rem_calc(48);
       height: rem.rem_calc(48);
+      width: rem.rem_calc(48);
+
       &.active {
         @include fonts.font(6, medium);
-        background-color: RGBA(var(--color-charade-50));
+        background-color: var(--containers-modal);
         border: rem.rem_calc(1) solid RGBA(var(--color-mariner-700));
-        color: RGBA(var(--color-mariner-700));
+        color: var(--general_contrasts-input-outline);
         height: rem.rem_calc(64);
         width: rem.rem_calc(64);
       }
@@ -109,20 +110,20 @@
     flex-direction: column;
 
     &-item {
-      display: inline-flex;
       align-items: center;
-      position: relative;
+      display: inline-flex;
       padding-bottom: rem.rem_calc(20);
+      position: relative;
 
       &::after {
+        background-color: var(--buttons-inactive-step);
         content: "";
-        position: absolute;
-        width: rem.rem_calc(2);
         height: rem.rem_calc(30);
-        background-color: RGBA(var(--color-charade-300));
         left: rem.rem_calc(20);
-        transform: translateX(-50%);
+        position: absolute;
         top: rem.rem_calc(40);
+        transform: translateX(-50%);
+        width: rem.rem_calc(2);
       }
 
       &.active {
@@ -132,14 +133,14 @@
 
       &.completed {
         &::after {
-          content: "";
-          position: absolute;
-          width: rem.rem_calc(2);
-          height: rem.rem_calc(30);
           background-color: RGBA(var(--color-blue-primary));
+          content: "";
+          height: rem.rem_calc(30);
           left: rem.rem_calc(20);
-          transform: translateX(-50%);
+          position: absolute;
           top: rem.rem_calc(40);
+          transform: translateX(-50%);
+          width: rem.rem_calc(2);
         }
 
         .bmb_step-progress-bar-vertical-step {
@@ -162,38 +163,38 @@
 
     &-step {
       @include fonts.font(6, regular);
-      cursor: pointer;
-      display: flex;
       align-items: center;
-      position: relative;
-      background: RGBA(var(--color-charade-300));
+      background: var(--buttons-inactive-step);
       border-radius: 50%;
       color: RGBA(var(--color-charade-950));
+      cursor: pointer;
+      display: flex;
       justify-content: center;
       margin-bottom: rem.rem_calc(6);
-      z-index: 1;
+      position: relative;
       transition: background-color 0.3s;
+      z-index: 1;
 
       &-small {
-        width: rem.rem_calc(42);
         height: rem.rem_calc(42);
+        width: rem.rem_calc(42);
 
         &.active {
           @include fonts.font(6, medium);
-          background-color: RGBA(var(--color-charade-50));
+          background-color: var(--vertical-step-active);
           border: rem.rem_calc(1) solid RGBA(var(--color-mariner-700));
-          color: RGBA(var(--color-mariner-700));
+          color: var(--vertical-step-active-color);
         }
       }
 
       &-normal {
-        width: rem.rem_calc(48);
         height: rem.rem_calc(48);
+        width: rem.rem_calc(48);
         &.active {
           @include fonts.font(6, medium);
-          background-color: RGBA(var(--color-charade-50));
+          background-color: var(--vertical-step-active);
           border: rem.rem_calc(1) solid RGBA(var(--color-mariner-700));
-          color: RGBA(var(--color-mariner-700));
+          color: var(--vertical-step-active-color);
           height: rem.rem_calc(64);
           width: rem.rem_calc(64);
         }
@@ -202,12 +203,14 @@
 
     &-text {
       margin-left: rem.rem_calc(20);
+
       &-title {
+        color: var(--general_contrasts-100);
         @include fonts.font(5, regular);
       }
 
       &-subtitle {
-        color: RGBA(var(--color-charade-700));
+        color: var(--vertical-step-subtitle);
         @include fonts.font(4, regular);
       }
     }
@@ -216,68 +219,79 @@
       padding-top: rem.rem_calc(20);
     }
   }
-}
 
-[data-theme="dark"],
-.storybook-dark-theme {
-  .bmb_step-progress-bar {
+  &-step-panel {
     &-item {
-      &::after {
-        border-bottom: rem.rem_calc(2) solid RGBA(var(--color-charade-700));
+      width: 100%;
+      display: flex;
+      flex-flow: column;
+      gap: rem.rem_calc(20);
+    }
+
+    &-wrapper {
+      position: relative;
+
+      &.active {
+        &::after {
+          background-color: var(--buttons-inactive-step);
+          content: "";
+          height: calc(100% - rem.rem_calc(60));
+          left: rem.rem_calc(20);
+          position: absolute;
+          top: rem.rem_calc(50);
+          transform: translateX(-50%);
+          width: rem.rem_calc(2);
+        }
       }
+    }
+
+    &-header {
+      display: flex;
+      align-items: center;
+      gap: rem.rem_calc(20);
+      cursor: pointer;
     }
 
     &-step {
-      &-small {
-        &.active {
-          background-color: RGBA(var(--color-charade-950));
-          color: RGBA(var(--color-charade-50));
-        }
+      align-items: center;
+      background-color: var(--buttons-inactive-step);
+      border-radius: 50%;
+      color: RGBA(var(--color-charade-950));
+      cursor: pointer;
+      display: flex;
+      height: rem.rem_calc(42);
+      justify-content: center;
+      margin-bottom: rem.rem_calc(6);
+      position: relative;
+      width: rem.rem_calc(42);
+      z-index: 1;
+      @include fonts.font(6, regular);
+
+      &.active {
+        @include fonts.font(6, medium);
+        background-color: var(--containers-modal);
+        border: rem.rem_calc(1) solid RGBA(var(--color-mariner-700));
+        color: var(--general_contrasts-input-outline);
       }
 
-      &-normal {
-        &.active {
-          background-color: RGBA(var(--color-charade-950));
-          color: RGBA(var(--color-charade-50));
-        }
+      &.completed {
+        background-color: RGBA(var(--color-mariner-700));
       }
     }
 
-    &-vertical {
-      &-item {
-        &::after {
-          background-color: RGBA(var(--color-charade-700));
-        }
+    &-label {
+      color: var(--vertical-step-subtitle);
+      @include fonts.font(6, regular);
+
+      &.active {
+        color: var(--general_contrasts-100);
+
+        font-weight: bold;
       }
+    }
 
-      &-step {
-        background: RGBA(var(--color-charade-700));
-        color: RGBA(var(--color-charade-950));
-
-        &-small {
-          &.active {
-            background-color: RGBA(var(--color-charade-700));
-            color: RGBA(var(--color-charade-50));
-          }
-        }
-
-        &-normal {
-          &.active {
-            background-color: RGBA(var(--color-charade-700));
-            color: RGBA(var(--color-charade-50));
-          }
-        }
-      }
-
-      &-text {
-        &-title {
-          color: RGBA(var(--color-charade-50));
-        }
-
-        &-subtitle {
-          color: RGBA(var(--color-charade-500));
-        }
-      }
+    &-content {
+      margin-left: rem.rem_calc(62);
     }
   }
 }

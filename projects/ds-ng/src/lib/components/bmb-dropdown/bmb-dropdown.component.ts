@@ -24,6 +24,7 @@ import {
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { ClickOutsideDirective } from '../../directives/utils/clickoutside.directive';
 import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
+import { getUUID } from '../../utils/utils';
 
 export interface IBmbDropdownItem {
   name: string;
@@ -70,6 +71,7 @@ export class BmbDropdownComponent
   helperText = input<string>('');
   control = input<FormControl>(new FormControl());
   label = input<string>();
+  name = input<string>(getUUID());
   preferredOptions = input<string[]>([]);
   isMultiSelect = input<boolean>(false);
   selectedValuesSet: Set<string> = new Set();
@@ -81,7 +83,7 @@ export class BmbDropdownComponent
   selectedOption?: any;
   inputControl = new FormControl();
 
-  uid: string = Date.now().toString(36) + (Math.floor(Math.random() * 90) + 10);
+  uid: string = getUUID();
   filterControl = new FormControl();
   filteredData: string[] = [];
 
@@ -239,7 +241,7 @@ export class BmbDropdownComponent
         event.target.classList.contains('bmb_dropdown-field-chips') ||
         event.target.classList.contains('bmb_dropdown-field-chip') ||
         event.target.classList.contains('bmb_dropdown-field-open') ||
-        event.target.classList.contains('material-symbols-outlined'))
+        event.target.classList.contains('material-symbols-rounded'))
     ) {
       this.openSelect = !this.openSelect;
       this.isFocus = !this.isFocus;
