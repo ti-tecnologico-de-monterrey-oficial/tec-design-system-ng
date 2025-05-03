@@ -16,6 +16,7 @@ import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { debounceTime } from 'rxjs/operators';
+import { getUUID } from '../../utils/utils';
 
 @Component({
   selector: 'bmb-search-input',
@@ -60,7 +61,7 @@ export class BmbSearchInputComponent implements OnChanges {
 
   value: string = '';
   filteredData: string[] = [];
-  uid: string = Date.now().toString(36) + (Math.floor(Math.random() * 90) + 10);
+  uid: string = getUUID();
   isDialogOpen: boolean = false;
   filterControl = new FormControl();
 

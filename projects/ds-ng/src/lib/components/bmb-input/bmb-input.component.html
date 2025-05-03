@@ -32,28 +32,27 @@
         [style.height.px]="heightTextArea()!"
         [minlength]="minlength()!"
         [spellcheck]="spellcheck()"
-        (focus)="onFocus()"
-        (blur)="onBlur()"
         [rows]="rows()"
         [name]="name()"
         [id]="id()"
         [pattern]="pattern()!"
         [tabindex]="disabled() ? -1 : 0"
+        (keydown)="handleKeyPress($event)"
+        (focus)="onFocus()"
+        (blur)="onBlur()"
       ></textarea>
       @if (this.shouldShowError) {
         <bmb-icon class="bmb_field-text-area-error-icon" [icon]="'error'" />
       }
     } @else {
       <input
-        [type]="getType()"
         class="bmb_field-input"
+        [type]="getType()"
         [ngClass]="inputClasses"
         [required]="isRequired()"
         [disabled]="disabled()"
         [placeholder]="placeholder()"
         [formControl]="getFormControl()"
-        (focus)="onFocus()"
-        (blur)="onBlur()"
         [name]="name()"
         [id]="id()"
         [spellcheck]="spellcheck()"
@@ -63,6 +62,9 @@
         [max]="max()"
         [min]="min()"
         [tabindex]="disabled() ? -1 : 0"
+        (keydown)="handleKeyPress($event)"
+        (focus)="onFocus()"
+        (blur)="onBlur()"
       />
       @if (this.isClearable()) {
         <bmb-action-icon

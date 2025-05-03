@@ -121,6 +121,7 @@ Below is an example of how you can use this component in HTML:
         type: 'select',
       },
       options: [
+        'none',
         'box-shadow-1',
         'box-shadow-2',
         'box-shadow-3',
@@ -131,7 +132,7 @@ Below is an example of how you can use this component in HTML:
       table: {
         type: { summary: 'string' },
         category: 'Properties',
-        defaultValue: { summary: 'null' },
+        defaultValue: { summary: 'none' },
       },
       description: 'Set the style of the box shadow',
     },
@@ -141,19 +142,20 @@ Below is an example of how you can use this component in HTML:
         type: 'select',
       },
       options: [
-        '--general_contrasts-150',
-        '--general_contrasts-100',
-        '--general_contrasts-75',
-        '--general_contrasts-50',
-        '--general_contrasts-25',
-        '--general_contrasts-20',
-        '--general_contrasts-15',
-        '--general_contrasts-5',
+        'default',
+        'contrasts-150',
+        'contrasts-100',
+        'contrasts-75',
+        'contrasts-50',
+        'contrasts-25',
+        'contrasts-20',
+        'contrasts-15',
+        'contrasts-5',
       ],
       table: {
         type: { summary: 'string' },
         category: 'Properties',
-        defaultValue: { summary: 'null' },
+        defaultValue: { summary: 'default' },
       },
       description: 'Set the color border of the card',
     },
@@ -162,8 +164,8 @@ Below is an example of how you can use this component in HTML:
     borderRadius: 'm',
     margin: 'm',
     type: 'normal',
-    boxShadowStyle: null,
-    borderColor: null,
+    boxShadowStyle: 'none',
+    borderColor: 'default',
   },
 };
 
@@ -214,7 +216,7 @@ export const BackgroundContent: Story = {
         <bmb-card-header padding="s">
           <h3>Header</h3>
         </bmb-card-header>
-        <bmb-card-content colorBackground="--general_contrasts-5">
+        <bmb-card-content colorBackground="contrasts-5">
           <p>
             Los gatos son criaturas llenas de misterio. Su elegancia al moverse, sus
             ojos penetrantes y su habilidad para desaparecer en las sombras han
@@ -243,7 +245,7 @@ export const HeaderAndFooterBackground: Story = {
       **********
       -->
       <bmb-card ${attributes(args)}>
-        <bmb-card-header padding="m" colorBackground="--general_contrasts-50">
+        <bmb-card-header padding="m" colorBackground="contrasts-50">
           <h3>Header</h3>
         </bmb-card-header>
         <bmb-card-content>
@@ -254,7 +256,7 @@ export const HeaderAndFooterBackground: Story = {
             los gatos también son compañeros leales y cariñosos.
           </p>
         </bmb-card-content>
-        <bmb-card-footer padding="m" colorBackground="--general_contrasts-50">
+        <bmb-card-footer padding="m" colorBackground="contrasts-50">
           <h3>Footer</h3>
         </bmb-card-footer>
       </bmb-card>
@@ -265,7 +267,7 @@ export const HeaderAndFooterBackground: Story = {
 export const BoxShadowAndBorderColor: Story = {
   args: {
     boxShadowStyle: 'box-shadow-4',
-    borderColor: '--general_contrasts-150',
+    borderColor: 'contrasts-150',
   },
   render: (args) => ({
     props: args,

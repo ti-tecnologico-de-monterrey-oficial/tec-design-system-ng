@@ -62,6 +62,7 @@ export class BmbProfileComponent implements OnInit, AfterViewInit {
 
   handleCloseSession = output();
   handleCloseProfile = output();
+  handleCollaboratorClick = output<IBmbUserData>();
 
   _studentData: IBmbStudentProfileData = {
     userData: {
@@ -146,5 +147,9 @@ export class BmbProfileComponent implements OnInit, AfterViewInit {
 
   closeProfile(): void {
     this.handleCloseProfile.emit();
+  }
+
+  handleButtonClick(data: IBmbUserData | undefined): void {
+    if (data) this.handleCollaboratorClick.emit(data);
   }
 }
