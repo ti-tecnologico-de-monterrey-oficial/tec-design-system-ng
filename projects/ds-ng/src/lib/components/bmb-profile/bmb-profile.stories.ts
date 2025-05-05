@@ -126,6 +126,37 @@ Sets the collaborator data to display in the component.
         type: { summary: 'IBmbCollaboratorProfileData' },
       },
     },
+    versionLabel: {
+      name: 'Version label',
+      control: 'text',
+      description: 'Sets the version label to display in the component',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
+    isMobile: {
+      name: 'Is mobile',
+      control: { type: 'boolean' },
+      description:
+        'When true the profile should be adapted to the mobile view. When false, the profile should be adapted to display the web view. Web or mobile view can only be displayed when not stand alone.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'true' },
+        type: { summary: 'boolean' },
+      },
+    },
+    enableLangChange: {
+      name: 'Enable lang change',
+      control: { type: 'boolean' },
+      description:
+        'When true, the component will display the language change button.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
     idDigitalLink: {
       name: 'Id Digital Link',
       control: 'text',
@@ -170,26 +201,6 @@ Sets the collaborator data to display in the component.
         defaultValue: { summary: '_blank' },
       },
     },
-    versionLabel: {
-      name: 'Version label',
-      control: 'text',
-      description: 'Sets the version label to display in the component',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
-    isMobile: {
-      name: 'Is mobile',
-      control: { type: 'boolean' },
-      description:
-        'When true the profile should be adapted to the mobile view. When false, the profile should be adapted to display the web view. Web or mobile view can only be displayed when not stand alone.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'true' },
-        type: { summary: 'boolean' },
-      },
-    },
     handleCloseSession: {
       name: 'Handle Close Session',
       control: {
@@ -212,6 +223,17 @@ Sets the collaborator data to display in the component.
       table: {
         category: 'Events',
         type: { summary: 'function' },
+      },
+    },
+    handleLangChange: {
+      name: 'Model lang status',
+      control: null,
+      description:
+        'Output function, returns a string with the selected language. The default value is "es".',
+      table: {
+        category: 'Events',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'es' },
       },
     },
     userData: {
@@ -352,8 +374,6 @@ export const CollaboratorMobileExample = {
           userImg: 'https://picsum.photos/id/64/200/300',
           email: 'mail@tec.mx',
         },
-        hierarchyLink: 'https://www.example.com',
-        hierarchyTarget: '_blank',
       },
       generalist: {
         userData: {
@@ -361,8 +381,6 @@ export const CollaboratorMobileExample = {
           userImg: 'https://picsum.photos/id/64/200/300',
           email: 'mail@tec.mx',
         },
-        hierarchyLink: 'https://www.example.com',
-        hierarchyTarget: '_blank',
       },
     },
     campusAcessLink: 'https://www.example.com',

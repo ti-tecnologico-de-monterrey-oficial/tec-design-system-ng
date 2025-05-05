@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   input,
+  model,
   OnInit,
   output,
   ViewEncapsulation,
@@ -25,6 +26,8 @@ import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
 import { buildErrorMessage } from '../../utils/utils';
 import { BmbIconItemComponent } from '../bmb-icon-item/bmb-icon-item.component';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
+import { BmbRadialComponent } from '../bmb-radial/bmb-radial.component';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'bmb-profile',
@@ -40,6 +43,7 @@ import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
     BmbThemeComponent,
     BmbButtonDirective,
     BmbHomeCardComponent,
+    BmbRadialComponent,
   ],
   templateUrl: './bmb-profile.component.html',
   styleUrl: './bmb-profile.component.scss',
@@ -59,10 +63,12 @@ export class BmbProfileComponent implements OnInit, AfterViewInit {
   tecServicesLink = input<string>('');
   targetLinks = input<IBmbTargetLink>('_blank');
   versionLabel = input<string>('');
+  enableLangChange = input<boolean>(false);
 
   handleCloseSession = output();
   handleCloseProfile = output();
   handleCollaboratorClick = output<IBmbUserData>();
+  handleLangChange = model<string>();
 
   _studentData: IBmbStudentProfileData = {
     userData: {
@@ -75,6 +81,8 @@ export class BmbProfileComponent implements OnInit, AfterViewInit {
     campus: '',
     program: '',
   };
+
+  langFormControl = new FormControl('es');
 
   ngAfterViewInit(): void {
     //to avoid breaking code from previous versions
@@ -151,5 +159,10 @@ export class BmbProfileComponent implements OnInit, AfterViewInit {
 
   handleButtonClick(data: IBmbUserData | undefined): void {
     if (data) this.handleCollaboratorClick.emit(data);
+  }
+
+  handleRadial(newValue: string): void {
+    this.langFormControl.setValue(newValue);
+    this.handleLangChange.set(newValue);
   }
 }
