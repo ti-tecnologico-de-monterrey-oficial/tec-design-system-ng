@@ -138,12 +138,13 @@ Below is an example of how to use this component in HTML:
     errorMessage: {
       name: 'Error Message',
       control: {
-        type: 'text',
+        type: 'object',
       },
-      description: 'Text to be displayed when there is an error.',
+      description:
+        'Text to be displayed when there is an error. This could be a string or any of the following: required, min, max, minLength, pattern.',
       table: {
         category: 'Properties',
-        type: { summary: 'string' },
+        type: { summary: 'string or IBmbInputError' },
       },
     },
     showError: {
@@ -202,7 +203,10 @@ Below is an example of how to use this component in HTML:
   args: {
     disabled: false,
     showError: false,
-    errorMessage: 'Error Message',
+    errorMessage: {
+      required: 'This field is required.',
+      pattern: 'Only accepts numbers.',
+    },
     isRequired: false,
     preferredCountries: ['mx'],
     onlyCountries: ['mx', 'us', 'ca'],
