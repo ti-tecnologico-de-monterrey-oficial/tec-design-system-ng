@@ -39,6 +39,7 @@ En esta versión, hemos trabajado arduamente para mejorar y optimizar el sistema
 - `Account statement`: Se esconde el botón secundario.
 - `Chat bar`: Se actualizó la configuración del componente.
 - `Icon`: Se mejora el soporte para iconos personalizados.
+- `Dropzone`: Se agregó la posibiliad de subir múltiples archivos.
 
 Puedes ver todos los componentes aqui: [Bamboo](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/foundations-colors--documentation)
 
