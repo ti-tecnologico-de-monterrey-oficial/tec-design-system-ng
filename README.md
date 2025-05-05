@@ -22,7 +22,7 @@ En esta versión, hemos trabajado arduamente para mejorar y optimizar el sistema
 
 ## 🔵 Componentes actualizados
 
-- `Input phone`: Se actualizó la validación del componente 
+- `Input phone`: Se actualizó la validación del componente
 - `Input`: Se agregó la implementación necesaria para que se haga la validación automática al implementar el form-validation, se agregó el evento keyDown.
 - `Checkbox`: Se agregó la implementación necesaria para que se haga la validación automática al implementar el form-validation.
 - `Radio`: Implementación para permitir convivir con las validaciones de error existentes al momento de la actualización de versión.
@@ -35,10 +35,11 @@ En esta versión, hemos trabajado arduamente para mejorar y optimizar el sistema
 - `Card button`: Se agregó soporte para iconos personalizados, se modificaron estilos para evitar que el título se desborde con respecto al contenedor.
 - `Toast`: Se agregaron estilos para la versión reminder.
 - `Column system`: Se corrigió el problema con el overflow.
-- `Profile`: Ahora se puede escuchar el evento clic sobre el líder o generalista.
+- `Profile`: Ahora se puede seleccionar el idioma para sitios stand alone.
 - `Account statement`: Se esconde el botón secundario.
 - `Chat bar`: Se actualizó la configuración del componente.
 - `Icon`: Se mejora el soporte para iconos personalizados.
+- `Dropzone`: Se agregó la posibiliad de subir múltiples archivos.
 
 Puedes ver todos los componentes aqui: [Bamboo](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/foundations-colors--documentation)
 
