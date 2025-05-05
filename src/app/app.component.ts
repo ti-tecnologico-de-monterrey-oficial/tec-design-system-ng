@@ -93,7 +93,6 @@ import {
   BmbTimestreamCardComponent,
   ITimelineEvent,
   BmbDropzoneComponent,
-  IBmbFileUploadStatus,
   BmbAlertCenterComponent,
   IBmbDataAlert,
   BmbLoginComponent,
@@ -3079,24 +3078,7 @@ export class AppComponent {
   }
 
   dropzoneProgress = signal<number>(0);
-  uploadStatus: IBmbFileUploadStatus = 'none';
 
-  dropzoneChange(event: File) {
-    let progress = 0;
-    this.uploadStatus = 'loading';
-
-    const interval = setInterval(() => {
-      this.dropzoneProgress.set(progress + 50);
-      progress += 50;
-
-      if (progress >= 100) {
-        clearInterval(interval);
-        this.uploadStatus = 'success';
-      }
-    }, 1000);
-
-    console.log(event);
-  }
   onDateChange(event: unknown): void {
     alert('onDateChange: ' + event);
   }
