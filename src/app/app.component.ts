@@ -5549,4 +5549,6 @@ export class AppComponent {
   handleError(): void {
     this.error = !this.error;
   }
+
+  dropDownControl: FormControl = new FormControl('Banana');
 }

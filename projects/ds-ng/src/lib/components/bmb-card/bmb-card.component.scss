@@ -117,12 +117,14 @@ $box-shadow-dark: (
     @include fonts.font(3, regular);
     border-bottom: rem.rem_calc(1) solid var(--border-color);
     overflow: hidden;
+    border-radius: var(--bmb-border-radius) var(--bmb-border-radius) 0 0;
   }
 
   &-footer {
     @include fonts.font(3, regular);
     border-top: rem.rem_calc(1) solid var(--border-color);
     overflow: hidden;
+    border-radius: 0 0 var(--bmb-border-radius) var(--bmb-border-radius);
   }
 }
 

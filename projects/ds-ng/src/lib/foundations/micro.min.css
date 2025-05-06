@@ -3022,7 +3022,7 @@ ion-content {
   border-style: solid;
   font-family: "Poppins-Regular", sans-serif;
   font-size: 0.75rem;
-  overflow: hidden;
+  overflow: visible;
 }
 .bmb_card.bmb_card-type-primary {
   --border-color: RGBA(var(--color-mariner-900));
