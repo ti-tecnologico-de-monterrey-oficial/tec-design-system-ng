@@ -5,11 +5,9 @@ import {
   output,
   ViewEncapsulation,
 } from '@angular/core';
-import {
-  BmbLayoutDirective,
-  BmbLayoutItemDirective,
-} from '../../../public-api';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
+import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 
 @Component({
   selector: 'bmb-simple-header',
