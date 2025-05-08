@@ -18,7 +18,7 @@
   @if $type == "simple" {
     background-color: transparent;
     border: 0;
-    border-bottom: rem.rem_calc(1) solid var(--general_contrasts-150);
+    border-bottom: rem.rem_calc(1) solid var(--general_contrasts-100);
     color: var(--general_contrasts-75);
 
     &:focus,
@@ -31,11 +31,11 @@
       caret-color: var(--general_contrasts-input-outline);
       outline: none;
     }
-  } @else if $type == "normal" {
+  } @else {
     background-color: var(--general_contrasts-5);
     border: rem.rem_calc(1) solid var(--general_contrasts-75);
     border-radius: rem.rem_calc(8);
-    color: var(--general_contrasts-150);
+    color: var(--general_contrasts-100);
 
     &:focus,
     &:focus-visible,
@@ -48,7 +48,8 @@
   }
 
   &::placeholder {
-    color: var(--input-support-text);
+    @include fonts.font(4, regular);
+    color: var(--general_contrasts-50);
   }
 
   &.bmb_field-input-error {
@@ -66,7 +67,6 @@
 
   &-icon {
     color: var(--general_contrasts-50);
-    font-size: rem.rem_calc(24);
     left: rem.rem_calc(8);
     position: absolute;
     top: 50%;
@@ -82,11 +82,13 @@
         padding-left: rem.rem_calc(35) !important;
       }
     }
+
+    &-simple {
+      color: var(--general_contrasts-75);
+    }
   }
 
   &-input {
-    margin: 0;
-
     &-normal {
       @include input("normal");
     }
@@ -123,7 +125,7 @@
     }
 
     &-error-icon {
-      font-size: 15px;
+      @include fonts.font(4_5, regular);
       color: var(--input-error);
       position: absolute;
       top: rem.rem_calc(5);
@@ -141,7 +143,6 @@
 
   &-additional_action,
   &-clear {
-    font-size: rem.rem_calc(24);
     right: rem.rem_calc(8);
     position: absolute;
     top: 50%;

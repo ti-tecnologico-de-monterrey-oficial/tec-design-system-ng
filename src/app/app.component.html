@@ -106,6 +106,7 @@
     disableDatesBefore=""
     disableDatesAfter=""
     lang="es-MX"
+    [helperMessage]="'Helper Message'"
   />
   <bmb-input
     id="textarea1"
@@ -129,7 +130,8 @@
   <bmb-input
     id="input1"
     name="input1"
-    [label]="'input1'"
+    tooltip="Tooltip test"
+    [label]="'Label (Optional)'"
     [placeholder]="'Placeholder'"
     [icon]="'apps'"
     [appearance]="'normal'"
@@ -141,7 +143,7 @@
     [helperMessage]="'Helper Message'"
     [disabled]="false"
     [isRequired]="true"
-    [maxlength]="20"
+    [maxlength]="100"
     [minlength]="4"
     [pattern]="'[A-Za-z]+'"
     [isClearable]="true"
@@ -149,6 +151,7 @@
   <bmb-input
     id="input2"
     name="input2"
+    icon="apps"
     [label]="'input2'"
     [placeholder]="'Placeholder - simple'"
     [appearance]="'simple'"
@@ -227,6 +230,7 @@
     [maxlength]="20"
     [minlength]="4"
     [pattern]="'[A-Za-z]+'"
+    [isClearable]="true"
   />
   <bmb-input
     id="input6"

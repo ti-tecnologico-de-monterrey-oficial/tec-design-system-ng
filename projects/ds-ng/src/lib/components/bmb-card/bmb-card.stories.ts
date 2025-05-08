@@ -141,7 +141,6 @@ Below is an example of how you can use this component in HTML:
         type: 'select',
       },
       options: [
-        '--general_contrasts-150',
         '--general_contrasts-100',
         '--general_contrasts-75',
         '--general_contrasts-50',
@@ -265,7 +264,7 @@ export const HeaderAndFooterBackground: Story = {
 export const BoxShadowAndBorderColor: Story = {
   args: {
     boxShadowStyle: 'box-shadow-4',
-    borderColor: '--general_contrasts-150',
+    borderColor: '--general_contrasts-100',
   },
   render: (args) => ({
     props: args,

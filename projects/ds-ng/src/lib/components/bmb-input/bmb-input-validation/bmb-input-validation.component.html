@@ -16,7 +16,7 @@
             [align]="tooltipPosition().align"
             [justify]="tooltipPosition().justify"
             [icon]="'help'"
-            [size]="15"
+            [size]="20"
           />
         }
         @if (type() === "text-area" && showMaxTextLength()) {
@@ -34,8 +34,7 @@
     <p
       class="bmb_input-validation-helper"
       [ngClass]="{
-        'bmb_input-validation-helper-normal':
-          isSupportTextNormal() && !disabled(),
+        'bmb_input-validation-helper-simple': appearance() === 'simple',
       }"
     >
       {{ helperMessage() }}

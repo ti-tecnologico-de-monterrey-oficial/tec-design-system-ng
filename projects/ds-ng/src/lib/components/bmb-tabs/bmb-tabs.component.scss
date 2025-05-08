@@ -41,12 +41,12 @@
 
     &:hover,
     &:focus-visible {
-      color: var(--general_contrasts-150);
+      color: var(--general_contrasts-100);
     }
 
     &-active {
       border-bottom-color: var(--general_contrasts-input-outline);
-      color: var(--general_contrasts-150);
+      color: var(--general_contrasts-100);
     }
 
     &-uppercase {

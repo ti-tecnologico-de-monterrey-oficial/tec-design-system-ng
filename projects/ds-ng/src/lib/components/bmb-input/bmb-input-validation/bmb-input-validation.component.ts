@@ -7,6 +7,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import {
+  IBmbInputAppearance,
   IBmbInputError,
   IBmbInputTooltipPosition,
   IBmbInputType,
@@ -54,7 +55,7 @@ export class BmbInputValidationComponent {
   showMaxTextLength = input<boolean | null>(true);
   errorMessage = input<string | IBmbInputError>('');
   helperMessage = input<string>('');
-  isSupportTextNormal = input<boolean>(false);
+  appearance = input<IBmbInputAppearance | string>('normal');
 
   showError = model<boolean>(false);
   control = model<FormControl>();
