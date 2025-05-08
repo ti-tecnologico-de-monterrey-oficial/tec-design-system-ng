@@ -8,9 +8,8 @@ import {
   KeyValueDiffer,
   KeyValueDiffers,
   OnDestroy,
-  HostListener,
 } from '@angular/core';
-import { BmbAccordionComponent } from '../../../public-api';
+import { BmbAccordionComponent } from '../../components/bmb-accordion/bmb-accordion.component';
 import { Subscription } from 'rxjs';
 
 @Directive({

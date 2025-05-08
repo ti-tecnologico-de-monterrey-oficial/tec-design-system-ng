@@ -6,14 +6,14 @@ import {
   TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import {
   BmbLayoutDirective,
-  BmbLayoutItemDirective,
   IAlignItemsOptions,
   IJustifyOptions,
-  SizeNames,
-} from '../../../public-api';
-import { CommonModule } from '@angular/common';
+} from '../../directives/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
+import { SizeNames } from '../../types';
 
 @Component({
   selector: 'bmb-three-cols',

@@ -12,11 +12,11 @@
     appearance="transparent"
     size="large"
   >
-    <button (click)="goToToday()">Hoy</button>
-    <button (click)="handleChangeDate('-')">
+    <button type="button" (click)="goToToday()">Hoy</button>
+    <button type="button" (click)="handleChangeDate('-')">
       <bmb-icon [icon]="'arrow_back_ios'" />
     </button>
-    <button (click)="handleChangeDate('+')">
+    <button type="button" (click)="handleChangeDate('+')">
       <bmb-icon [icon]="'arrow_forward_ios'" />
     </button>
   </div>
@@ -30,18 +30,21 @@
   </h1>
   <div bmbButtonGroup appearance="secondary-outlined" size="large">
     <button
+      type="button"
       (click)="handleRangeChange('day')"
       [ngClass]="{ 'bmb_button-selected': view === 'day' }"
     >
       Día
     </button>
     <button
+      type="button"
       (click)="handleRangeChange('week')"
       [ngClass]="{ 'bmb_button-selected': view === 'week' }"
     >
       Semana
     </button>
     <button
+      type="button"
       (click)="handleRangeChange('month')"
       [ngClass]="{ 'bmb_button-selected': view === 'month' }"
     >
