@@ -47,10 +47,11 @@
       size="large"
       appearance="secondary-outlined"
       (click)="handleBack()"
+      type="button"
     >
       {{ backButtonLabel() }}
     </button>
-    <button (click)="handlePay()" bmbButton size="large">
+    <button (click)="handlePay()" bmbButton size="large" type="button">
       {{ payButtonLabel() }}
     </button>
   </footer>

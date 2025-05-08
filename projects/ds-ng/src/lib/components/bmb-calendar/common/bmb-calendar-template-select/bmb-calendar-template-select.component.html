@@ -8,6 +8,7 @@
     appearance="secondary-filled"
     icon="keyboard_arrow_down"
     (click)="enableDropDown()"
+    type="button"
   >
     {{ value }}
   </button>
@@ -17,7 +18,11 @@
   >
     @for (item of options; track $index) {
       <li>
-        <button [ngClass]="isOptionSelected(item)" (click)="handleClick(item)">
+        <button
+          type="button"
+          [ngClass]="isOptionSelected(item)"
+          (click)="handleClick(item)"
+        >
           {{ item }}
         </button>
       </li>
