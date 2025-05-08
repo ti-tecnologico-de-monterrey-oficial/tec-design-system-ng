@@ -43,6 +43,7 @@
                     isSelectedDay(date),
                 }"
                 [disabled]="isSelectedDay(date)"
+                type="button"
               >
                 {{ date.day }}
               </button>
@@ -64,6 +65,7 @@
           @for (date of getWeeksAndDays(); track $index) {
             <li class="bmb_calendar-month-mobile-calendar-item">
               <button
+                type="button"
                 class="bmb_calendar-month-mobile-calendar-button"
                 (click)="handleDayChange(date)"
                 bmbButton

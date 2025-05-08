@@ -22,6 +22,7 @@
       @for (dot of numberOfElements; track $index) {
         <li class="bmb_carousel-list-item">
           <button
+            type="button"
             class="bmb_carousel-dot"
             (click)="selectItem($index)"
             [title]="'Slide ' + ($index + 1)"

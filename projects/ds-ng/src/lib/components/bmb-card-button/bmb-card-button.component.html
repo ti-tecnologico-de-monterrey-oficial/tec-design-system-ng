@@ -1,6 +1,7 @@
 <section class="bmb_card_button">
   @if (isSmall()) {
     <button
+      type="button"
       class="bmb_card_button-small"
       [ngClass]="{ 'bmb_card_button-small-flipped': isFlipped }"
       (click)="handleSmallClick($event)"
@@ -144,7 +145,11 @@
       </div>
     </section>
   } @else {
-    <button class="bmb_card_button-add" (click)="handleAddContent($event)">
+    <button
+      type="button"
+      class="bmb_card_button-add"
+      (click)="handleAddContent($event)"
+    >
       <bmb-icon
         [icon]="icon()"
         [size]="48"

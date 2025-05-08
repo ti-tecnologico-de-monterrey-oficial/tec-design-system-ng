@@ -1,6 +1,10 @@
 <section class="bmb_digital-id">
   <div class="bmb_digital-id-top">
-    <button class="bmb_digital-id-top-btn" (click)="closeDigitalId()">
+    <button
+      type="button"
+      class="bmb_digital-id-top-btn"
+      (click)="closeDigitalId()"
+    >
       <bmb-icon
         class="bmb_digital-id-top-close"
         [icon]="'close'"
@@ -45,6 +49,7 @@
     [ngClass]="{ 'bmb_digital-id-bottom-btn-hide': hideButton() }"
   >
     <button
+      type="button"
       class="bmb_digital-id-btnAccess"
       bmbButton
       appearance="primary"
