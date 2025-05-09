@@ -53,7 +53,7 @@
         class="bmb_chat-bar-bot"
         [icon]="currentBot()?.icon!"
         [alt]="currentBot()?.name!"
-        [iconSize]="60"
+        [iconSize]="40"
         (buttonClick)="handleDialog()"
       />
       @if (!onDragFiles) {
@@ -100,6 +100,7 @@
                 @for (bot of dActionsList(); track $index) {
                   <li class="bmb_chat-bar-add-dialog-option">
                     <button
+                      type="button"
                       (click)="bot.action()"
                       class="bmb_chat-bar-add-dialog-option-button"
                     >

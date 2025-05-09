@@ -10,7 +10,7 @@ import { IBbmSidePosition } from '../../types';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { BmbInputValidationComponent } from '../bmb-input/bmb-input-validation/bmb-input-validation.component';
 import { CommonModule } from '@angular/common';
-import { getPositionClass } from '../../utils/utils';
+import { getPositionClass, getUUID } from '../../utils/utils';
 import { BmbInputValidationService } from '../bmb-input/bmb-input-validation/bmb-input-validation.service';
 import { IBmbInputError } from '../bmb-input/bmb-input.component';
 
@@ -28,7 +28,7 @@ export class BmbRadialComponent {
   checked = input<boolean>(false);
   disabled = input<boolean>(false);
   value = input<string>('');
-  name = input<string>(window.crypto.randomUUID());
+  name = input<string>(getUUID());
   label = input<string>('');
   labelPosition = input<IBbmSidePosition>('after');
   ariaDescribedby = input<string>('');

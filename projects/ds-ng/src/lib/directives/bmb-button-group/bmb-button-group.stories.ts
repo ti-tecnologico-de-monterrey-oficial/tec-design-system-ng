@@ -68,7 +68,7 @@ const customizable = (): StoryFn => (args) => ({
   template: `
   <section bmbButtonGroup [appearance]="appearance" [size]="size">
     <!-- IMPORTANT
-    You can add the class bmb_btn-toggle-active to set a button as active and keep that state of active, 
+    You can add the class bmb_btn-toggle-active to set a button as active and keep that state of active,
     otherwise the button will just behave as a simple button without keeping the activated state.
     The styles of the buttons group are defined by Bamboo and will be adjusted according to the appearance
     of the component.

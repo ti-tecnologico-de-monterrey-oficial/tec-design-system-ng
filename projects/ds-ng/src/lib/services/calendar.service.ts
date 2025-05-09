@@ -1,5 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { IBmbCalendarEvent } from '../components/bmb-calendar/types';
+import { getUUID } from '../utils/utils';
 
 @Injectable({
   providedIn: 'root',
@@ -10,14 +11,14 @@ export class BmbCalendarService {
 
   addMultipleEvents(events: IBmbCalendarEvent[]) {
     const newEvents = events.map((event) => {
-      const id = event.id ?? self.crypto.randomUUID();
+      const id = event.id ?? getUUID();
       return { ...event, id };
     });
     this.eventList.update((currentEvents) => [...currentEvents, ...newEvents]);
   }
 
   addEvent(event: IBmbCalendarEvent) {
-    const id = event.id ?? self.crypto.randomUUID();
+    const id = event.id ?? getUUID();
     this.eventList.update((currentEvents) => [
       ...currentEvents,
       { ...event, id },

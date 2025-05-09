@@ -22,13 +22,13 @@ export type IBmbCardType =
   | 'transparent';
 
 export type IBmbBgColor =
-  | '--general_contrasts-100'
-  | '--general_contrasts-75'
-  | '--general_contrasts-50'
-  | '--general_contrasts-25'
-  | '--general_contrasts-20'
-  | '--general_contrasts-15'
-  | '--general_contrasts-5';
+  | 'contrasts-100'
+  | 'contrasts-75'
+  | 'contrasts-50'
+  | 'contrasts-25'
+  | 'contrasts-20'
+  | 'contrasts-15'
+  | 'contrasts-5';
 
 export type IBmbBoxShadowStyle =
   | 'box-shadow-1'
@@ -52,9 +52,9 @@ export class BmbCardComponent {
   @Input() margin: SizeNames | SizeNames[] = 'm';
   @Input() type: IBmbCardType = 'normal';
   @Input() state: 'disabled' | 'error' | 'normal' = 'normal';
-  @Input() boxShadowStyle: IBmbBoxShadowStyle | null = null;
-  @Input() borderColor: IBmbBgColor | null = null;
-  @Input() alternative: boolean = false;
+  @Input() boxShadowStyle: IBmbBoxShadowStyle | 'none' = 'none';
+  @Input() borderColor: IBmbBgColor | 'default' = 'default';
+  @Input() alternative: boolean = false; // deprecated
 
   getClasses() {
     const classNames = [];
@@ -64,7 +64,7 @@ export class BmbCardComponent {
       classNames.push(`bmb_margin-${this.margin}`);
     classNames.push(`bmb_card-type-${this.type}`);
 
-    if (this.boxShadowStyle !== null) {
+    if (this.boxShadowStyle !== 'none') {
       classNames.push(`bmb_card-${this.boxShadowStyle}`);
     }
 
@@ -77,8 +77,8 @@ export class BmbCardComponent {
       styles['border-radius'] = calculateSize(this.borderRadius);
     if (typeof this.margin !== 'string')
       styles.margin = calculateSize(this.margin);
-    if (typeof this.borderColor !== null)
-      styles.borderColor = `var(${this.borderColor})`;
+    if (this.borderColor !== 'default')
+      styles.borderColor = `var(--general_${this.borderColor})`;
 
     return styles;
   }
@@ -110,7 +110,7 @@ export class BmbCardHeaderComponent {
       styles['padding'] = calculateSize(this.padding);
 
     if (this.colorBackground !== null) {
-      styles['background-color'] = `var(${this.colorBackground})`;
+      styles['background-color'] = `var(--general_${this.colorBackground})`;
     }
 
     return styles;
@@ -143,7 +143,7 @@ export class BmbCardFooterComponent {
       styles['padding'] = calculateSize(this.padding);
 
     if (this.colorBackground !== null) {
-      styles['background-color'] = `var(${this.colorBackground})`;
+      styles['background-color'] = `var(--general_${this.colorBackground})`;
     }
 
     return styles;
@@ -176,7 +176,7 @@ export class BmbCardContentComponent {
       styles['padding'] = calculateSize(this.padding);
 
     if (this.colorBackground !== null) {
-      styles['background-color'] = `var(${this.colorBackground})`;
+      styles['background-color'] = `var(--general_${this.colorBackground})`;
     }
     return styles;
   }

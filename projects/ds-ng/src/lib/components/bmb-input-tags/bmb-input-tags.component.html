@@ -28,8 +28,9 @@
       [name]="name()"
       [disabled]="disabled()"
       [isRequired]="isRequired()"
+      (onKeyDown)="handleKeyDown($event)"
     />
-    <dialog class="bmb_input-tags-dialog" [open]="showDropdown">
+    <dialog class="bmb_input-tags-dialog" [open]="showDropdown" tabindex="-1">
       <ul class="bmb_input-tags-dialog-list">
         @for (item of filteredOptions; track $index) {
           @if (checkIfIsSelected(item)) {
@@ -38,6 +39,7 @@
                 class="bmb_input-tags-dialog-list-item-button"
                 type="button"
                 (click)="handleItemClick(item)"
+                (keydown)="handleItemKeyDown($event, item)"
               >
                 {{ item.name }}
               </button>

@@ -17,6 +17,7 @@ import { IBbmSidePosition } from '../../types';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { BmbInputValidationService } from './bmb-input-validation/bmb-input-validation.service';
 import { BmbInputValidationComponent } from './bmb-input-validation/bmb-input-validation.component';
+import { getUUID } from '../../utils/utils';
 
 export type IBmbInputType =
   | 'text'
@@ -66,7 +67,7 @@ export class BmbInputComponent {
   helperMessage = input<string>('');
   disabled = input<boolean>(false);
   isRequired = input<boolean>(false);
-  name = input<string>(window.crypto.randomUUID());
+  name = input<string>(getUUID());
   spellcheck = input<boolean>(false);
   jsonFormat = input<boolean>(false);
   heightTextArea = input<number>();

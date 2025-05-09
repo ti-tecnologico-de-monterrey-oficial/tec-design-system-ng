@@ -1,5 +1,6 @@
 import { Inject, Injectable, Optional, signal } from '@angular/core';
 import { INotification } from '../components/bmb-push-notification/types';
+import { getUUID } from '../utils/utils';
 
 export type NotificationPositionX = 'left' | 'right';
 export type NotificationPositionY = 'top' | 'bottom';
@@ -19,7 +20,7 @@ export class BmbNotificationService {
   }
 
   addNotification(notification: INotification) {
-    const id = notification.id ?? self.crypto.randomUUID().toString();
+    const id = notification.id ?? getUUID();
 
     this.notificationList.update((currentNotifications) => [
       ...currentNotifications,

@@ -22,6 +22,7 @@ import {
 } from '../bmb-input/bmb-input.component';
 import { BmbDatepickerModalComponent } from './bmb-datepicker-modal/bmb-datepicker-modal.component';
 import { ClickOutsideDirective } from '../../directives/utils/clickoutside.directive';
+import { getUUID } from '../../utils/utils';
 
 @Component({
   selector: 'bmb-datepicker',
@@ -51,7 +52,7 @@ export class BmbDatepickerComponent implements OnInit {
   dateFormat = input<string>('dd/MM/yyyy');
   // inline = input<boolean>(false);
   stepYearPicker = input<number>(18);
-  name = input<string>(window.crypto.randomUUID());
+  name = input<string>(getUUID());
   disableDatesBefore = input<string>('');
   disableDatesAfter = input<string>('');
   lang = input<string>('es-MX');

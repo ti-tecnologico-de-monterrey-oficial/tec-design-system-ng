@@ -45,7 +45,6 @@ import {
     BmbProgressBarComponent,
     BmbDividerComponent,
     BmbButtonDirective,
-    BmbModalComponent,
     BmbRadialComponent,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
@@ -125,6 +124,7 @@ export class BmbAccountStatementComponent implements AfterViewInit, OnInit {
       content: this.newModal,
       size: 'large',
       hidePrimaryButton: true,
+      hideSecondaryButton: true,
     };
 
     this.matDialog.open(BmbModalComponent, { data });

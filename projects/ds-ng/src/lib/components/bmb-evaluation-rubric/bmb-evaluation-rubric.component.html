@@ -47,7 +47,7 @@
           [dynamicCols]="true"
         >
           @for (element of getEvalList(); track $index) {
-            <button (click)="handleEval(item.criterion, element)">
+            <button type="button" (click)="handleEval(item.criterion, element)">
               <bmb-focus-element
                 [ngClass]="
                   getButtonClass(
@@ -97,6 +97,7 @@
         [icon]="evalRubricButtons().rightIcon!"
         size="large"
         position="left"
+        type="button"
       >
         {{ evalRubricButtons().rightLabel }}
       </button>
@@ -106,6 +107,7 @@
         [icon]="evalRubricButtons().leftIcon!"
         size="large"
         position="left"
+        type="button"
       >
         {{ evalRubricButtons().leftLabel }}
       </button>

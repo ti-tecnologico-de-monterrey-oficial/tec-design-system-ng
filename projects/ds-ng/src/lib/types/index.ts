@@ -1,5 +1,5 @@
-import { IBbmBgAppearance } from '../../public-api';
 import { IBmbInteractiveIconAppearance } from '../components/bmb-interactive-icon/bmb-interactive-icon.component';
+import { IBbmBgAppearance } from '../components/bmb-advertisement-card/types';
 
 export * from '../components/bmb-timestream/types';
 export * from '../components/bmb-push-notification/types';
@@ -92,8 +92,8 @@ export interface IBmbStudentProfileData {
 
 export interface IBmbHierarchyProfileData {
   userData: IBmbUserData;
-  hierarchyLink: string;
-  hierarchyTarget: IBmbTargetLink;
+  hierarchyLink?: string;
+  hierarchyTarget?: IBmbTargetLink;
 }
 
 export interface IBmbCollaboratorProfileData {

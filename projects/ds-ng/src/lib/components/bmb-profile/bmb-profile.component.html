@@ -44,6 +44,7 @@
       [isUserImage]="true"
       [link]="collaboratorData()?.leader?.hierarchyLink!"
       [target]="collaboratorData()?.leader?.hierarchyTarget!"
+      (onButton)="handleButtonClick(collaboratorData()?.leader?.userData)"
     />
     <h2 class="bmb_profile-title">Mi Generalista</h2>
     <bmb-container-button
@@ -53,6 +54,7 @@
       [isUserImage]="true"
       [link]="collaboratorData()?.generalist?.hierarchyLink!"
       [target]="collaboratorData()?.generalist?.hierarchyTarget!"
+      (onButton)="handleButtonClick(collaboratorData()?.generalist?.userData)"
     />
   </section>
 </ng-template>
@@ -74,6 +76,39 @@
       } @else {
         <ng-container [ngTemplateOutlet]="collaborator" />
       }
+    }
+    @if (enableLangChange() && isStandAlone()) {
+      <section class="bmb_profile-info-container theme">
+        <div class="bmb_profile-info-container-item">
+          <bmb-icon [icon]="'language'" [size]="24" />
+          <span class="bmb_profile-info-container-item-text">Idioma</span>
+        </div>
+        <div class="bmb_profile-lang-container">
+          <bmb-radial
+            id="es"
+            value="es"
+            name="language"
+            label="ES"
+            [checked]="true"
+            [required]="true"
+            [disabled]="false"
+            [control]="langFormControl"
+            (change)="handleRadial('es')"
+          />
+          <bmb-radial
+            id="en"
+            value="en"
+            name="language"
+            label="EN"
+            [checked]="false"
+            [required]="true"
+            [disabled]="false"
+            [control]="langFormControl"
+            (change)="handleRadial('en')"
+          />
+        </div>
+      </section>
+      <bmb-divider />
     }
     <section class="bmb_profile-info-container theme">
       <div class="bmb_profile-info-container-item">

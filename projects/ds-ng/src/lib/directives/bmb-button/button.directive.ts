@@ -21,7 +21,7 @@ import {
 })
 export class BmbButtonDirective {
   icon = input<string>('');
-  iconSize = input<number | undefined>();
+  iconSize = input<number | undefined>(16);
   position = input<IBmbHorizontalPosition>('left');
   case = input<boolean>(false);
   appearance = input<IButtonAppearance>('primary');
@@ -30,6 +30,7 @@ export class BmbButtonDirective {
   enableButtonToggle = input<boolean>(false);
   isRounded = input<boolean>(true);
   isMobile = input<boolean>(false);
+  iconAlt = input<string>('icon');
 
   private providedInputs: Set<string> = new Set();
 
@@ -56,14 +57,6 @@ export class BmbButtonDirective {
   }
 
   private applyAttributes() {
-    if (this.providedInputs.has('case')) {
-      this.renderer.setAttribute(
-        this.el.nativeElement,
-        'case',
-        String(this.case()),
-      );
-    }
-
     if (this.providedInputs.has('size') && this.size()) {
       this.renderer.setAttribute(this.el.nativeElement, 'size', this.size());
     }
@@ -81,6 +74,8 @@ export class BmbButtonDirective {
     const classList = ['bmb_btn', `bmb_btn-${this.appearance()}`];
     classList.push('bmb_btn-rounded');
 
+    if (this.case()) classList.push('bmb_btn-case');
+
     if (this.enableButtonToggle() && this.isToggleActive())
       classList.push('bmb_btn-toggle-active');
 
@@ -97,6 +92,7 @@ export class BmbButtonDirective {
         this.viewContainerRef.createComponent(BmbIconComponent);
       const iconComponent = iconComponentRef.instance;
       iconComponent.icon = this.icon;
+      iconComponent.alt = this.iconAlt;
 
       if (this.iconSize()) {
         iconComponent.size = this.iconSize;
