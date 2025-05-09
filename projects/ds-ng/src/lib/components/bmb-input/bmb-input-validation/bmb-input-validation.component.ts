@@ -121,24 +121,21 @@ export class BmbInputValidationComponent {
   }
 
   getErrorMessage(): string {
-    const control = this.ivs.getFormControlByName(this.name());
-
     if (typeof this.errorMessage() === 'string') {
       return this.errorMessage().toString();
     }
 
+    const control = this.ivs.getFormControlByName(this.name());
     const error = this.errorMessage() as IBmbInputError;
 
-    if (control['errors'] !== null) {
-      const errorType = control['errors'];
-
-      if (errorType['invalidJson'] && error.jsonFormat) return error.jsonFormat;
-      if (errorType['pattern'] && !!error.pattern) return error.pattern;
-      if (errorType['min'] && !!error.min) return error.min;
-      if (errorType['max'] && !!error.max) return error.max;
-      if (errorType['minlength'] && !!error.minLength) return error.minLength;
-      if (errorType['required'] && !!error.required) return error.required;
-    }
+    if (control.hasError('invalidJson') && error.jsonFormat)
+      return error.jsonFormat;
+    if (control.hasError('pattern') && !!error.pattern) return error.pattern;
+    if (control.hasError('min') && !!error.min) return error.min;
+    if (control.hasError('max') && !!error.max) return error.max;
+    if (control.hasError('minlength') && !!error.minLength)
+      return error.minLength;
+    if (control.hasError('required') && !!error.required) return error.required;
 
     return '';
   }
