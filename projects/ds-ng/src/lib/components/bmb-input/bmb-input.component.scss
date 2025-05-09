@@ -2,12 +2,21 @@
 @use "../../../assets/styles/base/mixins" as mixins;
 @use "../../../assets/styles/base/rem" as rem;
 
+@mixin placeholder_padding($padding) {
+  padding-left: rem.rem_calc($padding);
+
+  &:hover,
+  &:focus,
+  &:focus-visible {
+    padding-left: rem.rem_calc($padding);
+  }
+}
+
 @mixin input($type: normal) {
   @include mixins.resetElement();
   @include fonts.font(4, regular);
   height: rem.rem_calc(48);
   width: 100%;
-  padding: var(--bmb-spacing-s);
 
   &:focus,
   &:focus,
@@ -20,6 +29,11 @@
     border: 0;
     border-bottom: rem.rem_calc(1) solid var(--general_contrasts-100);
     color: var(--general_contrasts-75);
+    padding-left: var(--bmb-spacing-m);
+
+    &.bmb_field-input-error {
+      @include mixins.error_input();
+    }
 
     &:focus,
     &:focus-visible,
@@ -32,16 +46,22 @@
       outline: none;
     }
   } @else {
-    background-color: var(--general_contrasts-5);
+    background-color: var(--general_contrasts-input-background);
     border: rem.rem_calc(1) solid var(--general_contrasts-75);
     border-radius: rem.rem_calc(8);
     color: var(--general_contrasts-100);
+    padding-left: var(--bmb-spacing-s);
+
+    &.bmb_field-input-error {
+      @include mixins.error_input();
+    }
 
     &:focus,
     &:focus-visible,
     &:hover {
       border: rem.rem_calc(2) solid var(--general_contrasts-input-outline);
-      padding: calc(var(--bmb-spacing-s) - rem.rem_calc(1));
+      padding-left: calc(var(--bmb-spacing-s) - rem.rem_calc(1));
+      caret-color: var(--general_contrasts-input-outline);
       outline: none;
       transition: all 0.3s ease;
     }
@@ -50,10 +70,6 @@
   &::placeholder {
     @include fonts.font(4, regular);
     color: var(--general_contrasts-50);
-  }
-
-  &.bmb_field-input-error {
-    @include mixins.error_input();
   }
 }
 
@@ -67,23 +83,21 @@
 
   &-icon {
     color: var(--general_contrasts-50);
-    left: rem.rem_calc(8);
+    left: var(--bmb-spacing-s);
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
 
-    ~ .bmb_field-input {
-      padding-left: rem.rem_calc(35);
+    ~ .bmb_field-input-normal {
+      @include placeholder_padding(39);
+    }
 
-      &:hover,
-      &:focus,
-      &:active,
-      &:focus-visible {
-        padding-left: rem.rem_calc(35) !important;
-      }
+    ~ .bmb_field-input-simple {
+      @include placeholder_padding(31);
     }
 
     &-simple {
+      left: 0;
       color: var(--general_contrasts-75);
     }
   }
@@ -103,6 +117,7 @@
     height: rem.rem_calc(90);
     min-width: rem.rem_calc(124);
     resize: none;
+    padding: var(--bmb-spacing-s);
 
     &::-webkit-scrollbar {
       -webkit-appearance: none;
@@ -119,44 +134,30 @@
       border-radius: rem.rem_calc(10);
     }
 
-    &:focus,
-    &:focus-visible {
-      padding-left: var(--bmb-spacing-s);
-    }
-
     &-error-icon {
       @include fonts.font(4_5, regular);
       color: var(--input-error);
       position: absolute;
-      top: rem.rem_calc(5);
-      right: 2%;
-
-      @media (width <= 400px) and (width >= 380) {
-        right: calc(2% - rem.rem_calc(3));
-      }
-
-      @media (width <= 380px) {
-        right: calc(1% - rem.rem_calc(8));
-      }
+      top: rem.rem_calc(10);
+      left: calc(100% - var(--bmb-spacing-l));
     }
   }
 
-  &-additional_action,
-  &-clear {
+  &-actions {
     right: rem.rem_calc(8);
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     display: flex;
+    gap: var(--bmb-spacing-s);
     align-items: center;
     padding: rem.rem_calc(4);
+  }
 
+  &-additional_action,
+  &-clear {
     .bmb_check-external-link-button-element {
       color: var(--general_contrasts-50);
     }
-  }
-
-  &-clear + &-additional_action {
-    right: rem.rem_calc(44);
   }
 }

@@ -15,6 +15,8 @@
   [tooltip]="tooltip()"
   [tooltipPosition]="tooltipPosition()"
   [appearance]="appearance()"
+  [maxlength]="maxlength()"
+  [showMaxTextLength]="showMaxTextLength()"
 >
   <section class="bmb_field-wrapper">
     @if (!!icon() && type() !== "text-area") {
@@ -71,21 +73,25 @@
         [min]="min()"
         [tabindex]="disabled() ? -1 : 0"
       />
-      @if (this.isClearable()) {
-        <bmb-action-icon
-          class="bmb_field-clear"
-          icon="close"
-          [iconSize]="24"
-          (buttonClick)="clearValue()"
-        />
-      }
-      @if (showAdditionalAction()) {
-        <bmb-action-icon
-          class="bmb_field-additional_action"
-          [icon]="getAdditionalActionIcon()"
-          [iconSize]="24"
-          (buttonClick)="actionToExecute()"
-        />
+      @if (showAdditionalAction() || isClearable()) {
+        <span class="bmb_field-actions">
+          @if (showAdditionalAction()) {
+            <bmb-action-icon
+              class="bmb_field-additional_action"
+              [icon]="getAdditionalActionIcon()"
+              [iconSize]="24"
+              (buttonClick)="actionToExecute()"
+            />
+          }
+          @if (isClearable()) {
+            <bmb-action-icon
+              class="bmb_field-clear"
+              icon="close"
+              [iconSize]="24"
+              (buttonClick)="clearValue()"
+            />
+          }
+        </span>
       }
     }
   </section>
