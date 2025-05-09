@@ -1,12 +1,17 @@
 <section class="bmb_input-validation" [ngClass]="{ disabled: disabled() }">
   <label [ngClass]="getClasses('bmb_input-validation')">
-    @if (label()) {
+    @if (
+      !!label() ||
+      isRequired() ||
+      !!tooltip() ||
+      (type() === "text-area" && showMaxTextLength())
+    ) {
       <span
         class="bmb_input-validation-label"
         [ngClass]="getLabelClass('bmb_input-validation-label')"
       >
         {{ label() }}
-        @if (isRequired() && !!label()) {
+        @if (isRequired()) {
           <small class="bmb_input-validation-label-required">*</small>
         }
         @if (!!tooltip()) {
@@ -30,7 +35,12 @@
     }
     <ng-content />
   </label>
-  @if (helperMessage() && !shouldShowError) {
+  @if (helperMessage() && !shouldShowError) {}
+  @if (!!errorMessage() && shouldShowError) {
+    <p class="bmb_input-validation-error">
+      {{ getErrorMessage() }}
+    </p>
+  } @else if (!!helperMessage()) {
     <p
       class="bmb_input-validation-helper"
       [ngClass]="{
@@ -38,11 +48,6 @@
       }"
     >
       {{ helperMessage() }}
-    </p>
-  }
-  @if (errorMessage() && shouldShowError) {
-    <p class="bmb_input-validation-error">
-      {{ getErrorMessage() }}
     </p>
   }
 </section>
