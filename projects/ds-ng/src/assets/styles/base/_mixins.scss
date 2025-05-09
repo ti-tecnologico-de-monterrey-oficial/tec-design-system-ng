@@ -252,13 +252,13 @@
   }
 }
 
-@mixin shadow_mark($height, $width, $left) {
+@mixin shadow_mark($height, $width, $left, $color_name) {
   content: "";
   height: rem.rem_calc($height);
   width: rem.rem_calc($width);
   border-radius: 50%;
   opacity: 0.1;
-  background-color: var(--radio-checked-shadow);
+  background-color: $color_name;
   position: absolute;
   z-index: -1;
   display: block;

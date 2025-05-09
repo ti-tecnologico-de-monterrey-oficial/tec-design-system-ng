@@ -75,7 +75,7 @@ export class BmbInputValidationService {
   ): void {
     const formControl: FormControl = this.getFormControlByName(name);
 
-    if (!formControl.value && !!value) {
+    if (!formControl.value && (!!value || checked)) {
       this.addValue(formControl, type, value, checked);
     }
 

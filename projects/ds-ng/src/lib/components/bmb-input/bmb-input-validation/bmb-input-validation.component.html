@@ -8,7 +8,6 @@
     ) {
       <span
         class="bmb_input-validation-label"
-        [ngClass]="getLabelClass('bmb_input-validation-label')"
       >
         {{ label() }}
         @if (isRequired()) {
@@ -35,19 +34,15 @@
     }
     <ng-content />
   </label>
-  @if (helperMessage() && !shouldShowError) {}
-  @if (!!errorMessage() && shouldShowError) {
-    <p class="bmb_input-validation-error">
-      {{ getErrorMessage() }}
-    </p>
-  } @else if (!!helperMessage()) {
-    <p
-      class="bmb_input-validation-helper"
-      [ngClass]="{
-        'bmb_input-validation-helper-simple': appearance() === 'simple',
-      }"
-    >
-      {{ helperMessage() }}
-    </p>
-  }
+  <div class="bmb_input-validation-support">
+    @if (!!errorMessage() && shouldShowError) {
+      <p class="bmb_input-validation-support-error">
+        {{ getErrorMessage() }}
+      </p>
+    } @else if (!!helperMessage()) {
+      <p [class]="'bmb_input-validation-support-helper-' + appearance()">
+        {{ helperMessage() }}
+      </p>
+    }
+  </div>
 </section>

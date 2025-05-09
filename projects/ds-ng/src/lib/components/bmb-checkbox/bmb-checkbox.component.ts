@@ -53,10 +53,6 @@ export class BmbCheckboxComponent implements OnInit {
     }
   }
 
-  getPositionClass(className: string): string {
-    return getPositionClass(className, this.labelPosition());
-  }
-
   getFormControl(): FormControl {
     return this.ivs.getFormControlByName(this.name());
   }

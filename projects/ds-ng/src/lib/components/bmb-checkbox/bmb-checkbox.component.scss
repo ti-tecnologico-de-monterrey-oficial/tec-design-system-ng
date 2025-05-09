@@ -2,6 +2,24 @@
 @use "../../../assets/styles/base/mixins" as mixins;
 @use "../../../assets/styles/base/rem" as rem;
 
+@mixin input_checked($height, $width) {
+  display: block;
+  position: relative;
+  margin: auto;
+  height: rem.rem_calc($height);
+  width: rem.rem_calc($width);
+}
+
+@mixin input_shadow($color_name) {
+  &:hover,
+  &:focus:not(:disabled),
+  &:focus-visible:not(:disabled) {
+    &::before {
+      @include mixins.shadow_mark(48, 48, -14, $color_name);
+    }
+  }
+}
+
 .bmb_checkbox {
   &-input {
     opacity: 0;
@@ -9,82 +27,56 @@
     width: 0;
     position: absolute;
 
-    &:checked + .bmb_checkbox-mark,
-    &[ng-reflect-checked="true"] + .bmb_checkbox-mark {
-      background-color: var(--switch-checked);
-      border-color: var(--switch-checked);
+    &:is(:checked) + .bmb_checkbox-mark {
+      background-color: var(--input-switch-checked);
+      border-color: var(--input-switch-checked);
 
       &::after {
+        @include input_checked(12, 3);
         border: solid var(--white-primary);
         border-width: rem.rem_calc(0 3 3 0);
-        position: absolute;
-        @include mixins.mark_position(12, 3, -3);
         transform: rotate(45deg);
       }
+
+      @include input_shadow(var(--input-radio-checked-shadow));
+    }
+
+    &:not(:checked) + .bmb_checkbox-mark {
+      @include input_shadow(var(--input-radio-shadow));
     }
 
     &-indeterminate + .bmb_checkbox-mark {
-      background-color: var(--switch-checked);
-      border-color: var(--switch-checked);
+      background-color: var(--input-switch-checked);
+      border-color: var(--input-switch-checked);
 
       &::after {
+        @include input_checked(3, 12);
         background-color: var(--white-primary);
-        position: relative;
-        @include mixins.mark_position(3, 12, 8);
       }
+
+      @include input_shadow(var(--input-radio-checked-shadow));
     }
-
-    &:hover + .bmb_checkbox-mark {
-      &:not(.bmb_checkbox-mark-error) {
-        border-color: var(--switch-checked);
-      }
-
-      &::before {
-        @include mixins.shadow_mark(48, 48, -14);
-      }
-    }
-
-    &:focus:not(:disabled) + .bmb_checkbox-mark,
-    &:focus-visible:not(:disabled) + .bmb_checkbox-mark {
-      &:not(.bmb_checkbox-mark-error) {
-        border-color: var(--switch-checked);
-      }
-
-      &::before {
-        @include mixins.shadow_mark(48, 48, -14);
-      }
-    }
-  }
-
-  &-before {
-    padding-left: rem.rem_calc(8);
-  }
-
-  &-after {
-    padding-right: rem.rem_calc(8);
   }
 
   &-mark {
     cursor: pointer;
-    display: inline-block;
+    display: flex;
     position: relative;
-    align-items: center;
-    justify-content: center;
     height: rem.rem_calc(24);
     width: rem.rem_calc(24);
+    margin: rem.rem_calc(6);
     background-color: transparent;
-    border: rem.rem_calc(2) solid var(--general_contrasts-100);
-    border-radius: rem.rem_calc(4);
-
-    &-error {
-      @include mixins.error_input();
-    }
+    border: rem.rem_calc(2) solid var(--general_contrasts-75);
+    border-radius: var(--bmb-radius-xs);
 
     &::after {
       content: "";
       display: none;
       position: absolute;
-      outline: 0px solid var(--radio-checked-shadow);
+    }
+
+    &-error {
+      @include mixins.error_input();
     }
   }
 }
