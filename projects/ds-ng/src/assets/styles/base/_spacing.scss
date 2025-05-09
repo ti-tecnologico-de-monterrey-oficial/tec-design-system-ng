@@ -25,10 +25,3 @@ $sizes: (
     --bmb-margin: #{$size};
   }
 }
-
-@each $name, $size in $sizes {
-  .bmb_border-radius-#{$name} {
-    border-radius: $size;
-    --bmb-border-radius: #{$size};
-  }
-}
