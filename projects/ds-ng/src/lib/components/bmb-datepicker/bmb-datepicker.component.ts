@@ -56,6 +56,7 @@ export class BmbDatepickerComponent implements OnInit {
   disableDatesBefore = input<string>('');
   disableDatesAfter = input<string>('');
   lang = input<string>('es-MX');
+  helperMessage = input<string>('');
 
   control = model<FormControl>(new FormControl());
 
