@@ -86,7 +86,7 @@
     }
   } @else if $appearance == secondary-outlined {
     background-color: transparent;
-    border: rem.rem_calc(1) solid var(--general_contrasts-100);
+    border: var(--bmb-border-general_contrasts-100-1-solid);
     color: var(--general_contrasts-100);
     padding: rem.rem_calc(11 15);
 
@@ -110,7 +110,8 @@
 
     &:active:not(:disabled),
     &.bmb_btn-toggle-active {
-      border: rem.rem_calc(2) solid var(--general_contrasts-input-background);
+      border: var(--bmb-border-inherit-2-solid);
+      border-color: var(--general_contrasts-input-background);
       box-shadow: 0px 0px rem.rem_calc(25) var(--gris-charade-500);
       text-shadow: none;
       padding: rem.rem_calc(10 14);
@@ -131,7 +132,8 @@
     }
   } @else if $appearance == destructive {
     background-color: transparent;
-    border: rem.rem_calc(1) solid var(--red-primary);
+    border: var(--bmb-border-inherit-1-solid);
+    border-color: var(--red-primary);
     color: var(--red-primary);
     padding: rem.rem_calc(11 15);
 
@@ -229,7 +231,8 @@
   &:focus,
   &:focus-visible {
     background-color: var(--general_contrasts-25);
-    border: rem.rem_calc(1) solid var(--general_contrasts-main-selection);
+    border: var(--bmb-border-inherit-1-solid);
+    border-color: var(--general_contrasts-main-selection);
     color: var(--general_contrasts-main-selection);
   }
 
@@ -240,7 +243,8 @@
 
   &:active {
     background-color: var(--general_contrasts-input-background);
-    border: rem.rem_calc(1) solid var(--general_contrasts-main-selection);
+    border: var(--bmb-border-inherit-1-solid);
+    border-color: var(--general_contrasts-main-selection);
 
     > span {
       color: var(--general_contrasts-main-selection);

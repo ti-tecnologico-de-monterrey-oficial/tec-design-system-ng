@@ -13,8 +13,6 @@ import {
   EventEmitter,
   OnChanges,
   SimpleChanges,
-  ViewChild,
-  ElementRef,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SizeNames } from '../../types';

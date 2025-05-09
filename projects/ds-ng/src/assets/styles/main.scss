@@ -5,7 +5,7 @@
 // It is mandatory to load this scss file as style dependency before any other
 
 // Import the global style to avoid bloat of code and could be use in components will a unique charge.
-// Import and register the rem convertion
+// Import and register the rem conversion
 
 @use "base/css-vars";
 @use "base/rem" as rem;
@@ -20,6 +20,7 @@
 @use "tokens/colors";
 @use "tokens/namedColors";
 @use "tokens/theme";
+@use "base/borders";
 
 // Import the styles for base
 @use "base/reset";
