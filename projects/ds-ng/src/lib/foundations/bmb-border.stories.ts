@@ -46,7 +46,6 @@ export default {
       imports: [CommonModule],
     }),
   ],
-  tags: ["autodocs"],
   parameters: {
     docs: {
       description: {
