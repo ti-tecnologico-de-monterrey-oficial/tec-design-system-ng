@@ -110,6 +110,8 @@ export class BmbInputComponent {
   }
 
   onBlur() {
+    const control = this.ivs.getFormControlByName(this.name());
+    control.updateValueAndValidity();
     this.isFocus.emit(false);
     this.isBlur.emit(true);
   }
