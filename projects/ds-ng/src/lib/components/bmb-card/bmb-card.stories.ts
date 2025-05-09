@@ -142,14 +142,14 @@ Below is an example of how you can use this component in HTML:
         type: 'select',
       },
       options: [
-        '--general_contrasts-150',
-        '--general_contrasts-100',
-        '--general_contrasts-75',
-        '--general_contrasts-50',
-        '--general_contrasts-25',
-        '--general_contrasts-20',
-        '--general_contrasts-15',
-        '--general_contrasts-5',
+        'default',
+        'contrasts-100',
+        'contrasts-75',
+        'contrasts-50',
+        'contrasts-25',
+        'contrasts-20',
+        'contrasts-15',
+        'contrasts-5',
       ],
       table: {
         type: { summary: 'string' },
@@ -266,7 +266,7 @@ export const HeaderAndFooterBackground: Story = {
 export const BoxShadowAndBorderColor: Story = {
   args: {
     boxShadowStyle: 'box-shadow-4',
-    borderColor: '--general_contrasts-150',
+    borderColor: 'contrasts-100',
   },
   render: (args) => ({
     props: args,
