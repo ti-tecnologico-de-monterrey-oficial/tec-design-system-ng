@@ -14,10 +14,6 @@
     1
   );
   --input-error: rgb(var(--color-red-light));
-  --input-switch-checked: rgb(var(--color-mariner-700));
-  --input-switch-checked-shadow: RGBA(var(--color-mariner-700), 0.2);
-  --input-radio-checked-shadow: RGBA(var(--color-mariner-700), 0.9);
-  --input-radio-shadow: RGBA(var(--color-charade-900), 0.9);
 
   --general_contrasts-input-background: RGBA(var(--color-charade-50), 1);
   --general_contrasts-input-outline: RGBA(var(--color-mariner-700), 1);
@@ -36,7 +32,7 @@
   --buttons-active-normal: RGBA(var(--color-charade-50), 1);
   --buttons-alternative-normal: RGBA(var(--color-charade-50), 1);
   --buttons-alternative-text: RGBA(var(--color-charade-900), 1);
-  --buttons-active-switch: RGBA(var(--color-charade-700), 1);
+  --buttons-active-switch: RGBA(var(--color-mariner-700), 1);
   --buttons-inactive-step: RGBA(var(--color-charade-300), 1);
 
   --alert-successful: rgb(var(--color-green-primary));
@@ -118,9 +114,6 @@
     var(--color-green-light),
     1
   );
-  --input-switch-checked: rgb(var(--color-green-light));
-  --input-switch-checked-shadow: RGBA(var(--color-green-light), 0.2);
-  --input-radio-checked-shadow: RGBA(var(--color-green-light), 0.9);
 
   --general_contrasts-input-background: RGBA(var(--color-black-primary), 0.5);
   --general_contrasts-input-outline: RGBA(var(--color-charade-50), 1);

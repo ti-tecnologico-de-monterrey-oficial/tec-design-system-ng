@@ -78,7 +78,7 @@
     [useOnlyCountries]="true"
   /> -->
 
-<section style="margin: 1rem">
+<!-- <section style="margin: 1rem">
   <bmb-form-validation (formGroupState)="handleFormGroupState($event)">
     <bmb-input
       id="textarea1"
@@ -379,11 +379,36 @@
       helperMessage="Helper message CCB"
       (change)="handleRadial($event)"
     />
+    <bmb-radial
+      id="radio3"
+      value="CCM2"
+      name="contract2"
+      label="Contract for teacher CCM2.pdf"
+      [checked]="true"
+      [required]="true"
+      [disabled]="false"
+      errorMessage="Error message CCM2"
+      helperMessage="Helper message CCM2"
+      labelPosition="before"
+      (change)="handleRadial($event)"
+    />
+    <bmb-radial
+      id="radio4"
+      value="CCB2"
+      name="contract2"
+      label="Contrato profesor cátedra Biología CCB2.pdf"
+      [checked]="false"
+      [required]="true"
+      [disabled]="false"
+      errorMessage="Error message CCB2"
+      helperMessage="Helper message CCB2"
+      (change)="handleRadial($event)"
+    />
     <button bmbButton appearance="primary" type="submit">
       Submit form - validation
     </button>
   </bmb-form-validation>
-</section>
+</section> -->
 
 <!-- <bmb-form-validation [(formGroup)]="formGroupVal">
   <bmb-input
@@ -437,94 +462,8 @@
   </button>
 </bmb-form-validation> -->
 
-<!-- <section style="margin: 1rem">
+<section style="margin: 1rem">
   <form [formGroup]="formGroup" (submit)="onSubmit()">
-    <bmb-dropdown
-      tooltip="Tooltip test"
-      [isMultiSelect]="false"
-      icon="bolt"
-      placeholder="Set Fruit"
-      [required]="false"
-      label="Fruit"
-      [showIcon]="true"
-      [options]='[{"name":"Apple","value":"Apple","icon":"home","id":"apple"},{"name":"Banana","value":"Banana","icon":"bolt","id":"banana"},{"name":"Orange","value":"Orange","icon":"bolt","id":"orange"},{"name":"Pear","value":"Pear","icon":"bolt","id":"pear"},{"name":"Grape","value":"Grape","icon":"bolt","id":"grape"}]'
-      [disabled]="false"
-      helperText="Select a fruit"
-      [preferredOptions]='["Orange"]'
-      (onValueChange)="onValueChange($event)"
-      (onValueChange)="onValueChange($event)"
-    />
-    <bmb-input-phone-number
-      name="input_phone"
-      label="Input phone"
-      tooltip="Tooltip test"
-      placeholder="Placeholder"
-      [disabled]="false"
-      [isRequired]="true"
-      [helperMessage]="'Helper Message phone'"
-      [errorMessage]="{
-        required: 'This field is required.',
-        pattern: 'Only accepts numbers.',
-      }"
-      [preferredCountries]="['mx', 'us']"
-      [onlyCountries]="['mx', 'us', 'ca']"
-      [useOnlyCountries]="true"
-      [control]="getFormControl('input_phone')"
-    />
-    <bmb-input-tags
-      errorMessage="Error Message"
-      helperMessage="Helper Message"
-      name="input_tag"
-      [isRequired]="true"
-      placeholder="Placeholder"
-      [disabled]="false"
-      label="Input tag"
-      [showError]="true"
-      [tagOptions]="[
-        'Tacos al pastor',
-        'Enchiladas',
-        'Tamales',
-        'Quesadillas',
-        'Chiles en nogada',
-        'Mole poblano',
-        'Sopes',
-        'Gorditas',
-        'Pozole',
-        'Ceviche',
-        'Tortas',
-        'Guacamole',
-        'Tacos de pescado',
-        'Flautas',
-        'Chalupas',
-        'Huevos rancheros',
-        'Elote',
-        'Mole verde',
-        'Arroz a la mexicana',
-        'Burritos',
-      ]"
-      tooltip="tooltip del input tag"
-      (onValueChange)="onValueChange($event)"
-      [showError]="showErrors['input_tag']"
-      [control]="getFormControl('input_tag')"
-    />
-    <bmb-datepicker
-      icon="calendar_month"
-      invalidFormatErrorMessage="Formato invalido"
-      requiredFieldErrorMessage="Campo requerido"
-      [isRequired]="true"
-      placeholder=""
-      [disabled]="false"
-      label=""
-      appearance="normal"
-      [isClearable]="false"
-      dateFormat="dd/MM/yyyy"
-      name="input_calendar"
-      disableDatesBefore=""
-      disableDatesAfter=""
-      lang="es-MX"
-      [showError]="showErrors['input_calendar']"
-      [control]="getFormControl('input_calendar')"
-    />
     <bmb-input
       id="input5o"
       name="input5o"
@@ -549,20 +488,6 @@
       [pattern]="'[A-Za-z]+'"
       [showError]="showErrors['input5o']"
       [control]="getFormControl('input5o')"
-    />
-    <bmb-date-range
-      placeholder="Selecciona la fecha de cumpleaños"
-      name="datePicker"
-      dateFormat="MM/dd/yyyy"
-      label="Fecha de tu cumpleaños"
-      [disabled]="false"
-      icon="cake"
-      [isRequired]="true"
-      [isClearable]="true"
-      invalidFormaterrorMessage="El formato debe ser el siguiente: dd/mm/yyyy"
-      requiredFieldErrorMessage="Este campo es requerido"
-      [controlStart]="getFormControl('range_start')"
-      [controlEnd]="getFormControl('range_end')"
     />
     <bmb-input
       id="input6d"
@@ -653,9 +578,7 @@
       [checked]="false"
       [required]="true"
       [disabled]="false"
-      [errorMessage]="{
-        required: 'Error message CCB',
-      }"
+      errorMessage="Error message CCM"
       helperMessage="Helper message CCB"
       [control]="getFormControl('contract2o')"
       [showError]="showErrors['contract2o']"
@@ -663,4 +586,107 @@
     />
     <button bmbButton appearance="primary" type="submit">Submit form</button>
   </form>
-</section> -->
+</section>
+
+<!-- <bmb-dropdown
+tooltip="Tooltip test"
+[isMultiSelect]="false"
+icon="bolt"
+placeholder="Set Fruit"
+[required]="false"
+label="Fruit"
+[showIcon]="true"
+[options]='[{"name":"Apple","value":"Apple","icon":"home","id":"apple"},{"name":"Banana","value":"Banana","icon":"bolt","id":"banana"},{"name":"Orange","value":"Orange","icon":"bolt","id":"orange"},{"name":"Pear","value":"Pear","icon":"bolt","id":"pear"},{"name":"Grape","value":"Grape","icon":"bolt","id":"grape"}]'
+[disabled]="false"
+helperText="Select a fruit"
+[preferredOptions]='["Orange"]'
+(onValueChange)="onValueChange($event)"
+(onValueChange)="onValueChange($event)"
+/>
+<bmb-input-phone-number
+name="input_phone"
+label="Input phone"
+tooltip="Tooltip test"
+placeholder="Placeholder"
+[disabled]="false"
+[isRequired]="true"
+[helperMessage]="'Helper Message phone'"
+[errorMessage]="{
+  required: 'This field is required.',
+  pattern: 'Only accepts numbers.',
+}"
+[preferredCountries]="['mx', 'us']"
+[onlyCountries]="['mx', 'us', 'ca']"
+[useOnlyCountries]="true"
+[control]="getFormControl('input_phone')"
+/>
+<bmb-input-tags
+errorMessage="Error Message"
+helperMessage="Helper Message"
+name="input_tag"
+[isRequired]="true"
+placeholder="Placeholder"
+[disabled]="false"
+label="Input tag"
+[showError]="true"
+[tagOptions]="[
+  'Tacos al pastor',
+  'Enchiladas',
+  'Tamales',
+  'Quesadillas',
+  'Chiles en nogada',
+  'Mole poblano',
+  'Sopes',
+  'Gorditas',
+  'Pozole',
+  'Ceviche',
+  'Tortas',
+  'Guacamole',
+  'Tacos de pescado',
+  'Flautas',
+  'Chalupas',
+  'Huevos rancheros',
+  'Elote',
+  'Mole verde',
+  'Arroz a la mexicana',
+  'Burritos',
+]"
+tooltip="tooltip del input tag"
+(onValueChange)="onValueChange($event)"
+[showError]="showErrors['input_tag']"
+[control]="getFormControl('input_tag')"
+/>
+<bmb-datepicker
+icon="calendar_month"
+invalidFormatErrorMessage="Formato invalido"
+requiredFieldErrorMessage="Campo requerido"
+[isRequired]="true"
+placeholder=""
+[disabled]="false"
+label=""
+appearance="normal"
+[isClearable]="false"
+dateFormat="dd/MM/yyyy"
+name="input_calendar"
+disableDatesBefore=""
+disableDatesAfter=""
+lang="es-MX"
+[showError]="showErrors['input_calendar']"
+[control]="getFormControl('input_calendar')"
+/>
+
+    <bmb-date-range
+      placeholder="Selecciona la fecha de cumpleaños"
+      name="datePicker"
+      dateFormat="MM/dd/yyyy"
+      label="Fecha de tu cumpleaños"
+      [disabled]="false"
+      icon="cake"
+      [isRequired]="true"
+      [isClearable]="true"
+      invalidFormaterrorMessage="El formato debe ser el siguiente: dd/mm/yyyy"
+      requiredFieldErrorMessage="Este campo es requerido"
+      [controlStart]="getFormControl('range_start')"
+      [controlEnd]="getFormControl('range_end')"
+    />
+-->

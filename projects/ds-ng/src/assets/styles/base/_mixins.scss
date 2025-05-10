@@ -252,12 +252,12 @@
   }
 }
 
-@mixin shadow_mark($height, $width, $left, $color_name) {
+@mixin shadow_mark($color_name, $opacity: 0.1) {
   content: "";
-  height: rem.rem_calc($height);
-  width: rem.rem_calc($width);
+  height: rem.rem_calc(48);
+  width: rem.rem_calc(48);
   border-radius: 50%;
-  opacity: 0.1;
+  opacity: $opacity;
   background-color: $color_name;
   position: absolute;
   z-index: -1;
@@ -266,22 +266,49 @@
   top: 0;
   right: 0;
   bottom: 0;
-  left: rem.rem_calc($left);
-}
-
-@mixin mark_position($height, $width, $top) {
-  height: rem.rem_calc($height);
-  width: rem.rem_calc($width);
-  display: block;
-  margin: auto;
-  top: rem.rem_calc($top);
-  left: 0;
-  right: 0;
-  bottom: 0;
+  left: rem.rem_calc(-14);
 }
 
 @mixin error_input() {
   border-color: var(--input-error);
+}
+
+@mixin input_checked($height, $width) {
+  display: block;
+  position: relative;
+  margin: auto;
+  height: rem.rem_calc($height);
+  width: rem.rem_calc($width);
+}
+
+@mixin input_shadow($color_name) {
+  &:hover {
+    &::before {
+      @include shadow_mark($color_name);
+    }
+  }
+}
+
+@mixin input_mark($color_name, $border_radius) {
+  cursor: pointer;
+  display: flex;
+  position: relative;
+  height: rem.rem_calc(24);
+  width: rem.rem_calc(24);
+  margin: rem.rem_calc(6);
+  background-color: transparent;
+  border: rem.rem_calc(2) solid $color_name;
+  border-radius: $border_radius;
+
+  &::after {
+    content: "";
+    display: none;
+    position: absolute;
+  }
+
+  &-error {
+    @include error_input();
+  }
 }
 
 @mixin truncated_string($max-block-size, $line-clamp) {
