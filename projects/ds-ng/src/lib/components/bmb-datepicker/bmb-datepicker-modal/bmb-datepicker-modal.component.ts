@@ -65,7 +65,7 @@ export class BmbDatepickerModalComponent implements OnInit {
     this.view = 'calendar';
   }
 
-  getYears() {
+  getYears(): string[] {
     const yearsList = new Array(this.stepYearPicker()).fill(0);
     const currentYear = this.selectedYear;
     const yearsFinal = yearsList.map((_, index) => {
@@ -90,6 +90,9 @@ export class BmbDatepickerModalComponent implements OnInit {
 
   isSelectedDay(date: DateTime): string[] {
     const classList = [];
+    if (date.month === this.selectedMonth) {
+      classList.push('bmb_datepicker-modal-button-current-month');
+    }
     if (this.selectedDate && date.hasSame(this.selectedDate, 'day'))
       classList.push('bmb_datepicker-modal-button-selected');
     if (this.now().hasSame(date, 'day'))
@@ -116,6 +119,22 @@ export class BmbDatepickerModalComponent implements OnInit {
       this.selectedMonth = this.now().month;
       this.month =
         this.monthsNames[(this.selectedMonth || this.now().month) - 1];
+    }
+  }
+
+  handleChevronClick(event: string) {
+    if (this.view === 'calendar' || this.view === 'month') {
+      this.handleChangeMonth(event);
+    } else {
+      this.handleChangeYear(event);
+    }
+  }
+
+  handleChangeYear(event: string) {
+    if (event === 'less') {
+      this.selectedYear = this.selectedYear - 18;
+    } else {
+      this.selectedYear = this.selectedYear + 18;
     }
   }
 

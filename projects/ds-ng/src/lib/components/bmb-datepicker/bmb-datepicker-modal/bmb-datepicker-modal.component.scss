@@ -37,10 +37,14 @@
       border-radius: 50%;
       aspect-ratio: 1/1;
       min-height: auto;
-      opacity: 0.55;
+      opacity: 0.35;
       padding: rem.rem_calc(0 4);
       text-transform: capitalize;
       color: var(--general_contrasts-100);
+    }
+
+    &-current-month:not(.bmb_field-input-normal) {
+      opacity: 1;
     }
 
     &:hover:not(:disabled):not(.bmb-disabled) {
