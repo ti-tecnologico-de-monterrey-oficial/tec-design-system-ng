@@ -82,30 +82,10 @@ export class BmbInputValidationComponent {
     );
   }
 
-  getPositionClass(className: string): string {
-    return getPositionClass(className, this.labelPosition()!);
-  }
-
-  getLabelClass(className: string): string {
-    return this.getPositionClass(className) || `${className}-main`;
-  }
-
-  getTypeErrorClass(className: string): string {
-    if (!!this.errorMessage() && this.shouldShowError)
-      return `${className}-error`;
-    return '';
-  }
-
   getClasses(className: string): string[] {
-    const type = this.type().toLocaleLowerCase();
-    if (type === 'radio' || type === 'checkbox') {
-      const baseName: string = `${className}`;
-      const classes: string[] = [];
-
+    if (this.type() === 'radio' || this.type() === 'checkbox') {
       return [
-        ...classes,
-        this.getPositionClass(`${className}-direction`),
-        this.getTypeErrorClass(baseName),
+        getPositionClass(`${className}-direction`, this.labelPosition()!),
       ];
     }
 

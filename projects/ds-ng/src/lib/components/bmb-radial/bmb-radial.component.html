@@ -13,7 +13,7 @@
   [control]="control()"
   [showError]="showError()"
 >
-  <span class="bmb_radio" [ngClass]="getPositionClass('bmb_radio')">
+  <span class="bmb_radio">
     <input
       class="bmb_radio-input"
       type="radio"
@@ -33,10 +33,9 @@
       (keypress)="handleKeyPress($event)"
       [tabindex]="disabled() ? -1 : 0"
     />
-    <span class="bmb_radio-mark"></span>
-    <!-- <span
+    <span
       class="bmb_radio-mark"
       [ngClass]="{ 'bmb_radio-mark-error': shouldShowError }"
-    ></span> -->
+    ></span>
   </span>
 </bmb-input-validation>
