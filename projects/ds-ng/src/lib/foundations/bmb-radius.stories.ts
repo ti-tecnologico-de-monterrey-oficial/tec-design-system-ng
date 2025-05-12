@@ -43,7 +43,7 @@ export default {
 
 ## Class Name
 
-The class name is defined as \`bmb_border-radius-{radius}\` where {radius} is the radius size, and also set the variable \`--bmb-border-radius\` for the child elements. The radius size can be one of the following:
+The class name is defined as \`bmb_border-radius-{radius}\` where {radius} is the radius size, and also set the variable \`--bmb-border-radius\` for the child elements.
 
 \`\`\`
 <div style="border: var(--bmb-border-general_contrasts-50-1-solid);" class="bmb_border-radius-m">
@@ -55,7 +55,7 @@ The class name is defined as \`bmb_border-radius-{radius}\` where {radius} is th
 
 ## CSS Variable
 
-The CSS variable name is defined as \`--bmb-border-radius-{radius}\` where {radius} is the radius size. The radius size can be one of the following:
+The CSS variable name is defined as \`--bmb-border-radius-{radius}\` where {radius} is the radius size.
 
 \`\`\`
 <div style="border: var(--bmb-border-general_contrasts-50-1-solid); border-radius: var(--bmb-border-radius-4)">
@@ -125,6 +125,11 @@ The radius size are defined on REM units, and can be used in the application by 
         '12',
         '16',
       ],
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: '0' },
+      },
     },
   },
   args: {

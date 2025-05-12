@@ -44,13 +44,6 @@ $alignItemsOptions: (
   }
 }
 
-@each $name, $size in $sizes {
-  .bmb_gap-#{$name} {
-    gap: $size;
-    --bmb-gap: #{$size};
-  }
-}
-
 @for $i from 1 through 4 {
   .bmb_col-sm-#{$i} {
     @include mixins.media-query(999, "max") {
