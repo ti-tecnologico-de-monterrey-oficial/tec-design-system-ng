@@ -59,8 +59,7 @@
   --switch-checked-shadow: RGBA(var(--color-mariner-700), 0.2);
   --radio-checked-shadow: RGBA(var(--color-mariner-700), 0.9);
 
-  --drop_shadow-color-test-shadow: 0.5rem 0.5rem 0.5rem 0px
-    RGBA(var(--color-charade-950), 0.5);
+  --drop_shadow-color-test-shadow: RGBA(var(--color-charade-950), 0.5);
 
   --track-progress-bar: RGBA(var(--color-green-primary), 1);
   --vertical-step-active: RGBA(var(--color-charade-50), 1);
@@ -145,9 +144,6 @@
   --switch-checked-shadow: RGBA(var(--color-green-light), 0.2);
   --radio-checked-shadow: RGBA(var(--color-green-light), 0.9);
 
-  --drop_shadow-color-test-shadow: 0.5rem 0.5rem 0.5rem 0px
-    RGBA(var(--color-black-primary), 0.2);
-
   --track-progress-bar: RGBA(var(--color-green-light), 1);
   --vertical-step-active: RGBA(var(--color-charade-700), 1);
   --vertical-step-active-color: RGBA(var(--color-charade-50), 1);
@@ -181,4 +177,5 @@
   --creative-use-rum: rgb(var(--rum-tint));
   --creative-use-ripelemon: rgb(var(--ripe-lemon-tint));
   --creative-use-hibiscus: rgb(var(--hibiscus-tint));
+  --drop_shadow-color-test-shadow: RGBA(var(--color-black-primary), 0.2);
 }

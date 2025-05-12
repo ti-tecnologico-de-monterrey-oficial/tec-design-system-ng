@@ -57,7 +57,6 @@ export default {
     color: {
       name: "Border Colors",
       description: "This is a collection of border colors that can be used in the application.",
-
       table: {
         type: { summary: "string" },
         category: "Properties",

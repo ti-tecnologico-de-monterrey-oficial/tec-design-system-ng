@@ -39,7 +39,7 @@
       line-height: 0;
       border-radius: 50%;
       background-color: var(--general_contrasts-50);
-      box-shadow: var(--drop_shadow-color-test-shadow);
+      box-shadow: var(--bmb-box-shadow-3);
       display: inline-flex;
       min-height: rem.rem_calc(60);
       align-items: center;
@@ -142,7 +142,7 @@
       width: rem.rem_calc(350);
       border-radius: var(--bmb-radius-m) var(--bmb-radius-m) var(--bmb-radius-m)
         var(--bmb-radius-m);
-      box-shadow: var(--drop_shadow-color-test-shadow);
+      box-shadow: var(--bmb-box-shadow-3);
       background-color: var(--containers-main);
 
       &-active {

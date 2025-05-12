@@ -628,7 +628,6 @@ class StorybookColorsPlaygroundComponent {
     '--switch-checked',
     '--switch-checked-shadow',
     '--radio-checked-shadow',
-    '--drop_shadow-color-test-shadow',
     '--track-progress-bar',
     '--vertical-step-active',
     '--vertical-step-active-color',
