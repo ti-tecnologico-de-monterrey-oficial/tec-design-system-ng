@@ -49,7 +49,7 @@ export default {
         component: `
 This is a collection of shadows styles that can be used in the application. The shadows are defined in the CSS variables and can be used in the application by using the class name or the CSS variable name.
 
-You should be careful when using shadows, as they can affect Bamboo components. Some components may override this attribute, so check the component's documentation before applying the shadow class.
+**You should be careful when using shadows**, as they can affect Bamboo components. Some components may override this attribute, so check the component's documentation before applying the shadow class.
 `,
       },
     },
