@@ -690,8 +690,8 @@ class StorybookColorsPlaygroundComponent {
   }
 
   copyToClipboard(item: any) {
-    window.navigator.clipboard.writeText(item.name);
-    window.alert('Color copied to clipboard: ' + item.name);
+    window.navigator.clipboard.writeText(item.name || item);
+    window.alert('Color copied to clipboard: ' + (item.name || item));
   }
 
   colorList = this.getColorsList();
@@ -705,7 +705,7 @@ class StorybookColorsPlaygroundComponent {
   parseStyle(color: string) {
     return {
       background: color,
-      'text-shadow': `1px 1px 0 #fff, -1px -1px 0 #fff, -1px 1px 0 #fff, 1px -1px 0 #fff`,
+      'text-shadow': `1px 1px 0 var(--general_contrasts-5), -1px -1px 0 var(--general_contrasts-5), -1px 1px 0 var(--general_contrasts-5), 1px -1px 0 var(--general_contrasts-5)`,
       'font-weight': 'bold',
       'font-size': '14px',
     };
