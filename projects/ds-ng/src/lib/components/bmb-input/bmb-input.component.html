@@ -17,6 +17,8 @@
   [appearance]="appearance()"
   [maxlength]="maxlength()"
   [showMaxTextLength]="showMaxTextLength()"
+  [isCustomError]="isCustomError()"
+  [customValidation]="customValidation()"
 >
   <section class="bmb_field-wrapper">
     @if (!!icon() && type() !== "text-area") {

@@ -3,17 +3,16 @@ import {
   Component,
   input,
   model,
-  OnInit,
   output,
   ViewEncapsulation,
 } from '@angular/core';
 import {
   FormsModule,
-  ValidatorFn,
-  AbstractControl,
   ReactiveFormsModule,
-  ValidationErrors,
   FormControl,
+  ValidationErrors,
+  AbstractControl,
+  ValidatorFn,
 } from '@angular/forms';
 import { DateTime } from 'luxon';
 import {
@@ -39,7 +38,7 @@ import { getUUID } from '../../utils/utils';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbDatepickerComponent implements OnInit {
+export class BmbDatepickerComponent {
   label = input<string>('');
   placeholder = input<string>('');
   icon = input<string>('calendar_month');
@@ -56,7 +55,6 @@ export class BmbDatepickerComponent implements OnInit {
   disableDatesBefore = input<string>('');
   disableDatesAfter = input<string>('');
   lang = input<string>('es-MX');
-  helperMessage = input<string>('');
 
   control = model<FormControl>(new FormControl());
 
@@ -65,12 +63,6 @@ export class BmbDatepickerComponent implements OnInit {
   now = DateTime.now();
   defaultDate = new Date();
   isWindowOpen = false;
-
-  ngOnInit() {
-    this.control().addValidators(this.customValidatorDate());
-    this.control().markAsTouched();
-    this.control().updateValueAndValidity();
-  }
 
   customValidatorDate(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
@@ -82,14 +74,8 @@ export class BmbDatepickerComponent implements OnInit {
         this.dateFormat(),
       ).isValid;
 
-      return !isValidDate ? { validationDate: true } : null;
+      return !isValidDate ? { customValidation: true } : null;
     };
-  }
-
-  getErrorMessage(errors: ValidationErrors | null): string {
-    if (errors?.['validationDate']) return this.invalidFormatErrorMessage();
-    if (errors?.['required']) return this.requiredFieldErrorMessage();
-    return '';
   }
 
   handleFocusedEvent(event: boolean) {

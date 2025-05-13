@@ -7,7 +7,7 @@ import {
   model,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule, ValidatorFn } from '@angular/forms';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import {
   IBmbAlignTooltip,
@@ -35,6 +35,7 @@ export interface IBmbInputError {
   minLength?: string;
   pattern?: string;
   jsonFormat?: string;
+  customValidation?: string;
 }
 
 export interface IBmbInputTooltipPosition {
@@ -93,6 +94,9 @@ export class BmbInputComponent {
     justify: 'before',
   });
   isClearable = input<boolean>(false);
+  customValidation = input<ValidatorFn>();
+
+  isCustomError = model<boolean>(false);
 
   showError = model<boolean>(false);
   control = model<FormControl>();

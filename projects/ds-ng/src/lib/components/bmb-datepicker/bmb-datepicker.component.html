@@ -25,7 +25,12 @@
       [isRequired]="isRequired()"
       (isFocus)="handleFocusedEvent($event)"
       [helperMessage]="dateFormat()"
-      [errorMessage]="getErrorMessage(control().errors)"
+      [errorMessage]="{
+        required: requiredFieldErrorMessage(),
+        customValidation: invalidFormatErrorMessage(),
+      }"
+      [isCustomError]="true"
+      [customValidation]="customValidatorDate()"
       [name]="name()"
       [isClearable]="isClearable()"
     />
@@ -36,7 +41,7 @@
         [isWindowOpen]="isWindowOpen"
         (closeWindow)="handleWindowOpen($event)"
         (onValueChange)="handleValueChange($event)"
-        [value]="control().value"
+        [value]="control().valid && control().value"
         [dateFormat]="dateFormat()"
         [stepYearPicker]="stepYearPicker()"
         [disableDatesBefore]="convertToDate(disableDatesBefore())"
