@@ -1,6 +1,9 @@
 
 name: Build and Publish to npm
 
+permissions:
+  contents: read
+
 on:
   push:
     branches:
