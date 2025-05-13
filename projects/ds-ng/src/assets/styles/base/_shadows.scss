@@ -1,0 +1,17 @@
+@use "./rem" as rem;
+
+:root {
+  @for $i from 1 through 6 {
+    @if $i == 1 {
+      --bmb-box-shadow-#{$i}: 0.0625rem 0.0625rem 0.125rem var(--drop_shadow-color-test-shadow);
+    } @else {
+      --bmb-box-shadow-#{$i}: #{rem.rem_calc(($i - 1) * 4)} #{rem.rem_calc(($i - 1) * 4)} #{rem.rem_calc(($i - 1) * 4)} var(--drop_shadow-color-test-shadow);
+    }
+  }
+}
+
+@for $i from 1 through 6 {
+  .bmb_box-shadow-#{$i} {
+    box-shadow: var(--bmb-box-shadow-#{$i});
+  }
+}

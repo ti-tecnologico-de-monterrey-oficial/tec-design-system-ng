@@ -9,10 +9,6 @@
   border-radius: rem.rem_calc(20);
 
   &-boxShadow {
-    -webkit-box-shadow: rem.rem_calc(15 15 0 -4)
-      rgba(var(--color-black-primary), 0.8);
-    -moz-box-shadow: rem.rem_calc(15 15 0 -4)
-      rgba(var(--color-black-primary), 0.8);
     box-shadow: rem.rem_calc(15 15 0 -4) rgba(var(--color-black-primary), 0.8);
   }
 
