@@ -1,0 +1,34 @@
+
+name: Build and Publish to npm
+
+permissions:
+  contents: read
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+        - uses: actions/checkout@v4
+        - uses: actions/setup-node@v4
+          with:
+            node-version: 20
+            registry-url: https://registry.npmjs.org
+        - name: Copy files
+          run:
+            cp ./package/v17/package.json ./package.json
+        - name: Install dependencies
+          run: npm install
+        - name: Build project
+          run: npm run build:lib
+        - name: Publish to npm
+          env:
+              NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          run: |
+            npm test
+            npm publish ./dist/ds-ng --access public --tag a17
