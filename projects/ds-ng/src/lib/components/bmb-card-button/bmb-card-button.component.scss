@@ -4,7 +4,7 @@
 
 @mixin shadow($border_radius) {
   border-radius: rem.rem_calc($border_radius);
-  box-shadow: var(--drop_shadow-color-test-shadow);
+  box-shadow: var(--bmb-box-shadow-3);
 }
 
 @mixin small_selected() {
