@@ -17,6 +17,8 @@
   [appearance]="appearance()"
   [maxlength]="maxlength()"
   [showMaxTextLength]="showMaxTextLength()"
+  [isCustomError]="isCustomError()"
+  [customValidation]="customValidation()"
 >
   <section class="bmb_field-wrapper">
     @if (!!icon() && type() !== "text-area") {
@@ -96,5 +98,6 @@
         </span>
       }
     }
+  <ng-container [ngTemplateOutlet]="customInputContent" />
   </section>
 </bmb-input-validation>

@@ -43,6 +43,10 @@
     @include fonts.font(4, regular);
     padding: var(--bmb-spacing-s);
 
+    > p {
+      margin: 0;
+    }
+
     &-helper {
       &-normal {
         color: var(--general_contrasts-input-outline);

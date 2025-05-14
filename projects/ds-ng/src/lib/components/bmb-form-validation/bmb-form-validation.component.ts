@@ -48,27 +48,37 @@ export class BmbFormValidationComponent implements AfterViewInit, OnInit {
     inputs.forEach((input: any) => {
       try {
         const controlName = this.getInputAttribute(input, 'name');
-        const inputValidation = input?.querySelectorAll(
+        const inputValidationList = input?.querySelectorAll(
           'bmb-input-validation',
-        )[0];
-        const type = this.getInputAttribute(inputValidation, 'type');
+        );
+        const type = this.getInputAttribute(inputValidationList[0], 'type');
 
-        if (!!controlName && !!type) {
-          let control = this.getFormControl(controlName);
-
-          if (!control) {
-            control =
-              this.getFormControlService(controlName) ||
-              this.ivs.newFormControlByType(type);
-            this.formGroup().addControl(controlName, control);
-          }
-
-          this.ivs.setFormControl(control, type, controlName);
+        if (type === 'date_range') {
+          inputValidationList.forEach((input: any) => {
+            this.addControl(this.getInputAttribute(input, 'name'), 'text');
+          });
+        } else {
+          this.addControl(controlName, type);
         }
       } catch (e) {
         console.info('form-val catch', input);
       }
     });
+  }
+
+  addControl(controlName: string, type: string): void {
+    if (!!controlName && !!type) {
+      let control = this.getFormControl(controlName);
+
+      if (!control) {
+        control =
+          this.getFormControlService(controlName) ||
+          this.ivs.newFormControlByType(type);
+        this.formGroup().addControl(controlName, control);
+      }
+
+      this.ivs.setFormControl(control, type, controlName);
+    }
   }
 
   onSubmit() {

@@ -32,15 +32,17 @@
     }
     <ng-content />
   </label>
-  <div class="bmb_input-validation-support">
-    @if (!!errorMessage() && shouldShowError) {
-      <p class="bmb_input-validation-support-error">
-        {{ getErrorMessage() }}
-      </p>
-    } @else if (!!helperMessage()) {
-      <p [class]="'bmb_input-validation-support-helper-' + appearance()">
-        {{ helperMessage() }}
-      </p>
-    }
-  </div>
+  @if (!!helperMessage() || (!!errorMessage() && shouldShowError)) {
+    <div class="bmb_input-validation-support">
+      @if (!!errorMessage() && shouldShowError) {
+        <p class="bmb_input-validation-support-error">
+          {{ getErrorMessage() }}
+        </p>
+      } @else if (!!helperMessage()) {
+        <p [class]="'bmb_input-validation-support-helper-' + appearance()">
+          {{ helperMessage() }}
+        </p>
+      }
+    </div>
+  }
 </section>
