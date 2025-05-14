@@ -5,6 +5,8 @@ import {
   input,
   output,
   model,
+  TemplateRef,
+  ContentChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule, ValidatorFn } from '@angular/forms';
@@ -24,7 +26,8 @@ export type IBmbInputType =
   | 'password'
   | 'number'
   | 'text-area'
-  | 'radio';
+  | 'radio'
+  | 'date_range';
 export type IBmbInputAppearance = 'main' | 'normal' | 'simple';
 export type IBmbAdditionalAction = 'copy' | 'showHide' | 'none';
 
@@ -108,6 +111,8 @@ export class BmbInputComponent {
 
   isHide: boolean = true;
 
+  @ContentChild('customInputContent') customInputContent!: TemplateRef<any>;
+
   constructor(private ivs: BmbInputValidationService) {}
 
   onFocus() {
@@ -152,7 +157,10 @@ export class BmbInputComponent {
 
   getType() {
     if (this.showAdditionalAction()) {
-      if (this.additionalAction() === 'showHide' && !this.isHide) {
+      if (
+        (this.additionalAction() === 'showHide' && !this.isHide) ||
+        this.type() === 'date_range'
+      ) {
         return 'text';
       }
     }

@@ -3,7 +3,7 @@
 
 .bmb_datepicker-modal {
   position: absolute;
-  top: calc(100% - #{rem.rem_calc(30)});
+  top: calc(100% + #{rem.rem_calc(8)});
   width: 100%;
   z-index: 2;
   color: var(--general_contrasts-100);
@@ -11,6 +11,7 @@
   border-radius: var(--bmb-radius-m);
   max-width: rem.rem_calc(400);
   padding: rem.rem_calc(16);
+  left: 0;
 
   &-space {
     padding: rem.rem_calc(0 0 var(--bmb-spacing-m));
