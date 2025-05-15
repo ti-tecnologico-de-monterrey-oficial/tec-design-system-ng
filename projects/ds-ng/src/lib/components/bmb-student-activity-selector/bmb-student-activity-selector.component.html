@@ -5,9 +5,14 @@
       (click)="selectTab(tab)"
       class="bmb_student_activity-item"
       [class.active]="tab.active"
+      [ngClass]="{
+        academic: tab.active && tab.appearance === 'academic',
+        life: tab.active && tab.appearance === 'life',
+        events: tab.active && tab.appearance === 'events',
+      }"
     >
-      <h2 class="bmb_student_activity-title">{{ tab.title }}</h2>
-      <h4 class="bmb_student_activity-subtitle">{{ tab.subtitle }}</h4>
+      <p class="bmb_student_activity-title">{{ tab.title }}</p>
+      <p class="bmb_student_activity-subtitle">{{ tab.subtitle }}</p>
     </li>
   </ul>
 </div>

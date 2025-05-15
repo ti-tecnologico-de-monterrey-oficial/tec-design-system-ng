@@ -52,3 +52,5 @@ export type IBbmBgAppearance =
   | 'creative_rum'
   | 'creative_hibiscus'
   | 'creative_ripelemon';
+
+export type IStudentActivityAppearance = 'academic' | 'life' | 'events';

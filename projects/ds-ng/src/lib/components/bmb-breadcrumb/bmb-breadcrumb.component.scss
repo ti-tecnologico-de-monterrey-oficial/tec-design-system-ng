@@ -9,15 +9,19 @@
 
   &-top {
     align-items: center;
-    color: var(--general_contrasts-100);
+    color: RGBA(var(--color-white-primary));
     display: flex;
     width: 100%;
 
     &-separator {
-      color: var(--general_contrasts-100);
-      display: block;
+      color: RGBA(var(--color-white-primary));
+      display: none;
       font-size: rem.rem_calc(20);
       margin: rem.rem_calc(0 8);
+
+      @include mixins.media-query(768, "min") {
+        display: block;
+      }
     }
 
     &-link {
@@ -29,11 +33,16 @@
 
     &-current {
       @include fonts.font(4, medium);
+      display: none;
       max-width: 100%;
       overflow: hidden;
       text-decoration: none;
       text-overflow: ellipsis;
       white-space: nowrap;
+
+      @include mixins.media-query(768, "min") {
+        display: block;
+      }
     }
   }
 

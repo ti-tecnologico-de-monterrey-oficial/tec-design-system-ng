@@ -58,6 +58,7 @@
 
 // Mixins for mobile
 @mixin content() {
+  border-radius: rem.rem_calc(0 8 8 0);
   cursor: pointer;
   top: calc(rem.rem_calc(67) + 5%);
   width: rem.rem_calc(28);

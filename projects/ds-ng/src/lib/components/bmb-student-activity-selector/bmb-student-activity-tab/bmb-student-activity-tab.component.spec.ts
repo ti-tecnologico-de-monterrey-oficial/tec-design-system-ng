@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BmbTabStudenActivityComponent } from './bmb-student-activity-tab.component';
+import { BmbTabStudentActivityComponent } from './bmb-student-activity-tab.component';
 
-describe('BmbTabStudenActivityComponent', () => {
-  let component: BmbTabStudenActivityComponent;
-  let fixture: ComponentFixture<BmbTabStudenActivityComponent>;
+describe('BmbTabStudentActivityComponent', () => {
+  let component: BmbTabStudentActivityComponent;
+  let fixture: ComponentFixture<BmbTabStudentActivityComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BmbTabStudenActivityComponent],
+      imports: [BmbTabStudentActivityComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(BmbTabStudenActivityComponent);
+    fixture = TestBed.createComponent(BmbTabStudentActivityComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
