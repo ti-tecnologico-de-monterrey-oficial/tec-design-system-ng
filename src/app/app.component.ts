@@ -5473,15 +5473,15 @@ export class AppComponent {
   });
 
   formGroup: FormGroup = new FormGroup({
-    input_phone: new FormControl(),
-    input_tag: new FormControl(),
-    input_calendar: new FormControl(),
+    // input_phone: new FormControl(),
+    // input_tag: new FormControl(),
+    // input_calendar: new FormControl(),
+    // range_start: new FormControl(),
+    // range_end: new FormControl(),
     input5o: new FormControl(),
     input6o: new FormControl(),
     checkbox3o: new FormControl(),
     contract2o: new FormControl(),
-    range_start: new FormControl(),
-    range_end: new FormControl(),
   });
 
   showErrors: { [key: string]: boolean } = {};

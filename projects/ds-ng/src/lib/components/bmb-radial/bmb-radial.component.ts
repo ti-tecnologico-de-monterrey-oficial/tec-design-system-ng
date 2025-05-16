@@ -10,7 +10,7 @@ import { IBbmSidePosition } from '../../types';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { BmbInputValidationComponent } from '../bmb-input/bmb-input-validation/bmb-input-validation.component';
 import { CommonModule } from '@angular/common';
-import { getPositionClass, getUUID } from '../../utils/utils';
+import { getUUID } from '../../utils/utils';
 import { BmbInputValidationService } from '../bmb-input/bmb-input-validation/bmb-input-validation.service';
 import { IBmbInputError } from '../bmb-input/bmb-input.component';
 
@@ -46,16 +46,12 @@ export class BmbRadialComponent {
 
   constructor(private ivs: BmbInputValidationService) {}
 
-  getPositionClass(className: string): string {
-    return getPositionClass(className, this.labelPosition());
-  }
-
   getFormControl(): FormControl {
     return this.ivs.getFormControlByName(this.name());
   }
 
   get shouldShowError(): boolean {
-    return this.ivs.showError(this.name()) || this.showError();
+    return this.ivs.showError(this.name());
   }
 
   handleRadioChange(event: Event) {

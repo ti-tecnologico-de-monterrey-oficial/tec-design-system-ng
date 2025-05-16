@@ -1,13 +1,6 @@
 <section [ngClass]="getClassList()">
-  @if (label()) {
-    <label class="bmb_date-range-label" [for]="name() + '_start'">
-      {{ label() }}
-      @if (isRequired()) {
-        <small class="bmb_field-label-required">*</small>
-      }
-    </label>
-  }
   <bmb-datepicker
+    [label]="label()"
     [placeholder]="placeholderStartDate()"
     [name]="name() + '_start'"
     [control]="controlStart()"
@@ -20,9 +13,10 @@
     [requiredFieldErrorMessage]="requiredFieldErrorMessage()"
     [disableDatesAfter]="disableDatesAfter"
     [appearance]="appearance()"
+    helperMessage=""
   />
-  <bmb-divider class="bmb_date-range-divider"></bmb-divider>
   <bmb-datepicker
+    [label]="label()"
     [placeholder]="placeholderEndDate()"
     [name]="name() + '_end'"
     [control]="controlEnd()"
@@ -35,5 +29,6 @@
     [requiredFieldErrorMessage]="requiredFieldErrorMessage()"
     [disableDatesBefore]="disableDatesBefore"
     [appearance]="appearance()"
+    helperMessage=""
   />
 </section>

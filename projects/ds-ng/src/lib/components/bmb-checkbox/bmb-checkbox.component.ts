@@ -12,7 +12,7 @@ import { IBbmSidePosition } from '../../types';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { BmbInputValidationService } from '../bmb-input/bmb-input-validation/bmb-input-validation.service';
 import { BmbInputValidationComponent } from '../bmb-input/bmb-input-validation/bmb-input-validation.component';
-import { getPositionClass, getUUID } from '../../utils/utils';
+import { getUUID } from '../../utils/utils';
 import { IBmbInputError } from '../bmb-input/bmb-input.component';
 
 @Component({
@@ -51,10 +51,6 @@ export class BmbCheckboxComponent implements OnInit {
     if (this.indeterminate()) {
       this.checked.set(false);
     }
-  }
-
-  getPositionClass(className: string): string {
-    return getPositionClass(className, this.labelPosition());
   }
 
   getFormControl(): FormControl {

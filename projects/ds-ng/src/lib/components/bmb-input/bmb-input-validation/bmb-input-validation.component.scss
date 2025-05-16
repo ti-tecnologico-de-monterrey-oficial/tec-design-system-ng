@@ -2,12 +2,6 @@
 @use "../../../../assets/styles/base/mixins" as mixins;
 @use "../../../../assets/styles/base/rem" as rem;
 
-@mixin label_width($position) {
-  @if $position == main {
-    width: 100%;
-  }
-}
-
 .bmb_input-validation {
   user-select: none;
 
@@ -30,18 +24,6 @@
     @include fonts.font(4, regular);
     color: var(--general_contrasts-100);
 
-    &-before {
-      @include label_width(before);
-    }
-
-    &-after {
-      @include label_width(after);
-    }
-
-    &-main {
-      @include label_width(main);
-    }
-
     &-required {
       color: var(--input-error);
     }
@@ -56,20 +38,28 @@
     }
   }
 
-  &-helper {
+  &-support {
+    display: flex;
     @include fonts.font(4, regular);
-    color: var(--general_contrasts-input-outline);
     padding: var(--bmb-spacing-s);
 
-    &-simple {
-      color: var(--general_contrasts-50);
+    > p {
+      margin: 0;
     }
-  }
 
-  &-error {
-    @include fonts.font(4, regular);
-    color: var(--input-error);
-    padding: var(--bmb-spacing-s);
+    &-helper {
+      &-normal {
+        color: var(--general_contrasts-input-outline);
+      }
+
+      &-simple {
+        color: var(--general_contrasts-50);
+      }
+    }
+
+    &-error {
+      color: var(--input-error);
+    }
   }
 
   &.disabled {

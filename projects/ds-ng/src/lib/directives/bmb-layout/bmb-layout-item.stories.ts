@@ -13,6 +13,7 @@ import {
 } from '../../components/bmb-card/bmb-card.component';
 import { IMargin } from './bmb-layout-item.directive';
 import { InputSignal } from '@angular/core';
+import { attributes } from '../../utils/utils';
 
 const meta: Meta<BmbLayoutItemDirective> = {
   title: 'Micro Componentes/Layout item',
@@ -46,6 +47,10 @@ import { BmbLayoutDirective, BmbLayoutItemDirective } from '@ti-tecnologico-de-m
   styleUrl: './component.scss',
 })
 \`\`\`
+
+This component is used to create a layout for your application. It allows you to define the size of the columns for different screen sizes (mobile and full resolution). You can also set margins for the left and right sides of the columns. The \`isDynamicItem\` property allows you to enable dynamic sizing for the columns, and the \`colGrow\` property sets how much of the flex container positive free space should be assigned to the flex item main size.
+
+The \`colSm\` and \`colLg\` properties determine the size of the columns for mobile and full resolution devices, respectively. The \`marginLeft\` and \`marginRight\` properties set the margin areas on the left and right sides of the columns.
 
 Below is an example of how you can use this component in HTML:
         `,
@@ -125,8 +130,8 @@ Below is an example of how you can use this component in HTML:
     },
   },
   args: {
-    colSm: 0 as unknown as InputSignal<IColumSizeMobile>,
-    colLg: 0 as unknown as InputSignal<IColumSizeFull>,
+    colSm: 1 as unknown as InputSignal<IColumSizeMobile>,
+    colLg: 1 as unknown as InputSignal<IColumSizeFull>,
     marginLeft: { sm: 0, lg: 0 } as unknown as InputSignal<IMargin>,
     marginRight: { sm: 0, lg: 0 } as unknown as InputSignal<IMargin>,
     isDynamicItem: false as unknown as InputSignal<boolean>,
@@ -144,17 +149,29 @@ export const OneItem: Story = {
     props: args,
     template: `
       <section bmbLayout>
-        <bmb-card
-          bmbLayoutItem
-          [colSm]="colSm"
-          [colLg]="colLg"
-          [marginLeft]="marginLeft"
-          [marginRight]="marginRight"
-          [isDynamicItem]="isDynamicItem"
-          [colGrow]="colGrow"
-        >
-          <bmb-card-content padding="none">
-            <p [ngStyle]="{padding: '1rem'}">Element</p>
+        <bmb-card bmbLayoutItem margin="none" [colSm]="1" [colLg]="2">
+          <bmb-card-content padding="m">
+            <span>Column</span>
+          </bmb-card-content>
+        </bmb-card>
+        <bmb-card bmbLayoutItem margin="none" [colSm]="1" [colLg]="2">
+          <bmb-card-content padding="m">
+            <span>Column</span>
+          </bmb-card-content>
+        </bmb-card>
+        <bmb-card bmbLayoutItem margin="none" type="primary" ${attributes(args)}>
+          <bmb-card-content padding="m">
+            <span>Column</span>
+          </bmb-card-content>
+        </bmb-card>
+        <bmb-card bmbLayoutItem margin="none" [colSm]="1" [colLg]="2">
+          <bmb-card-content padding="m">
+            <span>Column</span>
+          </bmb-card-content>
+        </bmb-card>
+        <bmb-card bmbLayoutItem margin="none" [colSm]="1" [colLg]="2">
+          <bmb-card-content padding="m">
+            <span>Column</span>
           </bmb-card-content>
         </bmb-card>
       </section>

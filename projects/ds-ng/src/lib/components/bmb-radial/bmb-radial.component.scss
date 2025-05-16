@@ -1,6 +1,15 @@
 @use "../../../assets/styles/base/mixins" as mixins;
 @use "../../../assets/styles/base/rem" as rem;
 
+@mixin focus_mark($color) {
+  &:focus,
+  &:focus-visible {
+    & + .bmb_radio-mark::before {
+      @include mixins.shadow_mark($color);
+    }
+  }
+}
+
 .bmb_radio {
   &-input {
     opacity: 0;
@@ -8,72 +17,32 @@
     width: 0;
     position: absolute;
 
-    &:checked + .bmb_radio-mark,
-    &[ng-reflect-checked="true"] + .bmb_radio-mark {
-      border: rem.rem_calc(2) solid var(--switch-checked);
+    &:is(:checked) {
+      @include focus_mark(var(--buttons-active-switch));
 
-      &::after {
-        position: absolute;
-        @include mixins.mark_position(12, 12, 0);
-        border-radius: 100%;
-        background-color: var(--switch-checked);
+      + .bmb_radio-mark {
+        border: rem.rem_calc(2) solid var(--buttons-active-switch);
+
+        @include mixins.input_shadow(var(--buttons-active-switch));
+
+        &::after {
+          @include mixins.input_checked(12, 12);
+          background-color: var(--buttons-active-switch);
+          border-radius: 100%;
+        }
       }
     }
 
-    &:hover + .bmb_radio-mark {
-      &:not(.bmb_radio-mark-error) {
-        border-color: var(--switch-checked);
-      }
+    &:not(:checked) {
+      @include focus_mark(rgb(var(--color-charade-900)));
 
-      &::before {
-        @include mixins.shadow_mark(48, 48, -14);
+      & + .bmb_radio-mark {
+        @include mixins.input_shadow(rgb(var(--color-charade-900)));
       }
     }
-
-    &:focus + .bmb_radio-mark,
-    &:focus-visible + .bmb_radio-mark {
-      &:not(.bmb_radio-mark-error) {
-        border-color: var(--switch-checked);
-      }
-
-      &::before {
-        @include mixins.shadow_mark(48, 48, -14);
-      }
-    }
-  }
-
-  &-before {
-    padding-left: rem.rem_calc(8);
-  }
-
-  &-after {
-    padding-right: rem.rem_calc(8);
   }
 
   &-mark {
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    align-items: center;
-    justify-content: center;
-    height: rem.rem_calc(24);
-    width: rem.rem_calc(24);
-    background-color: transparent;
-    border: rem.rem_calc(2) solid var(--general_contrasts-100);
-    border-radius: 100%;
-
-    &-error {
-      @include mixins.error_input();
-    }
-
-    &::after {
-      content: "";
-      display: none;
-      position: absolute;
-    }
+    @include mixins.input_mark(var(--general_contrasts-100), 100%);
   }
-}
-
-.bmb_input-validation-error .bmb_radio-mark {
-  @include mixins.error_input();
 }

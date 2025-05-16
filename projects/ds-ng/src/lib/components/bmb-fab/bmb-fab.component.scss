@@ -5,7 +5,7 @@
 @mixin fabMitec() {
   @include mixins.fabContent();
   background-color: var(--buttons-alternative-normal);
-  box-shadow: var(--drop_shadow-color-test-shadow);
+  box-shadow: var(--bmb-box-shadow-3);
   color: var(--buttons-primary-normal);
 
   &:active {
