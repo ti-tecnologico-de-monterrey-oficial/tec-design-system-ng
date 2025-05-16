@@ -32,7 +32,7 @@ describe('BmbItemComponent', () => {
     expect(component.value()).toBe('Test value');
   });
 
-  it('should have a default iconSize of 24', () => {
-    expect(component.iconSize()).toBe(24);
+  it('should have a default iconSize of 20', () => {
+    expect(component.iconSize()).toBe(20);
   });
 });

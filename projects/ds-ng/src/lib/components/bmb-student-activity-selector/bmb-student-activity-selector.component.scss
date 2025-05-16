@@ -25,6 +25,8 @@
     min-width: rem.rem_calc(125);
 
     &.active {
+      color: RGBA(var(--color-white-primary));
+
       &.academic {
         background: linear-gradient(to right, var(--color-academic-gradient));
       }
