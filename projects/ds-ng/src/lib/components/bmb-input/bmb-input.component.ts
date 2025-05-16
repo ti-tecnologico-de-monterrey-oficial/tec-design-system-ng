@@ -5,9 +5,11 @@ import {
   input,
   output,
   model,
+  TemplateRef,
+  ContentChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule, ValidatorFn } from '@angular/forms';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import {
   IBmbAlignTooltip,
@@ -24,7 +26,8 @@ export type IBmbInputType =
   | 'password'
   | 'number'
   | 'text-area'
-  | 'radio';
+  | 'radio'
+  | 'date_range';
 export type IBmbInputAppearance = 'main' | 'normal' | 'simple';
 export type IBmbAdditionalAction = 'copy' | 'showHide' | 'none';
 
@@ -35,6 +38,7 @@ export interface IBmbInputError {
   minLength?: string;
   pattern?: string;
   jsonFormat?: string;
+  customValidation?: string;
 }
 
 export interface IBmbInputTooltipPosition {
@@ -93,6 +97,9 @@ export class BmbInputComponent {
     justify: 'before',
   });
   isClearable = input<boolean>(false);
+  customValidation = input<ValidatorFn>();
+
+  isCustomError = model<boolean>(false);
 
   showError = model<boolean>(false);
   control = model<FormControl>();
@@ -104,6 +111,8 @@ export class BmbInputComponent {
 
   isHide: boolean = true;
 
+  @ContentChild('customInputContent') customInputContent!: TemplateRef<any>;
+
   constructor(private ivs: BmbInputValidationService) {}
 
   onFocus() {
@@ -111,6 +120,8 @@ export class BmbInputComponent {
   }
 
   onBlur() {
+    const control = this.ivs.getFormControlByName(this.name());
+    control.updateValueAndValidity();
     this.isFocus.emit(false);
     this.isBlur.emit(true);
   }
@@ -146,7 +157,10 @@ export class BmbInputComponent {
 
   getType() {
     if (this.showAdditionalAction()) {
-      if (this.additionalAction() === 'showHide' && !this.isHide) {
+      if (
+        (this.additionalAction() === 'showHide' && !this.isHide) ||
+        this.type() === 'date_range'
+      ) {
         return 'text';
       }
     }

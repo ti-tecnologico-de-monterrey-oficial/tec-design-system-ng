@@ -1,4 +1,4 @@
-<div class="bmb_datepicker-modal">
+<section class="bmb_datepicker-modal">
   <nav
     class="bmb_datepicker-modal-nav"
     bmbLayout
@@ -9,16 +9,11 @@
     alignItems="center"
   >
     <li bmbLayoutItem>
-      <button
-        class="bmb_datepicker-modal-button bmb_datepicker-modal-nav-button"
-        type="button"
-        (click)="handleChevronClick('less')"
-        bmbButton
-        appearance="transparent"
+      <bmb-action-icon
         icon="keyboard_arrow_left"
-        size="micro"
         [iconSize]="24"
-      ></button>
+        (buttonClick)="handleChangeMonth('less')"
+      />
     </li>
     <li bmbLayoutItem [isDynamicItem]="true" [colGrow]="1">
       <button
@@ -49,20 +44,16 @@
       </button>
     </li>
     <li bmbLayoutItem>
-      <button
-        class="bmb_datepicker-modal-button bmb_datepicker-modal-nav-button"
-        type="button"
-        (click)="handleChevronClick('plus')"
-        bmbButton
-        appearance="transparent"
+      <bmb-action-icon
         icon="keyboard_arrow_right"
-        size="micro"
         [iconSize]="24"
-      ></button>
+        (buttonClick)="handleChangeMonth('plus')"
+      />
     </li>
   </nav>
   @switch (view) {
     @case ("calendar") {
+      <div class="bmb_datepicker-modal-space"></div>
       <ul class="bmb_datepicker-modal-calendar">
         @for (day of dayNames; track $index) {
           <li class="bmb_datepicker-modal-calendar-header">
@@ -87,6 +78,7 @@
       </ul>
     }
     @case ("month") {
+      <bmb-divider />
       <ul
         class="bmb_datepicker-modal-calendar-list-months bmb_datepicker-modal-calendar"
       >
@@ -110,6 +102,7 @@
       </ul>
     }
     @case ("year") {
+      <bmb-divider />
       <ul
         class="bmb_datepicker-modal-calendar-list-years bmb_datepicker-modal-calendar"
       >
@@ -133,4 +126,4 @@
       </ul>
     }
   }
-</div>
+</section>

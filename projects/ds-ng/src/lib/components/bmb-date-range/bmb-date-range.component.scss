@@ -3,57 +3,31 @@
 @use "../../../assets/styles/base/rem" as rem;
 
 .bmb_date-range {
-  display: grid;
-  gap: var(--bmb-spacing-xs);
-  grid-template-columns: 1fr;
-  grid-template-areas:
-    "label"
-    "start"
-    "end";
+  display: flex;
+  flex-flow: column;
 
-  @include mixins.media-query(700, "min") {
-    grid-template-columns: 1fr rem.rem_calc(32) 1fr;
-    grid-template-areas:
-      "label label label"
-      "start separator end";
+  > * {
+    flex: 1;
   }
 
-  &-single-row {
-    @include mixins.media-query(700, "min") {
-      grid-template-columns: 1fr;
-      grid-template-areas:
-        "label"
-        "start"
-        "end";
+  &-column {
+    flex-flow: row;
+    @include mixins.media-query(699, "max") {
+      flex-flow: column;
     }
 
-    .bmb_date-range-divider {
-      display: none !important;
-    }
-  }
+    bmb-datepicker:first-child .bmb_field-wrapper::after {
+      content: "";
+      width: rem.rem_calc(16);
+      height: 0;
+      border-top: rem.rem_calc(2) solid;
+      margin: rem.rem_calc(0 10);
+      display: inline-block;
 
-  &-label {
-    color: RGBA(var(--color-charade-950));
-    width: 100%;
-    grid-area: label;
-    margin: rem.rem_calc(2 2 0 8);
-    @include fonts.font(3, regular);
-
-    &-required {
-      color: RGBA(var(--color-red-light));
-    }
-  }
-
-  &-divider {
-    min-width: rem.rem_calc(16);
-    margin: rem.rem_calc(0 8);
-    display: none;
-    align-items: center;
-    max-height: rem.rem_calc(48);
-    grid-area: separator;
-
-    @include mixins.media-query(700, "min") {
-      display: flex;
+      @include mixins.media-query(699, "max") {
+        display: none;
+      }
     }
   }
 }
+

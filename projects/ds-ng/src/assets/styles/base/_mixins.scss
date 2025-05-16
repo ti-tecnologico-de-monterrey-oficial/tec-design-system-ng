@@ -86,7 +86,7 @@
     }
   } @else if $appearance == secondary-outlined {
     background-color: transparent;
-    border: rem.rem_calc(1) solid var(--general_contrasts-100);
+    border: var(--bmb-border-general_contrasts-100-1-solid);
     color: var(--general_contrasts-100);
     padding: rem.rem_calc(11 15);
 
@@ -110,7 +110,8 @@
 
     &:active:not(:disabled),
     &.bmb_btn-toggle-active {
-      border: rem.rem_calc(2) solid var(--general_contrasts-input-background);
+      border: var(--bmb-border-inherit-2-solid);
+      border-color: var(--general_contrasts-input-background);
       box-shadow: 0px 0px rem.rem_calc(25) var(--gris-charade-500);
       text-shadow: none;
       padding: rem.rem_calc(10 14);
@@ -131,7 +132,8 @@
     }
   } @else if $appearance == destructive {
     background-color: transparent;
-    border: rem.rem_calc(1) solid var(--red-primary);
+    border: var(--bmb-border-inherit-1-solid);
+    border-color: var(--red-primary);
     color: var(--red-primary);
     padding: rem.rem_calc(11 15);
 
@@ -223,13 +225,14 @@
   right: rem.rem_calc(10);
   z-index: 2;
   background-color: var(--general_contrasts-main-selection);
-  box-shadow: var(--drop_shadow-color-test-shadow);
+  box-shadow: var(--bmb-box-shadow-3);
   color: var(--general_contrasts-main-complimentary);
 
   &:focus,
   &:focus-visible {
     background-color: var(--general_contrasts-25);
-    border: rem.rem_calc(1) solid var(--general_contrasts-main-selection);
+    border: var(--bmb-border-inherit-1-solid);
+    border-color: var(--general_contrasts-main-selection);
     color: var(--general_contrasts-main-selection);
   }
 
@@ -240,7 +243,8 @@
 
   &:active {
     background-color: var(--general_contrasts-input-background);
-    border: rem.rem_calc(1) solid var(--general_contrasts-main-selection);
+    border: var(--bmb-border-inherit-1-solid);
+    border-color: var(--general_contrasts-main-selection);
 
     > span {
       color: var(--general_contrasts-main-selection);
@@ -252,13 +256,13 @@
   }
 }
 
-@mixin shadow_mark($height, $width, $left) {
+@mixin shadow_mark($color_name, $opacity: 0.1) {
   content: "";
-  height: rem.rem_calc($height);
-  width: rem.rem_calc($width);
+  height: rem.rem_calc(48);
+  width: rem.rem_calc(48);
   border-radius: 50%;
-  opacity: 0.1;
-  background-color: var(--radio-checked-shadow);
+  opacity: $opacity;
+  background-color: $color_name;
   position: absolute;
   z-index: -1;
   display: block;
@@ -266,22 +270,49 @@
   top: 0;
   right: 0;
   bottom: 0;
-  left: rem.rem_calc($left);
-}
-
-@mixin mark_position($height, $width, $top) {
-  height: rem.rem_calc($height);
-  width: rem.rem_calc($width);
-  display: block;
-  margin: auto;
-  top: rem.rem_calc($top);
-  left: 0;
-  right: 0;
-  bottom: 0;
+  left: rem.rem_calc(-14);
 }
 
 @mixin error_input() {
   border-color: var(--input-error);
+}
+
+@mixin input_checked($height, $width) {
+  display: block;
+  position: relative;
+  margin: auto;
+  height: rem.rem_calc($height);
+  width: rem.rem_calc($width);
+}
+
+@mixin input_shadow($color_name) {
+  &:hover {
+    &::before {
+      @include shadow_mark($color_name);
+    }
+  }
+}
+
+@mixin input_mark($color_name, $border_radius) {
+  cursor: pointer;
+  display: flex;
+  position: relative;
+  height: rem.rem_calc(24);
+  width: rem.rem_calc(24);
+  margin: rem.rem_calc(6);
+  background-color: transparent;
+  border: rem.rem_calc(2) solid $color_name;
+  border-radius: $border_radius;
+
+  &::after {
+    content: "";
+    display: none;
+    position: absolute;
+  }
+
+  &-error {
+    @include error_input();
+  }
 }
 
 @mixin truncated_string($max-block-size, $line-clamp) {

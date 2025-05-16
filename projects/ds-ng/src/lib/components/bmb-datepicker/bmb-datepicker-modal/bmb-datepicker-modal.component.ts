@@ -13,6 +13,8 @@ import { weeksAndDays } from '../../bmb-calendar/utils';
 import { BmbButtonDirective } from '../../../directives/bmb-button/button.directive';
 import { CommonModule } from '@angular/common';
 import { orderDayNames } from '../../../utils/utils';
+import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
+import { BmbDividerComponent } from '../../bmb-divider/bmb-divider.component';
 
 @Component({
   selector: 'bmb-datepicker-modal',
@@ -22,6 +24,8 @@ import { orderDayNames } from '../../../utils/utils';
     BmbLayoutDirective,
     BmbLayoutItemDirective,
     BmbButtonDirective,
+    BmbActionIconComponent,
+    BmbDividerComponent,
   ],
   templateUrl: './bmb-datepicker-modal.component.html',
   styleUrls: [
@@ -53,6 +57,24 @@ export class BmbDatepickerModalComponent implements OnInit {
   selectedYear = 0;
   view = 'calendar';
   selectedDate: DateTime | null = null;
+
+  ngOnInit() {
+    if (!!this.value()) {
+      const formattedDate = DateTime.fromFormat(
+        this.value(),
+        this.dateFormat(),
+      );
+      this.selectedDate = formattedDate;
+      this.selectedYear = formattedDate.year;
+      this.selectedMonth = formattedDate.month;
+      this.month = this.monthsNames[formattedDate.month - 1];
+    } else {
+      this.selectedYear = this.now().year;
+      this.selectedMonth = this.now().month;
+      this.month =
+        this.monthsNames[(this.selectedMonth || this.now().month) - 1];
+    }
+  }
 
   handleMonthChange(event: number) {
     this.selectedMonth = event + 1;
@@ -102,24 +124,6 @@ export class BmbDatepickerModalComponent implements OnInit {
 
   handleChangeView(view: string) {
     this.view = view;
-  }
-
-  ngOnInit() {
-    if (this.value()) {
-      const formattedDate = DateTime.fromFormat(
-        this.value(),
-        this.dateFormat(),
-      );
-      this.selectedDate = formattedDate;
-      this.selectedYear = formattedDate.year;
-      this.selectedMonth = formattedDate.month;
-      this.month = this.monthsNames[formattedDate.month - 1];
-    } else {
-      this.selectedYear = this.now().year;
-      this.selectedMonth = this.now().month;
-      this.month =
-        this.monthsNames[(this.selectedMonth || this.now().month) - 1];
-    }
   }
 
   handleChevronClick(event: string) {

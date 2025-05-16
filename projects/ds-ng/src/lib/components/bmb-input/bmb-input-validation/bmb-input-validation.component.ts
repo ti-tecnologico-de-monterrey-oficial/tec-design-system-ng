@@ -7,11 +7,12 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import {
+  IBmbInputAppearance,
   IBmbInputError,
   IBmbInputTooltipPosition,
   IBmbInputType,
 } from '../bmb-input.component';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule, ValidatorFn } from '@angular/forms';
 import { IBbmSidePosition } from '../../../types';
 import { CommonModule } from '@angular/common';
 import { BmbTooltipComponent } from '../../bmb-tooltip/bmb-tooltip.component';
@@ -32,6 +33,7 @@ export type IBmbInputValType = 'checkbox' | 'email' | 'phone' | 'switch';
 export class BmbInputValidationComponent {
   inputId = input<string>('');
   type = input<IBmbInputType | IBmbInputValType>('text');
+  appearance = input<IBmbInputAppearance | string>('normal');
   label = input<string>('');
   labelPosition = input<IBbmSidePosition | null>();
   name = input<string>('');
@@ -52,10 +54,11 @@ export class BmbInputValidationComponent {
     justify: 'before',
   });
   showMaxTextLength = input<boolean | null>(true);
-  errorMessage = input<string | IBmbInputError>('');
   helperMessage = input<string>('');
-  isSupportTextNormal = input<boolean>(false);
+  errorMessage = input<string | IBmbInputError>('');
+  customValidation = input<ValidatorFn>();
 
+  isCustomError = model<boolean>(false);
   showError = model<boolean>(false);
   control = model<FormControl>();
 
@@ -77,34 +80,16 @@ export class BmbInputValidationComponent {
       this.minlength()!,
       this.pattern()!,
       this.jsonFormat(),
+      this.isCustomError(),
+      this.customValidation()!,
       this.cdr,
     );
   }
 
-  getPositionClass(className: string): string {
-    return getPositionClass(className, this.labelPosition()!);
-  }
-
-  getLabelClass(className: string): string {
-    return this.getPositionClass(className) || `${className}-main`;
-  }
-
-  getTypeErrorClass(className: string): string {
-    if (!!this.errorMessage() && this.shouldShowError)
-      return `${className}-error`;
-    return '';
-  }
-
   getClasses(className: string): string[] {
-    const type = this.type().toLocaleLowerCase();
-    if (type === 'radio' || type === 'checkbox') {
-      const baseName: string = `${className}`;
-      const classes: string[] = [];
-
+    if (this.type() === 'radio' || this.type() === 'checkbox') {
       return [
-        ...classes,
-        this.getPositionClass(`${className}-direction`),
-        this.getTypeErrorClass(baseName),
+        getPositionClass(`${className}-direction`, this.labelPosition()!),
       ];
     }
 
@@ -120,24 +105,23 @@ export class BmbInputValidationComponent {
   }
 
   getErrorMessage(): string {
-    const control = this.ivs.getFormControlByName(this.name());
-
     if (typeof this.errorMessage() === 'string') {
       return this.errorMessage().toString();
     }
 
+    const control = this.ivs.getFormControlByName(this.name());
     const error = this.errorMessage() as IBmbInputError;
 
-    if (control['errors'] !== null) {
-      const errorType = control['errors'];
-
-      if (errorType['invalidJson'] && error.jsonFormat) return error.jsonFormat;
-      if (errorType['pattern'] && !!error.pattern) return error.pattern;
-      if (errorType['min'] && !!error.min) return error.min;
-      if (errorType['max'] && !!error.max) return error.max;
-      if (errorType['minlength'] && !!error.minLength) return error.minLength;
-      if (errorType['required'] && !!error.required) return error.required;
-    }
+    if (control.hasError('customValidation') && !!error.customValidation)
+      return error.customValidation;
+    if (control.hasError('invalidJson') && !!error.jsonFormat)
+      return error.jsonFormat;
+    if (control.hasError('pattern') && !!error.pattern) return error.pattern;
+    if (control.hasError('min') && !!error.min) return error.min;
+    if (control.hasError('max') && !!error.max) return error.max;
+    if (control.hasError('minlength') && !!error.minLength)
+      return error.minLength;
+    if (control.hasError('required') && !!error.required) return error.required;
 
     return '';
   }

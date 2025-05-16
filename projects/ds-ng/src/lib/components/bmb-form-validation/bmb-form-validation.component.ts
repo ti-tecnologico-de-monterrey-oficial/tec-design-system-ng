@@ -24,7 +24,7 @@ import { BmbInputValidationService } from '../bmb-input/bmb-input-validation/bmb
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbFormValidationComponent implements AfterViewInit {
+export class BmbFormValidationComponent implements AfterViewInit, OnInit {
   formGroup = model<FormGroup>(new FormGroup({}));
 
   formGroupState = output<FormGroup>();
@@ -34,38 +34,63 @@ export class BmbFormValidationComponent implements AfterViewInit {
     private el: ElementRef,
   ) {}
 
+  ngOnInit(): void {
+    this.addControls();
+  }
+
   ngAfterViewInit(): void {
-    const inputs = this.el.nativeElement.querySelectorAll(
-      'bmb-input-validation',
-    );
+    this.addControls();
+  }
+
+  addControls(): void {
+    const inputs = this.el.nativeElement.querySelectorAll('form')[0].childNodes;
 
     inputs.forEach((input: any) => {
-      const type = this.getInputAttribute(input, 'type');
-      const controlName = this.getInputAttribute(input, 'name');
+      try {
+        const controlName = this.getInputAttribute(input, 'name');
+        const inputValidationList = input?.querySelectorAll(
+          'bmb-input-validation',
+        );
+        const type = this.getInputAttribute(inputValidationList[0], 'type');
 
+        if (type === 'date_range') {
+          inputValidationList.forEach((input: any) => {
+            this.addControl(this.getInputAttribute(input, 'name'), 'text');
+          });
+        } else {
+          this.addControl(controlName, type);
+        }
+      } catch (e) {
+        console.info('form-val catch', input);
+      }
+    });
+  }
+
+  addControl(controlName: string, type: string): void {
+    if (!!controlName && !!type) {
       let control = this.getFormControl(controlName);
 
       if (!control) {
-        control = this.ivs.newFormControlByType(type);
+        control =
+          this.getFormControlService(controlName) ||
+          this.ivs.newFormControlByType(type);
         this.formGroup().addControl(controlName, control);
       }
 
       this.ivs.setFormControl(control, type, controlName);
-    });
+    }
   }
 
   onSubmit() {
+    this.formGroup().markAllAsTouched();
     this.formGroup().updateValueAndValidity();
     this.updateErrorState();
     this.formGroupState.emit(this.formGroup());
   }
 
   updateErrorState() {
-    const invalidInputs = this.el.nativeElement.querySelectorAll('.ng-invalid');
-
-    invalidInputs.forEach((input: any) => {
-      const controlName = this.getInputAttribute(input, 'name');
-      const control = this.getFormControlService(controlName);
+    Object.keys(this.formGroup().controls).forEach((field) => {
+      const control = this.getFormControl(field);
 
       if (control) {
         control.markAsTouched();
@@ -85,7 +110,7 @@ export class BmbFormValidationComponent implements AfterViewInit {
   }
 
   getFormControlService(name: string): FormControl {
-    return this.formGroup().get(name) as FormControl;
+    return this.ivs.getFormControlByName(name);
   }
 
   getFormControl(name: string): FormControl {

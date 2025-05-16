@@ -9,12 +9,12 @@
 
   &-top {
     align-items: center;
-    color: var(--general_contrasts-150);
+    color: var(--general_contrasts-100);
     display: flex;
     width: 100%;
 
     &-separator {
-      color: var(--general_contrasts-150);
+      color: var(--general_contrasts-100);
       display: block;
       font-size: rem.rem_calc(20);
       margin: rem.rem_calc(0 8);
@@ -44,7 +44,7 @@
     margin: rem.rem_calc(0 8);
 
     &-inactive {
-      color: var(--general_contrasts-150);
+      color: var(--general_contrasts-100);
     }
 
     @include mixins.media-query(768, "max") {
@@ -95,7 +95,7 @@
   }
 
   &-text {
-    color: var(--general_contrasts-150);
+    color: var(--general_contrasts-100);
     display: none;
 
     @include mixins.media-query(769, "min") {
@@ -117,13 +117,13 @@
       width: rem.rem_calc(50);
 
       &-inactive {
-        color: var(--general_contrasts-150);
+        color: var(--general_contrasts-100);
       }
     }
 
     &-menu {
       background-color: var(--general_contrasts-20);
-      box-shadow: rem.rem_calc(8 8 8 0) RGBA(var(--color-charade-950), 0.5);
+      box-shadow: var(--bmb-shadow-3);
       display: flex;
       flex-flow: column;
       left: rem.rem_calc(14);
@@ -134,14 +134,14 @@
 
       .bmb_breadcrumb-link {
         @include fonts.font(4, regular);
-        color: var(--general_contrasts-150);
+        color: var(--general_contrasts-100);
         flex: 1;
       }
     }
 
     &-items {
       align-items: center;
-      color: var(--general_contrasts-150);
+      color: var(--general_contrasts-100);
       display: flex;
       padding: rem.rem_calc(8 16);
     }

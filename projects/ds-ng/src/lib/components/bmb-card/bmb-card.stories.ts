@@ -143,7 +143,6 @@ Below is an example of how you can use this component in HTML:
       },
       options: [
         'default',
-        'contrasts-150',
         'contrasts-100',
         'contrasts-75',
         'contrasts-50',
@@ -267,7 +266,7 @@ export const HeaderAndFooterBackground: Story = {
 export const BoxShadowAndBorderColor: Story = {
   args: {
     boxShadowStyle: 'box-shadow-4',
-    borderColor: 'contrasts-150',
+    borderColor: 'contrasts-100',
   },
   render: (args) => ({
     props: args,

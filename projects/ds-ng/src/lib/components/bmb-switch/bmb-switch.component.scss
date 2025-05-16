@@ -75,7 +75,7 @@
   }
 
   &-text {
-    color: var(--general_contrasts-150);
+    color: var(--general_contrasts-100);
     padding: rem.rem_calc(0 5);
 
     @include fonts.font(3, regular);
