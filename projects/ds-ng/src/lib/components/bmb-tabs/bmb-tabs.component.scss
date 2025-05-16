@@ -50,7 +50,6 @@
     }
 
     &-uppercase {
-      text-transform: uppercase;
       @include fonts.font(3, regular);
     }
 

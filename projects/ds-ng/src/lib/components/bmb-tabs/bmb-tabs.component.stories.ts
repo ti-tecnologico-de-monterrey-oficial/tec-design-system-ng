@@ -170,7 +170,7 @@ The \`BmbTabsComponent\` optionally integrates with the \`TabsService\`, which a
       description:
         'The format of the tab title. Use "uppercase" to capitalize the titles.',
       table: {
-        category: 'Properties',
+        category: 'Deprecated',
         type: { summary: 'string' },
       },
     },
