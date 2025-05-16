@@ -75,7 +75,7 @@ Below is an example of how you can use this component in HTML:
   args: {
     label: 'Title',
     value: '$0.00',
-    indicatorAppearance: 'primary',
+    indicatorAppearance: 'normal',
   },
 } as Meta<typeof BmbLegendComponent>;
 
