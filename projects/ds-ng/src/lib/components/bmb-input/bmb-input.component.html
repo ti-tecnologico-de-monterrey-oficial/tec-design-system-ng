@@ -9,13 +9,13 @@
   [isRequired]="isRequired()"
   [disabled]="disabled()"
   [control]="control()"
-  [showError]="showError()"
+  [showError]="shouldShowError"
   [pattern]="pattern()"
   [jsonFormat]="jsonFormat()"
   [tooltip]="tooltip()"
   [tooltipPosition]="tooltipPosition()"
   [appearance]="appearance()"
-  [maxlength]="maxlength()"
+  [maxLength]="maxlength()"
   [showMaxTextLength]="showMaxTextLength()"
   [isCustomError]="isCustomError()"
   [customValidation]="customValidation()"
@@ -52,7 +52,7 @@
         (focus)="onFocus()"
         (blur)="onBlur()"
       ></textarea>
-      @if (this.shouldShowError) {
+      @if (shouldShowError) {
         <bmb-icon class="bmb_field-text-area-error-icon" [icon]="'error'" />
       }
     } @else {
@@ -98,6 +98,6 @@
         </span>
       }
     }
-  <ng-container [ngTemplateOutlet]="customInputContent" />
+    <ng-container [ngTemplateOutlet]="customInputContent" />
   </section>
 </bmb-input-validation>

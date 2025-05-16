@@ -315,6 +315,26 @@
   }
 }
 
+@mixin normal_input_border() {
+  background-color: var(--general_contrasts-input-background);
+  border: rem.rem_calc(1) solid var(--general_contrasts-75);
+  border-radius: rem.rem_calc(8);
+  height: rem.rem_calc(48);
+  width: 100%;
+}
+
+@mixin normal_input_focus() {
+  &:focus,
+  &:focus-visible,
+  &:hover {
+    border: rem.rem_calc(2) solid var(--general_contrasts-input-outline);
+    padding-left: calc(var(--bmb-spacing-s) - rem.rem_calc(1));
+    caret-color: var(--general_contrasts-input-outline);
+    outline: none;
+    transition: all 0.3s ease;
+  }
+}
+
 @mixin truncated_string($max-block-size, $line-clamp) {
   display: -webkit-box;
   max-block-size: rem.rem_calc($max-block-size);

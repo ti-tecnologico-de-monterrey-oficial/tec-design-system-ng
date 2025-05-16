@@ -15,8 +15,6 @@
 @mixin input($type: normal) {
   @include mixins.resetElement();
   @include fonts.font(4, regular);
-  height: rem.rem_calc(48);
-  width: 100%;
 
   &:focus,
   &:focus,
@@ -25,15 +23,13 @@
   }
 
   @if $type == "simple" {
+    height: rem.rem_calc(48);
+    width: 100%;
     background-color: transparent;
     border: 0;
     border-bottom: rem.rem_calc(1) solid var(--general_contrasts-100);
     color: var(--general_contrasts-75);
     padding-left: var(--bmb-spacing-m);
-
-    &.bmb_field-input-error {
-      @include mixins.error_input();
-    }
 
     &:focus,
     &:focus-visible,
@@ -46,30 +42,20 @@
       outline: none;
     }
   } @else {
-    background-color: var(--general_contrasts-input-background);
-    border: rem.rem_calc(1) solid var(--general_contrasts-75);
-    border-radius: rem.rem_calc(8);
+    @include mixins.normal_input_border();
     color: var(--general_contrasts-100);
     padding-left: var(--bmb-spacing-s);
 
-    &.bmb_field-input-error {
-      @include mixins.error_input();
-    }
-
-    &:focus,
-    &:focus-visible,
-    &:hover {
-      border: rem.rem_calc(2) solid var(--general_contrasts-input-outline);
-      padding-left: calc(var(--bmb-spacing-s) - rem.rem_calc(1));
-      caret-color: var(--general_contrasts-input-outline);
-      outline: none;
-      transition: all 0.3s ease;
-    }
+    @include mixins.normal_input_focus();
   }
 
   &::placeholder {
     @include fonts.font(4, regular);
     color: var(--general_contrasts-50);
+  }
+
+  &.bmb_field-input-error {
+    @include mixins.error_input();
   }
 }
 

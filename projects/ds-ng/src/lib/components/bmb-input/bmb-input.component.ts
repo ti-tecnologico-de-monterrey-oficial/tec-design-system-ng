@@ -36,6 +36,7 @@ export interface IBmbInputError {
   min?: string;
   max?: string;
   minLength?: string;
+  maxLength?: string;
   pattern?: string;
   jsonFormat?: string;
   customValidation?: string;
@@ -120,8 +121,6 @@ export class BmbInputComponent {
   }
 
   onBlur() {
-    const control = this.ivs.getFormControlByName(this.name());
-    control.updateValueAndValidity();
     this.isFocus.emit(false);
     this.isBlur.emit(true);
   }
@@ -145,6 +144,7 @@ export class BmbInputComponent {
   }
 
   get shouldShowError(): boolean {
+
     return this.ivs.showError(this.name());
   }
 

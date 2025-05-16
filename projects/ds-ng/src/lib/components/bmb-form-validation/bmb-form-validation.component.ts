@@ -83,7 +83,6 @@ export class BmbFormValidationComponent implements AfterViewInit, OnInit {
 
   onSubmit() {
     this.formGroup().markAllAsTouched();
-    this.formGroup().updateValueAndValidity();
     this.updateErrorState();
     this.formGroupState.emit(this.formGroup());
   }
@@ -93,7 +92,6 @@ export class BmbFormValidationComponent implements AfterViewInit, OnInit {
       const control = this.getFormControl(field);
 
       if (control) {
-        control.markAsTouched();
         control.updateValueAndValidity();
       }
     });

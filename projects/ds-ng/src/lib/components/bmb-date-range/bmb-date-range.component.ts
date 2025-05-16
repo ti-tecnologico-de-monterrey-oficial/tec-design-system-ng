@@ -30,8 +30,8 @@ export class BmbDateRangeComponent implements OnInit {
   disabled = input<boolean>(false);
   isRequired = input<boolean>(false);
   isClearable = input<boolean>(false);
-  controlStart = input<FormControl>(new FormControl());
-  controlEnd = input<FormControl>(new FormControl());
+  controlStart = input<FormControl>();
+  controlEnd = input<FormControl>();
   dateFormat = input<string>('dd/MM/yyyy');
   stepYearPicker = input<number>(12);
   name = input<string>('');
@@ -41,15 +41,15 @@ export class BmbDateRangeComponent implements OnInit {
   disableDatesAfter: string = '';
 
   ngOnInit() {
-    this.controlStart().valueChanges.subscribe((newValue) => {
-      if (newValue) {
-        this.disableDatesBefore = newValue;
+    this.controlStart()?.valueChanges.subscribe((value) => {
+      if (!!value) {
+        this.disableDatesBefore = value;
       }
     });
 
-    this.controlEnd().valueChanges.subscribe((newValue) => {
-      if (newValue) {
-        this.disableDatesAfter = newValue;
+    this.controlEnd()?.valueChanges.subscribe((value) => {
+      if (!!value) {
+        this.disableDatesAfter = value;
       }
     });
   }

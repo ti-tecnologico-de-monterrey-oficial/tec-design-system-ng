@@ -41,8 +41,10 @@
     position: relative;
     width: 100%;
 
-    &:hover {
+    &:hover,
+    &:focus {
       border-color: var(--general_contrasts-input-outline);
+      border-width: rem.rem_calc(2);
     }
   }
 
@@ -116,7 +118,7 @@
   }
 
   &-focus {
-    border: rem.rem_calc(1) solid var(--general_contrasts-input-outline);
+    border: rem.rem_calc(2) solid var(--general_contrasts-input-outline);
   }
 
   &-helper {

@@ -77,7 +77,6 @@ $dark: (
     }
   }
 
-
   @for $i from 1 through 6 {
     &.bmb_card-box-shadow-#{$i} {
       box-shadow: var(--bmb-box-shadow-#{$i});
