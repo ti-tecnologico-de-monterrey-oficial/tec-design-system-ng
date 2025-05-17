@@ -98,12 +98,12 @@
   table > tbody > tr {
     &:first-child,
     &.css-1oi7qoy {
-      > td {
+      > td:not([class^="bmb"]) {
         background-color: var(--general_contrasts-5) !important;
       }
     }
 
-    > td {
+    > td:not([class^="bmb"]) {
       background-color: var(--general_contrasts-20);
       color: var(--general_contrasts-100);
       border-top-color: var(--general_contrasts-5);
