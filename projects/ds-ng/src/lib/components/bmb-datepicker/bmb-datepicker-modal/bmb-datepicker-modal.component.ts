@@ -82,8 +82,8 @@ export class BmbDatepickerModalComponent implements OnInit {
     this.view = 'calendar';
   }
 
-  handleYearChange(event: any) {
-    this.selectedYear = event;
+  handleYearChange(event: string) {
+    this.selectedYear = parseInt(event, 10);
     this.view = 'calendar';
   }
 
@@ -101,13 +101,22 @@ export class BmbDatepickerModalComponent implements OnInit {
     this.onValueChange.emit(newValue);
   }
 
-  getWeeksAndDays(): DateTime[] {
+  getWeeksAndDays(): DateTime[][] {
     const firstDayOfMonth = DateTime.fromObject({
       day: 1,
       month: this.selectedMonth ?? this.now().month,
       year: this.selectedYear ?? this.now().year,
     });
-    return weeksAndDays(firstDayOfMonth);
+    const days = weeksAndDays(firstDayOfMonth);
+
+    return [
+      days.slice(0, 7),
+      days.slice(7, 14),
+      days.slice(14, 21),
+      days.slice(21, 28),
+      days.slice(28, 35),
+      days.slice(35, 42),
+    ]
   }
 
   isSelectedDay(date: DateTime): string[] {
@@ -127,18 +136,20 @@ export class BmbDatepickerModalComponent implements OnInit {
   }
 
   handleChevronClick(event: string) {
-    if (this.view === 'calendar' || this.view === 'month') {
+    if (this.view === 'calendar') {
       this.handleChangeMonth(event);
+    } else if (this.view === 'month') {
+      this.handleChangeYear(event, 1);
     } else {
-      this.handleChangeYear(event);
+      this.handleChangeYear(event, this.stepYearPicker());
     }
   }
 
-  handleChangeYear(event: string) {
+  handleChangeYear(event: string, yearsAmount: number = 0) {
     if (event === 'less') {
-      this.selectedYear = this.selectedYear - 18;
+      this.selectedYear = this.selectedYear - yearsAmount;
     } else {
-      this.selectedYear = this.selectedYear + 18;
+      this.selectedYear = this.selectedYear + yearsAmount;
     }
   }
 
