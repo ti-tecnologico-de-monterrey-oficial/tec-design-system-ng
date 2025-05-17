@@ -124,7 +124,9 @@
         border: var(--bmb-border-inherit-1-solid);
         border-color: transparent;
 
-        &:hover:not(:disabled):not(.bmb-disabled):not(.bmb_datepicker-modal-calendar-list-item-selected) {
+        &:hover:not(:disabled):not(.bmb-disabled):not(
+            .bmb_datepicker-modal-calendar-list-item-selected
+          ) {
           border-color: var(--general_contrasts-75);
           background-color: transparent;
         }
@@ -138,7 +140,7 @@
 
       &-years {
         .bmb_datepicker-modal-calendar-item {
-        flex: 0 0 calc(33.3333% - (rem.rem_calc(8) / 3 * 2));
+          flex: 0 0 calc(33.3333% - (rem.rem_calc(8) / 3 * 2));
         }
       }
 

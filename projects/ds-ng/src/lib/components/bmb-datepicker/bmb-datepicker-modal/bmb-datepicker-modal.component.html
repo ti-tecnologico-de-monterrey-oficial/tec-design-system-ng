@@ -15,7 +15,12 @@
         (buttonClick)="handleChevronClick('less')"
       />
     </li>
-    <li bmbLayoutItem [isDynamicItem]="true" [colGrow]="1" [ngClass]="{ 'bmb_datepicker-modal-nav-item': view !== 'calendar' }">
+    <li
+      bmbLayoutItem
+      [isDynamicItem]="true"
+      [colGrow]="1"
+      [ngClass]="{ 'bmb_datepicker-modal-nav-item': view !== 'calendar' }"
+    >
       <button
         class="bmb_datepicker-modal-button bmb_field-input-normal bmb_datepicker-modal-nav-button"
         type="button"
@@ -87,26 +92,6 @@
             }
           </tbody>
         </table>
-        <!-- @for (day of dayNames; track $index) {
-          <li class="bmb_datepicker-modal-calendar-header">
-            {{ day }}
-          </li>
-        }
-        @for (date of getWeeksAndDays(); track $index) {
-          <li class="bmb_datepicker-modal-calendar-item">
-            <button
-              class="bmb_datepicker-modal-button"
-              type="button"
-              [ngClass]="isSelectedDay(date)"
-              (click)="handleDayChange(date)"
-              bmbButton
-              appearance="transparent"
-              [disabled]="checkIfDisabled(date)"
-            >
-              {{ date.day }}
-            </button>
-          </li>
-        } -->
       </div>
     }
     @case ("month") {
@@ -133,7 +118,6 @@
       </ul>
     }
     @case ("year") {
-      <!-- <bmb-divider /> -->
       <ul
         class="bmb_datepicker-modal-calendar-list bmb_datepicker-modal-calendar-list-years bmb_datepicker-modal-calendar"
       >

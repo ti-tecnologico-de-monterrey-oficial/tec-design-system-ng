@@ -116,7 +116,7 @@ export class BmbDatepickerModalComponent implements OnInit {
       days.slice(21, 28),
       days.slice(28, 35),
       days.slice(35, 42),
-    ]
+    ];
   }
 
   isSelectedDay(date: DateTime): string[] {

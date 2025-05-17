@@ -1,20 +1,23 @@
-import { Meta, moduleMetadata, StoryObj } from "@storybook/angular";
-import { Component, input } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { BmbDividerComponent } from "../components/bmb-divider/bmb-divider.component";
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import { Component, input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { BmbDividerComponent } from '../components/bmb-divider/bmb-divider.component';
 
 @Component({
   standalone: true,
   selector: 'bmb-radius-playground',
   imports: [CommonModule, BmbDividerComponent],
   template: `
-    <div [ngStyle]="{ borderRadius: 'var(--bmb-border-radius-' + radius() + ')' }" style="border: var(--bmb-border-general_contrasts-50-1-solid); padding: 1rem; text-align: center;">
+    <div
+      [ngStyle]="{ borderRadius: 'var(--bmb-border-radius-' + radius() + ')' }"
+      style="border: var(--bmb-border-general_contrasts-50-1-solid); padding: 1rem; text-align: center;"
+    >
       <button (click)="handleClick('--bmb-border-radius-' + radius())">
-        CSS variable name: <strong>--bmb-border-radius-{{radius()}}</strong>
+        CSS variable name: <strong>--bmb-border-radius-{{ radius() }}</strong>
       </button>
       <bmb-divider />
       <button>
-        Class name: <strong>bmb_border-radius-{{radius()}}</strong>
+        Class name: <strong>bmb_border-radius-{{ radius() }}</strong>
       </button>
     </div>
   `,
@@ -134,7 +137,7 @@ The radius size are defined on REM units, and can be used in the application by 
   },
   args: {
     radius: 'none',
-  }
+  },
 } as Meta<typeof BmbRadiusPlaygroundComponent>;
 
 type Story = StoryObj<typeof BmbRadiusPlaygroundComponent>;
