@@ -35,22 +35,22 @@
       [name]="name()"
       [isClearable]="isClearable()"
     >
-    @if (isWindowOpen) {
-      <ng-template #customInputContent>
-        <bmb-datepicker-modal
-          [now]="now"
-          [isWindowOpen]="isWindowOpen"
-          (closeWindow)="handleWindowOpen($event)"
-          (onValueChange)="handleValueChange($event)"
-          [value]="control().valid && control().value"
-          [dateFormat]="dateFormat()"
-          [stepYearPicker]="stepYearPicker()"
-          [disableDatesBefore]="convertToDate(disableDatesBefore())"
-          [disableDatesAfter]="convertToDate(disableDatesAfter())"
-          [lang]="lang()"
-        />
-      </ng-template>
-    }
+      @if (isWindowOpen) {
+        <ng-template #customInputContent>
+          <bmb-datepicker-modal
+            [now]="now"
+            [isWindowOpen]="isWindowOpen"
+            (closeWindow)="handleWindowOpen($event)"
+            (onValueChange)="handleValueChange($event)"
+            [value]="control().valid && control().value"
+            [dateFormat]="dateFormat()"
+            [stepYearPicker]="stepYearPicker()"
+            [disableDatesBefore]="convertToDate(disableDatesBefore())"
+            [disableDatesAfter]="convertToDate(disableDatesAfter())"
+            [lang]="lang()"
+          />
+        </ng-template>
+      }
     </bmb-input>
     <!-- } -->
   </section>

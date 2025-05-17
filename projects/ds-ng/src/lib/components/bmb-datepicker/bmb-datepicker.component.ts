@@ -104,7 +104,7 @@ export class BmbDatepickerComponent {
   }
 
   convertToDate(date: string): DateTime | null {
-      const dateTime = DateTime.fromFormat(date, this.dateFormat());
-      return dateTime.isValid ? dateTime : null;
+    const dateTime = DateTime.fromFormat(date, this.dateFormat());
+    return dateTime.isValid ? dateTime : null;
   }
 }
