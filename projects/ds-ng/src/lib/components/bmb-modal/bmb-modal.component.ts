@@ -162,7 +162,7 @@ export class BmbModalComponent {
 
   showFooter(): boolean {
     const hiddenButtons =
-      this.getData().hidePrimaryButton || this.getData().hideSecondaryButton;
+      this.getData().hidePrimaryButton && this.getData().hideSecondaryButton;
     return this.getData().type !== 'informative' && !hiddenButtons;
   }
 

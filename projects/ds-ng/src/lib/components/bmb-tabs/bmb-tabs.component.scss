@@ -3,41 +3,41 @@
 @use "../../../assets/styles/base/rem" as rem;
 
 .bmb_tabs {
-  .bmb_tab-container {
-    overflow: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
+  &-container {
+    display: flex;
   }
 
   &-tab {
     display: flex;
     flex-flow: row nowrap;
-    gap: rem.rem_calc(32);
-    -webkit-overflow-scrolling: touch;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
+    gap: rem.rem_calc(16);
+    overflow: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    flex: 1;
   }
 
   &-item {
     align-items: center;
-    border-bottom-color: transparent;
-    border-bottom-style: solid;
-    border-bottom-width: rem.rem_calc(2);
+    border-bottom: rem.rem_calc(2) solid transparent;
     color: var(--general_contrasts-50);
     display: flex;
-    flex: 0 0 auto;
     gap: rem.rem_calc(8);
     height: rem.rem_calc(40);
     justify-content: center;
-    min-width: rem.rem_calc(120);
+    min-width: max-content;
     padding: rem.rem_calc(8);
     scroll-behavior: smooth;
     scroll-snap-align: start;
     text-align: center;
     transition: all 0.3s ease;
+    line-height: rem.rem_calc(18);
     @include fonts.font(5, medium);
+    font-weight: 500;
+    width: auto;
+    flex: 1 0 auto;
+    max-width: 240px;
 
     &:hover,
     &:focus-visible {
@@ -48,32 +48,21 @@
       border-bottom-color: var(--general_contrasts-input-outline);
       color: var(--general_contrasts-100);
     }
-
-    &-uppercase {
-      @include fonts.font(3, regular);
-    }
-
-    &-mobile:not(.bmb_tabs-item-desktop) {
-      @include mixins.media-query(1000, "min") {
-        display: none;
-      }
-    }
-
-    &-desktop:not(.bmb_tabs-item-mobile) {
-      @include mixins.media-query(1001, "max") {
-        display: none;
-      }
-    }
   }
 
   &-badge {
     align-items: center;
-    border-radius: 100%;
     color: var(--general_contrasts-50);
     display: flex;
-    height: rem.rem_calc(22);
-    justify-content: center;
-    width: rem.rem_calc(20);
-    @include fonts.font(3, medium);
+    @include fonts.font(1, medium);
+    font-weight: 600;
+  }
+
+  &-scroll {
+    &-left {
+      display: flex;
+      padding: .5rem;
+      align-items: center;
+    }
   }
 }
