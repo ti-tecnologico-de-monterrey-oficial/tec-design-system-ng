@@ -32,9 +32,4 @@
     padding: 0;
     list-style-type: none;
   }
-
-  &-item {
-    padding: rem.rem_calc(18 0);
-    border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-500));
-  }
 }

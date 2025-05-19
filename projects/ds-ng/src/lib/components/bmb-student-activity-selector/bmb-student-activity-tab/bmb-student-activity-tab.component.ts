@@ -3,9 +3,9 @@ import {
   Component,
   Input,
   ViewEncapsulation,
-  EventEmitter,
   ChangeDetectionStrategy,
 } from '@angular/core';
+import { IStudentActivityAppearance } from '../../../types';
 
 @Component({
   selector: 'bmb-student-activity-tab',
@@ -15,8 +15,9 @@ import {
   encapsulation: ViewEncapsulation.None,
   templateUrl: './bmb-student-activity-tab.component.html',
 })
-export class BmbTabStudenActivityComponent {
+export class BmbTabStudentActivityComponent {
   @Input() title: string = '';
   @Input() subtitle: string = '';
   @Input() active = false;
+  @Input() appearance: IStudentActivityAppearance = 'academic';
 }

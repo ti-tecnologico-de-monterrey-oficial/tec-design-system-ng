@@ -1,30 +1,38 @@
-import { CommonModule } from "@angular/common";
-import { Component, input } from "@angular/core";
-import { Meta, moduleMetadata, StoryObj } from "@storybook/angular";
-import { BmbDividerComponent } from "../components/bmb-divider/bmb-divider.component";
-import { BmbCardComponent, BmbCardContentComponent } from "../components/bmb-card/bmb-card.component";
+import { CommonModule } from '@angular/common';
+import { Component, input } from '@angular/core';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import { BmbDividerComponent } from '../components/bmb-divider/bmb-divider.component';
+import {
+  BmbCardComponent,
+  BmbCardContentComponent,
+} from '../components/bmb-card/bmb-card.component';
 
 @Component({
   standalone: true,
   selector: 'bmb-spacing-playground',
-  imports: [CommonModule, BmbDividerComponent, BmbCardComponent, BmbCardContentComponent],
+  imports: [
+    CommonModule,
+    BmbDividerComponent,
+    BmbCardComponent,
+    BmbCardContentComponent,
+  ],
   template: `
     <div
       [ngStyle]="{
         padding: 'var(--bmb-padding-' + padding() + ')',
         margin: 'var(--bmb-margin-' + margin() + ')',
-        gap: 'var(--bmb-gap-' + gap() + ')'
+        gap: 'var(--bmb-gap-' + gap() + ')',
       }"
       style="border: var(--bmb-border-general_contrasts-50-1-solid); text-align: center; display: flex; flex-wrap: wrap;"
     >
       <bmb-card margin="none">
         <bmb-card-content padding="m">
           <button (click)="handleClick('--bmb-padding-' + padding())">
-            CSS variable name: <strong>--bmb-padding-{{padding()}}</strong>
+            CSS variable name: <strong>--bmb-padding-{{ padding() }}</strong>
           </button>
           <bmb-divider />
           <button (click)="handleClick('bmb_padding-' + padding())">
-            Class name: <strong>bmb_padding-{{padding()}}</strong>
+            Class name: <strong>bmb_padding-{{ padding() }}</strong>
           </button>
         </bmb-card-content>
       </bmb-card>
@@ -32,11 +40,11 @@ import { BmbCardComponent, BmbCardContentComponent } from "../components/bmb-car
       <bmb-card margin="none">
         <bmb-card-content padding="m">
           <button (click)="handleClick('--bmb-gap-' + gap())">
-            CSS variable name: <strong>--bmb-gap-{{gap()}}</strong>
+            CSS variable name: <strong>--bmb-gap-{{ gap() }}</strong>
           </button>
           <bmb-divider />
           <button (click)="handleClick('bmb_gap-' + gap())">
-            Class name: <strong>bmb_gap-{{gap()}}</strong>
+            Class name: <strong>bmb_gap-{{ gap() }}</strong>
           </button>
         </bmb-card-content>
       </bmb-card>
@@ -44,11 +52,11 @@ import { BmbCardComponent, BmbCardContentComponent } from "../components/bmb-car
       <bmb-card margin="none">
         <bmb-card-content padding="m">
           <button (click)="handleClick('--bmb-margin-' + margin())">
-            CSS variable name: <strong>--bmb-margin-{{margin()}}</strong>
+            CSS variable name: <strong>--bmb-margin-{{ margin() }}</strong>
           </button>
           <bmb-divider />
           <button (click)="handleClick('bmb_margin-' + margin())">
-            Class name: <strong>bmb_margin-{{margin()}}</strong>
+            Class name: <strong>bmb_margin-{{ margin() }}</strong>
           </button>
         </bmb-card-content>
       </bmb-card>
@@ -86,14 +94,19 @@ const options = [
   '8',
   '9',
   '10',
-]
+];
 
 export default {
   title: 'Foundations/Spacing',
   component: BmbSpacingPlaygroundComponent,
   decorators: [
     moduleMetadata({
-      imports: [CommonModule, BmbDividerComponent, BmbCardComponent, BmbCardContentComponent],
+      imports: [
+        CommonModule,
+        BmbDividerComponent,
+        BmbCardComponent,
+        BmbCardContentComponent,
+      ],
     }),
   ],
   parameters: {
@@ -190,7 +203,7 @@ The spacing size are defined on REM units, and can be used in the application by
     margin: '1',
     gap: '1',
   },
-} as Meta<typeof BmbSpacingPlaygroundComponent >;
+} as Meta<typeof BmbSpacingPlaygroundComponent>;
 
 type Story = StoryObj<typeof BmbSpacingPlaygroundComponent>;
 

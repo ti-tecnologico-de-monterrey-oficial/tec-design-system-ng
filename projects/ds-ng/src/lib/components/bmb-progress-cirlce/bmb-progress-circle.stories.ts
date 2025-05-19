@@ -31,7 +31,7 @@ Below is an example of how you can use this component in HTML:
     valueLabel: {
       name: 'Value Label',
       control: {
-        type: 'string',
+        type: 'text',
       },
       description: 'Refers to the total value that the component show.',
       table: {
@@ -67,13 +67,13 @@ Below is an example of how you can use this component in HTML:
     title: {
       name: 'Title',
       control: {
-        type: 'string, Array<string>',
+        type: 'text',
       },
       description:
         'Is the text of the component, to show the text in one line use a simple array, if you want to show the title in more than one line, use an array string',
       table: {
         category: 'Properties',
-        type: { summary: 'string, Array<string>' },
+        type: { summary: 'string | string[]' },
       },
     },
     showTitle: {
