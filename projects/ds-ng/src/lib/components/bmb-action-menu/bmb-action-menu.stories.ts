@@ -1,14 +1,14 @@
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { BmbActionMenuComponent } from './bmb-action-menu.component';
 import { attributes } from '../../utils/utils';
-import { BmbIconItemComponent } from '../bmb-icon-item/bmb-icon-item.component';
+import { BmbItemComponent } from '../bmb-item/bmb-item.component';
 
 export default {
   title: 'Micro Componentes/Action Menu',
   component: BmbActionMenuComponent,
   decorators: [
     moduleMetadata({
-      imports: [BmbIconItemComponent],
+      imports: [BmbItemComponent],
     }),
   ],
   parameters: {
@@ -23,7 +23,7 @@ import { BmbActionMenuComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-
 @Component({
   selector: 'component',
   standalone: true,
-  imports: [ BmbActionMenuComponent ],
+  imports: [ BmbActionMenuComponent, BmbItemComponent ],
   templateUrl: './component.html',
   styleUrl: './component.scss',
 })
@@ -91,7 +91,7 @@ Below is an example of how you can use this component in HTML:
       description:
         'This property hides or show the divider on each item and you can place whatever you want',
       table: {
-        category: 'Properties',
+        category: 'Deprecated',
         type: { summary: 'boolean' },
         defaultValue: { summary: 'true' },
       },
@@ -103,77 +103,160 @@ Below is an example of how you can use this component in HTML:
     title: 'Title',
     subtitle: 'Subtitle',
     showHeader: true,
-    isAList: true,
   },
 } as Meta<typeof BmbActionMenuComponent>;
 
 type Story = StoryObj<BmbActionMenuComponent>;
 
-export const ListExample: Story = {
+export const WithIcon: Story = {
   render: (args: any) => ({
     template: `
-    <!-- Instruction to users: This html is used for internal Storybook logic and should not be copied -->
-    <div style="height: ${args['isAList'] ? '420' : '200'}px;">
-      <!-- Example of how you can use this component. -->
       <bmb-action-menu ${attributes(args)}>
-        ${
-          args['isAList']
-            ? `
-            <ng-template>
-              <!-- Example of content. The content can be a bamboo component or html. -->
-              <button class="action-btn">Option 1</button>
-            </ng-template>
-            <ng-template>
-               <!-- Example of content. The content can be a bamboo component or html. -->
-              <a href="#">Option 2</a>
-            </ng-template>
-            <ng-template>
-               <!-- Example of content. The content can be a bamboo component or html. -->
-              <div>Only Text</div>
-            </ng-template>
-            <ng-template>
-               <!-- Example of content. The content can be a bamboo component or html. -->
-              <bmb-icon-item
-                icon="calendar_month"
-                [iconSize]="24"
-                label="Semestre"
-                value="AGO-DIC 24"
-              />
-            </ng-template>
-          `
-            : `
-            <!-- Example of content. The content can be a bamboo component or html. -->
-            <button class="action-btn">Option 1</button>
-              <a href="#">Option 2</a>
-            <div>Only Text</div>
-          `
-        }
+        <ng-template>
+          <bmb-item
+            label="Correo"
+            icon="mail"
+            value="tecservices@servicios.tec.mx"
+            valueLink="mailto:tecservices@servicios.tec.mx"
+            valueTarget="_self"
+        />
+        </ng-template>
+        <ng-template>
+          <bmb-item
+            label="Teléfono"
+            icon="smartphone"
+            value="52 81 8358 2000"
+            valueLink="tel:52 81 8358 2000"
+            valueTarget="_self"
+          />
+        </ng-template>
+        <ng-template>
+          <bmb-item
+            label="Teléfono"
+            icon="smartphone"
+            value="+52 81 1625 5123 (solo texto)"
+          />
+        </ng-template>
       </bmb-action-menu>
-    </div>
   `,
   }),
 };
 
-export const NotListExample = {
-  args: {
-    isAList: false,
-  },
+export const WithoutIcon: Story = {
   render: (args: any) => ({
     template: `
-    <!-- Instruction to users: This html is used for internal Storybook logic and should not be copied -->
-    <div style="height: 200px;">
-      <!-- Example of how you can use this component. -->
       <bmb-action-menu ${attributes(args)}>
-        <!-- Example of content. The content can be a bamboo component or html. -->
-        <bmb-icon-item
-          icon="calendar_month"
-          [iconSize]="24"
-          label="Semestre"
-          value="AGO-DIC 24"
-        />
-        <a href="#">Option 2</a>
+        <ng-template>
+          <bmb-item
+            label="Correo"
+            value="tecservices@servicios.tec.mx"
+            valueLink="mailto:tecservices@servicios.tec.mx"
+            valueTarget="_self"
+          />
+        </ng-template>
+        <ng-template>
+          <bmb-item
+            label="Teléfono"
+            value="52 81 8358 2000"
+            valueLink="tel:52 81 8358 2000"
+            valueTarget="_self"
+          />
+        </ng-template>
+        <ng-template>
+          <bmb-item
+            label="Teléfono"
+            value="+52 81 1625 5123 (solo texto)"
+          />
+        </ng-template>
       </bmb-action-menu>
-    </div>
-    `,
+  `,
+  }),
+};
+
+export const InformativeText: Story = {
+  render: (args: any) => ({
+    template: `
+      <bmb-action-menu ${attributes(args)}>
+        <ng-template>
+          <bmb-item
+            label="Informative text. Non actionable"
+            icon="mail"
+            supportText="Support text. <a href='https://www.google.com.mx' target='_blank'>Optional hyperlink text</a>"
+          />
+        </ng-template>
+        <ng-template>
+          <bmb-item
+            icon="smartphone"
+            label="Informative text. Non actionable"
+            supportText="Here is some support text for your soul."
+          />
+        </ng-template>
+      </bmb-action-menu>
+  `,
+  }),
+};
+
+export const InformativeTextWithoutIcon: Story = {
+  render: (args: any) => ({
+    template: `
+      <bmb-action-menu ${attributes(args)}>
+        <ng-template>
+          <bmb-item
+            label="Informative text. Non actionable"
+            icon="mail"
+            supportText="Support text. <a href='https://www.google.com.mx' target='_blank'>Optional hyperlink text</a>"
+          />
+        </ng-template>
+        <ng-template>
+          <bmb-item
+            icon="smartphone"
+            label="Informative text. Non actionable"
+            supportText="Here is some support text for your soul."
+          />
+        </ng-template>
+      </bmb-action-menu>
+  `,
+  }),
+};
+
+export const Button: Story = {
+  render: (args: any) => ({
+    props: {
+      ...args,
+      action: () => {
+        alert('In this method you can define the action to be executed');
+      },
+    },
+    template: `
+      <bmb-action-menu ${attributes(args)}>
+        <ng-template>
+          <bmb-item label="Correo" [isButton]="true" (action)="action($event)" />
+        </ng-template>
+        <ng-template>
+          <bmb-item label="Phone" [isButton]="true" (action)="action($event)" />
+        </ng-template>
+      </bmb-action-menu>
+  `,
+  }),
+};
+
+export const ButtonWithIcon: Story = {
+  render: (args: any) => ({
+    props: {
+      ...args,
+      action: () => {
+        alert('In this method you can define the action to be executed');
+      },
+    },
+    template: `
+      <bmb-action-menu ${attributes(args)}>
+        <ng-template>
+          <bmb-item icon="mail" label="Correo" [isButton]="true" (action)="action($event)" />
+        </ng-template>
+        <ng-template>
+          <bmb-item icon="smartphone" label="Phone" [isButton]="true" (action)="action($event)" />
+        </ng-template>
+      </bmb-action-menu>
+  `,
   }),
 };

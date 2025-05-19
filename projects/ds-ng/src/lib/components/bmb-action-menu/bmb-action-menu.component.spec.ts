@@ -31,7 +31,6 @@ describe('BmbActionMenuComponent', () => {
     expect(componentRef.instance.icon()).toBe('');
     expect(componentRef.instance.iconSize()).toBe(24);
     expect(componentRef.instance.showHeader()).toBe(true);
-    expect(componentRef.instance.isAList()).toBe(true);
   });
 
   it('should update projectedContent after content initialization', () => {

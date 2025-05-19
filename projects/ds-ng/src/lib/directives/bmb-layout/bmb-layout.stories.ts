@@ -238,7 +238,6 @@ export const ColumnSmSizes = {
   }),
 };
 
-
 export const ColumnLgSizes = {
   name: 'Column Sizes Lg',
   args: {},
