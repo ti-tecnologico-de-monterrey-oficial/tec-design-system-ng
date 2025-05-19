@@ -137,6 +137,7 @@ export * from './lib/components/bmb-action-icon/bmb-action-icon.component';
 export * from './lib/components/bmb-form-validation/bmb-form-validation.component';
 export * from './lib/components/bmb-three-cols/bmb-three-cols.component';
 export * from './lib/components/bmb-title-content/bmb-title-content.component';
+export * from './lib/components/bmb-item/bmb-item.component';
 
 // types
 export * from './lib/types';

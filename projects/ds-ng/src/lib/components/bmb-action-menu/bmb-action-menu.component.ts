@@ -28,7 +28,6 @@ export class BmbActionMenuComponent implements AfterContentInit {
   iconSize = input<number>(24);
   bgIconAppearance = input<IBmbColor>();
   showHeader = input<boolean>(true);
-  isAList = input<boolean>(true);
   projectedContent: TemplateRef<any>[] = [];
 
   @ContentChildren(TemplateRef) contentTemplates!: QueryList<TemplateRef<any>>;
