@@ -7,6 +7,7 @@ export * from './lib/services/notification.service';
 export * from './lib/services/tabs.service';
 export * from './lib/services/calendar.service';
 export * from './lib/services/user/profile.service';
+export * from './lib/services/bmb-modal-service.service';
 export * from './lib/components/bmb-login-onboarding/bmb-login-onboarding.service';
 
 export * from './lib/ds-ng.component';
@@ -138,7 +139,8 @@ export * from './lib/components/bmb-form-validation/bmb-form-validation.componen
 export * from './lib/components/bmb-three-cols/bmb-three-cols.component';
 export * from './lib/components/bmb-title-content/bmb-title-content.component';
 export * from './lib/components/bmb-item/bmb-item.component';
-
+export * from './lib/components/bmb-native-modal/bmb-native-modal.component';
+export * from './lib/components/bmb-navigation-bar/bmb-navigation-bar.component';
 // types
 export * from './lib/types';
 

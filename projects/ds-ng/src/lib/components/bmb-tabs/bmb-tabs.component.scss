@@ -37,7 +37,7 @@
     font-weight: 500;
     width: auto;
     flex: 1 0 auto;
-    max-width: 240px;
+    max-width: rem.rem_calc(240);
 
     &:hover,
     &:focus-visible {
@@ -61,7 +61,7 @@
   &-scroll {
     &-left {
       display: flex;
-      padding: .5rem;
+      padding: rem.rem_calc(8);
       align-items: center;
     }
   }
