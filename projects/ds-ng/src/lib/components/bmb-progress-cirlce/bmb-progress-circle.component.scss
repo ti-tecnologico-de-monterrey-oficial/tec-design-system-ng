@@ -5,14 +5,18 @@
     fill: RGBA(var(--color-charade-50));
     fill-opacity: 1;
   }
-
-  &-fill {
-    stroke: RGBA(var(--color-blue-primary));
+  
+  &-empty{
     fill: transparent;
   }
 
+  &-fill {
+    stroke: var(--general_contrasts-5);
+    fill: transparent;
+  }
+  
   &-track {
-    stroke: RGBA(var(--color-green-primary));
+    stroke: RGBA(var(--color-blue-primary));
     stroke-linecap: round;
     transition: all;
   }
