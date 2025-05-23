@@ -5,8 +5,8 @@
     fill: RGBA(var(--color-charade-50));
     fill-opacity: 1;
   }
-  
-  &-empty{
+
+  &-empty {
     fill: transparent;
   }
 
@@ -14,7 +14,7 @@
     stroke: var(--general_contrasts-5);
     fill: transparent;
   }
-  
+
   &-track {
     stroke: RGBA(var(--color-blue-primary));
     stroke-linecap: round;

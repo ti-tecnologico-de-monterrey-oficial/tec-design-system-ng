@@ -93,7 +93,7 @@ Sets the list of items for the dropdown menu.
         icon: 'link',
         text: 'internal Link',
         url: '/vivencia',
-        target: '_self'
+        target: '_self',
       },
       {
         icon: 'delete',

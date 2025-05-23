@@ -221,16 +221,17 @@ export class Component {
     label: 'Fruit',
     showIcon: true,
     options: [
-      { name: 'Apple', value: 'Apple', icon: 'home', id: 'apple' },
-      { name: 'Banana', value: 'Banana', icon: 'bolt', id: 'banana' },
-      { name: 'Orange', value: 'Orange', icon: 'bolt', id: 'orange' },
-      { name: 'Pear', value: 'Pear', icon: 'bolt', id: 'pear' },
-      { name: 'Grape', value: 'Grape', icon: 'bolt', id: 'grape' },
+      { name: 'Apple name', value: '_apple', icon: 'home', id: 'apple_' },
+      { name: 'Banana name', value: '_banana', icon: 'bolt', id: 'banana_' },
+      { name: 'Orange name', value: '_orange', icon: 'bolt', id: 'orange_' },
+      { name: 'Pear name', value: '_pear', icon: 'info', id: 'pear_' },
+      { name: 'Grape name', value: '_grape', icon: 'bolt', id: 'grape_' },
     ],
     disabled: false,
     helperText: 'Select a fruit',
     errorMessage: 'Error input dropdown',
-    preferredOptions: ['Orange'],
+    preferredOptions: ['_pear'],
+    tooltip: 'Tool tip'
   },
 } as Meta<typeof BmbDropdownComponent>;
 
