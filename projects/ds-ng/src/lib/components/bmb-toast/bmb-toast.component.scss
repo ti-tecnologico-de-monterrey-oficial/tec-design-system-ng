@@ -3,11 +3,11 @@
 
 $appearanceList: (
   "neutral": var(--general_contrasts-75),
-  "primary": RGBA(var(--color-mariner-400)),
-  "warning": RGBA(var(--color-yellow-tint)),
-  "error": RGBA(var(--color-red-tint)),
-  "event": RGBA(var(--color-purple-light)),
-  "successful": RGBA(var(--color-green-light)),
+  "primary": var(--semantic-brand),
+  "warning": var(--semantic-warning),
+  "error": var(--semantic-error),
+  "event": var(--semantic-info-event),
+  "successful": var(--semantic-success),
   "mitec_blue": RGBA(var(--color-mitec-blue)),
   "mitec_red": RGBA(var(--color-mitec-red)),
   "mitec_green": RGBA(var(--color-mitec-green)),
