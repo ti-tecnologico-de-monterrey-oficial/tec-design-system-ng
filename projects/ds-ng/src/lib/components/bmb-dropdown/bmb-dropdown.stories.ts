@@ -1,146 +1,98 @@
-import type { Meta, StoryFn } from '@storybook/angular';
+import { moduleMetadata, type Meta, type StoryFn } from '@storybook/angular';
 import { BmbDropdownComponent } from './bmb-dropdown.component';
 import { attributes } from '../../utils/utils';
+import { BmbFormValidationComponent } from '../bmb-form-validation/bmb-form-validation.component';
 
 export default {
   title: 'Micro Componentes/Dropdown',
   component: BmbDropdownComponent,
-  decorators: [],
+  decorators: [
+    moduleMetadata({
+      imports: [BmbFormValidationComponent],
+    }),
+  ],
   parameters: {
     docs: {
       description: {
         component: `
   Below is an example of how you can use this component in TypeScript:
-  
+
   \`\`\`typescript
-  import { Component, Injectable, OnInit } from '@angular/core';
-  import {
-    FormControl,
-    FormGroup,
-    Validators,
-    ReactiveFormsModule,
-  } from '@angular/forms';
-  import {
-    BmbDropdownComponent,
-    BmbButtonDirective,
-  } from '../../projects/ds-ng/src/public-api';
-  import { CommonModule } from '@angular/common';
-  import { delay, Observable, of } from 'rxjs';
-  
-  export interface IBmbDropdownItem {
-    name: string;
-    value: string;
-    icon: string;
-    id?: string;
-  }
-  
-  @Injectable({ providedIn: 'root' })
-  export class FruitService {
-    getSelectedFruit(): Observable<IBmbDropdownItem> {
-      return of({
-        name: 'Banana',
-        value: 'Banana',
-        icon: 'bolt',
-        id: 'banana',
-      }).pipe(delay(1000));
-    }
-  }
-  
   @Component({
-    selector: 'app-root',
-    standalone: true,
-    imports: [
-      BmbDropdownComponent,
-      ReactiveFormsModule,
-      BmbButtonDirective,
-      CommonModule,
-    ],
-    templateUrl: './app.component.html',
-    styleUrl: './app.component.scss',
-  })
-  export class AppComponent implements OnInit {
-    form = new FormGroup({
-      category: new FormControl<IBmbDropdownItem | null>(
-        null,
-        Validators.required,
-      ),
-    });
-  
-    dropdownOptions: IBmbDropdownItem[] = [
-      { name: 'Apple', value: 'Apple', icon: 'bolt', id: 'apple' },
-      { name: 'Banana', value: 'Banana', icon: 'bolt', id: 'banana' },
-      { name: 'Orange', value: 'Orange', icon: 'bolt', id: 'orange' },
-      { name: 'Pear', value: 'Pear', icon: 'bolt', id: 'pear' },
-      { name: 'Grape', value: 'Grape', icon: 'bolt', id: 'grape' },
-    ];
-  
-    constructor(private fruitService: FruitService) {}
-  
-    ngOnInit(): void {
-      this.fruitService.getSelectedFruit().subscribe((selectedFruit) => {
-        console.log('Setting value from service:', selectedFruit);
-        this.form.get('category')?.setValue(selectedFruit);
-      });
+  selector: 'component',
+  standalone: true,
+  imports: [
+    BmbDropdownComponent,
+    FormControl,
+    FormGroup
+    ReactiveFormsModule,
+    Validators,
+  ],
+  templateUrl: './component.html',
+  styleUrl: './component.scss',
+})
+export class Component {
+  formGroup: FormGroup = new FormGroup({
+    inputDropdown1: new FormControl<string>('', Validators.required),
+  });
+
+  onSubmit() {
+    console.log('App - onSubmit', this.formGroup);
+    if (this.formGroup.valid) {
+      console.log('onSubmit', this.formGroup.status);
+      return;
     }
-  
-    selectApple(): void {
-      const selectedItem = this.dropdownOptions.find(
-        (item) => item.value === 'Apple',
-      );
-      this.form.get('category')?.setValue(selectedItem || null);
-    }
-  
-    getItem(item: string | IBmbDropdownItem): IBmbDropdownItem {
-      if (typeof item === 'string') {
-        return {
-          name: item,
-          value: item,
-          icon: 'bolt',
-          id: item.toLowerCase(),
-        };
-      }
-      return item;
-    }
-  
-    onSubmit(): void {
-      if (this.form.valid) {
-        console.log('Form submitted with:', this.form.value);
-      } else {
-        this.form.markAllAsTouched();
-      }
-    }
-  
-    onValueChange(value: string | IBmbDropdownItem): void {
-      console.log('Value changed:', value);
-    }
+
+    this.formGroup.markAllAsTouched();
+    this.updateErrorState();
   }
+
+  updateErrorState() {
+    Object.keys(this.formGroup.controls).forEach((field) => {
+      const control = this.getFormControl(field);
+
+      if (control instanceof FormControl) {
+        control.updateValueAndValidity();
+      }
+    });
+  }
+
+  getFormControl(name: string): FormControl {
+    return this.userForm.get(name) as FormControl;
+  }
+
+  onValueChange(value: unknown): void {
+    console.log('Value changed:', value);
+  }
+}
   \`\`\`
   Below is an example of how you can use this component in HTML:
   \`\`\`html
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <bmb-dropdown
-    formControlName="category"
-    [isMultiSelect]="false"
-    [options]="dropdownOptions"
-    helperText="Select a fruit"
-    [required]="true"
-    label="Fruit"
-    [showIcon]="true"
-    icon="bolt"
-    placeholder="Set Fruit"
-    (onValueChange)="onValueChange($event)"
-  ></bmb-dropdown>
-
-  <!-- Error message if the field is required -->
-  <div
-    *ngIf="form.get('category')?.invalid && form.get('category')?.touched"
-    class="error-message"
-  >
-    This field is required.
-  </div>
-
+    <bmb-dropdown
+      name="inputDropdown1"
+      icon="bolt"
+      placeholder="Set Fruit"
+      tooltip="Tooltip dropdown"
+      [required]="true"
+      label="Fruit prefered"
+      [showIcon]="true"
+      [options]="[
+        { name: 'Apple name', value: '_apple', icon: 'home', id: 'apple_' },
+        { name: 'Banana name', value: '_banana', icon: 'bolt', id: 'banana_' },
+        { name: 'Orange name', value: '_orange', icon: 'bolt', id: 'orange_' },
+        { name: 'Pear name', value: '_pear', icon: 'info', id: 'pear_' },
+        { name: 'Grape name', value: '_grape', icon: 'bolt', id: 'grape_' },
+      ]"
+      [preferredOptions]="['_orange']"
+      [disabled]="false"
+      helperText="Select a fruit"
+      errorMessage="Error input dropdown"
+      value]="_pear"
+      [control]="getFormControl('inputDropdown1')"
+      (onValueChange)="onValueChange($event)"
+    />
   <button type="submit" bmbButton>Submit</button>
-  <button type="button" bmbButton (click)="selectApple()">Select Apple</button>
 </form>
   \`\`\`
   This example demonstrates how to use the **BmbDropdownComponent** within an Angular Reactive Form, ensuring validation and handling the selected value properly.
@@ -265,7 +217,7 @@ export default {
     isMultiSelect: false,
     icon: 'bolt',
     placeholder: 'Set Fruit',
-    required: false,
+    required: true,
     label: 'Fruit',
     showIcon: true,
     options: [
@@ -277,6 +229,7 @@ export default {
     ],
     disabled: false,
     helperText: 'Select a fruit',
+    errorMessage: 'Error input dropdown',
     preferredOptions: ['Orange'],
   },
 } as Meta<typeof BmbDropdownComponent>;
@@ -295,7 +248,6 @@ const customizable = (): StoryFn => (args) => ({
     <div style="height: 240px">
       <bmb-dropdown
         ${attributes(args)}
-        (onValueChange)="onValueChange($event)"
       />
     </div>
   `,

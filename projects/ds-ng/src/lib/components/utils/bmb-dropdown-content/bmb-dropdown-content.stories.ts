@@ -1,27 +1,10 @@
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
-import { BmbDropdownMenuComponent } from './bmb-dropdown-menu.component';
-import { CommonModule } from '@angular/common';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { Meta, StoryFn } from '@storybook/angular';
+import { BmbDropdownContentComponent } from './bmb-dropdown-content.component';
+import { attributes } from '../../../utils/utils';
 
 export default {
-  title: 'Micro Componentes/Dropdown Menu',
-  component: BmbDropdownMenuComponent,
-  decorators: [
-    moduleMetadata({
-      imports: [CommonModule, BmbIconComponent],
-      providers: [
-        {
-          provide: ActivatedRoute,
-          useValue: {
-            snapshot: {
-              url: [],
-            },
-          },
-        },
-      ],
-    }),
-  ],
+  title: 'Internal/Dropdown content',
+  component: BmbDropdownContentComponent,
   parameters: {
     docs: {
       description: {
@@ -29,11 +12,11 @@ export default {
 Below is an example of how you can use this component in TypeScript:
 
 \`\`\`typescript
-import { BmbDropdownMenuComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
+import { BmbDropdownContentComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
 @Component({
   selector: 'component',
   standalone: true,
-  imports: [ BmbDropdownMenuComponent ],
+  imports: [ BmbDropdownContentComponent ],
   templateUrl: './component.html',
   styleUrl: './component.scss',
 })
@@ -49,7 +32,7 @@ Below is an example of how you can use this component in HTML:
       name: 'Items',
       control: { type: 'object' },
       description: `
-Sets the list of items for the dropdown menu.
+Sets the list of items for the dropdown.
 
     IDropdownItem {
       idItem?: string
@@ -66,7 +49,7 @@ Sets the list of items for the dropdown menu.
       table: {
         category: 'Properties',
         type: {
-          summary: 'IDropdownItem[] (required)',
+          summary: 'IDropdownItem[]',
         },
       },
     },
@@ -77,7 +60,7 @@ Sets the list of items for the dropdown menu.
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
-        type: { summary: 'boolean (optional)' },
+        type: { summary: 'boolean' },
       },
     },
   },
@@ -87,18 +70,17 @@ Sets the list of items for the dropdown menu.
         icon: 'link',
         text: 'External Link External Link External Link',
         url: 'https://example.com',
-        target: '_blank',
+        target: '_self',
       },
       {
         icon: 'link',
         text: 'internal Link',
         url: '/vivencia',
-        target: '_self'
       },
       {
         icon: 'delete',
         text: 'Delete',
-        action: () => console.log('Delete clicked!'),
+        action: () => alert('Delete clicked!'),
       },
       {
         icon: 'settings',
@@ -106,9 +88,23 @@ Sets the list of items for the dropdown menu.
         action: () => console.log('Settings clicked'),
       },
     ],
+    isOpen: false,
+    buttonClick: () => {},
   },
-} as Meta<typeof BmbDropdownMenuComponent>;
+} as Meta<typeof BmbDropdownContentComponent>;
 
-type Story = StoryObj<BmbDropdownMenuComponent>;
+const customizable = (): StoryFn => (args) => ({
+  props: args,
+  template: `
+    <!-- Instruction to users: This html is used for internal Storybook logic and should not be copied -->
+    <div style="height: 150px">
+      <!-- Example of how you can use this component -->
+      <bmb-dropdown-content
+        ${attributes(args)}
+      />
+      <!-- End of the example -->
+    </div>
+  `,
+});
 
-export const Default: Story = {};
+export const Default = customizable();

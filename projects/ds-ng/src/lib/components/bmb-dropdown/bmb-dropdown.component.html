@@ -25,6 +25,8 @@
     [placeholder]="placeholder()"
     (click)="openList()"
     (onKeyDown)="onKeyDown($event)"
+    (onBlur)="handleValidity()"
+    [isError]="shouldShowError"
   >
     <ng-template #customInputContent>
       <bmb-icon

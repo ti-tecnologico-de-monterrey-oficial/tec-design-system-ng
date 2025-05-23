@@ -25,7 +25,7 @@ import { CommonModule } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbDropdownContentComponent implements OnInit {
-  selectedOption = input<string>(); //internal
+  selectedOption = input<string>(); //Internal
   isKeepSelection = input<boolean>(false); //Internal
   isMultiSelect = input<boolean>(false); //Internal
 

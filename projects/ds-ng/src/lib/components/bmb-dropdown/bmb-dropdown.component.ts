@@ -215,6 +215,12 @@ export class BmbDropdownComponent implements OnInit {
     }
   }
 
+  handleValidity(): void {
+    const control: FormControl = this.getFormControl();
+    control.updateValueAndValidity();
+    control.markAsTouched();
+  }
+
   get shouldShowError(): boolean {
     return this.ivs.showError(this.name());
   }
