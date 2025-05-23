@@ -1,6 +1,14 @@
 <section class="bmb_tabs">
-  <div class="bmb_tab-container">
-    <section class="bmb_tabs-tab" #tabsItems>
+  <div class="bmb_tabs-container">
+    @if (hasScroll()) {
+      <bmb-action-icon
+        class="bmb_tabs-scroll bmb_tabs-scroll-left"
+        icon="arrow_back_ios"
+        (buttonClick)="scrollTo(true)"
+        [disabled]="scrollLeft() === 0"
+      />
+    }
+    <section class="bmb_tabs-tab" #tabsItems (scroll)="scrollEvent($event)">
       @for (tab of tabs(); track $index) {
         <button
           role="tab"
@@ -15,15 +23,23 @@
             'bmb_tabs-item-desktop': tab.isDesktop,
           }"
         >
-          <span>
+          <span class="bmb_tabs-content">
             {{ tab.title }}
           </span>
           @if (!!tab.badge) {
-            <span class="bmb_tabs-badge"> ({{ tab.badge }}) </span>
+            <span class="bmb_tabs-badge">{{ tab.badge }}</span>
           }
         </button>
       }
     </section>
+    @if (hasScroll()) {
+      <bmb-action-icon
+        class="bmb_tabs-scroll bmb_tabs-scroll-left"
+        icon="arrow_forward_ios"
+        (buttonClick)="scrollTo(false)"
+        [disabled]="scrollRight() === 0"
+      />
+    }
   </div>
   <ng-content></ng-content>
 </section>

@@ -39,12 +39,12 @@ export class BmbLoginOnboardingStepperStepFourComponent {
   credentialExample: string = '../assets/images/placeholders/credential.svg';
   data: ModalDataConfig = {
     title: 'Entrada a campus',
-    subtitle: '',
     content: 'Podrás cambiar esta configuración en cualquier momento',
     size: 'large',
     type: 'action',
     alertStyle: 'success',
     primaryBtnLabel: 'Aceptar',
+    hideSecondaryButton: true,
   };
 
   constructor(

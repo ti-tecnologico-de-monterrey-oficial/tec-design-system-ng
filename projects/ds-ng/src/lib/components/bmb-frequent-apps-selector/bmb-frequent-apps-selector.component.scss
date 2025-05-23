@@ -22,10 +22,12 @@
 
     &-regular {
       padding-bottom: rem.rem_calc(20);
+      gap: rem.rem_calc(24);
+
       bmb-interactive-icon {
         flex: 0 0 auto;
         scroll-snap-align: center;
-        width: rem.rem_calc(108);
+        width: rem.rem_calc(64);
         display: flex;
         justify-content: center;
       }
@@ -34,7 +36,7 @@
     &-app_drawer {
       white-space: nowrap;
       padding-bottom: rem.rem_calc(20);
-      gap: var(--bmb-spacing-m);
+      gap: rem.rem_calc(32);
 
       bmb-interactive-icon {
         scroll-snap-align: center;

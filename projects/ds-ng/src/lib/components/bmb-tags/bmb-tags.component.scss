@@ -28,7 +28,7 @@ $colors: (
 @mixin tagVariant($name, $color) {
   background-color: $color;
   border-color: $color;
-  color: RGBA(var(--color-charade-900));
+  color: var(--general_contrasts-5);
 }
 
 .bmb_tag {

@@ -90,7 +90,17 @@
         }
       }
 
-      &-disabled,
+      &-disabled{
+        background-color: var(--general_contrasts-15) ;
+        .bmb_badge-bullet {
+          background-color: var(--general_contrasts-50);
+        }
+
+        .bmb_badge-content {
+          color: var(--general_contrasts-50);
+        }
+      }
+
       &-background {
         .bmb_badge-bullet {
           display: none;

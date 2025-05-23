@@ -18,18 +18,24 @@
     </ng-container>
   }
   <circle
-    class="bmb_progress-circle-fill"
+    [ngClass]="
+      {
+        'bmb_progress-circle-fill': percent > 0,
+        'bmb_progress-circle-empty': percent === 0,
+      }"
     [attr.cx]="svg.circle.cx"
     [attr.cy]="svg.circle.cy"
     [attr.r]="svg.circle.r"
     [attr.stroke-width]="svg.circle.strokeWidth"
   />
-  <path
-    class="bmb_progress-circle-track"
-    [attr.d]="svg.path.d"
-    [attr.stroke-width]="svg.path.strokeWidth"
-    [attr.fill]="svg.path.fill"
-  />
+  @if (!!percent) {
+    <path
+      class="bmb_progress-circle-track"
+      [attr.d]="svg.path.d"
+      [attr.stroke-width]="svg.path.strokeWidth"
+      [attr.fill]="svg.path.fill"
+    />
+  }
   @if (options.showTitle || options.showValueLabel) {
     <text
       alignment-baseline="baseline"

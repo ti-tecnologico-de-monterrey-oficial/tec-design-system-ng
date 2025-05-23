@@ -8,7 +8,7 @@
 }
 
 $variants: (
-  "normal": RGBA(var(--color-charade-500)),
+  "normal": var(--general_contrasts-100),
   "strong": RGBA(var(--color-mariner-700)),
   "success": RGBA(var(--color-green-light)),
   "info": RGBA(var(--color-purple-primary)),

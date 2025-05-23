@@ -48,7 +48,7 @@ Sets the type of anatomy variation to display.
     score: {
       name: 'Score',
       control: { type: 'text' },
-      description: 'Sets the number or text to display as score',
+      description: 'Sets the number or text to display as score. The value can be a number or a string with a maximum of 4 characters.',
       table: {
         category: 'Properties',
         type: { summary: 'number or string' },
