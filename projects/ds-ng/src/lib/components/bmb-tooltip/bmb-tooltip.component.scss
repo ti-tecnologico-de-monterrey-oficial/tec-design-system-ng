@@ -8,10 +8,6 @@ $tooltip_justify: "centered", "before", "after";
   display: inline-block;
   cursor: pointer;
 
-  &-icon{
-    color: var(--general_contrasts-100);
-  }
-
   &:hover .bmb_tooltip-container {
     visibility: visible;
     opacity: 1;

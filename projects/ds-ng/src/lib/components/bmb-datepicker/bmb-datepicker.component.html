@@ -34,6 +34,7 @@
       [customValidation]="customValidatorDate()"
       [name]="name()"
       [isClearable]="isClearable()"
+      [value]="value()"
     >
       @if (isWindowOpen) {
         <ng-template #customInputContent>
@@ -42,7 +43,7 @@
             [isWindowOpen]="isWindowOpen"
             (closeWindow)="handleWindowOpen($event)"
             (onValueChange)="handleValueChange($event)"
-            [value]="control().valid && control().value"
+            [value]="control()?.valid && control()?.value"
             [dateFormat]="dateFormat()"
             [stepYearPicker]="stepYearPicker()"
             [disableDatesBefore]="convertToDate(disableDatesBefore())"

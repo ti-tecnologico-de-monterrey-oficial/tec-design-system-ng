@@ -61,7 +61,7 @@
   &-scroll {
     &-left {
       display: flex;
-      padding: .5rem;
+      padding: rem.rem_calc(8);
       align-items: center;
     }
   }

@@ -31,7 +31,7 @@ export interface IBmbTab {
   templateUrl: './bmb-tabs.component.html',
   styleUrls: ['./bmb-tabs.component.scss'],
   standalone: true,
-  imports: [CommonModule, BmbActionIconComponent ],
+  imports: [CommonModule, BmbActionIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
@@ -76,11 +76,17 @@ export class BmbTabsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     setTimeout(() => this.showActiveTab(), 100);
-    this.hasScroll.set(this.tabsItems.nativeElement.scrollWidth > this.tabsItems.nativeElement.clientWidth);
+    this.hasScroll.set(
+      this.tabsItems.nativeElement.scrollWidth >
+        this.tabsItems.nativeElement.clientWidth,
+    );
 
     this.observer = new ResizeObserver(() => {
       this.zone.run(() => {
-        this.hasScroll.set(this.tabsItems.nativeElement.scrollWidth > this.tabsItems.nativeElement.clientWidth);
+        this.hasScroll.set(
+          this.tabsItems.nativeElement.scrollWidth >
+            this.tabsItems.nativeElement.clientWidth,
+        );
       });
     });
 
@@ -157,6 +163,10 @@ export class BmbTabsComponent implements OnInit, AfterViewInit, OnDestroy {
   scrollEvent(event: Event): void {
     const tabsElement = this.tabsItems.nativeElement;
     this.scrollLeft.set(tabsElement.scrollLeft);
-    this.scrollRight.set(tabsElement.scrollLeft + tabsElement.clientWidth - tabsElement.scrollWidth);
+    this.scrollRight.set(
+      tabsElement.scrollLeft +
+        tabsElement.clientWidth -
+        tabsElement.scrollWidth,
+    );
   }
 }

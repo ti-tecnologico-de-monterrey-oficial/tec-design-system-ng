@@ -18,11 +18,10 @@
     </ng-container>
   }
   <circle
-    [ngClass]="
-      {
-        'bmb_progress-circle-fill': percent > 0,
-        'bmb_progress-circle-empty': percent === 0,
-      }"
+    [ngClass]="{
+      'bmb_progress-circle-fill': percent > 0,
+      'bmb_progress-circle-empty': percent === 0,
+    }"
     [attr.cx]="svg.circle.cx"
     [attr.cy]="svg.circle.cy"
     [attr.r]="svg.circle.r"

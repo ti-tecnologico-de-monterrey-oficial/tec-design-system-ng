@@ -51,6 +51,7 @@ export class BmbFormValidationComponent implements AfterViewInit, OnInit {
         const inputValidationList = input?.querySelectorAll(
           'bmb-input-validation',
         );
+
         const type = this.getInputAttribute(inputValidationList[0], 'type');
 
         if (type === 'date_range') {
@@ -83,7 +84,6 @@ export class BmbFormValidationComponent implements AfterViewInit, OnInit {
 
   onSubmit() {
     this.formGroup().markAllAsTouched();
-    this.formGroup().updateValueAndValidity();
     this.updateErrorState();
     this.formGroupState.emit(this.formGroup());
   }
@@ -93,7 +93,6 @@ export class BmbFormValidationComponent implements AfterViewInit, OnInit {
       const control = this.getFormControl(field);
 
       if (control) {
-        control.markAsTouched();
         control.updateValueAndValidity();
       }
     });

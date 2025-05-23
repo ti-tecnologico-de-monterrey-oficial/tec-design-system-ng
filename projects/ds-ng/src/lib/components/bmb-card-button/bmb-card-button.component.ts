@@ -13,11 +13,12 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
 import { BmbDropdownMenuComponent } from '../bmb-dropdown-menu/bmb-dropdown-menu.component';
-import { IDropdownItem } from '../bmb-dropdown-menu/bmb-dropdown-menu.component';
+
 import {
   IBmbBadgeInfo,
   IBmbImageInfo,
   IBmbLinkConfiguration,
+  IDropdownItem,
 } from '../../types';
 import { BmbTextLinkComponent } from '../bmb-text-link/bmb-text-link.component';
 

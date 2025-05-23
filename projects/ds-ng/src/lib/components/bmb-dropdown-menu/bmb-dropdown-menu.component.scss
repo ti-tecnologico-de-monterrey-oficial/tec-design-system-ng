@@ -2,17 +2,19 @@
 
 .bmb_dropdown_menu {
   &-button {
-    padding: rem.rem_calc(6) 0 !important;
-    position: relative;
-    min-height: auto;
-    color: var(--general_contrasts-50);
+    .bmb_check-external-link-button-element {
+      padding: rem.rem_calc(6) 0 !important;
+      position: relative;
+      min-height: auto;
+      color: var(--general_contrasts-50);
 
-    &:hover {
-      color: var(--buttons-primary-hover);
-    }
+      &:hover {
+        color: var(--buttons-primary-hover);
+      }
 
-    &:focus {
-      color: var(--buttons-primary-select);
+      &:focus {
+        color: var(--buttons-primary-select);
+      }
     }
   }
 }
