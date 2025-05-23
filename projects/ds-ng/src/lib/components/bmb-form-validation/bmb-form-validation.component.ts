@@ -51,6 +51,7 @@ export class BmbFormValidationComponent implements AfterViewInit, OnInit {
         const inputValidationList = input?.querySelectorAll(
           'bmb-input-validation',
         );
+
         const type = this.getInputAttribute(inputValidationList[0], 'type');
 
         if (type === 'date_range') {

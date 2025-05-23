@@ -38,7 +38,7 @@ export class BmbInputValidationComponent implements OnInit {
   label = input<string>('');
   labelPosition = input<IBbmSidePosition | null>();
   name = input<string>('');
-  value = input<string>();
+  value = input<string | string[]>();
   checked = input<boolean>(false);
   isRequired = input<boolean>(false);
   disabled = input<boolean>(false);

@@ -4,7 +4,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { attributes } from '../../utils/utils';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { InputSignal } from '@angular/core';
-import { IDropdownItem } from '../bmb-dropdown-menu/bmb-dropdown-menu.component';
+import { IDropdownItem } from '../../types';
 
 export default {
   title: 'Macro Componentes/Card Button',
@@ -203,6 +203,7 @@ An array of objects representing menu items, providing additional actions or nav
 - \`action\`: (optional, function) A custom function executed when the menu item is clicked. This is useful for triggering specific behaviors or events.
 
       IDropdownItem {
+        idItem?: string
         icon: string;
         text: string;
         url?: string;

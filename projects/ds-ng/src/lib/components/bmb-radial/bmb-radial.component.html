@@ -11,7 +11,7 @@
   [isRequired]="required()"
   [disabled]="disabled()"
   [control]="control()"
-  [showError]="shouldShowError"
+  [showError]="shouldShowError || showError()"
 >
   <span class="bmb_radio">
     <input

@@ -52,6 +52,7 @@ Below is an example of how you can use this component in HTML:
 Sets the list of items for the dropdown menu.
 
     IDropdownItem {
+      idItem?: string
       icon: string;
       text: string;
       url?: string;
