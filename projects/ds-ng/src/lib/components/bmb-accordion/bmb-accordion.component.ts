@@ -17,6 +17,8 @@ import {
 import { CommonModule } from '@angular/common';
 import { SizeNames } from '../../types';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 
 const calculateSize: any = (pixels: string[]): string => {
   return pixels.map((size) => `var(--bmb-radius-${size})`).join(' ');
@@ -25,7 +27,7 @@ const calculateSize: any = (pixels: string[]): string => {
 @Component({
   selector: 'bmb-accordion',
   standalone: true,
-  imports: [CommonModule, BmbIconComponent],
+  imports: [CommonModule, BmbIconComponent, BmbLayoutDirective, BmbLayoutItemDirective],
   templateUrl: './bmb-accordion.component.html',
   styleUrl: './bmb-accordion.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

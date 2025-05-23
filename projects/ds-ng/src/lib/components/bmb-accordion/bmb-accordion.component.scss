@@ -16,9 +16,6 @@
   &-header-icon {
     @include fonts.font(3, regular);
     cursor: pointer;
-    justify-content: space-between;
-    align-items: center;
-    display: flex;
 
     bmb-icon {
       font-size: rem.rem_calc(18);
