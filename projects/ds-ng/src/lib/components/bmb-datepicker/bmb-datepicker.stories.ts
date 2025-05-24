@@ -283,7 +283,7 @@ Below is an example of how to use this component in HTML:
     isRequired: false,
     placeholder: '',
     disabled: false,
-    label: '',
+    label: 'Date',
     appearance: 'normal',
     isClearable: false,
     dateFormat: 'dd/MM/yyyy',

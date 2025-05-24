@@ -135,3 +135,17 @@ export interface IBmbBadgeInfo {
   appearance: IBbmBgAppearance;
   container?: boolean;
 }
+
+export interface IDropdownItem {
+  idItem?: string;
+  icon: string;
+  text: string;
+  value?: string;
+  url?: string;
+  target?: IBmbTargetLink;
+  action?: () => void;
+}
+
+export interface IBmbDropdownItemSelection extends IDropdownItem {
+  checked?: boolean;
+}

@@ -6,13 +6,17 @@
     fill-opacity: 1;
   }
 
+  &-empty {
+    fill: transparent;
+  }
+
   &-fill {
-    stroke: RGBA(var(--color-blue-primary));
+    stroke: var(--general_contrasts-5);
     fill: transparent;
   }
 
   &-track {
-    stroke: RGBA(var(--color-green-primary));
+    stroke: RGBA(var(--color-blue-primary));
     stroke-linecap: round;
     transition: all;
   }

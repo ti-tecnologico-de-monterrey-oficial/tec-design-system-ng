@@ -1,0 +1,30 @@
+@if (isOpen()) {
+  <ul class="bmb_dropdown-content-container">
+    @for (item of optionList; track $index) {
+      <li
+        class="bmb_dropdown-content-item bmb_dropdown-content-item-singular"
+        [ngClass]="{
+          'bmb_dropdown-content-item-selected': item.checked,
+        }"
+        [id]="item.idItem"
+      >
+        <bmb-check-external-link-button
+          [link]="item.url!"
+          [target]="item.target!"
+          (buttonClick)="handleDropdown(item)"
+        >
+          @if (!!item.icon) {
+            <bmb-icon
+              class="bmb_dropdown-content-item-icon"
+              [icon]="item.icon"
+              [size]="24"
+            />
+          }
+          <span class="bmb_dropdown-content-item-text">
+            {{ item.text }}
+          </span>
+        </bmb-check-external-link-button>
+      </li>
+    }
+  </ul>
+}

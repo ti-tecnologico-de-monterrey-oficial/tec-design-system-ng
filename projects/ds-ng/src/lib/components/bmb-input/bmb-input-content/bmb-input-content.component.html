@@ -1,0 +1,85 @@
+<section class="bmb_field">
+  <section class="bmb_field-wrapper">
+    @if (!!icon() && type() !== "text-area") {
+      <bmb-icon
+        class="bmb_field-icon"
+        [ngClass]="{
+          'bmb_field-icon-simple': appearance() === 'simple',
+        }"
+        [icon]="icon()"
+        [size]="24"
+      />
+    }
+    @if (type() === "text-area") {
+      <textarea
+        class="bmb_field-text-area"
+        [ngClass]="inputClasses"
+        [placeholder]="placeholder()"
+        [disabled]="disabled()"
+        [required]="isRequired()"
+        [formControl]="getFormControl()"
+        [maxlength]="maxlength()!"
+        [style.height.px]="heightTextArea()!"
+        [minlength]="minlength()!"
+        [spellcheck]="spellcheck()"
+        [rows]="rows()"
+        [name]="name()"
+        [id]="inputId()"
+        [pattern]="pattern()!"
+        [tabindex]="disabled() ? -1 : 0"
+        (keydown)="handleKeyPress($event)"
+        (change)="handleChange($event)"
+        (focus)="handleFocus()"
+        (blur)="handleBlur()"
+      ></textarea>
+      @if (isError()) {
+        <bmb-icon class="bmb_field-text-area-error-icon" [icon]="'error'" />
+      }
+    } @else {
+      <input
+        class="bmb_field-input"
+        [type]="getType()"
+        [ngClass]="inputClasses"
+        [required]="isRequired()"
+        [disabled]="disabled()"
+        [readOnly]="isReadOnly()"
+        [placeholder]="placeholder()"
+        [formControl]="getFormControl()"
+        [name]="name()"
+        [id]="inputId()"
+        [spellcheck]="spellcheck()"
+        [maxlength]="maxlength()!"
+        [minlength]="minlength()!"
+        [pattern]="pattern()!"
+        [max]="max()"
+        [min]="min()"
+        [tabindex]="disabled() ? -1 : 0"
+        (keydown)="handleKeyPress($event)"
+        (change)="handleChange($event)"
+        (focus)="handleFocus()"
+        (blur)="handleBlur()"
+      />
+      @if (showAdditionalAction() || isClearable()) {
+        <span class="bmb_field-actions">
+          @if (showAdditionalAction()) {
+            <bmb-action-icon
+              class="bmb_field-additional_action"
+              [icon]="getAdditionalActionIcon()"
+              [iconSize]="24"
+              (buttonClick)="actionToExecute()"
+            />
+          }
+          @if (isClearable()) {
+            <bmb-action-icon
+              class="bmb_field-clear"
+              icon="close"
+              [iconSize]="24"
+              (buttonClick)="handleClearValue()"
+            />
+          }
+        </span>
+      }
+    }
+    <ng-container [ngTemplateOutlet]="customInputContent" />
+  </section>
+</section>

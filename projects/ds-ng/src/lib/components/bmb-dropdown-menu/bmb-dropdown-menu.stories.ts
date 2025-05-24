@@ -52,6 +52,7 @@ Below is an example of how you can use this component in HTML:
 Sets the list of items for the dropdown menu.
 
     IDropdownItem {
+      idItem?: string
       icon: string;
       text: string;
       url?: string;
@@ -86,17 +87,18 @@ Sets the list of items for the dropdown menu.
         icon: 'link',
         text: 'External Link External Link External Link',
         url: 'https://example.com',
-        target: '_self',
+        target: '_blank',
       },
       {
         icon: 'link',
         text: 'internal Link',
         url: '/vivencia',
+        target: '_self',
       },
       {
         icon: 'delete',
         text: 'Delete',
-        action: () => alert('Delete clicked!'),
+        action: () => console.log('Delete clicked!'),
       },
       {
         icon: 'settings',

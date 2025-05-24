@@ -1,6 +1,5 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbRadialComponent } from './bmb-radial.component';
-import { FormControl } from '@angular/forms';
 
 export default {
   title: 'Micro Componentes/Radial',
