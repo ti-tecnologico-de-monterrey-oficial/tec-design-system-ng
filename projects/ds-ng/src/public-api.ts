@@ -17,6 +17,7 @@ export * from './lib/directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layo
 export * from './lib/directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
 export * from './lib/directives/bmb-button-group/bmb-button-group.directive';
 export * from './lib/directives/bmb-accordion/bmb-accordion-control.directive';
+export * from './lib/directives/bmb-layout-grid/bmb-layout-grid.directive';
 
 // Components
 export * from './lib/components/bmb-logo/bmb-logo.component';
