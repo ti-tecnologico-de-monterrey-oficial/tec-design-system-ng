@@ -27,7 +27,12 @@ const calculateSize: any = (pixels: string[]): string => {
 @Component({
   selector: 'bmb-accordion',
   standalone: true,
-  imports: [CommonModule, BmbIconComponent, BmbLayoutDirective, BmbLayoutItemDirective],
+  imports: [
+    CommonModule,
+    BmbIconComponent,
+    BmbLayoutDirective,
+    BmbLayoutItemDirective,
+  ],
   templateUrl: './bmb-accordion.component.html',
   styleUrl: './bmb-accordion.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
