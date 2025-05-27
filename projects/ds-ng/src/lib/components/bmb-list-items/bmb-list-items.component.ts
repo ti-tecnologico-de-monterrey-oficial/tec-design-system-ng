@@ -39,9 +39,10 @@ export class BmbListItemsComponent implements OnInit {
   title = input<string>('');
   addButtonIcon = input<string>('add_box');
   showAddButton = input<boolean>(true);
-  addButtonAction = output<void>();
   items = input<IBmbListItemsElement[]>([]);
   dateFormat = input<string>('yyyy-MM-dd');
+
+  addButtonAction = output<MouseEvent>();
 
   itemsGropedByDate: IBmbListItemsElementGroupedByDate = {
     recent: [],
@@ -55,8 +56,8 @@ export class BmbListItemsComponent implements OnInit {
     this.orderEventsByDate();
   }
 
-  handleAddButtonClick() {
-    this.addButtonAction.emit();
+  handleAddButtonClick(event: MouseEvent): void {
+    this.addButtonAction.emit(event);
     this.isNewEnable = !this.isNewEnable;
   }
 
