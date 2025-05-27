@@ -31,7 +31,7 @@ import { BmbButtonDirective } from '../../../directives/bmb-button/button.direct
 export class BmbPushNotificationItemComponent {
   notification = input.required<INotification>();
 
-  onClose = output<void>();
+  onClose = output<MouseEvent>();
 
   isExpanded = true;
   dontAskAgain = false;
@@ -59,8 +59,8 @@ export class BmbPushNotificationItemComponent {
     ];
   }
 
-  handleClose() {
-    this.onClose.emit();
+  handleClose(event: MouseEvent) {
+    this.onClose.emit(event);
   }
 
   handleExpandEvent() {
@@ -82,11 +82,11 @@ export class BmbPushNotificationItemComponent {
     }
   }
 
-  handleAction(action: INotificationAction) {
+  handleAction(event: MouseEvent, action: INotificationAction) {
     const { title, subTitle, content, isFullColor, id } = this.notification();
 
     if (action.action === 'close') {
-      this.onClose.emit();
+      this.onClose.emit(event);
     } else {
       action.action({ title, subTitle, content, isFullColor, id });
     }
