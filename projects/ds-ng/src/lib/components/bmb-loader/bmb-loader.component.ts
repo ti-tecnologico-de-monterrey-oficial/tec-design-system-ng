@@ -33,8 +33,8 @@ export class BmbLoaderComponent {
   buttonPrimary = input<string>('');
   buttonSecondary = input<string>('');
 
-  onButtonPrimary = output<void>();
-  onButtonSecondary = output<void>();
+  onButtonPrimary = output<MouseEvent>();
+  onButtonSecondary = output<MouseEvent>();
 
   constructor(
     private renderer: Renderer2,
@@ -84,11 +84,11 @@ export class BmbLoaderComponent {
     return window.self !== window.top;
   }
 
-  handleButtonPrimary() {
-    this.onButtonPrimary.emit();
+  handleButtonPrimary(event: MouseEvent) {
+    this.onButtonPrimary.emit(event);
   }
 
-  handleButtonSecondary() {
-    this.onButtonSecondary.emit();
+  handleButtonSecondary(event: MouseEvent) {
+    this.onButtonSecondary.emit(event);
   }
 }
