@@ -67,8 +67,6 @@ export class BmbCalendarScheduleCardsComponent {
       newClasses.push('bmb_calendar-event-grid-full');
     }
 
-    console.log(this.now >= start && this.now <= end);
-
     if (this.now >= start && this.now <= end) {
       newClasses.push('bmb_calendar-event-active');
     }
