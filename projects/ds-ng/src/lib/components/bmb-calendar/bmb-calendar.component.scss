@@ -117,6 +117,22 @@
     flex: 1 0 0%;
     overflow: hidden;
   }
+
+  &-event-modal{
+
+    &-title{
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: wrap;
+      @include fonts.font(5, medium);
+    }
+
+    &-detail,
+    &-place,
+    &-duration{
+      @include fonts.font(4, regular);
+    }
+  }
 }
 
 @keyframes rotateAnimation {
