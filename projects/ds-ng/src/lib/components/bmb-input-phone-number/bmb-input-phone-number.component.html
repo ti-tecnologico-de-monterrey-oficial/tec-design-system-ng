@@ -1,100 +1,52 @@
-<span class="bmb_input-number">
-  <label class="bmb_input-validation-label" for="#bmbInputPhoneNumber">
-    {{ label() }}
-    @if (isRequired()) {
-      <small class="bmb_input-validation-label-required">*</small>
-    }
-    @if (!!tooltip()) {
-      <bmb-tooltip
-        class="bmb_input-validation-label-tooltip"
-        [text]="tooltip()"
-        align="below"
-        justify="before"
-        icon="help"
-        [size]="15"
+<bmb-input-validation
+  [type]="'text'"
+  [name]="name()"
+  [label]="label()!"
+  [errorMessage]="getErrorMessage()"
+  [helperMessage]="helperMessage()"
+  [isRequired]="isRequired()"
+  [disabled]="disabled()"
+  [control]="control()"
+  [showError]="shouldShowError"
+  [tooltip]="tooltip()"
+  [appearance]="appearance()"
+  [isCustomError]="true"
+  [customValidation]="customValidatorPhone()"
+>
+  <section class="bmb_input-number">
+    <section
+      class="bmb_input-number-container"
+      [ngClass]="{ 'bmb_input-number-container-error': shouldShowError }"
+    >
+      <bmb-dropdown
+        [required]="true"
+        [showIcon]="false"
+        [options]="getOptions()"
+        (onValueChange)="onValueChange($event)"
+        [control]="getControl('select')"
       />
-    }
-  </label>
-  <span class="bmb_input-number-container">
-    <bmb-dropdown
-      [required]="true"
-      [showIcon]="false"
-      [options]="getOptions()"
-      (onValueChange)="onValueChange($event)"
-      [control]="getControl('select')"
-    />
-    <bmb-input
-      [placeholder]="placeholder()"
-      [appearance]="appearance()"
-      [errorMessage]="errorMessage()"
-      [disabled]="disabled()"
-      [tooltip]="tooltip()"
-      [control]="getControl('input')"
-      [id]="inputId()"
+      <bmb-input
+        class="bmb_input-number-input"
+        name="input"
+        pattern="^\d+$"
+        [value]="getNumberValue()"
+        [appearance]="appearance()"
+        [disabled]="disabled()"
+        [control]="getControl('input')"
+        [id]="inputId()"
+        [maxlength]="selectedCountry?.length"
+        [minlength]="selectedCountry?.length"
+        [isRequired]="isRequired()"
+      />
+    </section>
+    <input
+      hidden
       type="text"
-      class="bmb_input-number-input"
+      name="name"
+      [required]="isRequired()"
+      [formControl]="getFormControl(name())"
+      [name]="name()"
+      [tabindex]="-1"
     />
-  </span>
-  <bmb-input
-    [placeholder]="placeholder()"
-    [disabled]="disabled()"
-    [isRequired]="isRequired()"
-    [tooltip]="tooltip()"
-    [control]="control()"
-    hidden
-  />
-  @if (helperMessage()) {
-    <span class="bmb_input-validation-helper">{{ helperMessage() }}</span>
-  }
-  @if (getErrors()) {
-    <p class="bmb_input-validation-error">
-      {{ getErrorMessage() }}
-    </p>
-  }
-</span>
-<!-- Please don´t remove thiss code is for input validation
-<span class="bmb_input-number">
-  <bmb-input-validation
-    type="phone"
-    [name]="name()"
-    [label]="label()!"
-    [value]="value()"
-    [errorMessage]="errorMessage()"
-    [helperMessage]="helperMessage()"
-    [isRequired]="isRequired()"
-    [disabled]="disabled()"
-    [control]="control()"
-    [pattern]="getPatternVal()"
-    [tooltip]="tooltip()"
-  >
-  <input
-    type="text"
-    hidden
-    [id]="inputId()"
-    [placeholder]="placeholder()"
-    [name]="name()"
-    [required]="isRequired()"
-    [formControl]="control()"
-  />
-  <span class="bmb_input-number-container">
-    <bmb-dropdown
-      name="select"
-      [required]="true"
-      [showIcon]="false"
-      [options]="getOptions()"
-      [control]="getControl('select')"
-      (onValueChange)="onValueChange($event)"
-    />
-    <bmb-input
-      class="bmb_input-number-input"
-      type="number"
-      name="input"
-      [placeholder]="placeholder()"
-      [appearance]="appearance()"
-      [isRequired]="isRequired()"
-      [disabled]="disabled()"
-      [control]="getControl('input')"
-    />
-  </span>
-  </bmb-input-validation>
-</span> -->
+  </section>
+</bmb-input-validation>

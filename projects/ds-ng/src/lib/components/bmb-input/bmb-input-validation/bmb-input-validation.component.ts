@@ -4,6 +4,7 @@ import {
   Component,
   input,
   model,
+  OnInit,
   ViewEncapsulation,
 } from '@angular/core';
 import {
@@ -30,21 +31,21 @@ export type IBmbInputValType = 'checkbox' | 'email' | 'phone' | 'switch';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbInputValidationComponent {
+export class BmbInputValidationComponent implements OnInit {
   inputId = input<string>('');
   type = input<IBmbInputType | IBmbInputValType>('text');
   appearance = input<IBmbInputAppearance | string>('normal');
   label = input<string>('');
   labelPosition = input<IBbmSidePosition | null>();
   name = input<string>('');
-  value = input<string>();
+  value = input<string | string[]>();
   checked = input<boolean>(false);
   isRequired = input<boolean>(false);
   disabled = input<boolean>(false);
   max = input<number>();
   min = input<number>();
-  maxlength = input<number>();
-  minlength = input<number>();
+  maxLength = input<number>();
+  minLength = input<number>();
   pattern = input<string>();
   jsonFormat = input<boolean>(false);
   tooltip = input<string>('');
@@ -77,7 +78,7 @@ export class BmbInputValidationComponent {
       this.isRequired(),
       this.min()!,
       this.max()!,
-      this.minlength()!,
+      this.minLength()!,
       this.pattern()!,
       this.jsonFormat(),
       this.isCustomError(),
@@ -100,10 +101,6 @@ export class BmbInputValidationComponent {
     return this.ivs.getFormControlByName(this.name());
   }
 
-  get shouldShowError(): boolean {
-    return this.ivs.showError(this.name());
-  }
-
   getErrorMessage(): string {
     if (typeof this.errorMessage() === 'string') {
       return this.errorMessage().toString();
@@ -112,16 +109,18 @@ export class BmbInputValidationComponent {
     const control = this.ivs.getFormControlByName(this.name());
     const error = this.errorMessage() as IBmbInputError;
 
-    if (control.hasError('customValidation') && !!error.customValidation)
-      return error.customValidation;
-    if (control.hasError('invalidJson') && !!error.jsonFormat)
-      return error.jsonFormat;
     if (control.hasError('pattern') && !!error.pattern) return error.pattern;
     if (control.hasError('min') && !!error.min) return error.min;
     if (control.hasError('max') && !!error.max) return error.max;
     if (control.hasError('minlength') && !!error.minLength)
       return error.minLength;
+    if (control.hasError('maxlength') && !!error.maxLength)
+      return error.maxLength;
     if (control.hasError('required') && !!error.required) return error.required;
+    if (control.hasError('invalidJson') && !!error.jsonFormat)
+      return error.jsonFormat;
+    if (control.hasError('customValidation') && !!error.customValidation)
+      return error.customValidation;
 
     return '';
   }

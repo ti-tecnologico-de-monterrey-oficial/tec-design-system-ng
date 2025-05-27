@@ -4,7 +4,7 @@ import {
   Component,
   input,
   ViewEncapsulation,
-  computed
+  computed,
 } from '@angular/core';
 
 export type IBmbGradeType = 'main-grade' | 'partial-grade';
@@ -24,6 +24,6 @@ export class BmbGradeValueComponent {
 
   truncatedScore = computed(() => {
     const score = this.score();
-    return String(score ?? '').substring(0,4)
-  })
+    return String(score ?? '').substring(0, 4);
+  });
 }

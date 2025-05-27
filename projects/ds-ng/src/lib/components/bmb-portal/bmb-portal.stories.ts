@@ -22,7 +22,7 @@ import { attributes } from '../../utils/utils';
   ],
   selector: 'storybook-toast-wrapper',
   template: `
-    <div style="height: 500px">
+    <div class="bmb_main-container" style="height: 500px">
       <button
         bmbButton
         appearance="primary"
@@ -31,8 +31,68 @@ import { attributes } from '../../utils/utils';
       >
         Add notification
       </button>
-      <bmb-portal />
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia
+        officia illum id. Libero exercitationem quis fugiat perspiciatis itaque
+        perferendis enim voluptatibus, temporibus, officia aut consequuntur
+        similique ea accusantium non doloribus.
+      </p>
+      <p>
+        Voluptate possimus cupiditate rerum, soluta debitis consectetur amet
+        vero quia, odio perspiciatis unde saepe, architecto repellat. Iste
+        veniam eum facilis, nemo, aspernatur voluptatum deleniti dolores
+        consequatur dignissimos sit autem non.
+      </p>
+      <p>
+        Mollitia pariatur unde neque quaerat consequatur doloremque
+        reprehenderit, excepturi, voluptatum hic accusantium magni natus.
+        Exercitationem ab rem dicta quaerat culpa, atque impedit accusamus,
+        nulla eveniet totam aut temporibus quo. Perspiciatis.
+      </p>
+      <p>
+        Voluptate, architecto eligendi. Ipsam sint mollitia esse commodi
+        inventore perferendis, alias suscipit repellat. Corrupti culpa
+        doloremque rerum et. Odit, accusantium quis vero aspernatur quibusdam
+        minima non assumenda aut eos! Dolor.
+      </p>
+      <p>
+        Illo dolorem doloribus atque nihil dolorum fugit explicabo recusandae
+        dolor quos aliquid, eligendi nemo sunt sequi nisi voluptas distinctio
+        quam, aspernatur consequuntur obcaecati ducimus. Vitae nulla recusandae
+        explicabo nobis corporis!
+      </p>
+      <p>
+        Dicta magnam laboriosam, praesentium at adipisci saepe aliquid beatae
+        ea, quam vitae aut quo soluta omnis, consequuntur necessitatibus.
+        Obcaecati impedit quod temporibus molestiae sapiente voluptatum nostrum
+        laudantium placeat aliquam quia.
+      </p>
+      <p>
+        Optio repellendus, illo dicta tempore, aliquid atque numquam
+        perspiciatis, in maiores harum recusandae velit iste corrupti iure aut
+        corporis. Enim accusantium doloribus ipsum! Quidem, repellat quod odio
+        eius expedita a.
+      </p>
+      <p>
+        Quaerat incidunt aut eligendi obcaecati libero voluptatibus minus magni
+        eius voluptatum est, accusamus corporis, repellendus cupiditate
+        deserunt, tempore temporibus! Deleniti perspiciatis veniam molestias
+        laboriosam ipsam repellat minima vitae odio repudiandae.
+      </p>
+      <p>
+        Totam, iure possimus ipsum dolores dignissimos atque vitae unde odit,
+        magni distinctio quam laudantium commodi debitis magnam aspernatur
+        accusamus. Totam ut consequatur, veritatis ipsum quasi itaque officia
+        quos aliquid consectetur.
+      </p>
+      <p>
+        Eligendi, vero praesentium, nostrum, alias inventore voluptatem iusto
+        distinctio ullam recusandae cumque id consequuntur aperiam. Voluptate
+        fugit autem ipsam! Amet cum id ab explicabo obcaecati pariatur fugit
+        repudiandae ullam deserunt!
+      </p>
     </div>
+    <bmb-portal />
   `,
 })
 class StorybookToastWrapperComponent {
@@ -152,7 +212,18 @@ getNotificationList(): INotification[];
 This function returns the current notification list.
 
 ##Show notifications
-Add the \`BmbPortalComponent\` at the bottom of your **app.component.html**
+Add the \`BmbPortalComponent\` at the bottom of your **app.component.html**.
+
+If you need to reproduce sticky behavior on your notifications, you can add the bmb_main-container class to your app container in the **app.component.html** file as shown below.
+
+> **Important**: If you show many notifications at the same time, the browser may display two scrolls bars.
+
+\`\`\`html
+<div class="bmb_main-container">
+  <my-app></my-app>
+</div>
+<bmb-portal></bmb-portal>
+\`\`\`
 
 \`\`\`typescript
 import { BmbPortalComponent, NotificationType, INotificationAction, NotificationType } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';

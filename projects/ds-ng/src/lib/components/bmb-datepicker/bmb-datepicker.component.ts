@@ -57,8 +57,9 @@ export class BmbDatepickerComponent {
   disableDatesAfter = input<string>('');
   lang = input<string>('es-MX');
   helperMessage = input<string>(this.dateFormat());
+  value = input<string>();
 
-  control = model<FormControl>(new FormControl());
+  control = model<FormControl>();
 
   onChange = output<string>();
 
@@ -93,8 +94,7 @@ export class BmbDatepickerComponent {
   }
 
   handleValueChange(event: string) {
-    // this.ivs.getFormControlByName(this.name()).setValue(event);
-    this.control().setValue(event);
+    this.ivs.getFormControlByName(this.name()).setValue(event);
     this.isWindowOpen = false;
     this.onChange.emit(event);
   }

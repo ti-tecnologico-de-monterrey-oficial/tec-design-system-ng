@@ -6,7 +6,7 @@
   [labelPosition]="labelPosition()"
   [checked]="checked()!"
   [errorMessage]="errorMessage()"
-  [showError]="showError()"
+  [showError]="shouldShowError || showError()"
   [helperMessage]="helperMessage()"
   [isRequired]="required()"
   [disabled]="disabled()"
