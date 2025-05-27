@@ -38,8 +38,8 @@ export class BmbActionIconComponent {
   link = input<string>();
   disabled = input<boolean>(false);
 
-  buttonPress = output<void>();
-  buttonClick = output<void>();
+  buttonPress = output<MouseEvent>();
+  buttonClick = output<MouseEvent>();
 
   getIcon(): string {
     if (this.isToggleActive() && !!this.toggleIconActive())
@@ -47,15 +47,15 @@ export class BmbActionIconComponent {
     return this.icon();
   }
 
-  handlePress(): void {
-    this.buttonPress.emit();
+  handlePress(event: MouseEvent): void {
+    this.buttonPress.emit(event);
   }
 
-  handleClick() {
+  handleClick(event: MouseEvent) {
     if (!!this.toggleIconActive()) {
       this.isToggleActive.update((value) => !value);
     }
 
-    this.buttonClick.emit();
+    this.buttonClick.emit(event);
   }
 }
