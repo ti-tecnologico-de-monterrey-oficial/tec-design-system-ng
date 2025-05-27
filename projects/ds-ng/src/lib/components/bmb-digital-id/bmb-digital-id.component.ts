@@ -39,14 +39,14 @@ export class BmbDigitalIdComponent {
 
   logoSrc = 'assets/images/tec-logo.svg';
 
-  close = output<void>();
-  access = output<void>();
+  close = output<MouseEvent>();
+  access = output<MouseEvent>();
 
-  closeDigitalId() {
-    this.close.emit();
+  closeDigitalId(event: MouseEvent) {
+    this.close.emit(event);
   }
 
-  clickAccess() {
-    this.access.emit();
+  clickAccess(event: MouseEvent) {
+    this.access.emit(event);
   }
 }
