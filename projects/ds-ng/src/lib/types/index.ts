@@ -140,12 +140,9 @@ export interface IDropdownItem {
   idItem?: string;
   icon: string;
   text: string;
+  selectedText?: string;
   value?: string;
   url?: string;
   target?: IBmbTargetLink;
   action?: () => void;
-}
-
-export interface IBmbDropdownItemSelection extends IDropdownItem {
-  checked?: boolean;
 }

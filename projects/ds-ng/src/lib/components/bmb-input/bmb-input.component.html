@@ -47,6 +47,8 @@
     (onChange)="handleChange($event)"
     (onClearValue)="clearValue()"
   >
-    <ng-container [ngTemplateOutlet]="customInputContent" />
+    <ng-template #customContent>
+      <ng-container [ngTemplateOutlet]="customInputContent" />
+    </ng-template>
   </bmb-input-content>
 </bmb-input-validation>

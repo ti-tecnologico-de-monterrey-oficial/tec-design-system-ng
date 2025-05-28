@@ -2,7 +2,7 @@
   class="bmb_dropdown"
   type="text"
   [name]="name()"
-  [value]="getValueControl()"
+  [value]="getValidInitialValues()"
   [label]="label()!"
   [errorMessage]="errorMessage()"
   [helperMessage]="helperText()"
@@ -23,26 +23,25 @@
     [isReadOnly]="true"
     [control]="selectionControl"
     [placeholder]="placeholder()"
+    [isError]="shouldShowError"
     (click)="openList()"
     (onKeyDown)="onKeyDown($event)"
     (onBlur)="handleValidity()"
-    [isError]="shouldShowError"
   >
-    <ng-template #customInputContent>
+    <ng-template #customContent>
       <bmb-icon
         class="bmb_field-actions"
         icon="keyboard_arrow_down"
         [size]="24"
+        (click)="openList()"
       />
     </ng-template>
   </bmb-input-content>
   <bmb-dropdown-content
     name="list"
+    [selectedOption]="getFormControl().value"
     [(items)]="items"
     [(isOpen)]="isOpen"
-    [selectedOption]="getFormControl().value"
-    [isKeepSelection]="true"
-    [isMultiSelect]="isMultiSelect()"
   />
   <input
     hidden
@@ -50,6 +49,5 @@
     [id]="name() + getUUID()"
     [name]="name()"
     [formControl]="getFormControl()"
-    [placeholder]="placeholder()"
   />
 </bmb-input-validation>

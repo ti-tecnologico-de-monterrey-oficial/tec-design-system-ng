@@ -31,6 +31,10 @@
     color: var(--general_contrasts-75);
     padding-left: var(--bmb-spacing-m);
 
+    &.bmb_field-input-error {
+      @include mixins.error_input();
+    }
+
     &:focus,
     &:focus-visible,
     &:hover {
@@ -42,20 +46,18 @@
       outline: none;
     }
   } @else {
-    @include mixins.normal_input_border();
-    color: var(--general_contrasts-100);
+    @include mixins.normal_input();
     padding-left: var(--bmb-spacing-s);
+
+    &.bmb_field-input-error {
+      @include mixins.error_input();
+    }
 
     @include mixins.normal_input_focus();
   }
 
   &::placeholder {
-    @include fonts.font(4, regular);
-    color: var(--general_contrasts-50);
-  }
-
-  &.bmb_field-input-error {
-    @include mixins.error_input();
+    @include mixins.input_placeholder();
   }
 }
 

@@ -55,6 +55,7 @@ export class BmbInputContentComponent {
   isClearable = input<boolean>(false);
   isError = input<boolean>(false);
   isHidden = input<boolean>(false);
+  showStates = input<boolean>(false);
 
   control = model<FormControl>();
 
@@ -64,7 +65,7 @@ export class BmbInputContentComponent {
   onKeyDown = output<KeyboardEvent>();
   onClearValue = output<void>();
 
-  @ContentChild('customInputContent') customInputContent!: TemplateRef<any>;
+  @ContentChild('customContent') customContent!: TemplateRef<any>;
 
   isHide: boolean = true;
 

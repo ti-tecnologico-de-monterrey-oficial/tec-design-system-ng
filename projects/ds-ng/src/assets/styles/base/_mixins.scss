@@ -315,20 +315,25 @@
   }
 }
 
-@mixin normal_input_border() {
-  background-color: var(--general_contrasts-input-background);
+@mixin input_placeholder() {
+  @include fonts.font(4, regular);
+  color: var(--general_contrasts-50);
+}
+
+@mixin normal_input() {
   border: rem.rem_calc(1) solid var(--general_contrasts-75);
   border-radius: rem.rem_calc(8);
-  height: rem.rem_calc(48);
   width: 100%;
+  background-color: var(--general_contrasts-input-background);
+  height: rem.rem_calc(48);
 }
 
 @mixin normal_input_focus() {
   &:focus,
   &:focus-visible,
-  &:hover {
+  &:hover,
+  &-focus {
     border: rem.rem_calc(2) solid var(--general_contrasts-input-outline);
-    padding-left: calc(var(--bmb-spacing-s) - rem.rem_calc(1));
     caret-color: var(--general_contrasts-input-outline);
     outline: none;
     transition: all 0.3s ease;
