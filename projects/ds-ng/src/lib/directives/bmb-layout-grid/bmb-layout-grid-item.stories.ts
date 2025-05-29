@@ -100,8 +100,7 @@ You can use this tool to generate a custom grid: [Grid generator](https://develo
       control: {
         type: 'number',
       },
-      description:
-        'The number of rows the item should span within the grid.',
+      description: 'The number of rows the item should span within the grid.',
       table: {
         category: 'Properties',
         type: { summary: 'number' },
