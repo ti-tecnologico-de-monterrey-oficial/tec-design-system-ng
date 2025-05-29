@@ -3,13 +3,7 @@
 @use "../../../../assets/styles/base/rem" as rem;
 
 @mixin placeholder_padding($padding) {
-  padding-left: rem.rem_calc($padding);
-
-  &:hover,
-  &:focus,
-  &:focus-visible {
-    padding-left: rem.rem_calc($padding);
-  }
+  padding-left: $padding;
 }
 
 @mixin input($type: normal) {
@@ -23,39 +17,43 @@
   }
 
   @if $type == "simple" {
+    box-sizing: border-box;
     height: rem.rem_calc(48);
     width: 100%;
     background-color: transparent;
     border: 0;
-    border-bottom: rem.rem_calc(1) solid var(--general_contrasts-100);
-    color: var(--general_contrasts-75);
+    border-bottom: rem.rem_calc(1) solid var(--general_contrasts-50);
+    color: var(--general_contrasts-100);
     padding-left: var(--bmb-spacing-m);
+    transition: all 0.3s ease;
+
+    &.bmb_field-input-error {
+      @include mixins.error_input();
+    }
 
     &:focus,
     &:focus-visible,
     &:hover {
+      box-sizing: inherit;
       border-bottom: rem.rem_calc(2)
         solid
         var(--general_contrasts-input-outline);
       color: var(--general_contrasts-input-outline);
       caret-color: var(--general_contrasts-input-outline);
-      outline: none;
     }
   } @else {
-    @include mixins.normal_input_border();
-    color: var(--general_contrasts-100);
-    padding-left: var(--bmb-spacing-s);
+    @include placeholder_padding(var(--bmb-spacing-s));
+    @include mixins.normal_input();
+
+    &.bmb_field-input-error {
+      @include mixins.error_input();
+    }
 
     @include mixins.normal_input_focus();
   }
 
   &::placeholder {
-    @include fonts.font(4, regular);
-    color: var(--general_contrasts-50);
-  }
-
-  &.bmb_field-input-error {
-    @include mixins.error_input();
+    @include mixins.input_placeholder();
   }
 }
 
@@ -65,26 +63,37 @@
     display: flex;
     position: relative;
     width: 100%;
+
+    &:hover .bmb_field-icon-simple {
+      color: var(--general_contrasts-input-outline);
+    }
   }
 
   &-icon {
-    color: var(--general_contrasts-50);
+    color: var(--general_contrasts-100);
     left: var(--bmb-spacing-s);
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
 
     ~ .bmb_field-input-normal {
-      @include placeholder_padding(39);
+      @include placeholder_padding(rem.rem_calc(39));
     }
 
     ~ .bmb_field-input-simple {
-      @include placeholder_padding(31);
+      @include placeholder_padding(rem.rem_calc(31));
     }
 
     &-simple {
       left: 0;
-      color: var(--general_contrasts-75);
+
+      &-error {
+        color: var(--general_contrasts-75);
+      }
+
+      &-focused {
+        color: var(--general_contrasts-input-outline);
+      }
     }
   }
 

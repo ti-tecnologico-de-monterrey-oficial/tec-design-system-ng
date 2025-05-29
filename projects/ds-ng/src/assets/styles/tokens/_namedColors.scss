@@ -54,6 +54,7 @@
     1
   );
   --menu_select-on-surface-hovered: RGBA(var(--color-mariner-100), 1);
+  --menu_select-on-surface-hovered-border: RGBA(var(--color-mariner-700), 0.1);
 
   --drop_shadow-color-test-shadow: RGBA(var(--color-charade-950), 0.5);
 
@@ -136,6 +137,7 @@
     1
   );
   --menu_select-on-surface-hovered: RGBA(var(--color-charade-500), 1);
+  --menu_select-on-surface-hovered-border: RGBA(var(--color-charade-500), 0.1);
 
   --track-progress-bar: RGBA(var(--color-green-light), 1);
   --vertical-step-active: RGBA(var(--color-charade-700), 1);

@@ -127,13 +127,13 @@ Below is an example of how you can use this component in HTML:
       four: { name: 'refresh', label: '' },
     },
     onClose: () => {
-      alert('Close button clicked in Storybook');
+      console.log('Close button clicked in Storybook');
     },
     menuEvent: (event: unknown) => {
-      alert('Menu selection: ' + event + ' in Storybook');
+      console.log('Menu selection: ' + event + ' in Storybook');
     },
     footerEvent: (event: unknown) => {
-      alert('Footer selection: ' + event + ' in Storybook');
+      console.log('Footer selection: ' + event + ' in Storybook');
     },
   },
 } as Meta<typeof BmbExternalLinkComponent>;

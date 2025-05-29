@@ -144,4 +144,10 @@ export class BmbInputValidationService {
     const control = this.getFormControlByName(name);
     return (control?.invalid && (control?.touched || control?.dirty)) || false;
   }
+
+  handleValidity(name: string): void {
+    const control: FormControl = this.getFormControlByName(name);
+    control.updateValueAndValidity();
+    control.markAsTouched();
+  }
 }

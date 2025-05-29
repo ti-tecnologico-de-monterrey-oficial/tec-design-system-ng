@@ -5,6 +5,8 @@
         class="bmb_field-icon"
         [ngClass]="{
           'bmb_field-icon-simple': appearance() === 'simple',
+          'bmb_field-icon-simple-focused': appearance() === 'simple' && isFocus,
+          'bmb_field-icon-simple-error': appearance() === 'simple' && isError(),
         }"
         [icon]="icon()"
         [size]="24"
@@ -15,7 +17,7 @@
         class="bmb_field-text-area"
         [ngClass]="inputClasses"
         [placeholder]="placeholder()"
-        [disabled]="disabled()"
+        [disabled]="isDisabled()"
         [required]="isRequired()"
         [formControl]="getFormControl()"
         [maxlength]="maxlength()!"
@@ -26,7 +28,7 @@
         [name]="name()"
         [id]="inputId()"
         [pattern]="pattern()!"
-        [tabindex]="disabled() ? -1 : 0"
+        [tabindex]="isDisabled() ? -1 : 0"
         (keydown)="handleKeyPress($event)"
         (change)="handleChange($event)"
         (focus)="handleFocus()"
@@ -41,7 +43,7 @@
         [type]="getType()"
         [ngClass]="inputClasses"
         [required]="isRequired()"
-        [disabled]="disabled()"
+        [disabled]="isDisabled()"
         [readOnly]="isReadOnly()"
         [placeholder]="placeholder()"
         [formControl]="getFormControl()"
@@ -53,7 +55,7 @@
         [pattern]="pattern()!"
         [max]="max()"
         [min]="min()"
-        [tabindex]="disabled() ? -1 : 0"
+        [tabindex]="isDisabled() ? -1 : 0"
         (keydown)="handleKeyPress($event)"
         (change)="handleChange($event)"
         (focus)="handleFocus()"
@@ -80,6 +82,6 @@
         </span>
       }
     }
-    <ng-container [ngTemplateOutlet]="customInputContent" />
+    <ng-container [ngTemplateOutlet]="customContent" />
   </section>
 </section>

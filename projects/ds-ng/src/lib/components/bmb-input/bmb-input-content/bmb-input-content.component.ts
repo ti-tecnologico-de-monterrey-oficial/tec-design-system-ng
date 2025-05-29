@@ -38,7 +38,7 @@ export class BmbInputContentComponent {
   placeholder = input<string>('');
   icon = input<string>('');
   appearance = input<IBmbInputAppearance | string>('normal');
-  disabled = input<boolean>(false);
+  isDisabled = input<boolean>(false);
   isRequired = input<boolean>(false);
   name = input.required<string>();
   spellcheck = input<boolean>(false);
@@ -55,6 +55,7 @@ export class BmbInputContentComponent {
   isClearable = input<boolean>(false);
   isError = input<boolean>(false);
   isHidden = input<boolean>(false);
+  showStates = input<boolean>(false);
 
   control = model<FormControl>();
 
@@ -64,18 +65,21 @@ export class BmbInputContentComponent {
   onKeyDown = output<KeyboardEvent>();
   onClearValue = output<void>();
 
-  @ContentChild('customInputContent') customInputContent!: TemplateRef<any>;
+  @ContentChild('customContent') customContent!: TemplateRef<any>;
 
   isHide: boolean = true;
+  isFocus: boolean = false;
 
   constructor(private ivs: BmbInputValidationService) {}
 
   handleFocus() {
-    this.onFocus.emit(true);
+    this.isFocus = true;
+    this.onFocus.emit(this.isFocus);
   }
 
   handleBlur() {
-    this.onFocus.emit(false);
+    this.isFocus = false;
+    this.onFocus.emit(this.isFocus);
     this.onBlur.emit(true);
   }
 
@@ -155,7 +159,7 @@ export class BmbInputContentComponent {
       if (textToCopy) {
         navigator.clipboard
           .writeText(textToCopy.toString())
-          .then(() => console.log('Text copied to clipboard!'))
+          .then(() => console.info('Text copied to clipboard!'))
           .catch((err) => console.error('Error copying text: ', err));
       }
     }

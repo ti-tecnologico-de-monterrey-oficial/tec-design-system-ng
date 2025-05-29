@@ -1,5 +1,8 @@
-<section class="bmb_input-validation" [ngClass]="{ disabled: disabled() }">
-  <label [ngClass]="getClasses('bmb_input-validation')">
+<section class="bmb_input-validation" [ngClass]="{ disabled: idDisabled() }">
+  <label
+    class="bmb_input-validation-wrapper"
+    [ngClass]="getClasses('bmb_input-validation')"
+  >
     @if (
       !!label() ||
       isRequired() ||

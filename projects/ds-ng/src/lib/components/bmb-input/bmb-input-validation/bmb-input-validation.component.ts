@@ -41,7 +41,7 @@ export class BmbInputValidationComponent implements OnInit {
   value = input<string | string[]>();
   checked = input<boolean>(false);
   isRequired = input<boolean>(false);
-  disabled = input<boolean>(false);
+  idDisabled = input<boolean>(false);
   max = input<number>();
   min = input<number>();
   maxLength = input<number>();
@@ -87,14 +87,12 @@ export class BmbInputValidationComponent implements OnInit {
     );
   }
 
-  getClasses(className: string): string[] {
+  getClasses(className: string): string {
     if (this.type() === 'radio' || this.type() === 'checkbox') {
-      return [
-        getPositionClass(`${className}-direction`, this.labelPosition()!),
-      ];
+      return getPositionClass(`${className}-direction`, this.labelPosition()!);
     }
 
-    return [];
+    return '';
   }
 
   getFormControl(): FormControl {

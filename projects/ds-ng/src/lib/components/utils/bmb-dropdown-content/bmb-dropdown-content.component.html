@@ -1,10 +1,10 @@
 @if (isOpen()) {
-  <ul class="bmb_dropdown-content-container">
-    @for (item of optionList; track $index) {
+  <ul class="bmb_dropdown-content-container" [tabindex]="-1">
+    @for (item of items(); track $index) {
       <li
-        class="bmb_dropdown-content-item bmb_dropdown-content-item-singular"
+        class="bmb_dropdown-content-item"
         [ngClass]="{
-          'bmb_dropdown-content-item-selected': item.checked,
+          'bmb_dropdown-content-item-selected': isSelected(item.value!),
         }"
         [id]="item.idItem"
       >

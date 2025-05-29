@@ -7,11 +7,17 @@ import {
   input,
   output,
   model,
+  AfterViewInit,
 } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { ClickOutsideDirective } from '../../directives/utils/clickoutside.directive';
-import { getUUID } from '../../utils/utils';
+import {
+  convertListToSelectList,
+  getSelectedValues,
+  getUUID,
+  getValidInitialValues,
+} from '../../utils/utils';
 import { BmbInputValidationComponent } from '../bmb-input/bmb-input-validation/bmb-input-validation.component';
 import {
   IBmbInputError,
@@ -19,12 +25,13 @@ import {
 } from '../bmb-input/bmb-input.component';
 import { BmbInputValidationService } from '../bmb-input/bmb-input-validation/bmb-input-validation.service';
 import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-dropdown-content.component';
-import { IBmbDropdownItemSelection } from '../../types';
+import { IDropdownItem } from '../../types';
 import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
 
 export interface IBmbDropdownItem {
   name: string;
   value: string;
+  selectedText?: string; //internal
   icon?: string;
   id?: string;
 }
@@ -38,15 +45,15 @@ export interface IBmbDropdownItem {
     ReactiveFormsModule,
     ClickOutsideDirective,
     BmbInputValidationComponent,
-    BmbDropdownContentComponent,
     BmbInputContentComponent,
+    BmbDropdownContentComponent,
   ],
   templateUrl: './bmb-dropdown.component.html',
   styleUrl: './bmb-dropdown.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbDropdownComponent implements OnInit {
+export class BmbDropdownComponent implements OnInit, AfterViewInit {
   required = input<boolean>(false);
   showIcon = input<boolean>(false);
   placeholder = input<string>('');
@@ -69,53 +76,51 @@ export class BmbDropdownComponent implements OnInit {
   control = model<FormControl>();
 
   onValueChange = output<any>();
+  onFocus = output<boolean>();
 
   isOpen: boolean = false;
-  items: IBmbDropdownItemSelection[] = [];
-  selectionControl: FormControl = new FormControl();
+  items: IDropdownItem[] = [];
+  selectionControl: FormControl = new FormControl(new FormControl());
   selectedIcon: string = '';
 
   constructor(private ivs: BmbInputValidationService) {}
 
   ngOnInit() {
     if (!this.isMultiSelect() && Array.isArray(this.control()?.value)) {
-      this.control()?.setValue(null);
+      this.control()?.setValue('');
     }
 
-    this.items = this.options().map((element) => {
-      if (typeof element === 'string') {
-        return {
-          idItem: element,
-          icon: !this.isMultiSelect() && this.showIcon() ? this.icon() : '',
-          text: element,
-          value: element,
-          checked: this.isSelectedValue(element, this.getValue()),
-          action: () => {
-            this._setSelectedValue(element);
-          },
-        };
-      } else {
-        return {
-          idItem: element.id,
-          icon: !this.isMultiSelect() && this.showIcon() ? element.icon! : '',
-          text: element.name,
-          value: element.value,
-          checked: this.isSelectedValue(element, this.getValue()),
-          action: () => {
-            this.setSelectedValue(element);
-          },
-        };
-      }
+    this.items = convertListToSelectList(this.options(), this.icon());
+
+    this.items = this.items.map((element: IDropdownItem) => {
+      return {
+        ...element,
+        icon: !this.isMultiSelect() && this.showIcon() ? element.icon! : '',
+        action: () => {
+          this.setSelectedValue(element);
+        },
+      } as IDropdownItem;
     });
 
     if (this.preferredOptions().length) {
-      const preferredItems: IBmbDropdownItemSelection[] = this.items.filter(
-        (element) => this.preferredOptions().includes(element.value!),
+      const preferredItems: IDropdownItem[] = this.items.filter((element) =>
+        this.preferredOptions().includes(element.value!),
       );
+
       this.items = [...new Set([...preferredItems, ...this.items])];
     }
 
-    this.setSelectionControl();
+    this.setSelectionControl(this.getValidInitialValues());
+  }
+
+  ngAfterViewInit(): void {
+    this.getFormControl().valueChanges.subscribe((value) => {
+      this.setSelectionControl(value);
+    });
+  }
+
+  handleFocus(value: boolean): void {
+    this.onFocus.emit(value);
   }
 
   getUUID(): string {
@@ -128,52 +133,47 @@ export class BmbDropdownComponent implements OnInit {
     return '';
   }
 
-  setSelectionControl(): void {
-    const selectedItems: IBmbDropdownItemSelection[] = this.items.filter(
-      (element) => element.checked,
+  getValidInitialValues(): string | string[] {
+    return getValidInitialValues(
+      this.control()?.value || this.value(),
+      this.options(),
+      this.isMultiSelect(),
     );
+  }
 
-    if (!!selectedItems && selectedItems.length) {
-      if (selectedItems.length) {
+  setSelectionControl(controlValue: string | string[]): void {
+    if (!!controlValue) {
+      if (this.isMultiSelect()) {
+        const selectedItems = this.items.filter(({ value }) =>
+          controlValue.includes(value!),
+        );
+
         this.selectionControl.setValue(
-          selectedItems.map((element) => ` ${element.text}`),
+          selectedItems.map((element) => ` ${element.selectedText}`),
         );
         return;
       }
 
-      this.selectionControl.setValue(selectedItems[0].text);
-      this.selectedIcon = selectedItems[0].icon;
-    }
-  }
-
-  getValue(): string | string[] {
-    return this.control()?.value || this.value();
-  }
-
-  getValueControl(): string | string[] {
-    const value = this.getValue();
-
-    if (!this.isMultiSelect() && Array.isArray(value)) return '';
-
-    return value;
-  }
-
-  isSelectedValue(
-    item: IBmbDropdownItem | string,
-    value: string | string[],
-  ): boolean {
-    if (!!value) {
-      if (typeof value !== 'string' && this.isMultiSelect()) {
-        if (typeof item !== 'string')
-          return value.some((element: string) => item.value === element);
-        return value.some((element: string) => element === item);
+      const item = this.items.find(({ value }) => value === controlValue);
+      if (!!item) {
+        this.selectionControl.setValue(item?.selectedText);
+        if (this.showIcon()) this.selectedIcon = item.icon;
       }
-      if (typeof item !== 'string') return item.value === value;
-
-      return item === value;
+      return;
     }
 
-    return false;
+    this.selectionControl.setValue('');
+    if (this.showIcon()) this.selectedIcon = this.icon();
+  }
+
+  setSelectedValue(element: IDropdownItem): void {
+    if (this.isMultiSelect()) {
+      this.getFormControl().setValue(
+        getSelectedValues(this.getFormControl().value, element.value!),
+      );
+    } else this.getFormControl().setValue(element.value);
+
+    this.onValueChange.emit(this.getFormControl().value);
   }
 
   openList(): void {
@@ -182,23 +182,6 @@ export class BmbDropdownComponent implements OnInit {
 
   closeList(): void {
     this.isOpen = false;
-  }
-
-  _setSelectedValue(value: string): void {
-    this.getFormControl().setValue(value);
-    this.selectionControl.setValue(value);
-    this.selectedIcon = this.icon();
-    this.onValueChange.emit(value);
-  }
-
-  setSelectedValue(element: IBmbDropdownItem): void {
-    const value = this.isMultiSelect()
-      ? [...this.getFormControl().value, element.value]
-      : element.value;
-    this.getFormControl().setValue(value);
-    this.setSelectionControl();
-    this.selectedIcon = element.icon!;
-    this.onValueChange.emit(value);
   }
 
   // Keyboards events
@@ -216,9 +199,7 @@ export class BmbDropdownComponent implements OnInit {
   }
 
   handleValidity(): void {
-    const control: FormControl = this.getFormControl();
-    control.updateValueAndValidity();
-    control.markAsTouched();
+    this.ivs.handleValidity(this.name());
   }
 
   get shouldShowError(): boolean {

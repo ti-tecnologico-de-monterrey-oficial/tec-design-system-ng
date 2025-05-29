@@ -2,50 +2,57 @@
   [type]="'text'"
   [name]="name()"
   [label]="label()!"
+  [value]="value()"
   [errorMessage]="getErrorMessage()"
   [helperMessage]="helperMessage()"
   [isRequired]="isRequired()"
-  [disabled]="disabled()"
+  [idDisabled]="disabled()"
   [control]="control()"
-  [showError]="shouldShowError"
+  [showError]="shouldShowError || showError()"
   [tooltip]="tooltip()"
-  [appearance]="appearance()"
+  [tooltipPosition]="tooltipPosition()"
   [isCustomError]="true"
   [customValidation]="customValidatorPhone()"
 >
-  <section class="bmb_input-number">
+  <section class="bmb_input-phone">
     <section
-      class="bmb_input-number-container"
-      [ngClass]="{ 'bmb_input-number-container-error': shouldShowError }"
+      class="bmb_input-phone-container"
+      [ngClass]="{
+        'bmb_input-phone-container-error': shouldShowError || showError(),
+        'bmb_input-phone-container-focus': isFocused(),
+      }"
     >
       <bmb-dropdown
+        class="bmb_input-phone-lada"
+        name="select"
+        [value]="selectedCountry?.country_code?.toLocaleLowerCase()!"
         [required]="true"
         [showIcon]="false"
         [options]="getOptions()"
-        (onValueChange)="onValueChange($event)"
+        [preferredOptions]="preferredCountries()"
         [control]="getControl('select')"
+        (onValueChange)="onValueChange($event)"
+        (onFocus)="handleFocus($event)"
       />
-      <bmb-input
-        class="bmb_input-number-input"
+      <bmb-input-content
+        class="bmb_input-phone-number"
         name="input"
         pattern="^\d+$"
-        [value]="getNumberValue()"
-        [appearance]="appearance()"
-        [disabled]="disabled()"
+        [isDisabled]="disabled()"
         [control]="getControl('input')"
         [id]="inputId()"
         [maxlength]="selectedCountry?.length"
         [minlength]="selectedCountry?.length"
         [isRequired]="isRequired()"
+        (onFocus)="handleFocus($event)"
       />
     </section>
     <input
       hidden
       type="text"
-      name="name"
-      [required]="isRequired()"
-      [formControl]="getFormControl(name())"
       [name]="name()"
+      [required]="isRequired()"
+      [formControl]="getFormControl()"
       [tabindex]="-1"
     />
   </section>
