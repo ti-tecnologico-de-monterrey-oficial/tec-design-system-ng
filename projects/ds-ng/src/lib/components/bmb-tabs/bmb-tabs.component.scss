@@ -37,7 +37,7 @@
     font-weight: 500;
     width: auto;
     flex: 1 0 auto;
-    max-width: 240px;
+    max-width: rem.rem_calc(240);
 
     &:hover,
     &:focus-visible {
