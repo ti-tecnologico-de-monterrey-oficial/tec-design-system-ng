@@ -7,9 +7,9 @@
   [errorMessage]="errorMessage()"
   [helperMessage]="helperMessage()"
   [isRequired]="isRequired()"
-  [disabled]="disabled()"
+  [idDisabled]="disabled()"
   [control]="control()"
-  [showError]="shouldShowError"
+  [showError]="shouldShowError || showError()"
   [tooltip]="tooltip()"
   [tooltipPosition]="tooltipPosition()"
   clickOutside
@@ -18,21 +18,22 @@
   <section
     class="bmb_input-tags-container"
     [ngClass]="{
-      'bmb_input-tags-container-error': shouldShowError,
+      'bmb_input-tags-container-error': shouldShowError || showError(),
       'bmb_input-tags-container-focus': isFocused(),
     }"
   >
-    <input
+    <bmb-input-content
       class="bmb_input-tags-filter"
       type="text"
       [id]="'filter' + getUUID()"
       name="filterControl"
-      [formControl]="filterControl"
+      [control]="filterControl"
       [placeholder]="placeholder()"
+      [isDisabled]="disabled()"
       (click)="openList()"
-      (blur)="handleValidity()"
+      (onBlur)="handleValidity()"
       (keydown)="handleKeyDown($event)"
-      (focus)="handleFocus($event)"
+      (onFocus)="handleFocus($event)"
     />
     @if (!!selectedTags && selectedTags.length >= 1) {
       <div class="bmb_input-tags-selected-list" [tabIndex]="-1">
@@ -40,6 +41,7 @@
           <bmb-tag
             [text]="item.selectedText!"
             [dismissible]="true"
+            [idDisabled]="disabled()"
             (click)="removeTag(item)"
           />
         }

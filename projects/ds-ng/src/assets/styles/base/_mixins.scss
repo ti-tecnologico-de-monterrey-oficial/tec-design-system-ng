@@ -321,11 +321,13 @@
 }
 
 @mixin normal_input() {
-  border: rem.rem_calc(1) solid var(--general_contrasts-75);
+  box-sizing: border-box;
+  border: rem.rem_calc(1) solid var(--general_contrasts-50);
   border-radius: rem.rem_calc(8);
   width: 100%;
   background-color: var(--general_contrasts-input-background);
   height: rem.rem_calc(48);
+  transition: all 0.3s ease;
 }
 
 @mixin normal_input_focus() {
@@ -333,10 +335,11 @@
   &:focus-visible,
   &:hover,
   &-focus {
-    border: rem.rem_calc(2) solid var(--general_contrasts-input-outline);
+    box-sizing: inherit;
+    border-color: var(--general_contrasts-input-outline);
     caret-color: var(--general_contrasts-input-outline);
-    outline: none;
-    transition: all 0.3s ease;
+    outline: rem.rem_calc(1) solid;
+    outline-color: var(--general_contrasts-input-outline);
   }
 }
 

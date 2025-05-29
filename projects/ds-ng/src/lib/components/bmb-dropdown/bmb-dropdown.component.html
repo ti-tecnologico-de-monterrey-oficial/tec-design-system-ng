@@ -7,7 +7,7 @@
   [errorMessage]="errorMessage()"
   [helperMessage]="helperText()"
   [isRequired]="required()"
-  [disabled]="disabled()"
+  [idDisabled]="disabled()"
   [control]="control()"
   [showError]="shouldShowError"
   [tooltip]="tooltip()"
@@ -24,9 +24,11 @@
     [control]="selectionControl"
     [placeholder]="placeholder()"
     [isError]="shouldShowError"
+    [isDisabled]="disabled()"
     (click)="openList()"
     (onKeyDown)="onKeyDown($event)"
     (onBlur)="handleValidity()"
+    (onFocus)="handleFocus($event)"
   >
     <ng-template #customContent>
       <bmb-icon

@@ -1,5 +1,5 @@
 @if (isOpen()) {
-  <ul class="bmb_dropdown-content-container">
+  <ul class="bmb_dropdown-content-container" [tabindex]="-1">
     @for (item of items(); track $index) {
       <li
         class="bmb_dropdown-content-item"

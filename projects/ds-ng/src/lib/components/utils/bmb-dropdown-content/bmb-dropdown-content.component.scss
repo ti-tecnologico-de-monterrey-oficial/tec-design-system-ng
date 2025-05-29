@@ -12,6 +12,7 @@
     margin: 0;
     max-height: rem.rem_calc(48 * 6);
     overflow: auto;
+    width: 100%;
   }
 
   &-item {

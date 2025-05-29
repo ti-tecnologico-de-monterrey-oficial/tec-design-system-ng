@@ -76,6 +76,7 @@ export class BmbDropdownComponent implements OnInit, AfterViewInit {
   control = model<FormControl>();
 
   onValueChange = output<any>();
+  onFocus = output<boolean>();
 
   isOpen: boolean = false;
   items: IDropdownItem[] = [];
@@ -116,6 +117,10 @@ export class BmbDropdownComponent implements OnInit, AfterViewInit {
     this.getFormControl().valueChanges.subscribe((value) => {
       this.setSelectionControl(value);
     });
+  }
+
+  handleFocus(value: boolean): void {
+    this.onFocus.emit(value);
   }
 
   getUUID(): string {

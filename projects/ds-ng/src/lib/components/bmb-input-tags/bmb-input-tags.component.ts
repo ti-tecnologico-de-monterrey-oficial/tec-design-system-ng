@@ -30,6 +30,7 @@ import { BmbInputValidationComponent } from '../bmb-input/bmb-input-validation/b
 import { BmbInputValidationService } from '../bmb-input/bmb-input-validation/bmb-input-validation.service';
 import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-dropdown-content.component';
 import { IDropdownItem } from '../../types';
+import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
 
 @Component({
   selector: 'bmb-input-tags',
@@ -40,6 +41,7 @@ import { IDropdownItem } from '../../types';
     ClickOutsideDirective,
     BmbTagComponent,
     BmbInputValidationComponent,
+    BmbInputContentComponent,
     BmbDropdownContentComponent,
   ],
   templateUrl: './bmb-input-tags.component.html',
@@ -149,10 +151,6 @@ export class BmbInputTagsComponent implements OnInit, AfterViewInit {
     this.selectedTags = this.items.filter(({ value }) =>
       controlValue.includes(value!),
     );
-
-    // if (this.selectedTags.length > 0) {
-    //     this.removeTag(this.selectedTags[this.selectedTags.length - 1]);
-    //   }
   }
 
   removeTag(tag: IDropdownItem) {
@@ -180,9 +178,12 @@ export class BmbInputTagsComponent implements OnInit, AfterViewInit {
     }
   }
 
+  handleFocus(value: boolean) {
+    this.isFocused.set(value);
+  }
+
   handleValidity(): void {
     this.ivs.handleValidity(this.name());
-    this.isFocused.set(false);
   }
 
   get shouldShowError(): boolean {
@@ -191,9 +192,5 @@ export class BmbInputTagsComponent implements OnInit, AfterViewInit {
 
   getFormControl(): FormControl {
     return this.ivs.getFormControlByName(this.name());
-  }
-
-  handleFocus(event: any) {
-    this.isFocused.set(true);
   }
 }

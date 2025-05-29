@@ -9,7 +9,7 @@
   [errorMessage]="errorMessage()"
   [helperMessage]="helperMessage()"
   [isRequired]="required()"
-  [disabled]="disabled()"
+  [idDisabled]="disabled()"
   [control]="control()"
   [showError]="shouldShowError || showError()"
 >
@@ -35,7 +35,7 @@
     />
     <span
       class="bmb_radio-mark"
-      [ngClass]="{ 'bmb_radio-mark-error': shouldShowError }"
+      [ngClass]="{ 'bmb_radio-mark-error': shouldShowError || showError() }"
     ></span>
   </span>
 </bmb-input-validation>

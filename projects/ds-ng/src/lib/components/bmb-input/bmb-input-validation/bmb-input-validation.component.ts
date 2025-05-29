@@ -41,7 +41,7 @@ export class BmbInputValidationComponent implements OnInit {
   value = input<string | string[]>();
   checked = input<boolean>(false);
   isRequired = input<boolean>(false);
-  disabled = input<boolean>(false);
+  idDisabled = input<boolean>(false);
   max = input<number>();
   min = input<number>();
   maxLength = input<number>();
