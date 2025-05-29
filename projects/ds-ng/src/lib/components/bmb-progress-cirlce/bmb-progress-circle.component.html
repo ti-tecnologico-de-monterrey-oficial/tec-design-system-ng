@@ -7,27 +7,21 @@
   [attr.height]="svg.height"
   [attr.width]="svg.width"
 >
-  @if (this.showBackground) {
-    <ng-container>
-      <circle
-        class="bmb_progress-circle-background"
-        [attr.cx]="svg.backgroundCircle.cx"
-        [attr.cy]="svg.backgroundCircle.cy"
-        [attr.r]="svg.backgroundCircle.r"
-      />
-    </ng-container>
-  }
   <circle
-    [ngClass]="{
-      'bmb_progress-circle-fill': percent > 0,
-      'bmb_progress-circle-empty': percent === 0,
-    }"
+    class="bmb_progress-circle-background"
+    [attr.cx]="svg.backgroundCircle.cx"
+    [attr.cy]="svg.backgroundCircle.cy"
+    [attr.r]="svg.backgroundCircle.r"
+  />
+  <circle
+    class="bmb_progress-circle-fill"
+    [ngClass]="getFillPathStatus()"
     [attr.cx]="svg.circle.cx"
     [attr.cy]="svg.circle.cy"
     [attr.r]="svg.circle.r"
     [attr.stroke-width]="svg.circle.strokeWidth"
   />
-  @if (!!percent) {
+  @if (!!percent()) {
     <path
       class="bmb_progress-circle-track"
       [attr.d]="svg.path.d"
