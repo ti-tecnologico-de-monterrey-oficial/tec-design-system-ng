@@ -42,11 +42,11 @@ export class BmbDigitalIdComponent {
   close = output<MouseEvent>();
   access = output<MouseEvent>();
 
-  closeDigitalId(event: MouseEvent) {
-    this.close.emit(event);
+  closeDigitalId(event?: MouseEvent) {
+    this.close.emit(event || new MouseEvent('click'));
   }
 
-  clickAccess(event: MouseEvent) {
-    this.access.emit(event);
+  clickAccess(event?: MouseEvent) {
+    this.access.emit(event || new MouseEvent('click'));
   }
 }

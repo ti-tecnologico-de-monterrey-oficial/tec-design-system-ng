@@ -109,12 +109,12 @@ export class BmbAccountStatementComponent implements AfterViewInit, OnInit {
     }
   }
 
-  handleClose(event: MouseEvent) {
-    this.closeEvent.emit(event);
+  handleClose(event?: MouseEvent) {
+    this.closeEvent.emit(event || new MouseEvent('click'));
   }
 
-  handleBack(event: MouseEvent) {
-    this.backEvent.emit(event);
+  handleBack(event?: MouseEvent) {
+    this.backEvent.emit(event || new MouseEvent('click'));
   }
 
   handlePay() {

@@ -89,11 +89,13 @@
           }
         </p>
       }
-      @if(selectedEvent.title) {
+      @if (selectedEvent.title) {
         <p class="bmb_calendar-event-modal-title">{{ selectedEvent.title }}</p>
       }
       @if (selectedEvent.detail) {
-        <p class="bmb_calendar-event-modal-detail">{{ selectedEvent.detail }}</p>
+        <p class="bmb_calendar-event-modal-detail">
+          {{ selectedEvent.detail }}
+        </p>
       }
       @if (selectedEvent.place) {
         <p class="bmb_calendar-event-modal-place">{{ selectedEvent.place }}</p>

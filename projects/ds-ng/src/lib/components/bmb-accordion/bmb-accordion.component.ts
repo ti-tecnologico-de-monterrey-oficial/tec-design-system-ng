@@ -157,11 +157,11 @@ export class BmbAccordionComponent implements OnInit, OnChanges {
     return styles;
   }
 
-  toggle(event: MouseEvent): void {
+  toggle(event?: MouseEvent): void {
     if (!this._disabled()) {
       this._expanded.update((current) => !current);
       this._active.update((current) => !current);
-      this.onClick.emit(event);
+      this.onClick.emit(event || new MouseEvent('click'));
 
       if (this.expanded() == undefined) {
         if (this.isOpen()) {

@@ -231,7 +231,7 @@ export class Component {
     helperText: 'Select a fruit',
     errorMessage: 'Error input dropdown',
     preferredOptions: ['_pear'],
-    tooltip: 'Tool tip'
+    tooltip: 'Tool tip',
   },
 } as Meta<typeof BmbDropdownComponent>;
 

@@ -14,11 +14,7 @@ import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.co
 @Component({
   selector: 'bmb-top-bar-user-section',
   standalone: true,
-  imports: [
-    CommonModule,
-    BmbUserImageComponent,
-    BmbActionIconComponent,
-  ],
+  imports: [CommonModule, BmbUserImageComponent, BmbActionIconComponent],
   templateUrl: './bmb-top-bar-user-section.component.html',
   styleUrl: './bmb-top-bar-user-section.component.scss',
   encapsulation: ViewEncapsulation.None,

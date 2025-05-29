@@ -47,15 +47,15 @@ export class BmbActionIconComponent {
     return this.icon();
   }
 
-  handlePress(event: MouseEvent): void {
-    this.buttonPress.emit(event);
+  handlePress(event?: MouseEvent): void {
+    this.buttonPress.emit(event || new MouseEvent('click'));
   }
 
-  handleClick(event: MouseEvent) {
+  handleClick(event?: MouseEvent) {
     if (!!this.toggleIconActive()) {
       this.isToggleActive.update((value) => !value);
     }
 
-    this.buttonClick.emit(event);
+    this.buttonClick.emit(event || new MouseEvent('click'));
   }
 }
