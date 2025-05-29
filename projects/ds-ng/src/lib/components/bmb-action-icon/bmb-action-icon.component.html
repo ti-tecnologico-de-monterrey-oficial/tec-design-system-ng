@@ -109,8 +109,8 @@
     [idElement]="idElement()"
     [link]="link()!"
     [target]="target()!"
-    (buttonPress)="handlePress()"
-    (buttonClick)="handleClick()"
+    (buttonPress)="handlePress($event)"
+    (buttonClick)="handleClick($event)"
     [disabled]="disabled()"
   >
     <span

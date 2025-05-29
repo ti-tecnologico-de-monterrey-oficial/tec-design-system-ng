@@ -1,34 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BmbProgressCircleComponent } from './bmb-progress-circle.component';
-import { CommonModule } from '@angular/common';
-
-// describe('BmbProgressCirlceComponent', () => {
-//   let component: BmbProgressCircleComponent;
-//   let fixture: ComponentFixture<BmbProgressCircleComponent>;
-
-//   beforeEach(async () => {
-//     fixture = TestBed.createComponent(BmbProgressCircleComponent);
-//     component = fixture.componentInstance;
-//     fixture.detectChanges();
-//   });
-
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
-
-// });
+import { ComponentRef } from '@angular/core';
 
 describe('BmbProgressCircleComponent', () => {
   let component: BmbProgressCircleComponent;
   let fixture: ComponentFixture<BmbProgressCircleComponent>;
+  let componentRef: ComponentRef<BmbProgressCircleComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CommonModule, BmbProgressCircleComponent],
+      imports: [BmbProgressCircleComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BmbProgressCircleComponent);
     component = fixture.componentInstance;
+    componentRef = fixture.componentRef;
     fixture.detectChanges();
   });
 
@@ -41,22 +27,25 @@ describe('BmbProgressCircleComponent', () => {
   });
 
   it('should update options on input change', () => {
-    component.percent = 75;
-    component.showTitle = false;
+    componentRef.setInput('percent', 75);
+    componentRef.setInput('showTitle', false);
     component.ngOnChanges({});
     expect(component.options.percent).toBe(75);
     expect(component.options.showTitle).toBeFalse();
   });
 
   it('should draw the correct SVG path', () => {
-    component.percent = 75;
+    componentRef.setInput('percent', 75);
     component.render();
     const path = component.svg.path.d;
-    expect(path).toContain('A 100 100 0 1 0');
+    expect(path).toContain(`
+          M 105 5
+          A 100 100 0 1 1 5 105.00000000000001`
+    );
   });
 
   it('should display the correct value label', () => {
-    component.valueLabel = '$5000';
+    componentRef.setInput('valueLabel', '$5000');
     component.render();
     const valueLabel = component.svg.valueLabel.texts[0];
     expect(valueLabel).toBe('$5000');

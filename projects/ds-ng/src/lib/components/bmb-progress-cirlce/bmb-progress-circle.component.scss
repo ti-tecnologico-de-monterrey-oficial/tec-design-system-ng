@@ -1,50 +1,41 @@
 @use "../../../assets/styles/base/fonts" as fonts;
 
+$status: (
+  "gray": var(--general_contrasts-5),
+  "success": var(--general_contrasts-main-selection-alternative),
+  "error": var(--semantic-error),
+  "warning": var(--semantic-warning),
+);
+
 .bmb_progress-circle {
   &-background {
-    fill: RGBA(var(--color-charade-50));
+    fill: var(--containers-container-button);
     fill-opacity: 1;
-  }
-
-  &-empty {
-    fill: transparent;
   }
 
   &-fill {
     stroke: var(--general_contrasts-5);
     fill: transparent;
+
+    @each $nameStatus, $colorStatus in $status {
+      &-#{$nameStatus} {
+        stroke: $colorStatus;
+      }
+    }
   }
 
   &-track {
-    stroke: RGBA(var(--color-blue-primary));
-    stroke-linecap: round;
+    stroke: var(--general_contrasts-main-selection);
     transition: all;
   }
 
   &-title {
     @include fonts.font(4, regular);
-    fill: RGBA(var(--color-charade-950));
+    fill: var(--general_contrasts-100);
   }
 
   &-value-label {
     @include fonts.font(7, medium);
-    fill: RGBA(var(--color-charade-950));
-  }
-}
-
-[data-theme="dark"],
-.storybook-dark-theme {
-  .bmb_progress-circle {
-    &-background {
-      fill: RGBA(var(--color-charade-900));
-    }
-
-    &-title {
-      fill: RGBA(var(--color-charade-50));
-    }
-
-    &-value-label {
-      fill: RGBA(var(--color-charade-50));
-    }
+    fill: var(--general_contrasts-100);
   }
 }

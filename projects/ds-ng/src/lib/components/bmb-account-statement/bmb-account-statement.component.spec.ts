@@ -1,7 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BmbAccountStatementComponent } from './bmb-account-statement.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MatDialogModule } from '@angular/material/dialog';
 import { ComponentRef } from '@angular/core';
 
 describe('BmbAccountStatementComponent', () => {

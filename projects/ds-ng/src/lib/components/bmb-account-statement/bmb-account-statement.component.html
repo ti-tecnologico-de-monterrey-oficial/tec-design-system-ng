@@ -1,9 +1,10 @@
 <div class="bmb_account-statement">
-  <bmb-header-mobile
-    [text]="title()"
-    iconLeft="close"
-    (onIconLeftClick)="handleClose()"
-  ></bmb-header-mobile>
+  <bmb-inner-header
+    (onHandleClose)="handleClose($event)"
+    [title]="title()"
+    [showSearch]="false"
+    [showClose]="true"
+  />
   <main class="bmb_account-statement-content">
     <div class="bmb_account-statement-content-balance">
       <bmb-balance-overview
@@ -46,7 +47,7 @@
       bmbButton
       size="large"
       appearance="secondary-outlined"
-      (click)="handleBack()"
+      (click)="handleBack($event)"
       type="button"
     >
       {{ backButtonLabel() }}

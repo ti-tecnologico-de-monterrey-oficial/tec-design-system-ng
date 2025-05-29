@@ -8,19 +8,13 @@ import {
 import { BmbUserImageComponent } from '../../bmb-user-image/bmb-user-image.component';
 import { IUserInformation } from '../types';
 import { CommonModule } from '@angular/common';
-import { BmbNotificationCardComponent } from '../../bmb-notification-card/bmb-notification-card.component';
 import { IBmbDataAlert } from '../../bmb-alert-center/types';
 import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
 
 @Component({
   selector: 'bmb-top-bar-user-section',
   standalone: true,
-  imports: [
-    CommonModule,
-    BmbUserImageComponent,
-    BmbNotificationCardComponent,
-    BmbActionIconComponent,
-  ],
+  imports: [CommonModule, BmbUserImageComponent, BmbActionIconComponent],
   templateUrl: './bmb-top-bar-user-section.component.html',
   styleUrl: './bmb-top-bar-user-section.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -38,10 +32,10 @@ export class BmbTopBarUserSectionComponent {
   @Input() notificationNotification: IBmbDataAlert[] = [];
   @Input() showRoleButton: boolean = false;
 
-  helpButtonClick = output<void>();
-  userClick = output<void>();
-  alertClick = output<void>();
-  roleButtonClick = output<void>();
+  helpButtonClick = output<MouseEvent>();
+  userClick = output<MouseEvent>();
+  alertClick = output<MouseEvent>();
+  roleButtonClick = output<MouseEvent>();
 
   isOpenNotifications: boolean = false;
   dialogPosition: { top: string; left: string } | null = {
@@ -50,8 +44,8 @@ export class BmbTopBarUserSectionComponent {
   };
   windowWidth = window.innerWidth;
 
-  openNotifications() {
-    this.alertClick.emit();
+  openNotifications(event: MouseEvent) {
+    this.alertClick.emit(event);
   }
 
   closeNotifications() {
@@ -62,15 +56,15 @@ export class BmbTopBarUserSectionComponent {
     return this.notificationNotification.length;
   }
 
-  handleHelpButtonClick() {
-    this.helpButtonClick.emit();
+  handleHelpButtonClick(event: MouseEvent) {
+    this.helpButtonClick.emit(event);
   }
 
-  handleUserClick() {
-    this.userClick.emit();
+  handleUserClick(event: MouseEvent) {
+    this.userClick.emit(event);
   }
 
-  handleRoleChange() {
-    this.roleButtonClick.emit();
+  handleRoleChange(event: MouseEvent) {
+    this.roleButtonClick.emit(event);
   }
 }
