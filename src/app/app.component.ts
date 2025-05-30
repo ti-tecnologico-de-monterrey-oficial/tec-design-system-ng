@@ -5532,10 +5532,6 @@ export class AppComponent {
     });
   }
 
-  getFormControl(name: string): FormControl {
-    return this.formGroup.get(name) as FormControl;
-  }
-
   handleFormGroupState(state: FormGroup): void {
     console.log('App - onSubmit', state?.valid, state);
   }
@@ -5551,4 +5547,78 @@ export class AppComponent {
   }
 
   dropDownControl: FormControl = new FormControl('Banana');
+
+  testForm: FormGroup = new FormGroup({
+    simpleInput: new FormControl<string>('', Validators.required),
+    passwordInput: new FormControl<string>(''),
+    numberInput: new FormControl<number>(0),
+    textAreaInput: new FormControl<string>(''),
+    dropdown: new FormControl<string>(''),
+    datepicker: new FormControl<string>(''),
+    controlStart: new FormControl<string>(''),
+    controlEnd: new FormControl<string>(''),
+    multiSelectDropdown: new FormControl<string[]>([]),
+    phoneNumberInput: new FormControl<string>(''),
+    inputTags: new FormControl<string[]>([]),
+    checkbox1: new FormControl<boolean>(false),
+    radio: new FormControl<string>('', Validators.required),
+  });
+
+  getFormControl(name: string): FormControl {
+    return this.testForm.get(name) as FormControl;
+  }
+
+  clearButton() {
+    this.testForm.reset();
+    this.testForm.markAsPristine();
+    this.testForm.markAsUntouched();
+    this.testForm.updateValueAndValidity();
+    console.log('Form cleared');
+  }
+
+  handleSubmitForm(event: Event): void {
+    event.preventDefault();
+    this.testForm.markAllAsTouched();
+    this.testForm.updateValueAndValidity();
+    console.log('Form submitted:', this.testForm.value);
+    if (this.testForm.valid) {
+      console.log('Form is valid');
+      return;
+    }
+    console.log('Form is invalid', this.testForm.status);
+    this.updateErrorState();
+  }
+
+  tableData = [
+    {
+      lastName: 'Lorem Ipsum Lorem Ipsum Lorem Ipsum',
+      name: 'Lorem Ipsum Lorem Ipsum Lorem Ipsum',
+      birthday: '02/02/2000',
+      country: 'Mexico',
+    },
+    {
+      lastName: 'Dolor Sit Amet',
+      name: 'Consectetur Adipiscing Elit',
+      birthday: '03/03/2001',
+      country: 'USA',
+    },
+    {
+      lastName: 'Sed Do Eiusmod',
+      name: 'Tempor Incididunt Ut Labore',
+      birthday: '04/04/2002',
+      country: 'Canada',
+    },
+    {
+      lastName: 'Ut Enim Ad Minim',
+      name: 'Veniam Quis Nostrud Exercitation',
+      birthday: '05/05/2003',
+      country: 'UK',
+    },
+  ];
+
+  selectedRows = [0, 3];
+
+  columnDefinition = [{def: 'name', label: 'Name', dataKey: 'name', icon: 'face'}, {def: 'lastName', label: 'Last Name', dataKey: 'lastName', cellTemplate: 'dynamicCell', icon: 'face'}, {def: 'birthday', label: 'Birthday', dataKey: 'birthday'}, {def: 'country', label: 'Country', dataKey: 'country'}]
+
+  tagsOptions = ["Tacos al pastor","Enchiladas","Tamales","Quesadillas","Chiles en nogada","Mole poblano","Sopes","Gorditas","Pozole","Ceviche","Tortas","Guacamole","Tacos de pescado","Flautas","Chalupas","Huevos rancheros","Elote","Mole verde","Arroz a la mexicana","Burritos"]
 }
