@@ -27,6 +27,7 @@
         name="select"
         [value]="selectedCountry?.country_code?.toLocaleLowerCase()!"
         [required]="true"
+        [disabled]="disabled()"
         [showIcon]="false"
         [options]="getOptions()"
         [preferredOptions]="preferredCountries()"
@@ -45,6 +46,7 @@
         [minlength]="selectedCountry?.length"
         [isRequired]="isRequired()"
         (onFocus)="handleFocus($event)"
+        (onBlur)="handleValidity()"
       />
     </section>
     <input

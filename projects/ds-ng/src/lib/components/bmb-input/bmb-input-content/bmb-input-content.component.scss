@@ -43,10 +43,8 @@
     }
 
     &:hover {
-    box-sizing: inherit;
-    border-bottom: rem.rem_calc(2)
-        solid
-        var(--general_contrasts-50);
+      box-sizing: inherit;
+      border-bottom: rem.rem_calc(2) solid var(--general_contrasts-50);
     }
   } @else {
     @include placeholder_padding(var(--bmb-spacing-s));

@@ -40,8 +40,7 @@ describe('BmbProgressCircleComponent', () => {
     const path = component.svg.path.d;
     expect(path).toContain(`
           M 105 5
-          A 100 100 0 1 1 5 105.00000000000001`
-    );
+          A 100 100 0 1 1 5 105.00000000000001`);
   });
 
   it('should display the correct value label', () => {

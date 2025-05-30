@@ -241,7 +241,6 @@ Sets the position of the label relative to the radial, indicating whether the la
       name: 'Show Error',
       control: null,
       description: `
-This property is deprecated. No support will be provided for this property and will be removed in future releases.
 
 For form control validation, it is recommended to use:
 
