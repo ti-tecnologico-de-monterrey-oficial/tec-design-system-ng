@@ -333,13 +333,19 @@
 @mixin normal_input_focus() {
   &:focus,
   &:focus-visible,
-  &:hover,
   &-focus {
     box-sizing: inherit;
     border-color: var(--general_contrasts-input-outline);
     caret-color: var(--general_contrasts-input-outline);
     outline: rem.rem_calc(1) solid;
     outline-color: var(--general_contrasts-input-outline);
+  }
+
+  &:hover {
+    box-sizing: inherit;
+    border-color: var(--general_contrasts-50);
+    outline: rem.rem_calc(1) solid;
+    outline-color: var(--general_contrasts-50);
   }
 }
 

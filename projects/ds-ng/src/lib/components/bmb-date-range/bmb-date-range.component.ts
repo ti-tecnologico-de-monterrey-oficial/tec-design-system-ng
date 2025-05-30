@@ -30,8 +30,8 @@ export class BmbDateRangeComponent implements OnInit {
   disabled = input<boolean>(false);
   isRequired = input<boolean>(false);
   isClearable = input<boolean>(false);
-  controlStart = input<FormControl>();
-  controlEnd = input<FormControl>();
+  controlStart = input<FormControl>(new FormControl());
+  controlEnd = input<FormControl>(new FormControl());
   dateFormat = input<string>('dd/MM/yyyy');
   stepYearPicker = input<number>(12);
   name = input<string>('');

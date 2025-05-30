@@ -69,7 +69,7 @@ export class BmbInputPhoneNumberComponent implements OnInit {
   preferredCountries = input<string[]>(['mx']);
   onlyCountries = input<string[]>([]);
 
-  control = model<FormControl>();
+  control = model<FormControl>(new FormControl());
   showError = model<boolean>(false); // deprecated
 
   isFocused = signal<boolean>(false);
@@ -83,7 +83,7 @@ export class BmbInputPhoneNumberComponent implements OnInit {
   constructor(private ivs: BmbInputValidationService) {}
 
   ngOnInit(): void {
-    if (!!this.value() || !!this.control()?.value) {
+    if (!!this.value() || !!this.control().value) {
       let inputs: string[] = [];
 
       if (!this.defaultCountryCode()) {
@@ -160,7 +160,7 @@ export class BmbInputPhoneNumberComponent implements OnInit {
   }
 
   getNumberValue(): string {
-    const value = this.control()?.value || this.value();
+    const value = this.control().value || this.value();
     return value.replace(this.selectedCountry?.lada!, '')!;
   }
 
