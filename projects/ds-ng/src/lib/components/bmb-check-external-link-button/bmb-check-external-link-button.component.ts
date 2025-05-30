@@ -29,6 +29,7 @@ export class BmbCheckExternalLinkButtonComponent {
 
   buttonPress = output<MouseEvent>();
   buttonClick = output<MouseEvent>();
+  buttonKeyPress = output<KeyboardEvent>();
 
   @ContentChild('commonTemplate') commonTemplate!: TemplateRef<any>;
 
@@ -48,5 +49,11 @@ export class BmbCheckExternalLinkButtonComponent {
   handleClick(event: MouseEvent): void {
     this.buttonClick.emit(event);
     event.stopPropagation();
+  }
+
+  handleKeyPress(event: KeyboardEvent): void {
+    console.log('Key pressed:', event.key);
+
+    this.buttonKeyPress.emit(event);
   }
 }

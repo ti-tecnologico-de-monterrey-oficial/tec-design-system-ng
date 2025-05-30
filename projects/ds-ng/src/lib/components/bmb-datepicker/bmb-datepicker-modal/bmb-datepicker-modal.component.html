@@ -71,9 +71,9 @@
             </tr>
           </thead>
           <tbody>
-            @for (week of getWeeksAndDays(); track $index; let weekIndex = $index) {
+            @for (week of getWeeksAndDays(); track $index) {
               <tr>
-                @for (date of week; track $index; let dateIndex = $index) {
+                @for (date of week; track $index) {
                   <td class="bmb_datepicker-modal-calendar-table-item">
                     <button
                       class="bmb_datepicker-modal-button"
@@ -85,8 +85,6 @@
                       [disabled]="checkIfDisabled(date)"
                       tabindex="0"
                       (keydown)="onDayKeydown($event, date)"
-                      [attr.data-row]="weekIndex"
-                      [attr.data-col]="dateIndex"
                     >
                       {{ date.day }}
                     </button>

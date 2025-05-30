@@ -122,7 +122,6 @@ export class BmbDatepickerModalComponent implements OnInit {
     if (date.month === this.selectedMonth) {
       classList.push('bmb_datepicker-modal-button-current-month');
     }
-    console.log('selectedDate', this.selectedDate, this.selectedDate && date.hasSame(this.selectedDate, 'day'));
 
     if (this.selectedDate && date.hasSame(this.selectedDate, 'day'))
       classList.push('bmb_datepicker-modal-button-selected');
@@ -206,18 +205,25 @@ export class BmbDatepickerModalComponent implements OnInit {
       const table = (event.currentTarget as HTMLElement).closest('table');
       if (!table) return;
       const buttons = Array.from(
-        table.querySelectorAll<HTMLElement>('button:not(:disabled)')
+        table.querySelectorAll<HTMLElement>('button:not(:disabled)'),
       );
       const currentIndex = buttons.findIndex(
-        (btn) => btn === event.currentTarget
+        (btn) => btn === event.currentTarget,
       );
       let nextIndex = currentIndex;
-      if (event.key === 'ArrowRight' || (event.key === 'Tab' && !event.shiftKey)) {
+      if (
+        event.key === 'ArrowRight' ||
+        (event.key === 'Tab' && !event.shiftKey)
+      ) {
         nextIndex = (currentIndex + 1) % buttons.length;
-      } else if (event.key === 'ArrowLeft' || (event.key === 'Tab' && event.shiftKey)) {
+      } else if (
+        event.key === 'ArrowLeft' ||
+        (event.key === 'Tab' && event.shiftKey)
+      ) {
         nextIndex = (currentIndex - 1 + buttons.length) % buttons.length;
       } else if (event.key === 'ArrowDown') {
-        nextIndex = currentIndex + 7 < buttons.length ? currentIndex + 7 : currentIndex;
+        nextIndex =
+          currentIndex + 7 < buttons.length ? currentIndex + 7 : currentIndex;
       } else if (event.key === 'ArrowUp') {
         nextIndex = currentIndex - 7 >= 0 ? currentIndex - 7 : currentIndex;
       }
