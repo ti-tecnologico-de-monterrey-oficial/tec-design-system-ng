@@ -59,7 +59,7 @@ export class BmbDatepickerComponent {
   helperMessage = input<string>(this.dateFormat());
   value = input<string>();
 
-  control = model<FormControl>();
+  control = model<FormControl>(new FormControl());
 
   onChange = output<string>();
 

@@ -39,7 +39,7 @@ export class BmbRadialComponent {
   helperMessage = input<string>('');
 
   showError = model<boolean>(false);
-  control = model<FormControl>();
+  control = model<FormControl>(new FormControl());
 
   change = output<HTMLInputElement>();
   onKeyDown = output<KeyboardEvent>();
