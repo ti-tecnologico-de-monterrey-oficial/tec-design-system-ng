@@ -1,4 +1,4 @@
-<section class="bmb_datepicker-modal">
+<section class="bmb_datepicker-modal" (keydown)="onDayKeydown($event)">
   <nav
     class="bmb_datepicker-modal-nav"
     bmbLayout
@@ -83,6 +83,8 @@
                       bmbButton
                       appearance="transparent"
                       [disabled]="checkIfDisabled(date)"
+                      tabindex="0"
+                      (keydown)="onDayKeydown($event, date)"
                     >
                       {{ date.day }}
                     </button>

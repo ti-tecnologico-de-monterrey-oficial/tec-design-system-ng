@@ -14,6 +14,7 @@
       }"
       [disabled]="disabled()"
       type="button"
+      (keypress)="handleKeyPress($event)"
     >
       <ng-container [ngTemplateOutlet]="commonTemplate" />
     </button>

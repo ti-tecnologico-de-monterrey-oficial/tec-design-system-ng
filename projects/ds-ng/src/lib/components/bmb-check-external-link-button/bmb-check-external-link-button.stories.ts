@@ -95,6 +95,26 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: 'false' },
       },
     },
+    buttonPress: {
+      name: 'Button press',
+      control: null,
+      description:
+        'This event is emitted when the button is pressed. It can be used to handle keyboard events.',
+      table: {
+        category: 'Events',
+        type: { summary: 'MouseEvent' },
+      },
+    },
+    buttonKeyPress: {
+      name: 'Button key press',
+      control: null,
+      description:
+        'This event is emitted when the button is pressed with a keyboard. It can be used to handle keyboard events.',
+      table: {
+        category: 'Events',
+        type: { summary: 'KeyboardEvent' },
+      },
+    },
   },
   args: {
     idElement: '',

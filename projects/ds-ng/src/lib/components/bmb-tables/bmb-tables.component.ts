@@ -13,6 +13,8 @@ import {
   Renderer2,
   ViewEncapsulation,
   ChangeDetectionStrategy,
+  input,
+  effect,
 } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import {
@@ -38,7 +40,7 @@ import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
 import { TableColum, TableConfig } from './bmb-tables.interface';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { TemplateNameDirective } from './bmb-tables.directive';
+
 @Component({
   selector: 'bmb-table',
   standalone: true,
@@ -108,6 +110,7 @@ export class BmbTablesComponent implements AfterViewInit, OnInit {
   @Input() detailTemplate: TemplateRef<any> | null = null;
   @Input() truncate: boolean = false;
   @Input() wrap: boolean = true;
+  initialTableSelection = input<number[]>([]);
 
   @Output() select: EventEmitter<any> = new EventEmitter();
   @Output() clickedRow: EventEmitter<any> = new EventEmitter();
@@ -127,7 +130,16 @@ export class BmbTablesComponent implements AfterViewInit, OnInit {
     private sanitizer: DomSanitizer,
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const selectedRows = this.initialTableSelection() ?? [];
+    if (selectedRows.length) {
+      selectedRows.forEach((row) => {
+        this.selection.select(this.dataSource.data[row]);
+      });
+    } else {
+      this.selection.clear();
+    }
+  }
 
   sanitizeHTML(label: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(label);
@@ -204,6 +216,10 @@ export class BmbTablesComponent implements AfterViewInit, OnInit {
   }
 
   onSelect() {
+    const indexSelected = this.dataSource.data.reduce((acc, current, index) => {
+      if (this.selection.isSelected(current)) acc.push(index);
+      return acc;
+    }, []);
     this.select.emit(this.selection.selected);
   }
 
@@ -290,7 +306,7 @@ export class BmbTablesComponent implements AfterViewInit, OnInit {
     return value instanceof TemplateRef;
   }
 
-  onSelectRow(row: any) {
+  onSelectRow(row: any): void {
     this.clickedRow.emit(row);
   }
 }

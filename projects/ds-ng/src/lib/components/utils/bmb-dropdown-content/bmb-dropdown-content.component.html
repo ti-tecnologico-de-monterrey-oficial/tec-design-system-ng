@@ -1,5 +1,10 @@
-@if (isOpen()) {
-  <ul class="bmb_dropdown-content-container" [tabindex]="-1">
+<dialog
+  class="bmb_dropdown-content-modal"
+  [tabindex]="-1"
+  [open]="isOpen()"
+  #modalContainer
+>
+  <ul class="bmb_dropdown-content-container">
     @for (item of items(); track $index) {
       <li
         class="bmb_dropdown-content-item"
@@ -27,4 +32,4 @@
       </li>
     }
   </ul>
-}
+</dialog>

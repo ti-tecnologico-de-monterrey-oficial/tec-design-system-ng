@@ -14,7 +14,6 @@ import { BmbButtonDirective } from '../../../directives/bmb-button/button.direct
 import { CommonModule } from '@angular/common';
 import { orderDayNames } from '../../../utils/utils';
 import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
-import { BmbDividerComponent } from '../../bmb-divider/bmb-divider.component';
 
 @Component({
   selector: 'bmb-datepicker-modal',
@@ -25,7 +24,6 @@ import { BmbDividerComponent } from '../../bmb-divider/bmb-divider.component';
     BmbLayoutItemDirective,
     BmbButtonDirective,
     BmbActionIconComponent,
-    BmbDividerComponent,
   ],
   templateUrl: './bmb-datepicker-modal.component.html',
   styleUrls: [
@@ -124,6 +122,7 @@ export class BmbDatepickerModalComponent implements OnInit {
     if (date.month === this.selectedMonth) {
       classList.push('bmb_datepicker-modal-button-current-month');
     }
+
     if (this.selectedDate && date.hasSame(this.selectedDate, 'day'))
       classList.push('bmb_datepicker-modal-button-selected');
     if (this.now().hasSame(date, 'day'))
@@ -190,5 +189,53 @@ export class BmbDatepickerModalComponent implements OnInit {
 
   isSelectedYear(year: string): boolean {
     return this.selectedYear === parseInt(year);
+  }
+
+  onDayKeydown(event: KeyboardEvent, date?: DateTime) {
+    if (
+      event.key === 'ArrowRight' ||
+      event.key === 'ArrowLeft' ||
+      event.key === 'ArrowDown' ||
+      event.key === 'ArrowUp' ||
+      event.key === 'Tab'
+    ) {
+      if (date) {
+        event.preventDefault();
+      }
+      const table = (event.currentTarget as HTMLElement).closest('table');
+      if (!table) return;
+      const buttons = Array.from(
+        table.querySelectorAll<HTMLElement>('button:not(:disabled)'),
+      );
+      const currentIndex = buttons.findIndex(
+        (btn) => btn === event.currentTarget,
+      );
+      let nextIndex = currentIndex;
+      if (
+        event.key === 'ArrowRight' ||
+        (event.key === 'Tab' && !event.shiftKey)
+      ) {
+        nextIndex = (currentIndex + 1) % buttons.length;
+      } else if (
+        event.key === 'ArrowLeft' ||
+        (event.key === 'Tab' && event.shiftKey)
+      ) {
+        nextIndex = (currentIndex - 1 + buttons.length) % buttons.length;
+      } else if (event.key === 'ArrowDown') {
+        nextIndex =
+          currentIndex + 7 < buttons.length ? currentIndex + 7 : currentIndex;
+      } else if (event.key === 'ArrowUp') {
+        nextIndex = currentIndex - 7 >= 0 ? currentIndex - 7 : currentIndex;
+      }
+      buttons[nextIndex]?.focus();
+    }
+
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      const newValue = date?.toFormat(this.dateFormat());
+      this.onValueChange.emit(newValue || '');
+    } else if (event.key === 'Escape') {
+      this.closeWindow.emit(false);
+    }
   }
 }
