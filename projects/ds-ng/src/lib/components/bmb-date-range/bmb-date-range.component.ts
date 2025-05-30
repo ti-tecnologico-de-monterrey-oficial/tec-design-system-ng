@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   input,
+  model,
   OnInit,
   ViewEncapsulation,
 } from '@angular/core';
@@ -30,8 +31,8 @@ export class BmbDateRangeComponent implements OnInit {
   disabled = input<boolean>(false);
   isRequired = input<boolean>(false);
   isClearable = input<boolean>(false);
-  controlStart = input<FormControl>();
-  controlEnd = input<FormControl>();
+  controlStart = model<FormControl>(new FormControl());
+  controlEnd = model<FormControl>(new FormControl());
   dateFormat = input<string>('dd/MM/yyyy');
   stepYearPicker = input<number>(12);
   name = input<string>('');

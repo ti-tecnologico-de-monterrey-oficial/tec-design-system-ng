@@ -1,4 +1,4 @@
-<section class="bmb_datepicker-modal">
+<section class="bmb_datepicker-modal" (keydown)="onDayKeydown($event)">
   <nav
     class="bmb_datepicker-modal-nav"
     bmbLayout
@@ -71,9 +71,9 @@
             </tr>
           </thead>
           <tbody>
-            @for (week of getWeeksAndDays(); track $index) {
+            @for (week of getWeeksAndDays(); track $index; let weekIndex = $index) {
               <tr>
-                @for (date of week; track $index) {
+                @for (date of week; track $index; let dateIndex = $index) {
                   <td class="bmb_datepicker-modal-calendar-table-item">
                     <button
                       class="bmb_datepicker-modal-button"
@@ -83,6 +83,10 @@
                       bmbButton
                       appearance="transparent"
                       [disabled]="checkIfDisabled(date)"
+                      tabindex="0"
+                      (keydown)="onDayKeydown($event, date)"
+                      [attr.data-row]="weekIndex"
+                      [attr.data-col]="dateIndex"
                     >
                       {{ date.day }}
                     </button>

@@ -69,7 +69,9 @@
       opacity: 1;
     }
 
-    &:hover:not(:disabled):not(.bmb-disabled) {
+    &:hover:not(:disabled):not(.bmb-disabled),
+    &:focus:not(:disabled):not(.bmb-disabled),
+    &:focus-visible:not(:disabled):not(.bmb-disabled) {
       background-color: var(--general_contrasts-25);
     }
 

@@ -24,7 +24,6 @@
       [appearance]="appearance()"
       [control]="control()"
       [isRequired]="isRequired()"
-      (isFocus)="handleFocusedEvent($event)"
       [helperMessage]="helperMessage()"
       [errorMessage]="{
         required: requiredFieldErrorMessage(),
@@ -35,6 +34,9 @@
       [name]="name()"
       [isClearable]="isClearable()"
       [value]="value()"
+      (onKeyDown)="handleFocusedEvent($event)"
+      (click)="handleFocusedEvent($event)"
+
     >
       @if (isWindowOpen) {
         <ng-template #customInputContent>

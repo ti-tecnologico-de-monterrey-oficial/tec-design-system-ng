@@ -83,9 +83,16 @@ export class BmbDatepickerComponent {
     };
   }
 
-  handleFocusedEvent(event: boolean) {
-    if (event) {
-      this.isWindowOpen = event;
+  handleFocusedEvent(event: KeyboardEvent | MouseEvent) {
+    if (event instanceof KeyboardEvent) {
+      if (event.key === 'Enter' || event.key === ' ') {
+        if (!this.isWindowOpen) {
+          event.preventDefault();
+          this.isWindowOpen = true;
+        }
+      }
+    } else if (event instanceof MouseEvent) {
+      if (!this.isWindowOpen) this.isWindowOpen = true;
     }
   }
 
