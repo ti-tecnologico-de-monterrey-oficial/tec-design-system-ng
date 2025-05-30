@@ -100,7 +100,7 @@ export class BmbInputComponent {
   isCustomError = model<boolean>(false);
 
   showError = model<boolean>(false);
-  control = model<FormControl>();
+  control = model<FormControl>(new FormControl());
 
   isFocus = output<boolean>();
   isBlur = output<boolean>();

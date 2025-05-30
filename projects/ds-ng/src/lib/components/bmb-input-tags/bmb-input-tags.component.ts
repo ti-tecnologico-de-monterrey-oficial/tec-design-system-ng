@@ -68,7 +68,7 @@ export class BmbInputTagsComponent implements OnInit, AfterViewInit {
   value = input<string | string[]>('');
   showError = input<boolean>(false);
 
-  control = model<FormControl>();
+  control = model<FormControl>(new FormControl());
 
   onKeyDown = output<KeyboardEvent>();
   onChange = output<string[]>();
@@ -120,7 +120,7 @@ export class BmbInputTagsComponent implements OnInit, AfterViewInit {
 
   getValidInitialValues(): string[] {
     const initialValue: string[] | string = getValidInitialValues(
-      this.control()?.value || this.value(),
+      this.control().value || this.value(),
       this.tagOptions(),
       true,
     );

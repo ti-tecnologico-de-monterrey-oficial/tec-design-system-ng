@@ -38,7 +38,7 @@ export class BmbCheckboxComponent implements OnInit {
   errorMessage = input<string | IBmbInputError>('');
   helperMessage = input<string>('');
 
-  control = model<FormControl>();
+  control = model<FormControl>(new FormControl());
   checked = model<boolean>();
   showError = model<boolean>(false);
   indeterminate = model<boolean>(false);
