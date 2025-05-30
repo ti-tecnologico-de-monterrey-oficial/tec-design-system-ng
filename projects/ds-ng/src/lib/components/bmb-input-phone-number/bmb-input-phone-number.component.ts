@@ -113,6 +113,18 @@ export class BmbInputPhoneNumberComponent implements OnInit {
     this.getControl('input').valueChanges.subscribe((value) => {
       this.setControlValue(this.selectedCountry?.lada!, value);
     });
+
+    this.control().valueChanges.subscribe((value) => {
+      if (value === null) {
+        this.selectedCountry = this.getSelectedCountry(
+          this.defaultCountryCode().toLocaleLowerCase(),
+        );
+        this.getControl('input').setValue('');
+        this.getControl('select').setValue(
+          this.selectedCountry.country_code.toLocaleLowerCase(),
+        );
+      }
+    });
   }
 
   handleFocus(value: boolean): void {
@@ -233,6 +245,10 @@ export class BmbInputPhoneNumberComponent implements OnInit {
       minLength,
       customValidation,
     };
+  }
+
+  handleValidity(): void {
+    this.ivs.handleValidity(this.name());
   }
 
   get shouldShowError(): boolean {

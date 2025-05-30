@@ -61,13 +61,16 @@
         (focus)="handleFocus()"
         (blur)="handleBlur()"
       />
-      @if (showAdditionalAction() || isClearable()) {
+      @if (
+        (showAdditionalAction() && !!getAdditionalActionIcon()) || isClearable()
+      ) {
         <span class="bmb_field-actions">
-          @if (showAdditionalAction()) {
+          @if (showAdditionalAction() && !!getAdditionalActionIcon()) {
             <bmb-action-icon
               class="bmb_field-additional_action"
               [icon]="getAdditionalActionIcon()"
               [iconSize]="24"
+              [disabled]="isDisabled()"
               (buttonClick)="actionToExecute()"
             />
           }
@@ -76,6 +79,7 @@
               class="bmb_field-clear"
               icon="close"
               [iconSize]="24"
+              [disabled]="isDisabled()"
               (buttonClick)="handleClearValue()"
             />
           }

@@ -110,7 +110,7 @@ export class BmbInputTagsComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.getFormControl().valueChanges.subscribe((value) => {
-      this.setSelectedTags(value);
+      this.setSelectedTags(value || []);
     });
   }
 

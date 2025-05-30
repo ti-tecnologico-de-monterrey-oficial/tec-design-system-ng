@@ -117,7 +117,10 @@ export class BmbInputValidationComponent implements OnInit {
     if (control.hasError('required') && !!error.required) return error.required;
     if (control.hasError('invalidJson') && !!error.jsonFormat)
       return error.jsonFormat;
-    if (control.hasError('customValidation') && !!error.customValidation)
+    if (
+      (control.hasError('customValidation') || this.showError()) &&
+      !!error.customValidation
+    )
       return error.customValidation;
 
     return '';

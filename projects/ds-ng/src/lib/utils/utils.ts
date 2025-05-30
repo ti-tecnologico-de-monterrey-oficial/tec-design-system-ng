@@ -130,16 +130,20 @@ export const getValidInitialValues = (
 };
 
 export const getSelectedValues = (
-  controlValue: string[],
+  controlValue: string[] | null,
   value: string,
 ): string[] => {
-  if (controlValue.includes(value)) {
-    return controlValue.reduce((acc: string[], currentValue: string) => {
-      if (currentValue === value) return acc;
-      else return [...acc, currentValue];
-    }, []);
+  if (!!controlValue) {
+    if (controlValue.includes(value)) {
+      return controlValue.reduce((acc: string[], currentValue: string) => {
+        if (currentValue === value) return acc;
+        else return [...acc, currentValue];
+      }, []);
+    }
+    return [...controlValue, value];
   }
-  return [...controlValue, value];
+
+  return [value];
 };
 
 export const attributes = (object: { [key: string]: any }): string =>
