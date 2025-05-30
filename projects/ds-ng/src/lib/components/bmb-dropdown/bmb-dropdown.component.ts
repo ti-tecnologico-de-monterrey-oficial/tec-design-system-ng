@@ -102,7 +102,7 @@ export class BmbDropdownComponent implements OnInit, AfterViewInit {
       } as IDropdownItem;
     });
 
-    if (this.preferredOptions().length) {
+    if (!!this.preferredOptions().length) {
       const preferredItems: IDropdownItem[] = this.items.filter((element) =>
         this.preferredOptions().includes(element.value!),
       );

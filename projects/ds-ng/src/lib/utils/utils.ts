@@ -116,7 +116,7 @@ export const getValidInitialValues = (
     );
 
     if (isMultiSelect) {
-      if (Array.isArray(value) && value.length >= 1)
+      if (Array.isArray(value) && !!value.length)
         return value.filter((element) => options.includes(element));
       if (typeof value === 'string' && options.includes(value)) return [value];
     }

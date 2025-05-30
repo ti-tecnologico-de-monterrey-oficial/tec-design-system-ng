@@ -31,6 +31,7 @@ import { BmbInputValidationService } from '../bmb-input/bmb-input-validation/bmb
 import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-dropdown-content.component';
 import { IDropdownItem } from '../../types';
 import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
+import { EventManagerPlugin } from '@angular/platform-browser';
 
 @Component({
   selector: 'bmb-input-tags',
@@ -51,7 +52,6 @@ import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-inp
   providers: [],
 })
 export class BmbInputTagsComponent implements OnInit, AfterViewInit {
-  tagOptions = input<string[] | IBmbDropdownItem[]>([]);
   errorMessage = input<string | IBmbInputError>('');
   tooltip = input<string>('');
   tooltipPosition = input<IBmbInputTooltipPosition>({
@@ -68,6 +68,7 @@ export class BmbInputTagsComponent implements OnInit, AfterViewInit {
   value = input<string | string[]>('');
   showError = input<boolean>(false);
 
+  tagOptions = model<string[] | IBmbDropdownItem[]>([]);
   control = model<FormControl>(new FormControl());
 
   onKeyDown = output<KeyboardEvent>();
@@ -86,19 +87,7 @@ export class BmbInputTagsComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit(): void {
-    this.items = convertListToSelectList(this.tagOptions());
-    this.items = this.items.map((element: IDropdownItem) => {
-      return {
-        ...element,
-        action: () => {
-          this.setSelectedValue(element);
-        },
-      } as IDropdownItem;
-    });
-
-    this.setSelectedTags(this.getValidInitialValues());
-
-    this.filteredOptions = [...this.items];
+    this.initOptions();
 
     this.filterControl.valueChanges
       .pipe(debounceTime(300))
@@ -112,6 +101,22 @@ export class BmbInputTagsComponent implements OnInit, AfterViewInit {
     this.getFormControl().valueChanges.subscribe((value) => {
       this.setSelectedTags(value || []);
     });
+  }
+
+  initOptions(): void {
+    this.items = convertListToSelectList(this.tagOptions());
+    this.items = this.items.map((element: IDropdownItem) => {
+      return {
+        ...element,
+        action: () => {
+          this.setSelectedValue(element);
+        },
+      } as IDropdownItem;
+    });
+
+    this.setSelectedTags(this.getValidInitialValues());
+
+    this.filteredOptions = [...this.items];
   }
 
   getUUID(): string {
@@ -165,16 +170,62 @@ export class BmbInputTagsComponent implements OnInit, AfterViewInit {
     this.showDropdown = false;
   }
 
-  handleKeyDown(event: KeyboardEvent) {
-    const keyboards = [' ', 'ArrowDown', 'Down'];
+  selectOptionWithKey(value: string): void {
+    if (!!value) {
+      const selectedLength: number = this.filteredOptions.length;
 
-    if (keyboards.includes(event.key)) {
+      if (!!selectedLength) {
+        this.setSelectedValue(this.filteredOptions[0]);
+      } else {
+        this.addOption(value);
+        this.setSelectedValue(
+          this.filteredOptions[this.filteredOptions.length - 1],
+        );
+      }
+    }
+  }
+
+  addOption(value: string): void {
+    if (typeof this.tagOptions()[0] === 'string'){
+        const newTagOptions: string[] = [
+            ...(this.tagOptions() as string[]),
+            value,
+          ];
+          this.tagOptions.set([...new Set(newTagOptions)]);}
+        else {
+          const newOption: IBmbDropdownItem = {
+            name: value,
+            value,
+            selectedText: value,
+            id: getUUID(),
+          };
+          const newList: IBmbDropdownItem[] = [
+            ...(this.tagOptions() as IBmbDropdownItem[]),
+            newOption,
+          ];
+          this.tagOptions.set([...new Set(newList)]);
+        }
+
+        this.initOptions();
+  }
+
+  handleKeyDown(event: KeyboardEvent) {
+    const keyboardValuesToOpenDialog = [' ', 'ArrowDown', 'Down'];
+    const keyboardValuesToAddOption = [',', 'Enter'];
+
+    if (keyboardValuesToOpenDialog.includes(event.key)) {
       if (!this.showDropdown) this.openList();
 
       if (!this.filteredOptions.length) {
         event.preventDefault();
         return;
       }
+      return;
+    }
+
+    if (keyboardValuesToAddOption.includes(event.key)) {
+      event.preventDefault();
+      this.selectOptionWithKey(this.filterControl.value);
     }
   }
 
