@@ -1,8 +1,13 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   input,
   model,
+  OnChanges,
+  SimpleChanges,
+  ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbCheckExternalLinkButtonComponent } from '../../bmb-check-external-link-button/bmb-check-external-link-button.component';
@@ -23,11 +28,35 @@ import { CommonModule } from '@angular/common';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbDropdownContentComponent {
+export class BmbDropdownContentComponent implements AfterViewInit, OnChanges {
   selectedOption = input<string | string[]>(); //Internal
 
   items = model<IDropdownItem[]>([]);
   isOpen = model<boolean>(false);
+
+  @ViewChild('modalContainer') modalContainer!: ElementRef;
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['isOpen'] && changes['isOpen'].currentValue && this.modalContainer) {
+      setTimeout(() => {
+        const buttonList = this.modalContainer.nativeElement.querySelectorAll('button');
+        if (buttonList.length > 0) {
+          (buttonList[0] as HTMLElement).focus();
+        }
+      });
+    }
+  }
+
+  ngAfterViewInit() {
+    if (this.isOpen() && this.modalContainer) {
+      setTimeout(() => {
+        const buttonList = this.modalContainer.nativeElement.querySelectorAll('button');
+        if (buttonList.length > 0) {
+          (buttonList[0] as HTMLElement).focus();
+        }
+      });
+    }
+  }
 
   isSelected(item: string): boolean {
     if (typeof this.selectedOption() === 'string')
