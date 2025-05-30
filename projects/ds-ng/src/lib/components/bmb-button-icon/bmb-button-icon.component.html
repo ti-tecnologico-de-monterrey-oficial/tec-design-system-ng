@@ -13,6 +13,6 @@
     [iconSize]="showContainer() ? 24 : 32"
     [disabled]="disabled()!"
     (buttonPress)="handlePress()"
-    (buttonClick)="handleClick()"
+    (buttonClick)="handleClick($event)"
   />
 </span>

@@ -26,13 +26,13 @@ export class BmbButtonIconComponent {
   active = model<boolean>(false);
   isOutline = model<boolean>(false);
 
-  onButtonClick = output<void>();
+  onButtonClick = output<MouseEvent>();
 
   handlePress(): void {
     this.active.update((value) => !value);
   }
 
-  handleClick(): void {
-    this.onButtonClick.emit();
+  handleClick(event: MouseEvent): void {
+    this.onButtonClick.emit(event);
   }
 }

@@ -54,7 +54,7 @@ export class BmbToastComponent {
   position = input<string>('top'); // deprecated
   id = input<string | number>('');
 
-  onClose = output<void>();
+  onClose = output<MouseEvent>();
 
   getClasses(): string[] {
     const classes: string[] = ['bmb_toast'];
@@ -82,7 +82,7 @@ export class BmbToastComponent {
     return 'info';
   }
 
-  handleClose(): void {
-    this.onClose.emit();
+  handleClose(event: MouseEvent): void {
+    this.onClose.emit(event);
   }
 }

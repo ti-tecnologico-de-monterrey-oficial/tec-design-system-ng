@@ -28,9 +28,9 @@ export class BmbItemComponent {
   supportText = input<string>('');
   isButton = input<boolean>(false);
 
-  action = output<void>();
+  action = output<MouseEvent>();
 
-  handleClick(): void {
-    this.action.emit();
+  handleClick(event: MouseEvent): void {
+    this.action.emit(event);
   }
 }

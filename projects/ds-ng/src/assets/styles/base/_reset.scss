@@ -18,7 +18,7 @@ body {
   height: 100dvh;
   margin: 0;
   padding: 0;
-  color: RGBA(var(--general_contrasts-100));
+  color: var(--general_contrasts-100);
 }
 
 p {
@@ -100,11 +100,4 @@ ion-content {
 
 .cdk-overlay-pane.mat-mdc-dialog-panel {
   max-width: 80dvw !important;
-}
-
-[data-theme="dark"],
-.storybook-dark-theme {
-  body {
-    color: var(--general_contrasts-100);
-  }
 }

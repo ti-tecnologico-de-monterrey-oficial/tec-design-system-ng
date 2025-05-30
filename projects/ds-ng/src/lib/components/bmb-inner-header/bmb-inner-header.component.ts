@@ -49,8 +49,8 @@ export class BmbInnerHeaderComponent {
   // Event handlers
   onHandleTrailingPrimary = output<any>();
   onHandleTrailingSecondary = output<any>();
-  onHandleBack = output<any>();
-  onHandleClose = output<any>();
+  onHandleBack = output<MouseEvent>();
+  onHandleClose = output<MouseEvent>();
   searchData = output<string>();
 
   getLeftIcon(): string {

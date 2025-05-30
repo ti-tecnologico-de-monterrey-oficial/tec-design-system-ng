@@ -7,7 +7,14 @@ import {
   SimpleChanges,
   ViewEncapsulation,
   ChangeDetectionStrategy,
+  input,
 } from '@angular/core';
+
+export type BmbProgressCirclePathStatus =
+  | 'gray'
+  | 'success'
+  | 'error'
+  | 'warning';
 
 export class CircleProgressOptions
   implements BmbProgressCircleOptionsInterface
@@ -40,15 +47,14 @@ export class CircleProgressOptions
   ],
 })
 export class BmbProgressCircleComponent implements OnChanges {
-  @Input() valueLabel?: string;
-  @Input() showValueLabel?: boolean;
-
-  @Input() percent!: number;
-
-  @Input() title?: string | Array<String>;
-
-  @Input() showTitle?: boolean;
-  @Input() showBackground?: boolean;
+  valueLabel = input<string>();
+  percent = input<number>(0);
+  showValueLabel = input<boolean>(false);
+  title = input<string | string[]>('');
+  showTitle = input<boolean>(false);
+  showBackground = input<boolean>(true);
+  showRestBackground = input<boolean>(false);
+  fillPathStatus = input<BmbProgressCirclePathStatus>('success');
 
   responsive = true;
   svg: any;
@@ -95,7 +101,7 @@ export class BmbProgressCircleComponent implements OnChanges {
       centre.x,
       centre.y,
       this.options.radius,
-      (360 * (100 - circlePercent)) / 100,
+      (360 * circlePercent) / 100,
     );
     let largeArcFlag: any, sweepFlag: any;
     if (circlePercent > 50) {
@@ -112,13 +118,13 @@ export class BmbProgressCircleComponent implements OnChanges {
       texts: new Array<any>(),
       tspans: new Array<any>(),
     };
-    if (this.title === '' || this.title === undefined) {
+    if (this.title() === '') {
       title.texts.push(titleTextPercent);
     } else {
-      if (this.title instanceof Array) {
-        title.texts = [...this.title];
+      if (this.title() instanceof Array) {
+        title.texts = [...this.title()];
       } else {
-        title.texts.push(this.title.toString());
+        title.texts.push(this.title().toString());
       }
     }
     let valueLabel = {
@@ -128,10 +134,10 @@ export class BmbProgressCircleComponent implements OnChanges {
       texts: new Array<any>(),
       tspans: new Array<any>(),
     };
-    if (this.valueLabel === undefined) {
+    if (this.valueLabel() === undefined) {
       valueLabel.texts.push(`0`);
     } else {
-      valueLabel.texts.push(this.valueLabel);
+      valueLabel.texts.push(this.valueLabel());
     }
     let rowCount = 0,
       rowNum = 1;
@@ -168,8 +174,10 @@ export class BmbProgressCircleComponent implements OnChanges {
           this.options.backgroundPadding,
       },
       path: {
-        d: `M ${startPoint.x} ${startPoint.y}
-       A ${this.options.radius} ${this.options.radius} 0 ${largeArcFlag} ${sweepFlag} ${endPoint.x} ${endPoint.y}`,
+        d: `
+          M ${startPoint.x} ${startPoint.y}
+          A ${this.options.radius} ${this.options.radius} 0 ${largeArcFlag} 1 ${endPoint.x} ${endPoint.y}
+        `,
         strokeWidth: this.options.outerStrokeWidth,
         strokeLinecap: this.options.outerStrokeLinecap,
         fill: 'none',
@@ -192,14 +200,12 @@ export class BmbProgressCircleComponent implements OnChanges {
   private applyOptions() {
     this.options.radius = Math.abs(100);
     this.options.space = -5;
-    this.options.percent = this.percent!;
+    this.options.percent = this.percent();
     this.options.outerStrokeWidth = 5;
     this.options.innerStrokeWidth = 5;
     this.options.backgroundPadding = -9;
-    this.options.showTitle = this.showTitle ? this.showTitle : false;
-    this.options.showValueLabel = this.showValueLabel
-      ? this.showValueLabel
-      : false;
+    this.options.showTitle = this.showTitle();
+    this.options.showValueLabel = this.showValueLabel();
     this.options.responsive = this.responsive!;
   }
 
@@ -207,5 +213,9 @@ export class BmbProgressCircleComponent implements OnChanges {
     let initialOffset = -0.18,
       offset = 1.2;
     return (initialOffset + offset * (rowNum - rowCount / 2)).toFixed(2) + 'em';
+  }
+
+  getFillPathStatus(): string {
+    return `bmb_progress-circle-fill-${this.fillPathStatus()}`;
   }
 }
