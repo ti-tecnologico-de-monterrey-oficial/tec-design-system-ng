@@ -2,6 +2,7 @@ import { BmbTablesComponent } from './bmb-tables.component';
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { attributes } from '../../utils/utils';
 
 export default {
   title: 'Macro Componentes/Table',
@@ -245,6 +246,19 @@ Below is an example of how to use this component in HTML:
         type: { summary: 'clickedRow($event)' },
       },
     },
+    initialTableSelection: {
+      name: 'Initial Table Selection',
+      control: {
+        type: 'object',
+      },
+      description:
+        'Set the initial selection of the table. This is an array of indexes that will be selected when the table is initialized.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'number[]' },
+        defaultValue: { summary: '[]' },
+      },
+    },
   },
   args: {
     data: [
@@ -287,9 +301,10 @@ Below is an example of how to use this component in HTML:
     },
     truncate: false,
     wrap: false,
+    initialTableSelection: [1],
   },
 } as Meta<typeof BmbTablesComponent>;
 
 type Story = StoryObj<BmbTablesComponent>;
 
-export const Default: Story = {};
+export const Default = {};
