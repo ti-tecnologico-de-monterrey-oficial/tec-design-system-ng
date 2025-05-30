@@ -37,9 +37,14 @@ export class BmbDropdownContentComponent implements AfterViewInit, OnChanges {
   @ViewChild('modalContainer') modalContainer!: ElementRef;
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['isOpen'] && changes['isOpen'].currentValue && this.modalContainer) {
+    if (
+      changes['isOpen'] &&
+      changes['isOpen'].currentValue &&
+      this.modalContainer
+    ) {
       setTimeout(() => {
-        const buttonList = this.modalContainer.nativeElement.querySelectorAll('button');
+        const buttonList =
+          this.modalContainer.nativeElement.querySelectorAll('button');
         if (buttonList.length > 0) {
           (buttonList[0] as HTMLElement).focus();
         }
@@ -50,7 +55,8 @@ export class BmbDropdownContentComponent implements AfterViewInit, OnChanges {
   ngAfterViewInit() {
     if (this.isOpen() && this.modalContainer) {
       setTimeout(() => {
-        const buttonList = this.modalContainer.nativeElement.querySelectorAll('button');
+        const buttonList =
+          this.modalContainer.nativeElement.querySelectorAll('button');
         if (buttonList.length > 0) {
           (buttonList[0] as HTMLElement).focus();
         }

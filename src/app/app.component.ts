@@ -5618,7 +5618,39 @@ export class AppComponent {
 
   selectedRows = [0, 3];
 
-  columnDefinition = [{def: 'name', label: 'Name', dataKey: 'name', icon: 'face'}, {def: 'lastName', label: 'Last Name', dataKey: 'lastName', cellTemplate: 'dynamicCell', icon: 'face'}, {def: 'birthday', label: 'Birthday', dataKey: 'birthday'}, {def: 'country', label: 'Country', dataKey: 'country'}]
+  columnDefinition = [
+    { def: 'name', label: 'Name', dataKey: 'name', icon: 'face' },
+    {
+      def: 'lastName',
+      label: 'Last Name',
+      dataKey: 'lastName',
+      cellTemplate: 'dynamicCell',
+      icon: 'face',
+    },
+    { def: 'birthday', label: 'Birthday', dataKey: 'birthday' },
+    { def: 'country', label: 'Country', dataKey: 'country' },
+  ];
 
-  tagsOptions = ["Tacos al pastor","Enchiladas","Tamales","Quesadillas","Chiles en nogada","Mole poblano","Sopes","Gorditas","Pozole","Ceviche","Tortas","Guacamole","Tacos de pescado","Flautas","Chalupas","Huevos rancheros","Elote","Mole verde","Arroz a la mexicana","Burritos"]
+  tagsOptions = [
+    'Tacos al pastor',
+    'Enchiladas',
+    'Tamales',
+    'Quesadillas',
+    'Chiles en nogada',
+    'Mole poblano',
+    'Sopes',
+    'Gorditas',
+    'Pozole',
+    'Ceviche',
+    'Tortas',
+    'Guacamole',
+    'Tacos de pescado',
+    'Flautas',
+    'Chalupas',
+    'Huevos rancheros',
+    'Elote',
+    'Mole verde',
+    'Arroz a la mexicana',
+    'Burritos',
+  ];
 }
