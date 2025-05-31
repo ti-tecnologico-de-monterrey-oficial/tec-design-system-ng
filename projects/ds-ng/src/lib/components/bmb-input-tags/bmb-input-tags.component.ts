@@ -186,27 +186,27 @@ export class BmbInputTagsComponent implements OnInit, AfterViewInit {
   }
 
   addOption(value: string): void {
-    if (typeof this.tagOptions()[0] === 'string'){
-        const newTagOptions: string[] = [
-            ...(this.tagOptions() as string[]),
-            value,
-          ];
-          this.tagOptions.set([...new Set(newTagOptions)]);}
-        else {
-          const newOption: IBmbDropdownItem = {
-            name: value,
-            value,
-            selectedText: value,
-            id: getUUID(),
-          };
-          const newList: IBmbDropdownItem[] = [
-            ...(this.tagOptions() as IBmbDropdownItem[]),
-            newOption,
-          ];
-          this.tagOptions.set([...new Set(newList)]);
-        }
+    if (typeof this.tagOptions()[0] === 'string') {
+      const newTagOptions: string[] = [
+        ...(this.tagOptions() as string[]),
+        value,
+      ];
+      this.tagOptions.set([...new Set(newTagOptions)]);
+    } else {
+      const newOption: IBmbDropdownItem = {
+        name: value,
+        value,
+        selectedText: value,
+        id: getUUID(),
+      };
+      const newList: IBmbDropdownItem[] = [
+        ...(this.tagOptions() as IBmbDropdownItem[]),
+        newOption,
+      ];
+      this.tagOptions.set([...new Set(newList)]);
+    }
 
-        this.initOptions();
+    this.initOptions();
   }
 
   handleKeyDown(event: KeyboardEvent) {
