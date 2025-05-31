@@ -1,13 +1,20 @@
 @use "../../../../assets/styles/base/rem" as rem;
 @use "../../../../assets/styles/base/fonts" as fonts;
 
-.bmb_dropdown_menu-content {
-  &-container {
+.bmb_dropdown-content {
+  &-modal {
     background-color: var(--containers-main);
     position: absolute;
-    width: rem.rem_calc(250);
     z-index: 1;
-    box-shadow: var(--drop_shadow-color-test-shadow);
+    box-shadow: var(--bmb-box-shadow-3);
+    max-height: rem.rem_calc(48 * 6);
+    overflow: auto;
+    width: 100%;
+    border: 0 none;
+    padding: 0;
+  }
+
+  &-container {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -15,24 +22,35 @@
 
   &-item {
     .bmb_check-external-link-button-element {
+      display: flex;
       align-items: center;
       background-color: transparent;
       border: none;
       color: var(--menu_select-label-menu-inactive);
-      display: flex;
-      padding: rem.rem_calc(15 20);
+      padding: rem.rem_calc(8 16);
       text-decoration: none;
       width: 100%;
+      height: rem.rem_calc(48);
+      gap: var(--bmb-spacing-m);
 
       &:hover,
-      &:focus {
+      &:focus,
+      &:focus-visible {
         background-color: var(--menu_select-on-surface-hovered);
+        outline: 0 none;
       }
     }
 
-    &-icon {
-      font-size: rem.rem_calc(18);
-      margin-right: rem.rem_calc(16);
+    &-selected {
+      .bmb_check-external-link-button-element {
+        color: var(--menu_select-label-menu-active);
+        background-color: var(--menu_select-surface-activated);
+        &:hover,
+        &:focus,
+        &:focus-visible {
+          color: var(--menu_select-label-menu-inactive);
+        }
+      }
     }
 
     &-text {

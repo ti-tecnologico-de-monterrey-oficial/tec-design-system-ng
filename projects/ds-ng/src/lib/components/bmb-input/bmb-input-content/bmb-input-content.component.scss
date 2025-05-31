@@ -1,0 +1,163 @@
+@use "../../../../assets/styles/base/fonts" as fonts;
+@use "../../../../assets/styles/base/mixins" as mixins;
+@use "../../../../assets/styles/base/rem" as rem;
+
+@mixin placeholder_padding($padding) {
+  padding-left: $padding;
+}
+
+@mixin input($type: normal) {
+  @include mixins.resetElement();
+  @include fonts.font(4, regular);
+
+  &:focus,
+  &:focus,
+  &:hover {
+    @include mixins.focusElement();
+  }
+
+  @if $type == "simple" {
+    box-sizing: border-box;
+    height: rem.rem_calc(48);
+    width: 100%;
+    background-color: transparent;
+    border: 0;
+    border-bottom: rem.rem_calc(1) solid var(--general_contrasts-50);
+    color: var(--general_contrasts-100);
+    padding-left: var(--bmb-spacing-m);
+    transition: all 0.3s ease;
+
+    &.bmb_field-input-error {
+      @include mixins.error_input();
+    }
+
+    &:focus,
+    &:focus-visible,
+    &:hover {
+      box-sizing: inherit;
+      border-bottom: rem.rem_calc(2)
+        solid
+        var(--general_contrasts-input-outline);
+      color: var(--general_contrasts-input-outline);
+      caret-color: var(--general_contrasts-input-outline);
+    }
+
+    &:hover {
+      box-sizing: inherit;
+      border-bottom: rem.rem_calc(2) solid var(--general_contrasts-50);
+    }
+  } @else {
+    @include placeholder_padding(var(--bmb-spacing-s));
+    @include mixins.normal_input();
+
+    &.bmb_field-input-error {
+      @include mixins.error_input();
+    }
+
+    @include mixins.normal_input_focus();
+  }
+
+  &::placeholder {
+    @include mixins.input_placeholder();
+  }
+}
+
+.bmb_field {
+  &-wrapper {
+    align-items: center;
+    display: flex;
+    position: relative;
+    width: 100%;
+
+    &:hover .bmb_field-icon-simple {
+      color: var(--general_contrasts-50);
+    }
+  }
+
+  &-icon {
+    color: var(--general_contrasts-100);
+    left: var(--bmb-spacing-s);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    ~ .bmb_field-input-normal {
+      @include placeholder_padding(rem.rem_calc(39));
+    }
+
+    ~ .bmb_field-input-simple {
+      @include placeholder_padding(rem.rem_calc(31));
+    }
+
+    &-simple {
+      left: 0;
+
+      &-error {
+        color: var(--general_contrasts-75);
+      }
+
+      &-focused {
+        color: var(--general_contrasts-input-outline);
+      }
+    }
+  }
+
+  &-input {
+    &-normal {
+      @include input("normal");
+    }
+
+    &-simple {
+      @include input("simple");
+    }
+  }
+
+  &-text-area {
+    min-height: rem.rem_calc(30);
+    height: rem.rem_calc(90);
+    min-width: rem.rem_calc(124);
+    resize: none;
+    padding: var(--bmb-spacing-s);
+
+    &::-webkit-scrollbar {
+      -webkit-appearance: none;
+      width: rem.rem_calc(8);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--buttons-inactive-step);
+      border-radius: rem.rem_calc(20);
+      border: rem.rem_calc(1) solid var(--buttons-inactive-step);
+    }
+
+    &::-webkit-scrollbar-track {
+      border-radius: rem.rem_calc(10);
+    }
+
+    &-error-icon {
+      @include fonts.font(4_5, regular);
+      color: var(--input-error);
+      position: absolute;
+      top: rem.rem_calc(10);
+      left: calc(100% - var(--bmb-spacing-l));
+    }
+  }
+
+  &-actions {
+    right: rem.rem_calc(8);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    gap: var(--bmb-spacing-s);
+    align-items: center;
+    padding: rem.rem_calc(4);
+  }
+
+  &-additional_action,
+  &-clear {
+    .bmb_check-external-link-button-element {
+      color: var(--general_contrasts-50);
+    }
+  }
+}

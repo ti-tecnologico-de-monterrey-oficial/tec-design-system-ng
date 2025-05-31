@@ -15,7 +15,12 @@
     <ng-container [ngTemplateOutlet]="tag" />
   </div>
 } @else {
-  <button [ngClass]="getClasses()" (click)="clickTag(text())">
+  <button
+    type="button"
+    [disabled]="idDisabled()"
+    [ngClass]="getClasses()"
+    (click)="clickTag(text())"
+  >
     <ng-container [ngTemplateOutlet]="tag" />
   </button>
 }

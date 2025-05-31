@@ -1,3 +1,6 @@
+import { IBmbDropdownItem } from '../../public-api';
+import { IDropdownItem } from '../types';
+
 export const isExternalLink = (link: string): boolean => {
   return (
     link.startsWith('http://') ||
@@ -60,6 +63,87 @@ export const getPositionClass = (
 
 export const getUUID = (): string => {
   return window.crypto.randomUUID();
+};
+
+export const convertListToSelectList = (
+  options: string[] | IBmbDropdownItem[],
+  _icon: string = '',
+): IDropdownItem[] => {
+  return options.reduce((acc: IDropdownItem[], currentElement) => {
+    let id: string | undefined,
+      selectedText: string | undefined,
+      name: string,
+      value: string,
+      icon: string | undefined;
+
+    if (typeof currentElement === 'string') {
+      id = getUUID();
+      selectedText = currentElement;
+      name = currentElement;
+      value = currentElement;
+      icon = _icon!;
+    } else {
+      ({ id, selectedText, name, value, icon } = currentElement);
+    }
+
+    return [
+      ...acc,
+      {
+        idItem: id,
+        selectedText: selectedText || name,
+        text: name,
+        value,
+        icon,
+      } as IDropdownItem,
+    ];
+  }, []);
+};
+
+export const getValidInitialValues = (
+  value: string | string[],
+  list: string[] | IBmbDropdownItem[],
+  isMultiSelect: boolean,
+): string | string[] => {
+  if (!!value) {
+    const options = list.reduce(
+      (accumulator: string[], currentElement: IBmbDropdownItem | string) => [
+        ...accumulator,
+        typeof currentElement === 'string'
+          ? currentElement
+          : currentElement.value,
+      ],
+      [],
+    );
+
+    if (isMultiSelect) {
+      if (Array.isArray(value) && !!value.length)
+        return value.filter((element) => options.includes(element));
+      if (typeof value === 'string' && options.includes(value)) return [value];
+    }
+    if (Array.isArray(value)) return '';
+    if (typeof value === 'string' && options.includes(value)) return value;
+  }
+
+  if (isMultiSelect) return [];
+
+  return '';
+};
+
+export const getSelectedValues = (
+  controlValue: string[] | null,
+  value: string,
+): string[] => {
+  if (!!controlValue) {
+    if (controlValue.includes(value)) {
+      return controlValue.reduce((acc: string[], currentValue: string) => {
+        if (currentValue === value) return acc;
+        else return [...acc, currentValue];
+      }, []);
+    }
+    return [...controlValue, value];
+  }
+
+  return [value];
 };
 
 export const attributes = (object: { [key: string]: any }): string =>

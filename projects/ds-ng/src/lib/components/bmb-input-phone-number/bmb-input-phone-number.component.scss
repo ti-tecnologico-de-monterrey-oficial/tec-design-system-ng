@@ -1,32 +1,22 @@
-@use "../../../assets/styles/base/fonts" as fonts;
 @use "../../../assets/styles/base/mixins" as mixins;
 @use "../../../assets/styles/base/rem" as rem;
 
-.bmb_input-number {
+.bmb_input-phone {
   display: block;
   position: relative;
 
   &-container {
     display: flex;
+    @include mixins.normal_input();
 
-    .bmb_dropdown {
-      width: 163px;
-
-      &-field-input {
-        width: 100%;
-      }
-
-      &-input-wrapper {
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-      }
+    &-error {
+      @include mixins.error_input();
     }
 
-    .bmb_field-input-normal {
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-      border-left: 0 none;
-      width: 100%;
+    @include mixins.normal_input_focus();
+
+    .bmb_input-validation-label {
+      display: none;
     }
 
     .bmb_input-validation {
@@ -34,7 +24,44 @@
     }
   }
 
-  &-input {
+  &-lada {
+    .bmb_dropdown {
+      width: rem.rem_calc(80);
+
+      .bmb_field-input-normal {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border-width: rem.rem_calc(0 1 0 0);
+        height: rem.rem_calc(44);
+
+        &:focus,
+        &:focus-visible,
+        &:hover {
+          border-width: rem.rem_calc(0 1 0 0);
+          outline: 0 none;
+        }
+      }
+
+      .bmb_dropdown-content-container {
+        width: rem.rem_calc(170);
+      }
+    }
+  }
+
+  &-number {
     flex: 1;
+    .bmb_field-input-normal {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      border: 0;
+      height: rem.rem_calc(44);
+
+      &:focus,
+      &:focus-visible,
+      &:hover {
+        border: 0;
+        outline: 0 none;
+      }
+    }
   }
 }

@@ -41,12 +41,12 @@ $types: (
 .bmb_push-notification-item {
   @include fonts.font(3, regular);
   margin-bottom: var(--bmb-spacing-m);
-  background-color: RGBA(var(--color-charade-950));
-  color: RGBA(var(--color-white-primary));
+  background-color: var(--general_contrasts-5);
+  color: var(--general_contrasts-100);
   padding: var(--bmb-spacing-m);
 
   .bmb_checkbox-label {
-    color: RGBA(var(--color-white-primary));
+    color: var(--general_contrasts-5);
   }
 
   &-full-color {
@@ -145,6 +145,7 @@ $types: (
     display: flex;
     align-items: center;
     justify-content: center;
+    color: RGBA(var(--color-white-primary));
   }
 
   &-container {
@@ -157,7 +158,7 @@ $types: (
   }
 
   &-button {
-    color: RGBA(var(--color-white-primary));
+    color: var(--general_contrasts-100);
     font-size: rem.rem_calc(24);
   }
 

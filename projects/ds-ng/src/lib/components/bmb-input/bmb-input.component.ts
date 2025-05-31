@@ -5,26 +5,28 @@ import {
   input,
   output,
   model,
+  TemplateRef,
+  ContentChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { FormControl, ValidatorFn } from '@angular/forms';
 import {
   IBmbAlignTooltip,
   IBmbJustifyTooltip,
 } from '../bmb-tooltip/bmb-tooltip.component';
 import { IBbmSidePosition } from '../../types';
-import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { BmbInputValidationService } from './bmb-input-validation/bmb-input-validation.service';
 import { BmbInputValidationComponent } from './bmb-input-validation/bmb-input-validation.component';
 import { getUUID } from '../../utils/utils';
+import { BmbInputContentComponent } from './bmb-input-content/bmb-input-content.component';
 
 export type IBmbInputType =
   | 'text'
   | 'password'
   | 'number'
   | 'text-area'
-  | 'radio';
+  | 'radio'
+  | 'date_range';
 export type IBmbInputAppearance = 'main' | 'normal' | 'simple';
 export type IBmbAdditionalAction = 'copy' | 'showHide' | 'none';
 
@@ -33,8 +35,10 @@ export interface IBmbInputError {
   min?: string;
   max?: string;
   minLength?: string;
+  maxLength?: string;
   pattern?: string;
   jsonFormat?: string;
+  customValidation?: string;
 }
 
 export interface IBmbInputTooltipPosition {
@@ -49,10 +53,8 @@ export interface IBmbInputTooltipPosition {
   standalone: true,
   imports: [
     CommonModule,
-    BmbIconComponent,
-    ReactiveFormsModule,
-    BmbActionIconComponent,
     BmbInputValidationComponent,
+    BmbInputContentComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
@@ -74,7 +76,7 @@ export class BmbInputComponent {
   maxlength = input<number>();
   minlength = input<number>();
   pattern = input<string>();
-  size = input<number>();
+  size = input<number>(); //Deprecated
   max = input<number>();
   min = input<number>();
   id = input<string>();
@@ -93,44 +95,28 @@ export class BmbInputComponent {
     justify: 'before',
   });
   isClearable = input<boolean>(false);
+  customValidation = input<ValidatorFn>();
+
+  isCustomError = model<boolean>(false);
 
   showError = model<boolean>(false);
-  control = model<FormControl>();
+  control = model<FormControl>(new FormControl());
 
   isFocus = output<boolean>();
   isBlur = output<boolean>();
   onChange = output<HTMLInputElement>();
   onKeyDown = output<KeyboardEvent>();
 
-  isHide: boolean = true;
+  @ContentChild('customInputContent') customInputContent!: TemplateRef<any>;
 
   constructor(private ivs: BmbInputValidationService) {}
 
-  onFocus() {
-    this.isFocus.emit(true);
+  onFocus(value: boolean) {
+    this.isFocus.emit(value);
   }
 
-  onBlur() {
-    this.isFocus.emit(false);
-    this.isBlur.emit(true);
-  }
-
-  get inputClasses(): { [key: string]: boolean } {
-    const appearance =
-      this.type() === 'text-area' ? 'normal' : this.appearance();
-    const baseName = 'bmb_field-input';
-    const classes = [`${baseName}-${appearance}`];
-    if (this.shouldShowError) {
-      classes.push(`${baseName}-error`);
-    }
-
-    return classes.reduce(
-      (acc, className) => {
-        acc[className] = true;
-        return acc;
-      },
-      {} as { [key: string]: boolean },
-    );
+  onBlur(value: boolean) {
+    this.isBlur.emit(value);
   }
 
   get shouldShowError(): boolean {
@@ -144,51 +130,8 @@ export class BmbInputComponent {
     }
   }
 
-  getType() {
-    if (this.showAdditionalAction()) {
-      if (this.additionalAction() === 'showHide' && !this.isHide) {
-        return 'text';
-      }
-    }
-
-    return this.type();
-  }
-
-  showAdditionalAction(): boolean {
-    if (this.additionalAction() !== 'none') {
-      if (this.additionalAction() === 'showHide') {
-        return this.type() === 'password';
-      }
-
-      return true;
-    }
-
-    return false;
-  }
-
-  actionToExecute(): void {
-    if (this.additionalAction() === 'copy') {
-      const textToCopy = this.getFormControl()?.value;
-      if (textToCopy) {
-        navigator.clipboard
-          .writeText(textToCopy.toString())
-          .then(() => console.log('Text copied to clipboard!'))
-          .catch((err) => console.error('Error copying text: ', err));
-      }
-    }
-
-    if (this.additionalAction() === 'showHide') {
-      this.isHide = !this.isHide;
-    }
-  }
-
-  getAdditionalActionIcon(): string {
-    if (this.additionalAction() === 'copy') return 'content_copy';
-    if (this.additionalAction() === 'showHide') {
-      if (this.isHide) return 'visibility';
-      return 'visibility_off';
-    }
-    return '';
+  handleChange(value: HTMLInputElement) {
+    this.onChange.emit(value);
   }
 
   clearValue() {

@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  input,
   Input,
   ViewEncapsulation,
 } from '@angular/core';
@@ -18,18 +19,14 @@ import { BmbLegendComponent } from '../bmb-legend/bmb-legend.component';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbBalanceOverviewComponent {
-  //Inputs for Progress Circle
-  @Input() progressCirclePercent?: number = 0;
-  @Input() progressCircleValue?: string = 'Progress Value';
-  @Input() showProgressCircleValue?: boolean = true;
-  @Input() progressCircleTitle?: string | Array<string> = 'Title';
-  @Input() showProgressCircleTitle?: boolean = true;
-  @Input() showProgressCircleBackground?: boolean = true;
-
-  //Inputs for legeds
-  @Input() labelPrimary?: string = 'Text';
-  @Input() valuePrimary?: string = '$0';
-
-  @Input() labelSecondary?: string = 'Text';
-  @Input() valueSecondary?: string = '$0';
+  progressCirclePercent = input<number>(0);
+  progressCircleValue = input<string>('Progress Value');
+  showProgressCircleValue = input<boolean>(true);
+  progressCircleTitle = input<string | string[]>('Title');
+  showProgressCircleTitle = input<boolean>(true);
+  showProgressCircleBackground = input<boolean>(true);
+  labelPrimary = input<string>('Primary Label');
+  valuePrimary = input<string>('$0');
+  labelSecondary = input<string>('Secondary Label');
+  valueSecondary = input<string>('$0');
 }

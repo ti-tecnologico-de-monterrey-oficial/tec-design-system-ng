@@ -3,7 +3,7 @@
     <button
       type="button"
       class="bmb_digital-id-top-btn"
-      (click)="closeDigitalId()"
+      (click)="closeDigitalId($event)"
     >
       <bmb-icon
         class="bmb_digital-id-top-close"
@@ -57,7 +57,7 @@
       [iconSize]="0"
       size="large"
       position="left"
-      (click)="clickAccess()"
+      (click)="clickAccess($event)"
     >
       {{ textButton() }}
     </button>

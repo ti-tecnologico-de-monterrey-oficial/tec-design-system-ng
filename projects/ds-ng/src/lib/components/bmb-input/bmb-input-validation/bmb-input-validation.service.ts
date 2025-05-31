@@ -71,11 +71,13 @@ export class BmbInputValidationService {
     minLength: number,
     pattern: string,
     isJsonFormat: boolean,
+    isCustomError: boolean,
+    customValidation: ValidatorFn,
     cdr: ChangeDetectorRef,
   ): void {
     const formControl: FormControl = this.getFormControlByName(name);
 
-    if (!formControl.value && !!value) {
+    if (!formControl.value && (!!value || checked)) {
       this.addValue(formControl, type, value, checked);
     }
 
@@ -104,7 +106,11 @@ export class BmbInputValidationService {
     }
 
     if (isJsonFormat) {
-      formControl.addValidators(this.validatorError('invalidJson'));
+      formControl.addValidators(this.validatorError('jsonValidation'));
+    }
+
+    if (isCustomError) {
+      formControl.addValidators(this.validatorError(customValidation));
     }
 
     formControl.valueChanges.subscribe(() => {
@@ -112,27 +118,36 @@ export class BmbInputValidationService {
     });
   }
 
-  validatorError(errorType: string): ValidatorFn {
-    return (control: AbstractControl): { [key: string]: any } | null => {
-      if (errorType === 'invalidJson') {
+  validatorError(errorType: string | ValidatorFn): ValidatorFn {
+    if (typeof errorType === 'string') {
+      return (control: AbstractControl): { [key: string]: any } | null => {
         if (!control.value) {
           return null;
         }
 
-        try {
-          JSON.parse(control.value);
-          return null;
-        } catch (e) {
-          return { invalidJson: true };
+        if (errorType === 'jsonValidation') {
+          try {
+            JSON.parse(control.value);
+            return null;
+          } catch (e) {
+            return { invalidJson: true };
+          }
         }
-      }
-
-      return null;
-    };
+        return null;
+      };
+    } else {
+      return errorType;
+    }
   }
 
   showError(name: string): boolean {
     const control = this.getFormControlByName(name);
     return (control?.invalid && (control?.touched || control?.dirty)) || false;
+  }
+
+  handleValidity(name: string): void {
+    const control: FormControl = this.getFormControlByName(name);
+    control.updateValueAndValidity();
+    control.markAsTouched();
   }
 }

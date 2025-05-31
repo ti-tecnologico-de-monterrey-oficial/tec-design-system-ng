@@ -35,7 +35,7 @@
     color: RGBA(var(--color-charade-950));
 
     &-negative {
-      color: RGBA(var(--color-red-primary));
+      color: var(--semantic-error);
     }
   }
 
@@ -89,6 +89,12 @@
     &-quantity,
     &-total {
       color: RGBA(var(--color-charade-50));
+    }
+
+    &-quantity {
+      &-negative {
+        color: var(--semantic-error);
+      }
     }
 
     &-total {

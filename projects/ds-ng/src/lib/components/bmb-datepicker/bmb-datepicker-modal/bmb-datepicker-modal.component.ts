@@ -13,6 +13,7 @@ import { weeksAndDays } from '../../bmb-calendar/utils';
 import { BmbButtonDirective } from '../../../directives/bmb-button/button.directive';
 import { CommonModule } from '@angular/common';
 import { orderDayNames } from '../../../utils/utils';
+import { BmbActionIconComponent } from '../../bmb-action-icon/bmb-action-icon.component';
 
 @Component({
   selector: 'bmb-datepicker-modal',
@@ -22,6 +23,7 @@ import { orderDayNames } from '../../../utils/utils';
     BmbLayoutDirective,
     BmbLayoutItemDirective,
     BmbButtonDirective,
+    BmbActionIconComponent,
   ],
   templateUrl: './bmb-datepicker-modal.component.html',
   styleUrls: [
@@ -54,55 +56,8 @@ export class BmbDatepickerModalComponent implements OnInit {
   view = 'calendar';
   selectedDate: DateTime | null = null;
 
-  handleMonthChange(event: number) {
-    this.selectedMonth = event + 1;
-    this.month = this.monthsNames[event];
-    this.view = 'calendar';
-  }
-
-  handleYearChange(event: any) {
-    this.selectedYear = event;
-    this.view = 'calendar';
-  }
-
-  getYears() {
-    const yearsList = new Array(this.stepYearPicker()).fill(0);
-    const currentYear = this.selectedYear;
-    const yearsFinal = yearsList.map((_, index) => {
-      return (currentYear - (this.stepYearPicker() / 2 - 1) + index).toString();
-    });
-    return yearsFinal;
-  }
-
-  handleDayChange(date: DateTime): void {
-    const newValue = date.toFormat(this.dateFormat());
-    this.onValueChange.emit(newValue);
-  }
-
-  getWeeksAndDays(): DateTime[] {
-    const firstDayOfMonth = DateTime.fromObject({
-      day: 1,
-      month: this.selectedMonth ?? this.now().month,
-      year: this.selectedYear ?? this.now().year,
-    });
-    return weeksAndDays(firstDayOfMonth);
-  }
-
-  isSelectedDay(date: DateTime): string[] {
-    const classList = [];
-    if (this.selectedDate && date.hasSame(this.selectedDate, 'day'))
-      classList.push('bmb_datepicker-modal-button-selected');
-    if (this.now().hasSame(date, 'day'))
-      classList.push('bmb_datepicker-modal-button-today');
-    return classList;
-  }
-
-  handleChangeView(view: string) {
-    this.view = view;
-  }
-
   ngOnInit() {
-    if (this.value()) {
+    if (!!this.value()) {
       const formattedDate = DateTime.fromFormat(
         this.value(),
         this.dateFormat(),
@@ -116,6 +71,84 @@ export class BmbDatepickerModalComponent implements OnInit {
       this.selectedMonth = this.now().month;
       this.month =
         this.monthsNames[(this.selectedMonth || this.now().month) - 1];
+    }
+  }
+
+  handleMonthChange(event: number) {
+    this.selectedMonth = event + 1;
+    this.month = this.monthsNames[event];
+    this.view = 'calendar';
+  }
+
+  handleYearChange(event: string) {
+    this.selectedYear = parseInt(event, 10);
+    this.view = 'calendar';
+  }
+
+  getYears(): string[] {
+    const yearsList = new Array(this.stepYearPicker()).fill(0);
+    const currentYear = this.selectedYear;
+    const yearsFinal = yearsList.map((_, index) => {
+      return (currentYear - (this.stepYearPicker() / 2 - 1) + index).toString();
+    });
+    return yearsFinal;
+  }
+
+  handleDayChange(date: DateTime): void {
+    const newValue = date.toFormat(this.dateFormat());
+    this.onValueChange.emit(newValue);
+  }
+
+  getWeeksAndDays(): DateTime[][] {
+    const firstDayOfMonth = DateTime.fromObject({
+      day: 1,
+      month: this.selectedMonth ?? this.now().month,
+      year: this.selectedYear ?? this.now().year,
+    });
+    const days = weeksAndDays(firstDayOfMonth);
+
+    return [
+      days.slice(0, 7),
+      days.slice(7, 14),
+      days.slice(14, 21),
+      days.slice(21, 28),
+      days.slice(28, 35),
+      days.slice(35, 42),
+    ];
+  }
+
+  isSelectedDay(date: DateTime): string[] {
+    const classList = [];
+    if (date.month === this.selectedMonth) {
+      classList.push('bmb_datepicker-modal-button-current-month');
+    }
+
+    if (this.selectedDate && date.hasSame(this.selectedDate, 'day'))
+      classList.push('bmb_datepicker-modal-button-selected');
+    if (this.now().hasSame(date, 'day'))
+      classList.push('bmb_datepicker-modal-button-today');
+    return classList;
+  }
+
+  handleChangeView(view: string) {
+    this.view = view;
+  }
+
+  handleChevronClick(event: string) {
+    if (this.view === 'calendar') {
+      this.handleChangeMonth(event);
+    } else if (this.view === 'month') {
+      this.handleChangeYear(event, 1);
+    } else {
+      this.handleChangeYear(event, this.stepYearPicker());
+    }
+  }
+
+  handleChangeYear(event: string, yearsAmount: number = 0) {
+    if (event === 'less') {
+      this.selectedYear = this.selectedYear - yearsAmount;
+    } else {
+      this.selectedYear = this.selectedYear + yearsAmount;
     }
   }
 
@@ -156,5 +189,53 @@ export class BmbDatepickerModalComponent implements OnInit {
 
   isSelectedYear(year: string): boolean {
     return this.selectedYear === parseInt(year);
+  }
+
+  onDayKeydown(event: KeyboardEvent, date?: DateTime) {
+    if (
+      event.key === 'ArrowRight' ||
+      event.key === 'ArrowLeft' ||
+      event.key === 'ArrowDown' ||
+      event.key === 'ArrowUp' ||
+      event.key === 'Tab'
+    ) {
+      if (date) {
+        event.preventDefault();
+      }
+      const table = (event.currentTarget as HTMLElement).closest('table');
+      if (!table) return;
+      const buttons = Array.from(
+        table.querySelectorAll<HTMLElement>('button:not(:disabled)'),
+      );
+      const currentIndex = buttons.findIndex(
+        (btn) => btn === event.currentTarget,
+      );
+      let nextIndex = currentIndex;
+      if (
+        event.key === 'ArrowRight' ||
+        (event.key === 'Tab' && !event.shiftKey)
+      ) {
+        nextIndex = (currentIndex + 1) % buttons.length;
+      } else if (
+        event.key === 'ArrowLeft' ||
+        (event.key === 'Tab' && event.shiftKey)
+      ) {
+        nextIndex = (currentIndex - 1 + buttons.length) % buttons.length;
+      } else if (event.key === 'ArrowDown') {
+        nextIndex =
+          currentIndex + 7 < buttons.length ? currentIndex + 7 : currentIndex;
+      } else if (event.key === 'ArrowUp') {
+        nextIndex = currentIndex - 7 >= 0 ? currentIndex - 7 : currentIndex;
+      }
+      buttons[nextIndex]?.focus();
+    }
+
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      const newValue = date?.toFormat(this.dateFormat());
+      this.onValueChange.emit(newValue || '');
+    } else if (event.key === 'Escape') {
+      this.closeWindow.emit(false);
+    }
   }
 }

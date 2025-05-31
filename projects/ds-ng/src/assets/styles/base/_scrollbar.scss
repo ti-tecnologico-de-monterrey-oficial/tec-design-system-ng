@@ -29,7 +29,8 @@
   ::-webkit-scrollbar-thumb {
     background-color: RGBA(var(--color-charade-700));
     border-radius: rem.rem_calc(20);
-    border: rem.rem_calc(1) solid RGBA(var(--color-charade-700));
+    border: var(--bmb-border-inherit-1-solid);
+    border-color: RGBA(var(--color-charade-700));
   }
 
   ::-webkit-scrollbar-track {

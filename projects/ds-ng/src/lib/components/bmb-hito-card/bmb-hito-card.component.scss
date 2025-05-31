@@ -29,7 +29,7 @@ $circleTypes: (
   }
 
   .bmb_card {
-    box-shadow: 4px 4px 4px RGBA(var(--color-black-primary), 0.15);
+    box-shadow: var(--bmb-box-shadow-2);
   }
 
   &-active {

@@ -1,71 +1,65 @@
-<section class="bmb_input-tags" (clickOutside)="closeDialog()">
-  @if (!!label()) {
-    <label class="bmb_input-tags-label" [for]="name()">
-      {{ label() }}
-      @if (isRequired()) {
-        <small class="bmb_input-tags-label-required">*</small>
-      }
-      @if (!!tooltip()) {
-        <bmb-tooltip
-          class="bmb_input-tags-label-tooltip"
-          [text]="tooltip()"
-          [icon]="'help'"
-          [size]="15"
-        />
-      }
-    </label>
-  }
-  <div class="bmb_input-tags-wrapper">
-    <bmb-input
-      name="selector"
+<bmb-input-validation
+  class="bmb_input-tags"
+  type="text"
+  [name]="name()"
+  [value]="getValidInitialValues()"
+  [label]="label()!"
+  [errorMessage]="errorMessage()"
+  [helperMessage]="helperMessage()"
+  [isRequired]="isRequired()"
+  [idDisabled]="disabled()"
+  [control]="control()"
+  [showError]="shouldShowError || showError()"
+  [tooltip]="tooltip()"
+  [tooltipPosition]="tooltipPosition()"
+  clickOutside
+  (clickOutside)="closeList()"
+>
+  <section
+    class="bmb_input-tags-container"
+    [ngClass]="{
+      'bmb_input-tags-container-error': shouldShowError || showError(),
+      'bmb_input-tags-container-focus': isFocused(),
+    }"
+  >
+    <bmb-input-content
+      class="bmb_input-tags-filter"
+      type="text"
+      [id]="'filter' + getUUID()"
+      name="filterControl"
       [control]="filterControl"
-      [disabled]="disabled()"
-      (isFocus)="handleFocus()"
+      [placeholder]="placeholder()"
+      [isDisabled]="disabled()"
+      (click)="openList()"
+      (onBlur)="handleValidity()"
+      (keydown)="handleKeyDown($event)"
+      (onFocus)="handleFocus($event)"
     />
-    <bmb-input
-      hidden
-      [control]="control()"
-      [name]="name()"
-      [disabled]="disabled()"
-      [isRequired]="isRequired()"
-      (onKeyDown)="handleKeyDown($event)"
-    />
-    <dialog class="bmb_input-tags-dialog" [open]="showDropdown" tabindex="-1">
-      <ul class="bmb_input-tags-dialog-list">
-        @for (item of filteredOptions; track $index) {
-          @if (checkIfIsSelected(item)) {
-            <li class="bmb_input-tags-dialog-list-item">
-              <button
-                class="bmb_input-tags-dialog-list-item-button"
-                type="button"
-                (click)="handleItemClick(item)"
-                (keydown)="handleItemKeyDown($event, item)"
-              >
-                {{ item.name }}
-              </button>
-            </li>
-          }
+    @if (!!selectedTags && !!selectedTags.length) {
+      <div class="bmb_input-tags-selected-list" [tabIndex]="-1">
+        @for (item of selectedTags; track $index) {
+          <bmb-tag
+            [text]="item.selectedText!"
+            [dismissible]="true"
+            [idDisabled]="disabled()"
+            (click)="removeTag(item)"
+          />
         }
-      </ul>
-    </dialog>
-  </div>
-  <div class="bmb_input-tags-selected-list">
-    @for (item of selectedTags; track $index) {
-      <bmb-tag
-        [text]="item.name"
-        [dismissible]="true"
-        (click)="removeTag(item)"
-      />
+      </div>
     }
-  </div>
-  @if (helperMessage() && !shouldShowError) {
-    <p class="bmb_input-validation-helper">
-      {{ helperMessage() }}
-    </p>
-  }
-  @if (errorMessage() && shouldShowError) {
-    <p class="bmb_input-validation-error">
-      {{ getErrorMessage() }}
-    </p>
-  }
-</section>
+  </section>
+  <input
+    hidden
+    type="text"
+    [id]="name() + getUUID()"
+    [name]="name()"
+    [formControl]="getFormControl()"
+  />
+  <bmb-dropdown-content
+    class="bmb_input-tags-dialog"
+    name="list"
+    [selectedOption]="getFormControl().value"
+    [(items)]="filteredOptions"
+    [(isOpen)]="showDropdown"
+  />
+</bmb-input-validation>

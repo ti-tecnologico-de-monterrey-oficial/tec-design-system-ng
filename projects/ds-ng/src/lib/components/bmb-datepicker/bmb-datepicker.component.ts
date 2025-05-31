@@ -3,17 +3,16 @@ import {
   Component,
   input,
   model,
-  OnInit,
   output,
   ViewEncapsulation,
 } from '@angular/core';
 import {
   FormsModule,
-  ValidatorFn,
-  AbstractControl,
   ReactiveFormsModule,
-  ValidationErrors,
   FormControl,
+  ValidationErrors,
+  AbstractControl,
+  ValidatorFn,
 } from '@angular/forms';
 import { DateTime } from 'luxon';
 import {
@@ -23,6 +22,7 @@ import {
 import { BmbDatepickerModalComponent } from './bmb-datepicker-modal/bmb-datepicker-modal.component';
 import { ClickOutsideDirective } from '../../directives/utils/clickoutside.directive';
 import { getUUID } from '../../utils/utils';
+import { BmbInputValidationService } from '../bmb-input/bmb-input-validation/bmb-input-validation.service';
 
 @Component({
   selector: 'bmb-datepicker',
@@ -39,7 +39,7 @@ import { getUUID } from '../../utils/utils';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbDatepickerComponent implements OnInit {
+export class BmbDatepickerComponent {
   label = input<string>('');
   placeholder = input<string>('');
   icon = input<string>('calendar_month');
@@ -56,6 +56,8 @@ export class BmbDatepickerComponent implements OnInit {
   disableDatesBefore = input<string>('');
   disableDatesAfter = input<string>('');
   lang = input<string>('es-MX');
+  helperMessage = input<string>(this.dateFormat());
+  value = input<string>();
 
   control = model<FormControl>(new FormControl());
 
@@ -65,11 +67,7 @@ export class BmbDatepickerComponent implements OnInit {
   defaultDate = new Date();
   isWindowOpen = false;
 
-  ngOnInit() {
-    this.control().addValidators(this.customValidatorDate());
-    this.control().markAsTouched();
-    this.control().updateValueAndValidity();
-  }
+  constructor(private ivs: BmbInputValidationService) {}
 
   customValidatorDate(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
@@ -81,19 +79,20 @@ export class BmbDatepickerComponent implements OnInit {
         this.dateFormat(),
       ).isValid;
 
-      return !isValidDate ? { validationDate: true } : null;
+      return !isValidDate ? { customValidation: true } : null;
     };
   }
 
-  getErrorMessage(errors: ValidationErrors | null): string {
-    if (errors?.['validationDate']) return this.invalidFormatErrorMessage();
-    if (errors?.['required']) return this.requiredFieldErrorMessage();
-    return '';
-  }
-
-  handleFocusedEvent(event: boolean) {
-    if (event) {
-      this.isWindowOpen = event;
+  handleFocusedEvent(event: KeyboardEvent | MouseEvent) {
+    if (event instanceof KeyboardEvent) {
+      if (event.key === 'Enter' || event.key === ' ') {
+        if (!this.isWindowOpen) {
+          event.preventDefault();
+          this.isWindowOpen = true;
+        }
+      }
+    } else if (event instanceof MouseEvent) {
+      if (!this.isWindowOpen) this.isWindowOpen = true;
     }
   }
 
@@ -102,7 +101,7 @@ export class BmbDatepickerComponent implements OnInit {
   }
 
   handleValueChange(event: string) {
-    this.control().setValue(event);
+    this.ivs.getFormControlByName(this.name()).setValue(event);
     this.isWindowOpen = false;
     this.onChange.emit(event);
   }

@@ -33,7 +33,7 @@ export class BmbDrawerOverlayComponent {
   appServices = input<{ [key: number]: IBmbApp[] }>({});
 
   onValueChange = output<string>();
-  buttonClick = output<void>();
+  buttonClick = output<MouseEvent>();
 
   isOpen: boolean = false;
   isFull: boolean = false;
@@ -47,11 +47,11 @@ export class BmbDrawerOverlayComponent {
     }
   }
 
-  toggleFullDrawer(item?: any) {
+  toggleFullDrawer(event: MouseEvent, item?: any) {
     this.isFull = !this.isFull;
 
     if (this.isFull && item.buttonClick) {
-      item.buttonClick();
+      item.buttonClick(event);
     }
   }
 

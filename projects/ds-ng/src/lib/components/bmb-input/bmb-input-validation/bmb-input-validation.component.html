@@ -1,12 +1,17 @@
-<section class="bmb_input-validation" [ngClass]="{ disabled: disabled() }">
-  <label [ngClass]="getClasses('bmb_input-validation')">
-    @if (label()) {
-      <span
-        class="bmb_input-validation-label"
-        [ngClass]="getLabelClass('bmb_input-validation-label')"
-      >
+<section class="bmb_input-validation" [ngClass]="{ disabled: idDisabled() }">
+  <label
+    class="bmb_input-validation-wrapper"
+    [ngClass]="getClasses('bmb_input-validation')"
+  >
+    @if (
+      !!label() ||
+      isRequired() ||
+      !!tooltip() ||
+      (type() === "text-area" && showMaxTextLength())
+    ) {
+      <span class="bmb_input-validation-label">
         {{ label() }}
-        @if (isRequired() && !!label()) {
+        @if (isRequired()) {
           <small class="bmb_input-validation-label-required">*</small>
         }
         @if (!!tooltip()) {
@@ -16,13 +21,13 @@
             [align]="tooltipPosition().align"
             [justify]="tooltipPosition().justify"
             [icon]="'help'"
-            [size]="15"
+            [size]="20"
           />
         }
         @if (type() === "text-area" && showMaxTextLength()) {
           <span class="bmb_input-validation-label-max">
             {{ getFormControl().value?.toString().length }}/{{
-              maxlength() || "-"
+              maxLength() || "-"
             }}
           </span>
         }
@@ -30,20 +35,17 @@
     }
     <ng-content />
   </label>
-  @if (helperMessage() && !shouldShowError) {
-    <p
-      class="bmb_input-validation-helper"
-      [ngClass]="{
-        'bmb_input-validation-helper-normal':
-          isSupportTextNormal() && !disabled(),
-      }"
-    >
-      {{ helperMessage() }}
-    </p>
-  }
-  @if (errorMessage() && shouldShowError) {
-    <p class="bmb_input-validation-error">
-      {{ getErrorMessage() }}
-    </p>
+  @if (!!helperMessage() || (!!errorMessage() && showError())) {
+    <div class="bmb_input-validation-support">
+      @if (!!errorMessage() && showError()) {
+        <p class="bmb_input-validation-support-error">
+          {{ getErrorMessage() }}
+        </p>
+      } @else if (!!helperMessage()) {
+        <p [class]="'bmb_input-validation-support-helper-' + appearance()">
+          {{ helperMessage() }}
+        </p>
+      }
+    </div>
   }
 </section>

@@ -1,19 +1,26 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { BmbStudentActivitySelectorComponent } from './bmb-student-activity-selector.component';
-import { BmbTabStudenActivityComponent } from './bmb-student-activity-tab/bmb-student-activity-tab.component';
+import { BmbTabStudentActivityComponent } from './bmb-student-activity-tab/bmb-student-activity-tab.component';
 import { BmbCardComponent } from '../bmb-card/bmb-card.component';
+import { IStudentActivityAppearance } from '../../types';
+
+const appearanceOptions: IStudentActivityAppearance[] = [
+  'academic',
+  'life',
+  'events',
+];
 
 export default {
   title: 'Micro Componentes/Student activity selector',
   component: BmbStudentActivitySelectorComponent,
-  subcomponents: { BmbTabStudenActivityComponent, BmbCardComponent },
+  subcomponents: { BmbTabStudentActivityComponent, BmbCardComponent },
   decorators: [
     moduleMetadata({
       imports: [
         CommonModule,
         BmbStudentActivitySelectorComponent,
-        BmbTabStudenActivityComponent,
+        BmbTabStudentActivityComponent,
         BmbCardComponent,
       ],
     }),
@@ -65,6 +72,23 @@ Below is an example of how to use this component in HTML:
     },
   },
   argTypes: {
+    appearance: {
+      name: 'Appearance',
+      control: {
+        type: 'select',
+      },
+      options: appearanceOptions,
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'normal' },
+        type: { summary: 'string' },
+      },
+      description: `
+Sets the appearance of the component, affecting its visual style.
+
+  **Default appearance**: academic.
+      `,
+    },
     title: {
       control: { type: 'text' },
       description: 'Tab name.',
@@ -90,6 +114,7 @@ Below is an example of how to use this component in HTML:
   args: {
     title: 'Tab 1',
     subtitle: 'Subtitulo 1',
+    appearance: 'academic',
   },
 } as Meta<typeof BmbStudentActivitySelectorComponent>;
 
@@ -100,7 +125,7 @@ export const Default: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <bmb-student-activity-selector>
+      <bmb-student-activity-selector [appearance]="appearance">
         <bmb-student-activity-tab title="1" subtitle="item 1">
           <bmb-card>Content 1</bmb-card>
         </bmb-student-activity-tab>

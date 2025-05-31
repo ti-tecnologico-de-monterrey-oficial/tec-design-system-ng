@@ -29,6 +29,21 @@
   }
 }
 
+@keyframes bounceChildrenMobile {
+  0% {
+    opacity: 0;
+    width: 0;
+  }
+  50% {
+    opacity: 0.8;
+    width: rem.rem_calc(310);
+  }
+  100% {
+    opacity: 1;
+    width: rem.rem_calc(280);
+  }
+}
+
 @keyframes bounceRightMobile {
   0% {
     opacity: 0;
@@ -58,12 +73,41 @@
 
 // Mixins for mobile
 @mixin content() {
+  border-radius: rem.rem_calc(0 8 8 0);
   cursor: pointer;
   top: calc(rem.rem_calc(67) + 5%);
   width: rem.rem_calc(28);
 }
 
 @mixin isOpen() {
+  animation: bounceChildrenMobile 0.6s ease-out forwards;
+  height: 100vh;
+  overflow: auto;
+  padding: rem.rem_calc(24);
+  top: 0;
+  width: rem.rem_calc(280);
+  border-radius: 0;
+
+  .bmb_sidebar-button {
+    border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-800));
+    height: rem.rem_calc(40);
+    justify-content: space-between;
+    margin-bottom: rem.rem_calc(16);
+    padding: rem.rem_calc(8 8 16 8);
+
+    &-icon {
+      font-size: rem.rem_calc(24);
+    }
+  }
+
+  .bmb_sidebar-text {
+    opacity: 1;
+    overflow: hidden;
+    visibility: visible;
+  }
+}
+
+@mixin isOpenMobile() {
   animation: bounceRightMobile 0.6s ease-out forwards;
   height: 100vh;
   overflow: auto;
@@ -125,7 +169,11 @@
     }
 
     &.bmb_sidebar-open {
-      @include isOpen();
+      @include isOpenMobile();
+
+      @media (max-height: 629px) and (min-width: 1000px) {
+        @include isOpen();
+      }
     }
 
     &-right {

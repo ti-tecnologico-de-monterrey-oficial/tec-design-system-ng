@@ -24,15 +24,15 @@ export class BmbFabComponent {
   type = input<FabType>();
   mitec = input<boolean>(false);
 
-  fabClick = output<void>();
+  fabClick = output<MouseEvent>();
 
   active: boolean = false;
 
-  @HostListener('click') onFabClick() {
+  @HostListener('click') onFabClick(event: MouseEvent): void {
     if (this.type() == 'normal') {
       this.active = !this.active;
     }
-    this.fabClick.emit();
+    this.fabClick.emit(event);
   }
 
   getClassName(): string {

@@ -1,8 +1,6 @@
-$radius: "none", "xxs", "xs", "s", "m", "l", "xl", "xxl";
-
-@each $size in $radius {
-  .bmb_radius-#{$size} {
-    overflow: hidden;
-    border-radius: var(--bmb-radius-#{$size});
-  }
+.bmb_main-container {
+  height: 100dvh;
+  overflow: auto;
+  padding: 0;
+  margin: 0;
 }

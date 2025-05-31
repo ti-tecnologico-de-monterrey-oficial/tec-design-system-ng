@@ -6,40 +6,37 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 
 ---
 
-# ¡La Versión 1.5.7 ya está aquí! 🎉
+# 🌟 Versión 1.5.8 ya está aquí
 
-En esta versión, hemos trabajado arduamente para mejorar y optimizar el sistema de diseño, añadiendo nuevas funcionalidades, corrigiendo errores y refinando componentes existentes. Aquí tienes un resumen de los cambios más destacados:
+🔵 **Novedades**
 
-## 🆕 Novedades
+En esta versión trabajamos en actualizaciones clave y la incorporación de funcionalidades enfocadas en mejorar la experiencia y accesibilidad para todas las personas que utilizan nuestro sistema de diseño. Te presentamos las principales novedades:
 
-- Se agregaron nuevos archivos readme para los componentes.
-- Actualización del proceso de compilación.
+- 🔄 **Actualización**: Optimizamos el código de `dropdown-content` para homologar la apariencia y funcionalidad entre los componentes dropdown y dropdown-menu.
+- 🎨 **Mejora Visual**: Se actualizó la documentación de colores en la sección de fundamentos, facilitando la consulta y aplicación de paletas.
+- 🔄 **Actualización**: Se mejoró la apariencia y validación automática de los componentes `input-tag`, `input-phone`, `checkbox`, `radial`, `datepicker` y `date-range` para alinearlos con la versión actual de diseño y facilitar la integración con validaciones de formularios.
+- ⚡ **Optimización**: Se mejoró la obtención de componentes dentro de formularios, agilizando la validación automática y reduciendo errores de integración.
+- 🎨 **Mejora Visual**: Se actualizaron los estilos de componentes como `progress circle`, `progress bar`, `push notification`, `toast`, `badge`, `tabs`, `card`, `top bar`, `legend`, `value counter`, `dropdown` y `interactive icon` para asegurar consistencia visual en todos los temas.
+- 🔄 **Actualización**: Se agregaron eventos del ratón a múltiples componentes interactivos, permitiendo mayor control y personalización en la interacción.
+- 📘 **Documentación**: Se mejoró la documentación de los componentes de fundation (`Shadows`, `Colors`, `Borders`, `Radius` y `Spacing`)
 
-## 🟢 Nuevos componentes
+---
 
-- `Form validation`: Nuevo componente, permite validar automáticamente los inputs dentro de este componente, lo anterior sin necesidad de enviarle el formControl ni las configuraciones de ese.
-- `Step progress bar`: Nueva variante (template).
+🟢 **Nuevos Componentes**
 
-## 🔵 Componentes actualizados
+- 🆕 **Layout Grid**: Nuevo componente para crear y personalizar estructuras de grillas, facilitando la organización visual y responsiva de contenidos.
+- 🆕 **Grid Generator**: Herramienta para generar grillas personalizadas de manera visual, optimizando el flujo de trabajo de diseño y desarrollo.
 
-- `Input phone`: Se actualizó la validación del componente
-- `Input`: Se agregó la implementación necesaria para que se haga la validación automática al implementar el form-validation, se agregó el evento keyDown.
-- `Checkbox`: Se agregó la implementación necesaria para que se haga la validación automática al implementar el form-validation.
-- `Radio`: Implementación para permitir convivir con las validaciones de error existentes al momento de la actualización de versión.
-- `Accordion control`: Se corrije funcionamiento del accordion y se agrega nueva funcionalidad de manejo de estados.
-- `Generic card`: Se agregan opciones para cambiar fondo, borde y sombra.
-- `Inner header`: El subtítulo ya no será permitido, se deja la variable para no romper código y eliminó la funcionalidad.
-- `Button`: Se actualizaron los estilos.
-- `Button group`: Se corrigieron los comportamientos para alinearse con los botones base.
-- `Dropdown`: Se mejoró la accesibilidad del componente.
-- `Card button`: Se agregó soporte para iconos personalizados, se modificaron estilos para evitar que el título se desborde con respecto al contenedor.
-- `Toast`: Se agregaron estilos para la versión reminder.
-- `Column system`: Se corrigió el problema con el overflow.
-- `Profile`: Ahora se puede seleccionar el idioma para sitios stand alone.
-- `Account statement`: Se esconde el botón secundario.
-- `Chat bar`: Se actualizó la configuración del componente.
-- `Icon`: Se mejora el soporte para iconos personalizados.
-- `Dropzone`: Se agregó la posibiliad de subir múltiples archivos.
+---
+
+✅ **Problemas Resueltos**
+
+- ✔️ **Validación en Calendario**: Se corrigió un bug en el output `OnClose` del componente calendario, asegurando que las personas reciban retroalimentación precisa al cerrar el modal.
+- ✔️ **Compatibilidad de Inputs**: Se ajustó la validación automática en componentes de formulario, permitiendo que las personas desarrolladoras integren controles personalizados sin fricción.
+- ✔️ **Estilos y Accesibilidad**: Se corrigieron detalles visuales y de accesibilidad en componentes como `checkbox`, `input-tag`, `input-phone`, `progress circle`, `progress bar`, `toast`, y `push notification`, mejorando la experiencia para todas las personas.
+- ✔️ **Eventos de Interacción**: Se agregaron y corrigieron eventos de ratón en componentes interactivos, permitiendo una mayor personalización y control en la experiencia de uso.
+
+---
 
 Puedes ver todos los componentes aqui: [Bamboo](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/foundations-colors--documentation)
 

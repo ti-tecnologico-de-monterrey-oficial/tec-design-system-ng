@@ -57,10 +57,10 @@ export class BmbTopBarComponent implements OnInit {
 
   logOut = output<any>(); // Deprecated
   onLangChange = output<string>(); // Deprecated
-  helpButtonClick = output<void>();
-  userProfileClick = output<void>();
-  alertButtonClick = output<void>();
-  roleButtonClick = output<void>();
+  helpButtonClick = output<MouseEvent>();
+  userProfileClick = output<MouseEvent>();
+  alertButtonClick = output<MouseEvent>();
+  roleButtonClick = output<MouseEvent>();
 
   // @ViewChild(TemplateRef) contentTemplate: TemplateRef<unknown> | null = null;
 
@@ -102,8 +102,8 @@ export class BmbTopBarComponent implements OnInit {
     this.logOut.emit(event);
   }
 
-  handleAlertClick() {
-    this.alertButtonClick.emit();
+  handleAlertClick(event: MouseEvent) {
+    this.alertButtonClick.emit(event);
   }
 
   getFlag(lang: string): string {
@@ -133,15 +133,15 @@ export class BmbTopBarComponent implements OnInit {
     this.onLangChange.emit(lang);
   }
 
-  handleHelpButtonClick() {
-    this.helpButtonClick.emit();
+  handleHelpButtonClick(event: MouseEvent) {
+    this.helpButtonClick.emit(event);
   }
 
-  handleUserClick() {
-    this.userProfileClick.emit();
+  handleUserClick(event: MouseEvent) {
+    this.userProfileClick.emit(event);
   }
 
-  handleRoleChange() {
-    this.roleButtonClick.emit();
+  handleRoleChange(event: MouseEvent) {
+    this.roleButtonClick.emit(event);
   }
 }

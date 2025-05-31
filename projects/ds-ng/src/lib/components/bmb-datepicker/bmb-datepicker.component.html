@@ -15,6 +15,7 @@
       />
     } @else { -->
     <bmb-input
+      type="date_range"
       [placeholder]="placeholder()"
       [label]="label()"
       [icon]="icon()"
@@ -23,26 +24,36 @@
       [appearance]="appearance()"
       [control]="control()"
       [isRequired]="isRequired()"
-      (isFocus)="handleFocusedEvent($event)"
-      [helperMessage]="dateFormat()"
-      [errorMessage]="getErrorMessage(control().errors)"
+      [helperMessage]="helperMessage()"
+      [errorMessage]="{
+        required: requiredFieldErrorMessage(),
+        customValidation: invalidFormatErrorMessage(),
+      }"
+      [isCustomError]="true"
+      [customValidation]="customValidatorDate()"
       [name]="name()"
       [isClearable]="isClearable()"
-    />
+      [value]="value()"
+      (onKeyDown)="handleFocusedEvent($event)"
+      (click)="handleFocusedEvent($event)"
+    >
+      @if (isWindowOpen) {
+        <ng-template #customInputContent>
+          <bmb-datepicker-modal
+            [now]="now"
+            [isWindowOpen]="isWindowOpen"
+            (closeWindow)="handleWindowOpen($event)"
+            (onValueChange)="handleValueChange($event)"
+            [value]="control().valid && control().value"
+            [dateFormat]="dateFormat()"
+            [stepYearPicker]="stepYearPicker()"
+            [disableDatesBefore]="convertToDate(disableDatesBefore())"
+            [disableDatesAfter]="convertToDate(disableDatesAfter())"
+            [lang]="lang()"
+          />
+        </ng-template>
+      }
+    </bmb-input>
     <!-- } -->
-    @if (isWindowOpen) {
-      <bmb-datepicker-modal
-        [now]="now"
-        [isWindowOpen]="isWindowOpen"
-        (closeWindow)="handleWindowOpen($event)"
-        (onValueChange)="handleValueChange($event)"
-        [value]="control().value"
-        [dateFormat]="dateFormat()"
-        [stepYearPicker]="stepYearPicker()"
-        [disableDatesBefore]="convertToDate(disableDatesBefore())"
-        [disableDatesAfter]="convertToDate(disableDatesAfter())"
-        [lang]="lang()"
-      />
-    }
   </section>
 </div>

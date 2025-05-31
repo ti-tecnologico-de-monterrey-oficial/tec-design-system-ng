@@ -23,7 +23,7 @@
 
   &-checked {
     .bmb_switch-label {
-      background-color: var(--switch-checked);
+      background-color: var(--buttons-active-switch);
 
       &::after {
         left: calc(100% + rem.rem_calc(-18));
@@ -75,7 +75,7 @@
   }
 
   &-text {
-    color: var(--general_contrasts-150);
+    color: var(--general_contrasts-100);
     padding: rem.rem_calc(0 5);
 
     @include fonts.font(3, regular);

@@ -44,13 +44,6 @@ $alignItemsOptions: (
   }
 }
 
-@each $name, $size in $sizes {
-  .bmb_gap-#{$name} {
-    gap: $size;
-    --bmb-gap: #{$size};
-  }
-}
-
 @for $i from 1 through 4 {
   .bmb_col-sm-#{$i} {
     @include mixins.media-query(999, "max") {
@@ -122,5 +115,39 @@ $alignItemsOptions: (
 @each $name, $option in $alignItemsOptions {
   .bmb_alignItems-#{$name} {
     align-items: $option;
+  }
+}
+
+.bmb_layout-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+}
+
+.bmb_layout-grid-item,
+.bmb_layout-item,
+.bmb_vertical-layout-item {
+  > .bmb_card,
+  > .bmb-drop-zone,
+  > .bmb_container-primary-container,
+  > .bmb_iframe,
+  > .bmb_image,
+  > .bmb_alert-center,
+  > .bmb_calendar,
+  > .bmb_carousel,
+  > .bmb_text-editor,
+  > .bmb_text-editor-container,
+  > .bmb_home-card,
+  > .bmb_home-card > .bmb_home-card-wrapper {
+    height: 100%;
+  }
+
+  > .bmb_home-card > .bmb_home-card-wrapper {
+    display: flex;
+    flex-flow: column;
+
+    > .bmb_home-card-container {
+      flex: 1;
+    }
   }
 }

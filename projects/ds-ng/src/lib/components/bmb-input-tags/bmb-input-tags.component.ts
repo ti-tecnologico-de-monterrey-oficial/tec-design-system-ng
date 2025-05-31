@@ -8,27 +8,42 @@ import {
   ViewEncapsulation,
   OnInit,
   output,
+  model,
+  AfterViewInit,
+  signal,
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { BmbTooltipComponent } from '../bmb-tooltip/bmb-tooltip.component';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { IBmbDropdownItem } from '../bmb-dropdown/bmb-dropdown.component';
 import {
   IBmbInputError,
-  BmbInputComponent,
+  IBmbInputTooltipPosition,
 } from '../bmb-input/bmb-input.component';
 import { ClickOutsideDirective } from '../../directives/utils/clickoutside.directive';
 import { debounceTime } from 'rxjs';
-import { getUUID } from '../../utils/utils';
+import {
+  convertListToSelectList,
+  getSelectedValues,
+  getUUID,
+  getValidInitialValues,
+} from '../../utils/utils';
+import { BmbInputValidationComponent } from '../bmb-input/bmb-input-validation/bmb-input-validation.component';
+import { BmbInputValidationService } from '../bmb-input/bmb-input-validation/bmb-input-validation.service';
+import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-dropdown-content.component';
+import { IDropdownItem } from '../../types';
+import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
+import { EventManagerPlugin } from '@angular/platform-browser';
 
 @Component({
   selector: 'bmb-input-tags',
   standalone: true,
   imports: [
     CommonModule,
-    BmbTooltipComponent,
-    BmbInputComponent,
+    ReactiveFormsModule,
     ClickOutsideDirective,
     BmbTagComponent,
+    BmbInputValidationComponent,
+    BmbInputContentComponent,
+    BmbDropdownContentComponent,
   ],
   templateUrl: './bmb-input-tags.component.html',
   styleUrl: './bmb-input-tags.component.scss',
@@ -36,157 +51,197 @@ import { getUUID } from '../../utils/utils';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [],
 })
-export class BmbInputTagsComponent implements OnInit {
-  control = input<FormControl>(new FormControl());
-  tagOptions = input<string[] | IBmbDropdownItem[]>([]);
+export class BmbInputTagsComponent implements OnInit, AfterViewInit {
   errorMessage = input<string | IBmbInputError>('');
   tooltip = input<string>('');
+  tooltipPosition = input<IBmbInputTooltipPosition>({
+    align: 'above',
+    justify: 'before',
+  });
   label = input<string>('');
   placeholder = input<string>('');
   isRequired = input<boolean>(false);
   helperMessage = input<string>('');
   disabled = input<boolean>(false);
-  maxSelectedItems = input<number>();
+  maxSelectedItems = input<number>(); //Deprecated
   name = input<string>(getUUID());
+  value = input<string | string[]>('');
   showError = input<boolean>(false);
+
+  tagOptions = model<string[] | IBmbDropdownItem[]>([]);
+  control = model<FormControl>(new FormControl());
 
   onKeyDown = output<KeyboardEvent>();
   onChange = output<string[]>();
 
   showDropdown: boolean = false;
-  shouldShowError: boolean = false;
-  selectedTags: IBmbDropdownItem[] = [];
-  filteredOptions: IBmbDropdownItem[] = [];
+  selectedTags: IDropdownItem[] = [];
+  filteredOptions: IDropdownItem[] = [];
   filterControl = new FormControl();
+  items: IDropdownItem[] = [];
+  isFocused = signal<boolean>(false);
 
-  constructor(private cdr: ChangeDetectorRef) {}
-
-  handleFocus() {
-    this.showDropdown = true;
-  }
-
-  closeDialog() {
-    this.showDropdown = false;
-  }
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private ivs: BmbInputValidationService,
+  ) {}
 
   ngOnInit(): void {
-    this.control().valueChanges.subscribe((value: string[]) => {
-      this.updateErrorState();
-      const formattedOptions = this.transFormOptions(this.tagOptions());
-      this.selectedTags = formattedOptions.filter((item) =>
-        value?.includes(item.value),
-      );
-      this.cdr.markForCheck();
-    });
+    this.initOptions();
 
     this.filterControl.valueChanges
       .pipe(debounceTime(300))
       .subscribe((value) => {
         this.filteredValue(value);
+        this.cdr.detectChanges();
       });
+  }
 
-    const formattedOptions = this.transFormOptions(this.tagOptions());
-    this.filteredOptions = formattedOptions;
+  ngAfterViewInit(): void {
+    this.getFormControl().valueChanges.subscribe((value) => {
+      this.setSelectedTags(value || []);
+    });
+  }
 
-    const currentValues = this.control().value;
-    if (Array.isArray(currentValues)) {
-      this.selectedTags = formattedOptions.filter((item) =>
-        currentValues.includes(item.value),
-      );
-    }
+  initOptions(): void {
+    this.items = convertListToSelectList(this.tagOptions());
+    this.items = this.items.map((element: IDropdownItem) => {
+      return {
+        ...element,
+        action: () => {
+          this.setSelectedValue(element);
+        },
+      } as IDropdownItem;
+    });
+
+    this.setSelectedTags(this.getValidInitialValues());
+
+    this.filteredOptions = [...this.items];
+  }
+
+  getUUID(): string {
+    return getUUID();
+  }
+
+  getValidInitialValues(): string[] {
+    const initialValue: string[] | string = getValidInitialValues(
+      this.control().value || this.value(),
+      this.tagOptions(),
+      true,
+    );
+
+    return Array.isArray(initialValue) ? initialValue : [];
   }
 
   filteredValue(value: string): void {
-    if (!value) {
-      this.filteredOptions = this.transFormOptions(this.tagOptions());
-      this.cdr.detectChanges();
+    if (!!value) {
+      this.filteredOptions = this.items.filter((item: IDropdownItem) =>
+        item.text.toLowerCase().includes(value.toLowerCase()),
+      );
       return;
     }
 
-    const formattedOptions = this.transFormOptions(this.tagOptions());
-    let filteredOptions: IBmbDropdownItem[] = formattedOptions.filter(
-      (item: IBmbDropdownItem) =>
-        item.name.toLowerCase().includes(value.toLowerCase()),
+    this.filteredOptions = [...this.items];
+  }
+
+  setSelectedValue(element: IDropdownItem): void {
+    this.getFormControl().setValue(
+      getSelectedValues(this.getFormControl().value, element.value!),
     );
-
-    this.filteredOptions = filteredOptions;
-    this.cdr.detectChanges();
-  }
-
-  transFormOptions(options: string[] | IBmbDropdownItem[]): IBmbDropdownItem[] {
-    if (options.length === 0) return [];
-    if (typeof options[0] === 'string') {
-      return (options as string[]).map((item) => ({ name: item, value: item }));
-    }
-
-    return options as IBmbDropdownItem[];
-  }
-
-  updateErrorState(): void {
-    this.shouldShowError =
-      this.isRequired() &&
-      this.control().invalid &&
-      (this.control().touched || this.control().dirty);
-  }
-
-  getErrorMessage(): string {
-    if (typeof this.errorMessage() === 'string') {
-      return this.errorMessage().toString();
-    }
-
-    if (this.control()['errors'] !== null) {
-      const errorType = this.control()['errors'];
-      const error = this.errorMessage() as IBmbInputError;
-
-      if (errorType?.['required'] && error.required) return error.required;
-    }
-
-    return '';
-  }
-
-  handleItemClick(item: IBmbDropdownItem) {
-    this.selectedTags.push(item);
-    const selectedTagsString = this.selectedTags.map((tag) => tag.value);
-    this.control().setValue(selectedTagsString);
-    this.onChange.emit(selectedTagsString);
     this.filterControl.setValue('');
+    this.onChange.emit(this.getFormControl().value);
   }
 
-  handleItemKeyDown(event: KeyboardEvent, item: IBmbDropdownItem) {
-    console.log('handleItemKeyDown', event, item);
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
-      this.handleItemClick(item);
-      this.filterControl.setValue('');
-      this.showDropdown = false;
+  setSelectedTags(controlValue: string[]): void {
+    this.selectedTags = this.items.filter(({ value }) =>
+      controlValue.includes(value!),
+    );
+  }
+
+  removeTag(tag: IDropdownItem) {
+    this.setSelectedValue(tag);
+  }
+
+  openList() {
+    this.showDropdown = true;
+  }
+
+  closeList() {
+    this.showDropdown = false;
+  }
+
+  selectOptionWithKey(value: string): void {
+    if (!!value) {
+      const selectedLength: number = this.filteredOptions.length;
+
+      if (!!selectedLength) {
+        this.setSelectedValue(this.filteredOptions[0]);
+      } else {
+        this.addOption(value);
+        this.setSelectedValue(
+          this.filteredOptions[this.filteredOptions.length - 1],
+        );
+      }
     }
   }
 
-  removeTag(tag: IBmbDropdownItem) {
-    this.selectedTags = this.selectedTags.filter((t) => t.value !== tag.value);
-    const selectedTagsString = this.selectedTags.map((tag) => tag.value);
-    this.control().setValue(selectedTagsString);
-  }
+  addOption(value: string): void {
+    if (typeof this.tagOptions()[0] === 'string') {
+      const newTagOptions: string[] = [
+        ...(this.tagOptions() as string[]),
+        value,
+      ];
+      this.tagOptions.set([...new Set(newTagOptions)]);
+    } else {
+      const newOption: IBmbDropdownItem = {
+        name: value,
+        value,
+        selectedText: value,
+        id: getUUID(),
+      };
+      const newList: IBmbDropdownItem[] = [
+        ...(this.tagOptions() as IBmbDropdownItem[]),
+        newOption,
+      ];
+      this.tagOptions.set([...new Set(newList)]);
+    }
 
-  checkIfIsSelected(item: IBmbDropdownItem): boolean {
-    return !this.selectedTags.some((tag) => tag.value === item.value);
+    this.initOptions();
   }
 
   handleKeyDown(event: KeyboardEvent) {
-    if (event.key === 'Enter') {
-      event.preventDefault();
-      const value = this.filterControl.value;
-      if (value && this.checkIfIsSelected({ name: value, value })) {
-        const newTag = { name: value, value };
-        this.handleItemClick(newTag);
-        this.filterControl.setValue('');
-        this.showDropdown = false;
+    const keyboardValuesToOpenDialog = [' ', 'ArrowDown', 'Down'];
+    const keyboardValuesToAddOption = [',', 'Enter'];
+
+    if (keyboardValuesToOpenDialog.includes(event.key)) {
+      if (!this.showDropdown) this.openList();
+
+      if (!this.filteredOptions.length) {
+        event.preventDefault();
+        return;
       }
+      return;
     }
-    // if (event.key === 'Backspace') {
-    //   if (this.selectedTags.length > 0) {
-    //     this.removeTag(this.selectedTags[this.selectedTags.length - 1]);
-    //   }
-    // }
+
+    if (keyboardValuesToAddOption.includes(event.key)) {
+      event.preventDefault();
+      this.selectOptionWithKey(this.filterControl.value);
+    }
+  }
+
+  handleFocus(value: boolean) {
+    this.isFocused.set(value);
+  }
+
+  handleValidity(): void {
+    this.ivs.handleValidity(this.name());
+  }
+
+  get shouldShowError(): boolean {
+    return this.ivs.showError(this.name());
+  }
+
+  getFormControl(): FormControl {
+    return this.ivs.getFormControlByName(this.name());
   }
 }

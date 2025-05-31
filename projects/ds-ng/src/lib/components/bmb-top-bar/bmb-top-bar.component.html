@@ -25,26 +25,13 @@
           [userInformation]="userInformation"
           [assignmentNotification]="assignmentNotification"
           [notificationNotification]="alertNotification"
-          (helpButtonClick)="handleHelpButtonClick()"
-          (userClick)="handleUserClick()"
-          (alertClick)="handleAlertClick()"
-          (roleButtonClick)="handleRoleChange()"
+          (helpButtonClick)="handleHelpButtonClick($event)"
+          (userClick)="handleUserClick($event)"
+          (alertClick)="handleAlertClick($event)"
+          (roleButtonClick)="handleRoleChange($event)"
           [showRoleButton]="showRoleButton"
         />
       </section>
     }
   </nav>
-  <!-- @if (windowWidth < 1000) {
-    <div class="bmb_top-bar-button-section" style="display: inline-flex">
-      @if (windowWidth < 1000) {
-        <button (click)="handleUserClick()">
-          <bmb-user-image
-            [image]="userInformation!.image"
-            size="mobile-small"
-            [altImage]="userInformation!.name"
-          />
-        </button>
-      }
-    </div>
-  } -->
 </header>

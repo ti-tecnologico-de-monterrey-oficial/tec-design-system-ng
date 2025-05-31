@@ -10,8 +10,9 @@ export class BmbVerticalLayoutItemDirective implements OnInit {
   @HostBinding('style.flex') flex?: string;
 
   @HostBinding('class') get elementClass(): string[] {
-    if (this.rowGrow()) return ['bmb_vertical-layout-item-full'];
-    return [];
+    const classes = ['bmb_vertical-layout-item'];
+    if (this.rowGrow()) classes.push('bmb_vertical-layout-item-full');
+    return classes;
   }
 
   ngOnInit() {

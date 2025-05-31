@@ -16,15 +16,15 @@ The `BmbActionMenuComponent` is a standalone Angular component designed to displ
 
 The component accepts the following inputs to customize its behavior and appearance:
 
-| Input              | Type        | Default     | Description                                                             |
-| ------------------ | ----------- | ----------- | ----------------------------------------------------------------------- |
-| `title` (required) | `string`    | `undefined` | The title of the action menu.                                           |
-| `subtitle`         | `string`    | `undefined` | The subtitle of the action menu.                                        |
-| `icon`             | `string`    | `''`        | The name of the icon to display in the header.                          |
-| `iconSize`         | `number`    | `24`        | The size of the icon in pixels.                                         |
-| `bgIconAppearance` | `IBmbColor` | `undefined` | The background color of the icon.                                       |
-| `showHeader`       | `boolean`   | `true`      | Determines whether the header (title, subtitle, and icon) is displayed. |
-| `isAList`          | `boolean`   | `true`      | Indicates whether the menu content should be displayed as a list.       |
+| Input              | Type        | Default     | Description                                                                                                |
+| ------------------ | ----------- | ----------- | ---------------------------------------------------------------------------------------------------------- |
+| `title` (required) | `string`    | `undefined` | The title of the action menu.                                                                              |
+| `subtitle`         | `string`    | `undefined` | The subtitle of the action menu.                                                                           |
+| `icon`             | `string`    | `''`        | The name of the icon to display in the header.                                                             |
+| `iconSize`         | `number`    | `24`        | The size of the icon in pixels.                                                                            |
+| `bgIconAppearance` | `IBmbColor` | `undefined` | The background color of the icon.                                                                          |
+| `showHeader`       | `boolean`   | `true`      | Determines whether the header (title, subtitle, and icon) is displayed.                                    |
+| ~~`isAList`~~      | `boolean`   | `true`      | ~~**\[Deprecated]** Previously indicated whether the content should be displayed as a list. Styling is now |
 
 ---
 

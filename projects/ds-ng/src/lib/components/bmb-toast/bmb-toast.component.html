@@ -17,7 +17,7 @@
   </div>
 
   @if (appearance() !== "reminder" && isClosable()) {
-    <button class="bmb_toast-button" (click)="handleClose()">
+    <button class="bmb_toast-button" (click)="handleClose($event)">
       <bmb-icon icon="close" class="bmb_toast-close" />
     </button>
   }

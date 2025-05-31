@@ -22,7 +22,6 @@ export type IBmbCardType =
   | 'transparent';
 
 export type IBmbBgColor =
-  | 'contrasts-150'
   | 'contrasts-100'
   | 'contrasts-75'
   | 'contrasts-50'

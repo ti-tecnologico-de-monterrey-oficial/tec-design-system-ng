@@ -13,12 +13,12 @@ import {
   EventEmitter,
   OnChanges,
   SimpleChanges,
-  ViewChild,
-  ElementRef,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SizeNames } from '../../types';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
+import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
 
 const calculateSize: any = (pixels: string[]): string => {
   return pixels.map((size) => `var(--bmb-radius-${size})`).join(' ');
@@ -27,7 +27,12 @@ const calculateSize: any = (pixels: string[]): string => {
 @Component({
   selector: 'bmb-accordion',
   standalone: true,
-  imports: [CommonModule, BmbIconComponent],
+  imports: [
+    CommonModule,
+    BmbIconComponent,
+    BmbLayoutDirective,
+    BmbLayoutItemDirective,
+  ],
   templateUrl: './bmb-accordion.component.html',
   styleUrl: './bmb-accordion.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -48,7 +53,7 @@ export class BmbAccordionComponent implements OnInit, OnChanges {
   public expanded = input<boolean | undefined>();
   public closed = output<void>();
   @Output() opened = new EventEmitter<void>();
-  public onClick = output<void>();
+  public onClick = output<MouseEvent>();
   public _expanded = signal(false);
   public _active = signal(false);
   public _disabled = signal(false);
@@ -152,11 +157,11 @@ export class BmbAccordionComponent implements OnInit, OnChanges {
     return styles;
   }
 
-  toggle(): void {
+  toggle(event?: MouseEvent): void {
     if (!this._disabled()) {
       this._expanded.update((current) => !current);
       this._active.update((current) => !current);
-      this.onClick.emit();
+      this.onClick.emit(event || new MouseEvent('click'));
 
       if (this.expanded() == undefined) {
         if (this.isOpen()) {

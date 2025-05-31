@@ -1,8 +1,9 @@
 <span class="bmb_dropdown_menu" clickOutside (clickOutside)="closeDropdown()">
   <bmb-action-icon
+    class="bmb_dropdown_menu-button"
     icon="more_vert"
     [iconSize]="24"
     (buttonClick)="toggleDropdown()"
   />
-  <bmb-dropdown-menu-content [items]="items()" [(isOpen)]="isOpen" />
+  <bmb-dropdown-content [items]="items()" [(isOpen)]="isOpen" />
 </span>

@@ -11,7 +11,6 @@ const appearanceOptions: IBbmBgAppearance[] = [
   'error',
   'brand',
   'alert',
-  'background',
   'disabled',
   'mitec_blue',
   'mitec_red',
@@ -97,7 +96,7 @@ Sets the appearance of the badge, affecting its visual style.
 
   **Default appearance**: normal.
 
-  **Note**: disabled and background do not exist for container.
+  **Note**: background appareance is deprecated.
       `,
     },
     container: {

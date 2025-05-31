@@ -11,7 +11,7 @@
     flex: 1;
 
     &-title {
-      color: RGBA(var(--color-charade-50));
+      color: var(--general_contrasts-100);
       @include fonts.font(9, regular);
       align-self: center;
       width: rem.rem_calc(343);

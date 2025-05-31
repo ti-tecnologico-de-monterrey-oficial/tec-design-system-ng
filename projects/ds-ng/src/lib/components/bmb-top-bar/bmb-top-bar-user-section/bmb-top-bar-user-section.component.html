@@ -7,7 +7,7 @@
       class="bmb_top-bar-user-section-no-mobile"
       icon="compare_arrows"
       [iconSize]="32"
-      (buttonClick)="handleRoleChange()"
+      (buttonClick)="handleRoleChange($event)"
     />
   }
   @if (showNotifications && mitec) {
@@ -15,7 +15,7 @@
       <bmb-action-icon
         icon="notifications"
         [iconSize]="32"
-        (buttonClick)="openNotifications()"
+        (buttonClick)="openNotifications($event)"
         [dotNotification]="totalNotifications()"
       />
       <!-- <dialog
@@ -37,11 +37,11 @@
     [ngClass]="{ 'bmb_top-bar-user-section-no-mobile': mitec }"
     icon="help"
     [iconSize]="32"
-    (buttonClick)="handleHelpButtonClick()"
+    (buttonClick)="handleHelpButtonClick($event)"
   />
   <button
     class="bmb_top-bar-user-section-user-image"
-    (click)="handleUserClick()"
+    (click)="handleUserClick($event)"
   >
     <bmb-user-image
       [image]="userInformation.image"

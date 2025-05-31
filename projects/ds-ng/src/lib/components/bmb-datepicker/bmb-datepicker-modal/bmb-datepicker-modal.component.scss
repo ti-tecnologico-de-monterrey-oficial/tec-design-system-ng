@@ -1,23 +1,33 @@
-@use "sass:map";
 @use "../../../../assets/styles/base/fonts" as fonts;
 @use "../../../../assets/styles/base/rem" as rem;
 @use "../../../../assets/styles/base/mixins" as mixins;
 
 .bmb_datepicker-modal {
   position: absolute;
-  top: calc(100% - #{rem.rem_calc(30)});
+  top: calc(100% + #{rem.rem_calc(8)});
   width: 100%;
   z-index: 2;
   color: var(--general_contrasts-100);
   background-color: var(--containers-main);
   border-radius: var(--bmb-radius-m);
   max-width: rem.rem_calc(400);
-  padding: rem.rem_calc(16);
+  left: 0;
+  box-shadow: var(--bmb-box-shadow-1);
+  container-type: inline-size;
+  min-width: rem.rem_calc(255);
 
   &-nav {
     list-style: none;
-    padding: var(--bmb-spacing-none) var(--bmb-spacing-none)
-      var(--bmb-spacing-m);
+    gap: rem.rem_calc(4);
+    padding: var(--bmb-spacing-m);
+
+    @include mixins.container-query(310, "min") {
+      gap: rem.rem_calc(20);
+    }
+
+    &-space_none {
+      padding: var(--bmb-spacing-none);
+    }
 
     &-button {
       &.bmb_datepicker-modal-button {
@@ -29,6 +39,10 @@
         border-radius: none;
       }
     }
+
+    &-item {
+      display: none;
+    }
   }
 
   &-button {
@@ -37,13 +51,27 @@
       border-radius: 50%;
       aspect-ratio: 1/1;
       min-height: auto;
-      opacity: 0.55;
+      opacity: 0.35;
       padding: rem.rem_calc(0 4);
       text-transform: capitalize;
       color: var(--general_contrasts-100);
     }
 
-    &:hover:not(:disabled):not(.bmb-disabled) {
+    &.bmb_field-input-normal {
+      height: rem.rem_calc(36);
+
+      &:disabled {
+        display: none;
+      }
+    }
+
+    &-current-month:not(.bmb_field-input-normal) {
+      opacity: 1;
+    }
+
+    &:hover:not(:disabled):not(.bmb-disabled),
+    &:focus:not(:disabled):not(.bmb-disabled),
+    &:focus-visible:not(:disabled):not(.bmb-disabled) {
       background-color: var(--general_contrasts-25);
     }
 
@@ -52,21 +80,31 @@
       color: RGBA(var(--color-white-primary));
       opacity: 1 !important;
 
-      &:hover:not(:disabled):not(.bmb-disabled) {
+      &:hover:not(:disabled):not(.bmb-disabled),
+      &:focus:not(:disabled):not(.bmb-disabled),
+      &:focus-visible:not(:disabled):not(.bmb-disabled) {
         background-color: var(--general_contrasts-main-selection);
       }
     }
   }
 
   &-calendar {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    gap: rem.rem_calc(8);
-    flex-wrap: wrap;
-    @include fonts.font(3, medium);
-    justify-content: space-between;
+    padding: 0 var(--bmb-spacing-m) var(--bmb-spacing-m);
+    @include fonts.font(4, medium);
+
+    &-table {
+      width: 100%;
+
+      &-header,
+      &-item {
+        width: calc(100% / 7);
+        text-align: center;
+      }
+
+      &-item {
+        padding: rem.rem_calc(16) 0 0;
+      }
+    }
 
     &-item,
     &-header {
@@ -77,12 +115,37 @@
     }
 
     &-list {
-      &-months .bmb_datepicker-modal-calendar-item {
-        flex: 0 0 calc(50% - (rem.rem_calc(8) / 2));
+      border-top: var(--bmb-border-general_contrasts-50-1-solid);
+      list-style: none;
+      padding: var(--bmb-spacing-m);
+      margin: 0;
+      display: flex;
+      gap: rem.rem_calc(8);
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      .bmb_datepicker-modal-button {
+        border: var(--bmb-border-inherit-1-solid);
+        border-color: transparent;
+
+        &:hover:not(:disabled):not(.bmb-disabled):not(
+            .bmb_datepicker-modal-calendar-list-item-selected
+          ) {
+          border-color: var(--general_contrasts-75);
+          background-color: transparent;
+        }
       }
 
-      &-years .bmb_datepicker-modal-calendar-item {
-        flex: 0 0 calc(33.3333% - (rem.rem_calc(8) / 3 * 2));
+      &-months {
+        .bmb_datepicker-modal-calendar-item {
+          flex: 0 0 calc(50% - (rem.rem_calc(8) / 2));
+        }
+      }
+
+      &-years {
+        .bmb_datepicker-modal-calendar-item {
+          flex: 0 0 calc(33.3333% - (rem.rem_calc(8) / 3 * 2));
+        }
       }
 
       &-item {

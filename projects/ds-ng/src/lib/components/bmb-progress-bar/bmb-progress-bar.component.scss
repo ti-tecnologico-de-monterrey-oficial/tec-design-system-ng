@@ -24,7 +24,7 @@ $variants: (
     min-width: rem.rem_calc(48);
     width: 100%;
     border-radius: rem.rem_calc(5);
-    background-color: RGBA(var(--color-charade-300));
+    background-color: var(--buttons-inactive-step);
   }
 
   &-active {
@@ -89,10 +89,6 @@ $variants: (
 [data-theme="dark"],
 .storybook-dark-theme {
   .bmb_progress-bar {
-    &-track {
-      background-color: RGBA(var(--color-charade-500));
-    }
-
     &-active-info {
       background-color: RGBA(var(--color-neon-primary));
     }

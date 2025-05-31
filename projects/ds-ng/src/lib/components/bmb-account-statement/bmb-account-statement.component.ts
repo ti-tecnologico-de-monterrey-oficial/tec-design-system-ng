@@ -9,7 +9,6 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { BmbHeaderMobileComponent } from '../bmb-header-mobile/bmb-header-mobile.component';
 import { BmbBalanceOverviewComponent } from '../bmb-balance-overview/bmb-balance-overview.component';
 import {
   BmbCardComponent,
@@ -27,6 +26,7 @@ import { currencyFormat } from '../../utils/currencyFormat';
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbInputComponent } from '../bmb-input/bmb-input.component';
+import { BmbInnerHeaderComponent } from '../bmb-inner-header/bmb-inner-header.component';
 import {
   FormControl,
   FormGroup,
@@ -38,7 +38,6 @@ import {
   selector: 'bmb-account-statement',
   standalone: true,
   imports: [
-    BmbHeaderMobileComponent,
     BmbBalanceOverviewComponent,
     BmbCardComponent,
     BmbCardContentComponent,
@@ -50,6 +49,7 @@ import {
     BmbLayoutItemDirective,
     BmbInputComponent,
     ReactiveFormsModule,
+    BmbInnerHeaderComponent,
   ],
   templateUrl: './bmb-account-statement.component.html',
   styleUrl: './bmb-account-statement.component.scss',
@@ -80,8 +80,8 @@ export class BmbAccountStatementComponent implements AfterViewInit, OnInit {
     'Error, Este campo es requerido y debe ser una cantidad entre 1 y ',
   );
 
-  closeEvent = output<void>();
-  backEvent = output<void>();
+  closeEvent = output<MouseEvent>();
+  backEvent = output<MouseEvent>();
   payEvent = output<number>();
 
   @ViewChild('modalTemplate', { read: TemplateRef })
@@ -109,12 +109,12 @@ export class BmbAccountStatementComponent implements AfterViewInit, OnInit {
     }
   }
 
-  handleClose() {
-    this.closeEvent.emit();
+  handleClose(event?: MouseEvent) {
+    this.closeEvent.emit(event || new MouseEvent('click'));
   }
 
-  handleBack() {
-    this.backEvent.emit();
+  handleBack(event?: MouseEvent) {
+    this.backEvent.emit(event || new MouseEvent('click'));
   }
 
   handlePay() {

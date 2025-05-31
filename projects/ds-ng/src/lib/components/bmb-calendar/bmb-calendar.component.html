@@ -89,13 +89,18 @@
           }
         </p>
       }
+      @if (selectedEvent.title) {
+        <p class="bmb_calendar-event-modal-title">{{ selectedEvent.title }}</p>
+      }
       @if (selectedEvent.detail) {
-        <p>{{ selectedEvent.detail }}</p>
+        <p class="bmb_calendar-event-modal-detail">
+          {{ selectedEvent.detail }}
+        </p>
       }
       @if (selectedEvent.place) {
-        <p>{{ selectedEvent.place }}</p>
+        <p class="bmb_calendar-event-modal-place">{{ selectedEvent.place }}</p>
       }
-      <div>{{ getDuration() }}</div>
+      <div class="bmb_calendar-event-modal-duration">{{ getDuration() }}</div>
     </section>
   }
 </ng-template>

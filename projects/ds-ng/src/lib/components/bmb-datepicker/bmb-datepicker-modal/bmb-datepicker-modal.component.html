@@ -1,4 +1,4 @@
-<div class="bmb_datepicker-modal">
+<section class="bmb_datepicker-modal" (keydown)="onDayKeydown($event)">
   <nav
     class="bmb_datepicker-modal-nav"
     bmbLayout
@@ -9,18 +9,18 @@
     alignItems="center"
   >
     <li bmbLayoutItem>
-      <button
-        class="bmb_datepicker-modal-button bmb_datepicker-modal-nav-button"
-        type="button"
-        (click)="handleChangeMonth('less')"
-        bmbButton
-        appearance="transparent"
+      <bmb-action-icon
         icon="keyboard_arrow_left"
-        size="micro"
         [iconSize]="24"
-      ></button>
+        (buttonClick)="handleChevronClick('less')"
+      />
     </li>
-    <li bmbLayoutItem [isDynamicItem]="true" [colGrow]="1">
+    <li
+      bmbLayoutItem
+      [isDynamicItem]="true"
+      [colGrow]="1"
+      [ngClass]="{ 'bmb_datepicker-modal-nav-item': view !== 'calendar' }"
+    >
       <button
         class="bmb_datepicker-modal-button bmb_field-input-normal bmb_datepicker-modal-nav-button"
         type="button"
@@ -30,6 +30,7 @@
         icon="keyboard_arrow_down"
         position="right"
         [iconSize]="24"
+        [disabled]="view !== 'calendar'"
       >
         {{ month }}
       </button>
@@ -49,46 +50,55 @@
       </button>
     </li>
     <li bmbLayoutItem>
-      <button
-        class="bmb_datepicker-modal-button bmb_datepicker-modal-nav-button"
-        type="button"
-        (click)="handleChangeMonth('plus')"
-        bmbButton
-        appearance="transparent"
+      <bmb-action-icon
         icon="keyboard_arrow_right"
-        size="micro"
         [iconSize]="24"
-      ></button>
+        (buttonClick)="handleChevronClick('plus')"
+      />
     </li>
   </nav>
   @switch (view) {
     @case ("calendar") {
-      <ul class="bmb_datepicker-modal-calendar">
-        @for (day of dayNames; track $index) {
-          <li class="bmb_datepicker-modal-calendar-header">
-            {{ day }}
-          </li>
-        }
-        @for (date of getWeeksAndDays(); track $index) {
-          <li class="bmb_datepicker-modal-calendar-item">
-            <button
-              class="bmb_datepicker-modal-button"
-              type="button"
-              [ngClass]="isSelectedDay(date)"
-              (click)="handleDayChange(date)"
-              bmbButton
-              appearance="transparent"
-              [disabled]="checkIfDisabled(date)"
-            >
-              {{ date.day }}
-            </button>
-          </li>
-        }
-      </ul>
+      <div class="bmb_datepicker-modal-calendar">
+        <table class="bmb_datepicker-modal-calendar-table">
+          <thead>
+            <tr>
+              @for (day of dayNames; track $index) {
+                <th class="bmb_datepicker-modal-calendar-table-header">
+                  {{ day }}
+                </th>
+              }
+            </tr>
+          </thead>
+          <tbody>
+            @for (week of getWeeksAndDays(); track $index) {
+              <tr>
+                @for (date of week; track $index) {
+                  <td class="bmb_datepicker-modal-calendar-table-item">
+                    <button
+                      class="bmb_datepicker-modal-button"
+                      type="button"
+                      [ngClass]="isSelectedDay(date)"
+                      (click)="handleDayChange(date)"
+                      bmbButton
+                      appearance="transparent"
+                      [disabled]="checkIfDisabled(date)"
+                      tabindex="0"
+                      (keydown)="onDayKeydown($event, date)"
+                    >
+                      {{ date.day }}
+                    </button>
+                  </td>
+                }
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
     }
     @case ("month") {
       <ul
-        class="bmb_datepicker-modal-calendar-list-months bmb_datepicker-modal-calendar"
+        class="bmb_datepicker-modal-calendar-list bmb_datepicker-modal-calendar-list-months bmb_datepicker-modal-calendar"
       >
         @for (month of monthsNames; track $index) {
           <li class="bmb_datepicker-modal-calendar-item">
@@ -111,7 +121,7 @@
     }
     @case ("year") {
       <ul
-        class="bmb_datepicker-modal-calendar-list-years bmb_datepicker-modal-calendar"
+        class="bmb_datepicker-modal-calendar-list bmb_datepicker-modal-calendar-list-years bmb_datepicker-modal-calendar"
       >
         @for (year of getYears(); track $index) {
           <li class="bmb_datepicker-modal-calendar-item">
@@ -133,4 +143,4 @@
       </ul>
     }
   }
-</div>
+</section>

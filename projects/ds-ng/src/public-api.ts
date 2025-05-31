@@ -17,6 +17,7 @@ export * from './lib/directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layo
 export * from './lib/directives/bmb-layout/bmb-vertical-layout/bmb-vertical-layout-item.directive';
 export * from './lib/directives/bmb-button-group/bmb-button-group.directive';
 export * from './lib/directives/bmb-accordion/bmb-accordion-control.directive';
+export * from './lib/directives/bmb-layout-grid/bmb-layout-grid.directive';
 
 // Components
 export * from './lib/components/bmb-logo/bmb-logo.component';
@@ -137,7 +138,8 @@ export * from './lib/components/bmb-action-icon/bmb-action-icon.component';
 export * from './lib/components/bmb-form-validation/bmb-form-validation.component';
 export * from './lib/components/bmb-three-cols/bmb-three-cols.component';
 export * from './lib/components/bmb-title-content/bmb-title-content.component';
-
+export * from './lib/components/bmb-item/bmb-item.component';
+export * from './lib/components/bmb-navigation-bar/bmb-navigation-bar.component';
 // types
 export * from './lib/types';
 
