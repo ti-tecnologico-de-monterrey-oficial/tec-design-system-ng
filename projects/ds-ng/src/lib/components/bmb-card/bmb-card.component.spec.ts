@@ -34,7 +34,7 @@ describe('BmbCardComponent', () => {
     fixture.detectChanges();
 
     const classes = component.getClasses();
-    expect(classes).toContain('bmb_border-radius-l');
+    expect(classes).toContain('bmb_radius-l');
     expect(classes).toContain('bmb_margin-s');
     expect(classes).toContain('bmb_card-type-primary');
   });

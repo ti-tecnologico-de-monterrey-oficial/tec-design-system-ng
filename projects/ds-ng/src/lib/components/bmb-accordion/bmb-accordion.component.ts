@@ -95,7 +95,7 @@ export class BmbAccordionComponent implements OnInit, OnChanges {
     const classNames = [];
 
     if (typeof this.borderRadius() === 'string') {
-      classNames.push(`bmb_border-radius-${this.borderRadius()}`);
+      classNames.push(`bmb_radius-${this.borderRadius()}`);
     }
 
     if (typeof this.margin() === 'string') {
