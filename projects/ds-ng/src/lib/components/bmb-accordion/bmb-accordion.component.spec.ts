@@ -45,7 +45,7 @@ describe('BmbAccordionComponent', () => {
     fixture.detectChanges();
 
     const classes = component.getClassesAccordion();
-    expect(classes).toContain('bmb_border-radius-m');
+    expect(classes).toContain('bmb_radius-m');
     expect(classes).toContain('bmb_margin-m');
     expect(classes).toContain('active');
   });

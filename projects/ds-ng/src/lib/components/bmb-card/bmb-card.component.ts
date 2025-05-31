@@ -59,7 +59,7 @@ export class BmbCardComponent {
   getClasses() {
     const classNames = [];
     if (typeof this.borderRadius === 'string')
-      classNames.push(`bmb_border-radius-${this.borderRadius}`);
+      classNames.push(`bmb_radius-${this.borderRadius}`);
     if (typeof this.margin === 'string')
       classNames.push(`bmb_margin-${this.margin}`);
     classNames.push(`bmb_card-type-${this.type}`);
