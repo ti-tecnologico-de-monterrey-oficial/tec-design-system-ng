@@ -110,7 +110,7 @@ class StorybookToastWrapperComponent {
   userName = input('');
   userAvatar = input('');
   userMail = input('');
-  component = input<'toast' | 'notification'>('notification');
+  component = input<'toast' | 'notification' | 'notice-card'>('notification');
   appearance = input<BmbToastAppearance>('neutral');
   position = input<
     | 'top-left'
@@ -120,6 +120,12 @@ class StorybookToastWrapperComponent {
     | 'bottom-right'
     | 'bottom-center'
   >('top-right');
+  description = input<{
+    pageOne?: 'lorem imspus';
+    pageTwo?: 'Lorem imsunpsmdsad ';
+  }>;
+  buttonText = input('');
+  link = input('');
 
   enableDontAskAgain() {
     alert("Don't ask again");
@@ -151,6 +157,8 @@ class StorybookToastWrapperComponent {
       component: this.component(),
       appearance: this.appearance(),
       position: this.position(),
+      buttonText: this.buttonText(),
+      link: this.link(),
     });
   }
 }
@@ -446,7 +454,7 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'select',
       },
-      options: ['toast', 'notification'],
+      options: ['toast', 'notification', 'notice-card'],
       table: {
         category: 'Properties',
         type: { summary: 'notification | toast' },
@@ -496,11 +504,52 @@ Below is an example of how you can use this component in HTML:
       },
       description: 'Set the position of the notification.',
     },
+    description: {
+      name: 'Description',
+      control: {
+        type: 'object',
+      },
+      description:
+        'Set the description of the notice card, this is an object with two pages, each page is a string.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'IBmbCardNoticeDescription' },
+        defaultValue: { summary: '' },
+      },
+    },
+    buttonText: {
+      name: 'Button text',
+      control: {
+        type: 'text',
+      },
+      description: 'Set the button text of the notice card.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    link: {
+      name: 'Link',
+      control: {
+        type: 'text',
+      },
+      description: 'Set the link of the notice card.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
   },
   args: {
     title: 'Notification Title',
     subtitle: 'Notification Subtitle',
-    content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+    content: {
+      pageOne: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      pageTwo:
+        'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    },
     icon: 'info',
     type: 'tec',
     isFullColor: false,
@@ -517,6 +566,8 @@ Below is an example of how you can use this component in HTML:
     component: 'notification',
     appearance: 'neutral',
     position: 'top-right',
+    buttonText: 'Ir',
+    link: 'https://www.youtube.com',
   },
 } as Meta<typeof BmbPushNotificationItemComponent>;
 
@@ -527,7 +578,9 @@ export const Default: StoryFn<typeof StorybookToastWrapperComponent> = (
     props: args,
     template: `
       <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->
-      <storybook-toast-wrapper ${attributes(args)}></storybook-toast-wrapper>
+      <storybook-toast-wrapper 
+        ${attributes(args)}
+      ></storybook-toast-wrapper>
       <!-- Start copying from here -->
       <div class="actions">
       <button
