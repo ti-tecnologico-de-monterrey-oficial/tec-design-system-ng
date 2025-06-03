@@ -1,0 +1,101 @@
+@use "../../../assets/styles/base/fonts" as fonts;
+@use "../../../assets/styles/base/rem" as rem;
+
+
+.bmb_notice-card{
+    min-width: rem.rem_calc(370);
+    width: rem.rem_calc(400);
+    max-height: rem.rem_calc(550);
+    height: fit-content;
+    background-color: var(--containers-main);
+    border-radius: rem.rem_calc(16) rem.rem_calc(16) 0 0;
+
+    @media screen and (max-width: 520px) {
+        width: auto;
+    }
+
+    &-header{
+        position: relative;
+        &-figure{
+            margin: 0;
+            line-height: 0;
+            grid-area: 1 / 1 / 2 / 2;
+            overflow: hidden;
+            border-radius: rem.rem_calc(16) rem.rem_calc(16) 0 0;
+        }
+
+        &-image{
+            height: rem.rem_calc(220);
+            width: 100%;
+            aspect-ratio: 5 / 2.5;
+        }
+
+        &-icon{
+            position: absolute;
+            top: rem.rem_calc(10);
+            right: rem.rem_calc(10);
+        }
+    }
+
+    &-content{
+        height: rem.rem_calc(200);
+        padding: var(--bmb-padding-l) var(--bmb-padding-l) var(--bmb-padding-m) var(--bmb-padding-l);
+        overflow: hidden;
+
+        &-title{
+            @include fonts.font(5, medium);
+        }
+
+        &-description-one{
+            overflow: hidden;
+            margin-top: rem.rem_calc(10);
+        }
+
+        &-description-two{
+            overflow: hidden;
+            margin-top: rem.rem_calc(10);
+        }
+
+        &-description-text{
+            @include fonts.font(4, regular);
+            line-height: 1.6em;
+        }
+    }
+
+    &-divider{
+        padding: 0 var(--bmb-padding-l);
+    }
+
+    &-footer{
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: rem.rem_calc(80);
+        padding: var(--bmb-padding-s) var(--bmb-padding-l) var(--bmb-padding-m) var(--bmb-padding-l);
+        overflow: hidden;
+
+        &-left{
+            display: flex;
+            align-items: center;
+            width: 10%;
+        }
+
+        &-center{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 80%;
+
+            &-link{
+                width: 100%;
+            }
+        }
+
+        &-right{
+            display: flex;
+            align-items: center;
+            width: 10%;
+        }
+
+    }
+}
