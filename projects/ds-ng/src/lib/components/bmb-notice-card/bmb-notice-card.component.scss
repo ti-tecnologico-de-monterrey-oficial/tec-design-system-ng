@@ -27,6 +27,7 @@
       height: rem.rem_calc(220);
       width: 100%;
       aspect-ratio: 5 / 2.5;
+      object-fit: cover;
     }
 
     &-icon {
