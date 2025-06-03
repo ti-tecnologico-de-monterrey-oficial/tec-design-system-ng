@@ -1,16 +1,13 @@
 import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
-import { BmbNoticeCardComponent } from './bmb-notice-card.component';  
+import { BmbNoticeCardComponent } from './bmb-notice-card.component';
 import { attributes } from '../../utils/utils';
-
 
 export default {
   title: 'Micro Componentes/Notice Card',
   component: BmbNoticeCardComponent,
   decorators: [
     moduleMetadata({
-      imports: [
-        BmbNoticeCardComponent
-      ],
+      imports: [BmbNoticeCardComponent],
     }),
   ],
   parameters: {
@@ -71,7 +68,7 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: '' },
       },
     },
-    buttonText:{
+    buttonText: {
       name: 'Button text',
       control: {
         type: 'text',
@@ -83,7 +80,7 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: '' },
       },
     },
-    link:{
+    link: {
       name: 'Link',
       control: {
         type: 'text',
@@ -111,19 +108,18 @@ Below is an example of how you can use this component in HTML:
   },
   args: {
     title: 'Notification Title',
-    src:'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg',
+    src: 'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg',
     description: {
       pageOne: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      pageTwo: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      pageTwo:
+        'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     },
     buttonText: 'Ir',
-    link:'https://www.youtube.com'
+    link: 'https://www.youtube.com',
   },
 } as Meta<typeof BmbNoticeCardComponent>;
 
-export const Default: StoryFn<typeof BmbNoticeCardComponent> = (
-  args,
-) => {
+export const Default: StoryFn<typeof BmbNoticeCardComponent> = (args) => {
   return {
     props: args,
     template: `

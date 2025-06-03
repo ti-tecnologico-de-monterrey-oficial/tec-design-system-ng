@@ -122,7 +122,8 @@ class StorybookToastWrapperComponent {
   >('top-right');
   description = input<{
     pageOne?: 'lorem imspus';
-    pageTwo?: 'Lorem imsunpsmdsad ';}>
+    pageTwo?: 'Lorem imsunpsmdsad ';
+  }>;
   buttonText = input('');
   link = input('');
 
@@ -516,7 +517,7 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: '' },
       },
     },
-    buttonText:{
+    buttonText: {
       name: 'Button text',
       control: {
         type: 'text',
@@ -528,7 +529,7 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: '' },
       },
     },
-    link:{
+    link: {
       name: 'Link',
       control: {
         type: 'text',
@@ -539,14 +540,15 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string' },
         defaultValue: { summary: '' },
       },
-    }
+    },
   },
   args: {
     title: 'Notification Title',
     subtitle: 'Notification Subtitle',
     content: {
       pageOne: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      pageTwo: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      pageTwo:
+        'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     },
     icon: 'info',
     type: 'tec',
@@ -565,7 +567,7 @@ Below is an example of how you can use this component in HTML:
     appearance: 'neutral',
     position: 'top-right',
     buttonText: 'Ir',
-    link:'https://www.youtube.com'
+    link: 'https://www.youtube.com',
   },
 } as Meta<typeof BmbPushNotificationItemComponent>;
 

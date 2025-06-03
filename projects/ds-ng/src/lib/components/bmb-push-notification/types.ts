@@ -1,7 +1,9 @@
 import { IButtonAppearance } from '../../types';
 import { BmbToastAppearance } from '../bmb-toast/bmb-toast.component';
 
-export interface INotification extends IMinimalNotification, IBmbNoticeCardContent {
+export interface INotification
+  extends IMinimalNotification,
+    IBmbNoticeCardContent {
   icon?: string;
   type?: NotificationType;
   dontAskAgainEvent?: (id: string) => void;
@@ -33,7 +35,7 @@ export interface IMinimalNotification {
   id?: string;
 }
 
-export interface IBmbNoticeCardContent{
+export interface IBmbNoticeCardContent {
   buttonText?: string;
   link?: string;
 }

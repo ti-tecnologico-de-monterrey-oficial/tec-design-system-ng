@@ -16,7 +16,12 @@ import { BmbNoticeCardComponent } from '../bmb-notice-card/bmb-notice-card.compo
 @Component({
   selector: 'bmb-portal',
   standalone: true,
-  imports: [BmbPushNotificationItemComponent, BmbToastComponent, BmbNoticeCardComponent, CommonModule],
+  imports: [
+    BmbPushNotificationItemComponent,
+    BmbToastComponent,
+    BmbNoticeCardComponent,
+    CommonModule,
+  ],
   templateUrl: './bmb-portal.component.html',
   styleUrl: './bmb-portal.component.scss',
   encapsulation: ViewEncapsulation.None,
