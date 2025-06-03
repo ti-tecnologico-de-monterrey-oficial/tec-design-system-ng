@@ -1,7 +1,7 @@
 import { IButtonAppearance } from '../../types';
 import { BmbToastAppearance } from '../bmb-toast/bmb-toast.component';
 
-export interface INotification extends IMinimalNotification {
+export interface INotification extends IMinimalNotification, IBmbNoticeCardContent {
   icon?: string;
   type?: NotificationType;
   dontAskAgainEvent?: (id: string) => void;
@@ -15,7 +15,7 @@ export interface INotification extends IMinimalNotification {
   userAvatar?: string;
   media?: string;
   appearance?: BmbToastAppearance;
-  component?: 'toast' | 'notification';
+  component?: 'toast' | 'notification' | 'notice-card';
   position?:
     | 'top-left'
     | 'top-right'
@@ -28,9 +28,14 @@ export interface INotification extends IMinimalNotification {
 export interface IMinimalNotification {
   title: string;
   subTitle?: string;
-  content?: string;
+  content?: string | IBmbNoticeCardDescription;
   isFullColor: boolean;
   id?: string;
+}
+
+export interface IBmbNoticeCardContent{
+  buttonText?: string;
+  link?: string;
 }
 
 export interface IBmbGenericAction {
@@ -45,6 +50,11 @@ export interface INotificationAction extends IBmbGenericAction {
 
 export interface IBmbButtonAction extends IBmbGenericAction {
   action: () => void;
+}
+
+export interface IBmbNoticeCardDescription {
+  pageOne?: string;
+  pageTwo?: string;
 }
 
 export type NotificationType =
