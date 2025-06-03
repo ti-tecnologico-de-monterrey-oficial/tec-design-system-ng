@@ -9,6 +9,7 @@
 @mixin input($type: normal) {
   @include mixins.resetElement();
   @include fonts.font(4, regular);
+  color: var(--general_contrasts-100);
 
   &:focus,
   &:focus,
