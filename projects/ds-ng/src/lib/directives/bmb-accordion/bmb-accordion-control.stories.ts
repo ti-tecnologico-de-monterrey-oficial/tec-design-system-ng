@@ -50,7 +50,6 @@ Below is an example of how you can use this component in HTML:
       },
       table: {
         type: { summary: '{ [id: string]: boolean }' },
-        defaultValue: { '1': true, '2': false, '3': false },
       },
     },
   },

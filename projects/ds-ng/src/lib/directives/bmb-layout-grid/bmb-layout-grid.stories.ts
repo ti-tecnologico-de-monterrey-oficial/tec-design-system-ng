@@ -85,7 +85,7 @@ You can use this tool to generate a custom grid: [Grid generator](https://develo
       table: {
         category: 'Properties',
         type: { summary: 'number' },
-        defaultValue: { summary: 1 },
+        defaultValue: { summary: '1' },
       },
     },
     columns: {
@@ -97,7 +97,7 @@ You can use this tool to generate a custom grid: [Grid generator](https://develo
       table: {
         category: 'Properties',
         type: { summary: 'number' },
-        defaultValue: { summary: 1 },
+        defaultValue: { summary: '1' },
       },
     },
     rowSize: {
@@ -152,13 +152,13 @@ You can use this tool to generate a custom grid: [Grid generator](https://develo
     },
   },
   args: {
-    colGapSize: 'm' as unknown as InputSignal<SizeNames>,
-    rowGapSize: 'm' as unknown as InputSignal<SizeNames>,
-    rows: 3 as unknown as InputSignal<number>,
-    columns: 3 as unknown as InputSignal<number>,
-    rowSize: ['auto'] as unknown as InputSignal<string[] | string>,
-    columnSize: ['auto'] as unknown as InputSignal<string[] | string>,
-    height: 'auto' as unknown as InputSignal<string | number>,
+    colGapSize: 'm',
+    rowGapSize: 'm',
+    rows: 3,
+    columns: 3,
+    rowSize: ['auto'],
+    columnSize: ['auto'],
+    height: 'auto',
   },
 };
 

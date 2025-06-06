@@ -81,7 +81,7 @@ This is a collection of shadows styles that can be used in the application. The 
     },
   },
   args: {
-    shadowsName: 'bmb-box-shadow-1' as string as unknown as InputSignal<string>,
+    shadowsName: 'bmb-box-shadow-1',
   },
 } as Meta<StorybookShadowsStoriesComponent>;
 

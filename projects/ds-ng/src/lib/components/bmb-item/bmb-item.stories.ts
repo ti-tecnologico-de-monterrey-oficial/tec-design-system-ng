@@ -54,7 +54,7 @@ Below is an example of how you can use this component in HTML:
       description: 'Size of the icon.',
       table: {
         category: 'Inputs',
-        defaultValue: { summary: 24 },
+        defaultValue: { summary: '24' },
         type: { summary: 'number' },
       },
     },
@@ -95,7 +95,7 @@ Below is an example of how you can use this component in HTML:
     },
   },
   args: {
-    label: 'Whatsapp' as unknown as InputSignal<string>,
+    label: 'Whatsapp',
   },
 };
 
@@ -105,7 +105,7 @@ type Story = StoryObj<BmbItemComponent>;
 
 export const Default: Story = {
   args: {
-    value: '+52 81 1625 5123 (solo texto)' as unknown as InputSignal<string>,
+    value: '+52 81 1625 5123 (solo texto)',
   },
   render: (args) => ({
     props: args,
@@ -121,9 +121,9 @@ export const Default: Story = {
 
 export const WithIcon: Story = {
   args: {
-    icon: 'https://img.icons8.com/m_outlined/512/whatsapp.png' as unknown as InputSignal<string>,
-    iconSize: 24 as unknown as InputSignal<number>,
-    value: '+52 81 1625 5123 (solo texto)' as unknown as InputSignal<string>,
+    icon: 'https://img.icons8.com/m_outlined/512/whatsapp.png',
+    iconSize: 24,
+    value: '+52 81 1625 5123 (solo texto)',
   },
   render: (args) => ({
     props: args,
@@ -139,10 +139,10 @@ export const WithIcon: Story = {
 
 export const WithValueLink: Story = {
   args: {
-    label: 'Correo' as unknown as InputSignal<string>,
-    value: 'tecservices@servicios.tec.mx' as unknown as InputSignal<string>,
+    label: 'Correo',
+    value: 'tecservices@servicios.tec.mx',
     valueLink:
-      'mailto:tecservices@servicios.tec.mx' as unknown as InputSignal<string>,
+      'mailto:tecservices@servicios.tec.mx',
     valueTarget: '_self' as unknown as InputSignal<IBmbTargetLink>,
   },
   render: (args) => ({
@@ -159,11 +159,11 @@ export const WithValueLink: Story = {
 
 export const WithValueLinkAndIcon: Story = {
   args: {
-    label: 'Correo' as unknown as InputSignal<string>,
-    icon: 'mail' as unknown as InputSignal<string>,
-    value: 'tecservices@servicios.tec.mx' as unknown as InputSignal<string>,
+    label: 'Correo',
+    icon: 'mail',
+    value: 'tecservices@servicios.tec.mx',
     valueLink:
-      'mailto:tecservices@servicios.tec.mx' as unknown as InputSignal<string>,
+      'mailto:tecservices@servicios.tec.mx',
     valueTarget: '_self' as unknown as InputSignal<IBmbTargetLink>,
   },
   render: (args) => ({
@@ -180,9 +180,9 @@ export const WithValueLinkAndIcon: Story = {
 
 export const WithSupportText: Story = {
   args: {
-    label: 'Informative text. Non actionable' as unknown as InputSignal<string>,
+    label: 'Informative text. Non actionable',
     supportText:
-      'Here is some support text for your soul.' as unknown as InputSignal<string>,
+      'Here is some support text for your soul.',
   },
   render: (args) => ({
     props: args,
@@ -198,9 +198,9 @@ export const WithSupportText: Story = {
 
 export const WithSupportTextWithLink: Story = {
   args: {
-    label: 'Informative text. Non actionable' as unknown as InputSignal<string>,
+    label: 'Informative text. Non actionable',
     supportText:
-      "Support text. <a href='https://www.google.com.mx' target='_blank'>Optional hyperlink text</a>" as unknown as InputSignal<string>,
+      "Support text. <a href='https://www.google.com.mx' target='_blank'>Optional hyperlink text</a>",
   },
   render: (args) => ({
     props: args,
@@ -216,10 +216,10 @@ export const WithSupportTextWithLink: Story = {
 
 export const WithSupportTextWithLinkAnIcon: Story = {
   args: {
-    icon: 'mail' as unknown as InputSignal<string>,
-    label: 'Informative text. Non actionable' as unknown as InputSignal<string>,
+    icon: 'mail',
+    label: 'Informative text. Non actionable',
     supportText:
-      "Support text. <a href='https://www.google.com.mx' target='_blank'>Optional hyperlink text</a>" as unknown as InputSignal<string>,
+      "Support text. <a href='https://www.google.com.mx' target='_blank'>Optional hyperlink text</a>",
   },
   render: (args) => ({
     props: args,
@@ -235,7 +235,7 @@ export const WithSupportTextWithLinkAnIcon: Story = {
 
 export const IsAButton: Story = {
   args: {
-    isButton: true as unknown as InputSignal<boolean>,
+    isButton: true,
   },
   render: (args) => ({
     props: {
@@ -256,8 +256,8 @@ export const IsAButton: Story = {
 
 export const IsAButtonWithIcon: Story = {
   args: {
-    icon: 'mail' as unknown as InputSignal<string>,
-    isButton: true as unknown as InputSignal<boolean>,
+    icon: 'mail',
+    isButton: true,
   },
   render: (args) => ({
     props: {

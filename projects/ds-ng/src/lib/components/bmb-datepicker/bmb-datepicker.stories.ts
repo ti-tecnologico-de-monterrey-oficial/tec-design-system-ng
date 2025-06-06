@@ -297,7 +297,7 @@ Below is an example of how to use this component in HTML:
 type Story = StoryObj<BmbDatepickerComponent>;
 
 export const Default: Story = {
-  render: (args: BmbDatepickerComponent) => ({
+  render: (args) => ({
     props: {
       ...args,
     },

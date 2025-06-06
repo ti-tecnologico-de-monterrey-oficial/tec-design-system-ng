@@ -156,7 +156,7 @@ export const Default: Story = {
     // If `args.activeDotIndex` is a ModelSignal<number>, extract its value.
     const initialActiveDotIndex =
       typeof args.activeDotIndex === 'function'
-        ? args.activeDotIndex() // Call the signal to get the number value
+        ? (args.activeDotIndex as (() => number))() // Call the signal to get the number value
         : args.activeDotIndex;
 
     const activeDotIndex$ = new BehaviorSubject<number>(initialActiveDotIndex);

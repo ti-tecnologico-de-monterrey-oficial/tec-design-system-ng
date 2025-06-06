@@ -1,7 +1,8 @@
-// .storybook/preview.ts
+import { componentWrapperDecorator, type Preview } from '@storybook/angular'
+import { setCompodocJson } from "@storybook/addon-docs/angular";
+import docJson from "../../../documentation.json";
 
-import { withThemeByClassName } from '@storybook/addon-themes';
-import type { Preview } from '@storybook/angular';
+setCompodocJson(docJson);
 
 const preview: Preview = {
   parameters: {
@@ -9,8 +10,8 @@ const preview: Preview = {
     controls: {
       expanded: true,
       matchers: {
-        color: /(background|color)$/i,
-        date: /Date$/i,
+       color: /(background|color)$/i,
+       date: /Date$/i,
       },
     },
     docs: {
@@ -31,16 +32,11 @@ const preview: Preview = {
         locales: 'en-US',
       },
     },
+    decorators: [
+      componentWrapperDecorator((story) => `<div style="margin: 3em">${story}</div>`)
+    ]
   },
-  decorators: [
-    withThemeByClassName({
-      themes: {
-        light: 'storybook-light-theme',
-        dark: 'storybook-dark-theme',
-      },
-      defaultTheme: 'light',
-    }),
-  ],
+  tags: ['autodocs']
 };
 
 export default preview;
