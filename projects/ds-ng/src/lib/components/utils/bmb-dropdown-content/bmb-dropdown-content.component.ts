@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   ElementRef,
@@ -28,11 +27,12 @@ import { CommonModule } from '@angular/common';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbDropdownContentComponent implements AfterViewInit, OnChanges {
+export class BmbDropdownContentComponent implements OnChanges {
   selectedOption = input<string | string[]>(); //Internal
 
   items = model<IDropdownItem[]>([]);
   isOpen = model<boolean>(false);
+  isKeyboardEvent = model<boolean>(false); //Internal
 
   @ViewChild('modalContainer') modalContainer!: ElementRef;
 
@@ -42,26 +42,18 @@ export class BmbDropdownContentComponent implements AfterViewInit, OnChanges {
       changes['isOpen'].currentValue &&
       this.modalContainer
     ) {
-      setTimeout(() => {
-        const buttonList =
-          this.modalContainer.nativeElement.querySelectorAll('button');
-        if (buttonList.length > 0) {
-          (buttonList[0] as HTMLElement).focus();
-        }
-      });
+      this.addFocusToFirstElement();
     }
   }
 
-  ngAfterViewInit() {
-    if (this.isOpen() && this.modalContainer) {
-      setTimeout(() => {
-        const buttonList =
-          this.modalContainer.nativeElement.querySelectorAll('button');
-        if (buttonList.length > 0) {
-          (buttonList[0] as HTMLElement).focus();
-        }
-      });
-    }
+  addFocusToFirstElement(): void {
+    setTimeout(() => {
+      const buttonList =
+        this.modalContainer.nativeElement.querySelectorAll('button');
+      if (this.isKeyboardEvent() && buttonList.length > 0) {
+        (buttonList[0] as HTMLElement).focus();
+      }
+    });
   }
 
   isSelected(item: string): boolean {
@@ -73,6 +65,7 @@ export class BmbDropdownContentComponent implements AfterViewInit, OnChanges {
 
   handleDropdown(item: IDropdownItem) {
     this.isOpen.update((value) => !value);
+    if (!this.isOpen()) this.isKeyboardEvent.set(false);
     if (item?.action) item.action();
   }
 }

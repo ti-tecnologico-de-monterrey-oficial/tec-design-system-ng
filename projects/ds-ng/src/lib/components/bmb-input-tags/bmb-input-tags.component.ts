@@ -83,6 +83,7 @@ export class BmbInputTagsComponent implements OnInit, AfterViewInit, OnChanges {
   filterControl = new FormControl();
   items: IDropdownItem[] = [];
   isFocused = signal<boolean>(false);
+  isKeyboardEvent: boolean = false;
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -165,6 +166,7 @@ export class BmbInputTagsComponent implements OnInit, AfterViewInit, OnChanges {
 
   closeList() {
     this.showDropdown = false;
+    this.isKeyboardEvent = false;
   }
 
   selectOptionWithKey(value: string): void {
@@ -211,7 +213,10 @@ export class BmbInputTagsComponent implements OnInit, AfterViewInit, OnChanges {
     const keyboardValuesToAddOption = [',', 'Enter'];
 
     if (keyboardValuesToOpenDialog.includes(event.key)) {
-      if (!this.showDropdown) this.openList();
+      if (!this.showDropdown) {
+        this.isKeyboardEvent = true;
+        this.openList();
+      }
 
       if (!this.filteredOptions.length) {
         event.preventDefault();

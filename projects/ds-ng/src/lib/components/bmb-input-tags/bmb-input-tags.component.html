@@ -59,6 +59,7 @@
     class="bmb_input-tags-dialog"
     name="list"
     [selectedOption]="getFormControl().value"
+    [isKeyboardEvent]="isKeyboardEvent"
     [(items)]="filteredOptions"
     [(isOpen)]="showDropdown"
   />

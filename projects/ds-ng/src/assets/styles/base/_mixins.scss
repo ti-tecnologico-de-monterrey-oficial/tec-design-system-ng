@@ -362,7 +362,7 @@
 }
 
 @mixin dropdown_menu_left($max-width) {
-  .bmb_dropdown-content-container {
+  .bmb_dropdown-content-modal {
     right: 0;
     left: inherit;
     max-width: rem.rem_calc($max-width);

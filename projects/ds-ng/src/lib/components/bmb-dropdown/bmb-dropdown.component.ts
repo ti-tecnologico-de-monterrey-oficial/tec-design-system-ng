@@ -86,6 +86,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   items: IDropdownItem[] = [];
   selectionControl: FormControl = new FormControl(new FormControl());
   selectedIcon: string = '';
+  isKeyboardEvent: boolean = false;
 
   constructor(private ivs: BmbInputValidationService) {}
 
@@ -189,10 +190,12 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
 
   openList(): void {
     this.isOpen = !this.isOpen;
+    if (!this.isOpen) this.isKeyboardEvent = false;
   }
 
   closeList(): void {
     this.isOpen = false;
+    this.isKeyboardEvent = false;
   }
 
   // Keyboards events
@@ -200,7 +203,10 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
     const keyboards = [' ', 'ArrowDown', 'Down'];
 
     if (keyboards.includes(event.key)) {
-      if (!this.isOpen) this.openList();
+      if (!this.isOpen) {
+        this.isKeyboardEvent = true;
+        this.openList();
+      }
 
       if (!this.options().length) {
         event.preventDefault();
