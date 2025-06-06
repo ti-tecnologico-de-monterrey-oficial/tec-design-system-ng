@@ -6,7 +6,7 @@
   [labelPosition]="labelPosition()"
   [checked]="checked()!"
   [errorMessage]="errorMessage()"
-  [showError]="shouldShowError || showError()"
+  [showError]="shouldShowError"
   [helperMessage]="helperMessage()"
   [isRequired]="required()"
   [idDisabled]="disabled()"
@@ -36,7 +36,7 @@
     />
     <span
       class="bmb_checkbox-mark"
-      [ngClass]="{ 'bmb_checkbox-mark-error': shouldShowError || showError() }"
+      [ngClass]="{ 'bmb_checkbox-mark-error': shouldShowError }"
     ></span>
   </span>
 </bmb-input-validation>

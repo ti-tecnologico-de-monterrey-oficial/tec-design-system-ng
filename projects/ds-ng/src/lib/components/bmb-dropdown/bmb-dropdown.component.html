@@ -16,9 +16,10 @@
   (clickOutside)="closeList()"
 >
   <bmb-input-content
+    class="bmb_dropdown-field"
     type="text"
-    [id]="'selection' + getUUID()"
-    name="selection"
+    [id]="getUUID('id_selection')"
+    [name]="getUUID('selection')"
     [icon]="getIcon()"
     [isReadOnly]="true"
     [control]="selectionControl"
@@ -40,15 +41,16 @@
     </ng-template>
   </bmb-input-content>
   <bmb-dropdown-content
-    name="list"
+    class="bmb_dropdown-list"
     [selectedOption]="getFormControl().value"
+    [isKeyboardEvent]="isKeyboardEvent"
     [(items)]="items"
     [(isOpen)]="isOpen"
   />
   <input
     hidden
     type="text"
-    [id]="name() + getUUID()"
+    [id]="getUUID('id')"
     [name]="name()"
     [formControl]="getFormControl()"
   />
