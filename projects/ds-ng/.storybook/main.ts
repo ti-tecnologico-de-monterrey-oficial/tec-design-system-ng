@@ -9,15 +9,15 @@ const config: StorybookConfig = {
   addons: [
     '@storybook/addon-onboarding',
     '@storybook/addon-docs',
-    '@storybook/addon-themes'
+    '@storybook/addon-themes',
   ],
   framework: {
     name: '@storybook/angular',
     options: {},
   },
   docs: {
-    // docsMode: true,
-    // defaultName: 'Documentation',
+    docsMode: true,
+    defaultName: 'Documentation',
   },
   webpackFinal: async (config) => {
     config.plugins ||= [];

@@ -53,6 +53,12 @@ bmb-icon {
   display: inline-flex;
 }
 
+.storybook-dark-theme,
+.storybook-light-theme {
+  padding: 2rem;
+  background-color: var(--containers-background);
+}
+
 storybook-toast-wrapper {
   ~ .actions {
     display: none;

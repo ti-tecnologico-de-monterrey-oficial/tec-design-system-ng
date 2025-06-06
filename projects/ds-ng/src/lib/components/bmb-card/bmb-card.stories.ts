@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import { componentWrapperDecorator, Meta, StoryObj } from '@storybook/angular';
 import {
   BmbCardComponent,
   BmbCardFooterComponent,
@@ -27,6 +27,9 @@ const meta: Meta<BmbCardComponent> = {
         BmbCardFooterComponent,
         BmbCardHeaderComponent,
       ],
+    }),
+    componentWrapperDecorator((story) => {
+      return `<div class="storybook-dark-theme">${story}</div><div class="storybook-light-theme">${story}</div>`;
     }),
   ],
   parameters: {

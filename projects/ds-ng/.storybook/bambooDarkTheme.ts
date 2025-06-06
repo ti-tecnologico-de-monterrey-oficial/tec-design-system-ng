@@ -8,4 +8,6 @@ export default create({
   brandTarget: '_self',
 
   fontBase: '"Poppins-Regular", sans-serif',
+
+  colorPrimary: 'red',
 });

@@ -1,4 +1,4 @@
-import { Meta, StoryFn, StoryObj } from '@storybook/angular';
+import { componentWrapperDecorator, Meta, StoryFn, StoryObj } from '@storybook/angular';
 import { BmbButtonDirective } from './button.directive';
 import { BmbIconComponent } from '../../components/bmb-icon/bmb-icon.component';
 import { attributes, attributesText } from '../../utils/utils';
@@ -6,6 +6,11 @@ import { attributes, attributesText } from '../../utils/utils';
 export default {
   title: 'Micro Componentes/Button',
   component: BmbButtonDirective,
+  decorators: [
+    componentWrapperDecorator((story) => {
+      return `<div class="storybook-dark-theme">${story}</div><div class="storybook-light-theme">${story}</div>`;
+    }),
+  ],
   imports: [BmbButtonDirective, BmbIconComponent],
   parameters: {
     docs: {
