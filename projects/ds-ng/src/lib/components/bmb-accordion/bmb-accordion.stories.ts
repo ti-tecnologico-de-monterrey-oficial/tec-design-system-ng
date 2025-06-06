@@ -36,7 +36,7 @@ import { BmbAccordionComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-n
 
 \`\`\`html
 <section class="bmb_accordion"
-<!-- conditional class bmb_border-radius-{borderRadius} bmb_margin-{this.margin} -> >
+<!-- conditional class bmb_radius-{borderRadius} bmb_margin-{this.margin} -> >
   <!-- if Accordion is disabled -->
   <section class="bmb_accordion-overlay"></section>
 

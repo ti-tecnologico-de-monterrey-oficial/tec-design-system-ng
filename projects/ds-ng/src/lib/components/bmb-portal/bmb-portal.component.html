@@ -71,6 +71,15 @@
           [id]="notification.id || $index"
           (onClose)="closeNotification(notification)"
         />
+      } @else if (notification.component === "notice-card") {
+        <bmb-notice-card
+          [src]="notification.media"
+          [title]="notification.title"
+          [description]="notification.content"
+          [buttonText]="notification.buttonText"
+          [link]="notification.link"
+          (onClose)="closeNotification(notification)"
+        />
       } @else {
         <bmb-push-notification-item
           [notification]="notification"

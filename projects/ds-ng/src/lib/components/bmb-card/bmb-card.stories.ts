@@ -49,7 +49,7 @@ import { BmbCardComponent, BmbCardFooterComponent, BmbCardHeaderComponent } from
 ## Architecture
 
 \`\`\`html
-<section class="bmb_card" <!-- conditional class bmb_border-radius-{borderRadius} bmb_margin-{this.margin} bmb_card-{type} --> >
+<section class="bmb_card" <!-- conditional class bmb_radius-{borderRadius} bmb_margin-{this.margin} bmb_card-{type} --> >
   <header class="bmb_card-header" <!-- conditional class bmb_padding-{padding} --> >
       { header content }
   </header>
