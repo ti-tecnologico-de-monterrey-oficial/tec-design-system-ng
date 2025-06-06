@@ -43,7 +43,7 @@
       }
 
       .bmb_dropdown-content-container {
-        width: rem.rem_calc(170);
+        min-width: max-content;
       }
     }
   }

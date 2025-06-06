@@ -17,6 +17,7 @@ import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.compo
 import { isExternalLink } from '../../utils/utils';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 import { IDropdownItem } from '../../types';
+import { ClickOutsideDirective } from '../../directives/utils/clickoutside.directive';
 
 export type IBmbMenuEvent = 'link' | 'openNew' | 'info';
 
@@ -30,6 +31,7 @@ export type IBmbMenuEvent = 'link' | 'openNew' | 'info';
     BmbThreeColsComponent,
     BmbActionIconComponent,
     BmbTitleContentComponent,
+    ClickOutsideDirective,
   ],
   templateUrl: './bmb-external-link.component.html',
   styleUrl: './bmb-external-link.component.scss',
@@ -80,6 +82,10 @@ export class BmbExternalLinkComponent {
 
   handleClose(event: any): void {
     this.onClose.emit(event);
+  }
+
+  handleCloseMenu(): void {
+    this.showMenu = false;
   }
 
   handleOpenMenu(): void {

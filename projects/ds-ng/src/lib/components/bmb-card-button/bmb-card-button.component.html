@@ -93,9 +93,10 @@
             }
 
             @if (hasMenu()) {
-              <div class="bmb_card_button-menu">
-                <bmb-dropdown-menu [items]="menuItems()" />
-              </div>
+              <bmb-dropdown-menu
+                class="bmb_card_button-menu"
+                [items]="menuItems()"
+              />
             }
           </section>
         </section>

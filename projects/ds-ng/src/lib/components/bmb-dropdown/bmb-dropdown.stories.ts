@@ -246,7 +246,7 @@ const customizable = (): StoryFn => (args) => ({
     },
   },
   template: `
-    <div style="height: 240px">
+    <div style="height: 25rem">
       <bmb-dropdown
         ${attributes(args)}
       />

@@ -65,8 +65,11 @@
               (buttonClick)="handleSecondaryClick($event)"
               [disabled]="state() === 'disabled'"
             />
-          } @else if (dropdownMenuItems().length) {
-            <bmb-dropdown-menu [items]="dropdownMenuItems()" />
+          } @else if (!!dropdownMenuItems().length) {
+            <bmb-dropdown-menu
+              class="bmb_container-button-right-menu"
+              [items]="dropdownMenuItems()"
+            />
           } @else {
             <bmb-icon
               class="bmb_container-button-right-icon"

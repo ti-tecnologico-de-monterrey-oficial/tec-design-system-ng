@@ -7,7 +7,8 @@ import {
   input,
   output,
   model,
-  AfterViewInit,
+  SimpleChanges,
+  OnChanges,
 } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
@@ -17,6 +18,7 @@ import {
   getSelectedValues,
   getUUID,
   getValidInitialValues,
+  showError,
 } from '../../utils/utils';
 import { BmbInputValidationComponent } from '../bmb-input/bmb-input-validation/bmb-input-validation.component';
 import {
@@ -27,6 +29,7 @@ import { BmbInputValidationService } from '../bmb-input/bmb-input-validation/bmb
 import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-dropdown-content.component';
 import { IDropdownItem } from '../../types';
 import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
+import { startWith } from 'rxjs';
 
 export interface IBmbDropdownItem {
   name: string;
@@ -53,7 +56,7 @@ export interface IBmbDropdownItem {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbDropdownComponent implements OnInit, AfterViewInit {
+export class BmbDropdownComponent implements OnInit, OnChanges {
   required = input<boolean>(false);
   showIcon = input<boolean>(false);
   placeholder = input<string>('');
@@ -73,11 +76,12 @@ export class BmbDropdownComponent implements OnInit, AfterViewInit {
   disabled = input<boolean>(false);
   value = input<string | string[]>('');
 
-  control = model<FormControl>();
+  control = model<FormControl>(new FormControl());
 
   onValueChange = output<any>();
   onFocus = output<boolean>();
 
+  uuid: string = getUUID();
   isOpen: boolean = false;
   items: IDropdownItem[] = [];
   selectionControl: FormControl = new FormControl(new FormControl());
@@ -87,10 +91,25 @@ export class BmbDropdownComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     if (!this.isMultiSelect() && Array.isArray(this.control()?.value)) {
-      this.control()?.setValue('');
+      this.control().setValue('');
     }
 
-    this.items = convertListToSelectList(this.options(), this.icon());
+    this.getFormControl()
+      .valueChanges.pipe(startWith(this.getValidInitialValues()))
+      .subscribe((value) => {
+        this.setSelectionControl(value);
+      });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['options']) {
+      this.initOptions(changes['options'].currentValue);
+      this.setValue(this.getValidInitialValues());
+    }
+  }
+
+  initOptions(list: string[] | IBmbDropdownItem[]): void {
+    this.items = convertListToSelectList(list, this.icon(), this.showIcon());
 
     this.items = this.items.map((element: IDropdownItem) => {
       return {
@@ -109,22 +128,14 @@ export class BmbDropdownComponent implements OnInit, AfterViewInit {
 
       this.items = [...new Set([...preferredItems, ...this.items])];
     }
-
-    this.setSelectionControl(this.getValidInitialValues());
-  }
-
-  ngAfterViewInit(): void {
-    this.getFormControl().valueChanges.subscribe((value) => {
-      this.setSelectionControl(value);
-    });
   }
 
   handleFocus(value: boolean): void {
     this.onFocus.emit(value);
   }
 
-  getUUID(): string {
-    return getUUID();
+  getUUID(name: string): string {
+    return `${name}_${this.name()}_${this.uuid}`;
   }
 
   getIcon(): string {
@@ -135,7 +146,7 @@ export class BmbDropdownComponent implements OnInit, AfterViewInit {
 
   getValidInitialValues(): string | string[] {
     return getValidInitialValues(
-      this.control()?.value || this.value(),
+      this.control().value || this.value(),
       this.options(),
       this.isMultiSelect(),
     );
@@ -168,10 +179,10 @@ export class BmbDropdownComponent implements OnInit, AfterViewInit {
 
   setSelectedValue(element: IDropdownItem): void {
     if (this.isMultiSelect()) {
-      this.getFormControl().setValue(
+      this.setValue(
         getSelectedValues(this.getFormControl().value, element.value!),
       );
-    } else this.getFormControl().setValue(element.value);
+    } else this.setValue(element.value!);
 
     this.onValueChange.emit(this.getFormControl().value);
   }
@@ -198,6 +209,10 @@ export class BmbDropdownComponent implements OnInit, AfterViewInit {
     }
   }
 
+  setValue(value: string | string[]): void {
+    this.ivs.getFormControlByName(this.name())?.setValue(value);
+  }
+
   handleValidity(): void {
     this.ivs.handleValidity(this.name());
   }
@@ -207,6 +222,6 @@ export class BmbDropdownComponent implements OnInit, AfterViewInit {
   }
 
   getFormControl(): FormControl {
-    return this.ivs.getFormControlByName(this.name());
+    return this.ivs.getFormControlByName(this.name()) || this.control();
   }
 }

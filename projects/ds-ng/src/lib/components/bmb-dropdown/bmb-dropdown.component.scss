@@ -2,9 +2,11 @@
   display: inline-block;
   position: relative;
   width: 100%;
-}
 
-.bmb_field-input-normal,
-.bmb_field-actions {
-  cursor: pointer;
+  &-field {
+    .bmb_field-input-normal,
+    .bmb_field-actions {
+      cursor: pointer;
+    }
+  }
 }

@@ -9,8 +9,10 @@ import {
   OnInit,
   output,
   model,
-  AfterViewInit,
   signal,
+  SimpleChanges,
+  OnChanges,
+  AfterViewInit,
 } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { IBmbDropdownItem } from '../bmb-dropdown/bmb-dropdown.component';
@@ -22,6 +24,7 @@ import { ClickOutsideDirective } from '../../directives/utils/clickoutside.direc
 import { debounceTime } from 'rxjs';
 import {
   convertListToSelectList,
+  filteredValue,
   getSelectedValues,
   getUUID,
   getValidInitialValues,
@@ -31,7 +34,6 @@ import { BmbInputValidationService } from '../bmb-input/bmb-input-validation/bmb
 import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-dropdown-content.component';
 import { IDropdownItem } from '../../types';
 import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
-import { EventManagerPlugin } from '@angular/platform-browser';
 
 @Component({
   selector: 'bmb-input-tags',
@@ -51,7 +53,7 @@ import { EventManagerPlugin } from '@angular/platform-browser';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [],
 })
-export class BmbInputTagsComponent implements OnInit, AfterViewInit {
+export class BmbInputTagsComponent implements OnInit, AfterViewInit, OnChanges {
   errorMessage = input<string | IBmbInputError>('');
   tooltip = input<string>('');
   tooltipPosition = input<IBmbInputTooltipPosition>({
@@ -74,6 +76,7 @@ export class BmbInputTagsComponent implements OnInit, AfterViewInit {
   onKeyDown = output<KeyboardEvent>();
   onChange = output<string[]>();
 
+  uuid: string = getUUID();
   showDropdown: boolean = false;
   selectedTags: IDropdownItem[] = [];
   filteredOptions: IDropdownItem[] = [];
@@ -87,12 +90,10 @@ export class BmbInputTagsComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit(): void {
-    this.initOptions();
-
     this.filterControl.valueChanges
       .pipe(debounceTime(300))
       .subscribe((value) => {
-        this.filteredValue(value);
+        this.filteredOptions = filteredValue(value, this.items);
         this.cdr.detectChanges();
       });
   }
@@ -103,8 +104,15 @@ export class BmbInputTagsComponent implements OnInit, AfterViewInit {
     });
   }
 
-  initOptions(): void {
-    this.items = convertListToSelectList(this.tagOptions());
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['tagOptions']) {
+      this.initOptions(changes['tagOptions'].currentValue);
+      this.getFormControl()?.setValue(this.getValidInitialValues());
+    }
+  }
+
+  initOptions(list: string[] | IBmbDropdownItem[]): void {
+    this.items = convertListToSelectList(list);
     this.items = this.items.map((element: IDropdownItem) => {
       return {
         ...element,
@@ -119,8 +127,8 @@ export class BmbInputTagsComponent implements OnInit, AfterViewInit {
     this.filteredOptions = [...this.items];
   }
 
-  getUUID(): string {
-    return getUUID();
+  getUUID(name: string): string {
+    return `${name}_${this.name()}_${this.uuid}`;
   }
 
   getValidInitialValues(): string[] {
@@ -131,17 +139,6 @@ export class BmbInputTagsComponent implements OnInit, AfterViewInit {
     );
 
     return Array.isArray(initialValue) ? initialValue : [];
-  }
-
-  filteredValue(value: string): void {
-    if (!!value) {
-      this.filteredOptions = this.items.filter((item: IDropdownItem) =>
-        item.text.toLowerCase().includes(value.toLowerCase()),
-      );
-      return;
-    }
-
-    this.filteredOptions = [...this.items];
   }
 
   setSelectedValue(element: IDropdownItem): void {
@@ -206,7 +203,7 @@ export class BmbInputTagsComponent implements OnInit, AfterViewInit {
       this.tagOptions.set([...new Set(newList)]);
     }
 
-    this.initOptions();
+    this.initOptions(this.tagOptions());
   }
 
   handleKeyDown(event: KeyboardEvent) {
