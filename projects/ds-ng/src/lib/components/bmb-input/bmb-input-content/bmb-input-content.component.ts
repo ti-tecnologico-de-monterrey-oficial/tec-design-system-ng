@@ -17,7 +17,6 @@ import {
   IBmbInputAppearance,
   IBmbInputType,
 } from '../bmb-input.component';
-import { BmbInputValidationService } from '../bmb-input-validation/bmb-input-validation.service';
 
 @Component({
   selector: 'bmb-input-content',
@@ -49,6 +48,7 @@ export class BmbInputContentComponent {
   max = input<number>();
   min = input<number>();
   inputId = input<string>();
+  autocomplete = input<string>('off');
   rows = input<number>(3);
   isReadOnly = input<boolean>(false); //Internal
   additionalAction = input<IBmbAdditionalAction>('none');
@@ -57,20 +57,17 @@ export class BmbInputContentComponent {
   isHidden = input<boolean>(false);
   showStates = input<boolean>(false);
 
-  control = model<FormControl>();
+  control = model<FormControl>(new FormControl());
 
   onFocus = output<boolean>();
   onBlur = output<boolean>();
   onChange = output<HTMLInputElement>();
   onKeyDown = output<KeyboardEvent>();
-  onClearValue = output<void>();
 
   @ContentChild('customContent') customContent!: TemplateRef<any>;
 
   isHide: boolean = true;
   isFocus: boolean = false;
-
-  constructor(private ivs: BmbInputValidationService) {}
 
   handleFocus() {
     this.isFocus = true;
@@ -98,7 +95,7 @@ export class BmbInputContentComponent {
   }
 
   handleClearValue() {
-    this.onClearValue.emit();
+    this.control().reset();
   }
 
   get inputClasses(): { [key: string]: boolean } {
@@ -167,9 +164,5 @@ export class BmbInputContentComponent {
     if (this.additionalAction() === 'showHide') {
       this.isHide = !this.isHide;
     }
-  }
-
-  getFormControl(): FormControl {
-    return this.ivs.getFormControlByName(this.name()) || this.control();
   }
 }

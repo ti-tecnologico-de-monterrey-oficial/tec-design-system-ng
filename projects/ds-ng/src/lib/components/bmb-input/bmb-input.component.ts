@@ -82,6 +82,7 @@ export class BmbInputComponent {
   id = input<string>();
   checked = input<boolean>(false);
   value = input<string>();
+  autocomplete = input<string>('off');
   labelPosition = input<IBbmSidePosition>('after');
   ariaDescribedBy = input<string>('');
   ariaLabel = input<string>('');
@@ -132,10 +133,6 @@ export class BmbInputComponent {
 
   handleChange(value: HTMLInputElement) {
     this.onChange.emit(value);
-  }
-
-  clearValue() {
-    this.getFormControl()?.reset();
   }
 
   getFormControl(): FormControl {

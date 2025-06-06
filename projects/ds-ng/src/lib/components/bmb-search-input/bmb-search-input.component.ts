@@ -2,80 +2,77 @@ import {
   Component,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  Input,
-  Output,
-  EventEmitter,
-  ViewChild,
-  ElementRef,
-  SimpleChanges,
-  HostListener,
   ChangeDetectorRef,
+  input,
+  output,
   OnChanges,
+  SimpleChanges,
+  AfterViewInit,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { debounceTime } from 'rxjs/operators';
-import { getUUID } from '../../utils/utils';
+import {
+  convertListToSelectList,
+  filteredValue,
+  getUUID,
+} from '../../utils/utils';
+import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-dropdown-content.component';
+import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
+import { ClickOutsideDirective } from '../../directives/utils/clickoutside.directive';
+import { IDropdownItem } from '../../types';
 
 @Component({
   selector: 'bmb-search-input',
   standalone: true,
-  imports: [CommonModule, BmbIconComponent, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    ClickOutsideDirective,
+    BmbInputContentComponent,
+    BmbDropdownContentComponent,
+  ],
   templateUrl: './bmb-search-input.component.html',
   styleUrl: './bmb-search-input.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbSearchInputComponent implements OnChanges {
-  @Input() data: string[] = [];
-  @Input() isLoading: boolean = false;
-  @Input() isServerSideFilter: boolean = false;
-  @Input() placeholder: string = '';
-  @Input() serverSideFilteredData: string[] = [];
+export class BmbSearchInputComponent implements AfterViewInit, OnChanges {
+  id = input<string>(getUUID());
+  name = input<string>(getUUID());
+  data = input<string[]>([]);
+  isLoading = input<boolean>(false);
+  isServerSideFilter = input<boolean>(false);
+  placeholder = input<string>('');
+  serverSideFilteredData = input<string[]>([]);
 
-  @Output() onValueChange: EventEmitter<string> = new EventEmitter<string>();
-  @Output() onServerSideFilterEvent: EventEmitter<string> =
-    new EventEmitter<string>();
-  @Output() onClearField: EventEmitter<boolean> = new EventEmitter<boolean>();
-
-  @ViewChild('filterInput') filterField: ElementRef | null = null;
-
-  constructor(
-    private elementRef: ElementRef,
-    private cdr: ChangeDetectorRef,
-  ) {
-    this.filterControl.valueChanges
-      .pipe(debounceTime(300))
-      .subscribe((value) => {
-        this.filteredValue(value);
-      });
-  }
-
-  @HostListener('document:click', ['$event'])
-  onClick(event: MouseEvent) {
-    if (!this.childNodes?.contains(event.target)) {
-      this.isDialogOpen = false;
-    }
-  }
+  onValueChange = output<string>();
+  onServerSideFilterEvent = output<string>();
+  onClearField = output<boolean>();
 
   value: string = '';
-  filteredData: string[] = [];
+  filteredData: IDropdownItem[] = [];
   uid: string = getUUID();
   isDialogOpen: boolean = false;
   filterControl = new FormControl();
+  items: IDropdownItem[] = [];
 
-  private childNodes: any = null;
+  constructor(private cdr: ChangeDetectorRef) {}
 
-  ngAfterViewInit() {
-    this.childNodes = this.elementRef.nativeElement;
+  ngAfterViewInit(): void {
+    this.filterControl.valueChanges
+      .pipe(debounceTime(300))
+      .subscribe((value) => {
+        this.filteredData = filteredValue(value, this.items);
+        this.cdr.detectChanges();
+      });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['serverSideFilteredData'] && this.isServerSideFilter) {
-      this.filteredData = changes['serverSideFilteredData'].currentValue;
+    if (changes['serverSideFilteredData'] && this.isServerSideFilter()) {
+      this.initOptions(changes['serverSideFilteredData'].currentValue);
     } else {
-      this.filteredData = this.data;
+      this.initOptions(this.data());
     }
     if (
       changes['serverSideFilteredData'] &&
@@ -87,47 +84,67 @@ export class BmbSearchInputComponent implements OnChanges {
     }
   }
 
-  filteredValue(value: string): void {
-    if (value.length >= 1) {
-      if (this.isServerSideFilter) {
-        this.onServerSideFilterEvent.emit(value);
-      } else {
-        this.filteredData = this.data.filter((item) =>
-          item.toLowerCase().includes(value.toLowerCase()),
-        );
-        this.isDialogOpen = true;
-      }
+  initOptions(list: string[]): void {
+    this.items = convertListToSelectList(list);
+    this.items = this.items.map((element: IDropdownItem) => {
+      return {
+        ...element,
+        action: () => {
+          this.setSelectedValue(element);
+        },
+      } as IDropdownItem;
+    });
+
+    this.filteredData = [...this.items];
+  }
+
+  closeList() {
+    this.isDialogOpen = false;
+  }
+
+  setSelectedValue(element: IDropdownItem): void {
+    const value = element.value;
+    this.filterControl.setValue(value);
+
+    if (this.isServerSideFilter()) {
+      this.onServerSideFilterEvent.emit(value!);
     } else {
-      this.filteredData = [];
+      this.onValueChange.emit(value!);
     }
-    this.cdr.detectChanges();
   }
 
-  clearFilter(): void {
-    if (this.filterField?.nativeElement) {
-      this.filterField.nativeElement.value = '';
-    }
-    this.isDialogOpen = false;
-    this.onClearField.emit(true);
-  }
-
-  getDialogOpen(): string {
-    if (this.isDialogOpen) {
-      return 'bmb_search-input-dialog-open';
-    }
-
-    return '';
-  }
-
-  handleItemClick(event: string): void {
-    this.onValueChange.emit(event);
-    this.isDialogOpen = false;
-    if (this.filterField?.nativeElement) {
-      this.filterField.nativeElement.value = event;
-    }
+  handleItemClick(): void {
+    this.isDialogOpen = !this.isDialogOpen;
   }
 
   openDialog() {
     this.isDialogOpen = !this.isDialogOpen;
+  }
+
+  handleKeyDown(event: KeyboardEvent) {
+    const keyboardValuesToOpenDialog = [' ', 'ArrowDown', 'Down'];
+    const keyboardValuesToAddOption = ['Enter'];
+
+    if (keyboardValuesToOpenDialog.includes(event.key)) {
+      if (!this.isDialogOpen) this.handleItemClick();
+
+      if (!this.filteredData.length) {
+        event.preventDefault();
+        return;
+      }
+      return;
+    }
+
+    if (keyboardValuesToAddOption.includes(event.key)) {
+      event.preventDefault();
+      if (!!this.filterControl.value) {
+        const selectedLength: number = this.filteredData.length;
+
+        if (!!selectedLength) {
+          this.setSelectedValue(this.filteredData[0]);
+        }
+      }
+      return;
+    }
   }
 }

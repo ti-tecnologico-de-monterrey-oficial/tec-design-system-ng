@@ -5,6 +5,7 @@ import {
   Validators,
   ValidatorFn,
 } from '@angular/forms';
+import { showError } from '../../../utils/utils';
 
 @Injectable({ providedIn: 'root' })
 export class BmbInputValidationService {
@@ -141,8 +142,7 @@ export class BmbInputValidationService {
   }
 
   showError(name: string): boolean {
-    const control = this.getFormControlByName(name);
-    return (control?.invalid && (control?.touched || control?.dirty)) || false;
+    return showError(this.getFormControlByName(name));
   }
 
   handleValidity(name: string): void {
