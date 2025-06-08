@@ -1,3 +1,11 @@
+<bmb-input
+  [type]="'text'"
+  [placeholder]="'Buscar'"
+  [icon]="'search'"
+  [appearance]="'normal'"
+  [control]="searchControl"
+></bmb-input>
+
 <div class="bmb_table">
   <div class="bmb_table-container">
     <table
@@ -23,7 +31,6 @@
             [ariaLabel]="checkboxLabel(row)"
             onkeypress="$event.stopPropagation()"
           />
-          {{ row.documentos }}
         </td>
       </ng-container>
 
@@ -91,18 +98,13 @@
             mat-cell
             *matCellDef="let row; let a = index"
             #cell
-            matTooltipPosition="below"
             [matTooltip]="hasEllipsis(cell) ? row[column.dataKey] : ''"
-            matTooltipClass="bmb_tooltip"
-            [ngClass]="{
-              'bmb_table-sticky': i === 0,
-              truncated: truncate,
-              wrapped: wrap,
-            }"
+            tooltipClass="bmb_tooltip"
+            [ngClass]="getCellClasses(row, column.dataKey, i)"
           >
-            @if (isTemplateRef(row[column.dataKey])) {
+            @if (isTemplateRef(row[column.dataKey + "Template"])) {
               <ng-template
-                [ngTemplateOutlet]="row[column.dataKey]"
+                [ngTemplateOutlet]="row[column.dataKey + 'Template']"
                 [ngTemplateOutletContext]="{ row: row }"
               ></ng-template>
             } @else {
@@ -132,7 +134,7 @@
             [@detailExpand]="row == expandedElement ? 'expanded' : 'collapsed'"
           >
             <ng-container
-              *ngTemplateOutlet="detailTemplate; context: { row }"
+              *ngTemplateOutlet="detailTemplate; context: { row: row }"
             ></ng-container>
           </div>
         </td>

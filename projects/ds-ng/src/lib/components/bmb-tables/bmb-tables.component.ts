@@ -38,7 +38,9 @@ import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
 import { TableColum, TableConfig } from './bmb-tables.interface';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { TemplateNameDirective } from './bmb-tables.directive';
+import { BmbInputComponent } from '../bmb-input/bmb-input.component';
+import { FormControl } from '@angular/forms';
+
 @Component({
   selector: 'bmb-table',
   standalone: true,
@@ -54,6 +56,7 @@ import { TemplateNameDirective } from './bmb-tables.directive';
     MatFormFieldModule,
     MatInputModule,
     MatTooltipModule,
+    BmbInputComponent,
   ],
   templateUrl: './bmb-tables.component.html',
   styleUrls: ['./bmb-tables.component.scss'],
@@ -71,6 +74,14 @@ import { TemplateNameDirective } from './bmb-tables.directive';
   ],
 })
 export class BmbTablesComponent implements AfterViewInit, OnInit {
+  private _rawColumns: TableColum[] = [];
+  private _rawConfig: TableConfig = {
+    isSelectable: false,
+    isExpandible: false,
+    isPaginable: false,
+    showActions: false,
+  };
+
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
   tableDisplayColumns: string[] = [];
   tableColumns: TableColum[] = [];
@@ -87,21 +98,28 @@ export class BmbTablesComponent implements AfterViewInit, OnInit {
   resizableMousemove?: () => void;
   resizableMouseup?: () => void;
 
+  searchControl = new FormControl('');
+
   @Input() set pageSize(size: number) {
     this.paginatorSize = size;
   }
 
   @Input() set data(data: any[]) {
     this.dataSource = new MatTableDataSource(data);
+
+    if (this.paginator) {
+      this.dataSource.paginator = this.paginator;
+    }
   }
 
   @Input() set columns(columns: TableColum[]) {
-    this.tableColumns = columns;
-    this.tableDisplayColumns = this.tableColumns.map((col) => col.def);
+    this._rawColumns = columns;
+    this.applyColumnsAndConfig();
   }
 
   @Input() set config(config: TableConfig) {
-    this.setConfig(config);
+    this._rawConfig = config;
+    this.applyColumnsAndConfig();
   }
 
   @Input() actionTemplate?: TemplateRef<any> | null;
@@ -127,23 +145,51 @@ export class BmbTablesComponent implements AfterViewInit, OnInit {
     private sanitizer: DomSanitizer,
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.searchControl.valueChanges.subscribe((value) => {
+      const safeValue = (value || '').trim().toLowerCase();
+      this.dataSource.filter = safeValue;
+    });
+
+    this.dataSource.filterPredicate = (data: any, filter: string) => {
+      const searchStr =
+        `${data.name} ${data.lastName} ${data.country}`.toLowerCase();
+      return searchStr.includes(filter);
+    };
+  }
 
   sanitizeHTML(label: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(label);
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+    if (this.dataSource && this.paginator) {
+      this.dataSource.paginator = this.paginator;
+    }
+
     this.setTableResize(this.matTableRef!.nativeElement.clientWidth);
+  }
 
-    const headerHasEllipsis = this.hasEllipsis(
-      this.headerCellRef?.nativeElement,
-    );
+  private applyColumnsAndConfig() {
+    if (!this._rawColumns) return;
 
-    this.dataSource.data.forEach((row: any) => {
-      const cellHasEllipsis = this.hasEllipsis(this.cellRef?.nativeElement);
-    });
+    const displayColumns = [...this._rawColumns.map((col) => col.def)];
+
+    if (this._rawConfig.isExpandible) {
+      displayColumns.unshift('expand');
+    }
+
+    if (this._rawConfig.isSelectable) {
+      displayColumns.unshift('select');
+    }
+
+    if (this._rawConfig.showActions) {
+      displayColumns.push('actions');
+    }
+
+    this.tableColumns = this._rawColumns;
+    this.tableDisplayColumns = displayColumns;
+    this.tableConfig = this._rawConfig;
   }
 
   setTableResize(tableWidth: number) {
@@ -292,5 +338,20 @@ export class BmbTablesComponent implements AfterViewInit, OnInit {
 
   onSelectRow(row: any) {
     this.clickedRow.emit(row);
+  }
+
+  getCellClasses(row: any, columnKey: string, index: number): any {
+    const semanticType = row[columnKey + 'Type'];
+    const classes: { [key: string]: boolean } = {
+      'bmb_table-sticky': index === 0,
+      truncated: this.truncate,
+      wrapped: this.wrap,
+    };
+
+    if (semanticType) {
+      classes['bmb_table-' + semanticType] = true;
+    }
+
+    return classes;
   }
 }

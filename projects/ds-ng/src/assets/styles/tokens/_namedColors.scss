@@ -96,6 +96,9 @@
   --creative-use-rum: rgb(var(--rum-primary));
   --creative-use-ripelemon: rgb(var(--ripe-lemon-primary));
   --creative-use-hibiscus: rgb(var(--hibiscus-primary));
+
+  --color-table-900: RGBA(var(--color-charade-900), 1);
+  --color-table-btn-900: RGBA(var(--color-charade-900), 1);
 }
 
 [data-theme="dark"],
@@ -171,4 +174,7 @@
   --creative-use-ripelemon: rgb(var(--ripe-lemon-tint));
   --creative-use-hibiscus: rgb(var(--hibiscus-tint));
   --drop_shadow-color-test-shadow: RGBA(var(--color-black-primary), 0.2);
+
+  --color-table-900: RGBA(var(--color-charade-100), 1);
+  --color-table-btn-900: RGBA(var(--color-charade-50), 1);
 }
