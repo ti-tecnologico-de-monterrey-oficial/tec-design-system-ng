@@ -57,6 +57,7 @@ export class BmbDatepickerComponent {
   disableDatesAfter = input<string>('');
   lang = input<string>('es-MX');
   helperMessage = input<string>(this.dateFormat());
+  value = input<string>();
 
   control = model<FormControl>(new FormControl());
 
@@ -82,9 +83,16 @@ export class BmbDatepickerComponent {
     };
   }
 
-  handleFocusedEvent(event: boolean) {
-    if (event) {
-      this.isWindowOpen = event;
+  handleFocusedEvent(event: KeyboardEvent | MouseEvent) {
+    if (event instanceof KeyboardEvent) {
+      if (event.key === 'Enter' || event.key === ' ') {
+        if (!this.isWindowOpen) {
+          event.preventDefault();
+          this.isWindowOpen = true;
+        }
+      }
+    } else if (event instanceof MouseEvent) {
+      if (!this.isWindowOpen) this.isWindowOpen = true;
     }
   }
 
@@ -93,8 +101,7 @@ export class BmbDatepickerComponent {
   }
 
   handleValueChange(event: string) {
-    // this.ivs.getFormControlByName(this.name()).setValue(event);
-    this.control().setValue(event);
+    this.ivs.getFormControlByName(this.name()).setValue(event);
     this.isWindowOpen = false;
     this.onChange.emit(event);
   }
@@ -104,7 +111,7 @@ export class BmbDatepickerComponent {
   }
 
   convertToDate(date: string): DateTime | null {
-      const dateTime = DateTime.fromFormat(date, this.dateFormat());
-      return dateTime.isValid ? dateTime : null;
+    const dateTime = DateTime.fromFormat(date, this.dateFormat());
+    return dateTime.isValid ? dateTime : null;
   }
 }

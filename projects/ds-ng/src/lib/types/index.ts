@@ -135,3 +135,14 @@ export interface IBmbBadgeInfo {
   appearance: IBbmBgAppearance;
   container?: boolean;
 }
+
+export interface IDropdownItem {
+  idItem?: string;
+  icon: string;
+  text: string;
+  selectedText?: string;
+  value?: string;
+  url?: string;
+  target?: IBmbTargetLink;
+  action?: () => void;
+}

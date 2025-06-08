@@ -1,20 +1,23 @@
-import { Meta, moduleMetadata, StoryObj } from "@storybook/angular";
-import { Component, input } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { BmbDividerComponent } from "../components/bmb-divider/bmb-divider.component";
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import { Component, input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { BmbDividerComponent } from '../components/bmb-divider/bmb-divider.component';
 
 @Component({
   standalone: true,
   selector: 'bmb-radius-playground',
   imports: [CommonModule, BmbDividerComponent],
   template: `
-    <div [ngStyle]="{ borderRadius: 'var(--bmb-border-radius-' + radius() + ')' }" style="border: var(--bmb-border-general_contrasts-50-1-solid); padding: 1rem; text-align: center;">
-      <button (click)="handleClick('--bmb-border-radius-' + radius())">
-        CSS variable name: <strong>--bmb-border-radius-{{radius()}}</strong>
+    <div
+      [ngStyle]="{ borderRadius: 'var(--bmb-radius-' + radius() + ')' }"
+      style="border: var(--bmb-border-general_contrasts-50-1-solid); padding: 1rem; text-align: center;"
+    >
+      <button (click)="handleClick('--bmb-radius-' + radius())">
+        CSS variable name: <strong>--bmb-radius-{{ radius() }}</strong>
       </button>
       <bmb-divider />
       <button>
-        Class name: <strong>bmb_border-radius-{{radius()}}</strong>
+        Class name: <strong>bmb_radius-{{ radius() }}</strong>
       </button>
     </div>
   `,
@@ -43,22 +46,22 @@ export default {
 
 ## Class Name
 
-The class name is defined as \`bmb_border-radius-{radius}\` where {radius} is the radius size, and also set the variable \`--bmb-border-radius\` for the child elements.
+The class name is defined as \`bmb_radius-{radius}\` where {radius} is the radius size, and also set the variable \`--bmb-radius\` for the child elements.
 
 \`\`\`
-<div style="border: var(--bmb-border-general_contrasts-50-1-solid);" class="bmb_border-radius-m">
-  <div style="border-radius: var(--bmb-border-radius);">
-    The child element has access to the border radius of the parent element's size through the variable --bmb-border-radius.
+<div style="border: var(--bmb-border-general_contrasts-50-1-solid);" class="bmb-radius-m">
+  <div style="border-radius: var(--bmb-radius);">
+    The child element has access to the border radius of the parent element's size through the variable --bmb-radius.
   </div>
 </div>
 \`\`\`
 
 ## CSS Variable
 
-The CSS variable name is defined as \`--bmb-border-radius-{radius}\` where {radius} is the radius size.
+The CSS variable name is defined as \`--bmb-radius-{radius}\` where {radius} is the radius size.
 
 \`\`\`
-<div style="border: var(--bmb-border-general_contrasts-50-1-solid); border-radius: var(--bmb-border-radius-4)">
+<div style="border: var(--bmb-border-general_contrasts-50-1-solid); border-radius: var(--bmb-radius-4)">
   Content with border radius applied using CSS variables.
 </div>
 \`\`\`
@@ -134,7 +137,7 @@ The radius size are defined on REM units, and can be used in the application by 
   },
   args: {
     radius: 'none',
-  }
+  },
 } as Meta<typeof BmbRadiusPlaygroundComponent>;
 
 type Story = StoryObj<typeof BmbRadiusPlaygroundComponent>;

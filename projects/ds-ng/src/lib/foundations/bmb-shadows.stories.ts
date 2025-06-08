@@ -1,19 +1,21 @@
-import { CommonModule } from "@angular/common";
-import { Component, input, InputSignal } from "@angular/core";
-import { moduleMetadata, Meta, StoryObj } from "@storybook/angular";
-import { BmbDividerComponent } from "../components/bmb-divider/bmb-divider.component";
+import { CommonModule } from '@angular/common';
+import { Component, input, InputSignal } from '@angular/core';
+import { moduleMetadata, Meta, StoryObj } from '@storybook/angular';
+import { BmbDividerComponent } from '../components/bmb-divider/bmb-divider.component';
 
 @Component({
-  selector: "storybook-shadows-stories",
+  selector: 'storybook-shadows-stories',
   standalone: true,
   imports: [CommonModule, BmbDividerComponent],
   template: `
     <p [ngStyle]="getStyles()">
       <button (click)="copyToClipboard('var')">
-        CSS variable name: <strong>--{{ shadowsName() }}</strong></button>
+        CSS variable name: <strong>--{{ shadowsName() }}</strong>
+      </button>
       <bmb-divider />
       <button (click)="copyToClipboard('class')">
-        Class name: <strong>{{ shadowsName() }}</strong></button>
+        Class name: <strong>{{ shadowsName() }}</strong>
+      </button>
     </p>
   `,
 })
@@ -23,20 +25,21 @@ class StorybookShadowsStoriesComponent {
   getStyles() {
     return {
       boxShadow: `var(--${this.shadowsName()})`,
-      padding: "1rem",
-      "text-align": "center",
-      "margin-top": "1rem",
+      padding: '1rem',
+      'text-align': 'center',
+      'margin-top': '1rem',
     };
   }
   copyToClipboard(type: string) {
-    const str = type === "class" ? `${this.shadowsName()}` : `--${this.shadowsName()}`;
+    const str =
+      type === 'class' ? `${this.shadowsName()}` : `--${this.shadowsName()}`;
     window.navigator.clipboard.writeText(str);
     window.alert(`Color copied to clipboard: ${str}`);
   }
 }
 
 export default {
-  title: "Foundations/Shadows",
+  title: 'Foundations/Shadows',
   component: StorybookShadowsStoriesComponent,
   decorators: [
     moduleMetadata({
@@ -56,28 +59,29 @@ This is a collection of shadows styles that can be used in the application. The 
   },
   argTypes: {
     shadowsName: {
-      name: "Shadows Name",
-      description: "This is a collection of shadows names that can be used in the application.",
+      name: 'Shadows Name',
+      description:
+        'This is a collection of shadows names that can be used in the application.',
       table: {
-        type: { summary: "string" },
-        defaultValue: { summary: "bmb-box-shadow-1" },
-        category: "Properties",
+        type: { summary: 'string' },
+        defaultValue: { summary: 'bmb-box-shadow-1' },
+        category: 'Properties',
       },
       control: {
-        type: "select",
+        type: 'select',
       },
       options: [
-        "bmb-box-shadow-1",
-        "bmb-box-shadow-2",
-        "bmb-box-shadow-3",
-        "bmb-box-shadow-4",
-        "bmb-box-shadow-5",
-        "bmb-box-shadow-6",
+        'bmb-box-shadow-1',
+        'bmb-box-shadow-2',
+        'bmb-box-shadow-3',
+        'bmb-box-shadow-4',
+        'bmb-box-shadow-5',
+        'bmb-box-shadow-6',
       ],
-    }
+    },
   },
   args: {
-    shadowsName: "bmb-box-shadow-1" as string as unknown as InputSignal<string>,
+    shadowsName: 'bmb-box-shadow-1' as string as unknown as InputSignal<string>,
   },
 } as Meta<StorybookShadowsStoriesComponent>;
 

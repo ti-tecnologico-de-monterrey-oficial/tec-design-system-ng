@@ -13,11 +13,12 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
 import { BmbDropdownMenuComponent } from '../bmb-dropdown-menu/bmb-dropdown-menu.component';
-import { IDropdownItem } from '../bmb-dropdown-menu/bmb-dropdown-menu.component';
+
 import {
   IBmbBadgeInfo,
   IBmbImageInfo,
   IBmbLinkConfiguration,
+  IDropdownItem,
 } from '../../types';
 import { BmbTextLinkComponent } from '../bmb-text-link/bmb-text-link.component';
 
@@ -64,9 +65,9 @@ export class BmbCardButtonComponent {
   isTemplate = input<boolean>(false);
   textLink = input<IBmbLinkConfiguration>();
 
-  onAddContentClick = output<any>();
-  onTitleClick = output<any>();
-  onSmallClick = output<void>();
+  onAddContentClick = output<MouseEvent>();
+  onTitleClick = output<MouseEvent>();
+  onSmallClick = output<MouseEvent>();
 
   //Small card
   isSmall = input<boolean>(false);
@@ -87,16 +88,16 @@ export class BmbCardButtonComponent {
     return text;
   }
 
-  handleSmallClick(event: any): void {
+  handleSmallClick(event: MouseEvent): void {
     this.isFlipped = !this.isFlipped;
     this.onSmallClick.emit(event);
   }
 
-  handleTitleClick(event: any): void {
+  handleTitleClick(event: MouseEvent): void {
     this.onTitleClick.emit(event);
   }
 
-  handleAddContent(event: any): void {
+  handleAddContent(event: MouseEvent): void {
     if (
       (this.isFullInteractive() &&
         this.leftContent() &&

@@ -1,5 +1,6 @@
 @use "../../../assets/styles/base/fonts" as fonts;
 @use "../../../assets/styles/base/rem" as rem;
+@use "../../../assets/styles/base/mixins" as mixins;
 
 .bmb_external-link {
   min-height: 100dvh;
@@ -10,21 +11,28 @@
     flex: 1;
   }
 
-  .bmb_dropdown_menu-content-container {
-    top: rem.rem_calc(64);
-    right: rem.rem_calc(16);
+  &-container {
+    .bmb_container {
+      border-radius: rem.rem_calc(0 0 12 12);
+      display: block;
+    }
   }
 
-  .bmb_container {
-    border-radius: rem.rem_calc(0 0 12 12);
-    display: block;
+  &-title {
+    .bmb_title-content-container-wrapper-title {
+      color: var(--general_contrasts-100);
+    }
+
+    .bmb_title-content-container-wrapper-subtitle {
+      color: var(--general_contrasts-50);
+    }
   }
 
-  .bmb_title-content-container-wrapper-title {
-    color: var(--general_contrasts-100);
-  }
+  &-menu {
+    position: relative;
 
-  .bmb_title-content-container-wrapper-subtitle {
-    color: var(--general_contrasts-50);
+    &-list {
+      @include mixins.dropdown_menu_left(250);
+    }
   }
 }

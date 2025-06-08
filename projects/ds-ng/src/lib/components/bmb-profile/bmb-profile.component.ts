@@ -111,6 +111,7 @@ export class BmbProfileComponent implements OnInit, AfterViewInit {
     if (this.isStandAlone()) {
       if (!this.standAloneData()) inputs.push('standAloneData');
       this.throwErrors(inputs, 'isStandAlone', 'true');
+      return;
     }
 
     if (this.isStudent()) {

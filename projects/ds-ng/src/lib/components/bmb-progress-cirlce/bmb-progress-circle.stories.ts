@@ -1,5 +1,9 @@
 import { Meta, StoryObj } from '@storybook/angular';
-import { BmbProgressCircleComponent } from './bmb-progress-circle.component';
+import {
+  BmbProgressCircleComponent,
+  BmbProgressCirclePathStatus,
+} from './bmb-progress-circle.component';
+import { InputSignal } from '@angular/core';
 
 export default {
   title: 'Micro Componentes/Progress Circle',
@@ -31,7 +35,7 @@ Below is an example of how you can use this component in HTML:
     valueLabel: {
       name: 'Value Label',
       control: {
-        type: 'string',
+        type: 'text',
       },
       description: 'Refers to the total value that the component show.',
       table: {
@@ -49,7 +53,7 @@ Below is an example of how you can use this component in HTML:
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
-        defaultValue: { summary: true },
+        defaultValue: { summary: false },
       },
     },
     percent: {
@@ -67,13 +71,13 @@ Below is an example of how you can use this component in HTML:
     title: {
       name: 'Title',
       control: {
-        type: 'string, Array<string>',
+        type: 'object',
       },
       description:
         'Is the text of the component, to show the text in one line use a simple array, if you want to show the title in more than one line, use an array string',
       table: {
         category: 'Properties',
-        type: { summary: 'string, Array<string>' },
+        type: { summary: 'string | string[]' },
       },
     },
     showTitle: {
@@ -85,18 +89,29 @@ Below is an example of how you can use this component in HTML:
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
-        defaultValue: { summary: true },
+        defaultValue: { summary: false },
+      },
+    },
+    fillPathStatus: {
+      name: 'Fill Path Status',
+      control: {
+        type: 'select',
+      },
+      options: ['gray', 'success', 'error', 'warning'],
+      description:
+        'Set the color of the path that fills the circle, it can be transparent, success, error or warning.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'BmbProgressCirclePathStatus' },
+        defaultValue: { summary: 'success' },
       },
     },
     showBackground: {
       name: 'Show Background',
-      control: {
-        type: 'boolean',
-      },
       description:
         'Set if the background of the progress circle will be displayed.',
       table: {
-        category: 'Properties',
+        category: 'Deprecated',
         type: { summary: 'boolean' },
         defaultValue: { summary: true },
       },
@@ -106,10 +121,35 @@ Below is an example of how you can use this component in HTML:
     percent: 85,
     title: ['Total a pagar', 'este mes'],
     valueLabel: '$10000',
-    showBackground: true,
+    showTitle: false,
+    showValueLabel: false,
+    fillPathStatus: 'success',
   },
 } as Meta<typeof BmbProgressCircleComponent>;
 
 type Story = StoryObj<BmbProgressCircleComponent>;
 
-export const Default: Story = {};
+export const Default = {};
+
+export const WithValueLabel: Story = {
+  args: {
+    showValueLabel: true as unknown as InputSignal<boolean>,
+  },
+};
+
+export const WithTitle: Story = {
+  args: {
+    showTitle: true as unknown as InputSignal<boolean>,
+    title: ['Total a pagar', 'este mes'] as unknown as InputSignal<
+      string | string[]
+    >,
+  },
+};
+
+export const WithBackground: Story = {
+  args: {
+    fillPathStatus:
+      'error' as unknown as InputSignal<BmbProgressCirclePathStatus>,
+    percent: 0 as unknown as InputSignal<number>,
+  },
+};

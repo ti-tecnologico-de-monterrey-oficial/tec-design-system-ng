@@ -9,9 +9,13 @@ import {
   input,
   output,
   model,
+  NgZone,
+  OnDestroy,
+  signal,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TabsService } from '../../services/tabs.service';
+import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 
 export interface IBmbTab {
   id: number;
@@ -27,11 +31,11 @@ export interface IBmbTab {
   templateUrl: './bmb-tabs.component.html',
   styleUrls: ['./bmb-tabs.component.scss'],
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, BmbActionIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbTabsComponent implements OnInit, AfterViewInit {
+export class BmbTabsComponent implements OnInit, AfterViewInit, OnDestroy {
   format = input<string>('');
   tabs = input<IBmbTab[]>([]);
   selectedTabId = model<number>(0); //internal
@@ -39,9 +43,16 @@ export class BmbTabsComponent implements OnInit, AfterViewInit {
   selected = output<IBmbTab>();
 
   activeTabIndex: number = 0;
+  observer: any;
+  hasScroll = signal<boolean>(false);
+  scrollLeft = signal<number>(0);
+  scrollRight = signal<number>(999999);
   @ViewChild('tabsItems') tabsItems!: ElementRef;
 
-  constructor(private tabsService: TabsService) {}
+  constructor(
+    private tabsService: TabsService,
+    private zone: NgZone,
+  ) {}
 
   ngOnInit(): void {
     const initialActiveTab = this.tabs().findIndex(
@@ -65,6 +76,27 @@ export class BmbTabsComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     setTimeout(() => this.showActiveTab(), 100);
+    this.hasScroll.set(
+      this.tabsItems.nativeElement.scrollWidth >
+        this.tabsItems.nativeElement.clientWidth,
+    );
+
+    this.observer = new ResizeObserver(() => {
+      this.zone.run(() => {
+        this.hasScroll.set(
+          this.tabsItems.nativeElement.scrollWidth >
+            this.tabsItems.nativeElement.clientWidth,
+        );
+      });
+    });
+
+    this.observer.observe(this.tabsItems.nativeElement);
+  }
+
+  ngOnDestroy(): void {
+    if (this.observer) {
+      this.observer.unobserve(this.tabsItems.nativeElement);
+    }
   }
 
   selectTab(selectedId: number): void {
@@ -118,5 +150,23 @@ export class BmbTabsComponent implements OnInit, AfterViewInit {
         });
       }
     });
+  }
+
+  scrollTo(toLeft: boolean): void {
+    const tabsElement = this.tabsItems.nativeElement;
+    tabsElement.scrollBy({
+      left: toLeft ? -tabsElement.clientWidth : tabsElement.clientWidth,
+      behavior: 'smooth',
+    });
+  }
+
+  scrollEvent(event: Event): void {
+    const tabsElement = this.tabsItems.nativeElement;
+    this.scrollLeft.set(tabsElement.scrollLeft);
+    this.scrollRight.set(
+      tabsElement.scrollLeft +
+        tabsElement.clientWidth -
+        tabsElement.scrollWidth,
+    );
   }
 }

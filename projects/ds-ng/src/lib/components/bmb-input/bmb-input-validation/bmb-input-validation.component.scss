@@ -5,6 +5,11 @@
 .bmb_input-validation {
   user-select: none;
 
+  &-wrapper {
+    display: block;
+    position: relative;
+  }
+
   &-direction-before {
     display: inline-flex;
     flex-direction: row;
@@ -19,6 +24,8 @@
 
   &-label {
     display: flex;
+    position: relative;
+
     padding: var(--bmb-spacing-s);
     gap: var(--bmb-spacing-s);
     @include fonts.font(4, regular);

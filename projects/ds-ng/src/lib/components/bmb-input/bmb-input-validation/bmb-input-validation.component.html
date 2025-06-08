@@ -1,5 +1,8 @@
-<section class="bmb_input-validation" [ngClass]="{ disabled: disabled() }">
-  <label [ngClass]="getClasses('bmb_input-validation')">
+<section class="bmb_input-validation" [ngClass]="{ disabled: idDisabled() }">
+  <label
+    class="bmb_input-validation-wrapper"
+    [ngClass]="getClasses('bmb_input-validation')"
+  >
     @if (
       !!label() ||
       isRequired() ||
@@ -24,7 +27,7 @@
         @if (type() === "text-area" && showMaxTextLength()) {
           <span class="bmb_input-validation-label-max">
             {{ getFormControl().value?.toString().length }}/{{
-              maxlength() || "-"
+              maxLength() || "-"
             }}
           </span>
         }
@@ -32,9 +35,9 @@
     }
     <ng-content />
   </label>
-  @if (!!helperMessage() || (!!errorMessage() && shouldShowError)) {
+  @if (!!helperMessage() || (!!errorMessage() && showError())) {
     <div class="bmb_input-validation-support">
-      @if (!!errorMessage() && shouldShowError) {
+      @if (!!errorMessage() && showError()) {
         <p class="bmb_input-validation-support-error">
           {{ getErrorMessage() }}
         </p>

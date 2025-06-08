@@ -1,44 +1,27 @@
 <section class="bmb_search-input">
-  <div class="bmb_search-input-field" (click)="openDialog()" onkeypress="">
-    <label class="bmb_search-input-field-label" [for]="'filter-' + uid">
-      <bmb-icon icon="search" />
-    </label>
-    <input
-      class="bmb_search-input-field-input"
-      type="text"
-      #filterInput
-      [id]="'filter-' + uid"
-      [name]="'filter-' + uid"
-      [formControl]="filterControl"
-      [placeholder]="placeholder"
-    />
-    <button
-      class="bmb_search-input-field-clear"
-      [disabled]="isLoading"
-      (click)="clearFilter()"
-    >
-      <bmb-icon icon="close" />
-    </button>
-  </div>
-  <dialog
-    class="bmb_search-input-dialog"
-    [ngClass]="{ 'bmb_search-input-dialog-open': isDialogOpen }"
+  <section
+    class="bmb_search-input-container"
+    clickOutside
+    (clickOutside)="closeList()"
   >
-    @if (isLoading) {
-      <bmb-icon icon="progress_activity" class="bmb_loader-loading" />
-    } @else {
-      <ul class="bmb_search-input-dialog-list">
-        @for (item of filteredData; track $index) {
-          <li class="bmb_search-input-dialog-list-item">
-            <button
-              class="bmb_search-input-dialog-list-item-button"
-              (click)="handleItemClick(item)"
-            >
-              {{ item }}
-            </button>
-          </li>
-        }
-      </ul>
-    }
-  </dialog>
+    <bmb-input-content
+      class="bmb_search-input-field"
+      [inputId]="id()"
+      [name]="name()"
+      icon="search"
+      [isDisabled]="isLoading()"
+      [control]="filterControl"
+      [placeholder]="placeholder()"
+      [isClearable]="true"
+      (keydown)="handleKeyDown($event)"
+      (click)="handleItemClick()"
+    />
+    <bmb-dropdown-content
+      class="bmb_search-input-dialog"
+      name="list"
+      [selectedOption]="filterControl.value"
+      [(items)]="filteredData"
+      [(isOpen)]="isDialogOpen"
+    />
+  </section>
 </section>

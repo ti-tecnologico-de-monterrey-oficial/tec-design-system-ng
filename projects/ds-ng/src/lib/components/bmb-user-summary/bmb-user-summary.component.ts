@@ -27,9 +27,9 @@ export class BmbUserSummaryComponent {
   noBox = input<boolean>(false);
   salutation = input<string>('Buenas tardes');
 
-  onClick = output<void>();
+  onClick = output<MouseEvent>();
 
-  handleClick(): void {
-    this.onClick.emit();
+  handleClick(event: MouseEvent): void {
+    this.onClick.emit(event);
   }
 }

@@ -30,12 +30,12 @@ $sizes: (
 
 :root {
   @each $name, $size in $sizes {
-    --bmb-border-radius-#{$name}: #{$size};
+    --bmb-radius-#{$name}: #{$size};
   }
 }
 
 @each $name, $size in $sizes {
-  .bmb_border-radius-#{$name} {
+  .bmb_radius-#{$name} {
     border-radius: $size;
     --bmb-border-radius: #{$size};
   }

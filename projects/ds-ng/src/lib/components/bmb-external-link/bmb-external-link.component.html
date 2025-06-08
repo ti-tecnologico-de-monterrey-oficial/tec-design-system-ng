@@ -1,6 +1,6 @@
 <section class="bmb_external-link">
   <header>
-    <bmb-container>
+    <bmb-container class="bmb_external-link-container">
       <bmb-three-cols>
         <ng-template #bmbLeftContent>
           <bmb-action-icon
@@ -11,6 +11,7 @@
         </ng-template>
         <ng-template #bmbMainContent>
           <bmb-title-content
+            class="bmb_external-link-title"
             [title]="title()"
             titleSize="6"
             [subtitle]="subtitle()"
@@ -22,16 +23,27 @@
           />
         </ng-template>
         <ng-template #bmbRightContent>
-          <bmb-action-icon
-            icon="more_horiz"
-            [iconSize]="24"
-            (buttonClick)="handleOpenMenu()"
-          />
+          <section
+            class="bmb_external-link-menu"
+            clickOutside
+            (clickOutside)="handleCloseMenu()"
+          >
+            <bmb-action-icon
+              class="bmb_external-link-menu-button"
+              icon="more_horiz"
+              [iconSize]="24"
+              (buttonClick)="handleOpenMenu()"
+            />
+            <bmb-dropdown-content
+              class="bmb_external-link-menu-list"
+              [items]="getMenuItems()"
+              [(isOpen)]="showMenu"
+            />
+          </section>
         </ng-template>
       </bmb-three-cols>
     </bmb-container>
   </header>
-  <bmb-dropdown-menu-content [items]="getMenuItems()" [(isOpen)]="showMenu" />
   <section class="bmb_external-link-content">
     <ng-content />
   </section>

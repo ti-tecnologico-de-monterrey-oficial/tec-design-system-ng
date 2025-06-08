@@ -10,13 +10,14 @@ import {
   IBmbFooterEvent,
   IBmbNavigationBarIcons,
 } from '../bmb-bottom-navigation-bar/bmb-bottom-navigation-bar.component';
-import { IDropdownItem } from '../bmb-dropdown-menu/bmb-dropdown-menu.component';
-import { BmbDropdownMenuContentComponent } from '../bmb-dropdown-menu/bmb-dropdown-menu-content/bmb-dropdown-menu-content.component';
+import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-dropdown-content.component';
 import { BmbThreeColsComponent } from '../bmb-three-cols/bmb-three-cols.component';
 import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { isExternalLink } from '../../utils/utils';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
+import { IDropdownItem } from '../../types';
+import { ClickOutsideDirective } from '../../directives/utils/clickoutside.directive';
 
 export type IBmbMenuEvent = 'link' | 'openNew' | 'info';
 
@@ -25,11 +26,12 @@ export type IBmbMenuEvent = 'link' | 'openNew' | 'info';
   standalone: true,
   imports: [
     BmbContainerComponent,
-    BmbDropdownMenuContentComponent,
+    BmbDropdownContentComponent,
     BmbBottomNavigationBarComponent,
     BmbThreeColsComponent,
     BmbActionIconComponent,
     BmbTitleContentComponent,
+    ClickOutsideDirective,
   ],
   templateUrl: './bmb-external-link.component.html',
   styleUrl: './bmb-external-link.component.scss',
@@ -80,6 +82,10 @@ export class BmbExternalLinkComponent {
 
   handleClose(event: any): void {
     this.onClose.emit(event);
+  }
+
+  handleCloseMenu(): void {
+    this.showMenu = false;
   }
 
   handleOpenMenu(): void {

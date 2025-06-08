@@ -315,7 +315,7 @@ export default {
 
 const customizable = (): StoryFn => (args) => ({
   template: `
-    <div style="height: 240px">
+    <div style="height: 25rem">
       <bmb-input-tags
         ${attributes(args)}
         (onValueChange)="onValueChange($event)"

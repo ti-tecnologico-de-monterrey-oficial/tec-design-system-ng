@@ -27,8 +27,9 @@ export class BmbCheckExternalLinkButtonComponent {
   target = input<IBmbTargetLink>('_blank');
   disabled = input<boolean>(false);
 
-  buttonPress = output<void>();
-  buttonClick = output<void>();
+  buttonPress = output<MouseEvent>();
+  buttonClick = output<MouseEvent>();
+  buttonKeyPress = output<KeyboardEvent>();
 
   @ContentChild('commonTemplate') commonTemplate!: TemplateRef<any>;
 
@@ -40,13 +41,19 @@ export class BmbCheckExternalLinkButtonComponent {
     return !isLink;
   }
 
-  handlePress(event: any): void {
-    this.buttonPress.emit();
+  handlePress(event: MouseEvent): void {
+    this.buttonPress.emit(event);
     event.stopPropagation();
   }
 
-  handleClick(event: any): void {
-    this.buttonClick.emit();
+  handleClick(event: MouseEvent): void {
+    this.buttonClick.emit(event);
     event.stopPropagation();
+  }
+
+  handleKeyPress(event: KeyboardEvent): void {
+    console.log('Key pressed:', event.key);
+
+    this.buttonKeyPress.emit(event);
   }
 }

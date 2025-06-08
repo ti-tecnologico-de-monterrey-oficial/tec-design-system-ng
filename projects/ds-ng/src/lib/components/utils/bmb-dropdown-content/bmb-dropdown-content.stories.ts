@@ -1,10 +1,10 @@
 import { Meta, StoryFn } from '@storybook/angular';
-import { BmbDropdownMenuContentComponent } from './bmb-dropdown-menu-content.component';
+import { BmbDropdownContentComponent } from './bmb-dropdown-content.component';
 import { attributes } from '../../../utils/utils';
 
 export default {
-  title: 'Internal/Dropdown menu content',
-  component: BmbDropdownMenuContentComponent,
+  title: 'Internal/Dropdown content',
+  component: BmbDropdownContentComponent,
   parameters: {
     docs: {
       description: {
@@ -12,11 +12,11 @@ export default {
 Below is an example of how you can use this component in TypeScript:
 
 \`\`\`typescript
-import { BmbDropdownMenuContentComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
+import { BmbDropdownContentComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
 @Component({
   selector: 'component',
   standalone: true,
-  imports: [ BmbDropdownMenuContentComponent ],
+  imports: [ BmbDropdownContentComponent ],
   templateUrl: './component.html',
   styleUrl: './component.scss',
 })
@@ -32,9 +32,10 @@ Below is an example of how you can use this component in HTML:
       name: 'Items',
       control: { type: 'object' },
       description: `
-Sets the list of items for the dropdown menu.
+Sets the list of items for the dropdown.
 
     IDropdownItem {
+      idItem?: string
       icon: string;
       text: string;
       url?: string;
@@ -90,7 +91,7 @@ Sets the list of items for the dropdown menu.
     isOpen: false,
     buttonClick: () => {},
   },
-} as Meta<typeof BmbDropdownMenuContentComponent>;
+} as Meta<typeof BmbDropdownContentComponent>;
 
 const customizable = (): StoryFn => (args) => ({
   props: args,
@@ -98,7 +99,7 @@ const customizable = (): StoryFn => (args) => ({
     <!-- Instruction to users: This html is used for internal Storybook logic and should not be copied -->
     <div style="height: 150px">
       <!-- Example of how you can use this component -->
-      <bmb-dropdown-menu-content
+      <bmb-dropdown-content
         ${attributes(args)}
       />
       <!-- End of the example -->

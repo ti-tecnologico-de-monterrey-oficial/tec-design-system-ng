@@ -69,7 +69,7 @@ export class BmbInteractiveIconComponent {
   layout = input<IBmbInteractiveIconType>('regular');
   setButtonTemplate = input<boolean>(false);
 
-  buttonClick = output<void>();
+  buttonClick = output<MouseEvent>();
 
   getClasses(): string[] {
     const principalClassName: string = 'bmb_interactive_icon';
@@ -86,7 +86,7 @@ export class BmbInteractiveIconComponent {
     return classes;
   }
 
-  handleClick(): void {
-    this.buttonClick.emit();
+  handleClick(event: MouseEvent): void {
+    this.buttonClick.emit(event);
   }
 }

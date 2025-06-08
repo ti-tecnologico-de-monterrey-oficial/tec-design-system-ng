@@ -15,7 +15,10 @@
       >
         <bmb-icon icon="keyboard_arrow_up" />
       </button>
-      <button (click)="handleClose()" class="bmb_push-notification-item-button">
+      <button
+        (click)="handleClose($event)"
+        class="bmb_push-notification-item-button"
+      >
         <bmb-icon icon="close" />
       </button>
     </header>
@@ -57,7 +60,7 @@
               <button
                 bmbButton
                 [appearance]="action.type ?? 'primary'"
-                (click)="handleAction(action)"
+                (click)="handleAction($event, action)"
               >
                 {{ action.title }}
               </button>
@@ -95,7 +98,7 @@
     @if (notification().isFullColor) {
       <li class="bmb_push-notification-item-close">
         <button
-          (click)="handleClose()"
+          (click)="handleClose($event)"
           class="bmb_push-notification-item-button"
         >
           <bmb-icon icon="close" />

@@ -162,18 +162,6 @@ The \`BmbTabsComponent\` optionally integrates with the \`TabsService\`, which a
     },
   },
   argTypes: {
-    format: {
-      name: 'Format',
-      control: {
-        type: 'text',
-      },
-      description:
-        'The format of the tab title. Use "uppercase" to capitalize the titles.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
     tabs: {
       name: 'Tabs',
       control: { type: 'object' },
@@ -181,24 +169,33 @@ The \`BmbTabsComponent\` optionally integrates with the \`TabsService\`, which a
         'An array of objects representing each tab. Each object should have an id, title, and optionally isActive and badge.',
       table: {
         category: 'Properties',
-        type: { summary: 'Array<Tab>' },
+        type: { summary: 'Array<IBmbTab>' },
       },
     },
     selected: {
       name: 'Selected',
       table: {
         category: 'Events',
-        type: { summary: 'EventEmitter<Tab>' },
+        type: { summary: 'EventEmitter<IBmbTab>' },
       },
       description:
         'Event emitted when a tab is selected. Provides the selected tab object.',
     },
+    format: {
+      name: 'Format',
+      control: null,
+      description:
+        'The format of the tab title. Use "uppercase" to capitalize the titles.',
+      table: {
+        category: 'Deprecated',
+        type: { summary: 'string' },
+      },
+    },
   },
   args: {
-    format: 'uppercase',
     tabs: [
-      { id: 1, title: 'Tec de Monterrey', badge: 1, isActive: true },
-      { id: 2, title: 'Prestamo educativo' },
+      { id: 1, title: 'Tec de Monterrey', badge: 13, isActive: true },
+      { id: 2, title: 'Label demasiado grande para una tab' },
       { id: 3, title: 'Mas usado' },
       { id: 4, title: 'Textuales' },
       { id: 5, title: 'Text' },

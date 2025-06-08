@@ -34,7 +34,7 @@
         bmbButton
         appearance="primary"
         size="large"
-        (click)="handleButtonPrimary()"
+        (click)="handleButtonPrimary($event)"
         type="button"
       >
         {{ buttonPrimary() }}
@@ -43,7 +43,7 @@
         bmbButton
         appearance="secondary-outlined"
         size="large"
-        (click)="handleButtonSecondary()"
+        (click)="handleButtonSecondary($event)"
         type="button"
       >
         {{ buttonSecondary() }}

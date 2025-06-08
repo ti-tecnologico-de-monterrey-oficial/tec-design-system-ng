@@ -50,6 +50,7 @@ export class BmbTagComponent implements AfterViewInit {
   dismissible = input<boolean>(false);
   rounded = input<boolean>(false);
   activityTag = input<boolean>(false);
+  idDisabled = input<boolean>(false);
 
   closedTag = output<string>();
   clickedTag = output<string>();

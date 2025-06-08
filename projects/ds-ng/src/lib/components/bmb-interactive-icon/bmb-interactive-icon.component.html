@@ -1,7 +1,7 @@
 <bmb-check-external-link-button
   [link]="link()!"
   [target]="target()!"
-  (buttonClick)="handleClick()"
+  (buttonClick)="handleClick($event)"
 >
   <section [ngClass]="getClasses()">
     <span class="bmb_interactive_icon-box">

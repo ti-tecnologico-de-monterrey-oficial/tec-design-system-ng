@@ -122,7 +122,6 @@ Below is an example of how you can use this component in HTML:
     icon: 'tune',
     placeholderSearch: 'Search',
     applyFilters: '',
-    resetFilters: '',
     controlTypes: [
       {
         title: 'Filter - tags',
