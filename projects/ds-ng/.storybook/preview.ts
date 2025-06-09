@@ -3,6 +3,7 @@ import { setCompodocJson } from "@storybook/addon-docs/angular";
 import docJson from "../../../documentation.json";
 import { themes } from 'storybook/internal/theming';
 import { withThemeByClassName } from '@storybook/addon-themes';
+import { withCustomLayout } from './addon/bambooLayout';
 
 setCompodocJson(docJson);
 
@@ -39,15 +40,15 @@ const preview: Preview = {
       },
     },
     decorators: [
-      // withThemeByClassName({
-      //   themes: {
-      //     light: 'storybook-light-theme',
-      //     dark: 'storybook-dark-theme',
-      //   },
-      //   defaultTheme: 'light',
-      //   parentSelector: 'body',
+      // componentWrapperDecorator((story) => {
+      //   return `<div class="storybook-dark-theme">${story}</div><div class="storybook-light-theme">${story}</div>`;
       // }),
-      componentWrapperDecorator((story) => `<div style="margin: 3em">${story}</div>`),
+      componentWrapperDecorator(parent => {
+        console.log('Decorator called with parent:', parent);
+        debugger;
+
+        return `<div class="zeeck">${parent}</div>`;
+      }),
     ],
   },
   tags: ['autodocs'],

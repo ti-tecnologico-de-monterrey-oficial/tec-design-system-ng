@@ -1,10 +1,11 @@
 import { BmbAccordionComponent } from './bmb-accordion.component';
-import { Meta, StoryObj } from '@storybook/angular';
+import { componentWrapperDecorator, Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { InputSignal } from '@angular/core';
 import { SizeNames } from '../../types';
 import { attributes } from '../../utils/utils';
+import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
   title: 'Micro Componentes/Accordion',
@@ -13,6 +14,13 @@ export default {
     moduleMetadata({
       declarations: [],
       imports: [CommonModule, BmbAccordionComponent],
+    }),
+    // storiesLayoutVertical,
+    componentWrapperDecorator(parent => {
+      console.log('Decorator called with parent:', parent);
+      debugger;
+
+      return `<div class="zeeck">${parent}</div>`;
     }),
   ],
   parameters: {

@@ -62,10 +62,10 @@ Transforma los cambios dentro del CHANGELOG.md en release notes profesionales co
    - Destacar beneficio principal para personas
 
 3. **Categorización inteligente:**
-   - `✨ Nuevas Funcionalidades`: Solo tipo `feat` con impacto directo
-   - `🐛 Problemas Resueltos`: Tipo `fix` que afectaban a personas
-   - `⚙️ Optimizaciones`: Tipos `perf`/`refactor` con beneficios tangibles
-   - `📚 Mejoras Documentación`: Solo docs que afectan experiencia
+   - `🆕 Nuevas Funcionalidades`: Solo tipo `feat` con impacto directo
+   - `✅ Problemas Resueltos`: Tipo `fix` que afectaban a personas
+   - `⚡ Optimizaciones`: Tipos `perf`/`refactor` con beneficios tangibles
+   - `📘 Mejoras Documentación`: Solo docs que afectan experiencia
 
 4. **Reglas de transformación:**
    - Descripciones en lenguaje no-técnico centrado en beneficios
@@ -78,17 +78,23 @@ Transforma los cambios dentro del CHANGELOG.md en release notes profesionales co
 5. **Exclusiones:**
    - Omite `chore`, `test` y cambios internos sin impacto visible
 
+6. **Contacto**
+   - Agrega un pequeno párrafo explicando que pueden solicitar soporte al siguiente correo ejemplo@tec.com
+
 ### Estructura de salida:
 ```markdown
-## [Versión] - Fecha
+## 🚀 [Versión] 🎉 - Fecha
 
 [Párrafo introductorio]
 
-### ✨ Nuevas Funcionalidades
+### 🆕 Nuevas Funcionalidades
 - [Descripción centrada en beneficios] (REF-123)
 
-### 🐛 Problemas Resueltos
+### ✅ Problemas Resueltos
 - [Explicación de impacto resuelto] (REF-456)
 
-### ⚙️ Optimizaciones
+### ⚡ Optimizaciones
 - [Beneficio de rendimiento/experiencia] (REF-789)
+
+### 👋 Contacto
+- [Párrafo de contacto]
