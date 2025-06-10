@@ -43,7 +43,7 @@ export class BmbFormValidationComponent implements AfterViewInit, OnInit {
   }
 
   addControls(): void {
-    const inputs = this.el.nativeElement.querySelectorAll('form')[0].childNodes;
+    const inputs = this.el.nativeElement.querySelector('form')[0].childNodes;
 
     inputs.forEach((input: any) => {
       try {
