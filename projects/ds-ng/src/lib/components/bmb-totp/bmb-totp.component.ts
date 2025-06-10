@@ -55,10 +55,7 @@ export class BmbTotpComponent {
 
   codeForm!: FormGroup;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private el: ElementRef,
-  ) {}
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
     this.buildForm();
