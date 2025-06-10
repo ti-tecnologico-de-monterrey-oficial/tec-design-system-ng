@@ -8,6 +8,7 @@ import {
 import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { attributes } from '../../utils/utils';
+import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 const meta: Meta<BmbCardComponent> = {
   title: 'Micro Componentes/Card',
@@ -28,9 +29,7 @@ const meta: Meta<BmbCardComponent> = {
         BmbCardHeaderComponent,
       ],
     }),
-    componentWrapperDecorator((story) => {
-      return `<div class="storybook-dark-theme">${story}</div><div class="storybook-light-theme">${story}</div>`;
-    }),
+    storiesLayoutVertical,
   ],
   parameters: {
     docs: {

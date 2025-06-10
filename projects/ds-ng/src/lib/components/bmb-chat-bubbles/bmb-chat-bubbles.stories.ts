@@ -9,6 +9,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { Component } from '@angular/core';
+import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 @Component({
   standalone: true,
@@ -34,6 +35,9 @@ class StorybookModalWrapperComponent implements AfterViewInit {
 export default {
   title: 'Micro Componentes/Chat bubbles',
   component: BmbChatBubblesComponent,
+  decorators: [
+    storiesLayoutVertical,
+  ],
   parameters: {
     docs: {
       description: {
@@ -205,8 +209,7 @@ export const UserMsg: Story = {
   args: {
     message: {
       isUserMessage: true,
-      userProfile:
-        'https://picsum.photos/id/64/200/300',
+      userProfile: 'https://picsum.photos/id/64/200/300',
       type: 'text',
       content: {
         text: ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo.',
@@ -257,8 +260,7 @@ export const TextAndImage: Story = {
       type: 'mixed',
       content: {
         text: 'Lorem insup',
-        imageUrl:
-          'https://picsum.photos/id/64/200/300',
+        imageUrl: 'https://picsum.photos/id/64/200/300',
       },
       time: new Date(),
     },

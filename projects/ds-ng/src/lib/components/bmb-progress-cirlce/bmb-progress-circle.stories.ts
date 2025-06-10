@@ -146,8 +146,7 @@ export const WithTitle: Story = {
 
 export const WithBackground: Story = {
   args: {
-    fillPathStatus:
-      'error',
+    fillPathStatus: 'error',
     percent: 0,
   },
 };

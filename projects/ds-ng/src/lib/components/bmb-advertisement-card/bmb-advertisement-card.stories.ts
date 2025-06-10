@@ -1,9 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbAdvertisementCardComponent } from './bmb-advertisement-card.component';
+import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Micro Componentes/Advertisement Card',
   component: BmbAdvertisementCardComponent,
+  decorators: [
+    storiesLayoutHorizontal,
+  ],
   parameters: {
     docs: {
       description: {

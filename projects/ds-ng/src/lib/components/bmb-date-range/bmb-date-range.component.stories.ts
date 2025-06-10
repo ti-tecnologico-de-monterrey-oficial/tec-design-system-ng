@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BmbDateRangeComponent } from './bmb-date-range.component';
+import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
   title: 'Micro Componentes/Date range',
@@ -17,6 +18,7 @@ export default {
         BmbDateRangeComponent,
       ],
     }),
+    storiesLayoutVertical,
   ],
   parameters: {
     docs: {

@@ -1,6 +1,6 @@
-import { componentWrapperDecorator, type Preview } from '@storybook/angular'
-import { setCompodocJson } from "@storybook/addon-docs/angular";
-import docJson from "../../../documentation.json";
+import { componentWrapperDecorator, type Preview } from '@storybook/angular';
+import { setCompodocJson } from '@storybook/addon-docs/angular';
+import docJson from '../../../documentation.json';
 import { themes } from 'storybook/internal/theming';
 import { withThemeByClassName } from '@storybook/addon-themes';
 import { withCustomLayout } from './addon/bambooLayout';
@@ -13,8 +13,8 @@ const preview: Preview = {
     controls: {
       expanded: true,
       matchers: {
-       color: /(background|color)$/i,
-       date: /Date$/i,
+        color: /(background|color)$/i,
+        date: /Date$/i,
       },
     },
     docs: {
@@ -43,7 +43,7 @@ const preview: Preview = {
       // componentWrapperDecorator((story) => {
       //   return `<div class="storybook-dark-theme">${story}</div><div class="storybook-light-theme">${story}</div>`;
       // }),
-      componentWrapperDecorator(parent => {
+      componentWrapperDecorator((parent) => {
         console.log('Decorator called with parent:', parent);
         debugger;
 

@@ -141,8 +141,7 @@ export const WithValueLink: Story = {
   args: {
     label: 'Correo',
     value: 'tecservices@servicios.tec.mx',
-    valueLink:
-      'mailto:tecservices@servicios.tec.mx',
+    valueLink: 'mailto:tecservices@servicios.tec.mx',
     valueTarget: '_self' as unknown as InputSignal<IBmbTargetLink>,
   },
   render: (args) => ({
@@ -162,8 +161,7 @@ export const WithValueLinkAndIcon: Story = {
     label: 'Correo',
     icon: 'mail',
     value: 'tecservices@servicios.tec.mx',
-    valueLink:
-      'mailto:tecservices@servicios.tec.mx',
+    valueLink: 'mailto:tecservices@servicios.tec.mx',
     valueTarget: '_self' as unknown as InputSignal<IBmbTargetLink>,
   },
   render: (args) => ({
@@ -181,8 +179,7 @@ export const WithValueLinkAndIcon: Story = {
 export const WithSupportText: Story = {
   args: {
     label: 'Informative text. Non actionable',
-    supportText:
-      'Here is some support text for your soul.',
+    supportText: 'Here is some support text for your soul.',
   },
   render: (args) => ({
     props: args,

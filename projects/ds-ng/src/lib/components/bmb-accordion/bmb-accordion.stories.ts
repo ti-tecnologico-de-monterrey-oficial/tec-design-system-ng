@@ -1,9 +1,7 @@
 import { BmbAccordionComponent } from './bmb-accordion.component';
-import { componentWrapperDecorator, Meta, StoryObj } from '@storybook/angular';
+import { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
-import { InputSignal } from '@angular/core';
-import { SizeNames } from '../../types';
 import { attributes } from '../../utils/utils';
 import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
@@ -15,13 +13,7 @@ export default {
       declarations: [],
       imports: [CommonModule, BmbAccordionComponent],
     }),
-    // storiesLayoutVertical,
-    componentWrapperDecorator(parent => {
-      console.log('Decorator called with parent:', parent);
-      debugger;
-
-      return `<div class="zeeck">${parent}</div>`;
-    }),
+    storiesLayoutVertical
   ],
   parameters: {
     docs: {

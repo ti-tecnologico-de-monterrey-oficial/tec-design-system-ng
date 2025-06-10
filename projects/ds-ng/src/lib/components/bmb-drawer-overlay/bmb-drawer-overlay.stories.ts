@@ -1,5 +1,7 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbDrawerOverlayComponent } from './bmb-drawer-overlay.component';
+import { storiesLayoutVertical } from '../../utils/bambooLayout';
+import { attributes } from '../../utils/utils';
 
 export default {
   title: 'Micro Componentes/Drawer Overlay',

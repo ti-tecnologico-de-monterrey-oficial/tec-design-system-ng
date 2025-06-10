@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BmbDatepickerComponent } from './bmb-datepicker.component';
 import { attributes } from '../../utils/utils';
+import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Micro Componentes/Datepicker',
@@ -18,6 +19,7 @@ export default {
         BmbDatepickerComponent,
       ],
     }),
+    storiesLayoutHorizontal,
   ],
   parameters: {
     docs: {
