@@ -1,3 +1,4 @@
+import { FormControl } from '@angular/forms';
 import { IBmbDropdownItem } from '../../public-api';
 import { IDropdownItem } from '../types';
 
@@ -68,6 +69,7 @@ export const getUUID = (): string => {
 export const convertListToSelectList = (
   options: string[] | IBmbDropdownItem[],
   _icon: string = '',
+  showIcon: boolean = false,
 ): IDropdownItem[] => {
   return options.reduce((acc: IDropdownItem[], currentElement) => {
     let id: string | undefined,
@@ -81,10 +83,12 @@ export const convertListToSelectList = (
       selectedText = currentElement;
       name = currentElement;
       value = currentElement;
-      icon = _icon!;
+      icon = _icon;
     } else {
       ({ id, selectedText, name, value, icon } = currentElement);
     }
+
+    if (!icon && showIcon && !!_icon) icon = _icon;
 
     return [
       ...acc,
@@ -144,6 +148,23 @@ export const getSelectedValues = (
   }
 
   return [value];
+};
+
+export const filteredValue = (
+  value: string,
+  list: IDropdownItem[],
+): IDropdownItem[] => {
+  if (!!value) {
+    return list.filter((item: IDropdownItem) =>
+      item.text.toLowerCase().includes(value.toLowerCase()),
+    );
+  }
+
+  return list;
+};
+
+export const showError = (control: FormControl): boolean => {
+  return (control?.invalid && (control?.touched || control?.dirty)) || false;
 };
 
 export const attributes = (object: { [key: string]: any }): string =>

@@ -25,10 +25,11 @@ import { IDropdownItem } from '../../types';
 })
 export class BmbDropdownMenuComponent {
   items = input<IDropdownItem[]>([]);
+
   isOpen = signal<boolean>(false);
 
-  toggleDropdown() {
-    this.isOpen.set(!this.isOpen());
+  openDropdown() {
+    this.isOpen.set(true);
   }
 
   closeDropdown() {

@@ -19,5 +19,10 @@
       height: 100%;
       width: 100%;
     }
+
+    &:focus,
+    &:focus-visible {
+      outline: 0 none;
+    }
   }
 }

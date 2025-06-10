@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbSearchInputComponent } from './bmb-search-input.component';
+import { attributes } from '../../utils/utils';
 
 export default {
   title: 'Micro Componentes/Search input',
@@ -131,4 +132,14 @@ Below is an example of how you can use this component in HTML:
 
 type Story = StoryObj<BmbSearchInputComponent>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: (args: any) => ({
+    template: `
+      <div style="height: 25rem">
+        <bmb-search-input
+          ${attributes(args)}
+        />
+      </div>
+      `,
+  }),
+};

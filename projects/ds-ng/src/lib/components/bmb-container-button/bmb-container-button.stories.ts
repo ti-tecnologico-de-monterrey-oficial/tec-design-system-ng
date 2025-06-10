@@ -480,12 +480,11 @@ export const SecondaryMenuExample = {
         icon: 'link',
         text: 'External Link External Link External Link',
         url: 'https://example.com',
-        target: '_self',
       },
       {
         icon: 'link',
         text: 'internal Link',
-        url: '/vivencia',
+        url: 'https://example.com',
       },
       {
         icon: 'delete',
@@ -497,4 +496,11 @@ export const SecondaryMenuExample = {
       },
     ],
   },
+  render: (args: any) => ({
+    template: `
+    <div style="height: 25rem">
+      <bmb-container-button ${attributes(args)} />
+    </div>
+    `,
+  }),
 };

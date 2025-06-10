@@ -216,7 +216,7 @@ Below is an example of how to use this component in HTML:
 const customizable = (): StoryFn => (args) => ({
   props: args,
   template: `
-    <div style="height: 500px">
+    <div style="height: 25rem">
       <bmb-input-phone-number
         ${attributes(args)}
       />
