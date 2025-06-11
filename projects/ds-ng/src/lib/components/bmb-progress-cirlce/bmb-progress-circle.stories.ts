@@ -4,11 +4,14 @@ import {
   BmbProgressCirclePathStatus,
 } from './bmb-progress-circle.component';
 import { InputSignal } from '@angular/core';
+import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Micro Componentes/Progress Circle',
   component: BmbProgressCircleComponent,
-  decorators: [],
+  decorators: [
+    storiesLayoutHorizontal,
+  ],
   parameters: {
     docs: {
       description: {

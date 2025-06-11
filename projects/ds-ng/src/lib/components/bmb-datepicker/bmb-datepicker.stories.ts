@@ -299,14 +299,12 @@ Below is an example of how to use this component in HTML:
 type Story = StoryObj<BmbDatepickerComponent>;
 
 export const Default: Story = {
+  args: {},
   render: (args) => ({
-    props: {
-      ...args,
-    },
     template: `
-      <div style="height: 500px;">
+      <div style="height: 35rem">
         <bmb-datepicker ${attributes(args)} />
       </div>
     `,
-  }),
+  })
 };

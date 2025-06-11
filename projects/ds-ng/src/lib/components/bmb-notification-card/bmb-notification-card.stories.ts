@@ -1,9 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbNotificationCardComponent } from './bmb-notification-card.component';
+import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Micro Componentes/Notification Card',
   component: BmbNotificationCardComponent,
+  decorators: [
+    storiesLayoutHorizontal,
+  ],
   parameters: {
     docs: {
       description: {

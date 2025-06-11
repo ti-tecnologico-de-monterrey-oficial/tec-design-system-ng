@@ -1,10 +1,13 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbStepProgressBarComponent } from './bmb-step-progress-bar.component';
+import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Micro Componentes/Step Progress Bar',
   component: BmbStepProgressBarComponent,
-  decorators: [],
+  decorators: [
+    storiesLayoutHorizontal,
+  ],
   parameters: {
     docs: {
       description: {

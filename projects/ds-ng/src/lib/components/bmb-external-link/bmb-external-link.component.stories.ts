@@ -1,10 +1,13 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbExternalLinkComponent } from './bmb-external-link.component';
+import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
   title: 'Macro Componentes/Access to external link',
   component: BmbExternalLinkComponent,
-  decorators: [],
+  decorators: [
+    storiesLayoutVertical,
+  ],
   parameters: {
     docs: {
       description: {

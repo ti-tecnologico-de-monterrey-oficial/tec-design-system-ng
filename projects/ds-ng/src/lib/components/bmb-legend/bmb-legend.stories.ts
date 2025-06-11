@@ -1,10 +1,13 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbLegendComponent } from './bmb-legend.component';
+import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Micro Componentes/Legend',
   component: BmbLegendComponent,
-  decorators: [],
+  decorators: [
+    storiesLayoutHorizontal,
+  ],
   parameters: {
     docs: {
       description: {

@@ -1,9 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbAlertCenterComponent } from './bmb-alert-center.component';
+import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
   title: 'Macro Componentes/Alert center',
   component: BmbAlertCenterComponent,
+  decorators: [
+    storiesLayoutVertical,
+  ],
   parameters: {
     docs: {
       description: {

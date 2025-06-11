@@ -1,6 +1,7 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { BmbSwitchComponent } from './bmb-switch.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Micro Componentes/Switch',
@@ -9,6 +10,7 @@ export default {
     moduleMetadata({
       imports: [BmbIconComponent],
     }),
+    storiesLayoutHorizontal,
   ],
   parameters: {
     docs: {

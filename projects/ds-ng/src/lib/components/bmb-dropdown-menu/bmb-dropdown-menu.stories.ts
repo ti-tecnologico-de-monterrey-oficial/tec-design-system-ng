@@ -2,7 +2,9 @@ import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { BmbDropdownMenuComponent } from './bmb-dropdown-menu.component';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
+import { attributes } from '../../utils/utils';
 
 export default {
   title: 'Micro Componentes/Dropdown Menu',
@@ -21,6 +23,7 @@ export default {
         },
       ],
     }),
+    storiesLayoutHorizontal,
   ],
   parameters: {
     docs: {
@@ -111,4 +114,13 @@ Sets the list of items for the dropdown menu.
 
 type Story = StoryObj<BmbDropdownMenuComponent>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {},
+  render: (args) => ({
+    template: `
+      <div style="height: 15rem">
+        <bmb-dropdown-menu ${attributes(args)} />
+      </div>
+    `,
+  })
+};

@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BmbDateRangeComponent } from './bmb-date-range.component';
 import { storiesLayoutVertical } from '../../utils/bambooLayout';
+import { attributes } from '../../utils/utils';
 
 export default {
   title: 'Micro Componentes/Date range',
@@ -267,4 +268,13 @@ Below is an example of how to use this component in HTML:
 
 type Story = StoryObj<BmbDateRangeComponent>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {},
+  render: (args) => ({
+    template: `
+      <div style="height: 35rem">
+        <bmb-date-range ${attributes(args)} />
+      </div>
+    `,
+  })
+};

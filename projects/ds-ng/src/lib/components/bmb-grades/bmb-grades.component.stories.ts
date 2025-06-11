@@ -1,10 +1,11 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbGradesComponent } from './bmb-grades.component';
+import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Macro Componentes/Grades',
   component: BmbGradesComponent,
-  decorators: [],
+  decorators: [storiesLayoutHorizontal],
   parameters: {
     docs: {
       description: {
