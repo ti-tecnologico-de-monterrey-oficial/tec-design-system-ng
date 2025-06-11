@@ -2,6 +2,7 @@ import { TemplateRef } from '@angular/core';
 
 export interface TableColum {
   label: string;
+  labelEn?: string;
   def: string;
   dataKey: string;
   htmlLabel?: TemplateRef<any>;
