@@ -7,6 +7,7 @@ export interface TableColum {
   htmlLabel?: TemplateRef<any>;
   templateActions?: TemplateRef<any>;
   width?: number;
+  type?: 'string' | 'number' | 'date';
   icon?: string;
 }
 

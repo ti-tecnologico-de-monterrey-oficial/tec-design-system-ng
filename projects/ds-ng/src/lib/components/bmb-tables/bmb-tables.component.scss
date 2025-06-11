@@ -11,6 +11,23 @@
   padding: rem.rem_calc(24 16);
   width: 100%;
 
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: rem.rem_calc(8 16);
+    flex-flow: row wrap;
+    gap: rem.rem_calc(16);
+  }
+
+  &-search {
+    flex: 1;
+  }
+
+  &-filters {
+    width: 100%;
+  }
+
   &-container {
     flex: 1 0 auto;
     max-width: 100%;
@@ -51,8 +68,8 @@
       &.bmb_table-checkbox {
         min-width: rem.rem_calc(62);
         padding-right: 0;
-        width: rem.rem_calc(62);
         text-align: center;
+        width: rem.rem_calc(62);
 
         + .bmb_table-sticky {
           left: rem.rem_calc(58) !important;
@@ -84,14 +101,15 @@
 
       button {
         align-items: center;
-        display: flex;
         color: var(--color-table-90);
+        display: flex;
       }
     }
 
     > th {
       border-bottom: 0;
       color: RGBA(var(--color-charade-500));
+      overflow: inherit;
       position: relative;
       text-transform: uppercase;
       @include fonts.font(4, medium);
