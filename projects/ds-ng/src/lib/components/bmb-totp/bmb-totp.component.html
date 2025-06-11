@@ -1,39 +1,41 @@
-<div class="bmb_totp">
-  <form [formGroup]="codeForm" (ngSubmit)="onSubmit()" class="bmb_totp-form">
-    <bmb-icon icon="lock" class="bmb_totp-icon" fontWeight="600" />
-    <h2 class="bmb_totp-title">{{ title() }}</h2>
-    <h4 class="bmb_totp-subtitle">{{ subtitle() }}</h4>
-    <div class="bmb_totp-code">
-      <div
-        *ngFor="let i of [].constructor(maxCode()); let idx = index"
-        class="bmb_totp-separator"
-      >
-        <input
-          type="text"
-          formControlName="code{{ idx }}"
-          [id]="'code-' + instanceId() + '-' + idx"
-          autocomplete="off"
-          maxlength="1"
-          [ngClass]="{
-            'bmb_totp-input-error': codeError(),
-            'bmb_totp-input': true,
-          }"
-          (keyup)="onKeyUp($event, idx)"
-        />
-      </div>
-    </div>
-    @if (codeError()) {
-      <p class="bmb_totp-error">{{ errorMessage() }}</p>
-    }
-    @if (showButton()) {
-      <button bmbButton appearance="primary" size="large" type="submit">
-        {{ buttonText() }}
-      </button>
-    }
-    @if (showButton() && helperText()) {
-      <p class="bmb_totp-helper">
-        {{ helperText() }}
-      </p>
-    }
+<section class="bmb_totp">
+  <form class="bmb_totp-form" [formGroup]="codeForm" (ngSubmit)="onSubmit()">
+    <bmb-container
+      class="bmb_totp-container"
+      [appearance]="'contrast-box-container'"
+    >
+      <bmb-icon class="bmb_totp-icon" icon="lock" [size]="48" />
+      <h2 class="bmb_totp-title">{{ title() }}</h2>
+      <h4 class="bmb_totp-subtitle">{{ subtitle() }}</h4>
+      <section class="bmb_totp-code">
+        <section
+          class="bmb_totp-separator"
+          *ngFor="let i of [].constructor(maxCode()); let idx = index"
+        >
+          <bmb-input-content
+            class="bmb_totp-input"
+            [inputId]="'code_' + instanceId() + '_' + idx"
+            [name]="'name_' + instanceId() + '_' + idx"
+            [maxLength]="1"
+            [isError]="codeError()"
+            [control]="getFormControl('name_' + instanceId() + '_' + idx)"
+            (keyup)="onKeyUp($event, idx)"
+          />
+        </section>
+      </section>
+      @if (codeError()) {
+        <p class="bmb_totp-error">{{ errorMessage() }}</p>
+      }
+      @if (showButton()) {
+        <button class="bmb_totp-button" bmbButton size="large" type="submit">
+          {{ buttonText() }}
+        </button>
+      }
+      @if (showButton() && helperText()) {
+        <p class="bmb_totp-helper">
+          {{ helperText() }}
+        </p>
+      }
+    </bmb-container>
   </form>
-</div>
+</section>
