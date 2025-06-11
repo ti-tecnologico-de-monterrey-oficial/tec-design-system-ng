@@ -8,6 +8,7 @@ import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { InputSignal } from '@angular/core';
 import { attributes } from '../../utils/utils';
+import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 const appearanceOptions: IBbmBgAppearance[] = [
   'normal',
@@ -49,6 +50,7 @@ export default {
     moduleMetadata({
       imports: [CommonModule, BmbListGroupComponent, BmbListGroupItemComponent],
     }),
+    storiesLayoutHorizontal,
   ],
   parameters: {
     docs: {

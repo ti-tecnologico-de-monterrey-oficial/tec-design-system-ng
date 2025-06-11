@@ -4,6 +4,7 @@ import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 import { attributes } from '../../utils/utils';
+import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
   title: 'Internal/Three column content template',
@@ -17,6 +18,7 @@ export default {
         BmbIconComponent,
       ],
     }),
+    storiesLayoutVertical,
   ],
   parameters: {
     docs: {

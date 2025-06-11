@@ -8,8 +8,9 @@ import { BmbTabsComponent } from '../bmb-tabs/bmb-tabs.component';
 import { BmbInteractiveIconComponent } from '../bmb-interactive-icon/bmb-interactive-icon.component';
 
 export default {
-  title: 'Macro Componentes/Wheel Menu (deprecated)',
+  title: 'Deprecated/Wheel Menu',
   component: BmbWheelMenuComponent,
+  tags: ['hideInSidebar'],
   decorators: [
     moduleMetadata({
       imports: [

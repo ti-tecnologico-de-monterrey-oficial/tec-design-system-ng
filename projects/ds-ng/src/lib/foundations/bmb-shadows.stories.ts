@@ -77,6 +77,7 @@ This is a collection of shadows styles that can be used in the application. The 
         'bmb-box-shadow-4',
         'bmb-box-shadow-5',
         'bmb-box-shadow-6',
+        'bmb-box-shadow-7',
       ],
     },
   },

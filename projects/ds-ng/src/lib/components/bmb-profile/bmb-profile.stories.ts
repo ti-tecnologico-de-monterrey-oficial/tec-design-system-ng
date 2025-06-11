@@ -1,10 +1,14 @@
 import { StoryObj, type Meta, type StoryFn } from '@storybook/angular';
 import { BmbProfileComponent } from './bmb-profile.component';
 import { attributes } from '../../utils/utils';
+import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Macro Componentes/Profile',
   component: BmbProfileComponent,
+  decorators: [
+    storiesLayoutHorizontal,
+  ],
   parameters: {
     docs: {
       description: {

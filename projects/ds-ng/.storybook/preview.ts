@@ -22,10 +22,6 @@ const preview: Preview = {
       canvas: {
         sourceState: 'shown',
       },
-      // themes: [
-      //   themes.light,
-      //   themes.dark,
-      // ]
     },
     options: {
       storySort: {
@@ -40,33 +36,29 @@ const preview: Preview = {
       },
     },
     decorators: [
+      // TODO: Check if later we can use this decorator to apply a global theme
       // componentWrapperDecorator((story) => {
       //   return `<div class="storybook-dark-theme">${story}</div><div class="storybook-light-theme">${story}</div>`;
       // }),
-      componentWrapperDecorator((parent) => {
-        console.log('Decorator called with parent:', parent);
-        debugger;
-
-        return `<div class="zeeck">${parent}</div>`;
-      }),
     ],
   },
   tags: ['autodocs'],
-  globalTypes: {
-    theme: {
-      name: 'Theme',
-      description: 'Global theme for components',
-      defaultValue: 'light',
-      toolbar: {
-        icon: 'mirror',
-        items: [
-          { value: 'light', icon: 'circlehollow', title: 'Light Theme' },
-          { value: 'dark', icon: 'circle', title: 'Dark Theme' },
-        ],
-        dynamicTitle: true,
-      },
-    },
-  },
+  // TODO: Check if later we can use this decorator to apply a global theme
+  // globalTypes: {
+  //   theme: {
+  //     name: 'Theme',
+  //     description: 'Global theme for components',
+  //     defaultValue: 'light',
+  //     toolbar: {
+  //       icon: 'mirror',
+  //       items: [
+  //         { value: 'light', icon: 'circlehollow', title: 'Light Theme' },
+  //         { value: 'dark', icon: 'circle', title: 'Dark Theme' },
+  //       ],
+  //       dynamicTitle: true,
+  //     },
+  //   },
+  // },
 };
 
 export default preview;

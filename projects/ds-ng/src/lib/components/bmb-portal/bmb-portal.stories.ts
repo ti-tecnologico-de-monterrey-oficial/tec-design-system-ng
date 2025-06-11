@@ -578,7 +578,7 @@ export const Default: StoryFn<typeof StorybookToastWrapperComponent> = (
     props: args,
     template: `
       <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->
-      <storybook-toast-wrapper 
+      <storybook-toast-wrapper
         ${attributes(args)}
       ></storybook-toast-wrapper>
       <!-- Start copying from here -->
