@@ -1,3 +1,91 @@
+@if (showSearch || showFilters) {
+  <div class="bmb_table-header">
+    @if (showSearch) {
+      <bmb-input
+        class="bmb_table-search"
+        [type]="'text'"
+        [placeholder]="'Buscar'"
+        [disabled]="false"
+        [icon]="'search'"
+        [appearance]="'normal'"
+        [control]="searchControl"
+      ></bmb-input>
+    }
+
+    @if (showFilters) {
+      <bmb-action-icon
+        [idElement]="''"
+        [icon]="'filter_list'"
+        [iconSize]="24"
+        (buttonClick)="toggleFilters()"
+      ></bmb-action-icon>
+
+      <div class="bmb_table-filters" *ngIf="filtersVisible">
+        <ng-container *ngFor="let column of tableColumns">
+          <div [ngSwitch]="column.type" class="bmb_table-filter-item">
+            <!-- STRING -->
+            <ng-container *ngSwitchCase="'string'">
+              <bmb-dropdown
+                [isMultiSelect]="false"
+                [label]="column.label"
+                [options]="[
+                  { name: 'Sin orden', value: 'none', id: 'none' },
+                  { name: 'A-Z', value: 'asc', id: 'asc' },
+                  { name: 'Z-A', value: 'desc', id: 'desc' },
+                ]"
+                [placeholder]="'Ordenar'"
+                [value]="getFormControl(column.dataKey + '_sort')?.value"
+                (onValueChange)="
+                  getFormControl(column.dataKey + '_sort')?.setValue($event)
+                "
+              />
+            </ng-container>
+
+            <!-- NUMBER -->
+            <ng-container *ngSwitchCase="'number'">
+              <div class="filter-number">
+                <bmb-input
+                  [label]="column.label"
+                  [type]="'number'"
+                  [placeholder]="'Mín'"
+                  [appearance]="'normal'"
+                  [control]="getFormControl(column.dataKey + '_min')"
+                />
+                <bmb-input
+                  [type]="'number'"
+                  [placeholder]="'Máx'"
+                  [appearance]="'normal'"
+                  [control]="getFormControl(column.dataKey + '_max')"
+                />
+              </div>
+            </ng-container>
+
+            <!-- DATE -->
+            <ng-container *ngSwitchCase="'date'">
+              <bmb-date-range
+                [label]="column.label"
+                [placeholderStartDate]="'Desde'"
+                [placeholderEndDate]="'Hasta'"
+                [icon]="'calendar_month'"
+                [appearance]="'normal'"
+                [dateFormat]="'dd/MM/yyyy'"
+                [multipleRow]="true"
+                [controlStart]="getFormControl(column.dataKey + '_from')"
+                [controlEnd]="getFormControl(column.dataKey + '_to')"
+                (startDateChange)="
+                  getFormControl(column.dataKey + '_from')?.setValue($event)
+                "
+                (endDateChange)="
+                  getFormControl(column.dataKey + '_to')?.setValue($event)
+                "
+              />
+            </ng-container>
+          </div>
+        </ng-container>
+      </div>
+    }
+  </div>
+}
 <div class="bmb_table">
   <div class="bmb_table-container">
     <table
@@ -14,6 +102,7 @@
             [checked]="selection.hasValue() && isAllSelected()"
             [indeterminate]="selection.hasValue() && !isAllSelected()"
             [ariaLabel]="checkboxLabel()"
+            [disabled]="false"
           />
         </th>
         <td mat-cell *matCellDef="let row" class="bmb_table-checkbox">
@@ -21,9 +110,9 @@
             (change)="$event ? selection.toggle(row) : null; onSelect()"
             [checked]="selection.isSelected(row)"
             [ariaLabel]="checkboxLabel(row)"
+            [disabled]="false"
             onkeypress="$event.stopPropagation()"
           />
-          {{ row.documentos }}
         </td>
       </ng-container>
 
@@ -71,38 +160,34 @@
               wrapped: wrap,
             }"
           >
+            <!-- Título -->
             @if (column.htmlLabel) {
               <ng-template
                 [ngTemplateOutlet]="column.htmlLabel"
-                [ngTemplateOutletContext]="{
-                  column: column,
-                  index: i,
-                }"
+                [ngTemplateOutletContext]="{ column: column, index: i }"
               ></ng-template>
             } @else {
               {{ column.label }}
             }
+
+            <!-- Resize Handle -->
             <span
               class="bmb_table-resize"
               (mousedown)="onResizeColumn($event, i)"
             ></span>
           </th>
+
           <td
             mat-cell
             *matCellDef="let row; let a = index"
             #cell
-            matTooltipPosition="below"
             [matTooltip]="hasEllipsis(cell) ? row[column.dataKey] : ''"
-            matTooltipClass="bmb_tooltip"
-            [ngClass]="{
-              'bmb_table-sticky': i === 0,
-              truncated: truncate,
-              wrapped: wrap,
-            }"
+            tooltipClass="bmb_tooltip"
+            [ngClass]="getCellClasses(row, column.dataKey, i)"
           >
-            @if (isTemplateRef(row[column.dataKey])) {
+            @if (isTemplateRef(row[column.dataKey + "Template"])) {
               <ng-template
-                [ngTemplateOutlet]="row[column.dataKey]"
+                [ngTemplateOutlet]="row[column.dataKey + 'Template']"
                 [ngTemplateOutletContext]="{ row: row }"
               ></ng-template>
             } @else {
@@ -132,7 +217,7 @@
             [@detailExpand]="row == expandedElement ? 'expanded' : 'collapsed'"
           >
             <ng-container
-              *ngTemplateOutlet="detailTemplate; context: { row }"
+              *ngTemplateOutlet="detailTemplate; context: { row: row }"
             ></ng-container>
           </div>
         </td>
