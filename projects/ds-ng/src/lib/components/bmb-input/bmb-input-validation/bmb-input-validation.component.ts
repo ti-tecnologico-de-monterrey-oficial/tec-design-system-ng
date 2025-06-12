@@ -68,9 +68,7 @@ export class BmbInputValidationComponent implements OnInit {
   showError = model<boolean>(false);
   control = model<FormControl>();
 
-  constructor(
-    private cdr: ChangeDetectorRef,
-  ) {}
+  constructor(private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.addControlConfig(
@@ -84,7 +82,7 @@ export class BmbInputValidationComponent implements OnInit {
       this.pattern()!,
       this.jsonFormat(),
       this.isCustomError(),
-      this.customValidation()!
+      this.customValidation()!,
     );
   }
 
@@ -99,7 +97,7 @@ export class BmbInputValidationComponent implements OnInit {
     pattern: string,
     isJsonFormat: boolean,
     isCustomError: boolean,
-    customValidation: ValidatorFn
+    customValidation: ValidatorFn,
   ): void {
     if (!this.control()?.value && (!!value || checked)) {
       this.addValue(this.control()!, type, value, checked);

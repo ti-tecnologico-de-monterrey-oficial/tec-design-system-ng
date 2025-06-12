@@ -13,7 +13,11 @@ import { BmbInputValidationComponent } from '../bmb-input/bmb-input-validation/b
 import { CommonModule } from '@angular/common';
 import { getUUID } from '../../utils/utils';
 import { IBmbInputError } from '../bmb-input/bmb-input.component';
-import { assignNewFormControl, newFormControlByType, showError } from '../../utils/formControl';
+import {
+  assignNewFormControl,
+  newFormControlByType,
+  showError,
+} from '../../utils/formControl';
 
 @Component({
   selector: 'bmb-radial',
@@ -48,13 +52,13 @@ export class BmbRadialComponent implements OnInit {
   isControlNull: boolean = false;
 
   ngOnInit() {
-      if (!this.control()) {
-        this.control.set(
-          assignNewFormControl(this.name(), this.control(), 'radio')!,
-        );
-        this.isControlNull = true;
-      }
+    if (!this.control()) {
+      this.control.set(
+        assignNewFormControl(this.name(), this.control(), 'radio')!,
+      );
+      this.isControlNull = true;
     }
+  }
 
   get shouldShowError(): boolean {
     return showError(this.control());

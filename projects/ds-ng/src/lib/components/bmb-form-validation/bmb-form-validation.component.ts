@@ -8,11 +8,7 @@ import {
   QueryList,
   ViewEncapsulation,
 } from '@angular/core';
-import {
-  ReactiveFormsModule,
-  FormGroup,
-  FormControl,
-} from '@angular/forms';
+import { ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BmbInputComponent } from '../bmb-input/bmb-input.component';
 import { BmbInputTagsComponent } from '../bmb-input-tags/bmb-input-tags.component';
@@ -92,7 +88,7 @@ export class BmbFormValidationComponent implements AfterViewInit {
       this.addControl(child.name(), child.control(), child.isControlNull);
     });
     this.bmbRadials.forEach((child) => {
-        this.addControl(child.name(), child.control(), child.isControlNull);
+      this.addControl(child.name(), child.control(), child.isControlNull);
     });
   }
 

@@ -13,7 +13,11 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { BmbInputValidationComponent } from '../bmb-input/bmb-input-validation/bmb-input-validation.component';
 import { getUUID } from '../../utils/utils';
 import { IBmbInputError } from '../bmb-input/bmb-input.component';
-import { assignNewFormControl, newFormControlByType, showError } from '../../utils/formControl';
+import {
+  assignNewFormControl,
+  newFormControlByType,
+  showError,
+} from '../../utils/formControl';
 
 @Component({
   selector: 'bmb-checkbox',
@@ -49,11 +53,11 @@ export class BmbCheckboxComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.control()) {
-          this.control.set(
-            assignNewFormControl(this.name(), this.control(), 'checkbox')!,
-          );
-          this.isControlNull = true;
-        }
+      this.control.set(
+        assignNewFormControl(this.name(), this.control(), 'checkbox')!,
+      );
+      this.isControlNull = true;
+    }
 
     if (this.indeterminate()) {
       this.checked.set(false);
@@ -73,7 +77,7 @@ export class BmbCheckboxComponent implements OnInit {
     }
 
     this.checked.set(target.checked);
-    this.control().setValue(this.checked())
+    this.control().setValue(this.checked());
     this.change.emit(event);
     event.preventDefault();
   }

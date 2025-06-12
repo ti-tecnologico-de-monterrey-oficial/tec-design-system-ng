@@ -10,7 +10,10 @@ import { FormControl } from '@angular/forms';
 import { BmbDatepickerComponent } from '../bmb-datepicker/bmb-datepicker.component';
 import { CommonModule } from '@angular/common';
 import { IBmbInputAppearance } from '../bmb-input/bmb-input.component';
-import { assignNewFormControl, newFormControlByType } from '../../utils/formControl';
+import {
+  assignNewFormControl,
+  newFormControlByType,
+} from '../../utils/formControl';
 
 @Component({
   selector: 'bmb-date-range',

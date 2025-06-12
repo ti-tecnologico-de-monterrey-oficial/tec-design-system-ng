@@ -6,7 +6,9 @@ export const showError = (control: FormControl): boolean => {
   return (control?.invalid && (control?.touched || control?.dirty)) || false;
 };
 
-export const newFormControlByType = (type: IBmbInputType | IBmbInputValType  = 'text'): FormControl => {
+export const newFormControlByType = (
+  type: IBmbInputType | IBmbInputValType = 'text',
+): FormControl => {
   if (
     type === 'radio' ||
     type === 'checkbox' ||

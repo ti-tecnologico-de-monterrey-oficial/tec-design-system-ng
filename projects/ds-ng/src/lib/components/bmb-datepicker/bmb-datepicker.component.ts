@@ -23,7 +23,10 @@ import {
 import { BmbDatepickerModalComponent } from './bmb-datepicker-modal/bmb-datepicker-modal.component';
 import { ClickOutsideDirective } from '../../directives/utils/clickoutside.directive';
 import { getUUID } from '../../utils/utils';
-import { assignNewFormControl, newFormControlByType } from '../../utils/formControl';
+import {
+  assignNewFormControl,
+  newFormControlByType,
+} from '../../utils/formControl';
 
 @Component({
   selector: 'bmb-datepicker',

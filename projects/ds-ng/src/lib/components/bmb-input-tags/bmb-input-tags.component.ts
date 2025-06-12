@@ -57,9 +57,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [],
 })
-export class BmbInputTagsComponent
-  implements OnInit, OnChanges
-{
+export class BmbInputTagsComponent implements OnInit, OnChanges {
   errorMessage = input<string | IBmbInputError>('');
   tooltip = input<string>('');
   tooltipPosition = input<IBmbInputTooltipPosition>({
@@ -92,9 +90,7 @@ export class BmbInputTagsComponent
   isKeyboardEvent: boolean = false;
   isControlNull: boolean = false;
 
-  constructor(
-    private cdr: ChangeDetectorRef,
-  ) {}
+  constructor(private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     if (this.disabled()) this.filterControl.disable();
