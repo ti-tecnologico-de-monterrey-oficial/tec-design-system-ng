@@ -5,14 +5,15 @@ import {
   input,
   output,
   model,
+  OnInit,
 } from '@angular/core';
 import { IBbmSidePosition } from '../../types';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { BmbInputValidationComponent } from '../bmb-input/bmb-input-validation/bmb-input-validation.component';
 import { CommonModule } from '@angular/common';
 import { getUUID } from '../../utils/utils';
-import { BmbInputValidationService } from '../bmb-input/bmb-input-validation/bmb-input-validation.service';
 import { IBmbInputError } from '../bmb-input/bmb-input.component';
+import { assignNewFormControl, newFormControlByType, showError } from '../../utils/formControl';
 
 @Component({
   selector: 'bmb-radial',
@@ -23,7 +24,7 @@ import { IBmbInputError } from '../bmb-input/bmb-input.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbRadialComponent {
+export class BmbRadialComponent implements OnInit {
   id = input<string>('');
   checked = input<boolean>(false);
   disabled = input<boolean>(false);
@@ -39,26 +40,31 @@ export class BmbRadialComponent {
   helperMessage = input<string>('');
 
   showError = model<boolean>(false);
-  control = model<FormControl>(new FormControl());
+  control = model<FormControl>(newFormControlByType('radio'));
 
   change = output<HTMLInputElement>();
   onKeyDown = output<KeyboardEvent>();
 
-  constructor(private ivs: BmbInputValidationService) {}
+  isControlNull: boolean = false;
 
-  getFormControl(): FormControl {
-    return this.ivs.getFormControlByName(this.name());
-  }
+  ngOnInit() {
+      if (!this.control()) {
+        this.control.set(
+          assignNewFormControl(this.name(), this.control(), 'radio')!,
+        );
+        this.isControlNull = true;
+      }
+    }
 
   get shouldShowError(): boolean {
-    return this.ivs.showError(this.name());
+    return showError(this.control());
   }
 
   handleRadioChange(event: Event) {
     const target = event.target as HTMLInputElement;
 
     if (target && target.checked) {
-      this.ivs.getFormControlByName(this.name()).setValue(target.value);
+      this.control().setValue(target.value);
       target.name = this.name();
       this.change.emit(target);
     }
@@ -70,7 +76,7 @@ export class BmbRadialComponent {
 
     if (event.key === 'Enter' || event.key === ' ') {
       if (!target.checked) {
-        this.ivs.getFormControlByName(this.name()).setValue(target.value);
+        this.control().setValue(target.value);
         target.name = this.name();
         this.change.emit(target);
       }

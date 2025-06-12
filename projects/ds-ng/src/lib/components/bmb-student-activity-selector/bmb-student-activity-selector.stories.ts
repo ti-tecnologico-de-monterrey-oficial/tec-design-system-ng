@@ -44,7 +44,7 @@ import { CommonModule } from '@angular/common';
     BmbStudentActivitySelectorComponent,
   ],
   templateUrl: './component.html',
-  styleUrls: ['./component.scss'],
+  styleUrl: './component.scss',
 })
 
 \`\`\`

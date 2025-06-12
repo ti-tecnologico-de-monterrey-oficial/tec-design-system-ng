@@ -3,6 +3,7 @@ import {
   Component,
   input,
   model,
+  OnInit,
   output,
   ViewEncapsulation,
 } from '@angular/core';
@@ -22,7 +23,7 @@ import {
 import { BmbDatepickerModalComponent } from './bmb-datepicker-modal/bmb-datepicker-modal.component';
 import { ClickOutsideDirective } from '../../directives/utils/clickoutside.directive';
 import { getUUID } from '../../utils/utils';
-import { BmbInputValidationService } from '../bmb-input/bmb-input-validation/bmb-input-validation.service';
+import { assignNewFormControl, newFormControlByType } from '../../utils/formControl';
 
 @Component({
   selector: 'bmb-datepicker',
@@ -39,9 +40,8 @@ import { BmbInputValidationService } from '../bmb-input/bmb-input-validation/bmb
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbDatepickerComponent {
+export class BmbDatepickerComponent implements OnInit {
   label = input<string>('');
-  placeholder = input<string>('');
   icon = input<string>('calendar_month');
   invalidFormatErrorMessage = input<string>('Formato invalido');
   requiredFieldErrorMessage = input<string>('Campo requerido');
@@ -50,6 +50,7 @@ export class BmbDatepickerComponent {
   isRequired = input<boolean>(false);
   isClearable = input<boolean>(false);
   dateFormat = input<string>('dd/MM/yyyy');
+  placeholder = input<string>(this.dateFormat());
   // inline = input<boolean>(false);
   stepYearPicker = input<number>(18);
   name = input<string>(getUUID());
@@ -59,15 +60,21 @@ export class BmbDatepickerComponent {
   helperMessage = input<string>(this.dateFormat());
   value = input<string>();
 
-  control = model<FormControl>(new FormControl());
+  control = model<FormControl>(newFormControlByType());
 
   onChange = output<string>();
 
   now = DateTime.now();
   defaultDate = new Date();
   isWindowOpen = false;
+  isControlNull: boolean = false;
 
-  constructor(private ivs: BmbInputValidationService) {}
+  ngOnInit(): void {
+    if (!this.control()) {
+      this.control.set(assignNewFormControl(this.name(), this.control())!);
+      this.isControlNull = true;
+    }
+  }
 
   customValidatorDate(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
@@ -101,7 +108,7 @@ export class BmbDatepickerComponent {
   }
 
   handleValueChange(event: string) {
-    this.ivs.getFormControlByName(this.name()).setValue(event);
+    this.control().setValue(event);
     this.isWindowOpen = false;
     this.onChange.emit(event);
   }

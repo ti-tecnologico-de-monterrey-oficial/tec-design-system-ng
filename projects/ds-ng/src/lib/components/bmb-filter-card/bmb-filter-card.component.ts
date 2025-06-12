@@ -26,7 +26,7 @@ import { BmbTagComponent } from '../bmb-tags/bmb-tags.component';
 @Component({
   selector: 'bmb-filter-card',
   templateUrl: './bmb-filter-card.component.html',
-  styleUrls: ['./bmb-filter-card.component.scss'],
+  styleUrl: './bmb-filter-card.component.scss',
   standalone: true,
   imports: [
     CommonModule,

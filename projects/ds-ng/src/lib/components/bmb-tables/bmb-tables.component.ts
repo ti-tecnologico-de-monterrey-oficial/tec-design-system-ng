@@ -58,7 +58,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
     MatTooltipModule,
   ],
   templateUrl: './bmb-tables.component.html',
-  styleUrls: ['./bmb-tables.component.scss'],
+  styleUrl: './bmb-tables.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   animations: [

@@ -10,6 +10,7 @@ import { FormControl } from '@angular/forms';
 import { BmbDatepickerComponent } from '../bmb-datepicker/bmb-datepicker.component';
 import { CommonModule } from '@angular/common';
 import { IBmbInputAppearance } from '../bmb-input/bmb-input.component';
+import { assignNewFormControl, newFormControlByType } from '../../utils/formControl';
 
 @Component({
   selector: 'bmb-date-range',
@@ -22,8 +23,6 @@ import { IBmbInputAppearance } from '../bmb-input/bmb-input.component';
 })
 export class BmbDateRangeComponent implements OnInit {
   label = input<string>('');
-  placeholderStartDate = input<string>('');
-  placeholderEndDate = input<string>('');
   icon = input<string>('calendar_month');
   invalidFormatErrorMessage = input<string>('');
   requiredFieldErrorMessage = input<string>('');
@@ -31,17 +30,35 @@ export class BmbDateRangeComponent implements OnInit {
   disabled = input<boolean>(false);
   isRequired = input<boolean>(false);
   isClearable = input<boolean>(false);
-  controlStart = model<FormControl>(new FormControl());
-  controlEnd = model<FormControl>(new FormControl());
+  controlStart = model<FormControl>(newFormControlByType());
+  controlEnd = model<FormControl>(newFormControlByType());
   dateFormat = input<string>('dd/MM/yyyy');
+  placeholderStartDate = input<string>(this.dateFormat());
+  placeholderEndDate = input<string>(this.dateFormat());
   stepYearPicker = input<number>(12);
   name = input<string>('');
   multipleRow = input<boolean>(true);
 
   disableDatesBefore: string = '';
   disableDatesAfter: string = '';
+  isControlStartNull: boolean = false;
+  isControlEndNull: boolean = false;
 
   ngOnInit() {
+    if (!this.controlStart()) {
+      this.controlStart.set(
+        assignNewFormControl(this.name(), this.controlStart())!,
+      );
+      this.isControlStartNull = true;
+    }
+
+    if (!this.controlEnd()) {
+      this.controlEnd.set(
+        assignNewFormControl(this.name(), this.controlEnd())!,
+      );
+      this.isControlEndNull = true;
+    }
+
     this.controlStart()?.valueChanges.subscribe((value) => {
       if (!!value) {
         this.disableDatesBefore = value;

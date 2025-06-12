@@ -13,12 +13,17 @@ import {
   IBmbInputTooltipPosition,
   IBmbInputType,
 } from '../bmb-input.component';
-import { FormControl, ReactiveFormsModule, ValidatorFn } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  ReactiveFormsModule,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { IBbmSidePosition } from '../../../types';
 import { CommonModule } from '@angular/common';
 import { BmbTooltipComponent } from '../../bmb-tooltip/bmb-tooltip.component';
 import { getPositionClass } from '../../../utils/utils';
-import { BmbInputValidationService } from './bmb-input-validation.service';
 
 export type IBmbInputValType = 'checkbox' | 'email' | 'phone' | 'switch';
 
@@ -65,14 +70,11 @@ export class BmbInputValidationComponent implements OnInit {
 
   constructor(
     private cdr: ChangeDetectorRef,
-    private ivs: BmbInputValidationService,
   ) {}
 
   ngOnInit(): void {
-    this.ivs.setFormControl(this.control()!, this.type(), this.name());
-    this.ivs.addControlConfig(
+    this.addControlConfig(
       this.type(),
-      this.name(),
       this.value(),
       this.checked(),
       this.isRequired(),
@@ -82,9 +84,109 @@ export class BmbInputValidationComponent implements OnInit {
       this.pattern()!,
       this.jsonFormat(),
       this.isCustomError(),
-      this.customValidation()!,
-      this.cdr,
+      this.customValidation()!
     );
+  }
+
+  addControlConfig(
+    type: string,
+    value: unknown,
+    checked: boolean,
+    isRequired: boolean,
+    min: number,
+    max: number,
+    minLength: number,
+    pattern: string,
+    isJsonFormat: boolean,
+    isCustomError: boolean,
+    customValidation: ValidatorFn
+  ): void {
+    if (!this.control()?.value && (!!value || checked)) {
+      this.addValue(this.control()!, type, value, checked);
+    }
+
+    if (isRequired && !this.control()?.hasValidator(Validators.required)) {
+      this.control()?.addValidators(Validators.required);
+    }
+
+    if (min) {
+      this.control()?.addValidators(Validators.min(min));
+    }
+
+    if (max) {
+      this.control()?.addValidators(Validators.max(max));
+    }
+
+    if (minLength) {
+      this.control()?.addValidators(Validators.minLength(minLength));
+    }
+
+    if (pattern) {
+      this.control()?.addValidators(Validators.pattern(pattern));
+    }
+
+    if (type === 'email' && !this.control()?.hasValidator(Validators.email)) {
+      this.control()?.addValidators(Validators.email);
+    }
+
+    if (isJsonFormat) {
+      this.control()?.addValidators(this.validatorError('jsonValidation'));
+    }
+
+    if (isCustomError) {
+      this.control()?.addValidators(this.validatorError(customValidation));
+    }
+
+    if (this.idDisabled()) this.control()?.disable();
+    else this.control()?.enable();
+
+    this.control()?.valueChanges.subscribe(() => {
+      this.cdr.markForCheck();
+    });
+  }
+
+  validatorError(errorType: string | ValidatorFn): ValidatorFn {
+    if (typeof errorType === 'string') {
+      return (control: AbstractControl): { [key: string]: any } | null => {
+        if (!control.value) {
+          return null;
+        }
+
+        if (errorType === 'jsonValidation') {
+          try {
+            JSON.parse(control.value);
+            return null;
+          } catch (e) {
+            return { invalidJson: true };
+          }
+        }
+        return null;
+      };
+    } else {
+      return errorType;
+    }
+  }
+
+  addValue(
+    control: FormControl,
+    type: string,
+    value: unknown,
+    checked: boolean,
+  ): void {
+    if (type === 'radio') {
+      if (checked) control.setValue(value);
+      return;
+    }
+
+    if (type === 'checkbox' || type === 'switch') {
+      if (checked) control.setValue(checked);
+      return;
+    }
+
+    if (value) {
+      control.setValue(value);
+      return;
+    }
   }
 
   getClasses(className: string): string {
@@ -95,29 +197,29 @@ export class BmbInputValidationComponent implements OnInit {
     return '';
   }
 
-  getFormControl(): FormControl {
-    return this.ivs.getFormControlByName(this.name());
-  }
-
   getErrorMessage(): string {
     if (typeof this.errorMessage() === 'string') {
       return this.errorMessage().toString();
     }
 
-    const control = this.ivs.getFormControlByName(this.name());
     const error = this.errorMessage() as IBmbInputError;
 
-    if (control.hasError('pattern') && !!error.pattern) return error.pattern;
-    if (control.hasError('min') && !!error.min) return error.min;
-    if (control.hasError('max') && !!error.max) return error.max;
-    if (control.hasError('minlength') && !!error.minLength)
+    if (this.control()?.hasError('pattern') && !!error.pattern)
+      return error.pattern;
+    if (this.control()?.hasError('min') && !!error.min) return error.min;
+    if (this.control()?.hasError('max') && !!error.max) return error.max;
+    if (this.control()?.hasError('minlength') && !!error.minLength)
       return error.minLength;
-    if (control.hasError('maxlength') && !!error.maxLength)
+    if (this.control()?.hasError('maxlength') && !!error.maxLength)
       return error.maxLength;
-    if (control.hasError('required') && !!error.required) return error.required;
-    if (control.hasError('invalidJson') && !!error.jsonFormat)
+    if (this.control()?.hasError('required') && !!error.required)
+      return error.required;
+    if (this.control()?.hasError('invalidJson') && !!error.jsonFormat)
       return error.jsonFormat;
-    if (control.hasError('customValidation') && !!error.customValidation)
+    if (
+      this.control()?.hasError('customValidation') &&
+      !!error.customValidation
+    )
       return error.customValidation;
 
     return '';
