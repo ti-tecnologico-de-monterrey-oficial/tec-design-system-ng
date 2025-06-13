@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import {
   Component,
-  Input,
   AfterViewInit,
   ViewChild,
   OnInit,
@@ -17,6 +16,7 @@ import {
   OnChanges,
   effect,
   SimpleChanges,
+  model,
 } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import {
@@ -128,9 +128,11 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
   wrap = input<boolean>(true);
   initialTableSelection = input<number[]>([]);
   lang = input<BmbTableLang>('es');
+  clearSelection = model<boolean>(false);
 
   @Output() select: EventEmitter<any> = new EventEmitter();
   @Output() clickedRow: EventEmitter<any> = new EventEmitter();
+
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatTable, { read: ElementRef }) private matTableRef?: ElementRef;
@@ -170,6 +172,14 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
     if (changes['config']) {
       this.setConfig(changes['config'].currentValue);
     }
+
+    if (changes['clearSelection']) {
+      if (this.clearSelection()) {
+        this.selection.clear();
+        this.clearSelection.set(false);
+        this.select.emit(this.selection.selected);
+      }
+    }
   }
 
   ngOnInit(): void {
@@ -200,7 +210,7 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
   }
 
   parseData(data: any[]) {
-    this.dataSource = new MatTableDataSource(data);
+    this.dataSource.data = data;
     this.originalData = data;
     this.applyFilters();
 
