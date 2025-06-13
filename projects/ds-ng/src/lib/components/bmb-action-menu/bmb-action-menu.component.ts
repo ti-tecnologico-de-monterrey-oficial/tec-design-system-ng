@@ -30,6 +30,9 @@ export class BmbActionMenuComponent implements AfterContentInit {
   showHeader = input<boolean>(true);
   projectedContent: TemplateRef<any>[] = [];
 
+  // Deprecated
+  isAList = input<boolean>(false);
+
   @ContentChildren(TemplateRef) contentTemplates!: QueryList<TemplateRef<any>>;
 
   ngAfterContentInit() {

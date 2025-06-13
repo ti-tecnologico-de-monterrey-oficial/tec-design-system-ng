@@ -2,6 +2,7 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { BehaviorSubject } from 'rxjs';
 import { BmbDotPaginatorComponent } from './bmb-dot-paginator.component';
 import { attributes } from '../../utils/utils';
+import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export interface Target {
   target: string;
@@ -11,6 +12,9 @@ export interface Target {
 export default {
   title: 'Micro Componentes/Dot Paginator',
   component: BmbDotPaginatorComponent,
+  decorators: [
+    storiesLayoutVertical,
+  ],
   parameters: {
     docs: {
       description: {
@@ -156,7 +160,7 @@ export const Default: Story = {
     // If `args.activeDotIndex` is a ModelSignal<number>, extract its value.
     const initialActiveDotIndex =
       typeof args.activeDotIndex === 'function'
-        ? args.activeDotIndex() // Call the signal to get the number value
+        ? (args.activeDotIndex as () => number)() // Call the signal to get the number value
         : args.activeDotIndex;
 
     const activeDotIndex$ = new BehaviorSubject<number>(initialActiveDotIndex);

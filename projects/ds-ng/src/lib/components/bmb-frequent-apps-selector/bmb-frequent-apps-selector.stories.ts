@@ -2,6 +2,7 @@ import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BmbFrequentAppsSelectorComponent } from './bmb-frequent-apps-selector.component';
+import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Macro Componentes/Frequent Apps Selector',
@@ -10,6 +11,7 @@ export default {
     moduleMetadata({
       imports: [CommonModule, RouterTestingModule],
     }),
+    storiesLayoutHorizontal,
   ],
   parameters: {
     docs: {

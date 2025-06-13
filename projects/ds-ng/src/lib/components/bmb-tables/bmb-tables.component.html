@@ -1,6 +1,6 @@
-@if (showSearch || showFilters) {
+@if (showSearch() || showFilters()) {
   <div class="bmb_table-header">
-    @if (showSearch) {
+    @if (showSearch()) {
       <bmb-input
         class="bmb_table-search"
         [type]="'text'"
@@ -12,7 +12,7 @@
       ></bmb-input>
     }
 
-    @if (showFilters) {
+    @if (showFilters()) {
       <bmb-action-icon
         [idElement]="''"
         [icon]="'filter_list'"
@@ -145,8 +145,8 @@
       </ng-container>
 
       <!-- Display Columns -->
-      <ng-container *ngFor="let column of tableColumns; let i = index">
-        <ng-container matColumnDef="{{ column.def }}" [sticky]="i === 0">
+       @for (column of tableColumns; track column; let i = $index) {
+        <ng-container [matColumnDef]="column.def" [sticky]="i === 0">
           <th
             mat-header-cell
             *matHeaderCellDef
@@ -156,8 +156,8 @@
             matTooltipClass="bmb_tooltip"
             [ngClass]="{
               'bmb_table-sticky': i === 0,
-              truncated: truncate,
-              wrapped: wrap,
+              truncated: truncate(),
+              wrapped: wrap(),
             }"
           >
             <!-- Título -->
@@ -167,7 +167,7 @@
                 [ngTemplateOutletContext]="{ column: column, index: i }"
               ></ng-template>
             } @else {
-              {{ column.label }}
+              {{ this.lang() === 'es' ? column.label : column.labelEn }}
             }
 
             <!-- Resize Handle -->
@@ -195,13 +195,14 @@
             }
           </td>
         </ng-container>
-      </ng-container>
+       }
+
 
       <!-- Actions Column -->
       <ng-container matColumnDef="actions" stickyEnd>
         <th mat-header-cell *matHeaderCellDef class="bmb_table-actions"></th>
         <td mat-cell *matCellDef="let row" class="bmb_table-actions">
-          <ng-template [ngTemplateOutlet]="actionTemplate!"> </ng-template>
+          <ng-template [ngTemplateOutlet]="actionTemplate()!"> </ng-template>
         </td>
       </ng-container>
 
@@ -217,7 +218,7 @@
             [@detailExpand]="row == expandedElement ? 'expanded' : 'collapsed'"
           >
             <ng-container
-              *ngTemplateOutlet="detailTemplate; context: { row: row }"
+              *ngTemplateOutlet="detailTemplate(); context: { row: row }"
             ></ng-container>
           </div>
         </td>
@@ -257,7 +258,7 @@
   <ng-container *ngIf="tableConfig?.isPaginable" sticky>
     <mat-paginator
       #paginator
-      [pageSize]="this.paginatorSize"
+      [pageSize]="this.pageSize()"
       [hidePageSize]="true"
     >
     </mat-paginator>

@@ -1,10 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbMitecLogoAnimationComponent } from './bmb-mitec-logo-animation.component';
 import { attributes } from '../../utils/utils';
+import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
   title: 'Micro Componentes/Mitec Logo Animation',
   component: BmbMitecLogoAnimationComponent,
+  decorators: [
+    storiesLayoutVertical,
+  ],
   parameters: {
     docs: {
       description: {

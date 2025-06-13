@@ -67,7 +67,7 @@ Below is an example of how you can use this component in HTML:
       table: {
         type: { summary: 'number' },
         category: 'Properties',
-        defaultValue: { summary: 0 },
+        defaultValue: { summary: '0' },
       },
       description: 'Determines the size of the space between elements.',
     },
@@ -80,7 +80,7 @@ Below is an example of how you can use this component in HTML:
       table: {
         type: { summary: 'number' },
         category: 'Properties',
-        defaultValue: { summary: 0 },
+        defaultValue: { summary: '0' },
       },
       description: 'Determines the size of the space between elements.',
     },
@@ -124,18 +124,18 @@ Below is an example of how you can use this component in HTML:
         'Sets how much of the flex container positive free space, if any, should be assigned to the flex item main size. (this property will only be enabled when the isDynamicItem property is enabled)',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 0 },
+        defaultValue: { summary: '0' },
         type: { summary: 'number' },
       },
     },
   },
   args: {
-    colSm: 1 as unknown as InputSignal<IColumSizeMobile>,
-    colLg: 1 as unknown as InputSignal<IColumSizeFull>,
-    marginLeft: { sm: 0, lg: 0 } as unknown as InputSignal<IMargin>,
-    marginRight: { sm: 0, lg: 0 } as unknown as InputSignal<IMargin>,
-    isDynamicItem: false as unknown as InputSignal<boolean>,
-    colGrow: 0 as unknown as InputSignal<number>,
+    colSm: 1,
+    colLg: 1,
+    marginLeft: { sm: 0, lg: 0 },
+    marginRight: { sm: 0, lg: 0 },
+    isDynamicItem: false,
+    colGrow: 0,
   },
 };
 

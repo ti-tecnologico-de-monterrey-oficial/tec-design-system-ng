@@ -2,11 +2,9 @@ import type { StorybookConfig } from '@storybook/angular';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 
 const config: StorybookConfig = {
-  stories: ['../src/lib/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [
-    '@storybook/addon-links',
-    '@storybook/addon-essentials',
-    '@storybook/addon-interactions',
+    '@storybook/addon-onboarding',
     '@storybook/addon-docs',
     '@storybook/addon-themes',
   ],
@@ -15,7 +13,6 @@ const config: StorybookConfig = {
     options: {},
   },
   docs: {
-    autodocs: true,
     docsMode: true,
     defaultName: 'Documentation',
   },
@@ -42,6 +39,6 @@ const config: StorybookConfig = {
 
     return config;
   },
+  staticDirs: ['../src/assets'],
 };
-
 export default config;

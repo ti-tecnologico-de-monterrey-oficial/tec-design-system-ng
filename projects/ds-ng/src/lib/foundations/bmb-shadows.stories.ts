@@ -77,11 +77,12 @@ This is a collection of shadows styles that can be used in the application. The 
         'bmb-box-shadow-4',
         'bmb-box-shadow-5',
         'bmb-box-shadow-6',
+        'bmb-box-shadow-7',
       ],
     },
   },
   args: {
-    shadowsName: 'bmb-box-shadow-1' as string as unknown as InputSignal<string>,
+    shadowsName: 'bmb-box-shadow-1',
   },
 } as Meta<StorybookShadowsStoriesComponent>;
 

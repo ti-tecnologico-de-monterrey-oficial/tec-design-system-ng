@@ -1,5 +1,6 @@
 @use "../base/mixins" as mixins;
 @use "../base/fonts" as fonts;
+@use "./rem" as rem;
 
 * {
   box-sizing: border-box;
@@ -13,7 +14,7 @@ html {
 body {
   background-color: RGBA(var(--general_contrasts-15));
   font-family: var(--font-display);
-  font-size: 1rem;
+  font-size: rem.rem_calc(16);
   font-weight: 400;
   height: 100dvh;
   margin: 0;
@@ -23,7 +24,7 @@ body {
 
 p {
   line-height: 1.25;
-  margin-block-end: 1em;
+  margin-block-end: rem.rem_calc(16);
   margin-block-start: 0;
   margin-inline-end: 0;
   margin-inline-start: 0;
@@ -54,6 +55,26 @@ bmb-icon {
   display: inline-flex;
 }
 
+.storybook-horizontal-theme {
+  display: flex;
+  flex-direction: row;
+
+  @media (1000px > width) {
+    flex-direction: column;
+  }
+
+  > * {
+    flex: 1;
+  }
+}
+
+.storybook-dark-theme,
+.storybook-light-theme {
+  padding: rem.rem_calc(16);
+  background-color: var(--containers-background);
+  color: var(--general_contrasts-100);
+}
+
 storybook-toast-wrapper {
   ~ .actions {
     display: none;
@@ -62,36 +83,39 @@ storybook-toast-wrapper {
 
 .storybook-colors-playground {
   display: flex;
-  gap: 10px;
+  gap: rem.rem_calc(10);
 
   > div {
-    height: 50px;
-    width: 200px;
+    height: rem.rem_calc(50);
+    width: rem.rem_calc(200);
   }
 }
 
 #anchor--macro-componentes-sidebar--default,
 #anchor--micro-componentes-toast--default,
 #anchor--micro-componentes-drawer-overlay--default {
+
   #story--macro-componentes-sidebar--default--primary-inner,
   #story--micro-componentes-toast--default--primary-inner,
   #story--micro-componentes-drawer-overlay--default--primary {
-    height: 600px;
+    height: rem.rem_calc(600);
   }
 }
 
 #anchor--micro-componentes-breadcrumb--default,
 #anchor--micro-componentes-dropdown-menu--default {
+
   #story--micro-componentes-breadcrumb--default--primary-inner,
   #story--micro-componentes-dropdown-menu--default--primary-inner {
-    height: 300px;
+    height: rem.rem_calc(300);
   }
 }
 #anchor--macro-componentes-sidebar--default,
 #anchor--macro-componentes-wheel-menu--default {
+
   #story--macro-componentes-sidebar--default--primary-inner,
   #story--macro-componentes-wheel-menu--default--primary-inner {
-    height: 800px;
+    height: rem.rem_calc(800);
   }
 }
 
