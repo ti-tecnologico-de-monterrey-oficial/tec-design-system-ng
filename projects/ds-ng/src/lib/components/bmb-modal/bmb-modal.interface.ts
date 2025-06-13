@@ -24,4 +24,5 @@ export interface ModalDataConfig {
   extendButtons?: boolean;
   primaryAction?: () => void;
   secondaryAction?: () => void;
+  closeAction?: () => void;
 }
