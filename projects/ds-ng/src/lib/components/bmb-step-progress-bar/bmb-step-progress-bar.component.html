@@ -19,7 +19,8 @@
         [ngClass]="{
           active: activeStep() === i,
           completed: activeStep() > i,
-          'bmb_step-progress-bar-step-normal': size() == 'normal' || size() == 'default',
+          'bmb_step-progress-bar-step-normal':
+            size() == 'normal' || size() == 'default',
           'bmb_step-progress-bar-step-small': size() == 'small',
           'bmb_step-progress-bar-step-medium': size() == 'medium',
         }"
@@ -120,7 +121,9 @@
 
         @if (activeStep() === i && stepTemplates.length > i) {
           <div class="bmb_step-progress-bar-step-panel-content">
-            <ng-container [ngTemplateOutlet]="stepTemplates()[i]"></ng-container>
+            <ng-container
+              [ngTemplateOutlet]="stepTemplates()[i]"
+            ></ng-container>
           </div>
         }
       </div>

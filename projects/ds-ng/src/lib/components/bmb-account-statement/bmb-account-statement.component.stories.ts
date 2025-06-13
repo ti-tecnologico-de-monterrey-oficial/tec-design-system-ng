@@ -5,9 +5,7 @@ import { storiesLayoutVertical } from '../../utils/bambooLayout';
 export default {
   title: 'Macro Componentes/Account statement',
   component: BmbAccountStatementComponent,
-  decorators: [
-    storiesLayoutVertical,
-  ],
+  decorators: [storiesLayoutVertical],
   parameters: {
     docs: {
       description: {

@@ -35,9 +35,7 @@ class StorybookModalWrapperComponent implements AfterViewInit {
 export default {
   title: 'Micro Componentes/Chat bubbles',
   component: BmbChatBubblesComponent,
-  decorators: [
-    storiesLayoutVertical,
-  ],
+  decorators: [storiesLayoutVertical],
   parameters: {
     docs: {
       description: {

@@ -133,7 +133,6 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
   @Output() select: EventEmitter<any> = new EventEmitter();
   @Output() clickedRow: EventEmitter<any> = new EventEmitter();
 
-
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatTable, { read: ElementRef }) private matTableRef?: ElementRef;
   @ViewChild('headerCellRef') headerCellRef!: ElementRef;
@@ -238,7 +237,8 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
   }
 
   private applyColumnsAndConfig(newColumns: TableColum[] = []) {
-    if (!newColumns || !Array.isArray(newColumns) || newColumns.length === 0) return;
+    if (!newColumns || !Array.isArray(newColumns) || newColumns.length === 0)
+      return;
 
     const displayColumns = [...newColumns.map((col) => col.def)];
 

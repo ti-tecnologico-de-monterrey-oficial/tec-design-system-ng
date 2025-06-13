@@ -29,9 +29,7 @@ const appearanceOptions: IBmbActivityTags[] = [
 export default {
   title: 'Micro Componentes/Tag',
   component: BmbTagComponent,
-  decorators: [
-    storiesLayoutHorizontal,
-  ],
+  decorators: [storiesLayoutHorizontal],
   parameters: {
     docs: {
       description: {

@@ -13,7 +13,7 @@ export default {
       declarations: [],
       imports: [CommonModule, BmbAccordionComponent],
     }),
-    storiesLayoutVertical
+    storiesLayoutVertical,
   ],
   parameters: {
     docs: {
@@ -178,7 +178,8 @@ Below is an example of how you can use this component in HTML:
     lockToggle: {
       name: 'Lock toggle',
       control: { type: 'boolean' },
-      description: 'If set to true, the click interaction is disabled, but without adding disabled styles.',
+      description:
+        'If set to true, the click interaction is disabled, but without adding disabled styles.',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },

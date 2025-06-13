@@ -494,7 +494,7 @@ Below is an example of how to use this component in HTML:
         type: { summary: 'BmbTableLang' },
         defaultValue: { summary: 'es' },
       },
-    }
+    },
   },
   args: {
     data: [
@@ -528,7 +528,12 @@ Below is an example of how to use this component in HTML:
         icon: 'face',
         labelEn: 'Last Name',
       },
-      { def: 'birthday', label: 'Cumpleaños', dataKey: 'birthday', labelEn: 'Birthday' },
+      {
+        def: 'birthday',
+        label: 'Cumpleaños',
+        dataKey: 'birthday',
+        labelEn: 'Birthday',
+      },
       { def: 'country', label: 'País', dataKey: 'country', labelEn: 'Country' },
     ],
     config: {
