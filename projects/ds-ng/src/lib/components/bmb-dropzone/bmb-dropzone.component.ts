@@ -56,7 +56,7 @@ export class BmbDropzoneComponent {
   mainIcon = input<string>('image');
   multiple = input<boolean>(false);
   name = input<string>('bmbFileInput');
-  progress = input<Record<string, number>>({});
+  progress = input<Record<string, number> | number>({});
 
   newFile = output<File | File[]>();
   fileRemoved = output<string>();
@@ -191,7 +191,8 @@ export class BmbDropzoneComponent {
   }
 
   getProgress(fileName: string): number {
-    const progress = this.progress?.();
+    const progress = this.progress();
+    if (typeof progress === 'number') return progress;
     return progress?.[fileName] ?? 0;
   }
 
