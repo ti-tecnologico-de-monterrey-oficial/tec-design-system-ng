@@ -52,8 +52,6 @@ export class BmbCheckExternalLinkButtonComponent {
   }
 
   handleKeyPress(event: KeyboardEvent): void {
-    console.log('Key pressed:', event.key);
-
     this.buttonKeyPress.emit(event);
   }
 }

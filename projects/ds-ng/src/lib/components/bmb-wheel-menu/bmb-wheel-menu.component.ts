@@ -35,7 +35,7 @@ interface NavItem {
     BmbTabsComponent,
     BmbInteractiveIconComponent,
   ],
-  styleUrls: ['./bmb-wheel-menu.component.scss'],
+  styleUrl: './bmb-wheel-menu.component.scss',
   templateUrl: './bmb-wheel-menu.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,

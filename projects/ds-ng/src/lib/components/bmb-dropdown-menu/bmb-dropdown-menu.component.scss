@@ -5,15 +5,6 @@
   &-button {
     .bmb_check-external-link-button-element {
       color: var(--general_contrasts-50);
-
-      &:hover {
-        color: var(--buttons-primary-hover);
-      }
-
-      &:focus {
-        color: var(--buttons-primary-select);
-        border-color: transparent;
-      }
     }
   }
 

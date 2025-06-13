@@ -9,7 +9,7 @@ import {
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 import { BmbDotPaginatorComponent } from '../bmb-dot-paginator/bmb-dot-paginator.component';
-import { BmbButtonDirective } from '../../../public-api';
+import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { CommonModule } from '@angular/common';
 
 export interface IBmbCardNoticeDescription {

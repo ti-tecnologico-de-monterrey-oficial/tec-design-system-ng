@@ -10,15 +10,19 @@ import {
 import { CommonModule } from '@angular/common';
 import { IBbmSidePosition } from '../../types';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { BmbInputValidationService } from '../bmb-input/bmb-input-validation/bmb-input-validation.service';
 import { BmbInputValidationComponent } from '../bmb-input/bmb-input-validation/bmb-input-validation.component';
 import { getUUID } from '../../utils/utils';
 import { IBmbInputError } from '../bmb-input/bmb-input.component';
+import {
+  assignNewFormControl,
+  newFormControlByType,
+  showError,
+} from '../../utils/formControl';
 
 @Component({
   selector: 'bmb-checkbox',
   templateUrl: './bmb-checkbox.component.html',
-  styleUrls: ['./bmb-checkbox.component.scss'],
+  styleUrl: './bmb-checkbox.component.scss',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, BmbInputValidationComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -38,37 +42,42 @@ export class BmbCheckboxComponent implements OnInit {
   errorMessage = input<string | IBmbInputError>('');
   helperMessage = input<string>('');
 
-  control = model<FormControl>(new FormControl());
+  control = model<FormControl>(newFormControlByType('checkbox'));
   checked = model<boolean>();
   showError = model<boolean>(false);
   indeterminate = model<boolean>(false);
 
   change = output<Event>();
 
-  constructor(private ivs: BmbInputValidationService) {}
+  isControlNull: boolean = false;
 
   ngOnInit(): void {
+    if (!this.control()) {
+      this.control.set(
+        assignNewFormControl(this.name(), this.control(), 'checkbox')!,
+      );
+      this.isControlNull = true;
+    }
+
     if (this.indeterminate()) {
       this.checked.set(false);
     }
   }
 
-  getFormControl(): FormControl {
-    return this.ivs.getFormControlByName(this.name());
-  }
-
   get shouldShowError(): boolean {
-    return this.ivs.showError(this.name());
+    return showError(this.control());
   }
 
   handleChange(event: Event): void {
     event.stopPropagation();
     const target = event.target as HTMLInputElement;
+
     if (this.indeterminate()) {
       this.indeterminate.set(false);
     }
+
     this.checked.set(target.checked);
-    this.ivs.getFormControlByName(this.name()).setValue(this.checked());
+    this.control().setValue(this.checked());
     this.change.emit(event);
     event.preventDefault();
   }
@@ -82,7 +91,7 @@ export class BmbCheckboxComponent implements OnInit {
         this.checked.update((value) => !value);
       }
 
-      this.ivs.getFormControlByName(this.name()).setValue(this.checked());
+      this.control().setValue(this.checked());
 
       event.preventDefault();
       this.change.emit(event);
