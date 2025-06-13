@@ -16,20 +16,24 @@ import { ClickOutsideDirective } from '../../directives/utils/clickoutside.direc
 import {
   convertListToSelectList,
   getSelectedValues,
-  getUUID,
   getValidInitialValues,
-  showError,
-} from '../../utils/utils';
+} from '../../utils/dropdown';
 import { BmbInputValidationComponent } from '../bmb-input/bmb-input-validation/bmb-input-validation.component';
 import {
   IBmbInputError,
   IBmbInputTooltipPosition,
 } from '../bmb-input/bmb-input.component';
-import { BmbInputValidationService } from '../bmb-input/bmb-input-validation/bmb-input-validation.service';
 import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-dropdown-content.component';
 import { IDropdownItem } from '../../types';
 import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
 import { startWith } from 'rxjs';
+import { getUUID } from '../../utils/utils';
+import {
+  assignNewFormControl,
+  handleValidity,
+  newFormControlByType,
+  showError,
+} from '../../utils/formControl';
 
 export interface IBmbDropdownItem {
   name: string;
@@ -76,7 +80,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   disabled = input<boolean>(false);
   value = input<string | string[]>('');
 
-  control = model<FormControl>(new FormControl());
+  control = model<FormControl>(newFormControlByType());
 
   onValueChange = output<any>();
   onFocus = output<boolean>();
@@ -87,15 +91,22 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   selectionControl: FormControl = new FormControl(new FormControl());
   selectedIcon: string = '';
   isKeyboardEvent: boolean = false;
-
-  constructor(private ivs: BmbInputValidationService) {}
+  isControlNull: boolean = false;
 
   ngOnInit() {
+    if (!this.control()) {
+      this.control.set(assignNewFormControl(this.name(), this.control())!);
+      this.isControlNull = true;
+    }
+
+    if (this.disabled()) this.selectionControl.disable();
+    else this.selectionControl.enable();
+
     if (!this.isMultiSelect() && Array.isArray(this.control()?.value)) {
       this.control().setValue('');
     }
 
-    this.getFormControl()
+    this.control()
       .valueChanges.pipe(startWith(this.getValidInitialValues()))
       .subscribe((value) => {
         this.setSelectionControl(value);
@@ -105,7 +116,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['options']) {
       this.initOptions(changes['options'].currentValue);
-      this.setValue(this.getValidInitialValues());
+      this.control().setValue(this.getValidInitialValues());
     }
   }
 
@@ -147,7 +158,8 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
 
   getValidInitialValues(): string | string[] {
     return getValidInitialValues(
-      this.control().value || this.value(),
+      this.control().value,
+      this.value(),
       this.options(),
       this.isMultiSelect(),
     );
@@ -180,12 +192,12 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
 
   setSelectedValue(element: IDropdownItem): void {
     if (this.isMultiSelect()) {
-      this.setValue(
-        getSelectedValues(this.getFormControl().value, element.value!),
+      this.control().setValue(
+        getSelectedValues(this.control().value, element.value!),
       );
-    } else this.setValue(element.value!);
+    } else this.control().setValue(element.value!);
 
-    this.onValueChange.emit(this.getFormControl().value);
+    this.onValueChange.emit(this.control().value);
   }
 
   openList(): void {
@@ -215,19 +227,11 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
     }
   }
 
-  setValue(value: string | string[]): void {
-    this.ivs.getFormControlByName(this.name())?.setValue(value);
-  }
-
   handleValidity(): void {
-    this.ivs.handleValidity(this.name());
+    handleValidity(this.control());
   }
 
   get shouldShowError(): boolean {
-    return this.ivs.showError(this.name());
-  }
-
-  getFormControl(): FormControl {
-    return this.ivs.getFormControlByName(this.name()) || this.control();
+    return showError(this.control());
   }
 }

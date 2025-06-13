@@ -25,7 +25,7 @@ import { IPositionButtonMenu } from '../bmb-top-bar/types';
     BmbCheckExternalLinkButtonComponent,
   ],
   templateUrl: './bmb-sidebar.component.html',
-  styleUrls: ['./bmb-sidebar.component.scss'],
+  styleUrl: './bmb-sidebar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })

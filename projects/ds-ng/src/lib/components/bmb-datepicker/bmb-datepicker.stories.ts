@@ -46,7 +46,7 @@ import { CommonModule } from '@angular/common';
     BmbDatepickerComponent,
   ],
   templateUrl: './component.html',
-  styleUrls: ['./component.scss'],
+  styleUrl: './component.scss',
 })
 export class AppComponent {
   userForm: FormGroup;
@@ -281,7 +281,6 @@ Below is an example of how to use this component in HTML:
     invalidFormatErrorMessage: 'Formato invalido',
     requiredFieldErrorMessage: 'Campo requerido',
     isRequired: false,
-    placeholder: '',
     disabled: false,
     label: 'Date',
     appearance: 'normal',

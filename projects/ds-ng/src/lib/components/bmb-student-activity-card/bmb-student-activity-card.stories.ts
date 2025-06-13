@@ -23,7 +23,7 @@ import { BmbStudentActivitySelectorComponent } from '@ti-tecnologico-de-monterre
   standalone: true,
   imports: [ BmbStudentActivityCardComponent ],
   templateUrl: './component.html',
-  styleUrls: ['./component.scss'],
+  styleUrl: './component.scss',
 })
 
 \`\`\`

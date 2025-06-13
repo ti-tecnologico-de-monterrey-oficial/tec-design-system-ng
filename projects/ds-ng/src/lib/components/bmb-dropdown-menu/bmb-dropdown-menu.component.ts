@@ -14,7 +14,7 @@ import { IDropdownItem } from '../../types';
   selector: 'bmb-dropdown-menu',
   standalone: true,
   templateUrl: './bmb-dropdown-menu.component.html',
-  styleUrls: ['./bmb-dropdown-menu.component.scss'],
+  styleUrl: './bmb-dropdown-menu.component.scss',
   imports: [
     BmbDropdownContentComponent,
     BmbActionIconComponent,

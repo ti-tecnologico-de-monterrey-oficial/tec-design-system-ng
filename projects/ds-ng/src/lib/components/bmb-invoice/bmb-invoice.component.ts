@@ -28,7 +28,7 @@ export interface IBmbInvoice {
 @Component({
   selector: 'bmb-invoice',
   templateUrl: './bmb-invoice.component.html',
-  styleUrls: ['./bmb-invoice.component.scss'],
+  styleUrl: './bmb-invoice.component.scss',
   standalone: true,
   imports: [CommonModule, BmbBadgeComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,

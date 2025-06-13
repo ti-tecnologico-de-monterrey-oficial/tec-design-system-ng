@@ -2,15 +2,23 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
-  ElementRef,
+  ContentChildren,
   model,
-  OnInit,
   output,
+  QueryList,
   ViewEncapsulation,
 } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { BmbInputValidationService } from '../bmb-input/bmb-input-validation/bmb-input-validation.service';
+import { BmbInputComponent } from '../bmb-input/bmb-input.component';
+import { BmbInputTagsComponent } from '../bmb-input-tags/bmb-input-tags.component';
+import { handleValidity } from '../../utils/formControl';
+import { BmbDatepickerComponent } from '../bmb-datepicker/bmb-datepicker.component';
+import { BmbDateRangeComponent } from '../bmb-date-range/bmb-date-range.component';
+import { BmbDropdownComponent } from '../bmb-dropdown/bmb-dropdown.component';
+import { BmbInputPhoneNumberComponent } from '../bmb-input-phone-number/bmb-input-phone-number.component';
+import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
+import { BmbRadialComponent } from '../bmb-radial/bmb-radial.component';
 
 @Component({
   selector: 'bmb-form-validation',
@@ -24,65 +32,80 @@ import { BmbInputValidationService } from '../bmb-input/bmb-input-validation/bmb
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbFormValidationComponent implements AfterViewInit, OnInit {
+export class BmbFormValidationComponent implements AfterViewInit {
   formGroup = model<FormGroup>(new FormGroup({}));
 
   formGroupState = output<FormGroup>();
-
-  constructor(
-    private ivs: BmbInputValidationService,
-    private el: ElementRef,
-  ) {}
-
-  ngOnInit(): void {
-    this.addControls();
-  }
+  @ContentChildren(BmbInputComponent) bmbInputs!: QueryList<BmbInputComponent>;
+  @ContentChildren(BmbDropdownComponent)
+  bmbDropdowns!: QueryList<BmbDropdownComponent>;
+  @ContentChildren(BmbInputPhoneNumberComponent)
+  bmbInputPhoneNumbers!: QueryList<BmbInputPhoneNumberComponent>;
+  @ContentChildren(BmbInputTagsComponent)
+  bmbInputTags!: QueryList<BmbInputTagsComponent>;
+  @ContentChildren(BmbDatepickerComponent)
+  bmbDatepickers!: QueryList<BmbDatepickerComponent>;
+  @ContentChildren(BmbDateRangeComponent)
+  bmbDateRanges!: QueryList<BmbDateRangeComponent>;
+  @ContentChildren(BmbCheckboxComponent)
+  bmbCheckboxes!: QueryList<BmbCheckboxComponent>;
+  @ContentChildren(BmbRadialComponent)
+  bmbRadials!: QueryList<BmbRadialComponent>;
 
   ngAfterViewInit(): void {
     this.addControls();
   }
 
   addControls(): void {
-    const inputs = this.el.nativeElement.querySelector('form')[0].childNodes;
-
-    inputs.forEach((input: any) => {
-      try {
-        const controlName = this.getInputAttribute(input, 'name');
-        const inputValidationList = input?.querySelectorAll(
-          'bmb-input-validation',
-        );
-
-        const type = this.getInputAttribute(inputValidationList[0], 'type');
-
-        if (type === 'date_range') {
-          inputValidationList.forEach((input: any) => {
-            this.addControl(this.getInputAttribute(input, 'name'), 'text');
-          });
-        } else {
-          this.addControl(controlName, type);
-        }
-      } catch (e) {
-        console.info('form-val catch', input);
-      }
+    this.bmbInputs.forEach((child) => {
+      this.addControl(child.name(), child.control(), child.isControlNull);
+    });
+    this.bmbDropdowns.forEach((child) => {
+      this.addControl(child.name(), child.control(), child.isControlNull);
+    });
+    this.bmbInputPhoneNumbers.forEach((child) => {
+      this.addControl(child.name(), child.control(), child.isControlNull);
+    });
+    this.bmbInputTags.forEach((child) => {
+      this.addControl(child.name(), child.control(), child.isControlNull);
+    });
+    this.bmbDatepickers.forEach((child) => {
+      this.addControl(child.name(), child.control(), child.isControlNull);
+    });
+    this.bmbDateRanges.forEach((child) => {
+      this.addControl(
+        `${child.name()}_start`,
+        child.controlStart(),
+        child.isControlStartNull,
+      );
+      this.addControl(
+        `${child.name()}_end`,
+        child.controlEnd(),
+        child.isControlEndNull,
+      );
+    });
+    this.bmbCheckboxes.forEach((child) => {
+      this.addControl(child.name(), child.control(), child.isControlNull);
+    });
+    this.bmbRadials.forEach((child) => {
+      this.addControl(child.name(), child.control(), child.isControlNull);
     });
   }
 
-  addControl(controlName: string, type: string): void {
-    if (!!controlName && !!type) {
-      let control = this.getFormControl(controlName);
-
-      if (!control) {
-        control =
-          this.getFormControlService(controlName) ||
-          this.ivs.newFormControlByType(type);
-        this.formGroup().addControl(controlName, control);
-      }
-
-      this.ivs.setFormControl(control, type, controlName);
+  addControl(
+    controlName: string,
+    control: FormControl,
+    isControlNull: boolean,
+  ): void {
+    if (!this.getFormControl(controlName)) {
+      this.formGroup().addControl(controlName, control);
+    } else {
+      if (isControlNull) this.formGroup().setControl(controlName, control);
     }
   }
 
   onSubmit(): void {
+    this.formGroup().updateValueAndValidity();
     this.formGroup().markAllAsTouched();
     this.updateErrorState();
     this.formGroupState.emit(this.formGroup());
@@ -92,24 +115,10 @@ export class BmbFormValidationComponent implements AfterViewInit, OnInit {
     Object.keys(this.formGroup().controls).forEach((field) => {
       const control = this.getFormControl(field);
 
-      if (control) {
-        control.updateValueAndValidity();
+      if (!!control) {
+        handleValidity(control);
       }
     });
-  }
-
-  getInputAttribute(input: any, attributeName: string): string {
-    return (
-      input.getAttribute(attributeName) ||
-      input.getAttribute(`ng-reflect-${attributeName}`) ||
-      input.parentElement.getAttribute(attributeName) ||
-      input.parentElement.getAttribute(`ng-reflect-${attributeName}`) ||
-      ''
-    );
-  }
-
-  getFormControlService(name: string): FormControl {
-    return this.ivs.getFormControlByName(name);
   }
 
   getFormControl(name: string): FormControl {

@@ -38,7 +38,7 @@ export interface ICardButton {
   selector: 'bmb-card-button',
   standalone: true,
   templateUrl: './bmb-card-button.component.html',
-  styleUrls: ['./bmb-card-button.component.scss'],
+  styleUrl: './bmb-card-button.component.scss',
   imports: [
     CommonModule,
     BmbIconComponent,

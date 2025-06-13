@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
   selector: 'bmb-skeleton',
   standalone: true,
   imports: [CommonModule],
-  styleUrls: ['./bmb-skeleton.component.scss'],
+  styleUrl: './bmb-skeleton.component.scss',
   templateUrl: './bmb-skeleton.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,

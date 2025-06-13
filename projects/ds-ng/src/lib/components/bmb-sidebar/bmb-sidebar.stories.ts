@@ -51,7 +51,7 @@ import { BmbSidebarComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng'
   standalone: true,
   imports: [ BmbSidebarComponent ],
   templateUrl: './app-component.html',
-  styleUrls: ['./app-component.scss'],
+  styleUrl: './app-component.scss',
 })
 export class AppComponent {
   elements: {

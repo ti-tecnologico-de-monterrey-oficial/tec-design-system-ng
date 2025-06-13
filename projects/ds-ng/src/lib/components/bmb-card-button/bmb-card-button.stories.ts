@@ -27,7 +27,7 @@ import { BmbCardButtonComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-
   standalone: true,
   imports: [ BmbCardButtonComponent ],
   templateUrl: './component.html',
-  styleUrls: ['./component.scss'],
+  styleUrl: './component.scss',
 })
 \`\`\`
 
