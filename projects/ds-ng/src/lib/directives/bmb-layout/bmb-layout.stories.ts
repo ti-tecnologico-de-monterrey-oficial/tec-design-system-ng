@@ -148,11 +148,11 @@ Below is an example of how you can use this component in HTML:
     },
   },
   args: {
-    gapSize: 'm' as unknown as InputSignal<SizeNames>,
-    margin: 'm' as unknown as InputSignal<SizeNames>,
-    dynamicCols: false as unknown as InputSignal<boolean>,
-    justify: 'start' as unknown as InputSignal<IJustifyOptions>,
-    alignItems: 'start' as unknown as InputSignal<IAlignItemsOptions>,
+    gapSize: 'm',
+    margin: 'm',
+    dynamicCols: false,
+    justify: 'start',
+    alignItems: 'start',
   },
 };
 

@@ -7,7 +7,8 @@ import {
   input,
   output,
   model,
-  AfterViewInit,
+  SimpleChanges,
+  OnChanges,
 } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
@@ -15,18 +16,24 @@ import { ClickOutsideDirective } from '../../directives/utils/clickoutside.direc
 import {
   convertListToSelectList,
   getSelectedValues,
-  getUUID,
   getValidInitialValues,
-} from '../../utils/utils';
+} from '../../utils/dropdown';
 import { BmbInputValidationComponent } from '../bmb-input/bmb-input-validation/bmb-input-validation.component';
 import {
   IBmbInputError,
   IBmbInputTooltipPosition,
 } from '../bmb-input/bmb-input.component';
-import { BmbInputValidationService } from '../bmb-input/bmb-input-validation/bmb-input-validation.service';
 import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-dropdown-content.component';
 import { IDropdownItem } from '../../types';
 import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
+import { startWith } from 'rxjs';
+import { getUUID } from '../../utils/utils';
+import {
+  assignNewFormControl,
+  handleValidity,
+  newFormControlByType,
+  showError,
+} from '../../utils/formControl';
 
 export interface IBmbDropdownItem {
   name: string;
@@ -53,7 +60,7 @@ export interface IBmbDropdownItem {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbDropdownComponent implements OnInit, AfterViewInit {
+export class BmbDropdownComponent implements OnInit, OnChanges {
   required = input<boolean>(false);
   showIcon = input<boolean>(false);
   placeholder = input<string>('');
@@ -73,24 +80,48 @@ export class BmbDropdownComponent implements OnInit, AfterViewInit {
   disabled = input<boolean>(false);
   value = input<string | string[]>('');
 
-  control = model<FormControl>();
+  control = model<FormControl>(newFormControlByType());
 
   onValueChange = output<any>();
   onFocus = output<boolean>();
 
+  uuid: string = getUUID();
   isOpen: boolean = false;
   items: IDropdownItem[] = [];
   selectionControl: FormControl = new FormControl(new FormControl());
   selectedIcon: string = '';
-
-  constructor(private ivs: BmbInputValidationService) {}
+  isKeyboardEvent: boolean = false;
+  isControlNull: boolean = false;
 
   ngOnInit() {
-    if (!this.isMultiSelect() && Array.isArray(this.control()?.value)) {
-      this.control()?.setValue('');
+    if (!this.control()) {
+      this.control.set(assignNewFormControl(this.name(), this.control())!);
+      this.isControlNull = true;
     }
 
-    this.items = convertListToSelectList(this.options(), this.icon());
+    if (this.disabled()) this.selectionControl.disable();
+    else this.selectionControl.enable();
+
+    if (!this.isMultiSelect() && Array.isArray(this.control()?.value)) {
+      this.control().setValue('');
+    }
+
+    this.control()
+      .valueChanges.pipe(startWith(this.getValidInitialValues()))
+      .subscribe((value) => {
+        this.setSelectionControl(value);
+      });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['options']) {
+      this.initOptions(changes['options'].currentValue);
+      this.control().setValue(this.getValidInitialValues());
+    }
+  }
+
+  initOptions(list: string[] | IBmbDropdownItem[]): void {
+    this.items = convertListToSelectList(list, this.icon(), this.showIcon());
 
     this.items = this.items.map((element: IDropdownItem) => {
       return {
@@ -109,22 +140,14 @@ export class BmbDropdownComponent implements OnInit, AfterViewInit {
 
       this.items = [...new Set([...preferredItems, ...this.items])];
     }
-
-    this.setSelectionControl(this.getValidInitialValues());
-  }
-
-  ngAfterViewInit(): void {
-    this.getFormControl().valueChanges.subscribe((value) => {
-      this.setSelectionControl(value);
-    });
   }
 
   handleFocus(value: boolean): void {
     this.onFocus.emit(value);
   }
 
-  getUUID(): string {
-    return getUUID();
+  getUUID(name: string): string {
+    return `${name}_${this.name()}_${this.uuid}`;
   }
 
   getIcon(): string {
@@ -135,7 +158,8 @@ export class BmbDropdownComponent implements OnInit, AfterViewInit {
 
   getValidInitialValues(): string | string[] {
     return getValidInitialValues(
-      this.control()?.value || this.value(),
+      this.control().value,
+      this.value(),
       this.options(),
       this.isMultiSelect(),
     );
@@ -168,20 +192,22 @@ export class BmbDropdownComponent implements OnInit, AfterViewInit {
 
   setSelectedValue(element: IDropdownItem): void {
     if (this.isMultiSelect()) {
-      this.getFormControl().setValue(
-        getSelectedValues(this.getFormControl().value, element.value!),
+      this.control().setValue(
+        getSelectedValues(this.control().value, element.value!),
       );
-    } else this.getFormControl().setValue(element.value);
+    } else this.control().setValue(element.value!);
 
-    this.onValueChange.emit(this.getFormControl().value);
+    this.onValueChange.emit(this.control().value);
   }
 
   openList(): void {
     this.isOpen = !this.isOpen;
+    if (!this.isOpen) this.isKeyboardEvent = false;
   }
 
   closeList(): void {
     this.isOpen = false;
+    this.isKeyboardEvent = false;
   }
 
   // Keyboards events
@@ -189,7 +215,10 @@ export class BmbDropdownComponent implements OnInit, AfterViewInit {
     const keyboards = [' ', 'ArrowDown', 'Down'];
 
     if (keyboards.includes(event.key)) {
-      if (!this.isOpen) this.openList();
+      if (!this.isOpen) {
+        this.isKeyboardEvent = true;
+        this.openList();
+      }
 
       if (!this.options().length) {
         event.preventDefault();
@@ -199,14 +228,10 @@ export class BmbDropdownComponent implements OnInit, AfterViewInit {
   }
 
   handleValidity(): void {
-    this.ivs.handleValidity(this.name());
+    handleValidity(this.control());
   }
 
   get shouldShowError(): boolean {
-    return this.ivs.showError(this.name());
-  }
-
-  getFormControl(): FormControl {
-    return this.ivs.getFormControlByName(this.name());
+    return showError(this.control());
   }
 }

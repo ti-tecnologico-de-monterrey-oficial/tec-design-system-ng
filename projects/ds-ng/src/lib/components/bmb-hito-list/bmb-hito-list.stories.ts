@@ -1,10 +1,14 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbHitoListComponent } from './bmb-hito-list.component';
 import { DateTime } from 'luxon';
+import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Micro Componentes/Hito List',
   component: BmbHitoListComponent,
+  decorators: [
+    storiesLayoutHorizontal,
+  ],
   parameters: {
     docs: {
       description: {
@@ -18,16 +22,16 @@ import { BmbHitoListComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng
   standalone: true,
   imports: [BmbHitoListComponent],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {}
 \`\`\`
 
 ### Uso en HTML:
 \`\`\`html
-<bmb-hito-list 
-  [dateFormat]="'yyyy-MM-dd'" 
-  [lang]="'es'" 
+<bmb-hito-list
+  [dateFormat]="'yyyy-MM-dd'"
+  [lang]="'es'"
   [events]="eventos"
   [selectedDate]="selectedDate"
   [orderedMonths]="orderedMonths"

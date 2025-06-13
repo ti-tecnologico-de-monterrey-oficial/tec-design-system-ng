@@ -8,14 +8,17 @@ describe('BmbNoticeCardComponent', () => {
   let fixture: ComponentFixture<BmbNoticeCardComponent>;
   let componentRef: ComponentRef<BmbNoticeCardComponent>;
 
-  beforeEach(async() => {
+  beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [BmbNoticeCardComponent],
     }).compileComponents();
     fixture = TestBed.createComponent(BmbNoticeCardComponent);
     component = fixture.componentInstance;
     componentRef = fixture.componentRef;
-    componentRef.setInput('description', { pageOne: 'Página 1', pageTwo: 'Página 2' });
+    componentRef.setInput('description', {
+      pageOne: 'Página 1',
+      pageTwo: 'Página 2',
+    });
     fixture.detectChanges();
   });
 

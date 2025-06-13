@@ -27,7 +27,7 @@ export interface IBmbServerTableColumn {
     CommonModule,
   ],
   templateUrl: './bmb-server-table.component.html',
-  styleUrls: ['./bmb-server-table.component.scss'],
+  styleUrl: './bmb-server-table.component.scss',
 })
 export class BmbServerTableComponent implements OnChanges {
   @Input() columns: IBmbServerTableColumn[] = [];

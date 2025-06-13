@@ -9,8 +9,9 @@ import {
   OnInit,
   output,
   model,
-  AfterViewInit,
   signal,
+  SimpleChanges,
+  OnChanges,
 } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { IBmbDropdownItem } from '../bmb-dropdown/bmb-dropdown.component';
@@ -22,16 +23,21 @@ import { ClickOutsideDirective } from '../../directives/utils/clickoutside.direc
 import { debounceTime } from 'rxjs';
 import {
   convertListToSelectList,
+  filteredValue,
   getSelectedValues,
-  getUUID,
   getValidInitialValues,
-} from '../../utils/utils';
+} from '../../utils/dropdown';
 import { BmbInputValidationComponent } from '../bmb-input/bmb-input-validation/bmb-input-validation.component';
-import { BmbInputValidationService } from '../bmb-input/bmb-input-validation/bmb-input-validation.service';
 import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-dropdown-content.component';
 import { IDropdownItem } from '../../types';
 import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
-import { EventManagerPlugin } from '@angular/platform-browser';
+import { getUUID } from '../../utils/utils';
+import {
+  assignNewFormControl,
+  handleValidity,
+  newFormControlByType,
+  showError,
+} from '../../utils/formControl';
 
 @Component({
   selector: 'bmb-input-tags',
@@ -51,7 +57,7 @@ import { EventManagerPlugin } from '@angular/platform-browser';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [],
 })
-export class BmbInputTagsComponent implements OnInit, AfterViewInit {
+export class BmbInputTagsComponent implements OnInit, OnChanges {
   errorMessage = input<string | IBmbInputError>('');
   tooltip = input<string>('');
   tooltipPosition = input<IBmbInputTooltipPosition>({
@@ -69,42 +75,53 @@ export class BmbInputTagsComponent implements OnInit, AfterViewInit {
   showError = input<boolean>(false);
 
   tagOptions = model<string[] | IBmbDropdownItem[]>([]);
-  control = model<FormControl>(new FormControl());
+  control = model<FormControl>(newFormControlByType());
 
   onKeyDown = output<KeyboardEvent>();
   onChange = output<string[]>();
 
+  uuid: string = getUUID();
   showDropdown: boolean = false;
   selectedTags: IDropdownItem[] = [];
   filteredOptions: IDropdownItem[] = [];
   filterControl = new FormControl();
   items: IDropdownItem[] = [];
   isFocused = signal<boolean>(false);
+  isKeyboardEvent: boolean = false;
+  isControlNull: boolean = false;
 
-  constructor(
-    private cdr: ChangeDetectorRef,
-    private ivs: BmbInputValidationService,
-  ) {}
+  constructor(private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    this.initOptions();
+    if (this.disabled()) this.filterControl.disable();
+    else this.filterControl.enable();
 
     this.filterControl.valueChanges
       .pipe(debounceTime(300))
       .subscribe((value) => {
-        this.filteredValue(value);
+        this.filteredOptions = filteredValue(value, this.items);
         this.cdr.detectChanges();
       });
-  }
 
-  ngAfterViewInit(): void {
-    this.getFormControl().valueChanges.subscribe((value) => {
+    this.control().valueChanges.subscribe((value) => {
       this.setSelectedTags(value || []);
     });
   }
 
-  initOptions(): void {
-    this.items = convertListToSelectList(this.tagOptions());
+  ngOnChanges(changes: SimpleChanges): void {
+    if (!this.control()) {
+      this.control.set(assignNewFormControl(this.name(), this.control())!);
+      this.isControlNull = true;
+    }
+
+    if (changes['tagOptions']) {
+      this.initOptions(changes['tagOptions'].currentValue);
+      this.control()?.setValue(this.getValidInitialValues());
+    }
+  }
+
+  initOptions(list: string[] | IBmbDropdownItem[]): void {
+    this.items = convertListToSelectList(list);
     this.items = this.items.map((element: IDropdownItem) => {
       return {
         ...element,
@@ -119,13 +136,14 @@ export class BmbInputTagsComponent implements OnInit, AfterViewInit {
     this.filteredOptions = [...this.items];
   }
 
-  getUUID(): string {
-    return getUUID();
+  getUUID(name: string): string {
+    return `${name}_${this.name()}_${this.uuid}`;
   }
 
   getValidInitialValues(): string[] {
     const initialValue: string[] | string = getValidInitialValues(
-      this.control().value || this.value(),
+      this.control().value,
+      this.value(),
       this.tagOptions(),
       true,
     );
@@ -133,23 +151,12 @@ export class BmbInputTagsComponent implements OnInit, AfterViewInit {
     return Array.isArray(initialValue) ? initialValue : [];
   }
 
-  filteredValue(value: string): void {
-    if (!!value) {
-      this.filteredOptions = this.items.filter((item: IDropdownItem) =>
-        item.text.toLowerCase().includes(value.toLowerCase()),
-      );
-      return;
-    }
-
-    this.filteredOptions = [...this.items];
-  }
-
   setSelectedValue(element: IDropdownItem): void {
-    this.getFormControl().setValue(
-      getSelectedValues(this.getFormControl().value, element.value!),
+    this.control().setValue(
+      getSelectedValues(this.control().value, element.value!),
     );
     this.filterControl.setValue('');
-    this.onChange.emit(this.getFormControl().value);
+    this.onChange.emit(this.control().value);
   }
 
   setSelectedTags(controlValue: string[]): void {
@@ -168,6 +175,7 @@ export class BmbInputTagsComponent implements OnInit, AfterViewInit {
 
   closeList() {
     this.showDropdown = false;
+    this.isKeyboardEvent = false;
   }
 
   selectOptionWithKey(value: string): void {
@@ -206,7 +214,7 @@ export class BmbInputTagsComponent implements OnInit, AfterViewInit {
       this.tagOptions.set([...new Set(newList)]);
     }
 
-    this.initOptions();
+    this.initOptions(this.tagOptions());
   }
 
   handleKeyDown(event: KeyboardEvent) {
@@ -214,7 +222,10 @@ export class BmbInputTagsComponent implements OnInit, AfterViewInit {
     const keyboardValuesToAddOption = [',', 'Enter'];
 
     if (keyboardValuesToOpenDialog.includes(event.key)) {
-      if (!this.showDropdown) this.openList();
+      if (!this.showDropdown) {
+        this.isKeyboardEvent = true;
+        this.openList();
+      }
 
       if (!this.filteredOptions.length) {
         event.preventDefault();
@@ -234,14 +245,10 @@ export class BmbInputTagsComponent implements OnInit, AfterViewInit {
   }
 
   handleValidity(): void {
-    this.ivs.handleValidity(this.name());
+    handleValidity(this.control());
   }
 
   get shouldShowError(): boolean {
-    return this.ivs.showError(this.name());
-  }
-
-  getFormControl(): FormControl {
-    return this.ivs.getFormControlByName(this.name());
+    return showError(this.control());
   }
 }

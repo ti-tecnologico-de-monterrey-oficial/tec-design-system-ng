@@ -3,13 +3,30 @@
 @use "../../../assets/styles/base/mixins" as mixins;
 
 .bmb_table {
-  background: RGBA(var(--color-charade-50));
+  background: var(--containers-modal);
   border-collapse: collapse;
   box-shadow: var(--bmb-box-shadow-3);
   display: flex;
   flex-direction: column;
   padding: rem.rem_calc(24 16);
   width: 100%;
+
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: rem.rem_calc(8 16);
+    flex-flow: row wrap;
+    gap: rem.rem_calc(16);
+  }
+
+  &-search {
+    flex: 1;
+  }
+
+  &-filters {
+    width: 100%;
+  }
 
   &-container {
     flex: 1 0 auto;
@@ -24,12 +41,12 @@
 
   &-row {
     &.mat-mdc-row {
-      height: rem.rem_calc(34);
+      height: rem.rem_calc(46);
     }
 
     > td,
     > th {
-      height: auto;
+      height: 100%;
       overflow: hidden;
       padding: rem.rem_calc(0 8);
 
@@ -49,9 +66,10 @@
       }
 
       &.bmb_table-checkbox {
-        min-width: rem.rem_calc(58);
+        min-width: rem.rem_calc(62);
         padding-right: 0;
-        width: rem.rem_calc(58);
+        text-align: center;
+        width: rem.rem_calc(62);
 
         + .bmb_table-sticky {
           left: rem.rem_calc(58) !important;
@@ -68,7 +86,7 @@
       }
 
       &.bmb_table-sticky {
-        border-right: rem.rem_calc(1) solid RGBA(var(--color-charade-300));
+        border-right: rem.rem_calc(1) solid var(--buttons-inactive-step);
         max-width: rem.rem_calc(144);
 
         @include mixins.media-query(1200, "min") {
@@ -77,30 +95,33 @@
       }
 
       &.bmb_table-actions {
-        border-left: rem.rem_calc(1) solid RGBA(var(--color-charade-300));
-        color: RGBA(var(--color-charade-900));
+        border-left: rem.rem_calc(1) solid var(--buttons-inactive-step);
+        color: var(--color-table-90);
+      }
 
-        button {
-          color: RGBA(var(--color-charade-900));
-        }
+      button {
+        align-items: center;
+        color: var(--color-table-90);
+        display: flex;
       }
     }
 
     > th {
       border-bottom: 0;
       color: RGBA(var(--color-charade-500));
+      overflow: inherit;
       position: relative;
       text-transform: uppercase;
       @include fonts.font(4, medium);
 
       &.mat-mdc-header-cell {
-        background-color: RGBA(var(--color-charade-50));
+        background-color: var(--containers-modal);
       }
     }
 
     > td {
       @include fonts.font(4, medium);
-      border-bottom-color: RGBA(var(--color-charade-200));
+      border-bottom-color: var(--general_contrasts-25);
       border-bottom-style: dashed;
 
       &.bmb_table-actions {
@@ -129,29 +150,29 @@
 
   &-even {
     &.mat-mdc-row {
-      background-color: RGBA(var(--color-charade-50));
-      color: RGBA(var(--color-charade-950));
+      background-color: var(--containers-modal);
+      color: var(--menu_select-label-menu-inactive);
 
       &.bmb_table-expandible {
-        background-color: RGBA(var(--color-mariner-100));
+        background-color: var(--menu_select-on-surface-hovered-w-checkbox);
       }
     }
   }
 
   &-odd {
     &.mat-mdc-row {
-      background-color: RGBA(var(--color-charade-100));
-      color: RGBA(var(--color-charade-700));
+      background-color: var(--general_contrasts-15);
+      color: var(--vertical-step-active-color);
     }
 
     &.bmb_table-expandible {
-      background-color: RGBA(var(--color-mariner-100));
+      background-color: var(--menu_select-on-surface-hovered-w-checkbox);
     }
   }
 
   &-details {
     &.mat-mdc-row {
-      background-color: RGBA(var(--color-mariner-100));
+      background-color: var(--menu_select-on-surface-hovered-w-checkbox);
       height: 0;
 
       > td {
@@ -161,7 +182,7 @@
 
       &.bmb_table-expanded {
         > td {
-          border-bottom: rem.rem_calc(1) dashed RGBA(var(--color-charade-200));
+          border-bottom: rem.rem_calc(1) dashed var(--general_contrasts-25);
           padding: rem.rem_calc(16);
         }
       }
@@ -169,13 +190,17 @@
   }
 
   &-detail {
-    color: RGBA(var(--color-charade-700));
+    color: var(--general_contrasts-75);
     display: flex;
     overflow: hidden;
+
+    > bmb-table {
+      width: 100%;
+    }
   }
 
   &-resize {
-    border-right: rem.rem_calc(1) solid RGBA(var(--color-charade-200));
+    border-right: rem.rem_calc(1) solid var(--general_contrasts-25);
     cursor: col-resize;
     display: inline-block;
     height: 100%;
@@ -206,19 +231,19 @@
     z-index: 10;
 
     &-text {
-      color: RGBA(var(--color-charade-700));
+      color: var(--general_contrasts-75);
       margin-right: rem.rem_calc(32);
       @include fonts.font(3, regular);
     }
 
     &-btn {
-      color: RGBA(var(--color-charade-900));
+      color: var(--color-table-btn-900);
       height: rem.rem_calc(48);
       padding: 0;
       width: rem.rem_calc(48);
 
       &-disabled {
-        color: RGBA(var(--color-charade-300));
+        color: var(--buttons-inactive-step);
         cursor: not-allowed;
       }
     }
@@ -227,95 +252,20 @@
       font-size: rem.rem_calc(24);
     }
   }
-}
 
-[data-theme="dark"],
-.storybook-dark-theme {
-  .bmb_table {
-    background-color: RGBA(var(--color-charade-950));
-
-    &-row {
-      > td,
-      > th {
-        &.bmb_table-sticky {
-          border-right-color: RGBA(var(--color-charade-700));
-        }
-
-        &.bmb_table-actions {
-          border-left-color: RGBA(var(--color-charade-700));
-          color: RGBA(var(--color-charade-100));
-
-          button {
-            color: RGBA(var(--color-charade-100));
-          }
-        }
-      }
-
-      > th {
-        &.mat-mdc-header-cell {
-          background-color: RGBA(var(--color-charade-950));
-        }
-      }
-
-      > td {
-        border-bottom-color: RGBA(var(--color-charade-700));
-      }
+  bmb-checkbox {
+    display: block;
+    height: rem.rem_calc(24);
+    .bmb_checkbox-mark {
+      margin: 0;
     }
+  }
 
-    &-even {
-      &.mat-mdc-row {
-        background-color: RGBA(var(--color-charade-950));
-        color: RGBA(var(--color-charade-50));
+  &-success {
+    color: var(--semantic-success);
+  }
 
-        &.bmb_table-expandible {
-          background-color: RGBA(var(--color-mariner-950));
-        }
-      }
-    }
-
-    &-odd {
-      &.mat-mdc-row {
-        background-color: RGBA(var(--color-charade-800));
-        color: RGBA(var(--color-charade-50));
-      }
-
-      &.bmb_table-expandible {
-        background-color: RGBA(var(--color-mariner-950));
-      }
-    }
-
-    &-details {
-      &.mat-mdc-row {
-        background-color: RGBA(var(--color-mariner-950));
-
-        &.bmb_table-expanded {
-          > td {
-            border-bottom-color: RGBA(var(--color-charade-700));
-          }
-        }
-      }
-    }
-
-    &-detail {
-      color: RGBA(var(--color-charade-200));
-    }
-
-    &-resize {
-      border-right-color: RGBA(var(--color-charade-700));
-    }
-
-    &-paginator {
-      &-text {
-        color: RGBA(var(--color-charade-200));
-      }
-
-      &-btn {
-        color: RGBA(var(--color-charade-50));
-
-        &-disabled {
-          color: RGBA(var(--color-charade-700));
-        }
-      }
-    }
+  &-error {
+    color: var(--semantic-error);
   }
 }

@@ -1,14 +1,13 @@
 <bmb-input-validation
-  [type]="'text'"
   [name]="name()"
-  [label]="label()!"
-  [value]="value()"
+  [label]="label()"
+  [value]="!!defaultCountryCode() ? value() : ''"
   [errorMessage]="getErrorMessage()"
   [helperMessage]="helperMessage()"
   [isRequired]="isRequired()"
   [idDisabled]="disabled()"
   [control]="control()"
-  [showError]="shouldShowError || showError()"
+  [showError]="shouldShowError"
   [tooltip]="tooltip()"
   [tooltipPosition]="tooltipPosition()"
   [isCustomError]="true"
@@ -18,32 +17,32 @@
     <section
       class="bmb_input-phone-container"
       [ngClass]="{
-        'bmb_input-phone-container-error': shouldShowError || showError(),
+        'bmb_input-phone-container-error': shouldShowError,
         'bmb_input-phone-container-focus': isFocused(),
       }"
     >
       <bmb-dropdown
         class="bmb_input-phone-lada"
-        name="select"
-        [value]="selectedCountry?.country_code?.toLocaleLowerCase()!"
+        [name]="getUUID('lada')"
+        [value]="ladaControl.value"
         [required]="true"
         [disabled]="disabled()"
         [showIcon]="false"
-        [options]="getOptions()"
+        [options]="countryFiltering"
         [preferredOptions]="preferredCountries()"
-        [control]="getControl('select')"
+        [control]="ladaControl"
         (onValueChange)="onValueChange($event)"
         (onFocus)="handleFocus($event)"
       />
       <bmb-input-content
         class="bmb_input-phone-number"
-        name="input"
+        [name]="getUUID('phone')"
         pattern="^\d+$"
         [isDisabled]="disabled()"
-        [control]="getControl('input')"
+        [control]="phoneControl"
         [id]="inputId()"
-        [maxlength]="selectedCountry?.length"
-        [minlength]="selectedCountry?.length"
+        [maxLength]="getSelectedCountryLength(ladaControl.value)"
+        [minLength]="getSelectedCountryLength(ladaControl.value)"
         [isRequired]="isRequired()"
         (onFocus)="handleFocus($event)"
         (onBlur)="handleValidity()"
@@ -54,7 +53,7 @@
       type="text"
       [name]="name()"
       [required]="isRequired()"
-      [formControl]="getFormControl()"
+      [formControl]="control()"
       [tabindex]="-1"
     />
   </section>

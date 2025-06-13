@@ -1,6 +1,5 @@
 <bmb-input-validation
   class="bmb_input-tags"
-  type="text"
   [name]="name()"
   [value]="getValidInitialValues()"
   [label]="label()!"
@@ -9,7 +8,7 @@
   [isRequired]="isRequired()"
   [idDisabled]="disabled()"
   [control]="control()"
-  [showError]="shouldShowError || showError()"
+  [showError]="shouldShowError"
   [tooltip]="tooltip()"
   [tooltipPosition]="tooltipPosition()"
   clickOutside
@@ -18,15 +17,15 @@
   <section
     class="bmb_input-tags-container"
     [ngClass]="{
-      'bmb_input-tags-container-error': shouldShowError || showError(),
+      'bmb_input-tags-container-error': shouldShowError,
       'bmb_input-tags-container-focus': isFocused(),
     }"
   >
     <bmb-input-content
       class="bmb_input-tags-filter"
       type="text"
-      [id]="'filter' + getUUID()"
-      name="filterControl"
+      [id]="getUUID('id_filter')"
+      [name]="getUUID('filter')"
       [control]="filterControl"
       [placeholder]="placeholder()"
       [isDisabled]="disabled()"
@@ -51,14 +50,15 @@
   <input
     hidden
     type="text"
-    [id]="name() + getUUID()"
+    [id]="name()"
     [name]="name()"
-    [formControl]="getFormControl()"
+    [formControl]="control()"
   />
   <bmb-dropdown-content
     class="bmb_input-tags-dialog"
     name="list"
-    [selectedOption]="getFormControl().value"
+    [selectedOption]="control().value"
+    [isKeyboardEvent]="isKeyboardEvent"
     [(items)]="filteredOptions"
     [(isOpen)]="showDropdown"
   />

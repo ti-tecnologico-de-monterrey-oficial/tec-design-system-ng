@@ -20,7 +20,7 @@ import { BmbTabsComponent, IBmbTab } from '../bmb-tabs/bmb-tabs.component';
     BmbInnerHeaderComponent,
     BmbTabsComponent,
   ],
-  styleUrls: ['./bmb-drawer-overlay.component.scss'],
+  styleUrl: './bmb-drawer-overlay.component.scss',
   templateUrl: './bmb-drawer-overlay.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,

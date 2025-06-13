@@ -39,6 +39,7 @@ class StorybookModalWrapperComponent {
   @Input() extendButtons?: boolean;
   @Input() primaryAction?: () => void;
   @Input() secondaryAction?: () => void;
+  @Input() closeAction?: () => void;
 
   constructor(private matDialog: MatDialog) {}
 
@@ -58,6 +59,7 @@ class StorybookModalWrapperComponent {
       extendButtons: this.extendButtons,
       primaryAction: this.primaryActionFunction.bind(this),
       secondaryAction: this.secondaryActionFunction.bind(this),
+      closeAction: this.closeActionFunction.bind(this),
     };
     this.matDialog.open(BmbModalComponent, {
       data: updatedData,
@@ -72,6 +74,12 @@ class StorybookModalWrapperComponent {
 
   secondaryActionFunction() {
     console.log('Secondary action triggered');
+    alert('Secondary action executed!');
+    this.matDialog.closeAll();
+  }
+
+  closeActionFunction() {
+    console.log('Modal closed');
     alert('Secondary action executed!');
     this.matDialog.closeAll();
   }
@@ -331,6 +339,18 @@ export default {
       },
       description:
         'Specifies the action to execute when the secondary button is clicked.',
+      table: {
+        category: 'Events',
+        type: { summary: 'function' },
+      },
+    },
+    closeAction: {
+      name: 'Close Action',
+      control: {
+        type: null,
+      },
+      description:
+        'Specifies the action to execute when the user click on the close button. **This function will not prevent the modal from closing**.',
       table: {
         category: 'Events',
         type: { summary: 'function' },

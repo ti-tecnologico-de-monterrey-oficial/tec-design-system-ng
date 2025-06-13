@@ -10,7 +10,6 @@ import {
 import {
   AbstractControl,
   FormControl,
-  FormGroup,
   FormsModule,
   ReactiveFormsModule,
   ValidationErrors,
@@ -29,13 +28,17 @@ import {
 } from '../bmb-input/bmb-input.component';
 import { BmbInputValidationComponent } from '../bmb-input/bmb-input-validation/bmb-input-validation.component';
 import { buildErrorMessage, getUUID } from '../../utils/utils';
-import { BmbInputValidationService } from '../bmb-input/bmb-input-validation/bmb-input-validation.service';
 import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
+import {
+  assignNewFormControl,
+  handleValidity,
+  showError,
+} from '../../utils/formControl';
 
 @Component({
   selector: 'bmb-input-phone-number',
   templateUrl: './bmb-input-phone-number.component.html',
-  styleUrls: ['./bmb-input-phone-number.component.scss'],
+  styleUrl: './bmb-input-phone-number.component.scss',
   standalone: true,
   imports: [
     CommonModule,
@@ -49,8 +52,8 @@ import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-inp
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbInputPhoneNumberComponent implements OnInit {
-  label = input<string>();
-  name = input<string>(window.crypto.randomUUID());
+  label = input<string>('');
+  name = input<string>(getUUID());
   value = input<string>('');
   isRequired = input<boolean>(false);
   tooltip = input<string>('');
@@ -72,17 +75,23 @@ export class BmbInputPhoneNumberComponent implements OnInit {
   control = model<FormControl>(new FormControl());
   showError = model<boolean>(false); // deprecated
 
+  uuid: string = getUUID();
   isFocused = signal<boolean>(false);
   allCountryCodes: IBmbCountryCode[] = IBmbCountryCodes;
-  controls = new FormGroup({
-    select: new FormControl(),
-    input: new FormControl(''),
+  ladaControl: FormControl = new FormControl();
+  phoneControl: FormControl = new FormControl({
+    value: '',
+    disabled: this.disabled(),
   });
-  selectedCountry: IBmbCountryCode | undefined;
-
-  constructor(private ivs: BmbInputValidationService) {}
+  countryFiltering: IBmbDropdownItem[] = [];
+  isControlNull: boolean = false;
 
   ngOnInit(): void {
+    if (!this.control()) {
+      this.control.set(assignNewFormControl(this.name(), this.control())!);
+      this.isControlNull = true;
+    }
+
     if (!!this.value() || !!this.control().value) {
       let inputs: string[] = [];
 
@@ -91,37 +100,43 @@ export class BmbInputPhoneNumberComponent implements OnInit {
       } else if (!this.getSelectedCountry(this.defaultCountryCode())) {
         throw new Error(
           `
-          The value ${this.defaultCountryCode()} for "defaultCountryCode" does not exist in the country List.
+          [${this.name()}] - The value ${this.defaultCountryCode()} for "defaultCountryCode" does not exist in the country List.
           `,
         );
       }
       if (inputs.length) {
         throw new Error(
           `
-          The ${buildErrorMessage(inputs)} required when there is an initial "value" in "bmb-input-phone".
+          [${this.name()}] - The ${buildErrorMessage(inputs)} required when there is an initial "value" in "bmb-input-phone.".
           `,
         );
       }
     }
 
-    this.selectedCountry = this.getSelectedCountry(
-      this.defaultCountryCode().toLocaleLowerCase(),
+    this.ladaControl.setValue(
+      this.getSelectedCountryCode(
+        this.defaultCountryCode().toLocaleLowerCase(),
+      ),
     );
+    this.phoneControl.setValue(this.getNumberValue());
+    this.countryFiltering = this.getOptions();
 
-    this.getControl('input').setValue(this.getNumberValue());
-
-    this.getControl('input').valueChanges.subscribe((value) => {
-      this.setControlValue(this.selectedCountry?.lada!, value);
+    this.phoneControl.valueChanges.subscribe((value) => {
+      if (!!value) {
+        this.setControlValue(
+          this.getSelectedCountryLada(this.ladaControl.value),
+          value,
+        );
+      }
     });
 
     this.control().valueChanges.subscribe((value) => {
       if (value === null) {
-        this.selectedCountry = this.getSelectedCountry(
-          this.defaultCountryCode().toLocaleLowerCase(),
-        );
-        this.getControl('input').setValue('');
-        this.getControl('select').setValue(
-          this.selectedCountry.country_code.toLocaleLowerCase(),
+        this.phoneControl.reset('');
+        this.ladaControl.reset(
+          this.getSelectedCountryCode(
+            this.defaultCountryCode().toLocaleLowerCase(),
+          ),
         );
       }
     });
@@ -136,44 +151,43 @@ export class BmbInputPhoneNumberComponent implements OnInit {
       const { value } = control;
 
       if (!value) return null;
-
-      if (this.getControl('input').hasError('pattern'))
-        return { pattern: true };
-
+      if (this.phoneControl.hasError('pattern')) return { pattern: true };
       if (
-        this.getControl('input').hasError('maxlength') ||
-        this.getControl('input').hasError('minlength')
-      )
+        this.phoneControl.hasError('maxlength') ||
+        this.phoneControl.hasError('minlength')
+      ) {
         return { minlength: true };
+      }
 
       const regExp = new RegExp(
-        `^\\${this.selectedCountry?.lada}\\d{${this.selectedCountry?.length}}$`,
+        `^\\${this.getSelectedCountryLada(
+          this.ladaControl.value,
+        )}\\d{${this.getSelectedCountryLength(this.ladaControl.value)}}$`,
       );
-
       return !regExp.test(control.value) ? { customValidation: true } : null;
     };
   }
 
-  generateID(): string {
-    return getUUID();
+  getUUID(name: string): string {
+    return `${name}_${this.name()}_${this.uuid}`;
   }
 
   setControlValue(lada: string, phoneNumber: string): void {
-    const control = this.getFormControl();
-
     if (!!lada && !!phoneNumber) {
-      control.setValue(lada + phoneNumber);
+      this.control().setValue(lada + phoneNumber);
     } else {
-      control.setValue('');
+      this.control().reset('');
     }
 
-    control.updateValueAndValidity();
-    control.markAsTouched();
+    this.handleValidity();
   }
 
   getNumberValue(): string {
     const value = this.control().value || this.value();
-    return value.replace(this.selectedCountry?.lada!, '')!;
+    return value.replace(
+      this.getSelectedCountryLada(this.ladaControl.value),
+      '',
+    )!;
   }
 
   getSelectedCountry(value: string): IBmbCountryCode {
@@ -182,12 +196,43 @@ export class BmbInputPhoneNumberComponent implements OnInit {
     )!;
   }
 
-  onValueChange(event: any) {
-    this.selectedCountry = this.getSelectedCountry(event.toLocaleLowerCase());
-    this.setControlValue(
-      this.selectedCountry?.lada!,
-      this.getControl('input').value!,
-    );
+  getSelectedCountryCode(value: string): string {
+    const selectedCountry = this.getSelectedCountry(value);
+
+    if (!!selectedCountry) {
+      return selectedCountry.country_code.toLocaleLowerCase();
+    }
+
+    return '';
+  }
+
+  getSelectedCountryLada(value: string): string {
+    const selectedCountry = this.getSelectedCountry(value);
+
+    if (!!selectedCountry) {
+      return selectedCountry.lada;
+    }
+
+    return '';
+  }
+
+  getSelectedCountryLength(value: string): number {
+    const selectedCountry = this.getSelectedCountry(value);
+
+    if (!!selectedCountry) {
+      return selectedCountry.length;
+    }
+
+    return 0;
+  }
+
+  onValueChange(value: string) {
+    if (!!this.phoneControl.value) {
+      this.setControlValue(
+        this.getSelectedCountryLada(value),
+        this.phoneControl.value,
+      );
+    }
   }
 
   getOptions(): IBmbDropdownItem[] {
@@ -222,7 +267,9 @@ export class BmbInputPhoneNumberComponent implements OnInit {
     const customValidation =
       'Número de teléfono no válido, se debe verificar si la lada es correcta.';
     const pattern = 'Sólo se permiten caracteres numéricos';
-    const minLength = `Deben ser ${this.selectedCountry?.length} caracteres numéricos`;
+    const minLength = `Deben ser ${this.getSelectedCountryLength(
+      this.ladaControl.value,
+    )} caracteres numéricos`;
     if (!!this.errorMessage()) {
       if (typeof this.errorMessage() === 'string')
         return {
@@ -248,18 +295,10 @@ export class BmbInputPhoneNumberComponent implements OnInit {
   }
 
   handleValidity(): void {
-    this.ivs.handleValidity(this.name());
+    handleValidity(this.control());
   }
 
   get shouldShowError(): boolean {
-    return this.ivs.showError(this.name()) || this.ivs.showError('input');
-  }
-
-  getControl(name: string): FormControl {
-    return this.controls.get(name) as FormControl;
-  }
-
-  getFormControl(): FormControl {
-    return this.ivs.getFormControlByName(this.name());
+    return showError(this.control()) || showError(this.phoneControl);
   }
 }

@@ -1,126 +1,126 @@
-[data-theme="dark"] {
-  body {
-    background-color: RGBA(var(--color-charade-950));
-  }
-}
+// [data-theme="dark"] {
+//   body {
+//     background-color: RGBA(var(--color-charade-950));
+//   }
+// }
 
-.storybook-dark-theme {
-  .sbdocs {
-    &-title {
-      color: RGBA(var(--color-white-primary));
-    }
+// .storybook-dark-theme {
+//   .sbdocs {
+//     &-title {
+//       color: RGBA(var(--color-white-primary));
+//     }
 
-    &-content {
-      :where(p:not(.sb-anchor, .sb-unstyled, .sb-unstyled p)),
-      :where(h2:not(.sb-anchor, .sb-unstyled, .sb-unstyled h2)),
-      :where(h3:not(.sb-anchor, .sb-unstyled, .sb-unstyled h3)) {
-        color: RGBA(var(--color-white-primary));
-      }
-    }
+//     &-content {
+//       :where(p:not(.sb-anchor, .sb-unstyled, .sb-unstyled p)),
+//       :where(h2:not(.sb-anchor, .sb-unstyled, .sb-unstyled h2)),
+//       :where(h3:not(.sb-anchor, .sb-unstyled, .sb-unstyled h3)) {
+//         color: RGBA(var(--color-white-primary));
+//       }
+//     }
 
-    .docs-story {
-      background-color: RGBA(var(--color-charade-950));
-    }
+//     .docs-story {
+//       background-color: RGBA(var(--color-charade-950));
+//     }
 
-    .docblock-argstable-head th {
-      color: RGBA(var(--color-white-primary));
-    }
-  }
-}
+//     .docblock-argstable-head th {
+//       color: RGBA(var(--color-white-primary));
+//     }
+//   }
+// }
 
-[data-theme="light"] {
-  body {
-    background-color: RGBA(var(--color-charade-200));
-  }
-}
+// [data-theme="light"] {
+//   body {
+//     background-color: RGBA(var(--color-charade-200));
+//   }
+// }
 
-.storybook-light-theme {
-  .sbdocs {
-    &-title {
-      color: RGBA(var(--color-black-primary));
-    }
+// .storybook-light-theme {
+//   .sbdocs {
+//     &-title {
+//       color: RGBA(var(--color-black-primary));
+//     }
 
-    &-content :where(p:not(.sb-anchor, .sb-unstyled, .sb-unstyled p)) {
-      color: RGBA(var(--color-black-primary));
-    }
+//     &-content :where(p:not(.sb-anchor, .sb-unstyled, .sb-unstyled p)) {
+//       color: RGBA(var(--color-black-primary));
+//     }
 
-    .docs-story {
-      background-color: RGBA(var(--color-charade-200));
-    }
-  }
-}
+//     .docs-story {
+//       background-color: RGBA(var(--color-charade-200));
+//     }
+//   }
+// }
 
-#storybook-docs {
-  .sbdocs {
-    background-color: var(--general_contrasts-25);
-  }
+// #storybook-docs {
+//   .sbdocs {
+//     background-color: var(--general_contrasts-25);
+//   }
 
-  .docblock-source {
-    background-color: var(--general_contrasts-15);
-    color: var(--general_contrasts-100);
+//   .docblock-source {
+//     background-color: var(--general_contrasts-15);
+//     color: var(--general_contrasts-100);
 
-    .token {
-      &.property {
-        color: var(--buttons-primary-normal);
-      }
+//     .token {
+//       &.property {
+//         color: var(--buttons-primary-normal);
+//       }
 
-      &.function,
-      &.tag {
-        color: var(--alert-successful);
-      }
+//       &.function,
+//       &.tag {
+//         color: var(--alert-successful);
+//       }
 
-      &.punctuation,
-      &.operator {
-        color: var(--general_contrasts-75);
-      }
+//       &.punctuation,
+//       &.operator {
+//         color: var(--general_contrasts-75);
+//       }
 
-      &.keyword {
-        color: var(--buttons-primary-normal);
-      }
+//       &.keyword {
+//         color: var(--buttons-primary-normal);
+//       }
 
-      &.string {
-        color: var(--alert-primary);
-      }
-    }
-  }
+//       &.string {
+//         color: var(--alert-primary);
+//       }
+//     }
+//   }
 
-  .css-p1dfi6 {
-    background-color: var(--general_contrasts-15);
-    color: var(--general_contrasts-100);
-  }
+//   .css-p1dfi6 {
+//     background-color: var(--general_contrasts-15);
+//     color: var(--general_contrasts-100);
+//   }
 
-  button[title="Zoom in"],
-  button[title="Zoom out"],
-  button[title="Reset zoom"] {
-    color: var(--general_contrasts-75);
-  }
+//   button[title="Zoom in"],
+//   button[title="Zoom out"],
+//   button[title="Reset zoom"] {
+//     color: var(--general_contrasts-75);
+//   }
 
-  table > tbody > tr {
-    &:first-child,
-    &.css-1oi7qoy {
-      > td:not([class^="bmb"]) {
-        background-color: var(--general_contrasts-5) !important;
-      }
-    }
+//   table > tbody > tr {
+//     &:first-child,
+//     &.css-1oi7qoy {
+//       > td:not([class^="bmb"]) {
+//         background-color: var(--general_contrasts-5) !important;
+//       }
+//     }
 
-    > td:not([class^="bmb"]) {
-      background-color: var(--general_contrasts-20);
-      color: var(--general_contrasts-100);
-      border-top-color: var(--general_contrasts-5);
+//     > td:not([class^="bmb"]) {
+//       background-color: var(--general_contrasts-20);
+//       color: var(--general_contrasts-100);
+//       border-top-color: var(--general_contrasts-5);
 
-      .css-o1d7ko {
-        background-color: var(--general_contrasts-25);
-        color: var(--general_contrasts-75);
-      }
-    }
-  }
+//       .css-o1d7ko {
+//         background-color: var(--general_contrasts-25);
+//         color: var(--general_contrasts-75);
+//       }
+//     }
+//   }
 
-  .css-qa4clq :where(li:not(.sb-anchor, .sb-unstyled, .sb-unstyled li)) {
-    color: var(--general_contrasts-100);
-  }
+//   .css-qa4clq :where(li:not(.sb-anchor, .sb-unstyled, .sb-unstyled li)) {
+//     color: var(--general_contrasts-100);
+//   }
 
-  code {
-    background-color: var(--general_contrasts-20);
-    color: var(--general_contrasts-100);
-  }
-}
+//   code {
+//     background-color: var(--general_contrasts-20);
+//     color: var(--general_contrasts-100);
+//   }
+// }

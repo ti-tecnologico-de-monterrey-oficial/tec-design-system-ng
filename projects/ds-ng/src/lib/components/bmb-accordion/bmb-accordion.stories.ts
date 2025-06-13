@@ -2,9 +2,8 @@ import { BmbAccordionComponent } from './bmb-accordion.component';
 import { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
-import { InputSignal } from '@angular/core';
-import { SizeNames } from '../../types';
 import { attributes } from '../../utils/utils';
+import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
   title: 'Micro Componentes/Accordion',
@@ -14,6 +13,7 @@ export default {
       declarations: [],
       imports: [CommonModule, BmbAccordionComponent],
     }),
+    storiesLayoutVertical
   ],
   parameters: {
     docs: {
@@ -175,6 +175,16 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'boolean' },
       },
     },
+    lockToggle: {
+      name: 'Lock toggle',
+      control: { type: 'boolean' },
+      description: 'If set to true, the click interaction is disabled, but without adding disabled styles.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
     closed: {
       name: 'Closed',
       control: null,
@@ -204,15 +214,16 @@ Below is an example of how you can use this component in HTML:
     },
   },
   args: {
-    borderRadius: 'm' as unknown as InputSignal<SizeNames | SizeNames[]>,
-    margin: 'm' as unknown as InputSignal<SizeNames | SizeNames[]>,
-    paddingHeader: 'm' as unknown as InputSignal<SizeNames | SizeNames[]>,
-    paddingContent: 'm' as unknown as InputSignal<SizeNames | SizeNames[]>,
-    hideToggle: false as unknown as InputSignal<boolean>,
-    icon: 'keyboard_arrow_down' as unknown as InputSignal<string>,
-    active: false as unknown as InputSignal<boolean>,
-    disabled: false as unknown as InputSignal<boolean>,
-    expanded: false as unknown as InputSignal<boolean | undefined>,
+    borderRadius: 'm',
+    margin: 'm',
+    paddingHeader: 'm',
+    paddingContent: 'm',
+    hideToggle: false,
+    icon: 'keyboard_arrow_down',
+    active: false,
+    disabled: false,
+    expanded: false,
+    lockToggle: false,
   },
 } as Meta<typeof BmbAccordionComponent>;
 

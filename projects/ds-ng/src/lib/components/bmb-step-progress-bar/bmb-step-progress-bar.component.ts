@@ -1,11 +1,12 @@
 import {
   Component,
-  Input,
-  Output,
-  EventEmitter,
   ViewEncapsulation,
   ChangeDetectionStrategy,
   TemplateRef,
+  signal,
+  output,
+  model,
+  input,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
@@ -20,35 +21,35 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbStepProgressBarComponent {
-  @Input() activeStep: number = 0;
-  @Input() totalSteps?: number = 0;
-  @Input() size?: 'normal' | 'small' = 'normal';
-  @Input() freeze: boolean = false;
-  @Input() type: 'horizontal' | 'vertical' | 'step-panel' = 'vertical';
-  @Input() labelSteps: string[] = [];
-  @Input() labelComplete: string = 'Completo';
-  @Input() labelIncomplete: string = 'Pendiente';
-  @Input() stepTemplates: TemplateRef<any>[] = [];
+  activeStep = model<number>(0);
+  totalSteps = input<number>(0);
+  size = input<'normal' | 'default' | 'small' | 'medium'>('normal');
+  freeze = input<boolean>(false);
+  type = input<'horizontal' | 'vertical' | 'step-panel'>('vertical');
+  labelSteps = input<string[]>([]);
+  labelComplete = input<string>('Completo');
+  labelIncomplete = input<string>('Pendiente');
+  stepTemplates = input<TemplateRef<any>[]>([]);
 
-  @Output() onStepPress: EventEmitter<number> = new EventEmitter<number>();
-  @Output() onStepPanelPress: EventEmitter<number> = new EventEmitter<number>();
-  @Output() next = new EventEmitter<void>();
-  @Output() back = new EventEmitter<void>();
-  @Output() finish = new EventEmitter<void>();
+  onStepPress = output<number>();
+  onStepPanelPress = output<number>();
+  next = output<void>();
+  back = output<void>();
+  finish = output<void>();
 
   getStepsArray(): number[] {
-    return new Array(this.totalSteps || 0).fill(0).map((_, i) => i);
+    return new Array(this.totalSteps() || 0).fill(0).map((_, i) => i);
   }
 
   onStepPanelClicked(index: number): void {
-    if (!this.freeze) {
+    if (!this.freeze()) {
       this.onStepPanelPress.emit(index);
     }
   }
 
   onStepClicked(index: number): void {
-    if (!this.freeze) {
-      this.activeStep = index;
+    if (!this.freeze()) {
+      this.activeStep.set(index);
       this.onStepPress.emit(index);
     }
   }

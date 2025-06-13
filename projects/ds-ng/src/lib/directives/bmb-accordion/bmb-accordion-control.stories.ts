@@ -2,12 +2,14 @@ import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { BmbAccordionControlDirective } from './bmb-accordion-control.directive';
 import { CommonModule } from '@angular/common';
 import { BmbAccordionComponent } from '../../../public-api';
+import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 const meta: Meta<BmbAccordionControlDirective> = {
   title: 'Micro Componentes/Accordion Control',
   component: BmbAccordionComponent,
   subcomponents: { BmbAccordionControlDirective },
   decorators: [
+    storiesLayoutVertical,
     moduleMetadata({
       declarations: [],
       imports: [
@@ -18,6 +20,7 @@ const meta: Meta<BmbAccordionControlDirective> = {
     }),
   ],
   parameters: {
+    withCustomLayout: true,
     docs: {
       description: {
         component: `
@@ -34,7 +37,7 @@ import { BmbAccordionControlDirective, BmbAccordionComponent } from '@ti-tecnolo
 })
 \`\`\`
 
-**For the correct operation of the Accordion Control Directive the Accordion Components need to have the attribute "accordionId"**
+**For the correct operation of the Accordion Control Directive the Accordion Components need to have the attribute "accordionId" and the accordion component must not have the "lockToogle" attribute**
 
 Below is an example of how you can use this component in HTML:
         `,
@@ -50,7 +53,6 @@ Below is an example of how you can use this component in HTML:
       },
       table: {
         type: { summary: '{ [id: string]: boolean }' },
-        defaultValue: { '1': true, '2': false, '3': false },
       },
     },
   },

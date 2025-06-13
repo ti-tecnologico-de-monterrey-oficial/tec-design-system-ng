@@ -14,7 +14,7 @@ import { IDropdownItem } from '../../types';
   selector: 'bmb-dropdown-menu',
   standalone: true,
   templateUrl: './bmb-dropdown-menu.component.html',
-  styleUrls: ['./bmb-dropdown-menu.component.scss'],
+  styleUrl: './bmb-dropdown-menu.component.scss',
   imports: [
     BmbDropdownContentComponent,
     BmbActionIconComponent,
@@ -25,10 +25,11 @@ import { IDropdownItem } from '../../types';
 })
 export class BmbDropdownMenuComponent {
   items = input<IDropdownItem[]>([]);
+
   isOpen = signal<boolean>(false);
 
-  toggleDropdown() {
-    this.isOpen.set(!this.isOpen());
+  openDropdown() {
+    this.isOpen.set(true);
   }
 
   closeDropdown() {

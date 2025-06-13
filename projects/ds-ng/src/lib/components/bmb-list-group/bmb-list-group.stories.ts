@@ -9,6 +9,7 @@ import { InputSignal } from '@angular/core';
 import { SizeNames } from '../../types';
 import { BorderType } from './types';
 import { attributes } from '../../utils/utils';
+import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Macro componentes/ListsGroup/List group',
@@ -18,6 +19,7 @@ export default {
     moduleMetadata({
       imports: [CommonModule, BmbListGroupComponent, BmbListGroupItemComponent],
     }),
+    storiesLayoutHorizontal,
   ],
   parameters: {
     docs: {
@@ -142,13 +144,13 @@ Below is an example of how you can use this component in HTML:
     },
   },
   args: {
-    borderRadius: 'm' as unknown as InputSignal<SizeNames | SizeNames[]>,
-    borderType: 'rounded' as unknown as InputSignal<BorderType>,
-    margin: 'm' as unknown as InputSignal<SizeNames>,
-    padding: 'm' as unknown as InputSignal<SizeNames | SizeNames[]>,
-    isMultipleSelection: false as unknown as InputSignal<boolean>,
-    showControls: true as unknown as InputSignal<boolean>,
-    isRowView: false as unknown as InputSignal<boolean>,
+    borderRadius: 'm',
+    borderType: 'rounded',
+    margin: 'm',
+    padding: 'm',
+    isMultipleSelection: false,
+    showControls: true,
+    isRowView: false,
   },
 } as Meta<typeof BmbListGroupComponent>;
 

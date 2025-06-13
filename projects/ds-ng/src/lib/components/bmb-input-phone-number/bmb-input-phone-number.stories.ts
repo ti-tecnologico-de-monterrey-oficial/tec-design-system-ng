@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BmbInputPhoneNumberComponent } from './bmb-input-phone-number.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { attributes } from '../../utils/utils';
+import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Micro Componentes/Input Phone Number',
@@ -19,6 +20,7 @@ export default {
         BmbIconComponent,
       ],
     }),
+    storiesLayoutHorizontal,
   ],
   parameters: {
     docs: {
@@ -48,7 +50,7 @@ import { CommonModule } from '@angular/common';
     BmbButtonDirective,
   ],
   templateUrl: './component.html',
-  styleUrls: ['./component.scss'],
+  styleUrl: './component.scss',
 })
 export class AppComponent {
   userForm: FormGroup;
@@ -216,7 +218,7 @@ Below is an example of how to use this component in HTML:
 const customizable = (): StoryFn => (args) => ({
   props: args,
   template: `
-    <div style="height: 500px">
+    <div style="height: 25rem">
       <bmb-input-phone-number
         ${attributes(args)}
       />

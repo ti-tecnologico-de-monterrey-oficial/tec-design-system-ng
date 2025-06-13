@@ -8,6 +8,7 @@ import {
   CUSTOM_ELEMENTS_SCHEMA,
   signal,
   ElementRef,
+  OnInit,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import {
@@ -149,12 +150,14 @@ import { BmbNavigationBarComponent } from '../../projects/ds-ng/src/lib/componen
 import { BmbUserSummaryContentComponent } from '../../projects/ds-ng/src/lib/components/bmb-user-summary/bmb-user-summary-content/bmb-user-summary-content.component';
 import { BmbThreeColsComponent } from '../../projects/ds-ng/src/lib/components/bmb-three-cols/bmb-three-cols.component';
 import { BmbTitleContentComponent } from '../../projects/ds-ng/src/lib/components/bmb-title-content/bmb-title-content.component';
+import { MatTableModule } from '@angular/material/table';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'app-root',
   standalone: true,
   imports: [
+    MatTableModule,
     ReactiveFormsModule,
     CommonModule,
     RouterModule,
@@ -265,7 +268,7 @@ import { BmbTitleContentComponent } from '../../projects/ds-ng/src/lib/component
 
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   constructor(
     private el: ElementRef,
     private cdr: ChangeDetectorRef,
@@ -5653,4 +5656,68 @@ export class AppComponent {
     'Arroz a la mexicana',
     'Burritos',
   ];
+
+  selectedData = signal<number>(0);
+
+  onRowSelect(event: unknown[]): void {
+    if (event.length === 0) {
+      this.selectedData.set(0);
+    }
+
+    event.forEach((producto: unknown) => {
+      const prod = producto as { precio: number };
+      this.selectedData.update((v) => v + prod.precio);
+    });
+  }
+
+  newColumns = signal<TableColum[]>([
+    { def: 'id', label: 'Folio', dataKey: 'id' },
+    { def: 'nombre', label: 'Nombre', dataKey: 'nombre' },
+    { def: 'precio', label: 'Precio', dataKey: 'precio' },
+    { def: 'vacio', label: '', dataKey: 'vacio' },
+  ]);
+
+  newData = signal<Producto[]>([]);
+
+  changeColumns(): void {
+    this.newColumns.set([
+      { def: 'id', label: 'Folio', dataKey: 'id' },
+      { def: 'nombre', label: 'Name', dataKey: 'nombre' },
+      { def: 'precio', label: 'Price', dataKey: 'precio' },
+      { def: 'vacio', label: '', dataKey: 'vacio' },
+    ]);
+  }
+
+  generateProducts(count: number): void {
+    const newData = new Array(count).fill({}).map((_, i) => {
+      return {
+        id: i,
+        nombre: `Producto ${i}`,
+        precio: parseFloat((Math.random() * 100 + 1).toFixed(2)),
+        vacio: `Vacío ${i}`,
+      };
+    });
+    this.newData.set(newData);
+  }
+
+  ngOnInit(): void {
+    this.generateProducts(50);
+  }
+}
+
+interface TableColum {
+  label: string;
+  def: string;
+  dataKey: string;
+  htmlLabel?: TemplateRef<unknown>;
+  templateActions?: TemplateRef<unknown>;
+  width?: number;
+  icon?: string;
+}
+
+interface Producto {
+  id: number;
+  nombre: string;
+  precio: number;
+  vacio: string;
 }

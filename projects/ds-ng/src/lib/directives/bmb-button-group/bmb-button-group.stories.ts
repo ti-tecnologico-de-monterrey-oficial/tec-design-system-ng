@@ -1,9 +1,13 @@
 import { Meta, StoryFn } from '@storybook/angular';
 import { BmbButtonGroupDirective } from './bmb-button-group.directive';
+import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Micro Componentes/Button group',
   component: BmbButtonGroupDirective,
+  decorators: [
+    storiesLayoutHorizontal,
+  ],
   imports: [BmbButtonGroupDirective],
   parameters: {
     docs: {

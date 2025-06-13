@@ -1,6 +1,7 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { BmbStudentActivityCardComponent } from './bmb-student-activity-card.component';
+import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Micro Componentes/Student activity card',
@@ -9,6 +10,7 @@ export default {
     moduleMetadata({
       imports: [CommonModule, BmbStudentActivityCardComponent],
     }),
+    storiesLayoutHorizontal,
   ],
   parameters: {
     docs: {
@@ -23,7 +25,7 @@ import { BmbStudentActivitySelectorComponent } from '@ti-tecnologico-de-monterre
   standalone: true,
   imports: [ BmbStudentActivityCardComponent ],
   templateUrl: './component.html',
-  styleUrls: ['./component.scss'],
+  styleUrl: './component.scss',
 })
 
 \`\`\`

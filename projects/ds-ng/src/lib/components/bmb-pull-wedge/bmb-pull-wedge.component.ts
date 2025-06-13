@@ -24,7 +24,7 @@ import {
   selector: 'bmb-pull-wedge',
   standalone: true,
   imports: [CommonModule, DragDropModule],
-  styleUrls: ['./bmb-pull-wedge.component.scss'],
+  styleUrl: './bmb-pull-wedge.component.scss',
   templateUrl: './bmb-pull-wedge.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,

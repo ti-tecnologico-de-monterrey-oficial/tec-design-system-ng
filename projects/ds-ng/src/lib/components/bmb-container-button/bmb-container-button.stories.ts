@@ -4,6 +4,7 @@ import { BmbContainerButtonComponent } from './bmb-container-button.component';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
 import { attributes } from '../../utils/utils';
+import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 const appearanceOptions: IBbmBgAppearance[] = [
   'normal',
@@ -42,6 +43,7 @@ export default {
     moduleMetadata({
       imports: [BmbIconComponent, BmbContainerComponent],
     }),
+    storiesLayoutHorizontal,
   ],
   parameters: {
     docs: {
@@ -480,12 +482,11 @@ export const SecondaryMenuExample = {
         icon: 'link',
         text: 'External Link External Link External Link',
         url: 'https://example.com',
-        target: '_self',
       },
       {
         icon: 'link',
         text: 'internal Link',
-        url: '/vivencia',
+        url: 'https://example.com',
       },
       {
         icon: 'delete',
@@ -497,4 +498,11 @@ export const SecondaryMenuExample = {
       },
     ],
   },
+  render: (args: any) => ({
+    template: `
+    <div style="height: 25rem">
+      <bmb-container-button ${attributes(args)} />
+    </div>
+    `,
+  }),
 };

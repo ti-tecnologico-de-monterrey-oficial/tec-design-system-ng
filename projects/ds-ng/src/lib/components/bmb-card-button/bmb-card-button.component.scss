@@ -130,9 +130,7 @@
   }
 
   &-menu {
-    .bmb_dropdown_menu-button {
-      padding: 0 !important;
-    }
+    @include mixins.dropdown_menu_left(250);
   }
 
   &-template {

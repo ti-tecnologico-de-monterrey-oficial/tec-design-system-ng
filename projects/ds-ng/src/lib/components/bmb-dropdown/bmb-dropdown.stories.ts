@@ -2,6 +2,7 @@ import { moduleMetadata, type Meta, type StoryFn } from '@storybook/angular';
 import { BmbDropdownComponent } from './bmb-dropdown.component';
 import { attributes } from '../../utils/utils';
 import { BmbFormValidationComponent } from '../bmb-form-validation/bmb-form-validation.component';
+import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Micro Componentes/Dropdown',
@@ -10,6 +11,7 @@ export default {
     moduleMetadata({
       imports: [BmbFormValidationComponent],
     }),
+    storiesLayoutHorizontal,
   ],
   parameters: {
     docs: {
@@ -246,7 +248,7 @@ const customizable = (): StoryFn => (args) => ({
     },
   },
   template: `
-    <div style="height: 240px">
+    <div style="height: 25rem">
       <bmb-dropdown
         ${attributes(args)}
       />

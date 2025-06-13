@@ -56,7 +56,7 @@
   --menu_select-on-surface-hovered: RGBA(var(--color-mariner-100), 1);
   --menu_select-on-surface-hovered-border: RGBA(var(--color-mariner-700), 0.1);
 
-  --drop_shadow-color-test-shadow: RGBA(var(--color-charade-950), 0.5);
+  --drop_shadow-color-test-shadow: RGBA(var(--color-black-primary), 0.2);
 
   --track-progress-bar: RGBA(var(--color-green-primary), 1);
   --vertical-step-active: RGBA(var(--color-charade-50), 1);
@@ -97,6 +97,9 @@
   --creative-use-rum: rgb(var(--rum-primary));
   --creative-use-ripelemon: rgb(var(--ripe-lemon-primary));
   --creative-use-hibiscus: rgb(var(--hibiscus-primary));
+
+  --color-table-900: RGBA(var(--color-charade-900), 1);
+  --color-table-btn-900: RGBA(var(--color-charade-900), 1);
 }
 
 [data-theme="dark"],
@@ -173,4 +176,7 @@
   --creative-use-ripelemon: rgb(var(--ripe-lemon-tint));
   --creative-use-hibiscus: rgb(var(--hibiscus-tint));
   --drop_shadow-color-test-shadow: RGBA(var(--color-black-primary), 0.2);
+
+  --color-table-900: RGBA(var(--color-charade-100), 1);
+  --color-table-btn-900: RGBA(var(--color-charade-50), 1);
 }

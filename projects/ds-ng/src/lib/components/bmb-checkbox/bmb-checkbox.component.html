@@ -6,7 +6,7 @@
   [labelPosition]="labelPosition()"
   [checked]="checked()!"
   [errorMessage]="errorMessage()"
-  [showError]="shouldShowError || showError()"
+  [showError]="shouldShowError"
   [helperMessage]="helperMessage()"
   [isRequired]="required()"
   [idDisabled]="disabled()"
@@ -20,14 +20,13 @@
       }"
       type="checkbox"
       [id]="id()"
-      [formControl]="getFormControl()"
+      [formControl]="control()"
       [name]="name()"
       [attr.aria-describedby]="ariaDescribedby()"
       [attr.aria-label]="ariaLabel()"
       [attr.aria-labelledby]="ariaLabelledby()"
       [attr.value]="value()"
       [checked]="checked()"
-      [disabled]="disabled()"
       [required]="required()"
       [indeterminate]="indeterminate()"
       (change)="handleChange($event)"
@@ -36,7 +35,7 @@
     />
     <span
       class="bmb_checkbox-mark"
-      [ngClass]="{ 'bmb_checkbox-mark-error': shouldShowError || showError() }"
+      [ngClass]="{ 'bmb_checkbox-mark-error': shouldShowError }"
     ></span>
   </span>
 </bmb-input-validation>

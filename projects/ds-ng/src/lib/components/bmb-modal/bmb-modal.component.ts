@@ -55,11 +55,11 @@ export class BmbModalComponent {
     if (buttonName === 'primary' && data.primaryAction) {
       data.primaryAction();
       return;
-    }
-
-    if (buttonName === 'secondary' && data.secondaryAction) {
+    } else if (buttonName === 'secondary' && data.secondaryAction) {
       data.secondaryAction();
       return;
+    } else if (buttonName === 'close' && data.closeAction) {
+      data.closeAction();
     }
 
     this.dialogRef.close(event);

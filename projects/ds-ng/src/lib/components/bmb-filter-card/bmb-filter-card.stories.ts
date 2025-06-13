@@ -1,11 +1,15 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { BmbFilterCardComponent } from './bmb-filter-card.component';
 import { CommonModule } from '@angular/common';
+import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Macro Componentes/Filter Card',
   component: BmbFilterCardComponent,
-  decorators: [moduleMetadata({ imports: [CommonModule] })],
+  decorators: [
+    moduleMetadata({ imports: [CommonModule] }),
+    storiesLayoutHorizontal,
+  ],
   parameters: {
     docs: {
       description: {
@@ -122,7 +126,6 @@ Below is an example of how you can use this component in HTML:
     icon: 'tune',
     placeholderSearch: 'Search',
     applyFilters: '',
-    resetFilters: '',
     controlTypes: [
       {
         title: 'Filter - tags',

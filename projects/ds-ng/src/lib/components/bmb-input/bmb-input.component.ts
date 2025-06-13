@@ -7,6 +7,7 @@ import {
   model,
   TemplateRef,
   ContentChild,
+  OnInit,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, ValidatorFn } from '@angular/forms';
@@ -15,18 +16,21 @@ import {
   IBmbJustifyTooltip,
 } from '../bmb-tooltip/bmb-tooltip.component';
 import { IBbmSidePosition } from '../../types';
-import { BmbInputValidationService } from './bmb-input-validation/bmb-input-validation.service';
 import { BmbInputValidationComponent } from './bmb-input-validation/bmb-input-validation.component';
 import { getUUID } from '../../utils/utils';
 import { BmbInputContentComponent } from './bmb-input-content/bmb-input-content.component';
+import {
+  assignNewFormControl,
+  newFormControlByType,
+  showError,
+} from '../../utils/formControl';
 
 export type IBmbInputType =
   | 'text'
   | 'password'
   | 'number'
   | 'text-area'
-  | 'radio'
-  | 'date_range';
+  | 'radio';
 export type IBmbInputAppearance = 'main' | 'normal' | 'simple';
 export type IBmbAdditionalAction = 'copy' | 'showHide' | 'none';
 
@@ -48,7 +52,7 @@ export interface IBmbInputTooltipPosition {
 
 @Component({
   selector: 'bmb-input',
-  styleUrls: ['./bmb-input.component.scss'],
+  styleUrl: './bmb-input.component.scss',
   templateUrl: './bmb-input.component.html',
   standalone: true,
   imports: [
@@ -59,7 +63,7 @@ export interface IBmbInputTooltipPosition {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbInputComponent {
+export class BmbInputComponent implements OnInit {
   label = input<string>('');
   type = input<IBmbInputType>('text');
   placeholder = input<string>('');
@@ -82,6 +86,7 @@ export class BmbInputComponent {
   id = input<string>();
   checked = input<boolean>(false);
   value = input<string>();
+  autocomplete = input<string>('off');
   labelPosition = input<IBbmSidePosition>('after');
   ariaDescribedBy = input<string>('');
   ariaLabel = input<string>('');
@@ -100,7 +105,7 @@ export class BmbInputComponent {
   isCustomError = model<boolean>(false);
 
   showError = model<boolean>(false);
-  control = model<FormControl>(new FormControl());
+  control = model<FormControl>(newFormControlByType(this.type()));
 
   isFocus = output<boolean>();
   isBlur = output<boolean>();
@@ -108,8 +113,16 @@ export class BmbInputComponent {
   onKeyDown = output<KeyboardEvent>();
 
   @ContentChild('customInputContent') customInputContent!: TemplateRef<any>;
+  isControlNull: boolean = false;
 
-  constructor(private ivs: BmbInputValidationService) {}
+  ngOnInit() {
+    if (!this.control()) {
+      this.control.set(
+        assignNewFormControl(this.name(), this.control(), this.type())!,
+      );
+      this.isControlNull = true;
+    }
+  }
 
   onFocus(value: boolean) {
     this.isFocus.emit(value);
@@ -120,7 +133,7 @@ export class BmbInputComponent {
   }
 
   get shouldShowError(): boolean {
-    return this.ivs.showError(this.name());
+    return showError(this.control());
   }
 
   handleKeyPress(event: KeyboardEvent) {
@@ -132,13 +145,5 @@ export class BmbInputComponent {
 
   handleChange(value: HTMLInputElement) {
     this.onChange.emit(value);
-  }
-
-  clearValue() {
-    this.getFormControl()?.reset();
-  }
-
-  getFormControl(): FormControl {
-    return this.ivs.getFormControlByName(this.name());
   }
 }

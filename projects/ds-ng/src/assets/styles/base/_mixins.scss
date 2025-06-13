@@ -360,3 +360,27 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+@mixin dropdown_menu_left($max-width) {
+  .bmb_dropdown-content-modal {
+    right: 0;
+    left: inherit;
+    max-width: rem.rem_calc($max-width);
+    min-width: rem.rem_calc($max-width);
+  }
+}
+
+@mixin helper_text() {
+  @include fonts.font(4, regular);
+  margin: 0;
+}
+
+@mixin normal_helper_text() {
+  @include helper_text();
+  color: var(--general_contrasts-input-outline);
+}
+
+@mixin error_helper_text() {
+  @include helper_text();
+  color: var(--input-error);
+}
