@@ -47,17 +47,6 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: '' },
       },
     },
-    leftIcon: {
-      name: 'Left Icon',
-      control: { type: 'text' },
-      description:
-        'Icon displayed on the left side of the switch. It visually represents the action or state associated with the "on" position. Please use Material icons: https://fonts.google.com/icons. Do not use the leftText property if you want to use leftIcon.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: 'light_mode' },
-      },
-    },
     rightText: {
       name: 'Right Text',
       control: {
@@ -69,17 +58,6 @@ Below is an example of how you can use this component in HTML:
         category: 'Properties',
         type: { summary: 'string' },
         defaultValue: { summary: '' },
-      },
-    },
-    rightIcon: {
-      name: 'Right Icon',
-      control: { type: 'text' },
-      description:
-        'Icon displayed on the right side of the switch. It visually represents the action or state associated with the "off" position. Please use Material icons: https://fonts.google.com/icons. Do not use the rightText property if you want to use rightIcon.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: 'dark_mode' },
       },
     },
     initialTheme: {
@@ -102,8 +80,30 @@ Below is an example of how you can use this component in HTML:
       description: 'Display the theme control',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'true' },
+        defaultValue: { summary: 'false' },
         type: { summary: 'boolean' },
+      },
+    },
+    leftIcon: {
+      name: 'Left Icon',
+      control: { type: 'text' },
+      description:
+        'Icon displayed on the left side of the switch. It visually represents the action or state associated with the "on" position. Please use Material icons: https://fonts.google.com/icons. Do not use the leftText property if you want to use leftIcon.',
+      table: {
+        category: 'Deprecated',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'light_mode' },
+      },
+    },
+    deprecated: {
+      name: 'Right Icon',
+      control: { type: 'text' },
+      description:
+        'Icon displayed on the right side of the switch. It visually represents the action or state associated with the "off" position. Please use Material icons: https://fonts.google.com/icons. Do not use the rightText property if you want to use rightIcon.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'dark_mode' },
       },
     },
   },
@@ -113,7 +113,7 @@ Below is an example of how you can use this component in HTML:
     rightIcon: 'dark_mode',
     leftText: '',
     rightText: '',
-    showControls: true,
+    showControls: false,
   },
 } as Meta<typeof BmbThemeComponent>;
 

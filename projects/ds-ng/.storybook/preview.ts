@@ -1,7 +1,11 @@
-// .storybook/preview.ts
-
+import { componentWrapperDecorator, type Preview } from '@storybook/angular';
+import { setCompodocJson } from '@storybook/addon-docs/angular';
+import docJson from '../../../documentation.json';
+import { themes } from 'storybook/internal/theming';
 import { withThemeByClassName } from '@storybook/addon-themes';
-import type { Preview } from '@storybook/angular';
+import { withCustomLayout } from './addon/bambooLayout';
+
+setCompodocJson(docJson);
 
 const preview: Preview = {
   parameters: {
@@ -31,16 +35,30 @@ const preview: Preview = {
         locales: 'en-US',
       },
     },
+    decorators: [
+      // TODO: Check if later we can use this decorator to apply a global theme
+      // componentWrapperDecorator((story) => {
+      //   return `<div class="storybook-dark-theme">${story}</div><div class="storybook-light-theme">${story}</div>`;
+      // }),
+    ],
   },
-  decorators: [
-    withThemeByClassName({
-      themes: {
-        light: 'storybook-light-theme',
-        dark: 'storybook-dark-theme',
-      },
-      defaultTheme: 'light',
-    }),
-  ],
+  tags: ['autodocs'],
+  // TODO: Check if later we can use this decorator to apply a global theme
+  // globalTypes: {
+  //   theme: {
+  //     name: 'Theme',
+  //     description: 'Global theme for components',
+  //     defaultValue: 'light',
+  //     toolbar: {
+  //       icon: 'mirror',
+  //       items: [
+  //         { value: 'light', icon: 'circlehollow', title: 'Light Theme' },
+  //         { value: 'dark', icon: 'circle', title: 'Dark Theme' },
+  //       ],
+  //       dynamicTitle: true,
+  //     },
+  //   },
+  // },
 };
 
 export default preview;

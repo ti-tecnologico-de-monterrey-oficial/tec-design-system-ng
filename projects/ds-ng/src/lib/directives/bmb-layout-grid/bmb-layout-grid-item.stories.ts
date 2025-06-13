@@ -79,7 +79,7 @@ You can use this tool to generate a custom grid: [Grid generator](https://develo
       table: {
         category: 'Properties',
         type: { summary: 'number' },
-        defaultValue: { summary: 1 },
+        defaultValue: { summary: '1' },
       },
     },
     numberOfColumns: {
@@ -92,7 +92,7 @@ You can use this tool to generate a custom grid: [Grid generator](https://develo
       table: {
         category: 'Properties',
         type: { summary: 'number' },
-        defaultValue: { summary: 1 },
+        defaultValue: { summary: '1' },
       },
     },
     numberOfRows: {
@@ -104,15 +104,15 @@ You can use this tool to generate a custom grid: [Grid generator](https://develo
       table: {
         category: 'Properties',
         type: { summary: 'number' },
-        defaultValue: { summary: 1 },
+        defaultValue: { summary: '1' },
       },
     },
   },
   args: {
-    colStart: 1 as unknown as InputSignal<number>,
-    rowStart: 1 as unknown as InputSignal<number>,
-    numberOfColumns: 1 as unknown as InputSignal<number>,
-    numberOfRows: 1 as unknown as InputSignal<number>,
+    colStart: 1,
+    rowStart: 1,
+    numberOfColumns: 1,
+    numberOfRows: 1,
   },
 };
 

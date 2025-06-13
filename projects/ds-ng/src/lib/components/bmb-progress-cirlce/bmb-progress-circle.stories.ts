@@ -4,11 +4,14 @@ import {
   BmbProgressCirclePathStatus,
 } from './bmb-progress-circle.component';
 import { InputSignal } from '@angular/core';
+import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Micro Componentes/Progress Circle',
   component: BmbProgressCircleComponent,
-  decorators: [],
+  decorators: [
+    storiesLayoutHorizontal,
+  ],
   parameters: {
     docs: {
       description: {
@@ -133,23 +136,20 @@ export const Default = {};
 
 export const WithValueLabel: Story = {
   args: {
-    showValueLabel: true as unknown as InputSignal<boolean>,
+    showValueLabel: true,
   },
 };
 
 export const WithTitle: Story = {
   args: {
-    showTitle: true as unknown as InputSignal<boolean>,
-    title: ['Total a pagar', 'este mes'] as unknown as InputSignal<
-      string | string[]
-    >,
+    showTitle: true,
+    title: ['Total a pagar', 'este mes'],
   },
 };
 
 export const WithBackground: Story = {
   args: {
-    fillPathStatus:
-      'error' as unknown as InputSignal<BmbProgressCirclePathStatus>,
-    percent: 0 as unknown as InputSignal<number>,
+    fillPathStatus: 'error',
+    percent: 0,
   },
 };

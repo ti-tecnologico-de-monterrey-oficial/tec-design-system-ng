@@ -1,41 +1,42 @@
 <div
   class="bmb_step-progress-bar"
   [ngClass]="{
-    'bmb_step-progress-bar-vertical': type == 'vertical',
-    'bmb_step-progress-bar-step-panel': type == 'step-panel',
+    'bmb_step-progress-bar-vertical': type() === 'vertical',
+    'bmb_step-progress-bar-step-panel': type() === 'step-panel',
   }"
 >
-  @if (type == "horizontal") {
+  @if (type() == "horizontal") {
     <div
       class="bmb_step-progress-bar-item"
       *ngFor="let i of getStepsArray()"
       [attr.data-bs-slide-to]="i"
-      [ngClass]="{ completed: activeStep > i }"
+      [ngClass]="{ completed: activeStep() > i }"
       (click)="onStepClicked(i)"
       onkeypress=""
     >
       <div
         class="bmb_step-progress-bar-step"
         [ngClass]="{
-          active: activeStep === i,
-          completed: activeStep > i,
-          'bmb_step-progress-bar-step-normal': size == 'normal',
-          'bmb_step-progress-bar-step-small': size == 'small',
+          active: activeStep() === i,
+          completed: activeStep() > i,
+          'bmb_step-progress-bar-step-normal': size() == 'normal' || size() == 'default',
+          'bmb_step-progress-bar-step-small': size() == 'small',
+          'bmb_step-progress-bar-step-medium': size() == 'medium',
         }"
       >
-        <span *ngIf="activeStep == i || activeStep < i">{{ i + 1 }}</span>
-        @if (activeStep > i) {
+        <span *ngIf="activeStep() == i || activeStep() < i">{{ i + 1 }}</span>
+        @if (activeStep() > i) {
           <bmb-icon [icon]="'done'" class="material-icons" [size]="24" />
         }
       </div>
     </div>
-  } @else if (type === "vertical") {
+  } @else if (type() === "vertical") {
     <div
       class="bmb_step-progress-bar-vertical-item"
       *ngFor="let i of getStepsArray()"
       [attr.data-bs-slide-to]="i"
       [ngClass]="{
-        completed: activeStep > i,
+        completed: activeStep() > i,
         'bmb_step-progress-bar-vertical-content': labelSteps.length > 0,
       }"
       (click)="onStepClicked(i)"
@@ -44,12 +45,13 @@
       <div
         class="bmb_step-progress-bar-vertical-step bmb_step-progress-bar-vertical-step-small"
         [ngClass]="{
-          active: activeStep === i,
-          completed: activeStep > i,
+          active: activeStep() === i,
+          completed: activeStep() > i,
         }"
       >
-        <span *ngIf="activeStep == i || activeStep < i">{{ i + 1 }}</span>
-        @if (activeStep > i) {
+        @if (activeStep() <= i) {
+          <span>{{ i + 1 }}</span>
+        } @else {
           <bmb-icon
             [icon]="'done'"
             class="bmb_step-progress-bar-icon"
@@ -57,30 +59,30 @@
           />
         }
       </div>
-      @if (labelSteps.length > 0) {
+      @if (labelSteps().length > 0) {
         <div class="bmb_step-progress-bar-vertical-text">
           <h2 class="bmb_step-progress-bar-vertical-text-title">
-            {{ labelSteps[i] }}
+            {{ labelSteps()[i] }}
           </h2>
-          @if (activeStep > i) {
+          @if (activeStep() > i) {
             <span class="bmb_step-progress-bar-vertical-text-subtitle">{{
-              labelComplete
+              labelComplete()
             }}</span>
           } @else {
             <span class="bmb_step-progress-bar-vertical-text-subtitle">{{
-              labelIncomplete
+              labelIncomplete()
             }}</span>
           }
         </div>
       }
     </div>
-  } @else if (type === "step-panel") {
+  } @else if (type() === "step-panel") {
     <div class="bmb_step-progress-bar-step-panel-item">
       <div
         class="bmb_step-progress-bar-step-panel-wrapper"
         [ngClass]="{
-          active: activeStep === i,
-          completed: activeStep > i,
+          active: activeStep() === i,
+          completed: activeStep() > i,
         }"
         *ngFor="let step of getStepsArray(); let i = index"
       >
@@ -91,11 +93,11 @@
           <div
             class="bmb_step-progress-bar-step-panel-step"
             [ngClass]="{
-              active: activeStep === i,
-              completed: activeStep > i,
+              active: activeStep() === i,
+              completed: activeStep() > i,
             }"
           >
-            @if (activeStep > i) {
+            @if (activeStep() > i) {
               <bmb-icon
                 [icon]="'done'"
                 class="bmb_step-progress-bar-icon"
@@ -109,16 +111,16 @@
           <span
             class="bmb_step-progress-bar-step-panel-label"
             [ngClass]="{
-              active: activeStep === i,
-              completed: activeStep > i,
+              active: activeStep() === i,
+              completed: activeStep() > i,
             }"
-            >{{ labelSteps[i] }}</span
+            >{{ labelSteps()[i] }}</span
           >
         </div>
 
-        @if (activeStep === i && stepTemplates.length > i) {
+        @if (activeStep() === i && stepTemplates.length > i) {
           <div class="bmb_step-progress-bar-step-panel-content">
-            <ng-container [ngTemplateOutlet]="stepTemplates[i]"></ng-container>
+            <ng-container [ngTemplateOutlet]="stepTemplates()[i]"></ng-container>
           </div>
         }
       </div>

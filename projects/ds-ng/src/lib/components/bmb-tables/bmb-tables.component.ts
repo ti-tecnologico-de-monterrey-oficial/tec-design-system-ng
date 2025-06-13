@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import {
   Component,
-  Input,
   AfterViewInit,
   ViewChild,
   OnInit,
@@ -14,6 +13,10 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   input,
+  OnChanges,
+  effect,
+  SimpleChanges,
+  model,
 } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import {
@@ -45,6 +48,8 @@ import { BmbDropdownComponent } from '../bmb-dropdown/bmb-dropdown.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BmbDateRangeComponent } from '../bmb-date-range/bmb-date-range.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
+
+export type BmbTableLang = 'en' | 'es';
 
 @Component({
   selector: 'bmb-table',
@@ -82,7 +87,7 @@ import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.compo
     ]),
   ],
 })
-export class BmbTablesComponent implements AfterViewInit, OnInit {
+export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
   private _rawColumns: TableColum[] = [];
   private _rawConfig: TableConfig = {
     isSelectable: false,
@@ -99,7 +104,6 @@ export class BmbTablesComponent implements AfterViewInit, OnInit {
   expandedElement: any;
   selection = new SelectionModel<any>(true, []);
   tableConfig: TableConfig | undefined;
-  paginatorSize: number | undefined;
 
   pressed = false;
   currentResizeIndex?: number;
@@ -112,42 +116,23 @@ export class BmbTablesComponent implements AfterViewInit, OnInit {
   searchControl = new FormControl('');
   filtersVisible = false;
 
-  @Input() showSearch: boolean = false;
-  @Input() showFilters: boolean = false;
-  @Input() set pageSize(size: number) {
-    this.paginatorSize = size;
-  }
-
-  @Input() set data(data: any[]) {
-    this.dataSource = new MatTableDataSource(data);
-    this.originalData = data;
-    this.dataSource = new MatTableDataSource(data);
-    this.applyFilters();
-
-    if (this.paginator) {
-      this.dataSource.paginator = this.paginator;
-    }
-  }
-
-  @Input() set columns(columns: TableColum[]) {
-    this._rawColumns = columns;
-    this.applyColumnsAndConfig();
-    this.setupDynamicFilters();
-  }
-
-  @Input() set config(config: TableConfig) {
-    this._rawConfig = config;
-    this.applyColumnsAndConfig();
-  }
-
-  @Input() actionTemplate?: TemplateRef<any> | null;
-  @Input() detailTemplate: TemplateRef<any> | null = null;
-  @Input() truncate: boolean = false;
-  @Input() wrap: boolean = true;
+  showSearch = input<boolean>(false);
+  showFilters = input<boolean>(false);
+  pageSize = input<number>();
+  data = input<any[]>([]);
+  columns = input<TableColum[]>([]);
+  actionTemplate = input<TemplateRef<any> | null>(null);
+  config = input<TableConfig>();
+  detailTemplate = input<TemplateRef<any> | null>(null);
+  truncate = input<boolean>(false);
+  wrap = input<boolean>(true);
   initialTableSelection = input<number[]>([]);
+  lang = input<BmbTableLang>('es');
+  clearSelection = model<boolean>(false);
 
   @Output() select: EventEmitter<any> = new EventEmitter();
   @Output() clickedRow: EventEmitter<any> = new EventEmitter();
+
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatTable, { read: ElementRef }) private matTableRef?: ElementRef;
@@ -162,7 +147,40 @@ export class BmbTablesComponent implements AfterViewInit, OnInit {
   constructor(
     private renderer: Renderer2,
     private sanitizer: DomSanitizer,
-  ) {}
+  ) {
+    effect(() => {
+      const selectedRows = this.initialTableSelection() ?? [];
+      if (selectedRows.length && this.dataSource.data.length) {
+        selectedRows.forEach((row) => {
+          this.selection.select(this.dataSource.data[row]);
+        });
+      } else {
+        this.selection.clear();
+      }
+    });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['data']) {
+      this.parseData(changes['data'].currentValue);
+    }
+
+    if (changes['columns']) {
+      this.parseColumns(changes['columns'].currentValue);
+    }
+
+    if (changes['config']) {
+      this.setConfig(changes['config'].currentValue);
+    }
+
+    if (changes['clearSelection']) {
+      if (this.clearSelection()) {
+        this.selection.clear();
+        this.clearSelection.set(false);
+        this.select.emit(this.selection.selected);
+      }
+    }
+  }
 
   ngOnInit(): void {
     this.searchControl.valueChanges.subscribe((value) => {
@@ -176,13 +194,35 @@ export class BmbTablesComponent implements AfterViewInit, OnInit {
       return searchStr.includes(filter);
     };
     const selectedRows = this.initialTableSelection() ?? [];
-    if (selectedRows.length) {
+    if (selectedRows.length && this.dataSource.data.length) {
       selectedRows.forEach((row) => {
         this.selection.select(this.dataSource.data[row]);
       });
     } else {
       this.selection.clear();
     }
+
+    this._rawConfig = this.config() || {};
+    //this.applyColumnsAndConfig();
+
+    this.parseData(this.data());
+    this.parseColumns(this.columns());
+  }
+
+  parseData(data: any[]) {
+    this.dataSource.data = data;
+    this.originalData = data;
+    this.applyFilters();
+
+    if (this.paginator) {
+      this.dataSource.paginator = this.paginator;
+    }
+  }
+
+  parseColumns(columns: TableColum[]) {
+    this._rawColumns = columns;
+    this.applyColumnsAndConfig(columns);
+    this.setupDynamicFilters();
   }
 
   sanitizeHTML(label: string): SafeHtml {
@@ -197,10 +237,10 @@ export class BmbTablesComponent implements AfterViewInit, OnInit {
     this.setTableResize(this.matTableRef!.nativeElement.clientWidth);
   }
 
-  private applyColumnsAndConfig() {
-    if (!this._rawColumns) return;
+  private applyColumnsAndConfig(newColumns: TableColum[] = []) {
+    if (!newColumns || !Array.isArray(newColumns) || newColumns.length === 0) return;
 
-    const displayColumns = [...this._rawColumns.map((col) => col.def)];
+    const displayColumns = [...newColumns.map((col) => col.def)];
 
     if (this._rawConfig.isExpandible) {
       displayColumns.unshift('expand');
@@ -214,7 +254,8 @@ export class BmbTablesComponent implements AfterViewInit, OnInit {
       displayColumns.push('actions');
     }
 
-    this.tableColumns = this._rawColumns;
+    this._rawColumns = newColumns;
+    this.tableColumns = newColumns;
     this.tableDisplayColumns = displayColumns;
     this.tableConfig = this._rawConfig;
   }
@@ -375,8 +416,8 @@ export class BmbTablesComponent implements AfterViewInit, OnInit {
     const semanticType = row[columnKey + 'Type'];
     const classes: { [key: string]: boolean } = {
       'bmb_table-sticky': index === 0,
-      truncated: this.truncate,
-      wrapped: this.wrap,
+      truncated: this.truncate(),
+      wrapped: this.wrap(),
     };
 
     if (semanticType) {

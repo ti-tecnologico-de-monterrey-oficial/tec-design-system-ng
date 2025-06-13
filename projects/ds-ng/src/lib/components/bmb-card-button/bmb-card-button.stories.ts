@@ -5,6 +5,7 @@ import { attributes } from '../../utils/utils';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { InputSignal } from '@angular/core';
 import { IDropdownItem } from '../../types';
+import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Macro Componentes/Card Button',
@@ -13,6 +14,7 @@ export default {
     moduleMetadata({
       imports: [BmbIconComponent, BmbActionIconComponent],
     }),
+    storiesLayoutHorizontal,
   ],
   parameters: {
     docs: {

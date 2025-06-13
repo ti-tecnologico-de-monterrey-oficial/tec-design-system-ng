@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbMediaCardComponent } from './bmb-media-card.component';
+import { attributesText } from '../../../../../../dist/ds-ng/lib/utils/utils';
+import { attributes } from '../../utils/utils';
 
 export default {
   title: 'Micro Componentes/Media card',
@@ -245,6 +247,17 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: '_blank' },
       },
     },
+    boxShadow: {
+      name: 'Box shadow',
+      control: { type: 'boolean' },
+      description:
+        'When set to true, it adds a box shadow to the card. The shadow only appears if the card is not an external link and is not `floating` type and is not `author_detail` type and the `backdrop` is disabled.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
   },
   args: {
     src: 'https://farm2.staticflickr.com/1919/45579541712_f58c1fd0ed_o.jpg',
@@ -260,6 +273,7 @@ Below is an example of how you can use this component in HTML:
     type: 'inline',
     link: 'https://www.youtube.com/',
     target: '_blank',
+    boxShadow: false,
   },
 } as Meta<typeof BmbMediaCardComponent>;
 
@@ -269,26 +283,7 @@ export const Default: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <bmb-media-card
-        [src]="src"
-        [mobileSrc]="mobileSrc"
-        [alt]="alt"
-        [width]="width"
-        [ratio]="ratio"
-        [borderRadius]="borderRadius"
-        [loading]="loading"
-        [enableZoom]="enableZoom"
-        [isBlurredBackdrop]="isBlurredBackdrop"
-        [type]="type"
-        [title]="title"
-        [subtitle]="subtitle"
-        [content]="content"
-        [date]="date"
-        [userImage]="userImage"
-        [userName]="userName"
-        [link]="link"
-        [target]="target"
-      >
+      <bmb-media-card ${attributes(args)}>
         <p>Custom HTML content</p>
       </bmb-media-card>
     `,

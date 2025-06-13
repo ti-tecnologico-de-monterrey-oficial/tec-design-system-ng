@@ -20,11 +20,13 @@ import { BmbSwitchComponent } from '../bmb-switch/bmb-switch.component';
 })
 export class BmbThemeComponent implements OnInit {
   initialTheme = input<string>('');
-  showControls = input<boolean>(true);
-  leftIcon = model<string>('light_mode');
-  rightIcon = model<string>('dark_mode');
+  showControls = input<boolean>(false);
   leftText = input<string>('');
   rightText = input<string>('');
+
+  // deprecated icons
+  leftIcon = model<string>('light_mode');
+  rightIcon = model<string>('dark_mode');
 
   selectedTheme: string = 'light';
   private service = inject(ThemeService);

@@ -3,6 +3,7 @@ import { BmbCalendarComponent } from './bmb-calendar.component';
 import { Component, input, OnInit } from '@angular/core';
 import { BmbCalendarService } from '../../services/calendar.service';
 import { attributes } from '../../utils/utils';
+import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 @Component({
   standalone: true,
@@ -120,6 +121,7 @@ export default {
       imports: [ToastWrapperComponent, BmbCalendarComponent],
       providers: [],
     }),
+    storiesLayoutVertical,
   ],
   parameters: {
     docs: {
