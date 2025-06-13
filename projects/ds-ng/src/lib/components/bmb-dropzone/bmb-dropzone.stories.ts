@@ -180,8 +180,15 @@ Below is an example of how you can use this component in HTML:
     progress: {
       name: 'Progress',
       control: { type: 'number' },
-      description: 'Upload progress of the file.',
-      table: { category: 'Properties', type: { summary: 'number' } },
+      description: `
+Upload progress of the file.
+
+**Note:** For the multi option, a record must be used.
+
+  Example:
+      progress = signal<Record<string, number>>({});
+`,
+      table: { category: 'Properties', type: { summary: 'Record | number' } },
     },
     acceptedExtensions: {
       name: 'Accepted Extensions',

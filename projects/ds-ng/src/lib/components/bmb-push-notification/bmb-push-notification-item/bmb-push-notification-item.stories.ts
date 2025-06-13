@@ -38,7 +38,7 @@ import { CommonModule } from '@angular/common';
     BmbPushNotificationItemComponent,
   ],
   templateUrl: './component.html',
-  styleUrls: ['./component.scss'],
+  styleUrl: './component.scss',
 })
 \`\`\`
         `,

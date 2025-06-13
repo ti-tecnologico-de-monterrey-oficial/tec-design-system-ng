@@ -37,7 +37,7 @@ import { BmbAccordionControlDirective, BmbAccordionComponent } from '@ti-tecnolo
 })
 \`\`\`
 
-**For the correct operation of the Accordion Control Directive the Accordion Components need to have the attribute "accordionId"**
+**For the correct operation of the Accordion Control Directive the Accordion Components need to have the attribute "accordionId" and the accordion component must not have the "lockToogle" attribute**
 
 Below is an example of how you can use this component in HTML:
         `,

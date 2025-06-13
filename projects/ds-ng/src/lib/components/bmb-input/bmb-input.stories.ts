@@ -49,7 +49,7 @@ import { CommonModule } from '@angular/common';
     BmbInputComponent,
   ],
   templateUrl: './component.html',
-  styleUrls: ['./component.scss'],
+  styleUrl: './component.scss',
 })
 export class AppComponent {
   userForm: FormGroup = new FormGroup({

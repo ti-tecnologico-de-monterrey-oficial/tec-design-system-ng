@@ -26,7 +26,7 @@ import { BmbFrequentAppsSelectorComponent } from '@ti-tecnologico-de-monterrey-o
   standalone: true,
   imports: [ BmbFrequentAppsSelectorComponent ],
   templateUrl: './component.html',
-  styleUrls: ['./component.scss'],
+  styleUrl: './component.scss',
 })
 export class AppComponent {
   apps = [

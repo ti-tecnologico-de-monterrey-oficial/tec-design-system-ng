@@ -28,13 +28,17 @@ import {
 } from '../bmb-input/bmb-input.component';
 import { BmbInputValidationComponent } from '../bmb-input/bmb-input-validation/bmb-input-validation.component';
 import { buildErrorMessage, getUUID } from '../../utils/utils';
-import { BmbInputValidationService } from '../bmb-input/bmb-input-validation/bmb-input-validation.service';
 import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
+import {
+  assignNewFormControl,
+  handleValidity,
+  showError,
+} from '../../utils/formControl';
 
 @Component({
   selector: 'bmb-input-phone-number',
   templateUrl: './bmb-input-phone-number.component.html',
-  styleUrls: ['./bmb-input-phone-number.component.scss'],
+  styleUrl: './bmb-input-phone-number.component.scss',
   standalone: true,
   imports: [
     CommonModule,
@@ -75,12 +79,19 @@ export class BmbInputPhoneNumberComponent implements OnInit {
   isFocused = signal<boolean>(false);
   allCountryCodes: IBmbCountryCode[] = IBmbCountryCodes;
   ladaControl: FormControl = new FormControl();
-  phoneControl: FormControl = new FormControl('');
+  phoneControl: FormControl = new FormControl({
+    value: '',
+    disabled: this.disabled(),
+  });
   countryFiltering: IBmbDropdownItem[] = [];
-
-  constructor(private ivs: BmbInputValidationService) {}
+  isControlNull: boolean = false;
 
   ngOnInit(): void {
+    if (!this.control()) {
+      this.control.set(assignNewFormControl(this.name(), this.control())!);
+      this.isControlNull = true;
+    }
+
     if (!!this.value() || !!this.control().value) {
       let inputs: string[] = [];
 
@@ -162,16 +173,13 @@ export class BmbInputPhoneNumberComponent implements OnInit {
   }
 
   setControlValue(lada: string, phoneNumber: string): void {
-    const control = this.getFormControl();
-
     if (!!lada && !!phoneNumber) {
-      control.setValue(lada + phoneNumber);
+      this.control().setValue(lada + phoneNumber);
     } else {
-      control.reset('');
+      this.control().reset('');
     }
 
-    control.updateValueAndValidity();
-    control.markAsTouched();
+    this.handleValidity();
   }
 
   getNumberValue(): string {
@@ -287,14 +295,10 @@ export class BmbInputPhoneNumberComponent implements OnInit {
   }
 
   handleValidity(): void {
-    this.ivs.handleValidity(this.name());
+    handleValidity(this.control());
   }
 
   get shouldShowError(): boolean {
-    return this.ivs.showError(this.name()) || this.ivs.showError('input');
-  }
-
-  getFormControl(): FormControl {
-    return this.ivs.getFormControlByName(this.name());
+    return showError(this.control()) || showError(this.phoneControl);
   }
 }

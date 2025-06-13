@@ -47,25 +47,21 @@
 
   &-support {
     display: flex;
-    @include fonts.font(4, regular);
     padding: var(--bmb-spacing-s);
-
-    > p {
-      margin: 0;
-    }
 
     &-helper {
       &-normal {
-        color: var(--general_contrasts-input-outline);
+        @include mixins.normal_helper_text();
       }
 
       &-simple {
+        @include mixins.helper_text();
         color: var(--general_contrasts-50);
       }
     }
 
     &-error {
-      color: var(--input-error);
+      @include mixins.error_helper_text();
     }
   }
 

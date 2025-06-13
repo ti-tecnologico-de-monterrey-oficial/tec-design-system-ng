@@ -1,5 +1,4 @@
 <bmb-input-validation
-  [type]="'text'"
   [name]="name()"
   [label]="label()"
   [value]="!!defaultCountryCode() ? value() : ''"
@@ -8,7 +7,7 @@
   [isRequired]="isRequired()"
   [idDisabled]="disabled()"
   [control]="control()"
-  [showError]="shouldShowError || showError()"
+  [showError]="shouldShowError"
   [tooltip]="tooltip()"
   [tooltipPosition]="tooltipPosition()"
   [isCustomError]="true"
@@ -18,7 +17,7 @@
     <section
       class="bmb_input-phone-container"
       [ngClass]="{
-        'bmb_input-phone-container-error': shouldShowError || showError(),
+        'bmb_input-phone-container-error': shouldShowError,
         'bmb_input-phone-container-focus': isFocused(),
       }"
     >
@@ -42,8 +41,8 @@
         [isDisabled]="disabled()"
         [control]="phoneControl"
         [id]="inputId()"
-        [maxlength]="getSelectedCountryLength(ladaControl.value)"
-        [minlength]="getSelectedCountryLength(ladaControl.value)"
+        [maxLength]="getSelectedCountryLength(ladaControl.value)"
+        [minLength]="getSelectedCountryLength(ladaControl.value)"
         [isRequired]="isRequired()"
         (onFocus)="handleFocus($event)"
         (onBlur)="handleValidity()"
@@ -54,7 +53,7 @@
       type="text"
       [name]="name()"
       [required]="isRequired()"
-      [formControl]="getFormControl()"
+      [formControl]="control()"
       [tabindex]="-1"
     />
   </section>

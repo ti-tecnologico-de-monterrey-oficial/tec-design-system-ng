@@ -12,15 +12,12 @@ import {
 import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
-import {
-  convertListToSelectList,
-  filteredValue,
-  getUUID,
-} from '../../utils/utils';
+import { getUUID } from '../../utils/utils';
 import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-dropdown-content.component';
 import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
 import { ClickOutsideDirective } from '../../directives/utils/clickoutside.directive';
 import { IDropdownItem } from '../../types';
+import { convertListToSelectList, filteredValue } from '../../utils/dropdown';
 
 @Component({
   selector: 'bmb-search-input',

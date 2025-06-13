@@ -1,6 +1,5 @@
 <bmb-input-validation
   class="bmb_input-tags"
-  type="text"
   [name]="name()"
   [value]="getValidInitialValues()"
   [label]="label()!"
@@ -53,12 +52,12 @@
     type="text"
     [id]="name()"
     [name]="name()"
-    [formControl]="getFormControl()"
+    [formControl]="control()"
   />
   <bmb-dropdown-content
     class="bmb_input-tags-dialog"
     name="list"
-    [selectedOption]="getFormControl().value"
+    [selectedOption]="control().value"
     [isKeyboardEvent]="isKeyboardEvent"
     [(items)]="filteredOptions"
     [(isOpen)]="showDropdown"

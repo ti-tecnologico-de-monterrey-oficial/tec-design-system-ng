@@ -52,6 +52,7 @@ export class BmbAccordionComponent implements OnInit, OnChanges {
   public disabled = input<boolean>(false);
   public expanded = input<boolean | undefined>();
   public closed = output<void>();
+  public lockToggle = input<boolean>(false);
   @Output() opened = new EventEmitter<void>();
   public onClick = output<MouseEvent>();
   public _expanded = signal(false);
@@ -158,6 +159,9 @@ export class BmbAccordionComponent implements OnInit, OnChanges {
   }
 
   toggle(event?: MouseEvent): void {
+    
+    if (this.lockToggle())return;
+
     if (!this._disabled()) {
       this._expanded.update((current) => !current);
       this._active.update((current) => !current);

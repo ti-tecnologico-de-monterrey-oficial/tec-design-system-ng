@@ -42,13 +42,13 @@ export class BmbInputContentComponent {
   name = input.required<string>();
   spellcheck = input<boolean>(false);
   heightTextArea = input<number>();
-  maxlength = input<number>();
-  minlength = input<number>();
+  maxLength = input<number>();
+  minLength = input<number>();
   pattern = input<string>();
   max = input<number>();
   min = input<number>();
   inputId = input<string>();
-  autocomplete = input<string>('off');
+  autoComplete = input<string>('off');
   rows = input<number>(3);
   isReadOnly = input<boolean>(false); //Internal
   additionalAction = input<IBmbAdditionalAction>('none');
@@ -118,10 +118,7 @@ export class BmbInputContentComponent {
 
   getType() {
     if (this.showAdditionalAction()) {
-      if (
-        (this.additionalAction() === 'showHide' && !this.isHide) ||
-        this.type() === 'date_range'
-      ) {
+      if (this.additionalAction() === 'showHide' && !this.isHide) {
         return 'text';
       }
     }

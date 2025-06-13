@@ -1,6 +1,5 @@
 <bmb-input-validation
   class="bmb_dropdown"
-  type="text"
   [name]="name()"
   [value]="getValidInitialValues()"
   [label]="label()!"
@@ -42,7 +41,7 @@
   </bmb-input-content>
   <bmb-dropdown-content
     class="bmb_dropdown-list"
-    [selectedOption]="getFormControl().value"
+    [selectedOption]="control().value"
     [isKeyboardEvent]="isKeyboardEvent"
     [(items)]="items"
     [(isOpen)]="isOpen"
@@ -52,6 +51,6 @@
     type="text"
     [id]="getUUID('id')"
     [name]="name()"
-    [formControl]="getFormControl()"
+    [formControl]="control()"
   />
 </bmb-input-validation>

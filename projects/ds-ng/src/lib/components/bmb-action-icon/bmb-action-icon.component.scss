@@ -23,5 +23,17 @@
   .bmb_check-external-link-button {
     display: flex;
     align-items: center;
+
+    &-element {
+      &:focus,
+      &:focus-visible,
+      &:hover:not(:disabled) {
+        color: var(--buttons-primary-hover);
+      }
+
+      &:active:not(:disabled) {
+        color: var(--buttons-primary-select);
+      }
+    }
   }
 }

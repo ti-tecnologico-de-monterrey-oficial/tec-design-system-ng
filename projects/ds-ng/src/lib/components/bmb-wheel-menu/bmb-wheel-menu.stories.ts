@@ -38,7 +38,7 @@ import { BmbWheelMenuComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-n
   standalone: true,
   imports: [ BmbWheelMenuComponent ],
   templateUrl: './component.html',
-  styleUrls: ['./component.scss'],
+  styleUrl: './component.scss',
 })
 interface App {
   appearance: string;

@@ -37,7 +37,7 @@ import { BmbBreadcrumbComponent } from '../../../projects/ds-ng/src/lib/componen
     BmbBreadcrumbComponent,
   ],
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+  styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit {
   userForm: FormGroup;

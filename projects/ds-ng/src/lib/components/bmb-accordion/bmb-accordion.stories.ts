@@ -175,6 +175,16 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'boolean' },
       },
     },
+    lockToggle: {
+      name: 'Lock toggle',
+      control: { type: 'boolean' },
+      description: 'If set to true, the click interaction is disabled, but without adding disabled styles.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
     closed: {
       name: 'Closed',
       control: null,
@@ -213,6 +223,7 @@ Below is an example of how you can use this component in HTML:
     active: false,
     disabled: false,
     expanded: false,
+    lockToggle: false,
   },
 } as Meta<typeof BmbAccordionComponent>;
 

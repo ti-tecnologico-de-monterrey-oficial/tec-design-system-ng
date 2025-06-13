@@ -29,7 +29,7 @@ export interface IBmbTab {
 @Component({
   selector: 'bmb-tabs',
   templateUrl: './bmb-tabs.component.html',
-  styleUrls: ['./bmb-tabs.component.scss'],
+  styleUrl: './bmb-tabs.component.scss',
   standalone: true,
   imports: [CommonModule, BmbActionIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -11,7 +11,7 @@
 
   &-container {
     align-items: center;
-    border: rem.rem_calc(2) dashed RGBA(var(--color-charade-300));
+    border: rem.rem_calc(2) dashed var(--general_contrasts-container-outline);
     border-radius: var(--bmb-radius-s);
     box-sizing: border-box;
     display: flex;
@@ -22,16 +22,21 @@
   }
 
   &-drag-over {
-    background: RGBA(var(--color-mariner-100));
-    border-color: var(--general_contrasts-50);
+    background-color: var(--menu_select-on-surface-hovered-w-checkbox);
+    border-color: var(--general_contrasts-main-selection);
   }
 
   &-error {
-    border-color: RGBA(var(--color-red-primary));
+    border-color: var(--red-primary);
+    background-color: transparent;
   }
 
   &-label-format {
     margin: 0;
+    color: var(--general_contrasts-50);
+    &-instruction {
+      color: var(--general_contrasts-100);
+    }
   }
 
   &-link {
@@ -42,16 +47,16 @@
   }
 
   &-label-format-error {
-    color: RGBA(var(--color-red-primary));
+    color: var(--red-primary);
   }
 
   &-icon {
     &-valid {
-      color: RGBA(var(--color-mariner-700));
+      color: var(--general_contrasts-main-selection);
     }
 
     &-error {
-      color: RGBA(var(--color-red-primary));
+      color: var(--red-primary);
     }
   }
 
@@ -67,12 +72,12 @@
       margin: 0;
 
       &-error {
-        color: RGBA(var(--color-red-primary));
+        color: var(--red-primary);
         grid-template-areas: "icon name";
       }
 
       &-loading .bmb-drop-zone-list-files-icon {
-        color: RGBA(var(--color-mariner-700));
+        color: var(--general_contrasts-main-selection);
       }
 
       &-valid {
@@ -109,7 +114,7 @@
 
       &-success {
         .success-icon {
-          color: RGBA(var(--color-green-primary));
+          color: var(--red-primary);
         }
       }
 
@@ -132,16 +137,5 @@
   }
   100% {
     transform: rotate(359deg);
-  }
-}
-
-[data-theme="dark"],
-.storybook-dark-theme {
-  .bmb-drop-zone {
-    border-color: RGBA(var(--color-charade-800));
-
-    &-drag-over {
-      background: RGBA(var(--color-mariner-950));
-    }
   }
 }

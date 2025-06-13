@@ -48,7 +48,7 @@ import { CommonModule } from '@angular/common';
     BmbDateRangeComponent,
   ],
   templateUrl: './component.html',
-  styleUrls: ['./component.scss'],
+  styleUrl: './component.scss',
 })
 \`\`\`
 
@@ -251,8 +251,6 @@ Below is an example of how to use this component in HTML:
 
   args: {
     label: 'Input Label',
-    placeholderStartDate: 'Start date',
-    placeholderEndDate: 'End date',
     icon: 'calendar_month',
     invalidFormatErrorMessage: 'Formato invalido',
     requiredFieldErrorMessage: 'Campo requerido',

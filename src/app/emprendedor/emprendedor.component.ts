@@ -24,7 +24,7 @@ import { BmbBreadcrumbComponent } from '../../../projects/ds-ng/src/lib/componen
     BmbCardButtonComponent,
   ],
   templateUrl: './emprendedor.component.html',
-  styleUrls: ['./emprendedor.component.scss'],
+  styleUrl: './emprendedor.component.scss',
 })
 export default class EmprendedorComponent {
   // breadcrumbPages = [
