@@ -14,7 +14,6 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   input,
-  effect,
 } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import {
@@ -40,6 +39,12 @@ import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
 import { TableColum, TableConfig } from './bmb-tables.interface';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { BmbInputComponent } from '../bmb-input/bmb-input.component';
+import { FormControl, FormGroup } from '@angular/forms';
+import { BmbDropdownComponent } from '../bmb-dropdown/bmb-dropdown.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BmbDateRangeComponent } from '../bmb-date-range/bmb-date-range.component';
+import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 
 @Component({
   selector: 'bmb-table',
@@ -56,6 +61,11 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
     MatFormFieldModule,
     MatInputModule,
     MatTooltipModule,
+    BmbInputComponent,
+    BmbDropdownComponent,
+    ReactiveFormsModule,
+    BmbDateRangeComponent,
+    BmbActionIconComponent,
   ],
   templateUrl: './bmb-tables.component.html',
   styleUrl: './bmb-tables.component.scss',
@@ -73,7 +83,17 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
   ],
 })
 export class BmbTablesComponent implements AfterViewInit, OnInit {
+  private _rawColumns: TableColum[] = [];
+  private _rawConfig: TableConfig = {
+    isSelectable: false,
+    isExpandible: false,
+    isPaginable: false,
+    showActions: false,
+  };
+
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
+  originalData: any[] = [];
+  filterForm = new FormGroup({});
   tableDisplayColumns: string[] = [];
   tableColumns: TableColum[] = [];
   expandedElement: any;
@@ -89,21 +109,35 @@ export class BmbTablesComponent implements AfterViewInit, OnInit {
   resizableMousemove?: () => void;
   resizableMouseup?: () => void;
 
+  searchControl = new FormControl('');
+  filtersVisible = false;
+
+  @Input() showSearch: boolean = false;
+  @Input() showFilters: boolean = false;
   @Input() set pageSize(size: number) {
     this.paginatorSize = size;
   }
 
   @Input() set data(data: any[]) {
     this.dataSource = new MatTableDataSource(data);
+    this.originalData = data;
+    this.dataSource = new MatTableDataSource(data);
+    this.applyFilters();
+
+    if (this.paginator) {
+      this.dataSource.paginator = this.paginator;
+    }
   }
 
   @Input() set columns(columns: TableColum[]) {
-    this.tableColumns = columns;
-    this.tableDisplayColumns = this.tableColumns.map((col) => col.def);
+    this._rawColumns = columns;
+    this.applyColumnsAndConfig();
+    this.setupDynamicFilters();
   }
 
   @Input() set config(config: TableConfig) {
-    this.setConfig(config);
+    this._rawConfig = config;
+    this.applyColumnsAndConfig();
   }
 
   @Input() actionTemplate?: TemplateRef<any> | null;
@@ -131,6 +165,16 @@ export class BmbTablesComponent implements AfterViewInit, OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.searchControl.valueChanges.subscribe((value) => {
+      const safeValue = (value || '').trim().toLowerCase();
+      this.dataSource.filter = safeValue;
+    });
+
+    this.dataSource.filterPredicate = (data: any, filter: string) => {
+      const searchStr =
+        `${data.name} ${data.lastName} ${data.country}`.toLowerCase();
+      return searchStr.includes(filter);
+    };
     const selectedRows = this.initialTableSelection() ?? [];
     if (selectedRows.length) {
       selectedRows.forEach((row) => {
@@ -146,16 +190,33 @@ export class BmbTablesComponent implements AfterViewInit, OnInit {
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+    if (this.dataSource && this.paginator) {
+      this.dataSource.paginator = this.paginator;
+    }
+
     this.setTableResize(this.matTableRef!.nativeElement.clientWidth);
+  }
 
-    const headerHasEllipsis = this.hasEllipsis(
-      this.headerCellRef?.nativeElement,
-    );
+  private applyColumnsAndConfig() {
+    if (!this._rawColumns) return;
 
-    this.dataSource.data.forEach((row: any) => {
-      const cellHasEllipsis = this.hasEllipsis(this.cellRef?.nativeElement);
-    });
+    const displayColumns = [...this._rawColumns.map((col) => col.def)];
+
+    if (this._rawConfig.isExpandible) {
+      displayColumns.unshift('expand');
+    }
+
+    if (this._rawConfig.isSelectable) {
+      displayColumns.unshift('select');
+    }
+
+    if (this._rawConfig.showActions) {
+      displayColumns.push('actions');
+    }
+
+    this.tableColumns = this._rawColumns;
+    this.tableDisplayColumns = displayColumns;
+    this.tableConfig = this._rawConfig;
   }
 
   setTableResize(tableWidth: number) {
@@ -308,5 +369,100 @@ export class BmbTablesComponent implements AfterViewInit, OnInit {
 
   onSelectRow(row: any): void {
     this.clickedRow.emit(row);
+  }
+
+  getCellClasses(row: any, columnKey: string, index: number): any {
+    const semanticType = row[columnKey + 'Type'];
+    const classes: { [key: string]: boolean } = {
+      'bmb_table-sticky': index === 0,
+      truncated: this.truncate,
+      wrapped: this.wrap,
+    };
+
+    if (semanticType) {
+      classes['bmb_table-' + semanticType] = true;
+    }
+
+    return classes;
+  }
+
+  setupDynamicFilters() {
+    this._rawColumns.forEach((column) => {
+      const key = column.dataKey;
+      switch (column.type) {
+        case 'number':
+          this.filterForm.addControl(`${key}_min`, new FormControl());
+          this.filterForm.addControl(`${key}_max`, new FormControl());
+          break;
+        case 'date':
+          this.filterForm.addControl(`${key}_from`, new FormControl());
+          this.filterForm.addControl(`${key}_to`, new FormControl());
+          break;
+        case 'string':
+          this.filterForm.addControl(`${key}_sort`, new FormControl('none'));
+          this.filterForm.addControl(`${key}_contains`, new FormControl(''));
+          break;
+      }
+    });
+
+    this.filterForm.valueChanges.subscribe(() => this.applyFilters());
+  }
+
+  applyFilters(): void {
+    let filtered = [...this.originalData];
+    const values = this.filterForm.value as any;
+
+    this._rawColumns.forEach((column) => {
+      const key = column.dataKey;
+      const type = column.type;
+
+      if (type === 'number') {
+        const min = values[`${key}_min`];
+        const max = values[`${key}_max`];
+        filtered = filtered.filter((row) => {
+          const value = +row[key];
+          return (min == null || value >= min) && (max == null || value <= max);
+        });
+      }
+
+      if (type === 'date') {
+        const from = values[`${key}_from`]
+          ? new Date(values[`${key}_from`]).getTime()
+          : null;
+        const to = values[`${key}_to`]
+          ? new Date(values[`${key}_to`]).getTime()
+          : null;
+        filtered = filtered.filter((row) => {
+          const dateVal = new Date(row[key]).getTime();
+          return (!from || dateVal >= from) && (!to || dateVal <= to);
+        });
+      }
+
+      if (type === 'string') {
+        const search = values[`${key}_contains`]?.toLowerCase();
+        if (search) {
+          filtered = filtered.filter((row) =>
+            row[key]?.toLowerCase().includes(search),
+          );
+        }
+
+        const sort = values[`${key}_sort`];
+        if (sort === 'asc') {
+          filtered.sort((a, b) => a[key]?.localeCompare(b[key]));
+        } else if (sort === 'desc') {
+          filtered.sort((a, b) => b[key]?.localeCompare(a[key]));
+        }
+      }
+    });
+
+    this.dataSource.data = filtered;
+  }
+
+  getFormControl(name: string): FormControl {
+    return this.filterForm.get(name) as FormControl;
+  }
+
+  toggleFilters(): void {
+    this.filtersVisible = !this.filtersVisible;
   }
 }
