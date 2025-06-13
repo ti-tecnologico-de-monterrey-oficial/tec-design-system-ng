@@ -35,7 +35,7 @@
 
     &.completed {
       &::after {
-        border-bottom: rem.rem_calc(2) solid RGBA(var(--color-mariner-700));
+        border-bottom: rem.rem_calc(2) solid var(--general_contrasts-main-selection);
         content: "";
         left: 50%;
         min-width: rem.rem_calc(24);
@@ -45,7 +45,7 @@
       }
 
       .bmb_step-progress-bar-step {
-        background-color: RGBA(var(--color-mariner-700));
+        background-color: var(--general_contrasts-main-selection);
       }
     }
 
@@ -73,17 +73,20 @@
     margin-bottom: rem.rem_calc(6);
     position: relative;
     z-index: 1;
-    @include fonts.font(6, regular);
+    @include fonts.font(7, regular);
+
+    &.active {
+      background-color: var(--containers-modal);
+      border: rem.rem_calc(1) solid var(--general_contrasts-main-selection);
+      color: var(--general_contrasts-input-outline);
+    }
 
     &-small {
-      height: rem.rem_calc(42);
-      width: rem.rem_calc(42);
+      height: rem.rem_calc(30);
+      width: rem.rem_calc(30);
 
       &.active {
-        @include fonts.font(6, medium);
-        background-color: var(--containers-modal);
-        border: rem.rem_calc(1) solid RGBA(var(--color-mariner-700));
-        color: var(--general_contrasts-input-outline);
+        @include fonts.font(4, medium);
       }
     }
 
@@ -93,11 +96,17 @@
 
       &.active {
         @include fonts.font(6, medium);
-        background-color: var(--containers-modal);
-        border: rem.rem_calc(1) solid RGBA(var(--color-mariner-700));
-        color: var(--general_contrasts-input-outline);
         height: rem.rem_calc(64);
         width: rem.rem_calc(64);
+      }
+    }
+
+    &-medium {
+      height: rem.rem_calc(42);
+      width: rem.rem_calc(42);
+
+      &.active {
+        @include fonts.font(6, medium);
       }
     }
   }
@@ -144,7 +153,7 @@
         }
 
         .bmb_step-progress-bar-vertical-step {
-          background-color: RGBA(var(--color-mariner-700));
+          background-color: var(--general_contrasts-main-selection);
         }
       }
 
@@ -182,7 +191,7 @@
         &.active {
           @include fonts.font(6, medium);
           background-color: var(--vertical-step-active);
-          border: rem.rem_calc(1) solid RGBA(var(--color-mariner-700));
+          border: rem.rem_calc(1) solid var(--general_contrasts-main-selection);
           color: var(--vertical-step-active-color);
         }
       }
@@ -193,7 +202,7 @@
         &.active {
           @include fonts.font(6, medium);
           background-color: var(--vertical-step-active);
-          border: rem.rem_calc(1) solid RGBA(var(--color-mariner-700));
+          border: rem.rem_calc(1) solid var(--general_contrasts-main-selection);
           color: var(--vertical-step-active-color);
           height: rem.rem_calc(64);
           width: rem.rem_calc(64);
@@ -270,12 +279,12 @@
       &.active {
         @include fonts.font(6, medium);
         background-color: var(--containers-modal);
-        border: rem.rem_calc(1) solid RGBA(var(--color-mariner-700));
+        border: rem.rem_calc(1) solid var(--general_contrasts-main-selection);
         color: var(--general_contrasts-input-outline);
       }
 
       &.completed {
-        background-color: RGBA(var(--color-mariner-700));
+        background-color: var(--general_contrasts-main-selection);
       }
     }
 
