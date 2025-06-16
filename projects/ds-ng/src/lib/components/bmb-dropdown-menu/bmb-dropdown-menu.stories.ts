@@ -122,5 +122,5 @@ export const Default: Story = {
         <bmb-dropdown-menu ${attributes(args)} />
       </div>
     `,
-  })
+  }),
 };

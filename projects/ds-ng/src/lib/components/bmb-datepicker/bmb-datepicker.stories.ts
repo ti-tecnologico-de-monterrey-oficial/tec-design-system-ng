@@ -305,5 +305,5 @@ export const Default: Story = {
         <bmb-datepicker ${attributes(args)} />
       </div>
     `,
-  })
+  }),
 };

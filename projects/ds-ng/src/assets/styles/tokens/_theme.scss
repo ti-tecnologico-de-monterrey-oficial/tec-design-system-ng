@@ -35,19 +35,29 @@
 // }
 
 // .storybook-light-theme {
-//   .sbdocs {
-//     &-title {
-//       color: RGBA(var(--color-black-primary));
-//     }
+#storybook-docs {
+  background-color: var(--general_contrasts-20);
 
-//     &-content :where(p:not(.sb-anchor, .sb-unstyled, .sb-unstyled p)) {
-//       color: RGBA(var(--color-black-primary));
-//     }
+  // &-title {
+  //   color: RGBA(var(--color-black-primary));
+  // }
 
-//     .docs-story {
-//       background-color: RGBA(var(--color-charade-200));
-//     }
-//   }
+  // &-content :where(p:not(.sb-anchor, .sb-unstyled, .sb-unstyled p)) {
+  //   color: RGBA(var(--color-black-primary));
+  // }
+
+  .docs-story {
+    background-color: var(--general_contrasts-20);
+  }
+
+  .sb-bar {
+    background-color: var(--general_contrasts-5);
+  }
+
+  // .prismjs {
+  //   background-color: var(--general_contrasts-20);
+  // }
+}
 // }
 
 // #storybook-docs {

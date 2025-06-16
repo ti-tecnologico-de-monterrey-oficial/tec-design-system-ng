@@ -5,9 +5,7 @@ import { storiesLayoutVertical } from '../../utils/bambooLayout';
 export default {
   title: 'Macro Componentes/Alert center',
   component: BmbAlertCenterComponent,
-  decorators: [
-    storiesLayoutVertical,
-  ],
+  decorators: [storiesLayoutVertical],
   parameters: {
     docs: {
       description: {

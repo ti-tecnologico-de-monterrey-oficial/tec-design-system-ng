@@ -1,9 +1,6 @@
 import { componentWrapperDecorator, type Preview } from '@storybook/angular';
 import { setCompodocJson } from '@storybook/addon-docs/angular';
 import docJson from '../../../documentation.json';
-import { themes } from 'storybook/internal/theming';
-import { withThemeByClassName } from '@storybook/addon-themes';
-import { withCustomLayout } from './addon/bambooLayout';
 
 setCompodocJson(docJson);
 
@@ -18,7 +15,10 @@ const preview: Preview = {
       },
     },
     docs: {
-      source: { language: 'html' },
+      source: {
+        language: 'html',
+        excludeDecorators: true,
+      },
       canvas: {
         sourceState: 'shown',
       },

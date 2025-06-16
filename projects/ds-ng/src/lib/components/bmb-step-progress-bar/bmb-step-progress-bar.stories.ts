@@ -5,9 +5,7 @@ import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 export default {
   title: 'Micro Componentes/Step Progress Bar',
   component: BmbStepProgressBarComponent,
-  decorators: [
-    storiesLayoutHorizontal,
-  ],
+  decorators: [storiesLayoutHorizontal],
   parameters: {
     docs: {
       description: {
@@ -59,7 +57,8 @@ Below is an example of how you can use this component in HTML:
         type: 'radio',
       },
       options: ['small', 'medium', 'default'],
-      description: 'Set the size of the steps. **Note**: This property only works when the `type` is `horizontal`.',
+      description:
+        'Set the size of the steps. **Note**: This property only works when the `type` is `horizontal`.',
       table: {
         category: 'Properties',
         type: { summary: 'select' },

@@ -5,9 +5,7 @@ import { storiesLayoutVertical } from '../../utils/bambooLayout';
 export default {
   title: 'Macro Componentes/Tabs',
   component: BmbTabsComponent,
-  decorators: [
-    storiesLayoutVertical,
-  ],
+  decorators: [storiesLayoutVertical],
   parameters: {
     docs: {
       description: {

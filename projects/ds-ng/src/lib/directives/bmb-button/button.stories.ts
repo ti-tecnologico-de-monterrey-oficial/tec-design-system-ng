@@ -12,9 +12,7 @@ import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 export default {
   title: 'Micro Componentes/Button',
   component: BmbButtonDirective,
-  decorators: [
-    storiesLayoutHorizontal
-  ],
+  decorators: [storiesLayoutHorizontal],
   imports: [BmbButtonDirective, BmbIconComponent],
   parameters: {
     docs: {

@@ -5,9 +5,7 @@ import { storiesLayoutVertical } from '../../utils/bambooLayout';
 export default {
   title: 'Internal/Title content template',
   component: BmbTitleContentComponent,
-  decorators: [
-    storiesLayoutVertical,
-  ],
+  decorators: [storiesLayoutVertical],
   parameters: {
     docs: {
       description: {
