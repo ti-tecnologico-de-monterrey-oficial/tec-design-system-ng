@@ -35,9 +35,7 @@ const appearanceOptions: BmbToastAppearance[] = [
 export default {
   title: 'Micro Componentes/Toast',
   component: BmbToastComponent,
-  decorators: [
-    storiesLayoutHorizontal,
-  ],
+  decorators: [storiesLayoutHorizontal],
   parameters: {
     docs: {
       description: {

@@ -145,7 +145,7 @@
       </ng-container>
 
       <!-- Display Columns -->
-       @for (column of tableColumns; track column; let i = $index) {
+      @for (column of tableColumns; track column; let i = $index) {
         <ng-container [matColumnDef]="column.def" [sticky]="i === 0">
           <th
             mat-header-cell
@@ -167,7 +167,7 @@
                 [ngTemplateOutletContext]="{ column: column, index: i }"
               ></ng-template>
             } @else {
-              {{ this.lang() === 'es' ? column.label : column.labelEn }}
+              {{ this.lang() === "es" ? column.label : column.labelEn }}
             }
 
             <!-- Resize Handle -->
@@ -195,8 +195,7 @@
             }
           </td>
         </ng-container>
-       }
-
+      }
 
       <!-- Actions Column -->
       <ng-container matColumnDef="actions" stickyEnd>

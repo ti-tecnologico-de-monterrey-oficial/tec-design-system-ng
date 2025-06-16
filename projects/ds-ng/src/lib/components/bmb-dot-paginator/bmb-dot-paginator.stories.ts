@@ -12,9 +12,7 @@ export interface Target {
 export default {
   title: 'Micro Componentes/Dot Paginator',
   component: BmbDotPaginatorComponent,
-  decorators: [
-    storiesLayoutVertical,
-  ],
+  decorators: [storiesLayoutVertical],
   parameters: {
     docs: {
       description: {

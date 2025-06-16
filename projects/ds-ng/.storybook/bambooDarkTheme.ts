@@ -9,5 +9,4 @@ export default create({
 
   fontBase: '"Poppins-Regular", sans-serif',
   fontCode: 'monospace',
-
 });
