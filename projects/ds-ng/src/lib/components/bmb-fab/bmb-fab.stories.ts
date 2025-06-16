@@ -6,9 +6,7 @@ import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 export default {
   title: 'Micro Componentes/Fab',
   component: BmbFabComponent,
-  decorators: [
-    moduleMetadata({ imports: [BmbDividerComponent] }),
-  ],
+  decorators: [moduleMetadata({ imports: [BmbDividerComponent] })],
   parameters: {
     docs: {
       description: {

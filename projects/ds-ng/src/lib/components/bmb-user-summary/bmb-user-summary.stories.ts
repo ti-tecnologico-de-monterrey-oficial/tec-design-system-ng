@@ -5,9 +5,7 @@ import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 export default {
   title: 'Macro Componentes/User Summary',
   component: BmbUserSummaryComponent,
-  decorators: [
-    storiesLayoutHorizontal,
-  ],
+  decorators: [storiesLayoutHorizontal],
   parameters: {
     docs: {
       description: {

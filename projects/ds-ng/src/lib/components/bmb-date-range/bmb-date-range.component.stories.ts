@@ -274,5 +274,5 @@ export const Default: Story = {
         <bmb-date-range ${attributes(args)} />
       </div>
     `,
-  })
+  }),
 };

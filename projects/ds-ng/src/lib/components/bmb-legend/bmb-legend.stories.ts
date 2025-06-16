@@ -5,9 +5,7 @@ import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 export default {
   title: 'Micro Componentes/Legend',
   component: BmbLegendComponent,
-  decorators: [
-    storiesLayoutHorizontal,
-  ],
+  decorators: [storiesLayoutHorizontal],
   parameters: {
     docs: {
       description: {

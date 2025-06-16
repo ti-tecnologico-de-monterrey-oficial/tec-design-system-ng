@@ -8,7 +8,7 @@ addons.setConfig({
     filters: {
       runPattern: (item: API_PreparedIndexEntry): boolean => {
         return !(item.tags ?? []).includes('hideInSidebar');
-      }
+      },
     },
   },
 });
