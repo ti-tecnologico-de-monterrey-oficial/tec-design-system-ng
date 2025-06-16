@@ -195,6 +195,16 @@ export class BmbInputValidationComponent implements OnInit {
     return '';
   }
 
+  getErrorType(
+    errorMessages: IBmbInputError,
+    type: string,
+    alternativeMessage: string,
+  ): string {
+    if (!!errorMessages && !!(errorMessages as any)[type])
+      return (errorMessages as any)[type];
+    return alternativeMessage;
+  }
+
   isFieldRequired(): boolean {
     return (
       this.control()?.hasValidator(Validators.required) || this.isRequired()
@@ -209,31 +219,49 @@ export class BmbInputValidationComponent implements OnInit {
     const errorMessages = this.errorMessage() as IBmbInputError;
 
     if (this.control()?.hasError('pattern'))
-      return errorMessages.pattern || 'Formato no válido';
+    return this.getErrorType(
+        errorMessages,
+        'pattern',
+        'Formato no válido',
+      );
     if (this.control()?.hasError('min'))
-      return (
-        errorMessages.min || `El valor mínimo requerido es de ${this.min()}`
+      return this.getErrorType(
+        errorMessages,
+        'min',
+        `El valor mínimo requerido es de ${this.min()}`,
       );
     if (this.control()?.hasError('max'))
-      return (
-        errorMessages.max || `El valor máximo requerido es de ${this.max()}`
+       return this.getErrorType(
+        errorMessages,
+        'max',
+        `El valor máximo requerido es de ${this.max()}`,
       );
     if (this.control()?.hasError('minlength'))
-      return (
-        errorMessages.minLength ||
-        `El mínimo de caracteres requerido es de ${this.minLength()}`
+      return this.getErrorType(
+        errorMessages,
+        'minlength',
+        `El mínimo de caracteres requerido es de ${this.minLength()}`,
       );
     if (this.control()?.hasError('maxlength'))
-      return (
-        errorMessages.maxLength ||
-        `El máximo de caracteres requerido es de ${this.maxLength()}`
+      return this.getErrorType(
+        errorMessages,
+        'maxlength',
+        `El máximo de caracteres requerido es de ${this.maxLength()}`,
       );
     if (this.control()?.hasError('required'))
-      return errorMessages.required || 'Este campo es requerido';
+      return this.getErrorType(
+        errorMessages,
+        'required',
+        'Este campo es requerido',
+      );
     if (this.control()?.hasError('invalidJson'))
-      return errorMessages.jsonFormat || 'formato json no válido';
+    return this.getErrorType(
+        errorMessages,
+        'invalidJson',
+        'formato json no válido',
+      );
     if (this.control()?.hasError('customValidation'))
-      return errorMessages.customValidation || '';
+      return errorMessages?.customValidation || '';
 
     return '';
   }
