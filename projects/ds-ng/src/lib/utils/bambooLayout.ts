@@ -18,7 +18,7 @@ export const storiesLayoutVertical = componentWrapperDecorator(
       onclick="
         document.querySelector('#storybook-theme-selector').classList.remove('light', 'both');
         document.querySelector('#storybook-theme-selector').classList.add('dark');">
-      🌚
+      🌜
     </button>
     <button
       class="storybook-theme-toggle light"
