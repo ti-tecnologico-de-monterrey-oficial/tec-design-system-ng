@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { ActivatedRoute } from '@angular/router';
 import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
-import { attributes } from '../../utils/utils';
 
 export default {
   title: 'Micro Componentes/Dropdown Menu',
