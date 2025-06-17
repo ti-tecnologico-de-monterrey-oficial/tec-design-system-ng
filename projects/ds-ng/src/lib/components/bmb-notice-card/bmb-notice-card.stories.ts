@@ -1,16 +1,17 @@
 import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
 import { BmbNoticeCardComponent } from './bmb-notice-card.component';
 import { attributes } from '../../utils/utils';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
+import { storiesLayoutHorizontal, storiesLayoutHorizontalDark } from '../../utils/bambooLayout';
 
 export default {
   title: 'Micro Componentes/Notice Card',
   component: BmbNoticeCardComponent,
+  storiesLayoutHorizontalDarkParam: true,
   decorators: [
     moduleMetadata({
       imports: [BmbNoticeCardComponent],
     }),
-    storiesLayoutHorizontal,
+    storiesLayoutHorizontalDark,
   ],
   parameters: {
     docs: {

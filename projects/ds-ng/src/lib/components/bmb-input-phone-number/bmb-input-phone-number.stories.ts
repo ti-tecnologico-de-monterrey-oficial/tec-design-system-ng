@@ -1,4 +1,4 @@
-import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
+import { Meta, StoryFn, componentWrapperDecorator, moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,6 +20,14 @@ export default {
         BmbIconComponent,
       ],
     }),
+    componentWrapperDecorator(
+      (story: string) => {
+        return `
+        <div style="height: 25rem">
+          ${story}
+        </div>`;
+      },
+    ),
     storiesLayoutHorizontal,
   ],
   parameters: {
@@ -218,11 +226,9 @@ Below is an example of how to use this component in HTML:
 const customizable = (): StoryFn => (args) => ({
   props: args,
   template: `
-    <div style="height: 25rem">
-      <bmb-input-phone-number
-        ${attributes(args)}
-      />
-    </div>
+    <bmb-input-phone-number
+      ${attributes(args)}
+    />
     `,
 });
 

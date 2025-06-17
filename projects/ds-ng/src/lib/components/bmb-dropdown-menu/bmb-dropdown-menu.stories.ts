@@ -1,4 +1,4 @@
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+import { Meta, StoryObj, componentWrapperDecorator, moduleMetadata } from '@storybook/angular';
 import { BmbDropdownMenuComponent } from './bmb-dropdown-menu.component';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
@@ -23,6 +23,14 @@ export default {
         },
       ],
     }),
+    componentWrapperDecorator(
+      (story: string) => {
+        return `
+        <div style="height: 15rem">
+          ${story}
+        </div>`;
+      },
+    ),
     storiesLayoutHorizontal,
   ],
   parameters: {
@@ -114,13 +122,4 @@ Sets the list of items for the dropdown menu.
 
 type Story = StoryObj<BmbDropdownMenuComponent>;
 
-export const Default: Story = {
-  args: {},
-  render: (args) => ({
-    template: `
-      <div style="height: 15rem">
-        <bmb-dropdown-menu ${attributes(args)} />
-      </div>
-    `,
-  }),
-};
+export const Default: Story = {};

@@ -5,7 +5,8 @@ import { storiesLayoutVertical } from '../../utils/bambooLayout';
 export default {
   title: 'Macro Componentes/Timestream',
   component: BmbTimestreamComponent,
-  decorators: [storiesLayoutVertical],
+  decorators: [
+    storiesLayoutVertical],
   parameters: {
     docs: {
       description: {

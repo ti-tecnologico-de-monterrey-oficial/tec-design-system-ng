@@ -1,9 +1,8 @@
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+import { Meta, StoryObj, componentWrapperDecorator, moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BmbDatepickerComponent } from './bmb-datepicker.component';
-import { attributes } from '../../utils/utils';
 import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
@@ -19,6 +18,14 @@ export default {
         BmbDatepickerComponent,
       ],
     }),
+    componentWrapperDecorator(
+      (story: string) => {
+        return `
+        <div style="height: 35rem">
+          ${story}
+        </div>`;
+      },
+    ),
     storiesLayoutHorizontal,
   ],
   parameters: {
@@ -297,13 +304,4 @@ Below is an example of how to use this component in HTML:
 
 type Story = StoryObj<BmbDatepickerComponent>;
 
-export const Default: Story = {
-  args: {},
-  render: (args) => ({
-    template: `
-      <div style="height: 35rem">
-        <bmb-datepicker ${attributes(args)} />
-      </div>
-    `,
-  }),
-};
+export const Default: Story = {};

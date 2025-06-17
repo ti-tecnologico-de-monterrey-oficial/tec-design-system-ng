@@ -95,13 +95,13 @@ import { BmbLayoutItemDirective } from '../bmb-layout/bmb-layout-item.directive'
     .grid-placeholder {
       background-image: repeating-linear-gradient(
         45deg,
-        var(--general_contrasts-container-outline) 0,
-        var(--general_contrasts-container-outline) 1px,
+        var(--general_contrasts-50) 0,
+        var(--general_contrasts-50) 1px,
         transparent 0,
         transparent 50%
       );
       background-size: 8px 8px;
-      border: 1px solid var(--general_contrasts-container-outline);
+      border: 1px solid var(--general_contrasts-50);
       padding: 1rem;
       opacity: 0.5;
       user-select: none;

@@ -1,4 +1,4 @@
-import { Meta, moduleMetadata, StoryFn, StoryObj } from '@storybook/angular';
+import { componentWrapperDecorator, Meta, moduleMetadata, StoryFn, StoryObj } from '@storybook/angular';
 import { BmbCalendarComponent } from './bmb-calendar.component';
 import { Component, input, OnInit } from '@angular/core';
 import { BmbCalendarService } from '../../services/calendar.service';
@@ -121,6 +121,11 @@ export default {
       imports: [ToastWrapperComponent, BmbCalendarComponent],
       providers: [],
     }),
+    componentWrapperDecorator((story: string) => {
+      return `<div style="height: 1000px; display: flex; justify-content: center; align-items: center;">
+        ${story}
+      </div>`;
+    }),
     storiesLayoutVertical,
   ],
   parameters: {
@@ -217,22 +222,6 @@ Below is an example of how you can use this component in HTML:
   },
 } as Meta<typeof BmbCalendarComponent>;
 
-export const Default: StoryFn<typeof ToastWrapperComponent> = (args) => {
-  return {
-    props: args,
-    template: `
-      <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->
-      <storybook-toast-wrapper ${attributes(args)}></storybook-toast-wrapper>
-      <!-- Start copying from here -->
-      <div class="actions">
-      <div style="height: 1000px">
-        <bmb-calendar
-          [calendarTimezone]="calendarTimezone"
-          [clientTimezone]="clientTimezone"
-          [height]="height"
-          (onDateChange)="onDateChange($event)"
-        ></bmb-calendar>
-      </div>
-      `,
-  };
-};
+type Story = StoryObj<typeof ToastWrapperComponent>;
+
+export const Default: Story = {};
