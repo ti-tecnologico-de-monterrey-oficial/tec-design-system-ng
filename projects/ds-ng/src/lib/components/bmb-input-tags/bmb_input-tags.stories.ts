@@ -1,4 +1,4 @@
-import type { Meta, StoryFn } from '@storybook/angular';
+import { componentWrapperDecorator, type Meta, type StoryFn } from '@storybook/angular';
 import { attributes } from '../../utils/utils';
 import { BmbInputTagsComponent } from './bmb-input-tags.component';
 import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
@@ -6,7 +6,17 @@ import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 export default {
   title: 'Micro Componentes/ Input Tags',
   component: BmbInputTagsComponent,
-  decorators: [storiesLayoutHorizontal],
+  decorators: [
+    componentWrapperDecorator(
+      (story: string) => {
+        return `
+        <div style="height: 25rem">
+          ${story}
+        </div>`;
+      },
+    ),
+    storiesLayoutHorizontal
+  ],
   parameters: {
     docs: {
       description: {
@@ -317,12 +327,10 @@ export default {
 
 const customizable = (): StoryFn => (args) => ({
   template: `
-    <div style="height: 25rem">
-      <bmb-input-tags
-        ${attributes(args)}
-        (onValueChange)="onValueChange($event)"
-      />
-    </div>
+    <bmb-input-tags
+      ${attributes(args)}
+      (onValueChange)="onValueChange($event)"
+    />
   `,
 });
 

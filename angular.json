@@ -159,7 +159,8 @@
             "port": 6006,
             "styles": [
               "projects/ds-ng/src/assets/styles/main.scss",
-              "src/styles.scss"
+              "src/styles.scss",
+              "projects/ds-ng/src/assets/styles/tokens/theme.scss"
             ]
           }
         },
@@ -172,7 +173,8 @@
             "compodocArgs": ["-e", "json", "-d", "."],
             "styles": [
               "projects/ds-ng/src/assets/styles/main.scss",
-              "src/styles.scss"
+              "src/styles.scss",
+              "projects/ds-ng/src/assets/styles/tokens/theme.scss"
             ],
             "outputDir": "dist/storybook/ds-ng"
           }
