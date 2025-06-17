@@ -267,6 +267,8 @@ class StorybookLayoutGridStories {
   }
 }
 
+type Story = StoryFn<StorybookLayoutGridStories>;
+
 export default {
   title: 'Foundations/Grid generator',
   component: StorybookLayoutGridStories,
@@ -319,7 +321,7 @@ You can copy the generated HTML code and use it in your own project. The generat
       table: {
         category: 'Properties',
         type: { summary: 'number' },
-        defaultValue: { summary: 1 },
+        defaultValue: { summary: '1' },
       },
     },
     columns: {
@@ -331,7 +333,7 @@ You can copy the generated HTML code and use it in your own project. The generat
       table: {
         category: 'Properties',
         type: { summary: 'number' },
-        defaultValue: { summary: 1 },
+        defaultValue: { summary: '1' },
       },
     },
     rowSize: {
@@ -386,13 +388,13 @@ You can copy the generated HTML code and use it in your own project. The generat
     },
   },
   args: {
-    colGapSize: 'm' as unknown as InputSignal<SizeNames>,
-    rowGapSize: 'm' as unknown as InputSignal<SizeNames>,
-    rows: 3 as unknown as InputSignal<number>,
-    columns: 3 as unknown as InputSignal<number>,
-    rowSize: ['2fr', '1fr'] as unknown as InputSignal<string[] | string>,
-    columnSize: ['1fr', '2fr'] as unknown as InputSignal<string[] | string>,
-    height: 500 as unknown as InputSignal<string | number>,
+    colGapSize: 'm',
+    rowGapSize: 'm',
+    rows: 3,
+    columns: 3,
+    rowSize: ['2fr', '1fr'],
+    columnSize: ['1fr', '2fr'],
+    height: 500,
   },
 } as Meta<StorybookLayoutGridStories>;
 

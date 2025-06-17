@@ -1,10 +1,11 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbLoginComponent } from './bmb-login.component';
+import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
   title: 'Macro Componentes/Login',
   component: BmbLoginComponent,
-  decorators: [],
+  decorators: [storiesLayoutVertical],
   parameters: {
     docs: {
       description: {

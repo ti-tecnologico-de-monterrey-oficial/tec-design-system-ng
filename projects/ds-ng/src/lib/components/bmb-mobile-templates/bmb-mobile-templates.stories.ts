@@ -1,9 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbMobileTemplatesComponent } from './bmb-mobile-templates.component';
+import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
   title: 'Macro Componentes/Mobile Templates',
   component: BmbMobileTemplatesComponent,
+  decorators: [storiesLayoutVertical],
   parameters: {
     docs: {
       description: {

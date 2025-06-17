@@ -1,10 +1,11 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbLoginContentComponent } from './bmb-login-content.component';
+import { storiesLayoutHorizontal } from '../../../utils/bambooLayout';
 
 export default {
   title: 'Internal/Login content',
   component: BmbLoginContentComponent,
-  decorators: [],
+  decorators: [storiesLayoutHorizontal],
   parameters: {
     docs: {
       description: {

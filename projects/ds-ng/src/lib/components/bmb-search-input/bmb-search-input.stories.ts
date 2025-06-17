@@ -1,11 +1,12 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbSearchInputComponent } from './bmb-search-input.component';
 import { attributes } from '../../utils/utils';
+import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Micro Componentes/Search input',
   component: BmbSearchInputComponent,
-  decorators: [],
+  decorators: [storiesLayoutHorizontal],
   parameters: {
     docs: {
       description: {

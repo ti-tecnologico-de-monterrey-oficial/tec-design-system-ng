@@ -1,15 +1,11 @@
 import { Meta, StoryObj } from '@storybook/angular';
-import {
-  argsToTemplate,
-  componentWrapperDecorator,
-  moduleMetadata,
-} from '@storybook/angular';
-import { CommonModule } from '@angular/common';
 import { BmbPaginatorComponent } from './bmb-paginator.component';
+import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Micro Componentes/Paginator',
   component: BmbPaginatorComponent,
+  decorators: [storiesLayoutHorizontal],
   parameters: {
     docs: {
       description: {
@@ -165,7 +161,7 @@ export const Default: Story = {
   args: {},
   render: (args) => ({
     props: args,
-    template: ` 
+    template: `
         <bmb-paginator
             [totalItems]="totalItems"
             [itemsPerPage]="itemsPerPage"

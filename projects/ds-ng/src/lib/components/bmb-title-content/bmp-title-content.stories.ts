@@ -1,10 +1,11 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbTitleContentComponent } from './bmb-title-content.component';
+import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
   title: 'Internal/Title content template',
   component: BmbTitleContentComponent,
-  decorators: [],
+  decorators: [storiesLayoutVertical],
   parameters: {
     docs: {
       description: {

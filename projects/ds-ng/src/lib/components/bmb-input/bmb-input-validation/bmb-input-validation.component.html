@@ -15,7 +15,7 @@
     ) {
       <span class="bmb_input-validation-label">
         {{ label() }}
-        @if (isRequired()) {
+        @if (isFieldRequired()) {
           <small class="bmb_input-validation-label-required">*</small>
         }
         @if (!!tooltip()) {
@@ -37,9 +37,9 @@
     }
     <ng-content />
   </label>
-  @if (!!helperMessage() || (!!errorMessage() && showError())) {
+  @if (!!helperMessage() || showError()) {
     <div class="bmb_input-validation-support">
-      @if (!!errorMessage() && showError()) {
+      @if (showError()) {
         <p class="bmb_input-validation-support-error">
           {{ getErrorMessage() }}
         </p>

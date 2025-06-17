@@ -8,6 +8,7 @@ import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { InputSignal } from '@angular/core';
 import { attributes } from '../../utils/utils';
+import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 const appearanceOptions: IBbmBgAppearance[] = [
   'normal',
@@ -49,6 +50,7 @@ export default {
     moduleMetadata({
       imports: [CommonModule, BmbListGroupComponent, BmbListGroupItemComponent],
     }),
+    storiesLayoutHorizontal,
   ],
   parameters: {
     docs: {
@@ -235,7 +237,7 @@ type Story = StoryObj<BmbListGroupItemComponent>;
 export const Default: Story = {
   name: 'Example with a personalized template',
   args: {
-    personalizedTemplate: true as unknown as InputSignal<boolean>,
+    personalizedTemplate: true,
   },
   render: (args) => ({
     props: args,
@@ -265,15 +267,15 @@ export const Default: Story = {
 export const WithDefaultTemplate: Story = {
   name: 'Example with the default template',
   args: {
-    personalizedTemplate: false as unknown as InputSignal<boolean>,
-    headerText: 'Header text' as unknown as InputSignal<string>,
-    descriptionText: 'Description text' as unknown as InputSignal<string>,
-    infoText: 'Info text' as unknown as InputSignal<string>,
-    icon: 'add_box' as unknown as InputSignal<string>,
-    tooltipTitle: 'Tooltip title' as unknown as InputSignal<string>,
-    tooltipText: 'Tooltip text' as unknown as InputSignal<string>,
-    badgeAppearance: 'mitec_blue' as unknown as InputSignal<IBbmBgAppearance>,
-    badgeText: 'Badge Text' as unknown as InputSignal<string>,
+    personalizedTemplate: false,
+    headerText: 'Header text',
+    descriptionText: 'Description text',
+    infoText: 'Info text',
+    icon: 'add_box',
+    tooltipTitle: 'Tooltip title',
+    tooltipText: 'Tooltip text',
+    badgeAppearance: 'mitec_blue',
+    badgeText: 'Badge Text',
   },
   render: (args) => ({
     props: args,

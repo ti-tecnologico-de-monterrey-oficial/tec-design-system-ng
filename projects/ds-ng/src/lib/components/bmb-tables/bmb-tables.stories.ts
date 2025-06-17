@@ -3,6 +3,7 @@ import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { attributes } from '../../utils/utils';
+import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
   title: 'Macro Componentes/Table',
@@ -11,6 +12,7 @@ export default {
     moduleMetadata({
       imports: [CommonModule, BmbIconComponent],
     }),
+    storiesLayoutVertical,
   ],
   parameters: {
     docs: {
@@ -448,7 +450,7 @@ Below is an example of how to use this component in HTML:
         type: 'object',
       },
       description:
-        'Set the initial selection of the table. This is an array of indexes that will be selected when the table is initialized.',
+        'Set the initial selection of the table. This is an array of indexes that will be selected when the table is initialized. **Warning**: If the data is asynchronous, this property must also be asynchronous.',
       table: {
         category: 'Properties',
         type: { summary: 'number[]' },
@@ -479,6 +481,20 @@ Below is an example of how to use this component in HTML:
         defaultValue: { summary: 'false' },
       },
     },
+    lang: {
+      name: 'Language',
+      control: {
+        type: 'select',
+      },
+      options: ['es', 'en'],
+      description:
+        'Set the language of the table. This will change the text of the headers table.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'BmbTableLang' },
+        defaultValue: { summary: 'es' },
+      },
+    },
   },
   args: {
     data: [
@@ -499,19 +515,26 @@ Below is an example of how to use this component in HTML:
     columns: [
       {
         def: 'name',
-        label: 'Name',
+        label: 'Nombre',
         dataKey: 'name',
         icon: 'face',
+        labelEn: 'Name',
       },
       {
         def: 'lastName',
-        label: 'Last Name',
+        label: 'Apellido',
         dataKey: 'lastName',
         cellTemplate: 'dynamicCell',
         icon: 'face',
+        labelEn: 'Last Name',
       },
-      { def: 'birthday', label: 'Birthday', dataKey: 'birthday' },
-      { def: 'country', label: 'Country', dataKey: 'country' },
+      {
+        def: 'birthday',
+        label: 'Cumpleaños',
+        dataKey: 'birthday',
+        labelEn: 'Birthday',
+      },
+      { def: 'country', label: 'País', dataKey: 'country', labelEn: 'Country' },
     ],
     config: {
       isSelectable: false,
@@ -522,6 +545,7 @@ Below is an example of how to use this component in HTML:
     truncate: false,
     wrap: false,
     initialTableSelection: [1],
+    lang: 'es',
   },
 } as Meta<typeof BmbTablesComponent>;
 

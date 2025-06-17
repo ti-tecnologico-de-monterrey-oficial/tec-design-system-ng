@@ -1,10 +1,12 @@
 import { Meta, StoryFn } from '@storybook/angular';
 import { BmbHomeCardComponent } from './bmb-home-card.component';
 import { attributes, attributesText } from '../../utils/utils';
+import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Micro Componentes/Home Card',
   component: BmbHomeCardComponent,
+  decorators: [storiesLayoutHorizontal],
   parameters: {
     docs: {
       description: {

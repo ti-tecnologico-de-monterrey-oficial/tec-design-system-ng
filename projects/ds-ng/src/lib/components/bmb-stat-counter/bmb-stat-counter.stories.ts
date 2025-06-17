@@ -1,10 +1,11 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbStatCounterComponent } from './bmb-stat-counter.component';
+import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
   title: 'Micro Componentes/Stat Counter',
   component: BmbStatCounterComponent,
-  decorators: [],
+  decorators: [storiesLayoutVertical],
   parameters: {
     docs: {
       description: {

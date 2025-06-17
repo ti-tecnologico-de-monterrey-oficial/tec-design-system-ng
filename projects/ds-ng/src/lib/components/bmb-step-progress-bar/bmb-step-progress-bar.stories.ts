@@ -1,10 +1,11 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbStepProgressBarComponent } from './bmb-step-progress-bar.component';
+import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Micro Componentes/Step Progress Bar',
   component: BmbStepProgressBarComponent,
-  decorators: [],
+  decorators: [storiesLayoutHorizontal],
   parameters: {
     docs: {
       description: {
@@ -55,12 +56,13 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'radio',
       },
-      options: ['small', 'normal'],
-      description: 'Set the size of the steps.',
+      options: ['small', 'medium', 'default'],
+      description:
+        'Set the size of the steps. **Note**: This property only works when the `type` is `horizontal`.',
       table: {
         category: 'Properties',
         type: { summary: 'select' },
-        defaultValue: { summary: 'normal' },
+        defaultValue: { summary: 'default' },
       },
     },
     freeze: {
@@ -128,7 +130,7 @@ Below is an example of how you can use this component in HTML:
   args: {
     totalSteps: 5,
     activeStep: 3,
-    size: 'small',
+    size: 'default',
     freeze: false,
     type: 'vertical',
     labelSteps: [

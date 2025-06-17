@@ -1,9 +1,11 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbChatBarComponent } from './bmb-chat-bar.component';
+import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
   title: 'Micro Componentes/Chat bar',
   component: BmbChatBarComponent,
+  decorators: [storiesLayoutVertical],
   parameters: {
     docs: {
       description: {

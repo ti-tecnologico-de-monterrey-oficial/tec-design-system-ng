@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbBadgeComponent } from './bmb-badge.component';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
+import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 const appearanceOptions: IBbmBgAppearance[] = [
   'normal',
@@ -36,6 +37,7 @@ const appearanceOptions: IBbmBgAppearance[] = [
 export default {
   title: 'Micro Componentes/Badge',
   component: BmbBadgeComponent,
+  decorators: [storiesLayoutHorizontal],
   parameters: {
     docs: {
       description: {

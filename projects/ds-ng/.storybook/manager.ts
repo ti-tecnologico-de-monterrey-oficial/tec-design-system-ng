@@ -1,14 +1,12 @@
-import { addons } from '@storybook/manager-api';
-import { API_PreparedIndexEntry, API_StatusObject } from '@storybook/types';
+import { addons } from 'storybook/manager-api';
+import bambooDarkTheme from './bambooDarkTheme';
+import { API_PreparedIndexEntry } from 'storybook/internal/types';
 
 addons.setConfig({
+  theme: bambooDarkTheme,
   sidebar: {
     filters: {
-      patterns: (
-        item: API_PreparedIndexEntry & {
-          status: Record<string, API_StatusObject | null>;
-        },
-      ): boolean => {
+      runPattern: (item: API_PreparedIndexEntry): boolean => {
         return !(item.tags ?? []).includes('hideInSidebar');
       },
     },

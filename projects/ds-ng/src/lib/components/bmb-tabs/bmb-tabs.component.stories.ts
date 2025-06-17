@@ -1,9 +1,11 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbTabsComponent } from './bmb-tabs.component';
+import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
   title: 'Macro Componentes/Tabs',
   component: BmbTabsComponent,
+  decorators: [storiesLayoutVertical],
   parameters: {
     docs: {
       description: {

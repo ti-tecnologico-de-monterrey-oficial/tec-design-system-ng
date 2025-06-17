@@ -9,6 +9,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { Component } from '@angular/core';
+import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 @Component({
   standalone: true,
@@ -34,6 +35,7 @@ class StorybookModalWrapperComponent implements AfterViewInit {
 export default {
   title: 'Micro Componentes/Chat bubbles',
   component: BmbChatBubblesComponent,
+  decorators: [storiesLayoutVertical],
   parameters: {
     docs: {
       description: {
@@ -170,16 +172,15 @@ Below is an example of how you can use this component in HTML:
   },
   args: {
     message: {
-      isUserMessage: false as unknown as InputSignal<boolean>,
-      userProfile:
-        'https://picsum.photos/id/64/200/300' as unknown as InputSignal<string>,
-      type: 'text' as unknown as InputSignal<TBmbMessageType>,
+      isUserMessage: false,
+      userProfile: 'https://picsum.photos/id/64/200/300',
+      type: 'text',
       content: {
-        text: ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo.' as unknown as InputSignal<MessageContent>,
+        text: ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo.',
       },
-      time: new Date() as unknown as InputSignal<Date>,
-    } as unknown as InputSignal<IBmbChatMessage>,
-    gptIcons: false as unknown as InputSignal<boolean>,
+      time: new Date(),
+    },
+    gptIcons: false,
     onRepeatRequest: () => {
       window.alert('Repeat request Button');
     },
@@ -205,15 +206,14 @@ export const Default: Story = {};
 export const UserMsg: Story = {
   args: {
     message: {
-      isUserMessage: true as unknown as InputSignal<boolean>,
-      userProfile:
-        'https://picsum.photos/id/64/200/300' as unknown as InputSignal<string>,
-      type: 'text' as unknown as InputSignal<TBmbMessageType>,
+      isUserMessage: true,
+      userProfile: 'https://picsum.photos/id/64/200/300',
+      type: 'text',
       content: {
-        text: ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo.' as unknown as InputSignal<MessageContent>,
+        text: ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo.',
       },
-      time: new Date() as unknown as InputSignal<Date>,
-    } as unknown as InputSignal<IBmbChatMessage>,
+      time: new Date(),
+    },
   },
   ...Default,
 };
@@ -221,15 +221,15 @@ export const UserMsg: Story = {
 export const ChatGpt: Story = {
   args: {
     message: {
-      isUserMessage: false as unknown as InputSignal<boolean>,
-      type: 'text' as unknown as InputSignal<TBmbMessageType>,
+      isUserMessage: false,
+      type: 'text',
       content: {
-        text: ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo.' as unknown as InputSignal<MessageContent>,
+        text: ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo.',
       },
-      time: new Date() as unknown as InputSignal<Date>,
-    } as unknown as InputSignal<IBmbChatMessage>,
-    gptIcons: true as unknown as InputSignal<boolean>,
-    gptBot: true as unknown as InputSignal<boolean>,
+      time: new Date(),
+    },
+    gptIcons: true,
+    gptBot: true,
   },
   ...Default,
 };
@@ -237,16 +237,16 @@ export const ChatGpt: Story = {
 export const LinkResponse: Story = {
   args: {
     message: {
-      isUserMessage: false as unknown as InputSignal<boolean>,
-      type: 'link' as unknown as InputSignal<TBmbMessageType>,
+      isUserMessage: false,
+      type: 'link',
       content: {
-        text: 'Link de prueba' as unknown as InputSignal<MessageContent>,
-        link: 'https://www.youtube.com' as unknown as InputSignal<MessageContent>,
+        text: 'Link de prueba',
+        link: 'https://www.youtube.com',
       },
-      time: new Date() as unknown as InputSignal<Date>,
-    } as unknown as InputSignal<IBmbChatMessage>,
-    gptIcons: true as unknown as InputSignal<boolean>,
-    gptBot: true as unknown as InputSignal<boolean>,
+      time: new Date(),
+    },
+    gptIcons: true,
+    gptBot: true,
   },
   ...Default,
 };
@@ -254,15 +254,14 @@ export const LinkResponse: Story = {
 export const TextAndImage: Story = {
   args: {
     message: {
-      isUserMessage: false as unknown as InputSignal<boolean>,
-      type: 'mixed' as unknown as InputSignal<TBmbMessageType>,
+      isUserMessage: false,
+      type: 'mixed',
       content: {
-        text: 'Lorem insup' as unknown as InputSignal<MessageContent>,
-        imageUrl:
-          'https://picsum.photos/id/64/200/300' as unknown as InputSignal<MessageContent>,
+        text: 'Lorem insup',
+        imageUrl: 'https://picsum.photos/id/64/200/300',
       },
-      time: new Date() as unknown as InputSignal<Date>,
-    } as unknown as InputSignal<IBmbChatMessage>,
+      time: new Date(),
+    },
   },
   ...Default,
 };
@@ -270,17 +269,16 @@ export const TextAndImage: Story = {
 export const Thinking: Story = {
   args: {
     message: {
-      isUserMessage: false as unknown as InputSignal<boolean>,
-      type: 'mixed' as unknown as InputSignal<TBmbMessageType>,
+      isUserMessage: false,
+      type: 'mixed',
       content: {
-        text: 'Lorem insup' as unknown as InputSignal<MessageContent>,
-        imageUrl:
-          'https://picsum.photos/id/64/200/300' as unknown as InputSignal<MessageContent>,
+        text: 'Lorem insup',
+        imageUrl: 'https://picsum.photos/id/64/200/300',
       },
-      time: new Date() as unknown as InputSignal<Date>,
-    } as unknown as InputSignal<IBmbChatMessage>,
-    gptIcons: false as unknown as InputSignal<boolean>,
-    isThinking: true as unknown as InputSignal<boolean>,
+      time: new Date(),
+    },
+    gptIcons: false,
+    isThinking: true,
   },
   ...Default,
 };

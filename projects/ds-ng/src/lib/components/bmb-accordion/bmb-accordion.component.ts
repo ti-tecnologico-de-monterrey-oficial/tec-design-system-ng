@@ -159,8 +159,7 @@ export class BmbAccordionComponent implements OnInit, OnChanges {
   }
 
   toggle(event?: MouseEvent): void {
-    
-    if (this.lockToggle())return;
+    if (this.lockToggle()) return;
 
     if (!this._disabled()) {
       this._expanded.update((current) => !current);
