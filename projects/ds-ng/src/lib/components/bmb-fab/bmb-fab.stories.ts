@@ -3,7 +3,6 @@ import {
   Meta,
   StoryFn,
   componentWrapperDecorator,
-  StoryObj,
 } from '@storybook/angular';
 import { BmbFabComponent } from './bmb-fab.component';
 import { attributes } from '../../utils/utils';

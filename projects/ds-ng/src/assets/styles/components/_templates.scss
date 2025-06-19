@@ -503,3 +503,125 @@
     height: calc(100% - rem.rem_calc(100));
   }
 }
+
+.bmb_template-stand-alone-tags {
+  display: flex;
+  background-color: var(--containers-main);
+  flex-flow: column nowrap;
+  margin: rem.rem_calc(24 0 24 100);
+  border-radius: rem.rem_calc(20);
+  box-shadow: rem.rem_calc(10 5 10 0) RGBA(var(--color-black-primary), 0.5);
+
+  @media (max-width: 1000px) {
+    margin-left: rem.rem_calc(40);
+  }
+
+  &-content {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: rem.rem_calc(16);
+    padding: var(--bmb-spacing-l);
+
+    &-main {
+      width: calc(100% / 3);
+
+      @media (max-width: 630px) {
+        width: 100%;
+      }
+    }
+
+    &-aside {
+      flex: 1;
+    }
+
+    @media (max-width: 630px) {
+      flex-flow: column nowrap;
+    }
+  }
+
+  &-footer {
+    display: flex;
+    padding: rem.rem_calc(24);
+    justify-content: flex-end;
+    gap: rem.rem_calc(16);
+  }
+
+  @media (max-width: 630px) {
+    margin: var(--bmb-spacing-xxs);
+    height: max-content;
+  }
+}
+
+.bmb_template-subheader {
+  padding: rem.rem_calc(24);
+  border-bottom: rem.rem_calc(1) solid var(--general_contrasts-15);
+
+  ul {
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: rem.rem_calc(16);
+    justify-content: space-between;
+
+    @media (max-width: 630px) {
+      flex-flow: column nowrap;
+    }
+
+    li {
+      position: relative;
+
+      &::after,
+      &:before {
+        content: "";
+        display: none;
+        position: absolute;
+        width: rem.rem_calc(1);
+        height: rem.rem_calc(44);
+        top: 0;
+        bottom: 0;
+        background-color: var(--general_contrasts-text-sidebar);
+        margin: auto;
+      }
+
+      &:first-child {
+        &::after {
+          display: block;
+          right: rem.rem_calc(-8);
+
+          @media (max-width: 630px) {
+            display: none;
+          }
+        }
+      }
+
+      &:last-child {
+        width: rem.rem_calc(204);
+
+        .bmb_step-progress-bar {
+          margin-bottom: 0;
+        }
+
+        &::before {
+          display: block;
+          left: rem.rem_calc(-8);
+
+          @media (max-width: 630px) {
+            display: none;
+          }
+        }
+      }
+
+      &:nth-child(2) {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-flow: row wrap;
+        gap: rem.rem_calc(8);
+      }
+    }
+  }
+}

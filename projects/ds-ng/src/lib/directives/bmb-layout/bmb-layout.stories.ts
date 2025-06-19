@@ -446,7 +446,7 @@ export const ColumnOffset = {
             <strong>Right</strong> Sm: 2, Lg: 6
           </bmb-card-content>
         </bmb-card>
-        <bmb-card bmbLayoutItem margin="none" [colSm]="1" [colLg]="3" [marginLeft]="{ 'sm': 0, 'lg': 0 }" [marginRight]="{ 'sm': 1, 'lg': 9 }">
+        <bmb-card bmbLayoutItem margin="none" [colSm]="1" [colLg]="3" [marginLeft]="{ 'sm': 0, 'lg': 0 }" [marginRight]="{ 'sm': 3, 'lg': 9 }">
           <bmb-card-content padding="m">
             <strong>Left</strong> Sm: 0, Lg: 0<br />
             <strong>Right</strong> Sm: 3, Lg: 9
