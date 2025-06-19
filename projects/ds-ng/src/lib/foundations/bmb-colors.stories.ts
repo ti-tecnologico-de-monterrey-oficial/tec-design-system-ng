@@ -29,7 +29,7 @@ import {
     <section style="max-height: 500px; overflow-y: auto; padding: 0 1rem;">
       @if (this.selectedTabId() === 1) {
         <header
-          style="position: sticky; top: 0; left: 0; z-index: 1; background-color: var(--general_contrasts-25); padding: 1rem 0;"
+          style="position: sticky; top: 0; left: 0; z-index: 1; background-color: var(--general_contrasts-15); padding: 1rem 0;"
         >
           <h2>Named colors</h2>
           <p style="margin: 0;">
@@ -759,11 +759,11 @@ export default {
 background-color: RGBA(var(--color-name));
 color: RGBA(var(--color-name));
 
-//You need to avoid the RGBA() for some variables, take a look to the playground
+/* You need to avoid the RGBA() for some variables, take a look to the playground */
 background-color: var(--color-name);
 color: var(--color-name);
 
-//For gradients colors
+/* For gradients colors */
 background: linear-gradient(180deg, var(--color-gradient-blue));
 background: radial-gradient(circle, var(--color-gradient-blue));
 

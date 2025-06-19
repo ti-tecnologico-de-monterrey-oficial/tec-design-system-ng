@@ -1,4 +1,4 @@
-import { moduleMetadata, Meta, StoryFn } from '@storybook/angular';
+import { moduleMetadata, Meta, StoryFn, componentWrapperDecorator } from '@storybook/angular';
 import { BmbFabComponent } from './bmb-fab.component';
 import { attributes } from '../../utils/utils';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
@@ -6,7 +6,17 @@ import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 export default {
   title: 'Micro Componentes/Fab',
   component: BmbFabComponent,
-  decorators: [moduleMetadata({ imports: [BmbDividerComponent] })],
+  decorators: [
+    moduleMetadata({ imports: [BmbDividerComponent] }),
+    componentWrapperDecorator(
+      (story: string) => {
+        return `
+        <div style="height: 25rem">
+          ${story}
+        </div>`;
+      },
+    ),
+  ],
   parameters: {
     docs: {
       description: {
@@ -89,14 +99,9 @@ Below is an example of how you can use this component in HTML:
 const customizable = (): StoryFn => (args) => ({
   props: args,
   template: `
-  <!-- Instruction to users: This html is used for internal Storybook logic and should not be copied -->
-  <div style="height: 50px">
-    <!-- Example of how you can use this component -->
     <bmb-fab
       ${attributes(args)}
     />
-    <!-- End of the example -->
-  </div>
   `,
 });
 

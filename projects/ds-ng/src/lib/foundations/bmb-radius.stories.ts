@@ -12,11 +12,11 @@ import { BmbDividerComponent } from '../components/bmb-divider/bmb-divider.compo
       [ngStyle]="{ borderRadius: 'var(--bmb-radius-' + radius() + ')' }"
       style="border: var(--bmb-border-general_contrasts-50-1-solid); padding: 1rem; text-align: center;"
     >
-      <button (click)="handleClick('--bmb-radius-' + radius())">
+      <button style="color: var(--general_contrasts-100);" (click)="handleClick('--bmb-radius-' + radius())">
         CSS variable name: <strong>--bmb-radius-{{ radius() }}</strong>
       </button>
       <bmb-divider />
-      <button>
+      <button style="color: var(--general_contrasts-100);" (click)="handleClick('bmb_radius-' + radius())">
         Class name: <strong>bmb_radius-{{ radius() }}</strong>
       </button>
     </div>
