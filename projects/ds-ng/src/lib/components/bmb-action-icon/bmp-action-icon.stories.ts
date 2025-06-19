@@ -3,7 +3,7 @@ import { BmbActionIconComponent } from './bmb-action-icon.component';
 import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Action icon',
+  title: 'Components/Buttons/Action icon',
   component: BmbActionIconComponent,
   decorators: [storiesLayoutHorizontal],
   parameters: {

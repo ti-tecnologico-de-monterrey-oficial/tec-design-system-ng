@@ -3,7 +3,7 @@ import { BmbButtonGroupDirective } from './bmb-button-group.directive';
 import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Button group',
+  title: 'Components/Buttons/Button group',
   component: BmbButtonGroupDirective,
   decorators: [storiesLayoutHorizontal],
   imports: [BmbButtonGroupDirective],

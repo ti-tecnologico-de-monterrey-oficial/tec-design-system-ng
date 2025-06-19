@@ -1,21 +1,25 @@
-import { moduleMetadata, Meta, StoryFn, componentWrapperDecorator } from '@storybook/angular';
+import {
+  moduleMetadata,
+  Meta,
+  StoryFn,
+  componentWrapperDecorator,
+  StoryObj,
+} from '@storybook/angular';
 import { BmbFabComponent } from './bmb-fab.component';
 import { attributes } from '../../utils/utils';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 
 export default {
-  title: 'Micro Componentes/Fab',
+  title: 'Components/Buttons/Main FAB',
   component: BmbFabComponent,
   decorators: [
     moduleMetadata({ imports: [BmbDividerComponent] }),
-    componentWrapperDecorator(
-      (story: string) => {
-        return `
+    componentWrapperDecorator((story: string) => {
+      return `
         <div style="height: 25rem">
           ${story}
         </div>`;
-      },
-    ),
+    }),
   ],
   parameters: {
     docs: {
@@ -96,13 +100,16 @@ Below is an example of how you can use this component in HTML:
   },
 } as Meta<typeof BmbFabComponent>;
 
-const customizable = (): StoryFn => (args) => ({
-  props: args,
-  template: `
+
+type Story = StoryObj<BmbFabComponent>;
+
+export const Basic: Story = {
+  name: 'Basic',
+  render: (args: any) => ({
+    template: `
     <bmb-fab
       ${attributes(args)}
     />
-  `,
-});
-
-export const Default = customizable();
+    `,
+  }),
+} satisfies Story;
