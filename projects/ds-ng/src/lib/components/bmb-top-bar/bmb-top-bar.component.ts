@@ -16,10 +16,7 @@ export { IPositionButtonMenu, IUserInformation } from './types';
 @Component({
   selector: 'bmb-top-bar',
   standalone: true,
-  imports: [
-    CommonModule,
-    BmbTopBarUserSectionComponent,
-  ],
+  imports: [CommonModule, BmbTopBarUserSectionComponent],
   templateUrl: './bmb-top-bar.component.html',
   styleUrl: './bmb-top-bar.component.scss',
   encapsulation: ViewEncapsulation.None,

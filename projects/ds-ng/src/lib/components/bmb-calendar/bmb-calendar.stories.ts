@@ -1,4 +1,10 @@
-import { componentWrapperDecorator, Meta, moduleMetadata, StoryFn, StoryObj } from '@storybook/angular';
+import {
+  componentWrapperDecorator,
+  Meta,
+  moduleMetadata,
+  StoryFn,
+  StoryObj,
+} from '@storybook/angular';
 import { BmbCalendarComponent } from './bmb-calendar.component';
 import { Component, input, OnInit } from '@angular/core';
 import { BmbCalendarService } from '../../services/calendar.service';

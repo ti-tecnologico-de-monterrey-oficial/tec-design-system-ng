@@ -9,11 +9,17 @@ import { BmbDividerComponent } from '../components/bmb-divider/bmb-divider.compo
   imports: [CommonModule, BmbDividerComponent],
   template: `
     <p [ngStyle]="getStyles()">
-      <button style="color: var(--general_contrasts-100);" (click)="copyToClipboard('var')">
+      <button
+        style="color: var(--general_contrasts-100);"
+        (click)="copyToClipboard('var')"
+      >
         CSS variable name: <strong>--{{ shadowsName() }}</strong>
       </button>
       <bmb-divider />
-      <button style="color: var(--general_contrasts-100);" (click)="copyToClipboard('class')">
+      <button
+        style="color: var(--general_contrasts-100);"
+        (click)="copyToClipboard('class')"
+      >
         Class name: <strong>{{ shadowsName() }}</strong>
       </button>
     </p>

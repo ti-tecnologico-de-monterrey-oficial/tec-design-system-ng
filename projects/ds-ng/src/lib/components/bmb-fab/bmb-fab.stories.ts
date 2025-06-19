@@ -1,4 +1,9 @@
-import { moduleMetadata, Meta, StoryFn, componentWrapperDecorator } from '@storybook/angular';
+import {
+  moduleMetadata,
+  Meta,
+  StoryFn,
+  componentWrapperDecorator,
+} from '@storybook/angular';
 import { BmbFabComponent } from './bmb-fab.component';
 import { attributes } from '../../utils/utils';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
@@ -8,14 +13,12 @@ export default {
   component: BmbFabComponent,
   decorators: [
     moduleMetadata({ imports: [BmbDividerComponent] }),
-    componentWrapperDecorator(
-      (story: string) => {
-        return `
+    componentWrapperDecorator((story: string) => {
+      return `
         <div style="height: 25rem">
           ${story}
         </div>`;
-      },
-    ),
+    }),
   ],
   parameters: {
     docs: {

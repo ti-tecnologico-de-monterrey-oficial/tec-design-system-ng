@@ -1,4 +1,9 @@
-import { Meta, StoryObj, componentWrapperDecorator, moduleMetadata } from '@storybook/angular';
+import {
+  Meta,
+  StoryObj,
+  componentWrapperDecorator,
+  moduleMetadata,
+} from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,14 +23,12 @@ export default {
         BmbDatepickerComponent,
       ],
     }),
-    componentWrapperDecorator(
-      (story: string) => {
-        return `
+    componentWrapperDecorator((story: string) => {
+      return `
         <div style="height: 35rem">
           ${story}
         </div>`;
-      },
-    ),
+    }),
     storiesLayoutHorizontal,
   ],
   parameters: {

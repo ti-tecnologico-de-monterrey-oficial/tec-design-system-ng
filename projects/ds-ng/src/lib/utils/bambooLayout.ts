@@ -8,23 +8,26 @@ export const storiesLayoutVertical = componentWrapperDecorator(
     <button
       class="storybook-theme-toggle both"
       onclick="
-        document.querySelector('#storybook-theme-selector').classList.remove('light', 'dark');
-        document.querySelector('#storybook-theme-selector').classList.add('both');
-        ">
+        const target = event.target.closest('#storybook-theme-selector');
+        target.classList.remove('light', 'dark');
+        target.classList.add('both');
+      ">
       🌓
     </button>
     <button
       class="storybook-theme-toggle dark"
       onclick="
-        document.querySelector('#storybook-theme-selector').classList.remove('light', 'both');
-        document.querySelector('#storybook-theme-selector').classList.add('dark');">
+        const target = event.target.closest('#storybook-theme-selector');
+        target.classList.remove('light', 'both');
+        target.classList.add('dark');">
       🌜
     </button>
     <button
       class="storybook-theme-toggle light"
       onclick="
-        document.querySelector('#storybook-theme-selector').classList.remove('dark', 'both');
-        document.querySelector('#storybook-theme-selector').classList.add('light');">
+        const target = event.target.closest('#storybook-theme-selector');
+        target.classList.remove('dark', 'both');
+        target.classList.add('light');">
       🌞
     </button>
   </div>
@@ -46,23 +49,26 @@ export const storiesLayoutHorizontal = componentWrapperDecorator(
     <button
       class="storybook-theme-toggle both"
       onclick="
-        document.querySelector('#storybook-theme-selector').classList.remove('light', 'dark');
-        document.querySelector('#storybook-theme-selector').classList.add('both');
-        ">
+        const target = event.target.closest('#storybook-theme-selector');
+        target.classList.remove('light', 'dark');
+        target.classList.add('both');
+      ">
       🌓
     </button>
     <button
       class="storybook-theme-toggle dark"
       onclick="
-        document.querySelector('#storybook-theme-selector').classList.remove('light', 'both');
-        document.querySelector('#storybook-theme-selector').classList.add('dark');">
+        const target = event.target.closest('#storybook-theme-selector');
+        target.classList.remove('light', 'both');
+        target.classList.add('dark');">
       🌚
     </button>
     <button
       class="storybook-theme-toggle light"
       onclick="
-        document.querySelector('#storybook-theme-selector').classList.remove('dark', 'both');
-        document.querySelector('#storybook-theme-selector').classList.add('light');">
+        const target = event.target.closest('#storybook-theme-selector');
+        target.classList.remove('dark', 'both');
+        target.classList.add('light');">
       🌞
     </button>
   </div>
