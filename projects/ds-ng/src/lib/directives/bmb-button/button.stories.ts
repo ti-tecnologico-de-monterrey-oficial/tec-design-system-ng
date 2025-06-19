@@ -1,7 +1,4 @@
-import {
-  Meta,
-  StoryObj,
-} from '@storybook/angular';
+import { Meta, StoryObj } from '@storybook/angular';
 import { BmbButtonDirective } from './button.directive';
 import { BmbIconComponent } from '../../components/bmb-icon/bmb-icon.component';
 import { attributes, attributesText } from '../../utils/utils';

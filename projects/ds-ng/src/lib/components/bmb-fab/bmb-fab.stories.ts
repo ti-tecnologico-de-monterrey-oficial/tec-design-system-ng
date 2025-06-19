@@ -100,7 +100,6 @@ Below is an example of how you can use this component in HTML:
   },
 } as Meta<typeof BmbFabComponent>;
 
-
 type Story = StoryObj<BmbFabComponent>;
 
 export const Basic: Story = {
