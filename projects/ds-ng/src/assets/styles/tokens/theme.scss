@@ -80,8 +80,7 @@
     color: var(--general_contrasts-100);
   }
 
-  .sbdocs  {
-
+  .sbdocs {
     &-title,
     h1,
     h2,
@@ -104,7 +103,6 @@
     }
 
     &-preview {
-
       &.sb-unstyled {
         background: var(--general_contrasts-15);
 
@@ -135,8 +133,6 @@
         }
       }
     }
-
-
   }
 
   .docblock-source {
@@ -171,7 +167,7 @@
       }
 
       &.maybe-class-name {
-        color: rgb(var(--color-mitec-red))
+        color: rgb(var(--color-mitec-red));
       }
 
       &.comment {
@@ -229,7 +225,6 @@
         display: none;
       }
     }
-
   }
 
   .storybook-theme-selector-buttons {
@@ -264,7 +259,6 @@
   }
 
   .docblock-argstable-body {
-
     td {
       background-color: var(--general_contrasts-5) !important;
       color: var(--general_contrasts-75);

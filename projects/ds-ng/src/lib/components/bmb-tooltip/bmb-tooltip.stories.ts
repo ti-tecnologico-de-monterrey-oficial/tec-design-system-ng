@@ -1,4 +1,9 @@
-import { componentWrapperDecorator, moduleMetadata, StoryFn, type Meta } from '@storybook/angular';
+import {
+  componentWrapperDecorator,
+  moduleMetadata,
+  StoryFn,
+  type Meta,
+} from '@storybook/angular';
 import { BmbTooltipComponent } from './bmb-tooltip.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { attributes } from '../../utils/utils';
@@ -11,14 +16,12 @@ export default {
     moduleMetadata({
       imports: [BmbIconComponent],
     }),
-    componentWrapperDecorator(
-      (story: string) => {
-        return `
+    componentWrapperDecorator((story: string) => {
+      return `
         <div style="height: 500px; display: flex; justify-content: center; align-items: center;">
           ${story}
         </div>`;
-      },
-    ),
+    }),
     storiesLayoutVertical,
   ],
   parameters: {

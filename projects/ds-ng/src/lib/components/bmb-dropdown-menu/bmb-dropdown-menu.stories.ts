@@ -1,4 +1,9 @@
-import { Meta, StoryObj, componentWrapperDecorator, moduleMetadata } from '@storybook/angular';
+import {
+  Meta,
+  StoryObj,
+  componentWrapperDecorator,
+  moduleMetadata,
+} from '@storybook/angular';
 import { BmbDropdownMenuComponent } from './bmb-dropdown-menu.component';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
@@ -22,14 +27,12 @@ export default {
         },
       ],
     }),
-    componentWrapperDecorator(
-      (story: string) => {
-        return `
+    componentWrapperDecorator((story: string) => {
+      return `
         <div style="height: 15rem">
           ${story}
         </div>`;
-      },
-    ),
+    }),
     storiesLayoutHorizontal,
   ],
   parameters: {

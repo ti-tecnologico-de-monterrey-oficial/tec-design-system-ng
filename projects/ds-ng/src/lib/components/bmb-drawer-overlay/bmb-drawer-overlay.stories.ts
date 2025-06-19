@@ -7,14 +7,12 @@ export default {
   title: 'Micro Componentes/Drawer Overlay',
   component: BmbDrawerOverlayComponent,
   decorators: [
-    componentWrapperDecorator(
-      (story: string) => {
-        return `
+    componentWrapperDecorator((story: string) => {
+      return `
         <div style="height: 35rem">
           ${story}
         </div>`;
-      },
-    ),
+    }),
   ],
   parameters: {
     docs: {

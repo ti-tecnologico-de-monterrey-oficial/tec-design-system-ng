@@ -6,15 +6,13 @@ export default {
   title: 'Micro Componentes/Search input',
   component: BmbSearchInputComponent,
   decorators: [
-    componentWrapperDecorator(
-      (story: string) => {
-        return `
+    componentWrapperDecorator((story: string) => {
+      return `
         <div style="height: 25rem">
           ${story}
         </div>`;
-      },
-    ),
-    storiesLayoutHorizontal
+    }),
+    storiesLayoutHorizontal,
   ],
   parameters: {
     docs: {
