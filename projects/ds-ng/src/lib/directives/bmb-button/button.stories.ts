@@ -1,7 +1,5 @@
 import {
-  componentWrapperDecorator,
   Meta,
-  StoryFn,
   StoryObj,
 } from '@storybook/angular';
 import { BmbButtonDirective } from './button.directive';
@@ -185,18 +183,7 @@ Sets the name of the icon to use. Please use [Material icons](https://fonts.goog
     },
   },
   args: {
-    // appearance: 'primary',
-    // icon: 'home',
-    // iconSize: 16,
-    // size: 'small',
-    // position: 'left',
-    // case: false,
     test_text: 'Button text',
-    // isToggleActive: false,
-    // enableButtonToggle: false,
-    // isRounded: false,
-    // isMobile: false,
-    // iconAlt: 'icon',
   },
 } as Meta<typeof BmbButtonDirective>;
 
