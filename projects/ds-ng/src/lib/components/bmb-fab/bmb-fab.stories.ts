@@ -1,8 +1,8 @@
 import {
   moduleMetadata,
   Meta,
-  StoryFn,
   componentWrapperDecorator,
+  StoryObj,
 } from '@storybook/angular';
 import { BmbFabComponent } from './bmb-fab.component';
 import { attributes } from '../../utils/utils';
@@ -101,8 +101,7 @@ Below is an example of how you can use this component in HTML:
 
 type Story = StoryObj<BmbFabComponent>;
 
-export const Basic: Story = {
-  name: 'Basic',
+export const Default: Story = {
   render: (args: any) => ({
     template: `
     <bmb-fab

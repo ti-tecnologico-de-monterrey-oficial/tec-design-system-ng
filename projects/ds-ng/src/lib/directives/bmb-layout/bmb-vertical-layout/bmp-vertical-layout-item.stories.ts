@@ -5,7 +5,7 @@ import { BmbIconStatusComponent } from '../../../../public-api';
 import { storiesLayoutHorizontal } from '../../../utils/bambooLayout';
 
 export default {
-  title: 'Components/Containers/Helpers/Vertical layout item',
+  title: 'Components/Containers/Helpers/Vertical layout container item',
   component: BmbVerticalLayoutItemDirective,
   decorators: [
     moduleMetadata({
