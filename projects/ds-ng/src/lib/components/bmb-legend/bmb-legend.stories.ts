@@ -83,3 +83,11 @@ Below is an example of how you can use this component in HTML:
 type Story = StoryObj<BmbLegendComponent>;
 
 export const Default: Story = {};
+
+export const Brand: Story = {
+  args: {
+    label: 'Title',
+    value: '$0.00',
+    indicatorAppearance: 'brand',
+  },
+};

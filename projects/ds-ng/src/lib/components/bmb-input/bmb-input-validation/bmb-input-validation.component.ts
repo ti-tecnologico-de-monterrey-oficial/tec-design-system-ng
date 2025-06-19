@@ -219,11 +219,7 @@ export class BmbInputValidationComponent implements OnInit {
     const errorMessages = this.errorMessage() as IBmbInputError;
 
     if (this.control()?.hasError('pattern'))
-    return this.getErrorType(
-        errorMessages,
-        'pattern',
-        'Formato no válido',
-      );
+      return this.getErrorType(errorMessages, 'pattern', 'Formato no válido');
     if (this.control()?.hasError('min'))
       return this.getErrorType(
         errorMessages,
@@ -231,7 +227,7 @@ export class BmbInputValidationComponent implements OnInit {
         `El valor mínimo requerido es de ${this.min()}`,
       );
     if (this.control()?.hasError('max'))
-       return this.getErrorType(
+      return this.getErrorType(
         errorMessages,
         'max',
         `El valor máximo requerido es de ${this.max()}`,
@@ -255,7 +251,7 @@ export class BmbInputValidationComponent implements OnInit {
         'Este campo es requerido',
       );
     if (this.control()?.hasError('invalidJson'))
-    return this.getErrorType(
+      return this.getErrorType(
         errorMessages,
         'invalidJson',
         'formato json no válido',

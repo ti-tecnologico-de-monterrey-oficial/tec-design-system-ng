@@ -15,12 +15,28 @@ const preview: Preview = {
       },
     },
     docs: {
+      controls: {
+        exclude: [
+          'handleChange',
+          'handleKeyPress',
+          'ngOnInit',
+          'ngOnChanges',
+          'onBlur',
+          'onFocus',
+        ],
+      },
       source: {
-        language: 'html',
         excludeDecorators: true,
       },
-      canvas: {
-        sourceState: 'shown',
+      toc: {
+        contentsSelector: '.sbdocs-content',
+        headingSelector: 'h1, h2, h3',
+        ignoreSelector: '#primary',
+        title: 'Table of Contents',
+        disable: false,
+        unsafeTocbotOptions: {
+          orderedList: false,
+        },
       },
     },
     options: {

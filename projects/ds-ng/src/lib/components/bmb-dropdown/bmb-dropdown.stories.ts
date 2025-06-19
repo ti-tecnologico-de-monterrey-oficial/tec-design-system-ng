@@ -1,4 +1,9 @@
-import { componentWrapperDecorator, moduleMetadata, type Meta, type StoryFn } from '@storybook/angular';
+import {
+  componentWrapperDecorator,
+  moduleMetadata,
+  type Meta,
+  type StoryFn,
+} from '@storybook/angular';
 import { BmbDropdownComponent } from './bmb-dropdown.component';
 import { attributes } from '../../utils/utils';
 import { BmbFormValidationComponent } from '../bmb-form-validation/bmb-form-validation.component';
@@ -11,14 +16,12 @@ export default {
     moduleMetadata({
       imports: [BmbFormValidationComponent],
     }),
-    componentWrapperDecorator(
-      (story: string) => {
-        return `
+    componentWrapperDecorator((story: string) => {
+      return `
         <div style="height: 25rem">
           ${story}
         </div>`;
-      },
-    ),
+    }),
     storiesLayoutHorizontal,
   ],
   parameters: {

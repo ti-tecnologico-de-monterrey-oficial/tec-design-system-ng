@@ -12,7 +12,7 @@ import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
 export interface IBmbConcept {
   concept: string;
   quantity: string;
-  price: number;
+  price?: number;
   badge?: { label: string; appearance: IBbmBgAppearance; container: boolean };
 }
 

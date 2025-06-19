@@ -1,4 +1,9 @@
-import { Meta, StoryFn, componentWrapperDecorator, moduleMetadata } from '@storybook/angular';
+import {
+  Meta,
+  StoryFn,
+  componentWrapperDecorator,
+  moduleMetadata,
+} from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,14 +25,12 @@ export default {
         BmbIconComponent,
       ],
     }),
-    componentWrapperDecorator(
-      (story: string) => {
-        return `
+    componentWrapperDecorator((story: string) => {
+      return `
         <div style="height: 25rem">
           ${story}
         </div>`;
-      },
-    ),
+    }),
     storiesLayoutHorizontal,
   ],
   parameters: {

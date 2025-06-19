@@ -7,9 +7,14 @@ import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <h1>Border</h1>
+    <h1>Sandbox</h1>
     <p [ngStyle]="getStyles()">
-      <button style="color: var(--general_contrasts-100);" (click)="copyToClipboard()">{{ getVariableName() }}</button>
+      <button
+        style="color: var(--general_contrasts-100);"
+        (click)="copyToClipboard()"
+      >
+        {{ getVariableName() }}
+      </button>
     </p>
   `,
 })
