@@ -1,9 +1,5 @@
 import { Meta, StoryObj } from '@storybook/angular';
-import {
-  BmbLayoutDirective,
-  IAlignItemsOptions,
-  IJustifyOptions,
-} from './bmb-layout.directive';
+import { BmbLayoutDirective } from './bmb-layout.directive';
 import { BmbLayoutItemDirective } from './bmb-layout-item.directive';
 import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
@@ -11,12 +7,10 @@ import {
   BmbCardComponent,
   BmbCardContentComponent,
 } from '../../components/bmb-card/bmb-card.component';
-import { InputSignal } from '@angular/core';
-import { SizeNames } from '../../types';
 import { attributes } from '../../utils/utils';
 
 const meta: Meta<BmbLayoutDirective> = {
-  title: 'Micro Componentes/Layout',
+  title: 'Components/Containers/Helpers/Layout',
   component: BmbLayoutDirective,
   subcomponents: { BmbLayoutItemDirective },
   decorators: [

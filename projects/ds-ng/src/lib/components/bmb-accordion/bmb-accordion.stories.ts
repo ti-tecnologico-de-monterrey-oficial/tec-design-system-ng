@@ -6,7 +6,7 @@ import { attributes } from '../../utils/utils';
 import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Accordion',
+  title: 'Components/Containers/Accordion',
   component: BmbAccordionComponent,
   decorators: [
     moduleMetadata({

@@ -1,39 +1,9 @@
-import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
+import { type Meta, type StoryObj } from '@storybook/angular';
 import { BmbChatBubblesComponent } from './bmb-chat-bubbles.component';
-import { IBmbChatMessage, TBmbMessageType, MessageContent } from './types';
-import { attributes } from '../../utils/utils';
-import {
-  AfterViewInit,
-  InputSignal,
-  TemplateRef,
-  ViewChild,
-} from '@angular/core';
-import { Component } from '@angular/core';
 import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
-@Component({
-  standalone: true,
-  imports: [],
-  selector: 'storybook-modal-wrapper',
-  template: `
-    <ng-template #customTemplate>
-      <div class="custom-content">
-        <strong>🌟 Respuesta especial 🌟</strong>
-        <p>¡Este es un contenido personalizado!</p>
-      </div>
-    </ng-template>
-
-    <button (click)="agregarChat()">Clcik Aqui</button>
-  `,
-})
-class StorybookModalWrapperComponent implements AfterViewInit {
-  @ViewChild('customTemplate') customTemplate!: TemplateRef<unknown>;
-
-  ngAfterViewInit(): void {}
-}
-
 export default {
-  title: 'Micro Componentes/Chat bubbles',
+  title: 'Components/Containers/AI Chat bubble',
   component: BmbChatBubblesComponent,
   decorators: [storiesLayoutVertical],
   parameters: {

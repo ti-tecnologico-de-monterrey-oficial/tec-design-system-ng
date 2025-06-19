@@ -3,7 +3,7 @@ import { BmbNotificationCardComponent } from './bmb-notification-card.component'
 import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Notification Card',
+  title: 'Components/Containers/Cards/Notification',
   component: BmbNotificationCardComponent,
   decorators: [storiesLayoutHorizontal],
   parameters: {

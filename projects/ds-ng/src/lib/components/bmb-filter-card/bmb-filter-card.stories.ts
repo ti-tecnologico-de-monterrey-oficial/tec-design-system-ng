@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Macro Componentes/Filter Card',
+  title: 'Components/Containers/Cards/Filter ',
   component: BmbFilterCardComponent,
   decorators: [
     moduleMetadata({ imports: [CommonModule] }),

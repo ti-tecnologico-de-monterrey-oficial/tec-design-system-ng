@@ -3,7 +3,6 @@ import {
   BmbLayoutGridDirective,
   BmbLayoutGridItemDirective,
 } from './bmb-layout-grid.directive';
-import { SizeNames } from '../../types';
 import { Meta, moduleMetadata, StoryFn } from '@storybook/angular';
 import { attributes } from '../../utils/utils';
 import { CommonModule } from '@angular/common';
@@ -13,7 +12,7 @@ import {
 } from '../../components/bmb-card/bmb-card.component';
 
 const meta: Meta<BmbLayoutGridItemDirective> = {
-  title: 'Micro Componentes/Layout Grid Item',
+  title: 'Components/Containers/Helpers/Layout Grid Item',
   component: BmbLayoutGridItemDirective,
   decorators: [
     moduleMetadata({

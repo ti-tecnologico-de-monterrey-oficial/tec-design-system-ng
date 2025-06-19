@@ -1,9 +1,7 @@
-import { InputSignal } from '@angular/core';
 import {
   BmbLayoutGridDirective,
   BmbLayoutGridItemDirective,
 } from './bmb-layout-grid.directive';
-import { SizeNames } from '../../types';
 import { Meta, moduleMetadata, StoryFn } from '@storybook/angular';
 import { attributes } from '../../utils/utils';
 import { CommonModule } from '@angular/common';
@@ -13,7 +11,7 @@ import {
 } from '../../components/bmb-card/bmb-card.component';
 
 const meta: Meta<BmbLayoutGridDirective> = {
-  title: 'Micro Componentes/Layout Grid',
+  title: 'Components/Containers/Helpers/Layout Grid',
   component: BmbLayoutGridDirective,
   decorators: [
     moduleMetadata({

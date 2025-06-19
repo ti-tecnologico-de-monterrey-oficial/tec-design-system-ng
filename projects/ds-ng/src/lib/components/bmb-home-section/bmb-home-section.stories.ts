@@ -5,7 +5,7 @@ import { BmbHomeSectionComponent } from './bmb-home-section.component';
 import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Macro Componentes/Home Section',
+  title: 'Components/Containers/Home section',
   component: BmbHomeSectionComponent,
   decorators: [
     moduleMetadata({

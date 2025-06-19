@@ -3,7 +3,7 @@ import { BmbEvaluationRubricComponent } from './bmb-evaluation-rubric.component'
 import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Macro Componentes/Evaluation rubric',
+  title: 'Components/Containers/Evaluation rubric',
   component: BmbEvaluationRubricComponent,
   decorators: [storiesLayoutHorizontal],
   parameters: {

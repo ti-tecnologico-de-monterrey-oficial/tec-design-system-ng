@@ -4,7 +4,7 @@ import { attributes } from '../../utils/utils';
 import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Macro Componentes/Profile',
+  title: 'Components/Containers/Cards/Profile',
   component: BmbProfileComponent,
   decorators: [storiesLayoutHorizontal],
   parameters: {
