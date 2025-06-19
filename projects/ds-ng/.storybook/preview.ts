@@ -1,4 +1,4 @@
-import { componentWrapperDecorator, type Preview } from '@storybook/angular';
+import type { Preview } from '@storybook/angular';
 import { setCompodocJson } from '@storybook/addon-docs/angular';
 import docJson from '../../../documentation.json';
 
@@ -44,8 +44,19 @@ const preview: Preview = {
         method: 'alphabetical',
         order: [
           'Foundations',
-          'Micro Componentes',
-          'Macro Componentes',
+          'Components',
+          [
+            'Buttons',
+            'Containers',
+            [
+              '*',
+              'Cards',
+              'Helpers',
+              ['Grid generator', 'Layout', 'Layout item'],
+            ],
+            'Inputs',
+          ],
+          '*',
           'Internal',
         ],
         locales: 'en-US',

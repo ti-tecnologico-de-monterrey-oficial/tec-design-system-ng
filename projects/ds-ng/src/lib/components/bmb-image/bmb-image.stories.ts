@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbImageComponent } from './bmb-image.component';
 
 export default {
-  title: 'Micro Componentes/Image',
+  title: 'Components/Images/Image',
   component: BmbImageComponent,
   parameters: {
     docs: {
