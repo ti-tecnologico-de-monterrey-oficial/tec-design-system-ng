@@ -3,7 +3,7 @@ import { BmbChatBarComponent } from './bmb-chat-bar.component';
 import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Chat bar',
+  title: 'Components/Inputs/AI Chat bar',
   component: BmbChatBarComponent,
   decorators: [storiesLayoutVertical],
   parameters: {

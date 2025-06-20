@@ -8,7 +8,7 @@ import { BmbInputTagsComponent } from './bmb-input-tags.component';
 import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/ Input Tags',
+  title: 'Components/Inputs/Text input with tags',
   component: BmbInputTagsComponent,
   decorators: [
     componentWrapperDecorator((story: string) => {

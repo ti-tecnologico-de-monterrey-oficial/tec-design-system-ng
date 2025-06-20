@@ -11,7 +11,7 @@ import { BmbDateRangeComponent } from './bmb-date-range.component';
 import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Date range',
+  title: 'Components/Inputs/Date picker range',
   component: BmbDateRangeComponent,
   decorators: [
     moduleMetadata({

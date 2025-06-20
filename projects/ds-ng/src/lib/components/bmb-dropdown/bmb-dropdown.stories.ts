@@ -10,7 +10,7 @@ import { BmbFormValidationComponent } from '../bmb-form-validation/bmb-form-vali
 import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Dropdown',
+  title: 'Components/Inputs/Dropdown',
   component: BmbDropdownComponent,
   decorators: [
     moduleMetadata({

@@ -3,7 +3,7 @@ import { BmbRadialComponent } from './bmb-radial.component';
 import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Radial',
+  title: 'Components/Inputs/Radial',
   component: BmbRadialComponent,
   decorators: [storiesLayoutHorizontal],
   parameters: {
