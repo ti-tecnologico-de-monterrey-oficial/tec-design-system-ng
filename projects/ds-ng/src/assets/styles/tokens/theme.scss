@@ -374,7 +374,6 @@
   }
 }
 
-
 .sb-container {
   margin-bottom: 48px;
 }
@@ -398,7 +397,8 @@ img {
   font-size: 14px;
 }
 
-.sb-section-item, .sb-grid-item {
+.sb-section-item,
+.sb-grid-item {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -443,10 +443,10 @@ img {
   display: flex;
   align-items: center;
   position: relative;
-  background-color: #EEF3F8;
+  background-color: #eef3f8;
   border-radius: 5px;
   border: 1px solid rgba(0, 0, 0, 0.05);
-  background: #EEF3F8;
+  background: #eef3f8;
   height: 180px;
   margin-bottom: 48px;
   overflow: hidden;
@@ -528,4 +528,3 @@ img {
     margin-left: -24px;
   }
 }
-
