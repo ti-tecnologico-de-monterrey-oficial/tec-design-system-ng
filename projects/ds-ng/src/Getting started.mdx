@@ -7,21 +7,23 @@ import Menus from "./assets/doc/menus.png";
 import StatusIndicators from "./assets/doc/status.png";
 import VisualLabels from "./assets/doc/labels.png";
 
-export const RightArrow = () => <svg
+export const RightArrow = () => (
+  <svg
     viewBox="0 0 14 14"
     width="8px"
     height="14px"
     style={{
-      marginLeft: '4px',
-      display: 'inline-block',
-      shapeRendering: 'inherit',
-      verticalAlign: 'middle',
-      fill: 'currentColor',
-      'path fill': 'currentColor'
+      marginLeft: "4px",
+      display: "inline-block",
+      shapeRendering: "inherit",
+      verticalAlign: "middle",
+      fill: "currentColor",
+      "path fill": "currentColor",
     }}
->
-  <path d="m11.1 7.35-5.5 5.5a.5.5 0 0 1-.7-.7L10.04 7 4.9 1.85a.5.5 0 1 1 .7-.7l5.5 5.5c.2.2.2.5 0 .7Z" />
-</svg>
+  >
+    <path d="m11.1 7.35-5.5 5.5a.5.5 0 0 1-.7-.7L10.04 7 4.9 1.85a.5.5 0 1 1 .7-.7l5.5 5.5c.2.2.2.5 0 .7Z" />
+  </svg>
+);
 
 <Meta title="Getting Started" />
 
@@ -33,6 +35,7 @@ export const RightArrow = () => <svg
     ## What is Bamboo Design System?
 
     The Bamboo design framework provides developers with essential tools to boost product development efficiency, enabling them to create more in less time and freeing them from the monotonous task of building repetitive building blocks.
+
   </div>
   <div className='sb-section-title'>
     ## Requirements
@@ -50,6 +53,7 @@ export const RightArrow = () => <svg
         target="_blank"
       >Installation guide<RightArrow /></a>
     </p>
+
   </div>
 </div>
 <div className="sb-container">
@@ -57,6 +61,7 @@ export const RightArrow = () => <svg
     ## Components Overview
 
     The Bamboo Design System offers a wide range of components that can be used to build user interfaces. Each component is designed to be reusable and customizable, allowing developers to create consistent and visually appealing applications.
+
   </div>
   <div className='sb-section-title'>
     # components
