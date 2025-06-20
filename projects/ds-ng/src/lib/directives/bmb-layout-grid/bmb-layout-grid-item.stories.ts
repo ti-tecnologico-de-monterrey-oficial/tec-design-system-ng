@@ -12,7 +12,7 @@ import {
 } from '../../components/bmb-card/bmb-card.component';
 
 const meta: Meta<BmbLayoutGridItemDirective> = {
-  title: 'Components/Containers/Helpers/Layout Grid Item',
+  title: 'Components/Containers/Helpers/Layout grid Item',
   component: BmbLayoutGridItemDirective,
   decorators: [
     moduleMetadata({
