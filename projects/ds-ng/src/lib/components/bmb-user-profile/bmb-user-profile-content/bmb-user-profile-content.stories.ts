@@ -3,7 +3,7 @@ import { BmbUserProfileContentComponent } from './bmb-user-profile-content.compo
 import { storiesLayoutHorizontal } from '../../../utils/bambooLayout';
 
 export default {
-  title: 'Internal/User profile content',
+  title: 'Internals/User profile content',
   component: BmbUserProfileContentComponent,
   decorators: [storiesLayoutHorizontal],
   parameters: {

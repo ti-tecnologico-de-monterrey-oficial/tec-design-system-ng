@@ -5,7 +5,7 @@ import { attributes } from '../../utils/utils';
 import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Internal/Check link (external, internal) or button',
+  title: 'Internals/Check link (external, internal) or button',
   component: BmbCheckExternalLinkButtonComponent,
   decorators: [
     moduleMetadata({

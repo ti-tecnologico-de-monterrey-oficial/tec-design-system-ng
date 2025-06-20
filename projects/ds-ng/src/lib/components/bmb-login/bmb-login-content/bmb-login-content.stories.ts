@@ -3,7 +3,7 @@ import { BmbLoginContentComponent } from './bmb-login-content.component';
 import { storiesLayoutHorizontal } from '../../../utils/bambooLayout';
 
 export default {
-  title: 'Internal/Login content',
+  title: 'Internals/Login content',
   component: BmbLoginContentComponent,
   decorators: [storiesLayoutHorizontal],
   parameters: {

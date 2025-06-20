@@ -57,7 +57,7 @@ const preview: Preview = {
             'Inputs',
           ],
           '*',
-          'Internal',
+          'Internals',
         ],
         locales: 'en-US',
       },
