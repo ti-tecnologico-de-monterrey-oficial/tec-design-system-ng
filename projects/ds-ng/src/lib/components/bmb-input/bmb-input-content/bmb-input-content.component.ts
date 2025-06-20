@@ -103,6 +103,15 @@ export class BmbInputContentComponent {
       this.type() === 'text-area' ? 'normal' : this.appearance();
     const baseName = 'bmb_field-input';
     const classes = [`${baseName}-${appearance}`];
+
+    if (this.showAdditionalAction() || this.isClearable()) {
+      if (this.showAdditionalAction() && this.isClearable()) {
+        classes.push(`${baseName}-limited-actions`);
+      } else {
+        classes.push(`${baseName}-limited`);
+      }
+    }
+
     if (this.isError()) {
       classes.push(`${baseName}-error`);
     }
@@ -127,7 +136,10 @@ export class BmbInputContentComponent {
   }
 
   showAdditionalAction(): boolean {
-    if (this.additionalAction() !== 'none') {
+    if (
+      !!this.getAdditionalActionIcon() &&
+      this.additionalAction() !== 'none'
+    ) {
       if (this.additionalAction() === 'showHide') {
         return this.type() === 'password';
       }
