@@ -148,7 +148,7 @@ class StorybookStepPanelWrapperComponent implements AfterViewInit {
 }
 
 const meta: Meta<typeof StorybookStepPanelWrapperComponent> = {
-  title: 'Micro Componentes/Step Progress Bar/Step Panel',
+  title: 'Components/Status indicators/Step progress bar/Wizard',
   component: StorybookStepPanelWrapperComponent,
   decorators: [storiesLayoutVertical],
   parameters: {

@@ -7,7 +7,7 @@ import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
 import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Macro Componentes/Multi Dot Paginator',
+  title: 'Components/Status indicators/Multi dot paginator',
   component: BmbMultiDotPaginatorComponent,
   subcomponents: { BmbMultiDotPaginatorItemComponent },
   decorators: [
