@@ -82,7 +82,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 100%;
+      flex: 1;
       padding: var(--bmb-spacing-m);
       color: var(--general_contrasts-50);
 
@@ -101,12 +101,12 @@
     display: inline-flex;
     width: 100%;
     align-items: center;
+    gap: rem.rem_calc(10);
   }
 
   &-bot {
     border: 0 none;
     padding: 0;
-    padding-right: rem.rem_calc(10);
 
     .bmb_icon-figure {
       margin: 0;
