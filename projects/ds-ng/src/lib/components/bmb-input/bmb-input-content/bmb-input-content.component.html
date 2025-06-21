@@ -61,11 +61,9 @@
         (focus)="handleFocus()"
         (blur)="handleBlur()"
       />
-      @if (
-        (showAdditionalAction() && !!getAdditionalActionIcon()) || isClearable()
-      ) {
+      @if (showAdditionalAction() || isClearable()) {
         <span class="bmb_field-actions">
-          @if (showAdditionalAction() && !!getAdditionalActionIcon()) {
+          @if (showAdditionalAction()) {
             <bmb-action-icon
               class="bmb_field-additional_action"
               [icon]="getAdditionalActionIcon()"

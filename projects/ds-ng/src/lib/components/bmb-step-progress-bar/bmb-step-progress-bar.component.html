@@ -38,7 +38,7 @@
       [attr.data-bs-slide-to]="i"
       [ngClass]="{
         completed: activeStep() > i,
-        'bmb_step-progress-bar-vertical-content': labelSteps.length > 0,
+        'bmb_step-progress-bar-vertical-content': labelSteps().length > 0,
       }"
       (click)="onStepClicked(i)"
       onkeypress=""
@@ -119,7 +119,7 @@
           >
         </div>
 
-        @if (activeStep() === i && stepTemplates.length > i) {
+        @if (activeStep() === i && stepTemplates().length > i) {
           <div class="bmb_step-progress-bar-step-panel-content">
             <ng-container
               [ngTemplateOutlet]="stepTemplates()[i]"
