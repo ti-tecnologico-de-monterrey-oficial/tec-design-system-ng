@@ -5,7 +5,7 @@ import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Macro Componentes/Icon item',
+  title: 'Components/Visual labels/Icon item',
   component: BmbIconItemComponent,
   decorators: [
     moduleMetadata({ imports: [BmbDividerComponent] }),

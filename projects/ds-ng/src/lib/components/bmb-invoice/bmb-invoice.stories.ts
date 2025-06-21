@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Macro Componentes/Invoice',
+  title: 'Components/Visual labels/Invoice',
   component: BmbInvoiceComponent,
   decorators: [
     moduleMetadata({

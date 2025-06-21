@@ -35,7 +35,7 @@ const appearanceOptions: IBbmBgAppearance[] = [
 ];
 
 export default {
-  title: 'Micro Componentes/Badge',
+  title: 'Components/Visual labels/Badge',
   component: BmbBadgeComponent,
   decorators: [storiesLayoutHorizontal],
   parameters: {

@@ -3,7 +3,7 @@ import { BmbAcademicProgressComponent } from './bmb-academic-progress.component'
 import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Macro Componentes/Academic progress',
+  title: 'Components/Visual labels/Academic progress',
   component: BmbAcademicProgressComponent,
   decorators: [storiesLayoutVertical],
   parameters: {
