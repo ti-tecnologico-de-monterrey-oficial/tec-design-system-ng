@@ -5,7 +5,7 @@ import { BmbItemComponent } from '../bmb-item/bmb-item.component';
 import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Action Menu',
+  title: 'Components/Menus/Action menu',
   component: BmbActionMenuComponent,
   decorators: [
     moduleMetadata({

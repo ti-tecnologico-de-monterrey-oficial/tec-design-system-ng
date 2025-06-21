@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Dropdown Menu',
+  title: 'Components/Menus/Dropdown menu',
   component: BmbDropdownMenuComponent,
   decorators: [
     moduleMetadata({

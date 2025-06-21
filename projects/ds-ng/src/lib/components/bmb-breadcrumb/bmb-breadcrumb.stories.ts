@@ -8,7 +8,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Breadcrumb',
+  title: 'Components/Menus/Breadcrumb',
   component: BmbBreadcrumbComponent,
   decorators: [
     moduleMetadata({

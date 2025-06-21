@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 import { RouterTestingModule } from '@angular/router/testing';
 
 export default {
-  title: 'Macro Componentes/Sidebar',
+  title: 'Components/Menus/Sidebar',
   component: BmbSidebarComponent,
   decorators: [
     moduleMetadata({
