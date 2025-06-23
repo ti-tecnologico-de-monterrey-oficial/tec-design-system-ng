@@ -18,27 +18,16 @@
         (buttonClick)="openNotifications($event)"
         [dotNotification]="totalNotifications()"
       />
-      <!-- <dialog
-        id="notificationDialog"
-        class="bmb_top-bar-user-section-dialog"
-        [ngClass]="{
-          'bmb_top-bar-user-section-dialog-open': isOpenNotifications,
-        }"
-        [ngStyle]="{ top: dialogPosition!.top, left: dialogPosition!.left }"
-      >
-        <bmb-notification-card
-          [data]="notificationNotification"
-          [hideExpandBtn]="true"
-        ></bmb-notification-card>
-      </dialog> -->
     </span>
   }
-  <bmb-action-icon
-    [ngClass]="{ 'bmb_top-bar-user-section-no-mobile': mitec }"
-    icon="help"
-    [iconSize]="32"
-    (buttonClick)="handleHelpButtonClick($event)"
-  />
+  @if (showHelpButton || mitec) {
+    <bmb-action-icon
+      [ngClass]="{ 'bmb_top-bar-user-section-no-mobile': mitec }"
+      icon="help"
+      [iconSize]="32"
+      (buttonClick)="handleHelpButtonClick($event)"
+    />
+  }
   <button
     class="bmb_top-bar-user-section-user-image"
     (click)="handleUserClick($event)"

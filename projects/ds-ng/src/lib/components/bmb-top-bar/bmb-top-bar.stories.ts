@@ -135,6 +135,17 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: 'false' },
       },
     },
+    showHelpButton: {
+      name: 'Show Help button',
+      control: { type: 'boolean' },
+      description:
+        'Shows the help button this property is `true` if Mitec is active.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
     qualtricsButtonClick: {
       name: 'Handle Qualtrics button click',
       control: false,
@@ -254,6 +265,7 @@ Below is an example of how you can use this component in HTML:
     lang: 'es',
     mitec: false,
     showRoleButton: false,
+    showHelpButton: false,
   },
 } as Meta<typeof BmbTopBarComponent>;
 
@@ -278,6 +290,20 @@ export const StandaloneWithUserInformation: Story = {
       role: 'Alumno',
     },
   },
+};
+
+export const StandAloneWHelpButton: Story = {
+  args: {
+    userInformation: {
+      name: 'Santiago Hernández',
+      image: 'https://picsum.photos/id/64/200/300',
+      role: 'Alumno',
+    },
+    showHelpButton: true,
+    appName: 'TecTest',
+  },
+
+  name: 'Standalone with user information and help button',
 };
 
 export const Mitec: Story = {
