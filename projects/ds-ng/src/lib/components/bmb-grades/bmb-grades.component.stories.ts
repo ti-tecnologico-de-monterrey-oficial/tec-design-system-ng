@@ -3,7 +3,7 @@ import { BmbGradesComponent } from './bmb-grades.component';
 import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Macro Componentes/Grades',
+  title: 'Organisms/Grades',
   component: BmbGradesComponent,
   decorators: [storiesLayoutHorizontal],
   parameters: {
