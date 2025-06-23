@@ -13,11 +13,11 @@ export default {
 Below is an example of how you can use this component in TypeScript:
 
 \`\`\`typescript
-import { BmbLegendComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
+import { BmbGradesComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
 @Component({
   selector: 'component',
   standalone: true,
-  imports: [ BmbLegendComponent ],
+  imports: [ BmbGradesComponent ],
   templateUrl: './component.html',
   styleUrl: './component.scss',
 })
