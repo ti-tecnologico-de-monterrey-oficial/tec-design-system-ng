@@ -1,11 +1,24 @@
 import { componentWrapperDecorator, type Preview } from '@storybook/angular';
 import { setCompodocJson } from '@storybook/addon-docs/angular';
 import docJson from '../../../documentation.json';
+import { withThemeByClassName } from '@storybook/addon-themes';
+import { allModes } from './modes';
 
 setCompodocJson(docJson);
 
 const preview: Preview = {
   parameters: {
+    ally: {
+      context: 'body',
+      config: {},
+      options: {},
+    },
+    chromatic: {
+      modes: {
+        light: allModes['light'],
+        dark: allModes['dark'],
+      },
+    },
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
       expanded: true,
@@ -28,15 +41,8 @@ const preview: Preview = {
       source: {
         excludeDecorators: true,
       },
-      toc: {
-        contentsSelector: '.sbdocs-content',
-        headingSelector: 'h1, h2, h3',
-        ignoreSelector: '#primary',
-        title: 'Table of Contents',
-        disable: false,
-        unsafeTocbotOptions: {
-          orderedList: false,
-        },
+      canvas: {
+        sourceState: 'shown',
       },
     },
     options: {
@@ -51,30 +57,37 @@ const preview: Preview = {
         locales: 'en-US',
       },
     },
-    decorators: [
-      // TODO: Check if later we can use this decorator to apply a global theme
-      // componentWrapperDecorator((story) => {
-      //   return `<div class="storybook-dark-theme">${story}</div><div class="storybook-light-theme">${story}</div>`;
-      // }),
-    ],
   },
   tags: ['autodocs'],
-  // TODO: Check if later we can use this decorator to apply a global theme
-  // globalTypes: {
-  //   theme: {
-  //     name: 'Theme',
-  //     description: 'Global theme for components',
-  //     defaultValue: 'light',
-  //     toolbar: {
-  //       icon: 'mirror',
-  //       items: [
-  //         { value: 'light', icon: 'circlehollow', title: 'Light Theme' },
-  //         { value: 'dark', icon: 'circle', title: 'Dark Theme' },
-  //       ],
-  //       dynamicTitle: true,
-  //     },
-  //   },
-  // },
+  globalTypes: {
+    a11y: {
+      manual: true,
+    },
+    layout: {
+      description: 'Set the layout orientation of the story',
+      toolbar: {
+        title: 'Layout orientation',
+        icon: 'paintbrush',
+        items: [
+          { value: 'vertical', icon: 'stacked', title: 'Vertical' },
+          { value: 'horizontal', icon: 'sidebyside', title: 'Horizontal' },
+        ],
+      },
+    },
+  },
+  initialGlobals: {
+    layout: 'vertical',
+  },
+  decorators: [
+    withThemeByClassName({
+      themes: {
+        light: 'storybook-light-theme',
+        dark: 'storybook-dark-theme',
+        both: 'storybook-both-theme',
+      },
+      defaultTheme: 'both',
+    }),
+  ],
 };
 
 export default preview;

@@ -37,7 +37,12 @@ export const storiesLayoutVertical = componentWrapperDecorator(
   <div class="storybook-dark-theme">
     ${story}
   </div>
-</section>`;
+</section>
+<footer>© 2025 Bamboo Design System x Tec de Monterrey</footer>`;
+  },
+  ({ globals }) => {
+    console.log('Custom Layout Decorator', globals); // log the globals to the console for debugging
+    return { myTheme: globals['myvar'] };
   },
 );
 
@@ -81,5 +86,10 @@ export const storiesLayoutHorizontal = componentWrapperDecorator(
     </div>
   </div>
 </section>`;
+  },
+  ({ globals }) => {
+    console.log('Custom Layout Decorator', globals); // log the globals to the console for debugging
+
+    return { myTheme: globals['myvar'] };
   },
 );
