@@ -18,7 +18,7 @@ export type IBmbPeriod = {
   detail: IBmbElementDetail;
   accreditedClasses: number;
   periodAverage: number;
-  serviceHours: number;
+  serviceHours: number | null;
   classes: IBmbClassDetail[];
 };
 

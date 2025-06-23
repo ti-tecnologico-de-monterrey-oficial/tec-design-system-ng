@@ -34,9 +34,9 @@
                   { name: 'Z-A', value: 'desc', id: 'desc' },
                 ]"
                 [placeholder]="'Ordenar'"
-                [value]="getFormControl(column.dataKey + '_sort')?.value"
+                [value]="getFormControl(column.dataKey + '_sort').value"
                 (onValueChange)="
-                  getFormControl(column.dataKey + '_sort')?.setValue($event)
+                  getFormControl(column.dataKey + '_sort').setValue($event)
                 "
               />
             </ng-container>
@@ -73,10 +73,10 @@
                 [controlStart]="getFormControl(column.dataKey + '_from')"
                 [controlEnd]="getFormControl(column.dataKey + '_to')"
                 (startDateChange)="
-                  getFormControl(column.dataKey + '_from')?.setValue($event)
+                  getFormControl(column.dataKey + '_from').setValue($event)
                 "
                 (endDateChange)="
-                  getFormControl(column.dataKey + '_to')?.setValue($event)
+                  getFormControl(column.dataKey + '_to').setValue($event)
                 "
               />
             </ng-container>
