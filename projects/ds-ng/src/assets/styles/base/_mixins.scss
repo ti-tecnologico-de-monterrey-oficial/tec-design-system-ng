@@ -1,12 +1,14 @@
+@use "sass:meta";
+@use "sass:string";
 @use "fonts" as fonts;
 @use "rem" as rem;
 
 // Media query
 @mixin media-query($breakpoint, $condition) {
   $breakpoint-value: if(
-    type-of($breakpoint) == number,
+    meta.type-of($breakpoint) == number,
     $breakpoint,
-    str-slice($breakpoint, 1, -2)
+    string.slice($breakpoint, 1, -2)
   );
   @media (#{$condition}-width: #{$breakpoint-value}px) {
     @content;

@@ -1,3 +1,4 @@
+@use "sass:map";
 @use "rem" as rem;
 
 // Poppins
@@ -96,8 +97,8 @@ $sizes: (
 // Method 1: Mixin
 // font styles can be include in classes via @include font(2, medium)
 @mixin font($i, $type) {
-  $size: map-get($sizes, $i);
-  $font-family: map-get($font-map, $type);
+  $size: map.get($sizes, $i);
+  $font-family: map.get($font-map, $type);
   font-family: $font-family;
   font-size: $size;
 }
@@ -107,7 +108,7 @@ $sizes: (
 @each $name, $size in $sizes {
   @each $type in thin, light, regular, medium, semibold, bold {
     .font-#{$type}-#{$name} {
-      font-family: map-get($font-map, $type);
+      font-family: map.get($font-map, $type);
       font-size: $size;
     }
   }
