@@ -149,6 +149,7 @@ class StorybookStepPanelWrapperComponent implements AfterViewInit {
 const meta: Meta<typeof StorybookStepPanelWrapperComponent> = {
   title: 'Components/Status indicators/Step progress bar/Wizard',
   component: StorybookStepPanelWrapperComponent,
+  tags: ['!autodocs'],
   parameters: {
     docs: {
       description: {

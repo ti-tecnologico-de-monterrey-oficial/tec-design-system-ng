@@ -4,6 +4,7 @@ import { BmbStepProgressBarComponent } from './bmb-step-progress-bar.component';
 export default {
   title: 'Components/Status indicators/Step progress bar',
   component: BmbStepProgressBarComponent,
+  tags: ['!autodocs'],
   parameters: {
     docs: {
       description: {
@@ -146,3 +147,9 @@ Below is an example of how you can use this component in HTML:
 type Story = StoryObj<BmbStepProgressBarComponent>;
 
 export const Default: Story = {};
+
+export const Horizontal: Story = {
+  args: {
+    type: 'horizontal',
+  },
+};
