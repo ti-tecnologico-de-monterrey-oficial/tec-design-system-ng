@@ -2,7 +2,6 @@ import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { BmbActionMenuComponent } from './bmb-action-menu.component';
 import { attributes } from '../../utils/utils';
 import { BmbItemComponent } from '../bmb-item/bmb-item.component';
-import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
   title: 'Components/Menus/Action menu',
@@ -11,7 +10,6 @@ export default {
     moduleMetadata({
       imports: [BmbItemComponent],
     }),
-    storiesLayoutVertical,
   ],
   parameters: {
     docs: {

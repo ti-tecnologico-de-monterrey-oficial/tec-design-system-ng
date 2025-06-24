@@ -1,7 +1,6 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbFocusElementComponent } from './bmb-focus-element.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Components/Status indicators/Focus element',
@@ -10,7 +9,6 @@ export default {
     moduleMetadata({
       imports: [BmbIconComponent],
     }),
-    storiesLayoutHorizontal,
   ],
   parameters: {
     docs: {

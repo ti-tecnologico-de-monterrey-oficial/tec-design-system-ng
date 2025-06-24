@@ -4,7 +4,6 @@ import { BmbMultiDotPaginatorItemComponent } from './bmb-multi-dot-paginator-ite
 import { CommonModule } from '@angular/common';
 import { moduleMetadata } from '@storybook/angular';
 import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
-import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
   title: 'Components/Status indicators/Multi dot paginator',
@@ -20,7 +19,6 @@ export default {
         BmbHomeCardComponent,
       ],
     }),
-    storiesLayoutVertical,
   ],
   parameters: {
     docs: {

@@ -1,11 +1,9 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbPaginatorComponent } from './bmb-paginator.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Components/Status indicators/Paginator',
   component: BmbPaginatorComponent,
-  decorators: [storiesLayoutHorizontal],
   parameters: {
     docs: {
       description: {

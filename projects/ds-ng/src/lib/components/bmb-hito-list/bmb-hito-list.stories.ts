@@ -1,12 +1,10 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbHitoListComponent } from './bmb-hito-list.component';
 import { DateTime } from 'luxon';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Components/Dev tools/Hito list',
   component: BmbHitoListComponent,
-  decorators: [storiesLayoutHorizontal],
   parameters: {
     docs: {
       description: {

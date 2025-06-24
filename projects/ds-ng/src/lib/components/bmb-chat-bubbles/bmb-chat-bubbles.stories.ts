@@ -1,11 +1,9 @@
 import { type Meta, type StoryObj } from '@storybook/angular';
 import { BmbChatBubblesComponent } from './bmb-chat-bubbles.component';
-import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
   title: 'Components/Containers/AI Chat bubble',
   component: BmbChatBubblesComponent,
-  decorators: [storiesLayoutVertical],
   parameters: {
     docs: {
       description: {

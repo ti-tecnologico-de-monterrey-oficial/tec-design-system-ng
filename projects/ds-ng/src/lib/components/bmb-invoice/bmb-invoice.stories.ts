@@ -2,7 +2,6 @@ import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { BmbInvoiceComponent } from './bmb-invoice.component';
 import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 import { CommonModule } from '@angular/common';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Components/Visual labels/Invoice',
@@ -11,7 +10,6 @@ export default {
     moduleMetadata({
       imports: [CommonModule, BmbBadgeComponent],
     }),
-    storiesLayoutHorizontal,
   ],
   parameters: {
     docs: {

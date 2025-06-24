@@ -1,11 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbAlertCenterComponent } from './bmb-alert-center.component';
-import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
   title: 'Organisms/Alert center',
   component: BmbAlertCenterComponent,
-  decorators: [storiesLayoutVertical],
   parameters: {
     docs: {
       description: {
@@ -21,6 +19,16 @@ import { BmbAlertCenterComponent } from '@ti-tecnologico-de-monterrey-oficial/ds
   templateUrl: './component.html',
   styleUrl: './component.scss',
 })
+\`\`\`
+
+## Scroll
+
+If you want the component to handle the scroll, you should wrap it in a container with a defined height.
+
+\`\`\`html
+<div style="height: 100dvh;">
+  <bmb-alert-center ... />
+</div>
 \`\`\`
 
 Below is an example of how you can use this component in HTML:

@@ -1,11 +1,11 @@
 import { Meta, StoryObj } from '@storybook/angular';
-import { BmbProgressCircleComponent } from './bmb-progress-circle.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
+import {
+  BmbProgressCircleComponent,
+} from './bmb-progress-circle.component';
 
 export default {
   title: 'Components/Status indicators/Progress circle',
   component: BmbProgressCircleComponent,
-  decorators: [storiesLayoutHorizontal],
   parameters: {
     docs: {
       description: {

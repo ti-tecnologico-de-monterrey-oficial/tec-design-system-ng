@@ -5,7 +5,6 @@ import { BmbLogoComponent } from '../bmb-logo/bmb-logo.component';
 import { BmbHeaderMobileComponent } from './bmb-header-mobile.component';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Components/Containers/Header mobile',
@@ -19,7 +18,6 @@ export default {
         BmbLogoComponent,
       ],
     }),
-    storiesLayoutHorizontal,
   ],
   parameters: {
     docs: {

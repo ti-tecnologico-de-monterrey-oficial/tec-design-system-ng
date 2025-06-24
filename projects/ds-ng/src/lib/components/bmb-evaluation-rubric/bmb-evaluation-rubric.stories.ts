@@ -1,11 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbEvaluationRubricComponent } from './bmb-evaluation-rubric.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Components/Containers/Evaluation rubric',
   component: BmbEvaluationRubricComponent,
-  decorators: [storiesLayoutHorizontal],
   parameters: {
     docs: {
       description: {

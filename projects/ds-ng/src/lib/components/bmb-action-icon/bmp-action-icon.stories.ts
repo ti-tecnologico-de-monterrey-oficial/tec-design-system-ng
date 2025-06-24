@@ -1,11 +1,9 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbActionIconComponent } from './bmb-action-icon.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Components/Buttons/Action icon',
   component: BmbActionIconComponent,
-  decorators: [storiesLayoutHorizontal],
   parameters: {
     docs: {
       description: {

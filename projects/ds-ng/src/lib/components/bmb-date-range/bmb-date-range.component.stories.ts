@@ -8,7 +8,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BmbDateRangeComponent } from './bmb-date-range.component';
-import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
   title: 'Components/Inputs/Date picker range',
@@ -29,7 +28,6 @@ export default {
           ${story}
         </div>`;
     }),
-    storiesLayoutVertical,
   ],
   parameters: {
     docs: {

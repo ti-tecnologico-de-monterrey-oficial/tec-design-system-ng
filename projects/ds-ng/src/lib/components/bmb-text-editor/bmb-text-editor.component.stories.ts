@@ -1,11 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbTextEditorComponent } from './bmb-text-editor.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Components/Inputs/Text editor',
   component: BmbTextEditorComponent,
-  decorators: [storiesLayoutHorizontal],
   parameters: {
     docs: {
       description: {

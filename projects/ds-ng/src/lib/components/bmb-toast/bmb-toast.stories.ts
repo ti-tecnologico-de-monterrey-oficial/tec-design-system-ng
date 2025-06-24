@@ -1,6 +1,5 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbToastAppearance, BmbToastComponent } from './bmb-toast.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 const appearanceOptions: BmbToastAppearance[] = [
   'neutral',
@@ -35,7 +34,6 @@ const appearanceOptions: BmbToastAppearance[] = [
 export default {
   title: 'Components/Status indicators/Toast',
   component: BmbToastComponent,
-  decorators: [storiesLayoutHorizontal],
   parameters: {
     docs: {
       description: {

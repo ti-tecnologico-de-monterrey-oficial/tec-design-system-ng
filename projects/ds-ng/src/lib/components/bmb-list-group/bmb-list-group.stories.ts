@@ -6,7 +6,6 @@ import {
 import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { attributes } from '../../utils/utils';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Components/Containers/List group',
@@ -16,7 +15,6 @@ export default {
     moduleMetadata({
       imports: [CommonModule, BmbListGroupComponent, BmbListGroupItemComponent],
     }),
-    storiesLayoutHorizontal,
   ],
   parameters: {
     docs: {

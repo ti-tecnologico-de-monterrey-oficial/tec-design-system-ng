@@ -1,7 +1,6 @@
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { BmbNavigationBarComponent } from './bmb-navigation-bar.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
   title: 'Components/Menus/Navigation bar',
@@ -10,7 +9,6 @@ export default {
     moduleMetadata({
       imports: [RouterTestingModule],
     }),
-    storiesLayoutVertical,
   ],
   parameters: {
     docs: {

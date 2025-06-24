@@ -1,11 +1,9 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbBottomNavigationBarComponent } from './bmb-bottom-navigation-bar.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Components/Menus/Bottom navigation bar',
   component: BmbBottomNavigationBarComponent,
-  decorators: [storiesLayoutHorizontal],
   parameters: {
     docs: {
       description: {

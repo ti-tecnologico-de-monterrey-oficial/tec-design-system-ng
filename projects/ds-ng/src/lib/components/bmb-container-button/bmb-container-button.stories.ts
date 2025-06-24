@@ -4,7 +4,6 @@ import { BmbContainerButtonComponent } from './bmb-container-button.component';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
 import { attributes } from '../../utils/utils';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 const appearanceOptions: IBbmBgAppearance[] = [
   'normal',
@@ -43,7 +42,6 @@ export default {
     moduleMetadata({
       imports: [BmbIconComponent, BmbContainerComponent],
     }),
-    storiesLayoutHorizontal,
   ],
   parameters: {
     docs: {

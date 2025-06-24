@@ -2,7 +2,6 @@ import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { BmbInnerHeaderComponent } from './bmb-inner-header.component';
 import { attributes, attributesText } from '../../utils/utils';
 import { BmbChevronTitleSelectorComponent } from '../bmb-chevron-title-selector/bmb-chevron-title-selector.component';
-import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
   title: 'Particularities/mitec app/Inner header',
@@ -11,7 +10,6 @@ export default {
     moduleMetadata({
       imports: [BmbChevronTitleSelectorComponent],
     }),
-    storiesLayoutVertical,
   ],
   parameters: {
     docs: {

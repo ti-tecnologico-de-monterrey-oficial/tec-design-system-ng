@@ -1,11 +1,10 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbStepProgressBarComponent } from './bmb-step-progress-bar.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Components/Status indicators/Step progress bar',
   component: BmbStepProgressBarComponent,
-  decorators: [storiesLayoutHorizontal],
+  tags: ['!autodocs'],
   parameters: {
     docs: {
       description: {
@@ -148,3 +147,9 @@ Below is an example of how you can use this component in HTML:
 type Story = StoryObj<BmbStepProgressBarComponent>;
 
 export const Default: Story = {};
+
+export const Horizontal: Story = {
+  args: {
+    type: 'horizontal',
+  },
+};

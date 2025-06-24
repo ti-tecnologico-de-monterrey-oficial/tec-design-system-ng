@@ -49,7 +49,7 @@
       [title]="getGradesTitle()"
       [showClose]="true"
       [trailingIconSecondary]="getCalendarIcon()"
-      (onHandleClose)="handleLeftGradesClick($event)"
+      (onHandleBack)="handleLeftGradesClick($event)"
       (onHandleTrailingSecondary)="handleRightGradesClick()"
     >
       <bmb-chevron-title-selector
@@ -70,8 +70,8 @@
         />
       }
     </bmb-inner-header>
-    @for (element of getElements(); track $index) {
-      <section class="bmb_grades-content">
+    <section class="bmb_grades-content">
+      @for (element of getElements(); track $index) {
         <bmb-container-button
           [title]="getDetailTitle(element)"
           [subtitle]="getDetailSubtitle(element)"
@@ -81,7 +81,7 @@
           [setButtonTemplate]="true"
           (onButton)="handleDetails(element)"
         />
-      </section>
-    }
+      }
+    </section>
   }
 </section>

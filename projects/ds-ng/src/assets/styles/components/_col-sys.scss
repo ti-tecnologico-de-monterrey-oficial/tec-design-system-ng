@@ -46,20 +46,14 @@ $alignItemsOptions: (
 
 @for $i from 1 through 4 {
   .bmb_col-sm-#{$i} {
-    @include mixins.media-query(999, "max") {
-      flex: 0 0
-        calc(#{percentage(math.div($i, 4))} - var(--bmb-gap) / 4 * #{4 - $i});
-      max-width: calc(
-        #{percentage(math.div($i, 4))} - var(--bmb-gap) / 4 * #{4 - $i}
-      );
-    }
+    overflow: visible;
     flex: 0
       0
-      calc(#{percentage(math.div($i, 4))} - var(--bmb-gap) / 4 * #{4 - $i});
+      calc(#{math.percentage(math.div($i, 4))} - var(--bmb-gap) / 4 * #{4 - $i});
     max-width: calc(
-      #{percentage(math.div($i, 4))} - var(--bmb-gap) / 4 * #{4 - $i}
+      #{math.percentage(math.div($i, 4))} - var(--bmb-gap) / 4 * #{4 - $i}
     );
-    overflow: visible;
+
   }
 }
 
@@ -79,10 +73,10 @@ $alignItemsOptions: (
     @include mixins.media-query(1000, "min") {
       flex: 0 0
         calc(
-          #{percentage(math.div($i, 12))} - (var(--bmb-gap) / 12 * #{12 - $i})
+          #{math.percentage(math.div($i, 12))} - (var(--bmb-gap) / 12 * #{12 - $i})
         );
       max-width: calc(
-        #{percentage(math.div($i, 12))} - (var(--bmb-gap) / 12 * #{12 - $i})
+        #{math.percentage(math.div($i, 12))} - (var(--bmb-gap) / 12 * #{12 - $i})
       );
     }
   }
@@ -97,7 +91,7 @@ $alignItemsOptions: (
           if($margin == "sm", "max", "min")
         ) {
           margin-#{$side}: calc(
-            #{percentage(math.div($i, $size))} + var(--bmb-gap) -
+            #{math.percentage(math.div($i, $size))} + var(--bmb-gap) -
               (var(--bmb-gap) / $size * #{$size - $i})
           );
         }

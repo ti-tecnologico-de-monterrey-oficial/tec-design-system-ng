@@ -1,11 +1,9 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbValueCounterComponent } from './bmb-value-counter.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Components/Visual labels/Value counter',
   component: BmbValueCounterComponent,
-  decorators: [storiesLayoutHorizontal],
   parameters: {
     docs: {
       description: {

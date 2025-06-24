@@ -7,7 +7,6 @@ import {
 import { BmbDropdownComponent } from './bmb-dropdown.component';
 import { attributes } from '../../utils/utils';
 import { BmbFormValidationComponent } from '../bmb-form-validation/bmb-form-validation.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Components/Inputs/Dropdown',
@@ -22,7 +21,6 @@ export default {
           ${story}
         </div>`;
     }),
-    storiesLayoutHorizontal,
   ],
   parameters: {
     docs: {

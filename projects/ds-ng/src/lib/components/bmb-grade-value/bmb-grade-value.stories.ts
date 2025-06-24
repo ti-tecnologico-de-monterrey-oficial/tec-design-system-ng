@@ -1,11 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbGradeValueComponent } from './bmb-grade-value.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Components/Visual labels/Grade value',
   component: BmbGradeValueComponent,
-  decorators: [storiesLayoutHorizontal],
   parameters: {
     docs: {
       description: {

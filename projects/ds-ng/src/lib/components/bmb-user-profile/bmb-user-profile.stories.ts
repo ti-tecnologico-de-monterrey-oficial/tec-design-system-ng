@@ -1,11 +1,9 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbUserProfileComponent } from './bmb-user-profile.component';
-import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
   title: 'Components/Dev tools/User profile',
   component: BmbUserProfileComponent,
-  decorators: [storiesLayoutVertical],
   parameters: {
     docs: {
       description: {

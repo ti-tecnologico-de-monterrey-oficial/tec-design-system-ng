@@ -2,12 +2,10 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { BmbButtonDirective } from './button.directive';
 import { BmbIconComponent } from '../../components/bmb-icon/bmb-icon.component';
 import { attributes, attributesText } from '../../utils/utils';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Components/Buttons/Button',
   component: BmbButtonDirective,
-  decorators: [storiesLayoutHorizontal],
   imports: [BmbButtonDirective, BmbIconComponent],
   parameters: {
     docs: {

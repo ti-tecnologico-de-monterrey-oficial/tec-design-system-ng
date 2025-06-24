@@ -2,7 +2,6 @@ import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 import { BmbHomeSectionComponent } from './bmb-home-section.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Components/Containers/Home section',
@@ -11,7 +10,6 @@ export default {
     moduleMetadata({
       imports: [BmbIconComponent, BmbContainerComponent],
     }),
-    storiesLayoutHorizontal,
   ],
   parameters: {
     docs: {
