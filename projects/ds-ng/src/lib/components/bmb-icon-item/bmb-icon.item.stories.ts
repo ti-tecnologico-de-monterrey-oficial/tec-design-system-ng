@@ -6,9 +6,7 @@ import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 export default {
   title: 'Components/Visual labels/Icon item',
   component: BmbIconItemComponent,
-  decorators: [
-    moduleMetadata({ imports: [BmbDividerComponent] }),
-  ],
+  decorators: [moduleMetadata({ imports: [BmbDividerComponent] })],
   parameters: {
     docs: {
       description: {

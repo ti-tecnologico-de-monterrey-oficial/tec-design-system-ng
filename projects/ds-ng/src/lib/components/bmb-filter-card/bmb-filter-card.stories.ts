@@ -5,9 +5,7 @@ import { CommonModule } from '@angular/common';
 export default {
   title: 'Components/Containers/Card - Filter',
   component: BmbFilterCardComponent,
-  decorators: [
-    moduleMetadata({ imports: [CommonModule] }),
-  ],
+  decorators: [moduleMetadata({ imports: [CommonModule] })],
   parameters: {
     docs: {
       description: {
