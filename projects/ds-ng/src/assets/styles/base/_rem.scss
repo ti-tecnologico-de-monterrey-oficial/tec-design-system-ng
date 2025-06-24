@@ -44,7 +44,10 @@ $global-font-size: 16px;
   }
 
   @for $i from 1 through $count {
-    $rem-values: list.append($rem-values, -btsp-to-rem(list.nth($values, $i), $base));
+    $rem-values: list.append(
+      $rem-values,
+      -btsp-to-rem(list.nth($values, $i), $base)
+    );
   }
 
   @return $rem-values;

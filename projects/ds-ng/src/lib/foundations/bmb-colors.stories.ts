@@ -83,7 +83,9 @@ import {
           style="position: sticky; top: 0; left: 0; z-index: 1; background-color: var(--general_contrasts-15); padding: 1rem 0;"
         >
           <h2>Gradients</h2>
-          <p style="margin: 0; color: var(--general_contrasts-100);">Click on the gradient to copy the value</p>
+          <p style="margin: 0; color: var(--general_contrasts-100);">
+            Click on the gradient to copy the value
+          </p>
         </header>
         <ul
           style="display: flex; gap: 1rem; flex-wrap: wrap; list-style: none; padding: 0; justify-content: center;"

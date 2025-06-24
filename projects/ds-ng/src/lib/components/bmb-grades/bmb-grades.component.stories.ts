@@ -285,3 +285,9 @@ Below is an example of how you can use this component in HTML:
 type Story = StoryObj<BmbGradesComponent>;
 
 export const Default: Story = {};
+
+export const MicroVersion: Story = {
+  args: {
+    isMicro: true,
+  },
+};

@@ -34,11 +34,11 @@ export class BmbAcademicProgressComponent implements OnInit {
   average = input.required<IBmbNameValuePair>();
   summary = input.required<IBmbNameValuePair>();
 
-  metrics = signal<{name: string, value: number}[]>([]);
+  metrics = signal<{ name: string; value: number }[]>([]);
 
   ngOnInit() {
     const inputs: string[] = [];
-    const newMetrics: {name: string, value: number}[] = [];
+    const newMetrics: { name: string; value: number }[] = [];
     if (!this.accredited()) inputs.push('accredited');
     if (!this.average()) inputs.push('average');
     if (!this.summary()) inputs.push('summary');
