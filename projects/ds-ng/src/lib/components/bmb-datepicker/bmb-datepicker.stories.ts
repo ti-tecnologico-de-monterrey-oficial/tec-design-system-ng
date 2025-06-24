@@ -10,7 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BmbDatepickerComponent } from './bmb-datepicker.component';
 
 export default {
-  title: 'Micro Componentes/Datepicker',
+  title: 'Components/Inputs/Calendar date picker',
   component: BmbDatepickerComponent,
   decorators: [
     moduleMetadata({

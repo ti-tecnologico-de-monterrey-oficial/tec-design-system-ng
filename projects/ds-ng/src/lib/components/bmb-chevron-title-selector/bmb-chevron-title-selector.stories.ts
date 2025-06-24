@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { BmbChevronTitleSelectorComponent } from './bmb-chevron-title-selector.component';
 
 export default {
-  title: 'Micro Componentes/Chevron Title Selector',
+  title: 'Components/Menus/Chevron title selector',
   component: BmbChevronTitleSelectorComponent,
   parameters: {
     docs: {

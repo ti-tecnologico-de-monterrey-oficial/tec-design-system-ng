@@ -6,7 +6,7 @@ import { moduleMetadata } from '@storybook/angular';
 import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
 
 export default {
-  title: 'Macro Componentes/Multi Dot Paginator',
+  title: 'Components/Status indicators/Multi dot paginator',
   component: BmbMultiDotPaginatorComponent,
   subcomponents: { BmbMultiDotPaginatorItemComponent },
   decorators: [

@@ -3,7 +3,7 @@ import { BmbHomeCardComponent } from './bmb-home-card.component';
 import { attributes, attributesText } from '../../utils/utils';
 
 export default {
-  title: 'Micro Componentes/Home Card',
+  title: 'Components/Containers/Home card',
   component: BmbHomeCardComponent,
   parameters: {
     docs: {

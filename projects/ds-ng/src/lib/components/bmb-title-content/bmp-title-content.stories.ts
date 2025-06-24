@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { BmbTitleContentComponent } from './bmb-title-content.component';
 
 export default {
-  title: 'Internal/Title content template',
+  title: 'Internals/Title content template',
   component: BmbTitleContentComponent,
   parameters: {
     docs: {

@@ -3,7 +3,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbFocusElementComponent } from './bmb-focus-element.component';
 
 export default {
-  title: 'Micro Componentes/Focus Element',
+  title: 'Components/Status indicators/Focus element',
   component: BmbFocusElementComponent,
   decorators: [
     moduleMetadata({

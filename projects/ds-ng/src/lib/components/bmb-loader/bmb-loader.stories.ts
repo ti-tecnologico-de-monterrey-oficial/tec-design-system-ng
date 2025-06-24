@@ -37,7 +37,7 @@ const appearanceOptions: IBbmBgAppearance[] = [
 ];
 
 export default {
-  title: 'Micro Componentes/Loader',
+  title: 'Components/Status indicators/Loading screen',
   component: BmbLoaderComponent,
   decorators: [
     moduleMetadata({

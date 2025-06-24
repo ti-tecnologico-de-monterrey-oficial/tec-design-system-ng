@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbTextLinkComponent } from './bmb-text-link.component';
 
 export default {
-  title: 'Micro Componentes/Text Link',
+  title: 'Components/Buttons/Text link',
   component: BmbTextLinkComponent,
   parameters: {
     docs: {

@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { BmbBalanceOverviewComponent } from './bmb-balance-overview.component';
 
 export default {
-  title: 'Macro Componentes/Balance Overview',
+  title: 'Components/Containers/Balance overview',
   component: BmbBalanceOverviewComponent,
   parameters: {
     docs: {

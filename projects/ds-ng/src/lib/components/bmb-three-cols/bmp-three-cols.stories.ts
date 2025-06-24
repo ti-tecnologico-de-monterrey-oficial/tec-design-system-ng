@@ -6,7 +6,7 @@ import { BmbContainerComponent } from '../bmb-container/bmb-container.component'
 import { attributes } from '../../utils/utils';
 
 export default {
-  title: 'Internal/Three column content template',
+  title: 'Internals/Three column content template',
   component: BmbThreeColsComponent,
   decorators: [
     moduleMetadata({

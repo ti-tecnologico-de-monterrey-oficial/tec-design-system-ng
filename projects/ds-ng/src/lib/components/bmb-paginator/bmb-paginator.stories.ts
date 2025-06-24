@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { BmbPaginatorComponent } from './bmb-paginator.component';
 
 export default {
-  title: 'Micro Componentes/Paginator',
+  title: 'Components/Status indicators/Paginator',
   component: BmbPaginatorComponent,
   parameters: {
     docs: {

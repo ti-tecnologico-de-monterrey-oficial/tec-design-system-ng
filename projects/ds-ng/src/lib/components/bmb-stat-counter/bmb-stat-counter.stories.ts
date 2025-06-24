@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { BmbStatCounterComponent } from './bmb-stat-counter.component';
 
 export default {
-  title: 'Micro Componentes/Stat Counter',
+  title: 'Components/Dev tools/Stat counter',
   component: BmbStatCounterComponent,
   parameters: {
     docs: {

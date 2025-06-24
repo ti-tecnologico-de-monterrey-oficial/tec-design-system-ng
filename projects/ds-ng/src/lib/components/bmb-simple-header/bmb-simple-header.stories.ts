@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { BmbSimpleHeaderComponent } from './bmb-simple-header.component';
 
 export default {
-  title: 'Micro Componentes/Simple header',
+  title: 'Components/Visual labels/Simple header',
   component: BmbSimpleHeaderComponent,
   parameters: {
     docs: {

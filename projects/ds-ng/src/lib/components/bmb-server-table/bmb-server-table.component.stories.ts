@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 
 export default {
-  title: 'Macro Componentes/Server table',
+  title: 'Components/Dev tools/Server table',
   component: BmbServerTableComponent,
   decorators: [
     moduleMetadata({

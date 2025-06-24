@@ -4,7 +4,7 @@ import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 import { CommonModule } from '@angular/common';
 
 export default {
-  title: 'Macro Componentes/Invoice',
+  title: 'Components/Visual labels/Invoice',
   component: BmbInvoiceComponent,
   decorators: [
     moduleMetadata({

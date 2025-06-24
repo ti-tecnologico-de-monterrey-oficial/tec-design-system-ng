@@ -1,4 +1,4 @@
-import { componentWrapperDecorator, Meta, StoryObj } from '@storybook/angular';
+import { Meta, StoryObj } from '@storybook/angular';
 import {
   BmbCardComponent,
   BmbCardFooterComponent,
@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 import { attributes } from '../../utils/utils';
 
 const meta: Meta<BmbCardComponent> = {
-  title: 'Micro Componentes/Card',
+  title: 'Components/Containers/Card - Generic',
   component: BmbCardComponent,
   subcomponents: {
     BmbCardFooterComponent,

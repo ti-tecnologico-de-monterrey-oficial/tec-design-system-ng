@@ -10,7 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BmbDateRangeComponent } from './bmb-date-range.component';
 
 export default {
-  title: 'Micro Componentes/Date range',
+  title: 'Components/Inputs/Date picker range',
   component: BmbDateRangeComponent,
   decorators: [
     moduleMetadata({

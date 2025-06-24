@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbMobileTemplatesComponent } from './bmb-mobile-templates.component';
 
 export default {
-  title: 'Macro Componentes/Mobile Templates',
+  title: 'Templates/Mobile',
   component: BmbMobileTemplatesComponent,
   parameters: {
     docs: {

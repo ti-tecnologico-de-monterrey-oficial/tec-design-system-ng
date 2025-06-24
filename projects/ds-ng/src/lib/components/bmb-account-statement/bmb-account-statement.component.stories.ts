@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { BmbAccountStatementComponent } from './bmb-account-statement.component';
 
 export default {
-  title: 'Macro Componentes/Account statement',
+  title: 'Organisms/Account statement',
   component: BmbAccountStatementComponent,
   parameters: {
     docs: {

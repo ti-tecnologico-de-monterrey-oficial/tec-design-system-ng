@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 import { attributes } from '../../utils/utils';
 
 export default {
-  title: 'Macro componentes/ListsGroup/List group',
+  title: 'Components/Containers/List group',
   component: BmbListGroupComponent,
   subcomponents: { BmbListGroupItemComponent },
   decorators: [

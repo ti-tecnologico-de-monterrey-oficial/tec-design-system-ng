@@ -3,7 +3,7 @@ import { BmbProfileComponent } from './bmb-profile.component';
 import { attributes } from '../../utils/utils';
 
 export default {
-  title: 'Macro Componentes/Profile',
+  title: 'Components/Containers/Card - Profile',
   component: BmbProfileComponent,
   parameters: {
     docs: {

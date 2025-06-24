@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { BmbAccordionComponent } from '../../../public-api';
 
 const meta: Meta<BmbAccordionControlDirective> = {
-  title: 'Micro Componentes/Accordion Control',
+  title: 'Components/Dev tools/Accordion control',
   component: BmbAccordionComponent,
   subcomponents: { BmbAccordionControlDirective },
   decorators: [

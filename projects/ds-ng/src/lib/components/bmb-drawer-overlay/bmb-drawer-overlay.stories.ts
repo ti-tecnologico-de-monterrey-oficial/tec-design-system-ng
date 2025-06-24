@@ -2,7 +2,7 @@ import { componentWrapperDecorator, Meta, StoryObj } from '@storybook/angular';
 import { BmbDrawerOverlayComponent } from './bmb-drawer-overlay.component';
 
 export default {
-  title: 'Micro Componentes/Drawer Overlay',
+  title: 'Particularities/mitec app/FAB Overlay drawer',
   component: BmbDrawerOverlayComponent,
   decorators: [
     componentWrapperDecorator((story: string) => {

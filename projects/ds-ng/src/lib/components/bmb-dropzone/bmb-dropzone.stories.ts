@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BmbDropzoneComponent } from './bmb-dropzone.component';
 
 export default {
-  title: 'Micro Componentes/Dropzone',
+  title: 'Components/Inputs/Dropzone',
   component: BmbDropzoneComponent,
   decorators: [
     moduleMetadata({

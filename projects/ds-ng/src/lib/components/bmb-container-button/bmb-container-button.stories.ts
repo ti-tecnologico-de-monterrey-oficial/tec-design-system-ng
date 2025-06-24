@@ -36,7 +36,7 @@ const appearanceOptions: IBbmBgAppearance[] = [
 ];
 
 export default {
-  title: 'Macro Componentes/Container Button',
+  title: 'Components/Buttons/Container button',
   component: BmbContainerButtonComponent,
   decorators: [
     moduleMetadata({

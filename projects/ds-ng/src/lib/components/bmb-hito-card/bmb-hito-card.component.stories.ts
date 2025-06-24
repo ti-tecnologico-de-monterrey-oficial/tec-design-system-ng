@@ -3,7 +3,7 @@ import { BmbHitoCardComponent } from './bmb-hito-card.component';
 import { attributes } from '../../utils/utils';
 
 export default {
-  title: 'Micro Componentes/Hito card',
+  title: 'Components/Containers/Hito card',
   component: BmbHitoCardComponent,
   parameters: {
     docs: {

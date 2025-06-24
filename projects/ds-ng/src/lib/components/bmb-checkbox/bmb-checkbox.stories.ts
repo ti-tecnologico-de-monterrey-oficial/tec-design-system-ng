@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { BmbCheckboxComponent } from './bmb-checkbox.component';
 
 export default {
-  title: 'Micro Componentes/Checkbox',
+  title: 'Components/Inputs/Checkbox',
   component: BmbCheckboxComponent,
   parameters: {
     docs: {

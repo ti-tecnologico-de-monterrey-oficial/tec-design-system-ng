@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbAlertCenterComponent } from './bmb-alert-center.component';
 
 export default {
-  title: 'Macro Componentes/Alert center',
+  title: 'Organisms/Alert center',
   component: BmbAlertCenterComponent,
   parameters: {
     docs: {

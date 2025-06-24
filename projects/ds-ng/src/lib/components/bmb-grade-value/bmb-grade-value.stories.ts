@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbGradeValueComponent } from './bmb-grade-value.component';
 
 export default {
-  title: 'Micro Componentes/Grade Value',
+  title: 'Components/Visual labels/Grade value',
   component: BmbGradeValueComponent,
   parameters: {
     docs: {

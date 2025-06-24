@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { BmbRadialComponent } from './bmb-radial.component';
 
 export default {
-  title: 'Micro Componentes/Radial',
+  title: 'Components/Inputs/Radial',
   component: BmbRadialComponent,
   parameters: {
     docs: {

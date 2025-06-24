@@ -4,7 +4,7 @@ import {
 } from './bmb-progress-circle.component';
 
 export default {
-  title: 'Micro Componentes/Progress Circle',
+  title: 'Components/Status indicators/Progress circle',
   component: BmbProgressCircleComponent,
   parameters: {
     docs: {

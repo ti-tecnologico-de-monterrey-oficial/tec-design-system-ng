@@ -3,7 +3,7 @@ import { BmbMitecLogoAnimationComponent } from './bmb-mitec-logo-animation.compo
 import { attributes } from '../../utils/utils';
 
 export default {
-  title: 'Micro Componentes/Mitec Logo Animation',
+  title: 'Components/Dev tools/Mitec logo animation',
   component: BmbMitecLogoAnimationComponent,
   parameters: {
     docs: {

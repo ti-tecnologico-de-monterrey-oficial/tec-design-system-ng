@@ -1,22 +1,16 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbLayoutDirective } from './bmb-layout.directive';
-import {
-  BmbLayoutItemDirective,
-  IColumSizeFull,
-  IColumSizeMobile,
-} from './bmb-layout-item.directive';
+import { BmbLayoutItemDirective } from './bmb-layout-item.directive';
 import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import {
   BmbCardComponent,
   BmbCardContentComponent,
 } from '../../components/bmb-card/bmb-card.component';
-import { IMargin } from './bmb-layout-item.directive';
-import { InputSignal } from '@angular/core';
 import { attributes } from '../../utils/utils';
 
 const meta: Meta<BmbLayoutItemDirective> = {
-  title: 'Micro Componentes/Layout item',
+  title: 'Components/Dev tools/Layout item',
   component: BmbLayoutItemDirective,
   subcomponents: { BmbLayoutDirective },
   decorators: [

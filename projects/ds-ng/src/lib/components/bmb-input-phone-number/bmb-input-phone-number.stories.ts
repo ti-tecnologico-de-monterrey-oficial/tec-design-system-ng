@@ -12,7 +12,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { attributes } from '../../utils/utils';
 
 export default {
-  title: 'Micro Componentes/Input Phone Number',
+  title: 'Components/Inputs/Phone number',
   component: BmbInputPhoneNumberComponent,
   decorators: [
     moduleMetadata({

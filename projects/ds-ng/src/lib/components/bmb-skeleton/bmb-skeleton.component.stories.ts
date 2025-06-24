@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { BmbSkeletonComponent } from './bmb-skeleton.component';
 
 export default {
-  title: 'Micro Componentes/Skeleton',
+  title: 'Components/Dev tools/Skeleton',
   component: BmbSkeletonComponent,
   parameters: {
     docs: {

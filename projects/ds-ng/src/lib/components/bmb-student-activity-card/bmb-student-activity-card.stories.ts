@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { BmbStudentActivityCardComponent } from './bmb-student-activity-card.component';
 
 export default {
-  title: 'Micro Componentes/Student activity card',
+  title: 'Components/Containers/Card - Student activity',
   component: BmbStudentActivityCardComponent,
   decorators: [
     moduleMetadata({

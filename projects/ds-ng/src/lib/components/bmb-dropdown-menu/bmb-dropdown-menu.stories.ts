@@ -10,7 +10,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { ActivatedRoute } from '@angular/router';
 
 export default {
-  title: 'Micro Componentes/Dropdown Menu',
+  title: 'Components/Menus/Dropdown menu',
   component: BmbDropdownMenuComponent,
   decorators: [
     moduleMetadata({

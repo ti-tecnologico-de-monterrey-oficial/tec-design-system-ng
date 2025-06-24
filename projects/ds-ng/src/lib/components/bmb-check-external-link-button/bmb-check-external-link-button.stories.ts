@@ -4,7 +4,7 @@ import { BmbCheckExternalLinkButtonComponent } from './bmb-check-external-link-b
 import { attributes } from '../../utils/utils';
 
 export default {
-  title: 'Internal/Check link (external, internal) or button',
+  title: 'Internals/Check link (external, internal) or button',
   component: BmbCheckExternalLinkButtonComponent,
   decorators: [
     moduleMetadata({

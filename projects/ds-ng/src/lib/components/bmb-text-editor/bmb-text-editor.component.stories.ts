@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbTextEditorComponent } from './bmb-text-editor.component';
 
 export default {
-  title: 'Macro Componentes/Text editor',
+  title: 'Components/Inputs/Text editor',
   component: BmbTextEditorComponent,
   parameters: {
     docs: {

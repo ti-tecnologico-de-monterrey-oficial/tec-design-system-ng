@@ -7,7 +7,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbInputComponent } from './bmb-input.component';
 
 export default {
-  title: 'Micro Componentes/Input',
+  title: 'Components/Inputs/Text input',
   component: BmbInputComponent,
   decorators: [
     moduleMetadata({

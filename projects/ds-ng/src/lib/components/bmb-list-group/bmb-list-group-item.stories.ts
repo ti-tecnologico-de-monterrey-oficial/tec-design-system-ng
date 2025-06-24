@@ -42,7 +42,7 @@ const appearanceOptions: IBbmBgAppearance[] = [
 ];
 
 export default {
-  title: 'Macro componentes/ListsGroup/List group item',
+  title: 'Components/Dev tools/List group item',
   component: BmbListGroupComponent,
   subcomponents: { BmbListGroupComponent },
   decorators: [

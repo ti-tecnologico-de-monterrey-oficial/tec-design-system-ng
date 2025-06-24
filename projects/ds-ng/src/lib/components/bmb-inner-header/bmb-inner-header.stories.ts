@@ -4,7 +4,7 @@ import { attributes, attributesText } from '../../utils/utils';
 import { BmbChevronTitleSelectorComponent } from '../bmb-chevron-title-selector/bmb-chevron-title-selector.component';
 
 export default {
-  title: 'Micro Componentes/Inner Header Mobile',
+  title: 'Particularities/mitec app/Inner header',
   component: BmbInnerHeaderComponent,
   decorators: [
     moduleMetadata({

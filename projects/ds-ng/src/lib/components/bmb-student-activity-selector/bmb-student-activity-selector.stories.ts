@@ -12,7 +12,7 @@ const appearanceOptions: IStudentActivityAppearance[] = [
 ];
 
 export default {
-  title: 'Micro Componentes/Student activity selector',
+  title: 'Components/Menus/Student activity selector',
   component: BmbStudentActivitySelectorComponent,
   subcomponents: { BmbTabStudentActivityComponent, BmbCardComponent },
   decorators: [

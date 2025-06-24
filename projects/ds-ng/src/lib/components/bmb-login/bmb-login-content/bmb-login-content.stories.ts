@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { BmbLoginContentComponent } from './bmb-login-content.component';
 
 export default {
-  title: 'Internal/Login content',
+  title: 'Internals/Login content',
   component: BmbLoginContentComponent,
   parameters: {
     docs: {

@@ -3,7 +3,7 @@ import { BmbHitoListComponent } from './bmb-hito-list.component';
 import { DateTime } from 'luxon';
 
 export default {
-  title: 'Micro Componentes/Hito List',
+  title: 'Components/Dev tools/Hito list',
   component: BmbHitoListComponent,
   parameters: {
     docs: {

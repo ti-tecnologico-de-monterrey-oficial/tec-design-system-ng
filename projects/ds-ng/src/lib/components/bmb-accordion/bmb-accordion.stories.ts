@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { attributes } from '../../utils/utils';
 
 export default {
-  title: 'Micro Componentes/Accordion',
+  title: 'Components/Containers/Accordion',
   component: BmbAccordionComponent,
   decorators: [
     moduleMetadata({

@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { BmbBottomNavigationBarComponent } from './bmb-bottom-navigation-bar.component';
 
 export default {
-  title: 'Macro Componentes/Bottom navigation bar',
+  title: 'Components/Menus/Bottom navigation bar',
   component: BmbBottomNavigationBarComponent,
   parameters: {
     docs: {

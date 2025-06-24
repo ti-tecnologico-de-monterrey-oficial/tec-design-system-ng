@@ -4,7 +4,7 @@ import { BmbContainerComponent } from '../bmb-container/bmb-container.component'
 import { BmbHomeSectionComponent } from './bmb-home-section.component';
 
 export default {
-  title: 'Macro Componentes/Home Section',
+  title: 'Components/Containers/Home section',
   component: BmbHomeSectionComponent,
   decorators: [
     moduleMetadata({

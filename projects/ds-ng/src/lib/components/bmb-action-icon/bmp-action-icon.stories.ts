@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { BmbActionIconComponent } from './bmb-action-icon.component';
 
 export default {
-  title: 'Micro Componentes/Action icon',
+  title: 'Components/Buttons/Action icon',
   component: BmbActionIconComponent,
   parameters: {
     docs: {

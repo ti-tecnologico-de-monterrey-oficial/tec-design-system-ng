@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { BmbTabsComponent } from './bmb-tabs.component';
 
 export default {
-  title: 'Macro Componentes/Tabs',
+  title: 'Components/Visual labels/Tab',
   component: BmbTabsComponent,
   parameters: {
     docs: {

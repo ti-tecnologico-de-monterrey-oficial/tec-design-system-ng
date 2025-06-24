@@ -7,7 +7,7 @@ import { attributes } from '../../utils/utils';
 import { BmbInputTagsComponent } from './bmb-input-tags.component';
 
 export default {
-  title: 'Micro Componentes/ Input Tags',
+  title: 'Components/Inputs/Text input with tags',
   component: BmbInputTagsComponent,
   decorators: [
     componentWrapperDecorator((story: string) => {

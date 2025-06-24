@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { BmbLegendComponent } from './bmb-legend.component';
 
 export default {
-  title: 'Micro Componentes/Legend',
+  title: 'Components/Visual labels/Legend',
   component: BmbLegendComponent,
   parameters: {
     docs: {

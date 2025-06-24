@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { BmbChatBarComponent } from './bmb-chat-bar.component';
 
 export default {
-  title: 'Micro Componentes/Chat bar',
+  title: 'Components/Inputs/AI Chat bar',
   component: BmbChatBarComponent,
   parameters: {
     docs: {

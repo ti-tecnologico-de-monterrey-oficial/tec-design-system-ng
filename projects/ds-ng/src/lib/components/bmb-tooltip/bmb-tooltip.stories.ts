@@ -9,7 +9,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { attributes } from '../../utils/utils';
 
 export default {
-  title: 'Micro Componentes/ToolTip',
+  title: 'Components/Status indicators/ToolTip',
   component: BmbTooltipComponent,
   decorators: [
     moduleMetadata({

@@ -3,7 +3,7 @@ import { BmbSwitchComponent } from './bmb-switch.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 
 export default {
-  title: 'Micro Componentes/Switch',
+  title: 'Components/Inputs/Switch',
   component: BmbSwitchComponent,
   decorators: [
     moduleMetadata({

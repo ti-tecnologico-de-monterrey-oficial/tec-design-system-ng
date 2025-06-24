@@ -7,7 +7,7 @@ import { InputSignal } from '@angular/core';
 import { IDropdownItem } from '../../types';
 
 export default {
-  title: 'Macro Componentes/Card Button',
+  title: 'Components/Buttons/Card button',
   component: BmbCardButtonComponent,
   decorators: [
     moduleMetadata({

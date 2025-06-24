@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbNotificationCardComponent } from './bmb-notification-card.component';
 
 export default {
-  title: 'Micro Componentes/Notification Card',
+  title: 'Components/Containers/Card - Notification',
   component: BmbNotificationCardComponent,
   parameters: {
     docs: {

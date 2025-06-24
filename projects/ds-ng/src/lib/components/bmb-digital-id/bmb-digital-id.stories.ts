@@ -3,7 +3,7 @@ import { BmbDigitalIdComponent } from './bmb-digital-id.component';
 import { attributes } from '../../utils/utils';
 
 export default {
-  title: 'Macro Componentes/Digital Id',
+  title: 'Particularities/mitec app/Digital id',
   component: BmbDigitalIdComponent,
   parameters: {
     docs: {

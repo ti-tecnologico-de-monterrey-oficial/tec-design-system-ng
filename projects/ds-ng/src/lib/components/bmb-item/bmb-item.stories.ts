@@ -8,7 +8,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, InputSignal } from '@angular/core';
 export type IBmbTargetLink = '_blank' | '_parent' | '_self' | '_top';
 
 const meta: Meta<BmbItemComponent> = {
-  title: 'Internal/Items',
+  title: 'Internals/Items',
   component: BmbItemComponent,
   decorators: [
     moduleMetadata({

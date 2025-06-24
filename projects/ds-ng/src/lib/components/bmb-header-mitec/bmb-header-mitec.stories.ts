@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbHeaderMitecComponent } from './bmb-header-mitec.component';
 
 export default {
-  title: 'Internal/Header mitec',
+  title: 'Internals/Header mitec',
   component: BmbHeaderMitecComponent,
   parameters: {
     docs: {

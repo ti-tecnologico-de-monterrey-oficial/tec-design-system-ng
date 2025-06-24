@@ -7,7 +7,7 @@ import { BmbContainerComponent } from '../bmb-container/bmb-container.component'
 import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
 
 export default {
-  title: 'Macro Componentes/Header Mobile',
+  title: 'Components/Containers/Header mobile',
   component: BmbHeaderMobileComponent,
   decorators: [
     moduleMetadata({

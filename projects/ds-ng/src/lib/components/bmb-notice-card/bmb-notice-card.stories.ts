@@ -3,7 +3,7 @@ import { BmbNoticeCardComponent } from './bmb-notice-card.component';
 import { attributes } from '../../utils/utils';
 
 export default {
-  title: 'Micro Componentes/Notice Card',
+  title: 'Particularities/mitec web/Card - Notice',
   component: BmbNoticeCardComponent,
   decorators: [
     moduleMetadata({

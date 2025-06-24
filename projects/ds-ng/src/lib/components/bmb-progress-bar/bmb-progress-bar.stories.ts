@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbProgressBarComponent } from './bmb-progress-bar.component';
 
 export default {
-  title: 'Micro Componentes/Progress Bar',
+  title: 'Components/Status indicators/Progress bar',
   component: BmbProgressBarComponent,
   parameters: {
     docs: {

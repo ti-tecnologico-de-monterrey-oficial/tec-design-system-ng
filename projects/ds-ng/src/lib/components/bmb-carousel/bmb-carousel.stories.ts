@@ -5,7 +5,7 @@ import { moduleMetadata } from '@storybook/angular';
 import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
 
 export default {
-  title: 'Macro Componentes/Carousel',
+  title: 'Components/Status indicators/Carousel',
   component: BmbCarouselComponent,
   subcomponents: {},
   decorators: [

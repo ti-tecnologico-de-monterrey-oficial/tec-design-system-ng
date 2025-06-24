@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { BmbBookmarkComponent } from './bmb-bookmark.component';
 
 export default {
-  title: 'Micro Componentes/Bookmark',
+  title: 'Components/Buttons/Bookmark',
   component: BmbBookmarkComponent,
   parameters: {
     docs: {

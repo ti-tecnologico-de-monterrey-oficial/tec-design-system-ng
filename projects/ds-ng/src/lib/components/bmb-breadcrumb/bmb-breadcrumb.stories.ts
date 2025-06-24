@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 
 export default {
-  title: 'Micro Componentes/Breadcrumb',
+  title: 'Components/Menus/Breadcrumb',
   component: BmbBreadcrumbComponent,
   decorators: [
     moduleMetadata({

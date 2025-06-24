@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { BmbStepProgressBarComponent } from './bmb-step-progress-bar.component';
 
 export default {
-  title: 'Micro Componentes/Step Progress Bar',
+  title: 'Components/Status indicators/Step progress bar',
   component: BmbStepProgressBarComponent,
   parameters: {
     docs: {

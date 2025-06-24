@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { BmbUserSummaryComponent } from './bmb-user-summary.component';
 
 export default {
-  title: 'Macro Componentes/User Summary',
+  title: 'Components/Containers/User summary',
   component: BmbUserSummaryComponent,
   parameters: {
     docs: {

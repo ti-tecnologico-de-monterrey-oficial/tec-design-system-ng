@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { BmbAcademicProgressComponent } from './bmb-academic-progress.component';
 
 export default {
-  title: 'Macro Componentes/Academic progress',
+  title: 'Components/Visual labels/Academic progress',
   component: BmbAcademicProgressComponent,
   parameters: {
     docs: {

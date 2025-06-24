@@ -9,7 +9,7 @@ export interface Target {
 }
 
 export default {
-  title: 'Micro Componentes/Dot Paginator',
+  title: 'Components/Status indicators/Dot paginator',
   component: BmbDotPaginatorComponent,
   parameters: {
     docs: {
