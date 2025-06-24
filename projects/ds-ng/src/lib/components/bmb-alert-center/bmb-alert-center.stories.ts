@@ -3,7 +3,7 @@ import { BmbAlertCenterComponent } from './bmb-alert-center.component';
 import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Macro Componentes/Alert center',
+  title: 'Organisms/Alert center',
   component: BmbAlertCenterComponent,
   decorators: [storiesLayoutVertical],
   parameters: {

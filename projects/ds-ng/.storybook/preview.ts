@@ -1,4 +1,4 @@
-import { componentWrapperDecorator, type Preview } from '@storybook/angular';
+import type { Preview } from '@storybook/angular';
 import { setCompodocJson } from '@storybook/addon-docs/angular';
 import docJson from '../../../documentation.json';
 
@@ -44,9 +44,26 @@ const preview: Preview = {
         method: 'alphabetical',
         order: [
           'Foundations',
-          'Micro Componentes',
-          'Macro Componentes',
-          'Internal',
+          ['*', 'Layouts', 'System elements'],
+          'Components',
+          [
+            'Buttons',
+            'Containers',
+            [
+              '*',
+              'Card - Filter',
+              'Card - Generic',
+              'Card - Media',
+              'Card - Notification',
+              'Card - Profile',
+              'Card - Student activity',
+            ],
+            'Inputs',
+            '*',
+            'Dev tools',
+          ],
+          '*',
+          'Internals',
         ],
         locales: 'en-US',
       },

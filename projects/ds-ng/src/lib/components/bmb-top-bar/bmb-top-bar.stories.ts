@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbTopBarComponent } from './bmb-top-bar.component';
 
 export default {
-  title: 'Macro Componentes/Top bar',
+  title: 'Components/Menus/Top bar',
   component: BmbTopBarComponent,
   parameters: {
     docs: {

@@ -5,14 +5,11 @@ import {
 } from './bmb-list-group.component';
 import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
-import { InputSignal } from '@angular/core';
-import { SizeNames } from '../../types';
-import { BorderType } from './types';
 import { attributes } from '../../utils/utils';
 import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Macro componentes/ListsGroup/List group',
+  title: 'Components/Containers/List group',
   component: BmbListGroupComponent,
   subcomponents: { BmbListGroupItemComponent },
   decorators: [

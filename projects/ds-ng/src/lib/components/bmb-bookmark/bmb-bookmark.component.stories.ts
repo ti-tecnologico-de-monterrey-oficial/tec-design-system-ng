@@ -3,7 +3,7 @@ import { BmbBookmarkComponent } from './bmb-bookmark.component';
 import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Bookmark',
+  title: 'Components/Buttons/Bookmark',
   component: BmbBookmarkComponent,
   decorators: [storiesLayoutHorizontal],
   parameters: {

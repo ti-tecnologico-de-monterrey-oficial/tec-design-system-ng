@@ -5,7 +5,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Macro Componentes/Server table',
+  title: 'Components/Dev tools/Server table',
   component: BmbServerTableComponent,
   decorators: [
     moduleMetadata({

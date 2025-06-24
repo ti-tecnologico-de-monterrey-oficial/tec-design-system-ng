@@ -5,7 +5,7 @@ import { fn } from 'storybook/test';
 import { action } from 'storybook/actions';
 
 export default {
-  title: 'Micro Componentes/Button icon',
+  title: 'Components/Buttons/Button icon',
   component: BmbButtonIconComponent,
   parameters: {
     actions: { argTypesRegex: '^on.*' },

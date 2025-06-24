@@ -3,7 +3,7 @@ import { BmbTabsComponent } from './bmb-tabs.component';
 import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Macro Componentes/Tabs',
+  title: 'Components/Visual labels/Tab',
   component: BmbTabsComponent,
   decorators: [storiesLayoutVertical],
   parameters: {

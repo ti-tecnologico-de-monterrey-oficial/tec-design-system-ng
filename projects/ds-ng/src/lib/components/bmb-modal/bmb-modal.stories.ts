@@ -86,7 +86,7 @@ class StorybookModalWrapperComponent {
 }
 
 export default {
-  title: 'Macro Componentes/Modal',
+  title: 'Components/Containers/Modal',
   component: BmbModalComponent,
   decorators: [
     moduleMetadata({

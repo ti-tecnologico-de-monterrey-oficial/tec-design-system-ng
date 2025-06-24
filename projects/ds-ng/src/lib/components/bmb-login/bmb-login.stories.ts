@@ -3,7 +3,7 @@ import { BmbLoginComponent } from './bmb-login.component';
 import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Macro Componentes/Login',
+  title: 'Organisms/Login layout web',
   component: BmbLoginComponent,
   decorators: [storiesLayoutVertical],
   parameters: {

@@ -3,7 +3,7 @@ import { BmbTextEditorComponent } from './bmb-text-editor.component';
 import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Macro Componentes/Text editor',
+  title: 'Components/Inputs/Text editor',
   component: BmbTextEditorComponent,
   decorators: [storiesLayoutHorizontal],
   parameters: {

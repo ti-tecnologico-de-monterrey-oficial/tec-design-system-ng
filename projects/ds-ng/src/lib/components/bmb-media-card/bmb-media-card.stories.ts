@@ -3,7 +3,7 @@ import { BmbMediaCardComponent } from './bmb-media-card.component';
 import { attributes } from '../../utils/utils';
 
 export default {
-  title: 'Micro Componentes/Media card',
+  title: 'Components/Containers/Card - Media',
   component: BmbMediaCardComponent,
   parameters: {
     docs: {

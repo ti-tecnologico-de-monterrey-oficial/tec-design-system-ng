@@ -27,7 +27,7 @@ const appearanceOptions: IBmbActivityTags[] = [
 ];
 
 export default {
-  title: 'Micro Componentes/Tag',
+  title: 'Components/Visual labels/Tag',
   component: BmbTagComponent,
   decorators: [storiesLayoutHorizontal],
   parameters: {

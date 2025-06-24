@@ -3,7 +3,7 @@ import { BmbTextLinkComponent } from './bmb-text-link.component';
 import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Text Link',
+  title: 'Components/Buttons/Text link',
   component: BmbTextLinkComponent,
   decorators: [storiesLayoutHorizontal],
   parameters: {

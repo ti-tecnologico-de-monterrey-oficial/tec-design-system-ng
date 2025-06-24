@@ -3,7 +3,7 @@ import { BmbAdvertisementCardComponent } from './bmb-advertisement-card.componen
 import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Advertisement Card',
+  title: 'Components/Containers/Advertisement card',
   component: BmbAdvertisementCardComponent,
   decorators: [storiesLayoutHorizontal],
   parameters: {

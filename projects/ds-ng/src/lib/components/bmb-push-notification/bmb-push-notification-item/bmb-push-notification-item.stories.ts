@@ -3,7 +3,7 @@ import { BmbPushNotificationItemComponent } from './bmb-push-notification-item.c
 import { storiesLayoutHorizontal } from '../../../utils/bambooLayout';
 
 export default {
-  title: 'Internal/Notification item',
+  title: 'Internals/Notification item',
   component: BmbPushNotificationItemComponent,
   decorators: [
     moduleMetadata({

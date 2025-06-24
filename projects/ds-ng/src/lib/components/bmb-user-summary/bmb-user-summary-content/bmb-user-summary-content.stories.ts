@@ -3,7 +3,7 @@ import { BmbUserSummaryContentComponent } from './bmb-user-summary-content.compo
 import { storiesLayoutHorizontal } from '../../../utils/bambooLayout';
 
 export default {
-  title: 'Internal/User summary content',
+  title: 'Internals/User summary content',
   component: BmbUserSummaryContentComponent,
   decorators: [storiesLayoutHorizontal],
   parameters: {

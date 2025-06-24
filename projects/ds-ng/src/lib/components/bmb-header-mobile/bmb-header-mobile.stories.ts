@@ -8,7 +8,7 @@ import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.componen
 import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Macro Componentes/Header Mobile',
+  title: 'Components/Containers/Header mobile',
   component: BmbHeaderMobileComponent,
   decorators: [
     moduleMetadata({

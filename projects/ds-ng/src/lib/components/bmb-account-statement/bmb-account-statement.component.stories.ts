@@ -3,7 +3,7 @@ import { BmbAccountStatementComponent } from './bmb-account-statement.component'
 import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Macro Componentes/Account statement',
+  title: 'Organisms/Account statement',
   component: BmbAccountStatementComponent,
   decorators: [storiesLayoutVertical],
   parameters: {

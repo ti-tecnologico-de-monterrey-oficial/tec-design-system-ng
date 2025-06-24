@@ -4,7 +4,7 @@ import { BmbTotpComponent } from './bmb-totp.component';
 import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Macro Componentes/ToTP',
+  title: 'Components/Containers/ToTP promp',
   component: BmbTotpComponent,
   decorators: [
     moduleMetadata({

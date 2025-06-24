@@ -5,7 +5,7 @@ import { BmbFrequentAppsSelectorComponent } from './bmb-frequent-apps-selector.c
 import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Macro Componentes/Frequent Apps Selector',
+  title: 'Components/Menus/Frequent apps selector',
   component: BmbFrequentAppsSelectorComponent,
   decorators: [
     moduleMetadata({

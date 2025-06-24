@@ -506,7 +506,7 @@ class StorybookHomeMitecMobile {
 }
 
 export default {
-  title: 'Macro Componentes/Home mitec/Mobile',
+  title: 'Organisms/Home mitec mobile',
   component: BmbUserProfileComponent,
   decorators: [
     moduleMetadata({

@@ -4,7 +4,7 @@ import { BmbFocusElementComponent } from './bmb-focus-element.component';
 import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Focus Element',
+  title: 'Components/Status indicators/Focus element',
   component: BmbFocusElementComponent,
   decorators: [
     moduleMetadata({

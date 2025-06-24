@@ -162,7 +162,7 @@ import { attributes } from '../utils/utils';
 class StorybookModalWrapperComponent {}
 
 export default {
-  title: 'Micro Componentes/Web Templates/Stand Alone Tags',
+  title: 'Templates/Stand alone tags',
   component: BmbTopBarComponent,
   decorators: [
     moduleMetadata({

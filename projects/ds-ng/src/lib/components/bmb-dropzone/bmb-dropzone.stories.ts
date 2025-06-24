@@ -6,7 +6,7 @@ import { BmbDropzoneComponent } from './bmb-dropzone.component';
 import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Dropzone',
+  title: 'Components/Inputs/Dropzone',
   component: BmbDropzoneComponent,
   decorators: [
     moduleMetadata({

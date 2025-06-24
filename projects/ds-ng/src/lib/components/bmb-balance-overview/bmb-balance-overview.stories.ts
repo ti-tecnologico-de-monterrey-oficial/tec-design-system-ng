@@ -3,7 +3,7 @@ import { BmbBalanceOverviewComponent } from './bmb-balance-overview.component';
 import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Macro Componentes/Balance Overview',
+  title: 'Components/Containers/Balance overview',
   component: BmbBalanceOverviewComponent,
   decorators: [storiesLayoutHorizontal],
   parameters: {

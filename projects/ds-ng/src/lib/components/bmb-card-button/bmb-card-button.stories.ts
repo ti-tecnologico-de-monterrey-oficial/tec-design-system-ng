@@ -8,7 +8,7 @@ import { IDropdownItem } from '../../types';
 import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Macro Componentes/Card Button',
+  title: 'Components/Buttons/Card button',
   component: BmbCardButtonComponent,
   decorators: [
     moduleMetadata({

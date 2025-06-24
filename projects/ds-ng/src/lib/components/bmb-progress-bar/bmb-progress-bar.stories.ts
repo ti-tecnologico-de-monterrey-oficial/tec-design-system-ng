@@ -3,7 +3,7 @@ import { BmbProgressBarComponent } from './bmb-progress-bar.component';
 import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Progress Bar',
+  title: 'Components/Status indicators/Progress bar',
   component: BmbProgressBarComponent,
   decorators: [storiesLayoutHorizontal],
   parameters: {

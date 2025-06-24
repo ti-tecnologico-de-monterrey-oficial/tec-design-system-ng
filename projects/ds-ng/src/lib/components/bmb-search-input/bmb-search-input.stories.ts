@@ -3,7 +3,7 @@ import { BmbSearchInputComponent } from './bmb-search-input.component';
 import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Search input',
+  title: 'Components/Inputs/Search',
   component: BmbSearchInputComponent,
   decorators: [
     componentWrapperDecorator((story: string) => {

@@ -1,4 +1,4 @@
-import { Component, input, InputSignal, signal } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 import {
   BmbLayoutGridDirective,
   BmbLayoutGridItemDirective,
@@ -267,10 +267,8 @@ class StorybookLayoutGridStories {
   }
 }
 
-type Story = StoryFn<StorybookLayoutGridStories>;
-
 export default {
-  title: 'Foundations/Grid generator',
+  title: 'Components/Dev tools/Grid generator',
   component: StorybookLayoutGridStories,
   decorators: [
     moduleMetadata({

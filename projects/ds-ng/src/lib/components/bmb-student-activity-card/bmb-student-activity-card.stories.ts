@@ -4,7 +4,7 @@ import { BmbStudentActivityCardComponent } from './bmb-student-activity-card.com
 import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Student activity card',
+  title: 'Components/Containers/Card - Student activity',
   component: BmbStudentActivityCardComponent,
   decorators: [
     moduleMetadata({

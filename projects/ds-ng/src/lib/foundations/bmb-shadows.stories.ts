@@ -45,7 +45,7 @@ class StorybookShadowsStoriesComponent {
 }
 
 export default {
-  title: 'Foundations/Shadows',
+  title: 'Foundations/Shadow boxes',
   component: StorybookShadowsStoriesComponent,
   decorators: [
     moduleMetadata({

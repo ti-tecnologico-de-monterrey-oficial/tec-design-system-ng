@@ -7,7 +7,7 @@ import { attributes } from '../../utils/utils';
 import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Internal/Three column content template',
+  title: 'Internals/Three column content template',
   component: BmbThreeColsComponent,
   decorators: [
     moduleMetadata({

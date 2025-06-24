@@ -11,7 +11,7 @@ import { BmbDatepickerComponent } from './bmb-datepicker.component';
 import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Datepicker',
+  title: 'Components/Inputs/Calendar date picker',
   component: BmbDatepickerComponent,
   decorators: [
     moduleMetadata({

@@ -13,7 +13,7 @@ import { attributes } from '../../utils/utils';
 import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Input Phone Number',
+  title: 'Components/Inputs/Phone number',
   component: BmbInputPhoneNumberComponent,
   decorators: [
     moduleMetadata({

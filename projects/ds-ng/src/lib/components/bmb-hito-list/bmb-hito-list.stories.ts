@@ -4,7 +4,7 @@ import { DateTime } from 'luxon';
 import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Hito List',
+  title: 'Components/Dev tools/Hito list',
   component: BmbHitoListComponent,
   decorators: [storiesLayoutHorizontal],
   parameters: {

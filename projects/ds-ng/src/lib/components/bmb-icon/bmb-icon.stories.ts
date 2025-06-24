@@ -3,7 +3,7 @@ import { BmbIconComponent } from './bmb-icon.component';
 import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Icon',
+  title: 'Foundations/Icon',
   component: BmbIconComponent,
   decorators: [storiesLayoutHorizontal],
   parameters: {

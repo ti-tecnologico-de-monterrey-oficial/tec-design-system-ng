@@ -3,7 +3,7 @@ import { BmbContainerComponent } from './bmb-container.component';
 import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Global Container',
+  title: 'Components/Containers/Global container',
   component: BmbContainerComponent,
   decorators: [storiesLayoutHorizontal],
   parameters: {
@@ -58,4 +58,44 @@ Below is an example of how you can use this component in HTML:
 
 type Story = StoryObj<BmbContainerComponent>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  name: 'Default: primary container',
+  args: {
+    appearance: 'primary-container',
+  },
+};
+
+export const PrimaryHome: Story = {
+  name: 'Primary home',
+  args: {
+    appearance: 'primary-home',
+  },
+};
+
+export const PrimaryHeader: Story = {
+  name: 'Primary header',
+  args: {
+    appearance: 'primary-header',
+  },
+};
+
+export const SecondaryContainer: Story = {
+  name: 'Secondary container',
+  args: {
+    appearance: 'secondary-container',
+  },
+};
+
+export const ContrastBoxContainer: Story = {
+  name: 'Contrast box container',
+  args: {
+    appearance: 'contrast-box-container',
+  },
+};
+
+export const ButtonContainer: Story = {
+  name: 'Button container',
+  args: {
+    appearance: 'button-container',
+  },
+};

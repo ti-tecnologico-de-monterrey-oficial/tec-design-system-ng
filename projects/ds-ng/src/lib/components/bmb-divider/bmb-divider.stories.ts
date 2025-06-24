@@ -3,7 +3,7 @@ import { BmbDividerComponent } from './bmb-divider.component';
 import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Divider',
+  title: 'Components/Containers/Divider',
   component: BmbDividerComponent,
   decorators: [storiesLayoutHorizontal],
   parameters: {

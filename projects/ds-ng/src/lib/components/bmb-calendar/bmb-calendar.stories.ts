@@ -120,7 +120,7 @@ class ToastWrapperComponent implements OnInit {
 }
 
 export default {
-  title: 'Macro Componentes/Calendar',
+  title: 'Organisms/Calendar standard',
   component: BmbCalendarComponent,
   decorators: [
     moduleMetadata({

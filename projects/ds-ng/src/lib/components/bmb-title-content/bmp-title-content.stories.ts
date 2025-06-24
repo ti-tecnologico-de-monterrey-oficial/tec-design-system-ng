@@ -3,7 +3,7 @@ import { BmbTitleContentComponent } from './bmb-title-content.component';
 import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Internal/Title content template',
+  title: 'Internals/Title content template',
   component: BmbTitleContentComponent,
   decorators: [storiesLayoutVertical],
   parameters: {

@@ -1,4 +1,4 @@
-import { componentWrapperDecorator, Meta, StoryObj } from '@storybook/angular';
+import { Meta, StoryObj } from '@storybook/angular';
 import {
   BmbCardComponent,
   BmbCardFooterComponent,
@@ -11,7 +11,7 @@ import { attributes } from '../../utils/utils';
 import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 const meta: Meta<BmbCardComponent> = {
-  title: 'Micro Componentes/Card',
+  title: 'Components/Containers/Card - Generic',
   component: BmbCardComponent,
   subcomponents: {
     BmbCardFooterComponent,

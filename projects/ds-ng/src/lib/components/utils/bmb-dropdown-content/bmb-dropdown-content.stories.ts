@@ -3,7 +3,7 @@ import { BmbDropdownContentComponent } from './bmb-dropdown-content.component';
 import { attributes } from '../../../utils/utils';
 
 export default {
-  title: 'Internal/Dropdown content',
+  title: 'Internals/Dropdown content',
   component: BmbDropdownContentComponent,
   parameters: {
     docs: {
