@@ -137,6 +137,7 @@
       display: flex;
       flex-flow: column;
       gap: var(--bmb-spacing-m);
+      border-radius: 0 0 var(--bmb-border-radius) var(--bmb-border-radius);
     }
 
     &-user {

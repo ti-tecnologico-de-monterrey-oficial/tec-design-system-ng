@@ -5,7 +5,7 @@
 >
   <section class="bmb_alert-center-form-content">
     @if (eventsInCategories().recent.length) {
-      <h2 class="bmb_alert-center-form-title">Recientes</h2>
+      <h3 class="bmb_alert-center-form-title">Recientes</h3>
       <bmb-alert-center-list
         (alertSelected)="alertSelected($event)"
         (selectedAlert)="handleSelection($event)"
@@ -13,7 +13,7 @@
       />
     }
     @if (eventsInCategories().sevenDays.length) {
-      <h2 class="bmb_alert-center-form-title">Últimos 7 días</h2>
+      <h3 class="bmb_alert-center-form-title">Últimos 7 días</h3>
       <bmb-alert-center-list
         (alertSelected)="alertSelected($event)"
         (selectedAlert)="handleSelection($event)"
@@ -21,7 +21,7 @@
       />
     }
     @if (eventsInCategories().month.length) {
-      <h2 class="bmb_alert-center-form-title">Últimos 30 días</h2>
+      <h3 class="bmb_alert-center-form-title">Últimos 30 días</h3>
       <bmb-alert-center-list
         (alertSelected)="alertSelected($event)"
         (selectedAlert)="handleSelection($event)"
@@ -29,7 +29,7 @@
       />
     }
     @if (eventsInCategories().rest.length) {
-      <h2 class="bmb_alert-center-form-title">Restantes</h2>
+      <h3 class="bmb_alert-center-form-title">Restantes</h3>
       <bmb-alert-center-list
         (alertSelected)="alertSelected($event)"
         (selectedAlert)="handleSelection($event)"

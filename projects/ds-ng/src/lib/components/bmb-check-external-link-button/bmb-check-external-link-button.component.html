@@ -6,6 +6,8 @@
     <button
       type="button"
       role="button"
+      [name]="buttonName()"
+      [attr.aria-label]="buttonName()"
       class="bmb_check-external-link-button-element"
       [id]="idElement()"
       (click)="handleClick($event)"
