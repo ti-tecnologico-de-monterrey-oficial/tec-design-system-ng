@@ -1,7 +1,5 @@
 import { Meta, StoryObj } from '@storybook/angular';
-import {
-  BmbProgressCircleComponent,
-} from './bmb-progress-circle.component';
+import { BmbProgressCircleComponent } from './bmb-progress-circle.component';
 
 export default {
   title: 'Components/Status indicators/Progress circle',

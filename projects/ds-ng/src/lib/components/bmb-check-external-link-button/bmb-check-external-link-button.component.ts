@@ -34,7 +34,6 @@ export class BmbCheckExternalLinkButtonComponent {
 
   ngOnInit(): void {
     console.log(`name: ${this.buttonName()}`);
-
   }
 
   @ContentChild('commonTemplate') commonTemplate!: TemplateRef<any>;

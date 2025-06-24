@@ -8,7 +8,12 @@
         [disabled]="scrollLeft() === 0"
       />
     }
-    <ul role="tablist" class="bmb_tabs-tab" #tabsItems (scroll)="scrollEvent($event)">
+    <ul
+      role="tablist"
+      class="bmb_tabs-tab"
+      #tabsItems
+      (scroll)="scrollEvent($event)"
+    >
       @for (tab of tabs(); track $index) {
         <li role="none">
           <button
