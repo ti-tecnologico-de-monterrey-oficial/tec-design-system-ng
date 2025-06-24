@@ -1,11 +1,9 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbRadialComponent } from './bmb-radial.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Micro Componentes/Radial',
   component: BmbRadialComponent,
-  decorators: [storiesLayoutHorizontal],
   parameters: {
     docs: {
       description: {

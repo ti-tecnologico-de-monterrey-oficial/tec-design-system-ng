@@ -2,14 +2,12 @@ import { moduleMetadata, StoryObj, type Meta } from '@storybook/angular';
 import { attributes } from '../../utils/utils';
 import { BmbIconItemComponent } from './bmb-icon-item.component';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Macro Componentes/Icon item',
   component: BmbIconItemComponent,
   decorators: [
     moduleMetadata({ imports: [BmbDividerComponent] }),
-    storiesLayoutHorizontal,
   ],
   parameters: {
     docs: {

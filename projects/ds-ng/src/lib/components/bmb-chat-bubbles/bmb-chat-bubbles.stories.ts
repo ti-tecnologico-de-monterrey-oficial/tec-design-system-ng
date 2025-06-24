@@ -1,15 +1,11 @@
-import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
+import { type Meta, type StoryObj } from '@storybook/angular';
 import { BmbChatBubblesComponent } from './bmb-chat-bubbles.component';
-import { IBmbChatMessage, TBmbMessageType, MessageContent } from './types';
-import { attributes } from '../../utils/utils';
 import {
   AfterViewInit,
-  InputSignal,
   TemplateRef,
   ViewChild,
 } from '@angular/core';
 import { Component } from '@angular/core';
-import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 @Component({
   standalone: true,
@@ -35,7 +31,6 @@ class StorybookModalWrapperComponent implements AfterViewInit {
 export default {
   title: 'Micro Componentes/Chat bubbles',
   component: BmbChatBubblesComponent,
-  decorators: [storiesLayoutVertical],
   parameters: {
     docs: {
       description: {

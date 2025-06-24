@@ -63,17 +63,17 @@ const preview: Preview = {
     a11y: {
       manual: true,
     },
-    layout: {
-      description: 'Set the layout orientation of the story',
-      toolbar: {
-        title: 'Layout orientation',
-        icon: 'paintbrush',
-        items: [
-          { value: 'vertical', icon: 'stacked', title: 'Vertical' },
-          { value: 'horizontal', icon: 'sidebyside', title: 'Horizontal' },
-        ],
-      },
-    },
+    // layout: {
+    //   description: 'Set the layout orientation of the story',
+    //   toolbar: {
+    //     title: 'Layout orientation',
+    //     icon: 'paintbrush',
+    //     items: [
+    //       { value: 'vertical', icon: 'stacked', title: 'Vertical' },
+    //       { value: 'horizontal', icon: 'sidebyside', title: 'Horizontal' },
+    //     ],
+    //   },
+    // },
   },
   initialGlobals: {
     layout: 'vertical',
@@ -83,10 +83,21 @@ const preview: Preview = {
       themes: {
         light: 'storybook-light-theme',
         dark: 'storybook-dark-theme',
-        both: 'storybook-both-theme',
+        // both: 'storybook-both-theme',
       },
-      defaultTheme: 'both',
+      defaultTheme: 'dark',
     }),
+    // TODO: Remove this when the Storybook don't have issues with the duplicated component
+//      componentWrapperDecorator((story: string) => `
+// <section id="storybook-theme-selector" [class]="theme">
+//   <div class="storybook-light-theme">
+//     ${story}
+//   </div>
+//   <div class="storybook-dark-theme">
+//     ${story}
+//   </div>
+// </section>`,
+//       ({ globals }) => { theme: globals['theme'] }),
   ],
 };
 

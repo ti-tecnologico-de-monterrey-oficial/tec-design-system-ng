@@ -1,11 +1,9 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbBalanceOverviewComponent } from './bmb-balance-overview.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Macro Componentes/Balance Overview',
   component: BmbBalanceOverviewComponent,
-  decorators: [storiesLayoutHorizontal],
   parameters: {
     docs: {
       description: {

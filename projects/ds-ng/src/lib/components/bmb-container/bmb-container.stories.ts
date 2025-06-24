@@ -1,11 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbContainerComponent } from './bmb-container.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Micro Componentes/Global Container',
   component: BmbContainerComponent,
-  decorators: [storiesLayoutHorizontal],
   parameters: {
     docs: {
       description: {

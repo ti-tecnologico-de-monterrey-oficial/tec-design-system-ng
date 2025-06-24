@@ -2,7 +2,6 @@ import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbCheckExternalLinkButtonComponent } from './bmb-check-external-link-button.component';
 import { attributes } from '../../utils/utils';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Internal/Check link (external, internal) or button',
@@ -11,7 +10,6 @@ export default {
     moduleMetadata({
       imports: [BmbIconComponent],
     }),
-    storiesLayoutHorizontal,
   ],
   parameters: {
     docs: {

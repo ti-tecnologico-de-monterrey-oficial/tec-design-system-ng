@@ -13,7 +13,6 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 @Component({
   selector: 'storybook-step-panel-wrapper',

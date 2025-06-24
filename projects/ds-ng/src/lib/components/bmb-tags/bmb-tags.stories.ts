@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbTagComponent, IBmbActivityTags } from './bmb-tags.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 const appearanceOptions: IBmbActivityTags[] = [
   'normal',
@@ -29,7 +28,6 @@ const appearanceOptions: IBmbActivityTags[] = [
 export default {
   title: 'Micro Componentes/Tag',
   component: BmbTagComponent,
-  decorators: [storiesLayoutHorizontal],
   parameters: {
     docs: {
       description: {

@@ -1,11 +1,9 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbSoundsCardComponent } from './bmb-sounds-card.component';
-import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
   title: 'Micro Componentes/Sounds Card',
   component: BmbSoundsCardComponent,
-  decorators: [storiesLayoutVertical],
   parameters: {
     docs: {
       description: {

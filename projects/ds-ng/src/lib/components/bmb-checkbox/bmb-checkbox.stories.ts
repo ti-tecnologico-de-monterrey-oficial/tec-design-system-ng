@@ -1,11 +1,9 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbCheckboxComponent } from './bmb-checkbox.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Micro Componentes/Checkbox',
   component: BmbCheckboxComponent,
-  decorators: [storiesLayoutHorizontal],
   parameters: {
     docs: {
       description: {

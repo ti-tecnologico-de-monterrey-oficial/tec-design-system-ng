@@ -8,7 +8,6 @@ import {
 } from '../../../../public-api';
 import { BmbProgressBarComponent } from '../../../components/bmb-progress-bar/bmb-progress-bar.component';
 import { BmbChevronTitleSelectorComponent } from '../../../components/bmb-chevron-title-selector/bmb-chevron-title-selector.component';
-import { storiesLayoutHorizontal } from '../../../utils/bambooLayout';
 
 export default {
   title: 'Micro Componentes/Vertical layout',
@@ -25,7 +24,6 @@ export default {
         BmbProgressBarComponent,
       ],
     }),
-    storiesLayoutHorizontal,
   ],
   parameters: {
     docs: {

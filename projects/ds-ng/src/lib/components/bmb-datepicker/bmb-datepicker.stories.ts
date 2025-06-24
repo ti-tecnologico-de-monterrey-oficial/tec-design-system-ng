@@ -8,7 +8,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BmbDatepickerComponent } from './bmb-datepicker.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Micro Componentes/Datepicker',
@@ -29,7 +28,6 @@ export default {
           ${story}
         </div>`;
     }),
-    storiesLayoutHorizontal,
   ],
   parameters: {
     docs: {

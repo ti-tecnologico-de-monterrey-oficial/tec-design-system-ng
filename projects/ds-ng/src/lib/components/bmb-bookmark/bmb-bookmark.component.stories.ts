@@ -1,11 +1,9 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbBookmarkComponent } from './bmb-bookmark.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Micro Componentes/Bookmark',
   component: BmbBookmarkComponent,
-  decorators: [storiesLayoutHorizontal],
   parameters: {
     docs: {
       description: {

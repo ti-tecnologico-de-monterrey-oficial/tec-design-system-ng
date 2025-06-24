@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { attributes } from '../../utils/utils';
 
 import { CUSTOM_ELEMENTS_SCHEMA, InputSignal } from '@angular/core';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export type IBmbTargetLink = '_blank' | '_parent' | '_self' | '_top';
 
@@ -17,7 +16,6 @@ const meta: Meta<BmbItemComponent> = {
       imports: [CommonModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }),
-    storiesLayoutHorizontal,
   ],
   parameters: {
     docs: {

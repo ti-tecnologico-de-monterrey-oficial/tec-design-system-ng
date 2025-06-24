@@ -1,11 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbTextLinkComponent } from './bmb-text-link.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Micro Componentes/Text Link',
   component: BmbTextLinkComponent,
-  decorators: [storiesLayoutHorizontal],
   parameters: {
     docs: {
       description: {

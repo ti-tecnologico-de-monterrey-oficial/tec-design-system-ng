@@ -1,11 +1,9 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbDividerComponent } from './bmb-divider.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Micro Componentes/Divider',
   component: BmbDividerComponent,
-  decorators: [storiesLayoutHorizontal],
   parameters: {
     docs: {
       description: {

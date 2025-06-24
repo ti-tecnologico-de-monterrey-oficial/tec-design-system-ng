@@ -1,11 +1,9 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbIconComponent } from './bmb-icon.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Micro Componentes/Icon',
   component: BmbIconComponent,
-  decorators: [storiesLayoutHorizontal],
   parameters: {
     docs: {
       description: {

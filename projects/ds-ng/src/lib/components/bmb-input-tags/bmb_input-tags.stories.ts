@@ -5,7 +5,6 @@ import {
 } from '@storybook/angular';
 import { attributes } from '../../utils/utils';
 import { BmbInputTagsComponent } from './bmb-input-tags.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Micro Componentes/ Input Tags',
@@ -17,7 +16,6 @@ export default {
           ${story}
         </div>`;
     }),
-    storiesLayoutHorizontal,
   ],
   parameters: {
     docs: {

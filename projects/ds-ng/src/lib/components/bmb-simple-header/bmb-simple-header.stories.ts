@@ -1,11 +1,9 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbSimpleHeaderComponent } from './bmb-simple-header.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Micro Componentes/Simple header',
   component: BmbSimpleHeaderComponent,
-  decorators: [storiesLayoutHorizontal],
   parameters: {
     docs: {
       description: {

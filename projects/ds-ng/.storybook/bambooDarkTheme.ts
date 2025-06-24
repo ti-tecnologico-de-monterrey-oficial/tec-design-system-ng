@@ -19,6 +19,7 @@ export default create({
   appBorderColor: '#3F4965',
   textColor: '#F6F7F9',
   barTextColor: '#F6F7F9',
+  barSelectedColor: '#fff',
   barHoverColor: '#fff',
   barBg: '#313649',
 });

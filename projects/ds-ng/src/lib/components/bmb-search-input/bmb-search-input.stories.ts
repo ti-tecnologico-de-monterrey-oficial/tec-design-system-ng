@@ -1,6 +1,5 @@
 import { componentWrapperDecorator, Meta, StoryObj } from '@storybook/angular';
 import { BmbSearchInputComponent } from './bmb-search-input.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
   title: 'Micro Componentes/Search input',
@@ -12,7 +11,6 @@ export default {
           ${story}
         </div>`;
     }),
-    storiesLayoutHorizontal,
   ],
   parameters: {
     docs: {
