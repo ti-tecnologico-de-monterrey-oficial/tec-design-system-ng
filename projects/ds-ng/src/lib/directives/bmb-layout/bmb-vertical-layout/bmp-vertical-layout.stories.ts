@@ -11,7 +11,7 @@ import { BmbChevronTitleSelectorComponent } from '../../../components/bmb-chevro
 import { storiesLayoutHorizontal } from '../../../utils/bambooLayout';
 
 export default {
-  title: 'Components/Containers/Helpers/Vertical layout container',
+  title: 'Foundations/Layouts/Vertical layout container',
   decorators: [
     moduleMetadata({
       declarations: [],

@@ -5,7 +5,7 @@ import { BmbChevronTitleSelectorComponent } from '../bmb-chevron-title-selector/
 import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Inner Header Mobile',
+  title: 'Particularities/mitec app/Inner header',
   component: BmbInnerHeaderComponent,
   decorators: [
     moduleMetadata({

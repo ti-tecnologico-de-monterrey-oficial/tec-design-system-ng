@@ -5,7 +5,7 @@ import { BmbAccordionComponent } from '../../../public-api';
 import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 const meta: Meta<BmbAccordionControlDirective> = {
-  title: 'Components/Containers/Accordion control',
+  title: 'Components/Dev tools/Accordion control',
   component: BmbAccordionComponent,
   subcomponents: { BmbAccordionControlDirective },
   decorators: [

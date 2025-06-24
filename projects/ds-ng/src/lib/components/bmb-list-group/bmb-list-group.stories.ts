@@ -7,6 +7,39 @@ import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { attributes } from '../../utils/utils';
 import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
+import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
+
+const appearanceOptions: IBbmBgAppearance[] = [
+  'normal',
+  'strong',
+  'success',
+  'info',
+  'warning',
+  'error',
+  'brand',
+  'background',
+  'disabled',
+  'mitec_blue',
+  'mitec_red',
+  'mitec_green',
+  'mitec_orange',
+  'mitec_light_green',
+  'mitec_purple',
+  'creative_violet',
+  'creative_indigo',
+  'creative_emerald',
+  'creative_licorice',
+  'creative_darkteal',
+  'creative_peach',
+  'creative_sepia',
+  'creative_softred',
+  'creative_wattle',
+  'creative_shipcove',
+  'creative_plantation',
+  'creative_rum',
+  'creative_hibiscus',
+  'creative_ripelemon',
+];
 
 export default {
   title: 'Components/Containers/List group',
@@ -137,6 +170,154 @@ Below is an example of how you can use this component in HTML:
       table: {
         category: 'Events',
         type: { summary: 'function' },
+      },
+    },
+    id: {
+      name: 'Id',
+      description: 'The id of the list group item **(required)**',
+      control: {
+        type: 'text',
+      },
+      table: {
+        type: { summary: 'string' },
+        category: 'Properties',
+      },
+    },
+    personalizedTemplate: {
+      name: 'Personalized Template',
+      description:
+        'When the value is true, the component will use the template that the user provides, instead of that, you need to provide the inputs por the deafult template',
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: true },
+        category: 'Properties',
+      },
+    },
+    headerText: {
+      name: 'Header Text',
+      description: 'Is the header text of the list group item',
+      control: {
+        type: 'text',
+      },
+      table: {
+        type: { summary: 'string' },
+        category: 'Properties',
+      },
+    },
+    descriptionText: {
+      name: 'Description Text',
+      description: 'Is the description text of the list group item',
+      control: {
+        type: 'text',
+      },
+      table: {
+        type: { summary: 'string' },
+        category: 'Properties',
+      },
+    },
+    infoText: {
+      name: 'Information Text',
+      description: 'Is the information text of the list group item',
+      control: {
+        type: 'text',
+      },
+      table: {
+        type: { summary: 'string' },
+        category: 'Properties',
+      },
+    },
+    icon: {
+      name: 'Icon',
+      control: { type: 'text' },
+      description: 'Sets header icon.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string (optional)' },
+      },
+    },
+    imgSrc: {
+      name: 'Image source URL',
+      control: {
+        type: 'text',
+      },
+      description: 'Set the Hi-res image source URL',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
+    tooltipTitle: {
+      name: 'Tooltip Title',
+      description: 'The title of the tooltip',
+      control: {
+        type: 'text',
+      },
+      table: {
+        type: { summary: 'string' },
+        category: 'Properties',
+      },
+    },
+    tooltipText: {
+      name: 'Tooltip Text',
+      description: 'The main text of the tooltip',
+      control: {
+        type: 'text',
+      },
+      table: {
+        type: { summary: 'string' },
+        category: 'Properties',
+      },
+    },
+    badgeAppearance: {
+      name: 'Badge Appearance',
+      control: {
+        type: 'select',
+      },
+      options: appearanceOptions,
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'mitec_purple' },
+        type: { summary: 'string' },
+      },
+      description: 'The appearance of the badge, affecting its visual style.',
+    },
+    badgeText: {
+      name: 'Badge Text',
+      description: 'The text of the badge',
+      control: {
+        type: 'text',
+      },
+      table: {
+        type: { summary: 'string' },
+        category: 'Properties',
+      },
+    },
+    isDisabled: {
+      name: 'Is disabled',
+      description: 'Determines if the item is disabled',
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        type: { summary: 'boolean' },
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+      },
+    },
+    isActive: {
+      name: 'Is active',
+      description: 'Determines the initial state of the item',
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        type: { summary: 'boolean' },
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
       },
     },
   },

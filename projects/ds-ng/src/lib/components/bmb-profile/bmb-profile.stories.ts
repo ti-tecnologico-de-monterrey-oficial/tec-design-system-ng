@@ -4,7 +4,7 @@ import { attributes } from '../../utils/utils';
 import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Components/Containers/Cards/Profile card',
+  title: 'Components/Containers/Card - Profile',
   component: BmbProfileComponent,
   decorators: [storiesLayoutHorizontal],
   parameters: {

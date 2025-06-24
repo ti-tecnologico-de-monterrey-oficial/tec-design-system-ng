@@ -268,7 +268,7 @@ class StorybookLayoutGridStories {
 }
 
 export default {
-  title: 'Components/Containers/Helpers/Grid generator',
+  title: 'Components/Dev tools/Grid generator',
   component: StorybookLayoutGridStories,
   decorators: [
     moduleMetadata({

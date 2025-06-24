@@ -4,7 +4,7 @@ import { attributes } from '../../utils/utils';
 import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Mitec Logo Animation',
+  title: 'Components/Dev tools/Mitec logo animation',
   component: BmbMitecLogoAnimationComponent,
   decorators: [storiesLayoutVertical],
   parameters: {

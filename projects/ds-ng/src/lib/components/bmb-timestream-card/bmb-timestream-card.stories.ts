@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { BmbTimestreamCardComponent } from './bmb-timestream-card.component';
 
 export default {
-  title: 'Organisms/Timestream card',
+  title: 'Organisms/Timestream card (full)',
   component: BmbTimestreamCardComponent,
   parameters: {
     docs: {

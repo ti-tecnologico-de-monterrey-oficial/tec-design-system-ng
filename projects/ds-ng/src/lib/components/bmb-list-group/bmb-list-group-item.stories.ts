@@ -43,7 +43,7 @@ const appearanceOptions: IBbmBgAppearance[] = [
 ];
 
 export default {
-  title: 'Components/Containers/List group item',
+  title: 'Components/Dev tools/List group item',
   component: BmbListGroupComponent,
   subcomponents: { BmbListGroupComponent },
   decorators: [

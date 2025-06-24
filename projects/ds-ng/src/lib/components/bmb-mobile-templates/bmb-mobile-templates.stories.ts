@@ -3,7 +3,7 @@ import { BmbMobileTemplatesComponent } from './bmb-mobile-templates.component';
 import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Macro Componentes/Mobile Templates',
+  title: 'Templates/Mobile',
   component: BmbMobileTemplatesComponent,
   decorators: [storiesLayoutVertical],
   parameters: {

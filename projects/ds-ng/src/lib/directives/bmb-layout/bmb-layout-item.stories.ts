@@ -10,7 +10,7 @@ import {
 import { attributes } from '../../utils/utils';
 
 const meta: Meta<BmbLayoutItemDirective> = {
-  title: 'Components/Containers/Helpers/Layout item',
+  title: 'Components/Dev tools/Layout item',
   component: BmbLayoutItemDirective,
   subcomponents: { BmbLayoutDirective },
   decorators: [

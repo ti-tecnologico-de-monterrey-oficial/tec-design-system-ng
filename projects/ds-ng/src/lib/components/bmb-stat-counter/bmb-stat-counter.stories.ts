@@ -3,7 +3,7 @@ import { BmbStatCounterComponent } from './bmb-stat-counter.component';
 import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Stat Counter',
+  title: 'Components/Dev tools/Stat counter',
   component: BmbStatCounterComponent,
   decorators: [storiesLayoutVertical],
   parameters: {

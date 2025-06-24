@@ -11,7 +11,7 @@ import { attributes } from '../../utils/utils';
 import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 const meta: Meta<BmbCardComponent> = {
-  title: 'Components/Containers/Cards/Generic card',
+  title: 'Components/Containers/Card - Generic',
   component: BmbCardComponent,
   subcomponents: {
     BmbCardFooterComponent,

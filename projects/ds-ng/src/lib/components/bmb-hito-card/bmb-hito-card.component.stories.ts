@@ -4,7 +4,7 @@ import { attributes } from '../../utils/utils';
 import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Components/Containers/Cards/Hito card',
+  title: 'Components/Containers/Hito card',
   component: BmbHitoCardComponent,
   decorators: [storiesLayoutVertical],
   parameters: {

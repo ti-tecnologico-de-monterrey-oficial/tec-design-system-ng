@@ -8,7 +8,7 @@ import { BmbInputComponent } from './bmb-input.component';
 import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Components/Inputs/Input',
+  title: 'Components/Inputs/Text input',
   component: BmbInputComponent,
   decorators: [
     moduleMetadata({
