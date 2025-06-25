@@ -22,25 +22,3 @@ export const Chain = () => (
     <path d="M3.61 7.21c-.1-.434-.132-.88-.095-1.321L1.452 7.952a3.25 3.25 0 104.596 4.596l2.5-2.5a3.25 3.25 0 000-4.596.5.5 0 00-.707.707 2.25 2.25 0 010 3.182l-2.5 2.5A2.25 2.25 0 112.159 8.66l1.45-1.45z" fill="currentColor"></path>
   </svg>
 );
-
-export const Title = ({ text }) => (
-  <h1 style={{ fontSize: "24px", fontWeight: "bold" }}>{text}</h1>
-);
-
-export const SubtitleWLink = ({ text, id }) => (
-  <h2 id={id} class="css-jy82ux">
-    <a aria-hidden="true" href={`#${id}`} tabindex="-1" target="_self" class="css-1ofkq6d">
-      <Chain />
-    </a>
-    {text}
-  </h2>
-);
-
-export const StorieVariantTitleWLink = ({ text, id }) => (
-  <h3 id="default-primary-container-1" class="css-wzniqs">
-    <a aria-hidden="true" href={`#${id}`} tabindex="-1" target="_self" class="css-1ofkq6d">
-      <Chain />
-    </a>
-    {text}
-  </h3>
-);
