@@ -457,3 +457,45 @@ img {
     margin-left: -24px;
   }
 }
+
+.bmb_doc {
+
+  &-tabs {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    flex-direction: column;
+
+    &-header {
+      margin: 0 !important;
+      padding: 0 !important;
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      list-style: none !important;
+    }
+
+    &-item {
+      margin: 0 !important;
+    }
+
+    &-button {
+      background: none;
+      border-width: 0 0 2px;
+      border-style: solid;
+      border-color: transparent;
+      padding: .25rem 1rem;
+      cursor: pointer;
+      color: var(--general_contrasts-100);
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+        border-color: var(--general_contrasts-50);
+      }
+
+      &.active {
+        border-bottom-color: var(--general_contrasts-100);
+      }
+    }
+  }
+}

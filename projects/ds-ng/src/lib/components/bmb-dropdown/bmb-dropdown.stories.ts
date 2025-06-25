@@ -99,7 +99,7 @@ export class Component {
       [disabled]="false"
       helperText="Select a fruit"
       errorMessage="Error input dropdown"
-      value]="_pear"
+      [value]="_pear"
       [control]="getFormControl('inputDropdown1')"
       (onValueChange)="onValueChange($event)"
     />

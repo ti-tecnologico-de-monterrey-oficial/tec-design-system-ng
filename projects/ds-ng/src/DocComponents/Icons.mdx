@@ -34,37 +34,3 @@ export const Chain = () => (
     ></path>
   </svg>
 );
-
-export const Title = ({ text }) => (
-  <h1 style={{ fontSize: "24px", fontWeight: "bold" }}>{text}</h1>
-);
-
-export const SubtitleWLink = ({ text, id }) => (
-  <h2 id={id} class="css-jy82ux">
-    <a
-      aria-hidden="true"
-      href={`#${id}`}
-      tabindex="-1"
-      target="_self"
-      class="css-1ofkq6d"
-    >
-      <Chain />
-    </a>
-    {text}
-  </h2>
-);
-
-export const StorieVariantTitleWLink = ({ text, id }) => (
-  <h3 id="default-primary-container-1" class="css-wzniqs">
-    <a
-      aria-hidden="true"
-      href={`#${id}`}
-      tabindex="-1"
-      target="_self"
-      class="css-1ofkq6d"
-    >
-      <Chain />
-    </a>
-    {text}
-  </h3>
-);

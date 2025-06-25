@@ -1,24 +1,35 @@
-export const Tabs = ({ tabs, content }) => {
-  const selectedTab = 0;
+import { useState } from 'react';
 
-return (
-<div className="tabs-container">
-<div className="tabs-header">
-<button className="tab-button active">Tab 1</button>
-<button className="tab-button">Tab 2</button>
-<button className="tab-button">Tab 3</button>
-</div>
-<div className="tabs-content">
-<div className="tab-content active">
-<p>Content for Tab 1</p>
-</div>
-<div className="tab-content">
-<p>Content for Tab 2</p>
-</div>
-<div className="tab-content">
-<p>Content for Tab 3</p>
-</div>
-</div>
-</div>
-)
+export const Tabs = ({ tabs = [], content = [] }) => {
+  const [selectedTab, setSelectedTab] = useState(0);
+
+  return (
+    <div className="bmb_doc-tabs">
+      <ul role='tablist' className="bmb_doc-tabs-header">
+        {tabs.map((tab, index) => (
+          <li role='tab' key={index} className='bmb_doc-tabs-item'>
+            <button
+              role='button'
+              className={`bmb_doc-tabs-button ${selectedTab === index ? 'active' : ''}`}
+              onClick={() => setSelectedTab(index)}
+            >
+              {tab}
+            </button>
+          </li>
+        ))}
+      </ul>
+      <section className="bmb_doc-tabs-content">
+        {content.map((item, index) => (
+          <div
+            role='tabpanel'
+            key={index}
+            hidden={selectedTab !== index}
+            className='bmb_doc-tabs-panel'
+          >
+            <p>{item}</p>
+          </div>
+        ))}
+      </section>
+    </div>
+  );
 };
