@@ -12,7 +12,8 @@ import {
 } from '../../components/bmb-card/bmb-card.component';
 
 const meta: Meta<BmbLayoutGridItemDirective> = {
-  title: 'Components/Dev tools/Layout grid Item',
+  title: 'Foundations/Layouts/Layout grid/Layout grid Item',
+  tags: ['!autodocs'],
   component: BmbLayoutGridItemDirective,
   decorators: [
     moduleMetadata({

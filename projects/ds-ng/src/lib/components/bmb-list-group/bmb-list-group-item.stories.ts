@@ -42,7 +42,8 @@ const appearanceOptions: IBbmBgAppearance[] = [
 ];
 
 export default {
-  title: 'Components/Dev tools/List group item',
+  title: 'Components/Containers/List group/List group item',
+  tags: ['!autodocs'],
   component: BmbListGroupComponent,
   subcomponents: { BmbListGroupComponent },
   decorators: [
@@ -238,7 +239,6 @@ export const Default: Story = {
     personalizedTemplate: true,
   },
   render: (args) => ({
-    props: args,
     template: `
       <bmb-list-group>
         <bmb-list-group-item ${attributes(args)}>

@@ -11,8 +11,8 @@ import { attributes } from '../../utils/utils';
 
 const meta: Meta<BmbLayoutDirective> = {
   title: 'Foundations/Layouts/Layout',
+  tags: ['!autodocs'],
   component: BmbLayoutDirective,
-  subcomponents: { BmbLayoutItemDirective },
   decorators: [
     moduleMetadata({
       declarations: [],

@@ -4,7 +4,8 @@ import { attributes, attributesText } from '../../../utils/utils';
 import { BmbIconStatusComponent } from '../../../../public-api';
 
 export default {
-  title: 'Components/Dev tools/Vertical layout container item',
+  title:
+    'Foundations/Layouts/Vertical layout container/Vertical layout container item',
   component: BmbVerticalLayoutItemDirective,
   decorators: [
     moduleMetadata({

@@ -9,8 +9,8 @@ import { attributes } from '../../utils/utils';
 
 export default {
   title: 'Components/Containers/List group',
+  tags: ['!autodocs'],
   component: BmbListGroupComponent,
-  subcomponents: { BmbListGroupItemComponent },
   decorators: [
     moduleMetadata({
       imports: [CommonModule, BmbListGroupComponent, BmbListGroupItemComponent],
@@ -223,12 +223,12 @@ export const Default: Story = {
 };
 
 export const MultipleListGroup: Story = {
-  name: 'Example With Multiple List Group',
+  name: 'Example with multiple List group',
   render: (args) => ({
     props: args,
     template: `
-    <!-- First List Group -->
-      <h1>First Bmb List Group </h1>
+    <!-- First List group -->
+      <h1>First List Group </h1>
       <bmb-list-group ${attributes(args)} [listGroupId]="'group-1'">
         <bmb-list-group-item
           id="list-group-item-1"
@@ -256,8 +256,8 @@ export const MultipleListGroup: Story = {
       </bmb-list-group>
       <hr>
 
-      <!-- Second List Group -->
-      <h1>Second Bmb List Group </h1>
+      <!-- Second List group -->
+      <h1>Second List group </h1>
       <bmb-list-group ${attributes(args)} [listGroupId]="'group-2'">
         <bmb-list-group-item
           id="list-group2-item-1"

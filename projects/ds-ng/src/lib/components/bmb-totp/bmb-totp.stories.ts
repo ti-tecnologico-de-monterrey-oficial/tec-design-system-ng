@@ -3,7 +3,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbTotpComponent } from './bmb-totp.component';
 
 export default {
-  title: 'Components/Containers/ToTP promp',
+  title: 'Components/Containers/ToTP prompt',
   component: BmbTotpComponent,
   decorators: [
     moduleMetadata({

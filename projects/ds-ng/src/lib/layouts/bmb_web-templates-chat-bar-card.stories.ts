@@ -92,7 +92,7 @@ class StorybookModalWrapperComponent {
 }
 
 export default {
-  title: 'Particularities/TECbot',
+  title: 'Internals/Home chat card',
   component: BmbTopBarComponent,
   decorators: [
     moduleMetadata({

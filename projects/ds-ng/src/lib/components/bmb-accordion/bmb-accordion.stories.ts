@@ -6,6 +6,7 @@ import { attributes } from '../../utils/utils';
 
 export default {
   title: 'Components/Containers/Accordion',
+  tags: ['!autodocs'],
   component: BmbAccordionComponent,
   decorators: [
     moduleMetadata({
@@ -228,7 +229,7 @@ Below is an example of how you can use this component in HTML:
 
 type Story = StoryObj<BmbAccordionComponent>;
 
-export const OneItem: Story = {
+export const Default: Story = {
   render: (args) => ({
     template: `
   <bmb-accordion
@@ -261,9 +262,7 @@ export const OneItem: Story = {
 };
 
 export const SelectedItem = {
-  ...OneItem,
   args: {
-    ...OneItem.args,
     active: true,
   },
 };
