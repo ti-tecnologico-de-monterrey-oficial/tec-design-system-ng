@@ -1,0 +1,24 @@
+export const Tabs = ({ tabs, content }) => {
+  const selectedTab = 0;
+
+  return (
+    <div className="tabs-container">
+      <div className="tabs-header">
+        <button className="tab-button active">Tab 1</button>
+        <button className="tab-button">Tab 2</button>
+        <button className="tab-button">Tab 3</button>
+      </div>
+      <div className="tabs-content">
+        <div className="tab-content active">
+          <p>Content for Tab 1</p>
+        </div>
+        <div className="tab-content">
+          <p>Content for Tab 2</p>
+        </div>
+        <div className="tab-content">
+          <p>Content for Tab 3</p>
+        </div>
+      </div>
+    </div>
+  )
+};
