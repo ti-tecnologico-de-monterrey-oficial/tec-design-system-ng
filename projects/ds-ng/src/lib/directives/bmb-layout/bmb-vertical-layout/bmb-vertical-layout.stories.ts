@@ -11,6 +11,8 @@ import { BmbChevronTitleSelectorComponent } from '../../../components/bmb-chevro
 
 export default {
   title: 'Foundations/Layouts/Vertical layout container',
+  tags: ['!autodocs'],
+  component: BmbVerticalLayoutDirective,
   decorators: [
     moduleMetadata({
       declarations: [],
@@ -194,17 +196,17 @@ export const Default: Story = {
 //   }),
 // };
 
-const customizable = (): StoryFn => (args) => ({
-  template: `
-  <div bmbVerticalLayoutItem ${attributes({
-    rowGrow: 1,
-  })}>
-    <bmb-icon-status [icon]="'id_card'" />
-    <p class="font-regular-9" style="text-align: center">
-      Estamos activando tu credencial digital en este equipo
-    </p>
-  </div>
-  `,
-});
+// const customizable = (): StoryFn => (args) => ({
+//   template: `
+//   <div bmbVerticalLayoutItem ${attributes({
+//     rowGrow: 1,
+//   })}>
+//     <bmb-icon-status [icon]="'id_card'" />
+//     <p class="font-regular-9" style="text-align: center">
+//       Estamos activando tu credencial digital en este equipo
+//     </p>
+//   </div>
+//   `,
+// });
 
-export const VerticalLayoutItem = customizable();
+// export const VerticalLayoutItem = customizable();

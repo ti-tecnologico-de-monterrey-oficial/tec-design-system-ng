@@ -6,6 +6,7 @@ import { BmbIconStatusComponent } from '../../../../public-api';
 export default {
   title:
     'Foundations/Layouts/Vertical layout container/Vertical layout container item',
+  tags: ['!autodocs'],
   component: BmbVerticalLayoutItemDirective,
   decorators: [
     moduleMetadata({

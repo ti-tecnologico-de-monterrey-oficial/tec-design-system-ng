@@ -57,6 +57,7 @@ const preview: Preview = {
           'Particularities',
           ['*', 'mitec web', ['*', 'Landings']],
           'Templates',
+          'Dev tools',
           'Internals',
         ],
         locales: 'en-US',
