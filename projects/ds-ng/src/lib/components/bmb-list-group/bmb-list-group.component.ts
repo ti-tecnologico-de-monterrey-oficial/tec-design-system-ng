@@ -17,6 +17,7 @@ import { BmbTooltipComponent } from '../bmb-tooltip/bmb-tooltip.component';
 import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 import { BmbImageComponent } from '../bmb-image/bmb-image.component';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
+import { IBmbContrast } from '../../types/colors';
 
 @Component({
   selector: 'bmb-list-group',
@@ -97,6 +98,7 @@ export class BmbListGroupComponent {
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbListGroupItemComponent {
+  appearance = input<IBmbContrast>('default');
   id = input.required<string>();
   isDisabled = input<boolean>(false);
   isActive = input<boolean>(false);
@@ -133,6 +135,10 @@ export class BmbListGroupItemComponent {
       .includes(this.id());
 
     const classNames = ['bmb_list-group-item'];
+
+    // agregamos la clase por appearance
+    classNames.push(`bmb_list-group-item--${this.appearance()}`);
+
     if (isElementSelected) classNames.push('bmb_list-group-item-selected');
     if (this.isDisabled()) classNames.push('bmb_list-group-item-disabled');
 
