@@ -7,10 +7,9 @@ import {
 import { BmbTooltipComponent } from './bmb-tooltip.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { attributes } from '../../utils/utils';
-import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/ToolTip',
+  title: 'Components/Status indicators/ToolTip',
   component: BmbTooltipComponent,
   decorators: [
     moduleMetadata({
@@ -22,7 +21,6 @@ export default {
           ${story}
         </div>`;
     }),
-    storiesLayoutVertical,
   ],
   parameters: {
     docs: {

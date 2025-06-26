@@ -5,10 +5,9 @@ import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { of } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Breadcrumb',
+  title: 'Components/Menus/Breadcrumb',
   component: BmbBreadcrumbComponent,
   decorators: [
     moduleMetadata({
@@ -37,7 +36,6 @@ export default {
         },
       ],
     }),
-    storiesLayoutVertical,
   ],
   parameters: {
     docs: {

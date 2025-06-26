@@ -41,7 +41,7 @@ export class BmbChatBarComponent {
   showEmoji = input<boolean>(false);
 
   currentBot = model<IBotType>();
-  isLoading = model<boolean>();
+  isLoading = model<boolean>(false);
 
   files: File[] = [];
 

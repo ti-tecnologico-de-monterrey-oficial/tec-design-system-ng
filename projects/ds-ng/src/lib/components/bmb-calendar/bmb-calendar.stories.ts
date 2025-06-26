@@ -8,8 +8,6 @@ import {
 import { BmbCalendarComponent } from './bmb-calendar.component';
 import { Component, input, OnInit } from '@angular/core';
 import { BmbCalendarService } from '../../services/calendar.service';
-import { attributes } from '../../utils/utils';
-import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 @Component({
   standalone: true,
@@ -120,7 +118,7 @@ class ToastWrapperComponent implements OnInit {
 }
 
 export default {
-  title: 'Macro Componentes/Calendar',
+  title: 'Organisms/Calendar standard',
   component: BmbCalendarComponent,
   decorators: [
     moduleMetadata({
@@ -132,7 +130,6 @@ export default {
         ${story}
       </div>`;
     }),
-    storiesLayoutVertical,
   ],
   parameters: {
     docs: {

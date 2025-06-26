@@ -3,10 +3,9 @@ import { BmbCarouselComponent } from './bmb-carousel.component';
 import { CommonModule } from '@angular/common';
 import { moduleMetadata } from '@storybook/angular';
 import { BmbHomeCardComponent } from '../bmb-home-card/bmb-home-card.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Macro Componentes/Carousel',
+  title: 'Components/Status indicators/Carousel',
   component: BmbCarouselComponent,
   subcomponents: {},
   decorators: [
@@ -14,7 +13,6 @@ export default {
       declarations: [],
       imports: [CommonModule, BmbCarouselComponent, BmbHomeCardComponent],
     }),
-    storiesLayoutHorizontal,
   ],
   parameters: {
     docs: {

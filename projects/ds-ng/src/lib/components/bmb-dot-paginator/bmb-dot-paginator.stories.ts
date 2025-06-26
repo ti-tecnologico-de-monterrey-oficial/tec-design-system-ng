@@ -2,7 +2,6 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { BehaviorSubject } from 'rxjs';
 import { BmbDotPaginatorComponent } from './bmb-dot-paginator.component';
 import { attributes } from '../../utils/utils';
-import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export interface Target {
   target: string;
@@ -10,9 +9,8 @@ export interface Target {
 }
 
 export default {
-  title: 'Micro Componentes/Dot Paginator',
+  title: 'Components/Status indicators/Dot paginator',
   component: BmbDotPaginatorComponent,
-  decorators: [storiesLayoutVertical],
   parameters: {
     docs: {
       description: {

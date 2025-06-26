@@ -7,10 +7,9 @@ import {
 import { BmbDropdownComponent } from './bmb-dropdown.component';
 import { attributes } from '../../utils/utils';
 import { BmbFormValidationComponent } from '../bmb-form-validation/bmb-form-validation.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Dropdown',
+  title: 'Components/Inputs/Dropdown',
   component: BmbDropdownComponent,
   decorators: [
     moduleMetadata({
@@ -22,7 +21,6 @@ export default {
           ${story}
         </div>`;
     }),
-    storiesLayoutHorizontal,
   ],
   parameters: {
     docs: {
@@ -101,7 +99,7 @@ export class Component {
       [disabled]="false"
       helperText="Select a fruit"
       errorMessage="Error input dropdown"
-      value]="_pear"
+      [value]="_pear"
       [control]="getFormControl('inputDropdown1')"
       (onValueChange)="onValueChange($event)"
     />

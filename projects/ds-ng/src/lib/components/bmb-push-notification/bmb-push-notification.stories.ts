@@ -71,7 +71,7 @@ class StorybookToastWrapperComponent {
 }
 
 export default {
-  title: 'Macro Componentes/Push notification',
+  title: 'Components/Status indicators/Push notification',
   component: BmbPushNotificationComponent,
   decorators: [
     moduleMetadata({

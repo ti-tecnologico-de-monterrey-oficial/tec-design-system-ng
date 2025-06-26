@@ -13,7 +13,6 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 @Component({
   selector: 'storybook-step-panel-wrapper',
@@ -148,9 +147,9 @@ class StorybookStepPanelWrapperComponent implements AfterViewInit {
 }
 
 const meta: Meta<typeof StorybookStepPanelWrapperComponent> = {
-  title: 'Micro Componentes/Step Progress Bar/Step Panel',
+  title: 'Components/Status indicators/Step progress bar/Wizard',
   component: StorybookStepPanelWrapperComponent,
-  decorators: [storiesLayoutVertical],
+  tags: ['!autodocs'],
   parameters: {
     docs: {
       description: {

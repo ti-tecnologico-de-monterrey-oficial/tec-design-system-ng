@@ -1,15 +1,13 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { BmbPushNotificationItemComponent } from './bmb-push-notification-item.component';
-import { storiesLayoutHorizontal } from '../../../utils/bambooLayout';
 
 export default {
-  title: 'Internal/Notification item',
+  title: 'Internals/Notification item',
   component: BmbPushNotificationItemComponent,
   decorators: [
     moduleMetadata({
       imports: [BmbPushNotificationItemComponent],
     }),
-    storiesLayoutHorizontal,
   ],
   parameters: {
     docs: {

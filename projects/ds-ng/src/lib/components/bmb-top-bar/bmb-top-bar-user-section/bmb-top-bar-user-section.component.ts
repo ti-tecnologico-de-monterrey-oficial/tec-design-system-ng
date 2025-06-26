@@ -31,6 +31,7 @@ export class BmbTopBarUserSectionComponent {
   @Input() showNotifications: boolean = true;
   @Input() notificationNotification: IBmbDataAlert[] = [];
   @Input() showRoleButton: boolean = false;
+  @Input() showHelpButton: boolean = false;
 
   helpButtonClick = output<MouseEvent>();
   userClick = output<MouseEvent>();

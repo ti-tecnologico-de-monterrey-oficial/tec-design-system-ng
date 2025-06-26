@@ -3,10 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BmbDropzoneComponent } from './bmb-dropzone.component';
-import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Dropzone',
+  title: 'Components/Inputs/Dropzone',
   component: BmbDropzoneComponent,
   decorators: [
     moduleMetadata({
@@ -18,7 +17,6 @@ export default {
         BmbDropzoneComponent,
       ],
     }),
-    storiesLayoutVertical,
   ],
   parameters: {
     docs: {

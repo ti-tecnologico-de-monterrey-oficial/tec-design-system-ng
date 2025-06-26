@@ -32,6 +32,7 @@ export class BmbTopBarComponent implements OnInit {
   @Input() mitec: boolean = false;
   @Input() alertNotification: IBmbDataAlert[] = [];
   @Input() showRoleButton: boolean = false;
+  @Input() showHelpButton: boolean = false;
 
   @Input() positionButtonMenu: IPositionButtonMenu = 'left'; // Deprecated
   @Input() hasLogoutButton: boolean = true; // Deprecated

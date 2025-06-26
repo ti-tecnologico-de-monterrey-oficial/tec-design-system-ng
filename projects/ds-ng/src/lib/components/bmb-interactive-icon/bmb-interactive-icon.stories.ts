@@ -4,7 +4,6 @@ import {
   BmbInteractiveIconComponent,
   IBmbInteractiveIconAppearance,
 } from './bmb-interactive-icon.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 const appearanceOptions: IBmbInteractiveIconAppearance[] = [
   'red',
@@ -39,13 +38,12 @@ const appearanceOptions: IBmbInteractiveIconAppearance[] = [
 ];
 
 export default {
-  title: 'Micro Componentes/Interactive Icon',
+  title: 'Components/Buttons/Interactive Icon',
   component: BmbInteractiveIconComponent,
   decorators: [
     moduleMetadata({
       imports: [BmbIconComponent],
     }),
-    storiesLayoutHorizontal,
   ],
   parameters: {
     docs: {

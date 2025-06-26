@@ -16,6 +16,7 @@ import {
   Validators,
   ReactiveFormsModule,
   FormGroup,
+  FormBuilder,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import {
@@ -269,13 +270,13 @@ import { MatTableModule } from '@angular/material/table';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppComponent implements OnInit {
-  constructor(
-    private el: ElementRef,
-    private cdr: ChangeDetectorRef,
-    private matDialog: MatDialog,
-    private notificationSignal: BmbNotificationService,
-    private calendarEventsSignal: BmbCalendarService,
-  ) {}
+  // constructor(
+  //   private el: ElementRef,
+  //   private cdr: ChangeDetectorRef,
+  //   private matDialog: MatDialog,
+  //   private notificationSignal: BmbNotificationService,
+  //   private calendarEventsSignal: BmbCalendarService,
+  // ) {}
 
   title1 = 'Sample Card Title';
   body = 'This is the body content of the card.';
@@ -5700,8 +5701,70 @@ export class AppComponent implements OnInit {
     this.newData.set(newData);
   }
 
+  @ViewChild('step0') step0!: TemplateRef<any>;
+  @ViewChild('step1') step1!: TemplateRef<any>;
+  @ViewChild('step2') step2!: TemplateRef<any>;
+
+  activeStep = 0;
+  stepTemplates: TemplateRef<any>[] = [];
+
+  labelSteps = ['Paso 1', 'Paso 2', 'Paso 3'];
+  forms: FormGroup[] = [];
+
+  constructor(
+    private fb: FormBuilder,
+    private el: ElementRef,
+    private cdr: ChangeDetectorRef,
+    private matDialog: MatDialog,
+    private notificationSignal: BmbNotificationService,
+    private calendarEventsSignal: BmbCalendarService,
+  ) {}
+
   ngOnInit(): void {
-    this.generateProducts(50);
+    this.forms = this.labelSteps.map(() =>
+      this.fb.group({
+        campo: ['', Validators.required],
+      }),
+    );
+  }
+
+  ngAfterViewInit(): void {
+    this.stepTemplates = [this.step0, this.step1, this.step2];
+  }
+
+  goNext() {
+    const currentForm = this.forms[this.activeStep];
+    if (currentForm && currentForm.invalid) {
+      currentForm.markAllAsTouched();
+      return;
+    }
+    if (this.activeStep < this.forms.length - 1) {
+      this.activeStep++;
+    }
+  }
+
+  goBack() {
+    if (this.activeStep > 0) {
+      this.activeStep--;
+    }
+  }
+
+  onStepPress(index: number) {
+    const currentForm = this.forms[this.activeStep];
+    if (index > this.activeStep && currentForm && currentForm.invalid) {
+      currentForm.markAllAsTouched();
+      return;
+    }
+    this.activeStep = index;
+  }
+
+  finish() {
+    const currentForm = this.forms[this.activeStep];
+    if (currentForm && currentForm.invalid) {
+      currentForm.markAllAsTouched();
+      return;
+    }
+    alert('¡Formulario finalizado!');
   }
 }
 

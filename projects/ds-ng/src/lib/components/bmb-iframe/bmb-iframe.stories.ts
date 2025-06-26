@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbIframeComponent } from './bmb-iframe.component';
 
 export default {
-  title: 'Micro Componentes/Iframe',
+  title: 'Foundations/System elements/Iframe',
   component: BmbIframeComponent,
   parameters: {
     docs: {

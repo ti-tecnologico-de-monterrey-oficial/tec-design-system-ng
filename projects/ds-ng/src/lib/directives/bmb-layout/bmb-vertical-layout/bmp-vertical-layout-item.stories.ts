@@ -2,17 +2,15 @@ import { Meta, moduleMetadata, StoryFn } from '@storybook/angular';
 import { BmbVerticalLayoutItemDirective } from './bmb-vertical-layout-item.directive';
 import { attributes, attributesText } from '../../../utils/utils';
 import { BmbIconStatusComponent } from '../../../../public-api';
-import { storiesLayoutHorizontal } from '../../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Vertical layout item',
+  title: 'Components/Dev tools/Vertical layout container item',
   component: BmbVerticalLayoutItemDirective,
   decorators: [
     moduleMetadata({
       declarations: [],
       imports: [BmbIconStatusComponent],
     }),
-    storiesLayoutHorizontal,
   ],
   parameters: {
     docs: {

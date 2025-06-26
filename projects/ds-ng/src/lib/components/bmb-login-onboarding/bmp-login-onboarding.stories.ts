@@ -2,7 +2,6 @@ import { moduleMetadata, type Meta, type StoryFn } from '@storybook/angular';
 import { BmbLoginOnboardingComponent } from './bmb-login-onboarding.component';
 import { Component } from '@angular/core';
 import { IBmbLoginOnboarding, IBmbUserInfo } from '../../types';
-import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 @Component({
   standalone: true,
@@ -82,14 +81,13 @@ class StorybookToastWrapperComponent {
 }
 
 export default {
-  title: 'Macro Componentes/Login\\Onboarding',
+  title: 'Organisms/Login\\Onboarding',
   component: BmbLoginOnboardingComponent,
   decorators: [
     moduleMetadata({
       imports: [StorybookToastWrapperComponent, BmbLoginOnboardingComponent],
       providers: [],
     }),
-    storiesLayoutVertical,
   ],
   parameters: {
     docs: {

@@ -3,17 +3,15 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { attributes } from '../../utils/utils';
-import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Accordion',
+  title: 'Components/Containers/Accordion',
   component: BmbAccordionComponent,
   decorators: [
     moduleMetadata({
       declarations: [],
       imports: [CommonModule, BmbAccordionComponent],
     }),
-    storiesLayoutVertical,
   ],
   parameters: {
     docs: {

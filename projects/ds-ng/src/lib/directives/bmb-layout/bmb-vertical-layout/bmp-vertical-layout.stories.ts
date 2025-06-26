@@ -1,4 +1,4 @@
-import { Meta, moduleMetadata, StoryFn } from '@storybook/angular';
+import { Meta, moduleMetadata, StoryFn, StoryObj } from '@storybook/angular';
 import { BmbVerticalLayoutDirective } from './bmb-vertical-layout.directive';
 import { attributes } from '../../../utils/utils';
 import {
@@ -8,11 +8,9 @@ import {
 } from '../../../../public-api';
 import { BmbProgressBarComponent } from '../../../components/bmb-progress-bar/bmb-progress-bar.component';
 import { BmbChevronTitleSelectorComponent } from '../../../components/bmb-chevron-title-selector/bmb-chevron-title-selector.component';
-import { storiesLayoutHorizontal } from '../../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Vertical layout',
-  component: BmbVerticalLayoutDirective,
+  title: 'Foundations/Layouts/Vertical layout container',
   decorators: [
     moduleMetadata({
       declarations: [],
@@ -25,7 +23,6 @@ export default {
         BmbProgressBarComponent,
       ],
     }),
-    storiesLayoutHorizontal,
   ],
   parameters: {
     docs: {
@@ -34,7 +31,7 @@ export default {
 Below is an example of how you can use this component in TypeScript:
 
 \`\`\`typescript
-import { BmbVerticalLayoutDirective } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
+import { BmbVerticalLayoutDirective} from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
 
 @Component({
   selector: 'component',
@@ -56,7 +53,6 @@ Below is an example of how you can use this component in HTML:
   },
   argTypes: {
     gapSize: {
-      name: 'Gap size',
       description: `
 Sets the size of the space between elements.
 
@@ -78,7 +74,6 @@ Sets the size of the space between elements.
       },
     },
     justify: {
-      name: 'Justify content',
       description: `
 Sets the justify content.
 
@@ -108,7 +103,6 @@ Sets the justify content.
       },
     },
     alignItems: {
-      name: 'Align items',
       description: `
 Set the align items.
 
@@ -126,13 +120,35 @@ Set the align items.
         defaultValue: { summary: 'start' },
       },
     },
+    rowGrow: {
+      name: 'Row grow',
+      control: 'number',
+      description:
+        'Sets how much of the flex container positive free space, if any, should be assigned to the flex item main size.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 0 },
+        type: { summary: 'number' },
+      },
+    },
+    test_text: {
+      name: 'Test text',
+      control: 'text',
+      description: '',
+      table: {
+        category: 'Example',
+        type: { summary: 'string' },
+      },
+    },
   },
   args: { gapSize: 'm', justify: 'start', alignItems: 'start' },
 } as Meta<typeof BmbVerticalLayoutDirective>;
 
-const customizable = (): StoryFn => (args) => ({
-  props: args,
-  template: `
+type Story = StoryObj<BmbVerticalLayoutDirective>;
+
+export const Default: Story = {
+  render: (args) => ({
+    template: `
   <section
     bmbVerticalLayout
     ${attributes(args)}
@@ -157,6 +173,38 @@ const customizable = (): StoryFn => (args) => ({
     </div>
   </section>
   `,
+  }),
+};
+
+// export const Item: Story = {
+//   name: 'Vertical layout item',
+//   args: {
+//     rowGrow: 1 as unknown as InputSignal<number>,
+//     test_text: 'Estamos activando tu credencial digital en este equipo',
+//   },
+//   render: (args) => ({
+//     template: `
+//   <div bmbVerticalLayoutItem ${attributes(args)}>
+//       <bmb-icon-status [icon]="'id_card'" />
+//       <p class="font-regular-9" style="text-align: center">
+//         ${attributesText(args)}
+//       </p>
+//     </div>
+//   `
+//   }),
+// };
+
+const customizable = (): StoryFn => (args) => ({
+  template: `
+  <div bmbVerticalLayoutItem ${attributes({
+    rowGrow: 1,
+  })}>
+    <bmb-icon-status [icon]="'id_card'" />
+    <p class="font-regular-9" style="text-align: center">
+      Estamos activando tu credencial digital en este equipo
+    </p>
+  </div>
+  `,
 });
 
-export const Default = customizable();
+export const VerticalLayoutItem = customizable();

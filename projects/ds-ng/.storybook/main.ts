@@ -2,8 +2,14 @@ import type { StorybookConfig } from '@storybook/angular';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 
 const config: StorybookConfig = {
-  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
-  addons: ['@storybook/addon-onboarding', '@storybook/addon-docs'],
+  stories: ['../src/lib/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+  addons: [
+    '@storybook/addon-onboarding',
+    '@storybook/addon-docs',
+    '@storybook/addon-a11y',
+    '@storybook/addon-themes',
+    '@storybook/addon-icons',
+  ],
   framework: {
     name: '@storybook/angular',
     options: {},

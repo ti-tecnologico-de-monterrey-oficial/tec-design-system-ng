@@ -1,11 +1,9 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbUserSummaryComponent } from './bmb-user-summary.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Macro Componentes/User Summary',
+  title: 'Components/Containers/User summary',
   component: BmbUserSummaryComponent,
-  decorators: [storiesLayoutHorizontal],
   parameters: {
     docs: {
       description: {

@@ -1,11 +1,10 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbButtonIconComponent } from './bmb-button-icon.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 import { fn } from 'storybook/test';
 import { action } from 'storybook/actions';
 
 export default {
-  title: 'Micro Componentes/Button icon',
+  title: 'Components/Buttons/Button icon',
   component: BmbButtonIconComponent,
   parameters: {
     actions: { argTypesRegex: '^on.*' },
@@ -143,7 +142,6 @@ Sets the appearance of the outline when true.
 type Story = StoryObj<BmbButtonIconComponent>;
 
 export const Default: Story = {
-  decorators: [storiesLayoutHorizontal],
   name: 'Container on, default variant example',
 };
 

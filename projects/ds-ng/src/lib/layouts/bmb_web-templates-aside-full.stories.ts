@@ -42,7 +42,7 @@ import { attributes } from '../utils/utils';
 class StorybookModalWrapperComponent {}
 
 export default {
-  title: 'Micro Componentes/Web Templates/2 Column FullScreen',
+  title: 'Templates/2 Column fullScreen',
   component: BmbTopBarComponent,
   decorators: [
     moduleMetadata({

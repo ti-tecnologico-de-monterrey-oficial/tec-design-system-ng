@@ -1,5 +1,5 @@
 :root,
-.storybook-light-theme {
+.storybook-light-theme .docs-story {
   --general_contrasts-100: RGBA(var(--color-charade-950), 1);
   --general_contrasts-75: RGBA(var(--color-charade-700), 1);
   --general_contrasts-50: RGBA(var(--color-charade-500), 1);
@@ -104,7 +104,8 @@
 }
 
 [data-theme="dark"],
-.storybook-dark-theme {
+.storybook-dark-theme,
+.storybook-dark-theme .docs-story {
   --general_contrasts-100: RGBA(var(--color-charade-50), 1);
   --general_contrasts-75: RGBA(var(--color-charade-200), 1);
   --general_contrasts-50: RGBA(var(--color-charade-500), 1);

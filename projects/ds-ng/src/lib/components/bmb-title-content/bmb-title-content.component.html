@@ -28,7 +28,7 @@
           <bmb-breadcrumb [dataLocalNav]="dataLocalNav()" />
         </span>
       } @else if (!!subtitle()) {
-        <h4
+        <h3
           class="bmb_title-content-container-wrapper-subtitle"
           [ngClass]="
             getClassNames(
@@ -42,7 +42,7 @@
             <bmb-icon [icon]="subtitleIcon()" [size]="subtitleIconSize()" />
           }
           {{ subtitle() }}
-        </h4>
+        </h3>
       }
     </section>
   </section>

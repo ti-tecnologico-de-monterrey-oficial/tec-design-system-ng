@@ -9,6 +9,7 @@
 
   &-main {
     fill: var(--general_contrasts-100);
+    transform: rotate(90deg);
 
     &-score {
       @include fonts.font(4, medium);

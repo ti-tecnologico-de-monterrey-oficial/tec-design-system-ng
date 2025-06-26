@@ -1,11 +1,9 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbSkeletonComponent } from './bmb-skeleton.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Skeleton',
+  title: 'Components/Dev tools/Skeleton',
   component: BmbSkeletonComponent,
-  decorators: [storiesLayoutHorizontal],
   parameters: {
     docs: {
       description: {

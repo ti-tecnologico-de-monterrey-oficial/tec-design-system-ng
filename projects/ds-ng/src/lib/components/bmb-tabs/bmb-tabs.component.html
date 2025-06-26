@@ -12,30 +12,37 @@
         [disabled]="scrollLeft() === 0"
       />
     }
-    <section class="bmb_tabs-tab" #tabsItems (scroll)="scrollEvent($event)">
+    <ul
+      role="tablist"
+      class="bmb_tabs-tab"
+      #tabsItems
+      (scroll)="scrollEvent($event)"
+    >
       @for (tab of tabs(); track $index) {
-        <button
-          role="tab"
-          [attr.aria-selected]="tab.isActive"
-          [attr.tabindex]="tab.isActive ? 0 : -1"
-          class="bmb_tabs-item"
-          (click)="selectTab(tab.id)"
-          [ngClass]="{
-            'bmb_tabs-item-active': tab.isActive,
-            'bmb_tabs-item-uppercase': format() === 'uppercase',
-            'bmb_tabs-item-mobile': tab.isMobile,
-            'bmb_tabs-item-desktop': tab.isDesktop,
-          }"
-        >
-          <span class="bmb_tabs-content">
-            {{ tab.title }}
-          </span>
-          @if (!!tab.badge) {
-            <span class="bmb_tabs-badge">{{ tab.badge }}</span>
-          }
-        </button>
+        <li role="none">
+          <button
+            role="tab"
+            [attr.aria-selected]="tab.isActive"
+            [attr.tabindex]="tab.isActive ? 0 : -1"
+            class="bmb_tabs-item"
+            (click)="selectTab(tab.id)"
+            [ngClass]="{
+              'bmb_tabs-item-active': tab.isActive,
+              'bmb_tabs-item-uppercase': format() === 'uppercase',
+              'bmb_tabs-item-mobile': tab.isMobile,
+              'bmb_tabs-item-desktop': tab.isDesktop,
+            }"
+          >
+            <span class="bmb_tabs-content">
+              {{ tab.title }}
+            </span>
+            @if (!!tab.badge) {
+              <span class="bmb_tabs-badge">{{ tab.badge }}</span>
+            }
+          </button>
+        </li>
       }
-    </section>
+    </ul>
     @if (hasScroll()) {
       <bmb-action-icon
         class="bmb_tabs-scroll bmb_tabs-scroll-left"

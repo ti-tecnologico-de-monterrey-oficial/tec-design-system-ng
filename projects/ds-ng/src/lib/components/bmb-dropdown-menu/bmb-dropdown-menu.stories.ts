@@ -8,10 +8,9 @@ import { BmbDropdownMenuComponent } from './bmb-dropdown-menu.component';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { ActivatedRoute } from '@angular/router';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Dropdown Menu',
+  title: 'Components/Menus/Dropdown menu',
   component: BmbDropdownMenuComponent,
   decorators: [
     moduleMetadata({
@@ -33,7 +32,6 @@ export default {
           ${story}
         </div>`;
     }),
-    storiesLayoutHorizontal,
   ],
   parameters: {
     docs: {
