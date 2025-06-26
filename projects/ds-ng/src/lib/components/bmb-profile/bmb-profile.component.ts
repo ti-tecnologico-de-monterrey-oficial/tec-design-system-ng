@@ -105,7 +105,6 @@ export class BmbProfileComponent implements OnInit {
       this._studentData = this.studentData()!;
     }
 
-
     if (this.isStandAlone()) {
       if (!this.standAloneData()) inputs.push('standAloneData');
       this.throwErrors(inputs, 'isStandAlone', 'true');
