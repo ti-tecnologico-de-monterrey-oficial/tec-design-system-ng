@@ -55,6 +55,7 @@ export class BmbProgressCircleComponent implements OnChanges {
   showBackground = input<boolean>(true);
   showRestBackground = input<boolean>(false);
   fillPathStatus = input<BmbProgressCirclePathStatus>('success');
+  fullFillPathStatus = input<boolean>(false);
 
   responsive = true;
   svg: any;
@@ -217,5 +218,21 @@ export class BmbProgressCircleComponent implements OnChanges {
 
   getFillPathStatus(): string {
     return `bmb_progress-circle-fill-${this.fillPathStatus()}`;
+  }
+
+  isFullColored(): boolean {
+    const status = this.fillPathStatus();
+    return (
+      this.fullFillPathStatus() &&
+      ['success', 'error', 'warning'].includes(status)
+    );
+  }
+
+  shouldShowProgressPath(): boolean {
+    return !!this.percent() && !this.isFullColored();
+  }
+
+  shouldShowValueLabel(): boolean {
+    return this.options.showValueLabel && !this.isFullColored();
   }
 }
