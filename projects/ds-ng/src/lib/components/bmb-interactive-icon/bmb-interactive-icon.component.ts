@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
 import { IBmbTargetLink } from '../../types';
+import { IBmbContrast } from '../../types/colors';
 
 export type IBmbInteractiveIconAppearance =
   | 'red'
@@ -58,6 +59,7 @@ export type IBmbInteractiveIconType = 'regular' | 'button' | 'app_drawer';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbInteractiveIconComponent {
+  appearanceContrast = input<IBmbContrast>('default');
   appearance = input<IBmbInteractiveIconAppearance>('red');
   title = input<string>();
   description = input<string>('');

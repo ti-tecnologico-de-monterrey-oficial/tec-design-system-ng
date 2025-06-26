@@ -28,6 +28,18 @@ Below is an example of how you can use this component in HTML:
     },
   },
   argTypes: {
+    appearance: {
+      name: 'Appearance',
+      control: {
+        type: 'select',
+      },
+      options: ['default', 'primary', 'alternative'],
+      description: 'Defines the appearance style.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
     type: {
       name: 'Type',
       control: {
@@ -60,6 +72,7 @@ Sets the type of anatomy variation to display.
     },
   },
   args: {
+    appearance: 'default',
     type: 'main-grade',
     score: '89',
   },

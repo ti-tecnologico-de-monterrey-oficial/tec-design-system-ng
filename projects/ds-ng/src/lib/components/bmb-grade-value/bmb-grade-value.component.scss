@@ -2,6 +2,7 @@
 @use "../../../assets/styles/base/rem" as rem;
 
 .bmb_grade-value {
+  color: var(--general_contrasts-100);
   &:has(svg) {
     line-height: 0;
   }
@@ -27,6 +28,24 @@
 
     &-score {
       @include fonts.font(4, medium);
+    }
+  }
+
+  &--primary {
+    .bmb_grade-value-main {
+      fill: var(--containers-background);
+    }
+    .bmb_grade-value-partial {
+      background-color: var(--containers-background);
+    }
+  }
+
+  &--alternative {
+    .bmb_grade-value-main {
+      fill: var(--containers-main);
+    }
+    .bmb_grade-value-partial {
+      background-color: var(--containers-main);
     }
   }
 }

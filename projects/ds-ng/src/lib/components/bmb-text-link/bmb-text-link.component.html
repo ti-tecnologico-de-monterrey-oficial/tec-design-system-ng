@@ -1,4 +1,8 @@
-<span [ngClass]="getClasses(textLinkStyle(), disabled())">
+<span
+  [ngClass]="getClasses(textLinkStyle(), disabled())"
+  [class.bmb_text-link--primary]="appearance() === 'primary'"
+  [class.bmb_text-link--alternative]="appearance() === 'alternative'"
+>
   <bmb-check-external-link-button
     class="bmb_text-link-item"
     [link]="link()"

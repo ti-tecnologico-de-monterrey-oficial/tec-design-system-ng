@@ -43,6 +43,14 @@ $backgrounds: (
   gap: var(--bmb-spacing-xs);
   transition: all 0.3s ease;
 
+  &--primary {
+    background-color: var(--containers-background);
+  }
+
+  &--alternative {
+    background-color: var(--containers-main);
+  }
+
   &-horizontal {
     border-bottom: rem.rem_calc(1) solid var(--general_contrasts-50);
     flex-flow: row;

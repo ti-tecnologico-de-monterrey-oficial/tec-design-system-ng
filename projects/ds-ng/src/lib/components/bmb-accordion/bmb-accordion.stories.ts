@@ -63,6 +63,18 @@ Below is an example of how you can use this component in HTML:
     },
   },
   argTypes: {
+    appearance: {
+      name: 'Appearance',
+      control: {
+        type: 'select',
+      },
+      options: ['default', 'primary', 'alternative'],
+      description: 'Defines the appearance style.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
     borderRadius: {
       name: 'Border radius',
       control: {
@@ -215,6 +227,7 @@ Below is an example of how you can use this component in HTML:
     },
   },
   args: {
+    appearance: 'default',
     borderRadius: 'm',
     margin: 'm',
     paddingHeader: 'm',
