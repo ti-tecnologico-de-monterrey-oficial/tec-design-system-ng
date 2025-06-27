@@ -80,6 +80,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   });
   disabled = input<boolean>(false);
   value = input<string | string[]>('');
+  isFilterable = input<boolean>(false);
 
   control = model<FormControl>(newFormControlByType());
 
@@ -109,10 +110,10 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
     }
 
     this.selectionControl.valueChanges
-          .pipe(debounceTime(300))
-          .subscribe((value) => {
-            this.filteredOptions = filteredValue(value, this.items);
-          });
+      .pipe(debounceTime(300))
+      .subscribe((value) => {
+        this.filteredOptions = filteredValue(value, this.items);
+      });
 
     this.control()
       .valueChanges.pipe(startWith(this.getValidInitialValues()))
@@ -120,7 +121,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
         this.setSelectionControl(value);
       });
 
-      this.filteredOptions = [...this.items];
+    this.filteredOptions = [...this.items];
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -200,7 +201,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
     if (this.showIcon()) this.selectedIcon = this.icon();
   }
 
-   selectOptionWithKey(value: string): void {
+  selectOptionWithKey(value: string): void {
     if (!!value) {
       const selectedLength: number = this.filteredOptions.length;
 

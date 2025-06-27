@@ -25,7 +25,7 @@ export const List = () => (
 export const Item = () => (
   <section>
     <Meta of={itemStory} />
-    <Title of={itemStory}>{itemStory.title}</Title>
+    <Title of={itemStory}>{itemStory?.title}</Title>
     <Description of={itemStory}>{itemStory}</Description>
     <Canvas of={itemStory.Default} withToolbar={true} />
     <Controls of={itemStory.Default} />
@@ -36,8 +36,8 @@ export const Item = () => (
 <Meta of={listStory} />
 <Tabs
   tabs={[
-    <Title>{listStory.title}</Title>,
-    <Title of={itemStory}>{itemStory.title}</Title>,
+    <Title>{listStory?.title}</Title>,
+    <Title of={itemStory}>{itemStory?.title}</Title>,
   ]}
   content={[<List />, <Item />]}
 />
