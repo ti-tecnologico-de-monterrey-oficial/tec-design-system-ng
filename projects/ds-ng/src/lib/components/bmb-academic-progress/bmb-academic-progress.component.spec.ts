@@ -26,13 +26,13 @@ describe('BmbAcademicProgressComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should return the correct name from getName', () => {
-    const element: IBmbNameValuePair = { name: 'Test Name', value: '100' };
-    expect(component.getName(element)).toBe('Test Name');
-  });
+  // it('should return the correct name from getName', () => {
+  //   const element: IBmbNameValuePair = { name: 'Test Name', value: '100' };
+  //   expect(component.getName(element)).toBe('Test Name');
+  // });
 
-  it('should return the correct value from getValue', () => {
-    const element: IBmbNameValuePair = { name: 'Test Name', value: '100' };
-    expect(component.getValue(element)).toBe(100);
-  });
+  // it('should return the correct value from getValue', () => {
+  //   const element: IBmbNameValuePair = { name: 'Test Name', value: '100' };
+  //   expect(component.getValue(element)).toBe(100);
+  // });
 });

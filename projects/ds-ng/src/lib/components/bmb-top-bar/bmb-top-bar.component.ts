@@ -3,21 +3,12 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   Input,
-  Output,
-  EventEmitter,
-  TemplateRef,
-  ViewChild,
   OnInit,
   output,
-  HostListener,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IPositionButtonMenu, IUserInformation } from './types';
 import { BmbTopBarUserSectionComponent } from './bmb-top-bar-user-section/bmb-top-bar-user-section.component';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { BmbSelectComponent } from '../bmb-select/bmb-select.component';
-import { BmbSelectItemComponent } from '../bmb-select/bmb-select-item/bmb-select-item.component';
-import { BmbUserImageComponent } from '../bmb-user-image/bmb-user-image.component';
 import { IBmbDataAlert } from '../bmb-alert-center/types';
 
 export { IPositionButtonMenu, IUserInformation } from './types';
@@ -25,14 +16,7 @@ export { IPositionButtonMenu, IUserInformation } from './types';
 @Component({
   selector: 'bmb-top-bar',
   standalone: true,
-  imports: [
-    CommonModule,
-    BmbTopBarUserSectionComponent,
-    BmbIconComponent,
-    BmbSelectComponent,
-    BmbSelectItemComponent,
-    BmbUserImageComponent,
-  ],
+  imports: [CommonModule, BmbTopBarUserSectionComponent],
   templateUrl: './bmb-top-bar.component.html',
   styleUrl: './bmb-top-bar.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -48,6 +32,7 @@ export class BmbTopBarComponent implements OnInit {
   @Input() mitec: boolean = false;
   @Input() alertNotification: IBmbDataAlert[] = [];
   @Input() showRoleButton: boolean = false;
+  @Input() showHelpButton: boolean = false;
 
   @Input() positionButtonMenu: IPositionButtonMenu = 'left'; // Deprecated
   @Input() hasLogoutButton: boolean = true; // Deprecated
@@ -55,28 +40,19 @@ export class BmbTopBarComponent implements OnInit {
   @Input() showUserName: boolean = true; // Deprecated
   @Input() assignmentNotification: string[] = []; // Deprecated
 
-  logOut = output<any>(); // Deprecated
-  onLangChange = output<string>(); // Deprecated
   helpButtonClick = output<MouseEvent>();
   userProfileClick = output<MouseEvent>();
   alertButtonClick = output<MouseEvent>();
   roleButtonClick = output<MouseEvent>();
 
-  // @ViewChild(TemplateRef) contentTemplate: TemplateRef<unknown> | null = null;
+  logOut = output<any>(); // Deprecated
+  onLangChange = output<string>(); // Deprecated
 
-  // isMobileMenuOpen: boolean = false;
   showAnimation: boolean = true;
   imageDefault = 'assets/images/tec-logo.svg';
   mobileImageDefault = 'assets/images/tec-logo-mob.svg';
   mobileImageMitecDefault = 'assets/images/logos-mitec/logo_mitec.png';
   imageMitecDefault = 'assets/images/logos-mitec/logo_mitec-mob.svg';
-
-  // @HostListener('window:resize', ['$event'])
-  // onResize(event: Event): void {
-  //   this.windowWidth = window.innerWidth;
-  //   this.isMobileMenuOpen =
-  //     this.windowWidth > 1000 ? false : this.isMobileMenuOpen;
-  // }
 
   ngOnInit(): void {
     if (this.image == '') {
@@ -104,18 +80,6 @@ export class BmbTopBarComponent implements OnInit {
 
   handleAlertClick(event: MouseEvent) {
     this.alertButtonClick.emit(event);
-  }
-
-  getFlag(lang: string): string {
-    switch (lang) {
-      case 'es':
-        return '/assets/images/lang-flags/mx.svg';
-      case 'en':
-        return `/assets/images/lang-flags/us.svg`;
-
-      default:
-        return '';
-    }
   }
 
   getCountryName(lang: string): string {

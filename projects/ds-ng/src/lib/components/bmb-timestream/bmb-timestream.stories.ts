@@ -1,13 +1,9 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbTimestreamComponent } from './bmb-timestream.component';
-import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Macro Componentes/Timestream',
+  title: 'Internals/Timestream',
   component: BmbTimestreamComponent,
-  decorators: [
-    storiesLayoutVertical,
-  ],
   parameters: {
     docs: {
       description: {

@@ -5,10 +5,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 
 import { BmbInputComponent } from './bmb-input.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Input',
+  title: 'Components/Inputs/Text input',
   component: BmbInputComponent,
   decorators: [
     moduleMetadata({
@@ -20,7 +19,6 @@ export default {
         BmbIconComponent,
       ],
     }),
-    storiesLayoutHorizontal,
   ],
   parameters: {
     docs: {

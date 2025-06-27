@@ -1,0 +1,35 @@
+import { useState } from "react";
+
+export const Tabs = ({ tabs = [], content = [] }) => {
+  const [selectedTab, setSelectedTab] = useState(0);
+
+return (
+
+<div className="bmb_doc-tabs">
+  <ul role="tablist" className="bmb_doc-tabs-header">
+    {tabs.map((tab, index) => (
+      <li role="tab" key={index} className="bmb_doc-tabs-item">
+        <button
+          role="button"
+          className={`bmb_doc-tabs-button ${selectedTab === index ? "active" : ""}`}
+          onClick={() => setSelectedTab(index)}
+        >
+          {tab}
+        </button>
+      </li>
+    ))}
+  </ul>
+  <section className="bmb_doc-tabs-content">
+    {content.map((item, index) => (
+      <div
+        role="tabpanel"
+        key={index}
+        hidden={selectedTab !== index}
+        className="bmb_doc-tabs-panel"
+      >
+        <p>{item}</p>
+      </div>
+    ))}
+  </section>
+</div>
+); };

@@ -3,6 +3,7 @@ import {
   Component,
   input,
   OnInit,
+  signal,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbFocusElementComponent } from '../bmb-focus-element/bmb-focus-element.component';
@@ -11,6 +12,7 @@ import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-i
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 import { IBmbNameValuePair } from '../../types';
 import { buildErrorMessage } from '../../utils/utils';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'bmb-academic-progress',
@@ -20,40 +22,10 @@ import { buildErrorMessage } from '../../utils/utils';
     BmbFocusElementComponent,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
+    CommonModule,
   ],
   styleUrl: './bmb-academic-progress.component.scss',
-  template: `
-    <bmb-container class="bmb_academic-progress-summary">
-      <section
-        class="bmb_academic-progress-summary-container"
-        bmbLayout
-        margin="none"
-        justify="spaceAround"
-        [dynamicCols]="true"
-      >
-        <bmb-focus-element
-          bmbLayoutItem
-          [title]="getName(accredited())"
-          [number]="getValue(accredited())"
-          [isNormal]="true"
-          [isNonFocused]="true"
-        />
-        <bmb-focus-element
-          bmbLayoutItem
-          [title]="getName(average())"
-          [number]="getValue(average())"
-          [isNonFocused]="true"
-        />
-        <bmb-focus-element
-          bmbLayoutItem
-          [title]="getName(summary())"
-          [number]="getValue(summary())"
-          [isNormal]="true"
-          [isNonFocused]="true"
-        />
-      </section>
-    </bmb-container>
-  `,
+  templateUrl: './bmb-academic-progress.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -62,8 +34,11 @@ export class BmbAcademicProgressComponent implements OnInit {
   average = input.required<IBmbNameValuePair>();
   summary = input.required<IBmbNameValuePair>();
 
+  metrics = signal<{ name: string; value: number }[]>([]);
+
   ngOnInit() {
-    let inputs: string[] = [];
+    const inputs: string[] = [];
+    const newMetrics: { name: string; value: number }[] = [];
     if (!this.accredited()) inputs.push('accredited');
     if (!this.average()) inputs.push('average');
     if (!this.summary()) inputs.push('summary');
@@ -75,13 +50,29 @@ export class BmbAcademicProgressComponent implements OnInit {
         `,
       );
     }
+    if (typeof this.accredited().value === 'number') {
+      newMetrics.push({
+        name: this.accredited().name,
+        value: this.accredited().value as number,
+      });
+    }
+    if (typeof this.average().value === 'number') {
+      newMetrics.push({
+        name: this.average().name,
+        value: this.average().value as number,
+      });
+    }
+    if (typeof this.summary().value === 'number') {
+      newMetrics.push({
+        name: this.summary().name,
+        value: this.summary().value as number,
+      });
+    }
+
+    this.metrics.set(newMetrics);
   }
 
-  getName(element: IBmbNameValuePair): string {
-    return element?.name;
-  }
-
-  getValue(element: IBmbNameValuePair): number {
-    return Number(element?.value);
+  shouldShowMetric(metric: IBmbNameValuePair): boolean {
+    return typeof metric.value === 'number';
   }
 }

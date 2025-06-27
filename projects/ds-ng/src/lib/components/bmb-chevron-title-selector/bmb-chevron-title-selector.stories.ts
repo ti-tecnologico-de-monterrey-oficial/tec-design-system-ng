@@ -1,13 +1,9 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbChevronTitleSelectorComponent } from './bmb-chevron-title-selector.component';
-import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Chevron Title Selector',
+  title: 'Components/Menus/Chevron title selector',
   component: BmbChevronTitleSelectorComponent,
-  decorators: [
-    storiesLayoutVertical,
-  ],
   parameters: {
     docs: {
       description: {

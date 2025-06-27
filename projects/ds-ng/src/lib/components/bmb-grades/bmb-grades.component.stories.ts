@@ -1,11 +1,9 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbGradesComponent } from './bmb-grades.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Macro Componentes/Grades',
+  title: 'Organisms/Grades',
   component: BmbGradesComponent,
-  decorators: [storiesLayoutHorizontal],
   parameters: {
     docs: {
       description: {
@@ -13,14 +11,24 @@ export default {
 Below is an example of how you can use this component in TypeScript:
 
 \`\`\`typescript
-import { BmbLegendComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
+import { BmbGradesComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
 @Component({
   selector: 'component',
   standalone: true,
-  imports: [ BmbLegendComponent ],
+  imports: [ BmbGradesComponent ],
   templateUrl: './component.html',
   styleUrl: './component.scss',
 })
+\`\`\`
+
+## Scroll
+
+If you want the component to handle the scroll, you should wrap it in a container with a defined height.
+
+\`\`\`html
+<div style="height: 100dvh;">
+  <bmb-grades ... />
+</div>
 \`\`\`
 
 Below is an example of how you can use this component in HTML:
@@ -277,3 +285,9 @@ Below is an example of how you can use this component in HTML:
 type Story = StoryObj<BmbGradesComponent>;
 
 export const Default: Story = {};
+
+export const MicroVersion: Story = {
+  args: {
+    isMicro: true,
+  },
+};

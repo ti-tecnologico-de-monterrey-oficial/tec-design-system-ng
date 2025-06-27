@@ -1,14 +1,10 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbHitoCardComponent } from './bmb-hito-card.component';
 import { attributes } from '../../utils/utils';
-import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Hito card',
+  title: 'Components/Containers/Hito card',
   component: BmbHitoCardComponent,
-  decorators: [
-    storiesLayoutVertical,
-  ],
   parameters: {
     docs: {
       description: {

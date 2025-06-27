@@ -2,16 +2,14 @@ import { BmbServerTableComponent } from './bmb-server-table.component';
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Macro Componentes/Server table',
+  title: 'Dev tools/Server table',
   component: BmbServerTableComponent,
   decorators: [
     moduleMetadata({
       imports: [CommonModule, BmbIconComponent],
     }),
-    storiesLayoutVertical,
   ],
   parameters: {
     docs: {

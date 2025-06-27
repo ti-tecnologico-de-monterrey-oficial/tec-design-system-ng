@@ -80,7 +80,7 @@ Remember to replace \`font-medium-4\` with the appropriate class based on the fa
   },
   args: {
     family: 'thin',
-    size: '1',
+    size: '5',
   },
 } as Meta;
 
@@ -92,7 +92,7 @@ function getClassName(object: any): any {
 
 const customizable = (): StoryFn => (args) => ({
   props: args,
-  template: `<div ${getClassName(args)}>Typography</div>`,
+  template: `<div style="color: var(--general_contrasts-100);" ${getClassName(args)}>Typography</div>`,
 });
 
 export const Default = customizable();

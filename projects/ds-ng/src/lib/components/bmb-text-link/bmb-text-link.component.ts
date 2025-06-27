@@ -8,6 +8,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { IBmbTargetLink } from '../../types';
 import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
 import { CommonModule } from '@angular/common';
+// import { IBmbContrast } from '../../types/colors';
 
 export type IBmbIconPosition = 'left' | 'right';
 export type IBmbTextLinkStyle = 'icon' | 'underlined';
@@ -26,6 +27,7 @@ export type IBmbTextLinkStyle = 'icon' | 'underlined';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbTextLinkComponent {
+  // appearance = input<IBmbContrast>('default');
   textLink = input.required<string>();
   textLinkStyle = input<IBmbTextLinkStyle>('icon');
   target = input<IBmbTargetLink>('_blank');

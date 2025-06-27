@@ -1,16 +1,14 @@
 import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
 import { BmbNoticeCardComponent } from './bmb-notice-card.component';
 import { attributes } from '../../utils/utils';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Notice Card',
+  title: 'Particularities/mitec web/Notice card',
   component: BmbNoticeCardComponent,
   decorators: [
     moduleMetadata({
       imports: [BmbNoticeCardComponent],
     }),
-    storiesLayoutHorizontal,
   ],
   parameters: {
     docs: {

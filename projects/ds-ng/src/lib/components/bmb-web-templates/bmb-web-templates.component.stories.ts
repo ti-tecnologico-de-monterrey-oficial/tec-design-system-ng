@@ -2,7 +2,8 @@ import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbWebTemplatesComponent } from './bmb-web-templates.component';
 
 export default {
-  title: 'Macro Componentes/Web templates',
+  title: 'Templates',
+  tags: ['hideInSidebar'],
   component: BmbWebTemplatesComponent,
   parameters: {
     docs: {

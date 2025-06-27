@@ -1,13 +1,16 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import { componentWrapperDecorator, Meta, StoryObj } from '@storybook/angular';
 import { BmbSearchInputComponent } from './bmb-search-input.component';
-import { attributes } from '../../utils/utils';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Search input',
+  title: 'Components/Inputs/Search',
   component: BmbSearchInputComponent,
   decorators: [
-    storiesLayoutHorizontal,
+    componentWrapperDecorator((story: string) => {
+      return `
+        <div style="height: 25rem">
+          ${story}
+        </div>`;
+    }),
   ],
   parameters: {
     docs: {
@@ -135,14 +138,4 @@ Below is an example of how you can use this component in HTML:
 
 type Story = StoryObj<BmbSearchInputComponent>;
 
-export const Default: Story = {
-  render: (args: any) => ({
-    template: `
-      <div style="height: 25rem">
-        <bmb-search-input
-          ${attributes(args)}
-        />
-      </div>
-      `,
-  }),
-};
+export const Default: Story = {};

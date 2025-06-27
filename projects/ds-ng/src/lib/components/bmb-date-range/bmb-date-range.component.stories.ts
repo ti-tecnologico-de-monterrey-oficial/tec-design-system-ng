@@ -1,13 +1,16 @@
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+import {
+  Meta,
+  StoryObj,
+  componentWrapperDecorator,
+  moduleMetadata,
+} from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BmbDateRangeComponent } from './bmb-date-range.component';
-import { storiesLayoutVertical } from '../../utils/bambooLayout';
-import { attributes } from '../../utils/utils';
 
 export default {
-  title: 'Micro Componentes/Date range',
+  title: 'Components/Inputs/Date picker range',
   component: BmbDateRangeComponent,
   decorators: [
     moduleMetadata({
@@ -19,7 +22,12 @@ export default {
         BmbDateRangeComponent,
       ],
     }),
-    storiesLayoutVertical,
+    componentWrapperDecorator((story: string) => {
+      return `
+        <div style="height: 35rem">
+          ${story}
+        </div>`;
+    }),
   ],
   parameters: {
     docs: {
@@ -266,13 +274,4 @@ Below is an example of how to use this component in HTML:
 
 type Story = StoryObj<BmbDateRangeComponent>;
 
-export const Default: Story = {
-  args: {},
-  render: (args) => ({
-    template: `
-      <div style="height: 35rem">
-        <bmb-date-range ${attributes(args)} />
-      </div>
-    `,
-  })
-};
+export const Default: Story = {};

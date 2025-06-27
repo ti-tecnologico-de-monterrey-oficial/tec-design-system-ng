@@ -4,7 +4,6 @@ import { BmbStudentActivitySelectorComponent } from './bmb-student-activity-sele
 import { BmbTabStudentActivityComponent } from './bmb-student-activity-tab/bmb-student-activity-tab.component';
 import { BmbCardComponent } from '../bmb-card/bmb-card.component';
 import { IStudentActivityAppearance } from '../../types';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 const appearanceOptions: IStudentActivityAppearance[] = [
   'academic',
@@ -13,7 +12,7 @@ const appearanceOptions: IStudentActivityAppearance[] = [
 ];
 
 export default {
-  title: 'Micro Componentes/Student activity selector',
+  title: 'Components/Menus/Student activity selector',
   component: BmbStudentActivitySelectorComponent,
   subcomponents: { BmbTabStudentActivityComponent, BmbCardComponent },
   decorators: [
@@ -25,7 +24,6 @@ export default {
         BmbCardComponent,
       ],
     }),
-    storiesLayoutHorizontal,
   ],
   parameters: {
     docs: {

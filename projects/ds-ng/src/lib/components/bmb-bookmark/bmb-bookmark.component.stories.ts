@@ -1,13 +1,9 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbBookmarkComponent } from './bmb-bookmark.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Bookmark',
+  title: 'Components/Buttons/Bookmark',
   component: BmbBookmarkComponent,
-  decorators: [
-    storiesLayoutHorizontal,
-  ],
   parameters: {
     docs: {
       description: {
@@ -53,3 +49,9 @@ Below is an example of how you can use this component in HTML:
 type Story = StoryObj<BmbBookmarkComponent>;
 
 export const Default: Story = {};
+
+export const StatusActive: Story = {
+  args: {
+    isActive: true,
+  },
+};

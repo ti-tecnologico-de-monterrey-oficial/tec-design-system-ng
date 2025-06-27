@@ -1,13 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbTextLinkComponent } from './bmb-text-link.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Text Link',
+  title: 'Components/Buttons/Text link',
   component: BmbTextLinkComponent,
-  decorators: [
-    storiesLayoutHorizontal,
-  ],
   parameters: {
     docs: {
       description: {
@@ -31,6 +27,18 @@ Below is an example of how you can use this component in HTML:
     },
   },
   argTypes: {
+    // appearance: {
+    //   name: 'Appearance',
+    //   control: {
+    //     type: 'select',
+    //   },
+    //   options: ['default', 'primary', 'alternative'],
+    //   description: 'Defines the appearance style.',
+    //   table: {
+    //     category: 'Properties',
+    //     type: { summary: 'string' },
+    //   },
+    // },
     textLink: {
       name: 'Text Link',
       control: {
@@ -116,6 +124,7 @@ Below is an example of how you can use this component in HTML:
     },
   },
   args: {
+    // appearance: 'default',
     textLink: 'Texto de prueba',
     link: 'https://www.youtube.com',
     textLinkStyle: 'icon',

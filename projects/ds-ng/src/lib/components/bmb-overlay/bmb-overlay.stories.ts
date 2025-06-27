@@ -37,7 +37,7 @@ class StorybookToastWrapperComponent {
 }
 
 export default {
-  title: 'Micro Componentes/Overlay',
+  title: 'Components/Containers/Overlay',
   component: BmbOverlayComponent,
   decorators: [
     moduleMetadata({

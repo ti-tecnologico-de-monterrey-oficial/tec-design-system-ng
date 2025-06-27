@@ -1,13 +1,9 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbTabsComponent } from './bmb-tabs.component';
-import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Macro Componentes/Tabs',
+  title: 'Components/Visual labels/Tab',
   component: BmbTabsComponent,
-  decorators: [
-    storiesLayoutVertical,
-  ],
   parameters: {
     docs: {
       description: {
@@ -166,6 +162,18 @@ The \`BmbTabsComponent\` optionally integrates with the \`TabsService\`, which a
     },
   },
   argTypes: {
+    // appearance: {
+    //   name: 'Appearance',
+    //   control: {
+    //     type: 'select',
+    //   },
+    //   options: ['default', 'primary', 'alternative'],
+    //   description: 'Defines the appearance style.',
+    //   table: {
+    //     category: 'Properties',
+    //     type: { summary: 'string' },
+    //   },
+    // },
     tabs: {
       name: 'Tabs',
       control: { type: 'object' },
@@ -197,6 +205,7 @@ The \`BmbTabsComponent\` optionally integrates with the \`TabsService\`, which a
     },
   },
   args: {
+    // appearance: 'default',
     tabs: [
       { id: 1, title: 'Tec de Monterrey', badge: 13, isActive: true },
       { id: 2, title: 'Label demasiado grande para una tab' },

@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
+// import { IBmbContrast } from '../../types/colors';
 
 @Component({
   selector: 'bmb-button-icon',
@@ -19,6 +20,7 @@ import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.compo
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbButtonIconComponent {
+  // appearance = input<IBmbContrast>('default');
   idElement = input<string>();
   icon = input.required<string>();
   showContainer = input<boolean>(true);

@@ -164,7 +164,7 @@ class StorybookToastWrapperComponent {
 }
 
 export default {
-  title: 'Macro Componentes/Portal',
+  title: 'Dev tools/Portal',
   component: BmbPushNotificationItemComponent,
   decorators: [
     moduleMetadata({
@@ -186,7 +186,7 @@ Below is an example of how you can use this component in TypeScript:
 ##Configuration
 Add the \`BmbNotificationService\` to your App providers:
 
-\`\`\`
+\`\`\`javascript
 providers: [
   provideRouter(routes),
   importProvidersFrom([BmbNotificationService, ...]),
@@ -197,7 +197,7 @@ providers: [
 
 ###Add notification
 
-\`\`\`
+\`\`\`typescript
 addNotification(notification: INotification);
 \`\`\`
 
@@ -205,7 +205,7 @@ This function returns an ID which can be used to delete the notification or chec
 
 ###Delete notification
 
-\`\`\`
+\`\`\`typescript
 deleteNotification(id: string);
 \`\`\`
 
@@ -213,7 +213,7 @@ This function deletes a notification by its ID.
 
 ###Get notification list
 
-\`\`\`
+\`\`\`typescript
 getNotificationList(): INotification[];
 \`\`\`
 
@@ -583,13 +583,14 @@ export const Default: StoryFn<typeof StorybookToastWrapperComponent> = (
       ></storybook-toast-wrapper>
       <!-- Start copying from here -->
       <div class="actions">
-      <button
-        bmbButton
-        appearance="primary"
-        icon="home"
-        (click)="openModalComponent()"
-      >Add notification</button>
-      <bmb-portal />
+        <button
+          bmbButton
+          appearance="primary"
+          icon="home"
+          (click)="openModalComponent()"
+        >Add notification</button>
+        <bmb-portal />
+      </div>
       `,
   };
 };

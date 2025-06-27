@@ -1,25 +1,18 @@
 import { Meta, StoryObj } from '@storybook/angular';
-import {
-  BmbListGroupComponent,
-  BmbListGroupItemComponent,
-} from './bmb-list-group.component';
+import { BmbListGroupComponent } from './bmb-list-group.component';
 import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
-import { InputSignal } from '@angular/core';
-import { SizeNames } from '../../types';
-import { BorderType } from './types';
 import { attributes } from '../../utils/utils';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
+import { BmbListGroupItemComponent } from './bmb-list-group-item/bmb-list-group-item.component';
 
 export default {
-  title: 'Macro componentes/ListsGroup/List group',
+  title: 'Components/Containers/List group',
   component: BmbListGroupComponent,
-  subcomponents: { BmbListGroupItemComponent },
+  tags: ['!autodocs'],
   decorators: [
     moduleMetadata({
-      imports: [CommonModule, BmbListGroupComponent, BmbListGroupItemComponent],
+      imports: [CommonModule, BmbListGroupItemComponent],
     }),
-    storiesLayoutHorizontal,
   ],
   parameters: {
     docs: {
@@ -124,7 +117,7 @@ Below is an example of how you can use this component in HTML:
       name: 'List Group Id',
       description:
         'This property is used when you have multiple List Group, each instance of the component must have different ID, which will be defined with this property.',
-      control: { type: 'string' },
+      control: { type: 'text' },
       table: {
         type: { summary: 'string' },
         category: 'Properties',
@@ -133,7 +126,7 @@ Below is an example of how you can use this component in HTML:
     selectionChange: {
       name: 'Selection Change',
       control: {
-        type: '',
+        type: undefined,
       },
       description:
         'Emitted when an option is selected. Contains the id of the selected option.',
@@ -157,9 +150,8 @@ Below is an example of how you can use this component in HTML:
 type Story = StoryObj<BmbListGroupComponent>;
 
 export const Default: Story = {
-  name: 'Default',
+  name: 'One item',
   render: (args) => ({
-    props: args,
     template: `
       <bmb-list-group ${attributes(args)}>
         <bmb-list-group-item
@@ -228,12 +220,11 @@ export const Default: Story = {
 };
 
 export const MultipleListGroup: Story = {
-  name: 'Example With Multiple List Group',
+  name: 'Example with multiple List group',
   render: (args) => ({
-    props: args,
     template: `
-    <!-- First List Group -->
-      <h1>First Bmb List Group </h1>
+    <!-- First List group -->
+      <h1>First List Group </h1>
       <bmb-list-group ${attributes(args)} [listGroupId]="'group-1'">
         <bmb-list-group-item
           id="list-group-item-1"
@@ -261,8 +252,8 @@ export const MultipleListGroup: Story = {
       </bmb-list-group>
       <hr>
 
-      <!-- Second List Group -->
-      <h1>Second Bmb List Group </h1>
+      <!-- Second List group -->
+      <h1>Second List group </h1>
       <bmb-list-group ${attributes(args)} [listGroupId]="'group-2'">
         <bmb-list-group-item
           id="list-group2-item-1"

@@ -1,3 +1,6 @@
+@use "sass:list";
+@use "sass:math";
+@use "sass:meta";
 $global-font-size: 16px;
 
 @function strip-unit($num) {
@@ -7,13 +10,13 @@ $global-font-size: 16px;
 }
 
 @function -btsp-to-rem($value, $base: null) {
-  @if type-of($value) != "number" {
-    @warn inspect($value) + ' was passed to rem_calc(), which is not a number.';
+  @if meta.type-of($value) != "number" {
+    @warn meta.inspect($value) + ' was passed to rem_calc(), which is not a number.';
 
     @return $value;
   }
 
-  @if unit($value) != "rem" {
+  @if math.unit($value) != "rem" {
     $value: calc(strip-unit($value) / strip-unit($base)) * 1rem;
   }
 
@@ -26,13 +29,13 @@ $global-font-size: 16px;
 
 @function rem_calc($values, $base: null) {
   $rem-values: ();
-  $count: length($values);
+  $count: list.length($values);
 
   @if $base == null {
     $base: $global-font-size;
   }
 
-  @if unit($base) == "%" {
+  @if math.unit($base) == "%" {
     $base: ($base / 100%) * 10px;
   }
 
@@ -41,7 +44,10 @@ $global-font-size: 16px;
   }
 
   @for $i from 1 through $count {
-    $rem-values: append($rem-values, -btsp-to-rem(nth($values, $i), $base));
+    $rem-values: list.append(
+      $rem-values,
+      -btsp-to-rem(list.nth($values, $i), $base)
+    );
   }
 
   @return $rem-values;

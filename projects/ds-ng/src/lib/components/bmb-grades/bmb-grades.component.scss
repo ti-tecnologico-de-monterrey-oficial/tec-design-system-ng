@@ -2,6 +2,10 @@
 @use "../../../assets/styles/base/rem" as rem;
 
 .bmb_grades {
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+
   &-modal {
     &-title {
       color: var(--general_contrasts-100);
@@ -10,8 +14,12 @@
   }
 
   &-content {
-    width: calc(100% - 2rem);
-    margin: 1rem;
+    padding: rem.rem_calc(16);
+    flex: 1;
+    display: flex;
+    flex-flow: column;
+    gap: rem.rem_calc(16);
+    overflow: auto;
   }
 
   &-micro > .bmb_container {

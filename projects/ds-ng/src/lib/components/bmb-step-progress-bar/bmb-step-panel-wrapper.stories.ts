@@ -4,7 +4,7 @@ import {
   ViewChild,
   AfterViewInit,
 } from '@angular/core';
-import { Meta, StoryObj } from '@storybook/angular';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { BmbStepProgressBarComponent } from './bmb-step-progress-bar.component';
 import { CommonModule } from '@angular/common';
 import {
@@ -13,78 +13,79 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { storiesLayoutVertical } from '../../utils/bambooLayout';
+
+const example = `
+<ng-template #step0>
+  <form [formGroup]="forms[0]" style="padding: 1rem; background: #eef">
+    <h3>Paso 1</h3>
+    <input formControlName="campo" placeholder="Campo obligatorio" />
+    <div
+      *ngIf="
+        forms[0].get('campo')?.invalid && forms[0].get('campo')?.touched
+      "
+    >
+      Campo requerido
+    </div>
+    <div style="margin-top: 1rem">
+      <button type="button" (click)="goNext()">Siguiente</button>
+    </div>
+  </form>
+</ng-template>
+
+<ng-template #step1>
+  <form [formGroup]="forms[1]" style="padding: 1rem; background: #efe">
+    <h3>Paso 2</h3>
+    <input formControlName="campo" placeholder="Campo obligatorio" />
+    <div
+      *ngIf="
+        forms[1].get('campo')?.invalid && forms[1].get('campo')?.touched
+      "
+    >
+      Campo requerido
+    </div>
+    <div style="margin-top: 1rem">
+      <button type="button" (click)="goBack()">Atrás</button>
+      <button type="button" (click)="goNext()">Siguiente</button>
+    </div>
+  </form>
+</ng-template>
+
+<ng-template #step2>
+  <form [formGroup]="forms[2]" style="padding: 1rem; background: #fee">
+    <h3>Paso 3</h3>
+    <input formControlName="campo" placeholder="Campo obligatorio" />
+    <div
+      *ngIf="
+        forms[2].get('campo')?.invalid && forms[2].get('campo')?.touched
+      "
+    >
+      Campo requerido
+    </div>
+    <div style="margin-top: 1rem">
+      <button type="button" (click)="goBack()">Atrás</button>
+      <button type="button" (click)="finish()">Finalizar</button>
+    </div>
+  </form>
+</ng-template>
+
+<bmb-step-progress-bar
+  [type]="'step-panel'"
+  [totalSteps]="3"
+  [activeStep]="activeStep"
+  [labelSteps]="['Paso 1', 'Paso 2', 'Paso 3']"
+  [stepTemplates]="[step0, step1, step2]"
+  (next)="goNext()"
+  (back)="goBack()"
+  (finish)="finish()"
+  (onStepPanelPress)="onStepPress($event)"
+/>
+`;
 
 @Component({
   selector: 'storybook-step-panel-wrapper',
   standalone: true,
   imports: [BmbStepProgressBarComponent, CommonModule, ReactiveFormsModule],
-  template: `
-    <ng-template #step0>
-      <form [formGroup]="forms[0]" style="padding: 1rem; background: #eef">
-        <h3>Paso 1</h3>
-        <input formControlName="campo" placeholder="Campo obligatorio" />
-        <div
-          *ngIf="
-            forms[0].get('campo')?.invalid && forms[0].get('campo')?.touched
-          "
-        >
-          Campo requerido
-        </div>
-        <div style="margin-top: 1rem">
-          <button type="button" (click)="goNext()">Siguiente</button>
-        </div>
-      </form>
-    </ng-template>
-
-    <ng-template #step1>
-      <form [formGroup]="forms[1]" style="padding: 1rem; background: #efe">
-        <h3>Paso 2</h3>
-        <input formControlName="campo" placeholder="Campo obligatorio" />
-        <div
-          *ngIf="
-            forms[1].get('campo')?.invalid && forms[1].get('campo')?.touched
-          "
-        >
-          Campo requerido
-        </div>
-        <div style="margin-top: 1rem">
-          <button type="button" (click)="goBack()">Atrás</button>
-          <button type="button" (click)="goNext()">Siguiente</button>
-        </div>
-      </form>
-    </ng-template>
-
-    <ng-template #step2>
-      <form [formGroup]="forms[2]" style="padding: 1rem; background: #fee">
-        <h3>Paso 3</h3>
-        <input formControlName="campo" placeholder="Campo obligatorio" />
-        <div
-          *ngIf="
-            forms[2].get('campo')?.invalid && forms[2].get('campo')?.touched
-          "
-        >
-          Campo requerido
-        </div>
-        <div style="margin-top: 1rem">
-          <button type="button" (click)="goBack()">Atrás</button>
-          <button type="button" (click)="finish()">Finalizar</button>
-        </div>
-      </form>
-    </ng-template>
-
-    <bmb-step-progress-bar
-      [type]="'step-panel'"
-      [totalSteps]="3"
-      [activeStep]="activeStep"
-      [labelSteps]="['Paso 1', 'Paso 2', 'Paso 3']"
-      [stepTemplates]="[step0, step1, step2]"
-      (next)="goNext()"
-      (back)="goBack()"
-      (finish)="finish()"
-      (onStepPanelPress)="onStepPress($event)"
-    ></bmb-step-progress-bar>
-  `,
+  template: `${example}`,
 })
 class StorybookStepPanelWrapperComponent implements AfterViewInit {
   @ViewChild('step0') step0!: TemplateRef<any>;
@@ -148,11 +149,9 @@ class StorybookStepPanelWrapperComponent implements AfterViewInit {
 }
 
 const meta: Meta<typeof StorybookStepPanelWrapperComponent> = {
-  title: 'Micro Componentes/Step Progress Bar/Step Panel',
+  title: 'Components/Status indicators/Step progress bar/Wizard',
   component: StorybookStepPanelWrapperComponent,
-  decorators: [
-    storiesLayoutVertical,
-  ],
+  tags: ['!autodocs'],
   parameters: {
     docs: {
       description: {
@@ -247,70 +246,12 @@ export class AppComponent {
 \`\`\`
 
 Below is an example of how you can use this component in HTML:
+\`\`\`html
+${example}
+\`\`\`
         `,
       },
-      transformSource: () =>
-        `
-      <ng-template #step0>
-  <form [formGroup]="forms[0]" style="padding: 1rem; background: #eef">
-    <h3>Paso 1</h3>
-    <input formControlName="campo" placeholder="Campo obligatorio" />
-    <div
-      *ngIf="forms[0].get('campo')?.invalid && forms[0].get('campo')?.touched"
-    >
-      Campo requerido
-    </div>
-    <div style="margin-top: 1rem">
-      <button type="button" (click)="goNext()">Siguiente</button>
-    </div>
-  </form>
-</ng-template>
-
-<ng-template #step1>
-  <form [formGroup]="forms[1]" style="padding: 1rem; background: #efe">
-    <h3>Paso 2</h3>
-    <input formControlName="campo" placeholder="Campo obligatorio" />
-    <div
-      *ngIf="forms[1].get('campo')?.invalid && forms[1].get('campo')?.touched"
-    >
-      Campo requerido
-    </div>
-    <div style="margin-top: 1rem">
-      <button type="button" (click)="goBack()">Atrás</button>
-      <button type="button" (click)="goNext()">Siguiente</button>
-    </div>
-  </form>
-</ng-template>
-
-<ng-template #step2>
-  <form [formGroup]="forms[2]" style="padding: 1rem; background: #fee">
-    <h3>Paso 3</h3>
-    <input formControlName="campo" placeholder="Campo obligatorio" />
-    <div
-      *ngIf="forms[2].get('campo')?.invalid && forms[2].get('campo')?.touched"
-    >
-      Campo requerido
-    </div>
-    <div style="margin-top: 1rem">
-      <button type="button" (click)="goBack()">Atrás</button>
-      <button type="button" (click)="finish()">Finalizar</button>
-    </div>
-  </form>
-</ng-template>
-
-<bmb-step-progress-bar
-  [type]="'step-panel'"
-  [totalSteps]="3"
-  [activeStep]="activeStep"
-  [labelSteps]="['Paso 1', 'Paso 2', 'Paso 3']"
-  [stepTemplates]="[step0, step1, step2]"
-  (next)="goNext()"
-  (back)="goBack()"
-  (finish)="finish()"
-  (onStepPanelPress)="onStepPress($event)"
-></bmb-step-progress-bar>
-
-      `.trim(),
+      transformSource: () => `${example}`.trim(),
     },
   },
 };

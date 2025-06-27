@@ -92,7 +92,7 @@ class StorybookModalWrapperComponent {
 }
 
 export default {
-  title: 'Macro Componentes/Landing Pages/ChatBar Card',
+  title: 'Internals/Home chat card',
   component: BmbTopBarComponent,
   decorators: [
     moduleMetadata({
@@ -104,7 +104,7 @@ export default {
     docs: {
       description: {
         component: `Note: When you click on fullscreen icon, in Storybook doesn’t look the best due to the many elements, but in your project, it should display correctly.
-        
+
 Below is an example of how you can use this component in TypeScript:
 
 \`\`\`typescript

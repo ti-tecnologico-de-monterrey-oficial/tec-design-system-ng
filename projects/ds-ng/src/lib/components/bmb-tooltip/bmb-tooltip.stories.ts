@@ -1,17 +1,26 @@
-import { moduleMetadata, StoryFn, type Meta } from '@storybook/angular';
+import {
+  componentWrapperDecorator,
+  moduleMetadata,
+  StoryFn,
+  type Meta,
+} from '@storybook/angular';
 import { BmbTooltipComponent } from './bmb-tooltip.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { attributes } from '../../utils/utils';
-import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/ToolTip',
+  title: 'Components/Status indicators/ToolTip',
   component: BmbTooltipComponent,
   decorators: [
     moduleMetadata({
       imports: [BmbIconComponent],
     }),
-    storiesLayoutVertical,
+    componentWrapperDecorator((story: string) => {
+      return `
+        <div style="height: 500px; display: flex; justify-content: center; align-items: center;">
+          ${story}
+        </div>`;
+    }),
   ],
   parameters: {
     docs: {
@@ -129,11 +138,9 @@ Below is an example of how you can use this component in HTML:
 const customizable = (): StoryFn => (args) => ({
   props: args,
   template: `
-    <div style="height: 500px; display: flex; justify-content: center; align-items: center;">
-      <bmb-tooltip
-        ${attributes(args)}
-      />
-    </div>
+    <bmb-tooltip
+      ${attributes(args)}
+    />
   `,
 });
 

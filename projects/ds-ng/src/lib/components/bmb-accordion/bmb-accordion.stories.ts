@@ -3,17 +3,16 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { attributes } from '../../utils/utils';
-import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Accordion',
+  title: 'Components/Containers/Accordion',
+  tags: ['!autodocs'],
   component: BmbAccordionComponent,
   decorators: [
     moduleMetadata({
       declarations: [],
       imports: [CommonModule, BmbAccordionComponent],
     }),
-    storiesLayoutVertical
   ],
   parameters: {
     docs: {
@@ -63,6 +62,18 @@ Below is an example of how you can use this component in HTML:
     },
   },
   argTypes: {
+    // appearance: {
+    //   name: 'Appearance',
+    //   control: {
+    //     type: 'select',
+    //   },
+    //   options: ['default', 'primary', 'alternative'],
+    //   description: 'Defines the appearance style.',
+    //   table: {
+    //     category: 'Properties',
+    //     type: { summary: 'string' },
+    //   },
+    // },
     borderRadius: {
       name: 'Border radius',
       control: {
@@ -178,7 +189,8 @@ Below is an example of how you can use this component in HTML:
     lockToggle: {
       name: 'Lock toggle',
       control: { type: 'boolean' },
-      description: 'If set to true, the click interaction is disabled, but without adding disabled styles.',
+      description:
+        'If set to true, the click interaction is disabled, but without adding disabled styles.',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
@@ -214,6 +226,7 @@ Below is an example of how you can use this component in HTML:
     },
   },
   args: {
+    // appearance: 'default',
     borderRadius: 'm',
     margin: 'm',
     paddingHeader: 'm',
@@ -229,7 +242,7 @@ Below is an example of how you can use this component in HTML:
 
 type Story = StoryObj<BmbAccordionComponent>;
 
-export const OneItem: Story = {
+export const Default: Story = {
   render: (args) => ({
     template: `
   <bmb-accordion
@@ -262,9 +275,36 @@ export const OneItem: Story = {
 };
 
 export const SelectedItem = {
-  ...OneItem,
   args: {
-    ...OneItem.args,
     active: true,
   },
+  render: (args: any) => ({
+    template: `
+  <bmb-accordion
+    ${attributes(args)}
+  >
+    <ng-template #bmbAccordionHeader>
+      1
+    </ng-template>
+    <ng-template #bmbAccordionContent>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut justo ante,
+        mattis nec libero a, malesuada pellentesque sem. Aliquam erat volutpat.
+        Nulla ut consequat turpis, id efficitur velit. Fusce vitae dolor leo.
+        Praesent diam justo, consectetur in blandit ut, tincidunt vitae enim.
+        Nulla eleifend, leo at finibus volutpat, nulla metus eleifend lacus,
+        ullamcorper dictum augue diam id erat. Donec ac fringilla elit. Aliquam
+        sit amet luctus elit. Suspendisse ante tortor, euismod nec metus id,
+        commodo sollicitudin massa. Aliquam magna nibh, semper eu vestibulum
+        aliquam, aliquet gravida massa. Nullam vehicula, augue non aliquam
+        posuere, enim urna blandit erat, et euismod enim nisi vel eros. Ut dictum
+        egestas mi, faucibus iaculis lorem. Donec risus diam, maximus at varius
+        rutrum, blandit quis augue. Sed consectetur massa ut auctor ultricies.
+        Etiam fringilla venenatis nulla, gravida finibus nulla faucibus fringilla.
+        Morbi luctus porta orci eu iaculis.
+      </p>
+    </ng-template>
+  </bmb-accordion>
+    `,
+  }),
 };

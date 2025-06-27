@@ -37,7 +37,7 @@ export class BmbHomeCardChatComponent {
   messagesHistory = input.required<IBmbChatMessage[]>();
 
   currentBot = model<IBotType>();
-  isLoading = model<boolean>();
+  isLoading = model<boolean>(false);
 
   onClose = output();
   onBack = output();

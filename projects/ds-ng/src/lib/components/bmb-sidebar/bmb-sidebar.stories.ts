@@ -1,15 +1,25 @@
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+import {
+  Meta,
+  StoryObj,
+  componentWrapperDecorator,
+  moduleMetadata,
+} from '@storybook/angular';
 import { BmbSidebarComponent } from './bmb-sidebar.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { CommonModule } from '@angular/common';
 import { RouterTestingModule } from '@angular/router/testing';
 
 export default {
-  title: 'Macro Componentes/Sidebar',
+  title: 'Components/Menus/Sidebar',
   component: BmbSidebarComponent,
   decorators: [
     moduleMetadata({
       imports: [CommonModule, BmbIconComponent, RouterTestingModule],
+    }),
+    componentWrapperDecorator((story: string) => {
+      return `<div style="height: 50vh;">
+        ${story}
+      </div>`;
     }),
   ],
   parameters: {

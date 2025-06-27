@@ -1,13 +1,9 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbLegendComponent } from './bmb-legend.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Legend',
+  title: 'Components/Visual labels/Legend',
   component: BmbLegendComponent,
-  decorators: [
-    storiesLayoutHorizontal,
-  ],
   parameters: {
     docs: {
       description: {
@@ -85,3 +81,11 @@ Below is an example of how you can use this component in HTML:
 type Story = StoryObj<BmbLegendComponent>;
 
 export const Default: Story = {};
+
+export const Brand: Story = {
+  args: {
+    label: 'Title',
+    value: '$0.00',
+    indicatorAppearance: 'brand',
+  },
+};

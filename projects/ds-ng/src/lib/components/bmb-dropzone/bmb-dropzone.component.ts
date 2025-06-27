@@ -15,6 +15,7 @@ import {
   BmbCardContentComponent,
 } from '../bmb-card/bmb-card.component';
 import { BmbProgressBarComponent } from '../bmb-progress-bar/bmb-progress-bar.component';
+// import { IBmbContrast } from '../../types/colors';
 interface FileData {
   name: string;
   size: number;
@@ -40,6 +41,7 @@ interface FileData {
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbDropzoneComponent {
+  // appearance = input<IBmbContrast>('default');
   acceptedExtensions = input.required<string[]>();
   dropInstruction = input<string>('Arrastra tus archivos aquí o');
   dropLabel = input<string>('selecciona tus archivos');

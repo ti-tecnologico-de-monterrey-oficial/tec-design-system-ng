@@ -2,17 +2,14 @@ import { BmbTablesComponent } from './bmb-tables.component';
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { attributes } from '../../utils/utils';
-import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Macro Componentes/Table',
+  title: 'Components/Containers/Table',
   component: BmbTablesComponent,
   decorators: [
     moduleMetadata({
       imports: [CommonModule, BmbIconComponent],
     }),
-    storiesLayoutVertical,
   ],
   parameters: {
     docs: {
@@ -494,7 +491,7 @@ Below is an example of how to use this component in HTML:
         type: { summary: 'BmbTableLang' },
         defaultValue: { summary: 'es' },
       },
-    }
+    },
   },
   args: {
     data: [
@@ -528,7 +525,12 @@ Below is an example of how to use this component in HTML:
         icon: 'face',
         labelEn: 'Last Name',
       },
-      { def: 'birthday', label: 'Cumpleaños', dataKey: 'birthday', labelEn: 'Birthday' },
+      {
+        def: 'birthday',
+        label: 'Cumpleaños',
+        dataKey: 'birthday',
+        labelEn: 'Birthday',
+      },
       { def: 'country', label: 'País', dataKey: 'country', labelEn: 'Country' },
     ],
     config: {

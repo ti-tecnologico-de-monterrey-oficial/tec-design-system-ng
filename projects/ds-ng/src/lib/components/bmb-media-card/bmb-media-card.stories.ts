@@ -1,10 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbMediaCardComponent } from './bmb-media-card.component';
-import { attributesText } from '../../../../../../dist/ds-ng/lib/utils/utils';
 import { attributes } from '../../utils/utils';
 
 export default {
-  title: 'Micro Componentes/Media card',
+  title: 'Components/Containers/Media card',
   component: BmbMediaCardComponent,
   parameters: {
     docs: {

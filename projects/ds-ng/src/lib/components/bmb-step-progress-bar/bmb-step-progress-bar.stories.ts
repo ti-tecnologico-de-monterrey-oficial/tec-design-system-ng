@@ -1,12 +1,15 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { BmbStepProgressBarComponent } from './bmb-step-progress-bar.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
+import { CommonModule } from '@angular/common';
 
 export default {
-  title: 'Micro Componentes/Step Progress Bar',
+  title: 'Components/Status indicators/Step progress bar',
   component: BmbStepProgressBarComponent,
+  tags: ['!autodocs'],
   decorators: [
-    storiesLayoutHorizontal,
+    moduleMetadata({
+      imports: [CommonModule],
+    }),
   ],
   parameters: {
     docs: {
@@ -59,7 +62,8 @@ Below is an example of how you can use this component in HTML:
         type: 'radio',
       },
       options: ['small', 'medium', 'default'],
-      description: 'Set the size of the steps. **Note**: This property only works when the `type` is `horizontal`.',
+      description:
+        'Set the size of the steps. **Note**: This property only works when the `type` is `horizontal`.',
       table: {
         category: 'Properties',
         type: { summary: 'select' },
@@ -149,3 +153,14 @@ Below is an example of how you can use this component in HTML:
 type Story = StoryObj<BmbStepProgressBarComponent>;
 
 export const Default: Story = {};
+
+export const Vertical: Story = {
+  name: 'Vertical',
+};
+
+export const Horizontal: Story = {
+  name: 'Horizontal',
+  args: {
+    type: 'horizontal',
+  },
+};

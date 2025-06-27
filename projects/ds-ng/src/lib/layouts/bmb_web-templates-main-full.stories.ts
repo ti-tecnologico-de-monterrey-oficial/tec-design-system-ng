@@ -35,7 +35,7 @@ import { attributes } from '../utils/utils';
 class StorybookModalWrapperComponent {}
 
 export default {
-  title: 'Micro Componentes/Web Templates/1 Column Box',
+  title: 'Templates/Stand alone sites/1 Column box',
   component: BmbTopBarComponent,
   decorators: [
     moduleMetadata({

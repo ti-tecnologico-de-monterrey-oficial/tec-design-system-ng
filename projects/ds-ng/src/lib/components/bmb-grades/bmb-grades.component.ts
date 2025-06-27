@@ -135,10 +135,13 @@ export class BmbGradesComponent implements OnInit {
     return 0;
   }
 
-  getServiceHours(): number {
-    const period = this.grades()[this.gradeIndex].periods[this.periodIndex];
-    if (this.showPrincipalDetail) return period.serviceHours;
-    return 0;
+  getServiceHours(): number | boolean {
+    if (this.grades()[this.gradeIndex].periods[this.periodIndex].serviceHours) {
+      const period = this.grades()[this.gradeIndex].periods[this.periodIndex];
+      if (this.showPrincipalDetail) return period.serviceHours ?? 0;
+      return 0;
+    }
+    return false;
   }
 
   getDetailTitle(element: any): string {

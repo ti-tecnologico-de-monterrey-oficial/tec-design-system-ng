@@ -6,35 +6,37 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 
 ---
 
-# 🌟 Versión 1.5.8 ya está aquí
+# 🌟 Versión 1.5.9 ya está aquí 🎉 - 27 de junio de 2025
 
-🔵 **Novedades**
+Esta versión se centra en fortalecer la accesibilidad, la personalización y la robustez de los componentes, para ello no solo hemos hecho actualizaciones dentro de los componentes, tambien hemos actualizado la documentacion.
 
-En esta versión trabajamos en actualizaciones clave y la incorporación de funcionalidades enfocadas en mejorar la experiencia y accesibilidad para todas las personas que utilizan nuestro sistema de diseño. Te presentamos las principales novedades:
+El objetivo es brindar a todas las personas una experiencia más flexible, clara y eficiente.
 
-- 🔄 **Actualización**: Optimizamos el código de `dropdown-content` para homologar la apariencia y funcionalidad entre los componentes dropdown y dropdown-menu.
-- 🎨 **Mejora Visual**: Se actualizó la documentación de colores en la sección de fundamentos, facilitando la consulta y aplicación de paletas.
-- 🔄 **Actualización**: Se mejoró la apariencia y validación automática de los componentes `input-tag`, `input-phone`, `checkbox`, `radial`, `datepicker` y `date-range` para alinearlos con la versión actual de diseño y facilitar la integración con validaciones de formularios.
-- ⚡ **Optimización**: Se mejoró la obtención de componentes dentro de formularios, agilizando la validación automática y reduciendo errores de integración.
-- 🎨 **Mejora Visual**: Se actualizaron los estilos de componentes como `progress circle`, `progress bar`, `push notification`, `toast`, `badge`, `tabs`, `card`, `top bar`, `legend`, `value counter`, `dropdown` y `interactive icon` para asegurar consistencia visual en todos los temas.
-- 🔄 **Actualización**: Se agregaron eventos del ratón a múltiples componentes interactivos, permitiendo mayor control y personalización en la interacción.
-- 📘 **Documentación**: Se mejoró la documentación de los componentes de fundation (`Shadows`, `Colors`, `Borders`, `Radius` y `Spacing`)
+## 🆕 Nuevas Funcionalidades
 
----
+- Nuevo estado visual para el componente progress circle, facilitando la interpretación de avances y estados.
+- Nuevo input para bloquear la interacción en el componente acordeón, brindando mayor control en la interfaz.
+- Componente Notice Card para destacar información relevante de forma visual y accesible.
+- Actualización del componente search-input con apariencia renovada y funcionalidades optimizadas.
+- Se actualizaron los mensajes de error para el componente `input`
 
-🟢 **Nuevos Componentes**
+## ✅ Problemas Resueltos
 
-- 🆕 **Layout Grid**: Nuevo componente para crear y personalizar estructuras de grillas, facilitando la organización visual y responsiva de contenidos.
-- 🆕 **Grid Generator**: Herramienta para generar grillas personalizadas de manera visual, optimizando el flujo de trabajo de diseño y desarrollo.
+- Corregido error en el template del componente Step Progress, asegurando visualización y funcionamiento correctos.
+- Solucionados problemas de compatibilidad y renderizado en tablas y calificaciones, mejorando la experiencia en diferentes navegadores.
+- Ajustes en el componente radius para evitar confusiones y errores de estilo.
+- Se removió el ancho mínimo para el componente `container-button`
 
----
+## ⚡ Optimizaciones
 
-✅ **Problemas Resueltos**
+- Optimización de archivos gráficos (PNG y SVG) para mejorar tiempos de carga y rendimiento.
+- Mejoras en la accesibilidad de componentes basadas en pruebas A11y, facilitando el uso para todas las personas.
+- Unificación y actualización de historias en Storybook, simplificando la documentación visual y su mantenimiento.
+- Optimización de estilos y funcionalidades en menús y layouts para una experiencia más fluida.
 
-- ✔️ **Validación en Calendario**: Se corrigió un bug en el output `OnClose` del componente calendario, asegurando que las personas reciban retroalimentación precisa al cerrar el modal.
-- ✔️ **Compatibilidad de Inputs**: Se ajustó la validación automática en componentes de formulario, permitiendo que las personas desarrolladoras integren controles personalizados sin fricción.
-- ✔️ **Estilos y Accesibilidad**: Se corrigieron detalles visuales y de accesibilidad en componentes como `checkbox`, `input-tag`, `input-phone`, `progress circle`, `progress bar`, `toast`, y `push notification`, mejorando la experiencia para todas las personas.
-- ✔️ **Eventos de Interacción**: Se agregaron y corrigieron eventos de ratón en componentes interactivos, permitiendo una mayor personalización y control en la experiencia de uso.
+## 📘 Mejoras Documentación
+
+- Actualización del tema y estructura de la documentación en Storybook para facilitar la consulta y el aprendizaje.
 
 ---
 

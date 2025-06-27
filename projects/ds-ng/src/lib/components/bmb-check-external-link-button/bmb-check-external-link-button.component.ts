@@ -26,10 +26,15 @@ export class BmbCheckExternalLinkButtonComponent {
   link = input<string>('');
   target = input<IBmbTargetLink>('_blank');
   disabled = input<boolean>(false);
+  buttonName = input<string>('button');
 
   buttonPress = output<MouseEvent>();
   buttonClick = output<MouseEvent>();
   buttonKeyPress = output<KeyboardEvent>();
+
+  ngOnInit(): void {
+    console.log(`name: ${this.buttonName()}`);
+  }
 
   @ContentChild('commonTemplate') commonTemplate!: TemplateRef<any>;
 

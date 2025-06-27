@@ -29,10 +29,10 @@ import {
     <section style="max-height: 500px; overflow-y: auto; padding: 0 1rem;">
       @if (this.selectedTabId() === 1) {
         <header
-          style="position: sticky; top: 0; left: 0; z-index: 1; background-color: var(--general_contrasts-25); padding: 1rem 0;"
+          style="position: sticky; top: 0; left: 0; z-index: 1; background-color: var(--general_contrasts-15); padding: 1rem 0;"
         >
           <h2>Named colors</h2>
-          <p style="margin: 0;">
+          <p style="margin: 0; color: var(--general_contrasts-100);">
             Named colors are the main recommendation as they are compatible with
             both themes (light and dark). Click on the color to copy the value
           </p>
@@ -53,10 +53,10 @@ import {
         </ul>
       } @else if (this.selectedTabId() === 2) {
         <header
-          style="position: sticky; top: 0; left: 0; z-index: 1; background-color: var(--general_contrasts-25); padding: 1rem 0;"
+          style="position: sticky; top: 0; left: 0; z-index: 1; background-color: var(--general_contrasts-15); padding: 1rem 0;"
         >
           <h2>Base colors</h2>
-          <p style="margin: 0;">
+          <p style="margin: 0; color: var(--general_contrasts-100);">
             Click on the color to copy the value
             <strong>Please do not use the hex or rgb values.</strong>
           </p>
@@ -80,10 +80,12 @@ import {
         </ul>
       } @else if (this.selectedTabId() === 3) {
         <header
-          style="position: sticky; top: 0; left: 0; z-index: 1; background-color: var(--general_contrasts-25); padding: 1rem 0;"
+          style="position: sticky; top: 0; left: 0; z-index: 1; background-color: var(--general_contrasts-15); padding: 1rem 0;"
         >
           <h2>Gradients</h2>
-          <p style="margin: 0;">Click on the gradient to copy the value</p>
+          <p style="margin: 0; color: var(--general_contrasts-100);">
+            Click on the gradient to copy the value
+          </p>
         </header>
         <ul
           style="display: flex; gap: 1rem; flex-wrap: wrap; list-style: none; padding: 0; justify-content: center;"
@@ -759,11 +761,11 @@ export default {
 background-color: RGBA(var(--color-name));
 color: RGBA(var(--color-name));
 
-//You need to avoid the RGBA() for some variables, take a look to the playground
+/* You need to avoid the RGBA() for some variables, take a look to the playground */
 background-color: var(--color-name);
 color: var(--color-name);
 
-//For gradients colors
+/* For gradients colors */
 background: linear-gradient(180deg, var(--color-gradient-blue));
 background: radial-gradient(circle, var(--color-gradient-blue));
 

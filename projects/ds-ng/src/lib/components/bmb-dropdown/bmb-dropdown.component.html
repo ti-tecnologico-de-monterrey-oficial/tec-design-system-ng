@@ -20,7 +20,7 @@
     [id]="getUUID('id_selection')"
     [name]="getUUID('selection')"
     [icon]="getIcon()"
-    [isReadOnly]="true"
+    [isReadOnly]="!isFilterable()"
     [control]="selectionControl"
     [placeholder]="placeholder()"
     [isError]="shouldShowError"
@@ -43,7 +43,7 @@
     class="bmb_dropdown-list"
     [selectedOption]="control().value"
     [isKeyboardEvent]="isKeyboardEvent"
-    [(items)]="items"
+    [(items)]="filteredOptions"
     [(isOpen)]="isOpen"
   />
   <input

@@ -1,14 +1,24 @@
-import { componentWrapperDecorator, type Preview } from '@storybook/angular';
+import type { Preview } from '@storybook/angular';
 import { setCompodocJson } from '@storybook/addon-docs/angular';
 import docJson from '../../../documentation.json';
-import { themes } from 'storybook/internal/theming';
 import { withThemeByClassName } from '@storybook/addon-themes';
-import { withCustomLayout } from './addon/bambooLayout';
+import { allModes } from './modes';
 
 setCompodocJson(docJson);
 
 const preview: Preview = {
   parameters: {
+    ally: {
+      context: 'body',
+      config: {},
+      options: {},
+    },
+    chromatic: {
+      modes: {
+        light: allModes['light'],
+        dark: allModes['dark'],
+      },
+    },
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
       expanded: true,
@@ -18,7 +28,19 @@ const preview: Preview = {
       },
     },
     docs: {
-      source: { language: 'html' },
+      controls: {
+        exclude: [
+          'handleChange',
+          'handleKeyPress',
+          'ngOnInit',
+          'ngOnChanges',
+          'onBlur',
+          'onFocus',
+        ],
+      },
+      source: {
+        excludeDecorators: true,
+      },
       canvas: {
         sourceState: 'shown',
       },
@@ -28,37 +50,61 @@ const preview: Preview = {
         method: 'alphabetical',
         order: [
           'Foundations',
-          'Micro Componentes',
-          'Macro Componentes',
-          'Internal',
+          ['*', 'Layouts', 'System elements'],
+          'Components',
+          ['*', 'Dev tools'],
+          '*',
+          'Particularities',
+          ['*', 'mitec web', ['*', 'Landings']],
+          'Templates',
+          'Dev tools',
+          'Internals',
         ],
         locales: 'en-US',
       },
     },
-    decorators: [
-      // TODO: Check if later we can use this decorator to apply a global theme
-      // componentWrapperDecorator((story) => {
-      //   return `<div class="storybook-dark-theme">${story}</div><div class="storybook-light-theme">${story}</div>`;
-      // }),
-    ],
   },
   tags: ['autodocs'],
-  // TODO: Check if later we can use this decorator to apply a global theme
-  // globalTypes: {
-  //   theme: {
-  //     name: 'Theme',
-  //     description: 'Global theme for components',
-  //     defaultValue: 'light',
-  //     toolbar: {
-  //       icon: 'mirror',
-  //       items: [
-  //         { value: 'light', icon: 'circlehollow', title: 'Light Theme' },
-  //         { value: 'dark', icon: 'circle', title: 'Dark Theme' },
-  //       ],
-  //       dynamicTitle: true,
-  //     },
-  //   },
-  // },
+  globalTypes: {
+    a11y: {
+      manual: true,
+    },
+    // layout: {
+    //   description: 'Set the layout orientation of the story',
+    //   toolbar: {
+    //     title: 'Layout orientation',
+    //     icon: 'paintbrush',
+    //     items: [
+    //       { value: 'vertical', icon: 'stacked', title: 'Vertical' },
+    //       { value: 'horizontal', icon: 'sidebyside', title: 'Horizontal' },
+    //     ],
+    //   },
+    // },
+  },
+  initialGlobals: {
+    layout: 'vertical',
+  },
+  decorators: [
+    withThemeByClassName({
+      themes: {
+        light: 'storybook-light-theme',
+        dark: 'storybook-dark-theme',
+        // both: 'storybook-both-theme',
+      },
+      defaultTheme: 'dark',
+    }),
+    // TODO: Remove this when the Storybook don't have issues with the duplicated component
+    //      componentWrapperDecorator((story: string) => `
+    // <section id="storybook-theme-selector" [class]="theme">
+    //   <div class="storybook-light-theme">
+    //     ${story}
+    //   </div>
+    //   <div class="storybook-dark-theme">
+    //     ${story}
+    //   </div>
+    // </section>`,
+    //       ({ globals }) => { theme: globals['theme'] }),
+  ],
 };
 
 export default preview;

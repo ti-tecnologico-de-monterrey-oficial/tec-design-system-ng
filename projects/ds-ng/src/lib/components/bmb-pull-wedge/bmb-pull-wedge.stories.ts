@@ -1,14 +1,9 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbPullWedgeComponent } from './bmb-pull-wedge.component';
-import { BmbSkeletonComponent } from '../bmb-skeleton/bmb-skeleton.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Pull Wedge',
+  title: 'Components/Visual labels/Header pull wedge',
   component: BmbPullWedgeComponent,
-  decorators: [
-    storiesLayoutHorizontal,
-  ],
   parameters: {
     docs: {
       description: {

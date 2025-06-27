@@ -1,16 +1,14 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { BmbStudentActivityCardComponent } from './bmb-student-activity-card.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Student activity card',
+  title: 'Components/Containers/Student activity card',
   component: BmbStudentActivityCardComponent,
   decorators: [
     moduleMetadata({
       imports: [CommonModule, BmbStudentActivityCardComponent],
     }),
-    storiesLayoutHorizontal,
   ],
   parameters: {
     docs: {

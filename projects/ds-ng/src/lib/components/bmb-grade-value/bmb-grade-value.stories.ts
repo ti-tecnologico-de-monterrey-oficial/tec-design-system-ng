@@ -1,13 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbGradeValueComponent } from './bmb-grade-value.component';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Grade Value',
+  title: 'Components/Visual labels/Grade value',
   component: BmbGradeValueComponent,
-  decorators: [
-    storiesLayoutHorizontal,
-  ],
   parameters: {
     docs: {
       description: {
@@ -30,6 +26,18 @@ Below is an example of how you can use this component in HTML:
     },
   },
   argTypes: {
+    // appearance: {
+    //   name: 'Appearance',
+    //   control: {
+    //     type: 'select',
+    //   },
+    //   options: ['default', 'primary', 'alternative'],
+    //   description: 'Defines the appearance style.',
+    //   table: {
+    //     category: 'Properties',
+    //     type: { summary: 'string' },
+    //   },
+    // },
     type: {
       name: 'Type',
       control: {
@@ -62,6 +70,7 @@ Sets the type of anatomy variation to display.
     },
   },
   args: {
+    // appearance: 'default',
     type: 'main-grade',
     score: '89',
   },

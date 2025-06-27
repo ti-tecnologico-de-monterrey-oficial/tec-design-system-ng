@@ -2,14 +2,12 @@ import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { BmbAccordionControlDirective } from './bmb-accordion-control.directive';
 import { CommonModule } from '@angular/common';
 import { BmbAccordionComponent } from '../../../public-api';
-import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 const meta: Meta<BmbAccordionControlDirective> = {
-  title: 'Micro Componentes/Accordion Control',
+  title: 'Components/Containers/Accordion/Accordion control',
+  tags: ['!autodocs'],
   component: BmbAccordionComponent,
-  subcomponents: { BmbAccordionControlDirective },
   decorators: [
-    storiesLayoutVertical,
     moduleMetadata({
       declarations: [],
       imports: [

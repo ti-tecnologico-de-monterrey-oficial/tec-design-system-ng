@@ -3,10 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BmbDropzoneComponent } from './bmb-dropzone.component';
-import { storiesLayoutVertical } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Dropzone',
+  title: 'Components/Inputs/Dropzone',
   component: BmbDropzoneComponent,
   decorators: [
     moduleMetadata({
@@ -18,7 +17,6 @@ export default {
         BmbDropzoneComponent,
       ],
     }),
-    storiesLayoutVertical,
   ],
   parameters: {
     docs: {
@@ -177,6 +175,18 @@ Below is an example of how you can use this component in HTML:
     },
   },
   argTypes: {
+    // appearance: {
+    //   name: 'Appearance',
+    //   control: {
+    //     type: 'select',
+    //   },
+    //   options: ['default', 'primary', 'alternative'],
+    //   description: 'Defines the appearance style.',
+    //   table: {
+    //     category: 'Properties',
+    //     type: { summary: 'string' },
+    //   },
+    // },
     progress: {
       name: 'Progress',
       control: { type: 'number' },
@@ -282,6 +292,7 @@ Upload progress of the file.
     },
   },
   args: {
+    // appearance: 'default',
     progress: 0,
     acceptedExtensions: ['png', 'jpeg', 'jpg'],
     formatFilesLabel: 'Ver más información de formatos de archivo aceptados.',

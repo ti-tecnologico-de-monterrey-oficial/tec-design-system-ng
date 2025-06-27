@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   input,
@@ -50,7 +49,7 @@ import { FormControl } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbProfileComponent implements OnInit, AfterViewInit {
+export class BmbProfileComponent implements OnInit {
   userData = input<IBmbProfileData>(); //Deprecated
   isStandAlone = input<boolean>(false);
   standAloneData = input<IBmbUserData>();
@@ -84,7 +83,9 @@ export class BmbProfileComponent implements OnInit, AfterViewInit {
 
   langFormControl = new FormControl('es');
 
-  ngAfterViewInit(): void {
+  ngOnInit() {
+    let inputs: string[] = [];
+
     //to avoid breaking code from previous versions
     if (this.userData()) {
       const _userData: IBmbUserData = {
@@ -103,10 +104,6 @@ export class BmbProfileComponent implements OnInit, AfterViewInit {
     } else {
       this._studentData = this.studentData()!;
     }
-  }
-
-  ngOnInit() {
-    let inputs: string[] = [];
 
     if (this.isStandAlone()) {
       if (!this.standAloneData()) inputs.push('standAloneData');

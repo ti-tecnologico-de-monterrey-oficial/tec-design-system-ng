@@ -1,14 +1,18 @@
-import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
+import {
+  Meta,
+  StoryFn,
+  componentWrapperDecorator,
+  moduleMetadata,
+} from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BmbInputPhoneNumberComponent } from './bmb-input-phone-number.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { attributes } from '../../utils/utils';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Micro Componentes/Input Phone Number',
+  title: 'Components/Inputs/Phone number',
   component: BmbInputPhoneNumberComponent,
   decorators: [
     moduleMetadata({
@@ -20,7 +24,12 @@ export default {
         BmbIconComponent,
       ],
     }),
-    storiesLayoutHorizontal,
+    componentWrapperDecorator((story: string) => {
+      return `
+        <div style="height: 25rem">
+          ${story}
+        </div>`;
+    }),
   ],
   parameters: {
     docs: {
@@ -218,11 +227,9 @@ Below is an example of how to use this component in HTML:
 const customizable = (): StoryFn => (args) => ({
   props: args,
   template: `
-    <div style="height: 25rem">
-      <bmb-input-phone-number
-        ${attributes(args)}
-      />
-    </div>
+    <bmb-input-phone-number
+      ${attributes(args)}
+    />
     `,
 });
 

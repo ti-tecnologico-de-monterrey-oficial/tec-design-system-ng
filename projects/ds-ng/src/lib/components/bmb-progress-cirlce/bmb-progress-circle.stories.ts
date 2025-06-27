@@ -1,17 +1,9 @@
 import { Meta, StoryObj } from '@storybook/angular';
-import {
-  BmbProgressCircleComponent,
-  BmbProgressCirclePathStatus,
-} from './bmb-progress-circle.component';
-import { InputSignal } from '@angular/core';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
+import { BmbProgressCircleComponent } from './bmb-progress-circle.component';
 
 export default {
-  title: 'Micro Componentes/Progress Circle',
+  title: 'Components/Status indicators/Progress circle',
   component: BmbProgressCircleComponent,
-  decorators: [
-    storiesLayoutHorizontal,
-  ],
   parameters: {
     docs: {
       description: {
@@ -45,6 +37,19 @@ Below is an example of how you can use this component in HTML:
         category: 'Properties',
         type: { summary: 'string' },
         defaultValue: { summary: '' },
+      },
+    },
+    fullFillPathStatus: {
+      name: 'Full Fill Path Status',
+      control: {
+        type: 'boolean',
+      },
+      description:
+        'If true, the progress circle will display in a full state, hiding the percentage path and value content. Not work for gray status.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
       },
     },
     showValueLabel: {
@@ -121,6 +126,7 @@ Below is an example of how you can use this component in HTML:
     },
   },
   args: {
+    fullFillPathStatus: false,
     percent: 85,
     title: ['Total a pagar', 'este mes'],
     valueLabel: '$10000',

@@ -2,16 +2,14 @@ import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { BmbInvoiceComponent } from './bmb-invoice.component';
 import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 import { CommonModule } from '@angular/common';
-import { storiesLayoutHorizontal } from '../../utils/bambooLayout';
 
 export default {
-  title: 'Macro Componentes/Invoice',
+  title: 'Components/Visual labels/Invoice',
   component: BmbInvoiceComponent,
   decorators: [
     moduleMetadata({
       imports: [CommonModule, BmbBadgeComponent],
     }),
-    storiesLayoutHorizontal,
   ],
   parameters: {
     docs: {
@@ -36,6 +34,18 @@ Below is an example of how you can use this component in HTML:
     },
   },
   argTypes: {
+    // appearance: {
+    //   name: 'Appearance',
+    //   control: {
+    //     type: 'select',
+    //   },
+    //   options: ['default', 'primary', 'alternative'],
+    //   description: 'Defines the appearance style.',
+    //   table: {
+    //     category: 'Properties',
+    //     type: { summary: 'string' },
+    //   },
+    // },
     data: {
       name: 'Data',
       control: { type: 'object' },
@@ -58,6 +68,7 @@ Below is an example of how you can use this component in HTML:
     },
   },
   args: {
+    // appearance: 'default',
     data: {
       concept: [
         {
