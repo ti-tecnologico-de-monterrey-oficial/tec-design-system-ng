@@ -80,6 +80,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   });
   disabled = input<boolean>(false);
   value = input<string | string[]>('');
+  isFilterable = input<boolean>(false);
 
   control = model<FormControl>(newFormControlByType());
 

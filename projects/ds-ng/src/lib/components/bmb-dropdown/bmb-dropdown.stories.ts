@@ -212,6 +212,17 @@ export class Component {
         'Emitted when an option is selected. Contains the value or item of the selected option.',
       table: { category: 'Events', type: { summary: 'function' } },
     },
+    isFiterable: {
+      name: 'Is Filterable',
+      control: { type: 'boolean' },
+      description:
+        'When set to true, the user can type in order to filter the options list.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
     preferredOptions: {
       name: 'Preferred options',
       control: { type: 'array' },

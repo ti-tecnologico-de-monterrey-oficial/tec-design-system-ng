@@ -233,11 +233,11 @@ Below is an example of how you can use this component in HTML:
     },
   },
   args: {
-    appearance: 'default' as unknown as InputSignal<IBbmBgAppearance>,
-    id: 'list-group-item-1' as unknown as InputSignal<string>,
-    isDisabled: false as unknown as InputSignal<boolean>,
-    isActive: false as unknown as InputSignal<boolean>,
-    personalizedTemplate: false as unknown as InputSignal<boolean>,
+    appearance: 'default',
+    id: 'list-group-item-1',
+    isDisabled: false,
+    isActive: false,
+    personalizedTemplate: false,
   },
 } as Meta<typeof BmbListGroupItemComponent>;
 
@@ -275,7 +275,6 @@ export const Default: Story = {
 export const WithDefaultTemplate: Story = {
   name: 'Example with the default template',
   args: {
-    appearance: 'default',
     personalizedTemplate: false,
     headerText: 'Header text',
     descriptionText: 'Description text',

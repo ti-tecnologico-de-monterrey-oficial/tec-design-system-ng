@@ -20,7 +20,7 @@
     [id]="getUUID('id_selection')"
     [name]="getUUID('selection')"
     [icon]="getIcon()"
-    [isReadOnly]="false"
+    [isReadOnly]="!isFilterable()"
     [control]="selectionControl"
     [placeholder]="placeholder()"
     [isError]="shouldShowError"
