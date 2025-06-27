@@ -20,11 +20,11 @@
     justify-content: center;
     padding: var(--bmb-spacing-m) var(--bmb-spacing-l);
 
-    &--primary {
+    &-primary {
       background-color: var(--containers-background);
     }
 
-    &--alternative {
+    &-alternative {
       background-color: var(--containers-main);
     }
   }

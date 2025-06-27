@@ -5,11 +5,11 @@
 .bmb_invoice {
   padding: rem.rem_calc(30);
 
-  &--primary {
+  &-primary {
     background-color: var(--containers-background);
   }
 
-  &--alternative {
+  &-alternative {
     background-color: var(--containers-main);
   }
 

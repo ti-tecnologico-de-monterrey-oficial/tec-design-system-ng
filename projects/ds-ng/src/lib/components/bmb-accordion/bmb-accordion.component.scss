@@ -90,7 +90,7 @@
     }
   }
 
-  &--primary {
+  &-primary {
     .bmb_accordion-header,
     .bmb_accordion-header-icon {
       background-color: var(--containers-background);
@@ -98,7 +98,7 @@
     }
   }
 
-  &--alternative {
+  &-alternative {
     .bmb_accordion-header,
     .bmb_accordion-header-icon {
       background-color: var(--containers-main);

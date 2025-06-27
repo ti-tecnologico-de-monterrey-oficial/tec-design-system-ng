@@ -43,11 +43,11 @@ $backgrounds: (
   gap: var(--bmb-spacing-xs);
   transition: all 0.3s ease;
 
-  &--primary {
+  &-primary {
     background-color: var(--containers-background);
   }
 
-  &--alternative {
+  &-alternative {
     background-color: var(--containers-main);
   }
 

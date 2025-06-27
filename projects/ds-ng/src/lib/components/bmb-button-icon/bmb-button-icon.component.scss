@@ -112,13 +112,13 @@
       }
     }
 
-    &--primary {
+    &-primary {
       &.bmb_button_icon {
         background-color: var(--containers-background);
       }
     }
 
-    &--alternative {
+    &-alternative {
       &.bmb_button_icon {
         background-color: var(--containers-main);
       }
