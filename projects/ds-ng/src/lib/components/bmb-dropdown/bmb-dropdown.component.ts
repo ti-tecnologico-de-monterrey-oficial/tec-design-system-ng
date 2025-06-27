@@ -116,7 +116,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
         this.setSelectionControl(value);
       });
 
-      this.filteredOptions = [...this.items];
+    this.filteredOptions = [...this.items];
   }
 
   ngOnChanges(changes: SimpleChanges): void {
