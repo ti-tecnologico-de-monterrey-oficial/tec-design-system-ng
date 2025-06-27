@@ -197,13 +197,15 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
     if (this.showIcon()) this.selectedIcon = this.icon();
   }
 
-selectOptionWithKey(value: string): IDropdownItem[] {
-  console.log('selectOptionWithKey', value, this.isKeyboardEvent);
+  selectOptionWithKey(value: string): IDropdownItem[] {
+    console.log('selectOptionWithKey', value, this.isKeyboardEvent);
 
-  if (!value) return this.items;
+    if (!value) return this.items;
 
-  return this.items.filter((item) => item.text.toLowerCase().includes(value.toLowerCase()));
-}
+    return this.items.filter((item) =>
+      item.text.toLowerCase().includes(value.toLowerCase()),
+    );
+  }
 
   setSelectedValue(element: IDropdownItem): void {
     if (this.isMultiSelect()) {
@@ -249,7 +251,7 @@ selectOptionWithKey(value: string): IDropdownItem[] {
 
       if (!this.isOpen) this.openList();
       if (regexCode.test(event.key)) {
-        value+= event.key;
+        value += event.key;
       }
       if (event.key === 'Backspace') {
         value = value.slice(0, -1);
@@ -257,8 +259,6 @@ selectOptionWithKey(value: string): IDropdownItem[] {
 
       this.filteredOptions = this.selectOptionWithKey(value);
     }
-
-
   }
 
   handleValidity(): void {

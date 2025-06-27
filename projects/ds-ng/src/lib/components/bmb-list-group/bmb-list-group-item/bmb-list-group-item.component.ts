@@ -48,7 +48,6 @@ export class BmbListGroupItemComponent {
   badgeAppearance = input<IBbmBgAppearance>('mitec_purple');
   badgeText = input<string>('');
 
-
   inputRadioName: string = '';
   defaultWidthImage = '40px';
 
