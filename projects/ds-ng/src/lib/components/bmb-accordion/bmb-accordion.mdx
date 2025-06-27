@@ -1,0 +1,43 @@
+import {
+  Canvas,
+  Controls,
+  Description,
+  Meta,
+  Title,
+  Stories,
+} from "@storybook/addon-docs/blocks";
+
+import * as listStory from "./bmb-accordion.stories";
+import * as itemStory from "../../directives/bmb-accordion/bmb-accordion-control.stories";
+import { Tabs } from "../../../DocComponents/Tabs.mdx";
+
+export const List = () => (
+  <section>
+    <Meta of={listStory} />
+    <Title />
+    <Description />
+    <Canvas withToolbar={true} />
+    <Controls />
+    <Stories />
+  </section>
+);
+
+export const Item = () => (
+  <section>
+    <Meta of={itemStory} />
+    <Title of={itemStory}>{itemStory.title}</Title>
+    <Description of={itemStory}>{itemStory}</Description>
+    <Canvas of={itemStory.Default} withToolbar={true} />
+    <Controls of={itemStory.Default} />
+    <Stories of={itemStory.Default} />
+  </section>
+);
+
+<Meta of={listStory} />
+<Tabs
+  tabs={[
+    <Title>{listStory.title}</Title>,
+    <Title of={itemStory}>{itemStory.title}</Title>,
+  ]}
+  content={[<List />, <Item />]}
+/>

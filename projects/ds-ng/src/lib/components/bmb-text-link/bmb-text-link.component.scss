@@ -81,4 +81,12 @@
       }
     }
   }
+
+  &--primary {
+    background-color: var(--containers-background);
+  }
+
+  &--alternative {
+    background-color: var(--containers-main);
+  }
 }

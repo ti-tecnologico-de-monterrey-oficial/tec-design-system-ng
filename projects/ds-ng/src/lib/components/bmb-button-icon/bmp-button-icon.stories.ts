@@ -35,6 +35,18 @@ Below is an example of how you can use this component in HTML:
     },
   },
   argTypes: {
+    appearance: {
+      name: 'Appearance',
+      control: {
+        type: 'select',
+      },
+      options: ['default', 'primary', 'alternative'],
+      description: 'Defines the appearance style.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
     idElement: {
       name: 'Id element',
       control: {
@@ -117,6 +129,7 @@ Sets the appearance of the outline when true.
     },
   },
   args: {
+    appearance: 'default',
     idElement: '',
     icon: 'send',
     showContainer: true,

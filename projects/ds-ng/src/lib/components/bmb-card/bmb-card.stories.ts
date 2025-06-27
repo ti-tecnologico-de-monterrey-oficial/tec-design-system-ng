@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 import { attributes } from '../../utils/utils';
 
 const meta: Meta<BmbCardComponent> = {
-  title: 'Components/Containers/Card - Generic',
+  title: 'Components/Containers/Generic card',
   component: BmbCardComponent,
   subcomponents: {
     BmbCardFooterComponent,

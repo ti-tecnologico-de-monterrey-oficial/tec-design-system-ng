@@ -1,13 +1,11 @@
 import { Meta, StoryObj } from '@storybook/angular';
-import {
-  BmbListGroupComponent,
-  BmbListGroupItemComponent,
-} from './bmb-list-group.component';
-import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
+import { BmbListGroupComponent } from '../bmb-list-group.component';
+import { IBbmBgAppearance } from '../../bmb-advertisement-card/types';
 import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { InputSignal } from '@angular/core';
-import { attributes } from '../../utils/utils';
+import { attributes } from '../../../utils/utils';
+import { BmbListGroupItemComponent } from './bmb-list-group-item.component';
 
 const appearanceOptions: IBbmBgAppearance[] = [
   'normal',
@@ -42,12 +40,12 @@ const appearanceOptions: IBbmBgAppearance[] = [
 ];
 
 export default {
-  title: 'Components/Dev tools/List group item',
-  component: BmbListGroupComponent,
-  subcomponents: { BmbListGroupComponent },
+  title: 'Components/Containers/List group/List group item',
+  tags: ['!autodocs'],
+  component: BmbListGroupItemComponent,
   decorators: [
     moduleMetadata({
-      imports: [CommonModule, BmbListGroupComponent, BmbListGroupItemComponent],
+      imports: [CommonModule, BmbListGroupComponent],
     }),
   ],
   parameters: {
@@ -73,6 +71,18 @@ Below is an example of how you can use this component in HTML:
     },
   },
   argTypes: {
+    appearance: {
+      name: 'Appearance',
+      control: {
+        type: 'select',
+      },
+      options: ['default', 'primary', 'alternative'],
+      description: 'Defines the appearance style.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
     id: {
       name: 'Id',
       description: 'The id of the list group item **(required)**',
@@ -85,7 +95,7 @@ Below is an example of how you can use this component in HTML:
       },
     },
     personalizedTemplate: {
-      name: 'Personalized Template',
+      name: 'Personalized Templatesss',
       description:
         'When the value is true, the component will use the template that the user provides, instead of that, you need to provide the inputs por the deafult template',
       control: {
@@ -223,6 +233,7 @@ Below is an example of how you can use this component in HTML:
     },
   },
   args: {
+    appearance: 'default' as unknown as InputSignal<IBbmBgAppearance>,
     id: 'list-group-item-1' as unknown as InputSignal<string>,
     isDisabled: false as unknown as InputSignal<boolean>,
     isActive: false as unknown as InputSignal<boolean>,
@@ -238,7 +249,6 @@ export const Default: Story = {
     personalizedTemplate: true,
   },
   render: (args) => ({
-    props: args,
     template: `
       <bmb-list-group>
         <bmb-list-group-item ${attributes(args)}>
@@ -265,6 +275,7 @@ export const Default: Story = {
 export const WithDefaultTemplate: Story = {
   name: 'Example with the default template',
   args: {
+    appearance: 'default',
     personalizedTemplate: false,
     headerText: 'Header text',
     descriptionText: 'Description text',

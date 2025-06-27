@@ -162,7 +162,7 @@ import { attributes } from '../utils/utils';
 class StorybookModalWrapperComponent {}
 
 export default {
-  title: 'Templates/Stand alone tags',
+  title: 'Templates/Stand alone sites/2 Column info bar',
   component: BmbTopBarComponent,
   decorators: [
     moduleMetadata({

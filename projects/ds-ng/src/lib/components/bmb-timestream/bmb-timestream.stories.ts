@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { BmbTimestreamComponent } from './bmb-timestream.component';
 
 export default {
-  title: 'Components/Dev tools/Timestream',
+  title: 'Internals/Timestream',
   component: BmbTimestreamComponent,
   parameters: {
     docs: {

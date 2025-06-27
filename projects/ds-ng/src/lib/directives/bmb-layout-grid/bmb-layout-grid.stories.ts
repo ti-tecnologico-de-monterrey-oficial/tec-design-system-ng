@@ -12,6 +12,7 @@ import {
 
 const meta: Meta<BmbLayoutGridDirective> = {
   title: 'Foundations/Layouts/Layout grid',
+  tags: ['!autodocs'],
   component: BmbLayoutGridDirective,
   decorators: [
     moduleMetadata({

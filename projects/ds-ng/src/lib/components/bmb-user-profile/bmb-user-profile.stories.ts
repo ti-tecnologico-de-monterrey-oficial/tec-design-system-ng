@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { BmbUserProfileComponent } from './bmb-user-profile.component';
 
 export default {
-  title: 'Components/Dev tools/User profile',
+  title: 'Dev tools/User profile',
   component: BmbUserProfileComponent,
   parameters: {
     docs: {

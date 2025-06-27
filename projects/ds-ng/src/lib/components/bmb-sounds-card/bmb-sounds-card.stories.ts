@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { BmbSoundsCardComponent } from './bmb-sounds-card.component';
 
 export default {
-  title: 'Particularities/mitec web/Card - Tec sound',
+  title: 'Particularities/mitec web/Tec sound card',
   component: BmbSoundsCardComponent,
   parameters: {
     docs: {
