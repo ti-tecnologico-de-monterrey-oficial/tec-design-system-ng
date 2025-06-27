@@ -36,7 +36,7 @@ export const Item = () => (
 <Meta of={listStory} />
 <Tabs
   tabs={[
-    <Title>{listStory.title}</Title>,
+    <Title>{listStory?.title}</Title>,
     <Title of={itemStory}>{itemStory?.title}</Title>,
   ]}
   content={[<List />, <Item />]}

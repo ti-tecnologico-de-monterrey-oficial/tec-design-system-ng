@@ -8,7 +8,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
-import { IBmbContrast } from '../../types/colors';
+// import { IBmbContrast } from '../../types/colors';
 
 export interface IBmbConcept {
   concept: string;
@@ -36,7 +36,7 @@ export interface IBmbInvoice {
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbInvoiceComponent implements OnInit {
-  appearance = input<IBmbContrast>('default');
+  // appearance = input<IBmbContrast>('default');
   data = input<IBmbInvoice>();
 
   ngOnInit(): void {}

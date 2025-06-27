@@ -8,7 +8,6 @@ const config: StorybookConfig = {
     '@storybook/addon-docs',
     '@storybook/addon-a11y',
     '@storybook/addon-themes',
-    '@storybook/addon-icons',
   ],
   framework: {
     name: '@storybook/angular',

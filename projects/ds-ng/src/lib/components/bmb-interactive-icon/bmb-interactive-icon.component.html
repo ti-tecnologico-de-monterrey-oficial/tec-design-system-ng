@@ -3,13 +3,7 @@
   [target]="target()!"
   (buttonClick)="handleClick($event)"
 >
-  <section
-    [ngClass]="getClasses()"
-    [class.bmb_interactive_icon--primary]="appearanceContrast() === 'primary'"
-    [class.bmb_interactive_icon--alternative]="
-      appearanceContrast() === 'alternative'
-    "
-  >
+  <section [ngClass]="getClasses()">
     <span class="bmb_interactive_icon-box">
       <bmb-icon
         [icon]="icon()"

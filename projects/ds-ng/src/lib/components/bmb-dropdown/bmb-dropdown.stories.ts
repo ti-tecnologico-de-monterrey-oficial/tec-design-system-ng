@@ -26,7 +26,11 @@ export default {
     docs: {
       description: {
         component: `
-  Below is an example of how you can use this component in TypeScript:
+### Warning:
+
+The \`isFilterable\` feature is not compatible with the current version of Storybook, We are working on to fix this issue. You should be able to use it in your Angular application.
+
+Below is an example of how you can use this component in TypeScript:
 
   \`\`\`typescript
   @Component({
@@ -37,7 +41,6 @@ export default {
     FormControl,
     FormGroup
     ReactiveFormsModule,
-    Validators,
   ],
   templateUrl: './component.html',
   styleUrl: './component.scss',
@@ -69,7 +72,7 @@ export class Component {
   }
 
   getFormControl(name: string): FormControl {
-    return this.userForm.get(name) as FormControl;
+    return this.formGroup.get(name) as FormControl;
   }
 
   onValueChange(value: unknown): void {
@@ -192,7 +195,7 @@ export class Component {
       table: {
         category: 'Properties',
         type: { summary: 'FormControl' },
-        defaultValue: { summary: "FormControl('', Validators.required)" },
+        defaultValue: { summary: "FormControl('')" },
       },
     },
     onValueChange: {
@@ -201,6 +204,18 @@ export class Component {
       description:
         'Emitted when an option is selected. Contains the value or item of the selected option.',
       table: { category: 'Events', type: { summary: 'function' } },
+    },
+    isFilterable: {
+      name: 'Is Filterable',
+      control: { type: 'boolean' },
+      description: `When set to true, the user can type in order to filter the options list.
+
+**Note**: The \`isFilterable\` is not compatible with the \`isMultiSelect\`. If you set the **isMultiSelect** property to true, the **isFilterable** property will be ignored.`,
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
     },
     preferredOptions: {
       name: 'Preferred options',
@@ -243,6 +258,7 @@ export class Component {
     errorMessage: 'Error input dropdown',
     preferredOptions: ['_pear'],
     tooltip: 'Tool tip',
+    isFilterable: false,
   },
 } as Meta<typeof BmbDropdownComponent>;
 
