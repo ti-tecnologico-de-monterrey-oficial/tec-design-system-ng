@@ -2,6 +2,8 @@
   [id]="accordionId()"
   class="bmb_accordion"
   [ngClass]="getClassesAccordion()"
+  [class.bmb_accordion--primary]="appearance() === 'primary'"
+  [class.bmb_accordion--alternative]="appearance() === 'alternative'"
   [ngStyle]="getStyles()"
 >
   @if (disabled()) {

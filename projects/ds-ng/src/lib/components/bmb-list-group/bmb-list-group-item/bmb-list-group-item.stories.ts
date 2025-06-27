@@ -71,6 +71,18 @@ Below is an example of how you can use this component in HTML:
     },
   },
   argTypes: {
+    appearance: {
+      name: 'Appearance',
+      control: {
+        type: 'select',
+      },
+      options: ['default', 'primary', 'alternative'],
+      description: 'Defines the appearance style.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
     id: {
       name: 'Id',
       description: 'The id of the list group item **(required)**',
@@ -83,7 +95,7 @@ Below is an example of how you can use this component in HTML:
       },
     },
     personalizedTemplate: {
-      name: 'Personalized Template',
+      name: 'Personalized Templatesss',
       description:
         'When the value is true, the component will use the template that the user provides, instead of that, you need to provide the inputs por the deafult template',
       control: {
@@ -221,6 +233,7 @@ Below is an example of how you can use this component in HTML:
     },
   },
   args: {
+    appearance: 'default' as unknown as InputSignal<IBbmBgAppearance>,
     id: 'list-group-item-1' as unknown as InputSignal<string>,
     isDisabled: false as unknown as InputSignal<boolean>,
     isActive: false as unknown as InputSignal<boolean>,
@@ -262,6 +275,7 @@ export const Default: Story = {
 export const WithDefaultTemplate: Story = {
   name: 'Example with the default template',
   args: {
+    appearance: 'default',
     personalizedTemplate: false,
     headerText: 'Header text',
     descriptionText: 'Description text',

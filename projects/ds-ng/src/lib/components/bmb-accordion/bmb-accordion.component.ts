@@ -19,6 +19,7 @@ import { SizeNames } from '../../types';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbLayoutItemDirective } from '../../directives/bmb-layout/bmb-layout-item.directive';
 import { BmbLayoutDirective } from '../../directives/bmb-layout/bmb-layout.directive';
+import { IBmbContrast } from '../../types/colors';
 
 const calculateSize: any = (pixels: string[]): string => {
   return pixels.map((size) => `var(--bmb-radius-${size})`).join(' ');
@@ -41,6 +42,7 @@ const calculateSize: any = (pixels: string[]): string => {
 export class BmbAccordionComponent implements OnInit, OnChanges {
   @ContentChild('bmbAccordionContent') bmbAccordionContent!: TemplateRef<any>;
   @ContentChild('bmbAccordionHeader') bmbAccordionHeader!: TemplateRef<any>;
+  public appearance = input<IBmbContrast>('default');
   public borderRadius = input<SizeNames | SizeNames[]>('m');
   public margin = input<SizeNames | SizeNames[]>('m');
   public paddingHeader = input<SizeNames | SizeNames[]>('m');

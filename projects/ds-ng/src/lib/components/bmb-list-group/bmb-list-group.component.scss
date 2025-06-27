@@ -5,11 +5,11 @@
 
 .bmb_list-group {
   @include fonts.font(3, regular);
-  margin: 0;
-  padding: 0;
-  list-style: none;
   display: flex;
   flex-flow: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 
   &-row {
     display: grid;

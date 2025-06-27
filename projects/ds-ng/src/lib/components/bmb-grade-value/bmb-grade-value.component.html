@@ -1,4 +1,8 @@
-<div class="bmb_grade-value">
+<div
+  class="bmb_grade-value"
+  [class.bmb_grade-value--primary]="appearance() === 'primary'"
+  [class.bmb_grade-value--alternative]="appearance() === 'alternative'"
+>
   @if (type() === "main-grade") {
     <svg
       class="bmb_grade-value-main"

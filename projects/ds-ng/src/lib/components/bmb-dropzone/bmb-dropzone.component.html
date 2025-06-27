@@ -6,6 +6,10 @@
       'bmb-drop-zone-drag-over':
         fileDataList.length > 0 && !!fileDataList[0].name,
     }"
+    [class.bmb-drop-zone-container--primary]="appearance() === 'primary'"
+    [class.bmb-drop-zone-container--alternative]="
+      appearance() === 'alternative'
+    "
     (dragover)="onDragOver($event)"
     (dragleave)="onDragLeave($event)"
     (drop)="onDrop($event)"

@@ -21,7 +21,7 @@
     [attr.r]="svg.circle.r"
     [attr.stroke-width]="svg.circle.strokeWidth"
   />
-  @if (!!percent()) {
+  @if (shouldShowProgressPath()) {
     <path
       class="bmb_progress-circle-track"
       [attr.d]="svg.path.d"
@@ -50,7 +50,7 @@
           }
         </ng-container>
       }
-      @if (options.showValueLabel) {
+      @if (shouldShowValueLabel()) {
         <ng-container>
           @for (tspan of svg.valueLabel.tspans; track tspan) {
             <tspan
