@@ -12,14 +12,6 @@
     overflow: auto;
   }
 
-  &--primary {
-    background-color: var(--containers-background);
-  }
-
-  &--alternative {
-    background-color: var(--containers-main);
-  }
-
   &-container {
     display: flex;
   }

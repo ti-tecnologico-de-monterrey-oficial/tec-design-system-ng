@@ -1,8 +1,4 @@
-<div
-  class="bmb_invoice"
-  [class.bmb_invoice--primary]="appearance() === 'primary'"
-  [class.bmb_invoice--alternative]="appearance() === 'alternative'"
->
+<div class="bmb_invoice">
   <div class="bmb_invoice-list">
     @for (item of data()?.concept; track $index) {
       <div class="bmb_invoice-item">

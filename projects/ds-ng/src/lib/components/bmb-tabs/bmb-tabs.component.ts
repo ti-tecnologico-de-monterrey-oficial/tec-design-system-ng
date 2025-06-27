@@ -16,7 +16,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { TabsService } from '../../services/tabs.service';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
-import { IBmbContrast } from '../../types/colors';
+// import { IBmbContrast } from '../../types/colors';
 
 export interface IBmbTab {
   id: number;
@@ -37,7 +37,7 @@ export interface IBmbTab {
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbTabsComponent implements OnInit, AfterViewInit, OnDestroy {
-  appearance = input<IBmbContrast>('default');
+  // appearance = input<IBmbContrast>('default');
   format = input<string>('');
   tabs = input<IBmbTab[]>([]);
   selectedTabId = model<number>(0); //internal

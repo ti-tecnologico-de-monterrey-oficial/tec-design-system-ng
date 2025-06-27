@@ -175,18 +175,18 @@ Below is an example of how you can use this component in HTML:
     },
   },
   argTypes: {
-    appearance: {
-      name: 'Appearance',
-      control: {
-        type: 'select',
-      },
-      options: ['default', 'primary', 'alternative'],
-      description: 'Defines the appearance style.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
+    // appearance: {
+    //   name: 'Appearance',
+    //   control: {
+    //     type: 'select',
+    //   },
+    //   options: ['default', 'primary', 'alternative'],
+    //   description: 'Defines the appearance style.',
+    //   table: {
+    //     category: 'Properties',
+    //     type: { summary: 'string' },
+    //   },
+    // },
     progress: {
       name: 'Progress',
       control: { type: 'number' },
@@ -292,7 +292,7 @@ Upload progress of the file.
     },
   },
   args: {
-    appearance: 'default',
+    // appearance: 'default',
     progress: 0,
     acceptedExtensions: ['png', 'jpeg', 'jpg'],
     formatFilesLabel: 'Ver más información de formatos de archivo aceptados.',
