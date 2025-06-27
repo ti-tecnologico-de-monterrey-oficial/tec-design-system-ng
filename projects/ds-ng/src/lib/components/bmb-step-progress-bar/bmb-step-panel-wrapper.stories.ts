@@ -251,8 +251,7 @@ ${example}
 \`\`\`
         `,
       },
-      transformSource: () =>
-        `${example}`.trim(),
+      transformSource: () => `${example}`.trim(),
     },
   },
 };
