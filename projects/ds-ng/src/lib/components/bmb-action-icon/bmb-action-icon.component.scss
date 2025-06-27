@@ -28,11 +28,11 @@
       &:focus,
       &:focus-visible,
       &:hover:not(:disabled) {
-        color: var(--buttons-primary-hover);
+        color: var(--general_contrasts-75);
       }
 
       &:active:not(:disabled) {
-        color: var(--buttons-primary-select);
+        color: var(--general_contrasts-75);
       }
     }
   }

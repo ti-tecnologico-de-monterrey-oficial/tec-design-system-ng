@@ -37,7 +37,6 @@ export default {
     FormControl,
     FormGroup
     ReactiveFormsModule,
-    Validators,
   ],
   templateUrl: './component.html',
   styleUrl: './component.scss',
@@ -69,7 +68,7 @@ export class Component {
   }
 
   getFormControl(name: string): FormControl {
-    return this.userForm.get(name) as FormControl;
+    return this.formGroup.get(name) as FormControl;
   }
 
   onValueChange(value: unknown): void {
@@ -179,6 +178,17 @@ export class Component {
         type: { summary: 'boolean' },
       },
     },
+    isFilterable: {
+      name: 'Is Filterable',
+      control: { type: 'boolean' },
+      description:
+        'When set to true, the dropdown enables the filter input. By default, it is false, and you do not need to explicitly set it.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
     label: {
       name: 'Label',
       control: { type: 'text' },
@@ -243,6 +253,7 @@ export class Component {
     errorMessage: 'Error input dropdown',
     preferredOptions: ['_pear'],
     tooltip: 'Tool tip',
+    isFilterable: false,
   },
 } as Meta<typeof BmbDropdownComponent>;
 
