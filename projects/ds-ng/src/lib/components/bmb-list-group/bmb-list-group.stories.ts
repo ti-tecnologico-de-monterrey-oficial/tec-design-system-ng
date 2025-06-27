@@ -1,19 +1,17 @@
 import { Meta, StoryObj } from '@storybook/angular';
-import {
-  BmbListGroupComponent,
-  BmbListGroupItemComponent,
-} from './bmb-list-group.component';
+import { BmbListGroupComponent } from './bmb-list-group.component';
 import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { attributes } from '../../utils/utils';
+import { BmbListGroupItemComponent } from './bmb-list-group-item/bmb-list-group-item.component';
 
 export default {
   title: 'Components/Containers/List group',
-  tags: ['!autodocs'],
   component: BmbListGroupComponent,
+  tags: ['!autodocs'],
   decorators: [
     moduleMetadata({
-      imports: [CommonModule, BmbListGroupComponent, BmbListGroupItemComponent],
+      imports: [CommonModule, BmbListGroupItemComponent],
     }),
   ],
   parameters: {
@@ -119,7 +117,7 @@ Below is an example of how you can use this component in HTML:
       name: 'List Group Id',
       description:
         'This property is used when you have multiple List Group, each instance of the component must have different ID, which will be defined with this property.',
-      control: { type: 'string' },
+      control: { type: 'text' },
       table: {
         type: { summary: 'string' },
         category: 'Properties',
@@ -128,7 +126,7 @@ Below is an example of how you can use this component in HTML:
     selectionChange: {
       name: 'Selection Change',
       control: {
-        type: '',
+        type: undefined,
       },
       description:
         'Emitted when an option is selected. Contains the id of the selected option.',
@@ -152,9 +150,8 @@ Below is an example of how you can use this component in HTML:
 type Story = StoryObj<BmbListGroupComponent>;
 
 export const Default: Story = {
-  name: 'Default',
+  name: 'One item',
   render: (args) => ({
-    props: args,
     template: `
       <bmb-list-group ${attributes(args)}>
         <bmb-list-group-item
@@ -225,7 +222,6 @@ export const Default: Story = {
 export const MultipleListGroup: Story = {
   name: 'Example with multiple List group',
   render: (args) => ({
-    props: args,
     template: `
     <!-- First List group -->
       <h1>First List Group </h1>

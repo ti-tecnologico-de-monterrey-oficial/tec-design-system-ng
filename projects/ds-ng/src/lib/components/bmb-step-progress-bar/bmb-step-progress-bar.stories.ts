@@ -1,10 +1,16 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { BmbStepProgressBarComponent } from './bmb-step-progress-bar.component';
+import { CommonModule } from '@angular/common';
 
 export default {
   title: 'Components/Status indicators/Step progress bar',
   component: BmbStepProgressBarComponent,
   tags: ['!autodocs'],
+  decorators: [
+    moduleMetadata({
+      imports: [CommonModule],
+    }),
+  ],
   parameters: {
     docs: {
       description: {
@@ -148,7 +154,12 @@ type Story = StoryObj<BmbStepProgressBarComponent>;
 
 export const Default: Story = {};
 
+export const Vertical: Story = {
+  name: 'Vertical',
+};
+
 export const Horizontal: Story = {
+  name: 'Horizontal',
   args: {
     type: 'horizontal',
   },

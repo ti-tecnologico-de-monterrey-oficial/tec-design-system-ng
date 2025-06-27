@@ -1,13 +1,11 @@
 import { Meta, StoryObj } from '@storybook/angular';
-import {
-  BmbListGroupComponent,
-  BmbListGroupItemComponent,
-} from './bmb-list-group.component';
-import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
+import { BmbListGroupComponent } from '../bmb-list-group.component';
+import { IBbmBgAppearance } from '../../bmb-advertisement-card/types';
 import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { InputSignal } from '@angular/core';
-import { attributes } from '../../utils/utils';
+import { attributes } from '../../../utils/utils';
+import { BmbListGroupItemComponent } from './bmb-list-group-item.component';
 
 const appearanceOptions: IBbmBgAppearance[] = [
   'normal',
@@ -44,11 +42,10 @@ const appearanceOptions: IBbmBgAppearance[] = [
 export default {
   title: 'Components/Containers/List group/List group item',
   tags: ['!autodocs'],
-  component: BmbListGroupComponent,
-  subcomponents: { BmbListGroupComponent },
+  component: BmbListGroupItemComponent,
   decorators: [
     moduleMetadata({
-      imports: [CommonModule, BmbListGroupComponent, BmbListGroupItemComponent],
+      imports: [CommonModule, BmbListGroupComponent],
     }),
   ],
   parameters: {
