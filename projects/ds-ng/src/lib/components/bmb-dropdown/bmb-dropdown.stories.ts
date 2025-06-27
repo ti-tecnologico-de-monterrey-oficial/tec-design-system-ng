@@ -26,7 +26,11 @@ export default {
     docs: {
       description: {
         component: `
-  Below is an example of how you can use this component in TypeScript:
+### Warning:
+
+The \`isFilterable\` feature is not compatible with the current version of Storybook, We are working on to fix this issue. You should be able to use it in your Angular application.
+
+Below is an example of how you can use this component in TypeScript:
 
   \`\`\`typescript
   @Component({
@@ -178,17 +182,6 @@ export class Component {
         type: { summary: 'boolean' },
       },
     },
-    isFilterable: {
-      name: 'Is Filterable',
-      control: { type: 'boolean' },
-      description:
-        'When set to true, the dropdown enables the filter input. By default, it is false, and you do not need to explicitly set it.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean' },
-      },
-    },
     label: {
       name: 'Label',
       control: { type: 'text' },
@@ -202,7 +195,7 @@ export class Component {
       table: {
         category: 'Properties',
         type: { summary: 'FormControl' },
-        defaultValue: { summary: "FormControl('', Validators.required)" },
+        defaultValue: { summary: "FormControl('')" },
       },
     },
     onValueChange: {
@@ -212,11 +205,12 @@ export class Component {
         'Emitted when an option is selected. Contains the value or item of the selected option.',
       table: { category: 'Events', type: { summary: 'function' } },
     },
-    isFiterable: {
+    isFilterable: {
       name: 'Is Filterable',
       control: { type: 'boolean' },
-      description:
-        'When set to true, the user can type in order to filter the options list.',
+      description: `When set to true, the user can type in order to filter the options list.
+
+**Note**: The \`isFilterable\` is not compatible with the \`isMultiSelect\`. If you set the **isMultiSelect** property to true, the **isFilterable** property will be ignored.`,
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
