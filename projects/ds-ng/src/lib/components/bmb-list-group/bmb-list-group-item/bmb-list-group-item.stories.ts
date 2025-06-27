@@ -95,7 +95,7 @@ Below is an example of how you can use this component in HTML:
       },
     },
     personalizedTemplate: {
-      name: 'Personalized Templatesss',
+      name: 'Personalized Template',
       description:
         'When the value is true, the component will use the template that the user provides, instead of that, you need to provide the inputs por the deafult template',
       control: {
@@ -275,7 +275,6 @@ export const Default: Story = {
 export const WithDefaultTemplate: Story = {
   name: 'Example with the default template',
   args: {
-    appearance: 'default',
     personalizedTemplate: false,
     headerText: 'Header text',
     descriptionText: 'Description text',

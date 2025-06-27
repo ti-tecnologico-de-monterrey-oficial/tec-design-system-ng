@@ -13,6 +13,7 @@ import { BmbBadgeComponent } from '../../bmb-badge/bmb-badge.component';
 import { BmbImageComponent } from '../../bmb-image/bmb-image.component';
 import { IBbmBgAppearance } from '../../bmb-advertisement-card/types';
 import { BmbListGroupStatusService } from '../bmb-list-group.service';
+import { IBmbContrast } from '../../../types/colors';
 
 @Component({
   selector: 'bmb-list-group-item',
@@ -32,6 +33,7 @@ import { BmbListGroupStatusService } from '../bmb-list-group.service';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbListGroupItemComponent {
+  appearance = input<IBmbContrast>('default');
   id = input.required<string>();
   isDisabled = input<boolean>(false);
   isActive = input<boolean>(false);
@@ -45,6 +47,7 @@ export class BmbListGroupItemComponent {
   tooltipText = input<string>('');
   badgeAppearance = input<IBbmBgAppearance>('mitec_purple');
   badgeText = input<string>('');
+
 
   inputRadioName: string = '';
   defaultWidthImage = '40px';
@@ -68,6 +71,9 @@ export class BmbListGroupItemComponent {
       .includes(this.id());
 
     const classNames = ['bmb_list-group-item'];
+
+    classNames.push(`bmb_list-group-item-${this.appearance()}`);
+
     if (isElementSelected) classNames.push('bmb_list-group-item-selected');
     if (this.isDisabled()) classNames.push('bmb_list-group-item-disabled');
 
