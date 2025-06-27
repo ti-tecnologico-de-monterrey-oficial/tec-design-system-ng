@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BmbListGroupComponent } from './bmb-list-group.component';
-import { BmbListGroupItemComponent } from './bmb-list-group.component';
+import { BmbListGroupItemComponent } from './bmb-list-group-item/bmb-list-group-item.component';
 import { BmbListGroupStatusService } from './bmb-list-group.service';
 import { ComponentRef } from '@angular/core';
 

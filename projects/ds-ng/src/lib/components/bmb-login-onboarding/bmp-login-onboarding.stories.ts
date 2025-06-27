@@ -81,7 +81,7 @@ class StorybookToastWrapperComponent {
 }
 
 export default {
-  title: 'Organisms/Login\\Onboarding',
+  title: 'Organisms/Login onboarding mobile',
   component: BmbLoginOnboardingComponent,
   decorators: [
     moduleMetadata({

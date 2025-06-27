@@ -15,6 +15,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { ClickOutsideDirective } from '../../directives/utils/clickoutside.directive';
 import {
   convertListToSelectList,
+  filteredValue,
   getSelectedValues,
   getValidInitialValues,
 } from '../../utils/dropdown';
@@ -26,7 +27,7 @@ import {
 import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-dropdown-content.component';
 import { IDropdownItem } from '../../types';
 import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
-import { startWith } from 'rxjs';
+import { debounceTime, startWith } from 'rxjs';
 import { getUUID } from '../../utils/utils';
 import {
   assignNewFormControl,
@@ -92,6 +93,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   selectedIcon: string = '';
   isKeyboardEvent: boolean = false;
   isControlNull: boolean = false;
+  filteredOptions: IDropdownItem[] = [];
 
   ngOnInit() {
     if (!this.control()) {
@@ -106,11 +108,19 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
       this.control().setValue('');
     }
 
+    this.selectionControl.valueChanges
+          .pipe(debounceTime(300))
+          .subscribe((value) => {
+            this.filteredOptions = filteredValue(value, this.items);
+          });
+
     this.control()
       .valueChanges.pipe(startWith(this.getValidInitialValues()))
       .subscribe((value) => {
         this.setSelectionControl(value);
       });
+
+      this.filteredOptions = [...this.items];
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -188,6 +198,20 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
 
     this.selectionControl.setValue('');
     if (this.showIcon()) this.selectedIcon = this.icon();
+  }
+
+   selectOptionWithKey(value: string): void {
+    if (!!value) {
+      const selectedLength: number = this.filteredOptions.length;
+
+      if (!!selectedLength) {
+        this.setSelectedValue(this.filteredOptions[0]);
+      } else {
+        this.setSelectedValue(
+          this.filteredOptions[this.filteredOptions.length - 1],
+        );
+      }
+    }
   }
 
   setSelectedValue(element: IDropdownItem): void {

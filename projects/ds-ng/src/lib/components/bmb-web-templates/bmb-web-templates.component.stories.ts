@@ -3,6 +3,7 @@ import { BmbWebTemplatesComponent } from './bmb-web-templates.component';
 
 export default {
   title: 'Templates',
+  tags: ['hideInSidebar'],
   component: BmbWebTemplatesComponent,
   parameters: {
     docs: {

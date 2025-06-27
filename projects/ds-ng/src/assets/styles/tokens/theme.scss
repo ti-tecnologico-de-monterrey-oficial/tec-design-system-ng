@@ -459,7 +459,6 @@ img {
 }
 
 .bmb_doc {
-
   &-tabs {
     display: flex;
     flex-direction: row;
@@ -484,7 +483,7 @@ img {
       border-width: 0 0 2px;
       border-style: solid;
       border-color: transparent;
-      padding: .25rem 1rem;
+      padding: 0.25rem 1rem;
       cursor: pointer;
       color: var(--general_contrasts-100);
       transition: all 0.2s ease-in-out;

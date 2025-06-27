@@ -38,7 +38,7 @@ const appearanceOptions: IBmbInteractiveIconAppearance[] = [
 ];
 
 export default {
-  title: 'Components/Buttons/Interactive Icon',
+  title: 'Components/Buttons/Interactive icon',
   component: BmbInteractiveIconComponent,
   decorators: [
     moduleMetadata({

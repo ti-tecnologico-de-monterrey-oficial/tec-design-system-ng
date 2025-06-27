@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { BmbPullWedgeComponent } from './bmb-pull-wedge.component';
 
 export default {
-  title: 'Components/Visual labels/Pull wedge',
+  title: 'Components/Visual labels/Header pull wedge',
   component: BmbPullWedgeComponent,
   parameters: {
     docs: {

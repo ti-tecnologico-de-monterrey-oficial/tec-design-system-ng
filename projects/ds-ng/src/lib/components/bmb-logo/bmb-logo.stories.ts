@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbLogoComponent } from './bmb-logo.component';
 
 export default {
-  title: 'Components/Dev tools/Logo',
+  title: 'Dev tools/Logo',
   component: BmbLogoComponent,
   parameters: {
     docs: {

@@ -164,7 +164,7 @@ class StorybookToastWrapperComponent {
 }
 
 export default {
-  title: 'Components/Dev tools/Portal',
+  title: 'Dev tools/Portal',
   component: BmbPushNotificationItemComponent,
   decorators: [
     moduleMetadata({

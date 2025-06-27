@@ -10,9 +10,9 @@ import {
 import { attributes } from '../../utils/utils';
 
 const meta: Meta<BmbLayoutItemDirective> = {
-  title: 'Components/Dev tools/Layout item',
+  title: 'Foundations/Layouts/Layout/Layout item',
+  tags: ['!autodocs'],
   component: BmbLayoutItemDirective,
-  subcomponents: { BmbLayoutDirective },
   decorators: [
     moduleMetadata({
       declarations: [],
@@ -137,8 +137,7 @@ export default meta;
 
 type Story = StoryObj<BmbLayoutItemDirective>;
 
-export const OneItem: Story = {
-  args: {},
+export const Default: Story = {
   render: (args) => ({
     props: args,
     template: `

@@ -3,7 +3,7 @@ import { BmbFilterCardComponent } from './bmb-filter-card.component';
 import { CommonModule } from '@angular/common';
 
 export default {
-  title: 'Components/Containers/Card - Filter',
+  title: 'Components/Containers/Filter card',
   component: BmbFilterCardComponent,
   decorators: [moduleMetadata({ imports: [CommonModule] })],
   parameters: {
