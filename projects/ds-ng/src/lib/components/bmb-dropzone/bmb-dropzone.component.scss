@@ -19,14 +19,6 @@
     gap: var(--bmb-spacing-m);
     justify-content: center;
     padding: var(--bmb-spacing-m) var(--bmb-spacing-l);
-
-    &-primary {
-      background-color: var(--containers-background);
-    }
-
-    &-alternative {
-      background-color: var(--containers-main);
-    }
   }
 
   &-drag-over {

@@ -71,18 +71,18 @@ Below is an example of how you can use this component in HTML:
     },
   },
   argTypes: {
-    appearance: {
-      name: 'Appearance',
-      control: {
-        type: 'select',
-      },
-      options: ['default', 'primary', 'alternative'],
-      description: 'Defines the appearance style.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
+    // appearance: {
+    //   name: 'Appearance',
+    //   control: {
+    //     type: 'select',
+    //   },
+    //   options: ['default', 'primary', 'alternative'],
+    //   description: 'Defines the appearance style.',
+    //   table: {
+    //     category: 'Properties',
+    //     type: { summary: 'string' },
+    //   },
+    // },
     id: {
       name: 'Id',
       description: 'The id of the list group item **(required)**',
@@ -233,11 +233,11 @@ Below is an example of how you can use this component in HTML:
     },
   },
   args: {
-    appearance: 'default' as unknown as InputSignal<IBbmBgAppearance>,
-    id: 'list-group-item-1' as unknown as InputSignal<string>,
-    isDisabled: false as unknown as InputSignal<boolean>,
-    isActive: false as unknown as InputSignal<boolean>,
-    personalizedTemplate: false as unknown as InputSignal<boolean>,
+    // appearance: 'default',
+    id: 'list-group-item-1',
+    isDisabled: false,
+    isActive: false,
+    personalizedTemplate: false,
   },
 } as Meta<typeof BmbListGroupItemComponent>;
 

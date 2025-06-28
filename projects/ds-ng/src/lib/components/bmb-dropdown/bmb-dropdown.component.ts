@@ -95,6 +95,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   isKeyboardEvent: boolean = false;
   isControlNull: boolean = false;
   filteredOptions: IDropdownItem[] = [];
+  selectedItem: IDropdownItem | null = null;
 
   ngOnInit() {
     if (!this.control()) {
@@ -108,12 +109,6 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
     if (!this.isMultiSelect() && Array.isArray(this.control()?.value)) {
       this.control().setValue('');
     }
-
-    this.selectionControl.valueChanges
-      .pipe(debounceTime(300))
-      .subscribe((value) => {
-        this.filteredOptions = filteredValue(value, this.items);
-      });
 
     this.control()
       .valueChanges.pipe(startWith(this.getValidInitialValues()))
@@ -193,6 +188,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
       if (!!item) {
         this.selectionControl.setValue(item?.selectedText);
         if (this.showIcon()) this.selectedIcon = item.icon;
+        this.selectedItem = item;
       }
       return;
     }
@@ -201,18 +197,14 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
     if (this.showIcon()) this.selectedIcon = this.icon();
   }
 
-  selectOptionWithKey(value: string): void {
-    if (!!value) {
-      const selectedLength: number = this.filteredOptions.length;
+  selectOptionWithKey(value: string): IDropdownItem[] {
+    console.log('selectOptionWithKey', value, this.isKeyboardEvent);
 
-      if (!!selectedLength) {
-        this.setSelectedValue(this.filteredOptions[0]);
-      } else {
-        this.setSelectedValue(
-          this.filteredOptions[this.filteredOptions.length - 1],
-        );
-      }
-    }
+    if (!value) return this.items;
+
+    return this.items.filter((item) =>
+      item.text.toLowerCase().includes(value.toLowerCase()),
+    );
   }
 
   setSelectedValue(element: IDropdownItem): void {
@@ -233,11 +225,14 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   closeList(): void {
     this.isOpen = false;
     this.isKeyboardEvent = false;
+    this.selectionControl.setValue(this.selectedItem?.text || '');
   }
 
   // Keyboards events
   onKeyDown(event: KeyboardEvent) {
     const keyboards = [' ', 'ArrowDown', 'Down'];
+    const element = event.target as HTMLInputElement;
+    const regexCode = /^[a-zA-Z0-9\-\.\, ]{1}$/gm;
 
     if (keyboards.includes(event.key)) {
       if (!this.isOpen) {
@@ -245,10 +240,24 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
         this.openList();
       }
 
-      if (!this.options().length) {
+      if (!this.options().length && !this.isFilterable()) {
         event.preventDefault();
         return;
       }
+    }
+
+    if (this.isFilterable() && !this.isMultiSelect()) {
+      let value = this.selectionControl.value || '';
+
+      if (!this.isOpen) this.openList();
+      if (regexCode.test(event.key)) {
+        value += event.key;
+      }
+      if (event.key === 'Backspace') {
+        value = value.slice(0, -1);
+      }
+
+      this.filteredOptions = this.selectOptionWithKey(value);
     }
   }
 

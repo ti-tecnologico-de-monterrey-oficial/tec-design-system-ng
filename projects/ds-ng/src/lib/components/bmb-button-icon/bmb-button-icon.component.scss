@@ -111,18 +111,6 @@
         }
       }
     }
-
-    &-primary {
-      &.bmb_button_icon {
-        background-color: var(--containers-background);
-      }
-    }
-
-    &-alternative {
-      &.bmb_button_icon {
-        background-color: var(--containers-main);
-      }
-    }
   }
 
   &:not(.bmb_button_icon-container, .bmb_button_icon-disabled) {

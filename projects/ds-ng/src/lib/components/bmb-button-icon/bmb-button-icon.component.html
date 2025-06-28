@@ -6,10 +6,6 @@
     'bmb_button_icon-container-outline': showContainer() && isOutline(),
     'bmb_button_icon-disabled': disabled(),
   }"
-  [class.bmb_button_icon-container-primary]="appearance() === 'primary'"
-  [class.bmb_button_icon-container-alternative]="
-    appearance() === 'alternative'
-  "
 >
   <bmb-action-icon
     [idElement]="idElement()"

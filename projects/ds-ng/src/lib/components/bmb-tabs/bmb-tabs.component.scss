@@ -3,12 +3,13 @@
 @use "../../../assets/styles/base/rem" as rem;
 
 .bmb_tabs {
-  &-primary {
-    background-color: var(--containers-background);
-  }
+  display: flex;
+  flex-flow: column;
+  max-height: 100%;
 
-  &-alternative {
-    background-color: var(--containers-main);
+  &-content-container {
+    flex: 1;
+    overflow: auto;
   }
 
   &-container {
