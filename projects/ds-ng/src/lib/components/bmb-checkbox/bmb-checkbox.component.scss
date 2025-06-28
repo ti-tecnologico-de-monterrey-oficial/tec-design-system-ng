@@ -58,6 +58,10 @@
 
         @include mixins.input_shadow(var(--buttons-active-switch));
       }
+
+      &:not(:checked) {
+        @include focus_mark(var(--buttons-active-switch));
+      }
     }
   }
 
