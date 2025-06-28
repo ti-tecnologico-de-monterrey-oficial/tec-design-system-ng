@@ -19,6 +19,7 @@ import { BmbDropdownComponent } from '../bmb-dropdown/bmb-dropdown.component';
 import { BmbInputPhoneNumberComponent } from '../bmb-input-phone-number/bmb-input-phone-number.component';
 import { BmbCheckboxComponent } from '../bmb-checkbox/bmb-checkbox.component';
 import { BmbRadialComponent } from '../bmb-radial/bmb-radial.component';
+import { BmbSwitchComponent } from '../bmb-switch/bmb-switch.component';
 
 @Component({
   selector: 'bmb-form-validation',
@@ -53,6 +54,8 @@ export class BmbFormValidationComponent implements AfterViewInit {
   bmbCheckboxes!: QueryList<BmbCheckboxComponent>;
   @ContentChildren(BmbRadialComponent, { descendants: true })
   bmbRadials!: QueryList<BmbRadialComponent>;
+  @ContentChildren(BmbSwitchComponent, { descendants: true })
+  bmbSwitches!: QueryList<BmbSwitchComponent>;
 
   ngAfterViewInit(): void {
     this.addControls();
@@ -90,6 +93,9 @@ export class BmbFormValidationComponent implements AfterViewInit {
       this.addControl(child.name(), child.control(), child.isControlNull);
     });
     this.bmbRadials.forEach((child) => {
+      this.addControl(child.name(), child.control()!, child.isControlNull);
+    });
+    this.bmbSwitches.forEach((child) => {
       this.addControl(child.name(), child.control()!, child.isControlNull);
     });
   }
