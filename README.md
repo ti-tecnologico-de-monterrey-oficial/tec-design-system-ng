@@ -38,9 +38,18 @@ El objetivo es brindar a todas las personas una experiencia más flexible, clara
 
 - Actualización del tema y estructura de la documentación en Storybook para facilitar la consulta y el aprendizaje.
 
+## Issues resueltos
+
+- [533](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/issues/533) - Alert center no muestra barra de herramientas en iPhone SE, Samsung Galaxy S8+ y Surface Duo
+- [545](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/issues/545) - Container Button no se muestra correctamente en dispositivos iPhone SE, Samsung Galaxy S8+ y otros
+- [548](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/issues/548) - Bamboo Dropdown no agrega elipsis cuando se usan textos
+- [557](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/issues/557) - Buscador de elementos en el dropdown
+- [558](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/issues/558) - Profile component Student (web) variant : no muestra informacion
+- [559](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/issues/559) - Profile con informacion basica para el colaborador
+
 ---
 
-Puedes ver todos los componentes aqui: [Bamboo](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/foundations-colors--documentation)
+Puedes ver todos los componentes aqui: [Bamboo](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/getting-started--documentation)
 
 ---
 

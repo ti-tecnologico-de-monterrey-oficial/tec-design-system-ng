@@ -35,11 +35,20 @@ export class ClickOutsideDirective implements AfterViewInit, OnDestroy {
       });
   }
 
-  isInside(elemeToCheck: HTMLElement): boolean {
+  isInside(elementToCheck: HTMLElement): boolean {
+    console.log(
+      'Checking if inside:',
+      elementToCheck,
+      this.element.nativeElement,
+      elementToCheck === this.element.nativeElement ||
+        this.element.nativeElement.contains(elementToCheck) ||
+        elementToCheck?.classList?.contains('modal-persist'),
+    );
+
     return (
-      elemeToCheck === this.element.nativeElement ||
-      this.element.nativeElement.contains(elemeToCheck) ||
-      elemeToCheck?.classList?.contains('modal-persist')
+      elementToCheck === this.element.nativeElement ||
+      this.element.nativeElement.contains(elementToCheck) ||
+      elementToCheck?.classList?.contains('modal-persist')
     );
   }
 

@@ -1,0 +1,23 @@
+# Usar Node.js compatible
+FROM node:20-alpine  AS builder
+
+# Establecer el directorio de trabajo dentro del contenedor
+WORKDIR /app
+
+# Copiar los archivos de configuración de dependencias
+COPY package/v20/package.json ./
+
+# Instalar Angular CLI y dependencias
+RUN npm install -g @angular/cli@20 && npm install
+
+# Copiar todo el código del proyecto
+COPY . .
+
+# Construye la librería de Angular (ajusta el nombre de tu librería)
+RUN npm run docker-build
+
+# --- Extrae el resultado ---
+  FROM alpine:latest AS output
+
+# Copia los archivos construidos desde la etapa anterior
+COPY --from=builder /app/dist/ds-ng /ds-ng
