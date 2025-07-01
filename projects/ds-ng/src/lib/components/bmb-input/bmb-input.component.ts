@@ -83,7 +83,7 @@ export class BmbInputComponent implements OnInit {
   size = input<number>(); //Deprecated
   max = input<number>();
   min = input<number>();
-  id = input<string>();
+  id = input<string>(this.name());
   checked = input<boolean>(false);
   value = input<string>();
   autocomplete = input<string>('off');

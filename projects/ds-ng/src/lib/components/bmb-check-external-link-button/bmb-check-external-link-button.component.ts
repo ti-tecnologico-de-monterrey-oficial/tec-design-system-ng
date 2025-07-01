@@ -32,10 +32,6 @@ export class BmbCheckExternalLinkButtonComponent {
   buttonClick = output<MouseEvent>();
   buttonKeyPress = output<KeyboardEvent>();
 
-  ngOnInit(): void {
-    console.log(`name: ${this.buttonName()}`);
-  }
-
   @ContentChild('commonTemplate') commonTemplate!: TemplateRef<any>;
 
   isExternalLink(link: string): boolean {
