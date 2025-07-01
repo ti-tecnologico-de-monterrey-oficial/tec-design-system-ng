@@ -116,8 +116,4 @@ export class BmbCalendarTemplateMobileComponent {
 
     return todayHasEvents;
   }
-
-  handleCloseWedge() {
-    console.log('close wedge');
-  }
 }

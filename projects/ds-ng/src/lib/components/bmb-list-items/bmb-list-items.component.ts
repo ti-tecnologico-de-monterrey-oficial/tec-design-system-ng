@@ -93,8 +93,6 @@ export class BmbListItemsComponent implements OnInit {
     );
 
     this.itemsGropedByDate = objEvents;
-
-    console.log('orderedDates', orderedDates);
     return '';
   }
 

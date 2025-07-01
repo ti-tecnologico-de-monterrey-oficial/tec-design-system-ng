@@ -111,8 +111,6 @@ export class BmbSidebarComponent implements OnInit {
   }
 
   checkToCloseSidebar(event: any) {
-    console.log('checkToCloseSidebar', event);
-
     if (event.link && !event.children) {
       this.toggleSidebar();
       this.sideNav.nativeElement.classList.add('bmb_sidebar-desktop-close');

@@ -231,7 +231,7 @@ Below is an example of how you can use this component in HTML:
         isArchived: false,
       },
       {
-        id: 4,
+        id: 40,
         title: 'Alerta 40',
         description: [
           { text: 'Descripción de la alerta 10', type: 'title' },

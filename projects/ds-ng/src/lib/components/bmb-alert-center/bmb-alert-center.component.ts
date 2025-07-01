@@ -106,8 +106,6 @@ export class BmbAlertCenterComponent {
   }
 
   handleTabChange(tabId: IBmbTab): void {
-    console.log(this.tabs);
-
     this.selectedTab = tabId.id;
     this.eventsInCategories = this.filterEvents(tabId.id);
   }
