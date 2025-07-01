@@ -3,7 +3,7 @@ const util = require("util");
 const fs = require("fs");
 
 const execPromise = util.promisify(exec);
-const supportedVersions = ["17", "18", "19"];
+const supportedVersions = ["17", "18", "19", "20"];
 
 async function runDockerCommands(version) {
   try {
@@ -33,7 +33,7 @@ async function runDockerCommands(version) {
     // 5. Always clean up the container
     try {
       await execPromise(`docker rm temp-container-${version}`);
-      console.log("Temporary container removed");
+      console.log(`Temporary container removed - ${version}`);
     } catch (cleanupError) {
       console.warn("Cleanup warning:", cleanupError.message);
     }

@@ -3,7 +3,7 @@ import { IBmbCalendarEvent, IBmbCalendarRenderEvents } from './types';
 
 export const getWeekDays = (date: DateTime): DateTime[] => {
   const currentWeek = DateTime.fromObject({
-    weekYear: date.year,
+    weekYear: date.weekYear,
     weekNumber: date.weekNumber,
   });
   const firstWeekDay = currentWeek.startOf('week');

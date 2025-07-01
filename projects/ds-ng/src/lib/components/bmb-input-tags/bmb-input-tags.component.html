@@ -13,6 +13,7 @@
   [tooltipPosition]="tooltipPosition()"
   clickOutside
   (clickOutside)="closeList()"
+  [inputId]="inputId()"
 >
   <section
     class="bmb_input-tags-container"
@@ -24,7 +25,7 @@
     <bmb-input-content
       class="bmb_input-tags-filter"
       type="text"
-      [id]="getUUID('id_filter')"
+      [inputId]="inputId()"
       [name]="getUUID('filter')"
       [control]="filterControl"
       [placeholder]="placeholder()"
