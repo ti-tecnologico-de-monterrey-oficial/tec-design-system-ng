@@ -2,7 +2,7 @@ import { BmbAccordionComponent } from './bmb-accordion.component';
 import { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
-import { attributes } from '../../utils/utils';
+import { attributes, getEmptyStateMessage } from '../../utils/utils';
 
 export default {
   title: 'Components/Containers/Accordion',
@@ -18,6 +18,7 @@ export default {
     docs: {
       description: {
         component: `
+${getEmptyStateMessage()}
 Below is an example of how you can use this component in TypeScript:
 
 \`\`\`typescript

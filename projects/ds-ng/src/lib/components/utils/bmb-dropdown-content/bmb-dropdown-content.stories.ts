@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from '@storybook/angular';
 import { BmbDropdownContentComponent } from './bmb-dropdown-content.component';
-import { attributes } from '../../../utils/utils';
+import { attributes, getEmptyStateMessage } from '../../../utils/utils';
 
 export default {
   title: 'Internals/Dropdown content',
@@ -9,6 +9,7 @@ export default {
     docs: {
       description: {
         component: `
+${getEmptyStateMessage()}
 Below is an example of how you can use this component in TypeScript:
 
 \`\`\`typescript

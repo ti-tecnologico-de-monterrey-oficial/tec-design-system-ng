@@ -7,15 +7,27 @@ import {
   model,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import {
+  assignNewFormControl,
+  newFormControlByType,
+} from '../../utils/formControl';
+import { getUUID } from '../../utils/utils';
+import { BmbInputValidationComponent } from '../bmb-input/bmb-input-validation/bmb-input-validation.component';
 
 @Component({
   selector: 'bmb-switch',
   templateUrl: './bmb-switch.component.html',
   styleUrl: './bmb-switch.component.scss',
   standalone: true,
-  imports: [CommonModule, FormsModule, BmbIconComponent],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    BmbInputValidationComponent,
+    FormsModule,
+    BmbIconComponent,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
@@ -29,12 +41,65 @@ export class BmbSwitchComponent {
   ariaLabel = input<string>('Describe the button function here');
   id = input<string>(`bmb-switch-${BmbSwitchComponent.nextId++}`);
   disabled = input<boolean>(false);
+  name = input<string>(getUUID());
+
+  control = model<FormControl>(newFormControlByType('checkbox'));
 
   change = output<boolean>();
 
-  toggleSwitch(): void {
-    if (!this.disabled()) {
+  isControlNull: boolean = false;
+
+  ngOnInit(): void {
+    if (!this.control()) {
+      this.control.set(
+        assignNewFormControl(this.name(), this.control(), 'checkbox')!,
+      );
+      this.isControlNull = true;
+    }
+  }
+
+  getSwitchIcon(): string {
+    if (
+      !!this.rightIcon() &&
+      !!this.leftIcon() &&
+      !!!this.rightText() &&
+      !!!this.leftText()
+    ) {
+      if (this.isChecked()) return this.rightIcon();
+      return this.leftIcon();
+    }
+
+    return '';
+  }
+
+  showSwitchLabel(position: string): boolean {
+    if (
+      !!!this.rightIcon() &&
+      !!!this.leftIcon() &&
+      !!this.rightText() &&
+      !!this.leftText()
+    ) {
+      if (position === 'left') return !!this.leftText();
+      if (position === 'right') return !!this.rightText();
+    }
+
+    return false;
+  }
+
+  handleChange(event: Event): void {
+    event.stopPropagation();
+    const target = event.target as HTMLInputElement;
+    this.isChecked.set(target.checked);
+    this.control().setValue(this.isChecked());
+    this.change.emit(target.checked);
+    event.preventDefault();
+  }
+
+  handleKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
       this.isChecked.update((value) => !value);
+      this.control().setValue(this.isChecked());
+      event.preventDefault();
       this.change.emit(this.isChecked());
     }
   }

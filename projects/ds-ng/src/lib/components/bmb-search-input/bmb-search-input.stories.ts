@@ -1,5 +1,6 @@
 import { componentWrapperDecorator, Meta, StoryObj } from '@storybook/angular';
 import { BmbSearchInputComponent } from './bmb-search-input.component';
+import { getEmptyStateMessage } from '../../utils/utils';
 
 export default {
   title: 'Components/Inputs/Search',
@@ -16,6 +17,7 @@ export default {
     docs: {
       description: {
         component: `
+${getEmptyStateMessage()}
 Below is an example of how you can use this component in TypeScript:
 
 \`\`\`typescript

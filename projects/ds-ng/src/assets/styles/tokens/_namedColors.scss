@@ -35,6 +35,22 @@
   --buttons-alternative-text: RGBA(var(--color-charade-900), 1);
   --buttons-active-switch: RGBA(var(--color-mariner-700), 1);
   --buttons-inactive-step: RGBA(var(--color-charade-300), 1);
+  --buttons-active-switch-box-shadow-hover: RGBA(
+    var(--color-mariner-700),
+    0.15
+  );
+  --buttons-active-switch-box-shadow-focus: RGBA(
+    var(--color-mariner-700),
+    0.25
+  );
+  --buttons-inactive-switch-box-shadow-hover: RGBA(
+    var(--color-charade-500),
+    0.15
+  );
+  --buttons-inactive-switch-box-shadow-focus: RGBA(
+    var(--color-charade-500),
+    0.25
+  );
 
   --alert-successful: rgb(var(--color-green-primary));
   --alert-event: RGBA(var(--color-purple-light), 1);
@@ -133,6 +149,14 @@
 
   --buttons-active-switch: RGBA(var(--color-green-light), 1);
   --buttons-inactive-step: RGBA(var(--color-charade-700), 1);
+  --buttons-active-switch-box-shadow-hover: RGBA(
+    var(--color-green-light),
+    0.15
+  );
+  --buttons-active-switch-box-shadow-focus: RGBA(
+    var(--color-green-light),
+    0.25
+  );
 
   --menu_select-label-menu-inactive: RGBA(var(--color-charade-50), 1);
   --menu_select-activated-w-checkbox: RGBA(var(--color-mariner-700), 1);

@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbTimestreamCardComponent } from './bmb-timestream-card.component';
+import { getEmptyStateMessage } from '../../utils/utils';
 
 export default {
   title: 'Organisms/Timestream card (full)',
@@ -7,8 +8,12 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: `Note: When you click on fullscreen icon, in Storybook doesn’t look the best due to the many elements, but in your project, it should display correctly.
+        component: `
+${getEmptyStateMessage()}
+###Note:
+When you click on fullscreen icon, in Storybook doesn’t look the best due to the many elements, but in your project, it should display correctly.
 
+<br/>
 Below is an example of how you can use this component in TypeScript:
 
 \`\`\`typescript

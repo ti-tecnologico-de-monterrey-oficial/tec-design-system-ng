@@ -8,6 +8,7 @@ import { BmbDropdownMenuComponent } from './bmb-dropdown-menu.component';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { ActivatedRoute } from '@angular/router';
+import { getEmptyStateMessage } from '../../utils/utils';
 
 export default {
   title: 'Components/Menus/Dropdown menu',
@@ -37,6 +38,7 @@ export default {
     docs: {
       description: {
         component: `
+${getEmptyStateMessage()}
 Below is an example of how you can use this component in TypeScript:
 
 \`\`\`typescript

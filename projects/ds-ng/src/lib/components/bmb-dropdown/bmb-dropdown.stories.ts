@@ -5,7 +5,7 @@ import {
   type StoryFn,
 } from '@storybook/angular';
 import { BmbDropdownComponent } from './bmb-dropdown.component';
-import { attributes } from '../../utils/utils';
+import { attributes, getEmptyStateMessage } from '../../utils/utils';
 import { BmbFormValidationComponent } from '../bmb-form-validation/bmb-form-validation.component';
 
 export default {
@@ -26,10 +26,10 @@ export default {
     docs: {
       description: {
         component: `
+<br/>
 ### Warning:
-
 The \`isFilterable\` feature is not compatible with the current version of Storybook, We are working on to fix this issue. You should be able to use it in your Angular application.
-
+${getEmptyStateMessage()}
 Below is an example of how you can use this component in TypeScript:
 
   \`\`\`typescript

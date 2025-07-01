@@ -78,3 +78,11 @@ export const attributesText = (object: { [key: string]: any }): string =>
     .filter(([key]) => key === 'test_text')
     .map(([_, value]) => `${value}`)
     .join(' ');
+
+export const getEmptyStateMessage = () => `
+<br/>
+##Important:
+Remember to use the \`empty state\` for the cases that apply to this. Related documentation is available [here](https://bamboo.tec.mx/latest/guia-ux-writing/mensajes-del-producto/empty-states-OQYyq6h8-OQYyq6h8).
+
+<br/>
+`;

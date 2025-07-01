@@ -4,7 +4,7 @@ import {
   ViewChild,
   AfterViewInit,
 } from '@angular/core';
-import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import { Meta, StoryObj } from '@storybook/angular';
 import { BmbStepProgressBarComponent } from './bmb-step-progress-bar.component';
 import { CommonModule } from '@angular/common';
 import {
@@ -261,4 +261,6 @@ export default meta;
 type Story = StoryObj<typeof StorybookStepPanelWrapperComponent>;
 
 // ✅ Solo necesitas esto
-export const StepPanel: Story = {};
+export const StepPanel: Story = {
+  name: 'Wizard',
+};

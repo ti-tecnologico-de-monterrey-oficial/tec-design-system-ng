@@ -3,7 +3,7 @@ import {
   type Meta,
   type StoryFn,
 } from '@storybook/angular';
-import { attributes } from '../../utils/utils';
+import { attributes, getEmptyStateMessage } from '../../utils/utils';
 import { BmbInputTagsComponent } from './bmb-input-tags.component';
 
 export default {
@@ -21,6 +21,7 @@ export default {
     docs: {
       description: {
         component: `
+${getEmptyStateMessage()}
   Below is an example of how you can use this component in TypeScript:
 
   \`\`\`typescript
