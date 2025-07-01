@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbButtonDirective } from './button.directive';
 import { BmbIconComponent } from '../../components/bmb-icon/bmb-icon.component';
-import { attributes, attributesText } from '../../utils/utils';
+import { attributes, attributesText } from '../../utils/doc/utils';
 
 export default {
   title: 'Components/Buttons/Button',

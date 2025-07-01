@@ -3,7 +3,7 @@ import {
   type Meta,
   type StoryFn,
 } from '@storybook/angular';
-import { attributes, getEmptyStateMessage } from '../../utils/utils';
+import { attributes, getEmptyStateMessage } from '../../utils/doc/utils';
 import { BmbInputTagsComponent } from './bmb-input-tags.component';
 
 export default {

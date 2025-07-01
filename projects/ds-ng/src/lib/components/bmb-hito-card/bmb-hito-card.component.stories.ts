@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbHitoCardComponent } from './bmb-hito-card.component';
-import { attributes } from '../../utils/utils';
+import { attributes } from '../../utils/doc/utils';
 
 export default {
   title: 'Components/Containers/Hito card',

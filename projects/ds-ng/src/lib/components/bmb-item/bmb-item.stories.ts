@@ -1,7 +1,7 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { BmbItemComponent } from './bmb-item.component';
 import { CommonModule } from '@angular/common';
-import { attributes } from '../../utils/utils';
+import { attributes } from '../../utils/doc/utils';
 
 import { CUSTOM_ELEMENTS_SCHEMA, InputSignal } from '@angular/core';
 

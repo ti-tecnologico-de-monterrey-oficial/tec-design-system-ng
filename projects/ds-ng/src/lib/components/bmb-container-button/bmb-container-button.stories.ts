@@ -3,7 +3,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbContainerButtonComponent } from './bmb-container-button.component';
 import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
-import { attributes, getEmptyStateMessage } from '../../utils/utils';
+import { attributes, getEmptyStateMessage } from '../../utils/doc/utils';
 
 const appearanceOptions: IBbmBgAppearance[] = [
   'normal',

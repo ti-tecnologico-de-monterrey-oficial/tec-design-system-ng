@@ -1,6 +1,6 @@
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { BmbActionMenuComponent } from './bmb-action-menu.component';
-import { attributes } from '../../utils/utils';
+import { attributes } from '../../utils/doc/utils';
 import { BmbItemComponent } from '../bmb-item/bmb-item.component';
 
 export default {

@@ -6,7 +6,7 @@ import {
 } from '@storybook/angular';
 import { BmbTooltipComponent } from './bmb-tooltip.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { attributes } from '../../utils/utils';
+import { attributes } from '../../utils/doc/utils';
 
 export default {
   title: 'Components/Status indicators/ToolTip',

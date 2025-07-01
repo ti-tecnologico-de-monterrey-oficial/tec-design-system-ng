@@ -5,7 +5,7 @@ import {
   type StoryFn,
 } from '@storybook/angular';
 import { BmbDropdownComponent } from './bmb-dropdown.component';
-import { attributes, getEmptyStateMessage } from '../../utils/utils';
+import { attributes, getEmptyStateMessage } from '../../utils/doc/utils';
 import { BmbFormValidationComponent } from '../bmb-form-validation/bmb-form-validation.component';
 
 export default {

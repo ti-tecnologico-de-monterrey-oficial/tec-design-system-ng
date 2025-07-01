@@ -5,7 +5,7 @@ import {
 } from './bmb-layout-grid.directive';
 import { SizeNames } from '../../types';
 import { Meta, moduleMetadata, StoryFn } from '@storybook/angular';
-import { attributes } from '../../utils/utils';
+import { attributes } from '../../utils/doc/utils';
 import { CommonModule } from '@angular/common';
 import { BmbAccordionComponent } from '../../components/bmb-accordion/bmb-accordion.component';
 import { BmbActionIconComponent } from '../../components/bmb-action-icon/bmb-action-icon.component';

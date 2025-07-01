@@ -9,7 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BmbInputPhoneNumberComponent } from './bmb-input-phone-number.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { attributes, getEmptyStateMessage } from '../../utils/utils';
+import { attributes, getEmptyStateMessage } from '../../utils/doc/utils';
 
 export default {
   title: 'Components/Inputs/Phone number',

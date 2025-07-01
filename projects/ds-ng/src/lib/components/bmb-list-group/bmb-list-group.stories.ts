@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { BmbListGroupComponent } from './bmb-list-group.component';
 import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
-import { attributes } from '../../utils/utils';
+import { attributes } from '../../utils/doc/utils';
 import { BmbListGroupItemComponent } from './bmb-list-group-item/bmb-list-group-item.component';
 
 export default {

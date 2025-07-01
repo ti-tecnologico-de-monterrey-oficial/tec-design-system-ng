@@ -10,7 +10,7 @@ import {
 } from '../bmb-toast/bmb-toast.component';
 import { NotificationType } from '../bmb-push-notification/types';
 import { BmbPortalComponent } from './bmb-portal.component';
-import { attributes } from '../../utils/utils';
+import { attributes } from '../../utils/doc/utils';
 
 @Component({
   standalone: true,

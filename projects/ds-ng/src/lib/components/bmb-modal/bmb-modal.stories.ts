@@ -5,7 +5,7 @@ import { BmbModalComponent } from './bmb-modal.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { MatDialog } from '@angular/material/dialog';
-import { attributes } from '../../utils/utils';
+import { attributes } from '../../utils/doc/utils';
 
 @Component({
   standalone: true,

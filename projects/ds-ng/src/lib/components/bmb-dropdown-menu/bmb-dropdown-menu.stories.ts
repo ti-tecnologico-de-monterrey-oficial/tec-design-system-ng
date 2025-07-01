@@ -8,7 +8,7 @@ import { BmbDropdownMenuComponent } from './bmb-dropdown-menu.component';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { ActivatedRoute } from '@angular/router';
-import { getEmptyStateMessage } from '../../utils/utils';
+import { getEmptyStateMessage } from '../../utils/doc/utils';
 
 export default {
   title: 'Components/Menus/Dropdown menu',
