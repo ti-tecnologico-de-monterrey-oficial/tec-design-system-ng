@@ -238,7 +238,7 @@ export class Component {
         type: { summary: 'boolean' },
       },
     },
-    dropDownId : {
+    dropDownId: {
       name: 'Input ID',
       control: { type: 'text' },
       description:
