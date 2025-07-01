@@ -174,7 +174,7 @@ import { BmbImageComponent } from '../components/bmb-image/bmb-image.component';
 class StorybookHomeMitecMobile {}
 
 export default {
-  title: 'Particularities/mitec web/Landings/Students services',
+  title: 'Particularities/mitec web/Landings/Student service',
   component: BmbTopBarComponent,
   decorators: [
     moduleMetadata({

@@ -7,7 +7,7 @@ import {
 } from './bmb-card.component';
 import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
-import { attributes } from '../../utils/utils';
+import { attributes, getEmptyStateMessage } from '../../utils/utils';
 
 const meta: Meta<BmbCardComponent> = {
   title: 'Components/Containers/Generic card',
@@ -33,6 +33,7 @@ const meta: Meta<BmbCardComponent> = {
     docs: {
       description: {
         component: `
+${getEmptyStateMessage()}
 Below is an example of how you can use this component in TypeScript:
 
 \`\`\`typescript

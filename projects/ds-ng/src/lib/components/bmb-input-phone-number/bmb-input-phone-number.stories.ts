@@ -9,7 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BmbInputPhoneNumberComponent } from './bmb-input-phone-number.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { attributes } from '../../utils/utils';
+import { attributes, getEmptyStateMessage } from '../../utils/utils';
 
 export default {
   title: 'Components/Inputs/Phone number',
@@ -35,6 +35,7 @@ export default {
     docs: {
       description: {
         component: `
+${getEmptyStateMessage()}
 Below is an example of how you can use this component in TypeScript:
 
 \`\`\`typescript

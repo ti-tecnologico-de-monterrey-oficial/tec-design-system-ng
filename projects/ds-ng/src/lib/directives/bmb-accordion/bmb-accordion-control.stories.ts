@@ -2,6 +2,7 @@ import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { BmbAccordionControlDirective } from './bmb-accordion-control.directive';
 import { CommonModule } from '@angular/common';
 import { BmbAccordionComponent } from '../../../public-api';
+import { getEmptyStateMessage } from '../../utils/utils';
 
 const meta: Meta<BmbAccordionControlDirective> = {
   title: 'Components/Containers/Accordion/Accordion control',
@@ -22,6 +23,7 @@ const meta: Meta<BmbAccordionControlDirective> = {
     docs: {
       description: {
         component: `
+${getEmptyStateMessage()}
 Below is an example of how you can use this component in TypeScript:
 
 \`\`\`typescript
