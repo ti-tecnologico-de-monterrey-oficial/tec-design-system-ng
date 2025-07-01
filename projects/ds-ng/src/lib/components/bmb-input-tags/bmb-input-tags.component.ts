@@ -73,6 +73,7 @@ export class BmbInputTagsComponent implements OnInit, OnChanges {
   name = input<string>(getUUID());
   value = input<string | string[]>('');
   showError = input<boolean>(false);
+  inputId = input<string>(this.name());
 
   tagOptions = model<string[] | IBmbDropdownItem[]>([]);
   control = model<FormControl>(newFormControlByType());

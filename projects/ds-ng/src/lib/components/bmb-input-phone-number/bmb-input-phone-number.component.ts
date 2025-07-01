@@ -67,7 +67,7 @@ export class BmbInputPhoneNumberComponent implements OnInit {
   appearance = input<IBmbInputAppearance>('normal'); //Deprecated
   errorMessage = input<string | IBmbInputError>('');
   disabled = input<boolean>(false);
-  inputId = input<string>('');
+  inputId = input<string>(this.name());
   helperMessage = input<string>('');
   preferredCountries = input<string[]>(['mx']);
   onlyCountries = input<string[]>([]);

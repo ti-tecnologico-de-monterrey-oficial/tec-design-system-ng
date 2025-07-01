@@ -33,9 +33,10 @@
       (keydown)="handleKeyDown($event)"
       [tabindex]="disabled() ? -1 : 0"
     />
-    <span
+    <label
       class="bmb_checkbox-mark"
+      [htmlFor]="id()"
       [ngClass]="{ 'bmb_checkbox-mark-error': shouldShowError }"
-    ></span>
+    ></label>
   </span>
 </bmb-input-validation>

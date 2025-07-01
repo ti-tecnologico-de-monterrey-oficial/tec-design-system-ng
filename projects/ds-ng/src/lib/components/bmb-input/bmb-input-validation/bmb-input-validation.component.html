@@ -3,7 +3,7 @@
   class="bmb_input-validation"
   [ngClass]="{ disabled: idDisabled() }"
 >
-  <label
+  <span
     class="bmb_input-validation-wrapper"
     [ngClass]="getClasses('bmb_input-validation')"
   >
@@ -13,7 +13,7 @@
       !!tooltip() ||
       (type() === "text-area" && showMaxTextLength())
     ) {
-      <span class="bmb_input-validation-label">
+      <label class="bmb_input-validation-label" [htmlFor]="inputId()">
         {{ label() }}
         @if (isFieldRequired()) {
           <small class="bmb_input-validation-label-required">*</small>
@@ -33,10 +33,10 @@
             {{ control()?.value?.toString().length }}/{{ maxLength() || "-" }}
           </span>
         }
-      </span>
+      </label>
     }
     <ng-content />
-  </label>
+  </span>
   @if (!!helperMessage() || showError()) {
     <div class="bmb_input-validation-support">
       @if (showError()) {

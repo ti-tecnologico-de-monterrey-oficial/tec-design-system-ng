@@ -13,12 +13,13 @@
   [tooltipPosition]="tooltipPosition()"
   clickOutside
   (clickOutside)="closeList()"
+  [inputId]="dropDownId()"
 >
   <bmb-input-content
     class="bmb_dropdown-field"
     type="text"
-    [id]="getUUID('id_selection')"
-    [name]="getUUID('selection')"
+    [inputId]="dropDownId()"
+    [name]="name()"
     [icon]="getIcon()"
     [isReadOnly]="!isFilterable()"
     [control]="selectionControl"
@@ -31,12 +32,14 @@
     (onFocus)="handleFocus($event)"
   >
     <ng-template #customContent>
-      <bmb-icon
-        class="bmb_field-actions"
-        icon="keyboard_arrow_down"
-        [size]="24"
-        (click)="openList()"
-      />
+      <label [htmlFor]="dropDownId()">
+        <bmb-icon
+          class="bmb_field-actions"
+          icon="keyboard_arrow_down"
+          [size]="24"
+
+        />
+      </label>
     </ng-template>
   </bmb-input-content>
   <bmb-dropdown-content

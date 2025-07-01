@@ -238,6 +238,17 @@ export class Component {
         type: { summary: 'boolean' },
       },
     },
+    dropDownId : {
+      name: 'Input ID',
+      control: { type: 'text' },
+      description:
+        'The ID of the input element. If not set, it will be generated automatically.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'name' },
+      },
+    },
   },
   args: {
     isMultiSelect: false,
@@ -259,6 +270,7 @@ export class Component {
     preferredOptions: ['_pear'],
     tooltip: 'Tool tip',
     isFilterable: false,
+    dropDownId: 'this-value-should-be-unique',
   },
 } as Meta<typeof BmbDropdownComponent>;
 
