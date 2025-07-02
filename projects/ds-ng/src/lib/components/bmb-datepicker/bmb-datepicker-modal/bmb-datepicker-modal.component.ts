@@ -97,6 +97,7 @@ export class BmbDatepickerModalComponent implements OnInit {
   handleDayChange(date: DateTime): void {
     const newValue = date.toFormat(this.dateFormat());
     this.onValueChange.emit(newValue);
+    this.closeWindow.emit(false);
   }
 
   getWeeksAndDays(): DateTime[][] {
@@ -155,8 +156,8 @@ export class BmbDatepickerModalComponent implements OnInit {
   handleChangeMonth(event: string) {
     if (event === 'less') {
       if (this.selectedMonth === 1) {
-        this.selectedMonth = 11;
-        this.month = this.monthsNames[this.selectedMonth];
+        this.selectedMonth = 12;
+        this.month = this.monthsNames[this.selectedMonth - 1];
         this.selectedYear = this.selectedYear - 1;
       } else {
         this.selectedMonth = this.selectedMonth - 1;

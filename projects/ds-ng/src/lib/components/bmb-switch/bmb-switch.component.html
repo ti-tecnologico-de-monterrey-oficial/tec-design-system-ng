@@ -1,39 +1,44 @@
-<button
-  [ngClass]="{ bmb_switch: true, 'bmb_switch-checked': isChecked() }"
-  (click)="toggleSwitch()"
-  role="switch"
-  [attr.aria-checked]="isChecked().toString()"
-  [attr.id]="id()"
-  [attr.aria-disabled]="disabled().toString()"
-  [disabled]="disabled()"
-  [attr.aria-label]="ariaLabel()"
+<bmb-input-validation
+  type="checkbox"
+  [inputId]="id()"
+  [name]="name()"
+  [checked]="isChecked()"
+  [idDisabled]="disabled()"
+  [control]="control()"
 >
-  @if (!!leftText() || !!leftIcon()) {
-    <div class="bmb_switch-left">
-      @if (!!leftText() && !leftIcon()) {
-        <span class="bmb_switch-text">
-          {{ leftText() }}
-        </span>
-      }
-      @if (!!leftIcon() && !leftText()) {
-        <bmb-icon [icon]="leftIcon()" />
-      }
-    </div>
-  }
-  <label class="bmb_switch-label" for="bmbSwitch">
-    <span class="bmb_switch-inner"></span>
-    <span class="bmb_switch-switch"></span>
-  </label>
-  @if (!!rightText() || !!rightIcon()) {
-    <div class="bmb_switch-right">
-      @if (!!rightText() && !rightIcon()) {
-        <span class="bmb_switch-text">
-          {{ rightText() }}
-        </span>
-      }
-      @if (!!rightIcon() && !rightText()) {
-        <bmb-icon [icon]="rightIcon()" />
-      }
-    </div>
-  }
-</button>
+  <section class="bmb_switch-direction">
+    @if (showSwitchLabel("left")) {
+      <label class="bmb_switch-label">{{ leftText() }}</label>
+    }
+    <span class="bmb_switch">
+      <input
+        bmbControl
+        class="bmb_switch-input"
+        type="checkbox"
+        [id]="id()"
+        [formControl]="control()"
+        [name]="name()"
+        [checked]="isChecked()"
+        [attr.aria-checked]="isChecked()"
+        [attr.id]="id()"
+        [attr.aria-label]="ariaLabel()"
+        [attr.aria-disabled]="disabled().toString()"
+        [tabindex]="disabled() ? -1 : 0"
+        (change)="handleChange($event)"
+        (keydown)="handleKeyDown($event)"
+      />
+      <span class="bmb_switch-slider">
+        @if (!!getSwitchIcon()) {
+          <bmb-icon
+            class="bmb_switch-slider-icon"
+            [icon]="getSwitchIcon()"
+            [size]="20"
+          />
+        }
+      </span>
+    </span>
+    @if (showSwitchLabel("right")) {
+      <label class="bmb_switch-label">{{ rightText() }}</label>
+    }
+  </section>
+</bmb-input-validation>

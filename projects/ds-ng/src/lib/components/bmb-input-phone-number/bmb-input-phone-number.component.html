@@ -12,6 +12,7 @@
   [tooltipPosition]="tooltipPosition()"
   [isCustomError]="true"
   [customValidation]="customValidatorPhone()"
+  [inputId]="inputId()"
 >
   <section class="bmb_input-phone">
     <section
@@ -40,7 +41,7 @@
         pattern="^\d+$"
         [isDisabled]="disabled()"
         [control]="phoneControl"
-        [id]="inputId()"
+        [inputId]="inputId()"
         [maxLength]="getSelectedCountryLength(ladaControl.value)"
         [minLength]="getSelectedCountryLength(ladaControl.value)"
         [isRequired]="isRequired()"

@@ -2,6 +2,7 @@ import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { BmbInvoiceComponent } from './bmb-invoice.component';
 import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 import { CommonModule } from '@angular/common';
+import { getEmptyStateMessage } from '../../utils/utils';
 
 export default {
   title: 'Components/Visual labels/Invoice',
@@ -15,6 +16,7 @@ export default {
     docs: {
       description: {
         component: `
+${getEmptyStateMessage()}
 Below is an example of how you can use this component in TypeScript:
 
 \`\`\`typescript

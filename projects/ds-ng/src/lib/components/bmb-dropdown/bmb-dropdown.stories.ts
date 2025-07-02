@@ -5,7 +5,7 @@ import {
   type StoryFn,
 } from '@storybook/angular';
 import { BmbDropdownComponent } from './bmb-dropdown.component';
-import { attributes } from '../../utils/utils';
+import { attributes, getEmptyStateMessage } from '../../utils/utils';
 import { BmbFormValidationComponent } from '../bmb-form-validation/bmb-form-validation.component';
 
 export default {
@@ -26,10 +26,10 @@ export default {
     docs: {
       description: {
         component: `
+<br/>
 ### Warning:
-
 The \`isFilterable\` feature is not compatible with the current version of Storybook, We are working on to fix this issue. You should be able to use it in your Angular application.
-
+${getEmptyStateMessage()}
 Below is an example of how you can use this component in TypeScript:
 
   \`\`\`typescript
@@ -238,6 +238,17 @@ export class Component {
         type: { summary: 'boolean' },
       },
     },
+    dropDownId : {
+      name: 'Input ID',
+      control: { type: 'text' },
+      description:
+        'The ID of the input element. If not set, it will be generated automatically.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'name' },
+      },
+    },
   },
   args: {
     isMultiSelect: false,
@@ -259,6 +270,7 @@ export class Component {
     preferredOptions: ['_pear'],
     tooltip: 'Tool tip',
     isFilterable: false,
+    dropDownId: 'this-value-should-be-unique',
   },
 } as Meta<typeof BmbDropdownComponent>;
 

@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbExternalLinkComponent } from './bmb-external-link.component';
+import { getEmptyStateMessage } from '../../utils/utils';
 
 export default {
   title: 'Organisms/Access to external link',
@@ -8,6 +9,7 @@ export default {
     docs: {
       description: {
         component: `
+${getEmptyStateMessage()}
 Below is an example of how you can use this component in TypeScript:
 
 \`\`\`typescript

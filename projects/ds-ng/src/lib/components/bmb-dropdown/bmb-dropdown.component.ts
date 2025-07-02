@@ -81,6 +81,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   disabled = input<boolean>(false);
   value = input<string | string[]>('');
   isFilterable = input<boolean>(false);
+  dropDownId = input<string>(this.name());
 
   control = model<FormControl>(newFormControlByType());
 
@@ -198,8 +199,6 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   }
 
   selectOptionWithKey(value: string): IDropdownItem[] {
-    console.log('selectOptionWithKey', value, this.isKeyboardEvent);
-
     if (!value) return this.items;
 
     return this.items.filter((item) =>
