@@ -131,11 +131,11 @@ Below is an example of how you can use this component in HTML:
             detail: {
               title: 'Semestral X - Y',
               subtitle: 'Z materias acreditadas',
-              score: 100,
+              score: 99,
             },
-            accreditedClasses: 7,
+            accreditedClasses: 10,
             periodAverage: 99,
-            serviceHours: 46,
+            serviceHours: 50,
             classes: [
               {
                 detail: {
@@ -146,7 +146,7 @@ Below is an example of how you can use this component in HTML:
                 partials: [
                   {
                     title: 'Parcial 1',
-                    score: 100,
+                    score: 99,
                   },
                 ],
               },
