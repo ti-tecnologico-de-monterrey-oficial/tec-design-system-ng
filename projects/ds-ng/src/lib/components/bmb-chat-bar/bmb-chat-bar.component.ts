@@ -15,6 +15,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BmbDotPaginatorComponent } from '../bmb-dot-paginator/bmb-dot-paginator.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
+import { ClickOutsideDirective } from '../../directives/utils/clickoutside.directive';
 
 export { defaultBotList, defaultActionList } from './bot_list';
 export { IBotType, IChatBarActions } from './types';
@@ -28,6 +29,7 @@ export { IBotType, IChatBarActions } from './types';
     CommonModule,
     BmbDotPaginatorComponent,
     BmbActionIconComponent,
+    ClickOutsideDirective,
   ],
   templateUrl: './bmb-chat-bar.component.html',
   styleUrl: './bmb-chat-bar.component.scss',
@@ -194,20 +196,7 @@ export class BmbChatBarComponent {
     this.onRecord.emit(true);
   }
 
-  @HostListener('document:click', ['$event'])
-  onDocumentClick(event: MouseEvent): void {
-    const target = event.target as HTMLElement;
-
-    const isInsideDialog =
-      target.closest('.bmb_chat-bar-add-dialog') ||
-      target.closest('.bmb_chat-bar-add');
-
-    if (
-      !isInsideDialog &&
-      this.openAddDialog &&
-      this.versionAddDialog === 'web'
-    ) {
-      this.openAddDialog = false;
-    }
+  clickOutside(): void {
+    this.openAddDialog = false;
   }
 }
