@@ -110,13 +110,14 @@ export class BmbGradesComponent implements OnInit {
   }
 
   getGradesTitle(): string {
-    return this.grades()[this.gradeIndex()].title;
+    return this.grades()[this.gradeIndex()]?.title;
   }
 
   getTitle(): string {
-    const period = this.grades()[this.gradeIndex()].periods[this.periodIndex()];
+    const period =
+      this.grades()[this.gradeIndex()]?.periods[this.periodIndex()];
     if (this.showPrincipalDetail) return period.detail.title;
-    return this.grades()[this.gradeIndex()].subtitle;
+    return this.grades()[this.gradeIndex()]?.subtitle;
   }
 
   getCalendarIcon(): string {
@@ -137,8 +138,11 @@ export class BmbGradesComponent implements OnInit {
   }
 
   getServiceHours(): number | boolean {
-    if (this.grades()[this.gradeIndex()].periods[this.periodIndex()].serviceHours) {
-      const period = this.grades()[this.gradeIndex()].periods[this.periodIndex()];
+    if (
+      this.grades()[this.gradeIndex()].periods[this.periodIndex()].serviceHours
+    ) {
+      const period =
+        this.grades()[this.gradeIndex()].periods[this.periodIndex()];
       if (this.showPrincipalDetail) return period.serviceHours ?? 0;
       return 0;
     }
@@ -158,8 +162,8 @@ export class BmbGradesComponent implements OnInit {
   }
 
   getElements(): any {
-    const periods = this.grades()[this.gradeIndex()].periods;
-    if (this.showPrincipalDetail) return periods[this.periodIndex()].classes;
+    const periods = this.grades()[this.gradeIndex()]?.periods;
+    if (this.showPrincipalDetail) return periods[this.periodIndex()]?.classes;
     return periods;
   }
 
@@ -174,13 +178,13 @@ export class BmbGradesComponent implements OnInit {
   handleLeftPeriodClick(): void {
     if (this.showPrincipalDetail) {
       if (this.periodIndex()) {
-        this.periodIndex.update((value => value - 1));
+        this.periodIndex.update((value) => value - 1);
       }
       return;
     }
 
     if (this.gradeIndex()) {
-      this.gradeIndex.update((value => value - 1));
+      this.gradeIndex.update((value) => value - 1);
     }
   }
 
@@ -190,13 +194,13 @@ export class BmbGradesComponent implements OnInit {
         this.periodIndex() + 1 <
         this.grades()[this.gradeIndex()].periods.length
       ) {
-        this.periodIndex.update((value => value + 1));
+        this.periodIndex.update((value) => value + 1);
       }
       return;
     }
 
     if (this.gradeIndex() + 1 < this.grades().length) {
-      this.gradeIndex.update((value => value + 1));
+      this.gradeIndex.update((value) => value + 1);
     }
   }
 
@@ -208,9 +212,11 @@ export class BmbGradesComponent implements OnInit {
 
     if (!this.showPrincipalDetail) {
       this.showPrincipalDetail = true;
-      this.periodIndex.set(this.grades()[this.gradeIndex()].periods.findIndex(
-        (period) => period.detail.title === element.detail.title,
-      ));
+      this.periodIndex.set(
+        this.grades()[this.gradeIndex()].periods.findIndex(
+          (period) => period.detail.title === element.detail.title,
+        ),
+      );
     }
   }
 }
