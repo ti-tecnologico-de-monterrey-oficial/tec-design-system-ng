@@ -9,6 +9,7 @@ export * from '../components/bmb-filter-card/bmb-filter-card.interface';
 export * from '../components/bmb-alert-center/types';
 export * from '../components/bmb-chat-bubbles/types';
 export * from '../components/bmb-sidebar/bmb-sidebar.interface';
+export * from '../components/bmb-grades/types';
 
 export type SizeNames = 'xs' | 's' | 'm' | 'l' | 'xl' | 'none' | 'auto';
 export type IButtonAppearance =
