@@ -193,4 +193,21 @@ export class BmbChatBarComponent {
   handleRecord(): void {
     this.onRecord.emit(true);
   }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    const target = event.target as HTMLElement;
+
+    const isInsideDialog =
+      target.closest('.bmb_chat-bar-add-dialog') ||
+      target.closest('.bmb_chat-bar-add');
+
+    if (
+      !isInsideDialog &&
+      this.openAddDialog &&
+      this.versionAddDialog === 'web'
+    ) {
+      this.openAddDialog = false;
+    }
+  }
 }
