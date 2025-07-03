@@ -52,8 +52,6 @@ export class BmbAcademicProgressComponent implements OnInit, OnChanges {
       );
     }
 
-    console.log('init');
-
     this.updateMetrics([
       {
         name: this.accredited().name,
@@ -71,12 +69,10 @@ export class BmbAcademicProgressComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    const accreditedValue = changes['accredited'].currentValue || this.accredited();
-    const averageValue = changes['average'].currentValue || this.average();
-    const summaryValue = changes['summary'].currentValue || this.summary();
-
-    console.log('update');
-
+    const accreditedValue =
+      changes['accredited']?.currentValue || this.accredited();
+    const averageValue = changes['average']?.currentValue || this.average();
+    const summaryValue = changes['summary']?.currentValue || this.summary();
 
     this.updateMetrics([
       {
@@ -95,12 +91,14 @@ export class BmbAcademicProgressComponent implements OnInit, OnChanges {
   }
 
   updateMetrics(newMetrics: { name: string; value: number }[]): void {
-    this.metrics.set(newMetrics.map((metric) => {
-      return {
-        name: metric.name,
-        value: metric.value,
-      };
-    }));
+    this.metrics.set(
+      newMetrics.map((metric) => {
+        return {
+          name: metric.name,
+          value: metric.value,
+        };
+      }),
+    );
   }
 
   shouldShowMetric(metric: IBmbNameValuePair): boolean {
