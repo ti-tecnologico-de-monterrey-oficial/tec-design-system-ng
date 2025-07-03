@@ -10,6 +10,7 @@
         [altImage]="altLogo()"
         [link]="logoLink()"
         [target]="logoTarget()"
+        (buttonClick)="handleLogoClick($event)"
       />
     </div>
     <h2 class="bmb_header_mobile-text">{{ text() }}</h2>
@@ -23,7 +24,9 @@
         [altImage]="userAltImage()"
         [link]="userLink()"
         [target]="userTarget()"
+        (click)="handleUserImageClick($event)"
         *ngIf="userImage()"
+        (buttonClick)="handleUserImageClick($event)"
       />
     </div>
     <section class="bmb_header_mobile-content">

@@ -31,19 +31,29 @@ export class BmbHeaderMobileComponent {
   userImage = input<string>('');
   userAltImage = input<string>('');
   userLink = input<string>('');
-  userTarget = input<IBmbTargetLink>();
+  userTarget = input<IBmbTargetLink>('_self');
 
   logo = input<string>('');
   altLogo = input<string>('');
   logoLink = input<string>('');
-  logoTarget = input<string>('');
+  logoTarget = input<IBmbTargetLink>('_self');
 
   trailingIcon = input<string>('');
 
   // Event handlers
   onTrailingIconClick = output<any>();
+  onLogoClick = output<any>();
+  onUserImageClick = output<any>();
 
   handleTrailingIconClick(event: any): void {
     this.onTrailingIconClick.emit(event);
+  }
+
+  handleLogoClick(event: any): void {
+    this.onLogoClick.emit(event);
+  }
+
+  handleUserImageClick(event: any): void {
+    this.onUserImageClick.emit(event);
   }
 }

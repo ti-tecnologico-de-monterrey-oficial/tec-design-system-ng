@@ -191,6 +191,18 @@ Below is an example of how you can use this component in HTML:
         type: { summary: '(onTrailingIconClick)="yourFunction()"' },
       },
     },
+    onLogoClick: {
+      name: 'On Logo Click',
+      control: {
+        type: '',
+      },
+      description:
+        'This handler can be used when you have the Logo available and want to perform a specific interaction.',
+      table: {
+        category: 'Events',
+        type: { summary: '(onLogoClick)="yourFunction()"' },
+      },
+    },
   },
   args: {
     trailingIcon: 'notifications',
@@ -202,9 +214,15 @@ Below is an example of how you can use this component in HTML:
     logo: 'https://i0.wp.com/gershenson.mx/wp-content/uploads/2020/08/logo-tec-de-monterrey-e1484853084274.png?ssl=1',
     altLogo: 'Alt logo description',
     logoLink: '',
-    logoTarget: 'https://www.youtube.com/',
+    logoTarget: '_blank',
     onTrailingIconClick: () => {
       window.alert('Trailing Icon clicked in Storybook');
+    },
+    onLogoClick: () => {
+      window.alert('Logo clicked in Storybook');
+    },
+    onUserImageClick: () => {
+      window.alert('User Image clicked in Storybook');
     },
     text: 'Title',
   },
