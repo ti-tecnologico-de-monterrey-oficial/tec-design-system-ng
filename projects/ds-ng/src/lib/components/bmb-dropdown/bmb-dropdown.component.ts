@@ -81,7 +81,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   disabled = input<boolean>(false);
   value = input<string | string[]>('');
   isFilterable = input<boolean>(false);
-  dropDownId = input<string>(this.name());
+  inputId = input<string>(this.name());
 
   control = model<FormControl>(newFormControlByType());
 
@@ -146,6 +146,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
       );
 
       this.items = [...new Set([...preferredItems, ...this.items])];
+      this.filteredOptions = [...this.items];
     }
   }
 
