@@ -41,7 +41,10 @@ Below is an example of how you can use this component in HTML:
       description: 'The type of skeleton to display.',
       table: {
         category: 'Properties',
-        type: { summary: 'BmbSkeletonType', detail: `options: 'header' | 'input' | 'stray' | 'generic1' | 'generic2' | 'generic3'` },
+        type: {
+          summary: 'BmbSkeletonType',
+          detail: `options: 'header' | 'input' | 'stray' | 'generic1' | 'generic2' | 'generic3'`,
+        },
         defaultValue: { summary: 'header' },
       },
     },
