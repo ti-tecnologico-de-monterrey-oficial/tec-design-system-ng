@@ -1,11 +1,11 @@
 <section
   #inputValidation
-  class="bmb_input-validation"
+  class="bmb_input-validator"
   [ngClass]="{ disabled: idDisabled() }"
 >
   <span
-    class="bmb_input-validation-wrapper"
-    [ngClass]="getClasses('bmb_input-validation')"
+    class="bmb_input-validator-wrapper"
+    [ngClass]="getClasses('bmb_input-validator')"
   >
     @if (
       !!label() ||
@@ -13,14 +13,14 @@
       !!tooltip() ||
       (type() === "text-area" && showMaxTextLength())
     ) {
-      <label class="bmb_input-validation-label" [htmlFor]="inputId()">
+      <label class="bmb_input-validator-label" [htmlFor]="inputId()">
         {{ label() }}
         @if (isFieldRequired()) {
-          <small class="bmb_input-validation-label-required">*</small>
+          <small class="bmb_input-validator-label-required">*</small>
         }
         @if (!!tooltip()) {
           <bmb-tooltip
-            class="bmb_input-validation-label-tooltip"
+            class="bmb_input-validator-label-tooltip"
             [text]="tooltip()"
             [align]="tooltipPosition().align"
             [justify]="tooltipPosition().justify"
@@ -29,7 +29,7 @@
           />
         }
         @if (type() === "text-area" && showMaxTextLength()) {
-          <span class="bmb_input-validation-label-max">
+          <span class="bmb_input-validator-label-max">
             {{ control()?.value?.toString().length }}/{{ maxLength() || "-" }}
           </span>
         }
@@ -38,13 +38,13 @@
     <ng-content />
   </span>
   @if (!!helperMessage() || showError()) {
-    <div class="bmb_input-validation-support">
+    <div class="bmb_input-validator-support">
       @if (showError()) {
-        <p class="bmb_input-validation-support-error">
+        <p class="bmb_input-validator-support-error">
           {{ getErrorMessage() }}
         </p>
       } @else if (!!helperMessage()) {
-        <p [class]="'bmb_input-validation-support-helper-' + appearance()">
+        <p [class]="'bmb_input-validator-support-helper-' + appearance()">
           {{ helperMessage() }}
         </p>
       }

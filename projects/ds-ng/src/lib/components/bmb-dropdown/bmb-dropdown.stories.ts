@@ -6,14 +6,14 @@ import {
 } from '@storybook/angular';
 import { BmbDropdownComponent } from './bmb-dropdown.component';
 import { attributes, getEmptyStateMessage } from '../../utils/doc/utils';
-import { BmbFormValidationComponent } from '../bmb-form-validation/bmb-form-validation.component';
+import { BmbFormValidatorComponent } from '../bmb-form-validator/bmb-form-validator.component';
 
 export default {
   title: 'Components/Inputs/Dropdown',
   component: BmbDropdownComponent,
   decorators: [
     moduleMetadata({
-      imports: [BmbFormValidationComponent],
+      imports: [BmbFormValidatorComponent],
     }),
     componentWrapperDecorator((story: string) => {
       return `

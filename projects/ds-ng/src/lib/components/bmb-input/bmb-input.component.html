@@ -1,8 +1,7 @@
-<bmb-input-validation
+<bmb-input-validator
   [type]="type()"
   [name]="name()"
   [label]="label()"
-  [checked]="checked()"
   [value]="value()"
   [errorMessage]="errorMessage()"
   [helperMessage]="helperMessage()"
@@ -20,7 +19,6 @@
   [min]="min()"
   [max]="max()"
   [showMaxTextLength]="showMaxTextLength()"
-  [isCustomError]="isCustomError()"
   [customValidation]="customValidation()"
   [inputId]="id()"
 >
@@ -54,4 +52,4 @@
       <ng-container [ngTemplateOutlet]="customInputContent" />
     </ng-template>
   </bmb-input-content>
-</bmb-input-validation>
+</bmb-input-validator>

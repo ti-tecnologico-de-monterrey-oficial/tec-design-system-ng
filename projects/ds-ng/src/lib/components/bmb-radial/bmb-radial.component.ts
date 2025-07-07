@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { IBbmSidePosition } from '../../types';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { BmbInputValidationComponent } from '../bmb-input/bmb-input-validation/bmb-input-validation.component';
+import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
 import { CommonModule } from '@angular/common';
 import { getUUID } from '../../utils/utils';
 import { IBmbInputError } from '../bmb-input/bmb-input.component';
@@ -22,7 +22,7 @@ import {
 @Component({
   selector: 'bmb-radial',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, BmbInputValidationComponent],
+  imports: [CommonModule, ReactiveFormsModule, BmbInputValidatorComponent],
   templateUrl: './bmb-radial.component.html',
   styleUrl: './bmb-radial.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -14,7 +14,7 @@ import {
   newFormControlByType,
 } from '../../utils/formControl';
 import { getUUID } from '../../utils/utils';
-import { BmbInputValidationComponent } from '../bmb-input/bmb-input-validation/bmb-input-validation.component';
+import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
 
 @Component({
   selector: 'bmb-switch',
@@ -24,7 +24,7 @@ import { BmbInputValidationComponent } from '../bmb-input/bmb-input-validation/b
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    BmbInputValidationComponent,
+    BmbInputValidatorComponent,
     FormsModule,
     BmbIconComponent,
   ],

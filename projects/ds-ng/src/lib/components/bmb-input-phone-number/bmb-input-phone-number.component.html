@@ -1,4 +1,4 @@
-<bmb-input-validation
+<bmb-input-validator
   [name]="name()"
   [label]="label()"
   [value]="!!defaultCountryCode() ? value() : ''"
@@ -10,7 +10,6 @@
   [showError]="shouldShowError"
   [tooltip]="tooltip()"
   [tooltipPosition]="tooltipPosition()"
-  [isCustomError]="true"
   [customValidation]="customValidatorPhone()"
   [inputId]="inputId()"
 >
@@ -58,4 +57,4 @@
       [tabindex]="-1"
     />
   </section>
-</bmb-input-validation>
+</bmb-input-validator>

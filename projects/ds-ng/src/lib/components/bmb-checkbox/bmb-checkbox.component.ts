@@ -10,7 +10,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { IBbmSidePosition } from '../../types';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { BmbInputValidationComponent } from '../bmb-input/bmb-input-validation/bmb-input-validation.component';
+import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
 import { getUUID } from '../../utils/utils';
 import { IBmbInputError } from '../bmb-input/bmb-input.component';
 import {
@@ -24,7 +24,7 @@ import {
   templateUrl: './bmb-checkbox.component.html',
   styleUrl: './bmb-checkbox.component.scss',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, BmbInputValidationComponent],
+  imports: [CommonModule, ReactiveFormsModule, BmbInputValidatorComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
