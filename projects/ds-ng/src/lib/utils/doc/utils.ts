@@ -24,70 +24,79 @@ export const attributesText = (object: { [key: string]: any }): string =>
     .join(' ');
 
 export const getEmptyStateMessage = () => `
-<br/>
+<br>
 ##Important:
 Remember to use the \`empty state\` for the cases that apply to this. Related documentation is available [here](https://bamboo.tec.mx/latest/guia-ux-writing/mensajes-del-producto/empty-states-OQYyq6h8-OQYyq6h8).
 
-<br/>
+<br>
 `;
 
-export const getTypescriptTextBlock = () => `
-Below is an example of how you can use this component in TypeScript:
+export const getInputArchitecture = () => `
+<br>
+## DOM Architecture
+\`\`\`html
+<section class="bmb_field" <!-- conditional class bmb_field-disabled --> >
+  <!-- if label is defined -->
+  <label class="bmb_field-label" for="input">{ label }</label>
+
+  <section class="bmb_field-wrapper">
+    <input { configuration } />
+  </section>
+
+  <!-- if helper message is defined -->
+  <p class="bmb_field-helper">{ helperMessage }</p>
+
+  <!-- if error message is defined -->
+  <p class="bmb_field-error">{ errorMessage }</p>
+</section>
+
+\`\`\`
 `;
 
-export const getTypescriptExampleTextBlock = () => `
+export const getDescribeTypeTextBlock = (
+  typeExampleName: string,
+  additionalText: string = '',
+) => `
+### ${typeExampleName} example
+Below is an example of how you can use this component in ${additionalText || typeExampleName}:
+`;
+
+export const getTypescriptExampleTextBlock = (
+  inputName: string,
+  additionalBlock: string = '',
+  additionalText: string = '',
+) => `
+${getDescribeTypeTextBlock('TypeScript', additionalText)}
+\`\`\`typescript
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { BmbInputComponent, BmbButtonDirective } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
+import { ${inputName} } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
 
 @Component({
   selector: 'app-component',
   standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    BmbButtonDirective,
-    BmbInputComponent,
-  ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
+  imports: [ ${inputName} ],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
 })
 export class AppComponent {
-  userForm: FormGroup = new FormGroup({});
-
-  onSubmit() {
-    if (this.userForm.valid) {
-      //Add your code
-      return;
-    }
-    this.userForm.markAllAsTouched();
-    this.updateErrorState();
-  }
-
-  updateErrorState() {
-    Object.keys(this.userForm.controls).forEach((field) => {
-      const control = this.userForm.get(field);
-      if (control instanceof FormControl) {
-        control.updateValueAndValidity();
-      }
-    });
-  }
-
-  getFormControl(name: string): FormControl {
-    return this.userForm.get(name) as FormControl;
-  }
+  //Add your code
+  ${additionalBlock}
 }
+\`\`\`
 `;
 
 export const getTypescriptFormExampleTextBlock = (inputName: string) => `
+${getDescribeTypeTextBlock('TypeScript')}
+\`\`\`typescript
 import { CommonModule } from '@angular/common';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { BmbButtonDirective, ${inputName} } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
 
+
 @Component({
-  selector: 'app-component',
+  selector: 'app',
   standalone: true,
   imports: [
     CommonModule,
@@ -95,10 +104,9 @@ import { BmbButtonDirective, ${inputName} } from '@ti-tecnologico-de-monterrey-o
     BmbButtonDirective,
     ${inputName},
   ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
 })
 export class AppComponent {
   userForm: FormGroup = new FormGroup({
@@ -116,7 +124,7 @@ export class AppComponent {
 
   updateErrorState() {
     Object.keys(this.userForm.controls).forEach((field) => {
-      const control = this.userForm.get(field);
+      const control = this.getFormControl(field);
       if (control instanceof FormControl) {
         control.markAsTouched();
         control.updateValueAndValidity();
@@ -128,4 +136,15 @@ export class AppComponent {
     return this.userForm.get(name) as FormControl;
   }
 }
+\`\`\`
+`;
+
+export const getHTMLFormExampleTextBlock = (inputExample: string) => `
+${getDescribeTypeTextBlock('Form', 'an HTML form')}
+\`\`\`html
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  ${inputExample}
+  <button bmbButton appearance="primary" type="submit">Submit</button>
+</form>
+\`\`\`
 `;

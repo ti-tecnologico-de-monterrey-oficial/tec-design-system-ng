@@ -1,452 +1,395 @@
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-
+import { Meta, StoryObj } from '@storybook/angular';
 import { BmbInputComponent } from './bmb-input.component';
+import {
+  getDescribeTypeTextBlock,
+  getHTMLFormExampleTextBlock,
+  getInputArchitecture,
+  getTypescriptFormExampleTextBlock,
+} from '../../utils/doc/utils';
+import {
+  DEPRECATED_PROPERTIES_DESCRIPTION,
+  InputParameterDescriptions,
+} from '../../utils/doc/parameterDescriptions';
+
+const inputExample = `<bmb-input
+  id="input_field_id"
+  name="input_field"
+  label="Input Label"
+  tooltip="Tooltip example"
+  placeholder="Placeholder"
+  icon="apps"
+  [errorMessage]="{
+    required: 'Please enter the required data',
+    minLength: 'Please enter at least 4 characters',
+    pattern: 'Please enter only letters'
+  }"
+  helperMessage="Helper Message"
+  [isRequired]="true"
+  [maxlength]="20"
+  [minlength]="4"
+  pattern="[A-Za-z]+"
+/>`;
+
+const getTextInputWarnings = (
+  propertyName: string = '',
+  isPatternProperty: boolean = false,
+) => `
+
+**Important:**
+
+This \`${propertyName}\` property should only be used for form input fields of the type:
+
+- **text**
+- **password**
+- **textarea**: ${isPatternProperty ? 'In case \`jsonFormat\` property is assigned, the \`pattern\` property should be omitted' : ''}
+
+If the recommendation is omitted, it will cause erroneous behavior when performing the validations.
+`;
 
 export default {
   title: 'Components/Inputs/Text input',
   component: BmbInputComponent,
-  decorators: [
-    moduleMetadata({
-      imports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        BrowserAnimationsModule,
-        BmbIconComponent,
-      ],
-    }),
-  ],
+  tags: ['!autodocs'],
   parameters: {
     docs: {
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { Component, ChangeDetectorRef } from '@angular/core';
-import {
-  FormControl,
-  FormBuilder,
-  FormGroup,
-  Validators,
-  ReactiveFormsModule,
-} from '@angular/forms';
-import { BmbInputComponent, BmbButtonDirective } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-import { CommonModule } from '@angular/common';
-
-@Component({
-  selector: 'app-component',
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    BmbButtonDirective,
-    BmbInputComponent,
-  ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-export class AppComponent {
-  userForm: FormGroup = new FormGroup({
-    name: new FormControl<string>('', Validators.required),
-  });
-  showErrors: { [key: string]: boolean } = {};
-
-  onSubmit() {
-
-    if (this.userForm.valid) {
-      return;
-    }
-    this.userForm.markAllAsTouched();
-    this.updateErrorState();
-  }
-
-  updateErrorState() {
-    Object.keys(this.userForm.controls).forEach((field) => {
-      const control = this.userForm.get(field);
-      if (control instanceof FormControl) {
-        this.showErrors[field] =
-          control.invalid && (control.touched || control.dirty);
-      }
-    });
-  }
-
-  getFormControl(name: string): FormControl {
-    return this.userForm.get(name) as FormControl;
-  }
-}
-\`\`\`
-
-### Example in HTML
-
-Below is an example of how to use this component in HTML:
-
-\`\`\`html
-<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-  <bmb-input
-    [label]="'Input Label'"
-    [placeholder]="'Placeholder'"
-    [icon]="'apps'"
-    [errorMessage]="'Error'"
-    [helperMessage]="'Helper Message'"
-    [tooltip]="'Esto es un tooltipo'"
-    [disabled]="false"
-    [isRequired]="false"
-    [appearance]="'normal'"
-    [control]="getFormControl('name')"
-    [showError]="showErrors['name']"
-  />
-  <button bmbButton appearance="primary" type="submit">Submit</button>
-</form>
-\`\`\`
-
-## Architecture
-
-\`\`\`html
-<section class="bmb_field" <!-- conditional class bmb_field-disabled --> >
-  <!-- if label is defined -->
-  <label class="bmb_field-label" for="input">{ label }</label>
-
-  <section class="bmb_field-wrapper">
-    <input { configuration } />
-  </section>
-
-  <!-- if helper message is defined -->
-  <p class="bmb_field-helper">{ helperMessage }</p>
-
-  <!-- if error message is defined -->
-  <p class="bmb_field-error">{ errorMessage }</p>
-</section>
-
-\`\`\`
-        `,
+<br>
+### Description
+>\`bmb-input\` is a customizable **Bamboo** input component that allows users to input various types of data, such as:
+>
+>- text
+>- password
+>- number
+>- text-area
+>
+>This component includes validations, error messages, and support for tooltips to provide additional information.
+<br>
+${getInputArchitecture()}
+${getTypescriptFormExampleTextBlock('BmbInputComponent')}
+${getHTMLFormExampleTextBlock(inputExample)}
+${getDescribeTypeTextBlock('HTML')}
+      `,
       },
     },
   },
   argTypes: {
     type: {
-      name: 'Type',
       control: {
         type: 'radio',
       },
       options: ['text', 'password', 'number', 'text-area'],
-      description: 'Select the type of the input',
+      description: 'Sets the type of the form input field',
       table: {
         category: 'Properties',
-        type: { summary: 'string' },
+        type: {
+          summary: 'IBmbInputType',
+          detail: `
+IBmbInputType = 'text' | 'password' | 'number' | 'text-area'
+          `,
+        },
         defaultValue: { summary: 'text' },
       },
     },
-    control: {
-      control: { type: 'object' },
-      description: 'Instance of FormControl to manage the input control state.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'FormControl' },
-        defaultValue: { summary: "FormControl('', Validators.required)" },
-      },
-    },
-    icon: {
-      name: 'Icon',
-      control: {
-        type: 'text',
-      },
-      description:
-        'Name of the icon to be displayed in the input field. Refer to Material Icons for options.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
-    errorMessage: {
-      name: 'Error Message',
-      control: {
-        type: 'object',
-      },
-      description:
-        'Text to be displayed when there is an error. This could be a string or any of the following: required, min, max, minLength, pattern.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string or IBmbInputError' },
-      },
-    },
-    helperMessage: {
-      name: 'Helper Message',
-      control: {
-        type: 'text',
-      },
-      description: 'Text to be displayed as a helper message below the input.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
-    isRequired: {
-      name: 'Required',
-      control: { type: 'boolean' },
-      description: 'Indicates whether the input field is required.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean' },
-      },
-    },
-    placeholder: {
-      name: 'Placeholder',
-      control: {
-        type: 'text',
-      },
-      description: 'Placeholder text to be displayed inside the input field.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
-    disabled: {
-      name: 'Disabled',
-      control: { type: 'boolean' },
-      description: 'Disables the input field when set to true.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean' },
-      },
-    },
-    label: {
-      name: 'Label',
-      control: {
-        type: 'text',
-      },
-      description: 'Label text to be displayed above the input field.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
-    tooltip: {
-      name: 'Tooltip',
-      control: {
-        type: 'text',
-      },
-      description:
-        'Set a text to display a icon tooltip above the input field.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
-    tooltipPosition: {
-      name: 'Tooltip Position',
-      control: {
-        type: 'object',
-      },
-      description: 'Set the position of the tooltip.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: '{ align: "above", justify: "before" }' },
-        type: { summary: 'IBmbInputTooltipPosition' },
-      },
-    },
+    id: InputParameterDescriptions.inputId,
+    name: InputParameterDescriptions.name,
+    value: InputParameterDescriptions.value,
     appearance: {
-      name: 'Appearance',
       control: {
         type: 'select',
       },
       options: ['normal', 'simple'],
-      description: 'Defines the appearance style of the input field.',
+      description: 'Sets the appearance style of the form input field.',
+      table: {
+        category: 'Properties',
+        type: {
+          summary: 'IBmbInputAppearance',
+          detail: `
+IBmbInputAppearance = 'normal' | 'simple'
+          `,
+        },
+        defaultValue: { summary: 'normal' },
+      },
+    },
+    label: InputParameterDescriptions.label,
+    tooltip: InputParameterDescriptions.tooltip,
+    tooltipPosition: InputParameterDescriptions.tooltipPosition,
+    icon: InputParameterDescriptions.icon,
+    placeholder: InputParameterDescriptions.placeholder,
+    disabled: InputParameterDescriptions.disabled,
+    isRequired: InputParameterDescriptions.isRequired,
+    helperMessage: InputParameterDescriptions.helperMessage,
+    errorMessage: InputParameterDescriptions.errorMessage,
+    spellcheck: {
+      control: {
+        type: 'boolean',
+      },
+      description: 'Enables the browser spellcheck when true.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    autocomplete: {
+      control: {
+        type: 'text',
+      },
+      description: 'Sets autocomplete on the form input field when true.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
       },
     },
-    showError: {
-      name: 'Show Error',
-      control: {
-        type: 'boolean',
-      },
-      description: 'Boolean to show or hide the error message.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-    },
-    spellcheck: {
-      name: 'Spellcheck',
-      control: {
-        type: 'boolean',
-      },
-      description: 'Enable the browser spellcheck.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-    },
     maxlength: {
-      name: 'Max length',
       control: {
         type: 'text',
       },
-      description: 'Sets the maximum size of the text string.',
+      description: `
+Sets the maximum allowed length of the text string.
+${getTextInputWarnings('maxlength')}
+      `,
       table: {
         category: 'Properties',
         type: { summary: 'number' },
       },
     },
     minlength: {
-      name: 'Min length',
       control: {
         type: 'text',
       },
-      description: 'Sets the minimum size of the text string.',
+      description: `
+Sets the minimum allowed length of the text string.
+${getTextInputWarnings('minlength')}
+      `,
       table: {
         category: 'Properties',
+        type: { summary: 'number' },
+      },
+    },
+    max: {
+      control: {
+        type: 'number',
+      },
+      description: 'Sets the maximum numeric value allowed.',
+      table: {
+        category: 'Properties',
+        subcategory: 'Number',
+        type: { summary: 'number' },
+      },
+    },
+    min: {
+      control: {
+        type: 'number',
+      },
+      description: 'Sets the minimum numeric value allowed.',
+      table: {
+        category: 'Properties',
+        subcategory: 'Number',
         type: { summary: 'number' },
       },
     },
     pattern: {
-      name: 'Pattern',
       control: {
         type: 'text',
       },
-      description: 'Sets the a validation pattern.',
+      description: `
+Sets the allowed format validation pattern.
+${getTextInputWarnings('pattern', true)}
+      `,
       table: {
         category: 'Properties',
         type: { summary: 'string' },
       },
     },
-    size: {
-      name: 'Size',
-      control: {
-        type: 'text',
-      },
-      description: 'Sets a fixed size of the text string.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'number' },
-      },
-    },
     showMaxTextLength: {
-      name: 'Show Max Text Length',
       control: { type: 'boolean' },
-      description:
-        'This property shows a text in the right side of the label, the text indicates the max number of characters that the input accept. The maxLength property need to be set.',
+      description: `
+Shows the length of text typed in the form textarea field, this is shown on the right side of the label when true.
+
+This property only works for the form textarea field.
+
+If the \`maxlength\` property has been assigned to this form textarea field, this data will also be displayed below the length of text typed, otherwise only a hyphen will be displayed.
+
+Example: 10/20 or 10/-
+      `,
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'true' },
+        subcategory: 'Textarea',
         type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
       },
     },
     rows: {
-      name: 'Rows',
       control: {
         type: 'text',
       },
       description:
-        'Sets the number of lines visible in the control. Only for text area input.',
+        'Sets the number of visible lines in the form textarea field, this property only works for the form textarea field.',
       table: {
         category: 'Properties',
+        subcategory: 'Textarea',
         type: { summary: 'number' },
       },
     },
+    customValidation: {
+      control: {
+        type: 'object',
+      },
+      description: `
+Sets custom validator function to the field.
+
+Example of a \`ValidatorFn\`
+    customValidatorDate(): ValidatorFn {
+      return (control: AbstractControl): ValidationErrors | null => {
+        const { value } = control;
+        if (!value) return null;
+
+        const isValidDate = DateTime.fromFormat(
+          control.value,
+          this.dateFormat(),
+        ).isValid;
+
+        return !isValidDate ? { customValidation: true } : null;
+      };
+    }
+`,
+      table: {
+        category: 'Properties',
+        type: { summary: 'ValidatorFn' },
+      },
+    },
+    jsonFormat: {
+      control: { type: 'boolean' },
+      description: `
+Enables the skill to validate JSON content when true, this skill only works for the form textarea field.
+
+<br>
+**Important:**
+
+For correct behavior, the \`pattern\` property must not be assigned to the form input field.
+      `,
+      table: {
+        category: 'Properties',
+        subcategory: 'Textarea',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    heightTextArea: {
+      control: { type: 'number' },
+      description:
+        'Sets the height of the textarea in pixels, this property only works for the form textarea field..',
+      table: {
+        category: 'Properties',
+        subcategory: 'Textarea',
+        type: { summary: 'number' },
+      },
+    },
+    isClearable: InputParameterDescriptions.isClearable,
     additionalAction: {
-      name: 'Additional action',
       control: {
         type: 'radio',
       },
       options: ['copy', 'showHide', 'none'],
-      description:
-        'Sets additional action to perform (copy, showHide, none). "copy": copy the contents of the entry to the clipboard and "showHide": works only for password type',
+      description: `
+Sets additional skills to run on this form input field.
+
+- **copy**: copies the contents of the entry to the clipboard
+- **showHide**: shows and hides the contents of a password type form input field, this skill only works for the password type form input field
+`,
       table: {
         category: 'Properties',
-        type: { summary: 'string' },
+        type: {
+          summary: 'IBmbAdditionalAction',
+          detail: `
+IBmbAdditionalAction = 'copy' | 'showHide' | 'none'
+          `,
+        },
         defaultValue: { summary: 'none' },
       },
     },
-    jsonFormat: {
-      name: 'JSON Format',
-      control: { type: 'boolean' },
-      description:
-        'If enabled, the input field will validate the content as a JSON format. Only applies to textarea inputs. You will need to remove the pattern.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean' },
-      },
-    },
-    heightTextArea: {
-      name: 'Height (TextArea)',
-      control: { type: 'number' },
-      description: 'Sets the height of the textarea in pixels.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'number' },
-      },
-    },
-    isClearable: {
-      name: 'Is Clearable',
-      control: { type: 'boolean' },
-      description:
-        'If enabled, a clear button will be displayed in the input field.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-    },
+    control: InputParameterDescriptions.control,
     isFocus: {
-      name: 'Is Focus',
-      description: 'If enabled, the input field will be focused.',
+      description: 'Emits focus event.',
       table: {
         category: 'Events',
         type: { summary: 'boolean' },
       },
     },
     isBlur: {
-      name: 'Is Blur',
-      description: 'If enabled, the input field will be blurred.',
+      control: { type: 'boolean' },
+      description: 'Emits blur event.',
       table: {
         category: 'Events',
         type: { summary: 'boolean' },
       },
     },
-    keyDown: {
-      name: 'Key Down',
-      description: 'Emits key down event.',
+    onChange: {
+      control: { type: 'boolean' },
+      description: 'Emits change event.',
+      table: {
+        category: 'Events',
+        type: { summary: 'HTMLInputElement' },
+      },
+    },
+    onKeyDown: {
+      control: { type: 'boolean' },
+      description: 'Emits keydown event.',
       table: {
         category: 'Events',
         type: { summary: 'KeyboardEvent' },
       },
     },
-  },
-
-  args: {
-    icon: 'apps',
-    errorMessage: {
-      required: 'This field is required.',
-      jsonFormat: 'El contenido no es un JSON válido.',
-      minLength: 'Minimum 4 characters.',
-      pattern: 'Only accepts letters.',
+    customInputContent: {
+      description:
+        'Allows to provide custom content inside the form input field using a TemplateRef.',
+      table: {
+        category: 'Content child',
+        type: { summary: 'TemplateRef<any>' },
+      },
     },
-    helperMessage: 'Helper Message',
-    isRequired: true,
+    showError: InputParameterDescriptions.showError,
+    size: {
+      control: {
+        type: 'text',
+      },
+      description: DEPRECATED_PROPERTIES_DESCRIPTION,
+      table: {
+        category: 'Deprecated',
+        type: { summary: 'number' },
+      },
+    },
+  },
+  args: {
+    type: 'text',
+    id: '',
+    name: '',
+    value: '',
+    appearance: 'normal',
+    label: 'Input Label',
+    tooltip: 'Tooltip example',
+    tooltipPosition: { align: 'above', justify: 'before' },
+    icon: 'apps',
     placeholder: 'Placeholder',
     disabled: false,
-    label: 'Input Label',
-    appearance: 'normal',
-    showError: false,
-    tooltip: 'Tooltip example for the input',
-    additionalAction: '',
+    isRequired: true,
+    spellcheck: false,
+    autocomplete: '',
     minlength: '4',
     maxlength: '20',
     pattern: '[A-Za-z]+',
-    tooltipPosition: { align: 'above', justify: 'before' },
     isClearable: false,
-    spellcheck: false,
+    additionalAction: '',
+    helperMessage: 'Helper Message',
+    errorMessage: {
+      required: 'Please enter the required data',
+      jsonFormat: 'Please enter content in valid JSON format',
+      minLength: 'Please enter at least 4 characters',
+      pattern: 'Please enter only letters',
+    },
+    customValidation: null,
+    control: null,
   },
 } as Meta<typeof BmbInputComponent>;
 
