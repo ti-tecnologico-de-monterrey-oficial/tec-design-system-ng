@@ -3,7 +3,12 @@ export const DEPRECATED_PROPERTIES_DESCRIPTION =
 
 export const InputParameterDescriptions = {
   inputId: {
-    description: 'Sets the unique identifier for the form input field.',
+    description: `
+
+Sets the unique identifier for the form input field.
+
+It is used to link the label to the form input field through the “for” attribute, improving accessibility and usability.
+    `,
     table: {
       category: 'Properties',
       type: { summary: 'string' },

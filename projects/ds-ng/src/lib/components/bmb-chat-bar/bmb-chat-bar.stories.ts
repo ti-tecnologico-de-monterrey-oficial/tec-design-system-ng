@@ -1,5 +1,11 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbChatBarComponent } from './bmb-chat-bar.component';
+import { getDescribeTypeTextBlock, getTypescriptExampleTextBlock } from '../../utils/doc/utils';
+import { InputParameterDescriptions } from '../../utils/doc/parameterDescriptions';
+
+const importComments = `// optional you can customize the bot list from:
+// import { defaultBotList, IBotType } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
+`;
 
 export default {
   title: 'Components/Inputs/AI Chat bar',
@@ -8,142 +14,152 @@ export default {
     docs: {
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbChatBarComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-// optional you can customize the bot list from:
-// import { defaultBotList, IBotType } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbChatBarComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+<br>
+### Description
+>This is an advanced tool designed to enhance the digital interaction experience powered by artificial intelligence.
+<br>
+${getTypescriptExampleTextBlock('BmbChatBarComponent', '', '', importComments)}
+${getDescribeTypeTextBlock('HTML')}
         `,
       },
+    },
+    controls: {
+      exclude: [
+        'control',
+        'dActionsList',
+        'dBotList',
+        'defaultPlaceholder',
+        'files',
+        'isDialogOpen',
+        'onDragFiles',
+        'openAddDialog',
+        'showMicControls',
+        'totalDots',
+        'versionAddDialog',
+        'windowHeight',
+        'windowWidth',
+        'close',
+        'createImageThumbnail',
+        'actionListPagination',
+        'activeDot',
+        'arrayThumbnail',
+        'deleteFile',
+        'handleAddDialog',
+        'handleChangeBot',
+        'handleDialog',
+        'handleDotPress',
+        'handleEmoji',
+        'handleMic',
+        'handlePaginate',
+        'handleRecord',
+        'handleSend',
+        'handleStopMic',
+        'onDragLeave',
+        'onDragOver',
+        'onDrop',
+        'onFileSelect',
+        'onResize',
+      ],
     },
   },
   argTypes: {
     placeholder: {
-      name: 'Placeholder',
-      control: { type: 'text' },
-      description: 'Optionally you can customize the placeholder input.',
+      ...InputParameterDescriptions.placeholder,
       table: {
-        category: 'Properties',
-        type: { summary: 'string' },
+        ...InputParameterDescriptions.placeholder.table,
+        defaultValue: { summary: '¿Qué deseas encontrar hoy?' },
       },
-      defaultValue: { summary: '¿Qué deseas encontrar hoy?' },
     },
     botList: {
-      name: 'Bot list',
       control: { type: 'object' },
-      description: 'Optionally you can customize the bot list input.',
+      description:
+        'Sets the list of bot images for the bot configuration to show.',
       table: {
         category: 'Properties',
         type: { summary: 'IBotType[]' },
+        defaultValue: { summary: 'defaultBotList<IBotType[]>' },
       },
-      defaultValue: { summary: 'defaultBotList<IBotType[]>' },
     },
-    actionList: {
-      name: 'Action list',
+    actionsList: {
       control: { type: 'object' },
-      description:
-        'Optionally you can customize the Action list input. By default, the "Upload File Action" is enable in the component',
+      description: `
+Sets the action list.
+Optionally you can customize the action list input. By default, the "Upload File Action" is enable in the component
+      `,
       table: {
         category: 'Properties',
         type: { summary: 'IBotActions[]' },
-      },
-      defaultValue: { summary: 'defaultActionList<IActions[]>' },
-    },
-    showEmoji: {
-      name: 'Show Emoji',
-      control: { type: 'boolean' },
-      description: 'Set if the Emoji Button will be shown in the componente.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean' },
+        defaultValue: { summary: 'defaultActionList<IActions[]>' },
       },
     },
     currentBot: {
-      name: 'Current bot',
       control: { type: 'object' },
-      description: 'Set the current bot to chat.',
+      description: `
+Set the current bot to chat.
+
+This is a model signal, so it is possible to use it as:
+- [(currentBot)]="currentBot"
+- (currentBotChange)="handleCurrentBotChange()
+      `,
       table: {
         category: 'Properties',
         type: { summary: 'IBotType' },
+        defaultValue: { summary: 'IBotType' },
       },
-      defaultValue: { summary: 'IBotType' },
     },
-    isLoading: {
-      name: 'Is loading',
+    showEmoji: {
       control: { type: 'boolean' },
-      description:
-        'Set loading state, put a loader icon and disable the send button.',
+      description: 'Sets if the Emoji Button will be shown in the component.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'false' },
         type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
       },
     },
-    isLoadingChange: {
-      name: 'Is Loading Change',
-      control: null,
-      description:
-        'Model signal, export the model value. Example: (isLoadingChange)="handleIsLoadingChange()"',
+    isLoading: {
+      control: { type: 'boolean' },
+      description: `
+Sets loading state, put a loader icon and disable the send button.
+
+This is a model signal, so it is possible to use it as:
+- [(isLoading)]="isLoading"
+- (isLoadingChange)="handleIsLoadingChange()
+      `,
       table: {
-        category: 'Events',
-        type: { summary: 'function' },
-      },
-    },
-    currentBotChange: {
-      name: 'current bot change',
-      control: null,
-      description: 'Emit the selected bot object <IBotType>. ',
-      table: {
-        category: 'Events',
-        type: { summary: 'function' },
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
       },
     },
     onSendMessage: {
-      name: 'On send message',
       control: null,
-      description: 'Emit the send event, export the output value.',
+      description: 'Emits the send event, export the output value.',
       table: {
         category: 'Events',
         type: { summary: 'function' },
       },
     },
     onSendFiles: {
-      name: 'On send Files',
       control: null,
-      description: 'Emit the send event, export the files output.',
+      description: 'Emits the send event, export the files output.',
       table: {
         category: 'Events',
         type: { summary: 'function' },
       },
     },
     onRecord: {
-      name: 'On Record',
       control: null,
       description:
-        'Emit the Record event, returns a true value when the user clicks the button of the microphone and returns a false value when the pause icon is clicked.',
+        'Emits the Record event, returns a true value when the user clicks the button of the microphone and returns a false value when the pause icon is clicked.',
       table: {
         category: 'Events',
         type: { summary: 'function' },
       },
     },
     onEmoji: {
-      name: 'On Emoji',
       control: null,
       description:
-        'Emit the Emoji event, emits true value when the user clicks the button of the emoji.',
+        'Emits the Emoji event, emits true value when the user clicks the button of the emoji.',
       table: {
         category: 'Events',
         type: { summary: 'function' },
@@ -152,6 +168,7 @@ Below is an example of how you can use this component in HTML:
   },
   args: {
     placeholder: 'Custom placeholder',
+    isLoading: false,
     botList: [
       {
         name: 'TecBot',
@@ -202,7 +219,7 @@ Below is an example of how you can use this component in HTML:
       name: 'TecBot',
       icon: '/assets/images/bot-icons/bot_tecStandar.svg',
     },
-    isLoading: false,
+    showEmoji: false,
   },
 } as Meta<typeof BmbChatBarComponent>;
 
