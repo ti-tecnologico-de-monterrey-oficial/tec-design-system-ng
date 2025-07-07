@@ -37,11 +37,15 @@ Below is an example of how you can use this component in HTML:
     type: {
       name: 'Type',
       control: 'select',
-      options: ['header', 'stray', 'generic1', 'generic2', 'generic3'],
+      options: ['header', 'input', 'stray', 'generic1', 'generic2', 'generic3'],
       description: 'The type of skeleton to display.',
       table: {
         category: 'Properties',
-        type: { summary: 'string' },
+        type: {
+          summary: 'BmbSkeletonType',
+          detail: `options: 'header' | 'input' | 'stray' | 'generic1' | 'generic2' | 'generic3'`,
+        },
+        defaultValue: { summary: 'header' },
       },
     },
   },

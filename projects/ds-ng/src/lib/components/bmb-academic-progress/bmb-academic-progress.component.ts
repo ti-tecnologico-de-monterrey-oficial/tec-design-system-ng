@@ -2,8 +2,10 @@ import {
   ChangeDetectionStrategy,
   Component,
   input,
+  OnChanges,
   OnInit,
   signal,
+  SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbFocusElementComponent } from '../bmb-focus-element/bmb-focus-element.component';
@@ -29,7 +31,7 @@ import { CommonModule } from '@angular/common';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbAcademicProgressComponent implements OnInit {
+export class BmbAcademicProgressComponent implements OnInit, OnChanges {
   accredited = input.required<IBmbNameValuePair>();
   average = input.required<IBmbNameValuePair>();
   summary = input.required<IBmbNameValuePair>();
@@ -38,7 +40,6 @@ export class BmbAcademicProgressComponent implements OnInit {
 
   ngOnInit() {
     const inputs: string[] = [];
-    const newMetrics: { name: string; value: number }[] = [];
     if (!this.accredited()) inputs.push('accredited');
     if (!this.average()) inputs.push('average');
     if (!this.summary()) inputs.push('summary');
@@ -50,26 +51,54 @@ export class BmbAcademicProgressComponent implements OnInit {
         `,
       );
     }
-    if (typeof this.accredited().value === 'number') {
-      newMetrics.push({
+
+    this.updateMetrics([
+      {
         name: this.accredited().name,
         value: this.accredited().value as number,
-      });
-    }
-    if (typeof this.average().value === 'number') {
-      newMetrics.push({
+      },
+      {
         name: this.average().name,
         value: this.average().value as number,
-      });
-    }
-    if (typeof this.summary().value === 'number') {
-      newMetrics.push({
+      },
+      {
         name: this.summary().name,
         value: this.summary().value as number,
-      });
-    }
+      },
+    ]);
+  }
 
-    this.metrics.set(newMetrics);
+  ngOnChanges(changes: SimpleChanges): void {
+    const accreditedValue =
+      changes['accredited']?.currentValue || this.accredited();
+    const averageValue = changes['average']?.currentValue || this.average();
+    const summaryValue = changes['summary']?.currentValue || this.summary();
+
+    this.updateMetrics([
+      {
+        name: accreditedValue.name,
+        value: accreditedValue.value as number,
+      },
+      {
+        name: averageValue.name,
+        value: averageValue.value as number,
+      },
+      {
+        name: summaryValue.name,
+        value: summaryValue.value as number,
+      },
+    ]);
+  }
+
+  updateMetrics(newMetrics: { name: string; value: number }[]): void {
+    this.metrics.set(
+      newMetrics.map((metric) => {
+        return {
+          name: metric.name,
+          value: metric.value,
+        };
+      }),
+    );
   }
 
   shouldShowMetric(metric: IBmbNameValuePair): boolean {

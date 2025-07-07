@@ -112,6 +112,11 @@
       }
     }
 
+    &-expandable {
+      background-color: var(--general_contrasts-25);
+      border-color: var(--general_contrasts-50);
+    }
+
     li {
       color: var(--general_contrasts-75);
     }
@@ -296,6 +301,16 @@
   .css-w992vf {
     color: var(--general_contrasts-100);
   }
+}
+
+.css-cjid1s {
+  border-radius: var(--bmb-radius-s) !important;
+}
+
+.css-yg7ze4 {
+  background-color: rgb(var(--color-charade-300));
+  border-radius: var(--bmb-radius-s);
+  box-shadow: var(--bmb-box-shadow-3);
 }
 
 .storybook-light-theme .docs-story {

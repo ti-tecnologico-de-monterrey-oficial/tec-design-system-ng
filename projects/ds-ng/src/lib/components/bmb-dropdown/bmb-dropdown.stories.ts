@@ -238,7 +238,7 @@ export class Component {
         type: { summary: 'boolean' },
       },
     },
-    dropDownId: {
+    inputId: {
       name: 'Input ID',
       control: { type: 'text' },
       description:
@@ -270,7 +270,7 @@ export class Component {
     preferredOptions: ['_pear'],
     tooltip: 'Tool tip',
     isFilterable: false,
-    dropDownId: 'this-value-should-be-unique',
+    inputId: 'this-value-should-be-unique',
   },
 } as Meta<typeof BmbDropdownComponent>;
 

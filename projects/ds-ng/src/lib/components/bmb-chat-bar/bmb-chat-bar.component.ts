@@ -15,6 +15,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BmbDotPaginatorComponent } from '../bmb-dot-paginator/bmb-dot-paginator.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
+import { ClickOutsideDirective } from '../../directives/utils/clickoutside.directive';
 
 export { defaultBotList, defaultActionList } from './bot_list';
 export { IBotType, IChatBarActions } from './types';
@@ -28,6 +29,7 @@ export { IBotType, IChatBarActions } from './types';
     CommonModule,
     BmbDotPaginatorComponent,
     BmbActionIconComponent,
+    ClickOutsideDirective,
   ],
   templateUrl: './bmb-chat-bar.component.html',
   styleUrl: './bmb-chat-bar.component.scss',
@@ -191,5 +193,9 @@ export class BmbChatBarComponent {
 
   handleRecord(): void {
     this.onRecord.emit(true);
+  }
+
+  clickOutside(): void {
+    this.openAddDialog = false;
   }
 }
