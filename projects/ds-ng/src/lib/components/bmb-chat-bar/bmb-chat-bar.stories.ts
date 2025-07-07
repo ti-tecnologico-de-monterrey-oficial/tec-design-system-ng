@@ -1,6 +1,9 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbChatBarComponent } from './bmb-chat-bar.component';
-import { getDescribeTypeTextBlock, getTypescriptExampleTextBlock } from '../../utils/doc/utils';
+import {
+  getDescribeTypeTextBlock,
+  getTypescriptExampleTextBlock,
+} from '../../utils/doc/utils';
 import { InputParameterDescriptions } from '../../utils/doc/parameterDescriptions';
 
 const importComments = `// optional you can customize the bot list from:
