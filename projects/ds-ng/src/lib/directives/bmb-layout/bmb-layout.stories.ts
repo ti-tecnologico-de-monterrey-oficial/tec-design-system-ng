@@ -15,7 +15,6 @@ const meta: Meta<BmbLayoutDirective> = {
   component: BmbLayoutDirective,
   decorators: [
     moduleMetadata({
-      declarations: [],
       imports: [
         CommonModule,
         BmbLayoutDirective,
