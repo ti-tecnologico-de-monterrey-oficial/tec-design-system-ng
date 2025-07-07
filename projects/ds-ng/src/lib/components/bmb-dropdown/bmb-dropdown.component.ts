@@ -19,7 +19,6 @@ import {
   getSelectedValues,
   getValidInitialValues,
 } from '../../utils/dropdown';
-import { BmbInputValidationComponent } from '../bmb-input/bmb-input-validation/bmb-input-validation.component';
 import {
   IBmbInputError,
   IBmbInputTooltipPosition,
@@ -27,7 +26,7 @@ import {
 import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-dropdown-content.component';
 import { IDropdownItem } from '../../types';
 import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
-import { debounceTime, startWith } from 'rxjs';
+import { startWith } from 'rxjs';
 import { getUUID } from '../../utils/utils';
 import {
   assignNewFormControl,
@@ -35,6 +34,7 @@ import {
   newFormControlByType,
   showError,
 } from '../../utils/formControl';
+import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
 
 export interface IBmbDropdownItem {
   name: string;
@@ -52,7 +52,7 @@ export interface IBmbDropdownItem {
     BmbIconComponent,
     ReactiveFormsModule,
     ClickOutsideDirective,
-    BmbInputValidationComponent,
+    BmbInputValidatorComponent,
     BmbInputContentComponent,
     BmbDropdownContentComponent,
   ],

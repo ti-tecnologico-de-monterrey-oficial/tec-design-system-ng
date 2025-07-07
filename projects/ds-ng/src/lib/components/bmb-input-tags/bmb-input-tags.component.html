@@ -6,7 +6,7 @@
   [errorMessage]="errorMessage()"
   [helperMessage]="helperMessage()"
   [isRequired]="isRequired()"
-  [idDisabled]="disabled()"
+  [isDisabled]="disabled()"
   [control]="control()"
   [showError]="shouldShowError"
   [tooltip]="tooltip()"
@@ -41,7 +41,7 @@
           <bmb-tag
             [text]="item.selectedText!"
             [dismissible]="true"
-            [idDisabled]="disabled()"
+            [isDisabled]="disabled()"
             (click)="removeTag(item)"
           />
         }

@@ -6,7 +6,7 @@
   [errorMessage]="errorMessage()"
   [helperMessage]="helperText()"
   [isRequired]="required()"
-  [idDisabled]="disabled()"
+  [isDisabled]="disabled()"
   [control]="control()"
   [showError]="shouldShowError"
   [tooltip]="tooltip()"
@@ -37,6 +37,7 @@
           class="bmb_field-actions"
           icon="keyboard_arrow_down"
           [size]="24"
+          (click)="openList()"
         />
       </label>
     </ng-template>

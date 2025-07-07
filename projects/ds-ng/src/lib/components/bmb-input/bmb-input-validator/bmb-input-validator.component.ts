@@ -51,7 +51,7 @@ export class BmbInputValidatorComponent implements OnInit {
   value = input<string | string[]>();
   checked = input<boolean>(false);
   isRequired = input<boolean>(false);
-  idDisabled = input<boolean>(false);
+  isDisabled = input<boolean>(false);
   max = input<number>();
   min = input<number>();
   maxLength = input<number>();
@@ -148,7 +148,7 @@ export class BmbInputValidatorComponent implements OnInit {
       this.control()?.addValidators(this.validatorError(customValidation));
     }
 
-    if (this.idDisabled()) this.control()?.disable();
+    if (this.isDisabled()) this.control()?.disable();
     else this.control()?.enable();
 
     this.control()?.valueChanges.subscribe(() => {
