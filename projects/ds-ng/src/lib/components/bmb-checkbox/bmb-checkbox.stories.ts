@@ -1,6 +1,20 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbCheckboxComponent } from './bmb-checkbox.component';
+import {
+  getDescribeTypeTextBlock,
+  getGeneralComponentDescription,
+  getHTMLFormExampleTextBlock,
+  getInputArchitecture,
+  getTypescriptFormExampleTextBlock,
+} from '../../utils/doc/utils';
 
+const inputExample = `
+<bmb-checkbox
+  [id]="'checkbox1'"
+  name="checkbox"
+  label="Checkbox label"
+/>
+`;
 export default {
   title: 'Components/Inputs/Checkbox',
   component: BmbCheckboxComponent,
@@ -8,6 +22,26 @@ export default {
     docs: {
       description: {
         component: `
+${getGeneralComponentDescription('bmb-checkbox', 'select options.')}
+<br>
+## DOM Architecture
+\`\`\`html
+<section class="bmb_checkbox" <!-- conditional class bmb_checkbox-before bmb_checkbox-after bmb_checkbox-required --> >
+  <input { input config } />
+  <div class="bmb_checkbox-box">
+    <span class="bmb_checkbox-mark"></span>
+  </div>
+
+  <!-- if label is defined -->
+  <span class="bmb_checkbox-label">{{ label }}</span>
+</section>
+\`\`\`
+${getTypescriptFormExampleTextBlock('BmbDatepickerComponent')}
+${getHTMLFormExampleTextBlock(inputExample)}
+${getDescribeTypeTextBlock('HTML')}
+
+
+
 Below is an example of how you can use this component in TypeScript:
 
 \`\`\`typescript
