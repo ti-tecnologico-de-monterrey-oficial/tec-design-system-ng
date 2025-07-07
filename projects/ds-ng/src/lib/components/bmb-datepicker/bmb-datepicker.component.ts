@@ -46,13 +46,17 @@ import {
 export class BmbDatepickerComponent implements OnInit {
   label = input<string>('');
   icon = input<string>('calendar_month');
-  invalidFormatErrorMessage = input<string>('Formato invalido');
-  requiredFieldErrorMessage = input<string>('Campo requerido');
-  appearance = input<IBmbInputAppearance | string>('normal');
+  dateFormat = input<string>('dd/MM/yyyy');
+  invalidFormatErrorMessage = input<string>(
+    `Por favor ingresa la fecha con formato ${this.dateFormat()}`,
+  );
+  requiredFieldErrorMessage = input<string>(
+    `Por favor ingresa el dato de ${this.label()}`,
+  );
+  appearance = input<IBmbInputAppearance | string>('normal'); //Deprecated
   disabled = input<boolean>(false);
   isRequired = input<boolean>(false);
   isClearable = input<boolean>(false);
-  dateFormat = input<string>('dd/MM/yyyy');
   placeholder = input<string>(this.dateFormat());
   // inline = input<boolean>(false);
   stepYearPicker = input<number>(18);
