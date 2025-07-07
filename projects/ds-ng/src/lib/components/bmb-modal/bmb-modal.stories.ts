@@ -1,11 +1,15 @@
 import { ModalDataConfig } from './bmb-modal.interface';
 import { Component, Input } from '@angular/core';
-import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
+import {
+  Meta,
+  StoryFn,
+  argsToTemplate,
+  moduleMetadata,
+} from '@storybook/angular';
 import { BmbModalComponent } from './bmb-modal.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { MatDialog } from '@angular/material/dialog';
-import { attributes } from '../../utils/doc/utils';
 
 @Component({
   standalone: true,
@@ -383,7 +387,7 @@ export const Default: StoryFn<typeof BmbModalComponent> = (args) => {
     props: args,
     template: `
       <!-- Instruction to users: This component is used for internal Storybook logic and should not be copied -->
-      <storybook-modal-wrapper ${attributes(args)}></storybook-modal-wrapper>
+      <storybook-modal-wrapper ${argsToTemplate(args)}></storybook-modal-wrapper>
     `,
   };
 };
