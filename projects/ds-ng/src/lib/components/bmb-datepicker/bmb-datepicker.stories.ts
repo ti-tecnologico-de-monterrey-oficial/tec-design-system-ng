@@ -14,6 +14,7 @@ import {
 } from '../../utils/doc/parameterDescriptions';
 import {
   getDescribeTypeTextBlock,
+  getGeneralComponentDescription,
   getHTMLFormExampleTextBlock,
   getInputArchitecture,
   getTypescriptFormExampleTextBlock,
@@ -42,18 +43,27 @@ export default {
     docs: {
       description: {
         component: `
-<br>
-### Description
->\`bmb-datepicker\` is a customizable Bamboo input component that allows users to enter date data.
->
->This component includes validations, error messages, and support for tooltips to provide additional information.
-<br>
+${getGeneralComponentDescription('bmb-datepicker', 'enter date data.')}
 ${getInputArchitecture()}
 ${getTypescriptFormExampleTextBlock('BmbDatepickerComponent')}
 ${getHTMLFormExampleTextBlock(inputExample)}
 ${getDescribeTypeTextBlock('HTML')}
         `,
       },
+    },
+    controls: {
+      exclude: [
+        'defaultDate',
+        'isWindowOpen',
+        'now',
+        'stepYearPicker',
+        'clickOutside',
+        'convertToDate',
+        'customValidatorDate',
+        'handleFocusedEvent',
+        'handleValueChange',
+        'handleWindowOpen',
+      ],
     },
   },
   argTypes: {

@@ -29,7 +29,7 @@ const preview: Preview = {
     },
     docs: {
       controls: {
-        exclude: ['ngOnInit', 'ngOnChanges'],
+        exclude: ['ngOnInit', 'ngOnChanges', 'isControlNull'],
       },
       source: {
         excludeDecorators: true,

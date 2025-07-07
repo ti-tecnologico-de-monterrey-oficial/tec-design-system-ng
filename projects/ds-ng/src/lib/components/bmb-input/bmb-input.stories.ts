@@ -2,6 +2,7 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { BmbInputComponent } from './bmb-input.component';
 import {
   getDescribeTypeTextBlock,
+  getGeneralComponentDescription,
   getHTMLFormExampleTextBlock,
   getInputArchitecture,
   getTypescriptFormExampleTextBlock,
@@ -10,6 +11,13 @@ import {
   DEPRECATED_PROPERTIES_DESCRIPTION,
   InputParameterDescriptions,
 } from '../../utils/doc/parameterDescriptions';
+
+const additionalDescription = `input various types of data, such as:
+>
+>- text
+>- password
+>- number
+>- text-area`;
 
 const inputExample = `<bmb-input
   id="input_field_id"
@@ -54,23 +62,16 @@ export default {
     docs: {
       description: {
         component: `
-<br>
-### Description
->\`bmb-input\` is a customizable **Bamboo** input component that allows users to input various types of data, such as:
->
->- text
->- password
->- number
->- text-area
->
->This component includes validations, error messages, and support for tooltips to provide additional information.
-<br>
+${getGeneralComponentDescription('bmb-input', additionalDescription)}
 ${getInputArchitecture()}
 ${getTypescriptFormExampleTextBlock('BmbInputComponent')}
 ${getHTMLFormExampleTextBlock(inputExample)}
 ${getDescribeTypeTextBlock('HTML')}
       `,
       },
+    },
+    controls: {
+      exclude: ['handleChange', 'handleKeyPress', 'onBlur', 'onFocus'],
     },
   },
   argTypes: {

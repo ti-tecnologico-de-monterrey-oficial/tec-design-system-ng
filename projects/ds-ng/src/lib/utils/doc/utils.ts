@@ -65,12 +65,13 @@ export const getTypescriptExampleTextBlock = (
   inputName: string,
   additionalBlock: string = '',
   additionalText: string = '',
+  importComments: string = '',
 ) => `
 ${getDescribeTypeTextBlock('TypeScript', additionalText)}
 \`\`\`typescript
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ${inputName} } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-
+${importComments}
 @Component({
   selector: 'app-component',
   standalone: true,
@@ -147,4 +148,16 @@ ${getDescribeTypeTextBlock('Form', 'an HTML form')}
   <button bmbButton appearance="primary" type="submit">Submit</button>
 </form>
 \`\`\`
+`;
+
+export const getGeneralComponentDescription = (
+  componentName: string,
+  additionalDescription: string,
+) => `
+<br>
+### Description
+>\`${componentName}\` is a customizable **Bamboo** input component that allows users to ${additionalDescription}
+>
+>This component includes validations, error messages, and support for tooltips to provide additional information.
+<br>
 `;
