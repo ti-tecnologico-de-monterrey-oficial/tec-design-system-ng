@@ -87,13 +87,17 @@ export class AppComponent {
 \`\`\`
 `;
 
-export const getTypescriptFormExampleTextBlock = (inputName: string) => `
+export const getTypescriptFormExampleTextBlock = (
+  bmbInputName: string,
+  inputName: string,
+  additionalBlock: string = '',
+) => `
 ${getDescribeTypeTextBlock('TypeScript')}
 \`\`\`typescript
 import { CommonModule } from '@angular/common';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { BmbButtonDirective, ${inputName} } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
+import { BmbButtonDirective, ${bmbInputName} } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
 
 
 @Component({
@@ -103,16 +107,17 @@ import { BmbButtonDirective, ${inputName} } from '@ti-tecnologico-de-monterrey-o
     CommonModule,
     ReactiveFormsModule,
     BmbButtonDirective,
-    ${inputName},
+    ${bmbInputName},
   ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   userForm: FormGroup = new FormGroup({
-    name: new FormControl(),
+    ${inputName}: new FormControl(),
   });
+
+  ${additionalBlock || '//Add your code'}
 
   onSubmit() {
     if (this.userForm.valid) {

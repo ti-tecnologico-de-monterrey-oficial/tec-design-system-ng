@@ -1,12 +1,4 @@
-import {
-  Meta,
-  StoryObj,
-  componentWrapperDecorator,
-  moduleMetadata,
-} from '@storybook/angular';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Meta, StoryObj, componentWrapperDecorator } from '@storybook/angular';
 import { BmbDatepickerComponent } from './bmb-datepicker.component';
 import {
   DEPRECATED_PROPERTIES_DESCRIPTION,
@@ -20,13 +12,13 @@ import {
   getTypescriptFormExampleTextBlock,
 } from '../../utils/doc/utils';
 
-const inputExample = `<bmb-datepicker
-  name="datepicker"
+const bmbInputName = `<bmb-datepicker
+  name="datepicker1"
   label="Date"
   invalidFormatErrorMessage="Please enter a date in a valid format."
   requiredFieldErrorMessage="Please enter the date"
   [isRequired]="true"
-/>`;
+  />`;
 
 export default {
   title: 'Components/Inputs/Calendar date picker',
@@ -45,8 +37,8 @@ export default {
         component: `
 ${getGeneralComponentDescription('bmb-datepicker', 'enter date data.')}
 ${getInputArchitecture()}
-${getTypescriptFormExampleTextBlock('BmbDatepickerComponent')}
-${getHTMLFormExampleTextBlock(inputExample)}
+${getTypescriptFormExampleTextBlock('BmbDatepickerComponent', 'datepicker1')}
+${getHTMLFormExampleTextBlock(bmbInputName)}
 ${getDescribeTypeTextBlock('HTML')}
         `,
       },

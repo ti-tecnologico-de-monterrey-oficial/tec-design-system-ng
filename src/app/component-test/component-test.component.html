@@ -1,0 +1,20 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <bmb-input
+    id="input_field_id"
+    name="input_field1"
+    label="Input Label"
+    tooltip="Tooltip example"
+    icon="apps"
+    placeholder="Placeholder"
+    helperMessage="Helper Message"
+    [maxlength]="20"
+    [minlength]="4"
+    pattern="[A-Za-z]+"
+    [isRequired]="true"
+    [control]="getFormControl('input_field1')"
+  />
+  <button bmbButton appearance="primary" type="submit">Submit</button>
+</form>
+FormGroup state: {{ userForm.status }}
+<br />
+FormGroup value {{ userForm.value | json }}

@@ -19,24 +19,27 @@ const additionalDescription = `input various types of data, such as:
 >- number
 >- text-area`;
 
-const inputExample = `<bmb-input
+const inputName = 'input_field1';
+
+const bmbInputName = `<bmb-input
   id="input_field_id"
-  name="input_field"
+  name="${inputName}"
   label="Input Label"
   tooltip="Tooltip example"
-  placeholder="Placeholder"
   icon="apps"
+  placeholder="Placeholder"
+  helperMessage="Helper Message"
+  [maxlength]="20"
+  [minlength]="4"
+  pattern="[A-Za-z]+"
+  [isRequired]="true"
   [errorMessage]="{
     required: 'Please enter the required data',
     minLength: 'Please enter at least 4 characters',
     pattern: 'Please enter only letters'
   }"
-  helperMessage="Helper Message"
-  [isRequired]="true"
-  [maxlength]="20"
-  [minlength]="4"
-  pattern="[A-Za-z]+"
-/>`;
+  [control]="getFormControl('${inputName}')"
+ />`;
 
 const getTextInputWarnings = (
   propertyName: string = '',
@@ -64,8 +67,8 @@ export default {
         component: `
 ${getGeneralComponentDescription('bmb-input', additionalDescription)}
 ${getInputArchitecture()}
-${getTypescriptFormExampleTextBlock('BmbInputComponent')}
-${getHTMLFormExampleTextBlock(inputExample)}
+${getTypescriptFormExampleTextBlock('BmbInputComponent', inputName)}
+${getHTMLFormExampleTextBlock(bmbInputName)}
 ${getDescribeTypeTextBlock('HTML')}
       `,
       },
