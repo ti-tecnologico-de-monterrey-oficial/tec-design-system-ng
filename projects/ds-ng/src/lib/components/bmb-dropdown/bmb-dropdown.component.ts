@@ -203,7 +203,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
     if (!value) return this.items;
 
     return this.items.filter((item) =>
-      item.text.toLowerCase().includes(value.toLowerCase()),
+      item?.selectedText?.toLowerCase().includes(value.toLowerCase()),
     );
   }
 
@@ -225,7 +225,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   closeList(): void {
     this.isOpen = false;
     this.isKeyboardEvent = false;
-    this.selectionControl.setValue(this.selectedItem?.text || '');
+    this.selectionControl.setValue(this.selectedItem?.selectedText || '');
   }
 
   // Keyboards events
