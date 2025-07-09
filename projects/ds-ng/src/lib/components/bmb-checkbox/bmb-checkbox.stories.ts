@@ -7,9 +7,7 @@ import {
   getHTMLFormExampleTextBlock,
   getTypescriptFormExampleTextBlock,
 } from '../../utils/doc/utils';
-import {
-  InputParameterDescriptions,
-} from '../../utils/doc/parameterDescriptions';
+import { InputParameterDescriptions } from '../../utils/doc/parameterDescriptions';
 
 const inputName = 'checkbox1';
 const additionalBlock = `handleCheckboxChange(event: Event): void {
@@ -18,7 +16,7 @@ const additionalBlock = `handleCheckboxChange(event: Event): void {
     console.log('Checkbox name:', element.name);
   }`;
 const bmbInputName = `<bmb-checkbox
-  id="checkbox_id1"
+  inputId="checkbox_id1"
   name="${inputName}"
   label="Checkbox"
   [control]="getFormControl('${inputName}')"
@@ -94,57 +92,11 @@ ${InputParameterDescriptions.value.description}
 Multiple checkboxes can share the same name to create a group where multiple items can be selected.
       `,
     },
-    label: InputParameterDescriptions.labelCheckboxOrRadial,
-    ariaDescribedby: {
-      control: { type: 'text' },
-      description:
-        'Provides additional descriptive text for the checkbox, enhancing accessibility by linking the checkbox to a descriptive element by ID.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: '' },
-      },
-    },
-    ariaLabel: {
-      control: { type: 'text' },
-      description:
-        'Defines a string that labels the checkbox for accessibility purposes, which can be used when a visible label text is not present.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: '' },
-      },
-    },
-    ariaLabelledby: {
-      control: { type: 'text' },
-      description:
-        'Identifies the element(s) that labels the checkbox for accessibility purposes, providing a reference to the IDs of the elements that serve as the checkbox label.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: '' },
-      },
-    },
-    labelPosition: {
-      control: { type: 'radio' },
-      options: ['before', 'after'],
-      description: `
-Specifies the position of the label relative to the checkbox.
-
-The possible positions to indicate where the label should be displayed in relation to the checkbox are:
-
-- before
-- after
-      `,
-      table: {
-        category: 'Properties',
-        type: {
-          summary: 'IBbmSidePosition',
-          detail: `IBbmSidePosition = 'before' | 'after'`,
-        },
-        defaultValue: { summary: 'after' },
-      },
-    },
+    label: InputParameterDescriptions.checkboxLabel,
+    ariaDescribedby: InputParameterDescriptions.ariaDescribedBy,
+    ariaLabel: InputParameterDescriptions.ariaLabel,
+    ariaLabelledby: InputParameterDescriptions.ariaLabelledBy,
+    labelPosition: InputParameterDescriptions.checkboxLabelPosition,
     control: InputParameterDescriptions.control,
     errorMessage: InputParameterDescriptions.errorMessage,
     helperMessage: InputParameterDescriptions.helperMessage,
@@ -171,7 +123,7 @@ This can be used to trigger functions or actions based on the checkbox’s state
     value: '',
     checked: false,
     label: 'Contrato profesor cátedra Biología marina CCM.pdf',
-    labelPosition: 'before',
+    labelPosition: 'after',
     disabled: false,
     required: false,
     ariaDescribedby: '',

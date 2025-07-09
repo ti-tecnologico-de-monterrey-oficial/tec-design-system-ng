@@ -326,14 +326,7 @@ IBmbAdditionalAction = 'copy' | 'showHide' | 'none'
         type: { summary: 'HTMLInputElement' },
       },
     },
-    onKeyDown: {
-      control: { type: 'boolean' },
-      description: 'Emits keydown event.',
-      table: {
-        category: 'Events',
-        type: { summary: 'KeyboardEvent' },
-      },
-    },
+    onKeyDown: InputParameterDescriptions.onKeyDown,
     customInputContent: {
       description:
         'Allows to provide custom content inside the form input field using a TemplateRef.',

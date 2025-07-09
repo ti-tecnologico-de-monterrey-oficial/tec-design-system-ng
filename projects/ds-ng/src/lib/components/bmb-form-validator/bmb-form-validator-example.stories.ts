@@ -37,7 +37,7 @@ import {
       <bmb-checkbox
         id="checkbox_id1"
         name="checkbox1"
-        label="Checkbox label"
+        label="Checkbox"
         errorMessage="Please enter the required data"
         [required]="true"
       />
@@ -72,21 +72,23 @@ import {
         name="radial_group"
         label="Radial A"
         value="A"
-        [isRequired]="true"
+        [required]="true"
         errorMessage="Please enter the required data"
+        [control]="formGroup.controls['radial_group']"
       />
       <bmb-radial
         inputId="radial_id2"
         name="radial_group"
         label="Radial B"
         value="B"
-        [isRequired]="true"
+        [required]="true"
         errorMessage="Please enter the required data"
+        [control]="formGroup.controls['radial_group']"
       />
       <bmb-input
         id="input_field_id"
         name="input_field"
-        label="Input Label"
+        label="Input"
         tooltip="Tooltip example"
         placeholder="Placeholder"
         icon="apps"
@@ -135,7 +137,7 @@ export default {
     }),
     componentWrapperDecorator((story: string) => {
       return `
-        <div style="height: 50rem">
+        <div style="height: 60rem">
           ${story}
         </div>`;
     }),

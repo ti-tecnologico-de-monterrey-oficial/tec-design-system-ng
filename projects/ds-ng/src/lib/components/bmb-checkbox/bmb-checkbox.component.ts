@@ -30,7 +30,7 @@ import {
 })
 export class BmbCheckboxComponent implements OnInit {
   name = input<string>(getUUID());
-  id = input<string>();//Deprecated
+  id = input<string>(); //Deprecated
   disabled = input<boolean>(false);
   required = input<boolean>(false);
   value = input<string>('');

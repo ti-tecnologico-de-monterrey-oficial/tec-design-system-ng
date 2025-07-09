@@ -34,7 +34,7 @@ const bmbInputName = `<bmb-radial
 export default {
   title: 'Components/Inputs/Radial',
   component: BmbRadialComponent,
-  tags: ['autodocs'],
+  tags: ['!autodocs'],
   parameters: {
     controls: {
       exclude: ['handleKeyPress', 'handleRadioChange', 'handleRadioKeyDown'],
@@ -121,7 +121,7 @@ Emits an event when the state of the the radial changes.
     ariaLabel: '',
     ariaLabelledby: '',
     change: () => {
-      window.alert('Radial clicked');
+      console.log('Radial clicked');
     },
   },
 } as Meta<typeof BmbRadialComponent>;
