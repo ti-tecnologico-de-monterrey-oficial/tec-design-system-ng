@@ -90,16 +90,7 @@ ${getDescribeTypeTextBlock('HTML')}
     placeholder: InputParameterDescriptions.placeholder,
     disabled: InputParameterDescriptions.disabled,
     label: InputParameterDescriptions.label,
-    appearance: {
-      control: {
-        type: 'text',
-      },
-      description: DEPRECATED_PROPERTIES_DESCRIPTION,
-      table: {
-        category: 'Deprecated',
-        type: { summary: 'string' },
-      },
-    },
+    appearance: InputParameterDescriptions.deprecated,
     isClearable: InputParameterDescriptions.isClearable,
     dateFormat: {
       control: {
