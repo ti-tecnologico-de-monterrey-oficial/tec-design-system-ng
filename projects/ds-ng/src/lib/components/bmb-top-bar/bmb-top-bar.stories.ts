@@ -181,7 +181,8 @@ Below is an example of how you can use this component in HTML:
     backToHomeClick: {
       name: 'Back to home click',
       control: false,
-      description: 'Function that is executed when the back to home button is clicked.',
+      description:
+        'Function that is executed when the back to home button is clicked.',
       table: {
         type: { summary: 'function' },
         category: 'Events',

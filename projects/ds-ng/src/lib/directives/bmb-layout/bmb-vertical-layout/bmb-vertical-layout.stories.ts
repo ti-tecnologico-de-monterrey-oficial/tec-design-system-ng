@@ -1,6 +1,6 @@
 import { Meta, moduleMetadata, StoryFn, StoryObj } from '@storybook/angular';
 import { BmbVerticalLayoutDirective } from './bmb-vertical-layout.directive';
-import { attributes } from '../../../utils/utils';
+import { attributes } from '../../../utils/doc/utils';
 import {
   BmbIconStatusComponent,
   BmbInnerHeaderComponent,

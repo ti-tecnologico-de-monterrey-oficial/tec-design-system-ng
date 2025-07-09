@@ -1,0 +1,62 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <bmb-datepicker
+    inputId="date_picker_id"
+    name="date_picker"
+    label="Date"
+    [isRequired]="true"
+    [control]="getFormControl('date_picker')"
+  />
+  <bmb-checkbox
+    inputId="checkbox_id"
+    name="checkbox"
+    label="Checkbox"
+    [control]="getFormControl('checkbox')"
+    [required]="true"
+    (change)="handleCheckboxChange($event)"
+  />
+  <bmb-date-range
+    inputId="date_range_id"
+    name="date_range"
+    label="Date range"
+    labelStartDate="Date range start"
+    labelEndDate="Date range end"
+    [isRequired]="true"
+    [controlStart]="getFormControl('date_range_start')"
+    [controlEnd]="getFormControl('date_range_end')"
+  />
+  <bmb-radial
+    inputId="radial_id1"
+    name="radial_group"
+    label="Radial A"
+    value="A"
+    [control]="getFormControl('radial_group')"
+    (change)="handleRadial($event)"
+  />
+  <bmb-radial
+    inputId="radial_id2"
+    name="radial_group"
+    label="Radial B"
+    value="B"
+    [required]="true"
+    [control]="getFormControl('radial_group')"
+    (change)="handleRadial($event)"
+  />
+  <bmb-input
+    id="input_field_id"
+    name="input_field"
+    label="Input"
+    tooltip="Tooltip example"
+    icon="apps"
+    placeholder="Placeholder"
+    helperMessage="Helper Message"
+    [isRequired]="true"
+    [maxlength]="20"
+    [minlength]="4"
+    pattern="[A-Za-z]+"
+    [control]="getFormControl('input_field')"
+  />
+  <button bmbButton appearance="primary" type="submit">Submit</button>
+</form>
+FormGroup state: {{ userForm.status }}
+<br />
+FormGroup value {{ userForm.value | json }}

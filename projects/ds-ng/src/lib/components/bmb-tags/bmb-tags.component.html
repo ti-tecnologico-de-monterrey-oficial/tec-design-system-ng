@@ -17,7 +17,7 @@
 } @else {
   <button
     type="button"
-    [disabled]="idDisabled()"
+    [disabled]="isDisabled()"
     [ngClass]="getClasses()"
     (click)="clickTag(text())"
   >

@@ -1,6 +1,6 @@
 import type { Meta, StoryFn, StoryObj } from '@storybook/angular';
 import { BmbDigitalIdComponent } from './bmb-digital-id.component';
-import { attributes } from '../../utils/utils';
+import { attributes } from '../../utils/doc/utils';
 
 export default {
   title: 'Particularities/mitec app/Digital id',

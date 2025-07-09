@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { IBbmSidePosition } from '../../types';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { BmbInputValidationComponent } from '../bmb-input/bmb-input-validation/bmb-input-validation.component';
+import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
 import { CommonModule } from '@angular/common';
 import { getUUID } from '../../utils/utils';
 import { IBmbInputError } from '../bmb-input/bmb-input.component';
@@ -22,14 +22,14 @@ import {
 @Component({
   selector: 'bmb-radial',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, BmbInputValidationComponent],
+  imports: [CommonModule, ReactiveFormsModule, BmbInputValidatorComponent],
   templateUrl: './bmb-radial.component.html',
   styleUrl: './bmb-radial.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbRadialComponent implements OnInit {
-  id = input<string>('');
+  id = input<string>(''); //Deprecated
   checked = input<boolean>(false);
   disabled = input<boolean>(false);
   value = input<string>('');
@@ -45,6 +45,7 @@ export class BmbRadialComponent implements OnInit {
 
   showError = model<boolean>(false);
   control = model<FormControl>(newFormControlByType('radio'));
+  inputId = model<string>(getUUID());
 
   change = output<HTMLInputElement>();
   onKeyDown = output<KeyboardEvent>();
@@ -52,6 +53,10 @@ export class BmbRadialComponent implements OnInit {
   isControlNull: boolean = false;
 
   ngOnInit() {
+    if (!!this.id() && !this.inputId()) {
+      this.inputId.set(this.id()!);
+    }
+
     if (!this.control()) {
       this.control.set(
         assignNewFormControl(this.name(), this.control(), 'radio')!,
@@ -68,7 +73,7 @@ export class BmbRadialComponent implements OnInit {
     const target = event.target as HTMLInputElement;
 
     if (target && target.checked) {
-      this.control().setValue(target.value);
+      this.control().setValue(target.value || target.checked);
       target.name = this.name();
       this.change.emit(target);
     }

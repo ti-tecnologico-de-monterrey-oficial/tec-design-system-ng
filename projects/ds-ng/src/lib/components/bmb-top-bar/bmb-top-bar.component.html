@@ -4,7 +4,12 @@
     'bmb_top-bar-animated': showAnimation,
   }"
 >
-  <figure class="bmb_top-bar-logo-section" (keydown)="handleBackToHome()" (click)="handleBackToHome()" tabindex="0">
+  <figure
+    class="bmb_top-bar-logo-section"
+    (keydown)="handleBackToHome()"
+    (click)="handleBackToHome()"
+    tabindex="0"
+  >
     <picture>
       <source media="(min-width: 1000px)" [srcset]="image" />
       <source [srcset]="mobileImage" />

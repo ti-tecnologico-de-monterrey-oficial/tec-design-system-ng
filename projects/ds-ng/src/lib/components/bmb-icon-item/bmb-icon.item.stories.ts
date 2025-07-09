@@ -1,5 +1,5 @@
 import { moduleMetadata, StoryObj, type Meta } from '@storybook/angular';
-import { attributes } from '../../utils/utils';
+import { attributes } from '../../utils/doc/utils';
 import { BmbIconItemComponent } from './bmb-icon-item.component';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 

@@ -2,7 +2,7 @@ import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { BmbAccordionControlDirective } from './bmb-accordion-control.directive';
 import { CommonModule } from '@angular/common';
 import { BmbAccordionComponent } from '../../../public-api';
-import { getEmptyStateMessage } from '../../utils/utils';
+import { getEmptyStateMessage } from '../../utils/doc/utils';
 
 const meta: Meta<BmbAccordionControlDirective> = {
   title: 'Components/Containers/Accordion/Accordion control',

@@ -6,7 +6,7 @@ import {
   BmbHomeCardChatComponent,
   IBmbChatMessage,
 } from '../../public-api';
-import { attributes } from '../utils/utils';
+import { attributes } from '../utils/doc/utils';
 
 @Component({
   standalone: true,

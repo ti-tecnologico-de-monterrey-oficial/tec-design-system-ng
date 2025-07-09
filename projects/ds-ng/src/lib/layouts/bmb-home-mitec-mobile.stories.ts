@@ -18,7 +18,7 @@ import {
   IBmbUserInfo,
 } from '../../public-api';
 import { CommonModule } from '@angular/common';
-import { attributes } from '../utils/utils';
+import { attributes } from '../utils/doc/utils';
 import { BmbCarouselComponent } from '../components/bmb-carousel/bmb-carousel.component';
 
 @Component({

@@ -26,7 +26,7 @@ import {
   IBmbInputError,
   IBmbInputTooltipPosition,
 } from '../bmb-input/bmb-input.component';
-import { BmbInputValidationComponent } from '../bmb-input/bmb-input-validation/bmb-input-validation.component';
+import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
 import { buildErrorMessage, getUUID } from '../../utils/utils';
 import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
 import {
@@ -46,7 +46,7 @@ import {
     ReactiveFormsModule,
     BmbDropdownComponent,
     BmbInputContentComponent,
-    BmbInputValidationComponent,
+    BmbInputValidatorComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,

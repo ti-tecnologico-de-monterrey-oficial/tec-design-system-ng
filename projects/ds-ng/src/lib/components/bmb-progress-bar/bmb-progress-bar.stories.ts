@@ -140,8 +140,7 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'function',
       },
-      description:
-        `
+      description: `
 Set the text format function to show the percentage in the progress bar.
 The function receives two parameters: the current value and the total value, and should return a formatted string.
 

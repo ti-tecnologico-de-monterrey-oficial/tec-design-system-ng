@@ -25,18 +25,23 @@ import { CommonModule } from '@angular/common';
 import { BmbTooltipComponent } from '../../bmb-tooltip/bmb-tooltip.component';
 import { getPositionClass } from '../../../utils/utils';
 
-export type IBmbInputValType = 'checkbox' | 'email' | 'phone' | 'switch';
+export type IBmbInputValType =
+  | 'radio'
+  | 'checkbox'
+  | 'email'
+  | 'phone'
+  | 'switch';
 
 @Component({
-  selector: 'bmb-input-validation',
+  selector: 'bmb-input-validator',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, BmbTooltipComponent],
-  templateUrl: './bmb-input-validation.component.html',
-  styleUrl: './bmb-input-validation.component.scss',
+  templateUrl: './bmb-input-validator.component.html',
+  styleUrl: './bmb-input-validator.component.scss',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbInputValidationComponent implements OnInit {
+export class BmbInputValidatorComponent implements OnInit {
   inputId = input<string>('');
   type = input<IBmbInputType | IBmbInputValType>('text');
   appearance = input<IBmbInputAppearance | string>('normal');
@@ -46,7 +51,7 @@ export class BmbInputValidationComponent implements OnInit {
   value = input<string | string[]>();
   checked = input<boolean>(false);
   isRequired = input<boolean>(false);
-  idDisabled = input<boolean>(false);
+  isDisabled = input<boolean>(false);
   max = input<number>();
   min = input<number>();
   maxLength = input<number>();
@@ -64,13 +69,23 @@ export class BmbInputValidationComponent implements OnInit {
   errorMessage = input<string | IBmbInputError>('');
   customValidation = input<ValidatorFn>();
 
-  isCustomError = model<boolean>(false);
   showError = model<boolean>(false);
   control = model<FormControl>();
 
   constructor(private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
+    if (!!this.min() && !!this.max() && this.max()! < this.min()!) {
+      throw new Error(
+        `
+          [${this.name()}]: Please enter a value greater or equal than min.
+          The values ​​entered are:
+          -min: ${this.min()}
+          -max: ${this.max()}
+          `,
+      );
+    }
+
     this.addControlConfig(
       this.type(),
       this.value(),
@@ -81,7 +96,6 @@ export class BmbInputValidationComponent implements OnInit {
       this.minLength()!,
       this.pattern()!,
       this.jsonFormat(),
-      this.isCustomError(),
       this.customValidation()!,
     );
   }
@@ -96,7 +110,6 @@ export class BmbInputValidationComponent implements OnInit {
     minLength: number,
     pattern: string,
     isJsonFormat: boolean,
-    isCustomError: boolean,
     customValidation: ValidatorFn,
   ): void {
     if (!this.control()?.value && (!!value || checked)) {
@@ -131,11 +144,11 @@ export class BmbInputValidationComponent implements OnInit {
       this.control()?.addValidators(this.validatorError('jsonValidation'));
     }
 
-    if (isCustomError) {
+    if (!!customValidation) {
       this.control()?.addValidators(this.validatorError(customValidation));
     }
 
-    if (this.idDisabled()) this.control()?.disable();
+    if (this.isDisabled()) this.control()?.disable();
     else this.control()?.enable();
 
     this.control()?.valueChanges.subscribe(() => {
@@ -171,12 +184,15 @@ export class BmbInputValidationComponent implements OnInit {
     value: unknown,
     checked: boolean,
   ): void {
-    if (type === 'radio') {
-      if (checked) control.setValue(value);
+    if (type === 'checkbox' || type === 'radio') {
+      if (checked) {
+        if (!!value) control.setValue(value);
+        else control.setValue(checked);
+      }
       return;
     }
 
-    if (type === 'checkbox' || type === 'switch') {
+    if (type === 'switch') {
       if (checked) control.setValue(checked);
       return;
     }
@@ -219,42 +235,46 @@ export class BmbInputValidationComponent implements OnInit {
     const errorMessages = this.errorMessage() as IBmbInputError;
 
     if (this.control()?.hasError('pattern'))
-      return this.getErrorType(errorMessages, 'pattern', 'Formato no válido');
+      return this.getErrorType(
+        errorMessages,
+        'pattern',
+        'Por favor ingresa un formato permitido',
+      );
     if (this.control()?.hasError('min'))
       return this.getErrorType(
         errorMessages,
         'min',
-        `El valor mínimo requerido es de ${this.min()}`,
+        `Por favor ingresa un valor mayor o igual que ${this.min()}`,
       );
     if (this.control()?.hasError('max'))
       return this.getErrorType(
         errorMessages,
         'max',
-        `El valor máximo requerido es de ${this.max()}`,
+        `Por favor ingresa un valor menor o igual que ${this.max()}`,
       );
     if (this.control()?.hasError('minlength'))
       return this.getErrorType(
         errorMessages,
-        'minlength',
-        `El mínimo de caracteres requerido es de ${this.minLength()}`,
+        'minLength',
+        `Por favor ingresa al menos ${this.minLength()} carácteres`,
       );
     if (this.control()?.hasError('maxlength'))
       return this.getErrorType(
         errorMessages,
-        'maxlength',
-        `El máximo de caracteres requerido es de ${this.maxLength()}`,
+        'maxLength',
+        `Por favor ingresa máximo ${this.maxLength()} carácteres`,
       );
     if (this.control()?.hasError('required'))
       return this.getErrorType(
         errorMessages,
         'required',
-        'Este campo es requerido',
+        `Por favor ingresa el dato de ${this.label()}`,
       );
     if (this.control()?.hasError('invalidJson'))
       return this.getErrorType(
         errorMessages,
         'invalidJson',
-        'formato json no válido',
+        'Por favor ingresa el contenido en formato JSON válido',
       );
     if (this.control()?.hasError('customValidation'))
       return errorMessages?.customValidation || '';

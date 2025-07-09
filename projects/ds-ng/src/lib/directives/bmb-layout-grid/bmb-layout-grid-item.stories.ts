@@ -4,7 +4,7 @@ import {
   BmbLayoutGridItemDirective,
 } from './bmb-layout-grid.directive';
 import { Meta, moduleMetadata, StoryFn } from '@storybook/angular';
-import { attributes } from '../../utils/utils';
+import { attributes } from '../../utils/doc/utils';
 import { CommonModule } from '@angular/common';
 import {
   BmbCardComponent,

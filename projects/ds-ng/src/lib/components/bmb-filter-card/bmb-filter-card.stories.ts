@@ -1,7 +1,7 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { BmbFilterCardComponent } from './bmb-filter-card.component';
 import { CommonModule } from '@angular/common';
-import { getEmptyStateMessage } from '../../utils/utils';
+import { getEmptyStateMessage } from '../../utils/doc/utils';
 
 export default {
   title: 'Components/Containers/Filter card',

@@ -1,4 +1,4 @@
-<bmb-input-validation
+<bmb-input-validator
   class="bmb_input-tags"
   [name]="name()"
   [value]="getValidInitialValues()"
@@ -6,7 +6,7 @@
   [errorMessage]="errorMessage()"
   [helperMessage]="helperMessage()"
   [isRequired]="isRequired()"
-  [idDisabled]="disabled()"
+  [isDisabled]="disabled()"
   [control]="control()"
   [showError]="shouldShowError"
   [tooltip]="tooltip()"
@@ -41,7 +41,7 @@
           <bmb-tag
             [text]="item.selectedText!"
             [dismissible]="true"
-            [idDisabled]="disabled()"
+            [isDisabled]="disabled()"
             (click)="removeTag(item)"
           />
         }
@@ -63,4 +63,4 @@
     [(items)]="filteredOptions"
     [(isOpen)]="showDropdown"
   />
-</bmb-input-validation>
+</bmb-input-validator>

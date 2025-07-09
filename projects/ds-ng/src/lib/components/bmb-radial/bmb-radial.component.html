@@ -1,6 +1,6 @@
-<bmb-input-validation
+<bmb-input-validator
   type="radio"
-  [inputId]="id()"
+  [inputId]="inputId()"
   [name]="name()"
   [label]="label()"
   [labelPosition]="labelPosition()"
@@ -9,7 +9,7 @@
   [errorMessage]="errorMessage()"
   [helperMessage]="helperMessage()"
   [isRequired]="required()"
-  [idDisabled]="disabled()"
+  [isDisabled]="disabled()"
   [control]="control()"
   [showError]="shouldShowError"
 >
@@ -17,7 +17,7 @@
     <input
       class="bmb_radio-input"
       type="radio"
-      [id]="id()"
+      [id]="inputId()"
       [formControl]="control()"
       [name]="name()"
       [attr.aria-describedby]="ariaDescribedby()"
@@ -34,8 +34,8 @@
     />
     <label
       class="bmb_radio-mark"
-      [htmlFor]="id()"
+      [htmlFor]="inputId()"
       [ngClass]="{ 'bmb_radio-mark-error': shouldShowError }"
     ></label>
   </span>
-</bmb-input-validation>
+</bmb-input-validator>

@@ -27,7 +27,7 @@ import {
   getSelectedValues,
   getValidInitialValues,
 } from '../../utils/dropdown';
-import { BmbInputValidationComponent } from '../bmb-input/bmb-input-validation/bmb-input-validation.component';
+import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
 import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-dropdown-content.component';
 import { IDropdownItem } from '../../types';
 import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
@@ -47,7 +47,7 @@ import {
     ReactiveFormsModule,
     ClickOutsideDirective,
     BmbTagComponent,
-    BmbInputValidationComponent,
+    BmbInputValidatorComponent,
     BmbInputContentComponent,
     BmbDropdownContentComponent,
   ],

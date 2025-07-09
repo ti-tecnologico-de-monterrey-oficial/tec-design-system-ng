@@ -40,29 +40,24 @@ describe('BmbProgressBarComponent', () => {
   it('should calculate progress correctly', () => {
     componentRef.setInput('totalCount', 100);
     componentRef.setInput('counter', 50);
-    component.ngOnChanges();
-    expect(component.progress).toBe(50);
+    expect(component.progressValue()).toBe('50.00');
 
     componentRef.setInput('counter', 0);
-    component.ngOnChanges();
-    expect(component.progress).toBe(0);
+    expect(component.progressValue()).toBe('0.00');
 
     componentRef.setInput('counter', 150);
-    component.ngOnChanges();
-    expect(component.progress).toBe(100);
+    expect(component.progressValue()).toBe('100');
   });
 
   it('should not set progress below 0', () => {
     componentRef.setInput('totalCount', 100);
     componentRef.setInput('counter', 10);
-    component.ngOnChanges();
-    expect(component.progress).toBe(10);
+    expect(component.progressValue()).toBe('10.00');
   });
 
   it('should not set progress above 100', () => {
     componentRef.setInput('totalCount', 100);
     componentRef.setInput('counter', 200);
-    component.ngOnChanges();
-    expect(component.progress).toBe(100);
+    expect(component.progressValue()).toBe('100');
   });
 });
