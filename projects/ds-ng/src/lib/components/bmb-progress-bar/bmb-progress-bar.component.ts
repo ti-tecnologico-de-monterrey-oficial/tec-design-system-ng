@@ -35,7 +35,7 @@ export class BmbProgressBarComponent {
   textFormat = input<((counter: string, total: string) => string) | null>(null);
 
   progressValue = computed(() => {
-    const numberProgress = ((this.counter() / this.totalCount()) * 100);
+    const numberProgress = (this.counter() / this.totalCount()) * 100;
     let newProgress = numberProgress.toFixed(2);
     if (numberProgress < 0) newProgress = '0';
     if (numberProgress > 100) newProgress = '100';
@@ -45,7 +45,10 @@ export class BmbProgressBarComponent {
 
   getFormattedText(): string {
     if (this.textFormat() !== null) {
-      return this.textFormat()!(this.counter().toString(), this.totalCount().toString());
+      return this.textFormat()!(
+        this.counter().toString(),
+        this.totalCount().toString(),
+      );
     }
 
     return `${this.counter()}/${this.totalCount()}`;
