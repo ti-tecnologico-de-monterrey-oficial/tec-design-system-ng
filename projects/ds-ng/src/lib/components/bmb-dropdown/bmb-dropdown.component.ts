@@ -15,7 +15,6 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { ClickOutsideDirective } from '../../directives/utils/clickoutside.directive';
 import {
   convertListToSelectList,
-  filteredValue,
   getSelectedValues,
   getValidInitialValues,
 } from '../../utils/dropdown';
