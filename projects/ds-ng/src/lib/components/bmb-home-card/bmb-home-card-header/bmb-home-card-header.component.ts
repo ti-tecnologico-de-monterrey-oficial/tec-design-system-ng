@@ -4,8 +4,6 @@ import {
   input,
   output,
   ViewEncapsulation,
-  Renderer2,
-  ElementRef,
   model,
 } from '@angular/core';
 import { IBmbDataTopBar } from '../../bmb-breadcrumb/bmb-breadcrumb.component';
@@ -48,14 +46,9 @@ export class BmbHomeCardHeaderComponent {
 
   onClose = output();
   onBack = output();
+  onExpandClick = output();
 
   actionHeaderList: IBmbActionHeader[] = [];
-  private originalParent: HTMLElement | null = null;
-
-  constructor(
-    private renderer: Renderer2,
-    private elRef: ElementRef,
-  ) {}
 
   ngOnInit(): void {
     if (this.showRightButton()) {
@@ -91,44 +84,8 @@ export class BmbHomeCardHeaderComponent {
   handleExpandChange(): void {
     if (this.isMobile()) {
       this.onClose.emit();
-      return;
-    }
-
-    this.isExpanded.update((value) => !value);
-
-    const homeCardElement = this.elRef.nativeElement.closest('.bmb_home-card');
-
-    if (homeCardElement) {
-      const rect = homeCardElement.getBoundingClientRect();
-      const screenCenter = window.innerWidth / 2;
-      const isLeft = rect.left < screenCenter;
-
-      if (this.useAutoExpand()) {
-        if (this.isExpanded()) {
-          if (!this.originalParent) {
-            this.originalParent = homeCardElement.closest('bmb-home-card');
-          }
-
-          this.renderer.appendChild(document.body, homeCardElement);
-          this.renderer.addClass(homeCardElement, 'bmb_home-card-expanded');
-
-          if (isLeft) {
-            this.renderer.addClass(homeCardElement, 'expand-left');
-            this.renderer.removeClass(homeCardElement, 'expand-right');
-          } else {
-            this.renderer.addClass(homeCardElement, 'expand-right');
-            this.renderer.removeClass(homeCardElement, 'expand-left');
-          }
-        } else {
-          if (this.originalParent) {
-            this.renderer.appendChild(this.originalParent, homeCardElement);
-          }
-
-          this.renderer.removeClass(homeCardElement, 'bmb_home-card-expanded');
-          this.renderer.removeClass(homeCardElement, 'expand-left');
-          this.renderer.removeClass(homeCardElement, 'expand-right');
-        }
-      }
+    } else {
+      this.onExpandClick.emit();
     }
   }
 }
