@@ -22,12 +22,23 @@
     [attr.stroke-width]="svg.circle.strokeWidth"
   />
   @if (shouldShowProgressPath()) {
-    <path
-      class="bmb_progress-circle-track"
-      [attr.d]="svg.path.d"
-      [attr.stroke-width]="svg.path.strokeWidth"
-      [attr.fill]="svg.path.fill"
-    />
+    @if (percent() === 100) {
+      <circle
+        class="bmb_progress-circle-track-fill"
+        [ngClass]="getFillPathStatus()"
+        [attr.cx]="svg.circle.cx"
+        [attr.cy]="svg.circle.cy"
+        [attr.r]="svg.circle.r"
+        [attr.stroke-width]="svg.circle.strokeWidth"
+      />
+    } @else {
+      <path
+        class="bmb_progress-circle-track"
+        [attr.d]="svg.path.d"
+        [attr.stroke-width]="svg.path.strokeWidth"
+        [attr.fill]="svg.path.fill"
+      />
+    }
   }
   @if (options.showTitle || options.showValueLabel) {
     <text

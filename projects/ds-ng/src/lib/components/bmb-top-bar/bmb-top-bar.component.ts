@@ -44,6 +44,7 @@ export class BmbTopBarComponent implements OnInit {
   userProfileClick = output<MouseEvent>();
   alertButtonClick = output<MouseEvent>();
   roleButtonClick = output<MouseEvent>();
+  backToHomeClick = output<void>();
 
   logOut = output<any>(); // Deprecated
   onLangChange = output<string>(); // Deprecated
@@ -107,5 +108,9 @@ export class BmbTopBarComponent implements OnInit {
 
   handleRoleChange(event: MouseEvent) {
     this.roleButtonClick.emit(event);
+  }
+
+  handleBackToHome(): void {
+    this.backToHomeClick.emit();
   }
 }

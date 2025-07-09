@@ -29,6 +29,8 @@ export class BmbChevronTitleSelectorComponent {
   iconSubtitle = input<string>('');
   leadingIcon = input<string>('');
   trailingIcon = input<string>('');
+  isDisabledLeadingIcon = input<boolean>(false);
+  isDisabledTrailingIcon = input<boolean>(false);
 
   onLeadingClick = output();
   onTrailingClick = output();
