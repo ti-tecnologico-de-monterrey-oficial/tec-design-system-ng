@@ -3,13 +3,13 @@
     [idElement]="buttonName()"
     [link]="link()"
     [target]="target()"
-    [disabled]='false'
+    [disabled]="false"
     (buttonPress)="handlePress($event)"
     (buttonClick)="handleClick($event)"
     (buttonKeyPress)="handleKeyPress($event)"
     [buttonName]="buttonName()"
     class="bmb_logo-button"
   >
-    <img [src]="image()" [alt]="altImage()" class="bmb_logo-img"/>
+    <img [src]="image()" [alt]="altImage()" class="bmb_logo-img" />
   </bmb-check-external-link-button>
 </span>
