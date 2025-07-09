@@ -82,6 +82,28 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string' },
       },
     },
+    isDisabledLeadingIcon: {
+      name: 'Is Disabled Leading Icon',
+      control: { type: 'boolean' },
+      description:
+        'If true, the leading icon will be disabled and not clickable.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    isDisabledTrailingIcon: {
+      name: 'Is Disabled Trailing Icon',
+      control: { type: 'boolean' },
+      description:
+        'If true, the trailing icon will be disabled and not clickable.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
     onLeadingClick: {
       name: 'On Leading Click',
       control: {
@@ -111,6 +133,8 @@ Below is an example of how you can use this component in HTML:
     title: 'Title',
     leadingIcon: 'chevron_left',
     trailingIcon: 'chevron_right',
+    isDisabledLeadingIcon: false,
+    isDisabledTrailingIcon: false,
     onLeadingClick: () => {
       window.alert('Icon left clicked in Storybook');
     },
