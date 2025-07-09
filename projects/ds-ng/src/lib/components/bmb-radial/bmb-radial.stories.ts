@@ -42,7 +42,7 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralComponentDescription('bmb-radial', 'select options.')}
+${getGeneralComponentDescription('bmb-radial', 'select an option from a collection or group of radio buttons; it is recommended to implement it as a collection.')}
 ${getCheckboxOrRadialArchitecture('radial')}
 ${getTypescriptFormExampleTextBlock('BmbRadialComponent', inputName, additionalBlock)}
 ${getHTMLFormExampleTextBlock(bmbInputName)}
