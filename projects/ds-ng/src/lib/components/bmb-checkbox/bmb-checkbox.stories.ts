@@ -9,14 +9,14 @@ import {
 } from '../../utils/doc/utils';
 import { InputParameterDescriptions } from '../../utils/doc/parameterDescriptions';
 
-const inputName = 'checkbox1';
+const inputName = 'checkbox';
 const additionalBlock = `handleCheckboxChange(event: Event): void {
     const element = event.target as HTMLInputElement;
     console.log('Checkbox checked state:', element.checked);
     console.log('Checkbox name:', element.name);
   }`;
 const bmbInputName = `<bmb-checkbox
-  inputId="checkbox_id1"
+  inputId="checkbox_id"
   name="${inputName}"
   label="Checkbox"
   [control]="getFormControl('${inputName}')"
@@ -33,7 +33,7 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralComponentDescription('bmb-checkbox', 'select options.')}
+${getGeneralComponentDescription('bmb-checkbox', 'select one or more options.')}
 ${getCheckboxOrRadialArchitecture('checkbox')}
 ${getTypescriptFormExampleTextBlock('BmbCheckboxComponent', inputName, additionalBlock)}
 ${getHTMLFormExampleTextBlock(bmbInputName)}
