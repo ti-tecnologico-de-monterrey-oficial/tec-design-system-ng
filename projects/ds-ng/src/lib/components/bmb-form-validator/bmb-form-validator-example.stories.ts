@@ -7,7 +7,7 @@ import {
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbFormValidatorComponent } from './bmb-form-validator.component';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import {
   BmbButtonDirective,
   BmbCheckboxComponent,
@@ -15,6 +15,7 @@ import {
   BmbDateRangeComponent,
   BmbInputComponent,
   BmbInputPhoneNumberComponent,
+  BmbRadialComponent,
 } from '../../../public-api';
 
 @Component({
@@ -28,6 +29,7 @@ import {
     BmbDatepickerComponent,
     BmbDateRangeComponent,
     BmbInputPhoneNumberComponent,
+    BmbRadialComponent,
     BmbInputComponent,
   ],
   template: `
@@ -65,6 +67,22 @@ import {
         helperMessage="Helper Message"
         errorMessage="Please enter the phone number"
       />
+      <bmb-radial
+        inputId="radial_id1"
+        name="radial_group"
+        label="Radial A"
+        value="A"
+        [isRequired]="true"
+        errorMessage="Please enter the required data"
+      />
+      <bmb-radial
+        inputId="radial_id2"
+        name="radial_group"
+        label="Radial B"
+        value="B"
+        [isRequired]="true"
+        errorMessage="Please enter the required data"
+      />
       <bmb-input
         id="input_field_id"
         name="input_field"
@@ -94,7 +112,9 @@ import {
   `,
 })
 class StorybookFormValidator {
-  formGroup: FormGroup = new FormGroup({});
+  formGroup: FormGroup = new FormGroup({
+    radial_group: new FormControl(),
+  });
 }
 
 export default {

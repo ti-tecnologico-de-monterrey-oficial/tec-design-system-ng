@@ -1,13 +1,55 @@
 export const DEPRECATED_PROPERTIES_DESCRIPTION =
   'This property is deprecated and will be removed in future versions.';
 
-const getLabelDescription = (positionDescription: string) => `
-Sets the  label associated with the form input field.
+const getLabelDescription = (
+  positionDescription: string,
+  type: string = 'form input field',
+) => `
+Sets the label associated with ${type}.
 
-The label helps users understand the context of what the checkbox represents.
+The label helps users understand the context of what the ${type} represents.
 
-The label will be displayed ${positionDescription} the form input field.
+The label will be displayed ${positionDescription} the ${type}.
 `;
+
+const getCheckboxOrRadialLabel = (type: string) => {
+  return {
+    control: {
+      type: 'text',
+    },
+    description: `
+${getLabelDescription('at the default \`labelPosition\` or the position specified in \`labelPosition\` relative to', type)}
+    `,
+    table: {
+      category: 'Properties',
+      type: { summary: 'string' },
+      defaultValue: { summary: '' },
+    },
+  };
+};
+
+const getLabelPosition = (type: string) => {
+  return {
+    control: { type: 'radio' },
+    options: ['before', 'after'],
+    description: `
+Specifies the position of the label relative to ${type}.
+
+The possible positions to indicate where the label should be displayed in relation to the ${type} are:
+
+- before
+- after
+      `,
+    table: {
+      category: 'Properties',
+      type: {
+        summary: 'IBbmSidePosition',
+        detail: `IBbmSidePosition = 'before' | 'after'`,
+      },
+      defaultValue: { summary: 'after' },
+    },
+  };
+};
 
 export const InputParameterDescriptions = {
   inputId: {
@@ -57,6 +99,14 @@ This is the value that is taken when the form is submitted.
 **Important**
 
 The value will not be necessary to define a value on the \`FormControl\` instance, as long as this properties is correctly assigned of this form input field .
+
+**Note**:
+
+The configuration implemented in the \`FormControl\` object will always be prioritized.
+
+    formGroup: FormGroup = new FormGroup({
+      fieldName: new FormControl('test'),
+    });
     `,
     table: {
       category: 'Properties',
@@ -77,19 +127,10 @@ ${getLabelDescription('above')}
       defaultValue: { summary: '' },
     },
   },
-  labelCheckboxOrRadial: {
-    control: {
-      type: 'text',
-    },
-    description: `
-${getLabelDescription('at the default \`labelPosition\` or the position specified in \`labelPosition\` relative to')}
-    `,
-    table: {
-      category: 'Properties',
-      type: { summary: 'string' },
-      defaultValue: { summary: '' },
-    },
-  },
+  checkboxLabel: getCheckboxOrRadialLabel('checkbox'),
+  radialLabel: getCheckboxOrRadialLabel('radial'),
+  checkboxLabelPosition: getLabelPosition('checkbox'),
+  radialLabelPosition: getLabelPosition('radial'),
   tooltip: {
     control: {
       type: 'text',
@@ -251,6 +292,36 @@ IBmbInputError {
       defaultValue: { summary: '' },
     },
   },
+  ariaDescribedBy: {
+    control: { type: 'text' },
+    description:
+      'Provides additional descriptive text for the form input field, enhancing accessibility by linking the form input field to a descriptive element by ID.',
+    table: {
+      category: 'Properties',
+      type: { summary: 'string' },
+      defaultValue: { summary: '' },
+    },
+  },
+  ariaLabel: {
+    control: { type: 'text' },
+    description:
+      'Defines a string that labels the form input field for accessibility purposes, which can be used when a visible label text is not present.',
+    table: {
+      category: 'Properties',
+      type: { summary: 'string' },
+      defaultValue: { summary: '' },
+    },
+  },
+  ariaLabelledBy: {
+    control: { type: 'text' },
+    description:
+      'Identifies the element(s) that labels the form input field for accessibility purposes, providing a reference to the IDs of the elements that serve as the form input field label.',
+    table: {
+      category: 'Properties',
+      type: { summary: 'string' },
+      defaultValue: { summary: '' },
+    },
+  },
   control: {
     control: { type: 'object' },
     description: `
@@ -299,7 +370,7 @@ ${DEPRECATED_PROPERTIES_DESCRIPTION}
 
 **Clarification:**
 
-This property is not required or used because error validation is performed by \`fomControl\`.
+This property is not required or used because error validation is performed by \`FomControl\`.
 
 Below is a snippet of the **TypeScript example** that performs automatic validation and marks the field as visited:
     ...
@@ -341,6 +412,18 @@ Adding the id using a property with the same name affects the operation of the f
       category: 'Deprecated',
       type: { summary: '' },
       defaultValue: { summary: '-' },
+    },
+  },
+
+  onKeyDown: {
+    control: { type: '' },
+    description: `
+Emits the ***keydown*** event.
+    (onKeyDown)="handleKeyDown($event)"
+      `,
+    table: {
+      category: 'Events',
+      type: { summary: 'KeyboardEvent' },
     },
   },
 };

@@ -49,7 +49,22 @@ export const getInputArchitecture = () => `
   <!-- if error message is defined -->
   <p class="bmb_field-error">{ errorMessage }</p>
 </section>
+\`\`\`
+`;
 
+export const getCheckboxOrRadialArchitecture = (type: string) => `
+<br>
+## DOM Architecture
+\`\`\`html
+<section class="bmb_${type}" <!-- conditional class bmb_${type}-before bmb_${type}-after bmb_${type}-required --> >
+  <input { input config } />
+  <div class="bmb_${type}-box">
+    <span class="bmb_${type}-mark"></span>
+  </div>
+
+  <!-- if label is defined -->
+  <span class="bmb_${type}-label">{{ label }}</span>
+</section>
 \`\`\`
 `;
 

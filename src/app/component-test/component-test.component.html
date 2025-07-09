@@ -9,27 +9,17 @@
   />
   <bmb-checkbox
     id="checkbox_id2"
-    name="checkbox2"
+    name="checkbox1"
     label="Checkbox 2"
     [required]="true"
+    [control]="getFormControl('checkbox1')"
+  />
+  <bmb-checkbox
+    id="checkbox_id3"
+    name="checkbox2"
+    label="Checkbox 3"
+    [required]="true"
     [control]="getFormControl('checkbox2')"
-  />
-  <bmb-radial
-    id="radial_id1"
-    name="radial1"
-    label="Radial 1"
-    value="test1"
-    [required]="true"
-    [control]="getFormControl('radial1')"
-  />
-  <bmb-radial
-    id="radial_id2"
-    name="radial1"
-    label="Radial 2"
-    value="test2"
-    [checked]="true"
-    [required]="true"
-    [control]="getFormControl('radial1')"
   />
   <bmb-datepicker
     inputId="datepicker_id1"
@@ -51,6 +41,22 @@
     pattern="[A-Za-z]+"
     [isRequired]="true"
     [control]="getFormControl('input_field1')"
+  />
+  <bmb-radial
+    id="radial_id1"
+    name="radial1"
+    label="Radial"
+    value="A"
+    [control]="getFormControl('radial1')"
+    (change)="handleRadial($event)"
+  />
+  <bmb-radial
+    id="radial_id2"
+    name="radial1"
+    label="Radial"
+    value="B"
+    [control]="getFormControl('radial1')"
+    (change)="handleRadial($event)"
   />
   <button bmbButton appearance="primary" type="submit">Submit</button>
 </form>

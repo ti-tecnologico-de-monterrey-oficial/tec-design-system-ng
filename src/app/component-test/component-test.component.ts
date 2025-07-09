@@ -39,6 +39,12 @@ export class AppComponent {
     console.log('Checkbox name:', element.name);
   }
 
+  handleRadial(element: HTMLInputElement): void {
+    console.log('Radio value:', element.value);
+    console.log('Radio name:', element.name);
+    console.log('Is it checked?', element.checked);
+  }
+
   onSubmit() {
     if (this.userForm.valid) {
       //Add your code
