@@ -14,7 +14,7 @@ import {
 
 const inputName = 'datepicker1';
 const bmbInputName = `<bmb-datepicker
-  inputId="datepicker_id"
+  inputId="datepicker_id1"
   name="${inputName}"
   label="Date"
   [control]="getFormControl('${inputName}')"

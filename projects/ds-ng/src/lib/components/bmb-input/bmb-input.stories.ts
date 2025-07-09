@@ -20,7 +20,7 @@ const additionalDescription = `input various types of data, such as:
 >- text-area`;
 const inputName = 'input_field1';
 const bmbInputName = `<bmb-input
-  id="input_field_id"
+  id="input_field_id1"
   name="${inputName}"
   label="Input"
   tooltip="Tooltip example"

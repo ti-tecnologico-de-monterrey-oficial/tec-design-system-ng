@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbCheckboxComponent } from './bmb-checkbox.component';
 import {
+  getCheckboxOrRadialArchitecture,
   getDescribeTypeTextBlock,
   getGeneralComponentDescription,
   getHTMLFormExampleTextBlock,
@@ -17,7 +18,7 @@ const additionalBlock = `handleCheckboxChange(event: Event): void {
     console.log('Checkbox name:', element.name);
   }`;
 const bmbInputName = `<bmb-checkbox
-  id="checkbox_id"
+  id="checkbox_id1"
   name="${inputName}"
   label="Checkbox"
   [control]="getFormControl('${inputName}')"
@@ -35,19 +36,7 @@ export default {
       description: {
         component: `
 ${getGeneralComponentDescription('bmb-checkbox', 'select options.')}
-<br>
-## DOM Architecture
-\`\`\`html
-<section class="bmb_checkbox" <!-- conditional class bmb_checkbox-before bmb_checkbox-after bmb_checkbox-required --> >
-  <input { input config } />
-  <div class="bmb_checkbox-box">
-    <span class="bmb_checkbox-mark"></span>
-  </div>
-
-  <!-- if label is defined -->
-  <span class="bmb_checkbox-label">{{ label }}</span>
-</section>
-\`\`\`
+${getCheckboxOrRadialArchitecture('checkbox')}
 ${getTypescriptFormExampleTextBlock('BmbCheckboxComponent', inputName, additionalBlock)}
 ${getHTMLFormExampleTextBlock(bmbInputName)}
 ${getDescribeTypeTextBlock('HTML')}

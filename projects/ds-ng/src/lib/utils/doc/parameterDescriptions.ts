@@ -299,7 +299,15 @@ ${DEPRECATED_PROPERTIES_DESCRIPTION}
 
 **Clarification:**
 
-This property is not required or used because the component automatically validates errors.
+This property is not required or used because error validation is performed by \`fomControl\`.
+
+Below is a snippet of the **TypeScript example** that performs automatic validation and marks the field as visited:
+    ...
+    updateErrorState(): void {
+      ...
+      control.markAsTouched();
+      control.updateValueAndValidity();
+      ...
     `,
     table: {
       category: 'Deprecated',
