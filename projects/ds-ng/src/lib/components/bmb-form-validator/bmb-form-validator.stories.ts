@@ -39,6 +39,26 @@ export default {
     }),
   ],
   parameters: {
+    controls: {
+      exclude: [
+        'addControl',
+        'addControls',
+        'addRadials',
+        'getFormControl',
+        'ngAfterViewInit',
+        'onSubmit',
+        'updateErrorState',
+        'bmbCheckboxes',
+        'bmbDatepickers',
+        'bmbDateRanges',
+        'bmbDropdowns',
+        'bmbInputPhoneNumbers',
+        'bmbInputs',
+        'bmbInputTags',
+        'bmbRadials',
+        'bmbSwitches',
+      ],
+    },
     docs: {
       description: {
         component: `

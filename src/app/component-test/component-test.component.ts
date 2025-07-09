@@ -1,10 +1,13 @@
 import { CommonModule } from '@angular/common';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import {
   BmbButtonDirective,
+  BmbCheckboxComponent,
+  BmbDatepickerComponent,
   BmbInputComponent,
+  BmbRadialComponent,
 } from '../../../projects/ds-ng/src/public-api';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'bmb-app',
@@ -14,6 +17,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     ReactiveFormsModule,
     BmbButtonDirective,
     BmbInputComponent,
+    BmbDatepickerComponent,
+    BmbCheckboxComponent,
+    BmbRadialComponent,
   ],
   templateUrl: './component-test.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -21,12 +27,19 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 export class AppComponent {
   userForm: FormGroup = new FormGroup({
     input_field1: new FormControl(),
+    datepicker1: new FormControl(),
+    checkbox1: new FormControl(),
+    checkbox2: new FormControl(),
+    radial1: new FormControl(),
   });
 
-  //Add your code
+  handleCheckboxChange(event: Event): void {
+    const element = event.target as HTMLInputElement;
+    console.log('Checkbox checked state:', element.checked);
+    console.log('Checkbox name:', element.name);
+  }
 
   onSubmit() {
-    console.log(this.userForm);
     if (this.userForm.valid) {
       //Add your code
       return;

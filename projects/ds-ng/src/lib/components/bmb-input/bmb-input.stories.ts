@@ -18,26 +18,15 @@ const additionalDescription = `input various types of data, such as:
 >- password
 >- number
 >- text-area`;
-
 const inputName = 'input_field1';
-
 const bmbInputName = `<bmb-input
   id="input_field_id"
   name="${inputName}"
-  label="Input Label"
+  label="Input"
   tooltip="Tooltip example"
   icon="apps"
   placeholder="Placeholder"
   helperMessage="Helper Message"
-  [maxlength]="20"
-  [minlength]="4"
-  pattern="[A-Za-z]+"
-  [isRequired]="true"
-  [errorMessage]="{
-    required: 'Please enter the required data',
-    minLength: 'Please enter at least 4 characters',
-    pattern: 'Please enter only letters'
-  }"
   [control]="getFormControl('${inputName}')"
  />`;
 
@@ -62,6 +51,9 @@ export default {
   component: BmbInputComponent,
   tags: ['!autodocs'],
   parameters: {
+    controls: {
+      exclude: ['handleChange', 'handleKeyPress', 'onBlur', 'onFocus'],
+    },
     docs: {
       description: {
         component: `
@@ -72,9 +64,6 @@ ${getHTMLFormExampleTextBlock(bmbInputName)}
 ${getDescribeTypeTextBlock('HTML')}
       `,
       },
-    },
-    controls: {
-      exclude: ['handleChange', 'handleKeyPress', 'onBlur', 'onFocus'],
     },
   },
   argTypes: {

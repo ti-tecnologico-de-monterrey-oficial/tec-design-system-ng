@@ -1,6 +1,4 @@
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-
 import {
   FormControl,
   FormGroup,
@@ -42,7 +40,6 @@ import { handleValidity } from '../../../projects/ds-ng/src/lib/utils/formContro
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    RouterModule,
     BmbThemeComponent,
     BmbTotpComponent,
     BmbFormValidatorComponent,

@@ -12,17 +12,18 @@ import {
   getTypescriptFormExampleTextBlock,
 } from '../../utils/doc/utils';
 
+const inputName = 'datepicker1';
 const bmbInputName = `<bmb-datepicker
-  name="datepicker1"
+  inputId="datepicker_id"
+  name="${inputName}"
   label="Date"
-  invalidFormatErrorMessage="Please enter a date in a valid format."
-  requiredFieldErrorMessage="Please enter the date"
-  [isRequired]="true"
+  [control]="getFormControl('${inputName}')"
   />`;
 
 export default {
   title: 'Components/Inputs/Calendar date picker',
   component: BmbDatepickerComponent,
+  tags: ['!autodocs'],
   decorators: [
     componentWrapperDecorator((story: string) => {
       return `
@@ -32,17 +33,6 @@ export default {
     }),
   ],
   parameters: {
-    docs: {
-      description: {
-        component: `
-${getGeneralComponentDescription('bmb-datepicker', 'enter date data.')}
-${getInputArchitecture()}
-${getTypescriptFormExampleTextBlock('BmbDatepickerComponent', 'datepicker1')}
-${getHTMLFormExampleTextBlock(bmbInputName)}
-${getDescribeTypeTextBlock('HTML')}
-        `,
-      },
-    },
     controls: {
       exclude: [
         'defaultDate',
@@ -56,6 +46,17 @@ ${getDescribeTypeTextBlock('HTML')}
         'handleValueChange',
         'handleWindowOpen',
       ],
+    },
+    docs: {
+      description: {
+        component: `
+${getGeneralComponentDescription('bmb-datepicker', 'enter date data.')}
+${getInputArchitecture()}
+${getTypescriptFormExampleTextBlock('BmbDatepickerComponent', inputName)}
+${getHTMLFormExampleTextBlock(bmbInputName)}
+${getDescribeTypeTextBlock('HTML')}
+        `,
+      },
     },
   },
   argTypes: {
@@ -82,7 +83,7 @@ ${getDescribeTypeTextBlock('HTML')}
       table: {
         category: 'Properties',
         type: { summary: 'string' },
-        defaultValue: { summary: 'Por favor ingresa el dato de [label]' },
+        defaultValue: { summary: 'Por favor ingresa la fecha de [label]' },
       },
     },
     isRequired: InputParameterDescriptions.isRequired,
@@ -156,6 +157,7 @@ This date must have the same format as \`dateFormat\`.
     },
     helperMessage: InputParameterDescriptions.helperMessage,
     value: InputParameterDescriptions.value,
+    inputId: InputParameterDescriptions.inputId,
     onChange: {
       control: { type: 'string' },
       description: 'Emits change event.',
@@ -167,6 +169,7 @@ This date must have the same format as \`dateFormat\`.
   },
 
   args: {
+    inputId: '',
     name: '',
     value: '',
     label: 'Date',
@@ -177,8 +180,8 @@ This date must have the same format as \`dateFormat\`.
     isClearable: false,
     isRequired: false,
     helperMessage: '',
-    invalidFormatErrorMessage: '',
-    requiredFieldErrorMessage: '',
+    invalidFormatErrorMessage: 'Please enter a date in a valid format.',
+    requiredFieldErrorMessage: 'Please enter the date',
     disableDatesBefore: '',
     disableDatesAfter: '',
     lang: 'es-MX',

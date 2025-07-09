@@ -1,4 +1,43 @@
 <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <bmb-checkbox
+    id="checkbox_id1"
+    name="checkbox1"
+    label="Checkbox 1"
+    [checked]="true"
+    [required]="true"
+    [control]="getFormControl('checkbox1')"
+  />
+  <bmb-checkbox
+    id="checkbox_id2"
+    name="checkbox2"
+    label="Checkbox 2"
+    [required]="true"
+    [control]="getFormControl('checkbox2')"
+  />
+  <bmb-radial
+    id="radial_id1"
+    name="radial1"
+    label="Radial 1"
+    value="test1"
+    [required]="true"
+    [control]="getFormControl('radial1')"
+  />
+  <bmb-radial
+    id="radial_id2"
+    name="radial1"
+    label="Radial 2"
+    value="test2"
+    [checked]="true"
+    [required]="true"
+    [control]="getFormControl('radial1')"
+  />
+  <bmb-datepicker
+    inputId="datepicker_id1"
+    name="datepicker1"
+    label="Date"
+    [isRequired]="true"
+    [control]="getFormControl('datepicker1')"
+  />
   <bmb-input
     id="input_field_id"
     name="input_field1"
