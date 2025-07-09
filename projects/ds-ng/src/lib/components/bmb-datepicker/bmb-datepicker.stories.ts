@@ -1,9 +1,6 @@
 import { Meta, StoryObj, componentWrapperDecorator } from '@storybook/angular';
 import { BmbDatepickerComponent } from './bmb-datepicker.component';
-import {
-  DEPRECATED_PROPERTIES_DESCRIPTION,
-  InputParameterDescriptions,
-} from '../../utils/doc/parameterDescriptions';
+import { InputParameterDescriptions } from '../../utils/doc/parameterDescriptions';
 import {
   getDescribeTypeTextBlock,
   getGeneralComponentDescription,
