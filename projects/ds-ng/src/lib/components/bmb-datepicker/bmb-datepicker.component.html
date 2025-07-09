@@ -25,8 +25,12 @@
       [isRequired]="isRequired()"
       [helperMessage]="helperMessage()"
       [errorMessage]="{
-        required: requiredFieldErrorMessage(),
-        customValidation: invalidFormatErrorMessage(),
+        required:
+          requiredFieldErrorMessage() ||
+          'Por favor ingresa la fecha de ' + label(),
+        customValidation:
+          invalidFormatErrorMessage() ||
+          'Por favor ingresa la fecha con formato ' + dateFormat(),
       }"
       [customValidation]="customValidatorDate()"
       [name]="name()"

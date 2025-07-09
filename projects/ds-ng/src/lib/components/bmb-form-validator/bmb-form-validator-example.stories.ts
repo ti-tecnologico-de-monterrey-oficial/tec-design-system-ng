@@ -31,42 +31,43 @@ import {
     BmbInputPhoneNumberComponent,
     BmbRadialComponent,
     BmbInputComponent,
+    BmbDateRangeComponent,
   ],
   template: `
     <bmb-form-validator [(formGroup)]="formGroup">
       <bmb-checkbox
-        id="checkbox_id1"
-        name="checkbox1"
+        inputId="checkbox_id"
+        name="checkbox"
         label="Checkbox"
         errorMessage="Please enter the required data"
         [required]="true"
       />
       <bmb-datepicker
-        id="datepicker_id1"
-        name="datepicker1"
+        inputId="datepicker_id"
+        name="datepicker"
         label="Date"
         invalidFormatErrorMessage="Please enter a date in a valid format."
         requiredFieldErrorMessage="Please enter the date"
         [isRequired]="true"
       />
       <bmb-date-range
-        id="datepicker_id1"
-        name="datepicker1"
-        label="Date range"
-        icon="calendar_month"
+        inputId="date_range_id"
+        name="date_range"
+        labelStartDate="Date range start"
+        labelEndDate="Date range end"
         invalidFormatErrorMessage="Please enter a date in a valid format."
         requiredFieldErrorMessage="Please enter the required data"
         [isRequired]="true"
-        [multipleRow]="true"
       />
-      <bmb-input-phone-number
+      <!-- <bmb-input-phone-number
+        name="input_phone_number"
         name="input_phone_number"
         label="Phone number"
         [onlyCountries]="['mx', 'us', 'ca']"
         [isRequired]="true"
         helperMessage="Helper Message"
         errorMessage="Please enter the phone number"
-      />
+      /> -->
       <bmb-radial
         inputId="radial_id1"
         name="radial_group"

@@ -6,6 +6,7 @@ import {
 } from '@storybook/angular';
 import { BmbFormValidatorComponent } from './bmb-form-validator.component';
 import {
+  getArchitectureTitle,
   getDescribeTypeTextBlock,
   getTypescriptExampleTextBlock,
 } from '../../utils/doc/utils';
@@ -66,22 +67,21 @@ export default {
 ### Description
 >In **Bamboo**, it is possible to implement automatic field validation using the \`bmb-form-validator\` component.
 >
->The \`bmb-form-valitator\` component contains the form state by collecting the form input fields and adding them to a \`FormGroup\`.
+>The \`bmb-form-valitator\` component contains the form state by collecting the fields and adding them to a \`FormGroup\`.
 >
 >The supported **Bamboo inputs** are:
 >
->- [Calendar date picker](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/components-inputs-calendar-date-picker--documentation)
->- [Checkbox](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/components-inputs-checkbox--documentation)
->- [Date picker range](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/components-inputs-date-picker-range--documentation)
->- [Dropdown](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/components-inputs-dropdown--documentation)
->- [Phone number](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/components-inputs-phone-number--documentation)
->- [Radial](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/components-inputs-radial--documentation)
->- [Switch](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/components-inputs-switch--documentation)
->- [Text input](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/components-inputs-text-input--documentation)
->- [Text input with tags](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/components-inputs-text-input-with-tags--documentation)
+>- [Calendar date picker](/docs/components-inputs-calendar-date-picker--documentation)
+>- [Checkbox](/docs/components-inputs-checkbox--documentation)
+>- [Date picker range](/docs/components-inputs-date-picker-range--documentation)
+>- [Dropdown](/docs/components-inputs-dropdown--documentation)
+>- [Phone number](/docs/components-inputs-phone-number--documentation)
+>- [Radial](/docs/components-inputs-radial--documentation)
+>- [Switch](/docs/components-inputs-switch--documentation)
+>- [Text input](/docs/components-inputs-text-input--documentation)
+>- [Text input with tags](/docs/components-inputs-text-input-with-tags--documentation)
 
-<br>
-## DOM Architecture
+${getArchitectureTitle()}
 \`\`\`html
 <form (ngSubmit)="onSubmit()">
   <custom-content />
@@ -137,7 +137,7 @@ Sets the \`FormGroup\` instance defined for cases where the validations are diff
 <br>
 **Important:**
 
-It is essential to assign the property \`name\` for correct behavior of the form input field.
+It is essential to assign the property \`name\` for correct behavior of the field.
 
 <br>
 **Bamboo inputs** automatically implements the \`Validators\` on the following properties:

@@ -44,16 +44,12 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbDatepickerComponent implements OnInit {
-  inputId = input<string>('');
+  inputId = input<string>(getUUID());
   label = input<string>('');
   icon = input<string>('calendar_month');
   dateFormat = input<string>('dd/MM/yyyy');
-  invalidFormatErrorMessage = input<string>(
-    `Por favor ingresa la fecha con formato ${this.dateFormat()}`,
-  );
-  requiredFieldErrorMessage = input<string>(
-    `Por favor ingresa la fecha de ${this.label()}`,
-  );
+  invalidFormatErrorMessage = input<string>(); //The default value is assigned as '||' in the corresponding error message
+  requiredFieldErrorMessage = input<string>(); //The default value is assigned as '||' in the corresponding error message
   appearance = input<IBmbInputAppearance | string>('normal'); //Deprecated
   disabled = input<boolean>(false);
   isRequired = input<boolean>(false);

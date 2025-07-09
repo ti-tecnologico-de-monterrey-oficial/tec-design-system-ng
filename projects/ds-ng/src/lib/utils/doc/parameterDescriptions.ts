@@ -3,7 +3,7 @@ export const DEPRECATED_PROPERTIES_DESCRIPTION =
 
 const getLabelDescription = (
   positionDescription: string,
-  type: string = 'form input field',
+  type: string = ' field',
 ) => `
 Sets the label associated with ${type}.
 
@@ -51,13 +51,50 @@ The possible positions to indicate where the label should be displayed in relati
   };
 };
 
+export const getControlDescription = (isComplete: boolean = false) => `
+Sets the \`FormControl\` instance to manage the state of the field.
+${
+  isComplete
+    ? `
+
+**Important:**
+
+It is essential to assign the property \`name\` for correct behavior of the field.
+
+It will not be necessary to define \`Validators\` in the \`FormControl\` instance, as long as the properties of this field are correctly assigned.
+
+
+This component automatically implements the \`Validators\` on the following properties:
+
+- **isRequired**: adds \`Validators.required\` to the \`FormControl\`
+- **minlength**: adds \`Validators.minLength\` to the \`FormControl\`
+- **maxlength**: adds \`Validators.maxLength\` to the \`FormControl\`
+- **max**: adds \`Validators.max\` to the \`FormControl\`
+- **min**: adds \`Validators.min\` to the \`FormControl\`
+- **pattern**: adds \`Validators.pattern\` to the \`FormControl\`
+
+
+In **Bamboo**, it is possible to implement automatic field validation using the \`bmb-form-validator\` component.
+
+
+The \`bmb-form-validator\` component contains the state of the form by collecting the form fields and adding them to a \`FormGroup\`.
+
+
+Please check the ***Form validator*** documentation for details on how to implement \`bmb-form-validator\` component.
+
+This documentation is displayed as a tab at the top.
+`
+    : ''
+}
+`;
+
 export const InputParameterDescriptions = {
   inputId: {
     description: `
 
-Sets the unique identifier for the form input field.
+Sets the unique identifier for the field.
 
-This property is used to link the label to the form input field through the ***for*** attribute, improving accessibility and usability.
+This property is used to link the label to the field through the ***for*** attribute, improving accessibility and usability.
     `,
     table: {
       category: 'Properties',
@@ -71,7 +108,7 @@ This property is used to link the label to the form input field through the ***f
       type: 'text',
     },
     description: `
-Sets the form input field name.
+Sets the field name.
 
 <br>
 **Important:**
@@ -92,20 +129,20 @@ If no name is assigned, a name will be added using \`window.crypto.randomUUID()\
       type: 'text',
     },
     description: `
-Sets the value of the form input field.
+Sets the value of the field.
 
 This is the value that is taken when the form is submitted.
 
 **Important**
 
-The value will not be necessary to define a value on the \`FormControl\` instance, as long as this properties is correctly assigned of this form input field .
+The value will not be necessary to define a value on the \`FormControl\` instance, as long as this properties is correctly assigned of this field .
 
 **Note**:
 
 The configuration implemented in the \`FormControl\` object will always be prioritized.
 
     formGroup: FormGroup = new FormGroup({
-      fieldName: new FormControl('test'),
+     fieldName: new FormControl('test'),
     });
     `,
     table: {
@@ -135,8 +172,7 @@ ${getLabelDescription('above')}
     control: {
       type: 'text',
     },
-    description:
-      'Sets the text to be displayed as a tooltip above the form input field.',
+    description: 'Sets the text to be displayed as a tooltip above the field.',
     table: {
       category: 'Properties',
       type: { summary: 'string' },
@@ -171,7 +207,7 @@ IBmbJustifyTooltip = 'centered' | 'before' | 'after'
       type: 'text',
     },
     description: `
-Sets the name of the icon to be displayed within the form input field.
+Sets the name of the icon to be displayed within the field.
 
 <br>
 Refer to [Google Fonts](https://fonts.google.com/icons?icon.size=24&icon.color=%23e8eaed&selected=Material+Symbols+Outlined:more_vert:FILL@0;wght@400;GRAD@0;opsz@24) for more icons.`,
@@ -186,7 +222,7 @@ Refer to [Google Fonts](https://fonts.google.com/icons?icon.size=24&icon.color=%
       type: 'text',
     },
     description:
-      'Sets the text to be displayed as a placeholder within the form input field.',
+      'Sets the text to be displayed as a placeholder within the field.',
     table: {
       category: 'Properties',
       type: { summary: 'string' },
@@ -196,11 +232,11 @@ Refer to [Google Fonts](https://fonts.google.com/icons?icon.size=24&icon.color=%
   disabled: {
     control: { type: 'boolean' },
     description: `
-Disables the form input field when true, making it non-interactive and cannot be clicked.
+Disables the field when true, making it non-interactive and cannot be clicked.
 
 This is useful for conditions where user interaction should be restricted.
 
-It will not be necessary to define disabled property on the \`FormControl\` instance, as long as this properties is correctly assigned of this form input field .
+It will not be necessary to define disabled property on the \`FormControl\` instance, as long as this properties is correctly assigned of this field .
     `,
     table: {
       category: 'Properties',
@@ -211,9 +247,9 @@ It will not be necessary to define disabled property on the \`FormControl\` inst
   isRequired: {
     control: { type: 'boolean' },
     description: `
-Sets the form input field as required when true.
+Sets the field as required when true.
 
-Specifies whether the form input field must be filled out before submitting the form.
+Specifies whether the field must be filled out before submitting the form.
 
 This is commonly used to ensure that users do not skip mandatory choices in forms, enhancing data integrity and user interaction compliance.
     `,
@@ -225,8 +261,7 @@ This is commonly used to ensure that users do not skip mandatory choices in form
   },
   isClearable: {
     control: { type: 'boolean' },
-    description:
-      'Sets the skill to clear the contents of this form input field when true',
+    description: 'Sets the skill to clear the contents of this field when true',
     table: {
       category: 'Properties',
       type: { summary: 'boolean' },
@@ -238,7 +273,7 @@ This is commonly used to ensure that users do not skip mandatory choices in form
       type: 'text',
     },
     description:
-      'Sets the text to be displayed as a supporting message below the form input field.',
+      'Sets the text to be displayed as a supporting message below the field.',
     table: {
       category: 'Properties',
       type: { summary: 'string' },
@@ -250,7 +285,7 @@ This is commonly used to ensure that users do not skip mandatory choices in form
       type: 'object',
     },
     description: `
-Sets the error message instance or required field message to display below the form input field when there is an error in it.
+Sets the error message instance or required field message to display below the field when there is an error in it.
 
 For fields that only require mandatory field validation, it is sufficient to assign a string.
 
@@ -259,12 +294,12 @@ In case the field needs more than one validation per field, it is recommended to
 Validations supported in instantiation:
 
 - **required**: corresponds to the validation assigned to the \`isRequired\` property
-- **min**: corresponds to the validation assigned to the \`min\` property, used for numeric form input fields
-- **max**: corresponds to the validation assigned to the \`max\` property, used for numeric form input fields
-- **minLength**: corresponds to the validation assigned to the \`minlength\` property, used for text and textarea form input fields
-- **maxLength**: corresponds to the validation assigned to the \`maxlength\` property, used for text and textarea form input fields
+- **min**: corresponds to the validation assigned to the \`min\` property, used for numeric fields
+- **max**: corresponds to the validation assigned to the \`max\` property, used for numeric fields
+- **minLength**: corresponds to the validation assigned to the \`minlength\` property, used for text and textarea fields
+- **maxLength**: corresponds to the validation assigned to the \`maxlength\` property, used for text and textarea fields
 - **pattern**: corresponds to the validation assigned to the \`pattern\` property
-- **jsonFormat**: corresponds to the validation assigned to the \`jsonFormat\` property, used for textarea form input fields
+- **jsonFormat**: corresponds to the validation assigned to the \`jsonFormat\` property, used for textarea fields
 - **customValidation**: corresponds to the validation assigned to the \`customValidation\` property
 
 <br>
@@ -295,7 +330,7 @@ IBmbInputError {
   ariaDescribedBy: {
     control: { type: 'text' },
     description:
-      'Provides additional descriptive text for the form input field, enhancing accessibility by linking the form input field to a descriptive element by ID.',
+      'Provides additional descriptive text for the field, enhancing accessibility by linking the field to a descriptive element by ID.',
     table: {
       category: 'Properties',
       type: { summary: 'string' },
@@ -305,7 +340,7 @@ IBmbInputError {
   ariaLabel: {
     control: { type: 'text' },
     description:
-      'Defines a string that labels the form input field for accessibility purposes, which can be used when a visible label text is not present.',
+      'Defines a string that labels the field for accessibility purposes, which can be used when a visible label text is not present.',
     table: {
       category: 'Properties',
       type: { summary: 'string' },
@@ -315,7 +350,7 @@ IBmbInputError {
   ariaLabelledBy: {
     control: { type: 'text' },
     description:
-      'Identifies the element(s) that labels the form input field for accessibility purposes, providing a reference to the IDs of the elements that serve as the form input field label.',
+      'Identifies the element(s) that labels the field for accessibility purposes, providing a reference to the IDs of the elements that serve as the field label.',
     table: {
       category: 'Properties',
       type: { summary: 'string' },
@@ -324,37 +359,7 @@ IBmbInputError {
   },
   control: {
     control: { type: 'object' },
-    description: `
-Sets the \`FormControl\` instance to manage the state of the form input field.
-
-<br>
-**Important:**
-
-It is essential to assign the property \`name\` for correct behavior of the form input field.
-
-It will not be necessary to define \`Validators\` in the \`FormControl\` instance, as long as the properties of this form input field are correctly assigned.
-
-<br>
-This component automatically implements the \`Validators\` on the following properties:
-
-- **isRequired**: adds \`Validators.required\` to the \`FormControl\`
-- **minlength**: adds \`Validators.minLength\` to the \`FormControl\`
-- **maxlength**: adds \`Validators.maxLength\` to the \`FormControl\`
-- **max**: adds \`Validators.max\` to the \`FormControl\`
-- **min**: adds \`Validators.min\` to the \`FormControl\`
-- **pattern**: adds \`Validators.pattern\` to the \`FormControl\`
-
-<br>
-In **Bamboo**, it is possible to implement automatic field validation using the \`bmb-form-validator\` component.
-
-<br>
-The \`bmb-form-validator\` component contains the state of the form by collecting the form fields and adding them to a \`FormGroup\`.
-
-<br>
-Please check the ***Form validator*** documentation for details on how to implement \`bmb-form-validator\` component.
-
-This documentation is displayed as a tab at the top.
-`,
+    description: getControlDescription(true),
     table: {
       category: 'Properties',
       type: { summary: 'FormControl' },
@@ -406,7 +411,7 @@ ${DEPRECATED_PROPERTIES_DESCRIPTION}
 
 **Clarification:**
 
-Adding the id using a property with the same name affects the operation of the form input field.
+Adding the id using a property with the same name affects the operation of the field.
     `,
     table: {
       category: 'Deprecated',
@@ -414,7 +419,6 @@ Adding the id using a property with the same name affects the operation of the f
       defaultValue: { summary: '-' },
     },
   },
-
   onKeyDown: {
     control: { type: '' },
     description: `
@@ -424,6 +428,41 @@ Emits the ***keydown*** event.
     table: {
       category: 'Events',
       type: { summary: 'KeyboardEvent' },
+    },
+  },
+  dateFormat: {
+    control: {
+      type: 'text',
+    },
+    description: 'Sets the date format allowed for validation of entered data.',
+    table: {
+      category: 'Properties',
+      type: { summary: 'string' },
+      defaultValue: { summary: 'dd/MM/yyyy' },
+    },
+  },
+  invalidFormatErrorMessage: {
+    control: {
+      type: 'text',
+    },
+    description: 'Sets an error message for format field validation',
+    table: {
+      category: 'Properties',
+      type: { summary: 'string' },
+      defaultValue: {
+        summary: 'Por favor ingresa la fecha con formato [dateFormat]}',
+      },
+    },
+  },
+  requiredFieldErrorMessage: {
+    control: {
+      type: 'text',
+    },
+    description: 'Sets an error message for required field validation',
+    table: {
+      category: 'Properties',
+      type: { summary: 'string' },
+      defaultValue: { summary: 'Por favor ingresa la fecha de [label]' },
     },
   },
 };

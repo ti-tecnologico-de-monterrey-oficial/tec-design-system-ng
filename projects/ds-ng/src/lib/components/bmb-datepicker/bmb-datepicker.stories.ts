@@ -2,16 +2,16 @@ import { Meta, StoryObj, componentWrapperDecorator } from '@storybook/angular';
 import { BmbDatepickerComponent } from './bmb-datepicker.component';
 import { InputParameterDescriptions } from '../../utils/doc/parameterDescriptions';
 import {
+  getArchitectureTitle,
   getDescribeTypeTextBlock,
   getGeneralComponentDescription,
   getHTMLFormExampleTextBlock,
-  getInputArchitecture,
   getTypescriptFormExampleTextBlock,
 } from '../../utils/doc/utils';
 
-const inputName = 'datepicker1';
+const inputName = 'date_picker';
 const bmbInputName = `<bmb-datepicker
-  inputId="datepicker_id1"
+  inputId="date_picker_id"
   name="${inputName}"
   label="Date"
   [control]="getFormControl('${inputName}')"
@@ -47,8 +47,23 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralComponentDescription('bmb-datepicker', 'enter date data.')}
-${getInputArchitecture()}
+${getGeneralComponentDescription('bmb-datepicker', 'select a date from a calendar view, within a dialog box.')}
+${getArchitectureTitle()}
+\`\`\`html
+<div class="bmb_datepicker">
+  <section class="bmb-datepicker-container">
+    <bmb-input>
+
+      <!-- if window is open -->
+      <ng-template #customInputContent>
+        <bmb-datepicker-modal class="bmb_datepicker-modal" />
+      </ng-template>
+
+    </bmb-input>
+  </section>
+</div>
+\`\`\`
+[bmb-input - DOM Architecture](/docs/components-inputs-text-input--documentation&globals=#dom-architecture)
 ${getTypescriptFormExampleTextBlock('BmbDatepickerComponent', inputName)}
 ${getHTMLFormExampleTextBlock(bmbInputName)}
 ${getDescribeTypeTextBlock('HTML')}
@@ -58,49 +73,30 @@ ${getDescribeTypeTextBlock('HTML')}
   },
   argTypes: {
     control: InputParameterDescriptions.control,
-    icon: InputParameterDescriptions.icon,
-    invalidFormatErrorMessage: {
-      control: {
-        type: 'text',
-      },
-      description: 'Sets an error message for format field validation',
+    icon: {
+      ...InputParameterDescriptions.icon,
       table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: {
-          summary: 'Por favor ingresa la fecha con formato [dateFormat]}',
-        },
+        ...InputParameterDescriptions.icon.table,
+        defaultValue: { summary: 'calendar_month' },
       },
     },
-    requiredFieldErrorMessage: {
-      control: {
-        type: 'text',
-      },
-      description: 'Sets an error message for required field validation',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: 'Por favor ingresa la fecha de [label]' },
-      },
-    },
+    invalidFormatErrorMessage:
+      InputParameterDescriptions.invalidFormatErrorMessage,
+    requiredFieldErrorMessage:
+      InputParameterDescriptions.requiredFieldErrorMessage,
     isRequired: InputParameterDescriptions.isRequired,
-    placeholder: InputParameterDescriptions.placeholder,
+    placeholder: {
+      ...InputParameterDescriptions.placeholder,
+      table: {
+        ...InputParameterDescriptions.placeholder.table,
+        defaultValue: { summary: 'value assigned to the dateFormat property' },
+      },
+    },
     disabled: InputParameterDescriptions.disabled,
     label: InputParameterDescriptions.label,
     appearance: InputParameterDescriptions.deprecated,
     isClearable: InputParameterDescriptions.isClearable,
-    dateFormat: {
-      control: {
-        type: 'text',
-      },
-      description:
-        'Sets the date format allowed for validation of entered data.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: 'dd/MM/yyyy' },
-      },
-    },
+    dateFormat: InputParameterDescriptions.dateFormat,
     name: InputParameterDescriptions.name,
     disableDatesBefore: {
       control: {
@@ -143,7 +139,13 @@ This date must have the same format as \`dateFormat\`.
         defaultValue: { summary: 'es-MX' },
       },
     },
-    helperMessage: InputParameterDescriptions.helperMessage,
+    helperMessage: {
+      ...InputParameterDescriptions.helperMessage,
+      table: {
+        ...InputParameterDescriptions.helperMessage.table,
+        defaultValue: { summary: 'value assigned to the dateFormat property' },
+      },
+    },
     value: InputParameterDescriptions.value,
     inputId: InputParameterDescriptions.inputId,
     onChange: {
@@ -162,13 +164,13 @@ This date must have the same format as \`dateFormat\`.
     value: '',
     label: 'Date',
     icon: 'calendar_month',
-    placeholder: '',
+    placeholder: 'dd/MM/yyyy',
     dateFormat: 'dd/MM/yyyy',
     disabled: false,
     isClearable: false,
     isRequired: false,
-    helperMessage: '',
-    invalidFormatErrorMessage: 'Please enter a date in a valid format.',
+    helperMessage: 'dd/MM/yyyy',
+    invalidFormatErrorMessage: 'Please enter a date in a valid format',
     requiredFieldErrorMessage: 'Please enter the date',
     disableDatesBefore: '',
     disableDatesAfter: '',

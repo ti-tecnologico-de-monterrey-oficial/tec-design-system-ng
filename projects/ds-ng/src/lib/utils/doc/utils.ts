@@ -31,30 +31,13 @@ Remember to use the \`empty state\` for the cases that apply to this. Related do
 <br>
 `;
 
-export const getInputArchitecture = () => `
+export const getArchitectureTitle = () => `
 <br>
 ## DOM Architecture
-\`\`\`html
-<section class="bmb_field" <!-- conditional class bmb_field-disabled --> >
-
-  <section class="bmb_field-wrapper">
-    <!-- if label is defined -->
-    <label class="bmb_field-label" for="input">{ label }</label>
-    <input { configuration } />
-  </section>
-
-  <!-- if helper message is defined -->
-  <p class="bmb_field-helper">{ helperMessage }</p>
-
-  <!-- if error message is defined -->
-  <p class="bmb_field-error">{ errorMessage }</p>
-</section>
-\`\`\`
 `;
 
 export const getCheckboxOrRadialArchitecture = (type: string) => `
-<br>
-## DOM Architecture
+${getArchitectureTitle()}
 \`\`\`html
 <section class="bmb_${type}" <!-- conditional class bmb_${type}-before bmb_${type}-after bmb_${type}-required --> >
   <input { input config } />

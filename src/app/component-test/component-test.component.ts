@@ -7,6 +7,7 @@ import {
   BmbDatepickerComponent,
   BmbInputComponent,
   BmbRadialComponent,
+  BmbDateRangeComponent,
 } from '../../../projects/ds-ng/src/public-api';
 
 @Component({
@@ -16,21 +17,23 @@ import {
     CommonModule,
     ReactiveFormsModule,
     BmbButtonDirective,
-    BmbInputComponent,
     BmbDatepickerComponent,
     BmbCheckboxComponent,
+    BmbDateRangeComponent,
     BmbRadialComponent,
+    BmbInputComponent,
   ],
   templateUrl: './component-test.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   userForm: FormGroup = new FormGroup({
-    input_field1: new FormControl(),
-    datepicker1: new FormControl(),
-    checkbox1: new FormControl(),
-    checkbox2: new FormControl(),
-    radial1: new FormControl(),
+    date_picker: new FormControl(),
+    checkbox: new FormControl(),
+    date_range_start: new FormControl(),
+    date_range_end: new FormControl(),
+    radial_group: new FormControl(),
+    input_field: new FormControl(),
   });
 
   handleCheckboxChange(event: Event): void {
@@ -42,7 +45,6 @@ export class AppComponent {
   handleRadial(element: HTMLInputElement): void {
     console.log('Radio value:', element.value);
     console.log('Radio name:', element.name);
-    console.log('Is it checked?', element.checked);
   }
 
   onSubmit() {

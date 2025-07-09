@@ -1,10 +1,10 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbInputComponent } from './bmb-input.component';
 import {
+  getArchitectureTitle,
   getDescribeTypeTextBlock,
   getGeneralComponentDescription,
   getHTMLFormExampleTextBlock,
-  getInputArchitecture,
   getTypescriptFormExampleTextBlock,
 } from '../../utils/doc/utils';
 import {
@@ -18,9 +18,9 @@ const additionalDescription = `input various types of data, such as:
 >- password
 >- number
 >- text-area`;
-const inputName = 'input_field1';
+const inputName = 'input_field';
 const bmbInputName = `<bmb-input
-  id="input_field_id1"
+  id="input_field_id"
   name="${inputName}"
   label="Input"
   tooltip="Tooltip example"
@@ -37,7 +37,7 @@ const getTextInputWarnings = (
 
 **Important:**
 
-This \`${propertyName}\` property should only be used for form input fields of the type:
+This \`${propertyName}\` property should only be used for input fields of the type:
 
 - **text**
 - **password**
@@ -58,7 +58,25 @@ export default {
       description: {
         component: `
 ${getGeneralComponentDescription('bmb-input', additionalDescription)}
-${getInputArchitecture()}
+${getArchitectureTitle()}
+\`\`\`html
+<section class="bmb_field" <!-- conditional class bmb_field-disabled --> >
+  <section class="bmb_field-wrapper">
+    <!-- if label is defined -->
+    <label class="bmb_field-label" for="input">{ label }</label>
+    <input { configuration } />
+  </section>
+
+  <!-- if customInputContent is defined -->
+  <ng-template #customInputContent/>
+
+  <!-- if helper message is defined -->
+  <p class="bmb_field-helper">{ helperMessage }</p>
+
+  <!-- if error message is defined -->
+  <p class="bmb_field-error">{ errorMessage }</p>
+</section>
+\`\`\`
 ${getTypescriptFormExampleTextBlock('BmbInputComponent', inputName)}
 ${getHTMLFormExampleTextBlock(bmbInputName)}
 ${getDescribeTypeTextBlock('HTML')}
@@ -72,7 +90,7 @@ ${getDescribeTypeTextBlock('HTML')}
         type: 'radio',
       },
       options: ['text', 'password', 'number', 'text-area'],
-      description: 'Sets the type of the form input field',
+      description: 'Sets the type of the input field',
       table: {
         category: 'Properties',
         type: {
@@ -92,7 +110,7 @@ IBmbInputType = 'text' | 'password' | 'number' | 'text-area'
         type: 'select',
       },
       options: ['normal', 'simple'],
-      description: 'Sets the appearance style of the form input field.',
+      description: 'Sets the appearance style of the input field.',
       table: {
         category: 'Properties',
         type: {
@@ -128,7 +146,7 @@ IBmbInputAppearance = 'normal' | 'simple'
       control: {
         type: 'text',
       },
-      description: 'Sets autocomplete on the form input field when true.',
+      description: 'Sets autocomplete on the input field when true.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -260,7 +278,7 @@ Enables the skill to validate JSON content when true, this skill only works for 
 <br>
 **Important:**
 
-For correct behavior, the \`pattern\` property must not be assigned to the form input field.
+For correct behavior, the \`pattern\` property must not be assigned to the input field.
       `,
       table: {
         category: 'Properties',
@@ -286,10 +304,10 @@ For correct behavior, the \`pattern\` property must not be assigned to the form 
       },
       options: ['copy', 'showHide', 'none'],
       description: `
-Sets additional skills to run on this form input field.
+Sets additional skills to run on this input field.
 
 - **copy**: copies the contents of the entry to the clipboard
-- **showHide**: shows and hides the contents of a password type form input field, this skill only works for the password type form input field
+- **showHide**: shows and hides the contents of a password type input field, this skill only works for the password type input field
 `,
       table: {
         category: 'Properties',
@@ -329,7 +347,7 @@ IBmbAdditionalAction = 'copy' | 'showHide' | 'none'
     onKeyDown: InputParameterDescriptions.onKeyDown,
     customInputContent: {
       description:
-        'Allows to provide custom content inside the form input field using a TemplateRef.',
+        'Allows to provide custom content inside the input field using a TemplateRef.',
       table: {
         category: 'Content child',
         type: { summary: 'TemplateRef<any>' },
