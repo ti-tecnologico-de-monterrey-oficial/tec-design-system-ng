@@ -27,6 +27,11 @@ $status: (
   &-track {
     stroke: var(--general_contrasts-main-selection);
     transition: all;
+
+    &-fill {
+      stroke: var(--general_contrasts-main-selection);
+      fill: transparent;
+    }
   }
 
   &-title {

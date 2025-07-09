@@ -32,9 +32,10 @@
       (keypress)="handleKeyPress($event)"
       [tabindex]="disabled() ? -1 : 0"
     />
-    <span
+    <label
       class="bmb_radio-mark"
+      [htmlFor]="id()"
       [ngClass]="{ 'bmb_radio-mark-error': shouldShowError }"
-    ></span>
+    ></label>
   </span>
 </bmb-input-validation>

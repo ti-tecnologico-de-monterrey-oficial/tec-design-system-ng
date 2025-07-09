@@ -94,6 +94,8 @@ export class BmbDatepickerComponent implements OnInit {
   }
 
   handleFocusedEvent(event: KeyboardEvent | MouseEvent) {
+    if (this.disabled()) return;
+
     if (event instanceof KeyboardEvent) {
       if (event.key === 'Enter' || event.key === ' ') {
         if (!this.isWindowOpen) {
@@ -101,7 +103,9 @@ export class BmbDatepickerComponent implements OnInit {
           this.isWindowOpen = true;
         }
       }
-    } else if (event instanceof MouseEvent) {
+    }
+
+    if (event instanceof MouseEvent) {
       if (!this.isWindowOpen) this.isWindowOpen = true;
     }
   }
