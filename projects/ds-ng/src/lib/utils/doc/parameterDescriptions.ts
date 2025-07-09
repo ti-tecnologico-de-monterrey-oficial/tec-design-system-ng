@@ -1,13 +1,21 @@
 export const DEPRECATED_PROPERTIES_DESCRIPTION =
   'This property is deprecated and will be removed in future versions.';
 
+const getLabelDescription = (positionDescription: string) => `
+Sets the  label associated with the form input field.
+
+The label helps users understand the context of what the checkbox represents.
+
+The label will be displayed ${positionDescription} the form input field.
+`;
+
 export const InputParameterDescriptions = {
   inputId: {
     description: `
 
 Sets the unique identifier for the form input field.
 
-It is used to link the label to the form input field through the “for” attribute, improving accessibility and usability.
+This property is used to link the label to the form input field through the ***for*** attribute, improving accessibility and usability.
     `,
     table: {
       category: 'Properties',
@@ -44,9 +52,11 @@ If no name is assigned, a name will be added using \`window.crypto.randomUUID()\
     description: `
 Sets the value of the form input field.
 
+This is the value that is taken when the form is submitted.
+
 **Important**
 
-It will not be necessary to define a value on the \`FormControl\` instance, as long as this properties is correctly assigned of this form input field .
+The value will not be necessary to define a value on the \`FormControl\` instance, as long as this properties is correctly assigned of this form input field .
     `,
     table: {
       category: 'Properties',
@@ -58,8 +68,22 @@ It will not be necessary to define a value on the \`FormControl\` instance, as l
     control: {
       type: 'text',
     },
-    description:
-      'Sets the field label, this will be displayed above the form input field.',
+    description: `
+${getLabelDescription('above')}
+    `,
+    table: {
+      category: 'Properties',
+      type: { summary: 'string' },
+      defaultValue: { summary: '' },
+    },
+  },
+  labelCheckboxOrRadial: {
+    control: {
+      type: 'text',
+    },
+    description: `
+${getLabelDescription('at the default \`labelPosition\` or the position specified in \`labelPosition\` relative to')}
+    `,
     table: {
       category: 'Properties',
       type: { summary: 'string' },
@@ -131,7 +155,9 @@ Refer to [Google Fonts](https://fonts.google.com/icons?icon.size=24&icon.color=%
   disabled: {
     control: { type: 'boolean' },
     description: `
-Disables the form input field when true.
+Disables the form input field when true, making it non-interactive and cannot be clicked.
+
+This is useful for conditions where user interaction should be restricted.
 
 It will not be necessary to define disabled property on the \`FormControl\` instance, as long as this properties is correctly assigned of this form input field .
     `,
@@ -143,7 +169,13 @@ It will not be necessary to define disabled property on the \`FormControl\` inst
   },
   isRequired: {
     control: { type: 'boolean' },
-    description: 'Sets the form input field as required when true.',
+    description: `
+Sets the form input field as required when true.
+
+Specifies whether the form input field must be filled out before submitting the form.
+
+This is commonly used to ensure that users do not skip mandatory choices in forms, enhancing data integrity and user interaction compliance.
+    `,
     table: {
       category: 'Properties',
       type: { summary: 'boolean' },
@@ -195,7 +227,9 @@ Validations supported in instantiation:
 - **customValidation**: corresponds to the validation assigned to the \`customValidation\` property
 
 <br>
-Default error messages will be shown if this property is not assigned correctly.
+**Note:**
+
+Default error messages will be displayed if this property is not assigned correctly.
     `,
     table: {
       category: 'Properties',
@@ -260,10 +294,44 @@ This documentation is displayed as a tab at the top.
     control: {
       type: 'boolean',
     },
-    description: DEPRECATED_PROPERTIES_DESCRIPTION,
+    description: `
+${DEPRECATED_PROPERTIES_DESCRIPTION}
+
+**Clarification:**
+
+This property is not required or used because the component automatically validates errors.
+    `,
     table: {
       category: 'Deprecated',
       type: { summary: 'boolean' },
+      defaultValue: { summary: '-' },
+    },
+  },
+  deprecated: {
+    control: {
+      type: '',
+    },
+    description: DEPRECATED_PROPERTIES_DESCRIPTION,
+    table: {
+      category: 'Deprecated',
+      type: { summary: '' },
+      defaultValue: { summary: '-' },
+    },
+  },
+  id: {
+    control: {
+      type: '',
+    },
+    description: `
+${DEPRECATED_PROPERTIES_DESCRIPTION}
+
+**Clarification:**
+
+Adding the id using a property with the same name affects the operation of the form input field.
+    `,
+    table: {
+      category: 'Deprecated',
+      type: { summary: '' },
       defaultValue: { summary: '-' },
     },
   },

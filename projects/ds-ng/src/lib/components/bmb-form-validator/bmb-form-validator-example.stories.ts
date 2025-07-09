@@ -33,21 +33,23 @@ import {
   template: `
     <bmb-form-validator [(formGroup)]="formGroup">
       <bmb-checkbox
-        [id]="'checkbox1'"
-        name="checkbox"
+        id="checkbox_id1"
+        name="checkbox1"
         label="Checkbox label"
         errorMessage="Please enter the required data"
         [required]="true"
       />
       <bmb-datepicker
-        name="datepicker"
+        id="datepicker_id1"
+        name="datepicker1"
         label="Date"
         invalidFormatErrorMessage="Please enter a date in a valid format."
         requiredFieldErrorMessage="Please enter the date"
         [isRequired]="true"
       />
       <bmb-date-range
-        name="custom_date_picker"
+        id="datepicker_id1"
+        name="datepicker1"
         label="Date range"
         icon="calendar_month"
         invalidFormatErrorMessage="Please enter a date in a valid format."

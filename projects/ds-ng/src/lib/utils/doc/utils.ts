@@ -99,7 +99,6 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { BmbButtonDirective, ${bmbInputName} } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
 
-
 @Component({
   selector: 'app',
   standalone: true,

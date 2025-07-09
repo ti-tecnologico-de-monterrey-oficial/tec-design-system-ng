@@ -29,11 +29,11 @@ import {
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbCheckboxComponent implements OnInit {
-  id = input<string>('');
+  name = input<string>(getUUID());
+  id = input<string>();//Deprecated
   disabled = input<boolean>(false);
   required = input<boolean>(false);
   value = input<string>('');
-  name = input<string>(getUUID());
   label = input<string>('');
   labelPosition = input<IBbmSidePosition>('after');
   ariaDescribedby = input<string>('');
@@ -46,12 +46,17 @@ export class BmbCheckboxComponent implements OnInit {
   checked = model<boolean>();
   showError = model<boolean>(false);
   indeterminate = model<boolean>(false);
+  inputId = model<string>(getUUID());
 
   change = output<Event>();
 
   isControlNull: boolean = false;
 
   ngOnInit(): void {
+    if (!!this.id() && !this.inputId()) {
+      this.inputId.set(this.id()!);
+    }
+
     if (!this.control()) {
       this.control.set(
         assignNewFormControl(this.name(), this.control(), 'checkbox')!,

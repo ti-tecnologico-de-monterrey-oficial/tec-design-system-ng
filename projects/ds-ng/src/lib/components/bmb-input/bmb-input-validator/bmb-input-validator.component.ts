@@ -184,12 +184,15 @@ export class BmbInputValidatorComponent implements OnInit {
     value: unknown,
     checked: boolean,
   ): void {
-    if (type === 'radio') {
-      if (checked) control.setValue(value);
+    if (type === 'checkbox' || type === 'radio') {
+      if (checked) {
+        if (!!value) control.setValue(value);
+        else control.setValue(checked);
+      }
       return;
     }
 
-    if (type === 'checkbox' || type === 'switch') {
+    if (type === 'switch') {
       if (checked) control.setValue(checked);
       return;
     }
