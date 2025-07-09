@@ -173,8 +173,6 @@ export class BmbInputPhoneNumberComponent implements OnInit {
   }
 
   setControlValue(lada: string, phoneNumber: string): void {
-    console.log('setControlValue');
-
     if (!!lada && !!phoneNumber) {
       this.control().setValue(lada + phoneNumber);
     } else {
