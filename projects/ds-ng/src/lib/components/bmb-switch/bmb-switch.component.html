@@ -1,33 +1,35 @@
-<bmb-input-validation
+<bmb-input-validator
   type="checkbox"
-  [inputId]="id()"
+  [inputId]="inputId()"
   [name]="name()"
   [checked]="isChecked()"
-  [idDisabled]="disabled()"
+  [isDisabled]="disabled()"
   [control]="control()"
 >
   <section class="bmb_switch-direction">
     @if (showSwitchLabel("left")) {
-      <label class="bmb_switch-label">{{ leftText() }}</label>
+      <label [htmlFor]="inputId()" class="bmb_switch-label">{{
+        leftText()
+      }}</label>
     }
     <span class="bmb_switch">
       <input
         bmbControl
         class="bmb_switch-input"
         type="checkbox"
-        [id]="id()"
+        [id]="inputId()"
         [formControl]="control()"
         [name]="name()"
         [checked]="isChecked()"
         [attr.aria-checked]="isChecked()"
-        [attr.id]="id()"
+        [attr.id]="inputId()"
         [attr.aria-label]="ariaLabel()"
         [attr.aria-disabled]="disabled().toString()"
         [tabindex]="disabled() ? -1 : 0"
         (change)="handleChange($event)"
         (keydown)="handleKeyDown($event)"
       />
-      <span class="bmb_switch-slider">
+      <label [htmlFor]="inputId()" class="bmb_switch-slider">
         @if (!!getSwitchIcon()) {
           <bmb-icon
             class="bmb_switch-slider-icon"
@@ -35,10 +37,12 @@
             [size]="20"
           />
         }
-      </span>
+      </label>
     </span>
     @if (showSwitchLabel("right")) {
-      <label class="bmb_switch-label">{{ rightText() }}</label>
+      <label [htmlFor]="inputId()" class="bmb_switch-label">{{
+        rightText()
+      }}</label>
     }
   </section>
-</bmb-input-validation>
+</bmb-input-validator>

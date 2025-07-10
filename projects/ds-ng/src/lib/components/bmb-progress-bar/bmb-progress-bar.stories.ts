@@ -135,6 +135,24 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'number' },
       },
     },
+    textFormat: {
+      name: 'Text format',
+      control: {
+        type: 'function',
+      },
+      description: `
+Set the text format function to show the percentage in the progress bar.
+The function receives two parameters: the current value and the total value, and should return a formatted string.
+
+If not set, it defaults to showing the value as *"value/total"*.
+
+**Note**: Avoid return HTML code, any HTML code will be parsed.`,
+      table: {
+        category: 'Properties',
+        type: { summary: '(value: string, total: string) => string' },
+        defaultValue: { summary: 'value => value' },
+      },
+    },
   },
   args: {
     type: 'container',
@@ -146,6 +164,7 @@ Below is an example of how you can use this component in HTML:
     target: '_blank',
     href: 'https://www.google.com',
     progress: 0,
+    textFormat: (value: string, total: string) => `$${value}/$${total}MXN`,
   },
 } as Meta<typeof BmbProgressBarComponent>;
 

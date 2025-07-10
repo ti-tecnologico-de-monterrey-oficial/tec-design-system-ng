@@ -10,7 +10,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { IBbmSidePosition } from '../../types';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { BmbInputValidationComponent } from '../bmb-input/bmb-input-validation/bmb-input-validation.component';
+import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
 import { getUUID } from '../../utils/utils';
 import { IBmbInputError } from '../bmb-input/bmb-input.component';
 import {
@@ -24,16 +24,16 @@ import {
   templateUrl: './bmb-checkbox.component.html',
   styleUrl: './bmb-checkbox.component.scss',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, BmbInputValidationComponent],
+  imports: [CommonModule, ReactiveFormsModule, BmbInputValidatorComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbCheckboxComponent implements OnInit {
-  id = input<string>('');
+  name = input<string>(getUUID());
+  id = input<string>(); //Deprecated
   disabled = input<boolean>(false);
   required = input<boolean>(false);
   value = input<string>('');
-  name = input<string>(getUUID());
   label = input<string>('');
   labelPosition = input<IBbmSidePosition>('after');
   ariaDescribedby = input<string>('');
@@ -46,12 +46,17 @@ export class BmbCheckboxComponent implements OnInit {
   checked = model<boolean>();
   showError = model<boolean>(false);
   indeterminate = model<boolean>(false);
+  inputId = model<string>(getUUID());
 
   change = output<Event>();
 
   isControlNull: boolean = false;
 
   ngOnInit(): void {
+    if (!!this.id() && !this.inputId()) {
+      this.inputId.set(this.id()!);
+    }
+
     if (!this.control()) {
       this.control.set(
         assignNewFormControl(this.name(), this.control(), 'checkbox')!,

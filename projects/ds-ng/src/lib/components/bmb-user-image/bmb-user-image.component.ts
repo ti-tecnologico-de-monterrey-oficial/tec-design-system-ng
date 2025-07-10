@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   ViewEncapsulation,
   input,
+  output,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IBmbTargetLink, IBmbUserImageSize } from '../../types';
@@ -25,6 +26,10 @@ export class BmbUserImageComponent {
   target = input<IBmbTargetLink>();
   bordered = input<boolean>(false);
 
+  buttonPress = output<MouseEvent>();
+  buttonClick = output<MouseEvent>();
+  buttonKeyPress = output<KeyboardEvent>();
+
   getClasses(
     principalClassName: string,
     size: string,
@@ -37,5 +42,19 @@ export class BmbUserImageComponent {
     if (isBordered) classes.push(`${principalClassName}-bordered`);
 
     return classes;
+  }
+
+  handlePress(event: MouseEvent): void {
+    this.buttonPress.emit(event);
+    event.stopPropagation();
+  }
+
+  handleClick(event: MouseEvent): void {
+    this.buttonClick.emit(event);
+    event.stopPropagation();
+  }
+
+  handleKeyPress(event: KeyboardEvent): void {
+    this.buttonKeyPress.emit(event);
   }
 }

@@ -15,11 +15,9 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { ClickOutsideDirective } from '../../directives/utils/clickoutside.directive';
 import {
   convertListToSelectList,
-  filteredValue,
   getSelectedValues,
   getValidInitialValues,
 } from '../../utils/dropdown';
-import { BmbInputValidationComponent } from '../bmb-input/bmb-input-validation/bmb-input-validation.component';
 import {
   IBmbInputError,
   IBmbInputTooltipPosition,
@@ -27,7 +25,7 @@ import {
 import { BmbDropdownContentComponent } from '../utils/bmb-dropdown-content/bmb-dropdown-content.component';
 import { IDropdownItem } from '../../types';
 import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
-import { debounceTime, startWith } from 'rxjs';
+import { startWith } from 'rxjs';
 import { getUUID } from '../../utils/utils';
 import {
   assignNewFormControl,
@@ -35,6 +33,7 @@ import {
   newFormControlByType,
   showError,
 } from '../../utils/formControl';
+import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
 
 export interface IBmbDropdownItem {
   name: string;
@@ -52,7 +51,7 @@ export interface IBmbDropdownItem {
     BmbIconComponent,
     ReactiveFormsModule,
     ClickOutsideDirective,
-    BmbInputValidationComponent,
+    BmbInputValidatorComponent,
     BmbInputContentComponent,
     BmbDropdownContentComponent,
   ],
@@ -203,7 +202,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
     if (!value) return this.items;
 
     return this.items.filter((item) =>
-      item.text.toLowerCase().includes(value.toLowerCase()),
+      item?.selectedText?.toLowerCase().includes(value.toLowerCase()),
     );
   }
 
@@ -225,7 +224,7 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   closeList(): void {
     this.isOpen = false;
     this.isKeyboardEvent = false;
-    this.selectionControl.setValue(this.selectedItem?.text || '');
+    this.selectionControl.setValue(this.selectedItem?.selectedText || '');
   }
 
   // Keyboards events

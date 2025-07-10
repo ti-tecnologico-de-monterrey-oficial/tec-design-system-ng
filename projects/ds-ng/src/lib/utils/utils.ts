@@ -42,14 +42,6 @@ export const buildErrorMessage = (inputs: string[]): string => {
   return elements;
 };
 
-const getValue = (key: string, value: undefined): any =>
-  (typeof value === 'function' && `${key}($event)`) ||
-  (typeof value === 'object' && `${JSON.stringify(value)}`) ||
-  `${value}`;
-
-const getKeyFormat = (key: string, value: string): string =>
-  (typeof value === 'function' && `(${key})`) || `[${key}]`;
-
 export const getPositionClass = (
   className: string,
   labelPosition: String,
@@ -61,28 +53,3 @@ export const getPositionClass = (
 export const getUUID = (): string => {
   return window.crypto.randomUUID();
 };
-
-export const attributes = (object: { [key: string]: any }): string =>
-  Object.entries(object)
-    .filter(([key]) => key !== 'test_text')
-    .map(
-      ([key, value]) =>
-        (typeof value !== 'string' &&
-          `${getKeyFormat(key, value)}='${getValue(key, value)}'`) ||
-        `${key}="${value}"`,
-    )
-    .join(' ');
-
-export const attributesText = (object: { [key: string]: any }): string =>
-  Object.entries(object)
-    .filter(([key]) => key === 'test_text')
-    .map(([_, value]) => `${value}`)
-    .join(' ');
-
-export const getEmptyStateMessage = () => `
-<br/>
-##Important:
-Remember to use the \`empty state\` for the cases that apply to this. Related documentation is available [here](https://bamboo.tec.mx/latest/guia-ux-writing/mensajes-del-producto/empty-states-OQYyq6h8-OQYyq6h8).
-
-<br/>
-`;

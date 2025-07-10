@@ -38,6 +38,7 @@ export class BmbHomeCardComponent {
 
   onClose = output();
   onBack = output();
+  onExpandClick = output();
 
   handleClose(): void {
     this.onClose.emit();
@@ -45,5 +46,9 @@ export class BmbHomeCardComponent {
 
   handleBack(): void {
     this.onBack.emit();
+  }
+
+  handleExpand(): void {
+    this.onExpandClick.emit();
   }
 }

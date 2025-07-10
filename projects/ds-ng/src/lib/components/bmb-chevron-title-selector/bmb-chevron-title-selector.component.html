@@ -6,6 +6,7 @@
           <bmb-action-icon
             [icon]="leadingIcon()"
             [iconSize]="24"
+            [disabled]="isDisabledLeadingIcon()"
             (buttonClick)="handleLeadingClick($event)"
           />
         </span>
@@ -29,6 +30,7 @@
           <bmb-action-icon
             [icon]="trailingIcon()"
             [iconSize]="24"
+            [disabled]="isDisabledTrailingIcon()"
             (buttonClick)="handleTrailingClick($event)"
           />
         </span>

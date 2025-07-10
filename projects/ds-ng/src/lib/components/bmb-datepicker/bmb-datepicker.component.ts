@@ -44,15 +44,16 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbDatepickerComponent implements OnInit {
+  inputId = input<string>(getUUID());
   label = input<string>('');
   icon = input<string>('calendar_month');
-  invalidFormatErrorMessage = input<string>('Formato invalido');
-  requiredFieldErrorMessage = input<string>('Campo requerido');
-  appearance = input<IBmbInputAppearance | string>('normal');
+  dateFormat = input<string>('dd/MM/yyyy');
+  invalidFormatErrorMessage = input<string>(); //The default value is assigned as '||' in the corresponding error message
+  requiredFieldErrorMessage = input<string>(); //The default value is assigned as '||' in the corresponding error message
+  appearance = input<IBmbInputAppearance | string>('normal'); //Deprecated
   disabled = input<boolean>(false);
   isRequired = input<boolean>(false);
   isClearable = input<boolean>(false);
-  dateFormat = input<string>('dd/MM/yyyy');
   placeholder = input<string>(this.dateFormat());
   // inline = input<boolean>(false);
   stepYearPicker = input<number>(18);
@@ -94,6 +95,8 @@ export class BmbDatepickerComponent implements OnInit {
   }
 
   handleFocusedEvent(event: KeyboardEvent | MouseEvent) {
+    if (this.disabled()) return;
+
     if (event instanceof KeyboardEvent) {
       if (event.key === 'Enter' || event.key === ' ') {
         if (!this.isWindowOpen) {
@@ -101,7 +104,9 @@ export class BmbDatepickerComponent implements OnInit {
           this.isWindowOpen = true;
         }
       }
-    } else if (event instanceof MouseEvent) {
+    }
+
+    if (event instanceof MouseEvent) {
       if (!this.isWindowOpen) this.isWindowOpen = true;
     }
   }

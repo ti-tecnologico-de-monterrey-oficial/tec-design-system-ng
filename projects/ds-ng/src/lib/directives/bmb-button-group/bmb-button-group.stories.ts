@@ -1,6 +1,6 @@
 import { Meta, StoryFn, StoryObj } from '@storybook/angular';
 import { BmbButtonGroupDirective } from './bmb-button-group.directive';
-import { attributes } from '../../utils/utils';
+import { attributes } from '../../utils/doc/utils';
 
 export default {
   title: 'Components/Buttons/Button group',

@@ -15,11 +15,11 @@
 
     @include mixins.normal_input_focus();
 
-    .bmb_input-validation-label {
+    .bmb_input-validator-label {
       display: none;
     }
 
-    .bmb_input-validation {
+    .bmb_input-validator {
       padding: 0;
     }
   }

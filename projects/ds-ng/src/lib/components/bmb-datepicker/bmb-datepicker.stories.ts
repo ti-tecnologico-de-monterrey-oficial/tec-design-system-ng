@@ -1,27 +1,27 @@
-import {
-  Meta,
-  StoryObj,
-  componentWrapperDecorator,
-  moduleMetadata,
-} from '@storybook/angular';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Meta, StoryObj, componentWrapperDecorator } from '@storybook/angular';
 import { BmbDatepickerComponent } from './bmb-datepicker.component';
+import { InputParameterDescriptions } from '../../utils/doc/parameterDescriptions';
+import {
+  getArchitectureTitle,
+  getDescribeTypeTextBlock,
+  getGeneralComponentDescription,
+  getHTMLFormExampleTextBlock,
+  getTypescriptFormExampleTextBlock,
+} from '../../utils/doc/utils';
+
+const inputName = 'date_picker';
+const bmbInputName = `<bmb-datepicker
+  inputId="date_picker_id"
+  name="${inputName}"
+  label="Date"
+  [control]="getFormControl('${inputName}')"
+  />`;
 
 export default {
   title: 'Components/Inputs/Calendar date picker',
   component: BmbDatepickerComponent,
+  tags: ['!autodocs'],
   decorators: [
-    moduleMetadata({
-      imports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        BrowserAnimationsModule,
-        BmbDatepickerComponent,
-      ],
-    }),
     componentWrapperDecorator((story: string) => {
       return `
         <div style="height: 35rem">
@@ -30,229 +30,83 @@ export default {
     }),
   ],
   parameters: {
+    controls: {
+      exclude: [
+        'defaultDate',
+        'isWindowOpen',
+        'now',
+        'stepYearPicker',
+        'clickOutside',
+        'convertToDate',
+        'customValidatorDate',
+        'handleFocusedEvent',
+        'handleValueChange',
+        'handleWindowOpen',
+      ],
+    },
     docs: {
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { Component, ChangeDetectorRef } from '@angular/core';
-import {
-  FormControl,
-  FormBuilder,
-  FormGroup,
-  Validators,
-  ReactiveFormsModule,
-} from '@angular/forms';
-import { BmbDatepickerComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-import { CommonModule } from '@angular/common';
-
-@Component({
-  selector: 'app-component',
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    CommonModule,
-    BmbDatepickerComponent,
-  ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-export class AppComponent {
-  userForm: FormGroup;
-  showErrors: { [key: string]: boolean } = {};
-
-  constructor(private fb: FormBuilder, private cdr: ChangeDetectorRef) {
-    this.userForm = this.fb.group({
-      name: new FormControl('', Validators.required),
-    });
-  }
-
-  onSubmit() {
-    if (this.userForm.valid) {
-      console.log(this.userForm.value);
-    } else {
-      console.log('Form is invalid');
-      this.userForm.markAllAsTouched();
-      this.cdr.markForCheck();
-    }
-  }
-
-  get nameControl(): FormControl {
-    return this.userForm.get('name') as FormControl;
-  }
-}
-\`\`\`
-
-### Example in HTML
-
-Below is an example of how to use this component in HTML:
-
+${getGeneralComponentDescription('bmb-datepicker', 'select a date from a calendar view, within a dialog box.')}
+${getArchitectureTitle()}
 \`\`\`html
-<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-  <bmb-datepicker
-    placeholder="Selecciona la fecha de cumpleaños"
-    name="datePicker"
-    dateFormat="MM/dd/yyyy"
-    label="Fecha de tu cumpleaños"
-    [disabled]="false"
-    icon="cake"
-    [isRequired]="true"
-    [isClearable]="true"
-    invalidFormaterrorMessage="El formato debe ser el siguiente: dd/mm/yyyy"
-    requiredFieldErrorMessage="Este campo es requerido"
-  />
-</form>
+<div class="bmb_datepicker">
+  <section class="bmb-datepicker-container">
+    <bmb-input>
 
+      <!-- if window is open -->
+      <ng-template #customInputContent>
+        <bmb-datepicker-modal class="bmb_datepicker-modal" />
+      </ng-template>
 
+    </bmb-input>
+  </section>
+</div>
 \`\`\`
+[bmb-input - DOM Architecture](/docs/components-inputs-text-input--documentation&globals=#dom-architecture)
+${getTypescriptFormExampleTextBlock('BmbDatepickerComponent', inputName)}
+${getHTMLFormExampleTextBlock(bmbInputName)}
+${getDescribeTypeTextBlock('HTML')}
         `,
       },
     },
   },
   argTypes: {
-    control: {
-      control: null,
-      description: 'Instance of FormControl to manage the input control state.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'FormControl' },
-        defaultValue: { summary: "FormControl('', Validators.required)" },
-      },
-    },
+    control: InputParameterDescriptions.control,
     icon: {
-      name: 'Icon',
-      control: {
-        type: 'text',
-      },
-      description:
-        'Name of the icon to be displayed in the input field. Refer to Material Icons for options.',
+      ...InputParameterDescriptions.icon,
       table: {
-        category: 'Properties',
-        type: { summary: 'string' },
+        ...InputParameterDescriptions.icon.table,
         defaultValue: { summary: 'calendar_month' },
       },
     },
-    invalidFormatErrorMessage: {
-      name: 'Invalid format error message',
-      control: {
-        type: 'text',
-      },
-      description: 'Text to be displayed when there is a format error.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
-    requiredFieldErrorMessage: {
-      name: 'Required field error message',
-      control: {
-        type: 'text',
-      },
-      description: 'Text to be displayed when there is a required error.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
-    isRequired: {
-      name: 'Required',
-      control: { type: 'boolean' },
-      description: 'Indicates whether the input field is required.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean' },
-      },
-    },
+    invalidFormatErrorMessage:
+      InputParameterDescriptions.invalidFormatErrorMessage,
+    requiredFieldErrorMessage:
+      InputParameterDescriptions.requiredFieldErrorMessage,
+    isRequired: InputParameterDescriptions.isRequired,
     placeholder: {
-      name: 'Placeholder',
-      control: {
-        type: 'text',
-      },
-      description: 'Placeholder text to be displayed inside the input field.',
+      ...InputParameterDescriptions.placeholder,
       table: {
-        category: 'Properties',
-        type: { summary: 'string' },
+        ...InputParameterDescriptions.placeholder.table,
+        defaultValue: { summary: 'value assigned to the dateFormat property' },
       },
     },
-    disabled: {
-      name: 'Disabled',
-      control: { type: 'boolean' },
-      description: 'Disables the input field when set to true.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean' },
-      },
-    },
-    label: {
-      name: 'Label',
-      control: {
-        type: 'text',
-      },
-      description: 'Label text to be displayed above the input field.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
-    appearance: {
-      name: 'Appearance',
-      control: {
-        type: 'select',
-      },
-      options: ['main', 'normal', 'simple'],
-      description: 'Defines the appearance style of the input field.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
-    isClearable: {
-      name: 'Is clearable field',
-      control: {
-        type: 'boolean',
-      },
-      description: 'Display a button to clear the field',
-      table: {
-        category: 'Properties',
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-    },
-    dateFormat: {
-      name: 'Date format',
-      control: {
-        type: 'text',
-      },
-      description:
-        'Set the format to validate the value and set the value format',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: 'dd/MM/yyyy' },
-      },
-    },
-    name: {
-      name: 'Name',
-      control: {
-        type: 'text',
-      },
-      description: 'Set the name and ID fields attributes.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: '' },
-      },
-    },
+    disabled: InputParameterDescriptions.disabled,
+    label: InputParameterDescriptions.label,
+    appearance: InputParameterDescriptions.deprecated,
+    isClearable: InputParameterDescriptions.isClearable,
+    dateFormat: InputParameterDescriptions.dateFormat,
+    name: InputParameterDescriptions.name,
     disableDatesBefore: {
-      name: 'Disable dates before',
       control: {
         type: 'text',
       },
-      description:
-        'Set the date to disable all dates before this date. This date should be have the same format as dateFormat',
+      description: `
+Sets the date that indicates previous dates as disabled.
+
+This date must have the same format as \`dateFormat\`.
+      `,
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -260,12 +114,14 @@ Below is an example of how to use this component in HTML:
       },
     },
     disableDatesAfter: {
-      name: 'Disable dates after',
       control: {
         type: 'text',
       },
-      description:
-        'Set the date to disable all dates after this date. This date should be have the same format as dateFormat',
+      description: `
+Sets the date that indicates later dates as disabled.
+
+This date must have the same format as \`dateFormat\`.
+      `,
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -273,30 +129,49 @@ Below is an example of how to use this component in HTML:
       },
     },
     lang: {
-      name: 'Language',
       control: {
         type: 'text',
       },
-      description: 'Set the language to be used in the component.',
+      description: 'Sets the language to be used in the component.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
         defaultValue: { summary: 'es-MX' },
       },
     },
+    helperMessage: {
+      ...InputParameterDescriptions.helperMessage,
+      table: {
+        ...InputParameterDescriptions.helperMessage.table,
+        defaultValue: { summary: 'value assigned to the dateFormat property' },
+      },
+    },
+    value: InputParameterDescriptions.value,
+    inputId: InputParameterDescriptions.inputId,
+    onChange: {
+      control: { type: 'string' },
+      description: 'Emits change event.',
+      table: {
+        category: 'Events',
+        type: { summary: 'string' },
+      },
+    },
   },
 
   args: {
-    icon: 'calendar_month',
-    invalidFormatErrorMessage: 'Formato invalido',
-    requiredFieldErrorMessage: 'Campo requerido',
-    isRequired: false,
-    disabled: false,
-    label: 'Date',
-    appearance: 'normal',
-    isClearable: false,
-    dateFormat: 'dd/MM/yyyy',
+    inputId: '',
     name: '',
+    value: '',
+    label: 'Date',
+    icon: 'calendar_month',
+    placeholder: 'dd/MM/yyyy',
+    dateFormat: 'dd/MM/yyyy',
+    disabled: false,
+    isClearable: false,
+    isRequired: false,
+    helperMessage: 'dd/MM/yyyy',
+    invalidFormatErrorMessage: 'Please enter a date in a valid format',
+    requiredFieldErrorMessage: 'Please enter the date',
     disableDatesBefore: '',
     disableDatesAfter: '',
     lang: 'es-MX',

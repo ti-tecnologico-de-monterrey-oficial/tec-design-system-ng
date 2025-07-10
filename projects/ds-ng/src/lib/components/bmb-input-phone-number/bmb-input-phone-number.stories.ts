@@ -9,7 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BmbInputPhoneNumberComponent } from './bmb-input-phone-number.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { attributes, getEmptyStateMessage } from '../../utils/utils';
+import { attributes, getEmptyStateMessage } from '../../utils/doc/utils';
 
 export default {
   title: 'Components/Inputs/Phone number',
@@ -216,8 +216,8 @@ Below is an example of how to use this component in HTML:
     disabled: false,
     showError: false,
     errorMessage: {
-      required: 'This field is required.',
-      pattern: 'Only accepts numbers.',
+      required: 'Please enter the required data',
+      pattern: 'Please enter numbers only.',
     },
     isRequired: false,
     preferredCountries: ['mx'],

@@ -7,7 +7,7 @@ import {
 } from './bmb-card.component';
 import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
-import { attributes, getEmptyStateMessage } from '../../utils/utils';
+import { attributes, getEmptyStateMessage } from '../../utils/doc/utils';
 
 const meta: Meta<BmbCardComponent> = {
   title: 'Components/Containers/Generic card',

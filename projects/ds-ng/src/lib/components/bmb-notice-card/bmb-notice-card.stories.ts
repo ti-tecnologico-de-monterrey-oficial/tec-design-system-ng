@@ -1,6 +1,6 @@
 import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
 import { BmbNoticeCardComponent } from './bmb-notice-card.component';
-import { attributes } from '../../utils/utils';
+import { attributes } from '../../utils/doc/utils';
 
 export default {
   title: 'Particularities/mitec web/Notice card',

@@ -5,6 +5,8 @@ import {
   ViewEncapsulation,
   OnChanges,
   input,
+  signal,
+  computed,
 } from '@angular/core';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { IBmbTargetLink } from '../../types';
@@ -21,7 +23,7 @@ export type IBmbProgressBarTypes = 'simple' | 'counter' | 'container';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class BmbProgressBarComponent implements OnChanges {
+export class BmbProgressBarComponent {
   type = input<IBmbProgressBarTypes>('simple');
   totalCount = input<number>(0);
   counter = input<number>(0);
@@ -30,21 +32,25 @@ export class BmbProgressBarComponent implements OnChanges {
   textLink = input<string>('');
   href = input<string>('');
   target = input<IBmbTargetLink>('_blank');
+  textFormat = input<((counter: string, total: string) => string) | null>(null);
 
-  progress: number = 0;
+  progressValue = computed(() => {
+    const numberProgress = (this.counter() / this.totalCount()) * 100;
+    let newProgress = numberProgress.toFixed(2);
+    if (numberProgress < 0) newProgress = '0';
+    if (numberProgress > 100) newProgress = '100';
 
-  ngOnChanges() {
-    this.verifyPercentage();
-  }
+    return newProgress;
+  });
 
-  verifyPercentage(): void {
-    this.progress = (this.counter() / this.totalCount()) * 100;
-    if (this.progress < 0) {
-      this.progress = 0;
+  getFormattedText(): string {
+    if (this.textFormat() !== null) {
+      return this.textFormat()!(
+        this.counter().toString(),
+        this.totalCount().toString(),
+      );
     }
 
-    if (this.progress > 100) {
-      this.progress = 100;
-    }
+    return `${this.counter()}/${this.totalCount()}`;
   }
 }

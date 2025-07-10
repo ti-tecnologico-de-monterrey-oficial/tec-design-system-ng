@@ -5,7 +5,7 @@ import {
   StoryObj,
 } from '@storybook/angular';
 import { BmbFabComponent } from './bmb-fab.component';
-import { attributes } from '../../utils/utils';
+import { attributes } from '../../utils/doc/utils';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 
 export default {

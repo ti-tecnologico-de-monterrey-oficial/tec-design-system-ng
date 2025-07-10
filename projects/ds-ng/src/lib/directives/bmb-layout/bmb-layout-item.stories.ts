@@ -7,7 +7,7 @@ import {
   BmbCardComponent,
   BmbCardContentComponent,
 } from '../../components/bmb-card/bmb-card.component';
-import { attributes } from '../../utils/utils';
+import { attributes } from '../../utils/doc/utils';
 
 const meta: Meta<BmbLayoutItemDirective> = {
   title: 'Foundations/Layouts/Layout/Layout item',

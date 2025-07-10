@@ -14,6 +14,7 @@ import {
   assignNewFormControl,
   newFormControlByType,
 } from '../../utils/formControl';
+import { getUUID } from '../../utils/utils';
 
 @Component({
   selector: 'bmb-date-range',
@@ -25,11 +26,14 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbDateRangeComponent implements OnInit {
-  label = input<string>('');
+  inputId = input<string>(getUUID());
+  label = input<string>(''); //Deprecated
+  labelStartDate = input<string>('');
+  labelEndDate = input<string>('');
   icon = input<string>('calendar_month');
-  invalidFormatErrorMessage = input<string>('');
-  requiredFieldErrorMessage = input<string>('');
-  appearance = input<IBmbInputAppearance | string>('normal');
+  invalidFormatErrorMessage = input<string>();
+  requiredFieldErrorMessage = input<string>();
+  appearance = input<IBmbInputAppearance | string>('normal'); //Deprecated
   disabled = input<boolean>(false);
   isRequired = input<boolean>(false);
   isClearable = input<boolean>(false);
@@ -39,8 +43,8 @@ export class BmbDateRangeComponent implements OnInit {
   placeholderStartDate = input<string>(this.dateFormat());
   placeholderEndDate = input<string>(this.dateFormat());
   stepYearPicker = input<number>(12);
-  name = input<string>('');
-  multipleRow = input<boolean>(true);
+  name = input<string>(getUUID());
+  multipleRow = input<boolean>(false);
 
   disableDatesBefore: string = '';
   disableDatesAfter: string = '';
@@ -77,7 +81,7 @@ export class BmbDateRangeComponent implements OnInit {
 
   getClassList(): string[] {
     const classList = ['bmb_date-range'];
-    if (this.multipleRow()) classList.push('bmb_date-range-column');
+    if (!this.multipleRow()) classList.push('bmb_date-range-column');
     return classList;
   }
 }

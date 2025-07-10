@@ -15,8 +15,7 @@ import {
   IBmbAlignTooltip,
   IBmbJustifyTooltip,
 } from '../bmb-tooltip/bmb-tooltip.component';
-import { IBbmSidePosition } from '../../types';
-import { BmbInputValidationComponent } from './bmb-input-validation/bmb-input-validation.component';
+import { BmbInputValidatorComponent } from './bmb-input-validator/bmb-input-validator.component';
 import { getUUID } from '../../utils/utils';
 import { BmbInputContentComponent } from './bmb-input-content/bmb-input-content.component';
 import {
@@ -25,12 +24,7 @@ import {
   showError,
 } from '../../utils/formControl';
 
-export type IBmbInputType =
-  | 'text'
-  | 'password'
-  | 'number'
-  | 'text-area'
-  | 'radio';
+export type IBmbInputType = 'text' | 'password' | 'number' | 'text-area';
 export type IBmbInputAppearance = 'main' | 'normal' | 'simple';
 export type IBmbAdditionalAction = 'copy' | 'showHide' | 'none';
 
@@ -55,11 +49,7 @@ export interface IBmbInputTooltipPosition {
   styleUrl: './bmb-input.component.scss',
   templateUrl: './bmb-input.component.html',
   standalone: true,
-  imports: [
-    CommonModule,
-    BmbInputValidationComponent,
-    BmbInputContentComponent,
-  ],
+  imports: [CommonModule, BmbInputValidatorComponent, BmbInputContentComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
@@ -84,13 +74,8 @@ export class BmbInputComponent implements OnInit {
   max = input<number>();
   min = input<number>();
   id = input<string>(this.name());
-  checked = input<boolean>(false);
   value = input<string>();
   autocomplete = input<string>('off');
-  labelPosition = input<IBbmSidePosition>('after');
-  ariaDescribedBy = input<string>('');
-  ariaLabel = input<string>('');
-  ariaLabelledBy = input<string>('');
   tooltip = input<string>('');
   rows = input<number>(3);
   showMaxTextLength = input<boolean>(true);
@@ -101,8 +86,6 @@ export class BmbInputComponent implements OnInit {
   });
   isClearable = input<boolean>(false);
   customValidation = input<ValidatorFn>();
-
-  isCustomError = model<boolean>(false);
 
   showError = model<boolean>(false);
   control = model<FormControl>(newFormControlByType(this.type()));

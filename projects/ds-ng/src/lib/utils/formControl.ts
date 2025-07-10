@@ -1,6 +1,6 @@
 import { FormControl } from '@angular/forms';
 import { IBmbInputType } from '../components/bmb-input/bmb-input.component';
-import { IBmbInputValType } from '../components/bmb-input/bmb-input-validation/bmb-input-validation.component';
+import { IBmbInputValType } from '../components/bmb-input/bmb-input-validator/bmb-input-validator.component';
 
 export const showError = (control: FormControl): boolean => {
   return (control?.invalid && (control?.touched || control?.dirty)) || false;
