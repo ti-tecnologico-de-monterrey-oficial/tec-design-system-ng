@@ -8,6 +8,7 @@ import {
   BmbInputComponent,
   BmbRadialComponent,
   BmbDateRangeComponent,
+  BmbSwitchComponent,
 } from '../../../projects/ds-ng/src/public-api';
 
 @Component({
@@ -21,6 +22,7 @@ import {
     BmbCheckboxComponent,
     BmbDateRangeComponent,
     BmbRadialComponent,
+    BmbSwitchComponent,
     BmbInputComponent,
   ],
   templateUrl: './component-test.component.html',

@@ -55,6 +55,17 @@
     pattern="[A-Za-z]+"
     [control]="getFormControl('input_field')"
   />
+  <bmb-switch
+    [leftText]="'Light'"
+    [leftIcon]="''"
+    [rightText]="'Dark'"
+    [rightIcon]="''"
+    [isChecked]="false"
+    [ariaLabel]="'Describe the button function here'"
+    [inputId]="'test'"
+    [disabled]="false"
+    [name]="'name'"
+  ></bmb-switch>
   <button bmbButton appearance="primary" type="submit">Submit</button>
 </form>
 FormGroup state: {{ userForm.status }}
