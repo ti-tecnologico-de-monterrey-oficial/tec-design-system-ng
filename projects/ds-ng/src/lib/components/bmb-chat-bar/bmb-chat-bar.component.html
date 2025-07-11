@@ -58,7 +58,7 @@
         (buttonClick)="handleDialog()"
       />
       @if (!onDragFiles) {
-        <input
+        <!-- <input
           id="bmbChatBarBot"
           name="bmbChatBarBot"
           class="bmb_chat-bar-input"
@@ -66,7 +66,19 @@
           [placeholder]="defaultPlaceholder()"
           [formControl]="control"
           autocomplete="off"
-        />
+        /> -->
+        <textarea
+          rows="2"
+          (input)="autoResize()"
+          #textareaRef
+          id="bmbChatBarBot"
+          name="bmbChatBarBot"
+          class="bmb_chat-bar-input"
+          [placeholder]="defaultPlaceholder()"
+          [formControl]="control"
+          (keydown)="handleKeyDown($event)"
+          autocomplete="off"
+        ></textarea>
         <section class="bmb_chat-bar-container-btns">
           @if (showMicControls) {
             <bmb-action-icon
