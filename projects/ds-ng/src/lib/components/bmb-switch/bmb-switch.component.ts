@@ -14,7 +14,7 @@ import {
   newFormControlByType,
 } from '../../utils/formControl';
 import { getUUID } from '../../utils/utils';
-import { BmbInputValidationComponent } from '../bmb-input/bmb-input-validation/bmb-input-validation.component';
+import { BmbInputValidatorComponent } from '../bmb-input/bmb-input-validator/bmb-input-validator.component';
 
 @Component({
   selector: 'bmb-switch',
@@ -24,7 +24,7 @@ import { BmbInputValidationComponent } from '../bmb-input/bmb-input-validation/b
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    BmbInputValidationComponent,
+    BmbInputValidatorComponent,
     FormsModule,
     BmbIconComponent,
   ],
@@ -39,10 +39,11 @@ export class BmbSwitchComponent {
   rightIcon = input<string>('');
   isChecked = model<boolean>(false);
   ariaLabel = input<string>('Describe the button function here');
-  id = input<string>(`bmb-switch-${BmbSwitchComponent.nextId++}`);
+  id = input<string>('');
   disabled = input<boolean>(false);
   name = input<string>(getUUID());
 
+  inputId = model<string>(`bmb-switch-${BmbSwitchComponent.nextId++}`);
   control = model<FormControl>(newFormControlByType('checkbox'));
 
   change = output<boolean>();
@@ -50,6 +51,10 @@ export class BmbSwitchComponent {
   isControlNull: boolean = false;
 
   ngOnInit(): void {
+    if (!!this.id()) {
+      this.inputId.set(this.id()!);
+    }
+
     if (!this.control()) {
       this.control.set(
         assignNewFormControl(this.name(), this.control(), 'checkbox')!,

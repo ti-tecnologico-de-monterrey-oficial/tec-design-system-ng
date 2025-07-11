@@ -47,13 +47,12 @@ export class BmbChatBarComponent {
   currentBot = model<IBotType>();
   isLoading = model<boolean>(false);
 
-  files: File[] = [];
-
   onSendMessage = output<string>();
   onSendFiles = output<File[]>();
   onRecord = output<boolean>();
   onEmoji = output<boolean>();
 
+  files: File[] = [];
   control = new FormControl();
   isDialogOpen: boolean = false;
   openAddDialog: boolean = false;

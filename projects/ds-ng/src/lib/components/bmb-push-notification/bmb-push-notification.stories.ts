@@ -5,7 +5,7 @@ import { BmbButtonDirective } from '../../directives/bmb-button/button.directive
 import { BmbNotificationService } from '../../services/notification.service';
 import { BmbPushNotificationComponent } from './bmb-push-notification.component';
 import { NotificationType } from './types';
-import { attributes } from '../../utils/utils';
+import { attributes } from '../../utils/doc/utils';
 
 @Component({
   standalone: true,

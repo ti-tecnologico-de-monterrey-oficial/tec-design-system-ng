@@ -12,7 +12,7 @@ import { ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BmbInputComponent } from '../bmb-input/bmb-input.component';
 import { BmbInputTagsComponent } from '../bmb-input-tags/bmb-input-tags.component';
-import { handleValidity, newFormControlByType } from '../../utils/formControl';
+import { handleValidity } from '../../utils/formControl';
 import { BmbDatepickerComponent } from '../bmb-datepicker/bmb-datepicker.component';
 import { BmbDateRangeComponent } from '../bmb-date-range/bmb-date-range.component';
 import { BmbDropdownComponent } from '../bmb-dropdown/bmb-dropdown.component';
@@ -22,7 +22,7 @@ import { BmbRadialComponent } from '../bmb-radial/bmb-radial.component';
 import { BmbSwitchComponent } from '../bmb-switch/bmb-switch.component';
 
 @Component({
-  selector: 'bmb-form-validation',
+  selector: 'bmb-form-validator',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   template: `
@@ -33,7 +33,7 @@ import { BmbSwitchComponent } from '../bmb-switch/bmb-switch.component';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbFormValidationComponent implements AfterViewInit {
+export class BmbFormValidatorComponent implements AfterViewInit {
   formGroup = model<FormGroup>(new FormGroup({}));
 
   formGroupState = output<FormGroup>();

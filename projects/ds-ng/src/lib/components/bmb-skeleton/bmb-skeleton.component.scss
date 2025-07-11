@@ -2,11 +2,11 @@
 
 @keyframes skeleton {
   0% {
-		background-position: 0% 0%;
-	}
-	100% {
-		background-position: 200% 0%;
-	}
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 200% 0%;
+  }
 }
 
 .bmb_skeleton {
@@ -86,7 +86,6 @@
   }
 
   &-input {
-
     .bmb_skeleton-headline {
       border-radius: rem.rem_calc(8);
       height: rem.rem_calc(48);

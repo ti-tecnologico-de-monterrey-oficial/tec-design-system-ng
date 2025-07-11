@@ -6,12 +6,12 @@
           [class]="
             'bmb_progress-bar-active bmb_progress-bar-active-' + appearance()
           "
-          [style.width.%]="progress"
+          [style.width.%]="progressValue()"
         ></div>
       </div>
       @if (type() !== "simple") {
         <span class="bmb_progress-bar-counter-text">
-          {{ counter() }}/{{ totalCount() }}
+          {{ getFormattedText() }}
         </span>
       }
     </div>
@@ -22,9 +22,9 @@
           <h4 class="bmb_progress-bar-container-header-text">
             {{ title() }}
           </h4>
-          <span class="bmb_progress-bar-container-header-text"
-            >{{ counter() }}/{{ totalCount() }}</span
-          >
+          <span class="bmb_progress-bar-container-header-text">
+            {{ getFormattedText() }}
+          </span>
         </div>
         <div class="bmb_progress-bar-container-bar">
           <div class="bmb_progress-bar-counter-container">
@@ -34,12 +34,12 @@
                   'bmb_progress-bar-active bmb_progress-bar-active-' +
                   appearance()
                 "
-                [style.width.%]="progress"
+                [style.width.%]="progressValue()"
               ></div>
             </div>
-            <span class="bmb_progress-bar-counter-text"
-              >{{ progress | number: "2.1-1" }}%</span
-            >
+            <span class="bmb_progress-bar-counter-text">
+              {{ progressValue() }}
+            </span>
           </div>
         </div>
         @if (textLink()) {

@@ -2,7 +2,7 @@ import { BmbTablesComponent } from './bmb-tables.component';
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { getEmptyStateMessage } from '../../utils/utils';
+import { getEmptyStateMessage } from '../../utils/doc/utils';
 
 export default {
   title: 'Components/Containers/Table',

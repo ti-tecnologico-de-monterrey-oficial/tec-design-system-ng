@@ -1,15 +1,16 @@
-<bmb-input-validation
+<bmb-input-validator
   type="checkbox"
-  [inputId]="id()"
+  [inputId]="inputId()"
   [name]="name()"
   [label]="label()"
   [labelPosition]="labelPosition()"
   [checked]="checked()!"
+  [value]="value()"
   [errorMessage]="errorMessage()"
   [showError]="shouldShowError"
   [helperMessage]="helperMessage()"
   [isRequired]="required()"
-  [idDisabled]="disabled()"
+  [isDisabled]="disabled()"
   [control]="control()"
 >
   <span class="bmb_checkbox">
@@ -19,13 +20,14 @@
         'bmb_checkbox-input-indeterminate': indeterminate(),
       }"
       type="checkbox"
-      [id]="id()"
+      [id]="inputId()"
       [formControl]="control()"
       [name]="name()"
       [attr.aria-describedby]="ariaDescribedby()"
       [attr.aria-label]="ariaLabel()"
       [attr.aria-labelledby]="ariaLabelledby()"
       [attr.value]="value()"
+      [value]="value()"
       [checked]="checked()"
       [required]="required()"
       [indeterminate]="indeterminate()"
@@ -35,8 +37,8 @@
     />
     <label
       class="bmb_checkbox-mark"
-      [htmlFor]="id()"
+      [htmlFor]="inputId()"
       [ngClass]="{ 'bmb_checkbox-mark-error': shouldShowError }"
     ></label>
   </span>
-</bmb-input-validation>
+</bmb-input-validator>

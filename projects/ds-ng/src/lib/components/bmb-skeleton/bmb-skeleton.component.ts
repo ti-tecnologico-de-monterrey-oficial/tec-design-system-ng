@@ -5,9 +5,18 @@ import {
   input,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BmbLayoutGridDirective, BmbLayoutGridItemDirective } from '../../directives/bmb-layout-grid/bmb-layout-grid.directive';
+import {
+  BmbLayoutGridDirective,
+  BmbLayoutGridItemDirective,
+} from '../../directives/bmb-layout-grid/bmb-layout-grid.directive';
 
-export type BmbSkeletonType = 'header' | 'input' | 'stray' | 'generic1' | 'generic2' | 'generic3';
+export type BmbSkeletonType =
+  | 'header'
+  | 'input'
+  | 'stray'
+  | 'generic1'
+  | 'generic2'
+  | 'generic3';
 
 @Component({
   selector: 'bmb-skeleton',

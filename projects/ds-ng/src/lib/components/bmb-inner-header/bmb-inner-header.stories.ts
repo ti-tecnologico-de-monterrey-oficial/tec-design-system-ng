@@ -1,6 +1,6 @@
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { BmbInnerHeaderComponent } from './bmb-inner-header.component';
-import { attributes, attributesText } from '../../utils/utils';
+import { attributes, attributesText } from '../../utils/doc/utils';
 import { BmbChevronTitleSelectorComponent } from '../bmb-chevron-title-selector/bmb-chevron-title-selector.component';
 
 export default {

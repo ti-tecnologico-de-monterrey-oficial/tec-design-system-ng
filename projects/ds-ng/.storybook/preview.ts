@@ -29,14 +29,7 @@ const preview: Preview = {
     },
     docs: {
       controls: {
-        exclude: [
-          'handleChange',
-          'handleKeyPress',
-          'ngOnInit',
-          'ngOnChanges',
-          'onBlur',
-          'onFocus',
-        ],
+        exclude: ['ngOnInit', 'ngOnChanges', 'isControlNull'],
       },
       source: {
         excludeDecorators: true,

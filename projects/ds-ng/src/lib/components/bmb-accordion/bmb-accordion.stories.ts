@@ -2,7 +2,7 @@ import { BmbAccordionComponent } from './bmb-accordion.component';
 import { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
-import { attributes, getEmptyStateMessage } from '../../utils/utils';
+import { attributes, getEmptyStateMessage } from '../../utils/doc/utils';
 
 export default {
   title: 'Components/Containers/Accordion',

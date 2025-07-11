@@ -1,6 +1,6 @@
 import { componentWrapperDecorator, Meta, StoryObj } from '@storybook/angular';
 import { BmbSearchInputComponent } from './bmb-search-input.component';
-import { getEmptyStateMessage } from '../../utils/utils';
+import { getEmptyStateMessage } from '../../utils/doc/utils';
 
 export default {
   title: 'Components/Inputs/Search',

@@ -16,5 +16,19 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./home/home.component').then((m) => m.HomeComponent),
   },
+  {
+    path: 'component-test',
+    loadComponent: () =>
+      import('./component-test/component-test.component').then(
+        (c) => c.AppComponent,
+      ),
+  },
+  {
+    path: 'form-validator-test',
+    loadComponent: () =>
+      import('./form-validator-test/form-validator-test.component').then(
+        (f) => f.FormValidatorTestComponent,
+      ),
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];

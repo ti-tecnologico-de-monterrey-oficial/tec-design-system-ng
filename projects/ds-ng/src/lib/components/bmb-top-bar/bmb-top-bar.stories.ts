@@ -125,16 +125,6 @@ Below is an example of how you can use this component in HTML:
         category: 'Events',
       },
     },
-    showQualtrics: {
-      name: 'Show Qualtrics',
-      control: { type: 'boolean' },
-      description: 'Shows the Qualtrics button.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-    },
     showHelpButton: {
       name: 'Show Help button',
       control: { type: 'boolean' },
@@ -144,16 +134,6 @@ Below is an example of how you can use this component in HTML:
         category: 'Properties',
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
-      },
-    },
-    qualtricsButtonClick: {
-      name: 'Handle Qualtrics button click',
-      control: false,
-      description:
-        'Function that is executed when the Qualtrics button is clicked.',
-      table: {
-        type: { summary: 'function' },
-        category: 'Events',
       },
     },
     alertButtonClick: {
@@ -198,7 +178,16 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: 'false' },
       },
     },
-
+    backToHomeClick: {
+      name: 'Back to home click',
+      control: false,
+      description:
+        'Function that is executed when the back to home button is clicked.',
+      table: {
+        type: { summary: 'function' },
+        category: 'Events',
+      },
+    },
     onLangChange: {
       name: 'Language change event',
       control: false,
@@ -260,12 +249,14 @@ Below is an example of how you can use this component in HTML:
     },
   },
   args: {
-    showQualtrics: false,
     userInformation: null,
     lang: 'es',
     mitec: false,
     showRoleButton: false,
     showHelpButton: false,
+    backToHomeClick: () => {
+      window.alert('Back to home clicked');
+    },
   },
 } as Meta<typeof BmbTopBarComponent>;
 

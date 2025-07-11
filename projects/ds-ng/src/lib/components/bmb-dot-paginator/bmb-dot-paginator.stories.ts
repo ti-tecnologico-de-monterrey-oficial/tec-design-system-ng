@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BehaviorSubject } from 'rxjs';
 import { BmbDotPaginatorComponent } from './bmb-dot-paginator.component';
-import { attributes } from '../../utils/utils';
+import { attributes } from '../../utils/doc/utils';
 
 export interface Target {
   target: string;

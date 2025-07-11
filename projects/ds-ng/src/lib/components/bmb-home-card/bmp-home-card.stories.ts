@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from '@storybook/angular';
 import { BmbHomeCardComponent } from './bmb-home-card.component';
-import { attributes, attributesText } from '../../utils/utils';
+import { attributes, attributesText } from '../../utils/doc/utils';
 
 export default {
   title: 'Components/Containers/Home card',
@@ -146,7 +146,7 @@ Below is an example of how you can use this component in HTML:
     },
     onClose: {
       name: 'On close',
-      control: null,
+      control: { type: 'function' },
       description: 'Emmit the close event.',
       table: {
         category: 'Events',
@@ -155,7 +155,7 @@ Below is an example of how you can use this component in HTML:
     },
     onBack: {
       name: 'On back',
-      control: null,
+      control: { type: 'function' },
       description: 'Emmit the back event.',
       table: {
         category: 'Events',
@@ -170,6 +170,18 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string' },
       },
     },
+    onExpandClick: {
+      name: 'On expand click',
+      control: { type: 'function' },
+      description: `
+Emit the expand event.
+
+This should be used as a navigation action the \`Home card\` component **is not a modal**.`,
+      table: {
+        category: 'Events',
+        type: { summary: 'function' },
+      },
+    },
   },
   args: {
     leftIcon: 'chevron_left',
@@ -182,6 +194,15 @@ Below is an example of how you can use this component in HTML:
     showRightButton: true,
     isMobile: false,
     test_text: 'hello world',
+    onExpandClick: () => {
+      alert('Expand button clicked');
+    },
+    onClose: () => {
+      alert('Close button clicked');
+    },
+    onBack: () => {
+      alert('Back button clicked');
+    },
   },
 } as Meta<typeof BmbHomeCardComponent>;
 

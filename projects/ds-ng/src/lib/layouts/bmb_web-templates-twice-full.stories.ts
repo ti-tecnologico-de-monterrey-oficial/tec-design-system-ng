@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
 import { BmbTopBarComponent } from '../../public-api';
-import { attributes } from '../utils/utils';
+import { attributes } from '../utils/doc/utils';
 
 @Component({
   standalone: true,

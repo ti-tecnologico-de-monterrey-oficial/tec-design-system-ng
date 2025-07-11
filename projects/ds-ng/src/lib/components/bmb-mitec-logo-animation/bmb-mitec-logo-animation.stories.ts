@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbMitecLogoAnimationComponent } from './bmb-mitec-logo-animation.component';
-import { attributes } from '../../utils/utils';
+import { attributes } from '../../utils/doc/utils';
 
 export default {
   title: 'Dev tools/Mitec logo animation',

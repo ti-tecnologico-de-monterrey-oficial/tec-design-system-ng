@@ -15,20 +15,23 @@
       />
     } @else { -->
     <bmb-input
+      [id]="inputId()"
       [placeholder]="placeholder()"
       [label]="label()"
       [icon]="icon()"
       [isRequired]="isRequired()"
       [disabled]="disabled()"
-      [appearance]="appearance()"
       [control]="control()"
       [isRequired]="isRequired()"
       [helperMessage]="helperMessage()"
       [errorMessage]="{
-        required: requiredFieldErrorMessage(),
-        customValidation: invalidFormatErrorMessage(),
+        required:
+          requiredFieldErrorMessage() ||
+          'Por favor ingresa la fecha de ' + label(),
+        customValidation:
+          invalidFormatErrorMessage() ||
+          'Por favor ingresa la fecha con formato ' + dateFormat(),
       }"
-      [isCustomError]="true"
       [customValidation]="customValidatorDate()"
       [name]="name()"
       [isClearable]="isClearable()"
