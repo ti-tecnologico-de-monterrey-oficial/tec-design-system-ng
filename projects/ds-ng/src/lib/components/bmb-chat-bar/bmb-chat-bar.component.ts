@@ -2,10 +2,12 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  ElementRef,
   HostListener,
   input,
   model,
   output,
+  ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import { IBotType, IChatBarActions } from './types';
@@ -74,6 +76,8 @@ export class BmbChatBarComponent {
 
   windowWidth: number = window.innerWidth;
   windowHeight: number = window.innerHeight;
+
+  @ViewChild('textareaRef') textareaRef!: ElementRef<HTMLTextAreaElement>;
 
   @HostListener('window:resize', ['$event'])
   onResize(event: Event): void {
@@ -198,5 +202,19 @@ export class BmbChatBarComponent {
 
   clickOutside(): void {
     this.openAddDialog = false;
+  }
+
+  handleKeyDown(event: KeyboardEvent): void {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      this.handleSend();
+    }
+  }
+
+  autoResize(): void {
+    const textarea = this.textareaRef.nativeElement;
+    console.log(textarea);
+    textarea.style.height = 'auto';
+    textarea.style.height = textarea.scrollHeight + 'px';
   }
 }
