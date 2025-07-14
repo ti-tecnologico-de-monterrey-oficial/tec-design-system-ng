@@ -212,8 +212,6 @@ export class BmbChatBarComponent {
 
   autoResize(): void {
     const textarea = this.textareaRef.nativeElement;
-    console.log(textarea);
-    textarea.style.height = 'auto';
     textarea.style.height = textarea.scrollHeight + 'px';
   }
 }

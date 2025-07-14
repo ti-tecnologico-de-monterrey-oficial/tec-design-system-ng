@@ -97,7 +97,7 @@
   }
 
   &-main {
-    align-items: flex-end;
+    align-items: center;
     display: flex;
     flex-wrap: wrap;
     gap: rem.rem_calc(10);
@@ -128,15 +128,15 @@
     border: none;
     color: var(--general_contrasts-50);
     flex: 1;
-    height: rem.rem_calc(44);
     font-size: 1rem;
-    max-height: rem.rem_calc(300);
-    min-height: rem.rem_calc(44);
-    min-width: rem.rem_calc(100);
+    height: 1lh;
+    max-height: 12lh;
     outline: none;
     overflow-y: auto;
     padding: 0;
     resize: none;
+    margin: 0;
+    field-sizing: content;
   }
 
   &-add {
