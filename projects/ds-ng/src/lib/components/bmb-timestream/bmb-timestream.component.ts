@@ -12,7 +12,12 @@ import { DateTime, Info } from 'luxon';
 import { BmbTimestreamErrorComponent } from './bmb-timestream-error/bmb-timestream-error.component';
 import { BmbHitoListComponent } from '../bmb-hito-list/bmb-hito-list.component';
 import { BmbTimestreamDetailsComponent } from './bmb-timestream-detail/bmb-timestream-detail.component';
-import { ITimelineEvent, ISelectedDate, ITimelineEventParsed, IBmbTimelineCustomEvent } from './types';
+import {
+  ITimelineEvent,
+  ISelectedDate,
+  ITimelineEventParsed,
+  IBmbTimelineCustomEvent,
+} from './types';
 import { CommonModule } from '@angular/common';
 import { ModalDataConfig } from '../bmb-modal/bmb-modal.interface';
 import { BmbModalComponent } from '../bmb-modal/bmb-modal.component';
@@ -292,7 +297,9 @@ export class BmbTimestreamComponent {
     return diff + 1 > 1 ? `${diff + 1} Días` : `${diff + 1} Día`;
   }
 
-  appearanceBadge(eventType: string | IBmbTimelineCustomEvent): IBbmBgAppearance {
+  appearanceBadge(
+    eventType: string | IBmbTimelineCustomEvent,
+  ): IBbmBgAppearance {
     if (typeof eventType === 'string') {
       switch (eventType) {
         case 'active':

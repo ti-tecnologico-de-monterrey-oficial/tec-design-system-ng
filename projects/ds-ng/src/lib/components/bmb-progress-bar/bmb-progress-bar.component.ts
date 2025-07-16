@@ -32,7 +32,9 @@ export class BmbProgressBarComponent {
   textLink = input<string>('');
   href = input<string>('');
   target = input<IBmbTargetLink>('_blank');
-  textFormat = input<((counter: string, total: string) => string)>((counter, total) => `${counter}/${total}`);
+  textFormat = input<(counter: string, total: string) => string>(
+    (counter, total) => `${counter}/${total}`,
+  );
 
   progressValue = computed(() => {
     const numberProgress = (this.counter() / this.totalCount()) * 100;

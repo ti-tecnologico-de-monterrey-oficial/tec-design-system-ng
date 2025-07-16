@@ -11,7 +11,10 @@ import {
 } from '../bmb-card/bmb-card.component';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { IBmbTimelineCustomEvent, ITimelineEventType } from '../bmb-timestream/types';
+import {
+  IBmbTimelineCustomEvent,
+  ITimelineEventType,
+} from '../bmb-timestream/types';
 import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
 
