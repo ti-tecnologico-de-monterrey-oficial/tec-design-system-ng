@@ -12,7 +12,7 @@ import { DateTime, Info } from 'luxon';
 import { BmbTimestreamErrorComponent } from './bmb-timestream-error/bmb-timestream-error.component';
 import { BmbHitoListComponent } from '../bmb-hito-list/bmb-hito-list.component';
 import { BmbTimestreamDetailsComponent } from './bmb-timestream-detail/bmb-timestream-detail.component';
-import { ITimelineEvent, ISelectedDate, ITimelineEventParsed } from './types';
+import { ITimelineEvent, ISelectedDate, ITimelineEventParsed, IBmbTimelineCustomEvent } from './types';
 import { CommonModule } from '@angular/common';
 import { ModalDataConfig } from '../bmb-modal/bmb-modal.interface';
 import { BmbModalComponent } from '../bmb-modal/bmb-modal.component';
@@ -115,24 +115,6 @@ export class BmbTimestreamComponent {
 
   handleTabSelected(tab: Tab) {
     this.tabSelected = tab.id;
-  }
-
-  getHeight(): string {
-    const height =
-      typeof this.clamp().size === 'string'
-        ? this.clamp().size
-        : `${this.clamp().size}px`;
-    const min =
-      typeof this.clamp().min === 'string'
-        ? this.clamp().min
-        : `${this.clamp().min}px`;
-    const max = this.isMicro()
-      ? '283px'
-      : typeof this.clamp().max === 'string'
-        ? this.clamp().max
-        : `${this.clamp().max}px`;
-
-    return `clamp(${min}, ${height}, ${max})`;
   }
 
   prepareEvents(events?: ITimelineEvent[]) {
@@ -310,18 +292,26 @@ export class BmbTimestreamComponent {
     return diff + 1 > 1 ? `${diff + 1} Días` : `${diff + 1} Día`;
   }
 
-  appearanceBadge(eventType: string): IBbmBgAppearance {
-    switch (eventType) {
-      case 'active':
-        return 'mitec_blue';
-      case 'done':
-        return 'success';
-      case 'pending':
-        return 'normal';
-      case 'under_review':
-        return 'warning';
-      default:
-        return 'mitec_blue';
+  appearanceBadge(eventType: string | IBmbTimelineCustomEvent): IBbmBgAppearance {
+    if (typeof eventType === 'string') {
+      switch (eventType) {
+        case 'active':
+          return 'mitec_blue';
+        case 'done':
+          return 'success';
+        case 'pending':
+          return 'normal';
+        case 'under_review':
+          return 'warning';
+        default:
+          return 'mitec_blue';
+      }
     }
+    return eventType.type || 'normal';
+  }
+
+  getBadgeText(eventType: string | IBmbTimelineCustomEvent): string {
+    if (typeof eventType === 'string') return eventType;
+    return eventType.text || '';
   }
 }

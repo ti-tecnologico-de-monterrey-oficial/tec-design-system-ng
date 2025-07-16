@@ -5,7 +5,7 @@
         @if (icon()) {
           <section
             class="bmb_hito-card-content-icon"
-            [ngClass]="'bmb_hito-card-content-icon-' + type()"
+            [ngClass]="'bmb_hito-card-content-icon-' + getHitoIconClass()"
           >
             <bmb-icon [icon]="icon() ?? ''" />
           </section>

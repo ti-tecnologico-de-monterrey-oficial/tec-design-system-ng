@@ -11,10 +11,9 @@ import {
 } from '../bmb-card/bmb-card.component';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { ITimelineEventType } from '../bmb-timestream/types';
+import { IBmbTimelineCustomEvent, ITimelineEventType } from '../bmb-timestream/types';
 import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
-import { BmbThreeColsComponent } from '../bmb-three-cols/bmb-three-cols.component';
 
 @Component({
   selector: 'bmb-hito-card',
@@ -36,7 +35,7 @@ export class BmbHitoCardComponent {
   title = input.required<string>();
   id = input.required<string | number>();
   short_description = input<string>('');
-  type = input.required<ITimelineEventType>();
+  type = input.required<ITimelineEventType | IBmbTimelineCustomEvent>();
   sub_content = input<string>();
   enable_bullet = input<boolean>(false);
   is_active = input<boolean>(false);
@@ -58,24 +57,33 @@ export class BmbHitoCardComponent {
     this.handleClick.emit(this.id());
   }
 
-  formatBadgeText(legend: string): string {
-    return legend.replace(/_/g, ' ');
+  formatBadgeText(legend: string | IBmbTimelineCustomEvent): string {
+    if (typeof legend === 'string') return legend.replace(/_/g, ' ');
+    return legend.text.replace(/_/g, ' ');
+  }
+
+  getHitoIconClass(): string {
+    if (typeof this.type() === 'string') return this.type() as string;
+    return (this.type() as IBmbTimelineCustomEvent).type || 'custom';
   }
 
   appearanceBadge(): IBbmBgAppearance {
-    switch (this.type()) {
-      case 'active':
-        return 'strong';
-      case 'done':
-        return 'success';
-      case 'pending':
-        return 'normal';
-      case 'under_review':
-        return 'warning';
-      case 'canceled':
-        return 'error';
-      default:
-        return 'strong';
+    if (typeof this.type() === 'string') {
+      switch (this.type()) {
+        case 'active':
+          return 'strong';
+        case 'done':
+          return 'success';
+        case 'pending':
+          return 'normal';
+        case 'under_review':
+          return 'warning';
+        case 'canceled':
+          return 'error';
+        default:
+          return 'strong';
+      }
     }
+    return (this.type() as IBmbTimelineCustomEvent).type || 'normal';
   }
 }
