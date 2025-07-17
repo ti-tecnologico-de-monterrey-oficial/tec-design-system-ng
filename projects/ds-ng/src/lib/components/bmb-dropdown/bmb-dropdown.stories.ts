@@ -5,12 +5,35 @@ import {
   type StoryFn,
 } from '@storybook/angular';
 import { BmbDropdownComponent } from './bmb-dropdown.component';
-import { attributes, getEmptyStateMessage } from '../../utils/doc/utils';
+import {
+  attributes,
+  getArchitectureSection,
+  getEmptyStateMessage,
+  getFieldDescription,
+  getSpecialSpecifications,
+  getBasicExampleBlock,
+  getFormExampleBlock,
+} from '../../utils/doc/utils';
 import { BmbFormValidatorComponent } from '../bmb-form-validator/bmb-form-validator.component';
+import { InputParameterDescriptions } from '../../utils/doc/parameterDescriptions';
+
+const title = 'Components/Inputs/Dropdown';
+const inputName = 'dropdown';
+const additionalBlock = `handleDropdownChange(value: string): void {
+    console.log('Value changed:', value);
+  }`;
+const inputExample = ` <bmb-${inputName}
+  inputId="${inputName}_id"
+  name="${inputName}"
+  label="Dropdown"
+  [control]="getFormControl('${inputName}')"
+  (change)="handleDropdownChange($event)"
+  />`;
 
 export default {
-  title: 'Components/Inputs/Dropdown',
+  title,
   component: BmbDropdownComponent,
+  tags: ['!autodocs'],
   decorators: [
     moduleMetadata({
       imports: [BmbFormValidatorComponent],
@@ -23,194 +46,115 @@ export default {
     }),
   ],
   parameters: {
+    controls: {
+      exclude: [
+        'filteredOptions',
+        'isOpen',
+        'items',
+        'onBlur',
+        'onFocus',
+        'isKeyboardEvent',
+        'selectedIcon',
+        'selectedItem',
+        'selectionControl',
+        'uuid',
+        'closeList',
+        'getIcon',
+        'getUUID',
+        'getValidInitialValues',
+        'handleFocus',
+        'handleValidity',
+        'initOptions',
+        'onKeyDown',
+        'openList',
+        'selectOptionWithKey',
+        'setSelectedValue',
+        'setSelectionControl',
+      ],
+    },
     docs: {
       description: {
         component: `
-<br/>
-### Warning:
+${getFieldDescription(
+  'bmb-dropdown',
+  'select an option from a list.',
+  'https://bamboo.tec.mx/latest/componentes/dropdown/descripcion-general-4wp8B5ut',
+)}
+${getArchitectureSection(`
+<bmb-input class="bmb_dropdown-field">
+    <ng-template #customContent>
+      <label [htmlFor]="inputId">
+        <bmb-icon class="bmb_field-actions"/>
+      </label>
+    </ng-template>
+  </bmb-input>
+  <bmb-dropdown-content class="bmb_dropdown-list"/>
+</section>
+`)}
+${getSpecialSpecifications(`
+  ### Warning:
 The \`isFilterable\` feature is not compatible with the current version of Storybook, We are working on to fix this issue. You should be able to use it in your Angular application.
-${getEmptyStateMessage()}
-Below is an example of how you can use this component in TypeScript:
-
-  \`\`\`typescript
-  @Component({
-  selector: 'component',
-  standalone: true,
-  imports: [
-    BmbDropdownComponent,
-    FormControl,
-    FormGroup
-    ReactiveFormsModule,
-  ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-export class Component {
-  formGroup: FormGroup = new FormGroup({
-    inputDropdown1: new FormControl<string>('', Validators.required),
-  });
-
-  onSubmit() {
-    console.log('App - onSubmit', this.formGroup);
-    if (this.formGroup.valid) {
-      console.log('onSubmit', this.formGroup.status);
-      return;
-    }
-
-    this.formGroup.markAllAsTouched();
-    this.updateErrorState();
-  }
-
-  updateErrorState() {
-    Object.keys(this.formGroup.controls).forEach((field) => {
-      const control = this.getFormControl(field);
-
-      if (control instanceof FormControl) {
-        control.updateValueAndValidity();
-      }
-    });
-  }
-
-  getFormControl(name: string): FormControl {
-    return this.formGroup.get(name) as FormControl;
-  }
-
-  onValueChange(value: unknown): void {
-    console.log('Value changed:', value);
-  }
-}
-  \`\`\`
-  Below is an example of how you can use this component in HTML:
-  \`\`\`html
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <bmb-dropdown
-      name="inputDropdown1"
-      icon="bolt"
-      placeholder="Set Fruit"
-      tooltip="Tooltip dropdown"
-      [required]="true"
-      label="Fruit prefered"
-      [showIcon]="true"
-      [options]="[
-        { name: 'Apple name', value: '_apple', icon: 'home', id: 'apple_' },
-        { name: 'Banana name', value: '_banana', icon: 'bolt', id: 'banana_' },
-        { name: 'Orange name', value: '_orange', icon: 'bolt', id: 'orange_' },
-        { name: 'Pear name', value: '_pear', icon: 'info', id: 'pear_' },
-        { name: 'Grape name', value: '_grape', icon: 'bolt', id: 'grape_' },
-      ]"
-      [preferredOptions]="['_orange']"
-      [disabled]="false"
-      helperText="Select a fruit"
-      errorMessage="Error input dropdown"
-      [value]="_pear"
-      [control]="getFormControl('inputDropdown1')"
-      (onValueChange)="onValueChange($event)"
-    />
-  <button type="submit" bmbButton>Submit</button>
-</form>
-  \`\`\`
-  This example demonstrates how to use the **BmbDropdownComponent** within an Angular Reactive Form, ensuring validation and handling the selected value properly.
+>${getEmptyStateMessage()}
+`)}
+${getFormExampleBlock('BmbDropdownComponent', inputName, additionalBlock, inputExample)}
+${getBasicExampleBlock('BmbDropdownComponent')}
         `,
       },
     },
   },
   argTypes: {
-    icon: {
-      name: 'Icon',
-      control: { type: 'text' },
-      description: 'The name of the icon. See Material Icons.',
-      table: { category: 'Properties', type: { summary: 'string' } },
-    },
-    required: {
-      name: 'Required',
-      control: { type: 'boolean' },
-      description:
-        'When set to true, The Dropdown border color turns to red. By default, it is false, and you do not need to explicitly set it.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean' },
-      },
-    },
+    icon: InputParameterDescriptions.icon,
+    required: InputParameterDescriptions.isRequired,
     showIcon: {
-      name: 'Show Icon',
       control: { type: 'boolean' },
-      description: 'When set to true, the dropdown icon is show',
+      description: `
+Shows the icon assigned in the \`icon\` property when true.
+      `,
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'false' },
         type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
       },
     },
-    placeholder: {
-      name: 'Placeholder',
-      control: { type: 'text' },
-      description: 'The text of the placeholder for the dropdown.',
-      table: { category: 'Properties', type: { summary: 'string' } },
-    },
+    placeholder: InputParameterDescriptions.placeholder,
     options: {
-      name: 'Options',
       control: { type: 'array' },
-      description:
-        'The inputs to show on the dropdown. The data types it allows are a string array or an array of objects',
+      description: 'Sets the data to be displayed in the dropdown.',
       table: {
         category: 'Properties',
         type: {
-          summary: `array: string[] | IBmbDropdownItem[]. IBmbDropdownItem = {
-            value: string;
-            name: string;
-            icon: string;
-            id?: string;
-          }`,
+          summary: 'string[] | IBmbDropdownItem[]',
+          detail: `
+IBmbDropdownItem = {
+  value: string;
+  name: string;
+  icon: string;
+  id?: string;
+}
+          `,
         },
+        defaultValue: { summary: '[]' },
       },
     },
-    helperText: {
-      name: 'Helper Text',
-      control: { type: 'text' },
-      description: 'The text of the bottom for the dropdown.',
-      table: { category: 'Properties', type: { summary: 'string' } },
-    },
-    disabled: {
-      name: 'Disabled',
-      control: { type: 'boolean' },
-      description:
-        'When set to true, The dropdown disabled. By default, it is false, and you do not need to explicitly set it.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean' },
-      },
-    },
-    label: {
-      name: 'Label',
-      control: { type: 'text' },
-      description: 'The text show an text as a label',
-      table: { category: 'Properties', type: { summary: 'string' } },
-    },
-    control: {
-      control: null,
-      name: 'Control',
-      description: 'Instance of FormControl to manage the input control state.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'FormControl' },
-        defaultValue: { summary: "FormControl('')" },
-      },
-    },
+    helperText: InputParameterDescriptions.helperMessage,
+    disabled: InputParameterDescriptions.disabled,
+    label: InputParameterDescriptions.label,
+    control: InputParameterDescriptions.control,
     onValueChange: {
-      name: 'On value change',
       control: { type: '' },
-      description:
-        'Emitted when an option is selected. Contains the value or item of the selected option.',
+      description: 'Emits the value of the selected option',
       table: { category: 'Events', type: { summary: 'function' } },
     },
     isFilterable: {
-      name: 'Is Filterable',
       control: { type: 'boolean' },
-      description: `When set to true, the user can type in order to filter the options list.
+      description: `
+Enables the functionality to filter data when true, the user can type in order to filter the options list.
 
-**Note**: The \`isFilterable\` is not compatible with the \`isMultiSelect\`. If you set the **isMultiSelect** property to true, the **isFilterable** property will be ignored.`,
+**Important**:
+
+The \`isFilterable\` is not compatible with the \`isMultiSelect\`.
+
+If you set the \`isMultiSelect\` property to true, the \`isFilterable\` property will be ignored.`,
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
@@ -218,10 +162,47 @@ export class Component {
       },
     },
     preferredOptions: {
-      name: 'Preferred options',
       control: { type: 'array' },
-      description:
-        'List of options to be displayed at the top, the text must match the value property of an option or must be equal to an option in case the options are text.',
+      description: `
+Sets the list of options to display at the top of the data.
+
+**Important**
+
+The order given will be the position in which it will be displayed.
+
+**Considerations**
+
+If the data is a list of string type, the preferred options should be a fragment of the data.
+
+**Example**:
+    [options]="[
+      'Apple name',
+      'Banana name',
+      'Orange name',
+      'Pear name',
+      'Grape name',
+    ]"
+<br/>
+    [preferredOptions]="[
+      'Grape name',
+      'Orange name',
+    ]"
+
+If the data is a list of  IBmbDropdownItem type, the preferred options should be the value attribute of the object.
+**Example**:
+    [options]="[
+      { name: 'Apple name', value: '_apple', icon: 'home', id: 'apple_' },
+      { name: 'Banana name', value: '_banana', icon: 'bolt', id: 'banana_' },
+      { name: 'Orange name', value: '_orange', icon: 'bolt', id: 'orange_' },
+      { name: 'Pear name', value: '_pear', icon: 'info', id: 'pear_' },
+      { name: 'Grape name', value: '_grape', icon: 'bolt', id: 'grape_' },
+    ]"
+<br/>
+    [preferredOptions]="[
+      '_grape',
+      '_orange',
+    ]"
+      `,
       table: {
         category: 'Properties',
         type: { summary: 'string[]' },
@@ -229,34 +210,31 @@ export class Component {
       },
     },
     isMultiSelect: {
-      name: 'Is Multi Select',
       control: { type: 'boolean' },
       description: '',
       table: {
         category: 'Properties',
-        defaultValue: { summary: 'false' },
         type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
       },
     },
-    inputId: {
-      name: 'Input ID',
-      control: { type: 'text' },
-      description:
-        'The ID of the input element. If not set, it will be generated automatically.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: 'name' },
-      },
-    },
+    inputId: InputParameterDescriptions.inputId,
+    tooltip: InputParameterDescriptions.tooltip,
+    errorMessage: InputParameterDescriptions.errorMessage,
+    name: InputParameterDescriptions.name,
+    tooltipPosition: InputParameterDescriptions.tooltipPosition,
+    value: InputParameterDescriptions.value,
   },
   args: {
-    isMultiSelect: false,
+    inputId: 'this-value-should-be-unique',
+    name: '',
+    value: '',
+    label: 'Fruit',
+    tooltip: 'Tool tip',
+    tooltipPosition: '',
+    showIcon: true,
     icon: 'bolt',
     placeholder: 'Set Fruit',
-    required: true,
-    label: 'Fruit',
-    showIcon: true,
     options: [
       { name: 'Apple name', value: '_apple', icon: 'home', id: 'apple_' },
       { name: 'Banana name', value: '_banana', icon: 'bolt', id: 'banana_' },
@@ -264,13 +242,14 @@ export class Component {
       { name: 'Pear name', value: '_pear', icon: 'info', id: 'pear_' },
       { name: 'Grape name', value: '_grape', icon: 'bolt', id: 'grape_' },
     ],
+    preferredOptions: ['_pear'],
+    isFilterable: false,
     disabled: false,
+    required: true,
     helperText: 'Select a fruit',
     errorMessage: 'Error input dropdown',
-    preferredOptions: ['_pear'],
-    tooltip: 'Tool tip',
-    isFilterable: false,
-    inputId: 'this-value-should-be-unique',
+    control: null,
+    isMultiSelect: false,
   },
 } as Meta<typeof BmbDropdownComponent>;
 

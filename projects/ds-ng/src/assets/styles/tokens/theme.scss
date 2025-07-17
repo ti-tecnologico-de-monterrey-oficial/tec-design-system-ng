@@ -75,7 +75,7 @@
   --color-table-900: RGBA(var(--color-charade-100), 1);
   --color-table-btn-900: RGBA(var(--color-charade-50), 1);
 
-  > .sbdocs-wrapper {
+  .sbdocs-wrapper {
     background-color: var(--general_contrasts-25);
     color: var(--general_contrasts-100);
   }
@@ -511,5 +511,13 @@ img {
         border-bottom-color: var(--general_contrasts-100);
       }
     }
+
+    &-panel .sbdocs-wrapper {
+      padding: 0;
+    }
   }
+}
+
+.css-14m39zm {
+  overflow: auto;
 }

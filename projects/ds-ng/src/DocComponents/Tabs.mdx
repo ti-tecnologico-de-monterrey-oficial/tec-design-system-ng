@@ -1,6 +1,27 @@
 import { useState } from "react";
+import { TableOfContents } from "@storybook/addon-docs/blocks";
 
-export const Tabs = ({ tabs = [], content = [] }) => {
+export const ContentTab = ({
+  children,
+  status,
+  showTableOfContents = false,
+}) => (
+  <div className="sbdocs-wrapper css-3rewwu bmb_doc-tabs-padding-reset">
+    {status === "active" && (
+      <TableOfContents
+        title="Table of contents"
+        headingSelector="h2, h3"
+        contentsSelector={`#tab_active`}
+        disable={!showTableOfContents}
+      />
+    )}
+    <div className="css-x28zkw">
+      <div id={`tab_${status}`}>{children}</div>
+    </div>
+  </div>
+);
+
+export const Tabs = ({ tabs = [], content = [], showTableOfContents = false }) => {
   const [selectedTab, setSelectedTab] = useState(0);
 
 return (
@@ -27,9 +48,15 @@ return (
         hidden={selectedTab !== index}
         className="bmb_doc-tabs-panel"
       >
-        <p>{item}</p>
+        <br />
+        <ContentTab
+          status={selectedTab === index ? "active" : "inactive"}
+          showTableOfContents={showTableOfContents}
+        >
+          {item}
+        </ContentTab>
       </div>
     ))}
   </section>
 </div>
-) };
+); }

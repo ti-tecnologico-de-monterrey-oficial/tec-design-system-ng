@@ -2,15 +2,14 @@ import { Meta, StoryObj, componentWrapperDecorator } from '@storybook/angular';
 import { BmbDatepickerComponent } from './bmb-datepicker.component';
 import { InputParameterDescriptions } from '../../utils/doc/parameterDescriptions';
 import {
-  getArchitectureTitle,
-  getDescribeTypeTextBlock,
-  getGeneralComponentDescription,
-  getHTMLFormExampleTextBlock,
-  getTypescriptFormExampleTextBlock,
+  getArchitectureSection,
+  getBasicExampleBlock,
+  getFieldDescription,
+  getFormExampleBlock,
 } from '../../utils/doc/utils';
 
 const inputName = 'date_picker';
-const bmbInputName = `<bmb-datepicker
+const inputExample = `<bmb-datepicker
   inputId="date_picker_id"
   name="${inputName}"
   label="Date"
@@ -47,9 +46,13 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralComponentDescription('bmb-datepicker', 'select a date from a calendar view, within a dialog box.')}
-${getArchitectureTitle()}
-\`\`\`html
+${getFieldDescription(
+  'bmb-datepicker',
+  'select a date from a calendar view, within a dialog box.',
+  'https://bamboo.tec.mx/latest/componentes/calendar-date-picker/descripcion-general-JXYISTju',
+)}
+${getArchitectureSection(
+  `
 <div class="bmb_datepicker">
   <section class="bmb-datepicker-container">
     <bmb-input>
@@ -62,11 +65,12 @@ ${getArchitectureTitle()}
     </bmb-input>
   </section>
 </div>
-\`\`\`
-[bmb-input - DOM Architecture](/docs/components-inputs-text-input--documentation&globals=#dom-architecture)
-${getTypescriptFormExampleTextBlock('BmbDatepickerComponent', inputName)}
-${getHTMLFormExampleTextBlock(bmbInputName)}
-${getDescribeTypeTextBlock('HTML')}
+`,
+  'input',
+  'components-inputs-text-input',
+)}
+${getFormExampleBlock('BmbDatepickerComponent', inputName, '', inputExample)}
+${getBasicExampleBlock('BmbDatepickerComponent')}
         `,
       },
     },

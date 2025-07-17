@@ -1,0 +1,21 @@
+import {
+  Controls,
+  Description,
+  Primary,
+  Stories,
+  Title,
+} from "@storybook/addon-docs/blocks";
+
+import { TitleOfControls } from "./Utils.mdx";
+import { STORIES_TITLE } from "../lib/utils/doc/utils";
+
+export const GeneralTemplate = () => (
+  <section>
+    <Title />
+    <Description />
+    <Primary />
+    <TitleOfControls />
+    <Controls />
+    <Stories title={STORIES_TITLE} includePrimary="none" />
+  </section>
+);

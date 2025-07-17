@@ -1,8 +1,9 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbChatBarComponent } from './bmb-chat-bar.component';
 import {
-  getDescribeTypeTextBlock,
-  getTypescriptExampleTextBlock,
+  getBasicExampleBlock,
+  getGeneralDescription,
+  TOC_OBJ,
 } from '../../utils/doc/utils';
 import { InputParameterDescriptions } from '../../utils/doc/parameterDescriptions';
 
@@ -15,14 +16,14 @@ export default {
   component: BmbChatBarComponent,
   parameters: {
     docs: {
+      toc: TOC_OBJ,
       description: {
         component: `
-<br>
-### Description
->This is an advanced tool designed to enhance the digital interaction experience powered by artificial intelligence.
-<br>
-${getTypescriptExampleTextBlock('BmbChatBarComponent', '', '', importComments)}
-${getDescribeTypeTextBlock('HTML')}
+${getGeneralDescription(
+  'This is an advanced tool designed to enhance the digital interaction experience powered by artificial intelligence.',
+  'https://bamboo.tec.mx/latest/componentes/ai-chat-bar/descripcion-general-wixYrkmT',
+)}
+${getBasicExampleBlock('BmbChatBarComponent', importComments)}
         `,
       },
     },
