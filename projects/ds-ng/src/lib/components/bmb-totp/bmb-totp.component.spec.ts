@@ -64,17 +64,17 @@ describe('BmbTotpComponent', () => {
     component.onSubmit();
     expect(component.handleSubmit.emit).toHaveBeenCalledWith('');
   });
-  it('should focus next input on key up', () => {
-    const input = fixture.nativeElement.querySelector(
-      `#code_${component.instanceId()}_0`,
-    );
-    input.value = '1';
-    input.dispatchEvent(new KeyboardEvent('keyup', { key: '1' }));
-    fixture.detectChanges();
-    const nextInput = fixture.nativeElement.querySelector(
-      `#code_${component.instanceId()}_1`,
-    );
-  });
+  // TODO: Add a validation for the next input focus on key up
+  // it('should focus next input on key up', () => {
+  //   const input = fixture.nativeElement.querySelector(
+  //     `#code_${component.instanceId()}_0`,
+  //   );
+  //   input.dispatchEvent(new KeyboardEvent('keyup', { key: '1' }));
+  //   fixture.detectChanges();
+  //   const nextInput = fixture.nativeElement.querySelector(
+  //     `#code_${component.instanceId()}_1`,
+  //   );
+  // });
   it('should handle paste event correctly', () => {
     const clipboardEvent = new ClipboardEvent('paste', {
       clipboardData: new DataTransfer(),

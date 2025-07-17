@@ -8,20 +8,19 @@
       <h2 class="bmb_totp-title">{{ title() }}</h2>
       <h3 class="bmb_totp-subtitle">{{ subtitle() }}</h3>
       <section class="bmb_totp-code">
-        <section
-          class="bmb_totp-separator"
-          *ngFor="let i of [].constructor(maxCode()); let idx = index"
-        >
-          <bmb-input-content
-            class="bmb_totp-input"
-            [inputId]="'code_' + instanceId() + '_' + idx"
-            [name]="'name_' + instanceId() + '_' + idx"
-            [maxLength]="1"
-            [isError]="codeError()"
-            [control]="getFormControl('name_' + instanceId() + '_' + idx)"
-            (keyup)="onKeyUp($event, idx)"
-          />
-        </section>
+        @for (field of codesArray(); track $index) {
+          <section class="bmb_totp-separator">
+            <bmb-input-content
+              class="bmb_totp-input"
+              [inputId]="'code_' + instanceId() + '_' + $index"
+              [name]="'name_' + instanceId() + '_' + $index"
+              [maxLength]="1"
+              [isError]="codeError()"
+              [control]="getFormControl('name_' + instanceId() + '_' + $index)"
+              (onKeyUp)="handleKeyUp($event, $index)"
+            />
+          </section>
+        }
       </section>
       @if (codeError()) {
         <p class="bmb_totp-error">{{ errorMessage() }}</p>

@@ -8,10 +8,12 @@ import {
 } from '../../projects/ds-ng/src/public-api';
 
 import { routes } from './app.routes';
+import { provideHttpClient } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
+    provideHttpClient(),
     importProvidersFrom([BrowserAnimationsModule]),
     importProvidersFrom([
       BrowserAnimationsModule,

@@ -6,6 +6,7 @@ import {
   input,
   output,
   ElementRef,
+  computed,
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import { CommonModule } from '@angular/common';
@@ -54,6 +55,9 @@ export class BmbTotpComponent {
   handleSubmit = output<string>();
 
   codeForm!: FormGroup;
+  codesArray = computed(() => {
+    return Array.from({ length: this.maxCode() }, (_, i) => i);
+  });
 
   constructor(private formBuilder: FormBuilder) {}
 
@@ -72,7 +76,7 @@ export class BmbTotpComponent {
     this.codeForm = this.formBuilder.group(group);
   }
 
-  onKeyUp(event: KeyboardEvent, idx: number): void {
+  handleKeyUp(event: KeyboardEvent, idx: number): void {
     const input = event.target as HTMLInputElement;
     const value = input.value;
 

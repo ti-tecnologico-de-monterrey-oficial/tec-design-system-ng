@@ -127,9 +127,9 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   }
 
   initOptions(list: string[] | IBmbDropdownItem[]): void {
-    this.items = convertListToSelectList(list, this.icon(), this.showIcon());
+    const newItems = convertListToSelectList(list, this.icon(), this.showIcon());
 
-    this.items = this.items.map((element: IDropdownItem) => {
+    this.items = newItems.map((element: IDropdownItem) => {
       return {
         ...element,
         icon: !this.isMultiSelect() && this.showIcon() ? element.icon! : '',
@@ -145,8 +145,9 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
       );
 
       this.items = [...new Set([...preferredItems, ...this.items])];
-      this.filteredOptions = [...this.items];
     }
+
+    this.filteredOptions = [...this.items];
   }
 
   handleFocus(value: boolean): void {
