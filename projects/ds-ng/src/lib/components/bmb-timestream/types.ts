@@ -1,4 +1,5 @@
 import { DateTime } from 'luxon';
+import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
 
 export interface ISelectedDate {
   day: string;
@@ -19,7 +20,7 @@ export interface ITimelineEvent {
   end: string;
   description: string;
   short_description: string;
-  type: ITimelineEventType;
+  type: ITimelineEventType | IBmbTimelineCustomEvent;
   related_to?: string[];
   decision?: string;
   title: string;
@@ -42,6 +43,11 @@ export type ITimelineEventType =
   | 'active'
   | 'under_review'
   | 'canceled';
+
+export interface IBmbTimelineCustomEvent {
+  text: string;
+  type: IBbmBgAppearance;
+}
 
 export interface ITimelineEventParsed extends ITimelineEvent {
   startEvent: DateTime;

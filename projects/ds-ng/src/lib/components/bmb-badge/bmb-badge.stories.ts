@@ -89,7 +89,7 @@ Below is an example of how you can use this component in HTML:
       table: {
         category: 'Properties',
         defaultValue: { summary: 'normal' },
-        type: { summary: 'string' },
+        type: { summary: 'IBbmBgAppearance' },
       },
       description: `
 Sets the appearance of the badge, affecting its visual style.
