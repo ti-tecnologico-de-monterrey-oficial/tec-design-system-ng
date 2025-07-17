@@ -1,6 +1,7 @@
 @use "../../../assets/styles/base/fonts" as fonts;
 @use "../../../assets/styles/base/rem" as rem;
 @use "../../../assets/styles/base/mixins" as mixins;
+@use "../../../assets/styles/tokens/bgAppearance" as appearance;
 
 $circleTypes: (
   "under_review": rgb(var(--color-yellow-primary)),
@@ -70,6 +71,12 @@ $circleTypes: (
           @if ($type == "pending") {
             color: var(--general_contrasts-5);
           }
+        }
+      }
+
+      @each $name, $color in appearance.$colors {
+        &-#{$name} {
+          background-color: $color;
         }
       }
     }

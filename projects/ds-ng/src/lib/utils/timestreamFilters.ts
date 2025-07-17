@@ -8,7 +8,8 @@ const checkFilters = (
   const result = filtersKeys.map((filter) => {
     switch (filter) {
       case 'type':
-        return !!filters[filter]?.includes(event.type);
+        const type = typeof event.type === 'string' ? event.type : 'custom';
+        return !!filters[filter]?.includes(type);
 
       case 'instances':
         if (filters[filter] === 'Múltiple') return event.start !== event.end;
