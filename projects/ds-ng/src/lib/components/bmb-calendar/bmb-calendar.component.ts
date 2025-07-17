@@ -152,8 +152,6 @@ export class BmbCalendarComponent {
   }
 
   handleCurrentDateChange(newDate: DateTime): void {
-    console.log('newDate', newDate);
-
     this.now = newDate;
     this.weekNumber = newDate.weekNumber;
     this.renderWeekDays = getWeekDays(newDate);
