@@ -1,10 +1,17 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import { componentWrapperDecorator, Meta, StoryObj } from '@storybook/angular';
 import { BmbTimestreamCardComponent } from './bmb-timestream-card.component';
 import { getEmptyStateMessage } from '../../utils/doc/utils';
 
 export default {
   title: 'Organisms/Timestream card (full)',
   component: BmbTimestreamCardComponent,
+  decorators: [
+    componentWrapperDecorator((story: string) => {
+      return `<div style="height: 500px;">
+        ${story}
+      </div>`;
+    }),
+  ],
   parameters: {
     docs: {
       description: {
@@ -229,23 +236,4 @@ Below is an example of how you can use this component in HTML:
 
 type Story = StoryObj<BmbTimestreamCardComponent>;
 
-export const Default: Story = {
-  args: {},
-  render: (args) => ({
-    props: args,
-    template: `
-      <div style="height: 1000px">
-        <bmb-timestream-card
-          [title]="title"
-          [subtitle]="subtitle"
-          [dataLocalNav]="dataLocalNav"
-          [icon]="icon"
-          [bgIconAppearance]="bgIconAppearance"
-          [dateFormat]="dateFormat"
-          [lang]="lang"
-          [events]="events"
-        />
-      </div>
-    `,
-  }),
-};
+export const Default: Story = {};
