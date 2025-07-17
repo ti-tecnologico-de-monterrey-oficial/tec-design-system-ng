@@ -60,10 +60,6 @@ export class BmbCalendarTemplateMobileComponent {
     this.onClose.emit('close');
   }
 
-  switchToMonthList() {
-    console.log('switchToMonthList');
-  }
-
   handleMonthChange(event: string): void {
     const modifyDate = ({ config, date }: any) => {
       if (event === '+') {
