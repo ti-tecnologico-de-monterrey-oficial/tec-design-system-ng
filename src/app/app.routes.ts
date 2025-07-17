@@ -32,5 +32,12 @@ export const routes: Routes = [
         (f) => f.FormValidatorTestComponent,
       ),
   },
+  {
+    path: 'dropdown',
+    loadComponent: () =>
+      import('./pages/dropdown/dropdown.component').then(
+        (d) => d.DropdownPageComponent,
+      ),
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
