@@ -1,24 +1,18 @@
 import { useState } from "react";
-import { TableOfContents } from "@storybook/addon-docs/blocks";
+import { CustomTOC } from "../DocComponents/CustomTOC.mdx";
 
 export const ContentTab = ({
   children,
   status,
   showTableOfContents = false,
 }) => (
-  <div className="sbdocs-wrapper css-3rewwu bmb_doc-tabs-padding-reset">
-    {status === "active" && (
-      <TableOfContents
-        title="Table of contents"
-        headingSelector="h2, h3"
-        contentsSelector={`#tab_active`}
-        disable={!showTableOfContents}
-      />
-    )}
-    <div className="css-x28zkw">
-      <div id={`tab_${status}`}>{children}</div>
-    </div>
-  </div>
+  <CustomTOC
+    showTableOfContents={showTableOfContents}
+    contentsSelector="#tab_active"
+    status={status}
+  >
+    <div id={`tab_${status}`}>{children}</div>
+  </CustomTOC>
 );
 
 export const Tabs = ({ tabs = [], content = [], showTableOfContents = false }) => {

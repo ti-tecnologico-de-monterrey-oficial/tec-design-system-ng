@@ -1,0 +1,39 @@
+import { useEffect } from "react";
+import { TableOfContents } from "@storybook/addon-docs/blocks";
+import { TOC_OBJ } from "../lib/utils/doc/utils";
+import { query } from "@angular/animations";
+
+export const CustomTOC = ({
+  children,
+  status = "active",
+  contentsSelector = "#content",
+  showTableOfContents = true,
+  headingSelector = TOC_OBJ.headingSelector,
+}) => {
+  useEffect(() => {
+    if(status === "active") {
+      document.querySelectorAll('aside.css-1wizkyk').forEach( element => {
+        if(element.className !== 'sbdocs sbdocs-toc--custom css-1wizkyk') {
+          //The generic table of contents is hidden
+          element.style.display = "none";
+        }
+      });
+    }
+  }, [status]);
+
+return (
+
+<div className="sbdocs-wrapper css-3rewwu">
+  {status === "active" && (
+    <TableOfContents
+      title={TOC_OBJ.title}
+      headingSelector={headingSelector}
+      contentsSelector={contentsSelector}
+      disable={!showTableOfContents}
+    />
+  )}
+  <div className="css-x28zkw">
+    <div id="content">{children}</div>
+  </div>
+</div>
+)};

@@ -11,7 +11,11 @@ import { setCompodocJson } from '@storybook/addon-docs/angular';
 import { withThemeByClassName } from '@storybook/addon-themes';
 import docJson from '../../../documentation.json';
 import { allModes } from './modes';
-import { STORIES_TITLE, TITLE_OF_CONTROLS } from '../src/lib/utils/doc/utils';
+import {
+  STORIES_TITLE,
+  TITLE_OF_CONTROLS,
+  TOC_OBJ,
+} from '../src/lib/utils/doc/utils';
 
 setCompodocJson(docJson);
 
@@ -38,6 +42,7 @@ const preview: Preview = {
       },
     },
     docs: {
+      toc: TOC_OBJ,
       page: () => {
         return [
           Title({}),
