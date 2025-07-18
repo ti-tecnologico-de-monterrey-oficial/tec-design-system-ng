@@ -238,7 +238,7 @@ export class BmbInputValidatorComponent implements OnInit {
       return this.getErrorType(
         errorMessages,
         'pattern',
-        'Por favor ingresa un formato permitido',
+        `Por favor ingresa el formato permitido ${this.pattern()}`,
       );
     if (this.control()?.hasError('min'))
       return this.getErrorType(
