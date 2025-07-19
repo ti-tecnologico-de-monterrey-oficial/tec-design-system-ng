@@ -63,6 +63,7 @@ export class BmbInputContentComponent {
   onBlur = output<boolean>();
   onChange = output<HTMLInputElement>();
   onKeyDown = output<KeyboardEvent>();
+  onKeyUp = output<KeyboardEvent>();
 
   @ContentChild('customContent') customContent!: TemplateRef<any>;
 
@@ -173,5 +174,9 @@ export class BmbInputContentComponent {
     if (this.additionalAction() === 'showHide') {
       this.isHide = !this.isHide;
     }
+  }
+
+  handleKeyUp(event: KeyboardEvent) {
+    this.onKeyUp.emit(event);
   }
 }

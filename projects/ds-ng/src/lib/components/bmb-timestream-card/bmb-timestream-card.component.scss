@@ -17,6 +17,12 @@
     .bmb_home-card-container {
       flex: 1;
     }
+
+    .bmb_home-card-wrapper {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
   }
 
   &-filters {
@@ -29,12 +35,17 @@
 
     &-active {
       height: auto;
+      z-index: 1;
     }
 
     &-header {
       display: flex;
       gap: var(--bmb-spacing-m);
       margin-bottom: var(--bmb-spacing-m);
+
+      button {
+        color: inherit;
+      }
 
       &-title {
         flex: 1;

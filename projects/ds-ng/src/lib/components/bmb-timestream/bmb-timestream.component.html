@@ -1,7 +1,6 @@
 <section
   class="bmb_timestream"
   [ngClass]="{ 'bmb_timestream-micro': isMicro() }"
-  [ngStyle]="{ height: getHeight() }"
 >
   @if (error) {
     <div class="bmb_timestream-error">
@@ -72,7 +71,7 @@
                 <dd class="bmb_timestream-dialog-dual-data">
                   <bmb-badge
                     [appearance]="appearanceBadge(selectedEvent.type)"
-                    [text]="selectedEvent.type"
+                    [text]="getBadgeText(selectedEvent.type)"
                     [container]="false"
                   />
                 </dd>

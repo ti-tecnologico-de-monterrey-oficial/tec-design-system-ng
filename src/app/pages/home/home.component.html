@@ -1,0 +1,34 @@
+<section bmbLayout>
+  @for (item of animeList().data; track $index) {
+    @defer (on viewport) {
+      <bmb-card bmbLayoutItem margin="none" [colSm]="2" [colLg]="2">
+        <bmb-card-header>
+          <h2>
+            {{ item.title }}
+          </h2>
+        </bmb-card-header>
+        <bmb-card-content>
+          <bmb-image [src]="item.images.jpg.image_url" [alt]="item.title" />
+          <div>
+            @for (demographic of item.demographics; track $index) {
+              <bmb-tag [text]="demographic.name" />
+            }
+          </div>
+        </bmb-card-content>
+      </bmb-card>
+    } @placeholder {
+      <bmb-card>
+        <bmb-card-header>
+          <h2>Loading...</h2>
+        </bmb-card-header>
+        <bmb-card-content>
+          <bmb-loader />
+        </bmb-card-content>
+      </bmb-card>
+    }
+  }
+</section>
+
+@if (animeList().loading) {
+  <bmb-loader />
+}
