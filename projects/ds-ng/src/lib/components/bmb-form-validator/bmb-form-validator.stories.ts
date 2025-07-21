@@ -18,8 +18,11 @@ import {
   BmbCheckboxComponent,
   BmbDatepickerComponent,
   BmbDateRangeComponent,
+  BmbDropdownComponent,
+  BmbInputComponent,
+  BmbInputPhoneNumberComponent,
+  BmbInputTagsComponent,
 } from '../../../public-api';
-import { BmbInputContentComponent } from '../bmb-input/bmb-input-content/bmb-input-content.component';
 import {
   getFormControlConsiderations,
   getFormControlDescription,
@@ -36,12 +39,15 @@ export default {
         BmbCheckboxComponent,
         BmbDatepickerComponent,
         BmbDateRangeComponent,
-        BmbInputContentComponent,
+        BmbDropdownComponent,
+        BmbInputPhoneNumberComponent,
+        BmbInputComponent,
+        BmbInputTagsComponent,
       ],
     }),
     componentWrapperDecorator((story: string) => {
       return `
-          <div style="height: 50rem">
+          <div style="height: 55rem">
             ${story}
           </div>`;
     }),
@@ -82,7 +88,6 @@ ${getFormControlDescription('>').replace('<br/>', '')}
 >- [Dropdown](/docs/components-inputs-dropdown--documentation)
 >- [Phone number](/docs/components-inputs-phone-number--documentation)
 >- [Radial](/docs/components-inputs-radial--documentation)
->- [Switch](/docs/components-inputs-switch--documentation)
 >- [Text input](/docs/components-inputs-text-input--documentation)
 >- [Text input with tags](/docs/components-inputs-text-input-with-tags--documentation)
   `,
@@ -210,7 +215,81 @@ export const Default: Story = {
     props: args,
     template: `
 <bmb-form-validator>
-
+  <bmb-checkbox
+    inputId="checkbox_id"
+    name="checkbox"
+    label="Checkbox"
+    [required]="true"
+    helperMessage="Helper Message"
+  />
+  <bmb-datepicker
+    inputId="datepicker_id"
+    name="datepicker"
+    label="Date"
+    [isRequired]="true"
+    helperMessage="Helper Message"
+  />
+  <bmb-date-range
+    inputId="date_range_id"
+    name="date_range"
+    labelStartDate="Date range start"
+    labelEndDate="Date range end"
+    [isRequired]="true"
+  />
+  <bmb-input-phone-number
+    inputId="input_phone_id"
+    name="input_phone_number"
+    name="input_phone_number"
+    label="Phone number"
+    [onlyCountries]="['mx', 'us', 'ca']"
+    [isRequired]="true"
+    helperMessage="Helper Message"
+  />
+  <bmb-input
+    inputId="input_field_id"
+    name="input_field"
+    label="Input"
+    pattern="[A-Za-z]+"
+    [maxlength]="20"
+    [minlength]="4"
+    [isRequired]="true"
+    helperMessage="Helper Message"
+  />
+   <bmb-input
+    type="text-area"
+    inputId="text_area_id"
+    name="text_area"
+    label="Textarea"
+    [jsonFormat]="true"
+    [isRequired]="true"
+    helperMessage="Helper Message"
+  />
+  <bmb-input-tags
+    inputId="input_tags_id"
+    name="input_tags"
+    label="Input with tags"
+    [tagOptions]="[
+      'Tacos al pastor',
+      'Enchiladas',
+      'Tamales',
+      'Quesadillas',
+      'Chiles en nogada',
+      'Mole poblano',
+      'Sopes',
+      'Gorditas',
+      'Pozole',
+      'Ceviche',
+      'Tortas',
+      'Guacamole',
+      'Tacos de pescado',
+      'Flautas',
+      'Chalupas',
+      'Huevos rancheros',
+      'Elote',
+    ]"
+    [isRequired]="true"
+    helperMessage="Helper Message"
+  />
   <div style="padding: 1rem">
     <button bmbButton appearance="primary" type="submit">
       Submit

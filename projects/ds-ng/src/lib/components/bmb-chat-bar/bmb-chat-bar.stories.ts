@@ -3,7 +3,6 @@ import { BmbChatBarComponent } from './bmb-chat-bar.component';
 import {
   getBasicExampleBlock,
   getGeneralDescription,
-  TOC_OBJ,
 } from '../../utils/doc/utils';
 import { InputParameterDescriptions } from '../../utils/doc/parameterDescriptions';
 
@@ -16,7 +15,6 @@ export default {
   component: BmbChatBarComponent,
   parameters: {
     docs: {
-      toc: TOC_OBJ,
       description: {
         component: `
 ${getGeneralDescription(
@@ -63,6 +61,7 @@ ${getBasicExampleBlock('BmbChatBarComponent', importComments)}
         'onDrop',
         'onFileSelect',
         'onResize',
+        'clickOutside',
       ],
     },
   },

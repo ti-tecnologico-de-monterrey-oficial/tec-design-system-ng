@@ -1,7 +1,8 @@
 export const DEPRECATED_PROPERTIES_DESCRIPTION =
   'This property is deprecated and will be removed in future versions.';
+export const GOGGLE_FONTS_LINK = `Even refer to [Google Fonts](https://fonts.google.com/icons?icon.size=24&icon.color=%23e8eaed&selected=Material+Symbols+Outlined:more_vert:FILL@0;wght@400;GRAD@0;opsz@24) for more icons.`;
 
-const getLabelDescription = (
+export const getLabelDescription = (
   positionDescription: string,
   type: string = ' field',
 ) => `
@@ -223,7 +224,7 @@ IBmbJustifyTooltip = 'centered' | 'before' | 'after'
 Sets the name of the icon to be displayed within the field.
 
 <br/>
-Refer to [Google Fonts](https://fonts.google.com/icons?icon.size=24&icon.color=%23e8eaed&selected=Material+Symbols+Outlined:more_vert:FILL@0;wght@400;GRAD@0;opsz@24) for more icons.`,
+${GOGGLE_FONTS_LINK}`,
     table: {
       category: 'Properties',
       type: { summary: 'string' },

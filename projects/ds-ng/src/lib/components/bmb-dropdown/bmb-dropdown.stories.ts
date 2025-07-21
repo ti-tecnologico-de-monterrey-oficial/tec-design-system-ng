@@ -227,7 +227,7 @@ If the data is a list of  IBmbDropdownItem type, the preferred options should be
   },
   args: {
     inputId: 'this-value-should-be-unique',
-    name: '',
+    name: 'dropdown',
     value: '',
     label: 'Fruit',
     tooltip: 'Tool tip',

@@ -1,13 +1,21 @@
 import { CommonModule } from '@angular/common';
-import { Component, input, InputSignal } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { moduleMetadata, Meta, StoryObj } from '@storybook/angular';
 import { BmbDividerComponent } from '../components/bmb-divider/bmb-divider.component';
+import {
+  getFoundationDescriptions,
+  getGeneralDescription,
+  getSandboxConsiderationsDocumentation,
+  getSpecialSpecifications,
+  SANDBOX_TITLE,
+} from '../utils/doc/utils';
 
 @Component({
   selector: 'storybook-shadows-stories',
   standalone: true,
   imports: [CommonModule, BmbDividerComponent],
   template: `
+    <h1>${SANDBOX_TITLE}</h1>
     <p [ngStyle]="getStyles()">
       <button
         style="color: var(--general_contrasts-100);"
@@ -56,10 +64,16 @@ export default {
     docs: {
       description: {
         component: `
-This is a collection of shadows styles that can be used in the application. The shadows are defined in the CSS variables and can be used in the application by using the class name or the CSS variable name.
-
-**You should be careful when using shadows**, as they can affect Bamboo components. Some components may override this attribute, so check the component's documentation before applying the shadow class.
-`,
+${getGeneralDescription(getFoundationDescriptions('shadows'), 'https://bamboo.tec.mx/latest/foundations/shadow-boxes-kRa1Gtdt')}
+${getSpecialSpecifications(
+  getSandboxConsiderationsDocumentation(
+    'shadow boxes',
+    `
+The shadows are defined in the CSS variables and can be used in the application by using the class name or the CSS variable name.
+>`,
+    true,
+  ),
+)}`,
       },
     },
   },

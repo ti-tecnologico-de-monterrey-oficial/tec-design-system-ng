@@ -1,13 +1,22 @@
-import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import { Meta, StoryObj } from '@storybook/angular';
 import { Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BmbDividerComponent } from '../components/bmb-divider/bmb-divider.component';
+import {
+  getFoundationDescriptions,
+  getGeneralDescription,
+  getSandboxConsiderationsDocumentation,
+  getSpecialSpecifications,
+  SANDBOX_TITLE,
+} from '../utils/doc/utils';
 
 @Component({
   standalone: true,
   selector: 'bmb-radius-playground',
   imports: [CommonModule, BmbDividerComponent],
   template: `
+    <h1 style="width: 100%;">${SANDBOX_TITLE}</h1>
+    <br />
     <div
       [ngStyle]="{ borderRadius: 'var(--bmb-radius-' + radius() + ')' }"
       style="border: var(--bmb-border-general_contrasts-50-1-solid); padding: 1rem; text-align: center;"
@@ -40,68 +49,14 @@ class BmbRadiusPlaygroundComponent {
 export default {
   title: 'Foundations/Radius',
   component: BmbRadiusPlaygroundComponent,
-  decorators: [
-    moduleMetadata({
-      imports: [CommonModule, BmbDividerComponent],
-    }),
-  ],
   parameters: {
     docs: {
       description: {
-        component: `This is a collection of border radius styles that can be used in the application. The border radius is defined in the CSS variables and can be used in the application by using the class name or the CSS variable name.
-
-## Class Name
-
-The class name is defined as \`bmb_radius-{radius}\` where {radius} is the radius size, and also set the variable \`--bmb-radius\` for the child elements.
-
-\`\`\`
-<div style="border: var(--bmb-border-general_contrasts-50-1-solid);" class="bmb-radius-m">
-  <div style="border-radius: var(--bmb-radius);">
-    The child element has access to the border radius of the parent element's size through the variable --bmb-radius.
-  </div>
-</div>
-\`\`\`
-
-## CSS Variable
-
-The CSS variable name is defined as \`--bmb-radius-{radius}\` where {radius} is the radius size.
-
-\`\`\`
-<div style="border: var(--bmb-border-general_contrasts-50-1-solid); border-radius: var(--bmb-radius-4)">
-  Content with border radius applied using CSS variables.
-</div>
-\`\`\`
-
-## Values
-
-The radius size are defined on REM units, and can be used in the application by using the class name or the CSS variable name. The radius size can be one of the following:
-
-- none: 0px
-- xxs: ≈2px
-- xs: ≈4px
-- s: ≈8px
-- m: ≈16px
-- l: ≈24px
-- xl: ≈32px
-- xxl: ≈64px
-- auto: auto
-- full: 50%
-- 0: 0px
-- 1: ≈4px
-- 2: ≈8px
-- 3: ≈12px
-- 4: ≈16px
-- 5: ≈20px
-- 6: ≈24px
-- 7: ≈28px
-- 8: ≈32px
-- 9: ≈36px
-- 10: ≈40px
-- 12: ≈48px
-- 16: ≈64px
-- 20: ≈80px
-- 24: ≈96px
-`,
+        component: `
+${getGeneralDescription(getFoundationDescriptions('border radius'), 'https://bamboo.tec.mx/latest/foundations/radius/descripcion-general-jC3HBIda')}
+${getSpecialSpecifications(
+  getSandboxConsiderationsDocumentation('radius', '', false, ['radius']),
+)}`,
       },
     },
   },

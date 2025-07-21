@@ -5,6 +5,12 @@ import {
   BmbTabsComponent,
   IBmbTab,
 } from '../components/bmb-tabs/bmb-tabs.component';
+import {
+  getGeneralDescription,
+  getSandboxConsiderationsDocumentation,
+  getSpecialSpecifications,
+  SANDBOX_TITLE,
+} from '../utils/doc/utils';
 
 @Component({
   standalone: true,
@@ -14,7 +20,7 @@ import {
     <section
       style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; align-items: center; margin-bottom: 2rem;"
     >
-      <h1 style="width: 100%;">Sandbox</h1>
+      <h1 style="width: 100%;">${SANDBOX_TITLE}</h1>
       <div [ngStyle]="getBackgroundColor()"></div>
       <div [ngStyle]="getGradient()"></div>
     </section>
@@ -755,21 +761,33 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: `This interactive tool offers a hands-on exploration of our comprehensive color palettes, designed to enhance the aesthetic and functional appeal of your projects. To seamlessly integrate these colors into your design. Dive into our palette to discover the perfect colors that will bring your designs to life.
-
-\`\`\`css
+        component: `
+${getGeneralDescription(
+  `This interactive tool offers a hands-on exploration of our comprehensive color palettes, designed to enhance the aesthetic and functional appeal of your projects.`,
+  'https://bamboo.tec.mx/latest/foundations/colores/descripcion-general-qsn1aZgM',
+)}
+${getSpecialSpecifications(
+  getSandboxConsiderationsDocumentation(
+    'colors',
+    `
+### Implementation details:
+>\`\`\`css
 background-color: RGBA(var(--color-name));
 color: RGBA(var(--color-name));
-
+>
 /* You need to avoid the RGBA() for some variables, take a look to the playground */
 background-color: var(--color-name);
 color: var(--color-name);
-
+>
 /* For gradients colors */
 background: linear-gradient(180deg, var(--color-gradient-blue));
 background: radial-gradient(circle, var(--color-gradient-blue));
-
-\`\`\``,
+\`\`\`
+- To seamlessly integrate these colors into your design.
+- Dive into our palette to discover the perfect colors that will bring your designs to life.
+>`,
+  ),
+)}`,
       },
     },
   },

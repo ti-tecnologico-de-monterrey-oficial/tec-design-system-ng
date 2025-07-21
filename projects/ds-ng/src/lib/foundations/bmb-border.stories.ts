@@ -1,13 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { Component, input } from '@angular/core';
-import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import { Meta, StoryObj } from '@storybook/angular';
+import {
+  getFoundationDescriptions,
+  getGeneralDescription,
+  getSandboxConsiderationsDocumentation,
+  getSpecialSpecifications,
+  SANDBOX_TITLE,
+} from '../utils/doc/utils';
 
 @Component({
   selector: 'storybook-border-stories',
   standalone: true,
   imports: [CommonModule],
   template: `
-    <h1>Sandbox</h1>
+    <h1>${SANDBOX_TITLE}</h1>
     <p [ngStyle]="getStyles()">
       <button
         style="color: var(--general_contrasts-100);"
@@ -50,16 +57,13 @@ class StorybookBorderStoriesComponent {
 export default {
   title: 'Foundations/Borders',
   component: StorybookBorderStoriesComponent,
-  decorators: [
-    moduleMetadata({
-      imports: [CommonModule],
-    }),
-  ],
   parameters: {
     docs: {
       description: {
-        component:
-          'This is a collection of border styles that can be used in the application.',
+        component: `
+${getGeneralDescription(getFoundationDescriptions('border'), 'https://bamboo.tec.mx/latest/foundations/borders/descripcion-general-U27GpidU')}
+${getSpecialSpecifications(getSandboxConsiderationsDocumentation('borders'))}
+        `,
       },
     },
   },
