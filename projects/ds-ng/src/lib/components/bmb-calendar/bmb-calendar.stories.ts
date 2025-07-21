@@ -126,7 +126,7 @@ export default {
       providers: [],
     }),
     componentWrapperDecorator((story: string) => {
-      return `<div style="height: 1000px; display: flex; justify-content: center; align-items: center;">
+      return `<div style="height: 1000px;">
         ${story}
       </div>`;
     }),
