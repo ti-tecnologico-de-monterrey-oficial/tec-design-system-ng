@@ -114,6 +114,7 @@ export * from './lib/components/bmb-user-profile/bmb-user-profile.component';
 export * from './lib/components/bmb-academic-progress/bmb-academic-progress.component';
 export * from './lib/components/bmb-portal/bmb-portal.component';
 export * from './lib/components/bmb-list-group/bmb-list-group.component';
+export * from './lib/components/bmb-list-group/bmb-list-group-item/bmb-list-group-item.component';
 export * from './lib/components/bmb-simple-header/bmb-simple-header.component';
 export * from './lib/components/bmb-drawer-overlay/bmb-drawer-overlay.component';
 export * from './lib/components/bmb-mitec-logo-animation/bmb-mitec-logo-animation.component';
