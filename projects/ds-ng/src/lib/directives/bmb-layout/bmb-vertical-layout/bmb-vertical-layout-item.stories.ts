@@ -1,7 +1,15 @@
 import { Meta, moduleMetadata, StoryFn } from '@storybook/angular';
 import { BmbVerticalLayoutItemDirective } from './bmb-vertical-layout-item.directive';
 import { attributes } from '../../../utils/doc/utils';
-import { BmbIconStatusComponent, BmbCardComponent, BmbCardContentComponent, BmbVerticalLayoutDirective, BmbLayoutDirective, BmbLayoutItemDirective, BmbTopBarComponent } from '../../../../public-api';
+import {
+  BmbIconStatusComponent,
+  BmbCardComponent,
+  BmbCardContentComponent,
+  BmbVerticalLayoutDirective,
+  BmbLayoutDirective,
+  BmbLayoutItemDirective,
+  BmbTopBarComponent,
+} from '../../../../public-api';
 
 export default {
   title:
@@ -10,7 +18,15 @@ export default {
   component: BmbVerticalLayoutItemDirective,
   decorators: [
     moduleMetadata({
-      imports: [BmbIconStatusComponent, BmbCardComponent, BmbCardContentComponent, BmbVerticalLayoutDirective, BmbLayoutDirective, BmbLayoutItemDirective, BmbTopBarComponent],
+      imports: [
+        BmbIconStatusComponent,
+        BmbCardComponent,
+        BmbCardContentComponent,
+        BmbVerticalLayoutDirective,
+        BmbLayoutDirective,
+        BmbLayoutItemDirective,
+        BmbTopBarComponent,
+      ],
     }),
   ],
   parameters: {
