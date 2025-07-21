@@ -3,7 +3,6 @@ import { BmbListGroupComponent } from '../bmb-list-group.component';
 import { IBbmBgAppearance } from '../../bmb-advertisement-card/types';
 import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
-import { InputSignal } from '@angular/core';
 import { attributes } from '../../../utils/doc/utils';
 import { BmbListGroupItemComponent } from './bmb-list-group-item.component';
 
