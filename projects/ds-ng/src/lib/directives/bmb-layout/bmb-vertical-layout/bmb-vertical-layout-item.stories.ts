@@ -68,15 +68,6 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'number' },
       },
     },
-    test_text: {
-      name: 'Test text',
-      control: 'text',
-      description: '',
-      table: {
-        category: 'Example',
-        type: { summary: 'string' },
-      },
-    },
   },
   args: {
     rowGrow: 1,
@@ -137,7 +128,7 @@ export const HomeLayout = {
         alignItems="center"
         layoutHeight="500px"
       >
-        <bmb-top-bar bmbVerticalLayoutItem [rowGrow]="0" />
+        <bmb-top-bar bmbVerticalLayoutItem />
         <bmb-card bmbVerticalLayoutItem  margin="none" [rowGrow]="1">
           <bmb-card-content padding="m">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fringilla eu risus in elementum. Sed volutpat urna vitae sem sodales fermentum ut id ante. Curabitur metus nulla, ultrices eu dictum id, efficitur quis nulla. Fusce ipsum sapien, aliquam congue urna non, tempus aliquet quam. Mauris ut lobortis ante. Nullam accumsan arcu eget tortor condimentum commodo. In dictum quam eget orci tristique pulvinar. Nulla porttitor nunc enim, ac rutrum lacus eleifend non. Etiam scelerisque molestie ex, ac ullamcorper orci rhoncus et. Suspendisse finibus bibendum nulla, a semper nulla dapibus et. Vivamus ut feugiat arcu, et dapibus erat.</p>
