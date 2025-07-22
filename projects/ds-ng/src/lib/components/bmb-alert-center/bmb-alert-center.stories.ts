@@ -125,6 +125,27 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: 'false' },
       },
     },
+    emptyState: {
+      name: 'Empty State',
+      control: {
+        type: 'boolean',
+      },
+      description: 'Show empty State.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    emptyStateData: {
+      name: 'Empty State Data',
+      control: { type: 'object' },
+      table: {
+        category: 'Properties',
+        type: { summary: 'IBmbAlertEmptyState' },
+      },
+      description: 'Configuration object for the empty state display.',
+    },
   },
   args: {
     tabsName: [
@@ -391,6 +412,8 @@ Below is an example of how you can use this component in HTML:
       console.log('showAlertDetail', event);
     },
     hideTabs: false,
+    emptyState: false,
+    emptyStateData: '',
   },
 } as Meta<typeof BmbAlertCenterComponent>;
 
@@ -401,5 +424,68 @@ export const Default: Story = {};
 export const HideTabs = {
   args: {
     hideTabs: true,
+  },
+};
+
+export const EmptyStateLarge = {
+  args: {
+    alerts: [],
+    advertisements: [],
+    tabsName: [],
+    dateFormat: '',
+    emptyState: true,
+    emptyStateData: {
+      primaryText: 'No hay notificaciones',
+      secondaryText: 'Vuelve a intentarlo más tarde.',
+      tertiaryText: 'Si el problema persiste, contacta soporte.',
+      buttonText: 'Ir al inicio',
+      size: 'large',
+      showButton: true,
+      onClick: () => {
+        alert('Botón del Empty State clickeado');
+      },
+    },
+  },
+};
+
+export const EmptyStateMedium = {
+  args: {
+    alerts: [],
+    advertisements: [],
+    tabsName: [],
+    dateFormat: '',
+    emptyState: true,
+    emptyStateData: {
+      primaryText: 'No hay notificaciones',
+      secondaryText: 'Vuelve a intentarlo más tarde.',
+      tertiaryText: 'Si el problema persiste, contacta soporte.',
+      buttonText: 'Ir al inicio',
+      size: 'medium',
+      showButton: true,
+      onClick: () => {
+        alert('Botón del Empty State clickeado');
+      },
+    },
+  },
+};
+
+export const EmptyStateSmall = {
+  args: {
+    alerts: [],
+    advertisements: [],
+    tabsName: [],
+    dateFormat: '',
+    emptyState: true,
+    emptyStateData: {
+      primaryText: 'No hay notificaciones',
+      secondaryText: 'Vuelve a intentarlo más tarde.',
+      tertiaryText: 'Si el problema persiste, contacta soporte.',
+      buttonText: 'Ir al inicio',
+      size: 'small',
+      showButton: true,
+      onClick: () => {
+        alert('Botón del Empty State clickeado');
+      },
+    },
   },
 };
