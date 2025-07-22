@@ -66,6 +66,7 @@ export class BmbAlertCenterComponent {
 
   onChangeAlertStatus = output<IBmbDataAlertsOutput>();
   alertEvent = output<IBmbDataAlert>();
+  showAlertDetail = output<IBmbDataAlertsParsed>();
 
   @ViewChild('detailContent', { read: TemplateRef })
   detailContent?: TemplateRef<any>;
@@ -178,6 +179,8 @@ export class BmbAlertCenterComponent {
       };
       this.matDialog.open(BmbModalComponent, { data });
     }
+
+    this.showAlertDetail.emit(item);
   }
 
   handleAlertEvent(alert: IBmbDataAlert): void {

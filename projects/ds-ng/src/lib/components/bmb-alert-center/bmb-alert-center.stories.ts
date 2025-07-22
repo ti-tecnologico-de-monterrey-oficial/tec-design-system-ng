@@ -105,6 +105,14 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: `[]` },
       },
     },
+    showAlertDetail: {
+      name: 'Show Alert Detail',
+      description: 'Event emitted to show alert details.',
+      table: {
+        category: 'Events',
+        type: { summary: 'IBmbDataAlertsParsed' },
+      },
+    },
     hideTabs: {
       name: 'Hide Tabs',
       control: {
@@ -378,6 +386,9 @@ Below is an example of how you can use this component in HTML:
     },
     alertEvent: (event: any) => {
       console.log('alertEvent', event);
+    },
+    showAlertDetail: (event: any) => {
+      console.log('showAlertDetail', event);
     },
     hideTabs: false,
   },
