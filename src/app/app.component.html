@@ -1,5 +1,5 @@
 <bmb-theme />
-<section
+<main
   bmbVerticalLayout
   gapSize="none"
   justify="center"
@@ -10,5 +10,6 @@
   <section bmbVerticalLayoutItem [rowGrow]="1">
     <router-outlet></router-outlet>
   </section>
-</section>
+  <bmb-sidebar [elements]="routes" />
+</main>
 <bmb-portal />

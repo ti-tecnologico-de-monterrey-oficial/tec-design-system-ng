@@ -1,4 +1,68 @@
-<section bmbLayout>
+<header class="bmb_template-header">
+  <h3>Inicio</h3>
+  <h5>Bienvenido a BambooPress</h5>
+</header>
+<div class="bmb_template-margin-for-sidebar">
+  <section bmbLayout margin="none">
+    <bmb-accordion
+      bmbLayoutItem
+      [colSm]="4"
+      [colLg]="6"
+      borderRadius="m"
+      margin="m"
+      paddingHeader="m"
+      paddingContent="m"
+      icon="keyboard_arrow_down"
+      [expanded]="true"
+    >
+      <ng-template #bmbAccordionHeader>
+        <h2>Site health status</h2>
+      </ng-template>
+      <ng-template #bmbAccordionContent>
+        <div bmbLayout margin="none">
+          <h3 bmbLayoutItem [colSm]="2">No information yet...</h3>
+          <p bmbLayoutItem [colSm]="2">
+            Site health checks will automatically run periodically to gather
+            information about your site. You can also visit the Site Health
+            screen to gather information about your site now.
+          </p>
+        </div>
+      </ng-template>
+    </bmb-accordion>
+    <bmb-accordion
+      bmbLayoutItem
+      [colSm]="4"
+      [colLg]="6"
+      borderRadius="m"
+      margin="m"
+      paddingHeader="m"
+      paddingContent="m"
+      icon="keyboard_arrow_down"
+      [expanded]="true"
+    >
+      <ng-template #bmbAccordionHeader>
+        <h2>Quick draft</h2>
+      </ng-template>
+      <ng-template #bmbAccordionContent>
+        <bmb-form-validator>
+          <div bmbVerticalLayout margin="none">
+            <bmb-input
+              bmbLayoutItem
+              label="Title"
+              placeholder="Enter a title..."
+              [isRequired]="true"
+            />
+            <button bmbLayoutItem bmbButton appearance="primary" type="submit">
+              Submit
+            </button>
+          </div>
+        </bmb-form-validator>
+      </ng-template>
+    </bmb-accordion>
+  </section>
+</div>
+
+<!-- <section bmbLayout>
   @for (item of animeList().data; track $index) {
     @defer (on viewport) {
       <bmb-card bmbLayoutItem margin="none" [colSm]="2" [colLg]="2">
@@ -31,4 +95,4 @@
 
 @if (animeList().loading) {
   <bmb-loader />
-}
+} -->

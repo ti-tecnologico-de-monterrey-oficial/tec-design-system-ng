@@ -26,7 +26,7 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'form-validator-test',
+    path: 'form-validator',
     loadComponent: () =>
       import('./pages/form-validator-test/form-validator-test.component').then(
         (f) => f.FormValidatorTestComponent,
