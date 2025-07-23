@@ -7,89 +7,93 @@ import Menus from "../assets/doc/menus.png";
 import StatusIndicators from "../assets/doc/status.png";
 import VisualLabels from "../assets/doc/labels.png";
 import { RightArrow } from "../DocComponents/Icons.mdx";
+import { CustomTOC } from "../DocComponents/CustomTOC.mdx";
 
 <Meta title="Getting started" />
+<CustomTOC>
+  <div className="sb-container">
+    <div className='sb-section-title'>
+      # Getting Started
+    </div>
+    <div className='sb-section-title'>
+      ## What is Bamboo Design System?
 
-<div className="sb-container">
-  <div className='sb-section-title'>
-    # Getting Started
-  </div>
-  <div className='sb-section-title'>
-    ## What is Bamboo Design System?
+      The Bamboo design framework provides developers with essential tools to boost product development efficiency, enabling them to create more in less time and freeing them from the monotonous task of building repetitive building blocks.
 
-    The Bamboo design framework provides developers with essential tools to boost product development efficiency, enabling them to create more in less time and freeing them from the monotonous task of building repetitive building blocks.
+    </div>
+    <div className='sb-section-title'>
+      ## Requirements
 
-  </div>
-  <div className='sb-section-title'>
-    ## Requirements
+      To use the Bamboo Design System, you need to have the following installed:
+      <ul>
+        <li>Node.js version 21 or higher</li>
+        <li>NPM version 10 or higher</li>
+        <li>Angular CLI version 18 or higher</li>
+      </ul>
+      <p>
+        Check our installation guide for more details on how to set up your environment.
+        <a
+          href="https://bamboo.tec.mx/latest/instalacion/angular-guia-de-instalacion-de-bamboo-Gx0hKkrO-Gx0hKkrO"
+          target="_blank"
+        >Installation guide<RightArrow /></a>
+      </p>
 
-    To use the Bamboo Design System, you need to have the following installed:
-    <ul>
-      <li>Node.js version 21 or higher</li>
-      <li>NPM version 10 or higher</li>
-      <li>Angular CLI version 18 or higher</li>
-    </ul>
-    <p>
-      Check our installation guide for more details on how to set up your environment.
-      <a
-        href="https://bamboo.tec.mx/latest/instalacion/angular-guia-de-instalacion-de-bamboo-Gx0hKkrO-Gx0hKkrO"
-        target="_blank"
-      >Installation guide<RightArrow /></a>
-    </p>
-
-  </div>
-</div>
-<div className="sb-container">
-  <div className='sb-section-title'>
-    ## Components Overview
-
-    The Bamboo Design System offers a wide range of components that can be used to build user interfaces. Each component is designed to be reusable and customizable, allowing developers to create consistent and visually appealing applications.
+    </div>
 
   </div>
-  <div className='sb-section-title'>
-    # components
-    The Bamboo Design System provides a wide range of components that can be used to build user interfaces. Each component is designed to be reusable and customizable, allowing developers to create consistent and visually appealing applications.
-    <p className="sb-section-item-paragraph">
-      We categorize the components into different sections based on their functionality. Here are some of the main categories:
-    </p>
-  </div>
-  <div className="sb-section">
-    <div className="sb-features-grid">
-      <div className="sb-grid-item">
-        <img src={Buttons} alt="A screenshot showing the Buttons" />
-        <h4 className="sb-section-item-heading">Buttons</h4>
-        <p className="sb-section-item-paragraph">Buttons facilitate interaction and decision-making. They act as action points that allow people to perform tasks and access system features intuitively.</p>
-      </div>
-      <div className="sb-grid-item">
-        <img src={Containers} alt="A screenshot showing the Containers" />
-        <h4 className="sb-section-item-heading">Containers</h4>
-        <p className="sb-section-item-paragraph">Containers in Bamboo Design System are components that group and organize various interface elements, facilitating human interaction with content. They provide a structure that ensures visual and functional consistency across all screens and devices.</p>
-      </div>
-      <div className="sb-grid-item">
-        <img src={Images} alt="A screenshot showing the Image" />
-        <h4 className="sb-section-item-heading">Images</h4>
-        <p className="sb-section-item-paragraph">Images add context, emotion, and clarity to the digital experience. In Bamboo, image components are designed to be versatile and adaptable, ensuring they integrate seamlessly into any interface, regardless of device or platform.</p>
-      </div>
-      <div className="sb-grid-item">
-        <img src={Inputs} alt="A screenshot showing the Inputs" />
-        <h4 className="sb-section-item-heading">Inputs</h4>
-        <p className="sb-section-item-paragraph">Inputs are components that allow people to enter data, select options, and adjust parameters. In the Bamboo Design System, they are designed to be intuitive, accessible, and adaptable to various contexts and devices, ensuring a fluid and consistent experience.</p>
-      </div>
-      <div className="sb-grid-item">
-        <img src={Menus} alt="A screenshot showing the Menus" />
-        <h4 className="sb-section-item-heading">Menus</h4>
-        <p className="sb-section-item-paragraph">Images add context, emotion, and clarity to the digital experience. In Bamboo, image components are designed to be versatile and adaptable, ensuring they integrate seamlessly into any interface, regardless of device or platform.</p>
-      </div>
-      <div className="sb-grid-item">
-        <img src={StatusIndicators} alt="A screenshot showing the Status indicators" />
-        <h4 className="sb-section-item-heading">Status indicators</h4>
-        <p className="sb-section-item-paragraph">Inputs are components that allow people to enter data, select options, and adjust parameters. In the Bamboo Design System, they are designed to be intuitive, accessible, and adaptable to various contexts and devices, ensuring a fluid and consistent experience.</p>
-      </div>
-      <div className="sb-grid-item">
-        <img src={VisualLabels} alt="A screenshot showing the Visual labels" />
-        <h4 className="sb-section-item-heading">Visual labels</h4>
-        <p className="sb-section-item-paragraph">Inputs are components that allow people to enter data, select options, and adjust parameters. In the Bamboo Design System, they are designed to be intuitive, accessible, and adaptable to various contexts and devices, ensuring a fluid and consistent experience.</p>
+  <div className="sb-container">
+    <div className='sb-section-title'>
+      ## Components Overview
+
+      The Bamboo Design System offers a wide range of components that can be used to build user interfaces. Each component is designed to be reusable and customizable, allowing developers to create consistent and visually appealing applications.
+
+    </div>
+    <div className='sb-section-title'>
+      ## Components
+      The Bamboo Design System provides a wide range of components that can be used to build user interfaces. Each component is designed to be reusable and customizable, allowing developers to create consistent and visually appealing applications.
+      <p className="sb-section-item-paragraph">
+        We categorize the components into different sections based on their functionality. Here are some of the main categories:
+      </p>
+    </div>
+    <div className="sb-section">
+      <div className="sb-features-grid">
+        <div className="sb-grid-item">
+          <img src={Buttons} alt="A screenshot showing the Buttons" />
+          <h4 className="sb-section-item-heading">Buttons</h4>
+          <p className="sb-section-item-paragraph">Buttons facilitate interaction and decision-making. They act as action points that allow people to perform tasks and access system features intuitively.</p>
+        </div>
+        <div className="sb-grid-item">
+          <img src={Containers} alt="A screenshot showing the Containers" />
+          <h4 className="sb-section-item-heading">Containers</h4>
+          <p className="sb-section-item-paragraph">Containers in Bamboo Design System are components that group and organize various interface elements, facilitating human interaction with content. They provide a structure that ensures visual and functional consistency across all screens and devices.</p>
+        </div>
+        <div className="sb-grid-item">
+          <img src={Images} alt="A screenshot showing the Image" />
+          <h4 className="sb-section-item-heading">Images</h4>
+          <p className="sb-section-item-paragraph">Images add context, emotion, and clarity to the digital experience. In Bamboo, image components are designed to be versatile and adaptable, ensuring they integrate seamlessly into any interface, regardless of device or platform.</p>
+        </div>
+        <div className="sb-grid-item">
+          <img src={Inputs} alt="A screenshot showing the Inputs" />
+          <h4 className="sb-section-item-heading">Inputs</h4>
+          <p className="sb-section-item-paragraph">Inputs are components that allow people to enter data, select options, and adjust parameters. In the Bamboo Design System, they are designed to be intuitive, accessible, and adaptable to various contexts and devices, ensuring a fluid and consistent experience.</p>
+        </div>
+        <div className="sb-grid-item">
+          <img src={Menus} alt="A screenshot showing the Menus" />
+          <h4 className="sb-section-item-heading">Menus</h4>
+          <p className="sb-section-item-paragraph">Images add context, emotion, and clarity to the digital experience. In Bamboo, image components are designed to be versatile and adaptable, ensuring they integrate seamlessly into any interface, regardless of device or platform.</p>
+        </div>
+        <div className="sb-grid-item">
+          <img src={StatusIndicators} alt="A screenshot showing the Status indicators" />
+          <h4 className="sb-section-item-heading">Status indicators</h4>
+          <p className="sb-section-item-paragraph">Inputs are components that allow people to enter data, select options, and adjust parameters. In the Bamboo Design System, they are designed to be intuitive, accessible, and adaptable to various contexts and devices, ensuring a fluid and consistent experience.</p>
+        </div>
+        <div className="sb-grid-item">
+          <img src={VisualLabels} alt="A screenshot showing the Visual labels" />
+          <h4 className="sb-section-item-heading">Visual labels</h4>
+          <p className="sb-section-item-paragraph">Inputs are components that allow people to enter data, select options, and adjust parameters. In the Bamboo Design System, they are designed to be intuitive, accessible, and adaptable to various contexts and devices, ensuring a fluid and consistent experience.</p>
+        </div>
       </div>
     </div>
+
   </div>
-</div>
+</CustomTOC>

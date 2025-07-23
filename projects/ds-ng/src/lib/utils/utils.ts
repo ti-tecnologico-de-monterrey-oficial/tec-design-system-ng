@@ -22,18 +22,28 @@ export const isImage = (url: string): boolean => {
   return regx.test(url);
 };
 
-export const buildErrorMessage = (inputs: string[]): string => {
-  let elements = '';
-
-  inputs.forEach((element, index) => {
-    elements += element;
-    elements +=
-      index == inputs.length - 2
+export const getListingOnOneLine = (
+  elements: string[],
+  template: string = '',
+): string => {
+  let listingOnOneLine = '';
+  elements.forEach((element, index) => {
+    listingOnOneLine += `${!!template ? template.replaceAll('[__]', element) : element}`;
+    listingOnOneLine +=
+      index == elements.length - 2
         ? ' and '
-        : inputs.length > 1 && index < inputs.length - 1
+        : elements.length > 1 && index < elements.length - 1
           ? ', '
           : '';
   });
+
+  return listingOnOneLine;
+};
+
+export const buildErrorMessage = (inputs: string[]): string => {
+  let elements = '';
+
+  elements = getListingOnOneLine(inputs);
 
   if (inputs.length) {
     return `"${elements}" input${inputs.length > 1 ? 's' : ''} ${inputs.length > 1 ? 'are' : 'is'}`;

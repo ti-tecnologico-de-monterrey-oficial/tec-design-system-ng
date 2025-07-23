@@ -127,7 +127,11 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   }
 
   initOptions(list: string[] | IBmbDropdownItem[]): void {
-    const newItems = convertListToSelectList(list, this.icon(), this.showIcon());
+    const newItems = convertListToSelectList(
+      list,
+      this.icon(),
+      this.showIcon(),
+    );
 
     this.items = newItems.map((element: IDropdownItem) => {
       return {

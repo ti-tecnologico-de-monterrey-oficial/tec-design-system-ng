@@ -1,6 +1,21 @@
 import { useState } from "react";
+import { CustomTOC } from "../DocComponents/CustomTOC.mdx";
 
-export const Tabs = ({ tabs = [], content = [] }) => {
+export const ContentTab = ({
+  children,
+  status,
+  showTableOfContents = false,
+}) => (
+  <CustomTOC
+    showTableOfContents={showTableOfContents}
+    contentsSelector="#tab_active"
+    status={status}
+  >
+    <div id={`tab_${status}`}>{children}</div>
+  </CustomTOC>
+);
+
+export const Tabs = ({ tabs = [], content = [], showTableOfContents = false }) => {
   const [selectedTab, setSelectedTab] = useState(0);
 
 return (
@@ -27,9 +42,15 @@ return (
         hidden={selectedTab !== index}
         className="bmb_doc-tabs-panel"
       >
-        <p>{item}</p>
+        <br />
+        <ContentTab
+          status={selectedTab === index ? "active" : "inactive"}
+          showTableOfContents={showTableOfContents}
+        >
+          {item}
+        </ContentTab>
       </div>
     ))}
   </section>
 </div>
-) };
+); }

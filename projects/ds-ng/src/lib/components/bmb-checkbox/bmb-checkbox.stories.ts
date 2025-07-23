@@ -1,26 +1,26 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbCheckboxComponent } from './bmb-checkbox.component';
 import {
+  getBasicExampleBlock,
   getCheckboxOrRadialArchitecture,
-  getDescribeTypeTextBlock,
-  getGeneralComponentDescription,
-  getHTMLFormExampleTextBlock,
-  getTypescriptFormExampleTextBlock,
+  getFieldDescription,
+  getFormExampleBlock,
 } from '../../utils/doc/utils';
 import { InputParameterDescriptions } from '../../utils/doc/parameterDescriptions';
 
 const inputName = 'checkbox';
-const additionalBlock = `handleCheckboxChange(event: Event): void {
+const label = `${inputName.replace(inputName.slice(0, 1), inputName.slice(0, 1).toLocaleUpperCase())}`;
+const additionalBlock = `handle${label}Change(event: Event): void {
     const element = event.target as HTMLInputElement;
-    console.log('Checkbox checked state:', element.checked);
-    console.log('Checkbox name:', element.name);
+    console.log('${label} checked state:', element.checked);
+    console.log('${label} name:', element.name);
   }`;
-const bmbInputName = `<bmb-checkbox
-  inputId="checkbox_id"
+const inputExample = `<bmb-${inputName}
+  inputId="${inputName}_id"
   name="${inputName}"
-  label="Checkbox"
+  label="${label}"
   [control]="getFormControl('${inputName}')"
-  (change)="handleCheckboxChange($event)"
+  (change)="handle${label}Change($event)"
   />`;
 export default {
   title: 'Components/Inputs/Checkbox',
@@ -33,11 +33,14 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralComponentDescription('bmb-checkbox', 'select one or more options.')}
+${getFieldDescription(
+  'bmb-checkbox',
+  'select one or more options.',
+  'https://bamboo.tec.mx/latest/componentes/checkbox/descripcion-general-nl6Z6U1M',
+)}
 ${getCheckboxOrRadialArchitecture('checkbox')}
-${getTypescriptFormExampleTextBlock('BmbCheckboxComponent', inputName, additionalBlock)}
-${getHTMLFormExampleTextBlock(bmbInputName)}
-${getDescribeTypeTextBlock('HTML')}
+${getFormExampleBlock('BmbCheckboxComponent', inputName, additionalBlock, inputExample)}
+${getBasicExampleBlock('BmbCheckboxComponent')}
         `,
       },
     },

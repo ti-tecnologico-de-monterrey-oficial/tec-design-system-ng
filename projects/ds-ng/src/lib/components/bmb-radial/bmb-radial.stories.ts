@@ -3,9 +3,8 @@ import { BmbRadialComponent } from './bmb-radial.component';
 import {
   getCheckboxOrRadialArchitecture,
   getDescribeTypeTextBlock,
-  getGeneralComponentDescription,
-  getHTMLFormExampleTextBlock,
-  getTypescriptFormExampleTextBlock,
+  getFieldDescription,
+  getFormExampleBlock,
 } from '../../utils/doc/utils';
 import { InputParameterDescriptions } from '../../utils/doc/parameterDescriptions';
 
@@ -14,7 +13,7 @@ const additionalBlock = `handleRadial(element: HTMLInputElement): void {
     console.log('Radio value:', element.value);
     console.log('Radio name:', element.name);
   }`;
-const bmbInputName = `<bmb-radial
+const inputExample = `<bmb-radial
   inputId="radial_id1"
   name="${inputName}"
   label="Radial A"
@@ -42,10 +41,13 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralComponentDescription('bmb-radial', 'select an option from a collection or group of radio buttons; it is recommended to implement it as a collection.')}
+${getFieldDescription(
+  'bmb-radial',
+  'select an option from a collection or group of radio buttons; it is recommended to implement it as a collection.',
+  'https://bamboo.tec.mx/latest/componentes/radial/descripcion-general-rxLTXDDQ',
+)}
 ${getCheckboxOrRadialArchitecture('radial')}
-${getTypescriptFormExampleTextBlock('BmbRadialComponent', inputName, additionalBlock)}
-${getHTMLFormExampleTextBlock(bmbInputName)}
+${getFormExampleBlock('BmbRadialComponent', inputName, additionalBlock, inputExample)}
 ${getDescribeTypeTextBlock('HTML')}
         `,
       },

@@ -1,6 +1,8 @@
 import { Meta, Markdown } from "@storybook/addon-docs/blocks";
 import Readme from "../../../../README.md?raw";
+import { CustomTOC } from "../DocComponents/CustomTOC.mdx";
 
 <Meta title="Readme" />
-
-<Markdown>{Readme}</Markdown>
+<CustomTOC>
+  <Markdown>{Readme}</Markdown>
+</CustomTOC>
