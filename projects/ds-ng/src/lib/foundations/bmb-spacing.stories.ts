@@ -7,10 +7,14 @@ import {
   BmbCardContentComponent,
 } from '../components/bmb-card/bmb-card.component';
 import {
+  getFoundationDescriptions,
   getGeneralDescription,
+  getHelpDescriptionForGeneratingVariables,
+  getPageStructureForFoundationStories,
   getSandboxConsiderationsDocumentation,
   getSpecialSpecifications,
   SANDBOX_TITLE,
+  SPACING_DESCRIPTION,
 } from '../utils/doc/utils';
 
 @Component({
@@ -127,15 +131,20 @@ export default {
   component: BmbSpacingPlaygroundComponent,
   parameters: {
     docs: {
+      page: () => getPageStructureForFoundationStories(),
       description: {
         component: `
-${getGeneralDescription('Spacing is used to give space to components and their sections', 'https://bamboo.tec.mx/latest/foundations/spacing/descripcion-general-Mg3ksz2Z')}
+${getGeneralDescription(getFoundationDescriptions('spacing', SPACING_DESCRIPTION.concat('<br/><br/>')), 'https://bamboo.tec.mx/latest/foundations/spacing/descripcion-general-Mg3ksz2Z')}
 ${getSpecialSpecifications(
-  getSandboxConsiderationsDocumentation('spacing', '', true, [
-    'padding',
-    'margin',
-    'gap',
-  ]),
+  getSandboxConsiderationsDocumentation(
+    'spacing',
+    '',
+    true,
+    ['padding', 'margin', 'gap'],
+    '',
+    true,
+    true,
+  ),
 )}`,
       },
     },
@@ -143,33 +152,33 @@ ${getSpecialSpecifications(
   argTypes: {
     padding: {
       name: 'Padding',
-      description: 'The spacing size to use.',
+      description: getHelpDescriptionForGeneratingVariables('padding', true),
       control: { type: 'select' },
       options: options,
       table: {
-        category: 'Properties',
+        category: SANDBOX_TITLE,
         type: { summary: 'string' },
         defaultValue: { summary: '1' },
       },
     },
     margin: {
       name: 'Margin',
-      description: 'The spacing size to use.',
+      description: getHelpDescriptionForGeneratingVariables('margin', true),
       control: { type: 'select' },
       options: options,
       table: {
-        category: 'Properties',
+        category: SANDBOX_TITLE,
         type: { summary: 'string' },
         defaultValue: { summary: '1' },
       },
     },
     gap: {
       name: 'Gap',
-      description: 'The spacing size to use.',
+      description: getHelpDescriptionForGeneratingVariables('gap', true),
       control: { type: 'select' },
       options: options,
       table: {
-        category: 'Properties',
+        category: SANDBOX_TITLE,
         type: { summary: 'string' },
         defaultValue: { summary: '1' },
       },

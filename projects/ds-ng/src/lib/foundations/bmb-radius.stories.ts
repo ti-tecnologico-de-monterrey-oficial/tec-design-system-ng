@@ -5,6 +5,8 @@ import { BmbDividerComponent } from '../components/bmb-divider/bmb-divider.compo
 import {
   getFoundationDescriptions,
   getGeneralDescription,
+  getHelpDescriptionForGeneratingVariables,
+  getPageStructureForFoundationStories,
   getSandboxConsiderationsDocumentation,
   getSpecialSpecifications,
   SANDBOX_TITLE,
@@ -51,11 +53,28 @@ export default {
   component: BmbRadiusPlaygroundComponent,
   parameters: {
     docs: {
+      page: () => getPageStructureForFoundationStories(),
       description: {
         component: `
-${getGeneralDescription(getFoundationDescriptions('border radius'), 'https://bamboo.tec.mx/latest/foundations/radius/descripcion-general-jC3HBIda')}
+${getGeneralDescription(
+  getFoundationDescriptions(
+    'radius',
+    `
+\`border-radius\` rounds the outer corners of an HTML element.
+This property is a tool for creating visually appealing and modern user interfaces because it allows for rounded or circular shapes instead of rectangular corners.<br/><br/>`,
+  ),
+  'https://bamboo.tec.mx/latest/foundations/radius/descripcion-general-jC3HBIda',
+)}
 ${getSpecialSpecifications(
-  getSandboxConsiderationsDocumentation('radius', '', false, ['radius']),
+  getSandboxConsiderationsDocumentation(
+    'radius',
+    '',
+    true,
+    [{ element: 'radius', name: 'border-radius' }],
+    'border: var(--bmb-border-general_contrasts-50-1-solid);',
+    true,
+    true,
+  ),
 )}`,
       },
     },
@@ -64,6 +83,7 @@ ${getSpecialSpecifications(
     radius: {
       name: 'Radius',
       control: { type: 'select' },
+      description: getHelpDescriptionForGeneratingVariables('radius', true),
       options: [
         'none',
         'xxs',
@@ -90,7 +110,7 @@ ${getSpecialSpecifications(
         '16',
       ],
       table: {
-        category: 'Properties',
+        category: SANDBOX_TITLE,
         type: { summary: 'string' },
         defaultValue: { summary: '0' },
       },

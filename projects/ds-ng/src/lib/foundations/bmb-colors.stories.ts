@@ -6,7 +6,11 @@ import {
   IBmbTab,
 } from '../components/bmb-tabs/bmb-tabs.component';
 import {
+  DESIGN_SYSTEM_TITLE,
+  getFoundationDescriptions,
   getGeneralDescription,
+  getHelpDescriptionForGeneratingVariables,
+  getPageStructureForFoundationStories,
   getSandboxConsiderationsDocumentation,
   getSpecialSpecifications,
   SANDBOX_TITLE,
@@ -760,10 +764,14 @@ export default {
   ],
   parameters: {
     docs: {
+      page: () => getPageStructureForFoundationStories(),
       description: {
         component: `
 ${getGeneralDescription(
-  `This interactive tool offers a hands-on exploration of our comprehensive color palettes, designed to enhance the aesthetic and functional appeal of your projects.`,
+  getFoundationDescriptions(
+    'color',
+    `${DESIGN_SYSTEM_TITLE} set of colors to create visually elements.<br/><br/>`,
+  ),
   'https://bamboo.tec.mx/latest/foundations/colores/descripcion-general-qsn1aZgM',
 )}
 ${getSpecialSpecifications(
@@ -772,10 +780,10 @@ ${getSpecialSpecifications(
     `
 ### Implementation details:
 >\`\`\`css
-background-color: RGBA(var(--color-name));
-color: RGBA(var(--color-name));
+background-color: rgb(var(--color-name));
+color: rgb(var(--color-name));
 >
-/* You need to avoid the RGBA() for some variables, take a look to the playground */
+/* You need to avoid the rgb() for some variables, take a look to the playground */
 background-color: var(--color-name);
 color: var(--color-name);
 >
@@ -784,8 +792,9 @@ background: linear-gradient(180deg, var(--color-gradient-blue));
 background: radial-gradient(circle, var(--color-gradient-blue));
 \`\`\`
 - To seamlessly integrate these colors into your design.
-- Dive into our palette to discover the perfect colors that will bring your designs to life.
+- Dive into ${DESIGN_SYSTEM_TITLE} color palette to discover the perfect colors that will bring your designs to life.
 >`,
+    true,
   ),
 )}`,
       },
@@ -864,9 +873,9 @@ background: radial-gradient(circle, var(--color-gradient-blue));
         '--color-japanese-indigo',
         '--color-eerie-black',
       ],
-      description: 'Select the color to look how works.',
+      description: getHelpDescriptionForGeneratingVariables('color', true),
       table: {
-        category: 'Properties',
+        category: SANDBOX_TITLE,
         type: { summary: 'string' },
       },
     },
@@ -885,9 +894,9 @@ background: radial-gradient(circle, var(--color-gradient-blue));
         '--color-bg-gradient-tec',
         '--color-bg-wheel-tec',
       ],
-      description: 'Select the gradient color to look how works.',
+      description: getHelpDescriptionForGeneratingVariables('gradient', true),
       table: {
-        category: 'Properties',
+        category: SANDBOX_TITLE,
         type: { summary: 'string' },
       },
     },
@@ -895,9 +904,12 @@ background: radial-gradient(circle, var(--color-gradient-blue));
       name: 'Gradient type',
       control: { type: 'radio' },
       options: ['linear-gradient', 'radial-gradient'],
-      description: 'Select the gradient color to look how works.',
+      description: getHelpDescriptionForGeneratingVariables(
+        'gradient type',
+        true,
+      ),
       table: {
-        category: 'Properties',
+        category: SANDBOX_TITLE,
         type: { summary: 'string' },
       },
     },

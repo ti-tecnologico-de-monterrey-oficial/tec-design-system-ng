@@ -4,6 +4,8 @@ import { Meta, StoryObj } from '@storybook/angular';
 import {
   getFoundationDescriptions,
   getGeneralDescription,
+  getHelpDescriptionForGeneratingVariables,
+  getPageStructureForFoundationStories,
   getSandboxConsiderationsDocumentation,
   getSpecialSpecifications,
   SANDBOX_TITLE,
@@ -59,9 +61,16 @@ export default {
   component: StorybookBorderStoriesComponent,
   parameters: {
     docs: {
+      page: () => getPageStructureForFoundationStories(),
       description: {
         component: `
-${getGeneralDescription(getFoundationDescriptions('border'), 'https://bamboo.tec.mx/latest/foundations/borders/descripcion-general-U27GpidU')}
+${getGeneralDescription(
+  getFoundationDescriptions(
+    'border',
+    '***Borders*** are lines that separate one area, surface or container from another.<br/><br/>',
+  ),
+  'https://bamboo.tec.mx/latest/foundations/borders/descripcion-general-U27GpidU',
+)}
 ${getSpecialSpecifications(getSandboxConsiderationsDocumentation('borders'))}
         `,
       },
@@ -69,12 +78,14 @@ ${getSpecialSpecifications(getSandboxConsiderationsDocumentation('borders'))}
   },
   argTypes: {
     color: {
-      name: 'Border Colors',
-      description:
-        'This is a collection of border colors that can be used in the application.',
+      name: 'Border colors',
+      description: getHelpDescriptionForGeneratingVariables(
+        'border colors',
+        true,
+      ),
       table: {
         type: { summary: 'string' },
-        category: 'Properties',
+        category: SANDBOX_TITLE,
         defaultValue: { summary: 'inherit' },
       },
       control: {
@@ -93,13 +104,14 @@ ${getSpecialSpecifications(getSandboxConsiderationsDocumentation('borders'))}
       ],
     },
     size: {
-      name: 'Border Sizes',
-      description:
-        'This is a collection of border sizes that can be used in the application.',
-
+      name: 'Border sizes',
+      description: getHelpDescriptionForGeneratingVariables(
+        'border sizes',
+        true,
+      ),
       table: {
         type: { summary: 'string' },
-        category: 'Properties',
+        category: SANDBOX_TITLE,
         defaultValue: { summary: '1' },
       },
       control: {
@@ -108,13 +120,14 @@ ${getSpecialSpecifications(getSandboxConsiderationsDocumentation('borders'))}
       options: ['1', '2'],
     },
     type: {
-      name: 'Border Types',
-      description:
-        'This is a collection of border types that can be used in the application.',
-
+      name: 'Border types',
+      description: getHelpDescriptionForGeneratingVariables(
+        'border types',
+        true,
+      ),
       table: {
         type: { summary: 'string' },
-        category: 'Properties',
+        category: SANDBOX_TITLE,
         defaultValue: { summary: 'solid' },
       },
       control: {

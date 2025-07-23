@@ -9,6 +9,7 @@ import {
   BmbRadialComponent,
   BmbDateRangeComponent,
   BmbSwitchComponent,
+  BmbThemeComponent,
 } from '../../../projects/ds-ng/src/public-api';
 
 @Component({
@@ -24,6 +25,7 @@ import {
     BmbRadialComponent,
     BmbSwitchComponent,
     BmbInputComponent,
+    BmbThemeComponent,
   ],
   templateUrl: './component-test.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

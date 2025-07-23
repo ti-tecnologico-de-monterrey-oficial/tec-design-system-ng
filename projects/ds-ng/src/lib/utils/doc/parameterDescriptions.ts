@@ -1,3 +1,5 @@
+import { DESIGN_SYSTEM_TITLE } from './utils';
+
 export const DEPRECATED_PROPERTIES_DESCRIPTION =
   'This property is deprecated and will be removed in future versions.';
 export const GOGGLE_FONTS_LINK = `Even refer to [Google Fonts](https://fonts.google.com/icons?icon.size=24&icon.color=%23e8eaed&selected=Material+Symbols+Outlined:more_vert:FILL@0;wght@400;GRAD@0;opsz@24) for more icons.`;
@@ -72,7 +74,7 @@ __- **pattern**: adds \`Validators.pattern\` to the \`FormControl\``.replaceAll(
   );
 
 export const getFormControlDescription = (replaceChar: string = '') =>
-  `__In **Bamboo**, it is possible to implement automatic field validation using the \`bmb-form-validator\` component.
+  `__In ${DESIGN_SYSTEM_TITLE}, it is possible to implement automatic field validation using the \`bmb-form-validator\` component.
 __
 __<br/>
 __The \`bmb-form-validator\` component contains the state of the form by collecting the form fields and adding them to a \`FormGroup\`.`.replaceAll(

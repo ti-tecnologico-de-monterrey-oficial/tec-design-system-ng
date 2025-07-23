@@ -5,6 +5,8 @@ import { BmbDividerComponent } from '../components/bmb-divider/bmb-divider.compo
 import {
   getFoundationDescriptions,
   getGeneralDescription,
+  getHelpDescriptionForGeneratingVariables,
+  getPageStructureForFoundationStories,
   getSandboxConsiderationsDocumentation,
   getSpecialSpecifications,
   SANDBOX_TITLE,
@@ -62,30 +64,35 @@ export default {
   ],
   parameters: {
     docs: {
+      page: () => getPageStructureForFoundationStories(),
       description: {
         component: `
-${getGeneralDescription(getFoundationDescriptions('shadows'), 'https://bamboo.tec.mx/latest/foundations/shadow-boxes-kRa1Gtdt')}
-${getSpecialSpecifications(
-  getSandboxConsiderationsDocumentation(
+${getGeneralDescription(
+  getFoundationDescriptions(
     'shadow boxes',
-    `
-The shadows are defined in the CSS variables and can be used in the application by using the class name or the CSS variable name.
->`,
-    true,
+    '***Shadow boxes*** are deep frames create a sense of depth and dimension.<br/><br/>',
   ),
+  'https://bamboo.tec.mx/latest/foundations/shadow-boxes-kRa1Gtdt',
+)}
+${getSpecialSpecifications(
+  getSandboxConsiderationsDocumentation('shadow boxes', '', true, [
+    'box-shadow',
+  ]),
 )}`,
       },
     },
   },
   argTypes: {
     shadowsName: {
-      name: 'Shadows Name',
-      description:
-        'This is a collection of shadows names that can be used in the application.',
+      name: 'Shadows name',
+      description: getHelpDescriptionForGeneratingVariables(
+        'shadow boxes',
+        true,
+      ),
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'bmb-box-shadow-1' },
-        category: 'Properties',
+        category: SANDBOX_TITLE,
       },
       control: {
         type: 'select',

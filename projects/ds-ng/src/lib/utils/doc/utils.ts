@@ -1,14 +1,35 @@
+import {
+  Controls,
+  Description,
+  Primary,
+  Title,
+} from '@storybook/addon-docs/blocks';
 import { getListingOnOneLine } from '../utils';
 
+export const DESIGN_SYSTEM_TITLE = '***Bamboo***';
 export const STORIES_TITLE = 'Variant templates';
 export const TITLE_OF_CONTROLS = 'Properties / Events';
 const TOC_TITLE = 'On this page';
 export const DESCRIPTION_TITLE = 'Description';
 export const SPECIAL_SPECIFICATIONS_TITLE = 'Considerations / Restrictions';
 export const SANDBOX_TITLE = 'Sandbox';
+export const SPACING_DESCRIPTION =
+  'Spacing is used to give space to components and their sections.';
+export const TYPOGRAPHY_DESCRIPTION =
+  'Typography refers to the design or selection of letter forms that are arranged in typo of blocks to create written content that is legible, readable, and visually appealing.<br/>';
+export const FONT_FAMILY_DESCRIPTION = `Explore the typographic scale with ${DESIGN_SYSTEM_TITLE} **Popping** font family`;
+
+interface IBmbVariableDesc {
+  element: string;
+  name: string;
+}
 export const TOC_OBJ = {
   title: TOC_TITLE,
   headingSelector: 'h2, h3',
+};
+
+export const getPageStructureForFoundationStories = () => {
+  return [Title({}), Description({}), Primary({}), Controls({})];
 };
 
 const getValue = (key: string, value: undefined): any =>
@@ -211,12 +232,12 @@ const getTitleDescription = () => `
 
 export const getGeneralDescription = (
   content: string,
-  generalDocLink: string,
+  generalDocLink: string = '',
 ) => `
 ${getTitleDescription()}
 >${content}
 >
->Please do not forget to refer to the [Bamboo - General documentation](${generalDocLink}) for more details about it.
+${!!generalDocLink ? `>Please remember to refer to the [Bamboo - General documentation](${generalDocLink}) for more details about it.` : '>'}
 
 <br/>
 `;
@@ -237,7 +258,7 @@ export const getFieldDescription = (
 ) => `
 ${getGeneralDescription(
   `
->\`${componentName}\` is a customizable **Bamboo** input component that allows users to ${additionalDescription}
+>\`${componentName}\` is a customizable ${DESIGN_SYSTEM_TITLE} input component that allows users to ${additionalDescription}
 >
 >This component includes validations, error messages, and support for tooltips to provide additional information.
 >
@@ -262,56 +283,188 @@ ${getTypescriptExampleTextBlock(inputName, '', '', importComments)}
 ${getDescribeTypeTextBlock('HTML')}
 `;
 
-export const getFoundationDescriptions = (element: string) =>
-  `This is a collection of ${element} styles that can be used in the application.`;
+export const getFoundationDescriptions = (
+  element: string,
+  additionalDescription: string = '',
+) =>
+  `${additionalDescription || ''} ${DESIGN_SYSTEM_TITLE} provides a collection of ${element} variables designed to enhance the aesthetic and functional appeal of your projects.`;
+
+export const getHelpDescriptionForGeneratingVariables = (
+  element: string,
+  isControl: boolean = false,
+) =>
+  `${isControl ? `This is the collection of *${element}* that can be used.<br/><br/>` : ''}
+Please use this ${isControl ? 'help' : 'interactive tool'} to generate the *${element}* variables to use.`;
+
+export const getTypographyDetail = (isCompleteDetail: boolean = true) => `<br/>
+>### Font Family:
+${
+  isCompleteDetail
+    ? `>
+>${FONT_FAMILY_DESCRIPTION}, ranging from thin to bold variations, and a comprehensive scale of sizes to ensure flexibility and clarity in your design. ${DESIGN_SYSTEM_TITLE} encapsulates each font family and size into specific CSS classes to streamline the application across your projects.
+>
+>Here's how you can use them:
+>`
+    : '>'
+}
+>
+- **Poppins-Thin**: \`.font-thin\`
+- **Poppins-Light**: \`.font-light\`
+- **Poppins-Regular**: \`.font-regular\`
+- **Poppins-Medium**: \`.font-medium\`
+- **Poppins-Semibold**: \`.font-semibold\`
+- **Poppins-Bold**: \`.font-bold\`
+>
+><br/>
+${
+  isCompleteDetail
+    ? `>### Font Sizes
+>We provide a scale of sizes from 1 to 12, where each number corresponds to a specific size. To apply a font size, append the size number to the font family class. For example, \`.font-medium-4\` applies the medium family and the 4th size in our scale.
+>
+To use the medium family of Poppins with the 4th size, your HTML element should look like this: \`<div class="font-medium-4">Your text here</div>\`
+>
+><br/>
+>`
+    : '>'
+}
+>
+### Sizes reference:
+- **Size 1**: 10px
+- **Size 2**: 11px
+- **Size 3**: 12px
+- **Size 4**: 14px
+- **Size 4_5**: 15px
+- **Size 5**: 16px
+- **Size 6**: 18px
+- **Size 7**: 20px
+- **Size 8**: 22px
+- **Size 9**: 24px
+- **Size 10**: 26px
+- **Size 11**: 36px
+- **Size 12**: 48px
+>
+${
+  isCompleteDetail
+    ? `><br/>
+>###Reminder:
+Please remember to replace \`font-medium-4\` with the appropriate class based on the family and size you intend to use. The flexibility of these classes allows for a consistent typographic hierarchy and visual coherence across your digital experiences.
+>`
+    : '>'
+}`;
+
+const getVariableDetail = (
+  element: string,
+  classes: string,
+  list: string,
+  definitionClass: string,
+  size: string,
+  style: string = '',
+  isInherit: boolean = false,
+  variableDescription: string = '',
+  stylesVar: string = '',
+): string => {
+  const _style: string = `${!!style ? `style="${style}" ` : ''}`;
+  const _description: string = `Content with ${list}${isInherit ? ' class names' : ''} applied using CSS variables.`;
+  return `>
+>The class name is defined as ${definitionClass} where ${size} are the ${element} size${isInherit ? `, and also set ${variableDescription} for the child elements` : ''}.
+>
+\`\`\`html
+<div ${_style}${classes ? `class="${classes}"` : ''}>
+    ${_description}
+</div>
+\`\`\`
+${
+  isInherit
+    ? `>
+\`\`\`html
+<div ${_style}class="${classes}">
+  <div style="${stylesVar}">
+    The child element has access to the ${list} of the parent element's size through the ${variableDescription.replaceAll('\`', '')}.
+  </div>
+</div>
+\`\`\`
+>`
+    : '>'
+}`;
+};
 
 export const getSandboxConsiderationsDocumentation = (
   element: string,
   content: string = '',
   isWarning: boolean = false,
-  implementationDetails: string[] = [],
+  implementationDetails: string[] | IBmbVariableDesc[] = [],
+  style: string = '',
+  isClassNameVar: boolean = false,
+  isInherit: boolean = false,
+  isOmitImportant: boolean = false,
 ) => {
-  const patternToReplace = /(and )|(\,)/g;
-  const definition = getListingOnOneLine(
-    implementationDetails,
-    '\`bmb_[__]-{[__]}\`',
-  );
-  const size = getListingOnOneLine(implementationDetails, '{[__]}');
-  const style = getListingOnOneLine(
-    implementationDetails,
-    '[__]: var(--bmb-[__]);',
-  ).replace(patternToReplace, '');
-  const variableDescription = `the ${getListingOnOneLine(implementationDetails, '\`--bmb-[__]\`')} variable${implementationDetails.length > 1 ? 's' : ''}`;
-  const list = getListingOnOneLine(implementationDetails);
-  return `
-### Important:
-Please refer to the [Variables documentation](/docs/foundations-variables--documentation&globals=#dom-architecture) for details on how to implement ${element} in CSS, where it is detailed that these can be implemented through variables.
->${content}
->${
-    implementationDetails.length
-      ? `The ${element} is defined in the CSS variables and can be used in the application by using the class name or the CSS variable name.
+  let _implementationDetails: string = '';
+  if (!!implementationDetails.length) {
+    const varList =
+      typeof implementationDetails[0] === 'string'
+        ? implementationDetails
+        : implementationDetails.map((element) => {
+            const _element = element as IBmbVariableDesc;
+            return _element.name;
+          });
+    const elementList =
+      typeof implementationDetails[0] === 'string'
+        ? implementationDetails
+        : implementationDetails.map((element) => {
+            const _element = element as IBmbVariableDesc;
+            return _element.element;
+          });
+    const patternToReplace: RegExp = /(and )|(\,)/g;
+    const definition = getListingOnOneLine(
+      elementList as string[],
+      '\`--bmb-[__]-{[__]}\`',
+    );
+    const definitionClass: string = getListingOnOneLine(
+      elementList as string[],
+      '\`bmb_[__]-{[__]}\`',
+    );
+    const definitionVar: string = getListingOnOneLine(
+      varList as string[],
+      '\`--bmb-[__]\`',
+    );
+    const CSSElement: string = (varList[0] as string) || '';
+    const styleAndElement: string = `${style} ${CSSElement}`;
+    const size: string = getListingOnOneLine(elementList as string[], '{[__]}');
+    console.log(
+      '******************',
+      getListingOnOneLine(varList as string[], `[__][___];`)
+        .replace(patternToReplace, '')
+        .replaceAll(`[___]`, '[__]')
+        .split(';'),
+    );
+
+    const stylesVar: string = getListingOnOneLine(
+      getListingOnOneLine(varList as string[], '[__][___];')
+        .replace(patternToReplace, '')
+        .replaceAll('[___]', '[__]')
+        .split(';'),
+      ': var(--bmb-[__])',
+    ).replace(patternToReplace, '');
+    const styles: string = getListingOnOneLine(
+      elementList as string[],
+      `${'[__]'}: var(--bmb-[__]-m);`,
+    ).replace(patternToReplace, '');
+    const variableDescription: string = `the ${definitionVar} variable${(varList as string[]).length > 1 ? 's' : ''}`;
+    const list: string = getListingOnOneLine(elementList as string[]);
+    const classes: string = getListingOnOneLine(
+      elementList as string[],
+      'bmb_[__]-m',
+    ).replace(patternToReplace, '');
+
+    _implementationDetails = `
+The ${element} is defined in the CSS variables and can be used in the application by using ${isClassNameVar ? 'the class name or ' : ''}the CSS variable name.
 >
 ><br/>
 ### Class Name
-The class name is defined as ${definition} where ${size} are the ${element} size, and also set ${variableDescription} for the child elements.
->
-\`\`\`html
-<div class="${getListingOnOneLine(implementationDetails, 'bmb_[__]-m').replace(patternToReplace, '')}">
-  <div style="${style}">
-    The child element has access to the ${list} of the parent element's size through the ${variableDescription.replaceAll('\`', '')}.
-  </div>
-</div>
-\`\`\`
->
+${getVariableDetail(element, classes, list, definitionClass, size, style, isInherit, variableDescription, stylesVar)}
 ><br/>
 ### CSS Variable
-The CSS variable name is defined as ${definition} where ${size} are the ${element} size.
->
-\`\`\`html
-<div style="${style}">
-  Content with ${list} applied using CSS variables.
-</div>
-\`\`\`
+${getVariableDetail(element, '', list, definition, size, styles)}
 >
 ><br/>
 ### Values
@@ -337,23 +490,32 @@ The ${element} size are defined on REM units, and can be used in the application
 - 8: ≈32px
 - 9: ≈36px
 - 10: ≈40px
->`
-      : ''
+>
+    `;
   }
+  return `
+${
+  isOmitImportant
+    ? ''
+    : `### Important:
+Please refer to the [Variables documentation](/docs/foundations-variables--documentation&globals=#dom-architecture) for details on how to implement ${element} in CSS, where it is detailed that these can be implemented through variables.`
+}
+>${content}
+>${_implementationDetails}
 >${
     isWarning
       ? `
 >
 ><br/>
 ### Warning:
-You should be careful when using ${element}, as they can affect **Bamboo** components. Some components may override this attribute, so check the component's documentation before applying the ${element} class.
+You should be careful when using ${element}, as they can affect ${DESIGN_SYSTEM_TITLE} components. Some components may override this attribute, so check the component's documentation before applying the ${element} class.
   `
       : ''
   }
 >
 ><br/>
 >### ${SANDBOX_TITLE}
->Please use this help to generate the ${element} you need:
+>${getHelpDescriptionForGeneratingVariables(element)}:
 `;
 };
 
