@@ -60,6 +60,7 @@
         (change)="handleChange($event)"
         (focus)="handleFocus()"
         (blur)="handleBlur()"
+        (keyup)="handleKeyUp($event)"
       />
       @if (showAdditionalAction() || isClearable()) {
         <span class="bmb_field-actions">

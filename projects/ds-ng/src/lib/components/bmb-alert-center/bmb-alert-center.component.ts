@@ -19,6 +19,7 @@ import {
   IBmbDataAlertsParsed,
   IBmbAlertCenterCategories,
   IBmbDataAlertsOutput,
+  IBmbAlertEmptyState,
 } from './types';
 import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { BmbImageComponent } from '../bmb-image/bmb-image.component';
@@ -26,6 +27,7 @@ import { BmbModalComponent } from '../bmb-modal/bmb-modal.component';
 import { ModalDataConfig } from '../bmb-modal/bmb-modal.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { BmbAlertCenterAdsComponent } from './bmb-alert-center-ads/bmb-alert-center-ads.component';
+import { BmbAlertCenterEmptyComponent } from './bmb-alert-center-empty/bmb-alert-center-empty.component';
 
 export interface IBmbAlertCenterTabConfig {
   title: string;
@@ -45,6 +47,7 @@ export interface IBmbAlertCenterTabConfig {
     BmbButtonDirective,
     BmbImageComponent,
     BmbAlertCenterAdsComponent,
+    BmbAlertCenterEmptyComponent,
   ],
   templateUrl: './bmb-alert-center.component.html',
   styleUrl: './bmb-alert-center.component.scss',
@@ -63,6 +66,17 @@ export class BmbAlertCenterComponent {
     { title: 'Anuncios', isMobile: true, isDesktop: true },
   ]);
   hideTabs = input<boolean>(false);
+
+  //Empty state
+  emptyState = input<boolean>(false);
+  emptyStateData = input<IBmbAlertEmptyState>({
+    primaryText: '',
+    secondaryText: '',
+    tertiaryText: '',
+    buttonText: '',
+    size: 'large',
+    showButton: false,
+  });
 
   onChangeAlertStatus = output<IBmbDataAlertsOutput>();
   alertEvent = output<IBmbDataAlert>();

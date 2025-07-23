@@ -46,15 +46,15 @@ import {
   BmbStudentActivityCardComponent,
   BmbIconComponent,
   BmbIframeComponent,
-} from '../../../projects/ds-ng/src/public-api';
+  IBmbTab,
+} from '../../../../projects/ds-ng/src/public-api';
+import names from '../../names.json';
 
-import { IBmbTab } from '../../../projects/ds-ng/src/public-api';
 export interface Target {
   target: string;
   index: number;
 }
 
-import names from '../names.json';
 @Component({
   selector: 'bmb-my-page',
   standalone: true,

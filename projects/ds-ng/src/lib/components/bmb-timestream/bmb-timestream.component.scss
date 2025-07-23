@@ -5,6 +5,8 @@
 .bmb_timestream {
   display: flex;
   container-type: inline-size;
+  height: 100%;
+  background-color: var(--containers-background-fade);
 
   @include fonts.font(3, regular);
   position: relative;
@@ -119,6 +121,9 @@
   }
 
   &-micro {
+    background-color: transparent;
+    height: auto;
+
     .bmb_hito-card-active::after {
       background-color: var(--general_contrasts-50);
     }

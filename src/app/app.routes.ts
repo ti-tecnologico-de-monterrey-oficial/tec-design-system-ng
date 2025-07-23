@@ -9,25 +9,34 @@ export const routes: Routes = [
   {
     path: 'my-page',
     loadComponent: () =>
-      import('./my-page/my-page.component').then((m) => m.MyPageComponent),
+      import('./pages/my-page/my-page.component').then(
+        (m) => m.MyPageComponent,
+      ),
   },
   {
     path: 'home',
     loadComponent: () =>
-      import('./home/home.component').then((m) => m.HomeComponent),
+      import('./pages/home/home.component').then((m) => m.HomeComponent),
   },
   {
     path: 'component-test',
     loadComponent: () =>
-      import('./component-test/component-test.component').then(
+      import('./pages/component-test/component-test.component').then(
         (c) => c.AppComponent,
       ),
   },
   {
     path: 'form-validator-test',
     loadComponent: () =>
-      import('./form-validator-test/form-validator-test.component').then(
+      import('./pages/form-validator-test/form-validator-test.component').then(
         (f) => f.FormValidatorTestComponent,
+      ),
+  },
+  {
+    path: 'dropdown',
+    loadComponent: () =>
+      import('./pages/dropdown/dropdown.component').then(
+        (d) => d.DropdownPageComponent,
       ),
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },

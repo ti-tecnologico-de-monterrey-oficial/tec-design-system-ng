@@ -44,3 +44,13 @@ export interface IBmbAlertCenterCategories {
   month: IBmbDataAlertsParsed[];
   rest: IBmbDataAlertsParsed[];
 }
+
+export interface IBmbAlertEmptyState {
+  buttonText?: string;
+  onClick?: () => void;
+  primaryText: string;
+  secondaryText?: string;
+  showButton?: boolean;
+  size: 'large' | 'medium' | 'small';
+  tertiaryText?: string;
+}

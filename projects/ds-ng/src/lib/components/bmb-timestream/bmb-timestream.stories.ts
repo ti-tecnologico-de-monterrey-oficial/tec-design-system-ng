@@ -1,10 +1,17 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import { componentWrapperDecorator, Meta, StoryObj } from '@storybook/angular';
 import { BmbTimestreamComponent } from './bmb-timestream.component';
 import { getEmptyStateMessage } from '../../utils/doc/utils';
 
 export default {
   title: 'Internals/Timestream',
   component: BmbTimestreamComponent,
+  decorators: [
+    componentWrapperDecorator((story: string) => {
+      return `<div style="height: 500px;">
+        ${story}
+      </div>`;
+    }),
+  ],
   parameters: {
     docs: {
       description: {
@@ -2010,13 +2017,16 @@ Below is an example of how you can use this component in HTML:
       },
       {
         id: 100,
-        start: '2025-07-12',
-        end: '2025-07-14',
+        start: '2025-07-16',
+        end: '2025-07-16',
         description:
           'Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.\n\nCras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
         short_description:
           'vivamus vestibulum sagittis sapien cum sociis natoque penatibus',
-        type: 'done',
+        type: {
+          text: 'custom',
+          type: 'creative_rum',
+        },
         related_to: ['task1'],
         decision: 'eu interdum eu',
         title: 'Armageddon',
@@ -2034,19 +2044,4 @@ Below is an example of how you can use this component in HTML:
 
 type Story = StoryObj<BmbTimestreamComponent>;
 
-export const Default: Story = {
-  args: {},
-  render: (args) => ({
-    props: args,
-    template: `
-      <div style="height: 500px">
-        <bmb-timestream
-          [dateFormat]="dateFormat"
-          [lang]="lang"
-          [events]="events"
-          [isMicro]="isMicro"
-        />
-      </div>
-    `,
-  }),
-};
+export const Default: Story = {};

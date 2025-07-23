@@ -32,8 +32,8 @@ import {
   BmbThemeComponent,
   BmbTotpComponent,
   IBmbDropdownItem,
-} from '../../../projects/ds-ng/src/public-api';
-import { handleValidity } from '../../../projects/ds-ng/src/lib/utils/formControl';
+} from '../../../../projects/ds-ng/src/public-api';
+import { handleValidity } from '../../../../projects/ds-ng/src/lib/utils/formControl';
 
 @Component({
   selector: 'bmb-form-validator-test',
