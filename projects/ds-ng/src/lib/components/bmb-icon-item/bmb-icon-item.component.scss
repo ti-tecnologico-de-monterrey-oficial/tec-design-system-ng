@@ -2,15 +2,15 @@
 @use "../../../assets/styles/base/rem" as rem;
 
 .bmb_icon-item {
-  width: 100%;
+  align-items: center;
   display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: space-between;
+  width: 100%;
 
   &-item {
-    display: flex;
     align-items: center;
+    display: flex;
 
     &-label {
       @include fonts.font(5, semibold);
@@ -21,5 +21,14 @@
   &-value {
     @include fonts.font(4, regular);
     text-align: end;
+
+    a {
+      @include fonts.font(4, bold);
+      align-items: center;
+      color: var(--general_contrasts-main-selection);
+      display: inline-flex;
+      line-height: 2;
+      text-decoration: underline;
+    }
   }
 }

@@ -18,6 +18,21 @@
       [value]="_studentData.program"
     />
     <bmb-divider />
+    @if (_studentData.isExatec && _studentData.linkedin) {
+      <bmb-icon-item
+        icon="work_history"
+        label="Historial Laboral"
+        [value]="_studentData.linkedin"
+      />
+      <bmb-divider />
+    } @else if (!_studentData.isExatec && _studentData.curp) {
+      <bmb-icon-item
+        icon="assignment_ind"
+        label="Curp"
+        [value]="_studentData.curp"
+      />
+      <bmb-divider />
+    }
   </section>
 </ng-template>
 
