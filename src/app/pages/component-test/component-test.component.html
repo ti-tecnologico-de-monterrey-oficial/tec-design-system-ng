@@ -1,3 +1,108 @@
+<section
+  style="
+    border: var(--bmb-border-general_contrasts-25-1-solid);
+    margin: var(--bmb-spacing-m);
+  "
+  class="bmb_radius-m"
+>
+  <div
+    style="border: var(--bmb-border-general_contrasts-50-2-solid)"
+    class="bmb_radius-m"
+  >
+    Radius
+    <div
+      style="
+        border: var(--bmb-border-general_contrasts-50-2-solid);
+        border-radius: var(--bmb-border-radius);
+      "
+    >
+      Child
+    </div>
+  </div>
+  <br />
+  <div
+    style="border: var(--bmb-border-general_contrasts-50-2-solid)"
+    class="bmb_radius-m"
+  >
+    Test
+  </div>
+  <br />
+  <div
+    style="
+      border: var(--bmb-border-general_contrasts-50-2-solid);
+      border-radius: var(--bmb-radius-m);
+    "
+  >
+    Content with radius applied using CSS variables.
+  </div>
+</section>
+<br />
+<section
+  style="
+    border: var(--bmb-border-general_contrasts-50-2-solid);
+    margin: var(--bmb-spacing-m);
+  "
+  class="bmb_radius-m"
+>
+  <div class="bmb_padding-4 bmb_margin-4 bmb_gap-4">
+    Spacing
+    <div
+      style="
+        padding: var(--bmb-padding);
+        margin: var(--bmb-margin);
+        gap: var(--bmb-gap);
+      "
+    >
+      Child
+    </div>
+  </div>
+  <br />
+  <div class="bmb_padding-4 bmb_margin-4 bmb_gap-4">Test</div>
+  <br />
+  <div
+    style="
+      padding: var(--bmb-padding-4);
+      margin: var(--bmb-margin-4);
+      gap: var(--bmb-gap-4);
+    "
+  >
+    Content with radius applied using CSS variables.
+  </div>
+</section>
+<br />
+<section
+  style="
+    margin: var(--bmb-spacing-m);
+    border: var(--bmb-border-general_contrasts-50-2-solid);
+    border-radius: var(--bmb-radius-m);
+  "
+  class="bmb_radius-m"
+>
+  <br />
+  <div
+    style="
+      margin: var(--bmb-spacing-m);
+      border: var(--bmb-border-general_contrasts-50-2-solid);
+      border-radius: var(--bmb-radius-m);
+    "
+    class="bmb_box-shadow-5"
+  >
+    Test
+  </div>
+  <br />
+  <div
+    style="
+      margin: var(--bmb-spacing-m);
+      border: var(--bmb-border-general_contrasts-50-2-solid);
+      border-radius: var(--bmb-radius-m);
+      box-shadow: var(--bmb-box-shadow-5);
+    "
+  >
+    box-shadow style
+  </div>
+</section>
+<br />
+<bmb-theme initialTheme="light" />
 <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
   <bmb-datepicker
     inputId="date_picker_id"

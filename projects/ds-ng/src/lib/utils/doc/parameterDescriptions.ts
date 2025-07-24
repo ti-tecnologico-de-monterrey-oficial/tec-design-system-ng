@@ -1,7 +1,10 @@
+import { DESIGN_SYSTEM_TITLE } from './utils';
+
 export const DEPRECATED_PROPERTIES_DESCRIPTION =
   'This property is deprecated and will be removed in future versions.';
+export const GOGGLE_FONTS_LINK = `Even refer to [Google Fonts](https://fonts.google.com/icons?icon.size=24&icon.color=%23e8eaed&selected=Material+Symbols+Outlined:more_vert:FILL@0;wght@400;GRAD@0;opsz@24) for more icons.`;
 
-const getLabelDescription = (
+export const getLabelDescription = (
   positionDescription: string,
   type: string = ' field',
 ) => `
@@ -51,37 +54,50 @@ The possible positions to indicate where the label should be displayed in relati
   };
 };
 
+export const getFormControlConsiderations = (replaceChar: string = '') =>
+  `__
+__It is essential to assign the property \`name\` for correct behavior of the field.
+__
+__It will not be necessary to define \`Validators\` in the \`FormControl\` instance, as long as the properties of this field are correctly assigned.
+__
+__
+__This component automatically implements the \`Validators\` on the following properties:
+__
+__- **isRequired**: adds \`Validators.required\` to the \`FormControl\`
+__- **minlength**: adds \`Validators.minLength\` to the \`FormControl\`
+__- **maxlength**: adds \`Validators.maxLength\` to the \`FormControl\`
+__- **max**: adds \`Validators.max\` to the \`FormControl\`
+__- **min**: adds \`Validators.min\` to the \`FormControl\`
+__- **pattern**: adds \`Validators.pattern\` to the \`FormControl\``.replaceAll(
+    '__',
+    replaceChar,
+  );
+
+export const getFormControlDescription = (replaceChar: string = '') =>
+  `__In ${DESIGN_SYSTEM_TITLE}, it is possible to implement automatic field validation using the \`bmb-form-validator\` component.
+__
+__<br/>
+__The \`bmb-form-validator\` component contains the state of the form by collecting the form fields and adding them to a \`FormGroup\`.`.replaceAll(
+    '__',
+    replaceChar,
+  );
+
 export const getControlDescription = (isComplete: boolean = false) => `
 Sets the \`FormControl\` instance to manage the state of the field.
 ${
   isComplete
     ? `
 
+<br/>
 **Important:**
+${getFormControlConsiderations()}
+<br/>
+${getFormControlDescription()}
 
-It is essential to assign the property \`name\` for correct behavior of the field.
-
-It will not be necessary to define \`Validators\` in the \`FormControl\` instance, as long as the properties of this field are correctly assigned.
-
-
-This component automatically implements the \`Validators\` on the following properties:
-
-- **isRequired**: adds \`Validators.required\` to the \`FormControl\`
-- **minlength**: adds \`Validators.minLength\` to the \`FormControl\`
-- **maxlength**: adds \`Validators.maxLength\` to the \`FormControl\`
-- **max**: adds \`Validators.max\` to the \`FormControl\`
-- **min**: adds \`Validators.min\` to the \`FormControl\`
-- **pattern**: adds \`Validators.pattern\` to the \`FormControl\`
-
-
-In **Bamboo**, it is possible to implement automatic field validation using the \`bmb-form-validator\` component.
-
-
-The \`bmb-form-validator\` component contains the state of the form by collecting the form fields and adding them to a \`FormGroup\`.
-
-
+<br/>
 Please check the ***Form validator*** documentation for details on how to implement \`bmb-form-validator\` component.
 
+<br/>
 This documentation is displayed as a tab at the top.
 `
     : ''
@@ -110,12 +126,12 @@ This property is used to link the label to the field through the ***for*** attri
     description: `
 Sets the field name.
 
-<br>
+<br/>
 **Important:**
 
 This property is essential for correct behavior of the the \`FormControl\`.
 
-<br>
+<br/>
 If no name is assigned, a name will be added using \`window.crypto.randomUUID()\`
 `,
     table: {
@@ -209,8 +225,8 @@ IBmbJustifyTooltip = 'centered' | 'before' | 'after'
     description: `
 Sets the name of the icon to be displayed within the field.
 
-<br>
-Refer to [Google Fonts](https://fonts.google.com/icons?icon.size=24&icon.color=%23e8eaed&selected=Material+Symbols+Outlined:more_vert:FILL@0;wght@400;GRAD@0;opsz@24) for more icons.`,
+<br/>
+${GOGGLE_FONTS_LINK}`,
     table: {
       category: 'Properties',
       type: { summary: 'string' },
@@ -281,9 +297,6 @@ This is commonly used to ensure that users do not skip mandatory choices in form
     },
   },
   errorMessage: {
-    control: {
-      type: 'object',
-    },
     description: `
 Sets the error message instance or required field message to display below the field when there is an error in it.
 
@@ -302,7 +315,7 @@ Validations supported in instantiation:
 - **jsonFormat**: corresponds to the validation assigned to the \`jsonFormat\` property, used for textarea fields
 - **customValidation**: corresponds to the validation assigned to the \`customValidation\` property
 
-<br>
+<br/>
 **Note:**
 
 Default error messages will be displayed if this property is not assigned correctly.

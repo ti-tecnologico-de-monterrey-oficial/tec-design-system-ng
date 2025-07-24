@@ -145,7 +145,9 @@ export default {
   ],
 } as Meta<typeof BmbFormValidatorComponent>;
 
-export const Default: StoryFn<typeof BmbFormValidatorComponent> = (args) => {
+export const Example_with_state_and_values: StoryFn<
+  typeof BmbFormValidatorComponent
+> = (args) => {
   return {
     name: 'Example with state and values',
     props: args,

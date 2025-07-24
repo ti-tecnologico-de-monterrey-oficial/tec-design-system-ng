@@ -1,11 +1,10 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbInputComponent } from './bmb-input.component';
 import {
-  getArchitectureTitle,
-  getDescribeTypeTextBlock,
-  getGeneralComponentDescription,
-  getHTMLFormExampleTextBlock,
-  getTypescriptFormExampleTextBlock,
+  getArchitectureSection,
+  getBasicExampleBlock,
+  getFieldDescription,
+  getFormExampleBlock,
 } from '../../utils/doc/utils';
 import {
   DEPRECATED_PROPERTIES_DESCRIPTION,
@@ -19,7 +18,7 @@ const additionalDescription = `input various types of data, such as:
 >- number
 >- text-area`;
 const inputName = 'input_field';
-const bmbInputName = `<bmb-input
+const inputExample = `<bmb-input
   id="input_field_id"
   name="${inputName}"
   label="Input"
@@ -57,10 +56,12 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralComponentDescription('bmb-input', additionalDescription)}
-${getArchitectureTitle()}
-\`\`\`html
-<section class="bmb_field" <!-- conditional class bmb_field-disabled --> >
+${getFieldDescription(
+  'bmb-input',
+  additionalDescription,
+  'https://bamboo.tec.mx/latest/componentes/text-input/descripcion-general-PxlXQ5FH',
+)}
+${getArchitectureSection(`<section class="bmb_field" <!-- conditional class bmb_field-disabled --> >
   <section class="bmb_field-wrapper">
     <!-- if label is defined -->
     <label class="bmb_field-label" for="input">{ label }</label>
@@ -75,11 +76,9 @@ ${getArchitectureTitle()}
 
   <!-- if error message is defined -->
   <p class="bmb_field-error">{ errorMessage }</p>
-</section>
-\`\`\`
-${getTypescriptFormExampleTextBlock('BmbInputComponent', inputName)}
-${getHTMLFormExampleTextBlock(bmbInputName)}
-${getDescribeTypeTextBlock('HTML')}
+</section>`)}
+${getFormExampleBlock('BmbInputComponent', inputName, '', inputExample)}
+${getBasicExampleBlock('BmbInputComponent')}
       `,
       },
     },
@@ -275,7 +274,7 @@ Example of a \`ValidatorFn\`
       description: `
 Enables the skill to validate JSON content when true, this skill only works for the form textarea field.
 
-<br>
+<br/>
 **Important:**
 
 For correct behavior, the \`pattern\` property must not be assigned to the input field.

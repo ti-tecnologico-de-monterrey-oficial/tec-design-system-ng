@@ -1,13 +1,22 @@
 import { CommonModule } from '@angular/common';
 import { Component, input } from '@angular/core';
-import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import { Meta, StoryObj } from '@storybook/angular';
+import {
+  getFoundationDescriptions,
+  getGeneralDescription,
+  getHelpDescriptionForGeneratingVariables,
+  getPageStructureForFoundationStories,
+  getSandboxConsiderationsDocumentation,
+  getSpecialSpecifications,
+  SANDBOX_TITLE,
+} from '../utils/doc/utils';
 
 @Component({
   selector: 'storybook-border-stories',
   standalone: true,
   imports: [CommonModule],
   template: `
-    <h1>Sandbox</h1>
+    <h1>${SANDBOX_TITLE}</h1>
     <p [ngStyle]="getStyles()">
       <button
         style="color: var(--general_contrasts-100);"
@@ -50,27 +59,33 @@ class StorybookBorderStoriesComponent {
 export default {
   title: 'Foundations/Borders',
   component: StorybookBorderStoriesComponent,
-  decorators: [
-    moduleMetadata({
-      imports: [CommonModule],
-    }),
-  ],
   parameters: {
     docs: {
+      page: () => getPageStructureForFoundationStories(),
       description: {
-        component:
-          'This is a collection of border styles that can be used in the application.',
+        component: `
+${getGeneralDescription(
+  getFoundationDescriptions(
+    'border',
+    '***Borders*** are lines that separate one area, surface or container from another.<br/><br/>',
+  ),
+  'https://bamboo.tec.mx/latest/foundations/borders/descripcion-general-U27GpidU',
+)}
+${getSpecialSpecifications(getSandboxConsiderationsDocumentation('borders'))}
+        `,
       },
     },
   },
   argTypes: {
     color: {
-      name: 'Border Colors',
-      description:
-        'This is a collection of border colors that can be used in the application.',
+      name: 'Border colors',
+      description: getHelpDescriptionForGeneratingVariables(
+        'border colors',
+        true,
+      ),
       table: {
         type: { summary: 'string' },
-        category: 'Properties',
+        category: SANDBOX_TITLE,
         defaultValue: { summary: 'inherit' },
       },
       control: {
@@ -89,13 +104,14 @@ export default {
       ],
     },
     size: {
-      name: 'Border Sizes',
-      description:
-        'This is a collection of border sizes that can be used in the application.',
-
+      name: 'Border sizes',
+      description: getHelpDescriptionForGeneratingVariables(
+        'border sizes',
+        true,
+      ),
       table: {
         type: { summary: 'string' },
-        category: 'Properties',
+        category: SANDBOX_TITLE,
         defaultValue: { summary: '1' },
       },
       control: {
@@ -104,13 +120,14 @@ export default {
       options: ['1', '2'],
     },
     type: {
-      name: 'Border Types',
-      description:
-        'This is a collection of border types that can be used in the application.',
-
+      name: 'Border types',
+      description: getHelpDescriptionForGeneratingVariables(
+        'border types',
+        true,
+      ),
       table: {
         type: { summary: 'string' },
-        category: 'Properties',
+        category: SANDBOX_TITLE,
         defaultValue: { summary: 'solid' },
       },
       control: {
