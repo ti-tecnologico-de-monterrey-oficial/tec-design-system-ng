@@ -1,6 +1,7 @@
 import {
   Controls,
   Description,
+  Meta,
   Primary,
   Stories,
   Title,
@@ -9,13 +10,14 @@ import {
 import { TitleOfControls } from "./Utils.mdx";
 import { STORIES_TITLE } from "../lib/utils/doc/utils";
 
-export const GeneralTemplate = () => (
+export const GeneralTemplate = ({children, showStories = true}) => (
   <section>
-    <Title />
-    <Description />
-    <Primary />
+    {children && <Meta of={children} />}
+    {children && <Title of={children}>{children?.title}</Title> || <Title />}
+    {children && <Description of={children}>{children}</Description> || <Description />}
+    {children && <Primary of={children}/> || <Primary />}
     <TitleOfControls />
-    <Controls />
-    <Stories title={STORIES_TITLE} includePrimary={false} />
+    {children && <Controls of={children.Default} /> || <Controls />}
+    {showStories && <Stories title={STORIES_TITLE} includePrimary={false} />}
   </section>
 );

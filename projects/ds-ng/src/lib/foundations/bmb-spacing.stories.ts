@@ -13,6 +13,8 @@ import {
   getPageStructureForFoundationStories,
   getSandboxConsiderationsDocumentation,
   getSpecialSpecifications,
+  getVariableAndClassesSizes,
+  getVariableDetail,
   SANDBOX_TITLE,
   SPACING_DESCRIPTION,
 } from '../utils/doc/utils';
@@ -139,6 +141,9 @@ ${getSpecialSpecifications(
   getSandboxConsiderationsDocumentation(
     'spacing',
     '',
+    `###Additional:
+For padding, margin, and gap it is also possible to use the CSS *spacing* variables. ${getVariableDetail('spacing', '', 'padding, margin, and gap', '\`--bmb-spacing-{spacing}\`', '\`{spacing}\`','padding: var(--bmb-spacing-4); margin: var(--bmb-spacing-4); gap: var(--bmb-spacing-4);')}<br/>
+    ${getVariableAndClassesSizes('spacing')}`,
     true,
     ['padding', 'margin', 'gap'],
     '',

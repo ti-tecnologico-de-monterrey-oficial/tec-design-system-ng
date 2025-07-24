@@ -66,7 +66,7 @@ export const getArchitectureSection = (
   architectureBlock: string,
   bmbNameLink: string = '',
   documentationLink: string = '',
-) => `
+): string => `
 ## DOM Architecture
 Represents the structure of the component.
 \`\`\`html
@@ -74,7 +74,7 @@ ${architectureBlock}
 \`\`\`${bmbNameLink && bmbNameLink ? getDOMArchitectureLink(bmbNameLink, documentationLink) : ''}
 `;
 
-export const getCheckboxOrRadialArchitecture = (type: string) => `
+export const getCheckboxOrRadialArchitecture = (type: string): string => `
 ${getArchitectureSection(`
 <section class="bmb_${type}" <!-- conditional class bmb_${type}-before bmb_${type}-after bmb_${type}-required --> >
   <input { input config } />
@@ -93,7 +93,7 @@ export const getDescribeTypeTextBlock = (
   additionalTitle: string = '',
   isLevel3: boolean = false,
   additionalText: string = '',
-) => `
+): string => `
 ##${isLevel3 ? '#' : ''} ${typeExampleName} example ${additionalTitle}
 Below is a *${typeExampleName}* example with the basic code to use this component ${additionalText}:`;
 
@@ -104,7 +104,7 @@ const getTypescriptExampleBlock = (
   importComments: string = '',
   additionalBlock: string = '',
   replaceChar: string = '',
-) =>
+): string =>
   `
 \`\`\`typescript
 __import { CommonModule } from '@angular/common';
@@ -153,13 +153,13 @@ export const getTypescriptExampleTextBlock = (
   additionalText: string = '',
   additionalBlock: string = '',
   replaceChar: string = '',
-) =>
+): string =>
   `
 __${getDescribeTypeTextBlock('TypeScript', additionalTitle, isLevel3, additionalText)}
 __${getTypescriptExampleBlock(inputName, additionalImportName, additionalImportFrom, importComments, additionalBlock, replaceChar)}
 __`.replaceAll('__', replaceChar);
 
-export const getReactiveFormTitle = (bmbInputName: string) => `
+export const getReactiveFormTitle = (bmbInputName: string): string => `
 ##Reactive form example
 >This example demonstrates how to use **${bmbInputName}** within an Angular reactive form, ensuring validation and handling the field and its value correctly.
 >`;
@@ -169,7 +169,7 @@ export const getFormExampleBlock = (
   inputName: string,
   additionalBlock: string = '',
   inputExample: string,
-) => `
+): string => `
 ${getReactiveFormTitle(bmbInputName)}
 >
 ><br/>
@@ -215,7 +215,7 @@ ${getReactiveFormTitle(bmbInputName)}
 
 `;
 
-export const getHTMLFormExampleTextBlock = (inputExample: string) => `>
+export const getHTMLFormExampleTextBlock = (inputExample: string): string => `>
 >${getDescribeTypeTextBlock('HTML', 'for reactive form', true, 'in a reactive form')}
 >\`\`\`html
 ><form [formGroup]="userForm" (ngSubmit)="onSubmit()">
@@ -225,7 +225,7 @@ export const getHTMLFormExampleTextBlock = (inputExample: string) => `>
 >\`\`\`
 `;
 
-const getTitleDescription = () => `
+const getTitleDescription = (): string => `
 <br/>
 ## ${DESCRIPTION_TITLE}
 `;
@@ -233,7 +233,7 @@ const getTitleDescription = () => `
 export const getGeneralDescription = (
   content: string,
   generalDocLink: string = '',
-) => `
+): string => `
 ${getTitleDescription()}
 >${content}
 >
@@ -245,7 +245,7 @@ ${!!generalDocLink ? `>Please remember to refer to the [Bamboo - General documen
 export const getDOMArchitectureLink = (
   bmbNameLink: string = '',
   documentationLink: string = '',
-) => `
+): string => `
 [bmb-${bmbNameLink} - DOM Architecture](/docs/${documentationLink}--documentation&globals=#dom-architecture)
 
 <br/>
@@ -255,7 +255,7 @@ export const getFieldDescription = (
   componentName: string,
   additionalDescription: string,
   generalDocLink: string,
-) => `
+): string => `
 ${getGeneralDescription(
   `
 >\`${componentName}\` is a customizable ${DESIGN_SYSTEM_TITLE} input component that allows users to ${additionalDescription}
@@ -269,7 +269,7 @@ ${getGeneralDescription(
 )}
 `;
 
-export const getSpecialSpecifications = (content: string) => `
+export const getSpecialSpecifications = (content: string): string => `
 ## ${SPECIAL_SPECIFICATIONS_TITLE}
 >${content}
 <br/>
@@ -278,7 +278,7 @@ export const getSpecialSpecifications = (content: string) => `
 export const getBasicExampleBlock = (
   inputName: string,
   importComments: string = '',
-) => `
+): string => `
 ${getTypescriptExampleTextBlock(inputName, '', '', importComments)}
 ${getDescribeTypeTextBlock('HTML')}
 `;
@@ -286,17 +286,19 @@ ${getDescribeTypeTextBlock('HTML')}
 export const getFoundationDescriptions = (
   element: string,
   additionalDescription: string = '',
-) =>
+): string =>
   `${additionalDescription || ''} ${DESIGN_SYSTEM_TITLE} provides a collection of ${element} variables designed to enhance the aesthetic and functional appeal of your projects.`;
 
 export const getHelpDescriptionForGeneratingVariables = (
   element: string,
   isControl: boolean = false,
-) =>
+): string =>
   `${isControl ? `This is the collection of *${element}* that can be used.<br/><br/>` : ''}
 Please use this ${isControl ? 'help' : 'interactive tool'} to generate the *${element}* variables to use.`;
 
-export const getTypographyDetail = (isCompleteDetail: boolean = true) => `<br/>
+export const getTypographyDetail = (
+  isCompleteDetail: boolean = true,
+): string => `
 >### Font Family:
 ${
   isCompleteDetail
@@ -348,11 +350,11 @@ ${
     ? `><br/>
 >###Reminder:
 Please remember to replace \`font-medium-4\` with the appropriate class based on the family and size you intend to use. The flexibility of these classes allows for a consistent typographic hierarchy and visual coherence across your digital experiences.
->`
-    : '>'
+><br/><br/><br/>`
+    : '><br/>'
 }`;
 
-const getVariableDetail = (
+export const getVariableDetail = (
   element: string,
   classes: string,
   list: string,
@@ -365,8 +367,8 @@ const getVariableDetail = (
 ): string => {
   const _style: string = `${!!style ? `style="${style}" ` : ''}`;
   const _description: string = `Content with ${list}${isInherit ? ' class names' : ''} applied using CSS variables.`;
-  return `>
->The class name is defined as ${definitionClass} where ${size} are the ${element} size${isInherit ? `, and also set ${variableDescription} for the child elements` : ''}.
+  return `
+>The ${!!classes ? 'class' : 'CSS variable'} name is defined as ${definitionClass} where ${size} are the ${element} size${isInherit ? `, and also set ${variableDescription} for the child elements` : ''}.
 >
 \`\`\`html
 <div ${_style}${classes ? `class="${classes}"` : ''}>
@@ -388,86 +390,49 @@ ${
 }`;
 };
 
-export const getSandboxConsiderationsDocumentation = (
-  element: string,
-  content: string = '',
-  isWarning: boolean = false,
-  implementationDetails: string[] | IBmbVariableDesc[] = [],
-  style: string = '',
-  isClassNameVar: boolean = false,
-  isInherit: boolean = false,
-  isOmitImportant: boolean = false,
-) => {
-  let _implementationDetails: string = '';
-  if (!!implementationDetails.length) {
-    const varList =
-      typeof implementationDetails[0] === 'string'
-        ? implementationDetails
-        : implementationDetails.map((element) => {
-            const _element = element as IBmbVariableDesc;
-            return _element.name;
-          });
-    const elementList =
-      typeof implementationDetails[0] === 'string'
-        ? implementationDetails
-        : implementationDetails.map((element) => {
-            const _element = element as IBmbVariableDesc;
-            return _element.element;
-          });
-    const patternToReplace: RegExp = /(and )|(\,)/g;
-    const definition = getListingOnOneLine(
-      elementList as string[],
-      '\`--bmb-[__]-{[__]}\`',
-    );
-    const definitionClass: string = getListingOnOneLine(
-      elementList as string[],
-      '\`bmb_[__]-{[__]}\`',
-    );
-    const definitionVar: string = getListingOnOneLine(
-      varList as string[],
-      '\`--bmb-[__]\`',
-    );
-    const CSSElement: string = (varList[0] as string) || '';
-    const styleAndElement: string = `${style} ${CSSElement}`;
-    const size: string = getListingOnOneLine(elementList as string[], '{[__]}');
-    console.log(
-      '******************',
-      getListingOnOneLine(varList as string[], `[__][___];`)
-        .replace(patternToReplace, '')
-        .replaceAll(`[___]`, '[__]')
-        .split(';'),
-    );
+const getSubList = (
+  list: string[] | IBmbVariableDesc[],
+  elementName: string,
+  template: string = '',
+): string[] => {
+  const result =
+    typeof list[0] === 'string'
+      ? !!template
+        ? list.map((element) => template.replaceAll('[__]', element as string))
+        : list
+      : list.map((element) => {
+          const _element = element as IBmbVariableDesc;
+          if (elementName === 'element') {
+            return !!template
+              ? template.replaceAll('[__]', _element.element)
+              : _element.element;
+          } else if (elementName === 'name') {
+            return !!template
+              ? template.replaceAll('[__]', _element.name)
+              : _element.name;
+          } else {
+            throw new Error(`Invalid elementName: ${elementName}`);
+          }
+        });
 
-    const stylesVar: string = getListingOnOneLine(
-      getListingOnOneLine(varList as string[], '[__][___];')
-        .replace(patternToReplace, '')
-        .replaceAll('[___]', '[__]')
-        .split(';'),
-      ': var(--bmb-[__])',
-    ).replace(patternToReplace, '');
-    const styles: string = getListingOnOneLine(
-      elementList as string[],
-      `${'[__]'}: var(--bmb-[__]-m);`,
-    ).replace(patternToReplace, '');
-    const variableDescription: string = `the ${definitionVar} variable${(varList as string[]).length > 1 ? 's' : ''}`;
-    const list: string = getListingOnOneLine(elementList as string[]);
-    const classes: string = getListingOnOneLine(
-      elementList as string[],
-      'bmb_[__]-m',
-    ).replace(patternToReplace, '');
+  return (result as string[]) || [];
+};
 
-    _implementationDetails = `
-The ${element} is defined in the CSS variables and can be used in the application by using ${isClassNameVar ? 'the class name or ' : ''}the CSS variable name.
->
-><br/>
-### Class Name
-${getVariableDetail(element, classes, list, definitionClass, size, style, isInherit, variableDescription, stylesVar)}
-><br/>
-### CSS Variable
-${getVariableDetail(element, '', list, definition, size, styles)}
->
-><br/>
-### Values
+const getMergeList = (
+  list: string[],
+  definition: string,
+  splitChar: string,
+): string => {
+  const styles: string[] = definition.split(splitChar);
+  const mergeList = list.map((element: string, index: number) =>
+    element.concat(': var(--'.concat(styles[index]?.trim()).concat(');')),
+  );
+
+  return mergeList.toString().replaceAll(',', ' ');
+};
+
+export const getVariableAndClassesSizes = (element: string): string => `
+### Values:
 >
 The ${element} size are defined on REM units, and can be used in the application by using the class name or the CSS variable name. The ${element} size can be one of the following:
 >
@@ -491,29 +456,99 @@ The ${element} size are defined on REM units, and can be used in the application
 - 9: ≈36px
 - 10: ≈40px
 >
+><br/>`;
+
+export const getSandboxConsiderationsDocumentation = (
+  element: string,
+  introductionContent: string = '',
+  content: string = '',
+  isWarning: boolean = false,
+  implementationDetails: string[] | IBmbVariableDesc[] = [],
+  style: string = '',
+  isClassNameVar: boolean = false,
+  isInherit: boolean = false,
+  isOmitImportant: boolean = false,
+): string => {
+  let _implementationDetails: string = '';
+
+  if (!!implementationDetails.length) {
+    const splitChar: string = '|||';
+    const patternToReplaceOneLine: RegExp = /(and )|(\, )/g;
+    const elementList: string[] = getSubList(implementationDetails, 'element');
+    const varList: string[] = getSubList(implementationDetails, 'name');
+    const definition: string = getListingOnOneLine(
+      elementList as string[],
+      '\`--bmb_[__]-{[__]}\`',
+    );
+    const definitionClass: string = definition.replaceAll('--', '');
+    const _definition: string = getListingOnOneLine(
+      varList as string[],
+      '\`--bmb_[__]-4\`',
+    );
+    const definitionVar: string = _definition.replaceAll('_', '-');
+    const size: string = getListingOnOneLine(elementList as string[], '{[__]}');
+    const variableDescription: string = `the ${definitionVar.replaceAll('-4', '')} variable${(varList as string[]).length > 1 ? 's' : ''}`;
+    const list: string = getListingOnOneLine(elementList as string[]);
+    const _classes: string[] = getSubList(
+      implementationDetails,
+      'element',
+      'bmb_[__]-4',
+    );
+    const classes: string = _classes.toLocaleString().replaceAll(',', ' ');
+    const variableInheritStyles: string = `${style
+      .concat(!!style ? ' ' : '')
+      .concat(
+        getMergeList(
+          varList,
+          definitionVar.replace(patternToReplaceOneLine, splitChar).replace(/\`|(--)|(-4)/g, ''),
+          splitChar,
+        ),
+      )}`;
+      const variableStyles: string = `${style
+      .concat(!!style ? ' ' : '')
+      .concat(
+        getMergeList(
+          varList,
+          classes.replaceAll('_', '-').replaceAll(' ', splitChar),
+          splitChar,
+        ),
+      )}`;
+
+    _implementationDetails = `
+>
+### Class Name
+>${getVariableDetail(element, classes, list, definitionClass, size, style, isInherit, variableDescription, variableInheritStyles)}
+><br/>
+### CSS Variable
+>${getVariableDetail(element, '', list, definition.replaceAll('_', '-'), size, variableStyles)}
+><br/>
     `;
   }
   return `
-${
+>
+${introductionContent}
+>
+>${!!implementationDetails.length ? `The ${element} is defined in the CSS variables and can be used in the application by using ${isClassNameVar ? 'the class name or ' : ''}the CSS variable name.
+><br/><br/><br/>`:''}
+>${
   isOmitImportant
     ? ''
-    : `### Important:
-Please refer to the [Variables documentation](/docs/foundations-variables--documentation&globals=#dom-architecture) for details on how to implement ${element} in CSS, where it is detailed that these can be implemented through variables.`
+    : `
+### Important:
+Please refer to the [Variables documentation](/docs/foundations-variables--documentation&globals=#dom-architecture) for details on how to implement ${element} in CSS, where it is detailed that these can be implemented through variables.<br/><br/><br/>`
 }
->${content}
->${_implementationDetails}
+>
 >${
     isWarning
       ? `
->
-><br/>
 ### Warning:
 You should be careful when using ${element}, as they can affect ${DESIGN_SYSTEM_TITLE} components. Some components may override this attribute, so check the component's documentation before applying the ${element} class.
-  `
+<br/><br/><br/>`
       : ''
   }
 >
-><br/>
+>${_implementationDetails}
+>${content}
 >### ${SANDBOX_TITLE}
 >${getHelpDescriptionForGeneratingVariables(element)}:
 `;

@@ -35,10 +35,10 @@ ${getSpecialSpecifications(
 >There are rules in ${DESIGN_SYSTEM_TITLE} for CSS variable names, it is important to use them appropriately.
 >- The class name variables have the following structure: \`bmb_{type}-{size}\`.
 >   - ***Font Family*** is an exception.
->- The style name variables have the following structure: \`--bmb-{type}-{/ inherit / size}\`.
+>- The style name variables have the following structure: \`--bmb-{type}-{inherit / size}\`.
 >   - ***Colors*** are an exception.
 >
-><br/>
+><br/><br/>`,`
 ###Spacing:
 ${SPACING_DESCRIPTION}
 - **--bmb-spacing-none**: \`none = 0\`
@@ -71,7 +71,8 @@ ${SPACING_DESCRIPTION}
 .your-class {
   margin: var(--bmb-radius-m);
 } \`\`\`
-${getTypographyDetail(false)}
+><br/>
+>${getTypographyDetail(false)}
 >`,
     true,
     [],

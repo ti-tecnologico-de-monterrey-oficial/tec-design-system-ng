@@ -9,6 +9,7 @@ import {
   getPageStructureForFoundationStories,
   getSandboxConsiderationsDocumentation,
   getSpecialSpecifications,
+  getVariableAndClassesSizes,
   SANDBOX_TITLE,
 } from '../utils/doc/utils';
 
@@ -69,6 +70,7 @@ ${getSpecialSpecifications(
   getSandboxConsiderationsDocumentation(
     'radius',
     '',
+    getVariableAndClassesSizes('radius'),
     true,
     [{ element: 'radius', name: 'border-radius' }],
     'border: var(--bmb-border-general_contrasts-50-1-solid);',

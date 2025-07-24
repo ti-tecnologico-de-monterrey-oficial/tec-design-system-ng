@@ -10,7 +10,7 @@ import {
   BmbDateRangeComponent,
   BmbSwitchComponent,
   BmbThemeComponent,
-} from '../../../projects/ds-ng/src/public-api';
+} from '../../../../projects/ds-ng/src/public-api';
 
 @Component({
   selector: 'bmb-app',
