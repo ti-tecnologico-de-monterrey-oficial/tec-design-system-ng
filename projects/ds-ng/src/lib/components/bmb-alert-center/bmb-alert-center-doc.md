@@ -1,4 +1,4 @@
-# Alert Center
+# BmbAlertCenter
 
 ## Description
 
@@ -85,8 +85,6 @@ Emits an event when an alert's status changes.
 ```html
 <bmb-alert-center [dateFormat]="'dd/MM/yyyy'" [tabsName]="[{title: 'Notificaciones', isMobile: true, isDesktop: true}, {title: 'No leídos', isMobile: false, isDesktop: true}, {title: 'Favoritos', isMobile: false, isDesktop: true}, {title: 'Archivados', isMobile: false, isDesktop: true}, {title: 'Anuncios', isMobile: true, isDesktop: true}]" [hideTabs]="false" [enableMultipleSelection]="true" (onChangeAlertStatus)="onChangeAlertStatus($event)" (alertEvent)="alertEvent($event)" (showAlertDetail)="showAlertDetail($event)" (closeAlertDetail)="closeAlertDetail($event)" />
 ```
-
----
 
 ## BmbAlertCenterService
 

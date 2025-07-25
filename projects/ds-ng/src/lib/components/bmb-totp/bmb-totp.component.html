@@ -26,7 +26,13 @@
         <p class="bmb_totp-error">{{ errorMessage() }}</p>
       }
       @if (showButton()) {
-        <button class="bmb_totp-button" bmbButton size="large" type="submit">
+        <button
+          class="bmb_totp-button"
+          bmbButton
+          size="large"
+          type="submit"
+          [disabled]="disableButton()"
+        >
           {{ buttonText() }}
         </button>
       }

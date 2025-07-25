@@ -51,6 +51,7 @@ export class BmbTotpComponent {
   showButton = input<boolean>(false);
   buttonText = input<string>('');
   maxCode = input<number>(6);
+  disableButton = input<boolean>(false);
 
   handleSubmit = output<string>();
 
