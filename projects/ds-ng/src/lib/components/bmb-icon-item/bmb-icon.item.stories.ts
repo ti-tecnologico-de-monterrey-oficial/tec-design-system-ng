@@ -1,12 +1,26 @@
-import { moduleMetadata, StoryObj, type Meta } from '@storybook/angular';
-import { attributes } from '../../utils/doc/utils';
+import {
+  componentWrapperDecorator,
+  moduleMetadata,
+  StoryObj,
+  type Meta,
+} from '@storybook/angular';
 import { BmbIconItemComponent } from './bmb-icon-item.component';
 import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
 
 export default {
   title: 'Components/Visual labels/Icon item',
   component: BmbIconItemComponent,
-  decorators: [moduleMetadata({ imports: [BmbDividerComponent] })],
+  decorators: [
+    moduleMetadata({
+      imports: [BmbDividerComponent],
+      providers: [],
+    }),
+    componentWrapperDecorator((story: string) => {
+      return `<div style="max-width: 560px; margin: 0 auto">
+          ${story}
+        </div>`;
+    }),
+  ],
   parameters: {
     docs: {
       description: {
@@ -61,8 +75,9 @@ Below is an example of how you can use this component in HTML:
     value: {
       name: 'Value',
       control: { type: 'text' },
-      description:
-        'Sets the value for the item. This corresponds to the text shown on the right.',
+      description: `Sets the value for the item. This corresponds to the text shown on the right.
+
+You can pass plain text or valid HTML tags. If HTML is used, it will be safely rendered inside the component.`,
       table: { category: 'Properties', type: { summary: 'string (required)' } },
     },
   },
@@ -70,7 +85,7 @@ Below is an example of how you can use this component in HTML:
     icon: 'calendar_month',
     iconSize: 24,
     label: 'Semestre',
-    value: 'AGO-DIC 24',
+    value: `<a href="https://linkedin.com">Ir a enlace Linkedin</a>`,
   },
 } as Meta<typeof BmbIconItemComponent>;
 
@@ -80,15 +95,13 @@ export const Default: Story = {
   render: (args) => ({
     props: args,
     template: `
-<!-- Instruction to users: This html is used for internal Storybook logic and should not be copied -->
-<div style="max-width: 560px; margin: 0 auto">
-  <!-- Example of how you can use this component -->
-  <bmb-icon-item
-    ${attributes(args)}
-  />
-  <!-- End of the example -->
-  <bmb-divider />
-</div>
+      <bmb-icon-item
+        [icon]="icon"
+        [iconSize]="iconSize"
+        [label]="label"
+        [value]="value"
+      />
+      <bmb-divider />
     `,
   }),
 };
