@@ -25,9 +25,9 @@ import { BmbAlertCenterComponent } from "./bmb-alert-center.component";
 ### Inputs
 
 | Name                      | Type                  | Description                                              |
-| ------------------------- | --------------------- | -------------------------------------------------------- | -------------------------------------- |
+| ------------------------- | --------------------- | -------------------------------------------------------- |
 | `dateFormat`              | `string`              | Date format used in alerts. Default value: `dd/MM/yyyy`. |
-| `tabsName`                | `string[]`            | IBmbAlertCenterTabConfig[]`                              | Configuration of the component's tabs. |
+| `tabsName`                | `string[] or IBmbAlertCenterTabConfig[]` | Configuration of the component's tabs. |
 | `hideTabs`                | `boolean`             | Hides the tabs if `true`.                                |
 | `enableMultipleSelection` | `boolean`             | Enables multiple selection of alerts.                    |
 | `emptyStateData`          | `IBmbAlertEmptyState` | Configuration of the component's empty state.            |
