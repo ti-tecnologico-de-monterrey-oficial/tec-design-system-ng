@@ -1,4 +1,4 @@
-# Alert Center
+# BmbAlertCenter
 
 ## Description
 
@@ -94,8 +94,6 @@ Emits an event when an alert's status changes.
   (closeAlertDetail)="closeAlertDetail($event)"
 />
 ```
-
----
 
 ## BmbAlertCenterService
 
