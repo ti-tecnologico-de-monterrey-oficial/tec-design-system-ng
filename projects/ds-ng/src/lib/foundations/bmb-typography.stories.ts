@@ -1,55 +1,54 @@
-import { Meta, StoryFn } from '@storybook/angular';
+import { componentWrapperDecorator, Meta, StoryFn } from '@storybook/angular';
+import {
+  getFoundationDescriptions,
+  getGeneralDescription,
+  getHelpDescriptionForGeneratingVariables,
+  getPageStructureForFoundationStories,
+  getSandboxConsiderationsDocumentation,
+  getSpecialSpecifications,
+  getTypographyDetail,
+  SANDBOX_TITLE,
+  TYPOGRAPHY_DESCRIPTION,
+} from '../utils/doc/utils';
 
 export default {
   title: 'Foundations/Typography',
+  decorators: [
+    componentWrapperDecorator((story: string) => {
+      return `
+          <h1>${SANDBOX_TITLE}</h1>
+          <br/>
+          ${story}`;
+    }),
+  ],
   parameters: {
     docs: {
+      page: () => getPageStructureForFoundationStories(),
       description: {
-        component: `Explore the typographic scale with our "Poppins" font family, ranging from thin to bold variations, and a comprehensive scale of sizes to ensure flexibility and clarity in your design. We've encapsulated each font family and size into specific CSS classes to streamline the application across your projects. Here's how you can use them:
-
-**Font Family:**
-- **Poppins-Thin**: \`.font-thin\`
-- **Poppins-Light**: \`.font-light\`
-- **Poppins-Regular**: \`.font-regular\`
-- **Poppins-Medium**: \`.font-medium\`
-- **Poppins-Semibold**: \`.font-semibold\`
-- **Poppins-Bold**: \`.font-bold\`
-
-**Font Sizes:**
-We provide a scale of sizes from 1 to 12, where each number corresponds to a specific size. To apply a font size, append the size number to the font family class. For example, \`.font-medium-4\` applies the medium family and the 4th size in our scale.
-
-To use the medium family of Poppins with the 4th size, your HTML element should look like this:
-
-\`<div class="font-medium-4">Your text here</div>\`
-
-**Sizes Reference:**
-- **Size 1**: 10px
-- **Size 2**: 11px
-- **Size 3**: 12px
-- **Size 4**: 14px
-- **Size 4_5**: 15px
-- **Size 5**: 16px
-- **Size 6**: 18px
-- **Size 7**: 20px
-- **Size 8**: 22px
-- **Size 9**: 24px
-- **Size 10**: 26px
-- **Size 11**: 36px
-- **Size 12**: 48px
-
-Remember to replace \`font-medium-4\` with the appropriate class based on the family and size you intend to use. The flexibility of these classes allows for a consistent typographic hierarchy and visual coherence across your digital experiences.
-`,
+        component: `
+${getGeneralDescription(getFoundationDescriptions('fonts and sizes', TYPOGRAPHY_DESCRIPTION.concat('<br/>')), 'https://bamboo.tec.mx/latest/foundations/tipografia/descripcion-general-cJHuMZaF')}
+${getSpecialSpecifications(
+  getSandboxConsiderationsDocumentation(
+    'font family and size reference',
+    '',
+    getTypographyDetail(),
+    true,
+  ),
+)}`,
       },
     },
   },
   argTypes: {
     family: {
-      name: 'Font Family',
+      name: 'Font family',
       control: { type: 'select' },
       options: ['thin', 'light', 'regular', 'medium', 'semibold', 'bold'],
-      description: 'Select the font family to look how works.',
+      description: getHelpDescriptionForGeneratingVariables(
+        'font family',
+        true,
+      ),
       table: {
-        category: 'Properties',
+        category: SANDBOX_TITLE,
         type: { summary: 'string' },
       },
     },
@@ -71,9 +70,9 @@ Remember to replace \`font-medium-4\` with the appropriate class based on the fa
         '11',
         '12',
       ],
-      description: 'Select the size to look how works.',
+      description: getHelpDescriptionForGeneratingVariables('size', true),
       table: {
-        category: 'Properties',
+        category: SANDBOX_TITLE,
         type: { summary: 'string' },
       },
     },

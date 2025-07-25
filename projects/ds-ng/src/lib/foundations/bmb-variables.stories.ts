@@ -1,13 +1,47 @@
-import { Meta, StoryFn } from '@storybook/angular';
+import { componentWrapperDecorator, Meta, StoryFn } from '@storybook/angular';
+import {
+  DESIGN_SYSTEM_TITLE,
+  FONT_FAMILY_DESCRIPTION,
+  getFoundationDescriptions,
+  getGeneralDescription,
+  getPageStructureForFoundationStories,
+  getSandboxConsiderationsDocumentation,
+  getSpecialSpecifications,
+  getTypographyDetail,
+  SANDBOX_TITLE,
+  SPACING_DESCRIPTION,
+} from '../utils/doc/utils';
 
 export default {
   title: 'Foundations/Variables',
+  decorators: [
+    componentWrapperDecorator((story: string) => {
+      return `
+          <h1>${SANDBOX_TITLE}</h1>
+          <br/>
+          ${story}`;
+    }),
+  ],
   parameters: {
     docs: {
+      page: () => getPageStructureForFoundationStories(),
       description: {
-        component: `Explore the CSS variables:
-
-**Spacing:**
+        component: `
+${getGeneralDescription(getFoundationDescriptions('CSS'))}
+${getSpecialSpecifications(
+  getSandboxConsiderationsDocumentation(
+    'spacing, border radius, fonts, and size',
+    `
+>There are rules in ${DESIGN_SYSTEM_TITLE} for CSS variable names, it is important to use them appropriately.
+>- The class name variables have the following structure: \`bmb_{type}-{size}\`.
+>   - ***Font Family*** is an exception.
+>- The style name variables have the following structure: \`--bmb-{type}-{inherit / size}\`.
+>   - ***Colors*** are an exception.
+>
+><br/><br/>`,
+    `
+###Spacing:
+${SPACING_DESCRIPTION}
 - **--bmb-spacing-none**: \`none = 0\`
 - **--bmb-spacing-xxs**: \`2px = 0.125rem \`
 - **--bmb-spacing-xs**: \`4px = 0.25rem\`
@@ -17,12 +51,13 @@ export default {
 - **--bmb-spacing-xl**: \`32px = 2rem\`
 - **--bmb-spacing-xxl**: \`64px = 4rem\`
 - **--bmb-spacing-auto**: \`auto\`
-
-\`.your-class {
+>
+\`\`\`css
+.your-class {
   margin: var(--bmb-spacing-m);
-} \`
-
-**Border radius:**
+} \`\`\`
+><br/>
+###Border radius
 - **--bmb-radius-none**: \`none = 0\`
 - **--bmb-radius-xxs**: \`2px = 0.125rem \`
 - **--bmb-radius-xs**: \`4px = 0.25rem\`
@@ -32,27 +67,22 @@ export default {
 - **--bmb-radius-xl**: \`32px = 2rem\`
 - **--bmb-radius-xxl**: \`64px = 4rem\`
 - **--bmb-radius-full**: \`50%\`
-
-\`.your-class {
+>
+\`\`\`css
+.your-class {
   margin: var(--bmb-radius-m);
-} \`
-
-**Sizes Reference:**
-- **Size 1**: 10px
-- **Size 2**: 11px
-- **Size 3**: 12px
-- **Size 4**: 14px
-- **Size 4_5**: 15px
-- **Size 5**: 16px
-- **Size 6**: 18px
-- **Size 7**: 20px
-- **Size 8**: 22px
-- **Size 9**: 24px
-- **Size 10**: 26px
-- **Size 11**: 36px
-- **Size 12**: 48px
-
-`,
+} \`\`\`
+><br/>
+>${getTypographyDetail(false)}
+>`,
+    true,
+    [],
+    '',
+    false,
+    false,
+    true,
+  ),
+)}`,
       },
     },
   },
@@ -61,9 +91,9 @@ export default {
       name: 'Padding',
       control: { type: 'select' },
       options: ['none', 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl', 'auto'],
-      description: 'Sets the padding area on all sides of an element at once',
+      description: 'Sets the padding area on all sides of an element at once.',
       table: {
-        category: 'Properties',
+        category: SANDBOX_TITLE,
         type: { summary: 'string' },
       },
     },
@@ -73,7 +103,7 @@ export default {
       options: ['none', 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl', 'auto'],
       description: 'Sets the margin area on all sides of an element.',
       table: {
-        category: 'Properties',
+        category: SANDBOX_TITLE,
         type: { summary: 'string' },
       },
     },
@@ -83,12 +113,50 @@ export default {
       options: ['none', 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl', 'full'],
       description: 'Rounds the corners of an element on the outer border edge.',
       table: {
-        category: 'Properties',
+        category: SANDBOX_TITLE,
+        type: { summary: 'string' },
+      },
+    },
+    family: {
+      name: 'Font family',
+      control: { type: 'select' },
+      options: ['thin', 'light', 'regular', 'medium', 'semibold', 'bold'],
+      description: FONT_FAMILY_DESCRIPTION.replace('Explore', 'Sets').concat(
+        '.',
+      ),
+      table: {
+        category: SANDBOX_TITLE,
+        type: { summary: 'string' },
+      },
+    },
+    size: {
+      name: 'Size',
+      control: { type: 'select' },
+      options: [
+        '1',
+        '2',
+        '3',
+        '4',
+        '4_5',
+        '5',
+        '6',
+        '7',
+        '8',
+        '9',
+        '10',
+        '11',
+        '12',
+      ],
+      description: '',
+      table: {
+        category: SANDBOX_TITLE,
         type: { summary: 'string' },
       },
     },
   },
   args: {
+    family: 'regular',
+    size: '5',
     padding: 'm',
     radius: 'm',
     margin: 'm',
@@ -107,7 +175,7 @@ function getStyle(args: any): any {
 
 const customizable = (): StoryFn => (args) => ({
   props: args,
-  template: `<div class="font-regular-5" ${getStyle(args)}>Typography</div>`,
+  template: `<div class="font-${args['family']}-${args['size']}" ${getStyle(args)}>Typography</div>`,
 });
 
 export const Default = customizable();

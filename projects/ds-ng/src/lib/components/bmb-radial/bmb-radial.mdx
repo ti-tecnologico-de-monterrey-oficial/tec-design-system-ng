@@ -1,46 +1,8 @@
-import {
-  Canvas,
-  Controls,
-  Description,
-  Heading,
-  Header,
-  Meta,
-  Title,
-  Stories,
-} from "@storybook/addon-docs/blocks";
-
-import * as listStory from "./bmb-radial.stories";
-import * as itemStory from "../bmb-form-validator/bmb-form-validator.stories";
+import { Meta } from "@storybook/addon-docs/blocks";
+import * as inputStory from "./bmb-radial.stories";
+import * as formStory from "../bmb-form-validator/bmb-form-validator.stories";
 import * as example from "../bmb-form-validator/bmb-form-validator-example.stories";
-import { Tabs } from "../../../DocComponents/Tabs.mdx";
+import { InputTemplate } from "../../../DocComponents/InputTemplate.mdx";
 
-export const List = () => (
-  <section>
-    <Meta of={listStory} />
-    <Title />
-    <Description />
-    <Canvas withToolbar={true} />
-    <Controls />
-  </section>
-);
-
-export const Item = () => (
-  <section>
-    <Meta of={itemStory} />
-    <Title of={itemStory}>{itemStory?.title}</Title>
-    <Description of={itemStory}>{itemStory}</Description>
-    <Canvas of={itemStory.Default} withToolbar={true} />
-    <Controls of={itemStory.Default} />
-    <Title of={example}>{example?.title}</Title>
-    <Canvas of={example.Default} sourceState={"none"} />
-  </section>
-);
-
-<Meta of={listStory} />
-<Tabs
-  tabs={[
-    <Title>{listStory?.title}</Title>,
-    <Title of={itemStory}>{itemStory?.title}</Title>,
-  ]}
-  content={[<List />, <Item />]}
-/>
+<Meta of={inputStory} />
+<InputTemplate />

@@ -2,13 +2,16 @@
  * Public API Surface of ds-ng
  */
 
+// Services
 export * from './lib/ds-ng.service';
 export * from './lib/services/notification.service';
 export * from './lib/services/tabs.service';
 export * from './lib/services/calendar.service';
 export * from './lib/services/user/profile.service';
 export * from './lib/components/bmb-login-onboarding/bmb-login-onboarding.service';
+export * from './lib/components/bmb-alert-center/bmb-alert-center.service';
 
+// Directives
 export * from './lib/ds-ng.component';
 export * from './lib/directives/bmb-button/button.directive';
 export * from './lib/directives/bmb-layout/bmb-layout-item.directive';
@@ -114,6 +117,7 @@ export * from './lib/components/bmb-user-profile/bmb-user-profile.component';
 export * from './lib/components/bmb-academic-progress/bmb-academic-progress.component';
 export * from './lib/components/bmb-portal/bmb-portal.component';
 export * from './lib/components/bmb-list-group/bmb-list-group.component';
+export * from './lib/components/bmb-list-group/bmb-list-group-item/bmb-list-group-item.component';
 export * from './lib/components/bmb-simple-header/bmb-simple-header.component';
 export * from './lib/components/bmb-drawer-overlay/bmb-drawer-overlay.component';
 export * from './lib/components/bmb-mitec-logo-animation/bmb-mitec-logo-animation.component';

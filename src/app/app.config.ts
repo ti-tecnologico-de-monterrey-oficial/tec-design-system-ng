@@ -5,6 +5,7 @@ import {
   BmbNotificationService,
   BmbCalendarService,
   BmbLoginOnboardingService,
+  BmbAlertCenterService,
 } from '../../projects/ds-ng/src/public-api';
 
 import { routes } from './app.routes';
@@ -20,6 +21,7 @@ export const appConfig: ApplicationConfig = {
       BmbNotificationService,
       BmbCalendarService,
       BmbLoginOnboardingService,
+      BmbAlertCenterService,
     ]),
   ],
 };

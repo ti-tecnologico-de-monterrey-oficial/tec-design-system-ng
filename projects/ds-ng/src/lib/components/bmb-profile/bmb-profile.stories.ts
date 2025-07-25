@@ -1,10 +1,26 @@
-import { StoryObj, type Meta } from '@storybook/angular';
+import {
+  componentWrapperDecorator,
+  moduleMetadata,
+  StoryObj,
+  type Meta,
+} from '@storybook/angular';
 import { BmbProfileComponent } from './bmb-profile.component';
 import { attributes } from '../../utils/doc/utils';
 
 export default {
   title: 'Components/Containers/Profile card',
   component: BmbProfileComponent,
+  decorators: [
+    moduleMetadata({
+      imports: [],
+      providers: [],
+    }),
+    componentWrapperDecorator((story: string) => {
+      return `<div style="max-width: 560px; margin: 0 auto">
+          ${story}
+        </div>`;
+    }),
+  ],
   parameters: {
     docs: {
       description: {
@@ -89,11 +105,18 @@ Sets the stand alone data to display in the component.
       description: `
 Sets the student data to display in the component.
 
+    Display logic:
+    - If isExatec is true and linkedin is provided, the LinkedIn profile is shown.
+    - If isExatec is false and curp is provided, the CURP is shown.
+
     IBmbStudentProfileData {
       userData: IBmbUserData;
       period: string;
       campus: string;
       program: string;
+      curp: string;
+      linkedin: string;
+      isExatec: boolean;
     }
       `,
       table: {
@@ -269,14 +292,9 @@ export const Default = {
   render: (args: any) => ({
     props: args,
     template: `
-    <!-- Instruction to users: This html is used for internal Storybook logic -->
-    <div style="max-width: 560px; margin: 0 auto">
-      <!-- Example of how you can use this component -->
       <bmb-profile
         ${attributes(args)}
       />
-      <!-- End of the example -->
-    </div>
     `,
   }),
 };
@@ -294,6 +312,8 @@ export const StudentMobileExample = {
       period: 'AGO-DIC 24',
       campus: 'Monterrey',
       program: 'ARQ19',
+      curp: 'xxxx0000xxxx0000xx',
+      isExatec: false,
     },
     campusAcessLink: 'https://www.example.com',
     idDigitalLink: 'https://www.example.com',
@@ -307,14 +327,10 @@ export const StudentMobileExample = {
   render: (args: any) => ({
     props: args,
     template: `
-    <!-- Instruction to users: This html is used for internal Storybook logic -->
-    <div style="max-width: 560px; margin: 0 auto">
-      <!-- Example of how you can use this component -->
       <bmb-profile
+        [studentData]="studentData"
         ${attributes(args)}
       />
-      <!-- End of the example -->
-    </div>
     `,
   }),
 };
@@ -338,19 +354,18 @@ export const StudentWebExample = {
       period: 'AGO-DIC 24',
       campus: 'Monterrey',
       program: 'ARQ19',
+      curp: 'xxxx0000xxxx0000xx',
+      linkedin: `<a href="https://linkedin.com" target="_blank" rel="noopener">Ir a LinkedIn</a>`,
+      isExatec: true,
     },
   },
   render: (args: any) => ({
     props: args,
     template: `
-    <!-- Instruction to users: This html is used for internal Storybook logic -->
-    <div style="max-width: 560px; margin: 0 auto">
-      <!-- Example of how you can use this component -->
       <bmb-profile
-        ${attributes(args)}
+        [isMobile]="isMobile"
+        [studentData]="studentData"
       />
-      <!-- End of the example -->
-    </div>
     `,
   }),
 };
@@ -395,14 +410,9 @@ export const CollaboratorMobileExample = {
   render: (args: any) => ({
     props: args,
     template: `
-    <!-- Instruction to users: This html is used for internal Storybook logic -->
-    <div style="max-width: 560px; margin: 0 auto">
-      <!-- Example of how you can use this component -->
       <bmb-profile
         ${attributes(args)}
       />
-      <!-- End of the example -->
-    </div>
     `,
   }),
 };
@@ -449,14 +459,9 @@ export const CollaboratorWebExample = {
   render: (args: any) => ({
     props: args,
     template: `
-    <!-- Instruction to users: This html is used for internal Storybook logic -->
-    <div style="max-width: 560px; margin: 0 auto">
-      <!-- Example of how you can use this component -->
       <bmb-profile
         ${attributes(args)}
       />
-      <!-- End of the example -->
-    </div>
     `,
   }),
 };

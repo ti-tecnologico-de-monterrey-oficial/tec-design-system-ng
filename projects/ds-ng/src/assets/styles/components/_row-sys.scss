@@ -7,12 +7,15 @@
   align-items: center;
   min-height: 100%;
 
-  &-item-full {
-    display: flex;
-    gap: rem.rem_calc(40);
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  &-item {
     width: 100%;
+
+    &-full {
+      overflow-y: auto;
+
+      > .bmb_card {
+        overflow: auto;
+      }
+    }
   }
 }

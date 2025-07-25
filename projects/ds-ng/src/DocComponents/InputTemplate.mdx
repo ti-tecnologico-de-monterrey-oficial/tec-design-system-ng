@@ -1,0 +1,34 @@
+import { Meta, Title, Stories } from "@storybook/addon-docs/blocks";
+import { GeneralTemplate } from "./GeneralTemplate.mdx";
+import { Tabs } from "./Tabs.mdx";
+import * as formValidator from "../lib/components/bmb-form-validator/bmb-form-validator.stories";
+import * as formExample from "../lib/components/bmb-form-validator/bmb-form-validator-example.stories";
+import { STORIES_TITLE } from "../lib/utils/doc/utils";
+
+export const Input = () => (
+  <section>
+    <GeneralTemplate />
+  </section>
+);
+
+export const FormValidator = () => (
+  <section>
+    <GeneralTemplate showStories={false}>{formValidator}</GeneralTemplate>
+    <Meta of={formExample} />
+    <Stories title={STORIES_TITLE} includePrimary={false} />
+  </section>
+);
+
+export const InputTemplate = () => {
+  return (
+    <section>
+      <Tabs
+        tabs={[
+          <Title />,
+          <Title of={formValidator}>{formValidator?.title}</Title>,
+        ]}
+        content={[<Input />, <FormValidator />]}
+      />
+    </section>
+  );
+};

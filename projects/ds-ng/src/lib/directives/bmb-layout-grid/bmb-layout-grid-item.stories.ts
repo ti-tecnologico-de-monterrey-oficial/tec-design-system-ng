@@ -1,10 +1,16 @@
-import { InputSignal } from '@angular/core';
 import {
   BmbLayoutGridDirective,
   BmbLayoutGridItemDirective,
 } from './bmb-layout-grid.directive';
 import { Meta, moduleMetadata, StoryFn } from '@storybook/angular';
-import { attributes } from '../../utils/doc/utils';
+import {
+  attributes,
+  getAuxiliaryDescription,
+  getBasicExampleBlock,
+  getGeneralDescription,
+  getGridGeneratorLink,
+  getSpecialSpecifications,
+} from '../../utils/doc/utils';
 import { CommonModule } from '@angular/common';
 import {
   BmbCardComponent,
@@ -31,34 +37,22 @@ const meta: Meta<BmbLayoutGridItemDirective> = {
     docs: {
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbLayoutGridDirective, BmbLayoutGridItemDirective } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbLayoutGridDirective, BmbLayoutGridItemDirective ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
+${getGeneralDescription(getAuxiliaryDescription('Layout grid', 'Layout grid item'), '').replace('Description', '-Description')}
+${getSpecialSpecifications(`
 The layout grid item is used to define an item within a layout grid. It allows you to specify the position and size of the item within the grid.
-
+><br/><br/><br/>
 ## Defining the position of the item
-
 You can define the position of the item within the grid using the \`colStart\`, \`rowStart\`, \`numberOfColumns\`, and \`numberOfRows\` properties. These properties allow you to specify the starting column and row for the item, as well as how many columns and rows it should span.
-
-## Grid generator
-You can use this tool to generate a custom grid: [Grid generator](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-grid-generator--documentation)
+><br/><br/><br/>
+${getGridGeneratorLink()}
+`).replace('Considerations / Restrictions', '-Considerations / Restrictions')}
+${getBasicExampleBlock('BmbLayoutGridDirective, BmbLayoutGridItemDirective').replace('TypeScript example', '-TypeScript example').replace('HTML example', '-HTML example')}
         `,
       },
     },
   },
   argTypes: {
     colStart: {
-      name: 'Column Start',
       control: {
         type: 'number',
       },
@@ -70,7 +64,6 @@ You can use this tool to generate a custom grid: [Grid generator](https://develo
       },
     },
     rowStart: {
-      name: 'Row Start',
       control: {
         type: 'number',
       },
@@ -83,7 +76,6 @@ You can use this tool to generate a custom grid: [Grid generator](https://develo
       },
     },
     numberOfColumns: {
-      name: 'Number of Columns',
       control: {
         type: 'number',
       },
@@ -96,7 +88,6 @@ You can use this tool to generate a custom grid: [Grid generator](https://develo
       },
     },
     numberOfRows: {
-      name: 'Number of Rows',
       control: {
         type: 'number',
       },

@@ -15,6 +15,7 @@ import {
   BmbCardContentComponent,
 } from '../bmb-card/bmb-card.component';
 import { BmbProgressBarComponent } from '../bmb-progress-bar/bmb-progress-bar.component';
+import { getUUID } from '../../utils/utils';
 // import { IBmbContrast } from '../../types/colors';
 interface FileData {
   name: string;
@@ -57,7 +58,7 @@ export class BmbDropzoneComponent {
   );
   mainIcon = input<string>('image');
   multiple = input<boolean>(false);
-  name = input<string>('bmbFileInput');
+  name = input<string>(getUUID());
   progress = input<Record<string, number> | number>({});
 
   newFile = output<File | File[]>();

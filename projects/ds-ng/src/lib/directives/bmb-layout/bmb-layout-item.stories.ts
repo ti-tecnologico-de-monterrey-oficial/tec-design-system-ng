@@ -7,7 +7,13 @@ import {
   BmbCardComponent,
   BmbCardContentComponent,
 } from '../../components/bmb-card/bmb-card.component';
-import { attributes } from '../../utils/doc/utils';
+import {
+  attributes,
+  getAuxiliaryDescription,
+  getBasicExampleBlock,
+  getGeneralDescription,
+  getSpecialSpecifications,
+} from '../../utils/doc/utils';
 
 const meta: Meta<BmbLayoutItemDirective> = {
   title: 'Foundations/Layouts/Layout/Layout item',
@@ -15,7 +21,6 @@ const meta: Meta<BmbLayoutItemDirective> = {
   component: BmbLayoutItemDirective,
   decorators: [
     moduleMetadata({
-      declarations: [],
       imports: [
         CommonModule,
         BmbLayoutDirective,
@@ -26,34 +31,22 @@ const meta: Meta<BmbLayoutItemDirective> = {
     }),
   ],
   parameters: {
+    controls: { exclude: ['flex'] },
     docs: {
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbLayoutDirective, BmbLayoutItemDirective } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbLayoutDirective, BmbLayoutItemDirective ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-This component is used to create a layout for your application. It allows you to define the size of the columns for different screen sizes (mobile and full resolution). You can also set margins for the left and right sides of the columns. The \`isDynamicItem\` property allows you to enable dynamic sizing for the columns, and the \`colGrow\` property sets how much of the flex container positive free space should be assigned to the flex item main size.
-
+${getGeneralDescription(getAuxiliaryDescription('Layout', 'Layout item'), 'https://bamboo.tec.mx/latest/foundations/layout/descripcion-general-EfPFAmaP').replace('Description', '-Description')}
+${getSpecialSpecifications(`
+This component is used to create a layout for your application. It allows you to define the size of the columns for different screen sizes (mobile and full resolution). You can also set margins for the left and right sides of the columns. The \`isDynamicItem\` property allows you to enable dynamic sizing for the columns, and the \`colGrow\` property sets how much of the flex container positive free space should be assigned to the flex item main size.<br/><br/>
 The \`colSm\` and \`colLg\` properties determine the size of the columns for mobile and full resolution devices, respectively. The \`marginLeft\` and \`marginRight\` properties set the margin areas on the left and right sides of the columns.
-
-Below is an example of how you can use this component in HTML:
+`).replace('Considerations / Restrictions', '-Considerations / Restrictions')}
+${getBasicExampleBlock('BmbLayoutDirective, BmbLayoutItemDirective').replace('TypeScript example', '-TypeScript example').replace('HTML example', '-HTML example')}
         `,
       },
     },
   },
   argTypes: {
     colSm: {
-      name: 'Column size for mobile devices',
       control: {
         type: 'select',
       },
@@ -66,7 +59,6 @@ Below is an example of how you can use this component in HTML:
       description: 'Determines the size of the space between elements.',
     },
     colLg: {
-      name: 'Column size for full resolution devices',
       control: {
         type: 'select',
       },
@@ -79,7 +71,6 @@ Below is an example of how you can use this component in HTML:
       description: 'Determines the size of the space between elements.',
     },
     marginLeft: {
-      name: 'Margin left',
       control: 'object',
       table: {
         type: { summary: 'IMargin' },
@@ -90,7 +81,6 @@ Below is an example of how you can use this component in HTML:
         'Sets the margin area on the left side of an column. The SM value support 3 as top and LG supports 11 as top',
     },
     marginRight: {
-      name: 'Margin right',
       control: 'object',
       table: {
         type: { summary: 'IMargin' },
@@ -101,7 +91,6 @@ Below is an example of how you can use this component in HTML:
         'Sets the margin area on the right side of an column. The SM value support 3 as top and LG supports 11 as top',
     },
     isDynamicItem: {
-      name: 'Is dinamyc item',
       control: { type: 'boolean' },
       description:
         'Enable dinamyc size for the column, if you enable this property the colLg and colSm will be disabled',
@@ -112,7 +101,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     colGrow: {
-      name: 'Col grow',
       control: 'number',
       description:
         'Sets how much of the flex container positive free space, if any, should be assigned to the flex item main size. (this property will only be enabled when the isDynamicItem property is enabled)',

@@ -1,26 +1,28 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbCheckboxComponent } from './bmb-checkbox.component';
 import {
+  generateLabel,
+  getBasicExampleBlock,
   getCheckboxOrRadialArchitecture,
-  getDescribeTypeTextBlock,
-  getGeneralComponentDescription,
-  getHTMLFormExampleTextBlock,
-  getTypescriptFormExampleTextBlock,
+  getFieldDescription,
+  getFormExampleBlock,
 } from '../../utils/doc/utils';
 import { InputParameterDescriptions } from '../../utils/doc/parameterDescriptions';
 
 const inputName = 'checkbox';
-const additionalBlock = `handleCheckboxChange(event: Event): void {
+const label = generateLabel(inputName);
+const additionalBlock = `handle${label}Change(event: Event): void {
     const element = event.target as HTMLInputElement;
-    console.log('Checkbox checked state:', element.checked);
-    console.log('Checkbox name:', element.name);
+    console.log('${label} checked state:', element.checked);
+    console.log('${label} name:', element.name);
+    //Add your code
   }`;
-const bmbInputName = `<bmb-checkbox
-  inputId="checkbox_id"
+const inputExample = `<bmb-${inputName}
+  inputId="${inputName}_id"
   name="${inputName}"
-  label="Checkbox"
+  label="${label}"
   [control]="getFormControl('${inputName}')"
-  (change)="handleCheckboxChange($event)"
+  (change)="handle${label}Change($event)"
   />`;
 export default {
   title: 'Components/Inputs/Checkbox',
@@ -33,11 +35,14 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralComponentDescription('bmb-checkbox', 'select one or more options.')}
+${getFieldDescription(
+  'checkbox',
+  'select one or more options.',
+  'https://bamboo.tec.mx/latest/componentes/checkbox/descripcion-general-nl6Z6U1M',
+)}
 ${getCheckboxOrRadialArchitecture('checkbox')}
-${getTypescriptFormExampleTextBlock('BmbCheckboxComponent', inputName, additionalBlock)}
-${getHTMLFormExampleTextBlock(bmbInputName)}
-${getDescribeTypeTextBlock('HTML')}
+${getFormExampleBlock('BmbCheckboxComponent', inputName, additionalBlock, inputExample)}
+${getBasicExampleBlock('BmbCheckboxComponent')}
         `,
       },
     },
@@ -58,7 +63,7 @@ If this property is set to **true**, the checkbox is selected; if set to **false
         type: { summary: 'boolean' },
       },
     },
-    disabled: InputParameterDescriptions.disabled,
+    disabled: InputParameterDescriptions.disabledFormControl,
     required: InputParameterDescriptions.isRequired,
     indeterminate: {
       control: { type: 'boolean' },

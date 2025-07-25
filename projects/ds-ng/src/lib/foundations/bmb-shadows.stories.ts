@@ -1,13 +1,23 @@
 import { CommonModule } from '@angular/common';
-import { Component, input, InputSignal } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { moduleMetadata, Meta, StoryObj } from '@storybook/angular';
 import { BmbDividerComponent } from '../components/bmb-divider/bmb-divider.component';
+import {
+  getFoundationDescriptions,
+  getGeneralDescription,
+  getHelpDescriptionForGeneratingVariables,
+  getPageStructureForFoundationStories,
+  getSandboxConsiderationsDocumentation,
+  getSpecialSpecifications,
+  SANDBOX_TITLE,
+} from '../utils/doc/utils';
 
 @Component({
   selector: 'storybook-shadows-stories',
   standalone: true,
   imports: [CommonModule, BmbDividerComponent],
   template: `
+    <h1>${SANDBOX_TITLE}</h1>
     <p [ngStyle]="getStyles()">
       <button
         style="color: var(--general_contrasts-100);"
@@ -54,24 +64,42 @@ export default {
   ],
   parameters: {
     docs: {
+      page: () => getPageStructureForFoundationStories(),
       description: {
         component: `
-This is a collection of shadows styles that can be used in the application. The shadows are defined in the CSS variables and can be used in the application by using the class name or the CSS variable name.
-
-**You should be careful when using shadows**, as they can affect Bamboo components. Some components may override this attribute, so check the component's documentation before applying the shadow class.
-`,
+${getGeneralDescription(
+  getFoundationDescriptions(
+    'shadow boxes',
+    '***Shadow boxes*** are deep frames create a sense of depth and dimension.<br/><br/>',
+  ),
+  'https://bamboo.tec.mx/latest/foundations/shadow-boxes-kRa1Gtdt',
+)}
+${getSpecialSpecifications(
+  getSandboxConsiderationsDocumentation(
+    'shadow boxes',
+    '',
+    '',
+    true,
+    ['box-shadow'],
+    `margin: var(--bmb-spacing-m);
+      border: var(--bmb-border-general_contrasts-50-2-solid);
+      border-radius: var(--bmb-radius-m);`,
+  ),
+)}`,
       },
     },
   },
   argTypes: {
     shadowsName: {
-      name: 'Shadows Name',
-      description:
-        'This is a collection of shadows names that can be used in the application.',
+      name: 'Shadows name',
+      description: getHelpDescriptionForGeneratingVariables(
+        'shadow boxes',
+        true,
+      ),
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'bmb-box-shadow-1' },
-        category: 'Properties',
+        category: SANDBOX_TITLE,
       },
       control: {
         type: 'select',

@@ -1,89 +1,133 @@
 # Alert Center
 
-The `BmbAlertCenterComponent` is a standalone Angular component designed to display alerts or notifications in a centralized and organized manner. It provides flexibility for managing and displaying multiple alerts with customizable content and actions.
+## Description
 
----
+The `BmbAlertCenter` component is a notification center that allows people to efficiently manage alerts and announcements. It offers features such as categorization, multiple selection, and detailed alert visualization.
 
-## Selector
+## Usage
+
+### Import
+
+```typescript
+import { BmbAlertCenterComponent } from "./bmb-alert-center.component";
+```
+
+### Selector
 
 ```html
 <bmb-alert-center></bmb-alert-center>
 ```
 
----
+> **Important**: To manage the status of the Alert Center, you need to use the `BmbAlertCenterService` service (documentation is available at the end of the document).
 
-## Inputs
+## Properties
 
-The component accepts the following inputs to customize its behavior and appearance:
+### Inputs
 
-| Input          | Type         | Default | Description                                               |
-| -------------- | ------------ | ------- | --------------------------------------------------------- |
-| `alerts`       | `Array<any>` | `[]`    | An array of alert objects to display in the alert center. |
-| `title`        | `string`     | `''`    | The title of the alert center.                            |
-| `showCloseAll` | `boolean`    | `true`  | Determines whether the "Close All" button is displayed.   |
+| Name                      | Type                  | Description                                              |
+| ------------------------- | --------------------- | -------------------------------------------------------- | -------------------------------------- |
+| `dateFormat`              | `string`              | Date format used in alerts. Default value: `dd/MM/yyyy`. |
+| `tabsName`                | `string[]`            | IBmbAlertCenterTabConfig[]`                              | Configuration of the component's tabs. |
+| `hideTabs`                | `boolean`             | Hides the tabs if `true`.                                |
+| `enableMultipleSelection` | `boolean`             | Enables multiple selection of alerts.                    |
+| `emptyStateData`          | `IBmbAlertEmptyState` | Configuration of the component's empty state.            |
 
----
+### Outputs
 
-## Outputs
-
-The component emits the following events:
-
-| Output       | Type   | Description                                                                |
-| ------------ | ------ | -------------------------------------------------------------------------- |
-| `alertClick` | `any`  | Emitted when an alert is clicked, passing the alert object as a parameter. |
-| `closeAll`   | `void` | Emitted when the "Close All" button is clicked.                            |
-
----
+| Name                  | Type                   | Description                                    |
+| --------------------- | ---------------------- | ---------------------------------------------- |
+| `onChangeAlertStatus` | `IBmbDataAlertsOutput` | Event emitted when an alert's status changes.  |
+| `alertEvent`          | `IBmbDataAlert`        | Event emitted when interacting with an alert.  |
+| `showAlertDetail`     | `IBmbDataAlert`        | Event emitted when showing an alert's details. |
+| `closeAlertDetail`    | `IBmbDataAlert`        | Event emitted when closing an alert's details. |
 
 ## Methods
 
-### `closeAlert(alert: any): void`
+### `handleTabChange(tabId: IBmbTab): void`
 
-Closes a specific alert and removes it from the list of alerts.
+Changes the selected tab.
 
-### `handleCloseAll(): void`
+### `handleShowAlert(item: IBmbDataAlertsParsed): void`
 
-Closes all alerts and emits the `closeAll` event.
+Displays the details of an alert.
 
----
+### `handleCloseDetail(alert: IBmbDataAlertsParsed): void`
+
+Closes the details of an alert.
+
+### `handleAlertEvent(alert: IBmbDataAlert): void`
+
+Emits an event related to an alert.
+
+### `handleChangeAlertStatus(alert: IBmbDataAlertsOutput): void`
+
+Emits an event when an alert's status changes.
 
 ## HTML Structure
 
-The component's template is structured as follows:
-
 ```html
-<bmb-alert-center [alerts]="alerts" [title]="'Notifications'" [showCloseAll]="true" (alertClick)="onAlertClick($event)" (closeAll)="onCloseAll()">
-  <ng-container *ngFor="let alert of alerts">
-    <div class="alert">
-      <h3>{{ alert.title }}</h3>
-      <p>{{ alert.message }}</p>
-      <button (click)="closeAlert(alert)">Close</button>
+<div class="bmb-alert-center">
+  <bmb-tabs [tabs]="tabs" (tabChange)="handleTabChange($event)"></bmb-tabs>
+  <div *ngIf="isLoading()" class="bmb-loader"></div>
+  <div *ngIf="!isLoading() && alertList().length === 0" class="bmb-empty-state">
+    <bmb-alert-center-empty [data]="emptyStateData"></bmb-alert-center-empty>
+  </div>
+  <div *ngIf="!isLoading() && alertList().length > 0" class="bmb-alert-list">
+    <div *ngFor="let alert of alertList()" (click)="handleShowAlert(alert)">
+      <!-- Render each alert -->
     </div>
-  </ng-container>
-</bmb-alert-center>
+  </div>
+</div>
 ```
 
----
-
-## Usage Example
+## Example Usage
 
 ```html
-<bmb-alert-center
-  [alerts]="[
-    { title: 'Alert 1', message: 'This is the first alert.' },
-    { title: 'Alert 2', message: 'This is the second alert.' }
-  ]"
-  [title]="'Alert Center'"
-  [showCloseAll]="true"
-  (alertClick)="onAlertClick($event)"
-  (closeAll)="onCloseAll()"
-></bmb-alert-center>
+<bmb-alert-center [dateFormat]="'dd/MM/yyyy'" [tabsName]="[{title: 'Notificaciones', isMobile: true, isDesktop: true}, {title: 'No leídos', isMobile: false, isDesktop: true}, {title: 'Favoritos', isMobile: false, isDesktop: true}, {title: 'Archivados', isMobile: false, isDesktop: true}, {title: 'Anuncios', isMobile: true, isDesktop: true}]" [hideTabs]="false" [enableMultipleSelection]="true" (onChangeAlertStatus)="onChangeAlertStatus($event)" (alertEvent)="alertEvent($event)" (showAlertDetail)="showAlertDetail($event)" (closeAlertDetail)="closeAlertDetail($event)" />
 ```
 
 ---
 
-## Dependencies
+## BmbAlertCenterService
 
-The component relies on the following modules and components:
+### Description
 
-- `CommonModule` (Angular)
+The `BmbAlertCenterService` is a service designed to manage alerts and advertisements for the `BmbAlertCenter` component. It provides methods to set, update, and retrieve alerts and advertisements, as well as manage the loading state.
+
+### Methods
+
+#### Alerts Management
+
+- **`setAlerts(alerts: IBmbDataAlert[]): void`**
+  Sets the list of alerts.
+
+- **`updateAlerts(alertList: IBmbDataAlert[]): void`**
+  Updates the existing alerts with new data.
+
+- **`addAlerts(alerts: IBmbDataAlert[]): void`**
+  Adds new alerts to the existing list.
+
+- **`getAlerts(): IBmbDataAlert[]`**
+  Retrieves the current list of alerts.
+
+#### Advertisements Management
+
+- **`setAdvertisements(advertisements: IBmbDataAlert[]): void`**
+  Sets the list of advertisements.
+
+- **`updateAdvertisements(advertisements: IBmbDataAlert[]): void`**
+  Updates the existing advertisements with new data.
+
+- **`addAdvertisements(advertisements: IBmbDataAlert[]): void`**
+  Adds new advertisements to the existing list.
+
+- **`getAdvertisements(): IBmbDataAlert[]`**
+  Retrieves the current list of advertisements.
+
+#### Loading State Management
+
+- **`getLoadingState(): boolean`**
+  Retrieves the current loading state.
+
+- **`setLoadingState(loading: boolean): void`**
+  Sets the loading state.

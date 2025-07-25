@@ -1,11 +1,11 @@
 import { Meta, StoryObj, componentWrapperDecorator } from '@storybook/angular';
 import { BmbDateRangeComponent } from './bmb-date-range.component';
 import {
-  getArchitectureTitle,
-  getDescribeTypeTextBlock,
-  getGeneralComponentDescription,
-  getHTMLFormExampleTextBlock,
-  getTypescriptFormExampleTextBlock,
+  generateLabel,
+  getArchitectureSection,
+  getBasicExampleBlock,
+  getFieldDescription,
+  getFormExampleBlock,
 } from '../../utils/doc/utils';
 import {
   getControlDescription,
@@ -13,11 +13,12 @@ import {
 } from '../../utils/doc/parameterDescriptions';
 
 const inputName = 'date_range';
-const bmbInputName = `<bmb-date-range
-  inputId="date_range_id"
+const label = generateLabel(inputName);
+const inputExample = `<bmb-date-range
+  inputId="${inputName}e_id"
   name="${inputName}"
-  labelStartDate="Date range start"
-  labelEndDate="Date range end"
+  labelStartDate="${label} start"
+  labelEndDate="${label} end"
   [controlStart]="getFormControl('${inputName}_start')"
   [controlEnd]="getFormControl('${inputName}_end')"
   />`;
@@ -48,22 +49,29 @@ export default {
     docs: {
       description: {
         component: `
-${getGeneralComponentDescription('bmb-date-range', 'select a span of dates, with a start and end date from a calendar view, within a dialog box.')}
-${getArchitectureTitle()}
-\`\`\`html
+${getFieldDescription(
+  'date-range',
+  'select a span of dates, with a start and end date from a calendar view, within a dialog box.',
+  'https://bamboo.tec.mx/latest/componentes/date-picker-range/descripcion-general-DhZ4ML3S',
+)}
+${getArchitectureSection(
+  `
 <section class="bmb_date-range" <!-- conditional class bmb_date-range-column -->>
   <bmb-datepicker/>
   <bmb-datepicker/>
 </section>
-\`\`\`
-[bmb-datepicker - DOM Architecture](/docs/components-inputs-calendar-date-picker--documentation&globals=#dom-architecture)
-${getTypescriptFormExampleTextBlock(
+`,
+  'datepicker',
+  'components-inputs-calendar-date-picker',
+)}
+${getFormExampleBlock(
   'BmbDateRangeComponent',
   `${inputName}_start: new FormControl(),
   ${inputName}_end`,
+  '',
+  inputExample,
 )}
-${getHTMLFormExampleTextBlock(bmbInputName)}
-${getDescribeTypeTextBlock('HTML')}
+${getBasicExampleBlock('BmbDateRangeComponent')}
         `,
       },
     },
@@ -118,7 +126,7 @@ ${getDescribeTypeTextBlock('HTML')}
     requiredFieldErrorMessage:
       InputParameterDescriptions.requiredFieldErrorMessage,
     appearance: InputParameterDescriptions.deprecated,
-    disabled: InputParameterDescriptions.disabled,
+    disabled: InputParameterDescriptions.disabledFormControl,
     isRequired: InputParameterDescriptions.isRequired,
     isClearable: InputParameterDescriptions.isClearable,
     controlStart: {

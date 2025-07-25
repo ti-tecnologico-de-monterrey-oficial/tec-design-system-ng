@@ -6,6 +6,18 @@ import {
   BmbCardComponent,
   BmbCardContentComponent,
 } from '../components/bmb-card/bmb-card.component';
+import {
+  getFoundationDescriptions,
+  getGeneralDescription,
+  getHelpDescriptionForGeneratingVariables,
+  getPageStructureForFoundationStories,
+  getSandboxConsiderationsDocumentation,
+  getSpecialSpecifications,
+  getVariableAndClassesSizes,
+  getVariableDetail,
+  SANDBOX_TITLE,
+  SPACING_DESCRIPTION,
+} from '../utils/doc/utils';
 
 @Component({
   standalone: true,
@@ -17,6 +29,8 @@ import {
     BmbCardContentComponent,
   ],
   template: `
+    <h1>${SANDBOX_TITLE}</h1>
+    <br />
     <div
       [ngStyle]="{
         padding: 'var(--bmb-padding-' + padding() + ')',
@@ -117,100 +131,59 @@ const options = [
 export default {
   title: 'Foundations/Spacing',
   component: BmbSpacingPlaygroundComponent,
-  decorators: [
-    moduleMetadata({
-      imports: [
-        CommonModule,
-        BmbDividerComponent,
-        BmbCardComponent,
-        BmbCardContentComponent,
-      ],
-    }),
-  ],
   parameters: {
     docs: {
+      page: () => getPageStructureForFoundationStories(),
       description: {
-        component: `This is a collection of spacing styles that can be used in the application. The spacing is defined in the CSS variables and can be used in the application by using the class name or the CSS variable name.
-
-## Class Name
-The class name is defined as \`bmb_padding-{padding}\`, \`bmb_margin-{margin}\`, and \`bmb_gap-{gap}\` where {padding}, {margin}, and {gap} are the spacing size, and also set the variable \`--bmb-padding\`, \`--bmb-margin\`, and \`--bmb-gap\` for the child elements.
-
-\`\`\`
-<div style="border: var(--bmb-border-general_contrasts-50-1-solid);" class="bmb_padding-4 bmb_margin-4 bmb_gap-4">
-  <div style="padding: var(--bmb-padding); margin: var(--bmb-margin); gap: var(--bmb-gap);">
-    The child element has access to the padding, margin, and gap of the parent element's size through the variables --bmb-padding, --bmb-margin, and --bmb-gap.
-  </div>
-</div>
-\`\`\`
-
-## CSS Variable
-The CSS variable name is defined as \`--bmb-padding-{padding}\`, \`--bmb-margin-{margin}\`, and \`--bmb-gap-{gap}\` where {padding}, {margin}, and {gap} are the spacing size.
-
-\`\`\`
-<div style="padding: var(--bmb-padding-4); margin: var(--bmb-margin-4); gap: var(--bmb-gap-4);">
-  Content with padding, margin, and gap applied using CSS variables.
-</div>
-\`\`\`
-
-## Values
-
-The spacing size are defined on REM units, and can be used in the application by using the class name or the CSS variable name. The spacing size can be one of the following:
-
-- none: 0px
-- xxs: ≈2px
-- xs: ≈4px
-- s: ≈8px
-- m: ≈16px
-- l: ≈24px
-- xl: ≈32px
-- xxl: ≈64px
-- auto: auto
-- 1: ≈4px
-- 2: ≈8px
-- 3: ≈12px
-- 4: ≈16px
-- 5: ≈20px
-- 6: ≈24px
-- 7: ≈28px
-- 8: ≈32px
-- 9: ≈36px
-- 10: ≈40px
-
-**You should be careful when using the spacing**, as they can affect Bamboo components. Some components may override this attribute, so check the component's documentation before applying the spacing class.
-`,
+        component: `
+${getGeneralDescription(getFoundationDescriptions('spacing', SPACING_DESCRIPTION.concat('<br/><br/>')), 'https://bamboo.tec.mx/latest/foundations/spacing/descripcion-general-Mg3ksz2Z')}
+${getSpecialSpecifications(
+  getSandboxConsiderationsDocumentation(
+    'spacing',
+    '',
+    `###Additional:
+For padding, margin, and gap it is also possible to use the CSS *spacing* variables. ${getVariableDetail('spacing', '', 'padding, margin, and gap', '\`--bmb-spacing-{spacing}\`', '\`{spacing}\`', 'padding: var(--bmb-spacing-4); margin: var(--bmb-spacing-4); gap: var(--bmb-spacing-4);')}<br/>
+    ${getVariableAndClassesSizes('spacing')}`,
+    true,
+    ['padding', 'margin', 'gap'],
+    '',
+    true,
+    true,
+  ),
+)}`,
       },
     },
   },
   argTypes: {
     padding: {
       name: 'Padding',
-      description: 'The spacing size to use.',
+      description: getHelpDescriptionForGeneratingVariables('padding', true),
       control: { type: 'select' },
       options: options,
       table: {
-        category: 'Properties',
+        category: SANDBOX_TITLE,
         type: { summary: 'string' },
         defaultValue: { summary: '1' },
       },
     },
     margin: {
       name: 'Margin',
-      description: 'The spacing size to use.',
+      description: getHelpDescriptionForGeneratingVariables('margin', true),
       control: { type: 'select' },
       options: options,
       table: {
-        category: 'Properties',
+        category: SANDBOX_TITLE,
         type: { summary: 'string' },
         defaultValue: { summary: '1' },
       },
     },
     gap: {
       name: 'Gap',
-      description: 'The spacing size to use.',
+      description: getHelpDescriptionForGeneratingVariables('gap', true),
       control: { type: 'select' },
       options: options,
       table: {
-        category: 'Properties',
+        category: SANDBOX_TITLE,
         type: { summary: 'string' },
         defaultValue: { summary: '1' },
       },

@@ -9,11 +9,24 @@ import { BmbCheckboxComponent } from '../../bmb-checkbox/bmb-checkbox.component'
 import { IBmbDataAlertsParsed } from '../types';
 import { BmbBadgeComponent } from '../../bmb-badge/bmb-badge.component';
 import { DateTime } from 'luxon';
+import { BmbLayoutDirective } from '../../../directives/bmb-layout/bmb-layout.directive';
+import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
+import {
+  BmbLayoutGridDirective,
+  BmbLayoutGridItemDirective,
+} from '../../../directives/bmb-layout-grid/bmb-layout-grid.directive';
 
 @Component({
   selector: 'bmb-alert-center-list',
   standalone: true,
-  imports: [BmbCheckboxComponent, BmbBadgeComponent],
+  imports: [
+    BmbCheckboxComponent,
+    BmbBadgeComponent,
+    BmbLayoutDirective,
+    BmbLayoutItemDirective,
+    BmbLayoutGridDirective,
+    BmbLayoutGridItemDirective,
+  ],
   templateUrl: './bmb-alert-center-list.component.html',
   styleUrl: './bmb-alert-center-list.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -22,6 +35,7 @@ import { DateTime } from 'luxon';
 export class BmbAlertCenterListComponent {
   alerts = input.required<IBmbDataAlertsParsed[]>();
   name = input<string>('');
+  enableMultipleSelection = input<boolean>(true);
 
   alertSelected = output<IBmbDataAlertsParsed>();
   selectedAlert = output<{ event: Event; item: IBmbDataAlertsParsed }>();

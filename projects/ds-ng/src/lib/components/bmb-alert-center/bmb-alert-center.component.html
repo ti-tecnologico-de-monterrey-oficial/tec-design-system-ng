@@ -6,41 +6,68 @@
     class="bmb_alert-center-main"
     [ngClass]="{ 'bmb_alert-center-main-no-border': hideTabs() }"
   >
-    @if (!hideTabs()) {
-      <bmb-tabs [tabs]="tabs" (selected)="handleTabChange($event)" />
-    }
-    @if (selectedTab === 0) {
-      <bmb-alert-center-form
-        (showAlertDetail)="handleShowAlert($event)"
-        [eventsInCategories]="eventsInCategories"
-        (changeAlertStatus)="handleChangeAlertStatus($event)"
-      />
-    } @else if (selectedTab === 1) {
-      <bmb-alert-center-form
-        (showAlertDetail)="handleShowAlert($event)"
-        [eventsInCategories]="eventsInCategories"
-        (changeAlertStatus)="handleChangeAlertStatus($event)"
-      />
-    } @else if (selectedTab === 2) {
-      <bmb-alert-center-form
-        (showAlertDetail)="handleShowAlert($event)"
-        [eventsInCategories]="eventsInCategories"
-        (changeAlertStatus)="handleChangeAlertStatus($event)"
-      />
-    } @else if (selectedTab === 3) {
-      <bmb-alert-center-form
-        (showAlertDetail)="handleShowAlert($event)"
-        [eventsInCategories]="eventsInCategories"
-        (changeAlertStatus)="handleChangeAlertStatus($event)"
+    @if (isLoading()) {
+      <bmb-loader
+        title="Cargando..."
+        subtitle="Cargando las notificaciones"
+        [overlay]="false"
+        [isVisible]="true"
+        [errorState]="false"
+        appearance="normal"
+        icon="wifi_off"
+        [actions]="false"
+        buttonPrimary="Reintentar"
+        buttonSecondary="Salir"
+        [showInline]="true"
       />
     } @else {
-      <bmb-alert-center-ads
-        [advertisements]="advertisements()"
-        (alertEvent)="handleAlertEvent($event)"
-      />
+      @if (!hideTabs()) {
+        <bmb-tabs [tabs]="tabs" (selected)="handleTabChange($event)" />
+      }
+      @if (selectedTab === 0 && alertList().length) {
+        <bmb-alert-center-form
+          (showAlertDetail)="handleShowAlert($event)"
+          [eventsInCategories]="eventsInCategories()"
+          [enableMultipleSelection]="enableMultipleSelection()"
+          (changeAlertStatus)="handleChangeAlertStatus($event)"
+          filterBy="all"
+        />
+      } @else if (selectedTab === 1 && alertList().length) {
+        <bmb-alert-center-form
+          (showAlertDetail)="handleShowAlert($event)"
+          [eventsInCategories]="eventsInCategories()"
+          [enableMultipleSelection]="enableMultipleSelection()"
+          (changeAlertStatus)="handleChangeAlertStatus($event)"
+          filterBy="unread"
+        />
+      } @else if (selectedTab === 2 && alertList().length) {
+        <bmb-alert-center-form
+          (showAlertDetail)="handleShowAlert($event)"
+          [eventsInCategories]="eventsInCategories()"
+          [enableMultipleSelection]="enableMultipleSelection()"
+          (changeAlertStatus)="handleChangeAlertStatus($event)"
+          filterBy="favorites"
+        />
+      } @else if (selectedTab === 3 && alertList().length) {
+        <bmb-alert-center-form
+          (showAlertDetail)="handleShowAlert($event)"
+          [eventsInCategories]="eventsInCategories()"
+          (changeAlertStatus)="handleChangeAlertStatus($event)"
+          filterBy="archived"
+        />
+      } @else if (selectedTab === 4 && advertisementsList().length) {
+        <bmb-alert-center-ads
+          [advertisements]="advertisementsList()"
+          (alertEvent)="handleAlertEvent($event)"
+        />
+      } @else {
+        <section bmbLayoutItem [colSm]="4" [colLg]="12">
+          <bmb-alert-center-empty [data]="emptyStateData()" />
+        </section>
+      }
     }
   </div>
-  @if (!hideTabs()) {
+  @if (!hideTabs() && alertList().length) {
     <section
       class="bmb_alert-center-content"
       bmbLayoutItem

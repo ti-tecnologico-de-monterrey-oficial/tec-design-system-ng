@@ -1,0 +1,24 @@
+<header class="bmb_template-header">
+  <h3>Home</h3>
+  <h5>Welcome to BambooPress</h5>
+</header>
+<div style="height: calc(100% - 230px)" class="bmb_template-margin-for-sidebar">
+  <bmb-alert-center
+    [alerts]="alerts()"
+    [dateFormat]="'dd/MM/yyyy'"
+    [hideTabs]="false"
+    (closeAlertDetail)="handleCloseDetail($event)"
+  />
+</div>
+<footer style="padding: 1rem">
+  <button bmbButton appearance="destructive" (click)="handleDeleteAllAlerts()">
+    Delete all alerts
+  </button>
+  <button
+    bmbButton
+    appearance="secondary-filled"
+    (click)="handleChangeAlertStatus()"
+  >
+    Change alert status
+  </button>
+</footer>

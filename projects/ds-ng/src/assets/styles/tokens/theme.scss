@@ -75,7 +75,7 @@
   --color-table-900: RGBA(var(--color-charade-100), 1);
   --color-table-btn-900: RGBA(var(--color-charade-50), 1);
 
-  > .sbdocs-wrapper {
+  .sbdocs-wrapper {
     background-color: var(--general_contrasts-25);
     color: var(--general_contrasts-100);
   }
@@ -109,6 +109,11 @@
         .sb-bar {
           background-color: var(--general_contrasts-5);
         }
+
+        .innerZoomElementWrapper > div > div {
+          background-color: var(--containers-background);
+          padding: 0.5rem;
+        }
       }
     }
 
@@ -133,6 +138,10 @@
           box-shadow: rgb(var(--color-blue-tint)) 0px -3px 0px 0px inset;
         }
       }
+    }
+
+    .css-x28zkw :where(hr:not(.sb-anchor, .sb-unstyled, .sb-unstyled hr)) {
+      border-color: var(--general_contrasts-100);
     }
   }
 
@@ -511,5 +520,13 @@ img {
         border-bottom-color: var(--general_contrasts-100);
       }
     }
+
+    &-panel .sbdocs-wrapper {
+      padding: 0;
+    }
   }
+}
+
+.css-14m39zm {
+  overflow: auto;
 }

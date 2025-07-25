@@ -1,3 +1,108 @@
+<!-- <section
+  style="
+    border: var(--bmb-border-general_contrasts-25-1-solid);
+    margin: var(--bmb-spacing-m);
+  "
+  class="bmb_radius-m"
+>
+  <div
+    style="border: var(--bmb-border-general_contrasts-50-2-solid)"
+    class="bmb_radius-m"
+  >
+    Radius
+    <div
+      style="
+        border: var(--bmb-border-general_contrasts-50-2-solid);
+        border-radius: var(--bmb-border-radius);
+      "
+    >
+      Child
+    </div>
+  </div>
+  <br />
+  <div
+    style="border: var(--bmb-border-general_contrasts-50-2-solid)"
+    class="bmb_radius-m"
+  >
+    Test
+  </div>
+  <br />
+  <div
+    style="
+      border: var(--bmb-border-general_contrasts-50-2-solid);
+      border-radius: var(--bmb-radius-m);
+    "
+  >
+    Content with radius applied using CSS variables.
+  </div>
+</section>
+<br />
+<section
+  style="
+    border: var(--bmb-border-general_contrasts-50-2-solid);
+    margin: var(--bmb-spacing-m);
+  "
+  class="bmb_radius-m"
+>
+  <div class="bmb_padding-4 bmb_margin-4 bmb_gap-4">
+    Spacing
+    <div
+      style="
+        padding: var(--bmb-padding);
+        margin: var(--bmb-margin);
+        gap: var(--bmb-gap);
+      "
+    >
+      Child
+    </div>
+  </div>
+  <br />
+  <div class="bmb_padding-4 bmb_margin-4 bmb_gap-4">Test</div>
+  <br />
+  <div
+    style="
+      padding: var(--bmb-padding-4);
+      margin: var(--bmb-margin-4);
+      gap: var(--bmb-gap-4);
+    "
+  >
+    Content with radius applied using CSS variables.
+  </div>
+</section>
+<br />
+<section
+  style="
+    margin: var(--bmb-spacing-m);
+    border: var(--bmb-border-general_contrasts-50-2-solid);
+    border-radius: var(--bmb-radius-m);
+  "
+  class="bmb_radius-m"
+>
+  <br />
+  <div
+    style="
+      margin: var(--bmb-spacing-m);
+      border: var(--bmb-border-general_contrasts-50-2-solid);
+      border-radius: var(--bmb-radius-m);
+    "
+    class="bmb_box-shadow-5"
+  >
+    Test
+  </div>
+  <br />
+  <div
+    style="
+      margin: var(--bmb-spacing-m);
+      border: var(--bmb-border-general_contrasts-50-2-solid);
+      border-radius: var(--bmb-radius-m);
+      box-shadow: var(--bmb-box-shadow-5);
+    "
+  >
+    box-shadow style
+  </div>
+</section>
+<br />
+<bmb-theme initialTheme="light" />
 <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
   <bmb-datepicker
     inputId="date_picker_id"
@@ -70,4 +175,30 @@
 </form>
 FormGroup state: {{ userForm.status }}
 <br />
-FormGroup value {{ userForm.value | json }}
+FormGroup value {{ userForm.value | json }} -->
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <bmb-dropzone
+    name="dropzone"
+    [acceptedExtensions]="['png', 'jpeg', 'jpg']"
+    [dropInstruction]="'Arrastra tus archivos aquí o'"
+    [dropLabel]="'selecciona tus archivos'"
+    [errorMessage]="'Archivo no compatible'"
+    [errorMessageFormat]="'Formato no soportado'"
+    [errorMessageSize]="'El archivo supera el tamaño máximo permitido.'"
+    [fileSize]="2"
+    [formatFilesLabel]="'Ver más información de formatos de archivo aceptados.'"
+    [linkFilesSupported]="''"
+    [linkLabel]="'Ver más información de formatos de archivo aceptados.'"
+    [mainIcon]="'image'"
+    [multiple]="true"
+    [name]="'bmbFileInput'"
+    [progress]="progress()"
+    (fileRemoved)="removeFileFromForm($event)"
+    (newFile)="onFileReceived($event)"
+  ></bmb-dropzone>
+
+  <button type="submit" bmbButton [disabled]="form.invalid">
+    Enviar archivo
+  </button>
+</form>
+{{ printLog() }}

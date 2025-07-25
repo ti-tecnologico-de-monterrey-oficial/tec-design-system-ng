@@ -6,46 +6,25 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 
 ---
 
-# 🌟 Versión 1.5.9 ya está aquí 🎉 - 27 de junio de 2025
+## 🚀 Versión 1.5.10 🎉 - 25 de julio de 2025
 
-Esta versión se centra en fortalecer la accesibilidad, la personalización y la robustez de los componentes, para ello no solo hemos hecho actualizaciones dentro de los componentes, tambien hemos actualizado la documentacion.
+Esta versión introduce mejoras significativas en la experiencia de notificaciones y documentación, gracias al esfuerzo colaborativo del equipo. Las personas ahora pueden disfrutar de una interfaz más optimizada y funcionalidades mejoradas.
 
-El objetivo es brindar a todas las personas una experiencia más flexible, clara y eficiente.
+### 🆕 Nuevas Funcionalidades
+- Refactorización del componente Alert Center para utilizar su propio servicio, mejorando la gestión de estado y la modularidad.
+- Compatibilidad añadida con Angular 20, asegurando integraciones modernas y robustas.
 
-## 🆕 Nuevas Funcionalidades
+### ✅ Problemas Resueltos
+- Corrección de parámetros opcionales en el componente Grades, mejorando la precisión de los datos.
+- Solución al problema de la semana 53 en años bisiestos en el componente Date Picker.
+- Resolución de incompatibilidades en las opciones asíncronas del componente Dropdown.
 
-- Nuevo estado visual para el componente progress circle, facilitando la interpretación de avances y estados.
-- Nuevo input para bloquear la interacción en el componente acordeón, brindando mayor control en la interfaz.
-- Componente Notice Card para destacar información relevante de forma visual y accesible.
-- Actualización del componente search-input con apariencia renovada y funcionalidades optimizadas.
-- Se actualizaron los mensajes de error para el componente `input`
+### ⚡ Optimizaciones
+- Optimización de la documentación y pruebas unitarias, facilitando la comprensión y el mantenimiento.
+- Creación de funciones reutilizables para la generación de documentación, promoviendo la consistencia.
 
-## ✅ Problemas Resueltos
-
-- Corregido error en el template del componente Step Progress, asegurando visualización y funcionamiento correctos.
-- Solucionados problemas de compatibilidad y renderizado en tablas y calificaciones, mejorando la experiencia en diferentes navegadores.
-- Ajustes en el componente radius para evitar confusiones y errores de estilo.
-- Se removió el ancho mínimo para el componente `container-button`
-
-## ⚡ Optimizaciones
-
-- Optimización de archivos gráficos (PNG y SVG) para mejorar tiempos de carga y rendimiento.
-- Mejoras en la accesibilidad de componentes basadas en pruebas A11y, facilitando el uso para todas las personas.
-- Unificación y actualización de historias en Storybook, simplificando la documentación visual y su mantenimiento.
-- Optimización de estilos y funcionalidades en menús y layouts para una experiencia más fluida.
-
-## 📘 Mejoras Documentación
-
-- Actualización del tema y estructura de la documentación en Storybook para facilitar la consulta y el aprendizaje.
-
-## Issues resueltos
-
-- [533](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/issues/533) - Alert center no muestra barra de herramientas en iPhone SE, Samsung Galaxy S8+ y Surface Duo
-- [545](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/issues/545) - Container Button no se muestra correctamente en dispositivos iPhone SE, Samsung Galaxy S8+ y otros
-- [548](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/issues/548) - Bamboo Dropdown no agrega elipsis cuando se usan textos
-- [557](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/issues/557) - Buscador de elementos en el dropdown
-- [558](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/issues/558) - Profile component Student (web) variant : no muestra informacion
-- [559](https://github.com/ti-tecnologico-de-monterrey-oficial/tec-design-system-ng/issues/559) - Profile con informacion basica para el colaborador
+### 📘 Mejoras Documentación
+- Actualización de la documentación del componente Alert Center, proporcionando mayor claridad y detalle.
 
 ---
 

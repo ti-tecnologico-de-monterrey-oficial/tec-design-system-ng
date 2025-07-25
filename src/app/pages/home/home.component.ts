@@ -1,15 +1,17 @@
-import { Component, computed, OnInit } from '@angular/core';
-import { AnimeService } from '../../services/anime.service';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
-  BmbLoaderComponent,
-  BmbCardComponent,
-  BmbCardHeaderComponent,
-  BmbCardContentComponent,
-  BmbImageComponent,
   BmbLayoutDirective,
   BmbLayoutItemDirective,
-  BmbTagComponent,
+  BmbAccordionComponent,
+  BmbInputComponent,
+  BmbFormValidatorComponent,
+  BmbButtonDirective,
+  BmbVerticalLayoutDirective,
+  BmbVerticalLayoutItemDirective,
+  BmbContainerButtonComponent,
+  BmbTextLinkComponent,
+  BmbDividerComponent,
 } from '../../../../projects/ds-ng/src/public-api';
 
 @Component({
@@ -17,28 +19,19 @@ import {
   standalone: true,
   imports: [
     CommonModule,
-    BmbLoaderComponent,
-    BmbCardComponent,
-    BmbCardHeaderComponent,
-    BmbCardContentComponent,
-    BmbTagComponent,
-    BmbImageComponent,
     BmbLayoutDirective,
     BmbLayoutItemDirective,
+    BmbAccordionComponent,
+    BmbInputComponent,
+    BmbFormValidatorComponent,
+    BmbButtonDirective,
+    BmbVerticalLayoutDirective,
+    BmbVerticalLayoutItemDirective,
+    BmbContainerButtonComponent,
+    BmbTextLinkComponent,
+    BmbDividerComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent implements OnInit {
-  constructor(private animeService: AnimeService) {}
-
-  animeList = computed(() => this.animeService.topAnime());
-
-  getTopAnime() {
-    return this.animeService.topAnime();
-  }
-
-  ngOnInit() {
-    this.animeService.fetchTopAnime();
-  }
-}
+export class HomeComponent {}
