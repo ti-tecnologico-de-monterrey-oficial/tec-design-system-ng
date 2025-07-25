@@ -98,7 +98,7 @@ Below is an example of how you can use this component in HTML:
     title: {
       name: 'Title',
       control: { type: 'text' },
-      description: '',
+      description: 'Set the title of the TOTP component',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -107,7 +107,7 @@ Below is an example of how you can use this component in HTML:
     subtitle: {
       name: 'Subtitle',
       control: { type: 'text' },
-      description: '',
+      description: 'Set the subtitle of the TOTP component',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -116,7 +116,7 @@ Below is an example of how you can use this component in HTML:
     instanceId: {
       name: 'Instance Id',
       control: { type: 'text' },
-      description: '',
+      description: 'Set the instance ID of the TOTP component',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -125,7 +125,7 @@ Below is an example of how you can use this component in HTML:
     codeError: {
       name: 'Code Error',
       control: { type: 'boolean' },
-      description: '',
+      description: 'Indicates if there is a code error',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
@@ -135,7 +135,7 @@ Below is an example of how you can use this component in HTML:
     errorMessage: {
       name: 'Error Message',
       control: { type: 'text' },
-      description: '',
+      description: 'Set the error message of the TOTP component',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -144,7 +144,7 @@ Below is an example of how you can use this component in HTML:
     helperText: {
       name: 'Helper Text',
       control: { type: 'text' },
-      description: '',
+      description: 'Set the helper text of the TOTP component',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -153,7 +153,7 @@ Below is an example of how you can use this component in HTML:
     showButton: {
       name: 'Show Button',
       control: { type: 'boolean' },
-      description: '',
+      description: 'Indicates if the submit button should be shown',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
@@ -163,26 +163,34 @@ Below is an example of how you can use this component in HTML:
     buttonText: {
       name: 'Button Text',
       control: { type: 'text' },
-      description: '',
+      description: 'Set the text of the submit button',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
+      },
+    },
+    disableButton: {
+      name: 'Disable Button',
+      control: { type: 'boolean' },
+      description: 'Indicates if the submit button should be disabled',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
       },
     },
     maxCode: {
       name: 'Max Code',
       control: { type: 'number' },
-      description: '',
+      description: 'Set the maximum number of code fields',
       table: {
         category: 'Properties',
-        type: { summary: 'string' },
+        type: { summary: 'number' },
       },
     },
     handleSubmit: {
       name: 'Handle Submit',
-      control: {
-        type: '',
-      },
+      control: null,
       description: '',
       table: {
         category: 'Events',
@@ -200,6 +208,7 @@ Below is an example of how you can use this component in HTML:
     showButton: false,
     buttonText: 'Verify',
     maxCode: 6,
+    disableButton: false,
     handleSubmit: () => {
       window.alert('button submitted');
     },
