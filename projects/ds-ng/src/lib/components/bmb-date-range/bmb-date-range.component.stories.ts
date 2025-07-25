@@ -124,7 +124,7 @@ ${getBasicExampleBlock('BmbDateRangeComponent')}
     requiredFieldErrorMessage:
       InputParameterDescriptions.requiredFieldErrorMessage,
     appearance: InputParameterDescriptions.deprecated,
-    disabled: InputParameterDescriptions.disabled,
+    disabled: InputParameterDescriptions.disabledFormControl,
     isRequired: InputParameterDescriptions.isRequired,
     isClearable: InputParameterDescriptions.isClearable,
     controlStart: {

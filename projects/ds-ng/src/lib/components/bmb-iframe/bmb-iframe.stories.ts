@@ -1,5 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbIframeComponent } from './bmb-iframe.component';
+import {
+  getArchitectureSection,
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+} from '../../utils/doc/utils';
 
 export default {
   title: 'Foundations/System elements/Iframe',
@@ -8,35 +14,24 @@ export default {
     docs: {
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbIframeComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbIframeComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-## Architecture
-
-\`\`\`html
+${getGeneralDescription(
+  `
+${getGeneralComponentDescription('iframe')} to embed another webpage within the current, acting as a *window* within the main page to display external content.
+  `,
+  'https://bamboo.tec.mx/latest/foundations/i-frame/descripcion-general-gxUE3JoE',
+)}
+${getArchitectureSection(`
 <section class="bmb_iframe">
   <iframe { configuration } ></iframe>
 </section>
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+`)}
+${getBasicExampleBlock('BmbIframeComponent')}
         `,
       },
     },
   },
   argTypes: {
     height: {
-      name: 'Height',
       control: {
         type: 'text',
       },
@@ -48,7 +43,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     width: {
-      name: 'Width',
       control: {
         type: 'text',
       },
@@ -60,7 +54,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     src: {
-      name: 'SRC',
       control: {
         type: 'text',
       },
@@ -71,7 +64,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     loading: {
-      name: 'Loading',
       control: {
         type: 'select',
       },
@@ -84,7 +76,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     name: {
-      name: 'Name',
       control: {
         type: 'text',
       },

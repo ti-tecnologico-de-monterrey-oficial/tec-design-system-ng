@@ -126,7 +126,7 @@ IBmbInputAppearance = 'normal' | 'simple'
     tooltipPosition: InputParameterDescriptions.tooltipPosition,
     icon: InputParameterDescriptions.icon,
     placeholder: InputParameterDescriptions.placeholder,
-    disabled: InputParameterDescriptions.disabled,
+    disabled: InputParameterDescriptions.disabledFormControl,
     isRequired: InputParameterDescriptions.isRequired,
     helperMessage: InputParameterDescriptions.helperMessage,
     errorMessage: InputParameterDescriptions.errorMessage,

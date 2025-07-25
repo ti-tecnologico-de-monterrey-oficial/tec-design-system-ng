@@ -3,6 +3,7 @@ import { BmbIconComponent } from './bmb-icon.component';
 import {
   getArchitectureSection,
   getBasicExampleBlock,
+  getGeneralComponentDescription,
   getGeneralDescription,
   getSpecialSpecifications,
 } from '../../utils/doc/utils';
@@ -22,7 +23,8 @@ export default {
       description: {
         component: `
 ${getGeneralDescription(
-  `\`bmb-icon\` is a visual element used in interfaces to represent actions, concepts or functions in a quick and easily recognizable way.`,
+  `
+${getGeneralComponentDescription('icon', 'visual')} to represent actions, concepts or functions in a quick and easily recognizable way.`,
   'https://bamboo.tec.mx/latest/foundations/iconos/iconos-wukxE19q',
 )}
 ${getArchitectureSection(
@@ -53,16 +55,7 @@ ${getBasicExampleBlock('BmbIconComponent')}
       - **Class Name:** \`material-symbols-rounded\`
     `),
     },
-    isFill: {
-      control: { type: 'boolean' },
-      description:
-        'Determines whether the icon is filled (`true`) or outlined (`false`).',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'true' },
-        type: { summary: 'boolean' },
-      },
-    },
+    isFill: InputParameterDescriptions.isIconFill,
     materialIcon: InputParameterDescriptions.deprecated,
     fontWeight: {
       control: { type: 'text' },
@@ -74,35 +67,9 @@ ${getBasicExampleBlock('BmbIconComponent')}
         type: { summary: 'string' },
       },
     },
-    size: {
-      control: { type: 'number' },
-      description:
-        'Size of the icon or width of the image to use. Note: <= 0 will be inherited.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: '' },
-        type: { summary: 'number' },
-      },
-    },
-    dotNotification: {
-      control: { type: 'number' },
-      description:
-        'Set a dot with the number of notifications in the bottom right of the icon.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'number' },
-      },
-    },
-    alt: {
-      control: { type: 'text' },
-      description:
-        'Alternative text for the icon when it is an image. This improves accessibility.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: '""' },
-        type: { summary: 'string' },
-      },
-    },
+    dotNotification: InputParameterDescriptions.iconDotNotification,
+    size: InputParameterDescriptions.iconSize,
+    alt: InputParameterDescriptions.alt,
   },
   args: {
     icon: 'home',

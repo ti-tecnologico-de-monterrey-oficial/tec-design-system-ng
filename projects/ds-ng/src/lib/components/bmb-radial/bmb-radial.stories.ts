@@ -68,7 +68,7 @@ ${InputParameterDescriptions.value.description}
         type: { summary: 'boolean' },
       },
     },
-    disabled: InputParameterDescriptions.disabled,
+    disabled: InputParameterDescriptions.disabledFormControl,
     required: InputParameterDescriptions.isRequired,
     value: {
       control: { type: 'text' },

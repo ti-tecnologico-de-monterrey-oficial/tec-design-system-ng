@@ -5,7 +5,6 @@ import * as formValidator from "../lib/components/bmb-form-validator/bmb-form-va
 import * as formExample from "../lib/components/bmb-form-validator/bmb-form-validator-example.stories";
 import { STORIES_TITLE } from "../lib/utils/doc/utils";
 
-
 export const Input = () => (
   <section>
     <GeneralTemplate />
@@ -14,11 +13,9 @@ export const Input = () => (
 
 export const FormValidator = () => (
   <section>
-    <GeneralTemplate showStories={false}>
-      {formValidator}
-    </GeneralTemplate>
+    <GeneralTemplate showStories={false}>{formValidator}</GeneralTemplate>
     <Meta of={formExample} />
-    <Stories title={STORIES_TITLE} includePrimary={false}/>
+    <Stories title={STORIES_TITLE} includePrimary={false} />
   </section>
 );
 
@@ -26,11 +23,12 @@ export const InputTemplate = () => {
   return (
     <section>
       <Tabs
-        tabs={[<Title />, <Title of={formValidator}>{formValidator?.title}</Title>]}
-        content={[<Input />, <FormValidator/>]}
-        showTableOfContents={true}
+        tabs={[
+          <Title />,
+          <Title of={formValidator}>{formValidator?.title}</Title>,
+        ]}
+        content={[<Input />, <FormValidator />]}
       />
     </section>
   );
 };
-

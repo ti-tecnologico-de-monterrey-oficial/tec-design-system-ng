@@ -61,7 +61,7 @@ If this property is set to **true**, the checkbox is selected; if set to **false
         type: { summary: 'boolean' },
       },
     },
-    disabled: InputParameterDescriptions.disabled,
+    disabled: InputParameterDescriptions.disabledFormControl,
     required: InputParameterDescriptions.isRequired,
     indeterminate: {
       control: { type: 'boolean' },

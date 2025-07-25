@@ -38,7 +38,8 @@ ${getSpecialSpecifications(
 >- The style name variables have the following structure: \`--bmb-{type}-{inherit / size}\`.
 >   - ***Colors*** are an exception.
 >
-><br/><br/>`,`
+><br/><br/>`,
+    `
 ###Spacing:
 ${SPACING_DESCRIPTION}
 - **--bmb-spacing-none**: \`none = 0\`

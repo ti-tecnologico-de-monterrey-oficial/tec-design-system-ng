@@ -137,7 +137,7 @@ IBmbDropdownItem = {
       },
     },
     helperText: InputParameterDescriptions.helperMessage,
-    disabled: InputParameterDescriptions.disabled,
+    disabled: InputParameterDescriptions.disabledFormControl,
     label: InputParameterDescriptions.label,
     control: InputParameterDescriptions.control,
     onValueChange: {

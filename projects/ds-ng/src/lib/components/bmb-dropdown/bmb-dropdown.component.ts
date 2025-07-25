@@ -235,7 +235,6 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   // Keyboards events
   onKeyDown(event: KeyboardEvent) {
     const keyboards = [' ', 'ArrowDown', 'Down'];
-    const element = event.target as HTMLInputElement;
     const regexCode = /^[a-zA-Z0-9\-\.\, ]{1}$/gm;
 
     if (keyboards.includes(event.key)) {

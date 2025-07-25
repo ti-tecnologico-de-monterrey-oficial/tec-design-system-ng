@@ -62,6 +62,16 @@ export const getEmptyStateMessage = () => `
 Remember to use the \`empty state\` for the cases that apply to this. Related documentation is available [here](https://bamboo.tec.mx/latest/guia-ux-writing/mensajes-del-producto/empty-states-OQYyq6h8-OQYyq6h8).
 `;
 
+export const getGridGeneratorLink = () =>
+  `### Grid generator
+[Grid generator](/docs/dev-tools-grid-generator--documentation) is a tool that can be used to generate custom grids.`;
+
+export const getAuxiliaryDescription = (
+  principal: string,
+  auxiliary: string,
+): string =>
+  `The ***${auxiliary}*** is the auxiliary to add the contents in an appropriate manner, facilitating customization. Use it whenever you use ***${principal}***.<br/><br/>`;
+
 export const getArchitectureSection = (
   architectureBlock: string,
   bmbNameLink: string = '',
@@ -225,16 +235,18 @@ export const getHTMLFormExampleTextBlock = (inputExample: string): string => `>
 >\`\`\`
 `;
 
-const getTitleDescription = (): string => `
-<br/>
-## ${DESCRIPTION_TITLE}
-`;
+export const getGeneralComponentDescription = (
+  name: string,
+  additional: string = '',
+): string =>
+  `\`bmb-${name}\` is a ${DESIGN_SYSTEM_TITLE} ${additional} element that allows`;
 
 export const getGeneralDescription = (
   content: string,
   generalDocLink: string = '',
 ): string => `
-${getTitleDescription()}
+<br/>
+## ${DESCRIPTION_TITLE}
 >${content}
 >
 ${!!generalDocLink ? `>Please remember to refer to the [Bamboo - General documentation](${generalDocLink}) for more details about it.` : '>'}
@@ -278,8 +290,9 @@ export const getSpecialSpecifications = (content: string): string => `
 export const getBasicExampleBlock = (
   inputName: string,
   importComments: string = '',
+  additionalTypescriptBlock: string = '',
 ): string => `
-${getTypescriptExampleTextBlock(inputName, '', '', importComments)}
+${getTypescriptExampleTextBlock(inputName, '', '', importComments, '', false, '', additionalTypescriptBlock)}
 ${getDescribeTypeTextBlock('HTML')}
 `;
 
@@ -500,11 +513,13 @@ export const getSandboxConsiderationsDocumentation = (
       .concat(
         getMergeList(
           varList,
-          definitionVar.replace(patternToReplaceOneLine, splitChar).replace(/\`|(--)|(-4)/g, ''),
+          definitionVar
+            .replace(patternToReplaceOneLine, splitChar)
+            .replace(/\`|(--)|(-4)/g, ''),
           splitChar,
         ),
       )}`;
-      const variableStyles: string = `${style
+    const variableStyles: string = `${style
       .concat(!!style ? ' ' : '')
       .concat(
         getMergeList(
@@ -528,15 +543,19 @@ export const getSandboxConsiderationsDocumentation = (
 >
 ${introductionContent}
 >
->${!!implementationDetails.length ? `The ${element} is defined in the CSS variables and can be used in the application by using ${isClassNameVar ? 'the class name or ' : ''}the CSS variable name.
-><br/><br/><br/>`:''}
 >${
-  isOmitImportant
-    ? ''
-    : `
+    !!implementationDetails.length
+      ? `The ${element} is defined in the CSS variables and can be used in the application by using ${isClassNameVar ? 'the class name or ' : ''}the CSS variable name.
+><br/><br/><br/>`
+      : ''
+  }
+>${
+    isOmitImportant
+      ? ''
+      : `
 ### Important:
 Please refer to the [Variables documentation](/docs/foundations-variables--documentation&globals=#dom-architecture) for details on how to implement ${element} in CSS, where it is detailed that these can be implemented through variables.<br/><br/><br/>`
-}
+  }
 >
 >${
     isWarning
@@ -561,6 +580,7 @@ ON THIS PAGE (optional, TABLE OF CONTENTS) [Done, is in preview, if not so add p
 -Name [Done, is is .stories]
 -Description [Add ${getGeneralDescription('')}  to parameters: { docs: { description: { component: ``...]
   General documentation [is in getGeneralDescription]
+  getGeneralComponentDescription('','') General documentation helper
 -DOM Architecture (optional) [Add ${getArchitectureSection(``)}  to parameters: { docs: { description: { component: ``...]
 -Considerations / Restrictions (optional) [Add ${getSpecialSpecifications(` ### []:`)} to parameters: { docs: { description: { component: ``...]
 -Reactive form example (optional) [Add ${getFormExampleBlock('', '', '', '')} to parameters: { docs: { description: { component: ``...]
@@ -572,10 +592,4 @@ ON THIS PAGE (optional, TABLE OF CONTENTS) [Done, is in preview, if not so add p
   PROPERTIES [Clear in parameters: { controls: { exclude: [''] ...]
   EVENTS [Clear in parameters: { controls: { exclude: [''] ...]
 -VARIANT TEMPLATES (optional) [Done, is in preview or in GeneralTemplate.mdx]
-*/
-
-/*
-${getGeneralDescription('', '')}
-${getSpecialSpecifications(getSandboxConsiderationsDocumentation('', `
->`))}
 */

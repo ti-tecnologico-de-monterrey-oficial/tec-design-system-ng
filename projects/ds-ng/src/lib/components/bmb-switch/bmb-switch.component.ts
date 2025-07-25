@@ -39,7 +39,7 @@ export class BmbSwitchComponent {
   rightIcon = input<string>('');
   isChecked = model<boolean>(false);
   ariaLabel = input<string>('Describe the button function here');
-  id = input<string>('');
+  id = input<string>(''); //Deprecated
   disabled = input<boolean>(false);
   name = input<string>(getUUID());
 

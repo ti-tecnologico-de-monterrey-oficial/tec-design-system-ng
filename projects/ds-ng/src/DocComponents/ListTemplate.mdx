@@ -8,21 +8,18 @@ export const List = () => (
   </section>
 );
 
-export const Item = ({children}) => (
+export const Item = ({ children }) => (
   <section>
-    <GeneralTemplate>
-      {children}
-    </GeneralTemplate>
+    <GeneralTemplate>{children}</GeneralTemplate>
   </section>
 );
 
-export const ListTemplate = ({children}) => {
+export const ListTemplate = ({ children }) => {
   return (
     <section>
       <Tabs
         tabs={[<Title />, <Title of={children}>{children?.title}</Title>]}
         content={[<List />, <Item>{children}</Item>]}
-        showTableOfContents={true}
       />
     </section>
   );

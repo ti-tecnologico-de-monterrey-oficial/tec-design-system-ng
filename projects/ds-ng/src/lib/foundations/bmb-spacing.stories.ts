@@ -142,7 +142,7 @@ ${getSpecialSpecifications(
     'spacing',
     '',
     `###Additional:
-For padding, margin, and gap it is also possible to use the CSS *spacing* variables. ${getVariableDetail('spacing', '', 'padding, margin, and gap', '\`--bmb-spacing-{spacing}\`', '\`{spacing}\`','padding: var(--bmb-spacing-4); margin: var(--bmb-spacing-4); gap: var(--bmb-spacing-4);')}<br/>
+For padding, margin, and gap it is also possible to use the CSS *spacing* variables. ${getVariableDetail('spacing', '', 'padding, margin, and gap', '\`--bmb-spacing-{spacing}\`', '\`{spacing}\`', 'padding: var(--bmb-spacing-4); margin: var(--bmb-spacing-4); gap: var(--bmb-spacing-4);')}<br/>
     ${getVariableAndClassesSizes('spacing')}`,
     true,
     ['padding', 'margin', 'gap'],

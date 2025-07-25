@@ -1,91 +1,35 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbActionIconComponent } from './bmb-action-icon.component';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+} from '../../utils/doc/utils';
+import { InputParameterDescriptions } from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Components/Buttons/Action icon',
   component: BmbActionIconComponent,
   parameters: {
+    controls: {
+      exclude: ['buttonPress', 'getIcon', 'handleClick', 'handlePress'],
+    },
     docs: {
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbActionIconComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbActionIconComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-export class AppComponent {
-
-...
-\`\`\`
-
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(`${getGeneralComponentDescription('action-icon', 'interactive')} to use icons as buttons to execute actions`, 'https://bamboo.tec.mx/latest/componentes/action-icon/descripcion-general-FzB28S1H')}
+${getBasicExampleBlock('BmbActionIconComponent')}
         `,
       },
     },
   },
   argTypes: {
-    idElement: {
-      name: 'Id element',
-      control: {
-        type: 'text',
-      },
-      description: 'Sets the id element',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string (optional)' },
-      },
-    },
-    icon: {
-      name: 'Icon',
-      control: { type: 'text' },
-      description:
-        'Sets the name of the icon to use. Please use Material icons: https://fonts.google.com/icons. The color of the icon depends on the parent. You can also place an image here. **This icon has button behavior**.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string (required)' },
-      },
-    },
-    alt: {
-      name: 'Alt',
-      control: { type: 'text' },
-      description:
-        'Sets alternative text for the icon when it is an image. This improves accessibility.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: '""' },
-        type: { summary: 'string' },
-      },
-    },
-    iconSize: {
-      name: 'Icon size',
-      control: { type: 'number' },
-      description:
-        'Sets the size of the icon or the image to use. Note: <= 0 will be inherited.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'number (optional)' },
-      },
-    },
-    isFill: {
-      name: 'Is Fill',
-      control: { type: 'boolean' },
-      description: 'Sets the icon fill when true or the outline when false.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'true' },
-        type: { summary: 'boolean' },
-      },
-    },
+    idElement: InputParameterDescriptions.inputId,
+    icon: InputParameterDescriptions.icon,
+    alt: InputParameterDescriptions.alt,
+    iconSize: InputParameterDescriptions.iconSize,
+    isFill: InputParameterDescriptions.isIconFill,
     toggleIconActive: {
-      name: 'Toggle icon active',
       control: {
         type: 'text',
       },
@@ -96,7 +40,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     isToggleActive: {
-      name: 'Toggle active',
       control: {
         type: 'boolean',
       },
@@ -109,7 +52,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     isAccentColor: {
-      name: 'Accent color',
       control: {
         type: 'boolean',
       },
@@ -120,64 +62,19 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'boolean (optional)' },
       },
     },
-    dotNotification: {
-      name: 'Dot Notification',
-      control: { type: 'number' },
-      description:
-        'Set a dot with the number of notifications in the bottom right of the icon.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'number (option)' },
-      },
-    },
-    link: {
-      name: 'Link',
-      control: {
-        type: 'text',
-      },
-      description:
-        'Sets the link for redirection to another page. If this property is empty it will emit the button event.',
-      table: {
-        category: 'Events',
-        type: { summary: 'string (option)' },
-      },
-    },
-    target: {
-      name: 'Target',
-      control: {
-        type: 'radio',
-      },
-      options: ['_blank', '_self', '_parent', '_top'],
-      description:
-        'Sets the target property for the link. Refer to https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a for more information.',
-      table: {
-        category: 'Events',
-        type: { summary: 'IBmbTargetLink (option)' },
-        defaultValue: { summary: '_blank' },
-      },
-    },
+    dotNotification: InputParameterDescriptions.iconDotNotification,
+    link: InputParameterDescriptions.link,
+    target: InputParameterDescriptions.target,
     buttonClick: {
-      name: 'Button click',
       control: false,
       description:
-        'This event is only emitted if the "Link" property is empty.',
+        'Emits the event then on click, this event is only emitted if the `link` property is empty.',
       table: {
         category: 'Events',
-        type: { summary: 'function (option)' },
+        type: { summary: 'handleClick($event)' },
       },
     },
-    disabled: {
-      name: 'Disabled',
-      control: {
-        type: 'boolean',
-      },
-      description: 'Disables the button or the link.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean' },
-      },
-    },
+    disabled: InputParameterDescriptions.disabled,
   },
   args: {
     idElement: '',

@@ -1,11 +1,7 @@
 import { useState } from "react";
 import { CustomTOC } from "../DocComponents/CustomTOC.mdx";
 
-export const ContentTab = ({
-  children,
-  status,
-  showTableOfContents = false,
-}) => (
+export const ContentTab = ({ children, status, showTableOfContents }) => (
   <CustomTOC
     showTableOfContents={showTableOfContents}
     contentsSelector="#tab_active"
@@ -15,7 +11,7 @@ export const ContentTab = ({
   </CustomTOC>
 );
 
-export const Tabs = ({ tabs = [], content = [], showTableOfContents = false }) => {
+export const Tabs = ({ tabs = [], content = [], showTableOfContents }) => {
   const [selectedTab, setSelectedTab] = useState(0);
 
 return (

@@ -1,6 +1,12 @@
-import { Meta, moduleMetadata, StoryFn } from '@storybook/angular';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { BmbVerticalLayoutItemDirective } from './bmb-vertical-layout-item.directive';
-import { attributes, attributesText } from '../../../utils/doc/utils';
+import {
+  attributes,
+  attributesText,
+  getAuxiliaryDescription,
+  getBasicExampleBlock,
+  getGeneralDescription,
+} from '../../../utils/doc/utils';
 import { BmbIconStatusComponent } from '../../../../public-api';
 
 export default {
@@ -10,40 +16,22 @@ export default {
   component: BmbVerticalLayoutItemDirective,
   decorators: [
     moduleMetadata({
-      declarations: [],
       imports: [BmbIconStatusComponent],
     }),
   ],
   parameters: {
+    controls: { exclude: ['flex'] },
     docs: {
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbVerticalLayoutItemDirective } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbVerticalLayoutItemDirective ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-export class AppComponent {
-
-...
-\`\`\`
-
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(getAuxiliaryDescription('Vertical layout container', 'Vertical layout container item'), 'https://bamboo.tec.mx/latest/foundations/vertical-layout-container/descripcion-general-Crf8ymYZ').replace('Description', '-Description')}
+${getBasicExampleBlock('BmbVerticalLayoutDirective, BmbVerticalLayoutItemDirective').replace('TypeScript example', '-TypeScript example').replace('HTML example', '-HTML example')}
         `,
       },
     },
   },
   argTypes: {
     rowGrow: {
-      name: 'Row grow',
       control: 'number',
       description:
         'Sets how much of the flex container positive free space, if any, should be assigned to the flex item main size.',
@@ -69,9 +57,11 @@ Below is an example of how you can use this component in HTML:
   },
 } as Meta<typeof BmbVerticalLayoutItemDirective>;
 
-const customizable = (): StoryFn => (args) => ({
-  props: args,
-  template: `
+type Story = StoryObj<BmbVerticalLayoutItemDirective>;
+
+export const Default: Story = {
+  render: (args) => ({
+    template: `
   <div bmbVerticalLayoutItem ${attributes(args)}>
     <bmb-icon-status [icon]="'id_card'" />
     <p class="font-regular-9" style="text-align: center">
@@ -79,6 +69,5 @@ const customizable = (): StoryFn => (args) => ({
     </p>
   </div>
   `,
-});
-
-export const Default = customizable();
+  }),
+};

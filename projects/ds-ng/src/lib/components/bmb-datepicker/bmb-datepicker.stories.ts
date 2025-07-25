@@ -96,7 +96,7 @@ ${getBasicExampleBlock('BmbDatepickerComponent')}
         defaultValue: { summary: 'value assigned to the dateFormat property' },
       },
     },
-    disabled: InputParameterDescriptions.disabled,
+    disabled: InputParameterDescriptions.disabledFormControl,
     label: InputParameterDescriptions.label,
     appearance: InputParameterDescriptions.deprecated,
     isClearable: InputParameterDescriptions.isClearable,

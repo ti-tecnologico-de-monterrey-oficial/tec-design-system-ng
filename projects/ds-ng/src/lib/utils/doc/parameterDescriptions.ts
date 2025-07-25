@@ -2,8 +2,12 @@ import { DESIGN_SYSTEM_TITLE } from './utils';
 
 export const DEPRECATED_PROPERTIES_DESCRIPTION =
   'This property is deprecated and will be removed in future versions.';
-export const GOGGLE_FONTS_LINK = `Even refer to [Google Fonts](https://fonts.google.com/icons?icon.size=24&icon.color=%23e8eaed&selected=Material+Symbols+Outlined:more_vert:FILL@0;wght@400;GRAD@0;opsz@24) for more icons.`;
+export const GOGGLE_FONTS_LINK = `Please refer to [Google Fonts](https://fonts.google.com/icons?icon.size=24&icon.color=%23e8eaed&selected=Material+Symbols+Outlined:more_vert:FILL@0;wght@400;GRAD@0;opsz@24) for more icons.`;
+const DISABLE_DESCRIPTION = `
+Disables the field when true, making it non-interactive and cannot be clicked.
 
+This is useful for conditions where user interaction should be restricted.
+`;
 export const getLabelDescription = (
   positionDescription: string,
   type: string = ' field',
@@ -247,10 +251,17 @@ ${GOGGLE_FONTS_LINK}`,
   },
   disabled: {
     control: { type: 'boolean' },
+    description: DISABLE_DESCRIPTION,
+    table: {
+      category: 'Properties',
+      defaultValue: { summary: 'false' },
+      type: { summary: 'boolean' },
+    },
+  },
+  disabledFormControl: {
+    control: { type: 'boolean' },
     description: `
-Disables the field when true, making it non-interactive and cannot be clicked.
-
-This is useful for conditions where user interaction should be restricted.
+${DISABLE_DESCRIPTION}
 
 It will not be necessary to define disabled property on the \`FormControl\` instance, as long as this properties is correctly assigned of this field .
     `,
@@ -476,6 +487,74 @@ Emits the ***keydown*** event.
       category: 'Properties',
       type: { summary: 'string' },
       defaultValue: { summary: 'Por favor ingresa la fecha de [label]' },
+    },
+  },
+  iconSize: {
+    control: {
+      type: 'number',
+    },
+    description:
+      'Sets the size of the icon or width of the image to use. Note: <= 0 will be inherited.',
+    table: {
+      category: 'Properties',
+      defaultValue: { summary: '' },
+      type: { summary: 'number' },
+    },
+  },
+  alt: {
+    control: {
+      type: 'text',
+    },
+    description:
+      'Sets the alternative text for the icon when it is an image, this improves accessibility',
+    table: {
+      category: 'Properties',
+      type: { summary: 'string' },
+      defaultValue: { summary: '' },
+    },
+  },
+  isIconFill: {
+    control: { type: 'boolean' },
+    description:
+      'Determines whether the icon is filled (`true`) or outlined (`false`).',
+    table: {
+      category: 'Properties',
+      defaultValue: { summary: 'true' },
+      type: { summary: 'boolean' },
+    },
+  },
+  iconDotNotification: {
+    control: { type: 'number' },
+    description:
+      'Displays a notification dot with a number on the icon. Set to 0 to hide.',
+    table: {
+      category: 'Properties',
+      defaultValue: { summary: '' },
+      type: { summary: 'number' },
+    },
+  },
+  link: {
+    control: {
+      type: 'text',
+    },
+    description:
+      'Sets the link for redirection to another page. If this property is empty it will emit the button event.',
+    table: {
+      category: 'Events',
+      type: { summary: 'string' },
+    },
+  },
+  target: {
+    control: {
+      type: 'radio',
+    },
+    options: ['_blank', '_self', '_parent', '_top'],
+    description:
+      'Sets the target property for the link. Refer to [here](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) for more information.',
+    table: {
+      category: 'Events',
+      type: { summary: 'IBmbTargetLink (option)' },
+      defaultValue: { summary: '_blank' },
     },
   },
 };
