@@ -119,12 +119,11 @@ ${getBasicExampleBlock('BmbInputTagsComponent')}
       control: {
         type: 'array',
       },
-      description:
-        'Sets the options the user can select from.',
+      description: 'Sets the options the user can select from.',
       table: {
         category: 'Properties',
         type: { summary: 'string, string[]' },
-        defaultValue: {summary: ''}
+        defaultValue: { summary: '' },
       },
     },
     tooltip: InputParameterDescriptions.tooltip,
@@ -135,7 +134,8 @@ ${getBasicExampleBlock('BmbInputTagsComponent')}
     value: InputParameterDescriptions.value,
     onChange: {
       control: false,
-      description: 'Emits when the selected tags change. The event payload is an array of selected tag strings.',
+      description:
+        'Emits when the selected tags change. The event payload is an array of selected tag strings.',
       table: {
         category: 'Event',
         type: { summary: '' },
@@ -143,7 +143,8 @@ ${getBasicExampleBlock('BmbInputTagsComponent')}
     },
     onKeyDown: {
       control: false,
-      description: 'Emits when a key is pressed while the input is focused. The event payload is a KeyboardEvent.',
+      description:
+        'Emits when a key is pressed while the input is focused. The event payload is a KeyboardEvent.',
       table: {
         category: 'Event',
         type: { summary: '' },

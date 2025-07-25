@@ -85,12 +85,7 @@ ${getFieldDescription(
   'enter a phone number with automatic validation of the phone number length based on the selected area code.',
   'https://bamboo.tec.mx/latest/componentes/input-phone-number/descripcion-general-VhtBCJiR',
 )}
-${getSpecialSpecifications(`
->${getEmptyStateMessage()}<br/>
-### Country references:
-${getAllCountryList()}
->
-`)}
+${getSpecialSpecifications(getEmptyStateMessage())}
 ${getFormExampleBlock('BmbInputPhoneNumberComponent', inputName, '', inputExample)}
 ${getBasicExampleBlock('BmbInputPhoneNumberComponent')}
         `,
