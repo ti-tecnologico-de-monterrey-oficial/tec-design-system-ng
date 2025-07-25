@@ -140,7 +140,12 @@ Set the align items.
       },
     },
   },
-  args: { gapSize: 'm', justify: 'start', alignItems: 'start', layoutHeight: '500px' },
+  args: {
+    gapSize: 'm',
+    justify: 'start',
+    alignItems: 'start',
+    layoutHeight: '500px',
+  },
 } as Meta<typeof BmbVerticalLayoutDirective>;
 
 type Story = StoryObj<BmbVerticalLayoutDirective>;

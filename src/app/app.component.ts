@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { RouterModule, Router } from '@angular/router';
 import {
   BmbPortalComponent,
   BmbThemeComponent,
@@ -28,12 +28,14 @@ import {
   standalone: true,
 })
 export class AppComponent {
+  private router = inject(Router);
+
   routes: SidebarElement[][] = [
     [
       {
         id: 1,
         icon: 'home',
-        title: 'Inicio',
+        title: 'Home',
         link: '/home',
       },
     ],
@@ -46,4 +48,12 @@ export class AppComponent {
       },
     ],
   ];
+
+  handleUserProfileClick(event: MouseEvent): void {
+    console.log('User profile clicked', event);
+  }
+
+  handleAlertButtonClick(): void {
+    this.router.navigate(['/alerts']);
+  }
 }
