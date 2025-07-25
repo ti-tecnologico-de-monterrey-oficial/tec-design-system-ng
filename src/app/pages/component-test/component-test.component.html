@@ -1,4 +1,4 @@
-<section
+<!-- <section
   style="
     border: var(--bmb-border-general_contrasts-25-1-solid);
     margin: var(--bmb-spacing-m);
@@ -175,4 +175,30 @@
 </form>
 FormGroup state: {{ userForm.status }}
 <br />
-FormGroup value {{ userForm.value | json }}
+FormGroup value {{ userForm.value | json }} -->
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <bmb-dropzone
+    name="dropzone"
+    [acceptedExtensions]="['png', 'jpeg', 'jpg']"
+    [dropInstruction]="'Arrastra tus archivos aquí o'"
+    [dropLabel]="'selecciona tus archivos'"
+    [errorMessage]="'Archivo no compatible'"
+    [errorMessageFormat]="'Formato no soportado'"
+    [errorMessageSize]="'El archivo supera el tamaño máximo permitido.'"
+    [fileSize]="2"
+    [formatFilesLabel]="'Ver más información de formatos de archivo aceptados.'"
+    [linkFilesSupported]="''"
+    [linkLabel]="'Ver más información de formatos de archivo aceptados.'"
+    [mainIcon]="'image'"
+    [multiple]="true"
+    [name]="'bmbFileInput'"
+    [progress]="progress()"
+    (fileRemoved)="removeFileFromForm($event)"
+    (newFile)="onFileReceived($event)"
+  ></bmb-dropzone>
+
+  <button type="submit" bmbButton [disabled]="form.invalid">
+    Enviar archivo
+  </button>
+</form>
+{{ printLog() }}

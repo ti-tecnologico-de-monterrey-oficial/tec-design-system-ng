@@ -1,7 +1,31 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { BmbSwitchComponent } from './bmb-switch.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+} from '../../utils/doc/utils';
+import {
+  GOGGLE_FONTS_LINK,
+  InputParameterDescriptions,
+} from '../../utils/doc/parameterDescriptions';
 
+const getIndex = (isRightPosition: boolean): number =>
+  isRightPosition ? 0 : 1;
+
+const getLabelIconDescription = (
+  isRightPosition: boolean,
+  isLabel: boolean,
+): string => {
+  const type: string[] = ['label', 'icon'];
+  const position: string[] = ['right', 'left'];
+  const switchDescription: string[] = ['of', 'on'];
+  return `Sets the ${type[getIndex(isLabel)]} displayed on the ${position[getIndex(isRightPosition)]} side of the switch.<br/><br/>
+  Useful to indicate the action or state associated with the ***${switchDescription[getIndex(isRightPosition)]}*** position.<br/><br/>
+  ***Important:*** <br/><br/>
+  Do not use the \`${position[getIndex(!isRightPosition)]}Icon\` property if you want to use \`${position[getIndex(isRightPosition)]}Text.\``;
+};
 export default {
   title: 'Components/Inputs/Switch',
   component: BmbSwitchComponent,
@@ -11,86 +35,64 @@ export default {
     }),
   ],
   parameters: {
+    controls: {
+      exclude: [
+        'getSwitchIcon',
+        'handleChange',
+        'handleKeyDown',
+        'showSwitchLabel',
+        'nextId',
+      ],
+    },
     docs: {
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbSwitchComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbSwitchComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(`${getGeneralComponentDescription('switch')} to represent in a simple way whether a configuration is active or not.`, 'https://bamboo.tec.mx/latest/componentes/switch/descripcion-general-6aOUHs0C')}
+${getBasicExampleBlock('BmbSwitchComponent')}
         `,
       },
     },
   },
   argTypes: {
     leftText: {
-      name: 'Left Text',
       control: {
         type: 'text',
       },
-      description:
-        'Text displayed on the left side of the switch. Useful for indicating the action or state associated with the "on" position. Do not use the leftIcon propery if you want to use leftText.',
+      description: getLabelIconDescription(false, true),
       table: {
         category: 'Properties',
         type: { summary: 'string' },
       },
     },
     leftIcon: {
-      name: 'Left Icon',
       control: { type: 'text' },
-      description:
-        'Icon displayed on the left side of the switch. It visually represents the action or state associated with the "on" position. Please use Material icons: https://fonts.google.com/icons. Do not use the leftText property if you want to use leftIcon.',
+      description: `${getLabelIconDescription(false, false)}<br/><br/>${GOGGLE_FONTS_LINK}`,
       table: {
         category: 'Properties',
         type: { summary: 'string' },
       },
     },
     rightText: {
-      name: 'Right Text',
       control: {
         type: 'text',
       },
-      description:
-        'Text displayed on the right side of the switch. Useful for indicating the action or state associated with the "off" position. Do not use the rightIcon propery if you want to use rightText',
+      description: getLabelIconDescription(true, true),
       table: {
         category: 'Properties',
         type: { summary: 'string' },
       },
     },
     rightIcon: {
-      name: 'Right Icon',
       control: { type: 'text' },
-      description:
-        'Icon displayed on the right side of the switch. It visually represents the action or state associated with the "off" position. Please use Material icons: https://fonts.google.com/icons. Do not use the rightText property if you want to use rightIcon.',
+      description: `${getLabelIconDescription(true, false)}<br/><br/>${GOGGLE_FONTS_LINK}`,
       table: {
         category: 'Properties',
         type: { summary: 'string' },
       },
     },
-    id: {
-      name: 'Id',
-      control: {
-        type: 'text',
-      },
-      description:
-        'A unique identifier for the switch. If not provided, an id will be generated automatically.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
+    inputId: InputParameterDescriptions.inputId,
+    id: InputParameterDescriptions.id,
     isChecked: {
-      name: 'Is Checked',
       control: { type: 'boolean' },
       description:
         'Determines whether the switch is in the "on" (true) or "off" (false) position.',
@@ -100,17 +102,7 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'boolean' },
       },
     },
-    disabled: {
-      name: 'Disabled',
-      control: { type: 'boolean' },
-      description:
-        'If true, the switch will be disabled and cannot be interacted with.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean' },
-      },
-    },
+    disabled: InputParameterDescriptions.disabledFormControl,
     change: {
       name: 'Change',
       table: {
@@ -120,25 +112,17 @@ Below is an example of how you can use this component in HTML:
       description:
         "Emits a boolean value whenever the switch changes its state. This can be used to react to changes in the switch's position.",
     },
-    ariaLabel: {
-      name: 'Aria label',
-      control: {
-        type: 'text',
-      },
-      description:
-        'Provides an accessible name for the switch button, describing its function for screen readers and other assistive technologies. Use concise and descriptive language that helps users understand what the switch controls and the current state it’s in. For example, "Enable dark mode" for a switch that activates dark mode, or "Expand section" for a toggle that displays more content.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
+    ariaLabel: InputParameterDescriptions.ariaLabel,
+    name: InputParameterDescriptions.name,
+    control: InputParameterDescriptions.control,
   },
   args: {
+    inputId: '',
+    name: '',
     leftText: 'Light',
     rightText: 'Dark',
     leftIcon: '',
     rightIcon: '',
-    id: '1',
     isChecked: false,
     disabled: false,
     ariaLabel: 'Describe the button function here',

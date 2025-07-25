@@ -1,6 +1,7 @@
 import { Meta, StoryObj, componentWrapperDecorator } from '@storybook/angular';
 import { BmbDateRangeComponent } from './bmb-date-range.component';
 import {
+  generateLabel,
   getArchitectureSection,
   getBasicExampleBlock,
   getFieldDescription,
@@ -12,11 +13,12 @@ import {
 } from '../../utils/doc/parameterDescriptions';
 
 const inputName = 'date_range';
+const label = generateLabel(inputName);
 const inputExample = `<bmb-date-range
-  inputId="date_range_id"
+  inputId="${inputName}e_id"
   name="${inputName}"
-  labelStartDate="Date range start"
-  labelEndDate="Date range end"
+  labelStartDate="${label} start"
+  labelEndDate="${label} end"
   [controlStart]="getFormControl('${inputName}_start')"
   [controlEnd]="getFormControl('${inputName}_end')"
   />`;
@@ -48,7 +50,7 @@ export default {
       description: {
         component: `
 ${getFieldDescription(
-  'bmb-date-range',
+  'date-range',
   'select a span of dates, with a start and end date from a calendar view, within a dialog box.',
   'https://bamboo.tec.mx/latest/componentes/date-picker-range/descripcion-general-DhZ4ML3S',
 )}
@@ -124,7 +126,7 @@ ${getBasicExampleBlock('BmbDateRangeComponent')}
     requiredFieldErrorMessage:
       InputParameterDescriptions.requiredFieldErrorMessage,
     appearance: InputParameterDescriptions.deprecated,
-    disabled: InputParameterDescriptions.disabled,
+    disabled: InputParameterDescriptions.disabledFormControl,
     isRequired: InputParameterDescriptions.isRequired,
     isClearable: InputParameterDescriptions.isClearable,
     controlStart: {

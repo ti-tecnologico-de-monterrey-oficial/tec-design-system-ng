@@ -54,7 +54,12 @@ const preview: Preview = {
         ];
       },
       controls: {
-        exclude: ['ngOnInit', 'ngOnChanges', 'isControlNull'],
+        exclude: [
+          'ngOnInit',
+          'ngOnChanges',
+          'ngAfterViewInit',
+          'isControlNull',
+        ],
       },
       source: {
         excludeDecorators: true,

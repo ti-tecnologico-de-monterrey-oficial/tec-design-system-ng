@@ -1,6 +1,11 @@
-import { Meta, moduleMetadata, StoryFn, StoryObj } from '@storybook/angular';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { BmbVerticalLayoutDirective } from './bmb-vertical-layout.directive';
-import { attributes } from '../../../utils/doc/utils';
+import {
+  attributes,
+  getAuxiliaryDescription,
+  getBasicExampleBlock,
+  getGeneralDescription,
+} from '../../../utils/doc/utils';
 import {
   BmbIconStatusComponent,
   BmbInnerHeaderComponent,
@@ -37,25 +42,12 @@ export default {
     docs: {
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbVerticalLayoutDirective} from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbVerticalLayoutDirective ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-export class AppComponent {
-
-...
-\`\`\`
-
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(
+  `The \`Vertical layout container\` is a vertical structure that allows for customization of its content, allowing for the integration of different types of components, making it highly flexible and adaptable to diverse needs.<br/><br/>
+${getAuxiliaryDescription('Vertical layout container', 'Vertical layout container item')}`,
+  'https://bamboo.tec.mx/latest/foundations/vertical-layout-container/descripcion-general-Crf8ymYZ',
+)}
+${getBasicExampleBlock('BmbVerticalLayoutDirective, BmbVerticalLayoutItemDirective')}
         `,
       },
     },

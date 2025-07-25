@@ -1,6 +1,5 @@
-import { Meta, moduleMetadata, StoryFn } from '@storybook/angular';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { BmbVerticalLayoutItemDirective } from './bmb-vertical-layout-item.directive';
-import { attributes } from '../../../utils/doc/utils';
 import {
   BmbIconStatusComponent,
   BmbCardComponent,
@@ -10,6 +9,13 @@ import {
   BmbLayoutItemDirective,
   BmbTopBarComponent,
 } from '../../../../public-api';
+import {
+  attributes,
+  attributesText,
+  getAuxiliaryDescription,
+  getBasicExampleBlock,
+  getGeneralDescription,
+} from '../../../utils/doc/utils';
 
 export default {
   title:
@@ -30,35 +36,18 @@ export default {
     }),
   ],
   parameters: {
+    controls: { exclude: ['flex'] },
     docs: {
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbVerticalLayoutItemDirective } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbVerticalLayoutItemDirective ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-export class AppComponent {
-
-...
-\`\`\`
-
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(getAuxiliaryDescription('Vertical layout container', 'Vertical layout container item'), 'https://bamboo.tec.mx/latest/foundations/vertical-layout-container/descripcion-general-Crf8ymYZ').replace('Description', '-Description')}
+${getBasicExampleBlock('BmbVerticalLayoutDirective, BmbVerticalLayoutItemDirective').replace('TypeScript example', '-TypeScript example').replace('HTML example', '-HTML example')}
         `,
       },
     },
   },
   argTypes: {
     rowGrow: {
-      name: 'Row grow',
       control: 'number',
       description:
         'Sets how much of the flex container positive free space, if any, should be assigned to the flex item main size.',

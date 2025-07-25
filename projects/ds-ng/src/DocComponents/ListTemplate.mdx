@@ -1,0 +1,26 @@
+import { Title } from "@storybook/addon-docs/blocks";
+import { GeneralTemplate } from "./GeneralTemplate.mdx";
+import { Tabs } from "./Tabs.mdx";
+
+export const List = () => (
+  <section>
+    <GeneralTemplate />
+  </section>
+);
+
+export const Item = ({ children }) => (
+  <section>
+    <GeneralTemplate>{children}</GeneralTemplate>
+  </section>
+);
+
+export const ListTemplate = ({ children }) => {
+  return (
+    <section>
+      <Tabs
+        tabs={[<Title />, <Title of={children}>{children?.title}</Title>]}
+        content={[<List />, <Item>{children}</Item>]}
+      />
+    </section>
+  );
+};

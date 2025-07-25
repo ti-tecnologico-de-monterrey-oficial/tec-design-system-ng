@@ -1,6 +1,13 @@
 import { componentWrapperDecorator, Meta, StoryObj } from '@storybook/angular';
 import { BmbSearchInputComponent } from './bmb-search-input.component';
-import { getEmptyStateMessage } from '../../utils/doc/utils';
+import {
+  getBasicExampleBlock,
+  getEmptyStateMessage,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getSpecialSpecifications,
+} from '../../utils/doc/utils';
+import { InputParameterDescriptions } from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Components/Inputs/Search',
@@ -14,31 +21,35 @@ export default {
     }),
   ],
   parameters: {
+    controls: {
+      exclude: [
+        'filterControl',
+        'filteredData',
+        'isDialogOpen',
+        'items',
+        'uid',
+        'closeList',
+        'handleItemClick',
+        'handleKeyDown',
+        'initOptions',
+        'setSelectedValue',
+        'value',
+      ],
+    },
     docs: {
       description: {
         component: `
-${getEmptyStateMessage()}
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbSearchInputComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbSearchInputComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(`${getGeneralComponentDescription('search-input')} to enter text and run a search.`, 'https://bamboo.tec.mx/latest/componentes/search/descripcion-general-EAreKqon')}
+${getSpecialSpecifications(getEmptyStateMessage())}
+${getBasicExampleBlock('BmbSearchInputComponent')}
         `,
       },
     },
   },
   argTypes: {
+    inputId: InputParameterDescriptions.inputId,
+    name: InputParameterDescriptions.name,
     data: {
-      name: 'Data',
       control: false,
       description:
         'Data should be a collection of strings like: ["duck", "dog", ...]',
@@ -49,7 +60,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     isLoading: {
-      name: 'Loading state',
       control: 'boolean',
       description: 'Set the loading state.',
       table: {
@@ -59,7 +69,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     isServerSideFilter: {
-      name: 'Server side filter',
       control: 'boolean',
       description: 'Set the server side filter.',
       table: {
@@ -68,20 +77,8 @@ Below is an example of how you can use this component in HTML:
         category: 'Properties',
       },
     },
-    placeholder: {
-      name: 'Placeholder',
-      control: {
-        type: 'text',
-      },
-      description: 'Set the placeholder value for the search input',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: '' },
-      },
-    },
+    placeholder: InputParameterDescriptions.placeholder,
     serverSideFilteredData: {
-      name: 'Server side filtered data',
       control: false,
       description:
         'Once the server has filtered the result it must place it in this input attribute.',
@@ -92,7 +89,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     onValueChange: {
-      name: 'On value change',
       control: false,
       description: 'These events are triggered once the input value changes.',
       table: {
@@ -101,7 +97,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     onServerSideFilterEvent: {
-      name: 'Server side filter event',
       control: false,
       description:
         'This function is executed once the value of the field has changed, the result must be stored in serverSideFilteredData.',
@@ -110,8 +105,19 @@ Below is an example of how you can use this component in HTML:
         category: 'Events',
       },
     },
+    onClearField: {
+      control: false,
+      description: 'Emits an event when the input field is cleared.',
+      table: {
+        type: { summary: 'function' },
+        category: 'Events',
+      },
+    },
   },
   args: {
+    inputId: '',
+    name: '',
+    placeholder: '',
     data: [
       'Carlee Bengochea',
       'Reynard Howgate',

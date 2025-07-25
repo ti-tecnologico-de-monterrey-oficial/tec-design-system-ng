@@ -3,12 +3,60 @@ import {
   type Meta,
   type StoryFn,
 } from '@storybook/angular';
-import { attributes, getEmptyStateMessage } from '../../utils/doc/utils';
+import {
+  attributes,
+  generateLabel,
+  getBasicExampleBlock,
+  getEmptyStateMessage,
+  getFieldDescription,
+  getFormExampleBlock,
+  getSpecialSpecifications,
+} from '../../utils/doc/utils';
 import { BmbInputTagsComponent } from './bmb-input-tags.component';
+import { InputParameterDescriptions } from '../../utils/doc/parameterDescriptions';
+
+const inputName = 'input_with_tags';
+const additionalBlock = `handleInputWithTagsChange(value: string[]): void {
+  console.log('Value changed:', value);
+  //Add your code
+}
+>
+handleInputWithTagsKeyDown(event: KeyboardEvent): void {
+  //Add your code
+}`;
+const inputExample = `<bmb-input-tags
+  id="${inputName}_id"
+  name="${inputName}"
+  label="${generateLabel(inputName)}"
+  helperMessage="Helper Message"
+  [tagOptions]="[
+    'Tacos al pastor',
+    'Enchiladas',
+    'Tamales',
+    'Quesadillas',
+    'Chiles en nogada',
+    'Mole poblano',
+    'Sopes',
+    'Gorditas',
+    'Pozole',
+    'Ceviche',
+    'Tortas',
+    'Guacamole',
+    'Tacos de pescado',
+    'Flautas',
+    'Chalupas',
+    'Huevos rancheros',
+    'Elote',
+  ]"
+  [control]="getFormControl('${inputName}')"
+  (onChange)="handleInputWithTagsChange($event)"
+  (onKeyDown)="handleInputWithTagsKeyDown($event)"
+ />`;
 
 export default {
   title: 'Components/Inputs/Text input with tags',
   component: BmbInputTagsComponent,
+  tags: ['!autodocs'],
   decorators: [
     componentWrapperDecorator((story: string) => {
       return `
@@ -18,288 +66,102 @@ export default {
     }),
   ],
   parameters: {
+    controls: {
+      exclude: [
+        'addOption',
+        'closeList',
+        'getUUID',
+        'getValidInitialValues',
+        'handleFocus',
+        'handleKeyDown',
+        'handleValidity',
+        'initOptions',
+        'openList',
+        'removeTag',
+        'selectOptionWithKey',
+        'setSelectedTags',
+        'setSelectedValue',
+        'filterControl',
+        'filteredOptions',
+        'isFocused',
+        'isKeyboardEvent',
+        'items',
+        'selectedTags',
+        'showDropdown',
+        'uuid',
+      ],
+    },
     docs: {
       description: {
         component: `
-${getEmptyStateMessage()}
-  Below is an example of how you can use this component in TypeScript:
-
-  \`\`\`typescript
-  import { CommonModule } from '@angular/common';
-  import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-
-  import {
-    FormBuilder,
-    FormControl,
-    FormGroup,
-    Validators,
-  } from '@angular/forms';
-  import {
-    BmbInputTagsComponent,
-    BmbLayoutItemDirective,
-  } from '../../projects/ds-ng/src/public-api';
-  @Component({
-    // eslint-disable-next-line @angular-eslint/component-selector
-    selector: 'app-root',
-    standalone: true,
-    imports: [CommonModule, BmbInputTagsComponent, BmbLayoutItemDirective],
-    templateUrl: './app.component.html',
-    styleUrl: './app.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-  })
-  export class AppComponent implements OnInit {
-    projectForm!: FormGroup;
-
-    constructor(private fb: FormBuilder) {}
-
-    ngOnInit(): void {
-      this.loadForm();
-      this.setValueToForm();
-    }
-
-    loadForm() {
-      this.projectForm = this.fb.group({
-        nombre: new FormControl({ value: '', disabled: false }),
-        descripcion: new FormControl({ value: '', disabled: false }),
-        tipoEmprendimiento: new FormControl({ value: '', disabled: false }),
-        perfilEmprendedor: new FormControl({ value: '', disabled: false }),
-        odsImpactada: new FormControl({ value: '', disabled: false }),
-        liderProyecto: new FormControl({ value: '', disabled: false }),
-        socios: new FormControl({ value: '', disabled: false }),
-      });
-    }
-
-    setValueToForm() {
-      this.projectForm.patchValue({
-        nombre: 'TEST1',
-        descripcion: 'Esto es una prueba',
-        tipoEmprendimiento: ['Enchiladas'],
-        perfilEmprendedor: ['Quesadillas', 'Enchiladas'],
-        odsImpactada: '',
-        liderProyecto: 'Osvaldo Mendoza',
-        socios: '',
-      });
-    }
-
-    getFormControl(name: string): FormControl {
-      return this.projectForm.get(name) as FormControl;
-    }
-  }
-  \`\`\`
-
-  ### Example in HTML
-
-  Below is an example of how to use this component in HTML:
-
-  \`\`\`html
-  <div>
-    <bmb-input-tags
-      [tagOptions]="[
-        'Tacos al pastor',
-        'Enchiladas',
-        'Tamales',
-        'Quesadillas',
-        'Chiles en nogada',
-        'Mole poblano',
-        'Sopes',
-        'Gorditas',
-        'Pozole',
-        'Ceviche',
-        'Tortas',
-        'Guacamole',
-        'Tacos de pescado',
-        'Flautas',
-        'Chalupas',
-        'Huevos rancheros',
-        'Elote',
-      ]"
-      [errorMessage]="'Error Message'"
-      [label]="'Tipo de emprendimiento'"
-      [placeholder]="'Selecciona una opción'"
-      [isRequired]="false"
-      [disabled]="false"
-      [control]="getFormControl('tipoEmprendimiento')"
-    ></bmb-input-tags>
-    <bmb-input-tags
-      [tagOptions]="[
-        'Tacos al pastor',
-        'Enchiladas',
-        'Tamales',
-        'Quesadillas',
-        'Chiles en nogada',
-        'Mole poblano',
-        'Sopes',
-        'Gorditas',
-        'Pozole',
-        'Ceviche',
-        'Tortas',
-        'Guacamole',
-        'Tacos de pescado',
-        'Flautas',
-        'Chalupas',
-        'Huevos rancheros',
-        'Elote',
-      ]"
-      [errorMessage]="'Error Message'"
-      [label]="'Perfil emprendedor'"
-      [placeholder]="'Selecciona una opción'"
-      [isRequired]="false"
-      [control]="getFormControl('perfilEmprendedor')"
-    ></bmb-input-tags>
-    <bmb-input-tags
-      [tagOptions]="[
-        'Tacos al pastor',
-        'Enchiladas',
-        'Tamales',
-        'Quesadillas',
-        'Chiles en nogada',
-        'Mole poblano',
-        'Sopes',
-        'Gorditas',
-        'Pozole',
-        'Ceviche',
-        'Tortas',
-        'Guacamole',
-        'Tacos de pescado',
-        'Flautas',
-        'Chalupas',
-        'Huevos rancheros',
-        'Elote',
-      ]"
-      [errorMessage]="'Error Message'"
-      [label]="'ODC Impactada'"
-      [placeholder]="'Selecciona una opción'"
-      [isRequired]="false"
-      [disabled]="false"
-      [tooltip]="'tooltip del input tag'"
-      [control]="getFormControl('odsImpactada')"
-    ></bmb-input-tags>
-  </div>
-
-  \`\`\`
+${getFieldDescription(
+  'input-phone-number',
+  'select multiple tags from a drop-down list.',
+  'https://bamboo.tec.mx/latest/componentes/text-input-with-tags/descripcion-general-wdIzT606',
+)}
+${getSpecialSpecifications(getEmptyStateMessage())}
+${getFormExampleBlock('BmbInputTagsComponent', inputName, additionalBlock, inputExample)}
+${getBasicExampleBlock('BmbInputTagsComponent')}
           `,
       },
     },
   },
   argTypes: {
-    control: {
-      name: 'Control',
-      control: { type: 'object' },
-      description: 'Instance of FormControl to manage the input control state.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'FormControl' },
-        defaultValue: { summary: "FormControl('', Validators.required)" },
-      },
-    },
-    errorMessage: {
-      name: 'Error Message',
-      control: {
-        type: 'text',
-      },
-      description: 'Text to be displayed when there is an error.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
-    helperMessage: {
-      name: 'Helper Message',
-      control: {
-        type: 'text',
-      },
-      description: 'Text to be displayed as a helper message below the input.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
-    isRequired: {
-      name: 'Required',
-      control: { type: 'boolean' },
-      description: 'Indicates whether the input field is required.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean' },
-      },
-    },
-    placeholder: {
-      name: 'Placeholder',
-      control: {
-        type: 'text',
-      },
-      description: 'Placeholder text to be displayed inside the input field.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
-    disabled: {
-      name: 'Disabled',
-      control: { type: 'boolean' },
-      description: 'Disables the input field when set to true.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean' },
-      },
-    },
-    label: {
-      name: 'Label',
-      control: {
-        type: 'text',
-      },
-      description: 'Label text to be displayed above the input field.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
-    showError: {
-      name: 'Show Error',
-      control: {
-        type: 'boolean',
-      },
-      description: 'Boolean to show or hide the error message.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-    },
+    control: InputParameterDescriptions.control,
+    errorMessage: InputParameterDescriptions.errorMessage,
+    helperMessage: InputParameterDescriptions.helperMessage,
+    isRequired: InputParameterDescriptions.isRequired,
+    placeholder: InputParameterDescriptions.placeholder,
+    disabled: InputParameterDescriptions.disabledFormControl,
+    label: InputParameterDescriptions.label,
+    showError: InputParameterDescriptions.showError,
     tagOptions: {
-      name: 'Tag Options',
       control: {
         type: 'array',
       },
-      description:
-        'The options the user can select from. It accepts a string array.',
+      description: 'Sets the options the user can select from.',
       table: {
         category: 'Properties',
-        type: { summary: 'Array<string>' },
+        type: { summary: 'string, string[]' },
+        defaultValue: { summary: '' },
       },
     },
-    tooltip: {
-      name: 'Tooltip',
-      control: {
-        type: 'text',
-      },
-      description: 'Shows a tooltip with extra information about the input',
+    tooltip: InputParameterDescriptions.tooltip,
+    tooltipPosition: InputParameterDescriptions.tooltipPosition,
+    maxSelectedItems: InputParameterDescriptions.deprecated,
+    inputId: InputParameterDescriptions.inputId,
+    name: InputParameterDescriptions.name,
+    value: InputParameterDescriptions.value,
+    onChange: {
+      control: false,
+      description:
+        'Emits when the selected tags change. The event payload is an array of selected tag strings.',
       table: {
-        category: 'Properties',
-        type: { summary: 'string' },
+        category: 'Event',
+        type: { summary: '' },
+      },
+    },
+    onKeyDown: {
+      control: false,
+      description:
+        'Emits when a key is pressed while the input is focused. The event payload is a KeyboardEvent.',
+      table: {
+        category: 'Event',
+        type: { summary: '' },
       },
     },
   },
   args: {
-    errorMessage: 'Error Message',
+    inputId: '',
+    name: '',
+    value: '',
+    label: '',
+    tooltip: '',
+    tooltipPosition: {},
+    placeholder: '',
     helperMessage: 'Helper Message',
-    isRequired: false,
-    placeholder: 'Placeholder',
     disabled: false,
-    label: 'Input Label',
-    showError: false,
+    isRequired: false,
     tagOptions: [
       'Tacos al pastor',
       'Enchiladas',
@@ -322,7 +184,6 @@ ${getEmptyStateMessage()}
       'Arroz a la mexicana',
       'Burritos',
     ],
-    tooltip: 'tooltip del input tag',
   },
 } as Meta<typeof BmbInputTagsComponent>;
 

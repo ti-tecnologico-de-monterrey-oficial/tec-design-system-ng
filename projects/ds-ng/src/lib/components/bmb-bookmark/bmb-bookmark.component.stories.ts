@@ -1,39 +1,32 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbBookmarkComponent } from './bmb-bookmark.component';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+} from '../../utils/doc/utils';
 
 export default {
   title: 'Components/Buttons/Bookmark',
   component: BmbBookmarkComponent,
   parameters: {
+    controls: { exclude: ['getClassList', 'handleClick'] },
     docs: {
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbBookmarkComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbBookmarkComponent ],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
-})
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
-        `,
+${getGeneralDescription(`${getGeneralComponentDescription('bookmark')} to mark relevant or favorite content for easier access later.`, 'https://bamboo.tec.mx/latest/componentes/bookmark/descripcion-general-fXWKYHH5')}
+${getBasicExampleBlock('BmbBookmarkComponent')}
+`,
       },
     },
   },
   argTypes: {
     isActive: {
-      name: 'Is active',
       control: {
         type: 'boolean',
       },
       description:
-        'Set the active state of the bookmark, this input is a model so you can detect a change in the state in the same place.',
+        'Sets the active state of the bookmark, this input is a model so you can detect a change in the state in the same place.',
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },

@@ -3,7 +3,14 @@ import {
   BmbLayoutGridItemDirective,
 } from './bmb-layout-grid.directive';
 import { Meta, moduleMetadata, StoryFn } from '@storybook/angular';
-import { attributes } from '../../utils/doc/utils';
+import {
+  attributes,
+  getAuxiliaryDescription,
+  getBasicExampleBlock,
+  getGeneralDescription,
+  getGridGeneratorLink,
+  getSpecialSpecifications,
+} from '../../utils/doc/utils';
 import { CommonModule } from '@angular/common';
 import {
   BmbCardComponent,
@@ -27,43 +34,40 @@ const meta: Meta<BmbLayoutGridDirective> = {
     }),
   ],
   parameters: {
+    controls: { exclude: ['generateArray', 'getRules'] },
     docs: {
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbLayoutGridDirective, BmbLayoutGridItemDirective } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbLayoutGridDirective, BmbLayoutGridItemDirective ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-The layout grid is a powerful tool for creating complex layouts in your application. It allows you to define a grid structure and place items within that grid. The grid can be customized with different row and column sizes, as well as gaps between items.
-
+${getGeneralDescription(
+  `
+The ***Layout grid*** is a powerful tool for creating complex layouts in your application.<br/><br/>
+${getAuxiliaryDescription('Layout grid', 'Layout grid item')}`,
+  '',
+)}
+${getSpecialSpecifications(`
+***Layout grid*** allows you to define a grid structure and place items within that grid.
+><br/><br/>
+The grid can be customized with different row and column sizes, as well as gaps between items.
+><br/><br/>
 The grid is defined using the \`bmbLayoutGrid\` directive, and items within the grid are defined using the \`bmbLayoutGridItem\` directive.
-
-## Defining columns and rows
+><br/><br/><br/>
+### Defining columns and rows
 You can define the number of columns and rows in the grid using the \`columns\` and \`rows\` properties. The grid will automatically adjust to fit the specified number of columns and rows.
-
-## Defining column and row sizes
+><br/><br/><br/>
+### Defining column and row sizes
 You can define the size of each column and row using the \`columnSize\` and \`rowSize\` properties. These properties can accept a single value or an array of values, allowing for flexible grid layouts.
-
+><br/><br/>
 Yo can use px, em, rem, fr, % and auto as values for the rowSize and columnSize properties.
-
-## Grid generator
-You can use this tool to generate a custom grid: [Grid generator](https://develop--65c3b4d1f966b98bb1f4e774.chromatic.com/?path=/docs/micro-componentes-grid-generator--documentation)
-        `,
+><br/><br/><br/>
+${getGridGeneratorLink()}
+`)}
+${getBasicExampleBlock('BmbLayoutGridDirective, BmbLayoutGridItemDirective')}
+      `,
       },
     },
   },
   argTypes: {
     colGapSize: {
-      name: 'Column gap size',
       control: {
         type: 'select',
       },
@@ -76,7 +80,6 @@ You can use this tool to generate a custom grid: [Grid generator](https://develo
       },
     },
     rows: {
-      name: 'Number of rows',
       control: {
         type: 'number',
       },
@@ -88,7 +91,6 @@ You can use this tool to generate a custom grid: [Grid generator](https://develo
       },
     },
     columns: {
-      name: 'Number of columns',
       control: {
         type: 'number',
       },
@@ -100,7 +102,6 @@ You can use this tool to generate a custom grid: [Grid generator](https://develo
       },
     },
     rowSize: {
-      name: 'Row size',
       control: {
         type: 'object',
       },
@@ -112,7 +113,6 @@ You can use this tool to generate a custom grid: [Grid generator](https://develo
       },
     },
     columnSize: {
-      name: 'Column size',
       control: {
         type: 'object',
       },
@@ -124,7 +124,6 @@ You can use this tool to generate a custom grid: [Grid generator](https://develo
       },
     },
     rowGapSize: {
-      name: 'Row gap size',
       control: {
         type: 'select',
       },
@@ -137,7 +136,6 @@ You can use this tool to generate a custom grid: [Grid generator](https://develo
       },
     },
     height: {
-      name: 'Height',
       control: {
         type: 'number',
       },
