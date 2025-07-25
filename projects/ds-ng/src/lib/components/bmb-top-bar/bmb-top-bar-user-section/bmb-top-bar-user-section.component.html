@@ -28,16 +28,12 @@
       (buttonClick)="handleHelpButtonClick($event)"
     />
   }
-  <button
-    class="bmb_top-bar-user-section-user-image"
-    (click)="handleUserClick($event)"
-  >
-    <bmb-user-image
-      [image]="userInformation.image"
-      size="mobile-small"
-      [altImage]="userInformation.name"
-    />
-  </button>
+  <bmb-user-image
+    [image]="userInformation.image"
+    size="mobile-small"
+    [altImage]="userInformation.name"
+    (buttonClick)="handleUserClick($event)"
+  />
   @if (mitec && (userInformation.name || userInformation.role)) {
     <div
       class="bmb_top-bar-user-section-name bmb_top-bar-user-section-no-mobile"
