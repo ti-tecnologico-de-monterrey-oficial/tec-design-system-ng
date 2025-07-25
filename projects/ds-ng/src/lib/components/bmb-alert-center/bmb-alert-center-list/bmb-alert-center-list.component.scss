@@ -16,23 +16,9 @@
   flex-direction: column;
 
   &-item {
-    display: grid;
-    grid-template-columns: rem.rem_calc(42) rem.rem_calc(12) 1fr max-content;
-    grid-template-rows: auto;
-    gap: var(--bmb-spacing-s);
     border-bottom: rem.rem_calc(1) solid var(--general_contrasts-50);
-    grid-template-areas:
-      "selection status title time"
-      "selection status tags time"
-      "selection status date time";
-
-    &-selection {
-      grid-area: selection;
-    }
 
     &-status {
-      grid-area: status;
-
       &-circle {
         width: rem.rem_calc(12);
         height: rem.rem_calc(12);
@@ -43,18 +29,19 @@
       }
     }
 
+    &-content {
+      cursor: pointer;
+    }
+
     &-title {
-      grid-area: title;
-      margin-top: rem.rem_calc(6);
+      padding-top: rem.rem_calc(6);
       @include fonts.font(4, regular);
       font-weight: 500;
-      cursor: pointer;
     }
 
     &-tags {
       display: flex;
       gap: var(--bmb-spacing-m);
-      grid-area: tags;
     }
 
     &-date {

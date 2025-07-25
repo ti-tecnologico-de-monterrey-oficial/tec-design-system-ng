@@ -9,6 +9,9 @@ import {
   BmbButtonDirective,
   BmbVerticalLayoutDirective,
   BmbVerticalLayoutItemDirective,
+  BmbContainerButtonComponent,
+  BmbTextLinkComponent,
+  BmbDividerComponent,
 } from '../../../../projects/ds-ng/src/public-api';
 
 @Component({
@@ -24,6 +27,9 @@ import {
     BmbButtonDirective,
     BmbVerticalLayoutDirective,
     BmbVerticalLayoutItemDirective,
+    BmbContainerButtonComponent,
+    BmbTextLinkComponent,
+    BmbDividerComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',

@@ -39,5 +39,12 @@ export const routes: Routes = [
         (d) => d.DropdownPageComponent,
       ),
   },
+  {
+    path: 'alerts',
+    loadComponent: () =>
+      import('./pages/alerts/alerts.component').then(
+        (a) => a.AlertsPageComponent,
+      ),
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];

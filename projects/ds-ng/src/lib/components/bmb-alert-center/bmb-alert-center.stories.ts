@@ -1,162 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/angular';
+import { componentWrapperDecorator, moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
 import { BmbAlertCenterComponent } from './bmb-alert-center.component';
+import { BmbAlertCenterService } from './bmb-alert-center.service';
 
-export default {
-  title: 'Organisms/Alert center',
-  component: BmbAlertCenterComponent,
-  parameters: {
-    docs: {
-      description: {
-        component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbAlertCenterComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbAlertCenterComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-## Scroll
-
-If you want the component to handle the scroll, you should wrap it in a container with a defined height.
-
-\`\`\`html
-<div style="height: 100dvh;">
-  <bmb-alert-center ... />
-</div>
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
-        `,
-      },
-    },
-  },
-  argTypes: {
-    tabsName: {
-      name: 'Tabs Name',
-      control: {
-        type: 'object',
-      },
-      description: 'Name of the tabs.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string[]' },
-        defaultValue: {
-          summary: '["Todos", "No Leídos", "Favoritos", "Archivados"]',
-        },
-      },
-    },
-    dateFormat: {
-      name: 'Date Format',
-      control: {
-        type: 'text',
-      },
-      description: 'Format of the dates.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: 'dd/MM/yyyy' },
-      },
-    },
-    alerts: {
-      name: 'Alerts',
-      control: {
-        type: 'object',
-      },
-      description: 'List of alerts **(required)**.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'IBmbDataAlert[]' },
-      },
-    },
-    onChangeAlertStatus: {
-      name: 'Change Alert Status',
-      action: 'onChangeAlertStatus',
-      description: 'Event emitted when the status of an alert changes.',
-      table: {
-        category: 'Events',
-        type: { summary: 'IBmbDataAlertsOutput' },
-      },
-    },
-    alertEvent: {
-      name: 'Alert Event',
-      action: 'alertEvent',
-      description: 'Event emitted when an alert is clicked.',
-      table: {
-        category: 'Events',
-        type: { summary: 'IBmbDataAlert' },
-      },
-    },
-    advertisements: {
-      name: 'Advertisements',
-      control: {
-        type: 'IBmbDataAlert[]',
-      },
-      description:
-        'Set information that the component will show on the ads tab',
-      table: {
-        category: 'Properties',
-        type: { summary: 'IBmbDataAlert[]' },
-        defaultValue: { summary: `[]` },
-      },
-    },
-    showAlertDetail: {
-      name: 'Show Alert Detail',
-      description: 'Event emitted to show alert details.',
-      table: {
-        category: 'Events',
-        type: { summary: 'IBmbDataAlertsParsed' },
-      },
-    },
-    hideTabs: {
-      name: 'Hide Tabs',
-      control: {
-        type: 'boolean',
-      },
-      description: 'Hide tabs.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-    },
-    emptyState: {
-      name: 'Empty State',
-      control: {
-        type: 'boolean',
-      },
-      description: 'Show empty State.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-    },
-    emptyStateData: {
-      name: 'Empty State Data',
-      control: { type: 'object' },
-      table: {
-        category: 'Properties',
-        type: { summary: 'IBmbAlertEmptyState' },
-      },
-      description: 'Configuration object for the empty state display.',
-    },
-  },
-  args: {
-    tabsName: [
-      { title: 'Notificaciones', isMobile: true, isDesktop: true },
-      { title: 'No leídos', isMobile: false, isDesktop: true },
-      { title: 'Favoritos', isMobile: false, isDesktop: true },
-      { title: 'Archivados', isMobile: false, isDesktop: true },
-      { title: 'Anuncios', isMobile: true, isDesktop: true },
-    ],
-    dateFormat: 'dd/MM/yyyy',
-    alerts: [
+class mockService {
+  getAlerts() {
+    return [
       {
         id: 10,
         title: 'Alerta 10',
@@ -278,8 +126,13 @@ Below is an example of how you can use this component in HTML:
         isFavorite: false,
         isArchived: false,
       },
-    ],
-    advertisements: [
+    ];
+  }
+  getLoadingState() {
+    return false;
+  }
+  getAdvertisements() {
+    return [
       {
         id: 10,
         title: 'Alerta 10',
@@ -401,7 +254,253 @@ Below is an example of how you can use this component in HTML:
         isFavorite: false,
         isArchived: false,
       },
+    ];
+  }
+}
+
+class mockLoadingService {
+  getAlerts() {
+    return [];
+  }
+  getLoadingState() {
+    return true;
+  }
+  getAdvertisements() {
+    return [];
+  }
+}
+
+export default {
+  title: 'Organisms/Alert center',
+  component: BmbAlertCenterComponent,
+  decorators: [
+    componentWrapperDecorator((story: string) => {
+      return `<div style="height: 500px;">
+        ${story}
+      </div>`;
+    }),
+    moduleMetadata({
+      providers: [
+        { provide: BmbAlertCenterService, useClass: mockService },
+      ],
+    }),
+  ],
+  parameters: {
+    docs: {
+      description: {
+        component: `
+##Configuration
+Add the \`BmbAlertCenterService\` to your App providers:
+
+\`\`\`javascript
+providers: [
+  provideRouter(routes),
+  importProvidersFrom([BmbAlertCenterService, ...]),
+],
+\`\`\`
+
+---
+
+##Alert center service methods
+
+> ###Alerts
+>
+> ####Set notifications
+>
+> \`\`\`typescript
+setAlerts(alerts: IBmbDataAlert[]);
+> \`\`\`
+>
+> This method sets the alerts to be displayed in the alert center replacing any existing alerts.
+>
+> ####Update notifications
+>
+> \`\`\`typescript
+updateAlerts(alertList: IBmbDataAlert[]);
+> \`\`\`
+>
+> This method updates the existing alerts with the provided list. If an alert with the same ID exists, it will be updated; otherwise, it will remain unchanged.
+>
+> ####Add notifications
+>
+> \`\`\`typescript
+addAlerts(alerts: IBmbDataAlert[]);
+> \`\`\`
+>
+> This method adds new alerts to the existing list of alerts without replacing them.
+>
+> ####Get notifications
+>
+> \`\`\`typescript
+getAlerts(): IBmbDataAlert[];
+> \`\`\`
+>
+> This method retrieves the current list of alerts.
+
+> ###Loading state
+>
+> ####Set loading state
+>
+> \`\`\`typescript
+setLoadingState(loading: boolean = false);
+> \`\`\`
+>
+> This method sets the loading state.
+>
+> ####Get loading state
+>
+> \`\`\`typescript
+getLoadingState(): boolean;
+> \`\`\`
+>
+> This method retrieves the current loading state.
+
+---
+
+Below is an example of how you can use this component in TypeScript:
+
+\`\`\`typescript
+import { BmbAlertCenterComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
+@Component({
+  selector: 'component',
+  standalone: true,
+  imports: [ BmbAlertCenterComponent ],
+  templateUrl: './component.html',
+  styleUrl: './component.scss',
+})
+\`\`\`
+
+## Scroll
+
+If you want the component to handle the scroll, you should wrap it in a container with a defined height.
+
+\`\`\`html
+<div style="height: 100dvh;">
+  <bmb-alert-center ... />
+</div>
+\`\`\`
+
+Below is an example of how you can use this component in HTML:
+        `,
+      },
+    },
+  },
+  argTypes: {
+    tabsName: {
+      control: {
+        type: 'object',
+      },
+      description: 'Sets the tabs name, also you can hide tabs for mobile or desktop.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string[] | IBmbAlertCenterTabConfig[]' },
+        defaultValue: {
+          summary: '["Todos", "No Leídos", "Favoritos", "Archivados"]',
+        },
+      },
+    },
+    dateFormat: {
+      control: {
+        type: 'text',
+      },
+      description: 'Format of the dates.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: 'dd/MM/yyyy' },
+      },
+    },
+    alerts: {
+      control: {
+        type: 'object',
+      },
+      description: '**Deprecated**: use bmbAlertCenterService.getAlerts() instead.',
+      table: {
+        category: 'Deprecated',
+        type: { summary: 'IBmbDataAlert[]' },
+      },
+    },
+    onChangeAlertStatus: {
+      action: 'onChangeAlertStatus',
+      description: 'Event emitted when the status of an alert changes.',
+      table: {
+        category: 'Events',
+        type: { summary: 'IBmbDataAlertsOutput' },
+      },
+    },
+    alertEvent: {
+      action: 'alertEvent',
+      description: 'Event emitted when an alert is clicked.',
+      table: {
+        category: 'Events',
+        type: { summary: 'IBmbDataAlert' },
+      },
+    },
+    closeAlertDetail: {
+      action: 'closeAlertDetail',
+      description: 'Event emitted to close the alert detail (mobile only).',
+      table: {
+        category: 'Events',
+        type: { summary: 'IBmbDataAlert' },
+      },
+    },
+    advertisements: {
+      control: {
+        type: 'IBmbDataAlert[]',
+      },
+      description:
+        '**Deprecated**: use bmbAlertCenterService.addAdvertisements() instead.',
+      table: {
+        category: 'Deprecated',
+        type: { summary: 'IBmbDataAlert[]' },
+        defaultValue: { summary: `[]` },
+      },
+    },
+    showAlertDetail: {
+      description: 'Event emitted to show alert details.',
+      table: {
+        category: 'Events',
+        type: { summary: 'IBmbDataAlert' },
+      },
+    },
+    hideTabs: {
+      control: {
+        type: 'boolean',
+      },
+      description: 'Hide tabs.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    emptyStateData: {
+      control: { type: 'object' },
+      table: {
+        category: 'Properties',
+        type: { summary: 'IBmbAlertEmptyState' },
+      },
+      description: 'Configuration object for the empty state display.',
+    },
+    enableMultipleSelection: {
+      control: { type: 'boolean' },
+      description: 'Enable multiple selection of alerts.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'true' },
+      },
+    },
+  },
+  args: {
+    tabsName: [
+      { title: 'Notificaciones', isMobile: true, isDesktop: true },
+      { title: 'No leídos', isMobile: false, isDesktop: true },
+      { title: 'Favoritos', isMobile: false, isDesktop: true },
+      { title: 'Archivados', isMobile: false, isDesktop: true },
+      { title: 'Anuncios', isMobile: true, isDesktop: true },
     ],
+    dateFormat: 'dd/MM/yyyy',
     onChangeAlertStatus: (event: any) => {
       console.log('onChangeAlertStatus', event);
     },
@@ -411,9 +510,13 @@ Below is an example of how you can use this component in HTML:
     showAlertDetail: (event: any) => {
       console.log('showAlertDetail', event);
     },
+    closeAlertDetail: (event: any) => {
+      console.log('closeAlertDetail', event);
+    },
     hideTabs: false,
     emptyState: false,
     emptyStateData: '',
+    enableMultipleSelection: true,
   },
 } as Meta<typeof BmbAlertCenterComponent>;
 
@@ -428,12 +531,14 @@ export const HideTabs = {
 };
 
 export const EmptyStateLarge = {
+  decorators: [
+    moduleMetadata({
+      providers: [
+        { provide: BmbAlertCenterService},
+      ],
+    }),
+  ],
   args: {
-    alerts: [],
-    advertisements: [],
-    tabsName: [],
-    dateFormat: '',
-    emptyState: true,
     emptyStateData: {
       primaryText: 'No hay notificaciones',
       secondaryText: 'Vuelve a intentarlo más tarde.',
@@ -449,12 +554,14 @@ export const EmptyStateLarge = {
 };
 
 export const EmptyStateMedium = {
+  decorators: [
+    moduleMetadata({
+      providers: [
+        { provide: BmbAlertCenterService},
+      ],
+    }),
+  ],
   args: {
-    alerts: [],
-    advertisements: [],
-    tabsName: [],
-    dateFormat: '',
-    emptyState: true,
     emptyStateData: {
       primaryText: 'No hay notificaciones',
       secondaryText: 'Vuelve a intentarlo más tarde.',
@@ -470,12 +577,37 @@ export const EmptyStateMedium = {
 };
 
 export const EmptyStateSmall = {
+  decorators: [
+    moduleMetadata({
+      providers: [
+        { provide: BmbAlertCenterService},
+      ],
+    }),
+  ],
   args: {
-    alerts: [],
-    advertisements: [],
-    tabsName: [],
-    dateFormat: '',
-    emptyState: true,
+    emptyStateData: {
+      primaryText: 'No hay notificaciones',
+      secondaryText: 'Vuelve a intentarlo más tarde.',
+      tertiaryText: 'Si el problema persiste, contacta soporte.',
+      buttonText: 'Ir al inicio',
+      size: 'small',
+      showButton: true,
+      onClick: () => {
+        alert('Botón del Empty State clickeado');
+      },
+    },
+  },
+};
+
+export const LoadingState = {
+  decorators: [
+    moduleMetadata({
+      providers: [
+        { provide: BmbAlertCenterService, useClass: mockLoadingService },
+      ],
+    }),
+  ],
+  args: {
     emptyStateData: {
       primaryText: 'No hay notificaciones',
       secondaryText: 'Vuelve a intentarlo más tarde.',

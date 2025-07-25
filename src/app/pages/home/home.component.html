@@ -1,98 +1,160 @@
 <header class="bmb_template-header">
-  <h3>Inicio</h3>
-  <h5>Bienvenido a BambooPress</h5>
+  <h3>Home</h3>
+  <h5>Welcome to BambooPress</h5>
 </header>
 <div class="bmb_template-margin-for-sidebar">
-  <section bmbLayout margin="none">
-    <bmb-accordion
-      bmbLayoutItem
-      [colSm]="4"
-      [colLg]="6"
-      borderRadius="m"
-      margin="m"
-      paddingHeader="m"
-      paddingContent="m"
-      icon="keyboard_arrow_down"
-      [expanded]="true"
-    >
-      <ng-template #bmbAccordionHeader>
-        <h2>Site health status</h2>
-      </ng-template>
-      <ng-template #bmbAccordionContent>
-        <div bmbLayout margin="none">
-          <h3 bmbLayoutItem [colSm]="2">No information yet...</h3>
-          <p bmbLayoutItem [colSm]="2">
-            Site health checks will automatically run periodically to gather
-            information about your site. You can also visit the Site Health
-            screen to gather information about your site now.
-          </p>
-        </div>
-      </ng-template>
-    </bmb-accordion>
-    <bmb-accordion
-      bmbLayoutItem
-      [colSm]="4"
-      [colLg]="6"
-      borderRadius="m"
-      margin="m"
-      paddingHeader="m"
-      paddingContent="m"
-      icon="keyboard_arrow_down"
-      [expanded]="true"
-    >
-      <ng-template #bmbAccordionHeader>
-        <h2>Quick draft</h2>
-      </ng-template>
-      <ng-template #bmbAccordionContent>
-        <bmb-form-validator>
-          <div bmbVerticalLayout margin="none">
-            <bmb-input
-              bmbLayoutItem
-              label="Title"
-              placeholder="Enter a title..."
-              [isRequired]="true"
-            />
-            <button bmbLayoutItem bmbButton appearance="primary" type="submit">
-              Submit
-            </button>
+  <section bmbLayout margin="none" gapSize="m">
+    <div bmbVerticalLayout bmbLayoutItem [colSm]="4" [colLg]="6" gapSize="m">
+      <bmb-accordion
+        borderRadius="m"
+        margin="none"
+        paddingHeader="m"
+        paddingContent="m"
+        icon="keyboard_arrow_down"
+        [expanded]="true"
+        bmbVerticalLayoutItem
+      >
+        <ng-template #bmbAccordionHeader>
+          <h2>Site health status</h2>
+        </ng-template>
+        <ng-template #bmbAccordionContent>
+          <div bmbLayout margin="none">
+            <h3 bmbLayoutItem [colSm]="2">No information yet...</h3>
+            <p bmbLayoutItem [colSm]="2">
+              Site health checks will automatically run periodically to gather
+              information about your site. You can also visit the Site Health
+              screen to gather information about your site now.
+            </p>
           </div>
-        </bmb-form-validator>
-      </ng-template>
-    </bmb-accordion>
+        </ng-template>
+      </bmb-accordion>
+      <bmb-accordion
+        borderRadius="m"
+        margin="none"
+        paddingHeader="m"
+        paddingContent="m"
+        icon="keyboard_arrow_down"
+        [expanded]="true"
+        bmbVerticalLayoutItem
+      >
+        <ng-template #bmbAccordionHeader>
+          <h2>At a glance</h2>
+        </ng-template>
+        <ng-template #bmbAccordionContent>
+          <div bmbLayout margin="none">
+            <bmb-container-button
+              title="1 post"
+              iconLeft="keep"
+              bmbLayoutItem
+              [colSm]="4"
+              [colLg]="6"
+            />
+            <bmb-container-button
+              title="1 page"
+              iconLeft="content_copy"
+              bmbLayoutItem
+              [colSm]="4"
+              [colLg]="6"
+            />
+            <bmb-container-button
+              title="29 comments"
+              iconLeft="content_copy"
+              bmbLayoutItem
+              [colSm]="4"
+              [colLg]="6"
+            />
+            <p bmbLayoutItem [colSm]="4" [colLg]="12">Bamboo v1.5</p>
+          </div>
+        </ng-template>
+      </bmb-accordion>
+      <bmb-accordion
+        borderRadius="m"
+        margin="none"
+        paddingHeader="m"
+        paddingContent="m"
+        icon="keyboard_arrow_down"
+        [expanded]="true"
+        bmbVerticalLayoutItem
+      >
+        <ng-template #bmbAccordionHeader>
+          <h2>Activity</h2>
+        </ng-template>
+        <ng-template #bmbAccordionContent>
+          <div bmbLayout margin="none" alignItems="center" gapSize="m">
+            <h3 bmbLayoutItem [colSm]="4">Recently published</h3>
+            <span bmbLayoutItem [colSm]="2">Today: 10:30am</span>
+            <span bmbLayoutItem [colSm]="2">
+              <bmb-text-link
+                textLink="My post"
+                textLinkStyle="icon"
+                [icon]="'arrow_forward'"
+                link="/posts/my-post"
+              />
+            </span>
+            <bmb-divider bmbLayoutItem [colSm]="4" />
+            <h3 bmbLayoutItem [colSm]="4">Comments</h3>
+          </div>
+        </ng-template>
+      </bmb-accordion>
+    </div>
+    <div bmbVerticalLayout bmbLayoutItem [colSm]="4" [colLg]="6" gapSize="m">
+      <bmb-accordion
+        borderRadius="m"
+        margin="none"
+        paddingHeader="m"
+        paddingContent="m"
+        icon="keyboard_arrow_down"
+        [expanded]="true"
+        bmbVerticalLayoutItem
+      >
+        <ng-template #bmbAccordionHeader>
+          <h2>Quick draft</h2>
+        </ng-template>
+        <ng-template #bmbAccordionContent>
+          <bmb-form-validator>
+            <div bmbVerticalLayout margin="none">
+              <bmb-input
+                bmbVerticalLayoutItem
+                label="Title"
+                placeholder="Enter a title..."
+                [isRequired]="true"
+              />
+              <bmb-input
+                bmbVerticalLayoutItem
+                label="Title"
+                placeholder="Enter a title..."
+                [isRequired]="true"
+                type="text-area"
+                [rows]="5"
+              />
+              <button
+                bmbVerticalLayoutItem
+                bmbButton
+                appearance="primary"
+                type="submit"
+              >
+                Submit
+              </button>
+            </div>
+          </bmb-form-validator>
+        </ng-template>
+      </bmb-accordion>
+      <bmb-accordion
+        borderRadius="m"
+        margin="none"
+        paddingHeader="m"
+        paddingContent="m"
+        icon="keyboard_arrow_down"
+        [expanded]="true"
+        bmbVerticalLayoutItem
+      >
+        <ng-template #bmbAccordionHeader>
+          <h2>Bamboo Events and news</h2>
+        </ng-template>
+        <ng-template #bmbAccordionContent>
+          <p>Coming soon! Bamboo events and news will be displayed here.</p>
+        </ng-template>
+      </bmb-accordion>
+    </div>
   </section>
 </div>
-
-<!-- <section bmbLayout>
-  @for (item of animeList().data; track $index) {
-    @defer (on viewport) {
-      <bmb-card bmbLayoutItem margin="none" [colSm]="2" [colLg]="2">
-        <bmb-card-header>
-          <h2>
-            {{ item.title }}
-          </h2>
-        </bmb-card-header>
-        <bmb-card-content>
-          <bmb-image [src]="item.images.jpg.image_url" [alt]="item.title" />
-          <div>
-            @for (demographic of item.demographics; track $index) {
-              <bmb-tag [text]="demographic.name" />
-            }
-          </div>
-        </bmb-card-content>
-      </bmb-card>
-    } @placeholder {
-      <bmb-card>
-        <bmb-card-header>
-          <h2>Loading...</h2>
-        </bmb-card-header>
-        <bmb-card-content>
-          <bmb-loader />
-        </bmb-card-content>
-      </bmb-card>
-    }
-  }
-</section>
-
-@if (animeList().loading) {
-  <bmb-loader />
-} -->

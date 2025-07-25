@@ -2,13 +2,16 @@
  * Public API Surface of ds-ng
  */
 
+// Services
 export * from './lib/ds-ng.service';
 export * from './lib/services/notification.service';
 export * from './lib/services/tabs.service';
 export * from './lib/services/calendar.service';
 export * from './lib/services/user/profile.service';
 export * from './lib/components/bmb-login-onboarding/bmb-login-onboarding.service';
+export * from './lib/components/bmb-alert-center/bmb-alert-center.service';
 
+// Directives
 export * from './lib/ds-ng.component';
 export * from './lib/directives/bmb-button/button.directive';
 export * from './lib/directives/bmb-layout/bmb-layout-item.directive';
