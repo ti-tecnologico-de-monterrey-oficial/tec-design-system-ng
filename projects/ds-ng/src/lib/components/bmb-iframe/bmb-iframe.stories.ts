@@ -16,7 +16,7 @@ export default {
         component: `
 ${getGeneralDescription(
   `
-${getGeneralComponentDescription('iframe')} to embed another webpage within the current, acting as a *window* within the main page to display external content.
+${getGeneralComponentDescription('iframe', 'element')} to embed another webpage within the current, acting as a *window* within the main page to display external content.
   `,
   'https://bamboo.tec.mx/latest/foundations/i-frame/descripcion-general-gxUE3JoE',
 )}

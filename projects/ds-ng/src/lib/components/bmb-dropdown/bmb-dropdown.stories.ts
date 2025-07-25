@@ -13,6 +13,7 @@ import {
   getSpecialSpecifications,
   getBasicExampleBlock,
   getFormExampleBlock,
+  generateLabel,
 } from '../../utils/doc/utils';
 import { BmbFormValidatorComponent } from '../bmb-form-validator/bmb-form-validator.component';
 import { InputParameterDescriptions } from '../../utils/doc/parameterDescriptions';
@@ -21,11 +22,12 @@ const title = 'Components/Inputs/Dropdown';
 const inputName = 'dropdown';
 const additionalBlock = `handleDropdownChange(value: string): void {
     console.log('Value changed:', value);
-  }`;
+    //Add your code
+}`;
 const inputExample = ` <bmb-${inputName}
   inputId="${inputName}_id"
   name="${inputName}"
-  label="Dropdown"
+  label="${generateLabel(inputName)}"
   [control]="getFormControl('${inputName}')"
   (change)="handleDropdownChange($event)"
   />`;
@@ -76,7 +78,7 @@ export default {
       description: {
         component: `
 ${getFieldDescription(
-  'bmb-dropdown',
+  'dropdown',
   'select an option from a list.',
   'https://bamboo.tec.mx/latest/componentes/dropdown/descripcion-general-4wp8B5ut',
 )}

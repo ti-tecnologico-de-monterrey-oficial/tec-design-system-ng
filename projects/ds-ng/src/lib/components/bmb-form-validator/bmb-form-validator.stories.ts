@@ -87,7 +87,6 @@ ${getFormControlDescription('>').replace('<br/>', '')}
 >- [Date picker range](/docs/components-inputs-date-picker-range--documentation)
 >- [Dropdown](/docs/components-inputs-dropdown--documentation)
 >- [Phone number](/docs/components-inputs-phone-number--documentation)
->- [Radial](/docs/components-inputs-radial--documentation)
 >- [Text input](/docs/components-inputs-text-input--documentation)
 >- [Text input with tags](/docs/components-inputs-text-input-with-tags--documentation)
   `,

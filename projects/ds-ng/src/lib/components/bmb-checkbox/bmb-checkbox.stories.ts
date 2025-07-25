@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbCheckboxComponent } from './bmb-checkbox.component';
 import {
+  generateLabel,
   getBasicExampleBlock,
   getCheckboxOrRadialArchitecture,
   getFieldDescription,
@@ -9,11 +10,12 @@ import {
 import { InputParameterDescriptions } from '../../utils/doc/parameterDescriptions';
 
 const inputName = 'checkbox';
-const label = `${inputName.replace(inputName.slice(0, 1), inputName.slice(0, 1).toLocaleUpperCase())}`;
+const label = generateLabel(inputName);
 const additionalBlock = `handle${label}Change(event: Event): void {
     const element = event.target as HTMLInputElement;
     console.log('${label} checked state:', element.checked);
     console.log('${label} name:', element.name);
+    //Add your code
   }`;
 const inputExample = `<bmb-${inputName}
   inputId="${inputName}_id"
@@ -34,7 +36,7 @@ export default {
       description: {
         component: `
 ${getFieldDescription(
-  'bmb-checkbox',
+  'checkbox',
   'select one or more options.',
   'https://bamboo.tec.mx/latest/componentes/checkbox/descripcion-general-nl6Z6U1M',
 )}

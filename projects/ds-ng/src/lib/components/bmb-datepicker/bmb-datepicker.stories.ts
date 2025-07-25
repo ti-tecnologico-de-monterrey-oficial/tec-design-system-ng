@@ -10,7 +10,7 @@ import {
 
 const inputName = 'date_picker';
 const inputExample = `<bmb-datepicker
-  inputId="date_picker_id"
+  inputId="${inputName}_id"
   name="${inputName}"
   label="Date"
   [control]="getFormControl('${inputName}')"
@@ -47,7 +47,7 @@ export default {
       description: {
         component: `
 ${getFieldDescription(
-  'bmb-datepicker',
+  'datepicker',
   'select a date from a calendar view, within a dialog box.',
   'https://bamboo.tec.mx/latest/componentes/calendar-date-picker/descripcion-general-JXYISTju',
 )}

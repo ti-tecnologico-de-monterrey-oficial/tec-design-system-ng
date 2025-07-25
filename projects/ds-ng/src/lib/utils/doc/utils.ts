@@ -5,6 +5,7 @@ import {
   Title,
 } from '@storybook/addon-docs/blocks';
 import { getListingOnOneLine } from '../utils';
+import { IBmbCountryCode, IBmbCountryCodes } from '../countryCodes';
 
 export const DESIGN_SYSTEM_TITLE = '***Bamboo***';
 export const STORIES_TITLE = 'Variant templates';
@@ -27,6 +28,7 @@ export const TOC_OBJ = {
   title: TOC_TITLE,
   headingSelector: 'h2, h3',
 };
+export type IBmbStoryType = 'element' | 'component' | 'organism';
 
 export const getPageStructureForFoundationStories = () => {
   return [Title({}), Description({}), Primary({}), Controls({})];
@@ -56,6 +58,38 @@ export const attributesText = (object: { [key: string]: any }): string =>
     .filter(([key]) => key === 'test_text')
     .map(([_, value]) => `${value}`)
     .join(' ');
+
+export const getAllCountryList = () => {
+  const allCountries: IBmbCountryCode[] = IBmbCountryCodes;
+  // return allCountries.map(element => `**${element.country}**: code(*${element.country_code}*)  lada(*${element.lada}*)  length(*${element.length}*)<br/>`).toString().replaceAll('<pr>','').replaceAll('</pr>','').replaceAll('<br/>,','<br/>');
+  // return `
+  // <section className="bmb_doc-accordion--container">
+  //     ${allCountries.map((element, index) =>
+  //       `<details key=${index} className="bmb_doc-accordion--item">
+  //         <summary>${element?.country}</summary>
+  //         <div className="bmb_doc-accordion--content">${`**${element.country}**: code(*${element.country_code}*)  lada(*${element.lada}*)  length(*${element.length}*`}</div>
+  //       </details>`
+  //     )}
+  //   </section>
+  // `;
+  // return `
+  // <section className="bmb_doc-accordion--container">
+  //     ${allCountries.map((element, index) =>
+  //       '<details key='+index+' className="bmb_doc-accordion--item"> </details>'
+  //     )}
+  //   </section>
+  // `;
+  const list = allCountries.map((element) => {
+    return {
+      title: element.country,
+      content: `**${element.country}**: code(*${element.country_code}*)  lada(*${element.lada}*)  length(*${element.length}*)`,
+    };
+  });
+  console.log('************', list);
+};
+
+export const generateLabel = (inputName: string): string =>
+  `${inputName.replace('_', ' ').replace(inputName.slice(0, 1), inputName.slice(0, 1).toLocaleUpperCase())}`;
 
 export const getEmptyStateMessage = () => `
 ###Important:
@@ -237,9 +271,10 @@ export const getHTMLFormExampleTextBlock = (inputExample: string): string => `>
 
 export const getGeneralComponentDescription = (
   name: string,
+  type: IBmbStoryType = 'component',
   additional: string = '',
 ): string =>
-  `\`bmb-${name}\` is a ${DESIGN_SYSTEM_TITLE} ${additional} element that allows`;
+  `\`bmb-${name}\` is a ${DESIGN_SYSTEM_TITLE} ${additional} ${type} that allows`;
 
 export const getGeneralDescription = (
   content: string,
@@ -270,7 +305,7 @@ export const getFieldDescription = (
 ): string => `
 ${getGeneralDescription(
   `
->\`${componentName}\` is a customizable ${DESIGN_SYSTEM_TITLE} input component that allows users to ${additionalDescription}
+>\`bmb-${componentName}\` is a customizable ${DESIGN_SYSTEM_TITLE} input component that allows users to ${additionalDescription}
 >
 >This component includes validations, error messages, and support for tooltips to provide additional information.
 >
@@ -580,7 +615,7 @@ ON THIS PAGE (optional, TABLE OF CONTENTS) [Done, is in preview, if not so add p
 -Name [Done, is is .stories]
 -Description [Add ${getGeneralDescription('')}  to parameters: { docs: { description: { component: ``...]
   General documentation [is in getGeneralDescription]
-  getGeneralComponentDescription('','') General documentation helper
+  getGeneralComponentDescription('') General documentation helper
 -DOM Architecture (optional) [Add ${getArchitectureSection(``)}  to parameters: { docs: { description: { component: ``...]
 -Considerations / Restrictions (optional) [Add ${getSpecialSpecifications(` ### []:`)} to parameters: { docs: { description: { component: ``...]
 -Reactive form example (optional) [Add ${getFormExampleBlock('', '', '', '')} to parameters: { docs: { description: { component: ``...]

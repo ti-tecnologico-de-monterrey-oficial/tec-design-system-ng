@@ -9,11 +9,33 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BmbInputPhoneNumberComponent } from './bmb-input-phone-number.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { attributes, getEmptyStateMessage } from '../../utils/doc/utils';
+import {
+  attributes,
+  generateLabel,
+  getAllCountryList,
+  getBasicExampleBlock,
+  getEmptyStateMessage,
+  getFieldDescription,
+  getFormExampleBlock,
+  getSpecialSpecifications,
+} from '../../utils/doc/utils';
+import { InputParameterDescriptions } from '../../utils/doc/parameterDescriptions';
+
+const inputName = 'input_phone_number';
+const inputExample = `<bmb-input-phone-number
+  id="${inputName}_id"
+  name="${inputName}"
+  label="${generateLabel(inputName)}"
+  helperMessage="Helper Message"
+  [onlyCountries]="['mx', 'us', 'ca']"
+  [useOnlyCountries]="true"
+  [control]="getFormControl('${inputName}')"
+ />`;
 
 export default {
   title: 'Components/Inputs/Phone number',
   component: BmbInputPhoneNumberComponent,
+  tags: ['!autodocs'],
   decorators: [
     moduleMetadata({
       imports: [
@@ -32,159 +54,59 @@ export default {
     }),
   ],
   parameters: {
+    controls: {
+      exclude: [
+        'customValidatorPhone',
+        'getErrorMessage',
+        'getNumberValue',
+        'getOptions',
+        'getSelectedCountry',
+        'getSelectedCountryCode',
+        'getSelectedCountryLada',
+        'getSelectedCountryLength',
+        'getUUID',
+        'handleFocus',
+        'handleValidity',
+        'onValueChange',
+        'setControlValue',
+        'allCountryCodes',
+        'countryFiltering',
+        'isFocused',
+        'ladaControl',
+        'phoneControl',
+        'uuid',
+      ],
+    },
     docs: {
       description: {
         component: `
-${getEmptyStateMessage()}
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { Component, ChangeDetectorRef } from '@angular/core';
-import {
-  FormControl,
-  FormBuilder,
-  FormGroup,
-  Validators,
-  ReactiveFormsModule,
-} from '@angular/forms';
-import { BmbInputPhoneNumberComponent, BmbButtonDirective } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-import { CommonModule } from '@angular/common';
-
-@Component({
-  selector: 'app-component',
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    CommonModule,
-    BmbInputPhoneNumberComponent,
-    BmbButtonDirective,
-  ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-export class AppComponent {
-  userForm: FormGroup;
-  isPhoneDisabled = false;
-  showErrors: { [key: string]: boolean } = {};
-
-  constructor(private fb: FormBuilder, private cdr: ChangeDetectorRef) {
-    this.userForm = this.fb.group({
-      phone: new FormControl(
-        { value: null, disabled: this.isPhoneDisabled },
-        Validators.required,
-      ),
-    });
-  }
-
-  onSubmit() {
-    if (this.userForm.valid) {
-      console.log(this.userForm.value);
-    } else {
-      console.log('Form is invalid');
-      this.userForm.markAllAsTouched();
-      this.updateErrorState();
-      this.cdr.markForCheck();
-    }
-  }
-
-  updateErrorState() {
-    Object.keys(this.userForm.controls).forEach((field) => {
-      const control = this.userForm.get(field);
-      if (control instanceof FormControl) {
-        this.showErrors[field] =
-          control.invalid && (control.touched || control.dirty);
-      }
-    });
-  }
-
-  get phoneControl(): FormControl {
-    return this.userForm.get('phone') as FormControl;
-  }
-}
-\`\`\`
-
-### Example in HTML
-
-Below is an example of how to use this component in HTML:
-
-\`\`\`html
-<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-  <bmb-input-phone-number
-  [control]="phoneControl"
-  [disabled]="isPhoneDisabled"
-  [isRequired]="false"
-  [showError]="showErrors['phone']"
-  [errorMessage]="'Error Phone'"
-  [preferredCountries]="['mx', 'us']"
-  [onlyCountries]="['mx', 'us', 'ca']"
-  [useOnlyCountries]="true"
-  />
-  <button bmbButton appearance="primary" type="submit">Submit</button>
-</form>
-
-\`\`\`
+${getFieldDescription(
+  'input-phone-number',
+  'enter a phone number with automatic validation of the phone number length based on the selected area code.',
+  'https://bamboo.tec.mx/latest/componentes/input-phone-number/descripcion-general-VhtBCJiR',
+)}
+${getSpecialSpecifications(`
+>${getEmptyStateMessage()}<br/>
+### Country references:
+${getAllCountryList()}
+>
+`)}
+${getFormExampleBlock('BmbInputPhoneNumberComponent', inputName, '', inputExample)}
+${getBasicExampleBlock('BmbInputPhoneNumberComponent')}
         `,
       },
     },
   },
   argTypes: {
-    control: {
-      control: { type: 'object' },
-      description: 'Instance of FormControl to manage the input control state.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'FormControl' },
-        defaultValue: { summary: "FormControl('', Validators.required)" },
-      },
-    },
-    disabled: {
-      name: 'Disabled',
-      control: { type: 'boolean' },
-      description: 'Disables the input field when set to true.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean' },
-      },
-    },
-    errorMessage: {
-      name: 'Error Message',
-      control: {
-        type: 'object',
-      },
-      description:
-        'Text to be displayed when there is an error. This could be a string or any of the following: required, min, max, minLength, pattern.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string or IBmbInputError' },
-      },
-    },
-    showError: {
-      name: 'Show Error',
-      control: {
-        type: 'boolean',
-      },
-      description: 'Boolean to show or hide the error message.',
-      table: {
-        category: 'Deprecated',
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-    },
-    isRequired: {
-      name: 'Required',
-      control: { type: 'boolean' },
-      description: 'Indicates whether the input field is required.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean' },
-      },
-    },
+    control: InputParameterDescriptions.control,
+    disabled: InputParameterDescriptions.disabledFormControl,
+    errorMessage: InputParameterDescriptions.errorMessage,
+    showError: InputParameterDescriptions.showError,
+    isRequired: InputParameterDescriptions.isRequired,
     preferredCountries: {
-      name: 'Preferred Countries',
       control: { type: 'array' },
-      description: 'List of countries that should be shown at the top.',
+      description:
+        'Sets the list of countries that should be shown at the top.',
       table: {
         category: 'Properties',
         type: { summary: 'string[]' },
@@ -192,7 +114,6 @@ Below is an example of how to use this component in HTML:
       },
     },
     onlyCountries: {
-      name: 'Only Countries',
       control: { type: 'array' },
       description:
         'Restricts the dropdown to only these countries (county codes example: mx, us, ca).',
@@ -202,26 +123,40 @@ Below is an example of how to use this component in HTML:
         defaultValue: { summary: '[]' },
       },
     },
-    label: {
-      name: 'Label',
-      control: { type: 'text' },
-      description: 'Label to be displayed above the input field.',
+    label: InputParameterDescriptions.label,
+    tooltip: InputParameterDescriptions.tooltip,
+    tooltipPosition: InputParameterDescriptions.tooltipPosition,
+    inputId: InputParameterDescriptions.inputId,
+    name: InputParameterDescriptions.name,
+    value: InputParameterDescriptions.value,
+    appearance: InputParameterDescriptions.deprecated,
+    defaultLada: InputParameterDescriptions.deprecated,
+    helperMessage: InputParameterDescriptions.helperMessage,
+    placeholder: InputParameterDescriptions.placeholder,
+    defaultCountryCode: {
+      control: { type: 'string' },
+      description:
+        'Sets the default country code for the phone number input (e.g., "mx" for Mexico).',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
+        defaultValue: { summary: 'mx' },
       },
     },
   },
   args: {
-    disabled: false,
-    showError: false,
-    errorMessage: {
-      required: 'Please enter the required data',
-      pattern: 'Please enter numbers only.',
-    },
-    isRequired: false,
+    inputId: '',
+    name: '',
+    value: '',
+    label: '',
+    tooltip: '',
+    tooltipPosition: {},
+    placeholder: '',
+    defaultCountryCode: 'mx',
     preferredCountries: ['mx'],
     onlyCountries: ['mx', 'us', 'ca'],
+    disabled: false,
+    isRequired: false,
   },
 } as Meta<typeof BmbInputPhoneNumberComponent>;
 

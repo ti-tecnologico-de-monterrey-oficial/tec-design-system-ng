@@ -24,7 +24,7 @@ export default {
         component: `
 ${getGeneralDescription(
   `
-${getGeneralComponentDescription('icon', 'visual')} to represent actions, concepts or functions in a quick and easily recognizable way.`,
+${getGeneralComponentDescription('icon', 'element', 'visual')} to represent actions, concepts or functions in a quick and easily recognizable way.`,
   'https://bamboo.tec.mx/latest/foundations/iconos/iconos-wukxE19q',
 )}
 ${getArchitectureSection(
