@@ -1,6 +1,8 @@
 import { Meta, Markdown } from "@storybook/addon-docs/blocks";
 import Changelog from "../../../../CHANGELOG.md?raw";
+import { CustomTOC } from "../DocComponents/CustomTOC.mdx";
 
 <Meta title="Changelog" />
-
-<Markdown>{Changelog}</Markdown>
+<CustomTOC headingSelector="h2">
+  <Markdown>{Changelog}</Markdown>
+</CustomTOC>

@@ -5,6 +5,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'bmb-icon-item',
@@ -20,4 +21,10 @@ export class BmbIconItemComponent {
   iconSize = input<number>(24);
   label = input.required<string>();
   value = input.required<string>();
+
+  constructor(private sanitizer: DomSanitizer) {}
+
+  get safeValue(): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(this.value());
+  }
 }

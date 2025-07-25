@@ -265,9 +265,9 @@ export class BmbInputPhoneNumberComponent implements OnInit {
 
   getErrorMessage(): IBmbInputError {
     const customValidation =
-      'Número de teléfono no válido, se debe verificar si la lada es correcta.';
-    const pattern = 'Sólo se permiten caracteres numéricos';
-    const minLength = `Deben ser ${this.getSelectedCountryLength(
+      'Por favor ingresa un número de teléfono válido, verifica si la lada es correcta.';
+    const pattern = 'Por favor ingresa sólo caracteres numéricos';
+    const minLength = `Por favor ingresa ${this.getSelectedCountryLength(
       this.ladaControl.value,
     )} caracteres numéricos`;
     if (!!this.errorMessage()) {

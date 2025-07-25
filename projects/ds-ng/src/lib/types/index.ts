@@ -75,6 +75,9 @@ export interface IBmbProfileData {
   period: string;
   campus: string;
   program: string;
+  curp?: string;
+  linkedin?: string;
+  isExatec?: boolean;
 }
 
 export interface IBmbUserData {
@@ -89,6 +92,9 @@ export interface IBmbStudentProfileData {
   period: string;
   campus: string;
   program: string;
+  curp?: string;
+  linkedin?: string;
+  isExatec?: boolean;
 }
 
 export interface IBmbHierarchyProfileData {

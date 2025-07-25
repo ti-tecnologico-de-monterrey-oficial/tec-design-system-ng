@@ -5,7 +5,5 @@
       {{ label() }}
     </span>
   </section>
-  <span class="bmb_icon-item-value">
-    {{ value() }}
-  </span>
+  <div class="bmb_icon-item-value" [innerHTML]="safeValue"></div>
 </section>

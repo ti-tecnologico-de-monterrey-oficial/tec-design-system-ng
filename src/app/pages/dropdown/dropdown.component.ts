@@ -1,4 +1,4 @@
-import { Component, computed, OnInit, signal } from '@angular/core';
+import { Component, computed, OnInit } from '@angular/core';
 import {
   BmbDropdownComponent,
   BmbLayoutDirective,

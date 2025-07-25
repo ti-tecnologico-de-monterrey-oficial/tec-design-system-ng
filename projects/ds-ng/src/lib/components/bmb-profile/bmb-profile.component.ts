@@ -79,6 +79,9 @@ export class BmbProfileComponent implements OnInit {
     period: '',
     campus: '',
     program: '',
+    curp: '',
+    linkedin: '',
+    isExatec: false,
   };
 
   langFormControl = new FormControl('es');
@@ -100,6 +103,9 @@ export class BmbProfileComponent implements OnInit {
         period: this.userData()?.period!,
         campus: this.userData()?.campus!,
         program: this.userData()?.program!,
+        curp: this.userData()?.curp!,
+        linkedin: this.userData()?.linkedin!,
+        isExatec: this.userData()?.isExatec!,
       };
     } else {
       this._studentData = this.studentData()!;

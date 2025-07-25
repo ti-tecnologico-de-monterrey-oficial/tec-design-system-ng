@@ -1,8 +1,21 @@
 import type { Preview } from '@storybook/angular';
+import {
+  Controls,
+  Description,
+  Heading,
+  Primary,
+  Title,
+  Stories,
+} from '@storybook/addon-docs/blocks';
 import { setCompodocJson } from '@storybook/addon-docs/angular';
-import docJson from '../../../documentation.json';
 import { withThemeByClassName } from '@storybook/addon-themes';
+import docJson from '../../../documentation.json';
 import { allModes } from './modes';
+import {
+  STORIES_TITLE,
+  TITLE_OF_CONTROLS,
+  TOC_OBJ,
+} from '../src/lib/utils/doc/utils';
 
 setCompodocJson(docJson);
 
@@ -21,6 +34,7 @@ const preview: Preview = {
     },
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
+      name: 'Properties',
       expanded: true,
       matchers: {
         color: /(background|color)$/i,
@@ -28,6 +42,17 @@ const preview: Preview = {
       },
     },
     docs: {
+      toc: TOC_OBJ,
+      page: () => {
+        return [
+          Title({}),
+          Description({}),
+          Primary({}),
+          Heading({ children: TITLE_OF_CONTROLS }),
+          Controls({}),
+          Stories({ title: STORIES_TITLE, includePrimary: false }),
+        ];
+      },
       controls: {
         exclude: ['ngOnInit', 'ngOnChanges', 'isControlNull'],
       },
