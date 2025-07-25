@@ -41,26 +41,46 @@ export class BmbAlertCenterFormComponent {
   filteredEvents = computed<IBmbAlertCenterCategories>(() => {
     if (this.filterBy() === 'unread') {
       return {
-        recent: this.eventsInCategories().recent.filter((event) => !event.isRead),
-        sevenDays: this.eventsInCategories().sevenDays.filter((event) => !event.isRead),
+        recent: this.eventsInCategories().recent.filter(
+          (event) => !event.isRead,
+        ),
+        sevenDays: this.eventsInCategories().sevenDays.filter(
+          (event) => !event.isRead,
+        ),
         month: this.eventsInCategories().month.filter((event) => !event.isRead),
         rest: this.eventsInCategories().rest.filter((event) => !event.isRead),
       };
     }
     if (this.filterBy() === 'archived') {
       return {
-        recent: this.eventsInCategories().recent.filter((event) => event.isArchived),
-        sevenDays: this.eventsInCategories().sevenDays.filter((event) => event.isArchived),
-        month: this.eventsInCategories().month.filter((event) => event.isArchived),
-        rest: this.eventsInCategories().rest.filter((event) => event.isArchived),
+        recent: this.eventsInCategories().recent.filter(
+          (event) => event.isArchived,
+        ),
+        sevenDays: this.eventsInCategories().sevenDays.filter(
+          (event) => event.isArchived,
+        ),
+        month: this.eventsInCategories().month.filter(
+          (event) => event.isArchived,
+        ),
+        rest: this.eventsInCategories().rest.filter(
+          (event) => event.isArchived,
+        ),
       };
     }
     if (this.filterBy() === 'favorites') {
       return {
-        recent: this.eventsInCategories().recent.filter((event) => event.isFavorite),
-        sevenDays: this.eventsInCategories().sevenDays.filter((event) => event.isFavorite),
-        month: this.eventsInCategories().month.filter((event) => event.isFavorite),
-        rest: this.eventsInCategories().rest.filter((event) => event.isFavorite),
+        recent: this.eventsInCategories().recent.filter(
+          (event) => event.isFavorite,
+        ),
+        sevenDays: this.eventsInCategories().sevenDays.filter(
+          (event) => event.isFavorite,
+        ),
+        month: this.eventsInCategories().month.filter(
+          (event) => event.isFavorite,
+        ),
+        rest: this.eventsInCategories().rest.filter(
+          (event) => event.isFavorite,
+        ),
       };
     }
 

@@ -1,7 +1,16 @@
-import { componentWrapperDecorator, moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
+import {
+  componentWrapperDecorator,
+  moduleMetadata,
+  type Meta,
+  type StoryObj,
+} from '@storybook/angular';
 import { BmbAlertCenterComponent } from './bmb-alert-center.component';
 import { BmbAlertCenterService } from './bmb-alert-center.service';
-import { getBasicExampleBlock, getGeneralDescription, getSpecialSpecifications } from '../../utils/doc/utils';
+import {
+  getBasicExampleBlock,
+  getGeneralDescription,
+  getSpecialSpecifications,
+} from '../../utils/doc/utils';
 
 class mockService {
   getAlerts() {
@@ -281,9 +290,7 @@ export default {
       </div>`;
     }),
     moduleMetadata({
-      providers: [
-        { provide: BmbAlertCenterService, useClass: mockService },
-      ],
+      providers: [{ provide: BmbAlertCenterService, useClass: mockService }],
     }),
   ],
   parameters: {
@@ -416,7 +423,8 @@ ${getBasicExampleBlock('BmbAlertCenterComponent')}
       control: {
         type: 'object',
       },
-      description: 'Sets the tabs name, also you can hide tabs for mobile or desktop.',
+      description:
+        'Sets the tabs name, also you can hide tabs for mobile or desktop.',
       table: {
         category: 'Properties',
         type: { summary: 'string[] | IBmbAlertCenterTabConfig[]' },
@@ -440,7 +448,8 @@ ${getBasicExampleBlock('BmbAlertCenterComponent')}
       control: {
         type: 'object',
       },
-      description: '**Deprecated**: use bmbAlertCenterService.getAlerts() instead.',
+      description:
+        '**Deprecated**: use bmbAlertCenterService.getAlerts() instead.',
       table: {
         category: 'Deprecated',
         type: { summary: 'IBmbDataAlert[]' },
@@ -559,9 +568,7 @@ export const HideTabs = {
 export const EmptyStateLarge = {
   decorators: [
     moduleMetadata({
-      providers: [
-        { provide: BmbAlertCenterService},
-      ],
+      providers: [{ provide: BmbAlertCenterService }],
     }),
   ],
   args: {
@@ -582,9 +589,7 @@ export const EmptyStateLarge = {
 export const EmptyStateMedium = {
   decorators: [
     moduleMetadata({
-      providers: [
-        { provide: BmbAlertCenterService},
-      ],
+      providers: [{ provide: BmbAlertCenterService }],
     }),
   ],
   args: {
@@ -605,9 +610,7 @@ export const EmptyStateMedium = {
 export const EmptyStateSmall = {
   decorators: [
     moduleMetadata({
-      providers: [
-        { provide: BmbAlertCenterService},
-      ],
+      providers: [{ provide: BmbAlertCenterService }],
     }),
   ],
   args: {

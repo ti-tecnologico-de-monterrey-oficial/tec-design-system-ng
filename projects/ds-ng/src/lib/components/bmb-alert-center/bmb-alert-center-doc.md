@@ -25,7 +25,7 @@ import { BmbAlertCenterComponent } from "./bmb-alert-center.component";
 ### Inputs
 
 | Name                      | Type                  | Description                                              |
-| ------------------------- | --------------------- | -------------------------------------------------------- |
+| ------------------------- | --------------------- | -------------------------------------------------------- | -------------------------------------- |
 | `dateFormat`              | `string`              | Date format used in alerts. Default value: `dd/MM/yyyy`. |
 | `tabsName`                | `string[]`            | IBmbAlertCenterTabConfig[]`                              | Configuration of the component's tabs. |
 | `hideTabs`                | `boolean`             | Hides the tabs if `true`.                                |
@@ -83,21 +83,13 @@ Emits an event when an alert's status changes.
 ## Example Usage
 
 ```html
-<bmb-alert-center
-  [dateFormat]="'dd/MM/yyyy'"
-  [tabsName]="[{title: 'Notificaciones', isMobile: true, isDesktop: true}, {title: 'No leídos', isMobile: false, isDesktop: true}, {title: 'Favoritos', isMobile: false, isDesktop: true}, {title: 'Archivados', isMobile: false, isDesktop: true}, {title: 'Anuncios', isMobile: true, isDesktop: true}]"
-  [hideTabs]="false"
-  [enableMultipleSelection]="true"
-  (onChangeAlertStatus)="onChangeAlertStatus($event)"
-  (alertEvent)="alertEvent($event)"
-  (showAlertDetail)="showAlertDetail($event)"
-  (closeAlertDetail)="closeAlertDetail($event)"
-/>
+<bmb-alert-center [dateFormat]="'dd/MM/yyyy'" [tabsName]="[{title: 'Notificaciones', isMobile: true, isDesktop: true}, {title: 'No leídos', isMobile: false, isDesktop: true}, {title: 'Favoritos', isMobile: false, isDesktop: true}, {title: 'Archivados', isMobile: false, isDesktop: true}, {title: 'Anuncios', isMobile: true, isDesktop: true}]" [hideTabs]="false" [enableMultipleSelection]="true" (onChangeAlertStatus)="onChangeAlertStatus($event)" (alertEvent)="alertEvent($event)" (showAlertDetail)="showAlertDetail($event)" (closeAlertDetail)="closeAlertDetail($event)" />
 ```
 
 ## BmbAlertCenterService
 
 ### Description
+
 The `BmbAlertCenterService` is a service designed to manage alerts and advertisements for the `BmbAlertCenter` component. It provides methods to set, update, and retrieve alerts and advertisements, as well as manage the loading state.
 
 ### Methods

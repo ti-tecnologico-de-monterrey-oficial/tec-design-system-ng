@@ -1,8 +1,8 @@
-import { Injectable, signal } from "@angular/core";
-import { IBmbDataAlert } from "./types";
+import { Injectable, signal } from '@angular/core';
+import { IBmbDataAlert } from './types';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class BmbAlertCenterService {
   private alerts = signal<IBmbDataAlert[]>([]);
@@ -50,7 +50,10 @@ export class BmbAlertCenterService {
   }
 
   addAdvertisements(advertisements: IBmbDataAlert[]) {
-    this.advertisements.update((currentAds) => [...currentAds, ...advertisements]);
+    this.advertisements.update((currentAds) => [
+      ...currentAds,
+      ...advertisements,
+    ]);
   }
 
   getAdvertisements() {

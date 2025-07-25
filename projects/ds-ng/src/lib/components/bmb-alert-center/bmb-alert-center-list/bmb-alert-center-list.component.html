@@ -2,7 +2,11 @@
   @for (item of alerts(); track $index) {
     <li class="bmb_alert-center-list-item" bmbLayout margin="none" gapSize="s">
       @if (enableMultipleSelection()) {
-        <section class="bmb_alert-center-list-item-selection" bmbLayoutItem [isDynamicItem]=true>
+        <section
+          class="bmb_alert-center-list-item-selection"
+          bmbLayoutItem
+          [isDynamicItem]="true"
+        >
           <bmb-checkbox
             [name]="item.id + ''"
             [id]="item.id + ''"
@@ -23,7 +27,7 @@
         (click)="handleRowClick($event, item)"
         bmbLayoutItem
         [colGrow]="1"
-        [isDynamicItem]=true
+        [isDynamicItem]="true"
       >
         <section
           bmbLayoutGridItem
