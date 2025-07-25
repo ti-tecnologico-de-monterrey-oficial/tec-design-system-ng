@@ -1,6 +1,11 @@
-import { Meta, moduleMetadata, StoryFn, StoryObj } from '@storybook/angular';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { BmbVerticalLayoutDirective } from './bmb-vertical-layout.directive';
-import { attributes } from '../../../utils/doc/utils';
+import {
+  attributes,
+  getAuxiliaryDescription,
+  getBasicExampleBlock,
+  getGeneralDescription,
+} from '../../../utils/doc/utils';
 import {
   BmbIconStatusComponent,
   BmbInnerHeaderComponent,
@@ -15,7 +20,6 @@ export default {
   component: BmbVerticalLayoutDirective,
   decorators: [
     moduleMetadata({
-      declarations: [],
       imports: [
         BmbInnerHeaderComponent,
         BmbChevronTitleSelectorComponent,
@@ -30,25 +34,12 @@ export default {
     docs: {
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbVerticalLayoutDirective} from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbVerticalLayoutDirective ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-export class AppComponent {
-
-...
-\`\`\`
-
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(
+  `The \`Vertical layout container\` is a vertical structure that allows for customization of its content, allowing for the integration of different types of components, making it highly flexible and adaptable to diverse needs.<br/><br/>
+${getAuxiliaryDescription('Vertical layout container', 'Vertical layout container item')}`,
+  'https://bamboo.tec.mx/latest/foundations/vertical-layout-container/descripcion-general-Crf8ymYZ',
+)}
+${getBasicExampleBlock('BmbVerticalLayoutDirective, BmbVerticalLayoutItemDirective')}
         `,
       },
     },
@@ -120,17 +111,6 @@ Set the align items.
         type: { summary: 'IAlignItemsOptions' },
         category: 'Properties',
         defaultValue: { summary: 'start' },
-      },
-    },
-    rowGrow: {
-      name: 'Row grow',
-      control: 'number',
-      description:
-        'Sets how much of the flex container positive free space, if any, should be assigned to the flex item main size.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 0 },
-        type: { summary: 'number' },
       },
     },
     test_text: {

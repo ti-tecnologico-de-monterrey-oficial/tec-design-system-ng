@@ -35,7 +35,7 @@ import { convertListToSelectList, filteredValue } from '../../utils/dropdown';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbSearchInputComponent implements AfterViewInit, OnChanges {
-  id = input<string>(getUUID());
+  inputId = input<string>(getUUID());
   name = input<string>(getUUID());
   data = input<string[]>([]);
   isLoading = input<boolean>(false);

@@ -75,9 +75,16 @@ ${getGeneralDescription(
   'https://bamboo.tec.mx/latest/foundations/shadow-boxes-kRa1Gtdt',
 )}
 ${getSpecialSpecifications(
-  getSandboxConsiderationsDocumentation('shadow boxes', '', true, [
-    'box-shadow',
-  ]),
+  getSandboxConsiderationsDocumentation(
+    'shadow boxes',
+    '',
+    '',
+    true,
+    ['box-shadow'],
+    `margin: var(--bmb-spacing-m);
+      border: var(--bmb-border-general_contrasts-50-2-solid);
+      border-radius: var(--bmb-radius-m);`,
+  ),
 )}`,
       },
     },

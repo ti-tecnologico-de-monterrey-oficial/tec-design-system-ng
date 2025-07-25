@@ -30,7 +30,8 @@ ${getGeneralDescription(getFoundationDescriptions('fonts and sizes', TYPOGRAPHY_
 ${getSpecialSpecifications(
   getSandboxConsiderationsDocumentation(
     'font family and size reference',
-    `<br/><br/>${getTypographyDetail()}`,
+    '',
+    getTypographyDetail(),
     true,
   ),
 )}`,

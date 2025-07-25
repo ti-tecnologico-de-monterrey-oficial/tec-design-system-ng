@@ -777,6 +777,7 @@ ${getGeneralDescription(
 ${getSpecialSpecifications(
   getSandboxConsiderationsDocumentation(
     'colors',
+    '',
     `
 ### Implementation details:
 >\`\`\`css

@@ -7,7 +7,14 @@ import {
   BmbCardComponent,
   BmbCardContentComponent,
 } from '../../components/bmb-card/bmb-card.component';
-import { attributes } from '../../utils/doc/utils';
+import {
+  attributes,
+  DESIGN_SYSTEM_TITLE,
+  getAuxiliaryDescription,
+  getBasicExampleBlock,
+  getGeneralDescription,
+  getSpecialSpecifications,
+} from '../../utils/doc/utils';
 
 const meta: Meta<BmbLayoutDirective> = {
   title: 'Foundations/Layouts/Layout',
@@ -28,49 +35,42 @@ const meta: Meta<BmbLayoutDirective> = {
     docs: {
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbLayoutDirective, BmbLayoutItemDirective } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbLayoutDirective, BmbLayoutItemDirective ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-The **Bamboo** Layout component is a flexible and responsive layout system that allows you to create complex layouts with ease. It provides a set of directives that can be used to define the layout structure, including the \`BmbLayout\` and \`BmbLayoutItem\` directives.
-
+${getGeneralDescription(
+  `
+The ${DESIGN_SYSTEM_TITLE} ***Layout*** component is a flexible and responsive layout system that allows you to create complex layouts with ease.<br/><br/>
+${getAuxiliaryDescription('Layout', 'Layout item')}`,
+  'https://bamboo.tec.mx/latest/foundations/layout/descripcion-general-EfPFAmaP',
+)}
+${getSpecialSpecifications(`
+***Layout*** provides a set of directives that can be used to define the layout structure, including the \`BmbLayout\` and \`BmbLayoutItem\` directives.
+><br/><br/>
 The \`BmbLayout\` directive is used to create a layout container, while the \`BmbLayoutItem\` directive is used to define individual items within the layout. The layout can be customized using various properties such as \`gap\`, \`size\`, \`margin\`, and \`alignment\` options.
-
+><br/><br/>
 The \`BmbLayoutItem\` directive can be used to define the size of each column within the layout. You can specify the size for different screen sizes using properties like \`colSm\`, and \`colLm\`. This allows you to create responsive layouts that adapt to different screen sizes.
-
-## Equivalences
-
+><br/><br/><br/>
+### Equivalences
+>
 1 Sm column = 1/4 of the available width space, this is valid for maximum 1000px screen width, if the screen is bigger than 1000px, the column will be 3/12 of the available width space.
-
+><br/><br/>
 1 Lg column = 1/12 of the available width space, this is valid for minimum 1001px screen width, if the screen is smaller than 1001px, the column will be 4/4 of the available width space.
-
-## Dynamic Columns
-
+><br/><br/><br/>
+### Dynamic Columns
+>
 The \`BmbLayoutItem\` directive can also be used to create dynamic columns. By setting the \`isDynamicItem\` property to true, the item will automatically adjust its size based on the available space in the layout. This is useful for creating flexible layouts that can adapt to different screen sizes and content.
-
+><br/><br/>
 The \`colGrow\` property can be used to specify the growth factor of the item. This determines how much space the item will take up in relation to other items in the layout. For example, if you set \`colGrow\` to 2 for one item and 1 for another, the first item will take up twice as much space as the second item.
-
-## Offset
-
+><br/><br/><br/>
+### Offset
+>
 The \`BmbLayoutItem\` directive also supports offsetting columns. You can use the \`marginLeft\` and \`marginRight\` properties to specify the offset for each column. This allows you to create more complex layouts with precise control over the positioning of each item.
-
-Below is an example of how you can use this component in HTML:
+`)}
+${getBasicExampleBlock('BmbLayoutDirective, BmbLayoutItemDirective')}
         `,
       },
     },
   },
   argTypes: {
     gapSize: {
-      name: 'Gap size',
       control: {
         type: 'select',
       },
@@ -83,7 +83,6 @@ Below is an example of how you can use this component in HTML:
       description: 'Determines the size of the space between elements.',
     },
     margin: {
-      name: 'Margin',
       control: {
         type: 'select',
       },
@@ -96,7 +95,6 @@ Below is an example of how you can use this component in HTML:
       description: 'Set the margin size',
     },
     dynamicCols: {
-      name: 'Enable dinamyc cols',
       control: { type: 'boolean' },
       description: 'This property enable the dinamic size for bmbLayoutItem',
       table: {
@@ -106,7 +104,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     justify: {
-      name: 'Justify content',
       control: {
         type: 'select',
       },
@@ -127,7 +124,6 @@ Below is an example of how you can use this component in HTML:
       description: 'Set the justify content.',
     },
     alignItems: {
-      name: 'Align items',
       control: {
         type: 'select',
       },

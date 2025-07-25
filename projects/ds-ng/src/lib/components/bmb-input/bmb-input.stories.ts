@@ -19,7 +19,7 @@ const additionalDescription = `input various types of data, such as:
 >- text-area`;
 const inputName = 'input_field';
 const inputExample = `<bmb-input
-  id="input_field_id"
+  id="${inputName}_id"
   name="${inputName}"
   label="Input"
   tooltip="Tooltip example"
@@ -57,7 +57,7 @@ export default {
       description: {
         component: `
 ${getFieldDescription(
-  'bmb-input',
+  'input',
   additionalDescription,
   'https://bamboo.tec.mx/latest/componentes/text-input/descripcion-general-PxlXQ5FH',
 )}
@@ -126,7 +126,7 @@ IBmbInputAppearance = 'normal' | 'simple'
     tooltipPosition: InputParameterDescriptions.tooltipPosition,
     icon: InputParameterDescriptions.icon,
     placeholder: InputParameterDescriptions.placeholder,
-    disabled: InputParameterDescriptions.disabled,
+    disabled: InputParameterDescriptions.disabledFormControl,
     isRequired: InputParameterDescriptions.isRequired,
     helperMessage: InputParameterDescriptions.helperMessage,
     errorMessage: InputParameterDescriptions.errorMessage,

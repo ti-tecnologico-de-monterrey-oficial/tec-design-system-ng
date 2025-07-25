@@ -12,6 +12,7 @@ const inputName = 'radial_group';
 const additionalBlock = `handleRadial(element: HTMLInputElement): void {
     console.log('Radio value:', element.value);
     console.log('Radio name:', element.name);
+    //Add your code
   }`;
 const inputExample = `<bmb-radial
   inputId="radial_id1"
@@ -42,7 +43,7 @@ export default {
       description: {
         component: `
 ${getFieldDescription(
-  'bmb-radial',
+  'radial',
   'select an option from a collection or group of radio buttons; it is recommended to implement it as a collection.',
   'https://bamboo.tec.mx/latest/componentes/radial/descripcion-general-rxLTXDDQ',
 )}
@@ -68,7 +69,7 @@ ${InputParameterDescriptions.value.description}
         type: { summary: 'boolean' },
       },
     },
-    disabled: InputParameterDescriptions.disabled,
+    disabled: InputParameterDescriptions.disabledFormControl,
     required: InputParameterDescriptions.isRequired,
     value: {
       control: { type: 'text' },

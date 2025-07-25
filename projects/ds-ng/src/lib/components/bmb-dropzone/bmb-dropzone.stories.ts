@@ -3,6 +3,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BmbDropzoneComponent } from './bmb-dropzone.component';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getTypescriptExampleTextBlock,
+} from '../../utils/doc/utils';
+import { InputParameterDescriptions } from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Components/Inputs/Dropzone',
@@ -20,10 +27,34 @@ export default {
   ],
   parameters: {
     docs: {
+      controls: {
+        exclude: [
+          'getFileAndValidate',
+          'getProgress',
+          'isInvalidFileOnly',
+          'onDragLeave',
+          'onDragOver',
+          'onDrop',
+          'onErrorFile',
+          'onFileSelected',
+          'removeFile',
+          'reset',
+          'input',
+          'validFile',
+          'fileDataList',
+          'ngOnChanges',
+        ],
+      },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
+${getGeneralDescription(`${getGeneralComponentDescription('dropzone')} to provide an area where files can be dragged and dropped onto it to be uploaded or to be used later`, 'https://bamboo.tec.mx/latest/componentes/dropzone/descripcion-general-pPg1gmxU')}
+##Reactive form example
+>This example demonstrates how to use BmbDropdownComponent within an Angular reactive form, ensuring validation and handling the field and its value correctly.
+>
+###TypeScript example for reactive form
+>
+Below is a TypeScript example with the basic code to use this component in a reactive form:
+>
 \`\`\`typescript
 import {
   Component,
@@ -36,8 +67,8 @@ import { CommonModule } from '@angular/common';
 import {
   BmbButtonDirective,
   BmbDropzoneComponent,
-} from '../../projects/ds-ng/src/public-api';
-
+} from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
+>
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -53,95 +84,97 @@ import {
 })
 export class AppComponent {
   @ViewChild(BmbDropzoneComponent) dropzone?: BmbDropzoneComponent;
-
+>
   form: FormGroup;
   progress = signal<Record<string, number>>({});
-
+>
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
       file: [null],
     });
   }
-
+>
   onFileReceived(files: File | File[]) {
     const incomingFiles = Array.isArray(files) ? files : [files];
     const current = this.getCurrentFiles();
-
+>
     const currentKeys = new Set(current.map((f) => \`\${f.name}-\${f.size}\`));
     const newFiles = incomingFiles.filter(
       (f) => !currentKeys.has(\`\${f.name}-\${f.size}\`),
     );
-
+>
     const updated = [...current, ...newFiles];
     this.form.patchValue({
       file: this.formAllowsMultiple(updated) ? updated : updated[0],
     });
-
+>
     newFiles.forEach(this.simulateUpload.bind(this));
   }
-
+>
   simulateUpload(file: File) {
     let progress = 0;
-
+>
     this.progress.update((map) => ({ ...map, [file.name]: 0 }));
-
+>
     const interval = setInterval(() => {
       progress += 50;
       this.progress.update((map) => ({
         ...map,
         [file.name]: Math.min(progress, 100),
       }));
-
+>
       if (progress >= 100) {
         clearInterval(interval);
         console.log('Archivo simulado al 100%');
       }
     }, 300);
   }
-
+>
   removeFileFromForm(fileName: string) {
     const files = this.getCurrentFiles();
     const updated = files.filter((f) => f.name !== fileName);
-
+>
     this.form.patchValue({
       file: updated.length > 1 ? updated : (updated[0] ?? null),
     });
-
-    const { [fileName]: _, ...remaining } = this.progress();
-    this.progress.set(remaining);
+>
+    const progressMap = { ...this.progress() };
+    delete progressMap[fileName];
+    this.progress.set(progressMap);
   }
-
+>
   onSubmit() {
     const files = this.getCurrentFiles();
     const allUploaded = files.every((f) => this.progress()[f.name] === 100);
-
+>
     if (!allUploaded) {
       console.warn('Algunos archivos no se han subido completamente.');
       return;
     }
-
+>
     console.log('Archivos listos para enviar:', files);
-
+>
     // Resetear
     this.form.reset();
     this.progress.set({});
     this.dropzone?.reset();
   }
-
-  private getCurrentFiles(): File[] {
+>
+  getCurrentFiles(): File[] {
     const control = this.form.value.file;
     if (!control) return [];
     return Array.isArray(control) ? control : [control];
   }
-
-  private formAllowsMultiple(files: File[]): boolean {
+>
+  formAllowsMultiple(files: File[]): boolean {
     return files.length > 1;
   }
 }
-
+>
 \`\`\`
-## Architecture
-
+>### HTML example for reactive form
+>
+Below is a HTML example with the basic code to use this component in a reactive form:
 \`\`\`html
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <bmb-dropzone
@@ -161,15 +194,14 @@ export class AppComponent {
     [progress]="progress()"
     (fileRemoved)="removeFileFromForm($event)"
     (newFile)="onFileReceived($event)"
-  ></bmb-dropzone>
-
+  />
   <button type="submit" bmbButton [disabled]="form.invalid">
     Enviar archivo
   </button>
-</form>
-\`\`\`
+</form>\`\`\`
 
-Below is an example of how you can use this component in HTML:
+<br/>
+${getBasicExampleBlock('BmbDropzoneComponent')}
         `,
       },
     },
@@ -188,7 +220,6 @@ Below is an example of how you can use this component in HTML:
     //   },
     // },
     progress: {
-      name: 'Progress',
       control: { type: 'number' },
       description: `
 Upload progress of the file.
@@ -198,94 +229,121 @@ Upload progress of the file.
   Example:
       progress = signal<Record<string, number>>({});
 `,
-      table: { category: 'Properties', type: { summary: 'Record | number' } },
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: '' },
+        type: { summary: 'Record | number' },
+      },
     },
     acceptedExtensions: {
-      name: 'Accepted Extensions',
       control: { type: 'object' },
       description: 'Array of accepted file extensions.',
-      table: { category: 'Properties', type: { summary: 'string[]' } },
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: '[]' },
+        type: { summary: 'string[]' },
+      },
     },
     formatFilesLabel: {
-      name: 'Format Files Label',
       control: { type: 'text' },
       description: 'Label that describes the accepted file formats.',
-      table: { category: 'Properties', type: { summary: 'string' } },
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'Especificación de formatos y peso' },
+        type: { summary: 'string' },
+      },
     },
     linkFilesSupported: {
-      name: 'Link Files Supported',
       control: { type: 'text' },
       description: 'URL link to the supported file format documentation.',
-      table: { category: 'Properties', type: { summary: 'string' } },
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: '' },
+        type: { summary: 'string' },
+      },
     },
     linkLabel: {
-      name: 'Link Label',
       control: { type: 'text' },
       description: 'Text for the hyperlink to format info.',
-      table: { category: 'Properties', type: { summary: 'string' } },
+      table: {
+        category: 'Properties',
+        defaultValue: {
+          summary: 'Ver más información de formatos de archivo aceptados.',
+        },
+        type: { summary: 'string' },
+      },
     },
     dropInstruction: {
-      name: 'Drop Instruction',
       control: { type: 'text' },
       description: 'Instructional text before the file upload link.',
-      table: { category: 'Properties', type: { summary: 'string' } },
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'Arrastra tus archivos aquí o' },
+        type: { summary: 'string' },
+      },
     },
     dropLabel: {
-      name: 'Drop Label',
-      control: { type: 'text' },
-      description: 'Label for the file selection link.',
-      table: { category: 'Properties', type: { summary: 'string' } },
+      ...InputParameterDescriptions.label,
+      table: {
+        ...InputParameterDescriptions.label.table,
+        defaultValue: { summary: 'selecciona tus archivos' },
+      },
     },
     mainIcon: {
-      name: 'Main Icon',
       control: { type: 'text' },
       description: 'Icon to be displayed above the instruction.',
-      table: { category: 'Properties', type: { summary: 'string' } },
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'image' },
+        type: { summary: 'string' },
+      },
     },
     errorMessage: {
-      name: 'General Error Message',
-      control: { type: 'text' },
-      description: 'Displayed when the file is not valid.',
-      table: { category: 'Properties', type: { summary: 'string' } },
+      ...InputParameterDescriptions.errorMessage,
+      table: {
+        ...InputParameterDescriptions.errorMessage.table,
+        defaultValue: { summary: 'Archivo no compatible' },
+      },
     },
     errorMessageFormat: {
-      name: 'Format Error Message',
       control: { type: 'text' },
       description: 'Message shown when file format is invalid.',
-      table: { category: 'Properties', type: { summary: 'string' } },
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'Formato no soportado' },
+        type: { summary: 'string' },
+      },
     },
     errorMessageSize: {
-      name: 'Size Error Message',
       control: { type: 'text' },
       description: 'Message shown when file exceeds size limit.',
-      table: { category: 'Properties', type: { summary: 'string' } },
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'El archivo supera el tamaño permitido' },
+        type: { summary: 'string' },
+      },
     },
-    name: {
-      name: 'Name',
-      control: { type: 'text' },
-      description: 'Name for the file input.',
-      table: { category: 'Properties', type: { summary: 'string' } },
-    },
+    name: InputParameterDescriptions.name,
     fileSize: {
-      name: 'File Size Limit (MB)',
       control: { type: 'number' },
       description: 'Maximum allowed file size in MB.',
       table: { category: 'Properties', type: { summary: 'number' } },
     },
     multiple: {
-      name: 'Multiple Files',
       control: { type: 'boolean' },
       description: 'Allow selecting multiple files.',
       table: { category: 'Properties', type: { summary: 'boolean' } },
     },
     newFile: {
-      name: 'New File',
       control: null,
       description: 'Emits the new valid file(s).',
-      table: { category: 'Events', type: { summary: 'File | File[]' } },
+      table: {
+        category: 'Events',
+        defaultValue: { summary: '' },
+        type: { summary: 'File | File[]' },
+      },
     },
     fileRemoved: {
-      name: 'File Removed',
       control: null,
       description: 'Emits the name of the file when it is removed.',
       table: { category: 'Events', type: { summary: 'string' } },
@@ -293,15 +351,15 @@ Upload progress of the file.
   },
   args: {
     // appearance: 'default',
+    name: '',
+    dropLabel: 'selecciona tus archivos',
     progress: 0,
     acceptedExtensions: ['png', 'jpeg', 'jpg'],
     formatFilesLabel: 'Ver más información de formatos de archivo aceptados.',
     linkFilesSupported: '',
     linkLabel: 'Ver más información de formatos de archivo aceptados.',
     dropInstruction: 'Arrastra tus archivos aquí o',
-    dropLabel: 'selecciona tus archivos',
     mainIcon: 'image',
-    name: 'bmbFileInput',
     errorMessage: 'Archivo no compatible',
     errorMessageFormat: 'Formato no soportado',
     errorMessageSize: 'El archivo supera el tamaño máximo permitido.',
