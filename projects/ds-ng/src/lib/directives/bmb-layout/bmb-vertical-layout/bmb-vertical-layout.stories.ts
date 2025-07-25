@@ -122,7 +122,6 @@ Set the align items.
       },
     },
     layoutHeight: {
-      name: 'Layout height',
       control: 'text',
       description: 'Sets the height of the layout container.',
       table: {

@@ -60,7 +60,6 @@ ${getBasicExampleBlock('BmbVerticalLayoutDirective, BmbVerticalLayoutItemDirecti
   },
   args: {
     rowGrow: 1,
-    test_text: 'Estamos activando tu credencial digital en este equipo',
   },
 } as Meta<typeof BmbVerticalLayoutItemDirective>;
 
