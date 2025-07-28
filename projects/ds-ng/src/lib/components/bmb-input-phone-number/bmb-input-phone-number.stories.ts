@@ -12,7 +12,7 @@ import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import {
   attributes,
   generateLabel,
-  getAllCountryList,
+  getAccordionDetail,
   getBasicExampleBlock,
   getEmptyStateMessage,
   getFieldDescription,
@@ -20,6 +20,7 @@ import {
   getSpecialSpecifications,
 } from '../../utils/doc/utils';
 import { InputParameterDescriptions } from '../../utils/doc/parameterDescriptions';
+import { IBmbCountryCode, IBmbCountryCodes } from '../../utils/countryCodes';
 
 const inputName = 'input_phone_number';
 const inputExample = `<bmb-input-phone-number
@@ -31,6 +32,21 @@ const inputExample = `<bmb-input-phone-number
   [useOnlyCountries]="true"
   [control]="getFormControl('${inputName}')"
  />`;
+
+const getAllCountryList = () => {
+  const allCountries: IBmbCountryCode[] = IBmbCountryCodes;
+  const content: string = allCountries
+    .map(
+      (element) =>
+        `**${element.country}**: code(*${element.country_code}*)  lada(*${element.lada}*)  length(*${element.length}*)<br/>`,
+    )
+    .toString()
+    .replaceAll('<br/>,', '<br/>');
+  return `
+### Country references
+>${getAccordionDetail('Countries', content)}
+  `;
+};
 
 export default {
   title: 'Components/Inputs/Phone number',
@@ -85,7 +101,10 @@ ${getFieldDescription(
   'enter a phone number with automatic validation of the phone number length based on the selected area code.',
   'https://bamboo.tec.mx/latest/componentes/input-phone-number/descripcion-general-VhtBCJiR',
 )}
-${getSpecialSpecifications(getEmptyStateMessage())}
+${getSpecialSpecifications(`
+>${getEmptyStateMessage()}<br/>
+>${getAllCountryList()}
+`)}
 ${getFormExampleBlock('BmbInputPhoneNumberComponent', inputName, '', inputExample)}
 ${getBasicExampleBlock('BmbInputPhoneNumberComponent')}
         `,
