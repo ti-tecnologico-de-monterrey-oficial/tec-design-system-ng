@@ -24,38 +24,46 @@
       @if (!hideTabs()) {
         <bmb-tabs [tabs]="tabs" (selected)="handleTabChange($event)" />
       }
-      @if (selectedTab === 0 && alertList().length) {
+      @if (selectedTab === 0) {
         <bmb-alert-center-form
           (showAlertDetail)="handleShowAlert($event)"
           [eventsInCategories]="eventsInCategories()"
           [enableMultipleSelection]="enableMultipleSelection()"
           (changeAlertStatus)="handleChangeAlertStatus($event)"
+          [emptyStateData]="emptyStateData()"
+          (navigationBarEvents)="handleNavigationBarEvents($event)"
           filterBy="all"
         />
-      } @else if (selectedTab === 1 && alertList().length) {
+      } @else if (selectedTab === 1) {
         <bmb-alert-center-form
           (showAlertDetail)="handleShowAlert($event)"
           [eventsInCategories]="eventsInCategories()"
           [enableMultipleSelection]="enableMultipleSelection()"
           (changeAlertStatus)="handleChangeAlertStatus($event)"
+          [emptyStateData]="emptyStateData()"
+          (navigationBarEvents)="handleNavigationBarEvents($event)"
           filterBy="unread"
         />
-      } @else if (selectedTab === 2 && alertList().length) {
+      } @else if (selectedTab === 2) {
         <bmb-alert-center-form
           (showAlertDetail)="handleShowAlert($event)"
           [eventsInCategories]="eventsInCategories()"
           [enableMultipleSelection]="enableMultipleSelection()"
           (changeAlertStatus)="handleChangeAlertStatus($event)"
+          [emptyStateData]="emptyStateData()"
+          (navigationBarEvents)="handleNavigationBarEvents($event)"
           filterBy="favorites"
         />
-      } @else if (selectedTab === 3 && alertList().length) {
+      } @else if (selectedTab === 3) {
         <bmb-alert-center-form
           (showAlertDetail)="handleShowAlert($event)"
           [eventsInCategories]="eventsInCategories()"
           (changeAlertStatus)="handleChangeAlertStatus($event)"
+          [emptyStateData]="emptyStateData()"
+          (navigationBarEvents)="handleNavigationBarEvents($event)"
           filterBy="archived"
         />
-      } @else if (selectedTab === 4 && advertisementsList().length) {
+      } @else if (selectedTab === 4) {
         <bmb-alert-center-ads
           [advertisements]="advertisementsList()"
           (alertEvent)="handleAlertEvent($event)"

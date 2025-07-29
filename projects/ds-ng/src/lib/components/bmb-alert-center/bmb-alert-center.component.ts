@@ -38,6 +38,11 @@ export interface IBmbAlertCenterTabConfig {
   isDesktop: boolean;
 }
 
+export interface IBmbAlertCenterFooterEvent {
+  alerts: IBmbDataAlert[];
+  event: string;
+}
+
 @Component({
   selector: 'bmb-alert-center',
   standalone: true,
@@ -87,6 +92,7 @@ export class BmbAlertCenterComponent {
   alertEvent = output<IBmbDataAlert>();
   showAlertDetail = output<IBmbDataAlert>();
   closeAlertDetail = output<IBmbDataAlert>();
+  navigationBarEvents = output<IBmbAlertCenterFooterEvent>();
 
   @ViewChild('detailContent', { read: TemplateRef })
   detailContent?: TemplateRef<any>;
@@ -202,5 +208,12 @@ export class BmbAlertCenterComponent {
 
   handleChangeAlertStatus(alert: IBmbDataAlertsOutput): void {
     this.onChangeAlertStatus.emit(alert);
+  }
+
+  handleNavigationBarEvents(event: string): void {
+    this.navigationBarEvents.emit({
+      alerts: this.alertList(),
+      event,
+    });
   }
 }

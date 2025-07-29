@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import {
   IBmbAlertCenterCategories,
+  IBmbAlertEmptyState,
   IBmbDataAlertsOutput,
   IBmbDataAlertsParsed,
 } from '../types';
@@ -18,6 +19,8 @@ import {
 } from '../../bmb-bottom-navigation-bar/bmb-bottom-navigation-bar.component';
 import { CommonModule } from '@angular/common';
 import { BmbAlertCenterListComponent } from '../bmb-alert-center-list/bmb-alert-center-list.component';
+import { BmbAlertCenterEmptyComponent } from '../bmb-alert-center-empty/bmb-alert-center-empty.component';
+import { BmbLayoutItemDirective } from '../../../directives/bmb-layout/bmb-layout-item.directive';
 
 @Component({
   selector: 'bmb-alert-center-form',
@@ -27,6 +30,8 @@ import { BmbAlertCenterListComponent } from '../bmb-alert-center-list/bmb-alert-
     CommonModule,
     ReactiveFormsModule,
     BmbAlertCenterListComponent,
+    BmbAlertCenterEmptyComponent,
+    BmbLayoutItemDirective,
   ],
   templateUrl: './bmb-alert-center-form.component.html',
   styleUrl: './bmb-alert-center-form.component.scss',
@@ -37,6 +42,18 @@ export class BmbAlertCenterFormComponent {
   eventsInCategories = input.required<IBmbAlertCenterCategories>();
   filterBy = input<'all' | 'unread' | 'archived' | 'favorites'>('all');
   enableMultipleSelection = input<boolean>(true);
+  emptyStateData = input<IBmbAlertEmptyState>({
+    primaryText: 'No tienes notificaciones para mostrar',
+    secondaryText: '',
+    tertiaryText: '',
+    buttonText: '',
+    size: 'large',
+    showButton: false,
+  });
+
+  showAlertDetail = output<IBmbDataAlertsParsed>();
+  changeAlertStatus = output<IBmbDataAlertsOutput>();
+  navigationBarEvents = output<string>();
 
   filteredEvents = computed<IBmbAlertCenterCategories>(() => {
     if (this.filterBy() === 'unread') {
@@ -86,9 +103,6 @@ export class BmbAlertCenterFormComponent {
 
     return this.eventsInCategories();
   });
-
-  showAlertDetail = output<IBmbDataAlertsParsed>();
-  changeAlertStatus = output<IBmbDataAlertsOutput>();
 
   alertSelectionForm: FormGroup<{ [key: string]: FormControl }> = new FormGroup(
     {},
@@ -165,5 +179,22 @@ export class BmbAlertCenterFormComponent {
 
   alertSelected(item: IBmbDataAlertsParsed) {
     this.showAlertDetail.emit(item);
+  }
+
+  handleNavigationBarEvents(event: string): void {
+    switch (event) {
+      case 'back':
+        this.navigationBarEvents.emit('read');
+        break;
+      case 'forward':
+        this.navigationBarEvents.emit('tag');
+        break;
+      case 'share':
+        this.navigationBarEvents.emit('favorites');
+        break;
+      case 'reload':
+        this.navigationBarEvents.emit('archive');
+        break;
+    }
   }
 }

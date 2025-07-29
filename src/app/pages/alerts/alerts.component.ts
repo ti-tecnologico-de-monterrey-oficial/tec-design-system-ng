@@ -4,6 +4,7 @@ import {
   BmbAlertCenterService,
   IBmbDataAlert,
   BmbButtonDirective,
+  IBmbAlertCenterFooterEvent,
 } from '../../../../projects/ds-ng/src/public-api';
 
 @Component({
@@ -186,5 +187,13 @@ export class AlertsPageComponent implements OnInit {
 
   handleDeleteAllAlerts(): void {
     this.alertCenter.setAlerts([]);
+  }
+
+  handleNavigationBarEvents(event: IBmbAlertCenterFooterEvent) {
+    console.log('Navigation bar event:', event);
+  }
+
+  handleShowAlert(alert: IBmbDataAlert): void {
+    console.log('Show alert:', alert);
   }
 }
