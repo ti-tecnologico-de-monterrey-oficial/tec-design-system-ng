@@ -85,7 +85,7 @@ Below is an example of how to use this component in HTML:
         type: { summary: 'string' },
       },
     },
-    iconClick: {
+    appClick: {
       control: null,
       description: `
 Emitted when an icon is clicked. It's important to avoid sending the link and target property to the icon.
@@ -155,7 +155,7 @@ A parameter is sent, either the \`callbackParam\` or the object with the \`IBmbA
     ],
     title: 'Services',
     layout: 'regular',
-    iconClick: (app: any) => {
+    appClick: (app: any) => {
       console.log('Icon clicked:', app);
     },
   },

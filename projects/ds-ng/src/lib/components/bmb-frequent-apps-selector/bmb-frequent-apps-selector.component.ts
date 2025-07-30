@@ -26,7 +26,7 @@ export class BmbFrequentAppsSelectorComponent {
   apps = input<IBmbApp[]>([]);
   layout = input<IBmbInteractiveIconType>('regular');
 
-  iconClick = output<any>();
+  appClick = output<any>();
 
   getClassesFAC(): string[] {
     return [
@@ -36,6 +36,6 @@ export class BmbFrequentAppsSelectorComponent {
   }
 
   handleButtonClick(app: IBmbApp): void {
-    this.iconClick.emit(app.callbackParam || app);
+    this.appClick.emit(app.callbackParam || app);
   }
 }
