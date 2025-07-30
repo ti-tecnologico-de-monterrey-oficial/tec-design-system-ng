@@ -40,11 +40,22 @@
         [enableMultipleSelection]="enableMultipleSelection()"
       />
     }
+    @if (
+      !filteredEvents().recent.length &&
+      !filteredEvents().sevenDays.length &&
+      !filteredEvents().month.length &&
+      !filteredEvents().rest.length
+    ) {
+      <section bmbLayoutItem [colSm]="4" [colLg]="12">
+        <bmb-alert-center-empty [data]="emptyStateData()" />
+      </section>
+    }
   </section>
   <footer [ngClass]="getFooterClassList()">
     <bmb-bottom-navigation-bar
       class="bmb_alert-center-footer"
       [navigationBarIcons]="navigationBarIcons"
+      (navigationBarEvents)="handleNavigationBarEvents($event)"
     />
   </footer>
 </form>
