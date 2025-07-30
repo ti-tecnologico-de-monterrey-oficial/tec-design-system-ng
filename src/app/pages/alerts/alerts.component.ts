@@ -4,6 +4,7 @@ import {
   BmbAlertCenterService,
   IBmbDataAlert,
   BmbButtonDirective,
+  IBmbAlertCenterFooterEvent,
 } from '../../../../projects/ds-ng/src/public-api';
 
 @Component({
@@ -23,7 +24,7 @@ export class AlertsPageComponent implements OnInit {
       this.alertCenter.setAlerts([
         {
           id: 10,
-          title: 'Alerta 10',
+          title: 'Alerta 10 j asndklfjnasldkjfn alksdjnfaklsjdnf klajsdn flkjasndf klajsnfdlkjnasdlkjfn askdljnf klasjdnfklasjdn fklasdjn flkajsdn flkajnsdfkljfn asldkjfnlaksjdn flkajsdnflkajsndflkjnasdlkjfn askldjfnlkasjdnfklajsdn flkajsndfkljan skldffn alksjdn fkljasnfdlkn al k  j snd  f lkajsndf lkjasnd flkjansdkljfn ',
           description: [
             { text: 'Descripción de la alerta 10', type: 'title' },
             {
@@ -40,6 +41,20 @@ export class AlertsPageComponent implements OnInit {
           isRead: false,
           time: '12:00',
           tags: [
+            { text: 'tag1', color: 'info' },
+            { text: 'tag2', color: 'brand' },
+            { text: 'tag1', color: 'info' },
+            { text: 'tag2', color: 'brand' },
+            { text: 'tag1', color: 'info' },
+            { text: 'tag2', color: 'brand' },
+            { text: 'tag1', color: 'info' },
+            { text: 'tag2', color: 'brand' },
+            { text: 'tag1', color: 'info' },
+            { text: 'tag2', color: 'brand' },
+            { text: 'tag1', color: 'info' },
+            { text: 'tag2', color: 'brand' },
+            { text: 'tag1', color: 'info' },
+            { text: 'tag2', color: 'brand' },
             { text: 'tag1', color: 'info' },
             { text: 'tag2', color: 'brand' },
           ],
@@ -186,5 +201,13 @@ export class AlertsPageComponent implements OnInit {
 
   handleDeleteAllAlerts(): void {
     this.alertCenter.setAlerts([]);
+  }
+
+  handleNavigationBarEvents(event: IBmbAlertCenterFooterEvent) {
+    console.log('Navigation bar event:', event);
+  }
+
+  handleShowAlert(alert: IBmbDataAlert): void {
+    console.log('Show alert:', alert);
   }
 }

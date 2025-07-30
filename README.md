@@ -11,19 +11,23 @@ Descubre cómo nuestro Design System no solo da forma a la estética, sino que t
 Esta versión introduce mejoras significativas en la experiencia de notificaciones y documentación, gracias al esfuerzo colaborativo del equipo. Las personas ahora pueden disfrutar de una interfaz más optimizada y funcionalidades mejoradas.
 
 ### 🆕 Nuevas Funcionalidades
+
 - Refactorización del componente Alert Center para utilizar su propio servicio, mejorando la gestión de estado y la modularidad.
 - Compatibilidad añadida con Angular 20, asegurando integraciones modernas y robustas.
 
 ### ✅ Problemas Resueltos
+
 - Corrección de parámetros opcionales en el componente Grades, mejorando la precisión de los datos.
 - Solución al problema de la semana 53 en años bisiestos en el componente Date Picker.
 - Resolución de incompatibilidades en las opciones asíncronas del componente Dropdown.
 
 ### ⚡ Optimizaciones
+
 - Optimización de la documentación y pruebas unitarias, facilitando la comprensión y el mantenimiento.
 - Creación de funciones reutilizables para la generación de documentación, promoviendo la consistencia.
 
 ### 📘 Mejoras Documentación
+
 - Actualización de la documentación del componente Alert Center, proporcionando mayor claridad y detalle.
 
 ---

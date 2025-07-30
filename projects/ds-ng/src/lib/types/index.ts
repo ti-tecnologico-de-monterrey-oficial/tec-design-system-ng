@@ -59,6 +59,7 @@ export interface IBmbApp {
   link?: string;
   target?: IBmbTargetLink;
   appearance: IBmbInteractiveIconAppearance;
+  callbackParam?: any;
 }
 
 export interface IBmbNameValuePair {
