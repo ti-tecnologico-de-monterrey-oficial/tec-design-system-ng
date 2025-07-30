@@ -8,7 +8,9 @@ import {
 } from '@angular/core';
 import {
   IBmbAlertCenterCategories,
+  IBmbAlertCenterProtoEventFooter,
   IBmbAlertEmptyState,
+  IBmbDataAlertsEventType,
   IBmbDataAlertsOutput,
   IBmbDataAlertsParsed,
 } from '../types';
@@ -53,7 +55,7 @@ export class BmbAlertCenterFormComponent {
 
   showAlertDetail = output<IBmbDataAlertsParsed>();
   changeAlertStatus = output<IBmbDataAlertsOutput>();
-  navigationBarEvents = output<string>();
+  navigationBarEvents = output<IBmbAlertCenterProtoEventFooter>();
 
   filteredEvents = computed<IBmbAlertCenterCategories>(() => {
     if (this.filterBy() === 'unread') {
@@ -182,19 +184,28 @@ export class BmbAlertCenterFormComponent {
   }
 
   handleNavigationBarEvents(event: string): void {
+    const values = this.alertSelectionForm.value;
+    const selectedOptions = Object.keys(values).filter((value) => values[value] === true);
+    let eventType = '';
+
     switch (event) {
       case 'back':
-        this.navigationBarEvents.emit('read');
+        eventType = 'isRead';
         break;
       case 'forward':
-        this.navigationBarEvents.emit('tag');
+        eventType = 'tags';
         break;
       case 'share':
-        this.navigationBarEvents.emit('favorites');
+        eventType = 'isFavorite';
         break;
       case 'reload':
-        this.navigationBarEvents.emit('archive');
+        eventType = 'isArchived';
         break;
     }
+
+    this.navigationBarEvents.emit({
+      alerts: selectedOptions,
+      event: eventType as IBmbDataAlertsEventType,
+    });
   }
 }

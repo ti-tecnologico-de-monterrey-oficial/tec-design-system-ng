@@ -41,7 +41,8 @@
 
     &-tags {
       display: flex;
-      gap: var(--bmb-spacing-m);
+      gap: var(--bmb-spacing-xs) var(--bmb-spacing-m);
+      flex-wrap: wrap;
     }
 
     &-date {
