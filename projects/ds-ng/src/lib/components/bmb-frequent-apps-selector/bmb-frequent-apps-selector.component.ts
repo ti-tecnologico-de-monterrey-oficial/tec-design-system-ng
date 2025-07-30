@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   ViewEncapsulation,
   input,
+  output,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
@@ -25,10 +26,16 @@ export class BmbFrequentAppsSelectorComponent {
   apps = input<IBmbApp[]>([]);
   layout = input<IBmbInteractiveIconType>('regular');
 
+  iconClick = output<any>();
+
   getClassesFAC(): string[] {
     return [
       'bmb_frequent_apps-container',
       `bmb_frequent_apps-container-${this.layout()}`,
     ];
+  }
+
+  handleButtonClick(app: IBmbApp): void {
+    this.iconClick.emit(app.callbackParam || app);
   }
 }

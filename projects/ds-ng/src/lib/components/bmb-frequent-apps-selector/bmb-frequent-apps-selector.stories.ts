@@ -54,7 +54,6 @@ Below is an example of how to use this component in HTML:
   },
   argTypes: {
     apps: {
-      name: 'Apps',
       control: {
         type: 'object',
       },
@@ -66,7 +65,6 @@ Below is an example of how to use this component in HTML:
       },
     },
     title: {
-      name: 'Title',
       control: {
         type: 'text',
       },
@@ -77,7 +75,6 @@ Below is an example of how to use this component in HTML:
       },
     },
     layout: {
-      name: 'Layout',
       control: {
         type: 'select',
       },
@@ -88,15 +85,25 @@ Below is an example of how to use this component in HTML:
         type: { summary: 'string' },
       },
     },
+    iconClick: {
+      control: null,
+      description: `
+Emitted when an icon is clicked. It's important to avoid sending the link and target property to the icon.
+A parameter is sent, either the \`callbackParam\` or the object with the \`IBmbApp\` interface.
+`,
+      table: {
+        category: 'Events',
+        type: { summary: 'any' },
+      },
+    },
   },
   args: {
     apps: [
       {
         icon: 'home',
         title: 'Home',
-        link: '/home',
-        target: '_blank',
         appearance: 'red',
+        callbackParam: { customData: 'Home Data' },
       },
       {
         icon: 'settings',
@@ -148,6 +155,9 @@ Below is an example of how to use this component in HTML:
     ],
     title: 'Services',
     layout: 'regular',
+    iconClick: (app: any) => {
+      console.log('Icon clicked:', app);
+    },
   },
 } as Meta<typeof BmbFrequentAppsSelectorComponent>;
 
