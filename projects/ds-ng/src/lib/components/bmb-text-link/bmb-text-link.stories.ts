@@ -26,7 +26,6 @@ ${getBasicExampleBlock('')}
   },
   argTypes: {
     textLink: {
-      name: 'Text Link',
       control: {
         type: 'text',
       },
@@ -73,9 +72,9 @@ ${getBasicExampleBlock('')}
     disabled: DBmbGenericParamDesc.disabled,
   },
   args: {
+    textLinkStyle: 'icon',
     textLink: 'Test text',
     link: 'https://www.youtube.com',
-    textLinkStyle: 'icon',
     target: '_blank',
     icon: 'arrow_forward',
     iconPosition: 'right',
