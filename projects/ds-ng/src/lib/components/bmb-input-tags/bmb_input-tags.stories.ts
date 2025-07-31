@@ -1,5 +1,6 @@
 import {
   componentWrapperDecorator,
+  StoryObj,
   type Meta,
   type StoryFn,
 } from '@storybook/angular';
@@ -9,21 +10,29 @@ import {
   getBasicExampleBlock,
   getEmptyStateMessage,
   getFieldDescription,
+  getFormatName,
   getFormExampleBlock,
+  getOnEvent,
   getSpecialSpecifications,
+  IBmbOnEvent,
 } from '../../utils/doc/utils';
 import { BmbInputTagsComponent } from './bmb-input-tags.component';
-import { InputParameterDescriptions } from '../../utils/doc/parameterDescriptions';
+import {
+  DBmbGenericParamDesc,
+  DBmbInputParamDesc,
+  getOnEventParam,
+} from '../../utils/doc/parameterDescriptions';
 
-const inputName = 'input_with_tags';
-const additionalBlock = `handleInputWithTagsChange(value: string[]): void {
-  console.log('Value changed:', value);
-  //Add your code
-}
->
-handleInputWithTagsKeyDown(event: KeyboardEvent): void {
-  //Add your code
-}`;
+const inputName: string = 'input_with_tags';
+const formatName: string = getFormatName(inputName, '_');
+const onChange: IBmbOnEvent = getOnEvent(
+    '',
+    `${formatName}Change`,
+    'string[]',
+    true,
+  ),
+  onKeyDown = getOnEvent('', `${formatName}KeyDown`, 'KeyboardEvent', true);
+const additionalBlock: string = `${onChange.handleExample}${onKeyDown.handleExample}`;
 const inputExample = `<bmb-input-tags
   id="${inputName}_id"
   name="${inputName}"
@@ -49,8 +58,8 @@ const inputExample = `<bmb-input-tags
     'Elote',
   ]"
   [control]="getFormControl('${inputName}')"
-  (onChange)="handleInputWithTagsChange($event)"
-  (onKeyDown)="handleInputWithTagsKeyDown($event)"
+  (onChange)="${onChange.propertyValue}"
+  (onKeyDown)="${onKeyDown.propertyValue}"
  />`;
 
 export default {
@@ -101,20 +110,20 @@ ${getFieldDescription(
 )}
 ${getSpecialSpecifications(getEmptyStateMessage())}
 ${getFormExampleBlock('BmbInputTagsComponent', inputName, additionalBlock, inputExample)}
-${getBasicExampleBlock('BmbInputTagsComponent')}
+${getBasicExampleBlock('BmbInputTagsComponent', '', additionalBlock)}
           `,
       },
     },
   },
   argTypes: {
-    control: InputParameterDescriptions.control,
-    errorMessage: InputParameterDescriptions.errorMessage,
-    helperMessage: InputParameterDescriptions.helperMessage,
-    isRequired: InputParameterDescriptions.isRequired,
-    placeholder: InputParameterDescriptions.placeholder,
-    disabled: InputParameterDescriptions.disabledFormControl,
-    label: InputParameterDescriptions.label,
-    showError: InputParameterDescriptions.showError,
+    control: DBmbInputParamDesc.control,
+    errorMessage: DBmbInputParamDesc.errorMessage,
+    helperMessage: DBmbInputParamDesc.helperMessage,
+    isRequired: DBmbInputParamDesc.isRequired,
+    placeholder: DBmbInputParamDesc.placeholder,
+    disabled: DBmbInputParamDesc.disabled,
+    label: DBmbInputParamDesc.label,
+    showError: DBmbInputParamDesc.showError,
     tagOptions: {
       control: {
         type: 'array',
@@ -126,30 +135,17 @@ ${getBasicExampleBlock('BmbInputTagsComponent')}
         defaultValue: { summary: '' },
       },
     },
-    tooltip: InputParameterDescriptions.tooltip,
-    tooltipPosition: InputParameterDescriptions.tooltipPosition,
-    maxSelectedItems: InputParameterDescriptions.deprecated,
-    inputId: InputParameterDescriptions.inputId,
-    name: InputParameterDescriptions.name,
-    value: InputParameterDescriptions.value,
-    onChange: {
-      control: false,
-      description:
-        'Emits when the selected tags change. The event payload is an array of selected tag strings.',
-      table: {
-        category: 'Event',
-        type: { summary: '' },
-      },
-    },
-    onKeyDown: {
-      control: false,
-      description:
-        'Emits when a key is pressed while the input is focused. The event payload is a KeyboardEvent.',
-      table: {
-        category: 'Event',
-        type: { summary: '' },
-      },
-    },
+    tooltip: DBmbInputParamDesc.tooltip,
+    tooltipPosition: DBmbInputParamDesc.tooltipPosition,
+    maxSelectedItems: DBmbGenericParamDesc.deprecated,
+    inputId: DBmbInputParamDesc.inputId,
+    name: DBmbInputParamDesc.name,
+    value: DBmbInputParamDesc.value,
+    onChange: getOnEventParam(
+      getOnEvent('selected tags', 'onChange', onChange.type),
+      ' The event payload is an array of selected tag strings.',
+    ),
+    onKeyDown: DBmbInputParamDesc.onKeyDown,
   },
   args: {
     inputId: '',
@@ -184,16 +180,23 @@ ${getBasicExampleBlock('BmbInputTagsComponent')}
       'Arroz a la mexicana',
       'Burritos',
     ],
+    onChange: () => {
+      console.info('onChange');
+    },
+    onKeyDown: () => {
+      console.info('onKeyDown');
+    },
   },
 } as Meta<typeof BmbInputTagsComponent>;
 
-const customizable = (): StoryFn => (args) => ({
-  template: `
+type Story = StoryObj<BmbInputTagsComponent>;
+
+export const Default: Story = {
+  render: (args: any) => ({
+    template: `
     <bmb-input-tags
       ${attributes(args)}
-      (onValueChange)="onValueChange($event)"
     />
-  `,
-});
-
-export const Default = customizable();
+    `,
+  }),
+};

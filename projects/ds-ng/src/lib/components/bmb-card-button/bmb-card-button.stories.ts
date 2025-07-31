@@ -1,10 +1,27 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { BmbCardButtonComponent } from './bmb-card-button.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { attributes, getEmptyStateMessage } from '../../utils/doc/utils';
+import {
+  attributes,
+  getBasicExampleBlock,
+  getEmptyStateMessage,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getOnEvent,
+  getSpecialSpecifications,
+  IBmbOnEvent,
+} from '../../utils/doc/utils';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 import { InputSignal } from '@angular/core';
 import { IDropdownItem } from '../../types';
+import {
+  DBmbDropdownMenuParamDesc,
+  DBmbIconParamDesc,
+  getOnClickParam,
+  ON_CLICK_DESCRIPTION,
+} from '../../utils/doc/parameterDescriptions';
+
+const onEvent: IBmbOnEvent = getOnEvent('small card', 'onSmallClick');
 
 export default {
   title: 'Components/Buttons/Card button',
@@ -16,86 +33,88 @@ export default {
   ],
   parameters: {
     docs: {
+      controls: {
+        exclude: [
+          'handleAddContent',
+          'handleSmallClick',
+          'handleTitleClick',
+          'truncateText',
+          'botIcon',
+          'isFlipped',
+          '',
+          '',
+        ],
+      },
       description: {
         component: `
-${getEmptyStateMessage()}
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbCardButtonComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbCardButtonComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-Below is an example of how to use it in HTML:
+${getGeneralDescription(`${getGeneralComponentDescription('card-button')} to use a button with card features and appearance.`, 'https://bamboo.tec.mx/latest/componentes/card-button/descripcion-general-q9ZEljiw')}
+${getSpecialSpecifications(getEmptyStateMessage())}
+${getBasicExampleBlock('BmbCardButtonComponent')}
         `,
       },
     },
   },
   argTypes: {
+    iconTemplate: {
+      control: false,
+      description: '',
+      table: {
+        category: 'Template',
+        defaultValue: { summary: '' },
+        type: { summary: 'TemplateRef' },
+      },
+    },
     isSmall: {
-      name: 'Is Small',
       control: { type: 'boolean' },
-      description: 'Toggle between regular and small card button.',
+      description: 'Sets the toggle between regular and small card button.',
       table: {
         category: 'Small Card',
         type: { summary: 'boolean' },
       },
     },
     botImage: {
-      name: 'Bot Image',
       control: { type: 'object' },
       description:
-        'An object with `src` and `alt` small card to display the image.',
+        'Sets the bot image, it is an object with `src` and `alt` small card to display the image.',
       table: {
         category: 'Small Card',
-        type: { summary: '{ src: string, alt: string }' },
+        defaultValue: { summary: '' },
+        type: {
+          summary: 'IBmbImageInfo',
+          detail: `
+IBmbImageInfo {
+  src: string;
+  alt: string;
+}
+          `,
+        },
       },
     },
     smallIcon: {
-      name: 'Icon',
-      control: { type: 'text' },
-      description: 'The info icon at the top right. Only for mobile.',
+      description: 'Sets the info icon at the top right. Only for mobile.',
       table: {
         category: 'Small Card',
         type: { summary: 'string' },
       },
     },
     smallTitle: {
-      name: 'Title',
       control: { type: 'text' },
-      description: 'The title text.',
+      description: 'Sets the title text.',
       table: {
         category: 'Small Card',
         type: { summary: 'string' },
       },
     },
     smallDescription: {
-      name: 'Description',
       control: { type: 'text' },
-      description: 'The text shown on the back of the card button.',
+      description: 'Sets the text shown on the back of the card button.',
       table: {
         category: 'Small Card',
         type: { summary: 'string' },
       },
     },
-    onSmallClick: {
-      name: 'On click(small)',
-      control: null,
-      description:
-        'These events are triggered once the button small is clicked. (onSmallClick)="onSmallClick($event)"',
-      table: {
-        type: { summary: 'function' },
-        category: 'Events',
-      },
-    },
+    onSmallClick: getOnClickParam(onEvent),
     isFullInteractive: {
-      name: 'Is Full Interactive',
       control: { type: 'boolean' },
       description: 'Toggle between Full Interactive and Add Content mode.',
       table: {
@@ -105,7 +124,6 @@ Below is an example of how to use it in HTML:
       },
     },
     body: {
-      name: 'Body',
       control: { type: 'text' },
       description:
         'The body content of the card button. Text will be truncated to 3 lines if it exceeds the length.',
@@ -115,12 +133,11 @@ Below is an example of how to use it in HTML:
       },
     },
     badge: {
-      name: 'Badge',
       control: { type: 'object' },
       description: `
-Text, appearance, and container of the Badge.
+Sets the bade info: text, appearance, and container.
 
-
+Badge info properties:
 - \`text\`: (string) Sets the text of the badge. The width will increase depending on the length of the text..
 
 - \`appearance\`: (optional, string) Sets the appearance of the badge, affecting its visual style.
@@ -129,21 +146,24 @@ Text, appearance, and container of the Badge.
 
   **Note**: disabled and background do not exist for container.
 
-- \`container\`: (optional, boolean) Sets the container flag. This displays the container when true; if false, it displays a bullet..
-
-      IBmbBadgeInfo {
-        text: string;
-        appearance: string;
-        container?: boolean;
-      }
+- \`container\`: (optional, boolean) Sets the container flag. This displays the container when true; if false, it displays a bullet.
       `,
       table: {
         category: 'Full Interactive',
-        type: { summary: 'IBmbBadgeInfo' },
+        type: {
+          summary: 'IBmbBadgeInfo',
+          detail: `
+IBmbBadgeInfo {
+  text: string;
+  appearance: string;
+  container?: boolean;
+}
+
+        `,
+        },
       },
     },
     leftContent: {
-      name: 'Left Content',
       control: { type: 'boolean' },
       description:
         'Toggle to show an icon or image on the left side of the card button. If no icon is present, the image will be shown.',
@@ -153,7 +173,6 @@ Text, appearance, and container of the Badge.
       },
     },
     leftContentIcon: {
-      name: 'Left Content Icon',
       control: { type: 'text' },
       description:
         'The icon for the left content when the card is interactive.',
@@ -163,23 +182,24 @@ Text, appearance, and container of the Badge.
       },
     },
     leftContentImage: {
-      name: 'Left Content Image',
       control: { type: 'object' },
       description: `
 An object with \`src\` and \`alt\` Full Interactive to display the image if left content is enabled and no icon is provided.
-
-    IBmbImageInfo {
-      src: string;
-      alt: string;
-    }
       `,
       table: {
         category: 'Full Interactive',
-        type: { summary: 'IBmbImageInfo' },
+        type: {
+          summary: 'IBmbImageInfo',
+          detail: `
+IBmbImageInfo {
+  src: string;
+  alt: string;
+}
+          `,
+        },
       },
     },
     hasMenu: {
-      name: 'Has Menu',
       control: { type: 'boolean' },
       description: 'Toggle to show or hide the dropdown menu.',
       table: {
@@ -188,45 +208,16 @@ An object with \`src\` and \`alt\` Full Interactive to display the image if left
       },
     },
     menuItems: {
-      name: 'Menu Items',
-      control: { type: 'object' },
-      description: `
-An array of objects representing menu items, providing additional actions or navigation options within the card button. Each object in the array should contain the following properties:
-
-- \`icon\`: (string) The name of the icon displayed next to the menu item text.
-
-- \`text\`: (string) The text label for the menu item.
-
-- \`url\`: (optional, string) The URL to navigate to when the menu item is clicked.
-
-- \`target\`: (optional, string) Specifies where to display the linked URL (e.g., \`_self\`, \`_blank\`).
-
-- \`action\`: (optional, function) A custom function executed when the menu item is clicked. This is useful for triggering specific behaviors or events.
-
-      IDropdownItem {
-        idItem?: string
-        icon: string;
-        text: string;
-        url?: string;
-        target?: IBmbTargetLink;
-        action?: () => void;
-      }
-
-      IBmbTargetLink = '_blank' | '_parent' | '_self' | '_top'
-
-      `,
+      ...DBmbDropdownMenuParamDesc.items,
       table: {
+        ...DBmbDropdownMenuParamDesc.items.table,
         category: 'Full Interactive',
-        type: {
-          summary: 'IDropdownItem[]',
-        },
       },
     },
     isTemplate: {
-      name: 'Is Template',
       control: { type: 'boolean' },
       description: `
-Enable the use of templates so that icons appear before the drop-down menu. You cannot place more than four icons or action icon or bookmark.
+Enables the use of templates so that icons appear before the drop-down menu. You cannot place more than four icons or action icon or bookmark.
 
 **HTML architecture**
 
@@ -248,36 +239,35 @@ Note: there is an example in the **Template example** the section.
       },
     },
     textLink: {
-      name: 'Text link',
       control: { type: 'object' },
-      description: `
-Text link used in the image variant.
-
-      IBmbLinkConfiguration = {
-        label: string;
-        link: string;
-        target?: IBmbTargetLink;
-      }
-      `,
+      description: 'Sets the text link used in the image variant.',
       table: {
         category: 'Full Interactive',
         type: { summary: 'IBmbLinkConfiguration' },
       },
     },
     title: {
-      name: 'Title',
       control: { type: 'text' },
-      description: 'The title of the card button.',
+      description: 'Sets the title of the card button.',
       table: {
         category: 'Common Properties',
-        type: { summary: 'string' },
+        type: {
+          summary: 'string',
+          detail: `
+IBmbLinkConfiguration = {
+  label: string;
+  link: string;
+  target?: IBmbTargetLink;
+}
+
+          `,
+        },
       },
     },
     icon: {
-      name: 'Icon',
       control: { type: 'text' },
       description: `
-Specifies the icon displayed on the card button. This icon is used to visually represent the primary action or state of the button. You can use any icon from the Material Icons library or a custom icon set.
+${DBmbIconParamDesc.icon.description}
 
 Examples:
 
@@ -295,24 +285,14 @@ Usage:
         type: { summary: 'string' },
       },
     },
-    onTitleClick: {
-      name: 'On Title Click',
-      control: null,
-      description: 'Event emitted when the title is clicked.',
-      table: {
-        type: { summary: 'function' },
-        category: 'Events',
-      },
-    },
-    onAddContentClick: {
-      name: 'On Add Content Click',
-      control: null,
-      description: 'Event emitted when the add content button is clicked.',
-      table: {
-        type: { summary: 'function' },
-        category: 'Events',
-      },
-    },
+    onTitleClick: getOnClickParam(
+      getOnEvent('', 'onTitleClick'),
+      ON_CLICK_DESCRIPTION,
+    ),
+    onAddContentClick: getOnClickParam(
+      getOnEvent('', 'onAddContentClick'),
+      ON_CLICK_DESCRIPTION,
+    ),
   },
   args: {},
 } as Meta<typeof BmbCardButtonComponent>;

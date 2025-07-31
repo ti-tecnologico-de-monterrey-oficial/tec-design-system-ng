@@ -5,7 +5,6 @@ import {
   Title,
 } from '@storybook/addon-docs/blocks';
 import { getListingOnOneLine } from '../utils';
-import { IBmbCountryCode, IBmbCountryCodes } from '../countryCodes';
 
 export const DESIGN_SYSTEM_TITLE = '***Bamboo***';
 export const STORIES_TITLE = 'Variant templates';
@@ -28,7 +27,15 @@ export const TOC_OBJ = {
   title: TOC_TITLE,
   headingSelector: 'h2, h3',
 };
-export type IBmbStoryType = 'element' | 'component' | 'organism';
+export type IBmbStoryType = 'element' | 'component' | 'organism' | 'directive';
+export interface IBmbOnEvent {
+  name?: string;
+  handleExample?: string;
+  propertyValue?: string;
+  type?: string;
+  event_type?: string;
+}
+export type IBmbOnEventType = 'change' | 'keyDown' | 'other';
 
 export const getPageStructureForFoundationStories = () => {
   return [Title({}), Description({}), Primary({}), Controls({})];
@@ -59,37 +66,64 @@ export const attributesText = (object: { [key: string]: any }): string =>
     .map(([_, value]) => `${value}`)
     .join(' ');
 
-export const getAllCountryList = () => {
-  const allCountries: IBmbCountryCode[] = IBmbCountryCodes;
-  // return allCountries.map(element => `**${element.country}**: code(*${element.country_code}*)  lada(*${element.lada}*)  length(*${element.length}*)<br/>`).toString().replaceAll('<pr>','').replaceAll('</pr>','').replaceAll('<br/>,','<br/>');
-  // return `
-  // <section className="bmb_doc-accordion--container">
-  //     ${allCountries.map((element, index) =>
-  //       `<details key=${index} className="bmb_doc-accordion--item">
-  //         <summary>${element?.country}</summary>
-  //         <div className="bmb_doc-accordion--content">${`**${element.country}**: code(*${element.country_code}*)  lada(*${element.lada}*)  length(*${element.length}*`}</div>
-  //       </details>`
-  //     )}
-  //   </section>
-  // `;
-  // return `
-  // <section className="bmb_doc-accordion--container">
-  //     ${allCountries.map((element, index) =>
-  //       '<details key='+index+' className="bmb_doc-accordion--item"> </details>'
-  //     )}
-  //   </section>
-  // `;
-  const list = allCountries.map((element) => {
-    return {
-      title: element.country,
-      content: `**${element.country}**: code(*${element.country_code}*)  lada(*${element.lada}*)  length(*${element.length}*)`,
-    };
-  });
-  console.log('************', list);
+const getProperName = (name: string) =>
+  name.replace(name.slice(0, 1), name.slice(0, 1).toLocaleUpperCase());
+
+export const getFormatName = (
+  name: string,
+  separator: string = '',
+  replace: string = '',
+): string => {
+  const _name: string = getProperName(name);
+
+  if (!!separator && replace === '') {
+    return name
+      .split(separator)
+      .map((element) => getProperName(element))
+      .toString()
+      .replaceAll(',', '');
+  }
+
+  return !!separator && !!replace
+    ? _name.replaceAll(separator, replace)
+    : _name;
 };
 
+export const getOnEvent = (
+  name: string,
+  paramName: string,
+  type: string = 'MouseEvent',
+  isHandle: boolean = false,
+  additionalBlock: string = '',
+): IBmbOnEvent => {
+  const handleName: string = isHandle ? `handle${paramName}` : paramName;
+  const _type: string = `event: ${type}`;
+  const onEvent: IBmbOnEvent = {
+    name,
+    type,
+    event_type: _type,
+    handleExample: `
+  ${handleName}(${_type}) {${additionalBlock}
+    //Add your code
+  }
+  `,
+    propertyValue: `${handleName}($event)`,
+  };
+
+  return onEvent;
+};
+
+export const getAccordionDetail = (title: string, content: string) => `
+<section className="bmb_doc-accordion--container">
+  <details className="bmb_doc-accordion--item">
+    <summary>${title}</summary>
+    <div className="bmb_doc-accordion--content">${content}</div>
+  </details>
+</section>
+`;
+
 export const generateLabel = (inputName: string): string =>
-  `${inputName.replace('_', ' ').replace(inputName.slice(0, 1), inputName.slice(0, 1).toLocaleUpperCase())}`;
+  getFormatName(inputName, '_', ' ');
 
 export const getEmptyStateMessage = () => `
 ###Important:
@@ -225,34 +259,33 @@ ${getReactiveFormTitle(bmbInputName)}
   'for reactive form',
   true,
   'in a reactive form',
-  `userForm: FormGroup = new FormGroup({
-    ${inputName}: new FormControl(),
+  `  userForm: FormGroup = new FormGroup({
+      ${inputName}: new FormControl(),
   });
+  >  //Add your code
+  >${additionalBlock}
+  >   onSubmit() {
+  >     if (this.userForm.valid) {
+  >       //Add your code
+  >       return;
+  >     }
+  >     this.userForm.markAllAsTouched();
+  >     this.updateErrorState();
+  >   }
   >
-  >${additionalBlock || '//Add your code'}
+  >   updateErrorState() {
+  >     Object.keys(this.userForm.controls).forEach((field) = {
+  >       const control = this.getFormControl(field);
+  >       if (control instanceof FormControl) {
+  >         control.markAsTouched();
+  >         control.updateValueAndValidity();
+  >       }
+  >     });
+  >   }
   >
-  >onSubmit() {
-  >  if (this.userForm.valid) {
-  >    //Add your code
-  >    return;
-  >  }
-  >  this.userForm.markAllAsTouched();
-  >  this.updateErrorState();
-  >}
-  >
-  >updateErrorState() {
-  >  Object.keys(this.userForm.controls).forEach((field) = {
-  >    const control = this.getFormControl(field);
-  >    if (control instanceof FormControl) {
-  >      control.markAsTouched();
-  >      control.updateValueAndValidity();
-  >    }
-  >  });
-  >}
-  >
-  >getFormControl(name: string): FormControl {
-  >  return this.userForm.get(name) as FormControl;
-  >}`,
+  >   getFormControl(name: string): FormControl {
+  >     return this.userForm.get(name) as FormControl;
+  >   }`,
   '>',
 )}
 >${getHTMLFormExampleTextBlock(inputExample)}
@@ -273,8 +306,9 @@ export const getGeneralComponentDescription = (
   name: string,
   type: IBmbStoryType = 'component',
   additional: string = '',
+  alternativeDescription: string = '',
 ): string =>
-  `\`bmb-${name}\` is a ${DESIGN_SYSTEM_TITLE} ${additional} ${type} that allows`;
+  `\`bmb${type === 'directive' ? '' : '-'}${name}\` is a ${DESIGN_SYSTEM_TITLE} ${additional} ${type} ${alternativeDescription || 'that allows'}`;
 
 export const getGeneralDescription = (
   content: string,
@@ -325,9 +359,9 @@ export const getSpecialSpecifications = (content: string): string => `
 export const getBasicExampleBlock = (
   inputName: string,
   importComments: string = '',
-  additionalTypescriptBlock: string = '',
+  additionalBlock: string = '',
 ): string => `
-${getTypescriptExampleTextBlock(inputName, '', '', importComments, '', false, '', additionalTypescriptBlock)}
+${getTypescriptExampleTextBlock(inputName, '', '', importComments, '', false, '', additionalBlock)}
 ${getDescribeTypeTextBlock('HTML')}
 `;
 
@@ -624,7 +658,15 @@ ON THIS PAGE (optional, TABLE OF CONTENTS) [Done, is in preview, if not so add p
 -TypeScript example [Add ${getBasicExampleBlock('')} to parameters: { docs: { description: { component: ``...]
 -HTML example [is in getBasicExampleBlock]
 -PROPERTIES AND EVENTS [Done, is in preview]
-  PROPERTIES [Clear in parameters: { controls: { exclude: [''] ...]
+  PROPERTIES [Clear in parameters: { controls: { exclude: ['']}, ...]
   EVENTS [Clear in parameters: { controls: { exclude: [''] ...]
 -VARIANT TEMPLATES (optional) [Done, is in preview or in GeneralTemplate.mdx]
+*/
+
+/*
+${getGeneralDescription(`${getGeneralComponentDescription('')} `, '')}
+${getBasicExampleBlock('')}
+
+
+controls: { exclude: ['', ''] },
 */

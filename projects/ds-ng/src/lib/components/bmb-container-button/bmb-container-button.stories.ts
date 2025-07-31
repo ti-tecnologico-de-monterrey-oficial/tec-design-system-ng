@@ -1,9 +1,23 @@
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { Meta, StoryObj } from '@storybook/angular';
 import { BmbContainerButtonComponent } from './bmb-container-button.component';
-import { BmbContainerComponent } from '../bmb-container/bmb-container.component';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
-import { attributes, getEmptyStateMessage } from '../../utils/doc/utils';
+import {
+  attributes,
+  getBasicExampleBlock,
+  getEmptyStateMessage,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getOnEvent,
+  getSpecialSpecifications,
+} from '../../utils/doc/utils';
+import {
+  DBmbDropdownMenuParamDesc,
+  DBmbGenericParamDesc,
+  DBmbIconParamDesc,
+  getAppearanceParam,
+  getOnClickParam,
+  ON_CLICK_DESCRIPTION,
+} from '../../utils/doc/parameterDescriptions';
 
 const appearanceOptions: IBbmBgAppearance[] = [
   'normal',
@@ -38,48 +52,33 @@ const appearanceOptions: IBbmBgAppearance[] = [
 export default {
   title: 'Components/Buttons/Container button',
   component: BmbContainerButtonComponent,
-  decorators: [
-    moduleMetadata({
-      imports: [BmbIconComponent, BmbContainerComponent],
-    }),
-  ],
   parameters: {
     docs: {
+      controls: {
+        exclude: ['getClassList', 'handleClick', 'handleSecondaryClick'],
+      },
       description: {
         component: `
-${getEmptyStateMessage()}
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbContainerButtonComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbContainerButtonComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(`${getGeneralComponentDescription('BmbContainerButtonComponent')} to use the container as a button`, 'https://bamboo.tec.mx/latest/componentes/container-button/descripcion-general-dzTxNX36')}
+${getSpecialSpecifications(getEmptyStateMessage())}
+${getBasicExampleBlock('BmbContainerButtonComponent')}
         `,
       },
     },
   },
   argTypes: {
     title: {
-      name: 'Title',
       control: {
         type: 'text',
       },
       description: 'The title of the button container.',
       table: {
         category: 'Properties',
+        defaultValue: { summary: '' },
         type: { summary: 'string' },
       },
     },
     subtitle: {
-      name: 'Subtitle',
       control: {
         type: 'text',
       },
@@ -90,47 +89,10 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string' },
       },
     },
-    link: {
-      name: 'Link',
-      control: {
-        type: 'text',
-      },
-      description: 'The link for redirection to another page.',
-      table: {
-        category: 'Events',
-        type: { summary: 'string' },
-      },
-    },
-    target: {
-      name: 'Target',
-      control: {
-        type: 'radio',
-      },
-      options: ['_blank', '_self', '_parent', '_top'],
-      description:
-        'The target attribute for the link. Refer to https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a for more information.',
-      table: {
-        category: 'Events',
-        type: { summary: 'IBmbTargetLink' },
-        defaultValue: { summary: '_blank' },
-      },
-    },
-    iconLeft: {
-      name: 'Icon Left',
-      control: {
-        category: 'Properties',
-        type: 'text',
-      },
-      description:
-        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons. Do not use the score property if you want to the iconLeft.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'optional' },
-        type: { summary: 'string' },
-      },
-    },
+    link: DBmbGenericParamDesc.link,
+    target: DBmbGenericParamDesc.target,
+    iconLeft: DBmbIconParamDesc.icon,
     isUserImage: {
-      name: 'Is user image',
       control: { type: 'boolean' },
       description:
         'When set to true, the container button will display a user image for the left icon.',
@@ -140,19 +102,8 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'boolean' },
       },
     },
-    iconRight: {
-      name: 'Icon Right',
-      control: { type: 'text' },
-      description:
-        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'optional' },
-        type: { summary: 'string' },
-      },
-    },
+    iconRight: DBmbIconParamDesc.icon,
     score: {
-      name: 'Score',
       control: {
         type: 'text',
       },
@@ -165,7 +116,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     square: {
-      name: 'Square',
       control: { type: 'boolean' },
       description:
         'When set to true, the container button will change the appearance. Please not use grade property if you are using square and iconLeft properties.',
@@ -176,7 +126,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     small: {
-      name: 'Small',
       control: { type: 'boolean' },
       description:
         'When set to true, the container button will be small (160x80 pixels) and only show the icon/grade and title.',
@@ -187,16 +136,15 @@ Below is an example of how you can use this component in HTML:
       },
     },
     state: {
-      name: 'State',
       control: { type: 'select' },
       table: {
         category: 'Properties',
+        defaultValue: { summary: '' },
       },
       options: ['disabled', 'error'],
       description: 'The state of the button: disabled or error.',
     },
     alternative: {
-      name: 'Alternative',
       control: { type: 'boolean' },
       table: {
         category: 'Properties',
@@ -204,7 +152,6 @@ Below is an example of how you can use this component in HTML:
       description: 'If true, applies the alternative styles to the button.',
     },
     badgeText: {
-      name: 'Badge Text',
       control: {
         type: 'text',
       },
@@ -216,32 +163,9 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string' },
       },
     },
-    badgeAppearance: {
-      name: 'Badge Appearance',
-      control: {
-        type: 'select',
-      },
-      options: appearanceOptions,
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'normal' },
-        type: { summary: 'string' },
-      },
-      description: 'The appearance of the badge, affecting its visual style.',
-    },
-    setButtonTemplate: {
-      name: 'Set Button Template',
-      control: { type: 'boolean' },
-      description:
-        'This property switch the template component to a button, if you enable this option, you do not need send the `target`, and `link` properties, and set the ouput `onButton`.',
-      table: {
-        category: 'Deprecated',
-        defaultValue: { summary: false },
-        type: { summary: 'boolean' },
-      },
-    },
+    badgeAppearance: getAppearanceParam('the badge', appearanceOptions),
+    setButtonTemplate: DBmbGenericParamDesc.deprecated,
     enableSecondaryAction: {
-      name: 'Enable Secondary Action',
       control: { type: 'boolean' },
       description:
         'When set to true, it will enable the secondary action button. The secondary action button will be displayed on the right side of the button.',
@@ -252,7 +176,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     enableBookmark: {
-      name: 'Enable Bookmark',
       control: { type: 'boolean' },
       description:
         'When set to true, it will enable the bookmark button. The bookmark button will be displayed on the right side of the button.',
@@ -263,7 +186,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     isBookmarkActive: {
-      name: 'Is Bookmark Active',
       control: { type: 'boolean' },
       description: 'When set to true, the bookmark button will be active.',
       table: {
@@ -272,41 +194,19 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'boolean' },
       },
     },
-    onButton: {
-      name: 'On Button',
-      control: { summary: 'function' },
-      description: 'Event emitted when the button is clicked.',
-      table: {
-        category: 'Events',
-        type: { summary: 'function' },
-      },
-    },
-    secondaryAction: {
-      name: 'Secondary action',
-      control: { summary: 'function' },
-      description: 'Event emitted when the secondary action button is clicked.',
-      table: {
-        category: 'Events',
-        type: { summary: 'function' },
-      },
-    },
-    dropdownMenuItems: {
-      name: 'Dropdown Menu Items',
-      control: { summary: 'IDropdownItem[]' },
-      description:
-        'Array of items to be displayed in the dropdown menu. Each item should have a label and an action.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'IDropdownItem[]' },
-      },
-    },
+    onButton: getOnClickParam(getOnEvent('', 'onButton'), ON_CLICK_DESCRIPTION),
+    secondaryAction: getOnClickParam(
+      getOnEvent('', 'secondaryAction'),
+      ON_CLICK_DESCRIPTION,
+    ),
+    dropdownMenuItems: DBmbDropdownMenuParamDesc.items,
   },
   args: {
     title: 'Tema de App',
     iconLeft: 'home',
     iconRight: 'chevron_right',
-    onButton: (event: any) => {
-      alert('Container button clicked');
+    onButton: () => {
+      console.log('Container button clicked');
     },
   },
 } as Meta<typeof BmbContainerButtonComponent>;

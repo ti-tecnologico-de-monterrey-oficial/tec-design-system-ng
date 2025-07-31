@@ -7,9 +7,8 @@ import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
-  getTypescriptExampleTextBlock,
 } from '../../utils/doc/utils';
-import { InputParameterDescriptions } from '../../utils/doc/parameterDescriptions';
+import { DBmbInputParamDesc } from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Components/Inputs/Dropzone',
@@ -282,9 +281,9 @@ Upload progress of the file.
       },
     },
     dropLabel: {
-      ...InputParameterDescriptions.label,
+      ...DBmbInputParamDesc.label,
       table: {
-        ...InputParameterDescriptions.label.table,
+        ...DBmbInputParamDesc.label.table,
         defaultValue: { summary: 'selecciona tus archivos' },
       },
     },
@@ -298,9 +297,9 @@ Upload progress of the file.
       },
     },
     errorMessage: {
-      ...InputParameterDescriptions.errorMessage,
+      ...DBmbInputParamDesc.errorMessage,
       table: {
-        ...InputParameterDescriptions.errorMessage.table,
+        ...DBmbInputParamDesc.errorMessage.table,
         defaultValue: { summary: 'Archivo no compatible' },
       },
     },
@@ -322,7 +321,7 @@ Upload progress of the file.
         type: { summary: 'string' },
       },
     },
-    name: InputParameterDescriptions.name,
+    name: DBmbInputParamDesc.name,
     fileSize: {
       control: { type: 'number' },
       description: 'Maximum allowed file size in MB.',

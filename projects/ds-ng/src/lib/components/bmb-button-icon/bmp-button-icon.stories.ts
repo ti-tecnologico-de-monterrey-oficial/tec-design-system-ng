@@ -2,6 +2,21 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { BmbButtonIconComponent } from './bmb-button-icon.component';
 import { fn } from 'storybook/test';
 import { action } from 'storybook/actions';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getOnEvent,
+  getSpecialSpecifications,
+  IBmbOnEvent,
+} from '../../utils/doc/utils';
+import {
+  DBmbGenericParamDesc,
+  DBmbIconParamDesc,
+  getOnClickParam,
+} from '../../utils/doc/parameterDescriptions';
+
+const onEvent: IBmbOnEvent = getOnEvent('', 'onButtonClick');
 
 export default {
   title: 'Components/Buttons/Button icon',
@@ -9,27 +24,13 @@ export default {
   parameters: {
     actions: { argTypesRegex: '^on.*' },
     docs: {
+      controls: { exclude: ['handleClick', 'handlePress'] },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbButtonIconComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbButtonIconComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-export class AppComponent {
-
-...
-\`\`\`
-
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(`${getGeneralComponentDescription('button-icon')} to add compact buttons using icons without text.`, 'https://bamboo.tec.mx/latest/componentes/button-icon/descripcion-general-6GKyDzWU')}
+${getSpecialSpecifications(`Recommended for representing quick and intuitive actions within limited spaces, such as toolbars, headers, cards.`)}
+<br/>
+${getBasicExampleBlock('BmbButtonIconComponent', '', onEvent.handleExample)}
         `,
       },
     },
@@ -46,25 +47,8 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string' },
       },
     },
-    idElement: {
-      control: {
-        type: 'text',
-      },
-      description: 'Sets the id element',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string (optional)' },
-      },
-    },
-    icon: {
-      control: { type: 'text' },
-      description:
-        'Sets the name of the icon to use. Please use Material icons: https://fonts.google.com/icons. The color of the icon depends on the parent. You can also place an image here. **This icon has button behavior**',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string (required)' },
-      },
-    },
+    idElement: DBmbGenericParamDesc.uniqueId,
+    icon: DBmbIconParamDesc.icon,
     showContainer: {
       control: { type: 'boolean' },
       description: 'Sets the flag to show the container when true.',
@@ -87,41 +71,22 @@ Sets the appearance of the outline when true.
         type: { summary: 'boolean (optional)' },
       },
     },
-    disabled: {
-      control: {
-        type: 'boolean',
-      },
-      description: 'Disables the button or the link.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean' },
-      },
-    },
+    disabled: DBmbGenericParamDesc.disabled,
     active: {
       control: {
         type: 'boolean',
       },
       description:
-        'Set the active state of the button icon, this input is a model so you can detect a change in the state in the same place.',
+        'Sets the active state of the button icon, this input is a model so you can detect a change in the state in the same place.',
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
       },
     },
-    onButtonClick: {
-      control: false,
-      description:
-        'This event is only emitted if the "Link" property is empty.',
-      table: {
-        category: 'Events',
-        type: { summary: 'function (option)' },
-      },
-    },
+    onButtonClick: getOnClickParam(onEvent),
   },
   args: {
-    appearanceContrast: 'default',
     idElement: '',
     icon: 'send',
     showContainer: true,
