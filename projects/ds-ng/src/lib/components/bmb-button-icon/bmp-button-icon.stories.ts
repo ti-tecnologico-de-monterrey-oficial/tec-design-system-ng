@@ -35,20 +35,18 @@ Below is an example of how you can use this component in HTML:
     },
   },
   argTypes: {
-    // appearance: {
-    //   name: 'Appearance',
-    //   control: {
-    //     type: 'select',
-    //   },
-    //   options: ['default', 'primary', 'alternative'],
-    //   description: 'Defines the appearance style.',
-    //   table: {
-    //     category: 'Properties',
-    //     type: { summary: 'string' },
-    //   },
-    // },
+    appearanceContrast: {
+      control: {
+        type: 'select',
+      },
+      options: ['default', 'primary', 'alternative'],
+      description: 'Defines the appearance style.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
     idElement: {
-      name: 'Id element',
       control: {
         type: 'text',
       },
@@ -59,7 +57,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     icon: {
-      name: 'Icon',
       control: { type: 'text' },
       description:
         'Sets the name of the icon to use. Please use Material icons: https://fonts.google.com/icons. The color of the icon depends on the parent. You can also place an image here. **This icon has button behavior**',
@@ -69,7 +66,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     showContainer: {
-      name: 'Show container',
       control: { type: 'boolean' },
       description: 'Sets the flag to show the container when true.',
       table: {
@@ -79,7 +75,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     isOutline: {
-      name: 'Outline',
       control: { type: 'boolean' },
       description: `
 Sets the appearance of the outline when true.
@@ -93,7 +88,6 @@ Sets the appearance of the outline when true.
       },
     },
     disabled: {
-      name: 'Disabled',
       control: {
         type: 'boolean',
       },
@@ -105,7 +99,6 @@ Sets the appearance of the outline when true.
       },
     },
     active: {
-      name: 'Active',
       control: {
         type: 'boolean',
       },
@@ -118,7 +111,6 @@ Sets the appearance of the outline when true.
       },
     },
     onButtonClick: {
-      name: 'Button click',
       control: false,
       description:
         'This event is only emitted if the "Link" property is empty.',
@@ -129,7 +121,7 @@ Sets the appearance of the outline when true.
     },
   },
   args: {
-    // appearance: 'default',
+    appearanceContrast: 'default',
     idElement: '',
     icon: 'send',
     showContainer: true,

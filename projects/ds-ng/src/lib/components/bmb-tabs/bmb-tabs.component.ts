@@ -16,7 +16,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { TabsService } from '../../services/tabs.service';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
-// import { IBmbContrast } from '../../types/colors';
+import { IBmbContrast } from '../../types/colors';
 
 export interface IBmbTab {
   id: number;
@@ -37,7 +37,7 @@ export interface IBmbTab {
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbTabsComponent implements OnInit, AfterViewInit, OnDestroy {
-  // appearance = input<IBmbContrast>('default');
+  appearanceContrast = input<IBmbContrast>('default');
   format = input<string>('');
   tabs = input<IBmbTab[]>([]);
   selectedTabId = model<number>(0); //internal
@@ -170,5 +170,19 @@ export class BmbTabsComponent implements OnInit, AfterViewInit, OnDestroy {
         tabsElement.clientWidth -
         tabsElement.scrollWidth,
     );
+  }
+
+  getTabsClasses(): string[] {
+    const classes: string[] = ['bmb_tabs'];
+
+    if (this.appearanceContrast() === 'primary') {
+      classes.push('bmb_tabs-primary');
+    }
+
+    if (this.appearanceContrast() === 'alternative') {
+      classes.push('bmb_tabs-alternative');
+    }
+
+    return classes;
   }
 }

@@ -6,7 +6,7 @@ import {
   ViewEncapsulation,
   computed,
 } from '@angular/core';
-// import { IBmbContrast } from '../../types/colors';
+import { IBmbContrast } from '../../types/colors';
 
 export type IBmbGradeType = 'main-grade' | 'partial-grade';
 
@@ -20,7 +20,7 @@ export type IBmbGradeType = 'main-grade' | 'partial-grade';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbGradeValueComponent {
-  // appearance = input<IBmbContrast>('default');
+  appearanceContrast = input<IBmbContrast>('default');
   type = input<IBmbGradeType>('main-grade');
   score = input<number | string | undefined>(0);
 

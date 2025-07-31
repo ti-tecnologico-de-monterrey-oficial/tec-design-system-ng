@@ -1,4 +1,10 @@
-<div class="bmb_grade-value">
+<div
+  class="bmb_grade-value"
+  [ngClass]="{
+    'bmb_grade-value-appearance-main': appearanceContrast() === 'primary',
+    'bmb_grade-value-appearance-alternative': appearanceContrast() === 'alternative'
+  }"
+>
   @if (type() === "main-grade") {
     <svg
       class="bmb_grade-value-main"

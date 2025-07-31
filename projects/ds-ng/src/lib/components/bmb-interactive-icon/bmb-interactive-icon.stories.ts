@@ -68,18 +68,17 @@ Below is an example of how you can use this component in HTML:
     },
   },
   argTypes: {
-    // appearanceContrast: {
-    //   name: 'Appearance',
-    //   control: {
-    //     type: 'select',
-    //   },
-    //   options: ['default', 'primary', 'alternative'],
-    //   description: 'Defines the appearance style.',
-    //   table: {
-    //     category: 'Properties',
-    //     type: { summary: 'string' },
-    //   },
-    // },
+    appearanceContrast: {
+      control: {
+        type: 'select',
+      },
+      options: ['default', 'primary', 'alternative'],
+      description: 'Defines the appearance style.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
     title: {
       name: 'Title',
       control: {
@@ -198,7 +197,7 @@ Below is an example of how you can use this component in HTML:
     },
   },
   args: {
-    // appearanceContrast: 'default',
+    appearanceContrast: 'default',
     title: 'Canvas',
     description: 'Short Description',
     appearance: 'red',

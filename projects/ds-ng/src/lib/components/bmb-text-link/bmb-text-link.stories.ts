@@ -27,20 +27,18 @@ Below is an example of how you can use this component in HTML:
     },
   },
   argTypes: {
-    // appearance: {
-    //   name: 'Appearance',
-    //   control: {
-    //     type: 'select',
-    //   },
-    //   options: ['default', 'primary', 'alternative'],
-    //   description: 'Defines the appearance style.',
-    //   table: {
-    //     category: 'Properties',
-    //     type: { summary: 'string' },
-    //   },
-    // },
+    appearanceContrast: {
+      control: {
+        type: 'select',
+      },
+      options: ['default', 'primary', 'alternative'],
+      description: 'Defines the appearance style.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
     textLink: {
-      name: 'Text Link',
       control: {
         type: 'text',
       },
@@ -51,7 +49,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     textLinkStyle: {
-      name: 'Text Link Style',
       control: {
         type: 'radio',
       },
@@ -65,7 +62,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     target: {
-      name: 'Target',
       control: {
         type: 'radio',
       },
@@ -78,7 +74,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     icon: {
-      name: 'Icon',
       control: { type: 'text' },
       description:
         'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons. The color of the icon depend on the parent.',
@@ -88,7 +83,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     iconPosition: {
-      name: 'Icon position',
       control: {
         type: 'radio',
       },
@@ -101,7 +95,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     link: {
-      name: 'Link',
       control: {
         type: 'text',
       },
@@ -112,7 +105,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     disabled: {
-      name: 'Disable',
       control: { type: 'boolean' },
       description:
         'When set as true, the text link doesnt respond to pointer events',
@@ -124,7 +116,7 @@ Below is an example of how you can use this component in HTML:
     },
   },
   args: {
-    // appearance: 'default',
+    appearanceContrast: 'default',
     textLink: 'Texto de prueba',
     link: 'https://www.youtube.com',
     textLinkStyle: 'icon',

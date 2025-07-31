@@ -8,7 +8,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { BmbBadgeComponent } from '../bmb-badge/bmb-badge.component';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
-// import { IBmbContrast } from '../../types/colors';
+import { IBmbContrast } from '../../types/colors';
 
 export interface IBmbConcept {
   concept: string;
@@ -36,7 +36,7 @@ export interface IBmbInvoice {
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbInvoiceComponent implements OnInit {
-  // appearance = input<IBmbContrast>('default');
+  appearanceContrast = input<IBmbContrast>('default');
   data = input<IBmbInvoice>();
 
   ngOnInit(): void {}
@@ -45,5 +45,19 @@ export class BmbInvoiceComponent implements OnInit {
     const isNegative = value.trim().startsWith('-');
     const number = parseFloat(value.replace(/[^\d.-]/g, ''));
     return isNegative || number < 0;
+  }
+
+  getInvoiceClasses(): string[] {
+    const classes: string[] = ['bmb_invoice'];
+
+    if (this.appearanceContrast() === 'primary') {
+      classes.push('bmb_invoice-primary');
+    }
+
+    if (this.appearanceContrast() === 'alternative') {
+      classes.push('bmb_invoice-alternative');
+    }
+
+    return classes;
   }
 }

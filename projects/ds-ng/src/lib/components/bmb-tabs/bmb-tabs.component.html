@@ -1,4 +1,4 @@
-<section class="bmb_tabs">
+<section [ngClass]="getTabsClasses()">
   <div class="bmb_tabs-container">
     @if (hasScroll()) {
       <bmb-action-icon
