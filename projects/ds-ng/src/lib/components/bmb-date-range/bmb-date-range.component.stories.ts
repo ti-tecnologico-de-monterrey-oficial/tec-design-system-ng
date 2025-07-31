@@ -9,13 +9,15 @@ import {
 } from '../../utils/doc/utils';
 import {
   getControlDescription,
-  InputParameterDescriptions,
+  DBmbInputParamDesc,
+  DBmbGenericParamDesc,
+  DBmbIconParamDesc,
 } from '../../utils/doc/parameterDescriptions';
 
 const inputName = 'date_range';
 const label = generateLabel(inputName);
 const inputExample = `<bmb-date-range
-  inputId="${inputName}e_id"
+  inputId="${inputName}_id"
   name="${inputName}"
   labelStartDate="${label} start"
   labelEndDate="${label} end"
@@ -67,7 +69,7 @@ ${getArchitectureSection(
 ${getFormExampleBlock(
   'BmbDateRangeComponent',
   `${inputName}_start: new FormControl(),
-  ${inputName}_end`,
+      ${inputName}_end`,
   '',
   inputExample,
 )}
@@ -77,60 +79,58 @@ ${getBasicExampleBlock('BmbDateRangeComponent')}
     },
   },
   argTypes: {
-    label: InputParameterDescriptions.deprecated,
+    label: DBmbGenericParamDesc.deprecated,
     labelStartDate: {
-      ...InputParameterDescriptions.label,
-      description: InputParameterDescriptions.label.description.replace(
+      ...DBmbInputParamDesc.label,
+      description: DBmbInputParamDesc.label.description.replace(
         'field',
         'start date field',
       ),
     },
     labelEndDate: {
-      ...InputParameterDescriptions.label,
-      description: InputParameterDescriptions.label.description.replace(
+      ...DBmbInputParamDesc.label,
+      description: DBmbInputParamDesc.label.description.replace(
         'field',
         'end date field',
       ),
     },
     placeholderStartDate: {
-      ...InputParameterDescriptions.placeholder,
-      description: InputParameterDescriptions.placeholder.description.replace(
+      ...DBmbInputParamDesc.placeholder,
+      description: DBmbInputParamDesc.placeholder.description.replace(
         'field',
         'start date field',
       ),
       table: {
-        ...InputParameterDescriptions.placeholder.table,
+        ...DBmbInputParamDesc.placeholder.table,
         defaultValue: { summary: 'value assigned to the dateFormat property' },
       },
     },
     placeholderEndDate: {
-      ...InputParameterDescriptions.placeholder,
-      description: InputParameterDescriptions.placeholder.description.replace(
+      ...DBmbInputParamDesc.placeholder,
+      description: DBmbInputParamDesc.placeholder.description.replace(
         'field',
         'end date field',
       ),
       table: {
-        ...InputParameterDescriptions.placeholder.table,
+        ...DBmbInputParamDesc.placeholder.table,
         defaultValue: { summary: 'value assigned to the dateFormat property' },
       },
     },
     icon: {
-      ...InputParameterDescriptions.icon,
+      ...DBmbIconParamDesc.icon,
       table: {
-        ...InputParameterDescriptions.icon.table,
+        ...DBmbIconParamDesc.icon.table,
         defaultValue: { summary: 'calendar_month' },
       },
     },
-    invalidFormatErrorMessage:
-      InputParameterDescriptions.invalidFormatErrorMessage,
-    requiredFieldErrorMessage:
-      InputParameterDescriptions.requiredFieldErrorMessage,
-    appearance: InputParameterDescriptions.deprecated,
-    disabled: InputParameterDescriptions.disabledFormControl,
-    isRequired: InputParameterDescriptions.isRequired,
-    isClearable: InputParameterDescriptions.isClearable,
+    invalidFormatErrorMessage: DBmbInputParamDesc.invalidFormatErrorMessage,
+    requiredFieldErrorMessage: DBmbInputParamDesc.requiredFieldErrorMessage,
+    appearance: DBmbGenericParamDesc.deprecated,
+    disabled: DBmbInputParamDesc.disabled,
+    isRequired: DBmbInputParamDesc.isRequired,
+    isClearable: DBmbInputParamDesc.isClearable,
     controlStart: {
-      ...InputParameterDescriptions.control,
+      ...DBmbInputParamDesc.control,
       description: `
 ${getControlDescription().replace('field', 'start date field')}
 
@@ -142,15 +142,15 @@ The name of the \`FormControl\` must consist of the name assigned in the \`name\
 - FormControl instantiation in TypesScript: \`date_range_start: new FormControl()\`
       `,
       table: {
-        ...InputParameterDescriptions.control.table,
+        ...DBmbInputParamDesc.control.table,
         type: {
-          ...InputParameterDescriptions.control.table.type,
+          ...DBmbInputParamDesc.control.table.type,
           detail: getControlDescription(true),
         },
       },
     },
     controlEnd: {
-      ...InputParameterDescriptions.control,
+      ...DBmbInputParamDesc.control,
       description: `
 ${getControlDescription().replace('field', 'end date field')}
 
@@ -162,15 +162,15 @@ The name of the \`FormControl\` must consist of the name assigned in the \`name\
 - FormControl instantiation in TypesScript: \`date_range_end: new FormControl()\`
       `,
       table: {
-        ...InputParameterDescriptions.control.table,
+        ...DBmbInputParamDesc.control.table,
         type: {
-          ...InputParameterDescriptions.control.table.type,
+          ...DBmbInputParamDesc.control.table.type,
           detail: getControlDescription(true),
         },
       },
     },
-    dateFormat: InputParameterDescriptions.dateFormat,
-    name: InputParameterDescriptions.name,
+    dateFormat: DBmbInputParamDesc.dateFormat,
+    name: DBmbInputParamDesc.name,
     multipleRow: {
       control: { type: 'boolean' },
       description: 'Sets the mobile version when true.',
@@ -181,7 +181,7 @@ The name of the \`FormControl\` must consist of the name assigned in the \`name\
         type: { summary: 'boolean' },
       },
     },
-    inputId: InputParameterDescriptions.inputId,
+    inputId: DBmbInputParamDesc.inputId,
   },
 
   args: {

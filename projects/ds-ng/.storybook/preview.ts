@@ -59,6 +59,7 @@ const preview: Preview = {
           'ngOnChanges',
           'ngAfterViewInit',
           'isControlNull',
+          'clickOutside',
         ],
       },
       source: {

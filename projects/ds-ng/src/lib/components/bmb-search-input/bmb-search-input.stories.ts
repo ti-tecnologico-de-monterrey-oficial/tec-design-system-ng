@@ -5,9 +5,20 @@ import {
   getEmptyStateMessage,
   getGeneralComponentDescription,
   getGeneralDescription,
+  getOnEvent,
   getSpecialSpecifications,
+  IBmbOnEvent,
 } from '../../utils/doc/utils';
-import { InputParameterDescriptions } from '../../utils/doc/parameterDescriptions';
+import {
+  DBmbInputParamDesc,
+  getOnEventParam,
+} from '../../utils/doc/parameterDescriptions';
+
+const onChange: IBmbOnEvent = getOnEvent(
+  'state of the checkbox',
+  'onValueChange',
+  'string',
+);
 
 export default {
   title: 'Components/Inputs/Search',
@@ -41,14 +52,14 @@ export default {
         component: `
 ${getGeneralDescription(`${getGeneralComponentDescription('search-input')} to enter text and run a search.`, 'https://bamboo.tec.mx/latest/componentes/search/descripcion-general-EAreKqon')}
 ${getSpecialSpecifications(getEmptyStateMessage())}
-${getBasicExampleBlock('BmbSearchInputComponent')}
+${getBasicExampleBlock('BmbSearchInputComponent', '', onChange.handleExample)}
         `,
       },
     },
   },
   argTypes: {
-    inputId: InputParameterDescriptions.inputId,
-    name: InputParameterDescriptions.name,
+    inputId: DBmbInputParamDesc.inputId,
+    name: DBmbInputParamDesc.name,
     data: {
       control: false,
       description:
@@ -77,7 +88,7 @@ ${getBasicExampleBlock('BmbSearchInputComponent')}
         category: 'Properties',
       },
     },
-    placeholder: InputParameterDescriptions.placeholder,
+    placeholder: DBmbInputParamDesc.placeholder,
     serverSideFilteredData: {
       control: false,
       description:
@@ -88,14 +99,7 @@ ${getBasicExampleBlock('BmbSearchInputComponent')}
         defaultValue: { summary: '[]' },
       },
     },
-    onValueChange: {
-      control: false,
-      description: 'These events are triggered once the input value changes.',
-      table: {
-        type: { summary: 'function' },
-        category: 'Events',
-      },
-    },
+    onValueChange: getOnEventParam(onChange),
     onServerSideFilterEvent: {
       control: false,
       description:
@@ -105,14 +109,11 @@ ${getBasicExampleBlock('BmbSearchInputComponent')}
         category: 'Events',
       },
     },
-    onClearField: {
-      control: false,
-      description: 'Emits an event when the input field is cleared.',
-      table: {
-        type: { summary: 'function' },
-        category: 'Events',
-      },
-    },
+    onClearField: getOnEventParam(
+      getOnEvent('', 'onClearField', 'boolean'),
+      'the search is cleared',
+      'other',
+    ),
   },
   args: {
     inputId: '',
@@ -140,6 +141,9 @@ ${getBasicExampleBlock('BmbSearchInputComponent')}
     isServerSideFilter: false,
     onValueChange: () => {
       console.log('onValueChange');
+    },
+    onClearField: () => {
+      console.log('onClearField');
     },
   },
 } as Meta<typeof BmbSearchInputComponent>;

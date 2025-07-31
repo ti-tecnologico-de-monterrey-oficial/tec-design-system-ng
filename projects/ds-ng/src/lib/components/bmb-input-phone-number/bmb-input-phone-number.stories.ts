@@ -19,7 +19,10 @@ import {
   getFormExampleBlock,
   getSpecialSpecifications,
 } from '../../utils/doc/utils';
-import { InputParameterDescriptions } from '../../utils/doc/parameterDescriptions';
+import {
+  DBmbGenericParamDesc,
+  DBmbInputParamDesc,
+} from '../../utils/doc/parameterDescriptions';
 import { IBmbCountryCode, IBmbCountryCodes } from '../../utils/countryCodes';
 
 const inputName = 'input_phone_number';
@@ -112,11 +115,11 @@ ${getBasicExampleBlock('BmbInputPhoneNumberComponent')}
     },
   },
   argTypes: {
-    control: InputParameterDescriptions.control,
-    disabled: InputParameterDescriptions.disabledFormControl,
-    errorMessage: InputParameterDescriptions.errorMessage,
-    showError: InputParameterDescriptions.showError,
-    isRequired: InputParameterDescriptions.isRequired,
+    control: DBmbInputParamDesc.control,
+    disabled: DBmbInputParamDesc.disabled,
+    errorMessage: DBmbInputParamDesc.errorMessage,
+    showError: DBmbInputParamDesc.showError,
+    isRequired: DBmbInputParamDesc.isRequired,
     preferredCountries: {
       control: { type: 'array' },
       description:
@@ -137,16 +140,16 @@ ${getBasicExampleBlock('BmbInputPhoneNumberComponent')}
         defaultValue: { summary: '[]' },
       },
     },
-    label: InputParameterDescriptions.label,
-    tooltip: InputParameterDescriptions.tooltip,
-    tooltipPosition: InputParameterDescriptions.tooltipPosition,
-    inputId: InputParameterDescriptions.inputId,
-    name: InputParameterDescriptions.name,
-    value: InputParameterDescriptions.value,
-    appearance: InputParameterDescriptions.deprecated,
-    defaultLada: InputParameterDescriptions.deprecated,
-    helperMessage: InputParameterDescriptions.helperMessage,
-    placeholder: InputParameterDescriptions.placeholder,
+    label: DBmbInputParamDesc.label,
+    tooltip: DBmbInputParamDesc.tooltip,
+    tooltipPosition: DBmbInputParamDesc.tooltipPosition,
+    inputId: DBmbInputParamDesc.inputId,
+    name: DBmbInputParamDesc.name,
+    value: DBmbInputParamDesc.value,
+    appearance: DBmbGenericParamDesc.deprecated,
+    defaultLada: DBmbGenericParamDesc.deprecated,
+    helperMessage: DBmbInputParamDesc.helperMessage,
+    placeholder: DBmbInputParamDesc.placeholder,
     defaultCountryCode: {
       control: { type: 'string' },
       description:

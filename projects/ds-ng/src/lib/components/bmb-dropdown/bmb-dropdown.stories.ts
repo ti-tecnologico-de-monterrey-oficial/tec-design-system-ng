@@ -1,12 +1,11 @@
 import {
   componentWrapperDecorator,
   moduleMetadata,
+  StoryObj,
   type Meta,
-  type StoryFn,
 } from '@storybook/angular';
 import { BmbDropdownComponent } from './bmb-dropdown.component';
 import {
-  attributes,
   getArchitectureSection,
   getEmptyStateMessage,
   getFieldDescription,
@@ -14,26 +13,40 @@ import {
   getBasicExampleBlock,
   getFormExampleBlock,
   generateLabel,
+  getFormatName,
+  getOnEvent,
+  IBmbOnEvent,
 } from '../../utils/doc/utils';
 import { BmbFormValidatorComponent } from '../bmb-form-validator/bmb-form-validator.component';
-import { InputParameterDescriptions } from '../../utils/doc/parameterDescriptions';
+import {
+  DBmbIconParamDesc,
+  DBmbInputParamDesc,
+  getOnEventParam,
+} from '../../utils/doc/parameterDescriptions';
 
-const title = 'Components/Inputs/Dropdown';
 const inputName = 'dropdown';
-const additionalBlock = `handleDropdownChange(value: string): void {
-    console.log('Value changed:', value);
-    //Add your code
-}`;
+const formatName: string = getFormatName(inputName, '_');
+const handleChange: IBmbOnEvent = getOnEvent(
+  '',
+  `${formatName}Change`,
+  'unknown',
+  true,
+);
 const inputExample = ` <bmb-${inputName}
   inputId="${inputName}_id"
   name="${inputName}"
   label="${generateLabel(inputName)}"
   [control]="getFormControl('${inputName}')"
-  (change)="handleDropdownChange($event)"
+  (onValueChange)="${handleChange.propertyValue}"
   />`;
+const onChange: IBmbOnEvent = getOnEvent(
+  'selected option',
+  'onValueChange',
+  handleChange.type,
+);
 
 export default {
-  title,
+  title: 'Components/Inputs/Dropdown',
   component: BmbDropdownComponent,
   tags: ['!autodocs'],
   decorators: [
@@ -98,15 +111,15 @@ ${getSpecialSpecifications(`
 The \`isFilterable\` feature is not compatible with the current version of Storybook, We are working on to fix this issue. You should be able to use it in your Angular application.
 >${getEmptyStateMessage()}
 `)}
-${getFormExampleBlock('BmbDropdownComponent', inputName, additionalBlock, inputExample)}
-${getBasicExampleBlock('BmbDropdownComponent')}
+${getFormExampleBlock('BmbDropdownComponent', inputName, handleChange.handleExample, inputExample)}
+${getBasicExampleBlock('BmbDropdownComponent', '', onChange.handleExample)}
         `,
       },
     },
   },
   argTypes: {
-    icon: InputParameterDescriptions.icon,
-    required: InputParameterDescriptions.isRequired,
+    icon: DBmbIconParamDesc.icon,
+    required: DBmbInputParamDesc.isRequired,
     showIcon: {
       control: { type: 'boolean' },
       description: `
@@ -118,7 +131,7 @@ Shows the icon assigned in the \`icon\` property when true.
         defaultValue: { summary: 'false' },
       },
     },
-    placeholder: InputParameterDescriptions.placeholder,
+    placeholder: DBmbInputParamDesc.placeholder,
     options: {
       control: { type: 'array' },
       description: 'Sets the data to be displayed in the dropdown.',
@@ -138,15 +151,11 @@ IBmbDropdownItem = {
         defaultValue: { summary: '[]' },
       },
     },
-    helperText: InputParameterDescriptions.helperMessage,
-    disabled: InputParameterDescriptions.disabledFormControl,
-    label: InputParameterDescriptions.label,
-    control: InputParameterDescriptions.control,
-    onValueChange: {
-      control: { type: '' },
-      description: 'Emits the value of the selected option',
-      table: { category: 'Events', type: { summary: 'function' } },
-    },
+    helperText: DBmbInputParamDesc.helperMessage,
+    disabled: DBmbInputParamDesc.disabled,
+    label: DBmbInputParamDesc.label,
+    control: DBmbInputParamDesc.control,
+    onValueChange: getOnEventParam(onChange),
     isFilterable: {
       control: { type: 'boolean' },
       description: `
@@ -220,12 +229,12 @@ If the data is a list of  IBmbDropdownItem type, the preferred options should be
         defaultValue: { summary: 'false' },
       },
     },
-    inputId: InputParameterDescriptions.inputId,
-    tooltip: InputParameterDescriptions.tooltip,
-    errorMessage: InputParameterDescriptions.errorMessage,
-    name: InputParameterDescriptions.name,
-    tooltipPosition: InputParameterDescriptions.tooltipPosition,
-    value: InputParameterDescriptions.value,
+    inputId: DBmbInputParamDesc.inputId,
+    tooltip: DBmbInputParamDesc.tooltip,
+    errorMessage: DBmbInputParamDesc.errorMessage,
+    name: DBmbInputParamDesc.name,
+    tooltipPosition: DBmbInputParamDesc.tooltipPosition,
+    value: DBmbInputParamDesc.value,
   },
   args: {
     inputId: 'this-value-should-be-unique',
@@ -252,24 +261,12 @@ If the data is a list of  IBmbDropdownItem type, the preferred options should be
     errorMessage: 'Error input dropdown',
     control: null,
     isMultiSelect: false,
+    onValueChange: () => {
+      console.info('onChange');
+    },
   },
 } as Meta<typeof BmbDropdownComponent>;
 
-const customizable = (): StoryFn => (args) => ({
-  props: {
-    ...args,
-    onValueChange: (value: any) => {
-      args['value'] = value;
-      setTimeout(() => {
-        args['control']?.setValue(value, { emitEvent: true });
-      });
-    },
-  },
-  template: `
-    <bmb-dropdown
-      ${attributes(args)}
-    />
-  `,
-});
+type Story = StoryObj<BmbDropdownComponent>;
 
-export const Default = customizable();
+export const Default: Story = {};

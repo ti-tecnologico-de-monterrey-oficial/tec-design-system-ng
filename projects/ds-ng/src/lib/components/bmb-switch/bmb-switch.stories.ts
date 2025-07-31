@@ -5,10 +5,13 @@ import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
+  getOnEvent,
+  IBmbOnEvent,
 } from '../../utils/doc/utils';
 import {
   GOGGLE_FONTS_LINK,
-  InputParameterDescriptions,
+  DBmbInputParamDesc,
+  getOnEventParam,
 } from '../../utils/doc/parameterDescriptions';
 
 const getIndex = (isRightPosition: boolean): number =>
@@ -26,14 +29,11 @@ const getLabelIconDescription = (
   ***Important:*** <br/><br/>
   Do not use the \`${position[getIndex(!isRightPosition)]}Icon\` property if you want to use \`${position[getIndex(isRightPosition)]}Text.\``;
 };
+const onChange: IBmbOnEvent = getOnEvent('switch', 'change', 'boolean');
+
 export default {
   title: 'Components/Inputs/Switch',
   component: BmbSwitchComponent,
-  decorators: [
-    moduleMetadata({
-      imports: [BmbIconComponent],
-    }),
-  ],
   parameters: {
     controls: {
       exclude: [
@@ -48,7 +48,7 @@ export default {
       description: {
         component: `
 ${getGeneralDescription(`${getGeneralComponentDescription('switch')} to represent in a simple way whether a configuration is active or not.`, 'https://bamboo.tec.mx/latest/componentes/switch/descripcion-general-6aOUHs0C')}
-${getBasicExampleBlock('BmbSwitchComponent')}
+${getBasicExampleBlock('BmbSwitchComponent', '', onChange.handleExample)}
         `,
       },
     },
@@ -90,8 +90,8 @@ ${getBasicExampleBlock('BmbSwitchComponent')}
         type: { summary: 'string' },
       },
     },
-    inputId: InputParameterDescriptions.inputId,
-    id: InputParameterDescriptions.id,
+    inputId: DBmbInputParamDesc.inputId,
+    id: DBmbInputParamDesc.id,
     isChecked: {
       control: { type: 'boolean' },
       description:
@@ -102,19 +102,14 @@ ${getBasicExampleBlock('BmbSwitchComponent')}
         type: { summary: 'boolean' },
       },
     },
-    disabled: InputParameterDescriptions.disabledFormControl,
-    change: {
-      name: 'Change',
-      table: {
-        category: 'Events',
-        type: { summary: '(change)="toggleSwitch()"' },
-      },
-      description:
-        "Emits a boolean value whenever the switch changes its state. This can be used to react to changes in the switch's position.",
-    },
-    ariaLabel: InputParameterDescriptions.ariaLabel,
-    name: InputParameterDescriptions.name,
-    control: InputParameterDescriptions.control,
+    disabled: DBmbInputParamDesc.disabled,
+    change: getOnEventParam(
+      onChange,
+      ` This can be used to react to changes in the switch's position.`,
+    ),
+    ariaLabel: DBmbInputParamDesc.ariaLabel,
+    name: DBmbInputParamDesc.name,
+    control: DBmbInputParamDesc.control,
   },
   args: {
     inputId: '',
@@ -126,6 +121,9 @@ ${getBasicExampleBlock('BmbSwitchComponent')}
     isChecked: false,
     disabled: false,
     ariaLabel: 'Describe the button function here',
+    change: () => {
+      console.info('Checkbox clicked');
+    },
   },
 } as Meta<typeof BmbSwitchComponent>;
 
