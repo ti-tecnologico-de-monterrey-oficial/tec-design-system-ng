@@ -90,7 +90,9 @@
 <ng-template #detailContent>
   @if (visibleAlert) {
     <section class="bmb_alert-center-content-modal">
-      <h1 class="font-bold-7 bmb_alert-center-content-modal-title">{{ visibleAlert.title }}</h1>
+      <h1 class="font-bold-7 bmb_alert-center-content-modal-title">
+        {{ visibleAlert.title }}
+      </h1>
       @for (item of visibleAlert.description; track $index) {
         @switch (item.type) {
           @case ("paragraph") {

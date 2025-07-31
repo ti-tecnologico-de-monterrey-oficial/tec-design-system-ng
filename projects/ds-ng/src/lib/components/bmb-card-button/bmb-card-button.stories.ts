@@ -150,14 +150,17 @@ Badge info properties:
       `,
       table: {
         category: 'Full Interactive',
-        type: { summary: 'IBmbBadgeInfo',detail: `
+        type: {
+          summary: 'IBmbBadgeInfo',
+          detail: `
 IBmbBadgeInfo {
   text: string;
   appearance: string;
   container?: boolean;
 }
 
-        `, },
+        `,
+        },
       },
     },
     leftContent: {
@@ -185,12 +188,15 @@ An object with \`src\` and \`alt\` Full Interactive to display the image if left
       `,
       table: {
         category: 'Full Interactive',
-        type: { summary: 'IBmbImageInfo', detail: `
+        type: {
+          summary: 'IBmbImageInfo',
+          detail: `
 IBmbImageInfo {
   src: string;
   alt: string;
 }
-          ` },
+          `,
+        },
       },
     },
     hasMenu: {
@@ -245,14 +251,17 @@ Note: there is an example in the **Template example** the section.
       description: 'Sets the title of the card button.',
       table: {
         category: 'Common Properties',
-        type: { summary: 'string', detail: `
+        type: {
+          summary: 'string',
+          detail: `
 IBmbLinkConfiguration = {
   label: string;
   link: string;
   target?: IBmbTargetLink;
 }
 
-          ` },
+          `,
+        },
       },
     },
     icon: {
