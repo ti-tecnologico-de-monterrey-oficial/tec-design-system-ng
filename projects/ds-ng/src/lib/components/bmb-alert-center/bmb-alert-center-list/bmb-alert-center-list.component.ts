@@ -15,6 +15,7 @@ import {
   BmbLayoutGridDirective,
   BmbLayoutGridItemDirective,
 } from '../../../directives/bmb-layout-grid/bmb-layout-grid.directive';
+import { BmbIconComponent } from '../../bmb-icon/bmb-icon.component';
 
 @Component({
   selector: 'bmb-alert-center-list',
@@ -26,6 +27,7 @@ import {
     BmbLayoutItemDirective,
     BmbLayoutGridDirective,
     BmbLayoutGridItemDirective,
+    BmbIconComponent,
   ],
   templateUrl: './bmb-alert-center-list.component.html',
   styleUrl: './bmb-alert-center-list.component.scss',
