@@ -37,6 +37,7 @@
     flex-direction: column;
     gap: var(--bmb-spacing-m);
     padding: var(--bmb-spacing-m);
+    overflow: auto;
 
     @include mixins.container-query(350, "max") {
       display: none;
@@ -51,6 +52,12 @@
       flex-direction: column;
       gap: var(--bmb-spacing-m);
       padding: var(--bmb-spacing-m);
+
+      &-title {
+        @include mixins.media-query(1001, "max") {
+          display: none;
+        }
+      }
     }
 
     figure,

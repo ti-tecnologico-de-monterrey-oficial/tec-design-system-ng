@@ -7,6 +7,7 @@ import {
   TemplateRef,
   ViewChild,
   ViewEncapsulation,
+  computed,
 } from '@angular/core';
 import { BmbTabsComponent, IBmbTab } from '../bmb-tabs/bmb-tabs.component';
 import { CommonModule } from '@angular/common';
@@ -20,6 +21,9 @@ import {
   IBmbAlertCenterCategories,
   IBmbDataAlertsOutput,
   IBmbAlertEmptyState,
+  IBmbAlertCenterTabConfig,
+  IBmbAlertCenterFooterEvent,
+  IBmbAlertCenterProtoEventFooter,
 } from './types';
 import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { BmbImageComponent } from '../bmb-image/bmb-image.component';
@@ -28,12 +32,8 @@ import { ModalDataConfig } from '../bmb-modal/bmb-modal.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { BmbAlertCenterAdsComponent } from './bmb-alert-center-ads/bmb-alert-center-ads.component';
 import { BmbAlertCenterEmptyComponent } from './bmb-alert-center-empty/bmb-alert-center-empty.component';
-
-export interface IBmbAlertCenterTabConfig {
-  title: string;
-  isMobile: boolean;
-  isDesktop: boolean;
-}
+import { BmbAlertCenterService } from './bmb-alert-center.service';
+import { BmbLoaderComponent } from '../bmb-loader/bmb-loader.component';
 
 @Component({
   selector: 'bmb-alert-center',
@@ -48,6 +48,7 @@ export interface IBmbAlertCenterTabConfig {
     BmbImageComponent,
     BmbAlertCenterAdsComponent,
     BmbAlertCenterEmptyComponent,
+    BmbLoaderComponent,
   ],
   templateUrl: './bmb-alert-center.component.html',
   styleUrl: './bmb-alert-center.component.scss',
@@ -55,8 +56,6 @@ export interface IBmbAlertCenterTabConfig {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BmbAlertCenterComponent {
-  alerts = input.required<IBmbDataAlert[]>();
-  advertisements = input<IBmbDataAlert[]>([]);
   dateFormat = input<string>('dd/MM/yyyy');
   tabsName = input<string[] | IBmbAlertCenterTabConfig[]>([
     { title: 'Notificaciones', isMobile: true, isDesktop: true },
@@ -66,11 +65,10 @@ export class BmbAlertCenterComponent {
     { title: 'Anuncios', isMobile: true, isDesktop: true },
   ]);
   hideTabs = input<boolean>(false);
-
+  enableMultipleSelection = input<boolean>(true);
   //Empty state
-  emptyState = input<boolean>(false);
   emptyStateData = input<IBmbAlertEmptyState>({
-    primaryText: '',
+    primaryText: 'No tienes notificaciones para mostrar',
     secondaryText: '',
     tertiaryText: '',
     buttonText: '',
@@ -78,50 +76,64 @@ export class BmbAlertCenterComponent {
     showButton: false,
   });
 
+  // deprecated properties
+  alerts = input<IBmbDataAlert[]>([]); // deprecated, use bmbAlertCenterService.getAlerts() instead
+  advertisements = input<IBmbDataAlert[]>([]); // deprecated, use bmbAlertCenterService.getAdvertisements() instead
+
   onChangeAlertStatus = output<IBmbDataAlertsOutput>();
   alertEvent = output<IBmbDataAlert>();
+  showAlertDetail = output<IBmbDataAlert>();
+  closeAlertDetail = output<IBmbDataAlert>();
+  navigationBarEvents = output<IBmbAlertCenterFooterEvent>();
 
   @ViewChild('detailContent', { read: TemplateRef })
   detailContent?: TemplateRef<any>;
   @ViewChild('container') container!: ElementRef;
 
-  constructor(private matDialog: MatDialog) {}
+  constructor(
+    private matDialog: MatDialog,
+    private bmbAlertCenterService: BmbAlertCenterService,
+  ) {}
 
-  tabs: IBmbTab[] = [];
-  selectedTab = 0;
-  selectedAlert: IBmbDataAlert[] = [];
-  orderedEvents: IBmbDataAlertsParsed[] = [];
-  now = DateTime.now();
-  eventsInCategories: IBmbAlertCenterCategories = {
-    recent: [],
-    sevenDays: [],
-    month: [],
-    rest: [],
-  };
-  visibleAlert: IBmbDataAlertsParsed | null = null;
-
-  ngOnInit(): void {
-    this.tabs = this.tabsName().map((tab, index) => {
-      return {
+  alertList = computed<IBmbDataAlert[]>(() => {
+    return this.bmbAlertCenterService.getAlerts();
+  });
+  advertisementsList = computed<IBmbDataAlert[]>(() => {
+    return this.bmbAlertCenterService.getAdvertisements();
+  });
+  isLoading = computed<boolean>(() => {
+    return this.bmbAlertCenterService.getLoadingState();
+  });
+  // tabs: IBmbTab[] = [];
+  tabs = computed<IBmbTab[]>(() => {
+    return this.tabsName().map((tab, index) => {
+      const complexTab: IBmbTab = {
         id: index,
         title: typeof tab === 'string' ? tab : tab.title,
         isActive: index === 0,
         badge:
           index === 0 || index === 1
-            ? this.alerts().filter((alert) => !alert.isRead).length
+            ? this.alertList().filter((alert) => !alert.isRead).length
             : 0,
         isMobile: typeof tab === 'string' ? true : tab.isMobile,
         isDesktop: typeof tab === 'string' ? true : tab.isDesktop,
       };
+      return complexTab;
     });
-
-    this.orderedEvents = this.orderEvents(this.alerts());
-    this.eventsInCategories = this.orderCategories(this.orderedEvents);
-  }
+  });
+  selectedTab = 0;
+  selectedAlert: IBmbDataAlert[] = [];
+  orderedEvents = computed<IBmbDataAlertsParsed[]>(() => {
+    return this.orderEvents(this.alertList());
+  });
+  now = DateTime.now();
+  eventsInCategories = computed<IBmbAlertCenterCategories>(() => {
+    return this.orderCategories(this.orderedEvents());
+  });
+  visibleAlert: IBmbDataAlertsParsed | null = null;
 
   handleTabChange(tabId: IBmbTab): void {
     this.selectedTab = tabId.id;
-    this.eventsInCategories = this.filterEvents(tabId.id);
   }
 
   orderEvents(alerts: IBmbDataAlert[]): IBmbDataAlertsParsed[] {
@@ -155,29 +167,9 @@ export class BmbAlertCenterComponent {
     return objectEvent;
   }
 
-  filterEvents(id: number): IBmbAlertCenterCategories {
-    switch (id) {
-      case 0:
-        return this.orderCategories(this.orderedEvents);
-      case 1:
-        return this.orderCategories(
-          this.orderedEvents.filter((alert) => !alert.isRead),
-        );
-      case 2:
-        return this.orderCategories(
-          this.orderedEvents.filter((alert) => alert.isFavorite),
-        );
-      case 3:
-        return this.orderCategories(
-          this.orderedEvents.filter((alert) => alert.isArchived),
-        );
-      default:
-        return this.orderCategories(this.orderedEvents);
-    }
-  }
-
   handleShowAlert(item: IBmbDataAlertsParsed): void {
     this.visibleAlert = item;
+    const { pDate, ...alertData } = item;
 
     if (
       this.container.nativeElement.clientWidth < 350 ||
@@ -189,9 +181,17 @@ export class BmbAlertCenterComponent {
         size: 'small',
         type: 'informative',
         scrollable: true,
+        closeAction: this.handleCloseDetail.bind(this, item),
       };
       this.matDialog.open(BmbModalComponent, { data });
     }
+
+    this.showAlertDetail.emit(alertData);
+  }
+
+  handleCloseDetail(alert: IBmbDataAlertsParsed): void {
+    const { pDate, ...alertData } = alert;
+    this.closeAlertDetail.emit(alertData);
   }
 
   handleAlertEvent(alert: IBmbDataAlert): void {
@@ -200,5 +200,31 @@ export class BmbAlertCenterComponent {
 
   handleChangeAlertStatus(alert: IBmbDataAlertsOutput): void {
     this.onChangeAlertStatus.emit(alert);
+  }
+
+  handleNavigationBarEvents(event: IBmbAlertCenterProtoEventFooter): void {
+    const events = this.alertList().filter((alert) =>
+      event.alerts.includes(alert.id.toString()),
+    );
+
+    if (events.length === 0) return;
+    if (event.event === 'tags') {
+      this.navigationBarEvents.emit({
+        alerts: events,
+        event: 'tags',
+      });
+      return;
+    }
+    const names = {
+      isRead: 'read',
+      isFavorite: 'favorite',
+      isArchived: 'archived',
+    };
+    const eventName = names[event.event] || event.event;
+    const isPositiveOperation = events.some((alert) => !alert[event.event]);
+    this.navigationBarEvents.emit({
+      alerts: events,
+      event: isPositiveOperation ? `add_${eventName}` : `remove_${eventName}`,
+    });
   }
 }

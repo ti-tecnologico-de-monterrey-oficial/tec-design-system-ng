@@ -1,48 +1,81 @@
 <section class="bmb_alert-center" #container bmbLayout margin="none">
-  @if (!emptyState()) {
-    <div
-      bmbLayoutItem
-      [colSm]="4"
-      [colLg]="hideTabs() ? 12 : 5"
-      class="bmb_alert-center-main"
-      [ngClass]="{ 'bmb_alert-center-main-no-border': hideTabs() }"
-    >
+  <div
+    bmbLayoutItem
+    [colSm]="4"
+    [colLg]="hideTabs() ? 12 : 5"
+    class="bmb_alert-center-main"
+    [ngClass]="{ 'bmb_alert-center-main-no-border': hideTabs() }"
+  >
+    @if (isLoading()) {
+      <bmb-loader
+        title="Cargando..."
+        subtitle="Cargando las notificaciones"
+        [overlay]="false"
+        [isVisible]="true"
+        [errorState]="false"
+        appearance="normal"
+        icon="wifi_off"
+        [actions]="false"
+        buttonPrimary="Reintentar"
+        buttonSecondary="Salir"
+        [showInline]="true"
+      />
+    } @else {
       @if (!hideTabs()) {
-        <bmb-tabs [tabs]="tabs" (selected)="handleTabChange($event)" />
+        <bmb-tabs [tabs]="tabs()" (selected)="handleTabChange($event)" />
       }
       @if (selectedTab === 0) {
         <bmb-alert-center-form
           (showAlertDetail)="handleShowAlert($event)"
-          [eventsInCategories]="eventsInCategories"
+          [eventsInCategories]="eventsInCategories()"
+          [enableMultipleSelection]="enableMultipleSelection()"
           (changeAlertStatus)="handleChangeAlertStatus($event)"
+          [emptyStateData]="emptyStateData()"
+          (navigationBarEvents)="handleNavigationBarEvents($event)"
+          filterBy="all"
         />
       } @else if (selectedTab === 1) {
         <bmb-alert-center-form
           (showAlertDetail)="handleShowAlert($event)"
-          [eventsInCategories]="eventsInCategories"
+          [eventsInCategories]="eventsInCategories()"
+          [enableMultipleSelection]="enableMultipleSelection()"
           (changeAlertStatus)="handleChangeAlertStatus($event)"
+          [emptyStateData]="emptyStateData()"
+          (navigationBarEvents)="handleNavigationBarEvents($event)"
+          filterBy="unread"
         />
       } @else if (selectedTab === 2) {
         <bmb-alert-center-form
           (showAlertDetail)="handleShowAlert($event)"
-          [eventsInCategories]="eventsInCategories"
+          [eventsInCategories]="eventsInCategories()"
+          [enableMultipleSelection]="enableMultipleSelection()"
           (changeAlertStatus)="handleChangeAlertStatus($event)"
+          [emptyStateData]="emptyStateData()"
+          (navigationBarEvents)="handleNavigationBarEvents($event)"
+          filterBy="favorites"
         />
       } @else if (selectedTab === 3) {
         <bmb-alert-center-form
           (showAlertDetail)="handleShowAlert($event)"
-          [eventsInCategories]="eventsInCategories"
+          [eventsInCategories]="eventsInCategories()"
           (changeAlertStatus)="handleChangeAlertStatus($event)"
+          [emptyStateData]="emptyStateData()"
+          (navigationBarEvents)="handleNavigationBarEvents($event)"
+          filterBy="archived"
         />
-      } @else {
+      } @else if (selectedTab === 4) {
         <bmb-alert-center-ads
-          [advertisements]="advertisements()"
+          [advertisements]="advertisementsList()"
           (alertEvent)="handleAlertEvent($event)"
         />
+      } @else {
+        <section bmbLayoutItem [colSm]="4" [colLg]="12">
+          <bmb-alert-center-empty [data]="emptyStateData()" />
+        </section>
       }
-    </div>
-  }
-  @if (!hideTabs() && !emptyState()) {
+    }
+  </div>
+  @if (!hideTabs() && alertList().length) {
     <section
       class="bmb_alert-center-content"
       bmbLayoutItem
@@ -52,17 +85,12 @@
       <ng-container [ngTemplateOutlet]="detailContent" />
     </section>
   }
-  @if (emptyState()) {
-    <section bmbLayoutItem [colSm]="4" [colLg]="12">
-      <bmb-alert-center-empty [data]="emptyStateData()" />
-    </section>
-  }
 </section>
 
 <ng-template #detailContent>
   @if (visibleAlert) {
     <section class="bmb_alert-center-content-modal">
-      <h1 class="font-bold-7">{{ visibleAlert.title }}</h1>
+      <h1 class="font-bold-7 bmb_alert-center-content-modal-title">{{ visibleAlert.title }}</h1>
       @for (item of visibleAlert.description; track $index) {
         @switch (item.type) {
           @case ("paragraph") {

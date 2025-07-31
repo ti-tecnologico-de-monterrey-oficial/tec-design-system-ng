@@ -1,40 +1,95 @@
 <ul class="bmb_alert-center-list">
   @for (item of alerts(); track $index) {
-    <li
-      class="bmb_alert-center-list-item"
-      (click)="handleRowClick($event, item)"
-    >
-      <section class="bmb_alert-center-list-item-selection">
-        <bmb-checkbox
-          [name]="item.id + ''"
-          [id]="item.id + ''"
-          [value]="item.id + ''"
-          (change)="handleSelection($event, item)"
-        />
-      </section>
-      <div class="bmb_alert-center-list-item-status">
-        @if (!item.isRead) {
-          <div class="bmb_alert-center-list-item-status-circle"></div>
-        }
-      </div>
-      <h4 class="bmb_alert-center-list-item-title">{{ item.title }}</h4>
-      @if (item.tags?.length) {
-        <div class="bmb_alert-center-list-item-tags">
-          @for (tag of item.tags; track $index) {
-            <bmb-badge
-              [appearance]="tag.color"
-              [text]="tag.text"
-              [container]="false"
-            ></bmb-badge>
-          }
-        </div>
+    <li class="bmb_alert-center-list-item" bmbLayout margin="none" gapSize="s">
+      @if (enableMultipleSelection()) {
+        <section
+          class="bmb_alert-center-list-item-selection"
+          bmbLayoutItem
+          [isDynamicItem]="true"
+        >
+          <bmb-checkbox
+            [name]="item.id + ''"
+            [id]="item.id + ''"
+            [value]="item.id + ''"
+            (change)="handleSelection($event, item)"
+          />
+        </section>
       }
-      <p class="bmb_alert-center-list-item-date">
-        {{ getTextFromDate(item.pDate) }} - {{ item.type }}
-      </p>
-      <span class="bmb_alert-center-list-item-time">
-        {{ getFormattedTime(item.time) }}
-      </span>
+      <div
+        class="bmb_alert-center-list-item-content"
+        bmbLayoutGrid
+        colGapSize="s"
+        rowGapSize="s"
+        [columnSize]="['12px', '1fr', 'max-content']"
+        rowSize="auto"
+        [columns]="3"
+        [rows]="3"
+        (click)="handleRowClick($event, item)"
+        bmbLayoutItem
+        [colGrow]="1"
+        [isDynamicItem]="true"
+      >
+        <section
+          bmbLayoutGridItem
+          [colStart]="1"
+          [rowStart]="1"
+          [numberOfColumns]="1"
+          [numberOfRows]="3"
+          class="bmb_alert-center-list-item-status"
+        >
+          @if (!item.isRead) {
+            <div class="bmb_alert-center-list-item-status-circle"></div>
+          }
+        </section>
+        <h4
+          bmbLayoutGridItem
+          [colStart]="2"
+          [rowStart]="1"
+          [numberOfColumns]="1"
+          [numberOfRows]="1"
+          class="bmb_alert-center-list-item-title"
+        >
+          {{ item.title }}
+        </h4>
+        @if (item.tags?.length) {
+          <section
+            bmbLayoutGridItem
+            [colStart]="2"
+            [rowStart]="2"
+            [numberOfColumns]="1"
+            [numberOfRows]="1"
+            class="bmb_alert-center-list-item-tags"
+          >
+            @for (tag of item.tags; track $index) {
+              <bmb-badge
+                [appearance]="tag.color"
+                [text]="tag.text"
+                [container]="false"
+              ></bmb-badge>
+            }
+          </section>
+        }
+        <p
+          bmbLayoutGridItem
+          [colStart]="2"
+          [rowStart]="3"
+          [numberOfColumns]="1"
+          [numberOfRows]="1"
+          class="bmb_alert-center-list-item-date"
+        >
+          {{ getTextFromDate(item.pDate) }} - {{ item.type }}
+        </p>
+        <span
+          bmbLayoutGridItem
+          [colStart]="3"
+          [rowStart]="1"
+          [numberOfColumns]="1"
+          [numberOfRows]="3"
+          class="bmb_alert-center-list-item-time"
+        >
+          {{ getFormattedTime(item.time) }}
+        </span>
+      </div>
     </li>
   }
 </ul>

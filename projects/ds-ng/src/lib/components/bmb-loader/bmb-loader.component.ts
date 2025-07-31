@@ -32,6 +32,7 @@ export class BmbLoaderComponent {
   actions = input<boolean>(false);
   buttonPrimary = input<string>('');
   buttonSecondary = input<string>('');
+  showInline = input<boolean>(false);
 
   onButtonPrimary = output<MouseEvent>();
   onButtonSecondary = output<MouseEvent>();
@@ -54,6 +55,8 @@ export class BmbLoaderComponent {
   }
 
   private updateBodyClass() {
+    if (this.showInline()) return;
+
     if (this.isInsideIframe()) {
       return;
     }
@@ -70,6 +73,8 @@ export class BmbLoaderComponent {
   }
 
   private cleanupBody() {
+    if (this.showInline()) return;
+
     if (this.isInsideIframe()) {
       return;
     }

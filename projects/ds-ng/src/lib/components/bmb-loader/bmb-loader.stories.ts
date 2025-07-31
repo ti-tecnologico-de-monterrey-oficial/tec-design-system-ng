@@ -68,7 +68,6 @@ Below is an example of how you can use this component in HTML:
   },
   argTypes: {
     title: {
-      name: 'Title',
       control: {
         type: 'text',
       },
@@ -80,7 +79,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     subtitle: {
-      name: 'Subtitle',
       control: {
         type: 'text',
       },
@@ -92,7 +90,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     overlay: {
-      name: 'Overlay',
       control: { type: 'boolean' },
       description: '',
       table: {
@@ -102,7 +99,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     isVisible: {
-      name: 'Is Visible',
       control: { type: 'boolean' },
       description: '',
       table: {
@@ -112,7 +108,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     errorState: {
-      name: 'Error State',
       control: { type: 'boolean' },
       description: '',
       table: {
@@ -122,7 +117,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     appearance: {
-      name: 'Appearance',
       control: {
         type: 'select',
       },
@@ -135,7 +129,6 @@ Below is an example of how you can use this component in HTML:
       description: 'The color of the icon loader, affecting its visual style.',
     },
     icon: {
-      name: 'Icon',
       control: {
         type: 'text',
       },
@@ -147,7 +140,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     actions: {
-      name: 'Actions',
       control: { type: 'boolean' },
       description: '',
       table: {
@@ -157,7 +149,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     buttonPrimary: {
-      name: 'Button Primary',
       control: {
         type: 'text',
       },
@@ -169,7 +160,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     buttonSecondary: {
-      name: 'Button Secondary',
       control: {
         type: 'text',
       },
@@ -181,7 +171,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     onButtonPrimary: {
-      name: 'On Button Primary',
       control: {
         type: '',
       },
@@ -192,7 +181,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     onButtonSecondary: {
-      name: 'On Button Secondary',
       control: {
         type: '',
       },
@@ -200,6 +188,15 @@ Below is an example of how you can use this component in HTML:
       table: {
         category: 'Events',
         type: { summary: '(onButtonSecondary)="yourFunction()"' },
+      },
+    },
+    showInline: {
+      control: { type: 'boolean' },
+      description: 'Indicates if the loader should be shown inline',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
       },
     },
   },
@@ -214,6 +211,7 @@ Below is an example of how you can use this component in HTML:
     actions: false,
     buttonPrimary: 'Reintentar',
     buttonSecondary: 'Salir',
+    showInline: false,
     onButtonPrimary: () => {
       window.alert('Button Primary clicked in Storybook');
     },

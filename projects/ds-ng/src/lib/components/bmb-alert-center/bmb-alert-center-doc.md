@@ -1,4 +1,4 @@
-# Alert Center
+# BmbAlertCenter
 
 ## Description
 
@@ -24,13 +24,13 @@ import { BmbAlertCenterComponent } from "./bmb-alert-center.component";
 
 ### Inputs
 
-| Name                      | Type                                     | Description                                              |
-| ------------------------- | ---------------------------------------- | -------------------------------------------------------- |
-| `dateFormat`              | `string`                                 | Date format used in alerts. Default value: `dd/MM/yyyy`. |
-| `tabsName`                | `string[] or IBmbAlertCenterTabConfig[]` | Configuration of the component's tabs.                   |
-| `hideTabs`                | `boolean`                                | Hides the tabs if `true`.                                |
-| `enableMultipleSelection` | `boolean`                                | Enables multiple selection of alerts.                    |
-| `emptyStateData`          | `IBmbAlertEmptyState`                    | Configuration of the component's empty state.            |
+| Name                      | Type                  | Description                                              |
+| ------------------------- | --------------------- | -------------------------------------------------------- | -------------------------------------- |
+| `dateFormat`              | `string`              | Date format used in alerts. Default value: `dd/MM/yyyy`. |
+| `tabsName`                | `string[]`            | IBmbAlertCenterTabConfig[]`                              | Configuration of the component's tabs. |
+| `hideTabs`                | `boolean`             | Hides the tabs if `true`.                                |
+| `enableMultipleSelection` | `boolean`             | Enables multiple selection of alerts.                    |
+| `emptyStateData`          | `IBmbAlertEmptyState` | Configuration of the component's empty state.            |
 
 ### Outputs
 
@@ -85,8 +85,6 @@ Emits an event when an alert's status changes.
 ```html
 <bmb-alert-center [dateFormat]="'dd/MM/yyyy'" [tabsName]="[{title: 'Notificaciones', isMobile: true, isDesktop: true}, {title: 'No leídos', isMobile: false, isDesktop: true}, {title: 'Favoritos', isMobile: false, isDesktop: true}, {title: 'Archivados', isMobile: false, isDesktop: true}, {title: 'Anuncios', isMobile: true, isDesktop: true}]" [hideTabs]="false" [enableMultipleSelection]="true" (onChangeAlertStatus)="onChangeAlertStatus($event)" (alertEvent)="alertEvent($event)" (showAlertDetail)="showAlertDetail($event)" (closeAlertDetail)="closeAlertDetail($event)" />
 ```
-
----
 
 ## BmbAlertCenterService
 

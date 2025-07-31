@@ -26,7 +26,7 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'form-validator-test',
+    path: 'form-validator',
     loadComponent: () =>
       import('./pages/form-validator-test/form-validator-test.component').then(
         (f) => f.FormValidatorTestComponent,
@@ -37,6 +37,13 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/dropdown/dropdown.component').then(
         (d) => d.DropdownPageComponent,
+      ),
+  },
+  {
+    path: 'alerts',
+    loadComponent: () =>
+      import('./pages/alerts/alerts.component').then(
+        (a) => a.AlertsPageComponent,
       ),
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
