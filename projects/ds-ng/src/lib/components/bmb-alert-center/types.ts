@@ -29,7 +29,11 @@ export interface IBmbDataAlert {
   isArchived: boolean;
 }
 
-export type IBmbDataAlertsEventType = 'isRead' | 'tags' | 'isFavorite' | 'isArchived';
+export type IBmbDataAlertsEventType =
+  | 'isRead'
+  | 'tags'
+  | 'isFavorite'
+  | 'isArchived';
 
 export interface IBmbDataAlertsOutput {
   type: string;

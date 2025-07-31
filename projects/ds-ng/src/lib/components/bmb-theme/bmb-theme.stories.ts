@@ -9,7 +9,8 @@ import {
 } from '../../utils/doc/utils';
 import {
   getLabelDescription,
-  InputParameterDescriptions,
+  DBmbInputParamDesc,
+  DBmbGenericParamDesc,
 } from '../../utils/doc/parameterDescriptions';
 
 const labelDescription = getLabelDescription('left to', 'theme')
@@ -47,11 +48,11 @@ ${getBasicExampleBlock('BmbThemeComponent')}
   },
   argTypes: {
     leftText: {
-      ...InputParameterDescriptions.label,
+      ...DBmbInputParamDesc.label,
       description: labelDescription,
     },
     rightText: {
-      ...InputParameterDescriptions.label,
+      ...DBmbInputParamDesc.label,
       description: labelDescription.replace('left', 'right'),
     },
     initialTheme: {
@@ -75,8 +76,8 @@ ${getBasicExampleBlock('BmbThemeComponent')}
         type: { summary: 'boolean' },
       },
     },
-    leftIcon: InputParameterDescriptions.deprecated,
-    rightIcon: InputParameterDescriptions.deprecated,
+    leftIcon: DBmbGenericParamDesc.deprecated,
+    rightIcon: DBmbGenericParamDesc.deprecated,
   },
   args: {
     initialTheme: 'light',

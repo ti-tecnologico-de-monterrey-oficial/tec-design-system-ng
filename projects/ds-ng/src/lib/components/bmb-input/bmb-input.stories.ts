@@ -1,14 +1,20 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbInputComponent } from './bmb-input.component';
 import {
+  generateLabel,
   getArchitectureSection,
   getBasicExampleBlock,
   getFieldDescription,
+  getFormatName,
   getFormExampleBlock,
+  getOnEvent,
+  IBmbOnEvent,
 } from '../../utils/doc/utils';
 import {
   DEPRECATED_PROPERTIES_DESCRIPTION,
-  InputParameterDescriptions,
+  DBmbInputParamDesc,
+  DBmbIconParamDesc,
+  getOnEventParam,
 } from '../../utils/doc/parameterDescriptions';
 
 const additionalDescription = `input various types of data, such as:
@@ -17,17 +23,30 @@ const additionalDescription = `input various types of data, such as:
 >- password
 >- number
 >- text-area`;
-const inputName = 'input_field';
+const inputName = 'text_field';
+const formatName: string = getFormatName(inputName, '_');
+const handleChange: IBmbOnEvent = getOnEvent(
+  '',
+  `${formatName}Change`,
+  'HTMLInputElement',
+  true,
+);
 const inputExample = `<bmb-input
   id="${inputName}_id"
   name="${inputName}"
-  label="Input"
+  label="${generateLabel(inputName)}"
   tooltip="Tooltip example"
   icon="apps"
   placeholder="Placeholder"
   helperMessage="Helper Message"
   [control]="getFormControl('${inputName}')"
+  (onChange)="${handleChange.propertyValue}"
  />`;
+const onChange: IBmbOnEvent = getOnEvent(
+  'field',
+  'onChange',
+  handleChange.type,
+);
 
 const getTextInputWarnings = (
   propertyName: string = '',
@@ -77,8 +96,8 @@ ${getArchitectureSection(`<section class="bmb_field" <!-- conditional class bmb_
   <!-- if error message is defined -->
   <p class="bmb_field-error">{ errorMessage }</p>
 </section>`)}
-${getFormExampleBlock('BmbInputComponent', inputName, '', inputExample)}
-${getBasicExampleBlock('BmbInputComponent')}
+${getFormExampleBlock('BmbInputComponent', inputName, handleChange.handleExample, inputExample)}
+${getBasicExampleBlock('BmbInputComponent', '', onChange.handleExample)}
       `,
       },
     },
@@ -101,9 +120,9 @@ IBmbInputType = 'text' | 'password' | 'number' | 'text-area'
         defaultValue: { summary: 'text' },
       },
     },
-    id: InputParameterDescriptions.inputId,
-    name: InputParameterDescriptions.name,
-    value: InputParameterDescriptions.value,
+    id: DBmbInputParamDesc.inputId,
+    name: DBmbInputParamDesc.name,
+    value: DBmbInputParamDesc.value,
     appearance: {
       control: {
         type: 'select',
@@ -121,15 +140,15 @@ IBmbInputAppearance = 'normal' | 'simple'
         defaultValue: { summary: 'normal' },
       },
     },
-    label: InputParameterDescriptions.label,
-    tooltip: InputParameterDescriptions.tooltip,
-    tooltipPosition: InputParameterDescriptions.tooltipPosition,
-    icon: InputParameterDescriptions.icon,
-    placeholder: InputParameterDescriptions.placeholder,
-    disabled: InputParameterDescriptions.disabledFormControl,
-    isRequired: InputParameterDescriptions.isRequired,
-    helperMessage: InputParameterDescriptions.helperMessage,
-    errorMessage: InputParameterDescriptions.errorMessage,
+    label: DBmbInputParamDesc.label,
+    tooltip: DBmbInputParamDesc.tooltip,
+    tooltipPosition: DBmbInputParamDesc.tooltipPosition,
+    icon: DBmbIconParamDesc.icon,
+    placeholder: DBmbInputParamDesc.placeholder,
+    disabled: DBmbInputParamDesc.disabled,
+    isRequired: DBmbInputParamDesc.isRequired,
+    helperMessage: DBmbInputParamDesc.helperMessage,
+    errorMessage: DBmbInputParamDesc.errorMessage,
     spellcheck: {
       control: {
         type: 'boolean',
@@ -296,7 +315,7 @@ For correct behavior, the \`pattern\` property must not be assigned to the input
         type: { summary: 'number' },
       },
     },
-    isClearable: InputParameterDescriptions.isClearable,
+    isClearable: DBmbInputParamDesc.isClearable,
     additionalAction: {
       control: {
         type: 'radio',
@@ -319,31 +338,19 @@ IBmbAdditionalAction = 'copy' | 'showHide' | 'none'
         defaultValue: { summary: 'none' },
       },
     },
-    control: InputParameterDescriptions.control,
-    isFocus: {
-      description: 'Emits focus event.',
-      table: {
-        category: 'Events',
-        type: { summary: 'boolean' },
-      },
-    },
-    isBlur: {
-      control: { type: 'boolean' },
-      description: 'Emits blur event.',
-      table: {
-        category: 'Events',
-        type: { summary: 'boolean' },
-      },
-    },
-    onChange: {
-      control: { type: 'boolean' },
-      description: 'Emits change event.',
-      table: {
-        category: 'Events',
-        type: { summary: 'HTMLInputElement' },
-      },
-    },
-    onKeyDown: InputParameterDescriptions.onKeyDown,
+    control: DBmbInputParamDesc.control,
+    isFocus: getOnEventParam(
+      getOnEvent('', 'isFocus', 'boolean'),
+      'field has received or lost focus, by interactions as clicking or tabbing.',
+      'other',
+    ),
+    isBlur: getOnEventParam(
+      getOnEvent('', 'isBlur', 'boolean'),
+      'field has lost focus, by interactions as clicking or tabbing.',
+      'other',
+    ),
+    onChange: getOnEventParam(onChange),
+    onKeyDown: DBmbInputParamDesc.onKeyDown,
     customInputContent: {
       description:
         'Allows to provide custom content inside the input field using a TemplateRef.',
@@ -352,7 +359,7 @@ IBmbAdditionalAction = 'copy' | 'showHide' | 'none'
         type: { summary: 'TemplateRef<any>' },
       },
     },
-    showError: InputParameterDescriptions.showError,
+    showError: DBmbInputParamDesc.showError,
     size: {
       control: {
         type: 'text',
@@ -393,6 +400,12 @@ IBmbAdditionalAction = 'copy' | 'showHide' | 'none'
     },
     customValidation: null,
     control: null,
+    onChange: () => {
+      console.info('onChange');
+    },
+    onKeyDown: () => {
+      console.info('onKeyDown');
+    },
   },
 } as Meta<typeof BmbInputComponent>;
 

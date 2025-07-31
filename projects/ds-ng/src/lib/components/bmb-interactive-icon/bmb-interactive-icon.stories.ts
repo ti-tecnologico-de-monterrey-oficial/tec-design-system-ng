@@ -4,8 +4,19 @@ import {
   BmbInteractiveIconComponent,
   IBmbInteractiveIconAppearance,
 } from './bmb-interactive-icon.component';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+} from '../../utils/doc/utils';
+import {
+  DBmbGenericParamDesc,
+  DBmbIconParamDesc,
+  getAppearanceParam,
+  ON_BUTTON_CLICK,
+} from '../../utils/doc/parameterDescriptions';
 
-const appearanceOptions: IBmbInteractiveIconAppearance[] = [
+const interactiveIconAppearanceOptions: IBmbInteractiveIconAppearance[] = [
   'red',
   'blue',
   'green',
@@ -40,48 +51,28 @@ const appearanceOptions: IBmbInteractiveIconAppearance[] = [
 export default {
   title: 'Components/Buttons/Interactive icon',
   component: BmbInteractiveIconComponent,
-  decorators: [
-    moduleMetadata({
-      imports: [BmbIconComponent],
-    }),
-  ],
   parameters: {
     docs: {
+      controls: { exclude: ['handleClick', 'getClasses'] },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbInteractiveIconComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbInteractiveIconComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(
+  getGeneralComponentDescription(
+    'interactive-icon',
+    'component',
+    '',
+    'that provides the functionality to be used as a shortcut to other applications in an orderly and intuitive manner.',
+  ),
+  'https://bamboo.tec.mx/latest/componentes/interactive-icon/descripcion-general-wYrX6Nhj',
+)}
+${getBasicExampleBlock('BmbInteractiveIconComponent', ON_BUTTON_CLICK.handleExample)}
         `,
       },
     },
   },
   argTypes: {
-    // appearanceContrast: {
-    //   name: 'Appearance',
-    //   control: {
-    //     type: 'select',
-    //   },
-    //   options: ['default', 'primary', 'alternative'],
-    //   description: 'Defines the appearance style.',
-    //   table: {
-    //     category: 'Properties',
-    //     type: { summary: 'string' },
-    //   },
-    // },
+    dotNotification: DBmbIconParamDesc.iconDotNotification,
     title: {
-      name: 'Title',
       control: {
         type: 'text',
       },
@@ -92,7 +83,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     description: {
-      name: 'Description',
       control: {
         type: 'text',
       },
@@ -103,60 +93,23 @@ Below is an example of how you can use this component in HTML:
       },
     },
     icon: {
-      name: 'Icon',
-      control: { type: 'text' },
-      description:
-        'Sets the name of the icon to use. Please use Material icons: https://fonts.google.com/icons. Do not use the image property if you want to use an icon. If you need to set an image as icon, you can set the image path here.',
+      ...DBmbIconParamDesc.icon,
       table: {
-        category: 'Properties',
-        type: { summary: 'string' },
+        ...DBmbIconParamDesc.icon.table,
+        defaultValue: { summary: 'face' },
       },
     },
-    appearance: {
-      name: 'Appearance',
-      control: {
-        type: 'select',
-      },
-      options: appearanceOptions,
-      description:
-        'Sets the appearance of the interactive icon, affecting its visual style.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'red' },
-        type: { summary: 'string' },
-      },
-    },
-    link: {
-      name: 'Link',
-      control: {
-        type: 'text',
-      },
-      description:
-        'Sets the link for redirection to another page. If this input is empty it will emit the button event.',
-      table: {
-        category: 'Events',
-        type: { summary: 'string' },
-      },
-    },
-    target: {
-      name: 'Target',
-      control: {
-        type: 'radio',
-      },
-      options: ['_blank', '_self', '_parent', '_top'],
-      description:
-        'Sets the target for the link. Refer to https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a for more information.',
-      table: {
-        category: 'Events',
-        type: { summary: 'IBmbTargetLink' },
-        defaultValue: { summary: '_blank' },
-      },
-    },
+    appearance: getAppearanceParam(
+      'the interactive icon',
+      interactiveIconAppearanceOptions,
+      'red',
+    ),
+    link: DBmbGenericParamDesc.link,
+    target: DBmbGenericParamDesc.target,
     horizontal: {
-      name: 'Horizontal',
       control: { type: 'boolean' },
       description:
-        'This property is effective when you want to include a description with a horizontal orientation.',
+        'Sets the horizontal orientation when true. This property is effective when you want to include a description with a horizontal orientation.',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
@@ -164,7 +117,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     layout: {
-      name: 'Layout',
       control: {
         type: 'select',
       },
@@ -175,30 +127,10 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string' },
       },
     },
-    setButtonTemplate: {
-      name: 'Set button template',
-      control: { type: 'boolean' },
-      description:
-        'This property switch the template component to a button, if you enable this option, you do not need send the `target`, and `link` properties, and set the ouput `buttonClick`.',
-      table: {
-        category: 'Deprecated',
-        defaultValue: { summary: false },
-        type: { summary: 'boolean' },
-      },
-    },
-    buttonClick: {
-      name: 'Button click',
-      control: null,
-      description:
-        'This event is only emitted if the "Link" property is empty.',
-      table: {
-        category: 'Events',
-        type: { summary: 'function' },
-      },
-    },
+    setButtonTemplate: DBmbGenericParamDesc.deprecated,
+    buttonClick: DBmbGenericParamDesc.onButtonClick,
   },
   args: {
-    // appearanceContrast: 'default',
     title: 'Canvas',
     description: 'Short Description',
     appearance: 'red',
@@ -208,6 +140,9 @@ Below is an example of how you can use this component in HTML:
     horizontal: false,
     layout: 'regular',
     setButtonTemplate: false,
+    buttonClick: () => {
+      console.info('buttonClick');
+    },
   },
 } as Meta<typeof BmbInteractiveIconComponent>;
 

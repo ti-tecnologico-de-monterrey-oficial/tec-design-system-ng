@@ -24,7 +24,8 @@ export class AlertsPageComponent implements OnInit {
       this.alertCenter.setAlerts([
         {
           id: 10,
-          title: 'Alerta 10 j asndklfjnasldkjfn alksdjnfaklsjdnf klajsdn flkjasndf klajsnfdlkjnasdlkjfn askdljnf klasjdnfklasjdn fklasdjn flkajsdn flkajnsdfkljfn asldkjfnlaksjdn flkajsdnflkajsndflkjnasdlkjfn askldjfnlkasjdnfklajsdn flkajsndfkljan skldffn alksjdn fkljasnfdlkn al k  j snd  f lkajsndf lkjasnd flkjansdkljfn ',
+          title:
+            'Alerta 10 j asndklfjnasldkjfn alksdjnfaklsjdnf klajsdn flkjasndf klajsnfdlkjnasdlkjfn askdljnf klasjdnfklasjdn fklasdjn flkajsdn flkajnsdfkljfn asldkjfnlaksjdn flkajsdnflkajsndflkjnasdlkjfn askldjfnlkasjdnfklajsdn flkajsndfkljan skldffn alksjdn fkljasnfdlkn al k  j snd  f lkajsndf lkjasnd flkjansdkljfn ',
           description: [
             { text: 'Descripción de la alerta 10', type: 'title' },
             {

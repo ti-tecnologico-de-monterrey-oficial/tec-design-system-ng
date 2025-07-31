@@ -1,4 +1,9 @@
-import { DESIGN_SYSTEM_TITLE } from './utils';
+import {
+  DESIGN_SYSTEM_TITLE,
+  getOnEvent,
+  IBmbOnEventType,
+  IBmbOnEvent,
+} from './utils';
 
 export const DEPRECATED_PROPERTIES_DESCRIPTION =
   'This property is deprecated and will be removed in future versions.';
@@ -8,6 +13,7 @@ Disables the field when true, making it non-interactive and cannot be clicked.
 
 This is useful for conditions where user interaction should be restricted.
 `;
+const UNIQUE_IDENTIFY_DESCRIPTION = 'Sets the unique identifier for';
 export const getLabelDescription = (
   positionDescription: string,
   type: string = ' field',
@@ -18,6 +24,9 @@ The label helps users understand the context of what the ${type} represents.
 
 The label will be displayed ${positionDescription} the ${type}.
 `;
+export const ON_BUTTON_CLICK: IBmbOnEvent = getOnEvent('', 'buttonClick');
+export const ON_CLICK_DESCRIPTION: string =
+  ', this event is only emitted if the *link* property is empty';
 
 const getCheckboxOrRadialLabel = (type: string) => {
   return {
@@ -108,11 +117,260 @@ This documentation is displayed as a tab at the top.
 }
 `;
 
-export const InputParameterDescriptions = {
+export const getAppearanceParam = (
+  name: string,
+  options: unknown[],
+  defaultSummary: string = ' ',
+) => {
+  return {
+    control: {
+      type: 'select',
+    },
+    options,
+    description: `Sets the appearance of ${name}, affecting its visual style.`,
+    table: {
+      category: 'Properties',
+      defaultValue: { summary: defaultSummary },
+      type: { summary: 'string' },
+    },
+  };
+};
+
+export const getOnClickParam = (
+  onEvent: IBmbOnEvent,
+  additionalDescription: string = '',
+) => {
+  return {
+    control: false,
+    description: `Emits the event triggered after the ${onEvent.name} button is clicked${additionalDescription}.`,
+    table: {
+      category: 'Events',
+      defaultValue: { summary: '-' },
+      type: { summary: onEvent.propertyValue, detail: onEvent.event_type },
+    },
+  };
+};
+
+export const getOnEventParam = (
+  onEvent: IBmbOnEvent,
+  additionalDescription: string = '',
+  eventType: IBmbOnEventType = 'change',
+) => {
+  return {
+    control: false,
+    description: `Emits the event when ${eventType === 'change' || eventType === 'other' ? `${eventType === 'change' ? `the ${onEvent.name} changed.` : ''}` : 'a key is pressed while the input is focused.'}${additionalDescription}`,
+    table: {
+      category: 'Events',
+      defaultValue: { summary: '-' },
+      type: { summary: onEvent.propertyValue, detail: onEvent.event_type },
+    },
+  };
+};
+
+export const DBmbGenericParamDesc = {
+  uniqueId: {
+    control: {
+      type: 'text',
+    },
+    description: `
+
+${UNIQUE_IDENTIFY_DESCRIPTION} the field.
+
+This property is used to link the label to the field through the ***for*** attribute, improving accessibility and usability.
+    `,
+    table: {
+      category: 'Properties',
+      defaultValue: { summary: '' },
+      type: { summary: 'string' },
+    },
+  },
+  disabled: {
+    control: { type: 'boolean' },
+    description: DISABLE_DESCRIPTION,
+    table: {
+      category: 'Properties',
+      defaultValue: { summary: 'false' },
+      type: { summary: 'boolean' },
+    },
+  },
+  alt: {
+    control: {
+      type: 'text',
+    },
+    description:
+      'Sets the alternative text for the icon when it is an image, this improves accessibility',
+    table: {
+      category: 'Properties',
+      type: { summary: 'string' },
+      defaultValue: { summary: '' },
+    },
+  },
+  link: {
+    control: {
+      type: 'text',
+    },
+    description:
+      'Sets the link for redirection to another or same page. If this property is empty it will emit the button event.',
+    table: {
+      category: 'Events',
+      defaultValue: { summary: '' },
+      type: { summary: 'string' },
+    },
+  },
+  target: {
+    control: {
+      type: 'radio',
+    },
+    options: ['_blank', '_self', '_parent', '_top'],
+    description:
+      'Sets the target property for the link. Refer to [here](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) for more information.',
+    table: {
+      category: 'Events',
+      type: { summary: 'IBmbTargetLink (option)' },
+      defaultValue: { summary: '_blank' },
+    },
+  },
+  deprecated: {
+    control: false,
+    description: DEPRECATED_PROPERTIES_DESCRIPTION,
+    table: {
+      category: 'Deprecated',
+      type: { summary: '' },
+      defaultValue: { summary: '-' },
+    },
+  },
+  onButtonClick: getOnClickParam(ON_BUTTON_CLICK, ON_CLICK_DESCRIPTION),
+};
+
+export const DBmbButtonParamDesc = {
+  appearance: {
+    control: { type: 'select' },
+    options: [
+      'primary',
+      'secondary-filled',
+      'secondary-outlined',
+      'destructive',
+      'transparent',
+    ],
+    description:
+      'Sets the appearance of the buttons, affecting its visual style.',
+    table: {
+      category: 'Properties',
+      defaultValue: { summary: 'primary' },
+      type: { summary: 'string' },
+    },
+  },
+  size: {
+    control: 'radio',
+    options: ['small', 'large'],
+    table: {
+      category: 'Properties',
+      defaultValue: { summary: 'small' },
+      type: { summary: 'string' },
+    },
+    description: 'Sets the size of the button, affecting its visual size.',
+  },
+};
+
+export const DBmbIconParamDesc = {
+  icon: {
+    control: {
+      type: 'text',
+    },
+    description: `
+Sets the name of the icon to be displayed within the field.
+
+<br/>
+${GOGGLE_FONTS_LINK}`,
+    table: {
+      category: 'Properties',
+      type: { summary: 'string' },
+      defaultValue: { summary: '' },
+    },
+  },
+  iconSize: {
+    control: {
+      type: 'number',
+    },
+    description:
+      'Sets the size of the icon or width of the image to use. Note: <= 0 will be inherited.',
+    table: {
+      category: 'Properties',
+      defaultValue: { summary: '' },
+      type: { summary: 'number' },
+    },
+  },
+  isIconFill: {
+    control: { type: 'boolean' },
+    description:
+      'Determines whether the icon is filled (`true`) or outlined (`false`).',
+    table: {
+      category: 'Properties',
+      defaultValue: { summary: 'true' },
+      type: { summary: 'boolean' },
+    },
+  },
+  iconDotNotification: {
+    control: { type: 'number' },
+    description:
+      'Displays a notification dot with a number on the icon. Set to 0 to hide.',
+    table: {
+      category: 'Properties',
+      defaultValue: { summary: '' },
+      type: { summary: 'number' },
+    },
+  },
+};
+
+export const DBmbDropdownMenuParamDesc = {
+  items: {
+    control: { type: 'object' },
+    description: `
+Sets the data to be displayed in the dropdown menu.
+
+It is an array of objects representing menu items, providing additional actions or navigation options within the card button.
+
+Each object in the array should contain the following properties:
+
+- \`icon\`: (string) The name of the icon displayed next to the menu item text.
+
+- \`text\`: (string) The text label for the menu item.
+
+- \`url\`: (optional, string) The URL to navigate to when the menu item is clicked.
+
+- \`target\`: (optional, string) Specifies where to display the linked URL (e.g., \`_self\`, \`_blank\`).
+
+- \`action\`: (optional, function) A custom function executed when the menu item is clicked. This is useful for triggering specific behaviors or events.
+    `,
+    table: {
+      category: 'Properties',
+      type: {
+        summary: 'IDropdownItem[]',
+        detail: `
+IDropdownItem {
+idItem?: string;
+icon: string;
+text: string;
+selectedText?: string;
+value?: string;
+url?: string;
+target?: IBmbTargetLink;
+action?: () => void;
+}
+
+IBmbTargetLink = '_blank' | '_parent' | '_self' | '_top';
+        `,
+      },
+      defaultValue: { summary: '[]' },
+    },
+  },
+};
+
+export const DBmbInputParamDesc = {
   inputId: {
     description: `
 
-Sets the unique identifier for the field.
+${UNIQUE_IDENTIFY_DESCRIPTION} the field.
 
 This property is used to link the label to the field through the ***for*** attribute, improving accessibility and usability.
     `,
@@ -222,21 +480,6 @@ IBmbJustifyTooltip = 'centered' | 'before' | 'after'
       },
     },
   },
-  icon: {
-    control: {
-      type: 'text',
-    },
-    description: `
-Sets the name of the icon to be displayed within the field.
-
-<br/>
-${GOGGLE_FONTS_LINK}`,
-    table: {
-      category: 'Properties',
-      type: { summary: 'string' },
-      defaultValue: { summary: '' },
-    },
-  },
   placeholder: {
     control: {
       type: 'text',
@@ -250,15 +493,6 @@ ${GOGGLE_FONTS_LINK}`,
     },
   },
   disabled: {
-    control: { type: 'boolean' },
-    description: DISABLE_DESCRIPTION,
-    table: {
-      category: 'Properties',
-      defaultValue: { summary: 'false' },
-      type: { summary: 'boolean' },
-    },
-  },
-  disabledFormControl: {
     control: { type: 'boolean' },
     description: `
 ${DISABLE_DESCRIPTION}
@@ -415,17 +649,6 @@ Below is a snippet of the **TypeScript example** that performs automatic validat
       defaultValue: { summary: '-' },
     },
   },
-  deprecated: {
-    control: {
-      type: '',
-    },
-    description: DEPRECATED_PROPERTIES_DESCRIPTION,
-    table: {
-      category: 'Deprecated',
-      type: { summary: '' },
-      defaultValue: { summary: '-' },
-    },
-  },
   id: {
     control: {
       type: '',
@@ -441,17 +664,6 @@ Adding the id using a property with the same name affects the operation of the f
       category: 'Deprecated',
       type: { summary: '' },
       defaultValue: { summary: '-' },
-    },
-  },
-  onKeyDown: {
-    control: { type: '' },
-    description: `
-Emits the ***keydown*** event.
-    (onKeyDown)="handleKeyDown($event)"
-      `,
-    table: {
-      category: 'Events',
-      type: { summary: 'KeyboardEvent' },
     },
   },
   dateFormat: {
@@ -489,72 +701,9 @@ Emits the ***keydown*** event.
       defaultValue: { summary: 'Por favor ingresa la fecha de [label]' },
     },
   },
-  iconSize: {
-    control: {
-      type: 'number',
-    },
-    description:
-      'Sets the size of the icon or width of the image to use. Note: <= 0 will be inherited.',
-    table: {
-      category: 'Properties',
-      defaultValue: { summary: '' },
-      type: { summary: 'number' },
-    },
-  },
-  alt: {
-    control: {
-      type: 'text',
-    },
-    description:
-      'Sets the alternative text for the icon when it is an image, this improves accessibility',
-    table: {
-      category: 'Properties',
-      type: { summary: 'string' },
-      defaultValue: { summary: '' },
-    },
-  },
-  isIconFill: {
-    control: { type: 'boolean' },
-    description:
-      'Determines whether the icon is filled (`true`) or outlined (`false`).',
-    table: {
-      category: 'Properties',
-      defaultValue: { summary: 'true' },
-      type: { summary: 'boolean' },
-    },
-  },
-  iconDotNotification: {
-    control: { type: 'number' },
-    description:
-      'Displays a notification dot with a number on the icon. Set to 0 to hide.',
-    table: {
-      category: 'Properties',
-      defaultValue: { summary: '' },
-      type: { summary: 'number' },
-    },
-  },
-  link: {
-    control: {
-      type: 'text',
-    },
-    description:
-      'Sets the link for redirection to another page. If this property is empty it will emit the button event.',
-    table: {
-      category: 'Events',
-      type: { summary: 'string' },
-    },
-  },
-  target: {
-    control: {
-      type: 'radio',
-    },
-    options: ['_blank', '_self', '_parent', '_top'],
-    description:
-      'Sets the target property for the link. Refer to [here](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) for more information.',
-    table: {
-      category: 'Events',
-      type: { summary: 'IBmbTargetLink (option)' },
-      defaultValue: { summary: '_blank' },
-    },
-  },
+  onKeyDown: getOnEventParam(
+    getOnEvent('', 'onKeyDown', 'KeyboardEvent'),
+    '',
+    'keyDown',
+  ),
 };
