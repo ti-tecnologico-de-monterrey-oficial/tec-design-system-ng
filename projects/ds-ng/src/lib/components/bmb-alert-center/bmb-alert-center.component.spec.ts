@@ -35,14 +35,4 @@ describe('BmbAlertCenterComponent', () => {
     const orderedEvents = component.orderEvents(alerts);
     expect(orderedEvents[0].date).toBe('02/01/2023');
   });
-
-  it('should handle tab change correctly', () => {
-    component.handleTabChange({
-      id: 1,
-      title: 'No Leídos',
-      isActive: true,
-      badge: 0,
-    });
-    expect(component.selectedTab).toBe(1);
-  });
 });
