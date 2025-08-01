@@ -44,7 +44,7 @@ export class BmbTabsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   selected = output<IBmbTab>();
 
-  activeTabIndex: number = 0;
+  activeTabIndex = signal<number>(0);
   observer: any;
   hasScroll = signal<boolean>(false);
   scrollLeft = signal<number>(0);
@@ -60,20 +60,20 @@ export class BmbTabsComponent implements OnInit, AfterViewInit, OnDestroy {
     const initialActiveTab = this.tabs().findIndex(
       (tab: IBmbTab) => tab.isActive,
     );
-    this.activeTabIndex = initialActiveTab || 0;
+    this.activeTabIndex.set(initialActiveTab || 0);
     this.tabs().forEach(
-      (tab, index) => (tab.isActive = index === this.activeTabIndex),
+      (tab, index) => (tab.isActive = index === this.activeTabIndex()),
     );
 
     this.tabsService.setTabs(this.tabs());
 
     this.tabsService.selectedTab$.subscribe((tab: any) => {
-      if (tab && tab.id !== this.tabs()[this.activeTabIndex].id) {
+      if (tab && tab.id !== this.tabs()[this.activeTabIndex()].id) {
         this.selectTab(tab.id);
       }
     });
 
-    this.selectedTabId.set(this.activeTabIndex + 1);
+    this.selectedTabId.set(this.activeTabIndex() + 1);
   }
 
   ngAfterViewInit(): void {
@@ -109,14 +109,14 @@ export class BmbTabsComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   goToNextTab(): void {
-    const nextIndex = this.activeTabIndex + 1;
+    const nextIndex = this.activeTabIndex() + 1;
     if (nextIndex < this.tabs.length) {
       this.updateActiveTab(nextIndex);
     }
   }
 
   goToPreviousTab(): void {
-    const previousIndex = this.activeTabIndex - 1;
+    const previousIndex = this.activeTabIndex() - 1;
     if (previousIndex >= 0) {
       this.updateActiveTab(previousIndex);
     }
@@ -125,18 +125,18 @@ export class BmbTabsComponent implements OnInit, AfterViewInit, OnDestroy {
   private updateActiveTab(index: number): void {
     this.tabs().forEach((tab) => (tab.isActive = false));
     this.tabs()[index].isActive = true;
-    this.activeTabIndex = index;
+    this.activeTabIndex.set(index);
     const activeTab = this.tabs()[index];
     this.selected.emit(activeTab);
     setTimeout(() => this.showActiveTab(), 0);
 
-    this.selectedTabId.set(this.activeTabIndex + 1);
+    this.selectedTabId.set(this.activeTabIndex() + 1);
   }
 
   showActiveTab(): void {
     requestAnimationFrame(() => {
       const tabsElement = this.tabsItems.nativeElement;
-      const activeTabElement = tabsElement.children[this.activeTabIndex];
+      const activeTabElement = tabsElement.children[this.activeTabIndex()];
 
       if (activeTabElement) {
         const containerWidth = tabsElement.offsetWidth;
