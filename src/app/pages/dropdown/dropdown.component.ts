@@ -3,6 +3,7 @@ import {
   BmbDropdownComponent,
   BmbLayoutDirective,
   BmbLayoutItemDirective,
+  BmbFrequentAppsSelectorComponent,
 } from '../../../../projects/ds-ng/src/public-api';
 import { AnimeService } from '../../services/anime.service';
 
@@ -10,7 +11,12 @@ import { AnimeService } from '../../services/anime.service';
   selector: 'bmb-dropdown-page',
   templateUrl: './dropdown.component.html',
   standalone: true,
-  imports: [BmbDropdownComponent, BmbLayoutDirective, BmbLayoutItemDirective],
+  imports: [
+    BmbDropdownComponent,
+    BmbLayoutDirective,
+    BmbLayoutItemDirective,
+    BmbFrequentAppsSelectorComponent,
+  ],
 })
 export class DropdownPageComponent implements OnInit {
   constructor(private animeService: AnimeService) {}

@@ -1,4 +1,4 @@
-<span [ngClass]="getClasses(textLinkStyle(), disabled())">
+<span [ngClass]="getClasses()">
   <bmb-check-external-link-button
     class="bmb_text-link-item"
     [link]="link()"
@@ -23,6 +23,7 @@
             )
           "
           [icon]="icon()"
+          [alt]="textLink()"
         />
       }
       <span>{{ textLink() }}</span>

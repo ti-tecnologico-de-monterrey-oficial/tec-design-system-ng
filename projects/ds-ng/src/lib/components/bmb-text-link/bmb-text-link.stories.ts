@@ -26,7 +26,6 @@ ${getBasicExampleBlock('')}
   },
   argTypes: {
     textLink: {
-      name: 'Text Link',
       control: {
         type: 'text',
       },

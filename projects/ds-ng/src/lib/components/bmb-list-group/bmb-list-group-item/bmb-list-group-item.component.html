@@ -6,7 +6,7 @@
       <section class="bmb_list-group-item-main">
         <div class="bmb_list-group-item-main-icon">
           @if (icon()) {
-            <bmb-icon [icon]="icon()" [size]="40" />
+            <bmb-icon [icon]="icon()" [size]="40" [alt]="badgeText()" />
           } @else {
             <bmb-image
               [src]="imgSrc()"
