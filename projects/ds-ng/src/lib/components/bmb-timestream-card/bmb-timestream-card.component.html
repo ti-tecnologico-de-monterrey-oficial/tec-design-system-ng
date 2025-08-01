@@ -24,7 +24,11 @@
             Opciones de filtrado
           </h2>
           <button (click)="handleCloseFilters()">
-            <bmb-icon icon="close" [size]="20" [alt]="subtitle() || 'Cerrar filtros'" />
+            <bmb-icon
+              icon="close"
+              [size]="20"
+              [alt]="subtitle() || 'Cerrar filtros'"
+            />
           </button>
         </header>
         <bmb-filter-card

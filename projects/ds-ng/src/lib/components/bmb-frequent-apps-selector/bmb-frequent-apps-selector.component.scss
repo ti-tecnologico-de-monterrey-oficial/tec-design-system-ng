@@ -55,8 +55,6 @@
         width: clamp(rem.rem_calc(150), 45%, rem.rem_calc(250));
 
         @media (width <= 1000px) {
-
-
           .bmb_interactive_icon-title {
             word-break: break-word;
             -webkit-hyphens: auto;

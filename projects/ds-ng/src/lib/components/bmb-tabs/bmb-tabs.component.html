@@ -18,12 +18,12 @@
         <li role="none">
           <button
             role="tab"
-            [attr.aria-selected]="$index === (selectedTabId() - 1)"
-            [attr.tabindex]="$index === (selectedTabId() - 1) ? 0 : -1"
+            [attr.aria-selected]="$index === selectedTabId() - 1"
+            [attr.tabindex]="$index === selectedTabId() - 1 ? 0 : -1"
             class="bmb_tabs-item"
             (click)="selectTab(tab.id)"
             [ngClass]="{
-              'bmb_tabs-item-active': $index === (selectedTabId() - 1),
+              'bmb_tabs-item-active': $index === selectedTabId() - 1,
               'bmb_tabs-item-uppercase': format() === 'uppercase',
               'bmb_tabs-item-mobile': tab.isMobile,
               'bmb_tabs-item-desktop': tab.isDesktop,

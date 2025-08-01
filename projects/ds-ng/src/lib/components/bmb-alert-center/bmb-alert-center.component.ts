@@ -221,7 +221,9 @@ export class BmbAlertCenterComponent {
     };
     const eventName = names[event.event] || event.event;
     const isPositiveOperation = events.some((alert) => !alert[event.event]);
-    const eventType = isPositiveOperation ? `add_${eventName}` : `remove_${eventName}`;
+    const eventType = isPositiveOperation
+      ? `add_${eventName}`
+      : `remove_${eventName}`;
     this.navigationBarEvents.emit({
       alerts: events,
       event: eventType as IBmbAlertCenterFooterEventName,

@@ -72,7 +72,14 @@ export interface IBmbAlertCenterProtoEventFooter {
   alerts: string[];
 }
 
-export type IBmbAlertCenterFooterEventName = 'add_read' | 'remove_read' | 'add_favorite' | 'remove_favorite' | 'add_archived' | 'remove_archived' | 'tags';
+export type IBmbAlertCenterFooterEventName =
+  | 'add_read'
+  | 'remove_read'
+  | 'add_favorite'
+  | 'remove_favorite'
+  | 'add_archived'
+  | 'remove_archived'
+  | 'tags';
 
 export interface IBmbAlertCenterFooterEvent {
   alerts: IBmbDataAlert[];
