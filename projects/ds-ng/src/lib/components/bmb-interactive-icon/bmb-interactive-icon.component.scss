@@ -71,7 +71,6 @@ $backgrounds: (
     flex-flow: row;
     gap: var(--bmb-spacing-s);
     margin: 0;
-    min-width: rem.rem_calc(200);
     padding: var(--bmb-spacing-m);
 
     .bmb_interactive_icon-title {
@@ -144,7 +143,7 @@ $backgrounds: (
 
   .bmb_icon-figure-image {
     height: rem.rem_calc(64);
-    object-fit: cover;
+    object-fit: contain;
     width: rem.rem_calc(64);
   }
 

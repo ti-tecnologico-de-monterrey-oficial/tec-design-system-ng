@@ -20,9 +20,9 @@
     </div>
     <div bmbLayoutItem margin="none" [isDynamicItem]="true">
       @if (icon()) {
-        <bmb-icon [icon]="icon()" />
+        <bmb-icon [icon]="icon()" alt="Accordion icon" />
       } @else if (!hideToggle()) {
-        <bmb-icon [icon]="getIconToggle()" />
+        <bmb-icon [icon]="getIconToggle()" alt="Accordion toggle icon" />
       }
     </div>
   </header>
