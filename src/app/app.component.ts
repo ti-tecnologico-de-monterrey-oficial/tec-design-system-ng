@@ -46,6 +46,12 @@ export class AppComponent {
         title: 'Forms',
         link: '/form-validator',
       },
+      {
+        id: 3,
+        icon: 'align_flex_center',
+        title: 'Flex',
+        link: '/flex',
+      },
     ],
   ];
 

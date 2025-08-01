@@ -39,7 +39,11 @@
           "
         >
           @if (!!subtitleIcon()) {
-            <bmb-icon [icon]="subtitleIcon()" [size]="subtitleIconSize()" />
+            <bmb-icon
+              [icon]="subtitleIcon()"
+              [size]="subtitleIconSize()"
+              [alt]="subtitle() || 'Icono de subtítulo'"
+            />
           }
           {{ subtitle() }}
         </h3>

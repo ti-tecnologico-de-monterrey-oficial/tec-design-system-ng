@@ -8,6 +8,8 @@ import {
   ViewChild,
   ViewEncapsulation,
   computed,
+  signal,
+  model,
 } from '@angular/core';
 import { BmbTabsComponent, IBmbTab } from '../bmb-tabs/bmb-tabs.component';
 import { CommonModule } from '@angular/common';
@@ -24,6 +26,7 @@ import {
   IBmbAlertCenterTabConfig,
   IBmbAlertCenterFooterEvent,
   IBmbAlertCenterProtoEventFooter,
+  IBmbAlertCenterFooterEventName,
 } from './types';
 import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { BmbImageComponent } from '../bmb-image/bmb-image.component';
@@ -121,7 +124,7 @@ export class BmbAlertCenterComponent {
       return complexTab;
     });
   });
-  selectedTab = 0;
+  selectedTab = model<number>(0);
   selectedAlert: IBmbDataAlert[] = [];
   orderedEvents = computed<IBmbDataAlertsParsed[]>(() => {
     return this.orderEvents(this.alertList());
@@ -131,10 +134,6 @@ export class BmbAlertCenterComponent {
     return this.orderCategories(this.orderedEvents());
   });
   visibleAlert: IBmbDataAlertsParsed | null = null;
-
-  handleTabChange(tabId: IBmbTab): void {
-    this.selectedTab = tabId.id;
-  }
 
   orderEvents(alerts: IBmbDataAlert[]): IBmbDataAlertsParsed[] {
     const parserDates = alerts.map((alert) => ({
@@ -222,9 +221,12 @@ export class BmbAlertCenterComponent {
     };
     const eventName = names[event.event] || event.event;
     const isPositiveOperation = events.some((alert) => !alert[event.event]);
+    const eventType = isPositiveOperation
+      ? `add_${eventName}`
+      : `remove_${eventName}`;
     this.navigationBarEvents.emit({
       alerts: events,
-      event: isPositiveOperation ? `add_${eventName}` : `remove_${eventName}`,
+      event: eventType as IBmbAlertCenterFooterEventName,
     });
   }
 }

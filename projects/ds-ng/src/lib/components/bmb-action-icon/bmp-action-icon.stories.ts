@@ -4,47 +4,56 @@ import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
   getGeneralDescription,
+  getOnEvent,
+  IBmbOnEvent,
 } from '../../utils/doc/utils';
-import { InputParameterDescriptions } from '../../utils/doc/parameterDescriptions';
+import {
+  DBmbGenericParamDesc,
+  DBmbIconParamDesc,
+  getOnClickParam,
+  ON_BUTTON_CLICK,
+  ON_CLICK_DESCRIPTION,
+} from '../../utils/doc/parameterDescriptions';
+
+const onButtonPress: IBmbOnEvent = getOnEvent('', 'buttonPress');
 
 export default {
   title: 'Components/Buttons/Action icon',
   component: BmbActionIconComponent,
   parameters: {
     controls: {
-      exclude: ['buttonPress', 'getIcon', 'handleClick', 'handlePress'],
+      exclude: ['getIcon', 'handleClick', 'handlePress'],
     },
     docs: {
       description: {
         component: `
 ${getGeneralDescription(`${getGeneralComponentDescription('action-icon', 'component', 'interactive')} to use icons as buttons to execute actions`, 'https://bamboo.tec.mx/latest/componentes/action-icon/descripcion-general-FzB28S1H')}
-${getBasicExampleBlock('BmbActionIconComponent')}
+${getBasicExampleBlock('BmbActionIconComponent', '', `${onButtonPress.handleExample}${ON_BUTTON_CLICK.handleExample}`)}
         `,
       },
     },
   },
   argTypes: {
-    idElement: InputParameterDescriptions.inputId,
-    icon: InputParameterDescriptions.icon,
-    alt: InputParameterDescriptions.alt,
-    iconSize: InputParameterDescriptions.iconSize,
-    isFill: InputParameterDescriptions.isIconFill,
+    idElement: DBmbGenericParamDesc.uniqueId,
+    icon: DBmbIconParamDesc.icon,
+    alt: DBmbGenericParamDesc.alt,
+    iconSize: DBmbIconParamDesc.iconSize,
+    isFill: DBmbIconParamDesc.isIconFill,
     toggleIconActive: {
-      control: {
-        type: 'text',
-      },
-      description: 'Sets the icon name to toggle',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string (optional)' },
-      },
+      ...DBmbIconParamDesc.icon,
+      description: `${DBmbIconParamDesc.icon.description}<br/><br/> This icon will be used in the toggle functionality, as long as \`isToggleActive\` is *true*. `,
     },
     isToggleActive: {
       control: {
         type: 'boolean',
       },
-      description:
-        "Sets the toggle activation to change the icons depending on whether it is active or inactive. 'Icon active toggle' when true.",
+      description: `
+Sets the toggle functionality to be activated when *true*, to change the icons depending on whether it is active or inactive.
+
+The toggle needs the following properties for correct operation:
+- \`icon\`
+- \`toggleIconActive\`.
+      `,
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
@@ -62,24 +71,24 @@ ${getBasicExampleBlock('BmbActionIconComponent')}
         type: { summary: 'boolean (optional)' },
       },
     },
-    dotNotification: InputParameterDescriptions.iconDotNotification,
-    link: InputParameterDescriptions.link,
-    target: InputParameterDescriptions.target,
-    buttonClick: {
-      control: false,
-      description:
-        'Emits the event then on click, this event is only emitted if the `link` property is empty.',
-      table: {
-        category: 'Events',
-        type: { summary: 'handleClick($event)' },
-      },
-    },
-    disabled: InputParameterDescriptions.disabled,
+    dotNotification: DBmbIconParamDesc.iconDotNotification,
+    link: DBmbGenericParamDesc.link,
+    target: DBmbGenericParamDesc.target,
+    buttonClick: getOnClickParam(
+      ON_BUTTON_CLICK,
+      `${ON_CLICK_DESCRIPTION}.<br/><br/>
+This property switches the \`isToggleActive\` when \`isToggleActive\` is true`,
+    ),
+    buttonPress: getOnClickParam(onButtonPress, ON_CLICK_DESCRIPTION),
+    disabled: DBmbGenericParamDesc.disabled,
   },
   args: {
     idElement: '',
     icon: 'info',
     iconSize: 24,
+    buttonPress: () => {
+      console.log('Action icon click');
+    },
     buttonClick: () => {
       console.log('Action icon click');
     },

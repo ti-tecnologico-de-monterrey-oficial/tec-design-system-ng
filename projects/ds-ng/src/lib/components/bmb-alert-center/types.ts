@@ -29,7 +29,11 @@ export interface IBmbDataAlert {
   isArchived: boolean;
 }
 
-export type IBmbDataAlertsEventType = 'isRead' | 'tags' | 'isFavorite' | 'isArchived';
+export type IBmbDataAlertsEventType =
+  | 'isRead'
+  | 'tags'
+  | 'isFavorite'
+  | 'isArchived';
 
 export interface IBmbDataAlertsOutput {
   type: string;
@@ -68,7 +72,16 @@ export interface IBmbAlertCenterProtoEventFooter {
   alerts: string[];
 }
 
+export type IBmbAlertCenterFooterEventName =
+  | 'add_read'
+  | 'remove_read'
+  | 'add_favorite'
+  | 'remove_favorite'
+  | 'add_archived'
+  | 'remove_archived'
+  | 'tags';
+
 export interface IBmbAlertCenterFooterEvent {
   alerts: IBmbDataAlert[];
-  event: string;
+  event: IBmbAlertCenterFooterEventName;
 }

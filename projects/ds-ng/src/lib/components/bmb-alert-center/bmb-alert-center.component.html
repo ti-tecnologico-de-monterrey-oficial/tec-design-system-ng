@@ -22,9 +22,9 @@
       />
     } @else {
       @if (!hideTabs()) {
-        <bmb-tabs [tabs]="tabs()" (selected)="handleTabChange($event)" />
+        <bmb-tabs [tabs]="tabs()" [(selectedTabId)]="selectedTab" />
       }
-      @if (selectedTab === 0) {
+      @if (selectedTab() === 1) {
         <bmb-alert-center-form
           (showAlertDetail)="handleShowAlert($event)"
           [eventsInCategories]="eventsInCategories()"
@@ -34,7 +34,7 @@
           (navigationBarEvents)="handleNavigationBarEvents($event)"
           filterBy="all"
         />
-      } @else if (selectedTab === 1) {
+      } @else if (selectedTab() === 2) {
         <bmb-alert-center-form
           (showAlertDetail)="handleShowAlert($event)"
           [eventsInCategories]="eventsInCategories()"
@@ -44,7 +44,7 @@
           (navigationBarEvents)="handleNavigationBarEvents($event)"
           filterBy="unread"
         />
-      } @else if (selectedTab === 2) {
+      } @else if (selectedTab() === 3) {
         <bmb-alert-center-form
           (showAlertDetail)="handleShowAlert($event)"
           [eventsInCategories]="eventsInCategories()"
@@ -54,7 +54,7 @@
           (navigationBarEvents)="handleNavigationBarEvents($event)"
           filterBy="favorites"
         />
-      } @else if (selectedTab === 3) {
+      } @else if (selectedTab() === 4) {
         <bmb-alert-center-form
           (showAlertDetail)="handleShowAlert($event)"
           [eventsInCategories]="eventsInCategories()"
@@ -63,7 +63,7 @@
           (navigationBarEvents)="handleNavigationBarEvents($event)"
           filterBy="archived"
         />
-      } @else if (selectedTab === 4) {
+      } @else if (selectedTab() === 5) {
         <bmb-alert-center-ads
           [advertisements]="advertisementsList()"
           (alertEvent)="handleAlertEvent($event)"
@@ -90,7 +90,9 @@
 <ng-template #detailContent>
   @if (visibleAlert) {
     <section class="bmb_alert-center-content-modal">
-      <h1 class="font-bold-7 bmb_alert-center-content-modal-title">{{ visibleAlert.title }}</h1>
+      <h1 class="font-bold-7 bmb_alert-center-content-modal-title">
+        {{ visibleAlert.title }}
+      </h1>
       @for (item of visibleAlert.description; track $index) {
         @switch (item.type) {
           @case ("paragraph") {

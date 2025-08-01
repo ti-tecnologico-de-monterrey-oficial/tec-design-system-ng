@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbCheckExternalLinkButtonComponent } from '../bmb-check-external-link-button/bmb-check-external-link-button.component';
 import { IBmbTargetLink } from '../../types';
-// import { IBmbContrast } from '../../types/colors';
+import { IBmbContrast } from '../../types/colors';
 
 export type IBmbInteractiveIconAppearance =
   | 'red'
@@ -59,7 +59,7 @@ export type IBmbInteractiveIconType = 'regular' | 'button' | 'app_drawer';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbInteractiveIconComponent {
-  // appearanceContrast = input<IBmbContrast>('default');
+  appearanceContrast = input<IBmbContrast>('default');
   appearance = input<IBmbInteractiveIconAppearance>('red');
   title = input<string>();
   description = input<string>('');
@@ -79,6 +79,14 @@ export class BmbInteractiveIconComponent {
       principalClassName,
       `${principalClassName}-${this.layout()}`,
     ];
+
+    if (this.appearanceContrast() === 'primary') {
+      classes.push('bmb_interactive_icon-primary');
+    }
+
+    if (this.appearanceContrast() === 'alternative') {
+      classes.push('bmb_interactive_icon-alternative');
+    }
 
     if (this.horizontal()) classes.push(`${principalClassName}-horizontal`);
 

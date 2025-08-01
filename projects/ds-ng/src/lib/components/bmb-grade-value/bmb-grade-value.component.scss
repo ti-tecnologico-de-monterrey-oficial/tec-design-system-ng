@@ -2,6 +2,9 @@
 @use "../../../assets/styles/base/rem" as rem;
 
 .bmb_grade-value {
+  color: var(--general_contrasts-100);
+  display: inline-block;
+
   &:has(svg) {
     line-height: 0;
   }
@@ -29,5 +32,13 @@
     &-score {
       @include fonts.font(4, medium);
     }
+  }
+
+  &-appearance-primary {
+    background-color: var(--containers-background);
+  }
+
+  &-appearance-alternative {
+    background-color: var(--containers-main);
   }
 }

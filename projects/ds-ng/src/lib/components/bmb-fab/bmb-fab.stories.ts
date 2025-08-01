@@ -1,86 +1,70 @@
-import {
-  moduleMetadata,
-  Meta,
-  componentWrapperDecorator,
-  StoryObj,
-} from '@storybook/angular';
+import { Meta, componentWrapperDecorator, StoryObj } from '@storybook/angular';
 import { BmbFabComponent } from './bmb-fab.component';
-import { attributes } from '../../utils/doc/utils';
-import { BmbDividerComponent } from '../bmb-divider/bmb-divider.component';
+import {
+  attributes,
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getOnEvent,
+  IBmbOnEvent,
+} from '../../utils/doc/utils';
+import {
+  DBmbIconParamDesc,
+  getOnClickParam,
+} from '../../utils/doc/parameterDescriptions';
 
+const onEvent: IBmbOnEvent = getOnEvent('', 'fabClick');
 export default {
   title: 'Components/Buttons/Main FAB',
   component: BmbFabComponent,
   decorators: [
-    moduleMetadata({ imports: [BmbDividerComponent] }),
     componentWrapperDecorator((story: string) => {
       return `
-        <div style="height: 25rem">
+        <div style="height: 5rem">
           ${story}
         </div>`;
     }),
   ],
   parameters: {
     docs: {
+      controls: { exclude: ['active', 'getClassName', 'onFabClick'] },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbFabComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbFabComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(`${getGeneralComponentDescription('fab', 'component', '', 'that provides a floating button that will help deploy various tools, libraries, or frameworks when activated.')} `, 'https://bamboo.tec.mx/latest/componentes/main-fab/descripcion-general-Hm3R2zPj')}
+${getBasicExampleBlock('BmbFabComponent', '', onEvent.handleExample)}
         `,
       },
     },
   },
   argTypes: {
-    icon: {
-      name: 'Icon',
-      control: { type: 'text' },
-      description: 'The name of the icon. See Material Icons.',
-      table: { category: 'Properties', type: { summary: 'string' } },
-    },
+    icon: DBmbIconParamDesc.icon,
     text: {
-      name: 'Text',
       control: { type: 'text' },
       description:
-        'The text of the Extended Fab. The width will increase depending on the length of the text.',
-      table: { category: 'Properties', type: { summary: 'string' } },
+        'Sets the text of the Extended Fab. The width will increase depending on the length of the text.',
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: '' },
+        type: { summary: 'string' },
+      },
     },
     size: {
-      name: 'Size',
       control: { type: 'radio' },
       options: ['small', 'large'],
-      description: 'The size of the fab component',
+      description: 'Sets the size of the fab component.',
       table: { category: 'Properties', type: { summary: 'string' } },
     },
     type: {
-      name: 'Type',
       control: { type: 'radio' },
       options: ['extended', 'normal'],
-      description: 'The type of the fab component',
+      description: 'Sets the type of the fab component.',
       table: { category: 'Properties', type: { summary: 'string' } },
     },
-    onFabClick: {
-      name: 'On Fab Click',
-      control: { type: '' },
-      table: { category: 'Events', type: { summary: 'function' } },
-      description: 'Emits when the fab button is clicked.',
-    },
+    fabClick: getOnClickParam(onEvent),
     mitec: {
-      name: 'Mitec Version',
       control: { type: 'boolean' },
       description:
-        'The component changes to a version that is used for the platform "Mitec", this version changes the color and the position of the text.',
+        'Sets the component changes to a version that is used for the platform "Mitec", this version changes the color and the position of the text.',
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
@@ -93,8 +77,8 @@ Below is an example of how you can use this component in HTML:
     size: 'small',
     type: 'extended',
     mitec: false,
-    onFabClick: (params: any) => {
-      window.alert(params.toString());
+    fabClick: () => {
+      console.info('onFabClick');
     },
   },
 } as Meta<typeof BmbFabComponent>;

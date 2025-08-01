@@ -9,7 +9,8 @@ import {
 } from '../../utils/doc/utils';
 import {
   GOGGLE_FONTS_LINK,
-  InputParameterDescriptions,
+  DBmbGenericParamDesc,
+  DBmbIconParamDesc,
 } from '../../utils/doc/parameterDescriptions';
 
 export default {
@@ -43,10 +44,10 @@ ${getBasicExampleBlock('BmbIconComponent')}
     },
   },
   argTypes: {
-    icon: InputParameterDescriptions.icon,
+    icon: DBmbIconParamDesc.icon,
     styleIcon: {
-      ...InputParameterDescriptions.deprecated,
-      description: InputParameterDescriptions.deprecated.description.concat(`
+      ...DBmbGenericParamDesc.deprecated,
+      description: DBmbGenericParamDesc.deprecated.description.concat(`
     ### Available Icon Styles
 
     - **Rounded**
@@ -55,8 +56,8 @@ ${getBasicExampleBlock('BmbIconComponent')}
       - **Class Name:** \`material-symbols-rounded\`
     `),
     },
-    isFill: InputParameterDescriptions.isIconFill,
-    materialIcon: InputParameterDescriptions.deprecated,
+    isFill: DBmbIconParamDesc.isIconFill,
+    materialIcon: DBmbGenericParamDesc.deprecated,
     fontWeight: {
       control: { type: 'text' },
       description:
@@ -67,9 +68,9 @@ ${getBasicExampleBlock('BmbIconComponent')}
         type: { summary: 'string' },
       },
     },
-    dotNotification: InputParameterDescriptions.iconDotNotification,
-    size: InputParameterDescriptions.iconSize,
-    alt: InputParameterDescriptions.alt,
+    dotNotification: DBmbIconParamDesc.iconDotNotification,
+    size: DBmbIconParamDesc.iconSize,
+    alt: DBmbGenericParamDesc.alt,
   },
   args: {
     icon: 'home',

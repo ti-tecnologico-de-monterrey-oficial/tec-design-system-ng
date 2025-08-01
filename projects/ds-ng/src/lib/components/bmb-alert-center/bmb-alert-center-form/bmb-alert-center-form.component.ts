@@ -185,7 +185,9 @@ export class BmbAlertCenterFormComponent {
 
   handleNavigationBarEvents(event: string): void {
     const values = this.alertSelectionForm.value;
-    const selectedOptions = Object.keys(values).filter((value) => values[value] === true);
+    const selectedOptions = Object.keys(values).filter(
+      (value) => values[value] === true,
+    );
     let eventType = '';
 
     switch (event) {

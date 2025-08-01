@@ -1,131 +1,78 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbTextLinkComponent } from './bmb-text-link.component';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+} from '../../utils/doc/utils';
+import {
+  DBmbGenericParamDesc,
+  DBmbIconParamDesc,
+} from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Components/Buttons/Text link',
   component: BmbTextLinkComponent,
   parameters: {
     docs: {
+      controls: { exclude: ['getClasses', 'getPositionClass'] },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbTextLinkComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbTextLinkComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(`${getGeneralComponentDescription('BmbTextLinkComponent')} navigation on the page or other pages`, 'https://bamboo.tec.mx/latest/componentes/text-link/descripcion-general-S0iBFwud')}
+${getBasicExampleBlock('')}
         `,
       },
     },
   },
   argTypes: {
-    // appearance: {
-    //   name: 'Appearance',
-    //   control: {
-    //     type: 'select',
-    //   },
-    //   options: ['default', 'primary', 'alternative'],
-    //   description: 'Defines the appearance style.',
-    //   table: {
-    //     category: 'Properties',
-    //     type: { summary: 'string' },
-    //   },
-    // },
     textLink: {
-      name: 'Text Link',
       control: {
         type: 'text',
       },
-      description: 'Set the text that the componente will show .',
+      description: 'Sets the label to display on the component.',
       table: {
         category: 'Events',
         type: { summary: 'string (required)' },
       },
     },
     textLinkStyle: {
-      name: 'Text Link Style',
       control: {
         type: 'radio',
       },
       options: ['icon', 'underlined'],
       description:
-        'The text link has two styles, with icon or an underlined link, it can be changed with this property',
+        'Sets the text link, this has two styles, with icon or an underlined link, it can be changed with this property',
       table: {
         category: 'Properties',
         type: { summary: 'radio' },
         defaultValue: { summary: 'icon' },
       },
     },
-    target: {
-      name: 'Target',
-      control: {
-        type: 'radio',
-      },
-      options: ['_blank', '_parent', '_self', '_top'],
-      description: 'Set the percentage to show in the progress bar',
-      table: {
-        category: 'Events',
-        type: { summary: 'IBmbTargetLink' },
-        defaultValue: { summary: '_blank' },
-      },
-    },
+    target: DBmbGenericParamDesc.target,
     icon: {
-      name: 'Icon',
-      control: { type: 'text' },
-      description:
-        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons. The color of the icon depend on the parent.',
+      ...DBmbIconParamDesc.icon,
       table: {
-        category: 'Properties',
-        type: { summary: 'string' },
+        ...DBmbIconParamDesc.icon.table,
+        defaultValue: { summary: 'arrow_forward' },
       },
     },
     iconPosition: {
-      name: 'Icon position',
       control: {
         type: 'radio',
       },
       options: ['left', 'right'],
-      description: 'Set the position of the icon in the link.',
+      description: 'Sets the position of the icon in the link.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
         defaultValue: { summary: 'right' },
       },
     },
-    link: {
-      name: 'Link',
-      control: {
-        type: 'text',
-      },
-      description: 'The link for redirection to another page.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string (required)' },
-      },
-    },
-    disabled: {
-      name: 'Disable',
-      control: { type: 'boolean' },
-      description:
-        'When set as true, the text link doesnt respond to pointer events',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean' },
-      },
-    },
+    link: DBmbGenericParamDesc.link,
+    disabled: DBmbGenericParamDesc.disabled,
   },
   args: {
-    // appearance: 'default',
-    textLink: 'Texto de prueba',
+    textLink: 'Test text',
     link: 'https://www.youtube.com',
     textLinkStyle: 'icon',
     target: '_blank',

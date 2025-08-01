@@ -26,20 +26,18 @@ Below is an example of how you can use this component in HTML:
     },
   },
   argTypes: {
-    // appearance: {
-    //   name: 'Appearance',
-    //   control: {
-    //     type: 'select',
-    //   },
-    //   options: ['default', 'primary', 'alternative'],
-    //   description: 'Defines the appearance style.',
-    //   table: {
-    //     category: 'Properties',
-    //     type: { summary: 'string' },
-    //   },
-    // },
+    appearanceContrast: {
+      control: {
+        type: 'select',
+      },
+      options: ['default', 'primary', 'alternative'],
+      description: 'Defines the appearance style.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
     type: {
-      name: 'Type',
       control: {
         type: 'radio',
       },
@@ -58,7 +56,6 @@ Sets the type of anatomy variation to display.
       },
     },
     score: {
-      name: 'Score',
       control: { type: 'text' },
       description:
         'Sets the number or text to display as score. The value can be a number or a string with a maximum of 4 characters.',
@@ -70,7 +67,7 @@ Sets the type of anatomy variation to display.
     },
   },
   args: {
-    // appearance: 'default',
+    appearanceContrast: 'default',
     type: 'main-grade',
     score: '89',
   },

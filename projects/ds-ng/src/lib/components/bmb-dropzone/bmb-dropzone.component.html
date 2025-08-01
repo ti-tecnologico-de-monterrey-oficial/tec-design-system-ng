@@ -1,11 +1,7 @@
 <div class="bmb-drop-zone">
   <section
     class="bmb-drop-zone-container"
-    [ngClass]="{
-      'bmb-drop-zone-error': isInvalidFileOnly(),
-      'bmb-drop-zone-drag-over':
-        fileDataList.length > 0 && !!fileDataList[0].name,
-    }"
+    [ngClass]="getDropZoneClass()"
     (dragover)="onDragOver($event)"
     (dragleave)="onDragLeave($event)"
     (drop)="onDrop($event)"
@@ -18,7 +14,7 @@
         'bmb-drop-zone-icon-error': isInvalidFileOnly(),
       }"
     >
-      <bmb-icon [icon]="mainIcon()" [size]="48" />
+      <bmb-icon [icon]="mainIcon()" [size]="48" alt="Drop zone icon" />
     </div>
     <p class="bmb-drop-zone-label-format">{{ formatFilesLabel() }}</p>
     <p class="bmb-drop-zone-label-format-instruction">
