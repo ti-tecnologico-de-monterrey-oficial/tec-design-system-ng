@@ -27,7 +27,6 @@ export type IBmbTextLinkStyle = 'icon' | 'underlined';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbTextLinkComponent {
-  appearanceContrast = input<IBmbContrast>('default');
   textLink = input.required<string>();
   textLinkStyle = input<IBmbTextLinkStyle>('icon');
   target = input<IBmbTargetLink>('_blank');
@@ -44,12 +43,6 @@ export class BmbTextLinkComponent {
       classes.push(`${principalClassName}-underlined`);
 
     if (this.disabled()) classes.push(`${principalClassName}-disabled`);
-
-    if (this.appearanceContrast() === 'primary')
-      classes.push(`${principalClassName}-primary`);
-
-    if (this.appearanceContrast() === 'alternative')
-      classes.push(`${principalClassName}-alternative`);
 
     return classes;
   }

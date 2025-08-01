@@ -25,17 +25,6 @@ ${getBasicExampleBlock('')}
     },
   },
   argTypes: {
-    appearanceContrast: {
-      control: {
-        type: 'select',
-      },
-      options: ['default', 'primary', 'alternative'],
-      description: 'Defines the appearance style.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
     textLink: {
       control: {
         type: 'text',
@@ -83,7 +72,6 @@ ${getBasicExampleBlock('')}
     disabled: DBmbGenericParamDesc.disabled,
   },
   args: {
-    appearanceContrast: 'default',
     textLink: 'Test text',
     link: 'https://www.youtube.com',
     textLinkStyle: 'icon',
