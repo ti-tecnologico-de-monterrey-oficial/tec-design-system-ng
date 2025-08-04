@@ -96,8 +96,34 @@
           </div>
         </ng-template>
       </bmb-accordion>
+      <bmb-home-card
+        leftIcon="chevron_left"
+        icon="account_balance_wallet"
+        bgIconAppearance="green-light"
+        title="Title"
+        subtitle="Subtitle"
+        [showRightButton]="true"
+        (onExpandClick)="onExpandClick2()"
+        bmbVerticalLayoutItem
+        [style.view-transition-name]="'homeCardTransition2'"
+      >
+        <p>Content 2</p>
+      </bmb-home-card>
     </div>
     <div bmbVerticalLayout bmbLayoutItem [colSm]="4" [colLg]="6" gapSize="m">
+      <bmb-home-card
+        leftIcon="chevron_left"
+        icon="account_balance_wallet"
+        bgIconAppearance="green-light"
+        title="Title"
+        subtitle="Subtitle"
+        [showRightButton]="true"
+        (onExpandClick)="onExpandClick()"
+        bmbVerticalLayoutItem
+        [style.view-transition-name]="'homeCardTransition'"
+      >
+        <p>Small content for home</p>
+      </bmb-home-card>
       <bmb-accordion
         borderRadius="m"
         margin="none"
