@@ -20,7 +20,7 @@
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
 
-    @media (pointer:none), (pointer: coarse) {
+    @media (pointer: none), (pointer: coarse) {
       scrollbar-width: none;
     }
 
