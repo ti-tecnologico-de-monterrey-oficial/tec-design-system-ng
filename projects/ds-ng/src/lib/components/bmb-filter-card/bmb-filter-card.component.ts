@@ -69,27 +69,27 @@ export class BmbFilterCardComponent {
   constructor(private matDialog: MatDialog) {
     effect(() => {
       this.controlTypes().forEach((controlType) => {
-      controlType.control.forEach((control) => {
-        if (control.type === 'radial') {
-          const controlName = this.filterForm.get(control.name);
-          if (controlName) {
-            controlName.setValue(
-              control.checked ? control.label : controlName.value,
-            );
+        controlType.control.forEach((control) => {
+          if (control.type === 'radial') {
+            const controlName = this.filterForm.get(control.name);
+            if (controlName) {
+              controlName.setValue(
+                control.checked ? control.label : controlName.value,
+              );
+            } else {
+              this.filterForm.addControl(
+                control.name,
+                new FormControl<string>(control.checked ? control.label : ''),
+              );
+            }
           } else {
             this.filterForm.addControl(
               control.name,
-              new FormControl<string>(control.checked ? control.label : ''),
+              new FormControl<boolean>(control.checked),
             );
           }
-        } else {
-          this.filterForm.addControl(
-            control.name,
-            new FormControl<boolean>(control.checked),
-          );
-        }
+        });
       });
-    });
     });
   }
 
