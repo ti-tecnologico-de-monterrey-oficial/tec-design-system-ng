@@ -79,8 +79,11 @@ ${getBasicExampleBlock('BmbHeaderMobileComponent')}
     onUserImageClick: getOnClickParam(
       getOnEvent('user image', 'onUserImageClick', 'unknown'),
     ),
-    trailingIconNotifications:{ ...DBmbIconParamDesc.iconDotNotification,
-      description: DBmbIconParamDesc.iconDotNotification.description.concat('<br/>The number of notifications to display on the trailing icon.')
+    trailingIconNotifications: {
+      ...DBmbIconParamDesc.iconDotNotification,
+      description: DBmbIconParamDesc.iconDotNotification.description.concat(
+        '<br/>The number of notifications to display on the trailing icon.',
+      ),
     },
   },
   args: {
