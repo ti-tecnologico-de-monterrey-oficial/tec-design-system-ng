@@ -17,8 +17,13 @@ import {
   effect,
   SimpleChanges,
   model,
+  ChangeDetectorRef,
 } from '@angular/core';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import {
+  MatPaginator,
+  MatPaginatorModule,
+  PageEvent,
+} from '@angular/material/paginator';
 import {
   MatTableDataSource,
   MatTableModule,
@@ -43,9 +48,8 @@ import { TableColum, TableConfig } from './bmb-tables.interface';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { BmbInputComponent } from '../bmb-input/bmb-input.component';
-import { FormControl, FormGroup } from '@angular/forms';
 import { BmbDropdownComponent } from '../bmb-dropdown/bmb-dropdown.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
 import { BmbDateRangeComponent } from '../bmb-date-range/bmb-date-range.component';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
 
@@ -119,6 +123,7 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
   showSearch = input<boolean>(false);
   showFilters = input<boolean>(false);
   pageSize = input<number>();
+  totalItems = input<number>(0);
   data = input<any[]>([]);
   columns = input<TableColum[]>([]);
   actionTemplate = input<TemplateRef<any> | null>(null);
@@ -129,9 +134,19 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
   initialTableSelection = input<number[]>([]);
   lang = input<BmbTableLang>('es');
   clearSelection = model<boolean>(false);
+  serverSide = input<boolean>(false);
+  currentPage = model<number>(0);
 
   @Output() select: EventEmitter<any> = new EventEmitter();
   @Output() clickedRow: EventEmitter<any> = new EventEmitter();
+  @Output() searchChange = new EventEmitter<string>();
+  @Output() filtersChange = new EventEmitter<Record<string, any>>();
+  @Output() searchModeChange = new EventEmitter<'client' | 'server'>();
+
+  @Output() pageChange = new EventEmitter<{
+    pageIndex: number;
+    pageSize: number;
+  }>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatTable, { read: ElementRef }) private matTableRef?: ElementRef;
@@ -146,7 +161,24 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
   constructor(
     private renderer: Renderer2,
     private sanitizer: DomSanitizer,
+    private cdr: ChangeDetectorRef,
   ) {
+    effect(() => {
+      const total = this.totalItems();
+      const size = this.pageSize();
+
+      if (this.serverSide()) {
+        const last = this.lastPage();
+        if (this.currentPage() < 0) {
+          this.currentPage.set(0);
+          this.cdr.detectChanges();
+        } else if (this.currentPage() > last) {
+          this.currentPage.set(last);
+          this.cdr.detectChanges();
+        }
+      }
+    });
+
     effect(() => {
       const selectedRows = this.initialTableSelection() ?? [];
       if (selectedRows.length && this.dataSource.data.length) {
@@ -183,15 +215,25 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
 
   ngOnInit(): void {
     this.searchControl.valueChanges.subscribe((value) => {
-      const safeValue = (value || '').trim().toLowerCase();
-      this.dataSource.filter = safeValue;
+      const search = (value || '').trim().toLowerCase();
+
+      if (this.serverSide()) {
+        this.searchModeChange.emit('server');
+        this.searchChange.emit(search);
+      } else {
+        this.searchModeChange.emit('client');
+        this.dataSource.filter = search;
+      }
     });
 
     this.dataSource.filterPredicate = (data: any, filter: string) => {
-      const searchStr =
-        `${data.name} ${data.lastName} ${data.country}`.toLowerCase();
-      return searchStr.includes(filter);
+      const searchText = filter.trim().toLowerCase();
+      return this._rawColumns.some((column) => {
+        const value = (data[column.dataKey] ?? '').toString().toLowerCase();
+        return value.includes(searchText);
+      });
     };
+
     const selectedRows = this.initialTableSelection() ?? [];
     if (selectedRows.length && this.dataSource.data.length) {
       selectedRows.forEach((row) => {
@@ -211,7 +253,10 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
   parseData(data: any[]) {
     this.dataSource.data = data;
     this.originalData = data;
-    this.applyFilters();
+
+    if (!this.serverSide()) {
+      this.applyFilters();
+    }
 
     if (this.paginator) {
       this.dataSource.paginator = this.paginator;
@@ -389,19 +434,26 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
   }
 
   getPaginationText(): string {
-    if (
-      !this.paginator ||
-      this.paginator.length === 0 ||
-      this.paginator.pageSize === 0
-    ) {
-      return `0 de ${this.paginator?.length || 0}`;
+    const total = this.serverSide()
+      ? (this.totalItems?.() ?? 0)
+      : (this.paginator?.length ?? 0);
+
+    const pageIndex = this.serverSide()
+      ? (this.currentPage?.() ?? 0)
+      : (this.paginator?.pageIndex ?? 0);
+
+    const pageSize = this.serverSide()
+      ? (this.pageSize?.() ?? 10)
+      : (this.paginator?.pageSize ?? 10);
+
+    if (total === 0 || pageSize === 0) {
+      return `0 de ${total}`;
     }
-    const startIndex = this.paginator.pageIndex * this.paginator.pageSize + 1;
-    const endIndex = Math.min(
-      (this.paginator.pageIndex + 1) * this.paginator.pageSize,
-      this.paginator.length,
-    );
-    return `${startIndex} - ${endIndex} de ${this.paginator.length}`;
+
+    const startIndex = pageIndex * pageSize + 1;
+    const endIndex = Math.min((pageIndex + 1) * pageSize, total);
+
+    return `${startIndex} - ${endIndex} de ${total}`;
   }
 
   isTemplateRef(value: any): boolean {
@@ -452,6 +504,11 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
   applyFilters(): void {
     let filtered = [...this.originalData];
     const values = this.filterForm.value as any;
+
+    if (this.serverSide()) {
+      this.filtersChange.emit(values);
+      return;
+    }
 
     this._rawColumns.forEach((column) => {
       const key = column.dataKey;
@@ -505,5 +562,67 @@ export class BmbTablesComponent implements AfterViewInit, OnInit, OnChanges {
 
   toggleFilters(): void {
     this.filtersVisible = !this.filtersVisible;
+  }
+
+  onPageEvent(event: PageEvent) {
+    this.currentPage.set(event.pageIndex);
+    if (this.serverSide()) {
+      this.pageChange.emit({
+        pageIndex: event.pageIndex + 1,
+        pageSize: event.pageSize,
+      });
+    } else {
+      this.dataSource.paginator!.pageIndex = event.pageIndex;
+    }
+  }
+
+  get resolvedPageSize(): number {
+    return this.pageSize() ?? 10;
+  }
+
+  lastPage(): number {
+    const total = this.totalItems() ?? 0;
+    const size = this.resolvedPageSize;
+    const result = size === 0 ? 0 : Math.ceil(total / size) - 1;
+    return Math.max(0, result);
+  }
+
+  goToFirstPage() {
+    if (this.currentPage() > 0) {
+      this.currentPage.set(0);
+      this.pageChange.emit({
+        pageIndex: 1,
+        pageSize: this.resolvedPageSize,
+      });
+    }
+  }
+
+  goToPreviousPage() {
+    if (this.currentPage() > 0) {
+      this.currentPage.set(this.currentPage() - 1);
+      this.pageChange.emit({
+        pageIndex: this.currentPage() + 1,
+        pageSize: this.resolvedPageSize,
+      });
+    }
+  }
+
+  goToNextPage() {
+    if (this.currentPage() < this.lastPage()) {
+      this.currentPage.set(this.currentPage() + 1);
+      this.pageChange.emit({
+        pageIndex: this.currentPage() + 1,
+        pageSize: this.resolvedPageSize,
+      });
+    }
+  }
+
+  goToLastPage() {
+    const last = this.lastPage();
+    this.currentPage.set(last);
+    this.pageChange.emit({
+      pageIndex: last + 1,
+      pageSize: this.resolvedPageSize,
+    });
   }
 }
