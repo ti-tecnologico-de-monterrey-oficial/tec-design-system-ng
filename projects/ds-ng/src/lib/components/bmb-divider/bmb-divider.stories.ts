@@ -1,5 +1,11 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbDividerComponent } from './bmb-divider.component';
+import {
+  getArchitectureSection,
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+} from '../../utils/doc/utils';
 
 export default {
   title: 'Components/Containers/Divider',
@@ -8,40 +14,24 @@ export default {
     docs: {
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbDividerComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbDividerComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-## Architecture
-
-\`\`\`html
+${getGeneralDescription(`${getGeneralComponentDescription('divider')} to separate sections of content, improving organization and visual clarity.`, 'https://bamboo.tec.mx/latest/componentes/divider/descripcion-general-Z8NNTVA9')}
+${getArchitectureSection(`
 <div class="bmb_divider" <!-- conditional classes bmb_divider bmb_divider-{this.type} >
 </div>
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+  `)}
+${getBasicExampleBlock('BmbDividerComponent')}
         `,
       },
     },
   },
   argTypes: {
     type: {
-      name: 'Styles',
       control: {
         type: 'radio',
       },
       options: ['simple', 'dashed', 'dotted'],
       description:
-        'The type of the divider, affecting its visual view. Is not neccesary to add the "simple" style.',
+        'Sets the type of the divider, affecting its visual view. Is not necessary to add the "simple" style.',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'simple' },

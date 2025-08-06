@@ -19,7 +19,7 @@ export default {
       description: {
         component: `
 ${getGeneralDescription(`${getGeneralComponentDescription('BmbTextLinkComponent')} navigation on the page or other pages`, 'https://bamboo.tec.mx/latest/componentes/text-link/descripcion-general-S0iBFwud')}
-${getBasicExampleBlock('')}
+${getBasicExampleBlock('BmbTextLinkComponent')}
         `,
       },
     },

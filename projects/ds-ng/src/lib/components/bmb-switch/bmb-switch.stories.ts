@@ -1,6 +1,5 @@
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+import { Meta, StoryObj } from '@storybook/angular';
 import { BmbSwitchComponent } from './bmb-switch.component';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import {
   getBasicExampleBlock,
   getGeneralComponentDescription,
@@ -26,7 +25,7 @@ const getLabelIconDescription = (
   const switchDescription: string[] = ['of', 'on'];
   return `Sets the ${type[getIndex(isLabel)]} displayed on the ${position[getIndex(isRightPosition)]} side of the switch.<br/><br/>
   Useful to indicate the action or state associated with the ***${switchDescription[getIndex(isRightPosition)]}*** position.<br/><br/>
-  ***Important:*** <br/><br/>
+  ***‼︎Important:*** <br/><br/>
   Do not use the \`${position[getIndex(!isRightPosition)]}Icon\` property if you want to use \`${position[getIndex(isRightPosition)]}Text.\``;
 };
 const onChange: IBmbOnEvent = getOnEvent('switch', 'change', 'boolean');

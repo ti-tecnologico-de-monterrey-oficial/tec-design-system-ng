@@ -222,13 +222,13 @@ Enables the use of templates so that icons appear before the drop-down menu. You
 **HTML architecture**
 
 \`\`\`
-    <bmb-card-button>
-      <div>
-        <bmb-action-icon />
-        <bmb-icon />
-        <bmb-bookmark />
-      </div>
-    </bmb-card-button>
+<bmb-card-button>
+  <div>
+    <bmb-action-icon />
+    <bmb-icon />
+    <bmb-bookmark />
+  </div>
+</bmb-card-button>
 \`\`\`
 
 Note: there is an example in the **Template example** the section.

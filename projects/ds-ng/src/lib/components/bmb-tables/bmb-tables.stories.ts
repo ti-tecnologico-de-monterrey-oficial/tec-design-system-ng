@@ -2,7 +2,214 @@ import { BmbTablesComponent } from './bmb-tables.component';
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
-import { getEmptyStateMessage } from '../../utils/doc/utils';
+import {
+  getBasicExampleBlock,
+  getEmptyStateMessage,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getSpecialSpecifications,
+} from '../../utils/doc/utils';
+
+const additionalBlock: string = `
+    @ViewChild('infoTemplate') infoTemplate!: TemplateRef<any>;
+    @ViewChild('lastNameTemplate') lastNameTemplate!: TemplateRef<any>;
+    @ViewChild('actionTemplate') actionTemplate!: TemplateRef<any>;
+    @ViewChild('detailTemplate') detailTemplate!: TemplateRef<any>;
+    @ViewChild('headerNameTemplate') headerNameTemplate!: TemplateRef<any>;
+
+    constructor(private cdr: ChangeDetectorRef) {}
+
+    config = {
+      isSelectable: true,
+      isExpandible: true,
+      isPaginable: true,
+      showActions: true,
+    };
+
+    data: any[] = [];
+    columns: any[] = [];
+
+    ngOnInit(): void {
+      this.data = [
+        {
+          lastName: 'Benitez',
+          name: 'Romina',
+          birthday: '02/02/2000',
+          info: 'buscar',
+          gorem: 'Gorem Ipsum',
+          goremType: 'success',
+          country: 'Mexico',
+        },
+        {
+          lastName: 'Rodriguez',
+          name: 'Edgar',
+          birthday: '02/23/2020',
+          info: 'Info text',
+          gorem: 'Gorem Ipsum',
+          goremType: 'success',
+          country: 'Francia',
+          detail: 'Detalle A',
+        },
+        {
+          lastName: 'Benitez',
+          name: 'Atenea',
+          birthday: '02/02/2010',
+          info: 'Info text',
+          gorem: 'Gorem Ipsum',
+          goremType: 'success',
+          country: 'Mexico',
+          detail: 'Detalle A',
+        },
+        {
+          lastName: 'Benitez',
+          name: 'Atenea',
+          birthday: '02/02/2005',
+          info: 'Info text',
+          gorem: 'Gorem Ipsum',
+          goremType: 'success',
+          country: 'Mexico',
+          detail: 'Detalle A',
+        },
+        {
+          lastName: 'Benitez',
+          name: 'Atenea',
+          birthday: '02/02/2000',
+          info: 'Info text',
+          gorem: 'Gorem Ipsum',
+          goremType: 'success',
+          country: 'Mexico',
+          detail: 'Detalle A',
+        },
+        {
+          lastName: 'Benitez',
+          name: 'Atenea',
+          birthday: '02/02/2000',
+          info: 'Info text',
+          gorem: 'Gorem Ipsum',
+          goremType: 'success',
+          country: 'Mexico',
+          detail: 'Detalle A',
+        },
+        {
+          lastName: 'Benitez',
+          name: 'Atenea',
+          birthday: '02/02/2000',
+          info: 'Info text',
+          gorem: 'Gorem Ipsum',
+          goremType: 'success',
+          country: 'Mexico',
+          detail: 'Detalle A',
+        },
+
+        {
+          lastName: 'Nava',
+          name: 'Jesus',
+          birthday: '03/04/1998',
+          country: 'Mexico',
+          info: 'Info text',
+          gorem: 'Gorem Ipsum',
+          goremType: 'error',
+          detail: {
+            columns: [
+              { def: 'id', label: 'ID', dataKey: 'id' },
+              {
+                def: 'description',
+                label: 'Description',
+                dataKey: 'description',
+              },
+            ],
+            data: [
+              { id: 1, description: 'Detalle A' },
+              { id: 2, description: 'Detalle B' },
+            ],
+            config: {
+              isSelectable: false,
+              isExpandible: false,
+              isPaginable: false,
+              showActions: false,
+            },
+          },
+        },
+      ];
+
+      this.columns = [
+        {
+          def: 'name',
+          label: 'Name',
+          dataKey: 'name',
+          type: 'string',
+        },
+        {
+          def: 'lastName',
+          label: 'Last Name',
+          dataKey: 'lastName',
+          type: 'string',
+        },
+        {
+          def: 'birthday',
+          label: 'Birthday',
+          dataKey: 'birthday',
+          type: 'date',
+        },
+        {
+          def: 'info',
+          label: 'Info',
+          dataKey: 'info',
+          type: 'string',
+        },
+        {
+          def: 'gorem',
+          label: 'Gorem Ipsum',
+          dataKey: 'gorem',
+          type: 'string',
+        },
+        {
+          def: 'country',
+          label: 'Country',
+          dataKey: 'country',
+          type: 'string',
+        },
+      ];
+    }
+
+    ngAfterViewInit(): void {
+      // Asignar templates a columnas
+      this.columns = this.columns.map((col) => {
+        if (col.def === 'name') {
+          return { ...col, htmlLabel: this.headerNameTemplate };
+        }
+        return col;
+      });
+
+      // Asignar templates a datos
+      this.data = this.data.map((row) => {
+        return {
+          ...row,
+          lastNameTemplate: this.lastNameTemplate,
+          infoTemplate: this.infoTemplate,
+        };
+      });
+
+      // Forzar renderizado porque los ViewChild no están disponibles en ngOnInit
+      this.cdr.detectChanges();
+    }
+
+    onSelect(selected: any) {
+      // Maneja la selección
+    }
+
+    clickButton(event: any) {
+      // Maneja el click del botón
+    }
+
+    isString(value: any): value is string {
+      return typeof value === 'string';
+    }
+
+    isObject(value: any): value is object {
+      return typeof value === 'object' && value !== null;
+    }
+`;
 
 export default {
   title: 'Components/Containers/Table',
@@ -13,247 +220,81 @@ export default {
     }),
   ],
   parameters: {
+    controls: {
+      exclude: [
+        'applyColumnsAndConfig',
+        'applyFilters',
+        'checkboxLabel',
+        'checkResizing',
+        'getCellClasses	',
+        'getCellData',
+        'getFormControl',
+        'getPaginationText',
+        'hasEllipsis',
+        'isAllSelected',
+        'isEven',
+        'isOdd',
+        'isTemplateRef',
+        'mouseMove',
+        'onResize',
+        'onResizeColumn',
+        'onSelect	',
+        'onSelectRow',
+        'parseColumns',
+        'parseData',
+        'sanitizeHTM',
+        'setConfig',
+        'setTableResize',
+        'setupDynamicFilters',
+        'toggleAllRows',
+        'toggleFilters',
+        'getCellClasses',
+        'onSelect',
+        'sanitizeHTML',
+        '_rawColumns',
+        '_rawConfig',
+        'currentResizeIndex',
+        'dataSource',
+        'expandedElement',
+        'filterForm',
+        'filtersVisible',
+        'isResizingRight',
+        'originalData',
+        'resizableMousemove',
+        'resizableMouseup',
+        'searchControl',
+        'selection',
+        'startWidth',
+        'tableColumns',
+        'tableDisplayColumns',
+        'clearSelection',
+        'pressed',
+        'startX',
+        'tableConfig',
+      ],
+    },
     docs: {
       description: {
         component: `
-${getEmptyStateMessage()}
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import {
-  Component,
-  ChangeDetectionStrategy,
-  ViewChild,
-  TemplateRef,
-  AfterViewInit,
-  ChangeDetectorRef,
-} from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {
+${getGeneralDescription(
+  `${getGeneralComponentDescription('table')} rendering highly configurable and interactive tables.
+>
+It supports features such as selection, expansion, pagination, dynamic filtering, column resizing,
+custom actions, and templating for both actions and detail rows.
+ `,
+  'https://bamboo.tec.mx/latest/componentes/table/descripcion-general-h1hRplJO',
+)}
+${getSpecialSpecifications(getEmptyStateMessage())}
+${getBasicExampleBlock(
+  `
   BmbBadgeComponent,
   BmbIconComponent,
   BmbTablesComponent,
   BmbThemeComponent,
-} from '../../projects/ds-ng/src/public-api';
-
-@Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [
-    CommonModule,
-    BmbTablesComponent,
-    BmbThemeComponent,
-    BmbIconComponent,
-    BmbBadgeComponent,
-  ],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-})
-export class AppComponent implements AfterViewInit {
-  @ViewChild('infoTemplate') infoTemplate!: TemplateRef<any>;
-  @ViewChild('lastNameTemplate') lastNameTemplate!: TemplateRef<any>;
-  @ViewChild('actionTemplate') actionTemplate!: TemplateRef<any>;
-  @ViewChild('detailTemplate') detailTemplate!: TemplateRef<any>;
-  @ViewChild('headerNameTemplate') headerNameTemplate!: TemplateRef<any>;
-
-  constructor(private cdr: ChangeDetectorRef) {}
-
-  config = {
-    isSelectable: true,
-    isExpandible: true,
-    isPaginable: true,
-    showActions: true,
-  };
-
-  data: any[] = [];
-  columns: any[] = [];
-
-  ngOnInit(): void {
-    this.data = [
-      {
-        lastName: 'Benitez',
-        name: 'Romina',
-        birthday: '02/02/2000',
-        info: 'buscar',
-        gorem: 'Gorem Ipsum',
-        goremType: 'success',
-        country: 'Mexico',
-      },
-      {
-        lastName: 'Rodriguez',
-        name: 'Edgar',
-        birthday: '02/23/2020',
-        info: 'Info text',
-        gorem: 'Gorem Ipsum',
-        goremType: 'success',
-        country: 'Francia',
-        detail: 'Detalle A',
-      },
-      {
-        lastName: 'Benitez',
-        name: 'Atenea',
-        birthday: '02/02/2010',
-        info: 'Info text',
-        gorem: 'Gorem Ipsum',
-        goremType: 'success',
-        country: 'Mexico',
-        detail: 'Detalle A',
-      },
-      {
-        lastName: 'Benitez',
-        name: 'Atenea',
-        birthday: '02/02/2005',
-        info: 'Info text',
-        gorem: 'Gorem Ipsum',
-        goremType: 'success',
-        country: 'Mexico',
-        detail: 'Detalle A',
-      },
-      {
-        lastName: 'Benitez',
-        name: 'Atenea',
-        birthday: '02/02/2000',
-        info: 'Info text',
-        gorem: 'Gorem Ipsum',
-        goremType: 'success',
-        country: 'Mexico',
-        detail: 'Detalle A',
-      },
-      {
-        lastName: 'Benitez',
-        name: 'Atenea',
-        birthday: '02/02/2000',
-        info: 'Info text',
-        gorem: 'Gorem Ipsum',
-        goremType: 'success',
-        country: 'Mexico',
-        detail: 'Detalle A',
-      },
-      {
-        lastName: 'Benitez',
-        name: 'Atenea',
-        birthday: '02/02/2000',
-        info: 'Info text',
-        gorem: 'Gorem Ipsum',
-        goremType: 'success',
-        country: 'Mexico',
-        detail: 'Detalle A',
-      },
-
-      {
-        lastName: 'Nava',
-        name: 'Jesus',
-        birthday: '03/04/1998',
-        country: 'Mexico',
-        info: 'Info text',
-        gorem: 'Gorem Ipsum',
-        goremType: 'error',
-        detail: {
-          columns: [
-            { def: 'id', label: 'ID', dataKey: 'id' },
-            {
-              def: 'description',
-              label: 'Description',
-              dataKey: 'description',
-            },
-          ],
-          data: [
-            { id: 1, description: 'Detalle A' },
-            { id: 2, description: 'Detalle B' },
-          ],
-          config: {
-            isSelectable: false,
-            isExpandible: false,
-            isPaginable: false,
-            showActions: false,
-          },
-        },
-      },
-    ];
-
-    this.columns = [
-      {
-        def: 'name',
-        label: 'Name',
-        dataKey: 'name',
-        type: 'string',
-      },
-      {
-        def: 'lastName',
-        label: 'Last Name',
-        dataKey: 'lastName',
-        type: 'string',
-      },
-      {
-        def: 'birthday',
-        label: 'Birthday',
-        dataKey: 'birthday',
-        type: 'date',
-      },
-      {
-        def: 'info',
-        label: 'Info',
-        dataKey: 'info',
-        type: 'string',
-      },
-      {
-        def: 'gorem',
-        label: 'Gorem Ipsum',
-        dataKey: 'gorem',
-        type: 'string',
-      },
-      {
-        def: 'country',
-        label: 'Country',
-        dataKey: 'country',
-        type: 'string',
-      },
-    ];
-  }
-
-  ngAfterViewInit(): void {
-    // Asignar templates a columnas
-    this.columns = this.columns.map((col) => {
-      if (col.def === 'name') {
-        return { ...col, htmlLabel: this.headerNameTemplate };
-      }
-      return col;
-    });
-
-    // Asignar templates a datos
-    this.data = this.data.map((row) => {
-      return {
-        ...row,
-        lastNameTemplate: this.lastNameTemplate,
-        infoTemplate: this.infoTemplate,
-      };
-    });
-
-    // Forzar renderizado porque los ViewChild no están disponibles en ngOnInit
-    this.cdr.detectChanges();
-  }
-
-  onSelect(selected: any) {
-    // Maneja la selección
-  }
-
-  clickButton(event: any) {
-    // Maneja el click del botón
-  }
-
-  isString(value: any): value is string {
-    return typeof value === 'string';
-  }
-
-  isObject(value: any): value is object {
-    return typeof value === 'object' && value !== null;
-  }
-}
-\`\`\`
-
-Below is an example of how to use this component in HTML:
-
+`,
+  '',
+  additionalBlock,
+)}
 \`\`\`html
 
 <bmb-table
@@ -335,38 +376,37 @@ Below is an example of how to use this component in HTML:
   },
   argTypes: {
     data: {
-      name: 'Data',
       control: {
         type: 'object',
       },
       description: 'Set the data to show in the table.',
       table: {
         category: 'Properties',
+        defaultValue: { summary: '' },
         type: { summary: 'object' },
       },
     },
     columns: {
-      name: 'Columns',
       control: {
         type: 'object',
       },
       description: 'Set the columns to show in the table.',
       table: {
         category: 'Properties',
+        defaultValue: { summary: '' },
         type: { summary: 'object' },
       },
     },
     config: {
-      name: 'Config',
       control: { type: 'object' },
       description: 'Set the main config for the table',
       table: {
         category: 'Properties',
+        defaultValue: { summary: '' },
         type: { summary: 'object' },
       },
     },
     truncate: {
-      name: 'Truncate',
       control: {
         type: 'boolean',
       },
@@ -379,7 +419,6 @@ Below is an example of how to use this component in HTML:
       },
     },
     wrap: {
-      name: 'Wrap',
       control: {
         type: 'boolean',
       },
@@ -392,59 +431,54 @@ Below is an example of how to use this component in HTML:
       },
     },
     actionTemplate: {
-      name: 'Action Template',
       control: { type: 'template' },
       description: 'Set the action buttons to show in the Action column',
       table: {
         category: 'Properties',
+        defaultValue: { summary: '' },
         type: { summary: 'template' },
       },
     },
     detailTemplate: {
-      name: 'Detail Template',
       control: { type: 'template' },
       description: 'Set the template to show the detail row',
       table: {
         category: 'Properties',
+        defaultValue: { summary: '' },
         type: { summary: 'template' },
       },
     },
     pageSize: {
-      name: 'Page Size',
       control: { type: 'number' },
       description:
         'Set the number of elements to show in the table when the pagination is activated',
       table: {
         category: 'Properties',
+        defaultValue: { summary: '' },
         type: { summary: 'number' },
       },
     },
     select: {
-      name: 'Select',
-      control: {
-        type: '',
-      },
+      control: false,
       description:
         'This output can be used to save the row selected by the checkbox configuration.',
       table: {
         category: 'Events',
+        defaultValue: { summary: '-' },
         type: { summary: 'onSelect($event)' },
       },
     },
     clickedRow: {
-      name: 'Clicked Row',
-      control: {
-        type: '',
-      },
+      control: false,
       description:
         'This output can be used to save the row selected by the interaction of a click.',
       table: {
         category: 'Events',
+        defaultValue: { summary: '-' },
         type: { summary: 'clickedRow($event)' },
       },
     },
     initialTableSelection: {
-      name: 'Initial Table Selection',
       control: {
         type: 'object',
       },
@@ -457,7 +491,6 @@ Below is an example of how to use this component in HTML:
       },
     },
     showSearch: {
-      name: 'Show Search',
       control: {
         type: 'boolean',
       },
@@ -469,7 +502,6 @@ Below is an example of how to use this component in HTML:
       },
     },
     showFilters: {
-      name: 'Show Filters',
       control: {
         type: 'boolean',
       },
@@ -481,7 +513,6 @@ Below is an example of how to use this component in HTML:
       },
     },
     lang: {
-      name: 'Language',
       control: {
         type: 'select',
       },
