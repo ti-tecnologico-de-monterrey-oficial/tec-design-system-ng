@@ -206,18 +206,17 @@ ${getBasicExampleBlock('BmbDropzoneComponent')}
     },
   },
   argTypes: {
-    // appearance: {
-    //   name: 'Appearance',
-    //   control: {
-    //     type: 'select',
-    //   },
-    //   options: ['default', 'primary', 'alternative'],
-    //   description: 'Defines the appearance style.',
-    //   table: {
-    //     category: 'Properties',
-    //     type: { summary: 'string' },
-    //   },
-    // },
+    appearanceContrast: {
+      control: {
+        type: 'select',
+      },
+      options: ['default', 'primary', 'alternative'],
+      description: 'Defines the appearance style.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
     progress: {
       control: { type: 'number' },
       description: `
@@ -349,7 +348,7 @@ Upload progress of the file.
     },
   },
   args: {
-    // appearance: 'default',
+    appearanceContrast: 'default',
     name: '',
     dropLabel: 'selecciona tus archivos',
     progress: 0,

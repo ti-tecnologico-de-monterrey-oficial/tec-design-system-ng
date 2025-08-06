@@ -36,6 +36,17 @@ ${getBasicExampleBlock('BmbButtonIconComponent', '', onEvent.handleExample)}
     },
   },
   argTypes: {
+    appearanceContrast: {
+      control: {
+        type: 'select',
+      },
+      options: ['default', 'primary', 'alternative'],
+      description: 'Defines the appearance style.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
     idElement: DBmbGenericParamDesc.uniqueId,
     icon: DBmbIconParamDesc.icon,
     showContainer: {

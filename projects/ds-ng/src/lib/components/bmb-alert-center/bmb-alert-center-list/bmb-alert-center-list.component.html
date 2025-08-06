@@ -37,8 +37,19 @@
           [numberOfRows]="3"
           class="bmb_alert-center-list-item-status"
         >
-          @if (!item.isRead) {
+          @if (!item.isRead && !item.isFavorite) {
             <div class="bmb_alert-center-list-item-status-circle"></div>
+          }
+          @if (item.isRead && !item.isFavorite) {
+            <div
+              class="bmb_alert-center-list-item-status-circle bmb_alert-center-list-item-status-circle-read"
+            ></div>
+          }
+          @if (item.isFavorite) {
+            <bmb-icon
+              class="bmb_alert-center-list-item-status-favorite"
+              icon="star"
+            />
           }
         </section>
         <h4

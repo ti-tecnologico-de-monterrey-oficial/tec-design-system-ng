@@ -1,4 +1,4 @@
-<div class="bmb_invoice">
+<div [ngClass]="getInvoiceClasses()">
   <div class="bmb_invoice-list">
     @for (item of data()?.concept; track $index) {
       <div class="bmb_invoice-item">

@@ -128,6 +128,15 @@ ${getBasicExampleBlock('BmbStudentActivityCardComponent')}
         defaultValue: { summary: 'yyyy-MM-dd HH:mm:ss' },
       },
     },
+    badgeText: {
+      control: 'text',
+      description: 'Sets the badge text.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+      },
+    },
   },
 
   args: {
@@ -140,6 +149,7 @@ ${getBasicExampleBlock('BmbStudentActivityCardComponent')}
     isListItem: false,
     image: 'https://picsum.photos/id/64/200/300',
     dateFormat: 'yyyy-MM-dd HH:mm:ss',
+    badgeText: 'Badge text',
   },
 } as Meta<typeof BmbStudentActivityCardComponent>;
 

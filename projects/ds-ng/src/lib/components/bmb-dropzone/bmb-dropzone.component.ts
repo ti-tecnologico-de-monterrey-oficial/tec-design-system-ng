@@ -16,7 +16,7 @@ import {
 } from '../bmb-card/bmb-card.component';
 import { BmbProgressBarComponent } from '../bmb-progress-bar/bmb-progress-bar.component';
 import { getUUID } from '../../utils/utils';
-// import { IBmbContrast } from '../../types/colors';
+import { IBmbContrast } from '../../types/colors';
 interface FileData {
   name: string;
   size: number;
@@ -42,7 +42,7 @@ interface FileData {
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbDropzoneComponent {
-  // appearance = input<IBmbContrast>('default');
+  appearanceContrast = input<IBmbContrast>('default');
   acceptedExtensions = input.required<string[]>();
   dropInstruction = input<string>('Arrastra tus archivos aquí o');
   dropLabel = input<string>('selecciona tus archivos');
@@ -212,5 +212,27 @@ export class BmbDropzoneComponent {
       this.input.value = '';
     }
     this.cdr.detectChanges();
+  }
+
+  getDropZoneClass(): string[] {
+    const classList = [];
+
+    if (this.isInvalidFileOnly()) {
+      classList.push('bmb-drop-zone-error');
+    }
+
+    if (this.fileDataList.length > 0 && !!this.fileDataList[0].name) {
+      classList.push('bmb-drop-zone-drag-over');
+    }
+
+    if (this.appearanceContrast() === 'primary') {
+      classList.push('bmb-drop-zone-container-primary');
+    }
+
+    if (this.appearanceContrast() === 'alternative') {
+      classList.push('bmb-drop-zone-container-alternative');
+    }
+
+    return classList;
   }
 }

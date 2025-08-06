@@ -14,14 +14,24 @@
       class="bmb_item-button"
     >
       @if (icon()) {
-        <bmb-icon [icon]="icon()" [size]="iconSize()" class="bmb_item-icon" />
+        <bmb-icon
+          [icon]="icon()"
+          [size]="iconSize()"
+          class="bmb_item-icon"
+          alt="Item icon"
+        />
       }
       <span class="bmb_item-label">{{ label() }}</span>
     </button>
   } @else {
     <div class="bmb_item-wrapper">
       @if (icon()) {
-        <bmb-icon [icon]="icon()" [size]="iconSize()" class="bmb_item-icon" />
+        <bmb-icon
+          [icon]="icon()"
+          [size]="iconSize()"
+          class="bmb_item-icon"
+          alt="Item icon"
+        />
       }
       <div class="bmb_item-text">
         <span class="bmb_item-label">{{ label() }}</span>

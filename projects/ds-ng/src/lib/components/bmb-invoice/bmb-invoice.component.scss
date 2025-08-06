@@ -5,6 +5,14 @@
 .bmb_invoice {
   padding: rem.rem_calc(30);
 
+  &-primary {
+    background-color: var(--containers-background);
+  }
+
+  &-alternative {
+    background-color: var(--containers-main);
+  }
+
   &-list {
     border-bottom: rem.rem_calc(1) solid RGBA(var(--color-charade-300));
   }

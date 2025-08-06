@@ -11,6 +11,7 @@
           [icon]="smallIcon()"
           [size]="24"
           class="bmb_card_button-small-top-icon"
+          alt="Small icon"
         />
         <img
           [src]="botImage()?.src"
@@ -111,7 +112,7 @@
           <bmb-icon
             [icon]="icon()"
             [size]="16"
-            ngClass="bmb_card_button-header-icon"
+            class="bmb_card_button-header-icon"
           />
         </section>
       }
@@ -156,6 +157,7 @@
         [size]="48"
         class="bmb_card_button-add-icon"
         [isFill]="false"
+        [alt]="title()"
       />
       <div class="bmb_card_button-add-title">{{ title() }}</div>
     </button>

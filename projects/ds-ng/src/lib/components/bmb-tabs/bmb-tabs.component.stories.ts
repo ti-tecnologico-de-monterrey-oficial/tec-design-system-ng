@@ -162,20 +162,18 @@ The \`BmbTabsComponent\` optionally integrates with the \`TabsService\`, which a
     },
   },
   argTypes: {
-    // appearance: {
-    //   name: 'Appearance',
-    //   control: {
-    //     type: 'select',
-    //   },
-    //   options: ['default', 'primary', 'alternative'],
-    //   description: 'Defines the appearance style.',
-    //   table: {
-    //     category: 'Properties',
-    //     type: { summary: 'string' },
-    //   },
-    // },
+    appearanceContrast: {
+      control: {
+        type: 'select',
+      },
+      options: ['default', 'primary', 'alternative'],
+      description: 'Defines the appearance style.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
     tabs: {
-      name: 'Tabs',
       control: { type: 'object' },
       description:
         'An array of objects representing each tab. Each object should have an id, title, and optionally isActive and badge.',
@@ -185,7 +183,6 @@ The \`BmbTabsComponent\` optionally integrates with the \`TabsService\`, which a
       },
     },
     selected: {
-      name: 'Selected',
       table: {
         category: 'Events',
         type: { summary: 'EventEmitter<IBmbTab>' },
@@ -194,7 +191,6 @@ The \`BmbTabsComponent\` optionally integrates with the \`TabsService\`, which a
         'Event emitted when a tab is selected. Provides the selected tab object.',
     },
     format: {
-      name: 'Format',
       control: null,
       description:
         'The format of the tab title. Use "uppercase" to capitalize the titles.',
@@ -205,7 +201,7 @@ The \`BmbTabsComponent\` optionally integrates with the \`TabsService\`, which a
     },
   },
   args: {
-    // appearance: 'default',
+    appearanceContrast: 'default',
     tabs: [
       { id: 1, title: 'Tec de Monterrey', badge: 13, isActive: true },
       { id: 2, title: 'Label demasiado grande para una tab' },

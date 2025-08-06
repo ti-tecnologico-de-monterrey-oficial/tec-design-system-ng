@@ -30,6 +30,7 @@ export class BmbStudentActivityCardComponent {
   isListItem = input<boolean>(false);
   image = input<string>();
   dateFormat = input<string>('yyyy-MM-dd HH:mm:ss');
+  badgeText = input<string>('');
 
   parsedStartDate: DateTime = DateTime.now();
   parsedEndDate: DateTime = DateTime.now();

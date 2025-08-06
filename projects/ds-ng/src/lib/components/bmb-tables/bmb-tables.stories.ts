@@ -581,4 +581,4 @@ ${getBasicExampleBlock(
 
 type Story = StoryObj<BmbTablesComponent>;
 
-export const Default = {};
+export const Default: Story = {};

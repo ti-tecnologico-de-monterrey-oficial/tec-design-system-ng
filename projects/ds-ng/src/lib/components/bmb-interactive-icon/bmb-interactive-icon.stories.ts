@@ -1,5 +1,4 @@
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
-import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
+import { Meta, StoryObj } from '@storybook/angular';
 import {
   BmbInteractiveIconComponent,
   IBmbInteractiveIconAppearance,
@@ -71,6 +70,17 @@ ${getBasicExampleBlock('BmbInteractiveIconComponent', ON_BUTTON_CLICK.handleExam
     },
   },
   argTypes: {
+    appearanceContrast: {
+      control: {
+        type: 'select',
+      },
+      options: ['default', 'primary', 'alternative'],
+      description: 'Defines the appearance style.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
     dotNotification: DBmbIconParamDesc.iconDotNotification,
     title: {
       control: {
@@ -131,6 +141,7 @@ ${getBasicExampleBlock('BmbInteractiveIconComponent', ON_BUTTON_CLICK.handleExam
     buttonClick: DBmbGenericParamDesc.onButtonClick,
   },
   args: {
+    appearanceContrast: 'default',
     title: 'Canvas',
     description: 'Short Description',
     appearance: 'red',
