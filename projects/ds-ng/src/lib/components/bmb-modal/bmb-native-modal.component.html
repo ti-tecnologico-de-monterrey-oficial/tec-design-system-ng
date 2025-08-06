@@ -1,0 +1,61 @@
+<bmb-overlay [active]="true" />
+<dialog class="bmb-native-modal" [open]="true">
+  <div class="bmb-native-modal-container">
+    <header class="bmb-native-modal-header">
+      <bmb-three-cols
+        [expandMainColumn]="true"
+        gapSize="none"
+        alignItems="start"
+      >
+        <ng-template #bmbMainContent>
+          <span class="bmb_modal-container-header-title">
+            <bmb-title-content
+              [title]="title()"
+              titleSize="9"
+              [subtitle]="subtitle()"
+              [icon]="getIcon()"
+              [iconSize]="48"
+              [transparentBgC]="true"
+            />
+          </span>
+        </ng-template>
+        <ng-template #bmbRightContent>
+          <span class="bmb_modal-container-header-icon_close">
+            <bmb-action-icon
+              icon="close"
+              [iconSize]="24"
+              (buttonClick)="handleCloseModal($event)"
+            />
+          </span>
+        </ng-template>
+      </bmb-three-cols>
+      <h2>{{ title() }}</h2>
+    </header>
+    <section class="bmb-native-modal-content">
+      @if (isTemplateRef()) {
+        <ng-template #templateContent>
+          <ng-container *ngTemplateOutlet="getContent()"></ng-container>
+        </ng-template>
+        <ng-container *ngTemplateOutlet="templateContent"></ng-container>
+      } @else {
+        <p>
+          {{ content() }}
+        </p>
+      }
+    </section>
+    <footer class="bmb-native-modal-footer">
+      @for (btn of actions(); track $index) {
+        <button
+          bmbButton
+          [appearance]="btn.appearance || 'secondary-outlined'"
+          (click)="handleButtonClick(btn.buttonName, $event)"
+        >
+          <ng-container *ngIf="btn.icon">
+            <i class="{{ btn.icon }}"></i>
+          </ng-container>
+          {{ btn.buttonName }}
+        </button>
+      }
+    </footer>
+  </div>
+</dialog>

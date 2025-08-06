@@ -8,6 +8,7 @@ import {
   BmbVerticalLayoutItemDirective,
   BmbSidebarComponent,
   SidebarElement,
+  BmbNativeModalComponent,
 } from '../../projects/ds-ng/src/public-api';
 
 @Component({
@@ -21,6 +22,7 @@ import {
     BmbVerticalLayoutDirective,
     BmbVerticalLayoutItemDirective,
     BmbSidebarComponent,
+    BmbNativeModalComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
