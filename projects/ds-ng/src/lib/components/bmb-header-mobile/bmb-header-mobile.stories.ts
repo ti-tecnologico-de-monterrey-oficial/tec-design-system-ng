@@ -43,7 +43,6 @@ Below is an example of how you can use this component in HTML:
   },
   argTypes: {
     iconRight: {
-      name: 'Icon Right',
       control: { type: 'text' },
       description:
         'This property is deprecated and will be removed in future versions.',
@@ -52,7 +51,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     iconRight2: {
-      name: 'Icon Right 2',
       control: { type: 'text' },
       description:
         'This property is deprecated and will be removed in future versions.',
@@ -61,7 +59,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     text: {
-      name: 'Text',
       control: {
         type: 'text',
       },
@@ -72,7 +69,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     trailingIcon: {
-      name: 'Trailing Action Icon',
       control: { type: 'text' },
       description:
         'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons. Do not use the image property if you want to use an iconRight.',
@@ -82,7 +78,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     userImage: {
-      name: 'User Image Source',
       control: {
         type: 'text',
       },
@@ -94,7 +89,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     userAltImage: {
-      name: 'User Image Alt Text',
       control: {
         type: 'text',
       },
@@ -106,7 +100,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     userLink: {
-      name: 'User Link',
       control: {
         type: 'text',
       },
@@ -117,7 +110,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     userTarget: {
-      name: 'User Target',
       control: {
         type: 'radio',
       },
@@ -131,7 +123,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     logo: {
-      name: 'Logo Source',
       control: {
         type: 'text',
       },
@@ -143,7 +134,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     altLogo: {
-      name: 'Logo Alt Text',
       control: {
         type: 'text',
       },
@@ -155,7 +145,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     logoLink: {
-      name: 'Logo Link',
       control: {
         type: 'text',
       },
@@ -166,7 +155,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     logoTarget: {
-      name: 'Logo Target',
       control: {
         type: 'radio',
       },
@@ -180,7 +168,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     onTrailingIconClick: {
-      name: 'On Trailing Icon Click',
       control: {
         type: '',
       },
@@ -192,7 +179,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     onLogoClick: {
-      name: 'On Logo Click',
       control: {
         type: '',
       },
@@ -201,6 +187,18 @@ Below is an example of how you can use this component in HTML:
       table: {
         category: 'Events',
         type: { summary: '(onLogoClick)="yourFunction()"' },
+      },
+    },
+    trailingIconNotifications: {
+      control: {
+        type: 'number',
+      },
+      description:
+        'The number of notifications to display on the trailing icon.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'number' },
+        defaultValue: { summary: 0 },
       },
     },
   },
@@ -215,6 +213,7 @@ Below is an example of how you can use this component in HTML:
     altLogo: 'Alt logo description',
     logoLink: '',
     logoTarget: '_blank',
+    trailingIconNotifications: 0,
     onTrailingIconClick: () => {
       window.alert('Trailing Icon clicked in Storybook');
     },
