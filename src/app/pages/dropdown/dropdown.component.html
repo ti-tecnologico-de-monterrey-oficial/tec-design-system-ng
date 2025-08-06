@@ -2,12 +2,48 @@
   <section bmbLayoutItem [colSm]="2">
     <bmb-dropdown [options]="options()" [isFilterable]="true" />
   </section>
-  <ul bmbLayoutItem [colSm]="4">
+  <!-- <ul bmbLayoutItem [colSm]="4">
     @for (item of options(); track $index) {
       <li>{{ item }}</li>
     }
-  </ul>
+  </ul> -->
 </div>
+<bmb-home-card
+  leftIcon="chevron_left"
+  icon="account_balance_wallet"
+  bgIconAppearance="green-light"
+  title="Title"
+  subtitle="Subtitle"
+  [showRightButton]="true"
+  (onExpandClick)="onExpandClick()"
+  [style.view-transition-name]="'homeCardTransition2'"
+>
+  <h1>Home Card Transition</h1>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus quas
+    qui aliquid ad ipsa provident, architecto inventore vero dignissimos
+    consectetur beatae consequuntur, ipsam dolores nihil totam ut libero sequi
+    et!
+  </p>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus quas
+    qui aliquid ad ipsa provident, architecto inventore vero dignissimos
+    consectetur beatae consequuntur, ipsam dolores nihil totam ut libero sequi
+    et!
+  </p>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus quas
+    qui aliquid ad ipsa provident, architecto inventore vero dignissimos
+    consectetur beatae consequuntur, ipsam dolores nihil totam ut libero sequi
+    et!
+  </p>
+  <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus quas
+    qui aliquid ad ipsa provident, architecto inventore vero dignissimos
+    consectetur beatae consequuntur, ipsam dolores nihil totam ut libero sequi
+    et!
+  </p>
+</bmb-home-card>
 <bmb-frequent-apps-selector
   [title]="'Services'"
   [apps]="[
