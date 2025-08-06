@@ -61,8 +61,8 @@ export class BmbContainerButtonComponent {
   isBookmarkActive = model<boolean>(false);
   dropdownMenuItems = input<IDropdownItem[]>([]);
 
-  onButton = output();
-  secondaryAction = output();
+  onButton = output<MouseEvent>();
+  secondaryAction = output<MouseEvent>();
 
   getClassList(): string[] {
     const classList = ['bmb_container-button'];

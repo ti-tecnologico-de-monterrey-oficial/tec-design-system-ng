@@ -8,6 +8,8 @@ import {
   ViewChild,
   ViewEncapsulation,
   computed,
+  signal,
+  model,
 } from '@angular/core';
 import { BmbTabsComponent, IBmbTab } from '../bmb-tabs/bmb-tabs.component';
 import { CommonModule } from '@angular/common';
@@ -21,6 +23,10 @@ import {
   IBmbAlertCenterCategories,
   IBmbDataAlertsOutput,
   IBmbAlertEmptyState,
+  IBmbAlertCenterTabConfig,
+  IBmbAlertCenterFooterEvent,
+  IBmbAlertCenterProtoEventFooter,
+  IBmbAlertCenterFooterEventName,
 } from './types';
 import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
 import { BmbImageComponent } from '../bmb-image/bmb-image.component';
@@ -31,12 +37,6 @@ import { BmbAlertCenterAdsComponent } from './bmb-alert-center-ads/bmb-alert-cen
 import { BmbAlertCenterEmptyComponent } from './bmb-alert-center-empty/bmb-alert-center-empty.component';
 import { BmbAlertCenterService } from './bmb-alert-center.service';
 import { BmbLoaderComponent } from '../bmb-loader/bmb-loader.component';
-
-export interface IBmbAlertCenterTabConfig {
-  title: string;
-  isMobile: boolean;
-  isDesktop: boolean;
-}
 
 @Component({
   selector: 'bmb-alert-center',
@@ -87,6 +87,7 @@ export class BmbAlertCenterComponent {
   alertEvent = output<IBmbDataAlert>();
   showAlertDetail = output<IBmbDataAlert>();
   closeAlertDetail = output<IBmbDataAlert>();
+  navigationBarEvents = output<IBmbAlertCenterFooterEvent>();
 
   @ViewChild('detailContent', { read: TemplateRef })
   detailContent?: TemplateRef<any>;
@@ -106,21 +107,10 @@ export class BmbAlertCenterComponent {
   isLoading = computed<boolean>(() => {
     return this.bmbAlertCenterService.getLoadingState();
   });
-  tabs: IBmbTab[] = [];
-  selectedTab = 0;
-  selectedAlert: IBmbDataAlert[] = [];
-  orderedEvents = computed<IBmbDataAlertsParsed[]>(() => {
-    return this.orderEvents(this.alertList());
-  });
-  now = DateTime.now();
-  eventsInCategories = computed<IBmbAlertCenterCategories>(() => {
-    return this.orderCategories(this.orderedEvents());
-  });
-  visibleAlert: IBmbDataAlertsParsed | null = null;
-
-  ngOnInit(): void {
-    this.tabs = this.tabsName().map((tab, index) => {
-      return {
+  // tabs: IBmbTab[] = [];
+  tabs = computed<IBmbTab[]>(() => {
+    return this.tabsName().map((tab, index) => {
+      const complexTab: IBmbTab = {
         id: index,
         title: typeof tab === 'string' ? tab : tab.title,
         isActive: index === 0,
@@ -131,12 +121,19 @@ export class BmbAlertCenterComponent {
         isMobile: typeof tab === 'string' ? true : tab.isMobile,
         isDesktop: typeof tab === 'string' ? true : tab.isDesktop,
       };
+      return complexTab;
     });
-  }
-
-  handleTabChange(tabId: IBmbTab): void {
-    this.selectedTab = tabId.id;
-  }
+  });
+  selectedTab = model<number>(0);
+  selectedAlert: IBmbDataAlert[] = [];
+  orderedEvents = computed<IBmbDataAlertsParsed[]>(() => {
+    return this.orderEvents(this.alertList());
+  });
+  now = DateTime.now();
+  eventsInCategories = computed<IBmbAlertCenterCategories>(() => {
+    return this.orderCategories(this.orderedEvents());
+  });
+  visibleAlert: IBmbDataAlertsParsed | null = null;
 
   orderEvents(alerts: IBmbDataAlert[]): IBmbDataAlertsParsed[] {
     const parserDates = alerts.map((alert) => ({
@@ -202,5 +199,34 @@ export class BmbAlertCenterComponent {
 
   handleChangeAlertStatus(alert: IBmbDataAlertsOutput): void {
     this.onChangeAlertStatus.emit(alert);
+  }
+
+  handleNavigationBarEvents(event: IBmbAlertCenterProtoEventFooter): void {
+    const events = this.alertList().filter((alert) =>
+      event.alerts.includes(alert.id.toString()),
+    );
+
+    if (events.length === 0) return;
+    if (event.event === 'tags') {
+      this.navigationBarEvents.emit({
+        alerts: events,
+        event: 'tags',
+      });
+      return;
+    }
+    const names = {
+      isRead: 'read',
+      isFavorite: 'favorite',
+      isArchived: 'archived',
+    };
+    const eventName = names[event.event] || event.event;
+    const isPositiveOperation = events.some((alert) => !alert[event.event]);
+    const eventType = isPositiveOperation
+      ? `add_${eventName}`
+      : `remove_${eventName}`;
+    this.navigationBarEvents.emit({
+      alerts: events,
+      event: eventType as IBmbAlertCenterFooterEventName,
+    });
   }
 }

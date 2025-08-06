@@ -13,7 +13,7 @@ import { BmbBadgeComponent } from '../../bmb-badge/bmb-badge.component';
 import { BmbImageComponent } from '../../bmb-image/bmb-image.component';
 import { IBbmBgAppearance } from '../../bmb-advertisement-card/types';
 import { BmbListGroupStatusService } from '../bmb-list-group.service';
-// import { IBmbContrast } from '../../../types/colors';
+import { IBmbContrast } from '../../../types/colors';
 
 @Component({
   selector: 'bmb-list-group-item',
@@ -33,7 +33,7 @@ import { BmbListGroupStatusService } from '../bmb-list-group.service';
   encapsulation: ViewEncapsulation.None,
 })
 export class BmbListGroupItemComponent {
-  // appearance = input<IBmbContrast>('default');
+  appearanceContrast = input<IBmbContrast>('default');
   id = input.required<string>();
   isDisabled = input<boolean>(false);
   isActive = input<boolean>(false);
@@ -71,7 +71,7 @@ export class BmbListGroupItemComponent {
 
     const classNames = ['bmb_list-group-item'];
 
-    // classNames.push(`bmb_list-group-item-${this.appearance()}`);
+    classNames.push(`bmb_list-group-item-${this.appearanceContrast()}`);
 
     if (isElementSelected) classNames.push('bmb_list-group-item-selected');
     if (this.isDisabled()) classNames.push('bmb_list-group-item-disabled');

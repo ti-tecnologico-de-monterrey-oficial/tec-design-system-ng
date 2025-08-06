@@ -46,5 +46,10 @@ export const routes: Routes = [
         (a) => a.AlertsPageComponent,
       ),
   },
+  {
+    path: 'flex',
+    loadComponent: () =>
+      import('./pages/flex/flex.component').then((f) => f.FlexComponent),
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];

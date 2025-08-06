@@ -1,26 +1,38 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbRadialComponent } from './bmb-radial.component';
 import {
+  getBasicExampleBlock,
   getCheckboxOrRadialArchitecture,
-  getDescribeTypeTextBlock,
   getFieldDescription,
+  getFormatName,
   getFormExampleBlock,
+  getOnEvent,
+  IBmbOnEvent,
 } from '../../utils/doc/utils';
-import { InputParameterDescriptions } from '../../utils/doc/parameterDescriptions';
+import {
+  DBmbInputParamDesc,
+  getOnEventParam,
+} from '../../utils/doc/parameterDescriptions';
 
 const inputName = 'radial_group';
-const additionalBlock = `handleRadial(element: HTMLInputElement): void {
-    console.log('Radio value:', element.value);
-    console.log('Radio name:', element.name);
-    //Add your code
-  }`;
+const formatName: string = getFormatName(inputName, '_');
+const additionalBlock: string = `
+    console.log('${formatName} checked state:', event.checked);
+    console.log('${formatName} name:', event.name); `;
+const handleChange: IBmbOnEvent = getOnEvent(
+  '',
+  `${formatName}Change`,
+  'HTMLInputElement',
+  true,
+  additionalBlock,
+);
 const inputExample = `<bmb-radial
   inputId="radial_id1"
   name="${inputName}"
   label="Radial A"
   value="A"
   [control]="getFormControl('${inputName}')"
-  (change)="handleRadial($event)"
+  (change)="${handleChange.propertyValue}"
   />
   <bmb-radial
   inputId="radial_id2"
@@ -28,8 +40,15 @@ const inputExample = `<bmb-radial
   label="Radial B"
   value="B"
   [control]="getFormControl('${inputName}')"
-  (change)="handleRadial($event)"
+  (change)="${handleChange.propertyValue}"
   />`;
+const onChange: IBmbOnEvent = getOnEvent(
+  'state of the radial',
+  'change',
+  handleChange.type,
+  false,
+  additionalBlock,
+);
 
 export default {
   title: 'Components/Inputs/Radial',
@@ -48,20 +67,20 @@ ${getFieldDescription(
   'https://bamboo.tec.mx/latest/componentes/radial/descripcion-general-rxLTXDDQ',
 )}
 ${getCheckboxOrRadialArchitecture('radial')}
-${getFormExampleBlock('BmbRadialComponent', inputName, additionalBlock, inputExample)}
-${getDescribeTypeTextBlock('HTML')}
+${getFormExampleBlock('BmbRadialComponent', inputName, handleChange.propertyValue, inputExample)}
+${getBasicExampleBlock('BmbRadialComponent', '', onChange.handleExample)}
         `,
       },
     },
   },
   argTypes: {
-    inputId: InputParameterDescriptions.inputId,
-    id: InputParameterDescriptions.id,
+    inputId: DBmbInputParamDesc.inputId,
+    id: DBmbInputParamDesc.id,
     checked: {
       control: { type: 'boolean' },
       description: `
 Sets the value given to the radial when true.
-${InputParameterDescriptions.value.description}
+${DBmbInputParamDesc.value.description}
 `,
       table: {
         category: 'Properties',
@@ -69,8 +88,8 @@ ${InputParameterDescriptions.value.description}
         type: { summary: 'boolean' },
       },
     },
-    disabled: InputParameterDescriptions.disabledFormControl,
-    required: InputParameterDescriptions.isRequired,
+    disabled: DBmbInputParamDesc.disabled,
+    required: DBmbInputParamDesc.isRequired,
     value: {
       control: { type: 'text' },
       description: 'Sets the value of the control when the radial is true.',
@@ -81,35 +100,24 @@ ${InputParameterDescriptions.value.description}
       },
     },
     name: {
-      ...InputParameterDescriptions.value,
+      ...DBmbInputParamDesc.value,
       description: `
-${InputParameterDescriptions.value.description}
+${DBmbInputParamDesc.value.description}
 
 Multiple radials can share the same name to create a group where one item can be selected.
       `,
     },
-    label: InputParameterDescriptions.radialLabel,
-    ariaDescribedby: InputParameterDescriptions.ariaDescribedBy,
-    ariaLabel: InputParameterDescriptions.ariaLabel,
-    ariaLabelledby: InputParameterDescriptions.ariaDescribedBy,
-    labelPosition: InputParameterDescriptions.radialLabelPosition,
-    control: InputParameterDescriptions.control,
-    errorMessage: InputParameterDescriptions.errorMessage,
-    helperMessage: InputParameterDescriptions.helperMessage,
-    showError: InputParameterDescriptions.showError,
-    change: {
-      control: {
-        type: '',
-      },
-      description: `
-Emits an event when the state of the the radial changes.
-      `,
-      table: {
-        category: 'Events',
-        type: { summary: '(change)="handleRadial($event)"' },
-      },
-    },
-    onKeyDown: InputParameterDescriptions.onKeyDown,
+    label: DBmbInputParamDesc.radialLabel,
+    ariaDescribedby: DBmbInputParamDesc.ariaDescribedBy,
+    ariaLabel: DBmbInputParamDesc.ariaLabel,
+    ariaLabelledby: DBmbInputParamDesc.ariaDescribedBy,
+    labelPosition: DBmbInputParamDesc.radialLabelPosition,
+    control: DBmbInputParamDesc.control,
+    errorMessage: DBmbInputParamDesc.errorMessage,
+    helperMessage: DBmbInputParamDesc.helperMessage,
+    showError: DBmbInputParamDesc.showError,
+    change: getOnEventParam(onChange),
+    onKeyDown: DBmbInputParamDesc.onKeyDown,
   },
   args: {
     inputId: 'radio1',
@@ -125,6 +133,9 @@ Emits an event when the state of the the radial changes.
     ariaLabelledby: '',
     change: () => {
       console.log('Radial clicked');
+    },
+    onKeyDown: () => {
+      console.log('Radial onKeyDown');
     },
   },
 } as Meta<typeof BmbRadialComponent>;

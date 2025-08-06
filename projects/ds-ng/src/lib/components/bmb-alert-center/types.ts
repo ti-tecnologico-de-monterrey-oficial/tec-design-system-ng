@@ -2,7 +2,7 @@ import { DateTime } from 'luxon';
 import { IBbmBgAppearance } from '../bmb-advertisement-card/types';
 import { IButtonAppearance } from '../../types';
 
-interface IBmbAlertTag {
+export interface IBmbAlertTag {
   text: string;
   color: IBbmBgAppearance;
 }
@@ -29,6 +29,12 @@ export interface IBmbDataAlert {
   isArchived: boolean;
 }
 
+export type IBmbDataAlertsEventType =
+  | 'isRead'
+  | 'tags'
+  | 'isFavorite'
+  | 'isArchived';
+
 export interface IBmbDataAlertsOutput {
   type: string;
   data: string[];
@@ -53,4 +59,29 @@ export interface IBmbAlertEmptyState {
   showButton?: boolean;
   size: 'large' | 'medium' | 'small';
   tertiaryText?: string;
+}
+
+export interface IBmbAlertCenterTabConfig {
+  title: string;
+  isMobile: boolean;
+  isDesktop: boolean;
+}
+
+export interface IBmbAlertCenterProtoEventFooter {
+  event: IBmbDataAlertsEventType;
+  alerts: string[];
+}
+
+export type IBmbAlertCenterFooterEventName =
+  | 'add_read'
+  | 'remove_read'
+  | 'add_favorite'
+  | 'remove_favorite'
+  | 'add_archived'
+  | 'remove_archived'
+  | 'tags';
+
+export interface IBmbAlertCenterFooterEvent {
+  alerts: IBmbDataAlert[];
+  event: IBmbAlertCenterFooterEventName;
 }

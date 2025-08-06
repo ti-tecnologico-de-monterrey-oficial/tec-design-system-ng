@@ -4,7 +4,7 @@ import {
   getBasicExampleBlock,
   getGeneralDescription,
 } from '../../utils/doc/utils';
-import { InputParameterDescriptions } from '../../utils/doc/parameterDescriptions';
+import { DBmbInputParamDesc } from '../../utils/doc/parameterDescriptions';
 
 const importComments = `// optional you can customize the bot list from:
 // import { defaultBotList, IBotType } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
@@ -61,15 +61,16 @@ ${getBasicExampleBlock('BmbChatBarComponent', importComments)}
         'onDrop',
         'onFileSelect',
         'onResize',
-        'clickOutside',
+        'autoResize',
+        'handleKeyDown',
       ],
     },
   },
   argTypes: {
     placeholder: {
-      ...InputParameterDescriptions.placeholder,
+      ...DBmbInputParamDesc.placeholder,
       table: {
-        ...InputParameterDescriptions.placeholder.table,
+        ...DBmbInputParamDesc.placeholder.table,
         defaultValue: { summary: '¿Qué deseas encontrar hoy?' },
       },
     },

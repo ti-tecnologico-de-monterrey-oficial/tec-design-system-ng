@@ -1,20 +1,37 @@
 import { Meta, StoryObj, componentWrapperDecorator } from '@storybook/angular';
 import { BmbDatepickerComponent } from './bmb-datepicker.component';
-import { InputParameterDescriptions } from '../../utils/doc/parameterDescriptions';
+import {
+  DBmbGenericParamDesc,
+  DBmbIconParamDesc,
+  DBmbInputParamDesc,
+  getOnEventParam,
+} from '../../utils/doc/parameterDescriptions';
 import {
   getArchitectureSection,
   getBasicExampleBlock,
   getFieldDescription,
+  getFormatName,
   getFormExampleBlock,
+  getOnEvent,
+  IBmbOnEvent,
 } from '../../utils/doc/utils';
 
 const inputName = 'date_picker';
-const inputExample = `<bmb-datepicker
-  inputId="${inputName}_id"
-  name="${inputName}"
-  label="Date"
-  [control]="getFormControl('${inputName}')"
+const formatName: string = getFormatName(inputName, '_');
+const handleChange: IBmbOnEvent = getOnEvent(
+  '',
+  `${formatName}Change`,
+  'string',
+  true,
+);
+const inputExample = `  <bmb-datepicker
+    inputId="${inputName}_id"
+    name="${inputName}"
+    label="Date"
+    [control]="getFormControl('${inputName}')"
+    (onChange)="${handleChange.propertyValue}"
   />`;
+const onChange: IBmbOnEvent = getOnEvent('date', 'onChange', handleChange.type);
 
 export default {
   title: 'Components/Inputs/Calendar date picker',
@@ -69,39 +86,37 @@ ${getArchitectureSection(
   'input',
   'components-inputs-text-input',
 )}
-${getFormExampleBlock('BmbDatepickerComponent', inputName, '', inputExample)}
-${getBasicExampleBlock('BmbDatepickerComponent')}
+${getFormExampleBlock('BmbDatepickerComponent', inputName, handleChange.handleExample, inputExample)}
+${getBasicExampleBlock('BmbDatepickerComponent', '', onChange.handleExample)}
         `,
       },
     },
   },
   argTypes: {
-    control: InputParameterDescriptions.control,
+    control: DBmbInputParamDesc.control,
     icon: {
-      ...InputParameterDescriptions.icon,
+      ...DBmbIconParamDesc.icon,
       table: {
-        ...InputParameterDescriptions.icon.table,
+        ...DBmbIconParamDesc.icon.table,
         defaultValue: { summary: 'calendar_month' },
       },
     },
-    invalidFormatErrorMessage:
-      InputParameterDescriptions.invalidFormatErrorMessage,
-    requiredFieldErrorMessage:
-      InputParameterDescriptions.requiredFieldErrorMessage,
-    isRequired: InputParameterDescriptions.isRequired,
+    invalidFormatErrorMessage: DBmbInputParamDesc.invalidFormatErrorMessage,
+    requiredFieldErrorMessage: DBmbInputParamDesc.requiredFieldErrorMessage,
+    isRequired: DBmbInputParamDesc.isRequired,
     placeholder: {
-      ...InputParameterDescriptions.placeholder,
+      ...DBmbInputParamDesc.placeholder,
       table: {
-        ...InputParameterDescriptions.placeholder.table,
+        ...DBmbInputParamDesc.placeholder.table,
         defaultValue: { summary: 'value assigned to the dateFormat property' },
       },
     },
-    disabled: InputParameterDescriptions.disabledFormControl,
-    label: InputParameterDescriptions.label,
-    appearance: InputParameterDescriptions.deprecated,
-    isClearable: InputParameterDescriptions.isClearable,
-    dateFormat: InputParameterDescriptions.dateFormat,
-    name: InputParameterDescriptions.name,
+    disabled: DBmbInputParamDesc.disabled,
+    label: DBmbInputParamDesc.label,
+    appearance: DBmbGenericParamDesc.deprecated,
+    isClearable: DBmbInputParamDesc.isClearable,
+    dateFormat: DBmbInputParamDesc.dateFormat,
+    name: DBmbInputParamDesc.name,
     disableDatesBefore: {
       control: {
         type: 'text',
@@ -144,22 +159,15 @@ This date must have the same format as \`dateFormat\`.
       },
     },
     helperMessage: {
-      ...InputParameterDescriptions.helperMessage,
+      ...DBmbInputParamDesc.helperMessage,
       table: {
-        ...InputParameterDescriptions.helperMessage.table,
+        ...DBmbInputParamDesc.helperMessage.table,
         defaultValue: { summary: 'value assigned to the dateFormat property' },
       },
     },
-    value: InputParameterDescriptions.value,
-    inputId: InputParameterDescriptions.inputId,
-    onChange: {
-      control: { type: 'string' },
-      description: 'Emits change event.',
-      table: {
-        category: 'Events',
-        type: { summary: 'string' },
-      },
-    },
+    value: DBmbInputParamDesc.value,
+    inputId: DBmbInputParamDesc.inputId,
+    onChange: getOnEventParam(onChange),
   },
 
   args: {
@@ -179,6 +187,9 @@ This date must have the same format as \`dateFormat\`.
     disableDatesBefore: '',
     disableDatesAfter: '',
     lang: 'es-MX',
+    onChange: () => {
+      console.info('onChange');
+    },
   },
 } as Meta<typeof BmbDatepickerComponent>;
 

@@ -3,7 +3,12 @@
     <section class="bmb_home_section-header">
       <h3 class="bmb_home_section-title">{{ title() }}</h3>
       <a class="bmb_home_section-link" [href]="link()" [target]="target()">
-        <bmb-icon class="bmb_home_section-icon" [icon]="icon()" [size]="24" />
+        <bmb-icon
+          class="bmb_home_section-icon"
+          [icon]="icon()"
+          [size]="24"
+          alt="Home section icon"
+        />
       </a>
     </section>
     <ng-content></ng-content>

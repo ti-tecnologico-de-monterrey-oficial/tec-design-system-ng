@@ -63,20 +63,18 @@ Below is an example of how you can use this component in HTML:
     },
   },
   argTypes: {
-    // appearance: {
-    //   name: 'Appearance',
-    //   control: {
-    //     type: 'select',
-    //   },
-    //   options: ['default', 'primary', 'alternative'],
-    //   description: 'Defines the appearance style.',
-    //   table: {
-    //     category: 'Properties',
-    //     type: { summary: 'string' },
-    //   },
-    // },
+    appearanceContrast: {
+      control: {
+        type: 'select',
+      },
+      options: ['default', 'primary', 'alternative'],
+      description: 'Defines the appearance style.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+      },
+    },
     borderRadius: {
-      name: 'Border radius',
       control: {
         type: 'select',
       },
@@ -89,7 +87,6 @@ Below is an example of how you can use this component in HTML:
       description: 'Determines the corner radius size',
     },
     margin: {
-      name: 'Margin',
       control: {
         type: 'select',
       },
@@ -101,7 +98,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     paddingHeader: {
-      name: 'Padding Header ',
       control: {
         type: 'select',
       },
@@ -113,7 +109,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     paddingContent: {
-      name: 'Padding Content ',
       control: {
         type: 'select',
       },
@@ -125,7 +120,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     icon: {
-      name: 'Icon',
       control: { type: 'text' },
       description:
         'Name of the icon to be displayed in the input field. Refer to Material Icons for options.',
@@ -135,7 +129,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     accordionId: {
-      name: 'Accordion Id',
       control: { type: 'text' },
       description:
         'Is a identifier for the component, this attribute is REQUIRED to use the accordion control directive',
@@ -145,7 +138,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     hideToggle: {
-      name: 'Hide Toggle',
       control: { type: 'boolean' },
       description:
         'This property hides or show the toggle to collapse the accordion',
@@ -156,7 +148,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     active: {
-      name: 'Active',
       control: { type: 'boolean' },
       description:
         'When this property is set as true, the accordion is not collapsed, so the content is shown.',
@@ -167,7 +158,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     disabled: {
-      name: 'Disabled',
       control: { type: 'boolean' },
       description:
         'If set to true, disables the accordion, making it non-interactive and unclickable. This is useful for conditions where user interaction should be restricted.',
@@ -178,7 +168,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     expanded: {
-      name: 'Expanded',
       control: { type: 'boolean' },
       description: 'If set to true, expanded the accordion.',
       table: {
@@ -188,7 +177,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     lockToggle: {
-      name: 'Lock toggle',
       control: { type: 'boolean' },
       description:
         'If set to true, the click interaction is disabled, but without adding disabled styles.',
@@ -199,7 +187,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     closed: {
-      name: 'Closed',
       control: null,
       description: 'Emmit the close event.',
       table: {
@@ -208,7 +195,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     opened: {
-      name: 'Opened',
       control: null,
       description: 'Emmit the open event.',
       table: {
@@ -217,7 +203,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     onClick: {
-      name: 'On Click',
       control: null,
       description: 'Emmit the click event.',
       table: {
@@ -227,7 +212,7 @@ Below is an example of how you can use this component in HTML:
     },
   },
   args: {
-    // appearance: 'default',
+    appearanceContrast: 'default',
     borderRadius: 'm',
     margin: 'm',
     paddingHeader: 'm',

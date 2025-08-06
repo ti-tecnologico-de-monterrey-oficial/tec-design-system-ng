@@ -8,3 +8,62 @@
     }
   </ul>
 </div>
+<bmb-frequent-apps-selector
+  [title]="'Services'"
+  [apps]="[
+    {
+      icon: 'https://www.enago.com/academy/wp-content/uploads/2017/12/ImageJ3.png',
+      title: 'Home',
+      appearance: 'red',
+      callbackParam: { customData: 'Home Data' },
+    },
+    {
+      icon: 'settings',
+      title: 'My Page',
+      link: '/my-page',
+      appearance: 'yellow',
+    },
+    {
+      icon: 'settings',
+      title: 'School Calendar',
+      link: 'https://configuration.com',
+      target: '_blank',
+      appearance: 'yellow',
+    },
+    {
+      icon: 'settings',
+      title: 'Configuration',
+      link: 'https://configuration.com',
+      target: '_blank',
+      appearance: 'yellow',
+    },
+    {
+      icon: 'home',
+      title: 'Home',
+      link: '/home',
+      target: '_blank',
+      appearance: 'red',
+    },
+    {
+      icon: 'settings',
+      title: 'My Page',
+      link: '/my-page',
+      appearance: 'yellow',
+    },
+    {
+      icon: 'settings',
+      title: 'School Calendar',
+      link: 'https://configuration.com',
+      target: '_blank',
+      appearance: 'yellow',
+    },
+    {
+      icon: 'settings',
+      title: 'Configuration',
+      link: 'https://configuration.com',
+      target: '_blank',
+      appearance: 'yellow',
+    },
+  ]"
+  [layout]="'button'"
+></bmb-frequent-apps-selector>
