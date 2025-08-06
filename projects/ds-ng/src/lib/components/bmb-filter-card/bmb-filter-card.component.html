@@ -27,8 +27,8 @@
                   <bmb-tag
                     [text]="control.label"
                     [dismissible]="false"
-                    [activityTag]="
-                      filterForm.get(control.name)?.value === control.label
+                    [isActive]="
+                      storedValues[control.name]?.checked ?? false
                     "
                     (clickedTag)="onControlChange(control, $event)"
                   />
