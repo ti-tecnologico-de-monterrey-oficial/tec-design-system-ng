@@ -50,6 +50,7 @@ $colors: (
     outline: 0 none;
   }
 
+  &-active,
   &:active:not(.bmb_tag-activity) {
     background-color: var(--menu_select-surface-activated);
     border-color: var(--menu_select-surface-activated);

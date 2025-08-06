@@ -32,7 +32,7 @@ export class BmbHeaderMobileComponent {
   userAltImage = input<string>('');
   userLink = input<string>('');
   userTarget = input<IBmbTargetLink>('_self');
-
+  trailingIconNotifications = input<number>(0);
   logo = input<string>('');
   altLogo = input<string>('');
   logoLink = input<string>('');

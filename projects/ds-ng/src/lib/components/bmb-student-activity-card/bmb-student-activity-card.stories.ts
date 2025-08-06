@@ -35,7 +35,6 @@ Below is an example of how you can use this component in HTML:
   },
   argTypes: {
     startDate: {
-      name: 'Start date',
       control: null,
       description: 'Set the start date label <luxon DateTime>.',
       table: {
@@ -44,7 +43,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     endDate: {
-      name: 'End date',
       control: null,
       description: 'Set the end date label <luxon DateTime>.',
       table: {
@@ -53,7 +51,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     title: {
-      name: 'Title',
       control: {
         type: 'text',
       },
@@ -65,7 +62,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     modalTitle: {
-      name: 'Modal title',
       control: {
         type: 'text',
         description: 'Set the title on the modal header.',
@@ -77,7 +73,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     location: {
-      name: 'Location',
       control: {
         type: 'text',
         description: 'Set the location text in the card.',
@@ -89,7 +84,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     responsible: {
-      name: 'Responsible',
       control: {
         type: 'text',
         description: 'Set the responsible text in the card.',
@@ -101,7 +95,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     detail: {
-      name: 'Detail',
       control: {
         type: 'text',
         description: 'Set the content text.',
@@ -113,7 +106,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     type: {
-      name: 'Type',
       control: 'select',
       options: ['academic', 'life', 'events'],
       description: 'Set the color schema for the modal.',
@@ -124,7 +116,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     status: {
-      name: 'Status',
       control: {
         type: 'text',
         description: 'Set the status label.',
@@ -136,7 +127,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     isListItem: {
-      name: 'Is List Item',
       control: 'boolean',
       description: 'Set the card as a list item.',
       table: {
@@ -146,7 +136,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     image: {
-      name: 'Image',
       control: 'text',
       description: 'Set the image URL.',
       table: {
@@ -156,13 +145,21 @@ Below is an example of how you can use this component in HTML:
       },
     },
     dateFormat: {
-      name: 'Date Format',
       control: 'text',
       description: 'Set the date format.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
         defaultValue: { summary: 'yyyy-MM-dd HH:mm:ss' },
+      },
+    },
+    badgeText: {
+      control: 'text',
+      description: 'Set the badge text.',
+      table: {
+        category: 'Properties',
+        type: { summary: 'string' },
+        defaultValue: { summary: '' },
       },
     },
   },
@@ -177,6 +174,7 @@ Below is an example of how you can use this component in HTML:
     isListItem: false,
     image: 'https://picsum.photos/id/64/200/300',
     dateFormat: 'yyyy-MM-dd HH:mm:ss',
+    badgeText: 'Badge text',
   },
 } as Meta<typeof BmbStudentActivityCardComponent>;
 

@@ -83,6 +83,10 @@ $backgrounds: (
       height: rem.rem_calc(48);
       width: rem.rem_calc(48);
     }
+
+    .bmb_interactive_icon-text {
+      width: calc(100% - 3rem);
+    }
   }
 
   &.bmb_interactive_icon-app_drawer {

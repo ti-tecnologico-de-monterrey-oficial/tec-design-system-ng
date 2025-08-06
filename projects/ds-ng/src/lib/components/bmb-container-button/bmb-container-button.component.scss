@@ -79,6 +79,15 @@
   &-left {
     @include button_container();
     flex: 1;
+
+    .bmb_icon-figure {
+      width: 100%;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
   }
 
   &-right {
