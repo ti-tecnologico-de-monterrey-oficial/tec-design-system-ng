@@ -12,8 +12,9 @@ import { BmbButtonDirective } from '../../directives/bmb-button/button.directive
 import { CommonModule } from '@angular/common';
 import { BmbThreeColsComponent } from '../bmb-three-cols/bmb-three-cols.component';
 import { BmbTitleContentComponent } from '../bmb-title-content/bmb-title-content.component';
-import { IBmbModalType, IBmbModalAlertStyle } from './bmb-modal.interface';
+import { IBmbModalType, IBmbModalAlertStyle, IBmbModalSize } from './bmb-modal.interface';
 import { BmbActionIconComponent } from '../bmb-action-icon/bmb-action-icon.component';
+import { BmbNativeModalService } from '../../services/native-modal.service';
 
 export interface IBmbActionButton {
   buttonName: string;
@@ -46,10 +47,12 @@ export class BmbNativeModalComponent {
   actions = input<IBmbActionButton[]>([]);
   type = input<IBmbModalType>();
   alertIcon = input<IBmbModalAlertStyle>();
-  modalID = input.required<string>();
+  modalId = input.required<string>();
+  size = input<IBmbModalSize>('medium');
 
   actionsClicked = output<{ buttonName: string; event: MouseEvent }>();
-  constructor() {}
+  closeModalClicked = output<{ modalId: string; event: MouseEvent }>();
+  constructor(private modalService: BmbNativeModalService) {}
 
   svgUrl: string = 'assets/svg/';
 
@@ -89,6 +92,7 @@ export class BmbNativeModalComponent {
   }
 
   handleCloseModal(event: MouseEvent): void {
-    this.actionsClicked.emit({ buttonName: 'close', event });
+    this.closeModalClicked.emit({ modalId: this.modalId(), event });
+    this.modalService.closeModal(this.modalId());
   }
 }

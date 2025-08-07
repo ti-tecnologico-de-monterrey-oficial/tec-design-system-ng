@@ -55,6 +55,14 @@
   </div>
 </section>
 
+@for (item of modalSignal(); track $index) {
+  <bmb-native-modal
+    [title]="item.title || ''"
+    [content]="item.content || ''"
+    [modalId]="item.modalId || ''"
+  />
+}
+
 <ng-template
   #commonTemplate
   let-notifications="notifications"

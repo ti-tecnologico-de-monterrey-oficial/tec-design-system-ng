@@ -26,3 +26,10 @@ export interface ModalDataConfig {
   secondaryAction?: () => void;
   closeAction?: () => void;
 }
+export interface IBmbNativeModal
+  extends Omit<
+    ModalDataConfig,
+    'primaryAction' | 'secondaryAction' | 'closeAction' | 'extendButtons' | 'alertStyle'
+  > {
+  modalId?: string;
+}

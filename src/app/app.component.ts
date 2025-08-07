@@ -8,7 +8,8 @@ import {
   BmbVerticalLayoutItemDirective,
   BmbSidebarComponent,
   SidebarElement,
-  BmbNativeModalComponent,
+  BmbNativeModalService,
+  IBmbNativeModal,
 } from '../../projects/ds-ng/src/public-api';
 
 @Component({
@@ -22,7 +23,6 @@ import {
     BmbVerticalLayoutDirective,
     BmbVerticalLayoutItemDirective,
     BmbSidebarComponent,
-    BmbNativeModalComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -31,6 +31,7 @@ import {
 })
 export class AppComponent {
   private router = inject(Router);
+  constructor(private modalService: BmbNativeModalService) {}
 
   routes: SidebarElement[][] = [
     [
@@ -57,8 +58,13 @@ export class AppComponent {
     ],
   ];
 
-  handleUserProfileClick(event: MouseEvent): void {
-    console.log('User profile clicked', event);
+  handleUserProfileClick(): void {
+    const data: IBmbNativeModal = {
+      title: 'User Profile',
+      subtitle: 'This is your user profile modal',
+      content: 'More information about the user profile.',
+    };
+    this.modalService.openModal(data);
   }
 
   handleAlertButtonClick(): void {
