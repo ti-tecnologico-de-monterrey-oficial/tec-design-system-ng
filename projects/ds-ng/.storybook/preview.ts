@@ -60,6 +60,8 @@ const preview: Preview = {
           'ngAfterViewInit',
           'isControlNull',
           'clickOutside',
+          'ngOnDestroy',
+          'getClasses',
         ],
       },
       source: {

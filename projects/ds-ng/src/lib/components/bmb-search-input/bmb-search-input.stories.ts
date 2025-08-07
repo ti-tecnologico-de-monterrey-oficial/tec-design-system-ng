@@ -111,7 +111,7 @@ ${getBasicExampleBlock('BmbSearchInputComponent', '', onChange.handleExample)}
     },
     onClearField: getOnEventParam(
       getOnEvent('', 'onClearField', 'boolean'),
-      'the search is cleared',
+      'when the search is cleared',
       'other',
     ),
   },

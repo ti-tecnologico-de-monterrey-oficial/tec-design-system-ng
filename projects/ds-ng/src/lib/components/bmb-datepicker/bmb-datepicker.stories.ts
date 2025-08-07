@@ -2,7 +2,6 @@ import { Meta, StoryObj, componentWrapperDecorator } from '@storybook/angular';
 import { BmbDatepickerComponent } from './bmb-datepicker.component';
 import {
   DBmbGenericParamDesc,
-  DBmbIconParamDesc,
   DBmbInputParamDesc,
   getOnEventParam,
 } from '../../utils/doc/parameterDescriptions';
@@ -95,9 +94,9 @@ ${getBasicExampleBlock('BmbDatepickerComponent', '', onChange.handleExample)}
   argTypes: {
     control: DBmbInputParamDesc.control,
     icon: {
-      ...DBmbIconParamDesc.icon,
+      ...DBmbInputParamDesc.icon,
       table: {
-        ...DBmbIconParamDesc.icon.table,
+        ...DBmbInputParamDesc.icon.table,
         defaultValue: { summary: 'calendar_month' },
       },
     },

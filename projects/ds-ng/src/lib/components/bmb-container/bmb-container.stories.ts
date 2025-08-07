@@ -1,5 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbContainerComponent } from './bmb-container.component';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+} from '../../utils/doc/utils';
 
 export default {
   title: 'Components/Containers/Global container',
@@ -8,27 +13,14 @@ export default {
     docs: {
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbContainerComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbContainerComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(`${getGeneralComponentDescription('container')} to define specific sections of content, this component encloses and groups other HTML elements.`, 'https://bamboo.tec.mx/latest/componentes/global-container/descripcion-general-MJF3dmwC')}
+${getBasicExampleBlock('BmbContainerComponent')}
         `,
       },
     },
   },
   argTypes: {
     appearance: {
-      name: 'Appearance',
       control: {
         type: 'radio',
       },
@@ -43,10 +35,29 @@ Below is an example of how you can use this component in HTML:
       table: {
         category: 'Properties',
         defaultValue: { summary: 'primary-container' },
-        type: { summary: 'string' },
+        type: {
+          summary: 'IBmbAppearanceType',
+          detail: `IBmbAppearanceType =
+  | 'primary-container'
+  | 'primary-home'
+  | 'primary-header'
+  | 'secondary-container'
+  | 'contrast-box-container'
+  | 'button-container'`,
+        },
       },
       description:
-        'The appearance of the container, affecting its visual style.',
+        'Sets the appearance of the container, affecting its visual style.',
+    },
+    isHidden: {
+      control: { type: 'boolean' },
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: false },
+        type: { summary: 'boolean' },
+      },
+      description:
+        'Hides the container when true. Determines whether the container is hidden.',
     },
   },
   args: {

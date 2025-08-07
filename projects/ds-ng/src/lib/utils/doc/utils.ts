@@ -97,7 +97,7 @@ export const getOnEvent = (
   additionalBlock: string = '',
 ): IBmbOnEvent => {
   const handleName: string = isHandle ? `handle${paramName}` : paramName;
-  const _type: string = `event: ${type}`;
+  const _type: string = type === 'void' ? '' : `event: ${type}`;
   const onEvent: IBmbOnEvent = {
     name,
     type,
@@ -107,7 +107,7 @@ export const getOnEvent = (
     //Add your code
   }
   `,
-    propertyValue: `${handleName}($event)`,
+    propertyValue: `${handleName}(${_type === '' ? '' : '$event'})`,
   };
 
   return onEvent;
@@ -126,7 +126,7 @@ export const generateLabel = (inputName: string): string =>
   getFormatName(inputName, '_', ' ');
 
 export const getEmptyStateMessage = () => `
-###Important:
+###‼︎Important:
 Remember to use the \`empty state\` for the cases that apply to this. Related documentation is available [here](https://bamboo.tec.mx/latest/guia-ux-writing/mensajes-del-producto/empty-states-OQYyq6h8-OQYyq6h8).
 `;
 
@@ -177,6 +177,7 @@ Below is a *${typeExampleName}* example with the basic code to use this componen
 
 const getTypescriptExampleBlock = (
   inputName: string,
+  additionalAngularCommonImportName: string = '',
   additionalImportName: string = '',
   additionalImportFrom: string = '',
   importComments: string = '',
@@ -185,9 +186,9 @@ const getTypescriptExampleBlock = (
 ): string =>
   `
 \`\`\`typescript
-__import { CommonModule } from '@angular/common';
+__import { CommonModule${additionalAngularCommonImportName} } from '@angular/common';
 __import { Component, ChangeDetectionStrategy } from '@angular/core';${
-    additionalImportName
+    !!additionalImportName && !!additionalImportFrom
       ? `
 __import { ${additionalImportName} } from '${additionalImportFrom}';`
       : ''
@@ -223,6 +224,7 @@ __`.replaceAll('__', replaceChar);
 
 export const getTypescriptExampleTextBlock = (
   inputName: string,
+  additionalAngularCommonImportName: string = '',
   additionalImportName: string = '',
   additionalImportFrom: string = '',
   importComments: string = '',
@@ -234,7 +236,7 @@ export const getTypescriptExampleTextBlock = (
 ): string =>
   `
 __${getDescribeTypeTextBlock('TypeScript', additionalTitle, isLevel3, additionalText)}
-__${getTypescriptExampleBlock(inputName, additionalImportName, additionalImportFrom, importComments, additionalBlock, replaceChar)}
+__${getTypescriptExampleBlock(inputName, additionalAngularCommonImportName, additionalImportName, additionalImportFrom, importComments, additionalBlock, replaceChar)}
 __`.replaceAll('__', replaceChar);
 
 export const getReactiveFormTitle = (bmbInputName: string): string => `
@@ -253,6 +255,7 @@ ${getReactiveFormTitle(bmbInputName)}
 ><br/>
 >${getTypescriptExampleTextBlock(
   `BmbButtonDirective, ${bmbInputName}`,
+  '',
   'FormControl, FormGroup, ReactiveFormsModule',
   '@angular/forms',
   '',
@@ -360,8 +363,11 @@ export const getBasicExampleBlock = (
   inputName: string,
   importComments: string = '',
   additionalBlock: string = '',
+  additionalAngularCommonImportName: string = '',
+  additionalImportName: string = '',
+  additionalImportFrom: string = '',
 ): string => `
-${getTypescriptExampleTextBlock(inputName, '', '', importComments, '', false, '', additionalBlock)}
+${getTypescriptExampleTextBlock(inputName, additionalAngularCommonImportName, additionalImportName, additionalImportFrom, importComments, '', false, '', additionalBlock)}
 ${getDescribeTypeTextBlock('HTML')}
 `;
 
@@ -622,14 +628,14 @@ ${introductionContent}
     isOmitImportant
       ? ''
       : `
-### Important:
+### ‼︎Important:
 Please refer to the [Variables documentation](/docs/foundations-variables--documentation&globals=#dom-architecture) for details on how to implement ${element} in CSS, where it is detailed that these can be implemented through variables.<br/><br/><br/>`
   }
 >
 >${
     isWarning
       ? `
-### Warning:
+### ⚠ Warning:
 You should be careful when using ${element}, as they can affect ${DESIGN_SYSTEM_TITLE} components. Some components may override this attribute, so check the component's documentation before applying the ${element} class.
 <br/><br/><br/>`
       : ''
@@ -667,6 +673,29 @@ ON THIS PAGE (optional, TABLE OF CONTENTS) [Done, is in preview, if not so add p
 ${getGeneralDescription(`${getGeneralComponentDescription('')} `, '')}
 ${getBasicExampleBlock('')}
 
+ getOnClickParam(
+      getOnEvent('', ''),
+      ``,
+    )
+
+    getOnEventParam(
+          getOnEvent('', '','void'),
+          '',
+          'other'
+        ),
 
 controls: { exclude: ['', ''] },
+controls: {
+        exclude: [
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+          '',
+        ],
+      },
 */
