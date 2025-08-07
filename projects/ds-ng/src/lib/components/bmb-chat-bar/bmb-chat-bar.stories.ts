@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import { componentWrapperDecorator, Meta, StoryObj } from '@storybook/angular';
 import { BmbChatBarComponent } from './bmb-chat-bar.component';
 import {
   getBasicExampleBlock,
@@ -13,6 +13,13 @@ const importComments = `// optional you can customize the bot list from:
 export default {
   title: 'Components/Inputs/AI Chat bar',
   component: BmbChatBarComponent,
+  decorators: [
+    componentWrapperDecorator((story: string) => {
+      return `<div class="bmb_margin-xxl" style="marging-top: height: 14rem;">
+        ${story}
+      </div>`;
+    }),
+  ],
   parameters: {
     docs: {
       description: {

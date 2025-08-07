@@ -1,97 +1,175 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import { componentWrapperDecorator, Meta, StoryObj } from '@storybook/angular';
 import { BmbHitoCardComponent } from './bmb-hito-card.component';
-import { attributes } from '../../utils/doc/utils';
+import {
+  attributes,
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getOnEvent,
+} from '../../utils/doc/utils';
+import {
+  DBmbIconParamDesc,
+  getOnEventParam,
+} from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Components/Containers/Hito card',
   component: BmbHitoCardComponent,
+  decorators: [
+    componentWrapperDecorator((story: string) => {
+      return `
+          <div style="height: 8rem">
+            ${story}
+          </div>`;
+    }),
+  ],
   parameters: {
     docs: {
+      controls: {
+        exclude: [
+          'appearanceBadge',
+          'formatBadgeText',
+          'getClassList',
+          'getHitoIconClass',
+          'handleEventChange',
+          '',
+          '',
+          '',
+          '',
+        ],
+      },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbHitoCardComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbHitoCardComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(`${getGeneralComponentDescription('hito-card')} to highlight an important stage in a project, process or timeline in a content card.`, 'https://bamboo.tec.mx/latest/componentes/hito-card/descripcion-general-rau61m3C')}
+${getBasicExampleBlock('BmbHitoCardComponent')}
         `,
       },
     },
   },
   argTypes: {
-    icon: {
-      name: 'Icon',
-      control: { type: 'text' },
-      description:
-        'Name of the icon to use. Please use Material icons: https://fonts.google.com/icons. The color of the icon depend on the parent.',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-      },
-    },
+    icon: DBmbIconParamDesc.icon,
     title: {
-      name: 'Title',
       control: { type: 'text' },
-      description: 'Set the title text of the card.',
+      description: 'Sets the title text of the card.',
       table: {
         category: 'Properties',
+        defaultValue: { summary: '' },
         type: { summary: 'string' },
       },
     },
     id: {
-      name: 'ID',
       control: { type: 'text' },
       description:
-        'Set the id for the card, this value is send to the parent on the `handleClick` output.',
+        'Sets the id for the card, this value is send to the parent on the `handleClick` output.',
 
       table: {
         category: 'Properties',
-        type: { summary: 'string' },
+        defaultValue: { summary: '' },
+        type: { summary: 'string | number' },
       },
     },
     short_description: {
-      name: 'Short description',
       control: { type: 'text' },
-      description: 'Set the short description text.',
+      description: 'Sets the short description text.',
       table: {
         category: 'Properties',
+        defaultValue: { summary: '' },
         type: { summary: 'string' },
       },
     },
     type: {
-      name: 'Type',
       control: {
         type: 'select',
       },
       options: ['pending', 'done', 'active', 'under_review', 'canceled'],
-      description: 'Set the type for the badge component.',
+      description: 'Sets the type for the badge.',
       table: {
         category: 'Properties',
-        type: { summary: 'ITimelineEventType' },
+        defaultValue: { summary: '' },
+        type: {
+          summary: 'ITimelineEventType | IBmbTimelineCustomEvent',
+          detail: `
+ITimelineEvent {
+  id: number | string;
+  start: string;
+  end: string;
+  description: string;
+  short_description: string;
+  type: ITimelineEventType | IBmbTimelineCustomEvent;
+  related_to?: string[];
+  decision?: string;
+  title: string;
+  image: string;
+  picture_profile?: string;
+  diff?: number;
+  startEvent?: DateTime;
+  endEvent?: DateTime;
+  originalStart?: DateTime;
+  user_first_name?: string;
+  user_last_name?: string;
+  user_email?: string;
+  tags?: string[];
+  icon?: string;
+}
+
+ITimelineEventType =
+  | 'pending'
+  | 'done'
+  | 'active'
+  | 'under_review'
+  | 'canceled'
+
+IBmbTimelineCustomEvent {
+  text: string;
+  type: IBbmBgAppearance;
+}
+
+IBbmBgAppearance =
+  | 'normal'
+  | 'strong'
+  | 'success'
+  | 'info'
+  | 'warning'
+  | 'error'
+  | 'brand'
+  | 'alert'
+  | 'background'
+  | 'disabled'
+  | 'mitec_blue'
+  | 'mitec_red'
+  | 'mitec_green'
+  | 'mitec_orange'
+  | 'mitec_light_green'
+  | 'mitec_purple'
+  | 'creative_violet'
+  | 'creative_indigo'
+  | 'creative_emerald'
+  | 'creative_licorice'
+  | 'creative_darkteal'
+  | 'creative_peach'
+  | 'creative_sepia'
+  | 'creative_softred'
+  | 'creative_wattle'
+  | 'creative_shipcove'
+  | 'creative_plantation'
+  | 'creative_rum'
+  | 'creative_hibiscus'
+  | 'creative_ripelemon'
+          `,
+        },
       },
     },
     sub_content: {
-      name: 'Sub content',
       control: { type: 'text' },
-      description: 'Set the text content at the right.',
+      description: 'Sets the text content at the right.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
       },
     },
     enable_bullet: {
-      name: 'Enable bullet',
       control: { type: 'boolean' },
-      description: 'When set to true, shows a bullet element at the right.',
+      description: 'Shows a bullet element at the right when true.',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
@@ -99,9 +177,9 @@ Below is an example of how you can use this component in HTML:
       },
     },
     is_active: {
-      name: 'Is active',
       control: { type: 'boolean' },
-      description: 'Change the color of the bullet. Selected hito card.',
+      description:
+        'Enables the active state. Change the color of the bullet to indicate the selected hito card.',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
@@ -109,24 +187,28 @@ Below is an example of how you can use this component in HTML:
       },
     },
     isCompact: {
-      name: 'Is compact',
       control: { type: 'boolean' },
-      description: 'Reduce the padding of the card.',
+      description: 'Reduces the padding of the card.',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
         type: { summary: 'boolean' },
       },
     },
-    handleClick: {
-      name: 'Handle click',
-      control: false,
-      description: 'Click event.',
+    alternative_appearance: {
+      control: { type: 'boolean' },
+      description: 'Enables alternative appearance for the hito card.',
       table: {
-        type: { summary: 'function' },
-        category: 'Events',
+        category: 'Properties',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
       },
     },
+    handleClick: getOnEventParam(
+      getOnEvent('', 'handleClick', 'string | number'),
+      'after the hito card is clicked.',
+      'other',
+    ),
   },
   args: {
     icon: 'home',
@@ -138,8 +220,8 @@ Below is an example of how you can use this component in HTML:
     enable_bullet: false,
     is_active: false,
     isCompact: false,
-    onClick: () => {
-      console.log('test');
+    handleClick: () => {
+      console.log('handleClick');
     },
   },
 } as Meta<typeof BmbHitoCardComponent>;

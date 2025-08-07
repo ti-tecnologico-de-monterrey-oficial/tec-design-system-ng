@@ -1,37 +1,60 @@
-import { type Meta, type StoryObj } from '@storybook/angular';
+import { Meta, StoryObj } from '@storybook/angular';
 import { BmbChatBubblesComponent } from './bmb-chat-bubbles.component';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getOnEvent,
+  getSpecialSpecifications,
+} from '../../utils/doc/utils';
+import {
+  getOnClickParam,
+  getOnEventParam,
+} from '../../utils/doc/parameterDescriptions';
+
+const IMPORTANT_DESCRIPTION: string = `‼︎ Important: <br/>
+The event only returns a signal to indicates the click event.
+`;
+const getOnClickAndImportantParam = (
+  elementName: string,
+  additionalDescription: string,
+) =>
+  getOnClickParam(
+    getOnEvent(elementName, additionalDescription),
+    `<br/><br/>${IMPORTANT_DESCRIPTION}`,
+  );
 
 export default {
   title: 'Components/Containers/AI Chat bubble',
   component: BmbChatBubblesComponent,
   parameters: {
     docs: {
+      controls: {
+        exclude: [
+          'handleCopyContent',
+          'handleDislike',
+          'handleLike',
+          'handleRepeat',
+          'handleVoice',
+          'gptActiveIcons',
+          'iconBotDefault',
+        ],
+      },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbChatBubblesComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-// optional you can customize the bot list from:
-// import { defaultBotList, IBotType } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbChatBubblesComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(
+  `${getGeneralComponentDescription('chat-bubble')} displays chat messages with user images, icons, and interactive actions such as repeat, voice, copy, like, and dislike.
+It supports [AI icons](https://bamboo.tec.mx/latest/componentes/ai-chat-bar/ai-icons-PPp7SNig), and allows configuration of available [***AI Chat bar***](/docs/components-inputs-ai-chat-bar--documentation) actions.`,
+  'https://bamboo.tec.mx/latest/componentes/ai-chat-bubble/descripcion-general-kum7HyJA',
+)}
+${getSpecialSpecifications(`### ${IMPORTANT_DESCRIPTION}`)}
+${getBasicExampleBlock('BmbChatBubblesComponent')}
         `,
       },
     },
   },
   argTypes: {
     iconBot: {
-      name: 'Icon Bot',
       control: { type: 'text' },
       description: 'Use the url or the path for the icon bot',
       table: {
@@ -40,10 +63,9 @@ Below is an example of how you can use this component in HTML:
       },
     },
     message: {
-      name: 'Message',
       control: { type: 'object' },
       description:
-        'Set the information requiered for the chat bubble, includes the text, type of the text, image for the user etc.',
+        'Sets the information required for the chat bubble, includes the text, type of the text, image for the user etc.',
       table: {
         category: 'Properties',
         type: { summary: 'IBmbChatMessage' },
@@ -60,9 +82,8 @@ Below is an example of how you can use this component in HTML:
       },
     },
     gptBot: {
-      name: 'GPT Bot',
       control: { type: 'boolean' },
-      description: 'Set if the icon of Gpt will be used in the component.',
+      description: 'Sets if the icon of Gpt will be used in the component.',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
@@ -70,10 +91,9 @@ Below is an example of how you can use this component in HTML:
       },
     },
     gptIcons: {
-      name: 'GPT Icons',
       control: { type: 'boolean' },
       description:
-        'Set the extra icons, these icons are only for the response from the bot, not for the user.',
+        'Sets the extra icons, these icons are only for the response from the bot, not for the user.',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
@@ -81,62 +101,24 @@ Below is an example of how you can use this component in HTML:
       },
     },
     isThinking: {
-      name: 'Is Thinking',
       control: { type: 'boolean' },
       description:
-        'If this property is set as true, the componet show an animation as if it were thinking.',
+        'If this property is set as true, the component show an animation as if it were thinking.',
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },
         type: { summary: 'boolean' },
       },
     },
-    onRepeatRequest: {
-      name: 'On Repeat Request',
-      control: null,
-      description: 'Emmit the event to repeat te request',
-      table: {
-        category: 'Events',
-        type: { summary: 'function' },
-      },
-    },
-    onVoice: {
-      name: 'On Voice',
-      control: null,
-      description: 'Emmit the Voice event when the button is clicked.',
-      table: {
-        category: 'Events',
-        type: { summary: 'function' },
-      },
-    },
-    onCopy: {
-      name: 'On Copy',
-      control: null,
-      description:
-        'Emmit the copy event to copy the content of the chat bubble, the event only returns a signal to indicates the click event.',
-      table: {
-        category: 'Events',
-        type: { summary: 'function' },
-      },
-    },
-    onLike: {
-      name: 'On Like',
-      control: null,
-      description: 'Emmit the event when the like button is clicked.',
-      table: {
-        category: 'Events',
-        type: { summary: 'function' },
-      },
-    },
-    onDislike: {
-      name: 'On Dislike',
-      control: null,
-      description: 'Emmit the event when the dislike button is clicked.',
-      table: {
-        category: 'Events',
-        type: { summary: 'function' },
-      },
-    },
+    onRepeatRequest: getOnEventParam(
+      getOnEvent('repeat the request', 'onRepeatRequest'),
+      'when the request needs to be repeated.',
+      'other',
+    ),
+    onVoice: getOnClickAndImportantParam('voice', 'onVoice'),
+    onCopy: getOnClickAndImportantParam('copy', 'onCopy'),
+    onLike: getOnClickAndImportantParam('like', 'onLike'),
+    onDislike: getOnClickAndImportantParam('onDislike', 'onDislike'),
   },
   args: {
     message: {
@@ -150,19 +132,19 @@ Below is an example of how you can use this component in HTML:
     },
     gptIcons: false,
     onRepeatRequest: () => {
-      window.alert('Repeat request Button');
+      console.log('Repeat request Button');
     },
     onVoice: () => {
-      window.alert('Play Voice Button');
+      console.log('Play Voice Button');
     },
     onCopy: () => {
-      window.alert('Copy Button');
+      console.log('Copy Button');
     },
     onLike: () => {
-      window.alert('Like Button');
+      console.log('Like Button');
     },
     onDislike: () => {
-      window.alert('Dislike Button');
+      console.log('Dislike Button');
     },
   },
 } as Meta<typeof BmbChatBubblesComponent>;

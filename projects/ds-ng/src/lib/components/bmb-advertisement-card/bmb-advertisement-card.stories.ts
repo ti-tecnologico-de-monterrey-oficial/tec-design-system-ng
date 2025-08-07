@@ -1,77 +1,66 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbAdvertisementCardComponent } from './bmb-advertisement-card.component';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+} from '../../utils/doc/utils';
 
 export default {
   title: 'Components/Containers/Advertisement card',
   component: BmbAdvertisementCardComponent,
   parameters: {
     docs: {
+      controls: { exclude: ['expanded', 'selectedTabId', 'tabsData'] },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbAdvertisementCardComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbAdvertisementCardComponent, IBmbAdvertisementData ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-
-export class AppComponent {
-...
-}
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(`${getGeneralComponentDescription('advertisement-card')} displays a card with a title, subtitle, and tabbed content.`, 'https://bamboo.tec.mx/latest/componentes/advertisement-card/descripcion-general-pXicwP8b')}
+${getBasicExampleBlock('BmbAdvertisementCardComponent')}
         `,
       },
     },
   },
   argTypes: {
     data: {
-      name: 'Data Source',
       control: {
         type: 'object',
       },
       description: `
 Sets information that the component will show.
-
-    IBmbAdvertisementData = {
-      promociones: Array<IBmbAdvertisementCard>;
-      avisos: Array<IBmbAdvertisementCard>;
-      informacion: Array<IBmbAdvertisementCard>;
-    }
-
-    IBmbAdvertisementCard = {
-      content: IBmbAdvertisementContent;
-      imgData: IBmbAdvertisementImage;
-    };
-
-    IBmbAdvertisementContent = {
-      description: string;
-      linkBtn?: string;
-      title: string;
-      labelBtn?: string;
-    };
-
-    export type IBmbAdvertisementImage = {
-      alt: string;
-      url: string;
-    };
-
-    IBmbTargetLink = '_blank' | '_parent' | '_self' | '_top';
       `,
       table: {
         category: 'Properties',
-        type: { summary: 'IBmbAdvertisementData' },
+        type: {
+          summary: 'IBmbAdvertisementData',
+          detail: `
+IBmbAdvertisementData = {
+  promociones: Array<IBmbAdvertisementCard>;
+  avisos: Array<IBmbAdvertisementCard>;
+  informacion: Array<IBmbAdvertisementCard>;
+};
+
+IBmbAdvertisementCard = {
+  content: IBmbAdvertisementContent;
+  imgData: IBmbAdvertisementImage;
+};
+
+IBmbAdvertisementContent = {
+  description: string;
+  linkBtn?: string;
+  title: string;
+  labelBtn?: string;
+};
+
+IBmbAdvertisementImage = {
+  alt: string;
+  url: string;
+};
+          `,
+        },
         defaultValue: { summary: `{}` },
       },
     },
     title: {
-      name: 'Title',
       control: {
         type: 'text',
       },
@@ -83,7 +72,6 @@ Sets information that the component will show.
       },
     },
     subtitle: {
-      name: 'Subititle',
       control: {
         type: 'text',
       },

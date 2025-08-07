@@ -1,6 +1,12 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { BmbStudentActivityCardComponent } from './bmb-student-activity-card.component';
+import { DBmbGenericParamDesc } from '../../utils/doc/parameterDescriptions';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+} from '../../utils/doc/utils';
 
 export default {
   title: 'Components/Containers/Student activity card',
@@ -12,23 +18,22 @@ export default {
   ],
   parameters: {
     docs: {
+      controls: {
+        exclude: [
+          'getBadgeType',
+          'getCardClasses',
+          'parsedEndDate',
+          'parsedStartDate',
+          'ngOnInit',
+          '',
+          '',
+        ],
+      },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbStudentActivitySelectorComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbStudentActivityCardComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(`${getGeneralComponentDescription('student-activity-card')} to display information about a student activity, such as title, location, responsible person, type, and date range.
+<br/><br/>Supports different visual styles based on the activity type and whether it is displayed as a list item.`)}
+${getBasicExampleBlock('BmbStudentActivityCardComponent')}
         `,
       },
     },
@@ -36,7 +41,7 @@ Below is an example of how you can use this component in HTML:
   argTypes: {
     startDate: {
       control: null,
-      description: 'Set the start date label <luxon DateTime>.',
+      description: 'Sets the start date label <luxon DateTime>.',
       table: {
         category: 'Properties',
         type: { summary: 'DateTime' },
@@ -44,7 +49,7 @@ Below is an example of how you can use this component in HTML:
     },
     endDate: {
       control: null,
-      description: 'Set the end date label <luxon DateTime>.',
+      description: 'Sets the end date label <luxon DateTime>.',
       table: {
         category: 'Properties',
         type: { summary: 'DateTime' },
@@ -54,28 +59,18 @@ Below is an example of how you can use this component in HTML:
       control: {
         type: 'text',
       },
-      description: 'Set the title on the top of the modal content.',
+      description: 'Sets the title on the top of the modal content.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
         defaultValue: { summary: '' },
       },
     },
-    modalTitle: {
-      control: {
-        type: 'text',
-        description: 'Set the title on the modal header.',
-      },
-      table: {
-        category: 'Deprecated',
-        type: { summary: 'string' },
-        defaultValue: { summary: '' },
-      },
-    },
+    modalTitle: DBmbGenericParamDesc.deprecated,
     location: {
       control: {
         type: 'text',
-        description: 'Set the location text in the card.',
+        description: 'Sets the location text in the card.',
       },
       table: {
         category: 'Properties',
@@ -86,7 +81,7 @@ Below is an example of how you can use this component in HTML:
     responsible: {
       control: {
         type: 'text',
-        description: 'Set the responsible text in the card.',
+        description: 'Sets the responsible text in the card.',
       },
       table: {
         category: 'Properties',
@@ -94,41 +89,21 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: '' },
       },
     },
-    detail: {
-      control: {
-        type: 'text',
-        description: 'Set the content text.',
-      },
-      table: {
-        category: 'Deprecated',
-        type: { summary: 'string' },
-        defaultValue: { summary: '' },
-      },
-    },
+    detail: DBmbGenericParamDesc.deprecated,
     type: {
       control: 'select',
       options: ['academic', 'life', 'events'],
-      description: 'Set the color schema for the modal.',
+      description: 'Sets the color schema for the modal.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
         defaultValue: { summary: 'academic' },
       },
     },
-    status: {
-      control: {
-        type: 'text',
-        description: 'Set the status label.',
-      },
-      table: {
-        category: 'Deprecated',
-        type: { summary: 'string' },
-        defaultValue: { summary: '' },
-      },
-    },
+    status: DBmbGenericParamDesc.deprecated,
     isListItem: {
       control: 'boolean',
-      description: 'Set the card as a list item.',
+      description: 'Sets the card as a list item.',
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
@@ -137,7 +112,7 @@ Below is an example of how you can use this component in HTML:
     },
     image: {
       control: 'text',
-      description: 'Set the image URL.',
+      description: 'Sets the image URL.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -146,7 +121,7 @@ Below is an example of how you can use this component in HTML:
     },
     dateFormat: {
       control: 'text',
-      description: 'Set the date format.',
+      description: 'Sets the date format.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
@@ -155,7 +130,7 @@ Below is an example of how you can use this component in HTML:
     },
     badgeText: {
       control: 'text',
-      description: 'Set the badge text.',
+      description: 'Sets the badge text.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },

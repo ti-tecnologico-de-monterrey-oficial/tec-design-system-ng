@@ -1,7 +1,19 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { BmbFilterCardComponent } from './bmb-filter-card.component';
 import { CommonModule } from '@angular/common';
-import { getEmptyStateMessage } from '../../utils/doc/utils';
+import {
+  getBasicExampleBlock,
+  getEmptyStateMessage,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getOnEvent,
+  getSpecialSpecifications,
+} from '../../utils/doc/utils';
+import {
+  DBmbButtonParamDesc,
+  DBmbModalParamDesc,
+  getOnClickParam,
+} from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Components/Containers/Filter card',
@@ -9,79 +21,65 @@ export default {
   decorators: [moduleMetadata({ imports: [CommonModule] })],
   parameters: {
     docs: {
+      controls: {
+        exclude: [
+          'getFormControl',
+          'onControlChange',
+          'onReset',
+          'onSubmit',
+          'onValueChange',
+          'openModalComponent',
+          'ngOnInit',
+          'filterForm',
+          'storedValues',
+        ],
+      },
       description: {
         component: `
-${getEmptyStateMessage()}
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbFilterCardComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbFilterCardComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(`${getGeneralComponentDescription('filter-card')} to display and managing filter controls in a modal dialog.`, 'https://bamboo.tec.mx/latest/componentes/filter-card/descripcion-general-Be01z0Al')}
+${getSpecialSpecifications(getEmptyStateMessage())}
+${getBasicExampleBlock('BmbFilterCardComponent')}
         `,
       },
     },
   },
   argTypes: {
-    modalTitle: {
-      name: 'Title',
-      control: { type: 'text' },
-      description: 'The title of the modal dialog.',
-      table: { category: 'Properties' },
-    },
-    primaryBtnLabel: {
-      name: 'Primary Button Label',
-      control: { type: 'text' },
-      description: 'The label of the primary button.',
-      table: { category: 'Properties' },
-    },
-    secondaryBtnLabel: {
-      name: 'Secondary Button Label',
-      control: { type: 'text' },
-      description: 'The label of the secondary button.',
-      table: { category: 'Properties' },
-    },
-    icon: {
-      name: 'Icon',
-      control: { type: 'text' },
-      description: 'The icon to display on the button.',
-      table: { category: 'Properties' },
-    },
+    modalTitle: DBmbModalParamDesc.title,
+    primaryBtnLabel: DBmbModalParamDesc.primaryBtnLabel,
+    secondaryBtnLabel: DBmbModalParamDesc.secondaryBtnLabel,
+    icon: DBmbButtonParamDesc.icon,
     placeholderSearch: {
-      name: 'Placeholder Search',
       control: { type: 'text' },
-      description: 'The placeholder text for the search input.',
-      table: { category: 'Properties' },
+      description: 'Sets the placeholder text for the search input.',
+      table: { category: 'Properties', defaultValue: { summary: '' } },
     },
     controlTypes: {
-      name: 'Control Types',
       control: { type: 'array' },
       description:
         'An array of control types, each with a title and an array of controls.',
-      table: { category: 'Properties', type: { summary: 'IBmbControlType[]' } },
+      table: {
+        category: 'Properties',
+        defaultValue: { summary: '' },
+        type: {
+          summary: 'IBmbControlType[]',
+          detail: `IBmbControlType {
+  title: string;
+  control: {
+    name: string;
+    type: 'radial' | 'checkbox' | 'switch' | 'tag';
+    label: string;
+    checked: boolean;
+    rightText?: string;
+  }[];
+}`,
+        },
+      },
     },
-    applyFilters: {
-      name: 'Apply Filters',
-      control: { type: 'void' },
-      description: 'Emits an event when the user applies the filters.',
-      table: { category: 'Outputs', type: { summary: 'void' } },
-    },
-    resetFilters: {
-      name: 'Reset Filters',
-      control: { type: 'void' },
-      description: 'Emits an event when the user resets the filters.',
-      table: { category: 'Outputs ', type: { summary: 'void' } },
-    },
+    applyFilters: getOnClickParam(
+      getOnEvent('apply filters', 'applyFilters', 'void'),
+    ),
+    resetFilters: getOnClickParam(getOnEvent('reset ', 'resetFilters', 'void')),
     inLine: {
-      name: 'In line',
       control: { type: 'boolean' },
       description:
         'Display the filter card in the document instead of the dialog',
@@ -92,7 +90,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     showDropdown: {
-      name: 'Show Dropdown / Hide Input',
       control: { type: 'boolean' },
       description:
         'Determines if the dropdown should be displayed instead of the input.',
@@ -103,7 +100,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     dropdownOptions: {
-      name: 'Dropdown Options',
       control: { type: 'array' },
       description: 'Defines the list of options available in the dropdown.',
       table: {

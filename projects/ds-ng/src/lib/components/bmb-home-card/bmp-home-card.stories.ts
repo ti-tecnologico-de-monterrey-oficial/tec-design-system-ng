@@ -1,83 +1,169 @@
 import { Meta, StoryFn } from '@storybook/angular';
 import { BmbHomeCardComponent } from './bmb-home-card.component';
-import { attributes, attributesText } from '../../utils/doc/utils';
+import {
+  attributes,
+  attributesText,
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getOnEvent,
+  getSpecialSpecifications,
+} from '../../utils/doc/utils';
+import {
+  DBmbIconParamDesc,
+  getOnClickParam,
+} from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Components/Containers/Home card',
   component: BmbHomeCardComponent,
   parameters: {
     docs: {
+      controls: {
+        exclude: [
+          'handleBack',
+          'handleClose',
+          'handleExpand',
+          'isExpanded',
+          'useAutoExpand',
+        ],
+      },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbHomeCardComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbHomeCardComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-export class AppComponent {
-  dataLocalNav: IBmbDataTopBar[] = [
+${getGeneralDescription(`${getGeneralComponentDescription('home-card')} to display a card with customizable title, subtitle, icons, navigation data, and action headers.`, 'https://bamboo.tec.mx/latest/componentes/home-card/descripcion-general-SzSShX4e')}
+${getSpecialSpecifications(` ### ‼︎Important:
+***Home card*** component **is not a modal**, therefore it should not be used as such.
+`)}
+${getBasicExampleBlock(
+  'BmbHomeCardComponent',
+  '',
+  `//This block of code is only necessary for cases where local navigation is required.
+    dataLocalNav: IBmbDataTopBar[] = [
       { text: 'Breadcrumb 1', link: '/' },
       { text: 'Breadcrumb 2', link: '/emprendedor' },
       { text: 'Breadcrumb 3', link: '/emprendedor/vivencia' },
       { text: 'Breadcrumb 4', link: '/emprendedor/vivencia' },
       { text: 'Breadcrumb 5', link: '/emprendedor/vivencia' },
       { text: 'Breadcrumb 6', link: '/emprendedor/vivencia' },
-    ]
-...
-\`\`\`
-
-
-Below is an example of how you can use this component in HTML:
+    ]`,
+)}
         `,
       },
     },
   },
   argTypes: {
     leftIcon: {
-      name: 'Left icon',
-      control: { type: 'text' },
-      description: 'Sets left header icon.',
+      ...DBmbIconParamDesc.icon,
+      description: DBmbIconParamDesc.icon.description.replace(
+        'icon',
+        'left header icon',
+      ),
       table: {
-        category: 'Properties',
-        type: { summary: 'string (optional)' },
+        ...DBmbIconParamDesc.icon.table,
+        type: {
+          summary:
+            DBmbIconParamDesc.icon.table.type.summary.concat(' (optional)'),
+        },
       },
     },
     icon: {
-      name: 'Icon',
-      control: { type: 'text' },
-      description: 'Sets header icon.',
+      ...DBmbIconParamDesc.icon,
       table: {
-        category: 'Properties',
-        type: { summary: 'string (optional)' },
+        ...DBmbIconParamDesc.icon.table,
+        type: {
+          summary:
+            DBmbIconParamDesc.icon.table.type.summary.concat(' (optional)'),
+        },
       },
     },
+    iconSize: DBmbIconParamDesc.iconSize,
     bgIconAppearance: {
-      name: 'Icon background color',
       control: { type: 'text' },
       description: 'Sets icon background color.',
       table: {
         category: 'Properties',
-        type: { summary: 'IBmbColor (optional)' },
+        type: {
+          summary: 'IBmbColor (optional)',
+          detail: `IBmbColor =
+  | 'mariner-50'
+  | 'mariner-100'
+  | 'mariner-200'
+  | 'mariner-300'
+  | 'mariner-400'
+  | 'mariner-500'
+  | 'mariner-700'
+  | 'mariner-800'
+  | 'mariner-900'
+  | 'mariner-950'
+  | 'charade-50'
+  | 'charade-100'
+  | 'charade-200'
+  | 'charade-300'
+  | 'charade-500'
+  | 'charade-600'
+  | 'charade-700'
+  | 'charade-800'
+  | 'charade-900'
+  | 'charade-950'
+  | 'white-primary'
+  | 'blue-tec'
+  | 'mitec-blue'
+  | 'mitec-green'
+  | 'mitec-red'
+  | 'mitec-orange'
+  | 'black-primary'
+  | 'black-light'
+  | 'black-tint'
+  | 'black-min'
+  | 'white-light'
+  | 'white-tint'
+  | 'white-min'
+  | 'neon-primary'
+  | 'neon-light'
+  | 'neon-tint'
+  | 'blue-primary'
+  | 'blue-light'
+  | 'blue-tint'
+  | 'green-primary'
+  | 'green-light'
+  | 'green-tint'
+  | 'purple-primary'
+  | 'purple-light'
+  | 'purple-tint'
+  | 'red-primary'
+  | 'red-light'
+  | 'red-tint'
+  | 'yellow-primary'
+  | 'yellow-light'
+  | 'yellow-tint'
+  | 'teal-primary'
+  | 'teal-light'
+  | 'teal-tint'
+  | 'container-home'
+  | 'container-secondary'
+  | 'container-button'
+  | 'background-main'
+  | 'container-home-light'
+  | 'container-secondary-light'
+  | 'container-button-light'
+  | 'background-main-light'
+  | 'container-home-tec'
+  | 'container-secondary-tec'
+  | 'container-button-tec'
+  | 'background-main-tec';
+`,
+        },
       },
     },
     title: {
-      name: 'Title',
       control: { type: 'text' },
-      description: 'Sets he main title of the home card..',
+      description: 'Sets he main title of the home card.',
       table: {
         category: 'Properties',
         type: { summary: 'string (required)' },
       },
     },
     subtitle: {
-      name: 'Subtitle',
       control: { type: 'text' },
       description: 'Sets card subtitle',
       table: {
@@ -86,33 +172,47 @@ Below is an example of how you can use this component in HTML:
       },
     },
     dataLocalNav: {
-      name: 'Data Local Navigation',
       control: { type: 'object' },
-      description: 'Array of breadcrumb data for Local Navigation.',
+      description: 'Sets the array of breadcrumb data for Local Navigation.',
       table: {
         category: 'Properties',
+        defaultValue: { summary: '[]' },
         type: {
-          summary:
-            'IBmbDataTopBar[] (optional), [{ text: string, link?: string, }]',
+          summary: 'IBmbDataTopBar[] (optional)',
+          detail: `IBmbDataTopBar {
+  text: string;
+  link?: string;
+}`,
         },
       },
     },
     actionHeaders: {
-      name: 'Action header',
       control: { type: 'object' },
-      description:
-        'Sets an array of IBmbActionHeader objects, default value is an empty array.',
+      description: 'Sets an array of IBmbActionHeader objects.',
       table: {
         category: 'Properties',
-        defaultValue: { summary: '[] (empty array)' },
+        defaultValue: { summary: '[]' },
         type: {
-          summary:
-            'IBmbActionHeader[], {icon: string; iconSize?: number; iconActiveToggle?: string; isToggleActive?: boolean; isAccentColor?: boolean; link?: string; target?: IBmbTargetLink; action: () => void;}',
+          summary: 'IBmbActionHeader[] (optional)',
+          detail: `
+IBmbActionHeader {
+  icon: string;
+  alt?: string;
+  iconSize?: number;
+  iconActiveToggle?: string;
+  isToggleActive?: boolean;
+  isAccentColor?: boolean;
+  link?: string;
+  target?: IBmbTargetLink;
+  action: () => void;
+}
+
+IBmbTargetLink = '_blank' | '_parent' | '_self' | '_top';
+          `,
         },
       },
     },
     showRightButton: {
-      name: 'Show right button',
       control: { type: 'boolean' },
       description:
         'Sets a flag to indicate whether the card should show the right button or buttons.',
@@ -123,7 +223,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     isMobile: {
-      name: 'Is mobile',
       control: { type: 'boolean' },
       description:
         'Sets a flag to indicate whether the card should adapt to mobile view.',
@@ -134,34 +233,20 @@ Below is an example of how you can use this component in HTML:
       },
     },
     contentPadding: {
-      name: 'Content padding',
       control: { type: 'text' },
       description:
         "Sets the he padding size for the card's content. Uses predefined size names (e.g., 'xs','s','m','l','xl','none','auto')",
       table: {
         category: 'Properties',
         defaultValue: { summary: 'l' },
-        type: { summary: 'SizeNames (optional)' },
+        type: {
+          summary: 'SizeNames (optional)',
+          detail: `SizeNames = 'xs' | 's' | 'm' | 'l' | 'xl' | 'none' | 'auto'`,
+        },
       },
     },
-    onClose: {
-      name: 'On close',
-      control: { type: 'function' },
-      description: 'Emmit the close event.',
-      table: {
-        category: 'Events',
-        type: { summary: 'function' },
-      },
-    },
-    onBack: {
-      name: 'On back',
-      control: { type: 'function' },
-      description: 'Emmit the back event.',
-      table: {
-        category: 'Events',
-        type: { summary: 'function' },
-      },
-    },
+    onClose: getOnClickParam(getOnEvent('close icon (x)', 'onClose')),
+    onBack: getOnClickParam(getOnEvent('left icon (<)', 'onBack')),
     test_text: {
       name: 'Text',
       description: 'Header content example.',
@@ -170,18 +255,10 @@ Below is an example of how you can use this component in HTML:
         type: { summary: 'string' },
       },
     },
-    onExpandClick: {
-      name: 'On expand click',
-      control: { type: 'function' },
-      description: `
-Emit the expand event.
-
-This should be used as a navigation action the \`Home card\` component **is not a modal**.`,
-      table: {
-        category: 'Events',
-        type: { summary: 'function' },
-      },
-    },
+    onExpandClick: getOnClickParam(
+      getOnEvent('expand or collapse icon', 'onExpandClick'),
+      '. This should be used as a navigation action.',
+    ),
   },
   args: {
     leftIcon: 'chevron_left',
@@ -195,13 +272,13 @@ This should be used as a navigation action the \`Home card\` component **is not 
     isMobile: false,
     test_text: 'hello world',
     onExpandClick: () => {
-      alert('Expand button clicked');
+      console.log('Expand button clicked');
     },
     onClose: () => {
-      alert('Close button clicked');
+      console.log('Close button clicked');
     },
     onBack: () => {
-      alert('Back button clicked');
+      console.log('Back button clicked');
     },
   },
 } as Meta<typeof BmbHomeCardComponent>;

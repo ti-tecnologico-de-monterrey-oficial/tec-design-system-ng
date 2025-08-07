@@ -13,7 +13,6 @@ import {
 import {
   DEPRECATED_PROPERTIES_DESCRIPTION,
   DBmbInputParamDesc,
-  DBmbIconParamDesc,
   getOnEventParam,
 } from '../../utils/doc/parameterDescriptions';
 
@@ -53,7 +52,7 @@ const getTextInputWarnings = (
   isPatternProperty: boolean = false,
 ) => `
 
-**Important:**
+**‼︎Important:**
 
 This \`${propertyName}\` property should only be used for input fields of the type:
 
@@ -143,7 +142,7 @@ IBmbInputAppearance = 'normal' | 'simple'
     label: DBmbInputParamDesc.label,
     tooltip: DBmbInputParamDesc.tooltip,
     tooltipPosition: DBmbInputParamDesc.tooltipPosition,
-    icon: DBmbIconParamDesc.icon,
+    icon: DBmbInputParamDesc.icon,
     placeholder: DBmbInputParamDesc.placeholder,
     disabled: DBmbInputParamDesc.disabled,
     isRequired: DBmbInputParamDesc.isRequired,
@@ -294,7 +293,7 @@ Example of a \`ValidatorFn\`
 Enables the skill to validate JSON content when true, this skill only works for the form textarea field.
 
 <br/>
-**Important:**
+**‼︎Important:**
 
 For correct behavior, the \`pattern\` property must not be assigned to the input field.
       `,
@@ -341,12 +340,12 @@ IBmbAdditionalAction = 'copy' | 'showHide' | 'none'
     control: DBmbInputParamDesc.control,
     isFocus: getOnEventParam(
       getOnEvent('', 'isFocus', 'boolean'),
-      'field has received or lost focus, by interactions as clicking or tabbing.',
+      'when field has received or lost focus, by interactions as clicking or tabbing.',
       'other',
     ),
     isBlur: getOnEventParam(
       getOnEvent('', 'isBlur', 'boolean'),
-      'field has lost focus, by interactions as clicking or tabbing.',
+      'when field has lost focus, by interactions as clicking or tabbing.',
       'other',
     ),
     onChange: getOnEventParam(onChange),

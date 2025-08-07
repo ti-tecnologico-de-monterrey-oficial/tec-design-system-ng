@@ -1,33 +1,38 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbEvaluationRubricComponent } from './bmb-evaluation-rubric.component';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getOnEvent,
+} from '../../utils/doc/utils';
+import { getOnClickParam } from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Components/Containers/Evaluation rubric',
   component: BmbEvaluationRubricComponent,
   parameters: {
+    controls: {
+      exclude: [
+        'summary',
+        'getButtonClass',
+        'getEvalList',
+        'getSelectedButtonClass',
+        'handleClose',
+        'handleEval',
+      ],
+    },
     docs: {
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbEvaluationRubricComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(`${getGeneralComponentDescription('evaluation-rubric')} `, 'https://bamboo.tec.mx/latest/componentes/evaluation-rubric/descripcion-general-hckFQwLB')}
+${getBasicExampleBlock('BmbEvaluationRubricComponent')}
         `,
       },
     },
   },
   argTypes: {
     title: {
-      name: 'Title',
       control: { type: 'text' },
       description: 'Sets the title of the component.',
       table: {
@@ -36,7 +41,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     icon: {
-      name: 'Icon',
       control: { type: 'text' },
       description: 'Sets the icon displayed in the title of the component.',
       table: {
@@ -46,7 +50,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     rightIcon: {
-      name: 'Right icon',
       control: { type: 'text' },
       description: 'Sets the right icon displayed in the close button.',
       table: {
@@ -56,19 +59,22 @@ Below is an example of how you can use this component in HTML:
       },
     },
     evaluationRubricList: {
-      name: 'Evaluation rubric list',
       control: { type: 'object' },
       description: 'Sets the list of evaluation criteria.',
       table: {
         category: 'Properties',
+        defaultValue: { summary: '' },
         type: {
-          summary:
-            'IBmbEvaluationRubric[] (required), { criterion: string; tooltip: string; evaluation?: number;}',
+          summary: 'IBmbEvaluationRubric[] (required)',
+          detail: `IBmbEvaluationRubric {
+  criterion: string;
+  tooltip: string;
+  evaluation?: number;
+}`,
         },
       },
     },
     maxEval: {
-      name: 'Maxim evaluation',
       control: { type: 'number' },
       description: 'Sets the maximum number of evaluations allowed.',
       table: {
@@ -78,7 +84,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     summaryLabel: {
-      name: 'Summary label',
       control: { type: 'text' },
       description: 'Sets the label displayed for the evaluation summary.',
       table: {
@@ -87,29 +92,49 @@ Below is an example of how you can use this component in HTML:
       },
     },
     commentEvalRubric: {
-      name: 'Comment eval rubric',
       control: { type: 'object' },
       description: 'Sets the configuration for the comment section.',
       table: {
         category: 'Properties',
         type: {
-          summary:
-            ' Textarea input, IBmbCommentEvalRubric (required), { label: string; placeHolder: string; tooltip: string; icon?: string; errorMessage?: string; helperMessage?: string; appearance?: IBmbInputAppearance; disabled?: boolean; isRequired?: boolean; showError?: boolean; showMaxTextLength?: boolean;}',
+          summary: 'IBmbCommentEvalRubric (required)',
+          detail: `
+IBmbCommentEvalRubric {
+  label: string;
+  placeHolder: string;
+  tooltip: string;
+  icon?: string;
+  errorMessage?: string;
+  helperMessage?: string;
+  appearance?: IBmbInputAppearance;
+  disabled?: boolean;
+  isRequired?: boolean;
+  showError?: boolean;
+  showMaxTextLength?: boolean;
+}
+
+IBmbInputAppearance = 'main' | 'normal' | 'simple';
+          `,
         },
       },
     },
     evalRubricButtons: {
-      name: 'Evaluation rubric buttons',
       control: { type: 'object' },
       description: 'Sets the configuration for the evaluation buttons.',
       table: {
         category: 'Properties',
         type: {
-          summary:
-            'IBmbEvalRubricButtons (required), { rightLabel: string; rightIcon?: string; leftLabel: string; leftIcon?: string; }',
+          summary: 'IBmbEvalRubricButtons (required)',
+          detail: `IBmbEvalRubricButtons {
+  rightLabel: string;
+  rightIcon?: string;
+  leftLabel: string;
+  leftIcon?: string;
+}`,
         },
       },
     },
+    onClose: getOnClickParam(getOnEvent('close (x)', 'onClose', 'void')),
   },
   args: {
     title: 'Rúbrica de evaluación',
