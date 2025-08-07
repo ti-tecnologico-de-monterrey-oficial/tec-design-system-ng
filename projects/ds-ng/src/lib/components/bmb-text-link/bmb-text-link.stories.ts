@@ -19,7 +19,7 @@ export default {
       description: {
         component: `
 ${getGeneralDescription(`${getGeneralComponentDescription('BmbTextLinkComponent')} navigation on the page or other pages`, 'https://bamboo.tec.mx/latest/componentes/text-link/descripcion-general-S0iBFwud')}
-${getBasicExampleBlock('')}
+${getBasicExampleBlock('BmbTextLinkComponent')}
         `,
       },
     },
@@ -72,9 +72,9 @@ ${getBasicExampleBlock('')}
     disabled: DBmbGenericParamDesc.disabled,
   },
   args: {
+    textLinkStyle: 'icon',
     textLink: 'Test text',
     link: 'https://www.youtube.com',
-    textLinkStyle: 'icon',
     target: '_blank',
     icon: 'arrow_forward',
     iconPosition: 'right',

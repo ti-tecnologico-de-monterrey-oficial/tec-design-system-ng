@@ -229,7 +229,9 @@ export class BmbDropdownComponent implements OnInit, OnChanges {
   closeList(): void {
     this.isOpen = false;
     this.isKeyboardEvent = false;
-    this.selectionControl.setValue(this.selectedItem?.selectedText || '');
+    if (this.isFilterable() && !this.isMultiSelect()) {
+      this.selectionControl.setValue(this.selectedItem?.selectedText || '');
+    }
   }
 
   // Keyboards events

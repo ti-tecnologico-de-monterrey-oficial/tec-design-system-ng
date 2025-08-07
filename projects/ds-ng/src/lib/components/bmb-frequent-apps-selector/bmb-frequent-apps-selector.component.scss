@@ -20,6 +20,10 @@
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
 
+    @media (pointer: none), (pointer: coarse) {
+      scrollbar-width: none;
+    }
+
     &-regular {
       padding-bottom: rem.rem_calc(20);
       gap: rem.rem_calc(24);

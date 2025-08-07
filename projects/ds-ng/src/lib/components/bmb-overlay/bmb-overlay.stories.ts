@@ -1,8 +1,13 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { Meta, StoryFn, moduleMetadata } from '@storybook/angular';
 import { BmbOverlayComponent } from './bmb-overlay.component';
 import { BmbIconComponent } from '../bmb-icon/bmb-icon.component';
 import { BmbButtonDirective } from '../../directives/bmb-button/button.directive';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+} from '../../utils/doc/utils';
 
 @Component({
   standalone: true,
@@ -41,40 +46,51 @@ export default {
   component: BmbOverlayComponent,
   decorators: [
     moduleMetadata({
-      imports: [
-        StorybookToastWrapperComponent,
-        BmbOverlayComponent,
-        BmbIconComponent,
-        BmbButtonDirective,
-      ],
+      imports: [StorybookToastWrapperComponent],
       providers: [],
     }),
   ],
   parameters: {
     docs: {
+      controls: { exclude: ['displayStyle', 'ngAfterViewInit', 'ngOnChanges'] },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
+${getGeneralDescription(`${getGeneralComponentDescription('overlay')} to display an overlay element.`, 'https://bamboo.tec.mx/latest/componentes/overlay/descripcion-general-20iCzyFB')}
+${getBasicExampleBlock(
+  'BmbOverlayComponent',
+  '',
+  `
+showOverlayComponent: boolean = false;
 
-\`\`\`typescript
-import { BmbOverlayComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [BmbOverlayComponent],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
+showOverlay() {
+  this.showOverlayComponent = !this.showOverlayComponent;
+}
+  `,
+)}
+\`\`\`html
+<div style="width: 100%; height: 500px">
+  <button
+    style="position: absolute; z-index: 3;"
+    bmbButton
+    appearance="primary"
+    icon="home"
+    size="small"
+    position="left"
+    [case]="false"
+    (click)="showOverlay()"
+  >
+    Open Overlay
+  </button>
 
-Below is an example of how you can use this component in HTML:
+  <bmb-overlay [active]="this.showOverlayComponent" />
+</div>
+\`\`\`html
         `,
       },
     },
   },
   argTypes: {
     active: {
-      name: 'Active',
       control: { type: 'boolean' },
       description: 'Show or hide overlay',
       table: {

@@ -51,5 +51,12 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/flex/flex.component').then((f) => f.FlexComponent),
   },
+  {
+    path: 'homeCardTransition',
+    loadComponent: () =>
+      import('./pages/homeCardTransition/homeCardTransition.component').then(
+        (h) => h.HomeCardComponent,
+      ),
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];

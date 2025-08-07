@@ -16,7 +16,11 @@
     <h2 class="bmb_header_mobile-text">{{ text() }}</h2>
     <div class="bmb_header_mobile-right">
       <button type="button" (click)="handleTrailingIconClick($event)">
-        <bmb-icon [icon]="trailingIcon()" alt="Trailing icon" />
+        <bmb-icon
+          [icon]="trailingIcon()"
+          alt="Trailing icon"
+          [dotNotification]="trailingIconNotifications()"
+        />
       </button>
       <bmb-user-image
         size="mobile-small"

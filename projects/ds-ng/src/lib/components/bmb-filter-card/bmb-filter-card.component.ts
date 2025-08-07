@@ -7,6 +7,7 @@ import {
   TemplateRef,
   ViewChild,
   output,
+  effect,
 } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -43,7 +44,7 @@ import { BmbTagComponent } from '../bmb-tags/bmb-tags.component';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BmbFilterCardComponent implements OnInit {
+export class BmbFilterCardComponent {
   modalTitle = input<string>('');
   primaryBtnLabel = input<string>('');
   secondaryBtnLabel = input<string>('');
@@ -65,32 +66,32 @@ export class BmbFilterCardComponent implements OnInit {
 
   @ViewChild('modalTemplate') modalTemplate!: TemplateRef<any>;
 
-  ngOnInit(): void {
-    this.controlTypes().forEach((controlType) => {
-      controlType.control.forEach((control) => {
-        if (control.type === 'radial') {
-          const controlName = this.filterForm.get(control.name);
-          if (controlName) {
-            controlName.setValue(
-              control.checked ? control.label : controlName.value,
-            );
+  constructor(private matDialog: MatDialog) {
+    effect(() => {
+      this.controlTypes().forEach((controlType) => {
+        controlType.control.forEach((control) => {
+          if (control.type === 'radial') {
+            const controlName = this.filterForm.get(control.name);
+            if (controlName) {
+              controlName.setValue(
+                control.checked ? control.label : controlName.value,
+              );
+            } else {
+              this.filterForm.addControl(
+                control.name,
+                new FormControl<string>(control.checked ? control.label : ''),
+              );
+            }
           } else {
             this.filterForm.addControl(
               control.name,
-              new FormControl<string>(control.checked ? control.label : ''),
+              new FormControl<boolean>(control.checked),
             );
           }
-        } else {
-          this.filterForm.addControl(
-            control.name,
-            new FormControl<boolean>(control.checked),
-          );
-        }
+        });
       });
     });
   }
-
-  constructor(private matDialog: MatDialog) {}
 
   openModalComponent() {
     const data: ModalDataConfig = {

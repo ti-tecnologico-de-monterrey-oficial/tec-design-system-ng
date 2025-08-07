@@ -1,144 +1,51 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbMediaCardComponent } from './bmb-media-card.component';
-import { attributes } from '../../utils/doc/utils';
+import {
+  attributes,
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+} from '../../utils/doc/utils';
+import {
+  DBmbGenericParamDesc,
+  DBmbImageParamDesc,
+} from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Components/Containers/Media card',
   component: BmbMediaCardComponent,
   parameters: {
+    controls: {
+      exclude: [
+        'getBackgroundColor',
+        'getClasses',
+        'getContentClasses',
+        'getUserAttribute',
+        'isExternalLink',
+        'bgColor',
+        'fullmediaCard',
+      ],
+    },
     docs: {
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbMediaCardComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbMediaCardComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(`${getGeneralComponentDescription('media-card')} visual information to be presented with customizable properties such as image, title, subtitle, user information, and more.`, 'https://bamboo.tec.mx/latest/componentes/media-card/descripcion-general-MwpzDjrj')}
+${getBasicExampleBlock('BmbMediaCardComponent')}
         `,
       },
     },
   },
   argTypes: {
-    src: {
-      name: 'Image source URL',
-      control: {
-        type: 'text',
-      },
-      description: 'Set the Hi-res image source URL',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: '' },
-      },
-    },
-    mobileSrc: {
-      name: 'Mobile image source URL',
-      control: {
-        type: 'text',
-      },
-      description: 'Set the low-res image source URL',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: '' },
-      },
-    },
-    alt: {
-      name: 'Alternative text',
-      control: {
-        type: 'text',
-      },
-      description: 'Set a description for the images',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: '' },
-      },
-    },
-    width: {
-      name: 'Width',
-      control: {
-        type: 'text',
-      },
-      description: 'You can set any CSS valid value for the width style',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: '100%' },
-      },
-    },
-    ratio: {
-      name: 'Ratio',
-      control: {
-        type: 'text',
-      },
-      description:
-        'Allow to the developer change the aspect ratio of the image',
-      table: {
-        category: 'Properties',
-        type: { summary: 'string' },
-        defaultValue: { summary: '' },
-      },
-    },
-    borderRadius: {
-      name: 'Border radius',
-      control: {
-        type: 'select',
-      },
-      options: ['xs', 's', 'm', 'l', 'xl', 'none'],
-      table: {
-        type: { summary: 'string' },
-        category: 'Properties',
-        defaultValue: { summary: 'm' },
-      },
-      description: 'Determines the corner radius size',
-    },
-    loading: {
-      name: 'Loading',
-      control: {
-        type: 'radio',
-      },
-      options: ['lazy', 'eager'],
-      table: {
-        type: { summary: 'string' },
-        category: 'Properties',
-        defaultValue: { summary: 'lazy' },
-      },
-      description:
-        'Configure the loading behavior, if you set "eager", the browser will load the image immediately, if you set "lazy", the browser will wait until the viewport is close to the image to load it.',
-    },
-    enableZoom: {
-      name: 'Enable Zoom',
-      control: { type: 'boolean' },
-      description:
-        'When set to true, it groups multiple interactive icons into a parent element. By default, it is false, and you do not need to explicitly set it. The badge should always have a parent element.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean' },
-      },
-    },
-    isBlurredBackdrop: {
-      name: 'Is blurred backdrop',
-      control: { type: 'boolean' },
-      description: 'Set a blurred imageset blurred image as box shadow.',
-      table: {
-        category: 'Properties',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean' },
-      },
-    },
+    src: DBmbImageParamDesc.src,
+    mobileSrc: DBmbImageParamDesc.mobileSrc,
+    alt: DBmbImageParamDesc.alt,
+    width: DBmbImageParamDesc.width,
+    ratio: DBmbImageParamDesc.ratio,
+    borderRadius: DBmbImageParamDesc.borderRadius,
+    loading: DBmbImageParamDesc.loading,
+    enableZoom: DBmbImageParamDesc.enableZoom,
+    isBlurredBackdrop: DBmbImageParamDesc.isBlurredBackdrop,
     type: {
-      name: 'Type',
       control: {
         type: 'select',
       },
@@ -149,108 +56,78 @@ Below is an example of how you can use this component in HTML:
         defaultValue: { summary: 'inline' },
       },
       description:
-        'Set the visualization type to the card, the **inline** enables the `title`, `date` and `custom HTML` properties, the **author_detail** enable the `title`, `subtitle`, `date`, `user section`, and `custom HTML` and the **floating** option enables all the content.',
+        'Sets the visualization type to the card, the **inline** enables the `title`, `date` and `custom HTML` properties, the **author_detail** enable the `title`, `subtitle`, `date`, `user section`, and `custom HTML` and the **floating** option enables all the content.',
     },
     title: {
-      name: 'Title',
       control: {
         type: 'text',
       },
-      description: 'Set title card.',
+      description: 'Sets title card.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
       },
     },
     subtitle: {
-      name: 'Subtitle',
       control: {
         type: 'text',
       },
-      description: 'Set title card.',
+      description: 'Sets subtitle card.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
       },
     },
     content: {
-      name: 'Content',
       control: {
         type: 'text',
       },
       description:
-        'Set an string content, if you needs set complex cotent you can added as <ng-content>.',
+        'Sets an string content, if you needs set complex content you can added as <ng-content>.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
       },
     },
     date: {
-      name: 'Date',
       control: {
         type: 'text',
       },
-      description: 'Set the date element.',
+      description: 'Sets the date element.',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
       },
     },
     userImage: {
-      name: 'User image URL',
       control: {
         type: 'text',
       },
       description:
-        'Set the user picture (Required to enable the user section).',
+        'Sets the user picture (Required to enable the user section).',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
       },
     },
     userName: {
-      name: 'User name',
       control: {
         type: 'text',
       },
       description:
-        'Set the user picture (Required to enable the user section).',
+        'Sets the user picture (Required to enable the user section).',
       table: {
         category: 'Properties',
         type: { summary: 'string' },
       },
     },
-    link: {
-      name: 'Link',
-      control: {
-        type: 'text',
-      },
-      description:
-        'Sets the link for redirection to another page. If this property is empty it will emit the button event.',
-      table: {
-        category: 'Events',
-        type: { summary: 'string' },
-      },
-    },
-    target: {
-      name: 'Target',
-      control: {
-        type: 'radio',
-      },
-      options: ['_blank', '_self', '_parent', '_top'],
-      description:
-        'Sets the target property for the link. Refer to https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a for more information.',
-      table: {
-        category: 'Events',
-        type: { summary: 'IBmbTargetLink' },
-        defaultValue: { summary: '_blank' },
-      },
-    },
+    link: DBmbGenericParamDesc.link,
+    target: DBmbGenericParamDesc.target,
     boxShadow: {
-      name: 'Box shadow',
       control: { type: 'boolean' },
-      description:
-        'When set to true, it adds a box shadow to the card. The shadow only appears if the card is not an external link and is not `floating` type and is not `author_detail` type and the `backdrop` is disabled.',
+      description: `
+Adds a box shadow to the card when true. <br><br/>
+The shadow only appears if the card is not an external link and is not \`floating\` type and is not \`author_detail\` type and the \`backdrop\` is disabled.`,
       table: {
         category: 'Properties',
         defaultValue: { summary: 'false' },

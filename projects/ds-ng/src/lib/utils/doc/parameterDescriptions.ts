@@ -1,10 +1,11 @@
+import { Description } from '@storybook/addon-docs/blocks';
 import {
   DESIGN_SYSTEM_TITLE,
   getOnEvent,
   IBmbOnEventType,
   IBmbOnEvent,
 } from './utils';
-
+type onButtonEventType = 'clicked' | 'pressed';
 export const DEPRECATED_PROPERTIES_DESCRIPTION =
   'This property is deprecated and will be removed in future versions.';
 export const GOGGLE_FONTS_LINK = `Please refer to [Google Fonts](https://fonts.google.com/icons?icon.size=24&icon.color=%23e8eaed&selected=Material+Symbols+Outlined:more_vert:FILL@0;wght@400;GRAD@0;opsz@24) for more icons.`;
@@ -27,6 +28,8 @@ The label will be displayed ${positionDescription} the ${type}.
 export const ON_BUTTON_CLICK: IBmbOnEvent = getOnEvent('', 'buttonClick');
 export const ON_CLICK_DESCRIPTION: string =
   ', this event is only emitted if the *link* property is empty';
+export const ICON_IMAGE_DETAIL: string =
+  'Supports images; instead of the icon name, enter the URL of the image to use.';
 
 const getCheckboxOrRadialLabel = (type: string) => {
   return {
@@ -102,7 +105,7 @@ ${
     ? `
 
 <br/>
-**Important:**
+**‼︎Important:**
 ${getFormControlConsiderations()}
 <br/>
 ${getFormControlDescription()}
@@ -136,21 +139,6 @@ export const getAppearanceParam = (
   };
 };
 
-export const getOnClickParam = (
-  onEvent: IBmbOnEvent,
-  additionalDescription: string = '',
-) => {
-  return {
-    control: false,
-    description: `Emits the event triggered after the ${onEvent.name} button is clicked${additionalDescription}.`,
-    table: {
-      category: 'Events',
-      defaultValue: { summary: '-' },
-      type: { summary: onEvent.propertyValue, detail: onEvent.event_type },
-    },
-  };
-};
-
 export const getOnEventParam = (
   onEvent: IBmbOnEvent,
   additionalDescription: string = '',
@@ -158,14 +146,25 @@ export const getOnEventParam = (
 ) => {
   return {
     control: false,
-    description: `Emits the event when ${eventType === 'change' || eventType === 'other' ? `${eventType === 'change' ? `the ${onEvent.name} changed.` : ''}` : 'a key is pressed while the input is focused.'}${additionalDescription}`,
+    description: `Emits the event ${eventType === 'change' || eventType === 'other' ? `${eventType === 'change' ? `when the ${onEvent.name} changed.` : ''}` : 'when a key is pressed while the input is focused.'}${additionalDescription}`,
     table: {
       category: 'Events',
-      defaultValue: { summary: '-' },
+      defaultValue: false,
       type: { summary: onEvent.propertyValue, detail: onEvent.event_type },
     },
   };
 };
+
+export const getOnClickParam = (
+  onEvent: IBmbOnEvent,
+  additionalDescription: string = '',
+  buttonEventType: onButtonEventType = 'clicked',
+) =>
+  getOnEventParam(
+    onEvent,
+    `triggered after the ${onEvent.name} button is ${buttonEventType}${additionalDescription}.`,
+    'other',
+  );
 
 export const DBmbGenericParamDesc = {
   uniqueId: {
@@ -191,18 +190,6 @@ This property is used to link the label to the field through the ***for*** attri
       category: 'Properties',
       defaultValue: { summary: 'false' },
       type: { summary: 'boolean' },
-    },
-  },
-  alt: {
-    control: {
-      type: 'text',
-    },
-    description:
-      'Sets the alternative text for the icon when it is an image, this improves accessibility',
-    table: {
-      category: 'Properties',
-      type: { summary: 'string' },
-      defaultValue: { summary: '' },
     },
   },
   link: {
@@ -240,35 +227,139 @@ This property is used to link the label to the field through the ***for*** attri
     },
   },
   onButtonClick: getOnClickParam(ON_BUTTON_CLICK, ON_CLICK_DESCRIPTION),
+  onButtonPress: getOnClickParam(
+    getOnEvent('', 'buttonPress'),
+    ON_CLICK_DESCRIPTION,
+    'pressed',
+  ),
+  buttonKeyPress: getOnClickParam(
+    getOnEvent('', 'buttonKeyPress'),
+    ' with a keyboard'.concat(ON_CLICK_DESCRIPTION),
+    'pressed',
+  ),
 };
 
-export const DBmbButtonParamDesc = {
-  appearance: {
-    control: { type: 'select' },
-    options: [
-      'primary',
-      'secondary-filled',
-      'secondary-outlined',
-      'destructive',
-      'transparent',
-    ],
+export const DBmbImageParamDesc = {
+  image: {
+    control: {
+      type: 'text',
+    },
     description:
-      'Sets the appearance of the buttons, affecting its visual style.',
+      'Sets the source of the image to display, either from a path or a URL.',
     table: {
       category: 'Properties',
-      defaultValue: { summary: 'primary' },
+      defaultValue: { summary: '' },
       type: { summary: 'string' },
     },
   },
-  size: {
-    control: 'radio',
-    options: ['small', 'large'],
+  src: {
+    control: {
+      type: 'text',
+    },
+    description: 'Sets the Hi-res image source URL',
     table: {
       category: 'Properties',
-      defaultValue: { summary: 'small' },
       type: { summary: 'string' },
+      defaultValue: { summary: '' },
     },
-    description: 'Sets the size of the button, affecting its visual size.',
+  },
+  mobileSrc: {
+    control: {
+      type: 'text',
+    },
+    description: 'Sets the low-res image source URL',
+    table: {
+      category: 'Properties',
+      type: { summary: 'string' },
+      defaultValue: { summary: '' },
+    },
+  },
+  alt: {
+    control: {
+      type: 'text',
+    },
+    description: `
+Sets the alternative text of the images. It is an essential part of making content accessible.
+
+Refer [here](https://www.w3.org/WAI/alt/) for more information.
+    `,
+    table: {
+      category: 'Properties',
+      type: { summary: 'string' },
+      defaultValue: { summary: '' },
+    },
+  },
+  width: {
+    control: {
+      type: 'text',
+    },
+    description: 'Sets a blurred image as a box shadow.',
+    table: {
+      category: 'Properties',
+      type: { summary: 'string' },
+      defaultValue: { summary: '100%' },
+    },
+  },
+  ratio: {
+    control: {
+      type: 'text',
+    },
+    description: 'Sets the aspect ratio of the image.',
+    table: {
+      category: 'Properties',
+      type: { summary: 'string' },
+      defaultValue: { summary: '' },
+    },
+  },
+  borderRadius: {
+    control: {
+      type: 'select',
+    },
+    options: ['xs', 's', 'm', 'l', 'xl', 'none'],
+    table: {
+      type: { summary: 'string' },
+      category: 'Properties',
+      defaultValue: { summary: 'm' },
+    },
+    description: 'Sets the corner radius size.',
+  },
+  loading: {
+    control: {
+      type: 'radio',
+    },
+    options: ['lazy', 'eager'],
+    table: {
+      type: { summary: 'string' },
+      category: 'Properties',
+      defaultValue: { summary: 'lazy' },
+    },
+    description: `
+Enables the loading behavior.
+- **eager**: the browser will load the image immediately.
+- **lazy**: the browser will wait until the viewport is close to the image to load it.
+        `,
+  },
+  enableZoom: {
+    control: { type: 'boolean' },
+    description: `
+Sets the zoom configuration when true.<br/><br/>
+It groups multiple interactive icons into a parent element.<br/><br/>
+By default, it is false, and you do not need to explicitly set it.
+The badge should always have a parent element.`,
+    table: {
+      category: 'Properties',
+      defaultValue: { summary: 'false' },
+      type: { summary: 'boolean' },
+    },
+  },
+  isBlurredBackdrop: {
+    control: { type: 'boolean' },
+    description: 'Sets a blurred image set blurred image as box shadow.',
+    table: {
+      category: 'Properties',
+      defaultValue: { summary: 'false' },
+      type: { summary: 'boolean' },
+    },
   },
 };
 
@@ -278,10 +369,8 @@ export const DBmbIconParamDesc = {
       type: 'text',
     },
     description: `
-Sets the name of the icon to be displayed within the field.
-
-<br/>
-${GOGGLE_FONTS_LINK}`,
+Sets the icon name to be displayed.
+<br/><br/>${GOGGLE_FONTS_LINK}<br/><br/>${ICON_IMAGE_DETAIL}`,
     table: {
       category: 'Properties',
       type: { summary: 'string' },
@@ -318,6 +407,86 @@ ${GOGGLE_FONTS_LINK}`,
       category: 'Properties',
       defaultValue: { summary: '' },
       type: { summary: 'number' },
+    },
+  },
+  alt: {
+    ...DBmbImageParamDesc.alt,
+    description: DBmbImageParamDesc.alt.description.replace(
+      'of the images',
+      'for the icon when it is an image',
+    ),
+  },
+};
+
+export const DBmbButtonParamDesc = {
+  appearance: {
+    control: { type: 'select' },
+    options: [
+      'primary',
+      'secondary-filled',
+      'secondary-outlined',
+      'destructive',
+      'transparent',
+    ],
+    description:
+      'Sets the appearance of the buttons, affecting its visual style.',
+    table: {
+      category: 'Properties',
+      defaultValue: { summary: 'primary' },
+      type: { summary: 'string' },
+    },
+  },
+  size: {
+    control: 'radio',
+    options: ['small', 'large'],
+    table: {
+      category: 'Properties',
+      defaultValue: { summary: 'small' },
+      type: { summary: 'string' },
+    },
+    description: 'Sets the size of the button, affecting its visual size.',
+  },
+  icon: {
+    ...DBmbIconParamDesc.icon,
+    description: DBmbIconParamDesc.icon.description.concat(
+      '<br/><br/>The icon to display on the button.',
+    ),
+  },
+};
+
+export const DBmbModalParamDesc = {
+  title: {
+    control: {
+      type: 'text',
+    },
+    description:
+      'Specifies the text display. This message should be concise and direct.',
+    table: {
+      category: 'Properties',
+      defaultValue: { summary: '' },
+      type: { summary: 'string' },
+    },
+  },
+  primaryBtnLabel: {
+    control: {
+      type: 'text',
+    },
+    description: 'Specifies the text of the primary button.',
+    table: {
+      category: 'Properties',
+      defaultValue: { summary: '' },
+      type: { summary: 'string' },
+    },
+  },
+  secondaryBtnLabel: {
+    control: {
+      type: 'text',
+    },
+    description: 'Specifies the text of the secondary button.',
+    table: {
+      category: 'Properties',
+      defaultValue: { summary: '' },
+      type: { summary: 'string' },
     },
   },
 };
@@ -389,7 +558,7 @@ This property is used to link the label to the field through the ***for*** attri
 Sets the field name.
 
 <br/>
-**Important:**
+**‼︎Important:**
 
 This property is essential for correct behavior of the the \`FormControl\`.
 
@@ -411,7 +580,7 @@ Sets the value of the field.
 
 This is the value that is taken when the form is submitted.
 
-**Important**
+**‼︎Important**
 
 The value will not be necessary to define a value on the \`FormControl\` instance, as long as this properties is correctly assigned of this field .
 
@@ -491,6 +660,12 @@ IBmbJustifyTooltip = 'centered' | 'before' | 'after'
       type: { summary: 'string' },
       defaultValue: { summary: '' },
     },
+  },
+  icon: {
+    ...DBmbIconParamDesc.icon,
+    description: DBmbIconParamDesc.icon.description.concat(
+      '<br/><br/>The icon to display within the field.',
+    ),
   },
   disabled: {
     control: { type: 'boolean' },
