@@ -1,36 +1,35 @@
 import { Meta, StoryObj } from '@storybook/angular';
 import { BmbUserSummaryComponent } from './bmb-user-summary.component';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getOnEvent,
+} from '../../utils/doc/utils';
+import { getOnClickParam } from '../../utils/doc/parameterDescriptions';
 
 export default {
   title: 'Components/Containers/User summary',
   component: BmbUserSummaryComponent,
   parameters: {
     docs: {
+      controls: { exclude: ['handleClick'] },
       description: {
         component: `
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbUserSummaryComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbUserSummaryComponent ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-\`\`\`
-
-Below is an example of how you can use this component in HTML:
+${getGeneralDescription(`${getGeneralComponentDescription('user-summary')} to display a summary of user information, such as name, ID, profile image, and career details.`, 'https://bamboo.tec.mx/latest/componentes/user-summary/descripcion-general-hvTgEBWT')}
+${getBasicExampleBlock('BmbUserSummaryComponent')}
         `,
       },
     },
   },
   argTypes: {
     isProfile: {
-      name: 'Is profile',
       control: 'boolean',
-      description: 'Changes the content template.',
+      description: `
+Indicates if the summary is shown as a profile view.
+
+For profile content the ***ID Digital*** button will be displayed
+      `,
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
@@ -38,7 +37,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     name: {
-      name: 'Name',
       control: 'text',
       description: 'Sets the user full name.',
       table: {
@@ -48,7 +46,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     id: {
-      name: 'User ID',
       control: 'text',
       description: 'Sets the user information.',
       table: {
@@ -58,7 +55,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     image: {
-      name: 'Image (Profile picture)',
       control: 'text',
       description:
         "Sets the user's profile picture using the user's image path.",
@@ -69,7 +65,6 @@ Below is an example of how you can use this component in HTML:
       },
     },
     infoCareer: {
-      name: 'Information Career',
       control: 'text',
       description:
         "Sets the text to display basic information below the user's image.",
@@ -80,10 +75,9 @@ Below is an example of how you can use this component in HTML:
       },
     },
     salutation: {
-      name: 'Salutation',
       control: 'text',
       description:
-        "Sets the salutation for the user. This is added only when the 'Is profile' is false.",
+        'Sets the salutation for the user. This is added only when the \`isProfile\` is false.',
       table: {
         type: { summary: 'string' },
         category: 'Properties',
@@ -91,24 +85,18 @@ Below is an example of how you can use this component in HTML:
       },
     },
     noBox: {
-      name: 'No Box',
       control: 'boolean',
-      description: 'Hide or show the background when is a profile user summary',
+      description: 'Sets the profile background when true',
       table: {
         category: 'Properties',
         type: { summary: 'boolean' },
         defaultValue: { summary: 'false' },
       },
     },
-    onClick: {
-      name: 'On click',
-      control: false,
-      description: 'Click event.',
-      table: {
-        type: { summary: 'function' },
-        category: 'Events',
-      },
-    },
+    onClick: getOnClickParam(
+      getOnEvent('', 'onButton'),
+      `.<br/><br/> The button is displayed when \`isProfile\` is true`,
+    ),
   },
   args: {
     image: 'https://picsum.photos/id/64/200/300',
@@ -119,7 +107,7 @@ Below is an example of how you can use this component in HTML:
     isProfile: false,
     noBox: false,
     onClick: () => {
-      console.log('test');
+      console.log('onClick');
     },
   },
 } as Meta<typeof BmbUserSummaryComponent>;

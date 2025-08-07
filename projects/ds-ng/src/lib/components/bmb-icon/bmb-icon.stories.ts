@@ -11,6 +11,8 @@ import {
   GOGGLE_FONTS_LINK,
   DBmbGenericParamDesc,
   DBmbIconParamDesc,
+  ICON_IMAGE_DETAIL,
+  DBmbImageParamDesc,
 } from '../../utils/doc/parameterDescriptions';
 
 export default {
@@ -36,7 +38,8 @@ ${getArchitectureSection(
 ${getSpecialSpecifications(`
 - Use the icons as a visual guide.
 - Check out the icon library in the documentation [here](https://bamboo.tec.mx/latest/foundations/iconos/biblioteca-WrE6VXv5)
-- ${GOGGLE_FONTS_LINK}`)}
+- ${GOGGLE_FONTS_LINK}
+- ${ICON_IMAGE_DETAIL}`)}
 <br/>
 ${getBasicExampleBlock('BmbIconComponent')}
         `,
@@ -48,12 +51,12 @@ ${getBasicExampleBlock('BmbIconComponent')}
     styleIcon: {
       ...DBmbGenericParamDesc.deprecated,
       description: DBmbGenericParamDesc.deprecated.description.concat(`
-    ### Available Icon Styles
+### Available Icon Styles
 
-    - **Rounded**
-      - **Description:** Icons with rounded edges. They feel softer and more friendly.
-      - **Visual Features:** Rounded corners. The design is more approachable and less technical.
-      - **Class Name:** \`material-symbols-rounded\`
+- **Rounded**
+  - **Description:** Icons with rounded edges. They feel softer and more friendly.
+  - **Visual Features:** Rounded corners. The design is more approachable and less technical.
+  - **Class Name:** \`material-symbols-rounded\`
     `),
     },
     isFill: DBmbIconParamDesc.isIconFill,
@@ -70,7 +73,7 @@ ${getBasicExampleBlock('BmbIconComponent')}
     },
     dotNotification: DBmbIconParamDesc.iconDotNotification,
     size: DBmbIconParamDesc.iconSize,
-    alt: DBmbGenericParamDesc.alt,
+    alt: DBmbIconParamDesc.alt,
   },
   args: {
     icon: 'home',

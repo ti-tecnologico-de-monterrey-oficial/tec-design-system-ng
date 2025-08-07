@@ -11,7 +11,6 @@ import {
   getControlDescription,
   DBmbInputParamDesc,
   DBmbGenericParamDesc,
-  DBmbIconParamDesc,
 } from '../../utils/doc/parameterDescriptions';
 
 const inputName = 'date_range';
@@ -117,9 +116,9 @@ ${getBasicExampleBlock('BmbDateRangeComponent')}
       },
     },
     icon: {
-      ...DBmbIconParamDesc.icon,
+      ...DBmbInputParamDesc.icon,
       table: {
-        ...DBmbIconParamDesc.icon.table,
+        ...DBmbInputParamDesc.icon.table,
         defaultValue: { summary: 'calendar_month' },
       },
     },

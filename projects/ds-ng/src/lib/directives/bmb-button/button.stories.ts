@@ -40,7 +40,7 @@ ${getBasicExampleBlock('BmbButtonDirective')}
   },
   argTypes: {
     appearance: DBmbButtonParamDesc.appearance,
-    icon: DBmbIconParamDesc.icon,
+    icon: DBmbButtonParamDesc.icon,
     iconSize: {
       control: { type: 'number' },
       description:
@@ -110,7 +110,7 @@ ${getBasicExampleBlock('BmbButtonDirective')}
         type: { summary: 'boolean' },
       },
     },
-    iconAlt: DBmbGenericParamDesc.alt,
+    iconAlt: DBmbIconParamDesc.alt,
   },
   args: {
     size: 'small',

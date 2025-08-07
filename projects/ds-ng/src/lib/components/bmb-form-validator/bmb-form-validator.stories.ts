@@ -98,13 +98,14 @@ ${getArchitectureSection(`
 </form>
 `).replace('DOM Architecture', '-DOM Architecture')}
 ${getSpecialSpecifications(`
-  **Important:**
+  **‼︎Important:**
   ${getFormControlConsiderations('>')}
 `).replace('Considerations / Restrictions', '-Considerations / Restrictions')}
 ${getReactiveFormTitle('BmbFormValidatorComponent').replace('Reactive form example', '-Reactive form example')}
 ><br/>
 >${getTypescriptExampleTextBlock(
           'BmbButtonDirective, BmbFormValidatorComponent',
+          '',
           '',
           '',
           '',
@@ -137,6 +138,7 @@ ${getTypescriptExampleTextBlock(
   '',
   '',
   '',
+  '',
   false,
   '',
   'formGroup:FormGroup = new FormGroup({});',
@@ -163,7 +165,7 @@ ${getDescribeTypeTextBlock('HTML').replace('HTML example', '-HTML example')}
 Sets the \`FormGroup\` instance defined for cases where the validations are different from those already natively supported by **Bamboo inputs**.
 
 <br/>
-**Important:**
+**‼︎Important:**
 
 It is essential to assign the property \`name\` for correct behavior of the field.
 

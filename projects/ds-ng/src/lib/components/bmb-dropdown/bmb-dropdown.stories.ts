@@ -19,7 +19,6 @@ import {
 } from '../../utils/doc/utils';
 import { BmbFormValidatorComponent } from '../bmb-form-validator/bmb-form-validator.component';
 import {
-  DBmbIconParamDesc,
   DBmbInputParamDesc,
   getOnEventParam,
 } from '../../utils/doc/parameterDescriptions';
@@ -107,7 +106,7 @@ ${getArchitectureSection(`
 </section>
 `)}
 ${getSpecialSpecifications(`
-  ### Warning:
+  ### ⚠ Warning:
 The \`isFilterable\` feature is not compatible with the current version of Storybook, We are working on to fix this issue. You should be able to use it in your Angular application.
 >${getEmptyStateMessage()}
 `)}
@@ -118,7 +117,7 @@ ${getBasicExampleBlock('BmbDropdownComponent', '', onChange.handleExample)}
     },
   },
   argTypes: {
-    icon: DBmbIconParamDesc.icon,
+    icon: DBmbInputParamDesc.icon,
     required: DBmbInputParamDesc.isRequired,
     showIcon: {
       control: { type: 'boolean' },
@@ -161,7 +160,7 @@ IBmbDropdownItem = {
       description: `
 Enables the functionality to filter data when true, the user can type in order to filter the options list.
 
-**Important**:
+**‼︎Important**:
 
 The \`isFilterable\` is not compatible with the \`isMultiSelect\`.
 
@@ -177,7 +176,7 @@ If you set the \`isMultiSelect\` property to true, the \`isFilterable\` property
       description: `
 Sets the list of options to display at the top of the data.
 
-**Important**
+**‼︎Important**
 
 The order given will be the position in which it will be displayed.
 

@@ -36,7 +36,7 @@ ${getBasicExampleBlock('BmbActionIconComponent', '', `${onButtonPress.handleExam
   argTypes: {
     idElement: DBmbGenericParamDesc.uniqueId,
     icon: DBmbIconParamDesc.icon,
-    alt: DBmbGenericParamDesc.alt,
+    alt: DBmbIconParamDesc.alt,
     iconSize: DBmbIconParamDesc.iconSize,
     isFill: DBmbIconParamDesc.isIconFill,
     toggleIconActive: {

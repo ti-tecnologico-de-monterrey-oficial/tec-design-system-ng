@@ -1,28 +1,80 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { BmbNotificationCardComponent } from './bmb-notification-card.component';
+import {
+  getBasicExampleBlock,
+  getGeneralComponentDescription,
+  getGeneralDescription,
+  getOnEvent,
+  getSpecialSpecifications,
+} from '../../utils/doc/utils';
+import { getOnClickParam } from '../../utils/doc/parameterDescriptions';
+
+const typeDetail: string = `
+IBmbDataAlert {
+  id: number | string;
+  title: string;
+  description: IBmbDataAlertDetails[];
+  date: string;
+  isRead: boolean;
+  time: string;
+  tags?: IBmbAlertTag[];
+  type: string;
+  isFavorite: boolean;
+  isArchived: boolean;
+}
+
+IBmbAlertTag {
+  text: string;
+  color: IBbmBgAppearance;
+}
+
+IBmbDataAlertDetails {
+  text: string;
+  style?: 'normal' | 'bold' | 'italic' | 'underline';
+  href?: string;
+  type: 'paragraph' | 'image' | 'video' | 'link' | 'button' | 'title';
+  variant?: IButtonAppearance;
+  event?: (id: string | number) => void;
+}
+
+IButtonAppearance =
+  | 'primary'
+  | 'secondary-filled'
+  | 'secondary-outlined'
+  | 'destructive'
+  | 'transparent';
+`;
 
 export default {
   title: 'Components/Containers/Notification card',
   component: BmbNotificationCardComponent,
   parameters: {
     docs: {
+      controls: {
+        exclude: [
+          'handleAlertEvent',
+          'newAlerts',
+          'ngOnInit',
+          'onDotPress',
+          'setActiveTab',
+          'setSize',
+          'activeData',
+          'activeDot',
+          'activeTab',
+          'expanded',
+          'tabs',
+        ],
+      },
       description: {
-        component: `Note: When you click on fullscreen icon, in Storybook doesn’t look the best due to the many elements, but in your project, it should display correctly.
-
-Below is an example of how you can use this component in TypeScript:
-
-\`\`\`typescript
-import { BmbNotificationCardComponent } from '@ti-tecnologico-de-monterrey-oficial/ds-ng';
-@Component({
-  selector: 'component',
-  standalone: true,
-  imports: [ BmbNotificationCardComponent, IBmbNotificationCardData ],
-  templateUrl: './component.html',
-  styleUrl: './component.scss',
-})
-
-export class AppComponent {
-    data: IBmbNotificationCardData = {
+        component: `
+${getGeneralDescription(`${getGeneralComponentDescription('notification-card')} to display notifications and advertisements in a card format, supporting features like tabbed navigation, badge counts for unread alerts, and event handling for interactions.`, 'https://bamboo.tec.mx/latest/componentes/notification-card/descripcion-general-8uCIey7b')}
+${getSpecialSpecifications(` ### Note:
+When you click on fullscreen icon, in Storybook doesn’t look the best due to the many elements, but in your project, it should display correctly.
+`)}
+${getBasicExampleBlock(
+  'BmbNotificationCardComponent',
+  '',
+  `  data: IBmbNotificationCardData = {
         new: [
             {
                 description: 'Descripcion Corta',
@@ -53,41 +105,52 @@ export class AppComponent {
                 time: '4d 12h'
             },
         ]
-    },
-}
-\`\`\`
+    };
 
-Below is an example of how you can use this component in HTML:
+    //Add your code`,
+)}
+
         `,
       },
     },
   },
   argTypes: {
     data: {
-      name: 'Data Source',
       control: {
         type: 'object',
       },
-      description: 'Set information that the component will show',
+      description: 'Sets information that the component will show',
       table: {
         category: 'Properties',
-        type: { summary: 'IBmbDataAlert[]' },
+        type: { summary: 'IBmbDataAlert[]', detail: typeDetail },
         defaultValue: { summary: `{}` },
       },
     },
     advertisements: {
-      name: 'Advertisements',
       control: {
         type: 'object',
       },
       description:
-        'Set information that the component will show on the advertisement tab',
+        'Sets information that the component will show on the advertisement tab',
       table: {
         category: 'Properties',
-        type: { summary: 'IBmbDataAlert[]' },
+        type: { summary: 'IBmbDataAlert[]', detail: typeDetail },
         defaultValue: { summary: `[]` },
       },
     },
+    hideExpandBtn: {
+      control: { type: 'boolean' },
+      description: 'Hides the expand button when true',
+      table: {
+        category: 'Properties',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    alertEvent: getOnClickParam(
+      getOnEvent('', 'alertEvent', 'IBmbDataAlert'),
+      `.<br/><br/>The event output is the alert detail (***IBmbDataAlert***)`,
+    ),
   },
   args: {
     data: [
@@ -336,6 +399,9 @@ Below is an example of how you can use this component in HTML:
         isArchived: false,
       },
     ],
+    alertEvent: () => {
+      console.log('alertEvent');
+    },
   },
 } as Meta<typeof BmbNotificationCardComponent>;
 
